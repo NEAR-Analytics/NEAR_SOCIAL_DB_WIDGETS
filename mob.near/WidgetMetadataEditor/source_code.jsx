@@ -20,7 +20,7 @@ return (
         description: { label: "Description" },
         tags: {
           label: "Tags",
-          pattern: "*/widget/metadata/tags/*",
+          pattern: "*/widget/*/metadata/tags/*",
           placeholder: "profile, editor, social, finance, app, image, nft",
         },
         linktree: {
