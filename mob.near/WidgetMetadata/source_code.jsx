@@ -47,8 +47,8 @@ const linktreeObjects = linktree.map((o) => {
 });
 
 return (
-  <div className="card py-2">
-    <div className="row g-0">
+  <div className="card">
+    <div className="row py-2 g-0">
       <div className="my-auto text-center" style={{ maxWidth: "12em" }}>
         <div
           className="d-inline-block"
@@ -98,12 +98,12 @@ return (
           {linktreeObjects.length > 0 && (
             <li className="list-group-item">{linktreeObjects}</li>
           )}
-          <li className="list-group-item text-truncate">
-            <span className="text-secondary me-1">By</span>
-            <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
-          </li>
         </ul>
       </div>
+    </div>
+    <div className="card-footer">
+      <span className="text-secondary me-1">By</span>
+      <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
     </div>
   </div>
 );
