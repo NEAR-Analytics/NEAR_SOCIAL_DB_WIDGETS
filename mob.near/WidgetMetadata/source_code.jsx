@@ -47,7 +47,7 @@ const linktreeObjects = linktree.map((o) => {
 });
 
 return (
-  <div className="card p-1">
+  <div className="card py-2">
     <div className="row g-0">
       <div className="my-auto text-center" style={{ maxWidth: "12em" }}>
         <div
