@@ -62,7 +62,7 @@ return (
               style: { objectFit: "cover" },
               thumbnail: false,
               fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreierd2p26vdlmkwaihxsi44dzw5gh6np5tovnyfzin2mgzuuestfom",
+                "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
               alt: widgetName,
             }}
           />
