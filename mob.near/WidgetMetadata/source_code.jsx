@@ -68,37 +68,30 @@ return (
           />
         </div>
       </div>
-      <div className="col py-1">
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <div className="position-relative">
-              <h5 className="card-title">{name}</h5>
-              <div className="text-truncate">
-                <a
-                  className="text-decoration-none stretched-link"
-                  href={`#/${widgetPath}`}
-                >
-                  <i className="bi bi-box-arrow-up-right text-secondary me-1" />
-                  {widgetPath}
-                </a>
-              </div>
+      <div className="col">
+        <div className="position-relative">
+          <h5 className="card-title">{name}</h5>
+          <div className="text-truncate">
+            <a
+              className="text-decoration-none stretched-link"
+              href={`#/${widgetPath}`}
+            >
+              <i className="bi bi-box-arrow-up-right text-secondary me-1" />
+              {widgetPath}
+            </a>
+          </div>
+        </div>
+        <div className="card-text">
+          <Markdown text={description} />
+          {tags.length > 0 && (
+            <div>
+              {tags.map((tag) => (
+                <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
+              ))}
             </div>
-            <div className="card-text">
-              <Markdown text={description} />
-
-              {tags.length > 0 && (
-                <div>
-                  {tags.map((tag) => (
-                    <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </li>
-          {linktreeObjects.length > 0 && (
-            <li className="list-group-item">{linktreeObjects}</li>
           )}
-        </ul>
+        </div>
+        {linktreeObjects}
       </div>
     </div>
     <div className="card-footer">
