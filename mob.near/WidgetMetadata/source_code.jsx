@@ -3,7 +3,7 @@ const widgetName = props.widgetName;
 const widgetPath = `${accountId}/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
-const name = metadata.name;
+const name = metadata.name ?? widgetName;
 const description = metadata.description;
 const image = metadata.image;
 const tags = Object.keys(metadata.tags ?? {});
@@ -66,6 +66,8 @@ return (
               className: "w-100 h-100 shadow rounded",
               imageStyle: { objectFit: "cover" },
               thumbnail: false,
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreierd2p26vdlmkwaihxsi44dzw5gh6np5tovnyfzin2mgzuuestfom",
               alt: widgetName,
             }}
           />
