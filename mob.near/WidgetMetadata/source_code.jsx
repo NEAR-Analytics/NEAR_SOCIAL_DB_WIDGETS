@@ -9,15 +9,10 @@ const image = metadata.image;
 const tags = Object.keys(metadata.tags ?? {});
 
 const linktree = Object.entries(metadata.linktree ?? {});
-linktree.push(["path", widgetPath]);
 const linktreeElements = {
   website: {
     prefix: "https://",
     icon: "bi-globe2",
-  },
-  path: {
-    prefix: "#/",
-    icon: "bi-box-arrow-up-right",
   },
 };
 
@@ -64,7 +59,7 @@ return (
             props={{
               image,
               className: "w-100 h-100 rounded",
-              imageStyle: { objectFit: "cover" },
+              style: { objectFit: "cover" },
               thumbnail: false,
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreierd2p26vdlmkwaihxsi44dzw5gh6np5tovnyfzin2mgzuuestfom",
@@ -76,7 +71,18 @@ return (
       <div className="col py-1">
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <h5 className="card-title">{name}</h5>
+            <div className="position-relative">
+              <h5 className="card-title">{name}</h5>
+              <div className="text-truncate">
+                <a
+                  className="text-decoration-none stretched-link"
+                  href={`#/${widgetPath}`}
+                >
+                  <i className="bi bi-box-arrow-up-right text-secondary me-1" />
+                  {widgetPath}
+                </a>
+              </div>
+            </div>
             <div className="card-text">
               <Markdown text={description} />
 
@@ -89,7 +95,9 @@ return (
               )}
             </div>
           </li>
-          <li className="list-group-item">{linktreeObjects}</li>
+          {linktreeObjects.length > 0 && (
+            <li className="list-group-item">{linktreeObjects}</li>
+          )}
           <li className="list-group-item text-truncate">
             <span className="text-secondary me-1">By</span>
             <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
