@@ -60,9 +60,5 @@ return (
           <Widget src="mob.near/widget/Widgets" />
         </div>
       )}
-    <div className="row mb-3">
-      <h4>Recently updated widgets</h4>
-      <Widget src="mob.near/widget/LastWidgets" />
-    </div>
   </>
 );
