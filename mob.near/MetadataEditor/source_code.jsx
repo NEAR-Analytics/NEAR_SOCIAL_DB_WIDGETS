@@ -16,11 +16,19 @@ const metadata = {
   name: options.name ? state.metadata.name : undefined,
   description: options.name ? state.metadata.description : undefined,
   linktree:
-    options.linktree && Object.keys(state.linktree) > 0
+    options.linktree && Object.keys(state.linktree).length > 0
       ? state.linktree
       : undefined,
-  image: options.image ? state.image : undefined,
-  backgroundImage: options.backgroundImage ? state.backgroundImage : undefined,
+  image:
+    options.image && state.image && Object.keys(state.image).length > 0
+      ? state.image
+      : undefined,
+  backgroundImage:
+    options.backgroundImage &&
+    state.backgroundImage &&
+    Object.keys(state.backgroundImage).length > 0
+      ? state.backgroundImage
+      : undefined,
   tags: options.tags ? state.metadata.tags : undefined,
   screenshots: options.screenshots ? state.metadata.screenshots : undefined,
 };
