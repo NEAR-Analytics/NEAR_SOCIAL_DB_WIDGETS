@@ -39,6 +39,10 @@ return (
         <a href="#/mob.near/widget/AllWidgets">AllWidgets</a>
       </div>
       <div className="mb-1">
+        Recently updated widgets:{" "}
+        <a href="#/mob.near/widget/LastWidgets">LastWidgets</a>
+      </div>
+      <div className="mb-1">
         Edit your homepage:{" "}
         <a href="#/mob.near/widget/HomepageEditor">HomepageEditor</a>
       </div>
