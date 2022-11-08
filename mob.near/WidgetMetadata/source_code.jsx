@@ -1,6 +1,7 @@
 const accountId = props.accountId;
 const widgetName = props.widgetName;
 const widgetPath = `${accountId}/widget/${widgetName}`;
+const blockHeight = props.blockHeight;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
 const name = metadata.name ?? widgetName;
@@ -95,8 +96,21 @@ return (
       </div>
     </div>
     <div className="card-footer">
-      <span className="text-secondary me-1">By</span>
-      <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
+      <div className="d-flex justify-content-start">
+        <div className="flex-grow-1 me-1 text-truncate">
+          <span className="text-secondary me-1">By</span>
+          <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
+        </div>
+        <div>
+          <small className="ps-1 text-nowrap text-muted ms-auto">
+            <i className="bi bi-clock me-1"></i>
+            <Widget
+              src="mob.near/widget/TimeAgo"
+              props={{ keyPath: widgetPath, now: props.metadata, blockHeight }}
+            />
+          </small>
+        </div>
+      </div>
     </div>
   </div>
 );
