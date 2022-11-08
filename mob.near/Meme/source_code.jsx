@@ -50,7 +50,7 @@ return (
               <i className="bi bi-clock me-1"></i>
               <Widget
                 src="mob.near/widget/TimeAgo"
-                props={{ keyPath, blockHeight }}
+                props={{ now: !!props.meme, keyPath, blockHeight }}
               />
             </small>
           </div>
