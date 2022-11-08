@@ -1,4 +1,8 @@
-let keyPath = props.keyPath;
+if (props.now) {
+  return "now";
+}
+
+const keyPath = props.keyPath;
 let blockHeight = props.blockHeight ? parseInt(props.blockHeight) : undefined;
 
 if (blockHeight === undefined && keyPath) {
