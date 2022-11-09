@@ -1,6 +1,19 @@
 const accountId = props.accountId;
 const tag = props.tag;
 
+const makeLink = (accountId, tag) => {
+  const args = [];
+  if (accountId) {
+    args.push(`accountId=${accountId}`);
+  }
+  if (tag) {
+    args.push(`tag=${tag}`);
+  }
+  return `#/mob.near/widget/LastWidget${args.length > 0 ? "?" : ""}${args.join(
+    "&"
+  )}`;
+};
+
 const render = (content) => {
   return (
     <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
@@ -80,19 +93,6 @@ const processData = (data) => {
 
   allItems.sort((a, b) => b.blockHeight - a.blockHeight);
   return allItems;
-};
-
-const makeLink = (accountId, tag) => {
-  const args = [];
-  if (accountId) {
-    args.push(`accountId=${accountId}`);
-  }
-  if (tag) {
-    args.push(`tag=${tag}`);
-  }
-  return `#/mob.near/widget/LastWidget${args.length > 0 ? "?" : ""}${args.join(
-    "&"
-  )}`;
 };
 
 const renderTag = (tag, tagBadge) => (
