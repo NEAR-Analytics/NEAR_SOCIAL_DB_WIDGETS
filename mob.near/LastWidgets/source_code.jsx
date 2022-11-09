@@ -1,5 +1,26 @@
-const accountId = props.accountId ?? "*";
-const keys = props.keys ?? `${accountId}/widget/*`;
+const accountId = props.accountId;
+const tag = props.tag;
+
+let keys = `${accountId ?? "*"}/widget/*`;
+
+if (tag) {
+  const taggedWidgets = Social.keys(
+    `${accountId ?? "*"}/widget/*/metadata/tags/${tag}`,
+    "final"
+  );
+
+  if (taggedWidgets === null) {
+    return "Loading tags";
+  }
+
+  keys = Object.entries(taggedWidgets)
+    .map((kv) => Object.keys(kv[1].widget).map((w) => `${kv[0]}/widget/${w}`))
+    .flat();
+
+  if (!keys.length) {
+    return `No widgets found by tag #${tag}`;
+  }
+}
 
 const data = Social.keys(keys, "final", {
   return_type: "BlockHeight",
@@ -27,26 +48,39 @@ const processData = (data) => {
   return allItems;
 };
 
-const accountIdArgument = props.accountId ? `accountId=${accountId}&` : "";
-const tagLinkPrefix = `#/mob.near/widget/LastWidgetsByTag?${accountIdArgument}tag=`;
+const makeLink = (accountId, tag) => {
+  const args = [];
+  if (accountId) {
+    args.push(`accountId=${accountId}`);
+  }
+  if (tag) {
+    args.push(`tag=${tag}`);
+  }
+  return `#/mob.near/widget/LastWidget${args.length > 0 ? "?" : ""}${args.join(
+    "&"
+  )}`;
+};
 
 const renderTag = (tag, tagBadge) => (
-  <a href={`${tagLinkPrefix}${tag}`}>{tagBadge}</a>
+  <a href={makeLink(accountId, tag)}>{tagBadge}</a>
 );
 
-const renderItem = (a) => (
-  <div className="mb-3" key={JSON.stringify(a)} style={{ minHeight: "10em" }}>
-    <Widget
-      src="mob.near/widget/WidgetMetadata"
-      props={{
-        accountId: a.accountId,
-        widgetName: a.widgetName,
-        blockHeight: a.blockHeight,
-        renderTag,
-      }}
-    />
-  </div>
-);
+const renderItem = (a) => {
+  return (
+    <div className="mb-3" key={JSON.stringify(a)} style={{ minHeight: "10em" }}>
+      <Widget
+        src="mob.near/widget/WidgetMetadata"
+        props={{
+          accountId: a.accountId,
+          widgetName: a.widgetName,
+          blockHeight: a.blockHeight,
+          renderTag,
+          profileLink: makeLink(a.accountId, tag),
+        }}
+      />
+    </div>
+  );
+};
 
 if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
   State.update({
@@ -56,28 +90,36 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 }
 
 return (
-  <>
-    {props.accountId && (
+  <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
+    {(accountId || tag) && (
       <div className="mb-2">
-        Filtered by account
-        <a
-          href="#/mob.near/widget/LastWidgets"
-          className="btn btn-outline-primary"
-        >
-          <Widget
-            src="mob.near/widget/ProfileLine"
-            props={{ accountId, link: false }}
-          />
-          <i class="bi bi-x-square"></i>
-        </a>
+        Filter:
+        {accountId && (
+          <a
+            href={makeLink(undefined, tag)}
+            className="btn btn-outline-primary"
+          >
+            <Widget
+              src="mob.near/widget/ProfileLine"
+              props={{ accountId, link: false }}
+            />
+            <i class="bi bi-x-square"></i>
+          </a>
+        )}
+        {tag && (
+          <a
+            href={makeLink(accountId, undefined)}
+            className="btn btn-outline-primary"
+          >
+            <span class="badge text-bg-secondary">#{tag}</span>
+            <i class="bi bi-x-square"></i>
+          </a>
+        )}
       </div>
     )}
-
-    <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
-      <Widget
-        src="mob.near/widget/ItemFeed"
-        props={{ items: state.allItems, renderItem }}
-      />
-    </div>
-  </>
+    <Widget
+      src="mob.near/widget/ItemFeed"
+      props={{ items: state.allItems, renderItem }}
+    />
+  </div>
 );
