@@ -48,7 +48,7 @@ const linktreeObjects = linktree.map((o) => {
 });
 
 return (
-  <div className="card">
+  <div className="card" style={{ borderRadius: "2em" }}>
     <div className="row py-3 g-1">
       <div className="m-auto text-center" style={{ maxWidth: "12em" }}>
         <div
@@ -59,8 +59,8 @@ return (
             src="mob.near/widget/Image"
             props={{
               image,
-              className: "w-100 h-100 rounded",
-              style: { objectFit: "cover" },
+              className: "w-100 h-100",
+              style: { objectFit: "cover", borderRadius: "2em" },
               thumbnail: false,
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
@@ -95,7 +95,10 @@ return (
         {linktreeObjects}
       </div>
     </div>
-    <div className="card-footer">
+    <div
+      className="card-footer"
+      style={{ borderBottomLeftRadius: "2em", borderBottomRightRadius: "2em" }}
+    >
       <div className="d-flex justify-content-start">
         <div className="flex-grow-1 me-1 text-truncate">
           <span className="text-secondary me-1">By</span>
