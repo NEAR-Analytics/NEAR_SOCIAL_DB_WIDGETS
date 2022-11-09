@@ -1,6 +1,40 @@
 const accountId = props.accountId;
 const tag = props.tag;
 
+const render = (content) => {
+  return (
+    <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
+      {(accountId || tag) && (
+        <div className="mb-2">
+          Filter:
+          {accountId && (
+            <a
+              href={makeLink(undefined, tag)}
+              className="btn btn-outline-primary"
+            >
+              <Widget
+                src="mob.near/widget/ProfileLine"
+                props={{ accountId, link: false }}
+              />
+              <i className="bi bi-x-square"></i>
+            </a>
+          )}
+          {tag && (
+            <a
+              href={makeLink(accountId, undefined)}
+              className="btn btn-outline-primary"
+            >
+              <span class="badge text-bg-secondary">#{tag}</span>
+              <i className="bi bi-x-square"></i>
+            </a>
+          )}
+        </div>
+      )}
+      {content}
+    </div>
+  );
+};
+
 let keys = `${accountId ?? "*"}/widget/*`;
 
 if (tag) {
@@ -10,7 +44,7 @@ if (tag) {
   );
 
   if (taggedWidgets === null) {
-    return "Loading tags";
+    return render("Loading tags");
   }
 
   keys = Object.entries(taggedWidgets)
@@ -18,7 +52,7 @@ if (tag) {
     .flat();
 
   if (!keys.length) {
-    return `No widgets found by tag #${tag}`;
+    return render(`No widgets found by tag #${tag}`);
   }
 }
 
@@ -27,7 +61,7 @@ const data = Social.keys(keys, "final", {
 });
 
 if (data === null) {
-  return "Loading";
+  return render("Loading");
 }
 
 const processData = (data) => {
@@ -56,7 +90,7 @@ const makeLink = (accountId, tag) => {
   if (tag) {
     args.push(`tag=${tag}`);
   }
-  return `#/mob.near/widget/LastWidgets${args.length > 0 ? "?" : ""}${args.join(
+  return `#/mob.near/widget/LastWidget${args.length > 0 ? "?" : ""}${args.join(
     "&"
   )}`;
 };
@@ -89,37 +123,9 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
   });
 }
 
-return (
-  <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
-    {(accountId || tag) && (
-      <div className="mb-2">
-        Filter:
-        {accountId && (
-          <a
-            href={makeLink(undefined, tag)}
-            className="btn btn-outline-primary"
-          >
-            <Widget
-              src="mob.near/widget/ProfileLine"
-              props={{ accountId, link: false }}
-            />
-            <i className="bi bi-x-square"></i>
-          </a>
-        )}
-        {tag && (
-          <a
-            href={makeLink(accountId, undefined)}
-            className="btn btn-outline-primary"
-          >
-            <span class="badge text-bg-secondary">#{tag}</span>
-            <i className="bi bi-x-square"></i>
-          </a>
-        )}
-      </div>
-    )}
-    <Widget
-      src="mob.near/widget/ItemFeed"
-      props={{ items: state.allItems, renderItem }}
-    />
-  </div>
+return render(
+  <Widget
+    src="mob.near/widget/ItemFeed"
+    props={{ items: state.allItems, renderItem }}
+  />
 );
