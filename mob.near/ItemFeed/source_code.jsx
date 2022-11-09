@@ -1,5 +1,6 @@
-const allItems = props.allItems;
+const items = props.items;
 const renderItem = props.renderItem;
+const perPage = props.perPage || 10;
 
 State.init({
   widgets: [],
@@ -7,7 +8,7 @@ State.init({
 
 const makeMoreItems = () => {
   const newItems = allItems
-    .slice(state.widgets.length, state.widgets.length + 10)
+    .slice(state.widgets.length, state.widgets.length + perPage)
     .map(renderItem);
   newItems.forEach((widget) => state.widgets.push(widget));
   State.update();
