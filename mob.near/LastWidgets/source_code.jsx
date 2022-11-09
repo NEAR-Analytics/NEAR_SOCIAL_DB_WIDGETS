@@ -37,7 +37,7 @@ const render = (content) => {
               href={makeLink(accountId, undefined)}
               className="btn btn-outline-primary"
             >
-              <span class="badge text-bg-secondary">#{tag}</span>
+              <span className="badge text-bg-secondary">#{tag}</span>
               <i className="bi bi-x-square"></i>
             </a>
           )}
