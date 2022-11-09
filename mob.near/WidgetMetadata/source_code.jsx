@@ -3,6 +3,7 @@ const widgetName = props.widgetName;
 const widgetPath = `${accountId}/widget/${widgetName}`;
 const blockHeight = props.blockHeight;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
+const tagLink = props.tagLink;
 
 const name = metadata.name ?? widgetName;
 const description = metadata.description;
@@ -87,9 +88,12 @@ return (
         <div className="card-text">
           {tags.length > 0 && (
             <div>
-              {tags.map((tag) => (
-                <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
-              ))}
+              {tags.map((tag) => {
+                const tagBadge = (
+                  <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
+                );
+                return tagLink ? tagLink(tagBadge) : tagBadge;
+              })}
             </div>
           )}
           {(description || linktreeObjects.length > 0) && (
