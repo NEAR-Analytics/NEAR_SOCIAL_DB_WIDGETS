@@ -47,6 +47,8 @@ const linktreeObjects = linktree.map((o) => {
   );
 });
 
+const descriptionKey = `${widgetPath}-description`.replaceAll(/[._\/-]/g, "--");
+
 return (
   <div className="card" style={{ borderRadius: "2em" }}>
     <div className="row py-3 g-1">
@@ -92,16 +94,12 @@ return (
           )}
           {(description || linktreeObjects.length > 0) && (
             <>
-              <div className="collapse" id="collapseExample">
-                <Markdown text={description} />
-                {linktreeObjects}
-              </div>
               <button
                 className="btn btn-sm btn-outline-secondary border-0"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapseExample"
+                data-bs-target={`#${descriptionKey}`}
                 aria-expanded="false"
-                aria-controls="collapseExample"
+                aria-controls={descriptionKey}
               >
                 <i class="bi bi-arrows-angle-expand me-1"></i>Show details
               </button>
@@ -109,6 +107,10 @@ return (
           )}
         </div>
       </div>
+    </div>
+    <div className="card-text p-2 pt-0 collapse" id={descriptionKey}>
+      <Markdown text={description} />
+      {linktreeObjects}
     </div>
     <div
       className="card-footer"
