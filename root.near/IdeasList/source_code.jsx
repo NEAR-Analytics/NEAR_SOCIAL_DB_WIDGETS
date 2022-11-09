@@ -11,7 +11,9 @@ return (
     </a>
     {ideas.map((idea) => (
       <div>
-        <h3>{idea.name}</h3>
+        <h3>
+          {idea.name} ({idea.status})
+        </h3>
         <p>Submitted: {idea.submitter_id}</p>
         <p>Reviewer: {idea.reviewer_id}</p>
         <p>{idea.description}</p>
