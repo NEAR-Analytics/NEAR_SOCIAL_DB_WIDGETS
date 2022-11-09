@@ -18,4 +18,9 @@ if (!keys.length) {
   return `No widgets found by tag #${tag}`;
 }
 
-return <Widget src="mob.near/widget/LastWidgets" props={{ keys, accountId }} />;
+return (
+  <Widget
+    src="mob.near/widget/LastWidgets"
+    props={{ keys, accountId: props.accountId }}
+  />
+);
