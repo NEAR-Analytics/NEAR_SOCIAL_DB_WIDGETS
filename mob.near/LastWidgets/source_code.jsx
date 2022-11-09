@@ -27,9 +27,26 @@ const processData = (data) => {
   return allItems;
 };
 
+const accountIdArgument = props.accountId ? `accountId=${accountId}&` : "";
+const tagLinkPrefix = `#/mob.near/widget/LastWidgetsByTag?${accountIdArgument}tag=`;
+
+const renderTag = (tag, tagBadge) => (
+  <a className="text-decoration-none" href={`${tagLinkPrefix}${tag}`}>
+    {tagBadge}
+  </a>
+);
+
 const renderItem = (a) => (
   <div className="mb-3" key={JSON.stringify(a)} style={{ minHeight: "10em" }}>
-    <Widget src="mob.near/widget/WidgetMetadata" props={a} />
+    <Widget
+      src="mob.near/widget/WidgetMetadata"
+      props={{
+        accountId: a.accountId,
+        widgetName: a.widgetName,
+        blockHeight: a.blockHeight,
+        renderTag,
+      }}
+    />
   </div>
 );
 
