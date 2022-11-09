@@ -18,9 +18,23 @@ if (!keys.length) {
   return `No widgets found by tag #${tag}`;
 }
 
+const accountIdArgument = props.accountId ? `?accountId=${accountId}` : "";
+
 return (
-  <Widget
-    src="mob.near/widget/LastWidgets"
-    props={{ keys, accountId: props.accountId }}
-  />
+  <>
+    <div className="mb-2">
+      Filtered by tag
+      <a
+        href={`#/mob.near/widget/LastWidgets${accountIdArgument}`}
+        className="btn btn-outline-primary"
+      >
+        <span class="badge text-bg-secondary">#{tag}</span>
+        <i class="bi bi-x-square"></i>
+      </a>
+    </div>
+    <Widget
+      src="mob.near/widget/LastWidgets"
+      props={{ keys, accountId: props.accountId }}
+    />
+  </>
 );
