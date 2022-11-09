@@ -27,6 +27,10 @@ if (block === null) {
   return "Loading";
 }
 
+if (!block) {
+  return "unknown";
+}
+
 const timeMs = parseFloat(block.header.timestamp_nanosec) / 1e6;
 
 const timeAgo = (diffSec) =>
