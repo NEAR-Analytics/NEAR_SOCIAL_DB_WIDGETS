@@ -3,7 +3,7 @@ const widgetName = props.widgetName;
 const widgetPath = `${accountId}/widget/${widgetName}`;
 const blockHeight = props.blockHeight;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
-const tagLink = props.tagLink;
+const renderTag = props.renderTag;
 
 const name = metadata.name ?? widgetName;
 const description = metadata.description;
@@ -92,7 +92,7 @@ return (
                 const tagBadge = (
                   <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
                 );
-                return tagLink ? tagLink(tagBadge) : tagBadge;
+                return renderTag ? renderTag(tagBadge) : tagBadge;
               })}
             </div>
           )}
