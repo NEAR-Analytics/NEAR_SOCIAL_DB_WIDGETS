@@ -94,18 +94,29 @@ return (
             </div>
           )}
           {(description || linktreeObjects.length > 0) && (
-            <>
-              <button
-                className="btn btn-sm btn-outline-secondary border-0"
-                data-bs-toggle="collapse"
-                data-bs-target={`#${descriptionKey}`}
-                aria-expanded="false"
-                aria-controls={descriptionKey}
-              >
-                <i className="bi bi-arrows-angle-expand me-1"></i>Show details
-              </button>
-            </>
+            <button
+              className="btn btn-sm btn-outline-secondary border-0"
+              data-bs-toggle="collapse"
+              data-bs-target={`#${descriptionKey}`}
+              aria-expanded="false"
+              aria-controls={descriptionKey}
+            >
+              <i className="bi bi-arrows-angle-expand me-1"></i>Show details
+            </button>
           )}
+          <a
+            href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
+            className="btn btn-sm btn-outline-secondary border-0"
+          >
+            <i className="bi bi-file-earmark-code me-1"></i>Source
+          </a>
+          <a
+            href={`#/edit/${widgetPath}`}
+            className="btn btn-sm btn-outline-secondary border-0"
+          >
+            <i className="bi bi-pencil-square me-1"></i>
+            {accountId === context.accountId ? "Edit" : "Fork"}
+          </a>
         </div>
       </div>
     </div>
