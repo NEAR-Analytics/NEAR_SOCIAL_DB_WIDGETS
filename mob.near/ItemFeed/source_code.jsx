@@ -7,7 +7,7 @@ State.init({
 });
 
 const makeMoreItems = () => {
-  const newItems = allItems
+  const newItems = items
     .slice(state.widgets.length, state.widgets.length + perPage)
     .map(renderItem);
   newItems.forEach((widget) => state.widgets.push(widget));
@@ -18,7 +18,7 @@ return (
   <InfiniteScroll
     pageStart={0}
     loadMore={makeMoreItems}
-    hasMore={state.widgets.length < allItems.length}
+    hasMore={state.widgets.length < items.length}
     loader={<div className="loader">Loading ...</div>}
   >
     {state.widgets}
