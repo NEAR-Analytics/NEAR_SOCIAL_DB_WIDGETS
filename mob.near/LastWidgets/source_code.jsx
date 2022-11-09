@@ -31,9 +31,7 @@ const accountIdArgument = props.accountId ? `accountId=${accountId}&` : "";
 const tagLinkPrefix = `#/mob.near/widget/LastWidgetsByTag?${accountIdArgument}tag=`;
 
 const renderTag = (tag, tagBadge) => (
-  <a className="text-decoration-none" href={`${tagLinkPrefix}${tag}`}>
-    {tagBadge}
-  </a>
+  <a href={`${tagLinkPrefix}${tag}`}>{tagBadge}</a>
 );
 
 const renderItem = (a) => (
