@@ -4,7 +4,7 @@ const data = Social.keys(`${accountId}/widget/*`, "final", {
   return_type: "BlockHeight",
 });
 
-if (!data) {
+if (data === null) {
   return "Loading";
 }
 
@@ -14,8 +14,7 @@ const processData = (data) => {
   const allItems = accounts
     .map((account) => {
       const accountId = account[0];
-      const widgets = account[1].widget;
-      return Object.entries(widgets).map((kv) => ({
+      return Object.entries(account[1].widget).map((kv) => ({
         accountId,
         widgetName: kv[0],
         blockHeight: kv[1],
@@ -27,34 +26,24 @@ const processData = (data) => {
   return allItems;
 };
 
-const itemToWidget = (a) => (
+const renderItem = (a) => (
   <div className="mb-3" key={JSON.stringify(a)} style={{ minHeight: "10em" }}>
     <Widget src="mob.near/widget/WidgetMetadata" props={a} />
   </div>
 );
 
-State.init({
-  allItems: processData(data),
-  widgets: [],
-});
-
-const makeMoreItems = () => {
-  const newItems = state.allItems
-    .slice(state.widgets.length, state.widgets.length + 10)
-    .map(itemToWidget);
-  newItems.forEach((widget) => state.widgets.push(widget));
-  State.update();
-};
+if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
+  State.update({
+    data,
+    allItems: processData(data),
+  });
+}
 
 return (
   <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
-    <InfiniteScroll
-      pageStart={0}
-      loadMore={makeMoreItems}
-      hasMore={state.widgets.length < state.allItems.length}
-      loader={<div className="loader">Loading ...</div>}
-    >
-      {state.widgets}
-    </InfiniteScroll>
+    <Widget
+      src="mob.near/widget/ItemFeed"
+      props={{ items: state.allItems, renderItem }}
+    />
   </div>
 );
