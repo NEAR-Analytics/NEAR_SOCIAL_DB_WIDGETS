@@ -92,7 +92,7 @@ return (
                 const tagBadge = (
                   <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
                 );
-                return renderTag ? renderTag(tagBadge) : tagBadge;
+                return renderTag ? renderTag(tag, tagBadge) : tagBadge;
               })}
             </div>
           )}
