@@ -62,7 +62,7 @@ return (
             src="mob.near/widget/Image"
             props={{
               image,
-              className: "w-100 h-100",
+              className: "w-100 h-100 shadow",
               style: { objectFit: "cover", borderRadius: "2em" },
               thumbnail: false,
               fallbackUrl:
