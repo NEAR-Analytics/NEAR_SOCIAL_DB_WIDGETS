@@ -35,7 +35,7 @@ const linktreeObjects = linktree.map((o) => {
   );
   return e.prefix ? (
     <div className="text-truncate">
-      <a className="text-decoration-none" href={`${e.prefix}${value}`}>
+      <a href={`${e.prefix}${value}`}>
         {icon}
         {value}
       </a>
@@ -76,10 +76,7 @@ return (
         <div className="position-relative">
           <h5 className="card-title">{name}</h5>
           <div className="text-truncate mb-1">
-            <a
-              className="text-decoration-none stretched-link"
-              href={`#/${widgetPath}`}
-            >
+            <a className="stretched-link" href={`#/${widgetPath}`}>
               <i className="bi bi-box-arrow-up-right text-secondary me-1" />
               {widgetPath}
             </a>
@@ -123,7 +120,10 @@ return (
       <div className="d-flex justify-content-start">
         <div className="flex-grow-1 me-1 text-truncate">
           <span className="text-secondary me-1">By</span>
-          <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
+          <Widget
+            src="mob.near/widget/ProfileLine"
+            props={{ accountId, link: props.profileLink }}
+          />
         </div>
         <div>
           <small className="ps-1 text-nowrap text-muted ms-auto">
