@@ -56,7 +56,7 @@ const makeLink = (accountId, tag) => {
   if (tag) {
     args.push(`tag=${tag}`);
   }
-  return `#/mob.near/widget/LastWidget${args.length > 0 ? "?" : ""}${args.join(
+  return `#/mob.near/widget/LastWidgets${args.length > 0 ? "?" : ""}${args.join(
     "&"
   )}`;
 };
