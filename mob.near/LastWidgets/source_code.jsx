@@ -1,6 +1,7 @@
 const accountId = props.accountId ?? "*";
+const keys = props.keys ?? `${accountId}/widget/*`;
 
-const data = Social.keys(`${accountId}/widget/*`, "final", {
+const data = Social.keys(keys, "final", {
   return_type: "BlockHeight",
 });
 
