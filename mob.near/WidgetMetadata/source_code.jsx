@@ -72,7 +72,7 @@ return (
       <div className="col px-2">
         <div className="position-relative">
           <h5 className="card-title">{name}</h5>
-          <div className="text-truncate">
+          <div className="text-truncate mb-1">
             <a
               className="text-decoration-none stretched-link"
               href={`#/${widgetPath}`}
@@ -83,7 +83,6 @@ return (
           </div>
         </div>
         <div className="card-text">
-          <Markdown text={description} />
           {tags.length > 0 && (
             <div>
               {tags.map((tag) => (
@@ -91,8 +90,24 @@ return (
               ))}
             </div>
           )}
+          {(description || linktreeObjects.length > 0) && (
+            <>
+              <div className="collapse" id="collapseExample">
+                <Markdown text={description} />
+                {linktreeObjects}
+              </div>
+              <button
+                className="btn btn-sm btn-outline-secondary border-0"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                <i class="bi bi-arrows-angle-expand me-1"></i>Show details
+              </button>
+            </>
+          )}
         </div>
-        {linktreeObjects}
       </div>
     </div>
     <div
