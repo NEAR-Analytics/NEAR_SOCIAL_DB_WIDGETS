@@ -1,8 +1,8 @@
 const accountId = props.accountId ?? context.accountId;
-const className = props.className ?? "profile-image d-inline-block";
-const style = props.style ?? { width: "3em", height: "3em" };
-const imageStyle = props.imageStyle ?? { objectFit: "cover" };
-const imageClassName = props.imageClassName ?? "rounded w-100 h-100";
+const className = props.className ?? "image";
+// const style = props.style ?? { width: "3em", height: "3em" };
+const imageStyle = props.imageStyle ?? { objectFit: "cover", width: "100" };
+const imageClassName = props.imageClassName ?? "rounded";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
@@ -12,7 +12,7 @@ const image = profile.image;
 const title = `${name} @${accountId}`;
 
 return (
-  <div className={className} title={title} style={style}>
+  <div className={className} title={title}>
     <Widget
       src="mob.near/widget/Image"
       props={{
