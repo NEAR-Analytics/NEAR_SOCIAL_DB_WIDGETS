@@ -1,7 +1,7 @@
 const accountId = props.accountId ?? context.accountId;
 const className = props.className ?? "image";
 // const style = props.style ?? { width: "3em", height: "3em" };
-const imageStyle = props.imageStyle ?? { objectFit: "cover", width: "100" };
+const imageStyle = props.imageStyle ?? { objectFit: "cover", width: "100px" };
 const imageClassName = props.imageClassName ?? "rounded";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
