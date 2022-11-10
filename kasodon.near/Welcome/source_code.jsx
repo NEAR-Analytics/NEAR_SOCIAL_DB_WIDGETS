@@ -22,7 +22,7 @@ return (
       style={{ borderRadius: "12px", fontFamily: "Tahoma, sans-serif" }}
       className="row py-2"
     >
-      <div className="col-12 font-weight-bold">
+      <div className="col-12 font-weight-bold mb-3">
         {context.accountId && (
           <div>
             <a
@@ -39,7 +39,7 @@ return (
           </div>
         )}
       </div>
-      <div className="col-12 font-weight-bold mb-4">
+      <div className="col-12 font-weight-bold">
         {context.accountId && (
           <div>
             <a
