@@ -22,11 +22,28 @@ return (
       style={{ borderRadius: "12px", fontFamily: "Tahoma, sans-serif" }}
       className="row py-2"
     >
+      <div className="col-12 font-weight-bold">
+        {context.accountId && (
+          <div>
+            <a
+              href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+              style={{
+                background: "#3D7EFF",
+                color: "#FEFFFE",
+                fontWeight: "bold",
+              }}
+              className="btn mx-2 text-capitalize"
+            >
+              View Profile
+            </a>
+          </div>
+        )}
+      </div>
       <div className="col-12 font-weight-bold mb-4">
         {context.accountId && (
           <div>
             <a
-              href="self.social.near/mob.near/widget/Profile"
+              href={`#/mob.near/widget/ProfilePage?accountId=self.social.near`}
               style={{
                 background: "transperent",
                 border: "2px solid #3D7EFF",
@@ -37,23 +54,6 @@ return (
               className="btn btn mx-2 text-capitalize"
             >
               Get Involved
-            </a>
-          </div>
-        )}
-      </div>
-      <div className="col-12 font-weight-bold">
-        {context.accountId && (
-          <div>
-            <a
-              href="#/mob.near/widget/Profile"
-              style={{
-                background: "#3D7EFF",
-                color: "#FEFFFE",
-                fontWeight: "bold",
-              }}
-              className="btn mx-2 text-capitalize"
-            >
-              View Profile
             </a>
           </div>
         )}
