@@ -36,11 +36,29 @@ return (
             >
               <div style={{ marginRight: "5px" }} class="d-flex flex-column">
                 <span class="fw-bold text-lowercase">Widgets</span>
-                <span class="text-center">0</span>
+                <span class="text-center">
+                  {context.accountId &&
+                  Object.keys(
+                    Social.keys(`${context.accountId}/widget/*`) || {}
+                  ).length > 0
+                    ? Object.keys(
+                        Social.keys(`${context.accountId}/widget/*`) || {}
+                      ).length
+                    : 0}
+                </span>
               </div>
               <div style={{ marginRight: "5px" }} class="d-flex flex-column">
                 <span class="fw-bold text-lowercase">Memes</span>
-                <span class="text-center">0</span>
+                <span class="text-center">
+                  {context.accountId &&
+                  Object.keys(
+                    Social.keys(`${context.accountId}/widget/*`) || {}
+                  ).length > 0
+                    ? Object.keys(
+                        Social.keys(`${context.accountId}/meme/*`) || {}
+                      ).length
+                    : 0}
+                </span>
               </div>
               <div class="d-flex flex-column">
                 <span class="fw-bold text-lowercase">Review</span>
