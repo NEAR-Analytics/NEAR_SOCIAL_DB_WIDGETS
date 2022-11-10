@@ -26,7 +26,7 @@ return (
         {context.accountId && (
           <div>
             <a
-              href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+              href={`#/mob.near/widget/ProfilePage?accountId=${context.accountId}`}
               style={{
                 background: "#3D7EFF",
                 color: "#FEFFFE",
