@@ -47,7 +47,7 @@ return (
     style={{
       backgroundColor: "#FAF8D4",
       maxWidth: "37.5rem",
-      maxHeight: "31.25rem",
+      height: "31.25rem",
       borderRadius: "40px",
       padding: "10px",
       border: "3px solid #FEFFFE",
