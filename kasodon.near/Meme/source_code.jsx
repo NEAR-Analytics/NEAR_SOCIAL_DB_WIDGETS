@@ -45,7 +45,7 @@ const timeAgo = (diffSec) =>
 return (
   <div
     style={{
-      backgroundColor: "#ecf2ff",
+      backgroundColor: "#FAF8D4",
       width: "600px",
       height: "500px",
       borderRadius: "40px",
