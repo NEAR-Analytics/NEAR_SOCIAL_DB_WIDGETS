@@ -46,8 +46,8 @@ return (
   <div
     style={{
       backgroundColor: "#FAF8D4",
-      width: "600px",
-      height: "500px",
+      maxWidth: "37.5rem",
+      maxHeight: "31.25rem",
       borderRadius: "40px",
       padding: "10px",
       border: "3px solid #FEFFFE",
