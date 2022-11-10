@@ -1,5 +1,5 @@
 return (
-  <div className="container my-4 text-sm-start text-md-start text-lg-start text-center">
+  <div className="container mb-4 text-sm-start text-md-start text-lg-start text-center">
     <div style={{ borderRadius: "12px" }} className="row py-2 mb-2">
       <div style={{}} className="col-12">
         <h2
@@ -25,21 +25,36 @@ return (
       <div className="col-12 font-weight-bold mb-4">
         {context.accountId && (
           <div>
-            <Widget src="mob.near/widget/ProfileOnboarding" />
-            <Widget
-              src="mob.near/widget/Profile"
-              props={{ accountId: context.accountId }}
-            />
+            <a
+              href="self.social.near/mob.near/widget/Profile"
+              style={{
+                background: "transperent",
+                border: "2px solid #3D7EFF",
+                color: "#3D7EFF",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+              className="btn btn mx-2 text-capitalize"
+            >
+              Get Involved
+            </a>
           </div>
         )}
       </div>
       <div className="col-12 font-weight-bold">
         {context.accountId && (
           <div>
-            <Widget
-              src="mob.near/widget/Profile"
-              props={{ accountId: "self.social.near" }}
-            />
+            <a
+              href="#/mob.near/widget/Profile"
+              style={{
+                background: "#3D7EFF",
+                color: "#FEFFFE",
+                fontWeight: "bold",
+              }}
+              className="btn mx-2 text-capitalize"
+            >
+              View Profile
+            </a>
           </div>
         )}
       </div>
