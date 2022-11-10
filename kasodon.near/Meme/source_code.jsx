@@ -68,14 +68,22 @@ return (
       </div>
       <div className="profile-text">
         <h4
-          style={{ fontSize: "16px", marginBottom: "2px" }}
+          style={{
+            fontSize: "16px",
+            marginBottom: "2px",
+            fontFamily: "Tahoma, sans-serif",
+            fontWeight: "bold",
+          }}
           className="m-0 text-capitalize"
         >
           {profile.name.length > 20
             ? `${profile.name.substring(0, 20)}...`
             : profile.name}
         </h4>
-        <p style={{ fontSize: "14px" }} className="m-0 text-lowercase">
+        <p
+          style={{ fontSize: "14px", fontFamily: "Tahoma, sans-serif" }}
+          className="m-0 text-lowercase"
+        >
           {accountId.length > 30
             ? `@${accountId.substring(0, 30)}...`
             : `@${accountId}`}
@@ -114,6 +122,8 @@ return (
               margin: "0",
               fontSize: "18px",
               textTransform: "capitalize",
+              fontFamily: "Tahoma, sans-serif",
+              fontWeight: "bold",
             }}
           >
             {meme.title.length > 25
