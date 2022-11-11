@@ -21,7 +21,7 @@ let qId = Date.now() + accountId;
 return (
   <div className="row mb-3">
     <div>
-      <h4>Question</h4>
+      <h4>Make question</h4>
     </div>
     <input className="mb-2" value={state.question} />
 
