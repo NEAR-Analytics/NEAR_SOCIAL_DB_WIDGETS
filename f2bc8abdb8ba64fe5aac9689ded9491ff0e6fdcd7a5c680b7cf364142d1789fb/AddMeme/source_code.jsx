@@ -1,47 +1,13 @@
 const accountId = props.accountId ?? context.accountId;
 const currentAccountId = context.accountId;
-// let blockHeight = props.blockHeight ? parseInt(props.blockHeight) : undefined;
+
 const profile = Social.getr(`${accountId}/profile`);
 
 const question = Social.getr(`${accountId}/post/poll_question`, blockHeight);
 
-// let idVote = Social.keys(`${currentAccountId}/post/*`, "final", {
-//   return_type: "History",
-// });
+// console.log("question", question);
 
-//let answerBlockheight =
-//  idVote.f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb.post[
-//    `${blockHeight}`
-//  ][0];
-
-//let oneAnswer = Social.getr(`${currentAccountId}/*`, blockHeight);
-
-// console.log(
-//   "R",
-//   idVote.f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb.post[
-//     `${blockHeight}`
-//   ][0]
-// );
-
-// console.log("answerBlockheight", answerBlockheight);
-// console.log("oneAnswer", oneAnswer);
-
-console.log("question", question);
-
-// if (!question) {
-//   return "Loading";
-// }
-
-// if (!props.question && !blockHeight) {
-//   blockHeight = Social.keys(`${accountId}/post/meme`, undefined, {
-//     return_type: "BlockHeight",
-//   })[accountId].post.meme;
-//   if (!blockHeight) {
-//     return "Loading";
-//   }
-// }
-
-const questionTimeMs = props.meme
+const questionTimeMs = props.question
   ? Date.now()
   : parseFloat(Near.block(blockHeight).header.timestamp_nanosec) / 1e6;
 
@@ -49,7 +15,7 @@ const actualQuestion = question.question;
 const questionId = question.questionId;
 
 let answer = Social.getr(`${currentAccountId}/post/${questionId}`, blockHeight);
-console.log("answer", answer);
+// console.log("answer", answer);
 
 const profileLink = (c) => (
   <a
@@ -60,34 +26,74 @@ const profileLink = (c) => (
   </a>
 );
 
-const getButtons = () => (
+State.init({ vote: "", currentAnswer: "" });
+console.log(state.vote);
+
+const getForm = () => (
   <div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault"
+        id="voteYes"
+        value="yes"
+        checked={state.vote == "yes"}
+        onChange={onValueChange}
+      />
+      <label class="form-check-label" for="voteYes">
+        Yes
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="flexRadioDefault"
+        id="voteNo"
+        value="no"
+        checked={state.vote == "no"}
+        onChange={onValueChange}
+      />
+      <label class="form-check-label" for="voteNo">
+        No
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="answer">Your answer</label>
+      <textarea
+        class="form-control mb-1"
+        id="answer"
+        rows="3"
+        value={state.currentAnswer}
+        onChange={(e) => {
+          const currentAnswer = e.target.value;
+          State.update({ currentAnswer });
+        }}
+      ></textarea>
+    </div>
     <CommitButton
       data={{
         post: {
           [questionId]: {
             userVoting: currentAccountId,
-            userVote: "yes",
+            userVote: state.vote,
+            userAnswer: state.currentAnswer,
           },
         },
       }}
     >
-      Yes
-    </CommitButton>
-    <CommitButton
-      data={{
-        post: {
-          [questionId]: {
-            userVoting: currentAccountId,
-            userVote: "no",
-          },
-        },
-      }}
-    >
-      No
+      Confirm
     </CommitButton>
   </div>
 );
+
+function onValueChange(e) {
+  const vote = e.target.value;
+
+  State.update({ vote });
+}
 
 const getResponses = () => (
   <p className="small text-muted mt-2 mb-0">
@@ -144,7 +150,7 @@ return (
           </div>
         </div>
         <div>{actualQuestion}</div>
-        <>{getButtons()}</>
+        <>{getForm()}</>
       </div>
     </div>
   </div>
