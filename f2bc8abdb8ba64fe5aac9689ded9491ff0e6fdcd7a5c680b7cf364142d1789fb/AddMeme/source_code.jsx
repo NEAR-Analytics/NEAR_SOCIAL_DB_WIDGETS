@@ -83,7 +83,7 @@ const getForm = () => (
     )}
 
     <div class="form-group">
-      <label for="answer">Your answer</label>
+      <label for="answer">Post answer</label>
       <textarea
         class="form-control mb-1"
         id="answer"
