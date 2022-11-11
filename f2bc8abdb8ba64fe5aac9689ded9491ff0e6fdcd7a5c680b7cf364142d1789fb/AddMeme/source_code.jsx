@@ -1,3 +1,5 @@
+console.log("props: ", props)
+
 const accountId = props.accountId ?? context.accountId;
 const currentAccountId = context.accountId;
 
