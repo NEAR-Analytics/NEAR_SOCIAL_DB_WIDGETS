@@ -1,4 +1,4 @@
-console.log("props: ", props)
+console.log("props: ", props);
 
 const accountId = props.accountId ?? context.accountId;
 const currentAccountId = context.accountId;
@@ -8,11 +8,20 @@ const profile = Social.getr(`${accountId}/profile`);
 const question =
   props.question ?? Social.getr(`${accountId}/post/poll_question`, blockHeight);
 
+console.log("question", question);
+
 const questionTimeMs = props.question.timeStamp ?? Date.now();
 const actualQuestion = question.question;
 const questionId = question.questionId;
 
-let answer = Social.getr(`${currentAccountId}/post/${questionId}`, blockHeight);
+const processAllAnswers = () => {};
+
+const answer = Social.getr(
+  `${currentAccountId}/post/${questionId}`,
+  blockHeight
+);
+
+// console.log("answer: ", answer);
 
 const profileLink = (c) => (
   <a
@@ -22,15 +31,24 @@ const profileLink = (c) => (
     {c}
   </a>
 );
-
 State.init({ vote: "", currentAnswer: "" });
 // console.log("input vote value: ", state.vote, "textarea value: ", state.currentAnswer);
+const allowVote = () => {
+  if (answer.userVote == "") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const oldUserAnswers = answer.userAnswer ?? [];
+const newUserAnswers = oldUserAnswers.push(state.currentAnswer);
 
 const getForm = () => (
   <div>
     <div class="form-check">
       <input
-        {...(answer.userVote) && disabled}
+        disabled={allowVote()}
         key={state.vote}
         class="form-check-input"
         type="radio"
@@ -46,7 +64,7 @@ const getForm = () => (
     </div>
     <div class="form-check">
       <input
-        {...(answer.userVote) && disabled}
+        disabled={allowVote()}
         key={state.vote}
         class="form-check-input"
         type="radio"
@@ -60,7 +78,9 @@ const getForm = () => (
         No
       </label>
     </div>
-    {...(answer.userVote) && retrun (<p className="text-danger">You can only vote once</p>)}
+    {answer.userVote != "" && (
+      <p className="text-danger">You can only vote once</p>
+    )}
 
     <div class="form-group">
       <label for="answer">Your answer</label>
@@ -80,8 +100,8 @@ const getForm = () => (
         post: {
           [questionId]: {
             userVoting: currentAccountId,
-            userVote: state.vote == "" ? answer.userVote : state.vote ,
-            userAnswer: [...answer.userAnswer, state.currentAnswer],
+            userVote: state.vote == "" ? answer.userVote : state.vote,
+            userAnswer: newUserAnswers,
             answerTimestamp: Date.now(),
           },
         },
