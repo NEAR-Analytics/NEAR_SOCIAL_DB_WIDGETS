@@ -1,4 +1,4 @@
-console.log("props: ", props);
+// console.log("props: ", props);
 
 const accountId = props.accountId ?? context.accountId;
 const currentAccountId = context.accountId;
@@ -8,7 +8,7 @@ const profile = Social.getr(`${accountId}/profile`);
 const question =
   props.question ?? Social.getr(`${accountId}/post/poll_question`, blockHeight);
 
-console.log("question", question);
+// console.log("question", question);
 
 const questionTimeMs = props.question.timeStamp ?? Date.now();
 const actualQuestion = question.question;
@@ -22,6 +22,12 @@ const answer = Social.getr(
 );
 
 // console.log("answer: ", answer);
+
+const oldAnswers = answer.userAnswers.slice(1, -1).toString();
+console.log(oldAnswers);
+
+const newAnswers = "[" + oldAnswers + `,"` + state.currentAnswer + `"]`;
+console.log(newAnswers);
 
 const profileLink = (c) => (
   <a
@@ -40,9 +46,6 @@ const allowVote = () => {
     return true;
   }
 };
-
-const oldUserAnswers = answer.userAnswer ?? [];
-const newUserAnswers = oldUserAnswers.push(state.currentAnswer);
 
 const getForm = () => (
   <div>
@@ -99,10 +102,10 @@ const getForm = () => (
       data={{
         post: {
           [questionId]: {
-            userVoting: currentAccountId,
             userVote: state.vote == "" ? answer.userVote : state.vote,
-            userAnswer: newUserAnswers,
-            answerTimestamp: Date.now(),
+            userVoting: currentAccountId,
+            userAnswers: newAnswers,
+            answerTimestamps: [Date.now()],
           },
         },
       }}
