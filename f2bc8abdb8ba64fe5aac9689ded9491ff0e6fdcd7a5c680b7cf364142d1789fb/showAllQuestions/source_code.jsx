@@ -4,7 +4,7 @@ const data = Social.keys(`${accountId}/post/poll_question`, "final", {
   return_type: "History",
 });
 
-console.log(data);
+// console.log(data);
 
 if (!data) {
   return "Loading";
