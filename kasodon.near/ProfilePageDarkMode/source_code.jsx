@@ -366,7 +366,15 @@ return (
       </Cover>
       <Prop>
         <Media>
-          <ProfileImage src={url} />
+          <Widget
+            src="kasodon.near/widget/ProfileImage"
+            props={{
+              profile,
+              accountId,
+              imageClassName: "profile-image",
+              thumbnail: false,
+            }}
+          />
           <PropText>
             <h4>{name}</h4>
             <p>@{accountId}</p>
