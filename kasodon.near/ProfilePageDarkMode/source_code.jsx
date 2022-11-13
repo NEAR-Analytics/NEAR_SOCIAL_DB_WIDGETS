@@ -367,7 +367,7 @@ return (
       <Prop>
         <Media>
           <Widget
-            src="kasodon.near/widget/ProfileImage"
+            src="kasodon.near/widget/ProfileImageDarkMode"
             props={{
               profile,
               accountId,
