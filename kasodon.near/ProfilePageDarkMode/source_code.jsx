@@ -120,7 +120,7 @@ const Edit = styled.a`
                 padding: 7px 20px;
                 color: #FEFFFE;
                 font-weight: 500;
-                background: hsla(0,0%,100%,.30) border-box;
+                background: hsla(0,0%,100%,.5) border-box;
                 text-shadow: 0 1px 1px hsla(0,0%,100%,.3);
 	            overflow: hidden;
                 border: none;
@@ -312,7 +312,7 @@ const Data = styled.div`
                             width: 100%;
                             margin-bottom: 5%;
                         }
-                        img {
+                        .nft-image {
                             width: 100%;
                             height: 70%;
                             object-fit: cover;
@@ -442,26 +442,12 @@ return (
           role="tabpanel"
           aria-labelledby="pills-nft-tab"
         >
-          <div className="nft-single">
-            <img src="https://images.unsplash.com/photo-1642525027649-00d7397a6d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-            <a href="#">View Details</a>
-          </div>
-          <div className="nft-single">
-            <img src="https://images.unsplash.com/photo-1642525027649-00d7397a6d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-            <a href="#">View Details</a>
-          </div>
-          <div className="nft-single">
-            <img src="https://images.unsplash.com/photo-1642525027649-00d7397a6d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-            <a href="#">View Details</a>
-          </div>
-          <div className="nft-single">
-            <img src="https://images.unsplash.com/photo-1642525027649-00d7397a6d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-            <a href="#">View Details</a>
-          </div>
-          <div className="nft-single">
-            <img src="https://images.unsplash.com/photo-1642525027649-00d7397a6d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-            <a href="#">View Details</a>
-          </div>
+          {allNfts.map((contractId) => (
+            <Widget
+              src="kasodon.near/widget/NftCollection"
+              props={{ accountId, contractId }}
+            />
+          ))}
         </div>
         <div
           class="tab-pane fade"
