@@ -29,12 +29,6 @@ if (!f.ok) {
 
 const allNfts = f.body.list;
 
-const url =
-  (image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
-    : image.url) ||
-  "https://images.unsplash.com/photo-1528731708534-816fe59f90cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80";
-
 const bg =
   (backgroundImage.ipfs_cid
     ? `https://ipfs.near.social/ipfs/${backgroundImage.ipfs_cid}`
