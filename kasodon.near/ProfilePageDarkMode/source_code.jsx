@@ -16,6 +16,9 @@ const nfts = Near.view(contractId, "nft_tokens_for_owner", {
   from_index: "0",
   limit: 200,
 });
+
+console.log("NFTs:", nfts);
+
 const f = fetch(
   `https://api.kitwallet.app/account/${accountId}/likelyNFTsFromBlock`
 );
