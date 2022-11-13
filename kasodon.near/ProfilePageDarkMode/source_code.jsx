@@ -176,9 +176,8 @@ const Media = styled.div`
                     align-items: center;
                     align-content: center;
                 }
-    `;
-const ProfileImage = styled.img`
-    width: 160px;
+                .profile-image {
+                  width: 160px;
                     height: 160px;
                     border-radius: 100%;
                     z-index: 100;
@@ -189,6 +188,7 @@ const ProfileImage = styled.img`
                     @media only screen and (max-width: 540px) {
                         margin-bottom: 10px;
                     }
+                }
     `;
 const PropText = styled.div`
     @media only screen and (max-width: 540px) {
