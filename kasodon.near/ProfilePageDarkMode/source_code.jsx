@@ -75,12 +75,12 @@ const linktreeObjects = linktree.map((o) => {
   return e.prefix ? (
     <a href={`${e.prefix}${value}`}>
       {icon}
-      {value}
+      {key}
     </a>
   ) : (
     <div>
       {key}: {icon}
-      {value}
+      {key}
     </div>
   );
 });
