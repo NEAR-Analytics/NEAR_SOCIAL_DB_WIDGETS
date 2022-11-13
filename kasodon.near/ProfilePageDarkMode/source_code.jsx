@@ -259,6 +259,10 @@ const Links = styled.div`
                             margin-bottom: 2%;
                             margin-right: 0;
                         }
+                        @media only screen and (max-width: 415px) {
+                            margin-right: 0;
+                            font-size: 13px;
+                        }
                     }
     `;
 const Data = styled.div`
