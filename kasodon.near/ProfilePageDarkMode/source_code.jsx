@@ -242,7 +242,7 @@ const Links = styled.div`
                         margin-right: 15px;
                         font-size: 15px;
                         font-weight: 500;
-                        text-transform: lowercase;
+                        text-transform: capitalize;
                         background: transparent;
                         color: #3D7EFF;
                         padding: 7px 20px;
