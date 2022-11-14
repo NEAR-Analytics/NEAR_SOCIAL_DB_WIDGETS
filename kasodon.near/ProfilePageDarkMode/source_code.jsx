@@ -29,12 +29,6 @@ if (!f.ok) {
 
 const allNfts = f.body.list;
 
-const bg =
-  (backgroundImage.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${backgroundImage.ipfs_cid}`
-    : backgroundImag.url) ||
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80";
-
 const linktree = Object.entries(profile.linktree ?? {});
 const linktreeElements = {
   website: {
@@ -104,6 +98,14 @@ const Cover = styled.div`
     height: 180px;
     width: 100%;
     position: relative;
+    .cover-image {
+      object-fit: cover;
+    background-size: cover;
+                height: 180px;
+                width: 100%;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+    }
     `;
 const Edit = styled.a`
     position: absolute;
@@ -132,14 +134,6 @@ const Edit = styled.a`
 	                -webkit-filter: blur(20px);
 	                filter: blur(20px);
                 }
-    `;
-const CoverImage = styled.img`
-    object-fit: cover;
-    background-size: cover;
-                height: 180px;
-                width: 100%;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
     `;
 const Prop = styled.div`
     width: 100%;
@@ -356,7 +350,19 @@ return (
         {showEditButton && (
           <Edit href="#/mob.near/widget/ProfileEditor">Edit Profile</Edit>
         )}
-        {backgroundImage && <CoverImage src={bg} />}
+        {backgroundImage && (
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: backgroundImage,
+              alt: "profile background",
+              className: "cover-image",
+              style: {},
+              fallbackUrl:
+                "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80",
+            }}
+          />
+        )}
       </Cover>
       <Prop>
         <Media>
