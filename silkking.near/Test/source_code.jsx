@@ -17,9 +17,11 @@ const data = Social.keys(`${accountId}/*`, "final", {
   return_type: "History",
 });
 
+const data2 = Social.get(`${accountId}/test/**`);
+
 return (
   <div>
-    {JSON.stringify(data)}
+    {JSON.stringify(data2)}
     <CommitButton data={{ test: "test" }}>No</CommitButton>
   </div>
 );
