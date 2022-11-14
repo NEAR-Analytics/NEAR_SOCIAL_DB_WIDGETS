@@ -11,6 +11,28 @@ const image = profile.image;
 const backgroundImage = profile.backgroundImage;
 const tags = Object.keys(profile.tags ?? {});
 
+let data = Social.keys(`${accountId}/widget/*`, "final", {
+  return_type: "BlockHeight",
+});
+
+if (!data) {
+  return "Loading";
+}
+
+data = Object.entries(data[accountId].widget ?? {});
+data.sort((a, b) => b[1] - a[1]);
+
+const widgets = data.map((p) => {
+  const src = `${accountId}/widget/${p[0]}`;
+  return (
+    <>
+      <a className="widget-link" href={`#/${src}`}>
+        {p[0] || <i>Noname widget</i>}
+      </a>
+    </>
+  );
+});
+
 const nfts = Near.view(contractId, "nft_tokens_for_owner", {
   account_id: accountId,
   from_index: "0",
@@ -115,8 +137,8 @@ const Edit = styled.a`
                 border-radius: 6px;
                 padding: 7px 20px;
                 color: #FEFFFE;
-                font-weight: 500;
-                background: hsla(0,0%,100%,.5) border-box;
+                font-weight: 600;
+                background: hsla(220, 100%, 62%,.7) border-box;
                 text-shadow: 0 1px 1px hsla(0,0%,100%,.3);
 	            overflow: hidden;
                 border: none;
@@ -337,6 +359,52 @@ const Data = styled.div`
                     }
                 }
             }
+            .widget {
+                display: none;
+                    &.active {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                    }
+                .widget-link {
+                    width: 100%;
+                padding-bottom: 18%;
+                margin-bottom: 2%;
+                background: #111315;
+                border-radius: 12px;
+                height: 60px;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                color: #a4a5a5;
+                font-weight: bold;
+                text-decoration: none;
+                text-transform: capitalize;
+                &:hover {
+                    background: #3d7eff;
+                        color: #111315;
+                }
+                @media only screen and (max-width: 920px) {
+                    width: 100%;
+                }
+                @media only screen and (max-width: 780px) {
+                    width: 100%;
+                    margin-bottom: 5%;
+                    font-size: 18px;
+                }
+                @media only screen and (max-width: 540px) {
+                    width: 100%;
+                    font-size: 17px;
+                }
+                @media only screen and (max-width: 420px) {
+                    width: 100%;
+                    margin-bottom: 5%;
+                    font-size: 16px;
+                }
+                }
+            }
         }
     `;
 
@@ -462,12 +530,12 @@ return (
           ))}
         </div>
         <div
-          class="tab-pane fade"
+          class="tab-pane fade widget"
           id="pills-widget"
           role="tabpanel"
           aria-labelledby="pills-widget-tab"
         >
-          ...
+          {widgets}
         </div>
       </div>
     </Data>
