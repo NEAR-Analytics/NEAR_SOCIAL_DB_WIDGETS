@@ -1,5 +1,12 @@
 const ideas = Near.view("nearideas.near", "get_ideas");
 
+const onReportClick = (idea_id) => {
+  Near.call("nearideas.near", "review", {
+    idea_id: parseInt(idea_id),
+    status: "Reported",
+  });
+};
+
 return (
   <div>
     <h2>Ideas</h2>
@@ -21,12 +28,24 @@ return (
             <p>Reviewer: {idea.reviewer_id}</p>
             <p>{idea.description}</p>
             <p>Amount: {idea.amount / 1000000000000000000000000} NEAR</p>
-            <a
-              className="btn btn-outline-primary ms-2"
-              href={`#/root.near/widget/CreateSubmission?idea_id=${idea.idea_id}`}
-            >
-              Create submission
-            </a>
+            <p>
+              <a
+                className="btn btn-outline-primary ms-2"
+                href={`#/root.near/widget/CreateSubmission?idea_id=${idea.idea_id}`}
+              >
+                Create submission
+              </a>
+              {idea.reviewer_id === context.accountId ? (
+                <a
+                  className="btn btn-outline-primary ms-2"
+                  onClick={() => onReportClick(idea.idea_id)}
+                >
+                  Report
+                </a>
+              ) : (
+                ""
+              )}
+            </p>
           </div>
         ))
       : ""}
