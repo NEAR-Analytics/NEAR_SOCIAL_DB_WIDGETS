@@ -30,7 +30,6 @@ return (
         post: {
           poll_question: {
             question: entry.question,
-            questionId: qId,
           },
         },
       }}
