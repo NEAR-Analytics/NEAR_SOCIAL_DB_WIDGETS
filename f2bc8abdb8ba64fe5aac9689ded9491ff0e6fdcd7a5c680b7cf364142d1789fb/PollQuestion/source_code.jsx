@@ -16,8 +16,6 @@ const handleChange = (event) => {
   State.update({ content: event.target.value });
 };
 
-let qId = Date.now() + accountId;
-
 return (
   <div className="row mb-3">
     <div>
