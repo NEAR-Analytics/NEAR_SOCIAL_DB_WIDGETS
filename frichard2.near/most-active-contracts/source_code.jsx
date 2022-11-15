@@ -11,7 +11,7 @@ const bgStyle = {
 };
 
 const wStyle = {
-  maxHeight: "500px",
+  maxHeight: "800px",
   overflow: "scroll",
   background: "black",
   color: "white",
