@@ -60,7 +60,12 @@ const data3 = Social.get(
   blockHeightsArrayNotClean[0]
 );
 
-console.log(data3);
+//You can access to all users blockheights of post/test
+const data4 = Social.keys(`*/post/test`, "final", {
+  return_type: "History",
+});
+
+console.log(data4);
 
 return (
   <div>
