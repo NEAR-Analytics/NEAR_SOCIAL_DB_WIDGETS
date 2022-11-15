@@ -1,33 +1,27 @@
 // console.log("props: ", props);
 
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId;
 const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
 
-const question =
-  props.question ?? Social.getr(`${accountId}/post/poll_question`, blockHeight);
+// const testBlockHeights = Social.keys(
+//   `${accountId}/post/poll_question`,
+//   "final",
+//   {
+//     return_type: "History",
+//   }
+// );
+// console.log("testBlockHeights: ", testBlockHeights);
 
-// console.log("question", question);
+const questionBlockHeight = props.questionBlockHeight;
+// console.log("questionBlockHeight: ", questionBlockHeight);
 
-const questionTimeMs = props.question.timeStamp ?? Date.now();
-const actualQuestion = question.question;
-const questionId = question.questionId;
-
-const processAllAnswers = () => {};
-
-const answer = Social.getr(
-  `${currentAccountId}/post/${questionId}`,
-  blockHeight
+const question = Social.get(
+  `${accountId}/post/poll_question/question`,
+  questionBlockHeight
 );
-
-// console.log("answer: ", answer);
-
-const oldAnswers = answer.userAnswers.slice(1, -1).toString();
-console.log(oldAnswers);
-
-const newAnswers = "[" + oldAnswers + `,"` + state.currentAnswer + `"]`;
-console.log(newAnswers);
+// console.log("question: ", question);
 
 const profileLink = (c) => (
   <a
@@ -37,58 +31,94 @@ const profileLink = (c) => (
     {c}
   </a>
 );
-State.init({ vote: "", currentAnswer: "" });
-// console.log("input vote value: ", state.vote, "textarea value: ", state.currentAnswer);
-const allowVote = () => {
-  if (answer.userVote == "") {
-    return false;
-  } else {
-    return true;
+
+const blockHeightsOfAllAnswers = Social.keys(
+  `*/post/${questionBlockHeight}`,
+  "final",
+  {
+    return_type: "History",
+  }
+);
+
+let mapped = Object.keys(blockHeightsOfAllAnswers).map((key) => {
+  return {
+    accountId: key,
+    blockHeightArray: blockHeightsOfAllAnswers[key].post.test[0],
+  };
+});
+
+const haveThisUserAlreadyVoted = () => {
+  for (let i = 0; i < mapped.length; i++) {
+    return mapped[i].accountId == currentAccountId;
   }
 };
 
+let countVotes = mapped.reduce(
+  (acc, curr) => {
+    let answer = Social.get(
+      `${curr.accountId}/post/${questionBlockHeight}`,
+      curr.blockHeightArray
+    );
+    return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
+  },
+  [0, 0]
+);
+
+State.init({ vote: "", currentAnswer: "" });
+// console.log("input vote value: ", state.vote, "textarea value: ", state.currentAnswer);
+
 const getForm = () => (
-  <div>
-    <div class="form-check">
+  <div
+    style={{
+      border: "1px solid #e9e9e9",
+      borderRadius: "20px",
+      padding: "1rem",
+    }}
+  >
+    <h5>Give your opinion</h5>
+    <p style={{ marginBottom: "0" }}>Vote:</p>
+    <div className="form-check">
       <input
-        disabled={allowVote()}
         key={state.vote}
-        class="form-check-input"
+        disabled={haveThisUserAlreadyVoted()}
+        className="form-check-input"
         type="radio"
         name="flexRadioDefault"
         id="voteYes"
-        value="yes"
+        value="1"
         onChange={onValueChange}
-        checked={state.vote == "yes"}
+        checked={state.vote == "1"}
       />
-      <label class="form-check-label" for="voteYes">
+      <label className="form-check-label" for="voteYes">
         Yes
       </label>
     </div>
-    <div class="form-check">
+    <div className="form-check">
       <input
-        disabled={allowVote()}
         key={state.vote}
-        class="form-check-input"
+        disabled={haveThisUserAlreadyVoted()}
+        className="form-check-input"
         type="radio"
         name="flexRadioDefault"
         id="voteNo"
-        value="no"
+        value="0"
         onChange={onValueChange}
-        checked={state.vote == "no"}
+        checked={state.vote == "0"}
       />
-      <label class="form-check-label" for="voteNo">
+      <label className="form-check-label" for="voteNo">
         No
       </label>
     </div>
-    {answer.userVote != "" && (
+    {haveThisUserAlreadyVoted && (
       <p className="text-danger">You can only vote once</p>
     )}
 
-    <div class="form-group">
-      <label for="answer">Post answer</label>
+    <div className="form-group">
+      <label for="answer" className="font-weight-bold">
+        Write answer:
+      </label>
       <textarea
-        class="form-control mb-1"
+        className="form-control mb-1"
         id="answer"
         rows="3"
         value={state.currentAnswer}
@@ -101,11 +131,11 @@ const getForm = () => (
     <CommitButton
       data={{
         post: {
-          [questionId]: {
+          [questionBlockHeight]: {
             userVote: state.vote == "" ? answer.userVote : state.vote,
             userVoting: currentAccountId,
-            userAnswers: newAnswers,
-            answerTimestamps: [Date.now()],
+            userAnswers: currentAnswer,
+            answerTimestamps: Date.now(),
           },
         },
       }}
@@ -157,11 +187,23 @@ return (
           <div>
             <small className="ps-1 text-nowrap text-muted ms-auto">
               <i className="bi bi-clock me-1"></i>
-              {timeAgo(Date.now() - questionTimeMs)}
+              {timeAgo(Date.now() - props.questionTimestamp)}
             </small>
           </div>
         </div>
-        <div>{actualQuestion}</div>
+        <div>{question}</div>
+        <div className="d-flex align-items-start">
+          <i
+            className="bi bi-check-circle-fill"
+            style={{ padding: "0 0.3rem" }}
+          ></i>
+          <p className="text-secondary">{countVotes[1]}</p>
+          <i
+            className="bi bi-x-octagon-fill"
+            style={{ padding: "0 0.5rem 0 1rem" }}
+          ></i>
+          <p className="text-secondary">{countVotes[0]}</p>
+        </div>
         <>{getForm()}</>
       </div>
     </div>
