@@ -19,35 +19,38 @@ return (
       </a>
     </p>
     {ideas
-      ? ideas.map((idea) => (
-          <div>
-            <h3>
-              {idea.name} ({idea.status})
-            </h3>
-            <p>Submitted: {idea.submitter_id}</p>
-            <p>Reviewer: {idea.reviewer_id}</p>
-            <p>{idea.description}</p>
-            <p>Amount: {idea.amount / 1000000000000000000000000} NEAR</p>
-            <p>
-              <a
-                className="btn btn-outline-primary ms-2"
-                href={`#/root.near/widget/CreateSubmission?idea_id=${idea.idea_id}`}
-              >
-                Create submission
-              </a>
-              {idea.reviewer_id === context.accountId ? (
+      ? ideas.map((idea) => {
+          if (idea.status == "Reported") return "";
+          return (
+            <div>
+              <h3>
+                {idea.name} ({idea.status})
+              </h3>
+              <p>Submitted: {idea.submitter_id}</p>
+              <p>Reviewer: {idea.reviewer_id}</p>
+              <p>{idea.description}</p>
+              <p>Amount: {idea.amount / 1000000000000000000000000} NEAR</p>
+              <p>
                 <a
                   className="btn btn-outline-primary ms-2"
-                  onClick={() => onReportClick(idea.idea_id)}
+                  href={`#/root.near/widget/CreateSubmission?idea_id=${idea.idea_id}`}
                 >
-                  Report
+                  Create submission
                 </a>
-              ) : (
-                ""
-              )}
-            </p>
-          </div>
-        ))
+                {idea.reviewer_id === context.accountId ? (
+                  <a
+                    className="btn btn-outline-primary ms-2"
+                    onClick={() => onReportClick(idea.idea_id)}
+                  >
+                    Report
+                  </a>
+                ) : (
+                  ""
+                )}
+              </p>
+            </div>
+          );
+        })
       : ""}
   </div>
 );
