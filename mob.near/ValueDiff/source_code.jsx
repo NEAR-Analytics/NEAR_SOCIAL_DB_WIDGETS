@@ -3,14 +3,14 @@ const fetchCode = (src) => {
   return Social.get(parts[0], parts[1]);
 };
 
-const oldCode = fetchCode(props.oldSrc);
-const newCode = fetchCode(props.newSrc);
+const oldCode = fetchCode(props.oldSrc) || "";
+const newCode = fetchCode(props.newSrc) || "";
 
 return (
   <Diff
     oldValue={oldCode}
     newValue={newCode}
-    splitView={false}
+    splitView={true}
     compareMethod={"WORDS"}
   />
 );
