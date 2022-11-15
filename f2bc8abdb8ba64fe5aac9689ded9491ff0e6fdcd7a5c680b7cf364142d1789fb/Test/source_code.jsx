@@ -24,52 +24,45 @@ const testBlockHeights = Social.keys(`${accountId}/post/test`, "final", {
 
 //Returns Object with user account containing only the key post. At the same time post contains the key test.
 //test value is boolean
-const data = Social.keys(`${accountId}/post/test`);
+const existentObjectsFromAccountId = Social.keys(`${accountId}/post/test`);
 
 //Returns the text you have posted with the commitButton. Documentation says
 //that it will return the lastest blockheigt of that key
-const data2 = Social.get(`${accountId}/post/test`);
+const valueFromGivenKeys = Social.get(`${accountId}/post/test`);
 
-//So we can wrap testBlockHeights to get a bockheight
-const testBlockHeightsObjectToString = JSON.stringify(testBlockHeights);
+const blockHeight = testBlockHeights[accountId].post.test;
 
-const indexOfTestInString = testBlockHeightsObjectToString.indexOf('"test": ');
-const testKeyString = testBlockHeightsObjectToString.slice(
-  indexOfTestInString,
-  -1
-);
-
-const testKeyContentString = testKeyString
-  .replace('"test": [', "")
-  .replace(
-    `
-      ]
-    }
-  }`,
-    ""
-  )
-  .split(" ")
-  .join("")
-  .replace(/(\r\n|\n|\r)/gm, "");
-
-const blockHeightsArrayNotClean = testKeyContentString.split(",");
-
-//And when we have the different blockHeights use them to call the value we want with the .get method
-const data3 = Social.get(
+// Brings the value from key accountId, then post and finally test that is located in the blockHeight provided
+const valueFromGivenKeysInGivenBlockHeight = Social.get(
   `${accountId}/post/test`,
-  blockHeightsArrayNotClean[0]
+  blockHeight[1]
 );
 
 //You can access to all post/test blockheights of all users
-const data4 = Social.keys(`*/post/test`, "final", {
+const blockHeightsInGivenKeys = Social.keys(`*/post/test`, "final", {
   return_type: "History",
 });
 
-console.log(data4);
+let mapped = Object.keys(blockHeightsInGivenKeys).map((key) => {
+  return {
+    accountId: key,
+    blockHeightArray: blockHeightsInGivenKeys[key].post.test[0],
+  };
+});
+mapped.reduce(
+  (acc, curr) => {
+    let answer = Social.get(
+      `${curr.accountId}/post/test`,
+      curr.blockHeightArray
+    );
+    return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
+  },
+  [0, 0]
+);
 
 return (
   <div>
-    {JSON.stringify(testBlockHeights)}
+    {JSON.stringify(mapped)}
     <CommitButton data={{ post: { test: "probando2" } }}>
       Post this
     </CommitButton>
