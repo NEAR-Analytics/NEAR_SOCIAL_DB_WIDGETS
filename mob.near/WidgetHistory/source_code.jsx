@@ -1,4 +1,4 @@
-const src = props.src ?? "mob.near/widget/WidgetSource";
+const src = props.src ?? "mob.near/widget/WidgetHistory";
 
 const code = Social.get(src);
 let history = Social.keys(src, "final", {
@@ -11,7 +11,7 @@ src.split("/").forEach((key) => {
   history = history[key];
 });
 
-const text = `
+const text = (src, code) => `
 ### ${src}
 
 \`\`\`jsx
@@ -21,26 +21,23 @@ ${code}
 
 return (
   <>
-    <Markdown text={text} />
+    <Markdown text={text(src, code)} />
     {history &&
-      history
-        .reverse()
-        .slice(1)
-        .map((blockHeight, i) => {
-          const oldSrc = `${src}@${blockHeight}`;
-          const newSrc = `${src}@${history[i]}`;
-          return (
-            <div className="mt-5">
-              <h4>{oldSrc}</h4>
-              <Widget
-                src="mob.near/widget/ValueDiff"
-                props={{
-                  newSrc,
-                  oldSrc,
-                }}
-              />
-            </div>
-          );
-        })}
+      history.reverse().map((blockHeight, i) => {
+        const newSrc = `${src}@${blockHeight}`;
+        const oldSrc = `${src}@${history[i + 1]}`;
+        return (
+          <div className="mt-5">
+            <h4>{newSrc}</h4>
+            <Widget
+              src="mob.near/widget/ValueDiff"
+              props={{
+                newSrc,
+                oldSrc,
+              }}
+            />
+          </div>
+        );
+      })}
   </>
 );
