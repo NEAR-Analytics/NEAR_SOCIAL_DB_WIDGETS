@@ -5,6 +5,7 @@ const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
 
+//You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
 // const testBlockHeights = Social.keys(
 //   `${accountId}/post/poll_question`,
 //   "final",
@@ -187,7 +188,7 @@ return (
           <div>
             <small className="ps-1 text-nowrap text-muted ms-auto">
               <i className="bi bi-clock me-1"></i>
-              {timeAgo(Date.now() - props.questionTimestamp)}
+              {timeAgo(Date.now() - props.questionTimestamp ?? 0)}
             </small>
           </div>
         </div>
