@@ -8,6 +8,20 @@ const onReportClick = () => {
   });
 };
 
+const onDonateClick = (amount) => {
+  const gas = 300 * 1000000000;
+  const deposit = parseInt(amount) + "000000000000000000000000";
+  Near.call(
+    "nearideas.near",
+    "donate",
+    {
+      idea_id: parseInt(idea.idea_id),
+    },
+    gas,
+    deposit
+  );
+};
+
 return (
   <div>
     <h3>
@@ -34,6 +48,12 @@ return (
       ) : (
         ""
       )}
+      <a
+        className="btn btn-outline-primary ms-2"
+        onClick={() => onDonateClick(1)}
+      >
+        Donate 1N
+      </a>
     </p>
   </div>
 );
