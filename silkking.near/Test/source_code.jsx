@@ -43,9 +43,26 @@ const blockHeightsInGivenKeys = Social.keys(`*/post/test`, "final", {
   return_type: "History",
 });
 
+let mapped = Object.keys(blockHeightsInGivenKeys).map((key) => {
+  return {
+    accountId: key,
+    blockHeightArray: blockHeightsInGivenKeys[key].post.test[0],
+  };
+});
+mapped.reduce(
+  (acc, curr) => {
+    let answer = Social.get(
+      `${curr.accountId}/post/test`,
+      curr.blockHeightArray
+    );
+    return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
+  },
+  [0, 0]
+);
+
 return (
   <div>
-    {JSON.stringify(blockHeightsInGivenKeys)}
+    {JSON.stringify(mapped)}
     <CommitButton data={{ post: { test: "probando2" } }}>
       Post this
     </CommitButton>
