@@ -1,6 +1,13 @@
 const idea_id = props.idea_id ? parseInt(props.idea_id) : 0;
 const idea = props.idea ?? Near.view("nearideas.near", "get_idea", { idea_id });
 
+const onReportClick = () => {
+  Near.call("nearideas.near", "review", {
+    idea_id: parseInt(idea.idea_id),
+    status: "Reported",
+  });
+};
+
 return (
   <div>
     <h3>
@@ -20,7 +27,7 @@ return (
       {idea.reviewer_id === context.accountId ? (
         <a
           className="btn btn-outline-primary ms-2"
-          onClick={() => onReportClick(idea.idea_id)}
+          onClick={() => onReportClick()}
         >
           Report
         </a>
