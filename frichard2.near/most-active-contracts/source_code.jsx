@@ -91,7 +91,7 @@ return (
     <div style={bgStyle}></div>
     <div style={wStyle}>
       <h2 style={{ paddingTop: "25px", paddingBottom: "25px" }}>
-        Most NEAR Active Contracts - last 7 days
+        NEAR Most Active Contracts - last 7 days
       </h2>
       <p>
         Powered By:{" "}
