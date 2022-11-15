@@ -32,6 +32,7 @@ const tdStyle = {
   whiteSpace: "nowrap",
   padding: "16px",
   maxWidth: "130px",
+  borderBottom: "1px solid rgb(81, 81, 81)",
 };
 
 const theadStyle = {
