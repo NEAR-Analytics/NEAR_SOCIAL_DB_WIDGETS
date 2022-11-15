@@ -30,7 +30,7 @@ return (
           const oldSrc = `${src}@${blockHeight}`;
           const newSrc = `${src}@${history[i]}`;
           return (
-            <div className="mb-3">
+            <div className="mt-5">
               <h4>{oldSrc}</h4>
               <Widget
                 src="mob.near/widget/ValueDiff"
