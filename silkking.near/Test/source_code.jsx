@@ -18,17 +18,36 @@ const allBlockHeights = Social.keys(`${accountId}/*`, "final", {
 
 // Returns a JSON object with only one key that is accountId
 // That key will only contain one key names test and the blockHeights associated
-const testBlockHeights = Social.keys(`${accountId}/test`, "final", {
+const testBlockHeights = Social.keys(`${accountId}/post/test`, "final", {
   return_type: "History",
 });
 
-const blockHeight = 78364273;
-const data2 = Social.getr(`${accountId}/*`, blockHeight);
-a;
-console.log(data2);
+//Returns Object with user account containing only the key post. At the same time post contains the key test.
+//test value is boolean
+const existentObjectsFromAccountId = Social.keys(`${accountId}/post/test`);
+
+//Returns the text you have posted with the commitButton. Documentation says
+//that it will return the lastest blockheigt of that key
+const valueFromGivenKeys = Social.get(`${accountId}/post/test`);
+
+const blockHeight = testBlockHeights[accountId].post.test;
+
+// Brings the value from key accountId, then post and finally test that is located in the blockHeight provided
+const valueFromGivenKeysInGivenBlockHeight = Social.get(
+  `${accountId}/post/test`,
+  blockHeight[1]
+);
+
+//You can access to all post/test blockheights of all users
+const blockHeightsInGivenKeys = Social.keys(`*/post/test`, "final", {
+  return_type: "History",
+});
+
 return (
   <div>
-    {JSON.stringify(data2)}
-    <CommitButton data={{ post: { test: "test2" } }}>No</CommitButton>
+    {JSON.stringify(blockHeightsInGivenKeys)}
+    <CommitButton data={{ post: { test: "probando2" } }}>
+      Post this
+    </CommitButton>
   </div>
 );
