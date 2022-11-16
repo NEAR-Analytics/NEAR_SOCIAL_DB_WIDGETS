@@ -27,10 +27,8 @@ return (
       data={{
         post: {
           poll_question: {
-            question: {
-              question: entry.question,
-              questionTimestamp: Date.now(),
-            },
+            question: entry.question,
+            questionTimestamp: Date.now(),
           },
         },
       }}
