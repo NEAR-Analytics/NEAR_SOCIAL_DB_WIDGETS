@@ -1,10 +1,10 @@
 const accountId = props.accountId ?? "*";
 
-const data = Social.keys(`${accountId}/post/poll_question`, "final", {
+const data = Social.keys(`${accountId}/post/poll_question/question`, "final", {
   return_type: "History",
 });
 
-// console.log(data);
+// console.log("data: ", data);
 
 if (!data) {
   return "Loading";
@@ -12,11 +12,14 @@ if (!data) {
 
 const processData = (data) => {
   const accounts = Object.entries(data);
+  // console.log("accts: ", accounts);
 
   const allQuestions = accounts
     .map((account) => {
+      // console.log("acc: ", account);
       const accountId = account[0];
-      const blockHeights = account[1].post.poll_question;
+      const blockHeights = account[1].post.poll_question.question;
+      // console.log("bh: ", blockHeights);
       return blockHeights.map((blockHeight) => ({
         accountId,
         blockHeight,
@@ -25,30 +28,25 @@ const processData = (data) => {
     .flat();
 
   allQuestions.sort((a, b) => b.blockHeight - a.blockHeight);
+
   return allQuestions;
 };
 
-// console.log(processData(data));
-
-const questionToWidget = (a) => {
-  //   {
-  //     console.log(a);
-  //   }
-  return (
-    <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
-      <a
-        className="text-decoration-none"
-        //Check how href is done in memes widget of mob.near
-        href={`#`}
-      >
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/AddMeme"
-          props={a}
-        />
-      </a>
-    </div>
-  );
-};
+const questionToWidget = (a) => (
+  <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
+    // {console.log("a: ", a)}
+    <a
+      className="text-decoration-none"
+      //Check how href is done in memes widget of mob.near
+      href={`#`}
+    >
+      <Widget
+        src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/AddMeme"
+        props={a}
+      />
+    </a>
+  </div>
+);
 
 State.init({
   widgets: [],
