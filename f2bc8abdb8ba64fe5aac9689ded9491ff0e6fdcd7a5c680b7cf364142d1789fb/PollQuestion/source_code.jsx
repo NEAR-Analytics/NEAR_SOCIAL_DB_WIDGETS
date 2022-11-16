@@ -28,7 +28,7 @@ return (
         post: {
           poll_question: {
             question: entry.question,
-            actualQuestion: Date.now(),
+            questionTimestamp: Date.now(),
           },
         },
       }}
