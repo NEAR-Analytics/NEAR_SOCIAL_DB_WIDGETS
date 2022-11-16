@@ -6,15 +6,15 @@ const currentAccountId = context.accountId;
 const profile = Social.getr(`${accountId}/profile`);
 
 // You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
-const testBlockHeights = Social.keys(
-  `${accountId}/post/poll_question/question`,
-  "final",
-  {
-    return_type: "History",
-  }
-);
+// const testBlockHeights = Social.keys(
+//   `${accountId}/post/poll_question/`,
+//   "final",
+//   {
+//     return_type: "History",
+//   }
+// );
 
-console.log("testBlockHeights: ", testBlockHeights);
+// console.log("testBlockHeights: ", testBlockHeights);
 
 const question = Social.get(
   `${accountId}/post/poll_question/question`,
@@ -38,17 +38,19 @@ const profileLink = (c) => (
 );
 
 const blockHeightsOfAllAnswers = Social.keys(
-  `*/post/${questionBlockHeight}`,
+  `*/post/answer_poll/${questionBlockHeight}`,
   "final",
   {
     return_type: "History",
   }
 );
+// console.log("blockHeightsOfAllAnswers: ", blockHeightsOfAllAnswers);
 
 let mapped = Object.keys(blockHeightsOfAllAnswers).map((key) => {
   return {
     accountId: key,
-    blockHeightArray: blockHeightsOfAllAnswers[key].post.test[0],
+    blockHeightArray:
+      blockHeightsOfAllAnswers[key].post.answer_poll[questionBlockHeight],
   };
 });
 
@@ -66,9 +68,10 @@ const haveThisUserAlreadyVoted = () => {
 let countVotes = mapped.reduce(
   (acc, curr) => {
     let answer = Social.get(
-      `${curr.accountId}/post/${questionBlockHeight}`,
+      `${curr.accountId}/post/poll_answer/${questionBlockHeight}/userVote`,
       curr.blockHeightArray
     );
+    console.log(answer);
     return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
   },
   [0, 0]
