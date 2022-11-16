@@ -24,7 +24,7 @@ const question = Social.get(
 // console.log("question: ", question);
 
 const questionTimestamp = Social.get(
-  `${accountId}/post/poll_question/questionTimestamp`,
+  `${accountId}/post/poll_question/question_timestamp`,
   questionBlockHeight
 );
 
@@ -37,41 +37,41 @@ const profileLink = (c) => (
   </a>
 );
 
-const blockHeightsOfAllAnswers = Social.keys(
+const answerDataFromBlockHeight = Social.keys(
   `*/post/answer_poll/${questionBlockHeight}`,
   "final",
   {
     return_type: "History",
   }
 );
-// console.log("blockHeightsOfAllAnswers: ", blockHeightsOfAllAnswers);
+// console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
 
-let mapped = Object.keys(blockHeightsOfAllAnswers).map((key) => {
+let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
   return {
     accountId: key,
-    blockHeightArray:
-      blockHeightsOfAllAnswers[key].post.answer_poll[questionBlockHeight],
+    // Social.keys returns in the end a an array of blockHeight related to the query.
+    // In our case, we only care for one answer, so it's always the first one
+    blockHeightOfAnswer: answerDataFromBlockHeight[key].post.answer_poll[0],
   };
 });
 
 // console.log("mpd", mapped);
 
 const haveThisUserAlreadyVoted = () => {
-  if (mapped.length == 0) {
+  if (answersData.length == 0) {
     return false;
   }
-  for (let i = 0; i < mapped.length; i++) {
-    return mapped[i].accountId == currentAccountId;
+  for (let i = 0; i < answersData.length; i++) {
+    return answersData[i].accountId == currentAccountId;
   }
 };
 
-let countVotes = mapped.reduce(
+let countVotes = answersData.reduce(
   (acc, curr) => {
     let answer = Social.get(
-      `${curr.accountId}/post/poll_answer/${questionBlockHeight}/userVote`,
-      curr.blockHeightArray
+      `${curr.accountId}/post/answer_poll/${questionBlockHeight}/user_vote`,
+      curr.blockHeightOfAnswer
     );
-    console.log(answer);
     return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
   },
   [0, 0]
@@ -146,9 +146,9 @@ const getForm = () => (
         post: {
           answer_poll: {
             [questionBlockHeight]: {
-              userVote: state.vote == "" ? answer.userVote : state.vote,
-              userAnswers: currentAnswer,
-              answerTimestamps: Date.now(),
+              user_vote: state.vote == "" ? answer.userVote : state.vote,
+              user_answers: currentAnswer,
+              answer_timestamps: Date.now(),
             },
           },
         },
