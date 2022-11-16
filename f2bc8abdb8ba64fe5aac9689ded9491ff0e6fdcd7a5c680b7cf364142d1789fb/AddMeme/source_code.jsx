@@ -5,9 +5,9 @@ const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
 
-//You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
+// You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
 // const testBlockHeights = Social.keys(
-//   `${accountId}/post/poll_question`,
+//   `${accountId}/post/poll_question/question/questionTimestamp`,
 //   "final",
 //   {
 //     return_type: "History",
@@ -19,10 +19,16 @@ const questionBlockHeight = props.questionBlockHeight;
 // console.log("questionBlockHeight: ", questionBlockHeight);
 
 const question = Social.get(
-  `${accountId}/post/poll_question/question`,
+  `${accountId}/post/poll_question/question/question`,
   questionBlockHeight
 );
+
 // console.log("question: ", question);
+
+const questionTimestamp = Social.get(
+  `${accountId}/post/poll_question/question/questionTimestamp`,
+  questionBlockHeight
+);
 
 const profileLink = (c) => (
   <a
@@ -48,7 +54,12 @@ let mapped = Object.keys(blockHeightsOfAllAnswers).map((key) => {
   };
 });
 
+// console.log("mpd", mapped);
+
 const haveThisUserAlreadyVoted = () => {
+  if (mapped.length == 0) {
+    return false;
+  }
   for (let i = 0; i < mapped.length; i++) {
     return mapped[i].accountId == currentAccountId;
   }
@@ -110,7 +121,7 @@ const getForm = () => (
         No
       </label>
     </div>
-    {haveThisUserAlreadyVoted && (
+    {haveThisUserAlreadyVoted() && (
       <p className="text-danger">You can only vote once</p>
     )}
 
@@ -188,7 +199,7 @@ return (
           <div>
             <small className="ps-1 text-nowrap text-muted ms-auto">
               <i className="bi bi-clock me-1"></i>
-              {timeAgo(Date.now() - props.questionTimestamp ?? 0)}
+              {timeAgo(Date.now() - questionTimestamp ?? 0)}
             </small>
           </div>
         </div>
