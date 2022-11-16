@@ -1,4 +1,4 @@
-// console.log("props: ", props);
+console.log("props: ", props);
 
 const accountId = props.accountId;
 const currentAccountId = context.accountId;
