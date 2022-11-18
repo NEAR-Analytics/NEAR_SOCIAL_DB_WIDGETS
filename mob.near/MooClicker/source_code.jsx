@@ -1,6 +1,12 @@
 const moos = Social.index("moo", "moo-click");
 const counter = {};
 
+if (moos) {
+  moos.reverse().forEach(({ accountId }) => {
+    counter[accountId] = (counter[accountId] || 0) + 1;
+  });
+}
+
 return (
   <div>
     <div className="mb-4">
@@ -21,10 +27,9 @@ return (
         Moo
       </CommitButton>
     </div>
-    <div className="d-flex gap-3 flex-row-reverse">
+    <div className="d-flex flex-wrap gap-3">
       {moos &&
         moos.map(({ accountId, blockHeight, value }) => {
-          counter[accountId] = (counter[accountId] || 0) + 1;
           return (
             <div className="position-relative">
               <Widget
