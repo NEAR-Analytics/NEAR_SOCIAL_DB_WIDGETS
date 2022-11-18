@@ -30,7 +30,7 @@ function renderMoos(accountIds) {
                 />
               </a>
               <span
-                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
                 style={{ zIndex: 1, border: "1px solid rgb(15,81,51)" }}
               >
                 {counter[accountId]}
