@@ -20,12 +20,17 @@ return (
         Moo
       </CommitButton>
     </div>
-    {moos &&
-      moos.map(({ accountId, blockHeight, value }) => (
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{ accountId, className: "d-inline-block overflow-hidden" }}
-        />
-      ))}
+    <div className="d-flex gap-1">
+      {moos &&
+        moos.map(({ accountId, blockHeight, value }) => (
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              accountId,
+              className: "d-inline-block overflow-hidden",
+            }}
+          />
+        ))}
+    </div>
   </div>
 );
