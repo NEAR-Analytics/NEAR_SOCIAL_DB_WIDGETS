@@ -5,7 +5,7 @@ const uniqueMoos = {};
 if (moos) {
   moos.reverse().forEach(({ accountId, value }) => {
     const key = JSON.stringify({ accountId, value });
-    if (uniqueMoos[key]) {
+    if (key in uniqueMoos) {
       return;
     }
     counter[accountId] = (counter[accountId] || 0) + 1;
