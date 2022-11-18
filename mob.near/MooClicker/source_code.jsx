@@ -1,9 +1,15 @@
 const moos = Social.index("moo", "moo-click");
 const counter = {};
+const uniqueMoos = {};
 
 if (moos) {
-  moos.reverse().forEach(({ accountId }) => {
+  moos.reverse().forEach(({ accountId, value }) => {
+    const key = JSON.stringify({ accountId, value });
+    if (uniqueMoos[key]) {
+      return;
+    }
     counter[accountId] = (counter[accountId] || 0) + 1;
+    uniqueMoos[key] = true;
   });
 }
 
