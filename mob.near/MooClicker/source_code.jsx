@@ -7,6 +7,36 @@ if (moos) {
   });
 }
 
+const top = Object.entries(counter);
+top.sort((a, b) => b[1] - a[1]);
+
+function renderMoos(accountIds) {
+  return (
+    <div className="d-flex flex-wrap gap-3">
+      {accountIds &&
+        accountIds.map((accountId) => {
+          return (
+            <div className="position-relative">
+              <Widget
+                src="mob.near/widget/ProfileImage"
+                props={{
+                  accountId,
+                  className: "d-inline-block overflow-hidden",
+                }}
+              />
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+                style={{ zIndex: 1 }}
+              >
+                {counter[accountId]}
+              </span>
+            </div>
+          );
+        })}
+    </div>
+  );
+}
+
 return (
   <div>
     <div className="mb-4">
@@ -27,27 +57,13 @@ return (
         Moo
       </CommitButton>
     </div>
-    <div className="d-flex flex-wrap gap-3">
-      {moos &&
-        moos.map(({ accountId, blockHeight, value }) => {
-          return (
-            <div className="position-relative">
-              <Widget
-                src="mob.near/widget/ProfileImage"
-                props={{
-                  accountId,
-                  className: "d-inline-block overflow-hidden",
-                }}
-              />
-              <span
-                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
-                style={{ zIndex: 1 }}
-              >
-                {counter[accountId]}
-              </span>
-            </div>
-          );
-        })}
+    <div className="mb-4">
+      <h4>Top 10</h4>
+      <div>{renderMoos(top.slice(0, 10).map((a) => a[0]))}</div>
+    </div>
+    <div className="mb-4">
+      <h4>Last 10 </h4>
+      <div>{moos && renderMoos(moos.slice(0, 10).map((a) => a.accountId))}</div>
     </div>
   </div>
 );
