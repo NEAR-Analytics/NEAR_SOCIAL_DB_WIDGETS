@@ -26,7 +26,7 @@ function renderMoos(accountIds) {
               />
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
-                style={{ zIndex: 1 }}
+                style={{ zIndex: 1, border: "1px solid rgb(15,81,51)" }}
               >
                 {counter[accountId]}
               </span>
@@ -41,6 +41,7 @@ return (
   <div>
     <div className="mb-4">
       <CommitButton
+        className="btn btn-lg btn-success"
         data={{
           index: {
             moo: JSON.stringify(
@@ -54,7 +55,7 @@ return (
           },
         }}
       >
-        Moo
+        Moo 🐮
       </CommitButton>
     </div>
     <div className="mb-4">
