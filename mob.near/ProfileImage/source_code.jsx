@@ -10,22 +10,29 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const name = profile.name || "No-name profile";
 const image = profile.image;
 const title = props.title ?? `${name} @${accountId}`;
+const noTooltip = props.noTooltip || !title;
 
-return (
+const inner = (
+  <div className={className} style={style}>
+    <Widget
+      src="mob.near/widget/Image"
+      props={{
+        image,
+        alt: title,
+        className: imageClassName,
+        style: imageStyle,
+        thumbnail,
+        fallbackUrl:
+          "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+      }}
+    />
+  </div>
+);
+
+return noTooltip ? (
+  inner
+) : (
   <OverlayTrigger placement="auto" overlay={<Tooltip>{title}</Tooltip>}>
-    <div className={className} style={style}>
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image,
-          alt: title,
-          className: imageClassName,
-          style: imageStyle,
-          thumbnail,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-        }}
-      />
-    </div>
+    {inner}
   </OverlayTrigger>
 );
