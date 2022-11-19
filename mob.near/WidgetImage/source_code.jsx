@@ -14,23 +14,31 @@ const thumbnail = props.thumbnail ?? "thumbnail";
 
 const name = metadata.name ?? widgetName;
 const image = metadata.image;
-const title = props.title ?? `${name} ${widgetPath}`;
+const title = props.title ?? name;
+const tooltip =
+  props.tooltip && (props.tooltip === true ? title : props.tooltip);
 
-return (
+const inner = (
+  <div className={className} style={style}>
+    <Widget
+      src="mob.near/widget/Image"
+      props={{
+        image,
+        alt: title,
+        className: imageClassName,
+        style: imageStyle,
+        thumbnail,
+        fallbackUrl:
+          "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+      }}
+    />
+  </div>
+);
+
+return tooltip ? (
   <OverlayTrigger placement="auto" overlay={<Tooltip>{title}</Tooltip>}>
-    <div className={className} style={style}>
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image,
-          alt: title,
-          className: imageClassName,
-          style: imageStyle,
-          thumbnail,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
-        }}
-      />
-    </div>
+    {inner}
   </OverlayTrigger>
+) : (
+  inner
 );
