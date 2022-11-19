@@ -80,12 +80,26 @@ let countVotes = answersData.reduce(
 
 const loadComments = () => {
   for (let i = 0; i < answersData.length; i++) {
-    return (
-      <Widget
-        src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answer_poll-comment-container"
-        props={{ answersData }}
-      />
+    let answer = Social.get(
+      `${answersData.accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/user_answers`
     );
+
+    console.log("answer: ", answer);
+
+    let answerTimeStamp = Social.get(
+      `${answersData.accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
+    );
+
+    console.log("answerTimeStamp: ", answerTimeStamp);
+
+    if (answer != undefined) {
+      return (
+        <Widget
+          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answer_poll-comment-container"
+          props={{ answer, answerTimeStamp }}
+        />
+      );
+    }
   }
 };
 
@@ -230,6 +244,7 @@ return (
           ></i>
           <p className="text-secondary">{countVotes[0]}</p>
         </div>
+        <>{loadComments()}</>
         <>{getForm()}</>
       </div>
     </div>
