@@ -9,11 +9,11 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 const name = profile.name || "No-name profile";
 const image = profile.image;
-const title = `${name} @${accountId}`;
+const title = props.title ?? `${name} @${accountId}`;
 
 return (
   <OverlayTrigger placement="auto" overlay={<Tooltip>{title}</Tooltip>}>
-    <div className={className} title={title} style={style}>
+    <div className={className} style={style}>
       <Widget
         src="mob.near/widget/Image"
         props={{
