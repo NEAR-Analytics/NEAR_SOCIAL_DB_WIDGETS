@@ -12,25 +12,34 @@ return (
         </div>
       )}
     </div>
-
+    <div className="row mb-3">
+      <div>
+        <h4>Applications</h4>
+        <Widget src="mob.near/widget/WidgetIcons" props={{ tag: "app" }} />
+      </div>
+    </div>
+    <div className="row mb-3">
+      <div>
+        <h4>Recently joined</h4>
+        <Widget src="mob.near/widget/LastProfilesImages" />
+      </div>
+    </div>
     <div className="row mb-3">
       <div>
         <h4>Get involved</h4>
-        <div className="mb-2">
+        <div className="mb-2 d-flex gap-2 flex-wrap">
           <a
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-primary"
             href="https://thewiki.near.page/PastPresentAndFutureOfNearSocial"
           >
             What's Near Social?
           </a>
           <a
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-primary"
             href="https://thewiki.near.page/near.social_docs"
           >
             Documentation
           </a>
-        </div>
-        <div>
           <a
             className="btn btn-outline-secondary"
             href="#/mob.near/widget/ProfilePage?accountId=self.social.near"
@@ -62,18 +71,6 @@ return (
             <i className="bi bi-wikipedia"></i>
           </a>
         </div>
-      </div>
-    </div>
-    <div className="row mb-3">
-      <div>
-        <h4>Applications</h4>
-        <Widget src="mob.near/widget/WidgetIcons" props={{ tag: "app" }} />
-      </div>
-    </div>
-    <div className="row mb-3">
-      <div>
-        <h4>Recently joined</h4>
-        <Widget src="mob.near/widget/LastProfilesImages" />
       </div>
     </div>
     {context.accountId &&
