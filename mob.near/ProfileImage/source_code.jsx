@@ -10,7 +10,8 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const name = profile.name || "No-name profile";
 const image = profile.image;
 const title = props.title ?? `${name} @${accountId}`;
-const noTooltip = props.noTooltip || !title;
+const tooltip =
+  props.tooltip && (props.tooltip === true ? title : props.tooltip);
 
 const inner = (
   <div className={className} style={style}>
@@ -29,10 +30,10 @@ const inner = (
   </div>
 );
 
-return noTooltip ? (
-  inner
-) : (
+return tooltip ? (
   <OverlayTrigger placement="auto" overlay={<Tooltip>{title}</Tooltip>}>
     {inner}
   </OverlayTrigger>
+) : (
+  inner
 );
