@@ -9,7 +9,7 @@ if (!accountId) {
   return "Please sign in with NEAR wallet to edit your profile";
 }
 
-let profile = Social.getr(`*/${appName}/${contractId}`);
+let profile = Social.getr(`*/${appName}/${contractId}`, "final");
 if (profile === null) {
   return "Loading";
 }
