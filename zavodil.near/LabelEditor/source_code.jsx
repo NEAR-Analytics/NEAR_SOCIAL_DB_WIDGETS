@@ -50,9 +50,6 @@ profile.userTags = getTags();
 
 State.init({ profile });
 
-console.log("profile");
-console.log(profile);
-
 return (
   <div className="row">
     <div className="col-lg-6">
@@ -67,14 +64,12 @@ return (
             debug,
             initialMetadata: profile,
             onChange: (profile) => {
-              console.log("profile");
-              console.log(profile);
               State.update({ profile, contractId: profile.contractId });
             },
             options: {
               tags: {
                 label: "Tags",
-                tagsPattern: `*/${appName}/${contractId}/tags/*`,
+                tagsPattern: `*/${appName}/${state.contractId}/tags/*`,
                 placeholder: "Label",
               },
             },
@@ -100,6 +95,10 @@ return (
       </div>
     </div>
     <div className="col-lg-6">
+      <div>
+        <h4>Preview</h4>
+        <br />
+      </div>
       <div>
         <Widget
           src={`${ownerId}/widget/ContractPage`}
