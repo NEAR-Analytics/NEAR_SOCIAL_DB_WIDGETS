@@ -29,7 +29,7 @@ const allWidgets = Object.keys(contracts).map((contractId) => {
 
 return (
   <>
-    <Widget src={`${ownerId}/widget/LabelEditor`} props={{}} />
+    <Widget src={`mob.near/widget/PublicTagEditor`} props={{}} />
     <hr />
     {allWidgets}
   </>
