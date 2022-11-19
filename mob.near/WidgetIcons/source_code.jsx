@@ -79,7 +79,7 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 }
 
 return (
-  <div className="d-flex flex-wrap gap-3 m-3">
+  <div className="d-flex flex-wrap gap-3 my-3">
     {state.allItems.map(renderItem)}
   </div>
 );
