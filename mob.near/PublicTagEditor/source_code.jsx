@@ -12,9 +12,6 @@ if (!accountId) {
 State.init({ contractId });
 
 const metadata = Social.getr(`*/${appName}/${state.contractId}`, "final");
-if (metadata === null) {
-  return "Loading";
-}
 
 // current user tags only
 const tagsPattern = `*/${appName}/*/tags/*`;
@@ -26,26 +23,41 @@ return (
         <h4>Name tag editor</h4>
       </div>
       <div className="mb-2">
-        <Widget
-          src={"mob.near/widget/MetadataEditor"}
-          key={`public-tags-${contractId}`}
-          props={{
-            initialMetadata: metadata,
-            onChange: (metadata) => {
-              State.update({ metadata });
-            },
-            options: {
-              tags: {
-                label: "Public Tags",
-                pattern,
-                placeholder: "binance, cex, nft, ft, fake, scam",
-              },
-            },
-          }}
+        Near Account Id:
+        <input
+          type="text"
+          value={state.contractId}
+          onChange={(event) =>
+            State.update({ contractId: event.target.value.toLowerCase() })
+          }
         />
+      </div>
+      <div className="mb-2" style={{ minHeight: "62px" }}>
+        {metadata !== null ? (
+          <Widget
+            src={"mob.near/widget/MetadataEditor"}
+            key={`public-tags-${contractId}`}
+            props={{
+              initialMetadata: metadata,
+              onChange: (metadata) => {
+                State.update({ metadata });
+              },
+              options: {
+                tags: {
+                  label: "Public Tags",
+                  pattern,
+                  placeholder: "binance, cex, nft, ft, fake, scam",
+                },
+              },
+            }}
+          />
+        ) : (
+          "Loading"
+        )}
       </div>
       <div className="mb-2">
         <CommitButton
+          disabled={metadata === null}
           data={{
             [appName]: {
               [state.contractId]: state.metadata,
@@ -70,7 +82,7 @@ return (
       <div>
         <Widget
           src={`${ownerId}/widget/ContractPage`}
-          props={{ contractId: state.contractId }}
+          props={{ contractId: state.contractId, metadata: state.metadata }}
         />
       </div>
     </div>
