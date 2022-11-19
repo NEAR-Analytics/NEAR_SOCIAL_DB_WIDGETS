@@ -64,12 +64,13 @@ return (
             debug,
             initialMetadata: profile,
             onChange: (profile) => {
+              console.log(profile);
               State.update({ profile, contractId: profile.contractId });
             },
             options: {
               tags: {
                 label: "Tags",
-                tagsPattern: `*/${appName}/${state.contractId}/tags/*`,
+                tagsPattern: `*/${appName}/${state.profile.contractId}/tags/*`,
                 placeholder: "Label",
               },
             },
@@ -88,7 +89,7 @@ return (
         </CommitButton>
         <a
           className="btn btn-outline-primary ms-2"
-          href={`#/${ownerId}/widget/ContractPage?contractId=${state.contractId}`}
+          href={`#/${ownerId}/widget/ContractPage?contractId=${state.profile.contractId}`}
         >
           View profile
         </a>
