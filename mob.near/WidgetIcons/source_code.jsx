@@ -62,6 +62,7 @@ const renderItem = (a) => {
       <Widget
         src="mob.near/widget/WidgetImage"
         props={{
+          tooltip: true,
           accountId: a.accountId,
           widgetName: a.widgetName,
         }}
