@@ -51,11 +51,12 @@ let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
     accountId: key,
     // Social.keys returns in the end a an array of blockHeight related to the query.
     // In our case, we only care for one answer, so it's always the first one
-    blockHeightOfAnswer: answerDataFromBlockHeight[key].post.answer_poll[0],
+    blockHeightOfAnswer:
+      answerDataFromBlockHeight[key].post.answer_poll[questionBlockHeight][0],
   };
 });
 
-// console.log("mpd", mapped);
+// console.log("answData: ", answersData);
 
 const haveThisUserAlreadyVoted = () => {
   if (answersData.length == 0) {
@@ -76,6 +77,17 @@ let countVotes = answersData.reduce(
   },
   [0, 0]
 );
+
+const loadComments = () => {
+  for (let i = 0; i < answersData.length; i++) {
+    return (
+      <Widget
+        src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answer_poll-comment-container"
+        props={{ answersData }}
+      />
+    );
+  }
+};
 
 State.init({ vote: "", currentAnswer: "" });
 // console.log("input vote value: ", state.vote, "textarea value: ", state.currentAnswer);
