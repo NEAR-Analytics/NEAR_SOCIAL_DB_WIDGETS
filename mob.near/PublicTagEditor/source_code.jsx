@@ -14,7 +14,7 @@ State.init({ contractId });
 const metadata = Social.getr(`*/${appName}/${state.contractId}`, "final");
 
 // current user tags only
-const tagsPattern = `*/${appName}/*/tags/*`;
+const pattern = `*/${appName}/*/tags/*`;
 
 return (
   <div className="row">
