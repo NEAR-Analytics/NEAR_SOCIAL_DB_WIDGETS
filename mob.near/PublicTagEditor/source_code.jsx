@@ -66,12 +66,6 @@ return (
         >
           Save labels
         </CommitButton>
-        <a
-          className="btn btn-outline-primary ms-2"
-          href={`#/${ownerId}/widget/ContractPage?contractId=${state.contractId}`}
-        >
-          View profile
-        </a>
       </div>
     </div>
     <div className="col-lg-6">
@@ -79,11 +73,16 @@ return (
         <h4>Preview</h4>
         <br />
       </div>
-      <div>
-        <Widget
-          src={`${ownerId}/widget/ContractPage`}
-          props={{ contractId: state.contractId, metadata: state.metadata }}
-        />
+      <div className="mb-2 card">
+        <div className="card-body">
+          <div className="text-truncate">
+            <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
+          </div>
+          <Widget
+            src={`mob.near/widget/PublicTags`}
+            props={{ accountId, extraTags: state.metadata.tags }}
+          />
+        </div>
       </div>
     </div>
   </div>
