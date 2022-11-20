@@ -1,5 +1,5 @@
 // ContractPage
-const ownerId = "zavodil.near";
+const ownerId = "mob.near";
 const appName = "nametag";
 const accountId = props.accountId ?? context.accountId;
 
