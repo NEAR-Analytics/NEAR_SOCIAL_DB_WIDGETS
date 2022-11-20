@@ -11,7 +11,10 @@ if (!accountId) {
 
 State.init({ contractId });
 
-const metadata = Social.getr(`*/${appName}/${state.contractId}`, "final");
+const metadata = Social.getr(
+  `${accountId}/${appName}/${state.contractId}`,
+  "final"
+);
 
 // current user tags only
 const pattern = `*/${appName}/*/tags/*`;
@@ -36,7 +39,7 @@ return (
         {metadata !== null ? (
           <Widget
             src={"mob.near/widget/MetadataEditor"}
-            key={`public-tags-${contractId}`}
+            key={`public-tags-metadata-${state.contractId}`}
             props={{
               initialMetadata: metadata,
               onChange: (metadata) => {
@@ -64,7 +67,7 @@ return (
             },
           }}
         >
-          Save labels
+          Save Tags
         </CommitButton>
       </div>
     </div>
@@ -78,12 +81,15 @@ return (
           <div className="text-truncate">
             <Widget
               src={`mob.near/widget/ProfileLine`}
-              props={{ accountId: contractId }}
+              props={{ accountId: state.contractId }}
             />
           </div>
           <Widget
             src={`mob.near/widget/PublicTags`}
-            props={{ accountId: contractId, extraTags: state.metadata.tags }}
+            props={{
+              accountId: state.contractId,
+              extraTags: state.metadata.tags,
+            }}
           />
         </div>
       </div>
