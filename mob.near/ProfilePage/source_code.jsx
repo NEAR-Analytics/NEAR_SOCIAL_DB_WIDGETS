@@ -10,9 +10,6 @@ if (profile === undefined) {
   return "Profile not found";
 }
 
-const tagsPattern = `*/nametag/${accountId}/tags/*`;
-const tagsObject = Social.keys(tagsPattern, "final");
-
 const showEditButton =
   !props.profile && accountId && accountId === context.accountId;
 
@@ -139,28 +136,24 @@ return (
               ))}
             </div>
           )}
-          {Object.keys(tagsObject || {}).length > 0 && (
-            <div>
-              <div className="public-tags collapse show">
-                <button
-                  className="btn btn-sm btn-outline-secondary border-0"
-                  data-bs-toggle="collapse"
-                  data-bs-target={`.public-tags`}
-                  aria-expanded="false"
-                  aria-controls={"public-tags"}
-                >
-                  <i className="bi bi-arrows-angle-expand me-1"></i>Show public
-                  tags
-                </button>
-              </div>
-              <div className="collapse public-tags">
-                <Widget
-                  src="mob.near/widget/PublicTags"
-                  props={{ accountId }}
-                />
-              </div>
+
+          <div>
+            <div className="public-tags collapse show">
+              <button
+                className="btn btn-sm btn-outline-secondary border-0"
+                data-bs-toggle="collapse"
+                data-bs-target={`.public-tags`}
+                aria-expanded="false"
+                aria-controls={"public-tags"}
+              >
+                <i className="bi bi-arrows-angle-expand me-1"></i>Show public
+                tags
+              </button>
             </div>
-          )}
+            <div className="collapse public-tags">
+              <Widget src="mob.near/widget/PublicTags" props={{ accountId }} />
+            </div>
+          </div>
 
           {description && (
             <>
