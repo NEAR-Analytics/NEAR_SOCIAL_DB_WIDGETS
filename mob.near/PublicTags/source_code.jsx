@@ -43,8 +43,8 @@ const getTags = () => {
   if (extraTags) {
     processTagsObject(extraTags);
     tagsObject[context.accountId] = {};
-    processTagsObject(tagsObject);
   }
+  processTagsObject(tagsObject);
   const tags = Object.entries(tagsCount);
   tags.sort((a, b) => b[1] - a[1]);
   return tags.map((t) => {
