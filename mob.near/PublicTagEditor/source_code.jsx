@@ -76,11 +76,14 @@ return (
       <div className="mb-2 card">
         <div className="card-body">
           <div className="text-truncate">
-            <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
+            <Widget
+              src={`mob.near/widget/ProfileLine`}
+              props={{ accountId: contractId }}
+            />
           </div>
           <Widget
             src={`mob.near/widget/PublicTags`}
-            props={{ accountId, extraTags: state.metadata.tags }}
+            props={{ accountId: contractId, extraTags: state.metadata.tags }}
           />
         </div>
       </div>
