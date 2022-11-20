@@ -31,7 +31,10 @@ const allWidgets = Object.keys(contracts).map((accountId) => {
 
 return (
   <>
-    <Widget src={`mob.near/widget/PublicTagEditor`} props={{}} />
+    <Widget
+      src={`mob.near/widget/PublicTagEditor`}
+      props={{ contractId: props.accountId }}
+    />
     <hr />
     {allWidgets}
   </>
