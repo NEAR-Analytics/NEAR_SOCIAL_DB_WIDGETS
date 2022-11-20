@@ -11,7 +11,7 @@ const tagClass = "bg-success";
 const addPublicTagHtml = (
   <div class={`me-1 badge bg-primary`}>
     <a
-      href={`#/${ownerId}/widget/LabelEditor?contractId=${accountId}`}
+      href={`#/mob.near/widget/AllLabels?accountId=${accountId}`}
       class="text-white"
     >
       + Add Name Tag
