@@ -33,6 +33,7 @@ return (
   <>
     <Widget
       src={`mob.near/widget/PublicTagEditor`}
+      key={`public-tag-editor-${props.accountId}`}
       props={{ contractId: props.accountId }}
     />
     <hr />
