@@ -16,13 +16,15 @@ Object.values(data).forEach((account) => {
   });
 });
 
-const allWidgets = Object.keys(contracts).map((contractId) => {
+const allWidgets = Object.keys(contracts).map((accountId) => {
   return (
-    <div className="mb-2">
-      <Widget
-        src={`${ownerId}/widget/ContractPage`}
-        props={{ contractId, shortMode: true }}
-      />
+    <div className="mb-2 card">
+      <div className="card-body">
+        <div className="text-truncate">
+          <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
+        </div>
+        <Widget src={`mob.near/widget/PublicTags`} props={{ accountId }} />
+      </div>
     </div>
   );
 });
