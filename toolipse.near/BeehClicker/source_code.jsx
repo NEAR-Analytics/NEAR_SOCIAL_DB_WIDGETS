@@ -55,7 +55,7 @@ return (
         className="btn btn-lg btn-success"
         data={{
           index: {
-            moo: JSON.stringify(
+            beeh: JSON.stringify(
               {
                 key: "beeh-click",
                 value: Date.now(),
