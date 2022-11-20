@@ -2,7 +2,7 @@
 const ownerId = "mob.near";
 const appName = "nametag";
 const accountId = props.accountId ?? context.accountId;
-const extraTags = props.extraTags ?? {};
+const extraTags = props.extraTags;
 
 const tagsPattern = `*/${appName}/${accountId}/tags/*`;
 const tagsObject = Social.keys(tagsPattern, "final");
@@ -40,8 +40,11 @@ const processTagsObject = (obj) => {
 };
 
 const getTags = () => {
-  processTagsObject(extraTags);
-  processTagsObject(tagsObject);
+  if (extraTags) {
+    processTagsObject(extraTags);
+    tagsObject[context.accountId] = {};
+    processTagsObject(tagsObject);
+  }
   const tags = Object.entries(tagsCount);
   tags.sort((a, b) => b[1] - a[1]);
   return tags.map((t) => {
