@@ -139,7 +139,7 @@ return (
               ))}
             </div>
           )}
-          {Object.keys(tagsObject || {}).length && (
+          {Object.keys(tagsObject || {}).length > 0 && (
             <div>
               <div className="public-tags collapse show">
                 <button
