@@ -1,8 +1,10 @@
 const ideas = Near.view("nearideas.near", "get_ideas");
 
-ideas.sort((a, b) => {
-  return parseInt(b.amount) - parseInt(a.amount);
-});
+if (ideas) {
+  ideas.sort((a, b) => {
+    return parseInt(b.amount) - parseInt(a.amount);
+  });
+}
 
 console.log(ideas);
 
