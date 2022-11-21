@@ -17,7 +17,7 @@ Object.values(data).forEach((account) => {
   });
 });
 
-const allWidgets = Object.keys(contracts).map((accountId) => {
+const allLabels = Object.keys(contracts).map((accountId) => {
   return (
     <div className="mb-2 card">
       <div className="card-body">
@@ -30,14 +30,29 @@ const allWidgets = Object.keys(contracts).map((accountId) => {
   );
 });
 
+let header = props.tag
+  ? `All contracts with tag "${props.tag}":`
+  : "All contracts with public tags:";
+
+let allLabelsButton = props.tag ? (
+  <a
+    className="btn btn-outline-primary mt-2"
+    href={`#/${ownerId}/widget/AllLabels`}
+  >
+    All Public Tags
+  </a>
+) : null;
+
 return (
   <>
     <Widget
-      src={`mob.near/widget/PublicTagEditor`}
+      src={`${ownerId}/widget/PublicTagEditor`}
       key={`public-tag-editor-${props.accountId}`}
       props={{ contractId: props.accountId }}
     />
     <hr />
-    {allWidgets}
+    <h4>{header}</h4>
+    {allLabels}
+    {allLabelsButton}
   </>
 );
