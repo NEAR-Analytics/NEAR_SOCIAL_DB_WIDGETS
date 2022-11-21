@@ -1,5 +1,11 @@
 const ideas = Near.view("nearideas.near", "get_ideas");
 
+ideas.sort((a, b) => {
+  return parseInt(b.amount) - parseInt(a.amount);
+});
+
+console.log(ideas);
+
 return (
   <div>
     <h2>Ideas</h2>
