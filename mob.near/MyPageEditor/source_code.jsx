@@ -53,7 +53,7 @@ return (
     </div>
     <hr />
     <div className="mb-2">
-      <Widget src={state.page} />
+      <Widget src={state.page} props={{ accountId }} />
     </div>
   </div>
 );
