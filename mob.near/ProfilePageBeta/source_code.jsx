@@ -71,6 +71,11 @@ const linktreeObjects = linktree.map((o) => {
   );
 });
 
+State.init({
+  loadNFT: false,
+  loadWidgets: false,
+});
+
 return (
   <div className="py-1 px-1">
     <div className="mx-auto">
@@ -184,6 +189,9 @@ return (
               role="tab"
               aria-controls="pills-nft"
               aria-selected="false"
+              onClick={() => {
+                !state.loadNFT && State.update({ loadNFT: true });
+              }}
             >
               NFTs
             </button>
@@ -198,6 +206,9 @@ return (
               role="tab"
               aria-controls="pills-widget"
               aria-selected="false"
+              onClick={() => {
+                !state.loadWidgets && State.update({ loadWidgets: true });
+              }}
             >
               Widgets
             </button>
@@ -218,7 +229,9 @@ return (
             role="tabpanel"
             aria-labelledby="pills-nft-tab"
           >
-            <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
+            {state.loadNFT && (
+              <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
+            )}
           </div>
           <div
             class="tab-pane fade widget"
@@ -226,7 +239,9 @@ return (
             role="tabpanel"
             aria-labelledby="pills-widget-tab"
           >
-            <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
+            {state.loadWidgets && (
+              <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
+            )}
           </div>
         </div>
       </div>
