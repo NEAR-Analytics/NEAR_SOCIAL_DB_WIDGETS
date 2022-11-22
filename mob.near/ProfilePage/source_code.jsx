@@ -1,4 +1,7 @@
 const accountId = props.accountId ?? context.accountId;
+if (!accountId) {
+  return "No account ID";
+}
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
@@ -6,14 +9,13 @@ if (profile === null) {
   return "Loading";
 }
 
-if (profile === undefined) {
-  return "Profile not found";
-}
-
 const showEditButton =
-  !props.profile && accountId && accountId === context.accountId;
+  profile !== undefined &&
+  !props.profile &&
+  accountId &&
+  accountId === context.accountId;
 
-const name = profile.name;
+const name = profile.name || "No-name profile";
 const description = profile.description;
 const image = profile.image;
 const backgroundImage = profile.backgroundImage;
@@ -69,6 +71,11 @@ const linktreeObjects = linktree.map((o) => {
   );
 });
 
+State.init({
+  loadNFT: false,
+  loadWidgets: false,
+});
+
 return (
   <div className="py-1 px-1">
     <div className="mx-auto">
@@ -83,7 +90,7 @@ return (
                 className: "position-absolute w-100 h-100",
                 style: { objectFit: "cover", left: 0, top: 0 },
                 fallbackUrl:
-                  "https://thewiki.io/static/media/sasha_anon.6ba19561.png",
+                  "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
               }}
             />
           )}
@@ -114,7 +121,6 @@ return (
             />
           </div>
         </div>
-
         <div className="bg-light px-4 pb-4 ">
           <div
             className="d-md-flex justify-content-between"
@@ -154,15 +160,89 @@ return (
               <Widget src="mob.near/widget/PublicTags" props={{ accountId }} />
             </div>
           </div>
+        </div>{" "}
+      </div>
 
-          {description && (
-            <>
-              <hr />
-              <div>
-                <Markdown text={description} />
-              </div>
-            </>
-          )}
+      <div className="mt-3">
+        <ul class="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="pills-bio-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-bio"
+              type="button"
+              role="tab"
+              aria-controls="pills-bio"
+              aria-selected="true"
+            >
+              Bio
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-nft-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-nft"
+              type="button"
+              role="tab"
+              aria-controls="pills-nft"
+              aria-selected="false"
+              onClick={() => {
+                !state.loadNFT && State.update({ loadNFT: true });
+              }}
+            >
+              NFTs
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-widget-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-widget"
+              type="button"
+              role="tab"
+              aria-controls="pills-widget"
+              aria-selected="false"
+              onClick={() => {
+                !state.loadWidgets && State.update({ loadWidgets: true });
+              }}
+            >
+              Widgets
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div
+            class="tab-pane fade in show active"
+            id="pills-bio"
+            role="tabpanel"
+            aria-labelledby="pills-bio-tab"
+          >
+            <Markdown text={description} />
+          </div>
+          <div
+            class="tab-pane fade nft"
+            id="pills-nft"
+            role="tabpanel"
+            aria-labelledby="pills-nft-tab"
+          >
+            {state.loadNFT && (
+              <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
+            )}
+          </div>
+          <div
+            class="tab-pane fade widget"
+            id="pills-widget"
+            role="tabpanel"
+            aria-labelledby="pills-widget-tab"
+          >
+            {state.loadWidgets && (
+              <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
+            )}
+          </div>
         </div>
       </div>
     </div>
