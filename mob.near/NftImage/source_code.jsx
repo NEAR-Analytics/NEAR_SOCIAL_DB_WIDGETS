@@ -9,6 +9,9 @@ const style = props.style;
 const alt = props.alt;
 const thumbnail = props.thumbnail;
 const fallbackUrl = props.fallbackUrl;
+const loadingUrl =
+  props.loadingUrl ??
+  "https://ipfs.near.social/ipfs/bafkreidoxgv2w7kmzurdnmflegkthgzaclgwpiccgztpkfdkfzb4265zuu";
 
 State.init({
   contractId,
@@ -28,7 +31,7 @@ const nftToken = Near.view(contractId, "nft_token", {
   token_id: tokenId,
 });
 
-let imageUrl = fallbackUrl;
+let imageUrl = loadingUrl;
 
 if (nftMetadata && nftToken) {
   let tokenMetadata = nftToken.metadata;
@@ -70,10 +73,15 @@ const replaceIpfs = () => {
         imageUrl
       );
     if (match) {
-      State.update({
-        imageUrl: `https://ipfs.near.social/ipfs/${match[1]}${match[2] || ""}`,
-      });
-      return;
+      const newImageUrl = `https://ipfs.near.social/ipfs/${match[1]}${
+        match[2] || ""
+      }`;
+      if (newImageUrl !== imageUrl) {
+        State.update({
+          imageUrl: newImageUrl,
+        });
+        return;
+      }
     }
   }
   if (state.imageUrl !== fallbackUrl) {
