@@ -1,4 +1,7 @@
 const accountId = props.accountId ?? context.accountId;
+if (!accountId) {
+  return "No account ID";
+}
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
