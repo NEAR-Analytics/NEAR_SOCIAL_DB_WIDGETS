@@ -1,3 +1,4 @@
+console.log(props);
 const accountId = props.accountId;
 const questionBlockHeight = props.questionBlockHeight;
 // console.log("questionBlockHeight: ", questionBlockHeight);
@@ -111,7 +112,6 @@ const loadComments = () => {
 
 State.init({ vote: "", currentAnswer: "" });
 // console.log("input vote value: ", state.vote, "textarea value: ", state.currentAnswer);
-console.log("questionBlockHeight: ", questionBlockHeight);
 const getForm = () => (
   <div
     style={{
