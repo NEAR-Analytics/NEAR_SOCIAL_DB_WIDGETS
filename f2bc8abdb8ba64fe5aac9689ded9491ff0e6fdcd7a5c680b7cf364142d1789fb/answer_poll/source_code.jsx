@@ -75,6 +75,7 @@ let countVotes = answersData.reduce(
       `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
       curr.blockHeightOfAnswer
     );
+    console.log("testing answers: ", answer);
     return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
   },
   [0, 0]
