@@ -217,7 +217,13 @@ return (
     >
       <div>
         {profileLink(
-          <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+          <a
+            className="text-decoration-none"
+            //Check how href is done in memes widget of mob.near
+            href={`#`}
+          >
+            <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+          </a>
         )}
       </div>
       <div className="ms-2 flex-grow-1" style={{ minWidth: 0 }}>
