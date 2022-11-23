@@ -31,7 +31,7 @@ return link ? (
         : `#/mob.near/widget/ProfilePage?accountId=${accountId}`
     }
     className="link-dark text-truncate"
-    style={{ TextDecoration: none }}
+    style={{ textDecoration: "none" }}
   >
     {inner}
   </a>
