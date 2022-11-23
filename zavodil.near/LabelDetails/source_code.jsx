@@ -2,7 +2,11 @@
 const ownerId = "zavodil.near";
 const appName = "nametag";
 
-let tag = props.tag ?? "*";
+if (!props.tag) {
+  return "Undefined tag";
+}
+
+let tag = props.tag;
 const data = Social.get(`*/${appName}/*/tags/${tag}`, "final");
 
 if (!data) {
