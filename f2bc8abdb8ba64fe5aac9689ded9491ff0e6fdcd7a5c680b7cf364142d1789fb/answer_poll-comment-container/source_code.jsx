@@ -13,7 +13,7 @@ const timeAgo = (diffSec) =>
     : `${(diffSec / 86400000) | 0} days ago`;
 
 return (
-  <div className="flex-column my-2 border border-primary">
+  <div className="flex-column my-2 border border-primary p-2">
     <small className="ps-1 text-nowrap text-muted ms-auto">
       <i className="bi bi-clock me-1"></i>
       {timeAgo(Date.now() - answerTimeStamp)}
