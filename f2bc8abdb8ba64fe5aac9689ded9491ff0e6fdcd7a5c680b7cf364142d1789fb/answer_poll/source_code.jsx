@@ -80,7 +80,7 @@ let countVotes = answersData.reduce(
   [0, 0]
 );
 
-console.log("countVotes: ", countVotes);
+console.log("countVotes: ", countVotes, questionBlockHeight);
 
 const loadComments = () => {
   // console.log("answrDLength: ", answersData.length);
