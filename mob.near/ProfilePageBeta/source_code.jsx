@@ -129,7 +129,7 @@ return (
                 <i className="bi bi-person-fill text-secondary me-1"></i>
                 {accountId}
                 <Widget
-                  src="mob.near/widget/FollowYouBadge"
+                  src="mob.near/widget/FollowsYouBadge"
                   props={{ accountId }}
                 />
               </div>
