@@ -103,7 +103,7 @@ const haveThisUserAlreadyVoted = () => {
 };
 
 const loadComments = () => {
-  // console.log("answrDLength: ", answersData.length);
+  console.log("answrDLength: ", answersData.length);
   for (let i = 0; i < answersData.length; i++) {
     // console.log("test: ", answersData[i].accountId);
     let answer = Social.get(
