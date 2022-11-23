@@ -6,7 +6,16 @@ const contractId = props.contractId ?? ownerId;
 const debug = props.debug ?? false;
 
 if (!accountId) {
-  return "Please sign in with NEAR wallet";
+  return (
+    <>
+      <h3>Public Name Tags App</h3>
+      <p>
+        Please sign in with NEAR wallet to tag any contract/account as you like
+        and soon this data may appear in the blockexplorer & wallet built into
+        the <a href="/">near.social</a>
+      </p>
+    </>
+  );
 }
 
 State.init({ contractId });
