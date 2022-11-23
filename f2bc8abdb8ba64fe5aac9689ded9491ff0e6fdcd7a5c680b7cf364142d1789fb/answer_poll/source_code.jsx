@@ -110,7 +110,7 @@ const loadComments = () => {
       `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
     );
 
-    // console.log("answer: ", answer);
+    console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
       `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
