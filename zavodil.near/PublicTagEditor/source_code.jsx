@@ -78,6 +78,29 @@ return (
         >
           Save Tags
         </CommitButton>
+
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Tags best practices
+        </button>
+      </div>
+
+      <div className="collapse" id="collapseExample">
+        <div class="card card-body">
+          <h5>Tags best practices:</h5>
+          <ul>
+            <li>Do: Keep tags short and concise</li>
+            <li>Do: Use "-" (minus) instead of space</li>
+            <li>Do: Use only English words</li>
+            <li>Don't: Create redundant tags</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div className="col-lg-6">
