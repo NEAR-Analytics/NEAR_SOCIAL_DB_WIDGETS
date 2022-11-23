@@ -11,6 +11,7 @@ if (!data) {
 const processData = (data) => {
   const accounts = Object.entries(data);
 
+  console.log("data", data);
   const allItems = accounts
     .map((account) => {
       const accountId = account[0];
@@ -23,6 +24,7 @@ const processData = (data) => {
     .flat();
 
   allItems.sort((a, b) => b.blockHeight - a.blockHeight);
+  console.log("allItems", allItems);
   return allItems;
 };
 
@@ -48,7 +50,11 @@ return (
 
     <div>
       {state.allItems
-        ? state.allItems.map((yo) => <div>yo</div>)
+        ? state.allItems.map(({ accountId }) => (
+            <div>
+              {accountId} said <b>yo!</b>
+            </div>
+          ))
         : "Loading..."}
     </div>
   </div>
