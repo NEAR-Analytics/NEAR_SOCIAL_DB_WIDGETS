@@ -1,6 +1,6 @@
 const accountId = props.accountId ?? "*";
 
-const data = Social.keys(`${accountId}/post/poll_question/question`, "final", {
+const data = Social.keys(`${accountId}/post/poll__question/question`, "final", {
   return_type: "History",
 });
 
