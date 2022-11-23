@@ -57,7 +57,7 @@ let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
   };
 });
 
-// console.log("answData: ", answersData);
+console.log("answData: ", answersData);
 
 const haveThisUserAlreadyVoted = () => {
   if (answersData.length == 0) {
