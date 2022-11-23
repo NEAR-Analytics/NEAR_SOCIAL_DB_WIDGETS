@@ -124,9 +124,9 @@ const getForm = () => (
     }}
   >
     {haveThisUserAlreadyVoted() ? (
-      <h5>Give your opinion</h5>
-    ) : (
       <h5>Change your opinion</h5>
+    ) : (
+      <h5>Give your opinion</h5>
     )}
 
     <p style={{ marginBottom: "0" }}>Vote:</p>
@@ -148,7 +148,6 @@ const getForm = () => (
     <div className="form-check">
       <input
         key={state.vote}
-        disabled={haveThisUserAlreadyVoted()}
         className="form-check-input"
         type="radio"
         name="flexRadioDefault"
