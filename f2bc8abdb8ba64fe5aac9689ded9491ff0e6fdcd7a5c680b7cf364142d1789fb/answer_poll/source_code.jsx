@@ -7,15 +7,15 @@ const currentAccountId = context.accountId;
 const profile = Social.getr(`${accountId}/profile`);
 
 // You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
-const testBlockHeights = Social.keys(
-  `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/post/answer__poll/79089276/*`,
-  "final",
-  {
-    return_type: "History",
-  }
-);
+// const testBlockHeights = Social.keys(
+//   `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/post/answer__poll/79089276/*`,
+//   "final",
+//   {
+//     return_type: "History",
+//   }
+// );
 
-console.log("testBlockHeights: ", testBlockHeights);
+// console.log("testBlockHeights: ", testBlockHeights);
 
 const question = Social.get(
   `${accountId}/post/poll__question/question`,
