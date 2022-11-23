@@ -19,7 +19,8 @@ return (
       {timeAgo(Date.now() - answerTimeStamp)}
     </small>
     <div className="flex-row">
-      <span className="fw-bold">{userName} :</span>
+      <span className="fw-bold">{userName}</span>
+      <span>:</span>
       <p>{comment}</p>
     </div>
   </div>
