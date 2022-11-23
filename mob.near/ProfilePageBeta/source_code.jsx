@@ -166,7 +166,10 @@ return (
               />
             </div>
           </div>
-        </div>{" "}
+          <div>
+            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
+          </div>
+        </div>
       </div>
 
       <div className="mt-3">
