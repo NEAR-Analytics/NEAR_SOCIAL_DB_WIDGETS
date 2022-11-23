@@ -257,17 +257,17 @@ return (
         <div>{question}</div>
         <div className="d-flex align-items-start">
           <i
-            className="bi bi-check-circle-fill"
+            className="bi bi-3-circle-fill" // maybe change bootstrap icon or number the questions
             style={{ padding: "0 0.3rem" }}
           ></i>
           <p className="text-secondary">{countVotes[2]}</p>
           <i
-            className="bi bi-check-circle-fill"
+            className="bi bi-2-circle-fill"
             style={{ padding: "0 0.3rem" }}
           ></i>
           <p className="text-secondary">{countVotes[1]}</p>
           <i
-            className="bi bi-x-octagon-fill"
+            className="bi bi-1-circle-fill"
             style={{ padding: "0 0.5rem 0 1rem" }}
           ></i>
           <p className="text-secondary">{countVotes[0]}</p>
