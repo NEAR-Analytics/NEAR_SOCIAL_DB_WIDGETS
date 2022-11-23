@@ -58,7 +58,7 @@ let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
   };
 });
 
-console.log("answData: ", answersData);
+// console.log("answData: ", answersData);
 
 const haveThisUserAlreadyVoted = () => {
   if (answersData.length == 0) {
@@ -90,7 +90,7 @@ const loadComments = () => {
       `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/user_answers`
     );
 
-    // console.log("answer: ", answer);
+    console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
       `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
