@@ -80,7 +80,7 @@ if (answerDataFromBlockHeight) {
       //vote can return null for a few seconds
       if (isNaN(voteValue)) {
         return acc;
-      } else if (voteValue == 1) {
+      } else if (voteValue == 0) {
         return [acc[0], acc[1] + 1];
       } else {
         return [acc[0] + 1, acc[1]];
@@ -272,12 +272,12 @@ return (
             className="bi bi-check-circle-fill"
             style={{ padding: "0 0.3rem" }}
           ></i>
-          <p className="text-secondary">{countVotes[1]}</p>
+          <p className="text-secondary">{countVotes[0]}</p>
           <i
             className="bi bi-x-octagon-fill"
             style={{ padding: "0 0.5rem 0 1rem" }}
           ></i>
-          <p className="text-secondary">{countVotes[0]}</p>
+          <p className="text-secondary">{countVotes[1]}</p>
         </div>
         <>{loadComments()}</>
         <>{getForm()}</>
