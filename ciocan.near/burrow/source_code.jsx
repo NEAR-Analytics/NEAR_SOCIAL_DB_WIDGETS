@@ -221,7 +221,7 @@ const rewards = getRewards(assets);
 const allAssets = assets.map((asset) => {
   const r = rewards.find((a) => a.token_id === asset.token_id);
   return (
-    <li>
+    <li class="list-group-item">
       <span>{asset.metadata.symbol}</span>
       <span>({toAPY(r.apyBase + r.apyRewardTvl + r.apyReward)}% APY)</span>
     </li>
@@ -229,13 +229,13 @@ const allAssets = assets.map((asset) => {
 });
 
 return (
-  <div>
-    <ul>
+  <div class="card">
+    <div class="card-body">
       <h4>Burrow supplied assets</h4>
-      {allAssets}
-    </ul>
-    <a href="https://burrow.cash" target="_blank">
-      Deposit on Burrow
-    </a>
+      <ul class="list-group list-group-flush mb-2">{allAssets}</ul>
+      <a class="btn btn-primary" href="https://burrow.cash" target="_blank">
+        Deposit on Burrow
+      </a>
+    </div>
   </div>
 );
