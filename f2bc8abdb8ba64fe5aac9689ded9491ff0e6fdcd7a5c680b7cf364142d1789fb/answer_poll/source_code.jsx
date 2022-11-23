@@ -80,7 +80,7 @@ if (answerDataFromBlockHeight) {
       //vote can return null for a few seconds
       if (isNaN(voteValue)) {
         return acc;
-      } else if (voteValue == 0) {
+      } else if (voteValue == 1) {
         return [acc[0], acc[1] + 1];
       } else {
         return [acc[0] + 1, acc[1]];
