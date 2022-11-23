@@ -182,7 +182,7 @@ const getForm = () => (
           answer__poll: {
             [questionBlockHeight]: {
               user_vote: state.vote == "" ? answer.userVote : state.vote,
-              user_answers: currentAnswer,
+              user_answers: state.currentAnswer,
               answer_timestamps: Date.now(),
             },
           },
