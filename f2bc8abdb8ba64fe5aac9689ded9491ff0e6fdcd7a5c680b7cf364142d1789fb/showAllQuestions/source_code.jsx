@@ -31,8 +31,8 @@ const processData = (data) => {
 
   return allQuestions;
 };
-
-console.log("processData: ", processData(data));
+a;
+// console.log("processData: ", processData(data));
 
 const questionToWidget = (a) => (
   <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
