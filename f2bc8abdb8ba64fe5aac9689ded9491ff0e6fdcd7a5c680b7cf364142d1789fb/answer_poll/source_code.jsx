@@ -45,7 +45,7 @@ const answerDataFromBlockHeight = Social.keys(
     return_type: "History",
   }
 );
-// console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
+console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
 
 let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
   return {
@@ -89,7 +89,7 @@ const loadComments = () => {
       `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/user_answers`
     );
 
-    console.log("answer: ", answer);
+    // console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
       `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
