@@ -24,7 +24,7 @@ const question = Social.get(
 // console.log("question: ", question);
 
 const questionTimestamp = Social.get(
-  `${accountId}/post/PickAStick/question_timestamp`, // maybe be wrong
+  `${accountId}/post/poll_question/question_timestamp`, // maybe be wrong
   questionBlockHeight
 );
 
@@ -38,7 +38,7 @@ const profileLink = (c) => (
 );
 
 const answerDataFromBlockHeight = Social.keys(
-  `*/post/PickAStick/${questionBlockHeight}`, // forked from poll, need to display results properly
+  `*/post/answer_poll/${questionBlockHeight}`, // forked from poll, need to display results properly
   "final",
   {
     return_type: "History",
@@ -95,7 +95,7 @@ const loadComments = () => {
     if (answer != undefined) {
       return (
         <Widget
-          src="bluntdao.near/widget/PickAStick"
+          src="bluntdao.near/widget/PickAStick" // changed this from poll
           props={{ answer, answerTimeStamp }}
         />
       );
