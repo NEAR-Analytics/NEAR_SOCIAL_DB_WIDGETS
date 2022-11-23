@@ -96,7 +96,7 @@ const loadComments = () => {
       `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
     );
 
-    // console.log("answerTimeStamp: ", answerTimeStamp);
+    console.log("answerTimeStamp: ", answerTimeStamp);
 
     if (answer != undefined) {
       return (
