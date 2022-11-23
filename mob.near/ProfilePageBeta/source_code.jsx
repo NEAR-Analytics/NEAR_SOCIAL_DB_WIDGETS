@@ -121,17 +121,20 @@ return (
             />
           </div>
         </div>
-        <div className="bg-light px-4 pb-4 ">
-          <div
-            className="d-md-flex justify-content-between"
-            style={{ paddingTop: "1rem" }}
-          >
+        <div className="bg-light px-4 pb-4">
+          <div className="d-md-flex justify-content-between pt-3">
             <div style={{ paddingTop: "3rem" }}>
               <h4 className="mt-0 mb-0">{name}</h4>
-              <p className="small">
+              <div className="small">
                 <i className="bi bi-person-fill text-secondary me-1"></i>
                 {accountId}
-              </p>
+              </div>
+              <div>
+                <Widget
+                  src="mob.near/widget/FollowButton"
+                  props={{ accountId }}
+                />
+              </div>
             </div>
             <div style={{ minWidth: "12rem" }}>{linktreeObjects}</div>
           </div>
@@ -157,7 +160,10 @@ return (
               </button>
             </div>
             <div className="collapse public-tags">
-              <Widget src="mob.near/widget/PublicTags" props={{ accountId }} />
+              <Widget
+                src="zavodil.near/widget/PublicTags"
+                props={{ accountId }}
+              />
             </div>
           </div>
         </div>{" "}
