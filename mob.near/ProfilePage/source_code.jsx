@@ -157,7 +157,10 @@ return (
               </button>
             </div>
             <div className="collapse public-tags">
-              <Widget src="mob.near/widget/PublicTags" props={{ accountId }} />
+              <Widget
+                src="zavodil.near/widget/PublicTags"
+                props={{ accountId }}
+              />
             </div>
           </div>
         </div>{" "}
