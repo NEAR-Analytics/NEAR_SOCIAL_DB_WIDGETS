@@ -48,14 +48,13 @@ const answerDataFromBlockHeight = Social.keys(
 console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
 
 let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
-  console.log("key: ", key);
-  console.log("test: ", answerDataFromBlockHeight[key]);
+  // console.log("key: ", key)
   return {
     accountId: key,
     // Social.keys returns in the end a an array of blockHeight related to the query.
     // In our case, we only care for one answer, so it's always the first one
     blockHeightOfAnswer:
-      answerDataFromBlockHeight[key].post.answer_poll[questionBlockHeight][0],
+      answerDataFromBlockHeight[key].post.answer__poll[questionBlockHeight][0],
   };
 });
 
