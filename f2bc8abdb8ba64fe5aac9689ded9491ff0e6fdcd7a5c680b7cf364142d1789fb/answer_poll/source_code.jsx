@@ -74,9 +74,9 @@ if (answerDataFromBlockHeight) {
 
       console.log("testing votes: ", votes);
       console.log(typeof votes);
-      if (votes == 1) {
+      if (votes == "1") {
         return [acc[0] + 1, acc[1]];
-      } else if (votes == 0) {
+      } else if (votes == "0") {
         return [acc[0], acc[1] + 1];
       } else {
         return acc;
