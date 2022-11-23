@@ -28,8 +28,8 @@ function power(x, y) {
 
 function getAssets() {
   const assets = Near.view("contract.main.burrow.near", "get_assets_paged");
-  const tokenIds = assets.map(([id]) => id);
 
+  const tokenIds = assets.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view("contract.main.burrow.near", "get_asset", { token_id })
   );
@@ -51,14 +51,6 @@ function getAssets() {
     const decimals =
       parseInt(price.price.decimals || 0) - parseInt(metadata[i].decimals);
     const usd = price.price.multiplier / power(10, decimals);
-
-    // console.log(
-    //   metadata[i].symbol,
-    //   shrinkToken(
-    //     asset.supplied.balance,
-    //     asset.config.extra_decimals + metadata[i].decimals
-    //   )
-    // );
 
     return {
       ...asset,
@@ -217,9 +209,9 @@ const getRewards = (assets) => {
 };
 
 const assets = getAssets();
-console.log(assets);
+// console.log(assets);
 const rewards = getRewards(assets);
-console.log(rewards);
+// console.log(rewards);
 
 const allAssets = assets.map((asset) => {
   const r = rewards.find((a) => a.token_id === asset.token_id);
@@ -232,8 +224,13 @@ const allAssets = assets.map((asset) => {
 });
 
 return (
-  <ul>
-    <h4>Burrow supplied assets</h4>
-    {allAssets}
-  </ul>
+  <div>
+    <ul>
+      <h4>Burrow supplied assets</h4>
+      {allAssets}
+    </ul>
+    <a href="https://burrow.cash" target="_blank">
+      Deposit on Burrow
+    </a>
+  </div>
 );
