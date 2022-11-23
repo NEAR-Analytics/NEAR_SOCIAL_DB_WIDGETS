@@ -104,34 +104,32 @@ const haveThisUserAlreadyVoted = () => {
 
 const loadComments = () => {
   // console.log("answrDLength: ", answersData.length);
-  for (let i = 0; i < answersData.length; i++) {
-    // console.log("test: ", answersData[i].accountId);
+  answersData.map((answerData) => {
     let answer = Social.get(
-      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
+      `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
     );
 
-    console.log("answer: ", answer);
+    // console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
-      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
+      `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
     );
 
     // console.log("answerTimeStamp: ", answerTimeStamp);
 
     if (answer != undefined) {
-      console.log("im in");
       return (
         <Widget
           src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answer_poll-comment-container"
           props={{
             answer: answer,
             answerTimeStamp: answerTimeStamp,
-            userName: answersData[i],
+            userName: answerData,
           }}
         />
       );
     }
-  }
+  });
 };
 
 State.init({ vote: "", currentAnswer: "" });
