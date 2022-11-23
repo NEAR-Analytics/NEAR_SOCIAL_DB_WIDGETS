@@ -123,12 +123,16 @@ const getForm = () => (
       padding: "1rem",
     }}
   >
-    <h5>Give your opinion</h5>
+    {haveThisUserAlreadyVoted() ? (
+      <h5>Give your opinion</h5>
+    ) : (
+      <h5>Change your opinion</h5>
+    )}
+
     <p style={{ marginBottom: "0" }}>Vote:</p>
     <div className="form-check">
       <input
         key={state.vote}
-        disabled={haveThisUserAlreadyVoted()}
         className="form-check-input"
         type="radio"
         name="flexRadioDefault"
@@ -157,9 +161,6 @@ const getForm = () => (
         No
       </label>
     </div>
-    {haveThisUserAlreadyVoted() && (
-      <p className="text-danger">You can only vote once</p>
-    )}
 
     <div className="form-group">
       <label for="answer" className="font-weight-bold">
