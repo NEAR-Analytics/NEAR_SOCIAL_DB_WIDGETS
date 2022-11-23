@@ -104,7 +104,7 @@ const haveThisUserAlreadyVoted = () => {
 
 const loadComments = () => {
   // console.log("answrDLength: ", answersData.length);
-  answersData.map((answerData) => {
+  return answersData.map((answerData) => {
     let answer = Social.get(
       `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
     );
