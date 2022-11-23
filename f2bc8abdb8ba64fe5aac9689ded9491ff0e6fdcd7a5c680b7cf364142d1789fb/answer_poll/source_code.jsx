@@ -8,7 +8,7 @@ const profile = Social.getr(`${accountId}/profile`);
 
 // You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
 // const testBlockHeights = Social.keys(
-//   `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/post/answer__poll/79089276/*`,
+//   `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/post/answer__poll/${questionBlockHeight}`,
 //   "final",
 //   {
 //     return_type: "History",
@@ -87,7 +87,7 @@ const loadComments = () => {
   for (let i = 0; i < answersData.length; i++) {
     // console.log("test: ", answersData[i].accountId);
     let answer = Social.get(
-      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
+      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}`
     );
 
     console.log("answer: ", answer);
