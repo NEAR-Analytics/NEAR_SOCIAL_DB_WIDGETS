@@ -29,10 +29,7 @@ return (
           poll__question: JSON.stringify(
             {
               key: "users-questions",
-              value: {
-                question: entry.question,
-                question_timestamp: Date.now(),
-              },
+              value: `entry.question Date.now()`,
             },
             undefined,
             0
