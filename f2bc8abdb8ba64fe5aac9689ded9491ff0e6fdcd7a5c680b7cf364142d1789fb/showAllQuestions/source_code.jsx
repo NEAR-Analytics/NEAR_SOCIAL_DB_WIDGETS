@@ -31,7 +31,7 @@ const processData = (data) => {
 
   return allQuestions;
 };
-a;
+
 // console.log("processData: ", processData(data));
 
 const questionToWidget = (a) => (
