@@ -35,7 +35,17 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 
 return (
   <div>
-    <button>yo!</button>
+    <CommitButton
+      data={{ post: { yo: "yo!" } }}
+      onCommit={() => {
+        State.update({
+          // TODO: Feed needs reload?
+        });
+      }}
+    >
+      yo!
+    </CommitButton>
+
     {data ? state.allItems.map((yo) => <div>{yo}</div>) : "Loading"}
   </div>
 );
