@@ -1,3 +1,7 @@
+const unique = (value, index, self) => {
+  return self.indexOf(value) === index;
+};
+
 const toAPY = (v) => Math.round(v * 100) / 100;
 
 const shrinkToken = (value, decimals, fixed) => {
@@ -5,7 +9,7 @@ const shrinkToken = (value, decimals, fixed) => {
 };
 
 const toUsd = (balance, asset) =>
-  asset.price?.usd
+  asset?.price?.usd
     ? Number(
         shrinkToken(
           balance,
@@ -28,36 +32,38 @@ function power(x, y) {
 
 function getAssets() {
   const assets = Near.view("contract.main.burrow.near", "get_assets_paged");
-
-  const tokenIds = assets.map(([id]) => id);
+  if (!assets) return null;
+  const tokenIds = assets?.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view("contract.main.burrow.near", "get_asset", { token_id })
   );
-
-  const metadata = tokenIds.map((token_id) =>
+  const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
   );
 
   const config = Near.view("contract.main.burrow.near", "get_config");
-  const prices = Near.view(config["oracle_account_id"], "get_price_data");
+  const prices =
+    config && Near.view(config?.["oracle_account_id"], "get_price_data");
 
   const refPricesResponse = fetch(
     "https://raw.githubusercontent.com/NearDeFi/token-prices/main/ref-prices.json"
   );
   const refPrices = JSON.parse(refPricesResponse.body);
 
-  return assetsDetailed.map((asset, i) => {
-    const price = prices.prices.find((p) => p.asset_id === asset.token_id);
+  if (!config || !prices || !refPricesResponse) return null;
+
+  return assetsDetailed?.map((asset, i) => {
+    const price = prices?.prices?.find((p) => p.asset_id === asset?.token_id);
     const decimals =
-      parseInt(price.price.decimals || 0) - parseInt(metadata[i].decimals);
-    const usd = price.price.multiplier / power(10, decimals);
+      parseInt(price?.price?.decimals || 0) - parseInt(metadata?.[i].decimals);
+    const usd = price?.price?.multiplier / power(10, decimals);
 
     return {
       ...asset,
-      metadata: metadata[i],
+      metadata: metadata?.[i],
       price: {
         ...price.price,
-        usd: usd ? usd : parseFloat(refPrices[asset.token_id].price),
+        usd: usd ? usd : parseFloat(refPrices?.[asset.token_id]?.price),
       },
     };
   });
@@ -83,6 +89,8 @@ const getNetLiquidityAPY = (assets) => {
     "get_asset_farm",
     { farm_id: "NetTvl" }
   );
+
+  if (!netLiquidityFarm) return null;
 
   const totalDailyNetLiquidityRewards = Object.entries(netLiquidityFarm.rewards)
     .map(([rewardTokenId, farm]) => {
@@ -112,10 +120,6 @@ const getNetLiquidityAPY = (assets) => {
   );
 
   return [netLiquidtyAPY, rewardTokens];
-};
-
-const unique = (value, index, self) => {
-  return self.indexOf(value) === index;
 };
 
 const getRewards = (assets) => {
@@ -209,6 +213,7 @@ const getRewards = (assets) => {
 };
 
 const assets = getAssets();
+if (!assets.length || !assets[0]) return <div>loading...</div>;
 // console.log(assets);
 const rewards = getRewards(assets);
 // console.log(rewards);
