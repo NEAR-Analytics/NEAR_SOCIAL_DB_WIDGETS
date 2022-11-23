@@ -76,9 +76,13 @@ let countVotes = answersData.reduce(
       curr.blockHeightOfAnswer
     );
     console.log("testing answers: ", answer);
-    return answer == 1
-      ? [acc[0] + 1, acc[1]]
-      : answer == 0 && [acc[0], acc[1] + 1];
+    if (answer == 1) {
+      return [acc[0] + 1, acc[1]];
+    } else if (answer == 0) {
+      return [acc[0], acc[1] + 1];
+    } else {
+      return [acc[0], acc[1]];
+    }
   },
   [0, 0]
 );
