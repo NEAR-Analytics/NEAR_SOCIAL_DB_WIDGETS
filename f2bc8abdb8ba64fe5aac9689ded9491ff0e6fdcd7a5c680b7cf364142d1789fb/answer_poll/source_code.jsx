@@ -47,18 +47,46 @@ const answerDataFromBlockHeight = Social.keys(
 );
 // console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
 
-let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
-  // console.log("key: ", key)
-  return {
-    accountId: key,
-    // Social.keys returns in the end a an array of blockHeight related to the query.
-    // In our case, we only care for one answer, so it's always the first one
-    blockHeightOfAnswer:
-      answerDataFromBlockHeight[key].post.answer__poll[questionBlockHeight][0],
-  };
-});
+let countVotes = [0, 0];
 
-// console.log("answData: ", answersData);
+if (answerDataFromBlockHeight) {
+  let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
+    // console.log("key: ", key)
+    return {
+      accountId: key,
+      // Social.keys returns in the end a an array of blockHeight related to the query.
+      // In our case, we only care for one answer, so it's always the first one
+      blockHeightOfAnswer:
+        answerDataFromBlockHeight[key].post.answer__poll[
+          questionBlockHeight
+        ][0],
+    };
+  });
+
+  // console.log("answData: ", answersData);
+
+  countVotes = answersData.reduce(
+    (acc, curr) => {
+      let answer = Social.get(
+        `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
+        curr.blockHeightOfAnswer
+      );
+
+      console.log("testing answers: ", answer);
+
+      if (answer == 1) {
+        return [acc[0] + 1, acc[1]];
+      } else if (answer == 0) {
+        return [acc[0], acc[1] + 1];
+      } else {
+        return [acc[0], acc[1]];
+      }
+    },
+    [0, 0]
+  );
+
+  console.log("countVotes: ", countVotes, questionBlockHeight);
+}
 
 const haveThisUserAlreadyVoted = () => {
   if (answersData.length == 0) {
@@ -68,26 +96,6 @@ const haveThisUserAlreadyVoted = () => {
     return answersData[i].accountId == currentAccountId;
   }
 };
-
-let countVotes = answersData.reduce(
-  (acc, curr) => {
-    let answer = Social.get(
-      `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
-      curr.blockHeightOfAnswer
-    );
-    console.log("testing answers: ", answer);
-    if (answer == 1) {
-      return [acc[0] + 1, acc[1]];
-    } else if (answer == 0) {
-      return [acc[0], acc[1] + 1];
-    } else {
-      return [acc[0], acc[1]];
-    }
-  },
-  [0, 0]
-);
-
-console.log("countVotes: ", countVotes, questionBlockHeight);
 
 const loadComments = () => {
   // console.log("answrDLength: ", answersData.length);
