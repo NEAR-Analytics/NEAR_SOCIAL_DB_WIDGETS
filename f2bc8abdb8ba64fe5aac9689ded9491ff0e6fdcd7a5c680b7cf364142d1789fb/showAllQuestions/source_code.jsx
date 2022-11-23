@@ -18,7 +18,7 @@ const processData = (data) => {
     .map((account) => {
       // console.log("acc: ", account);
       const accountId = account[0];
-      const blockHeights = account[1].post.poll_question.question;
+      const blockHeights = account[1].post.poll__question.question;
       // console.log("bh: ", blockHeights);
       return blockHeights.map((blockHeight) => ({
         accountId,
@@ -32,7 +32,7 @@ const processData = (data) => {
   return allQuestions;
 };
 
-// console.log("processData: ", processData(data));
+console.log("processData: ", processData(data));
 
 const questionToWidget = (a) => (
   <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
