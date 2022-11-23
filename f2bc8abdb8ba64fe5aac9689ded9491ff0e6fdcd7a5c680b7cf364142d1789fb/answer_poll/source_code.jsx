@@ -82,6 +82,7 @@ let countVotes = answersData.reduce(
 // console.log("countVotes: ", countVotes);
 
 const loadComments = () => {
+  console.log("answrDLength: ", answersData.length);
   for (let i = 0; i < answersData.length; i++) {
     let answer = Social.get(
       `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/user_answers`
