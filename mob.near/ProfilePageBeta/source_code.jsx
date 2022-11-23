@@ -147,6 +147,9 @@ return (
             </div>
             <div style={{ minWidth: "12rem" }}>{linktreeObjects}</div>
           </div>
+          <div>
+            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
+          </div>
           {tags.length > 0 && (
             <div>
               {tags.map((tag) => (
@@ -174,9 +177,6 @@ return (
                 props={{ accountId }}
               />
             </div>
-          </div>
-          <div>
-            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
           </div>
         </div>
       </div>
