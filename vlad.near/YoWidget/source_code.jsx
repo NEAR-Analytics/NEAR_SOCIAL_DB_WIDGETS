@@ -11,10 +11,10 @@ if (!data) {
 const processData = (data) => {
   const accounts = Object.entries(data);
 
-  const allMemes = accounts
+  const allItems = accounts
     .map((account) => {
       const accountId = account[0];
-      const blockHeights = account[1].post.meme;
+      const blockHeights = account[1].post.yo;
       return blockHeights.map((blockHeight) => ({
         accountId,
         blockHeight,
@@ -22,13 +22,20 @@ const processData = (data) => {
     })
     .flat();
 
-  allMemes.sort((a, b) => b.blockHeight - a.blockHeight);
-  return allMemes;
+  allItems.sort((a, b) => b.blockHeight - a.blockHeight);
+  return allItems;
 };
+
+if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
+  State.update({
+    data,
+    allMemes: processData(data),
+  });
+}
 
 return (
   <div>
     <button>yo!</button>
-    {data ? <div></div> : "Loading"}
+    {data ? state.allItems.map((yo) => <div>{yo}</div>) : "Loading"}
   </div>
 );
