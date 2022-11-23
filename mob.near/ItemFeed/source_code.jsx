@@ -3,14 +3,33 @@ const renderItem = props.renderItem;
 const perPage = props.perPage || 10;
 
 State.init({
+  items,
   widgets: [],
 });
+
+if (state.items.length != items.length) {
+  if (items.length > state.items.length) {
+    const newItems = items
+      .slice(0, items.length - state.items.length)
+      .map(renderItem);
+    const widgets = [...newItems, ...state.widgets];
+    State.update({
+      widgets,
+      items,
+    });
+  } else {
+    State.update({
+      widgets: [],
+      items,
+    });
+  }
+}
 
 const makeMoreItems = () => {
   const newItems = items
     .slice(state.widgets.length, state.widgets.length + perPage)
     .map(renderItem);
-  newItems.forEach((widget) => state.widgets.push(widget));
+  state.widgets.push(...newItems);
   State.update();
 };
 
