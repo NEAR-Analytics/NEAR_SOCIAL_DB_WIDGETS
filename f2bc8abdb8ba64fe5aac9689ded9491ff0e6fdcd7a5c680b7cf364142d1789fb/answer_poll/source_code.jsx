@@ -48,9 +48,9 @@ const answerDataFromBlockHeight = Social.keys(
 // console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
 
 let countVotes = [0, 0];
-
+let answersData;
 if (answerDataFromBlockHeight) {
-  let answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
+  answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
     // console.log("key: ", key)
     return {
       accountId: key,
