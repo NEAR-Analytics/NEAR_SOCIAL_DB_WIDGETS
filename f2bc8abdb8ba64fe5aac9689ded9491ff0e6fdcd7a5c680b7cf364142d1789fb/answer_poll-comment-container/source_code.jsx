@@ -1,5 +1,5 @@
 console.log("props: ", props);
-const answer = props.answer;
+const comment = props.answer;
 const answerTimeStamp = props.answerTimeStamp;
 const userName = props.userName.accountId;
 
