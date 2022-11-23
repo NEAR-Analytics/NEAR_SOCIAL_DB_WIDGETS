@@ -38,10 +38,26 @@ return (
       props={{ contractId: props.accountId }}
     />
     <hr />
+
+    {tag !== "*" && (
+      <h4 className="ms-3">
+        List of <span className="badge rounded-pill bg-primary">{tag}</span>
+      </h4>
+    )}
+
     {allWidgets}
     <hr />
     {tag !== "*" && (
       <Widget src={`${ownerId}/widget/LabelDetails`} props={{ tag: tag }} />
     )}
+
+    <div className="mt-3 mb-5">
+      <a
+        className="btn btn-outline-primary"
+        href="/#/zavodil.near/widget/AllLabels"
+      >
+        All tags
+      </a>
+    </div>
   </>
 );
