@@ -87,7 +87,8 @@ const loadComments = () => {
   for (let i = 0; i < answersData.length; i++) {
     // console.log("test: ", answersData[i].accountId);
     let answer = Social.get(
-      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
+      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/user_answers`,
+      blockHeightOfAnswer
     );
 
     console.log("answer: ", answer);
