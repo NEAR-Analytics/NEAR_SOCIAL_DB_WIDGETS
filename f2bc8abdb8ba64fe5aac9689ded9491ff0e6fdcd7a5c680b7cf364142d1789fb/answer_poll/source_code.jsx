@@ -63,7 +63,7 @@ if (answerDataFromBlockHeight) {
     };
   });
 
-  // console.log("answData: ", answersData);
+  console.log("answData: ", answersData);
 
   countVotes = answersData.reduce(
     (acc, curr) => {
