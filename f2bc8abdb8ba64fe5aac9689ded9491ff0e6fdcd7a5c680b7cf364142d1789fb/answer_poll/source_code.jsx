@@ -67,19 +67,19 @@ if (answerDataFromBlockHeight) {
 
   countVotes = answersData.reduce(
     (acc, curr) => {
-      let answer = Social.get(
+      let votes = Social.get(
         `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
         curr.blockHeightOfAnswer
       );
 
-      console.log("testing answers: ", answer);
-
-      if (answer == 1) {
+      console.log("testing votes: ", votes);
+      console.log(votes == 1);
+      if (votes == 1) {
         return [acc[0] + 1, acc[1]];
-      } else if (answer == 0) {
+      } else if (votes == 0) {
         return [acc[0], acc[1] + 1];
       } else {
-        return [acc[0], acc[1]];
+        return acc;
       }
     },
     [0, 0]
