@@ -229,7 +229,7 @@ const allAssets = assets.map((asset) => {
 });
 
 return (
-  <div class="card">
+  <div class="card" style={{ maxWidth: "300px" }}>
     <div class="card-body">
       <h4>Burrow supplied assets</h4>
       <ul class="list-group list-group-flush mb-2">{allAssets}</ul>
