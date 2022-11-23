@@ -67,25 +67,30 @@ if (answerDataFromBlockHeight) {
 
   countVotes = answersData.reduce(
     (acc, curr) => {
-      let votes = Social.get(
+      let vote = Social.get(
         `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
         curr.blockHeightOfAnswer
       );
 
-      console.log("testing votes: ", votes);
-      console.log(typeof votes);
-      if (votes == "1") {
-        return [acc[0] + 1, acc[1]];
-      } else if (votes == "0") {
+      let voteValue = parseInt(vote);
+
+      // console.log("testing votes: ", votes);
+      // console.log(typeof votes);
+
+      //vote can return null for a few seconds
+      if (isNaN(voteValue)) {
+        return acc;
+      } else if (voteValue == 0) {
         return [acc[0], acc[1] + 1];
       } else {
-        return acc;
+        return [acc[0] + 1, acc[1]];
       }
     },
+
     [0, 0]
   );
 
-  console.log("countVotes: ", countVotes, questionBlockHeight);
+  // console.log("countVotes: ", countVotes, questionBlockHeight);
 }
 
 const haveThisUserAlreadyVoted = () => {
