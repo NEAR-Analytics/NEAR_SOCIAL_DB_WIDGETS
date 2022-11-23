@@ -1,7 +1,7 @@
-console.log("props: ", props);
+// console.log("props: ", props);
 const accountId = props.accountId;
 const questionBlockHeight = props.blockHeight;
-console.log("questionBlockHeight: ", questionBlockHeight);
+// console.log("questionBlockHeight: ", questionBlockHeight);
 const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
