@@ -125,9 +125,13 @@ return (
           <div className="d-md-flex justify-content-between pt-3">
             <div style={{ paddingTop: "3rem" }}>
               <h4 className="mt-0 mb-0">{name}</h4>
-              <div className="small">
+              <div className="small text-trancate">
                 <i className="bi bi-person-fill text-secondary me-1"></i>
                 {accountId}
+                <Widget
+                  src="mob.near/widget/FollowYouBadge"
+                  props={{ accountId }}
+                />
               </div>
               <div>
                 <Widget
