@@ -48,16 +48,18 @@ return (
     {allWidgets}
     <hr />
     {tag !== "*" && (
-      <Widget src={`${ownerId}/widget/LabelDetails`} props={{ tag: tag }} />
-    )}
+      <>
+        <Widget src={`${ownerId}/widget/LabelDetails`} props={{ tag: tag }} />
 
-    <div className="mt-3 mb-5">
-      <a
-        className="btn btn-outline-primary"
-        href="/#/zavodil.near/widget/AllLabels"
-      >
-        All tags
-      </a>
-    </div>
+        <div className="mt-3 mb-5">
+          <a
+            className="btn btn-outline-primary"
+            href="/#/zavodil.near/widget/AllLabels"
+          >
+            All tags
+          </a>
+        </div>
+      </>
+    )}
   </>
 );
