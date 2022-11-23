@@ -20,7 +20,7 @@ return (
     </small>
     <div className="flex-row">
       <span className="fw-bold">{userName} :</span>
-      <span>{comment}</span>
+      <p>{comment}</p>
     </div>
   </div>
 );
