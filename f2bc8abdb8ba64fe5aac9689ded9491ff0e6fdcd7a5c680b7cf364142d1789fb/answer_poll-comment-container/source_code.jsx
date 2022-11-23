@@ -1,3 +1,4 @@
+console.log("props: ", props);
 const answer = props.answer;
 const answerTimeStamp = props.answerTimeStamp;
 const userName = props.accountId ?? "User name missed";
