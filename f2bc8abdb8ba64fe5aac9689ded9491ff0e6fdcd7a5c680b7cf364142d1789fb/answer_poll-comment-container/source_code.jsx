@@ -1,7 +1,7 @@
 console.log("props: ", props);
 const answer = props.answer;
 const answerTimeStamp = props.answerTimeStamp;
-const userName = props.userName.accountId ?? "User name missed";
+const userName = props.userName.accountId;
 console.log("test: ", props.userName.accountId);
 
 const timeAgo = (diffSec) =>
