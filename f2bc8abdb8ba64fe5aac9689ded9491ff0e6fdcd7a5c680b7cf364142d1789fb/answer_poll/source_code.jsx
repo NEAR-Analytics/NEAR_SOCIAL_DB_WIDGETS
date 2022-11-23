@@ -17,14 +17,14 @@ const profile = Social.getr(`${accountId}/profile`);
 // console.log("testBlockHeights: ", testBlockHeights);
 
 const question = Social.get(
-  `${accountId}/post/poll_question/question`,
+  `${accountId}/post/poll__question/question`,
   questionBlockHeight
 );
 
 // console.log("question: ", question);
 
 const questionTimestamp = Social.get(
-  `${accountId}/post/poll_question/question_timestamp`,
+  `${accountId}/post/poll__question/question_timestamp`,
   questionBlockHeight
 );
 
@@ -38,7 +38,7 @@ const profileLink = (c) => (
 );
 
 const answerDataFromBlockHeight = Social.keys(
-  `*/post/answer_poll/${questionBlockHeight}`,
+  `*/post/answer__poll/${questionBlockHeight}`,
   "final",
   {
     return_type: "History",
@@ -70,7 +70,7 @@ const haveThisUserAlreadyVoted = () => {
 let countVotes = answersData.reduce(
   (acc, curr) => {
     let answer = Social.get(
-      `${curr.accountId}/post/answer_poll/${questionBlockHeight}/user_vote`,
+      `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
       curr.blockHeightOfAnswer
     );
     return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
@@ -83,13 +83,13 @@ let countVotes = answersData.reduce(
 const loadComments = () => {
   for (let i = 0; i < answersData.length; i++) {
     let answer = Social.get(
-      `${answersData[i].accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/user_answers`
+      `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/user_answers`
     );
 
     // console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
-      `${answersData[i].accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
+      `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
     );
 
     // console.log("answerTimeStamp: ", answerTimeStamp);
@@ -176,7 +176,7 @@ const getForm = () => (
     <CommitButton
       data={{
         post: {
-          answer_poll: {
+          answer__poll: {
             [questionBlockHeight]: {
               user_vote: state.vote == "" ? answer.userVote : state.vote,
               user_answers: currentAnswer,
