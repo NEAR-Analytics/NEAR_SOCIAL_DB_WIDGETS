@@ -26,7 +26,7 @@ return (
     <CommitButton
       data={{
         post: {
-          poll_question: {
+          poll__question: {
             question: entry.question,
             question_timestamp: Date.now(),
           },
