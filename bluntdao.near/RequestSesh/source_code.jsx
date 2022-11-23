@@ -73,9 +73,16 @@ let countVotes = answersData.reduce(
       `${curr.accountId}/post/answer_poll/${questionBlockHeight}/user_vote`,
       curr.blockHeightOfAnswer
     );
-    return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
+    if (answer == 0) {
+      return [acc[0], acc[1], acc[2] + 1];
+    } else if (answer == 1) {
+      return [acc[0], acc[1] + 1, acc[2]];
+    } else {
+      return [acc[0], acc[1], acc[2] + 1];
+    }
+    // return answer == 1 ? [acc[0] + 1, acc[1]] : [acc[0], acc[1] + 1];
   },
-  [0, 0]
+  [0, 0, 0] // need to change this too to a conditional inceremnting each one, dont know if its going background // changed from [0,0]
 );
 
 const loadComments = () => {
@@ -249,6 +256,11 @@ return (
         </div>
         <div>{question}</div>
         <div className="d-flex align-items-start">
+          <i
+            className="bi bi-check-circle-fill"
+            style={{ padding: "0 0.3rem" }}
+          ></i>
+          <p className="text-secondary">{countVotes[2]}</p>
           <i
             className="bi bi-check-circle-fill"
             style={{ padding: "0 0.3rem" }}
