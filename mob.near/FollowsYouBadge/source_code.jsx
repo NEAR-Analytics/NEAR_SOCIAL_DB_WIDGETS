@@ -11,7 +11,7 @@ const o = Social.keys(
 );
 
 return o && Object.keys(o).length ? (
-  <span className="bg-secondary">Follows you</span>
+  <span className="badge bg-secondary fw-light">Follows you</span>
 ) : (
   ""
 );
