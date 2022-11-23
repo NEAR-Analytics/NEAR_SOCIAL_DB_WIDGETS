@@ -78,25 +78,31 @@ let countVotes = answersData.reduce(
   [0, 0]
 );
 
+// console.log("countVotes: ", countVotes);
+
 const loadComments = () => {
   for (let i = 0; i < answersData.length; i++) {
     let answer = Social.get(
-      `${answersData.accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/user_answers`
+      `${answersData[i].accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/user_answers`
     );
 
-    console.log("answer: ", answer);
+    // console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
-      `${answersData.accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
+      `${answersData[i].accountId}/post/answer_poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
     );
 
-    console.log("answerTimeStamp: ", answerTimeStamp);
+    // console.log("answerTimeStamp: ", answerTimeStamp);
 
     if (answer != undefined) {
       return (
         <Widget
           src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answer_poll-comment-container"
-          props={{ answer, answerTimeStamp }}
+          props={{
+            answer: answer,
+            answerTimeStamp: answerTimeStamp,
+            userName: answersData[i],
+          }}
         />
       );
     }
