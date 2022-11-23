@@ -29,7 +29,7 @@ const processData = (data) => {
 if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
   State.update({
     data,
-    allMemes: processData(data),
+    allItems: processData(data),
   });
 }
 
@@ -46,6 +46,10 @@ return (
       yo!
     </CommitButton>
 
-    {data ? state.allItems.map((yo) => <div>{yo}</div>) : "Loading"}
+    <div>
+      {state.allItems
+        ? state.allItems.map((yo) => <div>yo</div>)
+        : "Loading..."}
+    </div>
   </div>
 );
