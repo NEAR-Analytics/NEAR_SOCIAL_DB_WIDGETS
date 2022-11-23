@@ -93,7 +93,7 @@ const loadComments = () => {
     // console.log("answer: ", answer);
 
     let answerTimeStamp = Social.get(
-      `${answersData[i].accountId}/post/answer__poll/${answersData[i].blockHeightOfAnswer}/answer_timestamps`
+      `${answersData[i].accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
     );
 
     console.log("answerTimeStamp: ", answerTimeStamp);
