@@ -36,7 +36,7 @@ return (
         ) : (
           "?"
         )}{" "}
-        <span className="text-muted">Followers</span>
+        <span className="text-muted">Follower{numFollowers !== 1 && "s"}</span>
       </div>
     </div>
   </div>
