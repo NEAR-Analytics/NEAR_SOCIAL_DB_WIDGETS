@@ -186,10 +186,14 @@ return (
       </div>
 
       <div className="mt-3">
-        <ul class="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
+        <ul
+          className="nav nav-pills nav-fill mb-4"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link active"
+              className="nav-link active"
               id="pills-bio-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-bio"
@@ -201,9 +205,9 @@ return (
               Bio
             </button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link"
+              className="nav-link"
               id="pills-nft-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-nft"
@@ -218,9 +222,9 @@ return (
               NFTs
             </button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li className="nav-item" role="presentation">
             <button
-              class="nav-link"
+              className="nav-link"
               id="pills-widget-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-widget"
@@ -236,9 +240,9 @@ return (
             </button>
           </li>
         </ul>
-        <div class="tab-content" id="pills-tabContent">
+        <div className="tab-content" id="pills-tabContent">
           <div
-            class="tab-pane fade in show active"
+            className="tab-pane fade in show active"
             id="pills-bio"
             role="tabpanel"
             aria-labelledby="pills-bio-tab"
@@ -246,7 +250,7 @@ return (
             <Markdown text={description} />
           </div>
           <div
-            class="tab-pane fade nft"
+            className="tab-pane fade nft"
             id="pills-nft"
             role="tabpanel"
             aria-labelledby="pills-nft-tab"
@@ -256,7 +260,7 @@ return (
             )}
           </div>
           <div
-            class="tab-pane fade widget"
+            className="tab-pane fade widget"
             id="pills-widget"
             role="tabpanel"
             aria-labelledby="pills-widget-tab"
