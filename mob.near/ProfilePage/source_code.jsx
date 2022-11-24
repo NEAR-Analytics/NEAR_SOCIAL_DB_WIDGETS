@@ -121,19 +121,34 @@ return (
             />
           </div>
         </div>
-        <div className="bg-light px-4 pb-4 ">
-          <div
-            className="d-md-flex justify-content-between"
-            style={{ paddingTop: "1rem" }}
-          >
+        <div className="bg-light px-4 pb-4">
+          <div className="d-md-flex justify-content-between pt-3">
             <div style={{ paddingTop: "3rem" }}>
-              <h4 className="mt-0 mb-0">{name}</h4>
-              <p className="small">
-                <i className="bi bi-person-fill text-secondary me-1"></i>
-                {accountId}
-              </p>
+              <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
+                <div className="me-2">
+                  <h4 className="mt-0 mb-0">{name}</h4>
+                  <div className="small text-trancate">
+                    <i className="bi bi-person-fill text-secondary me-1"></i>
+                    {accountId}
+                    <Widget
+                      src="mob.near/widget/FollowsYouBadge"
+                      props={{ accountId }}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Widget
+                    src="mob.near/widget/FollowButton"
+                    props={{ accountId }}
+                  />
+                </div>
+              </div>
             </div>
             <div style={{ minWidth: "12rem" }}>{linktreeObjects}</div>
+          </div>
+          <div className="mb-2">
+            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
           </div>
           {tags.length > 0 && (
             <div>
@@ -163,7 +178,7 @@ return (
               />
             </div>
           </div>
-        </div>{" "}
+        </div>
       </div>
 
       <div className="mt-3">
