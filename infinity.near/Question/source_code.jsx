@@ -6,33 +6,45 @@ if (!accountId) {
 
 State.init({
   question: { title: "", description: "" },
+  img: {},
   done: false,
 });
 
 const question = {
   title: state.question.title,
   description: state.question.description,
+  image: {},
 };
 
-const hasQuestion = question.title;
+if (state.img.cid) {
+  question.image.ipfs_cid = state.img.cid;
+}
+
+const hasQuestion = question.image.ipfs_cid || question.title;
 
 return (
   <div className="row mb-3">
     <div>
       <h4>Add a question</h4>
     </div>
+
     <div className="mb-2">
       Question:
       <br />
+      <IpfsImageUpload image={state.img} />
     </div>
-    <div className="mb-2">
-      Title <span className="text-secondary"></span>
-      <input type="text" value={state.question.title} />
-    </div>
-    <div className="mb-2">
-      Description <span className="text-secondary"></span>
-      <input type="text" value={state.question.description} />
-    </div>
+    {question.image.ipfs_cid && (
+      <div className="mb-2">
+        Title <span className="text-secondary">(optional)</span>
+        <input type="text" value={state.question.title} />
+      </div>
+    )}
+    {state.question.title && (
+      <div className="mb-2">
+        Description <span className="text-secondary">(optional)</span>
+        <input type="text" value={state.question.description} />
+      </div>
+    )}
     <div className="mb-2">
       {hasQuestion ? (
         <CommitButton
@@ -40,6 +52,7 @@ return (
           onCommit={() => {
             State.update({
               question: { title: "", description: "" },
+              img: {},
               done: true,
             });
           }}
