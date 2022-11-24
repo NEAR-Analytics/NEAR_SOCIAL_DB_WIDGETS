@@ -25,9 +25,10 @@ return (
       <div className="me-4">
         <a
           href={`#/mob.near/widget/FollowTabs?accountId=${accountId}&tab=following`}
+          className="text-dark"
         >
           {numFollowing !== null ? (
-            <span className="fw-bolder text-dark">{numFollowing}</span>
+            <span className="fw-bolder">{numFollowing}</span>
           ) : (
             "?"
           )}{" "}
@@ -37,9 +38,10 @@ return (
       <div>
         <a
           href={`#/mob.near/widget/FollowTabs?accountId=${accountId}&tab=followers`}
+          className="text-dark"
         >
           {numFollowers !== null ? (
-            <span className="fw-bolder text-dark">{numFollowers}</span>
+            <span className="fw-bolder">{numFollowers}</span>
           ) : (
             "?"
           )}{" "}
