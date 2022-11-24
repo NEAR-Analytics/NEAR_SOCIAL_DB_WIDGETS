@@ -1,6 +1,10 @@
 //QuickSocialUsers
 const all = Social.keys("*/memo/", "final");
 
+if (all === null) {
+  return "Loading";
+}
+
 let users = Object.keys(all).map((accountId) => (
   <li class="list-group-item">
     <Widget
