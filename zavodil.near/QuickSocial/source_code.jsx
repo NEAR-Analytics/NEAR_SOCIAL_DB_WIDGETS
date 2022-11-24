@@ -2,15 +2,16 @@
 let accountId = context.accountId;
 let targetId = props.accountId ?? accountId;
 
-if (!props.accountId && !accountId) {
-  return (
-    <Widget src="zavodil.near/widget/QuickSocialUsers" props={{ accountId }} />
-  );
-}
 const targetStatus = Social.get(`${targetId}/memo`, "final");
 
 if (targetStatus === null) {
   return "Loading";
+}
+
+if (!props.accountId && !accountId) {
+  return (
+    <Widget src="zavodil.near/widget/QuickSocialUsers" props={{ accountId }} />
+  );
 }
 
 // pre check since Social.keys crashes if no data
