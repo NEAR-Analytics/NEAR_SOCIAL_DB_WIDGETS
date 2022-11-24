@@ -30,7 +30,8 @@ let followed = [];
 let following = Social.keys(`${targetId}/graph/follow/*`, "final", {
   values_only: true,
 });
-if (following && following.length) {
+
+if (typeof following === "object" && Object.keys(following).length) {
   followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
 
