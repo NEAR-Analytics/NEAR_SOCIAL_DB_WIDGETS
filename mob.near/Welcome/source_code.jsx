@@ -75,13 +75,10 @@ return (
         </div>
       </div>
     </div>
-    {context.accountId &&
-      Object.keys(Social.keys(`${context.accountId}/widget/*`) || {}).length >
-        0 && (
-        <div className="row mb-3">
-          <h4>Your widgets</h4>
-          <Widget src="mob.near/widget/Widgets" />
-        </div>
-      )}
+
+    <div className="row mb-3">
+      <h4>Graph activity</h4>
+      <Widget src="mob.near/widget/FollowFeed" />
+    </div>
   </>
 );
