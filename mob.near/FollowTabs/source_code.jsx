@@ -6,7 +6,7 @@ return (
     <ul className="nav nav-pills nav-fill mb-4" role="tablist">
       <li className="nav-item" role="presentation">
         <a
-          href={`#/mob.near/widget/FollowTabs?accountId=${accountId}&tab=followers`}
+          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=followers`}
           className={`btn nav-link ${tab === "followers" ? "active" : ""}`}
           role="tab"
         >
@@ -15,7 +15,7 @@ return (
       </li>
       <li className="nav-item" role="presentation">
         <a
-          href={`#/mob.near/widget/FollowTabs?accountId=${accountId}&tab=following`}
+          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=following`}
           className={`btn nav-link ${tab === "following" ? "active" : ""}`}
           role="tab"
         >
