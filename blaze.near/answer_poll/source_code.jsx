@@ -202,9 +202,8 @@ const getForm = () => (
           answer__poll: JSON.stringify(
             {
               key: "response",
-              value: Date.now(),
               value: {
-                questionBlockHeight: {
+                data: {
                   user_vote: state.vote == "" ? answer.userVote : state.vote,
                   user_answers: state.currentAnswer,
                   answer_timestamps: Date.now(),
