@@ -6,15 +6,28 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-let following = Social.keys(`${targetId}/graph/follow/*`, "final", {
+// pre check since Social.keys crashes if no data
+let followingData = Social.get(`${targetId}/graph/follow/*`, "final", {
   values_only: true,
 });
 
-if (following === null) {
-  return "Loading";
+let followed = [];
+if (followingData) {
+  let following = Social.keys(`${targetId}/graph/follow/*`, "final", {
+    values_only: true,
+  });
+
+  if (following === null) {
+    return "Loading";
+  }
+  followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
-const followed = Object.keys(following[targetId]["graph"]["follow"]);
+
+console.log(followingData);
+
 const allStatuses = [];
+
+console.log(followed);
 
 for (let i = 0; i < followed.length; ++i) {
   const accountId = followed[i];
@@ -44,7 +57,7 @@ for (let i = 0; i < followed.length; ++i) {
 
 let title = allStatuses.length
   ? `Feed of ${targetId}:`
-  : "Feed of ${targetId} is empty";
+  : `Feed of ${targetId} is empty`;
 
 return (
   <div>
