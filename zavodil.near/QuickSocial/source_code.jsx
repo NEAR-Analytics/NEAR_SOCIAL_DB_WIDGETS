@@ -2,9 +2,10 @@
 let accountId = context.accountId;
 let targetId = props.accountId ?? accountId;
 
-if (!accountId) {
-  return "Please sign in with NEAR wallet";
+if (!props.accountId && !accountId) {
+  <Widget src="zavodil.near/widget/QuickSocialUsers" props={{ accountId }} />;
 }
+const targetStatus = Social.get(`${targetId}/memo`, "final");
 
 // pre check since Social.keys crashes if no data
 let followingData = Social.get(`${targetId}/graph/follow/*`, "final", {
@@ -23,11 +24,34 @@ if (followingData) {
   followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
 
-console.log(followingData);
-
 const allStatuses = [];
 
-console.log(followed);
+let currentAccount = (
+  <>
+    <h1>QuickSocial</h1>
+    <div className="me-4 mb-4">
+      <Widget src="zavodil.near/widget/Status" props={{ accountId }} />
+    </div>
+
+    <div class="alert alert-primary" role="alert">
+      <div className="d-flex justify-content-between mb-3">
+        <div className="me-4">
+          <Widget
+            src="mob.near/widget/Profile"
+            props={{ accountId: targetId }}
+          />
+        </div>
+        <div>
+          <Widget
+            src="mob.near/widget/FollowButton"
+            props={{ accountId: targetId }}
+          />
+        </div>
+      </div>
+      {targetStatus}
+    </div>
+  </>
+);
 
 for (let i = 0; i < followed.length; ++i) {
   const accountId = followed[i];
@@ -61,25 +85,21 @@ let title = allStatuses.length
 
 return (
   <div>
-    <h1>QuickSocial</h1>
-    <div className="me-4 mb-4">
-      <Widget src="zavodil.near/widget/Status" props={{ accountId }} />
-    </div>
+    {currentAccount}
 
     <h4>{title}</h4>
 
-    <div className="d-flex justify-content-between mb-3">
-      <div className="me-4">
-        <Widget src="mob.near/widget/Profile" props={{ accountId: targetId }} />
-      </div>
-      <div>
-        <Widget
-          src="mob.near/widget/FollowButton"
-          props={{ accountId: targetId }}
-        />
-      </div>
-    </div>
-
     <div>{allStatuses}</div>
+
+    <hr />
+
+    <div className="mt-3 mb-5">
+      <a
+        className="btn btn-outline-primary"
+        href="/#/zavodil.near/widget/QuickSocialUsers"
+      >
+        All QuickSocial Users
+      </a>
+    </div>
   </div>
 );
