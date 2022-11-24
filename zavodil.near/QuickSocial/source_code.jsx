@@ -2,15 +2,23 @@
 let accountId = context.accountId;
 let targetId = props.accountId ?? accountId;
 
-const targetStatus = Social.get(`${targetId}/memo`, "final");
-
-if (targetStatus === null) {
-  return "Loading";
-}
+let allUsersBlock = (
+  <div className="mt-3 mb-5">
+    <a
+      className="btn btn-outline-primary"
+      href="/#/zavodil.near/widget/QuickSocialUsers"
+    >
+      All QuickSocial Users
+    </a>
+  </div>
+);
 
 if (!props.accountId && !accountId) {
   return (
-    <Widget src="zavodil.near/widget/QuickSocialUsers" props={{ accountId }} />
+    <div>
+      <div>Please sign in with NEAR wallet to use QuickSocial</div>
+      {allUsersBlock}
+    </div>
   );
 }
 
@@ -36,9 +44,15 @@ if (followingData) {
   followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
 
+const targetStatus = Social.get(`${targetId}/memo`, "final");
+
+if (targetStatus === null) {
+  return "Loading";
+}
+
 const allStatuses = [];
 
-let currentAccount = (
+let currentAccountBlock = (
   <>
     <h1>QuickSocial</h1>
     <div className="me-4 mb-4">
@@ -70,8 +84,6 @@ for (let i = 0; i < followed.length; ++i) {
 
   const dataFollowed = Social.get(`${accountId}/memo`, "final");
 
-  console.log(dataFollowed);
-
   if (dataFollowed) {
     allStatuses.push(
       <div className="mb-2">
@@ -97,7 +109,7 @@ let title = allStatuses.length
 
 return (
   <div>
-    {currentAccount}
+    {currentAccountBlock}
 
     <h4>{title}</h4>
 
@@ -105,13 +117,6 @@ return (
 
     <hr />
 
-    <div className="mt-3 mb-5">
-      <a
-        className="btn btn-outline-primary"
-        href="/#/zavodil.near/widget/QuickSocialUsers"
-      >
-        All QuickSocial Users
-      </a>
-    </div>
+    {allUsersBlock}
   </div>
 );
