@@ -204,6 +204,7 @@ const getForm = () => (
               key: "response",
               value: {
                 data: {
+                  question: questionBlockHeight,
                   user_vote: state.vote == "" ? answer.userVote : state.vote,
                   user_answers: state.currentAnswer,
                   answer_timestamps: Date.now(),
