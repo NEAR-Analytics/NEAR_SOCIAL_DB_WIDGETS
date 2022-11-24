@@ -1,11 +1,4 @@
 //QuickSocialUsers
-
-let accountId = props.accountId ?? context.accountId;
-
-if (!accountId) {
-  return "Please sign in with NEAR wallet to set status";
-}
-
 const all = Social.keys("*/memo/", "final");
 
 let users = Object.keys(all).map((accountId) => (
