@@ -22,11 +22,11 @@ return (
       <h4>Add a question</h4>
     </div>
     <div className="mb-2">
-      Title <span className="text-secondary">(optional)</span>
+      Title <span className="text-secondary"></span>
       <input type="text" value={state.question.title} />
     </div>
     <div className="mb-2">
-      Description <span className="text-secondary">(optional)</span>
+      Description <span className="text-secondary"></span>
       <input type="text" value={state.question.description} />
     </div>
     <div className="mb-2">
