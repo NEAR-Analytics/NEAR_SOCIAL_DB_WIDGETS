@@ -12,7 +12,7 @@ const renderItem = (a) => (
   <div key={JSON.stringify(a)} className="mb-2">
     <Widget
       src="mob.near/widget/ProfileLine"
-      props={{ accountId: a.accountId }}
+      props={{ accountId: a.accountId, hideAccountId: true, tooltip: true }}
     />
     <span className="text-muted">
       {a.value.type === "follow" ? "followed" : "unfollowed"}
