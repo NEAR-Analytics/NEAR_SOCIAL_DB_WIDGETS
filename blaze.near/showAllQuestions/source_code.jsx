@@ -1,10 +1,11 @@
 const accountId = props.accountId ?? "*";
+const responses = Social.index("answer__poll", "response");
 
 const data = Social.keys(`${accountId}/post/poll__question/question`, "final", {
   return_type: "History",
 });
 
-// console.log("data: ", data);
+console.log("data: ", responses);
 
 if (!data) {
   return "Loading";
@@ -36,7 +37,10 @@ const processData = (data) => {
 
 const questionToWidget = (a) => (
   <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
-    <Widget src="blaze.near/widget/answer_poll" props={a} />
+    <Widget
+      src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answer_poll"
+      props={a}
+    />
   </div>
 );
 
