@@ -196,15 +196,18 @@ const getForm = () => (
       ></textarea>
     </div>
     <CommitButton
+      className="btn btn-lg btn-success"
       data={{
-        post: {
-          answer__poll: {
-            [questionBlockHeight]: {
+        index: {
+          answer__poll: JSON.stringify(
+            {
               user_vote: state.vote == "" ? answer.userVote : state.vote,
               user_answers: state.currentAnswer,
               answer_timestamps: Date.now(),
             },
-          },
+            undefined,
+            0
+          ),
         },
       }}
     >
