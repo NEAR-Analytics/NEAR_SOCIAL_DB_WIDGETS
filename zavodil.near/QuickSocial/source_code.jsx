@@ -18,11 +18,19 @@ let followingData = Social.get(`${targetId}/graph/follow/*`, "final", {
   values_only: true,
 });
 
+if (followingData === null) {
+  return "Loading";
+}
+
 let followed = [];
 if (followingData) {
   let following = Social.keys(`${targetId}/graph/follow/*`, "final", {
     values_only: true,
   });
+
+  if (following === null) {
+    return "Loading";
+  }
 
   followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
