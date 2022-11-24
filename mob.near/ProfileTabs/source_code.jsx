@@ -17,7 +17,7 @@ State.init({
 });
 
 return (
-  <div className="mt-3">
+  <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
       <li className="nav-item" role="presentation">
         <button
@@ -98,5 +98,5 @@ return (
         )}
       </div>
     </div>
-  </div>
+  </>
 );
