@@ -201,9 +201,15 @@ const getForm = () => (
         index: {
           answer__poll: JSON.stringify(
             {
-              user_vote: state.vote == "" ? answer.userVote : state.vote,
-              user_answers: state.currentAnswer,
-              answer_timestamps: Date.now(),
+              key: "response",
+              value: Date.now(),
+              value: {
+                questionBlockHeight: {
+                  user_vote: state.vote == "" ? answer.userVote : state.vote,
+                  user_answers: state.currentAnswer,
+                  answer_timestamps: Date.now(),
+                },
+              },
             },
             undefined,
             0
