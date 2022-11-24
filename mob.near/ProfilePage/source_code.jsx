@@ -14,7 +14,7 @@ return (
     <div className="mx-auto">
       <Widget
         src="mob.near/widget/ProfileLarge"
-        props={{ accountId, profile }}
+        props={{ accountId, profile, link: true }}
       />
 
       <div className="mt-3">
