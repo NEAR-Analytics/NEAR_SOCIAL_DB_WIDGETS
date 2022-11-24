@@ -2,6 +2,10 @@
 let accountId = context.accountId;
 let targetId = props.accountId ?? accountId;
 
+if (!context) {
+  return "Loading";
+}
+
 let allUsersBlock = (
   <div className="mt-3 mb-5">
     <a
@@ -22,25 +26,11 @@ if (!props.accountId && !accountId) {
   );
 }
 
-// pre check since Social.keys crashes if no data
-let followingData = Social.get(`${targetId}/graph/follow/*`, "final", {
+let followed = [];
+let following = Social.keys(`${targetId}/graph/follow/*`, "final", {
   values_only: true,
 });
-
-if (followingData === null) {
-  return "Loading";
-}
-
-let followed = [];
-if (followingData) {
-  let following = Social.keys(`${targetId}/graph/follow/*`, "final", {
-    values_only: true,
-  });
-
-  if (following === null) {
-    return "Loading";
-  }
-
+if (following && following.length) {
   followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
 
