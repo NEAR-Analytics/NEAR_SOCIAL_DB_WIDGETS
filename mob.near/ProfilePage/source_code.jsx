@@ -122,7 +122,7 @@ return (
           </div>
         </div>
         <div className="bg-light px-4 pb-4">
-          <div className="d-md-flex justify-content-between pt-3">
+          <div className="d-md-flex justify-content-between pt-3 mb-2">
             <div style={{ paddingTop: "3rem" }}>
               <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
                 <div className="me-2">
@@ -144,12 +144,16 @@ return (
                   />
                 </div>
               </div>
+              <div>
+                <Widget
+                  src="mob.near/widget/FollowStats"
+                  props={{ accountId }}
+                />
+              </div>
             </div>
             <div style={{ minWidth: "12rem" }}>{linktreeObjects}</div>
           </div>
-          <div className="mb-2">
-            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
-          </div>
+
           {tags.length > 0 && (
             <div>
               {tags.map((tag) => (
