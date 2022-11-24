@@ -1,62 +1,72 @@
-const accountId = context.accountId;
+const accountId = props.accountId ?? context.accountId;
+let blockHeight = props.blockHeight ? parseInt(props.blockHeight) : undefined;
+const profile = Social.getr(`${accountId}/profile`);
+const keyPath = `${accountId}/post/question`;
+const question = props.question ?? Social.getr(keyPath, blockHeight);
 
-if (!accountId) {
-  return "Please connect your NEAR wallet to add questions :)";
+if (!question) {
+  return "Loading";
 }
 
-State.init({
-  question: { title: "", description: "" },
-  done: false,
-});
-
-const question = {
-  title: state.question.title,
-  description: state.question.description,
-};
-
-const hasQuestion = question.title;
+const profileLink = (c) => (
+  <a
+    className="text-decoration-none link-dark"
+    href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+  >
+    {c}
+  </a>
+);
 
 return (
-  <div className="row mb-3">
-    <div>
-      <h4>Add a question</h4>
+  <div style={{ maxWidth: "40em" }}>
+    <div
+      className="d-flex align-items-start"
+      style={{
+        padding: "1.5rem 0",
+        borderBottom: "1px solid #e9e9e9",
+      }}
+    >
+      <div>
+        {profileLink(
+          <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+        )}
+      </div>
+      <div className="ms-2 flex-grow-1" style={{ minWidth: 0 }}>
+        <div className="d-flex justify-content-start">
+          <div className="flex-grow-1 me-1 text-truncate">
+            {profileLink(
+              <>
+                <span className="fw-bold">{profile.name}</span>
+                <span className="text-secondary">@{accountId}</span>
+              </>
+            )}
+          </div>
+          <div>
+            <small className="ps-1 text-nowrap text-muted ms-auto">
+              <i className="bi bi-clock me-1"></i>
+              <Widget
+                src="mob.near/widget/TimeAgo"
+                props={{ now: !!props.question, keyPath, blockHeight }}
+              />
+            </small>
+          </div>
+        </div>
+        <div>
+          {question.title && <b>{question.title}</b>}
+          {question.description && <p>{question.description}</p>}
+        </div>
+        <p className="small text-muted mt-2 mb-0">
+          <span>
+            <i className="bi bi-star me-1"></i>4
+          </span>
+          <span className="ms-2">
+            <i className="bi bi-chat-square-fill me-1"></i>20
+          </span>
+          <span className="ms-2">
+            <i className="bi bi-reply"></i>
+          </span>
+        </p>
+      </div>
     </div>
-
-    <div className="mb-2">
-      Question:
-      <br />
-    </div>
-    <div className="mb-2">
-      Title <span className="text-secondary">(optional)</span>
-      <input type="text" value={state.question.title} />
-    </div>
-    <div className="mb-2">
-      Description <span className="text-secondary">(optional)</span>
-      <input type="text" value={state.question.description} />
-    </div>
-    <div className="mb-2">
-      <CommitButton
-        data={{ post: { question } }}
-        onCommit={() => {
-          State.update({
-            question: { title: "", description: "" },
-            img: {},
-            done: true,
-          });
-        }}
-      >
-        Post question
-      </CommitButton>
-      <a
-        className="btn btn-outline-primary"
-        href={`#/infinity.near/widget/Question?accountId=${accountId}`}
-      >
-        View your last question
-      </a>
-    </div>
-    <hr />
-    {state.done && !hasQuestion && (
-      <div className="alert alert-success">Success!</div>
-    )}
   </div>
 );
