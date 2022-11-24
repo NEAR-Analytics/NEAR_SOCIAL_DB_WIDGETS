@@ -50,7 +50,7 @@ function renderVotes(accountIds) {
 
 return (
   <div>
-    <h2>Do you agree?</h2>
+    <h2>Question</h2>
     <Widget
       src="infinity.near/widget/Question"
       props={{ question: hasQuestion ? question : undefined }}
