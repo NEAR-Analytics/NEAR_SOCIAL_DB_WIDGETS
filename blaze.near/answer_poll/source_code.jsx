@@ -275,8 +275,6 @@ return (
             </small>
           </div>
         </div>
-        <div>
-          {question}
           {questionBlockHeight}
         </div>
         <div className="d-flex align-items-start">
