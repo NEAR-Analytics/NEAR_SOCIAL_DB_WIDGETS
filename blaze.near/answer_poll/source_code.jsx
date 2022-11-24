@@ -3,6 +3,7 @@ const accountId = props.accountId;
 const questionBlockHeight = props.blockHeight;
 // console.log("questionBlockHeight: ", questionBlockHeight);
 const currentAccountId = context.accountId;
+const responses = Social.index("answer__poll", "response");
 
 const profile = Social.getr(`${accountId}/profile`);
 
@@ -274,7 +275,10 @@ return (
             </small>
           </div>
         </div>
-        <div>{question}</div>
+        <div>
+          {question}
+          {questionBlockHeight}
+        </div>
         <div className="d-flex align-items-start">
           <i
             className="bi bi-check-circle-fill"
