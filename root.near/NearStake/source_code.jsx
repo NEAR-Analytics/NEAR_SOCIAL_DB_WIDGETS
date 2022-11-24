@@ -1,7 +1,7 @@
 initState({ amount: "1", poolId: "zavodil.poolv1.near" });
 
 const onStakeClick = () => {
-  const gas = 300 * 1000000000;
+  const gas = 300 * 1000000000000;
   // TODO: doesn't support floats right now due to limitation of JS integers
   const deposit = parseInt(state.amount) + "000000000000000000000000";
   console.log(gas, deposit);
