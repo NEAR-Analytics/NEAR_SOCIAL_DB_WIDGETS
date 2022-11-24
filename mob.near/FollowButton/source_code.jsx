@@ -17,13 +17,30 @@ const o = Social.keys(
 const loading = o === null;
 const follow = o && Object.keys(o).length;
 
+const data = {
+  graph: { follow: { [props.accountId]: follow ? null : "" } },
+  index: {
+    notify: JSON.stringify({
+      key: props.accountId,
+      value: {
+        type: follow ? "unfollow" : "follow",
+      },
+    }),
+    graph: JSON.stringify({
+      key: "follow",
+      value: {
+        type: follow ? "unfollow" : "follow",
+        accountId: props.accountId,
+      },
+    }),
+  },
+};
+
 return (
   <CommitButton
     disabled={loading}
     className={`btn ${loading || follow ? "btn-outline-dark" : "btn-primary"}`}
-    data={{
-      graph: { follow: { [props.accountId]: follow ? null : "" } },
-    }}
+    data={data}
   >
     {loading ? "Loading" : follow ? "Following" : "Follow"}
   </CommitButton>
