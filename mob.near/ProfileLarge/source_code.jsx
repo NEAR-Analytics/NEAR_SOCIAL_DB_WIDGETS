@@ -17,7 +17,7 @@ if (profile === null) {
 
 const showEditButton =
   profile !== undefined &&
-  !props.profile &&
+  (!props.profile || props.showEditButton) &&
   accountId &&
   accountId === context.accountId;
 
