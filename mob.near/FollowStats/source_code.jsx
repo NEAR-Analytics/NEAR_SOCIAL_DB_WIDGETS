@@ -23,9 +23,21 @@ return (
   <div>
     <div className="d-flex flex-row">
       <div className="me-4">
-        {numFollowing !== null ? numFollowing : "???"} Following
+        {numFollowing !== null ? (
+          <span className="fw-bolder">{numFollowing}</span>
+        ) : (
+          "?"
+        )}{" "}
+        <span className="text-muted">Following</span>
       </div>
-      <div>{numFollowers !== null ? numFollowers : "???"} Followers</div>
+      <div>
+        {numFollowers !== null ? (
+          <span className="fw-bolder">{numFollowers}</span>
+        ) : (
+          "?"
+        )}{" "}
+        <span className="text-muted">Followers</span>
+      </div>
     </div>
   </div>
 );
