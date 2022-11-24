@@ -3,6 +3,12 @@ if (!accountId) {
   return "No account ID";
 }
 
+const link =
+  props.link &&
+  (props.link === true
+    ? `#/mob.near/widget/ProfilePage?accountId=${accountId}`
+    : props.link);
+
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 if (profile === null) {
@@ -19,6 +25,8 @@ const name = profile.name || "No-name profile";
 const image = profile.image;
 const backgroundImage = profile.backgroundImage;
 const tags = Object.keys(profile.tags ?? {});
+
+const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{name}</h4>;
 
 return (
   <div className="bg-white shadow rounded overflow-hidden">
@@ -66,9 +74,18 @@ return (
       <div className="d-md-flex justify-content-between pt-3 mb-2">
         <div style={{ paddingTop: "3rem" }}>
           <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
-            <div className="me-2">
-              <h4 className="mt-0 mb-0">{name}</h4>
-              <div className="small text-trancate">
+            <div className="me-2 position-relative">
+              {link ? (
+                <a
+                  className="text-truncate text-dark stretched-link"
+                  href={link}
+                >
+                  {nameHeader}
+                </a>
+              ) : (
+                nameHeader
+              )}
+              <div className="small text-truncate">
                 <i className="bi bi-person-fill text-secondary me-1"></i>
                 {accountId}
                 <Widget
