@@ -23,20 +23,30 @@ return (
   <div>
     <div className="d-flex flex-row">
       <div className="me-4">
-        {numFollowing !== null ? (
-          <span className="fw-bolder">{numFollowing}</span>
-        ) : (
-          "?"
-        )}{" "}
-        <span className="text-muted">Following</span>
+        <a
+          href={`#/mob.near/widget/FollowList?accountId=${accountId}&tab=following`}
+        >
+          {numFollowing !== null ? (
+            <span className="fw-bolder text-dark">{numFollowing}</span>
+          ) : (
+            "?"
+          )}{" "}
+          <span className="text-muted">Following</span>
+        </a>
       </div>
       <div>
-        {numFollowers !== null ? (
-          <span className="fw-bolder">{numFollowers}</span>
-        ) : (
-          "?"
-        )}{" "}
-        <span className="text-muted">Follower{numFollowers !== 1 && "s"}</span>
+        <a
+          href={`#/mob.near/widget/FollowList?accountId=${accountId}&tab=followers`}
+        >
+          {numFollowers !== null ? (
+            <span className="fw-bolder text-dark">{numFollowers}</span>
+          ) : (
+            "?"
+          )}{" "}
+          <span className="text-muted">
+            Follower{numFollowers !== 1 && "s"}
+          </span>
+        </a>
       </div>
     </div>
   </div>
