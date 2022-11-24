@@ -20,12 +20,6 @@ const follow = o && Object.keys(o).length;
 const data = {
   graph: { follow: { [props.accountId]: follow ? null : "" } },
   index: {
-    notify: JSON.stringify({
-      key: props.accountId,
-      value: {
-        type: follow ? "unfollow" : "follow",
-      },
-    }),
     graph: JSON.stringify({
       key: "follow",
       value: {
