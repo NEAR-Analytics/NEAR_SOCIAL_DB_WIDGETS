@@ -3,9 +3,15 @@ let accountId = context.accountId;
 let targetId = props.accountId ?? accountId;
 
 if (!props.accountId && !accountId) {
-  <Widget src="zavodil.near/widget/QuickSocialUsers" props={{ accountId }} />;
+  return (
+    <Widget src="zavodil.near/widget/QuickSocialUsers" props={{ accountId }} />
+  );
 }
 const targetStatus = Social.get(`${targetId}/memo`, "final");
+
+if (targetStatus === null) {
+  return "Loading";
+}
 
 // pre check since Social.keys crashes if no data
 let followingData = Social.get(`${targetId}/graph/follow/*`, "final", {
@@ -18,9 +24,6 @@ if (followingData) {
     values_only: true,
   });
 
-  if (following === null) {
-    return "Loading";
-  }
   followed = Object.keys(following[targetId]["graph"]["follow"]);
 }
 
