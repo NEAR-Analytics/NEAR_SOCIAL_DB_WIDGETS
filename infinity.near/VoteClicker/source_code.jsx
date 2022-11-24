@@ -51,7 +51,11 @@ function renderVotes(accountIds) {
 return (
   <div>
     <h2>Do you agree?</h2>
-    <h3>How much?</h3>
+    <Widget
+      src="infinity.near/widget/Question"
+      props={{ question: hasQuestion ? question : undefined }}
+    />
+    <br />
     <div className="mb-4">
       <CommitButton
         className="btn btn-lg btn-success"
