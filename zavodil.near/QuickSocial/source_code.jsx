@@ -2,7 +2,7 @@
 let accountId = context.accountId;
 let targetId = props.accountId ?? accountId;
 
-if (!context) {
+if (context.loading) {
   return "Loading";
 }
 
