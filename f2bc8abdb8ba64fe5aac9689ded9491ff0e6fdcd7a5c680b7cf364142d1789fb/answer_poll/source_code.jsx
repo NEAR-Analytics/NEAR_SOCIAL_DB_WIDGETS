@@ -67,7 +67,7 @@ let answersData = Social.index("answer_poll", questionBlockHeight);
 //     };
 //   });
 
-// console.log("answData: ", answersData);
+console.log("answData: ", answersData);
 if (answersData) {
   countVotes = answersData.reduce(
     (acc, curr) => {
@@ -102,8 +102,8 @@ const haveThisUserAlreadyVoted = () => {
   if (answersData.lenght == 0) {
     return false;
   }
-  for (answerData in answersData) {
-    return answerData.accountId == currentAccountId;
+  for (let i = 0; i < answersData.lenght; i++) {
+    return answersData[i].accountId == currentAccountId;
   }
 
   // if (answersData.length == 0) {
