@@ -167,6 +167,156 @@ return (
       >
         0.1 Ⓝ
       </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/100`}
+        class="btn btn-primary"
+      >
+        100 Ⓝ
+      </a>
     </div>
   </div>
 );
