@@ -54,7 +54,7 @@ return (
         <div className="mt-3 mb-5">
           <a
             className="btn btn-outline-primary"
-            href="/#/klaus.near/widget/AllLabels"
+            href="/#/dacha.near/widget/AllLabels"
           >
             All tags
           </a>
