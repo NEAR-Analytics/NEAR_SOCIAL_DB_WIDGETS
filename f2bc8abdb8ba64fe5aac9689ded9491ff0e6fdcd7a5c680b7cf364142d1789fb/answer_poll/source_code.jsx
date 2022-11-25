@@ -1,4 +1,5 @@
-// console.log("props: ", props);
+console.log("props: ", props);
+const userMakingQuestion = props.accountId;
 const question = props.question;
 const questionTimestamp = props.questionTimestamp;
 
@@ -9,7 +10,7 @@ const questionBlockHeight = props.blockHeight + "";
 
 const currentAccountId = context.accountId;
 
-const profile = Social.getr(`${accountId}/profile`);
+const profile = Social.getr(`${userMakingQuestion}/profile`);
 
 // You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
 // const testBlockHeights = Social.keys(
@@ -35,7 +36,7 @@ const profile = Social.getr(`${accountId}/profile`);
 const profileLink = (c) => (
   <a
     className="text-decoration-none link-dark"
-    href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+    href={`#/mob.near/widget/ProfilePage?accountId=${userMakingQuestion}`}
   >
     {c}
   </a>
@@ -67,7 +68,7 @@ let answersData = Social.index("answer_poll", questionBlockHeight);
 //     };
 //   });
 
-console.log("answData: ", answersData);
+// console.log("answData: ", answersData);
 if (answersData) {
   countVotes = answersData.reduce(
     (acc, curr) => {
@@ -118,6 +119,7 @@ const loadComments = () => {
   // console.log("answrDLength: ", answersData.length);
   // return answersData.map((answerData) => {
   return answersData.map((answerData) => {
+    // console.log("this answer data: ", answerData);
     // let answer = Social.get(
     //   `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
     // );
@@ -130,7 +132,6 @@ const loadComments = () => {
     // );
 
     let answerTimeStamp = answerData.value.data.answer_timestamp;
-    // console.log("answerTimeStamp: ", answerTimeStamp);
 
     if (answer != undefined) {
       return (
@@ -157,11 +158,7 @@ const getForm = () => (
       padding: "1rem",
     }}
   >
-    {haveThisUserAlreadyVoted() ? (
-      <h5>Change your opinion</h5>
-    ) : (
-      <h5>Give your opinion</h5>
-    )}
+    <h5>Give your opinion</h5>
 
     <p style={{ marginBottom: "0" }}>Vote:</p>
     <div className="form-check">
@@ -214,7 +211,7 @@ const getForm = () => (
       data={{
         index: {
           answer_poll: JSON.stringify({
-            key: [questionBlockHeight],
+            key: questionBlockHeight,
             value: {
               data: {
                 user_vote: state.vote == "" ? answer.userVote : state.vote,
