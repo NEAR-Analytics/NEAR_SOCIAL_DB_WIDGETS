@@ -29,7 +29,7 @@ const processData = (data) => {
   return allQuestions;
 };
 
-console.log("pd: ", processData(data));
+// console.log("pd: ", processData(data));
 
 // const processData = (data) => {
 //   const accounts = Object.entries(data);
