@@ -25,11 +25,20 @@ return (
 
     <CommitButton
       data={{
-        post: {
-          poll__question: {
-            question: entry.question,
-            question_timestamp: Date.now(),
-          },
+        index: {
+          poll_question: JSON.stringify(
+            {
+              key: "question",
+              value: {
+                data: {
+                  question: entry.question,
+                  timestamp: Date.now(),
+                },
+              },
+            },
+            undefined,
+            0
+          ),
         },
       }}
     >
