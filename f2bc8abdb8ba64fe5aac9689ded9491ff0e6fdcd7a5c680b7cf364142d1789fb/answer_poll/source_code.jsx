@@ -5,7 +5,7 @@ const questionTimestamp = props.questionTimestamp;
 //I need questionBockHeight to be a string but .toString() is reserved so i convert the number into string like this
 const questionBlockHeight = props.blockHeight + "";
 
-// console.log("questionBlockHeight: ", questionBlockHeight);
+console.log("questionBlockHeight: ", questionBlockHeight);
 // console.log(isNaN(questionBlockHeight));
 
 const currentAccountId = context.accountId;
