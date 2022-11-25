@@ -1,6 +1,6 @@
 // AllLabels
 const ownerId = "klaus.near";
-const appName = "nametag";
+const appName = "ugh";
 
 let tag = props.tag ?? "*";
 const data = Social.keys(`*/${appName}/*/tags/${tag}`, "final");
