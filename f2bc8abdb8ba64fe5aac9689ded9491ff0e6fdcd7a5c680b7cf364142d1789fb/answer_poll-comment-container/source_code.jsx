@@ -1,4 +1,4 @@
-// console.log("props: ", props);
+console.log("props: ", props);
 const comment = props.answer;
 const answerTimeStamp = props.answerTimeStamp;
 const userName = props.userName;
