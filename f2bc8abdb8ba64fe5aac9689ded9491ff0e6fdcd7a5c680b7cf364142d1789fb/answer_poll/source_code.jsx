@@ -8,6 +8,35 @@ const questionBlockHeight = props.blockHeight + "";
 console.log("questionBlockHeight: ", questionBlockHeight);
 // console.log(isNaN(questionBlockHeight));
 
+State.init({
+  userMakingQuestion: "",
+  question: "",
+  questionTimestamp: 0,
+  questionBlockHeight: 0,
+});
+
+if (
+  JSON.stringify(
+    userMakingQuestion,
+    question,
+    questionTimestamp,
+    questionBlockHeight
+  ) !==
+  JSON.stringify(
+    state.userMakingQuestion,
+    state.question,
+    state.questionTimestamp,
+    state.questionBlockHeight
+  )
+) {
+  State.update({
+    userMakingQuestion: userMakingQuestion,
+    question: question,
+    questionTimestamp: questionTimestamp,
+    questionBlockHeight: questionBlockHeight,
+  });
+}
+
 const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${userMakingQuestion}/profile`);
