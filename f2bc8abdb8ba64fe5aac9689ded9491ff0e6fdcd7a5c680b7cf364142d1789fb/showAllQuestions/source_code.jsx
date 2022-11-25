@@ -1,8 +1,9 @@
-const accountId = props.accountId ?? "*";
+// const accountId = props.accountId ?? "*";
 
-const data = Social.keys(`${accountId}/post/poll__question/question`, "final", {
-  return_type: "History",
-});
+const data = Social.index("poll_question", "question");
+// const data = Social.keys(`${accountId}/post/poll__question/question`, "final", {
+//   return_type: "History",
+// });
 
 // console.log("data: ", data);
 
@@ -11,26 +12,46 @@ if (!data) {
 }
 
 const processData = (data) => {
-  const accounts = Object.entries(data);
-  // console.log("accts: ", accounts);
+  const allQuestions = data.reverse().map((questionData) => {
+    // console.log("questionData: ", questionData);
+    const accountId = questionData.accountId;
+    const question = questionData.value.data.question;
+    const questionTimestamp = questionData.value.data.timestamp;
+    const questionBlockHeight = questionData.blockHeight;
 
-  const allQuestions = accounts
-    .map((account) => {
-      // console.log("acc: ", account);
-      const accountId = account[0];
-      const blockHeights = account[1].post.poll__question.question;
-      // console.log("bh: ", blockHeights);
-      return blockHeights.map((blockHeight) => ({
-        accountId,
-        blockHeight,
-      }));
-    })
-    .flat();
-
-  allQuestions.sort((a, b) => b.blockHeight - a.blockHeight);
-
+    return {
+      accountId,
+      question,
+      questionTimestamp,
+      questionBlockHeight,
+    };
+  });
   return allQuestions;
 };
+
+console.log("pd: ", processData(data));
+
+// const processData = (data) => {
+//   const accounts = Object.entries(data);
+//   // console.log("accts: ", accounts);
+
+//   const allQuestions = accounts
+//     .map((account) => {
+//       // console.log("acc: ", account);
+//       const accountId = account[0];
+//       const blockHeights = account[1].post.poll__question.question;
+//       // console.log("bh: ", blockHeights);
+//       return blockHeights.map((blockHeight) => ({
+//         accountId,
+//         blockHeight,
+//       }));
+//     })
+//     .flat();
+
+//   allQuestions.sort((a, b) => b.blockHeight - a.blockHeight);
+
+//   return allQuestions;
+// };
 
 // console.log("processData: ", processData(data));
 
