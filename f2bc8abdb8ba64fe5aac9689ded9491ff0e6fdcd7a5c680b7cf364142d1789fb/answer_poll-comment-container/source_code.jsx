@@ -1,7 +1,7 @@
 // console.log("props: ", props);
 const comment = props.answer;
 const answerTimeStamp = props.answerTimeStamp;
-const userName = props.userName.accountId;
+const userName = props.userName;
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
