@@ -1,8 +1,9 @@
 console.log("props: ", props);
 const comment = props.answer;
 const answerTimeStamp = props.answerTimeStamp;
-const userName = props.userName;
-console.log(userName);
+const accountId = props.userName;
+
+const profile = Social.getr(`${accountId}/profile`);
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
@@ -13,6 +14,15 @@ const timeAgo = (diffSec) =>
     ? `${(diffSec / 3600000) | 0} hours ago`
     : `${(diffSec / 86400000) | 0} days ago`;
 
+const profileLink = (c) => (
+  <a
+    className="text-decoration-none link-dark"
+    href={`#/mob.near/widget/ProfilePage?accountId=${userMakingQuestion}`}
+  >
+    {c}
+  </a>
+);
+
 return (
   <div className="flex-column my-2 border border-primary p-2">
     <small className="ps-1 text-nowrap text-muted ms-auto">
@@ -20,8 +30,16 @@ return (
       {timeAgo(Date.now() - answerTimeStamp)}
     </small>
     <div className="flex-row">
-      <p className="fw-bold">{userName} answer:</p>
-      <p>{comment}</p>
+      {profileLink(
+        <div className="d-flex align-items-center">
+          <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+          <div>
+            <span className="fw-bold">{profile.name}</span>
+            <span className="text-secondary">@{accountId}</span>
+          </div>
+        </div>
+      )}
     </div>
+    <p className="m-3">{comment}</p>
   </div>
 );
