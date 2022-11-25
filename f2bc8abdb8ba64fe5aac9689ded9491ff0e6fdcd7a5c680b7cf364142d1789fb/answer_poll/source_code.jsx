@@ -29,6 +29,7 @@ if (
     state.questionBlockHeight
   )
 ) {
+  console.log("Updating state");
   State.update({
     userMakingQuestion: userMakingQuestion,
     question: question,
