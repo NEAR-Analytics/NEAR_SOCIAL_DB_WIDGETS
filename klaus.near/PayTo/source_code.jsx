@@ -161,6 +161,12 @@ return (
       >
         10000 Ⓝ
       </a>
+      <a
+        href={`https://send.near.watch/${context.accountId}/${accountId}/10000`}
+        class="btn btn-primary"
+      >
+        10000 Ⓝ
+      </a>
     </div>
   </div>
 );
