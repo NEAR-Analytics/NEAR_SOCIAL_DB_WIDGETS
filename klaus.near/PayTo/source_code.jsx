@@ -162,10 +162,10 @@ return (
         10000 Ⓝ
       </a>
       <a
-        href={`https://send.near.watch/${context.accountId}/${accountId}/10000`}
+        href={`https://send.near.watch/${context.accountId}/${accountId}/0.1`}
         class="btn btn-primary"
       >
-        10000 Ⓝ
+        0.1 Ⓝ
       </a>
     </div>
   </div>
