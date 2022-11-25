@@ -1,4 +1,4 @@
-console.log("props: ", props);
+// console.log("props: ", props);
 const userMakingQuestion = props.accountId;
 const question = props.question;
 const questionTimestamp = props.questionTimestamp;
