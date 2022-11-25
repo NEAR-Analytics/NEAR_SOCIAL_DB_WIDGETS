@@ -1,7 +1,12 @@
 // console.log("props: ", props);
-const accountId = props.accountId;
-const questionBlockHeight = props.blockHeight;
+const question = props.question;
+const questionTimestamp = props.questionTimestamp;
+
+//I need questionBockHeiht to be a string but .toString() is reserved so i convert the number into string like this
+const questionBlockHeight = props.blockHeight + "";
 // console.log("questionBlockHeight: ", questionBlockHeight);
+// console.log(isNaN(questionBlockHeight));
+
 const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
@@ -17,17 +22,15 @@ const profile = Social.getr(`${accountId}/profile`);
 
 // console.log("testBlockHeights: ", testBlockHeights);
 
-const question = Social.get(
-  `${accountId}/post/poll__question/question`,
-  questionBlockHeight
-);
+// const question = Social.get(
+//   `${accountId}/post/poll__question/question`,
+//   questionBlockHeight
+// );
 
-// console.log("question: ", question);
-
-const questionTimestamp = Social.get(
-  `${accountId}/post/poll__question/question_timestamp`,
-  questionBlockHeight
-);
+// const questionTimestamp = Social.get(
+//   `${accountId}/post/poll__question/question_timestamp`,
+//   questionBlockHeight
+// );
 
 const profileLink = (c) => (
   <a
@@ -38,39 +41,41 @@ const profileLink = (c) => (
   </a>
 );
 
-const answerDataFromBlockHeight = Social.keys(
-  `*/post/answer__poll/${questionBlockHeight}`,
-  "final",
-  {
-    return_type: "History",
-  }
-);
+// const answerDataFromBlockHeight = Social.keys(
+//   `*/post/answer__poll/${questionBlockHeight}`,
+//   "final",
+//   {
+//     return_type: "History",
+//   }
+// );
 // console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
 
 let countVotes = [0, 0];
-let answersData;
-if (answerDataFromBlockHeight) {
-  answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
-    // console.log("key: ", key)
-    return {
-      accountId: key,
-      // Social.keys returns in the end a an array of blockHeight related to the query.
-      // In our case, we only care for one answer, so it's always the first one
-      blockHeightOfAnswer:
-        answerDataFromBlockHeight[key].post.answer__poll[
-          questionBlockHeight
-        ][0],
-    };
-  });
+let answersData = Social.index("answer_poll", questionBlockHeight);
 
-  // console.log("answData: ", answersData);
+// if (answerDataFromBlockHeight) {
+//   answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
+//     // console.log("key: ", key)
+//     return {
+//       accountId: key,
+//       // Social.keys returns in the end a an array of blockHeight related to the query.
+//       // In our case, we only care for one answer, so it's always the first one
+//       blockHeightOfAnswer:
+//         answerDataFromBlockHeight[key].post.answer__poll[
+//           questionBlockHeight
+//         ][0],
+//     };
+//   });
 
+// console.log("answData: ", answersData);
+if (answersData) {
   countVotes = answersData.reduce(
     (acc, curr) => {
-      let vote = Social.get(
-        `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
-        curr.blockHeightOfAnswer
-      );
+      // let vote = Social.get(
+      //   `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
+      //   curr.blockHeightOfAnswer
+      // );
+      let vote = curr.value.data.user_vote;
 
       let voteValue = parseInt(vote);
 
@@ -94,27 +99,37 @@ if (answerDataFromBlockHeight) {
 }
 
 const haveThisUserAlreadyVoted = () => {
-  if (answersData.length == 0) {
+  if (answersData.lenght == 0) {
     return false;
   }
-  for (let i = 0; i < answersData.length; i++) {
-    return answersData[i].accountId == currentAccountId;
+  for (answerData in answersData) {
+    return answerData.accountId == currentAccountId;
   }
+
+  // if (answersData.length == 0) {
+  //   return false;
+  // }
+  // for (let i = 0; i < answersData.length; i++) {
+  //   return answersData[i].accountId == currentAccountId;
+  // }
 };
 
 const loadComments = () => {
   // console.log("answrDLength: ", answersData.length);
+  // return answersData.map((answerData) => {
   return answersData.map((answerData) => {
-    let answer = Social.get(
-      `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
-    );
+    // let answer = Social.get(
+    //   `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
+    // );
 
+    let answer = answerData.value.data.user_answer;
     // console.log("answer: ", answer);
 
-    let answerTimeStamp = Social.get(
-      `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
-    );
+    // let answerTimeStamp = Social.get(
+    //   `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
+    // );
 
+    let answerTimeStamp = answerData.value.data.answer_timestamp;
     // console.log("answerTimeStamp: ", answerTimeStamp);
 
     if (answer != undefined) {
@@ -124,7 +139,7 @@ const loadComments = () => {
           props={{
             answer: answer,
             answerTimeStamp: answerTimeStamp,
-            userName: answerData,
+            userName: answerData.accountId,
           }}
         />
       );
@@ -197,14 +212,17 @@ const getForm = () => (
     </div>
     <CommitButton
       data={{
-        post: {
-          answer__poll: {
-            [questionBlockHeight]: {
-              user_vote: state.vote == "" ? answer.userVote : state.vote,
-              user_answers: state.currentAnswer,
-              answer_timestamps: Date.now(),
+        index: {
+          answer_poll: JSON.stringify({
+            key: [questionBlockHeight],
+            value: {
+              data: {
+                user_vote: state.vote == "" ? answer.userVote : state.vote,
+                user_answer: state.currentAnswer,
+                answer_timestamp: Date.now(),
+              },
             },
-          },
+          }),
         },
       }}
     >
