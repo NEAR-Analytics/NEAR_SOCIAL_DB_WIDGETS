@@ -39,6 +39,7 @@ const profileLink = (c) => (
     href={`#/mob.near/widget/ProfilePage?accountId=${userMakingQuestion}`}
   >
     {c}
+    <p>{userMakingQuestion}</p>
   </a>
 );
 
