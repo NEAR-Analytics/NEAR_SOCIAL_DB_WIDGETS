@@ -1,12 +1,8 @@
-console.log("props: ", props);
 const userMakingQuestion = props.accountId;
 const question = props.question;
 const questionTimestamp = props.questionTimestamp;
 //I need questionBockHeight to be a string but .toString() is reserved so i convert the number into string like this
 const questionBlockHeight = props.questionBlockHeight + "";
-
-console.log("questionBlockHeight: ", questionBlockHeight);
-// console.log(isNaN(questionBlockHeight));
 
 State.init({
   userMakingQuestion: "",
@@ -82,7 +78,6 @@ const loadComments = () => {
 };
 
 State.init({ vote: "", currentAnswer: "" });
-// console.log("input vote value: ", state.vote, "textarea value: ", state.currentAnswer);
 const getForm = () => (
   <div
     style={{
