@@ -15,53 +15,9 @@ State.init({
   questionBlockHeight: 0,
 });
 
-if (
-  JSON.stringify(
-    userMakingQuestion,
-    question,
-    questionTimestamp,
-    questionBlockHeight
-  ) !==
-  JSON.stringify(
-    state.userMakingQuestion,
-    state.question,
-    state.questionTimestamp,
-    state.questionBlockHeight
-  )
-) {
-  console.log("Updating state");
-  State.update({
-    userMakingQuestion: userMakingQuestion,
-    question: question,
-    questionTimestamp: questionTimestamp,
-    questionBlockHeight: questionBlockHeight,
-  });
-}
-
 const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${userMakingQuestion}/profile`);
-
-// You can use this code to know the blockheights of your question in case you need to test. Just use one blockheight in the props.
-// const testBlockHeights = Social.keys(
-//   `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/post/answer__poll/${questionBlockHeight}`,
-//   "final",
-//   {
-//     return_type: "History",
-//   }
-// );
-
-// console.log("testBlockHeights: ", testBlockHeights);
-
-// const question = Social.get(
-//   `${accountId}/post/poll__question/question`,
-//   questionBlockHeight
-// );
-
-// const questionTimestamp = Social.get(
-//   `${accountId}/post/poll__question/question_timestamp`,
-//   questionBlockHeight
-// );
 
 const profileLink = (c) => (
   <a
@@ -72,48 +28,16 @@ const profileLink = (c) => (
   </a>
 );
 
-// const answerDataFromBlockHeight = Social.keys(
-//   `*/post/answer__poll/${questionBlockHeight}`,
-//   "final",
-//   {
-//     return_type: "History",
-//   }
-// );
-// console.log("answerDataFromBlockHeight: ", answerDataFromBlockHeight);
-
 let countVotes = [0, 0];
 let answersData = Social.index("answer_poll", questionBlockHeight);
 
-// if (answerDataFromBlockHeight) {
-//   answersData = Object.keys(answerDataFromBlockHeight).map((key) => {
-//     // console.log("key: ", key)
-//     return {
-//       accountId: key,
-//       // Social.keys returns in the end a an array of blockHeight related to the query.
-//       // In our case, we only care for one answer, so it's always the first one
-//       blockHeightOfAnswer:
-//         answerDataFromBlockHeight[key].post.answer__poll[
-//           questionBlockHeight
-//         ][0],
-//     };
-//   });
-
-// console.log("answData: ", answersData);
 if (answersData) {
   countVotes = answersData.reduce(
     (acc, curr) => {
-      // let vote = Social.get(
-      //   `${curr.accountId}/post/answer__poll/${questionBlockHeight}/user_vote`,
-      //   curr.blockHeightOfAnswer
-      // );
       let vote = curr.value.data.user_vote;
 
       let voteValue = parseInt(vote);
 
-      // console.log("testing votes: ", votes);
-      // console.log(typeof votes);
-
-      //vote can return null for a few seconds
       if (isNaN(voteValue)) {
         return acc;
       } else if (voteValue == 0) {
@@ -125,8 +49,6 @@ if (answersData) {
 
     [0, 0]
   );
-
-  // console.log("countVotes: ", countVotes, questionBlockHeight);
 }
 
 const haveThisUserAlreadyVoted = () => {
@@ -136,30 +58,11 @@ const haveThisUserAlreadyVoted = () => {
   for (let i = 0; i < answersData.lenght; i++) {
     return answersData[i].accountId == currentAccountId;
   }
-
-  // if (answersData.length == 0) {
-  //   return false;
-  // }
-  // for (let i = 0; i < answersData.length; i++) {
-  //   return answersData[i].accountId == currentAccountId;
-  // }
 };
 
 const loadComments = () => {
-  // console.log("answrDLength: ", answersData.length);
-  // return answersData.map((answerData) => {
   return answersData.map((answerData) => {
-    // console.log("this answer data: ", answerData);
-    // let answer = Social.get(
-    //   `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/user_answers`
-    // );
-
     let answer = answerData.value.data.user_answer;
-    // console.log("answer: ", answer);
-
-    // let answerTimeStamp = Social.get(
-    //   `${answerData.accountId}/post/answer__poll/${questionBlockHeight}/answer_timestamps`
-    // );
 
     let answerTimeStamp = answerData.value.data.answer_timestamp;
 
