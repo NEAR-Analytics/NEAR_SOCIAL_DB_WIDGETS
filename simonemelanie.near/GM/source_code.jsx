@@ -1,5 +1,5 @@
 const card = {
-  background: "#03fccf",
+  background: "linear-gradient(to green, blue , pink)",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
@@ -12,6 +12,7 @@ const button = {
   textAlign: "center",
   background: "#ff0077",
   border: "2px solid black",
+  fontWeight: "bold",
 };
 
 const accountId = props.accountId ?? "*";
@@ -62,7 +63,7 @@ return (
         });
       }}
     >
-      GM!
+      GM! 🤓
     </CommitButton>
 
     <div>
