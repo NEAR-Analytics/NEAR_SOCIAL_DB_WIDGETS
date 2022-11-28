@@ -2,6 +2,14 @@ const card = {
   background: "#03fccf",
   border: "1px solid black",
   borderRadius: "5px",
+  textAlign: "center",
+};
+
+const button = {
+  borderRadius: "5px",
+  margin: "5px 0",
+  padding: "8px",
+  textAlign: "center",
 };
 
 const accountId = props.accountId ?? "*";
@@ -44,6 +52,7 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 return (
   <div>
     <CommitButton
+      style={button}
       data={{ post: { GM: "GM!" } }}
       onCommit={() => {
         State.update({
