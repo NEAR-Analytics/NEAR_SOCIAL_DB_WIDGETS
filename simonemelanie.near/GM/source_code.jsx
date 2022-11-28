@@ -10,6 +10,7 @@ const button = {
   margin: "5px 0",
   padding: "8px",
   textAlign: "center",
+  background: "#ff0077",
 };
 
 const accountId = props.accountId ?? "*";
