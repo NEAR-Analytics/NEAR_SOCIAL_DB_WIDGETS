@@ -1,5 +1,5 @@
 const card = {
-  background: "#03fccf",
+  background: "#FFAE42",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
