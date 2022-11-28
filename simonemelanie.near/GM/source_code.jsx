@@ -1,5 +1,5 @@
 const card = {
-  background: "linear-gradient(to green, blue , pink)",
+  background: "linear-gradient(to right, #72f786, #33ffff)",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
@@ -10,7 +10,7 @@ const button = {
   margin: "5px 0",
   padding: "8px",
   textAlign: "center",
-  background: "#ff0077",
+  background: "linear-gradient(to right, #72f786, #33ffff)",
   border: "2px solid black",
   fontWeight: "bold",
 };
