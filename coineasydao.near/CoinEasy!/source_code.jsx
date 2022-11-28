@@ -31,7 +31,7 @@ const processData = (data) => {
   const allItems = accounts
     .map((account) => {
       const accountId = account[0];
-      const blockHeights = account[1].post.GM;
+      const blockHeights = account[1].post.CoinEasy;
       return blockHeights.map((blockHeight) => ({
         accountId,
         blockHeight,
