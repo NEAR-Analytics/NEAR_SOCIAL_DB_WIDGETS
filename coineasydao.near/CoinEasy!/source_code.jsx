@@ -1,5 +1,5 @@
 const card = {
-  background: "#FFAE42",
+  background: "#03fccf",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
@@ -11,7 +11,7 @@ const button = {
   padding: "8px",
   textAlign: "center",
   background: "#FFAE42",
-  border: "1px solid black",
+  border: "2px solid black",
 };
 
 const accountId = props.accountId ?? "*";
