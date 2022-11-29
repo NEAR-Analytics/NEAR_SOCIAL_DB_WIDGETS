@@ -8,8 +8,10 @@ initState({
   question: "",
   typeOfAnswer: "",
   amountOfChoices: "2",
-  choices: {},
+  choices: [],
 });
+
+console.log("states: ", state);
 
 const entry = {
   question: state.question,
@@ -84,6 +86,59 @@ function renderTextInputsForChoices() {
       })}
     </>
   );
+}
+
+function renderCommitButton() {
+  if (state.typeOfAnswer == "2") {
+    return (
+      <CommitButton
+        data={{
+          index: {
+            poll_question: JSON.stringify(
+              {
+                key: "question-v2",
+                value: {
+                  data: {
+                    question: entry.question,
+                    questionType: state.typeOfAnswer,
+                    choicesOptions: state.choices,
+                    timestamp: Date.now(),
+                  },
+                },
+              },
+              undefined,
+              0
+            ),
+          },
+        }}
+      >
+        Submit
+      </CommitButton>
+    );
+  } else {
+    <CommitButton
+      data={{
+        index: {
+          poll_question: JSON.stringify(
+            {
+              key: "question-v2",
+              value: {
+                data: {
+                  question: entry.question,
+                  questionType: state.typeOfAnswer,
+                  timestamp: Date.now(),
+                },
+              },
+            },
+            undefined,
+            0
+          ),
+        },
+      }}
+    >
+      Submit
+    </CommitButton>;
+  }
 }
 
 function renderChoicesInputs() {
@@ -216,28 +271,6 @@ return (
 
     {state.typeOfAnswer == "2" && renderChoicesInputs()}
 
-    <CommitButton
-      data={{
-        index: {
-          poll_question: JSON.stringify(
-            {
-              key: "question-v2",
-              value: {
-                data: {
-                  question: entry.question,
-                  questionType: state.typeOfAnswer,
-                  choicesOptions: state.choices,
-                  timestamp: Date.now(),
-                },
-              },
-            },
-            undefined,
-            0
-          ),
-        },
-      }}
-    >
-      Submit
-    </CommitButton>
+    {renderCommitButton()}
   </div>
 );
