@@ -1,3 +1,5 @@
+const notificationFeedSrc = "mob.near/widget/NotificationFeed";
+
 const render = (counter, disabled) => {
   const className = "btn btn-sm btn-outline-dark border-0";
   const inner = (
@@ -20,7 +22,7 @@ const render = (counter, disabled) => {
           {inner}
         </button>
       ) : (
-        <a className={className} href="#/mob.near/widget/NotificationFeed">
+        <a className={className} href={`#/${notificationFeedSrc}`}>
           {inner}
         </a>
       )}
@@ -34,8 +36,13 @@ if (context.loading || !accountId) {
   return render(0, true);
 }
 
+const lastBlockHeight = Storage.get("lastBlockHeight", notificationFeedSrc);
+if (lastBlockHeight === null) {
+  return render(0, true);
+}
+
 const notifications = Social.index("notify", accountId, {
-  order: "desc",
+  order: "asc",
+  from: (lastBlockHeight ?? 0) + 1,
 });
-console.log(notifications);
 return render(notifications.length, false);
