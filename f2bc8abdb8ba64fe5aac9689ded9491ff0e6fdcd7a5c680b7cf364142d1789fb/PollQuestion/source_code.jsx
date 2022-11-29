@@ -7,11 +7,9 @@ if (!accountId) {
 initState({
   question: "",
   typeOfAnswer: "",
-  amountOfChoices: "2",
+  amountOfChoices: "1",
   choices: [],
 });
-
-console.log("states: ", state);
 
 const entry = {
   question: state.question,
@@ -23,9 +21,6 @@ const entry = {
 const handleMakeQuestionInputChange = (event) => {
   State.update({
     question: event.target.value,
-    typeOfAnswer: state.typeOfAnswer,
-    amountOfChoices: state.amountOfChoices,
-    choices: state.choices,
   });
 };
 
@@ -33,34 +28,72 @@ const handleWriteChoiceInputChange = (choiceNumber) => {
   return (event) => {
     const choices = state.choices;
 
-    choices[Number(choiceNumber)] = event.target.value;
-
+    let newChoices = [];
+    if (event.target.value == "") {
+      for (let i = 0; i < choices.length; i++) {
+        if (i != choiceNumber) {
+          newChoices.push(choices[i]);
+        }
+      }
+    } else {
+      choices[Number(choiceNumber)] = event.target.value;
+      newChoices = choices;
+    }
     State.update({
-      question: state.question,
-      typeOfAnswer: state.typeOfAnswer,
-      amountOfChoices: state.amountOfChoices,
-      choices: choices,
+      choices: newChoices,
     });
+
+    if (
+      newChoices[state.amountOfChoices] != "" &&
+      Number(state.amountOfChoices) == choiceNumber + 1
+    ) {
+      changeAmountOfChoices(1);
+    } else if (
+      (newChoices[Number(state.amountOfChoices) - 2] == "" ||
+        newChoices[Number(state.amountOfChoices) - 2] == undefined) &&
+      Number(state.amountOfChoices - 1) == choiceNumber + 1
+    ) {
+      changeAmountOfChoices(-1);
+    }
   };
 };
+
+function deleteChoiceHandler(choiceNumber) {
+  return () => {
+    let choices = state.choises;
+    console.log("state.choices: ", state.choises);
+    console.log("choices 1: ", choices);
+    let newChoices = [];
+    for (let i = 0; i < choices.length; i++) {
+      console.log("i: ", i);
+      console.log("choiceNumber: ", choiceNumber);
+      if (i != choiceNumber) {
+        newChoices.push(choices[i]);
+      }
+    }
+    console.log("newChoices: ", newChoices);
+
+    State.update({
+      amountOfChoices: Number(state.amountOfChoices) - 1,
+      choices: newChoices,
+    });
+    a;
+    console.log("choices: ", state.choices);
+    console.log("amountOfChoices: ", state.amountOfChoices);
+  };
+}
 
 function onChangeTypeOfAnswer(e) {
   const typeOfAnswer = e.target.value;
 
   State.update({
-    question: state.question,
     typeOfAnswer: typeOfAnswer,
-    amountOfChoices: state.amountOfChoices,
-    choices: state.choices,
   });
 }
 
-function onChangeAmountOfChoices(e) {
+function changeAmountOfChoices(changeValue) {
   State.update({
-    question: state.question,
-    typeOfAnswer: state.typeOfAnswer,
-    amountOfChoices: e.target.value,
-    choices: state.choices,
+    amountOfChoices: Number(state.amountOfChoices) + changeValue + "",
   });
 }
 
@@ -69,18 +102,28 @@ function renderTextInputsForChoices() {
   for (let i = 0; i < state.amountOfChoices; i++) {
     amountOfChoices.push(i);
   }
+
   return (
     <>
       {amountOfChoices.map((choiceNumber) => {
         return (
           <div className="my-1" key={`choice-input-${choiceNumber}`}>
             <h6>Choice numer {choiceNumber + 1}</h6>
-            <input
-              type="text"
-              className="mb-2 w-100"
-              value={state.choices[choiceNumber]}
-              onChange={handleWriteChoiceInputChange(choiceNumber)}
-            />
+            <div className="d-flex">
+              <input
+                type="text"
+                className="w-100 mx-2"
+                value={state.choices[choiceNumber]}
+                onChange={handleWriteChoiceInputChange(choiceNumber)}
+              />
+              <button
+                type="button"
+                className="btn btn-outline-danger"
+                onClick={deleteChoiceHandler(choiceNumber)}
+              >
+                <i className="bi bi-x-octagon"></i>
+              </button>
+            </div>
           </div>
         );
       })}
@@ -141,76 +184,76 @@ function renderCommitButton() {
   }
 }
 
-function renderChoicesInputs() {
-  return (
-    <>
-      <h5>Select amount of choices</h5>
-      <div className="d-flex">
-        <div className="form-check mx-2">
-          <input
-            key={state.amountOfChoices}
-            className="form-check-input"
-            type="radio"
-            name="choicesRadio"
-            id="twoChoices"
-            value="2"
-            onChange={onChangeAmountOfChoices}
-            checked={state.amountOfChoices == "2"}
-          />
-          <label className="form-check-label" for="twoChoices">
-            2
-          </label>
-        </div>
-        <div className="form-check mx-2">
-          <input
-            key={state.amountOfChoices}
-            className="form-check-input"
-            type="radio"
-            name="choicesRadio"
-            id="threeChoices"
-            value="3"
-            onChange={onChangeAmountOfChoices}
-            checked={state.amountOfChoices == "3"}
-          />
-          <label className="form-check-label" for="threeChoices">
-            3
-          </label>
-        </div>
-        <div className="form-check mx-2">
-          <input
-            key={state.amountOfChoices}
-            className="form-check-input"
-            type="radio"
-            name="choicesRadio"
-            id="fourChoices"
-            value="4"
-            onChange={onChangeAmountOfChoices}
-            checked={state.amountOfChoices == "4"}
-          />
-          <label className="form-check-label" for="fourChoices">
-            4
-          </label>
-        </div>
-        <div className="form-check mx-2">
-          <input
-            key={state.amountOfChoices}
-            className="form-check-input"
-            type="radio"
-            name="choicesRadio"
-            id="fiveChoices"
-            value="5"
-            onChange={onChangeAmountOfChoices}
-            checked={state.amountOfChoices == "5"}
-          />
-          <label className="form-check-label" for="fiveChoices">
-            5
-          </label>
-        </div>
-      </div>
-      {renderTextInputsForChoices()}
-    </>
-  );
-}
+// function renderChoicesInputs() {
+//   return (
+//     <>
+//       <h5>Select amount of choices</h5>
+//       <div className="d-flex">
+//         <div className="form-check mx-2">
+//           <input
+//             key={state.amountOfChoices}
+//             className="form-check-input"
+//             type="radio"
+//             name="choicesRadio"
+//             id="twoChoices"
+//             value="2"
+//             onChange={onChangeAmountOfChoices}
+//             checked={state.amountOfChoices == "2"}
+//           />
+//           <label className="form-check-label" for="twoChoices">
+//             2
+//           </label>
+//         </div>
+//         <div className="form-check mx-2">
+//           <input
+//             key={state.amountOfChoices}
+//             className="form-check-input"
+//             type="radio"
+//             name="choicesRadio"
+//             id="threeChoices"
+//             value="3"
+//             onChange={onChangeAmountOfChoices}
+//             checked={state.amountOfChoices == "3"}
+//           />
+//           <label className="form-check-label" for="threeChoices">
+//             3
+//           </label>
+//         </div>
+//         <div className="form-check mx-2">
+//           <input
+//             key={state.amountOfChoices}
+//             className="form-check-input"
+//             type="radio"
+//             name="choicesRadio"
+//             id="fourChoices"
+//             value="4"
+//             onChange={onChangeAmountOfChoices}
+//             checked={state.amountOfChoices == "4"}
+//           />
+//           <label className="form-check-label" for="fourChoices">
+//             4
+//           </label>
+//         </div>
+//         <div className="form-check mx-2">
+//           <input
+//             key={state.amountOfChoices}
+//             className="form-check-input"
+//             type="radio"
+//             name="choicesRadio"
+//             id="fiveChoices"
+//             value="5"
+//             onChange={onChangeAmountOfChoices}
+//             checked={state.amountOfChoices == "5"}
+//           />
+//           <label className="form-check-label" for="fiveChoices">
+//             5
+//           </label>
+//         </div>
+//       </div>
+//       {renderTextInputsForChoices()}
+//     </>
+//   );
+// }
 
 return (
   <div className="row mb-3">
@@ -269,7 +312,7 @@ return (
       </label>
     </div>
 
-    {state.typeOfAnswer == "2" && renderChoicesInputs()}
+    {state.typeOfAnswer == "2" && renderTextInputsForChoices()}
 
     {renderCommitButton()}
   </div>
