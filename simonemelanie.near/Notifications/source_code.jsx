@@ -18,31 +18,38 @@ if (!accountId) {
   return "Sign in with NEAR Wallet";
 }
 
-const notifications = Social.index("notify", accountId, {
-  order: "desc",
-});
+const notifications = Social.index("notify", accountId, { order: "desc" });
 
-if (notifications === null) {
+if (notifications == null) {
   return "Loading";
 }
 
-if (notifications.length === 0) {
+if (notifications.length == 0) {
   return "No notifications";
 }
 
 Storage.set("lastBlockHeight", notifications[0].blockHeight);
 
-const myVar = [];
+const notificationsArray = [];
 
 notifications.forEach((notification) => {
-  myVar.push(
+  let renderCard = (
     <div style={card}>
-      <p>{notification.value.type}</p>
       <p>
-        {notification.accountId} ({notification.blockHeight})
+        <strong>{notification.accountId}</strong> followed you
       </p>
     </div>
   );
+  if (notification.value.type == "follow") {
+    renderCard = (
+      <div style={card}>
+        <p>
+          <strong>{notification.accountId}</strong> followed you
+        </p>
+      </div>
+    );
+    notificationsArray.push(renderCard);
+  }
 });
 
-return <div style={container}>{myVar}</div>;
+return <div style={container}>{notificationsArray}</div>;
