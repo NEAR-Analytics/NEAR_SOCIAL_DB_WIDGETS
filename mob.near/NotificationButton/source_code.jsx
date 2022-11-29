@@ -5,7 +5,7 @@ const render = (counter, disabled) => {
   const inner = (
     <>
       <i className="fs-4 bi bi-bell"></i>
-      {counter && (
+      {counter !== undefined && counter > 0 && (
         <span
           className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
           style={{ zIndex: 1, border: "1px solid rgb(15,81,51)" }}
