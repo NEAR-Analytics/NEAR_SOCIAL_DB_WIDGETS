@@ -20,6 +20,6 @@ if (notifications.length === 0) {
   return "No notifications";
 }
 
-Storage.set(lastBlockHeight, notifications[0].blockHeight);
+Storage.set("lastBlockHeight", notifications[0].blockHeight);
 
 return notifications;
