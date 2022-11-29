@@ -1,5 +1,5 @@
 const card = {
-  background: "linear-gradient(to right, #72f786, #33ffff)",
+  background: "linear-gradient(to right, #fc4491, #ff952b)",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
