@@ -1,7 +1,9 @@
 return (
   <>
     {"APPS TBD".split("").map((c) => (
-      <div>{c}</div>
+      <OverlayTrigger placement="right" overlay={<Tooltip>{c}</Tooltip>}>
+        <div>{c}</div>
+      </OverlayTrigger>
     ))}
   </>
 );
