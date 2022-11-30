@@ -133,6 +133,7 @@ function deleteEmptyChoices() {
 
   return filteredChoices;
 }
+a;
 
 function renderCommitButton() {
   if (state.typeOfAnswer == "2") {
@@ -162,28 +163,30 @@ function renderCommitButton() {
       </CommitButton>
     );
   } else {
-    <CommitButton
-      data={{
-        index: {
-          poll_question: JSON.stringify(
-            {
-              key: "question-v2",
-              value: {
-                data: {
-                  question: entry.question,
-                  questionType: state.typeOfAnswer,
-                  timestamp: Date.now(),
+    return (
+      <CommitButton
+        data={{
+          index: {
+            poll_question: JSON.stringify(
+              {
+                key: "question-v2",
+                value: {
+                  data: {
+                    question: entry.question,
+                    questionType: state.typeOfAnswer,
+                    timestamp: Date.now(),
+                  },
                 },
               },
-            },
-            undefined,
-            0
-          ),
-        },
-      }}
-    >
-      Submit
-    </CommitButton>;
+              undefined,
+              0
+            ),
+          },
+        }}
+      >
+        Submit
+      </CommitButton>
+    );
   }
 }
 
