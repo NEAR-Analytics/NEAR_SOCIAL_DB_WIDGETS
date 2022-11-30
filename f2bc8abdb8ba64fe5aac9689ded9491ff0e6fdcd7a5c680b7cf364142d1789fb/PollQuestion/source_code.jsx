@@ -29,7 +29,7 @@ const handleWriteChoiceInputChange = (choiceNumber) => {
     const choices = state.choices;
 
     let newChoices = [];
-    if (event.target.value == "") {
+    if (event.target.value == "" && choices.length == choiceNumber + 1) {
       for (let i = 0; i < choices.length; i++) {
         if (i != choiceNumber) {
           newChoices.push(choices[i]);
@@ -42,6 +42,7 @@ const handleWriteChoiceInputChange = (choiceNumber) => {
     State.update({
       choices: newChoices,
     });
+    a;
 
     if (
       newChoices[state.amountOfChoices] != "" &&
@@ -55,6 +56,9 @@ const handleWriteChoiceInputChange = (choiceNumber) => {
     ) {
       changeAmountOfChoices(-1);
     }
+
+    console.log("choices: ", state.choices);
+    console.log("amountOfChoices: ", state.amountOfChoices);
   };
 };
 
@@ -62,15 +66,18 @@ function deleteChoiceHandler(choiceNumber) {
   return () => {
     let choices = state.choices;
     let newChoices = [];
+    let countDeleted = 0;
     for (let i = 0; i < choices.length; i++) {
       if (i != choiceNumber) {
         newChoices.push(choices[i]);
+      } else {
+        countDeleted++;
       }
     }
     newChoices.push("");
 
     State.update({
-      amountOfChoices: Number(state.amountOfChoices) - 2,
+      amountOfChoices: Number(state.amountOfChoices) - countDeleted,
       choices: newChoices,
     });
   };
@@ -124,17 +131,6 @@ function renderTextInputsForChoices() {
   );
 }
 
-function returnChoices() {
-  let newChoices = [];
-
-  for (let i = 0; i < state.choices.length; i++) {
-    if (state.choices[i] != "") {
-      newChoices.push(state.choices[i]);    
-  }
-
-  return newChoices();
-}
-
 function renderCommitButton() {
   if (state.typeOfAnswer == "2") {
     return (
@@ -148,7 +144,7 @@ function renderCommitButton() {
                   data: {
                     question: state.question,
                     questionType: state.typeOfAnswer,
-                    choicesOptions: returnChoices(),
+                    choicesOptions: state.choices,
                     timestamp: Date.now(),
                   },
                 },
