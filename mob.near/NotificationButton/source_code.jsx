@@ -1,7 +1,7 @@
 const notificationFeedSrc = "mob.near/widget/NotificationFeed";
 
 const render = (counter, disabled) => {
-  const className = "btn btn-sm border-0 p-1 link-dark";
+  const className = "btn p-0 btn-sm border-0 link-dark";
   const inner = (
     <>
       <i className="fs-4 bi bi-bell"></i>
