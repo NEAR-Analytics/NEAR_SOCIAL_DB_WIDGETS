@@ -131,6 +131,12 @@ function renderTextInputsForChoices() {
   );
 }
 
+function deleteEmptyChoices() {
+  let filteredChoices = state.choices.filter((choice) => choice != "");
+
+  return filteredChoices;
+}
+
 function renderCommitButton() {
   if (state.typeOfAnswer == "2") {
     return (
@@ -144,7 +150,7 @@ function renderCommitButton() {
                   data: {
                     question: state.question,
                     questionType: state.typeOfAnswer,
-                    choicesOptions: state.choices,
+                    choicesOptions: deleteEmptyChoices(),
                     timestamp: Date.now(),
                   },
                 },
