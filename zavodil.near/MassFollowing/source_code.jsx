@@ -60,7 +60,7 @@ let followDevChange = () => {
 
 let followingsBlocks = followingTop.map((accountId) => (
   <li className="list-group-item">
-    <div class="form-check">
+    <div className="form-check">
       <input
         className="form-check-input"
         type="checkbox"
@@ -76,11 +76,19 @@ let followingsBlocks = followingTop.map((accountId) => (
           src="zavodil.near/widget/ProfileLine"
           props={{
             accountId,
+            link: "",
           }}
         />{" "}
         <span className="badge rounded-pill bg-primary">
           {followingsAll[accountId]}
         </span>
+        <a
+          className="btn btn-sm btn-outline-secondary border-0"
+          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+          target="_blank"
+        >
+          <i className="bi bi-window-plus me-1"></i>
+        </a>
       </label>
     </div>
   </li>
@@ -88,29 +96,33 @@ let followingsBlocks = followingTop.map((accountId) => (
 
 let dataFollow = {};
 Object.keys(state.following).map((accountId) => {
-  let follow = !!state.following[accountId];
-  dataFollow[accountId] = follow ? "" : null;
+  if (accountId !== userId) {
+    let follow = !!state.following[accountId];
+    dataFollow[accountId] = follow ? "" : null;
+  }
 });
 
-let dataGraph = Object.keys(state.following).map((accountId) => {
-  let follow = !!state.following[accountId];
-  return {
-    key: "follow",
-    value: {
-      type: follow ? "unfollow" : "follow",
-      accountId,
-    },
-  };
-});
+let dataGraph = [];
+let dataNotify = [];
 
-let dataNotify = Object.keys(state.following).map((accountId) => {
-  let follow = !!state.following[accountId];
-  return {
-    key: accountId,
-    value: {
-      type: follow ? "unfollow" : "follow",
-    },
-  };
+Object.keys(state.following).map((accountId) => {
+  if (following[accountId] != state.following[accountId]) {
+    let follow = !!state.following[accountId];
+    dataGraph.push({
+      key: "follow",
+      value: {
+        type: follow ? "follow" : "unfollow",
+        accountId,
+      },
+    });
+
+    dataNotify.push({
+      key: accountId,
+      value: {
+        type: follow ? "follow" : "unfollow",
+      },
+    });
+  }
 });
 
 const data = {
@@ -140,7 +152,7 @@ return (
 
     <ul className="list-group">{followingsBlocks}</ul>
 
-    <div class="form-check">
+    <div className="form-check pt-3">
       <input
         className="form-check-input"
         type="checkbox"
