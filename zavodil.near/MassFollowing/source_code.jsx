@@ -48,10 +48,12 @@ let followingTop = Object.keys(followingsAll).sort(
 );
 
 let handleChange = (e) => {
-  console.log(e);
+  console.log(e.target.checked + " " + e.target.value);
   let following = state.following;
+  console.log(following);
   following[e.target.value] = e.target.checked;
   State.update({ following });
+  console.log(state.following);
 };
 
 let followDevChange = (e) => {
@@ -70,8 +72,8 @@ let followingsBlocks = followingTop.map((accountId) => (
         disabled={accountId == userId}
         id={`follow-${accountId}`}
         name={`follow-${accountId}`}
-        onChange={(e) => handleChange(e)}
-        checked={state.following[accountId] || false}
+        onChange={handleChange}
+        defaultChecked={state.following[accountId] ?? false}
       />
       <label className="form-check-label" for={`follow-${accountId}`}>
         <Widget
@@ -83,6 +85,7 @@ let followingsBlocks = followingTop.map((accountId) => (
         <span className="badge rounded-pill bg-primary">
           {followingsAll[accountId]}
         </span>
+        {state.following[accountId] ? "to follow" : "not to follow"}
       </label>
     </div>
   </li>
@@ -124,6 +127,7 @@ const data = {
 
 return (
   <>
+    <div>{Object.entries(state.following)}</div>
     <h1>Users by followers</h1>
     <div className="mb-3">
       <CommitButton
@@ -133,7 +137,7 @@ return (
         }`}
         data={data}
       >
-        {context.loading ? "Loading" : "Follow"}
+        {context.loading ? "Loading" : "Mass Follow"}
       </CommitButton>
     </div>
 
