@@ -59,7 +59,11 @@ let followDevChange = () => {
 };
 
 let followingsBlocks = followingTop.map((accountId) => (
-  <li className="list-group-item">
+  <li
+    className={`list-group-item ${
+      state.following[accountId] ? "list-group-item-success" : ""
+    }`}
+  >
     <div className="form-check">
       <input
         className="form-check-input"
@@ -79,7 +83,10 @@ let followingsBlocks = followingTop.map((accountId) => (
             link: "",
           }}
         />{" "}
-        <span className="badge rounded-pill bg-primary">
+        <span
+          className="badge rounded-pill bg-primary"
+          title={`${followingsAll[accountId]} followers`}
+        >
           {followingsAll[accountId]}
         </span>
         <a
@@ -87,7 +94,7 @@ let followingsBlocks = followingTop.map((accountId) => (
           href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
           target="_blank"
         >
-          <i className="bi bi-window-plus me-1"></i>
+          <i className="bi bi-window-plus me-1" title="Open in new tab"></i>
         </a>
       </label>
     </div>
@@ -137,7 +144,9 @@ const data = {
 
 return (
   <>
-    <h1>Users by followers</h1>
+    <h1>Mass Follow</h1>
+    <p>Follow all the people you like with one click.</p>
+
     <div className="mb-3">
       <CommitButton
         disabled={context.loading}
@@ -149,9 +158,8 @@ return (
         {context.loading ? "Loading" : "Mass Follow"}
       </CommitButton>
     </div>
-
+    <h4>Users by followers</h4>
     <ul className="list-group">{followingsBlocks}</ul>
-
     <div className="form-check pt-3">
       <input
         className="form-check-input"
@@ -164,6 +172,18 @@ return (
       <label className="form-check-label" for="follow-dev">
         Follow widget author ({ownerId})
       </label>
+    </div>
+
+    <div className="mt-2 mb-3">
+      <CommitButton
+        disabled={context.loading}
+        className={`btn ${
+          context.loading ? "btn-outline-dark" : "btn-primary"
+        }`}
+        data={data}
+      >
+        {context.loading ? "Loading" : "Mass Follow"}
+      </CommitButton>
     </div>
   </>
 );
