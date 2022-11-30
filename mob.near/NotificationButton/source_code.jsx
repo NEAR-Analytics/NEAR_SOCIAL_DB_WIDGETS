@@ -1,14 +1,14 @@
 const notificationFeedSrc = "mob.near/widget/NotificationFeed";
 
 const render = (counter, disabled) => {
-  const className = "btn btn-sm btn-outline-dark border-0";
+  const className = "btn btn-sm border-0 p-1 link-dark";
   const inner = (
     <>
       <i className="fs-4 bi bi-bell"></i>
       {counter !== undefined && counter > 0 && (
         <span
           className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
-          style={{ zIndex: 1, border: "1px solid rgb(15,81,51)" }}
+          style={{ zIndex: 1, border: "1px solid rgb(9,66,150)" }}
         >
           {counter}
         </span>
