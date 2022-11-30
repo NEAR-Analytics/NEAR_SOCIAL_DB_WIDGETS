@@ -47,19 +47,15 @@ let followingTop = Object.keys(followingsAll).sort(
   (a, b) => followingsAll[b] - followingsAll[a]
 );
 
-let handleChange = (e) => {
-  console.log(e.target.checked + " " + e.target.value);
+let handleChange = (accountId) => {
   let following = state.following;
-  console.log(following);
-  following[e.target.value] = e.target.checked;
+  following[accountId] = !following[accountId];
   State.update({ following });
-  console.log(state.following);
 };
 
-let followDevChange = (e) => {
-  let following = state.following;
-  following[ownerId] = e.target.checked;
-  State.update({ following });
+let followDevChange = () => {
+  handleChange(ownerId);
+  State.update({ followDev: !state.followDev });
 };
 
 let followingsBlocks = followingTop.map((accountId) => (
@@ -72,8 +68,8 @@ let followingsBlocks = followingTop.map((accountId) => (
         disabled={accountId == userId}
         id={`follow-${accountId}`}
         name={`follow-${accountId}`}
-        onChange={handleChange}
-        defaultChecked={state.following[accountId] ?? false}
+        onChange={() => handleChange(accountId)}
+        checked={state.following[accountId] ?? false}
       />
       <label className="form-check-label" for={`follow-${accountId}`}>
         <Widget
@@ -85,15 +81,15 @@ let followingsBlocks = followingTop.map((accountId) => (
         <span className="badge rounded-pill bg-primary">
           {followingsAll[accountId]}
         </span>
-        {state.following[accountId] ? "to follow" : "not to follow"}
       </label>
     </div>
   </li>
 ));
 
-let dataFollow = Object.keys(state.following).map((accountId) => {
+let dataFollow = {};
+Object.keys(state.following).map((accountId) => {
   let follow = !!state.following[accountId];
-  return { [accountId]: follow ? "" : null };
+  dataFollow[accountId] = follow ? "" : null;
 });
 
 let dataGraph = Object.keys(state.following).map((accountId) => {
@@ -118,7 +114,9 @@ let dataNotify = Object.keys(state.following).map((accountId) => {
 });
 
 const data = {
-  graph: dataFollow,
+  graph: {
+    follow: dataFollow,
+  },
   index: {
     graph: JSON.stringify(dataGraph),
     notify: JSON.stringify(dataNotify),
@@ -127,13 +125,12 @@ const data = {
 
 return (
   <>
-    <div>{Object.entries(state.following)}</div>
     <h1>Users by followers</h1>
     <div className="mb-3">
       <CommitButton
         disabled={context.loading}
         className={`btn ${
-          context.loading || follow ? "btn-outline-dark" : "btn-primary"
+          context.loading ? "btn-outline-dark" : "btn-primary"
         }`}
         data={data}
       >
@@ -148,12 +145,12 @@ return (
         className="form-check-input"
         type="checkbox"
         id={`follow-dev`}
-        onChange={(e) => handleChange(e)}
+        onChange={() => followDevChange()}
         checked={state.followDev}
         name="follow-dev"
       />
       <label className="form-check-label" for="follow-dev">
-        Follow widget author
+        Follow widget author ({ownerId})
       </label>
     </div>
   </>
