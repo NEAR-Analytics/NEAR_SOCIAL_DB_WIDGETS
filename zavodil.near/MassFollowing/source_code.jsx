@@ -1,5 +1,6 @@
 //MassFollowing
 const userId = context.accountId;
+const ownerId = "zavodil.near";
 
 if (!userId) {
   return "Please sign in with NEAR wallet to follow other accounts";
@@ -15,10 +16,21 @@ if (accounts === null) {
 }
 
 const followingData = Social.keys(`${userId}/graph/follow/*`, "final");
+if (followingData === null) {
+  return "Loading";
+}
+
 const following = followingData[userId]["graph"]["follow"];
-following["zavodil.near"] = true; // cheat code
+
+let followDev = prop.followDev ?? true;
+
+if (followDev) {
+  following[ownerId] = true;
+}
+
 State.init({
   following,
+  followDev,
 });
 
 let followingsAll = [];
@@ -36,8 +48,15 @@ let followingTop = Object.keys(followingsAll).sort(
 );
 
 let handleChange = (e) => {
+  console.log(e);
   let following = state.following;
   following[e.target.value] = e.target.checked;
+  State.update({ following });
+};
+
+let followDevChange = (e) => {
+  let following = state.following;
+  following[ownerId] = e.target.checked;
   State.update({ following });
 };
 
@@ -50,10 +69,11 @@ let followingsBlocks = followingTop.map((accountId) => (
         value={accountId}
         disabled={accountId == userId}
         id={`follow-${accountId}`}
+        name={`follow-${accountId}`}
         onChange={(e) => handleChange(e)}
         checked={state.following[accountId] || false}
       />
-      <label className="form-check-label" for="flexCheckDefault">
+      <label className="form-check-label" for={`follow-${accountId}`}>
         <Widget
           src="zavodil.near/widget/ProfileLine"
           props={{
@@ -118,5 +138,19 @@ return (
     </div>
 
     <ul className="list-group">{followingsBlocks}</ul>
+
+    <div class="form-check">
+      <input
+        className="form-check-input"
+        type="checkbox"
+        id={`follow-dev`}
+        onChange={(e) => handleChange(e)}
+        checked={state.followDev}
+        name="follow-dev"
+      />
+      <label className="form-check-label" for="follow-dev">
+        Follow widget author
+      </label>
+    </div>
   </>
 );
