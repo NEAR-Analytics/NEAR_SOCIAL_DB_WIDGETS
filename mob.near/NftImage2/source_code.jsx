@@ -94,7 +94,7 @@ const replaceIpfs = () => {
 const thumb = (imageUrl) =>
   thumbnail ? `https://i.near.social/${thumbnail}/${imageUrl}` : imageUrl;
 
-console.log(contractId, tokenId, imageUrl);
+console.log(contractId, tokenId, imageUrl, state.imageUrl);
 
 return (
   <img
