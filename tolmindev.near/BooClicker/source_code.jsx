@@ -75,7 +75,9 @@ return (
     </div>
     <div className="mb-4">
       <h4>🦇 Last Catchers </h4>
-      <div>{boos && renderMoos(boos.slice(0, 10).map((a) => a.accountId))}</div>
+      <div>
+        {boos && renderMoos(boos.slice(0, 100).map((a) => a.accountId))}
+      </div>
     </div>
   </div>
 );
