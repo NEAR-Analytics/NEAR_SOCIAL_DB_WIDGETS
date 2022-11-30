@@ -124,6 +124,17 @@ function renderTextInputsForChoices() {
   );
 }
 
+function returnChoices() {
+  let newChoices = [];
+
+  for (let i = 0; i < state.choices.length; i++) {
+    if (state.choices[i] != "") {
+      newChoices.push(state.choices[i]);    
+  }
+
+  return newChoices();
+}
+
 function renderCommitButton() {
   if (state.typeOfAnswer == "2") {
     return (
@@ -135,9 +146,9 @@ function renderCommitButton() {
                 key: "question-v2",
                 value: {
                   data: {
-                    question: entry.question,
+                    question: state.question,
                     questionType: state.typeOfAnswer,
-                    choicesOptions: state.choices,
+                    choicesOptions: returnChoices(),
                     timestamp: Date.now(),
                   },
                 },
