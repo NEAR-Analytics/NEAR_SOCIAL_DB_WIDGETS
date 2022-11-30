@@ -24,11 +24,11 @@ function renderMoos(accountIds) {
           return (
             <div className="position-relative">
               <a
-                href={`#/tolmindev/widget/ProfilePage?accountId=${accountId}`}
+                href={`#/mob/widget/ProfilePage?accountId=${accountId}`}
                 className="text-decoration-none"
               >
                 <Widget
-                  src="tolmindev.near/widget/ProfileImage"
+                  src="mob.near/widget/ProfileImage"
                   props={{
                     accountId,
                     className: "d-inline-block overflow-hidden",
