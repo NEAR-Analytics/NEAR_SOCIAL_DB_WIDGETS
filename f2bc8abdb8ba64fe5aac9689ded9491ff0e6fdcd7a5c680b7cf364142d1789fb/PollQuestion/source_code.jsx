@@ -60,26 +60,19 @@ const handleWriteChoiceInputChange = (choiceNumber) => {
 
 function deleteChoiceHandler(choiceNumber) {
   return () => {
-    let choices = state.choises;
-    console.log("state.choices: ", state.choises);
-    console.log("choices 1: ", choices);
+    let choices = state.choices;
     let newChoices = [];
     for (let i = 0; i < choices.length; i++) {
-      console.log("i: ", i);
-      console.log("choiceNumber: ", choiceNumber);
       if (i != choiceNumber) {
         newChoices.push(choices[i]);
       }
     }
-    console.log("newChoices: ", newChoices);
+    newChoices.push("");
 
     State.update({
-      amountOfChoices: Number(state.amountOfChoices) - 1,
+      amountOfChoices: Number(state.amountOfChoices) - 2,
       choices: newChoices,
     });
-    a;
-    console.log("choices: ", state.choices);
-    console.log("amountOfChoices: ", state.amountOfChoices);
   };
 }
 
