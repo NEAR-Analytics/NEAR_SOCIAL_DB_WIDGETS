@@ -56,9 +56,6 @@ const handleWriteChoiceInputChange = (choiceNumber) => {
     ) {
       changeAmountOfChoices(-1);
     }
-
-    console.log("choices: ", state.choices);
-    console.log("amountOfChoices: ", state.amountOfChoices);
   };
 };
 
