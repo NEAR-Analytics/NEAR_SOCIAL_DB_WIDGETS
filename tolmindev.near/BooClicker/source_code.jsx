@@ -71,7 +71,7 @@ return (
     </div>
     <div className="mb-4">
       <h4>💀 Boo Overlords</h4>
-      <div>{renderMoos(top.slice(0, 10).map((a) => a[0]))}</div>
+      <div>{renderMoos(top.slice(0, 20).map((a) => a[0]))}</div>
     </div>
     <div className="mb-4">
       <h4>🦇 Last Catchers </h4>
