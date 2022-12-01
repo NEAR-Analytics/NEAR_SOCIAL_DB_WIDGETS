@@ -30,7 +30,7 @@ let pools = data.data.map((pool) => (
 ));
 
 return (
-  <>
+  <div className="table-responsive">
     <table className="table table-striped">
       <thead>
         <th>Pool ID</th>
@@ -42,5 +42,5 @@ return (
 
       <tbody>{pools}</tbody>
     </table>
-  </>
+  </div>
 );
