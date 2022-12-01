@@ -186,6 +186,20 @@ function renderCommitButton() {
   }
 }
 
+function renderInstructionsToCommit() {
+  if (state.question == "" && state.typeOfAnswer == "") {
+    return (
+      <p className="text-primary">
+        Make a question and choose a type of answer
+      </p>
+    );
+  } else if (state.question == "") {
+    return <p className="text-primary">Make a question</p>;
+  } else {
+    return <p className="text-primary">Choose a type of answer</p>;
+  }
+}
+
 // function renderChoicesInputs() {
 //   return (
 //     <>
@@ -316,6 +330,8 @@ return (
 
     {state.typeOfAnswer == "2" && renderTextInputsForChoices()}
 
-    {renderCommitButton()}
+    {state.question == "" || state.typeOfAnswer == ""
+      ? renderInstructionsToCommit()
+      : renderCommitButton()}
   </div>
 );
