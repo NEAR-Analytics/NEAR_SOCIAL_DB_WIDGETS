@@ -143,12 +143,14 @@ function renderCommitButton() {
           index: {
             poll_question: JSON.stringify(
               {
-                key: "question-v2.2.1",
+                key: "question-v2.2.2",
                 value: {
-                  question: state.question,
-                  questionType: state.typeOfAnswer,
-                  choicesOptions: deleteEmptyChoices(),
-                  timestamp: Date.now(),
+                  data: {
+                    question: state.question,
+                    questionType: state.typeOfAnswer,
+                    choicesOptions: deleteEmptyChoices(),
+                    timestamp: Date.now(),
+                  },
                 },
               },
               undefined,
@@ -167,11 +169,13 @@ function renderCommitButton() {
           index: {
             poll_question: JSON.stringify(
               {
-                key: "question-v2.2.1",
+                key: "question-v2.2.2",
                 value: {
-                  question: entry.question,
-                  questionType: state.typeOfAnswer,
-                  timestamp: Date.now(),
+                  data: {
+                    question: entry.question,
+                    questionType: state.typeOfAnswer,
+                    timestamp: Date.now(),
+                  },
                 },
               },
               undefined,
