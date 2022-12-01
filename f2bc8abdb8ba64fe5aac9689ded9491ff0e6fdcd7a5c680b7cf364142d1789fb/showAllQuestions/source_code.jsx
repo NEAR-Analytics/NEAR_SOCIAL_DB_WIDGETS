@@ -1,11 +1,11 @@
-// const accountId = props.accountId ?? "*";
+const data = Social.index("poll_question", "question-v2.2.2");
+console.log("data: ", data);
 
-const data = Social.index("poll_question", "question");
-// const data = Social.keys(`${accountId}/post/poll__question/question`, "final", {
-//   return_type: "History",
-// });
-
-// console.log("data: ", data);
+console.log(
+  Social.get(
+    `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/index/poll_question`
+  )
+);
 
 if (!data) {
   return "Loading";
@@ -13,7 +13,6 @@ if (!data) {
 
 const processData = (data) => {
   const allQuestions = data.reverse().map((questionData) => {
-    // console.log("questionData: ", questionData);
     const accountId = questionData.accountId;
     const question = questionData.value.data.question;
     const questionTimestamp = questionData.value.data.timestamp;
@@ -28,32 +27,6 @@ const processData = (data) => {
   });
   return allQuestions;
 };
-
-// console.log("pd: ", processData(data));
-
-// const processData = (data) => {
-//   const accounts = Object.entries(data);
-//   // console.log("accts: ", accounts);
-
-//   const allQuestions = accounts
-//     .map((account) => {
-//       // console.log("acc: ", account);
-//       const accountId = account[0];
-//       const blockHeights = account[1].post.poll__question.question;
-//       // console.log("bh: ", blockHeights);
-//       return blockHeights.map((blockHeight) => ({
-//         accountId,
-//         blockHeight,
-//       }));
-//     })
-//     .flat();
-
-//   allQuestions.sort((a, b) => b.blockHeight - a.blockHeight);
-
-//   return allQuestions;
-// };
-
-// console.log("processData: ", processData(data));
 
 const questionToWidget = (a) => (
   <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
