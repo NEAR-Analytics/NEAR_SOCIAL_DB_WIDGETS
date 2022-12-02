@@ -27,7 +27,7 @@ return (
 
     <div>
       Board #{state.blockHeight}
-      <div>
+      <div style={{ height: "70vh" }}>
         <Widget
           src="mob.near/widget/BerryclubBoard"
           props={{ blockHeight: state.blockHeight }}
