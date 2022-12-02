@@ -54,7 +54,7 @@ return (
           Random Board
         </button>
       </div>
-      <div className="mb-2" style={{ height: "70vh" }}>
+      <div className="mb-2" style={{ height: "50vh" }}>
         <a
           href={`#/mob.near/widget/BerryclubBoard?blockHeight=${state.blockHeight}`}
           target="_blank"
