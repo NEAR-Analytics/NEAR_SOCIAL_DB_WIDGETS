@@ -145,12 +145,10 @@ function renderCommitButton() {
               {
                 key: "question-v2.2.3",
                 value: {
-                  data: {
-                    question: state.question,
-                    questionType: state.typeOfAnswer,
-                    choicesOptions: deleteEmptyChoices(),
-                    timestamp: Date.now(),
-                  },
+                  question: state.question,
+                  questionType: state.typeOfAnswer,
+                  choicesOptions: deleteEmptyChoices(),
+                  timestamp: Date.now(),
                 },
               },
               undefined,
@@ -171,11 +169,9 @@ function renderCommitButton() {
               {
                 key: "question-v2.2.3",
                 value: {
-                  data: {
-                    question: entry.question,
-                    questionType: state.typeOfAnswer,
-                    timestamp: Date.now(),
-                  },
+                  question: entry.question,
+                  questionType: state.typeOfAnswer,
+                  timestamp: Date.now(),
                 },
               },
               undefined,
