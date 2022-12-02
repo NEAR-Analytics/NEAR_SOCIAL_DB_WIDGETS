@@ -1,11 +1,5 @@
 const data = Social.index("poll_question", "question-v2.2.3");
 
-console.log(
-  Social.get(
-    `f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/index/poll_question`
-  )
-);
-
 if (!data) {
   return "Loading";
 }
