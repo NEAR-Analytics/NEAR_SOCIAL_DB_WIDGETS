@@ -1,5 +1,5 @@
 const items = Social.index("post", "berryclub", {
-  order: desc,
+  order: "desc",
 });
 
 if (!items) {
