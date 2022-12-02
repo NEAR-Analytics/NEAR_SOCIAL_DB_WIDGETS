@@ -1,5 +1,4 @@
 const data = Social.index("poll_question", "question-v2.2.3");
-console.log("data: ", data);
 
 console.log(
   Social.get(
