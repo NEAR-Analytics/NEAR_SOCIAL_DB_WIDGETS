@@ -14,12 +14,12 @@ return (
       min={min}
       max={max}
       value={state.value}
-      onMouseUp={(e) => {
+      onPointerUp={(e) => {
         State.update({
           value: e.target.value,
         });
-        if (props.onMouseUp) {
-          props.onMouseUp(e.target.value);
+        if (props.onPointerUp) {
+          props.onPointerUp(e.target.value);
         }
       }}
       onChange={(e) => {
