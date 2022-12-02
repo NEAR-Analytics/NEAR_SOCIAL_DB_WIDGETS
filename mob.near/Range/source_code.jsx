@@ -15,20 +15,20 @@ return (
       max={max}
       value={state.value}
       onMouseUp={(e) => {
+        State.update({
+          value: e.target.value,
+        });
         if (props.onMouseUp) {
           props.onMouseUp(e.target.value);
         }
+      }}
+      onChange={(e) => {
         State.update({
           value: e.target.value,
         });
-      }}
-      onChage={(e) => {
         if (props.onChange) {
           props.onChange(e.target.value);
         }
-        State.update({
-          value: e.target.value,
-        });
       }}
       className="form-range"
     />
