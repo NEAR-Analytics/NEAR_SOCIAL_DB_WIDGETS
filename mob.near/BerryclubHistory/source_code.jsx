@@ -29,7 +29,7 @@ return (
     />
 
     <div>
-      <div className="mb-2">
+      <div className="mb-2 d-flex gap-2 flex-wrap">
         <CommitButton
           className="btn btn-primary"
           data={{
@@ -54,7 +54,7 @@ return (
           Random Board
         </button>
       </div>
-      <div className="mb-2" style={{ height: "50vh" }}>
+      <div style={{ height: "min(50vh, 95vw)" }}>
         <a
           href={`#/mob.near/widget/BerryclubBoard?blockHeight=${state.blockHeight}`}
           target="_blank"
