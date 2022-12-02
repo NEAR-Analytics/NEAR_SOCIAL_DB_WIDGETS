@@ -143,7 +143,7 @@ function renderCommitButton() {
           index: {
             poll_question: JSON.stringify(
               {
-                key: "question-v2.2.2",
+                key: "question-v2.2.3",
                 value: {
                   data: {
                     question: state.question,
@@ -169,7 +169,7 @@ function renderCommitButton() {
           index: {
             poll_question: JSON.stringify(
               {
-                key: "question-v2.2.2",
+                key: "question-v2.2.3",
                 value: {
                   data: {
                     question: entry.question,
