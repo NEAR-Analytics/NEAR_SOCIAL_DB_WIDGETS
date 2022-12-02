@@ -1,4 +1,4 @@
-const data = Social.index("poll_question", "question-v2.2.2");
+const data = Social.index("poll_question", "question-v2.2.3");
 console.log("data: ", data);
 
 console.log(
@@ -14,15 +14,19 @@ if (!data) {
 const processData = (data) => {
   const allQuestions = data.reverse().map((questionData) => {
     const accountId = questionData.accountId;
-    const question = questionData.value.data.question;
-    const questionTimestamp = questionData.value.data.timestamp;
+    const question = questionData.value.question;
+    const questionTimestamp = questionData.value.timestamp;
     const questionBlockHeight = questionData.blockHeight;
+    const questionType = questionData.questionType;
+    const choicesOptions = questionData.value.choicesOptions;
 
     return {
       accountId,
       question,
       questionTimestamp,
       questionBlockHeight,
+      questionType,
+      choicesOptions,
     };
   });
   return allQuestions;
