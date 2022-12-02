@@ -2,25 +2,28 @@ const blockHeight = props.blockHeight
   ? parseInt(props.blockHeight)
   : "optimistic";
 
-const Cell = styled.div`
-  width: 8px;
-  height: 8px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  display: inline-block;
-`;
-
-const Line = styled.div`
-  height: 8px;
-  padding: 0px;
-  margin: 0px;
-  display: block;
-`;
-
 const BoardHeight = 50;
 const BoardWidth = 50;
 const ExpectedLineLength = 4 + 8 * BoardWidth;
+
+const cellSize = `${100 / BoardHeight}%`;
+
+const Cell = styled.div`
+  padding: 0px;
+  margin: 0px;
+  flex-grow: 1;
+`;
+
+const Line = styled.div`
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: stretch;
+  flex-grow: 1;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+`;
 
 const lines = [];
 for (let i = 0; i < BoardHeight; ++i) {
@@ -56,7 +59,10 @@ const decodeLine = (line) => {
 };
 
 return (
-  <div>
+  <div
+    className="w-100 d-flex align-items-stretch flex-column align-content-stretch"
+    style={{ aspectRatio: "1 / 1" }}
+  >
     {encodedLines.map((line) => (
       <Line>{decodeLine(line)}</Line>
     ))}
