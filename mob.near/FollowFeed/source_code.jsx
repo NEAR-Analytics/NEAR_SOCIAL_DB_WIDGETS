@@ -35,7 +35,7 @@ const renderItem = (a) => (
 );
 
 return (
-  <div className="px-2">
+  <div>
     <Widget src="mob.near/widget/ItemFeed" props={{ items, renderItem }} />
   </div>
 );
