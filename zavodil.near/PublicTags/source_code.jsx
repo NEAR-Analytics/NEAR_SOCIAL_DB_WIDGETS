@@ -48,7 +48,6 @@ const getTags = () => {
   const tags = Object.entries(tagsCount);
   tags.sort((a, b) => b[1] - a[1]);
   return tags.map((t) => {
-    console.log(t);
     return {
       name: t[0],
       count: t[1],
