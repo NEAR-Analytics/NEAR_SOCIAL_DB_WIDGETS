@@ -60,7 +60,7 @@ const decodeLine = (line) => {
 
 return (
   <div
-    className="w-100 d-flex align-items-stretch flex-column align-content-stretch"
+    className="mh-100 mw-100 d-flex align-items-stretch flex-column align-content-stretch"
     style={{ aspectRatio: "1 / 1" }}
   >
     {encodedLines.map((line) => (
