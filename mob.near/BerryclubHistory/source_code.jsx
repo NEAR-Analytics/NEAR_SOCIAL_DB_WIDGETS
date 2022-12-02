@@ -28,10 +28,15 @@ return (
     <div>
       Board #{state.blockHeight}
       <div style={{ height: "70vh" }}>
-        <Widget
-          src="mob.near/widget/BerryclubBoard"
-          props={{ blockHeight: state.blockHeight }}
-        />
+        <a
+          href={`#/mob.near/widget/BerryclubBoard?blockHeight=${state.blockHeight}`}
+          target="_blank"
+        >
+          <Widget
+            src="mob.near/widget/BerryclubBoard"
+            props={{ blockHeight: state.blockHeight }}
+          />
+        </a>
       </div>
     </div>
   </div>
