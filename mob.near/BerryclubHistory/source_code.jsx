@@ -20,7 +20,7 @@ return (
         min: minBlockHeight,
         max: currentBlockHeight,
         defaultValue: currentBlockHeight,
-        onMouseUp: (blockHeight) => State.update({ blockHeight }),
+        onPointerUp: (blockHeight) => State.update({ blockHeight }),
         title: "Block Height",
       }}
     />
