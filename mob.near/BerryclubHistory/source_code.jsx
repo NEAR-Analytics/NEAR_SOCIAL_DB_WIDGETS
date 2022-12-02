@@ -5,11 +5,12 @@ if (!currentBlock) {
 }
 
 const currentBlockHeight = currentBlock.header.height;
-
 const minBlockHeight = 21793900;
 
 State.init({
-  blockHeight: currentBlockHeight,
+  blockHeight: props.blockHeight
+    ? parseInt(props.blockHeight)
+    : currentBlockHeight,
 });
 
 return (
@@ -29,8 +30,7 @@ return (
       Board #{state.blockHeight}
       <div style={{ height: "70vh" }}>
         <a
-          href={`#/mob.near/widget/BerryclubBoard?blockHeight=${state.blockHeight}`}
-          target="_blank"
+          href={`#/mob.near/widget/BerryclubHistory?blockHeight=${state.blockHeight}`}
         >
           <Widget
             src="mob.near/widget/BerryclubBoard"
