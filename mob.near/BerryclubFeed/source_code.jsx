@@ -59,7 +59,7 @@ const renderItem = (a) => {
               </div>
             </div>
             <div
-              className="d-block ratio ratio-1x1"
+              className="d-block ratio ratio-1x1 mb-1"
               style={{ maxHeight: "40vh" }}
             >
               <a
@@ -70,6 +70,15 @@ const renderItem = (a) => {
                   src="mob.near/widget/BerryclubBoard"
                   props={{ blockHeight }}
                 />
+              </a>
+            </div>
+            <div>
+              <a
+                href={`#/mob.near/widget/BerryclubHistory?blockHeight=${blockHeight}`}
+                target="_blank"
+                className="btn btn-outline-dark"
+              >
+                Finetune #{blockHeight}
               </a>
             </div>
           </div>
