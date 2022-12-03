@@ -1,8 +1,10 @@
 const min = props.min;
 const max = props.max;
-const defaultValue = props.defaultValue;
+const value = props.value ?? props.defaultValue;
 
-State.init({ value: defaultValue });
+if (state.oldValue != value) {
+  State.update({ oldValue: value, value });
+}
 
 return (
   <div>
