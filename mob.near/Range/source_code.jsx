@@ -1,8 +1,8 @@
 const min = props.min;
 const max = props.max;
-const value = props.value ?? props.defaultValue;
+const value = props.value;
 
-if (state.oldValue != value) {
+if (state.oldValue !== value) {
   State.update({ oldValue: value, value });
 }
 
