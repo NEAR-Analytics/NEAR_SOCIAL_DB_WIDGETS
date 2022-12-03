@@ -14,7 +14,9 @@ const randomBlockHeight = () =>
   minBlockHeight + Math.floor(Math.random() * numBlocks);
 
 State.init({
-  blockHeight: randomBlockHeight(),
+  blockHeight: props.blockHeight
+    ? parseInt(props.blockHeight)
+    : randomBlockHeight(),
 });
 
 return (
