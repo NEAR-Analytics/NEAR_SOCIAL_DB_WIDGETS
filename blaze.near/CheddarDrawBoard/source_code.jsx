@@ -32,7 +32,7 @@ for (let i = 0; i < BoardHeight; ++i) {
 
 const args = { lines };
 const encodedLines = Near.view(
-  "berryclub.ek.near",
+  "farm-draw.cheddar.near",
   "get_lines",
   args,
   blockHeight
