@@ -53,18 +53,14 @@ return (
     <div className="mb-4">
       <CommitButton
         className="btn btn-lg btn-success"
-        data={{
+        data={() => ({
           index: {
-            moo: JSON.stringify(
-              {
-                key: "moo-click",
-                value: Date.now(),
-              },
-              undefined,
-              0
-            ),
+            moo: JSON.stringify({
+              key: "moo-click",
+              value: Date.now(),
+            }),
           },
-        }}
+        })}
       >
         Moo 🐮
       </CommitButton>
