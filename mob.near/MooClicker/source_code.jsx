@@ -9,11 +9,9 @@ if (index !== null) {
     from: lastBlockHeight + 1,
   });
 
-  if (newIndex !== null) {
-    if (newIndex.length > 0) {
-      index = [...newIndex.reverse(), ...index];
-      Storage.set("index", index);
-    }
+  if (newIndex !== null && newIndex.length > 0) {
+    index = [...newIndex.reverse(), ...index];
+    Storage.set("index", index);
   }
 
   if ((state.index.length || 0) < (index.length || 0)) {
