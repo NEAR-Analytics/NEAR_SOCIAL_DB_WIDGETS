@@ -1,15 +1,10 @@
+//I need questionBockHeight to be a string but .toString() is reserved so i convert the number into string like this
+const questionBlockHeight = props.questionBlockHeight + "";
 const userMakingQuestion = props.accountId;
 const question = props.question;
 const questionTimestamp = props.questionTimestamp;
-//I need questionBockHeight to be a string but .toString() is reserved so i convert the number into string like this
-const questionBlockHeight = props.questionBlockHeight + "";
-
-State.init({
-  userMakingQuestion: "",
-  question: "",
-  questionTimestamp: 0,
-  questionBlockHeight: 0,
-});
+const questionType = props.questionType;
+const choicesOptions = props.choicesOptions;
 
 const currentAccountId = context.accountId;
 
@@ -24,27 +19,55 @@ const profileLink = (c) => (
   </a>
 );
 
-let countVotes = [0, 0];
+let countVotes = [];
+
+if (questionType == "0") {
+  countVotes = [0, 0];
+} else if (questionType == "2") {
+  for (let i = 0; i < choicesOptions.lenght; i++) {
+    countVotes.push(0);
+  }
+}
+
 let answersData = Social.index("answer_poll", questionBlockHeight);
+console.log("answersData: ", answersData);
 
 if (answersData) {
-  countVotes = answersData.reduce(
-    (acc, curr) => {
-      let vote = curr.value.data.user_vote;
+  if (questionType == "0") {
+    countVotes = answersData.reduce(
+      (acc, curr) => {
+        let vote = curr.value.user_answer;
+
+        let voteValue = parseInt(vote);
+
+        if (isNaN(voteValue)) {
+          return acc;
+        } else if (voteValue == 0) {
+          return [acc[0], acc[1] + 1];
+        } else {
+          return [acc[0] + 1, acc[1]];
+        }
+      },
+
+      [0, 0]
+    );
+  } else if (questionType == "2") {
+    countVotes = answersData.reduce((acc, curr) => {
+      let vote = curr.value.user_answer;
 
       let voteValue = parseInt(vote);
 
-      if (isNaN(voteValue)) {
-        return acc;
-      } else if (voteValue == 0) {
-        return [acc[0], acc[1] + 1];
-      } else {
-        return [acc[0] + 1, acc[1]];
+      for (let i = 0; i < countVotes.length(); i++) {
+        if (isNaN(voteValue)) {
+          return acc;
+        } else if (voteValue == i) {
+          let newAcc = acc;
+          newAcc[i] = newAcc[i] + 1;
+          return newAcc;
+        }
       }
-    },
-
-    [0, 0]
-  );
+    });
+  }
 }
 
 const haveThisUserAlreadyVoted = () => {
@@ -58,9 +81,9 @@ const haveThisUserAlreadyVoted = () => {
 
 const loadComments = () => {
   return answersData.map((answerData) => {
-    let answer = answerData.value.data.user_answer;
+    let answer = answerData.value.user_answer;
 
-    let answerTimeStamp = answerData.value.data.answer_timestamp;
+    let answerTimeStamp = answerData.value.answer_timestamp;
 
     if (answer != undefined) {
       return (
@@ -77,7 +100,86 @@ const loadComments = () => {
   });
 };
 
-State.init({ vote: "", currentAnswer: "" });
+State.init({ currentAnswer: "" });
+const renderYesNoInputs = () => {
+  return (
+    <>
+      <p style={{ marginBottom: "0" }}>Vote:</p>
+      <div className="form-check">
+        <input
+          key={state.currentAnswer}
+          className="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="voteYes"
+          value="1"
+          onChange={onValueChange}
+          checked={state.currentAnswer == "1"}
+        />
+        <label className="form-check-label" for="voteYes">
+          Yes
+        </label>
+      </div>
+      <div className="form-check">
+        <input
+          key={state.currentAnswer}
+          className="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="voteNo"
+          value="0"
+          onChange={onValueChange}
+          checked={state.currentAnswer == "0"}
+        />
+        <label className="form-check-label" for="voteNo">
+          No
+        </label>
+      </div>
+    </>
+  );
+};
+
+const renderTextinput = () => {
+  return (
+    <>
+      <label for="answer" className="font-weight-bold">
+        Write answer:
+      </label>
+      <textarea
+        className="form-control mb-1"
+        id="answer"
+        rows="3"
+        value={state.currentAnswer}
+        onChange={onValueChange}
+      ></textarea>
+    </>
+  );
+};
+
+const renderMultipleChoiceInputs = () => {
+  choicesOptions.map((choice, index) => {
+    return (
+      <>
+        <div className="form-check">
+          <input
+            key={state.currentAnswer}
+            className="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id={choice + index}
+            value={index + ""}
+            onChange={onValueChange}
+            checked={state.currentAnswer == index + ""}
+          />
+          <label className="form-check-label" for={choice + index}>
+            {choice}
+          </label>
+        </div>
+      </>
+    );
+  });
+};
+
 const getForm = () => (
   <div
     style={{
@@ -87,53 +189,10 @@ const getForm = () => (
     }}
   >
     <h5>Give your opinion</h5>
-
-    <p style={{ marginBottom: "0" }}>Vote:</p>
-    <div className="form-check">
-      <input
-        key={state.vote}
-        className="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="voteYes"
-        value="1"
-        onChange={onValueChange}
-        checked={state.vote == "1"}
-      />
-      <label className="form-check-label" for="voteYes">
-        Yes
-      </label>
-    </div>
-    <div className="form-check">
-      <input
-        key={state.vote}
-        className="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="voteNo"
-        value="0"
-        onChange={onValueChange}
-        checked={state.vote == "0"}
-      />
-      <label className="form-check-label" for="voteNo">
-        No
-      </label>
-    </div>
-
     <div className="form-group">
-      <label for="answer" className="font-weight-bold">
-        Write answer:
-      </label>
-      <textarea
-        className="form-control mb-1"
-        id="answer"
-        rows="3"
-        value={state.currentAnswer}
-        onChange={(e) => {
-          const currentAnswer = e.target.value;
-          State.update({ currentAnswer });
-        }}
-      ></textarea>
+      if(questionType == "0") {renderYesNoInputs()} else if(questionType == "1"){" "}
+      {renderTextinput()} else if(questionType == "2"){" "}
+      {renderMultipleChoiceInputs()}
     </div>
     <CommitButton
       data={{
@@ -141,11 +200,12 @@ const getForm = () => (
           answer_poll: JSON.stringify({
             key: questionBlockHeight,
             value: {
-              data: {
-                user_vote: state.vote == "" ? answer.userVote : state.vote,
-                user_answer: state.currentAnswer,
-                answer_timestamp: Date.now(),
-              },
+              user_answer:
+                state.currentAnswer == ""
+                  ? answer.userVote
+                  : state.currentAnswer,
+              amountOfChoices: choicesOptions.lenght(),
+              answer_timestamp: Date.now(),
             },
           }),
         },
@@ -157,10 +217,29 @@ const getForm = () => (
 );
 
 function onValueChange(e) {
-  const vote = e.target.value;
+  const currentAnswer = e.target.value;
 
-  State.update({ vote });
+  State.update({ currentAnswer: currentAnswer });
 }
+
+const renderYesNoCounter = () => {
+  return (
+    <div className="d-flex align-items-start">
+      <i
+        className="bi bi-check-circle-fill"
+        style={{ padding: "0 0.3rem" }}
+      ></i>
+      <p className="text-secondary">{countVotes[0]}</p>
+      <i
+        className="bi bi-x-octagon-fill"
+        style={{ padding: "0 0.5rem 0 1rem" }}
+      ></i>
+      <p className="text-secondary">{countVotes[1]}</p>
+    </div>
+  );
+};
+
+const renderChoicesSelectedCounter = () => {};
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
@@ -209,19 +288,9 @@ return (
           </div>
         </div>
         <div>{question}</div>
-        <div className="d-flex align-items-start">
-          <i
-            className="bi bi-check-circle-fill"
-            style={{ padding: "0 0.3rem" }}
-          ></i>
-          <p className="text-secondary">{countVotes[0]}</p>
-          <i
-            className="bi bi-x-octagon-fill"
-            style={{ padding: "0 0.5rem 0 1rem" }}
-          ></i>
-          <p className="text-secondary">{countVotes[1]}</p>
-        </div>
-        <>{loadComments()}</>
+        if(questionType == "0") {renderYesNoCounter()} else if(questionType ==
+        "1") {loadComments()} else if(questionType == "2"){" "}
+        {renderChoicesSelectedCounter()}
         <>{getForm()}</>
       </div>
     </div>
