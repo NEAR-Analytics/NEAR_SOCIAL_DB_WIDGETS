@@ -276,7 +276,11 @@ return (
     <div>
       <h4>Make question</h4>
     </div>
-    <input className="mb-2" value={state.question} />
+    <input
+      className="mb-2"
+      value={state.question}
+      onChange={handleMakeQuestionInputChange}
+    />
 
     <h4>Choose type of answers</h4>
 
