@@ -1,9 +1,33 @@
-const moos = Social.index("moo", "moo-click");
+let index = Storage.get("index");
+if (index === null) {
+  return "Loading";
+}
+
+index = index || [];
+
+const lastBlockHeight = index[0].blockHeight || 0;
+
+const newIndex = Social.index("moo", "moo-click", {
+  order: "asc",
+  from: lastBlockHeight + 1,
+});
+
+if (newIndex === null) {
+  return "Loading";
+}
+
+if (newIndex.length > 0) {
+  index = [...newIndex.reverse(), ...index];
+  Storage.set("index", index);
+}
+
+const moos = index;
+
 const counter = {};
 const uniqueMoos = {};
 
 if (moos) {
-  moos.reverse().forEach(({ accountId, value }) => {
+  moos.forEach(({ accountId, value }) => {
     const key = JSON.stringify({ accountId, value });
     if (key in uniqueMoos) {
       return;
