@@ -49,18 +49,17 @@ const top = Object.entries(counter);
 top.sort((a, b) => b[1] - a[1]);
 
 const flyAnimation = styled.keyframes`
- 0% { min(-20vh, -20vw);  font-size: min(20vh, 20vw); }
+ 0% { left: min(-20vh, -20vw);  font-size: min(20vh, 20vw); }
  50% {  font-size: min(70vh, 70vw);}
- 100% { left: 100vw; font-size: min(20vh, 20vw); }
+ 100% { left: 110vw; font-size: min(20vh, 20vw); }
 `;
 
 const Cow = styled.div`
   z-index: 900;
   display: inline-block;
   position: fixed;
-  left: min(-50vh, -50vw);
   top: 50vh;
-  transform: translate(0, -50%);
+  transform: translate(-50%, -50%);
   animation-name: ${flyAnimation};
   animation-timing-function: linear;
   animation-duration: 3s;
