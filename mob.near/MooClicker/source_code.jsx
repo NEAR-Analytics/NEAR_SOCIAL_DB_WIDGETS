@@ -1,4 +1,4 @@
-let index = Storage.get("index");
+let index = state.index ?? Storage.get("index");
 if (index !== null) {
   index = index || [];
 
@@ -23,7 +23,7 @@ if (index !== null) {
   }
 }
 
-const moos = state.index ?? index;
+const moos = index;
 
 const counter = {};
 const uniqueMoos = {};
