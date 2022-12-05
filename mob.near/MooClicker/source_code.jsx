@@ -21,6 +21,14 @@ if (index !== null) {
   }
 }
 
+if (!state.mooSound) {
+  State.update({
+    mooSound:
+      "https://ipfs.near.social/ipfs/bafkreie3wfnaprino6mhcauo7jwlgvpj4urfn2ff4jv4b6jmu5pgxidx4q",
+  });
+  new Audio(state.mooSound);
+}
+
 const moos = index;
 
 const counter = {};
@@ -39,6 +47,25 @@ if (moos) {
 
 const top = Object.entries(counter);
 top.sort((a, b) => b[1] - a[1]);
+
+const flyAnimation = styled.keyframes`
+ 0% { min(-20vh, -20vw);  font-size: min(20vh, 20vw); }
+ 50% {  font-size: min(70vh, 70vw);}
+ 100% { left: 100vw; font-size: min(20vh, 20vw); }
+`;
+
+const Cow = styled.div`
+  z-index: 900;
+  display: inline-block;
+  position: fixed;
+  left: min(-50vh, -50vw);
+  top: 50vh;
+  transform: translate(0, -50%);
+  animation-name: ${flyAnimation};
+  animation-timing-function: linear;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+`;
 
 function renderMoos(accountIds) {
   return (
@@ -77,6 +104,13 @@ return (
     <div className="mb-4">
       <CommitButton
         className="btn btn-lg btn-success"
+        onClick={() => {
+          const sound = new Audio(state.mooSound);
+          sound.play();
+          State.update({
+            lastMoo: Date.now(),
+          });
+        }}
         data={() => ({
           index: {
             moo: JSON.stringify({
@@ -97,5 +131,6 @@ return (
       <h4>Last 10 </h4>
       <div>{moos && renderMoos(moos.slice(0, 10).map((a) => a.accountId))}</div>
     </div>
+    {state.lastMoo && <Cow key={`moo-${state.lastMoo}`}>🐮</Cow>}
   </div>
 );
