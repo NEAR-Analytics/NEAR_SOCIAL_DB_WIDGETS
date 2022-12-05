@@ -32,7 +32,7 @@ if (questionType == "0") {
 let answersData = Social.index("answer_poll", questionBlockHeight);
 console.log("answersData: ", answersData);
 
-if (answersData) {
+if (answersData && answersData.lenght > 0) {
   if (questionType == "0") {
     countVotes = answersData.reduce(
       (acc, curr) => {
@@ -52,6 +52,10 @@ if (answersData) {
       [0, 0]
     );
   } else if (questionType == "2") {
+    let emptyArray = [];
+    for (let i = 0; i < choicesOptions.lenght; i++) {
+      emptyArray.push(0);
+    }
     countVotes = answersData.reduce((acc, curr) => {
       let vote = curr.value.user_answer;
 
@@ -66,7 +70,7 @@ if (answersData) {
           return newAcc;
         }
       }
-    });
+    }, emptyArray);
   }
 }
 
@@ -239,7 +243,27 @@ const renderYesNoCounter = () => {
   );
 };
 
-const renderChoicesSelectedCounter = () => {};
+function getPercentageOfVotes(index) {
+  let votesForThisOption = countVotes[index];
+  let amountOfvotes = countVotes.reduce((a, b) => a + b, 0);
+
+  if (amountOfvotes == 0) {
+    return 0;
+  } else {
+    return (votesForThisOption / amountOfvotes) * 100;
+  }
+}
+
+const renderChoicesSelectedCounter = () => {
+  choicesOptions.map((choice, index) => {
+    return (
+      <div className="d-flex">
+        <span className="highlight">{choice}</span>
+        <span>`%${getPercentageOfVotes(index)}`</span>
+      </div>
+    );
+  });
+};
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
@@ -288,9 +312,13 @@ return (
           </div>
         </div>
         <div>{question}</div>
-        if(questionType == "0") {renderYesNoCounter()} else if(questionType ==
-        "1") {loadComments()} else if(questionType == "2"){" "}
-        {renderChoicesSelectedCounter()}
+        <>
+          {questionType == "0"
+            ? renderYesNoCounter()
+            : questionType == "1"
+            ? loadComments()
+            : questionType == "2" && renderChoicesSelectedCounter()}
+        </>
         <>{getForm()}</>
       </div>
     </div>
