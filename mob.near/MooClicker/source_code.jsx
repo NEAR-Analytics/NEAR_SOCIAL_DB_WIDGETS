@@ -49,9 +49,9 @@ const top = Object.entries(counter);
 top.sort((a, b) => b[1] - a[1]);
 
 const flyAnimation = styled.keyframes`
- 0% { left: min(-20vh, -20vw);  font-size: min(20vh, 20vw); }
- 50% {  font-size: min(70vh, 70vw);}
- 100% { left: 110vw; font-size: min(20vh, 20vw); }
+ 0% { left: min(-20vh, -20vw);  font-size: min(20vh, 20vw); opacity: 0; }
+ 50% {  font-size: min(70vh, 70vw); opacity: 1;}
+ 100% { left: 110vw; font-size: min(20vh, 20vw); opacity: 0; }
 `;
 
 const Cow = styled.div`
