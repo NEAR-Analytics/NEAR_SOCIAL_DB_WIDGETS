@@ -10,7 +10,7 @@ const processData = (data) => {
     const question = questionData.value.question;
     const questionTimestamp = questionData.value.timestamp;
     const questionBlockHeight = questionData.blockHeight;
-    const questionType = questionData.questionType;
+    const questionType = questionData.value.questionType;
     const choicesOptions = questionData.value.choicesOptions;
 
     return {
