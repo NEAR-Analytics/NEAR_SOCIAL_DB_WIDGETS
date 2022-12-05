@@ -1,27 +1,29 @@
 let index = Storage.get("index");
-if (index === null) {
-  return "Loading";
+if (index !== null) {
+  index = index || [];
+
+  const lastBlockHeight = index[0].blockHeight || 0;
+
+  const newIndex = Social.index("moo", "moo-click", {
+    order: "asc",
+    from: lastBlockHeight + 1,
+  });
+
+  if (newIndex !== null) {
+    if (newIndex.length > 0) {
+      index = [...newIndex.reverse(), ...index];
+      Storage.set("index", index);
+    }
+  }
+
+  if ((state.index.length || 0) < (index.length || 0)) {
+    State.update({
+      index,
+    });
+  }
 }
 
-index = index || [];
-
-const lastBlockHeight = index[0].blockHeight || 0;
-
-const newIndex = Social.index("moo", "moo-click", {
-  order: "asc",
-  from: lastBlockHeight + 1,
-});
-
-if (newIndex === null) {
-  return "Loading";
-}
-
-if (newIndex.length > 0) {
-  index = [...newIndex.reverse(), ...index];
-  Storage.set("index", index);
-}
-
-const moos = index;
+const moos = state.index ?? index;
 
 const counter = {};
 const uniqueMoos = {};
