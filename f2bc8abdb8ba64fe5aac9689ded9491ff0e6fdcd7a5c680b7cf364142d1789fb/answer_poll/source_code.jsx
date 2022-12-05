@@ -161,7 +161,7 @@ const renderTextinput = () => {
 };
 
 const renderMultipleChoiceInputs = () => {
-  choicesOptions.map((choice, index) => {
+  return choicesOptions.map((choice, index) => {
     return (
       <>
         <div className="form-check">
@@ -184,41 +184,45 @@ const renderMultipleChoiceInputs = () => {
   });
 };
 
-const getForm = () => (
-  <div
-    style={{
-      border: "1px solid #e9e9e9",
-      borderRadius: "20px",
-      padding: "1rem",
-    }}
-  >
-    <h5>Give your opinion</h5>
-    <div className="form-group">
-      if(questionType == "0") {renderYesNoInputs()} else if(questionType == "1"){" "}
-      {renderTextinput()} else if(questionType == "2"){" "}
-      {renderMultipleChoiceInputs()}
-    </div>
-    <CommitButton
-      data={{
-        index: {
-          answer_poll: JSON.stringify({
-            key: questionBlockHeight,
-            value: {
-              user_answer:
-                state.currentAnswer == ""
-                  ? answer.userVote
-                  : state.currentAnswer,
-              amountOfChoices: choicesOptions.lenght(),
-              answer_timestamp: Date.now(),
-            },
-          }),
-        },
+const getForm = () => {
+  return (
+    <div
+      style={{
+        border: "1px solid #e9e9e9",
+        borderRadius: "20px",
+        padding: "1rem",
       }}
     >
-      Confirm
-    </CommitButton>
-  </div>
-);
+      <h5>Give your opinion</h5>
+      <div className="form-group">
+        {questionType == "0"
+          ? renderYesNoInputs()
+          : questionType == "1"
+          ? renderTextinput()
+          : questionType == "2" && renderMultipleChoiceInputs()}
+      </div>
+      <CommitButton
+        data={{
+          index: {
+            answer_poll: JSON.stringify({
+              key: questionBlockHeight,
+              value: {
+                user_answer:
+                  state.currentAnswer == ""
+                    ? answer.userVote
+                    : state.currentAnswer,
+                amountOfChoices: choicesOptions.lenght,
+                answer_timestamp: Date.now(),
+              },
+            }),
+          },
+        }}
+      >
+        Confirm
+      </CommitButton>
+    </div>
+  );
+};
 
 function onValueChange(e) {
   const currentAnswer = e.target.value;
@@ -255,11 +259,24 @@ function getPercentageOfVotes(index) {
 }
 
 const renderChoicesSelectedCounter = () => {
-  choicesOptions.map((choice, index) => {
+  return choicesOptions.map((choice, index) => {
+    let percentageOfVotes = getPercentageOfVotes(index);
     return (
-      <div className="d-flex">
-        <span className="highlight">{choice}</span>
-        <span>`%${getPercentageOfVotes(index)}`</span>
+      <div className="mx-3 d-flex align-items-center justify-content-between">
+        <span
+          style={{
+            border: "1px solid #e9e9e9",
+            borderRadius: "20px",
+            padding: "1rem",
+            marginRight: "1rem",
+            marginTop: "0.2rem",
+            marginBottom: "0.2rem",
+            width: "100%",
+          }}
+        >
+          {choice}
+        </span>
+        <span>%{percentageOfVotes}</span>
       </div>
     );
   });
