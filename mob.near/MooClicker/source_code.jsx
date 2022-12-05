@@ -111,6 +111,16 @@ return (
             lastMoo: Date.now(),
           });
         }}
+        onCommit={() => {
+          State.update({
+            lastMoo: null,
+          });
+        }}
+        onCancel={() => {
+          State.update({
+            lastMoo: null,
+          });
+        }}
         data={() => ({
           index: {
             moo: JSON.stringify({
