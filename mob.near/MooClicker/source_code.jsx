@@ -59,6 +59,7 @@ const Cow = styled.div`
   display: inline-block;
   position: fixed;
   top: 50vh;
+  opacity: 0;
   transform: translate(-50%, -50%);
   animation-name: ${flyAnimation};
   animation-timing-function: linear;
