@@ -64,7 +64,7 @@ const renderItem = (a) => {
               style={{ maxHeight: "40vh" }}
             >
               <a
-                href={`#/mob.near/widget/BerryclubBoard?blockHeight=${blockHeight}&contarct=${contract}`}
+                href={`#/mob.near/widget/BerryclubBoard?blockHeight=${blockHeight}&contract=${contract}`}
                 target="_blank"
               >
                 <Widget
