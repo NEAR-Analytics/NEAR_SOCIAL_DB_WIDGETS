@@ -38,12 +38,12 @@ return (
       Amount (NEAR):
       <input type="number" value={state.amount} />
     </p>
-    <CommitButton
+    <button
       disabled={context.loading}
       className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
       onClick={onStakeClick}
     >
       Stake
-    </CommitButton>
+    </button>
   </div>
 );
