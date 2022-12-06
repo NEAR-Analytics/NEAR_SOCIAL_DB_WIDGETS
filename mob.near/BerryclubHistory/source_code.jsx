@@ -14,8 +14,10 @@ const finetunes = [
   [1, 10, 100, 1000, 10000],
 ];
 
+const contract = state.contract ?? props.contract ?? "berryclub.ek.near";
+
 const currentBlockHeight = currentBlock.header.height;
-const minBlockHeight = state.contract === Contract.Dacha ? 54570186 : 21793900;
+const minBlockHeight = contract === Contract.Dacha ? 54570186 : 21793900;
 
 const intoRange = (blockHeight) =>
   Math.min(currentBlockHeight, Math.max(minBlockHeight, parseInt(blockHeight)));
@@ -25,7 +27,7 @@ const randomBlockHeight = () =>
   minBlockHeight + Math.floor(Math.random() * numBlocks);
 
 State.init({
-  contract: Contract.Berryclub,
+  contract,
   blockHeight: props.blockHeight
     ? parseInt(props.blockHeight)
     : randomBlockHeight(),
