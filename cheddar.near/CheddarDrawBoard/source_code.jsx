@@ -64,8 +64,5 @@ return (
     style={{ maxHeight: "min(100%, 80vh)", aspectRatio: "1 / 1" }} {encodedLines.map((line)=>(
       <Line>{decodeLine(line)}</Line>
 ))}
-<p>
-Cheddar Draw is a fun game that lets you paint pixels with milk and farm
-      Cheddar.
-</p></div>
+</div>
 );
