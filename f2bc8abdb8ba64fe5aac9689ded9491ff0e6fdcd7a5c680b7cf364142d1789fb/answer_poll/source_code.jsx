@@ -10,6 +10,14 @@ const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${userMakingQuestion}/profile`);
 
+State.init({ currentAnswer: "", answersData: [{}] });
+
+let answersData = Social.index("answer_poll", questionBlockHeight);
+
+if (JSON.stringify(answersData) !== JSON.stringify(state.answersData || [{}])) {
+  State.update({ answersData: answersData });
+}
+
 const profileLink = (c) => (
   <a
     className="text-decoration-none link-dark"
@@ -29,12 +37,9 @@ if (questionType == "0") {
   }
 }
 
-let answersData = Social.index("answer_poll", questionBlockHeight);
-console.log("answersData: ", answersData);
-
-if (answersData && answersData.lenght > 0) {
+if (state.answersData) {
   if (questionType == "0") {
-    countVotes = answersData.reduce(
+    countVotes = state.answersData.reduce(
       (acc, curr) => {
         let vote = curr.value.user_answer;
 
@@ -56,12 +61,15 @@ if (answersData && answersData.lenght > 0) {
     for (let i = 0; i < choicesOptions.lenght; i++) {
       emptyArray.push(0);
     }
-    countVotes = answersData.reduce((acc, curr) => {
+
+    let amountOfAnswers = state.answersData.length;
+
+    countVotes = state.answersData.reduce((acc, curr) => {
       let vote = curr.value.user_answer;
 
       let voteValue = parseInt(vote);
 
-      for (let i = 0; i < countVotes.length(); i++) {
+      for (let i = 0; i < amountOfAnswers; i++) {
         if (isNaN(voteValue)) {
           return acc;
         } else if (voteValue == i) {
@@ -75,16 +83,16 @@ if (answersData && answersData.lenght > 0) {
 }
 
 const haveThisUserAlreadyVoted = () => {
-  if (answersData.lenght == 0) {
+  if (state.answersData.lenght == 0) {
     return false;
   }
-  for (let i = 0; i < answersData.lenght; i++) {
-    return answersData[i].accountId == currentAccountId;
+  for (let i = 0; i < state.answersData.lenght; i++) {
+    return state.answersData[i].accountId == currentAccountId;
   }
 };
 
 const loadComments = () => {
-  return answersData.map((answerData) => {
+  return state.answersData.map((answerData) => {
     let answer = answerData.value.user_answer;
 
     let answerTimeStamp = answerData.value.answer_timestamp;
@@ -104,7 +112,6 @@ const loadComments = () => {
   });
 };
 
-State.init({ currentAnswer: "" });
 const renderYesNoInputs = () => {
   return (
     <>
