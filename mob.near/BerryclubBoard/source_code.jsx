@@ -2,6 +2,8 @@ const blockHeight = props.blockHeight
   ? parseInt(props.blockHeight)
   : "optimistic";
 
+const contractId = props.contract ?? "berryclub.ek.near";
+
 const BoardHeight = 50;
 const BoardWidth = 50;
 const ExpectedLineLength = 4 + 8 * BoardWidth;
@@ -31,12 +33,7 @@ for (let i = 0; i < BoardHeight; ++i) {
 }
 
 const args = { lines };
-const encodedLines = Near.view(
-  "berryclub.ek.near",
-  "get_lines",
-  args,
-  blockHeight
-);
+const encodedLines = Near.view(contractId, "get_lines", args, blockHeight);
 
 if (encodedLines === null) {
   return "Loading";
