@@ -33,9 +33,10 @@ if (JSON.stringify(state.items) !== JSON.stringify(items)) {
 // }
 
 const makeMoreItems = () => {
-  const newItems = items
-    .slice(state.widgets.length, state.widgets.length + perPage)
-    .map(renderItem);
+  const newItems = items.slice(
+    state.widgets.length,
+    state.widgets.length + perPage
+  );
   state.widgets.push(...newItems);
   State.update();
 };
@@ -47,6 +48,6 @@ return (
     hasMore={state.widgets.length < items.length}
     loader={<div className="loader">Loading ...</div>}
   >
-    {state.widgets}
+    {state.widgets.map(renderItem)}
   </InfiniteScroll>
 );
