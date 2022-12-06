@@ -26,7 +26,7 @@ const Line = styled.div`
 `;
 
 const lines = [];
-for (let i = 0; i < BoardHeight; ++i){
+for (let i = 0; i < BoardHeight; ++i) {
   lines.push(i);
 }
 
@@ -38,22 +38,22 @@ const encodedLines = Near.view(
   blockHeight
 );
 
-if (encodedLines === null){
+if (encodedLines === null) {
   return "Loading";
 }
 
-if (!encodedLines){
+if (!encodedLines) {
   return "Block not found";
 }
 
-const intToColor = (c)=>`#${c.toString(16).padStart(6, "0")}`;
+const intToColor = (c) => `#${c.toString(16).padStart(6, "0")}`;
 
-const decodeLine = (line)=>{
+const decodeLine = (line) => {
   let buf = Buffer.from(line, "base64");
   let pixels = [];
-  for (let i = 4; i < buf.length; i += 8){
+  for (let i = 4; i < buf.length; i += 8) {
     let color = buf.readUInt32LE(i);
-    pixels.push(<Cell style={{ backgroundColor: intToColor(color)}} />);
+    pixels.push(<Cell style={{ backgroundColor: intToColor(color) }} />);
   }
   return pixels;
 };
@@ -61,8 +61,14 @@ const decodeLine = (line)=>{
 return (
   <div
     className="mw-100 d-flex align-items-stretch flex-column align-content-stretch"
-    style={{ maxHeight: "min(100%, 80vh)", aspectRatio: "1 / 1" }} {encodedLines.map((line)=>(
+    style={{ maxHeight: "min(100%, 80vh)", aspectRatio: "1 / 1" }}
+  >
+    <h1>Cheddar Draw</h1>
+    <a href="https://draw.cheddar.farm/">
+      <span>Buy Milk🥛, Draw🎨, Farm Cheddar🧀</span>,
+    </a>
+    {encodedLines.map((line) => (
       <Line>{decodeLine(line)}</Line>
-))}
+    ))}
 </div>
 );
