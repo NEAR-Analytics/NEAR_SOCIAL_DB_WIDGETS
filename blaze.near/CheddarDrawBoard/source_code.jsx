@@ -63,8 +63,17 @@ return (
     className="mw-100 d-flex align-items-stretch flex-column align-content-stretch"
     style={{ maxHeight: "min(100%, 80vh)", aspectRatio: "1 / 1" }}
   >
+    <h1>Cheddar Draw</h1>
+    <a href="https://draw.cheddar.farm/">
+      <span>Buy Milk🥛, Draw🎨, Farm Cheddar🧀</span>,
+    </a>
     {encodedLines.map((line) => (
       <Line>{decodeLine(line)}</Line>
     ))}
+    <p>
+      Cheddar Draw is a fun game that lets you paint pixels with milk and farm
+      Cheddar.
+    </p>
+    <p>Be careful it's WAR🛡️⚔️. Other players can overwrite your pixels.</p>
   </div>
 );
