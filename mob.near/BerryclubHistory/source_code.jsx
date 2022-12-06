@@ -4,7 +4,10 @@ if (!currentBlock) {
   return "Loading";
 }
 
-const finetune = [-10000, -1000, -100, -10, -1, 1, 10, 100, 1000, 10000];
+const finetunes = [
+  [-10000, -1000, -100, -10, -1],
+  [1, 10, 100, 1000, 10000],
+];
 
 const currentBlockHeight = currentBlock.header.height;
 const minBlockHeight = 21793900;
@@ -55,24 +58,29 @@ return (
       >
         Random Board
       </button>
-      <div className="btn-group" role="group" aria-label="finetuning">
-        {finetune.map((value) => (
-          <button
-            type="button"
-            className="btn btn-outline-secondary"
-            onClick={() => {
-              State.update({
-                blockHeight: Math.min(
-                  currentBlockHeight,
-                  Math.max(minBlockHeight, parseInt(state.blockHeight + value))
-                ),
-              });
-            }}
-          >
-            {value > 0 ? `+${value}` : value}
-          </button>
-        ))}
-      </div>
+      {finetunes.map((finetune) => (
+        <div className="btn-group" role="group" aria-label="finetuning">
+          {finetune.map((value) => (
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => {
+                State.update({
+                  blockHeight: Math.min(
+                    currentBlockHeight,
+                    Math.max(
+                      minBlockHeight,
+                      parseInt(state.blockHeight + value)
+                    )
+                  ),
+                });
+              }}
+            >
+              {value > 0 ? `+${value}` : value}
+            </button>
+          ))}
+        </div>
+      ))}
     </div>
     <div style={{ height: "min(50vh, 95vw)" }}>
       <Widget
