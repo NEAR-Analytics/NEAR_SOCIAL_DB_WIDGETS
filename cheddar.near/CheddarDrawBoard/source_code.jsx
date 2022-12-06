@@ -70,5 +70,9 @@ return (
     {encodedLines.map((line) => (
       <Line>{decodeLine(line)}</Line>
     ))}
-</div>
+    <p>
+      Cheddar Draw is a fun game that lets you paint pixels with milk and farm
+      Cheddar.
+    </p>
+  </div>
 );
