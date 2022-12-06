@@ -75,7 +75,7 @@ const renderItem = (a) => {
             </div>
             <div>
               <a
-                href={`#/mob.near/widget/BerryclubHistory?blockHeight=${blockHeight}&contarct=${contract}`}
+                href={`#/mob.near/widget/BerryclubHistory?blockHeight=${blockHeight}&contract=${contract}`}
                 target="_blank"
                 className="btn btn-outline-dark"
               >
