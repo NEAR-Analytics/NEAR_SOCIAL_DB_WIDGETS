@@ -18,7 +18,8 @@ const profileLink = (accountId, c) => (
 const renderItem = (a) => {
   const accountId = a.accountId;
   const whenPostedBlockHeight = a.blockHeight;
-  const blockHeight = a.value;
+  const blockHeight = a.value?.blockHeight ?? a.value;
+  const contract = a.value?.contract ?? "berryclub.ek.near";
   return (
     <div key={JSON.stringify(a)} style={{ minHeight: "40vh" }}>
       <div style={{ maxWidth: "45vh" }}>
@@ -63,22 +64,23 @@ const renderItem = (a) => {
               style={{ maxHeight: "40vh" }}
             >
               <a
-                href={`#/mob.near/widget/BerryclubBoard?blockHeight=${blockHeight}`}
+                href={`#/mob.near/widget/BerryclubBoard?blockHeight=${blockHeight}&contarct=${contract}`}
                 target="_blank"
               >
                 <Widget
                   src="mob.near/widget/BerryclubBoard"
-                  props={{ blockHeight }}
+                  props={{ blockHeight, contract }}
                 />
               </a>
             </div>
             <div>
               <a
-                href={`#/mob.near/widget/BerryclubHistory?blockHeight=${blockHeight}`}
+                href={`#/mob.near/widget/BerryclubHistory?blockHeight=${blockHeight}&contarct=${contract}`}
                 target="_blank"
                 className="btn btn-outline-dark"
               >
-                Finetune #{blockHeight}
+                Finetune {contract === "v1.dacha-finance.near" ? "🥔" : "🥑"} #
+                {blockHeight}
               </a>
             </div>
           </div>
