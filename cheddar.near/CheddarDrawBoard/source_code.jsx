@@ -74,5 +74,6 @@ return (
       Cheddar Draw is a fun game that lets you paint pixels with milk and farm
       Cheddar.
     </p>
+    <p>Be careful it is WAR🛡️⚔️. Other players can overwrite your pixels.</p>
   </div>
 );
