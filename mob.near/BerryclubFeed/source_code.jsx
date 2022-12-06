@@ -18,7 +18,7 @@ const profileLink = (accountId, c) => (
 const renderItem = (a) => {
   const accountId = a.accountId;
   const whenPostedBlockHeight = a.blockHeight;
-  const blockHeight = a.value?.blockHeight ?? a.value;
+  const blockHeight = parseInt(a.value?.blockHeight ?? a.value);
   const contract = a.value?.contract ?? "berryclub.ek.near";
   return (
     <div key={JSON.stringify(a)} style={{ minHeight: "40vh" }}>
