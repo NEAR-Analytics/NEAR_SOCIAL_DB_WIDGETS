@@ -2,52 +2,27 @@ const items = props.items;
 const renderItem = props.renderItem;
 const perPage = props.perPage || 10;
 
-State.init({
-  items,
-  widgets: [],
-});
-
-if (JSON.stringify(state.items) !== JSON.stringify(items)) {
+const jItems = JSON.stringify(items);
+if (state.jItems !== jItems) {
   State.update({
-    widgets: [],
-    items,
+    widgets: 0,
+    jItems,
   });
 }
 
-// if (state.items.length != items.length) {
-//   if (items.length > state.items.length) {
-//     const newItems = items
-//       .slice(0, items.length - state.items.length)
-//       .map(renderItem);
-//     const widgets = [...newItems, ...state.widgets];
-//     State.update({
-//       widgets,
-//       items,
-//     });
-//   } else {
-//     State.update({
-//       widgets: [],
-//       items,
-//     });
-//   }
-// }
-
 const makeMoreItems = () => {
-  const newItems = items.slice(
-    state.widgets.length,
-    state.widgets.length + perPage
-  );
-  state.widgets.push(...newItems);
-  State.update();
+  State.update({
+    widgets: state.widgets + perPage,
+  });
 };
 
 return (
   <InfiniteScroll
     pageStart={0}
     loadMore={makeMoreItems}
-    hasMore={state.widgets.length < items.length}
+    hasMore={state.widgets < items.length}
     loader={<div className="loader">Loading ...</div>}
   >
-    {state.widgets.map(renderItem)}
+    {items.slice(0, state.widgets).map(renderItem)}
   </InfiniteScroll>
 );
