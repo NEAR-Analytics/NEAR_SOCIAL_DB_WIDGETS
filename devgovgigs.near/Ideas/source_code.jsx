@@ -8,7 +8,21 @@ console.log(ideas);
 
 return (
   <div className="row">
-    <Widget src={`${ownerId}/widget/IdeaEditor`} />
+    <p>
+      <a
+        class="btn btn-primary"
+        data-toggle="collapse"
+        href="#collapseExample"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Link with href
+      </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <Widget src={`${ownerId}/widget/IdeaEditor`} />
+    </div>
     <hr />
     {ideas
       ? ideas.map((idea) => {
