@@ -8,7 +8,7 @@ console.log(ideas);
 
 return (
   <div className="row">
-    <Widget src={`${ownerId}/widget/AddIdea`} />
+    <Widget src={`${ownerId}/widget/IdeaEditor`} />
     <hr />
     {ideas
       ? ideas.map((idea) => {
