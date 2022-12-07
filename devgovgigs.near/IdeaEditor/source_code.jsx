@@ -24,9 +24,7 @@ return (
         <input
           type="text"
           value={state.name}
-          onChange={(event) =>
-            State.update({ name: event.target.value.toLowerCase() })
-          }
+          onChange={(event) => State.update({ name: event.target.value })}
         />
       </div>
 
@@ -40,7 +38,7 @@ return (
           rows={6}
           className="form-control"
           onChange={(event) =>
-            State.update({ description: event.target.value.toLowerCase() })
+            State.update({ description: event.target.value })
           }
         />
       </div>
