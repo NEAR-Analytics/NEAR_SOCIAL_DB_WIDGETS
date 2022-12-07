@@ -23,23 +23,23 @@ State.init({
   choicesOptions: [],
 });
 
-if (questionBlockHeight !== state.questionBlockHeight) {
-  State.update({ questionBlockHeight: questionBlockHeight });
-}
-if (userMakingQuestion !== state.userMakingQuestion) {
-  State.update({ userMakingQuestion: userMakingQuestion });
-}
-if (question !== state.question) {
-  State.update({ question: question });
-}
-if (questionTimestamp !== state.questionTimestamp) {
-  State.update({ questionTimestamp: questionTimestamp });
-}
-if (questionType !== state.questionType) {
-  State.update({ questionType: questionType });
-}
-if (choicesOptions !== state.choicesOptions) {
-  State.update({ choicesOptions: choicesOptions });
+if (
+  questionBlockHeight !== state.questionBlockHeight ||
+  userMakingQuestion !== state.userMakingQuestion ||
+  question !== state.question ||
+  questionTimestamp !== state.questionTimestamp ||
+  questionType !== state.questionType ||
+  choicesOptions !== state.choicesOptions
+) {
+  console.log("in");
+  State.update({
+    questionBlockHeight: questionBlockHeight,
+    userMakingQuestion: userMakingQuestion,
+    question: question,
+    questionTimestamp: questionTimestamp,
+    questionType: questionType,
+    choicesOptions: choicesOptions,
+  });
 }
 
 let answersData = Social.index("answer_poll", questionBlockHeight);
