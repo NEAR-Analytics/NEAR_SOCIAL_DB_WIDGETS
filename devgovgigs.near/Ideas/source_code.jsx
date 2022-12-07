@@ -9,16 +9,16 @@ console.log(ideas);
 return (
   <div className="row">
     <p>
-      <a
+      <button
         class="btn btn-primary"
+        type="button"
         data-toggle="collapse"
-        href="#collapseExample"
-        role="button"
+        data-target="#collapseExample"
         aria-expanded="false"
         aria-controls="collapseExample"
       >
-        Link with href
-      </a>
+        Button with data-target
+      </button>
     </p>
     <div class="collapse" id="collapseExample">
       <Widget src={`${ownerId}/widget/IdeaEditor`} />
