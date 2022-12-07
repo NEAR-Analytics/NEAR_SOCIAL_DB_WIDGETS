@@ -11,12 +11,15 @@ function readableDate(UNIX_timestamp) {
   return a.toDateString() + " " + a.toLocaleTimeString();
 }
 
+const submissionHeader = submissions.length > 0 ? <h3>Submissions</h3> : null;
+
 return (
   <div>
     <h3>{idea.name}</h3>
     <p>Author: {idea.submitter_id}</p>
     <p>Timestamp: {readableDate(idea.timestamp)}</p>
     <p>{idea.description}</p>
+    {submissionHeader}
     {submissions
       ? submissions.map((submission) => {
           return (
