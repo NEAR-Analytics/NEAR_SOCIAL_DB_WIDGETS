@@ -50,7 +50,9 @@ const decodeLine = (line) => {
   let pixels = [];
   for (let i = 4; i < buf.length; i += 8) {
     let color = buf.readUInt32LE(i);
-    pixels.push(<Cell style={{ backgroundColor: intToColor(color) }} />);
+    pixels.push(
+      <Cell key={i} style={{ backgroundColor: intToColor(color) }} />
+    );
   }
   return pixels;
 };
@@ -60,8 +62,8 @@ return (
     className="mw-100 d-flex align-items-stretch flex-column align-content-stretch"
     style={{ maxHeight: "min(100%, 80vh)", aspectRatio: "1 / 1" }}
   >
-    {encodedLines.map((line) => (
-      <Line>{decodeLine(line)}</Line>
+    {encodedLines.map((line, i) => (
+      <Line key={i}>{decodeLine(line)}</Line>
     ))}
   </div>
 );
