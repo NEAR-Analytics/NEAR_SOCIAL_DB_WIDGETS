@@ -21,7 +21,9 @@ return (
       </button>
     </p>
     <div class="collapse" id="collapseExample">
-      <Widget src={`${ownerId}/widget/IdeaEditor`} />
+      <div>
+        <Widget src={`${ownerId}/widget/IdeaEditor`} />
+      </div>
     </div>
     <hr />
     {ideas
