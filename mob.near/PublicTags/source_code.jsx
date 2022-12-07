@@ -1,5 +1,5 @@
-// ContractPage
-const ownerId = "mob.near";
+// PublicTags
+const ownerId = "zavodil.near";
 const appName = "nametag";
 const accountId = props.accountId ?? context.accountId;
 const extraTags = props.extraTags;
@@ -8,15 +8,14 @@ const tagsPattern = `*/${appName}/${accountId}/tags/*`;
 const tagsObject = Social.keys(tagsPattern, "final");
 
 const tagClass = "bg-success";
+const badgeBtnClass = "text-white btn p-0 lh-1";
 const addPublicTagHtml = (
-  <div class={`me-1 badge bg-primary`}>
-    <a
-      href={`#/mob.near/widget/AllLabels?accountId=${accountId}`}
-      class="text-white"
-    >
-      + Add Name Tag
-    </a>
-  </div>
+  <a
+    href={`#/${ownerId}/widget/AllLabels?accountId=${accountId}`}
+    className={badgeBtnClass}
+  >
+    <div className={`me-1 badge bg-primary`}>+ Add Name Tag</div>
+  </a>
 );
 
 if (tagsObject === null) {
@@ -24,6 +23,7 @@ if (tagsObject === null) {
 }
 
 const tagsCount = {};
+const tagsAuthors = {};
 
 const processTagsObject = (obj) => {
   Object.entries(obj).forEach((kv) => {
@@ -60,28 +60,34 @@ const publicTags = getTags();
 return (
   <>
     {publicTags &&
-      publicTags.map((tag) => (
-        <span
-          className={`badge ${tagClass} position-relative`}
-          title={tag.title}
-          style={
-            tag.count > 1
-              ? {
-                  marginRight: "0.9em",
-                  paddingRight: "0.85em",
-                }
-              : { marginRight: "0.25em" }
-          }
+      publicTags.map((tag, i) => (
+        <a
+          key={i}
+          href={`/#/${ownerId}/widget/AllLabels?tag=${tag.name}`}
+          className={badgeBtnClass}
         >
-          #{tag.name}
-          {tag.count > 1 && (
-            <span
-              className={`badge translate-middle rounded-pill bg-danger position-absolute top-50 start-100`}
-            >
-              {tag.count}
-            </span>
-          )}
-        </span>
+          <span
+            className={`badge ${tagClass} position-relative`}
+            title={tag.title}
+            style={
+              tag.count > 1
+                ? {
+                    marginRight: "0.9em",
+                    paddingRight: "0.85em",
+                  }
+                : { marginRight: "0.25em" }
+            }
+          >
+            #{tag.name}
+            {tag.count > 1 && (
+              <span
+                className={`badge translate-middle rounded-pill bg-danger position-absolute top-50 start-100`}
+              >
+                {tag.count}
+              </span>
+            )}
+          </span>
+        </a>
       ))}
     {addPublicTagHtml}
   </>
