@@ -45,7 +45,7 @@ return (
         />
       </div>
 
-      <a className="btn btn-outline-primary" onClick={onClick}>
+      <a className="btn btn-outline-primary mb-2" onClick={onClick}>
         Submit
       </a>
     </div>
