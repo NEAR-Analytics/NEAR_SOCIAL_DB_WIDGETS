@@ -18,7 +18,7 @@ const linktreeElements = {
   },
 };
 
-const linktreeObjects = linktree.map((o) => {
+const linktreeObjects = linktree.map((o, i) => {
   const key = o[0];
   let value = o[1];
   if (!value) {
@@ -34,14 +34,14 @@ const linktreeObjects = linktree.map((o) => {
     ""
   );
   return e.prefix ? (
-    <div className="text-truncate">
+    <div key={i} className="text-truncate">
       <a href={`${e.prefix}${value}`}>
         {icon}
         {value}
       </a>
     </div>
   ) : (
-    <div className="text-truncate">
+    <div key={i} className="text-truncate">
       {key}: {icon}
       {value}
     </div>
@@ -85,9 +85,11 @@ return (
         <div className="card-text">
           {tags.length > 0 && (
             <div>
-              {tags.map((tag) => {
+              {tags.map((tag, i) => {
                 const tagBadge = (
-                  <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
+                  <span key={i} className="me-1 mb-1 badge bg-secondary">
+                    #{tag}
+                  </span>
                 );
                 return renderTag ? renderTag(tag, tagBadge) : tagBadge;
               })}
