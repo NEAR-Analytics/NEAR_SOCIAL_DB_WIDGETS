@@ -17,8 +17,9 @@ const allNfts = f.body.list;
 
 return (
   <div className="d-flex gap-1 flex-wrap">
-    {allNfts.map((contractId) => (
+    {allNfts.map((contractId, i) => (
       <Widget
+        key={i}
         src={
           thumbnails
             ? "mob.near/widget/NftCollectionThumbs"
