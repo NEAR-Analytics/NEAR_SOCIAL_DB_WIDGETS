@@ -19,6 +19,7 @@ for (let i = 0; i < accounts.length; ++i) {
     <a
       href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
       className="text-decoration-none"
+      key={accountId}
     >
       <Widget
         src="mob.near/widget/ProfileImage"
