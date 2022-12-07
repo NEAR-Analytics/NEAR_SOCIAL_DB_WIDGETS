@@ -14,7 +14,7 @@ State.init({ currentAnswer: "", answersData: [{}] });
 
 let answersData = Social.index("answer_poll", questionBlockHeight);
 
-if (JSON.stringify(answersData) !== JSON.stringify(state.answersData || [{}])) {
+if (JSON.stringify(answersData) !== JSON.stringify(state.answersData)) {
   State.update({ answersData: answersData });
 }
 
