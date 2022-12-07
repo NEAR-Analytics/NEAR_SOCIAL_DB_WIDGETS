@@ -32,7 +32,7 @@ let countVotes = [];
 if (questionType == "0") {
   countVotes = [0, 0];
 } else if (questionType == "2") {
-  for (let i = 0; i < choicesOptions.lenght; i++) {
+  for (let i = 0; i < choicesOptions.length; i++) {
     countVotes.push(0);
   }
 }
@@ -58,35 +58,30 @@ if (state.answersData) {
     );
   } else if (questionType == "2") {
     let emptyArray = [];
-    for (let i = 0; i < choicesOptions.lenght; i++) {
+    for (let i = 0; i < choicesOptions.length; i++) {
       emptyArray.push(0);
     }
-
-    let amountOfAnswers = state.answersData.length;
 
     countVotes = state.answersData.reduce((acc, curr) => {
       let vote = curr.value.user_answer;
 
       let voteValue = parseInt(vote);
 
-      for (let i = 0; i < amountOfAnswers; i++) {
-        if (isNaN(voteValue)) {
-          return acc;
-        } else if (voteValue == i) {
-          let newAcc = acc;
-          newAcc[i] = newAcc[i] + 1;
-          return newAcc;
-        }
+      if (isNaN(voteValue)) {
+        return acc;
+      } else {
+        acc[voteValue] += 1;
+        return acc;
       }
     }, emptyArray);
   }
 }
 
 const haveThisUserAlreadyVoted = () => {
-  if (state.answersData.lenght == 0) {
+  if (state.answersData.length == 0) {
     return false;
   }
-  for (let i = 0; i < state.answersData.lenght; i++) {
+  for (let i = 0; i < state.answersData.length; i++) {
     return state.answersData[i].accountId == currentAccountId;
   }
 };
@@ -218,7 +213,7 @@ const getForm = () => {
                   state.currentAnswer == ""
                     ? answer.userVote
                     : state.currentAnswer,
-                amountOfChoices: choicesOptions.lenght,
+                amountOfChoices: choicesOptions.length,
                 answer_timestamp: Date.now(),
               },
             }),
@@ -256,7 +251,7 @@ const renderYesNoCounter = () => {
 
 function getPercentageOfVotes(index) {
   let votesForThisOption = countVotes[index];
-  let amountOfvotes = countVotes.reduce((a, b) => a + b, 0);
+  let amountOfvotes = answersData.length;
 
   if (amountOfvotes == 0) {
     return 0;
