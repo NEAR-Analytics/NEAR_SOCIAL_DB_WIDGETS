@@ -116,8 +116,10 @@ return (
 
       {tags.length > 0 && (
         <div>
-          {tags.map((tag) => (
-            <span className="me-1 mb-1 badge bg-secondary">#{tag}</span>
+          {tags.map((tag, i) => (
+            <span key={i} className="me-1 mb-1 badge bg-secondary">
+              #{tag}
+            </span>
           ))}
         </div>
       )}
@@ -135,7 +137,7 @@ return (
           </button>
         </div>
         <div className="collapse public-tags">
-          <Widget src="zavodil.near/widget/PublicTags" props={{ accountId }} />
+          <Widget src="mob.near/widget/PublicTags" props={{ accountId }} />
         </div>
       </div>
     </div>
