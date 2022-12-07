@@ -3,20 +3,8 @@ const idea =
   props.idea ?? Near.view("devgovgigs.near", "get_idea", { idea_id });
 
 function readableDate(UNIX_timestamp) {
-  var a = new Date(UNIX_timestamp * 1000);
-  return (
-    a.getFullYear() +
-    "-" +
-    a.getMonth() +
-    "-" +
-    a.getDate() +
-    " " +
-    a.getHours() +
-    ":" +
-    a.getMinutes() +
-    ":" +
-    a.getSeconds()
-  );
+  var a = new Date(parseInt(UNIX_timestamp) / 1000000);
+  return a.toDateString() + " " + a.toLocaleTimeString();
 }
 
 return (
