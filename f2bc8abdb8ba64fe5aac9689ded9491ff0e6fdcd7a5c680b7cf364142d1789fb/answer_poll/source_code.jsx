@@ -278,7 +278,9 @@ const renderChoicesSelectedCounter = () => {
         >
           {choice}
         </span>
-        <span>%{percentageOfVotes}</span>
+        <span style={{ width: "40px", textAlign: "center" }}>
+          %{percentageOfVotes}
+        </span>
       </div>
     );
   });
