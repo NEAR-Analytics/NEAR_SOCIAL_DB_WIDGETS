@@ -53,6 +53,7 @@ return (
     <div className="col-lg-6">
       <div>
         <h4>Preview</h4>
+        <br />
       </div>
       <Widget
         src={`${ownerId}/widget/Idea`}
