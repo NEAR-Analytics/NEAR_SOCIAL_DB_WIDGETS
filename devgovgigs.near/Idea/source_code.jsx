@@ -18,24 +18,33 @@ const submissions = Near.view("devgovgigs.near", "get_submissions", {
 const submissionHeader = submissions.length > 0 ? <h3>Submissions</h3> : null;
 
 return (
-  <div>
-    <Widget
-      src={`mob.near/widget/ProfileLine`}
-      props={{ accountId: idea.submitter_id }}
-    />
-    <h3>{idea.name}</h3>
-    <p>Timestamp: {timestamp}</p>
-    <p>{idea.description}</p>
-    {submissionHeader}
-    {submissions
-      ? submissions.map((submission) => {
-          return (
+  <div className="row">
+    <div className="mb-2 card">
+      <div className="card-body">
+        <div className="row">
+          <div className="col-lg-6">
             <Widget
-              src="devgovgigs.near/widget/Submission"
-              props={{ submission }}
+              src={`mob.near/widget/ProfileLine`}
+              props={{ accountId: idea.submitter_id }}
             />
-          );
-        })
-      : ""}
+          </div>
+          <div className="col-lg-6">{timestamp}</div>
+        </div>
+        <hr />
+        <h4>{idea.name}</h4>
+        <p>{idea.description}</p>
+        {submissionHeader}
+        {submissions
+          ? submissions.map((submission) => {
+              return (
+                <Widget
+                  src="devgovgigs.near/widget/Submission"
+                  props={{ submission }}
+                />
+              );
+            })
+          : ""}
+      </div>
+    </div>
   </div>
 );
