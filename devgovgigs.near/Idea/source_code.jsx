@@ -21,15 +21,13 @@ return (
   <div className="row">
     <div className="mb-2 card">
       <div className="card-body">
-        <div className="row">
-          <div className="col-lg-6">
-            <Widget
-              src={`mob.near/widget/ProfileLine`}
-              props={{ accountId: idea.submitter_id }}
-            />
-          </div>
-          <div className="col-lg-6">{timestamp}</div>
+        <div>
+          <Widget
+            src={`mob.near/widget/ProfileLine`}
+            props={{ accountId: idea.submitter_id }}
+          />
         </div>
+        <div>{timestamp}</div>
         <hr />
         <h4>{idea.name}</h4>
         <p>{idea.description}</p>
