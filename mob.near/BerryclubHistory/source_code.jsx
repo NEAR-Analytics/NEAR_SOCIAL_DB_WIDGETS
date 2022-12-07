@@ -106,11 +106,12 @@ return (
       >
         Random Board
       </button>
-      {finetunes.map((finetune) => (
-        <div className="btn-group" role="group" aria-label="finetuning">
-          {finetune.map((value) => (
+      {finetunes.map((finetune, i) => (
+        <div key={i} className="btn-group" role="group" aria-label="finetuning">
+          {finetune.map((value, i) => (
             <button
               type="button"
+              key={i}
               className="btn btn-outline-secondary"
               onClick={() => {
                 State.update({
