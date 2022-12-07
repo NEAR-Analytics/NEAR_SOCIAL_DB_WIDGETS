@@ -72,9 +72,9 @@ function renderMoos(accountIds) {
   return (
     <div className="d-flex flex-wrap gap-3">
       {accountIds &&
-        accountIds.map((accountId) => {
+        accountIds.map((accountId, i) => {
           return (
-            <div className="position-relative">
+            <div className="position-relative" key={i}>
               <a
                 href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
                 className="text-decoration-none"
