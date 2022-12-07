@@ -95,6 +95,7 @@ const haveThisUserAlreadyVoted = () => {
 const loadComments = () => {
   return state.answersData.map((answerData) => {
     let answer = answerData.value.user_answer;
+    console.log("test log");
 
     let answerTimeStamp = answerData.value.answer_timestamp;
 
