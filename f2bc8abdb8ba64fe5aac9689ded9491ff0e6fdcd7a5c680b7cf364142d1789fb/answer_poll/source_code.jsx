@@ -1,3 +1,4 @@
+//I´m using the ?? with example data to make it visible to all users without setting props
 //I need questionBockHeight to be a string but .toString() is reserved so i convert the number into string like this
 const questionBlockHeight = props.questionBlockHeight + "" ?? 79932918;
 const userMakingQuestion =
@@ -15,32 +16,7 @@ const profile = Social.getr(`${userMakingQuestion}/profile`);
 State.init({
   currentAnswer: "",
   answersData: [{}],
-  questionBlockHeight: 0,
-  userMakingQuestion: "",
-  question: "",
-  questionTimestamp: 0,
-  questionType: "",
-  choicesOptions: [],
 });
-
-if (
-  questionBlockHeight !== state.questionBlockHeight ||
-  userMakingQuestion !== state.userMakingQuestion ||
-  question !== state.question ||
-  questionTimestamp !== state.questionTimestamp ||
-  questionType !== state.questionType ||
-  choicesOptions !== state.choicesOptions
-) {
-  console.log("in");
-  State.update({
-    questionBlockHeight: questionBlockHeight,
-    userMakingQuestion: userMakingQuestion,
-    question: question,
-    questionTimestamp: questionTimestamp,
-    questionType: questionType,
-    choicesOptions: choicesOptions,
-  });
-}
 
 let answersData = Social.index("answer_poll", questionBlockHeight);
 
