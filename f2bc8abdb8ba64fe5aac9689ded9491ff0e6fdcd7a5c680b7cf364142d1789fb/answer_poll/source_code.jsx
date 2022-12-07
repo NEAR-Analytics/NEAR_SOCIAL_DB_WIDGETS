@@ -1,16 +1,46 @@
 //I need questionBockHeight to be a string but .toString() is reserved so i convert the number into string like this
-const questionBlockHeight = props.questionBlockHeight + "";
-const userMakingQuestion = props.accountId;
-const question = props.question;
-const questionTimestamp = props.questionTimestamp;
-const questionType = props.questionType;
-const choicesOptions = props.choicesOptions;
+const questionBlockHeight = props.questionBlockHeight + "" ?? 79932918;
+const userMakingQuestion =
+  props.accountId ??
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+const question = props.question ?? "Testing multiple choice";
+const questionTimestamp = props.questionTimestamp ?? 1670201835360;
+const questionType = props.questionType ?? "2";
+const choicesOptions = props.choicesOptions ?? ["a", "b", "c"];
 
 const currentAccountId = context.accountId;
 
 const profile = Social.getr(`${userMakingQuestion}/profile`);
 
-State.init({ currentAnswer: "", answersData: [{}] });
+State.init({
+  currentAnswer: "",
+  answersData: [{}],
+  questionBlockHeight: 0,
+  userMakingQuestion: "",
+  question: "",
+  questionTimestamp: 0,
+  questionType: "",
+  choicesOptions: [],
+});
+
+if (questionBlockHeight !== state.questionBlockHeight) {
+  State.update({ questionBlockHeight: questionBlockHeight });
+}
+if (userMakingQuestion !== state.userMakingQuestion) {
+  State.update({ userMakingQuestion: userMakingQuestion });
+}
+if (question !== state.question) {
+  State.update({ question: question });
+}
+if (questionTimestamp !== state.questionTimestamp) {
+  State.update({ questionTimestamp: questionTimestamp });
+}
+if (questionType !== state.questionType) {
+  State.update({ questionType: questionType });
+}
+if (choicesOptions !== state.choicesOptions) {
+  State.update({ choicesOptions: choicesOptions });
+}
 
 let answersData = Social.index("answer_poll", questionBlockHeight);
 
