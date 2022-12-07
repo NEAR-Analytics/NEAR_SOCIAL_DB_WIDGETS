@@ -10,6 +10,7 @@ if (!accountId) {
 
 const notifications = Social.index("notify", accountId, {
   order: "desc",
+  limit: 100,
 });
 
 if (notifications === null) {
@@ -24,8 +25,8 @@ Storage.set("lastBlockHeight", notifications[0].blockHeight);
 
 return (
   <>
-    {notifications.map(({ accountId, blockHeight, value }) => (
-      <div className="d-flex justify-content-between mb-3">
+    {notifications.map(({ accountId, blockHeight, value }, i) => (
+      <div key={i} className="d-flex justify-content-between mb-3">
         <div className="me-4 text-truncate">
           <div className="text-truncate">
             <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
