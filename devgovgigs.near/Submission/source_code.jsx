@@ -34,7 +34,7 @@ const sponsorshipsList = props.isPreview ? null : (
     <div class="collapse" id={`collapseSponsorshipEditor${submission_id}`}>
       <Widget
         src={`${ownerId}/widget/SponsorshipEditor`}
-        props={{ submission_id }}
+        props={{ sponsorship: { submission_id } }}
       />
     </div>
     <div class="span8 offset4">
