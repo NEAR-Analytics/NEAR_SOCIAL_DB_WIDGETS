@@ -46,33 +46,31 @@ const Card = styled.div`
 
 return (
   <div className="row">
-    <Card className="mb-2 card">
+    <Card className="card">
       <div className="card-body">
-        <div class="row justify-content-between">
-          <div class="col-8">
-            <Widget
-              src={`mob.near/widget/ProfileLine`}
-              props={{ accountId: idea.author_id }}
-            />
-            <div>{timestamp}</div>
-          </div>
-          <div class="col-md-4">
-            <a
-              class="btn btn-primary"
-              data-bs-toggle="collapse"
-              href={`#collapseSubmissionEditor${idea_id}`}
-              role="button"
-              aria-expanded="false"
-              aria-controls={`collapseSubmissionEditor${idea_id}`}
-            >
-              Add Submission
-            </a>
-          </div>
-        </div>
+        <h5 class="card-title">Idea: {idea.name}</h5>
+        <h6 class="card-subtitle text-muted">
+          <Widget
+            src={`mob.near/widget/ProfileLine`}
+            props={{ accountId: idea.author_id }}
+          />
+        </h6>
 
-        <hr />
-        <h4>Idea: {idea.name}</h4>
-        <p>{idea.description}</p>
+        <p class="card-text">{idea.description}</p>
+        <p class="card-text">
+          <small class="text-muted">{timestamp}</small>
+        </p>
+
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseSubmissionEditor${idea_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseSubmissionEditor${idea_id}`}
+        >
+          Add Submission
+        </a>
         {submissionsList}
       </div>
     </Card>
