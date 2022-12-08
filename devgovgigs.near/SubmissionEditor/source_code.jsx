@@ -54,7 +54,7 @@ return (
         src={`${ownerId}/widget/Submission`}
         props={{
           submission: {
-            submitter_id: context.accountId,
+            author_id: context.accountId,
             name: state.name,
             description: state.description,
           },
