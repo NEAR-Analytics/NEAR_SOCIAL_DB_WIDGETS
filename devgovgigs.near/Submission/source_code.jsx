@@ -13,7 +13,7 @@ const timestamp = readableDate(
 
 const sponsorships = props.isPreview
   ? null
-  : Near.view(ownerId, "get_sponsorship", {
+  : Near.view(ownerId, "get_sponsorships", {
       submission_id,
     });
 
