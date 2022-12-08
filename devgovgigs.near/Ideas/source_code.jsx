@@ -25,7 +25,7 @@ return (
     <hr />
     {ideas
       ? ideas.map((idea) => {
-          return <Widget src="devgovgigs.near/widget/Idea" props={{ idea }} />;
+          return <Widget src={`${ownerId}/widget/Idea`} props={{ idea }} />;
         })
       : ""}
   </div>
