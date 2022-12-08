@@ -9,10 +9,6 @@ const onClick = () => {
   });
 };
 
-const handleChange = (event) => {
-  State.update({ description: event.target.value });
-};
-
 return (
   <div className="row">
     <div className="col-lg-6">
@@ -33,7 +29,6 @@ return (
         <br />
         <textarea
           value={state.description}
-          onChange={handleChange}
           type="text"
           rows={6}
           className="form-control"
