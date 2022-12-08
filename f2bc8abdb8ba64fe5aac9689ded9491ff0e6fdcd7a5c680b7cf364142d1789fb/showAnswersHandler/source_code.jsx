@@ -1,66 +1,43 @@
+const displayAnswerWidgetNames = [
+  "newTextAnswerInterface",
+  "newYesNoAnswerInterface",
+  "newMiniMultipleChoiceInterface",
+];
+
+const answers = [
+  {
+    questionBlockHeight: 81591891,
+    typeOfAnswer: "0",
+    answer: "",
+  },
+];
+
 const renderAnswers = () => {
   answers.map((answer) => {
-    if (answer.typeOfanswer == "0") {
-      <>
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answersHeader"
-          props={
-            {
-              /* setProperties */
-            }
+    <>
+      <Widget
+        src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answersHeader"
+        props={
+          {
+            /* setProperties */
           }
-        />
-        ;
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/newTextAnswerInterface"
-          props={
-            {
-              /* setProperties */
-            }
+        }
+      />
+      <Widget
+        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/${
+          typeOfAnswer == "0"
+            ? displayAnswerWidgetNames[0]
+            : typeOfAnswer == "1"
+            ? displayAnswerWidgetNames[1]
+            : typeOfAnswer == "2" && displayAnswerWidgetNames[2]
+        }`}
+        props={
+          {
+            /* setProperties */
           }
-        />
-        ;
-      </>;
-    } else if (answer.typeOfanswer == "1") {
-      <>
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answersHeader"
-          props={
-            {
-              /* setProperties */
-            }
-          }
-        />
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/newYesNoAnswerInterface"
-          props={
-            {
-              /* setProperties */
-            }
-          }
-        />
-      </>;
-    } else if (answer.typeOfanswer == "2") {
-      <>
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answersHeader"
-          props={
-            {
-              /* setProperties */
-            }
-          }
-        />
-        <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/newMiniMultipleChoiceInterface"
-          props={
-            {
-              /* setProperties */
-            }
-          }
-        />
-        ;
-      </>;
-    }
+        }
+      />
+    </>;
   });
 };
 
