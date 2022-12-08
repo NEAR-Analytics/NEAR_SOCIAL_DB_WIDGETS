@@ -39,12 +39,21 @@ return (
               ? "followed you"
               : value.type === "unfollow"
               ? "unfollowed you"
+              : value.type === "poke"
+              ? "poked you"
               : "???"}
             <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
           </div>
         </div>
         <div className="text-nowrap">
-          <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
+          {value.type === "follow" || value.type === "unfollow" ? (
+            <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
+          ) : (
+            <Widget
+              src="mob.near/widget/PokeButton"
+              props={{ accountId, back: true }}
+            />
+          )}
         </div>
       </div>
     ))}
