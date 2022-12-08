@@ -24,16 +24,12 @@ const data = {
 };
 
 return (
-  <CommitButton
-    disabled={loading}
-    className={`btn btn-lg btn-dark`}
-    data={data}
-  >
+  <CommitButton disabled={loading} className={`btn btn btn-dark`} data={data}>
     <Widget
       src="mob.near/widget/ProfileImage"
       props={{
         accountId: props.accountId,
-        style: { width: "2rem", height: "2rem" },
+        style: { width: "1.5rem", height: "1.5rem" },
         imageClassName: "rounded w-100 h-100 align-bottom",
       }}
     />
