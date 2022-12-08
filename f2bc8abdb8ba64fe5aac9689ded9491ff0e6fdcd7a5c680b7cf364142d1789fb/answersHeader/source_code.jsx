@@ -1,3 +1,5 @@
+let title = props.questionTitle ?? "Mock title";
+let description = props.description ?? "Mock description";
 let startDate = props.startDate ?? Date.now() - Date.now() / 1000;
 let endDate = props.endDate ?? Date.now() + Date.now() / 1000;
 let userMakingQuestion = props.userMakingQuestion ?? DaniNoMeMates;
@@ -10,29 +12,33 @@ function dateToTimestamp(date) {
 }
 
 return (
-  <div className="d-flex no-wrap">
-    <Widget
-      src="mob.near/widget/Profile"
-      props={{ userMakingQuestion, profile }}
-    />
+  <div>
+    <div className="d-flex no-wrap">
+      <Widget
+        src="mob.near/widget/Profile"
+        props={{ userMakingQuestion, profile }}
+      />
 
-    <div className="d-flex">
-      <span className="mx-2">End date: {endDate} </span>
+      <div className="d-flex">
+        <span className="mx-2">End date: {endDate} </span>
 
-      <span
-        style={{
-          backgroundColor:
-            dateToTimestamp(startDate) < Date.now() &&
-            dateToTimestamp(endDate) > Date.now()
-              ? "blue"
-              : "red",
-        }}
-      >
-        {dateToTimestamp(startDate) < Date.now() &&
-        dateToTimestamp(endDate) > Date.now()
-          ? "Active"
-          : "Closed"}
-      </span>
+        <span
+          style={{
+            backgroundColor:
+              dateToTimestamp(startDate) < Date.now() &&
+              dateToTimestamp(endDate) > Date.now()
+                ? "blue"
+                : "red",
+          }}
+        >
+          {dateToTimestamp(startDate) < Date.now() &&
+          dateToTimestamp(endDate) > Date.now()
+            ? "Active"
+            : "Closed"}
+        </span>
+      </div>
     </div>
+    <h4>{title}</h4>
+    <p>{description}</p>
   </div>
 );
