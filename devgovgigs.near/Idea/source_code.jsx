@@ -24,15 +24,15 @@ const submissionsList = props.isPreview ? null : (
       <a
         class="btn btn-primary mb-2"
         data-bs-toggle="collapse"
-        href="#collapseSubmissionEditor"
+        href={`#collapseSubmissionEditor${idea_id}`}
         role="button"
         aria-expanded="false"
-        aria-controls="collapseSubmissionEditor"
+        aria-controls={`collapseSubmissionEditor${idea_id}`}
       >
         Add Submission
       </a>
     </div>
-    <div class="collapse" id="collapseSubmissionEditor">
+    <div class="collapse" id={`collapseSubmissionEditor${idea_id}`}>
       <Widget src={`${ownerId}/widget/SubmissionEditor`} props={{ idea_id }} />
     </div>
     <div class="span8 offset4">
