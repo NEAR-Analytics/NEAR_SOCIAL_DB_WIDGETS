@@ -48,7 +48,7 @@ const computeResults = (term) => {
     result,
   });
 
-  if (props.onChange && state.search) {
+  if (props.onChange) {
     props.onChange({ term, result });
   }
 };
