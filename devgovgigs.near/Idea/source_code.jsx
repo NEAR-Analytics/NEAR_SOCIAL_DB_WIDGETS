@@ -20,6 +20,16 @@ const submissions = props.isPreview
 
 const submissionsList = props.isPreview ? null : (
   <div class="row">
+    <a
+      class="card-link"
+      data-bs-toggle="collapse"
+      href={`#collapseSubmissionEditor${idea_id}`}
+      role="button"
+      aria-expanded="false"
+      aria-controls={`collapseSubmissionEditor${idea_id}`}
+    >
+      Add Submission
+    </a>
     <div class="collapse" id={`collapseSubmissionEditor${idea_id}`}>
       <Widget src={`${ownerId}/widget/SubmissionEditor`} props={{ idea_id }} />
     </div>
@@ -59,17 +69,6 @@ return (
             />
           </small>
         </p>
-
-        <a
-          class="card-link"
-          data-bs-toggle="collapse"
-          href={`#collapseSubmissionEditor${idea_id}`}
-          role="button"
-          aria-expanded="false"
-          aria-controls={`collapseSubmissionEditor${idea_id}`}
-        >
-          Add Submission
-        </a>
         {submissionsList}
       </div>
     </Card>
