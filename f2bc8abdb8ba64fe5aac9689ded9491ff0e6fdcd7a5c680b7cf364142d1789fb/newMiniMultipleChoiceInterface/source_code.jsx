@@ -44,16 +44,9 @@ const renderOption = (option, index) => {
 };
 
 return (
-  <div className="d-flex flex-column">
-    <div>
-      <h3>{question}</h3>
-      <p>{description}</p>
-    </div>
-
-    <div className="m-2">
-      {choicesOptions.map((option, index) => {
-        return renderOption(option, index);
-      })}
-    </div>
+  <div className="m-2">
+    {choicesOptions.map((option, index) => {
+      return renderOption(option, index);
+    })}
   </div>
 );
