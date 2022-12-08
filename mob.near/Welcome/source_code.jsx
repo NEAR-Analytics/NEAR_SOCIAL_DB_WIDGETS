@@ -33,11 +33,23 @@ return (
         {state.profiles && state.profiles.length > 0 && (
           <div className="mb-2">
             {state.profiles.map((profile, i) => (
-              <div key={i} className="mb-1">
-                <Widget
-                  src="mob.near/widget/Profile"
-                  props={{ accountId: profile.accountId }}
-                />
+              <div key={i} className="d-flex justify-content-between mb-3">
+                <div className="me-4 text-truncate">
+                  <Widget
+                    src="mob.near/widget/Profile"
+                    props={{ accountId: profile.accountId }}
+                  />
+                </div>
+                <div className="text-nowrap">
+                  <Widget
+                    src="mob.near/widget/FollowButton"
+                    props={{ accountId: profile.accountId }}
+                  />
+                  <Widget
+                    src="mob.near/widget/PokeButton"
+                    props={{ accountId: profile.accountId }}
+                  />
+                </div>
               </div>
             ))}
             <hr />
