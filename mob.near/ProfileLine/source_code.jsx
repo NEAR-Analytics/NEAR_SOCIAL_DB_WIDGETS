@@ -1,10 +1,11 @@
 const accountId = props.accountId ?? context.accountId;
 const link = props.link ?? true;
 const hideAccountId = props.hideAccountId;
+const hideName = props.hideName;
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
-const name = profile.name || "No-name profile";
+const name = profile.name ?? accountId;
 const title = props.title ?? `${name} @${accountId}`;
 const tooltip =
   props.tooltip && (props.tooltip === true ? title : props.tooltip);
@@ -21,7 +22,7 @@ let inner = (
         imageClassName: "rounded w-100 h-100 align-top",
       }}
     />
-    {name}
+    {!hideName && name}
     {!hideAccountId && <span className="text-muted">@{accountId}</span>}
   </>
 );
