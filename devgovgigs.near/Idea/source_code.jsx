@@ -32,16 +32,20 @@ return (
         <h4>{idea.name}</h4>
         <p>{idea.description}</p>
         {submissionHeader}
-        {submissions
-          ? submissions.map((submission) => {
-              return (
-                <Widget
-                  src="devgovgigs.near/widget/Submission"
-                  props={{ submission }}
-                />
-              );
-            })
-          : ""}
+        <div class="row">
+          <div class="span8 offset4">
+            {submissions
+              ? submissions.map((submission) => {
+                  return (
+                    <Widget
+                      src="devgovgigs.near/widget/Submission"
+                      props={{ submission }}
+                    />
+                  );
+                })
+              : ""}
+          </div>
+        </div>
       </div>
     </div>
   </div>
