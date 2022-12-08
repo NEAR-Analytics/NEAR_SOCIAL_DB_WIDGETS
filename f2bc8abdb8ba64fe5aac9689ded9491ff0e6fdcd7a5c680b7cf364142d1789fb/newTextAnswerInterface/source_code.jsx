@@ -13,24 +13,6 @@ let answers = [
   },
 ];
 
-const timeAgo = (diffSec) =>
-  diffSec < 60000
-    ? `${(diffSec / 1000) | 0} seconds ago`
-    : diffSec < 3600000
-    ? `${(diffSec / 60000) | 0} minutes ago`
-    : diffSec < 86400000
-    ? `${(diffSec / 3600000) | 0} hours ago`
-    : `${(diffSec / 86400000) | 0} days ago`;
-
-const profileLink = (c) => (
-  <a
-    className="text-decoration-none link-dark"
-    href={`#/mob.near/widget/ProfilePage?accountId=${userMakingQuestion}`}
-  >
-    {c}
-  </a>
-);
-
 return (
   <>
     {answers.map((answer) => {
