@@ -3,7 +3,9 @@ State.init({
   pollDescription: "",
   pollDiscussionLink: "",
   pollStartDate: "",
+  startTime: "",
   pollEndDate: "",
+  endTime: "",
   question: "",
   pollType: "2",
   choices: [],
@@ -133,6 +135,9 @@ return (
         className="mb-2"
         id="pollTitle"
         value={state.pollTitle}
+        onChange={(e) => {
+          State.update({ pollTitle: e.target.value });
+        }}
       />
 
       <label for="pollDescription" className="mt-2">
@@ -147,6 +152,9 @@ return (
         }}
         rows="3"
         value={state.pollDescription}
+        onChange={(e) => {
+          State.update({ pollDescription: e.target.value });
+        }}
       ></textarea>
 
       <label for="pollDiscussionLink" className="mt-3">
@@ -162,6 +170,9 @@ return (
         className="mb-2"
         id="pollDiscussionLink"
         value={state.pollDiscussionLink}
+        onChange={(e) => {
+          State.update({ pollDiscussionLink: e.target.value });
+        }}
       />
 
       <div
@@ -177,6 +188,9 @@ return (
               type="date"
               id="pollStartDate"
               value={state.pollStartDate}
+              onChange={(e) => {
+                State.update({ pollStartDate: e.target.value });
+              }}
             />
           </div>
           <div>
@@ -184,6 +198,9 @@ return (
             <input
               type="time"
               style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              onChange={(e) => {
+                State.update({ startTime: e.target.value });
+              }}
             />
           </div>
         </div>
@@ -195,6 +212,9 @@ return (
               type="date"
               id="pollStartDate"
               value={state.pollEndDate}
+              onChange={(e) => {
+                State.update({ pollEndDate: e.target.value });
+              }}
             />
           </div>
           <div>
@@ -202,6 +222,10 @@ return (
             <input
               type="time"
               style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              value={state.endTime}
+              onChange={(e) => {
+                State.update({ endTime: e.target.value });
+              }}
             />
           </div>
         </div>
@@ -217,6 +241,9 @@ return (
           type="text"
           id="question"
           value={state.question}
+          onChange={(e) => {
+            State.update({ question: e.target.value });
+          }}
         />
         <label className="mt-3" for="pollType">
           Pool type
@@ -227,9 +254,7 @@ return (
             className="btn dropdown-toggle"
             type="button"
             onClick={() => {
-              console.log(state.expandOptions);
               State.update({ expandOptions: !state.expandOptions });
-              console.log(state.expandOptions);
             }}
           >
             {state.pollType == "0"
