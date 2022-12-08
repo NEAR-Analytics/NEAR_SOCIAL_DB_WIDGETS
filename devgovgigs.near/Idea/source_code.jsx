@@ -29,7 +29,7 @@ return (
         </div>
         <div>{timestamp}</div>
         <hr />
-        <h4>{idea.name}</h4>
+        <h4>Idea: {idea.name}</h4>
         <p>{idea.description}</p>
         {submissionHeader}
         <div class="row">
