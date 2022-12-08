@@ -100,7 +100,6 @@ let data = {
 
 return (
   <>
-    {state.column1}
     <div className="container">
       <div className="row">
         <div className="col">
