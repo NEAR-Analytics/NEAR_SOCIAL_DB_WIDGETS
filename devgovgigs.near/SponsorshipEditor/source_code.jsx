@@ -15,7 +15,7 @@ const onClick = () => {
     name: state.name,
     description: state.description,
     amount: state.amount,
-    token: state.token,
+    sponsorship_token: state.token,
     supervisor: state.supervisor,
   });
 };
