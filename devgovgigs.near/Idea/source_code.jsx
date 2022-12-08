@@ -20,22 +20,10 @@ const submissions = props.isPreview
 
 const submissionsList = props.isPreview ? null : (
   <div class="row">
-    <div className="col-lg-12">
-      <a
-        class="btn btn-primary mb-2"
-        data-bs-toggle="collapse"
-        href={`#collapseSubmissionEditor${idea_id}`}
-        role="button"
-        aria-expanded="false"
-        aria-controls={`collapseSubmissionEditor${idea_id}`}
-      >
-        Add Submission
-      </a>
-    </div>
     <div class="collapse" id={`collapseSubmissionEditor${idea_id}`}>
       <Widget src={`${ownerId}/widget/SubmissionEditor`} props={{ idea_id }} />
     </div>
-    <div class="span8 offset4">
+    <div>
       {submissions
         ? submissions.map((submission) => {
             return (
@@ -60,13 +48,28 @@ return (
   <div className="row">
     <Card className="mb-2 card">
       <div className="card-body">
-        <div>
-          <Widget
-            src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: idea.author_id }}
-          />
+        <div class="row justify-content-between">
+          <div class="col-8">
+            <Widget
+              src={`mob.near/widget/ProfileLine`}
+              props={{ accountId: idea.author_id }}
+            />
+            <div>{timestamp}</div>
+          </div>
+          <div class="col-md-4">
+            <a
+              class="btn btn-primary"
+              data-bs-toggle="collapse"
+              href={`#collapseSubmissionEditor${idea_id}`}
+              role="button"
+              aria-expanded="false"
+              aria-controls={`collapseSubmissionEditor${idea_id}`}
+            >
+              Add Submission
+            </a>
+          </div>
         </div>
-        <div>{timestamp}</div>
+
         <hr />
         <h4>Idea: {idea.name}</h4>
         <p>{idea.description}</p>
