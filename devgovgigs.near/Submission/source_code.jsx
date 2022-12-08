@@ -19,18 +19,17 @@ const sponsorships = props.isPreview
 
 const sponsorshipsList = props.isPreview ? null : (
   <div class="row">
-    <div className="col-lg-12">
-      <a
-        class="btn btn-primary mb-2"
-        data-bs-toggle="collapse"
-        href={`#collapseSponsorshipEditor${submission_id}`}
-        role="button"
-        aria-expanded="false"
-        aria-controls={`collapseSponsorshipEditor${submission_id}`}
-      >
-        Add Sponsorship
-      </a>
-    </div>
+    <a
+      class="card-link"
+      data-bs-toggle="collapse"
+      href={`#collapseSponsorshipEditor${submission_id}`}
+      role="button"
+      aria-expanded="false"
+      aria-controls={`collapseSponsorshipEditor${submission_id}`}
+    >
+      Add Sponsorship
+    </a>
+
     <div class="collapse" id={`collapseSponsorshipEditor${submission_id}`}>
       <Widget
         src={`${ownerId}/widget/SponsorshipEditor`}
@@ -62,16 +61,17 @@ return (
   <div className="row">
     <Card className="mb-2 card">
       <div className="card-body">
-        <div>
-          <Widget
-            src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: submission.author_id }}
-          />
-        </div>
-        <div>{timestamp}</div>
-        <hr />
-        <h4>Submission: {submission.name}</h4>
-        <p>{submission.description}</p>
+        <h5 class="card-title">Submission: {submission.name}</h5>
+        <p class="card-text">{submission.description}</p>
+        <p class="card-text">
+          <small class="text-muted">
+            {timestamp}
+            <Widget
+              src={`mob.near/widget/ProfileLine`}
+              props={{ accountId: submission.author_id }}
+            />
+          </small>
+        </p>
         {sponsorshipsList}
       </div>
     </Card>
