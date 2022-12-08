@@ -30,7 +30,7 @@ return (
 
     <p>
       Answer Answer Answer Answer Answer Answer Answer Answer Answer Answer
-      Answer Answer Answer Answer Answer Answer Answer Answer Answer{" "}
+      Answer Answer Answer Answer Answer Answer Answer Answer Answer
     </p>
   </div>
 );
