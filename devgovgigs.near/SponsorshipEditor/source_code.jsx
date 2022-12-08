@@ -10,10 +10,13 @@ initState({
 });
 
 const onClick = () => {
-  Near.call(ownerId, "add_submission", {
-    idea_id,
+  Near.call(ownerId, "add_sponsorship", {
+    submission_id,
     name: state.name,
     description: state.description,
+    amount: state.amount,
+    token: state.token,
+    supervisor: state.supervisor,
   });
 };
 
