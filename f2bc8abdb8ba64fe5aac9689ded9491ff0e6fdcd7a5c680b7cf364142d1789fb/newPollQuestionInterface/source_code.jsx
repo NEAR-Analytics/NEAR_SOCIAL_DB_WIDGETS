@@ -22,10 +22,15 @@ const renderTextInputsForChoices = () => {
     <>
       {amountOfChoices.map((choiceNumber) => {
         return (
-          <div className="my-1" key={`choice-input-${choiceNumber}`}>
-            <h6>Choice numer {choiceNumber + 1}</h6>
+          <div className="my-3" key={`choice-input-${choiceNumber}`}>
+            <label>Answer option {choiceNumber + 1}</label>
             <div className="d-flex">
               <input
+                style={{
+                  backgroundColor: "rgb(230, 230, 230)",
+                  border: "1px solid #ced4da",
+                  borderRadius: "0.375rem",
+                }}
                 type="text"
                 className="w-100 mx-2"
                 value={state.choices[choiceNumber]}
@@ -42,9 +47,13 @@ const renderTextInputsForChoices = () => {
           </div>
         );
       })}
-      <button type="button" className="btn btn-outline-primary d-flex">
+      <button
+        type="button"
+        className="btn btn-outline-primary d-flex"
+        style={{ margin: "0 auto" }}
+      >
         <i class="bi bi-plus-lg"></i>
-        <span>Button</span>
+        <span>Add option</span>
       </button>
     </>
   );
@@ -56,42 +65,51 @@ const renderOptions = () => {
       <input
         style={{
           backgroundColor: "rgb(230, 230, 230)",
+          borderRadius: "0px",
+          position: "absolute",
+          top: "100%",
           minWidth: "max-content",
-          width: "100%",
+          width: "152px",
         }}
         type="text"
         value="Yes/No"
         readonly
         onClick={() => {
-          State.update({ pollType: "0" });
+          State.update({ pollType: "0", expandOptions: !state.expandOptions });
         }}
       />
 
       <input
         style={{
           backgroundColor: "rgb(230, 230, 230)",
+          borderRadius: "0px",
+          position: "absolute",
+          top: "200%",
           minWidth: "max-content",
-          width: "100%",
+          width: "152px",
         }}
         type="text"
         value="Text"
         readonly
         onClick={() => {
-          State.update({ pollType: "1" });
+          State.update({ pollType: "1", expandOptions: !state.expandOptions });
         }}
       />
 
       <input
         style={{
           backgroundColor: "rgb(230, 230, 230)",
+          borderRadius: "0px",
+          position: "absolute",
+          top: "300%",
           minWidth: "max-content",
-          width: "100%",
+          width: "152px",
         }}
         type="text"
         value="Multiple choice"
         readonly
         onClick={() => {
-          State.update({ pollType: "2" });
+          State.update({ pollType: "2", expandOptions: !state.expandOptions });
         }}
       />
     </div>
@@ -100,30 +118,46 @@ const renderOptions = () => {
 
 return (
   <div
-    className="d-flex align-items-start justify-content-around"
-    style={{ borderRadius: "3px" }}
+    className="d-flex align-items-start justify-content-around pt-4"
+    style={{ borderRadius: "0.375rem", height: "100%" }}
   >
     <div className="d-flex flex-column w-75 justify-content-around">
       <label for="pollTitle">Title</label>
       <input
-        style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        style={{
+          backgroundColor: "rgb(230, 230, 230)",
+          border: "1px solid #ced4da",
+          borderRadius: "0.375rem",
+        }}
         type="text"
         className="mb-2"
         id="pollTitle"
         value={state.pollTitle}
       />
 
-      <label for="pollDescription">Description</label>
+      <label for="pollDescription" className="mt-2">
+        Description
+      </label>
       <textarea
         id="pollDescription"
-        style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        style={{
+          backgroundColor: "rgb(230, 230, 230)",
+          border: "1px solid #ced4da",
+          borderRadius: "0.375rem",
+        }}
         rows="3"
         value={state.pollDescription}
       ></textarea>
 
-      <label for="pollDiscussionLink">Discussion link (optional)</label>
+      <label for="pollDiscussionLink" className="mt-3">
+        Discussion link (optional)
+      </label>
       <input
-        style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        style={{
+          backgroundColor: "rgb(230, 230, 230)",
+          border: "1px solid #ced4da",
+          borderRadius: "0.375rem",
+        }}
         type="text"
         className="mb-2"
         id="pollDiscussionLink"
@@ -132,30 +166,51 @@ return (
 
       <div
         className="d-flex justify-content-around flex-wrap"
-        style={{ width: "50%", minWidth: "max-content", maxWidth: "100%" }}
+        style={{ maxWidth: "100%" }}
       >
-        <div className="d-flex flex-column">
-          <label for="pollStartDate">Start date</label>
-          {/*You have min and max propertuies on dates input*/}
-          <input
-            style={{ backgroundColor: "rgb(230, 230, 230)" }}
-            type="date"
-            id="pollStartDate"
-            value={state.pollStartDate}
-          />
+        <div className="d-flex flex-row">
+          <div className="d-flex flex-column mx-2">
+            <label for="pollStartDate">Start date</label>
+            {/*You have min and max propertuies on dates input*/}
+            <input
+              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              type="date"
+              id="pollStartDate"
+              value={state.pollStartDate}
+            />
+          </div>
+          <div>
+            <div>Start time</div>
+            <input
+              type="time"
+              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+            />
+          </div>
         </div>
-
-        <div className="d-flex flex-column">
-          <label for="pollEndDate">End date</label>
-          <input
-            style={{ backgroundColor: "rgb(230, 230, 230)" }}
-            type="date"
-            id="pollStartDate"
-            value={state.pollEndDate}
-          />
+        <div className="d-flex flex-row">
+          <div className="d-flex flex-column mx-2">
+            <label for="pollEndDate">End date</label>
+            <input
+              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              type="date"
+              id="pollStartDate"
+              value={state.pollEndDate}
+            />
+          </div>
+          <div>
+            <div>End time</div>
+            <input
+              type="time"
+              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+            />
+          </div>
         </div>
       </div>
-      <div className="bd-example">
+
+      <div
+        style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
+        className="p-3 my-3"
+      >
         <label for="question">Question</label>
         <input
           style={{ backgroundColor: "rgb(230, 230, 230)" }}
@@ -163,7 +218,9 @@ return (
           id="question"
           value={state.question}
         />
-        <label for="pollType">Pool type</label>
+        <label className="mt-3" for="pollType">
+          Pool type
+        </label>
         <div className="dropdown">
           <button
             style={{ backgroundColor: "rgb(230, 230, 230)" }}
@@ -186,17 +243,27 @@ return (
         </div>
         {state.pollType == "2" && renderTextInputsForChoices()}
       </div>
-      <div className="bd-example d-flex justify-content-center">
+      <div
+        style={{
+          height: "150px",
+          border: "1px solid #ced4da",
+          borderRadius: "0.375rem",
+        }}
+        className="d-flex justify-content-center align-items-center"
+      >
         <i class="bi bi-plus-lg"></i>
-        <span>Add another one question</span>
+        <span>Click to add another one question</span>
       </div>
     </div>
 
-    <div className="bd-example">
-      <button type="button" className="btn btn-outline-primary">
+    <div
+      style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
+      className="p-3 d-flex flex-column justify-content-center"
+    >
+      <button type="button" className="my-2 btn btn-outline-primary">
         Preview
       </button>
-      <button type="button" className="btn btn-primary">
+      <button type="button" className="my-2 btn btn-primary">
         Create poll
       </button>
     </div>
