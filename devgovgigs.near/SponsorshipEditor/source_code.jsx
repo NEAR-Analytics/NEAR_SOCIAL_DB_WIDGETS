@@ -86,7 +86,7 @@ return (
       <Widget
         src={`${ownerId}/widget/Sponsorship`}
         props={{
-          submission: {
+          sponsorship: {
             author_id: context.accountId,
             name: state.name,
             description: state.description,
