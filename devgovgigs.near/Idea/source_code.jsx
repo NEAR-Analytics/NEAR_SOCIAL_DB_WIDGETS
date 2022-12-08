@@ -50,9 +50,15 @@ const submissionsList = props.isPreview ? null : (
   </div>
 );
 
+const Card = styled.div`
+  &:hover {
+    background: #eee;
+  }
+`;
+
 return (
   <div className="row">
-    <div className="mb-2 card">
+    <Card className="mb-2 card">
       <div className="card-body">
         <div>
           <Widget
@@ -66,6 +72,6 @@ return (
         <p>{idea.description}</p>
         {submissionsList}
       </div>
-    </div>
+    </Card>
   </div>
 );
