@@ -24,7 +24,7 @@ const data = {
 };
 
 return (
-  <CommitButton disabled={loading} className={`btn btn btn-dark`} data={data}>
+  <CommitButton force className={`btn btn btn-dark`} data={data}>
     <Widget
       src="mob.near/widget/ProfileImage"
       props={{
