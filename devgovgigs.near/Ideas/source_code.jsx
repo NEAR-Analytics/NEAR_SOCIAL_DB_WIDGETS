@@ -19,7 +19,10 @@ return (
       </a>
     </div>
     <div class="collapse" id="collapseIdeaEditor">
-      <Widget src={`${ownerId}/widget/IdeaEditor`} />
+      <Widget
+        src={`${ownerId}/widget/IdeaEditor`}
+        props={{ isPreview: true }}
+      />
     </div>
     <i>
       * Note, all submissions that were granted sponsorships are required to
