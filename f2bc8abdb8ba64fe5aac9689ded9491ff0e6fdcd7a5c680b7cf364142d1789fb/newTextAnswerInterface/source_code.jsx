@@ -13,6 +13,12 @@ let answers = [
   },
 ];
 
+function stringToTimeStampFormat(string) {
+  let timeStampFormat = 1321566516131;
+  //TODO
+  return timeStampFormat;
+}
+
 return (
   <>
     {answers.map((answer) => {
@@ -46,7 +52,7 @@ return (
               <div>
                 <small className="ps-1 text-nowrap text-muted ms-auto">
                   <i className="bi bi-clock me-1"></i>
-                  {timeAgo(Date.now() - questionTimestamp)}
+                  {timeAgo(Date.now() - stringToTimeStampFormat(startDate))}
                 </small>
               </div>
             </div>
