@@ -11,7 +11,7 @@ let options = props.options ?? [
   },
 ];
 
-let amountOfVotes = "30";
+let amountOfVotes = props.amountOfVotes ?? "30";
 
 const renderOption = (option) => {
   return (
