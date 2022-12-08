@@ -33,7 +33,7 @@ const submissionsList = props.isPreview ? null : (
       </a>
     </div>
     <div class="collapse" id="collapseSubmissionEditor">
-      <Widget src={`${ownerId}/widget/SubmissionEditor`} />
+      <Widget src={`${ownerId}/widget/SubmissionEditor`} props={{ idea_id }} />
     </div>
     <div class="span8 offset4">
       {submissions
