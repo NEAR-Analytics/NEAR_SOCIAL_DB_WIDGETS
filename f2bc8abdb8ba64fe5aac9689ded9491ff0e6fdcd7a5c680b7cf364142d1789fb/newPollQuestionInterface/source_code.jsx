@@ -7,7 +7,7 @@ State.init({
   pollEndDate: "",
   endTime: "",
   question: "",
-  pollType: "2",
+  pollType: "0",
   choices: [],
   amountOfChoices: 1,
   expandOptions: false,
