@@ -3,7 +3,7 @@ const ownerId = "devgovgigs.near";
 initState({ name: "", description: "" });
 
 const onClick = () => {
-  Near.call("devgovgigs.near", "add_idea", {
+  Near.call(ownerId, "add_idea", {
     name: state.name,
     description: state.description,
   });
