@@ -4,7 +4,7 @@ const idea_id = props.idea_id ? parseInt(props.idea_id) : 0;
 initState({ name: "", description: "" });
 
 const onClick = () => {
-  Near.call("devgovgigs.near", "add_submission", {
+  Near.call(ownerId, "add_submission", {
     idea_id,
     name: state.name,
     description: state.description,
