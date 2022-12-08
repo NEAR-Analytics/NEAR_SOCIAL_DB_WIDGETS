@@ -58,24 +58,22 @@ const Card = styled.div`
 `;
 
 return (
-  <div className="row">
-    <Card className="mb-2 card">
-      <div className="card-header">
-        <small class="text-muted">
-          <Widget
-            src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: submission.author_id }}
-          />
-        </small>
-      </div>
-      <div className="card-body">
-        <h5 class="card-title">Submission: {submission.name}</h5>
-        <p class="card-text">{submission.description}</p>
-        <p class="card-text">
-          <small class="text-muted">{timestamp}</small>
-        </p>
-        {sponsorshipsList}
-      </div>
-    </Card>
-  </div>
+  <Card className="mb-2 card">
+    <div className="card-header">
+      <small class="text-muted">
+        <Widget
+          src={`mob.near/widget/ProfileLine`}
+          props={{ accountId: submission.author_id }}
+        />
+      </small>
+    </div>
+    <div className="card-body">
+      <h5 class="card-title">Submission: {submission.name}</h5>
+      <p class="card-text">{submission.description}</p>
+      <p class="card-text">
+        <small class="text-muted">{timestamp}</small>
+      </p>
+      {sponsorshipsList}
+    </div>
+  </Card>
 );
