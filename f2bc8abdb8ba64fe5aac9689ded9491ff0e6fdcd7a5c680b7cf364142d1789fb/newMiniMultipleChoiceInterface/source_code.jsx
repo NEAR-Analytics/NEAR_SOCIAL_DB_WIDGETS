@@ -3,19 +3,13 @@ let question = props.question ?? "Testing multiple choice";
 let description = props.description ?? "This is a test";
 let choicesOptions = props.choicesOptions ?? ["a", "b", "c"];
 
-let options = props.options ?? [
-  {
-    text: "Option1",
-    percentageOfVotes: "20%",
-  },
-  {
-    text: "Option2",
-    percentageOfVotes: "50%",
-  },
-];
-
 //You need to do a Social.index call to get all the answers to this question, then count the amounts of votes for each option and the totals
-let amountOfVotes = props.amountOfVotes ?? "30";
+let countVotes = [20, 3, 4];
+let amountOfVotes = "30";
+
+function calculatePercentage(votesToThisOption) {
+  return (votesToThisOption / amountOfVotes) * 100;
+}
 
 const renderOption = (option, index) => {
   return (
@@ -33,7 +27,7 @@ const renderOption = (option, index) => {
               clear: "both",
               padding: "0.01em 16px",
               display: "inline-block",
-              width: calculatePercentage(countVotes[index]),
+              width: `${calculatePercentage(countVotes[index])}%`,
               textAlign: "center",
               backgroundColor: "lightgray",
             }}
