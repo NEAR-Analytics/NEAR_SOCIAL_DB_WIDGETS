@@ -24,7 +24,7 @@ return (
         <div>
           <Widget
             src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: idea.submitter_id }}
+            props={{ accountId: idea.author_id }}
           />
         </div>
         <div>{timestamp}</div>
