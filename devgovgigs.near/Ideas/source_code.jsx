@@ -7,7 +7,21 @@ const ideas = Near.view(ownerId, "get_ideas");
 
 return (
   <div className="row">
-    <Widget src={`${ownerId}/widget/IdeaEditor`} />
+    <div className="col-lg-12">
+      <a
+        class="btn btn-primary mb-2"
+        data-bs-toggle="collapse"
+        href="#collapseIdeaEditor"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseIdeaEditor"
+      >
+        Add Idea
+      </a>
+    </div>
+    <div class="collapse" id="collapseIdeaEditor">
+      <Widget src={`${ownerId}/widget/IdeaEditor`} />
+    </div>
 
     <hr />
     {ideas
