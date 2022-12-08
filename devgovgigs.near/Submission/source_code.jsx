@@ -1,4 +1,6 @@
+const ownerId = "devgovgigs.near";
 const submission = props.submission;
+const submission_id = submission.id;
 
 function readableDate(UNIX_timestamp) {
   var a = new Date(parseInt(UNIX_timestamp) / 1000000);
@@ -7,6 +9,47 @@ function readableDate(UNIX_timestamp) {
 
 const timestamp = readableDate(
   submission.timestamp ? submission.timestamp / 1000000 : Date.now()
+);
+
+const sponsorships = props.isPreview
+  ? null
+  : Near.view(ownerId, "get_sponsorship", {
+      submission_id,
+    });
+
+const sponsorshipsList = props.isPreview ? null : (
+  <div class="row">
+    <div className="col-lg-12">
+      <a
+        class="btn btn-primary mb-2"
+        data-bs-toggle="collapse"
+        href={`#collapseSponsorshipEditor${submission_id}`}
+        role="button"
+        aria-expanded="false"
+        aria-controls={`collapseSponsorshipEditor${submission_id}`}
+      >
+        Add Sponsorship
+      </a>
+    </div>
+    <div class="collapse" id={`collapseSponsorshipEditor${submission_id}`}>
+      <Widget
+        src={`${ownerId}/widget/SponsorshipEditor`}
+        props={{ submission_id }}
+      />
+    </div>
+    <div class="span8 offset4">
+      {sponsorships
+        ? sponsorships.map((sponsorship) => {
+            return (
+              <Widget
+                src={`${ownerId}/widget/Sponsorship`}
+                props={{ sponsorship }}
+              />
+            );
+          })
+        : ""}
+    </div>
+  </div>
 );
 
 return (
@@ -23,6 +66,7 @@ return (
         <hr />
         <h4>Submission: {submission.name}</h4>
         <p>{submission.description}</p>
+        {sponsorshipsList}
       </div>
     </div>
   </div>
