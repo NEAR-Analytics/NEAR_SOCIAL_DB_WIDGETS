@@ -20,7 +20,30 @@ return (
     </div>
     <div className="row mb-3">
       <div>
-        <h4>Recently joined</h4>
+        <h4>People</h4>
+        <div className="mb-2">
+          <Widget
+            src="mob.near/widget/ProfileSearch"
+            props={{
+              limit: 10,
+              onChange: ({ result }) => State.update({ profiles: result }),
+            }}
+          />
+        </div>
+        {state.profiles && state.profiles.length > 0 && (
+          <div className="mb-2">
+            {state.profiles.map((profile, i) => (
+              <div key={i} className="mb-1">
+                <Widget
+                  src="mob.near/widget/Profile"
+                  props={{ accountId: profile.accountId }}
+                />
+              </div>
+            ))}
+            <hr />
+          </div>
+        )}
+
         <Widget src="mob.near/widget/LastProfilesImages" />
       </div>
     </div>
