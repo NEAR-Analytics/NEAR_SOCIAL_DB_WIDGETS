@@ -52,7 +52,7 @@ return (
         src={`${ownerId}/widget/Idea`}
         props={{
           idea: {
-            submitter_id: context.accountId,
+            author_id: context.accountId,
             name: state.name,
             description: state.description,
           },
