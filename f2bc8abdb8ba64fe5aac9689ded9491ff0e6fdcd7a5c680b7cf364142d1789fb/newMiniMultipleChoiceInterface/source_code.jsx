@@ -1,6 +1,4 @@
 let questionBlockHeight = props.questionBlockHeight ?? 79932918;
-let question = props.question ?? "Testing multiple choice";
-let description = props.description ?? "This is a test";
 let choicesOptions = props.choicesOptions ?? ["a", "b", "c"];
 
 //You need to do a Social.index call to get all the answers to this question, then count the amounts of votes for each option and the totals
