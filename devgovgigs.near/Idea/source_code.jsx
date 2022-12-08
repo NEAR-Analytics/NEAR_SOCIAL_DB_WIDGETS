@@ -49,16 +49,15 @@ return (
     <Card className="card">
       <div className="card-body">
         <h5 class="card-title">Idea: {idea.name}</h5>
-        <h6 class="card-subtitle text-muted">
-          <Widget
-            src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: idea.author_id }}
-          />
-        </h6>
-
         <p class="card-text">{idea.description}</p>
         <p class="card-text">
-          <small class="text-muted">{timestamp}</small>
+          <small class="text-muted">
+            {timestamp}{" "}
+            <Widget
+              src={`mob.near/widget/ProfileLine`}
+              props={{ accountId: idea.author_id }}
+            />
+          </small>
         </p>
 
         <a
