@@ -1,6 +1,6 @@
-let endDate = Date.now() - 90000;
+let endDate = props.endDate ?? Date.now() - 90000;
 
-let options = [
+let options = props.options ?? [
   {
     text: "Option1",
     percentageOfVotes: "20%",
