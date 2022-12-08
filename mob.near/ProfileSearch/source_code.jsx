@@ -47,13 +47,14 @@ if (props.onChange && state.search) {
 }
 
 return (
-  <div>
+  <>
     <input
       type="text"
+      className="form-control"
       value={state.search ?? ""}
       onChange={(e) => State.update({ search: e.target.value })}
-      placeholder="Account ID or Profile name"
+      placeholder="🔍 Search People"
     />
     {debug && <pre>{JSON.stringify(result, undefined, 2)}</pre>}
-  </div>
+  </>
 );
