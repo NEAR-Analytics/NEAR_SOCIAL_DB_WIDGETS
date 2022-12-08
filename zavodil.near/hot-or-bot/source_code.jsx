@@ -2,10 +2,11 @@
 const accountId = context.accountId;
 const appName = "HotOrBot";
 const contractId = "hot-or-bot.near";
+const ownerId = "zavodil.near";
 const last_turn_index = -1;
 const max_turns = 4;
 
-initState({ column1: "" });
+initState({ column1: "", show_leaderbord: false });
 
 if (!accountId) {
   return "Please login to play hot-or-bot";
@@ -15,18 +16,42 @@ if (context.loading) {
   return "Loading...";
 }
 
+if (state.show_leaderbord) {
+  const winners_data = Social.get(`${contractId}/${appName}/winner/**`);
+  if (!winners_data) {
+    return "Loading";
+  }
+
+  let winners = Object.entries(winners_data).map((item) => (
+    <li className="pt-1">
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{ accountId: item[0] }}
+      />
+    </li>
+  ));
+
+  return (
+    <>
+      <h2>Winners:</h2>
+      <ul>{winners}</ul>
+      <div className="pt-3">
+        <button onClick={() => State.update({ show_leaderbord: false })}>
+          Close
+        </button>
+      </div>
+    </>
+  );
+}
+
 const history_data = Social.keys(`${accountId}/${appName}/*`);
 
 let history = history_data[accountId][appName] ?? [];
-
-console.log(history, contractId);
 
 Object.entries(history).forEach((turn) => {
   last_turn_index = Math.max(last_turn_index, Number(turn[0]));
 });
 const turn_index = last_turn_index + 1;
-console.log(history);
-console.log(turn_index);
 
 const onCheckResultClick = () => {
   const gas = 80000000000000;
@@ -39,7 +64,13 @@ if (turn_index >= max_turns) {
     account_id: accountId,
   });
 
-  console.log(score);
+  let leaderboardBlock = (
+    <div className="pt-3">
+      <button onClick={() => State.update({ show_leaderbord: true })}>
+        Leaderboard
+      </button>
+    </div>
+  );
 
   return (
     <>
@@ -64,6 +95,7 @@ if (turn_index >= max_turns) {
           <div>Your score: {score}</div>
         </div>
       )}
+      {leaderboardBlock}
     </>
   );
 }
@@ -80,8 +112,6 @@ if (!turn) {
 if (turn.length !== 2) {
   return "Error";
 }
-
-console.log(turn);
 
 let images = [
   <img src={`https://pluminite.mypinata.cloud/ipfs/${turn[0]}`} />,
@@ -224,6 +254,7 @@ return (
           </p>
           <p>Give 4/4 correct answers to receive an NFT.</p>
         </div>
+        {leaderboardBlock}
       </div>
     </div>
   </>
