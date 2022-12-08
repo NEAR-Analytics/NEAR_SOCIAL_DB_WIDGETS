@@ -1,3 +1,5 @@
+const ownerId = "devgovgigs.near";
+
 const idea_id = props.idea_id ? parseInt(props.idea_id) : 0;
 const idea =
   props.idea ?? Near.view("devgovgigs.near", "get_idea", { idea_id });
@@ -15,8 +17,6 @@ const submissions = Near.view("devgovgigs.near", "get_submissions", {
   idea_id,
 });
 
-const submissionHeader = submissions.length > 0 ? <h3>Submissions</h3> : null;
-
 return (
   <div className="row">
     <div className="mb-2 card">
@@ -31,8 +31,22 @@ return (
         <hr />
         <h4>Idea: {idea.name}</h4>
         <p>{idea.description}</p>
-        {submissionHeader}
         <div class="row">
+          <div className="col-lg-12">
+            <a
+              class="btn btn-primary mb-2"
+              data-bs-toggle="collapse"
+              href="#collapseSubmissionEditor"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseSubmissionEditor"
+            >
+              Add Submission
+            </a>
+          </div>
+          <div class="collapse" id="collapseSubmissionEditor">
+            <Widget src={`${ownerId}/widget/SubmissionEditor`} />
+          </div>
           <div class="span8 offset4">
             {submissions
               ? submissions.map((submission) => {
