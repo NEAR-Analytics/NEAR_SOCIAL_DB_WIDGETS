@@ -100,8 +100,14 @@ return (
     </div>
 
     <div className="row mb-3">
-      <h4>Graph activity</h4>
-      <Widget src="mob.near/widget/FollowFeed" />
+      <div className="col-md-8">
+        <h4>Follow activity</h4>
+        <Widget src="mob.near/widget/FollowFeed" />
+      </div>
+      <div className="col-md-4">
+        <h4>Poke activity</h4>
+        <Widget src="mob.near/widget/PokeFeed" />
+      </div>
     </div>
   </>
 );
