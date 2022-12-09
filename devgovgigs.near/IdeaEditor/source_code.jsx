@@ -15,7 +15,7 @@ return (
       <div>
         <h4>Idea Editor</h4>
       </div>
-      <div className="mb-2">
+      <div>
         Title:
         <input
           type="text"
@@ -24,7 +24,7 @@ return (
         />
       </div>
 
-      <div className="mb-2">
+      <div>
         Description:
         <br />
         <textarea
