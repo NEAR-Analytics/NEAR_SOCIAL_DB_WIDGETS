@@ -55,7 +55,7 @@ const Card = styled.div`
 `;
 
 return (
-  <Card className="card">
+  <Card className="card my-2">
     <div className="card-header">
       <small class="text-muted">
         <div class="row justify-content-between">
