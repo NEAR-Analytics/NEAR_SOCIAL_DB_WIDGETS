@@ -9,8 +9,14 @@ const timestamp = readableDate(
   sponsorship.timestamp ? sponsorship.timestamp / 1000000 : Date.now()
 );
 
+const Card = styled.div`
+  &:hover {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  }
+`;
+
 return (
-  <div className="card my-2 border-success">
+  <Card className="card my-2 border-success">
     <div className="card-header">
       <small class="text-muted">
         <div class="row justify-content-between">
@@ -42,5 +48,5 @@ return (
       </h6>
       <p class="card-text">{sponsorship.description}</p>
     </div>
-  </div>
+  </Card>
 );
