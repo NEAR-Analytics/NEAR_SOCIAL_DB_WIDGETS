@@ -22,7 +22,7 @@ if (followingData === null) {
 
 const following = followingData[userId]["graph"]["follow"] ?? {};
 
-let followDev = prop.followDev ?? true;
+let followDev = prop.followDev ?? false;
 
 if (followDev) {
   following[ownerId] = true;
