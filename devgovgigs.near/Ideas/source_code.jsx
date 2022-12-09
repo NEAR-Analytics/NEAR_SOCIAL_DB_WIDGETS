@@ -1,5 +1,5 @@
 const ownerId = "devgovgigs.near";
-const ideas = Near.view(ownerId, "get_ideas");
+const ideas = Near.view(ownerId, "get_ideas").reverse();
 
 // TODO: Sort ideas based on how much in total USD equivalent was pledged through sponsorships.
 // TODO: Sort ideas based on a criteria that includes social activity, like attestations.
