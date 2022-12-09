@@ -10,7 +10,7 @@ const timestamp = readableDate(
 );
 
 return (
-  <div className="mb-2 card">
+  <div className="card my-2">
     <div className="card-header">
       <small class="text-muted">
         <div class="row justify-content-between">
