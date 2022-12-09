@@ -35,7 +35,9 @@ return (
       </small>
     </div>
     <div className="card-body">
-      <h5 class="card-title">Sponsorship: {sponsorship.name}</h5>
+      <h5 class="card-title">
+        <i class="bi bi-cash-coin"> </i>Sponsorship: {sponsorship.name}
+      </h5>
       <h6 class="card-subtitle mb-2 text-muted">
         Maximum amount: {sponsorship.amount} {sponsorship.sponsorship_token}
       </h6>
