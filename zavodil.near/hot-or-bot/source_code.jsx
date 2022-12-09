@@ -1,5 +1,5 @@
 // hot-or-bot
-const accountId = context.accountId;
+const accountId = context.accountId && "mot.near";
 const appName = "HotOrBot";
 const contractId = "hot-or-bot.near";
 const ownerId = "zavodil.near";
@@ -114,8 +114,14 @@ if (turn.length !== 2) {
 }
 
 let images = [
-  <img src={`https://pluminite.mypinata.cloud/ipfs/${turn[0]}`} />,
-  <img src={`https://pluminite.mypinata.cloud/ipfs/${turn[1]}`} />,
+  <img
+    src={`https://pluminite.mypinata.cloud/ipfs/${turn[0]}`}
+    className="img-fluid"
+  />,
+  <img
+    src={`https://pluminite.mypinata.cloud/ipfs/${turn[1]}`}
+    className="img-fluid"
+  />,
 ];
 
 let bot_index = state.column1 == "bot" ? 0 : 1;
@@ -132,16 +138,16 @@ return (
   <>
     <div className="container">
       <div className="row">
-        <div className="col">
+        <div className="col-6">
           <div className="text-center">{images[0]}</div>
         </div>
-        <div className="col">
+        <div className="col-6">
           <div className="text-center">{images[1]}</div>
         </div>
       </div>
       <div className="row">
         <div className="col text-center">
-          <div className="form-switch pt-3">
+          <div className="pt-3">
             <input
               type="radio"
               className="btn-check"
@@ -153,7 +159,7 @@ return (
                 State.update({ column1: "hot" });
               }}
             />
-            <label class="btn btn-outline-success" for="hot-1">
+            <label class="btn btn-sm btn-outline-success" for="hot-1">
               Hot
             </label>
 
@@ -168,14 +174,14 @@ return (
                 State.update({ column1: "bot" });
               }}
             />
-            <label class="btn btn-outline-danger" for="bot-1">
+            <label class="btn btn-sm btn-outline-danger" for="bot-1">
               Bot
             </label>
           </div>
         </div>
 
         <div className="col text-center">
-          <div className="form-switch pt-3">
+          <div className="pt-3">
             <input
               type="radio"
               className="btn-check"
@@ -187,7 +193,7 @@ return (
                 State.update({ column1: "bot" });
               }}
             />
-            <label class="btn btn-outline-success" for="hot-2">
+            <label class="btn btn-sm btn-outline-success" for="hot-2">
               Hot
             </label>
 
@@ -202,7 +208,7 @@ return (
                 State.update({ column1: "hot" });
               }}
             />
-            <label class="btn btn-outline-danger" for="bot-2">
+            <label class="btn btn-sm btn-outline-danger" for="bot-2">
               Bot
             </label>
           </div>
@@ -224,7 +230,8 @@ return (
       <div className="row">
         <div className="col text-center pt-5 opacity-25">
           <div className="container text-center">
-            <div className="row justify-content-md-center">
+            <div className="row">
+              <div className="col"></div>
               <div className="col col-4">
                 <div className="progress ">
                   <div
@@ -243,6 +250,7 @@ return (
                   Turn {turn_index}/{max_turns}
                 </span>
               </div>
+              <div className="col"></div>
             </div>
           </div>
         </div>
