@@ -20,7 +20,7 @@ if (followingData === null) {
   return "Loading";
 }
 
-const following = followingData[userId]["graph"]["follow"] ?? [];
+const following = followingData[userId]["graph"]["follow"] ?? {};
 
 let followDev = prop.followDev ?? true;
 
