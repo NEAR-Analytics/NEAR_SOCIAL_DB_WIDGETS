@@ -21,7 +21,7 @@ const submissions = props.isPreview
 const submissionsList = props.isPreview ? null : (
   <div class="row">
     <a
-      class="card-link"
+      class="card-link mb-2"
       data-bs-toggle="collapse"
       href={`#collapseSubmissionEditor${idea_id}`}
       role="button"
@@ -55,7 +55,7 @@ const Card = styled.div`
 `;
 
 return (
-  <Card className="card mbt-2">
+  <Card className="card">
     <div className="card-header">
       <small class="text-muted">
         <div class="row justify-content-between">
