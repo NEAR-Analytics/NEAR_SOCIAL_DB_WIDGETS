@@ -57,6 +57,7 @@ const renderAnswers = () => {
       props = {
         questionTimestamp: question.startDate,
         questionBlockHeight: question.questionBlockHeight,
+        userMakingQuestion: question.accountId,
       };
     } else if (typeOfAnswer == "2") {
       widget = displayAnswerWidgetNames[2];
