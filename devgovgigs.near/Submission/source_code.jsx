@@ -20,7 +20,7 @@ const sponsorships = props.isPreview
 const sponsorshipsList = props.isPreview ? null : (
   <div class="row">
     <a
-      class="card-link mb-2"
+      class="card-link"
       data-bs-toggle="collapse"
       href={`#collapseSponsorshipEditor${submission_id}`}
       role="button"
@@ -36,7 +36,7 @@ const sponsorshipsList = props.isPreview ? null : (
         props={{ sponsorship: { submission_id } }}
       />
     </div>
-    <div class="span8 offset4">
+    <div>
       {sponsorships
         ? sponsorships.map((sponsorship) => {
             return (
@@ -58,7 +58,7 @@ const Card = styled.div`
 `;
 
 return (
-  <Card className="mb-2 card">
+  <Card className="card my-2">
     <div className="card-header">
       <small class="text-muted">
         <div class="row justify-content-between">
