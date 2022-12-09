@@ -48,14 +48,14 @@ const submissionsList = props.isPreview ? null : (
   </div>
 );
 
-// const Card = styled.div`
-//   &:hover {
-//     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-//   }
-// `;
+const Card = styled.div`
+  &:hover {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  }
+`;
 
 return (
-  <div className="card my-2 border-primary">
+  <Card className="card my-2 border-primary">
     <div className="card-header">
       <small class="text-muted">
         <div class="row justify-content-between">
@@ -76,5 +76,5 @@ return (
       <p class="card-text">{idea.description}</p>
       {submissionsList}
     </div>
-  </div>
+  </Card>
 );
