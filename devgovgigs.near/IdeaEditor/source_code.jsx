@@ -24,7 +24,7 @@ return (
         />
       </div>
 
-      <div>
+      <div className="mb-2">
         Description:
         <br />
         <textarea
