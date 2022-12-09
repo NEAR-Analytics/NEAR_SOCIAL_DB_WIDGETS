@@ -1,5 +1,5 @@
 // hot-or-bot
-const accountId = context.accountId && "mot.near";
+const accountId = context.accountId;
 const appName = "HotOrBot";
 const contractId = "hot-or-bot.near";
 const ownerId = "zavodil.near";
