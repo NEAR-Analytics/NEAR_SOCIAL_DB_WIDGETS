@@ -72,7 +72,9 @@ return (
       </small>
     </div>
     <div className="card-body">
-      <h5 class="card-title">Idea: {idea.name}</h5>
+      <h5 class="card-title">
+        <i class="bi bi-lightbulb"> </i>Idea: {idea.name}
+      </h5>
       <p class="card-text">{idea.description}</p>
       {submissionsList}
     </div>
