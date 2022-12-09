@@ -2,8 +2,8 @@ const ownerId = "devgovgigs.near";
 const submission = props.submission;
 const submission_id = submission.id;
 
-function readableDate(UNIX_timestamp) {
-  var a = new Date(parseInt(UNIX_timestamp) / 1000000);
+function readableDate(timestamp) {
+  var a = new Date(timestamp);
   return a.toDateString() + " " + a.toLocaleTimeString();
 }
 
