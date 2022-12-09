@@ -53,7 +53,7 @@ const sponsorshipsList = props.isPreview ? null : (
 
 const Card = styled.div`
   &:hover {
-    background: #eee;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   }
 `;
 
