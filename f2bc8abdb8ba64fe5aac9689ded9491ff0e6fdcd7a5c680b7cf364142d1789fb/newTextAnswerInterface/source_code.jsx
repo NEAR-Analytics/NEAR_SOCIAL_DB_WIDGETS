@@ -1,31 +1,29 @@
-let questionTimestamp = props.questionTimestamp;
-let questionBlockHeight = props.questionBlockHeight ?? 79932883;
-let userMakingQuestion =
-  props.accountId ??
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-
-//Using the questionBlockheight you have to retrive the answers and you should get an array of objects like the next one
-let answers = [
-  {
-    accountId:
-      "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-    value: {
-      user_answer: "This is my answer",
-      answer_timeStamp: Date.now(),
+let question = props.question ?? {
+  title: "Text test",
+  tgLink: "",
+  accountId: "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
+  choicesOptions: [],
+  question: "Testing text",
+  description: "",
+  questionBlockHeight: 79932900,
+  startDate: Date.now(),
+  endDate: Date.now() + 1000000000,
+  storingTimestamp: Date.now(),
+  questionType: "0",
+  answers: [
+    {
+      accountId:
+        "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
+      answer: "This is a test answer",
+      timeStamp: Date.now(),
     },
-  },
-];
-
-function stringToTimeStampFormat(string) {
-  let timeStampFormat = 1321566516131;
-  //TODO
-  return timeStampFormat;
-}
+  ],
+};
 
 const profileLink = (c) => (
   <a
     className="text-decoration-none link-dark"
-    href={`#/mob.near/widget/ProfilePage?accountId=${userMakingQuestion}`}
+    href={`#/mob.near/widget/ProfilePage?accountId=${question.accountId}`}
   >
     {c}
   </a>
@@ -33,7 +31,7 @@ const profileLink = (c) => (
 
 return (
   <>
-    {answers.map((answer) => {
+    {question.answers.map((answer) => {
       let profile = Social.getr(`${answer.accountId}/profile`);
       return (
         <div>
@@ -64,16 +62,12 @@ return (
               <div>
                 <small className="ps-1 text-nowrap text-muted ms-auto">
                   <i className="bi bi-clock me-1"></i>
-                  {timeAgo(Date.now() - stringToTimeStampFormat(startDate))}
+                  {Date.now() - question.storingTimestamp}
                 </small>
               </div>
             </div>
           </div>
-          <textarea
-            className="w-100"
-            value={answer.value.user_answer}
-            readonly
-          />
+          <textarea className="w-100" value={answer.answer} readonly />
         </div>
       );
     })}
