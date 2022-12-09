@@ -12,6 +12,10 @@ const timestamp = readableDate(
   idea.timestamp ? idea.timestamp / 1000000 : Date.now()
 );
 
+const onLike = () => {
+  Near.call(ownerId, "like", {});
+};
+
 const submissions = props.isPreview
   ? null
   : Near.view(ownerId, "get_submissions", {
@@ -40,7 +44,7 @@ const submissionsList = props.isPreview ? null : (
           <div class="bi bi-rocket"> Submit</div>
         </a>
       </div>
-      <div class="col-2">
+      <div class="col-2" onClick={onLike}>
         <a class="bi bi-heart"> Like</a>
       </div>
       <div class="col-2">
