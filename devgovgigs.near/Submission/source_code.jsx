@@ -75,7 +75,9 @@ return (
       </small>
     </div>
     <div className="card-body">
-      <h5 class="card-title">Submission: {submission.name}</h5>
+      <h5 class="card-title">
+        <i class="bi bi-rocket"> </i>Submission: {submission.name}
+      </h5>
       <p class="card-text">{submission.description}</p>
       {sponsorshipsList}
     </div>
