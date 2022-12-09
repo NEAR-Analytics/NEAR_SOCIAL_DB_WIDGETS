@@ -68,7 +68,9 @@ return (
               props={{ accountId: submission.author_id }}
             />
           </div>
-          <div class="col-4">{timestamp}</div>
+          <div class="col-4">
+            <div class="d-flex justify-content-end">{timestamp}</div>
+          </div>
         </div>
       </small>
     </div>
