@@ -20,7 +20,7 @@ const sponsorships = props.isPreview
 const sponsorshipsList = props.isPreview ? null : (
   <div class="row">
     <a
-      class="card-link"
+      class="card-link mb-2"
       data-bs-toggle="collapse"
       href={`#collapseSponsorshipEditor${submission_id}`}
       role="button"
