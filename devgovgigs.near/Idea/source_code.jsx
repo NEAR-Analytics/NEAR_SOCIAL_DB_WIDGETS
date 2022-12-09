@@ -18,6 +18,13 @@ const submissions = props.isPreview
       idea_id,
     });
 
+const comments = props.isPreview
+  ? null
+  : Near.view(ownerId, "get_comments", {
+      post_type: "Idea",
+      post_id: idea_id,
+    });
+
 const submissionsList = props.isPreview ? null : (
   <div class="row">
     <div class="row">
@@ -84,16 +91,16 @@ return (
     <div className="card-body">
       <h5 class="card-title">
         <div className="row justify-content-between">
-          <div class="col-7">
+          <div class="col-9">
             <i class="bi bi-lightbulb"> </i>Idea: {idea.name}
           </div>
-          <div class="col-5">
-            <div class="d-flex justify-content-end">
-              <div class="row">
-                <div class="bi bi-rocket-fill col-4">{submissions.length}</div>
-                <div class="bi bi-heart-fill col-4">{submissions.length}</div>
-                <div class="bi bi-chat-fill col-4">{submissions.length}</div>
-              </div>
+          <div class="col-3 ">
+            <div class="d-flex justify-content-evenly">
+              <div class="bi bi-rocket-fill">{submissions.length}</div>
+
+              <div class="bi bi-heart-fill">{idea.likes.length}</div>
+
+              <div class="bi bi-chat-fill">{comments.length}</div>
             </div>
           </div>
         </div>
