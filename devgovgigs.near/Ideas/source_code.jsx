@@ -5,8 +5,8 @@ const ideas = Near.view(ownerId, "get_ideas");
 // TODO: Sort ideas based on a criteria that includes social activity, like attestations.
 
 return (
-  <div className="row">
-    <div className="col-lg-12">
+  <div>
+    <div>
       <a
         class="btn btn-primary mb-2"
         data-bs-toggle="collapse"
