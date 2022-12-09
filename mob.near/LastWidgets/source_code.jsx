@@ -60,7 +60,7 @@ if (tag) {
     return render("Loading tags");
   }
 
-  keys = Object.entries(taggedWidgets)
+  keys = Object.entries(taggedWidgets || {})
     .map((kv) => Object.keys(kv[1].widget).map((w) => `${kv[0]}/widget/${w}`))
     .flat();
 
@@ -78,7 +78,7 @@ if (data === null) {
 }
 
 const processData = (data) => {
-  const accounts = Object.entries(data);
+  const accounts = Object.entries(data || {});
 
   const allItems = accounts
     .map((account) => {
