@@ -21,7 +21,7 @@ const submissions = props.isPreview
 const submissionsList = props.isPreview ? null : (
   <div class="row">
     <a
-      class="card-link mb-2"
+      class="card-link"
       data-bs-toggle="collapse"
       href={`#collapseSubmissionEditor${idea_id}`}
       role="button"
