@@ -1,5 +1,8 @@
 let questionTimestamp = props.questionTimestamp;
 let questionBlockHeight = props.questionBlockHeight ?? 79932883;
+let userMakingQuestion =
+  props.accountId ??
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 //Using the questionBlockheight you have to retrive the answers and you should get an array of objects like the next one
 let answers = [
@@ -18,6 +21,15 @@ function stringToTimeStampFormat(string) {
   //TODO
   return timeStampFormat;
 }
+
+const profileLink = (c) => (
+  <a
+    className="text-decoration-none link-dark"
+    href={`#/mob.near/widget/ProfilePage?accountId=${userMakingQuestion}`}
+  >
+    {c}
+  </a>
+);
 
 return (
   <>
