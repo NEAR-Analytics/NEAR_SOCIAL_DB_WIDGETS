@@ -27,7 +27,7 @@ const sponsorshipsList = props.isPreview ? null : (
       aria-expanded="false"
       aria-controls={`collapseSponsorshipEditor${submission_id}`}
     >
-      Add Sponsorship
+      <i class="bi bi-cash-coin"> </i> Sponsor
     </a>
 
     <div class="collapse" id={`collapseSponsorshipEditor${submission_id}`}>
