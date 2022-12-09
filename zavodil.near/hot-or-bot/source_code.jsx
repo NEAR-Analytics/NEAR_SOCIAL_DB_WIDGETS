@@ -17,12 +17,12 @@ if (context.loading) {
 }
 
 if (state.show_leaderboard) {
-  const winners_data = Social.get(`${contractId}/${appName}/winner/**`);
+  const winners_data = Social.get(`${contractId}/badge/winner/**`);
   if (!winners_data) {
-    return "Loading";
+    return "Loading...";
   }
 
-  let winners = Object.entries(winners_data).map((item) => (
+  let winners = Object.entries(winners_data.holder).map((item) => (
     <li className="pt-1">
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
