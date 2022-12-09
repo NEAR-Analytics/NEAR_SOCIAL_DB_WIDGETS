@@ -13,7 +13,10 @@ const timestamp = readableDate(
 );
 
 const onLike = () => {
-  Near.call(ownerId, "like", {});
+  Near.call(ownerId, "like", {
+    post_type: "Idea",
+    post_id: idea_id,
+  });
 };
 
 const submissions = props.isPreview
