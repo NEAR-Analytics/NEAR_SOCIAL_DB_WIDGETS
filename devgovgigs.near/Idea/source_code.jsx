@@ -20,16 +20,26 @@ const submissions = props.isPreview
 
 const submissionsList = props.isPreview ? null : (
   <div class="row">
-    <a
-      class="card-link"
-      data-bs-toggle="collapse"
-      href={`#collapseSubmissionEditor${idea_id}`}
-      role="button"
-      aria-expanded="false"
-      aria-controls={`collapseSubmissionEditor${idea_id}`}
-    >
-      Add Submission
-    </a>
+    <div class="row">
+      <div class="col-2">
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseSubmissionEditor${idea_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseSubmissionEditor${idea_id}`}
+        >
+          <div class="bi bi-rocket"> Submit</div>
+        </a>
+      </div>
+      <div class="col-2">
+        <a class="bi bi-heart"> Like</a>
+      </div>
+      <div class="col-2">
+        <a class="bi bi-chat"> Comment</a>
+      </div>
+    </div>
     <div class="collapse" id={`collapseSubmissionEditor${idea_id}`}>
       <Widget src={`${ownerId}/widget/SubmissionEditor`} props={{ idea_id }} />
     </div>
@@ -73,7 +83,20 @@ return (
     </div>
     <div className="card-body">
       <h5 class="card-title">
-        <i class="bi bi-lightbulb"> </i>Idea: {idea.name}
+        <div className="row justify-content-between">
+          <div class="col-7">
+            <i class="bi bi-lightbulb"> </i>Idea: {idea.name}
+          </div>
+          <div class="col-5">
+            <div class="d-flex justify-content-end">
+              <div class="row">
+                <div class="bi bi-rocket-fill col-4">{submissions.length}</div>
+                <div class="bi bi-heart-fill col-4">{submissions.length}</div>
+                <div class="bi bi-chat-fill col-4">{submissions.length}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </h5>
       <p class="card-text">{idea.description}</p>
       {submissionsList}
