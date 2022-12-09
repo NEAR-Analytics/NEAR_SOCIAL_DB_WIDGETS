@@ -55,22 +55,26 @@ const Card = styled.div`
 `;
 
 return (
-  <div className="row">
-    <Card className="card">
-      <div className="card-body">
-        <h5 class="card-title">Idea: {idea.name}</h5>
-        <p class="card-text">{idea.description}</p>
-        <p class="card-text">
-          <small class="text-muted">
-            {timestamp}{" "}
+  <Card className="card">
+    <div className="card-header">
+      <small class="text-muted">
+        <div class="row justify-content-between">
+          <div class="col-4">
             <Widget
               src={`mob.near/widget/ProfileLine`}
               props={{ accountId: idea.author_id }}
             />
-          </small>
-        </p>
-        {submissionsList}
-      </div>
-    </Card>
-  </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex justify-content-end">{timestamp}</div>
+          </div>
+        </div>
+      </small>
+    </div>
+    <div className="card-body">
+      <h5 class="card-title">Idea: {idea.name}</h5>
+      <p class="card-text">{idea.description}</p>
+      {submissionsList}
+    </div>
+  </Card>
 );
