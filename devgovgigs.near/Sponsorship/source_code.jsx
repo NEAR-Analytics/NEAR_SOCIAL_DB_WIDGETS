@@ -1,13 +1,19 @@
 const sponsorship = props.sponsorship;
 
-function readableDate(UNIX_timestamp) {
-  var a = new Date(parseInt(UNIX_timestamp) / 1000000);
+function readableDate(timestamp) {
+  var a = new Date(timestamp);
   return a.toDateString() + " " + a.toLocaleTimeString();
 }
 
 const timestamp = readableDate(
   sponsorship.timestamp ? sponsorship.timestamp / 1000000 : Date.now()
 );
+
+const sponsorships = props.isPreview
+  ? null
+  : Near.view(ownerId, "get_sponsorships", {
+      submission_id,
+    });
 
 const Card = styled.div`
   &:hover {
