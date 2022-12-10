@@ -4,7 +4,7 @@ let question = props.question ?? {
   accountId: "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
   choicesOptions: ["a", "b", "c"],
   question: "Testing multiple choice",
-  description: "",
+  description: "This is a simple test",
   questionBlockHeight: 79932918,
   startDate: Date.now(),
   endDate: Date.now() + 10000000,
@@ -23,7 +23,7 @@ let question = props.question ?? {
 let profile = Social.getr(`${accountId}/profile`);
 
 return (
-  <div>
+  <div className="my-2 mx-3">
     <div className="d-flex no-wrap justify-content-between">
       <Widget
         src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile"
@@ -55,7 +55,7 @@ return (
         </span>
       </div>
     </div>
-    <h4>{title}</h4>
-    <p>{description}</p>
+    <h5 className="mt-3">{question.title}</h5>
+    <p>{question.description}</p>
   </div>
 );
