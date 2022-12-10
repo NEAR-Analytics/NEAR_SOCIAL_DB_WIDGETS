@@ -31,114 +31,114 @@ function rollImage() {
 }
 
 return (
-  <div className="row mb-3">
-    <div
-      style={{
-        backgroundImage: "url(https://example.com/background-image.jpg)",
-        backgroundSize: "auto 80px",
-        backgroundPosition: "center",
-        height: "80px",
-        backgroundColor: "#333",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      image space
-    </div>
-    <div
-      style={{
-        backgroundImage: "url(https://example.com/background-image.jpg)",
-        backgroundSize: "auto 80px",
-        backgroundPosition: "center",
-        height: "80px",
-        backgroundColor: "blue",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <h4>Add an image</h4>
-    </div>
-
-    <div
-      className="mb-2"
-      style={{
-        backgroundImage: "url(https://example.com/background-image.jpg)",
-        backgroundSize: "auto 80px",
-        backgroundPosition: "center",
-        height: "80px",
-        backgroundColor: "red",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      Image:
-      <br />
-      <IpfsImageUpload image={state.img} />
-    </div>
-    {meme.image.ipfs_cid && (
-      <div className="mb-2">
-        Title <span className="text-secondary">(optional)</span>
-        <input type="text" value={state.meme.title} />
-      </div>
-    )}
-    {state.meme.title && (
-      <div className="mb-2">
-        Description <span className="text-secondary">(optional)</span>
-        <input type="text" value={state.meme.description} />
-      </div>
-    )}
-    <div
-      className="mb-2"
-      style={{
-        backgroundImage: "url(https://example.com/background-image.jpg)",
-        backgroundSize: "auto 80px",
-        backgroundPosition: "center",
-        height: "80px",
-        backgroundColor: "yellow",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {hasMeme ? (
-        <CommitButton data={{ post: { meme } }}>Post image</CommitButton>
-      ) : (
-        !props.noPrevMeme && (
-          <a className="btn btn-outline-primary" onClick={(e) => rollImage()}>
-            🎲 Generate an Image
-          </a>
-        )
-      )}
-    </div>
-    <div
-      style={{
-        backgroundImage: "url(https://example.com/background-image.jpg)",
-        backgroundSize: "auto 524px",
-        backgroundPosition: "center",
-        height: "524px",
-        background: "linear-gradient(to bottom, #040404, #232323)",
-        color: "#333",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <img
-        id="rollImg"
-        src={state.rollImg}
-        onLoad={(e) => {
-          state.blur = 0;
-          State.update(state);
+  <div style={{ background: "linear-gradient(to bottom, violet, black)" }}>
+    <div className="row mb-3">
+      <div
+        style={{
+          backgroundImage: "url(https://example.com/background-image.jpg)",
+          backgroundSize: "auto 80px",
+          backgroundPosition: "center",
+          height: "80px",
+          backgroundColor: "#333",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-        style={{ filter: `blur(${state.blur}px)`, maxWidth: "512px" }}
-      />
+      >
+        image space
+      </div>
+      <div
+        style={{
+          backgroundImage: "url(https://example.com/background-image.jpg)",
+          backgroundSize: "auto 80px",
+          backgroundPosition: "center",
+          height: "80px",
+          backgroundColor: "blue",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h4>Add an image</h4>
+      </div>
+
+      <div
+        className="mb-2"
+        style={{
+          backgroundImage: "url(https://example.com/background-image.jpg)",
+          backgroundSize: "auto 80px",
+          backgroundPosition: "center",
+          height: "80px",
+          backgroundColor: "red",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <input type="text" />
+      </div>
+      {meme.image.ipfs_cid && (
+        <div className="mb-2">
+          Title <span className="text-secondary">(optional)</span>
+          <input type="text" value={state.meme.title} />
+        </div>
+      )}
+      {state.meme.title && (
+        <div className="mb-2">
+          Description <span className="text-secondary">(optional)</span>
+          <input type="text" value={state.meme.description} />
+        </div>
+      )}
+      <div
+        className="mb-2"
+        style={{
+          backgroundImage: "url(https://example.com/background-image.jpg)",
+          backgroundSize: "auto 80px",
+          backgroundPosition: "center",
+          height: "80px",
+          backgroundColor: "yellow",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {hasMeme ? (
+          <CommitButton data={{ post: { meme } }}>Post image</CommitButton>
+        ) : (
+          !props.noPrevMeme && (
+            <a className="btn btn-outline-primary" onClick={(e) => rollImage()}>
+              🎲 Generate an Image
+            </a>
+          )
+        )}
+      </div>
+      <div
+        style={{
+          backgroundImage: "url(https://example.com/background-image.jpg)",
+          backgroundSize: "auto 524px",
+          backgroundPosition: "center",
+          height: "524px",
+          background: "linear-gradient(to bottom, #040404, #fff)",
+          color: "#333",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          id="rollImg"
+          src={state.rollImg}
+          onLoad={(e) => {
+            state.blur = 0;
+            State.update(state);
+          }}
+          style={{ filter: `blur(${state.blur}px)`, maxWidth: "512px" }}
+        />
+      </div>
     </div>
   </div>
 );
