@@ -8,6 +8,7 @@ initState({
   meme: { title: "", description: "" },
   img: {},
   rollImg: "https://via.placeholder.com/512x512",
+  blur: 0,
 });
 
 const meme = {
@@ -23,8 +24,10 @@ if (state.img.cid) {
 const hasMeme = meme.image.ipfs_cid || meme.title;
 
 function rollImage() {
-  state.rollImg =
-    "https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&image_count=2&steps=10&prompt=an illustration of a samurai battle sunshine, oriental watercolor themed, sun rising ";
+  var seed = Math.trunc(Math.random() * 100000000);
+  state.rollImg = `https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&seed=${seed}&image_count=1&steps=8&prompt=greg rutkowski galatic ((battle)) 4k anime manga japanese sunset`;
+  state.blur = 8;
+  State.update(state);
 }
 
 return (
@@ -44,10 +47,36 @@ return (
     >
       image space
     </div>
-    <div>
+    <div
+      style={{
+        backgroundImage: "url(https://example.com/background-image.jpg)",
+        backgroundSize: "auto 80px",
+        backgroundPosition: "center",
+        height: "80px",
+        backgroundColor: "blue",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <h4>Add an image</h4>
     </div>
-    <div className="mb-2">
+
+    <div
+      className="mb-2"
+      style={{
+        backgroundImage: "url(https://example.com/background-image.jpg)",
+        backgroundSize: "auto 80px",
+        backgroundPosition: "center",
+        height: "80px",
+        backgroundColor: "red",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       Image:
       <br />
       <IpfsImageUpload image={state.img} />
@@ -64,7 +93,20 @@ return (
         <input type="text" value={state.meme.description} />
       </div>
     )}
-    <div className="mb-2">
+    <div
+      className="mb-2"
+      style={{
+        backgroundImage: "url(https://example.com/background-image.jpg)",
+        backgroundSize: "auto 80px",
+        backgroundPosition: "center",
+        height: "80px",
+        backgroundColor: "yellow",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       {hasMeme ? (
         <CommitButton data={{ post: { meme } }}>Post image</CommitButton>
       ) : (
@@ -75,27 +117,28 @@ return (
         )
       )}
     </div>
-    <hr />{" "}
     <div
       style={{
         backgroundImage: "url(https://example.com/background-image.jpg)",
         backgroundSize: "auto 524px",
         backgroundPosition: "center",
         height: "524px",
-        backgroundColor: "#eee",
+        background: "linear-gradient(to bottom, #040404, #232323)",
         color: "#333",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <img id="rollImg" src={state.rollImg} style={{ filter: "blur(0px)" }} />
-    </div>
-    {(hasMeme || !props.noPrevMeme) && (
-      <Widget
-        src="duocelot.near/widget/meme"
-        props={{ meme: hasMeme ? meme : undefined }}
+      <img
+        id="rollImg"
+        src={state.rollImg}
+        onLoad={(e) => {
+          state.blur = 0;
+          State.update(state);
+        }}
+        style={{ filter: `blur(${state.blur}px)`, maxWidth: "512px" }}
       />
-    )}
+    </div>
   </div>
 );
