@@ -19,6 +19,7 @@ let question = props.question ?? {
     },
   ],
 };
+console.log(question);
 
 const profileLink = (c) => (
   <a
