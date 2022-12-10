@@ -52,22 +52,34 @@ const mockQuestions = [
 ];
 
 const renderQuestions = () => {
-  mockQuestions.map((question) => {
+  return mockQuestions.map((question) => {
     return (
-      <>
+      <div
+        className="my-5 py-3 px-4"
+        style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
+      >
         <Widget
           src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answersHeader"
-          props={{ question }}
+          props={{ question: question }}
         />
         <Widget
           src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/${
             displayAnswerWidgetNames[question.questionType]
           }`}
-          props={question}
+          props={{ question: question }}
         />
-      </>
+      </div>
     );
   });
 };
 
-return <>{renderQuestions()}</>;
+return (
+  <div
+    style={{
+      borderRadius: "3px",
+      padding: "8% 5% 1% 5%",
+    }}
+  >
+    {renderQuestions()}
+  </div>
+);
