@@ -15,7 +15,11 @@ State.init({
 });
 
 // It is no used currently, but it is intended to be used on renderOptions for generalize. After doing it now, it's throwing an error like "State should be at top" and we couldn't figure it out yet how to solve, but it will be fixed later
-const pollTypes = ["Text", "Multiple choice"];
+
+const pollTypes = {
+  TEXT: { id: "0", value: "Text" },
+  MULTIPLE_CHOICE: { id: "1", value: "Multiple choice" },
+};
 
 const getPublicationParams = (isDraft) => {
   return {
@@ -29,8 +33,8 @@ const getPublicationParams = (isDraft) => {
             description: state.description,
             startTimestamp: getTimestamp(state.pollStartDate, state.startTime),
             endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
-            questionType: 0,
-            choicesOptions: [],
+            questionType: state.pollType,
+            choicesOptions: state.choices,
             timestamp: Date.now(),
           },
         },
@@ -45,14 +49,22 @@ const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
 
 const validateInput = () => {
   let errors = [];
-  if (!state.title) errors.push("Title cannot be empty");
-  if (!state.description) errors.push("Description cannot be empty");
+  console.log(state.pollTitle);
+  if (!state.pollTitle) errors.push("Title cannot be empty");
+  if (!state.pollDescription) errors.push("Description cannot be empty");
   if (!state.pollStartDate) errors.push("Start date cannot be empty");
   if (!state.startTime) errors.push("Start time cannot be empty");
   if (!state.pollEndDate) errors.push("End date cannot be empty");
   if (!state.endTime) errors.push("Time cannot be empty");
   if (!state.question) errors.push("Question cannot be empty");
 
+  if (
+    state.pollType == pollTypes.MULTIPLE_CHOICE &&
+    state.choices.filter((c) => c != "").length < 2
+  ) {
+    errors.push("Should have at least 2 options");
+  }
+  console.log(errors.join("\n"));
   return errors.join("\n");
 };
 
@@ -208,7 +220,7 @@ return (
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
             <label for="pollStartDate">Start date</label>
-            {/*You have min and max propertuies on dates input*/}
+            {/*You have min and max properties on dates input*/}
             <input
               style={{ backgroundColor: "rgb(230, 230, 230)" }}
               type="date"
