@@ -61,7 +61,7 @@ return (
     <hr />
     {(hasMeme || !props.noPrevMeme) && (
       <Widget
-        src="duocelot.near/widget/Meme"
+        src="duocelot.near/widget/AddImage"
         props={{ meme: hasMeme ? meme : undefined }}
       />
     )}
