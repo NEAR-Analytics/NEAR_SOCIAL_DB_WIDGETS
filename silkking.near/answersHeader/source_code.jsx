@@ -1,4 +1,4 @@
-let question = props.value ?? {
+let questionParams = props.value ?? {
   accountId: "mock.near",
   blockHeight: 80293871,
   value: {
@@ -14,7 +14,7 @@ let question = props.value ?? {
   },
 };
 
-console.log("Qu", question);
+console.log("Que", questionParams);
 
 let profile = Social.getr(`${accountId}/profile`);
 
@@ -23,18 +23,19 @@ return (
     <div className="d-flex no-wrap justify-content-between">
       <Widget
         src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile"
-        props={{ userMakingQuestion: question.accountId, profile }}
+        props={{ userMakingQuestion: questionParams.accountId, profile }}
       />
 
       <div className="d-flex">
         <span className="mx-2" style={{ fontWeight: "500" }}>
-          End date: {question.endDate}
+          End date: {questionParams.endDate}
         </span>
 
         <span
           style={{
             backgroundColor:
-              question.startDate < Date.now() && question.endDate > Date.now()
+              questionParams.startDate < Date.now() &&
+              questionParams.endDate > Date.now()
                 ? "rgb(153, 255, 153)"
                 : "rgb(255, 128, 128)",
 
@@ -45,14 +46,15 @@ return (
             borderRadius: "80px",
           }}
         >
-          {question.startDate < Date.now() && question.endDate > Date.now()
+          {questionParams.startDate < Date.now() &&
+          questionParams.endDate > Date.now()
             ? "Active"
             : "Closed"}
         </span>
       </div>
     </div>
-    <h5 className="mt-3">{question.title}</h5>
-    <p>{question.description}</p>
-    <p>{question.question}</p>
+    <h5 className="mt-3">{questionParams.title}</h5>
+    <p>{questionParams.description}</p>
+    <p>{questionParams.question}</p>
   </div>
 );
