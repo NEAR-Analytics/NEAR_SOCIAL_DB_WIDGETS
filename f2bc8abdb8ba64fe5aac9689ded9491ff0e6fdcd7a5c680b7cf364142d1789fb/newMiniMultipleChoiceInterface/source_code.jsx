@@ -44,9 +44,7 @@ const renderOption = (option, index) => {
   return (
     <div>
       <div className="d-flex">
-        <div
-          style={{ color: "#000", backgroundColor: "#f1f1f1", width: "90%" }}
-        >
+        <div style={{ color: "#000", width: "90%" }}>
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
           <div
             style={{
@@ -58,10 +56,10 @@ const renderOption = (option, index) => {
               display: "inline-block",
               width: `${calculatePercentage(countVotes[index])}%`,
               textAlign: "center",
-              backgroundColor: "lightgray",
               overflow: "visible",
               whiteSpace: "nowrap",
               textAlign: "left",
+              backgroundColor: "lightgray",
             }}
           >
             <span style={{ overflow: "visible" }}>
