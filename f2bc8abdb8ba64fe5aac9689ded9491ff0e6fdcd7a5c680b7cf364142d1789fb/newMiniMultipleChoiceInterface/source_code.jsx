@@ -62,15 +62,24 @@ const renderOption = (option, index) => {
               backgroundColor: "lightgray",
             }}
           >
-            <span style={{ overflow: "visible" }}>
+            <span style={{ overflow: "visible", fontWeight: "500" }}>
               {displayableOptionName(option)}
-              <span className="text-secondary" style={{ marginLeft: "1rem" }}>
+              <span
+                className="text-secondary"
+                style={{ marginLeft: "1rem", fontWeight: "400" }}
+              >
                 ({question.answers.length} votes)
               </span>
             </span>
           </div>
         </div>
-        <span style={{ minWidth: "max-content", marginLeft: "0.3rem" }}>
+        <span
+          style={{
+            minWidth: "max-content",
+            marginLeft: "0.3rem",
+            fontWeight: "500",
+          }}
+        >
           {calculatePercentage(countVotes[index])}%
         </span>
       </div>
