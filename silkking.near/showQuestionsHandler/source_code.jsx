@@ -22,24 +22,29 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1");
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
-console.log(questions);
 
 const renderQuestions = () => {
   return questions.map((question) => {
+    console.log(
+      "W1",
+      `${props.accountId}/widget/${
+        displayAnswerWidgetNames[question.value.questionType]
+      }`
+    );
     return (
       <div
         className="my-5 py-3 px-4"
         style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
       >
         <Widget
-          src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/answersHeader"
-          props={{ question: question }}
+          src={`${props.accountId}/widget/answersHeader`}
+          props={{ ...question }}
         />
         <Widget
           src={`${props.accountId}/widget/${
-            displayAnswerWidgetNames[question.questionType]
+            displayAnswerWidgetNames[question.value.questionType]
           }`}
-          props={{ question: question }}
+          props={{ ...question }}
         />
       </div>
     );
