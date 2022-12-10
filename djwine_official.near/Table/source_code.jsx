@@ -4,6 +4,7 @@ const key = props.key;
 const keyLabel = props.keyLabel;
 const value = props.value;
 const valueLabel = props.valueLabel;
+const link = props.link;
 
 if (!title) return "Must have title";
 if (!data) return "Must have data";
@@ -12,10 +13,10 @@ if (!keyLabel) return "Must have keyLabel";
 if (!value) return "Must have value";
 if (!valueLabel) return "Must have value";
 
-const keyStyle = {
+const style = {
   overflow: "hidden",
   whiteSpace: "nowrap",
-  maxWidth: "200px",
+  maxWidth: "300px",
 };
 
 return (
@@ -24,13 +25,13 @@ return (
     <div className="table-responsive">
       <table className="table">
         <thead>
-          <th style={keyStyle}>{keyLabel}</th>
+          <th style={style}>{keyLabel}</th>
           <th>{valueLabel}</th>
         </thead>
         <tbody>
           {data.map((i) => (
             <tr className="align-middle">
-              <th style={keyStyle} scope="row">
+              <th style={style} scope="row">
                 {i[key]}
               </th>
               <td>{i[value]}</td>
