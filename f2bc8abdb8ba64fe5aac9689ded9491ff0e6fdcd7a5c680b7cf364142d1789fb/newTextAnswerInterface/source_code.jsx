@@ -29,6 +29,13 @@ const profileLink = (c) => (
   </a>
 );
 
+function makeAnswerAccIdShorter(accId) {
+  if (accId.length > 12) {
+    return accId.slice(0, 12) + "...";
+  }
+  return accId;
+}
+
 return (
   <>
     {question.answers.map((answer) => {
@@ -54,8 +61,15 @@ return (
               <div className="flex-grow-1 me-1 text-truncate">
                 {profileLink(
                   <>
-                    <span className="fw-bold">{profile.name}</span>
-                    <span className="text-secondary">@{answer.accountId}</span>
+                    <p style={{ margin: "0 2px 0 2px" }} className="fw-bold">
+                      {profile.name}
+                    </p>
+                    <p
+                      style={{ margin: "0 2px 0 2px" }}
+                      className="text-secondary"
+                    >
+                      @{makeAnswerAccIdShorter(answer.accountId)}
+                    </p>
                   </>
                 )}
               </div>
