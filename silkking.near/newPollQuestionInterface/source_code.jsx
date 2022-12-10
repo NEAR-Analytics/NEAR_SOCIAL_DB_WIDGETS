@@ -7,6 +7,7 @@ State.init({
   pollEndDate: "",
   endTime: "",
   question: "",
+  // Treated as a number throws an error
   pollType: "0",
   choices: [],
   amountOfChoices: 1,
@@ -14,7 +15,7 @@ State.init({
 });
 
 // It is no used currently, but it is intended to be used on renderOptions for generalize. After doing it now, it's throwing an error like "State should be at top" and we couldn't figure it out yet how to solve, but it will be fixed later
-const pollTypes = ["Yes/no", "Text", "Multiple choice"];
+const pollTypes = ["Text", "Multiple choice"];
 
 const getPublicationParams = (isDraft) => {
   return {
@@ -111,23 +112,6 @@ const renderOptions = () => {
           backgroundColor: "rgb(230, 230, 230)",
           borderRadius: "0px",
           position: "absolute",
-          top: "100%",
-          minWidth: "max-content",
-          width: "152px",
-        }}
-        type="text"
-        value="Yes/No"
-        readonly
-        onClick={() => {
-          State.update({ pollType: 0, expandOptions: !state.expandOptions });
-        }}
-      />
-
-      <input
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          borderRadius: "0px",
-          position: "absolute",
           top: "200%",
           minWidth: "max-content",
           width: "152px",
@@ -136,7 +120,7 @@ const renderOptions = () => {
         value="Text"
         readonly
         onClick={() => {
-          State.update({ pollType: 1, expandOptions: !state.expandOptions });
+          State.update({ pollType: "0", expandOptions: !state.expandOptions });
         }}
       />
 
@@ -153,7 +137,7 @@ const renderOptions = () => {
         value="Multiple choice"
         readonly
         onClick={() => {
-          State.update({ pollType: 2, expandOptions: !state.expandOptions });
+          State.update({ pollType: "1", expandOptions: !state.expandOptions });
         }}
       />
     </div>
@@ -300,15 +284,15 @@ return (
             }}
           >
             {state.pollType == "0"
-              ? "Yes/No"
-              : state.pollType == "1"
               ? "Text"
-              : "Multiple choice"}
+              : state.pollType == "1"
+              ? "Multiple choice"
+              : undefined}
           </button>
 
           {state.expandOptions && renderOptions()}
         </div>
-        {state.pollType == "2" && renderTextInputsForChoices()}
+        {state.pollType == "1" && renderTextInputsForChoices()}
       </div>
       <div
         style={{
@@ -329,13 +313,13 @@ return (
     >
       <CommitButton
         className="my-2 btn btn-outline-primary"
-        data={getPublicationParams(false)}
+        data={getPublicationParams(true)}
       >
         Preview
       </CommitButton>
       <CommitButton
         className="my-2 btn btn-primary"
-        data={getPublicationParams(true)}
+        data={getPublicationParams(false)}
         disabled={validateInput().length > 0}
       >
         Create poll
