@@ -14,6 +14,8 @@ let question = props.value ?? {
   },
 };
 
+console.log("Qu", question);
+
 let profile = Social.getr(`${accountId}/profile`);
 
 return (
