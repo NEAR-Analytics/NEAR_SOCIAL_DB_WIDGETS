@@ -7,6 +7,7 @@ if (!accountId) {
 initState({
   meme: { title: "", description: "" },
   img: {},
+  rollImg: "https://via.placeholder.com/512x512",
 });
 
 const meme = {
@@ -28,10 +29,24 @@ function rollImage() {
 
 return (
   <div className="row mb-3">
+    <div
+      style={{
+        backgroundImage: "url(https://example.com/background-image.jpg)",
+        backgroundSize: "auto 80px",
+        backgroundPosition: "center",
+        height: "80px",
+        backgroundColor: "#333",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      image space
+    </div>
     <div>
       <h4>Add an image</h4>
     </div>
-
     <div className="mb-2">
       Image:
       <br />
@@ -60,11 +75,25 @@ return (
         )
       )}
     </div>
-    <hr />
-    <img id="rollImg" src={state.rollImg} style={{ filter: "blur(0px)" }} />
+    <hr />{" "}
+    <div
+      style={{
+        backgroundImage: "url(https://example.com/background-image.jpg)",
+        backgroundSize: "auto 524px",
+        backgroundPosition: "center",
+        height: "524px",
+        backgroundColor: "#eee",
+        color: "#333",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img id="rollImg" src={state.rollImg} style={{ filter: "blur(0px)" }} />
+    </div>
     {(hasMeme || !props.noPrevMeme) && (
       <Widget
-        src="duocelot.near/widget/AddImage_gpux"
+        src="duocelot.near/widget/meme"
         props={{ meme: hasMeme ? meme : undefined }}
       />
     )}
