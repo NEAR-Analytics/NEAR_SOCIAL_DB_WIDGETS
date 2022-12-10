@@ -7,7 +7,6 @@ if (!accountId) {
 initState({
   meme: { title: "", description: "" },
   img: {},
-  rollImg: "https://via.placeholder.com/512x512",
 });
 
 const meme = {
