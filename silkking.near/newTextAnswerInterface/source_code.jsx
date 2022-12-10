@@ -8,6 +8,7 @@ function validateProps(props) {
     if (!props.value.answers)
       errors.push("Prop value doesn't contain answers key");
   }
+  return errors;
 }
 
 function getBlockTimestamp(blockHeight) {
@@ -15,25 +16,18 @@ function getBlockTimestamp(blockHeight) {
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
 
-console.log("Here");
+const propErrors = validateProps(props);
+if (propErrors.length > 0) {
+  return (
+    <>
+      {propErrors.map((e) => (
+        <div>{e}</div>
+      ))}
+    </>
+  );
+}
 
-validateProps();
-
-let questionParams = props.value ?? {
-  accountId: "mock.near",
-  blockHeight: 80293871,
-  value: {
-    isDraft: false,
-    title: "Mock question",
-    description: "Mock Description",
-    startTimestamp: 1670628600000,
-    endTimestamp: 1671580800000,
-    questionType: "0",
-    question: "Is this a good mock question?",
-    choicesOptions: [],
-    timestamp: 1670628584974,
-  },
-};
+let questionParams = props.value;
 console.log(questionParams);
 
 const profileLink = (c) => (
@@ -54,7 +48,6 @@ function makeAnswerAccIdShorter(accId) {
 
 return (
   <>
-    {questionParams.answers.length == 0}
     {questionParams.answers.length == 0
       ? "This question does not have any answers yet. Be the first one!"
       : questionParams.answers.map((answerParams) => {
