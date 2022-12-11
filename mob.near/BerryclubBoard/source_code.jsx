@@ -4,8 +4,8 @@ const blockHeight = props.blockHeight
 
 const contractId = props.contract ?? "berryclub.ek.near";
 
-const BoardHeight = 50;
-const BoardWidth = 50;
+const BoardHeight = contractId === "farm-draw.cheddar.near" ? 80 : 50;
+const BoardWidth = BoardHeight;
 const ExpectedLineLength = 4 + 8 * BoardWidth;
 
 const cellSize = `${100 / BoardHeight}%`;
