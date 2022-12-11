@@ -30,6 +30,7 @@ return (
   <div
     style={{
       width: "100%",
+      height: "100%",
       background: "linear-gradient(to right, black, #3a0201, black)",
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
@@ -50,6 +51,7 @@ return (
           justifyContent: "center",
         }}
       ></div>
+
       <div
         style={{
           backgroundImage:
@@ -82,6 +84,20 @@ return (
       <div
         style={{
           backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiapzstltgyd6pyibvlgkg62wdsuqvbp2wqbwuqxmjhazxm7tgh2ee)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "15px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      ></div>
+      <div
+        style={{
+          backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
           backgroundSize: "auto",
           backgroundPosition: "center",
@@ -97,6 +113,20 @@ return (
           🎲 Generate an Image
         </a>
       </div>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiaye7rrdceoz44waxyn5ozulhopx6pbq7d4336cn6nenjwxuftsbe)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "8px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      ></div>
       <div
         style={{
           backgroundImage:
@@ -135,5 +165,33 @@ return (
         </div>
       </div>
     </div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeihm5fiwy6dos2f4hiz67yaan3jafkndw5zkh23mb5rnue7qu6rh2y)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "123px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiamgwdx5uhhbgt7usn2wjxybn2b265mubicdj7bkyawgzjrmb22l4)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "523px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
   </div>
 );
