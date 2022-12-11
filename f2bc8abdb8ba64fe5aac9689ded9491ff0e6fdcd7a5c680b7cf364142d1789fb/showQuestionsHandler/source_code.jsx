@@ -45,15 +45,15 @@ const renderQuestions = () => {
       }`
     );
     return (
-      <div
-        className="my-5 py-3 px-4"
-        style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
+      <a
+        href={`#${
+          context.accountId
+        }/widget/newVotingInterface?question=${JSON.stringify(question)}`}
+        style={{ textDecoration: "none", color: "black" }}
       >
-        <a
-          href={`#${
-            context.accountId
-          }/widget/newVotingInterface?question=${JSON.stringify(question)}`}
-          style={{ textDecoration: "none", color: "black" }}
+        <div
+          className="my-5 py-3 px-4"
+          style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
         >
           <Widget
             src={`${props.accountId}/widget/answersHeader`}
@@ -65,8 +65,8 @@ const renderQuestions = () => {
             }`}
             props={{ ...question }}
           />
-        </a>
-      </div>
+        </div>
+      </a>
     );
   });
 };
