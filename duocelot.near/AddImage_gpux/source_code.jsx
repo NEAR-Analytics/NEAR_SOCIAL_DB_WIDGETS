@@ -104,7 +104,7 @@ return (
             "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
           backgroundSize: "auto",
           backgroundPosition: "center",
-          height: "80px",
+          height: "81px",
           color: "#fff",
           display: "flex",
           alignItems: "center",
