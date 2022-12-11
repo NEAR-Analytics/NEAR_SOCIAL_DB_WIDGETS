@@ -7,25 +7,81 @@ State.init({
   pollEndDate: "",
   endTime: "",
   question: "",
+  // Treated as a number throws an error
   pollType: "0",
   choices: [],
   amountOfChoices: 1,
   expandOptions: false,
 });
 
+// It is no used currently, but it is intended to be used on renderOptions for generalize. After doing it now, it's throwing an error like "State should be at top" and we couldn't figure it out yet how to solve, but it will be fixed later
+
+const pollTypes = {
+  TEXT: { id: "0", value: "Text" },
+  MULTIPLE_CHOICE: { id: "1", value: "Multiple choice" },
+};
+
+const getPublicationParams = (isDraft) => {
+  return {
+    index: {
+      poll_question: JSON.stringify(
+        {
+          key: "question-v3.0.1",
+          value: {
+            isDraft,
+            title: state.pollTitle,
+            description: state.pollDescription,
+            startTimestamp: getTimestamp(state.pollStartDate, state.startTime),
+            endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
+            questionType: state.pollType,
+            question: state.question,
+            choicesOptions: state.choices,
+            timestamp: Date.now(),
+          },
+        },
+        undefined,
+        0
+      ),
+    },
+  };
+};
+
+const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
+
+const validateInput = () => {
+  let errors = [];
+  console.log(state.pollTitle);
+  if (!state.pollTitle) errors.push("Title cannot be empty");
+  if (!state.pollDescription) errors.push("Description cannot be empty");
+  if (!state.pollStartDate) errors.push("Start date cannot be empty");
+  if (!state.startTime) errors.push("Start time cannot be empty");
+  if (!state.pollEndDate) errors.push("End date cannot be empty");
+  if (!state.endTime) errors.push("Time cannot be empty");
+  if (!state.question) errors.push("Question cannot be empty");
+
+  if (
+    state.pollType == pollTypes.MULTIPLE_CHOICE &&
+    state.choices.filter((c) => c != "").length < 2
+  ) {
+    errors.push("Should have at least 2 options");
+  }
+  console.log(errors.join("\n"));
+  return errors.join("\n");
+};
+
 const renderTextInputsForChoices = () => {
-  let amountOfChoices = [];
+  let choices = [];
 
   for (let i = 0; i < state.amountOfChoices; i++) {
-    amountOfChoices.push(i);
+    choices.push(i);
   }
 
   return (
     <>
-      {amountOfChoices.map((choiceNumber) => {
+      {choices.map((choiceIndex) => {
         return (
-          <div className="my-3" key={`choice-input-${choiceNumber}`}>
-            <label>Answer option {choiceNumber + 1}</label>
+          <div className="my-3" key={`choice-input-${choiceIndex}`}>
+            <label>Answer option {choiceIndex + 1}</label>
             <div className="d-flex">
               <input
                 style={{
@@ -35,7 +91,7 @@ const renderTextInputsForChoices = () => {
                 }}
                 type="text"
                 className="w-100 mx-2"
-                value={state.choices[choiceNumber]}
+                value={state.choices[choiceIndex]}
                 // onChange={handleWriteChoiceInputChange(choiceNumber)}
               />
               <button
@@ -54,7 +110,7 @@ const renderTextInputsForChoices = () => {
         className="btn btn-outline-primary d-flex"
         style={{ margin: "0 auto" }}
       >
-        <i class="bi bi-plus-lg"></i>
+        <i className="bi bi-plus-lg"></i>
         <span>Add option</span>
       </button>
     </>
@@ -66,6 +122,7 @@ const renderOptions = () => {
     <div style={{ width: "max-content" }}>
       <input
         style={{
+          cursor: "pointer",
           backgroundColor: "rgb(230, 230, 230)",
           borderRadius: "0px",
           position: "absolute",
@@ -74,7 +131,7 @@ const renderOptions = () => {
           width: "152px",
         }}
         type="text"
-        value="Yes/No"
+        value="Text"
         readonly
         onClick={() => {
           State.update({ pollType: "0", expandOptions: !state.expandOptions });
@@ -83,6 +140,7 @@ const renderOptions = () => {
 
       <input
         style={{
+          cursor: "pointer",
           backgroundColor: "rgb(230, 230, 230)",
           borderRadius: "0px",
           position: "absolute",
@@ -91,27 +149,10 @@ const renderOptions = () => {
           width: "152px",
         }}
         type="text"
-        value="Text"
-        readonly
-        onClick={() => {
-          State.update({ pollType: "1", expandOptions: !state.expandOptions });
-        }}
-      />
-
-      <input
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          borderRadius: "0px",
-          position: "absolute",
-          top: "300%",
-          minWidth: "max-content",
-          width: "152px",
-        }}
-        type="text"
         value="Multiple choice"
         readonly
         onClick={() => {
-          State.update({ pollType: "2", expandOptions: !state.expandOptions });
+          State.update({ pollType: "1", expandOptions: !state.expandOptions });
         }}
       />
     </div>
@@ -182,7 +223,7 @@ return (
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
             <label for="pollStartDate">Start date</label>
-            {/*You have min and max propertuies on dates input*/}
+            {/*You have min and max properties on dates input*/}
             <input
               style={{ backgroundColor: "rgb(230, 230, 230)" }}
               type="date"
@@ -258,26 +299,15 @@ return (
             }}
           >
             {state.pollType == "0"
-              ? "Yes/No"
-              : state.pollType == "1"
               ? "Text"
-              : "Multiple choice"}
+              : state.pollType == "1"
+              ? "Multiple choice"
+              : undefined}
           </button>
 
           {state.expandOptions && renderOptions()}
         </div>
-        {state.pollType == "2" && renderTextInputsForChoices()}
-      </div>
-      <div
-        style={{
-          height: "150px",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        className="d-flex justify-content-center align-items-center"
-      >
-        <i class="bi bi-plus-lg"></i>
-        <span>Click to add another one question</span>
+        {state.pollType == "1" && renderTextInputsForChoices()}
       </div>
     </div>
 
@@ -285,12 +315,19 @@ return (
       style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
       className="p-3 d-flex flex-column justify-content-center"
     >
-      <button type="button" className="my-2 btn btn-outline-primary">
+      <CommitButton
+        className="my-2 btn btn-outline-primary"
+        data={getPublicationParams(true)}
+      >
         Preview
-      </button>
-      <button type="button" className="my-2 btn btn-primary">
+      </CommitButton>
+      <CommitButton
+        className="my-2 btn btn-primary"
+        data={getPublicationParams(false)}
+        disabled={validateInput().length > 0}
+      >
         Create poll
-      </button>
+      </CommitButton>
     </div>
   </div>
 );
