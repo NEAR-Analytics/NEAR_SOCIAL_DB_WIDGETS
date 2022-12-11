@@ -1,3 +1,1 @@
-props.fx({ a: "omgomg" });
-
-return <div style={{ color: red }}>omg</div>;
+return <div>Hello World</div>;
