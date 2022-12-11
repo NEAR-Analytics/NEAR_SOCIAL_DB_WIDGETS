@@ -44,6 +44,14 @@ return (
     style={{
       background: "linear-gradient(to bottom, #333, black)",
       maxWidth: "904px",
+      backgroundSize: "auto",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      maxWidth: "904px",
+      color: "#fff",
+      display: "relative",
+      alignItems: "center",
+      justifyContent: "center",
     }}
   >
     <div className="row mb-3">
