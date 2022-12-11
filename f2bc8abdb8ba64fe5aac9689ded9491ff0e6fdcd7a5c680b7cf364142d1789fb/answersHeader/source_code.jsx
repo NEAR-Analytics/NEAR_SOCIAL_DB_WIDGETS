@@ -57,8 +57,16 @@ return (
         </span>
       </a>
     </div>
-    <h5 className="mt-3">{questionParams.title}</h5>
-    <p>{questionParams.description}</p>
-    <p>{questionParams.question}</p>
+    <a
+      className="d-flex"
+      href={`#${
+        context.accountId
+      }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
+      <h5 className="mt-3">{questionParams.title}</h5>
+      <p>{questionParams.description}</p>
+      <p>{questionParams.question}</p>
+    </a>
   </div>
 );
