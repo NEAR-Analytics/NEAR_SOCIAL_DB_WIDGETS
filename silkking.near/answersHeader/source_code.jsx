@@ -14,28 +14,26 @@ let questionParams = props.value ?? {
   },
 };
 
-console.log("Que", questionParams);
-
-let profile = Social.getr(`${accountId}/profile`);
+let profile = Social.getr(`${props.accountId}/profile`);
 
 return (
-  <div className="my-2 mx-3">
+  <div className="my-2">
     <div className="d-flex no-wrap justify-content-between">
       <Widget
-        src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile"
-        props={{ userMakingQuestion: questionParams.accountId, profile }}
+        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile`}
+        props={{ userMakingQuestion: props.accountId, profile }}
       />
 
       <div className="d-flex">
         <span className="mx-2" style={{ fontWeight: "500" }}>
-          End date: {questionParams.endDate}
+          End date: {questionParams.endTimestamp}
         </span>
 
         <span
           style={{
             backgroundColor:
               questionParams.startDate < Date.now() &&
-              questionParams.endDate > Date.now()
+              questionParams.endTimestamp > Date.now()
                 ? "rgb(153, 255, 153)"
                 : "rgb(255, 128, 128)",
 
@@ -47,7 +45,7 @@ return (
           }}
         >
           {questionParams.startDate < Date.now() &&
-          questionParams.endDate > Date.now()
+          questionParams.endTimestamp > Date.now()
             ? "Active"
             : "Closed"}
         </span>
