@@ -40,7 +40,7 @@ return (
             whiteSpace: "nowrap",
             textAlign: "left",
             backgroundColor: `${
-              (haveVoted && thisUserVote == index) || state.vote == index + ""
+              (haveVoted && state.vote == index) || state.vote == index + ""
                 ? "rgb(153, 255, 153)"
                 : "lightgray"
             }`,
