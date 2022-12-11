@@ -1,26 +1,24 @@
-State.init({ vote: "" });
+let haveVoted = props.haveVoted;
 
-let thisUserVote = 0;
-function userHaveVoted() {
-  //TODO validate this to return boolean and if it's true set value to thisUserVote
-  return false;
-}
+State.init({ vote: "" });
 
 return (
   <div>
-    <textarea
-      value={state.vote}
-      onChange={(e) => State.update({ vote: e.target.value })}
-    />
-    {userHaveVoted() ? (
+    {haveVoted ? (
       <p
         className="text-primary"
         style={{ textAlign: "center", fontWeight: "500" }}
       >
-        Voted
+        You have already voted
       </p>
     ) : (
-      <>{/*TODO replace with commit button*/}</>
+      <>
+        <textarea
+          value={state.vote}
+          onChange={(e) => State.update({ vote: e.target.value })}
+        />
+        {/*TODO replace with commit button*/}
+      </>
     )}
   </div>
 );
