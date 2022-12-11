@@ -17,7 +17,7 @@ initState({
 function rollImage() {
   var seed = Math.trunc(Math.random() * 100000000);
   state.seed = seed;
-  state.blur = 8;
+  state.blur = 3;
   State.update(state);
 }
 
@@ -157,7 +157,10 @@ return (
             state.blur = 0;
             State.update(state);
           }}
-          style={{ filter: `blur(${state.blur}px)` }}
+          style={{
+            filter: `blur(${state.blur}px)`,
+            boxShadow: "0px 10px 10px 20px rgba(0,0,0,0.55)",
+          }}
         />
       </div>
     </div>
