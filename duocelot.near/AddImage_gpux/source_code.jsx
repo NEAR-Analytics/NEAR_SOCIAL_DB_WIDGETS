@@ -160,7 +160,7 @@ return (
               state.blur = 0;
               State.update(state);
             }}
-            style={{ filter: `blur(${state.blur}px)`, maxWidth: "512px" }}
+            style={{ filter: `blur(${state.blur}px)` }}
           />
         </div>
       </div>
