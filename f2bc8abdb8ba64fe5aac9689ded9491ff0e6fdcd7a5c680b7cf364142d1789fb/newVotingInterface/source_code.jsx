@@ -25,9 +25,10 @@ function transformDateFormat(date) {
 
 const renderVoteMultipleChoice = () => {
   return question.value.choicesOptions.map((option, index) => {
+    //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
     return (
       <Widget
-        src={`${props.accountId}/widget/voteMultipleChoice`}
+        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteMultipleChoice`}
         props={{
           question: question,
           option: option,
@@ -41,6 +42,7 @@ const renderVoteMultipleChoice = () => {
 };
 console.log(props.accountId);
 const renderVoteText = () => {
+  //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
   return (
     <Widget
       src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteWithText`}
