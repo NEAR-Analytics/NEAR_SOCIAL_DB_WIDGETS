@@ -1,4 +1,3 @@
-// StakingPools
 let data = fetch("https://near.zavodil.ru/pools.txt");
 if (!data) {
   return "Loading";
@@ -294,10 +293,12 @@ let pools = data.data.map((pool) => {
           ""
         )}
       </td>
-      <td>{parseFloat(pool.numerator.toFixed(2))}%</td>
-      <td>{pool.number_of_accounts}</td>
-      <td>
-        {pool.stake.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}&nbsp;Ⓝ
+      <td class="text-center">{parseFloat(pool.numerator.toFixed(2))}%</td>
+      <td class="text-center">
+        {pool.number_of_accounts.toFixed(0).replace(/\d(?=(\d{3})+$)/g, "$&,")}
+      </td>
+      <td class="text-end">
+        {pool.stake.toFixed(0).replace(/\d(?=(\d{3})+$)/g, "$&,")}&nbsp;Ⓝ
       </td>
       <td>
         <a
@@ -315,14 +316,16 @@ let pools = data.data.map((pool) => {
 });
 
 return (
-  <div className="table-responsive-md">
-    <table className="table table-striped table-bordered">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
       <thead>
-        <th>Pool&nbsp;ID</th>
-        <th>Service&nbsp;Fee&nbsp;</th>
-        <th>Delegators&nbsp;</th>
-        <th>Current&nbsp;Stake&nbsp;</th>
-        <th>Action</th>
+        <tr>
+          <th>Pool&nbsp;ID</th>
+          <th>Service&nbsp;Fee&nbsp;</th>
+          <th>Delegators&nbsp;</th>
+          <th>Current&nbsp;Stake&nbsp;</th>
+          <th>Action</th>
+        </tr>
       </thead>
 
       <tbody>{pools}</tbody>
