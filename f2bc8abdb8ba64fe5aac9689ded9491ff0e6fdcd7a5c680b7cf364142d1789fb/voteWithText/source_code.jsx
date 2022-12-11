@@ -1,7 +1,5 @@
 let haveVoted = props.haveVoted;
 
-console.log(haveVoted);
-
 State.init({ vote: "" });
 
 return (
