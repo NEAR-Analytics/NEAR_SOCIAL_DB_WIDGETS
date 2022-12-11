@@ -7,6 +7,7 @@ if (!currentBlock) {
 const Contract = {
   Berryclub: "berryclub.ek.near",
   Dacha: "v1.dacha-finance.near",
+  Cheddar: "farm-draw.cheddar.near",
 };
 
 const finetunes = [
@@ -17,7 +18,12 @@ const finetunes = [
 const contract = state.contract ?? props.contract ?? "berryclub.ek.near";
 
 const currentBlockHeight = currentBlock.header.height;
-const minBlockHeight = contract === Contract.Dacha ? 54570186 : 21793900;
+const minBlockHeight =
+  contract === Contract.Dacha
+    ? 54570186
+    : contract === Contract.Cheddar
+    ? 55198877
+    : 21793900;
 
 const intoRange = (blockHeight) =>
   Math.min(currentBlockHeight, Math.max(minBlockHeight, parseInt(blockHeight)));
@@ -67,6 +73,24 @@ return (
       />
       <label className="btn btn-outline-success fs-2" htmlFor="contract-dacha">
         🥔
+      </label>
+
+      <input
+        type="radio"
+        className="btn-check"
+        name="contract-radio"
+        id="contract-cheddar"
+        autoComplete="off"
+        checked={state.contract === Contract.Cheddar}
+        onChange={() => State.update({ contract: Contract.Cheddar })}
+        value={Contract.Cheddar}
+        title={"Set contract to Cheddar DraW"}
+      />
+      <label
+        className="btn btn-outline-success fs-2"
+        htmlFor="contract-cheddar"
+      >
+        🧀
       </label>
     </div>
     <Widget
