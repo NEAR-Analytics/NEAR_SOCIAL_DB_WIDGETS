@@ -70,7 +70,7 @@ return (
           type="text"
           value={state.prompt}
           style={{
-            width: "512px",
+            width: "480px",
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
@@ -109,8 +109,17 @@ return (
           justifyContent: "center",
         }}
       >
-        <a className="btn btn-outline-primary" onClick={(e) => rollImage()}>
-          🎲 Generate an Image
+        <a
+          className="btn btn-outline-primary"
+          onClick={(e) => rollImage()}
+          style={{
+            width: "480px",
+            backgroundColor: "black",
+            color: "white",
+            fontFamily: '"Press Start 2P", sans-serif',
+          }}
+        >
+          Generate
         </a>
       </div>
       <div
