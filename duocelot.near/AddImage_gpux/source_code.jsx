@@ -41,7 +41,7 @@ return (
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
-          backgroundSize: "100% 100%",
+          backgroundSize: "100% 162px",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "162px",
@@ -56,7 +56,7 @@ return (
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
-          backgroundSize: "100% 100%",
+          backgroundSize: "100% 81px",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "81px",
@@ -85,7 +85,7 @@ return (
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeiapzstltgyd6pyibvlgkg62wdsuqvbp2wqbwuqxmjhazxm7tgh2ee)",
-          backgroundSize: "100% 100%",
+          backgroundSize: "100% 15px",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "15px",
