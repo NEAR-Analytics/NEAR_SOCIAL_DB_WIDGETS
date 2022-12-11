@@ -140,28 +140,14 @@ return (
           justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            backgroundImage:
-              "url(https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq)",
-            backgroundSize: "auto",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            color: "#333",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+        <img
+          src={imgSrc}
+          onLoad={(e) => {
+            state.blur = 0;
+            State.update(state);
           }}
-        >
-          <img
-            src={imgSrc}
-            onLoad={(e) => {
-              state.blur = 0;
-              State.update(state);
-            }}
-            style={{ filter: `blur(${state.blur}px)` }}
-          />
-        </div>
+          style={{ filter: `blur(${state.blur}px)` }}
+        />
       </div>
     </div>
     <div
