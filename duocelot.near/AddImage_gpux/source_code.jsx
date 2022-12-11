@@ -147,7 +147,6 @@ return (
             backgroundSize: "auto",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            width: "512px",
             color: "#333",
             display: "flex",
             alignItems: "center",
