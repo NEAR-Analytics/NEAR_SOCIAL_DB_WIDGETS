@@ -20,13 +20,9 @@ let question = props.question ?? {
   ],
 };
 
-let enterFunction = true;
-
-if (enterFunction) {
-  enterFunction = false;
-  State.update({ pepito: "State changed from inside the child" });
-}
-if (state.pepito) {
+if (!state.stop) {
+  State.update({ pepito: "State changed from inside the child", stop: true });
+} else {
   console.log(state.pepito);
 }
 
