@@ -7,7 +7,10 @@ if (!accountId) {
 initState({
   meme: { title: "", description: "" },
   img: {},
-  rollImg: "https://via.placeholder.com/512x512",
+  prompt: "greg rutkowski galatic ((battle)) 4k anime manga japanese sunset",
+  seed: null,
+  rollImg:
+    "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
   blur: 0,
 });
 
@@ -25,9 +28,15 @@ const hasMeme = meme.image.ipfs_cid || meme.title;
 
 function rollImage() {
   var seed = Math.trunc(Math.random() * 100000000);
-  state.rollImg = `https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&seed=${seed}&image_count=1&steps=8&prompt=greg rutkowski galatic ((battle)) 4k anime manga japanese sunset`;
+  state.seed = seed;
   state.blur = 8;
   State.update(state);
+}
+
+var imgSrc =
+  "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44";
+if (state.seed) {
+  imgSrc = `https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&seed=${state.seed}&image_count=1&steps=8&prompt=${state.prompt}`;
 }
 
 return (
@@ -35,8 +44,9 @@ return (
     <div className="row mb-3">
       <div
         style={{
-          backgroundImage: "url(https://example.com/background-image.jpg)",
-          backgroundSize: "auto 80px",
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
+          backgroundSize: "904px 162px",
           backgroundPosition: "center",
           height: "162px",
           backgroundColor: "#333",
@@ -45,24 +55,35 @@ return (
           alignItems: "center",
           justifyContent: "center",
         }}
-      >
-        name logo
-      </div>
+      ></div>
       <div
         className="mb-2"
         style={{
-          backgroundImage: "url(https://example.com/background-image.jpg)",
-          backgroundSize: "auto 80px",
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
+          backgroundSize: "auto 81px",
           backgroundPosition: "center",
-          height: "80px",
-          backgroundColor: "red",
+          height: "81px",
           color: "#fff",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <input type="text" />
+        <input
+          type="text"
+          value={state.prompt}
+          style={{
+            width: "512px",
+            backgroundColor: "black",
+            color: "white",
+            fontFamily: '"Press Start 2P", sans-serif',
+          }}
+          onChange={(e) => {
+            state.prompt = e.target.value;
+            State.update(state);
+          }}
+        />
       </div>
       {meme.image.ipfs_cid && (
         <div className="mb-2">
@@ -79,7 +100,8 @@ return (
       <div
         className="mb-2"
         style={{
-          backgroundImage: "url(https://example.com/background-image.jpg)",
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
           backgroundSize: "auto 80px",
           backgroundPosition: "center",
           height: "80px",
@@ -102,11 +124,11 @@ return (
       </div>
       <div
         style={{
-          backgroundImage: "url(https://example.com/background-image.jpg)",
-          backgroundSize: "auto 524px",
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeihdd765olkr6w2d5p7tiv3cyjqae4eh3b3aokyezyksi65alswybu)",
+          backgroundSize: "904px 526px",
           backgroundPosition: "center",
           height: "524px",
-          background: "linear-gradient(to bottom, #040404, #fff)",
           color: "#333",
           display: "flex",
           alignItems: "center",
@@ -114,8 +136,7 @@ return (
         }}
       >
         <img
-          id="rollImg"
-          src={state.rollImg}
+          src={imgSrc}
           onLoad={(e) => {
             state.blur = 0;
             State.update(state);
