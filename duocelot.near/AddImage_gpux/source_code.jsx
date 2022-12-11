@@ -48,6 +48,8 @@ return (
             "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
           backgroundSize: "auto",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+
           height: "162px",
           backgroundColor: "#333",
           color: "#fff",
@@ -63,6 +65,8 @@ return (
             "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
           backgroundSize: "auto",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+
           height: "81px",
           color: "#fff",
           display: "flex",
@@ -104,6 +108,8 @@ return (
             "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
           backgroundSize: "auto",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+
           height: "81px",
           color: "#fff",
           display: "flex",
@@ -127,7 +133,9 @@ return (
             "url(https://ipfs.fleek.co/ipfs/bafybeihdd765olkr6w2d5p7tiv3cyjqae4eh3b3aokyezyksi65alswybu)",
           backgroundSize: "auto",
           backgroundPosition: "center",
-          height: "524px",
+          backgroundRepeat: "no-repeat",
+
+          height: "526px",
           color: "#333",
           display: "flex",
           alignItems: "center",
