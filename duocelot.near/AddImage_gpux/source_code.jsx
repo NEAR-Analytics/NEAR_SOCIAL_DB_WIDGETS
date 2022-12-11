@@ -40,13 +40,13 @@ if (state.seed) {
 }
 
 return (
-  <div style={{ background: "linear-gradient(to bottom, violet, black)" }}>
+  <div style={{ background: "linear-gradient(to bottom, orange, black)" }}>
     <div className="row mb-3">
       <div
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
-          backgroundSize: "904px 162px",
+          backgroundSize: "auto",
           backgroundPosition: "center",
           height: "162px",
           backgroundColor: "#333",
@@ -61,7 +61,7 @@ return (
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
-          backgroundSize: "auto 81px",
+          backgroundSize: "auto",
           backgroundPosition: "center",
           height: "81px",
           color: "#fff",
@@ -102,10 +102,9 @@ return (
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
-          backgroundSize: "auto 80px",
+          backgroundSize: "auto",
           backgroundPosition: "center",
           height: "80px",
-          backgroundColor: "yellow",
           color: "#fff",
           display: "flex",
           alignItems: "center",
@@ -126,7 +125,7 @@ return (
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeihdd765olkr6w2d5p7tiv3cyjqae4eh3b3aokyezyksi65alswybu)",
-          backgroundSize: "904px 526px",
+          backgroundSize: "auto",
           backgroundPosition: "center",
           height: "524px",
           color: "#333",
