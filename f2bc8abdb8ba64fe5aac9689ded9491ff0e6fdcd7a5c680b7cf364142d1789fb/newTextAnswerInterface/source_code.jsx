@@ -1,90 +1,110 @@
-let question = props.question ?? {
-  title: "Text test",
-  tgLink: "",
-  accountId: "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-  choicesOptions: [],
-  question: "Testing text",
-  description: "",
-  questionBlockHeight: 79932900,
-  startDate: Date.now(),
-  endDate: Date.now() + 1000000000,
-  storingTimestamp: Date.now(),
-  questionType: "0",
-  answers: [
-    {
-      accountId:
-        "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-      answer: "This is a test answer",
-      timeStamp: Date.now(),
-    },
-  ],
-};
-console.log(question);
+function validateProps(props) {
+  let errors = [];
+  if (!props.accountId) errors.push("Props don't contain accountId key");
+  if (!props.blockHeight) errors.push("Props don't contain blockHeight key");
+  if (!props.value) {
+    errors.push("Props don't contain value key");
+  } else {
+    if (!props.value.answers)
+      errors.push("Prop value doesn't contain answers key");
+  }
+  return errors;
+}
+
+function getBlockTimestamp(blockHeight) {
+  // It is stored in nanoseconds which is 1e-6 miliseconds
+  return Near.block(blockHeight).header.timestamp / 1e6;
+}
+
+const propErrors = validateProps(props);
+if (propErrors.length > 0) {
+  return (
+    <>
+      {propErrors.map((e) => (
+        <div>{e}</div>
+      ))}
+    </>
+  );
+}
+
+let questionParams = props.value;
+console.log(questionParams);
 
 const profileLink = (c) => (
   <a
     className="text-decoration-none link-dark"
-    href={`#/mob.near/widget/ProfilePage?accountId=${question.accountId}`}
+    href={`#/mob.near/widget/ProfilePage?accountId=${props.accountId}`}
   >
     {c}
   </a>
 );
 
 function makeAnswerAccIdShorter(accId) {
-  if (accId.length > 12) {
-    return accId.slice(0, 12) + "...";
+  if (accId.length > 18) {
+    return accId.slice(0, 18) + "...";
   }
   return accId;
 }
 
 return (
   <>
-    {question.answers.map((answer) => {
-      let profile = Social.getr(`${answer.accountId}/profile`);
-      return (
-        <div>
-          <div
-            className="d-flex align-items-start"
-            style={{
-              padding: "1.5rem 0",
-              borderBottom: "1px solid #e9e9e9",
-            }}
-          >
+    {questionParams.answers.length == 0
+      ? "This question does not have any answers yet. Be the first one!"
+      : questionParams.answers.map((answerParams) => {
+          if (!answerParams.accountId) return "";
+          let profile = Social.getr(`${answerParams.accountId}/profile`);
+          return (
             <div>
-              {profileLink(
-                <Widget
-                  src="mob.near/widget/ProfileImage"
-                  props={{ accountId: answer.accountId }}
-                />
-              )}
-            </div>
-            <div className="d-flex">
-              <div className="flex-grow-1 me-1 text-truncate">
-                {profileLink(
-                  <>
-                    <p style={{ margin: "0 2px 0 2px" }} className="fw-bold">
-                      {profile.name}
-                    </p>
-                    <p
-                      style={{ margin: "0 2px 0 2px" }}
-                      className="text-secondary"
-                    >
-                      @{makeAnswerAccIdShorter(answer.accountId)}
-                    </p>
-                  </>
-                )}
+              <div
+                className="d-flex align-items-start"
+                style={{
+                  padding: "1.5rem 0",
+                  borderBottom: "1px solid #e9e9e9",
+                }}
+              >
+                <div>
+                  {profileLink(
+                    <Widget
+                      src="mob.near/widget/ProfileImage"
+                      props={{ accountId: answerParams.accountId }}
+                    />
+                  )}
+                </div>
+                <div className="d-flex">
+                  <div className="flex-grow-1 me-1 text-truncate">
+                    {profileLink(
+                      <>
+                        <p
+                          style={{ margin: "0 2px 0 2px" }}
+                          className="fw-bold"
+                        >
+                          {profile.name}
+                        </p>
+                        <p
+                          style={{ margin: "0 2px 0 2px" }}
+                          className="text-secondary"
+                        >
+                          @{makeAnswerAccIdShorter(answerParams.accountId)}
+                        </p>
+                      </>
+                    )}
+                  </div>
+                  <div>
+                    <small className="ps-1 text-nowrap text-muted ms-auto">
+                      <i className="bi bi-clock me-1"></i>
+                      {Date.now() -
+                        getBlockTimestamp(questionParams.blockHeight)}
+                    </small>
+                  </div>
+                </div>
               </div>
-              <div>
-                <small className="ps-1 text-nowrap text-muted ms-auto">
-                  <i className="bi bi-clock me-1"></i>
-                  {Date.now() - question.storingTimestamp}
-                </small>
-              </div>
+              <textarea
+                className="w-100"
+                value={answerParams.value.answer}
+                readonly
+              />
             </div>
-          </div>
-          <textarea className="w-100" value={answer.answer} readonly />
-        </div>
-      );
-    })}
+          );
+        })}
   </>
 );
