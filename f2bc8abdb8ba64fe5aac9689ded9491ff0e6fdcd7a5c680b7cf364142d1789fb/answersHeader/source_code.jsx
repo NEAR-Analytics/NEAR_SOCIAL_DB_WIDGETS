@@ -20,6 +20,16 @@ let question = props.question ?? {
   ],
 };
 
+let enterFunction = true;
+
+if (enterFunction) {
+  enterFunction = false;
+  State.update({ pepito: "State changed from inside the child" });
+}
+if (state.pepito) {
+  console.log(state.pepito);
+}
+
 let profile = Social.getr(`${accountId}/profile`);
 
 return (
