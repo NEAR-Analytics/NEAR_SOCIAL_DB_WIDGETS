@@ -258,7 +258,7 @@ let pools = data.data.map((pool) => {
 
   return (
     <tr className="align-middle">
-      <th scope="row">
+      <td scope="row">
         {!!details.location.country_code ? (
           <>
             <FlagItem
@@ -293,7 +293,7 @@ let pools = data.data.map((pool) => {
         ) : (
           ""
         )}
-      </th>
+      </td>
       <td>{parseFloat(pool.numerator.toFixed(2))}%</td>
       <td>{pool.number_of_accounts}</td>
       <td>
@@ -315,13 +315,13 @@ let pools = data.data.map((pool) => {
 });
 
 return (
-  <div className="table-responsive">
-    <table className="table table-striped">
+  <div className="table-responsive-md">
+    <table className="table table-striped table-bordered">
       <thead>
         <th>Pool&nbsp;ID</th>
-        <th>Service&nbsp;Fee</th>
-        <th>Delegators</th>
-        <th>Current&nbsp;Stake</th>
+        <th>Service&nbsp;Fee&nbsp;</th>
+        <th>Delegators&nbsp;</th>
+        <th>Current&nbsp;Stake&nbsp;</th>
         <th>Action</th>
       </thead>
 
