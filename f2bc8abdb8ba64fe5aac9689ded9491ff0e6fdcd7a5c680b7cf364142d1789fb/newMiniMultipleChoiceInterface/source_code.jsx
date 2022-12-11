@@ -42,7 +42,12 @@ function displayableOptionName(option) {
 
 const renderOption = (option, index) => {
   return (
-    <div>
+    <a
+      href={`#${
+        context.accountId
+      }/widget/newVotingInterface?question=${JSON.stringify(question)}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
       <div className="d-flex">
         <div style={{ color: "#000", width: "90%" }}>
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
@@ -83,7 +88,7 @@ const renderOption = (option, index) => {
           {calculatePercentage(countVotes[index])}%
         </span>
       </div>
-    </div>
+    </a>
   );
 };
 
