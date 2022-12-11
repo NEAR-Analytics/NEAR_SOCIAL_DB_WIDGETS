@@ -11,6 +11,7 @@ initState({
   rollImg:
     "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
   blur: 0,
+  width: "auto",
 });
 
 function rollImage() {
