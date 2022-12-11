@@ -6,6 +6,12 @@ let profile = Social.getr(`${question.accountId}/profile`);
 //TODO get this data
 let questionsByThisCreator = [{}];
 
+let userVote;
+function userHaveVoted() {
+  //TODO validate this to return boolean and if it's true set value to thisUserVote
+  return false;
+}
+
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
     return string.slice(0, newStringLenght) + "...";
@@ -23,7 +29,13 @@ const renderVoteMultipleChoice = () => {
     return (
       <Widget
         src={`${props.accountId}/widget/voteMultipleChoice`}
-        props={{ question: question, option: option, index: index }}
+        props={{
+          question: question,
+          option: option,
+          index: index,
+          haveVoted: userHaveVoted(),
+          userVote: userVote,
+        }}
       />
     );
   });
@@ -33,7 +45,7 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${props.accountId}/widget/voteWithText`}
-      props={{ question }}
+      props={{ question: question, haveVoted: userHaveVoted() }}
     />
   );
 };
