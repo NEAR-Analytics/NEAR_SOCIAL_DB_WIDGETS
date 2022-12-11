@@ -49,16 +49,21 @@ const renderQuestions = () => {
         className="my-5 py-3 px-4"
         style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
       >
-        <Widget
-          src={`${props.accountId}/widget/answersHeader`}
-          props={{ ...question }}
-        />
-        <Widget
-          src={`${props.accountId}/widget/${
-            displayAnswerWidgetNames[question.value.questionType]
-          }`}
-          props={{ ...question }}
-        />
+        <a
+          href={`#${context.accountId}/widget/newVotingInterface?question=${question}`}
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <Widget
+            src={`${props.accountId}/widget/answersHeader`}
+            props={{ ...question }}
+          />
+          <Widget
+            src={`${props.accountId}/widget/${
+              displayAnswerWidgetNames[question.value.questionType]
+            }`}
+            props={{ ...question }}
+          />
+        </a>
       </div>
     );
   });
