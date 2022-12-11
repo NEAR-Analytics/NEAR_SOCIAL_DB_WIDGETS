@@ -79,8 +79,13 @@ const renderItem = (a) => {
                 target="_blank"
                 className="btn btn-outline-dark"
               >
-                Finetune {contract === "v1.dacha-finance.near" ? "🥔" : "🥑"} #
-                {blockHeight}
+                Finetune{" "}
+                {contract === "v1.dacha-finance.near"
+                  ? "🥔"
+                  : contract === "farm-draw.cheddar.near"
+                  ? "🧀"
+                  : "🥑"}{" "}
+                #{blockHeight}
               </a>
             </div>
           </div>
