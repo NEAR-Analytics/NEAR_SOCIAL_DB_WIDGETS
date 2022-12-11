@@ -40,7 +40,12 @@ if (state.seed) {
 }
 
 return (
-  <div style={{ background: "linear-gradient(to bottom, #333, black)" }}>
+  <div
+    style={{
+      background: "linear-gradient(to bottom, #333, black)",
+      maxWidth: "904px",
+    }}
+  >
     <div className="row mb-3">
       <div
         style={{
