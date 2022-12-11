@@ -1,5 +1,7 @@
 let haveVoted = props.haveVoted;
 
+console.log(haveVoted);
+
 State.init({ vote: "" });
 
 return (
@@ -12,13 +14,13 @@ return (
         You have already voted
       </p>
     ) : (
-      <>
+      <div>
         <textarea
           value={state.vote}
           onChange={(e) => State.update({ vote: e.target.value })}
         />
         {/*TODO replace with commit button*/}
-      </>
+      </div>
     )}
   </div>
 );
