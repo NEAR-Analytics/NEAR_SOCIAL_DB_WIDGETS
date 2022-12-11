@@ -14,9 +14,6 @@ let questionParams = props.value ?? {
   },
 };
 
-console.log("props.accountId ah: ", props.accountId);
-console.log("questionParams ah: ", questionParams);
-
 let profile = Social.getr(`${props.accountId}/profile`);
 
 return (
@@ -24,7 +21,7 @@ return (
     <div className="d-flex no-wrap justify-content-between">
       <Widget
         src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile"
-        props={{ userMakingQuestion: questionParams.accountId, profile }}
+        props={{ userMakingQuestion: props.accountId, profile }}
       />
 
       <div className="d-flex">
