@@ -20,11 +20,11 @@ let question = props.question ?? {
   ],
 };
 
+console.log("before ", state.pepito);
 if (!state.stop) {
   State.update({ pepito: "State changed from inside the child", stop: true });
-} else {
-  console.log(state.pepito);
 }
+console.log("after ", state.pepito);
 
 let profile = Social.getr(`${accountId}/profile`);
 
