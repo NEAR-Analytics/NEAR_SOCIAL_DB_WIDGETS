@@ -14,7 +14,7 @@ let questionParams = props.value ?? {
   },
 };
 
-let profile = Social.getr(`${accountId}/profile`);
+let profile = Social.getr(`${questionParams.accountId}/profile`);
 
 return (
   <div className="my-2">
