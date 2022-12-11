@@ -38,7 +38,7 @@ return (
           backgroundImage: "url(https://example.com/background-image.jpg)",
           backgroundSize: "auto 80px",
           backgroundPosition: "center",
-          height: "80px",
+          height: "162px",
           backgroundColor: "#333",
           color: "#fff",
           display: "flex",
@@ -46,24 +46,8 @@ return (
           justifyContent: "center",
         }}
       >
-        image space
+        name logo
       </div>
-      <div
-        style={{
-          backgroundImage: "url(https://example.com/background-image.jpg)",
-          backgroundSize: "auto 80px",
-          backgroundPosition: "center",
-          height: "80px",
-          backgroundColor: "blue",
-          color: "#fff",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <h4>Add an image</h4>
-      </div>
-
       <div
         className="mb-2"
         style={{
