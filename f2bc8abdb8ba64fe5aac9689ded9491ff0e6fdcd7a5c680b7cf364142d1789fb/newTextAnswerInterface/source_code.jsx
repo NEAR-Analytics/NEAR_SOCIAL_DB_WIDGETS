@@ -28,7 +28,7 @@ if (propErrors.length > 0) {
 }
 
 let questionParams = props.value;
-console.log(questionParams);
+console.log("questionParams ntai: ", questionParams);
 
 const profileLink = (c) => (
   <a
