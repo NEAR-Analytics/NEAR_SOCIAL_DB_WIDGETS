@@ -1,5 +1,4 @@
 let question = props;
-console.log(question);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
@@ -40,11 +39,11 @@ const renderVoteMultipleChoice = () => {
     );
   });
 };
-
+console.log(props.accountId);
 const renderVoteText = () => {
   return (
     <Widget
-      src={`${props.accountId}/widget/voteWithText`}
+      src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteWithText`}
       props={{ question: question, haveVoted: userHaveVoted() }}
     />
   );
