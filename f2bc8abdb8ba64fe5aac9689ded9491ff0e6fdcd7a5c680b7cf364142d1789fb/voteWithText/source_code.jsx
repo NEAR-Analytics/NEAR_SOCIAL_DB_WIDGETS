@@ -18,6 +18,7 @@ return (
         <textarea
           value={state.vote}
           onChange={(e) => State.update({ vote: e.target.value })}
+          style={{ width: "100%" }}
         />
         {/*TODO replace with commit button*/}
       </div>
