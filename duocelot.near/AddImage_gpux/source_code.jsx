@@ -57,7 +57,7 @@ return (
           height: "162px",
           maxWidth: "904px",
           color: "#fff",
-          display: "flex",
+          display: "relative",
           alignItems: "center",
           justifyContent: "center",
         }}
