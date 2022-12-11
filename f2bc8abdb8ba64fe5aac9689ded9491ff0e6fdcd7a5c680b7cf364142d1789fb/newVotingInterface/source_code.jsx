@@ -1,3 +1,7 @@
+console.log(props.question);
+console.log(context.question);
+console.log(props);
+
 let question = props.question ?? context.question ?? props;
 
 let profile = Social.getr(`${question.accountId}/profile`);
