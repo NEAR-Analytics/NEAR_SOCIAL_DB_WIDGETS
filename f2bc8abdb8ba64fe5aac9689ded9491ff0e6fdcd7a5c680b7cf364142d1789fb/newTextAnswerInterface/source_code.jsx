@@ -13,21 +13,8 @@ function validateProps(props) {
 
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
-  console.log("B", Near.block(blockHeight).header.timestamp);
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
-
-function timeAgo(diffSec) {
-  return diffSec < 60000
-    ? `${(diffSec / 1000) | 0} seconds agoa`
-    : diffSec < 3600000
-    ? `${(diffSec / 60000) | 0} minutes ago`
-    : diffSec < 86400000
-    ? `${(diffSec / 3600000) | 0} hours ago`
-    : `${(diffSec / 86400000) | 0} days ago`;
-}
-
-console.log(timeAgo(278802));
 
 const propErrors = validateProps(props);
 if (propErrors.length > 0) {
@@ -104,18 +91,13 @@ return (
                   <div>
                     <small className="ps-1 text-nowrap text-muted ms-auto">
                       <i className="bi bi-clock me-1"></i>
-                      {timeAgo(
-                        Date.now() - getBlockTimestamp(props.blockHeight)
-                      )}
+                      {Date.now() -
+                        getBlockTimestamp(questionParams.blockHeight)}
                     </small>
                   </div>
                 </div>
               </div>
-              <textarea
-                className="w-100"
-                value={answerParams.value.answer}
-                readonly
-              />
+              <p className="w-100">{answerParams.value.answer}</p>
             </div>
           );
         })}
