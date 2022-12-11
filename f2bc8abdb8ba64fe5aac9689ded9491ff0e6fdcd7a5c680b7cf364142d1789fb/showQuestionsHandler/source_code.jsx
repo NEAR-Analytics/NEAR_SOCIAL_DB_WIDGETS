@@ -1,3 +1,17 @@
+function validateProps(props) {
+  let errors = [];
+  const
+  if (!props.accountId) errors.push("Props don't contain accountId key");
+  if (!props.blockHeight) errors.push("Props don't contain blockHeight key");
+  if (!props.value) {
+    errors.push("Props don't contain value key");
+  } else {
+    if (!props.value.answers)
+      errors.push("Prop value doesn't contain answers key");
+  }
+  return errors;
+}
+
 function addAnswersToQuestion(questions, answers) {
   questions = questions.map((q) => {
     q.value.answers = [];
