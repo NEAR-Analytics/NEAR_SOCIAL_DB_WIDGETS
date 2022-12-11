@@ -53,7 +53,12 @@ return (
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
           return (
-            <div>
+            <a
+              href={`#${
+                context.accountId
+              }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <div
                 className="d-flex align-items-start"
                 style={{
@@ -98,7 +103,7 @@ return (
                 </div>
               </div>
               <p className="w-100">{answerParams.value.answer}</p>
-            </div>
+            </a>
           );
         })}
   </>
