@@ -24,7 +24,13 @@ return (
         props={{ userMakingQuestion: props.accountId, profile }}
       />
 
-      <div className="d-flex">
+      <a
+        className="d-flex"
+        href={`#${
+          context.accountId
+        }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
+        style={{ textDecoration: "none", color: "black" }}
+      >
         <span className="mx-2" style={{ fontWeight: "500" }}>
           End date: {questionParams.endTimestamp}
         </span>
@@ -49,7 +55,7 @@ return (
             ? "Active"
             : "Closed"}
         </span>
-      </div>
+      </a>
     </div>
     <h5 className="mt-3">{questionParams.title}</h5>
     <p>{questionParams.description}</p>
