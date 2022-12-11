@@ -1,9 +1,11 @@
 let question = props.question;
 let option = props.option;
 let index = props.index;
+let haveVoted = props.haveVoted;
+let userVote = props.userVote;
 
 State.init({
-  vote: "",
+  vote: userVote ?? "",
 });
 
 //TODO get this data
@@ -13,15 +15,9 @@ function calculatePercentage(votesToThisOption) {
   return (votesToThisOption / question.value.answers.length) * 100;
 }
 
-let styles = userHaveVoted()
+let styles = haveVoted
   ? { color: "#000", width: "90%" }
   : { color: "#000", width: "100%" };
-
-let thisUserVote = 0;
-function userHaveVoted() {
-  //TODO validate this to return boolean and if it's true set value to thisUserVote
-  return false;
-}
 
 return (
   <div>
@@ -37,24 +33,23 @@ return (
             padding: "0.01em 16px",
             display: "inline-block",
             width: `${
-              userHaveVoted() ? calculatePercentage(countVotes[index]) : 100
+              haveVoted ? calculatePercentage(countVotes[index]) : 100
             }%`,
             textAlign: "center",
             overflow: "visible",
             whiteSpace: "nowrap",
             textAlign: "left",
             backgroundColor: `${
-              (userHaveVoted() && thisUserVote == index) ||
-              state.vote == index + ""
+              (haveVoted && thisUserVote == index) || state.vote == index + ""
                 ? "rgb(153, 255, 153)"
                 : "lightgray"
             }`,
           }}
-          onClick={() => !userHaveVoted && State.update({ vote: index + "" })}
+          onClick={() => !haveVoted && State.update({ vote: index + "" })}
         >
           <span style={{ overflow: "visible", fontWeight: "500" }}>
             {option}
-            {userHaveVoted() && (
+            {haveVoted && (
               <span
                 className="text-secondary"
                 style={{ marginLeft: "1rem", fontWeight: "400" }}
@@ -65,7 +60,7 @@ return (
           </span>
         </div>
       </div>
-      {userHaveVoted() && (
+      {haveVoted && (
         <span
           style={{
             minWidth: "max-content",
@@ -78,7 +73,7 @@ return (
       )}
     </div>
 
-    {userHaveVoted() ? (
+    {haveVoted ? (
       <p
         className="text-primary"
         style={{ textAlign: "center", fontWeight: "500" }}
