@@ -1,4 +1,4 @@
-let question = props;
+let question = props ?? props.accountId;
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
