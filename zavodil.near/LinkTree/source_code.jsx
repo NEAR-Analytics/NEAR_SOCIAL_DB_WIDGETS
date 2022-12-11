@@ -21,6 +21,10 @@ const linktreeElements = {
     prefix: "mailto:",
     icon: "bi-envelope",
   },
+  discord: {
+    prefix: "https://",
+    icon: "bi-discord",
+  },
 };
 
 const linktreeObjects = linktree.map((o, i) => {
@@ -44,7 +48,7 @@ const linktreeObjects = linktree.map((o, i) => {
     </span>
   ) : (
     <span key={i}>
-      {key}: {icon}
+      {key}: <a href={`${value}`}>{value}</a>
     </span>
   );
 });
