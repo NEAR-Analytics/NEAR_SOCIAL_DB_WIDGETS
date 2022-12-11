@@ -17,7 +17,7 @@ const inner = (
       }}
     />
     <span>
-      {profile.name || "No-name profile"}
+      {profile.name || ""}
       <span className="text-muted">@{accountId}</span>
     </span>
   </>
