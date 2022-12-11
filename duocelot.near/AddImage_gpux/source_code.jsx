@@ -43,8 +43,7 @@ return (
   <div
     style={{
       background: "linear-gradient(to bottom, #333, black)",
-      maxWidth: "904px",
-      backgroundSize: "auto",
+      maxWidth: "910px",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       maxWidth: "904px",
