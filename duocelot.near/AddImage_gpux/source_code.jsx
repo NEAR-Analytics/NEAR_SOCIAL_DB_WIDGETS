@@ -46,7 +46,7 @@ return (
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       color: "#fff",
-      display: "relative",
+      display: "flex",
       alignItems: "center",
       justifyContent: "center",
     }}
@@ -61,7 +61,7 @@ return (
           backgroundRepeat: "no-repeat",
           height: "162px",
           color: "#fff",
-          display: "relative",
+          display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
