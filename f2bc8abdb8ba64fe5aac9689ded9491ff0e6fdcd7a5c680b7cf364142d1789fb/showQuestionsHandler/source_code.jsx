@@ -50,7 +50,9 @@ const renderQuestions = () => {
         style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
       >
         <a
-          href={`#${context.accountId}/widget/newVotingInterface?question=${question}`}
+          href={`#${
+            context.accountId
+          }/widget/newVotingInterface?question=${JSON.stringify(question)}`}
           style={{ textDecoration: "none", color: "black" }}
         >
           <Widget
