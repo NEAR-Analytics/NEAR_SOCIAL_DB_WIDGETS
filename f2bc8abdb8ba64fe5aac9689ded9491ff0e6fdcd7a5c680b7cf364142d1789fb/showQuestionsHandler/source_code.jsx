@@ -1,6 +1,5 @@
 function validateProps(props) {
   let errors = [];
-  const
   if (!props.accountId) errors.push("Props don't contain accountId key");
   if (!props.blockHeight) errors.push("Props don't contain blockHeight key");
   if (!props.value) {
