@@ -12,6 +12,7 @@ State.init({
   choices: [],
   amountOfChoices: 1,
   expandOptions: false,
+  showErrorsInForm: false,
 });
 
 // It is no used currently, but it is intended to be used on renderOptions for generalize. After doing it now, it's throwing an error like "State should be at top" and we couldn't figure it out yet how to solve, but it will be fixed later
@@ -48,26 +49,28 @@ const getPublicationParams = (isDraft) => {
 
 const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
 
-const validateInput = () => {
-  let errors = [];
-  console.log(state.pollTitle);
-  if (!state.pollTitle) errors.push("Title cannot be empty");
-  if (!state.pollDescription) errors.push("Description cannot be empty");
-  if (!state.pollStartDate) errors.push("Start date cannot be empty");
-  if (!state.startTime) errors.push("Start time cannot be empty");
-  if (!state.pollEndDate) errors.push("End date cannot be empty");
-  if (!state.endTime) errors.push("Time cannot be empty");
-  if (!state.question) errors.push("Question cannot be empty");
-
-  if (
+const isValidInput = () => {
+  return (
+    state.pollTitle &&
+    state.pollDescription &&
+    state.pollStartDate &&
+    state.startTime &&
+    state.pollEndDate &&
+    state.endTime &&
+    state.question &&
     state.pollType == pollTypes.MULTIPLE_CHOICE &&
     state.choices.filter((c) => c != "").length < 2
-  ) {
-    errors.push("Should have at least 2 options");
-  }
-  console.log(errors.join("\n"));
-  return errors.join("\n");
+  );
 };
+
+function getStyles(inputData) {
+  return !inputData && state.showErrorsInForm
+    ? {
+        border: "1px solid #dc3545",
+        borderOpacity: "1",
+      }
+    : { backgroundColor: "rgb(230, 230, 230)" };
+}
 
 const renderTextInputsForChoices = () => {
   let choices = [];
@@ -110,7 +113,7 @@ const renderTextInputsForChoices = () => {
         className="btn btn-outline-primary d-flex"
         style={{ margin: "0 auto" }}
       >
-        <i class="bi bi-plus-lg"></i>
+        <i className="bi bi-plus-lg"></i>
         <span>Add option</span>
       </button>
     </>
@@ -122,10 +125,11 @@ const renderOptions = () => {
     <div style={{ width: "max-content" }}>
       <input
         style={{
+          cursor: "pointer",
           backgroundColor: "rgb(230, 230, 230)",
           borderRadius: "0px",
           position: "absolute",
-          top: "200%",
+          top: "100%",
           minWidth: "max-content",
           width: "152px",
         }}
@@ -139,10 +143,11 @@ const renderOptions = () => {
 
       <input
         style={{
+          cursor: "pointer",
           backgroundColor: "rgb(230, 230, 230)",
           borderRadius: "0px",
           position: "absolute",
-          top: "300%",
+          top: "200%",
           minWidth: "max-content",
           width: "152px",
         }}
@@ -171,13 +176,20 @@ return (
           borderRadius: "0.375rem",
         }}
         type="text"
-        className="mb-2"
+        className={
+          !state.pollTitle && state.showErrorsInForm
+            ? "border border-danger mb-2"
+            : "mb-2"
+        }
         id="pollTitle"
         value={state.pollTitle}
         onChange={(e) => {
           State.update({ pollTitle: e.target.value });
         }}
       />
+      {!state.pollTitle && state.showErrorsInForm && (
+        <p className="text-danger">Title cannot be empty</p>
+      )}
 
       <label for="pollDescription" className="mt-2">
         Description
@@ -190,11 +202,19 @@ return (
           borderRadius: "0.375rem",
         }}
         rows="3"
+        className={
+          !state.pollDescription &&
+          state.showErrorsInForm &&
+          "border border-danger"
+        }
         value={state.pollDescription}
         onChange={(e) => {
           State.update({ pollDescription: e.target.value });
         }}
       ></textarea>
+      {!state.pollDescription && state.showErrorsInForm && (
+        <p className="text-danger">Description cannot be empty</p>
+      )}
 
       <label for="pollDiscussionLink" className="mt-3">
         Discussion link (optional)
@@ -223,7 +243,7 @@ return (
             <label for="pollStartDate">Start date</label>
             {/*You have min and max properties on dates input*/}
             <input
-              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              style={getStyles(state.pollStartDate)}
               type="date"
               id="pollStartDate"
               value={state.pollStartDate}
@@ -231,23 +251,29 @@ return (
                 State.update({ pollStartDate: e.target.value });
               }}
             />
+            {!state.pollStartDate && state.showErrorsInForm && (
+              <p className="text-danger">Start date cannot be empty</p>
+            )}
           </div>
           <div>
             <div>Start time</div>
             <input
               type="time"
-              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              style={getStyles(state.startTime)}
               onChange={(e) => {
                 State.update({ startTime: e.target.value });
               }}
             />
+            {!state.pollStartDate && state.showErrorsInForm && (
+              <p className="text-danger">Start time cannot be empty</p>
+            )}
           </div>
         </div>
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
             <label for="pollEndDate">End date</label>
             <input
-              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              style={getStyles(state.pollEndDate)}
               type="date"
               id="pollStartDate"
               value={state.pollEndDate}
@@ -255,17 +281,23 @@ return (
                 State.update({ pollEndDate: e.target.value });
               }}
             />
+            {!state.pollEndDate && state.showErrorsInForm && (
+              <p className="text-danger">End date cannot be empty</p>
+            )}
           </div>
           <div>
             <div>End time</div>
             <input
               type="time"
-              style={{ backgroundColor: "rgb(230, 230, 230)" }}
+              style={getStyles(state.endTime)}
               value={state.endTime}
               onChange={(e) => {
                 State.update({ endTime: e.target.value });
               }}
             />
+            {!state.pollEndDate && state.showErrorsInForm && (
+              <p className="text-danger">End time cannot be empty</p>
+            )}
           </div>
         </div>
       </div>
@@ -276,7 +308,15 @@ return (
       >
         <label for="question">Question</label>
         <input
-          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+          style={
+            !state.question && state.showErrorsInForm
+              ? {
+                  border: "1px solid #dc3545",
+                  borderOpacity: "1",
+                  borderRadius: "0.375rem",
+                }
+              : { backgroundColor: "rgb(230, 230, 230)" }
+          }
           type="text"
           id="question"
           value={state.question}
@@ -284,6 +324,9 @@ return (
             State.update({ question: e.target.value });
           }}
         />
+        {!state.question && state.showErrorsInForm && (
+          <p className="text-danger">Question cannot be empty</p>
+        )}
         <label className="mt-3" for="pollType">
           Pool type
         </label>
@@ -306,17 +349,10 @@ return (
           {state.expandOptions && renderOptions()}
         </div>
         {state.pollType == "1" && renderTextInputsForChoices()}
-      </div>
-      <div
-        style={{
-          height: "150px",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        className="d-flex justify-content-center align-items-center"
-      >
-        <i class="bi bi-plus-lg"></i>
-        <span>Click to add another one question</span>
+        {state.pollType == pollTypes.MULTIPLE_CHOICE &&
+          state.choices.filter((c) => c != "").length < 2 && (
+            <p className="text-danger">Should have at least 2 options</p>
+          )}
       </div>
     </div>
 
@@ -330,13 +366,21 @@ return (
       >
         Preview
       </CommitButton>
-      <CommitButton
-        className="my-2 btn btn-primary"
-        data={getPublicationParams(false)}
-        disabled={validateInput().length > 0}
-      >
-        Create poll
-      </CommitButton>
+      {isValidInput() ? (
+        <CommitButton
+          className="my-2 btn btn-primary"
+          data={getPublicationParams(false)}
+        >
+          Create poll
+        </CommitButton>
+      ) : (
+        <button
+          className="my-2 btn btn-primary"
+          onClick={() => State.update({ showErrorsInForm: true })}
+        >
+          Create poll
+        </button>
+      )}
     </div>
   </div>
 );
