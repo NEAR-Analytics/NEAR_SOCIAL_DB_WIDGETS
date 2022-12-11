@@ -1,5 +1,4 @@
 const linktree = Object.entries(props.linktree ?? {});
-console.log(props.linktree);
 
 const linktreeElements = {
   website: {
@@ -19,8 +18,8 @@ const linktreeElements = {
     icon: "bi-telegram",
   },
   email: {
-    prefix: "mainto:",
-    icon: "bi-email",
+    prefix: "mailto:",
+    icon: "bi-envelope",
   },
 };
 
@@ -40,17 +39,13 @@ const linktreeObjects = linktree.map((o, i) => {
     ""
   );
   return e.prefix ? (
-    <div key={i}>
-      <a href={`${e.prefix}${value}`}>
-        {icon}
-        {value}
-      </a>
-    </div>
+    <span key={i}>
+      <a href={`${e.prefix}${value}`}>{icon}</a>
+    </span>
   ) : (
-    <div key={i}>
+    <span key={i}>
       {key}: {icon}
-      {value}
-    </div>
+    </span>
   );
 });
 
