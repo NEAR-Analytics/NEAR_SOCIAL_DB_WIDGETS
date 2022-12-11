@@ -14,8 +14,6 @@ let questionParams = props.value ?? {
   },
 };
 
-console.log(props);
-
 let profile = Social.getr(`${props.accountId}/profile`);
 
 return (
@@ -28,14 +26,14 @@ return (
 
       <div className="d-flex">
         <span className="mx-2" style={{ fontWeight: "500" }}>
-          End date: {questionParams.endDate}
+          End date: {questionParams.endTimestamp}
         </span>
 
         <span
           style={{
             backgroundColor:
               questionParams.startDate < Date.now() &&
-              questionParams.endDate > Date.now()
+              questionParams.endTimestamp > Date.now()
                 ? "rgb(153, 255, 153)"
                 : "rgb(255, 128, 128)",
 
@@ -47,7 +45,7 @@ return (
           }}
         >
           {questionParams.startDate < Date.now() &&
-          questionParams.endDate > Date.now()
+          questionParams.endTimestamp > Date.now()
             ? "Active"
             : "Closed"}
         </span>
