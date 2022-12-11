@@ -35,7 +35,7 @@ return (
       backgroundPosition: "center",
     }}
   >
-    <div className="row mb-3">
+    <div className="mb-3">
       <div
         style={{
           backgroundImage:
@@ -51,7 +51,7 @@ return (
         }}
       ></div>
       <div
-        className="row mb-2"
+        className="mb-2"
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
