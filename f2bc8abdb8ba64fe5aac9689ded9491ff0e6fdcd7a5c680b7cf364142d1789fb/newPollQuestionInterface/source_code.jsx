@@ -49,22 +49,18 @@ const getPublicationParams = (isDraft) => {
 
 const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
 
-const validateInput = () => {
-  let errors = [];
-  console.log(state.pollTitle);
-  if (
-    !state.pollTitle ||
-    !state.pollDescription ||
-    !state.pollStartDate ||
-    !state.startTime ||
-    !state.pollEndDate ||
-    !state.endTime ||
-    !state.question ||
-    (state.pollType == pollTypes.MULTIPLE_CHOICE &&
-      state.choices.filter((c) => c != "").length < 2)
-  )
-    errors.push("Error");
-  return errors.join("\n");
+const isValidInput = () => {
+  return (
+    state.pollTitle &&
+    state.pollDescription &&
+    state.pollStartDate &&
+    state.startTime &&
+    state.pollEndDate &&
+    state.endTime &&
+    state.question &&
+    state.pollType == pollTypes.MULTIPLE_CHOICE &&
+    state.choices.filter((c) => c != "").length < 2
+  );
 };
 
 function getStyles(inputData) {
@@ -91,20 +87,28 @@ const renderTextInputsForChoices = () => {
             <label>Answer option {choiceIndex + 1}</label>
             <div className="d-flex">
               <input
-                style={{
-                  backgroundColor: "rgb(230, 230, 230)",
-                  border: "1px solid #ced4da",
-                  borderRadius: "0.375rem",
-                }}
+                style={
+                  state.choices[choiceIndex] == "" && state.showErrorsInForm
+                    ? {
+                        border: "1px solid #dc3545",
+                        borderOpacity: "1",
+                        borderRadius: "0.375rem",
+                      }
+                    : {
+                        backgroundColor: "rgb(230, 230, 230)",
+                        border: "1px solid #ced4da",
+                        borderRadius: "0.375rem",
+                      }
+                }
                 type="text"
                 className="w-100 mx-2"
                 value={state.choices[choiceIndex]}
-                // onChange={handleWriteChoiceInputChange(choiceNumber)}
+                onChange={handleWriteChoiceInputChange(choiceIndex)}
               />
               <button
                 type="button"
                 className="btn btn-outline-danger"
-                // onClick={deleteChoiceHandler(choiceNumber)}
+                onClick={deleteChoiceHandler(choiceIndex)}
               >
                 <i className="bi bi-x-octagon"></i>
               </button>
@@ -116,6 +120,7 @@ const renderTextInputsForChoices = () => {
         type="button"
         className="btn btn-outline-primary d-flex"
         style={{ margin: "0 auto" }}
+        onClick={addChoicesHandler}
       >
         <i className="bi bi-plus-lg"></i>
         <span>Add option</span>
@@ -166,10 +171,48 @@ const renderOptions = () => {
   );
 };
 
+function handleWriteChoiceInputChange(choiceIndex) {
+  return (event) => {
+    const newChoices = state.choices;
+
+    newChoices[Number(choiceIndex)] = event.target.value;
+
+    State.update({
+      choices: newChoices,
+    });
+  };
+}
+
+function deleteChoiceHandler(choiceIndex) {
+  return () => {
+    let choices = state.choices;
+    let newChoices = [];
+    for (let i = 0; i < choices.length; i++) {
+      if (i != choiceIndex) {
+        newChoices.push(choices[i]);
+      }
+    }
+
+    State.update({
+      amountOfChoices: Number(state.amountOfChoices) - 1,
+      choices: newChoices,
+    });
+  };
+}
+
+function addChoicesHandler() {
+  let choices = state.choices;
+  choices.push("");
+  State.update({
+    amountOfChoices: Number(state.amountOfChoices) + 1,
+    choices: choices,
+  });
+}
+
 return (
   <div
     className="d-flex align-items-start justify-content-around pt-4"
-    style={{ borderRadius: "0.375rem", height: "100%" }}
+    style={{ borderRadius: "0.375rem", height: "100vh", overflow: "scroll" }}
   >
     <div className="d-flex flex-column w-75 justify-content-around">
       <label for="pollTitle">Title</label>
@@ -353,7 +396,8 @@ return (
           {state.expandOptions && renderOptions()}
         </div>
         {state.pollType == "1" && renderTextInputsForChoices()}
-        {state.pollType == pollTypes.MULTIPLE_CHOICE &&
+        {state.showErrorsInForm &&
+          state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
           state.choices.filter((c) => c != "").length < 2 && (
             <p className="text-danger">Should have at least 2 options</p>
           )}
@@ -370,20 +414,20 @@ return (
       >
         Preview
       </CommitButton>
-      {validateInput().length > 0 ? (
-        <button
-          className="my-2 btn btn-primary"
-          onClick={() => State.update({ showErrorsInForm: true })}
-        >
-          Create poll
-        </button>
-      ) : (
+      {isValidInput() ? (
         <CommitButton
           className="my-2 btn btn-primary"
           data={getPublicationParams(false)}
         >
           Create poll
         </CommitButton>
+      ) : (
+        <button
+          className="my-2 btn btn-primary"
+          onClick={() => State.update({ showErrorsInForm: true })}
+        >
+          Create poll
+        </button>
       )}
     </div>
   </div>
