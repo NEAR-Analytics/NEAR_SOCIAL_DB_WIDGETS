@@ -5,7 +5,6 @@ if (!accountId) {
 }
 
 initState({
-  meme: { title: "", description: "" },
   img: {},
   prompt: "greg rutkowski galatic ((battle)) 4k anime manga japanese sunset",
   seed: null,
@@ -13,18 +12,6 @@ initState({
     "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
   blur: 0,
 });
-
-const meme = {
-  title: state.meme.title,
-  description: state.meme.description,
-  image: {},
-};
-
-if (state.img.cid) {
-  meme.image.ipfs_cid = state.img.cid;
-}
-
-const hasMeme = meme.image.ipfs_cid || meme.title;
 
 function rollImage() {
   var seed = Math.trunc(Math.random() * 100000000);
@@ -94,7 +81,7 @@ return (
         />
       </div>
       <div
-        className="row mb-2"
+        className="mb-2"
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
@@ -108,15 +95,9 @@ return (
           justifyContent: "center",
         }}
       >
-        {hasMeme ? (
-          <CommitButton data={{ post: { meme } }}>Post image</CommitButton>
-        ) : (
-          !props.noPrevMeme && (
-            <a className="btn btn-outline-primary" onClick={(e) => rollImage()}>
-              🎲 Generate an Image
-            </a>
-          )
-        )}
+        <a className="btn btn-outline-primary" onClick={(e) => rollImage()}>
+          🎲 Generate an Image
+        </a>
       </div>
       <div
         style={{
