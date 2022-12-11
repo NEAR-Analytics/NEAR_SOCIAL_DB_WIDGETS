@@ -20,7 +20,7 @@ return (
   <div className="my-2">
     <div className="d-flex no-wrap justify-content-between">
       <Widget
-        src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile"
+        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile`}
         props={{ userMakingQuestion: props.accountId, profile }}
       />
 
