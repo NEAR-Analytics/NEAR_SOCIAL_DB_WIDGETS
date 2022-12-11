@@ -42,13 +42,10 @@ if (state.seed) {
 return (
   <div
     style={{
-      background: "linear-gradient(to bottom, #333, black)",
+      width: "100%",
+      background: "linear-gradient(to right, black, #3a0201, black)",
+      backgroundSize: "100% 100%",
       backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      color: "#fff",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
     }}
   >
     <div className="row mb-3">
