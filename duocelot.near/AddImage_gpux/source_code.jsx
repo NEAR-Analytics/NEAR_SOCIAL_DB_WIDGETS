@@ -40,7 +40,7 @@ if (state.seed) {
 }
 
 return (
-  <div style={{ background: "linear-gradient(to bottom, orange, black)" }}>
+  <div style={{ background: "linear-gradient(to bottom, #333, black)" }}>
     <div className="row mb-3">
       <div
         style={{
@@ -49,9 +49,7 @@ return (
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-
           height: "162px",
-          backgroundColor: "#333",
           color: "#fff",
           display: "flex",
           alignItems: "center",
