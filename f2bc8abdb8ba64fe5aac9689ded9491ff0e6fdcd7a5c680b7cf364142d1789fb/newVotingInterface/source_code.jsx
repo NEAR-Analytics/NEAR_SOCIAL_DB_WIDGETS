@@ -1,6 +1,6 @@
-console.log(JSON.parse(props.question));
+console.log(props.question);
 console.log(context.question);
-console.log(props);
+console.log(JSON.parse(props));
 
 let question = props.question ?? context.question ?? props;
 
