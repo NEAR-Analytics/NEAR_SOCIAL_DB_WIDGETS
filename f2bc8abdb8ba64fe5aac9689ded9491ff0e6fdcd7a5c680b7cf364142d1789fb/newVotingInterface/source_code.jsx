@@ -40,7 +40,7 @@ const renderVoteMultipleChoice = () => {
     );
   });
 };
-console.log(props.accountId);
+
 const renderVoteText = () => {
   //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
   return (
