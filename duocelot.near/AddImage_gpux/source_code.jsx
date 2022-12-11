@@ -64,7 +64,7 @@ return (
         }}
       ></div>
       <div
-        className="mb-2"
+        className="row mb-2"
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
@@ -94,7 +94,7 @@ return (
         />
       </div>
       <div
-        className="mb-2"
+        className="row mb-2"
         style={{
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
