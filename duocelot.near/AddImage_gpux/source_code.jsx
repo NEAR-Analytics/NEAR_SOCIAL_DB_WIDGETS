@@ -36,6 +36,9 @@ return (
       background: "linear-gradient(to right, black, #3a0201, black)",
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     }}
   >
     <div>
