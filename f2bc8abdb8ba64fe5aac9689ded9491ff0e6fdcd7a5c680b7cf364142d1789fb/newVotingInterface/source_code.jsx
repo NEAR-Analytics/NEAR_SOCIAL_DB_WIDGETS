@@ -1,4 +1,4 @@
-console.log(props.question);
+console.log(JSON.parse(props.question));
 console.log(context.question);
 console.log(props);
 
