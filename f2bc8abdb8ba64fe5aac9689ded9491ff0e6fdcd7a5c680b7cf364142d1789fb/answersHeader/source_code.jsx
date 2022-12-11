@@ -14,7 +14,7 @@ let questionParams = props.value ?? {
   },
 };
 
-console.log("questionParams: ", questionParams);
+console.log("questionParams ah: ", questionParams);
 
 let profile = Social.getr(`${questionParams.accountId}/profile`);
 
