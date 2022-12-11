@@ -20,8 +20,6 @@ let question = props.question ?? {
   ],
 };
 
-console.log("Delete this console.log inside answersHeader");
-
 let profile = Social.getr(`${accountId}/profile`);
 
 return (
