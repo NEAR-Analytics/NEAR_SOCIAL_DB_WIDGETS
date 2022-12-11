@@ -64,7 +64,6 @@ return (
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-
           height: "81px",
           color: "#fff",
           display: "flex",
@@ -87,18 +86,6 @@ return (
           }}
         />
       </div>
-      {meme.image.ipfs_cid && (
-        <div className="mb-2">
-          Title <span className="text-secondary">(optional)</span>
-          <input type="text" value={state.meme.title} />
-        </div>
-      )}
-      {state.meme.title && (
-        <div className="mb-2">
-          Description <span className="text-secondary">(optional)</span>
-          <input type="text" value={state.meme.description} />
-        </div>
-      )}
       <div
         className="mb-2"
         style={{
@@ -132,7 +119,6 @@ return (
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-
           height: "526px",
           color: "#333",
           display: "flex",
@@ -140,14 +126,29 @@ return (
           justifyContent: "center",
         }}
       >
-        <img
-          src={imgSrc}
-          onLoad={(e) => {
-            state.blur = 0;
-            State.update(state);
+        <div
+          style={{
+            backgroundImage:
+              "url(https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq)",
+            backgroundSize: "auto",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            height: "512px",
+            color: "#333",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-          style={{ filter: `blur(${state.blur}px)`, maxWidth: "512px" }}
-        />
+        >
+          <img
+            src={imgSrc}
+            onLoad={(e) => {
+              state.blur = 0;
+              State.update(state);
+            }}
+            style={{ filter: `blur(${state.blur}px)`, maxWidth: "512px" }}
+          />
+        </div>
       </div>
     </div>
   </div>
