@@ -201,14 +201,16 @@ return (
         </div>
       </div>
 
-      <div className="d-flex">
-        <h5>Poll by creator</h5>
-        <h5 style={{ marginLeft: "0.5rem" }}>
-          ({questionsByThisCreator.length})
-        </h5>
-      </div>
+      {questionsByCreator.lengh > 1 && (
+        <div className="d-flex">
+          <h5>Poll by creator</h5>
+          <h5 style={{ marginLeft: "0.5rem" }}>
+            ({questionsByThisCreator.length})
+          </h5>
+        </div>
+      )}
 
-      {questionByCreator.length > 1 && (
+      {questionsByCreator.length > 1 && (
         <div
           style={{
             border: "1px solid #ced4da",
