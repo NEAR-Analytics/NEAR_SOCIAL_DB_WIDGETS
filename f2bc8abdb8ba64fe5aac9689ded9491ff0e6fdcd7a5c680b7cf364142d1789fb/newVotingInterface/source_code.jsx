@@ -223,7 +223,7 @@ return (
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
               <a
-                href={`#${context.accountId}/widget/showQuestionsHandler?questions=${question.accountId}`}
+                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
                 style={{ textDecoration: "none" }}
               >
                 <button className="btn btn-outline-primary w-75">
