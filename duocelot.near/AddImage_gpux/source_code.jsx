@@ -75,7 +75,7 @@ return (
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
-            margin: "10px, 0px, 10px, 0px",
+            margin: "10px, 40px, 10px, 40px",
           }}
           onChange={(e) => {
             state.prompt = e.target.value;
