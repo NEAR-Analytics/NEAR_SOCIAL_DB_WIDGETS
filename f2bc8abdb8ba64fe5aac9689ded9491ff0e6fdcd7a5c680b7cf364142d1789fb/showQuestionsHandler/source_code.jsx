@@ -32,7 +32,8 @@ const displayAnswerWidgetNames = [
   "newMiniMultipleChoiceInterface",
 ];
 
-let questions = Social.index("poll_question", "question-v3.0.1");
+let questions =
+  props.questions ?? Social.index("poll_question", "question-v3.0.1");
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
 
