@@ -35,7 +35,6 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1");
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
-console.log("questions: ", questions);
 
 const renderQuestions = () => {
   return questions.map((question) => {
