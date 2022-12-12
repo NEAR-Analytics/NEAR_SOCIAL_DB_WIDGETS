@@ -15,6 +15,9 @@ const style = {
   maxWidth: "300px",
 };
 
+// {key.url ? key.url + i[key.id] : i[key.id]}
+// <td>{value.url ? value.url + i[value.id] : i[value.id]}</td>
+
 return (
   <>
     <h2 class="mb-4">{title}</h2>
@@ -28,10 +31,9 @@ return (
           {data.map((i) => (
             <tr className="align-middle">
               <th style={style} scope="row">
-                {i[key.id]} // {key.url ? key.url + i[key.id] : i[key.id]}
+                {i[key.id]}
               </th>
               <td>{i[value.id]}</td>
-              // <td>{value.url ? value.url + i[value.id] : i[value.id]}</td>
             </tr>
           ))}
         </tbody>
