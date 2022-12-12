@@ -6,8 +6,7 @@ if (!accountId) {
 
 initState({
   img: {},
-  prompt:
-    "a landscape mythical, 8k photorealistic, cinematic lighting, HD, high details, atmospheric",
+  prompt: "greg rutkowski galatic ((battle)) 4k anime manga japanese sunset",
   seed: null,
   rollImg:
     "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
@@ -18,7 +17,7 @@ initState({
 function rollImage() {
   var seed = Math.trunc(Math.random() * 100000000);
   state.seed = seed;
-  state.blur = 3;
+  state.blur = 8;
   State.update(state);
 }
 
@@ -36,135 +35,131 @@ return (
       background: "linear-gradient(to right, black, #3a0201, black)",
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
     }}
   >
-    <div
-      style={{
-        backgroundImage:
-          "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
-        backgroundSize: "auto",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "162px",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    ></div>
+    <div>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "162px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      ></div>
 
-    <div
-      style={{
-        backgroundImage:
-          "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
-        backgroundSize: "auto",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "81px",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <input
-        type="text"
-        value={state.prompt}
+      <div
         style={{
-          width: "480px",
-          backgroundColor: "black",
-          color: "white",
-          fontFamily: '"Press Start 2P", sans-serif',
-        }}
-        onChange={(e) => {
-          state.prompt = e.target.value;
-          State.update(state);
-        }}
-      />
-    </div>
-    <div
-      style={{
-        backgroundImage:
-          "url(https://ipfs.fleek.co/ipfs/bafybeiapzstltgyd6pyibvlgkg62wdsuqvbp2wqbwuqxmjhazxm7tgh2ee)",
-        backgroundSize: "auto",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "15px",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    ></div>
-    <div
-      style={{
-        backgroundImage:
-          "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
-        backgroundSize: "auto",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "81px",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <a
-        className="btn btn-outline-primary"
-        onClick={(e) => rollImage()}
-        style={{
-          width: "480px",
-          backgroundColor: "black",
-          color: "white",
-          fontFamily: '"Press Start 2P", sans-serif',
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "81px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        Generate
-      </a>
-    </div>
-    <div
-      style={{
-        backgroundImage:
-          "url(https://ipfs.fleek.co/ipfs/bafybeiaye7rrdceoz44waxyn5ozulhopx6pbq7d4336cn6nenjwxuftsbe)",
-        backgroundSize: "auto",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "8px",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    ></div>
-    <div
-      style={{
-        backgroundImage:
-          "url(https://ipfs.fleek.co/ipfs/bafybeihdd765olkr6w2d5p7tiv3cyjqae4eh3b3aokyezyksi65alswybu)",
-        backgroundSize: "auto",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "526px",
-        color: "#333",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <img
-        src={imgSrc}
-        onLoad={(e) => {
-          state.blur = 0;
-          State.update(state);
-        }}
+        <input
+          type="text"
+          value={state.prompt}
+          style={{
+            width: "480px",
+            backgroundColor: "black",
+            color: "white",
+            fontFamily: '"Press Start 2P", sans-serif',
+          }}
+          onChange={(e) => {
+            state.prompt = e.target.value;
+            State.update(state);
+          }}
+        />
+      </div>
+      <div
         style={{
-          filter: `blur(${state.blur}px)`,
-          boxShadow: "0px 10px 10px 20px rgba(0,0,0,0.55)",
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiapzstltgyd6pyibvlgkg62wdsuqvbp2wqbwuqxmjhazxm7tgh2ee)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "15px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-      />
+      ></div>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeibzasxppb76w62uje25cioacxzh5olpf76jezydpiywno5ab2zmqy)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "81px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <a
+          className="btn btn-outline-primary"
+          onClick={(e) => rollImage()}
+          style={{
+            width: "480px",
+            backgroundColor: "black",
+            color: "white",
+            fontFamily: '"Press Start 2P", sans-serif',
+          }}
+        >
+          Generate
+        </a>
+      </div>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiaye7rrdceoz44waxyn5ozulhopx6pbq7d4336cn6nenjwxuftsbe)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "8px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      ></div>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeihdd765olkr6w2d5p7tiv3cyjqae4eh3b3aokyezyksi65alswybu)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "526px",
+          color: "#333",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src={imgSrc}
+          onLoad={(e) => {
+            state.blur = 0;
+            State.update(state);
+          }}
+          style={{ filter: `blur(${state.blur}px)` }}
+        />
+      </div>
     </div>
     <div
       style={{
