@@ -1,12 +1,16 @@
-let question = props;
+let blockHeight = props.blockHeight;
+let question = Social.index("poll_question", "question-v3.0.1", {
+  blockHeight,
+})[0];
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
-//TODO get this data
-let questionsByThisCreator = [{}];
+let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
+  accountId: question.accountId,
+});
 
 let userVote;
-function userHaveVoted() {
+function userHasVoted() {
   //TODO validate this to return boolean and if it's true set value to thisUserVote
   return false;
 }
@@ -19,8 +23,7 @@ function sliceString(string, newStringLenght) {
 }
 
 function transformDateFormat(date) {
-  //TODO
-  return date;
+  return new Date(date).toLocaleDateString();
 }
 
 const renderVoteMultipleChoice = () => {
@@ -28,13 +31,13 @@ const renderVoteMultipleChoice = () => {
     //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
     return (
       <Widget
-        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteMultipleChoice`}
+        src={`${context.accountId}/widget/voteMultipleChoice`}
         props={{
-          question: question,
-          option: option,
-          index: index,
-          haveVoted: userHaveVoted(),
-          userVote: userVote,
+          question,
+          option,
+          index,
+          haveVoted: userHasVoted(),
+          userVote,
         }}
       />
     );
@@ -45,8 +48,8 @@ const renderVoteText = () => {
   //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
   return (
     <Widget
-      src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteWithText`}
-      props={{ question: question, haveVoted: userHaveVoted() }}
+      src={`${context.accountId}/widget/voteWithText`}
+      props={{ question, haveVoted: userHasVoted() }}
     />
   );
 };
@@ -57,15 +60,17 @@ const renderOtherQuestions = () => {
     return (
       <div style={divStyle}>
         <p style={{ fontWeight: "500" }}>
-          {sliceString(questionByCreator.title, 12)}
+          {sliceString(questionByCreator.value.title, 20)}
         </p>
         <div className="d-flex justify-content-between flex-nowrap text-secondary">
           <span>End date</span>
-          <span>{transformDateFormat(questionByCreator.endDate)}</span>
+          <span>
+            {transformDateFormat(questionByCreator.value.endTimestamp)}
+          </span>
         </div>
         <div className="d-flex justify-content-between flex-nowrap text-secondary">
           <span>Votes</span>
-          <span>({questionByCreator.answers.length})</span>
+          <span>({questionsByThisCreator.length})</span>
         </div>
       </div>
     );
@@ -73,8 +78,7 @@ const renderOtherQuestions = () => {
 };
 
 function calculateTimeLeft() {
-  //TODO
-  return Date.now() - Number(endDate);
+  return Number(question.value.endTimestamp) - Date.now();
 }
 
 return (
@@ -100,8 +104,8 @@ return (
             marginRight: "1rem",
           }}
         >
-          {question.startTimestamp < Date.now() &&
-          question.endTimestamp > Date.now()
+          {question.value.startTimestamp < Date.now() &&
+          question.value.endTimestamp > Date.now()
             ? "Active"
             : "Closed"}
         </span>
@@ -112,7 +116,11 @@ return (
             borderLeft: "2px solid #ced4da",
           }}
         >
-          End in {calculateTimeLeft()}
+          Ends in
+          <Widget
+            src={`silkking.near/widget/timeAgo`}
+            props={{ timeInFuture: question.value.endTimestamp }}
+          />
         </span>
       </div>
 
@@ -197,31 +205,37 @@ return (
           <span>Creator</span>
           <span>{sliceString(question.accountId, 8)}</span>
         </div>
-
-        <div className="d-flex justify-content-between">
-          <span>Polls by creator</span>
-          <span>{/*TODO*/}</span>
-        </div>
       </div>
 
-      <div className="d-flex">
-        <h5>Poll by creator</h5>
-        <h5 style={{ marginLeft: "0.5rem" }}>
-          ({questionsByThisCreator.length})
-        </h5>
-      </div>
+      {questionsByCreator.lengh != 1 && (
+        <>
+          <div className="d-flex">
+            <h5>Poll by creator</h5>
+            <h5 style={{ marginLeft: "0.5rem" }}>
+              ({questionsByThisCreator.length})
+            </h5>
+          </div>
 
-      {questionByCreator.length != 0 && (
-        <div
-          style={{
-            border: "1px solid #ced4da",
-            borderRadius: "0.375rem",
-            padding: "0.5rem 1rem",
-          }}
-        >
-          {renderOtherQuestions()}
-          {/*TODO add view all button*/}
-        </div>
+          <div
+            style={{
+              border: "1px solid #ced4da",
+              borderRadius: "0.375rem",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            {renderOtherQuestions()}
+            <div style={{ margin: "1rem 0", textAlign: "center" }}>
+              <a
+                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
+                style={{ textDecoration: "none" }}
+              >
+                <button className="btn btn-outline-primary w-75">
+                  View all
+                </button>
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </div>
   </div>
