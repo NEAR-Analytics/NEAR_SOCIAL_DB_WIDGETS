@@ -20,11 +20,18 @@ function timeInFuture(timeInMillis) {
     timesString.push(`${m} minutes`);
   }
   const timeInHours = (timeInMinutes - m) / 60;
-  const h = timeInHours;
+  const h = timeInHours % 24;
   if (h == 1) {
     timesString.push(`1 minute`);
-  } else if (h > 1) {
+  } else if (h > 1 && h < 24) {
     timesString.push(`${h} hours`);
+  }
+  const timeInDays = (timeInHours - h) / 24;
+  const d = timeInDays;
+  if (d == 1) {
+    timesString.push(`1 day`);
+  } else if (d > 1) {
+    timesString.push(`${d} days`);
   }
   return timesString.reverse().join(" ");
 }
