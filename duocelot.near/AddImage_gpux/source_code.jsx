@@ -73,7 +73,7 @@ return (
             type="text"
             value={state.prompt}
             style={{
-              width: "480px",
+              width: "auto",
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
