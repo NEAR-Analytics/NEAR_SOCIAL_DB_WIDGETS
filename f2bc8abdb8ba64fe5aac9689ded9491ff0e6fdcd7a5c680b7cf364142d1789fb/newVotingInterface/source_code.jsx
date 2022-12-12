@@ -1,4 +1,7 @@
-let question = JSON.parse(props.question) ?? props;
+let blockHeight = props.blockHeight;
+let question = Social.index("poll_question", "question-v3.0.1", {
+  blockHeight,
+});
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
@@ -201,7 +204,7 @@ return (
         </div>
       </div>
 
-      {questionsByCreator.lengh > 1 && (
+      {questionsByCreator.lengh != 1 && (
         <>
           <div className="d-flex">
             <h5>Poll by creator</h5>
@@ -220,11 +223,7 @@ return (
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
               <a
-                href={`#${
-                  context.accountId
-                }/widget/showQuestionsHandler?questions=${JSON.stringify(
-                  questionsByThisCreator
-                )}`}
+                href={`#${context.accountId}/widget/showQuestionsHandler?questions=${question.accountId}`}
                 style={{ textDecoration: "none" }}
               >
                 <button className="btn btn-outline-primary w-75">
