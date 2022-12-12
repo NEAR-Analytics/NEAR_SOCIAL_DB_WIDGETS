@@ -77,6 +77,7 @@ return (
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
+              border: "1px solid #3a0201",
             }}
             onChange={(e) => {
               state.prompt = e.target.value;
@@ -126,6 +127,7 @@ return (
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
               margin: "10px 10px 10px 10px",
+              border: "1px solid #3a0201",
             }}
           />
           <a>{value}</a>
@@ -139,6 +141,7 @@ return (
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
             margin: "20px 20px 20px 20px",
+            border: "1px solid #3a0201",
           }}
         >
           Generate
