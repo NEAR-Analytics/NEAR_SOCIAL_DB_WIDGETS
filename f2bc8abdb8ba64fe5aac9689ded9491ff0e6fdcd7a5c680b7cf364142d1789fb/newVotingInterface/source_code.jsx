@@ -1,7 +1,7 @@
 let blockHeight = props.blockHeight;
 let question = Social.index("poll_question", "question-v3.0.1", {
   blockHeight,
-});
+})[0];
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
