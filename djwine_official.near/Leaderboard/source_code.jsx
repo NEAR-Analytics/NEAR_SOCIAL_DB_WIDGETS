@@ -17,9 +17,10 @@ let graph = Social.index("graph", "follow");
 console.log("graph", graph);
 // graph.forEach((i) => console.log(i));
 
-// ============================================================
-// PROCESSING DATA
-// filtering the data, sorting it, etc.
+/* ============================================================
+   PROCESSING DATA
+   filtering the data, sorting it, etc.
+   ============================================================ */
 
 let follows = graph.map((g) => ({
   follower: g.accountId,
@@ -65,9 +66,10 @@ let followers = follows
 
 console.log("followers", followers);
 
-// ============================================================
-// RENDERING DATA
-// rendering the data using JSX components
+/* ============================================================
+   RENDERING DATA
+   rendering the data using JSX components
+   ============================================================ */
 return (
   <>
     <h1 class="mb-4">Leaderboard</h1>
