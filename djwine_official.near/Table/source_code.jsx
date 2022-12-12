@@ -1,17 +1,13 @@
 const title = props.title;
 const data = props.data;
 const key = props.key;
-const keyLabel = props.keyLabel;
 const value = props.value;
-const valueLabel = props.valueLabel;
 const link = props.link;
 
 if (!title) return "Must have title";
 if (!data) return "Must have data";
 if (!key) return "Must have key";
-if (!keyLabel) return "Must have keyLabel";
 if (!value) return "Must have value";
-if (!valueLabel) return "Must have value";
 
 const style = {
   overflow: "hidden",
@@ -25,16 +21,17 @@ return (
     <div className="table-responsive">
       <table className="table">
         <thead>
-          <th style={style}>{keyLabel}</th>
-          <th>{valueLabel}</th>
+          <th style={style}>{key.label}</th>
+          <th>{value.label}</th>
         </thead>
         <tbody>
           {data.map((i) => (
             <tr className="align-middle">
               <th style={style} scope="row">
-                {i[key]}
+                {key.url ? key.url + i[key.id] : i[key.id]}
               </th>
-              <td>{i[value]}</td>
+              <td>{i[value.id]}</td>
+              // <td>{value.url ? value.url + i[value.id] : i[value.id]}</td>
             </tr>
           ))}
         </tbody>
