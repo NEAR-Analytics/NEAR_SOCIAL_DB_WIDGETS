@@ -24,7 +24,7 @@ function addAnswersToQuestion(questions, answers) {
     if (qIndex != -1) questions[qIndex].answers.push(answer);
     if (qIndex == -1) console.log(`Answer has no related question!`, answer);
   }
-  return JSON.parse(props.questions) ?? questions;
+  return questions;
 }
 
 const displayAnswerWidgetNames = [
@@ -32,7 +32,11 @@ const displayAnswerWidgetNames = [
   "newMiniMultipleChoiceInterface",
 ];
 
-let questions = Social.index("poll_question", "question-v3.0.1");
+console.log("props.accountId: ", props.accountId);
+let questions = Social.index("poll_question", "question-v3.0.1", {
+  accountId: props.accountId,
+});
+console.log("question: ", question);
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
 
