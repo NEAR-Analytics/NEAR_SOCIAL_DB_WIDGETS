@@ -202,36 +202,38 @@ return (
       </div>
 
       {questionsByCreator.lengh > 1 && (
-        <div className="d-flex">
-          <h5>Poll by creator</h5>
-          <h5 style={{ marginLeft: "0.5rem" }}>
-            ({questionsByThisCreator.length})
-          </h5>
-        </div>
-      )}
-
-      {questionsByCreator.length > 1 && (
-        <div
-          style={{
-            border: "1px solid #ced4da",
-            borderRadius: "0.375rem",
-            padding: "0.5rem 1rem",
-          }}
-        >
-          {renderOtherQuestions()}
-          <div style={{ margin: "1rem 0", textAlign: "center" }}>
-            <a
-              href={`#${
-                context.accountId
-              }/widget/showQuestionsHandler?questions=${JSON.stringify(
-                questionsByThisCreator
-              )}`}
-              style={{ textDecoration: "none" }}
-            >
-              <button className="btn btn-outline-primary w-75">View all</button>
-            </a>
+        <>
+          <div className="d-flex">
+            <h5>Poll by creator</h5>
+            <h5 style={{ marginLeft: "0.5rem" }}>
+              ({questionsByThisCreator.length})
+            </h5>
           </div>
-        </div>
+
+          <div
+            style={{
+              border: "1px solid #ced4da",
+              borderRadius: "0.375rem",
+              padding: "0.5rem 1rem",
+            }}
+          >
+            {renderOtherQuestions()}
+            <div style={{ margin: "1rem 0", textAlign: "center" }}>
+              <a
+                href={`#${
+                  context.accountId
+                }/widget/showQuestionsHandler?questions=${JSON.stringify(
+                  questionsByThisCreator
+                )}`}
+                style={{ textDecoration: "none" }}
+              >
+                <button className="btn btn-outline-primary w-75">
+                  View all
+                </button>
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </div>
   </div>
