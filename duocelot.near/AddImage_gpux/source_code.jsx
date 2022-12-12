@@ -17,7 +17,7 @@ initState({
 function rollImage() {
   var seed = Math.trunc(Math.random() * 100000000);
   state.seed = seed;
-  state.blur = 8;
+  state.blur = 3;
   State.update(state);
 }
 
@@ -75,6 +75,7 @@ return (
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
+            margin: "10px, 0px, 10px, 0px",
           }}
           onChange={(e) => {
             state.prompt = e.target.value;
