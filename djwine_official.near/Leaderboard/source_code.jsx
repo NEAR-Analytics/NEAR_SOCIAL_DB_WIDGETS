@@ -1,10 +1,26 @@
+// A COMMON READ-ONLY WIDGET CONSISTS OF THE FOLLOWING PARTS:
+
+/* ============================================================
+   PREPARING INPUT DATA
+   taking data from passed in {properties} or {context}
+   ============================================================ */
+
 const loading = context.loading;
 
 if (loading) return "Loading";
 
+/* ============================================================
+   FETCHING DATA
+   fetching the data from the SocialDB contract.
+   ============================================================ */
+
 let graph = Social.index("graph", "follow");
 console.log("graph", graph);
 // graph.forEach((i) => console.log(i));
+
+// ============================================================
+// PROCESSING DATA
+// filtering the data, sorting it, etc.
 
 let follows = graph.map((g) => ({
   follower: g.accountId,
@@ -50,22 +66,30 @@ let followers = follows
 
 console.log("followers", followers);
 
+// ============================================================
+// RENDERING DATA
+// rendering the data using JSX components
 return (
   <>
     <h1 class="mb-4">Leaderboard</h1>
 
     <div class="container">
       <div class="row">
-        <div class="col mr-2">
+        <div class="col">
           <Widget
             src="djwine_official.near/widget/Table"
             props={{
               title: "Followed",
               data: followed,
-              key: "followed",
-              keyLabel: "Account",
-              value: "count",
-              valueLabel: "Followed by",
+              key: {
+                id: "followed",
+                label: "Account",
+                url: "https://near.social/#/mob.near/widget/ProfilePage?accountId=",
+              },
+              value: {
+                id: "count",
+                label: "Followed by",
+              },
             }}
           />
         </div>
@@ -75,14 +99,18 @@ return (
             props={{
               title: "Followers",
               data: followers,
-              key: "follower",
-              keyLabel: "Account",
-              value: "count",
-              valueLabel: "Following",
+              key: {
+                id: "follower",
+                label: "Account",
+                url: "https://near.social/#/mob.near/widget/ProfilePage?accountId=",
+              },
+              value: {
+                id: "count",
+                label: "Following",
+              },
             }}
           />
         </div>
-        <div class="col ">One of three columns</div>
       </div>
     </div>
   </>
