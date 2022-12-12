@@ -76,8 +76,7 @@ const renderOtherQuestions = () => {
 };
 
 function calculateTimeLeft() {
-  //TODO
-  return Date.now() - Number(question.value.endTimestamp);
+  return Number(question.value.endTimestamp) - Date.now();
 }
 
 return (
@@ -115,7 +114,7 @@ return (
             borderLeft: "2px solid #ced4da",
           }}
         >
-          End in {calculateTimeLeft()}
+          End in {transformDateFormat(calculateTimeLeft())}
         </span>
       </div>
 
@@ -199,11 +198,6 @@ return (
         <div className="d-flex justify-content-between">
           <span>Creator</span>
           <span>{sliceString(question.accountId, 8)}</span>
-        </div>
-
-        <div className="d-flex justify-content-between">
-          <span>Polls by creator</span>
-          <span>{/*TODO*/}</span>
         </div>
       </div>
 
