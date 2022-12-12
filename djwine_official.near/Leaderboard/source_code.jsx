@@ -6,7 +6,6 @@
    ============================================================ */
 
 const loading = context.loading;
-
 if (loading) return "Loading";
 
 /* ============================================================
@@ -77,7 +76,7 @@ return (
       <div class="row">
         <div class="col">
           <Widget
-            src="djwine_official.near/widget/Table"
+            src="djwine_official.near/widget/ProfileTable"
             props={{
               title: "Followed",
               data: followed,
@@ -95,7 +94,7 @@ return (
         </div>
         <div class="col">
           <Widget
-            src="djwine_official.near/widget/Table"
+            src="djwine_official.near/widget/ProfileTable"
             props={{
               title: "Followers",
               data: followers,
