@@ -68,7 +68,7 @@ return (
           justifyContent: "center",
         }}
       >
-        <div style={{ width: "auto", margin: "0px 20px 0px 20px" }}>
+        <div style={{ width: "auto" }}>
           <input
             type="text"
             value={state.prompt}
@@ -125,7 +125,7 @@ return (
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
-              margin: "20px 20px 20px 20px",
+              margin: "10px 10px 10px 10px",
             }}
           />
           <a>{value}</a>
