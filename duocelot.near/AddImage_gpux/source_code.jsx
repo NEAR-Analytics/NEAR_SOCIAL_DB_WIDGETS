@@ -117,7 +117,7 @@ return (
           className="btn btn-outline-primary"
           onClick={(e) => rollImage()}
           style={{
-            width: "480px",
+            width: "240px",
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
