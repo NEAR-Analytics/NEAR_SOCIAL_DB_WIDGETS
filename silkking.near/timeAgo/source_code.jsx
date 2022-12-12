@@ -1,4 +1,4 @@
-if (!props.timeInFuture) return "timeInFuture prop not seta";
+if (!props.timeInFuture) return "timeInFuture prop not set";
 
 const timeMs = props.timeInFuture;
 
@@ -33,6 +33,7 @@ function timeInFuture(timeInMillis) {
   } else if (d > 1) {
     timesString.push(`${d} days`);
   }
+  if (props.reduced) return timesString[timesString.length - 1];
   return timesString.reverse().join(" ");
 }
 
