@@ -2,7 +2,6 @@ const title = props.title;
 const data = props.data;
 const key = props.key;
 const value = props.value;
-const link = props.link;
 
 if (!title) return "Must have title";
 if (!data) return "Must have data";
@@ -14,9 +13,6 @@ const style = {
   whiteSpace: "nowrap",
   maxWidth: "300px",
 };
-
-// {key.url ? key.url + i[key.id] : i[key.id]}
-// <td>{value.url ? value.url + i[value.id] : i[value.id]}</td>
 
 return (
   <>
@@ -30,7 +26,7 @@ return (
         <tbody>
           {data.map((i) => (
             <tr className="align-middle">
-              <td style={{ maxWidth: "300px", overflow: "hidden" }}>
+              <td style={style}>
                 <Widget
                   src="mob.near/widget/ProfileLine"
                   props={{
