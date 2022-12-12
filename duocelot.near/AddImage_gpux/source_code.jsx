@@ -155,12 +155,20 @@ return (
         }}
       >
         <img
+          src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
+          style={{ position: "absolute", zIndex: 1 }}
+        />
+        <img
           src={imgSrc}
           onLoad={(e) => {
             state.blur = 0;
             State.update(state);
           }}
-          style={{ filter: `blur(${state.blur}px)` }}
+          style={{
+            filter: `blur(${state.blur}px)`,
+            position: "relative",
+            zIndex: 0,
+          }}
         />
       </div>
     </div>
