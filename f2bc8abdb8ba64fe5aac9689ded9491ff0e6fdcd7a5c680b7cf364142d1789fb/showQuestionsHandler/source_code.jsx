@@ -33,7 +33,8 @@ const displayAnswerWidgetNames = [
 ];
 
 let questions =
-  props.questions ?? Social.index("poll_question", "question-v3.0.1");
+  JSON.parse(props.questions) ??
+  Social.index("poll_question", "question-v3.0.1");
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
 
