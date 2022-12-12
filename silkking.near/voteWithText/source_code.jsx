@@ -1,6 +1,29 @@
 let haveVoted = props.haveVoted;
 
-State.init({ vote: "" });
+State.init({ vote: "", showErrorsInForm: false });
+
+const getPublicationParams = () => {
+  return {
+    index: {
+      poll_question: JSON.stringify(
+        {
+          key: "answer-v3.0.1",
+          value: {
+            answer: state.vote,
+            questionBlockHeight: props.blockHeight,
+          },
+        },
+        undefined,
+        0
+      ),
+    },
+  };
+};
+
+const isValidInput = () => {
+  let result = state.vote != "";
+  return result;
+};
 
 return (
   <div>
@@ -18,7 +41,21 @@ return (
           onChange={(e) => State.update({ vote: e.target.value })}
           style={{ width: "100%" }}
         />
-        {/*TODO replace with commit button*/}
+        {isValidInput() ? (
+          <CommitButton
+            className="my-2 btn btn-primary"
+            data={getPublicationParams()}
+          >
+            Done
+          </CommitButton>
+        ) : (
+          <button
+            className="my-2 btn btn-primary"
+            onClick={() => State.update({ showErrorsInForm: true })}
+          >
+            Done
+          </button>
+        )}
       </div>
     )}
   </div>
