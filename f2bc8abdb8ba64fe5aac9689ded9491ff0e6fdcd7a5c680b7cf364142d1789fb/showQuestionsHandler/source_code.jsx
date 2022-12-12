@@ -36,7 +36,7 @@ console.log("props.accountId: ", props.accountId);
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
-console.log("question: ", question);
+
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
 
