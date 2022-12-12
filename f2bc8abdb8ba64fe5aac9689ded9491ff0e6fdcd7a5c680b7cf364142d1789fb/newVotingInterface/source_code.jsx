@@ -2,8 +2,9 @@ let question = JSON.parse(props.question) ?? props;
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
-//TODO get this data
-let questionsByThisCreator = [{}];
+let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
+  accountId: question.accountId,
+});
 
 let userVote;
 function userHaveVoted() {
@@ -57,15 +58,17 @@ const renderOtherQuestions = () => {
     return (
       <div style={divStyle}>
         <p style={{ fontWeight: "500" }}>
-          {sliceString(questionByCreator.title, 12)}
+          {sliceString(questionByCreator.value.title, 20)}
         </p>
         <div className="d-flex justify-content-between flex-nowrap text-secondary">
           <span>End date</span>
-          <span>{transformDateFormat(questionByCreator.endDate)}</span>
+          <span>
+            {transformDateFormat(questionByCreator.value.endTimestamp)}
+          </span>
         </div>
         <div className="d-flex justify-content-between flex-nowrap text-secondary">
           <span>Votes</span>
-          <span>({questionByCreator.answers.length})</span>
+          <span>({questionsByThisCreator.length})</span>
         </div>
       </div>
     );
@@ -74,7 +77,7 @@ const renderOtherQuestions = () => {
 
 function calculateTimeLeft() {
   //TODO
-  return Date.now() - Number(endDate);
+  return Date.now() - Number(question.value.endTimestamp);
 }
 
 return (
@@ -100,8 +103,8 @@ return (
             marginRight: "1rem",
           }}
         >
-          {question.startTimestamp < Date.now() &&
-          question.endTimestamp > Date.now()
+          {question.value.startTimestamp < Date.now() &&
+          question.value.endTimestamp > Date.now()
             ? "Active"
             : "Closed"}
         </span>
@@ -220,7 +223,18 @@ return (
           }}
         >
           {renderOtherQuestions()}
-          {/*TODO add view all button*/}
+          <div style={{ margin: "1rem 0", textAlign: "center" }}>
+            <a
+              href={`#${
+                context.accountId
+              }/widget/showQuestionsHandler?questions=${JSON.stringify(
+                questionsByThisCreator
+              )}`}
+              style={{ textDecoration: "none" }}
+            >
+              <button className="btn btn-outline-primary w-75">View all</button>
+            </a>
+          </div>
         </div>
       )}
     </div>
