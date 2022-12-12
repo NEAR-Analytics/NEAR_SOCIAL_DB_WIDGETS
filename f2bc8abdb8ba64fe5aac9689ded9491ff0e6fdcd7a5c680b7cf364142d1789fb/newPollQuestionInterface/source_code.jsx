@@ -408,12 +408,21 @@ return (
       style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
       className="p-3 d-flex flex-column justify-content-center"
     >
-      <CommitButton
-        className="my-2 btn btn-outline-primary"
-        data={getPublicationParams(true)}
-      >
-        Preview
-      </CommitButton>
+      {isValidInput() ? (
+        <CommitButton
+          className="my-2 btn btn-outline-primary"
+          data={getPublicationParams(true)}
+        >
+          Preview
+        </CommitButton>
+      ) : (
+        <button
+          className="my-2 btn btn-outline-primary"
+          onClick={() => State.update({ showErrorsInForm: true })}
+        >
+          Preview
+        </button>
+      )}
       {isValidInput() ? (
         <CommitButton
           className="my-2 btn btn-primary"
