@@ -113,14 +113,32 @@ return (
           justifyContent: "center",
         }}
       >
+        <div>
+          <input
+            type="range"
+            min={0}
+            max={25}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            style={{
+              width: "100px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+              margin: "20px 20px 20px 20px",
+            }}
+          />
+          <a>{value}</a>
+        </div>
         <a
           className="btn btn-outline-primary"
           onClick={(e) => rollImage()}
           style={{
-            width: "240px",
+            width: "200px",
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
+            margin: "20px 20px 20px 20px",
           }}
         >
           Generate
