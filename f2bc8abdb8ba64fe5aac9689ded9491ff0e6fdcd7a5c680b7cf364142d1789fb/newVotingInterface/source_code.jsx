@@ -1,7 +1,11 @@
 let blockHeight = props.blockHeight;
-let question = Social.index("poll_question", "question-v3.0.1", {
-  blockHeight,
-})[0];
+let question =
+  props.previewInfo ??
+  Social.index("poll_question", "question-v3.0.1", {
+    blockHeight,
+  })[0];
+
+console.log("question: ", question);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
@@ -10,7 +14,7 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
 });
 
 let userVote;
-function userHaveVoted() {
+function userHasVoted() {
   //TODO validate this to return boolean and if it's true set value to thisUserVote
   return false;
 }
@@ -23,8 +27,7 @@ function sliceString(string, newStringLenght) {
 }
 
 function transformDateFormat(date) {
-  //TODO
-  return date;
+  return new Date(date).toLocaleDateString();
 }
 
 const renderVoteMultipleChoice = () => {
@@ -32,13 +35,13 @@ const renderVoteMultipleChoice = () => {
     //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
     return (
       <Widget
-        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteMultipleChoice`}
+        src={`${context.accountId}/widget/voteMultipleChoice`}
         props={{
-          question: question,
-          option: option,
-          index: index,
-          haveVoted: userHaveVoted(),
-          userVote: userVote,
+          question,
+          option,
+          index,
+          haveVoted: userHasVoted(),
+          userVote,
         }}
       />
     );
@@ -49,8 +52,8 @@ const renderVoteText = () => {
   //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
   return (
     <Widget
-      src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/voteWithText`}
-      props={{ question: question, haveVoted: userHaveVoted() }}
+      src={`${context.accountId}/widget/voteWithText`}
+      props={{ question, haveVoted: userHasVoted() }}
     />
   );
 };
@@ -117,7 +120,11 @@ return (
             borderLeft: "2px solid #ced4da",
           }}
         >
-          End in {transformDateFormat(calculateTimeLeft())}
+          Ends in
+          <Widget
+            src={`silkking.near/widget/timeAgo`}
+            props={{ timeInFuture: question.value.endTimestamp }}
+          />
         </span>
       </div>
 
