@@ -1,3 +1,24 @@
+function validateProps(props) {
+  let errors = [];
+  if (!props.question) errors.push("Props doesn't contain question key");
+  if (!props.option) errors.push("Props doesn't contain option key");
+  if (!props.index) errors.push("Props doesn't contain index key");
+  if (!props.haveVoted) errors.push("Props doesn't contain haveVoted key");
+  if (!props.userVote) errors.push("Props doesn't contain userVote key");
+  return errors;
+}
+
+const propErrors = validateProps(props);
+if (propErrors.length > 0) {
+  return (
+    <>
+      {propErrors.map((e) => (
+        <div>{e}</div>
+      ))}
+    </>
+  );
+}
+
 let question = props.question;
 let option = props.option;
 let index = props.index;
@@ -7,6 +28,29 @@ let userVote = props.userVote;
 State.init({
   vote: userVote ?? "",
 });
+
+const getPublicationParams = () => {
+  return {
+    index: {
+      poll_question: JSON.stringify(
+        {
+          key: "answer-v3.0.1",
+          value: {
+            answer: state.vote,
+            questionBlockHeight: props.blockHeight,
+          },
+        },
+        undefined,
+        0
+      ),
+    },
+  };
+};
+
+const isValidInput = () => {
+  let result = state.vote != "";
+  return result;
+};
 
 //TODO get this data
 let countVotes = [1, 0, 0];
