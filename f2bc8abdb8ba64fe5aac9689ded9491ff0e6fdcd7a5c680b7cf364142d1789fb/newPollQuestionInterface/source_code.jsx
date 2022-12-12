@@ -13,9 +13,8 @@ State.init({
   amountOfChoices: 1,
   expandOptions: false,
   showErrorsInForm: false,
+  showPreview: false,
 });
-
-// It is no used currently, but it is intended to be used on renderOptions for generalize. After doing it now, it's throwing an error like "State should be at top" and we couldn't figure it out yet how to solve, but it will be fixed later
 
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
@@ -36,7 +35,7 @@ const getPublicationParams = (isDraft) => {
             endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
             questionType: state.pollType,
             question: state.question,
-            choicesOptions: state.choices,
+            choicesOptions: state.choices.filter((c) => c != ""),
             timestamp: Date.now(),
           },
         },
@@ -50,17 +49,19 @@ const getPublicationParams = (isDraft) => {
 const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
 
 const isValidInput = () => {
-  return (
-    state.pollTitle &&
-    state.pollDescription &&
-    state.pollStartDate &&
-    state.startTime &&
-    state.pollEndDate &&
-    state.endTime &&
-    state.question &&
-    state.pollType == pollTypes.MULTIPLE_CHOICE &&
-    state.choices.filter((c) => c != "").length < 2
-  );
+  // TODO validate date and link types
+  let result =
+    (state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
+      state.choices.filter((c) => c != "").length >= 2) ||
+    state.pollType != pollTypes.MULTIPLE_CHOICE.id;
+  result = result && state.pollTitle != "";
+  result = result && state.pollDescription != "";
+  result = result && state.pollStartDate != "";
+  result = result && state.startTime != "";
+  result = result && state.pollEndDate != "";
+  result = result && state.endTime != "";
+  result = result && state.question != "";
+  return result;
 };
 
 function getStyles(inputData) {
@@ -71,6 +72,75 @@ function getStyles(inputData) {
       }
     : { backgroundColor: "rgb(230, 230, 230)" };
 }
+
+const renderPreview = () => {
+  return (
+    <div
+      className="modal"
+      style={
+        state.showPreview && { display: "block", backgroundColor: "#7e7e7e70" }
+      }
+      tabindex="-1"
+      role="dialog"
+    >
+      <div className="modal-dialog" style={{ maxWidth: "80%" }} role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Preview</h5>
+            <button
+              type="button"
+              className="close"
+              dataDismiss="modal"
+              ariaLabel="Close"
+            >
+              <span ariaHidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            <Widget
+              src={`${context - accountId}/widget/newVotingInterface`}
+              props={{
+                previewInfo: {
+                  accountId: context.accountId,
+                  blockHeight: undefined,
+                  value: {
+                    isDraft,
+                    title: state.pollTitle,
+                    description: state.pollDescription,
+                    startTimestamp: getTimestamp(
+                      state.pollStartDate,
+                      state.startTime
+                    ),
+                    endTimestamp: getTimestamp(
+                      state.pollEndDate,
+                      state.endTime
+                    ),
+                    questionType: state.pollType,
+                    question: state.question,
+                    choicesOptions: state.choices.filter((c) => c != ""),
+                    timestamp: Date.now(),
+                  },
+                },
+              }}
+            />
+          </div>
+          <div className="modal-footer">
+            <button
+              onClick={() => {
+                State.update({ showPreview: false });
+              }}
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const renderTextInputsForChoices = () => {
   let choices = [];
@@ -408,21 +478,13 @@ return (
       style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
       className="p-3 d-flex flex-column justify-content-center"
     >
-      {isValidInput() ? (
-        <CommitButton
-          className="my-2 btn btn-outline-primary"
-          data={getPublicationParams(true)}
-        >
-          Preview
-        </CommitButton>
-      ) : (
-        <button
-          className="my-2 btn btn-outline-primary"
-          onClick={() => State.update({ showErrorsInForm: true })}
-        >
-          Preview
-        </button>
-      )}
+      <button
+        className="my-2 btn btn-outline-primary"
+        onClick={() => State.update({ showPreview: true })}
+      >
+        Preview
+      </button>
+
       {isValidInput() ? (
         <CommitButton
           className="my-2 btn btn-primary"
@@ -439,5 +501,7 @@ return (
         </button>
       )}
     </div>
+
+    {state.showPreview && renderPreview()}
   </div>
 );
