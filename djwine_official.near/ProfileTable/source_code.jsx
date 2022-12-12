@@ -30,7 +30,7 @@ return (
         <tbody>
           {data.map((i) => (
             <tr className="align-middle">
-              <td style={{ maxWidth: "300px" }}>
+              <td style={{ maxWidth: "300px", overflow: "hidden" }}>
                 <Widget
                   src="mob.near/widget/ProfileLine"
                   props={{
