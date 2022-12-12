@@ -6,8 +6,7 @@ if (!accountId) {
 
 initState({
   img: {},
-  prompt:
-    "a landscape mythical, 8k photorealistic, cinematic lighting, HD, high details, atmospheric",
+  prompt: "greg rutkowski galatic ((battle)) 4k anime manga japanese sunset",
   seed: null,
   rollImg:
     "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
@@ -36,9 +35,6 @@ return (
       background: "linear-gradient(to right, black, #3a0201, black)",
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
     }}
   >
     <div>
