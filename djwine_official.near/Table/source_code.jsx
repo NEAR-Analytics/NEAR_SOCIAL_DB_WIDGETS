@@ -30,9 +30,15 @@ return (
         <tbody>
           {data.map((i) => (
             <tr className="align-middle">
-              <th style={style} scope="row">
-                {i[key.id]}
-              </th>
+              <td>
+                <Widget
+                  src="mob.near/widget/ProfileLine"
+                  props={{
+                    accountId: i[key.id],
+                    tooltip: true,
+                  }}
+                />
+              </td>
               <td>{i[value.id]}</td>
             </tr>
           ))}
