@@ -7,7 +7,7 @@ if (!accountId) {
 initState({
   img: {},
   prompt:
-    "a landscape mythical, trees,, clouds, 8k photorealistic, cinematic lighting, HD, high details, atmospheric",
+    "a landscape mythical, clouds, sunset, sunrays, flare, 8k photorealistic, watercolor, cinematic lighting, HD, high details, atmospheric",
   seed: null,
   rollImg:
     "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
@@ -68,21 +68,22 @@ return (
           justifyContent: "center",
         }}
       >
-        <input
-          type="text"
-          value={state.prompt}
-          style={{
-            width: "480px",
-            backgroundColor: "black",
-            color: "white",
-            fontFamily: '"Press Start 2P", sans-serif',
-            padding: "10px, 40px, 10px, 40px",
-          }}
-          onChange={(e) => {
-            state.prompt = e.target.value;
-            State.update(state);
-          }}
-        />
+        <div style={{ width: "480px", padding: "40px 40px 40px 40px" }}>
+          <input
+            type="text"
+            value={state.prompt}
+            style={{
+              width: "480px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+            }}
+            onChange={(e) => {
+              state.prompt = e.target.value;
+              State.update(state);
+            }}
+          />
+        </div>
       </div>
       <div
         style={{
