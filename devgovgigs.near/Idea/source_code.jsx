@@ -54,14 +54,26 @@ const submissionsList = props.isPreview ? null : (
         </a>
       </div>
       <div class="col-3">
-        <a class="bi bi-chat" role="button">
-          {" "}
-          Comment ({comments.length ?? 0})
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseCommentEditor${idea_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseCommentEditor${idea_id}`}
+        >
+          <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
     <div class="collapse" id={`collapseSubmissionEditor${idea_id}`}>
       <Widget src={`${ownerId}/widget/SubmissionEditor`} props={{ idea_id }} />
+    </div>
+    <div class="collapse" id={`collapseCommentEditor${idea_id}`}>
+      <Widget
+        src={`${ownerId}/widget/CommentEditor`}
+        props={{ comment: { post_type: "Idea", post_id: idea_id } }}
+      />
     </div>
     <div>
       {submissions
