@@ -12,6 +12,7 @@ function validateProps(props) {
 }
 
 function getBlockTimestamp(blockHeight) {
+  console.log("in");
   // It is stored in nanoseconds which is 1e-6 miliseconds
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
@@ -52,7 +53,6 @@ return (
       : questionParams.value.answers.map((answerParams) => {
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
-          console.log("in");
           return (
             <>
               <div
