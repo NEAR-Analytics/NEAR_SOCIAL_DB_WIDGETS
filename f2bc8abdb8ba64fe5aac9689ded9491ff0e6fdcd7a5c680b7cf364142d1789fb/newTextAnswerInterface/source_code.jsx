@@ -45,23 +45,15 @@ function makeAnswerAccIdShorter(accId) {
   return accId;
 }
 
-console.log(questionParams.value.answers);
-
 return (
   <>
     {questionParams.value.answers.length == 0
       ? "This question does not have any answers yet. Be the first one!"
       : questionParams.value.answers.map((answerParams) => {
-          console.log("in");
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
           return (
-            <a
-              href={`#${
-                context.accountId
-              }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
+            <>
               <div
                 className="d-flex align-items-start"
                 style={{
@@ -112,7 +104,7 @@ return (
                 </div>
               </div>
               <p className="w-100">{answerParams.value.answer}</p>
-            </a>
+            </>
           );
         })}
   </>
