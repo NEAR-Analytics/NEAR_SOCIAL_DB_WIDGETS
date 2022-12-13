@@ -1,6 +1,7 @@
 let question = props.value;
 
 function calculatePercentage(votesToThisOption) {
+  if (question.answers.length == 0) return 0;
   return (votesToThisOption / question.answers.length) * 100;
 }
 
