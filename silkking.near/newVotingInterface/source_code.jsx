@@ -57,6 +57,7 @@ const renderVoteText = () => {
 };
 
 const renderOtherQuestions = () => {
+  console.log("QBTC", questionsByThisCreator);
   return questionsByThisCreator.map((questionByCreator, index) => {
     let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
     return (
