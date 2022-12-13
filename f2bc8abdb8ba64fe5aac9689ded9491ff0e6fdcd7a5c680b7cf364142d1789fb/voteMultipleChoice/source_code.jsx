@@ -50,7 +50,7 @@ const getPublicationParams = () => {
 
 const isValidInput = () => {
   let result = state.vote != "";
-  return result;
+  return result && !isPreview;
 };
 
 //TODO get this data
@@ -63,6 +63,11 @@ function calculatePercentage(votesToThisOption) {
 let styles = haveVoted
   ? { color: "#000", width: "90%" }
   : { color: "#000", width: "100%" };
+
+const isValidInput = () => {
+  let result = state.vote != "";
+  return result && !isPreview;
+};
 
 return (
   <div>
@@ -90,9 +95,7 @@ return (
                 : "lightgray"
             }`,
           }}
-          onClick={() =>
-            !haveVoted && !isPreview && State.update({ vote: index + "" })
-          }
+          onClick={() => !haveVoted && State.update({ vote: index + "" })}
         >
           <span style={{ overflow: "visible", fontWeight: "500" }}>
             {option}
@@ -128,7 +131,12 @@ return (
         Voted
       </p>
     ) : (
-      <>{/*TODO replace with commit button*/}</>
+      <CommitButton
+        className="my-2 btn btn-primary"
+        data={getPublicationParams()}
+      >
+        Vote
+      </CommitButton>
     )}
   </div>
 );
