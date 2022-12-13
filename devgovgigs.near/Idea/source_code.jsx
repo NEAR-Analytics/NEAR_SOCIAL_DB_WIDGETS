@@ -50,13 +50,13 @@ const submissionsList = props.isPreview ? null : (
       <div class="col-2" onClick={onLike}>
         <a class="bi bi-heart" role="button">
           {" "}
-          Like
+          Like ({idea.likes.length ?? 0})
         </a>
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <a class="bi bi-chat" role="button">
           {" "}
-          Comment
+          Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
@@ -106,15 +106,6 @@ return (
         <div className="row justify-content-between">
           <div class="col-9">
             <i class="bi bi-lightbulb"> </i>Idea: {idea.name}
-          </div>
-          <div class="col-3 ">
-            <div class="d-flex justify-content-evenly">
-              <div class="bi bi-rocket-fill">{submissions.length}</div>
-
-              <div class="bi bi-heart-fill">{idea.likes.length}</div>
-
-              <div class="bi bi-chat-fill">{comments.length}</div>
-            </div>
           </div>
         </div>
       </h5>
