@@ -92,7 +92,7 @@ const renderOtherQuestions = () => {
 function calculateTimeLeft() {
   return Number(question.value.endTimestamp) - Date.now();
 }
-console.log("isPreview: ", isPreview);
+
 return (
   <div
     className="d-flex content-align-start justify-content-between"
@@ -237,11 +237,7 @@ return (
           >
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
-              {isPreview ? (
-                <button className="btn btn-outline-primary w-75">
-                  View all
-                </button>
-              ) : (
+              {!isPreview ? (
                 <a
                   href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
                   style={{ textDecoration: "none" }}
@@ -250,6 +246,10 @@ return (
                     View all
                   </button>
                 </a>
+              ) : (
+                <button className="btn btn-outline-primary w-75">
+                  View all
+                </button>
               )}
             </div>
           </div>
