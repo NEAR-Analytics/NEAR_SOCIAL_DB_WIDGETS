@@ -1,11 +1,10 @@
+let isPreview = state.isPreview;
 let blockHeight = props.blockHeight;
 let question =
   props.previewInfo ??
   Social.index("poll_question", "question-v3.0.1", {
     blockHeight,
   })[0];
-
-console.log("question: ", question);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
@@ -31,21 +30,26 @@ function transformDateFormat(date) {
 }
 
 const renderVoteMultipleChoice = () => {
-  return question.value.choicesOptions.map((option, index) => {
-    //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
-    return (
-      <Widget
-        src={`${context.accountId}/widget/voteMultipleChoice`}
-        props={{
-          question,
-          option,
-          index,
-          haveVoted: userHasVoted(),
-          userVote,
-        }}
-      />
-    );
-  });
+  if (question) {
+    return question.value.choicesOptions.map((option, index) => {
+      //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
+      return (
+        <Widget
+          src={`${context.accountId}/widget/voteMultipleChoice`}
+          props={{
+            isPreview,
+            question,
+            option,
+            index,
+            haveVoted: userHasVoted(),
+            userVote,
+          }}
+        />
+      );
+    });
+  } else {
+    return "Loading...";
+  }
 };
 
 const renderVoteText = () => {
@@ -53,32 +57,36 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${context.accountId}/widget/voteWithText`}
-      props={{ question, haveVoted: userHasVoted() }}
+      props={{ isPreview, question, haveVoted: userHasVoted() }}
     />
   );
 };
 
 const renderOtherQuestions = () => {
-  return questionsByThisCreator.map((questionByCreator, index) => {
-    let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
-    return (
-      <div style={divStyle}>
-        <p style={{ fontWeight: "500" }}>
-          {sliceString(questionByCreator.value.title, 20)}
-        </p>
-        <div className="d-flex justify-content-between flex-nowrap text-secondary">
-          <span>End date</span>
-          <span>
-            {transformDateFormat(questionByCreator.value.endTimestamp)}
-          </span>
+  if (questionsByThisCreator) {
+    return questionsByThisCreator.map((questionByCreator, index) => {
+      let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
+      return (
+        <div style={divStyle}>
+          <p style={{ fontWeight: "500" }}>
+            {sliceString(questionByCreator.value.title, 20)}
+          </p>
+          <div className="d-flex justify-content-between flex-nowrap text-secondary">
+            <span>End date</span>
+            <span>
+              {transformDateFormat(questionByCreator.value.endTimestamp)}
+            </span>
+          </div>
+          <div className="d-flex justify-content-between flex-nowrap text-secondary">
+            <span>Votes</span>
+            <span>({questionsByThisCreator.length})</span>
+          </div>
         </div>
-        <div className="d-flex justify-content-between flex-nowrap text-secondary">
-          <span>Votes</span>
-          <span>({questionsByThisCreator.length})</span>
-        </div>
-      </div>
-    );
-  });
+      );
+    });
+  } else {
+    ("Loading...");
+  }
 };
 
 function calculateTimeLeft() {
