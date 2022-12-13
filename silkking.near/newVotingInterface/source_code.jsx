@@ -51,7 +51,21 @@ const renderVoteText = () => {
   );
 };
 
-const renderOtherQuestions = () => {
+function getValidAnswersQtyFromQuestion(questionBlockHeight) {
+  // let questionParams = questions.find(q => q.blockHeight == questionBlockHeight)
+
+  const answers = Social.index("poll_question", "answer-v3.0.1");
+  const answersFromThisQuestion = answers.filter(
+    (a) => a.value.questionBlockHeight == questionBlockHeight
+  );
+  const usersWithAnswers = answersFromThisQuestion.map((a) => a.accountId);
+  const usersWithAnswersWithoutDuplicates = usersWithAnswers.filter(
+    (u, index) => usersWithAnswers.indexOf(u) == index
+  );
+  return usersWithAnswersWithoutDuplicates.length;
+}
+
+const renderQuestionsByThisCreator = () => {
   return questionsByThisCreator.map((questionByCreator, index) => {
     let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
     return (
@@ -67,7 +81,9 @@ const renderOtherQuestions = () => {
         </div>
         <div className="d-flex justify-content-between flex-nowrap text-secondary">
           <span>Votes</span>
-          <span>({questionsByThisCreator.length})</span>
+          <span>
+            ({getValidAnswersQtyFromQuestion(questionByCreator.blockHeight)})
+          </span>
         </div>
       </div>
     );
@@ -207,10 +223,10 @@ return (
         </div>
       </div>
 
-      {questionsByCreator.lengh != 1 && (
+      {questionsByCreator.length != 1 && (
         <>
           <div className="d-flex">
-            <h5>Poll by creator</h5>
+            <h5>Polls by creator</h5>
             <h5 style={{ marginLeft: "0.5rem" }}>
               ({questionsByThisCreator.length})
             </h5>
@@ -223,7 +239,7 @@ return (
               padding: "0.5rem 1rem",
             }}
           >
-            {renderOtherQuestions()}
+            {renderQuestionsByThisCreator()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
               <a
                 href={`#${widgetOwner}/widget/showQuestionsHandler?accountId=${questionParams.accountId}`}
