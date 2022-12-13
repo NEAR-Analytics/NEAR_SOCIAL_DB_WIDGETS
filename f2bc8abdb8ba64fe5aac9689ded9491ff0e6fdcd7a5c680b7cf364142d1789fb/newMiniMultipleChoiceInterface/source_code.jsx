@@ -77,6 +77,7 @@ return (
     style={{ textDecoration: "none", color: "black" }}
   >
     {question.choicesOptions.map((option, index) => {
+      console.log("in");
       return renderOption(option, index);
     })}
   </a>
