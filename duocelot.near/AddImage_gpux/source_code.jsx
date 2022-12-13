@@ -10,7 +10,7 @@ initState({
     "a landscape mythical, clouds, sunset, sunrays, flare, 8k photorealistic, watercolor, cinematic lighting, HD, high details, atmospheric",
   seed: null,
   rollImg:
-    "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44",
+    "https://ipfs.fleek.co/ipfs/bafybeifigam7f4j64d5r4hhwxjzkutrdvg6uzz3mumf56byfigelaq4uki",
   blur: 0,
   width: "auto",
 });
@@ -42,7 +42,7 @@ return (
       <div
         style={{
           backgroundImage:
-            "url(https://ipfs.fleek.co/ipfs/bafybeihafj7gtw6jrwxb5xjyk22hy642hgwn2rjqguarkpvun5myovtb5i)",
+            "url(https://ipfs.fleek.co/ipfs/bafybeiexyyaohnej54mu7u4lbtrgiu3b42mk5b57lo5d5yndbtcm7z43ni)",
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -62,7 +62,7 @@ return (
       <div
         style={{
           backgroundImage:
-            "url(https://ipfs.fleek.co/ipfs/bafybeiazlfekaws35jiqvesssae66xybdsutug7ab7moumr2t35vntbleu)",
+            "url(https://ipfs.fleek.co/ipfs/bafybeiffwmpcednhwtbzuo5bn7j2hu3vdbo3sdi3r4mknzynjcklco3vee)",
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -94,7 +94,7 @@ return (
       <div
         style={{
           backgroundImage:
-            "url(https://ipfs.fleek.co/ipfs/bafybeiapzstltgyd6pyibvlgkg62wdsuqvbp2wqbwuqxmjhazxm7tgh2ee)",
+            "url(https://ipfs.fleek.co/ipfs/bafybeighshx342jt65t4nuisdpko3tar747kyzb2g6ud64pwuiwhxcvs7u)",
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -155,7 +155,7 @@ return (
       <div
         style={{
           backgroundImage:
-            "url(https://ipfs.fleek.co/ipfs/bafybeiaye7rrdceoz44waxyn5ozulhopx6pbq7d4336cn6nenjwxuftsbe)",
+            "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
