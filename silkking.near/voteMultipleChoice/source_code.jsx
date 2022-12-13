@@ -1,12 +1,14 @@
 function validateProps(props) {
   let errors = [];
-  // if (!props.question) errors.push("Props doesn't contain question key");
+  if (!props.value) errors.push("Props doesn't contain value key");
   // if (!props.option) errors.push("Props doesn't contain option key");
   // if (!props.index) errors.push("Props doesn't contain index key");
   // if (!props.haveVoted) errors.push("Props doesn't contain haveVoted key");
   // if (!props.userVote) errors.push("Props doesn't contain userVote key");
   return errors;
 }
+
+let hasVoted = false;
 
 const propErrors = validateProps(props);
 if (propErrors.length > 0) {
@@ -19,7 +21,15 @@ if (propErrors.length > 0) {
   );
 }
 
-let question = props.value;
+const blockHeight = props.blockHeight;
+const questions = Social.index("poll_question", "question-v3.0.1");
+const question = questions.find((q) => q.blockHeight == blockHeight);
+const answers = Social.index("poll_question", "answer-v3.0.1");
+console.log("A", answers);
+question.answers = answers.filter((a) => a.questionBlockHeight == blockHeight);
+
+// questions = addAnswersToQuestion(questions, answers);
+
 console.log("Q", question);
 // let option = props.option;
 // let index = props.index;
@@ -31,14 +41,14 @@ State.init({
   vote: userVote ?? "",
 });
 
-const getPublicationParams = (index) => {
+const getPublicationParams = (i) => {
   return {
     index: {
       poll_question: JSON.stringify(
         {
           key: "answer-v3.0.1",
           value: {
-            answer: index + "",
+            answer: i + "",
             questionBlockHeight: props.blockHeight,
           },
         },
@@ -68,7 +78,7 @@ const isValidInput = () => {
 
 return (
   <>
-    {question.choicesOptions.map((option, index) => {
+    {question.value.choicesOptions.map((option, index) => {
       return (
         <div>
           <div className="d-flex">
