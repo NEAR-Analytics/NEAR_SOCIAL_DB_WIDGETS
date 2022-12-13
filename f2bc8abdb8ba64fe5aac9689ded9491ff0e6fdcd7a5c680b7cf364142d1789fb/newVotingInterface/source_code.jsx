@@ -3,6 +3,8 @@ if (!props.blockHeight && !isPreview) {
 }
 
 let isPreview = props.isPreview ?? false;
+console.log("isPreview: ", props.isPreview);
+
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
   !props.previewInfo && Social.index("poll_question", "question-v3.0.1");
