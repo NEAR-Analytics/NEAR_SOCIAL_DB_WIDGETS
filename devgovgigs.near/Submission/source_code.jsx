@@ -46,9 +46,15 @@ const buttonsFooter = props.isPreview ? null : (
         </a>
       </div>
       <div class="col-2">
-        <a class="bi bi-chat" role="button">
-          {" "}
-          Comment
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseCommentEditor${submission_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseCommentEditor${submission_id}`}
+        >
+          <i class="bi bi-chat"> </i> Comment
         </a>
       </div>
     </div>
@@ -56,6 +62,12 @@ const buttonsFooter = props.isPreview ? null : (
       <Widget
         src={`${ownerId}/widget/SponsorshipEditor`}
         props={{ sponsorship: { submission_id } }}
+      />
+    </div>
+    <div class="collapse" id={`collapseCommentEditor${submission_id}`}>
+      <Widget
+        src={`${ownerId}/widget/CommentEditor`}
+        props={{ comment: { post_type: "Submission", post_id: submission_id } }}
       />
     </div>
   </div>
