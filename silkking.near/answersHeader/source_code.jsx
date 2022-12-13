@@ -1,18 +1,23 @@
-let questionParams = props.value;
-console.log("Props", props);
-let profile = Social.getr(`${props.accountId}/profile`);
+// let questionParams = props.value;
+let blockHeight = Number(props.blockHeight);
+let questions = Social.index("poll_question", "question-v3.0.1");
+let questionParams = questions.find((q) => q.blockHeight == blockHeight);
+console.log("Q", questionParams);
+
+let profile = Social.getr(`${questionParams.accountId}/profile`);
 
 return (
   <div className="my-2">
     <div className="d-flex no-wrap justify-content-between">
       <Widget
-        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile`}
-        props={{ userMakingQuestion: props.accountId, profile }}
+        src={`mob.near/widget/Profile`}
+        props={{ userMakingQuestion: questionParams.accountId, profile }}
       />
 
       <div className="d-flex">
         <span className="mx-2" style={{ fontWeight: "500" }}>
-          End date: {new Date(questionParams.endTimestamp).toLocaleDateString()}
+          End date:{" "}
+          {new Date(questionParams.value.endTimestamp).toLocaleDateString()}
         </span>
         <span
           style={{
@@ -29,15 +34,15 @@ return (
             borderRadius: "80px",
           }}
         >
-          {questionParams.startDate < Date.now() &&
-          questionParams.endTimestamp > Date.now()
+          {questionParams.value.startDate < Date.now() &&
+          questionParams.value.endTimestamp > Date.now()
             ? "Closed"
             : "Active"}
         </span>
       </div>
     </div>
-    <h5 className="mt-3">{questionParams.title}</h5>
-    <p>{questionParams.description}</p>
-    <p>{questionParams.question}</p>
+    <h5 className="mt-3">{questionParams.value.title}</h5>
+    <p>{questionParams.value.description}</p>
+    <p>{questionParams.value.question}</p>
   </div>
 );
