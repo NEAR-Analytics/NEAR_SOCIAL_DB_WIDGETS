@@ -19,7 +19,6 @@ function userHasVoted() {
   );
 }
 let hasVoted = userHasVoted();
-console.log(hasVoted);
 
 const getPublicationParams = () => {
   return {
