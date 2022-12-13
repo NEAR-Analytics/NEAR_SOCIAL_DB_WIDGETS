@@ -45,6 +45,8 @@ function makeAnswerAccIdShorter(accId) {
   return accId;
 }
 
+console.log(questionParams.value.answers);
+
 return (
   <>
     {questionParams.value.answers.length == 0
