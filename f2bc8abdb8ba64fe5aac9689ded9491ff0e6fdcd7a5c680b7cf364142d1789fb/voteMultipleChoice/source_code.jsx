@@ -48,11 +48,6 @@ const getPublicationParams = () => {
   };
 };
 
-const isValidInput = () => {
-  let result = state.vote != "";
-  return result && !isPreview;
-};
-
 //TODO get this data
 let countVotes = [1, 0, 0];
 
