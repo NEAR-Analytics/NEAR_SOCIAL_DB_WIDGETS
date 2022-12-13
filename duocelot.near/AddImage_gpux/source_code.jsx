@@ -28,6 +28,10 @@ if (state.seed) {
   imgSrc = `https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&seed=${state.seed}&image_count=1&steps=8&prompt=${state.prompt}`;
 }
 
+const shadow = {
+  boxShadow: "0px 12px 8px 14px rgba(0, 0, 0, 0.6)",
+};
+
 return (
   <div
     style={{
@@ -78,7 +82,7 @@ return (
             type="text"
             value={state.prompt}
             style={{
-              width: "auto",
+              width: "380px",
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
@@ -180,22 +184,24 @@ return (
           justifyContent: "center",
         }}
       >
-        <img
-          src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
-          style={{ position: "absolute", zIndex: 1 }}
-        />
-        <img
-          src={imgSrc}
-          onLoad={(e) => {
-            state.blur = 0;
-            State.update(state);
-          }}
-          style={{
-            filter: `blur(${state.blur}px)`,
-            position: "relative",
-            zIndex: 0,
-          }}
-        />
+        <div style={shadow}>
+          <img
+            src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
+            style={{ position: "absolute", zIndex: 1 }}
+          />
+          <img
+            src={imgSrc}
+            onLoad={(e) => {
+              state.blur = 0;
+              State.update(state);
+            }}
+            style={{
+              filter: `blur(${state.blur}px)`,
+              position: "relative",
+              zIndex: 0,
+            }}
+          />
+        </div>
       </div>
     </div>
     <div
