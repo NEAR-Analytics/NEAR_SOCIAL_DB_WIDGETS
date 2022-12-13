@@ -5,7 +5,9 @@ if (!props.blockHeight) {
 const isPreview = props.isPreview;
 const questionBlockHeight = props.blockHeight;
 const questions = Social.index("poll_question", "question-v3.0.1");
-const question = questions.find((q) => q.blockHeight == questionBlockHeight);
+const questionParams = questions.find(
+  (q) => q.blockHeight == questionBlockHeight
+);
 
 const answers = Social.index("poll_question", "answer-v3.0.1");
 const answersToThisQuestion = answers.filter(
@@ -26,14 +28,14 @@ const countVotes = answersToThisQuestion.reduce((acc, curr) => {
   const isValidAnswer =
     !isNaN(ans) &&
     Number(ans) >= 0 &&
-    Number(ans) < question.value.choicesOptions.length;
+    Number(ans) < questionParams.value.choicesOptions.length;
   if (isValidAnswer) {
     acc[Number(ans)] += 1;
     return acc;
   } else {
     return acc;
   }
-}, new Array(question.value.choicesOptions.length).fill(0));
+}, new Array(questionParams.value.choicesOptions.length).fill(0));
 
 State.init({
   vote: userVote ?? "",
@@ -73,7 +75,7 @@ const isValidInput = () => {
 
 return (
   <>
-    {question.value.choicesOptions.map((option, index) => {
+    {questionParams.value.choicesOptions.map((option, index) => {
       return (
         <div>
           <div className="d-flex">
