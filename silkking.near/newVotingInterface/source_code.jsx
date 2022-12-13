@@ -5,6 +5,8 @@ let question = questions.find((q) => q.blockHeight == blockHeight);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
+console.log(1, question.accountId);
+console.log(2, questions[0].accountId);
 let questionsByThisCreator = questions.filter(
   (q) => q.accountId == question.accountId
 );
@@ -28,20 +30,18 @@ function transformDateFormat(date) {
 
 const renderVoteMultipleChoice = () => {
   if (question) {
-    return question.value.choicesOptions.map((option, index) => {
-      return (
-        <Widget
-          src={`${context.accountId}/widget/voteMultipleChoice`}
-          props={{
-            ...question,
-            option,
-            index,
-            haveVoted: userHasVoted(),
-            userVote,
-          }}
-        />
-      );
-    });
+    return (
+      <Widget
+        src={`${context.accountId}/widget/voteMultipleChoice`}
+        props={{
+          ...question,
+          option,
+          index,
+          haveVoted: userHasVoted(),
+          userVote,
+        }}
+      />
+    );
   } else {
     return "Loading...";
   }
@@ -57,7 +57,6 @@ const renderVoteText = () => {
 };
 
 const renderOtherQuestions = () => {
-  console.log("QBTC", questionsByThisCreator);
   return questionsByThisCreator.map((questionByCreator, index) => {
     let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
     return (
