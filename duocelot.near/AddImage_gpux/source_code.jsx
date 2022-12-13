@@ -68,6 +68,11 @@ return (
           justifyContent: "center",
         }}
       >
+        <img
+          src="https://ipfs.fleek.co/ipfs/bafybeihjvub4e3yqyazxr62dxpbohji45wnx7hp7gadxjbiet2nrgkhapy"
+          alt="VG Logo"
+          style={{ position: "absolute", top: "50%", left: "50%" }}
+        />
         <div style={{ width: "auto" }}>
           <input
             type="text"
