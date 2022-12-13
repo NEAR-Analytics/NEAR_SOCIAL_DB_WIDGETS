@@ -1,24 +1,4 @@
-let question = props.question ?? {
-  title: "Multiple choice test",
-  tgLink: "",
-  accountId: "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-  choicesOptions: ["a", "b", "c"],
-  question: "Testing multiple choice",
-  description: "",
-  questionBlockHeight: 79932918,
-  startDate: Date.now(),
-  endDate: Date.now() + 10000000,
-  storingTimestamp: Date.now(),
-  questionType: "1",
-  answers: [
-    {
-      accountId:
-        "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-      answer: "0",
-      timeStamp: Date.now(),
-    },
-  ],
-};
+let question = props.value;
 
 function calculatePercentage(votesToThisOption) {
   return (votesToThisOption / question.answers.length) * 100;
@@ -30,7 +10,7 @@ for (let i = 0; i < question.choicesOptions.length; i++) {
 }
 
 for (let i = 0; i < question.answers.length; i++) {
-  countVotes[Number(question.answers[i].answer)] += 1;
+  countVotes[Number(question.answers[i].value.answer)] += 1;
 }
 
 function displayableOptionName(option) {
@@ -42,7 +22,12 @@ function displayableOptionName(option) {
 
 const renderOption = (option, index) => {
   return (
-    <div>
+    <a
+      href={`#${
+        context.accountId
+      }/widget/newVotingInterface?question=${JSON.stringify(question)}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
       <div className="d-flex">
         <div style={{ color: "#000", width: "90%" }}>
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
@@ -68,7 +53,7 @@ const renderOption = (option, index) => {
                 className="text-secondary"
                 style={{ marginLeft: "1rem", fontWeight: "400" }}
               >
-                ({question.answers.length} votes)
+                ({countVotes[index]} votes)
               </span>
             </span>
           </div>
@@ -83,7 +68,7 @@ const renderOption = (option, index) => {
           {calculatePercentage(countVotes[index])}%
         </span>
       </div>
-    </div>
+    </a>
   );
 };
 
