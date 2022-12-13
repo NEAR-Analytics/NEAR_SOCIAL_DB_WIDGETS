@@ -1,4 +1,9 @@
+if (!props.blockHeight) {
+  return "Missing prop blockHeight";
+}
+
 let haveVoted = props.haveVoted;
+let isPreview = props.isPreview;
 
 State.init({ vote: "", showErrorsInForm: false });
 
@@ -22,7 +27,7 @@ const getPublicationParams = () => {
 
 const isValidInput = () => {
   let result = state.vote != "";
-  return result;
+  return result && !isPreview;
 };
 
 return (
