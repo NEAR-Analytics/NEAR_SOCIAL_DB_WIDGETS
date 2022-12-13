@@ -92,7 +92,7 @@ const renderOtherQuestions = () => {
 function calculateTimeLeft() {
   return Number(question.value.endTimestamp) - Date.now();
 }
-
+console.log("isPreview: ", isPreview);
 return (
   <div
     className="d-flex content-align-start justify-content-between"
