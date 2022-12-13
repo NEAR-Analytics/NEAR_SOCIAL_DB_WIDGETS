@@ -19,14 +19,22 @@ const displayAnswerWidgetNames = [
   "newMiniMultipleChoiceInterface",
 ];
 
+console.log("props.accountId: ", props.accountId);
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
+
 const answers = Social.index("poll_question", "answer-v3.0.1");
 questions = addAnswersToQuestion(questions, answers);
 
 const renderQuestions = () => {
   return questions.map((question) => {
+    console.log(
+      "W1",
+      `${props.accountId}/widget/${
+        displayAnswerWidgetNames[question.value.questionType]
+      }`
+    );
     return (
       <a
         href={`#${context.accountId}/widget/newVotingInterface?question=${question.blockHeight}`}
@@ -37,11 +45,11 @@ const renderQuestions = () => {
           style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
         >
           <Widget
-            src={`${context.accountId}/widget/answersHeader`}
+            src={`${props.accountId}/widget/answersHeader`}
             props={{ ...question }}
           />
           <Widget
-            src={`${context.accountId}/widget/${
+            src={`${props.accountId}/widget/${
               displayAnswerWidgetNames[question.value.questionType]
             }`}
             props={{ ...question }}
