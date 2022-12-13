@@ -30,7 +30,7 @@ question.answers = answers.filter((a) => a.questionBlockHeight == blockHeight);
 
 // questions = addAnswersToQuestion(questions, answers);
 
-console.log("Q", question);
+console.log("Qu", question);
 // let option = props.option;
 // let index = props.index;
 // let hasVoted = props.haveVoted;
