@@ -49,10 +49,10 @@ const buttonsFooter = props.isPreview ? null : (
         <a
           class="card-link"
           data-bs-toggle="collapse"
-          href={`#collapseCommentEditor${submission_id}`}
+          href={`#collapseCommentEditorSubmission${submission_id}`}
           role="button"
           aria-expanded="false"
-          aria-controls={`collapseCommentEditor${submission_id}`}
+          aria-controls={`collapseCommentEditorSubmission${submission_id}`}
         >
           <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
         </a>
@@ -64,7 +64,10 @@ const buttonsFooter = props.isPreview ? null : (
         props={{ sponsorship: { submission_id } }}
       />
     </div>
-    <div class="collapse" id={`collapseCommentEditor${submission_id}`}>
+    <div
+      class="collapse"
+      id={`collapseCommentEditorSubmission${submission_id}`}
+    >
       <Widget
         src={`${ownerId}/widget/CommentEditor`}
         props={{ comment: { post_type: "Submission", post_id: submission_id } }}
