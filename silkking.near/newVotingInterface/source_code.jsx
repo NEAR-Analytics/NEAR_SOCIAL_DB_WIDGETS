@@ -1,7 +1,8 @@
 let blockHeight = props.blockHeight;
-let question = Social.index("poll_question", "question-v3.0.1", {
+let questions = Social.index("poll_question", "question-v3.0.1", {
   blockHeight,
-})[0];
+});
+let question = questions.find((q) => q.blockHeight == blockHeight);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
@@ -33,7 +34,7 @@ const renderVoteMultipleChoice = () => {
         <Widget
           src={`${context.accountId}/widget/voteMultipleChoice`}
           props={{
-            question,
+            ...question,
             option,
             index,
             haveVoted: userHasVoted(),
