@@ -1,18 +1,12 @@
-let blockHeight = Number(props.blockHeight);
-let questions = Social.index("poll_question", "question-v3.0.1");
-let question = questions.find((q) => q.blockHeight == blockHeight);
+let questionBlockHeight = props.blockHeight;
+const questions = Social.index("poll_question", "question-v3.0.1");
+const question = questions.find((q) => q.blockHeight == questionBlockHeight);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
-let questionsByThisCreator = questions.filter(
-  (q) => q.accountId == question.accountId
-);
-
-let userVote;
-function userHasVoted() {
-  //TODO validate this to return boolean and if it's true set value to thisUserVote
-  return false;
-}
+let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
+  accountId: question.accountId,
+});
 
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
@@ -32,10 +26,6 @@ const renderVoteMultipleChoice = () => {
         src={`${context.accountId}/widget/voteMultipleChoice`}
         props={{
           ...question,
-          option,
-          index,
-          haveVoted: userHasVoted(),
-          userVote,
         }}
       />
     );
@@ -48,7 +38,7 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${context.accountId}/widget/voteWithText`}
-      props={{ ...question, haveVoted: userHasVoted() }}
+      props={{ ...question }}
     />
   );
 };
