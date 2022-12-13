@@ -6,8 +6,6 @@ let question =
     blockHeight,
   })[0];
 
-console.log("question: ", question);
-
 let profile = Social.getr(`${question.accountId}/profile`);
 
 let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
