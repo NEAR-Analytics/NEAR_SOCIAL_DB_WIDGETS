@@ -11,8 +11,6 @@ function validateProps(props) {
   return errors;
 }
 
-console.log(props);
-
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
   return Near.block(blockHeight).header.timestamp / 1e6;
@@ -29,7 +27,7 @@ if (propErrors.length > 0) {
   );
 }
 
-let questionParams = props.value;
+let questionParams = props;
 
 const profileLink = (c) => (
   <a
@@ -49,9 +47,9 @@ function makeAnswerAccIdShorter(accId) {
 
 return (
   <>
-    {questionParams.answers.length == 0
+    {questionParams.value.answers.length == 0
       ? "This question does not have any answers yet. Be the first one!"
-      : questionParams.answers.map((answerParams) => {
+      : questionParams.value.answers.map((answerParams) => {
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
           return (
