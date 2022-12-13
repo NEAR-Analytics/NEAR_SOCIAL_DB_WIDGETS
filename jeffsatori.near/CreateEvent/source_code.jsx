@@ -42,12 +42,6 @@ return (
       >
         Save
       </CommitButton>
-      <a
-        className="btn btn-outline-primary"
-        href={`#/jeffsatori.near/widget/CreateEvent?accountId=${accountId}`}
-      >
-        View your last event
-      </a>
     </div>
     <hr />
     {state.done && !hasEvent && (
