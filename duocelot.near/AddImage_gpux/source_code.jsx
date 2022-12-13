@@ -47,11 +47,13 @@ const txt1 = {
 return (
   <div
     style={{
-      width: "100%",
-      height: "100%",
-      background: "linear-gradient(to right, black, #3a0201, black)",
+      width: "auto",
+      height: "auto",
+      backgroundImage:
+        "url(https://ipfs.fleek.co/ipfs/bafybeifzundjo6rz52y35ywisrneb4dshrl5ogdziucgpeef4fn6pqffvi)",
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
+      position: "flex",
     }}
   >
     <div>
