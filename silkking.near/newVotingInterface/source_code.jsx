@@ -1,4 +1,8 @@
-let questionBlockHeight = props.blockHeight;
+if (!props.blockHeight) {
+  return "Prop block height wasn't provided";
+}
+
+let questionBlockHeight = Number(props.blockHeight);
 console.log(1, blockHeight);
 const questions = Social.index("poll_question", "question-v3.0.1");
 const questionParams = questions.find(
