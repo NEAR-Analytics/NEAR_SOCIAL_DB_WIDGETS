@@ -26,41 +26,43 @@ const comments = props.isPreview
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
-    <div class="col-2">
-      <a
-        class="card-link"
-        data-bs-toggle="collapse"
-        href={`#collapseSponsorshipEditor${submission_id}`}
-        role="button"
-        aria-expanded="false"
-        aria-controls={`collapseSponsorshipEditor${submission_id}`}
-      >
-        <i class="bi bi-cash-coin"> </i> Sponsor
-      </a>
+    <div class="row">
+      <div class="col-2">
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseSponsorshipEditor${submission_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseSponsorshipEditor${submission_id}`}
+        >
+          <i class="bi bi-cash-coin"> </i> Sponsor
+        </a>
+      </div>
+      <div class="col-2" onClick={onLike}>
+        <a class="bi bi-heart" role="button">
+          {" "}
+          Like
+        </a>
+      </div>
+      <div class="col-2">
+        <a class="bi bi-chat" role="button">
+          {" "}
+          Comment
+        </a>
+      </div>
     </div>
-    <div class="col-2" onClick={onLike}>
-      <a class="bi bi-heart" role="button">
-        {" "}
-        Like
-      </a>
-    </div>
-    <div class="col-2">
-      <a class="bi bi-chat" role="button">
-        {" "}
-        Comment
-      </a>
-    </div>
-  </div>
-);
-
-const sponsorshipsList = props.isPreview ? null : (
-  <div class="row">
     <div class="collapse" id={`collapseSponsorshipEditor${submission_id}`}>
       <Widget
         src={`${ownerId}/widget/SponsorshipEditor`}
         props={{ sponsorship: { submission_id } }}
       />
     </div>
+  </div>
+);
+
+const sponsorshipsList = props.isPreview ? null : (
+  <div class="row">
     <div>
       {sponsorships
         ? sponsorships.map((sponsorship) => {
