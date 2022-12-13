@@ -27,7 +27,7 @@ if (propErrors.length > 0) {
   );
 }
 
-let questionParams = props.value;
+let questionParams = props;
 
 const profileLink = (c) => (
   <a
@@ -47,18 +47,13 @@ function makeAnswerAccIdShorter(accId) {
 
 return (
   <>
-    {questionParams.answers.length == 0
+    {questionParams.value.answers.length == 0
       ? "This question does not have any answers yet. Be the first one!"
-      : questionParams.answers.map((answerParams) => {
+      : questionParams.value.answers.map((answerParams) => {
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
           return (
-            <a
-              href={`#${
-                context.accountId
-              }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
+            <>
               <div
                 className="d-flex align-items-start"
                 style={{
@@ -99,9 +94,10 @@ return (
                       <Widget
                         src="silkking.near/widget/timeAgo"
                         props={{
-                          timeInFuture:
-                            Date.now() -
-                            getBlockTimestamp(questionParams.blockHeight),
+                          timeInFuture: getBlockTimestamp(
+                            answerParams.blockHeight
+                          ),
+                          reduced: true,
                         }}
                       />
                     </small>
@@ -109,7 +105,7 @@ return (
                 </div>
               </div>
               <p className="w-100">{answerParams.value.answer}</p>
-            </a>
+            </>
           );
         })}
   </>
