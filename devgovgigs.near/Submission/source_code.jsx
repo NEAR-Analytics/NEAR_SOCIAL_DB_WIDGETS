@@ -17,6 +17,13 @@ const sponsorships = props.isPreview
       submission_id,
     });
 
+const comments = props.isPreview
+  ? null
+  : Near.view(ownerId, "get_comments", {
+      post_type: "Submission",
+      post_id: submission_id,
+    });
+
 const sponsorshipsList = props.isPreview ? null : (
   <div class="row">
     <a
@@ -76,7 +83,20 @@ return (
     </div>
     <div className="card-body">
       <h5 class="card-title">
-        <i class="bi bi-rocket"> </i>Submission: {submission.name}
+        <div className="row justify-content-between">
+          <div class="col-9">
+            <i class="bi bi-rocket"> </i>Submission: {submission.name}
+          </div>
+          <div class="col-3 ">
+            <div class="d-flex justify-content-evenly">
+              <div class="bi bi-rocket-fill">{sponsorships.length}</div>
+
+              <div class="bi bi-heart-fill">{submission.likes.length}</div>
+
+              <div class="bi bi-chat-fill">{comments.length}</div>
+            </div>
+          </div>
+        </div>
       </h5>
       <p class="card-text">{submission.description}</p>
       {sponsorshipsList}
