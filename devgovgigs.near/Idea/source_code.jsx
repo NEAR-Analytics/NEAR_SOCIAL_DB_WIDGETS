@@ -48,10 +48,16 @@ const submissionsList = props.isPreview ? null : (
         </a>
       </div>
       <div class="col-2" onClick={onLike}>
-        <a class="bi bi-heart"> Like</a>
+        <a class="bi bi-heart" role="button">
+          {" "}
+          Like
+        </a>
       </div>
       <div class="col-2">
-        <a class="bi bi-chat"> Comment</a>
+        <a class="bi bi-chat" role="button">
+          {" "}
+          Comment
+        </a>
       </div>
     </div>
     <div class="collapse" id={`collapseSubmissionEditor${idea_id}`}>
