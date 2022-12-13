@@ -1,55 +1,54 @@
-function validateProps(props) {
-  let errors = [];
-  if (!props.value) errors.push("Props doesn't contain value key");
-  // if (!props.option) errors.push("Props doesn't contain option key");
-  // if (!props.index) errors.push("Props doesn't contain index key");
-  // if (!props.haveVoted) errors.push("Props doesn't contain haveVoted key");
-  // if (!props.userVote) errors.push("Props doesn't contain userVote key");
-  return errors;
+if (!props.blockHeight) {
+  return "Property blockHeight not set";
 }
 
-let hasVoted = false;
+const isPreview = props.isPreview;
+const questionBlockHeight = props.blockHeight;
+const questions = Social.index("poll_question", "question-v3.0.1");
+const question = questions.find((q) => q.blockHeight == questionBlockHeight);
 
-const propErrors = validateProps(props);
-if (propErrors.length > 0) {
+const answers = Social.index("poll_question", "answer-v3.0.1");
+const answersToThisQuestion = answers.filter(
+  (a) => a.value.questionBlockHeight == questionBlockHeight
+);
+
+let userVote;
+function userHasVoted() {
   return (
-    <>
-      {propErrors.map((e) => (
-        <div>{e}</div>
-      ))}
-    </>
+    answersToThisQuestion.find((a) => a.accountId == context.accountId) !=
+    undefined
   );
 }
+let hasVoted = userHasVoted();
 
-const blockHeight = props.blockHeight;
-const questions = Social.index("poll_question", "question-v3.0.1");
-const question = questions.find((q) => q.blockHeight == blockHeight);
-const answers = Social.index("poll_question", "answer-v3.0.1");
-console.log("A", answers);
-question.answers = answers.filter((a) => a.questionBlockHeight == blockHeight);
-
-// questions = addAnswersToQuestion(questions, answers);
-
-console.log("Qu", question);
-// let option = props.option;
-// let index = props.index;
-// let hasVoted = props.haveVoted;
-// let userVote = props.userVote;
-let isPreview = props.isPreview;
+const countVotes = answersToThisQuestion.reduce((acc, curr) => {
+  const ans = curr.value.answer;
+  const isValidAnswer =
+    !isNaN(ans) &&
+    Number(ans) >= 0 &&
+    Number(ans) < question.value.choicesOptions.length;
+  if (isValidAnswer) {
+    acc[Number(ans)] += 1;
+    return acc;
+  } else {
+    return acc;
+  }
+}, new Array(question.value.choicesOptions.length).fill(0));
+console.log("C", countVotes);
 
 State.init({
   vote: userVote ?? "",
 });
 
-const getPublicationParams = (i) => {
+const getPublicationParams = () => {
   return {
     index: {
       poll_question: JSON.stringify(
         {
           key: "answer-v3.0.1",
           value: {
-            answer: i + "",
-            questionBlockHeight: props.blockHeight,
+            answer: state.vote,
+            questionBlockHeight,
           },
         },
         undefined,
@@ -60,11 +59,11 @@ const getPublicationParams = (i) => {
 };
 
 //TODO get this data
-let countVotes = [1, 0, 0];
+// let countVotes = [1, 0, 0];
 
 function calculatePercentage(votesToThisOption) {
-  if (question.value.answers.length == 0) return 0;
-  return (votesToThisOption / question.value.answers.length) * 100;
+  if (answersToThisQuestion.length == 0) return 0;
+  return (votesToThisOption / answersToThisQuestion.length) * 100;
 }
 
 let styles = hasVoted
@@ -115,7 +114,7 @@ return (
                       className="text-secondary"
                       style={{ marginLeft: "1rem", fontWeight: "400" }}
                     >
-                      ({question.answers.length} votes)
+                      ({countVotes[index]} votes)
                     </span>
                   )}
                 </span>
@@ -144,7 +143,7 @@ return (
           ) : (
             <CommitButton
               className="my-2 btn btn-primary"
-              data={getPublicationParams(index)}
+              data={getPublicationParams()}
             >
               Vote
             </CommitButton>
