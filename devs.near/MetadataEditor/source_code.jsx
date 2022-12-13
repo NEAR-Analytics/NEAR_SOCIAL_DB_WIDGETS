@@ -14,6 +14,7 @@ State.init({
 
 const metadata = {
   name: options.name ? state.metadata.name : undefined,
+  gizmo: options.gizmo ? state.metadata.gizmo : undefined,
   description: options.name ? state.metadata.description : undefined,
   linktree:
     options.linktree && Object.keys(state.linktree).length > 0
@@ -31,7 +32,6 @@ const metadata = {
       : undefined,
   tags: options.tags ? state.metadata.tags : undefined,
   screenshots: options.screenshots ? state.metadata.screenshots : undefined,
-  gizmo: options.gizmo ? state.metadata.gizmo : undefined,
 };
 
 if (
