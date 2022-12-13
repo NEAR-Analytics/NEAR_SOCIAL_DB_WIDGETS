@@ -32,6 +32,18 @@ const shadow = {
   boxShadow: "0px 12px 8px 14px rgba(0, 0, 0, 0.6)",
 };
 
+const txt1 = {
+  fontFamily: "Arial",
+  fontSize: "12px",
+  color: "white",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 2,
+  position: "absolute",
+  margin: "-44px 4px 4px 30px",
+};
+
 return (
   <div
     style={{
@@ -139,7 +151,6 @@ return (
               border: "1px solid #3a0201",
             }}
           />
-          <p>powered by GPUX.AI</p>
         </div>
         <a
           className="btn btn-outline-primary"
@@ -201,6 +212,12 @@ return (
               zIndex: 0,
             }}
           />
+          <p style={txt1}>
+            powered by
+            <a href="https://gpux.ai" style={{ margin: "4px" }}>
+              GPUX.AI
+            </a>
+          </p>
         </div>
       </div>
     </div>
