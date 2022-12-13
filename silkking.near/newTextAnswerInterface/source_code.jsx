@@ -96,8 +96,14 @@ return (
                   <div>
                     <small className="ps-1 text-nowrap text-muted ms-auto">
                       <i className="bi bi-clock me-1"></i>
-                      {Date.now() -
-                        getBlockTimestamp(questionParams.blockHeight)}
+                      <Widget
+                        src="silkking.near/widget/timeAgo"
+                        props={{
+                          timeInFuture:
+                            Date.now() -
+                            getBlockTimestamp(questionParams.blockHeight),
+                        }}
+                      />
                     </small>
                   </div>
                 </div>
