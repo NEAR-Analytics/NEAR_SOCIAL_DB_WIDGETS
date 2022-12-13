@@ -52,6 +52,12 @@ return (
         <input type="text" value={state.metadata.name} />
       </div>
     )}
+    {options.gizmo && (
+      <div className="mb-2">
+        {options.gizmo.label ?? "Sprocket"}
+        <input type="text" value={state.metadata.gizmo} />
+      </div>
+    )}
     {options.image && (
       <div className="mb-2">
         {options.image.label ?? "Image"}
@@ -89,12 +95,6 @@ return (
             State.update();
           }}
         />
-      </div>
-    )}
-    {options.gizmo && (
-      <div className="mb-2">
-        {options.gizmo.label ?? "Sprocket"}
-        <input type="text" value={state.metadata.gizmo} />
       </div>
     )}
     {options.tags && (
