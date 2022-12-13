@@ -46,6 +46,18 @@ const txt1 = {
   margin: "-44px 4px 4px 30px",
 };
 
+const txt2 = {
+  fontFamily: "Arial",
+  fontSize: "12px",
+  color: "white",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 2,
+  position: "absolute",
+  margin: "-44px 4px 4px 230px",
+};
+
 return (
   <div
     style={{
@@ -225,6 +237,7 @@ return (
               GPUX.AI
             </a>
           </p>
+          <p style={txt2}>Art by {accountId}</p>
         </div>
       </div>
     </div>
