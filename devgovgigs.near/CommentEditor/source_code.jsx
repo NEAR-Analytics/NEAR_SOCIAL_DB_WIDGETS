@@ -7,9 +7,9 @@ initState({
 });
 
 const onClick = () => {
-  Near.call(ownerId, "add_comment", {
-    post_id: comment.post_id,
+  Near.call(ownerId, "comment", {
     post_type: comment.post_type,
+    post_id: comment.post_id,
     description: state.description,
   });
 };
