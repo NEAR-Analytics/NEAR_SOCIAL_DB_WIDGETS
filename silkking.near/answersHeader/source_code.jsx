@@ -11,7 +11,7 @@ return (
     <div className="d-flex no-wrap justify-content-between">
       <Widget
         src={`mob.near/widget/Profile`}
-        props={{ userMakingQuestion: questionParams.accountId, profile }}
+        props={{ accountId: questionParams.accountId }}
       />
 
       <div className="d-flex">
