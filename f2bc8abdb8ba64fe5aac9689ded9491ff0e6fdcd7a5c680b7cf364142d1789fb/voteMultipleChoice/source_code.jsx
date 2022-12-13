@@ -1,4 +1,4 @@
-if (!props.blockHeight) {
+if (!props.isPreview && !props.blockHeight) {
   return "Property blockHeight not set";
 }
 if (isNaN(props.blockHeight)) {
