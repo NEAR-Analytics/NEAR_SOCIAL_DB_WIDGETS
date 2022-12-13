@@ -30,6 +30,10 @@ return (
       <input type="text" value={state.event.description} />
     </div>
     <div className="mb-2">
+      Date and time of event <span className="text-secondary"></span>
+      <input type="text" value={state.event.description} />
+    </div>
+    <div className="mb-2">
       <CommitButton
         data={{ post: { event } }}
         onCommit={() => {
@@ -46,12 +50,6 @@ return (
     <hr />
     {state.done && !hasEvent && (
       <div className="alert alert-success">Success!</div>
-    )}
-    {(hasEvent || !props.noPrevEvent) && (
-      <Widget
-        src="jeffsatori.near/widget/CreateEvent"
-        props={{ Event: hasEvent ? Event : undefined }}
-      />
     )}
   </div>
 );
