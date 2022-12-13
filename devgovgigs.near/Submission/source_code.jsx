@@ -94,10 +94,10 @@ return (
     <div className="card-body">
       <h5 class="card-title">
         <div className="row justify-content-between">
-          <div class="col-9">
+          <div class="col-10">
             <i class="bi bi-rocket"> </i>Submission: {submission.name}
           </div>
-          <div class="col-3 ">
+          <div class="col-2 ">
             <div class="d-flex justify-content-evenly">
               <div class="bi bi-heart-fill">{submission.likes.length}</div>
 
