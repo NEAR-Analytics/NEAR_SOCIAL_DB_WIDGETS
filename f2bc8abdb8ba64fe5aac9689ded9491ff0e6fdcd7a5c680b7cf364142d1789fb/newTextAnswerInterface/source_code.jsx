@@ -1,33 +1,34 @@
-function validateProps(props) {
-  let errors = [];
-  if (!props.accountId) errors.push("Props don't contain accountId key");
-  if (!props.blockHeight) errors.push("Props don't contain blockHeight key");
-  if (!props.value) {
-    errors.push("Props don't contain value key");
-  } else {
-    if (!props.value.answers)
-      errors.push("Prop value doesn't contain answers key");
-  }
-  return errors;
+if (!props.blockHeight) {
+  return "Property blockHeight not set";
 }
+
+const questionBlockHeight = props.blockHeight;
+const questions = Social.index("poll_question", "question-v3.0.1");
+const questionParams = questions.find(
+  (q) => q.blockHeight == questionBlockHeight
+);
+State.init({ vote: "", showErrorsInForm: false });
+
+const answers = Social.index("poll_question", "answer-v3.0.1");
+const answersToThisQuestion = answers.filter(
+  (a) => a.value.questionBlockHeight == questionBlockHeight
+);
+
+let usersWithAnswersToThisQuestion = [];
+const validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
+  const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
+    a.accountId
+  );
+  if (!didUserAlreadyAnswered) {
+    usersWithAnswersToThisQuestion.push(a.accountId);
+  }
+  return !didUserAlreadyAnswered;
+});
 
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
-
-const propErrors = validateProps(props);
-if (propErrors.length > 0) {
-  return (
-    <>
-      {propErrors.map((e) => (
-        <div>{e}</div>
-      ))}
-    </>
-  );
-}
-
-let questionParams = props;
 
 const profileLink = (c) => (
   <a
@@ -47,13 +48,10 @@ function makeAnswerAccIdShorter(accId) {
 
 return (
   <>
-    {questionParams.value.answers.length == 0
+    {validAnswersToThisQuestion.length == 0
       ? "This question does not have any answers yet. Be the first one!"
-      : questionParams.value.answers.map((answerParams) => {
-          if (!answerParams.accountId) {
-            console.log("in");
-            return "";
-          }
+      : validAnswersToThisQuestion.map((answerParams) => {
+          if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
           return (
             <>
@@ -97,9 +95,10 @@ return (
                       <Widget
                         src="silkking.near/widget/timeAgo"
                         props={{
-                          timeInFuture:
-                            Date.now() -
-                            getBlockTimestamp(answerParams.blockHeight),
+                          timeInFuture: getBlockTimestamp(
+                            answerParams.blockHeight
+                          ),
+                          reduced: true,
                         }}
                       />
                     </small>
