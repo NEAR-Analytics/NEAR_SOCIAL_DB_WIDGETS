@@ -93,6 +93,12 @@ function calculateTimeLeft() {
   return Number(question.value.endTimestamp) - Date.now();
 }
 
+if (!isPreview) {
+  console.log("showing link");
+} else {
+  console.log("showing button");
+}
+
 return (
   <div
     className="d-flex content-align-start justify-content-between"
