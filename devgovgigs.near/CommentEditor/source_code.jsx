@@ -49,6 +49,7 @@ return (
             author_id: context.accountId,
             description: state.description,
           },
+          isPreview: true,
         }}
       />
     </div>
