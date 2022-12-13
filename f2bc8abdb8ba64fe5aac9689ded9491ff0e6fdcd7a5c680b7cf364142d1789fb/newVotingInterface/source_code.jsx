@@ -3,6 +3,7 @@ if (!props.blockHeight && !isPreview) {
 }
 
 let isPreview = props.isPreview ?? false;
+console.log("props: ", props);
 console.log("isPreview: ", props.isPreview);
 
 let questionBlockHeight = Number(props.blockHeight);
