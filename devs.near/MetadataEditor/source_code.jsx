@@ -94,16 +94,7 @@ return (
     {options.gizmo && (
       <div className="mb-2">
         {options.gizmo.label ?? "Sprocket"}
-        <span className="text-secondary"> (supports markdown)</span>
-        <textarea
-          className="form-control"
-          rows={5}
-          value={state.metadata.gizmo}
-          onChange={(e) => {
-            state.metadata.gizmo = e.target.value;
-            State.update();
-          }}
-        />
+        <input type="text" value={state.metadata.gizmo} />
       </div>
     )}
     {options.tags && (
