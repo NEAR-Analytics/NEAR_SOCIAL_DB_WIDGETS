@@ -34,7 +34,6 @@ const countVotes = answersToThisQuestion.reduce((acc, curr) => {
     return acc;
   }
 }, new Array(question.value.choicesOptions.length).fill(0));
-console.log("C", countVotes);
 
 State.init({
   vote: userVote ?? "",
@@ -57,9 +56,6 @@ const getPublicationParams = () => {
     },
   };
 };
-
-//TODO get this data
-// let countVotes = [1, 0, 0];
 
 function calculatePercentage(votesToThisOption) {
   if (answersToThisQuestion.length == 0) return 0;
