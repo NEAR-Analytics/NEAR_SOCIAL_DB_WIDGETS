@@ -38,7 +38,7 @@ return (
   <div
     style={{
       borderRadius: "3px",
-      padding: "3% 2% 1% 2%",
+      padding: "0px 2%",
     }}
   >
     {renderQuestions()}
