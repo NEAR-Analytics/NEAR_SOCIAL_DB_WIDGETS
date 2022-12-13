@@ -26,11 +26,12 @@ function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
 
+const widgetOwner = "silkking.near";
 const renderVoteMultipleChoice = () => {
   if (questionParams) {
     return (
       <Widget
-        src={`${context.accountId}/widget/voteMultipleChoice`}
+        src={`${widgetOwner}/widget/voteMultipleChoice`}
         props={{
           ...questionParams,
         }}
@@ -44,7 +45,7 @@ const renderVoteMultipleChoice = () => {
 const renderVoteText = () => {
   return (
     <Widget
-      src={`${context.accountId}/widget/voteWithText`}
+      src={`${widgetOwner}/widget/voteWithText`}
       props={{ ...questionParams }}
     />
   );
@@ -225,7 +226,7 @@ return (
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
               <a
-                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${questionParams.accountId}`}
+                href={`#${widgetOwner}/widget/showQuestionsHandler?accountId=${questionParams.accountId}`}
                 style={{ textDecoration: "none" }}
               >
                 <button className="btn btn-outline-primary w-75">
