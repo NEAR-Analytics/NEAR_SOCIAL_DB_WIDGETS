@@ -51,7 +51,7 @@ return (
       height: "auto",
       backgroundImage:
         "url(https://ipfs.fleek.co/ipfs/bafybeifzundjo6rz52y35ywisrneb4dshrl5ogdziucgpeef4fn6pqffvi)",
-      backgroundSize: "100% 100%",
+      backgroundSize: "100%",
       backgroundPosition: "center",
       position: "flex",
     }}
