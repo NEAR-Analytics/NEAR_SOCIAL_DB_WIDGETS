@@ -1,6 +1,6 @@
 const ownerId = "devgovgigs.near";
 const submission = props.submission;
-const submission_id = submission.id;
+const submission_id = submission.id ?? 0;
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
@@ -22,7 +22,7 @@ const comments = props.isPreview
   : Near.view(ownerId, "get_comments", {
       post_type: "Submission",
       post_id: submission_id,
-    });
+    }).reverse();
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
