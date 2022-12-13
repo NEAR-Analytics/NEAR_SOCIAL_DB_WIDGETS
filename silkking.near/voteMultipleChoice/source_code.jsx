@@ -1,10 +1,10 @@
 function validateProps(props) {
   let errors = [];
-  if (!props.question) errors.push("Props doesn't contain question key");
-  if (!props.option) errors.push("Props doesn't contain option key");
-  if (!props.index) errors.push("Props doesn't contain index key");
-  if (!props.haveVoted) errors.push("Props doesn't contain haveVoted key");
-  if (!props.userVote) errors.push("Props doesn't contain userVote key");
+  // if (!props.question) errors.push("Props doesn't contain question key");
+  // if (!props.option) errors.push("Props doesn't contain option key");
+  // if (!props.index) errors.push("Props doesn't contain index key");
+  // if (!props.haveVoted) errors.push("Props doesn't contain haveVoted key");
+  // if (!props.userVote) errors.push("Props doesn't contain userVote key");
   return errors;
 }
 
@@ -19,11 +19,13 @@ if (propErrors.length > 0) {
   );
 }
 
-let question = props.question;
+let question = props.value;
+console.log("Q", question);
 let option = props.option;
 let index = props.index;
-let haveVoted = props.haveVoted;
+let hasVoted = props.haveVoted;
 let userVote = props.userVote;
+let isPreview = props.isPreview;
 
 State.init({
   vote: userVote ?? "",
@@ -47,11 +49,6 @@ const getPublicationParams = () => {
   };
 };
 
-const isValidInput = () => {
-  let result = state.vote != "";
-  return result;
-};
-
 //TODO get this data
 let countVotes = [1, 0, 0];
 
@@ -59,9 +56,14 @@ function calculatePercentage(votesToThisOption) {
   return (votesToThisOption / question.value.answers.length) * 100;
 }
 
-let styles = haveVoted
+let styles = hasVoted
   ? { color: "#000", width: "90%" }
   : { color: "#000", width: "100%" };
+
+const isValidInput = () => {
+  let result = state.vote != "";
+  return result && !isPreview;
+};
 
 return (
   <div>
@@ -77,23 +79,23 @@ return (
             padding: "0.01em 16px",
             display: "inline-block",
             width: `${
-              haveVoted ? calculatePercentage(countVotes[index]) : 100
+              hasVoted ? calculatePercentage(countVotes[index]) : 100
             }%`,
             textAlign: "center",
             overflow: "visible",
             whiteSpace: "nowrap",
             textAlign: "left",
             backgroundColor: `${
-              (haveVoted && state.vote == index) || state.vote == index + ""
+              (hasVoted && state.vote == index) || state.vote == index + ""
                 ? "rgb(153, 255, 153)"
                 : "lightgray"
             }`,
           }}
-          onClick={() => !haveVoted && State.update({ vote: index + "" })}
+          onClick={() => !hasVoted && State.update({ vote: index + "" })}
         >
           <span style={{ overflow: "visible", fontWeight: "500" }}>
             {option}
-            {haveVoted && (
+            {hasVoted && (
               <span
                 className="text-secondary"
                 style={{ marginLeft: "1rem", fontWeight: "400" }}
@@ -104,7 +106,7 @@ return (
           </span>
         </div>
       </div>
-      {haveVoted && (
+      {hasVoted && (
         <span
           style={{
             minWidth: "max-content",
@@ -117,7 +119,7 @@ return (
       )}
     </div>
 
-    {haveVoted ? (
+    {hasVoted ? (
       <p
         className="text-primary"
         style={{ textAlign: "center", fontWeight: "500" }}
@@ -125,7 +127,12 @@ return (
         Voted
       </p>
     ) : (
-      <>{/*TODO replace with commit button*/}</>
+      <CommitButton
+        className="my-2 btn btn-primary"
+        data={getPublicationParams()}
+      >
+        Vote
+      </CommitButton>
     )}
   </div>
 );
