@@ -1,21 +1,3 @@
-function addAnswersToQuestion(questions, answers) {
-  questions = questions.map((q) => {
-    q.value.answers = [];
-    return q;
-  });
-  console.log("A", answers);
-  for (let i = 0; i < answers.length; i++) {
-    const answer = answers[i];
-    const qIndex = questions.findIndex(
-      (q) => q.blockHeight == answer.value.questionBlockHeight
-    );
-    console.log("Ans", qIndex);
-    if (qIndex != -1) questions[qIndex].value.answers.push(answer);
-    if (qIndex == -1) console.log(`Answer has no related question!`, answer);
-  }
-  return questions;
-}
-
 const displayAnswerWidgetNames = [
   "newTextAnswerInterface",
   "newMiniMultipleChoiceInterface",
@@ -24,10 +6,6 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
-
-const answers = Social.index("poll_question", "answer-v3.0.1");
-console.log(answers);
-questions = addAnswersToQuestion(questions, answers);
 
 const renderQuestions = () => {
   return questions.map((question) => {
