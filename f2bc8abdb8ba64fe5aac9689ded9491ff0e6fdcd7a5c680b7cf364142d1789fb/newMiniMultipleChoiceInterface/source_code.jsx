@@ -1,7 +1,6 @@
 let blockHeight = props.blockHeight;
 // let question = Social.index("poll_question", "question-v3.0.1");
-let question = props.value;
-console.log(props);
+let question = props;
 
 function calculatePercentage(votesToThisOption) {
   if (question.answers.length == 0) return 0;
