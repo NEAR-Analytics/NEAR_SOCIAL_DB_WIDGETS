@@ -15,7 +15,7 @@ const renderQuestions = () => {
         style={{ textDecoration: "none", color: "black" }}
       >
         <div
-          className="py-2 px-1"
+          className="my-5 py-3 px-4"
           style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
         >
           <Widget
@@ -38,7 +38,7 @@ return (
   <div
     style={{
       borderRadius: "3px",
-      padding: "8% 5% 1% 5%",
+      padding: "3% 2% 1% 2%",
     }}
   >
     {renderQuestions()}
