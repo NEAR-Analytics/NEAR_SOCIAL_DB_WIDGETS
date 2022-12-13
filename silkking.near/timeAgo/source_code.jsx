@@ -7,7 +7,8 @@ State.init({
 const timeMs = props.timeInFuture;
 
 function timeInFuture(timeInMillis) {
-  if (timeInMillis < 0) return -1;
+  let negative = timeInMillis < 0;
+  timeInMillis = Math.abs(timeInMillis);
   let timesString = [];
   const timeInSeconds = Math.floor(timeInMillis / 1000);
   const s = timeInSeconds % 60;
@@ -37,8 +38,14 @@ function timeInFuture(timeInMillis) {
   } else if (d > 1) {
     timesString.push(`${d} days`);
   }
-  if (props.reduced) return timesString[timesString.length - 1];
-  return timesString.reverse().join(" ");
+  let output = "";
+  if (props.reduced) {
+    output = timesString[timesString.length - 1];
+  } else {
+    output = timesString.reverse().join(" ");
+  }
+  if (negative) output += " ago";
+  return output;
 }
 
 return timeInFuture(timeMs - state.now);
