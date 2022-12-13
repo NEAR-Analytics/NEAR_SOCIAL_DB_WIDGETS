@@ -27,31 +27,32 @@ initState({
   badgeOwner: "",
 });
 
+if (!!state.poolId && state.social == null) {
+  const social = Social.get(`pool-details.near/${state.poolId}/**/`, "final");
+
+  if (social && Object.keys(social).length > 0) {
+    State.update({
+      social,
+    });
+  }
+}
+
 const updatePool = (poolId) => {
   poolId = poolId.toLowerCase();
+  State.update({
+    poolId,
+    badgeOwner: badges[poolId] ?? "",
+    social: null,
+  });
 
   if (poolId.indexOf(".near", poolId.length - 5) !== -1) {
-    let ownerId = Near.view(poolId, "get_owner_id", {});
-    let fields = Near.view("pool-details.near", "get_fields_by_pool", {
-      pool_id: poolId,
-    });
-    const social = Social.get(`pool-details.near/${poolId}/**/`, "final");
+    Near.asyncView(poolId, "get_owner_id", {}).then((res) =>
+      State.update({ ownerId: res })
+    );
 
-    State.update({
-      ownerId: ownerId ?? "",
-      poolId,
-      fields: fields ?? {},
-      social: social ?? {},
-      badgeOwner: badges[poolId] ?? "",
-    });
-  } else {
-    State.update({
-      ownerId: "",
-      poolId,
-      fields: fields ?? {},
-      social: social ?? {},
-      badgeOwner: "",
-    });
+    Near.asyncView("pool-details.near", "get_fields_by_pool", {
+      pool_id: poolId,
+    }).then((res) => State.update({ fields: res }));
   }
 };
 
@@ -109,12 +110,12 @@ const onSubmitClick = () => {
 
 const fieldsStringified = `
 \`\`\`json
-${JSON.stringify(state.fields, undefined, 2)}
+${JSON.stringify(state.fields || {}, undefined, 2)}
 \`\`\`
 `;
 const socialStringified = `
 \`\`\`json
-${JSON.stringify(state.social, undefined, 2)}
+${JSON.stringify(state.social || {}, undefined, 2)}
 \`\`\`
 `;
 
