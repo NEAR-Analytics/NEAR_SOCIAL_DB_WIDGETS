@@ -25,8 +25,6 @@ function displayableOptionName(option) {
   return option;
 }
 
-console.log("in");
-
 const renderOption = (option, index) => {
   return (
     <div className="d-flex">
