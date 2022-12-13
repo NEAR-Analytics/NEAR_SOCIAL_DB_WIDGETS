@@ -1,3 +1,5 @@
+let blockHeight = props.blockHeight;
+// let question = Social.index("poll_question", "question-v3.0.1");
 let question = props.value;
 
 function calculatePercentage(votesToThisOption) {
@@ -11,7 +13,9 @@ for (let i = 0; i < question.choicesOptions.length; i++) {
 }
 
 for (let i = 0; i < question.answers.length; i++) {
-  countVotes[Number(question.answers[i].value.answer)] += 1;
+  // Any user can post any answer they want. They might post "yes" for example
+  const option = Number(question.answers[i].value.answer);
+  if (option >= 0 && option < countVotes.length) countVotes[option] += 1;
 }
 
 function displayableOptionName(option) {
@@ -24,9 +28,7 @@ function displayableOptionName(option) {
 const renderOption = (option, index) => {
   return (
     <a
-      href={`#${
-        context.accountId
-      }/widget/newVotingInterface?question=${JSON.stringify(question)}`}
+      href={`#${context.accountId}/widget/newVotingInterface?blockHeight=${blockHeight}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <div className="d-flex">
