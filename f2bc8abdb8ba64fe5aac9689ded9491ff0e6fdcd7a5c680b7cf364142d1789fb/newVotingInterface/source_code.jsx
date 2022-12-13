@@ -1,10 +1,7 @@
-let isPreview = props.isPreview;
 let blockHeight = props.blockHeight;
-let question =
-  props.previewInfo ??
-  Social.index("poll_question", "question-v3.0.1", {
-    blockHeight,
-  })[0];
+let question = Social.index("poll_question", "question-v3.0.1", {
+  blockHeight,
+})[0];
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
@@ -30,26 +27,21 @@ function transformDateFormat(date) {
 }
 
 const renderVoteMultipleChoice = () => {
-  if (question) {
-    return question.value.choicesOptions.map((option, index) => {
-      //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
-      return (
-        <Widget
-          src={`${context.accountId}/widget/voteMultipleChoice`}
-          props={{
-            isPreview,
-            question,
-            option,
-            index,
-            haveVoted: userHasVoted(),
-            userVote,
-          }}
-        />
-      );
-    });
-  } else {
-    return "Loading...";
-  }
+  return question.value.choicesOptions.map((option, index) => {
+    //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
+    return (
+      <Widget
+        src={`${context.accountId}/widget/voteMultipleChoice`}
+        props={{
+          question,
+          option,
+          index,
+          haveVoted: userHasVoted(),
+          userVote,
+        }}
+      />
+    );
+  });
 };
 
 const renderVoteText = () => {
@@ -57,36 +49,32 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${context.accountId}/widget/voteWithText`}
-      props={{ isPreview, question, haveVoted: userHasVoted() }}
+      props={{ question, haveVoted: userHasVoted() }}
     />
   );
 };
 
 const renderOtherQuestions = () => {
-  if (questionsByThisCreator) {
-    return questionsByThisCreator.map((questionByCreator, index) => {
-      let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
-      return (
-        <div style={divStyle}>
-          <p style={{ fontWeight: "500" }}>
-            {sliceString(questionByCreator.value.title, 20)}
-          </p>
-          <div className="d-flex justify-content-between flex-nowrap text-secondary">
-            <span>End date</span>
-            <span>
-              {transformDateFormat(questionByCreator.value.endTimestamp)}
-            </span>
-          </div>
-          <div className="d-flex justify-content-between flex-nowrap text-secondary">
-            <span>Votes</span>
-            <span>({questionsByThisCreator.length})</span>
-          </div>
+  return questionsByThisCreator.map((questionByCreator, index) => {
+    let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
+    return (
+      <div style={divStyle}>
+        <p style={{ fontWeight: "500" }}>
+          {sliceString(questionByCreator.value.title, 20)}
+        </p>
+        <div className="d-flex justify-content-between flex-nowrap text-secondary">
+          <span>End date</span>
+          <span>
+            {transformDateFormat(questionByCreator.value.endTimestamp)}
+          </span>
         </div>
-      );
-    });
-  } else {
-    ("Loading...");
-  }
+        <div className="d-flex justify-content-between flex-nowrap text-secondary">
+          <span>Votes</span>
+          <span>({questionsByThisCreator.length})</span>
+        </div>
+      </div>
+    );
+  });
 };
 
 function calculateTimeLeft() {
@@ -157,7 +145,7 @@ return (
         />
 
         <span style={{ fontWeigth: "500" }}>
-          {sliceString(question.accountId, 12)}
+          {sliceString(question.accountId, 18)}
         </span>
       </div>
 
@@ -237,20 +225,14 @@ return (
           >
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
-              {!isPreview ? (
-                <a
-                  href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <button className="btn btn-outline-primary w-75">
-                    View all
-                  </button>
-                </a>
-              ) : (
+              <a
+                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
+                style={{ textDecoration: "none" }}
+              >
                 <button className="btn btn-outline-primary w-75">
                   View all
                 </button>
-              )}
+              </a>
             </div>
           </div>
         </>
