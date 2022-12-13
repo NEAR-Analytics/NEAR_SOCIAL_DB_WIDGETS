@@ -1,12 +1,9 @@
 let blockHeight = Number(props.blockHeight);
-
 let questions = Social.index("poll_question", "question-v3.0.1");
 let question = questions.find((q) => q.blockHeight == blockHeight);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
-console.log(1, question.accountId);
-console.log(2, questions[0].accountId);
 let questionsByThisCreator = questions.filter(
   (q) => q.accountId == question.accountId
 );
@@ -51,7 +48,7 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${context.accountId}/widget/voteWithText`}
-      props={{ question, haveVoted: userHasVoted() }}
+      props={{ ...question, haveVoted: userHasVoted() }}
     />
   );
 };
