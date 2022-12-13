@@ -89,8 +89,6 @@ return (
           </div>
           <div class="col-3 ">
             <div class="d-flex justify-content-evenly">
-              <div class="bi bi-cash-coin">{sponsorships.length}</div>
-
               <div class="bi bi-heart-fill">{submission.likes.length}</div>
 
               <div class="bi bi-chat-fill">{comments.length}</div>
