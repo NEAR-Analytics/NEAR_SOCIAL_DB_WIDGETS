@@ -54,7 +54,7 @@ return (
           props={{ accountId: sponsorship.supervisor }}
         />
       </h6>
-      <p class="card-text">{sponsorship.description}</p>
+      <Markdown class="card-text" text={sponsorship.description}></Markdown>
     </div>
   </Card>
 );
