@@ -28,6 +28,7 @@ if (propErrors.length > 0) {
 }
 
 let questionParams = props;
+console.log(questionParams);
 
 const profileLink = (c) => (
   <a
