@@ -106,7 +106,7 @@ return (
           </div>
         </div>
       </h5>
-      <p class="card-text">{submission.description}</p>
+      <Markdown class="card-text" text={submission.description}></Markdown>
       {sponsorshipsList}
     </div>
   </Card>
