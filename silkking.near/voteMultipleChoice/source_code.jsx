@@ -44,6 +44,11 @@ State.init({
   vote: userVote ?? "",
 });
 
+const isQuestionOpen =
+  questionParams.value.startTimestamp < Date.now() &&
+  Date.now() < questionParams.value.endTimestamp;
+console.log(1, isQuestionOpen);
+
 const getPublicationParams = () => {
   return {
     index: {
@@ -78,6 +83,7 @@ const isValidInput = () => {
 
 return (
   <>
+    {!isQuestionOpen ? "This question is already closed" : ""}
     {questionParams.value.choicesOptions.map((option, index) => {
       return (
         <div>
@@ -134,20 +140,24 @@ return (
             )}
           </div>
 
-          {hasVoted ? (
-            <p
-              className="text-primary"
-              style={{ textAlign: "center", fontWeight: "500" }}
-            >
-              Voted
-            </p>
+          {isQuestionOpen ? (
+            hasVoted ? (
+              <p
+                className="text-primary"
+                style={{ textAlign: "center", fontWeight: "500" }}
+              >
+                Voted
+              </p>
+            ) : (
+              <CommitButton
+                className="my-2 btn btn-primary"
+                data={getPublicationParams()}
+              >
+                Vote
+              </CommitButton>
+            )
           ) : (
-            <CommitButton
-              className="my-2 btn btn-primary"
-              data={getPublicationParams()}
-            >
-              Vote
-            </CommitButton>
+            ""
           )}
         </div>
       );
