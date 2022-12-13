@@ -118,23 +118,7 @@ const renderPreview = () => {
                 previewInfo: {
                   accountId: context.accountId,
                   blockHeight: undefined,
-                  value: {
-                    isDraft,
-                    title: state.pollTitle,
-                    description: state.pollDescription,
-                    startTimestamp: getTimestamp(
-                      state.pollStartDate,
-                      state.startTime
-                    ),
-                    endTimestamp: getTimestamp(
-                      state.pollEndDate,
-                      state.endTime
-                    ),
-                    questionType: state.pollType,
-                    question: state.question,
-                    choicesOptions: state.choices.filter((c) => c != ""),
-                    timestamp: Date.now(),
-                  },
+                  value: getPublicationParams(false),
                 },
               }}
             />
