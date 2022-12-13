@@ -78,6 +78,20 @@ const sponsorshipsList = props.isPreview ? null : (
   </div>
 );
 
+const commentsList = props.isPreview ? null : (
+  <div class="row">
+    <div>
+      {comments
+        ? comments.map((comment) => {
+            return (
+              <Widget src={`${ownerId}/widget/Comment`} props={{ comment }} />
+            );
+          })
+        : ""}
+    </div>
+  </div>
+);
+
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
@@ -119,6 +133,7 @@ return (
       <Markdown class="card-text" text={submission.description}></Markdown>
       {buttonsFooter}
       {sponsorshipsList}
+      {commentsList}
     </div>
   </Card>
 );
