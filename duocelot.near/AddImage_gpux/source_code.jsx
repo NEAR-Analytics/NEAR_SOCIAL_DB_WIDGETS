@@ -139,7 +139,7 @@ return (
               border: "1px solid #3a0201",
             }}
           />
-          <a>{value}</a>
+          <p>powered by GPUX.AI</p>
         </div>
         <a
           className="btn btn-outline-primary"
@@ -224,7 +224,6 @@ return (
           "url(https://ipfs.fleek.co/ipfs/bafybeibzr66w7yg7haicqpjebn24qhltfwkyu44kc2qxaj23t5swglm2ue)",
         backgroundSize: "auto",
         backgroundPosition: "center",
-        backgroundRepeat: "repeat y",
         height: "523px",
         color: "#fff",
         display: "flex",
