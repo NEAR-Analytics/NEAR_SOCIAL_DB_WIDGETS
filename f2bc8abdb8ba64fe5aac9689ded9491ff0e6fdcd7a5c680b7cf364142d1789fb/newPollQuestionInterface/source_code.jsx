@@ -297,7 +297,11 @@ function addChoicesHandler() {
 return (
   <div
     className="d-flex align-items-start justify-content-around pt-4"
-    style={{ borderRadius: "0.375rem", height: "100vh" }}
+    style={{
+      borderRadius: "0.375rem",
+      height: "100vh",
+      backgroundColor: "white",
+    }}
   >
     <div className="d-flex flex-column w-75 justify-content-around">
       <label for="pollTitle">Title</label>
