@@ -29,7 +29,6 @@ function transformDateFormat(date) {
 const renderVoteMultipleChoice = () => {
   if (question) {
     return question.value.choicesOptions.map((option, index) => {
-      //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
       return (
         <Widget
           src={`${context.accountId}/widget/voteMultipleChoice`}
@@ -49,7 +48,6 @@ const renderVoteMultipleChoice = () => {
 };
 
 const renderVoteText = () => {
-  //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
   return (
     <Widget
       src={`${context.accountId}/widget/voteWithText`}
