@@ -22,7 +22,7 @@ const comments = props.isPreview
   : Near.view(ownerId, "get_comments", {
       post_type: "Submission",
       post_id: submission_id,
-    });
+    }).reverse();
 
 const onLike = () => {
   Near.call(ownerId, "like", {
