@@ -25,6 +25,8 @@ function displayableOptionName(option) {
   return option;
 }
 
+console.log("in");
+
 const renderOption = (option, index) => {
   return (
     <div className="d-flex">
@@ -73,7 +75,6 @@ const renderOption = (option, index) => {
 return (
   <div className="m-2">
     {question.choicesOptions.map((option, index) => {
-      console.log("in");
       return renderOption(option, index);
     })}
   </div>
