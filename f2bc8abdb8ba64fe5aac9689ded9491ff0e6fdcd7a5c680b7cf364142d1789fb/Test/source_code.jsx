@@ -12,9 +12,19 @@ const testWidget = Social.getr(`${accountId}/widget/Test`);
 
 // Returns a JSON object with only one key that is accountId
 // After that, contains many keys, containing an array of blockHeights. Examples for silkking.near are "widgets", "post", "profile", "test"
-const allBlockHeights = Social.keys(`${accountId}/*`, "final", {
-  return_type: "History",
-});
+const allBlockHeightsObject = Social.keys(
+  `${accountId}/widget/showQuestionsHandler`,
+  "final",
+  {
+    return_type: "History",
+  }
+);
+
+let allBlockHeightsArray =
+  allBlockHeightsObject
+    .f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb.widget
+    .showQuestionsHandler;
+let blockHeightIWanted = allBlockHeightsArray[allBlockHeightsArray.length - 1];
 
 // Returns a JSON object with only one key that is accountId
 // That key will only contain one key names test and the blockHeights associated
@@ -34,9 +44,11 @@ const blockHeight = testBlockHeights[accountId].post.test;
 
 // Brings the value from key accountId, then post and finally test that is located in the blockHeight provided
 const valueFromGivenKeysInGivenBlockHeight = Social.get(
-  `${accountId}/post/test`,
-  blockHeight[1]
+  `${accountId}/widget/showQuestionsHandler`,
+  blockHeightIWanted
 );
+
+console.log(valueFromGivenKeysInGivenBlockHeight);
 
 //You can access to all post/test blockheights of all users
 const blockHeightsInGivenKeys = Social.keys(`*/post/test`, "final", {
