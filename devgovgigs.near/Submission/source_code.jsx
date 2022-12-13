@@ -24,6 +24,15 @@ const comments = props.isPreview
       post_id: submission_id,
     });
 
+console.log(submission.likes);
+// const likeIcon = submission.likes.contains(context.accountId)
+//   ? "bi-heart-fill"
+//   : "bi-heart";
+
+// const commentIcon = comments.find((c) => c.author_id == context.accountId)
+//   ? "bi-chat-fill"
+//   : "bi-chat";
+
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="row">
@@ -42,10 +51,10 @@ const buttonsFooter = props.isPreview ? null : (
       <div class="col-2" onClick={onLike}>
         <a class="bi bi-heart" role="button">
           {" "}
-          Like
+          Like ({submission.likes.length ?? 0})
         </a>
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <a
           class="card-link"
           data-bs-toggle="collapse"
@@ -54,7 +63,7 @@ const buttonsFooter = props.isPreview ? null : (
           aria-expanded="false"
           aria-controls={`collapseCommentEditor${submission_id}`}
         >
-          <i class="bi bi-chat"> </i> Comment
+          <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
@@ -132,13 +141,6 @@ return (
         <div className="row justify-content-between">
           <div class="col-10">
             <i class="bi bi-rocket"> </i>Submission: {submission.name}
-          </div>
-          <div class="col-2 ">
-            <div class="d-flex justify-content-evenly">
-              <div class="bi bi-heart-fill">{submission.likes.length}</div>
-
-              <div class="bi bi-chat-fill">{comments.length}</div>
-            </div>
           </div>
         </div>
       </h5>
