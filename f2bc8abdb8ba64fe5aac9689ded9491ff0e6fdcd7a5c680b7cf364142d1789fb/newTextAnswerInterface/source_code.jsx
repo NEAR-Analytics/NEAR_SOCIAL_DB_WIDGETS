@@ -50,7 +50,10 @@ return (
     {questionParams.value.answers.length == 0
       ? "This question does not have any answers yet. Be the first one!"
       : questionParams.value.answers.map((answerParams) => {
-          if (!answerParams.accountId) return "";
+          if (!answerParams.accountId) {
+            console.log("in");
+            return "";
+          }
           let profile = Social.getr(`${answerParams.accountId}/profile`);
           return (
             <>
