@@ -237,14 +237,20 @@ return (
           >
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
-              <a
-                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
-                style={{ textDecoration: "none" }}
-              >
+              {isPreview ? (
                 <button className="btn btn-outline-primary w-75">
                   View all
                 </button>
-              </a>
+              ) : (
+                <a
+                  href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <button className="btn btn-outline-primary w-75">
+                    View all
+                  </button>
+                </a>
+              )}
             </div>
           </div>
         </>
