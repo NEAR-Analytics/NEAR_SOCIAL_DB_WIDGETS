@@ -18,10 +18,10 @@ const answersToThisQuestion = answers.filter(
 );
 
 let userVote;
+const currAccountId = context.accountId ?? "";
 function userHasVoted() {
   return (
-    answersToThisQuestion.find((a) => a.accountId == context.accountId) !=
-    undefined
+    answersToThisQuestion.find((a) => a.accountId == currAccountId) != undefined
   );
 }
 let hasVoted = userHasVoted();
