@@ -98,8 +98,9 @@ const renderPreview = () => {
           </div>
           <div className="modal-body">
             <Widget
-              src={`${context - accountId}/widget/newVotingInterface`}
+              src={`${context.accountId}/widget/newVotingInterface`}
               props={{
+                isPreview: true,
                 previewInfo: {
                   accountId: context.accountId,
                   blockHeight: undefined,
