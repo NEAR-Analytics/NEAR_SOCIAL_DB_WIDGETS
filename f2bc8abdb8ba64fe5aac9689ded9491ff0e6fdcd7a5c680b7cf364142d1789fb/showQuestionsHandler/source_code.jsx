@@ -15,7 +15,7 @@ const renderQuestions = () => {
         style={{ textDecoration: "none", color: "black" }}
       >
         <div
-          className="my-5 py-3 px-4"
+          className="py-2 px-1"
           style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
         >
           <Widget
