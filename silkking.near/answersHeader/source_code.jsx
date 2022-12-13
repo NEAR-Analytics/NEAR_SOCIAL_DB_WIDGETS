@@ -1,19 +1,5 @@
-let questionParams = props.value ?? {
-  accountId: "mock.near",
-  blockHeight: 80293871,
-  value: {
-    isDraft: false,
-    title: "Mock title",
-    description: "Mock Description",
-    startTimestamp: 1670628600000,
-    endTimestamp: 1671580800000,
-    questionType: "0",
-    question: "Mock question?",
-    choicesOptions: [],
-    timestamp: 1670628584974,
-  },
-};
-
+let questionParams = props.value;
+console.log("Props", props);
 let profile = Social.getr(`${props.accountId}/profile`);
 
 return (
@@ -26,16 +12,15 @@ return (
 
       <div className="d-flex">
         <span className="mx-2" style={{ fontWeight: "500" }}>
-          End date: {questionParams.endTimestamp}
+          End date: {new Date(questionParams.endTimestamp).toLocaleDateString()}
         </span>
-
         <span
           style={{
             backgroundColor:
               questionParams.startDate < Date.now() &&
               questionParams.endTimestamp > Date.now()
-                ? "rgb(153, 255, 153)"
-                : "rgb(255, 128, 128)",
+                ? "rgb(255, 128, 128)"
+                : "rgb(153, 255, 153)",
 
             height: "max-content",
             width: "6rem",
@@ -46,8 +31,8 @@ return (
         >
           {questionParams.startDate < Date.now() &&
           questionParams.endTimestamp > Date.now()
-            ? "Active"
-            : "Closed"}
+            ? "Closed"
+            : "Active"}
         </span>
       </div>
     </div>
