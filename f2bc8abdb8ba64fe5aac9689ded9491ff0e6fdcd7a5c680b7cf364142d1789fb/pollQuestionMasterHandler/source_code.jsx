@@ -69,10 +69,7 @@ return (
       <Widget src={`${context.accountId}/widget/showQuestionsHandler`} />
     ) : (
       state.displaying == "newPoll" && (
-        <Widget
-          src={`${context.accountId}/widget/newVotingInterface`}
-          props={{ blockHeight }}
-        />
+        <Widget src={`${context.accountId}/widget/newPollQuestionInterface`} />
       )
     )}
   </div>
