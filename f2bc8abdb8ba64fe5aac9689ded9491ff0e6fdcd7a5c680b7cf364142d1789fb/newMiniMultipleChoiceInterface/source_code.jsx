@@ -71,14 +71,10 @@ const renderOption = (option, index) => {
 };
 
 return (
-  <a
-    href={`#${context.accountId}/widget/newVotingInterface?blockHeight=${blockHeight}`}
-    className="m-2"
-    style={{ textDecoration: "none", color: "black" }}
-  >
+  <div className="m-2">
     {question.choicesOptions.map((option, index) => {
       console.log("in");
       return renderOption(option, index);
     })}
-  </a>
+  </div>
 );
