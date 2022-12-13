@@ -27,21 +27,25 @@ function transformDateFormat(date) {
 }
 
 const renderVoteMultipleChoice = () => {
-  return question.value.choicesOptions.map((option, index) => {
-    //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
-    return (
-      <Widget
-        src={`${context.accountId}/widget/voteMultipleChoice`}
-        props={{
-          question,
-          option,
-          index,
-          haveVoted: userHasVoted(),
-          userVote,
-        }}
-      />
-    );
-  });
+  if (question) {
+    return question.value.choicesOptions.map((option, index) => {
+      //TODO you have to do the commit button inside this component. Remember to change the accountId of the src
+      return (
+        <Widget
+          src={`${context.accountId}/widget/voteMultipleChoice`}
+          props={{
+            question,
+            option,
+            index,
+            haveVoted: userHasVoted(),
+            userVote,
+          }}
+        />
+      );
+    });
+  } else {
+    return "Loading...";
+  }
 };
 
 const renderVoteText = () => {
@@ -77,10 +81,6 @@ const renderOtherQuestions = () => {
   });
 };
 
-function calculateTimeLeft() {
-  return Number(question.value.endTimestamp) - Date.now();
-}
-
 return (
   <div
     className="d-flex content-align-start justify-content-between"
@@ -110,18 +110,20 @@ return (
             : "Closed"}
         </span>
 
-        <span
-          style={{
-            paddingLeft: "1.5rem",
-            borderLeft: "2px solid #ced4da",
-          }}
-        >
-          Ends in
-          <Widget
-            src={`silkking.near/widget/timeAgo`}
-            props={{ timeInFuture: question.value.endTimestamp }}
-          />
-        </span>
+        {Date.now() < question.value.endTimestamp && (
+          <span
+            style={{
+              paddingLeft: "1.5rem",
+              borderLeft: "2px solid #ced4da",
+            }}
+          >
+            Ends in
+            <Widget
+              src={`silkking.near/widget/timeAgo`}
+              props={{ timeInFuture: question.value.endTimestamp }}
+            />
+          </span>
+        )}
       </div>
 
       <h2>{question.value.title}</h2>
