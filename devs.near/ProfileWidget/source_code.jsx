@@ -15,8 +15,4 @@ State.init({
   loadWidget: false,
 });
 
-return (
-  <div>
-    <ProfileWidget />
-  </div>
-);
+return <div>hello</div>;
