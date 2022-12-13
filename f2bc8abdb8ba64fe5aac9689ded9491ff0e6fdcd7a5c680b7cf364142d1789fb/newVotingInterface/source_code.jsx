@@ -1,4 +1,4 @@
-if (!props.blockHeight && !isPreview) {
+if (!isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
