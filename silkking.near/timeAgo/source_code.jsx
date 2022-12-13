@@ -1,5 +1,9 @@
 if (!props.timeInFuture) return "timeInFuture prop not set";
 
+State.init({
+  now: Date.now(),
+});
+
 const timeMs = props.timeInFuture;
 
 function timeInFuture(timeInMillis) {
@@ -22,7 +26,7 @@ function timeInFuture(timeInMillis) {
   const timeInHours = (timeInMinutes - m) / 60;
   const h = timeInHours % 24;
   if (h == 1) {
-    timesString.push(`1 minute`);
+    timesString.push(`1 hour`);
   } else if (h > 1 && h < 24) {
     timesString.push(`${h} hours`);
   }
@@ -37,4 +41,4 @@ function timeInFuture(timeInMillis) {
   return timesString.reverse().join(" ");
 }
 
-return timeInFuture(timeMs - Date.now());
+return timeInFuture(timeMs - state.now);
