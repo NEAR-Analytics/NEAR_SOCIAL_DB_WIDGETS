@@ -24,8 +24,8 @@ let questions = Social.index("poll_question", "question-v3.0.1", {
 });
 
 const answers = Social.index("poll_question", "answer-v3.0.1");
+console.log(answers);
 questions = addAnswersToQuestion(questions, answers);
-console.log("Q", questions);
 
 const renderQuestions = () => {
   return questions.map((question) => {
