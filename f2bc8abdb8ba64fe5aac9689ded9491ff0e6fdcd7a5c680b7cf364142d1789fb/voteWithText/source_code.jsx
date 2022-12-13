@@ -1,7 +1,25 @@
-let haveVoted = props.haveVoted;
-let isPreview = props.isPreview;
+if (!props.blockHeight) {
+  return "Property blockHeight not set";
+}
 
+let isPreview = props.isPreview;
+const questionBlockHeight = props.blockHeight;
 State.init({ vote: "", showErrorsInForm: false });
+
+const answers = Social.index("poll_question", "answer-v3.0.1");
+const answersToThisQuestion = answers.filter(
+  (a) => a.value.questionBlockHeight == questionBlockHeight
+);
+
+let userVote;
+const loggedAccountId = context.accountId ?? "";
+function userHasVoted() {
+  return (
+    answersToThisQuestion.find((a) => a.accountId == loggedAccountId) !=
+    undefined
+  );
+}
+let hasVoted = userHasVoted();
 
 const getPublicationParams = () => {
   return {
@@ -28,7 +46,7 @@ const isValidInput = () => {
 
 return (
   <div>
-    {haveVoted ? (
+    {hasVoted ? (
       <p
         className="text-primary"
         style={{ textAlign: "center", fontWeight: "500" }}
