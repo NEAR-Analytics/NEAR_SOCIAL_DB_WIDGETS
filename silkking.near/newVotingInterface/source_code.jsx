@@ -1,8 +1,7 @@
-let blockHeight = props.blockHeight;
-console.log("BH", blockHeight);
+let blockHeight = Number(props.blockHeight);
+
 let questions = Social.index("poll_question", "question-v3.0.1");
 let question = questions.find((q) => q.blockHeight == blockHeight);
-console.log("Q", question);
 
 let profile = Social.getr(`${question.accountId}/profile`);
 
