@@ -104,7 +104,6 @@ return (
                 </div>
               </div>
               <p className="w-100">{answerParams.value.answer}</p>
-              {console.log("llegué")}
             </>
           );
         })}
