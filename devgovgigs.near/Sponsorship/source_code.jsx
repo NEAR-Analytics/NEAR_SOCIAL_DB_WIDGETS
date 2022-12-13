@@ -9,12 +9,6 @@ const timestamp = readableDate(
   sponsorship.timestamp ? sponsorship.timestamp / 1000000 : Date.now()
 );
 
-const sponsorships = props.isPreview
-  ? null
-  : Near.view(ownerId, "get_sponsorships", {
-      submission_id,
-    });
-
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
