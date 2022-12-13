@@ -25,12 +25,13 @@ const submissions = props.isPreview
       idea_id,
     });
 
-const comments = props.isPreview
-  ? null
-  : Near.view(ownerId, "get_comments", {
-      post_type: "Idea",
-      post_id: idea_id,
-    });
+const commentsUnordered =
+  Near.view(ownerId, "get_comments", {
+    post_type: "Idea",
+    post_id: idea_id,
+  }) ?? [];
+
+const comments = props.isPreview ? [] : commentsUnordered.reverse();
 
 const submissionsList = props.isPreview ? null : (
   <div class="row">
