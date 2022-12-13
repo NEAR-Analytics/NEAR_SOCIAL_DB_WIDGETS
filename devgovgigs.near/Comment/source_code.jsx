@@ -77,9 +77,6 @@ return (
       </small>
     </div>
     <div className="card-body">
-      <h5 class="card-title">
-        <i class="bi bi-chat"> </i>Comment: {comment.name}
-      </h5>
       <Markdown class="card-text" text={comment.description}></Markdown>
     </div>
   </Card>
