@@ -93,7 +93,14 @@ const renderPreview = () => {
               dataDismiss="modal"
               ariaLabel="Close"
             >
-              <span ariaHidden="true">&times;</span>
+              <span
+                ariaHidden="true"
+                onClick={() => {
+                  State.update({ showPreview: false });
+                }}
+              >
+                &times;
+              </span>
             </button>
           </div>
           <div className="modal-body">
