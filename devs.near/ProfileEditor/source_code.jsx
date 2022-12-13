@@ -28,7 +28,7 @@ return (
             onChange: (profile) => State.update({ profile }),
             options: {
               name: { label: "Name" },
-              gizmo: { label: "Sprocket" },
+              gizmo: { label: "Profile widget" },
               image: { label: "Profile picture" },
               backgroundImage: { label: "Background image" },
               description: { label: "About" },
