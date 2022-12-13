@@ -84,7 +84,10 @@ const renderPreview = () => {
       role="dialog"
     >
       <div className="modal-dialog" style={{ maxWidth: "80%" }} role="document">
-        <div className="modal-content">
+        <div
+          className="modal-content"
+          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        >
           <div className="modal-header">
             <h5 className="modal-title">Preview</h5>
             <button
@@ -92,18 +95,22 @@ const renderPreview = () => {
               className="close"
               dataDismiss="modal"
               ariaLabel="Close"
+              onClick={() => {
+                State.update({ showPreview: false });
+              }}
             >
-              <span
-                ariaHidden="true"
-                onClick={() => {
-                  State.update({ showPreview: false });
-                }}
-              >
-                &times;
-              </span>
+              <span ariaHidden="true">&times;</span>
             </button>
           </div>
-          <div className="modal-body">
+          <div
+            className="modal-body"
+            style={{
+              width: "90%",
+              borderRadius: "1rem",
+              backgroundColor: "white",
+              margin: "0 auto",
+            }}
+          >
             <Widget
               src={`${context.accountId}/widget/newVotingInterface`}
               props={{
