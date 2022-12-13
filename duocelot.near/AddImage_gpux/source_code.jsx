@@ -37,6 +37,7 @@ return (
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
       position: "relative",
+      margin: "0px -100px 0px -100px",
     }}
   >
     <div>
