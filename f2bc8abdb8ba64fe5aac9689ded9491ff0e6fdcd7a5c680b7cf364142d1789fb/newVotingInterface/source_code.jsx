@@ -3,8 +3,6 @@ if (!props.isPreview && !props.blockHeight) {
 }
 
 let isPreview = props.isPreview ?? false;
-console.log("props: ", props);
-console.log("isPreview: ", props.isPreview);
 
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
@@ -38,6 +36,7 @@ const renderVoteMultipleChoice = () => {
         src={`${widgetOwner}/widget/voteMultipleChoice`}
         props={{
           ...questionParams,
+          isPreview,
         }}
       />
     );
@@ -50,7 +49,7 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${widgetOwner}/widget/voteWithText`}
-      props={{ ...questionParams }}
+      props={{ ...questionParams, isPreview }}
     />
   );
 };
