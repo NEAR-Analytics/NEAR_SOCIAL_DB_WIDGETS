@@ -12,9 +12,10 @@ const answersToThisQuestion = answers.filter(
 );
 
 let userVote;
+const loggedAccountId = context.accountId ?? "";
 function userHasVoted() {
   return (
-    answersToThisQuestion.find((a) => a.accountId == context.accountId) !=
+    answersToThisQuestion.find((a) => a.accountId == loggedAccountId) !=
     undefined
   );
 }
