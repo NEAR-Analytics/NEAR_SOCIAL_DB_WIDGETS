@@ -18,21 +18,11 @@ const sponsorships = props.isPreview
     });
 
 const comments = props.isPreview
-  ? null
+  ? []
   : Near.view(ownerId, "get_comments", {
       post_type: "Submission",
       post_id: submission_id,
     });
-
-console.log(submission);
-console.log(comments);
-// const likeIcon = submission.likes.contains(context.accountId)
-//   ? "bi-heart-fill"
-//   : "bi-heart";
-
-// const commentIcon = comments.find((c) => c.author_id == context.accountId)
-//   ? "bi-chat-fill"
-//   : "bi-chat";
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
