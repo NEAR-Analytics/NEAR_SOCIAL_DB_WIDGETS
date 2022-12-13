@@ -28,7 +28,6 @@ if (propErrors.length > 0) {
 }
 
 let questionParams = props;
-console.log(questionParams);
 
 const profileLink = (c) => (
   <a
@@ -97,7 +96,7 @@ return (
                         props={{
                           timeInFuture:
                             Date.now() -
-                            getBlockTimestamp(questionParams.blockHeight),
+                            getBlockTimestamp(answerParams.blockHeight),
                         }}
                       />
                     </small>
