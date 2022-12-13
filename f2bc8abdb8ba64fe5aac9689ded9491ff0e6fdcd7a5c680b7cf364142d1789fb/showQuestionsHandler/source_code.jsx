@@ -1,16 +1,3 @@
-function validateProps(props) {
-  let errors = [];
-  if (!props.accountId) errors.push("Props don't contain accountId key");
-  if (!props.blockHeight) errors.push("Props don't contain blockHeight key");
-  if (!props.value) {
-    errors.push("Props don't contain value key");
-  } else {
-    if (!props.value.answers)
-      errors.push("Prop value doesn't contain answers key");
-  }
-  return errors;
-}
-
 function addAnswersToQuestion(questions, answers) {
   questions = questions.map((q) => {
     q.value.answers = [];
@@ -21,18 +8,19 @@ function addAnswersToQuestion(questions, answers) {
     const qIndex = questions.findIndex(
       (q) => q.blockHeight == answer.value.questionBlockHeight
     );
-    if (qIndex != -1) questions[qIndex].answers.push(answer);
+    if (qIndex != -1) questions[qIndex].value.answers.push(answer);
     if (qIndex == -1) console.log(`Answer has no related question!`, answer);
   }
   return questions;
 }
+
+a;
 
 const displayAnswerWidgetNames = [
   "newTextAnswerInterface",
   "newMiniMultipleChoiceInterface",
 ];
 
-console.log("props.accountId: ", props.accountId);
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
@@ -42,15 +30,9 @@ questions = addAnswersToQuestion(questions, answers);
 
 const renderQuestions = () => {
   return questions.map((question) => {
-    console.log(
-      "W1",
-      `${props.accountId}/widget/${
-        displayAnswerWidgetNames[question.value.questionType]
-      }`
-    );
     return (
       <a
-        href={`#${context.accountId}/widget/newVotingInterface?question=${question.blockHeight}`}
+        href={`#${context.accountId}/widget/newVotingInterface?blockHeight=${question.blockHeight}`}
         style={{ textDecoration: "none", color: "black" }}
       >
         <div
@@ -58,11 +40,11 @@ const renderQuestions = () => {
           style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
         >
           <Widget
-            src={`${props.accountId}/widget/answersHeader`}
+            src={`${context.accountId}/widget/answersHeader`}
             props={{ ...question }}
           />
           <Widget
-            src={`${props.accountId}/widget/${
+            src={`${context.accountId}/widget/${
               displayAnswerWidgetNames[question.value.questionType]
             }`}
             props={{ ...question }}
