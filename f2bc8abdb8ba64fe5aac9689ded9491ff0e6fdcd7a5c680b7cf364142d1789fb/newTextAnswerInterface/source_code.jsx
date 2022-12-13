@@ -52,6 +52,7 @@ return (
       : questionParams.value.answers.map((answerParams) => {
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
+          console.log("in");
           return (
             <>
               <div
