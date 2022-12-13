@@ -1,11 +1,13 @@
 let questionBlockHeight = props.blockHeight;
 const questions = Social.index("poll_question", "question-v3.0.1");
-const question = questions.find((q) => q.blockHeight == questionBlockHeight);
+const questionParams = questions.find(
+  (q) => q.blockHeight == questionBlockHeight
+);
 
-let profile = Social.getr(`${question.accountId}/profile`);
+let profile = Social.getr(`${questionParams.accountId}/profile`);
 
 let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
-  accountId: question.accountId,
+  accountId: questionParams.accountId,
 });
 
 function sliceString(string, newStringLenght) {
@@ -20,17 +22,17 @@ function transformDateFormat(date) {
 }
 
 const renderVoteMultipleChoice = () => {
-  if (question) {
+  if (questionParams) {
     return (
       <Widget
         src={`${context.accountId}/widget/voteMultipleChoice`}
         props={{
-          ...question,
+          ...questionParams,
         }}
       />
     );
   } else {
-    return "Loading...";
+    return "Invalid block height provided.";
   }
 };
 
@@ -38,7 +40,7 @@ const renderVoteText = () => {
   return (
     <Widget
       src={`${context.accountId}/widget/voteWithText`}
-      props={{ ...question }}
+      props={{ ...questionParams }}
     />
   );
 };
@@ -76,8 +78,8 @@ return (
         <span
           style={{
             backgroundColor:
-              question.value.startTimestamp < Date.now() &&
-              question.value.endTimestamp > Date.now()
+              questionParams.value.startTimestamp < Date.now() &&
+              questionParams.value.endTimestamp > Date.now()
                 ? "rgb(153, 255, 153)"
                 : "rgb(255, 128, 128)",
 
@@ -89,13 +91,13 @@ return (
             marginRight: "1rem",
           }}
         >
-          {question.value.startTimestamp < Date.now() &&
-          question.value.endTimestamp > Date.now()
+          {questionParams.value.startTimestamp < Date.now() &&
+          questionParams.value.endTimestamp > Date.now()
             ? "Active"
             : "Closed"}
         </span>
 
-        {Date.now() < question.value.endTimestamp && (
+        {Date.now() < questionParams.value.endTimestamp && (
           <span
             style={{
               paddingLeft: "1.5rem",
@@ -105,13 +107,13 @@ return (
             Ends in
             <Widget
               src={`silkking.near/widget/timeAgo`}
-              props={{ timeInFuture: question.value.endTimestamp }}
+              props={{ timeInFuture: questionParams.value.endTimestamp }}
             />
           </span>
         )}
       </div>
 
-      <h2>{question.value.title}</h2>
+      <h2>{questionParams.value.title}</h2>
 
       <div className="d-flex">
         <span className="mr-3" style={{ fontWeight: "500" }}>
@@ -122,7 +124,7 @@ return (
           src="mob.near/widget/ProfileImage"
           props={{
             profile,
-            question: question.accountId,
+            question: questionParams.accountId,
             className: "float-start d-inline-block me-2",
             style: {
               width: "1.5rem",
@@ -132,26 +134,29 @@ return (
         />
 
         <span style={{ fontWeigth: "500" }}>
-          {sliceString(question.accountId, 18)}
+          {sliceString(questionParams.accountId, 18)}
         </span>
       </div>
 
-      <p>{question.value.description}</p>
+      <p>{questionParams.value.description}</p>
 
-      {question.value.tgLink != "" && question.value.tgLink != undefined && (
-        <h4>
-          Discussion link:
-          <a href={question.value.tgLink}>{question.value.tgLink}</a>
-        </h4>
-      )}
+      {questionParams.value.tgLink != "" &&
+        questionParams.value.tgLink != undefined && (
+          <h4>
+            Discussion link:
+            <a href={questionParams.value.tgLink}>
+              {questionParams.value.tgLink}
+            </a>
+          </h4>
+        )}
 
       <div
         style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
         className="p-3 my-3"
       >
-        <h4>{question.value.question}</h4>
+        <h4>{questionParams.value.question}</h4>
 
-        {question.value.questionType == "0"
+        {questionParams.value.questionType == "0"
           ? renderVoteText()
           : renderVoteMultipleChoice()}
       </div>
@@ -171,8 +176,8 @@ return (
         <div className="d-flex justify-content-between">
           <span>Status</span>
           <span>
-            {question.value.startTimestamp < Date.now() &&
-            question.value.endTimestamp > Date.now()
+            {questionParams.value.startTimestamp < Date.now() &&
+            questionParams.value.endTimestamp > Date.now()
               ? "Active"
               : "Closed"}
           </span>
@@ -180,17 +185,19 @@ return (
 
         <div className="d-flex justify-content-between">
           <span>Start date</span>
-          <span>{transformDateFormat(question.value.startTimestamp)}</span>
+          <span>
+            {transformDateFormat(questionParams.value.startTimestamp)}
+          </span>
         </div>
 
         <div className="d-flex justify-content-between">
           <span>End date</span>
-          <span>{transformDateFormat(question.value.endTimestamp)}</span>
+          <span>{transformDateFormat(questionParams.value.endTimestamp)}</span>
         </div>
 
         <div className="d-flex justify-content-between">
           <span>Creator</span>
-          <span>{sliceString(question.accountId, 8)}</span>
+          <span>{sliceString(questionParams.accountId, 8)}</span>
         </div>
       </div>
 
@@ -213,7 +220,7 @@ return (
             {renderOtherQuestions()}
             <div style={{ margin: "1rem 0", textAlign: "center" }}>
               <a
-                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${question.accountId}`}
+                href={`#${context.accountId}/widget/showQuestionsHandler?accountId=${questionParams.accountId}`}
                 style={{ textDecoration: "none" }}
               >
                 <button className="btn btn-outline-primary w-75">
