@@ -1,4 +1,4 @@
-let isPreview = state.isPreview;
+let isPreview = props.isPreview;
 let blockHeight = props.blockHeight;
 let question =
   props.previewInfo ??
@@ -91,12 +91,6 @@ const renderOtherQuestions = () => {
 
 function calculateTimeLeft() {
   return Number(question.value.endTimestamp) - Date.now();
-}
-
-if (!isPreview) {
-  console.log("showing link");
-} else {
-  console.log("showing button");
 }
 
 return (
