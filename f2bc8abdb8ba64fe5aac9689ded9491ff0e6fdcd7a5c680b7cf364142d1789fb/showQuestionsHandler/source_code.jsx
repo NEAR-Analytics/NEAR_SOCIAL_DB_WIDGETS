@@ -14,8 +14,6 @@ function addAnswersToQuestion(questions, answers) {
   return questions;
 }
 
-a;
-
 const displayAnswerWidgetNames = [
   "newTextAnswerInterface",
   "newMiniMultipleChoiceInterface",
