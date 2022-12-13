@@ -1,9 +1,12 @@
 if (!props.blockHeight) {
   return "Property blockHeight not set";
 }
+if (isNaN(props.blockHeight)) {
+  return "Property blockHeight should be a number";
+}
 
 const isPreview = props.isPreview;
-const questionBlockHeight = props.blockHeight;
+const questionBlockHeight = Number(props.blockHeight);
 const questions = Social.index("poll_question", "question-v3.0.1");
 const questionParams = questions.find(
   (q) => q.blockHeight == questionBlockHeight
