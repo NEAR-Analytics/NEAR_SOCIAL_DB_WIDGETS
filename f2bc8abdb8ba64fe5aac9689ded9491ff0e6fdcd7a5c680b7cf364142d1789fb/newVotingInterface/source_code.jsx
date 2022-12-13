@@ -1,7 +1,8 @@
-if (!props.blockHeight) {
+if (!props.blockHeight && !isPreview) {
   return "Prop block height wasn't provided";
 }
 
+let isPreview = props.isPreview ?? false;
 let questionBlockHeight = Number(props.blockHeight);
 const questions = Social.index("poll_question", "question-v3.0.1");
 const questionParams = questions.find(
