@@ -24,7 +24,7 @@ const comments = props.isPreview
       post_id: submission_id,
     });
 
-console.log(submission.likes);
+console.log(submission);
 // const likeIcon = submission.likes.contains(context.accountId)
 //   ? "bi-heart-fill"
 //   : "bi-heart";
