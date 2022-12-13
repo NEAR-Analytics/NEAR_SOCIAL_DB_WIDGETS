@@ -23,15 +23,33 @@ return (
     </div>
     <div className="mb-2">
       Title <span className="text-secondary"></span>
-      <input type="text" value={state.event.title} />
+      <input
+        type="text"
+        value={state.event.title}
+        onChange={(e) => {
+          State.update({ Event });
+        }}
+      />
     </div>
     <div className="mb-2">
       Description <span className="text-secondary"></span>
-      <input type="text" value={state.event.description} />
+      <input
+        type="text"
+        value={state.event.description}
+        onChange={(e) => {
+          State.update({ Event });
+        }}
+      />
     </div>
     <div className="mb-2">
       Date and time of event <span className="text-secondary"></span>
-      <input type="text" value={state.event.description} />
+      <input
+        type="text"
+        value={state.event.description}
+        onChange={(e) => {
+          State.update({ Event });
+        }}
+      />
     </div>
     <div className="mb-2">
       <CommitButton
