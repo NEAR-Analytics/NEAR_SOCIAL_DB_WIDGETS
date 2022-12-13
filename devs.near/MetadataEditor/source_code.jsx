@@ -55,6 +55,10 @@ return (
     {options.gizmo && (
       <div className="mb-2">
         {options.gizmo.label ?? "Sprocket"}
+        <span className="text-secondary">
+          {" "}
+          (example.near/widget/WidgetName)
+        </span>
         <input type="text" value={state.metadata.gizmo} />
       </div>
     )}
