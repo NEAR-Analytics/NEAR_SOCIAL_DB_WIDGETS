@@ -1,16 +1,18 @@
 const accountId = context.accountId;
 
 if (!accountId) {
-  return "Please sign in with NEAR wallet to add a new image";
+  return <div>"Please sign in with NEAR wallet to add a new image"</div>;
 }
 
 initState({
   img: {},
   prompt:
     "a landscape mythical, clouds, sunset, sunrays, flare, 8k photorealistic, watercolor, cinematic lighting, HD, high details, atmospheric",
+  scale: 7.5,
   seed: null,
   rollImg:
     "https://ipfs.fleek.co/ipfs/bafybeifigam7f4j64d5r4hhwxjzkutrdvg6uzz3mumf56byfigelaq4uki",
+  ipfsUpload: {},
   blur: 0,
   width: "auto",
 });
@@ -25,7 +27,7 @@ function rollImage() {
 var imgSrc =
   "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44";
 if (state.seed) {
-  imgSrc = `https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&seed=${state.seed}&image_count=1&steps=8&prompt=${state.prompt}`;
+  imgSrc = `https://explorer.gpux.ai/api/inference/gpux/sd15?return_grid=true&seed=${state.seed}&scale=${state.scale}&image_count=1&steps=8&prompt=${state.prompt}`;
 }
 
 const shadow = {
@@ -140,10 +142,13 @@ return (
         <div>
           <input
             type="range"
-            min={0}
+            min={1.1}
             max={25}
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onBlur={(e) => {
+              state.scale = e.target.value;
+              State.update(state);
+            }}
             style={{
               width: "100px",
               backgroundColor: "black",
