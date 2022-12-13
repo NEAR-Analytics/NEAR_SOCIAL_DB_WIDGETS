@@ -25,15 +25,9 @@ return (
       />
 
       <div className="d-flex">
-        <div className="d-flex">
-          <span className="mx-2" style={{ fontWeight: "500" }}>
-            End date:
-          </span>
-          <Widget
-            src="silkking.near/widget/timeAgo"
-            props={{ timeInFuture: questionParams.endTimestamp }}
-          />
-        </div>
+        <span className="mx-2" style={{ fontWeight: "500" }}>
+          End date: {new Date(questionParams.endTimestamp).toLocaleDateString()}
+        </span>
         <span
           style={{
             backgroundColor:
