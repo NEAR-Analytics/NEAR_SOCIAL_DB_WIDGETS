@@ -112,7 +112,7 @@ return (
           </div>
         </div>
       </h5>
-      <p class="card-text">{idea.description}</p>
+      <Markdown class="card-text" text={idea.description}></Markdown>
       {submissionsList}
     </div>
   </Card>
