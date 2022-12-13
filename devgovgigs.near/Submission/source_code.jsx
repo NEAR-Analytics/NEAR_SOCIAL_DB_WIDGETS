@@ -24,15 +24,6 @@ const comments = props.isPreview
       post_id: submission_id,
     });
 
-console.log(submission);
-// const likeIcon = submission.likes.contains(context.accountId)
-//   ? "bi-heart-fill"
-//   : "bi-heart";
-
-// const commentIcon = comments.find((c) => c.author_id == context.accountId)
-//   ? "bi-chat-fill"
-//   : "bi-chat";
-
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="row">
