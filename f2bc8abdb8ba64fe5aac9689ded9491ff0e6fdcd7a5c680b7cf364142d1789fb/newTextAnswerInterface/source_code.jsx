@@ -11,8 +11,6 @@ function validateProps(props) {
   return errors;
 }
 
-console.log(props);
-
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
   return Near.block(blockHeight).header.timestamp / 1e6;
