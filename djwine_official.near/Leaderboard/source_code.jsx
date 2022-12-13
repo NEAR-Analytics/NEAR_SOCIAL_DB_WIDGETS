@@ -85,7 +85,6 @@ return (
               key: {
                 id: "followed",
                 label: "Account",
-                url: "https://near.social/#/mob.near/widget/ProfilePage?accountId=",
               },
               value: {
                 id: "count",
@@ -103,7 +102,6 @@ return (
               key: {
                 id: "follower",
                 label: "Account",
-                url: "https://near.social/#/mob.near/widget/ProfilePage?accountId=",
               },
               value: {
                 id: "count",
