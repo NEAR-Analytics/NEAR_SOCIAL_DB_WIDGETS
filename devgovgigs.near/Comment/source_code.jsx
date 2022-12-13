@@ -1,3 +1,4 @@
+const ownerId = "devgovgigs.near";
 const comment = props.comment;
 const comment_id = comment.id;
 
