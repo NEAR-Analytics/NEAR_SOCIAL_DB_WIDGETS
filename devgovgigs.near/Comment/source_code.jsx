@@ -1,5 +1,5 @@
-const comment_id = props.comment_id ? parseInt(props.comment.id) : 0;
 const comment = props.comment;
+const comment_id = comment.id;
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
@@ -18,35 +18,45 @@ const onLike = () => {
 };
 
 const comments = props.isPreview
-  ? null
+  ? []
   : Near.view(ownerId, "get_comments", {
       post_type: "Comment",
       post_id: comment_id,
     });
 
-const Card = styled.div`
-  &:hover {
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-  }
-`;
-
-const commentsList = props.isPreview ? null : (
+const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="row">
       <div class="col-2" onClick={onLike}>
         <a class="bi bi-heart" role="button">
-          Like
+          {" "}
+          Like ({comment.likes.length ?? 0})
         </a>
       </div>
-      <div class="col-2">
-        <a class="bi bi-chat" role="button">
-          Comment
+      <div class="col-3">
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseCommentEditorComment${comment_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseCommentEditorComment${comment_id}`}
+        >
+          <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
-    <div class="collapse" id={`collapseCommentEditor${comment_id}`}>
-      <Widget src={`${ownerId}/widget/CommentEditor`} props={{ comment_id }} />
+    <div class="collapse" id={`collapseCommentEditorComment${comment_id}`}>
+      <Widget
+        src={`${ownerId}/widget/CommentEditor`}
+        props={{ comment: { post_type: "Comment", post_id: comment_id } }}
+      />
     </div>
+  </div>
+);
+
+const commentsList = props.isPreview ? null : (
+  <div class="row">
     <div>
       {comments
         ? comments.map((comment) => {
@@ -58,6 +68,12 @@ const commentsList = props.isPreview ? null : (
     </div>
   </div>
 );
+
+const Card = styled.div`
+  &:hover {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  }
+`;
 
 return (
   <Card className="card my-2 border-light">
@@ -78,6 +94,8 @@ return (
     </div>
     <div className="card-body">
       <Markdown class="card-text" text={comment.description}></Markdown>
+      {buttonsFooter}
+      {commentsList}
     </div>
   </Card>
 );
