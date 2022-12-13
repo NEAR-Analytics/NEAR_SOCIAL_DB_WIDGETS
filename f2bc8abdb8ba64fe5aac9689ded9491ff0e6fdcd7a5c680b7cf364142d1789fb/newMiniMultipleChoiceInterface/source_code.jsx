@@ -71,13 +71,15 @@ const renderOption = (option, index) => {
 };
 
 return (
-  <a
-    href={`#${context.accountId}/widget/newVotingInterface?blockHeight=${blockHeight}`}
-    className="m-2"
-    style={{ textDecoration: "none", color: "black" }}
-  >
-    {question.choicesOptions.map((option, index) => {
-      return renderOption(option, index);
-    })}
-  </a>
+  <div className="m-2">
+    <a
+      href={`#${context.accountId}/widget/newVotingInterface?blockHeight=${blockHeight}`}
+      className="m-2"
+      style={{ textDecoration: "none", color: "black" }}
+    >
+      {question.choicesOptions.map((option, index) => {
+        return renderOption(option, index);
+      })}
+    </a>
+  </div>
 );
