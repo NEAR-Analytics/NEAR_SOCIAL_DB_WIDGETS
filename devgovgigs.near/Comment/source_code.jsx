@@ -1,4 +1,3 @@
-const ownerId = "devgovgigs.near";
 const comment = props.comment;
 const comment_id = comment.id;
 
@@ -18,12 +17,13 @@ const onLike = () => {
   });
 };
 
-const comments = props.isPreview
-  ? []
-  : Near.view(ownerId, "get_comments", {
-      post_type: "Comment",
-      post_id: comment_id,
-    });
+const commentsUnordered =
+  Near.view(ownerId, "get_comments", {
+    post_type: "Comment",
+    post_id: comment_id,
+  }) ?? [];
+
+const comments = props.isPreview ? [] : commentsUnordered.reverse();
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
