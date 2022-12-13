@@ -16,7 +16,7 @@ const renderQuestions = () => {
       >
         <div
           className="my-5 py-3 px-4"
-          style={{ backgroundColor: "#f2f2f2", borderRadius: "1rem" }}
+          style={{ backgroundColor: "white", borderRadius: "1rem" }}
         >
           <Widget
             src={`${context.accountId}/widget/answersHeader`}
