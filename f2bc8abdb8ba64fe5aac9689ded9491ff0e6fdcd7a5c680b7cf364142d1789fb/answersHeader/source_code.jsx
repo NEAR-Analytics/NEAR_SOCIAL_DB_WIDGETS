@@ -24,17 +24,16 @@ return (
         props={{ userMakingQuestion: props.accountId, profile }}
       />
 
-      <a
-        className="d-flex"
-        href={`#${
-          context.accountId
-        }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
-        style={{ textDecoration: "none", color: "black" }}
-      >
-        <span className="mx-2" style={{ fontWeight: "500" }}>
-          End date: {questionParams.endTimestamp}
-        </span>
-
+      <div className="d-flex">
+        <div className="d-flex">
+          <span className="mx-2" style={{ fontWeight: "500" }}>
+            End date:
+          </span>
+          <Widget
+            src="silkking.near/widget/timeAgo"
+            props={{ timeInFuture: questionParams.endTimestamp }}
+          />
+        </div>
         <span
           style={{
             backgroundColor:
@@ -55,18 +54,10 @@ return (
             ? "Active"
             : "Closed"}
         </span>
-      </a>
+      </div>
     </div>
-    <a
-      className="d-flex"
-      href={`#${
-        context.accountId
-      }/widget/newVotingInterface?question=${JSON.stringify(props)}`}
-      style={{ textDecoration: "none", color: "black" }}
-    >
-      <h5 className="mt-3">{questionParams.title}</h5>
-      <p>{questionParams.description}</p>
-      <p>{questionParams.question}</p>
-    </a>
+    <h5 className="mt-3">{questionParams.title}</h5>
+    <p>{questionParams.description}</p>
+    <p>{questionParams.question}</p>
   </div>
 );
