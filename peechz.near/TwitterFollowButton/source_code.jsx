@@ -10,14 +10,17 @@ if (linkTree === null) {
   return "Loading...";
 }
 
-const followBtn = () => {
-  let twitterAccount = linkTree["twitter"];
-  let accountLink = `https://twitter.com/${twitterAccount}`;
-  let innerText = `Follow @${twitterAccount}`;
+const twitterAccount = linkTree["twitter"];
+const accountLink = `https://twitter.com/${twitterAccount}?ref_src=twsrc%5Etfw`;
+const innerText = `Follow @${twitterAccount}`;
 
-  return (
-    <a class="twitter-follow-button" href={accountLink}>
-      {innerText}
-    </a>
-  );
-};
+return (
+  <a
+    class="twitter-follow-button"
+    src="https://platform.twitter.com/widgets.js"
+    href={accountLink}
+    data-size="large"
+  >
+    {innerText}
+  </a>
+);
