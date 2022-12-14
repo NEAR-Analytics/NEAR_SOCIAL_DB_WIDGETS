@@ -27,7 +27,7 @@ for (let i = 0; i < widgets.length; ++i) {
   );
 }
 
-State.init({ new_widget: "", next_index: maxIndex + 1 });
+State.init({ new_widget: "", next_index: maxIndex + 1, remove_index: 0 });
 
 return (
   <div>
@@ -40,7 +40,7 @@ return (
     </table>
     <br />
     <div className="mb-2">
-      <h4>Add widget</h4>
+      <h4>Add widget by relative link</h4>
       <input
         type="text"
         className="form-control"
@@ -50,22 +50,22 @@ return (
     </div>
     <CommitButton
       data={{ graph: { widget: { [state.next_index]: state.new_widget } } }}
-      onCommit={(e) => State.update({ next_index: state.next_index + 1 })}
+      onClick={(e) => State.update({ next_index: state.next_index + 1 })}
     >
       Save
     </CommitButton>
     <br />
     <div className="mb-2">
-      <h4>Remove widget</h4>
+      <h4>Remove widget by index</h4>
       <input
         type="text"
         className="form-control"
         placeholder="0"
-        onChange={(e) => State.update({ new_widget: e.target.value })}
+        onChange={(e) => State.update({ remove_index: e.target.value })}
       />
     </div>
-    <CommitButton data={{ graph: { widget: { [state.new_widget]: null } } }}>
-      Save
+    <CommitButton data={{ graph: { widget: { [state.remove_index]: null } } }}>
+      Remove
     </CommitButton>
   </div>
 );
