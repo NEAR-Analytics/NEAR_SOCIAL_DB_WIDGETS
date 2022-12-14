@@ -3,6 +3,7 @@ if (!props.isPreview && !props.blockHeight) {
 }
 
 let isPreview = props.isPreview ?? false;
+let loopBraker = props.loopBraker;
 
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
@@ -31,6 +32,10 @@ function sliceString(string, newStringLenght) {
 function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
+
+State.init({
+  showQuestionsByThisUser: false,
+});
 
 const widgetOwner = "silkking.near";
 const renderVoteMultipleChoice = () => {
@@ -95,6 +100,78 @@ const renderQuestionsByThisCreator = () => {
       </div>
     );
   });
+};
+
+function closeModalClickingOnTransparent() {
+  console.log("n3");
+  return (e) => {
+    e.target.id == "modal" && State.update({ showQuestionsByThisUser: false });
+  };
+}
+
+const renderModal = () => {
+  return (
+    <div
+      className="modal"
+      id="modal"
+      style={
+        state.showQuestionsByThisUser && {
+          display: "block",
+          backgroundColor: "#7e7e7e70",
+        }
+      }
+      tabindex="-1"
+      role="dialog"
+      onClick={closeModalClickingOnTransparent()}
+    >
+      <div
+        className="modal-dialog"
+        style={{ maxWidth: "100%" }}
+        role="document"
+      >
+        <div
+          className="modal-content"
+          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        >
+          <div className="modal-header flex-row-reverse">
+            <button
+              type="button"
+              className="close"
+              dataDismiss="modal"
+              ariaLabel="Close"
+              onClick={() => State.update({ showQuestionsByThisUser: false })}
+            >
+              <span ariaHidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            className="modal-body"
+            style={{
+              width: "90%",
+              borderRadius: "1rem",
+              backgroundColor: "white",
+              margin: "0 auto",
+            }}
+          >
+            <Widget
+              src={`${context.accountId}/widget/showQuestionsHandler`}
+              props={{ accountId: questionParams.accountId }}
+            />
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              onClick={() => State.update({ showQuestionsByThisUser: false })}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 return (
@@ -247,16 +324,18 @@ return (
             }}
           >
             {renderQuestionsByThisCreator()}
-            <div style={{ margin: "1rem 0", textAlign: "center" }}>
-              <a
-                href={`#${widgetOwner}/widget/showQuestionsHandler?accountId=${questionParams.accountId}`}
-                style={{ textDecoration: "none" }}
-              >
-                <button className="btn btn-outline-primary w-75">
+            {loopBraker != "brake" && (
+              <div style={{ margin: "1rem 0", textAlign: "center" }}>
+                <button
+                  className="btn btn-outline-primary w-75"
+                  onClick={() =>
+                    State.update({ showQuestionsByThisUser: true })
+                  }
+                >
                   View all
                 </button>
-              </a>
-            </div>
+              </div>
+            )}
           </div>
         </>
       )}
