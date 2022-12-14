@@ -1,1 +1,3 @@
-return "Hello World!";
+const accountId = context.accountId;
+
+return `Hello ${accountId}!`;
