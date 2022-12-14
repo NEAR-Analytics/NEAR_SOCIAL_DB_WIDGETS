@@ -342,6 +342,6 @@ return (
         )}
       </div>
     </div>
-    {renderModal()}
+    {showQuestionsByThisUser && renderModal()}
   </>
 );
