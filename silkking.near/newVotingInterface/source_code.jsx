@@ -1,13 +1,14 @@
 if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
-console.log(1, props);
+
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
   !props.previewInfo && Social.index("poll_question", "question-v3.0.1");
+
 const questionParams =
   props.previewInfo ??
   questions.find((q) => q.blockHeight == questionBlockHeight);
@@ -18,7 +19,7 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
 });
 
-if (!questions) {
+if (!questionParams) {
   return "Loading...";
 }
 
