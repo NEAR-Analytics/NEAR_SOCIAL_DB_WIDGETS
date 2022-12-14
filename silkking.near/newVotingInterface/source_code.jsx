@@ -1,7 +1,7 @@
 if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
-
+console.log(1, props);
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
@@ -22,8 +22,6 @@ if (!questions) {
   return "Loading...";
 }
 
-console.log(state.showQuestionsByThisUser);
-
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
     return string.slice(0, newStringLength) + "...";
@@ -34,6 +32,10 @@ function sliceString(string, newStringLength) {
 function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
+
+const isQuestionActive =
+  questionParams.value.startTimestamp < Date.now() &&
+  Date.now() < questionParams.value.endTimestamp;
 
 State.init({
   showQuestionsByThisUser: false,
@@ -184,11 +186,9 @@ return (
         <div className="d-flex">
           <span
             style={{
-              backgroundColor:
-                questionParams.value.startTimestamp < Date.now() &&
-                questionParams.value.endTimestamp > Date.now()
-                  ? "rgb(153, 255, 153)"
-                  : "rgb(255, 128, 128)",
+              backgroundColor: isQuestionActive
+                ? "rgb(153, 255, 153)"
+                : "rgb(255, 128, 128)",
 
               height: "max-content",
               width: "6rem",
@@ -198,10 +198,7 @@ return (
               marginRight: "1rem",
             }}
           >
-            {questionParams.value.startTimestamp < Date.now() &&
-            questionParams.value.endTimestamp > Date.now()
-              ? "Active"
-              : "Closed"}
+            {isQuestionActive ? "Active" : "Closed"}
           </span>
 
           {Date.now() < questionParams.value.endTimestamp && (
@@ -281,12 +278,7 @@ return (
         >
           <div className="d-flex justify-content-between">
             <span>Status</span>
-            <span>
-              {questionParams.value.startTimestamp < Date.now() &&
-              questionParams.value.endTimestamp > Date.now()
-                ? "Active"
-                : "Closed"}
-            </span>
+            <span>{isQuestionActive ? "Active" : "Closed"}</span>
           </div>
 
           <div className="d-flex justify-content-between">
