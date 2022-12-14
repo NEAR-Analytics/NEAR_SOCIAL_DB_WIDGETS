@@ -2,10 +2,7 @@ if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
-console.log("inside");
-
 let isPreview = props.isPreview ?? false;
-console.log(isPreview);
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
@@ -14,6 +11,8 @@ const questions =
 const questionParams =
   props.previewInfo ??
   questions.find((q) => q.blockHeight == questionBlockHeight);
+
+console.log("questionParams: ", questionParams);
 
 let profile = Social.getr(`${questionParams.accountId}/profile`);
 
