@@ -4,16 +4,24 @@ if (!accountId) {
   return "No account ID";
 }
 
-const badges = Social.getr(`${accountId}/badges/*`);
+let queries = [];
+const yourBadgesQuery = Social.keys(`*/badge/*/holder/${accountId}`, "final");
 
-if (!badges) {
+if (!yourBadgesQuery) {
   return "Loading";
 }
+
+Object.entries(yourBadgesQuery).forEach(([badgeAccountId, contractData]) => {
+  Object.entries(contractData.badge).forEach(([badgeId, badgeData]) => {
+    const query = Social.getr(`${badgeAccountId}/badge/${badgeId}`);
+    queries.push(query);
+  });
+});
 
 return (
   <div className="container">
     <div className="d-flex gap-2 flex-wrap">
-      {Object.values(badges).map((badge) => {
+      {queries.map((badge) => {
         return (
           <div className="card overflow-hidden" style={{ width: "15rem" }}>
             <img
@@ -40,7 +48,7 @@ return (
       <div style={{ marginTop: "2rem" }}>
         <CommitButton
           data={{
-            badges: {
+            badge: {
               goldStar: {
                 info: {
                   name: "Gold Star",
