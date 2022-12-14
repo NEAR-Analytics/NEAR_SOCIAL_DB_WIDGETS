@@ -11,8 +11,9 @@ State.init({
 });
 
 function loadMoreDeer() {
-  state.deer = state.deer.concat(moreDeer());
-  State.update();
+  State.update({
+    deer: state.deer.concat(moreDeer()),
+  });
 }
 
 return (
@@ -23,7 +24,7 @@ return (
     loader={<p>deer...</p>}
   >
     {state.deer.map((url, index) => (
-      <img key={index} src={url} />
+      <img src={url} />
     ))}
   </InfiniteScroll>
 );
