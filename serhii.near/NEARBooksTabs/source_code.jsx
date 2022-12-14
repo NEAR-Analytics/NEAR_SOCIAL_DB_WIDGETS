@@ -3,16 +3,18 @@ if (!accountId) {
   return "No account ID";
 }
 
-const books = props.books ?? Social.getr(`${accountId}/profile/books`);
+const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
-if (books === null) {
+if (profile === null) {
   return "Loading";
 }
 
+const description = profile.description;
+
 State.init({
-  loadFeed: false,
-  loadMyBooks: false,
-  loadWantToRead: false,
+  loadBooksFeed: true,
+  loadBooksMy: false,
+  loadBooksToRead: false,
 });
 
 return (
@@ -29,7 +31,7 @@ return (
           aria-controls="pills-bio"
           aria-selected="true"
           onClick={() => {
-            !state.loadFeed && State.update({ loadFeed: true });
+            !state.loadBooksFeed && State.update({ loadBooksFeed: true });
           }}
         >
           Feed
@@ -46,7 +48,7 @@ return (
           aria-controls="pills-nft"
           aria-selected="false"
           onClick={() => {
-            !state.loadMyBooks && State.update({ loadMyBooks: true });
+            !state.loadBooksMy && State.update({ loadBooksMy: true });
           }}
         >
           My Books
@@ -63,10 +65,10 @@ return (
           aria-controls="pills-widget"
           aria-selected="false"
           onClick={() => {
-            !state.loadWantToRead && State.update({ loadWantToRead: true });
+            !state.loadBooksToRead && State.update({ loadBooksToRead: true });
           }}
         >
-          Want To Read
+          Books To Read
         </button>
       </li>
     </ul>
@@ -77,16 +79,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-bio-tab"
       >
-        <Markdown text={description} />
-      </div>
-      <div
-        className="tab-pane fade nft"
-        id="pills-nft"
-        role="tabpanel"
-        aria-labelledby="pills-nft-tab"
-      >
-        {state.loadFeed && (
-          <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
+        {state.loadBooksFeed && (
+          <Widget src="serhii.near/widget/BooksFeed" props={{ accountId }} />
         )}
       </div>
       <div
@@ -95,8 +89,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-nft-tab"
       >
-        {state.loadMyBooks && (
-          <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
+        {state.loadBooksMy && (
+          <Widget src="serhii.near/widget/BooksMy" props={{ accountId }} />
         )}
       </div>
       <div
@@ -105,8 +99,11 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        {state.loadWantToRead && (
-          <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
+        {state.loadBooksToRead && (
+          <Widget
+            src="serhii.near/widget/BooksWantToRead"
+            props={{ accountId }}
+          />
         )}
       </div>
     </div>
