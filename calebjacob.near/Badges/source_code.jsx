@@ -40,63 +40,65 @@ return (
       })}
     </div>
 
-    <div className="mb-2">
-      <CommitButton
-        data={{
-          badges: {
-            goldStar: {
-              info: {
-                name: "Gold Star",
-                description: "A cool gold star",
-                image: {
-                  url: "https://png.pngitem.com/pimgs/s/111-1112079_hollywood-star-png-gold-star-png-small-transparent.png",
+    {props.devMode && (
+      <div style={{ marginTop: "2rem" }}>
+        <CommitButton
+          data={{
+            badges: {
+              goldStar: {
+                info: {
+                  name: "Gold Star",
+                  description: "A cool gold star",
+                  image: {
+                    url: "https://png.pngitem.com/pimgs/s/111-1112079_hollywood-star-png-gold-star-png-small-transparent.png",
+                  },
+                },
+                holder: {
+                  [accountId]: "",
                 },
               },
-              holder: {
-                [accountId]: "",
-              },
-            },
-            silverMedal: {
-              info: {
-                name: "Silver Medal",
-                description: "A cool silver medal",
-                image: {
-                  url: "https://png.pngtree.com/png-vector/20191212/ourmid/pngtree-second-place-silver-medal-for-sport-podium-winner-png-image_2050419.jpg",
+              silverMedal: {
+                info: {
+                  name: "Silver Medal",
+                  description: "A cool silver medal",
+                  image: {
+                    url: "https://png.pngtree.com/png-vector/20191212/ourmid/pngtree-second-place-silver-medal-for-sport-podium-winner-png-image_2050419.jpg",
+                  },
+                },
+                holder: {
+                  [accountId]: "",
                 },
               },
-              holder: {
-                [accountId]: "",
-              },
-            },
-            goldenBoot: {
-              info: {
-                name: "Golden Boot",
-                description: "A cool golden boot",
-                image: {
-                  url: "https://www.aljazeera.com/wp-content/uploads/2022/12/000_DV885236.jpg?resize=1920%2C1440",
+              goldenBoot: {
+                info: {
+                  name: "Golden Boot",
+                  description: "A cool golden boot",
+                  image: {
+                    url: "https://www.aljazeera.com/wp-content/uploads/2022/12/000_DV885236.jpg?resize=1920%2C1440",
+                  },
+                },
+                holder: {
+                  [accountId]: "",
                 },
               },
-              holder: {
-                [accountId]: "",
-              },
-            },
-            apple: {
-              info: {
-                name: "Apple",
-                description: "A cool apple",
-                image: {
-                  url: "https://png.pngtree.com/element_our/png/20181129/vector-illustration-of-fresh-red-apple-with-single-leaf-png_248312.jpg",
+              apple: {
+                info: {
+                  name: "Apple",
+                  description: "A cool apple",
+                  image: {
+                    url: "https://png.pngtree.com/element_our/png/20181129/vector-illustration-of-fresh-red-apple-with-single-leaf-png_248312.jpg",
+                  },
+                },
+                holder: {
+                  [accountId]: "",
                 },
               },
-              holder: {
-                [accountId]: "",
-              },
             },
-          },
-        }}
-      >
-        Get that badge
-      </CommitButton>
-    </div>
+          }}
+        >
+          Get Demo Badges
+        </CommitButton>
+      </div>
+    )}
   </div>
 );
