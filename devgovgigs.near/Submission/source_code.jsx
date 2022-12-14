@@ -12,6 +12,12 @@ const timestamp = readableDate(
   submission.timestamp ? submission.timestamp / 1000000 : Date.now()
 );
 
+const attestations = props.isPreview
+  ? null
+  : Near.view(ownerId, "get_attestations", {
+      submission_id,
+    });
+
 const sponsorships = props.isPreview
   ? null
   : Near.view(ownerId, "get_sponsorships", {
@@ -48,6 +54,18 @@ const buttonsFooter = props.isPreview ? null : (
         <a
           class="card-link"
           data-bs-toggle="collapse"
+          href={`#collapseAttestationEditor${submission_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseAttestationEditor${submission_id}`}
+        >
+          <i class="bi bi-check2-circle"> </i> Attest
+        </a>
+      </div>
+      <div class="col-2">
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
           href={`#collapseSponsorshipEditor${submission_id}`}
           role="button"
           aria-expanded="false"
@@ -75,6 +93,12 @@ const buttonsFooter = props.isPreview ? null : (
         </a>
       </div>
     </div>
+    <div class="collapse" id={`collapseAttestationEditor${submission_id}`}>
+      <Widget
+        src={`${ownerId}/widget/AttestationEditor`}
+        props={{ attestation: { submission_id } }}
+      />
+    </div>
     <div class="collapse" id={`collapseSponsorshipEditor${submission_id}`}>
       <Widget
         src={`${ownerId}/widget/SponsorshipEditor`}
@@ -89,6 +113,23 @@ const buttonsFooter = props.isPreview ? null : (
         src={`${ownerId}/widget/CommentEditor`}
         props={{ comment: { post_type: "Submission", post_id: submission_id } }}
       />
+    </div>
+  </div>
+);
+
+const attestationsList = props.isPreview ? null : (
+  <div class="row">
+    <div>
+      {attestations
+        ? attestations.map((attestation) => {
+            return (
+              <Widget
+                src={`${ownerId}/widget/Attestation`}
+                props={{ attestation }}
+              />
+            );
+          })
+        : ""}
     </div>
   </div>
 );
