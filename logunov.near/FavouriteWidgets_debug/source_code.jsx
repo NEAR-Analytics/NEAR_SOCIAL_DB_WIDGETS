@@ -36,7 +36,12 @@ return (
         type="text"
         className="form-control"
         placeholder="mob.near/widget/Welcome"
-        onChange={(e) => State.update({ new_widget: e.target.value })}
+        onChange={(e) =>
+          State.update({
+            next_index: Math.max(maxIndex + 1, state.next_index),
+            new_widget: e.target.value,
+          })
+        }
       />
     </div>
     <CommitButton
