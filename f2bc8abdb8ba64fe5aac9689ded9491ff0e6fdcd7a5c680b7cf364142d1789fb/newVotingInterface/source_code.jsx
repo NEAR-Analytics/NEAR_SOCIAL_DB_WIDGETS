@@ -103,7 +103,6 @@ const renderQuestionsByThisCreator = () => {
 };
 
 function closeModalClickingOnTransparent() {
-  console.log("n3");
   return (e) => {
     e.target.id == "modal" && State.update({ showQuestionsByThisUser: false });
   };
@@ -175,170 +174,174 @@ const renderModal = () => {
 };
 
 return (
-  <div
-    className="d-flex content-align-start justify-content-between"
-    style={{ borderRadius: "3px", padding: "2rem 3rem" }}
-  >
-    <div style={{ width: "75%", marginRight: "2rem" }}>
-      <div className="d-flex">
-        <span
-          style={{
-            backgroundColor:
-              questionParams.value.startTimestamp < Date.now() &&
-              questionParams.value.endTimestamp > Date.now()
-                ? "rgb(153, 255, 153)"
-                : "rgb(255, 128, 128)",
-
-            height: "max-content",
-            width: "6rem",
-            border: "1px solid rgb(0, 82, 204)",
-            textAlign: "center",
-            borderRadius: "80px",
-            marginRight: "1rem",
-          }}
-        >
-          {questionParams.value.startTimestamp < Date.now() &&
-          questionParams.value.endTimestamp > Date.now()
-            ? "Active"
-            : "Closed"}
-        </span>
-
-        {Date.now() < questionParams.value.endTimestamp && (
+  <>
+    <div
+      className="d-flex content-align-start justify-content-between"
+      style={{ borderRadius: "3px", padding: "2rem 3rem" }}
+    >
+      <div style={{ width: "75%", marginRight: "2rem" }}>
+        <div className="d-flex">
           <span
             style={{
-              paddingLeft: "1.5rem",
-              borderLeft: "2px solid #ced4da",
+              backgroundColor:
+                questionParams.value.startTimestamp < Date.now() &&
+                questionParams.value.endTimestamp > Date.now()
+                  ? "rgb(153, 255, 153)"
+                  : "rgb(255, 128, 128)",
+
+              height: "max-content",
+              width: "6rem",
+              border: "1px solid rgb(0, 82, 204)",
+              textAlign: "center",
+              borderRadius: "80px",
+              marginRight: "1rem",
             }}
           >
-            Ends in
-            <Widget
-              src={`silkking.near/widget/timeAgo`}
-              props={{ timeInFuture: questionParams.value.endTimestamp }}
-            />
-          </span>
-        )}
-      </div>
-
-      <h2>{questionParams.value.title}</h2>
-
-      <div className="d-flex">
-        <span className="mr-3" style={{ fontWeight: "500" }}>
-          Created by
-        </span>
-
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{
-            profile,
-            question: questionParams.accountId,
-            className: "float-start d-inline-block me-2",
-            style: {
-              width: "1.5rem",
-              marginLeft: "1rem",
-            },
-          }}
-        />
-
-        <span style={{ fontWeigth: "500" }}>
-          {sliceString(questionParams.accountId, 18)}
-        </span>
-      </div>
-
-      <p>{questionParams.value.description}</p>
-
-      {questionParams.value.tgLink != "" &&
-        questionParams.value.tgLink != undefined && (
-          <h4>
-            Discussion link:
-            <a href={questionParams.value.tgLink}>
-              {questionParams.value.tgLink}
-            </a>
-          </h4>
-        )}
-
-      <div
-        style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
-        className="p-3 my-3"
-      >
-        <h4>{questionParams.value.question}</h4>
-
-        {questionParams.value.questionType == "0"
-          ? renderVoteText()
-          : renderVoteMultipleChoice()}
-      </div>
-    </div>
-    <div style={{ minWidth: "17rem" }}>
-      <h5>Information</h5>
-      <div
-        className="mb-2"
-        style={{
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-          fontWeight: "500",
-          padding: "0.5rem 1rem",
-        }}
-      >
-        <div className="d-flex justify-content-between">
-          <span>Status</span>
-          <span>
             {questionParams.value.startTimestamp < Date.now() &&
             questionParams.value.endTimestamp > Date.now()
               ? "Active"
               : "Closed"}
           </span>
+
+          {Date.now() < questionParams.value.endTimestamp && (
+            <span
+              style={{
+                paddingLeft: "1.5rem",
+                borderLeft: "2px solid #ced4da",
+              }}
+            >
+              Ends in
+              <Widget
+                src={`silkking.near/widget/timeAgo`}
+                props={{ timeInFuture: questionParams.value.endTimestamp }}
+              />
+            </span>
+          )}
         </div>
 
-        <div className="d-flex justify-content-between">
-          <span>Start date</span>
-          <span>
-            {transformDateFormat(questionParams.value.startTimestamp)}
+        <h2>{questionParams.value.title}</h2>
+
+        <div className="d-flex">
+          <span className="mr-3" style={{ fontWeight: "500" }}>
+            Created by
+          </span>
+
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              profile,
+              question: questionParams.accountId,
+              className: "float-start d-inline-block me-2",
+              style: {
+                width: "1.5rem",
+                marginLeft: "1rem",
+              },
+            }}
+          />
+
+          <span style={{ fontWeigth: "500" }}>
+            {sliceString(questionParams.accountId, 18)}
           </span>
         </div>
 
-        <div className="d-flex justify-content-between">
-          <span>End date</span>
-          <span>{transformDateFormat(questionParams.value.endTimestamp)}</span>
-        </div>
+        <p>{questionParams.value.description}</p>
 
-        <div className="d-flex justify-content-between">
-          <span>Creator</span>
-          <span>{sliceString(questionParams.accountId, 8)}</span>
+        {questionParams.value.tgLink != "" &&
+          questionParams.value.tgLink != undefined && (
+            <h4>
+              Discussion link:
+              <a href={questionParams.value.tgLink}>
+                {questionParams.value.tgLink}
+              </a>
+            </h4>
+          )}
+
+        <div
+          style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
+          className="p-3 my-3"
+        >
+          <h4>{questionParams.value.question}</h4>
+
+          {questionParams.value.questionType == "0"
+            ? renderVoteText()
+            : renderVoteMultipleChoice()}
         </div>
       </div>
-
-      {questionsByCreator.length != 1 && (
-        <>
-          <div className="d-flex">
-            <h5>Polls by creator</h5>
-            <h5 style={{ marginLeft: "0.5rem" }}>
-              ({questionsByThisCreator.length})
-            </h5>
+      <div style={{ minWidth: "17rem" }}>
+        <h5>Information</h5>
+        <div
+          className="mb-2"
+          style={{
+            border: "1px solid #ced4da",
+            borderRadius: "0.375rem",
+            fontWeight: "500",
+            padding: "0.5rem 1rem",
+          }}
+        >
+          <div className="d-flex justify-content-between">
+            <span>Status</span>
+            <span>
+              {questionParams.value.startTimestamp < Date.now() &&
+              questionParams.value.endTimestamp > Date.now()
+                ? "Active"
+                : "Closed"}
+            </span>
           </div>
 
-          <div
-            style={{
-              border: "1px solid #ced4da",
-              borderRadius: "0.375rem",
-              padding: "0.5rem 1rem",
-            }}
-          >
-            {renderQuestionsByThisCreator()}
-            {loopBraker != "brake" && (
-              <div style={{ margin: "1rem 0", textAlign: "center" }}>
-                <button
-                  className="btn btn-outline-primary w-75"
-                  onClick={() => {
-                    State.update({ showQuestionsByThisUser: true });
-                  }}
-                >
-                  View all
-                </button>
-              </div>
-            )}
+          <div className="d-flex justify-content-between">
+            <span>Start date</span>
+            <span>
+              {transformDateFormat(questionParams.value.startTimestamp)}
+            </span>
           </div>
-        </>
-      )}
+
+          <div className="d-flex justify-content-between">
+            <span>End date</span>
+            <span>
+              {transformDateFormat(questionParams.value.endTimestamp)}
+            </span>
+          </div>
+
+          <div className="d-flex justify-content-between">
+            <span>Creator</span>
+            <span>{sliceString(questionParams.accountId, 8)}</span>
+          </div>
+        </div>
+
+        {questionsByCreator.length != 1 && (
+          <>
+            <div className="d-flex">
+              <h5>Polls by creator</h5>
+              <h5 style={{ marginLeft: "0.5rem" }}>
+                ({questionsByThisCreator.length})
+              </h5>
+            </div>
+
+            <div
+              style={{
+                border: "1px solid #ced4da",
+                borderRadius: "0.375rem",
+                padding: "0.5rem 1rem",
+              }}
+            >
+              {renderQuestionsByThisCreator()}
+              {loopBraker != "brake" && (
+                <div style={{ margin: "1rem 0", textAlign: "center" }}>
+                  <button
+                    className="btn btn-outline-primary w-75"
+                    onClick={() => {
+                      State.update({ showQuestionsByThisUser: true });
+                    }}
+                  >
+                    View all
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
-    {/*renderModal()*/}
-  </div>
+    {renderModal()}
+  </>
 );
