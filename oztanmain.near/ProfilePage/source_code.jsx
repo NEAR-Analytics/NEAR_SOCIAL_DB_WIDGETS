@@ -25,7 +25,7 @@ return (
 
       <div className="mt-3">
         <Widget
-          src="mob.near/widget/ProfileTabs"
+          src="oztanmain.near/widget/ProfileTabs"
           props={{ accountId, profile }}
         />
       </div>
