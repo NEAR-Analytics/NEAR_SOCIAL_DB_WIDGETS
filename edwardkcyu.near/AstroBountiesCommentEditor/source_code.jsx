@@ -35,7 +35,7 @@ return (
         <ul>
           {comments.map((comment) => (
             <li>
-              {comment.accountId}: {comment.comment}
+              <b>{comment.accountId}:</b> {comment.comment}
             </li>
           ))}
         </ul>
