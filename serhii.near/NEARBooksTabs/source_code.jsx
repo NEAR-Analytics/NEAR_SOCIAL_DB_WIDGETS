@@ -95,7 +95,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-nft-tab"
       >
-        {state.loadNFT && (
+        {state.loadMyBooks && (
           <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
         )}
       </div>
