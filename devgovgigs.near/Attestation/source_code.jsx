@@ -29,14 +29,15 @@ const commentsUnordered =
   }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
-// const containsLike = props.isPreview
-//   ? false
-//   : attestation.likes.find((l) => l.author_id == context.accountId);
-// const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
-// const containsComment = props.isPreview
-//   ? false
-//   : comments.find((c) => c.author_id == context.accountId);
-// const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
+const likes = attestation.likes ?? [];
+const containsLike = props.isPreview
+  ? false
+  : likes.find((l) => l.author_id == context.accountId);
+const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
+const containsComment = props.isPreview
+  ? false
+  : comments.find((c) => c.author_id == context.accountId);
+const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
