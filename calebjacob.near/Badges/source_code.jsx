@@ -15,25 +15,27 @@ if (!badges) {
 console.log(Object.values(badges));
 
 return (
-  <div className="container row">
-    <div>
+  <div className="container">
+    <div className="grid">
       {Object.values(badges).map((badge) => {
         return (
-          <div className="card overflow-hidden" style={{ width: "15rem" }}>
-            <img
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-                height: "15rem",
-                width: "15rem",
-              }}
-              src={badge.info.image.url}
-              alt={badge.info.name}
-              title={badge.info.description}
-            />
-            <div className="card-body">
-              <h5 className="card-title">{badge.info.name}</h5>
-              <p className="card-text">{badge.info.description}</p>
+          <div className="g-col-6">
+            <div className="card overflow-hidden" style={{ width: "15rem" }}>
+              <img
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  height: "15rem",
+                  width: "15rem",
+                }}
+                src={badge.info.image.url}
+                alt={badge.info.name}
+                title={badge.info.description}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{badge.info.name}</h5>
+                <p className="card-text">{badge.info.description}</p>
+              </div>
             </div>
           </div>
         );
@@ -44,12 +46,48 @@ return (
       <CommitButton
         data={{
           badges: {
-            whale: {
+            goldStar: {
               info: {
-                name: "Whale",
-                description: "A really whalethy user",
+                name: "Gold Star",
+                description: "A cool gold star",
                 image: {
-                  url: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Southern_right_whale.jpg",
+                  url: "https://e7.pngegg.com/pngimages/332/562/png-clipart-gold-coin-with-star-golden-star-badge-symmetry-halo.png",
+                },
+              },
+              holder: {
+                [accountId]: "",
+              },
+            },
+            silverMedal: {
+              info: {
+                name: "Silver Medal",
+                description: "A cool silver medal",
+                image: {
+                  url: "https://png.pngtree.com/png-vector/20191212/ourmid/pngtree-second-place-silver-medal-for-sport-podium-winner-png-image_2050419.jpg",
+                },
+              },
+              holder: {
+                [accountId]: "",
+              },
+            },
+            goldenBoot: {
+              info: {
+                name: "Golden Boot",
+                description: "A cool golden boot",
+                image: {
+                  url: "https://www.aljazeera.com/wp-content/uploads/2022/12/000_DV885236.jpg?resize=1920%2C1440",
+                },
+              },
+              holder: {
+                [accountId]: "",
+              },
+            },
+            apple: {
+              info: {
+                name: "Apple",
+                description: "A cool apple",
+                image: {
+                  url: "https://png.pngtree.com/element_our/png/20181129/vector-illustration-of-fresh-red-apple-with-single-leaf-png_248312.jpg",
                 },
               },
               holder: {
