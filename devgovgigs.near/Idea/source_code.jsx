@@ -32,6 +32,10 @@ const commentsUnordered =
   }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
+const containsLike = idea.likes.find((l) => l.author_id == context.accountId);
+const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
+const containsComment = comments.find((c) => c.author_id == context.accountId);
+const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
 const submissionsList = props.isPreview ? null : (
   <div class="row">
@@ -49,7 +53,7 @@ const submissionsList = props.isPreview ? null : (
         </a>
       </div>
       <div class="col-2" onClick={onLike}>
-        <a class="bi bi-heart" role="button">
+        <a class={likeBtnClass} role="button">
           {" "}
           Like ({idea.likes.length ?? 0})
         </a>
@@ -63,7 +67,7 @@ const submissionsList = props.isPreview ? null : (
           aria-expanded="false"
           aria-controls={`collapseCommentEditorIdea${idea_id}`}
         >
-          <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
+          <i class={commentBtnClass}> </i> Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
