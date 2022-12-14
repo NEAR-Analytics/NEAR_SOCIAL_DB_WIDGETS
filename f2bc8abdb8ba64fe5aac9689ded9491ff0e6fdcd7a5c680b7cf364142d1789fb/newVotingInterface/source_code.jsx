@@ -329,7 +329,6 @@ return (
                 <button
                   className="btn btn-outline-primary w-75"
                   onClick={() => {
-                    console.log("in");
                     State.update({ showQuestionsByThisUser: true });
                   }}
                 >
@@ -341,5 +340,6 @@ return (
         </>
       )}
     </div>
+    {renderModal()}
   </div>
 );
