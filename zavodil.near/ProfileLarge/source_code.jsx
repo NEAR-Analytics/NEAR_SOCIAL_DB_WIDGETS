@@ -34,6 +34,7 @@ Object.entries(allBadges).forEach((contractData) => {
     const badgeInfo = badgeData[1]["info"] ?? {};
     Object.entries(badgeData[1]["holder"]).forEach((holderData) => {
       if (holderData[0] == accountId && holderData[0] !== null) {
+        console.log(badgeInfo);
         let content =
           badgeInfo.linktree.website ?? null ? (
             <a
@@ -44,7 +45,7 @@ Object.entries(allBadges).forEach((contractData) => {
               {badgeInfo.name}
             </a>
           ) : (
-            badgeInfo.name
+            <span className={"link-dark"}>{badgeInfo.name}</span>
           );
         badges.push(
           <span key={contractId} className="me-1 mb-1 badge bg-warning">
