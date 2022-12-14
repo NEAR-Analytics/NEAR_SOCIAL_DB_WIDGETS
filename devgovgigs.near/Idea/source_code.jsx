@@ -121,7 +121,7 @@ const commentsList =
           </a>
         </div>
       </div>
-      <div class="collaps" id={`collapseCommentsList${idea_id}`}>
+      <div class="collapse" id={`collapseCommentsList${idea_id}`}>
         {comments
           ? comments.map((comment) => {
               return (
