@@ -1,5 +1,4 @@
 // TODO: get real data
-// TOOD: check all the fields in JSON (depends on the source of data), and try to use important ones in the system
 const booksStub = [
   {
     title: "The Great Gatsby",
