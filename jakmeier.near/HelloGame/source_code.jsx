@@ -1,6 +1,8 @@
-// very hacky PoC for an interactive widget
+// hackathon project building a small interactive game
 
-State.init({ playerPos: { x: 0, y: 0 } });
+const MAP_SIZE = "480px";
+const TILE_SIZE = "40px";
+const TILE_INNER_SIZE = "40px";
 
 const Tile = {
   Empty: "◻",
@@ -16,6 +18,7 @@ const staticDemoMap = [
   { x: 0, y: -4, obj: Tile.Pagoda },
   { x: 1, y: -4, obj: Tile.Shinto },
   { x: -1, y: -4, obj: Tile.Shinto },
+
   // hidden camp
   { x: -42, y: 42, obj: Tile.Tree },
   { x: -43, y: 42, obj: Tile.Tree },
@@ -84,70 +87,105 @@ const staticDemoMap = [
   { x: 9, y: -6, obj: Tile.Tree },
 ];
 
-const renderMap = (playerPos) => {
-  const map = Array.from(Array(11), () => new Array(11).fill(Tile.Empty));
-  // apply view offset
-  const dx = playerPos.x - 5;
-  const dy = playerPos.y - 5;
-  staticDemoMap.forEach((def) => {
-    const x = def.x - dx;
-    const y = def.y - dy;
+// Select a view of the map and store it as 2D array of tiles.
+const mapView = (start_x, start_y, width, height) => {
+  const map = Array.from(Array(width), () =>
+    new Array(height).fill(Tile.Empty)
+  );
+  staticDemoMap.forEach((tile) => {
+    // apply view offset
+    const x = tile.x - start_x;
+    const y = tile.y - start_y;
     if (map[x] && map[x][y]) {
-      map[x][y] = def.obj;
+      map[x][y] = tile.obj;
     }
   });
-  // player at the center
+  return map;
+};
+
+// convert 2D array of tiles (stored in state.currentView) into HTML
+const renderMap = () => {
+  // make a deep copy of map so we can modify it
+  const map = JSON.parse(JSON.stringify(state.currentView));
+  // render player at the center
   map[5][5] = Tile.Ghost;
   const html = map
-    .map((row) => row.map((tile) => <div style={{ size: "20px" }}>{tile}</div>))
+    .map((row) =>
+      row.map((tile) => (
+        <div
+          style={{
+            fontSize: TILE_INNER_SIZE,
+            width: TILE_SIZE,
+            height: TILE_SIZE,
+          }}
+        >
+          {tile}{" "}
+        </div>
+      ))
+    )
     .flat();
   return html;
 };
 
-function keyDownHandler(e) {
+// instantly moves the player to the given coordinate unless the path is blocked
+const movePlayer = (x, y) => {
+  if (tileInCurrentView(x, y) === Tile.Empty) {
+    setPlayerPos(x, y);
+  }
+};
+
+// update player position without checks
+const setPlayerPos = (x, y) => {
+  state.playerPos.x = x;
+  state.playerPos.y = y;
+  state.currentView = mapView(x - 5, y - 5, 11, 11);
+  // trigger a re-render with the new state
+  State.update();
+};
+
+const tileInCurrentView = (x, y) => {
+  const projected_x = x - state.playerPos.x + 5;
+  const projected_y = y - state.playerPos.y + 5;
+  return state.currentView[projected_x][projected_y];
+};
+
+const keyDownHandler = (e) => {
   // apparently switch is not supported, using if-else instead
   if (e.key == "ArrowLeft") {
-    state.playerPos.x -= 1;
+    movePlayer(state.playerPos.x - 1, state.playerPos.y);
   } else if (e.key == "ArrowRight") {
-    state.playerPos.x += 1;
+    movePlayer(state.playerPos.x + 1, state.playerPos.y);
   } else if (e.key == "ArrowUp") {
-    state.playerPos.y -= 1;
+    movePlayer(state.playerPos.x, state.playerPos.y - 1);
   } else if (e.key == "ArrowDown") {
-    state.playerPos.y += 1;
+    movePlayer(state.playerPos.x, state.playerPos.y + 1);
   } else if (e.key == " ") {
-    state.playerPos.x = 0;
-    state.playerPos.y = 0;
+    // reset to origin on space key
+    setPlayerPos(0, 0);
   } else {
     console.log(e);
   }
-  State.update();
-}
-
-// Component that forwards key inputs to provided callback.
-//
-// Right now, I don't know of a better way than abusing an input field,
-// because global even listeners seem not to be supported :(
-const KeyInput = (props) => {
-  return (
-    <div style={{ width: props.width, margin: "20px 0" }}>
-      Click inside the text input and use arrow keys to move!
-      <input type="text" onKeyDown={props.keyDownHandler} />
-    </div>
-  );
 };
+
+// Init stare (does nothing if state already exists)
+State.init({ playerPos: { x: 0, y: 0 }, currentView: mapView(-5, -5, 11, 11) });
 
 return (
   <div>
-    {KeyInput({ width: "240px", keyDownHandler })}
+    <Widget
+      src="jakmeier.near/widget/KeyInput"
+      props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
+    />
     <div
       style={{
         display: "grid",
         gridAutoFlow: "column",
-        gridTemplateRows: "repeat(11,20px)",
-        width: "240px",
+        gridTemplateRows: `repeat(11,${TILE_SIZE})`,
+        width: MAP_SIZE,
+        height: MAP_SIZE,
       }}
     >
-      {renderMap(state.playerPos)}
+      {renderMap(state)}
     </div>
   </div>
 );
