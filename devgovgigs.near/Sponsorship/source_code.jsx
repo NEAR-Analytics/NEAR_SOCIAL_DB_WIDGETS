@@ -1,4 +1,10 @@
-const sponsorship = props.sponsorship;
+const ownerId = "devgovgigs.near";
+const sponsorship_id = props.sponsorship.id
+  ? parseInt(props.sponsorship.id)
+  : 0;
+const sponsorship =
+  props.sponsorship ??
+  Near.view(ownerId, "get_sponsorship", { sponsorship_id });
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
@@ -7,6 +13,77 @@ function readableDate(timestamp) {
 
 const timestamp = readableDate(
   sponsorship.timestamp ? sponsorship.timestamp / 1000000 : Date.now()
+);
+
+const onLike = () => {
+  Near.call(ownerId, "like", {
+    post_type: "Sponsorship",
+    post_id: sponsorship_id,
+  });
+};
+
+const commentsUnordered =
+  Near.view(ownerId, "get_comments", {
+    post_type: "Sponsorship",
+    post_id: sponsorship_id,
+  }) ?? [];
+
+const comments = props.isPreview ? [] : commentsUnordered.reverse();
+const containsLike = sponsorship.likes.find(
+  (l) => l.author_id == context.accountId
+);
+const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
+const containsComment = comments.find((c) => c.author_id == context.accountId);
+const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
+
+const buttonsFooter = props.isPreview ? null : (
+  <div class="row">
+    <div class="row">
+      <div class="col-2" onClick={onLike}>
+        <a class={likeBtnClass} role="button">
+          {" "}
+          Like ({sponsorship.likes.length ?? 0})
+        </a>
+      </div>
+      <div class="col-3">
+        <a
+          class="card-link"
+          data-bs-toggle="collapse"
+          href={`#collapseCommentEditorSponsorship${sponsorship_id}`}
+          role="button"
+          aria-expanded="false"
+          aria-controls={`collapseCommentEditorSponsorship${sponsorship_id}`}
+        >
+          <i class={commentBtnClass}> </i> Comment ({comments.length ?? 0})
+        </a>
+      </div>
+    </div>
+    <div
+      class="collapse"
+      id={`collapseCommentEditorSponsorship${sponsorship_id}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/CommentEditor`}
+        props={{
+          comment: { post_type: "Sponsorship", post_id: sponsorship_id },
+        }}
+      />
+    </div>
+  </div>
+);
+
+const commentsList = props.isPreview ? null : (
+  <div class="row">
+    <div>
+      {comments
+        ? comments.map((comment) => {
+            return (
+              <Widget src={`${ownerId}/widget/Comment`} props={{ comment }} />
+            );
+          })
+        : ""}
+    </div>
+  </div>
 );
 
 const Card = styled.div`
@@ -49,6 +126,8 @@ return (
         />
       </h6>
       <Markdown class="card-text" text={sponsorship.description}></Markdown>
+      {buttonsFooter}
+      {commentsList}
     </div>
   </Card>
 );
