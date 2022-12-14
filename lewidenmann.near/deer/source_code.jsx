@@ -1,3 +1,5 @@
+let c = 0;
+
 function moreDeer() {
   let deer = [];
   for (let i = 0; i < 90; i++) {
@@ -11,6 +13,10 @@ State.init({
 });
 
 function loadMoreDeer() {
+  if (c === 1) {
+    return;
+  }
+  c += 1;
   State.update({
     deer: state.deer.concat(moreDeer()),
   });
