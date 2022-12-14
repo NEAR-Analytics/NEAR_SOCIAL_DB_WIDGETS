@@ -113,6 +113,8 @@ function closeModalClickingOnTransparent() {
   };
 }
 
+const widgetOwner = "silkking.near";
+
 const renderModal = () => {
   return (
     <div
@@ -157,7 +159,7 @@ const renderModal = () => {
             }}
           >
             <Widget
-              src={`${context.accountId}/widget/showQuestionsHandler`}
+              src={`${widgetOwner}/widget/showQuestionsHandler`}
               props={{ accountId: questionParams.accountId }}
             />
           </div>
