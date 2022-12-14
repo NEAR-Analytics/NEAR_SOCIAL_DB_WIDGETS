@@ -1,4 +1,4 @@
-const res = fetch("http://35.236.75.242:4000");
+const res = fetch("https://");
 const validators = res.body;
 
 const allWidgets = [];
