@@ -48,7 +48,7 @@ const renderModal = () => {
             style={{
               width: "90%",
               borderRadius: "1rem",
-              backgroundColor: "white",
+              backgroundColor: "rgb(230, 230, 230)",
               margin: "0 auto",
             }}
           >
