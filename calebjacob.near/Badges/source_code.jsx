@@ -1,26 +1,45 @@
-const appName = "Badges";
 const accountId = props.accountId;
+
+// State.init({ badges: [] });
 
 if (!accountId) {
   return "No account ID";
 }
 
-// const badges = Social.getr(`*/badges/*`);
-// const badges = Social.getr(`*/badges`, "final");
-const badges = Social.getr(`${accountId}/*`);
-// const badges = Social.getr(`${accountId}/profile`);
+const badges = Social.getr(`${accountId}/badges/*`);
 
-console.log(badges);
-
-if (badges === null) {
+if (!badges) {
   return "Loading";
 }
-// console.log(badges);
-// initState({ badges });
+
+console.log(Object.values(badges));
 
 return (
   <div className="container row">
-    // <div>{badges}</div>
+    <div>
+      {Object.values(badges).map((badge) => {
+        return (
+          <div className="card overflow-hidden" style={{ width: "15rem" }}>
+            <img
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+                height: "15rem",
+                width: "15rem",
+              }}
+              src={badge.info.image.url}
+              alt={badge.info.name}
+              title={badge.info.description}
+            />
+            <div className="card-body">
+              <h5 className="card-title">{badge.info.name}</h5>
+              <p className="card-text">{badge.info.description}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
     <div className="mb-2">
       <CommitButton
         data={{
