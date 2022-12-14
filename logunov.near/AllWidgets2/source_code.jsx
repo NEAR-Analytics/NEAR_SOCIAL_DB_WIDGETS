@@ -12,23 +12,32 @@ if (!data) {
 
 const widgets = Object.entries(data);
 const wrappedWidgets = [];
+const maxIndex = 0;
 for (let i = 0; i < widgets.length; ++i) {
-  const widget_src = widgets[i];
+  const index = widgets[i][0];
+  maxIndex = Math.max(maxIndex, index);
+  const src = widgets[i][1];
   wrappedWidgets.push(
-    <div>
-      <li>
-        <a href={`#/${widget_src}`}>{<i>{widget_src}</i>}</a>
-      </li>
-    </div>
+    <tr border="1">
+      <td>{index}:</td>
+      <td>
+        <a href={`#/${src}`}>{<i>{src}</i>}</a>
+      </td>
+    </tr>
   );
 }
 
-State.init({ new_widget: "" });
+State.init({ new_widget: "", next_index: maxIndex + 1 });
 
 return (
   <div>
     <div>{accountId}</div>
-    <div>{wrappedWidgets}</div>
+    <div>{state.next_index}</div>
+    <table border="1">
+      <th>Index</th>
+      <th>Link</th>
+      {wrappedWidgets}
+    </table>
     <br />
     <div className="mb-2">
       <h4>Add widget</h4>
@@ -40,7 +49,8 @@ return (
       />
     </div>
     <CommitButton
-      data={{ graph: { widget: { [widgets.length]: state.new_widget } } }}
+      data={{ graph: { widget: { [state.next_index]: state.new_widget } } }}
+      onCommit={(e) => State.update({ next_index: state.next_index + 1 })}
     >
       Save
     </CommitButton>
@@ -54,9 +64,7 @@ return (
         onChange={(e) => State.update({ new_widget: e.target.value })}
       />
     </div>
-    <CommitButton
-      data={{ graph: { widget: { [widgets.length]: state.new_widget } } }}
-    >
+    <CommitButton data={{ graph: { widget: { [state.new_widget]: null } } }}>
       Save
     </CommitButton>
   </div>
