@@ -1,10 +1,10 @@
-const story = Social.get(`urbanite.near/experimental/stories`);
+const stories = Social.get(`urbanite.near/experimental/stories`);
 
-if (story === null) {
+if (stories === null) {
   return "Loading";
 }
 
-State.init({ story: story || "" });
+State.init({ stories: stories || "" });
 
 return (
   <div>
@@ -14,12 +14,12 @@ return (
         type="text"
         rows={10}
         className="form-control"
-        value={state.story}
+        value={state.stories}
         onChange={(e) => State.update({ note: e.target.value })}
       />
     </div>
-    <CommitButton data={{ experimental: { story: state.story } }}>
-      Save story
+    <CommitButton data={{ experimental: { stories: state.stories } }}>
+      Save stories
     </CommitButton>
   </div>
 );
