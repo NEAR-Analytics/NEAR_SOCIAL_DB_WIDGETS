@@ -120,6 +120,7 @@ const renderPreview = () => {
                   accountId: context.accountId,
                   blockHeight: undefined,
                   value: {
+                    tgLink: state.pollDiscussionLink,
                     isDraft,
                     title: state.pollTitle,
                     description: state.pollDescription,
