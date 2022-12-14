@@ -9,7 +9,7 @@ State.init({ note: note || "" });
 return (
   <div>
     <div className="mb-2">
-      <h4>Notepad</h4>
+      <h4>User Stories</h4>
       <textarea
         type="text"
         rows={10}
