@@ -82,5 +82,11 @@ return (
     </div>
     <hr />
     {state.done && <div className="alert alert-success">Success!</div>}
+    {hasEvent && (
+      <Widget
+        src="jeffsatori.near/widget/EventCreator"
+        props={{ Event: hasEvent ? Event : undefined }}
+      />
+    )}
   </div>
 );
