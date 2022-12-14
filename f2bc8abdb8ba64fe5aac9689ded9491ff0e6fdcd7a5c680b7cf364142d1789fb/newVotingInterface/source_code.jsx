@@ -8,6 +8,7 @@ let shouldDisplayViewAll = props.shouldDisplayViewAll;
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
   !props.previewInfo && Social.index("poll_question", "question-v3.0.1");
+
 const questionParams =
   props.previewInfo ??
   questions.find((q) => q.blockHeight == questionBlockHeight);
@@ -18,13 +19,13 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
 });
 
-if (!questions && !props.previewInfo) {
+if (!questionParams && !isPreview) {
   return "Loading...";
 }
 
-function sliceString(string, newStringLenght) {
-  if (string.length > newStringLenght) {
-    return string.slice(0, newStringLenght) + "...";
+function sliceString(string, newStringLength) {
+  if (string.length > newStringLength) {
+    return string.slice(0, newStringLength) + "...";
   }
   return string;
 }
@@ -32,6 +33,10 @@ function sliceString(string, newStringLenght) {
 function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
+
+const isQuestionActive =
+  questionParams.value.startTimestamp < Date.now() &&
+  Date.now() < questionParams.value.endTimestamp;
 
 State.init({
   showQuestionsByThisUser: false,
@@ -108,6 +113,8 @@ function closeModalClickingOnTransparent() {
   };
 }
 
+const widgetOwner = "silkking.near";
+
 const renderModal = () => {
   return (
     <div
@@ -152,7 +159,7 @@ const renderModal = () => {
             }}
           >
             <Widget
-              src={`${context.accountId}/widget/showQuestionsHandler`}
+              src={`${widgetOwner}/widget/showQuestionsHandler`}
               props={{ accountId: questionParams.accountId }}
             />
           </div>
@@ -182,11 +189,9 @@ return (
         <div className="d-flex">
           <span
             style={{
-              backgroundColor:
-                questionParams.value.startTimestamp < Date.now() &&
-                questionParams.value.endTimestamp > Date.now()
-                  ? "rgb(153, 255, 153)"
-                  : "rgb(255, 128, 128)",
+              backgroundColor: isQuestionActive
+                ? "rgb(153, 255, 153)"
+                : "rgb(255, 128, 128)",
 
               height: "max-content",
               width: "6rem",
@@ -196,10 +201,7 @@ return (
               marginRight: "1rem",
             }}
           >
-            {questionParams.value.startTimestamp < Date.now() &&
-            questionParams.value.endTimestamp > Date.now()
-              ? "Active"
-              : "Closed"}
+            {isQuestionActive ? "Active" : "Closed"}
           </span>
 
           {Date.now() < questionParams.value.endTimestamp && (
@@ -247,12 +249,12 @@ return (
 
         {questionParams.value.tgLink != "" &&
           questionParams.value.tgLink != undefined && (
-            <h6>
+            <h4>
               Discussion link:
               <a href={questionParams.value.tgLink}>
                 {questionParams.value.tgLink}
               </a>
-            </h6>
+            </h4>
           )}
 
         <div
@@ -279,12 +281,7 @@ return (
         >
           <div className="d-flex justify-content-between">
             <span>Status</span>
-            <span>
-              {questionParams.value.startTimestamp < Date.now() &&
-              questionParams.value.endTimestamp > Date.now()
-                ? "Active"
-                : "Closed"}
-            </span>
+            <span>{isQuestionActive ? "Active" : "Closed"}</span>
           </div>
 
           <div className="d-flex justify-content-between">
