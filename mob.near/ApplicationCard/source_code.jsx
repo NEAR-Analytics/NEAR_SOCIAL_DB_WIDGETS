@@ -19,7 +19,7 @@ transition: box-shadow .3s;
 
 return (
   <Card
-    className="card position-relative m-2 border-0"
+    className="card position-relative border-0"
     style={{ borderRadius: "1.5em", width: "9em" }}
   >
     <div className="pt-2 pb-1 g-1">
