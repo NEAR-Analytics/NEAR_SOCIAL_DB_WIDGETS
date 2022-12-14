@@ -1,7 +1,7 @@
 // console.log("props: ", props);
-const comment = props.answer;
+const comment = props.comment;
 const answerTimeStamp = props.answerTimeStamp;
-const accountId = props.userName;
+const accountId = props.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
 
