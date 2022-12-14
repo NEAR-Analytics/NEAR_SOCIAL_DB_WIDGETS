@@ -20,7 +20,7 @@ transition: box-shadow .3s;
 return (
   <Card
     className="card position-relative m-2 border-0"
-    style={{ borderRadius: "1em", maxWidth: "12em" }}
+    style={{ borderRadius: "1em", width: "12em" }}
   >
     <div className="pt-3 pb-1 g-1">
       <div className="m-auto text-center mb-2">
