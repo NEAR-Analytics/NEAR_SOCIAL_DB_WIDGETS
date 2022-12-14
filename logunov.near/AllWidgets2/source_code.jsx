@@ -1,4 +1,4 @@
-const data = Social.keys("${props.accountId}/graph/widget/*", "final");
+const data = Social.keys("${context.accountId}/graph/widget/*", "final");
 
 if (!data) {
   return "Loading";
@@ -22,6 +22,8 @@ State.init({ new_widget: "" });
 
 return (
   <div>
+    <div>{context.accountId}</div>
+    <div>{widgets.length}</div>
     <div>{widgets}</div>
     <div className="mb-2">
       <h4>Add favourite widget</h4>
