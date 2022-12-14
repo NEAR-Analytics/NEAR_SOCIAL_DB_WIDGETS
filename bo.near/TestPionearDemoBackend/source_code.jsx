@@ -7,7 +7,19 @@ for (let i = 0; i < validators.length; ++i) {
   let validator = validators[i];
   console.log(validator);
 
-  allWidgets.push(<div className="mb-2">{validator.accountId}</div>);
+  allWidgets.push(
+    <tr>
+      <td>{validator.accountId}</td>
+      <td>{validator.publicKey}</td>
+      <td>{validator.telemetry ? validator.telemetry.ipAddress : ""}</td>
+    </tr>
+  );
 }
 
-return <div className="container row">{allWidgets}</div>;
+return (
+  <div className="container row">
+    <table className="table table-striped">
+      <tbody>{allWidgets}</tbody>
+    </table>
+  </div>
+);
