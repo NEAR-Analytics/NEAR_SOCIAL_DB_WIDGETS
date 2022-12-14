@@ -19,20 +19,20 @@ const onLike = () => {
   });
 };
 
-// const commentsUnordered = props.isPreview
-//   ? []
-//   : Near.view(ownerId, "get_comments", {
-//       post_type: "Comment",
-//       post_id: comment_id,
-//     }) ?? [];
-const commentsUnordered = [];
+const commentsUnordered =
+  Near.view(ownerId, "get_comments", {
+    post_type: "Comment",
+    post_id: comment_id,
+  }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
-const containsLike = comment.likes.find(
-  (l) => l.author_id == context.accountId
-);
+const containsLike = props.isPreview
+  ? false
+  : comment.likes.find((l) => l.author_id == context.accountId);
 const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
-const containsComment = comments.find((c) => c.author_id == context.accountId);
+const containsComment = props.isPreview
+  ? false
+  : comments.find((c) => c.author_id == context.accountId);
 const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
 const buttonsFooter = props.isPreview ? null : (
