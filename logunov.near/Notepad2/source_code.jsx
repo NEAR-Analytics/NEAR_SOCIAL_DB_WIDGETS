@@ -4,7 +4,7 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-const note = Social.get(`${accountId}/experimental/note`);
+const note = Social.get(`${accountId}/notepad2/note2`);
 
 if (note === null) {
   return "Loading";
@@ -24,7 +24,7 @@ return (
         onChange={(e) => State.update({ note: e.target.value })}
       />
     </div>
-    <CommitButton data={{ experimental: { note: state.note } }}>
+    <CommitButton data={{ notepad2: { note2: state.note } }}>
       Save note
     </CommitButton>
   </div>
