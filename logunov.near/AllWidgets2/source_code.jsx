@@ -6,7 +6,7 @@ if (!accountId) {
 
 const data = Social.get(`${accountId}/graph/widget/*`, "final");
 
-const widgets = Object.entries(data);
+const widgets = data ? Object.entries(data) : [];
 const wrappedWidgets = [];
 const maxIndex = 0;
 for (let i = 0; i < widgets.length; ++i) {
