@@ -61,6 +61,7 @@ const isValidInput = () => {
   result = result && state.pollEndDate != "";
   result = result && state.endTime != "";
   result = result && state.question != "";
+  result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
 };
 
@@ -362,13 +363,22 @@ return (
           borderRadius: "0.375rem",
         }}
         type="text"
-        className="mb-2"
+        className={
+          !state.pollDiscussionLink.includes("https://t.me/") &&
+          state.showErrorsInForm
+            ? "border border-danger mb-2"
+            : "mb-2"
+        }
         id="pollDiscussionLink"
         value={state.pollDiscussionLink}
         onChange={(e) => {
           State.update({ pollDiscussionLink: e.target.value });
         }}
       />
+      {!state.pollDiscussionLink.includes("https://t.me/") &&
+        state.showErrorsInForm && (
+          <p className="text-danger">Not a valid link</p>
+        )}
 
       <div
         className="d-flex justify-content-around flex-wrap"
