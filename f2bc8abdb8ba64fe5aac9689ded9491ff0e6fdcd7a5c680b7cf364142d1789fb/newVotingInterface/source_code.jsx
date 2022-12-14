@@ -12,8 +12,6 @@ const questionParams =
   props.previewInfo ??
   questions.find((q) => q.blockHeight == questionBlockHeight);
 
-console.log("questionParams: ", questionParams);
-
 let profile = Social.getr(`${questionParams.accountId}/profile`);
 
 let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
@@ -22,9 +20,6 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
 
 if (!questions && !props.previewInfo) {
   return "Loading...";
-}
-
-console.log(state.showQuestionsByThisUser);
 
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
