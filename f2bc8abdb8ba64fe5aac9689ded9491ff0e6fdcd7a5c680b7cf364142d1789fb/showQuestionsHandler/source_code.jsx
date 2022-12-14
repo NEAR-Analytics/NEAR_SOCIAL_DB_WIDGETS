@@ -113,6 +113,7 @@ return (
     style={{
       borderRadius: "3px",
       padding: "0px 2%",
+      backgroundColor: "rgb(230, 230, 230)",
     }}
   >
     {renderQuestions()}
