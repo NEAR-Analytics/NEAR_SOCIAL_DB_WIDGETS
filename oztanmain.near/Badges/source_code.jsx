@@ -1,17 +1,13 @@
-return <div>Hello World</div>;
-const appName = "ProofOfHeight";
-const accountId = context.accountId;
+const appName = "Badges";
+const accountId = props.accountId;
 
 if (!accountId) {
   return "No account ID";
 }
 
-//const badges = Social.keys(`*/${contractId}/badges/*`, "final");
-const badges = Social.getr(`${contractId}/badges/*`);
-const user = Social.getr(`${accountId}/*`);
+const badges = Social.getr(`${accountID}/badges/*`);
+console.log(badges);
 
-console.log(user);
-//const height = props.height ?? 7;
 if (badges === null) {
   return "Loading";
 }
