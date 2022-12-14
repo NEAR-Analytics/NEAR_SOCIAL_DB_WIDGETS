@@ -1,6 +1,7 @@
 const ownerId = "devgovgigs.near";
-const comment = props.comment;
-const comment_id = comment.id;
+const comment_id = props.comment.id ? parseInt(props.comment.id) : 0;
+const comment =
+  props.comment ?? Near.view(ownerId, "get_comment", { comment_id });
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
@@ -25,12 +26,18 @@ const commentsUnordered =
   }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
+const containsLike = comment.likes.find(
+  (l) => l.author_id == context.accountId
+);
+const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
+const containsComment = comments.find((c) => c.author_id == context.accountId);
+const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="row">
       <div class="col-2" onClick={onLike}>
-        <a class="bi bi-heart" role="button">
+        <a class={likeBtnClass} role="button">
           {" "}
           Like ({comment.likes.length ?? 0})
         </a>
@@ -44,7 +51,7 @@ const buttonsFooter = props.isPreview ? null : (
           aria-expanded="false"
           aria-controls={`collapseCommentEditorComment${comment_id}`}
         >
-          <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
+          <i class={commentBtnClass}> </i> Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
