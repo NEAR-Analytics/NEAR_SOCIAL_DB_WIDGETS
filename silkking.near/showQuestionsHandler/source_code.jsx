@@ -15,6 +15,8 @@ function closeModalClickingOnTransparent() {
   };
 }
 
+const widgetOwner = "silkking.near";
+
 const renderModal = () => {
   return (
     <div
@@ -53,7 +55,7 @@ const renderModal = () => {
             }}
           >
             <Widget
-              src={`${context.accountId}/widget/newVotingInterface`}
+              src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
                 blockHeight: state.modalBlockHeight,
                 shouldDisplayViewAll: props.accountId == undefined,
@@ -94,11 +96,11 @@ const renderQuestions = () => {
         }}
       >
         <Widget
-          src={`${context.accountId}/widget/answersHeader`}
+          src={`${widgetOwner}/widget/answersHeader`}
           props={{ ...question }}
         />
         <Widget
-          src={`${context.accountId}/widget/${
+          src={`${widgetOwner}/widget/${
             displayAnswerWidgetNames[question.value.questionType]
           }`}
           props={{ ...question }}
