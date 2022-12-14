@@ -20,6 +20,7 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
 
 if (!questions && !props.previewInfo) {
   return "Loading...";
+}
 
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
