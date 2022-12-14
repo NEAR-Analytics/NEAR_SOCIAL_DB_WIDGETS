@@ -112,16 +112,16 @@ const commentsList =
           <a
             class="card-link"
             data-bs-toggle="collapse"
-            href={`#collapseCommentsList${idea_id}`}
+            href={`#collapseCommentsListIdea${idea_id}`}
             role="button"
             aria-expanded="false"
-            aria-controls={`collapseCommentsList${idea_id}`}
+            aria-controls={`collapseCommentsListIdea${idea_id}`}
           >
             <i class="bi bi-arrows-angle-expand"> </i> Expand Comments
           </a>
         </div>
       </div>
-      <div class="collapse" id={`collapseCommentsList${idea_id}`}>
+      <div class="collapse" id={`collapseCommentsListIdea${idea_id}`}>
         {comments
           ? comments.map((comment) => {
               return (
