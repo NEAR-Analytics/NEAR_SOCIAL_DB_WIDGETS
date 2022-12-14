@@ -1,4 +1,4 @@
-const res = fetch("https://");
+const res = fetch("https://near-validators.carrymusic.club/");
 const validators = res.body;
 
 const allWidgets = [];
