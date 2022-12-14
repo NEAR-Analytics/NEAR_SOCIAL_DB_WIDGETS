@@ -4,7 +4,7 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-const note = Social.get(`${accountId}/notepad2`);
+const note = Social.get(`${accountId}/experimental/note`);
 
 if (note === null) {
   return "Loading";
