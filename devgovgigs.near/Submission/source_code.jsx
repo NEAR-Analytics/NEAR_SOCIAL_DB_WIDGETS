@@ -12,19 +12,19 @@ const timestamp = readableDate(
   submission.timestamp ? submission.timestamp / 1000000 : Date.now()
 );
 
-const sponsorshipsUnordered =
-  Near.view(ownerId, "get_sponsorships", {
-    submission_id,
-  }) ?? [];
-const sponsorships = props.isPreview ? [] : sponsorshipsUnordered.reverse();
+const sponsorships = props.isPreview
+  ? null
+  : Near.view(ownerId, "get_sponsorships", {
+      submission_id,
+    });
 
 const commentsUnordered =
   Near.view(ownerId, "get_comments", {
     post_type: "Submission",
     post_id: submission_id,
   }) ?? [];
-const comments = props.isPreview ? [] : commentsUnordered.reverse();
 
+const comments = props.isPreview ? [] : commentsUnordered.reverse();
 const containsLike = props.isPreview
   ? false
   : submission.likes.find((l) => l.author_id == context.accountId);
