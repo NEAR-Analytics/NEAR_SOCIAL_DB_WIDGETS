@@ -2,6 +2,35 @@ if (!props.blockHeight) {
   return "Property blockHeight not set";
 }
 
+// Utility function. COnsider moving it to an utility widget
+function getBlockTimestamp(blockHeight) {
+  // It is stored in nanoseconds which is 1e-6 miliseconds
+  return Near.block(blockHeight).header.timestamp / 1e6;
+}
+
+// Discards answers that were posted after question's end date. Consider moving to utility widget
+function getTimeRelatedValidAnswers(answers) {
+  let low = 0;
+  let high = answers.length - 1;
+  const questionEndTimestamp = questionParams.value.endTimestamp;
+  let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
+  if (endBlockTimestamp < questionEndTimestamp) return answers;
+  // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
+  let tries = 50;
+  while (high - low > 1 && tries > 0) {
+    tries--;
+    let curr = Math.floor((high - low) / 2) + low;
+    let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
+    if (currBlockTimestamp < questionEndTimestamp) {
+      low = curr;
+    } else {
+      high = curr;
+    }
+  }
+  // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
+  return answers.slice(0, high);
+}
+
 const questionBlockHeight = Number(props.blockHeight);
 const questions = Social.index("poll_question", "question-v3.0.1");
 const questionParams = questions.find(
@@ -14,7 +43,7 @@ const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
 let usersWithAnswersToThisQuestion = [];
-const validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
+let validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
     a.accountId
   );
@@ -23,6 +52,9 @@ const validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   }
   return !didUserAlreadyAnswered;
 });
+validAnswersToThisQuestion = getTimeRelatedValidAnswers(
+  validAnswersToThisQuestion
+);
 
 console.log(1, validAnswersToThisQuestion);
 
@@ -31,7 +63,7 @@ function calculatePercentage(votesToThisOption) {
   return (votesToThisOption / validAnswersToThisQuestion.length) * 100;
 }
 
-const countVotes = answersToThisQuestion.reduce((acc, curr) => {
+const countVotes = validAnswersToThisQuestion.reduce((acc, curr) => {
   const ans = curr.value.answer;
   const isValidAnswer =
     !isNaN(ans) &&
@@ -45,7 +77,7 @@ const countVotes = answersToThisQuestion.reduce((acc, curr) => {
   }
 }, new Array(questionParams.value.choicesOptions.length).fill(0));
 
-console.log(1, countVotes);
+console.log(2, countVotes);
 
 function displayableOptionName(option) {
   if (option.length > 12) {
