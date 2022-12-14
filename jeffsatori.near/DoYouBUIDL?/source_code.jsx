@@ -43,21 +43,21 @@ return (
     <br />
 
     <CommitButton
-      data={{ post: { yes: "Yes I am!" } }}
+      data={{ post: { yes: "Let's BUIDL!" } }}
       onCommit={() => {
         State.update({
           // TODO: Feed needs reload?
         });
       }}
     >
-      yes!
+      Let's BUIDL!
     </CommitButton>
 
     <div>
       {state.allItems
         ? state.allItems.map(({ accountId }) => (
             <div>
-              {accountId} said <b>yes!</b>
+              {accountId} said <b>Let's BUIDL!</b>
             </div>
           ))
         : "Loading..."}
