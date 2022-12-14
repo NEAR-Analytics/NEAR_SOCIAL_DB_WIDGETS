@@ -88,7 +88,7 @@ return (
               <div className="small text-truncate">
                 <i className="bi bi-person-fill text-secondary me-1"></i>
                 <a
-                  href="https://explorer.near.org/accounts/{accountId}"
+                  href={`https://explorer.near.org/accounts/` + accountId}
                   target="_blank"
                 >
                   {accountId}
