@@ -22,6 +22,8 @@ if (!questions) {
   return "Loading...";
 }
 
+console.log(showQuestionsByThisUser);
+
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
     return string.slice(0, newStringLenght) + "...";
