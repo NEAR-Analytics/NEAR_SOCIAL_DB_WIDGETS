@@ -267,7 +267,6 @@ return (
           : renderVoteMultipleChoice()}
       </div>
     </div>
-
     <div style={{ minWidth: "17rem" }}>
       <h5>Information</h5>
       <div
@@ -340,6 +339,6 @@ return (
         </>
       )}
     </div>
-    {renderModal()}
+    // {renderModal()}
   </div>
 );
