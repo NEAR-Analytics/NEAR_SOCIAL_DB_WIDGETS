@@ -31,6 +31,7 @@ const getPublicationParams = (isDraft) => {
             isDraft,
             title: state.pollTitle,
             description: state.pollDescription,
+            tgLink: state.tgLink,
             startTimestamp: getTimestamp(state.pollStartDate, state.startTime),
             endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
             questionType: state.pollType,
@@ -48,6 +49,16 @@ const getPublicationParams = (isDraft) => {
 
 const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
 
+function isValidHttpUrl(string) {
+  let url;
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return url.protocol === "http:" || url.protocol === "https:";
+}
+
 const isValidInput = () => {
   // TODO validate date and link types
   let result =
@@ -56,6 +67,10 @@ const isValidInput = () => {
     state.pollType != pollTypes.MULTIPLE_CHOICE.id;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
+  result =
+    result &&
+    (state.tgLink == "" ||
+      (state.tgLink != "" && isValidHttpUrl(state.tgLink)));
   result = result && state.pollStartDate != "";
   result = result && state.startTime != "";
   result = result && state.pollEndDate != "";
@@ -297,7 +312,11 @@ function addChoicesHandler() {
 return (
   <div
     className="d-flex align-items-start justify-content-around pt-4"
-    style={{ borderRadius: "0.375rem", height: "100vh" }}
+    style={{
+      borderRadius: "0.375rem",
+      height: "100vh",
+      backgroundColor: "white",
+    }}
   >
     <div className="d-flex flex-column w-75 justify-content-around">
       <label for="pollTitle">Title</label>
