@@ -42,6 +42,8 @@ return (
     <CommitButton data={{ graph: { widget: { [state.new_widget]: "" } } }}>
       Save widget
     </CommitButton>
-    <CommitButton data={{ graph: { widget: null } }}>Clear all</CommitButton>
+    <CommitButton data={{ graph: { widget: { [state.new_widget]: null } } }}>
+      Remove widget
+    </CommitButton>
   </div>
 );
