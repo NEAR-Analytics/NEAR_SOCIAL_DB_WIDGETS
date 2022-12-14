@@ -109,7 +109,7 @@ function keyDownHandler(e) {
 const KeyInput = (props) => {
   return (
     <div style={{ width: props.width, margin: "20px 0" }}>
-      Click insidethe text input and use arrow keys to move!
+      Click inside the text input and use arrow keys to move!
       <input type="text" onKeyDown={props.keyDownHandler} />
     </div>
   );
