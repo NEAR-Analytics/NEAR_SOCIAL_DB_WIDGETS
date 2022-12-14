@@ -91,6 +91,23 @@ function filterMultipleChoiceValidAnswers(questionParams, answers) {
 }
 
 /**
+ * @param answers answers to a question
+ * Filters any answer that was pushed by a user that already replied, so we always have the first answer by the user
+ */
+function filterRepeatedUsersAnswers(answers) {
+  let usersWithAnswersToThisQuestion = [];
+  return answers.filter((a) => {
+    const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
+      a.accountId
+    );
+    if (!didUserAlreadyAnswered) {
+      usersWithAnswersToThisQuestion.push(a.accountId);
+    }
+    return !didUserAlreadyAnswered;
+  });
+}
+
+/**
  * @param questionBlockHeight block height of the question you want the answers
  * Returns all valid answers to question provided
  */
@@ -100,6 +117,7 @@ function getValidAnswersToQuestion() {
   }
   const answersToThisQuestion = getAnswersToQuestion();
   let validAnswers = filterOutOfTimeAnswers(answersToThisQuestion);
+  validAnswers = filterRepeatedUsersAnswers(validAnswers);
 
   const questionParams = getQuestionFromBlockHeight(props.questionBlockHeight);
   // Type "1" means multiple choice. Check widget newPollQuestionInterface for more info
