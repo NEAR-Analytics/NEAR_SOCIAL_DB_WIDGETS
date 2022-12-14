@@ -1,4 +1,4 @@
-const data = Social.keys("${props.accountId}/graph/widgets/*", "final");
+const data = Social.keys("${props.accountId}/graph/widget/*", "final");
 
 if (!data) {
   return "Loading";
@@ -33,7 +33,7 @@ return (
         onChange={(e) => State.update({ new_widget: e.target.value })}
       />
     </div>
-    <CommitButton data={{ graph: { widgets: { [state.new_widget]: "" } } }}>
+    <CommitButton data={{ graph: { widget: { [state.new_widget]: "" } } }}>
       Save widget
     </CommitButton>
   </div>
