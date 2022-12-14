@@ -14,6 +14,7 @@ const description = profile.description;
 State.init({
   loadNFT: false,
   loadWidgets: false,
+  loadBadges: false,
 });
 
 return (
@@ -50,6 +51,7 @@ return (
           NFTs
         </button>
       </li>
+
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"
@@ -65,6 +67,23 @@ return (
           }}
         >
           Widgets
+        </button>
+      </li>
+      <li className="nav-item" role="presentation">
+        <button
+          className="nav-link"
+          id="pills-nft-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-nft"
+          type="button"
+          role="tab"
+          aria-controls="pills-nft"
+          aria-selected="false"
+          onClick={() => {
+            !state.loadBadges && State.update({ loadBadges: true });
+          }}
+        >
+          Badges
         </button>
       </li>
     </ul>
@@ -95,6 +114,16 @@ return (
       >
         {state.loadWidgets && (
           <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
+        )}
+      </div>
+      <div
+        className="tab-pane fade widget"
+        id="pills-widget"
+        role="tabpanel"
+        aria-labelledby="pills-widget-tab"
+      >
+        {state.loadBadges && (
+          <Widget src="oztanmain.near/widget/Badges" props={{ accountId }} />
         )}
       </div>
     </div>
