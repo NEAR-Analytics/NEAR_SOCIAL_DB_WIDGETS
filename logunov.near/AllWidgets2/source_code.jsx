@@ -29,21 +29,35 @@ return (
   <div>
     <div>{accountId}</div>
     <div>{wrappedWidgets}</div>
+    <br />
     <div className="mb-2">
-      <h4>Add favourite widget</h4>
-      <textarea
+      <h4>Add widget</h4>
+      <input
         type="text"
-        rows={1}
         className="form-control"
-        value={state.note}
+        placeholder="mob.near/widget/Welcome"
         onChange={(e) => State.update({ new_widget: e.target.value })}
       />
     </div>
-    <CommitButton data={{ graph: { widget: { [state.new_widget]: "" } } }}>
-      Save widget
+    <CommitButton
+      data={{ graph: { widget: { [widgets.length]: state.new_widget } } }}
+    >
+      Save
     </CommitButton>
-    <CommitButton data={{ graph: { widget: { [state.new_widget]: null } } }}>
-      Remove widget
+    <br />
+    <div className="mb-2">
+      <h4>Remove widget</h4>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="0"
+        onChange={(e) => State.update({ new_widget: e.target.value })}
+      />
+    </div>
+    <CommitButton
+      data={{ graph: { widget: { [widgets.length]: state.new_widget } } }}
+    >
+      Save
     </CommitButton>
   </div>
 );
