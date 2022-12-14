@@ -6,10 +6,6 @@ if (!accountId) {
 
 const data = Social.get(`${accountId}/graph/widget/*`, "final");
 
-if (!data) {
-  return "Loading";
-}
-
 const widgets = Object.entries(data);
 const wrappedWidgets = [];
 const maxIndex = 0;
@@ -19,9 +15,11 @@ for (let i = 0; i < widgets.length; ++i) {
   const src = widgets[i][1];
   wrappedWidgets.push(
     <tr border="1">
-      <td>{index}:</td>
+      <td>{index}</td>
       <td>
-        <a href={`#/${src}`}>{<i>{src}</i>}</a>
+        <a href={`#/${src}`}>
+          <i>{src}</i>
+        </a>
       </td>
     </tr>
   );
@@ -31,14 +29,6 @@ State.init({ new_widget: "", next_index: maxIndex + 1, remove_index: 0 });
 
 return (
   <div>
-    <div>{accountId}</div>
-    <div>{state.next_index}</div>
-    <table border="1">
-      <th>Index</th>
-      <th>Link</th>
-      {wrappedWidgets}
-    </table>
-    <br />
     <div className="mb-2">
       <h4>Add widget by relative link</h4>
       <input
@@ -54,7 +44,7 @@ return (
     >
       Save
     </CommitButton>
-    <br />
+
     <div className="mb-2">
       <h4>Remove widget by index</h4>
       <input
@@ -67,5 +57,16 @@ return (
     <CommitButton data={{ graph: { widget: { [state.remove_index]: null } } }}>
       Remove
     </CommitButton>
+    <br />
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Index</th>
+          <th scope="col">Link</th>
+        </tr>
+      </thead>
+      <tbody>{wrappedWidgets}</tbody>
+    </table>
+    <br />
   </div>
 );
