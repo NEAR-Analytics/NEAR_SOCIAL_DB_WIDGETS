@@ -131,7 +131,7 @@ return (
           },
         })}
       >
-        Like ❤️
+        Like 💖
       </CommitButton>
     </div>
     <div className="mb-4">
@@ -144,6 +144,6 @@ return (
         {likes && renderLikes(likes.slice(0, 10).map((a) => a.accountId))}
       </div>
     </div>
-    {state.lastLike && <Heart key={`like-${state.lastLike}`}>❤️</Heart>}
+    {state.lastLike && <Heart key={`like-${state.lastLike}`}>💖</Heart>}
   </div>
 );
