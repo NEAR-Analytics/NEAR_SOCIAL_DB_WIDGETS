@@ -20,20 +20,20 @@ transition: box-shadow .3s;
 return (
   <Card
     className="card position-relative m-2 border-0"
-    style={{ borderRadius: "1em", width: "12em" }}
+    style={{ borderRadius: "1.5em", width: "9em" }}
   >
-    <div className="pt-3 pb-1 g-1">
+    <div className="pt-2 pb-1 g-1">
       <div className="m-auto text-center mb-2">
         <div
           className="d-inline-block"
-          style={{ width: "10em", height: "10em" }}
+          style={{ width: "7.5em", height: "7.5em" }}
         >
           <Widget
             src="mob.near/widget/Image"
             props={{
               image,
               className: "w-100 h-100 shadow",
-              style: { objectFit: "cover", borderRadius: "2em" },
+              style: { objectFit: "cover", borderRadius: "1.5em" },
               thumbnail: false,
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
@@ -44,10 +44,10 @@ return (
       </div>
       <div
         className="px-3 d-flex text-center align-items-center justify-content-center overflow-hidden"
-        style={{ height: "4rem" }}
+        style={{ height: "3rem" }}
       >
         <a className="stretched-link link-dark" href={`#/${widgetPath}`}>
-          <h5 className="card-title">{name}</h5>
+          <h6 className="card-title">{name}</h6>
         </a>
       </div>
     </div>
