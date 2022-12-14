@@ -133,10 +133,14 @@ function getValidAnswersToQuestion() {
 //////////////////////// Public methods ////////////////////////
 
 // Switch doesn't work on Near Social and couldn't find a way to call a function from a string
+let outputObject;
 if (props.fn == "getQuestions") {
-  return getQuestions();
+  outputObject = getQuestions();
 } else if (props.fn == "getQuestionFromBlockHeight") {
-  return getQuestionFromBlockHeight();
+  outputObject = getQuestionFromBlockHeight();
 } else if (props.fn == "getValidAnswersToQuestion") {
-  return getValidAnswersToQuestion();
+  outputObject = getValidAnswersToQuestion();
+} else {
+  outputObject = "fn not set or not defined";
 }
+return JSON.stringify(outputObject);
