@@ -4,21 +4,20 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-const data = Social.get("${accountId}/graph/widget/*", "final");
+const data = Social.get(`${accountId}/graph/widget/*`, "final");
 
 if (!data) {
   return "Loading";
 }
 
 const widgets = Object.entries(data);
-
+const wrappedWidgets = [];
 for (let i = 0; i < widgets.length; ++i) {
-  const widget_src = widgets[i][0];
-  const widgets = [];
-  widgets.push(
+  const widget_src = widgets[i];
+  wrappedWidgets.push(
     <div>
       <li>
-        <a href={`#/${widget_src}`}>{<i>Noname widget</i>}</a>
+        <a href={`#/${widget_src}`}>{<i>{widget_src}</i>}</a>
       </li>
     </div>
   );
@@ -28,9 +27,8 @@ State.init({ new_widget: "" });
 
 return (
   <div>
-    <div>{context.accountId}</div>
-    <div>{widgets.length}</div>
-    <div>{widgets}</div>
+    <div>{accountId}</div>
+    <div>{wrappedWidgets}</div>
     <div className="mb-2">
       <h4>Add favourite widget</h4>
       <textarea
@@ -44,5 +42,6 @@ return (
     <CommitButton data={{ graph: { widget: { [state.new_widget]: "" } } }}>
       Save widget
     </CommitButton>
+    <CommitButton data={{ graph: { widget: {} } }}>Clear all</CommitButton>
   </div>
 );
