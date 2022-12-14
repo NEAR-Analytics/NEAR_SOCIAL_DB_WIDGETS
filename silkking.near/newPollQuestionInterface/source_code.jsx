@@ -67,16 +67,13 @@ const isValidInput = () => {
     state.pollType != pollTypes.MULTIPLE_CHOICE.id;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
-  result =
-    result &&
-    (state.tgLink == "" ||
-      (state.tgLink != "" && isValidHttpUrl(state.tgLink)));
+  result = result && isValidTelegramLink();
   result = result && state.pollStartDate != "";
   result = result && state.startTime != "";
   result = result && state.pollEndDate != "";
   result = result && state.endTime != "";
   result = result && state.question != "";
-  result = result && !state.pollDiscussionLink.includes("https://t.me/");
+  // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
 };
 
@@ -313,6 +310,11 @@ function addChoicesHandler() {
   });
 }
 
+function isValidTelegramLink() {
+  if (!state.pollDiscussionLink) return true;
+  return state.pollDiscussionLink.startsWith("https://t.me");
+}
+
 return (
   <div
     className="d-flex align-items-start justify-content-around pt-4"
@@ -382,8 +384,7 @@ return (
         }}
         type="text"
         className={
-          !state.pollDiscussionLink.includes("https://t.me/") &&
-          state.showErrorsInForm
+          !isValidTelegramLink() && state.showErrorsInForm
             ? "border border-danger mb-2"
             : "mb-2"
         }
@@ -393,10 +394,9 @@ return (
           State.update({ pollDiscussionLink: e.target.value });
         }}
       />
-      {!state.pollDiscussionLink.includes("https://t.me/") &&
-        state.showErrorsInForm && (
-          <p className="text-danger">Not a valid link</p>
-        )}
+      {!isValidTelegramLink() && state.showErrorsInForm && (
+        <p className="text-danger">Not a valid link</p>
+      )}
 
       <div
         className="d-flex justify-content-around flex-wrap"
