@@ -3,6 +3,7 @@ if (!props.isPreview && !props.blockHeight) {
 }
 
 let isPreview = props.isPreview ?? false;
+console.log(isPreview);
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
