@@ -17,6 +17,10 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
 });
 
+if (!questions) {
+  return "Loading...";
+}
+
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
     return string.slice(0, newStringLenght) + "...";
