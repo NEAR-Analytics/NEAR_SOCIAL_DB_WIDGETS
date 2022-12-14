@@ -3,7 +3,7 @@ if (!props.isPreview && !props.blockHeight) {
 }
 
 let isPreview = props.isPreview ?? false;
-let loopBraker = props.loopBraker;
+let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
@@ -327,7 +327,7 @@ return (
               }}
             >
               {renderQuestionsByThisCreator()}
-              {loopBraker != "brake" && (
+              {shouldDisplayViewAll && (
                 <div style={{ margin: "1rem 0", textAlign: "center" }}>
                   <button
                     className="btn btn-outline-primary w-75"
