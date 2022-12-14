@@ -2,7 +2,7 @@ if (!props.blockHeight) {
   return "Property blockHeight not set";
 }
 
-// Utility function. COnsider moving it to an utility widget
+// Utility function. Consider moving it to an utility widget
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
   return Near.block(blockHeight).header.timestamp / 1e6;
