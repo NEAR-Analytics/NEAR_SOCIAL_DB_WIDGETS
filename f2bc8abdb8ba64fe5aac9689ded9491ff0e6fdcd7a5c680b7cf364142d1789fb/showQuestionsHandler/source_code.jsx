@@ -79,7 +79,11 @@ const renderQuestions = () => {
     return (
       <div
         className="my-5 py-3 px-4"
-        style={{ backgroundColor: "white", borderRadius: "1rem" }}
+        style={{
+          backgroundColor: "white",
+          borderRadius: "1rem",
+          cursor: "pointer",
+        }}
         onClick={() => {
           State.update({
             showQuestion: true,
