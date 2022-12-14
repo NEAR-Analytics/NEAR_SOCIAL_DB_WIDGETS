@@ -8,7 +8,7 @@ const data = Social.get(`${accountId}/graph/widget/*`, "final");
 
 const widgets = data ? Object.entries(data) : [];
 const wrappedWidgets = [];
-const maxIndex = 0;
+const maxIndex = -1;
 for (let i = 0; i < widgets.length; ++i) {
   const index = widgets[i][0];
   maxIndex = Math.max(maxIndex, index);
