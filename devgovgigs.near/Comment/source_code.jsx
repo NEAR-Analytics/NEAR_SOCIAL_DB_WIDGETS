@@ -19,11 +19,12 @@ const onLike = () => {
   });
 };
 
-const commentsUnordered =
-  Near.view(ownerId, "get_comments", {
-    post_type: "Comment",
-    post_id: comment_id,
-  }) ?? [];
+const commentsUnordered = props.isPreview
+  ? []
+  : Near.view(ownerId, "get_comments", {
+      post_type: "Comment",
+      post_id: comment_id,
+    }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
 const containsLike = comment.likes.find(
