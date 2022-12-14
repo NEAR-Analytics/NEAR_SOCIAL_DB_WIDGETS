@@ -1,5 +1,5 @@
 const bounties = fetch(
-  "https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=0",
+  "https://search.testnet.app.astrodao.com/bounty/_search?size=2&from=0",
   {
     method: "POST",
     headers: {
@@ -38,7 +38,16 @@ return (
   <ul>
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
-          return <li>{bounty._source.daoId}</li>;
+          const bountyId = bounty._source.id;
+          return (
+            <li>
+              <div>{bountyId}</div>
+              <Widget
+                src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                props={{ bountyId }}
+              />
+            </li>
+          );
         })
       : ""}
   </ul>
