@@ -6,9 +6,30 @@ const Tile = {
   Empty: "◻",
   Ghost: "👻",
   Tree: "🌲",
+  Pagoda: "🏯",
+  Shinto: "⛩",
+  Camp: "🏕",
 };
 
 const staticDemoMap = [
+  // Pagdoa castle
+  { x: 0, y: -4, obj: Tile.Pagoda },
+  { x: 1, y: -4, obj: Tile.Shinto },
+  { x: -1, y: -4, obj: Tile.Shinto },
+  // hidden camp
+  { x: -42, y: 42, obj: Tile.Tree },
+  { x: -43, y: 42, obj: Tile.Tree },
+  { x: -43, y: 41, obj: Tile.Camp },
+  { x: -43, y: 40, obj: Tile.Tree },
+  { x: -43, y: 39, obj: Tile.Tree },
+  { x: -44, y: 41, obj: Tile.Tree },
+  { x: -44, y: 42, obj: Tile.Tree },
+  { x: -44, y: 40, obj: Tile.Tree },
+  { x: -41, y: 43, obj: Tile.Tree },
+  { x: -42, y: 43, obj: Tile.Tree },
+  { x: -43, y: 43, obj: Tile.Tree },
+
+  // some random trees
   { x: 1, y: 1, obj: Tile.Tree },
   { x: 3, y: 5, obj: Tile.Tree },
   { x: -27, y: 4, obj: Tile.Tree },
