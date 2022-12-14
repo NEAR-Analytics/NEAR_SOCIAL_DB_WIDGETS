@@ -1,4 +1,10 @@
-const data = Social.keys("${context.accountId}/graph/widget/*", "final");
+const accountId = context.accountId;
+
+if (!accountId) {
+  return "Please sign in with NEAR wallet";
+}
+
+const data = Social.get("${accountId}/graph/widget/*", "final");
 
 if (!data) {
   return "Loading";
