@@ -15,8 +15,6 @@ function closeModalClickingOnTransparent() {
   };
 }
 
-let loopBraker = props.accountId && "brake";
-
 const renderModal = () => {
   return (
     <div
@@ -56,7 +54,10 @@ const renderModal = () => {
           >
             <Widget
               src={`${context.accountId}/widget/newVotingInterface`}
-              props={{ blockHeight: state.modalBlockHeight, loopBraker }}
+              props={{
+                blockHeight: state.modalBlockHeight,
+                shouldDisplayViewAll: props.accountId != undefined,
+              }}
             />
           </div>
           <div className="modal-footer">
