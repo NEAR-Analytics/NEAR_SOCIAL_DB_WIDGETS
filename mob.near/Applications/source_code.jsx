@@ -14,7 +14,7 @@ return (
     </div>
     {state.apps && state.apps.length > 0 && (
       <div className="mb-2">
-        <div className="w-100 d-flex flex-nowrap overflow-auto mb-3">
+        <div className="w-100 p-2 gap-2 d-flex flex-nowrap overflow-auto mb-3">
           {state.apps.map((app, i) => (
             <div key={i}>
               <Widget
