@@ -1,7 +1,5 @@
 const accountId = props.accountId;
 
-// State.init({ badges: [] });
-
 if (!accountId) {
   return "No account ID";
 }
@@ -11,8 +9,6 @@ const badges = Social.getr(`${accountId}/badges/*`);
 if (!badges) {
   return "Loading";
 }
-
-console.log(Object.values(badges));
 
 return (
   <div className="container">
