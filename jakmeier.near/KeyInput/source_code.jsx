@@ -8,7 +8,7 @@ const keyDownHandler = props.keyDownHandler;
 
 // optional styling props
 const width = props.width ?? "100%";
-const margin = props.width ?? "0px";
+const margin = props.margin ?? "0px";
 
 return (
   <div style={{ width, margin }}>
