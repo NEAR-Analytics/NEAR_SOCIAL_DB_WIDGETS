@@ -54,14 +54,14 @@ return (
       </CommitButton>
     </div>
     <hr />
-    {state.done && !hasEvent && (
+    {state.done && (
       <div className="alert alert-success">Success!</div>
     )}
-    {(hasEvent || !props.noPrevEvent) && (
+    /* {( || !props.noPrevEvent) && (
       <Widget
         src="jeffsatori.near/Widget/EventCreator"
         props={{ Event: hasEvent ? Event : undefined }}
       />
-    )}
+    )} */
   </div>
 );
