@@ -19,7 +19,7 @@ let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
 });
 
-if (!questionParams) {
+if (!questionParams && !isPreview) {
   return "Loading...";
 }
 
@@ -112,8 +112,6 @@ function closeModalClickingOnTransparent() {
     e.target.id == "modal" && State.update({ showQuestionsByThisUser: false });
   };
 }
-
-const widgetOwner = "silkking.near";
 
 const renderModal = () => {
   return (
@@ -249,12 +247,12 @@ return (
 
         {questionParams.value.tgLink != "" &&
           questionParams.value.tgLink != undefined && (
-            <h4>
+            <h6>
               Discussion link:
               <a href={questionParams.value.tgLink}>
                 {questionParams.value.tgLink}
               </a>
-            </h4>
+            </h6>
           )}
 
         <div
