@@ -19,7 +19,7 @@ return (
       />
     </div>
     <CommitButton data={{ experimental: { note: state.note } }}>
-      Save note
+      Save story
     </CommitButton>
   </div>
 );
