@@ -13,6 +13,8 @@ State.init({
 const Event = {
   title: state.Event.title,
   description: state.Event.description,
+  date: state.Event.date,
+  time: state.Event.time,
   image: {},
 };
 
@@ -31,18 +33,18 @@ return (
     </div>
     <div className="mb-2">
       Date <span className="text-secondary"></span>
-      <input type="text" value={state.Event.Date} />
+      <input type="text" value={state.Event.date} />
     </div>
     <div className="mb-2">
       Time <span className="text-secondary"></span>
-      <input type="text" value={state.Event.Time} />
+      <input type="text" value={state.Event.time} />
     </div>
     <div className="mb-2">
       <CommitButton
         data={{ post: { Event } }}
         onCommit={() => {
           State.update({
-            Event: { title: "", description: "", Date: "" },
+            Event: { title: "", description: "", date: "", time: "" },
             img: {},
             done: true,
           });
