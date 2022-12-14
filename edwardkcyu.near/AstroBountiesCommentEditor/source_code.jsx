@@ -4,11 +4,16 @@ if (!accountId) {
 }
 
 State.init({ comment: "" });
-const bountyId = props.bountyId;
+const bountyId = (props.bountyId || "").replaceAll(".", "");
+if (!bountyId) {
+  return "Please provide a bounty id";
+}
 
 const comments = JSON.parse(
   Social.get(`${accountId}/bounties/${bountyId}/comments`) || "[]"
 );
+
+console.log({ bountyId, comments });
 
 return (
   <div>
