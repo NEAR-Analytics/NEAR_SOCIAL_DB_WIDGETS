@@ -88,6 +88,8 @@ function getStyles(inputData) {
     : { backgroundColor: "rgb(230, 230, 230)" };
 }
 
+const widgetOwner = "silkking.near";
+
 const renderPreview = () => {
   return (
     <div
@@ -127,7 +129,7 @@ const renderPreview = () => {
             }}
           >
             <Widget
-              src={`${context.accountId}/widget/newVotingInterface`}
+              src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
                 isPreview: true,
                 previewInfo: {
