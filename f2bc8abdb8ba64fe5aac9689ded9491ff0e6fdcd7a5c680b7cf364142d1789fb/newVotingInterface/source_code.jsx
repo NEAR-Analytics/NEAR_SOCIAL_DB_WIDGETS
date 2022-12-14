@@ -2,6 +2,8 @@ if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
+console.log("inside");
+
 let isPreview = props.isPreview ?? false;
 console.log(isPreview);
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
