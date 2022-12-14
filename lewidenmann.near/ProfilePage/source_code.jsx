@@ -22,18 +22,8 @@ return (
         }}
       />
 
-      <Widget
-        src="lewidenmann.near/widget/HelloWorld"
-        props={{
-          accountId,
-        }}
-      />
-
       <div className="mt-3">
-        <Widget
-          src="mob.near/widget/ProfileTabs"
-          props={{ accountId, profile }}
-        />
+        <Widget src="lewidenmann.near/widget/deer" />
       </div>
     </div>
   </div>
