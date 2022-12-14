@@ -77,7 +77,6 @@ const renderModal = () => {
 
 const renderQuestions = () => {
   return questions.map((question) => {
-    console.log(question);
     return (
       <div
         className="my-5 py-3 px-4"
