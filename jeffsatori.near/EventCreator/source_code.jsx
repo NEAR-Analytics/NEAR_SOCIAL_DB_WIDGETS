@@ -5,18 +5,12 @@ if (!accountId) {
 }
 
 State.init({
-  Event: { title: "", description: "", date: "", time: "" },
-  img: {},
+  title: "",
+  description: "",
+  date: "",
+  time: "",
   done: false,
 });
-
-const Event = {
-  title: state.Event.title,
-  description: state.Event.description,
-  date: state.Event.date,
-  time: state.Event.time,
-  image: {},
-};
 
 return (
   <div className="row mb-3">
@@ -25,27 +19,60 @@ return (
     </div>
     <div className="mb-2">
       Title <span className="text-secondary"></span>
-      <input type="text" value={state.Event.title} />
+      <input
+        type="text"
+        value={state.title}
+        onChange={(e) => {
+          State.update({ title: e.target.value });
+        }}
+      />
     </div>
     <div className="mb-2">
       Description <span className="text-secondary"></span>
-      <input type="text" value={state.Event.description} />
+      <input
+        type="text"
+        value={state.description}
+        onChange={(e) => {
+          State.update({ description: e.target.value });
+        }}
+      />
     </div>
     <div className="mb-2">
       Date <span className="text-secondary"></span>
-      <input type="text" value={state.Event.date} />
+      <input
+        type="text"
+        value={state.date}
+        onChange={(e) => {
+          State.update({ date: e.target.value });
+        }}
+      />
     </div>
     <div className="mb-2">
       Time <span className="text-secondary"></span>
-      <input type="text" value={state.Event.time} />
+      <input
+        type="text"
+        value={state.time}
+        onChange={(e) => {
+          State.update({ time: e.target.value });
+        }}
+      />
     </div>
     <div className="mb-2">
       <CommitButton
-        data={{ post: { Event } }}
+        data={{
+          post: {
+            title: state.title,
+            description: state.description,
+            date: state.date,
+            time: state.time,
+          },
+        }}
         onCommit={() => {
           State.update({
-            Event: { title: "", description: "", date: "", time: "" },
-            img: {},
+            title: "",
+            description: "",
+            date: "",
+            time: "",
             done: true,
           });
         }}
@@ -54,14 +81,6 @@ return (
       </CommitButton>
     </div>
     <hr />
-    {state.done && (
-      <div className="alert alert-success">Success!</div>
-    )}
-    /* {( || !props.noPrevEvent) && (
-      <Widget
-        src="jeffsatori.near/Widget/EventCreator"
-        props={{ Event: hasEvent ? Event : undefined }}
-      />
-    )} */
+    {state.done && <div className="alert alert-success">Success!</div>}
   </div>
 );
