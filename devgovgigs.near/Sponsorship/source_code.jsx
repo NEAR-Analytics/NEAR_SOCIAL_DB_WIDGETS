@@ -29,11 +29,13 @@ const commentsUnordered =
   }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
-const containsLike = sponsorship.likes.find(
-  (l) => l.author_id == context.accountId
-);
+const containsLike = props.isPreview
+  ? false
+  : sponsorship.likes.find((l) => l.author_id == context.accountId);
 const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
-const containsComment = comments.find((c) => c.author_id == context.accountId);
+const containsComment = props.isPreview
+  ? false
+  : comments.find((c) => c.author_id == context.accountId);
 const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
 const buttonsFooter = props.isPreview ? null : (
