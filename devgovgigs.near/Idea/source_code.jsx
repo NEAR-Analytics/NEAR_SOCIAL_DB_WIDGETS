@@ -104,19 +104,34 @@ const submissionsList = props.isPreview ? null : (
   </div>
 );
 
-const commentsList = props.isPreview ? null : (
-  <div class="row">
-    <div>
-      {comments
-        ? comments.map((comment) => {
-            return (
-              <Widget src={`${ownerId}/widget/Comment`} props={{ comment }} />
-            );
-          })
-        : ""}
+const commentsList =
+  props.isPreview || comments.length == 0 ? null : (
+    <div class="row">
+      <div class="row">
+        <div class="col-4">
+          <a
+            class="card-link"
+            data-bs-toggle="collapse"
+            href={`#collapseCommentsList${idea_id}`}
+            role="button"
+            aria-expanded="false"
+            aria-controls={`collapseCommentsList${idea_id}`}
+          >
+            <i class="bi bi-arrows-angle-expand"> </i> Expand Comments
+          </a>
+        </div>
+      </div>
+      <div class="collaps" id={`collapseCommentsList${idea_id}`}>
+        {comments
+          ? comments.map((comment) => {
+              return (
+                <Widget src={`${ownerId}/widget/Comment`} props={{ comment }} />
+              );
+            })
+          : ""}
+      </div>
     </div>
-  </div>
-);
+  );
 
 const Card = styled.div`
   &:hover {
