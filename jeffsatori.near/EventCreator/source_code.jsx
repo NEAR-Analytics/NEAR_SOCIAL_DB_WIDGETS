@@ -59,8 +59,8 @@ return (
     )}
     {(hasEvent || !props.noPrevEvent) && (
       <Widget
-        src="jeffsatori.near/widget/EventCreator"
-        props={{ Event: hasEvent ? event : undefined }}
+        src="jeffsatori.near/Widget/EventCreator"
+        props={{ Event: hasEvent ? Event : undefined }}
       />
     )}
   </div>
