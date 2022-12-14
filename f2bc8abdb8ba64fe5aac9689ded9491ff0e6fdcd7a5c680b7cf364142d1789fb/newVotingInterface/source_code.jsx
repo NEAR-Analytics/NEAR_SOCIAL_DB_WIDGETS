@@ -4,7 +4,6 @@ if (!props.isPreview && !props.blockHeight) {
 
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
-console.log(shouldDisplayViewAll);
 
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
@@ -151,7 +150,6 @@ const renderModal = () => {
             style={{
               width: "90%",
               borderRadius: "1rem",
-              backgroundColor: "white",
               margin: "0 auto",
             }}
           >
