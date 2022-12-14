@@ -19,19 +19,19 @@ const onLike = () => {
   });
 };
 
-const submissions = props.isPreview
-  ? null
-  : Near.view(ownerId, "get_submissions", {
-      idea_id,
-    });
+const submissionsUnordered =
+  Near.view(ownerId, "get_submissions", {
+    idea_id,
+  }) ?? [];
+const submissions = props.isPreview ? [] : submissionsUnordered.reverse();
 
 const commentsUnordered =
   Near.view(ownerId, "get_comments", {
     post_type: "Idea",
     post_id: idea_id,
   }) ?? [];
-
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
+
 const containsLike = props.isPreview
   ? false
   : idea.likes.find((l) => l.author_id == context.accountId);
@@ -41,7 +41,7 @@ const containsComment = props.isPreview
   : comments.find((c) => c.author_id == context.accountId);
 const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
-const submissionsList = props.isPreview ? null : (
+const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="row">
       <div class="col-2">
@@ -84,6 +84,11 @@ const submissionsList = props.isPreview ? null : (
         props={{ comment: { post_type: "Idea", post_id: idea_id } }}
       />
     </div>
+  </div>
+);
+
+const submissionsList = props.isPreview ? null : (
+  <div class="row">
     <div>
       {submissions
         ? submissions.map((submission) => {
@@ -92,6 +97,20 @@ const submissionsList = props.isPreview ? null : (
                 src={`${ownerId}/widget/Submission`}
                 props={{ submission }}
               />
+            );
+          })
+        : ""}
+    </div>
+  </div>
+);
+
+const commentsList = props.isPreview ? null : (
+  <div class="row">
+    <div>
+      {comments
+        ? comments.map((comment) => {
+            return (
+              <Widget src={`${ownerId}/widget/Comment`} props={{ comment }} />
             );
           })
         : ""}
@@ -131,7 +150,9 @@ return (
         </div>
       </h5>
       <Markdown class="card-text" text={idea.description}></Markdown>
+      {buttonsFooter}
       {submissionsList}
+      {commentsList}
     </div>
   </Card>
 );
