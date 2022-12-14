@@ -15,6 +15,8 @@ let selectorStyles = [
   },
 ];
 
+const widgetOwner = "silkking.near";
+
 return (
   <div className="px-4 py-3" style={{ backgroundColor: "rgb(230, 230, 230)" }}>
     <div className="d-flex justify-content-between align-items-center">
@@ -66,10 +68,10 @@ return (
     </div>
 
     {state.displaying == "polls" ? (
-      <Widget src={`${context.accountId}/widget/showQuestionsHandler`} />
+      <Widget src={`${widgetOwner}/widget/showQuestionsHandler`} />
     ) : (
       state.displaying == "newPoll" && (
-        <Widget src={`${context.accountId}/widget/newPollQuestionInterface`} />
+        <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
       )
     )}
   </div>
