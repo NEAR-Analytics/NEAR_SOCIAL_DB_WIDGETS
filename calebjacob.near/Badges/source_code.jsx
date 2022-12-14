@@ -16,26 +16,24 @@ console.log(Object.values(badges));
 
 return (
   <div className="container">
-    <div className="grid">
+    <div className="d-flex gap-2 flex-wrap">
       {Object.values(badges).map((badge) => {
         return (
-          <div className="g-col-6">
-            <div className="card overflow-hidden" style={{ width: "15rem" }}>
-              <img
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  height: "15rem",
-                  width: "15rem",
-                }}
-                src={badge.info.image.url}
-                alt={badge.info.name}
-                title={badge.info.description}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{badge.info.name}</h5>
-                <p className="card-text">{badge.info.description}</p>
-              </div>
+          <div className="card overflow-hidden" style={{ width: "15rem" }}>
+            <img
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+                height: "15rem",
+                width: "15rem",
+              }}
+              src={badge.info.image.url}
+              alt={badge.info.name}
+              title={badge.info.description}
+            />
+            <div className="card-body">
+              <h5 className="card-title">{badge.info.name}</h5>
+              <p className="card-text">{badge.info.description}</p>
             </div>
           </div>
         );
@@ -51,7 +49,7 @@ return (
                 name: "Gold Star",
                 description: "A cool gold star",
                 image: {
-                  url: "https://e7.pngegg.com/pngimages/332/562/png-clipart-gold-coin-with-star-golden-star-badge-symmetry-halo.png",
+                  url: "https://png.pngitem.com/pimgs/s/111-1112079_hollywood-star-png-gold-star-png-small-transparent.png",
                 },
               },
               holder: {
