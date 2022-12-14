@@ -1,6 +1,7 @@
 const ownerId = "devgovgigs.near";
-const submission = props.submission;
-const submission_id = submission.id;
+const submission_id = props.submission.id ? parseInt(props.submission.id) : 0;
+const submission =
+  props.submission ?? Near.view(ownerId, "get_submission", { submission_id });
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
@@ -24,6 +25,12 @@ const commentsUnordered =
   }) ?? [];
 
 const comments = props.isPreview ? [] : commentsUnordered.reverse();
+const containsLike = submission.likes.find(
+  (l) => l.author_id == context.accountId
+);
+const likeBtnClass = containsLike ? "bi bi-heart-fill" : "bi bi-heart";
+const containsComment = comments.find((c) => c.author_id == context.accountId);
+const commentBtnClass = containsComment ? "bi bi-chat-fill" : "bi bi-chat";
 
 const onLike = () => {
   Near.call(ownerId, "like", {
@@ -48,7 +55,7 @@ const buttonsFooter = props.isPreview ? null : (
         </a>
       </div>
       <div class="col-2" onClick={onLike}>
-        <a class="bi bi-heart" role="button">
+        <a class={likeBtnClass} role="button">
           {" "}
           Like ({submission.likes.length ?? 0})
         </a>
@@ -62,7 +69,7 @@ const buttonsFooter = props.isPreview ? null : (
           aria-expanded="false"
           aria-controls={`collapseCommentEditor${submission_id}`}
         >
-          <i class="bi bi-chat"> </i> Comment ({comments.length ?? 0})
+          <i class={commentBtnClass}> </i> Comment ({comments.length ?? 0})
         </a>
       </div>
     </div>
