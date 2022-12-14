@@ -15,7 +15,7 @@ return (
         rows={10}
         className="form-control"
         value={state.stories}
-        onChange={(e) => State.update({ note: e.target.value })}
+        onChange={(e) => State.update({ stories: e.target.value })}
       />
     </div>
     <CommitButton data={{ experimental: { stories: state.stories } }}>
