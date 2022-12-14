@@ -216,6 +216,7 @@ return (
       </h5>
       <Markdown class="card-text" text={submission.description}></Markdown>
       {buttonsFooter}
+      {attestationsList}
       {sponsorshipsList}
       {commentsList}
     </div>
