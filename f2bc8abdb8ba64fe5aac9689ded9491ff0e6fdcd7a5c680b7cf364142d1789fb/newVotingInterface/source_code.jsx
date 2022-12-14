@@ -328,9 +328,10 @@ return (
               <div style={{ margin: "1rem 0", textAlign: "center" }}>
                 <button
                   className="btn btn-outline-primary w-75"
-                  onClick={() =>
-                    State.update({ showQuestionsByThisUser: true })
-                  }
+                  onClick={() => {
+                    console.log("in");
+                    State.update({ showQuestionsByThisUser: true });
+                  }}
                 >
                   View all
                 </button>
