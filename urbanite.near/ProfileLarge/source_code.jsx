@@ -87,7 +87,12 @@ return (
               )}
               <div className="small text-truncate">
                 <i className="bi bi-person-fill text-secondary me-1"></i>
-                {accountId}
+                <a
+                  href="https://explorer.near.org/accounts/{accountId}"
+                  target="_blank"
+                >
+                  {accountId}
+                </a>
                 <Widget
                   src="mob.near/widget/FollowsYouBadge"
                   props={{ accountId }}
