@@ -22,7 +22,7 @@ if (!questions) {
   return "Loading...";
 }
 
-console.log(showQuestionsByThisUser);
+console.log(state.showQuestionsByThisUser);
 
 function sliceString(string, newStringLenght) {
   if (string.length > newStringLenght) {
@@ -344,6 +344,6 @@ return (
         )}
       </div>
     </div>
-    {showQuestionsByThisUser && renderModal()}
+    {state.showQuestionsByThisUser && renderModal()}
   </>
 );
