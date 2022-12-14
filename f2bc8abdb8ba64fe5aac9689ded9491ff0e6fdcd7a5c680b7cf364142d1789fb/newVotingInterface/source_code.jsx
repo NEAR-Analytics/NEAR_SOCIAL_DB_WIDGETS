@@ -4,6 +4,7 @@ if (!props.isPreview && !props.blockHeight) {
 
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
+console.log(shouldDisplayViewAll);
 
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
