@@ -10,11 +10,12 @@ let questions = Social.index("poll_question", "question-v3.0.1", {
 });
 
 function closeModalClickingOnTransparent() {
-  console.log("n3");
   return (e) => {
     e.target.id == "modal" && State.update({ showQuestion: false });
   };
 }
+
+let loopBraker = props.accountId && "brake";
 
 const renderModal = () => {
   return (
@@ -55,7 +56,7 @@ const renderModal = () => {
           >
             <Widget
               src={`${context.accountId}/widget/newVotingInterface`}
-              props={{ blockHeight: state.modalBlockHeight }}
+              props={{ blockHeight: state.modalBlockHeight, loopBraker }}
             />
           </div>
           <div className="modal-footer">
