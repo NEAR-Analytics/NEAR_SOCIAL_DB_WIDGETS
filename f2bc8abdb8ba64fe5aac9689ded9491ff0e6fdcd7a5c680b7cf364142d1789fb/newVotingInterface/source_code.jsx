@@ -113,8 +113,6 @@ function closeModalClickingOnTransparent() {
   };
 }
 
-const widgetOwner = "silkking.near";
-
 const renderModal = () => {
   return (
     <div
