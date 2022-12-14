@@ -1,7 +1,7 @@
 const accountId = props.accountId ?? context.accountId;
 let blockHeight = props.blockHeight ? parseInt(props.blockHeight) : undefined;
 const profile = Social.getr(`${accountId}/profile`);
-const keyPath = `${accountId}/post/EventCreator`;
+const keyPath = `${accountId}/post/eventcreator`;
 const event = props.event ?? Social.getr(keyPath, blockHeight);
 
 if (!event) {
@@ -54,7 +54,7 @@ return (
         <div>
           {event.title && <b>{event.title}</b>}
           {event.description && <p>{event.description}</p>}
-          {event.Date && (
+          {event.date && (
             <p>
               {event.date} {event.time}
             </p>
