@@ -30,7 +30,7 @@ const booksStub = [
 return (
   <div className="d-flex gap-1 flex-wrap">
     {booksStub.map((book) => (
-      <Widget key={i} src={"serhii.near/widget/BookReview"} props={{}} />
+      <Widget key={i} src={"serhii.near/widget/BookReview"} props={{ book }} />
     ))}
   </div>
 );
