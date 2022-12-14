@@ -85,6 +85,9 @@ const Card = styled.div`
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   }
 `;
+const limitedMarkdown = styled.div`
+      max-height: 20em;
+`;
 
 return (
   <Card className="card my-2 border-light">
@@ -104,7 +107,9 @@ return (
       </small>
     </div>
     <div className="card-body">
-      <Markdown class="card-text" text={comment.description}></Markdown>
+      <limitedMarkdown className="overflow-auto">
+        <Markdown class="card-text" text={comment.description}></Markdown>
+      </limitedMarkdown>
       {buttonsFooter}
       {commentsList}
     </div>
