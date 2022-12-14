@@ -7,7 +7,7 @@ if (!data) {
 const widgets = Object.entries(data);
 
 for (let i = 0; i < widgets.length; ++i) {
-  const widget_src = widgets[i];
+  const widget_src = widgets[i][0];
   const widgets = [];
   widgets.push(
     <div>
@@ -33,7 +33,7 @@ return (
         onChange={(e) => State.update({ new_widget: e.target.value })}
       />
     </div>
-    <CommitButton data={{ graph: { widgets: state.new_widget } }}>
+    <CommitButton data={{ graph: { widgets: { [state.new_widget]: "" } } }}>
       Save widget
     </CommitButton>
   </div>
