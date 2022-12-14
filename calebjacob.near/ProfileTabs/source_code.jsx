@@ -14,6 +14,7 @@ const description = profile.description;
 State.init({
   loadNFT: false,
   loadWidgets: false,
+  loadBadges: false,
 });
 
 return (
@@ -78,7 +79,7 @@ return (
           aria-controls="pills-badges"
           aria-selected="false"
           onClick={() => {
-            !state.loadWidgets && State.update({ loadWidgets: true });
+            !state.loadBadges && State.update({ loadBadges: true });
           }}
         >
           Badges
@@ -120,7 +121,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-badges-tab"
       >
-        {state.loadWidgets && (
+        {state.loadBadges && (
           <Widget src="calebjacob.near/widget/Badges" props={{ accountId }} />
         )}
       </div>
