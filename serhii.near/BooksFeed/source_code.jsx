@@ -28,16 +28,18 @@ return (
   <div>
     <div className="d-flex gap-1 flex-wrap">
       {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
-        <div>
-          <div>{acc}</div>
-          {Object.values(books).map((book) => (
-            <Widget
-              key={i}
-              src={"serhii.near/widget/BookTile"}
-              props={{ book }}
-            />
-          ))}
-        </div>;
+        return (
+          <div>
+            <div>{acc}</div>
+            {Object.values(books).map((book) => (
+              <Widget
+                key={i}
+                src={"serhii.near/widget/BookTile"}
+                props={{ book }}
+              />
+            ))}
+          </div>
+        );
       })}
     </div>
   </div>
