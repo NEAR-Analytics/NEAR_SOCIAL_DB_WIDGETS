@@ -70,6 +70,14 @@ const ButtonsBox = styled.p`
   margin: 10px;  
 `;
 
+const InfoContaier = styled.p`
+  height: '100%';
+  display: 'flex';
+  flexDirection: 'column';
+  alignItems: 'stretch',
+  justifyContent: 'space-between';
+`;
+
 return (
   <BookTyle>
     <a
@@ -83,7 +91,7 @@ return (
         }}
       />
     </a>
-    <div>
+    <InfoContaier>
       <a
         href={`#/serhii.near/widget/BookPage?id=${id}`}
         className="text-decoration-none link-dark"
@@ -103,6 +111,6 @@ return (
           <CommitButton data={datarForToRead}>Want To Read</CommitButton>
         )}
       </ButtonsBox>
-    </div>
+    </InfoContaier>
   </BookTyle>
 );
