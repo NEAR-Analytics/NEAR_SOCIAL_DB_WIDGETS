@@ -25,7 +25,7 @@ const stateObject = (pixels, updates) => {
       MAP_TILES,
       pixels
     ),
-    otherPlayer: state.otherPlayer ?? "gmilescu.near", // TODO: don't hard code name
+    otherPlayer: state.otherPlayer ?? "other.near", // TODO: don't hard code name
   };
 };
 
