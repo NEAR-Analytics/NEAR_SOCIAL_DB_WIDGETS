@@ -5,7 +5,13 @@ if (!context.accountId) {
 }
 
 const tips = Social.index("genie", "tip");
-const receiverTip = tips.reduce((acc, v) => acc + parseInt(v.tipAmount), 0);
+const receiverTip = tips.reduce((acc, v) => {
+  if (v.receiverID === "michaelpeter.near") {
+    acc + parseInt(v.tipAmount);
+  } else {
+    acc;
+  }
+}, 0);
 
 const onSubmitClick = () => {
   const gas = 300 * 100000000000;
@@ -48,7 +54,7 @@ return (
         index: {
           genie: JSON.stringify({
             key: "tip",
-            value: state.tipAmount,
+            value: { amount: state.tipAmount, receiverID: state.receiverID },
           }),
         },
       }}
