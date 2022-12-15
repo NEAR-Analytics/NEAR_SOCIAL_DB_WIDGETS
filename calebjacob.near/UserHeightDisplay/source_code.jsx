@@ -59,6 +59,7 @@ return (
 
           {typeof user.accuracyPercentage === "number" ? (
             <span
+              style={{ width: "7rem" }}
               className={`badge ${accuracyPercentageClassName(
                 user.accuracyPercentage
               )}`}
