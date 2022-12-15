@@ -10,11 +10,12 @@ const AnswerBox = styled.div`
   border-top: 0.5px solid #D3D3D3;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 `;
 
 return (
   <div className="d-flex flex-column gap-3">
-    {JSON.stringify(answers)}
     {answers?.length ? (
       answers.map((a) => (
         <AnswerBox>
