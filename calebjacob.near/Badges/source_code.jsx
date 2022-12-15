@@ -1,5 +1,7 @@
 const accountId = props.accountId;
 
+State.init({ giveBadgeAccountId: "" });
+
 if (!accountId) {
   return <p>No account ID.</p>;
 }
@@ -45,63 +47,22 @@ return (
     </div>
 
     {props.devMode && (
-      <div style={{ marginTop: "2rem" }}>
-        <CommitButton
-          data={{
-            badge: {
-              goldStar: {
-                info: {
-                  name: "Gold Star",
-                  description: "A cool gold star",
-                  image: {
-                    url: "https://png.pngitem.com/pimgs/s/111-1112079_hollywood-star-png-gold-star-png-small-transparent.png",
-                  },
-                },
-                holder: {
-                  [accountId]: "",
-                },
-              },
-              silverMedal: {
-                info: {
-                  name: "Silver Medal",
-                  description: "A cool silver medal",
-                  image: {
-                    url: "https://png.pngtree.com/png-vector/20191212/ourmid/pngtree-second-place-silver-medal-for-sport-podium-winner-png-image_2050419.jpg",
-                  },
-                },
-                holder: {
-                  [accountId]: "",
-                },
-              },
-              goldenBoot: {
-                info: {
-                  name: "Golden Boot",
-                  description: "A cool golden boot",
-                  image: {
-                    url: "https://www.aljazeera.com/wp-content/uploads/2022/12/000_DV885236.jpg?resize=1920%2C1440",
-                  },
-                },
-                holder: {
-                  [accountId]: "",
-                },
-              },
-              apple: {
-                info: {
-                  name: "Apple",
-                  description: "A cool apple",
-                  image: {
-                    url: "https://png.pngtree.com/element_our/png/20181129/vector-illustration-of-fresh-red-apple-with-single-leaf-png_248312.jpg",
-                  },
-                },
-                holder: {
-                  [accountId]: "",
-                },
-              },
-            },
+      <div
+        class="d-flex flex-row"
+        style={{ marginTop: "2rem", gap: "1rem", whiteSpace: "nowrap" }}
+      >
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Account Address"
+          value={state.giveBadgeAccountId}
+          onChange={(e) => {
+            const accountId = e.target.value
+              .toLowerCase()
+              .replace(/[^a-z0-9_.-]/g, "");
+            State.update({ giveBadgeAccountId: accountId });
           }}
-        >
-          Get Demo Badges
-        </CommitButton>
+        />
 
         <CommitButton
           data={{
@@ -115,13 +76,13 @@ return (
                   },
                 },
                 holder: {
-                  "calebjacob.near": "",
+                  [state.giveBadgeAccountId]: "",
                 },
               },
             },
           }}
         >
-          Give Demo Badges
+          Give Badge
         </CommitButton>
       </div>
     )}
