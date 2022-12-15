@@ -11,7 +11,7 @@ const makeMoreItems = () => {
 };
 
 const bounties = fetch(
-  `https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=${state.index}`,
+  `https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=0`,
   {
     method: "POST",
     headers: {
