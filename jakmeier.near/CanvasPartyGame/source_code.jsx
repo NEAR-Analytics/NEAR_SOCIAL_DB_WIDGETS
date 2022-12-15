@@ -6,6 +6,7 @@ const VIEW_OFFSET_Y = 0;
 const MAP_SIZE = "480px";
 const TILE_SIZE = "40px";
 const TILE_INNER_SIZE = "40px";
+const MAX_SECONDS = 300;
 
 const Tile = {
   Empty: "◻",
@@ -14,6 +15,7 @@ const Tile = {
 };
 
 const myTurn = props.session.activePlayer === context.accountId;
+const secondsLeft = MAX_SECONDS - props.session.start / 1000;
 
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
 const mapView = (start_x, start_y, width, height) => {
@@ -214,7 +216,9 @@ const commitMessage = {
 
 return (
   <div>
-    <h2>{myTurn ? "Your Turn" : "Their Turn"}</h2>
+    <h2>
+      {myTurn ? "Your Turn" : "Their Turn"} {secondsLeft}s left
+    </h2>
     <Widget
       src="jakmeier.near/widget/KeyInput"
       props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
