@@ -2,10 +2,6 @@ const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
 
-State.init({
-  optInInfo,
-});
-
 if (context.loading) {
   return "Loading";
 }
