@@ -41,6 +41,8 @@ return (
               ? "unfollowed you"
               : value.type === "poke"
               ? "poked you"
+              : value.type === "state-transition"
+              ? "state transition"
               : "???"}
             <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
           </div>
