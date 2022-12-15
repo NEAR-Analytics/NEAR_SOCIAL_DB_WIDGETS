@@ -20,8 +20,7 @@ function setOptInInfoOnProps() {
   props[optInInfo] = { ...state };
 }
 
-function setFormStatusOnProps() {
-  props[optInInfoFormStatus] = "completed";
+function setFormStatusOnAccount() {
   accountId[optInInfoFormStatus] = "completed";
 }
 
