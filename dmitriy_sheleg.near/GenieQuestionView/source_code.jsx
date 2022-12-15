@@ -41,7 +41,9 @@ const question = Social.get(
 return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex align-items-center">
-      <div style={{ backgroundColor: "#000" }}></div>
+      <div
+        style={{ backgroundColor: "#000", width: "24px", height: "24px" }}
+      ></div>
       <div className="d-flex flex-column">
         <h6>{asker}</h6>
         {state.questionRef}
