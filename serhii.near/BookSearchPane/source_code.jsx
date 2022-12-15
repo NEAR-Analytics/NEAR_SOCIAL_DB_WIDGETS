@@ -83,7 +83,7 @@ return (
           <Widget
             key={i}
             src={"serhii.near/widget/BookTile"}
-            props={{ book }}
+            props={{ book, showAddToRead: true, showAddToWantToRead: true }}
           />
         ))}
     </div>
