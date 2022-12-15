@@ -8,11 +8,18 @@ const answer = Social.get(
   `${answeredBy}/experimental/genie/answers/${questionRef}`
 );
 
+const BodyText = styled.p`
+  color: #68717A
+`;
+
 return (
-  <div className="d-flex flex-column gap-1">
-    <div className="border p-1 d-flex justify-content-between">
-      <span>{answer}</span>
-      <span>{answeredBy}</span>
+  <div className="d-flex flex-column gap-3">
+    <Widget
+      src="tiffany.near/widget/Profile"
+      props={{ accountId: answeredBy }}
+    />
+    <div className="p-1 d-flex justify-content-between">
+      <BodyText>{answer}</BodyText>
     </div>
     <div className="d-flex flex-row gap-2">
       <Widget
