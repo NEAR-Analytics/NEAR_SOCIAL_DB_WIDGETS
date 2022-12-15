@@ -4,14 +4,15 @@ if (!accountId) {
   return "Please connect your NEAR wallet to create an activity";
 }
 
+const saved = Social.get(`${accountId}/event`);
+
 State.init({
-  creator: accountId,
-  name: "",
-  description: "",
-  cost: null,
-  participants_lo: null,
-  participants_hi: null,
-  deadline: null,
+  name: saved.name || "",
+  description: saved.description || "",
+  cost: saved.cost || null,
+  participants_lo: saved.participants_lo || null,
+  participants_hi: saved.participants_hi || null,
+  deadline: saved.deadline || null,
 });
 
 return (
@@ -83,7 +84,7 @@ return (
     <div className="mb-2">
       <CommitButton
         data={{
-          post: {
+          event: {
             creator: state.creator,
             name: state.name,
             description: state.description,
