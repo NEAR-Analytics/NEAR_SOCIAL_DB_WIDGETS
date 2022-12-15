@@ -76,8 +76,10 @@ return (
       </CommitButton>
     </div>
     <div className="mb-4">
-      <h4>Everyone planning to attend:</h4>
-      <div>{renderRsvp(top.map((a) => a[0]))}</div>
+      <h4>
+        <p>Total RSVPs: {top.length}</p> Attendee Profiles
+        <div>{renderRsvp(top.map((a) => a[0]))}</div>{" "}
+      </h4>
     </div>
   </div>
 );
