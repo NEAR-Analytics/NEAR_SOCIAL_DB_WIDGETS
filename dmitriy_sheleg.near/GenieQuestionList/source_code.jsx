@@ -11,7 +11,7 @@ return (
       {questions.map((q) => (
         <div key={q.value} className="d-flex flex-column gap-1 p-2">
           <Widget
-            src={"michaelpeter.near/widget/GenieQuestionView"}
+            src={"dmitriy_sheleg.near/widget/GenieQuestionView"}
             props={{ questionRef: q.value }}
           />
           <Widget
