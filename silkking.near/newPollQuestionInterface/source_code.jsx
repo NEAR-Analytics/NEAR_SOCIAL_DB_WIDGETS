@@ -14,6 +14,7 @@ State.init({
   expandOptions: false,
   showErrorsInForm: false,
   showPreview: false,
+  showSendFeedback: false,
 });
 
 const pollTypes = {
@@ -88,20 +89,49 @@ function getStyles(inputData) {
 
 const widgetOwner = "silkking.near";
 
-const renderPreview = () => {
+const renderModal = (whatModal) => {
   return (
     <div
       className="modal"
+      id="modal"
       style={
-        state.showPreview && { display: "block", backgroundColor: "#7e7e7e70" }
+        (state.showPreview || state.showSendFeedback) && {
+          display: "block",
+          backgroundColor: "#7e7e7e70",
+        }
       }
       tabindex="-1"
       role="dialog"
+      onClick={(e) => {
+        if (e.target.id == "modal" && state.showSendFeedback) {
+          State.update({
+            pollTitle: "",
+            pollDescription: "",
+            pollDiscussionLink: "",
+            pollStartDate: "",
+            startTime: "",
+            pollEndDate: "",
+            endTime: "",
+            question: "",
+            pollType: "0",
+            choices: [],
+            amountOfChoices: 1,
+            expandOptions: false,
+            showSendFeedback: false,
+          });
+        } else if (e.target.id == "modal") {
+          State.update({ showPreview: false });
+        }
+      }}
     >
       <div className="modal-dialog" style={{ maxWidth: "80%" }} role="document">
         <div
           className="modal-content"
-          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+          style={
+            state.showSendFeedback
+              ? { backgroundColor: "rgb(230, 230, 230)", marginTop: "30vh" }
+              : { backgroundColor: "rgb(230, 230, 230)" }
+          }
         >
           <div className="modal-header">
             <h5 className="modal-title">Preview</h5>
@@ -111,7 +141,25 @@ const renderPreview = () => {
               dataDismiss="modal"
               ariaLabel="Close"
               onClick={() => {
-                State.update({ showPreview: false });
+                if (state.showSendFeedback) {
+                  State.update({
+                    pollTitle: "",
+                    pollDescription: "",
+                    pollDiscussionLink: "",
+                    pollStartDate: "",
+                    startTime: "",
+                    pollEndDate: "",
+                    endTime: "",
+                    question: "",
+                    pollType: "0",
+                    choices: [],
+                    amountOfChoices: 1,
+                    expandOptions: false,
+                    showSendFeedback: false,
+                  });
+                } else {
+                  State.update({ showPreview: false });
+                }
               }}
             >
               <span ariaHidden="true">&times;</span>
@@ -126,39 +174,65 @@ const renderPreview = () => {
               margin: "0 auto",
             }}
           >
-            <Widget
-              src={`${widgetOwner}/widget/newVotingInterface`}
-              props={{
-                isPreview: true,
-                previewInfo: {
-                  accountId: context.accountId,
-                  blockHeight: undefined,
-                  value: {
-                    tgLink: state.pollDiscussionLink,
-                    isDraft,
-                    title: state.pollTitle,
-                    description: state.pollDescription,
-                    startTimestamp: getTimestamp(
-                      state.pollStartDate,
-                      state.startTime
-                    ),
-                    endTimestamp: getTimestamp(
-                      state.pollEndDate,
-                      state.endTime
-                    ),
-                    questionType: state.pollType,
-                    question: state.question,
-                    choicesOptions: state.choices.filter((c) => c != ""),
-                    timestamp: Date.now(),
+            {whatModal == "preview" ? (
+              <Widget
+                src={`${widgetOwner}/widget/newVotingInterface`}
+                props={{
+                  isPreview: true,
+                  previewInfo: {
+                    accountId: context.accountId,
+                    blockHeight: undefined,
+                    value: {
+                      tgLink: state.pollDiscussionLink,
+                      isDraft,
+                      title: state.pollTitle,
+                      description: state.pollDescription,
+                      startTimestamp: getTimestamp(
+                        state.pollStartDate,
+                        state.startTime
+                      ),
+                      endTimestamp: getTimestamp(
+                        state.pollEndDate,
+                        state.endTime
+                      ),
+                      questionType: state.pollType,
+                      question: state.question,
+                      choicesOptions: state.choices.filter((c) => c != ""),
+                      timestamp: Date.now(),
+                    },
                   },
-                },
-              }}
-            />
+                }}
+              />
+            ) : (
+              whatModal == "sendFeedback" && (
+                <p styles={{ textAling: "center" }}>
+                  Poll created succesfully!
+                </p>
+              )
+            )}
           </div>
           <div className="modal-footer">
             <button
               onClick={() => {
-                State.update({ showPreview: false });
+                if (state.showSendFeedback) {
+                  State.update({
+                    pollTitle: "",
+                    pollDescription: "",
+                    pollDiscussionLink: "",
+                    pollStartDate: "",
+                    startTime: "",
+                    pollEndDate: "",
+                    endTime: "",
+                    question: "",
+                    pollType: "0",
+                    choices: [],
+                    amountOfChoices: 1,
+                    expandOptions: false,
+                    showSendFeedback: false,
+                  });
+                } else {
+                  State.update({ showPreview: false });
+                }
               }}
               type="button"
               className="btn btn-secondary"
@@ -536,6 +610,11 @@ return (
         <CommitButton
           className="my-2 btn btn-primary"
           data={getPublicationParams(false)}
+          onClick={() => {
+            State.update({
+              showSendFeedback: true,
+            });
+          }}
         >
           Create poll
         </CommitButton>
@@ -549,6 +628,7 @@ return (
       )}
     </div>
 
-    {state.showPreview && renderPreview()}
+    {state.showPreview && renderModal("preview")}
+    {state.showSendFeedback && renderModal("sendFeedback")}
   </div>
 );
