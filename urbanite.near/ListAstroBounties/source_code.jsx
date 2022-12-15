@@ -15,7 +15,7 @@ const bounties = fetch(
             {
               simple_query_string: {
                 query: term,
-                fields: ["accounts", "description"],
+                fields: ["accounts"],
               },
             },
           ],
