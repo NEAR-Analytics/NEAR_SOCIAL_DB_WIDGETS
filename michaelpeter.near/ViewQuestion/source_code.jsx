@@ -1,7 +1,21 @@
 const { questionRef } = props;
 
-if (!questionRef) {
-  return <p>Loading...</p>;
+if (questionRef) {
+  State.init({ questionRef });
+} else {
+  return (
+    <div className="d-flex flex-column gap-3">
+      <p>No question ref was passed in props, enter one here:</p>
+      <input
+        type="text"
+        className="form-control"
+        value={state.questionRef}
+        onChange={(e) => {
+          State.update({ questionRef: e.target.value });
+        }}
+      />
+    </div>
+  );
 }
 
 const question = Social.get(
@@ -9,7 +23,7 @@ const question = Social.get(
 );
 return (
   <div className="d-flex flex-column gap-3">
-    <p>QuestionRef: {questionRef}</p>
+    <p>QuestionRef: {state.questionRef}</p>
     <p>Question: {JSON.stringify(question, null, 4)}</p>
   </div>
 );
