@@ -197,6 +197,7 @@ if (onlineState === null || onlineState === undefined) {
 
 if (state && onlineState.activePlayer !== context.accountId) {
   state.updates = [];
+  State.update();
 }
 const updates = state.updates ?? [];
 const newState = stateObject(updates);
