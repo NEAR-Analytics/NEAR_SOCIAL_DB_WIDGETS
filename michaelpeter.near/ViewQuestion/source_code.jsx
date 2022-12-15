@@ -46,7 +46,9 @@ const question = Social.get(
 
 return (
   <div className="d-flex flex-column gap-1">
-    <p>QuestionRef: {state.questionRef}</p>
-    <p>Question: {JSON.stringify(question, null, 4)}</p>
+    <p>
+      Asked by: {asker} | Ref: {state.questionRef}
+    </p>
+    <p>{question}</p>
   </div>
 );
