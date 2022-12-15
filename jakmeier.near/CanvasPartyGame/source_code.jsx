@@ -261,10 +261,12 @@ return (
       />
     )}
 
-    <div style={{ margin: "20px 0" }}>
-      <CommitButton style={{ width: MAP_SIZE }} data={commitMessage}>
-        Submit
-      </CommitButton>
-    </div>
+    {gameover || (
+      <div style={{ margin: "20px 0" }}>
+        <CommitButton style={{ width: MAP_SIZE }} data={commitMessage}>
+          Submit
+        </CommitButton>
+      </div>
+    )}
   </div>
 );
