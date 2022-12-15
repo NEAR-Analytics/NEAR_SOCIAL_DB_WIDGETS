@@ -36,6 +36,10 @@ const search = (text) => {
     const books = resp.body.items.map((item) => {
       const info = item.volumeInfo;
       return {
+        id: info.industryIdentifiers.reduce(
+          (a, v) => ({ ...a, [v.type]: v.identifier }),
+          {}
+        )["ISBN_13"],
         title: info.title,
         author: info.authors[0],
         pageCount: info.pageCount,
