@@ -5,6 +5,8 @@ const profileImageTooltipItems = props.profileImageTooltipItems ?? [];
 const showFollowerStats = props.showFollowerStats ?? false;
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const tags = props.showTags && profile.tags && Object.keys(profile.tags);
+const showFollowButton = props.showFollowButton ?? false;
+
 const inner = (
   <>
     <div style={{ display: "flex" }}>
@@ -39,6 +41,9 @@ const inner = (
         </a>
         {showFollowerStats && (
           <Widget src="roshaan.near/widget/FollowStats" props={{ accountId }} />
+        )}
+        {showFollowButton && (
+          <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
         )}
         {tags.length > 0 && (
           <div>
