@@ -42,7 +42,21 @@ return (
   <ol>
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
-          return <li>{bounty._source.daoId}</li>;
+          return (
+            <li>
+              <div>
+                <h3>
+                  <b>DAO:</b> {bounty._source.daoId}
+                </h3>
+                <p>
+                  <b>Summary:</b> {bounty._source.description}
+                </p>
+                <p>
+                  <b>Amount:</b> {bounty._source.amount}
+                </p>
+              </div>
+            </li>
+          );
         })
       : ""}
   </ol>
