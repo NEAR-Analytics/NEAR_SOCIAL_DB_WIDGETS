@@ -1,7 +1,7 @@
 const { answeredBy, questionRef } = props;
 
 if (!answeredBy || !questionRef) {
-  return "Missing prop";
+  return "Missing prop in GenieAnswerView";
 }
 
 const answer = Social.get(
