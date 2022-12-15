@@ -167,6 +167,24 @@ const keyDownHandler = (e) => {
   }
 };
 
+// handler for gameboy input
+const buttonDownHandler = (button) => {
+  // apparently switch is not supported, using if-else instead
+  if (button == "left") {
+    movePlayer(state.playerPos.x - 1, state.playerPos.y);
+  } else if (button == "right") {
+    movePlayer(state.playerPos.x + 1, state.playerPos.y);
+  } else if (button == "up") {
+    movePlayer(state.playerPos.x, state.playerPos.y - 1);
+  } else if (button == "down") {
+    movePlayer(state.playerPos.x, state.playerPos.y + 1);
+  } else if (button == "b") {
+    setPlayerPos(0, 0);
+  } else {
+    console.log(e);
+  }
+};
+
 // Init stare (does nothing if state already exists)
 State.init({ playerPos: { x: 0, y: 0 }, currentView: mapView(-5, -5, 11, 11) });
 
@@ -187,5 +205,16 @@ return (
     >
       {renderMap(state)}
     </div>
+    <Widget
+      src="jakmeier.near/widget/GameBoyInput"
+      props={{
+        buttonDownHandler,
+        width: MAP_SIZE,
+        margin: "20px 0",
+        dPadWidth: "150px",
+        roundButtonSize: "60px",
+        squareButtonSize: "70px",
+      }}
+    />
   </div>
 );
