@@ -18,6 +18,10 @@ function isActive() {
   );
 }
 
+function isUpcoming() {
+  return questionParams.value.startTimestamp > Date.now();
+}
+
 let profile = Social.getr(`${props.accountId}/profile`);
 // if (!profile) {
 //   return "Loading";
@@ -38,7 +42,9 @@ return (
         </span>
         <span
           style={{
-            backgroundColor: isActive()
+            backgroundColor: isUpcoming()
+              ? "rgb(255, 255, 128)"
+              : isActive()
               ? "rgb(153, 255, 153)"
               : "rgb(255, 128, 128)",
 
@@ -49,7 +55,7 @@ return (
             borderRadius: "80px",
           }}
         >
-          {isActive() ? "Active" : "Closed"}
+          {isUpcoming() ? "Upcoming" : isActive() ? "Active" : "Closed"}
         </span>
       </div>
     </div>
