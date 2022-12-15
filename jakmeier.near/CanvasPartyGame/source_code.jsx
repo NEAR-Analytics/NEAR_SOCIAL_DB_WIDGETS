@@ -47,9 +47,6 @@ const mapView = (start_x, start_y, width, height, pixels) => {
 };
 
 const stateObject = (pixels, updates) => {
-  if (!state) {
-    state = {};
-  }
   return {
     playerPos: state.playerPos ?? { x: 0, y: 0 },
     pixels,
@@ -61,7 +58,6 @@ const stateObject = (pixels, updates) => {
       MAP_TILES,
       pixels
     ),
-    otherPlayer: state.otherPlayer ?? "other.near", // TODO: don't hard code name
   };
 };
 
@@ -110,7 +106,7 @@ const setPlayerPos = (x, y) => {
     -VIEW_OFFSET_Y,
     MAP_TILES,
     MAP_TILES,
-    state.pixels
+    props.session.pixels
   );
   // trigger a re-render with the new state
   State.update();
@@ -175,29 +171,23 @@ if (onlineState === null || onlineState === undefined) {
   return "Loading";
 }
 
-if (onlineState) {
-  if (state && onlineState.activePlayer !== context.accountId) {
-    state.updates = [];
-  }
-  const pixels = onlineState.pixels ?? [];
-  const updates = state.updates ?? [];
-  const newState = stateObject(pixels, updates);
-  State.init(newState);
-  if (JSON.stringify(state) != JSON.stringify(newState)) {
-    State.update(newState);
-  }
-} else {
-  const pixels = state.pixels ?? [];
-  const updates = state.updates ?? [];
-  State.init(stateObject(pixels, updates));
+if (state && onlineState.activePlayer !== context.accountId) {
+  state.updates = [];
+}
+const pixels = onlineState.pixels ?? [];
+const updates = state.updates ?? [];
+const newState = stateObject(pixels, updates);
+State.init(newState);
+if (JSON.stringify(state) != JSON.stringify(newState)) {
+  State.update(newState);
 }
 
 const commitMessage = {
   canvasParty: {
     session: {
-      pixels: state.pixels.concat(state.updates),
-      otherPlayer: state.otherPlayer,
-      activePlayer: state.otherPlayer,
+      pixels: onlineState.pixels.concat(state.updates),
+      otherPlayer: onlineState.otherPlayer,
+      activePlayer: onlineState.otherPlayer,
     },
   },
 };
