@@ -15,18 +15,20 @@ const AnswerBox = styled.div`
 `;
 
 return (
-  <div className="d-flex flex-column gap-3">
-    {answers?.length ? (
-      answers.map((a) => (
-        <AnswerBox>
-          <Widget
-            src="michaelpeter.near/widget/GenieAnswerView"
-            props={{ questionRef, answeredBy: a.accountId }}
-          />
-        </AnswerBox>
-      ))
-    ) : (
-      <div className="alert alert-light">No answers, be the first!</div>
-    )}
+  <div className="d-flex flex-row justify-content-center">
+    <div className="d-flex flex-column gap-3" style={{ width: "43rem" }}>
+      {answers?.length ? (
+        answers.map((a) => (
+          <AnswerBox>
+            <Widget
+              src="michaelpeter.near/widget/GenieAnswerView"
+              props={{ questionRef, answeredBy: a.accountId }}
+            />
+          </AnswerBox>
+        ))
+      ) : (
+        <div className="alert alert-light">No answers, be the first!</div>
+      )}
+    </div>
   </div>
 );
