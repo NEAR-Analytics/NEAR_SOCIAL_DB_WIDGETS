@@ -492,7 +492,7 @@ return (
           <p className="text-danger">Question cannot be empty</p>
         )}
         <label className="mt-3" for="pollType">
-          Pool type
+          Pool type*
         </label>
         <div className="dropdown">
           <button
