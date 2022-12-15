@@ -12,7 +12,7 @@ if (!context.accountId) {
 
 // const ref = `${context.accountId}/${timestamp}`;
 return (
-  <div className="d-flex flex-column">
+  <div className="d-flex flex-column gap-3">
     Enter your question:
     <input
       type="text"
@@ -22,7 +22,6 @@ return (
         State.update({ questionContent: e.target.value });
       }}
     />
-    Q: {state.questionContent}
     <div>
       <CommitButton
         onClick={() => {
