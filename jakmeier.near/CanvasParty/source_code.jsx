@@ -109,6 +109,7 @@ const openLobbyScreen = (otherPlayer) => {
               pixels: [],
               otherPlayer,
               activePlayer,
+              start: null,
             },
           },
         }}
@@ -131,6 +132,7 @@ const startGameScreen = (otherPlayer, activePlayer) => {
               pixels: [],
               otherPlayer,
               activePlayer,
+              start: Date.now(),
             },
           },
         }}
@@ -155,6 +157,7 @@ const waiting = (onlineState) => {
                 pixels: [],
                 otherPlayer: "",
                 activePlayer: "",
+                start: null,
               },
             },
           }}
@@ -182,6 +185,7 @@ const playing = (mySession, theirSession) => {
     // they finished their turn, need to update our session
     mySession.activePlayer = context.accountId;
     mySession.pixels = theirSession.pixels;
+    mySession.start = theirSession.start;
   }
   return (
     <Widget
