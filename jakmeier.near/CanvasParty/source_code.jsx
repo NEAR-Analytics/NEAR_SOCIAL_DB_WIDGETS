@@ -116,6 +116,14 @@ const openLobbyScreen = (otherPlayer) => {
       >
         Open New Party
       </CommitButton>
+      <button
+        onClick={() => {
+          state.submitted = false;
+          State.update();
+        }}
+      >
+        Cancel
+      </button>
     </div>
   );
 };
@@ -139,6 +147,14 @@ const startGameScreen = (otherPlayer, activePlayer) => {
       >
         Join
       </CommitButton>
+      <button
+        onClick={() => {
+          state.submitted = false;
+          State.update();
+        }}
+      >
+        Cancel
+      </button>
     </div>
   );
 };
