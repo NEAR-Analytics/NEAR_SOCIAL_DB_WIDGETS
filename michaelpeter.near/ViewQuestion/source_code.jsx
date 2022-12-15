@@ -28,16 +28,23 @@ if (!state.questionRef) {
 const question = Social.get(
   `michaelpeter.near/experimental/genie/questions/${state.questionRef}`
 );
+// return (
+//   <div className="d-flex flex-column gap-3">
+//     <p>QuestionRef: {state.questionRef}</p>
+//     <p>Question: {JSON.stringify(question, null, 4)}</p>
+//     <button
+//       onClick={() => {
+//         State.update({ questionRef: undefined, refInput: "" });
+//       }}
+//     >
+//       Reset
+//     </button>
+//   </div>
+// );
+
 return (
   <div className="d-flex flex-column gap-3">
     <p>QuestionRef: {state.questionRef}</p>
     <p>Question: {JSON.stringify(question, null, 4)}</p>
-    <button
-      onClick={() => {
-        State.update({ questionRef: undefined, refInput: "" });
-      }}
-    >
-      Reset
-    </button>
   </div>
 );
