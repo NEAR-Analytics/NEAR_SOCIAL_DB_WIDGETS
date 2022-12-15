@@ -6,9 +6,6 @@ return (
       <Widget src="a92d2106fd31a2d52501953961b1639745434ee343fb6303e4d0195b501b75ad/widget/SetHeightForm" />
     </div>
     <div>
-      <Widget src="lewidenmann.near/widget/UserHeightDisplay" />
-    </div>
-    <div>
       <Widget src="lewidenmann.near/widget/ReviewFollowerHeights" />
     </div>
     <div>
