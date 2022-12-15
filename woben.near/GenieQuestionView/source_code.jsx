@@ -26,13 +26,10 @@ if (!state.questionRef) {
 }
 
 const asker = state.questionRef.split("--")[0];
-console.log(`asker: ${asker}`);
-console.log(`questionRef: ${questionRef}`);
 
-const question = Social.get(
+const question = Social.getr(
   `${asker}/experimental/genie/questions/${state.questionRef}`
 );
-console.log(question);
 
 return (
   <div className="d-flex flex-column gap-1">
