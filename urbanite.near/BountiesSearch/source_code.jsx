@@ -1,5 +1,4 @@
 const computeResults = (term) => {
-  console.log(term);
   const searchTerm = term.toLowerCase();
   State.update({
     searchTerm,
@@ -19,6 +18,6 @@ return (
       onChange={(e) => computeResults(e.target.value)}
       placeholder={props.placeholder ?? `🔍 Search Components`}
     />
-    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
+    {props.debug && <pre>{JSON.stringify(state.searchTerm, undefined, 2)}</pre>}
   </>
 );
