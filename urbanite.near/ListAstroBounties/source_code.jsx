@@ -39,11 +39,11 @@ if (bounties.body.hits.hits.length == 0) {
 }
 
 return (
-  <ul>
+  <ol>
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
           return <li>{bounty._source.daoId}</li>;
         })
       : ""}
-  </ul>
+  </ol>
 );
