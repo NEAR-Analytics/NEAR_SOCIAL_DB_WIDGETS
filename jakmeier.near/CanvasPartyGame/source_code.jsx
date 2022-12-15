@@ -216,10 +216,16 @@ const commitMessage = {
   },
 };
 
+const timeLeftHtml = gameover ? (
+  ""
+) : (
+  <p style={{ fontWeight: "bold" }}>{secondsLeft}s left</p>
+);
+
 return (
   <div>
     <h2>{myTurn ? "Your Turn" : gameover ? "Art Complete" : "Their Turn"}</h2>
-    gameover ? <p style={{ fontWeight: "bold" }}>{secondsLeft}s left</p> : {}
+    {timeLeftHtml}
     <Widget
       src="jakmeier.near/widget/KeyInput"
       props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
