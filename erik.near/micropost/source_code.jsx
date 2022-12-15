@@ -30,7 +30,9 @@ const processData = (data) => {
     .flat();
 
   allMicroposts.sort((a, b) => b.blockHeight - a.blockHeight);
+  console.log("returning all microposts...");
   console.log(allMicroposts);
+  console.log("...done?");
   return allMicroposts;
 };
 
