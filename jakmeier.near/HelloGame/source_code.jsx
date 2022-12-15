@@ -47,9 +47,6 @@ const mapView = (start_x, start_y, width, height, pixels) => {
 };
 
 const stateObject = (pixels, updates) => {
-  if (!state) {
-    state = {};
-  }
   return {
     playerPos: state.playerPos ?? { x: 0, y: 0 },
     pixels,
@@ -61,7 +58,7 @@ const stateObject = (pixels, updates) => {
       MAP_TILES,
       pixels
     ),
-    otherPlayer: state.otherPlayer ?? "other.near", // TODO: don't hard code name
+    otherPlayer: state.otherPlayer ?? "other.near",
   };
 };
 
@@ -189,7 +186,7 @@ const commitMessage = {
 };
 */
 
-const onlineState = Social.index("helloGame", "pixels", {
+const onlineState = Social.index("canvasParty", "session", {
   order: "desc",
   limit: 1, // we only want the latest version
   subscribe: true, // refresh once in 5s
@@ -199,8 +196,13 @@ if (onlineState === null || onlineState === undefined) {
   return "Loading";
 }
 
+console.log(onlineState);
 if (onlineState.length > 0) {
-  if (state && onlineState[0].value.activePlayer !== context.accountId) {
+  if (
+    state &&
+    onlineState[0].value &&
+    onlineState[0].value.activePlayer !== context.accountId
+  ) {
     state.updates = [];
   }
   const pixels = onlineState[0].value.pixels ?? [];
@@ -218,8 +220,8 @@ if (onlineState.length > 0) {
 
 const commitMessage = {
   index: {
-    helloGame: JSON.stringify({
-      key: "pixels",
+    canvasParty: JSON.stringify({
+      key: "session",
       value: {
         pixels: state.pixels.concat(state.updates),
         activePlayer: state.otherPlayer,
