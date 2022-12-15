@@ -6,9 +6,9 @@ const downvotes = votes.filter((v) => v.value.dir === -1).length;
 
 return (
   <div className="d-flex flex-column gap-1">
-    {JSON.stringify(votes)}
-    <div>Upvotes: {upvotes}</div>
-    <div>Downvotes: {downvotes}</div>
+    {/*JSON.stringify(votes)*/}
+    {/*<div>Upvotes: {upvotes}</div>*/}
+    {/*<div>Downvotes: {downvotes}</div>*/}
     <div
       className="d-flex flex-row"
       style={{
