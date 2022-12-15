@@ -10,24 +10,6 @@ const followers = [
   },
 ];
 
-function displayHeight(height) {
-  const feet = Math.floor(height / 12);
-  const inches = height - feet * 12;
-  return `${feet}′${inches}″`;
-}
-
-function accuracyPercentageClassName(accuracyPercentage) {
-  if (accuracyPercentage < 25) {
-    return "text-bg-danger";
-  } else if (accuracyPercentage < 50) {
-    return "text-bg-warning";
-  } else if (accuracyPercentage < 75) {
-    return "text-bg-primary";
-  } else {
-    return "text-bg-success";
-  }
-}
-
 return (
   <div class="container">
     <div className="card p-3">
