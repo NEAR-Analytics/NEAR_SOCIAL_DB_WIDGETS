@@ -36,10 +36,10 @@ function getBlockTimestamp(blockHeight) {
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
 
-const profileLink = (c) => (
+const profileLink = (accId, c) => (
   <a
     className="text-decoration-none link-dark"
-    href={`#/mob.near/widget/ProfilePage?accountId=${props.accountId}`}
+    href={`#/mob.near/widget/ProfilePage?accountId=${accId}`}
   >
     {c}
   </a>
@@ -70,6 +70,7 @@ return (
               >
                 <div>
                   {profileLink(
+                    answerParams.accountId,
                     <Widget
                       src="mob.near/widget/ProfileImage"
                       props={{ accountId: answerParams.accountId }}
@@ -79,6 +80,7 @@ return (
                 <div className="d-flex">
                   <div className="flex-grow-1 me-1 text-truncate">
                     {profileLink(
+                      answerParams.accountId,
                       <>
                         <p
                           style={{ margin: "0 2px 0 2px" }}
