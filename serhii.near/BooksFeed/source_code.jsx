@@ -18,14 +18,16 @@ Object.keys(peopleIFollow).map((follow) => {
   }
 });
 
-if (!followBooks) {
+console.log("followBooks", peopleIFollowWithBooks);
+
+if (!peopleIFollowWithBooks) {
   return "Your friend dos not have any books";
 }
 
 return (
   <div>
     <div className="d-flex gap-1 flex-wrap">
-      {Object.entries(followBooks).map(([acc, books]) => {
+      {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
         <div>
           <div>{acc}</div>
           {Object.values(books).map((book) => (
