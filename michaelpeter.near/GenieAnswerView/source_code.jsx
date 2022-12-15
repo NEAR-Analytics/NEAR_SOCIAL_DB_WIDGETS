@@ -14,9 +14,12 @@ return (
       <span>{answer}</span>
       <span>{answeredBy}</span>
     </div>
-    <Widget
-      src="michaelpeter.near/widget/GenieAnswerVote"
-      props={{ questionRef, answeredBy }}
-    />
+    <div className="d-flex flex-row gap-2">
+      <Widget
+        src="michaelpeter.near/widget/GenieAnswerVote"
+        props={{ questionRef, answeredBy }}
+      />
+      <Widget src="woben.near/widget/tip" props={{ questionRef, answeredBy }} />
+    </div>
   </div>
 );
