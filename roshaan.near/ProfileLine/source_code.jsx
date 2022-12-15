@@ -37,7 +37,7 @@ const inner = (
 
         {tags.length > 0 && (
           <div>
-            {tags.map((tag, i) => (
+            {tags.slice(0, 5).map((tag, i) => (
               <span key={i} className="me-1 mb-1 badge bg-secondary">
                 #{tag}
               </span>
