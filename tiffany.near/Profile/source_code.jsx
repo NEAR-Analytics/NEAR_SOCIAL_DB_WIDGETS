@@ -4,6 +4,7 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 const name = profile.name;
 const image = profile.image;
+const votes = Social.index("genie", `vote/${accountId}`);
 
 return (
   <div className="profile d-inline-block">
@@ -20,20 +21,23 @@ return (
         }}
       />
       <div
-        className="profile-info d-inline-flex gap-1"
+        className="profile-info d-inline-flex flex-column gap-1"
         style={{ maxWidth: "30em" }}
       >
-        <div className="profile-name text-truncate">
-          {name || "No-name profile"}
-        </div>
-        <div className="profile-links d-flex">
-          <div
-            className="d-inline-block profile-account text-secondary text-truncate"
-            style={{ maxWidth: "16em" }}
-          >
-            @{accountId}
+        <div className="d-flex flex-row gap-1">
+          <div className="profile-name text-truncate">
+            {name || "No-name profile"}
+          </div>
+          <div className="profile-links d-flex">
+            <div
+              className="d-inline-block profile-account text-secondary text-truncate"
+              style={{ maxWidth: "16em" }}
+            >
+              @{accountId}
+            </div>
           </div>
         </div>
+        {votes.length}
       </div>{" "}
     </a>
   </div>
