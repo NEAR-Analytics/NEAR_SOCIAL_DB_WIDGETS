@@ -24,7 +24,8 @@ return (
       )}
     </div>
     <div className="row mb-3">
-      <Widget src="erik.near/widget/MyWidgets" />
+      <h4>My Widgets</h4>
+      <Widget src="erik.near/widget/Widgets" />
     </div>
     <div className="row mb-3">
       <Widget src="mob.near/widget/Applications" />
