@@ -1,10 +1,11 @@
 const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
+let optInInfo = {};
 
 State.init({
   accountId,
-  birthdate: "",
+  birthday: "",
   astrological_sign: "",
   age: "",
   gender: "",
@@ -15,9 +16,13 @@ State.init({
   preffered_crypto: "",
 });
 
+function setOptInInfoProps() {
+  return props[optInInfo];
+}
+
 return (
   <>
-    {options.birthdate.label ?? "Birthdate"}
+    {options.birthday.label ?? "Birthday"}
     <input
       type="date"
       value={state.birthday}
@@ -73,5 +78,9 @@ return (
       value={state.preffered_crypto}
       onChange={(e) => State.update({ preffered_crypto: e.target.value })}
     />
+    <p></p>
+    <CommitButton data={{ optInInfo: { ...state } }}>
+      Save Opt-In Info
+    </CommitButton>
   </>
 );
