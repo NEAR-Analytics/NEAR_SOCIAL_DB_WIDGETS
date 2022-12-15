@@ -1,4 +1,4 @@
-const term = props.searchTerm ?? "*";
+const term = props.searchTerm + "*" ?? "*";
 
 const bounties = fetch(
   "https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=0",
@@ -10,17 +10,26 @@ const bounties = fetch(
     },
     body: JSON.stringify({
       query: {
-        bool: {
-          must: [
-            {
-              simple_query_string: {
-                query: term,
-                fields: ["accounts"],
-              },
-            },
-          ],
-          must_not: [],
-          should: [],
+        query_string: {
+          query: term,
+          default_field: "description",
+          type: "best_fields",
+          fuzziness: "AUTO",
+          fuzzy_transpositions: true,
+          fuzzy_max_expansions: 50,
+          fuzzy_prefix_length: 0,
+          minimum_should_match: 1,
+          default_operator: "or",
+          analyzer: "standard",
+          lenient: false,
+          boost: 1,
+          allow_leading_wildcard: true,
+          enable_position_increments: true,
+          phrase_slop: 3,
+          quote_field_suffix: "",
+          quote_analyzer: "standard",
+          analyze_wildcard: false,
+          auto_generate_synonyms_phrase_query: true,
         },
       },
       sort: [
