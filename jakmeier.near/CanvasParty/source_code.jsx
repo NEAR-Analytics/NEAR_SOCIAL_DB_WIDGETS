@@ -12,7 +12,11 @@ const playerSession = (accountId) => {
 };
 
 const onlineState = playerSession(context.accountId);
-// console.log(onlineState);
+// no idea how that happened but no time to debug ^.^
+if (typeof onlineState.pixels === "string") {
+  onlineState.pixels = JSON.parse(onlineState.pixels);
+}
+console.log(onlineState);
 
 const main = () => {
   if (onlineState) {
