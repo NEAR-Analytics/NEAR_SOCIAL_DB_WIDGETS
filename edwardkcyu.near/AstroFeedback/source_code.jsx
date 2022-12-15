@@ -20,7 +20,6 @@ const allComments = accounts.reduce((acc, accountId) => {
 
     return {
       ...comment,
-      createdAt: `${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`,
       accountId,
     };
   });
@@ -56,12 +55,16 @@ return (
     <div class="collapse" id={`collapseCommentEditorComment`}>
       <div>
         <ul>
-          {allComments.map((comment) => (
-            <li>
-              {comment.createdAt}
-              <b>{comment.accountId}: </b> {comment.message}
-            </li>
-          ))}
+          {allComments.map((comment) => {
+            const createdAt = new Date(comment.createdAt);
+            const formattedCreatedAt = `${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`;
+            return (
+              <li>
+                {formattedCreatedAt} <b>{comment.accountId}: </b>{" "}
+                {comment.message}
+              </li>
+            );
+          })}
         </ul>
       </div>
 
