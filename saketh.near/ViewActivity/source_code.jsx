@@ -8,10 +8,10 @@ return (
     <div className="card-body">
       <span className="text-truncate">
         <h5>
-          <b>{data.name}</b>
+          <b>
+            {data.name} ({data.participants_lo}-{data.participants_hi} people)
+          </b>
         </h5>
-        Join for {data.cost} N
-        <br />
         Organized by
         <Widget
           src={`zavodil.near/widget/ProfileLine`}
@@ -19,6 +19,11 @@ return (
         />
         <br />
         {data.description}
+        <br />
+        <CommitButton>
+          Join for <b>{data.cost} NEAR</b>
+        </CommitButton>{" "}
+        before {data.deadline}
       </span>
     </div>
   </div>
