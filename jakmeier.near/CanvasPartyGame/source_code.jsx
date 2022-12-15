@@ -219,11 +219,12 @@ const commitMessage = {
 const timeLeftHtml = gameover ? (
   ""
 ) : (
-  <p style={{ fontWeight: "bold" }}>{secondsLeft}s left</p>
+  <p style={{ fontWeight: "bold" }}>{secondsLeft}s left until art is frozen</p>
 );
 
 return (
   <div>
+    <h1>Draw: {props.session.word}</h1>
     <h2>{myTurn ? "Your Turn" : gameover ? "Art Complete" : "Their Turn"}</h2>
     {timeLeftHtml}
     <Widget
