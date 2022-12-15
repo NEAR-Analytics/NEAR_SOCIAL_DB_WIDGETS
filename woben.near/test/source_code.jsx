@@ -1,6 +1,6 @@
 const data = {
   genie: {
-    question: {
+    questions: {
       "michaelpeter.near/32976423897": {
         content: "What is a blockchain?",
       },
