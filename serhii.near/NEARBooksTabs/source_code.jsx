@@ -13,7 +13,7 @@ const description = profile.description;
 
 State.init({
   loadBooksFeed: true,
-  loadBooksMy: false,
+  loadBooksRead: false,
   loadBooksToRead: false,
 });
 
@@ -48,10 +48,10 @@ return (
           aria-controls="pills-nft"
           aria-selected="false"
           onClick={() => {
-            !state.loadBooksMy && State.update({ loadBooksMy: true });
+            !state.loadBooksRead && State.update({ loadBooksRead: true });
           }}
         >
-          My Books
+          Read
         </button>
       </li>
       <li className="nav-item" role="presentation">
@@ -89,8 +89,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-nft-tab"
       >
-        {state.loadBooksMy && (
-          <Widget src="serhii.near/widget/BooksMy" props={{ accountId }} />
+        {state.loadBooksRead && (
+          <Widget src="serhii.near/widget/BooksRead" props={{ accountId }} />
         )}
       </div>
       <div
