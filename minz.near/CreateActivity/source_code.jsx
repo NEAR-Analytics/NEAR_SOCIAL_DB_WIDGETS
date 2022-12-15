@@ -5,14 +5,14 @@ if (!accountId) {
 }
 
 function callContract(data) {
+  // console.log(Date.parse(data.deadline));
   Near.call(CONTRACT, "start_event", {
     account_id: accountId,
     event_spec: {
       max_num: Number(data.participants_hi),
       min_num: Number(data.participants_lo),
       price: Number(data.cost) * 1000,
-      deadline: 1671122423 * 1000000000,
-      // deadline: data.deadline.getMilliseconds() * 1000000,
+      deadline: Date.parse(data.deadline) * 1000000,
       beneficiary: accountId,
     },
   });
@@ -86,16 +86,18 @@ return (
 
     <div className="mb-2">
       <CommitButton
-        data={{
-          event: {
-            name: state.name,
-            description: state.description,
-            cost: state.cost,
-            participants_lo: state.participants_lo,
-            participants_hi: state.participants_hi,
-            deadline: state.deadline,
-          },
-        }}
+        data={
+          {
+            // event: {
+            //   name: state.name,
+            //   description: state.description,
+            //   cost: state.cost,
+            //   participants_lo: state.participants_lo,
+            //   participants_hi: state.participants_hi,
+            //   deadline: state.deadline,
+            // },
+          }
+        }
         onCommit={() => {
           callContract(state);
         }}
