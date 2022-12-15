@@ -1,13 +1,14 @@
-// A simple form for creating a post that follows the post standard at
+// A simple form for creating a post that does NOT follow standards at
 // https://github.com/NearSocial/standards/blob/main/types/Root.md
-// It is basically a meme with only a description
+// because they don't allow multiple posts.
+// It saves using a very naive indexing system.
 let accountId = context.accountId;
 
 if (!accountId) {
   return "Please sign in with NEAR wallet to post";
 }
 
-State.init({ memo: null });
+State.init({ postbody: null });
 
 return (
   <div>
@@ -20,7 +21,7 @@ return (
         id="exampleFormControlTextarea1"
         rows="2"
         style={{ maxWidth: "30em" }}
-        onChange={(event) => State.update({ memo: event.target.value })}
+        onChange={(event) => State.update({ postbody: event.target.value })}
       ></textarea>
     </div>
 
@@ -28,10 +29,9 @@ return (
       <CommitButton
         disabled={state.memo === null}
         data={{
-          post: {
-            meme: {
-              description: state.memo,
-            },
+          micropost: {
+            i: "0",
+            body: state.postbody,
           },
         }}
       >
