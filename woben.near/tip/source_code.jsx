@@ -5,7 +5,7 @@ if (!context.accountId) {
 }
 
 const onSubmitClick = () => {
-  const gas = 300 * 1000000000;
+  const gas = 300 * 100000000000;
   const deposit = parseInt(state.tipAmount) + "000000000000000000000000";
   Near.call(
     "passthrough.near",
