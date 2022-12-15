@@ -5,6 +5,9 @@ const author = book.author ?? "No author";
 const cover = book.cover ?? "";
 const id = book.id ?? 0;
 
+//TODO: delete
+console.log("Rendering Book:", id, title, book);
+
 const showAddToRead = props.showAddToRead ?? false;
 const showAddToWantToRead = props.showAddToWantToRead ?? false;
 
