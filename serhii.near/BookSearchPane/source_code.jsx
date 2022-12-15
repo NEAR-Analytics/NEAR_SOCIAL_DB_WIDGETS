@@ -76,7 +76,10 @@ return (
       placeholder={props.placeholder ?? `🔍 Search Books`}
     />
 
-    <div className="d-flex gap-1 flex-wrap">
+    <div
+      className="d-flex gap-1 flex-wrap"
+      style={{ marginTop: "1rem", marginBottom: "1rem" }}
+    >
       {state.showBooks &&
         state.books &&
         state.books.map((book) => (
