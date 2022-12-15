@@ -241,9 +241,6 @@ return (
     >
       {renderMap(state.playerPos)}
     </div>
-    <div>
-      <CommitButton data={commitMessage}>Submit</CommitButton>
-    </div>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
@@ -255,5 +252,8 @@ return (
         squareButtonSize: "60px",
       }}
     />
+    <div style={{ margin: "20px" }}>
+      <CommitButton data={commitMessage}>Submit</CommitButton>
+    </div>
   </div>
 );
