@@ -1,5 +1,11 @@
 const accountId = context.accountId;
 
+State.init({
+  optInInfo,
+});
+
+optInInfo.accountId = accountId;
+
 if (context.loading) {
   return "Loading";
 }
@@ -19,6 +25,7 @@ let bigForm = (
     <label for="fname">{`First Name: `}</label>
     <br></br>
     <input type="text" id="fname" name="fname"></input>
+    <label for="agecheckb">{`Sharable`}</label>
     <input type="checkbox" id="agecheckb" name="agecheckb" value="true"></input>
     <br></br>
     <label for="lname">{`Last Name: `}</label>
