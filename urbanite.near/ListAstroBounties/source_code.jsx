@@ -40,7 +40,8 @@ if (bounties.body.hits.hits.length == 0) {
 
 return (
   <>
-    <h2>Astro Bounties</h2>
+    <h2>Astro Bounties | V1</h2>
+    <Widget src="edwardkcyu.near/widget/AstroFeedback" />
     <ol>
       {bounties
         ? bounties.body.hits.hits.map((bounty) => {
