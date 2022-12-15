@@ -12,7 +12,7 @@ return (
           State.update();
         }}
       >
-        Refresh
+        Refresh (does not work)
       </button>
     </div>
     <div className="d-flex flex-column gap-5">
