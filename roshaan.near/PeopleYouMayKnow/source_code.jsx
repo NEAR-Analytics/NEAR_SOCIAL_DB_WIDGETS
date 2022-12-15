@@ -6,6 +6,7 @@ const all_account_tags = Social.getr(`*/profile/tags`, "final");
 const userId = context.accountId;
 const ownerId = context.ownerId;
 const showFollowerStats = props.showFollowerStats ?? true;
+
 if (!userId) {
   return "Please sign in with NEAR wallet to follow other accounts";
 }
@@ -168,14 +169,17 @@ const followingsRows = rec.map(
         )}
 
         <label className="form-check-label" for={`follow-${accountId}`}>
-          <Widget
-            src="roshaan.near/widget/ProfileLine"
-            props={{
-              accountId,
-              showTags: props.showTags,
-              showFollowerStats: true,
-            }}
-          />{" "}
+          <div className="flex justify-between">
+            <Widget
+              src="roshaan.near/widget/ProfileLine"
+              props={{
+                accountId,
+                showTags: props.showTags,
+                showFollowerStats: true,
+                showFollowButton: state.multiSelectMode === false,
+              }}
+            />
+          </div>
           <OverlayTrigger
             placement="auto"
             overlay={
