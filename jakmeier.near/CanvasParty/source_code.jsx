@@ -71,6 +71,7 @@ const home = () => {
       <p>
         Both players need to type in their friends ID for the game to start.
       </p>
+
       <label>
         Account ID of friend:
         <input
@@ -85,14 +86,17 @@ const home = () => {
           }}
         />
       </label>
-      <button
-        onClick={() => {
-          state.submitted = true;
-          State.update();
-        }}
-      >
-        Connect
-      </button>
+      <div style={{ margin: "20px 0" }}>
+        <button
+          style={{ width: "100%" }}
+          onClick={() => {
+            state.submitted = true;
+            State.update();
+          }}
+        >
+          Connect
+        </button>
+      </div>
     </div>
   );
 };
