@@ -45,7 +45,7 @@ return (
         <small>avatar</small>
       </div>
       <div className="d-flex flex-column">
-        <h4>{asker}</h4>
+        <h6>{asker}</h6>
         {state.questionRef}
       </div>
     </div>
