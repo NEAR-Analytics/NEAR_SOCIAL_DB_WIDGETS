@@ -7,15 +7,12 @@ const playerSession = (accountId) => {
 };
 
 const onlineState = playerSession(context.accountId);
-//console.log(onlineState);
+console.log(onlineState);
 
 const main = () => {
   if (onlineState) {
-    const otherPlayerState = playerSession(onlineState.otherPlayer);
-    if (!otherPlayerState) {
-      return waiting(onlineState);
-    }
     if (onlineState.activePlayer === "") {
+      return waiting(onlineState);
     } else {
       return noGame();
     }
@@ -28,7 +25,6 @@ const noState = () => {
   //return <h2>Loading...</h2>;
   return noGame();
 };
-
 
 const noGame = () => {
   if (!state.submitted) {
@@ -74,7 +70,12 @@ const home = () => {
           }}
         />
       </label>
-      <Button onClick={()=>} >
+      <Button
+        onClick={() => {
+          state.submitted = true;
+          State.update();
+        }}
+      >
         Connect
       </Button>
     </div>
