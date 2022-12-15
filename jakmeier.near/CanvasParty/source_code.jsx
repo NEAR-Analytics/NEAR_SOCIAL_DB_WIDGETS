@@ -103,6 +103,7 @@ const openLobbyScreen = (otherPlayer) => {
       <h2>Host a Canvas Party!</h2>
       <p>{otherPlayer} is not here, yet.</p>
       <CommitButton
+        style={{ width: "360px" }}
         data={{
           canvasParty: {
             session: {
@@ -134,6 +135,7 @@ const startGameScreen = (otherPlayer, activePlayer) => {
       <h2>Join a Canvas Party!</h2>
       <p>{otherPlayer} is hosting a party for you!</p>
       <CommitButton
+        style={{ width: "360px" }}
         data={{
           canvasParty: {
             session: {
@@ -166,6 +168,7 @@ const waiting = (onlineState) => {
       <p>Waiting for {onlineState.otherPlayer} to join.</p>
       <p>They have to type in {context.accountId} and click play.</p>
       <CommitButton
+        style={{ width: "360px" }}
         data={{
           canvasParty: {
             session: {
@@ -211,6 +214,7 @@ const playing = (mySession, theirSession) => {
         props={{ session: mySession }}
       />
       <CommitButton
+        style={{ width: "360px" }}
         data={{
           canvasParty: {
             session: {
@@ -227,5 +231,5 @@ const playing = (mySession, theirSession) => {
   );
 };
 
-// putting this here at the end avoids errors due to missing hoisting
+// putting this here at the endto avoid hoisting errors
 return main();
