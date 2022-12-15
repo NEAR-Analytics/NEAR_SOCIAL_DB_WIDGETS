@@ -1,5 +1,23 @@
+let event_creator = props.event_creator;
+let event_id = props.event_id;
+
+let data = Social.getr(`${event_creator}/published_events/${event_id}`);
+
 return (
-  <>
-    {props.event_creator} {props.event_name}
-  </>
+  <div className="mb-2 card">
+    <div className="card-body">
+      <span className="text-truncate">
+        <h5>
+          <b>{data.name}</b>
+        </h5>
+        Organized by
+        <Widget
+          src={`zavodil.near/widget/ProfileLine`}
+          props={{ event_creator }}
+        />
+        <br />
+        {data.description}
+      </span>
+    </div>
+  </div>
 );
