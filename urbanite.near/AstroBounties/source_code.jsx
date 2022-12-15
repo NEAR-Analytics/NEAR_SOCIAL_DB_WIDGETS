@@ -1,6 +1,6 @@
 return (
   <>
-    <h2>Astro Bounties | V1</h2>
+    <h2>Astro Bounties | V2</h2>
     <Widget src="edwardkcyu.near/widget/AstroFeedback" />
     <Widget
       src="urbanite.near/widget/BountiesSearch"
