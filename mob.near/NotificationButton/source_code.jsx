@@ -44,5 +44,6 @@ if (lastBlockHeight === null) {
 const notifications = Social.index("notify", accountId, {
   order: "asc",
   from: (lastBlockHeight ?? 0) + 1,
+  subscribe: true,
 });
 return render(notifications.length, false);
