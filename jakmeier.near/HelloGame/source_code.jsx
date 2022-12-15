@@ -13,6 +13,22 @@ const Tile = {
   Ghost: "👻",
 };
 
+const stateObject = (pixels, updates) => {
+  return {
+    playerPos: state.playerPos ?? { x: 0, y: 0 },
+    pixels,
+    updates,
+    currentView: mapView(
+      pos.x - VIEW_OFFSET_X,
+      pos.y - VIEW_OFFSET_Y,
+      MAP_TILES,
+      MAP_TILES,
+      pixels
+    ),
+    otherPlayer: state.otherPlayer ?? "gmilescu.near", // TODO: don't hard code name
+  };
+};
+
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
 const mapView = (start_x, start_y, width, height, pixels) => {
   const map = Array.from(Array(width), () =>
@@ -29,6 +45,7 @@ const mapView = (start_x, start_y, width, height, pixels) => {
   });
 
   const updates = state.updates ?? [];
+  console.log("drawing with updates", updates);
   updates.forEach((pixel) => {
     // apply view offset
     const x = pixel.x - start_x;
@@ -180,20 +197,12 @@ if (onlineState === null || onlineState === undefined) {
 }
 
 if (onlineState.length > 0) {
-  const pixels = onlineState[0].value ?? [];
+  if (onlineState[0].value.activePlayer !== context.accountId) {
+    state.updates = [];
+  }
+  const pixels = onlineState[0].value.pixels ?? [];
   const updates = state.updates ?? [];
-  const newState = {
-    playerPos: state.playerPos ?? { x: 0, y: 0 },
-    pixels,
-    updates,
-    currentView: mapView(
-      pos.x - VIEW_OFFSET_X,
-      pos.y - VIEW_OFFSET_Y,
-      MAP_TILES,
-      MAP_TILES,
-      pixels
-    ),
-  };
+  const newState = stateObject(pixels, updates);
   State.init(newState);
   if (JSON.stringify(state) != JSON.stringify(newState)) {
     State.update(newState);
@@ -201,27 +210,25 @@ if (onlineState.length > 0) {
 } else {
   const pixels = state.pixels ?? [];
   const updates = state.updates ?? [];
-  State.init({
-    playerPos: { x: 0, y: 0 },
-    pixels,
-    updates,
-    currentView: mapView(
-      -VIEW_OFFSET_X,
-      -VIEW_OFFSET_Y,
-      MAP_TILES,
-      MAP_TILES,
-      pixels
-    ),
-  });
+  State.init(stateObject(pixels, updates));
 }
 
 const commitMessage = {
   index: {
     helloGame: JSON.stringify({
       key: "pixels",
-      value: state.pixels.concat(state.updates),
+      value: {
+        pixels: state.pixels.concat(state.updates),
+        activePlayer: state.otherPlayer,
+      },
     }),
   },
+};
+
+const clearUpdates = () => {
+  console.log("clearing update", state.updates);
+  state.updates = [];
+  State.update();
 };
 
 return (
@@ -241,13 +248,7 @@ return (
     >
       {renderMap(state.playerPos)}
     </div>
-    <CommitButton
-      data={commitMessage}
-      onCommit={() => {
-        state.updates = [];
-        State.update();
-      }}
-    >
+    <CommitButton data={commitMessage} onCommit={clearUpdates}>
       Submit
     </CommitButton>
     <Widget
