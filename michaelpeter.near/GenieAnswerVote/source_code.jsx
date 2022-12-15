@@ -29,14 +29,20 @@ return (
         }}
         data={{
           index: {
-            genie: JSON.stringify({
-              key: `vote/${questionRef}/${answeredBy}`,
-              value: {
-                questionRef,
-                answeredBy,
-                dir: 1,
+            genie: JSON.stringify([
+              {
+                key: `vote/${questionRef}/${answeredBy}`,
+                value: {
+                  questionRef,
+                  answeredBy,
+                  dir: 1,
+                },
               },
-            }),
+              {
+                key: `vote/${answeredBy}`,
+                value: 1,
+              },
+            ]),
           },
         }}
       >
