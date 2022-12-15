@@ -4,6 +4,9 @@ if (!props.blockHeight) {
 
 const questionBlockHeight = props.blockHeight;
 let questions = Social.index("poll_question", "question-v3.0.1");
+if (questions) {
+  return "Loading";
+}
 let questionParams = questions.find(
   (q) => q.blockHeight == questionBlockHeight
 );
@@ -16,6 +19,9 @@ function isActive() {
 }
 
 let profile = Social.getr(`${props.accountId}/profile`);
+if (profile) {
+  return "Loading";
+}
 
 return (
   <div className="my-2">
