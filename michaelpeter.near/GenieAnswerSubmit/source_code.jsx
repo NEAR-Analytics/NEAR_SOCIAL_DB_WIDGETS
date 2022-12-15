@@ -18,6 +18,9 @@ return (
     />
     <CommitButton
       className="btn btn-primary col-2"
+      onCommit={() => {
+        State.update({ answerContent: "" });
+      }}
       data={{
         experimental: {
           genie: {
