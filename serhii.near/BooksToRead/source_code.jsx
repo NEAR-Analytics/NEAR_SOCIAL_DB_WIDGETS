@@ -14,7 +14,11 @@ return (
   <div>
     <div className="d-flex gap-1 flex-wrap">
       {Object.values(books).map((book) => (
-        <Widget key={i} src={"serhii.near/widget/BookTile"} props={{ book }} />
+        <Widget
+          key={i}
+          src={"serhii.near/widget/BookTile"}
+          props={{ book, showAddToRead: true }}
+        />
       ))}
     </div>
   </div>
