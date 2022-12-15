@@ -27,12 +27,12 @@ return (
         props={{ accountId: props.accountId }}
       />
 
-      {typeof props.totalInches === "number" ? (
+      {typeof props.height === "number" ? (
         <div
           className="d-flex flex-row align-items-center"
           style={{ gap: "1rem", marginLeft: "auto" }}
         >
-          <h1 className="m-0">{displayHeight(props.totalInches)}</h1>
+          <h1 className="m-0">{displayHeight(props.height)}</h1>
 
           {typeof props.accuracyPercentage === "number" ? (
             <span
