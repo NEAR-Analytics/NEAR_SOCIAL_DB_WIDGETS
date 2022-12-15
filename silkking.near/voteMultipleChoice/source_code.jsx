@@ -182,28 +182,27 @@ return (
               </span>
             )}
           </div>
-
-          {isQuestionOpen ? (
-            hasVoted ? (
-              <p
-                className="text-primary"
-                style={{ textAlign: "center", fontWeight: "500" }}
-              >
-                Voted
-              </p>
-            ) : (
-              <CommitButton
-                className="my-2 btn btn-primary"
-                data={getPublicationParams()}
-              >
-                Vote
-              </CommitButton>
-            )
-          ) : (
-            ""
-          )}
         </div>
       );
     })}
+    {isQuestionOpen ? (
+      hasVoted ? (
+        <p
+          className="text-primary"
+          style={{ textAlign: "center", fontWeight: "500" }}
+        >
+          Voted
+        </p>
+      ) : (
+        <CommitButton
+          className="my-2 btn btn-primary"
+          data={getPublicationParams()}
+        >
+          Vote
+        </CommitButton>
+      )
+    ) : (
+      ""
+    )}
   </>
 );
