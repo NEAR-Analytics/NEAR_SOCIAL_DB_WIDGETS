@@ -8,6 +8,10 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
+if (!questions) {
+  return "Loading";
+}
+console.log(1, questions);
 
 function closeModalClickingOnTransparent() {
   return (e) => {
