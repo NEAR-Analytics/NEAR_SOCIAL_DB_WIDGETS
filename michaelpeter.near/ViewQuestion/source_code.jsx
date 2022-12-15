@@ -4,7 +4,7 @@ State.init({ questionRef, refInput });
 
 if (!state.questionRef) {
   return (
-    <div className="d-flex flex-column gap-3">
+    <div className="d-flex flex-column gap-1">
       <p>No question ref was passed in props, enter one here:</p>
       <input
         type="text"
@@ -25,8 +25,10 @@ if (!state.questionRef) {
   );
 }
 
+const asker = state.questionRef.split("--")[0];
+
 const question = Social.get(
-  `michaelpeter.near/experimental/genie/questions/${state.questionRef}`
+  `${asker}/experimental/genie/questions/${state.questionRef}`
 );
 // return (
 //   <div className="d-flex flex-column gap-3">
@@ -43,7 +45,7 @@ const question = Social.get(
 // );
 
 return (
-  <div className="d-flex flex-column gap-3">
+  <div className="d-flex flex-column gap-1">
     <p>QuestionRef: {state.questionRef}</p>
     <p>Question: {JSON.stringify(question, null, 4)}</p>
   </div>
