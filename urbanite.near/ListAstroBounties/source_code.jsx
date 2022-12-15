@@ -1,7 +1,17 @@
 const term = props.searchTerm ? props.searchTerm + "*" : "*";
 
+State.init({
+  index: 0,
+});
+
+const makeMoreItems = () => {
+  State.update({
+    index: state.index + 19,
+  });
+};
+
 const bounties = fetch(
-  "https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=0",
+  `https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=${state.index}`,
   {
     method: "POST",
     headers: {
@@ -53,33 +63,40 @@ if (bounties.body.hits.total.value == 0) {
 
 return (
   <ol>
-    {bounties
-      ? bounties.body.hits.hits.map((bounty) => {
-          const bountyId = bounty._source.id;
-          return (
-            <li>
-              <div>
-                <h3>
-                  <b>DAO:</b> {bounty._source.daoId}
-                </h3>
-                <p>
-                  <b>Summary:</b> {bounty._source.description}
-                </p>
-                <p>
-                  <b>Amount:</b>{" "}
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={makeMoreItems}
+      hasMore={bounties.body.hits.hits.length !== 0}
+      loader={<div className="loader">Loading ...</div>}
+    >
+      {bounties
+        ? bounties.body.hits.hits.map((bounty) => {
+            const bountyId = bounty._source.id;
+            return (
+              <li>
+                <div>
+                  <h3>
+                    <b>DAO:</b> {bounty._source.daoId}
+                  </h3>
+                  <p>
+                    <b>Summary:</b> {bounty._source.description}
+                  </p>
+                  <p>
+                    <b>Amount:</b>{" "}
+                    <Widget
+                      src="urbanite.near/widget/YoctoNEARConverter"
+                      props={{ amount: bounty._source.amount }}
+                    />
+                  </p>
                   <Widget
-                    src="urbanite.near/widget/YoctoNEARConverter"
-                    props={{ amount: bounty._source.amount }}
+                    src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                    props={{ bountyId }}
                   />
-                </p>
-                <Widget
-                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                  props={{ bountyId }}
-                />
-              </div>
-            </li>
-          );
-        })
-      : ""}
+                </div>
+              </li>
+            );
+          })
+        : ""}
+    </InfiniteScroll>
   </ol>
 );
