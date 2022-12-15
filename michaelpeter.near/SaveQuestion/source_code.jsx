@@ -11,6 +11,7 @@ if (!context.accountId) {
 // return <div>{votes.map((v) => v).join(", ")}</div>;
 
 // const ref = `${context.accountId}/${timestamp}`;
+const questionRef = `${context.accountId}--${Date.now()}`;
 return (
   <div className="d-flex flex-column gap-3">
     Enter your question:
@@ -31,9 +32,15 @@ return (
           experimental: {
             genie: {
               questions: {
-                [`${context.accountId}--${Date.now()}`]: state.questionContent,
+                [questionRef]: state.questionContent,
               },
             },
+          },
+          index: {
+            genie: JSON.stringify({
+              key: "asked",
+              value: questionRef,
+            }),
           },
         }}
       >
