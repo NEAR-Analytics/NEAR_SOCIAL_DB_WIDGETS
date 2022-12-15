@@ -5,49 +5,98 @@ if (!props.isPreview && isNaN(props.blockHeight)) {
   return "Property blockHeight should be a number";
 }
 
-const isPreview = props.isPreview;
-const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.0.1");
-const questionParams = questions.find(
-  (q) => q.blockHeight == questionBlockHeight
-);
-
-const answers = Social.index("poll_question", "answer-v3.0.1");
-const answersToThisQuestion = answers.filter(
-  (a) => a.value.questionBlockHeight == questionBlockHeight
-);
-
-let userVote;
-const currAccountId = context.accountId ?? "";
-function userHasVoted() {
-  return (
-    answersToThisQuestion.find((a) => a.accountId == currAccountId) != undefined
-  );
-}
-let hasVoted = userHasVoted();
-
-const countVotes = answersToThisQuestion.reduce((acc, curr) => {
-  const ans = curr.value.answer;
-  const isValidAnswer =
-    !isNaN(ans) &&
-    Number(ans) >= 0 &&
-    Number(ans) < questionParams.value.choicesOptions.length;
-  if (isValidAnswer) {
-    acc[Number(ans)] += 1;
-    return acc;
-  } else {
-    return acc;
-  }
-}, new Array(questionParams.value.choicesOptions.length).fill(0));
-
 State.init({
   vote: userVote ?? "",
 });
 
+// Utility function
+function getBlockTimestamp(blockHeight) {
+  // It is stored in nanoseconds which is 1e-6 miliseconds
+  return Near.block(blockHeight).header.timestamp / 1e6;
+}
+
+// Discards answers that were posted after question's end date
+function getTimeRelatedValidAnswers(answers) {
+  let low = 0;
+  let high = answers.length - 1;
+  const questionEndTimestamp = questionParams.value.endTimestamp;
+  let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
+  if (endBlockTimestamp < questionEndTimestamp) return answers;
+  // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
+  let tries = 10;
+  while (high - low > 1 && tries > 0) {
+    tries--;
+    let curr = Math.floor((high - low) / 2) + low;
+    let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
+    if (currBlockTimestamp < questionEndTimestamp) {
+      low = curr;
+    } else {
+      high = curr;
+    }
+  }
+  // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
+  return answers.slice(0, high);
+}
+
+function getOptionRelatedValidAnswers(answers) {
+  return answers.filter(
+    (a) =>
+      0 <= Number(a.value.answer) &&
+      Number(a.value.answer) < questionParams.value.choicesOptions.length
+  );
+}
+
+function getValidAnswers() {
+  let validTime = getTimeRelatedValidAnswers(answersToThisQuestion);
+  let validOptionAndTime = getOptionRelatedValidAnswers(validTime);
+  return validOptionAndTime;
+}
+
+const isPreview = props.isPreview;
+
+// Getting question
+const questionBlockHeight = Number(props.blockHeight);
+const questions = Social.index("poll_question", "question-v3.0.1");
+if (!questions) {
+  return "Loading";
+}
+const questionParams = questions.find(
+  (q) => q.blockHeight == questionBlockHeight
+);
+
+// Getting valid answers
+const answers = Social.index("poll_question", "answer-v3.0.1");
+if (!answers) {
+  return "Loading";
+}
+const answersToThisQuestion = answers.filter(
+  (a) => a.value.questionBlockHeight == questionBlockHeight
+);
+const validAnswersToThisQuestion = getValidAnswers(answersToThisQuestion);
+console.log(1, validAnswersToThisQuestion);
+
+let userVote;
+// Getting if user has already voted
+const currAccountId = context.accountId ?? "";
+function userHasVoted() {
+  return (
+    validAnswersToThisQuestion.find((a) => a.accountId == currAccountId) !=
+    undefined
+  );
+}
+let hasVoted = userHasVoted();
 const isQuestionOpen =
   questionParams.value.startTimestamp < Date.now() &&
   Date.now() < questionParams.value.endTimestamp;
-console.log(1, isQuestionOpen);
+const canVote = !hasVoted && isQuestionOpen;
+
+// Counting votes to display
+
+const countVotes = validAnswersToThisQuestion.reduce((acc, curr) => {
+  let ans = curr.value.answer;
+  acc[Number(ans)] += 1;
+  return acc;
+}, new Array(questionParams.value.choicesOptions.length).fill(0));
 
 const getPublicationParams = () => {
   return {
@@ -68,8 +117,11 @@ const getPublicationParams = () => {
 };
 
 function calculatePercentage(votesToThisOption) {
-  if (answersToThisQuestion.length == 0) return 0;
-  return (votesToThisOption / answersToThisQuestion.length) * 100;
+  if (validAnswersToThisQuestion.length == 0) return 0;
+  return (
+    (votesToThisOption / validAnswersToThisQuestion.length) *
+    100
+  ).toFixed(2);
 }
 
 let styles = hasVoted
@@ -99,7 +151,7 @@ return (
                   padding: "0.01em 16px",
                   display: "inline-block",
                   width: `${
-                    hasVoted ? calculatePercentage(countVotes[index]) : 100
+                    !canVote ? calculatePercentage(countVotes[index]) : 100
                   }%`,
                   textAlign: "center",
                   overflow: "visible",
@@ -112,11 +164,11 @@ return (
                       : "lightgray"
                   }`,
                 }}
-                onClick={() => !hasVoted && State.update({ vote: index + "" })}
+                onClick={() => canVote && State.update({ vote: index + "" })}
               >
                 <span style={{ overflow: "visible", fontWeight: "500" }}>
                   {option}
-                  {hasVoted && (
+                  {!canVote && (
                     <span
                       className="text-secondary"
                       style={{ marginLeft: "1rem", fontWeight: "400" }}
@@ -127,7 +179,7 @@ return (
                 </span>
               </div>
             </div>
-            {hasVoted && (
+            {!canVote && (
               <span
                 style={{
                   minWidth: "max-content",
@@ -139,28 +191,27 @@ return (
               </span>
             )}
           </div>
-
-          {isQuestionOpen ? (
-            hasVoted ? (
-              <p
-                className="text-primary"
-                style={{ textAlign: "center", fontWeight: "500" }}
-              >
-                Voted
-              </p>
-            ) : (
-              <CommitButton
-                className="my-2 btn btn-primary"
-                data={getPublicationParams()}
-              >
-                Vote
-              </CommitButton>
-            )
-          ) : (
-            ""
-          )}
         </div>
       );
     })}
+    {isQuestionOpen ? (
+      hasVoted ? (
+        <p
+          className="text-primary"
+          style={{ textAlign: "center", fontWeight: "500" }}
+        >
+          Voted
+        </p>
+      ) : (
+        <CommitButton
+          className="my-2 btn btn-primary"
+          data={getPublicationParams()}
+        >
+          Vote
+        </CommitButton>
+      )
+    ) : (
+      ""
+    )}
   </>
 );
