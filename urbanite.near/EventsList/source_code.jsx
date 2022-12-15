@@ -2,7 +2,7 @@ const accountId = props.accountId ?? context.accountId;
 let blockHeight = props.blockHeight ? parseInt(props.blockHeight) : undefined;
 const profile = Social.getr(`${accountId}/profile`);
 const keyPath = `${accountId}/post`;
-const event = Social.getr(keyPath, blockHeight);
+const event = props.event ? props.event : Social.getr(keyPath, blockHeight);
 
 console.log(event);
 
