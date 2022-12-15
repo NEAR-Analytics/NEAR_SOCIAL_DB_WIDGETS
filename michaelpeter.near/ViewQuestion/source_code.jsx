@@ -32,5 +32,12 @@ return (
   <div className="d-flex flex-column gap-3">
     <p>QuestionRef: {state.questionRef}</p>
     <p>Question: {JSON.stringify(question, null, 4)}</p>
+    <button
+      onClick={() => {
+        State.update({ questionRef: undefined, refInput: "" });
+      }}
+    >
+      Reset
+    </button>
   </div>
 );
