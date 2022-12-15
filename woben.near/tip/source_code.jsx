@@ -5,7 +5,6 @@ if (!context.accountId) {
 }
 
 const tips = Social.index("genie", "tip-michaelpeter.near");
-console.log(tips);
 const tipAmount = tips.reduce((acc, v) => acc + parseInt(v.value), 0);
 console.log(tipAmount);
 
