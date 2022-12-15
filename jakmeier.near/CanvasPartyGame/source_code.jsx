@@ -14,12 +14,13 @@ const Tile = {
 };
 
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
-const mapView = (start_x, start_y, width, height, pixels) => {
+const mapView = (start_x, start_y, width, height) => {
   const map = Array.from(Array(width), () =>
     new Array(height).fill(Tile.Empty)
   );
 
-  pixels.forEach((pixel) => {
+  console.log("props", props);
+  props.session.pixels.forEach((pixel) => {
     // apply view offset
     const x = pixel.x - start_x;
     const y = pixel.y - start_y;
@@ -46,17 +47,15 @@ const mapView = (start_x, start_y, width, height, pixels) => {
   return map;
 };
 
-const stateObject = (pixels, updates) => {
+const stateObject = (updates) => {
   return {
     playerPos: state.playerPos ?? { x: 0, y: 0 },
-    pixels,
     updates,
     currentView: mapView(
       pos.x - VIEW_OFFSET_X,
       pos.y - VIEW_OFFSET_Y,
       MAP_TILES,
-      MAP_TILES,
-      pixels
+      MAP_TILES
     ),
   };
 };
@@ -174,9 +173,8 @@ if (onlineState === null || onlineState === undefined) {
 if (state && onlineState.activePlayer !== context.accountId) {
   state.updates = [];
 }
-const pixels = onlineState.pixels ?? [];
 const updates = state.updates ?? [];
-const newState = stateObject(pixels, updates);
+const newState = stateObject(updates);
 State.init(newState);
 if (JSON.stringify(state) != JSON.stringify(newState)) {
   State.update(newState);
