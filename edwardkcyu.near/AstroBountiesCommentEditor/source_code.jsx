@@ -3,7 +3,7 @@ if (!myAccountId) {
   return "Please sign in with NEAR wallet ";
 }
 
-const bountyId = (props.bountyId || "").replaceAll(".", "");
+const bountyId = props.bountyId;
 if (!bountyId) {
   return "Please provide a bounty id";
 }
@@ -23,16 +23,20 @@ const allComments = accounts.reduce((acc, accountId) => {
     accountData.astrosocial.bounties[bountyId].comments
   );
 
-  const enrichedComment = comments.map((comment) => ({
-    ...comment,
-    accountId: accountId,
-  }));
+  const enrichedComments = comments.map((comment) => {
+    const createdAt = new Date(comment.createdAt);
+
+    return {
+      ...comment,
+      accountId,
+    };
+  });
 
   if (accountId === myAccountId) {
-    myComments = enrichedComment;
+    myComments = enrichedComments;
   }
 
-  return acc.concat(enrichedComment);
+  return acc.concat(enrichedComments);
 }, []);
 allComments.sort((a, b) => {
   if (a.createdAt < b.createdAt) return -1;
@@ -40,29 +44,38 @@ allComments.sort((a, b) => {
   return 0;
 });
 
+const sanitizedBountyId = props.bountyId.replaceAll(".", "");
 return (
   <div>
     <div>
       <a
         class="card-link"
         data-bs-toggle="collapse"
-        href={`#collapseCommentEditorComment-${bountyId}`}
+        href={`#collapseCommentEditorComment-${sanitizedBountyId}`}
         role="button"
         aria-expanded="false"
-        aria-controls={`collapseCommentEditorComment-${bountyId}`}
+        aria-controls={`collapseCommentEditorComment-${sanitizedBountyId}`}
       >
         <i class={commentBtnClass}> </i> Comment ({allComments.length ?? 0})
       </a>
     </div>
 
-    <div class="collapse" id={`collapseCommentEditorComment-${bountyId}`}>
+    <div
+      class="collapse"
+      id={`collapseCommentEditorComment-${sanitizedBountyId}`}
+    >
       <div>
         <ul>
-          {allComments.map((comment) => (
-            <li>
-              <b>{comment.accountId}: </b> {comment.message}
-            </li>
-          ))}
+          {allComments.map((comment) => {
+            const createdAt = new Date(comment.createdAt);
+            const formattedCreatedAt = `${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`;
+            return (
+              <li>
+                {formattedCreatedAt} <b>{comment.accountId}: </b>{" "}
+                {comment.message}
+              </li>
+            );
+          })}
         </ul>
       </div>
 
