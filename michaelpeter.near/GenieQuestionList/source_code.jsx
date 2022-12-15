@@ -6,15 +6,7 @@ if (!questions?.length) {
 
 return (
   <div className="d-flex flex-column gap-1">
-    <div className="d-flex justify-content-end">
-      <button
-        onClick={() => {
-          State.update();
-        }}
-      >
-        Refresh (does not work)
-      </button>
-    </div>
+    <div className="d-flex justify-content-end"></div>
     <div className="d-flex flex-column gap-3">
       {questions.map((q) => (
         <div key={q.value} className="d-flex flex-column gap-1 border p-2">
