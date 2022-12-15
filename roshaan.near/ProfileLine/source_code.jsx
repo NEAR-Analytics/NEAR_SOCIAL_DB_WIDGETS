@@ -2,7 +2,7 @@
 const accountId = props.accountId ?? context.accountId;
 const link = props.link ?? true;
 const profileImageTooltipItems = props.profileImageTooltipItems ?? [];
-
+const showFollowerStats = props.showFollowerStats ?? false;
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const tags = props.showTags && profile.tags && Object.keys(profile.tags);
 const inner = (
@@ -35,7 +35,9 @@ const inner = (
             <span className="text-muted pl-4">@{accountId}</span>
           </span>
         </a>
-
+        {showFollowerStats && (
+          <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
+        )}
         {tags.length > 0 && (
           <div>
             {tags.slice(0, 5).map((tag, i) => (
