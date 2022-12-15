@@ -248,9 +248,9 @@ return (
         buttonDownHandler,
         width: MAP_SIZE,
         margin: "20px 0",
-        dPadWidth: "150px",
-        roundButtonSize: "60px",
-        squareButtonSize: "70px",
+        dPadWidth: "100px",
+        roundButtonSize: "50px",
+        squareButtonSize: "60px",
       }}
     />
   </div>
