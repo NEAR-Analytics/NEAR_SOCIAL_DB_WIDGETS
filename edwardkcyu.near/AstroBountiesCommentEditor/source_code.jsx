@@ -34,8 +34,11 @@ const allComments = accounts.reduce((acc, accountId) => {
 
   return acc.concat(enrichedComment);
 }, []);
-
-console.log({ bountyId, comments, data, allComments, myComments, accounts });
+allComments.sort((a, b) => {
+  if (a.createdAt < b.createdAt) return -1;
+  if (a.createdAt > b.createdAt) return 1;
+  return 0;
+});
 
 return (
   <div>
@@ -81,7 +84,6 @@ return (
                 comments: [
                   ...myComments,
                   {
-                    accountId: myAccountId,
                     message: state.message,
                     createdAt: new Date().getTime(),
                   },
