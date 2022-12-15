@@ -42,6 +42,23 @@ State.init({
 const setActiveTab = (tab_name) => {
   State.update({ activeTab: tab_name });
 };
+const peopleYouMayKnow = () => {
+  return (
+    <>
+      <p>
+        Based on your current connections, you might also want to follow the
+        following accounts.
+      </p>
+    </>
+  );
+};
+const notFound = () => {
+  return (
+    <>
+      <p>no tab found here</p>
+    </>
+  );
+};
 const TabNavigation = () => {
   return (
     <TabNavigationContainer>
@@ -71,7 +88,9 @@ const TabNavigation = () => {
 
 return (
   <>
-    {state.activeTab === "Tab 1" && tab1 && tab1()}
+    {state.activeTab === "Tab 1" && !tab1 && notFound()}
+
+    {state.activeTab === "Tab 1" && tab1 && peopleYouMayKnow()}
     {state.activeTab === "Tab 2" && tab2 && tab2()}
     {state.activeTab === "Tab 3" && tab3 && tab3()}
     <TabNavigationContainer>
