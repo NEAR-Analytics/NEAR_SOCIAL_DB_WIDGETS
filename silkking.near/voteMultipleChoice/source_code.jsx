@@ -172,7 +172,7 @@ return (
                 </span>
               </div>
             </div>
-            {hasVoted && (
+            {(hasVoted || !isQuestionOpen) && (
               <span
                 style={{
                   minWidth: "max-content",
