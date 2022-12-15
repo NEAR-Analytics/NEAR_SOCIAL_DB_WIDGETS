@@ -215,7 +215,7 @@ const commitMessage = {
       otherPlayer: onlineState.otherPlayer,
       activePlayer: secondsLeft > 0 ? onlineState.otherPlayer : "gameover",
       start: onlineState.start,
-      word: online.word,
+      word: onlineState.word,
     },
   },
 };
