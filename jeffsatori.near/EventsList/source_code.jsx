@@ -54,11 +54,8 @@ return (
         <div>
           {event.title && <b>{event.title}</b>}
           {event.description && <p>{event.description}</p>}
-          {event.date && (
-            <p>
-              {event.date} {event.time}
-            </p>
-          )}
+          {event.date && <p>{event.date}</p>}
+          {event.time && <p>{event.time}</p>}
         </div>
         <p className="small text-muted mt-2 mb-0">
           <span>
