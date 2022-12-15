@@ -244,18 +244,37 @@ const switchModeButton = (
       : "Switch to multiselect mode"}
   </button>
 );
-
+const peopleYouMayKnow = () => {
+  return (
+    <>
+      <h1>People You May Know</h1>
+      <p>
+        Based on your current connections, you might also want to follow the
+        following accounts.
+      </p>
+      <div className="mb-3">{switchModeButton}</div>
+      {state.multiSelectMode && <div className="mb-3">{commitButton}</div>}
+      <ul className="list-group">{followingsRows}</ul>
+      <div className="mt-2 mb-3">{commitButton}</div>
+    </>
+  );
+};
+const searchFriends = () => {
+  return (
+    <div className="row mb-3">
+      <Widget src="mob.near/widget/People" />
+    </div>
+  );
+};
 return (
   <>
-    <h1>People You May Know</h1>
-    <p>
-      Based on your current connections, you might also want to follow the
-      following accounts.
-    </p>
-    <div className="mb-3">{switchModeButton}</div>
-    {state.multiSelectMode && <div className="mb-3">{commitButton}</div>}
-    <ul className="list-group">{followingsRows}</ul>
-
-    <div className="mt-2 mb-3">{commitButton}</div>
+    <Widget
+      src="roshaan.near/widget/tabs"
+      props={{
+        tab1: searchFriends,
+        tab2: peopleYouMayKnow,
+        tab3: playGame,
+      }}
+    />
   </>
 );
