@@ -8,10 +8,10 @@ const data = {
     answer: {},
   },
   index: {
-    genie: {
+    genie: JSON.stringify({
       key: "asked",
       value: "michaelpeter.near--32976423897",
-    },
+    }),
   },
 };
 
