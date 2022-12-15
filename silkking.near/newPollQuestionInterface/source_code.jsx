@@ -325,7 +325,7 @@ return (
     }}
   >
     <div className="d-flex flex-column w-75 justify-content-around">
-      <label for="pollTitle">Title</label>
+      <label for="pollTitle">Title*</label>
       <input
         style={{
           backgroundColor: "rgb(230, 230, 230)",
@@ -349,7 +349,7 @@ return (
       )}
 
       <label for="pollDescription" className="mt-2">
-        Description
+        Description*
       </label>
       <textarea
         id="pollDescription"
@@ -404,7 +404,7 @@ return (
       >
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
-            <label for="pollStartDate">Start date</label>
+            <label for="pollStartDate">Start date*</label>
             {/*You have min and max properties on dates input*/}
             <input
               style={getStyles(state.pollStartDate)}
@@ -420,7 +420,7 @@ return (
             )}
           </div>
           <div>
-            <div>Start time</div>
+            <div>Start time*</div>
             <input
               type="time"
               style={getStyles(state.startTime)}
@@ -435,7 +435,7 @@ return (
         </div>
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
-            <label for="pollEndDate">End date</label>
+            <label for="pollEndDate">End date*</label>
             <input
               style={getStyles(state.pollEndDate)}
               type="date"
@@ -450,7 +450,7 @@ return (
             )}
           </div>
           <div>
-            <div>End time</div>
+            <div>End time*</div>
             <input
               type="time"
               style={getStyles(state.endTime)}
@@ -470,7 +470,7 @@ return (
         style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
         className="p-3 my-3"
       >
-        <label for="question">Question</label>
+        <label for="question">Question*</label>
         <input
           style={
             !state.question && state.showErrorsInForm
