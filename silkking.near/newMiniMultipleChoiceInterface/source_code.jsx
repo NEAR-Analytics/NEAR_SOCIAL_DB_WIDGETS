@@ -57,25 +57,35 @@ validAnswersToThisQuestion = getTimeRelatedValidAnswers(
 );
 
 function calculatePercentage(votesToThisOption) {
-  if (validAnswersToThisQuestion.length == 0) return 0;
+  if (validAnswersToThisQuestion.length == 0) return 100;
   return (votesToThisOption / validAnswersToThisQuestion.length) * 100;
 }
 
-const countVotes = validAnswersToThisQuestion.reduce((acc, curr) => {
-  const ans = curr.value.answer;
-  const isValidAnswer =
-    !isNaN(ans) &&
-    Number(ans) >= 0 &&
-    Number(ans) < questionParams.value.choicesOptions.length;
-  if (isValidAnswer) {
-    acc[Number(ans)] += 1;
-    return acc;
-  } else {
-    return acc;
-  }
-}, new Array(questionParams.value.choicesOptions.length).fill(0));
+const currAccId = context.accountId ?? "";
+const userHasVoted = validAnswersToThisQuestion.find(
+  (a) => a.accountId == currAccId
+);
+const isQuestionOpen =
+  questionParams.value.startTimestamp < Date.now() &&
+  Date.now() < questionParams.value.endTimestamp;
+const displayAnswers = userHasVoted || !isQuestionOpen;
 
-console.log(2, countVotes);
+let countVotes = new Array(questionParams.value.choicesOptions.length).fill(0);
+countVotes = !userHasVoted
+  ? countVotes
+  : validAnswersToThisQuestion.reduce((acc, curr) => {
+      const ans = curr.value.answer;
+      const isValidAnswer =
+        !isNaN(ans) &&
+        Number(ans) >= 0 &&
+        Number(ans) < questionParams.value.choicesOptions.length;
+      if (isValidAnswer) {
+        acc[Number(ans)] += 1;
+        return acc;
+      } else {
+        return acc;
+      }
+    }, countVotes);
 
 function displayableOptionName(option) {
   if (option.length > 20) {
@@ -111,7 +121,7 @@ const renderOption = (option, index) => {
               className="text-secondary"
               style={{ marginLeft: "1rem", fontWeight: "400" }}
             >
-              ({countVotes[index]} votes)
+              {displayAnswers && `(${countVotes[index]} votes)`}
             </span>
           </span>
         </div>
@@ -123,7 +133,7 @@ const renderOption = (option, index) => {
           fontWeight: "500",
         }}
       >
-        {calculatePercentage(countVotes[index])}%
+        {displayAnswers && `${calculatePercentage(countVotes[index])}%`}
       </span>
     </div>
   );
