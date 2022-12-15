@@ -1,10 +1,10 @@
 const term = props.searchTerm ? props.searchTerm + "*" : "*";
 
-const makeMoreItems = () => {
-  State.update({
-    index: state.index + 19,
-  });
-};
+// const makeMoreItems = () => {
+//   State.update({
+//     index: state.index + 19,
+//   });
+// };
 
 const bounties = fetch(
   `https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=0`,
@@ -56,7 +56,6 @@ State.init({
 });
 
 console.log(bounties.body.hits);
-console.log(state.bounties);
 if (!bounties) {
   return "Loading...";
 }
@@ -72,7 +71,7 @@ return (
       hasMore={state.hasMore}
       loader={<div className="loader">Loading ...</div>}
     >
-      {state.bounties.map((bounty) => {
+      {bounties.body.hits.hits.map((bounty) => {
         const bountyId = bounty._source.id;
         return (
           <li>
