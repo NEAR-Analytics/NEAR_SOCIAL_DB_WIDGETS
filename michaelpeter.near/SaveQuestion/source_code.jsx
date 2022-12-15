@@ -32,7 +32,7 @@ return (
           experimental: {
             genie: {
               questions: {
-                [`${context.accountId}/${Date.now()}`]: state.questionContent,
+                [`${context.accountId}--${Date.now()}`]: state.questionContent,
               },
             },
           },
