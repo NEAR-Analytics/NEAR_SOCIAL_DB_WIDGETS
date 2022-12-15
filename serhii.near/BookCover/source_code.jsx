@@ -1,5 +1,5 @@
 const className = props.className ?? "profile-image d-inline-block";
-const style = props.style ?? { width: "10em", height: "15em" };
+const style = props.style ?? { width: "10em", height: "15em", margin: "5px" };
 const imageStyle = props.imageStyle ?? { objectFit: "cover" };
 const imageClassName = props.imageClassName ?? "rounded w-100 h-100";
 const thumbnail = props.thumbnail ?? "thumbnail";
