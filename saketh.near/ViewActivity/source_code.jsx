@@ -3,6 +3,17 @@ let event_id = props.event_id;
 
 let data = Social.getr(`${event_creator}/published_events/${event_id}`);
 
+let participants = data.participants || ["zavodil.near"];
+
+const participantWidgets = participants.map((accountId) => {
+  return (
+    <>
+      <Widget src={`zavodil.near/widget/ProfileLine`} props={{ accountId }} />
+      is going!
+    </>
+  );
+});
+
 return (
   <div className="mb-2 card">
     <div className="card-body">
@@ -24,6 +35,9 @@ return (
           Join for <b>{data.cost} NEAR</b>
         </CommitButton>{" "}
         before {data.deadline}
+        <br />
+        <hr></hr>
+        {participantWidgets}
       </span>
     </div>
   </div>
