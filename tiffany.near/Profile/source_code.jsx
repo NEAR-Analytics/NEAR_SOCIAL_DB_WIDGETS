@@ -37,7 +37,10 @@ return (
             </div>
           </div>
         </div>
-        {votes.length}
+        <div className="d-flex flex-row">
+          <i class="bi bi-arrow-up-short"></i>
+          {votes.length}
+        </div>
       </div>{" "}
     </a>
   </div>
