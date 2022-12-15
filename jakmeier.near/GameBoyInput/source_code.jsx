@@ -86,7 +86,7 @@ return (
       width,
       margin,
       display: "grid",
-      gridTemplateColumns: "1fr 2fr 1fr",
+      gridTemplateColumns: "1fr 3fr 1fr",
     }}
   >
     <RoundButton onClick={() => buttonDownHandler(Button.B)}>B</RoundButton>
