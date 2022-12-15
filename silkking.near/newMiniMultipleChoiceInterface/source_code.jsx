@@ -56,8 +56,6 @@ validAnswersToThisQuestion = getTimeRelatedValidAnswers(
   validAnswersToThisQuestion
 );
 
-console.log(1, validAnswersToThisQuestion);
-
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisQuestion.length == 0) return 0;
   return (votesToThisOption / validAnswersToThisQuestion.length) * 100;
@@ -80,8 +78,8 @@ const countVotes = validAnswersToThisQuestion.reduce((acc, curr) => {
 console.log(2, countVotes);
 
 function displayableOptionName(option) {
-  if (option.length > 12) {
-    return option.slice(0, 12) + "...";
+  if (option.length > 20) {
+    return option.slice(0, 20) + "...";
   }
   return option;
 }
