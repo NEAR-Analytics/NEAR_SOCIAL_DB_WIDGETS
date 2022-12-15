@@ -34,24 +34,27 @@ State.init({
   following,
 });
 
+let followingsPerAccount = Object.keys(accounts).reduce(
+  (res, id) => ({
+    ...res,
+    [id]: Object.keys(accounts[id].graph.follow).filter((x) => x !== userId),
+  }),
+  {}
+);
+const myFriends = followingsPerAccount[userId];
+
+const friendsInCommon = (accountId) => {
+  return myFriends.filter((a) => followingsPerAccount[accountId].includes(a));
+};
+
 function getRecommendationsFor(accountId) {
-  let followingsPerAccount = Object.keys(accounts).reduce(
-    (res, id) => ({
-      ...res,
-      [id]: Object.keys(accounts[id].graph.follow).filter((x) => x !== userId),
-    }),
-    {}
-  );
-  const myFriends = followingsPerAccount[accountId];
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
     )
     .map((accountId) => ({
       accountId,
-      commonFollows: myFriends.filter((a) =>
-        followingsPerAccount[accountId].includes(a)
-      ).length,
+      commonFollows: friendsInCommon(accountId).length,
     }))
     .map(({ accountId, commonFollows }) => ({
       accountId,
@@ -117,67 +120,61 @@ function getCommitData() {
   };
   return data;
 }
-let followingsPerAccount = Object.keys(accounts).reduce(
-  (res, id) => ({
-    ...res,
-    [id]: Object.keys(accounts[id].graph.follow).filter((x) => x !== userId),
-  }),
-  {}
-);
 
-const myFriends = followingsPerAccount[userId];
 const rec = getRecommendationsFor(userId);
-console.log(rec);
+
 const followingsRows = rec.map(({ accountId, commonFollows, score }) => (
-  <OverlayTrigger
-    placement="auto"
-    overlay={
-      <Tooltip>
-        {myFriends.filter((a) => followingsPerAccount[accountId].includes(a))}
-      </Tooltip>
-    }
+  <li
+    className={`list-group-item ${
+      state.following[accountId] ? "list-group-item-success" : ""
+    }`}
   >
-    <li
-      className={`list-group-item ${
-        state.following[accountId] ? "list-group-item-success" : ""
-      }`}
-    >
-      <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value={accountId}
-          disabled={accountId == userId}
-          id={`follow-${accountId}`}
-          name={`follow-${accountId}`}
-          onChange={() => handleChange(accountId)}
-          checked={state.following[accountId] ?? false}
-        />
-        <label className="form-check-label" for={`follow-${accountId}`}>
-          <Widget
-            src="zavodil.near/widget/ProfileLine"
-            props={{
-              accountId,
-              link: "",
-            }}
-          />{" "}
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="checkbox"
+        value={accountId}
+        disabled={accountId == userId}
+        id={`follow-${accountId}`}
+        name={`follow-${accountId}`}
+        onChange={() => handleChange(accountId)}
+        checked={state.following[accountId] ?? false}
+      />
+      <label className="form-check-label" for={`follow-${accountId}`}>
+        <Widget
+          src="zavodil.near/widget/ProfileLine"
+          props={{
+            accountId,
+            link: "",
+          }}
+        />{" "}
+        <OverlayTrigger
+          placement="auto"
+          overlay={
+            <Tooltip>
+              {friendsInCommon(accountId).map((friendsInCommon) => {
+                return <li className={`list-group-item`}>{friendsInCommon}</li>;
+              })}
+            </Tooltip>
+          }
+        >
           <span
             className="badge rounded-pill bg-primary"
             title={`${commonFollows} followers in common`}
           >
-            {commonFollows} followers in common
+            {commonFollows} friends in common
           </span>
-          <a
-            className="btn btn-sm btn-outline-secondary border-0"
-            href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
-            target="_blank"
-          >
-            <i className="bi bi-window-plus me-1" title="Open in new tab"></i>
-          </a>
-        </label>
-      </div>
-    </li>
-  </OverlayTrigger>
+        </OverlayTrigger>
+        <a
+          className="btn btn-sm btn-outline-secondary border-0"
+          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+          target="_blank"
+        >
+          <i className="bi bi-window-plus me-1" title="Open in new tab"></i>
+        </a>
+      </label>
+    </div>
+  </li>
 ));
 
 const commitButton = (
