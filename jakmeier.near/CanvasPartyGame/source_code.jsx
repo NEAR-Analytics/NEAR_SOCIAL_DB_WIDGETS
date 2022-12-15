@@ -252,7 +252,7 @@ return (
         squareButtonSize: "60px",
       }}
     />
-    <div style={{ margin: "20px" }}>
+    <div style={{ margin: "20px 0" }}>
       <CommitButton style={{ width: MAP_SIZE }} data={commitMessage}>
         Submit
       </CommitButton>
