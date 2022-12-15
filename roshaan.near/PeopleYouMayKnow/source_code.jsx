@@ -171,7 +171,6 @@ const followingsRows = rec.map(
             src="roshaan.near/widget/ProfileLine"
             props={{
               accountId,
-              link: "",
               showTags: props.showTags,
             }}
           />{" "}
