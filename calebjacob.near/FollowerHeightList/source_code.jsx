@@ -45,37 +45,12 @@ return (
         {followers.map((follower) => {
           return (
             <div className="border-top pt-3">
-              <div
-                className="d-flex flex-column flex-sm-row align-items-md-center"
-                style={{ gap: "1rem" }}
-              >
-                <Widget
-                  src="mob.near/widget/Profile"
-                  props={{ accountId: follower.accountId }}
-                />
-
-                {follower.height ? (
-                  <div
-                    className="d-flex flex-row align-items-center"
-                    style={{ gap: "1rem", marginLeft: "auto" }}
-                  >
-                    <h1 className="m-0">{displayHeight(follower.height)}</h1>
-                    <span
-                      className={`badge ${accuracyPercentageClassName(
-                        follower.accuracyPercentage
-                      )}`}
-                    >
-                      {follower.accuracyPercentage}% Accurate
-                    </span>
-                  </div>
-                ) : (
-                  <div style={{ marginLeft: "auto" }}>
-                    <span className="badge text-bg-secondary">
-                      Height Not Set
-                    </span>
-                  </div>
-                )}
-              </div>
+              <Widget
+                src="calebjacob.near/widget/UserHeightDisplay"
+                props={{
+                  accountId: follower.accountId,
+                }}
+              />
             </div>
           );
         })}
