@@ -10,6 +10,31 @@ if (!accountId) {
 
 State.init({ postbody: null });
 
+// Display microposts already made
+const data = Social.keys(`${accountId}/micropost`, "final", {
+  return_type: "History",
+});
+const processData = (data) => {
+  console.log(data);
+  const accounts = Object.entries(data);
+
+  const allMicroposts = accounts
+    .map((account) => {
+      const accountId = account[0];
+      const blockHeights = account[1].post.meme;
+      return blockHeights.map((blockHeight) => ({
+        accountId,
+        blockHeight,
+      }));
+    })
+    .flat();
+
+  allMicroposts.sort((a, b) => b.blockHeight - a.blockHeight);
+  return allMicroposts;
+};
+
+// Create micropost button
+
 return (
   <div>
     <div className="mb-3">
@@ -38,5 +63,14 @@ return (
         Submit
       </CommitButton>
     </div>
+    <hr />
+    {state.done && <div className="alert alert-success">Success!</div>}
+    <h3>Micropost feed</h3>
+    {
+      <Widget
+        src="mob.near/widget/Meme"
+        props={{ meme: allMicroposts.last ? allMicroposts.last : undefined }}
+      />
+    }
   </div>
 );
