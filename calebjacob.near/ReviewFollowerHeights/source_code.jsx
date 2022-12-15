@@ -1,11 +1,39 @@
 State.init({
   currentFollowerIndex: 0,
+  hasFinishedReviewing: false,
 });
+
+const reviewOptions = [
+  {
+    display: "Definitely Yes",
+    className: "btn-success",
+    value: 1,
+  },
+  {
+    display: "Yes",
+    className: "btn-primary",
+    value: 0.5,
+  },
+  {
+    display: "No",
+    className: "btn-warning",
+    value: -0.5,
+  },
+  {
+    display: "Definitely No",
+    className: "btn-danger",
+    value: -1,
+  },
+];
 
 const followers = [
   {
-    address: "calebjacob.near",
+    accountId: "calebjacob.near",
     height: 69,
+  },
+  {
+    accountId: "lewidenmann.near",
+    height: 72,
   },
 ];
 const currentFollower = followers[state.currentFollowerIndex];
@@ -16,59 +44,61 @@ function displayHeight(height) {
   return `${feet}′${inches}″`;
 }
 
+function submitHeightReview(follower, option) {
+  console.log("Option selected:", follower, option);
+
+  const nextIndex = state.currentFollowerIndex + 1;
+
+  if (nextIndex < followers.length) {
+    State.update({
+      currentFollowerIndex: nextIndex,
+    });
+  } else {
+    State.update({
+      hasFinishedReviewing: true,
+    });
+  }
+}
+
 return (
-  <div class="card p-3">
-    <h5>Review Your Follower&apos;s Heights (1 of 5)</h5>
+  <div class="card">
+    <div className="p-3">
+      <h5>
+        Review Your Follower&apos;s Heights ({state.currentFollowerIndex + 1} of{" "}
+        {followers.length})
+      </h5>
 
-    <hr />
+      <hr />
 
-    <p>Is this user&apos;s height accurate?</p>
+      <h6 className="mb-3">Is this user&apos;s height accurate?</h6>
 
-    <div className="d-flex flex-row mb-3" style={{ gap: "1rem" }}>
-      <Widget
-        src="mob.near/widget/Profile"
-        props={{ accountId: "calebjacob.near" }}
-      />
-      <h1>{displayHeight(currentFollower.height)}</h1>
+      <div className="d-flex flex-row" style={{ gap: "1rem" }}>
+        <Widget
+          src="mob.near/widget/Profile"
+          props={{ accountId: currentFollower.accountId }}
+        />
+        <h1 style={{ borderLeft: "1px solid", paddingLeft: "1rem" }}>
+          {displayHeight(currentFollower.height)}
+        </h1>
+      </div>
     </div>
 
-    <div className="btn-group" style={{ gap: "0.25rem" }}>
-      <button
-        type="button"
-        className="btn btn-success"
-        onClick={() => {
-          submitHeightReview("DEFINITELY_YES");
-        }}
-      >
-        Definitely Yes
-      </button>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() => {
-          submitHeightReview("YES");
-        }}
-      >
-        Yes
-      </button>
-      <button
-        type="button"
-        className="btn btn-warning"
-        onClick={() => {
-          submitHeightReview("NO");
-        }}
-      >
-        No
-      </button>
-      <button
-        type="button"
-        className="btn btn-danger"
-        onClick={() => {
-          submitHeightReview("DEFINITELY_NO");
-        }}
-      >
-        Definitely No
-      </button>
+    <div className="card-footer p-3">
+      <div className="btn-group" style={{ gap: "0.25rem" }}>
+        {reviewOptions.map((option) => {
+          return (
+            <button
+              type="button"
+              className={`btn ${option.className}`}
+              onClick={() => {
+                submitHeightReview(currentFollower, option);
+              }}
+            >
+              {option.display}
+            </button>
+          );
+        })}
+      </div>
     </div>
   </div>
 );
