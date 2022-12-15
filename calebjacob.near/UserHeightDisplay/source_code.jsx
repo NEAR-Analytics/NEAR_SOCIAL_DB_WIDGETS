@@ -66,12 +66,16 @@ return (
               {user.accuracyPercentage}% Accurate
             </span>
           ) : (
-            <span className="badge text-bg-dark">Unverified</span>
+            <span style={{ width: "6.5rem" }} className="badge text-bg-dark">
+              Unverified
+            </span>
           )}
         </div>
       ) : (
         <div style={{ marginLeft: "auto" }}>
-          <span className="badge text-bg-secondary">Height Not Set</span>
+          <span style={{ width: "6.5rem" }} className="badge text-bg-secondary">
+            Height Not Set
+          </span>
         </div>
       )}
     </div>
