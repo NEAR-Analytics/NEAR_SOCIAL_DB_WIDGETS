@@ -1,11 +1,11 @@
 // TODO: get books of your friends
-const items = Social.index("books", "my");
+const items = Social.index("books", "read");
 
-if (!items) {
-  return "Loading";
+console.log(items);
+
+if (!items || items.length === 0) {
+  return "No books yet";
 }
-
-console.log(books);
 
 return (
   <div className="d-flex gap-1 flex-wrap">
