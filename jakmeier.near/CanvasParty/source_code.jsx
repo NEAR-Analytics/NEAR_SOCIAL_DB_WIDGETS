@@ -12,25 +12,21 @@ const playerSession = (accountId) => {
 };
 
 const onlineState = playerSession(context.accountId);
-// no idea how that happened but no time to debug ^.^
-if (typeof onlineState.pixels === "string") {
-  onlineState.pixels = JSON.parse(onlineState.pixels);
-}
 console.log(onlineState);
 
 const main = () => {
   if (onlineState) {
     if (onlineState.otherPlayer !== "") {
+      const otherPlayer = onlineState.otherPlayer;
+      const otherPlayerState = playerSession(otherPlayer);
       if (onlineState.activePlayer === "") {
-        const otherPlayer = onlineState.otherPlayer;
-        const otherPlayerState = playerSession(otherPlayer);
         if (otherPlayerState.otherPlayer === context.accountId) {
-          return playing(onlineState);
+          return playing(onlineState, otherPlayerState);
         } else {
           return waiting(onlineState);
         }
       } else {
-        return playing(onlineState);
+        return playing(onlineState, otherPlayerState);
       }
     } else {
       return noGame();
@@ -170,9 +166,24 @@ const waiting = (onlineState) => {
   }
 };
 
-const playing = (session) => {
+const playing = (mySession, theirSession) => {
+  if (
+    theirSession.activePlayer === context.accountId &&
+    mySession.activePlayer !== context.accountId
+  ) {
+    // they finished their turn, need to update our session
+    mySession.activePlayer = context.accountId;
+    mySession.pixels = theirSession.pixels;
+    // no idea how that happened but no time to debug ^.^
+    if (typeof mySession.pixels === "string") {
+      mySession.pixels = JSON.parse(mySession.pixels);
+    }
+  }
   return (
-    <Widget src="jakmeier.near/widget/CanvasPartyGame" props={{ session }} />
+    <Widget
+      src="jakmeier.near/widget/CanvasPartyGame"
+      props={{ session: mySession }}
+    />
   );
 };
 
