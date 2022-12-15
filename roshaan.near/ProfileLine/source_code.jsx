@@ -28,6 +28,7 @@ const inner = (
               : `#/mob.near/widget/ProfilePage?accountId=${accountId}`
           }
           className="text-truncate"
+          target="_blank"
         >
           <span>
             {profile.name || ""}
