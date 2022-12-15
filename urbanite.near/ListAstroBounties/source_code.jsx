@@ -42,6 +42,15 @@ return (
   <>
     <h2>Astro Bounties | V1</h2>
     <Widget src="edwardkcyu.near/widget/AstroFeedback" />
+    <Widget
+      src="mob.near/widget/ComponentSearch"
+      props={{
+        filterTag: "app",
+        placeholder: "🔍 Search Bounties",
+        limit: 10,
+        onChange: ({ result }) => State.update({ apps: result }),
+      }}
+    />
     <ol>
       {bounties
         ? bounties.body.hits.hits.map((bounty) => {
@@ -62,7 +71,6 @@ return (
                       props={{ amount: bounty._source.amount }}
                     />
                   </p>
-                  <br />
                   <Widget
                     src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
                     props={{ bountyId }}
