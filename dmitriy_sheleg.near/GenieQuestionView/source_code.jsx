@@ -40,18 +40,23 @@ const question = Social.get(
 
 return (
   <div className="d-flex flex-column gap-1">
-    <div className="d-flex align-items-center gap-2">
-      <div
-        style={{
-          backgroundColor: "#000",
-          width: "24px",
-          height: "24px",
-          borderRadius: "50%",
-        }}
-      ></div>
-      <div className="d-flex flex-column">
-        <h6>{asker}</h6>
-        {state.questionRef}
+    <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center gap-2">
+          <div
+            style={{
+              backgroundColor: "#000",
+              width: "24px",
+              height: "24px",
+              borderRadius: "50%",
+            }}
+          ></div>
+          <div className="d-flex flex-column">
+            <h6>{asker}</h6>
+            {state.questionRef}
+          </div>
+        </div>
+        <div>timestamp</div>
       </div>
     </div>
     <h3>{question}</h3>
