@@ -77,7 +77,7 @@ const isQuestionOpen =
 const displayAnswers = userHasVoted || !isQuestionOpen;
 
 let countVotes = new Array(questionParams.value.choicesOptions.length).fill(0);
-countVotes = !userHasVoted
+countVotes = !displayAnswers
   ? countVotes
   : validAnswersToThisQuestion.reduce((acc, curr) => {
       const ans = curr.value.answer;
