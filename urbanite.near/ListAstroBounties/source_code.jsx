@@ -39,47 +39,34 @@ if (bounties.body.hits.hits.length == 0) {
 }
 
 return (
-  <>
-    <h2>Astro Bounties | V1</h2>
-    <Widget src="edwardkcyu.near/widget/AstroFeedback" />
-    <Widget
-      src="urbanite.near/widget/ComponentSearch"
-      props={{
-        filterTag: "app",
-        placeholder: "🔍 Search Bounties",
-        limit: 10,
-        onChange: ({ result }) => State.update({ apps: result }),
-      }}
-    />
-    <ol>
-      {bounties
-        ? bounties.body.hits.hits.map((bounty) => {
-            const bountyId = bounty._source.id;
-            return (
-              <li>
-                <div>
-                  <h3>
-                    <b>DAO:</b> {bounty._source.daoId}
-                  </h3>
-                  <p>
-                    <b>Summary:</b> {bounty._source.description}
-                  </p>
-                  <p>
-                    <b>Amount:</b>{" "}
-                    <Widget
-                      src="urbanite.near/widget/YoctoNEARConverter"
-                      props={{ amount: bounty._source.amount }}
-                    />
-                  </p>
+  <ol>
+    {bounties
+      ? bounties.body.hits.hits.map((bounty) => {
+          const bountyId = bounty._source.id;
+          return (
+            <li>
+              <div>
+                <h3>
+                  <b>DAO:</b> {bounty._source.daoId}
+                </h3>
+                <p>
+                  <b>Summary:</b> {bounty._source.description}
+                </p>
+                <p>
+                  <b>Amount:</b>{" "}
                   <Widget
-                    src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                    props={{ bountyId }}
+                    src="urbanite.near/widget/YoctoNEARConverter"
+                    props={{ amount: bounty._source.amount }}
                   />
-                </div>
-              </li>
-            );
-          })
-        : ""}
-    </ol>
-  </>
+                </p>
+                <Widget
+                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                  props={{ bountyId }}
+                />
+              </div>
+            </li>
+          );
+        })
+      : ""}
+  </ol>
 );
