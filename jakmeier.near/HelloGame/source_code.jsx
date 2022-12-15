@@ -13,22 +13,6 @@ const Tile = {
   Ghost: "👻",
 };
 
-const stateObject = (pixels, updates) => {
-  return {
-    playerPos: state.playerPos ?? { x: 0, y: 0 },
-    pixels,
-    updates,
-    currentView: mapView(
-      pos.x - VIEW_OFFSET_X,
-      pos.y - VIEW_OFFSET_Y,
-      MAP_TILES,
-      MAP_TILES,
-      pixels
-    ),
-    otherPlayer: state.otherPlayer ?? "other.near", // TODO: don't hard code name
-  };
-};
-
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
 const mapView = (start_x, start_y, width, height, pixels) => {
   const map = Array.from(Array(width), () =>
@@ -60,6 +44,25 @@ const mapView = (start_x, start_y, width, height, pixels) => {
   });
 
   return map;
+};
+
+const stateObject = (pixels, updates) => {
+  if (!state) {
+    state = {};
+  }
+  return {
+    playerPos: state.playerPos ?? { x: 0, y: 0 },
+    pixels,
+    updates,
+    currentView: mapView(
+      pos.x - VIEW_OFFSET_X,
+      pos.y - VIEW_OFFSET_Y,
+      MAP_TILES,
+      MAP_TILES,
+      pixels
+    ),
+    otherPlayer: state.otherPlayer ?? "other.near", // TODO: don't hard code name
+  };
 };
 
 // convert 2D array of tiles (stored in state.currentView) into HTML
@@ -197,7 +200,7 @@ if (onlineState === null || onlineState === undefined) {
 }
 
 if (onlineState.length > 0) {
-  if (onlineState[0].value.activePlayer !== context.accountId) {
+  if (state && onlineState[0].value.activePlayer !== context.accountId) {
     state.updates = [];
   }
   const pixels = onlineState[0].value.pixels ?? [];
@@ -225,12 +228,6 @@ const commitMessage = {
   },
 };
 
-const clearUpdates = () => {
-  console.log("clearing update", state.updates);
-  state.updates = [];
-  State.update();
-};
-
 return (
   <div>
     <Widget
@@ -248,9 +245,7 @@ return (
     >
       {renderMap(state.playerPos)}
     </div>
-    <CommitButton data={commitMessage} onCommit={clearUpdates}>
-      Submit
-    </CommitButton>
+    <CommitButton data={commitMessage}>Submit</CommitButton>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
