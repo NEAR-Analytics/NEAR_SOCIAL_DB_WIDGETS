@@ -17,13 +17,17 @@ return (
     </div>
     <div className="d-flex flex-column gap-5">
       {questions.map((q) => (
-        <div key={q.value}>
+        <div key={q.value} className="d-flex flex-column gap-1">
           <Widget
             src={"michaelpeter.near/widget/GenieQuestionView"}
             props={{ questionRef: q.value }}
           />
           <Widget
             src={"michaelpeter.near/widget/GenieAnswerList"}
+            props={{ questionRef: q.value }}
+          />
+          <Widget
+            src={"michaelpeter.near/widget/GenieAnswerSubmit"}
             props={{ questionRef: q.value }}
           />
         </div>
