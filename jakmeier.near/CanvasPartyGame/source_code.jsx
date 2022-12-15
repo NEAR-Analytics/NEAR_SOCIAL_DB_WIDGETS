@@ -122,10 +122,8 @@ const tileInCurrentView = (x, y) => {
 
 const drawPixel = (x, y) => {
   // deleting is not allowed for now
-  if (tileInCurrentView(x, y) === Tiles.Empty) {
+  if (tileInCurrentView(x, y) === Tile.Empty) {
     state.updates.push({ x, y });
-  } else {
-    console.log("trie to draw over", tileInCurrentView(x, y));
   }
 };
 
