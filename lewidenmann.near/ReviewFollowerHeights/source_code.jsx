@@ -23,6 +23,13 @@ const followers = follows
         };
       })
       .filter((f) => f.height)
+      .filter((f) => {
+        const voted = Near.view(contractId, "get_who_voted_for", {
+          account_id: f.accountId,
+        });
+        console.log("who voted for", f.accountId, ":", voted);
+        return voted ? !voted.includes(accountId) : true;
+      })
   : [];
 
 console.log("followers with a height", followers);
