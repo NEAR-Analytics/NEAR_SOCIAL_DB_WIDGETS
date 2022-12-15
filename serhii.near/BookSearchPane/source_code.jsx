@@ -77,7 +77,7 @@ return (
         state.books.map((book) => (
           <Widget
             key={i}
-            src={"chaotictempest.near/widget/BookTile"}
+            src={"serhii.near/widget/BookTile"}
             props={{ book }}
           />
         ))}
