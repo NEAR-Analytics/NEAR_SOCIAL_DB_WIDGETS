@@ -11,7 +11,7 @@ const formIsValid = heightIsSet && inchesAreValid;
 
 function submitHeight() {
   const totalInches = height.feet * 12 + height.inches;
-  alert(`Your height in total inches: ${totalInches}`);
+  console.log(`Your height in total inches: ${totalInches}`);
 }
 
 return (
