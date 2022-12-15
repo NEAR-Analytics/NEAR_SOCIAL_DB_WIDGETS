@@ -118,7 +118,10 @@ const getPublicationParams = () => {
 
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisQuestion.length == 0) return 0;
-  return (votesToThisOption / validAnswersToThisQuestion.length) * 100;
+  return (
+    (votesToThisOption / validAnswersToThisQuestion.length) *
+    100
+  ).toFixed(2);
 }
 
 let styles = hasVoted
