@@ -32,9 +32,9 @@ const bounties = fetch(
   }
 );
 
-const searchTerm = props.bountyTerm;
+const term = props.searchTerm;
 
-console.log("term: " + searchTerm);
+console.log("term: " + term);
 
 console.log(bounties.body.hits);
 
