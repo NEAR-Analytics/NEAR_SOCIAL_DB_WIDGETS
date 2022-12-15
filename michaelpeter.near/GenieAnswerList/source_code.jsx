@@ -17,7 +17,7 @@ return (
         />
       ))
     ) : (
-      <p>No answers</p>
+      <div className="alert alert-light">No answers, be the first!</div>
     )}
   </div>
 );
