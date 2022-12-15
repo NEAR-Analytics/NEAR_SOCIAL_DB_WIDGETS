@@ -1,7 +1,7 @@
 const data = {
   genie: {
     questions: {
-      "michaelpeter.near/32976423897": {
+      "michaelpeter.near--32976423897": {
         content: "What is a blockchain?",
       },
     },
@@ -9,7 +9,7 @@ const data = {
   },
   index: {
     genie: {
-      asked: "michaelpeter.near/32976423897",
+      asked: "michaelpeter.near--32976423897",
     },
   },
 };
