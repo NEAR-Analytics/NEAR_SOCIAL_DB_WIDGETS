@@ -4,6 +4,9 @@ if (!context.accountId) {
   return <p>Loading...</p>;
 }
 
+const tips = Social.index("genie", "tip");
+const receiverTip = tips.reduce((acc, v) => acc + parseInt(v.tipAmount), 0);
+
 const onSubmitClick = () => {
   const gas = 300 * 100000000000;
   const deposit = parseInt(state.tipAmount) + "000000000000000000000000";
@@ -35,16 +38,25 @@ return (
         onChange={(e) => State.update({ tipAmount: e.target.value })}
       />
     </p>
-    <button
+    <CommitButton
       disabled={
         context.loading ||
         !(state.receiverID && state.tipAmount) ||
         !parseInt(state.tipAmount)
       }
+      data={{
+        index: {
+          genie: JSON.stringify({
+            key: "tip",
+            value: state.tipAmount,
+          }),
+        },
+      }}
       className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
       onClick={onSubmitClick}
     >
       Submit
-    </button>
+    </CommitButton>
+    <div> total tip: {receiverTip} </div>
   </div>
 );
