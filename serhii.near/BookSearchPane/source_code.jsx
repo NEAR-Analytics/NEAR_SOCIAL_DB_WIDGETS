@@ -64,6 +64,7 @@ const onAddBook = (book_id) => {
 return (
   <div>
     <input
+      style={{ margin: ".10rem" }}
       type="text"
       className="form-control"
       value={state.text ?? ""}
