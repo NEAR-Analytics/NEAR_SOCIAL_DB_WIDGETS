@@ -75,6 +75,10 @@ function userHasVoted() {
   );
 }
 let hasVoted = userHasVoted();
+const isQuestionOpen =
+  questionParams.value.startTimestamp < Date.now() &&
+  Date.now() < questionParams.value.endTimestamp;
+const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
 
@@ -87,10 +91,6 @@ const countVotes = validAnswersToThisQuestion.reduce((acc, curr) => {
 State.init({
   vote: userVote ?? "",
 });
-
-const isQuestionOpen =
-  questionParams.value.startTimestamp < Date.now() &&
-  Date.now() < questionParams.value.endTimestamp;
 
 const getPublicationParams = () => {
   return {
@@ -142,9 +142,7 @@ return (
                   padding: "0.01em 16px",
                   display: "inline-block",
                   width: `${
-                    hasVoted || !isQuestionOpen
-                      ? calculatePercentage(countVotes[index])
-                      : 100
+                    !canVote ? calculatePercentage(countVotes[index]) : 100
                   }%`,
                   textAlign: "center",
                   overflow: "visible",
@@ -157,15 +155,11 @@ return (
                       : "lightgray"
                   }`,
                 }}
-                onClick={() =>
-                  !hasVoted &&
-                  isQuestionOpen &&
-                  State.update({ vote: index + "" })
-                }
+                onClick={() => canVote && State.update({ vote: index + "" })}
               >
                 <span style={{ overflow: "visible", fontWeight: "500" }}>
                   {option}
-                  {(hasVoted || !isQuestionOpen) && (
+                  {!canVote && (
                     <span
                       className="text-secondary"
                       style={{ marginLeft: "1rem", fontWeight: "400" }}
@@ -176,7 +170,7 @@ return (
                 </span>
               </div>
             </div>
-            {(hasVoted || !isQuestionOpen) && (
+            {!canVote && (
               <span
                 style={{
                   minWidth: "max-content",
