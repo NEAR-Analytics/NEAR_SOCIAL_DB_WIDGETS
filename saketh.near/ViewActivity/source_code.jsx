@@ -1,1 +1,5 @@
-return <div>Hello World</div>;
+return (
+  <>
+    {props.event_creator} {props.event_name}
+  </>
+);
