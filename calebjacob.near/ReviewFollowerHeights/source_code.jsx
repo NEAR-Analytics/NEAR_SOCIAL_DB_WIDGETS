@@ -46,7 +46,14 @@ function displayHeight(height) {
 
 function submitHeightReview(follower, option) {
   console.log("Option selected:", follower, option);
+  nextFollower();
+}
 
+function skipHeightReview() {
+  nextFollower();
+}
+
+function nextFollower() {
   const nextIndex = state.currentFollowerIndex + 1;
 
   if (nextIndex < followers.length) {
@@ -96,21 +103,40 @@ return (
           </div>
         </div>
 
-        <div className="card-footer p-3">
-          <div className="btn-group" style={{ gap: "0.25rem" }}>
-            {reviewOptions.map((option) => {
-              return (
-                <button
-                  type="button"
-                  className={`btn ${option.className}`}
-                  onClick={() => {
-                    submitHeightReview(currentFollower, option);
-                  }}
-                >
-                  {option.display}
-                </button>
-              );
-            })}
+        <div
+          className="card-footer p-3"
+          style={{ gap: "1rem", display: "block" }}
+        >
+          <div
+            className="d-flex flex-column flex-md-row align-items-start"
+            style={{ gap: "1rem" }}
+          >
+            <div
+              className="btn-group"
+              style={{ gap: "0.25rem", marginRight: "auto" }}
+            >
+              {reviewOptions.map((option) => {
+                return (
+                  <button
+                    type="button"
+                    className={`btn ${option.className}`}
+                    onClick={() => {
+                      submitHeightReview(currentFollower, option);
+                    }}
+                  >
+                    {option.display}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={skipHeightReview}
+            >
+              Skip
+            </button>
           </div>
         </div>
       </div>
