@@ -5,14 +5,25 @@ if (!questions?.length) {
 }
 
 return (
-  <div className="d-flex flex-column gap-5">
-    {questions.map((q) => (
-      <div key={q.value}>
-        <Widget
-          src={"michaelpeter.near/widget/ViewQuestion"}
-          props={{ questionRef: q.value }}
-        />
-      </div>
-    ))}
+  <div className="d-flex flex-column gap-1">
+    <div className="d-flex justify-content-end">
+      <button
+        onClick={() => {
+          State.update();
+        }}
+      >
+        Refresh
+      </button>
+    </div>
+    <div className="d-flex flex-column gap-5">
+      {questions.map((q) => (
+        <div key={q.value}>
+          <Widget
+            src={"michaelpeter.near/widget/ViewQuestion"}
+            props={{ questionRef: q.value }}
+          />
+        </div>
+      ))}
+    </div>
   </div>
 );
