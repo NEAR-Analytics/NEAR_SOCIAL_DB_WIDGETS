@@ -10,17 +10,17 @@ if (!data) {
 const events = {};
 
 Object.keys(data).forEach((event_creator) => {
-  Object.keys(data[event_creator][appName]).forEach((event_id) => {
-    events[event_id] = event_creator;
+  Object.keys(data[event_creator][appName]).forEach((event_name) => {
+    events[event_name] = event_creator;
   });
 });
 
-const allWidgets = Object.keys(events).map((event_id) => {
-  let event_creator = events[event_id];
+const allWidgets = Object.keys(events).map((event_name) => {
+  const event_creator = events[event_name];
   return (
     <Widget
       src={`${ownerId}/widget/ViewActivity`}
-      props={{ event_creator, event_id }}
+      props={{ event_creator, event_name }}
     />
   );
 });
