@@ -13,7 +13,7 @@ return (
       answers.map((a) => (
         <Widget
           src="michaelpeter.near/widget/GenieAnswerView"
-          props={{ questionRef: a.value, answeredBy: a.accountId }}
+          props={{ questionRef, answeredBy: a.accountId }}
         />
       ))
     ) : (
