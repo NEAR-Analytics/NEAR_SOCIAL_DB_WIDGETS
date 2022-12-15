@@ -139,7 +139,7 @@ const drawPixel = (x, y) => {
     state.updates[0].x == x &&
     state.updates[0].y == y
   ) {
-    state.update = [];
+    state.updates = [];
   }
 };
 
