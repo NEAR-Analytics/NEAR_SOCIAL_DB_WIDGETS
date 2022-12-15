@@ -21,22 +21,6 @@ function setOptInInfoOnProps() {
   props[optInInfo] = { ...state };
 }
 
-function resetInputFields() {
-  State.update({
-    accountId,
-    birthday: "",
-    astrological_sign: "",
-    age: "",
-    gender: "",
-    profession: "",
-    income: "",
-    preferred_wallet: "",
-    preffered_nft_marketplace: "",
-    preffered_crypto: "",
-    saveState: "started",
-  });
-}
-
 return (
   <div id="optInDataForm">
     {options.birthday.label ?? "Birthday"}
@@ -131,6 +115,6 @@ return (
     >
       Save Opt-In Info
     </CommitButton>
-    <button onClick="resetInputFields">Reset Form</button>
+    <button>Reset Form</button>
   </div>
 );
