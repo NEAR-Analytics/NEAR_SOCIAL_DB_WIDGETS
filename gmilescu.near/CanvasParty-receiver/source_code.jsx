@@ -23,6 +23,10 @@ if (notifications.length === 0) {
 
 Storage.set("lastBlockHeight", notifications[0].blockHeight);
 
+setTimeout(() => {
+  console.log("this is the first message");
+}, 5000);
+
 return (
   <>
     {notifications.map(({ accountId, blockHeight, value }, i) => (
