@@ -17,7 +17,7 @@ return (
     <input
       type="text"
       className="form-control"
-      value={state.accountId}
+      value={state.questionContent}
       onChange={(e) => {
         State.update({ questionContent: e.target.value });
       }}
