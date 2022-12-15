@@ -65,6 +65,16 @@ const onAddBook = (book_id) => {
   console.log(`ADDING BOOK ${book_id}`);
 };
 
+const BookRows = styled.p`{
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "left",
+  justifyContent: "space-between",
+  width: "100%",
+  height: "100%",
+  padding: "1rem",
+}`;
+
 return (
   <div>
     <input
@@ -80,7 +90,7 @@ return (
       placeholder={props.placeholder ?? `🔍 Search Books`}
     />
 
-    <div className="d-flex gap-1 flex-wrap">
+    <BookRows>
       {state.showBooks &&
         state.books &&
         state.books.map((book) => (
@@ -90,6 +100,6 @@ return (
             props={{ book, showAddToRead: true, showAddToWantToRead: true }}
           />
         ))}
-    </div>
+    </BookRows>
   </div>
 );
