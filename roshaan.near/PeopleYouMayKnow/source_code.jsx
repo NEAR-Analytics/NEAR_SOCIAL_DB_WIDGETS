@@ -5,6 +5,7 @@ const accounts = Social.keys(`*/graph/follow/*`, "final", {
 const all_account_tags = Social.getr(`*/profile/tags`, "final");
 const userId = context.accountId;
 const ownerId = context.ownerId;
+const showFollowerStats = props.showFollowerStats ?? true;
 if (!userId) {
   return "Please sign in with NEAR wallet to follow other accounts";
 }
@@ -172,12 +173,16 @@ const followingsRows = rec.map(
             props={{
               accountId,
               showTags: props.showTags,
+              showFollowerStats: true,
             }}
           />{" "}
           <OverlayTrigger
             placement="auto"
             overlay={
               <Tooltip>
+                <span> You both follow </span>
+                <br />
+                <br />
                 {friendsInCommon(accountId).map((friendsInCommon) => {
                   return (
                     <li className={`list-group-item`}>{friendsInCommon}</li>
