@@ -8,10 +8,8 @@ if (!bountyId) {
   return "Please provide a bounty id";
 }
 
-const data = Social.keys(
-  `*/astrosocial/bounties/${bountyId}/participated`,
-  "final"
-);
+const data =
+  Social.keys(`*/astrosocial/bounties/${bountyId}/participated`, "final") || {};
 
 const allParticipants = Object.keys(data);
 
