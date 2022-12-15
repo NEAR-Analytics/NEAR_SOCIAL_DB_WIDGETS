@@ -13,7 +13,7 @@ return (
   <div className="py-1 px-1">
     <div className="mx-auto">
       <Widget
-        src="mob.near/widget/ProfileLarge"
+        src="lewidenmann.near/widget/ProfileLarge"
         props={{
           accountId,
           profile,
@@ -23,7 +23,10 @@ return (
       />
 
       <div className="mt-3">
-        <Widget src="lewidenmann.near/widget/deer" />
+        <Widget
+          src="mob.near/widget/ProfileTabs"
+          props={{ accountId, profile }}
+        />
       </div>
     </div>
   </div>
