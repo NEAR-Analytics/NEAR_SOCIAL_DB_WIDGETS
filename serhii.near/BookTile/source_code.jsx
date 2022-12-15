@@ -5,7 +5,6 @@ const author = book.author ?? "No author";
 const cover = book.cover ?? "";
 const id = book.id ?? 0;
 
-const addName = book.addName ?? "Add Book";
 var onAdd = book.onAdd;
 if (props.debug) {
   onAdd = (book) => {
@@ -45,6 +44,6 @@ return (
       </div>
     </a>
 
-    {onAdd && <CommitButton data={data}>{addName}</CommitButton>}
+    {onAdd && <CommitButton data={data}>Add to Read</CommitButton>}
   </div>
 );
