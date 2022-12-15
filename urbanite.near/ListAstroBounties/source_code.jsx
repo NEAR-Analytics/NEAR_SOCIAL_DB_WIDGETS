@@ -44,9 +44,11 @@ const bounties = fetch(
 );
 
 console.log(bounties.body.hits);
-
-if (bounties.body.hits.total.value == 0) {
+if (!bounties) {
   return "Loading...";
+}
+if (bounties.body.hits.total.value == 0) {
+  return "No search results";
 }
 
 return (
