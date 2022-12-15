@@ -10,6 +10,9 @@ let selectorStyles = [
     color: "black",
   },
   {
+    borderTop: "1px solid rgba(0, 0, 0, 0.22)",
+    borderRight: "1px solid rgba(0, 0, 0, 0.22)",
+    borderLeft: "1px solid rgba(0, 0, 0, 0.22)",
     color: "#1a73e8",
     cursor: "pointer",
     fontWeight: "500",
