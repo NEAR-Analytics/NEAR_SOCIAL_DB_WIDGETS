@@ -5,12 +5,8 @@ const author = book.author ?? "No author";
 const cover = book.cover ?? "";
 const id = book.id ?? 0;
 
-var onAdd = book.onAdd;
-if (props.debug) {
-  onAdd = (book) => {
-    console.log(`onAdd not set: trying to add book with title=${title}`);
-  };
-}
+const showAddToRead = props.showAddToRead ?? false;
+const showAddToWantToRead = props.showAddToWantToRead ?? false;
 
 // TODO: why do we need index here?
 const data = {
@@ -44,6 +40,9 @@ return (
       </div>
     </a>
 
-    {onAdd && <CommitButton data={data}>Add to Read</CommitButton>}
+    {showAddToRead && <CommitButton data={data}>Add to Read</CommitButton>}
+    {showAddToWantToRead && (
+      <CommitButton data={data}>Want To Read</CommitButton>
+    )}
   </div>
 );
