@@ -11,6 +11,7 @@ if (!accountId) {
 const notifications = Social.index("notify", accountId, {
   order: "desc",
   limit: 100,
+  subscribe: true,
 });
 
 if (notifications === null) {
