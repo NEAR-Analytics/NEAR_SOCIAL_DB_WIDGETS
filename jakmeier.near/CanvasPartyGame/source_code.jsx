@@ -121,7 +121,10 @@ const tileInCurrentView = (x, y) => {
 };
 
 const drawPixel = (x, y) => {
-  state.updates.push({ x, y });
+  // deleting is not allowed for now
+  if (tileInCurrentView(x, y) === Tiles.Empty) {
+    state.updates.push({ x, y });
+  }
 };
 
 const keyDownHandler = (e) => {
