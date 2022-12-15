@@ -81,7 +81,7 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let questionParams = questions.find(q => q.blockHeight == questionBlockHeight)
 
   const answers = Social.index("poll_question", "answer-v3.0.1");
-  if (answers) {
+  if (!answers) {
     return "Loading";
   }
   const answersFromThisQuestion = answers.filter(
