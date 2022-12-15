@@ -66,7 +66,7 @@ return (
               {user.accuracyPercentage}% Accurate
             </span>
           ) : (
-            <span className="badge text-bg-secondary">Unverified</span>
+            <span className="badge text-bg-dark">Unverified</span>
           )}
         </div>
       ) : (
