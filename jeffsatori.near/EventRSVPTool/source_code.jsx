@@ -1,22 +1,22 @@
-const rsvp = Social.index("Attending", "rsvp-click");
+const Rsvp = Social.index("Attending", "rsvp-click");
 const counter = {};
-const uniquersvp = {};
+const uniqueRsvp = {};
 
-if (rsvp) {
-  rsvp.reverse().forEach(({ accountId, value }) => {
+if (Rsvp) {
+  Rsvp.reverse().forEach(({ accountId, value }) => {
     const key = JSON.stringify({ accountId, value });
-    if (key in uniquersvp) {
+    if (key in uniqueRsvp) {
       return;
     }
     counter[accountId] = (counter[accountId] || 0) + 1;
-    uniquersvp[key] = true;
+    uniqueRsvp[key] = true;
   });
 }
 
 const top = Object.entries(counter);
 top.sort((a, b) => b[1] - a[1]);
 
-function renderrsvp(accountIds) {
+function renderRsvp(accountIds) {
   return (
     <div className="d-flex flex-wrap gap-3">
       {accountIds &&
@@ -61,7 +61,7 @@ return (
         className="btn btn-lg btn-success"
         data={{
           index: {
-            rsvp: JSON.stringify(
+            Rsvp: JSON.stringify(
               {
                 key: "rsvp-click",
                 value: Date.now(),
@@ -77,11 +77,11 @@ return (
     </div>
     <div className="mb-4">
       <h4>First 10 to mark attending</h4>
-      <div>{renderrsvp(top.slice(0, 10).map((a) => a[0]))}</div>
+      <div>{renderRsvp(top.slice(0, 10).map((a) => a[0]))}</div>
     </div>
     <div className="mb-4">
       <h4>Most recent 10 to mark attending </h4>
-      <div>{rsvp && renderrsvp(rsvp.slice(0, 10).map((a) => a.accountId))}</div>
+      <div>{Rsvp && renderRsvp(Rsvp.slice(0, 10).map((a) => a.accountId))}</div>
     </div>
   </div>
 );
