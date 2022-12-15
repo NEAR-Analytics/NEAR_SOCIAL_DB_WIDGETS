@@ -49,7 +49,7 @@ const fetchAstroBounties = () => {
       }),
     }
   );
-
+  console.log("called");
   console.log(bounties);
 
   const nextIndex = state.index + 19;
@@ -58,7 +58,7 @@ const fetchAstroBounties = () => {
   State.update({
     bounties: bounties.body.hits,
     index: nextIndex,
-    hasMore: hasMore,
+    hasMore: false,
   });
 };
 
