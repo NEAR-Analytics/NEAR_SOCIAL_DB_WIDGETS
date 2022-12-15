@@ -1,7 +1,6 @@
 const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
-let optInInfo = {};
 
 State.init({
   accountId,
@@ -22,7 +21,8 @@ function setOptInInfoOnProps() {
 }
 
 function setFormStatusOnProps() {
-  props[finishedOptInInfoForm] = "completed";
+  props[optInInfoFormStatus] = "completed";
+  accountId[optInInfoFormStatus] = "completed";
 }
 
 return (
@@ -113,7 +113,7 @@ return (
     />
     <p></p>
     <CommitButton
-      data={{ OptInInfoFormStatus: state.saveState }}
+      data={{ optInInfoFormStatus: state.saveState }}
       onClick="setOptInInfoOnProps"
       onCommit="setFormStatusOnProps"
     >
