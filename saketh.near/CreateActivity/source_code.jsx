@@ -5,6 +5,7 @@ if (!accountId) {
 }
 
 State.init({
+  creator: accountId,
   name: "",
   description: "",
   cost: null,
@@ -83,21 +84,16 @@ return (
       <CommitButton
         data={{
           post: {
-            title: state.title,
+            creator: state.creator,
+            name: state.name,
             description: state.description,
-            date: state.date,
-            time: state.time,
+            cost: state.cost,
+            participants_lo: state.participants_lo,
+            participants_hi: state.participants_hi,
+            deadline: state.deadline,
           },
         }}
-        onCommit={() => {
-          State.update({
-            title: "",
-            description: "",
-            date: "",
-            time: "",
-            done: true,
-          });
-        }}
+        onCommit={() => {}}
       >
         Create
       </CommitButton>
