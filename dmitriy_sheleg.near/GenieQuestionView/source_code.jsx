@@ -42,7 +42,7 @@ return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex align-items-center">
       <div
-        className="pr-2"
+        className="pr-4"
         style={{
           backgroundColor: "#000",
           width: "24px",
