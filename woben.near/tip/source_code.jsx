@@ -4,9 +4,9 @@ if (!context.accountId) {
   return <p>Loading...</p>;
 }
 
-// const tips = Social.index("genie", `tip-${state.receiverID}`);
-// const tipAmount = tips.reduce((acc, v) => acc + parseInt(v), 0);
-// console.log(tipAmount);
+const tips = Social.index("genie", `tip-michaelpeter.near`);
+const tipAmount = tips.reduce((acc, v) => acc + parseInt(v), 0);
+console.log(tipAmount);
 
 const onSubmitClick = () => {
   const gas = 300 * 100000000000;
