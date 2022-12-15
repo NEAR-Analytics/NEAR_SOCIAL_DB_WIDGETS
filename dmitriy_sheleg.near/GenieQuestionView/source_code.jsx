@@ -40,9 +40,15 @@ const question = Social.get(
 
 return (
   <div className="d-flex flex-column gap-1">
+    <div className="d-flex align-items-center">
+      <div>
+        <small>avatar</small>
+      </div>
+      <div className="d-flex flex-column">
+        <h4>{asker}</h4>
+        {state.questionRef}
+      </div>
+    </div>
     <h3>{question}</h3>
-    <p>
-      Asked by: {asker} | Ref: {state.questionRef}
-    </p>
   </div>
 );
