@@ -22,7 +22,7 @@ return (
         className="btn btn-outline-dark col-8"
         style={{
           borderRadius: 0,
-          borderRight: "1px solid black",
+          borderRight: "2px solid black",
           borderLeft: "0",
           borderTop: "0",
           borderBottom: "0",
