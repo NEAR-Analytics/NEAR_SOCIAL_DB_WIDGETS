@@ -28,6 +28,20 @@ const mapView = (start_x, start_y, width, height, pixels) => {
     }
   });
 
+  const updates = state.updates ?? [];
+  updates.forEach((pixel) => {
+    // apply view offset
+    const x = pixel.x - start_x;
+    const y = pixel.y - start_y;
+    if (map[x]) {
+      if (map[x][y] === Tile.Full) {
+        map[x][y] = Tile.Empty;
+      } else {
+        map[x][y] = Tile.Full;
+      }
+    }
+  });
+
   return map;
 };
 
@@ -92,7 +106,7 @@ const tileInCurrentView = (x, y) => {
 };
 
 const drawPixel = (x, y) => {
-  state.pixels.push({ x, y });
+  state.updates.push({ x, y });
 };
 
 const keyDownHandler = (e) => {
@@ -128,6 +142,8 @@ const buttonDownHandler = (button) => {
     movePlayer(state.playerPos.x, state.playerPos.y + 1);
   } else if (button == "b") {
     setPlayerPos(0, 0);
+  } else if (button == "a") {
+    drawPixel(state.playerPos.x, state.playerPos.y);
   } else {
     console.log(e);
   }
@@ -165,9 +181,11 @@ if (onlineState === null || onlineState === undefined) {
 
 if (onlineState.length > 0) {
   const pixels = onlineState[0].value ?? [];
+  const updates = state.updates ?? [];
   const newState = {
     playerPos: state.playerPos ?? { x: 0, y: 0 },
     pixels,
+    updates,
     currentView: mapView(
       pos.x - VIEW_OFFSET_X,
       pos.y - VIEW_OFFSET_Y,
@@ -181,10 +199,12 @@ if (onlineState.length > 0) {
     State.update(newState);
   }
 } else {
-  const pixels = [];
+  const pixels = state.pixels ?? [];
+  const updates = state.updates ?? [];
   State.init({
     playerPos: { x: 0, y: 0 },
     pixels,
+    updates,
     currentView: mapView(
       -VIEW_OFFSET_X,
       -VIEW_OFFSET_Y,
@@ -199,7 +219,7 @@ const commitMessage = {
   index: {
     helloGame: JSON.stringify({
       key: "pixels",
-      value: state.pixels,
+      value: state.pixels.concat(state.updates),
     }),
   },
 };
@@ -221,7 +241,15 @@ return (
     >
       {renderMap(state.playerPos)}
     </div>
-    <CommitButton data={commitMessage}>Submit</CommitButton>
+    <CommitButton
+      data={commitMessage}
+      onCommit={() => {
+        state.updates = [];
+        State.update();
+      }}
+    >
+      Submit
+    </CommitButton>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
