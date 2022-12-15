@@ -142,7 +142,7 @@ return (
         </div>
       </div>
 
-      <div>
+      <div className="mt-2">
         <Widget
           src="lewidenmann.near/widget/UserHeightDisplay"
           props={{ accountId, compact: true }}
