@@ -144,29 +144,27 @@ const startGameScreen = (otherPlayer, activePlayer) => {
 };
 
 const waiting = (onlineState) => {
-  if (onlineState.activePlayer === "") {
-    return (
-      <div>
-        <h2>You are alone :(</h2>
-        <p>Waiting for {onlineState.otherPlayer} to join.</p>
-        <p>They have to type in {context.accountId} and click play.</p>
-        <CommitButton
-          data={{
-            canvasParty: {
-              session: {
-                pixels: [],
-                otherPlayer: "",
-                activePlayer: "",
-                start: null,
-              },
+  return (
+    <div>
+      <h2>You are alone :(</h2>
+      <p>Waiting for {onlineState.otherPlayer} to join.</p>
+      <p>They have to type in {context.accountId} and click play.</p>
+      <CommitButton
+        data={{
+          canvasParty: {
+            session: {
+              pixels: [],
+              otherPlayer: "",
+              activePlayer: "",
+              start: null,
             },
-          }}
-        >
-          Cancel Party
-        </CommitButton>
-      </div>
-    );
-  }
+          },
+        }}
+      >
+        Cancel Party
+      </CommitButton>
+    </div>
+  );
 };
 
 const playing = (mySession, theirSession) => {
@@ -188,10 +186,25 @@ const playing = (mySession, theirSession) => {
     mySession.start = theirSession.start;
   }
   return (
-    <Widget
-      src="jakmeier.near/widget/CanvasPartyGame"
-      props={{ session: mySession }}
-    />
+    <div>
+      <Widget
+        src="jakmeier.near/widget/CanvasPartyGame"
+        props={{ session: mySession }}
+      />
+      <CommitButton
+        data={{
+          canvasParty: {
+            session: {
+              otherPlayer: "",
+              activePlayer: "",
+              start: null,
+            },
+          },
+        }}
+      >
+        Exit Party
+      </CommitButton>
+    </div>
   );
 };
 
