@@ -1,6 +1,6 @@
 const { questionRef, answeredBy } = props;
 
-const votes = Social.index("genie", "vote");
+const votes = Social.index("genie", `vote/${questionRef}/${answeredBy}`) || [];
 const upvotes = votes.filter((v) => v.value.value === 1).length;
 const downvotes = votes.filter((v) => v.value.value === -1).length;
 
