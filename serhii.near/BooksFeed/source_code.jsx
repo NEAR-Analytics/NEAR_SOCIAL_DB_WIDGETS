@@ -1,4 +1,4 @@
-// TODO: change to books of your frieds
+// TODO: get books of your friends
 const items = Social.index("books", "my");
 
 if (!items) {
