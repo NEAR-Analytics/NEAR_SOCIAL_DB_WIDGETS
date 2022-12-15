@@ -76,12 +76,8 @@ return (
       </CommitButton>
     </div>
     <div className="mb-4">
-      <h4>First 10 to mark attending</h4>
-      <div>{renderRsvp(top.slice(0, 10).map((a) => a[0]))}</div>
-    </div>
-    <div className="mb-4">
-      <h4>Most recent 10 to mark attending </h4>
-      <div>{Rsvp && renderRsvp(Rsvp.slice(0, 10).map((a) => a.accountId))}</div>
+      <h4>Everyone planning to attend:</h4>
+      <div>{renderRsvp(top.map((a) => a[0]))}</div>
     </div>
   </div>
 );
