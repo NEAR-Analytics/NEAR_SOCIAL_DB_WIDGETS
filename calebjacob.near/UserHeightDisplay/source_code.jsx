@@ -7,7 +7,7 @@ const users = [
   {
     accountId: "lewidenmann.near",
     height: 72,
-    accuracyPercentage: 70,
+    accuracyPercentage: null,
   },
   {
     accountId: "oztanmain.near",
