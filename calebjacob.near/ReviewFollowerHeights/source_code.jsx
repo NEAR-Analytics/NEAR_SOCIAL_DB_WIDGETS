@@ -76,8 +76,9 @@ return (
       <div>
         <div className="p-3">
           <h5>
-            Review Your Followers&apos; Heights (
-            {state.currentFollowerIndex + 1} of {followers.length})
+            {`Review Your Followers' Heights (${
+              state.currentFollowerIndex + 1
+            } of ${followers.length})`}
           </h5>
 
           <hr />
