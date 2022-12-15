@@ -6,7 +6,8 @@ const buttonDownHandler = props.buttonDownHandler;
 
 // optional styling props
 const width = props.width ?? "100%";
-const buttonSize = props.buttonSize ?? "100px";
+const buttonSize = props.buttonSize ?? "80px";
+const dPadWidth = props.buttonSize ?? "240px";
 const margin = props.margin ?? "0px";
 
 // enum for button values
@@ -47,7 +48,7 @@ const Dpad = () => {
       style={{
         display: "grid",
         gridTemplateAreas: '". up ." "left . right" ". down ."',
-        width: "100px",
+        width: dPadWidth,
       }}
     >
       <SquareButton
