@@ -56,7 +56,7 @@ return (
       {!props.compact && (
         <div style={{ marginRight: "auto" }}>
           <Widget
-            src="mob.near/widget/Profile"
+            src="lewidenmann.near/widget/Profile"
             props={{ accountId: props.accountId }}
           />
         </div>
