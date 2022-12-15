@@ -8,7 +8,7 @@ const books = Social.get(`${accountId}/books/read/**`);
 console.log(books);
 
 if (!books) {
-  return "no books yet";
+  return "No books yet";
 }
 
 return (
