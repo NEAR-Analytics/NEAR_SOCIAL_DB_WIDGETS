@@ -6,18 +6,19 @@ if (!answeredBy || !questionRef) {
 
 State.init({ tipAmount: null });
 
-const tips = Social.index("genie", "tip-michaelpeter.near");
+const tips = Social.index("genie", "tip/michaelpeter.near");
 const tipAmount = tips.reduce((acc, v) => acc + parseInt(v.value), 0);
 console.log(tipAmount);
 const questionSpecificTip = Social.index(
   "genie",
-  "tip-michaelpeter.near--1671070269443-michaelpeter.near"
+  "tip/michaelpeter.near--1671070269443/michaelpeter.near"
 );
 console.log(questionSpecificTip);
 
 const onSubmitClick = () => {
   const gas = 300 * 100000000000;
   const deposit = parseInt(state.tipAmount) + "000000000000000000000000";
+  //   const deposit = parseInt(state.tipAmount) + "000000000000000000000";
   Near.call(
     "passthrough.near",
     "transfer",
@@ -56,11 +57,11 @@ return (
         index: {
           genie: JSON.stringify([
             {
-              key: `tip-${answeredBy}`,
+              key: `tip/${answeredBy}`,
               value: state.tipAmount,
             },
             {
-              key: `tip-${questionRef}-${answeredBy}`,
+              key: `tip/${questionRef}/${answeredBy}`,
               value: state.tipAmount,
             },
           ]),
