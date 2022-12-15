@@ -4,15 +4,22 @@ if (!props.blockHeight) {
 
 const questionBlockHeight = props.blockHeight;
 const questions = Social.index("poll_question", "question-v3.0.1");
+if (!questions) {
+  return "Loading";
+}
 const questionParams = questions.find(
   (q) => q.blockHeight == questionBlockHeight
 );
 State.init({ vote: "", showErrorsInForm: false });
 
 const answers = Social.index("poll_question", "answer-v3.0.1");
+if (!answers) {
+  return "Loading";
+}
 const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
+
 let usersWithAnswersToThisQuestion = [];
 const validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
