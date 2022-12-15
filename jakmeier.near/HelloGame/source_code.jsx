@@ -1,114 +1,41 @@
 // hackathon project building a small interactive game
 
+const MAP_TILES = 12;
+const VIEW_OFFSET_X = 0;
+const VIEW_OFFSET_Y = 0;
 const MAP_SIZE = "480px";
 const TILE_SIZE = "40px";
 const TILE_INNER_SIZE = "40px";
 
 const Tile = {
   Empty: "◻",
+  Full: "◼",
   Ghost: "👻",
-  Tree: "🌲",
-  Pagoda: "🏯",
-  Shinto: "⛩",
-  Camp: "🏕",
 };
 
-const staticDemoMap = [
-  // Pagdoa castle
-  { x: 0, y: -4, obj: Tile.Pagoda },
-  { x: 1, y: -4, obj: Tile.Shinto },
-  { x: -1, y: -4, obj: Tile.Shinto },
-
-  // hidden camp
-  { x: -42, y: 42, obj: Tile.Tree },
-  { x: -43, y: 42, obj: Tile.Tree },
-  { x: -43, y: 41, obj: Tile.Camp },
-  { x: -43, y: 40, obj: Tile.Tree },
-  { x: -43, y: 39, obj: Tile.Tree },
-  { x: -44, y: 41, obj: Tile.Tree },
-  { x: -44, y: 42, obj: Tile.Tree },
-  { x: -44, y: 40, obj: Tile.Tree },
-  { x: -41, y: 43, obj: Tile.Tree },
-  { x: -42, y: 43, obj: Tile.Tree },
-  { x: -43, y: 43, obj: Tile.Tree },
-
-  // some random trees
-  { x: 1, y: 1, obj: Tile.Tree },
-  { x: 3, y: 5, obj: Tile.Tree },
-  { x: -27, y: 4, obj: Tile.Tree },
-  { x: 20, y: 17, obj: Tile.Tree },
-  { x: 11, y: 21, obj: Tile.Tree },
-  { x: -26, y: 22, obj: Tile.Tree },
-  { x: 26, y: 18, obj: Tile.Tree },
-  { x: -15, y: -30, obj: Tile.Tree },
-  { x: -16, y: 15, obj: Tile.Tree },
-  { x: 2, y: -19, obj: Tile.Tree },
-  { x: -10, y: -25, obj: Tile.Tree },
-  { x: 12, y: 28, obj: Tile.Tree },
-  { x: 9, y: -3, obj: Tile.Tree },
-  { x: -36, y: -27, obj: Tile.Tree },
-  { x: -29, y: 1, obj: Tile.Tree },
-  { x: 25, y: 7, obj: Tile.Tree },
-  { x: -38, y: -10, obj: Tile.Tree },
-  { x: -43, y: -41, obj: Tile.Tree },
-  { x: 18, y: 40, obj: Tile.Tree },
-  { x: -37, y: 37, obj: Tile.Tree },
-  { x: 43, y: -45, obj: Tile.Tree },
-  { x: -22, y: 28, obj: Tile.Tree },
-  { x: 17, y: -2, obj: Tile.Tree },
-  { x: -15, y: 11, obj: Tile.Tree },
-  { x: -7, y: -3, obj: Tile.Tree },
-  { x: 18, y: 6, obj: Tile.Tree },
-  { x: 17, y: -11, obj: Tile.Tree },
-  { x: 11, y: -5, obj: Tile.Tree },
-  { x: -18, y: -19, obj: Tile.Tree },
-  { x: -3, y: -10, obj: Tile.Tree },
-  { x: -15, y: 20, obj: Tile.Tree },
-  { x: 20, y: 3, obj: Tile.Tree },
-  { x: 5, y: 19, obj: Tile.Tree },
-  { x: 12, y: 5, obj: Tile.Tree },
-  { x: -7, y: -19, obj: Tile.Tree },
-  { x: -6, y: 20, obj: Tile.Tree },
-  { x: -9, y: 18, obj: Tile.Tree },
-  { x: 4, y: 19, obj: Tile.Tree },
-  { x: -3, y: -17, obj: Tile.Tree },
-  { x: 4, y: 1, obj: Tile.Tree },
-  { x: 6, y: 12, obj: Tile.Tree },
-  { x: 15, y: 4, obj: Tile.Tree },
-  { x: -5, y: -2, obj: Tile.Tree },
-  { x: -19, y: 4, obj: Tile.Tree },
-  { x: 16, y: 9, obj: Tile.Tree },
-  { x: 3, y: -19, obj: Tile.Tree },
-  { x: -17, y: -2, obj: Tile.Tree },
-  { x: 4, y: -4, obj: Tile.Tree },
-  { x: 6, y: -9, obj: Tile.Tree },
-  { x: -11, y: -11, obj: Tile.Tree },
-  { x: 15, y: 8, obj: Tile.Tree },
-  { x: 9, y: -6, obj: Tile.Tree },
-];
-
-// Select a view of the map and store it as 2D array of tiles.
-const mapView = (start_x, start_y, width, height) => {
+// Select a view of the map, store it as 2D array of tiles and insert pixels.
+const mapView = (start_x, start_y, width, height, pixels) => {
   const map = Array.from(Array(width), () =>
     new Array(height).fill(Tile.Empty)
   );
-  staticDemoMap.forEach((tile) => {
+
+  pixels.forEach((pixel) => {
     // apply view offset
-    const x = tile.x - start_x;
-    const y = tile.y - start_y;
+    const x = pixel.x - start_x;
+    const y = pixel.y - start_y;
     if (map[x] && map[x][y]) {
-      map[x][y] = tile.obj;
+      map[x][y] = Tile.Full;
     }
   });
+
   return map;
 };
 
 // convert 2D array of tiles (stored in state.currentView) into HTML
-const renderMap = () => {
+const renderMap = (playerPos) => {
   // make a deep copy of map so we can modify it
   const map = JSON.parse(JSON.stringify(state.currentView));
-  // render player at the center
-  map[5][5] = Tile.Ghost;
+  map[playerPos.x][playerPos.y] = Tile.Ghost;
   const html = map
     .map((row) =>
       row.map((tile) => (
@@ -119,7 +46,7 @@ const renderMap = () => {
             height: TILE_SIZE,
           }}
         >
-          {tile}{" "}
+          {tile}
         </div>
       ))
     )
@@ -129,7 +56,11 @@ const renderMap = () => {
 
 // instantly moves the player to the given coordinate unless the path is blocked
 const movePlayer = (x, y) => {
-  if (tileInCurrentView(x, y) === Tile.Empty) {
+  // collision check and/or boundary check
+  if (
+    tileInCurrentView(x, y) === Tile.Empty ||
+    tileInCurrentView(x, y) === Tile.Full
+  ) {
     setPlayerPos(x, y);
   }
 };
@@ -138,15 +69,30 @@ const movePlayer = (x, y) => {
 const setPlayerPos = (x, y) => {
   state.playerPos.x = x;
   state.playerPos.y = y;
-  state.currentView = mapView(x - 5, y - 5, 11, 11);
+  state.currentView = mapView(
+    //x - VIEW_OFFSET_X,
+    //y - VIEW_OFFSET_Y,
+    -VIEW_OFFSET_X,
+    -VIEW_OFFSET_Y,
+    MAP_TILES,
+    MAP_TILES,
+    state.pixels
+  );
   // trigger a re-render with the new state
   State.update();
 };
 
 const tileInCurrentView = (x, y) => {
-  const projected_x = x - state.playerPos.x + 5;
-  const projected_y = y - state.playerPos.y + 5;
-  return state.currentView[projected_x][projected_y];
+  // move view and keep  player in center
+  //const projected_x = x - state.playerPos.x + VIEW_OFFSET_X;
+  // const projected_y = y - state.playerPos.y + VIEW_OFFSET_Y;
+  // return state.currentView[projected_x][projected_y];
+  // move player biut keep view static
+  return state.currentView[x][y];
+};
+
+const drawPixel = (x, y) => {
+  state.pixels.push({ x, y });
 };
 
 const keyDownHandler = (e) => {
@@ -159,9 +105,11 @@ const keyDownHandler = (e) => {
     movePlayer(state.playerPos.x, state.playerPos.y - 1);
   } else if (e.key == "ArrowDown") {
     movePlayer(state.playerPos.x, state.playerPos.y + 1);
-  } else if (e.key == " ") {
-    // reset to origin on space key
+  } else if (e.key == "Enter") {
+    // reset to origin
     setPlayerPos(0, 0);
+  } else if (e.key == " ") {
+    drawPixel(state.playerPos.x, state.playerPos.y);
   } else {
     console.log(e);
   }
@@ -205,9 +153,9 @@ const commitMessage = {
 };
 */
 
-const onlineState = Social.index("helloGame", "pos", {
+const onlineState = Social.index("helloGame", "pixels", {
   order: "desc",
-  limit: 1,
+  limit: 1, // we only want the latest version
   subscribe: true, // refresh once in 5s
 });
 
@@ -216,23 +164,42 @@ if (onlineState === null || onlineState === undefined) {
 }
 
 if (onlineState.length > 0) {
-  const pos = onlineState[0].value;
-  State.init({
-    playerPos: pos,
-    currentView: mapView(pos.x - 5, pos.y - 5, 11, 11),
-  });
+  const pixels = onlineState[0].value ?? [];
+  const newState = {
+    playerPos: state.playerPos ?? { x: 0, y: 0 },
+    pixels,
+    currentView: mapView(
+      pos.x - VIEW_OFFSET_X,
+      pos.y - VIEW_OFFSET_Y,
+      MAP_TILES,
+      MAP_TILES,
+      pixels
+    ),
+  };
+  State.init(newState);
+  if (JSON.stringify(state) != JSON.stringify(newState)) {
+    State.update(newState);
+  }
 } else {
+  const pixels = [];
   State.init({
     playerPos: { x: 0, y: 0 },
-    currentView: mapView(-5, -5, 11, 11),
+    pixels,
+    currentView: mapView(
+      -VIEW_OFFSET_X,
+      -VIEW_OFFSET_Y,
+      MAP_TILES,
+      MAP_TILES,
+      pixels
+    ),
   });
 }
 
 const commitMessage = {
   index: {
     helloGame: JSON.stringify({
-      key: "pos",
-      value: state.playerPos,
+      key: "pixels",
+      value: state.pixels,
     }),
   },
 };
@@ -247,14 +214,14 @@ return (
       style={{
         display: "grid",
         gridAutoFlow: "column",
-        gridTemplateRows: `repeat(11,${TILE_SIZE})`,
+        gridTemplateRows: `repeat(${MAP_TILES},${TILE_SIZE})`,
         width: MAP_SIZE,
         height: MAP_SIZE,
       }}
     >
-      {renderMap(state)}
+      {renderMap(state.playerPos)}
     </div>
-    <CommitButton data={commitMessage}>Save Position</CommitButton>
+    <CommitButton data={commitMessage}>Submit</CommitButton>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
