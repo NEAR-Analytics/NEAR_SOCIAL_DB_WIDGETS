@@ -32,6 +32,10 @@ const bounties = fetch(
   }
 );
 
+const searchTerm = props.bountyTerm;
+
+console.log("term: " + searchTerm);
+
 console.log(bounties.body.hits);
 
 if (bounties.body.hits.hits.length == 0) {
