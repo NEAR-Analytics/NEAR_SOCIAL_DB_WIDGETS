@@ -42,7 +42,7 @@ return (
   <ol>
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
-          const bountId = bounty._source.id;
+          const bountyId = bounty._source.id;
           return (
             <li>
               <div>
