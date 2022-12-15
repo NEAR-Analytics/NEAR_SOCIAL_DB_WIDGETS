@@ -1,19 +1,38 @@
-const accountId = props.accountId ?? context.accountId;
-if (!accountId) {
-  return "Please sign in with NEAR wallet";
+const myAccountId = props.accountId ?? context.accountId;
+if (!myAccountId) {
+  return "Please sign in with NEAR wallet ";
 }
 
-State.init({ comment: "" });
 const bountyId = (props.bountyId || "").replaceAll(".", "");
 if (!bountyId) {
   return "Please provide a bounty id";
 }
 
-const comments = JSON.parse(
-  Social.get(`${accountId}/bounties/${bountyId}/comments`) || "[]"
-);
+State.init({ message: "" });
 
-console.log({ bountyId, comments });
+const data =
+  Social.get(`*/astrosocial/bounties/${bountyId}/comments`, "final") || {};
+
+const accounts = Object.keys(data);
+
+let myComments = [];
+const allComments = accounts.reduce((acc, accountId) => {
+  const accountData = data[accountId];
+
+  const comments = JSON.parse(
+    accountData.astrosocial.bounties[bountyId].comments
+  );
+
+  if (accountId === myAccountId) {
+    myComments = comments;
+  }
+
+  console.log({ acc, accountId, comments, accountData, myComments });
+
+  return acc.concat(comments);
+}, []);
+
+console.log({ bountyId, comments, data, allComments, myComments, accounts });
 
 return (
   <div>
@@ -26,16 +45,16 @@ return (
         aria-expanded="false"
         aria-controls={`collapseCommentEditorComment-${bountyId}`}
       >
-        <i class={commentBtnClass}> </i> Comment ({comments.length ?? 0})
+        <i class={commentBtnClass}> </i> Comment ({allComments.length ?? 0})
       </a>
     </div>
 
     <div class="collapse" id={`collapseCommentEditorComment-${bountyId}`}>
       <div>
         <ul>
-          {comments.map((comment) => (
+          {allComments.map((comment) => (
             <li>
-              <b>{comment.accountId}:</b> {comment.comment}
+              <b>{comment.accountId}: </b> {comment.message}
             </li>
           ))}
         </ul>
@@ -45,17 +64,26 @@ return (
         <textarea
           cols="50"
           rows="5"
-          value={state.comment}
+          value={state.message}
           onChange={(event) => {
-            State.update({ comment: event.target.value });
+            State.update({ message: event.target.value });
           }}
         />
       </div>
       <CommitButton
         data={{
-          bounties: {
-            [bountyId]: {
-              comments: [...comments, { accountId, comment: state.comment }],
+          astrosocial: {
+            bounties: {
+              [bountyId]: {
+                comments: [
+                  ...myComments,
+                  {
+                    accountId,
+                    message: state.message,
+                    createdAt: new Date().getTime(),
+                  },
+                ],
+              },
             },
           },
         }}
