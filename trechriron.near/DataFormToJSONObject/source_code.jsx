@@ -1,10 +1,10 @@
 const accountId = context.accountId;
 
 State.init({
-  optInInfo,
+  infoAccountId: "",
 });
 
-optInInfo.accountId = accountId;
+state.infoAccountId = accountId;
 
 if (context.loading) {
   return "Loading";
@@ -20,26 +20,11 @@ function createOptInDataElements(dataElements) {
   // return form
 }
 
-let bigForm = (
-  <div>
-    <label for="fname">{`First Name: `}</label>
-    <br></br>
-    <input type="text" id="fname" name="fname"></input>
-    <label for="agecheckb">{`Sharable`}</label>
-    <input type="checkbox" id="agecheckb" name="agecheckb" value="true"></input>
-    <br></br>
-    <label for="lname">{`Last Name: `}</label>
-    <br></br>
-    <input type="text" id="lname" name="lname"></input>
-  </div>
-);
-
 let page = (
   <div>
     <h1>{`Hello, ${accountId}!`}</h1>
     <p>
-      {`Please fill out the following information and check the box if are
-      willing to earn rewards by sharing this data.`}
+      {`Please fill out the following information. Only include the data you are willing to share. Everytime your data is accessed in a query, you will earn NEAR!`}
     </p>
     <br></br>
     {bigForm}
