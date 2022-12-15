@@ -1,4 +1,3 @@
-State.init({ nonce: Date.now() });
 const questions = Social.index("genie", "asked");
 questions = questions.reverse();
 if (!questions?.length) {
@@ -10,7 +9,7 @@ return (
     <div className="d-flex justify-content-end">
       <button
         onClick={() => {
-          State.update({ nonce: Date.now() });
+          State.update();
         }}
       >
         Refresh (does not work)
