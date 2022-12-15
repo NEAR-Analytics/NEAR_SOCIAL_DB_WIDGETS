@@ -26,8 +26,8 @@ return (
     <div className="d-flex justify-content-between align-items-center">
       <h3 style={{ color: "#1a73e8" }}>LOGO</h3>
       <ul
-        className="nav nav-tabs w-50 d-flex justify-content-start"
-        style={{ borderColor: "#00000038" }}
+        className="nav nav-tabs d-flex justify-content-start"
+        style={{ borderColor: "#00000038", width: "100%", margin: "1rem" }}
       >
         <li className="nav-item">
           <p
