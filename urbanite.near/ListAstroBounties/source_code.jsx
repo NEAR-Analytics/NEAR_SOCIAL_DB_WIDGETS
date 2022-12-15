@@ -1,3 +1,5 @@
+const term = props.searchTerm ?? "";
+
 const bounties = fetch(
   "https://search.testnet.app.astrodao.com/bounty/_search?size=20&from=0",
   {
@@ -31,8 +33,6 @@ const bounties = fetch(
     }),
   }
 );
-
-const term = props.searchTerm;
 
 console.log("term: " + term);
 
