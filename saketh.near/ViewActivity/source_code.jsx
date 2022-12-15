@@ -10,6 +10,8 @@ return (
         <h5>
           <b>{data.name}</b>
         </h5>
+        Join for {data.cost} N
+        <br />
         Organized by
         <Widget
           src={`zavodil.near/widget/ProfileLine`}
