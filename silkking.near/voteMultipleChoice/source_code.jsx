@@ -5,6 +5,10 @@ if (!props.isPreview && isNaN(props.blockHeight)) {
   return "Property blockHeight should be a number";
 }
 
+State.init({
+  vote: userVote ?? "",
+});
+
 // Utility function
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
@@ -53,12 +57,18 @@ const isPreview = props.isPreview;
 // Getting question
 const questionBlockHeight = Number(props.blockHeight);
 const questions = Social.index("poll_question", "question-v3.0.1");
+if (!questions) {
+  return "Loading";
+}
 const questionParams = questions.find(
   (q) => q.blockHeight == questionBlockHeight
 );
 
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.0.1");
+if (!answers) {
+  return "Loading";
+}
 const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
@@ -87,10 +97,6 @@ const countVotes = validAnswersToThisQuestion.reduce((acc, curr) => {
   acc[Number(ans)] += 1;
   return acc;
 }, new Array(questionParams.value.choicesOptions.length).fill(0));
-
-State.init({
-  vote: userVote ?? "",
-});
 
 const getPublicationParams = () => {
   return {
