@@ -162,6 +162,16 @@ const followingsRows = rec.map((accountId) => (
   </li>
 ));
 
+const commitButton = (
+  <CommitButton
+    disabled={context.loading}
+    className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
+    data={getCommitData()}
+  >
+    {context.loading ? "Loading" : "Follow Selected"}
+  </CommitButton>
+);
+
 return (
   <>
     <h1>People You May Know</h1>
@@ -170,42 +180,9 @@ return (
       following accounts.
     </p>
 
-    <div className="mb-3">
-      <CommitButton
-        disabled={context.loading}
-        className={`btn ${
-          context.loading ? "btn-outline-dark" : "btn-primary"
-        }`}
-        data={getCommitData()}
-      >
-        {context.loading ? "Loading" : "Mass Follow"}
-      </CommitButton>
-    </div>
+    <div className="mb-3">{commitButton}</div>
     <ul className="list-group">{followingsRows}</ul>
-    <div className="form-check pt-3">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        id={`follow-dev`}
-        onChange={() => followDevChange()}
-        checked={state.followDev}
-        name="follow-dev"
-      />
-      <label className="form-check-label" for="follow-dev">
-        Follow widget authors ({ownerId})
-      </label>
-    </div>
 
-    <div className="mt-2 mb-3">
-      <CommitButton
-        disabled={context.loading}
-        className={`btn ${
-          context.loading ? "btn-outline-dark" : "btn-primary"
-        }`}
-        data={getCommitData()}
-      >
-        {context.loading ? "Loading" : "Mass Follow"}
-      </CommitButton>
-    </div>
+    <div className="mt-2 mb-3">{commitButton}</div>
   </>
 );
