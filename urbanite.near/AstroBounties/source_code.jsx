@@ -8,12 +8,12 @@ return (
         filterTag: "app",
         placeholder: "🔍 Search Bounties",
         limit: 10,
-        onChange: ({ result }) => State.update({ bountyTerm: result }),
+        onChange: ({ searchTerm }) => State.update({ searchTerm: searchTerm }),
       }}
     />
     <Widget
       src="urbanite.near/widget/ListAstroBounties"
-      props={{ bountyTerm }}
+      props={{ searchTerm: state.searchTerm }}
     />
   </>
 );
