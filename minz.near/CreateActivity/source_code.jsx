@@ -5,7 +5,6 @@ if (!accountId) {
 }
 
 function callContract(data) {
-  // console.log(Date.parse(data.deadline));
   Near.call(CONTRACT, "start_event", {
     account_id: accountId,
     event_spec: {
@@ -83,7 +82,6 @@ return (
         }}
       />
     </div>
-
     <div className="mb-2">
       <CommitButton
         data={
