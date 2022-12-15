@@ -17,7 +17,7 @@ const data = {
   books: { read: { [book.id]: book } },
   index: {
     books: JSON.stringify({
-      key: "my",
+      key: "read",
       value: {
         book,
       },
