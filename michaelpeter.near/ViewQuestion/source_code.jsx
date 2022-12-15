@@ -1,8 +1,8 @@
 const { questionRef } = props;
 
-if (questionRef) {
-  State.init({ questionRef });
-} else {
+State.init({ questionRef, refInput });
+
+if (!state.questionRef) {
   return (
     <div className="d-flex flex-column gap-3">
       <p>No question ref was passed in props, enter one here:</p>
@@ -11,9 +11,16 @@ if (questionRef) {
         className="form-control"
         value={state.questionRef}
         onChange={(e) => {
-          State.update({ questionRef: e.target.value });
+          State.update({ refInput: e.target.value });
         }}
       />
+      <button
+        onClick={() => {
+          State.update({ questionRef: state.refInput });
+        }}
+      >
+        Save
+      </button>
     </div>
   );
 }
