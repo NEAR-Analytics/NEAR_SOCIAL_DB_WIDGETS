@@ -17,9 +17,9 @@ const questionParams =
   questions.find((q) => q.blockHeight == questionBlockHeight);
 
 let profile = Social.getr(`${questionParams.accountId}/profile`);
-if (!profile) {
-  return "Loading";
-}
+// if (!profile) {
+//   return "Loading";
+// }
 
 let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
