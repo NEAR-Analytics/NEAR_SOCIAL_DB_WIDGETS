@@ -6,9 +6,6 @@ const cover = book.cover ?? "";
 const rating = book.rating ?? 0;
 const id = book.id ?? 0;
 
-//TODO: delete
-console.log("Rendering Book:", id, title, book);
-
 const showAddToRead = props.showAddToRead ?? false;
 const showAddToWantToRead = props.showAddToWantToRead ?? false;
 
@@ -50,23 +47,27 @@ const BookTyle = styled.div`
 `;
 
 const BookTitle = styled.p`
-  margin-top: 10px;
+  margin: 10px;
   font-size: 15px;
   font-weight: bold;
   text-align: left;
 `;
 
 const BookAuthors = styled.p`
-  margin: 5px 0;
+  margin: 10px;
   font-size: 14px;
   text-align: left;
 `;
 
 const BookRating = styled.p`
-  margin-bottom: 10px;
+  margin: 10px;
   font-size: 14px;
   font-weight: bold;
   color: #3c763d;
+`;
+
+const ButtonsBox = styled.p`
+  margin: 10px;  
 `;
 
 return (
@@ -94,14 +95,14 @@ return (
         </div>
       </a>
 
-      <div>
+      <ButtonsBox>
         {showAddToRead && (
           <CommitButton data={dataForRead}>Add to Read</CommitButton>
         )}
         {showAddToWantToRead && (
           <CommitButton data={datarForToRead}>Want To Read</CommitButton>
         )}
-      </div>
+      </ButtonsBox>
     </div>
   </BookTyle>
 );
