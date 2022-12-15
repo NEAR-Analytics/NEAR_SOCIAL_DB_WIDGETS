@@ -209,7 +209,7 @@ const commitMessage = {
     session: {
       pixels: onlineState.pixels.concat(state.updates),
       otherPlayer: onlineState.otherPlayer,
-      activePlayer: onlineState.otherPlayer,
+      activePlayer: secondsLeft > 0 ? onlineState.otherPlayer : "gameover",
       start: onlineState.start,
     },
   },
