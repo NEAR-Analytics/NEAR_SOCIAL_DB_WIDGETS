@@ -47,7 +47,7 @@ let followingsPerAccount = Object.keys(accounts).reduce(
 let tagsPerAccount = Object.keys(all_account_tags).reduce(
   (res, id) => ({
     ...res,
-    [id]: Object.keys(all_account_tags[id].profile.tags),
+    [id]: Object.keys(all_account_tags[id].profile.tags).filter((x) => x),
   }),
   {}
 );
@@ -60,10 +60,14 @@ const friendsInCommon = (accountId) => {
 };
 
 const tagsInCommon = (accountId) => {
-  return myTags.filter((a) => tagsPerAccount[accountId] === a);
+  return myTags.filter(
+    (a) =>
+      tagsPerAccount[accountId].length > 0 &&
+      tagsPerAccount[accountId].includes(a)
+  );
 };
-// console.log(tagsInCommon("sonnet.near").length, " tags in common");
-function getRecommendationsFor(accountId) {
+
+function getRecommendationsFor(_accountId) {
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
@@ -188,23 +192,25 @@ const followingsRows = rec.map(
               {commonFollows} friends in common
             </span>
           </OverlayTrigger>
-          <OverlayTrigger
-            placement="auto"
-            overlay={
-              <Tooltip>
-                {tagsInCommon(accountId).map((tag) => {
-                  return <li className={`list-group-item`}>{tag}</li>;
-                })}
-              </Tooltip>
-            }
-          >
-            <span
-              className="badge rounded-pill bg-primary"
-              title={`${commonTags} tags in common`}
+          {commonTags > 0 && (
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip>
+                  {tagsInCommon(accountId).map((tag) => {
+                    return <li className={`list-group-item`}>{tag}</li>;
+                  })}
+                </Tooltip>
+              }
             >
-              {commonTags} common tags
-            </span>
-          </OverlayTrigger>
+              <span
+                className="badge rounded-pill bg-primary"
+                title={`${commonTags} tags in common`}
+              >
+                {commonTags} common tags
+              </span>
+            </OverlayTrigger>
+          )}
           <br />
         </label>
       </div>
