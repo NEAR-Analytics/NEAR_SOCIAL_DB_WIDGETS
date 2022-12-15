@@ -24,10 +24,10 @@ return (
       <a
         class="card-link"
         data-bs-toggle="collapse"
-        href={`#collapseCommentEditorComment-${sanitizedBountyId}`}
+        href={`#collapseAstroParticipantEditor-${sanitizedBountyId}`}
         role="button"
         aria-expanded="false"
-        aria-controls={`collapseCommentEditorComment-${sanitizedBountyId}`}
+        aria-controls={`collapseAstroParticipantEditor-${sanitizedBountyId}`}
       >
         <i class={commentBtnClass}> </i> Participants ({allParticipants.length})
       </a>
@@ -35,7 +35,7 @@ return (
 
     <div
       class="collapse"
-      id={`collapseCommentEditorComment-${sanitizedBountyId}`}
+      id={`collapseAstroParticipantEditor-${sanitizedBountyId}`}
     >
       <div>
         <ul>
