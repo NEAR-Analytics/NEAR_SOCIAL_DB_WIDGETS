@@ -175,7 +175,7 @@ if (onlineState === null || onlineState === undefined) {
   return "Loading";
 }
 
-if (onlineState.length > 0) {
+if (onlineState) {
   if (state && onlineState.activePlayer !== context.accountId) {
     state.updates = [];
   }
