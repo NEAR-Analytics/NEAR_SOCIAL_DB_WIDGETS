@@ -186,7 +186,19 @@ const buttonDownHandler = (button) => {
 };
 
 const receiver = "gmilescu.near";
-const commitMessage = {
+/*const commitMessage = {
+  index: {
+    notify: JSON.stringify({
+      key: receiver,
+      value: {
+        type: "poke",
+        //stateData: [],
+      },
+    }),
+  },
+};*/
+
+const data = {
   index: {
     graph: JSON.stringify({
       key: "poke",
@@ -197,8 +209,7 @@ const commitMessage = {
     notify: JSON.stringify({
       key: receiver,
       value: {
-        type: "state-transition",
-        stateData: [],
+        type: "poke",
       },
     }),
   },
@@ -224,7 +235,7 @@ return (
     >
       {renderMap(state)}
     </div>
-    <CommitButton data={{ commitMessage }}>Save note</CommitButton>
+    <CommitButton data={data}>Save note</CommitButton>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
