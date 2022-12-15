@@ -1,4 +1,5 @@
 const contractId = "proof_of_height.lewidenmann.near";
+const accountId = context.accountId;
 
 const userHeight = Near.view(contractId, "get_height_inches", {
   account_id: accountId,
