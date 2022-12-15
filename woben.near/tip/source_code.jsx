@@ -4,18 +4,9 @@ if (!context.accountId) {
   return <p>Loading...</p>;
 }
 
-const tips = Social.index("genie", "tip");
-console.log(tips);
-const receiverTip = tips.reduce((acc, v) => {
-  console.log(v);
-  if (v.receiverID === "michaelpeter.near") {
-    console.log("here");
-    acc + parseInt(v.amount);
-  } else {
-    acc;
-  }
-}, 0);
-console.log("receiverTip: ", receiverTip);
+const tips = Social.index("genie", `tip-${state.receiverID}`);
+const tipAmount = tips.reduce((acc, v) => acc + parseInt(v), 0);
+console.log(tipAmount);
 
 const onSubmitClick = () => {
   const gas = 300 * 100000000000;
@@ -57,8 +48,8 @@ return (
       data={{
         index: {
           genie: JSON.stringify({
-            key: "tip",
-            value: { amount: state.tipAmount, receiverID: state.receiverID },
+            key: `tip-${state.receiverID}`,
+            value: state.tipAmount,
           }),
         },
       }}
@@ -67,6 +58,5 @@ return (
     >
       Submit
     </CommitButton>
-    <div> total tip: {receiverTip} </div>
   </div>
 );
