@@ -1,25 +1,37 @@
 State.init({ form: {} });
 
+/*
 const onlineState = Social.index("canvasParty", "session", {
   order: "desc",
   limit: 1, // we only want the latest version
   subscribe: true, // refresh once in 5s
 });
+*/
+
+const onlineState = Social.get(
+  context.accountId + "/canvasParty/session/**",
+  "optimistic",
+  {
+    subscribe: true, // refresh once in 5s
+  }
+);
+//console.log(onlineState);
 
 const main = () => {
-  if (onlineState && onlineState.length > 0) {
-    if (onlineState[0].value.otherPlayer) {
-      return playing(onlineState[0].value);
+  if (onlineState) {
+    if (onlineState.activePlayer === "") {
+      return waiting(onlineState);
     } else {
       return noGame();
     }
   } else {
-    return <h2>No state</h2>;
+    return noState();
   }
 };
 
 const noState = () => {
-  return <h2>Loading...</h2>;
+  //return <h2>Loading...</h2>;
+  return noGame();
 };
 
 const noGame = () => {
@@ -51,15 +63,12 @@ const noGame = () => {
       </label>
       <CommitButton
         data={{
-          index: {
-            canvasParty: JSON.stringify({
-              key: "session",
-              value: {
-                pixels: [],
-                otherPlayer: state.form.accountId,
-                activePlayer: "",
-              },
-            }),
+          canvasParty: {
+            session: {
+              pixels: [],
+              otherPlayer: state.form.accountId,
+              activePlayer: "",
+            },
           },
         }}
       >
@@ -69,7 +78,7 @@ const noGame = () => {
   );
 };
 
-const playing = (onlineState) => {
+const waiting = (onlineState) => {
   if (onlineState.activePlayer === "") {
     return (
       <div>
@@ -78,15 +87,12 @@ const playing = (onlineState) => {
         <p>They have to type in {context.accountId} and click play.</p>
         <CommitButton
           data={{
-            index: {
-              canvasParty: JSON.stringify({
-                key: "session",
-                value: null,
-              }),
+            canvasParty: {
+              session: null,
             },
           }}
         >
-          Cancel
+          Cancel Party
         </CommitButton>
       </div>
     );
