@@ -268,5 +268,11 @@ return (
         </CommitButton>
       </div>
     )}
+
+    {gameover && (
+      <div style={{ margin: "20px 0" }}>
+        Save the image, it will be gone after you exit!
+      </div>
+    )}
   </div>
 );
