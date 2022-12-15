@@ -22,7 +22,10 @@ return (
   <div className="px-4 py-3" style={{ backgroundColor: "rgb(230, 230, 230)" }}>
     <div className="d-flex justify-content-between align-items-center">
       <h3 style={{ color: "#1a73e8" }}>LOGO</h3>
-      <ul className="nav nav-tabs w-50 d-flex justify-content-around">
+      <ul
+        className="nav nav-tabs w-50 d-flex justify-content-start"
+        style={{ borderColor: "#00000038" }}
+      >
         <li className="nav-item">
           <p
             className={
