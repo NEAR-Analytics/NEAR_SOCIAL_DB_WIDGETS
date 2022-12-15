@@ -9,11 +9,23 @@ const showAddToRead = props.showAddToRead ?? false;
 const showAddToWantToRead = props.showAddToWantToRead ?? false;
 
 // TODO: why do we need index here?
-const data = {
-  books: { read: { [book.id]: book } },
+const dataForRead = {
+  books: { read: { [id]: book } },
   index: {
     books: JSON.stringify({
       key: "read",
+      value: {
+        book,
+      },
+    }),
+  },
+};
+
+const datarForToRead = {
+  books: { toRead: { [id]: book } },
+  index: {
+    books: JSON.stringify({
+      key: "toRead",
       value: {
         book,
       },
@@ -40,9 +52,11 @@ return (
       </div>
     </a>
 
-    {showAddToRead && <CommitButton data={data}>Add to Read</CommitButton>}
+    {showAddToRead && (
+      <CommitButton data={dataForRead}>Add to Read</CommitButton>
+    )}
     {showAddToWantToRead && (
-      <CommitButton data={data}>Want To Read</CommitButton>
+      <CommitButton data={datarForToRead}>Want To Read</CommitButton>
     )}
   </div>
 );
