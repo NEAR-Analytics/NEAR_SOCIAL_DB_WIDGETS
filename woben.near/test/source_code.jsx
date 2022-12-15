@@ -15,7 +15,7 @@ const data = {
 };
 
 const questions = Social.index("genie", "asked");
-console.log(questions);
+console.log("indexed questions are" + questions);
 
 return (
   <CommitButton className="btn-primary" data={data}>
