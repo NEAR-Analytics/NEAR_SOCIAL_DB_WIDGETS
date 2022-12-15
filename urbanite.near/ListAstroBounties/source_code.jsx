@@ -43,7 +43,7 @@ return (
     <h2>Astro Bounties | V1</h2>
     <Widget src="edwardkcyu.near/widget/AstroFeedback" />
     <Widget
-      src="mob.near/widget/ComponentSearch"
+      src="urbanite.near/widget/ComponentSearch"
       props={{
         filterTag: "app",
         placeholder: "🔍 Search Bounties",
