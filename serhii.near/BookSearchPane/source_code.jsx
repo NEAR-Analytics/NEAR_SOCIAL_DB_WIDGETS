@@ -33,6 +33,8 @@ const search = (text) => {
       return;
     }
 
+    console.log("RESP", resp);
+
     const books = resp.body.items.map((item) => {
       const info = item.volumeInfo;
       return {
@@ -42,7 +44,7 @@ const search = (text) => {
         )["ISBN_13"],
         title: info.title,
         author: info.authors[0],
-        rating: info.rating,
+        rating: info.averageRating,
         pageCount: info.pageCount,
         genre: "Novel",
         onAdd: onAddBook,
@@ -54,6 +56,8 @@ const search = (text) => {
         },
       };
     });
+
+    console.log("BOOKS", books);
 
     State.update({
       books,
