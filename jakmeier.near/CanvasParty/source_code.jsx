@@ -39,10 +39,14 @@ const noGame = () => {
     if (otherPlayerState === null) {
       return <h2>Searching your friend...</h2>;
     }
-    if (otherPlayerState === undefined) {
-      return openLobbyScreen(otherPlayer);
-    } else {
+    if (
+      otherPlayerState &&
+      otherPlayerState.session &&
+      otherPlayerState.session.otherPlayer === context.accountId
+    ) {
       return startGameScreen(otherPlayer, context.accountId);
+    } else {
+      return openLobbyScreen(otherPlayer);
     }
   }
 };
