@@ -162,7 +162,7 @@ const waiting = (onlineState) => {
 };
 
 const playing = () => {
-  return <div>playing!</div>;
+  return <Widget src="jakmeier.near/widget/HelloGame" />;
 };
 
 // putting this here at the end avoids errors due to missing hoisting
