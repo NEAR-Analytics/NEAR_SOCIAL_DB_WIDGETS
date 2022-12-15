@@ -34,13 +34,13 @@ const inner = (
 
 return tooltip ? (
   <OverlayTrigger
-    placement="right"
+    placement="bottom"
     overlay={
       <Tooltip>
         {
           <>
             <li className={`list-group-item`}>{inner}</li>
-            <li className={`list-group-item`}>{title} </li>
+            {props.showTitle && <li className={`list-group-item`}>{title} </li>}
             {tooltipItems.map((item) => {
               return <li className={`list-group-item`}>{item} </li>;
             })}
