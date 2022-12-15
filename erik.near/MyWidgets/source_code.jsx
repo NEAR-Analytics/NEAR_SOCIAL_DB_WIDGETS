@@ -10,7 +10,7 @@ let data = Social.keys(`${accountId}/widget/*`, "final", {
 });
 
 if (!data) {
-  return "Loading";
+  return "Loading... If you haven't made any widgets yet, try opening one and clicking the 'fork widget' link in the navigation";
 }
 
 data = Object.entries(data[accountId].widget ?? {});
