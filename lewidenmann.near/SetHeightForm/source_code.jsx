@@ -1,16 +1,28 @@
 const contractId = "proof_of_height.lewidenmann.near";
 const accountId = context.accountId;
 
+if (!accountId) {
+  return "Please login to use Proof of Height";
+}
+
 const userHeight = Near.view(contractId, "get_height_inches", {
-  account_id: accountId,
+  account_id: "calebjacob.near",
 });
 
-console.log("user height:", userHeight);
+console.log("user height:", userHeight === null);
+
+const heightHasBeenSaved = userHeight === null;
+let heightFeet = null;
+let heightInches = null;
+if (heightHasBeenSaved) {
+  heightFeet = Math.floor(userHeight / 12);
+  heightInches = userHeight - heightFeet * 12;
+}
 
 State.init({
-  heightHasBeenSaved: userHeight !== undefined,
-  heightFeet: null,
-  heightInches: null,
+  heightHasBeenSaved: userHeight >= 0,
+  heightFeet,
+  heightInches,
 });
 
 const height = {
