@@ -40,8 +40,8 @@ return (
       {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
         return (
           <div>
-            <div className="d-flex gap-1 flex-wrap">{acc}</div>
-            <div className="d-flex gap-1 flex-wrap">
+            <div>{acc}</div>
+            <div>
               {Object.values(books).map((book) => (
                 <Widget
                   key={i}
