@@ -21,9 +21,11 @@ return (
     <h1> Giving a Tip </h1>
     <p>
       Receiver: <input value={state.receiverID} placeholder="bowen.near" />
+      onChange={(e) => State.update({ receiverID: e.target.value })}
     </p>
     <p>
       Amount: <input value={state.tipAmount} placeholder="1" />
+      onChange={(e) => State.update({ tipAmount: e.target.value })}
     </p>
     <button
       disabled={
