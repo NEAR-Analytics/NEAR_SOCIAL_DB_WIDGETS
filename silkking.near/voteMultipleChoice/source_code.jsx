@@ -142,7 +142,9 @@ return (
                   padding: "0.01em 16px",
                   display: "inline-block",
                   width: `${
-                    hasVoted ? calculatePercentage(countVotes[index]) : 100
+                    hasVoted || !isQuestionOpen
+                      ? calculatePercentage(countVotes[index])
+                      : 100
                   }%`,
                   textAlign: "center",
                   overflow: "visible",
