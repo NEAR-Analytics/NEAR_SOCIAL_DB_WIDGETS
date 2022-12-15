@@ -36,23 +36,21 @@ const BookRows = styled.p`{
 
 return (
   <BookRows>
-    <div className="d-flex gap-1 flex-wrap">
-      {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
-        return (
+    {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
+      return (
+        <div>
+          <div>{acc}</div>
           <div>
-            <div>{acc}</div>
-            <div>
-              {Object.values(books).map((book) => (
-                <Widget
-                  key={i}
-                  src={"serhii.near/widget/BookTile"}
-                  props={{ book }}
-                />
-              ))}
-            </div>
+            {Object.values(books).map((book) => (
+              <Widget
+                key={i}
+                src={"serhii.near/widget/BookTile"}
+                props={{ book }}
+              />
+            ))}
           </div>
-        );
-      })}
-    </div>
+        </div>
+      );
+    })}
   </BookRows>
 );
