@@ -6,7 +6,7 @@ const VIEW_OFFSET_Y = 0;
 const MAP_SIZE = "360px";
 const TILE_SIZE = "30px";
 const TILE_INNER_SIZE = "30px";
-const MAX_SECONDS = 300;
+const MAX_SECONDS = 600;
 
 const Tile = {
   Empty: "◻",
