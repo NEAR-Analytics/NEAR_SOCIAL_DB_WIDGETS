@@ -8,7 +8,7 @@ State.init({
 
 const fetchAstroBounties = () => {
   const bounties = fetch(
-    `https://5s59j8guu9.execute-api.us-east-1.amazonaws.com/my-test/bounty/_search`,
+    `https://5s59j8guu9.execute-api.us-east-1.amazonaws.com/my-test/bounty/_search?size=20&from=${state.index}`,
     {
       method: "POST",
       headers: {
@@ -52,18 +52,25 @@ const fetchAstroBounties = () => {
 
   console.log(bounties);
 
-  State.update({ bounties: bounties });
+  const nextIndex = state.index + 19;
+  const hasMore = bounties.body.hits.hits.length > 0;
+
+  State.update({
+    bounties: bounties.body.hits,
+    index: nextIndex,
+    hasMore: hasMore,
+  });
 };
 
 return (
   <ol>
     <InfiniteScroll
       loadMore={fetchAstroBounties}
-      hasMore={true}
+      hasMore={state.hasMore}
       loader={<div className="loader">Loading ...</div>}
     >
       {state.bounties
-        ? state.bounties.body.hits.hits.map((bounty) => {
+        ? state.bounties.hits.map((bounty) => {
             const bountyId = bounty._source.id;
             return (
               <li>
