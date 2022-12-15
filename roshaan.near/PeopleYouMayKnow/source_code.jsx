@@ -13,8 +13,6 @@ if (accounts === null) {
 }
 
 const followingData = Social.keys(`${userId}/graph/follow/*`, "final");
-const my_tags = Object.keys(Social.getr(`${userId}/profile/tags`, "final"));
-
 if (followingData === null || tagsData === null) {
   return "Loading";
 }
@@ -55,16 +53,16 @@ let tagsPerAccount = Object.keys(all_account_tags).reduce(
 );
 
 const myFriends = followingsPerAccount[userId];
+const myTags = tagsPerAccount[userId];
+
 const friendsInCommon = (accountId) => {
   return myFriends.filter((a) => followingsPerAccount[accountId].includes(a));
 };
-console.log(myFriends, "myfriends");
-console.log(my_tags, "mytags");
-const tagsInCommon = (accountId) => {
-  return my_tags;
-  // filter((a) => tagsPerAccount[accountId].includes(a));
-};
 
+const tagsInCommon = (accountId) => {
+  return myTags.filter((a) => tagsPerAccount[accountId] === a);
+};
+// console.log(tagsInCommon("sonnet.near").length, " tags in common");
 function getRecommendationsFor(accountId) {
   const recommendations = Object.keys(accounts)
     .filter(
@@ -75,9 +73,10 @@ function getRecommendationsFor(accountId) {
       commonFollows: friendsInCommon(accountId).length,
       commonTags: tagsInCommon(accountId).length,
     }))
-    .map(({ accountId, commonFollows }) => ({
+    .map(({ accountId, commonFollows, commonTags }) => ({
       accountId,
       commonFollows,
+      commonTags,
       score: commonFollows,
     }))
     .sort((f, s) => s.score - f.score)
@@ -142,61 +141,76 @@ function getCommitData() {
 
 const rec = getRecommendationsFor(userId);
 
-const followingsRows = rec.map(({ accountId, commonFollows, score }) => (
-  <li
-    className={`list-group-item ${
-      state.following[accountId] ? "list-group-item-success" : ""
-    }`}
-  >
-    <div className="form-check">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={accountId}
-        disabled={accountId == userId}
-        id={`follow-${accountId}`}
-        name={`follow-${accountId}`}
-        onChange={() => handleChange(accountId)}
-        checked={state.following[accountId] ?? false}
-      />
+const followingsRows = rec.map(
+  ({ accountId, commonFollows, commonTags, score }) => (
+    <li
+      className={`list-group-item ${
+        state.following[accountId] ? "list-group-item-success" : ""
+      }`}
+    >
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value={accountId}
+          disabled={accountId == userId}
+          id={`follow-${accountId}`}
+          name={`follow-${accountId}`}
+          onChange={() => handleChange(accountId)}
+          checked={state.following[accountId] ?? false}
+        />
 
-      <label className="form-check-label" for={`follow-${accountId}`}>
-        <Widget
-          src="roshaan.near/widget/ProfileLine"
-          props={{
-            accountId,
-            link: "",
-            showTags: props.showTags,
-          }}
-        />{" "}
-        <OverlayTrigger
-          placement="auto"
-          overlay={
-            <Tooltip>
-              {friendsInCommon(accountId).map((friendsInCommon) => {
-                return <li className={`list-group-item`}>{friendsInCommon}</li>;
-              })}
-            </Tooltip>
-          }
-        >
-          <span
-            className="badge rounded-pill bg-primary"
-            title={`${commonFollows} followers in common`}
+        <label className="form-check-label" for={`follow-${accountId}`}>
+          <Widget
+            src="roshaan.near/widget/ProfileLine"
+            props={{
+              accountId,
+              link: "",
+              showTags: props.showTags,
+            }}
+          />{" "}
+          <OverlayTrigger
+            placement="auto"
+            overlay={
+              <Tooltip>
+                {friendsInCommon(accountId).map((friendsInCommon) => {
+                  return (
+                    <li className={`list-group-item`}>{friendsInCommon}</li>
+                  );
+                })}
+              </Tooltip>
+            }
           >
-            {commonFollows} friends in common
-          </span>
-          <span
-            className="badge rounded-pill bg-primary"
-            title={`${commonFollows} tags in common`}
+            <span
+              className="badge rounded-pill bg-primary"
+              title={`${commonFollows} followers in common`}
+            >
+              {commonFollows} friends in common
+            </span>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="auto"
+            overlay={
+              <Tooltip>
+                {tagsInCommon(accountId).map((tag) => {
+                  return <li className={`list-group-item`}>{tag}</li>;
+                })}
+              </Tooltip>
+            }
           >
-            {commonTags} common tags
-          </span>
-        </OverlayTrigger>
-        <br />
-      </label>
-    </div>
-  </li>
-));
+            <span
+              className="badge rounded-pill bg-primary"
+              title={`${commonTags} tags in common`}
+            >
+              {commonTags} common tags
+            </span>
+          </OverlayTrigger>
+          <br />
+        </label>
+      </div>
+    </li>
+  )
+);
 
 const commitButton = (
   <CommitButton
