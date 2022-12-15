@@ -31,7 +31,7 @@ const getPublicationParams = (isDraft) => {
             isDraft,
             title: state.pollTitle,
             description: state.pollDescription,
-            tgLink: state.tgLink,
+            tgLink: state.pollDiscussionLink,
             startTimestamp: getTimestamp(state.pollStartDate, state.startTime),
             endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
             questionType: state.pollType,
