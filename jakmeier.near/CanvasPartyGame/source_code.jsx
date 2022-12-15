@@ -66,7 +66,9 @@ const stateObject = (updates) => {
 const renderMap = (playerPos) => {
   // make a deep copy of map so we can modify it
   const map = JSON.parse(JSON.stringify(state.currentView));
-  map[playerPos.x][playerPos.y] = Tile.Ghost;
+  if (myTurn) {
+    map[playerPos.x][playerPos.y] = Tile.Ghost;
+  }
   const html = map
     .map((row) =>
       row.map((tile) => (
