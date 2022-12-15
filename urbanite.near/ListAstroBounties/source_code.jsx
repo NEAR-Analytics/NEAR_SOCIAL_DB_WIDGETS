@@ -39,35 +39,38 @@ if (bounties.body.hits.hits.length == 0) {
 }
 
 return (
-  <ol>
-    {bounties
-      ? bounties.body.hits.hits.map((bounty) => {
-          const bountyId = bounty._source.id;
-          return (
-            <li>
-              <div>
-                <h3>
-                  <b>DAO:</b> {bounty._source.daoId}
-                </h3>
-                <p>
-                  <b>Summary:</b> {bounty._source.description}
-                </p>
-                <p>
-                  <b>Amount:</b>{" "}
+  <>
+    <h2>Astro Bounties</h2>
+    <ol>
+      {bounties
+        ? bounties.body.hits.hits.map((bounty) => {
+            const bountyId = bounty._source.id;
+            return (
+              <li>
+                <div>
+                  <h3>
+                    <b>DAO:</b> {bounty._source.daoId}
+                  </h3>
+                  <p>
+                    <b>Summary:</b> {bounty._source.description}
+                  </p>
+                  <p>
+                    <b>Amount:</b>{" "}
+                    <Widget
+                      src="urbanite.near/widget/YoctoNEARConverter"
+                      props={{ amount: bounty._source.amount }}
+                    />
+                  </p>
+                  <br />
                   <Widget
-                    src="urbanite.near/widget/YoctoNEARConverter"
-                    props={{ amount: bounty._source.amount }}
+                    src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                    props={{ bountyId }}
                   />
-                </p>
-                <br />
-                <Widget
-                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                  props={{ bountyId }}
-                />
-              </div>
-            </li>
-          );
-        })
-      : ""}
-  </ol>
+                </div>
+              </li>
+            );
+          })
+        : ""}
+    </ol>
+  </>
 );
