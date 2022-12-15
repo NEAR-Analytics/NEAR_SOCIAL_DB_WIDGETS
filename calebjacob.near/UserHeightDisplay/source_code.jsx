@@ -59,7 +59,7 @@ return (
 
           {typeof user.accuracyPercentage === "number" ? (
             <span
-              style={{ width: "7rem" }}
+              style={{ width: "7rem", lineHeight: "1.5rem" }}
               className={`badge ${accuracyPercentageClassName(
                 user.accuracyPercentage
               )}`}
@@ -67,14 +67,20 @@ return (
               {user.accuracyPercentage}% Accurate
             </span>
           ) : (
-            <span style={{ width: "7rem" }} className="badge text-bg-dark">
+            <span
+              style={{ width: "7rem", lineHeight: "1.5rem" }}
+              className="badge text-bg-dark"
+            >
               Unverified
             </span>
           )}
         </div>
       ) : (
         <div style={{ marginLeft: "auto" }}>
-          <span style={{ width: "7rem" }} className="badge text-bg-secondary">
+          <span
+            style={{ width: "7rem", lineHeight: "1.5rem" }}
+            className="badge text-bg-secondary"
+          >
             Height Not Set
           </span>
         </div>
