@@ -50,20 +50,20 @@ return (
         props={{ accountId: props.accountId }}
       />
 
-      {typeof props.height === "number" ? (
+      {typeof user.height === "number" ? (
         <div
           className="d-flex flex-row align-items-center"
           style={{ gap: "1rem", marginLeft: "auto" }}
         >
-          <h1 className="m-0">{displayHeight(props.height)}</h1>
+          <h1 className="m-0">{displayHeight(user.height)}</h1>
 
-          {typeof props.accuracyPercentage === "number" ? (
+          {typeof user.accuracyPercentage === "number" ? (
             <span
               className={`badge ${accuracyPercentageClassName(
-                props.accuracyPercentage
+                user.accuracyPercentage
               )}`}
             >
-              {props.accuracyPercentage}% Accurate
+              {user.accuracyPercentage}% Accurate
             </span>
           ) : (
             <span className="badge text-bg-secondary">Not Confirmed</span>
