@@ -14,6 +14,7 @@ State.init({
   expandOptions: false,
   showErrorsInForm: false,
   showPreview: false,
+  showSendFeedback: false,
 });
 
 const pollTypes = {
@@ -31,7 +32,7 @@ const getPublicationParams = (isDraft) => {
             isDraft,
             title: state.pollTitle,
             description: state.pollDescription,
-            tgLink: state.tgLink,
+            tgLink: state.pollDiscussionLink,
             startTimestamp: getTimestamp(state.pollStartDate, state.startTime),
             endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
             questionType: state.pollType,
@@ -67,16 +68,13 @@ const isValidInput = () => {
     state.pollType != pollTypes.MULTIPLE_CHOICE.id;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
-  result =
-    result &&
-    (state.tgLink == "" ||
-      (state.tgLink != "" && isValidHttpUrl(state.tgLink)));
+  result = result && isValidTelegramLink();
   result = result && state.pollStartDate != "";
   result = result && state.startTime != "";
   result = result && state.pollEndDate != "";
   result = result && state.endTime != "";
   result = result && state.question != "";
-  result = result && !state.pollDiscussionLink.includes("https://t.me/");
+  // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
 };
 
@@ -91,20 +89,49 @@ function getStyles(inputData) {
 
 const widgetOwner = "silkking.near";
 
-const renderPreview = () => {
+const renderModal = (whatModal) => {
   return (
     <div
       className="modal"
+      id="modal"
       style={
-        state.showPreview && { display: "block", backgroundColor: "#7e7e7e70" }
+        (state.showPreview || state.showSendFeedback) && {
+          display: "block",
+          backgroundColor: "#7e7e7e70",
+        }
       }
       tabindex="-1"
       role="dialog"
+      onClick={(e) => {
+        if (e.target.id == "modal" && state.showSendFeedback) {
+          State.update({
+            pollTitle: "",
+            pollDescription: "",
+            pollDiscussionLink: "",
+            pollStartDate: "",
+            startTime: "",
+            pollEndDate: "",
+            endTime: "",
+            question: "",
+            pollType: "0",
+            choices: [],
+            amountOfChoices: 1,
+            expandOptions: false,
+            showSendFeedback: false,
+          });
+        } else if (e.target.id == "modal") {
+          State.update({ showPreview: false });
+        }
+      }}
     >
       <div className="modal-dialog" style={{ maxWidth: "80%" }} role="document">
         <div
           className="modal-content"
-          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+          style={
+            state.showSendFeedback
+              ? { backgroundColor: "rgb(230, 230, 230)", marginTop: "30vh" }
+              : { backgroundColor: "rgb(230, 230, 230)" }
+          }
         >
           <div className="modal-header">
             <h5 className="modal-title">Preview</h5>
@@ -114,7 +141,25 @@ const renderPreview = () => {
               dataDismiss="modal"
               ariaLabel="Close"
               onClick={() => {
-                State.update({ showPreview: false });
+                if (state.showSendFeedback) {
+                  State.update({
+                    pollTitle: "",
+                    pollDescription: "",
+                    pollDiscussionLink: "",
+                    pollStartDate: "",
+                    startTime: "",
+                    pollEndDate: "",
+                    endTime: "",
+                    question: "",
+                    pollType: "0",
+                    choices: [],
+                    amountOfChoices: 1,
+                    expandOptions: false,
+                    showSendFeedback: false,
+                  });
+                } else {
+                  State.update({ showPreview: false });
+                }
               }}
             >
               <span ariaHidden="true">&times;</span>
@@ -129,39 +174,65 @@ const renderPreview = () => {
               margin: "0 auto",
             }}
           >
-            <Widget
-              src={`${widgetOwner}/widget/newVotingInterface`}
-              props={{
-                isPreview: true,
-                previewInfo: {
-                  accountId: context.accountId,
-                  blockHeight: undefined,
-                  value: {
-                    tgLink: state.pollDiscussionLink,
-                    isDraft,
-                    title: state.pollTitle,
-                    description: state.pollDescription,
-                    startTimestamp: getTimestamp(
-                      state.pollStartDate,
-                      state.startTime
-                    ),
-                    endTimestamp: getTimestamp(
-                      state.pollEndDate,
-                      state.endTime
-                    ),
-                    questionType: state.pollType,
-                    question: state.question,
-                    choicesOptions: state.choices.filter((c) => c != ""),
-                    timestamp: Date.now(),
+            {whatModal == "preview" ? (
+              <Widget
+                src={`${widgetOwner}/widget/newVotingInterface`}
+                props={{
+                  isPreview: true,
+                  previewInfo: {
+                    accountId: context.accountId,
+                    blockHeight: undefined,
+                    value: {
+                      tgLink: state.pollDiscussionLink,
+                      isDraft,
+                      title: state.pollTitle,
+                      description: state.pollDescription,
+                      startTimestamp: getTimestamp(
+                        state.pollStartDate,
+                        state.startTime
+                      ),
+                      endTimestamp: getTimestamp(
+                        state.pollEndDate,
+                        state.endTime
+                      ),
+                      questionType: state.pollType,
+                      question: state.question,
+                      choicesOptions: state.choices.filter((c) => c != ""),
+                      timestamp: Date.now(),
+                    },
                   },
-                },
-              }}
-            />
+                }}
+              />
+            ) : (
+              whatModal == "sendFeedback" && (
+                <p styles={{ textAling: "center" }}>
+                  Poll created succesfully!
+                </p>
+              )
+            )}
           </div>
           <div className="modal-footer">
             <button
               onClick={() => {
-                State.update({ showPreview: false });
+                if (state.showSendFeedback) {
+                  State.update({
+                    pollTitle: "",
+                    pollDescription: "",
+                    pollDiscussionLink: "",
+                    pollStartDate: "",
+                    startTime: "",
+                    pollEndDate: "",
+                    endTime: "",
+                    question: "",
+                    pollType: "0",
+                    choices: [],
+                    amountOfChoices: 1,
+                    expandOptions: false,
+                    showSendFeedback: false,
+                  });
+                } else {
+                  State.update({ showPreview: false });
+                }
               }}
               type="button"
               className="btn btn-secondary"
@@ -313,6 +384,11 @@ function addChoicesHandler() {
   });
 }
 
+function isValidTelegramLink() {
+  if (!state.pollDiscussionLink) return true;
+  return state.pollDiscussionLink.startsWith("https://t.me");
+}
+
 return (
   <div
     className="d-flex align-items-start justify-content-around pt-4"
@@ -323,7 +399,7 @@ return (
     }}
   >
     <div className="d-flex flex-column w-75 justify-content-around">
-      <label for="pollTitle">Title</label>
+      <label for="pollTitle">Title*</label>
       <input
         style={{
           backgroundColor: "rgb(230, 230, 230)",
@@ -347,7 +423,7 @@ return (
       )}
 
       <label for="pollDescription" className="mt-2">
-        Description
+        Description*
       </label>
       <textarea
         id="pollDescription"
@@ -382,8 +458,7 @@ return (
         }}
         type="text"
         className={
-          !state.pollDiscussionLink.includes("https://t.me/") &&
-          state.showErrorsInForm
+          !isValidTelegramLink() && state.showErrorsInForm
             ? "border border-danger mb-2"
             : "mb-2"
         }
@@ -393,10 +468,9 @@ return (
           State.update({ pollDiscussionLink: e.target.value });
         }}
       />
-      {!state.pollDiscussionLink.includes("https://t.me/") &&
-        state.showErrorsInForm && (
-          <p className="text-danger">Not a valid link</p>
-        )}
+      {!isValidTelegramLink() && state.showErrorsInForm && (
+        <p className="text-danger">Not a valid link</p>
+      )}
 
       <div
         className="d-flex justify-content-around flex-wrap"
@@ -404,7 +478,7 @@ return (
       >
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
-            <label for="pollStartDate">Start date</label>
+            <label for="pollStartDate">Start date*</label>
             {/*You have min and max properties on dates input*/}
             <input
               style={getStyles(state.pollStartDate)}
@@ -420,7 +494,7 @@ return (
             )}
           </div>
           <div>
-            <div>Start time</div>
+            <div>Start time*</div>
             <input
               type="time"
               style={getStyles(state.startTime)}
@@ -435,7 +509,7 @@ return (
         </div>
         <div className="d-flex flex-row">
           <div className="d-flex flex-column mx-2">
-            <label for="pollEndDate">End date</label>
+            <label for="pollEndDate">End date*</label>
             <input
               style={getStyles(state.pollEndDate)}
               type="date"
@@ -450,7 +524,7 @@ return (
             )}
           </div>
           <div>
-            <div>End time</div>
+            <div>End time*</div>
             <input
               type="time"
               style={getStyles(state.endTime)}
@@ -470,7 +544,7 @@ return (
         style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
         className="p-3 my-3"
       >
-        <label for="question">Question</label>
+        <label for="question">Question*</label>
         <input
           style={
             !state.question && state.showErrorsInForm
@@ -492,7 +566,7 @@ return (
           <p className="text-danger">Question cannot be empty</p>
         )}
         <label className="mt-3" for="pollType">
-          Pool type
+          Pool type*
         </label>
         <div className="dropdown">
           <button
@@ -536,6 +610,11 @@ return (
         <CommitButton
           className="my-2 btn btn-primary"
           data={getPublicationParams(false)}
+          onClick={() => {
+            State.update({
+              showSendFeedback: true,
+            });
+          }}
         >
           Create poll
         </CommitButton>
@@ -549,6 +628,7 @@ return (
       )}
     </div>
 
-    {state.showPreview && renderPreview()}
+    {state.showPreview && renderModal("preview")}
+    {state.showSendFeedback && renderModal("sendFeedback")}
   </div>
 );
