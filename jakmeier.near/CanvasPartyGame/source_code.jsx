@@ -17,6 +17,7 @@ const Tile = {
 const myTurn = props.session.activePlayer === context.accountId;
 const msLeft = (props.session.start - Date.now()) / 1000 + MAX_SECONDS;
 const secondsLeft = msLeft - (msLeft % 1);
+const gameover = props.session.activePlayer === "gameover";
 
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
 const mapView = (start_x, start_y, width, height) => {
@@ -217,7 +218,7 @@ const commitMessage = {
 
 return (
   <div>
-    <h2>{myTurn ? "Your Turn" : "Their Turn"}</h2>
+    <h2>{myTurn ? "Your Turn" : gameover ? "Art Complete" : "Their Turn"}</h2>
     <p style={{ fontWeight: "bold" }}>{secondsLeft}s left</p>
     <Widget
       src="jakmeier.near/widget/KeyInput"
