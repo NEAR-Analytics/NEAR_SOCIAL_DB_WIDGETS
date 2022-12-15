@@ -153,16 +153,18 @@ const followingsRows = rec.map(
       }`}
     >
       <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value={accountId}
-          disabled={accountId == userId}
-          id={`follow-${accountId}`}
-          name={`follow-${accountId}`}
-          onChange={() => handleChange(accountId)}
-          checked={state.following[accountId] ?? false}
-        />
+        {state.multiSelectMode && (
+          <input
+            className="form-check-input"
+            type="checkbox"
+            value={accountId}
+            disabled={accountId == userId}
+            id={`follow-${accountId}`}
+            name={`follow-${accountId}`}
+            onChange={() => handleChange(accountId)}
+            checked={state.following[accountId] ?? false}
+          />
+        )}
 
         <label className="form-check-label" for={`follow-${accountId}`}>
           <Widget
@@ -228,6 +230,21 @@ const commitButton = (
   </CommitButton>
 );
 
+const switchMode = () => {
+  State.update({ multiSelectMode: !state.multiSelectMode });
+};
+
+const switchModeButton = (
+  <button
+    onClick={switchMode}
+    className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
+  >
+    {state.multiSelectMode
+      ? "Switch to regular mode"
+      : "Switch to multiselect mode"}
+  </button>
+);
+
 return (
   <>
     <h1>People You May Know</h1>
@@ -235,8 +252,8 @@ return (
       Based on your current connections, you might also want to follow the
       following accounts.
     </p>
-
-    <div className="mb-3">{commitButton}</div>
+    <div className="mb-3">{switchModeButton}</div>
+    {state.multiSelectMode && <div className="mb-3">{commitButton}</div>}
     <ul className="list-group">{followingsRows}</ul>
 
     <div className="mt-2 mb-3">{commitButton}</div>
