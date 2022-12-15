@@ -9,6 +9,11 @@ const followers = [
     height: 72,
     accuracyPercentage: 70,
   },
+  {
+    accountId: "oztanmain.near",
+    height: null,
+    accuracyPercentage: null,
+  },
 ];
 
 function displayHeight(height) {
@@ -32,7 +37,7 @@ function accuracyPercentageClassName(accuracyPercentage) {
 return (
   <div class="container">
     <div className="card p-3">
-      <h5>Your Followers&apos; Heights</h5>
+      <h5 className="mb-3">Your Followers&apos; Heights</h5>
 
       {followers.length === 0 && <p>You don&apos;t have any followers yet.</p>}
 
@@ -49,19 +54,27 @@ return (
                   props={{ accountId: follower.accountId }}
                 />
 
-                <div
-                  className="d-flex flex-row align-items-center"
-                  style={{ gap: "1rem", marginLeft: "auto" }}
-                >
-                  <h1 className="m-0">{displayHeight(follower.height)}</h1>
-                  <span
-                    class={`badge ${accuracyPercentageClassName(
-                      follower.accuracyPercentage
-                    )}`}
+                {follower.height ? (
+                  <div
+                    className="d-flex flex-row align-items-center"
+                    style={{ gap: "1rem", marginLeft: "auto" }}
                   >
-                    {follower.accuracyPercentage}% Accurate
-                  </span>
-                </div>
+                    <h1 className="m-0">{displayHeight(follower.height)}</h1>
+                    <span
+                      className={`badge ${accuracyPercentageClassName(
+                        follower.accuracyPercentage
+                      )}`}
+                    >
+                      {follower.accuracyPercentage}% Accurate
+                    </span>
+                  </div>
+                ) : (
+                  <div style={{ marginLeft: "auto" }}>
+                    <span className="badge text-bg-secondary">
+                      Height Not Set
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           );
