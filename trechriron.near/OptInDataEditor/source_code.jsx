@@ -21,6 +21,10 @@ function setOptInInfoOnProps() {
   props[optInInfo] = { ...state };
 }
 
+function setFormStatusOnProps() {
+  props[finishedOptInInfoForm] = true;
+}
+
 return (
   <div id="optInDataForm">
     {options.birthday.label ?? "Birthday"}
@@ -111,7 +115,7 @@ return (
     <CommitButton
       data={{ OptInInfoFormStatus: state.saveState }}
       onClick="setOptInInfoOnProps"
-      onCommit={(props.FinishedOptInInfoForm = true)}
+      onCommit="setFormStatusOnProps"
     >
       Save Opt-In Info
     </CommitButton>
