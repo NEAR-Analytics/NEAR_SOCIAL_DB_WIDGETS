@@ -19,7 +19,10 @@ return (
         src="michaelpeter.near/widget/GenieAnswerVote"
         props={{ questionRef, answeredBy }}
       />
-      <Widget src="woben.near/widget/tip" props={{ questionRef, answeredBy }} />
+      <Widget
+        src="woben.near/widget/genieTip"
+        props={{ questionRef, answeredBy }}
+      />
     </div>
   </div>
 );
