@@ -1,8 +1,8 @@
 const { questionRef, answeredBy } = props;
 
 const votes = Social.index("genie", "vote");
-const upvotes = votes.filter((v) => v.value > 0);
-const downvotes = votes.filter((v) => v.value < 0);
+const upvotes = votes.filter((v) => v.value.value === 1).length;
+const downvotes = votes.filter((v) => v.value.value === -1).length;
 
 return (
   <div className="d-flex flex-column gap-1">
@@ -18,7 +18,7 @@ return (
               value: {
                 questionRef,
                 answeredBy,
-                value: 1,
+                dir: 1,
               },
             }),
           },
@@ -34,7 +34,7 @@ return (
               value: {
                 questionRef,
                 answeredBy,
-                value: -1,
+                dir: -1,
               },
             }),
           },
