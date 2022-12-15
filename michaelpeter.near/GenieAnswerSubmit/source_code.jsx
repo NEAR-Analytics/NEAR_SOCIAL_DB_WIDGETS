@@ -31,8 +31,8 @@ return (
         },
         index: {
           genie: JSON.stringify({
-            key: "answered1",
-            value: questionRef,
+            key: `answered/${questionRef}`,
+            value: 1,
           }),
         },
       }}
