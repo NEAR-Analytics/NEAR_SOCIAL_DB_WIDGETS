@@ -16,8 +16,8 @@ State.init({
   preffered_crypto: "",
 });
 
-function setOptInInfoProps() {
-  return props[optInInfo];
+function setOptInInfoOnProps() {
+  props[optInInfo] = { ...state };
 }
 
 return (
@@ -79,7 +79,7 @@ return (
       onChange={(e) => State.update({ preffered_crypto: e.target.value })}
     />
     <p></p>
-    <CommitButton data={{ optInInfo: { ...state } }}>
+    <CommitButton data={{ OptInInfoSaved: true }} onClick="setOptInInfoOnProps">
       Save Opt-In Info
     </CommitButton>
   </>
