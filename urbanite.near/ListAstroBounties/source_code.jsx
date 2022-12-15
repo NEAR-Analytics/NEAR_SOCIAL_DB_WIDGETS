@@ -65,7 +65,7 @@ return (
   <ol>
     <InfiniteScroll
       pageStart={0}
-      loadMore={makeMoreItems}
+      loadMore={false}
       hasMore={bounties.body.hits.hits.length !== 0}
       loader={<div className="loader">Loading ...</div>}
     >
