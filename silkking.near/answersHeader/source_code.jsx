@@ -19,9 +19,9 @@ function isActive() {
 }
 
 let profile = Social.getr(`${props.accountId}/profile`);
-if (!profile) {
-  return "Loading";
-}
+// if (!profile) {
+//   return "Loading";
+// }
 
 return (
   <div className="my-2">
