@@ -19,15 +19,15 @@ const Event = {
 return (
   <div className="row mb-3">
     <div>
-      <h4>What is your event?</h4>
+      <h4>Create an Event</h4>
     </div>
     <div className="mb-2">
       Title <span className="text-secondary"></span>
       <input
         type="text"
-        value={state.event.title}
+        value={state.title}
         onChange={(e) => {
-          State.update({ Event });
+          State.update({ title: e.target.value });
         }}
       />
     </div>
@@ -35,34 +35,53 @@ return (
       Description <span className="text-secondary"></span>
       <input
         type="text"
-        value={state.event.description}
+        value={state.description}
         onChange={(e) => {
-          State.update({ Event });
+          State.update({ description: e.target.value });
         }}
       />
     </div>
     <div className="mb-2">
-      Date and time of event <span className="text-secondary"></span>
+      Date <span className="text-secondary"></span>
       <input
         type="text"
-        value={state.event.description}
+        value={state.date}
         onChange={(e) => {
-          State.update({ Event });
+          State.update({ date: e.target.value });
+        }}
+      />
+    </div>
+    <div className="mb-2">
+      Time <span className="text-secondary"></span>
+      <input
+        type="text"
+        value={state.time}
+        onChange={(e) => {
+          State.update({ time: e.target.value });
         }}
       />
     </div>
     <div className="mb-2">
       <CommitButton
-        data={{ post: { event } }}
+        data={{
+          post: {
+            title: state.title,
+            description: state.description,
+            date: state.date,
+            time: state.time,
+          },
+        }}
         onCommit={() => {
           State.update({
-            Event: { title: "", description: "" },
-            img: {},
+            title: "",
+            description: "",
+            date: "",
+            time: "",
             done: true,
           });
         }}
       >
-        Save
+        Create
       </CommitButton>
     </div>
     <hr />
