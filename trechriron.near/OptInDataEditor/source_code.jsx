@@ -22,7 +22,7 @@ function setOptInInfoOnProps() {
 }
 
 function setFormStatusOnProps() {
-  props[finishedOptInInfoForm] = true;
+  props[finishedOptInInfoForm] = "completed";
 }
 
 return (
