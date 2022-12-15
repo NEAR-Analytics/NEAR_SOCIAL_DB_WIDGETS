@@ -64,7 +64,10 @@ validAnswersToThisQuestion = getTimeRelatedValidAnswers(
 
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisQuestion.length == 0) return 100;
-  return (votesToThisOption / validAnswersToThisQuestion.length) * 100;
+  return (
+    (votesToThisOption / validAnswersToThisQuestion.length) *
+    100
+  ).toFixed(2);
 }
 
 const currAccId = context.accountId ?? "";
