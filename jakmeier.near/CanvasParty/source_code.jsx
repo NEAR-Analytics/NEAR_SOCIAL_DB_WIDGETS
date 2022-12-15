@@ -11,8 +11,12 @@ console.log(onlineState);
 
 const main = () => {
   if (onlineState) {
-    if (onlineState.activePlayer === "") {
-      return waiting(onlineState);
+    if (onlineState.otherPlayer !== "") {
+      if (onlineState.activePlayer === "") {
+        return waiting(onlineState);
+      } else {
+        return <div>playing!</div>;
+      }
     } else {
       return noGame();
     }
@@ -70,14 +74,14 @@ const home = () => {
           }}
         />
       </label>
-      <Button
+      <button
         onClick={() => {
           state.submitted = true;
           State.update();
         }}
       >
         Connect
-      </Button>
+      </button>
     </div>
   );
 };
@@ -136,7 +140,11 @@ const waiting = (onlineState) => {
         <CommitButton
           data={{
             canvasParty: {
-              session: null,
+              session: {
+                pixels: [],
+                otherPlayer: "",
+                activePlayer: "",
+              },
             },
           }}
         >
