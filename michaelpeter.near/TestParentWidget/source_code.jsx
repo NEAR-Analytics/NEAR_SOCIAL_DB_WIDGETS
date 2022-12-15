@@ -1,7 +1,8 @@
 State.init({ counter: 0 });
 
 const increment = () => {
-  State.update({ counter: counter + 1 });
+  console.log("incrementing");
+  State.update({ counter: state.counter + 1 });
 };
 
 return (
