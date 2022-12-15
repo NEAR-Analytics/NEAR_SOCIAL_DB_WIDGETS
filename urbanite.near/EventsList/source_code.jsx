@@ -1,11 +1,13 @@
 const accountId = props.accountId ?? context.accountId;
 let blockHeight = props.blockHeight ? parseInt(props.blockHeight) : undefined;
 const profile = Social.getr(`${accountId}/profile`);
-const keyPath = `${accountId}/post/eventcreator`;
+const keyPath = `${accountId}/post`;
 const event = Social.getr(keyPath, blockHeight);
 
+console.log(event);
+
 if (!event) {
-  return "No events yet :(";
+  return `No events yet :( ${profile}`;
 }
 
 const profileLink = (c) => (
