@@ -52,8 +52,8 @@ return (
   <div>
     <h2>Event</h2>
     <Widget
-      src="jeffsatori.near/widget/EventList"
-      props={{ Event: hasEvent ? event : undefined }}
+      src="jeffsatori.near/widget/EventsList"
+      props={{ event: hasevent ? event : undefined }}
     />
     <br />
     <div className="mb-4">
