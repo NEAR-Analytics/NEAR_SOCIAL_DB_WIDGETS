@@ -161,7 +161,7 @@ return (
               >
                 <span style={{ overflow: "visible", fontWeight: "500" }}>
                   {option}
-                  {hasVoted && (
+                  {(hasVoted || !isQuestionOpen) && (
                     <span
                       className="text-secondary"
                       style={{ marginLeft: "1rem", fontWeight: "400" }}
