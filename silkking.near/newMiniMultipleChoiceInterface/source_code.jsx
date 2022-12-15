@@ -113,7 +113,9 @@ const renderOption = (option, index) => {
             clear: "both",
             padding: "0.01em 16px",
             display: "inline-block",
-            width: `${calculatePercentage(countVotes[index])}%`,
+            width: `${
+              displayAnswers ? calculatePercentage(countVotes[index]) : 100
+            }%`,
             textAlign: "center",
             overflow: "visible",
             whiteSpace: "nowrap",
