@@ -8,7 +8,7 @@ const tips = Social.index("genie", "tip");
 const receiverTip = tips.reduce((acc, v) => {
   console.log(v);
   if (v.receiverID === "michaelpeter.near") {
-    acc + parseInt(v.tipAmount);
+    acc + parseInt(v.amount);
   } else {
     acc;
   }
