@@ -40,7 +40,7 @@ const question = Social.get(
 
 return (
   <div className="d-flex flex-column gap-1">
-    <div className="d-flex align-items-center">
+    <div style={{ widht: "100%" }} className="d-flex align-items-center">
       <div
         style={{ widht: "100%" }}
         className="d-flex align-items-center justify-content-between"
