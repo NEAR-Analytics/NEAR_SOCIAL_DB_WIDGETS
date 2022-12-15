@@ -36,7 +36,7 @@ const questionBlockHeight = props.blockHeight;
 State.init({ vote: "", showErrorsInForm: false });
 
 const answers = Social.index("poll_question", "answer-v3.0.1");
-if (answers) {
+if (!answers) {
   return "Loading";
 }
 const answersToThisQuestion = answers.filter(
