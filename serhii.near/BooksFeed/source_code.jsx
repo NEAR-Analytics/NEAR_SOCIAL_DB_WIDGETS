@@ -24,8 +24,18 @@ if (!peopleIFollowWithBooks) {
   return "Your friend dos not have any books";
 }
 
+const BookRows = styled.p`{
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "left",
+  justifyContent: "space-between",
+  width: "100%",
+  height: "100%",
+  padding: "1rem",
+}`;
+
 return (
-  <div>
+  <BookRows>
     <div className="d-flex gap-1 flex-wrap">
       {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
         return (
@@ -44,5 +54,5 @@ return (
         );
       })}
     </div>
-  </div>
+  </BookRows>
 );
