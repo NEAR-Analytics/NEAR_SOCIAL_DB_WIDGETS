@@ -1,14 +1,14 @@
 const accountId = props.accountId;
 
 if (!accountId) {
-  return "No account ID";
+  return <p>No account ID.</p>;
 }
 
 let queries = [];
 const yourBadgesQuery = Social.keys(`*/badge/*/holder/${accountId}`, "final");
 
 if (!yourBadgesQuery) {
-  return "Loading";
+  return <p>Loading...</p>;
 }
 
 Object.entries(yourBadgesQuery).forEach(([badgeAccountId, contractData]) => {
@@ -101,6 +101,27 @@ return (
           }}
         >
           Get Demo Badges
+        </CommitButton>
+
+        <CommitButton
+          data={{
+            badge: {
+              brownie: {
+                info: {
+                  name: "Brownie",
+                  description: "A cool brownie",
+                  image: {
+                    url: "https://www.inspiredtaste.net/wp-content/uploads/2016/06/Brownies-Recipe-1-1200.jpg",
+                  },
+                },
+                holder: {
+                  "calebjacob.near": "",
+                },
+              },
+            },
+          }}
+        >
+          Give Demo Badges
         </CommitButton>
       </div>
     )}
