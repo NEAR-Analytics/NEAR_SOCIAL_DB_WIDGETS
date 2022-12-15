@@ -36,6 +36,6 @@ return (
     <p>
       Asked by: {asker} | Ref: {state.questionRef}
     </p>
-    <p>{question}</p>
+    <h3>{question}</h3>
   </div>
 );
