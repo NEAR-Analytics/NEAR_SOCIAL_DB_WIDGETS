@@ -15,12 +15,12 @@ Object.keys(data).forEach((event_creator) => {
   });
 });
 
-const allWidgets = Object.keys(contracts).map((event_id) => {
-  let event_owner = events[event_id];
+const allWidgets = Object.keys(events).map((event_id) => {
+  let event_creator = events[event_id];
   return (
     <Widget
       src={`${ownerId}/widget/ViewActivity`}
-      props={{ event_owner, event_id }}
+      props={{ event_creator, event_id }}
     />
   );
 });
