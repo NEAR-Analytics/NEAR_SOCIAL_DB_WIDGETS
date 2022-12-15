@@ -108,7 +108,8 @@ return (
         <hr />
 
         <div class="alert alert-success m-0" role="alert">
-          You have reviewed all of your followers&apos; heights.
+          No heights to review right now. Add more followers and get them to add
+          their height!
         </div>
       </div>
     ) : (
