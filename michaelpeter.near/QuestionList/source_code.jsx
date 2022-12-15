@@ -22,6 +22,10 @@ return (
             src={"michaelpeter.near/widget/GenieQuestionView"}
             props={{ questionRef: q.value }}
           />
+          <Widget
+            src={"michaelpeter.near/widget/GenieAnswerList"}
+            props={{ questionRef: q.value }}
+          />
         </div>
       ))}
     </div>
