@@ -75,7 +75,7 @@ return (
       />
     </div>
     <div className="mb-2">
-      Available until <span className="text-secondary"></span>
+      Joinable until <span className="text-secondary"></span>
       <input
         type="date"
         value={state.deadline}
