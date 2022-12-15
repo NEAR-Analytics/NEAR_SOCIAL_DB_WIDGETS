@@ -21,7 +21,7 @@ const main = () => {
           return waiting(onlineState);
         }
       } else {
-        return playing();
+        return playing(onlineState);
       }
     } else {
       return noGame();
