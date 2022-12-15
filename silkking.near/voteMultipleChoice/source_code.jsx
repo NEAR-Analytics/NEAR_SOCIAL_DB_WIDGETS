@@ -157,7 +157,11 @@ return (
                       : "lightgray"
                   }`,
                 }}
-                onClick={() => !hasVoted && State.update({ vote: index + "" })}
+                onClick={() =>
+                  !hasVoted &&
+                  isQuestionOpen &&
+                  State.update({ vote: index + "" })
+                }
               >
                 <span style={{ overflow: "visible", fontWeight: "500" }}>
                   {option}
