@@ -1,35 +1,20 @@
-// TODO: get real data
-const booksStub = [
-  {
-    title: "The Great Gatsby",
-    author: "F. Scott Fitzgerald",
-    year: 1925,
-    genre: "Novel",
-  },
-  {
-    title: "1984",
-    author: "George Orwell",
-    year: 1949,
-    genre: "Novel",
-  },
-  {
-    title: "The Catcher in the Rye",
-    author: "J.D. Salinger",
-    year: 1951,
-    genre: "Novel",
-  },
-  {
-    title: "The Grapes of Wrath",
-    author: "John Steinbeck",
-    year: 1939,
-    genre: "Novel",
-  },
-];
+// TODO: change to books of your frieds
+const items = Social.index("books", "my");
+
+if (!items) {
+  return "Loading";
+}
+
+console.log(books);
 
 return (
   <div className="d-flex gap-1 flex-wrap">
-    {booksStub.map((book) => (
-      <Widget key={i} src={"serhii.near/widget/BookReview"} props={{ book }} />
+    {items.map((item) => (
+      <Widget
+        key={i}
+        src={"serhii.near/widget/BookReview"}
+        props={{ book: item.value.book }}
+      />
     ))}
   </div>
 );
