@@ -6,7 +6,6 @@ if (!accountId) {
 
 State.init({
   currentFollowerIndex: 0,
-  hasFinishedReviewing: false,
 });
 
 const follows = Social.get(`${accountId}/graph/follow/**`);
@@ -28,9 +27,11 @@ const followers = follows
           account_id: f.accountId,
         });
         console.log("who voted for", f.accountId, ":", voted);
-        return voted ? !voted.includes(accountId) : true;
+        return voted ? !voted.includes(accountId) : false;
       })
   : [];
+
+const hasFinishedReviewing = followers.length === 0;
 
 console.log("followers with a height", followers);
 
@@ -75,6 +76,8 @@ function submitHeightReview(follower, option) {
     account_id: follower.accountId,
     vote: option.enum,
   });
+  // Near.call will kick out to wallet and cause this whole widget to re-render.
+  // Leaving this in just-in-case.
   nextFollower();
 }
 
@@ -91,14 +94,14 @@ function nextFollower() {
     });
   } else {
     State.update({
-      hasFinishedReviewing: true,
+      currentFollowerIndex: 0,
     });
   }
 }
 
 return (
   <div class="card">
-    {state.hasFinishedReviewing ? (
+    {hasFinishedReviewing ? (
       <div className="p-3">
         <h5>Review Your Followers&apos; Heights</h5>
 
