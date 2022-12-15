@@ -13,9 +13,15 @@ const main = () => {
   if (onlineState) {
     if (onlineState.otherPlayer !== "") {
       if (onlineState.activePlayer === "") {
-        return waiting(onlineState);
+        const otherPlayer = onlineState.otherPlayer;
+        const otherPlayerState = playerSession(otherPlayer);
+        if (otherPlayerState.otherPlayer === context.accountId) {
+          return playing();
+        } else {
+          return waiting(onlineState);
+        }
       } else {
-        return <div>playing!</div>;
+        return playing();
       }
     } else {
       return noGame();
@@ -153,6 +159,10 @@ const waiting = (onlineState) => {
       </div>
     );
   }
+};
+
+const playing = () => {
+  return <div>playing!</div>;
 };
 
 // putting this here at the end avoids errors due to missing hoisting
