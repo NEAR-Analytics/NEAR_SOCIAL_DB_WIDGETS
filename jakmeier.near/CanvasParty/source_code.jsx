@@ -16,7 +16,7 @@ const main = () => {
         const otherPlayer = onlineState.otherPlayer;
         const otherPlayerState = playerSession(otherPlayer);
         if (otherPlayerState.otherPlayer === context.accountId) {
-          return playing();
+          return playing(onlineState);
         } else {
           return waiting(onlineState);
         }
@@ -161,8 +161,10 @@ const waiting = (onlineState) => {
   }
 };
 
-const playing = () => {
-  return <Widget src="jakmeier.near/widget/HelloGame" />;
+const playing = (session) => {
+  return (
+    <Widget src="jakmeier.near/widget/CanvasPartyGame" props={{ session }} />
+  );
 };
 
 // putting this here at the end avoids errors due to missing hoisting
