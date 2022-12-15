@@ -14,8 +14,8 @@ const bounties = fetch(
           must: [
             {
               simple_query_string: {
-                query: "*",
-                fields: ["accounts"],
+                query: term,
+                fields: ["accounts", "description"],
               },
             },
           ],
@@ -33,8 +33,6 @@ const bounties = fetch(
     }),
   }
 );
-
-console.log("term: " + term);
 
 console.log(bounties.body.hits);
 
