@@ -7,56 +7,76 @@ let selectorStyles = [
   {
     cursor: "pointer",
     fontWeight: "500",
+    color: "black",
   },
   {
+    color: "#1a73e8",
     cursor: "pointer",
     fontWeight: "500",
-    color: "#1a73e8",
   },
 ];
+
+const widgetOwner = "silkking.near";
 
 return (
   <div className="px-4 py-3" style={{ backgroundColor: "rgb(230, 230, 230)" }}>
     <div className="d-flex justify-content-between align-items-center">
       <h3 style={{ color: "#1a73e8" }}>LOGO</h3>
-      <div className="d-flex w-50 justify-content-around">
-        <p
-          onMouseEnter={() => {
-            State.update({ hoveringElement: "polls" });
-          }}
-          onMouseLeave={() => {
-            State.update({ hoveringElement: "" });
-          }}
-          onClick={() => {
-            State.update({ displaying: "polls" });
-          }}
-          style={
-            state.hoveringElement == "polls" || state.displaying == "polls"
-              ? selectorStyles[1]
-              : selectorStyles[0]
-          }
-        >
-          Polls
-        </p>
-        <p
-          onMouseEnter={() => {
-            State.update({ hoveringElement: "newPoll" });
-          }}
-          onMouseLeave={() => {
-            State.update({ hoveringElement: "" });
-          }}
-          onClick={() => {
-            State.update({ displaying: "newPoll" });
-          }}
-          style={
-            state.hoveringElement == "newPoll" || state.displaying == "newPoll"
-              ? selectorStyles[1]
-              : selectorStyles[0]
-          }
-        >
-          New Poll
-        </p>
-      </div>
+      <ul className="nav nav-tabs w-50 d-flex justify-content-around">
+        <li className="nav-item">
+          <p
+            className={
+              state.hoveringElement == "polls" || state.displaying == "polls"
+                ? "nav-link active"
+                : "nav-link"
+            }
+            ariaCurrent="page"
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "polls" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => {
+              State.update({ displaying: "polls" });
+            }}
+            style={
+              state.hoveringElement == "polls" || state.displaying == "polls"
+                ? selectorStyles[1]
+                : selectorStyles[0]
+            }
+          >
+            Polls
+          </p>
+        </li>
+        <li className="nav-item">
+          <p
+            className={
+              state.hoveringElement == "newPoll" ||
+              state.displaying == "newPoll"
+                ? "nav-link active"
+                : "nav-link"
+            }
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "newPoll" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => {
+              State.update({ displaying: "newPoll" });
+            }}
+            style={
+              state.hoveringElement == "newPoll" ||
+              state.displaying == "newPoll"
+                ? selectorStyles[1]
+                : selectorStyles[0]
+            }
+          >
+            New Poll
+          </p>
+        </li>
+      </ul>
       <div
         className="p-2"
         style={{ border: "2px solid #1a73e8", borderRadius: "1rem" }}
@@ -66,10 +86,10 @@ return (
     </div>
 
     {state.displaying == "polls" ? (
-      <Widget src={`${context.accountId}/widget/showQuestionsHandler`} />
+      <Widget src={`${widgetOwner}/widget/showQuestionsHandler`} />
     ) : (
       state.displaying == "newPoll" && (
-        <Widget src={`${context.accountId}/widget/newPollQuestionInterface`} />
+        <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
       )
     )}
   </div>
