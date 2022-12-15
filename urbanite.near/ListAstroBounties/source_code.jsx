@@ -34,6 +34,10 @@ const bounties = fetch(
 
 console.log(bounties.body.hits);
 
+if (bounties.body.hits.hits.length == 0) {
+  return "Loading...";
+}
+
 return (
   <ul>
     {bounties
