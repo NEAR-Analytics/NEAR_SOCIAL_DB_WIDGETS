@@ -5,6 +5,7 @@ if (!context.accountId) {
 }
 
 const tips = Social.index("genie", "tip");
+console.log(tips);
 const receiverTip = tips.reduce((acc, v) => {
   console.log(v);
   if (v.receiverID === "michaelpeter.near") {
