@@ -9,7 +9,8 @@ const data = {
   },
   index: {
     genie: {
-      asked: "michaelpeter.near--32976423897",
+      key: "asked",
+      value: "michaelpeter.near--32976423897",
     },
   },
 };
@@ -19,6 +20,6 @@ console.log("indexed questions are" + questions);
 
 return (
   <CommitButton className="btn-primary" data={data}>
-    "Save Data"
+    Save Data
   </CommitButton>
 );
