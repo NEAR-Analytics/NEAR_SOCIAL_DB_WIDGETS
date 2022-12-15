@@ -1,18 +1,12 @@
 const followers = [
   {
     accountId: "calebjacob.near",
-    height: 69,
-    accuracyPercentage: 95,
   },
   {
     accountId: "lewidenmann.near",
-    height: 72,
-    accuracyPercentage: 70,
   },
   {
     accountId: "oztanmain.near",
-    height: null,
-    accuracyPercentage: null,
   },
 ];
 
