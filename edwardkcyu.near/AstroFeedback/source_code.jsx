@@ -44,16 +44,16 @@ return (
       <a
         class="card-link"
         data-bs-toggle="collapse"
-        href={`#collapseCommentEditorComment-${bountyId}`}
+        href={`#collapseCommentEditorComment`}
         role="button"
         aria-expanded="false"
-        aria-controls={`collapseCommentEditorComment-${bountyId}`}
+        aria-controls={`collapseCommentEditorComment`}
       >
         <i class={commentBtnClass}> </i> Feedback ({allComments.length ?? 0})
       </a>
     </div>
 
-    <div class="collapse" id={`collapseCommentEditorComment-${bountyId}`}>
+    <div class="collapse" id={`collapseCommentEditorComment`}>
       <div>
         <ul>
           {allComments.map((comment) => (
