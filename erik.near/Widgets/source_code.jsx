@@ -1,4 +1,3 @@
-// This widget returns a simple list of widgets created by the active profile
 const accountId = props.accountId ?? context.accountId;
 
 if (!accountId) {
