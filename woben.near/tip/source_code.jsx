@@ -8,11 +8,13 @@ const tips = Social.index("genie", "tip");
 const receiverTip = tips.reduce((acc, v) => {
   console.log(v);
   if (v.receiverID === "michaelpeter.near") {
+    console.log("here");
     acc + parseInt(v.amount);
   } else {
     acc;
   }
 }, 0);
+console.log("receiverTip: ", receiverTip);
 
 const onSubmitClick = () => {
   const gas = 300 * 100000000000;
