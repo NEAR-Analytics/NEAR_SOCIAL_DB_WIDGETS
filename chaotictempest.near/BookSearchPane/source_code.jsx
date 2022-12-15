@@ -10,6 +10,13 @@ const update = (text) => {
 };
 
 const search = (text) => {
+  if (text === "") {
+    console.log("clearing books");
+    State.update({
+      books: null,
+    });
+  }
+
   // NOTE: provided encodeURIComponent not available
   const encodeURIComponent = (str) => {
     return str.replace(" ", "%20");
@@ -21,6 +28,7 @@ const search = (text) => {
 
   if (!resp.ok) {
     console.log(`ERR: cannot query for ${text}`);
+    console.log(resp);
     return;
   }
 
@@ -32,6 +40,12 @@ const search = (text) => {
       pageCount: info.pageCount,
       genre: "Novel",
       onAdd: onAddBook,
+      cover: {
+        url:
+          info.imageLinks.thumbnail ||
+          info.imageLinks.small ||
+          info.imageLinks.medium,
+      },
     };
   });
 
