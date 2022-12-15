@@ -15,7 +15,8 @@ const Tile = {
 };
 
 const myTurn = props.session.activePlayer === context.accountId;
-const secondsLeft = Date.now() + MAX_SECONDS - props.session.start / 1000;
+const secondsLeft =
+  (Date.now() / 1000 + MAX_SECONDS - props.session.start / 1000) >> 0;
 
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
 const mapView = (start_x, start_y, width, height) => {
