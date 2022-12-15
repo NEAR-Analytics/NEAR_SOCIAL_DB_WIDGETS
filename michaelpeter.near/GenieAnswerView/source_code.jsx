@@ -9,8 +9,16 @@ const answer = Social.get(
 );
 
 return (
-  <div className="border p-1 d-flex justify-content-between">
-    <span>{answer}</span>
-    <span>{answeredBy}</span>
+  <div className="d-flex flex-column gap-1">
+    <div className="border p-1 d-flex justify-content-between">
+      <span>{answer}</span>
+      <span>{answeredBy}</span>
+    </div>
+    <div className="d-flex justify-content-end">
+      <Widget
+        src="michaelpeter.near/widget/GenieAnswerVote"
+        props={{ questionRef, answeredBy }}
+      />
+    </div>
   </div>
 );
