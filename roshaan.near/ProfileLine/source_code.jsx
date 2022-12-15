@@ -37,14 +37,18 @@ const inner = (
           <span>
             {profile.name || ""}
             <span className="text-muted">@{accountId}</span>
+            {showFollowButton && (
+              <Widget
+                src="mob.near/widget/FollowButton"
+                props={{ accountId }}
+              />
+            )}
           </span>
         </a>
         {showFollowerStats && (
           <Widget src="roshaan.near/widget/FollowStats" props={{ accountId }} />
         )}
-        {showFollowButton && (
-          <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
-        )}
+
         {tags.length > 0 && (
           <div>
             {tags.slice(0, 5).map((tag, i) => (
