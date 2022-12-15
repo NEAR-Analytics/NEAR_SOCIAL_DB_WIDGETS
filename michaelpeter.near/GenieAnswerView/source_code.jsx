@@ -8,4 +8,4 @@ const answer = Social.get(
   `${answeredBy}/experimental/genie/answers/${questionRef}`
 );
 
-return <div>{answer}</div>;
+return <div className="border p-1">{answer}</div>;
