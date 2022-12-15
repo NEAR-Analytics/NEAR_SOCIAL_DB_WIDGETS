@@ -45,7 +45,7 @@ const bounties = fetch(
 
 console.log(bounties.body.hits);
 
-if (bounties.body.total.value == 0) {
+if (bounties.body.hits.total.value == 0) {
   return "Loading...";
 }
 
