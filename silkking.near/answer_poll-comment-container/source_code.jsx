@@ -21,9 +21,9 @@ const answerTimeStamp = getBlockTimestamp(answerBlockHeight);
 const accountId = answerParams.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
-if (!profile) {
-  return "Loading";
-}
+// if (!profile) {
+//   return "Loading";
+// }
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
