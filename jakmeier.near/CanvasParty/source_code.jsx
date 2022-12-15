@@ -1,26 +1,21 @@
-State.init({ form: {} });
+State.init({ form: {}, submitted: false });
 
-/*
-const onlineState = Social.index("canvasParty", "session", {
-  order: "desc",
-  limit: 1, // we only want the latest version
-  subscribe: true, // refresh once in 5s
-});
-*/
-
-const onlineState = Social.get(
-  context.accountId + "/canvasParty/session/**",
-  "optimistic",
-  {
+const playerSession = (accountId) => {
+  return Social.get(accountId + "/canvasParty/session/**", "optimistic", {
     subscribe: true, // refresh once in 5s
-  }
-);
+  });
+};
+
+const onlineState = playerSession(context.accountId);
 //console.log(onlineState);
 
 const main = () => {
   if (onlineState) {
-    if (onlineState.activePlayer === "") {
+    const otherPlayerState = playerSession(onlineState.otherPlayer);
+    if (!otherPlayerState) {
       return waiting(onlineState);
+    }
+    if (onlineState.activePlayer === "") {
     } else {
       return noGame();
     }
@@ -34,7 +29,25 @@ const noState = () => {
   return noGame();
 };
 
+
 const noGame = () => {
+  if (!state.submitted) {
+    return home();
+  } else {
+    const otherPlayer = state.form.accountId;
+    const otherPlayerState = playerSession(otherPlayer);
+    if (otherPlayerState === null) {
+      return <h2>Searching your friend...</h2>;
+    }
+    if (otherPlayerState === undefined) {
+      return openLobbyScreen(otherPlayer);
+    } else {
+      return startGameScreen(otherPlayer, context.accountId);
+    }
+  }
+};
+
+const home = () => {
   return (
     <div
       style={{
@@ -61,18 +74,52 @@ const noGame = () => {
           }}
         />
       </label>
+      <Button onClick={()=>} >
+        Connect
+      </Button>
+    </div>
+  );
+};
+
+const openLobbyScreen = (otherPlayer) => {
+  return (
+    <div>
+      <h2>Host a Canvas Party!</h2>
+      <p>{otherPlayer} is not here, yet.</p>
       <CommitButton
         data={{
           canvasParty: {
             session: {
               pixels: [],
-              otherPlayer: state.form.accountId,
-              activePlayer: "",
+              otherPlayer,
+              activePlayer,
             },
           },
         }}
       >
-        Play
+        Open New Party
+      </CommitButton>
+    </div>
+  );
+};
+
+const startGameScreen = (otherPlayer, activePlayer) => {
+  return (
+    <div>
+      <h2>Join a Canvas Party!</h2>
+      <p>{otherPlayer} is hosting a party for you!</p>
+      <CommitButton
+        data={{
+          canvasParty: {
+            session: {
+              pixels: [],
+              otherPlayer,
+              activePlayer,
+            },
+          },
+        }}
+      >
+        Join
       </CommitButton>
     </div>
   );
