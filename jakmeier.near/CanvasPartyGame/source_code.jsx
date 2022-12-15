@@ -13,6 +13,8 @@ const Tile = {
   Ghost: "👻",
 };
 
+const myTurn = props.session.activePlayer === context.accountId;
+
 // Select a view of the map, store it as 2D array of tiles and insert pixels.
 const mapView = (start_x, start_y, width, height) => {
   const map = Array.from(Array(width), () =>
@@ -121,9 +123,23 @@ const tileInCurrentView = (x, y) => {
 };
 
 const drawPixel = (x, y) => {
-  // deleting is not allowed for now
-  if (tileInCurrentView(x, y) === Tile.Empty) {
+  if (!myTurn) {
+    return;
+  }
+  if (
+    // deleting is not allowed for now
+    tileInCurrentView(x, y) === Tile.Empty &&
+    state.updates.length == 0
+  ) {
     state.updates.push({ x, y });
+  } else if (
+    // undo is allowed
+    tileInCurrentView(x, y) === Tile.Full &&
+    state.updates.length == 1 &&
+    state.updates[0].x == x &&
+    state.updates[0].y == y
+  ) {
+    state.update = [];
   }
 };
 
@@ -195,11 +211,7 @@ const commitMessage = {
 
 return (
   <div>
-    <h2>
-      {props.session.activePlayer === context.accountId
-        ? "Your Turn"
-        : "Their Turn"}
-    </h2>
+    <h2>{myTurn ? "Your Turn" : "Their Turn"}</h2>
     <Widget
       src="jakmeier.near/widget/KeyInput"
       props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
