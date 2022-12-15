@@ -5,7 +5,7 @@ if (!myAccountId) {
 
 State.init({ message: "" });
 
-const data = Social.get(`*/astrosocial/feedback/comments`, "final") || {};
+const data = Social.get(`*/astrosocial/feedback/v1/comments`, "final") || {};
 
 const accounts = Object.keys(data);
 
@@ -13,11 +13,9 @@ let myComments = [];
 const allComments = accounts.reduce((acc, accountId) => {
   const accountData = data[accountId];
 
-  const comments = JSON.parse(accountData.astrosocial.feedback.comments);
+  const comments = JSON.parse(accountData.astrosocial.feedback.v1.comments);
 
   const enrichedComment = comments.map((comment) => {
-    const createdAt = new Date(comment.createdAt);
-
     return {
       ...comment,
       accountId,
@@ -82,13 +80,15 @@ return (
         data={{
           astrosocial: {
             feedback: {
-              comments: [
-                ...myComments,
-                {
-                  message: state.message,
-                  createdAt: new Date().getTime(),
-                },
-              ],
+              v1: {
+                comments: [
+                  ...myComments,
+                  {
+                    message: state.message,
+                    createdAt: new Date().getTime(),
+                  },
+                ],
+              },
             },
           },
         }}
