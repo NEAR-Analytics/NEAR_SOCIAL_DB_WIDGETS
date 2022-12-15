@@ -35,11 +35,14 @@ return (
     </div>
     <div className="row mb-3">
       <h4>My Widgets</h4>
-      <Widget src="erik.near/widget/Widgets" />
+      <Widget src="erik.near/widget/MyWidgets" />
     </div>
 
     <div className="row mb-3">
       <Widget src="mob.near/widget/Applications" />
+    </div>
+    <div className="row mb-3">
+      <Widget src="erik.near/widget/AllWidgetsWithSearch" />
     </div>
     <div className="row mb-3">
       <Widget src="mob.near/widget/People" />
