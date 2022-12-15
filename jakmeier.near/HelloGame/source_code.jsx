@@ -185,6 +185,25 @@ const buttonDownHandler = (button) => {
   }
 };
 
+const receiver = "gmilescu.near";
+const commitMessage = {
+  index: {
+    graph: JSON.stringify({
+      key: "poke",
+      value: {
+        accountId: receiver,
+      },
+    }),
+    notify: JSON.stringify({
+      key: receiver,
+      value: {
+        type: "state-transition",
+        stateData: [],
+      },
+    }),
+  },
+};
+
 // Init stare (does nothing if state already exists)
 State.init({ playerPos: { x: 0, y: 0 }, currentView: mapView(-5, -5, 11, 11) });
 
@@ -205,6 +224,7 @@ return (
     >
       {renderMap(state)}
     </div>
+    <CommitButton data={{ commitMessage }}>Save note</CommitButton>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
