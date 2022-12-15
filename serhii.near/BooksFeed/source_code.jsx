@@ -1,20 +1,42 @@
-// TODO: get books of your friends
-const items = Social.index("books", "read");
+const accountId = context.accountId;
 
-console.log(items);
+if (!accountId) {
+  return "";
+}
 
-if (!items || items.length === 0) {
-  return "No books yet";
+const peopleIFollow = Social.get(`${accountId}/graph/follow/**`) ?? {};
+
+if (!peopleIFollow) {
+  return "You are not following anybody";
+}
+
+const peopleIFollowWithBooks = {};
+Object.keys(peopleIFollow).map((follow) => {
+  const followBooks = Social.get(`${follow}/books/read/**`);
+  if (followBooks) {
+    peopleIFollowWithBooks[follow] = followBooks;
+  }
+});
+
+if (!followBooks) {
+  return "Your friend dos not have any books";
 }
 
 return (
-  <div className="d-flex gap-1 flex-wrap">
-    {items.map((item) => (
-      <Widget
-        key={i}
-        src={"serhii.near/widget/BookReview"}
-        props={{ book: item.value.book }}
-      />
-    ))}
+  <div>
+    <div className="d-flex gap-1 flex-wrap">
+      {Object.entries(followBooks).map(([acc, books]) => {
+        <div>
+          <div>{acc}</div>
+          {Object.values(books).map((book) => (
+            <Widget
+              key={i}
+              src={"serhii.near/widget/BookTile"}
+              props={{ book }}
+            />
+          ))}
+        </div>;
+      })}
+    </div>
   </div>
 );
