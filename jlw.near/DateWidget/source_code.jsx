@@ -29,7 +29,7 @@ const DateWidget = styled.div`
 
 return (
   <DateWidget>
-    <label for="dateofbirth">Date</label>
-    <input type="date" name="dateofbirth" id="dateofbirth" />
+    <label for="date">Date</label>
+    <input type="date" name="date" id="date" />
   </DateWidget>
 );
