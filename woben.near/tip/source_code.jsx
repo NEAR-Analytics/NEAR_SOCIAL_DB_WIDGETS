@@ -1,4 +1,4 @@
-State.init({ receiverID: "", tipAmount: null });
+State.init({ receiverID: "", tipAmount: 0 });
 
 if (!context.accountId) {
   return <p>Loading...</p>;
