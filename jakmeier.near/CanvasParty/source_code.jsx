@@ -201,6 +201,9 @@ const playing = (mySession, theirSession) => {
     mySession.pixels = theirSession.pixels;
     mySession.start = theirSession.start;
   }
+  if (theirSession.activePlayer === "gameover") {
+    mySession.activePlayer = "gameover";
+  }
   return (
     <div>
       <Widget
