@@ -13,6 +13,18 @@ if (props.debug) {
   };
 }
 
+const data = {
+  books: { my: { [book.id]: book } },
+  index: {
+    books: JSON.stringify({
+      key: "my",
+      value: {
+        book,
+      },
+    }),
+  },
+};
+
 return (
   <div className="profile d-inline-block">
     <a
@@ -32,20 +44,6 @@ return (
       </div>
     </a>
 
-    {onAdd && (
-      <button
-        className="nav-link active"
-        id="pills-bio-tab"
-        data-bs-toggle="pill"
-        data-bs-target="#pills-bio"
-        type="button"
-        role="tab"
-        aria-controls="pills-bio"
-        aria-selected="true"
-        onClick={() => onAdd(book)}
-      >
-        {addName}
-      </button>
-    )}
+    {onAdd && <CommitButton data={data}>{addName}</CommitButton>}
   </div>
 );
