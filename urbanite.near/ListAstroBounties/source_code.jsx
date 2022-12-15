@@ -52,7 +52,11 @@ return (
                   <b>Summary:</b> {bounty._source.description}
                 </p>
                 <p>
-                  <b>Amount:</b> {bounty._source.amount}
+                  <b>Amount:</b>{" "}
+                  <Widget
+                    src="urbanite.near/widget/YoctoNEARConverter"
+                    props={{ amount: bounty._source.amount }}
+                  />
                 </p>
               </div>
             </li>
