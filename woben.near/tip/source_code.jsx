@@ -10,7 +10,7 @@ const onSubmitClick = () => {
   Near.call(
     "passthrough.near",
     "transfer",
-    { receiver_id: State.receiverID },
+    { receiver_id: state.receiverID },
     gas,
     deposit
   );
