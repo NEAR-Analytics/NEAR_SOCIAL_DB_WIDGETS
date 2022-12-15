@@ -6,6 +6,10 @@ if (!accountId) {
 
 const saved = Social.get(`${accountId}/event`);
 
+if (saved === null) {
+  return "Loading";
+}
+
 State.init({
   name: saved.name || "",
   description: saved.description || "",
@@ -85,7 +89,6 @@ return (
       <CommitButton
         data={{
           event: {
-            creator: state.creator,
             name: state.name,
             description: state.description,
             cost: state.cost,
