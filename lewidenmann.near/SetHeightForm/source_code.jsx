@@ -4,8 +4,10 @@ const userHeight = Near.view(contractId, "get_height_inches", {
   account_id: accountId,
 });
 
+console.log("user height:", userHeight);
+
 State.init({
-  heightHasBeenSaved: userHeight >= 0,
+  heightHasBeenSaved: userHeight !== undefined,
   heightFeet: null,
   heightInches: null,
 });
