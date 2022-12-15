@@ -167,17 +167,21 @@ const waiting = (onlineState) => {
 };
 
 const playing = (mySession, theirSession) => {
+  // no idea how that happened but no time to debug ^.^
+  if (typeof mySession.pixels === "string") {
+    mySession.pixels = JSON.parse(mySession.pixels);
+  }
+  if (typeof theirSession.pixels === "string") {
+    theirSession.pixels = JSON.parse(theirSession.pixels);
+  }
   if (
     theirSession.activePlayer === context.accountId &&
-    mySession.activePlayer !== context.accountId
+    mySession.activePlayer !== context.accountId &&
+    mySession.pixels.length < theirSession.pixels.length
   ) {
     // they finished their turn, need to update our session
     mySession.activePlayer = context.accountId;
     mySession.pixels = theirSession.pixels;
-    // no idea how that happened but no time to debug ^.^
-    if (typeof mySession.pixels === "string") {
-      mySession.pixels = JSON.parse(mySession.pixels);
-    }
   }
   return (
     <Widget
