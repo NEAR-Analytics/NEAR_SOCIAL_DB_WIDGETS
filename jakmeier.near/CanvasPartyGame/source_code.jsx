@@ -230,10 +230,12 @@ return (
     <h1>Draw: {props.session.word}</h1>
     <h2>{myTurn ? "Your Turn" : gameover ? "Art Complete" : "Their Turn"}</h2>
     {timeLeftHtml}
-    <Widget
-      src="jakmeier.near/widget/KeyInput"
-      props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
-    />
+    {gameover || (
+      <Widget
+        src="jakmeier.near/widget/KeyInput"
+        props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
+      />
+    )}
     <div
       style={{
         display: "grid",
@@ -245,17 +247,20 @@ return (
     >
       {renderMap(state.playerPos)}
     </div>
-    <Widget
-      src="jakmeier.near/widget/GameBoyInput"
-      props={{
-        buttonDownHandler,
-        width: MAP_SIZE,
-        margin: "20px 0",
-        dPadWidth: "100px",
-        roundButtonSize: "50px",
-        squareButtonSize: "60px",
-      }}
-    />
+    {gameover || (
+      <Widget
+        src="jakmeier.near/widget/GameBoyInput"
+        props={{
+          buttonDownHandler,
+          width: MAP_SIZE,
+          margin: "20px 0",
+          dPadWidth: "100px",
+          roundButtonSize: "50px",
+          squareButtonSize: "60px",
+        }}
+      />
+    )}
+
     <div style={{ margin: "20px 0" }}>
       <CommitButton style={{ width: MAP_SIZE }} data={commitMessage}>
         Submit
