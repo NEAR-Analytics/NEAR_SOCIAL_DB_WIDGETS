@@ -10,48 +10,51 @@ const update = (text) => {
 };
 
 const search = (text) => {
-  if (text === "") {
+  if (!text) {
     console.log("clearing books");
     State.update({
       books: null,
+      showBooks: false,
+    });
+    return;
+  } else {
+    // NOTE: provided encodeURIComponent not available
+    const encodeURIComponent = (str) => {
+      return str.replace(" ", "%20");
+    };
+    const query = encodeURIComponent(text);
+    const resp = fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`
+    );
+
+    if (!resp.ok) {
+      console.log(`ERR: cannot query for ${text}`);
+      console.log(resp);
+      return;
+    }
+
+    const books = resp.body.items.map((item) => {
+      const info = item.volumeInfo;
+      return {
+        title: info.title,
+        author: info.authors[0],
+        pageCount: info.pageCount,
+        genre: "Novel",
+        onAdd: onAddBook,
+        cover: {
+          url:
+            info.imageLinks.thumbnail ||
+            info.imageLinks.small ||
+            info.imageLinks.medium,
+        },
+      };
+    });
+
+    State.update({
+      books,
+      showBooks: true,
     });
   }
-
-  // NOTE: provided encodeURIComponent not available
-  const encodeURIComponent = (str) => {
-    return str.replace(" ", "%20");
-  };
-  const query = encodeURIComponent(text);
-  const resp = fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`
-  );
-
-  if (!resp.ok) {
-    console.log(`ERR: cannot query for ${text}`);
-    console.log(resp);
-    return;
-  }
-
-  const books = resp.body.items.map((item) => {
-    const info = item.volumeInfo;
-    return {
-      title: info.title,
-      author: info.authors[0],
-      pageCount: info.pageCount,
-      genre: "Novel",
-      onAdd: onAddBook,
-      cover: {
-        url:
-          info.imageLinks.thumbnail ||
-          info.imageLinks.small ||
-          info.imageLinks.medium,
-      },
-    };
-  });
-
-  State.update({
-    books,
-  });
 };
 
 const onAddBook = (book_id) => {
@@ -73,7 +76,8 @@ return (
     />
 
     <div className="d-flex gap-1 flex-wrap">
-      {state.books &&
+      {state.showBooks &&
+        state.books &&
         state.books.map((book) => (
           <Widget
             key={i}
