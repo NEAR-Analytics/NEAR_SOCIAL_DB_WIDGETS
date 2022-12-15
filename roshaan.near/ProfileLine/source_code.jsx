@@ -4,7 +4,7 @@ const link = props.link ?? true;
 const profileImageTooltipItems = props.profileImageTooltipItems ?? [];
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
-const tags = props.showTags && Object.keys(profile.tags);
+const tags = props.showTags && profile.tags && Object.keys(profile.tags);
 const inner = (
   <>
     <div className="flex flex-row">
