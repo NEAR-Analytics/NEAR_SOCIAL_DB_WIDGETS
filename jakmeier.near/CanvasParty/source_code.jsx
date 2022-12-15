@@ -42,7 +42,7 @@ const noGame = () => {
     if (
       otherPlayerState &&
       otherPlayerState.session &&
-      otherPlayerState.session.otherPlayer === context.accountId
+      otherPlayerState.session.otherPlayer == context.accountId
     ) {
       return startGameScreen(otherPlayer, context.accountId);
     } else {
