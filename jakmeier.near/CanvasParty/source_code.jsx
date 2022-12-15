@@ -46,7 +46,7 @@ const noGame = () => {
     ) {
       return startGameScreen(otherPlayer, context.accountId);
     } else {
-      console.log("other player:", otherPlayerState);
+      console.log("other player:", otherPlayerState, context.accountId);
       return openLobbyScreen(otherPlayer);
     }
   }
