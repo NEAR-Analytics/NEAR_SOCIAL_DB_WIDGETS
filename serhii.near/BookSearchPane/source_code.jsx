@@ -42,6 +42,7 @@ const search = (text) => {
         )["ISBN_13"],
         title: info.title,
         author: info.authors[0],
+        rating: info.rating,
         pageCount: info.pageCount,
         genre: "Novel",
         onAdd: onAddBook,
