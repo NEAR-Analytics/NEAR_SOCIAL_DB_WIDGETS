@@ -195,6 +195,11 @@ const commitMessage = {
 
 return (
   <div>
+    <h2>
+      {props.session.activePlayer === context.accountId
+        ? "Your Turn"
+        : "Their Turn"}
+    </h2>
     <Widget
       src="jakmeier.near/widget/KeyInput"
       props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
