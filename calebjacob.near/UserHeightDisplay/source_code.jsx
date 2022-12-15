@@ -17,7 +17,7 @@ function accuracyPercentageClassName(accuracyPercentage) {
 }
 
 return (
-  <div className="border-top pt-3">
+  <div>
     <div
       className="d-flex flex-column flex-sm-row align-items-md-center"
       style={{ gap: "1rem" }}
