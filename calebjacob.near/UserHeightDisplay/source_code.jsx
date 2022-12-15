@@ -1,3 +1,23 @@
+const users = [
+  {
+    accountId: "calebjacob.near",
+    height: 69,
+    accuracyPercentage: 95,
+  },
+  {
+    accountId: "lewidenmann.near",
+    height: 72,
+    accuracyPercentage: 70,
+  },
+  {
+    accountId: "oztanmain.near",
+    height: null,
+    accuracyPercentage: null,
+  },
+];
+
+const user = users.find((u) => u.accountId === props.accountId);
+
 function displayHeight(height) {
   const feet = Math.floor(height / 12);
   const inches = height - feet * 12;
@@ -15,6 +35,9 @@ function accuracyPercentageClassName(accuracyPercentage) {
     return "text-bg-success";
   }
 }
+
+if (!props.accountId) return "Missing prop: accountId";
+if (!user) return "Loading...";
 
 return (
   <div>
