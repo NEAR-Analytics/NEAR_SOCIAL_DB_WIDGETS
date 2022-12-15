@@ -13,8 +13,9 @@ if (props.debug) {
   };
 }
 
+// TODO: why do we need index here?
 const data = {
-  books: { my: { [book.id]: book } },
+  books: { read: { [book.id]: book } },
   index: {
     books: JSON.stringify({
       key: "my",
