@@ -40,9 +40,8 @@ const question = Social.get(
 
 return (
   <div className="d-flex flex-column gap-1">
-    <div className="d-flex align-items-center">
+    <div className="d-flex align-items-center gap-2">
       <div
-        className="pr-4"
         style={{
           backgroundColor: "#000",
           width: "24px",
