@@ -6,16 +6,19 @@ if (!context.accountId) {
 
 const questionRef = `${context.accountId}--${Date.now()}`;
 return (
-  <div className="d-flex flex-column gap-3">
-    Enter your question:
-    <input
-      type="text"
-      className="form-control"
-      value={state.questionContent}
-      onChange={(e) => {
-        State.update({ questionContent: e.target.value });
-      }}
-    />
+  <div className="d-flex align-items-center gap-3">
+    <i class="bi bi-search" />
+    <div class="input-group input-group-lg">
+      <input
+        type="text"
+        placeholder="Your wish is my command"
+        className="form-control input-group input-group-lg"
+        value={state.questionContent}
+        onChange={(e) => {
+          State.update({ questionContent: e.target.value });
+        }}
+      />
+    </div>
     <div>
       <CommitButton
         className="btn btn-primary"
@@ -41,7 +44,7 @@ return (
           },
         }}
       >
-        Save question
+        Ask question
       </CommitButton>
     </div>
   </div>
