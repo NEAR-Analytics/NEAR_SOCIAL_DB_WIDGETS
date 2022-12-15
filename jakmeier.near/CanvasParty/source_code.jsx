@@ -1,4 +1,9 @@
-State.init({ form: {}, submitted: false });
+State.init({
+  form: {},
+  submitted: false,
+  updates: [],
+  playerPos: { x: 0, y: 0 },
+});
 
 const playerSession = (accountId) => {
   return Social.get(accountId + "/canvasParty/session/**", "optimistic", {
