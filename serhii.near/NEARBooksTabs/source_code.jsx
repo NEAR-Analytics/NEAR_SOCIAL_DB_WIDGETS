@@ -100,10 +100,7 @@ return (
         aria-labelledby="pills-widget-tab"
       >
         {state.loadBooksToRead && (
-          <Widget
-            src="serhii.near/widget/BooksWantToRead"
-            props={{ accountId }}
-          />
+          <Widget src="serhii.near/widget/BooksToRead" props={{ accountId }} />
         )}
       </div>
     </div>
