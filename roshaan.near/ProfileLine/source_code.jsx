@@ -7,20 +7,22 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const tags = props.showTags && profile.tags && Object.keys(profile.tags);
 const inner = (
   <>
-    <div className="flex flex-row">
-      <Widget
-        src="roshaan.near/widget/ProfileImage"
-        props={{
-          style: { width: "3em", height: "3em" },
-          profile,
-          tooltip: true,
-          tooltipItems: profileImageTooltipItems,
-          accountId,
-          className: "d-inline-block",
-          imageClassName: "rounded w-100 h-100 align-top",
-        }}
-      />
-      <div className="flex flex-col">
+    <div style={{ display: "flex" }}>
+      <div>
+        <Widget
+          src="roshaan.near/widget/ProfileImage"
+          props={{
+            style: { display: "flex", width: "4em", height: "auto" },
+            profile,
+            tooltip: true,
+            tooltipItems: profileImageTooltipItems,
+            accountId,
+            className: "d-inline-block",
+            imageClassName: "rounded w-100 h-100 align-top",
+          }}
+        />
+      </div>
+      <div style={{ "padding-left": "5px" }}>
         <a
           href={
             link !== true
@@ -32,7 +34,7 @@ const inner = (
         >
           <span>
             {profile.name || ""}
-            <span className="text-muted pl-4">@{accountId}</span>
+            <span className="text-muted">@{accountId}</span>
           </span>
         </a>
         {showFollowerStats && (
