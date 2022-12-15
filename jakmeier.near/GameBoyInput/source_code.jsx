@@ -6,8 +6,9 @@ const buttonDownHandler = props.buttonDownHandler;
 
 // optional styling props
 const width = props.width ?? "100%";
-const buttonSize = props.buttonSize ?? "80px";
-const dPadWidth = props.buttonSize ?? "240px";
+const roundButtonSize = props.roundButtonSize ?? "80px";
+const squareButtonSize = props.squareButtonSize ?? "80px";
+const dPadWidth = props.dPadWidth ?? "240px";
 const margin = props.margin ?? "0px";
 
 // enum for button values
@@ -22,11 +23,11 @@ const Button = {
 
 // reusable styled button component
 const RoundButton = styled.button`
-  border-radius: ${buttonSize};
+  border-radius: ${roundButtonSize};
   font-size: xx-large;
   margin: 10px;
-  width: ${buttonSize};
-  height: ${buttonSize};
+  width: ${roundButtonSize};
+  height: ${roundButtonSize};
   border: 2px solid black;
   ${(props) => props.primary}
 `;
@@ -35,8 +36,8 @@ const RoundButton = styled.button`
 const SquareButton = styled.button`
   font-size: xx-large;
   margin: 10px;
-  width: ${buttonSize};
-  height: ${buttonSize};
+  width: ${squareButtonSize};
+  height: ${squareButtonSize};
   border: 2px solid black;
   ${(props) => props.primary}
 `;
