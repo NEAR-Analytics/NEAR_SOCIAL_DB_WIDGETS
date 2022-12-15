@@ -42,6 +42,7 @@ return (
   <ol>
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
+          const bountId = bounty._source.id;
           return (
             <li>
               <div>
@@ -58,6 +59,11 @@ return (
                     props={{ amount: bounty._source.amount }}
                   />
                 </p>
+                <br />
+                <Widget
+                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                  props={{ bountyId }}
+                />
               </div>
             </li>
           );
