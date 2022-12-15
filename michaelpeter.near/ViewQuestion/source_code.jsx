@@ -26,7 +26,7 @@ if (!state.questionRef) {
 }
 
 const question = Social.get(
-  `michaelpeter.near/experimental/genie/questions/${questionRef}`
+  `michaelpeter.near/experimental/genie/questions/${state.questionRef}`
 );
 return (
   <div className="d-flex flex-column gap-3">
