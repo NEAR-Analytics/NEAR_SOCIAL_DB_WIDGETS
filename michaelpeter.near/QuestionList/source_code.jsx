@@ -19,7 +19,7 @@ return (
       {questions.map((q) => (
         <div key={q.value}>
           <Widget
-            src={"michaelpeter.near/widget/ViewQuestion"}
+            src={"michaelpeter.near/widget/GenieQuestionView"}
             props={{ questionRef: q.value }}
           />
         </div>
