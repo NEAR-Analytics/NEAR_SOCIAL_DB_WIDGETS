@@ -207,6 +207,7 @@ const commitMessage = {
       pixels: onlineState.pixels.concat(state.updates),
       otherPlayer: onlineState.otherPlayer,
       activePlayer: onlineState.otherPlayer,
+      start: onlineState.start,
     },
   },
 };
