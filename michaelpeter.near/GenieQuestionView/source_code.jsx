@@ -33,9 +33,9 @@ const question = Social.get(
 
 return (
   <div className="d-flex flex-column gap-1">
+    <h3>{question}</h3>
     <p>
       Asked by: {asker} | Ref: {state.questionRef}
     </p>
-    <h3>{question}</h3>
   </div>
 );
