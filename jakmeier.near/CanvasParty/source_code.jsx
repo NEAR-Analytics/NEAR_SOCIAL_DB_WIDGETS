@@ -7,7 +7,7 @@ const playerSession = (accountId) => {
 };
 
 const onlineState = playerSession(context.accountId);
-console.log(onlineState);
+// console.log(onlineState);
 
 const main = () => {
   if (onlineState) {
