@@ -14,11 +14,9 @@ return (
       <span>{answer}</span>
       <span>{answeredBy}</span>
     </div>
-    <div className="d-flex justify-content-end">
-      <Widget
-        src="michaelpeter.near/widget/GenieAnswerVote"
-        props={{ questionRef, answeredBy }}
-      />
-    </div>
+    <Widget
+      src="michaelpeter.near/widget/GenieAnswerVote"
+      props={{ questionRef, answeredBy }}
+    />
   </div>
 );
