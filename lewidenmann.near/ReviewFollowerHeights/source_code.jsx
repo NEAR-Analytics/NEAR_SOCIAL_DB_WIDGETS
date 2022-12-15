@@ -123,7 +123,7 @@ return (
 
           <div className="d-flex flex-row" style={{ gap: "1rem" }}>
             <Widget
-              src="mob.near/widget/Profile"
+              src="lewidenmann.near/widget/Profile"
               props={{ accountId: currentFollower.accountId }}
             />
             <h1 style={{ borderLeft: "1px solid", paddingLeft: "1rem" }}>
