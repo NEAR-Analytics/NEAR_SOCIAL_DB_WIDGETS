@@ -9,8 +9,24 @@ return (
     {JSON.stringify(votes)}
     <div>Upvotes: {upvotes}</div>
     <div>Downvotes: {downvotes}</div>
-    <div className="d-flex flex-row gap-1">
+    <div
+      className="d-flex flex-row"
+      style={{
+        width: "8rem",
+        borderStyle: "solid",
+        borderWidth: "2px",
+        borderRadius: ".5rem",
+      }}
+    >
       <CommitButton
+        className="btn btn-outline-dark col-8"
+        style={{
+          borderRadius: 0,
+          borderRight: "1px solid black",
+          borderLeft: "0",
+          borderTop: "0",
+          borderBottom: "0",
+        }}
         data={{
           index: {
             genie: JSON.stringify({
@@ -24,9 +40,12 @@ return (
           },
         }}
       >
-        Upvote
+        <i className="bi bi-arrow-up-short" />
+        {upvotes}
       </CommitButton>
       <CommitButton
+        className="btn btn-outline-dark border-none border-0 col"
+        style={{ borderRadius: 0 }}
         data={{
           index: {
             genie: JSON.stringify({
@@ -40,7 +59,8 @@ return (
           },
         }}
       >
-        Downvote
+        <i className="bi bi-arrow-down-short" />
+        {/*downvotes*/}
       </CommitButton>
     </div>
   </div>
