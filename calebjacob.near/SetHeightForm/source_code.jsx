@@ -1,8 +1,26 @@
+const contractId = "proof_of_height.lewidenmann.near";
+const accountId = context.accountId;
+if (!accountId) {
+  return "Please login to use Proof of Height";
+}
+
 State.init({
   heightHasBeenSaved: false,
   heightFeet: null,
   heightInches: null,
 });
+
+const userHeight = Near.view(contractId, "get_height_inches", {
+  account_id: accountId,
+});
+
+if (userHeight && !state.heightHasBeenSaved) {
+  State.update({
+    heightHasBeenSaved: true,
+    heightFeet: Math.floor(userHeight / 12),
+    heightInches: userHeight % 12,
+  });
+}
 
 const height = {
   feet: state.inputHeightFeet || 0,
@@ -15,6 +33,9 @@ const formIsValid = heightIsSet && inchesAreValid;
 
 function submitHeight() {
   const totalInches = height.feet * 12 + height.inches;
+  Near.call(contractId, "set_height_inches", {
+    height: totalInches,
+  });
   State.update({
     heightHasBeenSaved: true,
   });
@@ -24,22 +45,24 @@ function submitHeight() {
 return (
   <div class="card p-3">
     {state.heightHasBeenSaved ? (
-      <div class="alert alert-success m-0" role="alert">
-        Your height has been saved: {height.feet}′{height.inches}″
-      </div>
+      <h5 className="mb-0">Your Height</h5>
+    ) : (
+      <h5 className="mb-0">What&apos;s your height?</h5>
+    )}
+
+    <hr />
+
+    {state.heightHasBeenSaved ? (
+      <Widget
+        src="lewidenmann.near/widget/UserHeightDisplay"
+        props={{ accountId }}
+      />
     ) : (
       <div>
         <div
           className=" d-flex flex-column flex-md-row align-items-stretch"
           style={{ gap: "1rem" }}
         >
-          <div
-            className="d-flex align-items-center"
-            style={{ marginRight: "auto" }}
-          >
-            <h5 className="m-0">What&apos;s your height?</h5>
-          </div>
-
           <div
             className="d-flex flex-row"
             style={{ gap: "1rem", minWidth: "15rem" }}
