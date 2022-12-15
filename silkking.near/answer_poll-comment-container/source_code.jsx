@@ -10,6 +10,9 @@ function getBlockTimestamp(blockHeight) {
 
 const answerBlockHeight = props.blockHeight;
 const answers = Social.index("poll_question", "answer-v3.0.1");
+if (!answers) {
+  return "Loading";
+}
 const answerParams = answers.find((a) => a.blockHeight == answerBlockHeight);
 
 console.log(1, answers);
@@ -18,6 +21,9 @@ const answerTimeStamp = getBlockTimestamp(answerBlockHeight);
 const accountId = answerParams.accountId;
 
 const profile = Social.getr(`${accountId}/profile`);
+if (!profile) {
+  return "Loading";
+}
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
