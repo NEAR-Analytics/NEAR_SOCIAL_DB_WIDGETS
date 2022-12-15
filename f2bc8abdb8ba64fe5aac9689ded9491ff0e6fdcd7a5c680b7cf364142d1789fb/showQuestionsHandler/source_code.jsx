@@ -1,4 +1,4 @@
-State.init({ showQuestion: false, modalBlockHeight: 0 });
+State.init({ showQuestion: false, modalBlockHeight: 0, questions: {} });
 
 const displayAnswerWidgetNames = [
   "newTextAnswerInterface",
@@ -9,11 +9,29 @@ let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
 
+if (!questions) {
+  return "Loading";
+}
+
+questions = questions.sort((q1, q2) => {
+  const isQ1Finished = q1.value.endTimestamp < Date.now();
+  const isQ2Finished = q2.value.endTimestamp < Date.now();
+  if (isQ1Finished && !isQ2Finished) return 1;
+  if (!isQ1Finished && isQ2Finished) return -1;
+  return q1.value.endTimestamp - q2.value.endTimestamp;
+});
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 function closeModalClickingOnTransparent() {
   return (e) => {
     e.target.id == "modal" && State.update({ showQuestion: false });
   };
 }
+
+const widgetOwner = "silkking.near";
 
 const renderModal = () => {
   return (
@@ -53,7 +71,7 @@ const renderModal = () => {
             }}
           >
             <Widget
-              src={`${context.accountId}/widget/newVotingInterface`}
+              src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
                 blockHeight: state.modalBlockHeight,
                 shouldDisplayViewAll: props.accountId == undefined,
@@ -94,11 +112,11 @@ const renderQuestions = () => {
         }}
       >
         <Widget
-          src={`${context.accountId}/widget/answersHeader`}
+          src={`${widgetOwner}/widget/answersHeader`}
           props={{ ...question }}
         />
         <Widget
-          src={`${context.accountId}/widget/${
+          src={`${widgetOwner}/widget/${
             displayAnswerWidgetNames[question.value.questionType]
           }`}
           props={{ ...question }}
