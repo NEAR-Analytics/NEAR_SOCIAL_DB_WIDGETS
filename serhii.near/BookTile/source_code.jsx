@@ -44,6 +44,8 @@ const BookTyle = styled.div`
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
+  width: "100%";
+  height: "100%";
 `;
 
 const BookTitle = styled.p`
