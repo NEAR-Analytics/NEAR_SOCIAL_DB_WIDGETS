@@ -42,8 +42,13 @@ return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex align-items-center">
       <div
-        className="pr-2 round"
-        style={{ backgroundColor: "#000", width: "24px", height: "24px" }}
+        className="pr-2"
+        style={{
+          backgroundColor: "#000",
+          width: "24px",
+          height: "24px",
+          borderRadius: "50%",
+        }}
       ></div>
       <div className="d-flex flex-column">
         <h6>{asker}</h6>
