@@ -1,2 +1,2 @@
 const amount = props.amount;
-return <>{amount / 1000000000000000000000000} NEAR</>;
+return <>{amount / 1e24} NEAR</>;
