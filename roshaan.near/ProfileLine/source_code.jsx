@@ -39,6 +39,7 @@ const inner = (
             <span className="text-muted">@{accountId}</span>
             {showFollowButton && (
               <Widget
+                className="l-4"
                 src="mob.near/widget/FollowButton"
                 props={{ accountId }}
               />
