@@ -1,4 +1,4 @@
-State.init({ receiverID: "", tipAmount: 0 });
+State.init({ receiverID: "", tipAmount: null });
 
 if (!context.accountId) {
   return <p>Loading...</p>;
@@ -39,7 +39,7 @@ return (
       disabled={
         context.loading ||
         !(state.receiverID && state.tipAmount) ||
-        !parseInt(State.tipAmount)
+        !parseInt(state.tipAmount)
       }
       className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
       onClick={onSubmitClick}
