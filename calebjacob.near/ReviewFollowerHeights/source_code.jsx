@@ -62,43 +62,57 @@ function submitHeightReview(follower, option) {
 
 return (
   <div class="card">
-    <div className="p-3">
-      <h5>
-        Review Your Follower&apos;s Heights ({state.currentFollowerIndex + 1} of{" "}
-        {followers.length})
-      </h5>
+    {state.hasFinishedReviewing ? (
+      <div className="p-3">
+        <h5>Review Your Followers&apos; Heights</h5>
 
-      <hr />
+        <hr />
 
-      <h6 className="mb-3">Is this user&apos;s height accurate?</h6>
-
-      <div className="d-flex flex-row" style={{ gap: "1rem" }}>
-        <Widget
-          src="mob.near/widget/Profile"
-          props={{ accountId: currentFollower.accountId }}
-        />
-        <h1 style={{ borderLeft: "1px solid", paddingLeft: "1rem" }}>
-          {displayHeight(currentFollower.height)}
-        </h1>
+        <div class="alert alert-success m-0" role="alert">
+          You have reviewed all of your followers&apos; heights.
+        </div>
       </div>
-    </div>
+    ) : (
+      <div>
+        <div className="p-3">
+          <h5>
+            Review Your Followers&apos; Heights (
+            {state.currentFollowerIndex + 1} of {followers.length})
+          </h5>
 
-    <div className="card-footer p-3">
-      <div className="btn-group" style={{ gap: "0.25rem" }}>
-        {reviewOptions.map((option) => {
-          return (
-            <button
-              type="button"
-              className={`btn ${option.className}`}
-              onClick={() => {
-                submitHeightReview(currentFollower, option);
-              }}
-            >
-              {option.display}
-            </button>
-          );
-        })}
+          <hr />
+
+          <h6 className="mb-3">Is this user&apos;s height accurate?</h6>
+
+          <div className="d-flex flex-row" style={{ gap: "1rem" }}>
+            <Widget
+              src="mob.near/widget/Profile"
+              props={{ accountId: currentFollower.accountId }}
+            />
+            <h1 style={{ borderLeft: "1px solid", paddingLeft: "1rem" }}>
+              {displayHeight(currentFollower.height)}
+            </h1>
+          </div>
+        </div>
+
+        <div className="card-footer p-3">
+          <div className="btn-group" style={{ gap: "0.25rem" }}>
+            {reviewOptions.map((option) => {
+              return (
+                <button
+                  type="button"
+                  className={`btn ${option.className}`}
+                  onClick={() => {
+                    submitHeightReview(currentFollower, option);
+                  }}
+                >
+                  {option.display}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    )}
   </div>
 );
