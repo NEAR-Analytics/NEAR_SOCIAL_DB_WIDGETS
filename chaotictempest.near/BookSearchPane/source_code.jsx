@@ -31,12 +31,17 @@ const search = (text) => {
       author: info.authors[0],
       pageCount: info.pageCount,
       genre: "Novel",
+      onAdd: onAddBook,
     };
   });
 
   State.update({
-    books: books,
+    books,
   });
+};
+
+const onAddBook = (book_id) => {
+  console.log(`ADDING BOOK ${book_id}`);
 };
 
 return (
@@ -58,7 +63,7 @@ return (
         state.books.map((book) => (
           <Widget
             key={i}
-            src={"serhii.near/widget/BookTile"}
+            src={"chaotictempest.near/widget/BookTile"}
             props={{ book }}
           />
         ))}
