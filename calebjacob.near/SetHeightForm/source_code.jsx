@@ -1,13 +1,18 @@
 State.init({ heightFeet: null, heightInches: null });
 
 const height = {
-  feet: state.heightFeet || 0,
-  inches: state.heightInches || 0,
+  feet: state.inputHeightFeet || 0,
+  inches: state.inputHeightInches || 0,
 };
 
 const heightIsSet = height.feet > 0 || height.inches > 0;
 const inchesAreValid = height.inches >= 0 && height.inches < 12;
 const formIsValid = heightIsSet && inchesAreValid;
+
+function submitHeight() {
+  const totalInches = height.feet * 12 + height.inches;
+  alert(`Your height in total inches: ${totalInches}`);
+}
 
 return (
   <div class="card p-3">
@@ -36,7 +41,7 @@ return (
             min="0"
             onChange={(e) => {
               const value = Number(e.target.value) || 0;
-              State.update({ heightFeet: e.target.value });
+              State.update({ inputHeightFeet: e.target.value });
             }}
           />
           <label for="heightFeet">Feet</label>
@@ -53,14 +58,19 @@ return (
             max="11"
             onChange={(e) => {
               const value = Number(e.target.value) || 0;
-              State.update({ heightInches: value });
+              State.update({ inputHeightInches: value });
             }}
           />
           <label for="heightInches">Inches</label>
         </div>
       </div>
 
-      <button type="button" className="btn btn-primary" disabled={!formIsValid}>
+      <button
+        type="button"
+        className="btn btn-primary"
+        disabled={!formIsValid}
+        onClick={submitHeight}
+      >
         Save Height: {height.feet}′{height.inches}″
       </button>
     </div>
