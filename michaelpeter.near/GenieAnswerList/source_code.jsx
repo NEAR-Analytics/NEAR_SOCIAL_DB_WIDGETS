@@ -4,7 +4,7 @@ if (!questionRef) {
   return "No question ref provided";
 }
 
-const answers = Social.index("genie", "answered1");
+const answers = Social.index("genie", `answered/${questionRef}`);
 const relevantAnswers = answers.filter((a) => a.value === questionRef);
 
 return (
