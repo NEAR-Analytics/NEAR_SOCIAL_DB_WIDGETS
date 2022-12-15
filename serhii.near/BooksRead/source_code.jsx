@@ -4,7 +4,7 @@ if (!accountId) {
   return "";
 }
 
-const books = Social.get(`${accountId}/books/my/**`);
+const books = Social.get(`${accountId}/books/read/**`);
 console.log(books);
 
 if (!books) {
