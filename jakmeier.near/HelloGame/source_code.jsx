@@ -185,20 +185,9 @@ const buttonDownHandler = (button) => {
   }
 };
 
+/*
 const receiver = "gmilescu.near";
-/*const commitMessage = {
-  index: {
-    notify: JSON.stringify({
-      key: receiver,
-      value: {
-        type: "poke",
-        //stateData: [],
-      },
-    }),
-  },
-};*/
-
-const data = {
+const commitMessage = {
   index: {
     graph: JSON.stringify({
       key: "poke",
@@ -214,9 +203,39 @@ const data = {
     }),
   },
 };
+*/
 
-// Init stare (does nothing if state already exists)
-State.init({ playerPos: { x: 0, y: 0 }, currentView: mapView(-5, -5, 11, 11) });
+const onlineState = Social.index("helloGame", "pos", {
+  order: "desc",
+  limit: 1,
+  subscribe: true, // refresh once in 5s
+});
+
+if (onlineState === null || onlineState === undefined) {
+  return "Loading";
+}
+
+if (onlineState.length > 0) {
+  const pos = onlineState[0].value;
+  State.init({
+    playerPos: pos,
+    currentView: mapView(pos.x - 5, pos.y - 5, 11, 11),
+  });
+} else {
+  State.init({
+    playerPos: { x: 0, y: 0 },
+    currentView: mapView(-5, -5, 11, 11),
+  });
+}
+
+const commitMessage = {
+  index: {
+    helloGame: JSON.stringify({
+      key: "pos",
+      value: state.playerPos,
+    }),
+  },
+};
 
 return (
   <div>
@@ -235,7 +254,7 @@ return (
     >
       {renderMap(state)}
     </div>
-    <CommitButton data={data}>Save note</CommitButton>
+    <CommitButton data={commitMessage}>Save Position</CommitButton>
     <Widget
       src="jakmeier.near/widget/GameBoyInput"
       props={{
