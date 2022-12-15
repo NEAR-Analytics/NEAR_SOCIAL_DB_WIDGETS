@@ -21,13 +21,16 @@ return (
       />
       <div
         className="profile-info d-inline-flex gap-1"
-        style={{ maxWidth: "16em" }}
+        style={{ maxWidth: "30em" }}
       >
         <div className="profile-name text-truncate">
           {name || "No-name profile"}
         </div>
         <div className="profile-links d-flex">
-          <div className="d-inline-block profile-account text-secondary text-truncate">
+          <div
+            className="d-inline-block profile-account text-secondary text-truncate"
+            style={{ maxWidth: "16em" }}
+          >
             @{accountId}
           </div>
         </div>
