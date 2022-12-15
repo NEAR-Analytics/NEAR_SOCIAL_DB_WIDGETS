@@ -1,4 +1,4 @@
-State.init({ showQuestion: false, modalBlockHeight: 0 });
+State.init({ showQuestion: false, modalBlockHeight: 0, questions: {} });
 
 const displayAnswerWidgetNames = [
   "newTextAnswerInterface",
@@ -8,17 +8,24 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
+
 if (!questions) {
   return "Loading";
 }
+
 questions = questions.sort((q1, q2) => {
   const isQ1Finished = q1.value.endTimestamp < Date.now();
   const isQ2Finished = q2.value.endTimestamp < Date.now();
   if (isQ1Finished && !isQ2Finished) return 1;
   if (!isQ1Finished && isQ2Finished) return -1;
+  if (isQ1Finished && isQ2Finished)
+    return q2.value.endTimestamp - q1.value.endTimestamp;
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
-console.log(2, questions);
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
 
 function closeModalClickingOnTransparent() {
   return (e) => {
