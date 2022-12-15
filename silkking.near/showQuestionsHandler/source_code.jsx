@@ -11,7 +11,14 @@ let questions = Social.index("poll_question", "question-v3.0.1", {
 if (!questions) {
   return "Loading";
 }
-console.log(1, questions);
+questions = questions.sort((q1, q2) => {
+  const isQ1Finished = q1.value.endTimestamp < Date.now();
+  const isQ2Finished = q2.value.endTimestamp < Date.now();
+  if (isQ1Finished && !isQ2Finished) return 1;
+  if (!isQ1Finished && isQ2Finished) return -1;
+  return q1.value.endTimestamp - q2.value.endTimestamp;
+});
+console.log(2, questions);
 
 function closeModalClickingOnTransparent() {
   return (e) => {
