@@ -36,7 +36,7 @@ const inner = (
           </span>
         </a>
         {showFollowerStats && (
-          <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
+          <Widget src="roshaan.near/widget/FollowStats" props={{ accountId }} />
         )}
         {tags.length > 0 && (
           <div>
