@@ -23,13 +23,16 @@ const allComments = accounts.reduce((acc, accountId) => {
     accountData.astrosocial.bounties[bountyId].comments
   );
 
+  const enrichedComment = comments.map((comment) => ({
+    ...comment,
+    accountId: accountId,
+  }));
+
   if (accountId === myAccountId) {
-    myComments = comments;
+    myComments = enrichedComment;
   }
 
-  console.log({ acc, accountId, comments, accountData, myComments });
-
-  return acc.concat(comments);
+  return acc.concat(enrichedComment);
 }, []);
 
 console.log({ bountyId, comments, data, allComments, myComments, accounts });
@@ -78,7 +81,7 @@ return (
                 comments: [
                   ...myComments,
                   {
-                    accountId,
+                    accountId: myAccountId,
                     message: state.message,
                     createdAt: new Date().getTime(),
                   },
