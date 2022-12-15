@@ -8,15 +8,25 @@ function getBlockTimestamp(blockHeight) {
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
 
+function getQuestion(blockHeight) {
+  const questions = Social.index("poll_question", "question-v3.0.1");
+  if (!questions) {
+    return "Loading";
+  }
+  return questions.find((q) => q.blockHeight == blockHeight);
+}
+
 // Discards answers that were posted after question's end date
 function getTimeRelatedValidAnswers(answers) {
+  const questionParams = getQuestion(props.blockHeight);
   let low = 0;
   let high = answers.length - 1;
   const questionEndTimestamp = questionParams.value.endTimestamp;
   let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
+  console.log(4, questionParams);
   if (endBlockTimestamp < questionEndTimestamp) return answers;
   // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
-  let tries = 10;
+  let tries = 50;
   while (high - low > 1 && tries > 0) {
     tries--;
     let curr = Math.floor((high - low) / 2) + low;
@@ -45,6 +55,7 @@ const answersToThisQuestion = answers.filter(
 const onTimeAnswersToThisQuestion = getTimeRelatedValidAnswers(
   answersToThisQuestion
 );
+
 let usersThatAlreadyReplied = [];
 let validAnswersToThisQuestion = onTimeAnswersToThisQuestion.filter((a) => {
   const didUserAlreadyVoted = usersThatAlreadyReplied.includes(a.accountId);
@@ -88,7 +99,6 @@ const isValidInput = () => {
 };
 
 const renderAnswers = () => {
-  console.log(2, validAnswersToThisQuestion);
   return validAnswersToThisQuestion.map((answer) => {
     return (
       <Widget
@@ -98,7 +108,7 @@ const renderAnswers = () => {
     );
   });
 };
-console.log(1);
+
 return (
   <div>
     {hasVoted ? (
