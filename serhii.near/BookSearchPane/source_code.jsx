@@ -1,94 +1,48 @@
-initState({
-  text: null,
-  books: null,
-});
+const book = props.book ?? {};
 
-const update = (text) => {
-  State.update({
-    text,
-  });
-};
+const title = book.title ?? "No title";
+const author = book.author ?? "No author";
+const cover = book.cover ?? "";
+const id = book.id ?? 0;
 
-const search = (text) => {
-  if (!text) {
-    console.log("clearing books");
-    State.update({
-      books: null,
-      showBooks: false,
-    });
-    return;
-  } else {
-    // NOTE: provided encodeURIComponent not available
-    const encodeURIComponent = (str) => {
-      return str.replace(" ", "%20");
-    };
-    const query = encodeURIComponent(text);
-    const resp = fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`
-    );
+const showAddToRead = props.showAddToRead ?? false;
+const showAddToWantToRead = props.showAddToWantToRead ?? false;
 
-    if (!resp.ok) {
-      console.log(`ERR: cannot query for ${text}`);
-      console.log(resp);
-      return;
-    }
-
-    const books = resp.body.items.map((item) => {
-      const info = item.volumeInfo;
-      return {
-        title: info.title,
-        author: info.authors[0],
-        pageCount: info.pageCount,
-        genre: "Novel",
-        onAdd: onAddBook,
-        cover: {
-          url:
-            info.imageLinks.thumbnail ||
-            info.imageLinks.small ||
-            info.imageLinks.medium,
-        },
-      };
-    });
-
-    State.update({
-      books,
-      showBooks: true,
-    });
-  }
-};
-
-const onAddBook = (book_id) => {
-  console.log(`ADDING BOOK ${book_id}`);
+// TODO: why do we need index here?
+const data = {
+  books: { read: { [book.id]: book } },
+  index: {
+    books: JSON.stringify({
+      key: "read",
+      value: {
+        book,
+      },
+    }),
+  },
 };
 
 return (
-  <div>
-    <input
-      style={{ marginTop: "1rem", marginBottom: "1rem" }}
-      type="text"
-      className="form-control"
-      value={state.text ?? ""}
-      onChange={(e) => {
-        const text = e.target.value;
-        update(text);
-        search(text);
-      }}
-      placeholder={props.placeholder ?? `🔍 Search Books`}
-    />
-
-    <div
-      className="d-flex gap-1 flex-wrap"
-      style={{ marginTop: "1rem", marginBottom: "1rem" }}
+  <div className="profile d-inline-block">
+    <a
+      href={`#/serhii.near/widget/BookPage?id=${id}`}
+      className="text-decoration-none link-dark"
     >
-      {state.showBooks &&
-        state.books &&
-        state.books.map((book) => (
-          <Widget
-            key={i}
-            src={"serhii.near/widget/BookTile"}
-            props={{ book }}
-          />
-        ))}
-    </div>
+      <Widget
+        src="serhii.near/widget/BookCover"
+        props={{
+          book,
+          className: "float-start d-inline-block me-2",
+        }}
+      />
+      <div>
+        <p>{title}</p>
+        <p>{author}</p>
+      </div>
+    </a>
+
+    {showAddToRead && <CommitButton data={data}>Add to Read</CommitButton>}
+    {showAddToWantToRead && (
+      <CommitButton data={data}>Want To Read</CommitButton>
+    )}
   </div>
 );
