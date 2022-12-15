@@ -41,7 +41,8 @@ const BookTyle = styled.div`
   display: flex;
   flex-direction: row;
   align-items: left;
-  padding: 20px;
+  padding: 10px;
+  margin: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
   width: "100%";
