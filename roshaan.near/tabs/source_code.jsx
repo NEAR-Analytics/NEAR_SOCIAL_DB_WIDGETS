@@ -90,7 +90,7 @@ return (
   <>
     {state.activeTab === "Tab 1" && !tab1 && notFound()}
 
-    {state.activeTab === "Tab 1" && tab1 && peopleYouMayKnow()}
+    {state.activeTab === "Tab 1" && tab1 && tab1()}
     {state.activeTab === "Tab 2" && tab2 && tab2()}
     {state.activeTab === "Tab 3" && tab3 && tab3()}
     <TabNavigationContainer>
