@@ -1,8 +1,8 @@
 const { questionRef, answeredBy } = props;
 
 const votes = Social.index("genie", `vote/${questionRef}/${answeredBy}`) || [];
-const upvotes = votes.filter((v) => v.value.value === 1).length;
-const downvotes = votes.filter((v) => v.value.value === -1).length;
+const upvotes = votes.filter((v) => v.value.dir === 1).length;
+const downvotes = votes.filter((v) => v.value.dir === -1).length;
 
 return (
   <div className="d-flex flex-column gap-1">
