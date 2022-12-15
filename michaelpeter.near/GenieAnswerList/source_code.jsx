@@ -5,7 +5,6 @@ if (!questionRef) {
 }
 
 const answers = Social.index("genie", `answered/${questionRef}`);
-// const relevantAnswers = answers.filter((a) => a.value === questionRef);
 
 return (
   <div className="d-flex flex-column gap-3">
