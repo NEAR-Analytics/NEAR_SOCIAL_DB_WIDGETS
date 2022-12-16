@@ -1,7 +1,7 @@
 const className = props.className ?? "profile-image d-inline-block";
 const style = props.style ?? { width: "100%", height: "100%" };
 const imageStyle = props.imageStyle ?? {};
-const imageClassName = props.imageClassName ?? "rounded w-100 h-auto";
+const imageClassName = props.imageClassName ?? "rounded w-100 h-100";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
 const book = props.book ?? {};
