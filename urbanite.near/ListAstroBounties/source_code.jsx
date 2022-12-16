@@ -48,7 +48,7 @@ console.log(bounties);
 const imageEndpoint = "https://astro-prod-ui.s3.us-east-1.amazonaws.com/";
 
 return (
-  <div className="container">
+  <div className="container py-4">
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
           const bountyId = bounty._source.id;
