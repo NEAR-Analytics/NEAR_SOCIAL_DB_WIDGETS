@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   display:flex
   flex-direction:row
   justify-content:center
-  `;
+`;
 
 return (
   <div className="d-flex flex-column gap-1">
@@ -66,8 +66,16 @@ return (
         />
       </Wrapper>
     )}
-    {!state.showAskForm && !state.selectedQuestion && (
-      <Wrapper className="d-flex flex-column gap-3 pt-1">
+    {!state.selectedQuestion && !state.showAskForm && (
+      <div
+        className="d-flex flex-column gap-3 pt-1"
+        style={{
+          width: "50rem",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
         <div className="d-flex align-items-center gap-3">
           <i class="bi bi-search" />
           <div class="input-group input-group-lg">
@@ -99,7 +107,7 @@ return (
             props={{ searchString: state.searchString, setSelectedQuestion }}
           />
         </QuestionWrapper>
-      </Wrapper>
+      </div>
     )}
   </div>
 );
