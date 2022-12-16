@@ -27,6 +27,7 @@ const startRatingStatic = (ratingValue, val) => {
 
 return (
   <div>
+    <h2>Average Rating </h2>
     {[...Array(5)].map((star, i) => {
       const ratingValue = i + 1;
       return startRatingStatic(ratingValue, props.value || 0);
