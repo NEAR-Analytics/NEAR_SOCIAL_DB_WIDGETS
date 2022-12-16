@@ -53,39 +53,43 @@ return (
       ? bounties.body.hits.hits.map((bounty) => {
           const bountyId = bounty._source.id;
           return (
-            <div className="row py-2">
-              <div className="col-1">
-                <img
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "0.6em",
-                  }}
-                  src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
-                />
-              </div>
-              <div className="col-11">
-                <h3>
-                  <b>DAO:</b> {bounty._source.daoId}
-                </h3>
-                <p>
-                  <b>Summary:</b> {bounty._source.description}
-                </p>
-                <p>
-                  <b>Amount:</b>{" "}
-                  <Widget
-                    src="urbanite.near/widget/YoctoNEARConverter"
-                    props={{ amount: bounty._source.amount }}
-                  />
-                </p>
-                <Widget
-                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                  props={{ bountyId, collapsedOnCommentsAvailable: true }}
-                />
-                <Widget
-                  src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
-                  props={{ bountyId }}
-                />
+            <div className="row justify-content-md-center py-2">
+              <div className="col-md">
+                <div className="row">
+                  <div className="col-1">
+                    <img
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "0.6em",
+                      }}
+                      src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
+                    />
+                  </div>
+                  <div className="col-11">
+                    <h3>
+                      <b>DAO:</b> {bounty._source.daoId}
+                    </h3>
+                    <p>
+                      <b>Summary:</b> {bounty._source.description}
+                    </p>
+                    <p>
+                      <b>Amount:</b>{" "}
+                      <Widget
+                        src="urbanite.near/widget/YoctoNEARConverter"
+                        props={{ amount: bounty._source.amount }}
+                      />
+                    </p>
+                    <Widget
+                      src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                      props={{ bountyId, collapsedOnCommentsAvailable: true }}
+                    />
+                    <Widget
+                      src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
+                      props={{ bountyId }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           );
