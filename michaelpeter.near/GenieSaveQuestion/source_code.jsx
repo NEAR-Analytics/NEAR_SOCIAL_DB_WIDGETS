@@ -38,6 +38,16 @@ return (
     )}
     {state.showAskForm && (
       <div className="d-flex flex-column gap-2">
+        <div className="d-flex flex-row justify-content-end">
+          <button
+            className="btn btn-light"
+            onClick={() => {
+              State.update({ showAskForm: false });
+            }}
+          >
+            <i class="bi bi-x-lg" />
+          </button>
+        </div>
         Title:
         <input
           type="text"
