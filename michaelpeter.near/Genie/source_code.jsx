@@ -4,7 +4,15 @@ const setSearchString = (updatedSearchString) => {
   State.update({ searchString: updatedSearchString });
 };
 
-if (!selectedQuestion)
+const clearSelected = () => {
+  State.update({ selectedQuestion: "" });
+};
+
+const setSelectedQuestion = (ref) => {
+  State.update({ selectedQuestion: ref });
+};
+
+if (!selectedQuestion) {
   return (
     <div className="d-flex flex-column gap-3">
       <Widget
@@ -13,7 +21,10 @@ if (!selectedQuestion)
       />
       <Widget
         src="michaelpeter.near/widget/GenieQuestionList"
-        props={{ searchString: state.searchString }}
+        props={{ searchString: state.searchString, setSelectedQuestion }}
       />
     </div>
   );
+} else {
+  return <button onClick={clearSelected}>Return</button>;
+}
