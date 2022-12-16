@@ -147,7 +147,7 @@ const startGameScreen = (otherPlayer, activePlayer) => {
               otherPlayer,
               activePlayer,
               start: Date.now(),
-              word: words[0], //words[Date.now() % 100],
+              word: words[Date.now() % 100],
             },
           },
         }}
@@ -238,7 +238,6 @@ const playing = (mySession, theirSession) => {
 };
 
 const words = [
-  "Flower",
   "Airplane",
   "Apple",
   "Arrow",
