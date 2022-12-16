@@ -87,12 +87,12 @@ return (
                     </div>
                   </div>
                   <div style={{ padding: "15px 30px 0" }}>
-                    <b>Amount:</b>
-                    <br />
-                    <Widget
-                      src="urbanite.near/widget/YoctoNEARConverter"
-                      props={{ amount: bounty._source.amount }}
-                    />
+                    <b>
+                      <Widget
+                        src="urbanite.near/widget/YoctoNEARConverter"
+                        props={{ amount: bounty._source.amount }}
+                      />
+                    </b>
                   </div>
                 </Card>
                 <div className="row">
