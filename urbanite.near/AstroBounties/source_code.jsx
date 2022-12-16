@@ -1,7 +1,10 @@
 return (
   <>
     <h2>Astro Bounties | V2</h2>
-    <Widget src="edwardkcyu.near/widget/AstroFeedback" />
+    <Widget
+      src="edwardkcyu.near/widget/AstroFeedback"
+      props={{ version: "v2" }}
+    />
     <Widget
       src="urbanite.near/widget/BountiesSearch"
       props={{
