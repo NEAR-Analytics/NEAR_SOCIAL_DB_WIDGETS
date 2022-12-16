@@ -29,9 +29,12 @@ const Wrapper = styled.div`
 
 if (state.selectedQuestion) {
   return (
-    <Wrapper className="d-flex flex-column gap-1">
+    <Wrapper className="d-flex flex-column gap-5">
       <div>
-        <button onClick={clearSelected}>Return</button>
+        <button className="btn btn-outline-secondary" onClick={clearSelected}>
+          <i class="bi bi-chevron-left" />
+          All Questions
+        </button>
       </div>
       <Center>
         <QuestionWrapper>
