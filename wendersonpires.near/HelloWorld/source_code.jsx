@@ -1,9 +1,36 @@
-State.init({ roomIdToJoin: "", input: "" });
+// INITIAL STATE
+State.init({ roomIdInfo: props.room_id || "", input: "", errorMessage: "" });
 
+// UTILS
+// Gen UUID - Source => https://stackoverflow.com/questions/105034/how-do-i-create-a-guid-uuid
+const generateUUID = () => {
+  var d = new Date().getTime(); //Timestamp
+  var d2 =
+    (typeof performance !== "undefined" &&
+      performance.now &&
+      performance.now() * 1000) ||
+    0; //Time in microseconds since page-load or 0 if unsupported
+
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16; //random number between 0 and 16
+    if (d > 0) {
+      //Use timestamp until depleted
+      r = (d + r) % 16 | 0;
+      d = Math.floor(d / 16);
+    } else {
+      //Use microseconds since page-load if supported
+      r = (d2 + r) % 16 | 0;
+      d2 = Math.floor(d2 / 16);
+    }
+    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+  });
+};
+
+// APP
 const accountId = props.accountId ?? context.accountId ?? "*";
 
 // const roomId = props.room_id || "roomId_0"; // TODO
-const roomId = props.room_id; // TODO
+// let roomId = props.room_id; // TODO
 
 const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
 
@@ -24,11 +51,19 @@ const joinRoom = (roomIdInfo) => {
 
   if (!roomExists) {
     // Update error state
+    State.update({ errorMessage: "This room does not exist." });
     return;
   }
+
+  // Set room id and go ahead
+  State.update({ roomId: roomIdInfo });
 };
 
-if (!roomId) {
+const createAndJoinNewRoom = () => {
+  console.log(generateUUID());
+};
+
+if (!state.roomId) {
   return (
     <>
       <div>
@@ -41,35 +76,53 @@ if (!roomId) {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginTop: 52,
+            marginTop: 32,
           }}
         >
           <p style={{ marginBottom: 8 }}>
             <strong>Join an existing room:</strong>
           </p>
-          <input
-            placeholder="Room ID"
-            style={{ marginBottom: 8 }}
-            onChange={(e) => {
-              State.update({ roomIdToJoin: e.target.value });
-            }}
-          />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <input
+              placeholder="Room ID"
+              style={{ marginBottom: 8, width: "70%" }}
+              onChange={(e) => {
+                State.update({ roomIdInfo: e.target.value, errorMessage: "" });
+              }}
+            />
+            <button
+              type="button"
+              class="btn btn-primary"
+              role="button"
+              style={{ height: 38, width: "25%" }}
+              onClick={() => joinRoom(state.roomIdInfo)}
+            >
+              Join Room
+            </button>
+          </div>
           <button
+            type="button"
             class="btn btn-primary"
             role="button"
-            onClick={() => joinRoom(state.roomIdToJoin)}
+            style={{ marginTop: 8 }}
+            onClick={createAndJoinNewRoom}
           >
-            Join Room
+            Create and Join New Room
           </button>
         </div>
       </div>
+      {state.errorMessage && (
+        <div class="alert alert-warning" role="alert" style={{ marginTop: 28 }}>
+          {state.errorMessage}
+        </div>
+      )}
     </>
   );
 }
 
 // Chat Room Screen
 
-const data = Social.index(roomId, "data");
+const data = Social.index(state.roomIdInfo, "data");
 
 if (!data) {
   return "Loading...";
