@@ -21,6 +21,30 @@ function setOptInInfoObject() {
   console.log(optInInfo);
 }
 
+function fetchDataFromAPI() {
+  const data = fetch(``, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+function setDataToAPI() {
+  const data = fetch(``, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      accountId,
+      optInInfo,
+    }),
+  });
+}
+
 function setFormStatusOnAccount() {
   State.update({ optInInfoFormStatus: "completed" });
 }
