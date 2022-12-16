@@ -1,5 +1,11 @@
 // SimpleStart is a homepage for NEAR Social
 // designed for ease of use
+const myData = Social.get("self.social.near/profile/**", "final") || "testing";
+
+// PROBLEM: this isn't working... how to display my data?
+console.log(myData);
+console.log(context.accountId);
+
 return (
   <>
     <div className="row mb-3">
@@ -46,6 +52,10 @@ return (
     </div>
     <div className="row mb-3">
       <Widget src="mob.near/widget/People" />
+    </div>
+    <div className="row mb-3">
+      <h4>Debugging Data</h4>
+      {myData || "not working yet"}
     </div>
     <div className="row mb-3">
       <div>
