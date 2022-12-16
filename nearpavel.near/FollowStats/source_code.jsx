@@ -1,4 +1,5 @@
 const accountId = props.accountId;
+const commonFollows = props.commonFollows || 0;
 
 if (!accountId) {
   return "";
@@ -39,7 +40,7 @@ return (
   <div>
     <div className="d-flex flex-row">
       {statItem({
-        value: props.commonFollowers,
+        value: commonFollows,
         label: `Common Follows`,
         url: `#`,
       })}
