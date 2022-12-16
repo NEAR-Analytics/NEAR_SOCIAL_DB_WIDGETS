@@ -66,7 +66,10 @@ return (
             experimental: {
               genie: {
                 questions: {
-                  [questionRef]: state.questionContent,
+                  [questionRef]: {
+                    title: state.questionTitle,
+                    content: state.questionContent,
+                  },
                 },
               },
             },
