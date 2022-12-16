@@ -40,14 +40,6 @@ return (
               src={"michaelpeter.near/widget/GenieQuestionView"}
               props={{ questionRef: q.value, searchString: props.searchString }}
             />
-            <Widget
-              src={"michaelpeter.near/widget/GenieAnswerList"}
-              props={{ questionRef: q.value }}
-            />
-            <Widget
-              src={"michaelpeter.near/widget/GenieAnswerSubmit"}
-              props={{ questionRef: q.value }}
-            />
           </div>
         );
       })}
