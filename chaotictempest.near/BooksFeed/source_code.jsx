@@ -30,7 +30,8 @@ const timeline = Object.entries(peopleIFollowWithBooks).flatMap(
 );
 timeline.sort(
   ([_accA, bookA], [_accB, bookB]) =>
-    new Date(bookB["createdAt"]) - new Date(bookA["createdAt"])
+    new Date(bookB["createdAt"] ?? defaultDate) -
+    new Date(bookA["createdAt"] ?? defaultDate)
 );
 console.log("timeline", timeline);
 
@@ -50,7 +51,7 @@ return (
       return (
         <div>
           <div>
-            {acc} on {book.createdAt} added
+            {acc} on {book.createdAt ?? defaultDate} added
           </div>
           <div>
             <Widget
