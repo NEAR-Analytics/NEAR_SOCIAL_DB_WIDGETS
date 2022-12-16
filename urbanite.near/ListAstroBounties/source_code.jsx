@@ -54,7 +54,7 @@ return (
           const bountyId = bounty._source.id;
           return (
             <div className="row justify-content-md-center py-2 px-5">
-              <div className="col-1">
+              <div className="col-2 justify-content-md-center">
                 <img
                   style={{
                     width: "50px",
@@ -64,7 +64,7 @@ return (
                   src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
                 />
               </div>
-              <div className="col-11">
+              <div className="col-10">
                 <h3>
                   <b>DAO:</b> {bounty._source.daoId}
                 </h3>
