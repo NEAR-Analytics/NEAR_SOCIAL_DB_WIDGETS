@@ -48,13 +48,13 @@ console.log(bounties);
 const imageEndpoint = "https://astro-prod-ui.s3.us-east-1.amazonaws.com/";
 
 return (
-  <>
+  <div className="container">
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
           const bountyId = bounty._source.id;
           return (
-            <div className="container">
-              <div className="col-3">
+            <div className="row">
+              <div className="col-1">
                 <img
                   style={{
                     width: "50px",
@@ -64,7 +64,7 @@ return (
                   src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
                 />
               </div>
-              <div className="col-9">
+              <div className="col-11">
                 <h3>
                   <b>DAO:</b> {bounty._source.daoId}
                 </h3>
@@ -91,5 +91,5 @@ return (
           );
         })
       : "Fetching"}
-  </>
+  </div>
 );
