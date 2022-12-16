@@ -1,8 +1,12 @@
 const accountId = props.accountId ?? context.accountId ?? "*";
 
-console.log("PROPS:", props);
+const roomId = props.room_id || "roomId_0"; // TODO
 
-const data = Social.index("roomId_0", "data");
+const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
+
+console.log("PROFILE", profile);
+
+const data = Social.index(roomId, "data");
 
 if (!data) {
   return "Loading...";
@@ -11,39 +15,59 @@ if (!data) {
 // Last messages on the bottom
 const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 
-const buildMessage = (accountId, message) => {
+const buildMessage = (messageData) => {
   return {
-    user: accountId,
-    message,
+    user: messageData.accountId,
+    userName: messageData.value.userName,
+    userAvatarImage: messageData.value.userAvatarImage,
+    message: messageData.value.text,
   };
 };
 
 const getChatHistory = (indexData) => {
   const chatHistory = [];
   indexData.forEach((item) => {
-    chatHistory.push(buildMessage(item.accountId, item.value.text));
+    chatHistory.push(buildMessage(item));
   });
   return chatHistory;
 };
 
 const chatHistory = getChatHistory(sortedData);
+console.log("CHAT HISTORY:", chatHistory);
 State.init({ input: "" });
 
 const onChangeMessage = (message) => {
-  // State.update({ chatHistory: [...chatHistory, buildMessage(message)] });
-  State.update({ input: message });
+  State.update({
+    input: message,
+    userName: profileInfo.name,
+    userAvatarImage: profileInfo.ipfs_cid,
+  });
 };
 
 return (
   <>
     <h4 className="mb-5">Chat Widget</h4>
     <div className="mb-2 mt-2" style={{ background: "#F8F9FA", padding: 8 }}>
-      {chatHistory.map((chatItem) => {
+      {chatHistory.map((chatItem, index) => {
         return (
-          <p>
-            <strong style={{ color: "#212121" }}>{chatItem.user}:</strong>{" "}
-            {chatItem.message}
-          </p>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: index !== 0 ? 8 : 0,
+            }}
+          >
+            <img
+              src={`https://i.pravatar.cc/50?u=${accountId}`}
+              style={{ width: 50, borderRadius: 999 }}
+            />
+            <p style={{ margin: 0, marginLeft: 12 }}>
+              <strong style={{ color: "#212121" }}>
+                {chatItem.userName || chatItem.user}:
+              </strong>
+            </p>
+            <p style={{ margin: 0, marginLeft: 6 }}>{chatItem.message}</p>
+          </div>
         );
       })}
     </div>
@@ -51,7 +75,6 @@ return (
       type="text"
       rows={1}
       className="form-control"
-      // value={state.currentText}
       placeholder="Message"
       onChange={(e) => onChangeMessage(e.target.value)}
     />
@@ -59,10 +82,12 @@ return (
     <CommitButton
       data={{
         index: {
-          roomId_0: JSON.stringify(
+          [roomId]: JSON.stringify(
             {
               key: "data",
               value: {
+                userName: state.userName,
+                userAvatarImage: state.userAvatarImage,
                 text: state.input,
               },
             },
