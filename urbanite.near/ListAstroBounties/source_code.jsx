@@ -43,14 +43,33 @@ const bounties = fetch(
   }
 );
 
+console.log(bounties);
+
+const Center = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const imageEndpoint = "https://astro-prod-ui.s3.us-east-1.amazonaws.com/";
+
 return (
-  <ol>
+  <>
     {bounties
       ? bounties.body.hits.hits.map((bounty) => {
           const bountyId = bounty._source.id;
           return (
-            <li>
+            <Center>
               <div>
+                <div>
+                  <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "0.6em",
+                    }}
+                    src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
+                  />
+                </div>
                 <h3>
                   <b>DAO:</b> {bounty._source.daoId}
                 </h3>
@@ -73,9 +92,9 @@ return (
                   props={{ bountyId }}
                 />
               </div>
-            </li>
+            </Center>
           );
         })
       : "Fetching"}
-  </ol>
+  </>
 );
