@@ -50,7 +50,7 @@ const Card = styled.div`
   border-radius: 5px;
   padding: 30px 0;
   margin-bottom: 10px;
-  overflow: hidden;
+  overflow-wrap: break-word;
 `;
 
 const imageEndpoint = "https://astro-prod-ui.s3.us-east-1.amazonaws.com/";
