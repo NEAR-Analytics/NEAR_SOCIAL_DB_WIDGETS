@@ -75,7 +75,9 @@ return (
       {sortedData
         ? sortedData.map((d) => (
             <div style={card}>
-              <a href="`#/mob.near/widget/ProfilePage?accountId={d.accountId}`">
+              <a
+                href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}
+              >
                 {d.accountId}
               </a>
               I BuiDL <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
