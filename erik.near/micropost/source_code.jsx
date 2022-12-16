@@ -2,7 +2,7 @@
 // https://github.com/NearSocial/standards/blob/main/types/Root.md
 // because I'm just trying to get it to work
 // There is no index because microposts are sorted by block height.
-let accountId = context.accountId;
+const accountId = context.accountId;
 
 if (!accountId) {
   return "Please sign in with NEAR wallet to post";
@@ -10,31 +10,43 @@ if (!accountId) {
 
 State.init({ postbody: null });
 
+console.log(accountId);
+
 // Display microposts already made
 const data = Social.keys(`${accountId}/micropost`, "final", {
   return_type: "History",
 });
-const processData = (data) => {
-  //console.log(data);
-  const accounts = Object.entries(data);
 
-  const allMicroposts = accounts
-    .map((account) => {
-      const accountId = account[0];
-      const blockHeights = account[1].micropost.postbody;
-      return blockHeights.map((blockHeight) => ({
-        accountId,
-        blockHeight,
-      }));
-    })
-    .flat();
+console.log(data);
 
-  allMicroposts.sort((a, b) => b.blockHeight - a.blockHeight);
-  console.log("returning all microposts...");
-  console.log(allMicroposts);
-  console.log("...done?");
-  return allMicroposts;
-};
+// const processData = (data) => {
+//   //console.log(data);
+//   const accounts = Object.entries(data);
+
+//   const allMicroposts = accounts
+//     .map((account) => {
+//       const accountId = account[0];
+//       const blockHeights = account[1].micropost.postbody;
+//       return blockHeights.map((blockHeight) => ({
+//         accountId,
+//         blockHeight,
+//       }));
+//     })
+//     .flat();
+
+//   allMicroposts.sort((a, b) => b.blockHeight - a.blockHeight);
+//   console.log("returning all microposts...");
+//   console.log(allMicroposts);
+//   console.log("...done?");
+//   return allMicroposts;
+// };
+
+// if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
+//   State.update({
+//     data,
+//     allMemes: processData(data),
+//   });
+// }
 
 // How to render a micropost
 const renderItem = (a) => (
