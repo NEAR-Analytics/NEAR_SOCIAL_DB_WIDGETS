@@ -58,6 +58,7 @@ return (
                 <img
                   style={{
                     width: "100%",
+                    maxWidth: "80px",
                     borderRadius: "0.6em",
                   }}
                   src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
