@@ -1,5 +1,5 @@
 const initialState = {
-  companyName: "",
+  name: "",
   contractId: "",
   initialBalance: 0,
 };
@@ -26,8 +26,8 @@ return (
     Company Name
     <input
       type="text"
-      value={state.companyName}
-      onChange={(e) => State.update({ companyName: e.target.value })}
+      value={state.name}
+      onChange={(e) => State.update({ name: e.target.value })}
     />
     Contract ID
     <input
