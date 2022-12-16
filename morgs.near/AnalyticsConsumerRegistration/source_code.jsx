@@ -2,15 +2,13 @@ const initialState = {
   companyName: "",
   contractId: "",
   initialBalance: 0,
-  publicKey: "",
-  signedTx: "",
 };
 
 State.init(initialState);
 
 const registerConsumer = () => {
   fetch(
-    `http://ec2-35-86-104-154.us-west-2.compute.amazonaws.com:3000/consumer`,
+    `https://ec2-35-86-104-154.us-west-2.compute.amazonaws.com:3000/consumer`,
     {
       method: "POST",
       headers: {
@@ -24,7 +22,7 @@ const registerConsumer = () => {
 
 return (
   <div>
-    <h1>Register for </h1>
+    <h1>Register for Analytics</h1>
     Company Name
     <input
       type="text"
@@ -46,22 +44,6 @@ return (
       type="number"
       value={state.initialBalance}
       onChange={(e) => State.update({ initialBalance: e.target.value })}
-    />
-    Public Key
-    <input
-      type="text"
-      value={state.publicKey}
-      onChange={(e) => State.update({ publicKey: e.target.value })}
-    />
-    Signed Tx
-    <input
-      type="text"
-      value={state.signedTx}
-      onChange={(e) =>
-        State.update({
-          signedTx: e.target.value,
-        })
-      }
     />
     <p></p>
     <button onClick={registerConsumer}>Confirm</button>
