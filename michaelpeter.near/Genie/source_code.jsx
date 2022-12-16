@@ -1,9 +1,5 @@
 State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
-const setSearchString = (updatedSearchString) => {
-  State.update({ searchString: updatedSearchString.toLowerCase() });
-};
-
 const clearSelected = () => {
   State.update({ selectedQuestion: "" });
 };
@@ -79,8 +75,9 @@ return (
               type="text"
               placeholder="Your wish is my command"
               className="form-control input-group input-group-lg"
+              value={state.searchString}
               onChange={(e) => {
-                setSearchString?.(e.target.value);
+                State.update({ searchString: e.target.value });
               }}
             />
           </div>
