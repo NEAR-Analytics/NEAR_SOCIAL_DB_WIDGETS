@@ -159,10 +159,8 @@ State.init({
 });
 
 return (
-  <div className="row mb-3">
-    <div>
-      <h4>Plan a group activity on Near Social!</h4>
-    </div>
+  <div className="container">
+    <h1>Plan an Event on Near Social</h1>
     <div className="mb-2">
       Event Name <span className="text-secondary"></span>
       <input
@@ -186,73 +184,78 @@ return (
       {state.error_description && <Error>{state.error_description}</Error>}
     </div>
     <div className="mb-2">
-      Cost per participant <span className="text-secondary"></span>
-      <input
-        type="number"
-        placeholder="Enter amount in NEAR, e.g. 12.34"
-        value={state.cost}
-        onChange={(e) => {
-          State.update({ cost: e.target.value });
-        }}
-      />
-      {state.error_cost && <Error>{state.error_cost}</Error>}
-    </div>
-    <div className="mb-2">
-      Min participants <span className="text-secondary"></span>
-      <input
-        type="number"
-        placeholder={"example: 3"}
-        value={state.participants_lo}
-        onChange={(e) => {
-          State.update({ participants_lo: e.target.value });
-        }}
-      />
-      {state.error_participants_lo && (
-        <Error>{state.error_participants_lo}</Error>
-      )}
-    </div>
-    <div className="mb-2">
-      Max participants <span className="text-secondary"></span>
-      <input
-        type="number"
-        placeholder={"example: 6"}
-        value={state.participants_hi}
-        onChange={(e) => {
-          State.update({ participants_hi: e.target.value });
-        }}
-      />
-      {state.error_participants_hi && (
-        <Error>{state.error_participants_hi}</Error>
-      )}
-    </div>
-    <div className="mb-2">
-      Joinable until <span className="text-secondary"></span>
-      <input
-        type="date"
-        value={state.deadline}
-        onChange={(e) => {
-          State.update({ deadline: e.target.value });
-        }}
-      />
-      {state.error_deadline && <Error>{state.error_deadline}</Error>}
-    </div>
-    <div className="mb-2">
-      Event image:
+      Event Image
       <IpfsImageUpload image={state.image} />
       {state.error_image && <Error>{state.error_image}</Error>}
     </div>
+
+    <div className="row row-cols-md-4 g-2">
+      <div className="mb-2">
+        Cost per participant <span className="text-secondary"></span>
+        <input
+          type="number"
+          placeholder="Enter amount in NEAR, e.g. 12.34"
+          value={state.cost}
+          onChange={(e) => {
+            State.update({ cost: e.target.value });
+          }}
+        />
+        {state.error_cost && <Error>{state.error_cost}</Error>}
+      </div>
+      <div className="mb-2">
+        Min participants <span className="text-secondary"></span>
+        <input
+          type="number"
+          placeholder={"example: 3"}
+          value={state.participants_lo}
+          onChange={(e) => {
+            State.update({ participants_lo: e.target.value });
+          }}
+        />
+        {state.error_participants_lo && (
+          <Error>{state.error_participants_lo}</Error>
+        )}
+      </div>
+      <div className="mb-2">
+        Max participants <span className="text-secondary"></span>
+        <input
+          type="number"
+          placeholder={"example: 6"}
+          value={state.participants_hi}
+          onChange={(e) => {
+            State.update({ participants_hi: e.target.value });
+          }}
+        />
+        {state.error_participants_hi && (
+          <Error>{state.error_participants_hi}</Error>
+        )}
+      </div>
+      <div className="mb-2">
+        Joinable until <span className="text-secondary"></span>
+        <input
+          type="date"
+          value={state.deadline}
+          onChange={(e) => {
+            State.update({ deadline: e.target.value });
+          }}
+        />
+        {state.error_deadline && <Error>{state.error_deadline}</Error>}
+      </div>
+    </div>
     <div className="mb-2">
+      <p>
+        If the event does not meet the required number of participants or
+        funding, it will be cancelled and the fund will be returned to the
+        registrants.
+      </p>
       <button
         onClick={() => {
           callContract(state);
         }}
       >
-        Create
+        Create Event
       </button>
     </div>
     <hr />
-    If the event does not meet the required number of people or required
-    funding, it will be cancelled and the fund will be returned to the
-    registrants at the deadline to complete the fundraising for the event.
   </div>
 );
