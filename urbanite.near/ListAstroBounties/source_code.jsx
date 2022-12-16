@@ -47,6 +47,7 @@ console.log(bounties);
 
 const Card = styled.div`
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 5px;
   padding: 30px 0;
   margin-bottom: 10px;
 `;
@@ -86,28 +87,22 @@ return (
                     </div>
                   </div>
                   <div style={{ padding: "15px 30px 0" }}>
-                    <b>
-                      <Widget
-                        src="urbanite.near/widget/YoctoNEARConverter"
-                        props={{ amount: bounty._source.amount }}
-                      />
-                    </b>
+                    <b>Amount:</b>
+                    <br />
+                    <Widget
+                      src="urbanite.near/widget/YoctoNEARConverter"
+                      props={{ amount: bounty._source.amount }}
+                    />
                   </div>
                 </Card>
-                <div className="row py-2">
-                  <div className="col">
-                    <Widget
-                      src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                      props={{ bountyId, collapsedOnCommentsAvailable: true }}
-                    />
-                  </div>
-                  <div className="col">
-                    <Widget
-                      src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
-                      props={{ bountyId }}
-                    />
-                  </div>
-                </div>
+                <Widget
+                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                  props={{ bountyId, collapsedOnCommentsAvailable: true }}
+                />
+                <Widget
+                  src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
+                  props={{ bountyId }}
+                />
               </div>
             </div>
           );
