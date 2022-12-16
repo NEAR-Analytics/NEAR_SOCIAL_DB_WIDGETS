@@ -18,7 +18,13 @@ State.init({
 if (state.showEditView) {
   return (
     <>
-      <div class="input-group-append">
+      <div
+        class="input-group-append"
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <button
           class="btn btn-outline-secondary"
           type="button"
@@ -28,11 +34,15 @@ if (state.showEditView) {
               editView: { ...state.editView, editViewText: "", fileName: null },
             })
           }
+          style={{ fontSize: 22, border: "none" }}
         >
-          Back
+          ✖
         </button>
-        <h5>{state.editView.fileName}</h5>
+        <h5 style={{ marginLeft: 10, marginBottom: 0 }}>
+          {state.editView.fileName}
+        </h5>
       </div>
+      <hr style={{ marginTop: 5 }} />
       <textarea
         class="form-control"
         id="notetext"
@@ -44,6 +54,7 @@ if (state.showEditView) {
           })
         }
       ></textarea>
+      <hr />
       <CommitButton
         data={{
           scribbles: state.dir
@@ -54,18 +65,21 @@ if (state.showEditView) {
             }),
         }}
       >
-        Submit note
+        Submit Note 📄
       </CommitButton>
     </>
   );
 }
+
 let currDir = state.dir
   .split("/")
   .filter((a) => !!a)
   .reduce((acc, curr) => acc[curr], scribbles);
-if (currDir == "**FOLDER**") {
+if (currDir == "**FOLDER**" || !currDir) {
   currDir = {};
 }
+
+console.log(state.dir);
 
 return (
   <>
@@ -96,7 +110,7 @@ return (
             })
           }
         >
-          Add note
+          Add Note 📄
         </button>
       </div>
     </div>
@@ -129,34 +143,75 @@ return (
               }),
           }}
         >
-          Add Folder
+          Add Folder 📁
         </CommitButton>
       </div>
     </div>
-    <div class="input-group-append">
-      <button
-        class="btn btn-outline-secondary"
-        type="button"
-        onClick={() =>
-          State.update({
-            dir: state.dir
-              .split("/")
-              .filter((a) => !!a)
-              .slice(0, -1)
-              .join("/"),
-          })
-        }
-      >
-        ..
-      </button>
+    <div aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          <a
+            onClick={(e) => {
+              State.update({ dir: "/" });
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            🏠
+          </a>
+        </li>
+        {state.dir
+          .split("/")
+          .filter((a) => !!a)
+          .map((str, i, arr) => (
+            <li
+              class="breadcrumb-item active"
+              aria-current="page"
+              style={i !== arr.length - 1 ? { color: "#007bff" } : {}}
+            >
+              <a
+                onClick={(e) => {
+                  if (i !== arr.length - 1) {
+                    State.update({ dir: arr.slice(0, i + 1).join("/") + "/" });
+                  }
+                }}
+                style={i !== arr.length - 1 ? { cursor: "pointer" } : {}}
+              >
+                {str}
+              </a>
+            </li>
+          ))}
+      </ol>
     </div>
-    <ul class="list-group">
-      {Object.keys(currDir).map((str, i) => (
-        <li
-          class={`list-group-item ${i === state.selectedIdx ? "active" : ""}`}
+    <div class="list-group">
+      {state.dir !== "/" && state.dir ? (
+        <button
+          class="list-group-item"
+          type="button"
+          style={{ textAlign: "left" }}
           onClick={() =>
-            state.selectedIdx === i
-              ? currDir[str] === "**FOLDER**" || typeof currDir[str] != "string"
+            State.update({
+              dir:
+                state.dir
+                  .split("/")
+                  .filter((a) => !!a)
+                  .slice(0, -1)
+                  .join("/") + "/",
+            })
+          }
+        >
+          <span style={{ fontSize: 24, fontWeight: 800 }}>⤺</span> ..
+        </button>
+      ) : null}
+      {Object.keys(currDir)
+        .filter((a) => !!a)
+        .map((str, i) => (
+          <button
+            type="button"
+            class={`list-group-item list-group-item-action ${
+              i === state.selectedIdx ? "active" : ""
+            }`}
+            onDoubleClick={() =>
+              currDir[str] === "**FOLDER**" || typeof currDir[str] != "string"
                 ? State.update({ dir: state.dir + `${str}/` })
                 : State.update({
                     showEditView: true,
@@ -165,13 +220,15 @@ return (
                       fileName: str,
                     },
                   })
-              : State.update({ selectedIdx: i })
-          }
-          style={{ cursor: "pointer" }}
-        >
-          {str}
-        </li>
-      ))}
-    </ul>
+            }
+            onClick={() => State.update({ selectedIdx: i })}
+          >
+            {currDir[str] === "**FOLDER**" || typeof currDir[str] != "string"
+              ? "📁"
+              : "📄"}{" "}
+            {str}
+          </button>
+        ))}
+    </div>
   </>
 );
