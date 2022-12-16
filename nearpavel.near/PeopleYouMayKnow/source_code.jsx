@@ -45,7 +45,6 @@ let followingsPerAccount = Object.keys(accounts).reduce(
   }),
   {}
 );
-
 const tagsPerAccount = Object.keys(all_account_tags).reduce(
   (res, id) => ({
     ...res,
@@ -73,7 +72,6 @@ const tagsInCommon = (accountId) => {
 
 */
 function getRecommendationsFor(_accountId) {
-  console.log("Total accounts", Object.keys(accounts).length);
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
