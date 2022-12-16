@@ -8,8 +8,8 @@ const id = book.id ?? 0;
 
 const showAddToRead = props.showAddToRead ?? false;
 const showAddToWantToRead = props.showAddToWantToRead ?? false;
-const onClickAdd =
-  props.onClickAdd ??
+const onCommitAdd =
+  props.onCommitAdd ??
   ((buttonName, id) => {
     console.log(`Button ${buttonName} clicked with book-id=${id}`);
   });
@@ -112,7 +112,7 @@ return (
         {showAddToRead && (
           <CommitButton
             data={dataForRead}
-            onClick={() => onClickAdd("AddToRead", id)}
+            onCommit={() => onCommitAdd("AddToRead", id)}
           >
             Add to Read
           </CommitButton>
@@ -120,7 +120,7 @@ return (
         {showAddToWantToRead && (
           <CommitButton
             data={datarForToRead}
-            onClick={() => onClickAdd("WantToRead", id)}
+            onCommit={() => onCommitAdd("WantToRead", id)}
           >
             Want To Read
           </CommitButton>
