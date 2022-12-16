@@ -95,14 +95,20 @@ return (
                     />
                   </div>
                 </Card>
-                <Widget
-                  src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                  props={{ bountyId, collapsedOnCommentsAvailable: true }}
-                />
-                <Widget
-                  src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
-                  props={{ bountyId }}
-                />
+                <div className="row">
+                  <div className="col">
+                    <Widget
+                      src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                      props={{ bountyId, collapsedOnCommentsAvailable: true }}
+                    />
+                  </div>
+                  <div className="col">
+                    <Widget
+                      src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
+                      props={{ bountyId }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           );
