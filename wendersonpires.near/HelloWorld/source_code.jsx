@@ -1,3 +1,5 @@
+State.init({ roomIdToJoin: "", input: "" });
+
 const accountId = props.accountId ?? context.accountId ?? "*";
 
 // const roomId = props.room_id || "roomId_0"; // TODO
@@ -5,28 +7,59 @@ const roomId = props.room_id; // TODO
 
 const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
 
-console.log("PROFILE", profileInfo);
+// console.log("PROFILE", profileInfo);
 
 // Room Creator Screen
+
+// console.log(Social.get(`${accountId}/index/roomId_0`));
+
+const joinRoom = (roomIdInfo) => {
+  console.log(roomIdInfo);
+
+  // This method gets only data inside stored on my user
+  // const roomInfo = Social.get(`${accountId}/index/${roomIdInfo}`);
+
+  const roomInfo = Social.index(roomIdInfo, "data");
+  const roomExists = roomInfo && roomInfo.length > 0;
+
+  if (!roomExists) {
+    // Update error state
+    return;
+  }
+};
 
 if (!roomId) {
   return (
     <>
       <div>
         <h3>Hello, {profileInfo.name}!</h3>
-        <p>You can join a room or create a new room and invite your friends.</p>
+        <p>
+          You can join a room or create a new room and invite your friends.
+          [texto falando sobre a possibilidade de usar query param]
+        </p>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            marginTop: "12px",
+            marginTop: 52,
           }}
         >
-          <p>
+          <p style={{ marginBottom: 8 }}>
             <strong>Join an existing room:</strong>
           </p>
-          <button class="btn btn-primary" role="button">
-            Learn more
+          <input
+            placeholder="Room ID"
+            style={{ marginBottom: 8 }}
+            onChange={(e) => {
+              State.update({ roomIdToJoin: e.target.value });
+            }}
+          />
+          <button
+            class="btn btn-primary"
+            role="button"
+            onClick={() => joinRoom(state.roomIdToJoin)}
+          >
+            Join Room
           </button>
         </div>
       </div>
@@ -64,13 +97,12 @@ const getChatHistory = (indexData) => {
 
 const chatHistory = getChatHistory(sortedData);
 console.log("CHAT HISTORY:", chatHistory);
-State.init({ input: "" });
 
 const onChangeMessage = (message) => {
   State.update({
     input: message,
-    userName: profileInfo.name,
-    userAvatarImage: profileInfo.ipfs_cid,
+    userName: profileInfo.name, // TODO: move to const
+    userAvatarImage: profileInfo.ipfs_cid, // TODO: move to const
   });
 };
 
