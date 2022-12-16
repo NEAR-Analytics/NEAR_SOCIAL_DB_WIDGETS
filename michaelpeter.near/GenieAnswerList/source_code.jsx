@@ -1,3 +1,5 @@
+State.init({ showAnswerForm: false });
+
 const { questionRef } = props;
 
 if (!questionRef) {
@@ -18,11 +20,28 @@ return (
       className="d-flex flex-column gap-3"
       style={{ width: "43rem", marginLeft: "2rem", marginRight: "2rem" }}
     >
+      <div className="d-flex flex-row justify-content-between">
+        <h3>
+          {answers.length} Answer{answers.length > 1 ? "s" : ""}
+        </h3>
+        <button
+          className="btn btn-outline-primary"
+          onClick={() => {
+            State.update({ showAnswerForm: !state.showAnswerForm });
+          }}
+        >
+          {!state.showAnswerForm && <i class="bi bi-pencil" />}
+          {!state.showAnswerForm ? "Answer" : "Cancel"}
+        </button>
+      </div>
+      {state.showAnswerForm && (
+        <Widget
+          src={"michaelpeter.near/widget/GenieAnswerSubmit"}
+          props={{ questionRef }}
+        />
+      )}
       {answers?.length ? (
         <div className="d-flex flex-column gap-3">
-          <h3>
-            {answers.length} Answer{answers.length > 1 ? "s" : ""}
-          </h3>
           {answers.map((a) => (
             <AnswerBox>
               <Widget
