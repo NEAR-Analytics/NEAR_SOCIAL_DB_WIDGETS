@@ -74,7 +74,10 @@ return (
       {sortedData
         ? sortedData.map((d) => (
             <div style={card}>
-              {d.accountId} I BuiDL <b>{d.value.answer}</b>
+              <a href="/mob.near/widget/ProfilePage?accountId={d.accountId}">
+                {d.accountId}
+              </a>
+              I BuiDL <b>{d.value.answer}</b>
             </div>
           ))
         : "Loading..."}
