@@ -1,7 +1,10 @@
 const initialState = {
   contractId: "",
-  queryEstimate: null,
-  queryResults: null,
+  query: {
+    id: null,
+    estimate: null,
+    results: null,
+  },
 };
 
 State.init(initialState);
@@ -18,12 +21,12 @@ const getQueryCostEstimate = () => {
       body: "",
     }
   );
-  State.update({ queryEstimate: body });
+  State.update({ query: { estimate: body.estimatedCost, id: body.queryId } });
 };
 
 const getQueryResults = () => {
   const { body } = fetch(
-    `https://dev.kitwallet.app/consumer/${state.contractId}/query/${state.queryEstimate.queryId}`,
+    `https://dev.kitwallet.app/consumer/${state.contractId}/results/${state.query.id}`,
     {
       method: "POST",
       headers: {
@@ -33,16 +36,22 @@ const getQueryResults = () => {
       body: "",
     }
   );
-  State.update({ queryResults: body });
+  State.update({
+    query: {
+      results: body.results,
+      queryId: state.query.id,
+      estimate: state.query.estimate,
+    },
+  });
 };
 
 console.log(state);
 
-if (state.queryResults) {
+if (state.query.results) {
   return (
     <div>
       <h1>View Contract Analytics</h1>
-      {state.queryResults}
+      {JSON.stringify(state.query.results, null, 2)}
       <br />
       <br />
       <button onClick={() => State.update(initialState)}>Reset</button>
@@ -50,12 +59,12 @@ if (state.queryResults) {
   );
 }
 
-if (state.queryEstimate) {
+if (state.query.estimate) {
   return (
     <div>
       <h1>View Contract Analytics</h1>
       Analytics for {state.contractId} will cost
-      {state.queryEstimate.estimatedCost} NEAR. Do you want to continue?
+      {state.query.estimate} NEAR. Do you want to continue?
       <br />
       <br />
       <button onClick={getQueryResults}>View analytics</button>
