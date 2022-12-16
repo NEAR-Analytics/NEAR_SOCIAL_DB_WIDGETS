@@ -38,10 +38,15 @@ return (
       <div>
         <ul>
           {allParticipants.map((participant) => (
-            <li>
-              <a href={`https://${participant}.social`} target="_blank">
-                {participant}
-              </a>
+            <li className="py-2">
+              <Widget
+                src="urbanite.near/widget/ProfileLine"
+                props={{
+                  accountId: participant,
+                  hideAccountId: true,
+                  tooltip: true,
+                }}
+              />
             </li>
           ))}
         </ul>
