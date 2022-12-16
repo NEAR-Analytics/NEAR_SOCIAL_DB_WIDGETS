@@ -1,29 +1,23 @@
 // INITIAL STATE
-State.init({ roomIdInfo: props.room_id || "", input: "", errorMessage: "" });
+State.init({
+  roomId: props.room_id || "",
+  roomIdToJoin: "",
+  input: "",
+  errorMessage: "",
+});
 
 // UTILS
 // Gen UUID - Source => https://stackoverflow.com/questions/105034/how-do-i-create-a-guid-uuid
-const generateUUID = () => {
-  var d = new Date().getTime(); //Timestamp
-  var d2 =
-    (typeof performance !== "undefined" &&
-      performance.now &&
-      performance.now() * 1000) ||
-    0; //Time in microseconds since page-load or 0 if unsupported
-
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16; //random number between 0 and 16
-    if (d > 0) {
-      //Use timestamp until depleted
-      r = (d + r) % 16 | 0;
-      d = Math.floor(d / 16);
-    } else {
-      //Use microseconds since page-load if supported
-      r = (d2 + r) % 16 | 0;
-      d2 = Math.floor(d2 / 16);
-    }
-    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-  });
+const uuidv4 = () => {
+  var u = "",
+    i = 0;
+  while (i++ < 36) {
+    var c = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"[i - 1],
+      r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    u += c == "-" || c == "4" ? c : v.toString(16);
+  }
+  return u;
 };
 
 // APP
@@ -60,7 +54,8 @@ const joinRoom = (roomIdInfo) => {
 };
 
 const createAndJoinNewRoom = () => {
-  console.log(generateUUID());
+  // Set the new Room Id and go ahead
+  State.update({ roomId: uuidv4() });
 };
 
 if (!state.roomId) {
@@ -87,7 +82,10 @@ if (!state.roomId) {
               placeholder="Room ID"
               style={{ marginBottom: 8, width: "70%" }}
               onChange={(e) => {
-                State.update({ roomIdInfo: e.target.value, errorMessage: "" });
+                State.update({
+                  roomIdToJoin: e.target.value,
+                  errorMessage: "",
+                });
               }}
             />
             <button
@@ -95,7 +93,7 @@ if (!state.roomId) {
               class="btn btn-primary"
               role="button"
               style={{ height: 38, width: "25%" }}
-              onClick={() => joinRoom(state.roomIdInfo)}
+              onClick={() => joinRoom(state.roomIdToJoin)}
             >
               Join Room
             </button>
@@ -122,7 +120,9 @@ if (!state.roomId) {
 
 // Chat Room Screen
 
-const data = Social.index(state.roomIdInfo, "data");
+const data = Social.index(state.roomId, "data");
+
+console.log(data);
 
 if (!data) {
   return "Loading...";
@@ -161,7 +161,8 @@ const onChangeMessage = (message) => {
 
 return (
   <>
-    <h4 className="mb-5">Chat Widget</h4>
+    <h4>Chat Widget</h4>
+    <p>Room ID: {state.roomId}</p>
     <div className="mb-2 mt-2" style={{ background: "#F8F9FA", padding: 8 }}>
       {chatHistory.map((chatItem, index) => {
         return (
@@ -185,6 +186,8 @@ return (
           </div>
         );
       })}
+
+      {chatHistory.length === 0 && <p>No message was sent yet :D</p>}
     </div>
     <textarea
       type="text"
@@ -197,7 +200,7 @@ return (
     <CommitButton
       data={{
         index: {
-          [roomId]: JSON.stringify(
+          [state.roomId]: JSON.stringify(
             {
               key: "data",
               value: {
