@@ -118,6 +118,7 @@ return (
         />
       </div>
       <CommitButton
+        style={{ backgroundColor: "thistle", borderColor: "white" }}
         data={{
           astrosocial: {
             bounties: {
