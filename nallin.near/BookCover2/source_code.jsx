@@ -5,7 +5,7 @@ const style = props.style ?? {
   height: "100%",
 };
 const imageClassName =
-  props.imageClassName ?? "rounded w-auto h-100 object-fit-contain";
+  props.imageClassName ?? "rounded w-auto h-100 object-fit-cover";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
 const book = props.book ?? {};
