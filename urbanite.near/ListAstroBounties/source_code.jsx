@@ -68,6 +68,10 @@ return (
                   src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
                   props={{ bountyId }}
                 />
+                <Widget
+                  src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
+                  props={{ bountyId }}
+                />
               </div>
             </li>
           );
