@@ -20,7 +20,7 @@ return (
       <span className="text-truncate">
         <h5>
           <b>
-            {data.name} ({data.min_num}-{data.max_num} people)
+            {data.name || "Untitled"} ({data.min_num}-{data.max_num} people)
           </b>
         </h5>
         Organized by
@@ -29,7 +29,9 @@ return (
           props={{ event_creator }}
         />
         <br />
-        {data.description}
+        {data.description || "No description"}
+        <br />
+        Current participants: {data.participants}
         <br />
         <CommitButton>
           Join for <b>{data.price / 1e24} NEAR</b>
