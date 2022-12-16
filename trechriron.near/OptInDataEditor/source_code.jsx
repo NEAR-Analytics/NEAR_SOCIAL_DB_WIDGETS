@@ -20,11 +20,6 @@ const initialState = {
 
 State.init(initialState);
 
-function setOptInInfoObject() {
-  optInInfo = { ...state };
-  console.log(optInInfo);
-}
-
 function fetchDataFromAPI() {
   const data = fetch(``, {
     method: "GET",
@@ -75,11 +70,13 @@ function addChangeLogEntry() {
   return changeLog;
 }
 
-function handleOnCommit() {
-  console.log("doing the thing...");
+function handleOnClick() {
   reportEventToAPI();
   registerProfileToAPI();
-  console.log({ state });
+}
+
+function handleOnCommit() {
+  setFormStatusOnAccount();
 }
 
 function handleChangeOnInput(event) {
@@ -140,24 +137,24 @@ return (
       value={state.preferred_wallet}
       onChange={(event) => handleChangeOnInput(event, input.id)}
     />
-    {options.preffered_nft_marketplace.label ?? "Preferred NFT Marketplace"}
+    {options.prefered_nft_marketplace.label ?? "Preferred NFT Marketplace"}
     <input
-      id="preffered_nft_marketplace"
+      id="prefered_nft_marketplace"
       type="text"
-      value={state.preffered_nft_marketplace}
+      value={state.prefered_nft_marketplace}
       onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.preffered_crypto.label ?? "Preferred Crypto"}
     <input
-      id="preffered_crypto"
+      id="prefered_crypto"
       type="text"
-      value={state.preffered_crypto}
+      value={state.prefered_crypto}
       onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     <p></p>
     <CommitButton
       data={{ optInInfoFormStatus: state.saveState }}
-      onClick={handleOnCommit}
+      onClick={handleOnClick}
       onCommit={handleOnCommit}
     >
       Save Opt-In Info
