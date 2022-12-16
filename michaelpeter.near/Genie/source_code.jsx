@@ -9,11 +9,11 @@ if (!selectedQuestion)
     <div className="d-flex flex-column gap-3">
       <Widget
         src="michaelpeter.near/widget/GenieSaveQuestion"
-        props={{ searchString, setSearchString }}
+        props={{ searchString: state.searchString, setSearchString }}
       />
       <Widget
         src="michaelpeter.near/widget/GenieQuestionList"
-        props={{ searchString }}
+        props={{ searchString: state.searchString }}
       />
     </div>
   );
