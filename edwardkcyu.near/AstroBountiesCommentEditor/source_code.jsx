@@ -8,7 +8,6 @@ if (!bountyId) {
   return "Please provide a bounty id";
 }
 
-console.log(props);
 const collapsedOnCommentsAvailable = props.collapsedOnCommentsAvailable ?? true;
 
 State.init({ message: "" });
@@ -51,8 +50,6 @@ const collapsedClass =
   !allComments.length || collapsedOnCommentsAvailable
     ? "collapse"
     : "collapse.show";
-
-console.log(collapsedOnCommentsAvailable, collapsedClass);
 
 return (
   <div>
