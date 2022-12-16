@@ -65,7 +65,7 @@ return (
                 />
               </div>
               <div className="col-10">
-                <h4>{bounty._source.daoId}</h4>
+                <h4>{bounty._source.proposal.dao.metadata.displayName}</h4>
                 <p>
                   <b>Summary:</b> {bounty._source.description}
                 </p>
