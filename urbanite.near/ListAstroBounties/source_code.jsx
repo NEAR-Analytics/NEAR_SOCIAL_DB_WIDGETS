@@ -47,7 +47,8 @@ console.log(bounties);
 
 const Card = styled.div`
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  padding: 30px;
+  padding: 30px 0;
+  margin-bottom: 10px;
 `;
 
 const imageEndpoint = "https://astro-prod-ui.s3.us-east-1.amazonaws.com/";
@@ -72,19 +73,26 @@ return (
               <div className="col-10">
                 <h4>{bounty._source.proposal.dao.metadata.displayName}</h4>
                 <Card>
-                  <p>
-                    <b>Summary:</b>
-                    <br />
-                    {bounty._source.description}
-                  </p>
-                  <p>
+                  <div
+                    style={{
+                      borderBottom: "1px solid",
+                      borderColor: "rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <div style={{ padding: "0 30px 15px" }}>
+                      <b>Summary:</b>
+                      <br />
+                      {bounty._source.description}
+                    </div>
+                  </div>
+                  <div style={{ padding: "15px 30px 0" }}>
                     <b>Amount:</b>
                     <br />
                     <Widget
                       src="urbanite.near/widget/YoctoNEARConverter"
                       props={{ amount: bounty._source.amount }}
                     />
-                  </p>
+                  </div>
                 </Card>
                 <Widget
                   src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
