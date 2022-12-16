@@ -21,7 +21,7 @@ const Center = styled.div`
   justify-content:center;
 `;
 const Wrapper = styled.div`
-  width: 60rem
+  width: 50rem
   display:flex
   flex-direction:row
   justify-content:center
