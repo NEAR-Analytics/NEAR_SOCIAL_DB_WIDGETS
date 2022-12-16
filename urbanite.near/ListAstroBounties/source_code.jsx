@@ -105,7 +105,7 @@ return (
                   </div>
                   <div className="col">
                     <Widget
-                      src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
+                      src="urbanite.near/widget/AstroBountiesParticipantEditor"
                       props={{ bountyId }}
                     />
                   </div>
