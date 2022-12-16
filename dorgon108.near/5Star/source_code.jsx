@@ -31,13 +31,15 @@ return (
         let title = el;
         let owner = widgetInfo[i].owner;
         let url = widgetInfo[i].url;
+        let image = widgetInfo[i].image;
+
         return (
           <div key={i} style={{ backgroundColor: "#A8A8A8", margin: "10px" }}>
             {
               <div>
                 <div>
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img src={url} style={{ width: "30vw" }} />
+                    <img src={image} style={{ width: "30vw" }} />
                   </div>
 
                   <h1>{el}</h1>
