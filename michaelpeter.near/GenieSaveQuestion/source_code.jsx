@@ -22,7 +22,7 @@ return (
             type="text"
             placeholder="Your wish is my command"
             className="form-control input-group input-group-lg"
-            value={props.searchContent}
+            value={props.searchString}
             onChange={(e) => {
               props.setSearchString?.(e.target.value);
             }}
