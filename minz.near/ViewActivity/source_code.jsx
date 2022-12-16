@@ -105,7 +105,7 @@ return (
     {participantWidgets}
     <Join>
       <button onClick={callJoin}>
-        Join for <b>{data.price / 1e24} NEAR</b>
+        Join for <b>{Math.round((data.price / 1e24) * 100) / 100} NEAR</b>
       </button>{" "}
       <JoinBy>
         Join by{" "}
