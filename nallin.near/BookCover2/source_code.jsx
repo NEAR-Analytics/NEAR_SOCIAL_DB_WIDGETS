@@ -1,5 +1,5 @@
 const className = props.className ?? "profile-image d-inline-block";
-const style = props.style ?? { width: "100%", height: "100%" };
+const style = props.style ?? { width: "100%", height: "auto" };
 const imageStyle = props.imageStyle ?? { objectFit: "contain" };
 const imageClassName = props.imageClassName ?? "rounded w-100 h-auto";
 const thumbnail = props.thumbnail ?? "thumbnail";
