@@ -2,6 +2,7 @@ const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
 let optInInfo = {};
+
 const initialState = {
   accountId,
   birthday: "",
@@ -13,9 +14,12 @@ const initialState = {
   preferred_wallet: "",
   preffered_nft_marketplace: "",
   preffered_crypto: "",
+  saveState: "Started",
+  changeLog: {},
 };
 
 State.init(initialState);
+console.log(initialState);
 
 function setOptInInfoObject() {
   optInInfo = { ...state };
@@ -50,10 +54,13 @@ function setFormStatusOnAccount() {
   State.update({ optInInfoFormStatus: "completed" });
 }
 
+function handleChangeOnInput(event) {}
+
 return (
   <div id="optInDataForm">
     {options.birthday.label ?? "Birthday"}
     <input
+      id="birthday"
       type="date"
       value={state.birthday}
       onChange={(e) =>
@@ -62,6 +69,7 @@ return (
     />
     {options.astrological_sign.label ?? "Astrological Sign"}
     <input
+      id="astrological_sign"
       type="text"
       value={state.astrological_sign}
       onChange={(e) =>
@@ -73,6 +81,7 @@ return (
     />
     {options.age.label ?? "Age"}
     <input
+      id="age"
       type="text"
       value={state.age}
       onChange={(e) =>
@@ -81,6 +90,7 @@ return (
     />
     {options.gender.label ?? "Gender"}
     <input
+      id="gender"
       type="text"
       value={state.gender}
       onChange={(e) =>
@@ -89,6 +99,7 @@ return (
     />
     {options.profession.label ?? "Profession"}
     <input
+      id="profession"
       type="text"
       value={state.profession}
       onChange={(e) =>
@@ -100,6 +111,7 @@ return (
     />
     {options.income.label ?? "Income"}
     <input
+      id="income"
       type="text"
       value={state.income}
       onChange={(e) =>
@@ -108,6 +120,7 @@ return (
     />
     {options.preferred_wallet.label ?? "Preferred Wallet"}
     <input
+      id="preferred_wallet"
       type="text"
       value={state.preferred_wallet}
       onChange={(e) =>
@@ -119,6 +132,7 @@ return (
     />
     {options.preffered_nft_marketplace.label ?? "Preferred NFT Marketplace"}
     <input
+      id="preffered_nft_marketplace"
       type="text"
       value={state.preffered_nft_marketplace}
       onChange={(e) =>
@@ -130,6 +144,7 @@ return (
     />
     {options.preffered_crypto.label ?? "Preferred Crypto"}
     <input
+      id="preffered_crypto"
       type="text"
       value={state.preffered_crypto}
       onChange={(e) =>
