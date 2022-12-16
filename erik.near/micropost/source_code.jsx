@@ -10,8 +10,6 @@ if (!accountId) {
 
 State.init({ postbody: null });
 
-console.log(accountId);
-
 // Display microposts already made
 const data = Social.get(`${accountId}/micropost/**`);
 
@@ -20,64 +18,24 @@ if (!data) {
   return "No data to see here...";
 }
 
-// const processData = (data) => {
-//   //console.log(data);
-//   const accounts = Object.entries(data);
+// just get our index
+// TODO: Filter out the not string numbers and create a clean array
+const cleanPosts = Math.max(Object.keys(data));
+console.log("cleanPosts", cleanPosts);
 
-//   const allMicroposts = accounts
-//     .map((account) => {
-//       const accountId = account[0];
-//       const blockHeights = account[1].micropost.postbody;
-//       return blockHeights.map((blockHeight) => ({
-//         accountId,
-//         blockHeight,
-//       }));
-//     })
-//     .flat();
-
-//   allMicroposts.sort((a, b) => b.blockHeight - a.blockHeight);
-//   console.log("returning all microposts...");
-//   console.log(allMicroposts);
-//   console.log("...done?");
-//   return allMicroposts;
-// };
-
-// if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
-//   State.update({
-//     data,
-//     allMemes: processData(data),
-//   });
-// }
-
-// How to render a micropost
-const renderItem = (a) => (
-  <div key={JSON.stringify(a)} style={{ minHeight: "200px" }}>
-    <a
-      className="text-decoration-none"
-      href={`#/mob.near/widget/Meme?accountId=${a.accountId}&blockHeight=${a.blockHeight}`}
-    >
-      This is the old render area
-    </a>
-    <h4>This is a micropost</h4>
-    <p>still need to find a real one, though...</p>
-    <p>{a}</p>
-  </div>
-);
-
-const fixData = (microposts) => {
-  // return Object.entries(microposts).map((key, value) => {
-  //   console.log("key", key);
-  //   console.log("value", key.body);
-  //   return <div>{key.body}</div>;
-  // });
-  //ADD CONDITIONAL LOGIC TO CLEAN THIS UP
+// return the rendering of posts
+const fixMicropostData = (microposts) => {
   return Object.keys(microposts).map((key) => {
     console.log(microposts[key]);
-    return <p key={key}>{microposts[key].body}</p>;
+    if (microposts[key].body) {
+      return (
+        <div class="row">
+          <p key={key}>{microposts[key].body}</p>
+        </div>
+      );
+    }
   });
 };
-
-// Create micropost button
 
 return (
   <div>
@@ -111,7 +69,6 @@ return (
     <hr />
     {state.done && <div className="alert alert-success">Success!</div>}
     <h3>Micropost feed</h3>
-    {renderItem(allMicroposts[0])}
-    {fixData(data)}
+    {fixMicropostData(data)}
   </div>
 );
