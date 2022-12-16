@@ -4,17 +4,17 @@ if (!answeredBy || !questionRef) {
   return "Missing prop";
 }
 
-State.init({ tipAmount: null });
+State.init({ tipAmount: null, showTipForm: false, timestamp: Date.now() });
 
-const tips = Social.index("genie", `tip/${answeredBy}`);
+const tips = Social.index("genie", `tip2/${answeredBy}`);
 const tipAmount = tips.reduce((acc, v) => acc + parseInt(v.value), 0);
 // console.log(tipAmount);
 const questionSpecificTips = Social.index(
   "genie",
-  `tip/${questionRef}/${answeredBy}`
+  `tip2/${questionRef}/${answeredBy}`
 );
 const qTip = questionSpecificTips.reduce(
-  (acc, v) => acc + parseInt(v.value),
+  (acc, v) => acc + parseInt(v.value.amount),
   0
 );
 console.log(questionSpecificTip);
@@ -32,81 +32,69 @@ const onSubmitClick = () => {
   );
 };
 
-const Tooltip = styled.div`
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-`;
-
-const ToolTipText = styled.span`
-  visibility: visible;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-
-  ${Tooltip}:hover & {
-    visibility: visible;
-  }
-`;
 return (
-  <div className="d-flex flex-row gap-2 align-items-center">
+  <div className="d-flex flex-row gap-4 align-items-center">
     <span>
-      <i class="bi bi-infinity" />
-      {qTip}
+      <span style={{ fontSize: "1.5rem" }}>⋈ {qTip}</span>
     </span>
-    <Tooltip>
-      Hover over me
-      <ToolTipText>Tooltip text</ToolTipText>
-    </Tooltip>
     <div>
-      <button className="btn btn-outline-dark">
+      <button
+        className="btn btn-outline-dark"
+        onClick={() => {
+          State.update({ showTipForm: true });
+        }}
+      >
         <i class="bi bi-wallet" />
         Tip
       </button>
     </div>
-    <div>
-      <p>
-        Amount:{" "}
+    {state.showTipForm && (
+      <div
+        className="d-flex flex-row align-items-center gap-1"
+        style={{ paddingLeft: "1rem" }}
+      >
+        <span>Amount:</span>
         <input
           value={state.tipAmount}
           placeholder="1"
           onChange={(e) => State.update({ tipAmount: e.target.value })}
         />
-      </p>
-      <CommitButton
-        disabled={
-          context.loading ||
-          !(answeredBy && state.tipAmount) ||
-          !parseInt(state.tipAmount)
-        }
-        data={{
-          index: {
-            genie: JSON.stringify([
-              {
-                key: `tip/${answeredBy}`,
-                value: state.tipAmount,
+        <div>
+          <CommitButton
+            disabled={
+              context.loading ||
+              !(answeredBy && state.tipAmount) ||
+              !parseInt(state.tipAmount)
+            }
+            data={{
+              index: {
+                genie: JSON.stringify([
+                  {
+                    key: `tip2/${answeredBy}`,
+                    value: state.tipAmount,
+                  },
+                  {
+                    key: `tip2/${questionRef}/${answeredBy}`,
+                    value: {
+                      amount: state.tipAmount,
+                      timestamp: state.timestamp,
+                    },
+                  },
+                ]),
               },
-              {
-                key: `tip/${questionRef}/${answeredBy}`,
-                value: state.tipAmount,
-              },
-            ]),
-          },
-        }}
-        className={`btn ${
-          context.loading ? "btn-outline-dark" : "btn-primary"
-        }`}
-        onCommit={onSubmitClick}
-      >
-        Submit
-      </CommitButton>
-    </div>
+            }}
+            className={`btn ${
+              context.loading ? "btn-outline-dark" : "btn-primary"
+            }`}
+            onClick={() => {
+              State.update({ timestamp: Date.now() });
+            }}
+            onCommit={onSubmitClick}
+          >
+            Submit
+          </CommitButton>
+        </div>
+      </div>
+    )}
   </div>
 );
