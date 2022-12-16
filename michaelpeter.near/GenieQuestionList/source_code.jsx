@@ -13,6 +13,7 @@ if (searchString) {
 
 return (
   <div className="d-flex flex-column gap-1">
+    {searchString}
     <div className="d-flex justify-content-end"></div>
     <div className="d-flex flex-column gap-3">
       {questions.map((q) => (
