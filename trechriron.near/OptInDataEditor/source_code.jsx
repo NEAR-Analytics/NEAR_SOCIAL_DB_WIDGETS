@@ -49,6 +49,20 @@ function reportEventToAPI() {
   });
 }
 
+function registerProfileToAPI() {
+  const data = fetch(`https://dev.kitwallet.app/producer`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      accountId,
+      profile: state,
+    }),
+  });
+}
+
 function setFormStatusOnAccount() {
   State.update({ optInInfoFormStatus: "completed" });
 }
@@ -64,6 +78,7 @@ function addChangeLogEntry() {
 function handleOnCommit() {
   console.log("doing the thing...");
   reportEventToAPI();
+  registerProfileToAPI();
   console.log({ state });
 }
 
@@ -142,7 +157,7 @@ return (
     <p></p>
     <CommitButton
       data={{ optInInfoFormStatus: state.saveState }}
-      onClick={setOptInInfoObject}
+      onClick={handleOnCommit}
       onCommit={handleOnCommit}
     >
       Save Opt-In Info
