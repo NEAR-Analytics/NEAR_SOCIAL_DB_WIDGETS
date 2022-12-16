@@ -1,5 +1,7 @@
 const accountId = props.accountId ?? context.accountId ?? "*";
 
+console.log("PROPS:", props);
+
 const data = Social.index("roomId_0", "data");
 
 if (!data) {
@@ -26,8 +28,6 @@ const getChatHistory = (indexData) => {
 
 const chatHistory = getChatHistory(sortedData);
 State.init({ input: "" });
-
-console.log("PROPS:", props);
 
 const onChangeMessage = (message) => {
   // State.update({ chatHistory: [...chatHistory, buildMessage(message)] });
