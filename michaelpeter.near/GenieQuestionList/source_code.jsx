@@ -1,8 +1,5 @@
 const questions = Social.index("genie", "asked") || [];
 questions = questions.reverse();
-if (!questions?.length) {
-  return <p>No Results</p>;
-}
 
 const { searchString, setSelectedQuestion } = props;
 
