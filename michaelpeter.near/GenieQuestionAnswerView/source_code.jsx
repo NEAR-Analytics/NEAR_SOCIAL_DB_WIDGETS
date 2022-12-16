@@ -34,9 +34,5 @@ return (
       src={"michaelpeter.near/widget/GenieAnswerList"}
       props={{ questionRef }}
     />
-    <Widget
-      src={"michaelpeter.near/widget/GenieAnswerSubmit"}
-      props={{ questionRef }}
-    />
   </div>
 );
