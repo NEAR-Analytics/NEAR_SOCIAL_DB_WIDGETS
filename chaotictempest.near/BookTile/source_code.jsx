@@ -35,26 +35,10 @@ const onCommitAdd =
 // TODO: why do we need index here?
 const dataForRead = {
   books: { read: { [id]: book } },
-  index: {
-    books: JSON.stringify({
-      key: "read",
-      value: {
-        book,
-      },
-    }),
-  },
 };
 
 const datarForToRead = {
   books: { toRead: { [id]: book } },
-  index: {
-    books: JSON.stringify({
-      key: "toRead",
-      value: {
-        book,
-      },
-    }),
-  },
 };
 
 const BookTyle = styled.div`
