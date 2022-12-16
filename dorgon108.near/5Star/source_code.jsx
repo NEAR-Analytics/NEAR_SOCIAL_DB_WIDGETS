@@ -1,8 +1,13 @@
 // Set Contract Name
 const cName = "5star.dorgon108.near";
 //Load widget Names
-// let widgetNames = Near.view(cName, "getListOfWidgets");
-let widgetNames = ["hey", "yeha"];
+let widgetNames = Near.view(cName, "getListOfWidgets");
+// let widgetNames = ["hey", "yeha"];
+
+//get widgetInfo
+let widgetInfo = widgetNames.map((el) => {
+  return Near.view(cName, "getWidgetObject", { title: el });
+});
 
 //Load Widget Rating Array
 let ratingAverages = widgetNames.map((element, i) => {
@@ -19,23 +24,24 @@ let value = 5;
 return (
   <div>
     <Widget src="dorgon108.near/widget/NewWidgetForm" />
-    <Widget
-      src="dorgon108.near/widget/Star-Rating-Widget"
-      props={{
-        className: "float-start d-inline-block me-2",
-      }}
-    />
 
     <div>
       {widgetNames.map((el, i) => {
         let value = ratingAverages[i];
         let title = el;
+        let owner = widgetInfo[i].owner;
+        let url = widgetInfo[i].url;
         return (
           <div key={i} style={{ backgroundColor: "#A8A8A8", margin: "10px" }}>
             {
               <div>
                 <div>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <img src={url} style={{ width: "30vw" }} />
+                  </div>
+
                   <h1>{el}</h1>
+                  <h2>Owner:{owner}</h2>
                   <h2>
                     <Widget
                       src="dorgon108.near/widget/Star-Rating-Static"
