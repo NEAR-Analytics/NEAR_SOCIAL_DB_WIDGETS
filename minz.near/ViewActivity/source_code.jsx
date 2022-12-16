@@ -25,7 +25,7 @@ return (
         Organized by
         <Widget
           src={`zavodil.near/widget/ProfileLine`}
-          props={{ event_creator }}
+          props={{ accountId: data.owner }}
         />
         <br />
         {data.description || "No description"}
