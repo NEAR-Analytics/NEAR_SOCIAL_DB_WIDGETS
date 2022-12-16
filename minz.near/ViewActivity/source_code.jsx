@@ -8,7 +8,7 @@ const participants = data.cur_participants;
 const participantWidgets = participants.map((accountId) => {
   return (
     <>
-      <Widget src={`eugenethedream/widget/ProfileLine`} props={{ accountId }} />
+      <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
     </>
   );
 });
@@ -91,7 +91,7 @@ return (
     <Organizer>
       Organized by
       <Widget
-        src={`eugenethedream/widget/ProfileLine`}
+        src={`mob.near/widget/ProfileLine`}
         props={{ accountId: data.owner }}
       />
     </Organizer>
