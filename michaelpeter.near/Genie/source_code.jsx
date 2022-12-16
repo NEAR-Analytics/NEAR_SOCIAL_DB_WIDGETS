@@ -13,7 +13,7 @@ const setSelectedQuestion = (ref) => {
 };
 
 const QuestionWrapper = styled.div`
-  width: 43rem
+  width: 60rem
 `;
 const Center = styled.div`
   display: flex;
