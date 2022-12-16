@@ -3,18 +3,32 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-const inodes = Social.get(`${accountId}/scribbles/inode/**`, "final") || [];
+const inodes = Social.get(`${accountId}/scribbles/inode/**`, "final");
 console.log(inodes);
+
+if (!inodes) {
+  return (
+    <>
+      <CommitButton type="button" data={{}}>
+        Refresh
+      </CommitButton>
+    </>
+  );
+}
+
 const db_next_inode = parseInt(
   Social.get(`${accountId}/scribbles/next_inode`, "final")
 );
+
+const scribbles = [];
+const parent_inodes = {};
 
 function traverse(inode, path, fs_map) {
   if (inodes[inode].entries) {
     fs_map = {};
     Object.entries(inodes[inode].entries).map(([filename, other_inode]) => {
       fs_map[filename] = traverse(parseInt(other_inode), path + `${filename}/`);
-      parent_inodes[other_inode] = inode;
+      parent_inodes[parseInt(other_inode)] = inode;
     });
     return fs_map;
   } else {
@@ -23,9 +37,8 @@ function traverse(inode, path, fs_map) {
   }
 }
 
-const scribbles = [];
-const parent_inodes = [];
-scribbles = traverse(state.fs.root, "/");
+scribbles = traverse(0, "/");
+console.log("scribbles: ");
 console.log(scribbles);
 console.log(parent_inodes);
 
@@ -56,7 +69,7 @@ if (state.showEditView) {
           type="button"
           onClick={() =>
             State.update({
-              fs: { ...state.fs, root: parent_inodes[root] },
+              fs: { ...state.fs, root: state.fs.parent_inodes[state.fs.root] },
               showEditView: false,
               editView: { ...state.editView, editViewText: "", fileName: null },
             })
@@ -104,6 +117,7 @@ return (
   <>
     root = {JSON.stringify(state.fs.root)}
     next_inode = {state.fs.next_inode}
+    parent_inodes = {JSON.stringify(state.fs.parent_inodes)}
     <div class="input-group mb-3" style={{ marginTop: 20 }}>
       <input
         type="text"
@@ -174,7 +188,7 @@ return (
         type="button"
         onClick={() =>
           State.update({
-            fs: { ...state.fs, root: parent_inodes[root] },
+            fs: { ...state.fs, root: state.fs.parent_inodes[state.fs.root] },
             dir: state.dir
               .split("/")
               .filter((a) => !!a)
