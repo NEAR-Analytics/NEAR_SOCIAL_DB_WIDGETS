@@ -1,3 +1,6 @@
+const bookdbContractId =
+  props.bookdbContractId ?? "v1bookdb.chaotictempest.near";
+
 initState({
   text: null,
   books: null,
@@ -13,7 +16,7 @@ const clearBooks = () => {
 };
 
 const updateBooks = (resp) => {
-  const books = resp.body.items.map((item) => {
+  const entries = resp.body.items.map((item) => {
     const info = item.volumeInfo;
     return {
       id: info.industryIdentifiers.reduce(
@@ -24,8 +27,8 @@ const updateBooks = (resp) => {
       author: info.authors[0],
       rating: info.averageRating,
       pageCount: info.pageCount,
+      desc: info.description,
       genre: "Novel",
-      onAdd: onAddBook,
       cover: {
         url:
           info.imageLinks.thumbnail ||
@@ -34,6 +37,13 @@ const updateBooks = (resp) => {
       },
     };
   });
+  // Convert into Map[ISBN => Book]
+  const books = Object.assign(
+    {},
+    ...entries.map((entry) => ({
+      [entry.id]: entry,
+    }))
+  );
 
   console.log("BOOKS", books);
   State.update({
@@ -81,12 +91,31 @@ const search = (text) => {
   });
 };
 
-const onAddBook = (book_id) => {
-  console.log(`ADDING BOOK ${book_id}`);
+const onCommitAdd = (buttonName, bookId) => {
+  console.log(`Committing book_isbn=${bookId} via ${buttonName}`);
+  if (!state.books) {
+    console.log("ERR: Trying to commit, but failed due to no books");
+  }
+
+  let bookEntry = Near.view(bookdbContractId, "get", {
+    isbn: bookId,
+  });
+  if (bookEntry) {
+    console.log(`${bookId} already indexed in bookdb`);
+    return;
+  }
+
+  const book = states.books[bookId];
+  Near.call(bookdbContractId, "add_book", {
+    isbn: book.id,
+    title: book.title,
+    author: book.author,
+    desc: book.desc ?? "No description",
+  });
 };
 
 const BookRows = styled.p`{
-  display: "flex",
+  display: "flex",Ω
   flexDirection: "column",
   alignItems: "left",
   justifyContent: "space-between",
@@ -114,11 +143,16 @@ return (
     <BookRows>
       {state.showBooks &&
         state.books &&
-        state.books.map((book) => (
+        Object.values(state.books).map((book) => (
           <Widget
             key={i}
-            src={"serhii.near/widget/BookTile"}
-            props={{ book, showAddToRead: true, showAddToWantToRead: true }}
+            src={"chaotictempest.near/widget/BookTile"}
+            props={{
+              book,
+              onCommitAdd,
+              showAddToRead: true,
+              showAddToWantToRead: true,
+            }}
           />
         ))}
     </BookRows>
