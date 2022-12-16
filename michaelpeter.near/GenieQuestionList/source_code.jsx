@@ -4,6 +4,8 @@ if (!questions?.length) {
   return <p>No Results</p>;
 }
 
+const { searchString } = props;
+
 return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex justify-content-end"></div>
