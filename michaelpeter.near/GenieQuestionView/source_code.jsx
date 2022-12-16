@@ -41,9 +41,8 @@ const question = Social.getr(
 // return nothing if question does not meet search criteria
 if (
   searchString &&
-  !question.title.includes(
-    searchString && !question.content.includes(searchString)
-  )
+  !question.title.includes(searchString) &&
+  !question.content.includes(searchString)
 ) {
   return <></>;
 }
