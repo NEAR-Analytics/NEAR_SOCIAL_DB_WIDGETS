@@ -20,10 +20,12 @@ const Center = styled.div`
   flex-direction:row;
   justify-content:center;
 `;
+const Wrapper = styled.div`
+  width: 60rem`;
 
 if (state.selectedQuestion) {
   return (
-    <div className="d-flex flex-column gap-1">
+    <Wrapper className="d-flex flex-column gap-1">
       <div>
         <button onClick={clearSelected}>Return</button>
       </div>
@@ -35,11 +37,11 @@ if (state.selectedQuestion) {
           />
         </QuestionWrapper>
       </Center>
-    </div>
+    </Wrapper>
   );
 } else if (state.showAskForm) {
   return (
-    <>
+    <Wrapper>
       <div className="d-flex flex-row justify-content-end">
         <button
           className="btn btn-light"
@@ -54,11 +56,11 @@ if (state.selectedQuestion) {
         src="michaelpeter.near/widget/GenieSaveQuestion"
         props={{ searchString: state.searchString, setSearchString }}
       />
-    </>
+    </Wrapper>
   );
 } else {
   return (
-    <div className="d-flex flex-column gap-3 pt-1">
+    <Wrapper className="d-flex flex-column gap-3 pt-1">
       <div className="d-flex align-items-center gap-3">
         <i class="bi bi-search" />
         <div class="input-group input-group-lg">
@@ -92,6 +94,6 @@ if (state.selectedQuestion) {
           />
         </QuestionWrapper>
       </Center>
-    </div>
+    </Wrapper>
   );
 }
