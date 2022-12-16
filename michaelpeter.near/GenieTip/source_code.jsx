@@ -6,12 +6,12 @@ if (!answeredBy || !questionRef) {
 
 State.init({ tipAmount: null });
 
-const tips = Social.index("genie", "tip/michaelpeter.near");
+const tips = Social.index("genie", `tip/${answeredBy}`);
 const tipAmount = tips.reduce((acc, v) => acc + parseInt(v.value), 0);
-console.log(tipAmount);
+// console.log(tipAmount);
 const questionSpecificTip = Social.index(
   "genie",
-  "tip/michaelpeter.near--1671070269443/michaelpeter.near"
+  `tip/${questionRef}/${answeredBy}`
 );
 console.log(questionSpecificTip);
 
@@ -68,7 +68,7 @@ return (
         },
       }}
       className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
-      onClick={onSubmitClick}
+      onCommit={onSubmitClick}
     >
       Submit
     </CommitButton>
