@@ -8,6 +8,9 @@ if (!bountyId) {
   return "Please provide a bounty id";
 }
 
+console.log(props);
+const collapsedOnCommentsAvailable = props.collapsedOnCommentsAvailable ?? true;
+
 State.init({ message: "" });
 
 const data =
@@ -24,8 +27,6 @@ const allComments = accounts.reduce((acc, accountId) => {
   );
 
   const enrichedComments = comments.map((comment) => {
-    const createdAt = new Date(comment.createdAt);
-
     return {
       ...comment,
       accountId,
@@ -44,7 +45,15 @@ allComments.sort((a, b) => {
   return 0;
 });
 
+// variables for rendering
 const sanitizedBountyId = props.bountyId.replaceAll(".", "");
+const collapsedClass =
+  !allComments.length || collapsedOnCommentsAvailable
+    ? "collapse"
+    : "collapse.show";
+
+console.log(collapsedOnCommentsAvailable, collapsedClass);
+
 return (
   <div>
     <div>
@@ -53,7 +62,7 @@ return (
         data-bs-toggle="collapse"
         href={`#collapseCommentEditorComment-${sanitizedBountyId}`}
         role="button"
-        aria-expanded="false"
+        aria-expanded2="false"
         aria-controls={`collapseCommentEditorComment-${sanitizedBountyId}`}
       >
         <i class={commentBtnClass}> </i> Comment ({allComments.length ?? 0})
@@ -61,7 +70,11 @@ return (
     </div>
 
     <div
-      class="collapse"
+      class={
+        !allComments.length || collapsedOnCommentsAvailable
+          ? "collapse"
+          : "collapse.show"
+      }
       id={`collapseCommentEditorComment-${sanitizedBountyId}`}
     >
       <div>
