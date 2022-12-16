@@ -160,8 +160,6 @@ console.log("CHAT HISTORY:", chatHistory);
 const onChangeMessage = (message) => {
   State.update({
     input: message,
-    // userName: profileInfo.name, // TODO: move to const
-    // userAvatarImage: profileInfo.image.ipfs_cid, // TODO: move to const
   });
 };
 
@@ -227,8 +225,7 @@ return (
         },
       }}
       onCommit={() => {
-        // CHECK THIS
-        // State.update({reloadData: true})
+        State.update({ input: "" });
       }}
     >
       Send Message
