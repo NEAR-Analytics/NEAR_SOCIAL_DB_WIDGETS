@@ -5,8 +5,9 @@ const options = props.options;
 if (context.loading) {
   return (
     <>
-    <h2>)"Loading..."</h2>
+      <h2>)"Loading..."</h2>
     </>
+  );
 }
 
 if (!accountId) {
@@ -21,7 +22,9 @@ let page = (
   <div>
     <h1>{`Hello, ${accountId}!`}</h1>
     <p>
-      {`Please fill out the following information. Only include the data you are willing to share. Everytime your data is accessed in a query, you will earn NEAR!`}
+      {`Please fill out the following information. This data is private!
+      Only include the data you are willing to share with analytics queries. 
+      Everytime your data is accessed in a query, you will earn NEAR!`}
     </p>
     <p></p>
     <Widget src="trechriron.near/widget/OptInDataEditor" />
