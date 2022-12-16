@@ -72,10 +72,7 @@ const myFriends = followingsPerAccount[userId] || [
   "roshaan.near",
 ];
 
-/* TODO: cold start for a new user
-
-*/
-function getRecommendationsFor(accId) {
+function getRecommendations() {
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
@@ -154,7 +151,7 @@ function getCommitData() {
   return data;
 }
 
-const rec = getRecommendationsFor(userId);
+const rec = getRecommendations();
 
 const followingsRows = rec.map(
   ({ accountId, commonFollows, commonTags, score }) => (
@@ -237,15 +234,19 @@ const followingsRows = rec.map(
   )
 );
 
-const commitButton = (
-  <CommitButton
-    disabled={context.loading}
-    className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
-    data={getCommitData()}
-  >
-    {context.loading ? "Loading" : "Follow Selected"}
-  </CommitButton>
-);
+const commitButton = () => {
+  const data = getCommitData();
+  if (!data.index.graph.includes('"type":"follow"')) return <></>;
+  return (
+    <CommitButton
+      disabled={context.loading}
+      className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
+      data={data}
+    >
+      {context.loading ? "Loading" : "Follow Selected"}
+    </CommitButton>
+  );
+};
 
 const switchMode = () => {
   State.update({ multiSelectMode: !state.multiSelectMode });
@@ -270,8 +271,8 @@ return (
       following accounts.
     </p>
     <div className="mb-3">{switchModeButton}</div>
-    {state.multiSelectMode && <div className="mb-3">{commitButton}</div>}
+    {state.multiSelectMode && <div className="mb-3">{commitButton()}</div>}
     <ul className="list-group">{followingsRows}</ul>
-    <div className="mt-2 mb-3">{commitButton}</div>
+    <div className="mt-2 mb-3">{commitButton()}</div>
   </>
 );
