@@ -79,10 +79,6 @@ return (
                 {d.accountId}
               </a>
               I BuiDL <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
-              <Widget
-                src="mob.near/widget/FollowButton"
-                props={{ accountId, profile: d.accountId }}
-              />
             </div>
           ))
         : "Loading..."}
