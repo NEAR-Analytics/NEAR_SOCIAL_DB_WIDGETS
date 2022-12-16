@@ -87,7 +87,7 @@ return state.bounties ? (
     pageStart={0}
     initialLoad={true}
     loadMore={fetchMoreBounties}
-    hasMore={state.bounties.length < state.total}
+    hasMore={state.total && state.bounties.length < state.total}
     loader={<div className="loader">Loading ...</div>}
   >
     <ol>
