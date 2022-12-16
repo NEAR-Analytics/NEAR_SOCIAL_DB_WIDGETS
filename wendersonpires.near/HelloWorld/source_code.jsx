@@ -1,31 +1,13 @@
 const accountId = props.accountId ?? context.accountId ?? "*";
 
-// const data = Social.keys(`${accountId}/experimental`, "final", {
-//   return_type: "History",
-// });
-
 const data = Social.index("roomId_0", "data");
 
 if (!data) {
   return "Loading...";
 }
 
-console.log("DATA:", data);
-
 // Last messages on the bottom
 const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
-
-// const processData = (data) => {
-//   const accounts = Object.entries(data);
-//   console.log("ACCOUNTS:", accounts);
-// };
-
-// processData(data);
-
-// console.log("DATA:", data);
-
-// const foo = Social.getr(`${accountId}/profile`);
-// console.log("SEE:", foo);
 
 const buildMessage = (accountId, message) => {
   return {
@@ -42,40 +24,10 @@ const getChatHistory = (indexData) => {
   return chatHistory;
 };
 
-// Shouldn't be based on a accountId, should have something else? (socket???)
-// const chatData = Social.get(`${accountId}/experimental/chat`);
-// const chatData = Social.get(`${accountId}/experimental/room0`);
 const chatHistory = getChatHistory(sortedData);
-// State.init({ chatHistory: chatHistory || [], currentText: "", input: "" });
 State.init({ input: "" });
 
 console.log("PROPS:", props);
-
-// console.log("CHAAT:", chat);
-
-// IPFS websocket server here [allows creating an instance that many users can use]
-
-// {
-//   roomId: 'QmVWQMLUM3o4ZFbLtLMS1PMLfodeEeBkBPR2a2R3hqQ337',
-//   message: [
-//     {
-//       user: 'wenderson.near'
-//       message: 'hy guys'
-//     },
-//     {
-//       user: 'wenderson.near'
-//       message: 'hy guys'
-//     },
-//     {
-//       user: 'wenderson.near'
-//       message: 'hy guys'
-//     },
-//     {
-//       user: 'wenderson.near'
-//       message: 'hy guys'
-//     }
-//   ]
-// }
 
 const onChangeMessage = (message) => {
   // State.update({ chatHistory: [...chatHistory, buildMessage(message)] });
