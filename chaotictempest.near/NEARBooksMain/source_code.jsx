@@ -6,7 +6,7 @@ return (
     </div>
     {context.accountId && (
       <div>
-        <Widget src="serhii.near/widget/NEARBooksTabs" />
+        <Widget src="chaotictempest.near/widget/NEARBooksTabs" />
       </div>
     )}
   </div>
