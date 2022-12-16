@@ -1,6 +1,3 @@
-const bookdbContractId =
-  props.bookdbContractId ?? "v1bookdb.chaotictempest.near";
-
 initState({
   text: null,
   books: null,
@@ -91,29 +88,6 @@ const search = (text) => {
   });
 };
 
-const onCommitAdd = (buttonName, bookId) => {
-  console.log(`Committing book_isbn=${bookId} via ${buttonName}`);
-  if (!state.books) {
-    console.log("ERR: Trying to commit, but failed due to no books");
-  }
-
-  let bookEntry = Near.view(bookdbContractId, "get", {
-    isbn: bookId,
-  });
-  if (bookEntry) {
-    console.log(`${bookId} already indexed in bookdb`);
-    return;
-  }
-
-  const book = states.books[bookId];
-  Near.call(bookdbContractId, "add_book", {
-    isbn: book.id,
-    title: book.title,
-    author: book.author,
-    desc: book.desc ?? "No description",
-  });
-};
-
 const BookRows = styled.p`{
   display: "flex",Ω
   flexDirection: "column",
@@ -149,7 +123,6 @@ return (
             src={"chaotictempest.near/widget/BookTile"}
             props={{
               book,
-              onCommitAdd,
               showAddToRead: true,
               showAddToWantToRead: true,
             }}
