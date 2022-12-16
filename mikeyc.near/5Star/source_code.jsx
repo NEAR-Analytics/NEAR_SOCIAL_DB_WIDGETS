@@ -32,7 +32,7 @@ let value = 5;
 return (
   <div>
     <h1>5star</h1>
-    <h2>`One stop shop for widget ratings`</h2>
+    <h2>{`One stop shop for widget ratings`}</h2>
     <Widget src="dorgon108.near/widget/NewWidgetForm" />
 
     <div>
