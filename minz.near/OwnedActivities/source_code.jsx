@@ -23,8 +23,24 @@ align-items: flex-start;
 }
 `;
 
-const allWidgets = events.map((event_id) => {
+let allEvents = events.map((event_id) => {
   console.log(event_id);
   return <Widget src={`minz.near/widget/ViewActivity`} props={{ event_id }} />;
 });
-return <AllWidgets>{allWidgets}</AllWidgets>;
+
+if (events.length == 0) {
+  allEvents = (
+    <div>
+      <div> You don't own any event </div>
+      <a href={`#/minz.near/widget/CreateActivity`}>Start a event</a>
+    </div>
+  );
+}
+return (
+  <div>
+    <AllWidgets>{allEvents}</AllWidgets>
+    <div>
+      <Widget src={`minz.near/widget/ActivitiesHomePageButton`} />;
+    </div>
+  </div>
+);
