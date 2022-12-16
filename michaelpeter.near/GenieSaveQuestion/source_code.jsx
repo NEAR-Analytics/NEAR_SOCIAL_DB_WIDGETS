@@ -9,6 +9,8 @@ if (!context.accountId) {
   return <p>Please log in to ask a question</p>;
 }
 
+const { searchString, setSearchString } = props.searchString;
+
 const questionRef = `${context.accountId}--${Date.now()}`;
 return (
   <div className="d-flex flex-column">
@@ -20,7 +22,10 @@ return (
             type="text"
             placeholder="Your wish is my command"
             className="form-control input-group input-group-lg"
-            value={state.questionContent}
+            value={props.searchContent}
+            onChange={(e) => {
+              props.setSearchString?.(e.target.value);
+            }}
           />
         </div>
         <button
