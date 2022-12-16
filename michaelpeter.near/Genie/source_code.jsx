@@ -26,5 +26,15 @@ if (!state.selectedQuestion) {
     </div>
   );
 } else {
-  return <button onClick={clearSelected}>Return</button>;
+  return (
+    <div className="d-flex flex-column gap-1">
+      <div>
+        <button onClick={clearSelected}>Return</button>
+      </div>
+      <Widget
+        src="michaelpeter.near/widget/GenieQuestionAnswerView"
+        props={{ questionRef: state.selectedQuestion }}
+      />
+    </div>
+  );
 }
