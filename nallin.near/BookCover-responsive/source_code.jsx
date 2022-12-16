@@ -1,5 +1,4 @@
-const className =
-  props.className ?? "profile-image d-flex justify-content-center";
+const className = props.className ?? "profile-image d-inline-box";
 const style = props.style ?? {
   width: "auto",
   height: "100%",
