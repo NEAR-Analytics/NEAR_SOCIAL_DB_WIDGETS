@@ -80,7 +80,7 @@ return (
                 </p>
                 <Widget
                   src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                  props={{ bountyId, collapsedOnCommentsAvailable: false }}
+                  props={{ bountyId, collapsedOnCommentsAvailable: true }}
                 />
                 <Widget
                   src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
