@@ -2,16 +2,20 @@ const accounts = Social.keys(`*/graph/follow/*`, "final", {
   return_type: "BlockHeight",
   values_only: true,
 });
+const all_account_tags = Social.getr(`*/profile/tags`, "final");
 const userId = context.accountId;
 const ownerId = context.ownerId;
+const showFollowerStats = props.showFollowerStats ?? true;
+
 if (!userId) {
   return "Please sign in with NEAR wallet to follow other accounts";
 }
 if (accounts === null) {
   return "Loading";
 }
+
 const followingData = Social.keys(`${userId}/graph/follow/*`, "final");
-if (followingData === null) {
+if (followingData === null || tagsData === null) {
   return "Loading";
 }
 const following = followingData[userId]["graph"]["follow"] ?? {};
@@ -29,38 +33,65 @@ function getFollowersPerAccount() {
 }
 
 const followingsAll = getFollowersPerAccount();
-
 State.init({
   following,
+  multiSelectMode: false,
 });
 
-function getRecommendationsFor(accountId) {
-  let followingsPerAccount = Object.keys(accounts).reduce(
-    (res, id) => ({
-      ...res,
-      [id]: Object.keys(accounts[id].graph.follow).filter((x) => x !== userId),
-    }),
-    {}
+let followingsPerAccount = Object.keys(accounts).reduce(
+  (res, id) => ({
+    ...res,
+    [id]: Object.keys(accounts[id].graph.follow).filter((x) => x !== userId),
+  }),
+  {}
+);
+
+const tagsPerAccount = Object.keys(all_account_tags).reduce(
+  (res, id) => ({
+    ...res,
+    [id]: Object.keys(all_account_tags[id].profile.tags).filter((x) => x),
+  }),
+  {}
+);
+
+const myFriends = followingsPerAccount[userId];
+const myTags = tagsPerAccount[userId] || [];
+
+const friendsInCommon = (accountId) => {
+  return myFriends.filter((a) => followingsPerAccount[accountId].includes(a));
+};
+
+const tagsInCommon = (accountId) => {
+  return myTags.filter(
+    (a) =>
+      tagsPerAccount[accountId].length > 0 &&
+      tagsPerAccount[accountId].includes(a)
   );
-  const myFriends = followingsPerAccount[accountId];
+};
+
+/* TODO: cold start for a new user
+
+*/
+function getRecommendationsFor(_accountId) {
+  console.log("Total accounts", Object.keys(accounts).length);
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
     )
     .map((accountId) => ({
       accountId,
-      commonFollows: myFriends.filter((a) =>
-        followingsPerAccount[accountId].includes(a)
-      ).length,
+      commonFollows: friendsInCommon(accountId).length,
+      commonTags: tagsInCommon(accountId).length,
     }))
-    .map(({ accountId, commonFollows }) => ({
+    .map(({ accountId, commonFollows, commonTags }) => ({
       accountId,
       commonFollows,
-      score: commonFollows * (followingsAll[accountId] || 1),
+      commonTags,
+      score: commonFollows * (Math.log2(followingsAll[accountId]) || 1),
     }))
     .sort((f, s) => s.score - f.score)
     .slice(0, 20);
-  return recommendations.map((x) => x.accountId);
+  return recommendations;
 }
 
 let handleChange = (accountId) => {
@@ -117,50 +148,89 @@ function getCommitData() {
   };
   return data;
 }
+
 const rec = getRecommendationsFor(userId);
 
-const followingsRows = rec.map((accountId) => (
-  <li
-    className={`list-group-item ${
-      state.following[accountId] ? "list-group-item-success" : ""
-    }`}
-  >
-    <div className="form-check">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={accountId}
-        disabled={accountId == userId}
-        id={`follow-${accountId}`}
-        name={`follow-${accountId}`}
-        onChange={() => handleChange(accountId)}
-        checked={state.following[accountId] ?? false}
-      />
-      <label className="form-check-label" for={`follow-${accountId}`}>
-        <Widget
-          src="zavodil.near/widget/ProfileLine"
-          props={{
-            accountId,
-            link: "",
-          }}
-        />{" "}
-        <span
-          className="badge rounded-pill bg-primary"
-          title={`${followingsAll[accountId]} followers`}
-        >
-          {followingsAll[accountId]}
-        </span>
-        <a
-          className="btn btn-sm btn-outline-secondary border-0"
-          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
-          target="_blank"
-        >
-          <i className="bi bi-window-plus me-1" title="Open in new tab"></i>
-        </a>
-      </label>
-    </div>
-  </li>
-));
+const followingsRows = rec.map(
+  ({ accountId, commonFollows, commonTags, score }) => (
+    <li
+      className={`list-group-item ${
+        state.following[accountId] ? "list-group-item-success" : ""
+      }`}
+    >
+      <div className="form-check">
+        {state.multiSelectMode && (
+          <input
+            className="form-check-input"
+            type="checkbox"
+            value={accountId}
+            disabled={accountId == userId}
+            id={`follow-${accountId}`}
+            name={`follow-${accountId}`}
+            onChange={() => handleChange(accountId)}
+            checked={state.following[accountId] ?? false}
+          />
+        )}
+
+        <label className="form-check-label" for={`follow-${accountId}`}>
+          <div className="flex justify-between">
+            <Widget
+              src="roshaan.near/widget/ProfileLine"
+              props={{
+                accountId,
+                showTags: props.showTags,
+                showFollowerStats: true,
+                showFollowButton: state.multiSelectMode === false,
+              }}
+            />
+          </div>
+          <OverlayTrigger
+            placement="auto"
+            overlay={
+              <Tooltip>
+                <span> You both follow </span>
+                <br />
+                <br />
+                {friendsInCommon(accountId).map((friendsInCommon) => {
+                  return (
+                    <li className={`list-group-item`}>{friendsInCommon}</li>
+                  );
+                })}
+              </Tooltip>
+            }
+          >
+            <span
+              className="badge rounded-pill bg-primary"
+              title={`${commonFollows} followers in common`}
+            >
+              {commonFollows} friends in common
+            </span>
+          </OverlayTrigger>
+          {commonTags > 0 && (
+            <OverlayTrigger
+              placement="auto"
+              overlay={
+                <Tooltip>
+                  {tagsInCommon(accountId).map((tag) => {
+                    return <li className={`list-group-item`}>{tag}</li>;
+                  })}
+                </Tooltip>
+              }
+            >
+              <span
+                className="badge rounded-pill bg-primary"
+                title={`${commonTags} tags in common`}
+              >
+                {commonTags} common tags
+              </span>
+            </OverlayTrigger>
+          )}
+          <br />
+        </label>
+      </div>
+    </li>
+  )
+);
 
 const commitButton = (
   <CommitButton
@@ -172,6 +242,21 @@ const commitButton = (
   </CommitButton>
 );
 
+const switchMode = () => {
+  State.update({ multiSelectMode: !state.multiSelectMode });
+};
+
+const switchModeButton = (
+  <button
+    onClick={switchMode}
+    className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
+  >
+    {state.multiSelectMode
+      ? "Switch to regular mode"
+      : "Switch to multiselect mode"}
+  </button>
+);
+
 return (
   <>
     <h1>People You May Know</h1>
@@ -179,10 +264,9 @@ return (
       Based on your current connections, you might also want to follow the
       following accounts.
     </p>
-
-    <div className="mb-3">{commitButton}</div>
+    <div className="mb-3">{switchModeButton}</div>
+    {state.multiSelectMode && <div className="mb-3">{commitButton}</div>}
     <ul className="list-group">{followingsRows}</ul>
-
     <div className="mt-2 mb-3">{commitButton}</div>
   </>
 );
