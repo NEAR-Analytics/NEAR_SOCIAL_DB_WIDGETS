@@ -63,6 +63,9 @@ State.init({
 if (state.showEditView) {
   return (
     <>
+      root = {JSON.stringify(state.fs.root)}
+      next_inode = {state.fs.next_inode}
+      parent_inodes = {JSON.stringify(state.fs.parent_inodes)}
       <div class="input-group-append">
         <button
           class="btn btn-outline-secondary"
@@ -92,12 +95,20 @@ if (state.showEditView) {
       ></textarea>
       <CommitButton
         data={{
-          scribbles: state.dir
-            .split("/")
-            .filter((a) => !!a)
-            .reduceRight((acc, curr) => ({ [curr]: acc }), {
-              [state.editView.fileName]: state.editView.editViewText,
-            }),
+          scribbles: {
+            inode: {
+              [state.fs.root]: {
+                entries: {
+                  [state.editView.fileName]: state.fs.next_inode,
+                },
+              },
+              [state.fs.next_inode]: {
+                type: 0,
+                data: state.editView.editViewText,
+              },
+            },
+            next_inode: state.fs.next_inode + 1,
+          },
         }}
       >
         Submit note
@@ -170,12 +181,20 @@ return (
           type="button"
           disabled={!state.folderName}
           data={{
-            scribbles: state.dir
-              .split("/")
-              .filter((a) => !!a)
-              .reduceRight((acc, curr) => ({ [curr]: acc }), {
-                [state.folderName]: "**FOLDER**",
-              }),
+            scribbles: {
+              inode: {
+                [state.fs.root]: {
+                  entries: {
+                    [state.folderName]: state.fs.next_inode,
+                  },
+                },
+                [state.fs.next_inode]: {
+                  type: 1,
+                  entries: {},
+                },
+              },
+              next_inode: state.fs.next_inode + 1,
+            },
           }}
         >
           Add Folder
@@ -216,9 +235,10 @@ return (
                       dir: state.dir + `${filename}/`,
                     })
                   : State.update({
+                      fs: { ...state.fs, root: index },
                       showEditView: true,
                       editView: {
-                        editViewText: currDir[str],
+                        editViewText: state.fs.inodes[index].data,
                         fileName: filename,
                       },
                     })
