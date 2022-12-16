@@ -21,7 +21,7 @@ const button = {
 
 const accountId = props.accountId ?? "*";
 
-const data = Social.index("ThoughtOfTheDay", "thought");
+const data = Social.index("ThoughtOfTheDay", "answer");
 if (!data) {
   return "Loading";
 }
@@ -50,7 +50,7 @@ return (
         index: {
           ThoughtOfTheDay: JSON.stringify(
             {
-              key: "thought",
+              key: "answer",
               value: {
                 thought: state.input,
               },
@@ -73,7 +73,7 @@ return (
       {sortedData
         ? sortedData.map((d) => (
             <div style={card}>
-              {d.accountId} said <b>{d.value.thought}</b>
+              {d.accountId} said <b>{d.value.answer}</b>
             </div>
           ))
         : "Loading..."}
