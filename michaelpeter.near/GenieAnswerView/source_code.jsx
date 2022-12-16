@@ -27,7 +27,7 @@ return (
         props={{ questionRef, answeredBy }}
       />
       <Widget
-        src="woben.near/widget/genieTip"
+        src="michaelpeter.near/widget/GenieTip"
         props={{ questionRef, answeredBy }}
       />
     </div>
