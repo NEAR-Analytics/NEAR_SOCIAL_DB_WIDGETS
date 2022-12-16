@@ -9,7 +9,7 @@ let widgetInfo = widgetNames.map((el) => {
   return Near.view(cName, "getWidgetObject", { title: el });
 });
 
-//Load Widget Rating Array
+//Load Widget Ranking Average
 let ratingAverages = widgetNames.map((element, i) => {
   console.log("average title name", element);
   return Math.round(
@@ -19,11 +19,20 @@ let ratingAverages = widgetNames.map((element, i) => {
   );
 });
 
+// Load Widget Ranking Array to get total votes
+let rankingArraysLength = widgetNames.map((element, i) => {
+  let arrays = Near.view(cName, "getRankingArray", { widgetName: element });
+  return arrays.length;
+});
+console.log("vote array", rankingArraysLength);
+
 // let WidgetNames = ["poll", "checkers", "Dao"];
 let value = 5;
 
 return (
   <div>
+    <h1>5star</h1>
+    <h2>`One stop shop for widget ratings`</h2>
     <Widget src="dorgon108.near/widget/NewWidgetForm" />
 
     <div>
@@ -33,6 +42,7 @@ return (
         let owner = widgetInfo[i].owner;
         let url = widgetInfo[i].url;
         let image = widgetInfo[i].image;
+        let totalVotes = rankingArraysLength[i];
 
         return (
           <div key={i} style={{ backgroundColor: "#A8A8A8", margin: "10px" }}>
@@ -62,6 +72,7 @@ return (
                       title,
                     }}
                   />
+                  <p>`total votes:{totalVotes}`</p>
                 </div>
               </div>
             }
