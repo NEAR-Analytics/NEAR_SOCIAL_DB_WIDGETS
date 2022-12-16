@@ -1,4 +1,4 @@
-const { questionRef } = props;
+const { questionRef, searchString } = props;
 
 State.init({ questionRef, refInput });
 
@@ -37,6 +37,16 @@ const asker = state.questionRef.split("--")[0];
 const question = Social.getr(
   `${asker}/experimental/genie/questions/${state.questionRef}`
 );
+
+// return nothing if question does not meet search criteria
+if (
+  searchString &&
+  !question.title.includes(
+    searchString && !question.content.includes(searchString)
+  )
+) {
+  return <></>;
+}
 
 return (
   <div className="d-flex flex-column gap-1">
