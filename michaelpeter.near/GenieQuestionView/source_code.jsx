@@ -53,7 +53,9 @@ return (
           src="tiffany.near/widget/Profile"
           props={{ accountId: asker }}
         />
-        <div>timestamp</div>
+        <div>
+          {new Date(parseInt(state.questionRef.split("--")[1])).toISOString()}
+        </div>
       </div>
     </div>
     <h3>{question.title}</h3>
