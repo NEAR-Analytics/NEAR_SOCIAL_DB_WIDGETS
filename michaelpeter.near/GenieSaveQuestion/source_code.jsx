@@ -63,8 +63,7 @@ return (
           }}
         />
         Content:
-        <input
-          type="text"
+        <textarea
           className="form-control"
           value={state.questionContent}
           style={{ height: "5rem" }}
@@ -73,6 +72,7 @@ return (
           }}
         />
         <CommitButton
+          disabled={!state.questionTitle || !state.questionContent}
           className="btn btn-primary"
           onCommit={() => {
             State.update({ questionContent: "", showAskForm: false });
