@@ -12,6 +12,7 @@ State.init({
   rating: 0,
 });
 
+console.log(props.title);
 const startRating = (ratingValue) => {
   return (
     <label key={ratingValue}>
