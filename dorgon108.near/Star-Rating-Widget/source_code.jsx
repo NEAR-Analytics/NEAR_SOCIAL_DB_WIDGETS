@@ -8,9 +8,16 @@ let starStyle = {
   width: "8vw",
 };
 
+// Set Contract Name
+const cName = "5star.dorgon108.near";
+
 State.init({
   rating: 0,
 });
+
+const sendRating = (val) => {
+  Near.call(cName, "newRanking", { rateVal: val, widgetName: props.title });
+};
 
 console.log(props.title);
 const startRating = (ratingValue) => {
@@ -23,6 +30,7 @@ const startRating = (ratingValue) => {
         onClick={() => {
           console.log("clicked");
           State.update({ rating: ratingValue });
+          sendRating(ratingValue);
         }}
         style={starStyle}
         src={ratingValue <= state.rating ? brightStarImage : darkStarImage}
