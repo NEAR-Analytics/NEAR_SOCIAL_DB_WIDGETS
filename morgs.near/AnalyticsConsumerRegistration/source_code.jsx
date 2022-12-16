@@ -42,7 +42,7 @@ return (
       value={state.initialBalance}
       onChange={(e) => State.update({ initialBalance: e.target.value })}
     />
-    <p></p>
+    <br />
     <button onClick={registerConsumer}>Confirm</button>
     <button onClick={() => State.update(initialState)}>Reset Form</button>
   </div>
