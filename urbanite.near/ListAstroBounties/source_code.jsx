@@ -99,7 +99,7 @@ return (
                 <div className="row">
                   <div className="col">
                     <Widget
-                      src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
+                      src="urbanite.near/widget/AstroBountiesCommentEditor"
                       props={{ bountyId, collapsedOnCommentsAvailable: true }}
                     />
                   </div>
