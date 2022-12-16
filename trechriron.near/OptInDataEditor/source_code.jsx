@@ -2,6 +2,7 @@ const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
 let optInInfo = {};
+let changeLog = [];
 
 const initialState = {
   accountId,
@@ -15,11 +16,9 @@ const initialState = {
   preffered_nft_marketplace: "",
   preffered_crypto: "",
   saveState: "Started",
-  changeLog: {},
 };
 
 State.init(initialState);
-console.log(initialState);
 
 function setOptInInfoObject() {
   optInInfo = { ...state };
@@ -36,8 +35,8 @@ function fetchDataFromAPI() {
   });
 }
 
-function setDataToAPI() {
-  const data = fetch(``, {
+function reportEventToAPI() {
+  const data = fetch(`https://dev.kitwallet.app/producer/${accountId}/event`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -45,7 +44,7 @@ function setDataToAPI() {
     },
     body: JSON.stringify({
       accountId,
-      optInInfo,
+      events: [{ type: "updateProfile", data: "coolwhip" }],
     }),
   });
 }
@@ -54,7 +53,26 @@ function setFormStatusOnAccount() {
   State.update({ optInInfoFormStatus: "completed" });
 }
 
-function handleChangeOnInput(event) {}
+function addChangeLogEntry() {
+  const dateTime = Date.now();
+  // const timestampUTC = dateTime.toUTCString();
+  const changeEvent = { thisEvent: "form submitted", timestamp: dateTime };
+  changeLog.push(changeEvent);
+  return changeLog;
+}
+
+function handleOnCommit() {
+  console.log("doing the thing...");
+  reportEventToAPI();
+  console.log({ state });
+}
+
+function handleChangeOnInput(event) {
+  State.update({
+    [event.target.id]: event.target.value,
+  });
+  State.update({ saveState: "in progress..." });
+}
 
 return (
   <div id="optInDataForm">
@@ -63,102 +81,69 @@ return (
       id="birthday"
       type="date"
       value={state.birthday}
-      onChange={(e) =>
-        State.update({ birthday: e.target.value, saveState: "in progress..." })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.astrological_sign.label ?? "Astrological Sign"}
     <input
       id="astrological_sign"
       type="text"
       value={state.astrological_sign}
-      onChange={(e) =>
-        State.update({
-          astrological_sign: e.target.value,
-          saveState: "in progress...",
-        })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.age.label ?? "Age"}
     <input
       id="age"
       type="text"
       value={state.age}
-      onChange={(e) =>
-        State.update({ age: e.target.value, saveState: "in progress..." })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.gender.label ?? "Gender"}
     <input
       id="gender"
       type="text"
       value={state.gender}
-      onChange={(e) =>
-        State.update({ gender: e.target.value, saveState: "in progress..." })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.profession.label ?? "Profession"}
     <input
       id="profession"
       type="text"
       value={state.profession}
-      onChange={(e) =>
-        State.update({
-          profession: e.target.value,
-          saveState: "in progress...",
-        })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.income.label ?? "Income"}
     <input
       id="income"
       type="text"
       value={state.income}
-      onChange={(e) =>
-        State.update({ income: e.target.value, saveState: "in progress..." })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.preferred_wallet.label ?? "Preferred Wallet"}
     <input
       id="preferred_wallet"
       type="text"
       value={state.preferred_wallet}
-      onChange={(e) =>
-        State.update({
-          preferred_wallet: e.target.value,
-          saveState: "in progress...",
-        })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.preffered_nft_marketplace.label ?? "Preferred NFT Marketplace"}
     <input
       id="preffered_nft_marketplace"
       type="text"
       value={state.preffered_nft_marketplace}
-      onChange={(e) =>
-        State.update({
-          preffered_nft_marketplace: e.target.value,
-          saveState: "in progress...",
-        })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     {options.preffered_crypto.label ?? "Preferred Crypto"}
     <input
       id="preffered_crypto"
       type="text"
       value={state.preffered_crypto}
-      onChange={(e) =>
-        State.update({
-          preffered_crypto: e.target.value,
-          saveState: "in progress...",
-        })
-      }
+      onChange={(event) => handleChangeOnInput(event, input.id)}
     />
     <p></p>
     <CommitButton
       data={{ optInInfoFormStatus: state.saveState }}
       onClick={setOptInInfoObject}
-      onCommit={setFormStatusOnAccount}
+      onCommit={handleOnCommit}
     >
       Save Opt-In Info
     </CommitButton>
