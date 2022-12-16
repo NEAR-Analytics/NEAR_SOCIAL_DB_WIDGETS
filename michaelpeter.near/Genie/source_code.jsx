@@ -58,7 +58,7 @@ if (state.selectedQuestion) {
   );
 } else {
   return (
-    <div className="d-flex flex-column gap-3">
+    <div className="d-flex flex-column gap-3 pt-1">
       <div className="d-flex align-items-center gap-3">
         <i class="bi bi-search" />
         <div class="input-group input-group-lg">
