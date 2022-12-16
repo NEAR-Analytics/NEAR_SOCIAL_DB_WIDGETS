@@ -3,7 +3,10 @@ const onChange = props.onChange;
 const options = props.options;
 
 if (context.loading) {
-  return "Loading";
+  return (
+    <>
+    <h2>)"Loading..."</h2>
+    </>
 }
 
 if (!accountId) {
