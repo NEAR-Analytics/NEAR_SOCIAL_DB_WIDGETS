@@ -23,17 +23,9 @@ const uuidv4 = () => {
 // APP
 const accountId = props.accountId ?? context.accountId ?? "*";
 
-// const roomId = props.room_id || "roomId_0"; // TODO
-// let roomId = props.room_id; // TODO
-
 const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
 
-console.log("PROFILE", profileInfo);
-
 // Room Creator Screen
-
-// console.log(Social.get(`${accountId}/index/roomId_0`));
-
 const joinRoom = (roomIdInfo) => {
   console.log(roomIdInfo);
 
@@ -119,7 +111,6 @@ if (!state.roomId) {
 }
 
 // Chat Room Screen
-
 const data = Social.index(state.roomId, "data");
 
 console.log(data);
@@ -232,17 +223,3 @@ return (
     </CommitButton>
   </>
 );
-
-// <button type="button" style={{ background: "#ff0000" }}>
-//   Send
-// </button>
-
-// const homepage = accountId
-//   ? Social.get(`${accountId}/settings/near.social/homepage`)
-//   : undefined;
-
-// if (homepage === null) {
-//   return "Loading";
-// }
-
-// return <Widget src={homepage ?? "mob.near/widget/Welcome"} />;
