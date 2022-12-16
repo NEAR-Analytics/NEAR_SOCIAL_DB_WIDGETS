@@ -13,9 +13,7 @@ State.init({ postbody: null });
 console.log(accountId);
 
 // Display microposts already made
-const data = Social.keys(`${accountId}/micropost/**`, "final", {
-  return_type: "History",
-});
+const data = Social.get(`${accountId}/micropost/**`);
 
 console.log("data", data);
 if (!data) {
@@ -66,6 +64,19 @@ const renderItem = (a) => (
   </div>
 );
 
+const fixData = (microposts) => {
+  // return Object.entries(microposts).map((key, value) => {
+  //   console.log("key", key);
+  //   console.log("value", key.body);
+  //   return <div>{key.body}</div>;
+  // });
+  //ADD CONDITIONAL LOGIC TO CLEAN THIS UP
+  return Object.keys(microposts).map((key) => {
+    console.log(microposts[key]);
+    return <p key={key}>{microposts[key].body}</p>;
+  });
+};
+
 // Create micropost button
 
 return (
@@ -101,5 +112,6 @@ return (
     {state.done && <div className="alert alert-success">Success!</div>}
     <h3>Micropost feed</h3>
     {renderItem(allMicroposts[0])}
+    {fixData(data)}
   </div>
 );
