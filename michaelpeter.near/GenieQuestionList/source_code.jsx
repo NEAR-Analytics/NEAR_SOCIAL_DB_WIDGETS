@@ -7,7 +7,7 @@ if (!questions?.length) {
 const { searchString } = props;
 if (searchString) {
   questions = questions.filter((q) =>
-    q.title.includes(searchString || q.content.includes(searchString))
+    q.title?.includes(searchString || q.content?.includes(searchString))
   );
 }
 
