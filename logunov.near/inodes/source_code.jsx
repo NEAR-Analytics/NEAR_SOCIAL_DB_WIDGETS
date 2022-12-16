@@ -71,14 +71,14 @@ return (
       />
     </div>
     <div className="mb-2">
-      <h4>Add file</h4>
+      <h4>Add file or folder (leave data empty for that)</h4>
       <input
         type="text"
         className="form-control"
         placeholder="filename"
         onChange={(e) =>
           State.update({
-            new_filename: e.target.value,
+            fs: { ...state.fs, new_filename: e.target.value },
           })
         }
       />
@@ -88,47 +88,40 @@ return (
         placeholder="data"
         onChange={(e) =>
           State.update({
-            new_data: e.target.value,
+            fs: { ...state.fs, new_data: e.target.value },
           })
         }
       />
-    </div>
-    <CommitButton
-      data={{
-        scribbles: {
-          inode: {
-            [state.fs.root]: {
-              entries: {
-                [state.fs.new_filename]: state.fs.next_inode,
+      <CommitButton
+        data={{
+          scribbles: {
+            inode: {
+              [state.fs.root]: {
+                entries: {
+                  [state.fs.new_filename]: state.fs.next_inode,
+                },
               },
+              [state.fs.next_inode]: state.fs.new_data.length
+                ? {
+                    type: 0,
+                    data: state.fs.new_data,
+                  }
+                : {
+                    type: 1,
+                    entries: {},
+                  },
             },
-            [state.fs.next_inode]: {
-              type: 0,
-              data: state.fs.new_data,
-            },
+            next_inode: state.fs.next_inode + 1,
           },
-          next_inode: state.fs.next_inode + 1,
-        },
-      }}
-      onClick={(e) =>
-        State.update({
-          fs: { ...state.fs, next_inode: state.fs.next_inode + 1 },
-        })
-      }
-    >
-      Add file
-    </CommitButton>
-    <div className="mb-2">
-      <h4>Remove widget by index</h4>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="0"
-        onChange={(e) => State.update({ remove_index: e.target.value })}
-      />
+        }}
+        onClick={(e) =>
+          State.update({
+            fs: { ...state.fs, next_inode: state.fs.next_inode + 1 },
+          })
+        }
+      >
+        Add file/folder
+      </CommitButton>
     </div>
-    <CommitButton data={{ graph: { widget: { [state.remove_index]: null } } }}>
-      Remove
-    </CommitButton>
   </div>
 );
