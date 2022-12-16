@@ -1,10 +1,11 @@
-const className = props.className ?? "profile-image d-inline-box";
+const className =
+  props.className ?? "profile-image d-inline-box justify-contents-center";
 const style = props.style ?? {
-  width: "auto",
+  width: "100%",
   height: "100%",
 };
 const imageClassName =
-  props.imageClassName ?? "rounded w-auto h-100 object-fit-cover";
+  props.imageClassName ?? "rounded w-100 h-100 object-fit-cover";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
 const book = props.book ?? {};
