@@ -1,10 +1,40 @@
 const accountId = props.accountId ?? context.accountId ?? "*";
 
-const roomId = props.room_id || "roomId_0"; // TODO
+// const roomId = props.room_id || "roomId_0"; // TODO
+const roomId = props.room_id; // TODO
 
 const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
 
-console.log("PROFILE", profile);
+console.log("PROFILE", profileInfo);
+
+// Room Creator Screen
+
+if (!roomId) {
+  return (
+    <>
+      <div>
+        <h3>Hello, {profileInfo.name}!</h3>
+        <p>You can join a room or create a new room and invite your friends.</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "12px",
+          }}
+        >
+          <p>
+            <strong>Join an existing room:</strong>
+          </p>
+          <button class="btn btn-primary" role="button">
+            Learn more
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Chat Room Screen
 
 const data = Social.index(roomId, "data");
 
