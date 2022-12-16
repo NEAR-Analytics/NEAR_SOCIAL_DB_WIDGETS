@@ -2,6 +2,7 @@ State.init({
   titleVal: "",
   urlVal: "",
   ownerVal: "",
+  imageVal: "",
 });
 
 // Set Contract Name
@@ -12,6 +13,7 @@ const sendToBlockChain = () => {
     title: state.titleVal,
     url: state.urlVal,
     owner: state.ownerVal,
+    imageLink: state.imageVal,
   });
 };
 
@@ -42,6 +44,20 @@ return (
         placeholder="Enter Url Here"
         onChange={(e) => {
           State.update({ urlVal: e.target.value });
+        }}
+      />
+    </div>
+    <div style={{ margin: "10px" }}>
+      <div>
+        <label>Enter Image URL</label>
+      </div>
+      <input
+        style={{ width: "25vw", borderRadius: "10px" }}
+        type="text"
+        name="Comment"
+        placeholder="Enter Url Here"
+        onChange={(e) => {
+          State.update({ imageVal: e.target.value });
         }}
       />
     </div>
