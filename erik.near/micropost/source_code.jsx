@@ -13,11 +13,14 @@ State.init({ postbody: null });
 console.log(accountId);
 
 // Display microposts already made
-const data = Social.keys(`${accountId}/micropost`, "final", {
+const data = Social.keys(`${accountId}/micropost/**`, "final", {
   return_type: "History",
 });
 
-console.log(data);
+console.log("data", data);
+if (!data) {
+  return "No data to see here...";
+}
 
 // const processData = (data) => {
 //   //console.log(data);
@@ -85,7 +88,9 @@ return (
         disabled={state.memo === null}
         data={{
           micropost: {
-            body: state.postbody,
+            1: {
+              body: state.postbody,
+            },
           },
         }}
       >
@@ -95,7 +100,6 @@ return (
     <hr />
     {state.done && <div className="alert alert-success">Success!</div>}
     <h3>Micropost feed</h3>
-    {allMicroposts.stringify}
-    {renderItem(allMicroposts.last)}
+    {renderItem(allMicroposts[0])}
   </div>
 );
