@@ -13,9 +13,9 @@ if (searchString) {
 
 return (
   <div className="d-flex flex-column gap-1">
-    {JSON.stringify(searchString)}
     <div className="d-flex justify-content-end"></div>
     <div className="d-flex flex-column gap-3">
+      <div>SearchString:{JSON.stringify(searchString)}</div>
       {questions.map((q) => (
         <div key={q.value} className="d-flex flex-column gap-1 border p-2">
           <Widget
