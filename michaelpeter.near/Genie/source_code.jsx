@@ -13,7 +13,7 @@ const setSelectedQuestion = (ref) => {
 };
 
 const QuestionWrapper = styled.div`
-  width: 60rem
+  width: 100%
 `;
 const Center = styled.div`
   display: flex;
@@ -90,14 +90,12 @@ if (state.selectedQuestion) {
           </div>
         </button>
       </div>
-      <Center>
-        <QuestionWrapper>
-          <Widget
-            src="michaelpeter.near/widget/GenieQuestionList"
-            props={{ searchString: state.searchString, setSelectedQuestion }}
-          />
-        </QuestionWrapper>
-      </Center>
+      <QuestionWrapper>
+        <Widget
+          src="michaelpeter.near/widget/GenieQuestionList"
+          props={{ searchString: state.searchString, setSelectedQuestion }}
+        />
+      </QuestionWrapper>
     </Wrapper>
   );
 }
