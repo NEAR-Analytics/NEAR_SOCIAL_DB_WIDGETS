@@ -1,4 +1,4 @@
-const className = props.className ?? "profile-image d-inline-block";
+const className = props.className ?? "profile-image flex";
 const style = props.style ?? {
   width: "auto",
   height: "100%",
