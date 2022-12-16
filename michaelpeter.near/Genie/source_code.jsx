@@ -12,7 +12,7 @@ const setSelectedQuestion = (ref) => {
   State.update({ selectedQuestion: ref });
 };
 
-if (!selectedQuestion) {
+if (!state.selectedQuestion) {
   return (
     <div className="d-flex flex-column gap-3">
       <Widget
