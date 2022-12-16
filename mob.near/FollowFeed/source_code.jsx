@@ -1,12 +1,14 @@
 const accountId = props.accountId ?? "*";
 
-const items = Social.index("graph", "follow");
+const items = Social.index("graph", "follow", {
+  subscribe: true,
+  limit: 250,
+  order: "desc",
+});
 
 if (!items) {
   return "Loading";
 }
-
-items.reverse();
 
 const renderItem = (a) => (
   <div key={JSON.stringify(a)} className="mb-2">
