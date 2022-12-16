@@ -38,6 +38,11 @@ const question = Social.getr(
   `${asker}/experimental/genie/questions/${state.questionRef}`
 );
 
+// return nothing if data does not meet schema
+if (!question?.title || !question?.content) {
+  return <></>;
+}
+
 // return nothing if question does not meet search criteria
 if (
   searchString &&
