@@ -107,10 +107,10 @@ function callContract(data) {
   const image = state.image;
   let image_link = "";
   if (!image) {
-    State.update({
-      error_image: "Please upload an image",
-    });
-    valid = false;
+    // State.update({
+    //   error_image: "Please upload an image",
+    // });
+    // valid = false;
   } else {
     image_link = image.cid;
     State.update({
