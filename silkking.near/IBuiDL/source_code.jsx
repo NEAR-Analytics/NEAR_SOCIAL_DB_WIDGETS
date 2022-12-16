@@ -22,10 +22,10 @@ const button = {
 const accountId = props.accountId ?? "*";
 
 const data = Social.index("i_buidl", "answer");
-
 if (!data) {
   return "Loading";
 }
+const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 
 return (
   <div>
@@ -70,8 +70,8 @@ return (
     </CommitButton>
 
     <div>
-      {data
-        ? data.map((d) => (
+      {sortedData
+        ? sortedData.map((d) => (
             <div style={card}>
               {d.accountId} said <b>{d.value.answer}</b>
             </div>
