@@ -53,7 +53,7 @@ return (
       ? bounties.body.hits.hits.map((bounty) => {
           const bountyId = bounty._source.id;
           return (
-            <div className="row">
+            <div className="row py-2">
               <div className="col-1">
                 <img
                   style={{
