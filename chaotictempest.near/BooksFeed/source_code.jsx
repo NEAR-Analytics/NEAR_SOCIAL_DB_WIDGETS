@@ -1,5 +1,5 @@
 const accountId = context.accountId;
-const defaultDate = new Date("Dec 15 2022 10:00:00 AM");
+const defaultDate = "Dec 15 2022 10:00:00 AM";
 
 if (!accountId) {
   return "";
@@ -22,35 +22,15 @@ Object.keys(peopleIFollow).map((follow) => {
 console.log("followBooks", peopleIFollowWithBooks);
 
 if (!peopleIFollowWithBooks) {
-  return "Your friend does not have any books";
+  return "Your friend dos not have any books";
 }
 
 const timeline = Object.entries(peopleIFollowWithBooks).flatMap(
-  ([acc, books]) => {
-    let values = Object.values(books);
-    // let date = defaultDate;
-    // if (acc === "bo.near") {
-    //   // values[0]["createdAt"] = new Date("Dec 15 2022 11:00:00 AM");
-    //   // console.log("V0", values[0]["createdAt"]);
-    //   date = new Date("Dec 15 2022 11:00:00 AM");
-    // }
-    // return values.map((book) => [acc, book]);
-    return values.map((book) => {
-      if (book.author === "Umberto Eco") {
-        book.createdAt = new Date("Dec 21 2022 11:00:00 AM");
-      } else {
-        book.createdAt = defaultDate;
-      }
-
-      // return [acc, book.createdAt ?? defaultDate];
-      return [acc, book];
-    });
-  }
+  ([acc, books]) => Object.values(books).map((book) => [acc, book])
 );
 timeline.sort(
   ([_accA, bookA], [_accB, bookB]) =>
-    // (bookB.createdAt ?? defaultDate) - (bookA.createdAt ?? defaultDate)
-    bookB.createdAt - bookA.createdAt
+    new Date(bookB["createdAt"]) - new Date(bookA["createdAt"])
 );
 console.log("timeline", timeline);
 
@@ -64,23 +44,23 @@ const BookRows = styled.p`{
   padding: "1rem",
 }`;
 
-// return (
-//   <BookRows>
-//     {timeline.map(([acc, book]) => {
-//       return (
-//         <div>
-//           <div>{acc}</div>
-//           <div>
-//             <Widget
-//               key={i}
-//               src={"serhii.near/widget/BookTile"}
-//               props={{ book }}
-//             />
-//           </div>
-//         </div>
-//       );
-//     })}
-//   </BookRows>
-// );
-
-return <div>Hello</div>;
+return (
+  <BookRows>
+    {timeline.map(([acc, book]) => {
+      return (
+        <div>
+          <div>
+            {acc} on {book.createdAt} added
+          </div>
+          <div>
+            <Widget
+              key={i}
+              src={"serhii.near/widget/BookTile"}
+              props={{ book }}
+            />
+          </div>
+        </div>
+      );
+    })}
+  </BookRows>
+);
