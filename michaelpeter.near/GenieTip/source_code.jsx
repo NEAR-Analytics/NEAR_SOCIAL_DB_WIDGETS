@@ -9,10 +9,8 @@ State.init({ tipAmount: null, showTipForm: false, timestamp: Date.now() });
 // const tips = Social.index("genie", `tip2/${answeredBy}`);
 // const tipAmount = tips.reduce((acc, v) => acc + parseInt(v.value), 0);
 // console.log(tipAmount);
-const questionSpecificTips = Social.index(
-  "genie",
-  `tip2/${questionRef}/${answeredBy}`
-);
+const questionSpecificTips =
+  Social.index("genie", `tip2/${questionRef}/${answeredBy}`) || [];
 const qTip = questionSpecificTips.reduce(
   (acc, v) => acc + parseInt(v.value.amount),
   0
