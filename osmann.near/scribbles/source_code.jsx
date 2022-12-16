@@ -1,3 +1,6 @@
+// • Can be used as company confluence secured with a multisig owning and symmetric key encryption
+// • Markdown support
+
 const accountId = context.accountId;
 if (!accountId) {
   return "Please sign in with NEAR wallet";
