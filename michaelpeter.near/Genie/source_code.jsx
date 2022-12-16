@@ -12,6 +12,15 @@ const setSelectedQuestion = (ref) => {
   State.update({ selectedQuestion: ref });
 };
 
+const QuestionWrapper = styled.div`
+  width: 43rem
+`;
+const Center = styled.div`
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+`;
+
 if (!state.selectedQuestion) {
   return (
     <div className="d-flex flex-column gap-3">
@@ -19,10 +28,14 @@ if (!state.selectedQuestion) {
         src="michaelpeter.near/widget/GenieSaveQuestion"
         props={{ searchString: state.searchString, setSearchString }}
       />
-      <Widget
-        src="michaelpeter.near/widget/GenieQuestionList"
-        props={{ searchString: state.searchString, setSelectedQuestion }}
-      />
+      <Center>
+        <QuestionWrapper>
+          <Widget
+            src="michaelpeter.near/widget/GenieQuestionList"
+            props={{ searchString: state.searchString, setSelectedQuestion }}
+          />
+        </QuestionWrapper>
+      </Center>
     </div>
   );
 } else {
@@ -31,10 +44,14 @@ if (!state.selectedQuestion) {
       <div>
         <button onClick={clearSelected}>Return</button>
       </div>
-      <Widget
-        src="michaelpeter.near/widget/GenieQuestionAnswerView"
-        props={{ questionRef: state.selectedQuestion }}
-      />
+      <Center>
+        <QuestionWrapper>
+          <Widget
+            src="michaelpeter.near/widget/GenieQuestionAnswerView"
+            props={{ questionRef: state.selectedQuestion }}
+          />
+        </QuestionWrapper>
+      </Center>
     </div>
   );
 }
