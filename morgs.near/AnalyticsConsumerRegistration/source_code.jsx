@@ -7,17 +7,14 @@ const initialState = {
 State.init(initialState);
 
 const registerConsumer = () => {
-  fetch(
-    `https://ec2-35-86-104-154.us-west-2.compute.amazonaws.com:3000/consumer`,
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(state),
-    }
-  );
+  fetch(`https://dev.kitwallet.app/consumer`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(state),
+  });
 };
 
 return (
