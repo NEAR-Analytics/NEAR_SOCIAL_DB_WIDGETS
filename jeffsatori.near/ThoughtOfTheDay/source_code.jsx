@@ -52,7 +52,7 @@ return (
             {
               key: "answer",
               value: {
-                thought: state.input,
+                answer: state.input,
               },
             },
             undefined,
