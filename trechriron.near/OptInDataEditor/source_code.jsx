@@ -2,22 +2,20 @@ const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
 let optInInfo = {};
+const initialState = {
+  accountId,
+  birthday: "",
+  astrological_sign: "",
+  age: "",
+  gender: "",
+  profession: "",
+  income: "",
+  preferred_wallet: "",
+  preffered_nft_marketplace: "",
+  preffered_crypto: "",
+};
 
-function initializeState() {
-  State.init({
-    accountId,
-    birthday: "",
-    astrological_sign: "",
-    age: "",
-    gender: "",
-    profession: "",
-    income: "",
-    preferred_wallet: "",
-    preffered_nft_marketplace: "",
-    preffered_crypto: "",
-  });
-}
-initializeState();
+State.init(initialState);
 
 function setOptInInfoObject() {
   optInInfo = { ...state };
@@ -149,6 +147,6 @@ return (
     >
       Save Opt-In Info
     </CommitButton>
-    <button onClick={initializeState}>Reset Form</button>
+    <button onClick={() => State.update(initialState)}>Reset Form</button>
   </div>
 );
