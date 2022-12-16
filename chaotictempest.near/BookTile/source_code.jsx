@@ -32,13 +32,18 @@ const onCommitAdd =
     });
   });
 
-// TODO: why do we need index here?
-const dataForRead = {
-  books: { read: { [id]: book } },
+const dataForRead = () => {
+  return {
+    books: { read: { [id]: { ...book, createdAt: new Date().toUTCString() } } },
+  };
 };
 
-const datarForToRead = {
-  books: { toRead: { [id]: book } },
+const datarForToRead = () => {
+  return {
+    books: {
+      toRead: { [id]: { ...book, createdAt: new Date().toUTCString() } },
+    },
+  };
 };
 
 const BookTyle = styled.div`
