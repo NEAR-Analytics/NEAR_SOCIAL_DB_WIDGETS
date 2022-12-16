@@ -23,8 +23,8 @@ return (
         // return nothing if question does not meet search criteria
         if (
           searchString &&
-          !question.title.includes(searchString) &&
-          !question.content.includes(searchString)
+          !question.title.toLowerCase().includes(searchString) &&
+          !question.content.toLowerCase().includes(searchString)
         ) {
           return <></>;
         }
