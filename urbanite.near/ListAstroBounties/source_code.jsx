@@ -57,8 +57,7 @@ return (
               <div className="col-2 justify-content-md-center">
                 <img
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "100%",
                     borderRadius: "0.6em",
                   }}
                   src={`${imageEndpoint}${bounty._source.proposal.dao.metadata.flagLogo}`}
