@@ -39,7 +39,7 @@ const getQueryResults = () => {
   State.update({
     query: {
       results: body.results,
-      queryId: state.query.id,
+      id: state.query.id,
       estimate: state.query.estimate,
     },
   });
