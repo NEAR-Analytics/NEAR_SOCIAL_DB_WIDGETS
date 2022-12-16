@@ -5,29 +5,16 @@ if (!accountId) {
 
 const inodes = Social.get(`${accountId}/scribbles/inode/**`, "final") || [];
 console.log(inodes);
-const scribbles = [];
-
-State.init({
-  fs: {
-    root: 0,
-    next_inode: next_inode,
-    new_filename: "",
-    new_data: "",
-  },
-  selectedIdx: 0,
-  showEditView: false,
-  editView: {
-    editViewText: "",
-    fileName: null,
-  },
-  dir: "/",
-});
+const db_next_inode = parseInt(
+  Social.get(`${accountId}/scribbles/next_inode`, "final")
+);
 
 function traverse(inode, path, fs_map) {
   if (inodes[inode].entries) {
     fs_map = {};
     Object.entries(inodes[inode].entries).map(([filename, other_inode]) => {
       fs_map[filename] = traverse(parseInt(other_inode), path + `${filename}/`);
+      parent_inodes[other_inode] = inode;
     });
     return fs_map;
   } else {
@@ -36,8 +23,29 @@ function traverse(inode, path, fs_map) {
   }
 }
 
+const scribbles = [];
+const parent_inodes = [];
 scribbles = traverse(state.fs.root, "/");
 console.log(scribbles);
+console.log(parent_inodes);
+
+State.init({
+  fs: {
+    root: 0,
+    inodes: inodes,
+    parent_inodes: parent_inodes,
+    next_inode: db_next_inode,
+    new_filename: "",
+    new_data: "",
+  },
+  selectedINodeIndex: 0,
+  showEditView: false,
+  editView: {
+    editViewText: "",
+    fileName: null,
+  },
+  dir: "/",
+});
 
 if (state.showEditView) {
   return (
@@ -48,6 +56,7 @@ if (state.showEditView) {
           type="button"
           onClick={() =>
             State.update({
+              fs: { ...state.fs, root: parent_inodes[root] },
               showEditView: false,
               editView: { ...state.editView, editViewText: "", fileName: null },
             })
@@ -83,16 +92,18 @@ if (state.showEditView) {
     </>
   );
 }
-let currDir = state.dir
-  .split("/")
-  .filter((a) => !!a)
-  .reduce((acc, curr) => acc[curr], scribbles);
-if (currDir == "**FOLDER**") {
-  currDir = {};
-}
+// let currDir = state.dir
+//   .split("/")
+//   .filter((a) => !!a)
+//   .reduce((acc, curr) => acc[curr], scribbles);
+// if (currDir == "**FOLDER**") {
+//   currDir = {};
+// }
 
 return (
   <>
+    root = {JSON.stringify(state.fs.root)}
+    next_inode = {state.fs.next_inode}
     <div class="input-group mb-3" style={{ marginTop: 20 }}>
       <input
         type="text"
@@ -163,6 +174,7 @@ return (
         type="button"
         onClick={() =>
           State.update({
+            fs: { ...state.fs, root: parent_inodes[root] },
             dir: state.dir
               .split("/")
               .filter((a) => !!a)
@@ -175,27 +187,34 @@ return (
       </button>
     </div>
     <ul class="list-group">
-      {Object.keys(currDir).map((str, i) => (
-        <li
-          class={`list-group-item ${i === state.selectedIdx ? "active" : ""}`}
-          onClick={() =>
-            state.selectedIdx === i
-              ? currDir[str] === "**FOLDER**" || typeof currDir[str] != "string"
-                ? State.update({ dir: state.dir + `${str}/` })
-                : State.update({
-                    showEditView: true,
-                    editView: {
-                      editViewText: currDir[str],
-                      fileName: str,
-                    },
-                  })
-              : State.update({ selectedIdx: i })
-          }
-          style={{ cursor: "pointer" }}
-        >
-          {str}
-        </li>
-      ))}
+      {Object.entries(state.fs.inodes[state.fs.root].entries)
+        .map(([filename, index]) => [filename, parseInt(index)])
+        .map(([filename, index]) => (
+          <li
+            class={`list-group-item ${
+              index === state.selectedINodeIndex ? "active" : ""
+            }`}
+            onClick={() =>
+              state.selectedINodeIndex === index
+                ? state.fs.inodes[index].type === "1"
+                  ? State.update({
+                      fs: { ...state.fs, root: index },
+                      dir: state.dir + `${filename}/`,
+                    })
+                  : State.update({
+                      showEditView: true,
+                      editView: {
+                        editViewText: currDir[str],
+                        fileName: filename,
+                      },
+                    })
+                : State.update({ selectedINodeIndex: index })
+            }
+            style={{ cursor: "pointer" }}
+          >
+            {filename}
+          </li>
+        ))}
     </ul>
   </>
 );
