@@ -24,7 +24,7 @@ return (
       <button>My joined events</button>
     </a>
     <br />
-
+    <br />
     <Widget src={`minz.near/widget/AllActivities`} props={{ event_id }} />
   </div>
 );
