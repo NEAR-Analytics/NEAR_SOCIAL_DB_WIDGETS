@@ -3,9 +3,15 @@ if (!myAccountId) {
   return "Please sign in with NEAR wallet ";
 }
 
+const version = props.version;
+if (!version) {
+  return "Please provide a version";
+}
+
 State.init({ message: "" });
 
-const data = Social.get(`*/astrosocial/feedback/v1/comments`, "final") || {};
+const data =
+  Social.get(`*/astrosocial/feedback/${version}/comments`, "final") || {};
 
 const accounts = Object.keys(data);
 
@@ -13,7 +19,9 @@ let myComments = [];
 const allComments = accounts.reduce((acc, accountId) => {
   const accountData = data[accountId];
 
-  const comments = JSON.parse(accountData.astrosocial.feedback.v1.comments);
+  const comments = JSON.parse(
+    accountData.astrosocial.feedback[version].comments
+  );
 
   const enrichedComment = comments.map((comment) => {
     return {
@@ -80,7 +88,7 @@ return (
         data={{
           astrosocial: {
             feedback: {
-              v1: {
+              [version]: {
                 comments: [
                   ...myComments,
                   {
