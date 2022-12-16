@@ -8,8 +8,7 @@ if (!questionRef) {
 
 return (
   <div className="d-flex flex-row gap-1">
-    <input
-      type="text"
+    <textarea
       className="form-control"
       value={state.answerContent}
       onChange={(e) => {
