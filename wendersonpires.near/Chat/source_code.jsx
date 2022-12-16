@@ -56,8 +56,17 @@ if (!state.roomId) {
       <div>
         <h3>Hello, {profileInfo.name}!</h3>
         <p>
-          You can join a room or create a new room and invite your friends.
-          [texto falando sobre a possibilidade de usar query param]
+          You can join a room or create a new room and invite your friends. You
+          can also enter a room directly by passing the parameter{" "}
+          <strong>room_id</strong> in the url. <br />
+          <br />
+          Example:{" "}
+          <a
+            href="https://near.social/#/wendersonpires.near/widget/Chat?room_id=9df2f348-9924-415f-921c-db2b846e7177"
+            target="_blank"
+          >
+            https://near.social/#/wendersonpires.near/widget/Chat?room_id=9df2f348-9924-415f-921c-db2b846e7177
+          </a>
         </p>
         <div
           style={{
