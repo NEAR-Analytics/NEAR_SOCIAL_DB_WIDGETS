@@ -1,5 +1,4 @@
-// let event_id = props.event_id;
-let event_id = "event_2";
+let event_id = props.event_id;
 const CONTRACT = "event_org.near";
 // let data = Social.getr(`${event_creator}/published_events/${event_id}`);
 let data = Near.view(CONTRACT, "get_event", { event_id: event_id });
