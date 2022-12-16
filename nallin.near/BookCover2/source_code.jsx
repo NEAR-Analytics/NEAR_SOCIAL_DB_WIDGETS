@@ -1,7 +1,7 @@
 const className = props.className ?? "profile-image d-inline-block";
-const style = props.style ?? { width: "100%", height: "100%" };
-const imageStyle = props.imageStyle ?? {};
-const imageClassName = props.imageClassName ?? "rounded w-100 h-100";
+const style = props.style ?? { width: "100%", height: "auto" };
+const imageClassName =
+  props.imageClassName ?? "rounded w-100 h-auto object-fit-contain";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
 const book = props.book ?? {};
@@ -16,7 +16,6 @@ const inner = (
         image: cover,
         alt: title,
         className: imageClassName,
-        style: imageStyle,
         thumbnail,
         fallbackUrl:
           "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
