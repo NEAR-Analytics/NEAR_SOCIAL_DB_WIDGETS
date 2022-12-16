@@ -4,7 +4,7 @@ if (!questions?.length) {
   return <p>No Results</p>;
 }
 
-const { searchString } = props;
+const { searchString, setSelectedQuestion } = props;
 
 return (
   <div className="d-flex flex-column gap-1">
@@ -29,7 +29,13 @@ return (
           return <></>;
         }
         return (
-          <div key={q.value} className="d-flex flex-column gap-1 border p-2">
+          <div
+            key={q.value}
+            className="d-flex flex-column gap-1 border p-2"
+            onClick={() => {
+              setSelectedQuestion(q.value);
+            }}
+          >
             <Widget
               src={"michaelpeter.near/widget/GenieQuestionView"}
               props={{ questionRef: q.value, searchString: props.searchString }}
