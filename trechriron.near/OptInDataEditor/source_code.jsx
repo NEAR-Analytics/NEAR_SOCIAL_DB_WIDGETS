@@ -16,7 +16,7 @@ State.init({
   preffered_crypto: "",
 });
 
-function setOptInInfoOnProps() {
+function setOptInInfoObject() {
   optInInfo = { ...state };
   console.log(optInInfo);
 }
@@ -117,7 +117,7 @@ return (
     <p></p>
     <CommitButton
       data={{ optInInfoFormStatus: state.saveState }}
-      onClick={setOptInInfoOnProps}
+      onClick={setOptInInfoObject}
       onCommit={setFormStatusOnAccount}
     >
       Save Opt-In Info
