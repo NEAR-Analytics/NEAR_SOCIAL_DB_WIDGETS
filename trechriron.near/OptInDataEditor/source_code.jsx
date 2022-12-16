@@ -1,6 +1,7 @@
 const accountId = props.accountId ?? context.accountId;
 const onChange = props.onChange;
 const options = props.options;
+let optInInfo = {};
 
 State.init({
   accountId,
@@ -13,15 +14,15 @@ State.init({
   preferred_wallet: "",
   preffered_nft_marketplace: "",
   preffered_crypto: "",
-  saveState: "started",
 });
 
 function setOptInInfoOnProps() {
-  props[optInInfo] = { ...state };
+  optInInfo = { ...state };
+  console.log(optInInfo);
 }
 
 function setFormStatusOnAccount() {
-  accountId[optInInfoFormStatus] = "completed";
+  State.update({ optInInfoFormStatus: "completed" });
 }
 
 return (
@@ -31,17 +32,17 @@ return (
       type="date"
       value={state.birthday}
       onChange={(e) =>
-        State.update({ birthday: e.target.value, saveState: "in progress" })
+        State.update({ birthday: e.target.value, saveState: "in progress..." })
       }
     />
-    {options.astrological_sign.label ?? "Atrological Sign"}
+    {options.astrological_sign.label ?? "Astrological Sign"}
     <input
       type="text"
       value={state.astrological_sign}
       onChange={(e) =>
         State.update({
           astrological_sign: e.target.value,
-          saveState: "in progress",
+          saveState: "in progress...",
         })
       }
     />
@@ -50,7 +51,7 @@ return (
       type="text"
       value={state.age}
       onChange={(e) =>
-        State.update({ age: e.target.value, saveState: "in progress" })
+        State.update({ age: e.target.value, saveState: "in progress..." })
       }
     />
     {options.gender.label ?? "Gender"}
@@ -58,7 +59,7 @@ return (
       type="text"
       value={state.gender}
       onChange={(e) =>
-        State.update({ gender: e.target.value, saveState: "in progress" })
+        State.update({ gender: e.target.value, saveState: "in progress..." })
       }
     />
     {options.profession.label ?? "Profession"}
@@ -66,7 +67,10 @@ return (
       type="text"
       value={state.profession}
       onChange={(e) =>
-        State.update({ profession: e.target.value, saveState: "in progress" })
+        State.update({
+          profession: e.target.value,
+          saveState: "in progress...",
+        })
       }
     />
     {options.income.label ?? "Income"}
@@ -74,7 +78,7 @@ return (
       type="text"
       value={state.income}
       onChange={(e) =>
-        State.update({ income: e.target.value, saveState: "in progress" })
+        State.update({ income: e.target.value, saveState: "in progress..." })
       }
     />
     {options.preferred_wallet.label ?? "Preferred Wallet"}
@@ -84,7 +88,7 @@ return (
       onChange={(e) =>
         State.update({
           preferred_wallet: e.target.value,
-          saveState: "in progress",
+          saveState: "in progress...",
         })
       }
     />
@@ -95,7 +99,7 @@ return (
       onChange={(e) =>
         State.update({
           preffered_nft_marketplace: e.target.value,
-          saveState: "in progress",
+          saveState: "in progress...",
         })
       }
     />
@@ -106,15 +110,15 @@ return (
       onChange={(e) =>
         State.update({
           preffered_crypto: e.target.value,
-          saveState: "in progress",
+          saveState: "in progress...",
         })
       }
     />
     <p></p>
     <CommitButton
       data={{ optInInfoFormStatus: state.saveState }}
-      onClick="setOptInInfoOnProps"
-      onCommit="setFormStatusOnProps"
+      onClick={setOptInInfoOnProps}
+      onCommit={setFormStatusOnAccount}
     >
       Save Opt-In Info
     </CommitButton>
