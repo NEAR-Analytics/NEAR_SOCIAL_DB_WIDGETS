@@ -2,7 +2,6 @@ const className = props.className ?? "profile-image d-inline-block";
 const style = props.style ?? {
   width: "auto",
   height: "100%",
-  justifyContent: "center",
 };
 const imageClassName =
   props.imageClassName ?? "rounded w-auto h-100 object-fit-contain";
