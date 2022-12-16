@@ -27,8 +27,10 @@ const Wrapper = styled.div`
   justify-content:center
   `;
 
+let CurrentContent;
+
 if (state.selectedQuestion) {
-  return (
+  CurrentContent = (
     <Wrapper className="d-flex flex-column gap-5">
       <div>
         <button className="btn btn-outline-secondary" onClick={clearSelected}>
@@ -47,7 +49,7 @@ if (state.selectedQuestion) {
     </Wrapper>
   );
 } else if (state.showAskForm) {
-  return (
+  CurrentContent = (
     <Wrapper>
       <div className="d-flex flex-row justify-content-end">
         <button
@@ -66,7 +68,7 @@ if (state.selectedQuestion) {
     </Wrapper>
   );
 } else {
-  return (
+  CurrentContent = (
     <Wrapper className="d-flex flex-column gap-3 pt-1">
       <div className="d-flex align-items-center gap-3">
         <i class="bi bi-search" />
@@ -102,3 +104,14 @@ if (state.selectedQuestion) {
     </Wrapper>
   );
 }
+
+return (
+  <div className="d-flex flex-column gap-1">
+    <img
+      src={`https://ipfs.near.social/ipfs/bafkreicysjx5rmiu2j7wm7obt74zlmkb6algnl5i3wrqp5ear3mvi5ddfi`}
+      alt="Genie"
+      style={{ width: "10rem" }}
+    />
+    {CurrentContent}
+  </div>
+);
