@@ -31,7 +31,11 @@ return (
         return (
           <div
             key={q.value}
-            className="d-flex flex-column gap-1 border p-2"
+            className="d-flex flex-column gap-1"
+            style={{
+              borderTop: "0.5px solid #D3D3D3",
+              padding: "1.5rem 0 0 0",
+            }}
             onClick={() => {
               setSelectedQuestion(q.value);
             }}
