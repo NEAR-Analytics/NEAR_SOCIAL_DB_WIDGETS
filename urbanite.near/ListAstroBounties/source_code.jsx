@@ -66,7 +66,7 @@ return (
                 </p>
                 <Widget
                   src="edwardkcyu.near/widget/AstroBountiesCommentEditor"
-                  props={{ bountyId }}
+                  props={{ bountyId, collapsedOnCommentsAvailable: false }}
                 />
                 <Widget
                   src="edwardkcyu.near/widget/AstroBountiesParticipantEditor"
