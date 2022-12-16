@@ -28,7 +28,7 @@ const accountId = props.accountId ?? context.accountId ?? "*";
 
 const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
 
-// console.log("PROFILE", profileInfo);
+console.log("PROFILE", profileInfo);
 
 // Room Creator Screen
 
@@ -148,14 +148,20 @@ const getChatHistory = (indexData) => {
   return chatHistory;
 };
 
+console.log(sortedData);
 const chatHistory = getChatHistory(sortedData);
 console.log("CHAT HISTORY:", chatHistory);
+
+// Final image Format
+// https://ipfs.near.social/ipfs/bafkreiau7fpuwxtiieevs5zk46mhouqqig6sqbyplt5p2kzpe24yrdw2ki
+// Thumbnail image Format
+// https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreiau7fpuwxtiieevs5zk46mhouqqig6sqbyplt5p2kzpe24yrdw2ki
 
 const onChangeMessage = (message) => {
   State.update({
     input: message,
-    userName: profileInfo.name, // TODO: move to const
-    userAvatarImage: profileInfo.ipfs_cid, // TODO: move to const
+    // userName: profileInfo.name, // TODO: move to const
+    // userAvatarImage: profileInfo.image.ipfs_cid, // TODO: move to const
   });
 };
 
@@ -173,9 +179,15 @@ return (
               marginTop: index !== 0 ? 8 : 0,
             }}
           >
-            <img
-              src={`https://i.pravatar.cc/50?u=${accountId}`}
-              style={{ width: 50, borderRadius: 999 }}
+            <div
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 999,
+                backgroundImage: `url(https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/${chatItem.userAvatarImage})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
             />
             <p style={{ margin: 0, marginLeft: 12 }}>
               <strong style={{ color: "#212121" }}>
@@ -204,8 +216,8 @@ return (
             {
               key: "data",
               value: {
-                userName: state.userName,
-                userAvatarImage: state.userAvatarImage,
+                userName: profileInfo.name,
+                userAvatarImage: profileInfo.image.ipfs_cid,
                 text: state.input,
               },
             },
