@@ -3,9 +3,9 @@ const accounts = Social.keys(`*/graph/follow/*`, "final", {
   values_only: true,
 });
 const all_account_tags = Social.getr(`*/profile/tags`, "final");
-const userId = context.accountId;
-const ownerId = context.ownerId;
+const userId = props.testUser || context.accountId;
 const showFollowerStats = props.showFollowerStats ?? true;
+const followingData = Social.keys(`${userId}/graph/follow/*`, "final");
 
 if (!userId) {
   return "Please sign in with NEAR wallet to follow other accounts";
@@ -14,7 +14,6 @@ if (accounts === null) {
   return "Loading";
 }
 
-const followingData = Social.keys(`${userId}/graph/follow/*`, "final");
 if (followingData === null || tagsData === null) {
   return "Loading";
 }
@@ -53,11 +52,12 @@ const tagsPerAccount = Object.keys(all_account_tags).reduce(
   {}
 );
 
-const myFriends = followingsPerAccount[userId];
 const myTags = tagsPerAccount[userId] || [];
 
-const friendsInCommon = (accountId) => {
-  return myFriends.filter((a) => followingsPerAccount[accountId].includes(a));
+const friendsInCommon = (withAccountId) => {
+  return myFriends.filter((a) =>
+    followingsPerAccount[withAccountId].includes(a)
+  );
 };
 
 const tagsInCommon = (accountId) => {
@@ -67,11 +67,15 @@ const tagsInCommon = (accountId) => {
       tagsPerAccount[accountId].includes(a)
   );
 };
+const myFriends = followingsPerAccount[userId] || [
+  "nearpavel.near",
+  "roshaan.near",
+];
 
 /* TODO: cold start for a new user
 
 */
-function getRecommendationsFor(_accountId) {
+function getRecommendationsFor(accId) {
   const recommendations = Object.keys(accounts)
     .filter(
       (accountId) => !myFriends.includes(accountId) && accountId !== userId
