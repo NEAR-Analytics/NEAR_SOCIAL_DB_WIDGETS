@@ -47,7 +47,7 @@ return (
     <div className="d-flex align-items-center">
       <div
         style={{ width: "100%" }}
-        className="d-flex align-items-center justify-content-between"
+        className="d-flex align-items-start justify-content-between"
       >
         <Widget
           src="tiffany.near/widget/Profile"
