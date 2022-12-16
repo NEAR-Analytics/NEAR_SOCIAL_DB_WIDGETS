@@ -45,20 +45,10 @@ return (
         style={{ width: "100%" }}
         className="d-flex align-items-center justify-content-between"
       >
-        <div className="d-flex align-items-center gap-2">
-          <div
-            style={{
-              backgroundColor: "#000",
-              width: "24px",
-              height: "24px",
-              borderRadius: "50%",
-            }}
-          ></div>
-          <div className="d-flex flex-column">
-            <h6>{asker}</h6>
-            {state.questionRef}
-          </div>
-        </div>
+        <Widget
+          src="tiffany.near/widget/Profile"
+          props={{ accountId: asker }}
+        />
         <div>timestamp</div>
       </div>
     </div>
