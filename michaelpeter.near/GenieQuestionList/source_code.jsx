@@ -4,6 +4,13 @@ if (!questions?.length) {
   return <p>No Results</p>;
 }
 
+const { searchString } = props;
+if (searchString) {
+  questions = questions.filter((q) =>
+    q.title.includes(searchString || q.content.includes(searchString))
+  );
+}
+
 return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex justify-content-end"></div>
