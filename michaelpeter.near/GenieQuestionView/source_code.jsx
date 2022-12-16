@@ -54,7 +54,9 @@ return (
           props={{ accountId: asker }}
         />
         <div>
-          {new Date(parseInt(state.questionRef.split("--")[1])).toISOString()}
+          {new Date(
+            parseInt(state.questionRef.split("--")[1])
+          ).toLocaleDateString()}
         </div>
       </div>
     </div>
