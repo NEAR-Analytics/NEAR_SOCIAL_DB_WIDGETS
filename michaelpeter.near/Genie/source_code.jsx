@@ -77,7 +77,6 @@ if (state.selectedQuestion) {
             type="text"
             placeholder="Your wish is my command"
             className="form-control input-group input-group-lg"
-            value={props.searchString}
             onChange={(e) => {
               setSearchString?.(e.target.value);
             }}
