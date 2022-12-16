@@ -82,8 +82,8 @@ function handleOnCommit() {
 function handleChangeOnInput(event) {
   State.update({
     [event.target.id]: event.target.value,
+    saveState: "in progress...",
   });
-  State.update({ saveState: "in progress..." });
 }
 
 return (
@@ -93,63 +93,63 @@ return (
       id="birthday"
       type="date"
       value={state.birthday}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.astrological_sign.label ?? "Astrological Sign"}
     <input
       id="astrological_sign"
       type="text"
       value={state.astrological_sign}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.age.label ?? "Age"}
     <input
       id="age"
       type="text"
       value={state.age}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.gender.label ?? "Gender"}
     <input
       id="gender"
       type="text"
       value={state.gender}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.profession.label ?? "Profession"}
     <input
       id="profession"
       type="text"
       value={state.profession}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.income.label ?? "Income"}
     <input
       id="income"
       type="text"
       value={state.income}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.preferred_wallet.label ?? "Preferred Wallet"}
     <input
       id="preferred_wallet"
       type="text"
       value={state.preferred_wallet}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.prefered_nft_marketplace.label ?? "Preferred NFT Marketplace"}
     <input
       id="prefered_nft_marketplace"
       type="text"
       value={state.prefered_nft_marketplace}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     {options.preffered_crypto.label ?? "Preferred Crypto"}
     <input
       id="prefered_crypto"
       type="text"
       value={state.prefered_crypto}
-      onChange={(event) => handleChangeOnInput(event, input.id)}
+      onChange={(event) => handleChangeOnInput(event)}
     />
     <p></p>
     <CommitButton
