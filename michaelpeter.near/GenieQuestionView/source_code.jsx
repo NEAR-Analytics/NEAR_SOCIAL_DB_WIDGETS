@@ -38,6 +38,10 @@ const question = Social.getr(
   `${asker}/experimental/genie/questions/${state.questionRef}`
 );
 
+const BodyText = styled.p`
+  color: #68717A
+`;
+
 return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex align-items-center">
@@ -53,6 +57,6 @@ return (
       </div>
     </div>
     <h3>{question.title}</h3>
-    <h3>{question.content}</h3>
+    <BodyText>{question.content}</BodyText>
   </div>
 );
