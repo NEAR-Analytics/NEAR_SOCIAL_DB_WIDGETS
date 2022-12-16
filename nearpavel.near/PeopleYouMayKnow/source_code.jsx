@@ -89,7 +89,10 @@ function getRecommendationsFor(accId) {
       accountId,
       commonFollows,
       commonTags,
-      score: commonFollows * (Math.log2(followingsAll[accountId]) || 1),
+      score:
+        commonFollows *
+        Math.log2(followingsAll[accountId] || 2) *
+        Math.log2(commonTags || 2),
     }))
     .sort((f, s) => s.score - f.score)
     .slice(0, 20);
