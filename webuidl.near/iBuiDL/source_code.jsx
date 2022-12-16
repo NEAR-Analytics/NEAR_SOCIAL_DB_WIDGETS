@@ -3,10 +3,11 @@ State.init({
 });
 
 const card = {
-  background: "linear-gradient(to right, #001eff, #f000ff)",
+  background: "linear-gradient(to right, #4deeea, #f000ff)",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
+  color: "white",
 };
 
 const button = {
@@ -14,7 +15,7 @@ const button = {
   margin: "5px 0",
   padding: "8px",
   textAlign: "center",
-  background: "linear-gradient(to right, #001eff, #f000ff)",
+  background: "linear-gradient(to right, #4deeea, #f000ff)",
   border: "2px solid black",
   fontWeight: "bold",
 };
