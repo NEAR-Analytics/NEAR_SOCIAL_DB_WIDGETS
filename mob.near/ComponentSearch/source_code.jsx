@@ -91,14 +91,14 @@ return (
     <div className="input-group">
       <input
         type="text"
-        className="form-control"
+        className="form-control  border-end-0"
         value={state.term ?? ""}
         onChange={(e) => computeResults(e.target.value)}
         placeholder={props.placeholder ?? `🔍 Search Components`}
       />
 
       <button
-        className="btn btn-outline-secondary"
+        className="btn btn-outline-secondary border border-start-0"
         type="button"
         onClick={() => computeResults("")}
       >
