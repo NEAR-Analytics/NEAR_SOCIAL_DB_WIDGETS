@@ -91,19 +91,21 @@ return (
     <div className="input-group">
       <input
         type="text"
-        className="form-control  border-end-0"
+        className={`form-control ${state.term ? "border-end-0" : ""}`}
         value={state.term ?? ""}
         onChange={(e) => computeResults(e.target.value)}
         placeholder={props.placeholder ?? `🔍 Search Components`}
       />
 
-      <button
-        className="btn btn-outline-secondary border border-start-0"
-        type="button"
-        onClick={() => computeResults("")}
-      >
-        <i className="bi bi-x"></i>
-      </button>
+      {state.term && (
+        <button
+          className="btn btn-outline-secondary border border-start-0"
+          type="button"
+          onClick={() => computeResults("")}
+        >
+          <i className="bi bi-x"></i>
+        </button>
+      )}
     </div>
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </>
