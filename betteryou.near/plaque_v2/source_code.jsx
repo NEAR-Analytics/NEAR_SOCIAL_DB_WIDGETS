@@ -270,7 +270,7 @@ return (
           <div style={challengeBoxContents}>
             <div>{renderDots(daysTotal, daysLeft, dayStatus)}</div>
             <div style={remainingBlock}>
-              <b>Remaining:</b> {daysLeft} days ({livesLeft} skip days
+              <b>Remaining:</b> {daysLeft} days ({livesLeft - 1} skip days
               available)
             </div>
           </div>
