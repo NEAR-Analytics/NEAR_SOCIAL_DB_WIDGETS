@@ -9,6 +9,7 @@ const metadata = widget.metadata;
 
 const name = metadata.name ?? widgetName;
 const image = metadata.image;
+const onHide = props.onHide;
 
 const embedCode = `<Widget src="${widgetPath}" props={{ }} />`;
 
@@ -34,6 +35,14 @@ return (
         />
       </div>
       <div className="text-nowrap">
+        {props.extraButtons &&
+          props.extraButtons({
+            accountId,
+            widgetName,
+            widgetPath,
+            widget,
+            onHide,
+          })}
         <OverlayTrigger
           placement="auto"
           overlay={<Tooltip>Copy embedding code to clipboard</Tooltip>}
@@ -64,8 +73,6 @@ return (
         >
           <i className="bi bi-file-earmark-code me-1"></i>Source
         </a>
-        {props.extraButtons &&
-          props.extraButtons({ accountId, widgetName, widgetPath, widget })}
       </div>
     </div>
   </div>
