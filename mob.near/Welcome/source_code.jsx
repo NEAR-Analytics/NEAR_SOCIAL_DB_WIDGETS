@@ -5,10 +5,15 @@ return (
       {context.accountId && (
         <div>
           <Widget src="mob.near/widget/ProfileOnboarding" />
-          <Widget
-            src="mob.near/widget/Profile.InlineBlock"
-            props={{ accountId: context.accountId }}
-          />
+          <a
+            href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+            className="text-decoration-none link-dark"
+          >
+            <Widget
+              src="mob.near/widget/Profile.InlineBlock"
+              props={{ accountId: context.accountId }}
+            />
+          </a>
         </div>
       )}
     </div>
