@@ -10,20 +10,19 @@ const metadata = widget.metadata;
 const name = metadata.name ?? widgetName;
 const image = metadata.image;
 
-const embedCode = `
-\`\`\`jsx
-<Widget
-  src="${widgetPath}"
-  props={{ }}
-/>
-\`\`\`
-`;
+const embedCode = `<Widget src="${widgetPath}" props={{ }} />`;
 
-const source = `
-\`\`\`jsx
-${code}
-\`\`\`
-`;
+// const embedMd = `
+// \`\`\`jsx
+// ${embedCode}
+// \`\`\`
+// `;
+
+// const sourceMd = `
+// \`\`\`jsx
+// ${code}
+// \`\`\`
+// `;
 
 return (
   <div>
@@ -35,12 +34,27 @@ return (
         />
       </div>
       <div className="text-nowrap">
-        <button>Copy embed</button>
+        <OverlayTrigger
+          placement="auto"
+          overlay={<Tooltip>Copy embedding code to clipboard</Tooltip>}
+        >
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => {
+              clipboard.writeText(embedCode).then(() => {
+                State.update({ embedCopied: true });
+              });
+            }}
+          >
+            {state.embedCopied ? (
+              <i className="bi bi-check-lg me-1" />
+            ) : (
+              <i className="bi bi-clipboard me-1" />
+            )}
+            Embed
+          </button>
+        </OverlayTrigger>
       </div>
-    </div>
-    <div>
-      <Markdown text={embedCode} />
-      {/* <Markdown text={source} />*/}
     </div>
   </div>
 );
