@@ -22,8 +22,8 @@ return (
         key={i}
         src={
           thumbnails
-            ? "mob.near/widget/NftCollectionThumbs"
-            : "mob.near/widget/NftCollection"
+            ? "gov.near/widget/NftCollectionThumbs"
+            : "gov.near/widget/NftCollection"
         }
         props={{ accountId, contractId }}
       />
