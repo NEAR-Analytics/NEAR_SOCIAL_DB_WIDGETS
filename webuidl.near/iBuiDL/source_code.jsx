@@ -42,7 +42,7 @@ return (
         tooltip: true,
         accountId: "webuidl.near",
         widgetName: "iBuiDL",
-        style: { width: "5em", height: "5em" },
+        style: { width: "4em", height: "4em" },
       }}
     />
     <h4>iBuiDL</h4>
