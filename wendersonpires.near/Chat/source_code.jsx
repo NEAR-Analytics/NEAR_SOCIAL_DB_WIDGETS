@@ -67,6 +67,11 @@ if (!state.roomId) {
             https://near.social/#/wendersonpires.near/widget/Chat?room_id=9df2f348-9924-415f-921c-db2b846e7177
           </a>
         </p>
+        <br />
+        <p>
+          This widget will be updated as the API supports more native JS Vanilla
+          features.
+        </p>
         <div
           style={{
             display: "flex",
@@ -192,7 +197,15 @@ return (
         Leave Room
       </button>
     </div>
-    <div className="mb-2 mt-2" style={{ background: "#F8F9FA", padding: 8 }}>
+    <div
+      className="mb-2 mt-2"
+      style={{
+        background: "#F8F9FA",
+        padding: 8,
+        maxHeight: "77%",
+        overflowX: "scroll",
+      }}
+    >
       {state.chatHistory.map((chatItem, index) => {
         return (
           <div
@@ -200,8 +213,6 @@ return (
               display: "flex",
               alignItems: "center",
               marginTop: index !== 0 ? 8 : 0,
-              height: "77%",
-              overflowX: "scroll",
             }}
           >
             <div
