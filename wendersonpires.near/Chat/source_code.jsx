@@ -165,7 +165,7 @@ const onChangeMessage = (message) => {
 };
 
 const leaveRoomHandler = () => {
-  State.update({ roomId: "" });
+  State.update({ roomId: "", errorMessage: "" });
 };
 
 return (
