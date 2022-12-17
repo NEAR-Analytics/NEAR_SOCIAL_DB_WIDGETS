@@ -162,6 +162,7 @@ const onChangeMessage = (message) => {
 
 const leaveRoomHandler = () => {
   State.update({ roomId: "" });
+  window.location.
 };
 
 return (
@@ -175,7 +176,12 @@ return (
     >
       <div>
         <h4>Chat Widget</h4>
-        <p>Room ID: {state.roomId}</p>
+        <p style={{ marginBottom: 0 }}>
+          <strong>Room ID:</strong> {state.roomId}
+        </p>
+        <p style={{ marginTop: 0 }}>
+          <strong>Connectd as:</strong> {profileInfo.name}
+        </p>
       </div>
       <button type="button" class="btn btn-danger" onClick={leaveRoomHandler}>
         Leave Room
