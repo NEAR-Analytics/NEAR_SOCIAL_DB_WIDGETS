@@ -55,7 +55,7 @@ return (
       <div className="mb-2">
         {options.image.label ?? "Image"}
         <Widget
-          src="mob.near/widget/ImageEditorTabs"
+          src="gov.near/widget/ImageEditorTabs"
           props={{
             image: state.image,
             onChange: (image) => State.update({ image }),
@@ -67,7 +67,7 @@ return (
       <div className="mb-2">
         {options.backgroundImage.label ?? "Background image"}
         <Widget
-          src="mob.near/widget/ImageEditorTabs"
+          src="gov.near/widget/ImageEditorTabs"
           props={{
             image: state.backgroundImage,
             onChange: (backgroundImage) => State.update({ backgroundImage }),
@@ -94,13 +94,12 @@ return (
       <div className="mb-2">
         {options.tags.label ?? "Tags"}
         <Widget
-          src="mob.near/widget/TagsEditor"
+          src="gov.near/widget/TagsEditor"
           props={{
             initialTagsObject: metadata.tags,
             tagsPattern: options.tags.pattern,
             placeholder:
-              options.tags.placeholder ??
-              "rust, engineer, artist, humanguild, nft, learner, founder",
+              options.tags.placeholder ?? "near, edu, art, gov, defi, nft, dao",
             setTagsObject: (tags) => {
               state.metadata.tags = tags;
               State.update();
