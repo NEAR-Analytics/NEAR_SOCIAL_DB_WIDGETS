@@ -36,6 +36,15 @@ const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 
 return (
   <div>
+    <Widget
+      src="mob.near/widget/WidgetImage"
+      props={{
+        tooltip: true,
+        accountId: "webuidl.near",
+        widgetName: "iBuiDL",
+        style: { width: "5em", height: "5em" },
+      }}
+    />
     <h4>iBuiDL</h4>
     <p>whatcha BuiDL on NEAR?</p>
     <div className="d-flex flex-column w-75 justify-content-around">
