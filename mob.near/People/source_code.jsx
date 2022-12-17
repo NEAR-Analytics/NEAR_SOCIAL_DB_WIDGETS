@@ -16,7 +16,7 @@ return (
           <div key={i} className="d-flex justify-content-between mb-3">
             <div className="me-4 text-truncate">
               <Widget
-                src="mob.near/widget/Profile"
+                src="mob.near/widget/Profile.InlineBlock"
                 props={{ accountId: profile.accountId }}
               />
             </div>
