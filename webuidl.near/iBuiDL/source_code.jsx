@@ -1,5 +1,6 @@
 State.init({
   input: "",
+  url: "",
 });
 
 const card = {
@@ -54,10 +55,23 @@ return (
           border: "1px solid #ced4da",
           borderRadius: "0.375rem",
         }}
-        rows="3"
+        rows="2"
         value={state.input}
         onChange={(e) => {
           State.update({ input: e.target.value });
+        }}
+      />
+      <p>Url:</p>
+      <textarea
+        style={{
+          backgroundColor: "rgb(230, 230, 230)",
+          border: "1px solid #ced4da",
+          borderRadius: "0.375rem",
+        }}
+        rows="1"
+        value={state.url}
+        onChange={(e) => {
+          State.update({ url: e.target.value });
         }}
       />
     </div>
@@ -70,6 +84,7 @@ return (
               key: "answer",
               value: {
                 answer: state.input,
+                url: state.url,
               },
             },
             undefined,
@@ -105,6 +120,7 @@ return (
                 {d.accountId}
               </a>
               I BuiDL <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
+              <b>{d.value.url}&nbsp;&nbsp;&nbsp;</b>
               <Widget
                 src="mob.near/widget/FollowButton"
                 props={{ accountId: d.accountId }}
