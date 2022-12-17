@@ -118,7 +118,10 @@ return (
       {tags.length > 0 && (
         <div>
           {tags.map((tag, i) => (
-            <span key={i} className="me-1 mb-1 badge bg-secondary">
+            <span
+              key={i}
+              className="me-1 fw-light badge border border-secondary text-bg-light"
+            >
               #{tag}
             </span>
           ))}
