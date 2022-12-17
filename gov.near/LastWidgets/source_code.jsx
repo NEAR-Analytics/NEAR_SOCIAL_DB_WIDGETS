@@ -9,7 +9,7 @@ const makeLink = (accountId, tag) => {
   if (tag) {
     args.push(`tag=${tag}`);
   }
-  return `#/mob.near/widget/LastWidgets${args.length > 0 ? "?" : ""}${args.join(
+  return `#/gov.near/widget/LastWidgets${args.length > 0 ? "?" : ""}${args.join(
     "&"
   )}`;
 };
@@ -26,7 +26,7 @@ const render = (content) => {
               className="btn btn-outline-primary"
             >
               <Widget
-                src="mob.near/widget/ProfileLine"
+                src="gov.near/widget/ProjectInfo"
                 props={{ accountId, link: false }}
               />
               <i className="bi bi-x-square"></i>
@@ -103,7 +103,7 @@ const renderItem = (a) => {
   return (
     <div className="mb-3" key={JSON.stringify(a)} style={{ minHeight: "10em" }}>
       <Widget
-        src="mob.near/widget/WidgetMetadata"
+        src="gov.near/widget/WidgetMetadata"
         props={{
           accountId: a.accountId,
           widgetName: a.widgetName,
@@ -127,7 +127,7 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
 
 return render(
   <Widget
-    src="mob.near/widget/ItemFeed"
+    src="gov.near/widget/ItemFeed"
     props={{ items: state.allItems || [], renderItem }}
   />
 );
