@@ -58,7 +58,7 @@ if (!state.roomId) {
         <p>
           You can join a room or create a new room and invite your friends. You
           can also enter a room directly by passing the parameter{" "}
-          <strong>room_id</strong> in the url. <br />
+          <strong>room_id</strong> in the url or as component props. <br />
           <br />
           Example:{" "}
           <a
