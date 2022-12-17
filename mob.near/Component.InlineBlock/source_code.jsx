@@ -6,6 +6,7 @@ const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
 const name = metadata.name ?? widgetName;
 const description = metadata.description;
+const tags = Object.keys(metadata.tags ?? {});
 
 return (
   <div className="d-flex flex-row">
@@ -26,6 +27,15 @@ return (
         <small>
           <span className="font-monospace">{widgetPath}</span>
         </small>
+        {tags.length > 0 && (
+          <>
+            {tags.map((tag, i) => (
+              <span key={i} className="me-1 badge bg-secondary">
+                #{tag}
+              </span>
+            ))}
+          </>
+        )}
       </div>
       <div className="text-truncate text-muted">{description}</div>
     </div>
