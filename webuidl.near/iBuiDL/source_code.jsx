@@ -3,6 +3,10 @@ State.init({
   url: "",
 });
 
+const widgetName = "iBuiDL";
+const widgetPath = `webuidl.near/widget/${widgetName}`;
+const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
+
 const card = {
   background: "linear-gradient(to right, #4deeea, #f000ff)",
   border: "1px solid black",
@@ -38,16 +42,22 @@ const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 
 return (
   <div>
-    <Widget
-      src="mob.near/widget/WidgetImage"
-      props={{
-        tooltip: true,
-        accountId: "webuidl.near",
-        widgetName: "iBuiDL",
-        style: { width: "4em", height: "4em" },
-      }}
-    />
-    <h4>iBuiDL</h4>
+    <div className="d-inline-block" style={{ width: "10em", height: "10em" }}>
+      <Widget
+        src="mob.near/widget/Image"
+        props={{
+          image: metadata.image,
+          className: "w-100 h-100 shadow",
+          style: { objectFit: "cover", borderRadius: "2em" },
+          thumbnail: false,
+          fallbackUrl:
+            "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+          alt: widgetName,
+        }}
+      />
+    </div>
+    <br />
+    <br />
     <p>BuiDL just not dev. whatcha BuiDL on NEAR?</p>
     <div className="d-flex flex-column w-75 justify-content-around">
       <textarea
