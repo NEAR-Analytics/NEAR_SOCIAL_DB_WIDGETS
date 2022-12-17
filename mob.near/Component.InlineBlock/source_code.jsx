@@ -5,7 +5,7 @@ const blockHeight = props.blockHeight;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
 const name = metadata.name ?? widgetName;
-const description = metadata.description;
+const description = metadata.description.repeat(5);
 
 return (
   <div className="d-flex flex-row">
@@ -15,10 +15,11 @@ return (
         metadata,
         accountId,
         widgetName,
-        className: "me-2 flex-shrink-1",
+        style: { height: "3em", minWidth: "3em" },
+        className: "me-2",
       }}
     />
-    <div>
+    <div className="text-truncate">
       <div className="text-truncate">
         <span className="fw-bold">{name}</span>{" "}
         <small>
