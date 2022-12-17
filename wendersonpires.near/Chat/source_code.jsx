@@ -204,6 +204,7 @@ return (
       rows={1}
       className="form-control"
       placeholder="Message"
+      value={state.input}
       onChange={(e) => onChangeMessage(e.target.value)}
     />
     <br />
@@ -225,7 +226,9 @@ return (
         },
       }}
       onCommit={() => {
+        console.log("OOOOAAAAAA11111111");
         State.update({ input: "", reloadData: true });
+        // State.update({ reloadData: true });
       }}
     >
       Send Message
