@@ -1,12 +1,12 @@
 const accountId = props.accountId ?? context.accountId;
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const project = props.project ?? Social.getr(`${accountId}/project`);
 
-const name = profile.name;
-const image = profile.image;
+const name = project.name;
+const image = project.image;
 
 return (
-  <div className="profile d-inline-block">
+  <div className="project d-inline-block">
     <a
       href={`#/gov.near/widget/ProjectPage?accountId=${accountId}`}
       className="text-decoration-none link-dark"
@@ -14,17 +14,17 @@ return (
       <Widget
         src="gov.near/widget/ProjectImage"
         props={{
-          profile,
+          project,
           accountId,
           className: "float-start d-inline-block me-2",
         }}
       />
-      <div className="profile-info d-inline-block" style={{ maxWidth: "16em" }}>
-        <div className="profile-name text-truncate">
-          {name || "No-name profile"}
+      <div className="project-info d-inline-block" style={{ maxWidth: "16em" }}>
+        <div className="project-name text-truncate">
+          {name || "No-name project"}
         </div>
-        <div className="profile-links d-flex">
-          <div className="d-inline-block profile-account text-secondary text-truncate">
+        <div className="project-links d-flex">
+          <div className="d-inline-block project-account text-secondary text-truncate">
             @{accountId}
           </div>
         </div>
