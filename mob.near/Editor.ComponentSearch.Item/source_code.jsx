@@ -39,7 +39,7 @@ return (
           overlay={<Tooltip>Copy embedding code to clipboard</Tooltip>}
         >
           <button
-            className="btn btn-outline-primary"
+            className="btn btn-outline-primary border-0"
             onClick={() => {
               clipboard.writeText(embedCode).then(() => {
                 State.update({ embedCopied: true });
@@ -54,6 +54,13 @@ return (
             Embed
           </button>
         </OverlayTrigger>
+        <a
+          href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
+          target="_blank"
+          className="btn btn-outline-secondary border-0"
+        >
+          <i className="bi bi-file-earmark-code me-1"></i>Source
+        </a>
       </div>
     </div>
   </div>
