@@ -1,7 +1,7 @@
 const userChallengesWidget = "betteryou.near/widget/all_user_challenges";
 const wakeupSignupWidget = "/#/betteryou.near/widget/wakeup_challenge";
 const languageSignupWidget = "/#/betteryou.near/widget/language_challenge";
-const friendsWidget = "/#/betteryou.near/widget/friendlist";
+const friendsWidget = "/#/betteryou.near/widget/friendslist";
 
 const header = {
   background: "#33333D",
