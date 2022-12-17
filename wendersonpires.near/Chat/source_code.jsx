@@ -66,7 +66,6 @@ if (!state.roomId) {
             https://near.social/#/wendersonpires.near/widget/Chat?room_id=9df2f348-9924-415f-921c-db2b846e7177
           </a>
         </p>
-        <br />
         <div
           style={{
             display: "flex",
