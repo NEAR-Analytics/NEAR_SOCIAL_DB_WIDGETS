@@ -24,7 +24,7 @@ return (
     <div className="d-flex flex-row">
       <div className="me-4">
         <a
-          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=following`}
+          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=following`}
           className="text-dark"
         >
           {numFollowing !== null ? (
@@ -37,7 +37,7 @@ return (
       </div>
       <div>
         <a
-          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=followers`}
+          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=followers`}
           className="text-dark"
         >
           {numFollowers !== null ? (
