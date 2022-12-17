@@ -4,42 +4,42 @@ if (!accountId) {
   return "Please log in with NEAR wallet to edit your project page";
 }
 
-let profile = Social.getr(`${accountId}/profile`);
+let project = Social.getr(`${accountId}/project`);
 
-if (profile === null) {
+if (project === null) {
   return "Loading";
 }
 
 State.init({
-  profile,
+  project,
 });
 
 return (
   <div className="row">
     <div className="col-lg-6">
       <div>
-        <h4>Edit Project Page</h4>
+        <h4>Edit Project</h4>
       </div>
       <div className="mb-2">
         <Widget
           src="gov.near/widget/MetadataEditor"
           props={{
-            initialMetadata: profile,
-            onChange: (profile) => State.update({ profile }),
+            initialMetadata: project,
+            onChange: (project) => State.update({ project }),
             options: {
-              name: { label: "Project Name" },
-              image: { label: "Project Image" },
-              backgroundImage: { label: "Background Image" },
-              description: { label: "Project Description" },
+              name: { label: "Name" },
+              image: { label: "Project image" },
+              backgroundImage: { label: "Background image" },
+              description: { label: "About" },
               tags: {
-                label: "Project Tags",
+                label: "Tags",
                 tagsPattern: "*/project/tags/*",
                 placeholder: "near, dev, art, edu, nft, defi, gov, dao",
               },
               linktree: {
                 links: [
                   {
-                    label: "Project Twitter",
+                    label: "Twitter",
                     prefix: "https://twitter.com/",
                     name: "twitter",
                   },
@@ -65,7 +65,7 @@ return (
         />
       </div>
       <div className="mb-2">
-        <CommitButton data={{ profile: state.profile }}>
+        <CommitButton data={{ project: state.project }}>
           Save project
         </CommitButton>
         <a
@@ -80,7 +80,7 @@ return (
       <div>
         <Widget
           src="gov.near/widget/ProjectPage"
-          props={{ accountId, profile: state.profile }}
+          props={{ accountId, project: state.project }}
         />
       </div>
     </div>
