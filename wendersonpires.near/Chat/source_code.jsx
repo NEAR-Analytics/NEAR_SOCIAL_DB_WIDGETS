@@ -225,7 +225,7 @@ return (
         },
       }}
       onCommit={() => {
-        State.update({ input: "" });
+        State.update({ input: "", reloadData: true });
       }}
     >
       Send Message
