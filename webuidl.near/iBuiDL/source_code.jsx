@@ -46,7 +46,7 @@ return (
       }}
     />
     <h4>iBuiDL</h4>
-    <p>whatcha BuiDL on NEAR?</p>
+    <p>BuiDL just not dev. whatcha BuiDL on NEAR?</p>
     <div className="d-flex flex-column w-75 justify-content-around">
       <textarea
         style={{
