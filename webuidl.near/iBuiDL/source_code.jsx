@@ -36,9 +36,30 @@ const accountId = props.accountId ?? "*";
 
 const data = Social.index("ibuidl", "answer");
 if (!data) {
-  return "Loading";
+  return "Loading answers";
 }
-const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+const upvotes = Social.index("ibuidl", "upvote");
+if (!upvotes) {
+  return "Loading upvotes";
+}
+const blackList = ["webuidl.near"];
+const whiteListData = data.filter((d) => !blackList.includes(d.accountId));
+const sortedData = whiteListData.sort(
+  (d1, d2) => d2.blockHeight - d1.blockHeight
+);
+
+let upvotesMap = {};
+for (let i = 0; i < upvotes.length; i++) {
+  const vote = upvotes[i];
+  const upvoteBlockHeight = vote.value.blockHeight;
+  if (!upvotesMap[upvoteBlockHeight]) {
+    upvotesMap[upvoteBlockHeight] = 0;
+  }
+  upvotesMap[upvoteBlockHeight] += 1;
+}
+console.log(upvotesMap);
+
+const finalData = sortedData;
 
 return (
   <div>
@@ -141,6 +162,29 @@ return (
                 src="mob.near/widget/FollowButton"
                 props={{ accountId: d.accountId }}
               />
+              <div>
+                <CommitButton
+                  data={{
+                    index: {
+                      ibuidl: JSON.stringify(
+                        {
+                          key: "upvote",
+                          value: {
+                            blockHeight: d.blockHeight,
+                          },
+                        },
+                        undefined,
+                        0
+                      ),
+                    },
+                  }}
+                >
+                  Upvote
+                </CommitButton>
+                <span>
+                  {upvotesMap[d.blockHeight] ? upvotesMap[d.blockHeight] : 0}
+                </span>
+              </div>
             </div>
           ))
         : "Loading..."}
