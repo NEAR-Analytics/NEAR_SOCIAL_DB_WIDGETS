@@ -145,9 +145,21 @@ const getChatHistory = (indexData) => {
   return chatHistory;
 };
 
-const chatHistory = getChatHistory(sortedData);
-console.log("fooo");
-State.update({ chatHistory: getChatHistory(sortedData) });
+let chatHistory = getChatHistory(sortedData);
+
+if (!state.chatHistory) {
+  State.update({ chatHistory: chatHistory });
+  console.log("foooo");
+}
+
+// TESTING CASE
+const updateChatHistory_ = () => {
+  const data = Social.index(state.roomId, "data");
+  const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+  State.update({ chatHistory: getChatHistory(sortedData) });
+  console.log("foo2");
+};
+// State.update({ chatHistory: getChatHistory(sortedData) });
 
 // Final image Format
 // https://ipfs.near.social/ipfs/bafkreiau7fpuwxtiieevs5zk46mhouqqig6sqbyplt5p2kzpe24yrdw2ki
