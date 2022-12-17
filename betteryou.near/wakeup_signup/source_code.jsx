@@ -149,7 +149,7 @@ function getTomorrowAtTimeTimestamp(time) {
   const year = tomorrow.getFullYear();
   const month = tomorrow.getMonth() + 1;
   const day = tomorrow.getDate();
-  const tomorrow_morning_string = `${year}-${month}-${day} ${time}`;
+  const tomorrow_morning_string = `${year}-${month}-${day}T${time}`;
   console.log("tomorrow_morning_string", tomorrow_morning_string);
   return ms2s(Date.parse(tomorrow_morning_string));
 }
