@@ -157,10 +157,27 @@ const onChangeMessage = (message) => {
   });
 };
 
+const leaveRoomHandler = () => {
+  State.update({ roomId: "" });
+};
+
 return (
   <>
-    <h4>Chat Widget</h4>
-    <p>Room ID: {state.roomId}</p>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>
+        <h4>Chat Widget</h4>
+        <p>Room ID: {state.roomId}</p>
+      </div>
+      <button type="button" class="btn btn-danger" onClick={leaveRoomHandler}>
+        Leave Room
+      </button>
+    </div>
     <div className="mb-2 mt-2" style={{ background: "#F8F9FA", padding: 8 }}>
       {chatHistory.map((chatItem, index) => {
         return (
@@ -221,7 +238,6 @@ return (
       }}
       onCommit={() => {
         State.update({ input: "", reloadData: true });
-        // State.update({ reloadData: true });
       }}
     >
       Send Message
