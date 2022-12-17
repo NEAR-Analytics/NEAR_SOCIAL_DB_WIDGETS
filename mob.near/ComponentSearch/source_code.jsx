@@ -6,6 +6,7 @@ const allMetadata =
 const keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const requiredTag = props.filterTag;
+const inputTerm = props.term;
 
 const computeResults = (term) => {
   const terms = (term || "")
@@ -75,6 +76,15 @@ const computeResults = (term) => {
     props.onChange({ term, result });
   }
 };
+
+if (props.term && props.term !== state.oldTerm) {
+  State.update({
+    oldTerm: props.term,
+  });
+  if (props.term !== state.term) {
+    computeResults(props.term);
+  }
+}
 
 return (
   <>
