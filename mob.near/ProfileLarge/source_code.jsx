@@ -120,7 +120,7 @@ return (
           {tags.map((tag, i) => (
             <span
               key={i}
-              className="me-1 fw-light badge border border-secondary text-bg-light"
+              className="me-1 mb-1 fw-light badge border border-secondary text-bg-light"
             >
               #{tag}
             </span>
