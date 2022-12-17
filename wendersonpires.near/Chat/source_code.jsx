@@ -183,7 +183,7 @@ return (
       style={{
         background: "#F8F9FA",
         padding: 8,
-        maxHeight: "77%",
+        maxHeight: 500,
         overflowX: "scroll",
       }}
     >
