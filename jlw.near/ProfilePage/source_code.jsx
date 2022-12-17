@@ -29,6 +29,9 @@ return (
         />
       </div>
       <div className="mt-3">
+        <Widget src="jlw.near/widget/MyOwnedActivities" props={{ accountId }} />
+      </div>
+      <div className="mt-3">
         <Widget
           src="jlw.near/widget/Widget-of-Interests"
           props={{ accountId, profile }}
