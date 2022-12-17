@@ -60,7 +60,7 @@ return (
           style={{ width: "10em", height: "10em" }}
         >
           <Widget
-            src="mob.near/widget/Image"
+            src="gov.near/widget/Image"
             props={{
               image,
               className: "w-100 h-100 shadow",
@@ -108,7 +108,7 @@ return (
             </button>
           )}
           <a
-            href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
+            href={`#/gov.near/widget/WidgetSource?src=${widgetPath}`}
             className="btn btn-sm btn-outline-secondary border-0"
             target="_blank"
           >
