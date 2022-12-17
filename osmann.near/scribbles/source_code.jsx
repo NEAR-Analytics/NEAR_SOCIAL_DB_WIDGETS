@@ -1,6 +1,3 @@
-// • Can be used as company confluence secured with a multisig owning and symmetric key encryption
-// • Markdown support
-
 const accountId = context.accountId;
 if (!accountId) {
   return "Please sign in with NEAR wallet";
@@ -82,10 +79,17 @@ if (currDir == "**FOLDER**" || !currDir) {
   currDir = {};
 }
 
-console.log(state.dir);
-
 return (
   <>
+    <h1
+      style={{
+        fontFamily: "Bradley hand, cursive",
+        textAlign: "center",
+        fontSize: 64,
+      }}
+    >
+      ✎ Scribbles
+    </h1>
     <div class="input-group mb-3" style={{ marginTop: 20 }}>
       <input
         type="text"
