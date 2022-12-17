@@ -4,7 +4,6 @@ State.init({
   roomIdToJoin: "",
   input: "",
   errorMessage: "",
-  chatHistory: [],
 });
 
 // UTILS
@@ -53,7 +52,7 @@ if (!state.roomId) {
   return (
     <>
       <div>
-        <h3>Hello, {profileInfo.name}!</h3>
+        <h3>Chat Widget v1.0.0</h3>
         <p>
           You can join a room or create a new room and invite your friends. You
           can also enter a room directly by passing the parameter{" "}
@@ -68,10 +67,6 @@ if (!state.roomId) {
           </a>
         </p>
         <br />
-        <p>
-          This widget will be updated as the API supports more native JS Vanilla
-          features.
-        </p>
         <div
           style={{
             display: "flex",
@@ -151,21 +146,6 @@ const getChatHistory = (indexData) => {
 };
 
 const chatHistory = getChatHistory(sortedData);
-
-// if (!state.chatHistory || state.chatHistory.length === 0) {
-//   State.update({ chatHistory: getChatHistory(sortedData) });
-//   console.log("foooo");
-// }
-
-// TESTING CASE
-//NOTE: using while the API doesnt support setTimeout
-// const updateChatHistory_ = () => {
-//   const data = Social.index(state.roomId, "data");
-//   const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
-//   State.update({ chatHistory: getChatHistory(sortedData) });
-//   console.log("foo2");
-// };
-// State.update({ chatHistory: getChatHistory(sortedData) });
 
 // Final image Format
 // https://ipfs.near.social/ipfs/bafkreiau7fpuwxtiieevs5zk46mhouqqig6sqbyplt5p2kzpe24yrdw2ki
@@ -266,8 +246,7 @@ return (
         },
       }}
       onCommit={() => {
-        State.update({ input: "", reloadData: true });
-        updateChatHistory_(); //NOTE: using while the API doesnt support setTimeout
+        State.update({ input: "" });
       }}
     >
       Send Message
