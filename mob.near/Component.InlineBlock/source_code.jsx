@@ -17,6 +17,7 @@ return (
         widgetName,
         style: { height: "3em", width: "3em", minWidth: "3em" },
         className: "me-2",
+        imageClassName: "w-100 h-100",
       }}
     />
     <div className="text-truncate">
