@@ -153,6 +153,7 @@ if (!state.chatHistory) {
 }
 
 // TESTING CASE
+//NOTE: using while the API doesnt support setTimeout
 const updateChatHistory_ = () => {
   const data = Social.index(state.roomId, "data");
   const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
@@ -253,6 +254,7 @@ return (
       }}
       onCommit={() => {
         State.update({ input: "", reloadData: true });
+        updateChatHistory_(); //NOTE: using while the API doesnt support setTimeout
       }}
     >
       Send Message
