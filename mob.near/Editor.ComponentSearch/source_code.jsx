@@ -5,7 +5,9 @@ return (
         src="mob.near/widget/ComponentSearch"
         props={{
           limit: 10,
-          onChange: ({ result }) => State.update({ components: result }),
+          term: state.term,
+          onChange: ({ result: components, term }) =>
+            State.update({ components, term }),
         }}
       />
     </div>
@@ -18,6 +20,7 @@ return (
               props={{
                 accountId: component.accountId,
                 widgetName: component.widgetName,
+                onEmbed: () => State.update({ components: null }),
               }}
             />
           </div>
