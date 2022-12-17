@@ -6,7 +6,7 @@ return (
         <div>
           <Widget src="mob.near/widget/ProfileOnboarding" />
           <a
-            href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+            href={`#/mob.near/widget/ProfilePage`}
             className="text-decoration-none link-dark"
           >
             <Widget
