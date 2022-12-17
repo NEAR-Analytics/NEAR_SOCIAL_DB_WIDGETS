@@ -145,10 +145,8 @@ const getChatHistory = (indexData) => {
   return chatHistory;
 };
 
-let chatHistory = getChatHistory(sortedData);
-
-if (!state.chatHistory) {
-  State.update({ chatHistory: chatHistory });
+if (!state.chatHistory || state.chatHistory.length === 0) {
+  State.update({ chatHistory: getChatHistory(sortedData) });
   console.log("foooo");
 }
 
@@ -195,13 +193,15 @@ return (
       </button>
     </div>
     <div className="mb-2 mt-2" style={{ background: "#F8F9FA", padding: 8 }}>
-      {chatHistory.map((chatItem, index) => {
+      {state.chatHistory.map((chatItem, index) => {
         return (
           <div
             style={{
               display: "flex",
               alignItems: "center",
               marginTop: index !== 0 ? 8 : 0,
+              height: "77%",
+              overflowX: "scroll",
             }}
           >
             <div
@@ -224,7 +224,7 @@ return (
         );
       })}
 
-      {chatHistory.length === 0 && <p>No message was sent yet :D</p>}
+      {state.chatHistory.length === 0 && <p>No message was sent yet :D</p>}
     </div>
     <textarea
       type="text"
