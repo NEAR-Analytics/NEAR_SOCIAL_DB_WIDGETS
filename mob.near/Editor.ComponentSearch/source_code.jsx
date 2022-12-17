@@ -21,6 +21,7 @@ return (
                 accountId: component.accountId,
                 widgetName: component.widgetName,
                 onEmbed: () => State.update({ components: null }),
+                extraButtons: props.extraButtons,
               }}
             />
           </div>
