@@ -217,7 +217,7 @@ return (
         <div style={shadow}>
           <img
             src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
-            style={{ position: "absolute", zIndex: 1 }}
+            style={{ position: "absolute", zIndex: 0 }}
           />
           <img
             src={imgSrc}
@@ -228,7 +228,7 @@ return (
             style={{
               filter: `blur(${state.blur}px)`,
               position: "relative",
-              zIndex: 0,
+              zIndex: 1,
             }}
           />
           <p style={txt1}>
