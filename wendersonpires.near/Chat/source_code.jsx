@@ -27,8 +27,6 @@ const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
 
 // Room Creator Screen
 const joinRoom = (roomIdInfo) => {
-  console.log(roomIdInfo);
-
   // This method gets only data inside stored on my user
   // const roomInfo = Social.get(`${accountId}/index/${roomIdInfo}`);
 
@@ -122,8 +120,6 @@ if (!state.roomId) {
 // Chat Room Screen
 const data = Social.index(state.roomId, "data");
 
-console.log(data);
-
 if (!data) {
   return "Loading...";
 }
@@ -148,9 +144,7 @@ const getChatHistory = (indexData) => {
   return chatHistory;
 };
 
-console.log(sortedData);
 const chatHistory = getChatHistory(sortedData);
-console.log("CHAT HISTORY:", chatHistory);
 
 // Final image Format
 // https://ipfs.near.social/ipfs/bafkreiau7fpuwxtiieevs5zk46mhouqqig6sqbyplt5p2kzpe24yrdw2ki
@@ -226,7 +220,6 @@ return (
         },
       }}
       onCommit={() => {
-        console.log("OOOOAAAAAA11111111");
         State.update({ input: "", reloadData: true });
         // State.update({ reloadData: true });
       }}
