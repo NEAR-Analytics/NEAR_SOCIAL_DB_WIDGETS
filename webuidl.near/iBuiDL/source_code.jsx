@@ -120,7 +120,7 @@ return (
               >
                 {d.accountId}
               </a>
-              I BuiDL <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
+              I BuiDL... <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
               <b>
                 <a href={`${urlPrefix}${d.value.url}`} target="_blank">
                   {d.value.url}
