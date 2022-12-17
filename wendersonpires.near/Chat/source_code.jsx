@@ -4,6 +4,7 @@ State.init({
   roomIdToJoin: "",
   input: "",
   errorMessage: "",
+  chatHistory: [],
 });
 
 // UTILS
@@ -145,6 +146,8 @@ const getChatHistory = (indexData) => {
 };
 
 const chatHistory = getChatHistory(sortedData);
+console.log("fooo");
+State.update({ chatHistory: getChatHistory(sortedData) });
 
 // Final image Format
 // https://ipfs.near.social/ipfs/bafkreiau7fpuwxtiieevs5zk46mhouqqig6sqbyplt5p2kzpe24yrdw2ki
