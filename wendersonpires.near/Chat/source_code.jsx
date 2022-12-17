@@ -162,7 +162,6 @@ const onChangeMessage = (message) => {
 
 const leaveRoomHandler = () => {
   State.update({ roomId: "" });
-  window.location.
 };
 
 return (
