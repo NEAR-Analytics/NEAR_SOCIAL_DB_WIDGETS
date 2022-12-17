@@ -74,7 +74,7 @@ return (
         });
       }}
     >
-      Post!
+      Share It!
     </CommitButton>
 
     <div>
