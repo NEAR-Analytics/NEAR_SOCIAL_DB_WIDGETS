@@ -27,17 +27,22 @@ return (
         <small>
           <span className="font-monospace">{widgetPath}</span>
         </small>
+      </div>
+      <div className="text-truncate text-muted">
         {tags.length > 0 && (
           <>
             {tags.map((tag, i) => (
-              <span key={i} className="me-1 badge bg-secondary">
+              <span
+                key={i}
+                className="me-1 fw-light badge border border-secondary text-bg-light"
+              >
                 #{tag}
               </span>
             ))}
           </>
         )}
+        {description}
       </div>
-      <div className="text-truncate text-muted">{description}</div>
     </div>
   </div>
 );
