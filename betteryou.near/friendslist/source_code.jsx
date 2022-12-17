@@ -22,7 +22,7 @@ const testnetWidgets = {
 const mainnetWidgets = {
   itemscroll: "mob.near/widget/ItemFeed",
   profileLine: "mob.near/widget/ProfileLine",
-  allUserChallenges: "betteryou.neaer/widget/all_user_challenges",
+  allUserChallenges: "betteryou.near/widget/all_user_challenges",
 };
 
 const widgets = mainnetWidgets;
