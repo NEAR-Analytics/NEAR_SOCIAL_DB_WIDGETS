@@ -74,7 +74,7 @@ const commitButton = {
 return (
   <div>
     <div class="header" style={header}>
-      {" "}
+      <img src="https://user-images.githubusercontent.com/91919554/207791329-cc290a47-c5e7-4b7e-82b1-88194b55b494.png" />{" "}
       Ready to get rewarded for achieving your goals?
     </div>
 
