@@ -8,7 +8,7 @@ const image = profile.image;
 return (
   <div className="profile d-inline-block">
     <a
-      href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+      href={`#/gov.near/widget/ProjectPage?accountId=${accountId}`}
       className="text-decoration-none link-dark"
     >
       <Widget
