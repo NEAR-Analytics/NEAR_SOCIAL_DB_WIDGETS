@@ -121,7 +121,11 @@ if (!state.roomId) {
 }
 
 // Chat Room Screen
-const data = Social.index(state.roomId, "data", { subscribe: true });
+const data = Social.index(state.roomId, "data", {
+  subscribe: true,
+  limit: 100,
+  order: "desc",
+});
 
 if (!data) {
   return "Loading...";
