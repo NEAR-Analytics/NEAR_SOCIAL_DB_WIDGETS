@@ -99,7 +99,8 @@ return (
             initialTagsObject: metadata.tags,
             tagsPattern: options.tags.pattern,
             placeholder:
-              options.tags.placeholder ?? "near, edu, art, gov, defi, nft, dao",
+              options.tags.placeholder ??
+              "near, dev, art, edu, nft, defi, gov, dao",
             setTagsObject: (tags) => {
               state.metadata.tags = tags;
               State.update();
