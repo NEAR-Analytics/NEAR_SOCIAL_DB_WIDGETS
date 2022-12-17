@@ -64,6 +64,8 @@ return (
         >
           <i className="bi bi-file-earmark-code me-1"></i>Source
         </a>
+        {props.extraButtons &&
+          props.extraButtons({ accountId, widgetName, widgetPath, widget })}
       </div>
     </div>
   </div>
