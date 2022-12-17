@@ -26,7 +26,7 @@ const data = {
 return (
   <CommitButton force className={`btn btn btn-dark`} data={data}>
     <Widget
-      src="mob.near/widget/ProfileImage"
+      src="gov.near/widget/ProjectImage"
       props={{
         accountId: props.accountId,
         style: { width: "1.5rem", height: "1.5rem" },
