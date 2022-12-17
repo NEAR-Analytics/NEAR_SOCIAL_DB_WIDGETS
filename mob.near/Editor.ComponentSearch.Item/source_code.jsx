@@ -35,10 +35,7 @@ return (
         />
       </div>
       <div className="text-nowrap">
-        <Widget
-          src="mob.near/widget/PokeButton"
-          props={{ accountId: profile.accountId }}
-        />
+        <button>Copy embed</button>
       </div>
     </div>
     <div>
