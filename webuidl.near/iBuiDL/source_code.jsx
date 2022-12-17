@@ -83,7 +83,7 @@ return (
         });
       }}
     >
-      Share It!
+      Send It!
     </CommitButton>
     <br />
     <br />
