@@ -30,6 +30,6 @@ return (
       </div>
     </div>
 
-    <Widget src="chefsale.near/widget/BlogFeed" props={{}} />
+    <Widget src="blaze.near/widget/BlogFeed" props={{}} />
   </div>
 );
