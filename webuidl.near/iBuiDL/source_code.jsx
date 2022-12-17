@@ -37,7 +37,7 @@ const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 return (
   <div>
     <h4>iBuiDL</h4>
-    <p>what do you BuiDL on NEAR?</p>
+    <p>whatcha BuiDL on NEAR?</p>
     <div className="d-flex flex-column w-75 justify-content-around">
       <textarea
         style={{
