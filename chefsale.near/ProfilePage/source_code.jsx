@@ -13,7 +13,7 @@ return (
   <div className="py-1 px-1">
     <div className="mx-auto">
       <Widget
-        src="mob.near/widget/ProfileLarge"
+        src="chefsale.near/widget/ProfileLarge"
         props={{
           accountId,
           profile,
