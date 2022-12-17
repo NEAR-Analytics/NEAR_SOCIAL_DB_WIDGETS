@@ -43,6 +43,9 @@ return (
             onClick={() => {
               clipboard.writeText(embedCode).then(() => {
                 State.update({ embedCopied: true });
+                if (props.onEmbed) {
+                  props.onEmbed(embedCode);
+                }
               });
             }}
           >
