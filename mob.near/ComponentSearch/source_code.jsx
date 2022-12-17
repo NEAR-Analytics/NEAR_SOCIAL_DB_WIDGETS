@@ -6,6 +6,7 @@ const allMetadata =
 const keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const requiredTag = props.filterTag;
+const inputTerm = props.term;
 
 const computeResults = (term) => {
   const terms = (term || "")
@@ -76,7 +77,7 @@ const computeResults = (term) => {
   }
 };
 
-if (props.term !== undefined && props.term !== state.oldTerm) {
+if (props.term && props.term !== state.oldTerm) {
   State.update({
     oldTerm: props.term,
   });
@@ -87,13 +88,23 @@ if (props.term !== undefined && props.term !== state.oldTerm) {
 
 return (
   <>
-    <input
-      type="text"
-      className="form-control"
-      value={state.term ?? ""}
-      onChange={(e) => computeResults(e.target.value)}
-      placeholder={props.placeholder ?? `🔍 Search Components`}
-    />
+    <div className="input-group">
+      <input
+        type="text"
+        className="form-control"
+        value={state.term ?? ""}
+        onChange={(e) => computeResults(e.target.value)}
+        placeholder={props.placeholder ?? `🔍 Search Components`}
+      />
+
+      <button
+        className="btn btn-outline-secondary"
+        type="button"
+        onClick={() => computeResults("")}
+      >
+        <i className="bi bi-x"></i>
+      </button>
+    </div>
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </>
 );
