@@ -35,7 +35,10 @@ const joinRoom = (roomIdInfo) => {
 
   if (!roomExists) {
     // Update error state
-    State.update({ errorMessage: "This room does not exist." });
+    State.update({
+      errorMessage:
+        "This room was not found right now! It can be a blockchain delay, so, you can try again!",
+    });
     return;
   }
 
