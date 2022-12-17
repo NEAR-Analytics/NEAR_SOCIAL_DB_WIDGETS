@@ -28,8 +28,8 @@ return (
         <Widget
           src={
             tab === "followers"
-              ? "mob.near/widget/FollowersList"
-              : "mob.near/widget/FollowingList"
+              ? "gov.near/widget/FollowersList"
+              : "gov.near/widget/FollowingList"
           }
           props={{ accountId }}
         />
