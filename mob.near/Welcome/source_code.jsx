@@ -6,7 +6,7 @@ return (
         <div>
           <Widget src="mob.near/widget/ProfileOnboarding" />
           <Widget
-            src="mob.near/widget/Profile"
+            src="mob.near/widget/Profile.InlineBlock"
             props={{ accountId: context.accountId }}
           />
         </div>
