@@ -9,6 +9,7 @@ const name = metadata.name ?? widgetName;
 const description = metadata.description;
 const image = metadata.image;
 const tags = Object.keys(metadata.tags ?? {});
+const expanded = !!props.expanded;
 
 const linktree = Object.entries(metadata.linktree ?? {});
 const linktreeElements = {
@@ -95,7 +96,7 @@ return (
               })}
             </div>
           )}
-          {(description || linktreeObjects.length > 0) && (
+          {!expanded && (description || linktreeObjects.length > 0) && (
             <button
               className="btn btn-sm btn-outline-secondary border-0"
               data-bs-toggle="collapse"
@@ -122,7 +123,10 @@ return (
         </div>
       </div>
     </div>
-    <div className="card-text p-2 pt-0 collapse" id={descriptionKey}>
+    <div
+      className={`card-text p-2 pt-0 ${expanded ? "" : "collapse"}`}
+      id={descriptionKey}
+    >
       <Markdown text={description} />
       {linktreeObjects}
     </div>
