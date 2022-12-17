@@ -124,7 +124,7 @@ if (!state.roomId) {
 }
 
 // Chat Room Screen
-const data = Social.index(state.roomId, "data");
+const data = Social.index(state.roomId, "data", { subscribe: true });
 
 if (!data) {
   return "Loading...";
@@ -150,19 +150,21 @@ const getChatHistory = (indexData) => {
   return chatHistory;
 };
 
-if (!state.chatHistory || state.chatHistory.length === 0) {
-  State.update({ chatHistory: getChatHistory(sortedData) });
-  console.log("foooo");
-}
+const chatHistory = getChatHistory(sortedData);
+
+// if (!state.chatHistory || state.chatHistory.length === 0) {
+//   State.update({ chatHistory: getChatHistory(sortedData) });
+//   console.log("foooo");
+// }
 
 // TESTING CASE
 //NOTE: using while the API doesnt support setTimeout
-const updateChatHistory_ = () => {
-  const data = Social.index(state.roomId, "data");
-  const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
-  State.update({ chatHistory: getChatHistory(sortedData) });
-  console.log("foo2");
-};
+// const updateChatHistory_ = () => {
+//   const data = Social.index(state.roomId, "data");
+//   const sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+//   State.update({ chatHistory: getChatHistory(sortedData) });
+//   console.log("foo2");
+// };
 // State.update({ chatHistory: getChatHistory(sortedData) });
 
 // Final image Format
@@ -206,7 +208,7 @@ return (
         overflowX: "scroll",
       }}
     >
-      {state.chatHistory.map((chatItem, index) => {
+      {chatHistory.map((chatItem, index) => {
         return (
           <div
             style={{
@@ -235,7 +237,7 @@ return (
         );
       })}
 
-      {state.chatHistory.length === 0 && <p>No message was sent yet :D</p>}
+      {chatHistory.length === 0 && <p>No message was sent yet :D</p>}
     </div>
     <textarea
       type="text"
