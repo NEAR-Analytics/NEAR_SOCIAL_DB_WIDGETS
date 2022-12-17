@@ -76,7 +76,8 @@ return (
     >
       Share It!
     </CommitButton>
-
+    <br />
+    <br />
     <div>
       {sortedData
         ? sortedData.map((d) => (
