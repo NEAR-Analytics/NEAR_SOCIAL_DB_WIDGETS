@@ -66,6 +66,7 @@ const colors = paths.colors;
 const colorsCategories = paths.colors_categories;
 const components = paths.components;
 
+/*
 if (userId && !state.avatarLoaded) {
   const avatar = Social.get(`${userId}/${appName}/avatar/*`, "final");
   if (avatar) {
@@ -73,7 +74,7 @@ if (userId && !state.avatarLoaded) {
 
     initState({ ...defaultState, ...avatar, ...{ avatarLoaded: true } });
   }
-}
+}*/
 
 let options = {
   background: state.background,
