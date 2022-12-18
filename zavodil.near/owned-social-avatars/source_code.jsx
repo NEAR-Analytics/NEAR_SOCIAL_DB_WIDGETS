@@ -48,7 +48,7 @@ owned_tokens.map((token) => {
   modals.push(
     <div
       class="modal fade"
-      id={`token-${token.token_id}`}
+      id={`token-${token_id}`}
       tabindex="-1"
       aria-labelledby={`token-${token_id}Label`}
       aria-hidden="true"
