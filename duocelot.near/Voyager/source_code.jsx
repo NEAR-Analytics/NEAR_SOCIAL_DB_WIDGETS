@@ -162,7 +162,7 @@ return (
               State.update(state);
             }}
             style={{
-              width: "100px",
+              width: "200px",
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
