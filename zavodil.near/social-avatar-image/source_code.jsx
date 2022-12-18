@@ -35,7 +35,7 @@ let paths_valid =
   Object.keys(paths.components ?? {}).length > 0 &&
   Object.keys(paths.colors ?? {}).length > 0;
 
-console.log("preloaded paths", paths_valid);
+// console.log("preloaded paths", paths_valid);
 
 if (!paths_valid && !options.pathLoaded) {
   const _paths = Social.get(`${ownerId}/${appName}/**`, "final");
@@ -49,16 +49,10 @@ if (!paths) {
   return "Loading";
 }
 
-console.log(paths);
+// console.log(paths);
 
 const colors = paths.colors;
 const components = paths.components;
-
-const imgAvatar = styled.img`
- @media (max-width: 576px) {
-    margin-bottom: 1rem
-  }
-`;
 
 let getColor = (type, option) => {
   return colors[option].src;
@@ -70,7 +64,6 @@ let getChildOrDefault = (obj, type, option) => {
   } else if (["facialHair", "accessories"].includes(type) && option == null) {
     return () => "";
   } else {
-    console.log(type, obj, obj[type]);
     return obj[type].default || obj[type][Object.keys(obj[type])[0]];
   }
 };
@@ -281,13 +274,11 @@ let createAvataaar = (options) => {
 var svg = createAvataaar(options);
 svg = svg.replace(/\n/g, "").replace(/\s{2,}/g, " ");
 
-// console.log("svg", svg);
-
 const buff = new Buffer(svg);
 const base64data = buff.toString("base64");
 
 return (
-  <imgAvatar
+  <img
     class="img-fluid"
     src={`data:image/svg+xml;base64,${base64data}`}
     alt=""
