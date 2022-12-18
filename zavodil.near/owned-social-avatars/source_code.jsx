@@ -8,7 +8,11 @@ const owned_tokens = Near.view(contractId, "nft_tokens_for_owner", {
 });
 
 if (!owned_tokens.length) {
-  return "";
+  return (
+    <div class="text-center">
+      Mint Social Avatar to set it as a Profile Picture
+    </div>
+  );
 }
 
 let tokenImg = styled.img`
