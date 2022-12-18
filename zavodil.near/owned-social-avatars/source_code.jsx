@@ -7,14 +7,8 @@ const owned_tokens = Near.view(contractId, "nft_tokens_for_owner", {
   account_id: userId,
 });
 
-console.log(owned_tokens);
-
-if (owned_tokens == undefined) {
-  return "";
-}
-
 if (!owned_tokens.length) {
-  return "Loading";
+  return "";
 }
 
 let tokenImg = styled.img`
