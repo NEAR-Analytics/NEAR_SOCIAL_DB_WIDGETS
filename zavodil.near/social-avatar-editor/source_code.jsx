@@ -144,7 +144,6 @@ let itemsMenu = (collection, name) => {
 };
 
 let colorsMenu = (collection, name) => {
-  //console.log("colorsMenu", name, collection);
   let items = Object.keys(collection).map((item) => {
     let color = colors[item];
     return (
@@ -162,8 +161,6 @@ let colorsMenu = (collection, name) => {
     </select>
   );
 };
-
-// console.log(components);
 
 let Mint = () => {
   const gas = 300000000000000;
