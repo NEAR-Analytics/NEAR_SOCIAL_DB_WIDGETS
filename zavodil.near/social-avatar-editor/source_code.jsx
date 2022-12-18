@@ -166,7 +166,7 @@ let colorsMenu = (collection, name) => {
 
 let Mint = () => {
   const gas = 300000000000000;
-  const deposit = new Big(depositYocto).plus(MIN_DEPOSIT).toFixed(0); //10000000000000000000000;
+  const deposit = new Big(depositYocto).plus(MIN_DEPOSIT).toFixed(0);
 
   let data = [];
   Object.entries(options).forEach((item) => {
@@ -331,7 +331,14 @@ return (
             <button onClick={Mint}>Mint an NFT</button>
           </div>
           {depositNear > 0 && (
-            <div class="pt-2">Total cost: {depositNear} NEAR</div>
+            <div class="pt-2">
+              Components cost: {depositNear} NEAR. NFT storage: 0.2 NEAR
+            </div>
+          )}
+          {depositNear == "0" && (
+            <div class="pt-2">
+              You will be asked to attach 0.2 NEAR for NFT storage
+            </div>
           )}
         </div>
       </div>
