@@ -189,15 +189,25 @@ let Mint = () => {
   );
 };
 
+const AvatarDiv = styled.div`
+ @media (max-width: 576px) {  
+  min-width: 370px;
+  min-height: 370px;
+  margin-bottom: 1rem;
+}
+`;
+
 return (
   <>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-s-12 text-center" style={style}>
-          <Widget
-            src={`${ownerId}/widget/social-avatar-image`}
-            props={{ paths, options }}
-          />
+          <AvatarDiv>
+            <Widget
+              src={`${ownerId}/widget/social-avatar-image`}
+              props={{ paths, options }}
+            />
+          </AvatarDiv>
         </div>
 
         <div class="col-md-6 col-s-12">
