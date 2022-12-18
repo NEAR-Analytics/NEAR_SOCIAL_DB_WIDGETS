@@ -33,13 +33,15 @@ owned_tokens.map((token) => {
     console.log(e);
   }
 
+  const token_id = token.token_id.replace("#", "-");
+
   previews.push(
     <tokenImg
       src={token.metadata.media}
       class="float-start"
       type="button"
       data-bs-toggle="modal"
-      data-bs-target={`#token-${token.token_id}`}
+      data-bs-target={`#token-${token_id}`}
     />
   );
 
@@ -48,13 +50,13 @@ owned_tokens.map((token) => {
       class="modal fade"
       id={`token-${token.token_id}`}
       tabindex="-1"
-      aria-labelledby={`token-${token.token_id}Label`}
+      aria-labelledby={`token-${token_id}Label`}
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id={`token-${token.token_id}Label`}>
+            <h5 class="modal-title" id={`token-${token_id}Label`}>
               Token {token.token_id}
               {price > 0 && (
                 <span class="ms-1 badge bg-success">
