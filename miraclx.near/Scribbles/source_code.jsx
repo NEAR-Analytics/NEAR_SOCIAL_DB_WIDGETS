@@ -91,12 +91,15 @@ function handle$$(obj, handler) {
 
 console.log(0, Caret);
 
-let El = handle$$(Caret, (c) => {
-  c.render.displayName = "styled.script";
+let script = handle$$(Caret, (c) => {
+  // c.render.displayName = "styled.script";
   console.log(c.render.displayName);
+  // const Div = () => <script>test</script>;
+
+  return c.withComponent("script");
 });
 
-console.log(2, El);
+console.log(2, script);
 // console.log(Ell.render.displayName);
 
 // let x = Function;
@@ -114,7 +117,7 @@ return (
   <Body>
     <a href="javascript:alert(); return false;">Anchor</a>
     <input type="text" value="**"></input>
-    <El a="10">Hey</El>
+    <script>console.log(FileReader);</script>
     <hr />
     <span class="caret">Beverages</span>
     <ul class="nested">
