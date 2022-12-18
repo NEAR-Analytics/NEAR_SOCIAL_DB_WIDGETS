@@ -144,6 +144,7 @@ let itemsMenu = (collection, name) => {
 };
 
 let colorsMenu = (collection, name) => {
+  //console.log("colorsMenu", name, collection);
   let items = Object.keys(collection).map((item) => {
     let color = colors[item];
     return (
@@ -241,7 +242,7 @@ return (
 
               <div class="col">
                 <div>Skin color</div>
-                {colorsMenu(colors.skin, "skin")}
+                {colorsMenu(colorsCategories.skin, "skin")}
               </div>
             </div>
 
