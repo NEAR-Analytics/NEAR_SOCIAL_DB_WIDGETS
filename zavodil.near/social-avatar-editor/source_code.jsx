@@ -191,8 +191,8 @@ let Mint = () => {
 
 const AvatarDiv = styled.div`
  @media (max-width: 576px) {  
-  min-width: 370px;
-  min-height: 370px;
+  min-width: 345px;
+  min-height: 345px;
   margin-bottom: 1rem;
 }
 `;
