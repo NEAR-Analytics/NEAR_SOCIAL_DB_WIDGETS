@@ -10,7 +10,6 @@ if (!userId) {
 }
 
 const RandomAvatar = (paths) => {
-  console.log(paths);
   let palette_colors = [
     "svgBackground",
     "background",
@@ -58,7 +57,8 @@ const RandomAvatar = (paths) => {
     ];
   });
 
-  State.update({ options: result });
+  return result;
+  //State.update({ options: result });
 };
 
 function randomInteger(max) {
@@ -346,7 +346,13 @@ return (
       <div class="row mt-3">
         <div class="col text-center">
           <div>
-            <button onClick={() => RandomAvatar(state.paths[ownerId][appName])}>
+            <button
+              onClick={() =>
+                State.update({
+                  options: RandomAvatar(state.paths[ownerId][appName]),
+                })
+              }
+            >
               Random
             </button>
             <button onClick={Mint}>Mint an NFT</button>
