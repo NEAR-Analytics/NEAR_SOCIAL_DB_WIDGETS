@@ -420,5 +420,15 @@ return (
     <div class="border border-3 p-3 mb-4">
       <Widget src={`${ownerId}/widget/owned-social-avatars`} />
     </div>
+    <div class="row pt-2 pb-5 text-center">
+      <div class="col">
+        <a
+          href="/#/zavodil.near/widget/all-social-avatars"
+          class="btn btn-outline-success"
+        >
+          All Social Avatars
+        </a>
+      </div>
+    </div>
   </>
 );
