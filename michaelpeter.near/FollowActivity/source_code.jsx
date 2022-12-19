@@ -1,6 +1,6 @@
 import FollowItem from "/social-widgets/michaelpeter.near/FollowItem";
 
-function FollowActivity() {
+export default function FollowActivity() {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="text-2xl">Follow Activity</h2>
