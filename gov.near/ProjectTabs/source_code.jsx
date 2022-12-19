@@ -3,17 +3,17 @@ if (!accountId) {
   return "No account ID";
 }
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const project = props.project ?? Social.getr(`${accountId}/project`);
 
-if (profile === null) {
-  return "Loading";
+if (project === null) {
+  return "Loading...";
 }
 
-const description = profile.description;
+const description = project.description;
 
 State.init({
-  loadNFT: false,
-  loadWidgets: false,
+  loadBlog: false,
+  loadTasks: false,
 });
 
 return (
@@ -22,76 +22,76 @@ return (
       <li className="nav-item" role="presentation">
         <button
           className="nav-link active"
-          id="pills-bio-tab"
+          id="pills-about-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-bio"
+          data-bs-target="#pills-about"
           type="button"
           role="tab"
-          aria-controls="pills-bio"
+          aria-controls="pills-about"
           aria-selected="true"
         >
-          Bio
+          About
         </button>
       </li>
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"
-          id="pills-nft-tab"
+          id="pills-blog-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-nft"
+          data-bs-target="#pills-blog"
           type="button"
           role="tab"
-          aria-controls="pills-nft"
+          aria-controls="pills-blog"
           aria-selected="false"
           onClick={() => {
-            !state.loadNFT && State.update({ loadNFT: true });
+            !state.loadBlog && State.update({ loadBlog: true });
           }}
         >
-          NFTs
+          Blog
         </button>
       </li>
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"
-          id="pills-widget-tab"
+          id="pills-tasks-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-widget"
+          data-bs-target="#pills-tasks"
           type="button"
           role="tab"
-          aria-controls="pills-widget"
+          aria-controls="pills-tasks"
           aria-selected="false"
           onClick={() => {
-            !state.loadWidgets && State.update({ loadWidgets: true });
+            !state.loadTasks && State.update({ loadTasks: true });
           }}
         >
-          Widgets
+          Tasks
         </button>
       </li>
     </ul>
     <div className="tab-content" id="pills-tabContent">
       <div
         className="tab-pane fade in show active"
-        id="pills-bio"
+        id="pills-about"
         role="tabpanel"
-        aria-labelledby="pills-bio-tab"
+        aria-labelledby="pills-about-tab"
       >
         <Markdown text={description} />
       </div>
       <div
-        className="tab-pane fade nft"
-        id="pills-nft"
+        className="tab-pane fade blog"
+        id="pills-blog"
         role="tabpanel"
-        aria-labelledby="pills-nft-tab"
+        aria-labelledby="pills-blog-tab"
       >
-        {state.loadNFT && (
-          <Widget src="gov.near/widget/YourNFTs" props={{ accountId }} />
+        {state.loadBlog && (
+          <Widget src="gov.near/widget/BlogEntry" props={{ accountId }} />
         )}
       </div>
       <div
-        className="tab-pane fade widget"
-        id="pills-widget"
+        className="tab-pane fade tasks"
+        id="pills-tasks"
         role="tabpanel"
-        aria-labelledby="pills-widget-tab"
+        aria-labelledby="pills-tasks-tab"
       >
         {state.loadWidgets && (
           <Widget src="gov.near/widget/LastWidgets" props={{ accountId }} />
