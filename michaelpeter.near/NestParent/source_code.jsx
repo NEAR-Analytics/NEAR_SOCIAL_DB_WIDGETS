@@ -1,5 +1,5 @@
-import PureWidget from "/social-widgets/michaelpeter.near/PureWidget";
+import SandpackWidget from "/social-widgets/michaelpeter.near/SandpackWidget";
 
 export default function Widget() {
-  return <PureWidget />;
+  return <SandpackWidget />;
 }
