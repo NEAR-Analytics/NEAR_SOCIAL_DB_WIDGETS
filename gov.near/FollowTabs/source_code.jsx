@@ -1,25 +1,25 @@
 const accountId = props.accountId ?? context.accountId;
-const tab = props.tab === "following" ? props.tab : "followers";
+const tab = props.tab === "members" ? props.tab : "subscribers";
 
 return (
   <div>
     <ul className="nav nav-pills nav-fill mb-4" role="tablist">
       <li className="nav-item" role="presentation">
         <a
-          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=followers`}
-          className={`btn nav-link ${tab === "followers" ? "active" : ""}`}
+          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=subscribers`}
+          className={`btn nav-link ${tab === "subscribers" ? "active" : ""}`}
           role="tab"
         >
-          Followers
+          Subscribers
         </a>
       </li>
       <li className="nav-item" role="presentation">
         <a
-          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=following`}
-          className={`btn nav-link ${tab === "following" ? "active" : ""}`}
+          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=members`}
+          className={`btn nav-link ${tab === "members" ? "active" : ""}`}
           role="tab"
         >
-          Following
+          Members
         </a>
       </li>
     </ul>
@@ -27,9 +27,9 @@ return (
       <div className="tab-pane fade in show active" role="tabpanel">
         <Widget
           src={
-            tab === "followers"
-              ? "gov.near/widget/FollowersList"
-              : "gov.near/widget/FollowingList"
+            tab === "subscribers"
+              ? "gov.near/widget/SubscribersList"
+              : "gov.near/widget/MembersList"
           }
           props={{ accountId }}
         />
