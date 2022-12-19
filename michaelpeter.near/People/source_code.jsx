@@ -1,5 +1,5 @@
 import SearchAndResults from "/social-widgets/michaelpeter.near/SearchAndResults";
 
-function People() {
+export default function People() {
   return <SearchAndResults title="People" />;
 }
