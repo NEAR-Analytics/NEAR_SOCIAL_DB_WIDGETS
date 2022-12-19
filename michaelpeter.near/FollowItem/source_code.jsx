@@ -1,6 +1,6 @@
 import DummyImage from "/social-widgets/michaelpeter.near/DummyImage";
 
-function FollowItem() {
+export default function FollowItem() {
   return (
     <div className="flex flex-row gap-1 items-center">
       <DummyImage dimension={10} />
