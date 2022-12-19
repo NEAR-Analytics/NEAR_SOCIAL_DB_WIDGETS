@@ -48,7 +48,7 @@ return (
             "?"
           )}{" "}
           <span className="text-muted">
-            Follower{numSubscribers !== 1 && "s"}
+            Subscribers{numSubscribers !== 1 && "s"}
           </span>
         </a>
       </div>
