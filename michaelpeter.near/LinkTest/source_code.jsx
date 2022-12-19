@@ -13,10 +13,10 @@ export default function LinkTest() {
       </a>
       <a
         onClick={() => {
-          window.open("https://www.google.com");
+          window.location.href = "https://www.google.com";
         }}
       >
-        Google New Tab
+        Google Same Tab
       </a>
     </div>
   );
