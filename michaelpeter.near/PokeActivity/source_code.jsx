@@ -1,6 +1,6 @@
 import PokeItem from "/social-widgets/michaelpeter.near/PokeItem";
 
-function PokeActivity() {
+export default function PokeActivity() {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="text-2xl">Poke Activity</h2>
