@@ -35,7 +35,9 @@ function handleQuery(path) {
 
 function treeView() {
   console.log("new tree");
-  State.update({ newQuery: false });
+  if (state.newQuery) {
+    State.update({ newQuery: false });
+  }
   return (
     <>
       {state.path}
@@ -47,7 +49,9 @@ function treeView() {
 
 function rawView() {
   console.log("new raw");
-  State.update({ newQuery: false });
+  if (state.newQuery) {
+    State.update({ newQuery: false });
+  }
   let text = "Hellur World";
   return (
     <>
@@ -63,7 +67,7 @@ ${text}
 let Styles = styled.span``;
 
 function after(cond, els) {
-  if (cond) return els;
+  if (cond) return els();
   return (
     <div class="d-flex justify-content-center">
       <div class="spinner-border" role="status"></div>
@@ -77,7 +81,9 @@ return (
       <input
         type="text"
         value={state.path}
-        onChange={(e) => handleQuery(e.target.value)}
+        onChange={(e) => {
+          handleQuery(e.target.value);
+        }}
       />
       <button class="btn btn-outline-secondary" title="Copy Permalink">
         🔗
@@ -86,8 +92,7 @@ return (
 
     <hr />
 
-    {after(
-      !state.newQuery,
+    {after(!state.newQuery, () => (
       <>
         <ul
           class="nav nav-tabs justify-content-center"
@@ -144,7 +149,7 @@ return (
           </div>
         </div>
       </>
-    )}
+    ))}
   </>
 );
 
