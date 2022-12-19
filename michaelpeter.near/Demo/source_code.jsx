@@ -7,7 +7,7 @@ import PokeActivity from "/social-widgets/michaelpeter.near/PokeActivity";
 
 export default function Demo() {
   return (
-    <div className="flex flex-col p-10 gap-4 bg-black">
+    <div className="flex flex-col p-10 gap-4 bg-black text-white">
       <ProfileHeader />
       <Applications />
       <People />
