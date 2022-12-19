@@ -1,6 +1,6 @@
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
-  return "No account ID";
+  return "Please log in with your NEAR wallet :)";
 }
 
 const link =
@@ -9,22 +9,22 @@ const link =
     ? `#/gov.near/widget/ProjectPage?accountId=${accountId}`
     : props.link);
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const project = props.project ?? Social.getr(`${accountId}/project`);
 
-if (profile === null) {
+if (project === null) {
   return "Loading";
 }
 
 const showEditButton =
-  profile !== undefined &&
-  (!props.profile || props.showEditButton) &&
+  project !== undefined &&
+  (!props.project || props.showEditButton) &&
   accountId &&
   accountId === context.accountId;
 
-const name = profile.name || "No-name profile";
-const image = profile.image;
-const backgroundImage = profile.backgroundImage;
-const tags = Object.keys(profile.tags ?? {});
+const name = project.name || "No-name project";
+const image = project.image;
+const backgroundImage = project.backgroundImage;
+const tags = Object.keys(project.tags ?? {});
 
 const nameHeader = <h4 className="mt-0 mb-0 text-truncate">{name}</h4>;
 
@@ -36,7 +36,7 @@ return (
           src="gov.near/widget/Image"
           props={{
             image: backgroundImage,
-            alt: "profile background",
+            alt: "project background",
             className: "position-absolute w-100 h-100",
             style: { objectFit: "cover", left: 0, top: 0 },
             fallbackUrl:
@@ -54,13 +54,13 @@ return (
         </a>
       )}
       <div
-        className="profile-picture d-inline-block"
+        className="project-picture d-inline-block"
         style={{ transform: "translateY(7rem)" }}
       >
         <Widget
           src="gov.near/widget/ProjectImage"
           props={{
-            profile,
+            project,
             accountId,
             style: { width: "10rem", height: "10rem" },
             className: "mb-2",
@@ -110,7 +110,7 @@ return (
         <div style={{ minWidth: "12rem" }}>
           <Widget
             src="gov.near/widget/LinkTree"
-            props={{ linktree: profile.linktree }}
+            props={{ linktree: project.linktree }}
           />
         </div>
       </div>
