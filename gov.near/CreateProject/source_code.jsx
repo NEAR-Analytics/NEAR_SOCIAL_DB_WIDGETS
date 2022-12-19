@@ -2,10 +2,6 @@ const accountId = props.debugAccountId ?? context.accountId;
 
 const project = Social.getr(`${accountId}/project`);
 
-if (!project) {
-  return "";
-}
-
 const name = project.name;
 const image = project.image;
 
@@ -16,6 +12,15 @@ const editProjectButton = (
     </a>
   </div>
 );
+
+if (!project) {
+  return (
+    <div>
+      <p>Create your project!</p>
+      {editProjectButton}
+    </div>
+  );
+}
 
 if (!name) {
   return (
