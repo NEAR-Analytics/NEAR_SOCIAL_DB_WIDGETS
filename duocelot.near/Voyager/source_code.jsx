@@ -157,6 +157,7 @@ return (
             min={1.1}
             max={25}
             value={value}
+            step={0.1}
             onBlur={(e) => {
               state.scale = e.target.value;
               State.update(state);
