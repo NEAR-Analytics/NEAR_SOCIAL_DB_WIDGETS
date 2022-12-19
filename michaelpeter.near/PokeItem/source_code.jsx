@@ -1,6 +1,6 @@
 import DummyImage from "/social-widgets/michaelpeter.near/DummyImage";
 
-function PokeItem() {
+export default function PokeItem() {
   return (
     <div className="flex flex-row gap-2 items-center">
       <DummyImage dimension={10} />
