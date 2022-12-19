@@ -1,3 +1,4 @@
+let avatarId = props.id ?? -1;
 initState({ tokens: [] });
 
 if (!state.tokens.length) {
@@ -29,13 +30,14 @@ let tokenOwner = styled.div`
 
 let previews = [];
 let modals = [];
+let activeAvatar = null;
 
 state.tokens.map((token) => {
   let price = 0;
   try {
     price = new Big(JSON.parse(token.metadata.extra).mint_price)
       .div(new Big(10).pow(24))
-      .toFixed(0);
+      .toFixed(1);
   } catch (e) {
     console.log(e);
   }
@@ -57,14 +59,44 @@ state.tokens.map((token) => {
     </>
   );
 
+  if (avatarId >= 0 && `Avatar-${avatarId}` === token_id) {
+    activeAvatar = (
+      <div class="modal-body text-center mb-5">
+        <div class="row justify-content-md-center">
+          <h5 class="modal-title pb-2" id={`token-${token_id}Label`}>
+            Token {token.token_id}
+            {price > 0 && (
+              <span class="ms-1 badge bg-success">
+                Mint Price: {price} NEAR
+              </span>
+            )}
+          </h5>
+          <div class="col-5">
+            <img src={token.metadata.media} class=" text-center" />
+          </div>
+        </div>
+        <div class="pt-2">
+          Token owner:
+          <Widget
+            src={`zavodil.near/widget/ProfileLine`}
+            props={{ accountId: token.owner_id }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   modals.push(
     <div
       class="modal fade"
       id={`token-${token_id}`}
       tabindex="-1"
       aria-labelledby={`token-${token_id}Label`}
+      role="dialog"
       aria-hidden="true"
     >
+      {`Avatar-${avatarId}`}
+      {token_id}
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -113,6 +145,7 @@ return (
     <div class="row">
       <div class="col">
         <div class="text-center">
+          {activeAvatar}
           <h4>All Social Avatars</h4>
           <div class="pt-1">{previews}</div>
         </div>
