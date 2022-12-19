@@ -169,6 +169,21 @@ const YoctoToNear = (amountYocto) =>
 let depositYocto = getPrice(state.options);
 let depositNear = YoctoToNear(depositYocto);
 
+let nextItem = (collection, name) => {
+  let keys = Object.keys(collection);
+  for (let index = 0; index < keys.length; index++) {
+    let item = keys[index];
+
+    if (item == state.options[name]) {
+      state.options[name] = keys[index == keys.length - 1 ? 0 : index + 1];
+      State.update({
+        options: state.options,
+      });
+      break;
+    }
+  }
+};
+
 let itemsMenu = (collection, name) => {
   //console.log("itemsMenu", name, collection);
   let items = Object.keys(collection).map((item) => (
@@ -181,16 +196,42 @@ let itemsMenu = (collection, name) => {
     </option>
   ));
   return (
-    <select
-      class="form-select"
-      onChange={(e) => {
-        state.options[name] = e.target.value;
-        State.update({ options: state.options });
-      }}
-    >
-      {items}
-    </select>
+    <div class="input-group mb-3">
+      <select
+        class="form-select"
+        onChange={(e) => {
+          state.options[name] = e.target.value;
+          State.update({ options: state.options });
+        }}
+      >
+        {items}
+      </select>
+      <button
+        class="btn btn-outline-secondary p-2"
+        type="button"
+        onClick={() => nextItem(collection, name)}
+      >
+        {">"}
+      </button>
+    </div>
   );
+};
+
+let nextColor = (collection, name) => {
+  let keys = Object.keys(collection);
+  for (let index = 0; index < keys.length; index++) {
+    let item = keys[index];
+
+    let color = colors[item] ?? "";
+
+    if (color && item == state.options[name]) {
+      state.options[name] = keys[index == keys.length - 1 ? 0 : index + 1];
+      State.update({
+        options: state.options,
+      });
+      break;
+    }
+  }
 };
 
 let colorsMenu = (collection, name) => {
@@ -207,15 +248,24 @@ let colorsMenu = (collection, name) => {
     }
   });
   return (
-    <select
-      class="form-select"
-      onChange={(e) => {
-        state.options[name] = e.target.value;
-        State.update({ options: state.options });
-      }}
-    >
-      {items}
-    </select>
+    <div class="input-group mb-3">
+      <select
+        class="form-select"
+        onChange={(e) => {
+          state.options[name] = e.target.value;
+          State.update({ options: state.options });
+        }}
+      >
+        {items}
+      </select>
+      <button
+        class="btn btn-outline-secondary p-2"
+        type="button"
+        onClick={() => nextColor(collection, name)}
+      >
+        {">"}
+      </button>
+    </div>
   );
 };
 
