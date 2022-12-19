@@ -14,14 +14,12 @@ let randomInteger = (max) => {
 };
 
 let setRandomColors = (paths, collection, used_colors, options) => {
-  console.log(paths);
   collection.forEach((color) => {
-    console.log(color);
     while (true) {
-      let _color = Object.keys(paths.colors_categories.palette)[
-        randomInteger(Object.keys(paths.colors_categories.palette).length)
+      let _color = Object.keys(paths.colors_categories.palette ?? {})[
+        randomInteger(Object.keys(paths.colors_categories.palette ?? {}).length)
       ];
-      if (!used_colors.includes(_color)) {
+      if (_color && !used_colors.includes(_color)) {
         options[color] = _color;
         used_colors.push(_color);
         break;
@@ -170,12 +168,14 @@ let itemsMenu = (collection, name) => {
 let colorsMenu = (collection, name) => {
   //console.log("colorsMenu", name, collection);
   let items = Object.keys(collection).map((item) => {
-    let color = colors[item];
-    return (
-      <option value={item} selected={state.options[name] == item}>
-        {color.name.charAt(0).toUpperCase() + color.name.slice(1)}
-      </option>
-    );
+    let color = colors[item] ?? "";
+    if (color) {
+      return (
+        <option value={item} selected={state.options[name] == item}>
+          {color.name.charAt(0).toUpperCase() + color.name.slice(1)}
+        </option>
+      );
+    }
   });
   return (
     <select
