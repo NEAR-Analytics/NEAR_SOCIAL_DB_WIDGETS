@@ -12,7 +12,7 @@ const link =
 const project = props.project ?? Social.getr(`${accountId}/project`);
 
 if (project === null) {
-  return "Loading";
+  return { showEditButton };
 }
 
 const showEditButton =
