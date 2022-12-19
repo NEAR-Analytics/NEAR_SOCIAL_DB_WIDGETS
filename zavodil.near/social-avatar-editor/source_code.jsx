@@ -220,7 +220,7 @@ let colorsMenu = (collection, name) => {
 };
 
 let Mint = () => {
-  const gas = 300000000000000;
+  const gas = 200000000000000;
   const deposit = new Big(depositYocto).plus(MIN_DEPOSIT).toFixed(0);
 
   let data = [];
