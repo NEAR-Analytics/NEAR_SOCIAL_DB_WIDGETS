@@ -2,7 +2,7 @@ const accountId = props.debugAccountId ?? context.accountId;
 
 const project = Social.getr(`${accountId}/project`);
 
-if (project === null) {
+if (!project) {
   return "";
 }
 
