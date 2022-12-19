@@ -7,6 +7,9 @@ import PokeActivity from "/social-widgets/michaelpeter.near/PokeActivity";
 
 // mock of NEAR Social homepage to demonstrate widget tree processing
 
+// editor tabs are shown for all imported widgets for illustration, they
+// can be hidden with a flag
+
 export default function Demo() {
   return (
     <div className="flex flex-col p-10 gap-4 bg-black text-white">
