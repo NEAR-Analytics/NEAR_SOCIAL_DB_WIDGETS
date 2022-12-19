@@ -91,7 +91,9 @@ const replaceIpfs = (imageUrl) => {
 };
 
 const thumb = (imageUrl) =>
-  thumbnail ? `https://i.near.social/${thumbnail}/${imageUrl}` : imageUrl;
+  thumbnail && imageUrl && !imageUrl.startsWith("data:image/")
+    ? `https://i.near.social/${thumbnail}/${imageUrl}`
+    : imageUrl;
 
 const img = state.imageUrl !== null ? state.imageUrl : imageUrl;
 const src = img !== false ? img : fallbackUrl;
