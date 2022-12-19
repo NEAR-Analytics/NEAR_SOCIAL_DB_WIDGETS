@@ -1,6 +1,6 @@
 import DummyImage from "/social-widgets/michaelpeter.near/DummyImage";
 
-function ProfileHeader() {
+export default function ProfileHeader() {
   return (
     <div className="flex flex-col">
       <p className="text-4xl">Welcome to Near Social!</p>
