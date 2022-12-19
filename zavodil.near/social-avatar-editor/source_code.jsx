@@ -9,24 +9,64 @@ if (!userId) {
   return "Please login to generate a Social Avatar";
 }
 
+const RandomAvatar = (paths) => {
+  console.log(paths);
+  let palette_colors = [
+    "svgBackground",
+    "background",
+    "clothingColor",
+    "clothingGraphicsColor",
+    "heather",
+    "accessoriesColor",
+    "hatColor",
+  ];
+  let hair_colors = ["hairColor", "facialHairColor"];
+  let skin_colors = ["skin"];
+  let components = [
+    "clothing",
+    "skin",
+    "top",
+    "accessories",
+    "clothingGraphic",
+    "eyes",
+    "eyebrows",
+    "mouth",
+    "facialHair",
+  ];
+
+  let result = {};
+
+  components.forEach((component) => {
+    result[component] = Object.keys(paths.components[component])[
+      randomInteger(Object.keys(paths.components[component]).length)
+    ];
+  });
+
+  palette_colors.forEach((color) => {
+    result[color] = Object.keys(paths.colors_categories.palette)[
+      randomInteger(Object.keys(paths.colors_categories.palette).length)
+    ];
+  });
+  hair_colors.forEach((color) => {
+    result[color] = Object.keys(paths.colors_categories.hair)[
+      randomInteger(Object.keys(paths.colors_categories.hair).length)
+    ];
+  });
+  skin_colors.forEach((color) => {
+    result[color] = Object.keys(paths.colors_categories.skin)[
+      randomInteger(Object.keys(paths.colors_categories.skin).length)
+    ];
+  });
+
+  State.update({ options: result });
+};
+
+function randomInteger(max) {
+  return Math.floor(Math.random() * max);
+}
+
 const defaultState = {
-  svgBackground: "white",
-  background: "blue02",
-  clothing: "graphicShirt",
-  clothingColor: "black",
-  hairColor: "blonde",
-  skin: "pale",
-  top: "shaggy",
-  accessories: "round",
-  clothingGraphic: "diamond",
-  clothingGraphicsColor: "red",
-  eyes: "default",
-  eyebrows: "defaultNatural",
-  mouth: "sad",
-  facialHair: "moustacheMagnum",
-  facialHairColor: "auburn",
-  hatColor: "heather",
-  accessoriesColor: "pink",
+  options: {},
   avatarLoaded: false,
   paths: null,
 };
@@ -37,7 +77,10 @@ if (!state.paths) {
   const paths = Social.get(`*/${appName}/**`, "final");
 
   if (paths) {
-    State.update({ paths });
+    State.update({
+      paths,
+      options: RandomAvatar(paths[ownerId][appName]),
+    });
   }
 
   return "Loading";
@@ -65,37 +108,6 @@ whiteList.forEach((accountId) => {
 const colors = paths.colors;
 const colorsCategories = paths.colors_categories;
 const components = paths.components;
-
-/*
-if (userId && !state.avatarLoaded) {
-  const avatar = Social.get(`${userId}/${appName}/avatar/*`, "final");
-  if (avatar) {
-    console.log("My avatar", avatar);
-
-    initState({ ...defaultState, ...avatar, ...{ avatarLoaded: true } });
-  }
-}*/
-
-let options = {
-  background: state.background,
-  clothing: state.clothing,
-  clothingColor: state.clothingColor,
-  hairColor: state.hairColor,
-  skin: state.skin,
-  top: state.top,
-  accessories: state.accessories,
-  clothingGraphic: state.clothingGraphic,
-  clothingGraphicsColor: state.clothingGraphicsColor,
-  eyes: state.eyes,
-  eyebrows: state.eyebrows,
-  mouth: state.mouth,
-  facialHair: state.facialHair,
-  facialHairColor: state.facialHairColor,
-  hatColor: state.hatColor,
-  accessoriesColor: state.accessoriesColor,
-  svgBackground: state.svgBackground,
-};
-
 let getPrice = (options) => {
   let categories = [
     "clothing",
@@ -120,13 +132,13 @@ let getPrice = (options) => {
 const YoctoToNear = (amountYocto) =>
   new Big(amountYocto).div(new Big(10).pow(24)).toString();
 
-let depositYocto = getPrice(options);
+let depositYocto = getPrice(state.options);
 let depositNear = YoctoToNear(depositYocto);
 
 let itemsMenu = (collection, name) => {
   //console.log("itemsMenu", name, collection);
   let items = Object.keys(collection).map((item) => (
-    <option value={item} selected={state[name] == item}>
+    <option value={item} selected={state.options[name] == item}>
       {collection[item].name.charAt(0).toUpperCase() +
         collection[item].name.slice(1)}
       {(collection[item].price ?? 0) > 0
@@ -137,7 +149,10 @@ let itemsMenu = (collection, name) => {
   return (
     <select
       class="form-select"
-      onChange={(e) => State.update({ [name]: e.target.value })}
+      onChange={(e) => {
+        state.options[name] = e.target.value;
+        State.update({ options: state.options });
+      }}
     >
       {items}
     </select>
@@ -149,7 +164,7 @@ let colorsMenu = (collection, name) => {
   let items = Object.keys(collection).map((item) => {
     let color = colors[item];
     return (
-      <option value={item} selected={state[name] == item}>
+      <option value={item} selected={state.options[name] == item}>
         {color.name.charAt(0).toUpperCase() + color.name.slice(1)}
       </option>
     );
@@ -157,7 +172,10 @@ let colorsMenu = (collection, name) => {
   return (
     <select
       class="form-select"
-      onChange={(e) => State.update({ [name]: e.target.value })}
+      onChange={(e) => {
+        state.options[name] = e.target.value;
+        State.update({ options: state.options });
+      }}
     >
       {items}
     </select>
@@ -169,7 +187,7 @@ let Mint = () => {
   const deposit = new Big(depositYocto).plus(MIN_DEPOSIT).toFixed(0);
 
   let data = [];
-  Object.entries(options).forEach((item) => {
+  Object.entries(state.options).forEach((item) => {
     data.push([
       components[item[0]][item[1]].account_id ?? ownerId,
       item[0],
@@ -205,7 +223,7 @@ return (
           <AvatarDiv>
             <Widget
               src={`${ownerId}/widget/social-avatar-image`}
-              props={{ paths, options }}
+              props={{ paths, options: state.options }}
             />
           </AvatarDiv>
         </div>
@@ -293,7 +311,7 @@ return (
               </div>
             </div>
 
-            {state.clothing === "graphicShirt" && (
+            {state.options.clothing === "graphicShirt" && (
               <div class="row mt-2">
                 <div class="col">
                   <div>Clothing Graphic</div>
@@ -328,6 +346,9 @@ return (
       <div class="row mt-3">
         <div class="col text-center">
           <div>
+            <button onClick={() => RandomAvatar(state.paths[ownerId][appName])}>
+              Random
+            </button>
             <button onClick={Mint}>Mint an NFT</button>
           </div>
           {depositNear > 0 && (
