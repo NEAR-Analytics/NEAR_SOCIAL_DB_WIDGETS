@@ -8,8 +8,7 @@ export default function Widget({
   return (
     <div
       style={{
-        height: "2rem",
-        width: "5rem",
+        padding: "2rem",
         backgroundColor: bgColor ?? "#a795cf",
       }}
     >
