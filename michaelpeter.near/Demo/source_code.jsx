@@ -5,6 +5,8 @@ import LinkOuts from "/social-widgets/michaelpeter.near/LinkOuts";
 import FollowActivity from "/social-widgets/michaelpeter.near/FollowActivity";
 import PokeActivity from "/social-widgets/michaelpeter.near/PokeActivity";
 
+// mock of NEAR Social homepage to demonstrate widget tree processing
+
 export default function Demo() {
   return (
     <div className="flex flex-col p-10 gap-4 bg-black text-white">
