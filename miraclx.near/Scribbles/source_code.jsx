@@ -67,7 +67,7 @@ let Summary = styled.ul``;
 
 // console.log(Summary);
 
-let Caret = styled.span`${() => console.log(9)}`;
+// let Caret = styled.span``;
 
 // let El = {
 //   ...Caret,
@@ -89,17 +89,19 @@ function handle$$(obj, handler) {
   };
 }
 
-console.log(0, Caret);
-
-let script = handle$$(Caret, (c) => {
-  // c.render.displayName = "styled.script";
-  console.log(c.render.displayName);
-  // const Div = () => <script>test</script>;
-
-  return c.withComponent("script");
+let iframe = handle$$(styled.span``, (el) => {
+  return el.withComponent("iframe");
 });
 
-console.log(2, script);
+let Img = handle$$(styled.span``, (el) => {
+  return handle$$(el.withComponent("img"), (el) => {
+    el.attrs.push({
+      src: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+    });
+    return el;
+  });
+});
+
 // console.log(Ell.render.displayName);
 
 // let x = Function;
@@ -113,11 +115,31 @@ console.log(2, script);
 
 // Object.assign(Caret, { attrs: [] });
 
+// let Img = sty;
+
+// <script>alert("HBro"); console.log(FileReader);</script>
+// <script children="console.log('Hello World!')" />
+
+// <iframe srcdoc="https://google.com"></iframe>
+//     <img
+//       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+//       onload=""
+//     />
+
 return (
   <Body>
-    <a href="javascript:alert(); return false;">Anchor</a>
     <input type="text" value="**"></input>
-    <script>console.log(FileReader);</script>
+
+    <Img
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      hidden="true"
+      onLoad={() => console.log("10")}
+    />
+
+    <iframe src="https://www.cssscript.com/demo/json-data-tree-view/" />
+
+    <iframe srcdoc="<p><h1>Hello</h1> world</p>" />
+
     <hr />
     <span class="caret">Beverages</span>
     <ul class="nested">
