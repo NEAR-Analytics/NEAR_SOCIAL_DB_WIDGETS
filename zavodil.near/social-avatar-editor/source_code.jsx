@@ -9,6 +9,28 @@ if (!userId) {
   return "Please login to generate a Social Avatar";
 }
 
+let randomInteger = (max) => {
+  return Math.floor(Math.random() * max);
+};
+
+let setRandomColors = (paths, collection, used_colors, options) => {
+  console.log(paths);
+  collection.forEach((color) => {
+    console.log(color);
+    while (true) {
+      let _color = Object.keys(paths.colors_categories.palette)[
+        randomInteger(Object.keys(paths.colors_categories.palette).length)
+      ];
+      if (!used_colors.includes(_color)) {
+        options[color] = _color;
+        used_colors.push(_color);
+        break;
+      }
+    }
+  });
+  return { used_colors, options };
+};
+
 const RandomAvatar = (paths) => {
   let palette_colors = [
     "svgBackground",
@@ -33,37 +55,23 @@ const RandomAvatar = (paths) => {
     "facialHair",
   ];
 
-  let result = {};
+  let data = {
+    options: {},
+    used_colors: [],
+  };
 
   components.forEach((component) => {
-    result[component] = Object.keys(paths.components[component])[
+    data.options[component] = Object.keys(paths.components[component])[
       randomInteger(Object.keys(paths.components[component]).length)
     ];
   });
 
-  palette_colors.forEach((color) => {
-    result[color] = Object.keys(paths.colors_categories.palette)[
-      randomInteger(Object.keys(paths.colors_categories.palette).length)
-    ];
-  });
-  hair_colors.forEach((color) => {
-    result[color] = Object.keys(paths.colors_categories.hair)[
-      randomInteger(Object.keys(paths.colors_categories.hair).length)
-    ];
-  });
-  skin_colors.forEach((color) => {
-    result[color] = Object.keys(paths.colors_categories.skin)[
-      randomInteger(Object.keys(paths.colors_categories.skin).length)
-    ];
-  });
+  data = setRandomColors(paths, palette_colors, data.used_colors, data.options);
+  data = setRandomColors(paths, hair_colors, data.used_colors, data.options);
+  data = setRandomColors(paths, skin_colors, data.used_colors, data.options);
 
-  return result;
-  //State.update({ options: result });
+  return data.options;
 };
-
-function randomInteger(max) {
-  return Math.floor(Math.random() * max);
-}
 
 const defaultState = {
   options: {},
