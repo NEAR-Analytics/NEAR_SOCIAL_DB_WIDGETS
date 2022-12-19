@@ -356,6 +356,7 @@ return (
         <div class="col text-center">
           <div>
             <button
+              class="btn btn-outline-primary"
               onClick={() =>
                 State.update({
                   options: RandomAvatar(state.paths[ownerId][appName]),
