@@ -274,6 +274,8 @@ let createAvataaar = (options) => {
 var svg = createAvataaar(options);
 svg = svg.replace(/\n/g, "").replace(/\s{2,}/g, " ");
 
+console.log("svg", svg);
+
 const buff = new Buffer(svg);
 const base64data = buff.toString("base64");
 
