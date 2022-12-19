@@ -13,11 +13,19 @@ let randomInteger = (max) => {
   return Math.floor(Math.random() * max);
 };
 
-let setRandomColors = (paths, collection, used_colors, options) => {
+let setRandomColors = (
+  paths,
+  collection,
+  color_category,
+  used_colors,
+  options
+) => {
   collection.forEach((color) => {
     while (true) {
-      let _color = Object.keys(paths.colors_categories.palette ?? {})[
-        randomInteger(Object.keys(paths.colors_categories.palette ?? {}).length)
+      let _color = Object.keys(paths.colors_categories[color_category] ?? {})[
+        randomInteger(
+          Object.keys(paths.colors_categories[color_category] ?? {}).length
+        )
       ];
       if (_color && !used_colors.includes(_color)) {
         options[color] = _color;
@@ -64,9 +72,29 @@ const RandomAvatar = (paths) => {
     ];
   });
 
-  data = setRandomColors(paths, palette_colors, data.used_colors, data.options);
-  data = setRandomColors(paths, hair_colors, data.used_colors, data.options);
-  data = setRandomColors(paths, skin_colors, data.used_colors, data.options);
+  data = setRandomColors(
+    paths,
+    palette_colors,
+    "palette",
+    data.used_colors,
+    data.options
+  );
+  data = setRandomColors(
+    paths,
+    hair_colors,
+    "hair",
+    data.used_colors,
+    data.options
+  );
+  data = setRandomColors(
+    paths,
+    skin_colors,
+    "skin",
+    data.used_colors,
+    data.options
+  );
+
+  console.log("random", data.options);
 
   return data.options;
 };
@@ -167,10 +195,11 @@ let itemsMenu = (collection, name) => {
 
 let colorsMenu = (collection, name) => {
   //console.log("colorsMenu", name, collection);
-  let items = Object.keys(collection).map((item) => {
+  let items = [];
+  Object.keys(collection).forEach((item) => {
     let color = colors[item] ?? "";
     if (color) {
-      return (
+      items.push(
         <option value={item} selected={state.options[name] == item}>
           {color.name.charAt(0).toUpperCase() + color.name.slice(1)}
         </option>
