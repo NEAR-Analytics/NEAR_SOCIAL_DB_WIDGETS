@@ -139,6 +139,8 @@ let getTopType = (option) => {
     return [components.top.turban.src, true, 1];
   } else if (option === "eyepatch") {
     return [components.top.eyepatch.src, false, 1];
+  } else if (option === "crown") {
+    return [components.top.crown.src, false, 1];
   } else {
     return [components.top.shortWaved.src, false, 1];
   }
