@@ -300,10 +300,19 @@ return (
             </div>
 
             <div class="row mt-2">
-              <div class="col">
-                <div>Clothing</div>
-                {itemsMenu(components.clothing, "clothing")}
-              </div>
+              <OverlayTrigger
+                placement="left"
+                overlay={
+                  <Tooltip>
+                    Choose "Graphic Shirt" for extra graphic options
+                  </Tooltip>
+                }
+              >
+                <div class="col">
+                  <div>Clothing</div>
+                  {itemsMenu(components.clothing, "clothing")}
+                </div>
+              </OverlayTrigger>
 
               <div class="col">
                 <div>Clothing color</div>
@@ -319,7 +328,7 @@ return (
                 </div>
 
                 <div class="col">
-                  <div>Clothing Graphic color</div>
+                  <div>Graphic color</div>
                   {colorsMenu(
                     colorsCategories.palette,
                     "clothingGraphicsColor"
