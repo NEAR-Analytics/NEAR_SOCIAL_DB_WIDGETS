@@ -1,4 +1,10 @@
-export default function Widget({ message: string, bgColor: string }) {
+export default function Widget({
+  message,
+  bgColor,
+}: {
+  message: string,
+  bgColor: string,
+}) {
   return (
     <div
       style={{
