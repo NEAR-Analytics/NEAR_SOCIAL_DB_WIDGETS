@@ -3,7 +3,7 @@ export default function LinkTest() {
     <a
       onClick={() => {
         window.top.postMessage(
-          JSON.stringify({ action: "link", target: "www.google.com" }),
+          { action: "link", target: "www.google.com" },
           "*"
         );
       }}
