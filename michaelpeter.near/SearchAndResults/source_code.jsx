@@ -1,6 +1,6 @@
 import DummyImage from "/social-widgets/michaelpeter.near/DummyImage";
 
-function SearchAndResults({ title }: { title: string }) {
+export default function SearchAndResults({ title }: { title: string }) {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="text-2xl">{title}</h2>
