@@ -25,7 +25,9 @@ function toUrl(image) {
 }
 
 const thumb = (imageUrl) =>
-  thumbnail ? `https://i.near.social/${thumbnail}/${imageUrl}` : imageUrl;
+  thumbnail && imageUrl && !imageUrl.startsWith("data:image/")
+    ? `https://i.near.social/${thumbnail}/${imageUrl}`
+    : imageUrl;
 
 return image.nft.contractId && image.nft.tokenId ? (
   <Widget
