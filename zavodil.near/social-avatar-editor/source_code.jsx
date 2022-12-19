@@ -3,7 +3,7 @@ let ownerId = "zavodil.near";
 let userId = context.accountId;
 let contractId = "avtr.near";
 
-const MIN_DEPOSIT = "200000000000000000000000";
+const MIN_DEPOSIT = "300000000000000000000000";
 
 if (!userId) {
   return "Please login to generate a Social Avatar";
@@ -406,12 +406,12 @@ return (
           </div>
           {depositNear > 0 && (
             <div class="pt-2">
-              Components cost: {depositNear} NEAR. NFT storage: 0.2 NEAR
+              Components cost: {depositNear} NEAR. NFT storage: 0.3 NEAR
             </div>
           )}
           {depositNear == "0" && (
             <div class="pt-2">
-              You will be asked to attach 0.2 NEAR for NFT storage
+              You will be asked to attach 0.3 NEAR for NFT storage
             </div>
           )}
         </div>
