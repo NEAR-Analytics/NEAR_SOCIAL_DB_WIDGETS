@@ -36,28 +36,44 @@ return (
             className="text-truncate text-muted"
             style={{ paddingLeft: "1.8em" }}
           >
-            {value.type === "follow"
-              ? "followed you"
-              : value.type === "unfollow"
-              ? "unfollowed you"
-              : value.type === "purchase"
-              ? `NFT sale for ${new Big(value.amount ?? 0).div(
+            {value.type === "follow" ? (
+              "followed you"
+            ) : value.type === "unfollow" ? (
+              "unfollowed you"
+            ) : value.type === "purchase" ? (
+              <span>
+                NFT sale of
+                <a
+                  href={`/#/zavodil.near/widget/all-social-avatars?id=${value.token_id.replace(
+                    "Avatar #",
+                    ""
+                  )}`}
+                  class="text-dark"
+                >
+                  {value.token_id}
+                </a>
+                {`for ${new Big(value.amount ?? 0).div(
                   new Big(10).pow(24).toFixed(2)
-                )} NEAR`
-              : value.type === "poke"
-              ? "poked you"
-              : "???"}
+                )} NEAR`}
+              </span>
+            ) : value.type === "poke" ? (
+              "poked you"
+            ) : (
+              "???"
+            )}
             <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
           </div>
         </div>
         <div className="text-nowrap">
           {value.type === "follow" || value.type === "unfollow" ? (
             <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
-          ) : (
+          ) : value.type != "purchase" ? (
             <Widget
               src="mob.near/widget/PokeButton"
               props={{ accountId, back: true }}
             />
+          ) : (
+            ""
           )}
         </div>
       </div>
