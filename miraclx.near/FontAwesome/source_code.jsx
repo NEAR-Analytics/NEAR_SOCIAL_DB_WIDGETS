@@ -1,5 +1,7 @@
 let FA = styled.i`@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");`;
 
+console.log("FA", JSON.stringify(props));
+
 return props.dep == true ? (
   <FA />
 ) : (
@@ -14,10 +16,8 @@ return props.dep == true ? (
 <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />`}
     />
     <hr />
-    See{" "}
-    <a href="https://fontawesome.com/icons">
-      https://fontawesome.com/icons
-    </a>{" "}
+    See
+    <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a>
     for a list of all icons.
     <hr />
     <i class="fa-solid fa-user"></i>
