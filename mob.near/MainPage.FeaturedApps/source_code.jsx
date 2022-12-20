@@ -52,7 +52,10 @@ return (
     >
       {apps.map((app, i) => (
         <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
-          <div className="d-flex w-100" style={{ padding: "4em", gap: "4em" }}>
+          <div
+            className="d-flex justify-content-around flex-md-wrap w-100"
+            style={{ padding: "4em", gap: "4em" }}
+          >
             <div className="text-white flex-grow-1">
               <p>
                 <span className="badge bg-white bg-opacity-10 rounded-pill">
