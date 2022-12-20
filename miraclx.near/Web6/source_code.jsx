@@ -5,8 +5,8 @@ let iframe = Object.fromEntries(
 return (
   <>
     <iframe
-      width="420"
-      height="315"
+      width="100%"
+      height="500"
       allow="autoplay"
       src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&enablejsapi=1"
     ></iframe>
