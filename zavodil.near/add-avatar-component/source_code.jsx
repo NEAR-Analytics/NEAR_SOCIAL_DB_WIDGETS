@@ -77,7 +77,7 @@ return (
         />
       </div>
       <div class="mb-3">
-        <CommitButton disabled={!state.svg} data={data}>
+        <CommitButton disabled={!(state.type && state.name)} data={data}>
           Submit
         </CommitButton>
       </div>
