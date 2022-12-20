@@ -13,7 +13,7 @@ let path = Object.fromEntries(
 
 return (
   <>
-    <Widget src="miraclx.near/widget/FontAwesome?dep=1" />
+    <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
 
     <div class="container text-center">
       <iframe
