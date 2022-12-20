@@ -15,7 +15,7 @@ return (
       <h6>
         <Widget
           src="miraclx.near/widget/Attribution"
-          props={{ authors: ["miraclx.near"] }}
+          props={{ authors: ["miraclx.near"], dep: true }}
         />
       </h6>
     </div>
