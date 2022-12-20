@@ -4,11 +4,49 @@ let iframe = Object.fromEntries(
 
 return (
   <>
-    <iframe
-      width="100%"
-      height="500"
-      allow="autoplay"
-      src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&enablejsapi=1"
-    ></iframe>
+    <div class="container text-center">
+      <iframe
+        width="100%"
+        height="500"
+        allow="autoplay"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=0&enablejsapi=1"
+      ></iframe>
+      <hr />
+      <CommitButton
+        onClick={() => {
+          State.update({
+            lastRRTime: Date.now(),
+          });
+        }}
+        onCommit={() => {
+          State.update({
+            lastMoo: null,
+          });
+        }}
+        onCancel={() => {
+          State.update({
+            lastMoo: null,
+          });
+        }}
+        data={() => ({
+          index: {
+            web6: JSON.stringify({
+              key: "web6-idx",
+              value: Date.now(),
+            }),
+          },
+        })}
+      >
+        I just got rickrolled! 🤡
+      </CommitButton>
+
+      <br />
+      <br />
+
+      <Widget
+        src="miraclx.near/widget/Web6LeaderBoard"
+        props={{ accountId, widgetName, expanded: true }}
+      />
+    </div>
   </>
 );
