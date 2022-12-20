@@ -1,7 +1,5 @@
 let FA = styled.i`@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");`;
 
-console.log("FA", JSON.stringify(props));
-
 return props.dep == true ? (
   <FA />
 ) : (
