@@ -1,4 +1,4 @@
-let authors = props.authors ?? ["Nobody"];
+let authors = props.authors;
 
 function humanList(list) {
   let last = list.pop();
@@ -14,7 +14,8 @@ function humanList(list) {
   );
 }
 
-if (props.dep)
+function attribution(authors) {
+  authors = Array.isArray(authors) && authors.length ? authors : ["Nobody"];
   return (
     <span class="text-muted">
       By
@@ -38,6 +39,9 @@ if (props.dep)
       )}
     </span>
   );
+}
+
+if (props.dep) return attribution(authors);
 
 let Capped = styled.div`
 & > .col.md {
@@ -57,6 +61,18 @@ let Capped = styled.div`
 
 return (
   <>
+    <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
+
+    <div class="text-center">
+      <a href="https://near.social/#/miraclx.near/widget/YouTubeVideo">
+        <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
+          <i class="fa-brands fa-youtube text-danger"></i>
+        </h1>
+      </a>
+      <h4 class="text-secondary">Embed YouTube Videos in Near.Social</h4>
+      <h6>{attribution(["miraclx.near"])}</h6>
+    </div>
+
     <Capped className="row no-gutters">
       <div class="col md">
         <Markdown
@@ -67,12 +83,7 @@ return (
 />`}
         />
       </div>
-      <div class="col border-start">
-        <Widget
-          src="miraclx.near/widget/Attribution"
-          props={{ dep: true, authors: ["miraclx.near"] }}
-        />
-      </div>
+      <div class="col border-start">{attribution(["miraclx.near"])}</div>
     </Capped>
     <Capped className="row no-gutters border-top">
       <div class="col md">
@@ -85,10 +96,7 @@ return (
         />
       </div>
       <div class="col border-start">
-        <Widget
-          src="miraclx.near/widget/Attribution"
-          props={{ dep: true, authors: ["miraclx.near", "logunov.near"] }}
-        />
+        {attribution(["miraclx.near", "logunov.near"])}
       </div>
     </Capped>
     <Capped className="row no-gutters border-top">
@@ -126,7 +134,7 @@ return (
         />
       </div>
       <div class="col border-start">
-        <Widget src="miraclx.near/widget/Attribution" />
+        <Widget src="miraclx.near/widget/Attribution" props={{ dep: true }} />
       </div>
     </Capped>
   </>
