@@ -10,9 +10,6 @@ State.init({
 let iframe = Object.fromEntries(
   Object.entries(styled.i``).filter(([k]) => k)
 ).withComponent("iframe");
-let form = Object.fromEntries(
-  Object.entries(styled.i``).filter(([k]) => k)
-).withComponent("form");
 
 function embed() {
   return (
@@ -35,6 +32,10 @@ function updateVideoId(url) {
   let videoId = undefined !== arr[2] ? arr[2].split(/[^\w-]/i)[0] : arr[0];
   State.update({ videoId });
 }
+
+let form = Object.fromEntries(
+  Object.entries(styled.i``).filter(([k]) => k)
+).withComponent("form");
 
 return (
   <>
@@ -114,7 +115,7 @@ return (
     </div>
 
     <hr />
-    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+    <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
           class="nav-link text-dark active"
