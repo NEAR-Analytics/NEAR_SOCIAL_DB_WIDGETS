@@ -17,7 +17,7 @@ return (
         // height="500"
         allow="autoplay"
         style={{ width: "80vw", height: "80vh" }}
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=0&enablejsapi=1"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&enablejsapi=1"
       ></iframe>
 
       <hr />
