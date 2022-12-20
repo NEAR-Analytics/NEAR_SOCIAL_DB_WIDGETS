@@ -1,14 +1,12 @@
-const accountId = props.accountId ?? "*";
-
-const items = Social.index("graph", "follow", {
-  subscribe: true,
-  limit: 250,
-  order: "desc",
-});
-
-if (!items) {
-  return "Loading";
-}
+const index = {
+  action: "graph",
+  key: "follow",
+  options: {
+    subscribe: true,
+    limit: 50,
+    order: "desc",
+  },
+};
 
 const renderItem = (a) => (
   <div key={JSON.stringify(a)} className="mb-2">
@@ -38,6 +36,6 @@ const renderItem = (a) => (
 
 return (
   <div>
-    <Widget src="mob.near/widget/ItemFeed" props={{ items, renderItem }} />
+    <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
   </div>
 );
