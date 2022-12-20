@@ -1,3 +1,5 @@
+let autoplay = props.autoplay ?? 1;
+
 let iframe = Object.fromEntries(
   Object.entries(styled.p``).filter(([k]) => k)
 ).withComponent("iframe");
@@ -13,11 +15,11 @@ return (
   <>
     <div class="container text-center">
       <iframe
-        // width="100%"
-        // height="500"
         allow="autoplay"
-        style={{ width: "80vw", height: "80vh" }}
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&enablejsapi=1"
+        style={{ width: "75vw", height: "75vh" }}
+        src={`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=${Number(
+          autoplay
+        )}&controls=0&enablejsapi=1`}
       ></iframe>
 
       <hr />
