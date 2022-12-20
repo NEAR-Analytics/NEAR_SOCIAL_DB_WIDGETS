@@ -52,10 +52,18 @@ return (
     <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
 
     <div class="text-center">
-      <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
-        <i class="fa-brands fa-youtube text-danger"></i>
-      </h1>
+      <a href="https://near.social/#/miraclx.near/widget/YouTubeVideo">
+        <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
+          <i class="fa-brands fa-youtube text-danger"></i>
+        </h1>
+      </a>
       <h4 class="text-secondary">Embed YouTube Videos in Near.Social</h4>
+      <h6>
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ accountId: "miraclx.near" }}
+        />
+      </h6>
     </div>
 
     <div class="input-group mb-3">
