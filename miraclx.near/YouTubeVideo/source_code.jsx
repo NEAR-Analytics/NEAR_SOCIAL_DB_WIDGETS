@@ -81,7 +81,14 @@ return (
       >
         <Widget
           src="miraclx.near/widget/YouTubeVideo"
-          props={{ videoId: state.videoId, autoplay, width, height, controls }}
+          props={{
+            dep: false,
+            videoId: state.videoId,
+            autoplay,
+            width,
+            height,
+            controls,
+          }}
         />
       </div>
       <div
