@@ -1,10 +1,10 @@
-let autoplay = props.autoplay ?? 1;
-let width = props.width ?? "75vw";
-let height = props.height ?? "75vh";
-let controls = props.controls ?? true;
-let videoId = props.videoId ?? "dQw4w9WgXcQ";
-
-State.init({ videoId });
+State.init({
+  videoId: props.videoId ?? "dQw4w9WgXcQ",
+  controls: props.controls ?? true,
+  height: props.height ?? "75vh",
+  width: props.width ?? "75vw",
+  autoplay: props.autoplay ?? true,
+});
 
 let iframe = Object.fromEntries(
   Object.entries(styled.i``).filter(([k]) => k)
@@ -14,29 +14,42 @@ function embed() {
   return (
     <iframe
       allow="autoplay"
-      style={{ width, height }}
+      style={{ width: state.width, height: state.width }}
       src={`https://www.youtube.com/embed/${
         state.videoId
-      }?enablejsapi=1&autoplay=${Number(autoplay)}&controls=${
-        controls ? "1" : "0"
-      }`}
+      }?enablejsapi=1&autoplay=${Number(state.autoplay)}&controls=${Number(
+        state.controls
+      )}`}
     ></iframe>
   );
 }
 
 if (props.dep) return embed();
 
+function parseUpdate(url) {
+  const arr = url.split(/(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  let videoId = undefined !== arr[2] ? arr[2].split(/[^\w-]/i)[0] : arr[0];
+  State.update({ videoId });
+}
+
 return (
   <>
+    <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
     <div class="input-group mb-3">
-      <span class="input-group-text" id="videoId-label">
-        YouTube Video id:
+      <span
+        class="input-group-text"
+        id="videoId-label"
+        style={{ color: "red" }}
+      >
+        <i class="fa-brands fa-youtube"></i>
       </span>
       <input
         type="text"
-        class="form-control"
+        class="form-control border-danger"
         aria-describedby="videoId-label"
+        placeholder="YouTube Video ID (ex: dQw4w9WgXcQ)"
         value={state.videoId}
+        onChange={(e) => parseUpdate(e.target.value)}
       />
     </div>
     <hr />
@@ -79,17 +92,8 @@ return (
         role="tabpanel"
         aria-labelledby="preview-tab"
       >
-        <Widget
-          src="miraclx.near/widget/YouTubeVideo"
-          props={{
-            dep: false,
-            videoId: state.videoId,
-            autoplay,
-            width,
-            height,
-            controls,
-          }}
-        />
+        <br />
+        {embed()}
       </div>
       <div
         class="tab-pane fade"
@@ -101,7 +105,11 @@ return (
           text={`\`\`\`jsx
 <Widget
     src="miraclx.near/widget/YouTubeVideo"
-    props={{ videoId: "${state.videoId}", autoplay: ${autoplay}, width: "${width}", height: "${height}", controls: ${controls} }}
+    props={{
+      videoId: "${state.videoId}",
+      width: "${state.width}", height: "${state.height}",
+      autoplay: ${state.autoplay}, controls: ${state.controls}
+    }}
 />
 `}
         />
