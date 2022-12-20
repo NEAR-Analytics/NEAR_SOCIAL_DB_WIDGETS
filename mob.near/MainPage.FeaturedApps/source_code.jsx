@@ -11,6 +11,7 @@ const featuredApps = [
 ];
 
 const keys = featuredApps.map((k) => `${k}/metadata`);
+const authors = keys.map((key) => key.split("/")[0]);
 
 const data = Social.getr(keys, "final");
 
@@ -41,31 +42,41 @@ return (
         ></button>
       ))}
     </div>
-    <div className="carousel-inner">
+    <div
+      className="carousel-inner rounded-4"
+      style={{
+        background: "rgb(53,120,255)",
+        backgroundImage:
+          "linear-gradient(132deg, rgba(53,120,255,1) 0%, rgba(175,117,189,1) 100%)",
+      }}
+    >
       {apps.map((app, i) => (
         <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
-          <div
-            className="d-flex w-100 rounded bg-primary bg-gradient"
-            style={{ padding: "4em", gap: "4em" }}
-          >
+          <div className="d-flex w-100" style={{ padding: "4em", gap: "4em" }}>
             <div className="text-white flex-grow-1">
               <p>
                 <span className="badge bg-white bg-opacity-10 rounded-pill">
                   Featured App
                 </span>
               </p>
-              <h4>{app.name}</h4>
+              <h2>{app.name}</h2>
               <p>{app.description}</p>
               <p>
                 <Widget
                   src="mob.near/widget/ProfileLine"
                   props={{
-                    accountId: featuredApps[i].accountId,
+                    link: false,
+                    accountId: authors[i],
                     hideAccountId: true,
                   }}
                 />
               </p>
-              <a className="btn btn-dark">Launch</a>
+              <a
+                className="btn btn-dark rounded-3"
+                href={`#/${featuredApps[i]}`}
+              >
+                Launch
+              </a>
             </div>
             <ImgWrapper>
               <Widget
@@ -73,7 +84,7 @@ return (
                 props={{
                   image: app.image,
                   alt: app.name,
-                  className: "w-100 h-100 rounded",
+                  className: "w-100 h-100 rounded-4",
                   fallbackUrl:
                     "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
                 }}
