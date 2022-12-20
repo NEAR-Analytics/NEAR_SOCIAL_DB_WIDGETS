@@ -40,17 +40,21 @@ let form = Object.fromEntries(
 return (
   <>
     <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
+
+    <div class="text-center">
+      <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
+        <i class="fa-brands fa-youtube text-danger"></i>
+      </h1>
+      <h4 class="text-secondary">Embed YouTube Videos in Near.Social</h4>
+    </div>
+
     <div class="input-group mb-3">
-      <span
-        class="input-group-text"
-        id="videoId-label"
-        style={{ color: "red" }}
-      >
-        <i class="fa-brands fa-youtube"></i>
+      <span class="input-group-text" id="videoId-label">
+        <i class="fa-solid fa-link"></i>
       </span>
       <input
         type="text"
-        class="form-control border-danger"
+        class="form-control"
         aria-describedby="videoId-label"
         placeholder="YouTube Video ID (ex: dQw4w9WgXcQ)"
         value={state.videoId}
@@ -128,7 +132,7 @@ return (
           aria-selected={state.view == "preview"}
           onClick={() => State.update({ view: "preview" })}
         >
-          Preview
+          <i class="fa-solid fa-video"></i> Preview
         </button>
       </li>
       <li class="nav-item" role="presentation">
@@ -143,7 +147,7 @@ return (
           aria-selected={state.view == "code"}
           onClick={() => State.update({ view: "code" })}
         >
-          Code
+          <i class="fa-solid fa-code"></i> Code
         </button>
       </li>
     </ul>
