@@ -39,11 +39,95 @@ if (props.dep)
     </span>
   );
 
+let Capped = styled.div`
+& > .col.md {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+}
+
+& > .col.md > pre {
+    margin: 0px;
+}
+
+& > .col.md > pre > div {
+    margin: 0px !important;
+}
+`;
+
 return (
   <>
-    <Widget
-      src="miraclx.near/widget/Attribution"
-      props={{ dep: true, authors: ["miraclx.near"] }}
-    />
+    <Capped className="row no-gutters">
+      <div class="col md">
+        <Markdown
+          text={`\`\`\`jsx
+<Widget
+  src="miraclx.near/widget/Attribution"
+  props={{ dep: true, authors: ["miraclx.near"] }}
+/>`}
+        />
+      </div>
+      <div class="col border-start">
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ dep: true, authors: ["miraclx.near"] }}
+        />
+      </div>
+    </Capped>
+    <Capped className="row no-gutters border-top">
+      <div class="col md">
+        <Markdown
+          text={`\`\`\`jsx
+<Widget
+  src="miraclx.near/widget/Attribution"
+  props={{ dep: true, authors: ["miraclx.near", "logunov.near"] }}
+/>`}
+        />
+      </div>
+      <div class="col border-start">
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ dep: true, authors: ["miraclx.near", "logunov.near"] }}
+        />
+      </div>
+    </Capped>
+    <Capped className="row no-gutters border-top">
+      <div class="col md">
+        <Markdown
+          text={`\`\`\`jsx
+<Widget
+  src="miraclx.near/widget/Attribution"
+  props={{
+    dep: true,
+    authors: [
+      "miraclx.near",
+      "logunov.near",
+      "esaminu.near"
+    ]
+  }}
+/>`}
+        />
+      </div>
+      <div class="col border-start">
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{
+            dep: true,
+            authors: ["miraclx.near", "logunov.near", "esaminu.near"],
+          }}
+        />
+      </div>
+    </Capped>
+    <Capped className="row no-gutters border-top">
+      <div class="col md">
+        <Markdown
+          text={`\`\`\`jsx
+<Widget src="miraclx.near/widget/Attribution" />`}
+        />
+      </div>
+      <div class="col border-start">
+        <Widget src="miraclx.near/widget/Attribution" />
+      </div>
+    </Capped>
   </>
 );
