@@ -53,7 +53,7 @@ return (
       {apps.map((app, i) => (
         <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
           <div
-            className="d-flex justify-content-around flex-md-wrap w-100"
+            className="d-flex justify-content-around flex-wrap flex-md-nowrap w-100"
             style={{ padding: "4em", gap: "4em" }}
           >
             <div className="text-white flex-grow-1">
@@ -97,23 +97,5 @@ return (
         </div>
       ))}
     </div>
-    <button
-      className="carousel-control-prev"
-      type="button"
-      data-bs-target="#featuredApps"
-      data-bs-slide="prev"
-    >
-      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span className="visually-hidden">Previous</span>
-    </button>
-    <button
-      className="carousel-control-next"
-      type="button"
-      data-bs-target="#featuredApps"
-      data-bs-slide="next"
-    >
-      <span className="carousel-control-next-icon" aria-hidden="true"></span>
-      <span className="visually-hidden">Next</span>
-    </button>
   </div>
 );
