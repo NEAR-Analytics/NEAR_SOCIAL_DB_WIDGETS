@@ -44,7 +44,10 @@ if (state.fetchFrom) {
   const newItems = Social.index(
     index.action,
     index.key,
-    Object.assign({}, index.options, { from: state.fetchFrom })
+    Object.assign({}, index.options, {
+      from: state.fetchFrom,
+      subscribe: undefined,
+    })
   );
   if (newItems !== null) {
     state.items.push(...newItems);
