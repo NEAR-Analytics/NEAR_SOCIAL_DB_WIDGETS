@@ -83,7 +83,12 @@ return (
 />`}
         />
       </div>
-      <div class="col border-start">{attribution(["miraclx.near"])}</div>
+      <div class="col border-start">
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ dep: true, authors: ["miraclx.near"] }}
+        />
+      </div>
     </Capped>
     <Capped className="row no-gutters border-top">
       <div class="col md">
@@ -96,7 +101,10 @@ return (
         />
       </div>
       <div class="col border-start">
-        {attribution(["miraclx.near", "logunov.near"])}
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ dep: true, authors: ["miraclx.near", "logunov.near"] }}
+        />
       </div>
     </Capped>
     <Capped className="row no-gutters border-top">
@@ -107,11 +115,7 @@ return (
   src="miraclx.near/widget/Attribution"
   props={{
     dep: true,
-    authors: [
-      "miraclx.near",
-      "logunov.near",
-      "esaminu.near"
-    ]
+    authors: ["miraclx.near", "logunov.near", "esaminu.near"],
   }}
 />`}
         />
@@ -130,7 +134,10 @@ return (
       <div class="col md">
         <Markdown
           text={`\`\`\`jsx
-<Widget src="miraclx.near/widget/Attribution" />`}
+<Widget
+  src="miraclx.near/widget/Attribution"
+  props={{ dep: true }}
+/>`}
         />
       </div>
       <div class="col border-start">
