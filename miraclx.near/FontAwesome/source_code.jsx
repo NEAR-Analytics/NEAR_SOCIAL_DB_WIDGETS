@@ -6,7 +6,7 @@ return (
   <>
     <FA />
     <div class="text-center">
-      <a href="https://near.social/#/miraclx.near/widget/FontAwesome">
+      <a href="#/miraclx.near/widget/FontAwesome">
         <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
           <i class="fa-brands fa-square-font-awesome"></i>
         </h1>
