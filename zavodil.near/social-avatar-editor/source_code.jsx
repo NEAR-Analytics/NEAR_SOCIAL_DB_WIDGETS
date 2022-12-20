@@ -195,13 +195,18 @@ let itemsMenu = (collection, name) => {
         : ""}
     </option>
   ));
+
   return (
     <div class="input-group mb-3">
       <select
         class="form-select"
         onChange={(e) => {
-          state.options[name] = e.target.value;
-          State.update({ options: state.options });
+          let options = state.options;
+          if (name == "clothing" && e.target.value != "graphicShirt") {
+            options["clothingGraphic"] = "none";
+          }
+          options[name] = e.target.value;
+          State.update({ options });
         }}
       >
         {items}
