@@ -1,5 +1,14 @@
+function extractVideoId(url) {
+  const arr = url.split(/(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  return undefined !== arr[2] ? arr[2].split(/[^\w-]/i)[0] : arr[0];
+}
+
+let videoId = props.videoId ?? "dQw4w9WgXcQ";
+let rawVideoId = extractVideoId(videoId);
+
 State.init({
-  videoId: props.videoId ?? "dQw4w9WgXcQ",
+  videoId,
+  rawVideoId,
   controls: props.controls ?? true,
   height: props.height ?? "75vh",
   width: props.width ?? "75vw",
@@ -28,6 +37,7 @@ function embed() {
 if (props.dep) return embed();
 
 function updateVideoId(url) {
+  State.update({ rawVideoId: url });
   const arr = url.split(/(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   let videoId = undefined !== arr[2] ? arr[2].split(/[^\w-]/i)[0] : arr[0];
   State.update({ videoId });
@@ -57,7 +67,7 @@ return (
         class="form-control"
         aria-describedby="videoId-label"
         placeholder="YouTube Video ID (ex: dQw4w9WgXcQ)"
-        value={state.videoId}
+        value={state.rawVideoId}
         onChange={(e) => updateVideoId(e.target.value)}
       />
     </div>
