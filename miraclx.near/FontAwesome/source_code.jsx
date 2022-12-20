@@ -1,6 +1,6 @@
 let FA = styled.i`@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");`;
 
-return props.dep === "1" ? (
+return props.dep == true ? (
   <FA />
 ) : (
   <>
@@ -11,7 +11,7 @@ return props.dep === "1" ? (
     <br />
     <Markdown
       text={`\`\`\`jsx
-<Widget src="miraclx.near/widget/FontAwesome?dep=1" />`}
+<Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />`}
     />
     <hr />
     See{" "}
