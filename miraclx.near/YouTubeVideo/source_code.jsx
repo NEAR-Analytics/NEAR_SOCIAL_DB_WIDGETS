@@ -52,7 +52,7 @@ return (
     <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
 
     <div class="text-center">
-      <a href="https://near.social/#/miraclx.near/widget/YouTubeVideo">
+      <a href="#/miraclx.near/widget/YouTubeVideo">
         <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
           <i class="fa-brands fa-youtube text-danger"></i>
         </h1>
