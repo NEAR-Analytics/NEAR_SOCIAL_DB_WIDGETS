@@ -155,7 +155,7 @@ return (
         aria-labelledby="preview-tab"
       >
         <br />
-        {state.view === "preview" ? embed() : <>{state.view}</>}
+        {embed()}
       </div>
       <div
         class="tab-pane fade"
