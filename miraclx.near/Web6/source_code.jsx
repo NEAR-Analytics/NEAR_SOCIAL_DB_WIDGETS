@@ -42,13 +42,14 @@ return (
         I just got rickrolled! 🤡
       </CommitButton>
 
+      <button class="btn btn-outline-secondary" title="Copy Share Link">
+        🔗
+      </button>
+
       <br />
       <br />
 
-      <Widget
-        src="miraclx.near/widget/Web6LeaderBoard"
-        props={{ accountId, widgetName, expanded: true }}
-      />
+      <Widget src="miraclx.near/widget/Web6LeaderBoard" />
     </div>
   </>
 );
