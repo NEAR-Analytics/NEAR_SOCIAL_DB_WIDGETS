@@ -118,7 +118,7 @@ return (
     <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
-          class="nav-link text-dark active"
+          class="nav-link active"
           id="preview-tab"
           data-bs-toggle="tab"
           data-bs-target="#preview"
@@ -126,14 +126,14 @@ return (
           role="tab"
           aria-controls="preview"
           aria-selected={state.view == "preview"}
-          onChange={() => State.update({ view: "preview" })}
+          onClick={() => State.update({ view: "preview" })}
         >
           Preview
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button
-          class="nav-link text-dark"
+          class="nav-link"
           id="code-tab"
           data-bs-toggle="tab"
           data-bs-target="#code"
@@ -170,7 +170,8 @@ return (
     props={{
       videoId: "${state.videoId}",
       width: "${state.width}", height: "${state.height}",
-      autoplay: ${state.autoplay}, controls: ${state.controls}
+      autoplay: ${state.autoplay}, controls: ${state.controls},
+      dep: true
     }}
 />
 `}
