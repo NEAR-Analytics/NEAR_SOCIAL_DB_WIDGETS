@@ -1,3 +1,10 @@
-let FA = styled.i`@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");`;
-
-return <FA></FA>;
+return (
+  <>
+    Looks like you're lost.
+    <hr />
+    Since you're here, you might as well follow
+    <a href="#/mob.near/widget/ProfilePage?accountId=miraclx.near">
+      miraclx.near
+    </a>
+  </>
+);
