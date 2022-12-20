@@ -102,6 +102,7 @@ return (
             aria-label="Width"
             aria-describedby="widthLabel"
             value={state.width}
+            onChange={(e) => State.update({ width: e.target.value })}
           />
           <span class="input-group-text" id="heightLabel">
             <i class="fa-solid fa-up-down"></i>
@@ -113,6 +114,7 @@ return (
             aria-label="Height"
             aria-describedby="heightLabel"
             value={state.height}
+            onChange={(e) => State.update({ height: e.target.value })}
           />
         </div>
       </div>
