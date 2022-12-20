@@ -1,8 +1,8 @@
 let FA = styled.i`@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");`;
 
-return props.dep == true ? (
-  <FA />
-) : (
+if (props.dep) return <FA />;
+
+return (
   <>
     <FA />
     This is a demo showing that Font Awesome works in the browser.
