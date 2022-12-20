@@ -15,7 +15,7 @@ function embed() {
   return (
     <iframe
       allow="autoplay"
-      style={{ width: state.width, height: state.width }}
+      style={{ width: state.width, height: state.height }}
       src={`https://www.youtube.com/embed/${
         state.videoId
       }?enablejsapi=1&autoplay=${Number(state.autoplay)}&controls=${Number(
