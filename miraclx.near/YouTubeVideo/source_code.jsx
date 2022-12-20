@@ -4,11 +4,15 @@ State.init({
   height: props.height ?? "75vh",
   width: props.width ?? "75vw",
   autoplay: props.autoplay ?? true,
+  view: "preview",
 });
 
 let iframe = Object.fromEntries(
   Object.entries(styled.i``).filter(([k]) => k)
 ).withComponent("iframe");
+let form = Object.fromEntries(
+  Object.entries(styled.i``).filter(([k]) => k)
+).withComponent("form");
 
 function embed() {
   return (
@@ -26,7 +30,7 @@ function embed() {
 
 if (props.dep) return embed();
 
-function parseUpdate(url) {
+function updateVideoId(url) {
   const arr = url.split(/(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   let videoId = undefined !== arr[2] ? arr[2].split(/[^\w-]/i)[0] : arr[0];
   State.update({ videoId });
@@ -49,11 +53,68 @@ return (
         aria-describedby="videoId-label"
         placeholder="YouTube Video ID (ex: dQw4w9WgXcQ)"
         value={state.videoId}
-        onChange={(e) => parseUpdate(e.target.value)}
+        onChange={(e) => updateVideoId(e.target.value)}
       />
     </div>
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="form-check form-check-inline form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="autoplayCheckbox"
+              checked={state.autoplay}
+              onChange={(e) => State.update({ autoplay: !state.autoplay })}
+            />
+            <label class="form-check-label" for="autoplayCheckbox">
+              Autoplay
+            </label>
+          </div>
+          <div class="form-check form-check-inline form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="controlsCheckbox"
+              checked={state.controls}
+              onChange={(e) => State.update({ controls: !state.controls })}
+            />
+            <label class="form-check-label" for="controlsCheckbox">
+              Controls
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="col">
+        <div class="input-group">
+          <span class="input-group-text" id="widthLabel">
+            <i class="fa-solid fa-left-right"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Width"
+            aria-label="Width"
+            aria-describedby="widthLabel"
+            value={state.width}
+          />
+          <span class="input-group-text" id="heightLabel">
+            <i class="fa-solid fa-up-down"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Height"
+            aria-label="Height"
+            aria-describedby="heightLabel"
+            value={state.height}
+          />
+        </div>
+      </div>
+    </div>
+
     <hr />
-    <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
           class="nav-link text-dark active"
@@ -64,7 +125,7 @@ return (
           role="tab"
           aria-controls="preview"
           aria-selected={state.view == "preview"}
-          onClick={() => (state.view = "preview")}
+          onChange={() => State.update({ view: "preview" })}
         >
           Preview
         </button>
@@ -79,7 +140,7 @@ return (
           role="tab"
           aria-controls="code"
           aria-selected={state.view == "code"}
-          onClick={() => (state.view = "code")}
+          onClick={() => State.update({ view: "code" })}
         >
           Code
         </button>
@@ -93,7 +154,7 @@ return (
         aria-labelledby="preview-tab"
       >
         <br />
-        {embed()}
+        {state.view === "preview" ? embed() : <></>}
       </div>
       <div
         class="tab-pane fade"
