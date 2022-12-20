@@ -97,7 +97,7 @@ state.tokens.map((token) => {
     >
       {`Avatar-${avatarId}`}
       {token_id}
-      <div class="modal-dialog">
+      <div class="modal-dialog ">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id={`token-${token_id}Label`}>
@@ -117,7 +117,7 @@ state.tokens.map((token) => {
           </div>
           <div class="modal-body text-center">
             <img src={token.metadata.media} />
-            <div class="pt-2">
+            <div class="pt-2 overflow-hidden">
               Token owner:
               <Widget
                 src={`zavodil.near/widget/ProfileLine`}
