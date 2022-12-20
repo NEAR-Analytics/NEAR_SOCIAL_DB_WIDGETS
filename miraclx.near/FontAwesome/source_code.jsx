@@ -5,6 +5,21 @@ if (props.dep) return <FA />;
 return (
   <>
     <FA />
+    <div class="text-center">
+      <a href="https://near.social/#/miraclx.near/widget/FontAwesome">
+        <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
+          <i class="fa-brands fa-square-font-awesome"></i>
+        </h1>
+      </a>
+      <h4 class="text-secondary">Use FontAwesome in Near.Social</h4>
+      <h6>
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ accountId: "miraclx.near" }}
+        />
+      </h6>
+    </div>
+    <br />
     This is a demo showing that Font Awesome works in the browser.
     <br />
     Import this widget into yours to add font awesome support.
