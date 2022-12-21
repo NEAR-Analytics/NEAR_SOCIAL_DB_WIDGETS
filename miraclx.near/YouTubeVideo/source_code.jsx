@@ -1,3 +1,10 @@
+function el$($p, $n, $a) {
+  if (!$n && typeof $p == "string") return el$(styled.i``, $p);
+  if (!("$$typeof" in $p)) throw new Error("Parent is not a react element");
+  let { withComponent } = $p;
+  return withComponent($n);
+}
+
 function extractVideoId(url) {
   const arr = url.split(/(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   return undefined !== arr[2] ? arr[2].split(/[^\w-]/i)[0] : arr[0];
@@ -16,9 +23,7 @@ State.init({
   view: "preview",
 });
 
-let iframe = Object.fromEntries(
-  Object.entries(styled.i``).filter(([k]) => k)
-).withComponent("iframe");
+let iframe = el$("iframe");
 
 function embed() {
   return (
@@ -43,9 +48,7 @@ function updateVideoId(url) {
   State.update({ videoId });
 }
 
-let form = Object.fromEntries(
-  Object.entries(styled.i``).filter(([k]) => k)
-).withComponent("form");
+let form = el$("form");
 
 return (
   <>
@@ -61,7 +64,7 @@ return (
       <h6>
         <Widget
           src="miraclx.near/widget/Attribution"
-          props={{ authors: ["miraclx.near"] }}
+          props={{ authors: ["miraclx.near"], dep: true }}
         />
       </h6>
     </div>
