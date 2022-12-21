@@ -25,7 +25,7 @@ return (
                 />
               </a>
             </div>
-            <div className="text-nowrap">
+            <div className="d-none text-nowrap d-md-block">
               <Widget
                 src="mob.near/widget/FollowButton"
                 props={{ accountId }}
