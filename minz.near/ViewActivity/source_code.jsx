@@ -77,6 +77,58 @@ function callJoin() {
   });
 }
 
+function callClaim() {
+  Near.call({
+    contractName: CONTRACT,
+    methodName: "claim",
+    args: {
+      event_id: event_id,
+    },
+  });
+}
+
+function button(data) {
+  let deadline = new Date(data.deadline / 1000000);
+  let today = new Date();
+  if (data.status == "WAITING") {
+    if (deadline > today) {
+      return (
+        <Join>
+          <button onClick={callJoin}>
+            Join for <b>{Math.round((data.price / 1e24) * 100) / 100} NEAR </b>
+          </button>{" "}
+          <JoinBy>
+            Join by{" "}
+            {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}
+          </JoinBy>
+        </Join>
+      );
+    } else {
+      return (
+        <Join>
+          <button onClick={callClaim}>End Event</button>{" "}
+          <JoinBy>
+            Deadline
+            {new Date(data.deadline / 1000000)
+              .toISOString()
+              .substring(0, 10)}{" "}
+            passed
+          </JoinBy>
+        </Join>
+      );
+    }
+  } else {
+    return (
+      <JoinBy>
+        <br />
+        Deadline
+        {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}{" "}
+        passed
+      </JoinBy>
+    );
+  }
+}
+
 return (
   <Card>
     {data.image_link && (
@@ -103,14 +155,6 @@ return (
         : "Join to be the first participant!"}
     </ParticipantCount>
     {participantWidgets}
-    <Join>
-      <button onClick={callJoin}>
-        Join for <b>{Math.round((data.price / 1e24) * 100) / 100} NEAR</b>
-      </button>{" "}
-      <JoinBy>
-        Join by{" "}
-        {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}
-      </JoinBy>
-    </Join>
+    {button(data)}
   </Card>
 );
