@@ -311,13 +311,27 @@ return (
   <>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 col-s-12 text-center" style={style}>
-          <AvatarDiv>
-            <Widget
-              src={`${ownerId}/widget/social-avatar-image`}
-              props={{ paths, options: state.options }}
-            />
-          </AvatarDiv>
+        <div class="col-md-6 col-s-12 text-center">
+          <div>
+            <AvatarDiv>
+              <Widget
+                src={`${ownerId}/widget/social-avatar-image`}
+                props={{ paths, options: state.options }}
+              />
+            </AvatarDiv>
+          </div>
+          <div class="d-block d-sm-none">
+            <button
+              class="btn btn-outline-primary pt-1 mb-2"
+              onClick={() =>
+                State.update({
+                  options: RandomAvatar(state.paths[ownerId][appName]),
+                })
+              }
+            >
+              Random
+            </button>
+          </div>
         </div>
 
         <div class="col-md-6 col-s-12">
