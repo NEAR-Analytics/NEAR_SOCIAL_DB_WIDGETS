@@ -2,7 +2,7 @@ const accountId = props.debugAccountId ?? context.accountId;
 
 if (!accountId) {
   return (
-    <div className="alert alert-warning rounded-4">
+    <div className="alert alert-warning rounded-4 mb-3">
       <div className="d-flex justify-content-between align-items-center">
         <div className="fw-bold">Sign in to start using near.social</div>
         <div>
@@ -32,7 +32,7 @@ const editProfileButton = (
 
 if (!name) {
   return (
-    <div className="alert alert-warning rounded-4">
+    <div className="alert alert-warning rounded-4 mb-3">
       <p>Your profile is missing a name.</p>
       {editProfileButton}
     </div>
@@ -45,7 +45,7 @@ if (
   !image.url
 ) {
   return (
-    <div className="alert alert-warning rounded-4">
+    <div className="alert alert-warning rounded-4 mb-3">
       <p>Your profile is missing a picture.</p>
       {editProfileButton}
     </div>
