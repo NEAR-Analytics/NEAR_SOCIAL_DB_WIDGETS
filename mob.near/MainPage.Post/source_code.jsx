@@ -1,6 +1,7 @@
 const accountId = props.accountId;
 const blockHeight = props.blockHeight;
-const content = props.content;
+const content =
+  props.content ?? Social.get(`${accountId}/post/main`, blockHeight);
 
 return (
   <div className="border rounded-4 p-3">
