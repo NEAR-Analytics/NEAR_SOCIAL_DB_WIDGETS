@@ -1,22 +1,34 @@
 const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 const content =
-  props.content ?? Social.get(`${accountId}/post/main`, blockHeight);
+  props.content ??
+  JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
 
 return (
   <div className="border rounded-4 p-3">
     <div className="d-flex flex-row align-items-center">
       <div className="flex-grow-1 text-truncate">
-        <Widget
-          src="mob.near/widget/Profile.ShortInlineBlock"
-          props={{ accountId }}
-        />
+        <a
+          className="text-dark text-decoration-none text-truncate"
+          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+        >
+          <Widget
+            src="mob.near/widget/Profile.ShortInlineBlock"
+            props={{ accountId }}
+          />
+        </a>
       </div>
-      <small className="text-nowrap text-muted ">
-        <Widget
-          src="mob.near/widget/TimeAgo"
-          props={{ blockHeight, now: blockHeight === "now" }}
-        />
+      <small className="text-nowrap text-muted">
+        {blockHeight === "now" ? (
+          "now"
+        ) : (
+          <a
+            className="text-muted"
+            href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+          >
+            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+          </a>
+        )}
       </small>
     </div>
     <div className="mt-3">
