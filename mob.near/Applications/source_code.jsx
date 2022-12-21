@@ -30,7 +30,7 @@ return (
 
     <Widget
       src="mob.near/widget/WidgetIcons"
-      props={{ tag: "app", limit: 21 }}
+      props={{ tag: "app", limit: 24 }}
     />
   </div>
 );
