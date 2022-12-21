@@ -1,6 +1,6 @@
 const data = Social.keys("*/profile", "final");
 
-const lastN = props.lastN || 21;
+const limit = props.limit || 21;
 
 if (!data) {
   return "Loading";
@@ -8,7 +8,7 @@ if (!data) {
 
 let accounts = Object.entries(data);
 const numAccounts = accounts.length;
-accounts = accounts.slice(numAccounts - lastN, numAccounts);
+accounts = accounts.slice(numAccounts - limit, numAccounts);
 
 const allWidgets = [];
 
