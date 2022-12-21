@@ -1,5 +1,3 @@
-let authors = props.authors;
-
 function humanList(list) {
   let last = list.pop();
   return (
@@ -41,7 +39,7 @@ function attribution(authors) {
   );
 }
 
-if (props.dep) return attribution(authors);
+if (props.dep) return attribution(props.authors);
 
 let Capped = styled.div`
 & > .col.md {
@@ -64,14 +62,23 @@ return (
     <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
 
     <div class="text-center">
-      <a href="https://near.social/#/miraclx.near/widget/YouTubeVideo">
+      <a href="#/miraclx.near/widget/Attribution">
         <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
-          <i class="fa-brands fa-youtube text-danger"></i>
+          <i class="fa-solid fa-at"></i>
         </h1>
       </a>
-      <h4 class="text-secondary">Embed YouTube Videos in Near.Social</h4>
-      <h6>{attribution(["miraclx.near"])}</h6>
+      <h4 class="text-secondary">
+        Add attribution to your Near.Social widgets
+      </h4>
+      <h6>
+        <Widget
+          src="miraclx.near/widget/Attribution"
+          props={{ authors: ["miraclx.near"], dep: true }}
+        />
+      </h6>
     </div>
+
+    <hr />
 
     <Capped className="row no-gutters">
       <div class="col md">
