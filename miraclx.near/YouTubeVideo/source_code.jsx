@@ -69,6 +69,8 @@ return (
       </h6>
     </div>
 
+    <hr />
+
     <div class="input-group mb-3">
       <span class="input-group-text" id="videoId-label">
         <i class="fa-solid fa-link"></i>
