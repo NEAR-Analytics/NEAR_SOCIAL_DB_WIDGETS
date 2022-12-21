@@ -1,8 +1,8 @@
 return (
   <>
+    <Widget src="mob.near/widget/ProfileOnboarding" />
     {context.accountId && (
       <div className="text-bg-light rounded-4 p-3 mb-3">
-        <Widget src="mob.near/widget/ProfileOnboarding" />
         <a
           href={`#/mob.near/widget/ProfilePage`}
           className="text-decoration-none link-dark"
