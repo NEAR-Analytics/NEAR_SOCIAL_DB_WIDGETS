@@ -40,6 +40,7 @@ return (
         <div>
           <CommitButton
             disabled={!content}
+            force
             className="btn btn-dark rounded-3"
             data={{
               post: {
