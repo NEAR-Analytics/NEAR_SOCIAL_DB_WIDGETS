@@ -178,7 +178,7 @@ return (
     </ul>
     <div class="tab-content" id="myTabContent">
       <div
-        class="tab-pane fade show active"
+        class="tab-pane fade show active text-center"
         id="preview"
         role="tabpanel"
         aria-labelledby="preview-tab"
