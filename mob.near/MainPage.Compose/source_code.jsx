@@ -2,12 +2,32 @@ if (!context.accountId) {
   return "";
 }
 
-const post = () => {};
-
 State.init({
   image: {},
   text: "",
 });
+
+const content = (state.text || state.image.cid) && {
+  type: "md",
+  text: state.text,
+  image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
+};
+
+const post = () => {
+  Social.set({
+    post: {
+      main: JSON.stringify(content),
+    },
+    index: {
+      post: JSON.stringify({
+        key: "main",
+        value: {
+          type: "md",
+        },
+      }),
+    },
+  });
+};
 
 const onChange = (text) => {
   State.update({
@@ -34,24 +54,27 @@ return (
           />
         </div>
         <div>
-          <button className="btn btn-dark rounded-3" onClick={post}>
+          <button
+            disabled={!content}
+            className="btn btn-dark rounded-3"
+            onClick={post}
+          >
             Post
           </button>
         </div>
       </div>
     </div>
-    {(state.text || state.image.cid) && (
-      <Widget
-        src="mob.near/widget/MainPage.Post"
-        props={{
-          accountId: context.accountId,
-          content: {
-            text: state.text,
-            image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
-          },
-          blockHeight: "now",
-        }}
-      />
+    {content && (
+      <div className="mt-3">
+        <Widget
+          src="mob.near/widget/MainPage.Post"
+          props={{
+            accountId: context.accountId,
+            content,
+            blockHeight: "now",
+          }}
+        />
+      </div>
     )}
   </>
 );
