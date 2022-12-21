@@ -14,7 +14,7 @@ const description = profile.description;
 const pills = [
   { id: "bio", title: "Bio" },
   { id: "posts", title: "Posts" },
-  { id: "nft", title: "NFTs" },
+  { id: "nfts", title: "NFTs" },
   { id: "widget", title: "Widgets" },
 ];
 
@@ -68,11 +68,11 @@ return (
       </div>
       <div
         className="tab-pane fade"
-        id="pills-nft"
+        id="pills-nfts"
         role="tabpanel"
-        aria-labelledby="pills-nft-tab"
+        aria-labelledby="pills-nfts-tab"
       >
-        {state.loadnft && (
+        {state.loadnfts && (
           <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
         )}
       </div>
@@ -82,7 +82,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        {state.loadwidgets && (
+        {state.loadwidget && (
           <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
         )}
       </div>
