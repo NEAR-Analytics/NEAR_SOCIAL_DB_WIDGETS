@@ -5,7 +5,7 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const name = profile.name;
 
 return (
-  <div className="d-flex flex-row">
+  <div className="d-inline-flex flex-row">
     <Widget
       src="mob.near/widget/ProfileImage"
       props={{
