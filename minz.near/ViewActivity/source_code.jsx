@@ -108,7 +108,7 @@ function button(data) {
         <Join>
           <button onClick={callClaim}>End Event</button>{" "}
           <JoinBy>
-            Deadline
+            Event deadline
             {new Date(data.deadline / 1000000)
               .toISOString()
               .substring(0, 10)}{" "}
@@ -121,7 +121,7 @@ function button(data) {
     return (
       <JoinBy>
         <br />
-        Deadline
+        Event deadline
         {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}{" "}
         passed
       </JoinBy>
