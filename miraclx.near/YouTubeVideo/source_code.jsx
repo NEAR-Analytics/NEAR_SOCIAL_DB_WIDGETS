@@ -17,8 +17,8 @@ State.init({
   videoId,
   rawVideoId,
   controls: props.controls ?? true,
-  height: props.height ?? "75vh",
-  width: props.width ?? "75vw",
+  height: props.height ?? "50vh",
+  width: props.width ?? "50vw",
   autoplay: props.autoplay ?? true,
   view: "preview",
 });
