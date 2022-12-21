@@ -192,6 +192,7 @@ return (
         role="tabpanel"
         aria-labelledby="code-tab"
       >
+        Import this widget into yours to embed YouTube Videos.
         <Markdown
           text={`\`\`\`jsx
 <Widget
