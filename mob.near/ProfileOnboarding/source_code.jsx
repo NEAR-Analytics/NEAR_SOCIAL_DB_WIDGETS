@@ -3,10 +3,14 @@ const accountId = props.debugAccountId ?? context.accountId;
 if (!accountId) {
   return (
     <div className="alert alert-warning rounded-4 mb-3">
-      <div className="d-flex justify-content-between align-items-center">
-        <div className="fw-bold">Sign in to start using near.social</div>
-        <div>
-          <i class="fs-1 text-danger bi bi-arrow-up" />
+      <div className="text-end">
+        <div className="fw-bold">
+          Sign in by clicking
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{ accountId: "" }}
+          />
+          <i class="fs-1 align-middle bi bi-arrow-up-right" />
         </div>
       </div>
     </div>
