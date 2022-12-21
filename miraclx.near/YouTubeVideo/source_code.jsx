@@ -147,7 +147,7 @@ return (
     <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
-          class="nav-link active"
+          class="nav-link "
           id="preview-tab"
           data-bs-toggle="tab"
           data-bs-target="#preview"
@@ -162,7 +162,7 @@ return (
       </li>
       <li class="nav-item" role="presentation">
         <button
-          class="nav-link"
+          class="nav-link active"
           id="code-tab"
           data-bs-toggle="tab"
           data-bs-target="#code"
