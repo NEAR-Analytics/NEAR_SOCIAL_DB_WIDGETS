@@ -35,11 +35,11 @@ const timeMs = parseFloat(block.header.timestamp_nanosec) / 1e6;
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
-    ? `${(diffSec / 1000) | 0} seconds ago`
+    ? `${(diffSec / 1000) | 0}s ago`
     : diffSec < 3600000
-    ? `${(diffSec / 60000) | 0} minutes ago`
+    ? `${(diffSec / 60000) | 0}m ago`
     : diffSec < 86400000
-    ? `${(diffSec / 3600000) | 0} hours ago`
-    : `${(diffSec / 86400000) | 0} days ago`;
+    ? `${(diffSec / 3600000) | 0}h ago`
+    : `${(diffSec / 86400000) | 0}d ago`;
 
 return timeAgo(Date.now() - timeMs);
