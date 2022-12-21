@@ -176,9 +176,9 @@ return (
         </button>
       </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content text-center" id="myTabContent">
       <div
-        class="tab-pane fade show active text-center"
+        class="tab-pane fade show active"
         id="preview"
         role="tabpanel"
         aria-labelledby="preview-tab"
