@@ -20,7 +20,7 @@ State.init({
   height: props.height ?? "50vh",
   width: props.width ?? "50vw",
   autoplay: props.autoplay ?? true,
-  view: "preview",
+  view: "code",
 });
 
 let iframe = el$("iframe");
@@ -178,7 +178,7 @@ return (
     </ul>
     <div class="tab-content text-center" id="myTabContent">
       <div
-        class="tab-pane fade show active"
+        class="tab-pane fade"
         id="preview"
         role="tabpanel"
         aria-labelledby="preview-tab"
@@ -187,7 +187,7 @@ return (
         {state.view === "preview" ? embed() : <></>}
       </div>
       <div
-        class="tab-pane fade"
+        class="tab-pane fade show active"
         id="code"
         role="tabpanel"
         aria-labelledby="code-tab"
