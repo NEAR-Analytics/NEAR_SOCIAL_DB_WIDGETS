@@ -13,22 +13,6 @@ const content = (state.text || state.image.cid) && {
   image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
 };
 
-const post = () => {
-  Social.set({
-    post: {
-      main: JSON.stringify(content),
-    },
-    index: {
-      post: JSON.stringify({
-        key: "main",
-        value: {
-          type: "md",
-        },
-      }),
-    },
-  });
-};
-
 const onChange = (text) => {
   State.update({
     text,
@@ -54,13 +38,31 @@ return (
           />
         </div>
         <div>
-          <button
+          <CommitButton
             disabled={!content}
             className="btn btn-dark rounded-3"
-            onClick={post}
+            data={{
+              post: {
+                main: JSON.stringify(content),
+              },
+              index: {
+                post: JSON.stringify({
+                  key: "main",
+                  value: {
+                    type: "md",
+                  },
+                }),
+              },
+            }}
+            onCommit={() =>
+              State.update({
+                image: {},
+                text: "",
+              })
+            }
           >
             Post
-          </button>
+          </CommitButton>
         </div>
       </div>
     </div>
