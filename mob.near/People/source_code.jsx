@@ -38,6 +38,6 @@ return (
       </div>
     )}
 
-    <Widget src="mob.near/widget/LastProfilesImages" />
+    <Widget src="mob.near/widget/LastProfilesImages" props={{ limit: 24 }} />
   </div>
 );
