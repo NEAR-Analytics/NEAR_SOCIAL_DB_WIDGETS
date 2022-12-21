@@ -5,7 +5,7 @@ const index = {
     subscribe: true,
     limit: 10,
     order: "desc",
-    accountId: props.accountIds,
+    accountId: props.accounts,
   },
 };
 
