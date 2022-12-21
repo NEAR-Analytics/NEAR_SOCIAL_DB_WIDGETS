@@ -11,66 +11,40 @@ if (profile === null) {
 
 const description = profile.description;
 
-State.init({
-  loadNFT: false,
-  loadWidgets: false,
-});
+const pills = [
+  { id: "bio", title: "Bio" },
+  { id: "posts", title: "Posts" },
+  { id: "nft", title: "NFTs" },
+  { id: "widget", title: "Widgets" },
+];
 
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
-      <li className="nav-item" role="presentation">
-        <button
-          className="nav-link active"
-          id="pills-bio-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-bio"
-          type="button"
-          role="tab"
-          aria-controls="pills-bio"
-          aria-selected="true"
-        >
-          Bio
-        </button>
-      </li>
-      <li className="nav-item" role="presentation">
-        <button
-          className="nav-link"
-          id="pills-nft-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-nft"
-          type="button"
-          role="tab"
-          aria-controls="pills-nft"
-          aria-selected="false"
-          onClick={() => {
-            !state.loadNFT && State.update({ loadNFT: true });
-          }}
-        >
-          NFTs
-        </button>
-      </li>
-      <li className="nav-item" role="presentation">
-        <button
-          className="nav-link"
-          id="pills-widget-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-widget"
-          type="button"
-          role="tab"
-          aria-controls="pills-widget"
-          aria-selected="false"
-          onClick={() => {
-            !state.loadWidgets && State.update({ loadWidgets: true });
-          }}
-        >
-          Widgets
-        </button>
-      </li>
+      {pills.map(({ id, title }, i) => (
+        <li className="nav-item" role="presentation" key={i}>
+          <button
+            className={`nav-link ${i === 0 ? "active" : ""}`}
+            id={`pills-${id}-tab`}
+            data-bs-toggle="pill"
+            data-bs-target={`#pills-${id}`}
+            type="button"
+            role="tab"
+            aria-controls={`pills-${id}`}
+            aria-selected={i === 0}
+            onClick={() => {
+              const key = `load${id}`;
+              !state[key] && State.update({ [key]: true });
+            }}
+          >
+            {title}
+          </button>
+        </li>
+      ))}
     </ul>
     <div className="tab-content" id="pills-tabContent">
       <div
-        className="tab-pane fade in show active"
+        className="tab-pane fade show active"
         id="pills-bio"
         role="tabpanel"
         aria-labelledby="pills-bio-tab"
@@ -78,12 +52,27 @@ return (
         <Markdown text={description} />
       </div>
       <div
-        className="tab-pane fade nft"
+        className="tab-pane fade"
+        id="pills-posts"
+        role="tabpanel"
+        aria-labelledby="pills-posts-tab"
+      >
+        {state.loadposts && (
+          <div className="col-lg-6 mx-auto">
+            <Widget
+              src="mob.near/widget/MainPage.Feed"
+              props={{ accounts: [accountId] }}
+            />
+          </div>
+        )}
+      </div>
+      <div
+        className="tab-pane fade"
         id="pills-nft"
         role="tabpanel"
         aria-labelledby="pills-nft-tab"
       >
-        {state.loadNFT && (
+        {state.loadnft && (
           <Widget src="mob.near/widget/YourNFTs" props={{ accountId }} />
         )}
       </div>
@@ -93,7 +82,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        {state.loadWidgets && (
+        {state.loadwidgets && (
           <Widget src="mob.near/widget/LastWidgets" props={{ accountId }} />
         )}
       </div>
