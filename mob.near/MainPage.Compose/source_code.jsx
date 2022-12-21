@@ -40,12 +40,15 @@ return (
         </div>
       </div>
     </div>
-    {state.content && (
+    {(state.text || state.image.cid) && (
       <Widget
         src="mob.near/widget/MainPage.Post"
         props={{
           accountId: context.accountId,
-          content: { text: state.text, image: state.image },
+          content: {
+            text: state.text,
+            image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
+          },
           blockHeight: "now",
         }}
       />
