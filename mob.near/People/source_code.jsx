@@ -13,8 +13,11 @@ return (
     {state.profiles && state.profiles.length > 0 && (
       <div className="mb-2">
         {state.profiles.map(({ accountId }, i) => (
-          <div key={i} className="d-flex justify-content-between mb-3">
-            <div className="me-4 text-truncate">
+          <div
+            key={i}
+            className="d-flex justify-content-between align-items-center mb-3"
+          >
+            <div className="me-2 text-truncate">
               <a
                 href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
                 className="text-decoration-none link-dark text-truncate"
