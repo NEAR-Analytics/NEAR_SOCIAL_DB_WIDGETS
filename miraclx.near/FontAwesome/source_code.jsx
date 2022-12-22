@@ -18,15 +18,9 @@ let Capped = styled.div`
 }
 `;
 
-console.log(JSON.stringify(props));
-
 return (
   <>
     <FA />
-    <Widget
-      src="miraclx.near/widget/FontAwesome"
-      props={{ code: true, dep: true }}
-    />
     <div class="text-center">
       <a href="#/miraclx.near/widget/FontAwesome">
         <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
