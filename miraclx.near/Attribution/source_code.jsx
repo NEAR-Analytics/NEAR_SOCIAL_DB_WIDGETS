@@ -64,7 +64,7 @@ return (
     <div class="text-center">
       <a href="#/miraclx.near/widget/Attribution">
         <h1
-          class="display-1"
+          class="display-1 text-primary"
           style={{ "margin-bottom": "0.1rem", "font-weight": "bold" }}
         >
           @
