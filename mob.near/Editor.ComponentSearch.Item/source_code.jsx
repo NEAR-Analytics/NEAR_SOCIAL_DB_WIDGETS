@@ -27,8 +27,8 @@ const embedCode = `<Widget src="${widgetPath}" props={{ }} />`;
 
 return (
   <div>
-    <div className="d-flex justify-content-between mb-3">
-      <div className="me-4 text-truncate">
+    <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="me-2 text-truncate">
         <Widget
           src="mob.near/widget/Component.InlineBlock"
           props={{ accountId, widgetName }}
