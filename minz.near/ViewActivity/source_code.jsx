@@ -105,6 +105,14 @@ function button(data) {
             </JoinBy>
           </Join>
         );
+      } else {
+        return (
+          <JoinBy>
+            <br />
+            Event deadline:{" "}
+            {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}
+          </JoinBy>
+        );
       }
     } else {
       return (
