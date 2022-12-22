@@ -8,8 +8,13 @@ const index = {
   },
 };
 
+const Item = styled.div`
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+`;
+
 const renderItem = (a) => (
-  <div key={JSON.stringify(a)} className="mb-2">
+  <Item key={JSON.stringify(a)} className="mb-2">
     <Widget
       src="mob.near/widget/ProfileLine"
       props={{ accountId: a.accountId, hideAccountId: true, tooltip: true }}
@@ -31,7 +36,7 @@ const renderItem = (a) => (
         props={{ blockHeight: a.blockHeight }}
       />
     </span>
-  </div>
+  </Item>
 );
 
 return (
