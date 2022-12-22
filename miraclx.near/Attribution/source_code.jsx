@@ -60,6 +60,7 @@ let Capped = styled.div`
 return (
   <>
     <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
+
     <div class="text-center">
       <a href="#/miraclx.near/widget/Attribution">
         <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
