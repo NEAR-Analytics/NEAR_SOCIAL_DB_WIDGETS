@@ -18,7 +18,7 @@ let Capped = styled.div`
 }
 `;
 
-if (props.code) return console.log(code);
+console.log(JSON.stringify(props));
 
 return (
   <>
