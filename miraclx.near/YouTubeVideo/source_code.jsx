@@ -196,13 +196,13 @@ return (
         <Markdown
           text={`\`\`\`jsx
 <Widget
-    src="miraclx.near/widget/YouTubeVideo"
-    props={{
-      videoId: "${state.videoId}",
-      width: "${state.width}", height: "${state.height}",
-      autoplay: ${state.autoplay}, controls: ${state.controls},
-      dep: true
-    }}
+  src="miraclx.near/widget/YouTubeVideo"
+  props={{
+    videoId: "${state.videoId}",
+    width: "${state.width}", height: "${state.height}",
+    autoplay: ${state.autoplay}, controls: ${state.controls},
+    dep: true
+  }}
 />
 `}
         />
