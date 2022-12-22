@@ -52,7 +52,10 @@ let form = el$("form");
 
 return (
   <>
-    <Widget src="miraclx.near/widget/FontAwesome" props={{ dep: true }} />
+    <Widget
+      src="miraclx.near/widget/FontAwesome"
+      props={{ code: true, dep: true }}
+    />
 
     <div class="text-center">
       <a href="#/miraclx.near/widget/YouTubeVideo">
