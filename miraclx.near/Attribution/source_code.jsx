@@ -63,8 +63,11 @@ return (
 
     <div class="text-center">
       <a href="#/miraclx.near/widget/Attribution">
-        <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
-          <i class="fa-solid fa-at"></i>
+        <h1
+          class="display-1"
+          style={{ "margin-bottom": "0.1rem", "font-weight": "bold" }}
+        >
+          @
         </h1>
       </a>
       <h4 class="text-secondary">
