@@ -36,7 +36,7 @@ return (
       </h6>
     </div>
     <hr />
-    This is a demo showing that Font Awesome works in the browser.
+    This is a demo showing that Font Awesome works in Near.Social.
     <br />
     Import this widget into yours to add font awesome support.
     <br />
