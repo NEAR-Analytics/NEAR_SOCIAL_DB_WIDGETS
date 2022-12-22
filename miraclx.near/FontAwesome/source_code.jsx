@@ -24,7 +24,7 @@ return (
     <div class="text-center">
       <a href="#/miraclx.near/widget/FontAwesome">
         <h1 class="display-1" style={{ "margin-bottom": "0.1rem" }}>
-          <i class="fa-brands fa-square-font-awesome"></i>
+          <i class="fa-brands fa-square-font-awesome text-primary"></i>
         </h1>
       </a>
       <h4 class="text-secondary">Use FontAwesome in Near.Social</h4>
