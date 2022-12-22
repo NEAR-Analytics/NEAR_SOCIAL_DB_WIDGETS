@@ -92,17 +92,20 @@ function button(data) {
   let today = new Date();
   if (data.status == "WAITING") {
     if (deadline > today) {
-      return (
-        <Join>
-          <button onClick={callJoin}>
-            Join for <b>{Math.round((data.price / 1e24) * 100) / 100} NEAR </b>
-          </button>{" "}
-          <JoinBy>
-            Join by{" "}
-            {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}
-          </JoinBy>
-        </Join>
-      );
+      if (!data.cur_participants.includes(accountId)) {
+        return (
+          <Join>
+            <button onClick={callJoin}>
+              Join for{" "}
+              <b>{Math.round((data.price / 1e24) * 100) / 100} NEAR </b>
+            </button>{" "}
+            <JoinBy>
+              Join by{" "}
+              {new Date(data.deadline / 1000000).toISOString().substring(0, 10)}
+            </JoinBy>
+          </Join>
+        );
+      }
     } else {
       return (
         <Join>
