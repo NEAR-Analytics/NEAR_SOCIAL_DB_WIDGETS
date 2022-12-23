@@ -7,6 +7,9 @@ if (!props.isPreview && isNaN(props.blockHeight)) {
 
 State.init({
   vote: userVote ?? "",
+  verifiedStatus: "verifying",
+  showVeryfyInstructionModal: false,
+  showVeryfyFailedModal: false,
 });
 
 // Utility function
@@ -116,6 +119,94 @@ const getPublicationParams = () => {
   };
 };
 
+function closeModalClickingOnTransparent() {
+  return (e) => {
+    e.target.id == "modal" &&
+      State.update({
+        showVeryfyInstructionModal: false,
+        showVeryfyFailedModal: false,
+      });
+  };
+}
+
+const renderModal = () => {
+  return (
+    <div
+      className="modal"
+      id="modal"
+      style={
+        (state.showVeryfyInstructionModal || state.showVeryfyFailedModal) && {
+          display: "block",
+          backgroundColor: "#7e7e7e70",
+        }
+      }
+      tabindex="-1"
+      role="dialog"
+      onClick={closeModalClickingOnTransparent()}
+    >
+      <div className="modal-dialog" style={{ maxWidth: "90%" }} role="document">
+        <div
+          className="modal-content"
+          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        >
+          <div className="modal-header flex-row-reverse">
+            <button
+              type="button"
+              className="close"
+              dataDismiss="modal"
+              ariaLabel="Close"
+              onClick={() =>
+                State.update({
+                  showVeryfyInstructionModal: false,
+                  showVeryfyFailedModal: false,
+                })
+              }
+            >
+              <span ariaHidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            className="modal-body"
+            style={{
+              width: "90%",
+              borderRadius: "1rem",
+              margin: "0 auto",
+              backgroundColor: "white",
+            }}
+          >
+            {state.showVeryfyInstructionModal ? (
+              <p className="text-center">
+                Please complete the Proof of Humanity on the other tab. Once you
+                finish, the process might take a few minutes. Please, reload
+                this tab
+              </p>
+            ) : (
+              <p className="text-center text-danger">
+                The verification has failed. Please verify again.
+              </p>
+            )}
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              onClick={() =>
+                State.update({
+                  showVeryfyInstructionModal: false,
+                  showVeryfyFailedModal: false,
+                })
+              }
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisQuestion.length == 0) return 0;
   return (
@@ -195,23 +286,48 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      hasVoted ? (
-        <p
-          className="text-primary"
-          style={{ textAlign: "center", fontWeight: "500" }}
-        >
-          Voted
-        </p>
+      state.verifiedStatus == "verified" ? (
+        hasVoted ? (
+          <p
+            className="text-primary"
+            style={{ textAlign: "center", fontWeight: "500" }}
+          >
+            Voted
+          </p>
+        ) : (
+          <CommitButton
+            className="my-2 btn btn-primary"
+            data={getPublicationParams()}
+          >
+            Vote
+          </CommitButton>
+        )
+      ) : state.verifiedStatus == "verifying" ? (
+        <button type="button" disabled className="my-2 btn btn-primary">
+          <span
+            className="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          <span className="sr-only">Verifying...</span>
+        </button>
+      ) : state.verifiedStatus == "failed" ? (
+        <></>
       ) : (
-        <CommitButton
-          className="my-2 btn btn-primary"
-          data={getPublicationParams()}
-        >
-          Vote
-        </CommitButton>
+        state.verifiedStatus == "notVerified" && (
+          <a
+            href="http://localhost:1234"
+            target="_blank"
+            onClick={State.update({ showVeryfyInstructionModal: true })}
+          >
+            <button className="my-2 btn btn-primary">Verify</button>
+          </a>
+        )
       )
     ) : (
       ""
     )}
+    {(state.showVeryfyInstructionModal || state.showVeryfyFailedModal) &&
+      renderModal()}
   </>
 );
