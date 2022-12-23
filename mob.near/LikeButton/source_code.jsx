@@ -50,7 +50,7 @@ const likeClick = () => {
   };
 
   if (!hasLike && props.notifyAccountId) {
-    data.notify = JSON.stringify({
+    data.index.notify = JSON.stringify({
       key: props.notifyAccountId,
       value: {
         type: "like",
