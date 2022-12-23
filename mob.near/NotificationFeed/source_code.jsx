@@ -47,7 +47,7 @@ return (
                 liked your
                 <a
                   className="fw-bold text-muted"
-                  href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${value.item.blockHeight}`}
+                  href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
                 >
                   post
                 </a>
@@ -69,7 +69,7 @@ return (
           ) : (
             <a
               className="btn btn-outline-dark"
-              href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${value.item.blockHeight}`}
+              href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
             >
               View post
             </a>
