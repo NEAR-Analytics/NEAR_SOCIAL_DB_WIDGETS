@@ -64,26 +64,30 @@ const likeClick = () => {
   });
 };
 
+const title = hasLike ? "Unlike" : "Like";
+
 return (
-  <LikeButton
-    disabled={state.loading || dataLoading || !context.accountId}
-    className={`btn border-0`}
-    title={hasLike ? "Unlike" : "Like"}
-    onClick={likeClick}
-  >
-    {state.loading ? (
-      <span
-        className="spinner-grow spinner-grow-sm p-2"
-        role="status"
-        aria-hidden="true"
-      />
-    ) : dataLoading ? (
-      "Loading"
-    ) : hasLike ? (
-      <i className="heart p-2 rounded-circle bi bi-heart-fill"></i>
-    ) : (
-      <i className="heart p-2 rounded-circle bi bi-heart"></i>
-    )}
-    {numLikes > 0 ? numLikes : ""}
-  </LikeButton>
+  <OverlayTrigger placement="auto" overlay={<Tooltip>{title}</Tooltip>}>
+    <LikeButton
+      disabled={state.loading || dataLoading || !context.accountId}
+      className={`btn border-0`}
+      title={title}
+      onClick={likeClick}
+    >
+      {state.loading ? (
+        <span
+          className="spinner-grow spinner-grow-sm p-2"
+          role="status"
+          aria-hidden="true"
+        />
+      ) : dataLoading ? (
+        "Loading"
+      ) : hasLike ? (
+        <i className="heart p-2 rounded-circle bi bi-heart-fill"></i>
+      ) : (
+        <i className="heart p-2 rounded-circle bi bi-heart"></i>
+      )}
+      {numLikes > 0 ? numLikes : ""}
+    </LikeButton>
+  </OverlayTrigger>
 );
