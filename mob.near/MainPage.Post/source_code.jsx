@@ -56,5 +56,20 @@ return (
         />
       )}
     </div>
+    {blockHeight !== "now" && (
+      <div className="mt-1">
+        <Widget
+          src="mob.near/widget/LikeButton"
+          props={{
+            notifyAccountId: accountId,
+            item: {
+              type: "social",
+              path: `${accountId}/post/main`,
+              blockHeight,
+            },
+          }}
+        />
+      </div>
+    )}
   </div>
 );
