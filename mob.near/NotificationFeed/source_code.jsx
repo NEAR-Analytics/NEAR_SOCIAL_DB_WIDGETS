@@ -36,24 +36,43 @@ return (
             className="text-truncate text-muted"
             style={{ paddingLeft: "1.8em" }}
           >
-            {value.type === "follow"
-              ? "followed you"
-              : value.type === "unfollow"
-              ? "unfollowed you"
-              : value.type === "poke"
-              ? "poked you"
-              : "???"}
+            {value.type === "follow" ? (
+              "followed you"
+            ) : value.type === "unfollow" ? (
+              "unfollowed you"
+            ) : value.type === "poke" ? (
+              "poked you"
+            ) : value.type === "like" ? (
+              <>
+                liked your
+                <a
+                  className="fw-bold text-muted"
+                  href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${value.item.blockHeight}`}
+                >
+                  post
+                </a>
+              </>
+            ) : (
+              "???"
+            )}
             <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
           </div>
         </div>
         <div className="text-nowrap">
           {value.type === "follow" || value.type === "unfollow" ? (
             <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
-          ) : (
+          ) : value.type === "poke" ? (
             <Widget
               src="mob.near/widget/PokeButton"
               props={{ accountId, back: true }}
             />
+          ) : (
+            <a
+              className="btn btn-outline-dark"
+              href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${value.item.blockHeight}`}
+            >
+              View post
+            </a>
           )}
         </div>
       </div>
