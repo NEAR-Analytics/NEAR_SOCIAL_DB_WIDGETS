@@ -29,6 +29,9 @@ const LikeButton = styled.button`
       background: pink;
     }
   }
+  .bi-heart-fill {
+    color: red;
+  }
 `;
 
 const likeClick = () => {
@@ -86,6 +89,6 @@ return (
     ) : (
       <i className="heart p-2 rounded-circle bi bi-heart"></i>
     )}
-    {numLikes > 0 ? numLikes : ""}
+    {numLikes > 0 ? <span className="text-muted">{numLikes}</span> : ""}
   </LikeButton>
 );
