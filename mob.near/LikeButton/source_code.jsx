@@ -20,7 +20,7 @@ const likesByUsers = {};
 
 const numLikes = Object.keys(likesByUsers).length;
 const hasLike =
-  context.accountId && (state.hasLike || !!likesByUsers[context.accountId]);
+  context.accountId && (state.hasLike ?? !!likesByUsers[context.accountId]);
 
 const LikeButton = styled.button`
   &:hover {
@@ -89,6 +89,10 @@ return (
     ) : (
       <i className="heart p-2 rounded-circle bi bi-heart"></i>
     )}
-    {numLikes > 0 ? <span className="text-muted">{numLikes}</span> : ""}
+    {numLikes > 0 ? (
+      <span className="text-muted">{numLikes + (state.hasLike ? 1 : 0)}</span>
+    ) : (
+      ""
+    )}
   </LikeButton>
 );
