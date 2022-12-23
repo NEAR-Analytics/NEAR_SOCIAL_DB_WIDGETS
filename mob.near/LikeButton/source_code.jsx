@@ -17,10 +17,14 @@ const likesByUsers = {};
     delete likesByUsers[like.accountId];
   }
 });
+if (state.hasLike === true) {
+  likesByUsers[context.accountId] = true;
+} else if (state.hasLike === false) {
+  delete likesByUsers[context.accountId];
+}
 
 const numLikes = Object.keys(likesByUsers).length;
-const hasLike =
-  context.accountId && (state.hasLike ?? !!likesByUsers[context.accountId]);
+const hasLike = context.accountId && !!likesByUsers[context.accountId];
 
 const LikeButton = styled.button`
   &:hover {
@@ -89,10 +93,6 @@ return (
     ) : (
       <i className="heart p-2 rounded-circle bi bi-heart"></i>
     )}
-    {numLikes > 0 ? (
-      <span className="text-muted">{numLikes + (state.hasLike ? 1 : 0)}</span>
-    ) : (
-      ""
-    )}
+    {numLikes > 0 ? <span className="text-muted">{numLikes}</span> : ""}
   </LikeButton>
 );
