@@ -33,6 +33,8 @@ function closeModalClickingOnTransparent() {
 
 const widgetOwner = "silkking.near";
 
+console.log(state.modalBlockHeight);
+
 const renderModal = () => {
   return (
     <div
