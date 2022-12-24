@@ -2,6 +2,8 @@ if (!context.accountId) {
   return "";
 }
 
+const item = props.item;
+
 State.init({
   image: {},
   text: "",
