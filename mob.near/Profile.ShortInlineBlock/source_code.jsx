@@ -17,7 +17,7 @@ return (
       }}
     />
     <div className="text-truncate lh-sm">
-      <div className="text-truncate fw-bold">{name.repeat(3)}</div>
+      <div className="text-truncate fw-bold">{name}</div>
       <div className="text-truncate text-muted">
         <small>
           <span className="font-monospace">@{accountId}</span>
