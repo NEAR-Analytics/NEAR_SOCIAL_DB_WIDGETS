@@ -73,26 +73,57 @@ const likeClick = () => {
 
 const title = hasLike ? "Unlike" : "Like";
 
+const liTooltip = styled.div`
+  width: 8em;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const accountsWithLikes = Object.keys(likesByUsers) ?? [];
+
 return (
-  <LikeButton
-    disabled={state.loading || dataLoading || !context.accountId}
-    className={`btn border-0`}
-    title={title}
-    onClick={likeClick}
+  <OverlayTrigger
+    placement="auto"
+    overlay={
+      accountsWithLikes.length ? (
+        <Tooltip>
+          <liTooltip>Liked by:</liTooltip>
+          {accountsWithLikes.slice(0, 10).map((account_id) => (
+            <liTooltip>{account_id}</liTooltip>
+          ))}
+          {accountsWithLikes.length > 10 ? (
+            <liTooltip>... and {accountsWithLikes.length - 10} more</liTooltip>
+          ) : (
+            ""
+          )}
+        </Tooltip>
+      ) : (
+        <></>
+      )
+    }
   >
-    {state.loading ? (
-      <span
-        className="spinner-grow spinner-grow-sm p-2"
-        role="status"
-        aria-hidden="true"
-      />
-    ) : dataLoading ? (
-      "Loading"
-    ) : hasLike ? (
-      <i className="heart p-2 rounded-circle bi bi-heart-fill"></i>
-    ) : (
-      <i className="heart p-2 rounded-circle bi bi-heart"></i>
-    )}
-    {numLikes > 0 ? <span className="text-muted">{numLikes}</span> : ""}
-  </LikeButton>
+    <LikeButton
+      disabled={state.loading || dataLoading || !context.accountId}
+      className={`btn border-0`}
+      title={title}
+      onClick={likeClick}
+    >
+      {state.loading ? (
+        <span
+          className="spinner-grow spinner-grow-sm p-2"
+          role="status"
+          aria-hidden="true"
+        />
+      ) : dataLoading ? (
+        "Loading"
+      ) : hasLike ? (
+        <i className="heart p-2 rounded-circle bi bi-heart-fill"></i>
+      ) : (
+        <i className="heart p-2 rounded-circle bi bi-heart"></i>
+      )}
+      {numLikes > 0 ? <span className="text-muted">{numLikes}</span> : ""}
+    </LikeButton>
+  </OverlayTrigger>
 );
