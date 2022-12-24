@@ -1,5 +1,4 @@
 const ownerId = "gov.near";
-const tasks = Near.view(ownerId, "get_tasks").reverse();
 
 return (
   <div>
