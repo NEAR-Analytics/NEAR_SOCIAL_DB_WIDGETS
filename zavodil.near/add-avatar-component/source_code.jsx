@@ -23,6 +23,7 @@ let data = {
         [state.name.replace(" ", "-").trim().toLowerCase()]: {
           name: state.name.replace(/([A-Z])/g, " $1").trim(),
           src: state.svg,
+          details: state.details,
           price,
         },
       },
