@@ -4,8 +4,8 @@ const OBJECTS = props.objects;
 const EMPTY_TILE = props.empty ?? " ";
 
 // Coordinates to select view from global map.
-const X = props.x;
-const Y = props.y;
+const X = props.x ?? 0;
+const Y = props.y ?? 0;
 const W = props.width;
 const H = props.height;
 
@@ -16,12 +16,6 @@ const OFFSET_Y = props.offset.y ?? 0;
 // Props checks.
 if (!Array.isArray(OBJECTS)) {
   return "props.objects not set to an array";
-}
-if (typeof X !== "number") {
-  return "props.x not set";
-}
-if (typeof Y !== "number") {
-  return "props.y not set";
 }
 if (typeof W !== "number") {
   return "props.width not set";
