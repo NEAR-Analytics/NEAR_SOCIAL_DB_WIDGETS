@@ -12,7 +12,6 @@ if (project === null) {
 const featuredWidget = project.featuredWidget;
 
 State.init({
-  loadWidget: false,
   loadMembers: false,
   loadTasks: false,
 });
@@ -76,7 +75,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        {state.loadWidget && <Widget src={featuredWidget} />}
+        <Widget src={featuredWidget} />
       </div>
       <div
         className="tab-pane fade groups"
