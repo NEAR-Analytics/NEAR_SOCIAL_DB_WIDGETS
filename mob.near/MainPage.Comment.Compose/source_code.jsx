@@ -23,7 +23,7 @@ const onChange = (text) => {
 
 const data = {
   post: {
-    comment: JSON.stringify(content),
+    comment: JSON.stringify(Object.assign({ item }, content)),
   },
   index: {
     comment: JSON.stringify({
