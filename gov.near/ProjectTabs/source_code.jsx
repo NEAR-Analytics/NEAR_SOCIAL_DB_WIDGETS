@@ -11,11 +11,6 @@ if (project === null) {
 
 const featuredWidget = project.featuredWidget;
 
-State.init({
-  loadMembers: false,
-  loadTasks: false,
-});
-
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
@@ -83,7 +78,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-groups-tab"
       >
-        <Widget src="gov.near/widget/FollowTabs" />
+        <Widget src="gov.near/widget/FollowTabs" props={{ accountId }} />
       </div>
       <div
         className="tab-pane fade tasks"
@@ -91,9 +86,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-tasks-tab"
       >
-        {state.loadTasks && (
-          <Widget src="gov.near/widget/Tasks" props={{ accountId }} />
-        )}
+        <Widget src="gov.near/widget/Tasks" props={{ accountId }} />
       </div>
     </div>
   </>
