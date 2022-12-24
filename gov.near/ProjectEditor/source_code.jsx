@@ -30,7 +30,6 @@ return (
               name: { label: "Name" },
               featuredWidget: {
                 label: "Featured Widget",
-                placeholder: "<account.near>/widget/<Featured>",
               },
               image: { label: "Project image" },
               backgroundImage: { label: "Background image" },
