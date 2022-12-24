@@ -6,7 +6,7 @@ const content =
   JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
 
 return (
-  <div className={"pt-2 border-top"}>
+  <div className={"pt-3 border-top pb-2"}>
     <div className="d-flex flex-row align-items-center">
       <div className="flex-grow-1 text-truncate">
         <a
