@@ -318,7 +318,7 @@ return (
           <a
             href="http://localhost:1234"
             target="_blank"
-            onClick={State.update({ showVeryfyInstructionModal: true })}
+            onClick={() => State.update({ showVeryfyInstructionModal: true })}
           >
             <button className="my-2 btn btn-primary">Verify</button>
           </a>
