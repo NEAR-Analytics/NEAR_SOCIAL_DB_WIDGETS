@@ -12,8 +12,8 @@ if (initialItems === null) {
   return "";
 }
 
-const computeFetchFrom = (items) => {
-  if (!items || items.length === 0) {
+const computeFetchFrom = (items, limit) => {
+  if (!items || items.length < limit) {
     return false;
   }
   const blockHeight = items[items.length - 1].blockHeight;
@@ -30,7 +30,7 @@ if (state.jInitialItems !== jInitialItems) {
       initialItems,
       items: [],
       fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(initialItems),
+      nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
     });
   } else {
     State.update({
@@ -41,20 +41,21 @@ if (state.jInitialItems !== jInitialItems) {
 }
 
 if (state.fetchFrom) {
+  const limit = props.nextLimit ?? index.options.limit;
   const newItems = Social.index(
     index.action,
     index.key,
     Object.assign({}, index.options, {
       from: state.fetchFrom,
       subscribe: undefined,
-      limit: props.nextLimit ?? index.options.limit,
+      limit,
     })
   );
   if (newItems !== null) {
     state.items.push(...newItems);
     State.update({
       fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(newItems),
+      nextFetchFrom: computeFetchFrom(newItems, limit),
     });
   }
 }
