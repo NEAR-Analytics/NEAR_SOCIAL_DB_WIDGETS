@@ -83,9 +83,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-groups-tab"
       >
-        {state.loadMembers && (
-          <Widget src="gov.near/widget/Members" props={{ accountId }} />
-        )}
+        <Widget src="gov.near/widget/FollowTabs" />
       </div>
       <div
         className="tab-pane fade tasks"
