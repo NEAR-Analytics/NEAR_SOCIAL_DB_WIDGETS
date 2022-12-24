@@ -73,7 +73,7 @@ const likeClick = () => {
 
 const title = hasLike ? "Unlike" : "Like";
 
-const liAccountId = styled.div`
+const liTooltip = styled.div`
   width: 8em;
   text-align: left;
   text-overflow: ellipsis;
@@ -87,20 +87,20 @@ return (
   <OverlayTrigger
     placement="right"
     overlay={
-      accountsWithLikes.length && (
+      accountsWithLikes.length ? (
         <Tooltip>
-          <liAccountId>Liked by:</liAccountId>
+          <liTooltip>Liked by:</liTooltip>
           {accountsWithLikes.slice(0, 10).map((account_id) => (
-            <liAccountId>{account_id}</liAccountId>
+            <liTooltip>{account_id}</liTooltip>
           ))}
           {accountsWithLikes.length > 10 ? (
-            <liAccountId>
-              ... and {accountsWithLikes.length - 10} more
-            </liAccountId>
+            <liTooltip>... and {accountsWithLikes.length - 10} more</liTooltip>
           ) : (
             ""
           )}
         </Tooltip>
+      ) : (
+        <></>
       )
     }
   >
