@@ -1,6 +1,12 @@
 let appName = "avtr";
 
-initState({ svg: "", type: "clothingGraphic", name: "nearLogo", price: 1 });
+initState({
+  svg: "",
+  details: "",
+  type: "clothingGraphic",
+  name: "nearLogo",
+  price: 1,
+});
 
 let price = 0;
 
@@ -49,6 +55,18 @@ return (
           value={state.name}
           onChange={(e) => State.update({ name: e.target.value })}
           id="name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="details" class="form-label">
+          Details (optional)
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          value={state.details}
+          onChange={(e) => State.update({ details: e.target.value })}
+          id="details"
         />
       </div>
       <div class="mb-3">
