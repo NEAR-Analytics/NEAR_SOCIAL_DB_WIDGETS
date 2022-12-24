@@ -9,9 +9,7 @@ return (
     <div className="d-flex flex-column gap-3">
       {comments.map((q) => {
         const commenter = q.value.split("--")[0];
-        const comment = Social.getr(
-          `${commenter}/experimental/genie/comments/${q.value}`
-        );
+        const comment = Social.getr(`${commenter}/project/comments/${q.value}`);
         // return nothing if data does not meet schema
         if (!comment?.title || !comment?.content) {
           return <></>;
