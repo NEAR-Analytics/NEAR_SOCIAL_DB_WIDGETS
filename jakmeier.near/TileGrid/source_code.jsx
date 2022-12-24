@@ -63,8 +63,8 @@ const COLS = TILES[0].length;
 const renderMap = () => {
   // Change to column-first to make CSS grid rendering work.
   const out = [];
-  for (const y = 0; y < COLS; y++) {
-    for (const x = 0; x < ROWS; x++) {
+  for (const x = 0; x < ROWS; x++) {
+    for (const y = 0; y < COLS; y++) {
       out.push(RENDER_TILE(TILES[x][y]));
     }
   }
@@ -76,7 +76,7 @@ return (
     style={{
       display: "grid",
       gridAutoFlow: "column",
-      gridTemplateRows: `repeat(${ROWS},${TILE_SIZE})`,
+      gridTemplateRows: `repeat(${COLS},${TILE_SIZE})`,
       width: MAP_SIZE,
       height: MAP_SIZE,
     }}
