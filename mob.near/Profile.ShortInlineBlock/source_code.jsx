@@ -5,7 +5,7 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const name = profile.name;
 
 return (
-  <div className="d-inline-flex flex-row">
+  <div className="d-flex flex-row">
     <Widget
       src="mob.near/widget/ProfileImage"
       props={{
@@ -17,9 +17,7 @@ return (
       }}
     />
     <div className="text-truncate lh-sm">
-      <div className="text-truncate">
-        <span className="fw-bold">{name}</span>
-      </div>
+      <div className="text-truncate fw-bold">{name.repeat(3)}</div>
       <div className="text-truncate text-muted">
         <small>
           <span className="font-monospace">@{accountId}</span>
