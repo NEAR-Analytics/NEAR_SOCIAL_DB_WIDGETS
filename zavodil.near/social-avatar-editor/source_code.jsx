@@ -139,21 +139,21 @@ whiteList.forEach((accountId) => {
   );
 });
 
+let categories = [
+  "clothing",
+  "accessories",
+  "top",
+  "clothingGraphic",
+  "eyes",
+  "eyebrows",
+  "mouth",
+  "facialHair",
+];
+
 const colors = paths.colors;
 const colorsCategories = paths.colors_categories;
 const components = paths.components;
 let getPrice = (options) => {
-  let categories = [
-    "clothing",
-    "accessories",
-    "top",
-    "clothingGraphic",
-    "eyes",
-    "eyebrows",
-    "mouth",
-    "facialHair",
-  ];
-
   return categories.reduce(
     (sum, category) =>
       new Big(sum)
@@ -163,11 +163,21 @@ let getPrice = (options) => {
   );
 };
 
+let getPaidComponents = (options) => {
+  return categories
+    .filter((category) =>
+      new Big(components[category][options[category]].price).gt(0)
+    )
+    .map((category) => components[category][options[category]]);
+};
+
 const YoctoToNear = (amountYocto) =>
   new Big(amountYocto).div(new Big(10).pow(24)).toString();
 
 let depositYocto = getPrice(state.options);
 let depositNear = YoctoToNear(depositYocto);
+
+let paidComponents = getPaidComponents(state.options);
 
 let nextItem = (collection, name) => {
   let keys = Object.keys(collection);
@@ -481,6 +491,27 @@ return (
           {depositNear == "0" && (
             <div class="pt-2">
               You will be asked to attach 0.3 NEAR for NFT storage
+            </div>
+          )}
+          {paidComponents.length > 0 && (
+            <div>
+              <ul class="list-group pt-2">
+                <h4>Paid components:</h4>
+                {paidComponents.map((component) => (
+                  <li class="list-group-item">
+                    <strong>
+                      {component.name.charAt(0).toUpperCase() +
+                        component.name.slice(1)}
+                    </strong>
+                    {YoctoToNear(component.price)} NEAR
+                    {component.details ? (
+                      <div>{component.details}</div>
+                    ) : (
+                      <span></span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
