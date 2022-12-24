@@ -18,20 +18,26 @@ const likesByUsers = {};
   }
 });
 if (state.hasLike === true) {
-  likesByUsers[context.accountId] = true;
+  likesByUsers[context.accountId] = {
+    accountId: context.accountId,
+  };
 } else if (state.hasLike === false) {
   delete likesByUsers[context.accountId];
 }
 
-const numLikes = Object.keys(likesByUsers).length;
+const accountsWithLikes = Object.keys(likesByUsers);
 const hasLike = context.accountId && !!likesByUsers[context.accountId];
 
 const LikeButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
   &:hover {
     color: red;
-    .heart {
-      background: pink;
-    }
+    background: pink;
   }
   .bi-heart-fill {
     color: red;
@@ -73,57 +79,26 @@ const likeClick = () => {
 
 const title = hasLike ? "Unlike" : "Like";
 
-const liTooltip = styled.div`
-  width: 12em;
-  text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-`;
-
-const accountsWithLikes = Object.keys(likesByUsers) ?? [];
-
 return (
-  <OverlayTrigger
-    placement="auto"
-    overlay={
-      accountsWithLikes.length ? (
-        <Tooltip>
-          <liTooltip>Liked by:</liTooltip>
-          {accountsWithLikes.slice(0, 10).map((account_id) => (
-            <liTooltip>{account_id}</liTooltip>
-          ))}
-          {accountsWithLikes.length > 10 ? (
-            <liTooltip>... and {accountsWithLikes.length - 10} more</liTooltip>
-          ) : (
-            ""
-          )}
-        </Tooltip>
-      ) : (
-        <></>
-      )
-    }
-  >
+  <div className="d-inline-flex align-items-center">
     <LikeButton
       disabled={state.loading || dataLoading || !context.accountId}
-      className={`btn border-0`}
+      className="btn me-1"
       title={title}
       onClick={likeClick}
     >
-      {state.loading ? (
+      {state.loading || dataLoading ? (
         <span
           className="spinner-grow spinner-grow-sm p-2"
           role="status"
           aria-hidden="true"
         />
-      ) : dataLoading ? (
-        "Loading"
-      ) : hasLike ? (
-        <i className="heart p-2 rounded-circle bi bi-heart-fill"></i>
       ) : (
-        <i className="heart p-2 rounded-circle bi bi-heart"></i>
+        <i
+          className={`bi fs-4 pt-1 ${hasLike ? "bi-heart-fill" : "bi-heart"}`}
+        />
       )}
-      {numLikes > 0 ? <span className="text-muted">{numLikes}</span> : ""}
     </LikeButton>
-  </OverlayTrigger>
+    <Widget src="mob.near/widget/LikeButton.Faces" props={{ likesByUsers }} />
+  </div>
 );
