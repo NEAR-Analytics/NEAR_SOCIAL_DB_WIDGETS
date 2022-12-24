@@ -32,7 +32,7 @@ return (
         )}
       </small>
     </div>
-    <div className="mt-1">
+    <div className="mt-1 text-break">
       {content ? (
         <>
           {content.text && <Markdown text={content.text} />}
