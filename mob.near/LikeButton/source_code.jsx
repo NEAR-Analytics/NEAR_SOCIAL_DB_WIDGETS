@@ -29,6 +29,7 @@ const accountsWithLikes = Object.keys(likesByUsers);
 const hasLike = context.accountId && !!likesByUsers[context.accountId];
 
 const LikeButton = styled.button`
+  border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
