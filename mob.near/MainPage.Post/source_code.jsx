@@ -5,6 +5,13 @@ const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
 
+const notifyAccountId = accountId;
+const item = {
+  type: "social",
+  path: `${accountId}/post/main`,
+  blockHeight,
+};
+
 return (
   <div className="border rounded-4 p-3">
     <div className="d-flex flex-row align-items-center">
@@ -58,19 +65,40 @@ return (
       )}
     </div>
     {blockHeight !== "now" && (
-      <div className="mt-1">
+      <div className="mt-1 d-flex" style={{ gap: "3em" }}>
         <Widget
           src="mob.near/widget/LikeButton"
           props={{
-            notifyAccountId: accountId,
-            item: {
-              type: "social",
-              path: `${accountId}/post/main`,
-              blockHeight,
-            },
+            notifyAccountId,
+            item,
+          }}
+        />
+        <Widget
+          src="mob.near/widget/CommentButton"
+          props={{
+            onClick: () => State.update({ showReply: true }),
           }}
         />
       </div>
     )}
+    <div className="mt-3 ps-5">
+      {state.showReply && (
+        <div className="mb-2">
+          <Widget
+            src="mob.near/widget/MainPage.Comment.Compose"
+            props={{
+              notifyAccountId,
+              item,
+            }}
+          />
+        </div>
+      )}
+      <Widget
+        src="mob.near/widget/MainPage.Comment.Feed"
+        props={{
+          item,
+        }}
+      />
+    </div>
   </div>
 );
