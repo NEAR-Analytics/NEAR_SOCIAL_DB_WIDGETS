@@ -11,6 +11,11 @@ if (project === null) {
 
 const featuredWidget = project.featuredWidget;
 
+State.init({
+  loadGroups: false,
+  loadComments: false,
+});
+
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
@@ -48,18 +53,18 @@ return (
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"
-          id="pills-tasks-tab"
+          id="pills-comments-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-tasks"
+          data-bs-target="#pills-comments"
           type="button"
           role="tab"
-          aria-controls="pills-tasks"
+          aria-controls="pills-comments"
           aria-selected="false"
           onClick={() => {
-            !state.loadTasks && State.update({ loadTasks: true });
+            !state.loadComments && State.update({ loadComments: true });
           }}
         >
-          Tasks
+          Comments
         </button>
       </li>
     </ul>
@@ -70,7 +75,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        <Widget src={featuredWidget} />
+        <Widget src={featuredWidget} props={{ accountId }} />
       </div>
       <div
         className="tab-pane fade groups"
@@ -81,12 +86,12 @@ return (
         <Widget src="gov.near/widget/FollowTabs" props={{ accountId }} />
       </div>
       <div
-        className="tab-pane fade tasks"
-        id="pills-tasks"
+        className="tab-pane fade comments"
+        id="pills-comments"
         role="tabpanel"
-        aria-labelledby="pills-tasks-tab"
+        aria-labelledby="pills-comments-tab"
       >
-        <Widget src="gov.near/widget/Tasks" props={{ accountId }} />
+        <Widget src="gov.near/widget/Comments" props={{ accountId }} />
       </div>
     </div>
   </>
