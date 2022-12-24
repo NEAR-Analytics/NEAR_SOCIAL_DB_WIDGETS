@@ -37,7 +37,8 @@
 // A 2D array of tiles. Tile definition can be anything.
 const TILES = props.tiles;
 // A function that returns renderable HTML/JSX based on a tile value the parent defines.
-const RENDER_TILE = props.renderTile === "id" ? (x) => x : props.renderTile;
+const RENDER_TILE =
+  props.renderTile === "id" ? (x) => <div>{x}</div> : props.renderTile;
 // CSS definition for map size.
 const MAP_SIZE = props.size ?? "300px";
 // CSS definition for tile size.
@@ -60,27 +61,22 @@ const COLS = TILES[0].length;
 
 // convert 2D array of tiles (stored in state.currentView) into HTML
 const renderMap = () => {
-  const html = TILES.map((row) =>
-    row.map((tile) => (
-      <div
-        style={{
-          fontSize: TILE_SIZE,
-          width: TILE_SIZE,
-          height: TILE_SIZE,
-        }}
-      >
-        {RENDER_TILE(tile)}
-      </div>
-    ))
-  ).flat();
-  return html;
+  // Change to column-first to make CSS grid rendering work.
+  const out = [];
+  for (const y = 0; y < COLS; y++) {
+    for (const x = 0; x < ROWS; x++) {
+      out.push(RENDER_TILE(TILES[x][y]));
+    }
+  }
+  return out;
 };
 
 return (
   <div
     style={{
       display: "grid",
-      gridTemplateColumns: `repeat(${COLS},${TILE_SIZE})`,
+      gridAutoFlow: "column",
+      gridTemplateRows: `repeat(${ROWS},${TILE_SIZE})`,
       width: MAP_SIZE,
       height: MAP_SIZE,
     }}
