@@ -52,7 +52,7 @@ return (
           },
           index: {
             genie: JSON.stringify({
-              key: "commented",
+              key: "comments",
               value: commentRef,
             }),
           },
