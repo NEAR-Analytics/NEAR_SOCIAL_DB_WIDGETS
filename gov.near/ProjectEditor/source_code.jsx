@@ -27,13 +27,13 @@ return (
             initialMetadata: project,
             onChange: (project) => State.update({ project }),
             options: {
-              name: { label: "Name" },
+              name: { label: "Project Name" },
               featuredWidget: {
                 label: "Featured Widget",
               },
-              image: { label: "Project image" },
-              backgroundImage: { label: "Background image" },
-              description: { label: "About" },
+              image: { label: "Project Logo" },
+              backgroundImage: { label: "Background Image" },
+              description: { label: "About the Project" },
               tags: {
                 label: "Tags",
                 tagsPattern: "*/project/tags/*",
