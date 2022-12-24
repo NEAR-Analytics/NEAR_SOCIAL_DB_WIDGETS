@@ -69,9 +69,9 @@ return (
                   className="fw-bold text-muted"
                   href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
                 >
-                  commented
+                  replied
                 </a>{" "}
-                on your
+                to your
                 {value.item.path === `${context.accountId}/post/main` ? (
                   <a
                     className="fw-bold text-muted"
