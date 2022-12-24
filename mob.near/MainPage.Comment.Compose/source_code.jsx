@@ -69,12 +69,13 @@ return (
             force
             className="btn btn-dark rounded-3"
             data={data}
-            onCommit={() =>
+            onCommit={() => {
               State.update({
                 image: {},
                 text: "",
-              })
-            }
+              });
+              props.onComment && props.onComment(content);
+            }}
           >
             Comment
           </CommitButton>
