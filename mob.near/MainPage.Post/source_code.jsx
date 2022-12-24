@@ -90,6 +90,7 @@ return (
             props={{
               notifyAccountId,
               item,
+              onComment: () => State.update({ showReply: false }),
             }}
           />
         </div>
