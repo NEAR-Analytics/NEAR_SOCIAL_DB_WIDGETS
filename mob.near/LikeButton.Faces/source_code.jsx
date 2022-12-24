@@ -90,7 +90,7 @@ return (
           </Tooltip>
         }
       >
-        <span className="text-muted">
+        <span className="text-muted ms-1">
           and {numLikes} other{numLikes === 1 ? "" : "s"}
         </span>
       </OverlayTrigger>
