@@ -65,7 +65,7 @@ return (
       )}
     </div>
     {blockHeight !== "now" && (
-      <div className="mt-1 d-flex" style={{ gap: "3em" }}>
+      <div className="mt-1 d-flex justify-content-between">
         <Widget
           src="mob.near/widget/LikeButton"
           props={{
