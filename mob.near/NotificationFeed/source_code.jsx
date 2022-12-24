@@ -125,7 +125,7 @@ return (
               </a>
               {value.item.path === `${context.accountId}/post/main` && (
                 <a
-                  className="btn btn-outline-dark"
+                  className="btn btn-outline-dark d-none d-md-inline-block"
                   href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
                 >
                   View post
