@@ -5,7 +5,6 @@ const VIEW_OFFSET_X = 0;
 const VIEW_OFFSET_Y = 0;
 const MAP_SIZE = "360px";
 const TILE_SIZE = "30px";
-const TILE_INNER_SIZE = "30px";
 const MAX_SECONDS = 600;
 
 const Tile = {
@@ -19,85 +18,53 @@ const msLeft = (props.session.start - Date.now()) / 1000 + MAX_SECONDS;
 const secondsLeft = msLeft - (msLeft % 1);
 const gameover = props.session.activePlayer === "gameover";
 
-// Select a view of the map, store it as 2D array of tiles and insert pixels.
-const mapView = (start_x, start_y, width, height) => {
-  const map = Array.from(Array(width), () =>
-    new Array(height).fill(Tile.Empty)
-  );
-
-  console.log("props", props);
-  props.session.pixels.forEach((pixel) => {
-    // apply view offset
-    const x = pixel.x - start_x;
-    const y = pixel.y - start_y;
-    if (map[x] && map[x][y]) {
-      map[x][y] = Tile.Full;
-    }
-  });
-
-  const updates = state.updates ?? [];
-  console.log("drawing with updates", updates);
-  updates.forEach((pixel) => {
-    // apply view offset
-    const x = pixel.x - start_x;
-    const y = pixel.y - start_y;
-    if (map[x]) {
-      if (map[x][y] === Tile.Full) {
-        map[x][y] = Tile.Empty;
-      } else {
-        map[x][y] = Tile.Full;
-      }
-    }
-  });
-
-  return map;
-};
-
 const stateObject = (updates) => {
   return {
     playerPos: state.playerPos ?? { x: 0, y: 0 },
     updates,
-    currentView: mapView(
-      pos.x - VIEW_OFFSET_X,
-      pos.y - VIEW_OFFSET_Y,
-      MAP_TILES,
-      MAP_TILES
-    ),
   };
 };
 
-// convert 2D array of tiles (stored in state.currentView) into HTML
-const renderMap = (playerPos) => {
-  // make a deep copy of map so we can modify it
-  const map = JSON.parse(JSON.stringify(state.currentView));
+const displayedObjects = () => {
+  const out = [];
+  props.session.pixels.forEach((pixel) => {
+    out.push({ tile: Tile.Full, ...pixel });
+  });
+
+  const updates = state.updates ?? [];
+  updates.forEach((pixel) => {
+    out.push({ tile: Tile.Full, ...pixel });
+  });
+
   if (myTurn) {
-    map[playerPos.x][playerPos.y] = Tile.Ghost;
+    out.push({ tile: Tile.Ghost, ...state.playerPos });
   }
-  const html = map
-    .map((row) =>
-      row.map((tile) => (
-        <div
-          style={{
-            fontSize: TILE_INNER_SIZE,
-            width: TILE_SIZE,
-            height: TILE_SIZE,
-          }}
-        >
-          {tile}
-        </div>
-      ))
-    )
-    .flat();
-  return html;
+
+  return out;
 };
 
-// instantly moves the player to the given coordinate unless the path is blocked
+const renderTile = (tile) => {
+  return (
+    <div
+      style={{
+        fontSize: TILE_SIZE,
+        width: TILE_SIZE,
+        height: TILE_SIZE,
+      }}
+    >
+      {tile}
+    </div>
+  );
+};
+
+// map boundary check
+const isInMap = (x, y) => {
+  return x >= 0 && x < MAP_TILES && y >= 0 && y < MAP_TILES;
+};
+
+// instantly moves the player to the given coordinate unless it is outside the map
 const movePlayer = (x, y) => {
-  // collision check and/or boundary check
-  if (
-    tileInCurrentView(x, y) === Tile.Empty ||
-    tileInCurrentView(x, y) === Tile.Full
-  ) {
+  if (isInMap(x, y)) {
     setPlayerPos(x, y);
   }
 };
@@ -106,44 +73,25 @@ const movePlayer = (x, y) => {
 const setPlayerPos = (x, y) => {
   state.playerPos.x = x;
   state.playerPos.y = y;
-  state.currentView = mapView(
-    //x - VIEW_OFFSET_X,
-    //y - VIEW_OFFSET_Y,
-    -VIEW_OFFSET_X,
-    -VIEW_OFFSET_Y,
-    MAP_TILES,
-    MAP_TILES,
-    props.session.pixels
-  );
   // trigger a re-render with the new state
   State.update();
-};
-
-const tileInCurrentView = (x, y) => {
-  // move view and keep  player in center
-  //const projected_x = x - state.playerPos.x + VIEW_OFFSET_X;
-  // const projected_y = y - state.playerPos.y + VIEW_OFFSET_Y;
-  // return state.currentView[projected_x][projected_y];
-  // move player biut keep view static
-  return state.currentView[x][y];
 };
 
 const drawPixel = (x, y) => {
   if (!myTurn) {
     return;
   }
+
   if (
-    // deleting is not allowed for now
-    tileInCurrentView(x, y) === Tile.Empty &&
-    state.updates.length == 0
+    state.updates.length === 0 &&
+    !props.session.pixels.some((pixel) => pixel.x == x && pixel.y == y)
   ) {
     state.updates.push({ x, y });
   } else if (
     // undo is allowed
-    tileInCurrentView(x, y) === Tile.Full &&
-    state.updates.length == 1 &&
-    state.updates[0].x == x &&
-    state.updates[0].y == y
+    state.updates.length === 1 &&
+    state.updates[0].x === x &&
+    state.updates[0].y === y
   ) {
     state.updates = [];
   }
@@ -237,17 +185,18 @@ return (
         props={{ keyDownHandler, width: MAP_SIZE, margin: "20px 0" }}
       />
     )}
-    <div
-      style={{
-        display: "grid",
-        gridAutoFlow: "column",
-        gridTemplateRows: `repeat(${MAP_TILES},${TILE_SIZE})`,
-        width: MAP_SIZE,
-        height: MAP_SIZE,
+    <Widget
+      src="jakmeier.near/widget/MapView"
+      props={{
+        objects: displayedObjects(),
+        empty: Tile.Empty,
+        renderTile,
+        size: MAP_SIZE,
+        tileSize: TILE_SIZE,
+        width: MAP_TILES,
+        height: MAP_TILES,
       }}
-    >
-      {renderMap(state.playerPos)}
-    </div>
+    />
     {gameover || (
       <Widget
         src="jakmeier.near/widget/GameBoyInput"
