@@ -23,7 +23,7 @@ return (
       </div>
     )}
     {state.showCommentForm && (
-      <Wrapper>
+      <div>
         <div className="d-flex flex-row justify-content-end">
           <button
             className="btn btn-light"
@@ -38,7 +38,7 @@ return (
           src="gov.near/widget/SaveComment"
           props={{ searchString: state.searchString, setSearchString }}
         />
-      </Wrapper>
+      </div>
     )}
     {!state.selectedComment && !state.showCommentForm && (
       <div className="d-flex align-items-center gap-3">
