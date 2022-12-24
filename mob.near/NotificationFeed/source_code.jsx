@@ -28,7 +28,7 @@ return (
   <>
     {notifications.map(({ accountId, blockHeight, value }, i) => (
       <div key={i} className="d-flex justify-content-between mb-3">
-        <div className="me-4 text-truncate">
+        <div className="me-2 text-truncate">
           <div className="text-truncate">
             <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
           </div>
