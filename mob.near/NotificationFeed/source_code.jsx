@@ -63,6 +63,26 @@ return (
                   "item???"
                 )}
               </>
+            ) : value.type === "comment" ? (
+              <>
+                <a
+                  className="fw-bold text-muted"
+                  href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+                >
+                  commented
+                </a>{" "}
+                on your
+                {value.item.path === `${context.accountId}/post/main` ? (
+                  <a
+                    className="fw-bold text-muted"
+                    href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+                  >
+                    post
+                  </a>
+                ) : (
+                  "item???"
+                )}
+              </>
             ) : (
               "???"
             )}
@@ -95,6 +115,23 @@ return (
             ) : (
               ""
             )
+          ) : value.type === "comment" ? (
+            <>
+              <a
+                className="btn btn-outline-dark"
+                href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+              >
+                View comment
+              </a>
+              {value.item.path === `${context.accountId}/post/main` && (
+                <a
+                  className="btn btn-outline-dark"
+                  href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+                >
+                  View post
+                </a>
+              )}
+            </>
           ) : (
             ""
           )}
