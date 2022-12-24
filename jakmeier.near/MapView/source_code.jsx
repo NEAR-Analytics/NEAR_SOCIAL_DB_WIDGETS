@@ -52,9 +52,7 @@ return (
     src="jakmeier.near/widget/TileGrid"
     props={{
       tiles: mapView(),
-      renderTile: props.renderTile,
-      size: MAP_SIZE,
-      tileSize: TILE_SIZE,
+      ...props,
     }}
   />
 );
