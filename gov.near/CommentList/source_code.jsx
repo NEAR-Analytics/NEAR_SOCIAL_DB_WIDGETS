@@ -36,7 +36,7 @@ return (
             }}
           >
             <Widget
-              src={"michaelpeter.near/widget/GenieQuestionView"}
+              src={"gov.near/widget/CommentView"}
               props={{ commentRef: q.value, searchString: props.searchString }}
             />
           </div>
