@@ -21,7 +21,7 @@ const showEditButton =
   accountId &&
   accountId === context.accountId;
 
-const name = project.name || "No-name project";
+const name = project.name || "Anonymous Project";
 const image = project.image;
 const backgroundImage = project.backgroundImage;
 const tags = Object.keys(project.tags ?? {});
@@ -86,7 +86,7 @@ return (
                 nameHeader
               )}
               <div className="small text-truncate">
-                <i className="bi bi-person-fill text-secondary me-1"></i>
+                <i className="bi bi-wallet-fill text-secondary me-1"></i>
                 {accountId}
                 <Widget
                   src="gov.near/widget/FollowsYouBadge"
@@ -100,7 +100,6 @@ return (
                 src="gov.near/widget/FollowButton"
                 props={{ accountId }}
               />
-              <Widget src="gov.near/widget/PokeButton" props={{ accountId }} />
             </div>
           </div>
           <div>
