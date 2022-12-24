@@ -76,7 +76,8 @@ return (
         <Widget
           src="mob.near/widget/CommentButton"
           props={{
-            onClick: () => State.update({ showReply: true }),
+            onClick: () =>
+              !state.showReply && State.update({ showReply: true }),
           }}
         />
       </div>
