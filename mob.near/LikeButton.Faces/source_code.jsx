@@ -54,20 +54,25 @@ return (
   <>
     <Faces>
       {renderFaces.map((accountId, i) => (
-        <Widget
+        <a
           key={i}
-          src="mob.near/widget/ProfileImage"
-          props={{
-            metadata,
-            accountId,
-            widgetName,
-            style: { zIndex: 10 - i },
-            className: "face",
-            tooltip: true,
-            imageStyle: {},
-            imageClassName: "",
-          }}
-        />
+          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+          className="text-decoration-none d-inline-block"
+        >
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              metadata,
+              accountId,
+              widgetName,
+              style: { zIndex: 10 - i },
+              className: "face",
+              tooltip: true,
+              imageStyle: {},
+              imageClassName: "",
+            }}
+          />
+        </a>
       ))}
     </Faces>
     {numLikes > 0 ? (
