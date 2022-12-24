@@ -28,6 +28,7 @@ return (
             onChange: (project) => State.update({ project }),
             options: {
               name: { label: "Name" },
+              featuredWidget: { label: "Featured Widget" },
               image: { label: "Project image" },
               backgroundImage: { label: "Background image" },
               description: { label: "About" },
