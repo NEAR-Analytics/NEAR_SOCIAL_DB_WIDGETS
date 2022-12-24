@@ -75,7 +75,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        <Widget src={featuredWidget} props={{ accountId }} />
+        <Widget src={featuredWidget} />
       </div>
       <div
         className="tab-pane fade groups"
