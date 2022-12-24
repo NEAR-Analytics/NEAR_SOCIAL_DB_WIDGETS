@@ -13,7 +13,7 @@ const item = {
 };
 
 return (
-  <div className="border rounded-4 p-1">
+  <div className="border rounded-4 p-3 pb-1">
     <div className="d-flex flex-row align-items-center">
       <div className="flex-grow-1 text-truncate">
         <a
