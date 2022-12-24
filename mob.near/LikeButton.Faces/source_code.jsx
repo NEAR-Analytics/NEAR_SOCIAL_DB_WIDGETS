@@ -77,11 +77,14 @@ return (
           <Tooltip>
             <div
               className="text-truncate text-start"
-              style={{ maxWidth: "12em" }}
+              style={{ maxWidth: "16em" }}
             >
-              {faces.slice(0, 10).map((account_id, i) => (
+              {faces.slice(0, 10).map((accountId, i) => (
                 <Fragment key={i}>
-                  {account_id}
+                  <Widget
+                    src="mob.near/widget/ProfileLine"
+                    props={{ accountId, link: false }}
+                  />
                   <br />
                 </Fragment>
               ))}
