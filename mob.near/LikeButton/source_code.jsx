@@ -74,7 +74,7 @@ const likeClick = () => {
 const title = hasLike ? "Unlike" : "Like";
 
 const liTooltip = styled.div`
-  width: 8em;
+  width: 12em;
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
