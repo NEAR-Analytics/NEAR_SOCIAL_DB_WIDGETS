@@ -108,7 +108,7 @@ return (
             ) : value.item.path === `${context.accountId}/post/comment` ? (
               <a
                 className="btn btn-outline-dark"
-                href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+                href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
               >
                 View comment
               </a>
