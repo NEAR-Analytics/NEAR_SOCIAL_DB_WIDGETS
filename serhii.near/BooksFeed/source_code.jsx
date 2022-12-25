@@ -1,4 +1,5 @@
 const accountId = context.accountId;
+const defaultDate = "Dec 15 2022 10:00:00 AM";
 
 if (!accountId) {
   return "";
@@ -24,6 +25,16 @@ if (!peopleIFollowWithBooks) {
   return "Your friend dos not have any books";
 }
 
+const timeline = Object.entries(peopleIFollowWithBooks).flatMap(
+  ([acc, books]) => Object.values(books).map((book) => [acc, book])
+);
+timeline.sort(
+  ([_accA, bookA], [_accB, bookB]) =>
+    new Date(bookB["createdAt"] ?? defaultDate) -
+    new Date(bookA["createdAt"] ?? defaultDate)
+);
+console.log("timeline", timeline);
+
 const BookRows = styled.p`{
   display: "flex",
   flexDirection: "column",
@@ -34,20 +45,40 @@ const BookRows = styled.p`{
   padding: "1rem",
 }`;
 
+const ReadBox = styled.div`
+  display: flex;
+  justifyContent: 'space-between'
+  padding: 10px;
+  margin: 10px;
+  width: "100%";
+  height: "100%";
+`;
+
 return (
   <BookRows>
-    {Object.entries(peopleIFollowWithBooks).map(([acc, books]) => {
+    {timeline.map(([acc, book]) => {
       return (
         <div>
-          <div>{acc}</div>
+          <div className="flex-grow-1 text-truncate">
+            <a
+              className="text-dark text-decoration-none text-truncate"
+              href={`#/mob.near/widget/ProfilePage?accountId=${acc}`}
+            >
+              <ReadBox>
+                <Widget
+                  src="mob.near/widget/Profile.ShortInlineBlock"
+                  props={{ accountId: acc }}
+                />
+                <div>{book.createdAt ?? defaultDate}</div>
+              </ReadBox>
+            </a>
+          </div>
           <div>
-            {Object.values(books).map((book) => (
-              <Widget
-                key={i}
-                src={"serhii.near/widget/BookTile"}
-                props={{ book }}
-              />
-            ))}
+            <Widget
+              key={i}
+              src={"serhii.near/widget/BookTile"}
+              props={{ book }}
+            />
           </div>
         </div>
       );
