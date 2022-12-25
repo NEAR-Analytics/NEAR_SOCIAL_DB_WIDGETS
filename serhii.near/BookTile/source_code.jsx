@@ -80,29 +80,18 @@ const InfoContaier = styled.p`
 
 return (
   <BookTyle>
-    <a
-      href={`#/serhii.near/widget/BookPage?id=${id}`}
-      className="text-decoration-none link-dark"
-    >
-      <Widget
-        src="serhii.near/widget/BookCover"
-        props={{
-          book,
-        }}
-      />
-    </a>
+    <Widget
+      src="serhii.near/widget/BookCover"
+      props={{
+        book,
+      }}
+    />
     <InfoContaier>
-      <a
-        href={`#/serhii.near/widget/BookPage?id=${id}`}
-        className="text-decoration-none link-dark"
-      >
-        <div>
-          <BookTitle className="BookTitle">{title}</BookTitle>
-          <BookAuthors className="BookAuthors">{author}</BookAuthors>
-          <BookRating className="BookRating">{rating}</BookRating>
-        </div>
-      </a>
-
+      <div>
+        <BookTitle className="BookTitle">{title}</BookTitle>
+        <BookAuthors className="BookAuthors">{author}</BookAuthors>
+        <BookRating className="BookRating">{rating}</BookRating>
+      </div>
       <ButtonsBox>
         {showAddToRead && (
           <CommitButton data={dataForRead}>Add to Read</CommitButton>
