@@ -1,2 +1,2 @@
 // const params = new URLSearchParams(window.location.search);
-return <div>{JSON.stringify(window.location.search)}</div>;
+return <h1>Params are... {JSON.stringify(window.location.search)}</h1>;
