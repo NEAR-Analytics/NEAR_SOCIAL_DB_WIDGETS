@@ -7,10 +7,95 @@ if (!props.isPreview && isNaN(props.blockHeight)) {
 
 State.init({
   vote: userVote ?? "",
-  verifiedStatus: "verifying",
-  showVeryfyInstructionModal: false,
-  showVeryfyFailedModal: false,
+  showRequestVote: false,
 });
+
+let bgBlue = "#96C0FF";
+let bgRed = "#FFB4B4";
+let bgYellow = "#FFE999";
+let bgPurple = "#E6C0FF";
+let bgGreen = "#96FFE0";
+let bgPink = "#FF96B9";
+let bgSkyBlue = "#96EAFF";
+let bgIndigo = "#96DCD2";
+
+let allBgColors = [
+  bgBlue,
+  bgRed,
+  bgYellow,
+  bgPurple,
+  bgGreen,
+  bgPink,
+  bgSkyBlue,
+  bgIndigo,
+];
+
+let secondaryBgBlue = "#E6F0FF";
+let secondaryBgRed = "#FFEDED";
+let secondaryBgYellow = "#FFFAE6";
+let secondaryBgPurple = "#F9F0FF";
+let secondaryBgGreen = "#E6FFF7";
+let secondaryBgPink = "#FFE6EE";
+let secondaryBgSkyBlue = "#E6FAFF";
+let secondaryBgIndigo = "#E6F6F4";
+
+let allSecondaryBgColors = [
+  secondaryBgBlue,
+  secondaryBgRed,
+  secondaryBgYellow,
+  secondaryBgPurple,
+  secondaryBgGreen,
+  secondaryBgPink,
+  secondaryBgSkyBlue,
+  secondaryBgIndigo,
+];
+
+let fontColorBlue = "#003E9C";
+let fontColorRed = "#9C2B2B";
+let fontColorYellow = "#9C7B03";
+let fontColorPurple = "#763E9C";
+let fontColorGreen = "#009C6D";
+let fontColorPink = "#9C0034";
+let fontColorSkyBlue = "#007C9C";
+let fontColorIndigo = "#006758";
+
+let allFontColors = [
+  fontColorBlue,
+  fontColorRed,
+  fontColorYellow,
+  fontColorPurple,
+  fontColorGreen,
+  fontColorPink,
+  fontColorSkyBlue,
+  fontColorIndigo,
+];
+
+let secondaryColor = "#E9EBF8";
+
+function getBgColor(index, isPrimary) {
+  let allColorsOfThisType =
+    state.vote != `${index}` && isPrimary ? allBgColors : allSecondaryBgColors;
+
+  return Number.isInteger((index + 1) / allColorsOfThisType.length)
+    ? allColorsOfThisType[0]
+    : allColorsOfThisType[
+        ((index + 1) / allColorsOfThisType.length -
+          Math.trunc((index + 1) / allColorsOfThisType.length)) *
+          allColorsOfThisType.length -
+          1
+      ];
+}
+
+function getFontColor(index) {
+  return Number.isInteger((index + 1) / allFontColors.length)
+    ? allFontColors[0]
+    : allFontColors[
+        ((index + 1) / allFontColors.length -
+          Math.trunc((index + 1) / allFontColors.length)) *
+          allFontColors.length -
+          1
+      ];
+}
 
 // Utility function
 function getBlockTimestamp(blockHeight) {
@@ -76,7 +161,6 @@ const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
 const validAnswersToThisQuestion = getValidAnswers(answersToThisQuestion);
-console.log(1, validAnswersToThisQuestion);
 
 let userVote;
 // Getting if user has already voted
@@ -119,94 +203,6 @@ const getPublicationParams = () => {
   };
 };
 
-function closeModalClickingOnTransparent() {
-  return (e) => {
-    e.target.id == "modal" &&
-      State.update({
-        showVeryfyInstructionModal: false,
-        showVeryfyFailedModal: false,
-      });
-  };
-}
-
-const renderModal = () => {
-  return (
-    <div
-      className="modal"
-      id="modal"
-      style={
-        (state.showVeryfyInstructionModal || state.showVeryfyFailedModal) && {
-          display: "block",
-          backgroundColor: "#7e7e7e70",
-        }
-      }
-      tabindex="-1"
-      role="dialog"
-      onClick={closeModalClickingOnTransparent()}
-    >
-      <div className="modal-dialog" style={{ maxWidth: "90%" }} role="document">
-        <div
-          className="modal-content"
-          style={{ backgroundColor: "rgb(230, 230, 230)" }}
-        >
-          <div className="modal-header flex-row-reverse">
-            <button
-              type="button"
-              className="close"
-              dataDismiss="modal"
-              ariaLabel="Close"
-              onClick={() =>
-                State.update({
-                  showVeryfyInstructionModal: false,
-                  showVeryfyFailedModal: false,
-                })
-              }
-            >
-              <span ariaHidden="true">&times;</span>
-            </button>
-          </div>
-          <div
-            className="modal-body"
-            style={{
-              width: "90%",
-              borderRadius: "1rem",
-              margin: "0 auto",
-              backgroundColor: "white",
-            }}
-          >
-            {state.showVeryfyInstructionModal ? (
-              <p className="text-center">
-                Please complete the Proof of Humanity on the other tab. Once you
-                finish, the process might take a few minutes. Please, reload
-                this tab
-              </p>
-            ) : (
-              <p className="text-center text-danger">
-                The verification has failed. Please verify again.
-              </p>
-            )}
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-              onClick={() =>
-                State.update({
-                  showVeryfyInstructionModal: false,
-                  showVeryfyFailedModal: false,
-                })
-              }
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisQuestion.length == 0) return 0;
   return (
@@ -215,9 +211,37 @@ function calculatePercentage(votesToThisOption) {
   ).toFixed(2);
 }
 
-let styles = hasVoted
-  ? { color: "#000", width: "90%" }
-  : { color: "#000", width: "100%" };
+function getBorderRadious(index) {
+  if (index == 0) {
+    return "12px 12px 4px 4px";
+  } else if (index == questionParams.value.choicesOptions.length - 1) {
+    return "4px 4px 12px 12px";
+  } else {
+    return "4px";
+  }
+}
+
+function getStyles(index) {
+  return hasVoted
+    ? {
+        backgroundColor: `${getBgColor(index, false)}`,
+        color: `${getFontColor(index)}`,
+        width: "100%",
+        margin: "0.3rem 0px",
+        height: "2.4rem",
+        borderRadius: `${getBorderRadious(index)}`,
+        overflow: "hidden",
+      }
+    : {
+        backgroundColor: `${getBgColor(index, false)}`,
+        color: `${getFontColor(index)}`,
+        width: "100%",
+        margin: "0.3rem 0px",
+        height: "2.4rem",
+        borderRadius: `${getBorderRadious(index)}`,
+        overflow: "hidden",
+      };
+}
 
 const isValidInput = () => {
   let result = state.vote != "";
@@ -230,16 +254,16 @@ return (
     {questionParams.value.choicesOptions.map((option, index) => {
       return (
         <div>
-          <div className="d-flex">
-            <div style={styles}>
+          <div className="d-flex align-content-center">
+            <div
+              className="d-flex align-content-center"
+              style={getStyles(index)}
+            >
               {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
               <div
                 style={{
-                  margin: "0.3rem 0px",
-                  content: "",
-                  display: "table",
-                  clear: "both",
-                  padding: "0.01em 16px",
+                  height: "100%",
+                  padding: "0.01em 22px 0.01em 11px",
                   display: "inline-block",
                   width: `${
                     !canVote ? calculatePercentage(countVotes[index]) : 100
@@ -248,86 +272,93 @@ return (
                   overflow: "visible",
                   whiteSpace: "nowrap",
                   textAlign: "left",
-                  backgroundColor: `${
-                    (hasVoted && state.vote == index) ||
-                    state.vote == index + ""
-                      ? "rgb(153, 255, 153)"
-                      : "lightgray"
-                  }`,
+                  backgroundColor: `${getBgColor(index, true)}`,
+                  borderRadius: "4px",
                 }}
                 onClick={() => canVote && State.update({ vote: index + "" })}
               >
-                <span style={{ overflow: "visible", fontWeight: "500" }}>
-                  {option}
+                <span
+                  style={{
+                    overflow: "visible",
+                    fontWeight: "500",
+                    lineHeight: "2.5rem",
+                  }}
+                >
+                  {option} •
                   {!canVote && (
                     <span
                       className="text-secondary"
-                      style={{ marginLeft: "1rem", fontWeight: "400" }}
+                      style={{
+                        marginLeft: "1rem",
+                        fontWeight: "400",
+                      }}
                     >
                       ({countVotes[index]} votes)
                     </span>
                   )}
                 </span>
               </div>
+              {!canVote && (
+                <span
+                  style={{
+                    minWidth: "max-content",
+                    margin: "0.3rem 0px 0.3rem 0.3rem",
+                    fontWeight: "500",
+                    position: "absolute",
+                    right: "1.7rem",
+                  }}
+                >
+                  {calculatePercentage(countVotes[index])}%
+                </span>
+              )}
             </div>
-            {!canVote && (
-              <span
-                style={{
-                  minWidth: "max-content",
-                  margin: "0.3rem 0px 0.3rem 0.3rem",
-                  fontWeight: "500",
-                }}
-              >
-                {calculatePercentage(countVotes[index])}%
-              </span>
-            )}
           </div>
         </div>
       );
     })}
+    {hasVoted && (
+      <p
+        style={{
+          fontWeight: "500",
+          fontSize: "1.1rem",
+          color: "#767B8E",
+          letterSpacing: "-0.02em",
+          marginBottom: "0px",
+        }}
+      >
+        {validAnswersToThisQuestion.length} votes
+      </p>
+    )}
     {isQuestionOpen ? (
-      state.verifiedStatus == "verified" ? (
-        hasVoted ? (
-          <p
-            className="text-primary"
-            style={{ textAlign: "center", fontWeight: "500" }}
-          >
-            Voted
-          </p>
-        ) : (
-          <CommitButton
+      hasVoted ? (
+        <p
+          className="text-primary"
+          style={{ textAlign: "center", fontWeight: "500" }}
+        >
+          Voted
+        </p>
+      ) : state.vote != "" ? (
+        <CommitButton
+          className="my-2 btn btn-primary"
+          data={getPublicationParams()}
+        >
+          Vote
+        </CommitButton>
+      ) : (
+        <>
+          <button
             className="my-2 btn btn-primary"
-            data={getPublicationParams()}
+            onClick={() => State.update({ showRequestVote: true })}
           >
             Vote
-          </CommitButton>
-        )
-      ) : state.verifiedStatus == "verifying" ? (
-        <button type="button" disabled className="my-2 btn btn-primary">
-          <span
-            className="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Verifying...</span>
-        </button>
-      ) : state.verifiedStatus == "failed" ? (
-        <></>
-      ) : (
-        state.verifiedStatus == "notVerified" && (
-          <a
-            href="http://localhost:1234"
-            target="_blank"
-            onClick={() => State.update({ showVeryfyInstructionModal: true })}
-          >
-            <button className="my-2 btn btn-primary">Verify</button>
-          </a>
-        )
+          </button>
+          {state.showRequestVote && (
+            <p className="text-danger">You have to choose an option</p>
+          )}
+        </>
       )
     ) : (
       ""
     )}
-    {(state.showVeryfyInstructionModal || state.showVeryfyFailedModal) &&
-      renderModal()}
   </>
 );
