@@ -157,12 +157,13 @@ return (
             min={1.1}
             max={25}
             value={value}
+            step={0.1}
             onBlur={(e) => {
               state.scale = e.target.value;
               State.update(state);
             }}
             style={{
-              width: "100px",
+              width: "200px",
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
@@ -217,7 +218,7 @@ return (
         <div style={shadow}>
           <img
             src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
-            style={{ position: "absolute", zIndex: 1 }}
+            style={{ position: "absolute", zIndex: 0 }}
           />
           <img
             src={imgSrc}
@@ -228,7 +229,7 @@ return (
             style={{
               filter: `blur(${state.blur}px)`,
               position: "relative",
-              zIndex: 0,
+              zIndex: 1,
             }}
           />
           <p style={txt1}>
