@@ -54,15 +54,11 @@ return (
     <div className="flex flex-row">
       <Widget
         src="roshaan.near/widget/friendsInCommonBadge"
-        props={{
-          accountId,
-        }}
+        props={{ accountId }}
       />
       <Widget
         src="roshaan.near/widget/tagsInCommonBadge"
-        props={{
-          accountId,
-        }}
+        props={{ accountId }}
       />
     </div>
   </div>
