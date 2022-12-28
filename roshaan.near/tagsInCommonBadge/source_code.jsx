@@ -1,22 +1,18 @@
 const accountId = props.accountId;
 const userId = context.accountId;
 
-if (!accountId || !userId) return;
+if (!accountId || !userId) return "";
 
-const myTagsKeys = Social.getr(`${userId}/profile/tags`, "final");
-const profileVisitedTagsKeys = Social.getr(
-  `${accountId}/profile/tags`,
-  "final"
+const myTags = Object.keys(
+  Social.getr(`${userId}/profile/tags`, "final") || {}
+);
+const profileVisitedTags = Object.keys(
+  Social.getr(`${accountId}/profile/tags`, "final") || {}
 );
 
-const myTags = myTagsKeys ? Object.keys(myTagsKeys) : [];
-const profileVisitedTags = profileVisitedTagsKeys
-  ? Object.keys(profileVisitedTagsKeys)
-  : [];
+const tagsInCommon = myTags.filter((a) => profileVisitedTags.includes(a));
 
-const tagsInCommon = myTags.filter((a) => profileVisitedTags.includes(a)) || [];
-
-if (tagsInCommon.length == 0) return;
+if (tagsInCommon.length == 0) return "";
 
 return (
   <OverlayTrigger
