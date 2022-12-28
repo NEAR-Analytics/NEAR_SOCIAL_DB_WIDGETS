@@ -43,9 +43,12 @@ function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
 
-const isQuestionActive =
-  questionParams.value.startTimestamp < Date.now() &&
-  Date.now() < questionParams.value.endTimestamp;
+function isQuestionActive(question) {
+  return (
+    question.value.startTimestamp < Date.now() &&
+    Date.now() < question.value.endTimestamp
+  );
+}
 
 State.init({
   showQuestionsByThisUser: false,
@@ -97,23 +100,53 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
 }
 
 const renderQuestionsByThisCreator = () => {
+  //TODO show only the 2 more recent polls
   return questionsByThisCreator.map((questionByCreator, index) => {
-    let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
+    console.log(questionByCreator);
+    let divStyle =
+      index == 0
+        ? {}
+        : { backGroundColor: "white", borderTop: "1px solid #ced4da" };
     return (
       <div style={divStyle}>
         <p style={{ fontWeight: "500" }}>
           {sliceString(questionByCreator.value.title, 20)}
         </p>
-        <div className="d-flex justify-content-between flex-nowrap text-secondary">
-          <span>End date</span>
+        <div className="d-flex justify-content-between flex-nowrap text-secondary mb-2">
+          <div>
+            <i className="bi bi-people"></i>
+            <span>
+              {getValidAnswersQtyFromQuestion(questionByCreator.blockHeight)}
+            </span>
+          </div>
           <span>
-            {transformDateFormat(questionByCreator.value.endTimestamp)}
+            Ends
+            <Widget
+              src={`silkking.near/widget/timeAgo`}
+              props={{ timeInFuture: questionByCreator.value.endTimestamp }}
+            />
           </span>
-        </div>
-        <div className="d-flex justify-content-between flex-nowrap text-secondary">
-          <span>Votes</span>
-          <span>
-            ({getValidAnswersQtyFromQuestion(questionByCreator.blockHeight)})
+          <span
+            style={{
+              backgroundColor: isQuestionActive(questionByCreator)
+                ? "#D9FCEF"
+                : "#FFE5E5",
+
+              height: "1.5rem",
+              width: "4rem",
+              textAlign: "center",
+              borderRadius: "16px",
+              marginRight: "1rem",
+              lineHeight: "1.5rem",
+              fontSize: "0.8rem",
+              letterSpacing: "-0.025rem",
+              color: isQuestionActive(questionByCreator)
+                ? "#00B37D"
+                : "#FF4747",
+              fontWeight: "500",
+            }}
+          >
+            {isQuestionActive(questionByCreator) ? "Active" : "Closed"}
           </span>
         </div>
       </div>
@@ -259,7 +292,9 @@ return (
           )}
           <span
             style={{
-              backgroundColor: isQuestionActive ? "#D9FCEF" : "#FFE5E5",
+              backgroundColor: isQuestionActive(questionParams)
+                ? "#D9FCEF"
+                : "#FFE5E5",
 
               height: "2.1rem",
               width: "5rem",
@@ -269,11 +304,11 @@ return (
               lineHeight: "1.9rem",
               fontSize: "1rem",
               letterSpacing: "-0.025rem",
-              color: isQuestionActive ? "#00B37D" : "#FF4747",
+              color: isQuestionActive(questionParams) ? "#00B37D" : "#FF4747",
               fontWeight: "500",
             }}
           >
-            {isQuestionActive ? "Active" : "Closed"}
+            {isQuestionActive(questionParams) ? "Active" : "Closed"}
           </span>
         </div>
         <div className="d-flex my-3">
@@ -481,7 +516,7 @@ return (
         >
           <div className="d-flex justify-content-between">
             <span>Status</span>
-            <span>{isQuestionActive ? "Active" : "Closed"}</span>
+            <span>{isQuestionActive(questionParams) ? "Active" : "Closed"}</span>
           </div>
 
           <div className="d-flex justify-content-between">
@@ -506,11 +541,40 @@ return (
 
         {questionsByCreator.length != 1 && (
           <>
-            <div className="d-flex">
-              <h5>Polls by creator</h5>
-              <h5 style={{ marginLeft: "0.5rem" }}>
-                ({questionsByThisCreator.length})
-              </h5>
+            <div
+              className="d-flex"
+              style={
+                shouldDisplayViewAll
+                  ? {
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }
+                  : {
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }
+              }
+            >
+              <h5>Polls by creator ({questionsByThisCreator.length})</h5>
+
+              {shouldDisplayViewAll && (
+                <div style={{ margin: "1rem 0", textAlign: "center" }}>
+                  <p
+                    style={{
+                      color: "#2346B1",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      State.update({ showQuestionsByThisUser: true });
+                    }}
+                  >
+                    View All <i className="bi bi-arrow-right"></i>
+                  </p>
+                </div>
+              )}
             </div>
 
             <div
@@ -521,18 +585,6 @@ return (
               }}
             >
               {renderQuestionsByThisCreator()}
-              {shouldDisplayViewAll && (
-                <div style={{ margin: "1rem 0", textAlign: "center" }}>
-                  <button
-                    className="btn btn-outline-primary w-75"
-                    onClick={() => {
-                      State.update({ showQuestionsByThisUser: true });
-                    }}
-                  >
-                    View all
-                  </button>
-                </div>
-              )}
             </div>
           </>
         )}
