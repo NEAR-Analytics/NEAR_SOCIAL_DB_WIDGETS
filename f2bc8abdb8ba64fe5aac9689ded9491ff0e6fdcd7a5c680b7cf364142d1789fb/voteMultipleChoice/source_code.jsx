@@ -7,7 +7,6 @@ if (!props.isPreview && isNaN(props.blockHeight)) {
 
 State.init({
   vote: userVote ?? "",
-  showRequestVote: false,
 });
 
 let bgBlue = "#96C0FF";
@@ -95,6 +94,20 @@ function getFontColor(index) {
           allFontColors.length -
           1
       ];
+}
+
+function getInputStyles(index) {
+  return index + "" == state.vote
+    ? {
+        borderColor: "black",
+        backgroundColor: "black",
+        width: "1rem",
+        marginRight: "0.7rem",
+      }
+    : {
+        width: "1rem",
+        marginRight: "0.7rem",
+      };
 }
 
 // Utility function
@@ -224,6 +237,8 @@ function getBorderRadious(index) {
 function getStyles(index) {
   return hasVoted
     ? {
+        display: "flex",
+        alignContent: "center",
         backgroundColor: `${getBgColor(index, false)}`,
         color: `${getFontColor(index)}`,
         width: "100%",
@@ -233,13 +248,11 @@ function getStyles(index) {
         overflow: "hidden",
       }
     : {
-        backgroundColor: `${getBgColor(index, false)}`,
-        color: `${getFontColor(index)}`,
+        appearance: "auto",
         width: "100%",
-        margin: "0.3rem 0px",
-        height: "2.4rem",
-        borderRadius: `${getBorderRadious(index)}`,
-        overflow: "hidden",
+        display: "flex",
+        justifyContent: "flex-start",
+        margin: "0.4rem 0",
       };
 }
 
@@ -251,84 +264,82 @@ const isValidInput = () => {
 return (
   <>
     {!isQuestionOpen ? "This question is already closed" : ""}
+    {canVote && <p style={{ margin: "0" }}>Make a choice:</p>}
     {questionParams.value.choicesOptions.map((option, index) => {
       return (
         <div>
           <div className="d-flex align-content-center">
-            <div
-              className="d-flex align-content-center"
-              style={getStyles(index)}
-            >
+            <div style={getStyles(index)}>
               {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-              <div
-                style={{
-                  height: "100%",
-                  padding: "0.01em 22px 0.01em 11px",
-                  display: "inline-block",
-                  width: `${
-                    !canVote ? calculatePercentage(countVotes[index]) : 100
-                  }%`,
-                  textAlign: "center",
-                  overflow: "visible",
-                  whiteSpace: "nowrap",
-                  textAlign: "left",
-                  backgroundColor: `${getBgColor(index, true)}`,
-                  borderRadius: "4px",
-                }}
-                onClick={() => canVote && State.update({ vote: index + "" })}
-              >
-                <span
-                  style={{
-                    overflow: "visible",
-                    fontWeight: "500",
-                    lineHeight: "2.5rem",
-                  }}
-                >
-                  {option} •
-                  {!canVote && (
+              {!canVote ? (
+                <>
+                  <div
+                    style={{
+                      height: "100%",
+                      padding: "0.01em 22px 0.01em 11px",
+                      display: "inline-block",
+                      width: `${calculatePercentage(countVotes[index])}%`,
+                      textAlign: "center",
+                      overflow: "visible",
+                      whiteSpace: "nowrap",
+                      textAlign: "left",
+                      backgroundColor: `${getBgColor(index, true)}`,
+                      borderRadius: "4px",
+                    }}
+                  >
                     <span
-                      className="text-secondary"
                       style={{
-                        marginLeft: "1rem",
-                        fontWeight: "400",
+                        overflow: "visible",
+                        fontWeight: "500",
+                        lineHeight: "2.5rem",
                       }}
                     >
-                      ({countVotes[index]} votes)
+                      {option} •
+                      <span
+                        className="text-secondary"
+                        style={{
+                          marginLeft: "1rem",
+                          fontWeight: "400",
+                        }}
+                      >
+                        ({countVotes[index]} votes)
+                      </span>
                     </span>
-                  )}
-                </span>
-              </div>
-              {!canVote && (
-                <span
-                  style={{
-                    minWidth: "max-content",
-                    margin: "0.3rem 0px 0.3rem 0.3rem",
-                    fontWeight: "500",
-                    position: "absolute",
-                    right: "1.7rem",
-                  }}
-                >
-                  {calculatePercentage(countVotes[index])}%
-                </span>
+                  </div>
+
+                  <span
+                    style={{
+                      minWidth: "max-content",
+                      margin: "0.4rem 0px 0.4rem 0.3rem",
+                      fontWeight: "500",
+                      position: "absolute",
+                      right: "1.7rem",
+                    }}
+                  >
+                    {calculatePercentage(countVotes[index])}%
+                  </span>
+                </>
+              ) : (
+                <>
+                  <input
+                    className="form-check-input"
+                    id={"input" + index}
+                    name="selectMultipleChoice"
+                    key={index + "-" + state.vote}
+                    style={getInputStyles(index)}
+                    type="radio"
+                    value={index}
+                    checked={state.vote == index + ""}
+                    onClick={() => State.update({ vote: index + "" })}
+                  />
+                  <label for={"input" + index}>{option}</label>
+                </>
               )}
             </div>
           </div>
         </div>
       );
     })}
-    {hasVoted && (
-      <p
-        style={{
-          fontWeight: "500",
-          fontSize: "1.1rem",
-          color: "#767B8E",
-          letterSpacing: "-0.02em",
-          marginBottom: "0px",
-        }}
-      >
-        {validAnswersToThisQuestion.length} votes
-      </p>
-    )}
     {isQuestionOpen ? (
       hasVoted ? (
         <p
@@ -339,7 +350,16 @@ return (
         </p>
       ) : state.vote != "" ? (
         <CommitButton
-          className="my-2 btn btn-primary"
+          className="w-100"
+          style={{
+            marginTop: "0.5rem",
+            padding: "0.5rem",
+            backgroundColor: "#000000",
+            color: "#FFFFFF",
+            fontSize: "1rem",
+            borderRadius: "9px",
+            border: "none",
+          }}
           data={getPublicationParams()}
         >
           Vote
@@ -347,18 +367,35 @@ return (
       ) : (
         <>
           <button
-            className="my-2 btn btn-primary"
-            onClick={() => State.update({ showRequestVote: true })}
+            className="w-100"
+            style={{
+              marginTop: "0.5rem",
+              padding: "0.5em",
+              backgroundColor: "#F2F6FA",
+              color: "#B0B3BE",
+              fontSize: "1rem",
+              borderRadius: "9px",
+              border: "none",
+            }}
+            disabled
           >
             Vote
           </button>
-          {state.showRequestVote && (
-            <p className="text-danger">You have to choose an option</p>
-          )}
         </>
       )
     ) : (
       ""
     )}
+    <p
+      style={{
+        fontWeight: "500",
+        fontSize: "1.1rem",
+        color: "#767B8E",
+        letterSpacing: "-0.02em",
+        marginTop: "0.8rem",
+      }}
+    >
+      {validAnswersToThisQuestion.length} votes
+    </p>
   </>
 );
