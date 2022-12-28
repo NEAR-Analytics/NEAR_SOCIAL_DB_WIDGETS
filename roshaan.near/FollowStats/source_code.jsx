@@ -51,7 +51,7 @@ return (
         </a>
       </div>
     </div>
-    <div>
+    <div className="flex flex-row">
       <Widget
         src="roshaan.near/widget/tagsInCommonBadge"
         props={{
