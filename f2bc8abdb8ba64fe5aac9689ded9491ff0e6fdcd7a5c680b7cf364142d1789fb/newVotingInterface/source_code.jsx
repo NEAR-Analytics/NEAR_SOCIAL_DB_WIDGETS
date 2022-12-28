@@ -447,7 +447,7 @@ return (
                     marginLeft: "0.8rem",
                   }}
                   onClick={() =>
-                    navigator.clipboard.writeText(questionParams.value.tgLink)
+                    clipboard.writeText(questionParams.value.tgLink)
                   }
                 ></i>
               </div>
