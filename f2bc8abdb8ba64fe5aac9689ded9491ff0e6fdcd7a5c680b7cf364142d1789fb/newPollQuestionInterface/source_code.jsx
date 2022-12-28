@@ -74,6 +74,10 @@ const isValidInput = () => {
   result = result && state.pollEndDate != "";
   result = result && state.endTime != "";
   result = result && state.question != "";
+  result =
+    result &&
+    getTimestamp(state.pollStartDate, state.startTime) <
+      getTimestamp(state.pollEndDate, state.endTime);
   // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
 };
@@ -539,6 +543,13 @@ return (
           </div>
         </div>
       </div>
+      {getTimestamp(state.pollStartDate, state.startTime) >=
+        getTimestamp(state.pollEndDate, state.endTime) &&
+        state.showErrorsInForm && (
+          <div>
+            <p className="text-danger">Poll should start before it ends</p>
+          </div>
+        )}
 
       <div
         style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
