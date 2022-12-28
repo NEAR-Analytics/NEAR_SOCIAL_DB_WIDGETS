@@ -18,6 +18,8 @@ questions = questions.sort((q1, q2) => {
   const isQ2Finished = q2.value.endTimestamp < Date.now();
   if (isQ1Finished && !isQ2Finished) return 1;
   if (!isQ1Finished && isQ2Finished) return -1;
+  if (isQ1Finished && isQ2Finished)
+    return q2.value.endTimestamp - q1.value.endTimestamp;
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
 
@@ -32,8 +34,6 @@ function closeModalClickingOnTransparent() {
 }
 
 const widgetOwner = "silkking.near";
-
-console.log(state.modalBlockHeight);
 
 const renderModal = () => {
   return (
