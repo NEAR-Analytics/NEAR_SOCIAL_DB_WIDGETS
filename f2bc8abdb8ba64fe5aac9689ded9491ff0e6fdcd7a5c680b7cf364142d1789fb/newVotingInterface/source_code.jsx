@@ -11,12 +11,6 @@ const questions =
 if (!questions) {
   return "Loading";
 }
-questionParams.value.tgLink;
-questionParams.value.tgLink;
-questionParams.value.tgLink;
-questionParams.value.tgLink;
-
-let discussionLink = "app.discussion.io/poll112312";
 
 const questionParams =
   props.previewInfo ??
@@ -387,78 +381,84 @@ return (
           )}
         </div>
 
-        {discussionLink != "" && discussionLink != undefined && (
-          <div
-            className="mt-3 d-flex justify-content-between"
-            style={{
-              border: "1.5px solid #D4E5FB",
-              padding: "1.2rem 1.7rem",
-              borderRadius: "24px",
-            }}
-          >
-            <div className="d-flex">
-              <i
-                className="bi bi-people d-flex align-items-center justify-content-center"
-                style={{
-                  height: "100%",
-                  aspectRatio: "1",
-                  backgroundColor: "#2F5BCF",
-                  borderRadius: "14px",
-                  marginRight: "1rem",
-                  color: "white",
-                }}
-              ></i>
-              <div>
-                <p
-                  className="m-0"
-                  style={{
-                    color: "#2F5BCF",
-                    fontWeight: "500",
-                    fontSize: "0.7rem",
-                  }}
-                >
-                  Discussion link
-                </p>
-                <h6>
-                  <a style={{ color: "#2346B1" }} href={discussionLink}>
-                    {sliceString(discussionLink, 30)}
-                  </a>
-                </h6>
-              </div>
-            </div>
-            <div>
-              <a
-                target="_blank"
-                href={discussionLink}
-                style={{ userSelect: "none" }}
-              >
+        {questionParams.value.tgLink != "" &&
+          questionParams.value.tgLink != undefined && (
+            <div
+              className="mt-3 d-flex justify-content-between"
+              style={{
+                border: "1.5px solid #D4E5FB",
+                padding: "1.2rem 1.7rem",
+                borderRadius: "24px",
+              }}
+            >
+              <div className="d-flex">
                 <i
-                  className="bi bi-box-arrow-up-right"
+                  className="bi bi-people d-flex align-items-center justify-content-center"
                   style={{
-                    color: "#2F5BCF",
-                    height: "2rem",
+                    height: "100%",
                     aspectRatio: "1",
-                    cursor: "pointer",
+                    backgroundColor: "#2F5BCF",
+                    borderRadius: "14px",
+                    marginRight: "1rem",
+                    color: "white",
                   }}
                 ></i>
-              </a>
-              <i
-                className="bi bi-clipboard"
-                style={{
-                  userSelect: "none",
-                  color: "#2F5BCF",
-                  height: "2rem",
-                  aspectRatio: "1",
-                  cursor: "pointer",
-                }}
-                onClick={() => navigator.clipboard.writeText(discussionLink)}
-              ></i>
+                <div>
+                  <p
+                    className="m-0"
+                    style={{
+                      color: "#2F5BCF",
+                      fontWeight: "500",
+                      fontSize: "0.7rem",
+                    }}
+                  >
+                    Discussion link
+                  </p>
+                  <h6>
+                    <a
+                      style={{ color: "#2346B1" }}
+                      href={questionParams.value.tgLink}
+                    >
+                      {sliceString(questionParams.value.tgLink, 30)}
+                    </a>
+                  </h6>
+                </div>
+              </div>
+              <div className="d-flex align-items-center">
+                <a
+                  target="_blank"
+                  href={questionParams.value.tgLink}
+                  style={{ userSelect: "none" }}
+                >
+                  <i
+                    className="bi bi-box-arrow-up-right"
+                    style={{
+                      color: "#2F5BCF",
+                      cursor: "pointer",
+                    }}
+                  ></i>
+                </a>
+                <i
+                  className="bi bi-clipboard"
+                  style={{
+                    userSelect: "none",
+                    color: "#2F5BCF",
+                    cursor: "pointer",
+                    marginLeft: "0.8rem",
+                  }}
+                  onClick={() =>
+                    navigator.clipboard.writeText(questionParams.value.tgLink)
+                  }
+                ></i>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         <div
-          style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
+          style={{
+            border: "1.5px solid rgb(206, 212, 218)",
+            borderRadius: "24px",
+          }}
           className="p-3 my-3"
         >
           <h4>{questionParams.value.question}</h4>
@@ -469,7 +469,7 @@ return (
         </div>
       </div>
       <div style={{ minWidth: "17rem" }}>
-        <h5>Information</h5>
+        {/*<h5>Information</h5>
         <div
           className="mb-2"
           style={{
@@ -502,7 +502,7 @@ return (
             <span>Creator</span>
             <span>{sliceString(questionParams.accountId, 8)}</span>
           </div>
-        </div>
+        </div>*/}
 
         {questionsByCreator.length != 1 && (
           <>
