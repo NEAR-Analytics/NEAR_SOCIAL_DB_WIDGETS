@@ -1,9 +1,7 @@
 const accountId = props.accountId;
 const userId = context.accountId;
 
-if (!accountId || !userId) {
-  return "";
-}
+if (!accountId || !userId) return;
 
 const accounts = Social.keys(`*/graph/follow/*`, "final", {
   return_type: "BlockHeight",
@@ -26,29 +24,27 @@ const findFriendsInCommon = (accountId) => {
 
 const friendsInCommon = findFriendsInCommon(accountId);
 
+if (friendsInCommon.length == 0) return;
+
 return (
-  <>
-    {friendsInCommon.length > 0 && (
-      <OverlayTrigger
-        placement="auto"
-        overlay={
-          <Tooltip>
-            <span> You both follow </span>
-            <br />
-            <br />
-            {friendsInCommon.map((friendsInCommon) => {
-              return <li className={`list-group-item`}>{friendsInCommon}</li>;
-            })}
-          </Tooltip>
-        }
-      >
-        <span
-          className="badge rounded-pill bg-primary"
-          title={`${friendsInCommon.length} followers in common`}
-        >
-          {friendsInCommon.length} friends in common
-        </span>
-      </OverlayTrigger>
-    )}
-  </>
+  <OverlayTrigger
+    placement="auto"
+    overlay={
+      <Tooltip>
+        <span> You both follow </span>
+        <br />
+        <br />
+        {friendsInCommon.map((friendsInCommon) => {
+          return <li className={`list-group-item`}>{friendsInCommon}</li>;
+        })}
+      </Tooltip>
+    }
+  >
+    <span
+      className="badge rounded-pill bg-primary"
+      title={`${friendsInCommon.length} followers in common`}
+    >
+      {friendsInCommon.length} friends in common
+    </span>
+  </OverlayTrigger>
 );
