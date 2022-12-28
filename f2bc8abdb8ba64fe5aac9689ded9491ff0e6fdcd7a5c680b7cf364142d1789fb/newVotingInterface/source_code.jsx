@@ -74,12 +74,16 @@ const renderVoteMultipleChoice = () => {
 };
 
 const renderVoteText = () => {
-  return (
-    <Widget
-      src={`${widgetOwner}/widget/voteWithText`}
-      props={{ ...questionParams, isPreview }}
-    />
-  );
+  if (questionParams) {
+    return (
+      <Widget
+        src={`${widgetOwner}/widget/voteWithText`}
+        props={{ ...questionParams, isPreview }}
+      />
+    );
+  } else {
+    return "Invalid block height provided.";
+  }
 };
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
