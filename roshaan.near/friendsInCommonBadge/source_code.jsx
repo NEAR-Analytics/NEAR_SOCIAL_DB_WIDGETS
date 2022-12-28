@@ -27,7 +27,7 @@ const findFriendsInCommon = (accountId) => {
 const friendsInCommon = findFriendsInCommon(accountId);
 
 return (
-  <div>
+  <>
     {friendsInCommon.length > 0 && (
       <OverlayTrigger
         placement="auto"
@@ -50,5 +50,5 @@ return (
         </span>
       </OverlayTrigger>
     )}
-  </div>
+  </>
 );
