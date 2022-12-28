@@ -17,27 +17,28 @@ const profileVisitedTags = profileVisitedTagsKeys
   : [];
 
 const tagsInCommon = myTags.filter((a) => profileVisitedTags.includes(a)) || [];
+
+if (tagsInCommon.length == 0) {
+  return "";
+}
+
 return (
-  <>
-    {tagsInCommon.length > 0 && (
-      <OverlayTrigger
-        placement="auto"
-        overlay={
-          <Tooltip>
-            <span> Tags in Common </span>
-            {tagsInCommon.map((tag) => {
-              return <li className={`list-group-item`}>{tag}</li>;
-            })}
-          </Tooltip>
-        }
-      >
-        <span
-          className="badge rounded-pill bg-primary"
-          title={`${tagsInCommon.length} tags in common`}
-        >
-          {tagsInCommon.length} common tags
-        </span>
-      </OverlayTrigger>
-    )}
-  </>
+  <OverlayTrigger
+    placement="auto"
+    overlay={
+      <Tooltip>
+        <span> Tags in Common </span>
+        {tagsInCommon.map((tag) => {
+          return <li className={`list-group-item`}>{tag}</li>;
+        })}
+      </Tooltip>
+    }
+  >
+    <span
+      className="badge rounded-pill bg-primary"
+      title={`${tagsInCommon.length} tags in common`}
+    >
+      {tagsInCommon.length} common tags
+    </span>
+  </OverlayTrigger>
 );
