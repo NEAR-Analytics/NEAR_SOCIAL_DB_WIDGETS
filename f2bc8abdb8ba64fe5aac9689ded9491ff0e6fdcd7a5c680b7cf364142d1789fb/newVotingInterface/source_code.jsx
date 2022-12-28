@@ -51,7 +51,8 @@ State.init({
   showQuestionsByThisUser: false,
 });
 
-const widgetOwner = "silkking.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 const renderVoteMultipleChoice = () => {
   if (questionParams) {
     return (
@@ -196,63 +197,100 @@ return (
       style={{ borderRadius: "3px", padding: "2rem 3rem" }}
     >
       <div style={{ width: "75%", marginRight: "2rem" }}>
-        <div className="d-flex">
+        <div className="d-flex justify-content-between">
+          <div className="d-flex">
+            <Widget
+              src="mob.near/widget/ProfileImage"
+              props={{
+                profile,
+                question: questionParams.accountId,
+                className: "float-start d-inline-block me-2",
+                style: {
+                  width: "3.5rem",
+                  aspectRatio: "1",
+                  marginLeft: "1rem",
+                  borderRadius: "100%",
+                  overflow: "hidden",
+                },
+              }}
+            />
+            <div>
+              <span className="mr-3" style={{ fontWeight: "300" }}>
+                Created by
+              </span>
+              <span style={{ fontWeight: "500" }}>
+                {sliceString(questionParams.accountId, 18)}
+              </span>
+            </div>
+          </div>
+
+          {Date.now() < questionParams.value.endTimestamp && (
+            <>
+              <span>
+                Start{" "}
+                {new Date(
+                  questionParams.value.startTimestamp
+                ).toLocaleDateString()}
+              </span>
+
+              <span
+                style={{
+                  paddingLeft: "1.5rem",
+                  borderLeft: "2px solid #ced4da",
+                  height: "max-content",
+                }}
+              >
+                Ends
+                <Widget
+                  src={`silkking.near/widget/timeAgo`}
+                  props={{ timeInFuture: questionParams.value.endTimestamp }}
+                />
+              </span>
+            </>
+          )}
           <span
             style={{
-              backgroundColor: isQuestionActive
-                ? "rgb(153, 255, 153)"
-                : "rgb(255, 128, 128)",
+              backgroundColor: isQuestionActive ? "#D9FCEF" : "#FFE5E5",
 
-              height: "max-content",
-              width: "6rem",
-              border: "1px solid rgb(0, 82, 204)",
+              height: "2.1rem",
+              width: "5rem",
               textAlign: "center",
-              borderRadius: "80px",
+              borderRadius: "16px",
               marginRight: "1rem",
+              lineHeight: "1.9rem",
+              fontSize: "1rem",
+              letterSpacing: "-0.025rem",
+              color: isQuestionActive ? "#00B37D" : "#FF4747",
+              fontWeight: "500",
             }}
           >
             {isQuestionActive ? "Active" : "Closed"}
           </span>
-
-          {Date.now() < questionParams.value.endTimestamp && (
-            <span
-              style={{
-                paddingLeft: "1.5rem",
-                borderLeft: "2px solid #ced4da",
-              }}
-            >
-              Ends in
-              <Widget
-                src={`silkking.near/widget/timeAgo`}
-                props={{ timeInFuture: questionParams.value.endTimestamp }}
-              />
-            </span>
-          )}
         </div>
-
-        <h2>{questionParams.value.title}</h2>
-
-        <div className="d-flex">
-          <span className="mr-3" style={{ fontWeight: "500" }}>
-            Created by
-          </span>
-
-          <Widget
-            src="mob.near/widget/ProfileImage"
-            props={{
-              profile,
-              question: questionParams.accountId,
-              className: "float-start d-inline-block me-2",
-              style: {
-                width: "1.5rem",
-                marginLeft: "1rem",
-              },
+        <div className="d-flex my-3">
+          <div
+            style={{
+              height: "inherit",
+              backgroundColor: "#AAC8F7",
+              width: "0.5rem",
+              minWidth: "5px",
+              marginRight: "0.5rem",
+              borderRadius: "8px",
             }}
-          />
-
-          <span style={{ fontWeigth: "500" }}>
-            {sliceString(questionParams.accountId, 18)}
-          </span>
+          >
+            {/*Decorative div, do not delete*/}
+          </div>
+          <h2
+            style={{
+              fontWeight: "700",
+              fontSize: "2rem",
+              letterSpacing: "0.1px",
+              color: "#010A2D",
+              wordWrap: "anywhere",
+            }}
+          >
+            {questionParams.value.title}
+          </h2>
         </div>
 
         <p>{questionParams.value.description}</p>
