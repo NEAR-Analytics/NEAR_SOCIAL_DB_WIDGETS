@@ -14,7 +14,7 @@ const tagsInCommon = myTags.filter(
 );
 
 return (
-  <div>
+  <>
     {tagsInCommon.length > 0 && (
       <OverlayTrigger
         placement="auto"
@@ -35,5 +35,5 @@ return (
         </span>
       </OverlayTrigger>
     )}
-  </div>
+  </>
 );
