@@ -1,7 +1,7 @@
 const accountId = props.accountId;
 const userId = context.accountId;
 
-if (!accountId || !userId) return;
+if (!accountId || !userId) return "";
 
 const accounts = Social.keys(`*/graph/follow/*`, "final", {
   return_type: "BlockHeight",
@@ -24,7 +24,7 @@ const findFriendsInCommon = (accountId) => {
 
 const friendsInCommon = findFriendsInCommon(accountId);
 
-if (friendsInCommon.length == 0) return;
+if (friendsInCommon.length == 0) return "";
 
 return (
   <OverlayTrigger
