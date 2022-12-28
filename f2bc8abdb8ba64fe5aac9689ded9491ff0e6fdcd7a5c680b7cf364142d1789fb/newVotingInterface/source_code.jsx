@@ -11,6 +11,12 @@ const questions =
 if (!questions) {
   return "Loading";
 }
+questionParams.value.tgLink;
+questionParams.value.tgLink;
+questionParams.value.tgLink;
+questionParams.value.tgLink;
+
+let discussionLink = "app.discussion.io/poll112312";
 
 const questionParams =
   props.previewInfo ??
@@ -49,6 +55,7 @@ const isQuestionActive =
 
 State.init({
   showQuestionsByThisUser: false,
+  descriptionHeightLimited: true,
 });
 
 const widgetOwner =
@@ -190,6 +197,14 @@ const renderModal = () => {
   );
 };
 
+function showDescription(description) {
+  if (state.descriptionHeightLimited && description.length > 501) {
+    return description.slice(0, 500) + "...";
+  } else {
+    return description;
+  }
+}
+
 return (
   <>
     <div
@@ -293,17 +308,154 @@ return (
           </h2>
         </div>
 
-        <p>{questionParams.value.description}</p>
-
-        {questionParams.value.tgLink != "" &&
-          questionParams.value.tgLink != undefined && (
-            <h6>
-              Discussion link:
-              <a href={questionParams.value.tgLink}>
-                {questionParams.value.tgLink}
-              </a>
-            </h6>
+        <div
+          className="p-3"
+          style={{
+            position: "relative",
+            border: "1.5px solid rgb(206, 212, 218)",
+            borderRadius: "24px",
+            wordWrap: "anywhere",
+          }}
+        >
+          <h3
+            style={{
+              fontWeight: "700",
+              fontSize: "1.2rem",
+              marginBottom: "1.2rem",
+            }}
+          >
+            Description
+          </h3>
+          <p style={{ fontSize: "0.9rem" }}>
+            {showDescription(questionParams.value.description)}
+          </p>
+          {questionParams.value.description.length > 501 &&
+          !state.descriptionHeightLimited ? (
+            <div
+              style={{
+                position: "absolute",
+                bottom: "-1.125rem",
+                left: "0",
+                right: "0",
+                marginRight: "auto",
+                marginLeft: "auto",
+                textAlign: "center",
+              }}
+            >
+              <h4
+                style={{
+                  fontSize: "1.2rem",
+                  display: "inline-block",
+                  backgroundColor: "white",
+                  padding: "0 1rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => State.update({ descriptionHeightLimited: true })}
+              >
+                Show less <i className="bi bi-arrow-up"></i>
+              </h4>
+            </div>
+          ) : (
+            questionParams.value.description.length > 501 && (
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "-1.125rem",
+                  left: "0",
+                  right: "0",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                  textAlign: "center",
+                }}
+              >
+                <h4
+                  style={{
+                    fontSize: "1.2rem",
+                    display: "inline-block",
+                    backgroundColor: "white",
+                    padding: "0 1rem",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    State.update({ descriptionHeightLimited: false })
+                  }
+                >
+                  Show more <i className="bi bi-arrow-down"></i>
+                </h4>
+              </div>
+            )
           )}
+        </div>
+
+        {discussionLink != "" && discussionLink != undefined && (
+          <div
+            className="mt-3 d-flex justify-content-between"
+            style={{
+              border: "1.5px solid #D4E5FB",
+              padding: "1.2rem 1.7rem",
+              borderRadius: "24px",
+            }}
+          >
+            <div className="d-flex">
+              <i
+                className="bi bi-people d-flex align-items-center justify-content-center"
+                style={{
+                  height: "100%",
+                  aspectRatio: "1",
+                  backgroundColor: "#2F5BCF",
+                  borderRadius: "14px",
+                  marginRight: "1rem",
+                  color: "white",
+                }}
+              ></i>
+              <div>
+                <p
+                  className="m-0"
+                  style={{
+                    color: "#2F5BCF",
+                    fontWeight: "500",
+                    fontSize: "0.7rem",
+                  }}
+                >
+                  Discussion link
+                </p>
+                <h6>
+                  <a style={{ color: "#2346B1" }} href={discussionLink}>
+                    {sliceString(discussionLink, 30)}
+                  </a>
+                </h6>
+              </div>
+            </div>
+            <div>
+              <a
+                target="_blank"
+                href={discussionLink}
+                style={{ userSelect: "none" }}
+              >
+                <i
+                  className="bi bi-box-arrow-up-right"
+                  style={{
+                    color: "#2F5BCF",
+                    height: "2rem",
+                    aspectRatio: "1",
+                    cursor: "pointer",
+                  }}
+                ></i>
+              </a>
+              <i
+                className="bi bi-clipboard"
+                style={{
+                  userSelect: "none",
+                  color: "#2F5BCF",
+                  height: "2rem",
+                  aspectRatio: "1",
+                  cursor: "pointer",
+                }}
+                onClick={() => navigator.clipboard.writeText(discussionLink)}
+              ></i>
+            </div>
+          </div>
+        )}
 
         <div
           style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
