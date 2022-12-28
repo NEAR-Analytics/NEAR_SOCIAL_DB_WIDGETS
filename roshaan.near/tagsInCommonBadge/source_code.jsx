@@ -20,6 +20,7 @@ return (
         placement="auto"
         overlay={
           <Tooltip>
+            <span> Tags in Common </span>
             {tagsInCommon.map((tag) => {
               return <li className={`list-group-item`}>{tag}</li>;
             })}
