@@ -5,16 +5,13 @@ if (!accountId || !userId) {
   return "";
 }
 
-const myTags = Social.getr(`${userId}/profile/tags`, "final") || [];
-
+const myTags =
+  Object.keys(Social.getr(`${userId}/profile/tags`, "final")) || [];
 const profileVisitedTags =
-  Social.getr(`${accountId}/profile/tags`, "final") || [];
-
-const tagsInCommon = () => {
-  return myTags.filter(
-    (a) => profileVisitedTags.length > 0 && profileVisitedTags.includes(a)
-  );
-};
+  Object.keys(Social.getr(`${accountId}/profile/tags`, "final")) || [];
+const tagsInCommon = myTags.filter(
+  (a) => profileVisitedTags.length > 0 && profileVisitedTags.includes(a)
+);
 
 return (
   <div>
