@@ -16,6 +16,9 @@ function getQuestion(blockHeight) {
   return questions.find((q) => q.blockHeight == blockHeight);
 }
 
+let widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 // Discards answers that were posted after question's end date
 function getTimeRelatedValidAnswers(answers) {
   const questionParams = getQuestion(props.blockHeight);
@@ -101,10 +104,12 @@ const isValidInput = () => {
 const renderAnswers = () => {
   return validAnswersToThisQuestion.map((answer) => {
     return (
-      <Widget
-        src="silkking.near/widget/answer_poll-comment-container"
-        props={{ blockHeight: answer.blockHeight }}
-      />
+      <div style={{ maxWidth: "45%" }}>
+        <Widget
+          src={`${widgetOwner}.near/widget/answer_poll-comment-container`}
+          props={{ blockHeight: answer.blockHeight }}
+        />
+      </div>
     );
   });
 };
@@ -112,12 +117,9 @@ const renderAnswers = () => {
 return (
   <div>
     {hasVoted ? (
-      <p
-        className="text-primary"
-        style={{ textAlign: "center", fontWeight: "500" }}
-      >
-        You have already voted
-      </p>
+      <div className="d-flex justify-content-between flex-wrap">
+        {renderAnswers()}
+      </div>
     ) : (
       <div>
         <textarea
@@ -143,6 +145,16 @@ return (
         )}
       </div>
     )}
-    {renderAnswers()}
+    <p
+      style={{
+        fontWeight: "500",
+        fontSize: "1.1rem",
+        color: "#767B8E",
+        letterSpacing: "-0.02em",
+        marginTop: "0.8rem",
+      }}
+    >
+      {validAnswersToThisQuestion.length} votes
+    </p>
   </div>
 );
