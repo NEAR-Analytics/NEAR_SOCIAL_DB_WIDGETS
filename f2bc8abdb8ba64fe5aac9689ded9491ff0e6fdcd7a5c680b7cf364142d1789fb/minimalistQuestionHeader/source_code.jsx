@@ -5,7 +5,7 @@ if (!question) {
 }
 
 return (
-  <div className="d-flex justify-content-start">
+  <div className="d-flex justify-content-start mb-3">
     <div
       className="d-flex justify-content-center align-item-middle"
       style={{
@@ -15,11 +15,11 @@ return (
       }}
     >
       {question.value.questionType == "0" ? (
-        <i className="bi bi-file-text" style={{ padding: "0.8rem" }}></i>
+        <i className="bi bi-file-text" style={{ padding: "0.6rem" }}></i>
       ) : (
-        questionParams.value.questionType == "1" && (
+        questionParams.value.questionType == "2" && (
           <i
-            style={{ transform: "rotate(90deg)", padding: "0.8rem" }}
+            style={{ transform: "rotate(90deg)", padding: "0.6rem" }}
             className="bi bi-bar-chart-line"
           ></i>
         )
