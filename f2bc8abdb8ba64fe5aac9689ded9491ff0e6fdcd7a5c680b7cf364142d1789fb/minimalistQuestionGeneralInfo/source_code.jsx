@@ -31,7 +31,7 @@ function isQuestionActive(question) {
 return (
   <div>
     <div
-      className="d-flex"
+      className="d-flex justify-content-around"
       style={{
         border: "1.5px solid #F2F6FA",
         borderRadius: "16px",
@@ -42,7 +42,6 @@ return (
         <p
           style={{
             fontWeight: "500",
-            letterSpacing: "-0.1em",
             color: "#4B516A",
           }}
         >
@@ -61,7 +60,6 @@ return (
         <p
           style={{
             fontWeight: "500",
-            letterSpacing: "-0.1em",
             color: "#4B516A",
           }}
         >
