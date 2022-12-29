@@ -9,6 +9,7 @@ return (
     <div
       className="d-flex justify-content-center align-item-middle"
       style={{
+        borderRadius: "16px",
         backgroundColor: "#F2F6FA",
         marginRight: "0.8rem",
       }}
