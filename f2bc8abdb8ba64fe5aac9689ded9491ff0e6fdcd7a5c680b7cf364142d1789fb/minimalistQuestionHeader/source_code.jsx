@@ -30,7 +30,14 @@ return (
         )
       )}
     </div>
-    <h3 style={{ margin: "0", wordWrap: "anywhere", fontSize: "1.3rem" }}>
+    <h3
+      style={{
+        margin: "0",
+        wordWrap: "anywhere",
+        fontSize: "1.3rem",
+        fontWeight: "700",
+      }}
+    >
       {question.value.title}
     </h3>
   </div>
