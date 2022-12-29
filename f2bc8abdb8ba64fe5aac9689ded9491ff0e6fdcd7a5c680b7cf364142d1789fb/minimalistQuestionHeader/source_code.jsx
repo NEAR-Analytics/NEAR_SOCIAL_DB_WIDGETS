@@ -7,6 +7,7 @@ if (!question) {
 return (
   <div className="d-flex justify-content-start">
     <div
+      className="d-flex justify-content-center align-item-middle"
       style={{
         backgroundColor: "#F2F6FA",
         marginRight: "0.8rem",
