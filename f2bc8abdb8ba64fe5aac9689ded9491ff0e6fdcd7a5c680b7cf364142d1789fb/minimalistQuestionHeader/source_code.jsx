@@ -5,10 +5,12 @@ if (!question) {
 }
 
 return (
-  <div className="d-flex justify-content-start mb-3">
+  <div className="d-flex justify-content-start align-items-center mb-3">
     <div
-      className="d-flex justify-content-center align-item-middle"
+      className="d-flex justify-content-center"
       style={{
+        maxHeight: "2.8rem",
+        aspectRatio: "1",
         borderRadius: "16px",
         backgroundColor: "#F2F6FA",
         marginRight: "0.8rem",
@@ -17,7 +19,7 @@ return (
       {question.value.questionType == "0" ? (
         <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
       ) : (
-        questionParams.value.questionType == "1" && (
+        question.value.questionType == "1" && (
           <i
             style={{
               transform: "rotate(90deg)",
@@ -28,7 +30,7 @@ return (
         )
       )}
     </div>
-    <h3 style={{ margin: "0", wordWrap: "anywhere" }}>
+    <h3 style={{ margin: "0", wordWrap: "anywhere", fontSize: "1.3rem" }}>
       {question.value.title}
     </h3>
   </div>
