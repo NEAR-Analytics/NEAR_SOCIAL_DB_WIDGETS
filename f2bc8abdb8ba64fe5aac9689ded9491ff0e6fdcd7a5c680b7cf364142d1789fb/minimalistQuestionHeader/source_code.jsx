@@ -28,6 +28,8 @@ return (
         )
       )}
     </div>
-    <h3 style={{ wordWrap: "anywhere" }}>{question.value.title}</h3>
+    <h3 style={{ margin: "0", wordWrap: "anywhere" }}>
+      {question.value.title}
+    </h3>
   </div>
 );
