@@ -4,6 +4,13 @@ if (!question) {
   return "Prop passed wrongly to minimalistQuestionHeader";
 }
 
+function makeAccountIdShorter(accountId) {
+  if (accountId.length > 12) {
+    return accountId.slice(0, 12) + "...";
+  }
+  return accountId;
+}
+
 function getValidAnswersQtyFromQuestion() {
   let questionBlockHeight = question.blockHeight;
 
@@ -45,7 +52,7 @@ return (
             color: "#4B516A",
           }}
         >
-          {question.accountId}
+          {makeAccountIdShorter(question.accountId)}
         </p>
       </div>
 
@@ -63,7 +70,7 @@ return (
             color: "#4B516A",
           }}
         >
-          {new Date(question.startTimestamp).toLocaleDateString()}
+          {new Date(question.value.startTimestamp).toLocaleDateString()}
         </p>
       </div>
 
@@ -76,22 +83,20 @@ return (
             color: "#4B516A",
           }}
         >
-          {new Date(question.endTimestamp).toLocaleDateString()}
+          {new Date(question.value.endTimestamp).toLocaleDateString()}
         </p>
       </div>
     </div>
-    <div className="d-flex justify-content-between">
+    <div className="d-flex justify-content-between mt-3">
       <div className="d-flex">
         <i className="bi bi-people"></i>
         <span>
-          {getValidAnswersQtyFromQuestion(questionByCreator.blockHeight)} votes
+          {getValidAnswersQtyFromQuestion(question.blockHeight)} votes
         </span>
       </div>
       <span
         style={{
-          backgroundColor: isQuestionActive(questionByCreator)
-            ? "#D9FCEF"
-            : "#FFE5E5",
+          backgroundColor: isQuestionActive(question) ? "#D9FCEF" : "#FFE5E5",
 
           height: "1.5rem",
           width: "4rem",
@@ -101,11 +106,11 @@ return (
           lineHeight: "1.5rem",
           fontSize: "0.8rem",
           letterSpacing: "-0.025rem",
-          color: isQuestionActive(questionByCreator) ? "#00B37D" : "#FF4747",
+          color: isQuestionActive(question) ? "#00B37D" : "#FF4747",
           fontWeight: "500",
         }}
       >
-        {isQuestionActive(questionByCreator) ? "Active" : "Closed"}
+        {isQuestionActive(question) ? "Active" : "Closed"}
       </span>
     </div>
   </div>
