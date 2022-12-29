@@ -22,7 +22,10 @@ return (
   >
     <div
       className="d-flex justify-content-between align-items-center px-4 py-3"
-      style={{ backgroundColor: "white" }}
+      style={{
+        backgroundColor: "white",
+        boxShadow: "0px 4px 28px rgba(43, 68, 106, 0.04)",
+      }}
     >
       <div className="d-flex align-items-center">
         <div
