@@ -110,7 +110,7 @@ const renderQuestions = () => {
           backgroundColor: "white",
           borderRadius: "1rem",
           cursor: "pointer",
-          width: "45%",
+          width: "50%",
         }}
         onClick={() => {
           State.update({
@@ -160,7 +160,7 @@ return (
       backgroundColor: "rgb(230, 230, 230)",
     }}
   >
-    <div className="d-flex flex-wrap justify-content-around">
+    <div className="d-flex flex-wrap justify-content-between">
       {renderQuestions()}
     </div>
     {state.showQuestion && renderModal()}
