@@ -1,5 +1,8 @@
 State.init({ showQuestion: false, modalBlockHeight: 0, questions: {} });
 
+//TODO considering this new prop use te context accoutId to filter the questions
+const onlyUsersPolls = props.onlyUser ?? false;
+
 const displayAnswerWidgetNames = [
   "newTextAnswerInterface",
   "newMiniMultipleChoiceInterface",
@@ -33,7 +36,8 @@ function closeModalClickingOnTransparent() {
   };
 }
 
-const widgetOwner = "silkking.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const renderModal = () => {
   return (
@@ -102,9 +106,11 @@ const renderQuestions = () => {
       <div
         className="my-5 py-3 px-4"
         style={{
+          boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
           backgroundColor: "white",
           borderRadius: "1rem",
           cursor: "pointer",
+          width: "45%",
         }}
         onClick={() => {
           State.update({
@@ -132,11 +138,13 @@ return (
   <div
     style={{
       borderRadius: "3px",
-      padding: "0px 2%",
       backgroundColor: "rgb(230, 230, 230)",
     }}
   >
-    {renderQuestions()}
+    <div className="d-flex flex-wrap justify-content-around">
+      {renderQuestions()}
+    </div>
     {state.showQuestion && renderModal()}
+    {/*TODO add a page picker instead the infinite scroll*/}
   </div>
 );
