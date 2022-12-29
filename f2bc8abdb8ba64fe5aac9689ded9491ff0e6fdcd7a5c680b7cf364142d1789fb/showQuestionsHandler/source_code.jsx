@@ -111,7 +111,7 @@ const renderQuestions = () => {
           backgroundColor: "white",
           borderRadius: "1rem",
           cursor: "pointer",
-          width: "50%",
+          width: "48%",
         }}
         onClick={() => {
           State.update({
