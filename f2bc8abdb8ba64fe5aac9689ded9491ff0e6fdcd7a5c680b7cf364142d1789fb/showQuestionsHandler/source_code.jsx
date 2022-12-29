@@ -104,7 +104,7 @@ const renderQuestions = () => {
   return questions.map((question) => {
     return (
       <div
-        className="my-5 py-3 px-4"
+        className="my-2 py-3 px-4"
         style={{
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
           backgroundColor: "white",
