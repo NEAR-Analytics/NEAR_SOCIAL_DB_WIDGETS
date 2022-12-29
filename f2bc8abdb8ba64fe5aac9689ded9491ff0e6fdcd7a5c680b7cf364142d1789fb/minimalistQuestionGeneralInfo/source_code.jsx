@@ -1,5 +1,14 @@
 let question = props;
 
+let options = {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  hour12: "false",
+};
+
 if (!question) {
   return "Prop passed wrongly to minimalistQuestionHeader";
 }
@@ -72,7 +81,10 @@ return (
             margin: "0",
           }}
         >
-          {new Date(question.value.startTimestamp).toLocaleDateString()}
+          {new Date(question.value.startTimestamp).toLocaleDateString(
+            [],
+            options
+          )}
         </p>
       </div>
 
@@ -86,7 +98,10 @@ return (
             margin: "0",
           }}
         >
-          {new Date(question.value.endTimestamp).toLocaleDateString()}
+          {new Date(question.value.endTimestamp).toLocaleDateString(
+            [],
+            options
+          )}
         </p>
       </div>
     </div>
