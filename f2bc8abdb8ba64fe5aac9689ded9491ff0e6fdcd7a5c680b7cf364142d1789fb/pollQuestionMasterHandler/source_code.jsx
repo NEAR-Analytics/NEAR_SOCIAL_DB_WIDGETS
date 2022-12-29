@@ -11,6 +11,15 @@ State.init({
   hoveringElement: "",
 });
 
+function makeAccountIdShorter(accountId, length) {
+  if (accountId.length > length) {
+    return accountId.slice(0, length) + "...";
+  }
+  return accountId;
+}
+
+const profile = Social.getr(`${context.accountId}/profile`);
+
 return (
   <div
     style={{
@@ -55,7 +64,7 @@ return (
       </div>
       <div
         className="w-100 d-flex justify-content-between"
-        style={{ margin: "0 2rem" }}
+        style={{ margin: "0 4rem" }}
       >
         <div style={{ marginTop: "0.6rem" }}>
           <div className="d-flex">
@@ -140,7 +149,7 @@ return (
                     fontWeight: "500",
                     fontSize: "1rem",
                     margin: "0",
-                    padding: "0.5rem 1.5rem",
+                    padding: "0.3rem 1.5rem",
                     backgroundColor: "#010A2D",
                     borderRadius: "12px",
                     color: "white",
@@ -159,11 +168,15 @@ return (
           </button>
         </div>
       </div>
-      <div
-        className="p-2"
-        style={{ border: "2px solid #1a73e8", borderRadius: "1rem" }}
-      >
-        <Widget src="f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Profile" />
+      <div className="p-2">
+        <div>
+          <p style={{ margin: "0", fontSize: "0.8rem" }}>
+            {makeAccountIdShorter(profile.name, 12)}
+          </p>
+          <p style={{ margin: "0", fontSize: "0.8rem" }}>
+            @{makeAccountIdShorter(context.accountId, 12)}
+          </p>
+        </div>
       </div>
     </div>
 
