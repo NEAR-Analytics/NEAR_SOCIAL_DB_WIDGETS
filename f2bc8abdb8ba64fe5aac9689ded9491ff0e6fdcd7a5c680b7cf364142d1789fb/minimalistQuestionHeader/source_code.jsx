@@ -1,4 +1,4 @@
-let question = props.question;
+let question = props;
 console.log("header props:", props);
 console.log("header question:", question);
 
