@@ -1,5 +1,6 @@
 let question = props.question;
 console.log("header props:", props);
+console.log("header question:", question);
 
 if (!question) {
   return "Prop passed wrongly to minimalistQuestionHeader";
