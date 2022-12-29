@@ -45,11 +45,12 @@ return (
       }}
     >
       <div className="px-2 my-2">
-        <p>Created by</p>
+        <p style={{ margin: "0" }}>Created by</p>
         <p
           style={{
             fontWeight: "500",
             color: "#4B516A",
+            margin: "0",
           }}
         >
           {makeAccountIdShorter(question.accountId)}
@@ -63,11 +64,12 @@ return (
           borderRight: "1.5px solid #F2F6FA",
         }}
       >
-        <p>Started</p>
+        <p style={{ margin: "0" }}>Started</p>
         <p
           style={{
             fontWeight: "500",
             color: "#4B516A",
+            margin: "0",
           }}
         >
           {new Date(question.value.startTimestamp).toLocaleDateString()}
@@ -75,12 +77,13 @@ return (
       </div>
 
       <div className="px-2 my-2">
-        <p>Ends</p>
+        <p style={{ margin: "0" }}>Ends</p>
         <p
           style={{
             fontWeight: "500",
             letterSpacing: "-0.1em",
             color: "#4B516A",
+            margin: "0",
           }}
         >
           {new Date(question.value.endTimestamp).toLocaleDateString()}
