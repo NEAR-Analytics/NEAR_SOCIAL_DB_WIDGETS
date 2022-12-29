@@ -48,7 +48,7 @@ return (
         <p style={{ margin: "0" }}>Created by</p>
         <p
           style={{
-            fontWeight: "500",
+            fontWeight: "600",
             color: "#4B516A",
             margin: "0",
           }}
@@ -67,7 +67,7 @@ return (
         <p style={{ margin: "0" }}>Started</p>
         <p
           style={{
-            fontWeight: "500",
+            fontWeight: "600",
             color: "#4B516A",
             margin: "0",
           }}
@@ -80,7 +80,7 @@ return (
         <p style={{ margin: "0" }}>Ends</p>
         <p
           style={{
-            fontWeight: "500",
+            fontWeight: "600",
             letterSpacing: "-0.1em",
             color: "#4B516A",
             margin: "0",
