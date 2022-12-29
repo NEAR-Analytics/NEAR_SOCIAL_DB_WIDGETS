@@ -3,6 +3,7 @@ const tabs = {
   ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
   NEW_POLL: { id: 2, text: "Create a poll" },
 };
+
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
@@ -19,6 +20,10 @@ function makeAccountIdShorter(accountId, length) {
 }
 
 const profile = Social.getr(`${context.accountId}/profile`);
+
+if (!profile) {
+  return "Loading...";
+}
 
 return (
   <div
