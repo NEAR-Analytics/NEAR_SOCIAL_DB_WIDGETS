@@ -104,13 +104,14 @@ const renderQuestions = () => {
   return questions.map((question) => {
     return (
       <div
-        className="my-2 py-3 px-4"
+        className="m-2 py-3 px-4"
         style={{
+          boxSizing: "border-box",
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
           backgroundColor: "white",
           borderRadius: "1rem",
           cursor: "pointer",
-          width: "48%",
+          width: "50%",
         }}
         onClick={() => {
           State.update({
