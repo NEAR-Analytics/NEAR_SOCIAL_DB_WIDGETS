@@ -145,6 +145,6 @@ return (
       {renderQuestions()}
     </div>
     {state.showQuestion && renderModal()}
-    {/*TODO add a page picker instead the infinite scroll*/}
+    {/*TODO add a page picker instead the infinite scroll?*/}
   </div>
 );
