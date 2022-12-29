@@ -15,11 +15,18 @@ return (
       }}
     >
       {question.value.questionType == "0" ? (
-        <i className="bi bi-file-text" style={{ padding: "0.6rem" }}></i>
+        <i
+          className="bi bi-file-text"
+          style={{ padding: "0.6rem", aspectRatio: "1" }}
+        ></i>
       ) : (
-        questionParams.value.questionType == "2" && (
+        questionParams.value.questionType == "1" && (
           <i
-            style={{ transform: "rotate(90deg)", padding: "0.6rem" }}
+            style={{
+              transform: "rotate(90deg)",
+              padding: "0.6rem",
+              aspectRatio: "1",
+            }}
             className="bi bi-bar-chart-line"
           ></i>
         )
