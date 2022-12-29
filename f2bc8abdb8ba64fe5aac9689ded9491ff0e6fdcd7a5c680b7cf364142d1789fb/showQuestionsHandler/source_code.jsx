@@ -119,16 +119,35 @@ const renderQuestions = () => {
           });
         }}
       >
-        <Widget
-          src={`${widgetOwner}/widget/answersHeader`}
-          props={{ ...question }}
-        />
-        <Widget
-          src={`${widgetOwner}/widget/${
-            displayAnswerWidgetNames[question.value.questionType]
-          }`}
-          props={{ ...question }}
-        />
+        {onlyUsersPolls ? (
+          <>
+            <Widget
+              src={
+                "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionHeader"
+              }
+              props={{ ...question }}
+            />
+            <Widget
+              src={
+                "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionGeneralInfo"
+              }
+              props={{ ...question }}
+            />
+          </>
+        ) : (
+          <>
+            <Widget
+              src={`${widgetOwner}/widget/answersHeader`}
+              props={{ ...question }}
+            />
+            <Widget
+              src={`${widgetOwner}/widget/${
+                displayAnswerWidgetNames[question.value.questionType]
+              }`}
+              props={{ ...question }}
+            />
+          </>
+        )}
       </div>
     );
   });
