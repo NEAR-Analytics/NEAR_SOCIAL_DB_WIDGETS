@@ -100,58 +100,77 @@ const renderModal = () => {
   );
 };
 
-const renderQuestions = () => {
-  return questions.map((question, index) => {
+const renderQuestions = (onlyUsersPolls) => {
+  if (onlyUsersPolls) {
+    return questions.map((question, index) => {
+      return (
+        <div
+          className={index % 2 == 0 ? "mr-2 py-3 px-4 my-2" : "py-3 px-4 my-2"}
+          style={{
+            boxSizing: "border-box",
+            boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+            backgroundColor: "white",
+            borderRadius: "1rem",
+            cursor: "pointer",
+            width: "48%",
+          }}
+          onClick={() => {
+            State.update({
+              showQuestion: true,
+              modalBlockHeight: question.blockHeight,
+            });
+          }}
+        >
+          <Widget
+            src={
+              "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionHeader"
+            }
+            props={{ ...question }}
+          />
+          <Widget
+            src={
+              "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionGeneralInfo"
+            }
+            props={{ ...question }}
+          />
+        </div>
+      );
+    });
+  } else {
     return (
-      <div
-        className={index % 2 == 0 ? "mr-2 py-3 px-4 my-2" : "py-3 px-4 my-2"}
-        style={{
-          boxSizing: "border-box",
-          boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-          backgroundColor: "white",
-          borderRadius: "1rem",
-          cursor: "pointer",
-          width: "48%",
-        }}
-        onClick={() => {
-          State.update({
-            showQuestion: true,
-            modalBlockHeight: question.blockHeight,
-          });
-        }}
-      >
-        {onlyUsersPolls ? (
-          <>
-            <Widget
-              src={
-                "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionHeader"
-              }
-              props={{ ...question }}
-            />
-            <Widget
-              src={
-                "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionGeneralInfo"
-              }
-              props={{ ...question }}
-            />
-          </>
-        ) : (
-          <>
-            <Widget
-              src={`${widgetOwner}/widget/answersHeader`}
-              props={{ ...question }}
-            />
-            <Widget
-              src={`${widgetOwner}/widget/${
-                displayAnswerWidgetNames[question.value.questionType]
-              }`}
-              props={{ ...question }}
-            />
-          </>
-        )}
-      </div>
+      <>
+        <Widget
+          src={`${widgetOwner}/widget/displayQuestionHeader`}
+          props={{ ...question }}
+        />
+        {questions.map((question, index) => {
+          if (question.accountId) {
+            return (
+              <div
+                className={
+                  index % 2 == 0 ? "mr-2 py-3 px-4 my-2" : "py-3 px-4 my-2"
+                }
+                style={{
+                  boxSizing: "border-box",
+                  boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                  width: "48%",
+                }}
+                onClick={() => {
+                  State.update({
+                    showQuestion: true,
+                    modalBlockHeight: question.blockHeight,
+                  });
+                }}
+              ></div>
+            );
+          }
+        })}
+      </>
     );
-  });
+  }
 };
 
 return (
