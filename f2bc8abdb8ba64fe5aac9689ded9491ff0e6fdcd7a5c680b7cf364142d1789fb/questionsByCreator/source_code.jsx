@@ -43,6 +43,7 @@ function closeModalClickingOnTransparent() {
 }
 
 const renderModal = () => {
+  console.log("click: ", state.modalBlockHeight);
   return (
     <div
       className="modal"
