@@ -1,4 +1,8 @@
-State.init({ questions: {} });
+State.init({
+  questions: {},
+  showQuestion: true,
+  modalBlockHeight: question.blockHeight,
+});
 
 //TODO considering this new prop use te context accoutId to filter the questions
 const onlyUsersPolls = props.onlyUser ?? false;
@@ -39,6 +43,67 @@ if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
+const renderModal = () => {
+  return (
+    <div
+      className="modal"
+      id="modal"
+      style={
+        state.showQuestion && { display: "block", backgroundColor: "#7e7e7e70" }
+      }
+      tabindex="-1"
+      role="dialog"
+      onClick={closeModalClickingOnTransparent()}
+    >
+      <div className="modal-dialog" style={{ maxWidth: "95%" }} role="document">
+        <div
+          className="modal-content"
+          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        >
+          <div className="modal-header flex-row-reverse">
+            <button
+              type="button"
+              className="close"
+              dataDismiss="modal"
+              ariaLabel="Close"
+              onClick={() => State.update({ showQuestion: false })}
+            >
+              <span ariaHidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            className="modal-body"
+            style={{
+              width: "90%",
+              borderRadius: "1rem",
+              backgroundColor: "white",
+              margin: "0 auto",
+            }}
+          >
+            <Widget
+              src={`${widgetOwner}/widget/newVotingInterface`}
+              props={{
+                blockHeight: state.modalBlockHeight,
+                shouldDisplayViewAll: props.accountId == undefined,
+              }}
+            />
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              onClick={() => State.update({ showQuestion: false })}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const renderQuestions = (onlyUsersPolls) => {
   if (onlyUsersPolls) {
     return questions.map((question, index) => {
@@ -72,6 +137,7 @@ const renderQuestions = (onlyUsersPolls) => {
             }
             props={{ ...question }}
           />
+          {state.showQuestion && renderModal()}
         </div>
       );
     });
