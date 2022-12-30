@@ -13,6 +13,7 @@ let questions = Social.index("poll_question", "question-v3.0.1", {
 });
 
 if (!questions) {
+  console.log("ShowQuestionsHandler question need a state");
   return "Loading";
 }
 
