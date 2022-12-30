@@ -118,6 +118,7 @@ return (
                     backGroundColor: "white",
                     borderTop: "1px solid #ced4da",
                     marginTop: "1rem",
+                    cursor: "pointer",
                   }
             }
             onClick={() => {
