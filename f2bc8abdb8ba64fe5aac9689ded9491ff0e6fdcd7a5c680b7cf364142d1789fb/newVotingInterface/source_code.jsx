@@ -2,7 +2,7 @@ if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
-console.log("props.blockHeight: ", props.blockHeight);
+console.log("entro al newVI: ", props.blockHeight);
 
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
