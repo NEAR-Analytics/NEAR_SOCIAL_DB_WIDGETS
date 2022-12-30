@@ -1,3 +1,5 @@
+State.init({ showQuestion: false, modalBlockHeight: 0 });
+
 let isShort = props.isShort;
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
@@ -34,6 +36,73 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   return usersWithAnswersWithoutDuplicates.length;
 }
 
+function closeModalClickingOnTransparent() {
+  return (e) => {
+    e.target.id == "modal" && State.update({ showQuestion: false });
+  };
+}
+
+const renderModal = () => {
+  return (
+    <div
+      className="modal"
+      id="modal"
+      style={
+        state.showQuestion && { display: "block", backgroundColor: "#7e7e7e70" }
+      }
+      tabindex="-1"
+      role="dialog"
+      onClick={closeModalClickingOnTransparent()}
+    >
+      <div className="modal-dialog" style={{ maxWidth: "95%" }} role="document">
+        <div
+          className="modal-content"
+          style={{ backgroundColor: "rgb(230, 230, 230)" }}
+        >
+          <div className="modal-header flex-row-reverse">
+            <button
+              type="button"
+              className="close"
+              dataDismiss="modal"
+              ariaLabel="Close"
+              onClick={() => State.update({ showQuestion: false })}
+            >
+              <span ariaHidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            className="modal-body"
+            style={{
+              width: "90%",
+              borderRadius: "1rem",
+              backgroundColor: "white",
+              margin: "0 auto",
+            }}
+          >
+            <Widget
+              src={`${widgetOwner}/widget/newVotingInterface`}
+              props={{
+                blockHeight: state.modalBlockHeight,
+                shouldDisplayViewAll: props.accountId == undefined,
+              }}
+            />
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              onClick={() => State.update({ showQuestion: false })}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 return (
   <>
     {questions.map((questionByCreator, index) => {
@@ -49,6 +118,12 @@ return (
                     marginTop: "1rem",
                   }
             }
+            onClick={() => {
+              State.update({
+                showQuestion: true,
+                modalBlockHeight: questionByCreator.blockHeight,
+              });
+            }}
           >
             <div className="d-flex align-content-center">
               <div
@@ -138,5 +213,6 @@ return (
         );
       }
     })}
+    {state.showQuestion && renderModal()}
   </>
 );
