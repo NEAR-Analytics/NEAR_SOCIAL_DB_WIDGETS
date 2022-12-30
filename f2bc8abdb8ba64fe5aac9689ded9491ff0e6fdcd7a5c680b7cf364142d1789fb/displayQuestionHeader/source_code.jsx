@@ -1,7 +1,12 @@
 let profile = Social.getr(`${props.accountId}/profile`);
-let questions = Social.index("poll_question", "question-v3.0.1", {
-  accountId: props.accountId,
-});
+let amountOfQuestionsByThisUser = 0;
+
+//TODO review this
+for (let i = 0; i < props.allUsersQuestions.length; i++) {
+  if (props.allUsersQuestions[i].accountId == props.accountId) {
+    amountOfQuestionsByThisUser++;
+  }
+}
 
 function makeAccountIdShorter(accountId) {
   if (accountId.length > 12) {
@@ -40,10 +45,6 @@ return (
         </p>
       </div>
     </div>
-    {questions ? (
-      <p className="text-secondary">Total: {questions.length}</p>
-    ) : (
-      <p>Loading...</p>
-    )}
+    <p className="text-secondary">Total: {amountOfQuestionsByThisUser}</p>
   </div>
 );
