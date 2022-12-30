@@ -43,7 +43,6 @@ function closeModalClickingOnTransparent() {
 }
 
 const renderModal = () => {
-  console.log("Vas bien papá");
   return (
     <div
       className="modal"
