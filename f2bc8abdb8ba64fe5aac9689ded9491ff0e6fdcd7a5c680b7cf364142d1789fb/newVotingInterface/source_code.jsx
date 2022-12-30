@@ -8,9 +8,9 @@ let shouldDisplayViewAll = props.shouldDisplayViewAll;
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
   !props.previewInfo && Social.index("poll_question", "question-v3.0.1");
-// if (!questions) {
-//   return "Loading";
-// }
+if (!questions) {
+  return "Loading";
+}
 
 const questionParams =
   props.previewInfo ??
