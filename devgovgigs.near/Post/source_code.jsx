@@ -81,6 +81,22 @@ const postTitle =
     </h5>
   );
 
+const postExtra =
+  snapshot.post_type == "Sponsorship" ? (
+    <div>
+      <h6 class="card-subtitle mb-2 text-muted">
+        Maximum amount: {snapshot.amount} {snapshot.sponsorship_token}
+      </h6>
+      <h6 class="card-subtitle mb-2 text-muted">
+        Supervisor:{" "}
+        <Widget
+          src={`mob.near/widget/ProfileLine`}
+          props={{ accountId: snapshot.supervisor }}
+        />
+      </h6>
+    </div>
+  ) : null;
+
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
@@ -92,6 +108,7 @@ return (
     {header}
     <div className="card-body">
       {postTitle}
+      {postExtra}
       <Markdown class="card-text" text={post.snapshot.description}></Markdown>
     </div>
   </Card>
