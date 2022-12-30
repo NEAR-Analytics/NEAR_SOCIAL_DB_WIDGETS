@@ -497,6 +497,7 @@ return (
           style={{
             border: "1.5px solid rgb(206, 212, 218)",
             borderRadius: "24px",
+            position: "relative",
           }}
           className="p-3 my-3"
         >
