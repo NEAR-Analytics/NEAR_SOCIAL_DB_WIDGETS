@@ -305,19 +305,18 @@ return (
                         ({countVotes[index]} votes)
                       </span>
                     </span>
+                    <span
+                      style={{
+                        minWidth: "max-content",
+                        margin: "0.4rem 0px 0.4rem 0.3rem",
+                        fontWeight: "500",
+                        position: "absolute",
+                        right: "1.7rem",
+                      }}
+                    >
+                      {calculatePercentage(countVotes[index])}%
+                    </span>
                   </div>
-
-                  <span
-                    style={{
-                      minWidth: "max-content",
-                      margin: "0.4rem 0px 0.4rem 0.3rem",
-                      fontWeight: "500",
-                      position: "absolute",
-                      right: "1.7rem",
-                    }}
-                  >
-                    {calculatePercentage(countVotes[index])}%
-                  </span>
                 </>
               ) : (
                 <>
