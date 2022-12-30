@@ -89,7 +89,6 @@ const renderQuestions = (onlyUsersPolls) => {
                 boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
                 backgroundColor: "white",
                 borderRadius: "1rem",
-                cursor: "pointer",
                 width: "48%",
               }}
             >
