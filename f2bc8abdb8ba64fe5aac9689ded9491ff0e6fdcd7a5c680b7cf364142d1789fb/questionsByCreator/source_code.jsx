@@ -106,6 +106,7 @@ const renderModal = () => {
 return (
   <>
     {questions.map((questionByCreator, index) => {
+      console.log("qbc: ", questionByCreator);
       if ((isShort && index < 2) || !isShort) {
         return (
           <div
