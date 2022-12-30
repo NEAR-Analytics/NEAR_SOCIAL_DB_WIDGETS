@@ -86,6 +86,7 @@ const renderModal = () => {
               src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
                 blockHeight: state.modalBlockHeight,
+                shouldDisplayViewAll: true,
               }}
             />
           </div>
