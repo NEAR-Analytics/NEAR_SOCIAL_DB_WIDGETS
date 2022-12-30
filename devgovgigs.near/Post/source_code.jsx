@@ -1,5 +1,5 @@
 const ownerId = "devgovgigs.near";
-const postId = props.id ?? props.post.id ?? 0;
+const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 
 function readableDate(timestamp) {
@@ -39,7 +39,9 @@ const header = (
           <div class="d-flex justify-content-end">
             {timestamp}
             <div class="bi bi-clock-history px-2"></div>
-            <h5 class="bi bi-link-45deg" onclick="copyLink()"></h5>
+            <a class="card-link" href="" role="button">
+              <h5 class="bi bi-link-45deg" onclick="copyLink()"></h5>
+            </a>
           </div>
         </div>
       </div>
