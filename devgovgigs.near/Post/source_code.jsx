@@ -31,7 +31,7 @@ const header = (
               role="button"
               target="_blank"
             >
-              <h5 class="bi bi-link-45deg"></h5>
+              <div class="bi bi-share"></div>
             </a>
           </div>
         </div>
