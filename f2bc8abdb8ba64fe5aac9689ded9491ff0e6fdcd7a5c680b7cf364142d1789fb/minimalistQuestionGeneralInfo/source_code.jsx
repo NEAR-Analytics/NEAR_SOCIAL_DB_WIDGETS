@@ -45,7 +45,7 @@ function isQuestionActive(question) {
 }
 
 return (
-  <div>
+  <div className="mt-2">
     <div
       className="d-flex justify-content-around"
       style={{
