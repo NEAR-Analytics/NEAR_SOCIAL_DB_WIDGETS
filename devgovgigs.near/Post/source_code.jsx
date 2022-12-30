@@ -69,6 +69,18 @@ const fillIcons = {
   Like: "bi-heart-fill",
 };
 
+const postTitle =
+  snapshot.post_type == "Comment" ? null : (
+    <h5 class="card-title">
+      <div className="row justify-content-between">
+        <div class="col-9">
+          <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
+          {snapshot.post_type}: {snapshot.name}
+        </div>
+      </div>
+    </h5>
+  );
+
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
@@ -79,7 +91,7 @@ return (
   <Card className="card my-2 border-primary">
     {header}
     <div className="card-body">
-      <div id={`alertPlaceholder${postId}`}></div>
+      {postTitle}
       <Markdown class="card-text" text={post.snapshot.description}></Markdown>
     </div>
   </Card>
