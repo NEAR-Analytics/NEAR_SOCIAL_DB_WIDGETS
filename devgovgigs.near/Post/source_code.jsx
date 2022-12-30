@@ -11,20 +11,6 @@ const timestamp = readableDate(
   post.snapshot.timestamp ? post.snapshot.timestamp / 1000000 : Date.now()
 );
 
-function copyLink() {
-  navigator.clipboard.writeText("Hello");
-
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML = [
-    `<div class="alert alert-success alert-dismissible" role="alert">`,
-    `   <div>Link to the post copied.</div>`,
-    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    "</div>",
-  ].join("");
-
-  document.getElementById("liveAlertPlaceholder").append(wrapper);
-}
-
 const header = (
   <div className="card-header">
     <small class="text-muted">
@@ -39,8 +25,13 @@ const header = (
           <div class="d-flex justify-content-end">
             {timestamp}
             <div class="bi bi-clock-history px-2"></div>
-            <a class="card-link" href="" role="button">
-              <h5 class="bi bi-link-45deg" onclick="copyLink()"></h5>
+            <a
+              class="card-link"
+              href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
+              role="button"
+              target="_blank"
+            >
+              <h5 class="bi bi-link-45deg"></h5>
             </a>
           </div>
         </div>
