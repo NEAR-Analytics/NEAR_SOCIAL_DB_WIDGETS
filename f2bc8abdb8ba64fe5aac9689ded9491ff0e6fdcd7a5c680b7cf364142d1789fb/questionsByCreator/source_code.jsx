@@ -1,4 +1,7 @@
-let isShort = props.isShort ?? false;
+let isShort = props.isShort;
+let questions = Social.index("poll_question", "question-v3.0.1", {
+  accountId: props.accountId,
+});
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
@@ -33,7 +36,7 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
 
 return (
   <>
-    {props.questionsByThisCreator.map((questionByCreator, index) => {
+    {questions.map((questionByCreator, index) => {
       if ((isShort && index < 2) || !isShort) {
         return (
           <div
