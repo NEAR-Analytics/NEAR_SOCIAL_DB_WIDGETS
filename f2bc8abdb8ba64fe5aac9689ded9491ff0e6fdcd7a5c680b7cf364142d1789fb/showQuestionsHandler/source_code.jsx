@@ -1,6 +1,6 @@
 State.init({
   questions: {},
-  showQuestion: true,
+  showQuestion: false,
   modalBlockHeight: question.blockHeight,
 });
 
