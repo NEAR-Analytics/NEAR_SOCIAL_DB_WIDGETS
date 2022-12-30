@@ -1,5 +1,5 @@
 const ownerId = "devgovgigs.near";
-const postId = props.post.id ?? (props.id ? parseInt(props.id) : 1);
+const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 const snapshot = post.snapshot;
 
@@ -72,6 +72,14 @@ const fillIcons = {
   Like: "bi-heart-fill",
 };
 
+const borders = {
+  Idea: "border-primary",
+  Comment: "border-light",
+  Submission: "border-secondary",
+  Attestation: "border-success",
+  Sponsorship: "border-success",
+};
+
 const postTitle =
   snapshot.post_type == "Comment" ? null : (
     <h5 class="card-title">
@@ -140,7 +148,7 @@ const Card = styled.div`
 `;
 
 return (
-  <Card className="card my-2 border-primary">
+  <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
       {postTitle}
