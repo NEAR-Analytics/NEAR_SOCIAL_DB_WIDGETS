@@ -110,7 +110,7 @@ const postsList =
             data-bs-toggle="collapse"
             href={`#collapseChildPosts${postId}`}
             role="button"
-            aria-expanded="true"
+            aria-expanded="false"
             aria-controls={`collapseChildPosts${postId}`}
           >
             <i class="bi bi-arrows-angle-expand"> </i> Expand Posts
