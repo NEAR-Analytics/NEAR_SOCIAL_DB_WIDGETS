@@ -112,7 +112,7 @@ return (
             className="mt-2"
             style={
               index == 0
-                ? {}
+                ? { cursor: "pointer", backGroundColor: "white" }
                 : {
                     paddingTop: "1rem",
                     backGroundColor: "white",
