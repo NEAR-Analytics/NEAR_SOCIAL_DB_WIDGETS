@@ -1,8 +1,6 @@
 let profile = Social.getr(`${props.accountId}/profile`);
 let amountOfQuestionsByThisUser = 0;
 
-console.log("estoy acá mamertísimo");
-
 //TODO review this
 for (let i = 0; i < props.allUsersQuestions.length; i++) {
   if (props.allUsersQuestions[i].accountId == props.accountId) {
