@@ -104,7 +104,7 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
 }
 
 const renderQuestionsByThisCreator = () => {
-  //TODO show only the 2 more recent polls
+  //TODO show only the 2 polls
   return questionsByThisCreator.map((questionByCreator, index) => {
     let divStyle =
       index == 0
@@ -508,41 +508,6 @@ return (
         </div>
       </div>
       <div style={{ minWidth: "17rem" }}>
-        {/*<h5>Information</h5>
-        <div
-          className="mb-2"
-          style={{
-            border: "1px solid #ced4da",
-            borderRadius: "0.375rem",
-            fontWeight: "500",
-            padding: "0.5rem 1rem",
-          }}
-        >
-          <div className="d-flex justify-content-between">
-            <span>Status</span>
-            <span>{isQuestionActive(questionParams) ? "Active" : "Closed"}</span>
-          </div>
-
-          <div className="d-flex justify-content-between">
-            <span>Start date</span>
-            <span>
-              {transformDateFormat(questionParams.value.startTimestamp)}
-            </span>
-          </div>
-
-          <div className="d-flex justify-content-between">
-            <span>End date</span>
-            <span>
-              {transformDateFormat(questionParams.value.endTimestamp)}
-            </span>
-          </div>
-
-          <div className="d-flex justify-content-between">
-            <span>Creator</span>
-            <span>{sliceString(questionParams.accountId, 8)}</span>
-          </div>
-        </div>*/}
-
         {questionsByCreator.length != 1 && (
           <>
             <div
