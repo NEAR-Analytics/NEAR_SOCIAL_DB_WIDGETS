@@ -20,6 +20,7 @@ return (
     <a
       className="d-flex"
       href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+      style={{ color: "#010A2D" }}
     >
       {profile ? (
         <Widget
