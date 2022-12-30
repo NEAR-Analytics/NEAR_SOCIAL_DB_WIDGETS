@@ -1,5 +1,5 @@
 const ownerId = "devgovgigs.near";
-const postId = props.post.id ?? (props.id ? parseInt(props.id) : 7);
+const postId = props.post.id ?? (props.id ? parseInt(props.id) : 1);
 const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 const snapshot = post.snapshot;
 
@@ -110,7 +110,7 @@ const postsList =
             data-bs-toggle="collapse"
             href={`#collapseChildPosts${postId}`}
             role="button"
-            aria-expanded="false"
+            aria-expanded="true"
             aria-controls={`collapseChildPosts${postId}`}
           >
             <i class="bi bi-arrows-angle-expand"> </i> Expand Posts
