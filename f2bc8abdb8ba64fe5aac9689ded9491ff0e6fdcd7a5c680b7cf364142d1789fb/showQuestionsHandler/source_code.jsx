@@ -123,7 +123,6 @@ const renderQuestions = (onlyUsersPolls) => {
             borderRadius: "1rem",
             cursor: "pointer",
             width: "48%",
-            maxHeight: "max-content",
           }}
           onClick={() => {
             State.update({
@@ -162,7 +161,6 @@ const renderQuestions = (onlyUsersPolls) => {
                 backgroundColor: "white",
                 borderRadius: "1rem",
                 width: "48%",
-                maxHeight: "max-content",
               }}
             >
               <Widget
