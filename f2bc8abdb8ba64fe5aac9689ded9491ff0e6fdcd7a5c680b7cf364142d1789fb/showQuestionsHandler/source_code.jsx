@@ -162,6 +162,7 @@ const renderQuestions = (onlyUsersPolls) => {
                 backgroundColor: "white",
                 borderRadius: "1rem",
                 width: "48%",
+                maxHeight: "max-content",
               }}
             >
               <Widget
