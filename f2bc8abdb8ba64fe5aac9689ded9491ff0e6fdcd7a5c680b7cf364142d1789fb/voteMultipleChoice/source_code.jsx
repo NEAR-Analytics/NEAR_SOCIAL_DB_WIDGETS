@@ -285,6 +285,7 @@ return (
                       textAlign: "left",
                       backgroundColor: `${getBgColor(index, true)}`,
                       borderRadius: "4px",
+                      position: "relative",
                     }}
                   >
                     <span
