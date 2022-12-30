@@ -106,7 +106,6 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
 const renderQuestionsByThisCreator = () => {
   //TODO show only the 2 more recent polls
   return questionsByThisCreator.map((questionByCreator, index) => {
-    console.log(questionByCreator);
     let divStyle =
       index == 0
         ? {}
