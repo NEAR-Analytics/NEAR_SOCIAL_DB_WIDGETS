@@ -12,6 +12,8 @@ if (!questions) {
   return "Loading";
 }
 
+console.log("questionBlockHeight: ", questionBlockHeight);
+
 const questionParams =
   props.previewInfo ??
   questions.find((q) => q.blockHeight == questionBlockHeight);
