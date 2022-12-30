@@ -43,7 +43,6 @@ function closeModalClickingOnTransparent() {
 }
 
 const renderModal = () => {
-  console.log("click: ", state.modalBlockHeight);
   return (
     <div
       className="modal"
@@ -83,8 +82,7 @@ const renderModal = () => {
             <Widget
               src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
-                blockHeight: state.modalBlockHeight,
-                shouldDisplayViewAll: props.accountId == undefined,
+                blockHeight: state.modalBlockHeight + "",
               }}
             />
           </div>
