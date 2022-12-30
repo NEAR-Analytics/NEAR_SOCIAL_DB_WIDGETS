@@ -1,8 +1,11 @@
 const ownerId = "devgovgigs.near";
-const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
+const postId = props.post.id ?? (props.id ? parseInt(props.id) : 7);
 const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 const snapshot = post.snapshot;
-const post_type = snapshot.post_type;
+
+const childPostIds = Near.view(ownerId, "get_children_ids", {
+  post_id: postId,
+});
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
@@ -97,10 +100,43 @@ const postExtra =
     </div>
   ) : null;
 
+const postsList =
+  props.isPreview || childPostIds.length == 0 ? null : (
+    <div class="row">
+      <div class="row">
+        <div class="col-4">
+          <a
+            class="card-link"
+            data-bs-toggle="collapse"
+            href={`#collapseChildPosts${postId}`}
+            role="button"
+            aria-expanded="false"
+            aria-controls={`collapseChildPosts${postId}`}
+          >
+            <i class="bi bi-arrows-angle-expand"> </i> Expand Posts
+          </a>
+        </div>
+      </div>
+      <div class="collapse" id={`collapseChildPosts${postId}`}>
+        {childPostIds
+          ? childPostIds.map((childId) => {
+              return (
+                <Widget
+                  src={`${ownerId}/widget/Post`}
+                  props={{ id: childId }}
+                />
+              );
+            })
+          : ""}
+      </div>
+    </div>
+  );
+
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   }
+
 `;
 
 return (
@@ -109,7 +145,8 @@ return (
     <div className="card-body">
       {postTitle}
       {postExtra}
-      <Markdown class="card-text" text={post.snapshot.description}></Markdown>
+      <Markdown class="card-text" text={snapshot.description}></Markdown>
+      {postsList}
     </div>
   </Card>
 );
