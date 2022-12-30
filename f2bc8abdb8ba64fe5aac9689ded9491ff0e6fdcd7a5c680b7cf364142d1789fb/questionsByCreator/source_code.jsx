@@ -109,6 +109,7 @@ return (
       if ((isShort && index < 2) || !isShort) {
         return (
           <div
+            className="mt-2"
             style={
               index == 0
                 ? {}
