@@ -169,7 +169,7 @@ return (
               >
                 {/*Structural div, do not delete*/}
               </div>
-              <div className="d-flex justify-content-between flex-nowrap text-secondary mb-2">
+              <div className="d-flex w-100 justify-content-between flex-nowrap text-secondary mb-2">
                 <div>
                   <i className="bi bi-people"></i>
                   <span>
