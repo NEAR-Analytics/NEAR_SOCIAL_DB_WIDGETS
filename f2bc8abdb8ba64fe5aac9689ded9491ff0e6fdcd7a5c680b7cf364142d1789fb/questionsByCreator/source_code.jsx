@@ -114,6 +114,7 @@ return (
               index == 0
                 ? {}
                 : {
+                    paddingTop: "1rem",
                     backGroundColor: "white",
                     borderTop: "1px solid #ced4da",
                     marginTop: "1rem",
