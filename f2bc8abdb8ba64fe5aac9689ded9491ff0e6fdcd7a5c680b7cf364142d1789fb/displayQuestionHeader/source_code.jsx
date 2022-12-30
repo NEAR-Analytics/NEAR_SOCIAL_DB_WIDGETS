@@ -17,7 +17,10 @@ function makeAccountIdShorter(accountId) {
 
 return (
   <div className="d-flex justify-content-between w-100">
-    <div className="d-flex">
+    <a
+      className="d-flex"
+      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+    >
       {profile ? (
         <Widget
           src="mob.near/widget/ProfileImage"
@@ -36,15 +39,19 @@ return (
             margin: "0",
             fontWeight: "700",
             fontSize: "1.2rem",
+            textDecotarion: "none",
           }}
         >
           {profile ? makeAccountIdShorter(profile.name) : "Loading..."}
         </p>
-        <p className="text-secondary" style={{ margin: "0" }}>
+        <p
+          className="text-secondary"
+          style={{ margin: "0", textDecotarion: "none" }}
+        >
           {makeAccountIdShorter(props.accountId)}
         </p>
       </div>
-    </div>
+    </a>
     <p className="text-secondary">Total: {amountOfQuestionsByThisUser}</p>
   </div>
 );
