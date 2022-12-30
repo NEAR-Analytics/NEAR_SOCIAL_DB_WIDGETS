@@ -1,4 +1,4 @@
-State.init({ showQuestion: false, modalBlockHeight: 0, questions: {} });
+State.init({ questions: {} });
 
 //TODO considering this new prop use te context accoutId to filter the questions
 const onlyUsersPolls = props.onlyUser ?? false;
@@ -8,12 +8,9 @@ const displayAnswerWidgetNames = [
   "newMiniMultipleChoiceInterface",
 ];
 
-let questions = Social.index("poll_question", "question-v3.0.1", {
-  accountId: props.accountId,
-});
+let questions = Social.index("poll_question", "question-v3.0.1");
 
 if (!questions) {
-  console.log("ShowQuestionsHandler question need a state");
   return "Loading";
 }
 
@@ -27,79 +24,20 @@ questions = questions.sort((q1, q2) => {
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
 
+//TODO review this
+let usersMakingQuestions = [];
+for (let i = 0; i < questions.length; i++) {
+  if (!usersMakingQuestions.includes(questions[i].accountId)) {
+    usersMakingQuestions.push(questions[i].accountId);
+  }
+}
+
 if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
   State.update({ questions: questions });
 }
 
-function closeModalClickingOnTransparent() {
-  return (e) => {
-    e.target.id == "modal" && State.update({ showQuestion: false });
-  };
-}
-
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-
-const renderModal = () => {
-  return (
-    <div
-      className="modal"
-      id="modal"
-      style={
-        state.showQuestion && { display: "block", backgroundColor: "#7e7e7e70" }
-      }
-      tabindex="-1"
-      role="dialog"
-      onClick={closeModalClickingOnTransparent()}
-    >
-      <div className="modal-dialog" style={{ maxWidth: "95%" }} role="document">
-        <div
-          className="modal-content"
-          style={{ backgroundColor: "rgb(230, 230, 230)" }}
-        >
-          <div className="modal-header flex-row-reverse">
-            <button
-              type="button"
-              className="close"
-              dataDismiss="modal"
-              ariaLabel="Close"
-              onClick={() => State.update({ showQuestion: false })}
-            >
-              <span ariaHidden="true">&times;</span>
-            </button>
-          </div>
-          <div
-            className="modal-body"
-            style={{
-              width: "90%",
-              borderRadius: "1rem",
-              backgroundColor: "white",
-              margin: "0 auto",
-            }}
-          >
-            <Widget
-              src={`${widgetOwner}/widget/newVotingInterface`}
-              props={{
-                blockHeight: state.modalBlockHeight,
-                shouldDisplayViewAll: props.accountId == undefined,
-              }}
-            />
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-              onClick={() => State.update({ showQuestion: false })}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const renderQuestions = (onlyUsersPolls) => {
   if (onlyUsersPolls) {
@@ -140,34 +78,31 @@ const renderQuestions = (onlyUsersPolls) => {
   } else {
     return (
       <>
-        <Widget
-          src={`${widgetOwner}/widget/displayQuestionHeader`}
-          props={{ ...question }}
-        />
-        {questions.map((question, index) => {
-          if (question.accountId) {
-            return (
-              <div
-                className={
-                  index % 2 == 0 ? "mr-2 py-3 px-4 my-2" : "py-3 px-4 my-2"
-                }
-                style={{
-                  boxSizing: "border-box",
-                  boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-                  backgroundColor: "white",
-                  borderRadius: "1rem",
-                  cursor: "pointer",
-                  width: "48%",
-                }}
-                onClick={() => {
-                  State.update({
-                    showQuestion: true,
-                    modalBlockHeight: question.blockHeight,
-                  });
-                }}
-              ></div>
-            );
-          }
+        {usersMakingQuestions.map((accountId, index) => {
+          return (
+            <div
+              className={
+                index % 2 == 0 ? "mr-2 py-3 px-4 my-2" : "py-3 px-4 my-2"
+              }
+              style={{
+                boxSizing: "border-box",
+                boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                backgroundColor: "white",
+                borderRadius: "1rem",
+                cursor: "pointer",
+                width: "48%",
+              }}
+            >
+              <Widget
+                src={`${widgetOwner}/widget/displayQuestionHeader`}
+                props={{ allUsersQuestions: questions, accountId }}
+              />
+              <Widget
+                src={`${widgetOwner}/widget/questionsByCreator`}
+                props={{ accountId }}
+              />
+            </div>
+          );
         })}
       </>
     );
@@ -182,9 +117,8 @@ return (
     }}
   >
     <div className="d-flex flex-wrap justify-content-between">
-      {renderQuestions()}
+      {renderQuestions(onlyUsersPolls)}
     </div>
-    {state.showQuestion && renderModal()}
     {/*TODO add a page picker instead the infinite scroll?*/}
   </div>
 );
