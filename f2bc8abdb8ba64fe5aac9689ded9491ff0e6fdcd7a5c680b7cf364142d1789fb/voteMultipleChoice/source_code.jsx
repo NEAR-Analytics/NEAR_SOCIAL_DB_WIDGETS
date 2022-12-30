@@ -235,7 +235,7 @@ function getBorderRadious(index) {
 }
 
 function getStyles(index) {
-  return hasVoted
+  return !canVote
     ? {
         display: "flex",
         alignContent: "center",
