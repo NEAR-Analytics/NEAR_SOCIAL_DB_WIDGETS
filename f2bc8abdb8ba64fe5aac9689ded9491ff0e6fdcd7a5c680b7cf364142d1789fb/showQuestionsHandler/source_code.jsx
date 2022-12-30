@@ -123,6 +123,7 @@ const renderQuestions = (onlyUsersPolls) => {
             borderRadius: "1rem",
             cursor: "pointer",
             width: "48%",
+            maxHeight: "max-content",
           }}
           onClick={() => {
             State.update({
