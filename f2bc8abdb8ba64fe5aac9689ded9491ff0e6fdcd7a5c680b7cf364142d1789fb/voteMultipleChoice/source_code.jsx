@@ -271,72 +271,70 @@ return (
       return (
         <div>
           <div className="d-flex align-content-center">
-            <div style={getStyles(index)}>
-              {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-              {!canVote ? (
-                <div>
-                  <div
-                    style={{
-                      height: "100%",
-                      padding: "0.01em 22px 0.01em 11px",
-                      display: "inline-block",
-                      width: `${calculatePercentage(countVotes[index])}%`,
-                      textAlign: "center",
-                      overflow: "visible",
-                      whiteSpace: "nowrap",
-                      textAlign: "left",
-                      backgroundColor: `${getBgColor(index, true)}`,
-                      borderRadius: "4px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        overflow: "visible",
-                        fontWeight: "500",
-                        lineHeight: "2.5rem",
-                      }}
-                    >
-                      {option} •
-                      <span
-                        className="text-secondary"
-                        style={{
-                          marginLeft: "1rem",
-                          fontWeight: "400",
-                        }}
-                      >
-                        ({countVotes[index]} votes)
-                      </span>
-                    </span>
-                  </div>
+            {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
+            {!canVote ? (
+              <div style={getStyles(index)}>
+                <div
+                  style={{
+                    height: "100%",
+                    padding: "0.01em 22px 0.01em 11px",
+                    display: "inline-block",
+                    width: `${calculatePercentage(countVotes[index])}%`,
+                    textAlign: "center",
+                    overflow: "visible",
+                    whiteSpace: "nowrap",
+                    textAlign: "left",
+                    backgroundColor: `${getBgColor(index, true)}`,
+                    borderRadius: "4px",
+                  }}
+                >
                   <span
                     style={{
-                      minWidth: "max-content",
-                      margin: "0.4rem 0px 0.4rem 0.3rem",
+                      overflow: "visible",
                       fontWeight: "500",
-                      position: "absolute",
-                      right: "1.7rem",
+                      lineHeight: "2.5rem",
                     }}
                   >
-                    {calculatePercentage(countVotes[index])}%
+                    {option} •
+                    <span
+                      className="text-secondary"
+                      style={{
+                        marginLeft: "1rem",
+                        fontWeight: "400",
+                      }}
+                    >
+                      ({countVotes[index]} votes)
+                    </span>
                   </span>
                 </div>
-              ) : (
-                <>
-                  <input
-                    className="form-check-input"
-                    id={"input" + index}
-                    name="selectMultipleChoice"
-                    key={index + "-" + state.vote}
-                    style={getInputStyles(index)}
-                    type="radio"
-                    value={index}
-                    checked={state.vote == index + ""}
-                    onClick={() => State.update({ vote: index + "" })}
-                  />
-                  <label for={"input" + index}>{option}</label>
-                </>
-              )}
-            </div>
+                <span
+                  style={{
+                    minWidth: "max-content",
+                    margin: "0.4rem 0px 0.4rem 0.3rem",
+                    fontWeight: "500",
+                    position: "absolute",
+                    right: "1.7rem",
+                  }}
+                >
+                  {calculatePercentage(countVotes[index])}%
+                </span>
+              </div>
+            ) : (
+              <>
+                <input
+                  className="form-check-input"
+                  id={"input" + index}
+                  name="selectMultipleChoice"
+                  key={index + "-" + state.vote}
+                  style={getInputStyles(index)}
+                  type="radio"
+                  value={index}
+                  checked={state.vote == index + ""}
+                  onClick={() => State.update({ vote: index + "" })}
+                />
+                <label for={"input" + index}>{option}</label>
+              </>
+            )}
           </div>
         </div>
       );
