@@ -246,6 +246,7 @@ function getStyles(index) {
         height: "2.4rem",
         borderRadius: `${getBorderRadious(index)}`,
         overflow: "hidden",
+        position: "relative",
       }
     : {
         appearance: "auto",
@@ -253,6 +254,7 @@ function getStyles(index) {
         display: "flex",
         justifyContent: "flex-start",
         margin: "0.4rem 0",
+        position: "relative",
       };
 }
 
@@ -272,12 +274,7 @@ return (
             <div style={getStyles(index)}>
               {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
               {!canVote ? (
-                <div
-                  style={{
-                    position: "relative",
-                    backgroundColor: `${getBgColor(index, false)}`,
-                  }}
-                >
+                <div>
                   <div
                     style={{
                       height: "100%",
