@@ -143,7 +143,6 @@ const renderQuestions = (onlyUsersPolls) => {
             }
             props={{ ...question }}
           />
-          {state.showQuestion && renderModal()}
         </div>
       );
     });
@@ -191,5 +190,6 @@ return (
       {renderQuestions(onlyUsersPolls)}
     </div>
     {/*TODO add a page picker instead the infinite scroll?*/}
+    {state.showQuestion && renderModal()}
   </div>
 );
