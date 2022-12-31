@@ -107,7 +107,7 @@ return (
     </div>
     <div className="d-flex justify-content-between mt-3">
       <div className="d-flex">
-        <i className="bi bi-people"></i>
+        <i className="bi bi-people" style={{ marginRight: "0.3rem" }}></i>
         <span>
           {getValidAnswersQtyFromQuestion(question.blockHeight)} votes
         </span>
