@@ -15,6 +15,7 @@ State.init({
   showErrorsInForm: false,
   showPreview: false,
   showSendFeedback: false,
+  sectionShown: "mainInfo",
 });
 
 const pollTypes = {
@@ -395,251 +396,330 @@ function isValidTelegramLink() {
 
 return (
   <div
-    className="d-flex align-items-start justify-content-around pt-4"
+    className="pt-4"
     style={{
       borderRadius: "0.375rem",
-      height: "100vh",
       backgroundColor: "white",
+      margin: "0 auto",
     }}
   >
-    <div className="d-flex flex-column w-75 justify-content-around">
-      <label for="pollTitle">Title*</label>
-      <input
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        type="text"
-        className={
-          !state.pollTitle && state.showErrorsInForm
-            ? "border border-danger mb-2"
-            : "mb-2"
+    <div className="w-75" style={{ margin: "0 auto" }}>
+      <span
+        style={
+          state.sectionShown == "mainInfo"
+            ? {
+                color: "#353A40",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }
+            : {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }
         }
-        id="pollTitle"
-        value={state.pollTitle}
-        onChange={(e) => {
-          State.update({ pollTitle: e.target.value });
+        onClick={() => {
+          State.update({ sectionShown: "mainInfo" });
         }}
-      />
-      {!state.pollTitle && state.showErrorsInForm && (
-        <p className="text-danger">Title cannot be empty</p>
-      )}
-
-      <label for="pollDescription" className="mt-2">
-        Description*
-      </label>
-      <textarea
-        id="pollDescription"
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        rows="3"
-        className={
-          !state.pollDescription &&
-          state.showErrorsInForm &&
-          "border border-danger"
-        }
-        value={state.pollDescription}
-        onChange={(e) => {
-          State.update({ pollDescription: e.target.value });
-        }}
-      ></textarea>
-      {!state.pollDescription && state.showErrorsInForm && (
-        <p className="text-danger">Description cannot be empty</p>
-      )}
-
-      <label for="pollDiscussionLink" className="mt-3">
-        Discussion link (optional)
-      </label>
-      <input
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        type="text"
-        className={
-          !isValidTelegramLink() && state.showErrorsInForm
-            ? "border border-danger mb-2"
-            : "mb-2"
-        }
-        id="pollDiscussionLink"
-        value={state.pollDiscussionLink}
-        onChange={(e) => {
-          State.update({ pollDiscussionLink: e.target.value });
-        }}
-      />
-      {!isValidTelegramLink() && state.showErrorsInForm && (
-        <p className="text-danger">Not a valid link</p>
-      )}
-
-      <div
-        className="d-flex justify-content-around flex-wrap"
-        style={{ maxWidth: "100%" }}
       >
-        <div className="d-flex flex-row">
-          <div className="d-flex flex-column mx-2">
-            <label for="pollStartDate">Start date*</label>
-            {/*You have min and max properties on dates input*/}
+        <i className="bi bi-square-fill"></i> Main information
+      </span>
+      <span
+        style={
+          state.sectionShown == "questions"
+            ? {
+                color: "#353A40",
+                fontSize: "0.8rem",
+                position: "relative",
+                userSelect: "none",
+                cursor: "pointer",
+              }
+            : {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                position: "relative",
+                userSelect: "none",
+                cursor: "pointer",
+              }
+        }
+        onClick={() => {
+          State.update({ sectionShown: "questions" });
+        }}
+      >
+        <i className="bi bi-square-fill"></i> Questions{" "}
+        <span
+          style={{
+            fontSize: "0.7rem",
+            position: "absolute",
+            top: "-8%",
+            left: "103%",
+            userSelect: "none",
+            cursor: "pointer",
+          }}
+        >
+          {"{0}"}
+        </span>
+      </span>
+    </div>
+    <div className="pt-4">
+      <div>
+        {state.sectionShown == "mainInfo" && (
+          <div
+            className="d-flex flex-column w-75 justify-content-center"
+            style={{ margin: "0 auto" }}
+          >
+            <label for="pollTitle">Title*</label>
             <input
-              style={getStyles(state.pollStartDate)}
-              type="date"
-              id="pollStartDate"
-              value={state.pollStartDate}
+              style={{
+                backgroundColor: "rgb(230, 230, 230)",
+                border: "1px solid #ced4da",
+                borderRadius: "0.375rem",
+              }}
+              type="text"
+              className={
+                !state.pollTitle && state.showErrorsInForm
+                  ? "border border-danger mb-2"
+                  : "mb-2"
+              }
+              id="pollTitle"
+              value={state.pollTitle}
               onChange={(e) => {
-                State.update({ pollStartDate: e.target.value });
+                State.update({ pollTitle: e.target.value });
               }}
             />
-            {!state.pollStartDate && state.showErrorsInForm && (
-              <p className="text-danger">Start date cannot be empty</p>
+            {!state.pollTitle && state.showErrorsInForm && (
+              <p className="text-danger">Title cannot be empty</p>
             )}
-          </div>
-          <div>
-            <div>Start time*</div>
-            <input
-              type="time"
-              style={getStyles(state.startTime)}
+
+            <label for="pollDescription" className="mt-2">
+              Description*
+            </label>
+            <textarea
+              id="pollDescription"
+              style={{
+                backgroundColor: "rgb(230, 230, 230)",
+                border: "1px solid #ced4da",
+                borderRadius: "0.375rem",
+              }}
+              rows="3"
+              className={
+                !state.pollDescription &&
+                state.showErrorsInForm &&
+                "border border-danger"
+              }
+              value={state.pollDescription}
               onChange={(e) => {
-                State.update({ startTime: e.target.value });
+                State.update({ pollDescription: e.target.value });
+              }}
+            ></textarea>
+            {!state.pollDescription && state.showErrorsInForm && (
+              <p className="text-danger">Description cannot be empty</p>
+            )}
+
+            <label for="pollDiscussionLink" className="mt-3">
+              Discussion link (optional)
+            </label>
+            <input
+              style={{
+                backgroundColor: "rgb(230, 230, 230)",
+                border: "1px solid #ced4da",
+                borderRadius: "0.375rem",
+              }}
+              type="text"
+              className={
+                !isValidTelegramLink() && state.showErrorsInForm
+                  ? "border border-danger mb-2"
+                  : "mb-2"
+              }
+              id="pollDiscussionLink"
+              value={state.pollDiscussionLink}
+              onChange={(e) => {
+                State.update({ pollDiscussionLink: e.target.value });
               }}
             />
-            {!state.pollStartDate && state.showErrorsInForm && (
-              <p className="text-danger">Start time cannot be empty</p>
+            {!isValidTelegramLink() && state.showErrorsInForm && (
+              <p className="text-danger">Not a valid link</p>
             )}
-          </div>
-        </div>
-        <div className="d-flex flex-row">
-          <div className="d-flex flex-column mx-2">
-            <label for="pollEndDate">End date*</label>
-            <input
-              style={getStyles(state.pollEndDate)}
-              type="date"
-              id="pollStartDate"
-              value={state.pollEndDate}
-              onChange={(e) => {
-                State.update({ pollEndDate: e.target.value });
-              }}
-            />
-            {!state.pollEndDate && state.showErrorsInForm && (
-              <p className="text-danger">End date cannot be empty</p>
-            )}
-          </div>
-          <div>
-            <div>End time*</div>
-            <input
-              type="time"
-              style={getStyles(state.endTime)}
-              value={state.endTime}
-              onChange={(e) => {
-                State.update({ endTime: e.target.value });
-              }}
-            />
-            {!state.pollEndDate && state.showErrorsInForm && (
-              <p className="text-danger">End time cannot be empty</p>
-            )}
-          </div>
-        </div>
-      </div>
-      {getTimestamp(state.pollStartDate, state.startTime) >=
-        getTimestamp(state.pollEndDate, state.endTime) &&
-        state.showErrorsInForm && (
-          <div>
-            <p className="text-danger">Poll should start before it ends</p>
+
+            <div
+              className="d-flex justify-content-around flex-wrap"
+              style={{ maxWidth: "100%" }}
+            >
+              <div className="d-flex flex-row">
+                <div className="d-flex flex-column mx-2">
+                  <label for="pollStartDate">Start date*</label>
+                  {/*You have min and max properties on dates input*/}
+                  <input
+                    style={getStyles(state.pollStartDate)}
+                    type="date"
+                    id="pollStartDate"
+                    value={state.pollStartDate}
+                    onChange={(e) => {
+                      State.update({ pollStartDate: e.target.value });
+                    }}
+                  />
+                  {!state.pollStartDate && state.showErrorsInForm && (
+                    <p className="text-danger">Start date cannot be empty</p>
+                  )}
+                </div>
+                <div>
+                  <div>Start time*</div>
+                  <input
+                    type="time"
+                    style={getStyles(state.startTime)}
+                    onChange={(e) => {
+                      State.update({ startTime: e.target.value });
+                    }}
+                  />
+                  {!state.pollStartDate && state.showErrorsInForm && (
+                    <p className="text-danger">Start time cannot be empty</p>
+                  )}
+                </div>
+              </div>
+              <div className="d-flex flex-row">
+                <div className="d-flex flex-column mx-2">
+                  <label for="pollEndDate">End date*</label>
+                  <input
+                    style={getStyles(state.pollEndDate)}
+                    type="date"
+                    id="pollStartDate"
+                    value={state.pollEndDate}
+                    onChange={(e) => {
+                      State.update({ pollEndDate: e.target.value });
+                    }}
+                  />
+                  {!state.pollEndDate && state.showErrorsInForm && (
+                    <p className="text-danger">End date cannot be empty</p>
+                  )}
+                </div>
+                <div>
+                  <div>End time*</div>
+                  <input
+                    type="time"
+                    style={getStyles(state.endTime)}
+                    value={state.endTime}
+                    onChange={(e) => {
+                      State.update({ endTime: e.target.value });
+                    }}
+                  />
+                  {!state.pollEndDate && state.showErrorsInForm && (
+                    <p className="text-danger">End time cannot be empty</p>
+                  )}
+                </div>
+              </div>
+            </div>
+            {getTimestamp(state.pollStartDate, state.startTime) >=
+              getTimestamp(state.pollEndDate, state.endTime) &&
+              state.showErrorsInForm && (
+                <div>
+                  <p className="text-danger">
+                    Poll should start before it ends
+                  </p>
+                </div>
+              )}
           </div>
         )}
+
+        {state.sectionShown == "questions" && (
+          <div
+            className="d-flex flex-column w-75 justify-content-center"
+            style={{
+              border: "1px solid #ced4da",
+              borderRadius: "0.375rem",
+              margin: "0 auto",
+            }}
+          >
+            <label for="question">Question*</label>
+            <input
+              style={
+                !state.question && state.showErrorsInForm
+                  ? {
+                      border: "1px solid #dc3545",
+                      borderOpacity: "1",
+                      borderRadius: "0.375rem",
+                    }
+                  : { backgroundColor: "rgb(230, 230, 230)" }
+              }
+              type="text"
+              id="question"
+              value={state.question}
+              onChange={(e) => {
+                State.update({ question: e.target.value });
+              }}
+            />
+            {!state.question && state.showErrorsInForm && (
+              <p className="text-danger">Question cannot be empty</p>
+            )}
+            <label className="mt-3" for="pollType">
+              Pool type*
+            </label>
+            <div className="dropdown">
+              <button
+                style={{ backgroundColor: "rgb(230, 230, 230)" }}
+                className="btn dropdown-toggle"
+                type="button"
+                onClick={() => {
+                  State.update({ expandOptions: !state.expandOptions });
+                }}
+              >
+                {state.pollType == "0"
+                  ? "Text"
+                  : state.pollType == "1"
+                  ? "Multiple choice"
+                  : undefined}
+              </button>
+
+              {state.expandOptions && renderOptions()}
+            </div>
+            {state.pollType == "1" && renderTextInputsForChoices()}
+            {state.showErrorsInForm &&
+              state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
+              state.choices.filter((c) => c != "").length < 2 && (
+                <p className="text-danger">Should have at least 2 options</p>
+              )}
+          </div>
+        )}
+      </div>
 
       <div
         style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
-        className="p-3 my-3"
+        className="p-3 d-flex flex-column justify-content-center"
       >
-        <label for="question">Question*</label>
-        <input
-          style={
-            !state.question && state.showErrorsInForm
-              ? {
-                  border: "1px solid #dc3545",
-                  borderOpacity: "1",
-                  borderRadius: "0.375rem",
-                }
-              : { backgroundColor: "rgb(230, 230, 230)" }
-          }
-          type="text"
-          id="question"
-          value={state.question}
-          onChange={(e) => {
-            State.update({ question: e.target.value });
-          }}
-        />
-        {!state.question && state.showErrorsInForm && (
-          <p className="text-danger">Question cannot be empty</p>
-        )}
-        <label className="mt-3" for="pollType">
-          Pool type*
-        </label>
-        <div className="dropdown">
-          <button
-            style={{ backgroundColor: "rgb(230, 230, 230)" }}
-            className="btn dropdown-toggle"
-            type="button"
+        <button
+          className="my-2 btn btn-outline-primary"
+          onClick={() => State.update({ showPreview: true })}
+        >
+          Preview
+        </button>
+
+        {isValidInput() ? (
+          <CommitButton
+            className="my-2 btn btn-primary"
+            data={getPublicationParams(false)}
             onClick={() => {
-              State.update({ expandOptions: !state.expandOptions });
+              State.update({
+                showSendFeedback: true,
+              });
             }}
           >
-            {state.pollType == "0"
-              ? "Text"
-              : state.pollType == "1"
-              ? "Multiple choice"
-              : undefined}
+            Create poll
+          </CommitButton>
+        ) : (
+          <button
+            className="my-2 btn btn-primary"
+            onClick={() => State.update({ showErrorsInForm: true })}
+          >
+            Create poll
           </button>
-
-          {state.expandOptions && renderOptions()}
-        </div>
-        {state.pollType == "1" && renderTextInputsForChoices()}
-        {state.showErrorsInForm &&
-          state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
-          state.choices.filter((c) => c != "").length < 2 && (
-            <p className="text-danger">Should have at least 2 options</p>
-          )}
+        )}
       </div>
+
+      {state.showPreview && renderModal("preview")}
+      {state.showSendFeedback && renderModal("sendFeedback")}
     </div>
-
-    <div
-      style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
-      className="p-3 d-flex flex-column justify-content-center"
-    >
-      <button
-        className="my-2 btn btn-outline-primary"
-        onClick={() => State.update({ showPreview: true })}
-      >
-        Preview
-      </button>
-
-      {isValidInput() ? (
-        <CommitButton
-          className="my-2 btn btn-primary"
-          data={getPublicationParams(false)}
-          onClick={() => {
-            State.update({
-              showSendFeedback: true,
-            });
-          }}
-        >
-          Create poll
-        </CommitButton>
-      ) : (
-        <button
-          className="my-2 btn btn-primary"
-          onClick={() => State.update({ showErrorsInForm: true })}
-        >
-          Create poll
-        </button>
-      )}
-    </div>
-
-    {state.showPreview && renderModal("preview")}
-    {state.showSendFeedback && renderModal("sendFeedback")}
   </div>
 );
