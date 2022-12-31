@@ -10,6 +10,7 @@ const widgetOwner =
 State.init({
   displaying: tabs.MY_POLLS.id,
   hoveringElement: "",
+  showAbortPollCreation: false,
 });
 
 function makeAccountIdShorter(accountId, length) {
@@ -24,6 +25,149 @@ const profile = Social.getr(`${context.accountId}/profile`);
 if (!profile) {
   return "Loading...";
 }
+
+function abortPollCreation() {
+  State.update({ showAbortPollCreation: true });
+  console.log(state.showAbortPollCreation);
+}
+
+function closeModalClickingOnTransparent() {
+  return (e) => {
+    e.target.id == "modal" && State.update({ showAbortPollCreation: false });
+  };
+}
+
+const renderAbortPollCreationModal = () => {
+  return (
+    <div
+      className="modal"
+      id="modal"
+      style={
+        state.showAbortPollCreation && {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#7e7e7e70",
+          backdropFilter: "blur(4px)",
+        }
+      }
+      tabindex="-1"
+      role="dialog"
+      onClick={closeModalClickingOnTransparent()}
+    >
+      <div
+        className="modal-dialog"
+        style={{ width: "540px", borderRadius: "28px" }}
+        role="document"
+      >
+        <div
+          className="modal-content"
+          style={{ border: "none", borderRadius: "28px" }}
+        >
+          <div
+            className="modal-header flex-row-reverse"
+            style={{ padding: "0", margin: "0", border: "none" }}
+          >
+            <button
+              type="button"
+              className="close"
+              style={{
+                border: "none",
+                backgroundColor: "transparent",
+                margin: "0.5rem 0.5rem 0px 0px",
+                borderRadius: "28px",
+                marginRight: "0.3rem",
+                padding: "0.3rem 0.7rem 0 0",
+              }}
+              dataDismiss="modal"
+              ariaLabel="Close"
+              onClick={() => State.update({ showAbortPollCreation: false })}
+            >
+              <i className="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div
+            className="modal-body"
+            style={{
+              width: "90%",
+              borderRadius: "1rem",
+              margin: "0 auto",
+              padding: "0",
+            }}
+          >
+            <h3
+              style={{
+                fontWeight: "700",
+                fontSize: "1.5rem",
+                letterSpacing: "0.1px",
+                textAlign: "center",
+              }}
+            >
+              Discard changes
+            </h3>
+            <p
+              style={{
+                letterSpacing: "-0.01",
+                color: "#4B516A",
+                fontSize: "1rem",
+                textAlign: "center",
+              }}
+            >
+              If you leave now, you will lose all your changes
+            </p>
+          </div>
+          <div
+            className="modal-footer"
+            style={{ border: "none", justifyContent: "space-around" }}
+          >
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              style={{
+                padding: "0.7rem",
+                borderRadius: "16px",
+                width: "45%",
+                backgroundColor: "white",
+                border: "1.5px solid #B0B3BE",
+                color: "#010A2D",
+                fontWeight: "700",
+                letterSpacing: "0.01em",
+              }}
+              onClick={() => State.update({ showAbortPollCreation: false })}
+            >
+              Continue editing
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+              style={{
+                padding: "0.7rem",
+                borderRadius: "16px",
+                width: "45%",
+                backgroundColor: "#FF4747",
+                border: "1.5px solid transparent",
+                color: "white",
+                fontWeight: "700",
+                letterSpacing: "0.01em",
+              }}
+              onClick={() =>
+                State.update({
+                  displaying: tabs.MY_POLLS.id,
+                  hoveringElement: "",
+                  showAbortPollCreation: false,
+                })
+              }
+            >
+              Discard changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 return (
   <div
@@ -220,12 +364,7 @@ return (
                 right: "2rem",
                 top: "2rem",
               }}
-              onClick={() => {
-                State.update({
-                  displaying: tabs.MY_POLLS.id,
-                  hoveringElement: "",
-                });
-              }}
+              onClick={abortPollCreation}
             ></i>
             <h2
               style={{
@@ -238,8 +377,45 @@ return (
             </h2>
           </div>
           <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
+          <button
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "cancelNewPoll" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => {
+              abortPollCreation;
+            }}
+            style={
+              state.hoveringElement == "cancelNewPoll"
+                ? {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0 0 1rem 0",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+                : {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0 0 1rem 0",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+            }
+          >
+            Cancel
+          </button>
         </div>
       )
     )}
+    {state.showAbortPollCreation && renderAbortPollCreationModal()}
   </div>
 );
