@@ -148,17 +148,17 @@ function onChangeUsername(change) {
 }
 
 function onChangeQuotaPerDay(change) {
-  quotaPerDayInputValue = change.target.value;
+  quotaPerDayInputValue = parseInt(change.target.value);
   console.log(quotaPerDayInputValue);
 }
 
 function onChangeTotalDays(change) {
-  totalDaysInputValue = change.target.value;
+  totalDaysInputValue = parseInt(change.target.value);
   console.log(totalDaysInputValue);
 }
 
 function onChangeTotalLives(change) {
-  totalLivesInputValue = change.target.value;
+  totalLivesInputValue = parseInt(change.target.value);
   console.log(totalLivesInputValue);
 }
 
