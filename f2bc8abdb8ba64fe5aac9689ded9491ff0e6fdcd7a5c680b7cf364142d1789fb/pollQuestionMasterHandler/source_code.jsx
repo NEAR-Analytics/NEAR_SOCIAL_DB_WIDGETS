@@ -67,113 +67,115 @@ return (
           EasyPoll
         </h3>
       </div>
-      <div
-        className="w-100 d-flex justify-content-between"
-        style={{ margin: "0 4rem" }}
-      >
-        <div style={{ marginTop: "0.6rem" }}>
-          <div className="d-flex">
-            {Object.keys(tabs).map((tabKey) => {
-              const tab = tabs[tabKey];
-              if (tabKey != "NEW_POLL") {
-                return (
-                  <div
-                    style={{
-                      marginRight: "1.5rem",
-                      position: "relative",
-                      cursor: "pointer",
-                      userSelect: "none",
-                    }}
-                  >
-                    <p
-                      ariaCurrent="page"
-                      onMouseEnter={() => {
-                        State.update({ hoveringElement: tab.id });
-                      }}
-                      onMouseLeave={() => {
-                        State.update({ hoveringElement: "" });
-                      }}
-                      onClick={() => {
-                        State.update({ displaying: tab.id });
-                      }}
+      {state.displaying != tabs.NEW_POLL.id && (
+        <div
+          className="w-100 d-flex justify-content-between"
+          style={{ margin: "0 4rem" }}
+        >
+          <div style={{ marginTop: "0.6rem" }}>
+            <div className="d-flex">
+              {Object.keys(tabs).map((tabKey) => {
+                const tab = tabs[tabKey];
+                if (tabKey != "NEW_POLL") {
+                  return (
+                    <div
                       style={{
-                        fontWeight: "500",
-                        fontSize: "1rem",
-                        margin: "0",
+                        marginRight: "1.5rem",
+                        position: "relative",
+                        cursor: "pointer",
+                        userSelect: "none",
                       }}
                     >
-                      {tab.text}
-                    </p>
-                    {(state.hoveringElement == tab.id ||
-                      state.displaying == tab.id) && (
-                      <div
+                      <p
+                        ariaCurrent="page"
+                        onMouseEnter={() => {
+                          State.update({ hoveringElement: tab.id });
+                        }}
+                        onMouseLeave={() => {
+                          State.update({ hoveringElement: "" });
+                        }}
+                        onClick={() => {
+                          State.update({ displaying: tab.id });
+                        }}
                         style={{
-                          height: "0.2rem",
-                          width: "50%",
-                          position: "absolute",
-                          bottom: "-55%",
-                          left: "25%",
-                          backgroundColor: "#010A2D",
-                          borderRadius: "8px",
+                          fontWeight: "500",
+                          fontSize: "1rem",
+                          margin: "0",
                         }}
                       >
-                        {/*Decorative Div, do not delete*/}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-            })}
+                        {tab.text}
+                      </p>
+                      {(state.hoveringElement == tab.id ||
+                        state.displaying == tab.id) && (
+                        <div
+                          style={{
+                            height: "0.2rem",
+                            width: "50%",
+                            position: "absolute",
+                            bottom: "-55%",
+                            left: "25%",
+                            backgroundColor: "#010A2D",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          {/*Decorative Div, do not delete*/}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
-        </div>
 
-        <div className="d-flex">
-          <button
-            onMouseEnter={() => {
-              State.update({ hoveringElement: tabs.NEW_POLL.id });
-            }}
-            onMouseLeave={() => {
-              State.update({ hoveringElement: "" });
-            }}
-            onClick={() => {
-              State.update({ displaying: tabs.NEW_POLL.id });
-            }}
-            style={
-              state.hoveringElement == tabs.NEW_POLL.id
-                ? {
-                    border: "2px solid black",
-                    color: "black",
-                    backgroundColor: "white",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    margin: "0",
-                    padding: "0.3rem 1.5rem",
-                    borderRadius: "12px",
-                  }
-                : {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    margin: "0",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
-                  }
-            }
-          >
-            <i
-              className="bi bi-plus-lg"
+          <div className="d-flex">
+            <button
+              onMouseEnter={() => {
+                State.update({ hoveringElement: tabs.NEW_POLL.id });
+              }}
+              onMouseLeave={() => {
+                State.update({ hoveringElement: "" });
+              }}
+              onClick={() => {
+                State.update({ displaying: tabs.NEW_POLL.id });
+              }}
               style={
                 state.hoveringElement == tabs.NEW_POLL.id
-                  ? { color: "black" }
-                  : { color: "white" }
+                  ? {
+                      border: "2px solid black",
+                      color: "black",
+                      backgroundColor: "white",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      padding: "0.3rem 1.5rem",
+                      borderRadius: "12px",
+                    }
+                  : {
+                      border: "2px solid transparent",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      padding: "0.3rem 1.5rem",
+                      backgroundColor: "#010A2D",
+                      borderRadius: "12px",
+                      color: "white",
+                    }
               }
-            ></i>
-            {tabs.NEW_POLL.text}
-          </button>
+            >
+              <i
+                className="bi bi-plus-lg"
+                style={
+                  state.hoveringElement == tabs.NEW_POLL.id
+                    ? { color: "black" }
+                    : { color: "white" }
+                }
+              ></i>
+              {tabs.NEW_POLL.text}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
       <div className="p-2">
         <div>
           <p style={{ margin: "0", fontSize: "0.8rem" }}>
@@ -205,7 +207,36 @@ return (
       </div>
     ) : (
       state.displaying == tabs.NEW_POLL.id && (
-        <div className="px-4">
+        <div
+          className="px-4 mx-4 mt-2"
+          style={{ backgroundColor: "white", borderRadius: "28px" }}
+        >
+          <div style={{ position: "relative" }}>
+            <i
+              className="bi bi-x-lg"
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                right: "2rem",
+                top: "2rem",
+              }}
+              onClick={() => {
+                State.update({
+                  displaying: tabs.MY_POLLS.id,
+                  hoveringElement: "",
+                });
+              }}
+            ></i>
+            <h2
+              style={{
+                padding: "2rem",
+                margin: "2rem 0 0.5rem 0",
+                fontWeight: "700",
+              }}
+            >
+              Create a poll
+            </h2>
+          </div>
           <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
         </div>
       )
