@@ -29,7 +29,7 @@ State.init({
 
 return (
   <div>
-    {registered && (
+    {state.registered && (
       <div class="modal" style={{ display: "block" }}>
         <div className="modal-dialog">
           <div className="modal-content">
