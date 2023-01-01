@@ -24,19 +24,41 @@ State.init({
   registeredPublicKey,
   secretKey: keyPair.secretKey,
   publicKey: keyPair.publicKey,
+  registered: false,
 });
 
 return (
-  <div class="mb-3">
-    <h1 class="mb-3 text-center">Register</h1>
+  <div>
+    {registered && (
+      <div class="modal" style={{ display: "block" }}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Registration successfully</h5>
+            </div>
+            <div className="modal-body">
+              <p>You can send and receive messages now</p>
+            </div>
+            <div className="modal-footer">
+              <a
+                className="btn btn-success"
+                href={`#/bozon.near/widget/PrivateMessages`}
+              >
+                Go to login
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
 
+    <h1 class="mb-3 text-center">Register</h1>
     {registeredPublicKey && (
       <div class="mb-3">
         You already registered. If your key is compromised, you can re-register.
         You can read old messages using old secret key{" "}
       </div>
     )}
-
     <div class="mb-3">
       <label for="inputSercetKey" class="form-label">
         Secret key:
@@ -64,7 +86,6 @@ return (
         </button>
       </div>
     </div>
-
     <div class="mb-3 form-check">
       <input
         onClick={() => {
@@ -82,14 +103,12 @@ return (
         <b>I SAVE SECRET KEY</b>
       </label>
     </div>
-
     <CommitButton
       disabled={!state.checkboxSaveSecretKey}
-      onClick={() => {
-        Storage.privateSet("secretKey", state.secretKey);
-      }}
       onCommit={() => {
-        window.open("/#/bozon.near/widget/PrivateMessages");
+        State.update({
+          registered: true,
+        });
       }}
       data={{ private_messages: { public_key: state.publicKey } }}
     >
