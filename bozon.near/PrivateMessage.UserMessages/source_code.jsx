@@ -1,5 +1,5 @@
-if (!props.secretKey || !props.onClose) {
-  return "Send secretKey and onClose() in props";
+if (!props.accountId || !props.onClose) {
+  return "Send accountId and onClose() in props";
 }
 
 return (
