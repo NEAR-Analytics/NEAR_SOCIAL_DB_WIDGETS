@@ -86,18 +86,7 @@ function renderLoginPage() {
   );
 }
 
-function renderMessagesPage() {
-  return (
-    <div>
-      <h1 class="mb-3 text-center">Messages</h1>
-      <button onClick={() => State.update({ selectedUser: undefined })}>
-        {"<"}
-      </button>
-    </div>
-  );
-}
-
-if (state.selectedUser)
+if (state.selectedUser) {
   return (
     <Widget
       src="bozon.near/widget/PrivateMessages.UserMessages"
@@ -107,11 +96,16 @@ if (state.selectedUser)
       }}
     />
   );
-if (!savedSecretKey) return renderLoginPage();
-if (savedSecretKey)
+} else if (!savedSecretKey) return renderLoginPage();
+else if (savedSecretKey)
   return (
     <Widget
       src="bozon.near/widget/PrivateMessages.UserList"
-      props={{ secretKey: savedSecretKey }}
+      props={{
+        secretKey: savedSecretKey,
+        onSelectedUser: (accountId) => {
+          State.update({ selectedUser: accountId });
+        },
+      }}
     />
   );
