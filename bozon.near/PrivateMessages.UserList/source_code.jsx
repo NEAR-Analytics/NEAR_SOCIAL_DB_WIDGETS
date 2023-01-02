@@ -4,9 +4,7 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-const secretKey = props.secretKey;
-
-if (!secretKey || !props.onSelectedUser) {
+if (!props.secretKey || !props.onSelectedUser) {
   return "Send secretKey and onSelectedUser() in props";
 }
 
