@@ -23,6 +23,16 @@ const pills = [
   { id: "authors", title: "Authors" },
 ];
 
+const handleArticle = (e, articleId) => {
+  State.update({ ...state, articleId: articleId });
+};
+
+const article =
+  state?.articleId &&
+  Near.view("thewiki.near", "get_article", {
+    article_id: state?.articleId,
+  });
+
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
@@ -40,6 +50,7 @@ return (
             onClick={() => {
               const key = `load${id}`;
               !state[key] && State.update({ [key]: true });
+              State.update({ articleId: undefined });
             }}
           >
             {title}
@@ -66,18 +77,44 @@ return (
       >
         {state.loadarticles && (
           <div>
-            <p> articles tab </p>
-            <p>articlesNum = {articlesNum} </p>
-            <ul>
-              {articles?.map((article, index, articles) => (
-                <li key={article}>
-                  # {articles.length - index}{" "}
-                  {index === articles.length - 1
-                    ? "main page"
-                    : articles[articles.length - index - 1]}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-2">articlesNum = {articlesNum} </p>
+
+            {state?.articleId && (
+              <div>
+                <p>Article name: {state?.articleId}</p>
+                <button
+                  onClick={() => {
+                    State.update({ articleId: undefined });
+                  }}
+                >
+                  {" "}
+                  Back to articles{" "}
+                </button>
+
+                <Markdown text={article.body} />
+              </div>
+            )}
+
+            {!state?.articleId && (
+              <ul>
+                {articles?.map((article, index, articles) => (
+                  <li key={article}>
+                    #{" "}
+                    <a
+                      href="#"
+                      onClick={(e) =>
+                        handleArticle(e, articles[articles.length - index - 1])
+                      }
+                    >
+                      {articles.length - index}{" "}
+                      {index === articles.length - 1
+                        ? "main page"
+                        : articles[articles.length - index - 1]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
       </div>
