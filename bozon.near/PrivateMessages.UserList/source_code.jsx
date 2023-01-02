@@ -6,8 +6,8 @@ if (!accountId) {
 
 const secretKey = props.secretKey;
 
-if (!secretKey) {
-  return "Send secretKey in props";
+if (!secretKey || !props.onSelectedUser) {
+  return "Send secretKey and onSelectedUser() in props";
 }
 
 const follows = Social.get(`${accountId}/graph/follow/**`);
@@ -46,7 +46,7 @@ return (
     {allFollowers.length === 0 && <p>You don't have any followers yet</p>}
     {state.userList.map((follower, i) => {
       const followerRegisteredPublicKey = Social.get(
-        `${follower}/private_messages/public_key`
+        `${follower}/private_messages/*`
       );
 
       return (
@@ -71,7 +71,7 @@ return (
           ) : (
             <button
               onClick={() => {
-                State.update({ selectedUser: follower });
+                props.onSelectedUser(follower);
               }}
             >
               Send message
