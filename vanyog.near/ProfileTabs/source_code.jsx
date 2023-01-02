@@ -33,6 +33,14 @@ const article =
     article_id: state?.articleId,
   });
 
+const mainPageNavigation = Near.view("thewiki.near", "get_article", {
+  article_id: "main_nav",
+});
+
+const mainPage = Near.view("thewiki.near", "get_article", {
+  article_id: "",
+});
+
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
@@ -66,7 +74,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-main-tab"
       >
-        <Markdown text={description} />
+        <Markdown text={mainPageNavigation.body} />
+        <Markdown text={mainPage.body} />
       </div>
 
       <div
