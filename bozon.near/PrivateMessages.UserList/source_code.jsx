@@ -5,6 +5,7 @@ if (!accountId) {
 }
 
 if (!props.secretKey || !props.onSelectedUser) {
+  console.log(props.secretKey || props.onSelectedUser);
   return "Send secretKey and onSelectedUser() in props";
 }
 
