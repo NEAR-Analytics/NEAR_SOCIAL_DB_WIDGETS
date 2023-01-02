@@ -5,8 +5,6 @@ if (!props.secretKey || !props.onClose) {
 return (
   <div>
     <h1 class="mb-3 text-center">Messages</h1>
-    <button onClick={() => State.update({ selectedUser: undefined })}>
-      {"<"}
-    </button>
+    <button onClick={props.onClose()}>{"<"}</button>
   </div>
 );
