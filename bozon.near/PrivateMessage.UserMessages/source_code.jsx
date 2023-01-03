@@ -12,7 +12,7 @@ if (!accountId) {
 if (
   !props.receiverAccountId ||
   !props.secretKeyBase64 ||
-  !props.receiverPublicKeyBase64 ||
+  !props.receiverPublicKeyBase64
 ) {
   return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64  in props";
 }
