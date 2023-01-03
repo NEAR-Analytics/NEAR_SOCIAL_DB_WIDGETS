@@ -1,10 +1,72 @@
-if (!props.accountId || !props.onClose) {
-  return "Send accountId and onClose() in props";
+if (
+  !props.accountId ||
+  !props.secretKey ||
+  !props.receiverPublicKeyBase64 ||
+  !props.onClose
+) {
+  return "Send accountId, secretKey and onClose() in props";
 }
+
+State.init({ message: "" });
+
+const messages = Social.index("private_messages", "message", {
+  subscribe: true,
+  limit: 50,
+  order: "desc",
+});
+
+console.log(messages);
 
 return (
   <div>
-    <h1 class="mb-3 text-center">Messages</h1>
-    <button onClick={props.onClose}>{"<"}</button>
+    <div class="d-flex flex-row align-items-center mb-3">
+      <div class="col">
+        <button class="btn btn-primary" onClick={props.onClose}>
+          {"<"}
+        </button>
+      </div>
+      <h1 class="col">Private Messages</h1>
+      <div class="col"></div>
+    </div>
+
+    <div class="input-group mb-3">
+      <input
+        class="form-control"
+        placeholder="Input message"
+        onChange={(e) => {
+          State.update({
+            message: e.target.value,
+          });
+        }}
+      ></input>
+      <CommitButton
+        data={() => {
+          const encryptedMessage = nacl.box(
+            new Uint8Array(state.message),
+            nacl.randomBytes(24),
+            [
+              Buffer.from(receiverPublicKeyBase64, "base64"),
+              nacl.box.keyPair.fromSecretKey(secretKey).publicKey,
+            ]
+          );
+
+          return {
+            // private_messages: {
+            //   message: encryptedMessage,
+            // },
+            index: {
+              private_messages: JSON.stringify({
+                key: "message",
+                value: {
+                  message: encryptedMessage,
+                },
+              }),
+            },
+          };
+        }}
+      >
+        Send
+      </CommitButton>
+    </div>
   </div>
 );
