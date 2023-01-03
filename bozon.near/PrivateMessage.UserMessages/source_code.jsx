@@ -1,3 +1,8 @@
+//props:
+//receiverAccountId
+//secretKeyBase64
+//receiverPublicKeyBase64
+
 const accountId = context.accountId;
 
 if (!accountId) {
@@ -8,9 +13,8 @@ if (
   !props.receiverAccountId ||
   !props.secretKeyBase64 ||
   !props.receiverPublicKeyBase64 ||
-  !props.onClose
 ) {
-  return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64 and onClose() in props";
+  return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64  in props";
 }
 
 State.init({ message: "" });
@@ -24,16 +28,6 @@ console.log(messages);
 
 return (
   <div>
-    <div class="d-flex flex-row align-items-center mb-3">
-      <div class="col">
-        <button class="btn btn-primary" onClick={props.onClose}>
-          {"<"}
-        </button>
-      </div>
-      <h1 class="col">Private Messages</h1>
-      <div class="col"></div>
-    </div>
-
     <div class="input-group mb-3">
       <input
         class="form-control"
