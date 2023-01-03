@@ -1,10 +1,10 @@
 if (
   !props.accountId ||
-  !props.secretKey ||
+  !props.secretKeyBase64 ||
   !props.receiverPublicKeyBase64 ||
   !props.onClose
 ) {
-  return "Send accountId, secretKey and onClose() in props";
+  return "Send accountId, secretKeyBase64, receiverPublicKeyBase64 and onClose() in props";
 }
 
 State.init({ message: "" });
@@ -46,7 +46,9 @@ return (
             nacl.randomBytes(24),
             [
               Buffer.from(receiverPublicKeyBase64, "base64"),
-              nacl.box.keyPair.fromSecretKey(secretKey).publicKey,
+              nacl.box.keyPair.fromSecretKey(
+                Buffer.from(receiverPublicKeyBase64, "base64")
+              ).publicKey,
             ]
           );
 
