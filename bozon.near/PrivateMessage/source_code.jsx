@@ -77,7 +77,7 @@ function renderLoginPage() {
 
         <a
           className="btn btn-outline-primary"
-          href={`#/bozon.near/widget/PrivateMessages.Register`}
+          href={`#/bozon.near/widget/PrivateMessage.Register`}
         >
           Register
         </a>
@@ -89,7 +89,7 @@ function renderLoginPage() {
 if (state.selectedUser) {
   return (
     <Widget
-      src="bozon.near/widget/PrivateMessages.UserMessages"
+      src="bozon.near/widget/PrivateMessage.UserMessages"
       props={{
         accountId: state.selectedUser.accountId,
         secretKeyBase64: savedSecretKey,
@@ -102,7 +102,7 @@ if (state.selectedUser) {
 else if (savedSecretKey)
   return (
     <Widget
-      src="bozon.near/widget/PrivateMessages.UserList"
+      src="bozon.near/widget/PrivateMessage.UserList"
       props={{
         secretKey: savedSecretKey,
         onSelectedUser: (accountId, publicKeyBase64) => {
