@@ -147,10 +147,11 @@ function getDayStatus() {
 
   let pointsRequired =
     contractChallengeState.quota_per_day -
-    (contractChallengeState.current_daily_xp -
-      contractChallengeState.day_start_xp);
+    contractChallengeState.current_daily_xp;
   if (pointsRequired < 0) {
-    return <div>Enough XP points today</div>;
+    return (
+      <div>Enough XP points today ({-pointsRequired} over the quota) </div>
+    );
   } else {
     return (
       <div>
