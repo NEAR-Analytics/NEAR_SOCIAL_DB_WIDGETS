@@ -1,17 +1,22 @@
+const accountId = context.accountId;
+
+if (!accountId) {
+  return "Please sign in with NEAR wallet";
+}
+
 if (
-  !props.accountId ||
+  !props.receiverAccountId ||
   !props.secretKeyBase64 ||
   !props.receiverPublicKeyBase64 ||
   !props.onClose
 ) {
-  return "Send accountId, secretKeyBase64, receiverPublicKeyBase64 and onClose() in props";
+  return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64 and onClose() in props";
 }
 
 State.init({ message: "" });
 
-const messages = Social.index("private_messages", "message", {
+const messages = Social.index("private_message", accountId, {
   subscribe: true,
-  limit: 50,
   order: "desc",
 });
 
@@ -42,26 +47,29 @@ return (
       <CommitButton
         data={() => {
           const encryptedMessage = nacl.box(
-            new Uint8Array(state.message),
+            new Uint8Array(Buffer.from(state.message)),
             nacl.randomBytes(24),
-            [
-              Buffer.from(receiverPublicKeyBase64, "base64"),
-              nacl.box.keyPair.fromSecretKey(
-                Buffer.from(receiverPublicKeyBase64, "base64")
-              ).publicKey,
-            ]
+            new Uint8Array(
+              Buffer.from(props.receiverPublicKeyBase64, "base64")
+            ),
+            nacl.box.keyPair.fromSecretKey(
+              Buffer.from(props.secretKeyBase64, "base64")
+            ).secretKey
           );
 
           return {
-            // private_messages: {
-            //   message: encryptedMessage,
-            // },
+            private_message: {
+              last_message: {
+                message_text_base64:
+                  Buffer.from(encryptedMessage).toString("base64"),
+                receiver_public_key_base64: receiverPublicKeyBase64,
+                receiver_account_id: receiverAccountId,
+              },
+            },
             index: {
-              private_messages: JSON.stringify({
-                key: "message",
-                value: {
-                  message: encryptedMessage,
-                },
+              private_message: JSON.stringify({
+                key: receiverAccountId,
+                value: "",
               }),
             },
           };
