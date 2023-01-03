@@ -1,5 +1,5 @@
 //props:
-//onRegister(secretKeyBase64)
+//onRegisterComplete(secretKeyBase64)
 
 const accountId = context.accountId;
 
@@ -7,8 +7,8 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-if (!props.onRegister) {
-  return "send onRegister in props";
+if (!props.onRegisterComplete) {
+  return "send onRegisterComplete in props";
 }
 
 const registeredPublicKeyBase64 = Social.get(
@@ -92,7 +92,7 @@ return (
         State.update({
           registeredProsessing: false,
         });
-        props.onRegister();
+        props.onRegisterComplete();
       }}
       data={{ private_message: { public_key: state.publicKeyBase64 } }}
     >
