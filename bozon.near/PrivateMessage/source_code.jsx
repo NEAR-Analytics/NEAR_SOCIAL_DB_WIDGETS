@@ -7,26 +7,27 @@ if (!accountId) {
 const registeredPublicKey = Social.get(
   `${accountId}/private_message/public_key`
 );
-const savedSecretKey = Storage.privateGet("secretKey");
-const follows = Social.get(`${accountId}/graph/follow/**`);
+const savedSecretKeyBase64 = Storage.privateGet("secretKey");
 
-const allFollowers = follows
-  ? Object.keys(follows).map((f) => {
-      return f;
-    })
-  : [];
-
-if (savedSecretKey === null || registeredPublicKey === null) return "Loading";
+if (savedSecretKeyBase64 === null || registeredPublicKey === null)
+  return "Loading";
 
 State.init({
   selectedUser,
-  followers: allFollowers,
+
+  registerPage: false,
+  loginPage: !savedSecretKeyBase64 ? true : false,
+  userListPage: savedSecretKeyBase64 ? true : false,
 });
 
 function renderLoginPage() {
   return (
     <div>
-      <h1 class="mb-3 text-center">Login</h1>
+      <div class="d-flex flex-row align-items-center mb-3">
+        <div class="col"></div>
+        <h1 class="col">Login</h1>
+        <div class="col"></div>
+      </div>
       {registeredPublicKey && (
         <div>
           <label class="mb-3">You registered using this public key:</label>
@@ -64,7 +65,7 @@ function renderLoginPage() {
                 ).toString("base64");
                 Storage.privateSet("secretKey", secretKey);
                 State.update({
-                  savedSecretKey: secretKey,
+                  savedSecretKeyBase64: secretKey,
                 });
               }
             } catch {
@@ -75,13 +76,43 @@ function renderLoginPage() {
           Sign in
         </button>
 
-        <a
+        <button
           className="btn btn-outline-primary"
-          href={`#/bozon.near/widget/PrivateMessage.Register`}
+          onClick={() => State.update({ registerPage: true })}
         >
           Register
-        </a>
+        </button>
       </div>
+    </div>
+  );
+}
+
+if (state.registerPage) {
+  return (
+    <div>
+      <div class="d-flex flex-row align-items-center mb-3">
+        <div class="col">
+          <button
+            class="btn btn-secondary
+            float-right"
+            onClick={() => {
+              State.update({ registerPage: false });
+            }}
+          >
+            {"<"}
+          </button>
+        </div>
+        <h1 class="col">Register</h1>
+        <div class="col"></div>
+      </div>
+      <Widget
+        src="bozon.near/widget/PrivateMessage.Register"
+        props={{
+          onRegisterComplete: () => {
+            State.update({ registerPage: false });
+          },
+        }}
+      />
     </div>
   );
 }
@@ -92,22 +123,42 @@ if (state.selectedUser) {
       src="bozon.near/widget/PrivateMessage.UserMessages"
       props={{
         accountId: state.selectedUser.accountId,
-        secretKeyBase64: savedSecretKey,
+        secretKeyBase64: savedSecretKeyBase64,
         receiverPublicKeyBase64: state.selectedUser.publicKeyBase64,
         onClose: () => State.update({ selectedUser: null }),
       }}
     />
   );
-} else if (!savedSecretKey) return renderLoginPage();
-else if (savedSecretKey)
+}
+
+if (!savedSecretKeyBase64) return renderLoginPage();
+else if (savedSecretKeyBase64)
   return (
-    <Widget
-      src="bozon.near/widget/PrivateMessage.UserList"
-      props={{
-        secretKey: savedSecretKey,
-        onSelectedUser: (accountId, publicKeyBase64) => {
-          State.update({ selectedUser: { accountId, publicKeyBase64 } });
-        },
-      }}
-    />
+    <div>
+      <div class="d-flex flex-row align-items-center mb-3">
+        <div class="col"></div>
+        <h1 class="col">Private Message</h1>
+        <div class="col d-flex justify-content-end">
+          <button
+            class="btn btn-danger 
+            float-right"
+            onClick={() => {
+              Storage.privateSet("secretKey", undefined);
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <Widget
+        src="bozon.near/widget/PrivateMessage.UserList"
+        props={{
+          secretKeyBase64: savedSecretKeyBase64,
+          onSelectedUser: (accountId, publicKeyBase64) => {
+            State.update({ selectedUser: { accountId, publicKeyBase64 } });
+          },
+        }}
+      />
+    </div>
   );
