@@ -118,16 +118,44 @@ if (state.registerPage) {
 }
 
 if (state.selectedUser) {
+  console.log({
+    receiverAccountId: state.selectedUser.accountId,
+    secretKeyBase64: savedSecretKeyBase64,
+    receiverPublicKeyBase64: state.selectedUser.publicKeyBase64,
+  });
   return (
-    <Widget
-      src="bozon.near/widget/PrivateMessage.UserMessages"
-      props={{
-        accountId: state.selectedUser.accountId,
-        secretKeyBase64: savedSecretKeyBase64,
-        receiverPublicKeyBase64: state.selectedUser.publicKeyBase64,
-        onClose: () => State.update({ selectedUser: null }),
-      }}
-    />
+    <div>
+      <div class="d-flex flex-row align-items-center mb-3">
+        <div class="col">
+          <button
+            class="btn btn-secondary
+            float-right"
+            onClick={() => {
+              State.update({ selectedUser: null });
+            }}
+          >
+            {"<"}
+          </button>
+        </div>
+        <div class="col">
+          <Widget
+            src="mob.near/widget/Profile.ShortInlineBlock"
+            props={{
+              accountId: state.selectedUser.accountId,
+            }}
+          />
+        </div>
+        <div class="col"></div>
+      </div>
+      <Widget
+        src="bozon.near/widget/PrivateMessage.UserMessages"
+        props={{
+          receiverAccountId: state.selectedUser.accountId,
+          secretKeyBase64: savedSecretKeyBase64,
+          receiverPublicKeyBase64: state.selectedUser.publicKeyBase64,
+        }}
+      />
+    </div>
   );
 }
 
