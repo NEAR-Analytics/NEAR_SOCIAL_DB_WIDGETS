@@ -1,14 +1,21 @@
+//props:
+//onRegister(secretKeyBase64)
+
 const accountId = context.accountId;
 
 if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-const registeredPublicKey = Social.get(
+if (!props.onRegister) {
+  return "send onRegister in props";
+}
+
+const registeredPublicKeyBase64 = Social.get(
   `${accountId}/private_message/public_key`
 );
 
-if (registeredPublicKey === null) return "Loading";
+if (registeredPublicKeyBase64 === null) return "Loading";
 
 function randomKeyPairBase64() {
   const keyPair = nacl.box.keyPair();
@@ -21,39 +28,14 @@ function randomKeyPairBase64() {
 const keyPair = randomKeyPairBase64();
 
 State.init({
-  registeredPublicKey,
-  secretKey: keyPair.secretKey,
-  publicKey: keyPair.publicKey,
-  registered: false,
+  registeredPublicKeyBase64,
+  secretKeyBase64: keyPair.secretKey,
+  publicKeyBase64: keyPair.publicKey,
 });
 
 return (
   <div>
-    {state.registered && (
-      <div class="modal" style={{ display: "block" }}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Registration successfully</h5>
-            </div>
-            <div className="modal-body">
-              <p>You can send and receive messages now</p>
-            </div>
-            <div className="modal-footer">
-              <a
-                className="btn btn-success"
-                href={`#/bozon.near/widget/PrivateMessages`}
-              >
-                Go to login
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    )}
-
-    <h1 class="mb-3 text-center">Register</h1>
-    {registeredPublicKey && (
+    {registeredPublicKeyBase64 && (
       <div class="mb-3">
         You already registered. If your key is compromised, you can re-register.
         You can read old messages using old secret key{" "}
@@ -66,19 +48,20 @@ return (
       <div class="mb-3 input-group">
         <input
           type="text"
-          value={state.secretKey}
+          value={state.secretKeyBase64}
           class="form-control"
           readonly=""
         />
         <button
           class="btn btn-outline-primary"
+          disabled={state.registeredProsessing}
           onClick={() => {
             const keyPair = randomKeyPairBase64();
 
             //re-render
             State.update({
-              secretKey: keyPair.secretKey,
-              publicKey: keyPair.publicKey,
+              secretKeyBase64: keyPair.secretKey,
+              publicKeyBase64: keyPair.publicKey,
             });
           }}
         >
@@ -107,10 +90,11 @@ return (
       disabled={!state.checkboxSaveSecretKey}
       onCommit={() => {
         State.update({
-          registered: true,
+          registeredProsessing: false,
         });
+        props.onRegister();
       }}
-      data={{ private_message: { public_key: state.publicKey } }}
+      data={{ private_message: { public_key: state.publicKeyBase64 } }}
     >
       Register
     </CommitButton>
