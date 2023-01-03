@@ -27,7 +27,7 @@ return (
 
     <input
       class="mb-3 form-control"
-      placeholder="Input username"
+      placeholder="🔍 Input username"
       onChange={(e) => {
         const newFollowersArray = allFollowers.filter(
           (accountId) => accountId.indexOf(e.target.value) !== -1
@@ -70,7 +70,7 @@ return (
           ) : (
             <button
               onClick={() => {
-                props.onSelectedUser(follower);
+                props.onSelectedUser(follower, followerRegisteredPublicKey);
               }}
             >
               Send message
