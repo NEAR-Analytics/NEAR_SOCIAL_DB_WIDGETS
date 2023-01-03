@@ -115,14 +115,13 @@ const renderQuestions = (onlyUsersPolls) => {
     return questions.map((question, index) => {
       return (
         <div
-          className={index % 2 == 0 ? "mr-2 py-3 px-4 my-2" : "py-3 px-4 my-2"}
+          className={"mx-1 py-3 px-4 my-2"}
           style={{
             boxSizing: "border-box",
             boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
             backgroundColor: "white",
             borderRadius: "1rem",
             cursor: "pointer",
-            width: "48%",
           }}
           onClick={() => {
             State.update({
@@ -186,7 +185,13 @@ return (
       backgroundColor: "rgb(230, 230, 230)",
     }}
   >
-    <div className="d-flex flex-wrap justify-content-between">
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "auto auto auto",
+        justifyContent: "space-between",
+      }}
+    >
       {renderQuestions(onlyUsersPolls)}
     </div>
     {/*TODO add a page picker instead the infinite scroll?*/}
