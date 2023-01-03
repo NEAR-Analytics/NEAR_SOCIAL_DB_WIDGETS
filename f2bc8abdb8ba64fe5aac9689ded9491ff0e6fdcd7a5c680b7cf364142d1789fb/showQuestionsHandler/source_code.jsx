@@ -188,12 +188,10 @@ return (
           ? {
               display: "grid",
               gridTemplateColumns: "auto auto",
-              justifyContent: "space-between",
             }
           : {
               display: "grid",
               gridTemplateColumns: "auto auto auto",
-              justifyContent: "space-between",
             }
       }
     >
