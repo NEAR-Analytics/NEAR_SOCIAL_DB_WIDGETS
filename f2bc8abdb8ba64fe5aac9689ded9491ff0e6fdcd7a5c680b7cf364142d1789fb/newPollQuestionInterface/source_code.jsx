@@ -454,7 +454,7 @@ return (
       margin: "0 auto",
     }}
   >
-    <div className="w-75" style={{ margin: "0 auto" }}>
+    <div style={{ margin: "0 auto" }}>
       <span
         style={
           state.sectionShown == "mainInfo"
@@ -520,7 +520,7 @@ return (
       <div className="mb-3">
         {state.sectionShown == "mainInfo" && (
           <div
-            className="d-flex flex-column w-75 justify-content-center"
+            className="d-flex flex-column justify-content-center"
             style={{ margin: "0 auto" }}
           >
             <label
@@ -746,7 +746,7 @@ return (
         {state.sectionShown == "questions" && (
           <>
             <div
-              className="d-flex flex-column w-75 justify-content-center"
+              className="d-flex flex-column justify-content-center"
               style={{
                 border: "1.5px solid #E1E9F0",
                 padding: "1.5rem 1rem",
@@ -1180,7 +1180,7 @@ return (
                 )}
             </div>
             <button
-              className="d-flex justify-content-center align-items-center w-75 py-3"
+              className="d-flex justify-content-center align-items-center py-3"
               style={{
                 margin: "1rem auto",
                 backgroundColor: "#F2F6FA",
