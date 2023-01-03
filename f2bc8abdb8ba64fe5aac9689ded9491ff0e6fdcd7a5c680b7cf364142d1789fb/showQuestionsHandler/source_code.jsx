@@ -187,12 +187,12 @@ return (
         onlyUsersPolls
           ? {
               display: "grid",
-              gridTemplateColumns: "auto auto auto",
+              gridTemplateColumns: "auto auto",
               justifyContent: "space-between",
             }
           : {
               display: "grid",
-              gridTemplateColumns: "auto auto",
+              gridTemplateColumns: "auto auto auto",
               justifyContent: "space-between",
             }
       }
