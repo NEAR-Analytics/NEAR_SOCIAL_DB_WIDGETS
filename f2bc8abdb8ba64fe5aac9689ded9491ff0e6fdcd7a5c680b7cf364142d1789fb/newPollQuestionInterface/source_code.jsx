@@ -517,7 +517,7 @@ return (
       </span>
     </div>
     <div className="pt-4">
-      <div className="mb-3">
+      <div className="mb-3" style={{ maxHeight: "50vh", overflowY: "scroll" }}>
         {state.sectionShown == "mainInfo" && (
           <div
             className="d-flex flex-column justify-content-center"
@@ -1180,7 +1180,7 @@ return (
                 )}
             </div>
             <button
-              className="d-flex justify-content-center align-items-center py-3"
+              className="d-flex justify-content-center align-items-center py-3 w-100"
               style={{
                 margin: "1rem auto",
                 backgroundColor: "#F2F6FA",
