@@ -45,7 +45,7 @@ return (
     {allFollowers.length === 0 && <p>You don't have any followers yet</p>}
     {state.userList.map((follower, i) => {
       const followerRegisteredPublicKey = Social.get(
-        `${follower}/private_messages/*`
+        `${follower}/private_message/public_key`
       );
 
       return (
