@@ -365,7 +365,6 @@ return (
             <i
               className="bi bi-x-lg"
               style={{
-                cursor: "pointer",
                 position: "absolute",
                 right: "2rem",
                 top: "2rem",
@@ -390,9 +389,7 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            onClick={() => {
-              abortPollCreation;
-            }}
+            onClick={abortPollCreation}
             style={
               state.hoveringElement == "cancelNewPoll"
                 ? {
