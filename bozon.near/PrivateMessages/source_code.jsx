@@ -5,7 +5,7 @@ if (!accountId) {
 }
 
 const registeredPublicKey = Social.get(
-  `${accountId}/private_messages/public_key`
+  `${accountId}/private_message/public_key`
 );
 const savedSecretKey = Storage.privateGet("secretKey");
 const follows = Social.get(`${accountId}/graph/follow/**`);
@@ -91,7 +91,9 @@ if (state.selectedUser) {
     <Widget
       src="bozon.near/widget/PrivateMessages.UserMessages"
       props={{
-        accountId: state.selectedUser,
+        accountId: state.selectedUser.accountId,
+        secretKeyBase64: savedSecretKey,
+        receiverPublicKeyBase64: state.selectedUser.publicKeyBase64,
         onClose: () => State.update({ selectedUser: null }),
       }}
     />
@@ -103,8 +105,8 @@ else if (savedSecretKey)
       src="bozon.near/widget/PrivateMessages.UserList"
       props={{
         secretKey: savedSecretKey,
-        onSelectedUser: (accountId) => {
-          State.update({ selectedUser: accountId });
+        onSelectedUser: (accountId, publicKeyBase64) => {
+          State.update({ selectedUser: { accountId, publicKeyBase64 } });
         },
       }}
     />
