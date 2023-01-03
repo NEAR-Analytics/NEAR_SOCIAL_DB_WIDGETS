@@ -171,6 +171,7 @@ const renderAbortPollCreationModal = () => {
 
 return (
   <div
+    className="pb-5"
     style={{
       backgroundColor: "rgb(230, 230, 230)",
       fontFamily: "Onest",
@@ -352,8 +353,13 @@ return (
     ) : (
       state.displaying == tabs.NEW_POLL.id && (
         <div
-          className="px-4 mx-4 mt-2"
-          style={{ backgroundColor: "white", borderRadius: "28px" }}
+          className="px-4"
+          style={{
+            backgroundColor: "white",
+            borderRadius: "28px",
+            margin: "2rem auto 0 auto",
+            width: "60%",
+          }}
         >
           <div style={{ position: "relative" }}>
             <i
@@ -390,24 +396,24 @@ return (
             style={
               state.hoveringElement == "cancelNewPoll"
                 ? {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                    transform: "translateY(-2.3rem)",
+                  }
+                : {
                     border: "2px solid black",
                     color: "black",
                     backgroundColor: "white",
                     fontWeight: "500",
                     fontSize: "1rem",
-                    margin: "0 0 1rem 0",
                     padding: "0.3rem 1.5rem",
                     borderRadius: "12px",
-                  }
-                : {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    margin: "0 0 1rem 0",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
+                    transform: "translateY(-2.3rem)",
                   }
             }
           >
