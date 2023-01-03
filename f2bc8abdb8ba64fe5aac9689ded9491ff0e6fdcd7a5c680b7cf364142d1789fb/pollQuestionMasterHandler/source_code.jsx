@@ -28,7 +28,6 @@ if (!profile) {
 
 function abortPollCreation() {
   State.update({ showAbortPollCreation: true });
-  console.log(state.showAbortPollCreation);
 }
 
 function closeModalClickingOnTransparent() {
