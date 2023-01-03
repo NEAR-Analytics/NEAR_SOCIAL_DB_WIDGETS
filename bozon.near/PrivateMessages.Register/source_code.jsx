@@ -5,7 +5,7 @@ if (!accountId) {
 }
 
 const registeredPublicKey = Social.get(
-  `${accountId}/private_messages/public_key`
+  `${accountId}/private_message/public_key`
 );
 
 if (registeredPublicKey === null) return "Loading";
@@ -110,7 +110,7 @@ return (
           registered: true,
         });
       }}
-      data={{ private_messages: { public_key: state.publicKey } }}
+      data={{ private_message: { public_key: state.publicKey } }}
     >
       Register
     </CommitButton>
