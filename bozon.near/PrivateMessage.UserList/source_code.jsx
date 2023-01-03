@@ -11,6 +11,8 @@ if (!props.secretKeyBase64 || !props.onSelectedUser) {
 
 const follows = Social.get(`${accountId}/graph/follow/**`);
 
+if (follows === null) return <div>Loading...</div>;
+
 const allFollowers = follows
   ? Object.keys(follows).map((f) => {
       return f;
