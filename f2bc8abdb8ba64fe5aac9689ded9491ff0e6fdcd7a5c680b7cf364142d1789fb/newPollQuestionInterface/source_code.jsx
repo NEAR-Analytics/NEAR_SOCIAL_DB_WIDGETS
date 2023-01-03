@@ -1200,7 +1200,7 @@ return (
                   dontWeight: "700",
                 }}
               >
-                Add another option
+                Add question
               </span>
             </button>
           </>
