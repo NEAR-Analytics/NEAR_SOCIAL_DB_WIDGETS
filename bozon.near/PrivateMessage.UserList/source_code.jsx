@@ -4,9 +4,9 @@ if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
-if (!props.secretKey || !props.onSelectedUser) {
-  console.log(props.secretKey || props.onSelectedUser);
-  return "Send secretKey and onSelectedUser() in props";
+if (!props.secretKeyBase64 || !props.onSelectedUser) {
+  console.log(props.secretKeyBase64 || props.onSelectedUser);
+  return "Send secretKeyBase64 and onSelectedUser() in props";
 }
 
 const follows = Social.get(`${accountId}/graph/follow/**`);
@@ -23,8 +23,6 @@ State.init({
 
 return (
   <div>
-    <h1 class="mb-3 text-center">Private Messages</h1>
-
     <input
       class="mb-3 form-control"
       placeholder="🔍 Input username"
@@ -34,7 +32,7 @@ return (
         );
         const a = Social.get(`${e.target.value}/**`);
 
-        if (a) newFollowersArray.unshift(e.target.value);
+        if (a === null) if (a) newFollowersArray.unshift(e.target.value);
 
         State.update({
           userList: newFollowersArray,
