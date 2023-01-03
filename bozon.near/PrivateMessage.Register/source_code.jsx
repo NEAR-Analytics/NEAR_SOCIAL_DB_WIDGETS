@@ -88,11 +88,14 @@ return (
     </div>
     <CommitButton
       disabled={!state.checkboxSaveSecretKey}
+      onClick={() => {
+        State.update({ processedSecretKey: state.secretKeyBase64 });
+      }}
       onCommit={() => {
         State.update({
           registeredProsessing: false,
         });
-        props.onRegisterComplete();
+        props.onRegisterComplete(state.processedSecretKey);
       }}
       data={{ private_message: { public_key: state.publicKeyBase64 } }}
     >
