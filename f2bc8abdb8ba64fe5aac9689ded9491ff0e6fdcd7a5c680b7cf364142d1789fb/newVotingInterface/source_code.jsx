@@ -8,6 +8,11 @@ let shouldDisplayViewAll = props.shouldDisplayViewAll;
 let questionBlockHeight = Number(props.blockHeight);
 const questions =
   !props.previewInfo && Social.index("poll_question", "question-v3.0.1");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!questions) {
   return "Loading";
 }
@@ -17,6 +22,11 @@ const questionParams =
   questions.find((q) => q.blockHeight == questionBlockHeight);
 
 let profile = Social.getr(`${questionParams.accountId}/profile`);
+
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
+
 if (!profile) {
   return "Loading";
 }
@@ -24,6 +34,14 @@ if (!profile) {
 let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
 });
+
+if (
+  JSON.stringify(questionsByThisCreator) !=
+  JSON.stringify(state.questionsByThisCreator)
+) {
+  State.update({ questionsByThisCreator: questionsByThisCreator });
+}
+
 if (!questionsByThisCreator) {
   return "Loading";
 }
@@ -53,6 +71,9 @@ function isQuestionActive(question) {
 State.init({
   showQuestionsByThisUser: false,
   descriptionHeightLimited: true,
+  questions: {},
+  profile: {},
+  questionsByThisCreator: {},
 });
 
 const widgetOwner =
