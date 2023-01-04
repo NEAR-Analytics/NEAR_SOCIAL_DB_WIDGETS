@@ -1,6 +1,9 @@
 const accountId = props.userMakingQuestion ?? context.accountId;
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+if (!profile) {
+  return "Loading";
+}
 
 const name = profile.name;
 const image = profile.image;
