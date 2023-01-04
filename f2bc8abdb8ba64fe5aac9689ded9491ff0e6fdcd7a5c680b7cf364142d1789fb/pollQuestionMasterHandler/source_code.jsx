@@ -372,6 +372,7 @@ return (
                 position: "absolute",
                 right: "2rem",
                 top: "2rem",
+                cursor: "pointer",
               }}
               onClick={abortPollCreation}
             ></i>
