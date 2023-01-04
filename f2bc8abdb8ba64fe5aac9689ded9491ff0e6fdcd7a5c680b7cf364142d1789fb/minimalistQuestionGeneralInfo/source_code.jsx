@@ -21,8 +21,8 @@ function makeAccountIdShorter(accountId) {
 }
 
 State.init({
-  answers = {}
-})
+  answers: {},
+});
 
 function getValidAnswersQtyFromQuestion() {
   let questionBlockHeight = question.blockHeight;
