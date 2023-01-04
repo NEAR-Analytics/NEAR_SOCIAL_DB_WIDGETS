@@ -46,6 +46,7 @@ const sortedData = whiteListData.sort(
 );
 
 const finalData = sortedData;
+console.log(finalData);
 
 return (
   <div>
