@@ -119,17 +119,41 @@ const buttonsFooter = props.isPreview ? null : (
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseIdeaEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseIdeaEditor${postId}`}
+              >
                 <i class={`bi ${emptyIcons.Idea}`}> </i> Idea
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseSubmissionEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseSubmissionEditor${postId}`}
+              >
                 <i class={`bi ${emptyIcons.Submission}`}> </i> Solution
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseAttestationEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseAttestationEditor${postId}`}
+              >
                 <i class={`bi ${emptyIcons.Attestation}`}> </i> Attestation
               </a>
             </li>
@@ -188,9 +212,49 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/CommentEditor`}
+        src={`${ownerId}/widget/PostEditor`}
         props={{
-          comment: { post_type: "Sponsorship", post_id: sponsorship_id },
+          postType: "Comment",
+          parentId: postId,
+        }}
+      />
+    </div>
+    <div
+      class="collapse"
+      id={`collapseIdeaEditor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/PostEditor`}
+        props={{
+          postType: "Idea",
+          parentId: postId,
+        }}
+      />
+    </div>
+    <div
+      class="collapse"
+      id={`collapseSubmissionEditor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/PostEditor`}
+        props={{
+          postType: "Submission",
+          parentId: postId,
+        }}
+      />
+    </div>
+    <div
+      class="collapse"
+      id={`collapseAttestationEditor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/PostEditor`}
+        props={{
+          postType: "Attestation",
+          parentId: postId,
         }}
       />
     </div>
@@ -200,8 +264,11 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/SponsorshipEditor`}
-        props={{ sponsorship: { submission_id } }}
+        src={`${ownerId}/widget/PostEditor`}
+        props={{
+          postType: "Sponsorship",
+          parentId: postId,
+        }}
       />
     </div>
   </div>
