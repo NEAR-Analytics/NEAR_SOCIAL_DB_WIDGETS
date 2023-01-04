@@ -1,3 +1,5 @@
+State.init({ vote: "", showErrorsInForm: false, questions: {}, answers: {} });
+
 if (!props.isPreview && !props.blockHeight) {
   return "Property blockHeight not set";
 }
@@ -10,6 +12,10 @@ function getBlockTimestamp(blockHeight) {
 
 function getQuestion(blockHeight) {
   const questions = Social.index("poll_question", "question-v3.0.1");
+
+  if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+    State.update({ questions: questions });
+  }
   if (!questions) {
     return "Loading";
   }
@@ -46,9 +52,13 @@ function getTimeRelatedValidAnswers(answers) {
 
 let isPreview = props.isPreview;
 const questionBlockHeight = props.blockHeight;
-State.init({ vote: "", showErrorsInForm: false });
 
 const answers = Social.index("poll_question", "answer-v3.0.1");
+
+if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+  State.update({ answers: answers });
+}
+
 if (!answers) {
   return "Loading";
 }
