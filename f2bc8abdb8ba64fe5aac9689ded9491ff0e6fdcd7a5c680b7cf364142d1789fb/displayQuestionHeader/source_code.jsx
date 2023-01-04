@@ -1,16 +1,24 @@
 State.init({ profile: {} });
 
-let profile = Social.getr(`${props.accountId}/profile`);
-if (props.accountId == "ascential.near") {
-  console.log("state.profile: ", state.profile);
-  console.log("profile: ", profile);
-}
-if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
-  State.update({ profile: profile });
+if (state.profile == {}) {
+  return "Loading";
+} else if (state.profile == undefined) {
+  return (
+    <div className="d-flex">
+      <img
+        className="rounded w-100 h-100"
+        src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm"
+        alt={accountId}
+        style={{ objectFit: "cover" }}
+      />
+      <span>{accountId}</span>
+    </div>
+  );
 }
 
-if (!profile) {
-  return "Loading";
+let profile = Social.getr(`${props.accountId}/profile`);
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
 }
 
 let amountOfQuestionsByThisUser = 0;
