@@ -1,9 +1,19 @@
-State.init({ showQuestion: false, modalBlockHeight: 0 });
+State.init({
+  showQuestion: false,
+  modalBlockHeight: 0,
+  questions: {},
+  answers: {},
+});
 
 let isShort = props.isShort;
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!question) {
   return "Loading";
 }
@@ -26,6 +36,11 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let questionParams = questions.find(q => q.blockHeight == questionBlockHeight)
 
   const answers = Social.index("poll_question", "answer-v3.0.1");
+
+  if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+    State.update({ answers: answers });
+  }
+
   if (!answers) {
     return "Loading";
   }
