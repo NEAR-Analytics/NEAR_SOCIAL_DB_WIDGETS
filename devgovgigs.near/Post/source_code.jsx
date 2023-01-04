@@ -19,11 +19,23 @@ const timestamp = readableDate(
 );
 
 const editControl =
-  post.author_id == context.accountId ? (
+  post.author_id == context.accountId && !props.isPreview ? (
     <a class="card-link px-2" role="button" title="Edit post">
       <div class="bi bi-pencil-square"></div>
     </a>
   ) : null;
+
+const shareButton = props.isPreview ? null : (
+  <a
+    class="card-link"
+    href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
+    role="button"
+    target="_blank"
+    title="Open in new tab"
+  >
+    <div class="bi bi-share"></div>
+  </a>
+);
 
 const header = (
   <div className="card-header">
@@ -40,15 +52,7 @@ const header = (
             {editControl}
             {timestamp}
             <div class="bi bi-clock-history px-2"></div>
-            <a
-              class="card-link"
-              href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
-              role="button"
-              target="_blank"
-              title="Open in new tab"
-            >
-              <div class="bi bi-share"></div>
-            </a>
+            {shareButton}
           </div>
         </div>
       </div>
