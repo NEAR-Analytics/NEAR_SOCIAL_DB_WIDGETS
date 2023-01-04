@@ -87,9 +87,8 @@ const containsLike = props.isPreview
   : post.likes.find((l) => l.author_id == context.accountId);
 const likeBtnClass = containsLike ? fillIcons.Like : emptyIcons.Like;
 const onLike = () => {
-  Near.call(ownerId, "like", {
-    post_type: "Sponsorship",
-    post_id: sponsorship_id,
+  Near.call(ownerId, "add_like", {
+    post_id: postId,
   });
 };
 
