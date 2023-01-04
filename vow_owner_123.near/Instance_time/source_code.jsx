@@ -1,4 +1,5 @@
 State.init({
+  on_off: "on",
   _from: 1,
   _to: 1,
 });
@@ -30,7 +31,32 @@ const imgWH = {
   width: "25px",
   height: "25px",
 };
-
+const hours = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21",
+  "22",
+  "23",
+  "24",
+];
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
@@ -57,6 +83,21 @@ return (
     <div className="d-flex flex-column w-75 justify-content-around">
       <p>Monday</p>
       <div className="d-flex justify-content-around">
+        <p>On or Off</p>
+        <select
+          name="times"
+          id="time"
+          value={state.on_off}
+          onChange={(e) => {
+            State.update({ on_off: e.target.value });
+            if (e.target.value == "off") {
+              State.update({ _from: "1", _to: "1" });
+            }
+          }}
+        >
+          <option value="on">on</option>
+          <option value="off">off</option>
+        </select>
         <p>From</p>
         <select
           name="times"
@@ -66,13 +107,9 @@ return (
             State.update({ _from: e.target.value });
           }}
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
+          {hours.map((hour) => (
+            <option value={hour}>{hour}</option>
+          ))}
         </select>
         <p>To</p>
         <select
@@ -83,13 +120,9 @@ return (
             State.update({ _to: e.target.value });
           }}
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
+          {hours.map((hour) => (
+            <option value={hour}>{hour}</option>
+          ))}
         </select>
       </div>
     </div>
@@ -101,6 +134,7 @@ return (
             {
               key: "monday",
               value: {
+                on_of: state.on_of,
                 _from: state._from,
                 _to: state._to,
               },
@@ -139,7 +173,9 @@ return (
               </a>
               Monday: <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
               <b>
-                {d.value._from}~{d.value._to}
+                {d.value.on_off == "on"
+                  ? `${d.value._from}~${d.value._to}`
+                  : "off"}
                 &nbsp;&nbsp;&nbsp;
               </b>
             </div>
