@@ -42,11 +42,7 @@ const encryptedMessage = messageWithNonceUint8Array.slice(
 const messageTextUint8Array = nacl.box.open(
   encryptedMessage,
   nonce,
-  messageObject.receiver_public_key_base64 != publicKeyBase64
-    ? new Uint8Array(
-        new Buffer(messageObject.receiver_public_key_base64, "base64")
-      )
-    : publicKey,
+  publicKey,
   new Uint8Array(new Buffer(props.secretKeyBase64, "base64"))
 );
 
