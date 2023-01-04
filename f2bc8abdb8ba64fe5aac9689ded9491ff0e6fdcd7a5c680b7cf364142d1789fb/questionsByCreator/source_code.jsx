@@ -4,6 +4,9 @@ let isShort = props.isShort;
 let questions = Social.index("poll_question", "question-v3.0.1", {
   accountId: props.accountId,
 });
+if (!question) {
+  return "Loading";
+}
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
