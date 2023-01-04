@@ -205,6 +205,7 @@ return (
                   <Widget
                     src={`silkking.near/widget/timeAgo`}
                     props={{
+                      reduced: true,
                       timeInFuture: questionByCreator.value.endTimestamp,
                     }}
                   />
