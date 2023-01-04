@@ -207,7 +207,8 @@ const buttonsFooter = props.isPreview ? null : (
           aria-expanded="false"
           aria-controls={`collapseChildPosts${postId}`}
         >
-          <i class="bi bi-arrows-expand"> </i> Expand Replies ({childPostIds})
+          <i class="bi bi-arrows-expand"> </i>{" "}
+          {`Expand Replies (${childPostIds.length})`}
         </button>
       </div>
     </div>
