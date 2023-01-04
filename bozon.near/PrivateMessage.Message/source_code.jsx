@@ -9,7 +9,7 @@ const messageObject = Social.get(
   `${
     props.senderAccountId || context.accountId
   }/private_message/last_message/**`,
-  blockHeight
+  props.blockHeight
 );
 
 if (messageObject === null) return "Loading";
@@ -44,14 +44,14 @@ return (
           <div class="col-4">
             <Widget
               src={`mob.near/widget/ProfileLine`}
-              props={{ accountId: senderAccountId }}
+              props={{ accountId: props.senderAccountId }}
             />
           </div>
           <div class="col-4">
             <div class="d-flex justify-content-end">
               <Widget
                 src={`mob.near/widget/TimeAgo`}
-                props={{ blockHeight: blockHeight }}
+                props={{ blockHeight: props.blockHeight }}
               />
             </div>
           </div>
