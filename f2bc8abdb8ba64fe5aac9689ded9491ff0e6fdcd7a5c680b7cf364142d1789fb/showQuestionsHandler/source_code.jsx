@@ -14,7 +14,6 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1");
 
 if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  console.log("update questions");
   State.update({ questions: questions });
 }
 
@@ -123,7 +122,6 @@ const renderModal = () => {
 const renderQuestions = (onlyUsersPolls) => {
   if (onlyUsersPolls) {
     return questions.map((question, index) => {
-      console.log("inside showQuestionsHandler 126");
       return (
         <div
           className="mx-1 py-3 px-4 my-2"
@@ -141,14 +139,12 @@ const renderQuestions = (onlyUsersPolls) => {
             });
           }}
         >
-          {console.log("rendering minimalistQuestionHeader")}
           <Widget
             src={
               "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionHeader"
             }
             props={{ ...question }}
           />
-          {console.log("rendering minimalistQuestionGeneralInfo")}
           <Widget
             src={
               "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionGeneralInfo"
@@ -212,6 +208,5 @@ return (
     </div>
     {/*TODO add a page picker instead the infinite scroll?*/}
     {state.showQuestion && renderModal()}
-    {console.log("out showQuestionsHandler")}
   </div>
 );
