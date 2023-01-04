@@ -85,7 +85,7 @@ const borders = {
 const containsLike = props.isPreview
   ? false
   : post.likes.find((l) => l.author_id == context.accountId);
-const likeBtnClass = containsLike ? emptyIcons.Like : fillIcons.Like;
+const likeBtnClass = containsLike ? fillIcons.Like : emptyIcons.Like;
 const onLike = () => {
   Near.call(ownerId, "like", {
     post_type: "Sponsorship",
