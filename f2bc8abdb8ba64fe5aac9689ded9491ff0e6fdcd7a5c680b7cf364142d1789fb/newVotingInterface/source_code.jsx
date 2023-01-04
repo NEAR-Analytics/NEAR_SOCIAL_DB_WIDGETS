@@ -2,8 +2,6 @@ if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
-console.log("entro al newVI: ", props.blockHeight);
-
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
@@ -19,9 +17,9 @@ const questionParams =
   questions.find((q) => q.blockHeight == questionBlockHeight);
 
 let profile = Social.getr(`${questionParams.accountId}/profile`);
-// if (!profile) {
-//   return "Loading";
-// }
+if (!profile) {
+  return "Loading";
+}
 
 let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
   accountId: questionParams.accountId,
