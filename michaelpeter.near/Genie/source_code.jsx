@@ -36,7 +36,7 @@ return (
       <div
         className="d-flex flex-column gap-5"
         style={{
-          maxWidth: "50rem",
+          maxWidth: "500rem",
         }}
       >
         <div>
