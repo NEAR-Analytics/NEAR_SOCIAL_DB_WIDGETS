@@ -15,7 +15,7 @@ const Card = styled.div`
 const editorsFooter = props.isPreview ? null : (
   <div class="row" id={`accordion${postId}`}>
     <div
-      class="collapse card-footer"
+      class="collapse"
       id={`collapseCommentEditor${postId}`}
       data-bs-parent={`#accordion${postId}`}
     >
@@ -28,7 +28,7 @@ const editorsFooter = props.isPreview ? null : (
       />
     </div>
     <div
-      class="collapse card-footer"
+      class="collapse"
       id={`collapseIdeaEditor${postId}`}
       data-bs-parent={`#accordion${postId}`}
     >
@@ -41,7 +41,7 @@ const editorsFooter = props.isPreview ? null : (
       />
     </div>
     <div
-      class="collapse card-footer"
+      class="collapse"
       id={`collapseSubmissionEditor${postId}`}
       data-bs-parent={`#accordion${postId}`}
     >
@@ -54,7 +54,7 @@ const editorsFooter = props.isPreview ? null : (
       />
     </div>
     <div
-      class="collapse card-footer"
+      class="collapse"
       id={`collapseAttestationEditor${postId}`}
       data-bs-parent={`#accordion${postId}`}
     >
@@ -67,7 +67,7 @@ const editorsFooter = props.isPreview ? null : (
       />
     </div>
     <div
-      class="collapse card-footer"
+      class="collapse"
       id={`collapseSponsorshipEditor${postId}`}
       data-bs-parent={`#accordion${postId}`}
     >
