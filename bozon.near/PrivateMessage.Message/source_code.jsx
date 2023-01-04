@@ -1,5 +1,5 @@
 //rops
-//props.secretKeyBase64 : string base64
+//secretKeyBase64 : string base64
 //blockHeight? : number || unknown date
 //senderAccountId? : string || current account id
 
