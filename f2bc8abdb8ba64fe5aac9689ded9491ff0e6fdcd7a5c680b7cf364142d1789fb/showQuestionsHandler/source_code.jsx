@@ -4,7 +4,6 @@ State.init({
   modalBlockHeight: question.blockHeight,
 });
 
-//TODO considering this new prop use te context accoutId to filter the questions
 const onlyUsersPolls = props.onlyUser ?? false;
 
 const displayAnswerWidgetNames = [
@@ -20,7 +19,11 @@ if (!questions) {
 
 if (onlyUsersPolls) {
   questions = questions.filter((question) => {
-    question.accountId == context.accountId;
+    if (question.accountId == context.accountId) {
+      return true;
+    } else {
+      return false;
+    }
   });
 }
 
