@@ -12,6 +12,12 @@ const messageObject = Social.get(
   props.blockHeight
 );
 
+if (
+  !messageObject.message_text_base64 ||
+  !messageObject.sender_public_key_base64
+)
+  return "";
+
 if (messageObject === null) return "Loading";
 
 const messageWithNonceUint8Array = new Uint8Array(
