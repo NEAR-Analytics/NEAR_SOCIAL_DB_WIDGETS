@@ -30,16 +30,29 @@ let fields = {
 const onClick = () => {
   let labels = [];
   var body = {
-    Comment: { description: state.description },
-    Idea: { name: state.name, description: state.description },
-    Submission: { name: state.name, description: state.description },
-    Attestation: { name: state.name, description: state.description },
+    Comment: { description: state.description, comment_version: "V2" },
+    Idea: {
+      name: state.name,
+      description: state.description,
+      idea_version: "V1",
+    },
+    Submission: {
+      name: state.name,
+      description: state.description,
+      submission_version: "V1",
+    },
+    Attestation: {
+      name: state.name,
+      description: state.description,
+      attestation_version: "V1",
+    },
     Sponsorship: {
       name: state.name,
       description: state.description,
       amount: state.amount,
       sponsorship_token: state.token,
       supervisor: state.supervisor,
+      sponsorship_version: "V1",
     },
   }[postType];
   body["post_type"] = postType;
