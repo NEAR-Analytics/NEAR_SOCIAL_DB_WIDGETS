@@ -59,6 +59,9 @@ return (
       : validAnswersToThisQuestion.map((answerParams) => {
           if (!answerParams.accountId) return "";
           let profile = Social.getr(`${answerParams.accountId}/profile`);
+          if (!profile) {
+            return "Loading";
+          }
           return (
             <>
               <div
