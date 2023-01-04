@@ -122,6 +122,15 @@ const supervisorDiv = fields.includes("supervisor") ? (
   </div>
 ) : null;
 
+const disclaimer = (
+  <p>
+    <i>
+      * Note, all projects that were granted sponsorships are required to pass
+      KYC to receive the funding.
+    </i>
+  </p>
+);
+
 const renamedPostType = postType == "Submission" ? "Solution" : postType;
 return (
   <div className="card">
@@ -135,9 +144,11 @@ return (
         {supervisorDiv}
         {descriptionDiv}
       </div>
+
       <a className="btn btn-outline-primary mb-2" onClick={onClick}>
         Submit
       </a>
+      {disclaimer}
     </div>
     <div class="card-footer">
       Preview:
