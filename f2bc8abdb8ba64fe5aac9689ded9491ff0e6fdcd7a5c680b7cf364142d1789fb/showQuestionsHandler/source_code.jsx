@@ -168,8 +168,7 @@ const renderQuestions = (onlyUsersPolls) => {
   } else {
     return (
       <>
-        {usersMakingQuestions.map((accountId, index) => {
-          console.log("accountId: ", accountId);
+        {usersMakingQuestions.map((accountId) => {
           return (
             <div
               className="mx-1 py-3 px-4 my-2"
