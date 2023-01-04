@@ -108,9 +108,10 @@ const supervisorDiv = fields.includes("supervisor") ? (
   </div>
 ) : null;
 
+const renamedPostType = postType == "Submission" ? "Solution" : postType;
 return (
   <div className="card">
-    <div className="card-header">{postType} Editor</div>
+    <div className="card-header">{renamedPostType} Editor</div>
 
     <div class="card-body">
       <div className="row">
