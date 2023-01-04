@@ -75,11 +75,11 @@ const fillIcons = {
 };
 
 const borders = {
-  Idea: "border-primary",
-  Comment: "border-light",
+  Idea: "border-secondary",
+  Comment: "border-secondary",
   Submission: "border-secondary",
-  Attestation: "border-success",
-  Sponsorship: "border-success",
+  Attestation: "border-secondary",
+  Sponsorship: "border-secondary",
 };
 
 const containsLike = props.isPreview
