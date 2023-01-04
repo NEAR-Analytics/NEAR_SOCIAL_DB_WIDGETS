@@ -39,7 +39,7 @@ const messageTextUint8Array = nacl.box.open(
   nonce,
   new Uint8Array(
     new Buffer(
-      messageObject.receiver_account_id == context.accountId
+      messageObject.receiver_account_id != context.accountId
         ? messageObject.receiver_public_key_base64
         : messageObject.sender_public_key_base64,
       "base64"
