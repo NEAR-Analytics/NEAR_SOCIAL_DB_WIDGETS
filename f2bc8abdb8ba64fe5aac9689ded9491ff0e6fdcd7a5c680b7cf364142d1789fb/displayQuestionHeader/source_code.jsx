@@ -1,4 +1,11 @@
+State.init({ profile: {} });
+
 let profile = Social.getr(`${props.accountId}/profile`);
+
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
+
 if (!profile) {
   return "Loading";
 }
