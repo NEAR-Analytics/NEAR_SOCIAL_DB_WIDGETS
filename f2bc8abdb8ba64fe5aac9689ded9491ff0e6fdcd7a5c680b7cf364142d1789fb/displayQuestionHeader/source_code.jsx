@@ -54,7 +54,6 @@ return (
               style={{ objectFit: "cover" }}
             />
           </div>
-          <span>{props.accountId}</span>
         </div>
       )}
       <div style={{ marginLeft: "1rem" }}>
