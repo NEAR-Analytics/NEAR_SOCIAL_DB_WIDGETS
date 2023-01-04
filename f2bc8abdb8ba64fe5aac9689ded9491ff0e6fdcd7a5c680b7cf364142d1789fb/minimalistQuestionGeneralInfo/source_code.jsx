@@ -45,11 +45,15 @@ function getValidAnswersQtyFromQuestion() {
   return usersWithAnswersWithoutDuplicates.length;
 }
 
-function isQuestionActive(question) {
+function isActive() {
   return (
     question.value.startTimestamp < Date.now() &&
     Date.now() < question.value.endTimestamp
   );
+}
+
+function isUpcoming() {
+  return question.value.startTimestamp > Date.now();
 }
 
 return (
@@ -122,7 +126,11 @@ return (
       </div>
       <span
         style={{
-          backgroundColor: isQuestionActive(question) ? "#D9FCEF" : "#FFE5E5",
+          backgroundColor: isUpcoming()
+            ? "#ffe06e"
+            : isActive()
+            ? "#D9FCEF"
+            : "#FFE5E5",
 
           height: "1.5rem",
           width: "4rem",
@@ -132,11 +140,11 @@ return (
           lineHeight: "1.5rem",
           fontSize: "0.8rem",
           letterSpacing: "-0.025rem",
-          color: isQuestionActive(question) ? "#00B37D" : "#FF4747",
+          color: isUpcoming() ? "#FFC905" : isActive() ? "#00B37D" : "#FF4747",
           fontWeight: "500",
         }}
       >
-        {isQuestionActive(question) ? "Active" : "Closed"}
+        {isUpcoming() ? "Upcoming" : isActive() ? "Active" : "Closed"}
       </span>
     </div>
   </div>
