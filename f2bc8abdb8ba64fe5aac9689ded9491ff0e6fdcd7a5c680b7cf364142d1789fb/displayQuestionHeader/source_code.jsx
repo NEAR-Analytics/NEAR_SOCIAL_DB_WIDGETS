@@ -57,6 +57,7 @@ return (
         </div>
       )}
       <div style={{ marginLeft: "1rem" }}>
+        <span>{props.accountId}</span>
         <p
           style={{
             margin: "0",
@@ -65,9 +66,11 @@ return (
             textDecotarion: "none",
           }}
         >
-          {profile != {}
+          {profile == {}
+            ? "Loading"
+            : profile != undefined
             ? makeAccountIdShorter(profile.name)
-            : profile == undefined && makeAccountIdShorter(props.accountId)}
+            : makeAccountIdShorter(props.accountId)}
         </p>
         <p
           className="text-secondary"
