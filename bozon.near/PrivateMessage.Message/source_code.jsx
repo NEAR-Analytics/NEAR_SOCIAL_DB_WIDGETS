@@ -12,6 +12,8 @@ const messageObject = Social.get(
   blockHeight
 );
 
+if (messageObject === null) return "Loading";
+
 const messageWithNonceUint8Array = new Uint8Array(
   new Buffer(messageObject.message_text_base64, "base64")
 );
