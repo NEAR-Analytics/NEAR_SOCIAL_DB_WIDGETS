@@ -1,9 +1,18 @@
+State.init({
+  questions: {},
+  profile: {},
+});
+
 if (!props.blockHeight) {
   return "Prop blockHeight is not set";
 }
 
 const questionBlockHeight = props.blockHeight;
 let questions = Social.index("poll_question", "question-v3.0.1");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
 if (!questions) {
   return "Loading";
 }
@@ -23,6 +32,10 @@ function isUpcoming() {
 }
 
 let profile = Social.getr(`${props.accountId}/profile`);
+
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
 if (!profile) {
   return "Loading";
 }
