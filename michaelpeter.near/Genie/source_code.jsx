@@ -1,10 +1,4 @@
-const { question } = props;
-
-State.init({
-  selectedQuestion: question ?? "",
-  searchString: "",
-  showAskForm: false,
-});
+State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
 const clearSelected = () => {
   State.update({ selectedQuestion: "" });
@@ -23,7 +17,7 @@ const Center = styled.div`
   justify-content:center;
 `;
 const Wrapper = styled.div`
-  width: 50rem
+  maxWidth: 50rem
   display:flex
   flex-direction:row
   justify-content:center
@@ -81,7 +75,7 @@ return (
       <div
         className="d-flex flex-column gap-3 pt-1"
         style={{
-          width: "50rem",
+          maxWidth: "50rem",
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
