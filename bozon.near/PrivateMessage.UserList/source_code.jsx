@@ -1,17 +1,21 @@
 const accountId = context.accountId;
 
-if (!accountId) {
-  return "Please sign in with NEAR wallet";
-}
+if (!accountId) return "Please sign in with NEAR wallet";
 
 if (!props.secretKeyBase64 || !props.onSelectedUser) {
   console.log(props.secretKeyBase64 || props.onSelectedUser);
   return "Send secretKeyBase64 and onSelectedUser() in props";
 }
 
+let allProfiles =
+  Social.get(["*/profile/name", "*/private_message/public_key/*"]) || {};
+// allProfiles = Object.keys(allProfilesRequest).map((accountId) => {
+//   return [accountId, allProfilesRequest[accountId]?.profile?.name];
+// });
+
 const follows = Social.get(`${accountId}/graph/follow/**`);
 
-if (follows === null) return <div>Loading...</div>;
+if (follows === null) return "Loading...";
 
 const allFollowers = follows
   ? Object.keys(follows).map((f) => {
@@ -32,9 +36,9 @@ return (
         const newFollowersArray = allFollowers.filter(
           (accountId) => accountId.indexOf(e.target.value) !== -1
         );
-        const a = Social.get(`${e.target.value}/**`);
 
-        if (a === null) if (a) newFollowersArray.unshift(e.target.value);
+        if (allProfiles[e.target.value])
+          newFollowersArray.unshift(e.target.value);
 
         State.update({
           userList: newFollowersArray,
