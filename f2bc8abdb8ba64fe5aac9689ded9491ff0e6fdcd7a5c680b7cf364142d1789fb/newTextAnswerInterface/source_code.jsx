@@ -2,17 +2,28 @@ if (!props.blockHeight) {
   return "Property blockHeight not set";
 }
 
+State.init({ vote: "", showErrorsInForm: false, questions: {}, answers: {} });
+
 const questionBlockHeight = props.blockHeight;
 const questions = Social.index("poll_question", "question-v3.0.1");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!questions) {
   return "Loading";
 }
 const questionParams = questions.find(
   (q) => q.blockHeight == questionBlockHeight
 );
-State.init({ vote: "", showErrorsInForm: false });
 
 const answers = Social.index("poll_question", "answer-v3.0.1");
+
+if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+  State.update({ answers: answers });
+}
+
 if (!answers) {
   return "Loading";
 }
