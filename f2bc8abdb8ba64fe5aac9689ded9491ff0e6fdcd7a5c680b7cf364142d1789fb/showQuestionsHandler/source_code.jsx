@@ -124,7 +124,6 @@ const renderQuestions = (onlyUsersPolls) => {
     return questions.map((question, index) => {
       return (
         <div
-          id="abc-lalala"
           className="mx-1 py-3 px-4 my-2"
           style={{
             boxSizing: "border-box",
@@ -132,6 +131,7 @@ const renderQuestions = (onlyUsersPolls) => {
             backgroundColor: "white",
             borderRadius: "1rem",
             cursor: "pointer",
+            maxWidth: "40vw",
           }}
           onClick={() => {
             State.update({
