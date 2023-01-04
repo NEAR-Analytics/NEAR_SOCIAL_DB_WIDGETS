@@ -1,6 +1,15 @@
 const accountId = props.userMakingQuestion ?? context.accountId;
 
+State.init({
+  profile: {},
+});
+
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
+
 if (!profile) {
   return "Loading";
 }
