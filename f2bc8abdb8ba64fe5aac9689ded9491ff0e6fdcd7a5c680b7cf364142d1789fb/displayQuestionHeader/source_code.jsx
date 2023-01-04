@@ -45,7 +45,7 @@ return (
         <div className="d-flex">
           <div
             className="profile-image d-inline-block"
-            styke={{ height: "48px", aspectRatio: "1" }}
+            style={{ width: "3em", height: "3em" }}
           >
             <img
               className="rounded w-100 h-100"
