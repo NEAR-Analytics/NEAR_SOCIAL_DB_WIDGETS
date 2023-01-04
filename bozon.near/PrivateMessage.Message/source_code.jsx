@@ -17,11 +17,10 @@ const messageObject = Social.get(
   props.blockHeight
 );
 
-console.log(messageObject);
-
 if (
   !messageObject.message_text_base64 ||
-  !messageObject.sender_public_key_base64
+  !messageObject.sender_public_key_base64 ||
+  !messageObject.receiver_public_key_base64
 )
   return "";
 
@@ -35,9 +34,6 @@ const encryptedMessage = messageWithNonceUint8Array.slice(
   nacl.box.nonceLength,
   messageWithNonce.length
 );
-
-//messageObject.sender_public_key_base64
-//messageObject.receiver_public_key_base64
 
 const messageTextUint8Array = nacl.box.open(
   encryptedMessage,
