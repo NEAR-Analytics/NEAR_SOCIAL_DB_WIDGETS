@@ -11,6 +11,7 @@ State.init({
   displaying: tabs.MY_POLLS.id,
   hoveringElement: "",
   showAbortPollCreation: false,
+  profile: "",
 });
 
 function makeAccountIdShorter(accountId, length) {
@@ -21,6 +22,10 @@ function makeAccountIdShorter(accountId, length) {
 }
 
 const profile = Social.getr(`${context.accountId}/profile`);
+
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
 
 if (!profile) {
   return "Loading...";
