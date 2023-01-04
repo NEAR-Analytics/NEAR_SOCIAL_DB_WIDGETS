@@ -61,11 +61,15 @@ function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
 
-function isQuestionActive(question) {
+function isActive() {
   return (
     question.value.startTimestamp < Date.now() &&
     Date.now() < question.value.endTimestamp
   );
+}
+
+function isUpcoming() {
+  return question.value.startTimestamp > Date.now();
 }
 
 State.init({
@@ -155,7 +159,9 @@ const renderQuestionsByThisCreator = () => {
           </span>
           <span
             style={{
-              backgroundColor: isQuestionActive(questionByCreator)
+              backgroundColor: isUpcoming(questionByCreator)
+                ? "#ffe06e"
+                : isActive()
                 ? "#D9FCEF"
                 : "#FFE5E5",
 
@@ -167,13 +173,19 @@ const renderQuestionsByThisCreator = () => {
               lineHeight: "1.5rem",
               fontSize: "0.8rem",
               letterSpacing: "-0.025rem",
-              color: isQuestionActive(questionByCreator)
+              color: isUpcoming(questionByCreator)
+                ? "#FFC905"
+                : isActive()
                 ? "#00B37D"
                 : "#FF4747",
               fontWeight: "500",
             }}
           >
-            {isQuestionActive(questionByCreator) ? "Active" : "Closed"}
+            {isUpcoming(questionByCreator)
+              ? "Upcoming"
+              : isActive()
+              ? "Active"
+              : "Closed"}
           </span>
         </div>
       </div>
@@ -322,7 +334,9 @@ return (
           )}
           <span
             style={{
-              backgroundColor: isQuestionActive(questionParams)
+              backgroundColor: isUpcoming(questionByCreator)
+                ? "#ffe06e"
+                : isActive()
                 ? "#D9FCEF"
                 : "#FFE5E5",
 
@@ -334,11 +348,19 @@ return (
               lineHeight: "1.9rem",
               fontSize: "1rem",
               letterSpacing: "-0.025rem",
-              color: isQuestionActive(questionParams) ? "#00B37D" : "#FF4747",
+              color: isUpcoming(questionByCreator)
+                ? "#FFC905"
+                : isActive()
+                ? "#00B37D"
+                : "#FF4747",
               fontWeight: "500",
             }}
           >
-            {isQuestionActive(questionParams) ? "Active" : "Closed"}
+            {isUpcoming(questionByCreator)
+              ? "Upcoming"
+              : isActive()
+              ? "Active"
+              : "Closed"}
           </span>
         </div>
         <div className="d-flex my-3">
