@@ -8,7 +8,7 @@ if (
   !props.receiverAccountId ||
   !props.receiverPublicKeyBase64
 ) {
-  return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64  in props";
+  return "Send secretKeyBase64, receiverAccountId, receiverPublicKeyBase64  in props";
 }
 
 const accountId = context.accountId;
@@ -49,7 +49,11 @@ const outgoingMessages = Social.index(
 
 if (incomingMessages === null || outgoingMessages === null) return "Loading...";
 
-const messages = outgoingMessages.concat(incomingMessages);
+const messages = outgoingMessages
+  .concat(incomingMessages)
+  .sort((a, b) => b.blockHeight - a.blockHeight);
+
+console.log(messages);
 
 return (
   <div>
