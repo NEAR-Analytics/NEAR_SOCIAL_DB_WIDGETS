@@ -1,7 +1,7 @@
 State.init({
-  on_off: "on",
-  _from: 1,
-  _to: 1,
+  _is_on: ["on", "on", "on", "on", "on", "on", "on"],
+  _from: ["1", "1", "1", "1", "1", "1", "1"],
+  _to: ["1", "1", "1", "1", "1", "1", "1"],
 });
 
 const widgetName = "Instance_time";
@@ -57,12 +57,19 @@ const hours = [
   "23",
   "24",
 ];
-const urlPrefix = "https://";
-const accountId = props.accountId ?? "*";
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 
 const data = Social.index("Instance_time", "monday");
 if (!data) {
-  return "Loading answers";
+  return "Loading datas";
 }
 
 const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
@@ -81,50 +88,59 @@ return (
     <br />
     <p>Select Instance Time</p>
     <div className="d-flex flex-column w-75 justify-content-around">
-      <p>Monday</p>
-      <div className="d-flex justify-content-around">
-        <p>On or Off</p>
-        <select
-          name="times"
-          id="time"
-          value={state.on_off}
-          onChange={(e) => {
-            State.update({ on_off: e.target.value });
-            if (e.target.value == "off") {
-              State.update({ _from: "1", _to: "1" });
-            }
-          }}
-        >
-          <option value="on">on</option>
-          <option value="off">off</option>
-        </select>
-        <p>From</p>
-        <select
-          name="times"
-          id="time"
-          value={state._from}
-          onChange={(e) => {
-            State.update({ _from: e.target.value });
-          }}
-        >
-          {hours.map((hour) => (
-            <option value={hour}>{hour}</option>
-          ))}
-        </select>
-        <p>To</p>
-        <select
-          name="times"
-          id="time"
-          value={state._to}
-          onChange={(e) => {
-            State.update({ _to: e.target.value });
-          }}
-        >
-          {hours.map((hour) => (
-            <option value={hour}>{hour}</option>
-          ))}
-        </select>
-      </div>
+      {days.map((day, index) => (
+        <div>
+          <p>{day}</p>
+          <div className="d-flex justify-content-around">
+            <p>On or Off</p>
+            <select
+              name="times"
+              id="time"
+              value={state._is_on[index]}
+              onChange={(e) => {
+                let temp = state._is_on;
+                temp[index] = e.target.value;
+                State.update({ _is_on: temp });
+              }}
+            >
+              <option value="on">on</option>
+              <option value="off">off</option>
+            </select>
+            <p>From</p>
+            <select
+              name="times"
+              id="time"
+              enable={state._is_on[index] == "on"}
+              value={state._from[index]}
+              onChange={(e) => {
+                let temp = state._from;
+                temp[index] = e.target.value;
+                State.update({ _from: temp });
+              }}
+            >
+              {hours.map((hour) => (
+                <option value={hour}>{hour}</option>
+              ))}
+            </select>
+            <p>To</p>
+            <select
+              name="times"
+              id="time"
+              enable={state._is_on[index] == "on"}
+              value={state._to[index]}
+              onChange={(e) => {
+                let temp = state._to;
+                temp[index] = e.target.value;
+                State.update({ _to: temp });
+              }}
+            >
+              {hours.map((hour) => (
+                <option value={hour}>{hour}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      ))}
     </div>
     <CommitButton
       style={button}
@@ -134,7 +150,7 @@ return (
             {
               key: "monday",
               value: {
-                on_of: state.on_of,
+                _is_on: state._is_on,
                 _from: state._from,
                 _to: state._to,
               },
@@ -171,13 +187,19 @@ return (
               >
                 {d.accountId}
               </a>
-              Monday: <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
-              <b>
-                {d.value.on_off == "on"
-                  ? `${d.value._from}~${d.value._to}`
-                  : "off"}
-                &nbsp;&nbsp;&nbsp;
-              </b>
+              <div>
+                {days.map((day, index) => (
+                  <div>
+                    {day}:
+                    <b>
+                      {d.value._is_on[index] == "on"
+                        ? `${d.value._from[index]}~${d.value._to[index]}`
+                        : "off"}
+                      &nbsp;&nbsp;&nbsp;
+                    </b>
+                  </div>
+                ))}
+              </div>
             </div>
           ))
         : "Loading..."}
