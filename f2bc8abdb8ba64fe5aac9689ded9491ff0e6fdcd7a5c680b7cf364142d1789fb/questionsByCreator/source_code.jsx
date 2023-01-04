@@ -14,7 +14,7 @@ if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
   State.update({ questions: questions });
 }
 
-if (!question) {
+if (!questions) {
   return "Loading";
 }
 
