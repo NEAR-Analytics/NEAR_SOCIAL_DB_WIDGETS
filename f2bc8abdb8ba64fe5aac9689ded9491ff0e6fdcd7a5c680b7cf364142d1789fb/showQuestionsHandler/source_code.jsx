@@ -14,6 +14,7 @@ const displayAnswerWidgetNames = [
 let questions = Social.index("poll_question", "question-v3.0.1");
 
 if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  console.log("update questions");
   State.update({ questions: questions });
 }
 
@@ -22,7 +23,7 @@ if (!questions) {
 }
 
 if (onlyUsersPolls) {
-  questions = questions.filter((question) => {
+  questions = state.questions.filter((question) => {
     if (question.accountId == context.accountId) {
       return true;
     } else {
