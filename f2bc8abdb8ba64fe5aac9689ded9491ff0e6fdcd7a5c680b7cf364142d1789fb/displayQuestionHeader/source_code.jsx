@@ -1,7 +1,10 @@
 State.init({ profile: {} });
 
 let profile = Social.getr(`${props.accountId}/profile`);
-
+if (props.accountId == "ascential.near") {
+  console.log("state.profile: ", state.profile);
+  console.log("profile: ", profile);
+}
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
 }
