@@ -20,10 +20,18 @@ function makeAccountIdShorter(accountId) {
   return accountId;
 }
 
+State.init({
+  answers = {}
+})
+
 function getValidAnswersQtyFromQuestion() {
   let questionBlockHeight = question.blockHeight;
 
   const answers = Social.index("poll_question", "answer-v3.0.1");
+
+  if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+    State.update({ answers: answers });
+  }
   if (!answers) {
     return "Loading...";
   }
