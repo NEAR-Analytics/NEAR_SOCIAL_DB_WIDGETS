@@ -3,18 +3,18 @@
 //receiverAccountId : string base64
 //receiverPublicKeyBase64 : string base64
 
+if (
+  !props.secretKeyBase64 ||
+  !props.receiverAccountId ||
+  !props.receiverPublicKeyBase64
+) {
+  return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64  in props";
+}
+
 const accountId = context.accountId;
 
 if (!accountId) {
   return "Please sign in with NEAR wallet";
-}
-
-if (
-  !props.receiverAccountId ||
-  !props.secretKeyBase64 ||
-  !props.receiverPublicKeyBase64
-) {
-  return "Send receiverAccountId, secretKeyBase64, receiverPublicKeyBase64  in props";
 }
 
 function uniteAccountId(accountId0, accountId1) {
