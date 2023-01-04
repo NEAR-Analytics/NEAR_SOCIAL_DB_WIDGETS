@@ -155,7 +155,8 @@ function getDayStatus() {
   } else {
     return (
       <div>
-        <b>{pointsRequired} points still needed today</b>
+        <b>{pointsRequired} points still needed today </b>(this value is
+        refreshed every hour)
       </div>
     );
   }
