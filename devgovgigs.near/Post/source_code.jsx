@@ -21,12 +21,14 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
-const editControl =
-  post.author_id == context.accountId && !props.isPreview ? (
-    <a class="card-link px-2" role="button" title="Edit post">
-      <div class="bi bi-pencil-square"></div>
-    </a>
-  ) : null;
+// const editControl =
+//   post.author_id == context.accountId && !props.isPreview ? (
+//     <a class="card-link px-2" role="button" title="Edit post">
+//       <div class="bi bi-pencil-square"></div>
+//     </a>
+//   ) : null;
+
+const editControl = null;
 
 const shareButton = props.isPreview ? null : (
   <a
