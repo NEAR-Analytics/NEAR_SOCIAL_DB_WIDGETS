@@ -35,7 +35,7 @@ function getValidAnswersQtyFromQuestion() {
   if (!answers) {
     return "Loading...";
   }
-  const answersFromThisQuestion = answers.filter(
+  const answersFromThisQuestion = state.answers.filter(
     (a) => a.value.questionBlockHeight == questionBlockHeight
   );
   const usersWithAnswers = answersFromThisQuestion.map((a) => a.accountId);
