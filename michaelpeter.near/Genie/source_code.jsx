@@ -28,7 +28,7 @@ return (
     className="d-flex flex-column align-items-center gap-1"
     style={{ paddingBottom: "2rem" }}
   >
-    <div className="d-flex flex-row" style={{ width: "50rem" }}>
+    <div className="d-flex flex-row" style={{ width: "100%" }}>
       <img
         src={`https://ipfs.near.social/ipfs/bafkreicysjx5rmiu2j7wm7obt74zlmkb6algnl5i3wrqp5ear3mvi5ddfi`}
         alt="Genie"
