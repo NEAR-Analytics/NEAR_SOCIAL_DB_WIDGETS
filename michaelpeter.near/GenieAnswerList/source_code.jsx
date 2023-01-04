@@ -18,7 +18,12 @@ return (
   <div className="d-flex flex-row justify-content-center">
     <div
       className="d-flex flex-column gap-3"
-      style={{ maxWidth: "43rem", marginLeft: "2rem", marginRight: "2rem" }}
+      style={{
+        width: "100%",
+        maxWidth: "43rem",
+        marginLeft: "2rem",
+        marginRight: "2rem",
+      }}
     >
       <div className="d-flex flex-row justify-content-between">
         <h3>
