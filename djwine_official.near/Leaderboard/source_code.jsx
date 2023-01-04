@@ -15,7 +15,6 @@ if (loading) return "Loading";
 
 let graph = Social.index("graph", "follow");
 console.log("graph", graph);
-// graph.forEach((i) => console.log(i));
 
 /* ============================================================
    PROCESSING DATA
@@ -72,8 +71,15 @@ console.log("followers", followers);
    ============================================================ */
 return (
   <>
-    <h1 class="mb-4">Leaderboard</h1>
-
+    <h1 class="mb-2">Leaderboard</h1>
+    <p>A ranked list of NEAR Socialites.</p>
+    <div class="mb-4">
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{ dep: true, authors: ["djwine_official.near"] }}
+      />
+    </div>
+    <hr />
     <div class="container">
       <div class="row">
         <div class="col">
