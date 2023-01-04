@@ -45,19 +45,39 @@ const BookRows = styled.p`{
   padding: "1rem",
 }`;
 
+const ReadBox = styled.div`
+  display: flex;
+  justifyContent: 'space-between'
+  padding: 10px;
+  margin: 10px;
+  width: "100%";
+  height: "100%";
+`;
+
 return (
   <BookRows>
     {timeline.map(([acc, book]) => {
       return (
         <div>
-          <div>
-            {acc} on {book.createdAt ?? defaultDate} added
+          <div className="flex-grow-1 text-truncate">
+            <a
+              className="text-dark text-decoration-none text-truncate"
+              href={`#/mob.near/widget/ProfilePage?accountId=${acc}`}
+            >
+              <ReadBox>
+                <Widget
+                  src="mob.near/widget/Profile.ShortInlineBlock"
+                  props={{ accountId: acc }}
+                />
+                <div>{book.createdAt ?? defaultDate}</div>
+              </ReadBox>
+            </a>
           </div>
           <div>
             <Widget
               key={i}
               src={"serhii.near/widget/BookTile"}
-              props={{ book }}
+              props={{ book, showAddToRead: true, showAddToWantToRead: true }}
             />
           </div>
         </div>
