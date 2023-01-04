@@ -147,7 +147,10 @@ const renderQuestionsByThisCreator = () => {
             Ends
             <Widget
               src={`silkking.near/widget/timeAgo`}
-              props={{ timeInFuture: questionByCreator.value.endTimestamp }}
+              props={{
+                timeInFuture: questionByCreator.value.endTimestamp,
+                reduced: true,
+              }}
             />
           </span>
           <span
@@ -309,7 +312,10 @@ return (
                 Ends
                 <Widget
                   src={`silkking.near/widget/timeAgo`}
-                  props={{ timeInFuture: questionParams.value.endTimestamp }}
+                  props={{
+                    timeInFuture: questionParams.value.endTimestamp,
+                    reduced: true,
+                  }}
                 />
               </span>
             </>
