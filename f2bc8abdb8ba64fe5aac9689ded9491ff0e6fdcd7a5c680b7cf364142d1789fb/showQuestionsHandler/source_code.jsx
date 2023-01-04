@@ -13,6 +13,10 @@ const displayAnswerWidgetNames = [
 
 let questions = Social.index("poll_question", "question-v3.0.1");
 
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!questions) {
   return "Loading";
 }
