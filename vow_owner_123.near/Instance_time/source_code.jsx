@@ -1,6 +1,6 @@
 State.init({
-  _from: "",
-  _to: "",
+  _from: 0,
+  _to: 0,
 });
 
 const widgetName = "Instance_time";
@@ -91,7 +91,6 @@ return (
           <option value="7">7</option>
         </select>
       </div>
-      <p>Tuesday</p>
     </div>
     <CommitButton
       style={button}
