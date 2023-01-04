@@ -1,8 +1,8 @@
-State.init({ vote: "", showErrorsInForm: false, questions: {}, answers: {} });
-
 if (!props.blockHeight) {
   return "Property blockHeight not set";
 }
+
+State.init({ vote: "", showErrorsInForm: false, questions: {}, answers: {} });
 
 // Utility function. Consider moving it to an utility widget
 function getBlockTimestamp(blockHeight) {
@@ -56,9 +56,11 @@ if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
 if (!answers) {
   return "Loading";
 }
+
 const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
+
 let usersWithAnswersToThisQuestion = [];
 let validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
@@ -69,6 +71,7 @@ let validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   }
   return !didUserAlreadyAnswered;
 });
+
 validAnswersToThisQuestion = getTimeRelatedValidAnswers(
   validAnswersToThisQuestion
 );
