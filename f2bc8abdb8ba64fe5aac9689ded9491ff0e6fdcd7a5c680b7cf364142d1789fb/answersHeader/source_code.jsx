@@ -56,16 +56,21 @@ return (
         <span
           style={{
             backgroundColor: isUpcoming()
-              ? "rgb(255, 255, 128)"
+              ? "#ffe06e"
               : isActive()
-              ? "rgb(153, 255, 153)"
-              : "rgb(255, 128, 128)",
+              ? "#D9FCEF"
+              : "#FFE5E5",
 
             height: "max-content",
             width: "6rem",
             border: "1px solid rgb(0, 82, 204)",
             textAlign: "center",
             borderRadius: "80px",
+            color: isUpcoming()
+              ? "#FFC905"
+              : isActive()
+              ? "#00B37D"
+              : "#FF4747",
           }}
         >
           {isUpcoming() ? "Upcoming" : isActive() ? "Active" : "Closed"}
