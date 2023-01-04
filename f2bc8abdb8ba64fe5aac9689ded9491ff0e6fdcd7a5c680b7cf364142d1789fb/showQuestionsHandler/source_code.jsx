@@ -18,6 +18,12 @@ if (!questions) {
   return "Loading";
 }
 
+if (onlyUsersPolls) {
+  questions = questions.filter((question) => {
+    question.accountId == context.accountId;
+  });
+}
+
 questions = questions.sort((q1, q2) => {
   const isQ1Finished = q1.value.endTimestamp < Date.now();
   const isQ2Finished = q2.value.endTimestamp < Date.now();
