@@ -5,6 +5,11 @@
 
 if (!props.secretKeyBase64) return "send secretKeyBase64 in props";
 
+const publicKey = nacl.box.keyPair.fromSecretKey(
+  Buffer.from(props.secretKeyBase64, "base64")
+).publicKey;
+const publicKeyBase64 = Buffer.from(publicKey).toString("base64");
+
 const messageObject = Social.get(
   `${
     props.senderAccountId || context.accountId
@@ -37,14 +42,11 @@ const encryptedMessage = messageWithNonceUint8Array.slice(
 const messageTextUint8Array = nacl.box.open(
   encryptedMessage,
   nonce,
-  new Uint8Array(
-    new Buffer(
-      messageObject.receiver_account_id != context.accountId
-        ? messageObject.receiver_public_key_base64
-        : messageObject.sender_public_key_base64,
-      "base64"
-    )
-  ),
+  messageObject.sender_public_key_base64 == publicKeyBase64
+    ? new Uint8Array(
+        new Buffer(messageObject.sender_public_key_base64, "base64")
+      )
+    : publicKey,
   new Uint8Array(new Buffer(props.secretKeyBase64, "base64"))
 );
 
