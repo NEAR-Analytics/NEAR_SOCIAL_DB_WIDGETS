@@ -2,6 +2,8 @@ const ownerId = "devgovgigs.near";
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 const snapshot = post.snapshot;
+// If this post is displayed under another post. Used to limit the size.
+const isUnderPost = props.isUnderPost ? true : false;
 
 const childPostIds = Near.view(ownerId, "get_children_ids", {
   post_id: postId,
@@ -242,7 +244,7 @@ const postsList =
               return (
                 <Widget
                   src={`${ownerId}/widget/Post`}
-                  props={{ id: childId }}
+                  props={{ id: childId, isUnderPost: true }}
                 />
               );
             })
@@ -258,13 +260,26 @@ const Card = styled.div`
 
 `;
 
+const limitedMarkdown = styled.div`
+      max-height: 20em;
+`;
+
+// Should make sure the posts under the currently top viewed post are limited in size.
+const descriptionArea = isUnderPost ? (
+  <limitedMarkdown className="overflow-auto">
+    <Markdown class="card-text" text={snapshot.description}></Markdown>
+  </limitedMarkdown>
+) : (
+  <Markdown class="card-text" text={snapshot.description}></Markdown>
+);
+
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
       {postTitle}
       {postExtra}
-      <Markdown class="card-text" text={snapshot.description}></Markdown>
+      {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
       {postsList}
