@@ -125,14 +125,24 @@ const renderQuestions = (onlyUsersPolls) => {
       return (
         <div
           className="mx-1 py-3 px-4 my-2"
-          style={{
-            boxSizing: "border-box",
-            boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-            backgroundColor: "white",
-            borderRadius: "1rem",
-            cursor: "pointer",
-            maxWidth: "40vw",
-          }}
+          style={
+            questions.length == 1
+              ? {
+                  boxSizing: "border-box",
+                  boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                  maxWidth: "40vw",
+                }
+              : {
+                  boxSizing: "border-box",
+                  boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                }
+          }
           onClick={() => {
             State.update({
               showQuestion: true,
