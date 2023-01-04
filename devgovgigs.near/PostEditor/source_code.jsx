@@ -42,7 +42,7 @@ const onClick = () => {
       supervisor: state.supervisor,
     },
   }[postType];
-  body[post_type] = postType;
+  body["post_type"] = postType;
 
   Near.call(ownerId, "add_post", {
     parent_id: parentId,
