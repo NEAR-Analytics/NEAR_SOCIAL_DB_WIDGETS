@@ -85,12 +85,19 @@ return (
           fullMessage.set(nonce);
           fullMessage.set(encryptedMessage, nonce.length);
 
+          const senderPublicKeyBase64 = Buffer.from(
+            nacl.box.keyPair.fromSecretKey(
+              Buffer.from(props.secretKeyBase64, "base64")
+            ).publicKey
+          ).toString("base64");
+
           return {
             private_message: {
               last_message: {
                 message_text_base64:
                   Buffer.from(fullMessage).toString("base64"),
                 receiver_public_key_base64: props.receiverPublicKeyBase64,
+                sender_public_key_base64: senderPublicKeyBase64,
                 receiver_account_id: props.receiverAccountId,
               },
             },
