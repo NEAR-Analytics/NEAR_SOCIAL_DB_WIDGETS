@@ -29,7 +29,7 @@ return (
   <div className="d-flex justify-content-between w-100">
     <a
       className="d-flex"
-      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${props.accountId}`}
       style={{ color: "#010A2D" }}
     >
       {profile ? (
@@ -37,7 +37,7 @@ return (
           src="mob.near/widget/ProfileImage"
           props={{
             profile,
-            accountId,
+            accountId: props.accountId,
             className: "float-start d-inline-block me-2",
           }}
         />
@@ -45,16 +45,16 @@ return (
         <div className="d-flex">
           <div
             className="profile-image d-inline-block"
-            styke={{ width: "3em", height: "3em" }}
+            styke={{ height: "48px", aspectRatio: "1" }}
           >
             <img
               className="rounded w-100 h-100"
               src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm"
-              alt={accountId}
-              style={{ objectFit: "cover", aspectRatio: "1", height: "48px" }}
+              alt={props.accountId}
+              style={{ objectFit: "cover" }}
             />
           </div>
-          <span>{accountId}</span>
+          <span>{props.accountId}</span>
         </div>
       )}
       <div style={{ marginLeft: "1rem" }}>
@@ -66,7 +66,9 @@ return (
             textDecotarion: "none",
           }}
         >
-          {profile ? makeAccountIdShorter(profile.name) : "Loading..."}
+          {profile != {}
+            ? makeAccountIdShorter(profile.name)
+            : profile == undefined && makeAccountIdShorter(props.accountId)}
         </p>
         <p
           className="text-secondary"
