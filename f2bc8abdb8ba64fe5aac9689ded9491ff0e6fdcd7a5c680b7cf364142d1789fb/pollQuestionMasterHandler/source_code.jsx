@@ -11,7 +11,7 @@ State.init({
   displaying: tabs.MY_POLLS.id,
   hoveringElement: "",
   showAbortPollCreation: false,
-  profile: "",
+  profile: {},
 });
 
 function makeAccountIdShorter(accountId, length) {
@@ -328,7 +328,7 @@ return (
       <div className="p-2">
         <div>
           <p style={{ margin: "0", fontSize: "0.8rem" }}>
-            {makeAccountIdShorter(profile.name, 12)}
+            {makeAccountIdShorter(state.profile.name, 12)}
           </p>
           <p style={{ margin: "0", fontSize: "0.8rem" }}>
             @{makeAccountIdShorter(context.accountId, 12)}
