@@ -50,6 +50,17 @@ const messageTextUint8Array = nacl.box.open(
   new Uint8Array(new Buffer(props.secretKeyBase64, "base64"))
 );
 
+// const messageTextUint8Array = nacl.box.open(
+//   encryptedMessage,
+//   nonce,
+//   messageObject.receiver_public_key_base64 == publicKeyBase64
+//     ? new Uint8Array(
+//         new Buffer(messageObject.sender_public_key_base64, "base64")
+//       )
+//     : publicKey,
+//   new Uint8Array(new Buffer(props.secretKeyBase64, "base64"))
+// );
+
 const messageText = messageTextUint8Array
   ? Buffer.from(messageTextUint8Array).toString()
   : null;
