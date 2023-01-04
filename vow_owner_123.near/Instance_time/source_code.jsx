@@ -1,6 +1,6 @@
 State.init({
-  _from: 0,
-  _to: 0,
+  _from: 1,
+  _to: 1,
 });
 
 const widgetName = "Instance_time";
@@ -39,14 +39,15 @@ if (!data) {
   return "Loading answers";
 }
 
-const blackList = ["webuidl.near"];
-const whiteListData = data.filter((d) => !blackList.includes(d.accountId));
-const sortedData = whiteListData.sort(
-  (d1, d2) => d2.blockHeight - d1.blockHeight
-);
-
-const finalData = sortedData;
-console.log(finalData);
+const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+var finalData = [];
+var accountIds = [];
+for (let i = 0; i < sortedData.length; i++) {
+  if (accountIds.indexOf(sortedData[i].accountId) < 0) {
+    accountIds.push(sortedData[i].accountId);
+    finalData.push(sortedData[i]);
+  }
+}
 
 return (
   <div>
@@ -120,8 +121,8 @@ return (
     <br />
     <br />
     <div>
-      {sortedData
-        ? sortedData.map((d) => (
+      {finalData
+        ? finalData.map((d) => (
             <div style={card}>
               <Widget
                 src="mob.near/widget/ProfileImage"
