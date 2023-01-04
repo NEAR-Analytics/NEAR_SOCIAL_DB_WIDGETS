@@ -61,6 +61,7 @@ const emptyIcons = {
   Attestation: "bi-check-circle",
   Sponsorship: "bi-cash-coin",
   Like: "bi-heart",
+  Reply: "bi-reply",
 };
 
 const fillIcons = {
@@ -70,6 +71,7 @@ const fillIcons = {
   Attestation: "bi-check-circle-fill",
   Sponsorship: "bi-cash-coin",
   Like: "bi-heart-fill",
+  Reply: "bi-reply-fill",
 };
 
 const borders = {
@@ -79,6 +81,104 @@ const borders = {
   Attestation: "border-success",
   Sponsorship: "border-success",
 };
+
+const containsLike = props.isPreview
+  ? false
+  : post.likes.find((l) => l.author_id == context.accountId);
+const likeBtnClass = containsLike ? emptyIcons.Like : fillIcons.Like;
+const onLike = () => {
+  Near.call(ownerId, "like", {
+    post_type: "Sponsorship",
+    post_id: sponsorship_id,
+  });
+};
+
+const Button = styled.button`
+.btn-bd-primary {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet);
+  --bs-btn-border-color: var(--bd-violet);
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #{shade-color($bd-violet, 10%)};
+  --bs-btn-hover-border-color: #{shade-color($bd-violet, 10%)};
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
+  --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
+}
+`;
+
+const buttonsFooter = props.isPreview ? null : (
+  <div class="row">
+    <div class="col-8">
+      <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style={{ border: "0px" }}
+          onClick={onLike}
+        >
+          <i class={`bi ${likeBtnClass}`}> </i>
+          Like ({post.likes.length ?? 0})
+        </button>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            style={{ border: "0px" }}
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class={`bi ${emptyIcons.Reply}`}> </i> Reply
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class={`bi ${emptyIcons.Idea}`}> </i> Idea
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class={`bi ${emptyIcons.Submission}`}> </i> Solution
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class={`bi ${emptyIcons.Attestation}`}> </i> Attestation
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class={`bi ${emptyIcons.Sponsorship}`}> </i> Sponsorship
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class={`bi ${emptyIcons.Comment}`}> </i> Comment
+              </a>
+            </li>
+          </ul>
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style={{ border: "0px" }}
+          data-bs-toggle="collapse"
+          href={`#collapseChildPosts${postId}`}
+          aria-expanded="false"
+          aria-controls={`collapseChildPosts${postId}`}
+        >
+          <i class="bi bi-arrows-expand"> </i> Expand Replies
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 const postTitle =
   snapshot.post_type == "Comment" ? null : (
@@ -111,20 +211,6 @@ const postExtra =
 const postsList =
   props.isPreview || childPostIds.length == 0 ? null : (
     <div class="row">
-      <div class="row">
-        <div class="col-4">
-          <a
-            class="card-link"
-            data-bs-toggle="collapse"
-            href={`#collapseChildPosts${postId}`}
-            role="button"
-            aria-expanded="false"
-            aria-controls={`collapseChildPosts${postId}`}
-          >
-            <i class="bi bi-arrows-angle-expand"> </i> Expand Posts
-          </a>
-        </div>
-      </div>
       <div class="collapse" id={`collapseChildPosts${postId}`}>
         {childPostIds
           ? childPostIds.map((childId) => {
@@ -154,6 +240,7 @@ return (
       {postTitle}
       {postExtra}
       <Markdown class="card-text" text={snapshot.description}></Markdown>
+      {buttonsFooter}
       {postsList}
     </div>
   </Card>
