@@ -1,7 +1,7 @@
 //props:
-//receiverAccountId
-//secretKeyBase64
-//receiverPublicKeyBase64
+//secretKeyBase64 : string base64
+//receiverAccountId : string base64
+//receiverPublicKeyBase64 : string base64
 
 const accountId = context.accountId;
 
@@ -27,17 +27,13 @@ function uniteAccountId(accountId0, accountId1) {
 
 State.init({ message: "" });
 
-Social.keys(`${accountId}/post/meme`, "final", {
-  return_type: "History",
-});
-
 const incomingMessages = Social.index(
   "private_message",
   accountId.toLowerCase(),
   {
     subscribe: true,
     order: "desc",
-    accountId: props.receiverAccountId.toLowerCase(),
+    accountId: props.receiverAccountId,
   }
 );
 
@@ -51,64 +47,9 @@ const outgoingMessages = Social.index(
   }
 );
 
+if (incomingMessages === null || outgoingMessages === null) return "Loading...";
+
 const messages = outgoingMessages.concat(incomingMessages);
-
-function renderMessage(senderAccountId, blockHeight) {
-  const messageObject = Social.get(
-    `${senderAccountId}/private_message/last_message/**`,
-    blockHeight
-  );
-
-  const messageWithNonceAsUint8Array = new Uint8Array(
-    new Buffer(messageObject.message_text_base64, "base64")
-  );
-  const nonce = messageWithNonceAsUint8Array.slice(0, nacl.box.nonceLength);
-  const encryptedMessage = messageWithNonceAsUint8Array.slice(
-    nacl.box.nonceLength,
-    messageWithNonce.length
-  );
-
-  const messageTextUint8Array = nacl.box.open(
-    encryptedMessage,
-    nonce,
-    new Uint8Array(
-      new Buffer(messageObject.receiver_public_key_base64, "base64")
-    ),
-    new Uint8Array(new Buffer(props.secretKeyBase64, "base64"))
-  );
-
-  const messageText = messageTextUint8Array
-    ? Buffer.from(messageTextUint8Array).toString()
-    : null;
-
-  return (
-    <div className="card my-2 border-primary">
-      <div className="card-header">
-        <small class="text-muted">
-          <div class="row justify-content-between">
-            <div class="col-4">
-              <Widget
-                src={`mob.near/widget/ProfileLine`}
-                props={{ accountId: senderAccountId }}
-              />
-            </div>
-            <div class="col-4">
-              <div class="d-flex justify-content-end">
-                <Widget
-                  src={`mob.near/widget/TimeAgo`}
-                  props={{ blockHeight: blockHeight }}
-                />
-              </div>
-            </div>
-          </div>
-        </small>
-      </div>
-      <div className="card-body">
-        {messageText || "⚠️ error reading message with your private key"}
-      </div>
-    </div>
-  );
-}
 
 return (
   <div>
@@ -170,8 +111,15 @@ return (
       </CommitButton>
     </div>
 
-    {messages.map((messageObject) =>
-      renderMessage(messageObject.accountId, messageObject.blockHeight)
-    )}
+    {messages.map((messageObject) => (
+      <Widget
+        src="bozon.near/widget/PrivateMessage.Message"
+        props={{
+          secretKeyBase64: props.secretKeyBase64,
+          blockHeight: messageObject.blockHeight,
+          senderAccountId: messageObject.accountId,
+        }}
+      />
+    ))}
   </div>
 );
