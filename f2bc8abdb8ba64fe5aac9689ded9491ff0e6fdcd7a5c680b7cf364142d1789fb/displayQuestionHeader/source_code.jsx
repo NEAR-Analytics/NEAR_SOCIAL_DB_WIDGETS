@@ -1,4 +1,8 @@
 let profile = Social.getr(`${props.accountId}/profile`);
+if (!profile) {
+  return "Loading";
+}
+
 let amountOfQuestionsByThisUser = 0;
 
 //TODO review this
