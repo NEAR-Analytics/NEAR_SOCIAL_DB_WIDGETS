@@ -5,9 +5,12 @@ const snapshot = post.snapshot;
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 
-const childPostIds = Near.view(ownerId, "get_children_ids", {
-  post_id: postId,
-});
+const childPostIdsUnordered =
+  Near.view(ownerId, "get_children_ids", {
+    post_id: postId,
+  }) ?? [];
+
+const childPostIds = props.isPreview ? [] : childPostIdsUnordered.reverse();
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
