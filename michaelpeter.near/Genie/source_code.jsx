@@ -8,9 +8,6 @@ const setSelectedQuestion = (ref) => {
   State.update({ selectedQuestion: ref });
 };
 
-const QuestionWrapper = styled.div`
-  width: 100%
-`;
 const Center = styled.div`
   display: flex;
   flex-direction:row;
@@ -36,22 +33,23 @@ return (
       />
     </div>
     {state.selectedQuestion && (
-      <Wrapper className="d-flex flex-column gap-5">
+      <div
+        className="d-flex flex-column gap-5"
+        style={{
+          maxWidth: "50rem",
+        }}
+      >
         <div>
           <button className="btn btn-outline-secondary" onClick={clearSelected}>
             <i class="bi bi-chevron-left" />
             All Questions
           </button>
         </div>
-        <Center>
-          <QuestionWrapper>
-            <Widget
-              src="michaelpeter.near/widget/GenieQuestionAnswerView"
-              props={{ questionRef: state.selectedQuestion }}
-            />
-          </QuestionWrapper>
-        </Center>
-      </Wrapper>
+        <Widget
+          src="michaelpeter.near/widget/GenieQuestionAnswerView"
+          props={{ questionRef: state.selectedQuestion }}
+        />
+      </div>
     )}
     {state.showAskForm && (
       <Wrapper>
@@ -76,9 +74,6 @@ return (
         className="d-flex flex-column gap-3 pt-1"
         style={{
           maxWidth: "50rem",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
         }}
       >
         <div className="d-flex align-items-center gap-3">
@@ -106,12 +101,10 @@ return (
             </div>
           </button>
         </div>
-        <QuestionWrapper>
-          <Widget
-            src="michaelpeter.near/widget/GenieQuestionList"
-            props={{ searchString: state.searchString, setSelectedQuestion }}
-          />
-        </QuestionWrapper>
+        <Widget
+          src="michaelpeter.near/widget/GenieQuestionList"
+          props={{ searchString: state.searchString, setSelectedQuestion }}
+        />
       </div>
     )}
   </div>
