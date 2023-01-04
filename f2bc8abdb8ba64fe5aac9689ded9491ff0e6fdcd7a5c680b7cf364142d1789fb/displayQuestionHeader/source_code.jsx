@@ -57,7 +57,6 @@ return (
         </div>
       )}
       <div style={{ marginLeft: "1rem" }}>
-        <span>{props.accountId}</span>
         <p
           style={{
             margin: "0",
