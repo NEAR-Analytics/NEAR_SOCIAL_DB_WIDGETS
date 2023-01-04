@@ -274,13 +274,16 @@ const editorsFooter = props.isPreview ? null : (
   </div>
 );
 
+const renamedPostType =
+  snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
+
 const postTitle =
   snapshot.post_type == "Comment" ? null : (
     <h5 class="card-title">
       <div className="row justify-content-between">
         <div class="col-9">
           <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
-          {snapshot.post_type}: {snapshot.name}
+          {renamedPostType}: {snapshot.name}
         </div>
       </div>
     </h5>
