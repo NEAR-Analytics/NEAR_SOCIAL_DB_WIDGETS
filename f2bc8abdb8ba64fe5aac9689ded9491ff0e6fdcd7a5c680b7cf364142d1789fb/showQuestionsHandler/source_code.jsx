@@ -49,10 +49,6 @@ for (let i = 0; i < questions.length; i++) {
   }
 }
 
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
-}
-
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
