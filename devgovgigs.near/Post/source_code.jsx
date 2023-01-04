@@ -21,6 +21,7 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
+// TODO: Implement editing posts.
 // const editControl =
 //   post.author_id == context.accountId && !props.isPreview ? (
 //     <a class="card-link px-2" role="button" title="Edit post">
