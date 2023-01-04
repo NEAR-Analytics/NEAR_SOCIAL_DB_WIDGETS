@@ -51,7 +51,7 @@ return (
               className="rounded w-100 h-100"
               src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm"
               alt={accountId}
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", aspectRatio: "1", height: "48px" }}
             />
           </div>
           <span>{accountId}</span>
