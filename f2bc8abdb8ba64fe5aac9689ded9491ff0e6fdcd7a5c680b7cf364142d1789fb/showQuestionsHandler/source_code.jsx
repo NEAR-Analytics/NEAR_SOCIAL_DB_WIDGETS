@@ -131,6 +131,7 @@ const renderQuestions = (onlyUsersPolls) => {
             backgroundColor: "white",
             borderRadius: "1rem",
             cursor: "pointer",
+            maxSize: "50%",
           }}
           onClick={() => {
             State.update({
