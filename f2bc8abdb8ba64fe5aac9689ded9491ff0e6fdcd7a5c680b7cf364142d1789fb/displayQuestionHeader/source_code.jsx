@@ -2,18 +2,6 @@ State.init({ profile: {} });
 
 if (state.profile == {}) {
   return "Loading";
-} else if (state.profile == undefined) {
-  return (
-    <div className="d-flex">
-      <img
-        className="rounded w-100 h-100"
-        src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm"
-        alt={accountId}
-        style={{ objectFit: "cover" }}
-      />
-      <span>{accountId}</span>
-    </div>
-  );
 }
 
 let profile = Social.getr(`${props.accountId}/profile`);
@@ -54,7 +42,20 @@ return (
           }}
         />
       ) : (
-        <p>Loading...</p>
+        <div className="d-flex">
+          <div
+            className="profile-image d-inline-block"
+            styke={{ width: "3em", height: "3em" }}
+          >
+            <img
+              className="rounded w-100 h-100"
+              src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm"
+              alt={accountId}
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <span>{accountId}</span>
+        </div>
       )}
       <div style={{ marginLeft: "1rem" }}>
         <p
