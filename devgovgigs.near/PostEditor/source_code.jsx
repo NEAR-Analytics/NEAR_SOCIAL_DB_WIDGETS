@@ -29,7 +29,7 @@ let fields = {
 
 const onClick = () => {
   let labels = [];
-  let body = {
+  var body = {
     Comment: { description: state.description },
     Idea: { name: state.name, description: state.description },
     Submission: { name: state.name, description: state.description },
@@ -42,6 +42,7 @@ const onClick = () => {
       supervisor: state.supervisor,
     },
   }[postType];
+  body[post_type] = postType;
 
   Near.call(ownerId, "add_post", {
     parent_id: parentId,
