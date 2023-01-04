@@ -132,7 +132,15 @@ const buttonsFooter = props.isPreview ? null : (
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseSponsorshipEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseSponsorshipEditor${postId}`}
+              >
                 <i class={`bi ${emptyIcons.Sponsorship}`}> </i> Sponsorship
               </a>
             </li>
@@ -140,7 +148,15 @@ const buttonsFooter = props.isPreview ? null : (
               <hr class="dropdown-divider" />
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseCommentEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseCommentEditor${postId}`}
+              >
                 <i class={`bi ${emptyIcons.Comment}`}> </i> Comment
               </a>
             </li>
@@ -158,6 +174,33 @@ const buttonsFooter = props.isPreview ? null : (
           <i class="bi bi-arrows-expand"> </i> Expand Replies
         </button>
       </div>
+    </div>
+  </div>
+);
+
+const editorsFooter = props.isPreview ? null : (
+  <div class="row" id={`accordion${postId}`}>
+    <div
+      class="collapse"
+      id={`collapseCommentEditor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/CommentEditor`}
+        props={{
+          comment: { post_type: "Sponsorship", post_id: sponsorship_id },
+        }}
+      />
+    </div>
+    <div
+      class="collapse"
+      id={`collapseSponsorshipEditor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/SponsorshipEditor`}
+        props={{ sponsorship: { submission_id } }}
+      />
     </div>
   </div>
 );
@@ -223,6 +266,7 @@ return (
       {postExtra}
       <Markdown class="card-text" text={snapshot.description}></Markdown>
       {buttonsFooter}
+      {editorsFooter}
       {postsList}
     </div>
   </Card>
