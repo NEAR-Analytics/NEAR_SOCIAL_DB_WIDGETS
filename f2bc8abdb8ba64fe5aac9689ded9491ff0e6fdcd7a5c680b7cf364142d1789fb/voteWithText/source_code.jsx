@@ -32,7 +32,6 @@ function getTimeRelatedValidAnswers(answers) {
   let high = answers.length - 1;
   const questionEndTimestamp = questionParams.value.endTimestamp;
   let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
-  console.log(4, questionParams);
   if (endBlockTimestamp < questionEndTimestamp) return answers;
   // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
   let tries = 50;
