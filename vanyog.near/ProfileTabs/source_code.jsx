@@ -3,11 +3,7 @@ if (!accountId) {
   return "No account ID";
 }
 
-console.log("context", context);
-
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
-
-console.log("profile", profile);
 
 if (profile === null) {
   return "Loading";
@@ -49,12 +45,10 @@ const authorArticles =
   Near.view("thewiki.near", "get_account", {
     account_id: state?.authorId,
   });
-console.log("authorArticles", authorArticles);
 
 const mainPageNavigation = Near.view("thewiki.near", "get_article", {
   article_id: "main_nav",
 });
-console.log("mainPageNavigation", mainPageNavigation);
 
 const mainPage = Near.view("thewiki.near", "get_article", {
   article_id: "",
@@ -64,6 +58,10 @@ const getDate = (timestamp) => {
   const newTimestamp = timestamp.slice(0, timestamp.length - 6);
   const date = new Date(Number(newTimestamp));
   return date.toDateString();
+};
+
+const saveArticle = (args) => {
+  Near.call("thewiki.near", "post_article", args, "30000000000000");
 };
 
 return (
@@ -98,15 +96,20 @@ return (
         id="pills-main"
         role="tabpanel"
         aria-labelledby="pills-main-tab"
-      >
-        <Markdown
-          text={mainPageNavigation.body}
-          onClick={(e) => {
+        onClickCapture={(e) => {
+          console.log("makrdown click", e);
+          try {
             e.preventDefault();
-            console.log("makrdown click", e);
-            console.log("window", window);
-          }}
-        />
+            e.stopPropagation();
+          } catch (e) {
+            console.log("error", e);
+            if (e.target.href.includes("https://near.social/")) {
+              console.log("!!!!LINK!!!! magic");
+            }
+          }
+        }}
+      >
+        <Markdown text={mainPageNavigation.body} />
         <Markdown text={mainPage.body} />
       </div>
 
@@ -144,8 +147,15 @@ return (
                     type="button"
                     className="btn btn-success"
                     onClick={() => {
-                      console.log("save article");
-                      State.update({ editArticle: false, note: article.body });
+                      if (!state.note || article.body === state.note) return;
+
+                      const args = {
+                        article_id: state?.articleId,
+                        body: state.note,
+                        navigation_id: null,
+                      };
+
+                      saveArticle(args);
                     }}
                   >
                     Save Article{" "}
@@ -157,7 +167,6 @@ return (
                     type="button"
                     className="btn btn-danger"
                     onClick={() => {
-                      console.log("cancel");
                       State.update({ editArticle: false, note: article.body });
                     }}
                   >
@@ -173,7 +182,6 @@ return (
                     className="form-control mt-2"
                     value={state.note || article.body}
                     onChange={(e) => {
-                      console.log("e", e);
                       State.update({ ...state, note: e.target.value });
                     }}
                   />
@@ -181,7 +189,6 @@ return (
 
                 {article && (
                   <div className="mt-5 alert alert-secondary">
-                    {console.log("article", article)}
                     <div>
                       Last edit by{" "}
                       <a
