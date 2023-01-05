@@ -21,15 +21,52 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
-// TODO: Implement editing posts.
-// const editControl =
-//   post.author_id == context.accountId && !props.isPreview ? (
-//     <a class="card-link px-2" role="button" title="Edit post">
-//       <div class="bi bi-pencil-square"></div>
-//     </a>
-//   ) : null;
+const allowedToEdit =
+  !props.isPreview &&
+  Near.view(ownerId, "is_allowed_to_edit", {
+    post_id: postId,
+    editor: context.accountId,
+  }) == "true";
 
-const editControl = null;
+const btnEditorWidget = (postType, name) => {
+  return (
+    <li>
+      <a
+        class="dropdown-item"
+        href="#"
+        data-bs-toggle="collapse"
+        href={`#collapse${postType}Editor${postId}`}
+        role="button"
+        aria-expanded="false"
+        aria-controls={`collapse${postType}Editor${postId}`}
+      >
+        {name}
+      </a>
+    </li>
+  );
+};
+
+const editControl = !allowedToEdit ? (
+  <div class="btn-group" role="group">
+    <a
+      class="card-link px-2"
+      role="button"
+      title="Edit post"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      type="button"
+    >
+      <div class="bi bi-pencil-square"></div>
+    </a>
+    <ul class="dropdown-menu">
+      {btnEditorWidget("Idea", "Edit as an idea")}
+      {btnEditorWidget("Submission", "Edit as a solution")}
+      {btnEditorWidget("Attestation", "Edit as an attestation")}
+      {btnEditorWidget("Sponsorship", "Edit as a sponsorship")}
+      {btnEditorWidget("Comment", "Edit as a comment")}
+    </ul>
+  </div>
+) : null;
 
 const shareButton = props.isPreview ? null : (
   <a
@@ -104,6 +141,24 @@ const onLike = () => {
   });
 };
 
+const btnCreatorWidget = (postType, icon, name) => {
+  return (
+    <li>
+      <a
+        class="dropdown-item"
+        href="#"
+        data-bs-toggle="collapse"
+        href={`#collapse${postType}Creator${postId}`}
+        role="button"
+        aria-expanded="false"
+        aria-controls={`collapse${postType}Creator${postId}`}
+      >
+        <i class={`bi ${icon}`}> </i> {name}
+      </a>
+    </li>
+  );
+};
+
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="col-8">
@@ -128,74 +183,22 @@ const buttonsFooter = props.isPreview ? null : (
             <i class={`bi ${emptyIcons.Reply}`}> </i> Reply
           </button>
           <ul class="dropdown-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseIdeaEditor${postId}`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseIdeaEditor${postId}`}
-              >
-                <i class={`bi ${emptyIcons.Idea}`}> </i> Idea
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseSubmissionEditor${postId}`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseSubmissionEditor${postId}`}
-              >
-                <i class={`bi ${emptyIcons.Submission}`}> </i> Solution
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseAttestationEditor${postId}`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseAttestationEditor${postId}`}
-              >
-                <i class={`bi ${emptyIcons.Attestation}`}> </i> Attestation
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseSponsorshipEditor${postId}`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseSponsorshipEditor${postId}`}
-              >
-                <i class={`bi ${emptyIcons.Sponsorship}`}> </i> Sponsorship
-              </a>
-            </li>
+            {btnCreatorWidget("Idea", emptyIcons.Idea, "Idea")}
+            {btnCreatorWidget("Submission", emptyIcons.Submission, "Solution")}
+            {btnCreatorWidget(
+              "Attestation",
+              emptyIcons.Attestation,
+              "Attestation"
+            )}
+            {btnCreatorWidget(
+              "Sponsorship",
+              emptyIcons.Sponsorship,
+              "Sponsorship"
+            )}
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseCommentEditor${postId}`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseCommentEditor${postId}`}
-              >
-                <i class={`bi ${emptyIcons.Comment}`}> </i> Comment
-              </a>
-            </li>
+            {btnCreatorWidget("Comment", emptyIcons.Comment, "Comment")}
           </ul>
         </div>
         <button
@@ -215,73 +218,63 @@ const buttonsFooter = props.isPreview ? null : (
   </div>
 );
 
+const CreatorWidget = (postType) => {
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Creator${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/PostEditor`}
+        props={{
+          postType,
+          parentId: postId,
+          mode: "Create",
+        }}
+      />
+    </div>
+  );
+};
+
+const EditorWidget = (postType) => {
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Editor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`${ownerId}/widget/PostEditor`}
+        props={{
+          postType,
+          id: postId,
+          mode: "Edit",
+          author_id: post.author_id,
+          labels: post.snapshot.labels,
+          name: post.snapshot.name,
+          description: post.snapshot.description,
+          amount: post.snapshot.amount,
+          token: post.snapshot.token,
+          supervisor: post.snapshot.supervisor,
+        }}
+      />
+    </div>
+  );
+};
+
 const editorsFooter = props.isPreview ? null : (
   <div class="row" id={`accordion${postId}`}>
-    <div
-      class="collapse"
-      id={`collapseCommentEditor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType: "Comment",
-          parentId: postId,
-        }}
-      />
-    </div>
-    <div
-      class="collapse"
-      id={`collapseIdeaEditor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType: "Idea",
-          parentId: postId,
-        }}
-      />
-    </div>
-    <div
-      class="collapse"
-      id={`collapseSubmissionEditor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType: "Submission",
-          parentId: postId,
-        }}
-      />
-    </div>
-    <div
-      class="collapse"
-      id={`collapseAttestationEditor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType: "Attestation",
-          parentId: postId,
-        }}
-      />
-    </div>
-    <div
-      class="collapse"
-      id={`collapseSponsorshipEditor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType: "Sponsorship",
-          parentId: postId,
-        }}
-      />
-    </div>
+    {CreatorWidget("Comment")}
+    {EditorWidget("Comment")}
+    {CreatorWidget("Idea")}
+    {EditorWidget("Idea")}
+    {CreatorWidget("Submission")}
+    {EditorWidget("Submission")}
+    {CreatorWidget("Attestation")}
+    {EditorWidget("Attestation")}
+    {CreatorWidget("Sponsorship")}
+    {EditorWidget("Sponsorship")}
   </div>
 );
 
