@@ -21,19 +21,12 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
-console.log(
-  Near.view(ownerId, "is_allowed_to_edit", {
-    post_id: postId,
-    editor: context.accountId,
-  })
-);
-
 const allowedToEdit =
   !props.isPreview &&
   Near.view(ownerId, "is_allowed_to_edit", {
     post_id: postId,
     editor: context.accountId,
-  }) == "true";
+  });
 
 const btnEditorWidget = (postType, name) => {
   return (
