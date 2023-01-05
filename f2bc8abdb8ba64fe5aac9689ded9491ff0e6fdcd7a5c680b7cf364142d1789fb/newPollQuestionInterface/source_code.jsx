@@ -891,6 +891,7 @@ return (
                             appearance: "auto",
                             width: "16px",
                             marginRight: "0.2rem",
+                            cursor: "pointer",
                           }}
                           type="radio"
                           disabled
@@ -901,6 +902,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "16px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -914,6 +916,7 @@ return (
                             width: "16px",
                             marginRight: "0.2rem",
                             backgroundColor: "black",
+                            cursor: "pointer",
                           }}
                           type="radio"
                           disabled
@@ -925,6 +928,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "16px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -973,6 +977,7 @@ return (
                             appearance: "auto",
                             width: "12px",
                             marginRight: "0.2rem",
+                            cursor: "pointer",
                           }}
                           type="radio"
                           disabled
@@ -983,6 +988,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "12px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -994,6 +1000,7 @@ return (
                             appearance: "auto",
                             width: "12px",
                             marginRight: "0.2rem",
+                            cursor: "pointer",
                           }}
                           type="radio"
                           disabled
@@ -1004,6 +1011,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "12px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -1018,6 +1026,7 @@ return (
                             marginTop: "0",
                             marginRight: "0.2rem",
                             backgroundColor: "black",
+                            cursor: "pointer",
                           }}
                           type="radio"
                           disabled
@@ -1029,6 +1038,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "12px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -1077,6 +1087,7 @@ return (
                             appearance: "auto",
                             width: "12px",
                             marginRight: "0.2rem",
+                            cursor: "pointer",
                           }}
                           type="checkbox"
                           disabled
@@ -1088,6 +1099,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "12px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -1099,6 +1111,7 @@ return (
                             appearance: "auto",
                             width: "12px",
                             marginRight: "0.2rem",
+                            cursor: "pointer",
                           }}
                           type="checkbox"
                           disabled
@@ -1109,6 +1122,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "12px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -1123,6 +1137,7 @@ return (
                             marginTop: "0",
                             marginRight: "0.2rem",
                             backgroundColor: "black",
+                            cursor: "pointer",
                           }}
                           type="checkbox"
                           disabled
@@ -1134,6 +1149,7 @@ return (
                             border: "none",
                             borderRadius: "30px",
                             height: "12px",
+                            cursor: "pointer",
                           }}
                           type="text"
                           disabled
@@ -1184,6 +1200,7 @@ return (
                           borderRadius: "30px",
                           height: "12px",
                           width: "100%",
+                          cursor: "pointer",
                         }}
                         type="text"
                         disabled
@@ -1196,6 +1213,7 @@ return (
                           borderRadius: "30px",
                           height: "12px",
                           width: "90%",
+                          cursor: "pointer",
                         }}
                         type="text"
                         disabled
@@ -1207,6 +1225,7 @@ return (
                           borderRadius: "30px",
                           height: "12px",
                           width: "100%",
+                          cursor: "pointer",
                         }}
                         type="text"
                         disabled
