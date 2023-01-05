@@ -1,6 +1,8 @@
 const ownerId = "devgovgigs.near";
 const postType = props.postType ?? "Sponsorship";
 const parentId = props.parentId ?? null;
+const postId = props.postId ?? null;
+const mode = props.mode ?? "Create";
 
 const labelStrings = props.labels ?? [];
 const labels = labelStrings.map((s) => {
@@ -15,11 +17,11 @@ initState({
   // Both of the label structures should be modified together.
   labelStrings,
   postType,
-  name: "",
-  description: "",
-  amount: "0",
-  token: "Near",
-  supervisor: "",
+  name: props.name ?? "",
+  description: props.description ?? "",
+  amount: props.amount ?? "0",
+  token: props.token ?? "Near",
+  supervisor: props.supervisor ?? "",
 });
 
 let fields = {
@@ -65,12 +67,19 @@ const onClick = () => {
     },
   }[postType];
   body["post_type"] = postType;
-
-  Near.call(ownerId, "add_post", {
-    parent_id: parentId,
-    labels,
-    body,
-  });
+  if (mode == "Create") {
+    Near.call(ownerId, "add_post", {
+      parent_id: parentId,
+      labels,
+      body,
+    });
+  } else if (mode == "Edit") {
+    Near.call(ownerId, "edit_post", {
+      id: postId,
+      labels,
+      body,
+    });
+  }
 };
 
 const normalizeLabel = (label) =>
@@ -184,7 +193,9 @@ const disclaimer = (
 const renamedPostType = postType == "Submission" ? "Solution" : postType;
 return (
   <div className="card">
-    <div className="card-header">{renamedPostType} Editor</div>
+    <div className="card-header">
+      {mode} {renamedPostType}
+    </div>
 
     <div class="card-body">
       <div className="row">
