@@ -269,9 +269,9 @@ const renderTextInputsForChoices = (questionNumber) => {
 
   return (
     <>
-      {thisQuestionChoices.map((choiceIndex) => {
+      {thisQuestionChoices.map((questionNumber) => {
         return (
-          <div className="mb-2" key={`choice-input-${choiceIndex}`}>
+          <div className="mb-2">
             <div style={{ position: "relative" }}>
               <input
                 style={{
@@ -289,13 +289,14 @@ const renderTextInputsForChoices = (questionNumber) => {
                     ? "border border-danger mb-2"
                     : "mb-2"
                 }
-                id="question"
+                id={`question-${questionNumber}`}
                 value={state.questions[questionNumber]}
                 onChange={(e) => {
-                  let newQuestions = state.questions;
-                  newQuestions[questionNumber] = e.target.value;
-
-                  State.update({ questions: newQuestions });
+                  () => {
+                    let newQuestions = state.questions;
+                    newQuestions[questionNumber] = e.target.value;
+                    State.update({ questions: newQuestions });
+                  };
                 }}
               />
               <i
@@ -307,7 +308,7 @@ const renderTextInputsForChoices = (questionNumber) => {
                   right: "1rem",
                   top: "0.55rem",
                 }}
-                onClick={deleteChoiceHandler(questionNumber, choiceIndex)}
+                onClick={() => deleteChoiceHandler(questionNumber)}
               ></i>
             </div>
           </div>
@@ -316,7 +317,7 @@ const renderTextInputsForChoices = (questionNumber) => {
       <div
         className="d-flex align-items-center"
         style={{ cursor: "pointer" }}
-        onClick={addChoicesHandler(questionNumber)}
+        onClick={() => addChoicesHandler(questionNumber)}
       >
         <i
           className="bi bi-plus-lg"
@@ -399,28 +400,26 @@ const renderTextInputsForChoices = (questionNumber) => {
 //   };
 // }
 
-function deleteChoiceHandler(questionNumber, choiceIndex) {
-  return () => {
-    let thisQuestionChoices = state.choices[questionNumber];
-    let newThisQuestionChoices = [];
-    for (let i = 0; i < choices.length; i++) {
-      if (i != choiceIndex) {
-        newThisQuestionChoices.push(thisQuestionChoices[i]);
-      }
+function deleteChoiceHandler(questionNumber) {
+  let thisQuestionChoices = state.choices[questionNumber];
+  let newThisQuestionChoices = [];
+  for (let i = 0; i < choices.length; i++) {
+    if (i != questionNumber) {
+      newThisQuestionChoices.push(thisQuestionChoices[i]);
     }
+  }
 
-    let newChoices = state.choices;
-    newChoices[questionNumber] = newThisQuestionChoices;
+  let newChoices = state.choices;
+  newChoices[questionNumber] = newThisQuestionChoices;
 
-    let newAmountOfChoices = state.amountOfChoices;
-    newAmountOfChoices[questionNumber] =
-      Number(newAmountOfChoices[questionNumber]) - 1;
+  let newAmountOfChoices = state.amountOfChoices;
+  newAmountOfChoices[questionNumber] =
+    Number(newAmountOfChoices[questionNumber]) - 1;
 
-    State.update({
-      amountOfChoices: newAmountOfChoices,
-      choices: newChoices,
-    });
-  };
+  State.update({
+    amountOfChoices: newAmountOfChoices,
+    choices: newChoices,
+  });
 }
 
 function addChoicesHandler(questionNumber) {
@@ -465,8 +464,6 @@ let amountOfQuestions = [];
 for (let i = 0; i < state.amountOfQuestions; i++) {
   amountOfQuestions.push(i);
 }
-
-console.log(amountOfQuestions);
 
 return (
   <div
@@ -722,7 +719,6 @@ return (
                   value={state.pollStartDate}
                   onChange={(e) => {
                     State.update({ pollStartDate: e.target.value });
-                    console.log(getTimestamp(state.pollStartDate));
                   }}
                 />
                 {!state.pollStartDate && state.showErrorsInForm && (
@@ -1247,10 +1243,7 @@ return (
                       >
                         Answer options
                       </label>
-                      {renderTextInputsForChoices(
-                        questionNumber,
-                        state.pollType
-                      )}
+                      {renderTextInputsForChoices(questionNumber)}
                     </>
                   )}
                   {state.showErrorsInForm &&
