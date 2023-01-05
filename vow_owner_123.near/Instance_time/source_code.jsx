@@ -1,7 +1,8 @@
 State.init({
-  _is_on: ["on", "on", "on", "on", "on", "on", "on"],
-  _from: ["1", "1", "1", "1", "1", "1", "1"],
+  _is_on: ["off", "off", "off", "off", "off", "off", "off"],
+  _from: ["0", "0", "0", "0", "0", "0", "0"],
   _to: ["1", "1", "1", "1", "1", "1", "1"],
+  _time_zone: "(UTC+00:00) UTC",
 });
 
 const widgetName = "Instance_time";
@@ -31,7 +32,50 @@ const imgWH = {
   width: "25px",
   height: "25px",
 };
+const time_zones = [
+  "(UTC-11:00) Samoa",
+  "(UTC-10:00) Hawaii",
+  "(UTC-09:00) Alaska",
+  "(UTC-08:00) Pacific Time (US &amp; Canada)",
+  "(UTC-07:00) Arizona",
+  "(UTC-06:00) Central America",
+  "(UTC-06:00) Saskatchewan",
+  "(UTC-05:00) Eastern Time (US &amp; Canada)",
+  "(UTC-04:00) Atlantic Time (Canada)",
+  "(UTC-04:30) Caracas",
+  "(UTC-04:00) Santiago",
+  "(UTC-03:30) Newfoundland",
+  "(UTC-03:00) Brasilia",
+  "(UTC-02:00) Mid-Atlantic",
+  "(UTC-01:00) Azores",
+  "(UTC+00:00) UTC",
+  "(UTC+01:00) Amsterdam",
+  "(UTC+02:00) Athens",
+  "(UTC+03:00) Baghdad",
+  "(UTC+04:00) Abu Dhabi",
+  "(UTC+04:30) Kabul",
+  "(UTC+05:00) Islamabad",
+  "(UTC+05:30) Chennai",
+  "(UTC+05:45) Kathmandu",
+  "(UTC+06:00) Almaty",
+  "(UTC+06:30) Rangoon",
+  "(UTC+07:00) Bangkok",
+  "(UTC+08:00) Beijing",
+  "(UTC+09:00) Irkutsk",
+  "(UTC+09:00) Seoul",
+  "(UTC+09:00) Tokyo",
+  "(UTC+09:30) Adelaide",
+  "(UTC+10:00) Guam",
+  "(UTC+11:00) Vladivostok",
+  "(UTC+12:00) Auckland",
+  "(UTC+13:00) Nuku'alofa",
+];
+const utc_times = [
+  -11, -10, -9, -8, -7, -6, -6, -5, -4.5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 4.5, 5,
+  5.5, 5.75, 6, 6.5, 7, 8, 9, 9, 9, 9.5, 10, 11, 12, 13,
+];
 const hours = [
+  "0",
   "1",
   "2",
   "3",
@@ -67,18 +111,83 @@ const days = [
   "Sunday",
 ];
 
-const data = Social.index("Instance_time", "monday");
+const data = Social.index("Instance_time", "data");
 if (!data) {
   return "Loading datas";
 }
 
-const sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
 var accountIds = [];
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
-    finalData.push(sortedData[i]);
+    var date = new Date();
+    var utc_offset = -date.getTimezoneOffset() / 60;
+    var times = sortedData[i].value._data;
+    var temp = [];
+    var flag = false;
+
+    for (var j = 0; j < times.length; j++) {
+      const time = times[j] + utc_offset;
+      if (time > 168) {
+        temp.push(time - 168);
+        flag = true;
+      } else if (time < 0) {
+        temp.push(time + 168);
+        flag = true;
+      } else temp.push(time);
+    }
+    if (flag) temp.push(0, 168);
+    var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+
+    var final = [];
+    for (var k = 0; k < sortedTimeData.length; k++) {
+      var repeated = false;
+      for (var l = 0; l < sortedTimeData.length; l++) {
+        if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
+          repeated = true;
+        }
+      }
+      if (!repeated) final.push(sortedTimeData[k]);
+    }
+
+    for (var m = 0; m < final.length - 1; m += 2) {
+      const _from = final[m];
+      const _to = final[m + 1];
+      for (var o = 1; o < 7; o++) {
+        if (o * 24 > _from && o * 24 < _to) {
+          final.push(o * 24, o * 24);
+        }
+      }
+    }
+    var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
+
+    var weeklyData = [];
+    for (var t = 0; t < 7; t++) {
+      var dailyData = [];
+      var exist = false;
+      for (var p = 0; p < sortedTimeDataNew.length - 1; p += 2) {
+        var _from = sortedTimeDataNew[p];
+        var _to = sortedTimeDataNew[p + 1];
+        // console.log(_from, _to, p, t * 24, (t + 1) * 24);
+        if (_to > t * 24 && _to <= (t + 1) * 24) {
+          dailyData.push({
+            _from: _from - t * 24,
+            _to: _to - t * 24,
+          });
+          exist = true;
+        }
+      }
+      if (!exist) weeklyData.push({ on_off: "off", data: [] });
+      else weeklyData.push({ on_off: "on", data: dailyData });
+    }
+    finalData.push({
+      accountId: sortedData[i].accountId,
+      value: {
+        _data: weeklyData,
+      },
+    });
   }
 }
 
@@ -86,7 +195,19 @@ return (
   <div>
     <br />
     <br />
-    <p>Select Instance Time</p>
+    <p>Select Time zone</p>
+    <select
+      name="zones"
+      id="zones"
+      value={state._time_zone}
+      onChange={(e) => {
+        State.update({ _time_zone: e.target.value });
+      }}
+    >
+      {time_zones.map((zone) => (
+        <option value={zone}>{zone}</option>
+      ))}
+    </select>
     <div className="d-flex flex-column w-75 justify-content-around">
       {days.map((day, index) => (
         <div>
@@ -101,64 +222,109 @@ return (
                 let temp = state._is_on;
                 temp[index] = e.target.value;
                 State.update({ _is_on: temp });
+                if (e.target.value == "off") {
+                  state._from[index] = "0";
+                  state._to[index] = "0";
+                }
               }}
             >
               <option value="on">on</option>
               <option value="off">off</option>
             </select>
-            <p>From</p>
-            <select
-              name="times"
-              id="time"
-              enable={state._is_on[index] == "on"}
-              value={state._from[index]}
-              onChange={(e) => {
-                let temp = state._from;
-                temp[index] = e.target.value;
-                State.update({ _from: temp });
-              }}
-            >
-              {hours.map((hour) => (
-                <option value={hour}>{hour}</option>
-              ))}
-            </select>
-            <p>To</p>
-            <select
-              name="times"
-              id="time"
-              enable={state._is_on[index] == "on"}
-              value={state._to[index]}
-              onChange={(e) => {
-                let temp = state._to;
-                temp[index] = e.target.value;
-                State.update({ _to: temp });
-              }}
-            >
-              {hours.map((hour) => (
-                <option value={hour}>{hour}</option>
-              ))}
-            </select>
+            {state._is_on[index] == "on" && (
+              <>
+                <p>From</p>
+                <select
+                  name="times"
+                  id="time"
+                  value={state._from[index]}
+                  onChange={(e) => {
+                    let temp = state._from;
+                    if (parseInt(e.target.value) < parseInt(state._to[index])) {
+                      temp[index] = e.target.value;
+                      State.update({ _from: temp });
+                    }
+                  }}
+                >
+                  {hours.map((hour) => (
+                    <option value={hour}>{hour}</option>
+                  ))}
+                </select>
+                <p>To</p>
+                <select
+                  name="times"
+                  id="time"
+                  value={state._to[index]}
+                  onChange={(e) => {
+                    let temp = state._to;
+                    if (parseInt(e.target.value) > parseInt(state._to[index])) {
+                      temp[index] = e.target.value;
+                      State.update({ _to: temp });
+                    }
+                  }}
+                >
+                  {hours.map((hour) => (
+                    <option value={hour}>{hour}</option>
+                  ))}
+                </select>
+              </>
+            )}
           </div>
         </div>
       ))}
     </div>
     <CommitButton
       style={button}
-      data={{
-        index: {
-          Instance_time: JSON.stringify(
-            {
-              key: "monday",
-              value: {
-                _is_on: state._is_on,
-                _from: state._from,
-                _to: state._to,
+      data={() => {
+        const offset = -utc_times[time_zones.indexOf(state._time_zone)];
+        var temp = [];
+        var flag = false;
+        for (var i = 0; i < 7; i++) {
+          if (state._is_on[i] == "on") {
+            const _from = parseInt(state._from[i]) + 24 * i + offset;
+            const _to = parseInt(state._to[i]) + 24 * i + offset;
+            if (_from > 168) {
+              temp.push(_from - 168);
+              flag = true;
+            } else if (_from < 0) {
+              temp.push(_from + 168);
+              flag = true;
+            } else temp.push(_from);
+            if (_to < 0) {
+              temp.push(_to + 168);
+              flag = true;
+            } else if (_to > 168) {
+              temp.push(_to - 168);
+              flag = true;
+            } else temp.push(_to);
+          }
+        }
+        if (flag) temp.push(0, 168);
+        const sortedData = temp.sort((d2, d1) => d2 - d1);
+        var finalData = [];
+        for (var i = 0; i < sortedData.length; i++) {
+          var repeated = false;
+          for (var j = 0; j < sortedData.length; j++) {
+            if (i != j && sortedData[i] == sortedData[j]) {
+              repeated = true;
+            }
+          }
+          if (!repeated) finalData.push(sortedData[i]);
+        }
+        return {
+          index: {
+            Instance_time: JSON.stringify(
+              {
+                key: "data",
+                value: {
+                  _data: finalData,
+                },
               },
-            },
-            undefined,
-            0
-          ),
-        },
+              undefined,
+              0
+            ),
+          },
+        };
       }}
       onCommit={() => {
         State.update({
@@ -188,17 +354,22 @@ return (
                 {d.accountId}
               </a>
               <div>
-                {days.map((day, index) => (
-                  <div>
-                    {day}:
-                    <b>
-                      {d.value._is_on[index] == "on"
-                        ? `${d.value._from[index]}~${d.value._to[index]}`
-                        : "off"}
-                      &nbsp;&nbsp;&nbsp;
-                    </b>
-                  </div>
-                ))}
+                <div>
+                  <b>
+                    {d.value._data.map((week, index) => {
+                      return (
+                        <>
+                          <div>{`${days[index]} : ${week.on_off}`}</div>
+                          <div>
+                            {week.data.map((y) => (
+                              <li>{`${y._from} - ${y._to}`}</li>
+                            ))}
+                          </div>
+                        </>
+                      );
+                    })}
+                  </b>
+                </div>
               </div>
             </div>
           ))
