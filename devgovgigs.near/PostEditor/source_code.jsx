@@ -37,7 +37,7 @@ let fields = {
 }[postType];
 
 const onClick = () => {
-  let labels = [];
+  let labels = state.labelStrings;
   var body = {
     Comment: { description: state.description, comment_version: "V2" },
     Idea: {
