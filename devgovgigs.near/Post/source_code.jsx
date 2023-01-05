@@ -288,9 +288,9 @@ const editorsFooter = props.isPreview ? null : (
 const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
-const postLables = post.labels ? (
+const postLables = post.snapshot.labels ? (
   <div class="card-title">
-    {post.labels.map((label) => {
+    {post.snapshot.labels.map((label) => {
       return <span class="badge text-bg-primary">{label}</span>;
     })}
   </div>
