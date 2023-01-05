@@ -19,7 +19,9 @@ State.init({
 
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
-  MULTIPLE_CHOICE: { id: "1", value: "Multiple choice" },
+  SINGLE_ANSWER: { id: "1", value: "Single answer" },
+  MULTISELECT: { id: "2", value: "Multiselect" },
+  YES_OR_NO: { id: "3", value: "Yes or No" },
 };
 
 const getPublicationParams = (isDraft) => {
@@ -70,11 +72,7 @@ function isValidHttpUrl(string) {
 
 const isValidInput = (quesitonNumber) => {
   // TODO validate date and link types
-  let result =
-    (state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
-      state.choices.filter((c) => c != "").length >= 2) ||
-    state.pollType != pollTypes.MULTIPLE_CHOICE.id;
-  result = result && state.pollTitle != "";
+  let result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
   result = result && isValidTelegramLink();
   result = result && state.pollStartDate != "";
@@ -269,7 +267,7 @@ const renderTextInputsForChoices = (questionNumber) => {
 
   return (
     <>
-      {thisQuestionChoices.map((questionNumber) => {
+      {thisQuestionChoices.map((choiceNumber) => {
         return (
           <div className="mb-2">
             <div style={{ position: "relative" }}>
@@ -285,18 +283,18 @@ const renderTextInputsForChoices = (questionNumber) => {
                 }}
                 type="text"
                 className={
-                  !state.questions[questionNumber] && state.showErrorsInForm
+                  !state.choices[questionNumber][choiceNumber] &&
+                  state.showErrorsInForm
                     ? "border border-danger mb-2"
                     : "mb-2"
                 }
-                id={`question-${questionNumber}`}
-                value={state.questions[questionNumber]}
+                id={`question-${questionNumber}-${choiceNumber}`}
+                value={state.choices[questionNumber][choiceNumber]}
                 onChange={(e) => {
-                  () => {
-                    let newQuestions = state.questions;
-                    newQuestions[questionNumber] = e.target.value;
-                    State.update({ questions: newQuestions });
-                  };
+                  let newChoices = state.choices;
+                  newChoices[questionNumber][choiceNumber] = e.target.value;
+
+                  State.update({ choices: newChoices });
                 }}
               />
               <i
@@ -308,7 +306,9 @@ const renderTextInputsForChoices = (questionNumber) => {
                   right: "1rem",
                   top: "0.55rem",
                 }}
-                onClick={() => deleteChoiceHandler(questionNumber)}
+                onClick={() =>
+                  deleteChoiceHandler(questionNumber, choiceNumber)
+                }
               ></i>
             </div>
           </div>
@@ -400,11 +400,13 @@ const renderTextInputsForChoices = (questionNumber) => {
 //   };
 // }
 
-function deleteChoiceHandler(questionNumber) {
+function deleteChoiceHandler(questionNumber, choiceNumber) {
   let thisQuestionChoices = state.choices[questionNumber];
+
   let newThisQuestionChoices = [];
-  for (let i = 0; i < choices.length; i++) {
-    if (i != questionNumber) {
+
+  for (let i = 0; i < thisQuestionChoices.length; i++) {
+    if (i != choiceNumber) {
       newThisQuestionChoices.push(thisQuestionChoices[i]);
     }
   }
@@ -773,7 +775,7 @@ return (
                     border: "1.5px solid #E1E9F0",
                     padding: "1.5rem 1rem",
                     borderRadius: "1.2rem",
-                    margin: "0 auto",
+                    margin: "1rem auto",
                   }}
                 >
                   <label
@@ -831,6 +833,10 @@ return (
                       }}
                     ></i>
                   </div>
+                  {!state.questions[questionNumber] &&
+                    state.showErrorsInForm && (
+                      <p className="text-danger">Question cannot be empty</p>
+                    )}
 
                   <label
                     className="mt-3"
@@ -1247,10 +1253,14 @@ return (
                     </>
                   )}
                   {state.showErrorsInForm &&
-                    state.pollTypes[questionNumber] ==
-                      pollTypes.MULTIPLE_CHOICE.id &&
-                    state.choices[questionNumber].filter((c) => c != "")
-                      .length < 2 && (
+                    ((state.pollTypes[questionNumber] ==
+                      pollTypes.SINGLE_ANSWER.id &&
+                      state.choices[questionNumber].filter((c) => c != "")
+                        .length < 2) ||
+                      (state.pollTypes[questionNumber] ==
+                        pollTypes.MULTISELECT.id &&
+                        state.choices[questionNumber].filter((c) => c != "")
+                          .length < 2)) && (
                       <p className="text-danger">
                         Should have at least 2 options
                       </p>
