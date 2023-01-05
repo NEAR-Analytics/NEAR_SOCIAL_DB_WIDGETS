@@ -291,7 +291,11 @@ const renamedPostType =
 const postLables = post.snapshot.labels ? (
   <div class="card-title">
     {post.snapshot.labels.map((label) => {
-      return <span class="badge text-bg-primary">{label}</span>;
+      return (
+        <span class="badge text-bg-primary " style={{ marginRight: "0.9em" }}>
+          {label}
+        </span>
+      );
     })}
   </div>
 ) : null;
