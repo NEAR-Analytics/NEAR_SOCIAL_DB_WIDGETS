@@ -21,6 +21,13 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
+console.log(
+  Near.view(ownerId, "is_allowed_to_edit", {
+    post_id: postId,
+    editor: context.accountId,
+  })
+);
+
 const allowedToEdit =
   !props.isPreview &&
   Near.view(ownerId, "is_allowed_to_edit", {
@@ -46,7 +53,7 @@ const btnEditorWidget = (postType, name) => {
   );
 };
 
-const editControl = !allowedToEdit ? (
+const editControl = allowedToEdit ? (
   <div class="btn-group" role="group">
     <a
       class="card-link px-2"
