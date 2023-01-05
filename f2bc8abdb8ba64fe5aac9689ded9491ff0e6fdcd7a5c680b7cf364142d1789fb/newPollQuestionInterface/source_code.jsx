@@ -316,7 +316,7 @@ const renderTextInputsForChoices = (questionNumber) => {
       })}
       <div
         className="d-flex align-items-center"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", maxWidth: "max-content" }}
         onClick={() => addChoicesHandler(questionNumber)}
       >
         <i
@@ -401,27 +401,29 @@ const renderTextInputsForChoices = (questionNumber) => {
 // }
 
 function deleteChoiceHandler(questionNumber, choiceNumber) {
-  let thisQuestionChoices = state.choices[questionNumber];
+  if (state.amountOfChoices[questionNumber] > 1) {
+    let thisQuestionChoices = state.choices[questionNumber];
 
-  let newThisQuestionChoices = [];
+    let newThisQuestionChoices = [];
 
-  for (let i = 0; i < thisQuestionChoices.length; i++) {
-    if (i != choiceNumber) {
-      newThisQuestionChoices.push(thisQuestionChoices[i]);
+    for (let i = 0; i < thisQuestionChoices.length; i++) {
+      if (i != choiceNumber) {
+        newThisQuestionChoices.push(thisQuestionChoices[i]);
+      }
     }
+
+    let newChoices = state.choices;
+    newChoices[questionNumber] = newThisQuestionChoices;
+
+    let newAmountOfChoices = state.amountOfChoices;
+    newAmountOfChoices[questionNumber] =
+      Number(newAmountOfChoices[questionNumber]) - 1;
+
+    State.update({
+      amountOfChoices: newAmountOfChoices,
+      choices: newChoices,
+    });
   }
-
-  let newChoices = state.choices;
-  newChoices[questionNumber] = newThisQuestionChoices;
-
-  let newAmountOfChoices = state.amountOfChoices;
-  newAmountOfChoices[questionNumber] =
-    Number(newAmountOfChoices[questionNumber]) - 1;
-
-  State.update({
-    amountOfChoices: newAmountOfChoices,
-    choices: newChoices,
-  });
 }
 
 function addChoicesHandler(questionNumber) {
@@ -462,6 +464,40 @@ function getTypeOfQuestionSelectionStyles(questionNumber, typeOfQuestion) {
   }
 }
 
+function getDangerClassIfNeeded(tab) {
+  let normalStyles = true;
+  if (state.showErrorsInForm) {
+    for (let i = 0; i < state.amountOfQuestions; i++) {
+      if (tab == "MainInformation") {
+        normalStyles = normalStyles && state.pollTitle != "";
+        normalStyles = normalStyles && state.pollDescription != "";
+        normalStyles = normalStyles && isValidTelegramLink();
+        normalStyles = normalStyles && state.pollStartDate != "";
+        normalStyles = normalStyles && state.pollEndDate != "";
+        normalStyles =
+          normalStyles &&
+          getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
+      } else {
+        if (
+          state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
+          state.pollTypes[i] == pollTypes.MULTISELECT.id
+        ) {
+          normalStyles =
+            normalStyles &&
+            !(state.choices[i].filter((c) => c != "").length < 2);
+        }
+        normalStyles = normalStyles && state.questions[i] != "";
+      }
+    }
+  }
+
+  if (state.showErrorsInForm) {
+    return !normalStyles && "text-danger";
+  }
+  return "";
+}
+a;
+
 let amountOfQuestions = [];
 for (let i = 0; i < state.amountOfQuestions; i++) {
   amountOfQuestions.push(i);
@@ -478,6 +514,7 @@ return (
   >
     <div style={{ margin: "0 auto" }}>
       <span
+        className={getDangerClassIfNeeded("MainInformation")}
         style={
           state.sectionShown == "mainInfo"
             ? {
@@ -502,6 +539,7 @@ return (
         <i className="bi bi-square-fill"></i> Main information
       </span>
       <span
+        className={getDangerClassIfNeeded("Questions")}
         style={
           state.sectionShown == "questions"
             ? {
@@ -523,7 +561,8 @@ return (
           State.update({ sectionShown: "questions" });
         }}
       >
-        <i className="bi bi-square-fill"></i> Questions{" "}
+        <i className="bi bi-square-fill"></i>
+        Questions
         <span
           style={{
             fontSize: "0.7rem",
@@ -1253,14 +1292,12 @@ return (
                     </>
                   )}
                   {state.showErrorsInForm &&
-                    ((state.pollTypes[questionNumber] ==
-                      pollTypes.SINGLE_ANSWER.id &&
-                      state.choices[questionNumber].filter((c) => c != "")
-                        .length < 2) ||
-                      (state.pollTypes[questionNumber] ==
-                        pollTypes.MULTISELECT.id &&
-                        state.choices[questionNumber].filter((c) => c != "")
-                          .length < 2)) && (
+                    (state.pollTypes[questionNumber] ==
+                      pollTypes.SINGLE_ANSWER.id ||
+                      state.pollTypes[questionNumber] ==
+                        pollTypes.MULTISELECT.id) &&
+                    state.choices[questionNumber].filter((c) => c != "")
+                      .length < 2 && (
                       <p className="text-danger">
                         Should have at least 2 options
                       </p>
@@ -1279,7 +1316,36 @@ return (
               borderRadius: "20px",
             }}
             onClick={() => {
-              State.update({ amountOfQuestions: state.amountOfQuestions + 1 });
+              let oldPollTypes = state.PollTypes;
+              let newPollTypes = [];
+
+              for (let i = 0; i < oldPollTypes.length; i++) {
+                newPollTypes.push(oldPollTypes[i]);
+              }
+              newPollTypes.push("");
+
+              let oldChoices = state.choices;
+              let newChoices = [];
+
+              for (let i = 0; i < oldChoices.length; i++) {
+                newChoices.push(oldChoices[i]);
+              }
+              newChoices.push([""]);
+
+              let oldAmountOfChoices = state.amountOfChoices;
+              let newAmountOfChoices = [];
+
+              for (let i = 0; i < oldAmountOfChoices.length; i++) {
+                newChoices.push(oldAmountOfChoices[i]);
+              }
+              newAmountOfChoices.push([""]);
+
+              State.update({
+                amountOfQuestions: state.amountOfQuestions + 1,
+                pollTypes: newPollTypes,
+                choices: newChoices,
+                amountOfChoices: newAmountOfChoices,
+              });
             }}
           >
             <i
