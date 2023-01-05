@@ -99,16 +99,19 @@ const existingLabels = existingLabelStrings.map((s) => {
 });
 
 const labelEditor = (
-  <Typeahead
-    multiple
-    labelKey="name"
-    onChange={setLabels}
-    options={existingLabels}
-    placeholder="near.social, widget, NEP, standard, protocol, tool"
-    selected={state.labels}
-    positionFixed
-    allowNew
-  />
+  <div className="col-lg-12  mb-2">
+    Labels:
+    <Typeahead
+      multiple
+      labelKey="name"
+      onChange={setLabels}
+      options={existingLabels}
+      placeholder="near.social, widget, NEP, standard, protocol, tool"
+      selected={state.labels}
+      positionFixed
+      allowNew
+    />
+  </div>
 );
 
 const nameDiv = fields.includes("name") ? (
