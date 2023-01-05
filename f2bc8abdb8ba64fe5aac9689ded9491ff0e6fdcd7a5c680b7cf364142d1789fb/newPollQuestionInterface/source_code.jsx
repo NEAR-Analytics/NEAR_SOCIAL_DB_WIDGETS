@@ -496,12 +496,13 @@ function getDangerClassIfNeeded(tab) {
   }
   return "";
 }
-a;
 
 let amountOfQuestions = [];
 for (let i = 0; i < state.amountOfQuestions; i++) {
   amountOfQuestions.push(i);
 }
+
+// console.log(JSON.stringify(getPublicationParams()));
 
 return (
   <div
@@ -899,7 +900,17 @@ return (
                         let newPollTypes = state.pollTypes;
                         newPollTypes[questionNumber] = "0";
 
-                        State.update({ pollTypes: newPollTypes });
+                        let newChoices = state.choices;
+                        newChoices[questionNumber] = [""];
+
+                        let newAmountOfChoices = state.amountOfChoices;
+                        newAmountOfChoices[questionNumber] = 1;
+
+                        State.update({
+                          pollTypes: newPollTypes,
+                          choices: newChoices,
+                          amountOfChoices: newAmountOfChoices,
+                        });
                       }}
                     >
                       {state.pollTypes[questionNumber] == "0" && (
@@ -1206,7 +1217,17 @@ return (
                         let newPollTypes = state.pollTypes;
                         newPollTypes[questionNumber] = "3";
 
-                        State.update({ pollTypes: newPollTypes });
+                        let newChoices = state.choices;
+                        newChoices[questionNumber] = [""];
+
+                        let newAmountOfChoices = state.amountOfChoices;
+                        newAmountOfChoices[questionNumber] = 1;
+
+                        State.update({
+                          pollTypes: newPollTypes,
+                          choices: newChoices,
+                          newAmountOfChoices: newAmountOfChoices,
+                        });
                       }}
                     >
                       {state.pollTypes[questionNumber] == "3" && (
@@ -1273,9 +1294,11 @@ return (
                       />
                     </div>
                   </div>
-                  {(state.pollTypes[questionNumber] == "1" ||
-                    state.pollTypes[questionNumber] == "2") && (
-                    <>
+                  {(state.pollTypes[questionNumber] ==
+                    pollTypes.SINGLE_ANSWER.id ||
+                    state.pollTypes[questionNumber] ==
+                      pollTypes.MULTISELECT.id) && (
+                    <div>
                       <label
                         className="mt-3"
                         for="pollType"
@@ -1289,7 +1312,7 @@ return (
                         Answer options
                       </label>
                       {renderTextInputsForChoices(questionNumber)}
-                    </>
+                    </div>
                   )}
                   {state.showErrorsInForm &&
                     (state.pollTypes[questionNumber] ==
@@ -1316,13 +1339,13 @@ return (
               borderRadius: "20px",
             }}
             onClick={() => {
-              let oldPollTypes = state.PollTypes;
+              let oldPollTypes = state.pollTypes;
               let newPollTypes = [];
 
               for (let i = 0; i < oldPollTypes.length; i++) {
                 newPollTypes.push(oldPollTypes[i]);
               }
-              newPollTypes.push("");
+              newPollTypes.push("0");
 
               let oldChoices = state.choices;
               let newChoices = [];
@@ -1336,11 +1359,19 @@ return (
               let newAmountOfChoices = [];
 
               for (let i = 0; i < oldAmountOfChoices.length; i++) {
-                newChoices.push(oldAmountOfChoices[i]);
+                newAmountOfChoices.push(oldAmountOfChoices[i]);
               }
-              newAmountOfChoices.push([""]);
+              newAmountOfChoices.push(1);
+
+              let oldQuestions = state.questions;
+              let newQuestions = [];
+              for (let i = 0; i < oldQuestions.length; i++) {
+                newQuestions.push(oldQuestions[i]);
+              }
+              newQuestions.push("");
 
               State.update({
+                questions: newQuestions,
                 amountOfQuestions: state.amountOfQuestions + 1,
                 pollTypes: newPollTypes,
                 choices: newChoices,
