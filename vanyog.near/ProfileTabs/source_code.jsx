@@ -27,13 +27,14 @@ const pills = [
   { id: "main", title: "Main" },
   { id: "articles", title: "Articles" },
   { id: "authors", title: "Authors" },
+  { id: "createArticle", title: "Create Article" },
 ];
 
 const handleArticle = (e, articleId) => {
   State.update({ ...state, articleId: articleId, authorId: undefined });
 };
 
-const handleAuthor = (authorId) => {
+const handleAuthor = (e, authorId) => {
   State.update({ ...state, articleId: undefined, authorId });
 };
 
@@ -130,13 +131,64 @@ return (
                   {" "}
                   Back to articles{" "}
                 </button>
+                <button
+                  onClick={() => {
+                    State.update({ editArticle: true });
+                  }}
+                >
+                  Edit Article{" "}
+                </button>
+
+                {state.editArticle && (
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => {
+                      console.log("save article");
+                      State.update({ editArticle: false, note: article.body });
+                    }}
+                  >
+                    Save Article{" "}
+                  </button>
+                )}
+
+                {state.editArticle && (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => {
+                      console.log("cancel");
+                      State.update({ editArticle: false, note: article.body });
+                    }}
+                  >
+                    Cancel{" "}
+                  </button>
+                )}
+
+                {state.editArticle && (
+                  <textarea
+                    id="textarea1"
+                    type="text"
+                    rows={10}
+                    className="form-control mt-2"
+                    value={state.note || article.body}
+                    onChange={(e) => {
+                      console.log("e", e);
+                      State.update({ ...state, note: e.target.value });
+                    }}
+                  />
+                )}
 
                 {article && (
                   <div className="mt-5 alert alert-secondary">
                     {console.log("article", article)}
                     <div>
                       Last edit by{" "}
-                      <a onClick={() => handleAuthor(article.author)}>
+                      <a
+                        href=""
+                        style={{ textDecoration: "underline" }}
+                        onClick={(e) => handleAuthor(e, article.author)}
+                      >
                         {article.author}
                       </a>
                       <br />
@@ -205,6 +257,7 @@ return (
           <div>
             {" "}
             <p>authors tab</p>
+            <Widget src="eugenewolf507.near/widget/TestWiki_Authors" />
           </div>
         )}
       </div>
