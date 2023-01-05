@@ -248,7 +248,7 @@ const EditorWidget = (postType) => {
         src={`${ownerId}/widget/PostEditor`}
         props={{
           postType,
-          id: postId,
+          postId,
           mode: "Edit",
           author_id: post.author_id,
           labels: post.snapshot.labels,
