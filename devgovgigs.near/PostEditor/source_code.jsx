@@ -64,6 +64,37 @@ const onClick = () => {
   });
 };
 
+const normalizeLabel = (label) =>
+  label
+    .replaceAll(/[- \.]/g, "_")
+    .replaceAll(/[^\w]+/g, "")
+    .replaceAll(/_+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+    .toLowerCase()
+    .trim("-");
+
+const setLabels = (labels) => {
+  labels = labels.map((o) => {
+    o.name = normalizeLabel(o.name);
+    return o;
+  });
+  State.update({ labels });
+};
+const existingLabels = Near.view(ownerId, "get_all_labels") ?? [];
+const labelEditor = (
+  <Typeahead
+    multiple
+    labelKey="labels"
+    onChange={setLabels}
+    options={existingLabels}
+    placeholder="near.social, widget, NEP, standard, protocol, tool"
+    selected={state.labels}
+    positionFixed
+    allowNew
+  />
+);
+
 const nameDiv = fields.includes("name") ? (
   <div className="col-lg-6  mb-2">
     Title:
@@ -138,6 +169,7 @@ return (
 
     <div class="card-body">
       <div className="row">
+        {labelEditor}
         {nameDiv}
         {amountDiv}
         {tokenDiv}
