@@ -35,11 +35,6 @@ const encryptedMessage = messageWithNonceUint8Array.slice(
   messageWithNonce.length
 );
 
-console.log(messageObject.receiver_public_key_base64);
-console.log(publicKeyBase64);
-console.log(messageObject.sender_public_key_base64);
-console.log();
-
 const messageTextUint8Array = nacl.box.open(
   encryptedMessage,
   nonce,
