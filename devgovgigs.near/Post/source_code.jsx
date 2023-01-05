@@ -288,6 +288,14 @@ const editorsFooter = props.isPreview ? null : (
 const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
+const postLables = post.labels ? (
+  <div class="card-title">
+    {post.labels.map((label) => {
+      return <span class="badge text-bg-primary">{label}</span>;
+    })}
+  </div>
+) : null;
+
 const postTitle =
   snapshot.post_type == "Comment" ? null : (
     <h5 class="card-title">
@@ -358,6 +366,7 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
+      {postLables}
       {postTitle}
       {postExtra}
       {descriptionArea}
