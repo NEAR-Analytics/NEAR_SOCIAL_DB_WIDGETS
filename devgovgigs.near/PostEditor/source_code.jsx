@@ -2,9 +2,18 @@ const ownerId = "devgovgigs.near";
 const postType = props.postType ?? "Sponsorship";
 const parentId = props.parentId ?? null;
 
+const labelStrings = props.labels ?? [];
+const labels = labelStrings.map((s) => {
+  return { name: s };
+});
+
 initState({
   author_id: context.accountId,
-  labels: [],
+  // Should be a list of objects with field "name".
+  labels,
+  // Should be a list of labels as strings.
+  // Both of the label structures should be modified together.
+  labelStrings,
   postType,
   name: "",
   description: "",
@@ -79,13 +88,20 @@ const setLabels = (labels) => {
     o.name = normalizeLabel(o.name);
     return o;
   });
-  State.update({ labels });
+  let labelStrings = labels.map((o) => {
+    return o.name;
+  });
+  State.update({ labels, labelStrings });
 };
-const existingLabels = Near.view(ownerId, "get_all_labels") ?? [];
+const existingLabelStrings = Near.view(ownerId, "get_all_labels") ?? [];
+const existingLabels = existingLabelStrings.map((s) => {
+  return { name: s };
+});
+
 const labelEditor = (
   <Typeahead
     multiple
-    labelKey="labels"
+    labelKey="name"
     onChange={setLabels}
     options={existingLabels}
     placeholder="near.social, widget, NEP, standard, protocol, tool"
@@ -194,7 +210,7 @@ return (
             likes: [],
             snapshot: {
               editor_id: state.editor_id,
-              labels: state.labels,
+              labels: state.labelStrings,
               post_type: postType,
               name: state.name,
               description: state.description,
