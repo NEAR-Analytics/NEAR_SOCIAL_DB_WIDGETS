@@ -96,7 +96,7 @@ const validate = () => {
   State.update({ _validate_result: result });
 };
 const onTimeChanged = (e, index, is_from_to) => {
-  let temp = state._from;
+  let temp = is_from_to ? state._from : state._to;
   temp[index] = e.target.value;
   is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
   let error_temp = state._validate_error;
@@ -209,7 +209,6 @@ return (
         <div>
           <p>{day}</p>
           <div className="d-flex justify-content-around">
-            <p>On or Off</p>
             <select
               value={state._is_on[index]}
               onChange={(e) => {
@@ -273,27 +272,23 @@ return (
         var zone = state._time_zone.split(" ")[0].split("UTC")[1].split(":");
         var hours = parseInt(zone[0]);
         var offset = hours + (parseInt(zone[1]) / 60) * ((hours > 0) * 2 - 1);
-
         var temp = [];
         var flag = false;
         for (var i = 0; i < 7; i++) {
           if (state._is_on[i] == "on") {
-            const _from = parseInt(state._from[i]) + 24 * i + offset;
-            const _to = parseInt(state._to[i]) + 24 * i + offset;
-            if (_from > 168) {
-              temp.push(_from - 168);
-              flag = true;
-            } else if (_from < 0) {
-              temp.push(_from + 168);
-              flag = true;
-            } else temp.push(_from);
-            if (_to < 0) {
-              temp.push(_to + 168);
-              flag = true;
-            } else if (_to > 168) {
-              temp.push(_to - 168);
-              flag = true;
-            } else temp.push(_to);
+            for (var j = 0; j < 2; j++) {
+              const time =
+                j == 0
+                  ? parseInt(state._from[i]) + 24 * i + offset
+                  : parseInt(state._to[i]) + 24 * i + offset;
+              if (time > 168) {
+                temp.push(time - 168);
+                flag = true;
+              } else if (time < 0) {
+                temp.push(time + 168);
+                flag = true;
+              } else temp.push(time);
+            }
           }
         }
         const final = sortAndRemoveRepeated(flag, temp);
