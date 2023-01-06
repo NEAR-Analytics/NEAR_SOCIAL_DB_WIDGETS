@@ -71,8 +71,8 @@ const time_zones = [
   "(UTC+13:00) Nuku'alofa",
 ];
 const utc_times = [
-  -11, -10, -9, -8, -7, -6, -6, -5, -4.5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 4.5, 5,
-  5.5, 5.75, 6, 6.5, 7, 8, 9, 9, 9, 9.5, 10, 11, 12, 13,
+  -11, -10, -9, -8, -7, -6, -6, -5, -4, -4.5, -4, -3.5, -3, -2, -1, 0, 1, 2, 3,
+  4, 4.5, 5, 5.5, 5.75, 6, 6.5, 7, 8, 9, 9, 9, 9.5, 10, 11, 12, 13,
 ];
 const hours = [
   "0",
@@ -122,6 +122,7 @@ var accountIds = [];
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
+    console.log(sortedData[i]);
     var date = new Date();
     var utc_offset = -date.getTimezoneOffset() / 60;
     var times = sortedData[i].value._data;
@@ -277,6 +278,7 @@ return (
       style={button}
       data={() => {
         const offset = -utc_times[time_zones.indexOf(state._time_zone)];
+        console.log(offset);
         var temp = [];
         var flag = false;
         for (var i = 0; i < 7; i++) {
