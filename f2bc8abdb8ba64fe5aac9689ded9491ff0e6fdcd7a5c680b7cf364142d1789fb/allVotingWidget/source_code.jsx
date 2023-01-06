@@ -247,7 +247,7 @@ const getPublicationParams = () => {
 
 //TODO check this
 function isVoteValid() {
-  let voteValid = true && state.vote.length == poll.value.questions.length;
+  let voteValid = state.vote.length == poll.value.questions.length;
   for (let i = 0; i < poll.value.questions.length; i++) {
     voteValid =
       (voteValid &&
