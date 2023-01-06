@@ -373,6 +373,8 @@ return (
       {postLables}
       {postTitle}
       {postExtra}
+      {descriptionArea}
+      {buttonsFooter}
     </div>
   </Card>
 );
