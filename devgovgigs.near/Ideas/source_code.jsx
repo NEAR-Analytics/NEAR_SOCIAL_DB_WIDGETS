@@ -25,7 +25,8 @@ const onLabelSelected = (selectedLabels) => {
     let newPostIds = Near.view(ownerId, "get_posts_by_label", {
       label: selectedLabels[0].name,
     }).reverse();
-
+    console.log("new ids");
+    console.log(newPostIds);
     State.update({
       postIds: newPostIds,
     });
