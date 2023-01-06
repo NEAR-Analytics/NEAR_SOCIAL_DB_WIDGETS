@@ -16,7 +16,9 @@ return (
     {postIds
       ? postIds.map((postId) => {
           return (
-            <Widget src={`${ownerId}/widget/Post`} props={{ id: postId }} />
+            <Widget src={`bo.near/widget/Post`} props={{ id: postId }} />
+
+            // <Widget src={`${ownerId}/widget/Post`} props={{ id: postId }} />
           );
         })
       : ""}
