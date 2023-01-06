@@ -1,6 +1,28 @@
 const ownerId = "devgovgigs.near";
 const postId = "Root";
-const postIds = Near.view(ownerId, "get_children_ids").reverse();
+const allPosts = Near.view(ownerId, "get_all_post_ids").reverse();
+const allTopPosts = Near.view(ownerId, "get_children_ids").reverse();
+
+const postIds = props.label
+  ? Near.view(ownerId, "get_posts_by_label", { label: props.label }).reverse()
+  : props.recency == "all"
+  ? allPosts
+  : allTopPosts;
+const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
+
+const labels = Near.view(ownerId, "get_all_labels");
+const wrappedLabels = labels.map((l) => {
+  return { name: l };
+});
+
+const onLabelSelected = (selectedLabels) => {
+  console.log("onLabelSelected");
+  let newURL = `${home}?label=${selectedLabels[0].name}`;
+  console.log(newURL);
+  if (selectedLabels.length == 1) {
+    window.location.replace(newURL);
+  }
+};
 
 // TODO: Sort ideas based on how much in total USD equivalent was pledged through sponsorships.
 // TODO: Sort ideas based on a criteria that includes social activity, like attestations.
@@ -82,91 +104,128 @@ const editorsFooter = props.isPreview ? null : (
   </div>
 );
 
-return (
-  <div>
-    <div class="card border-secondary">
-      <div class="nav navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <div class="navbar-brand">
-            <Widget
-              src="mob.near/widget/ProfileImage"
-              props={{
-                metadata,
-                accountId,
-                widgetName,
-                style: { height: "2.5em", width: "2.5em", minWidth: "2.5em" },
-                className: "me-2",
-              }}
-            />
-          </div>
-          <div class="nav navbar-brand h1">Create</div>
+const controls = (
+  <div class="card border-secondary mb-2">
+    <div class="nav navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="navbar-brand">
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              metadata,
+              accountId,
+              widgetName,
+              style: { height: "2.5em", width: "2.5em", minWidth: "2.5em" },
+              className: "me-2",
+            }}
+          />
+        </div>
+        <div class="nav navbar-brand h1">Create</div>
 
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  href={`#collapseIdeaEditor${postId}`}
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls={`collapseIdeaEditor${postId}`}
-                >
-                  <i class="bi-lightbulb"> </i>
-                  Idea
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  href={`#collapseSubmissionEditor${postId}`}
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls={`collapseSubmissionEditor${postId}`}
-                >
-                  <i class="bi-rocket"> </i>
-                  Solution
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  href={`#collapseAttestationEditor${postId}`}
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls={`collapseAttestationEditor${postId}`}
-                >
-                  <i class="bi-check-circle"> </i>
-                  Attestation
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  href={`#collapseSponsorshipEditor${postId}`}
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls={`collapseSponsorshipEditor${postId}`}
-                >
-                  <i class="bi-cash-coin"> </i>
-                  Sponsorship
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseIdeaEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseIdeaEditor${postId}`}
+              >
+                <i class="bi-lightbulb-fill"> </i>
+                Idea
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseSubmissionEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseSubmissionEditor${postId}`}
+              >
+                <i class="bi-rocket-fill"> </i>
+                Solution
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseAttestationEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseAttestationEditor${postId}`}
+              >
+                <i class="bi-check-circle-fill"> </i>
+                Attestation
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="#"
+                data-bs-toggle="collapse"
+                href={`#collapseSponsorshipEditor${postId}`}
+                role="button"
+                aria-expanded="false"
+                aria-controls={`collapseSponsorshipEditor${postId}`}
+              >
+                <i class="bi-cash-coin"> </i>
+                Sponsorship
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      {editorsFooter}
     </div>
+    {editorsFooter}
+  </div>
+);
 
+const navbar = (
+  <div class="card border-secondary">
+    <div class="nav navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href={home}>
+              <i class="bi-house-fill"> </i>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href={`${home}?recency=all`}>
+              <i class="bi-fire"> </i>
+              Recent
+            </a>
+          </li>
+
+          <li class="nav-item active">
+            <Typeahead
+              id="basic-typeahead-single"
+              labelKey="name"
+              onChange={onLabelSelected}
+              options={wrappedLabels}
+              placeholder="Search"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+);
+
+return (
+  <div>
+    {controls}
+    {navbar}
     {postIds
       ? postIds.map((postId) => {
           return (
