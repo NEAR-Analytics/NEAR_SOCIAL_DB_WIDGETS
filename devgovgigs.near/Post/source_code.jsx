@@ -24,15 +24,16 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
-const linkToParent = isUnderPost ? null : (
-  <div className="card-header">
-    <a
-      href={`https://near.social/#/devgovgigs.near/widget/Post?id=${parentId}`}
-    >
-      <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
-    </a>
-  </div>
-);
+const linkToParent = null;
+//  isUnderPost ? null : (
+//   <div className="card-header">
+//     <a
+//       href={`https://near.social/#/devgovgigs.near/widget/Post?id=${parentId}`}
+//     >
+//       <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
+//     </a>
+//   </div>
+// );
 
 const allowedToEdit =
   !props.isPreview &&
