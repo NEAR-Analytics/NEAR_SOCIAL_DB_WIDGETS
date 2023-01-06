@@ -206,6 +206,7 @@ const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
 
+//TODO check if this needs to consider the type of votes (Multiselect might be broking it since it have an array of strings instead of a single string)
 function countVotes(questionNumber) {
   return validAnswersToThisPoll.reduce((acc, curr) => {
     let ans = curr.value.answers[questionNumber];
