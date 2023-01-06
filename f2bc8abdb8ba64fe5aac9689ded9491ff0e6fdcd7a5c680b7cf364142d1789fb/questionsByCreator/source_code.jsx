@@ -6,7 +6,7 @@ State.init({
 });
 
 let isShort = props.isShort;
-let polls = Social.index("poll_question", "question-v3.0.2", {
+let polls = Social.index("poll_question", "question-v3.1.0", {
   accountId: props.accountId,
 });
 
@@ -39,7 +39,7 @@ function isUpcoming(poll) {
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let questionParams = polls.find(q => q.blockHeight == questionBlockHeight)
 
-  const answers = Social.index("poll_question", "answer-v3.0.2");
+  const answers = Social.index("poll_question", "answer-v3.1.0");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
