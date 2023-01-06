@@ -6,7 +6,7 @@ State.init({
 
 const onlyUsersPolls = props.onlyUser ?? false;
 
-let polls = Social.index("poll_question", "question-v3.0.2");
+let polls = Social.index("poll_question", "question-v3.1.0");
 
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
