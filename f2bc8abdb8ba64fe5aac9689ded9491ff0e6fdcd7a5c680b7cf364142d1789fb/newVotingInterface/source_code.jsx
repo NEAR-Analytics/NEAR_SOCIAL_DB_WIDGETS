@@ -20,6 +20,14 @@ if (!polls) {
 const poll =
   props.previewInfo ?? polls.find((q) => q.blockHeight == questionBlockHeight);
 
+if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
+  State.update({ poll: poll });
+}
+
+if (!state.poll && !isPreview) {
+  return "Loading...";
+}
+
 let profile = Social.getr(`${poll.accountId}/profile`);
 
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
@@ -42,10 +50,6 @@ if (
 
 if (!state.pollsByThisCreator) {
   return "Loading";
-}
-
-if (!state.poll && !isPreview) {
-  return "Loading...";
 }
 
 function sliceString(string, newStringLength) {
