@@ -449,7 +449,7 @@ const renderTextVotingInterface = (questionNumber) => {
 
 return (
   <>
-    {!isQuestionOpen ? "This question is already closed" : ""}
+    {!isQuestionOpen && "This poll is not open"}
     {pollParams.value.questions.map((questionParams, questionNumber) => {
       questionParams.questionType != "3"
         ? renderMultipleChoiceVotingInterface(questionParams, questionNumber)
