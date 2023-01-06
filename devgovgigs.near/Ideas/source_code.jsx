@@ -235,3 +235,29 @@ return (
       : ""}
   </div>
 );
+
+<li class="nav-item dropdown">
+  <a
+    class="nav-link active"
+    href="#"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <i class="bi bi-filter"></i>
+    Topics
+  </a>
+  <ul class="dropdown-menu">
+    {labels
+      ? labels.map((l) => {
+          return (
+            <li>
+              <a class="dropdown-item" href={`${home}?label=${l}`}>
+                {l}
+              </a>
+            </li>
+          );
+        })
+      : null}
+  </ul>
+</li>;
