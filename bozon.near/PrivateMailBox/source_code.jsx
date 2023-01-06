@@ -25,7 +25,7 @@ function renderLoginPage() {
     <div>
       <div class="d-flex flex-row align-items-center mb-3">
         <div class="col"></div>
-        <h1 class="col">Private MailBox Login</h1>
+        <h1 class="col">MailBox Login</h1>
         <div class="col"></div>
       </div>
       {registeredPublicKey && (
@@ -102,7 +102,7 @@ if (state.registerPage) {
             {"<"}
           </button>
         </div>
-        <h1 class="col">Private MailBox Register</h1>
+        <h1 class="col">MailBox Register</h1>
         <div class="col"></div>
       </div>
       <Widget
