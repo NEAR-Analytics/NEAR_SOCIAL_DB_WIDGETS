@@ -235,7 +235,8 @@ return (
     {controls}
     {navbar}
     <Widget
-      src={`${ownerId}/widget/IdeasList`}
+      src="bo.near/widget/IdeasList"
+      // src={`${ownerId}/widget/IdeasList`}
       props={{ recency: state.recency, label: state.label }}
     />
   </div>
