@@ -198,18 +198,7 @@ if (!state.answers) {
 const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
-// const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
-const validAnswersToThisPoll = [
-  {
-    accountId:
-      "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-    blockHeight: 82327114,
-    value: {
-      answer: ["0", "1", ["0", "1"], "Testing text answer"],
-      questionBlockHeight: 82308351,
-    },
-  },
-];
+const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
 let userVote;
 // Getting if user has already voted
@@ -293,16 +282,17 @@ const isValidInput = () => {
 };
 
 const renderAnswers = (questionNumber) => {
-  return validAnswersToThisPoll.map((answer) => {
-    return (
-      <div style={{ maxWidth: "45%" }}>
-        <Widget
-          src={`${widgetOwner}.near/widget/answer_poll-comment-container`}
-          props={{ blockHeight: answer.blockHeight, questionNumber }}
-        />
-      </div>
-    );
-  });
+  return (
+    <div style={{ width: "45%" }}>
+      <Widget
+        src={`${widgetOwner}/widget/answer_poll-comment-container`}
+        props={{
+          answers: validAnswersToThisPoll,
+          questionNumber,
+        }}
+      />
+    </div>
+  );
 };
 
 function clickRadioInputHandler(questionNumber, optionNumber) {
@@ -498,7 +488,7 @@ return (
               ? "Select one option:"
               : question.questionType == "2"
               ? "You can check multiple options:"
-              : "Write your answer"}
+              : "Write your answer:"}
           </p>
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
