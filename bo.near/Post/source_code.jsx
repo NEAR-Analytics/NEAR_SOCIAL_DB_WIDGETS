@@ -375,6 +375,8 @@ return (
       {postExtra}
       {descriptionArea}
       {buttonsFooter}
+      {editorsFooter}
+      {postsList}
     </div>
   </Card>
 );
