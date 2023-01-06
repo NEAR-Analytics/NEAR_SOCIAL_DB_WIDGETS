@@ -142,7 +142,7 @@ const renderQuestionsByThisCreator = () => {
           <span
             style={{
               backgroundColor: isUpcoming(pollByCreator)
-                ? "#ffe06e"
+                ? "#FFF3B4"
                 : isActive(pollByCreator)
                 ? "#D9FCEF"
                 : "#FFE5E5",
@@ -315,7 +315,7 @@ return (
           <span
             style={{
               backgroundColor: isUpcoming(state.poll)
-                ? "#ffe06e"
+                ? "#FFF3B4"
                 : isActive(state.poll)
                 ? "#D9FCEF"
                 : "#FFE5E5",
