@@ -1,13 +1,9 @@
-if (!props.isPreview && !props.blockHeight) {
-  return "Property blockHeight not set";
-}
-if (!props.isPreview && isNaN(props.blockHeight)) {
-  return "Property blockHeight should be a number";
+if (!props.isPreview && !props.poll) {
+  return "Property poll not set";
 }
 
 State.init({
   vote: userVote ?? [""],
-  questions: {},
   answers: {},
   showErrorsInForm: false,
 });
@@ -126,7 +122,7 @@ function getBlockTimestamp(blockHeight) {
 function getTimeRelatedValidAnswers(answers) {
   let low = 0;
   let high = answers.length - 1;
-  const questionEndTimestamp = pollParams.value.endTimestamp;
+  const questionEndTimestamp = poll.value.endTimestamp;
   let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
   if (endBlockTimestamp < questionEndTimestamp) return answers;
   // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
@@ -145,6 +141,7 @@ function getTimeRelatedValidAnswers(answers) {
   return answers.slice(0, high);
 }
 
+//TODO review this since new poll structure brake the function
 function getOptionRelatedValidAnswers(answers) {
   return answers.filter(
     (a) =>
@@ -162,17 +159,8 @@ function getValidAnswers() {
 const isPreview = props.isPreview ?? false;
 
 // Getting question
-const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.1.0");
-
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
-}
-
-if (!questions) {
-  return "Loading";
-}
-const pollParams = questions.find((q) => q.blockHeight == questionBlockHeight);
+const poll = props.poll;
+console.log("poll: ", poll);
 
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.1.0");
@@ -185,7 +173,7 @@ if (!state.answers) {
   return "Loading";
 }
 const answersToThisPoll = state.answers.filter(
-  (a) => a.value.questionBlockHeight == questionBlockHeight
+  (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
 const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
@@ -200,8 +188,8 @@ function userHasVoted() {
 }
 let hasVoted = userHasVoted();
 const isQuestionOpen =
-  pollParams.value.startTimestamp < Date.now() &&
-  Date.now() < pollParams.value.endTimestamp;
+  poll.value.startTimestamp < Date.now() &&
+  Date.now() < poll.value.endTimestamp;
 const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
@@ -223,7 +211,7 @@ const getPublicationParams = () => {
           key: "answer-v3.1.0",
           value: {
             answer: state.vote,
-            questionBlockHeight,
+            questionBlockHeight: props.poll.blockHeight,
           },
         },
         undefined,
@@ -251,6 +239,7 @@ function calculatePercentage(votesToThisOption) {
   return ((votesToThisOption / validAnswersToThisPoll.length) * 100).toFixed(2);
 }
 
+//TODO check this function since poll structure has changed
 function getBorderRadious(index) {
   if (index == 0) {
     return "12px 12px 4px 4px";
@@ -449,61 +438,80 @@ const renderTextVotingInterface = (questionNumber) => {
 
 return (
   <>
-    {pollParams.value.questions.map((questionParams, questionNumber) => {
-      questionParams.questionType != "3"
-        ? renderMultipleChoiceVotingInterface(questionParams, questionNumber)
-        : renderTextVotingInterface(questionNumber);
-    })}
-    {isQuestionOpen ? (
-      hasVoted ? (
-        <p
-          className="text-primary"
-          style={{ textAlign: "center", fontWeight: "500" }}
-        >
-          Voted
-        </p>
-      ) : isVoteValid() ? (
-        <CommitButton
-          className="w-100"
+    {poll.value.questions.map((question) => {
+      return (
+        <div
           style={{
-            marginTop: "0.5rem",
-            padding: "0.5rem",
-            backgroundColor: "#000000",
-            color: "#FFFFFF",
-            fontSize: "1rem",
-            borderRadius: "9px",
-            border: "none",
+            border: "1.5px solid rgb(206, 212, 218)",
+            borderRadius: "24px",
+            position: "relative",
           }}
-          data={getPublicationParams()}
+          className="p-3 my-3"
         >
-          Vote
-        </CommitButton>
-      ) : (
-        <>
-          <button
-            className="my-2 btn btn-primary"
-            onClick={() => State.update({ showErrorsInForm: true })}
-          >
-            Done
-          </button>
-          {state.showErrorsInForm && (
-            <span className="text-danger">Please answer all the questions</span>
+          <h4>{question.question}</h4>
+          {poll.value.questions.map((questionParams, questionNumber) => {
+            questionParams.questionType != "3"
+              ? renderMultipleChoiceVotingInterface(
+                  questionParams,
+                  questionNumber
+                )
+              : renderTextVotingInterface(questionNumber);
+          })}
+          {isQuestionOpen ? (
+            hasVoted ? (
+              <p
+                className="text-primary"
+                style={{ textAlign: "center", fontWeight: "500" }}
+              >
+                Voted
+              </p>
+            ) : isVoteValid() ? (
+              <CommitButton
+                className="w-100"
+                style={{
+                  marginTop: "0.5rem",
+                  padding: "0.5rem",
+                  backgroundColor: "#000000",
+                  color: "#FFFFFF",
+                  fontSize: "1rem",
+                  borderRadius: "9px",
+                  border: "none",
+                }}
+                data={getPublicationParams()}
+              >
+                Vote
+              </CommitButton>
+            ) : (
+              <>
+                <button
+                  className="my-2 btn btn-primary"
+                  onClick={() => State.update({ showErrorsInForm: true })}
+                >
+                  Done
+                </button>
+                {state.showErrorsInForm && (
+                  <span className="text-danger">
+                    Please answer all the questions
+                  </span>
+                )}
+              </>
+            )
+          ) : (
+            ""
           )}
-        </>
-      )
-    ) : (
-      ""
-    )}
-    <p
-      style={{
-        fontWeight: "500",
-        fontSize: "1.1rem",
-        color: "#767B8E",
-        letterSpacing: "-0.02em",
-        marginTop: "0.8rem",
-      }}
-    >
-      {validAnswersToThisPoll.length} votes
-    </p>
+          <p
+            style={{
+              fontWeight: "500",
+              fontSize: "1.1rem",
+              color: "#767B8E",
+              letterSpacing: "-0.02em",
+              marginTop: "0.8rem",
+            }}
+          >
+            {validAnswersToThisPoll.length} votes
+          </p>
+        </div>
+      );
+    })}
   </>
 );
