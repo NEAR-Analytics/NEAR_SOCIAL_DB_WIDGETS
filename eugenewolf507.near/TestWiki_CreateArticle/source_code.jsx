@@ -37,7 +37,7 @@ const saveHandler = () => {
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
       const args = {
-        article_id: idWithoutSpaces,
+        article_id: state.articleId,
         body: state.articleBody,
         navigation_id: null,
       };
