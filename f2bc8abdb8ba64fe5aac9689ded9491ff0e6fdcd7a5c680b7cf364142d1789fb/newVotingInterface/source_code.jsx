@@ -2,6 +2,8 @@ if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
+console.log(props.blockHeight);
+
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
@@ -516,6 +518,7 @@ return (
           </div>
         )}
         {state.poll.value.questions.map((question) => {
+          console.log(state.poll);
           return (
             <div
               style={{
