@@ -1,12 +1,14 @@
-return (
-<div>
-    <h4>
-        The most beautiful profile picture on the NEAR Social:
-    </h4>
+if (!context.accountId) {
+  return "Please login to continue";
+}
 
-    <div class="text-center">
-        <Widget src="mob.near/widget/ProfileImage" 
-        props={{ accountId: context.AccountId, style: {width: "10em" }}}/>
-    </div>
-</div>
-)
+return (
+  <div class="text-center">
+    <h4>The most beautiful profile picture on the NEAR Social:</h4>
+
+    <Widget
+      src="mob.near/widget/ProfileImage"
+      props={{ accountId: context.accountId, style: { width: "20em" } }}
+    />
+  </div>
+);
