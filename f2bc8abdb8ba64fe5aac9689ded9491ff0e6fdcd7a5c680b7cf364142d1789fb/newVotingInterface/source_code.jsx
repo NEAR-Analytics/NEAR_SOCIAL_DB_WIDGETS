@@ -22,7 +22,6 @@ const polls =
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
-console.log("state.polls: ", state.polls);
 
 if (!state.polls) {
   return "Loading";
@@ -517,7 +516,6 @@ return (
           </div>
         )}
         {state.poll.value.questions.map((question) => {
-          console.log("state.poll: ", state.poll);
           return (
             <div
               style={{
