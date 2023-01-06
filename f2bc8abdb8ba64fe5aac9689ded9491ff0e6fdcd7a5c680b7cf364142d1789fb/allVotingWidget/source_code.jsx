@@ -163,7 +163,7 @@ const isPreview = props.isPreview;
 
 // Getting question
 const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.0.2");
+const questions = Social.index("poll_question", "question-v3.1.0");
 
 if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
   State.update({ questions: questions });
@@ -175,7 +175,7 @@ if (!questions) {
 const pollParams = questions.find((q) => q.blockHeight == questionBlockHeight);
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.0.2");
+const answers = Social.index("poll_question", "answer-v3.1.0");
 
 if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
   State.update({ answers: answers });
@@ -220,7 +220,7 @@ const getPublicationParams = () => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.0.2",
+          key: "answer-v3.1.0",
           value: {
             answer: state.vote,
             questionBlockHeight,
