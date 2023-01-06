@@ -8,6 +8,11 @@ const postIds = props.label
   : props.recency == "all"
   ? allPosts
   : allTopPosts;
+
+initState({
+  postIds,
+});
+
 const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
 
 const labels = Near.view(ownerId, "get_all_labels");
@@ -20,7 +25,12 @@ const onLabelSelected = (selectedLabels) => {
   let newURL = `${home}?label=${selectedLabels[0].name}`;
   console.log(newURL);
   if (selectedLabels.length == 1) {
-    location.href = newURL;
+    let newPostIds = Near.view(ownerId, "get_posts_by_label", {
+      label: props.label,
+    }).reverse();
+    State.update({
+      postIds: newPostIds,
+    });
   }
 };
 
@@ -226,13 +236,10 @@ return (
   <div>
     {controls}
     {navbar}
-    {postIds
-      ? postIds.map((postId) => {
-          return (
-            <Widget src={`${ownerId}/widget/Post`} props={{ id: postId }} />
-          );
-        })
-      : ""}
+    <Widget
+      src={`${ownerId}/widget/IdeasList`}
+      props={{ postIds: state.postIds }}
+    />
   </div>
 );
 
