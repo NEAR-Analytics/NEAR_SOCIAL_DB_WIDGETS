@@ -8,7 +8,7 @@ if (!props.blockHeight) {
 }
 
 const questionBlockHeight = props.blockHeight;
-let questions = Social.index("poll_question", "question-v3.0.1");
+let questions = Social.index("poll_question", "question-v3.1.0");
 
 if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
   State.update({ questions: questions });
