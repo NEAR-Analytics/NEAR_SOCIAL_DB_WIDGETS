@@ -125,7 +125,7 @@ return (
       <span
         style={{
           backgroundColor: isUpcoming()
-            ? "#ffe06e"
+            ? "#FFF3B4"
             : isActive()
             ? "#D9FCEF"
             : "#FFE5E5",
