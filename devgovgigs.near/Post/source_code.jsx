@@ -4,6 +4,9 @@ const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 const snapshot = post.snapshot;
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
+const parentId = isUnderPost
+  ? null
+  : Near.view(ownerId, "get_post", { get_parent_id: postId });
 
 const childPostIdsUnordered =
   Near.view(ownerId, "get_children_ids", {
@@ -19,6 +22,16 @@ function readableDate(timestamp) {
 
 const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
+);
+
+const linkToParent = isUnderPost ? null : (
+  <div className="card-header">
+    <a
+      href={`https://near.social/#/devgovgigs.near/widget/Post?id=${parentId}`}
+    >
+      <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
+    </a>
+  </div>
 );
 
 const allowedToEdit =
@@ -363,6 +376,7 @@ const descriptionArea = isUnderPost ? (
 
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
+    {linkToParent}
     {header}
     <div className="card-body">
       {postLables}
