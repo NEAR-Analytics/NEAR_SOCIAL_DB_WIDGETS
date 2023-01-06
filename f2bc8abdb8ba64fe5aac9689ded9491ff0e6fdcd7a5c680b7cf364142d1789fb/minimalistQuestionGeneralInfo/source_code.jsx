@@ -1,6 +1,6 @@
-let question = props;
+let poll = props;
 
-let options = {
+let dateFormatOptions = {
   month: "short",
   day: "numeric",
   year: "numeric",
@@ -9,7 +9,7 @@ let options = {
   hour12: "false",
 };
 
-if (!question) {
+if (!poll) {
   return "Prop passed wrongly to minimalistQuestionHeader";
 }
 
@@ -25,9 +25,9 @@ State.init({
 });
 
 function getValidAnswersQtyFromQuestion() {
-  let questionBlockHeight = question.blockHeight;
+  let questionBlockHeight = poll.blockHeight;
 
-  const answers = Social.index("poll_question", "answer-v3.0.1");
+  const answers = Social.index("poll_question", "answer-v3.0.2");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
@@ -35,10 +35,10 @@ function getValidAnswersQtyFromQuestion() {
   if (!answers) {
     return "Loading...";
   }
-  const answersFromThisQuestion = state.answers.filter(
+  const answersFromThisPoll = state.answers.filter(
     (a) => a.value.questionBlockHeight == questionBlockHeight
   );
-  const usersWithAnswers = answersFromThisQuestion.map((a) => a.accountId);
+  const usersWithAnswers = answersFromThisPoll.map((a) => a.accountId);
   const usersWithAnswersWithoutDuplicates = usersWithAnswers.filter(
     (u, index) => usersWithAnswers.indexOf(u) == index
   );
@@ -47,13 +47,13 @@ function getValidAnswersQtyFromQuestion() {
 
 function isActive() {
   return (
-    question.value.startTimestamp < Date.now() &&
-    Date.now() < question.value.endTimestamp
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp
   );
 }
 
 function isUpcoming() {
-  return question.value.startTimestamp > Date.now();
+  return poll.value.startTimestamp > Date.now();
 }
 
 return (
@@ -74,7 +74,7 @@ return (
             margin: "0",
           }}
         >
-          {makeAccountIdShorter(question.accountId)}
+          {makeAccountIdShorter(poll.accountId)}
         </p>
       </div>
 
@@ -93,9 +93,9 @@ return (
             margin: "0",
           }}
         >
-          {new Date(question.value.startTimestamp).toLocaleDateString(
+          {new Date(poll.value.startTimestamp).toLocaleDateString(
             [],
-            options
+            dateFormatOptions
           )}
         </p>
       </div>
@@ -110,9 +110,9 @@ return (
             margin: "0",
           }}
         >
-          {new Date(question.value.endTimestamp).toLocaleDateString(
+          {new Date(poll.value.endTimestamp).toLocaleDateString(
             [],
-            options
+            dateFormatOptions
           )}
         </p>
       </div>
@@ -120,9 +120,7 @@ return (
     <div className="d-flex justify-content-between mt-3">
       <div className="d-flex">
         <i className="bi bi-people" style={{ marginRight: "0.3rem" }}></i>
-        <span>
-          {getValidAnswersQtyFromQuestion(question.blockHeight)} votes
-        </span>
+        <span>{getValidAnswersQtyFromQuestion(poll.blockHeight)} votes</span>
       </div>
       <span
         style={{
