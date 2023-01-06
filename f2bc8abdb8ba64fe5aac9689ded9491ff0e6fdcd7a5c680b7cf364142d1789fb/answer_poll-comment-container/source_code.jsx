@@ -17,7 +17,7 @@ return (
           className="flex-column my-2 py-1 px-2"
           style={{
             backgroundColor: "#F2F6FA",
-            color: "#FAFAFB",
+            color: "#59606A",
             border: "1px solid #F2F6FA",
             borderRadius: "8px",
           }}
