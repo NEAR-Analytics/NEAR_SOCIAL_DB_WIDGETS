@@ -13,12 +13,13 @@ if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
 
-if (!polls) {
+if (!state.polls) {
   return "Loading";
 }
 
 const poll =
-  props.previewInfo ?? polls.find((q) => q.blockHeight == questionBlockHeight);
+  props.previewInfo ??
+  state.polls.find((q) => q.blockHeight == questionBlockHeight);
 
 if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
   State.update({ poll: poll });
@@ -28,7 +29,7 @@ if (!state.poll && !isPreview) {
   return "Loading...";
 }
 
-let profile = Social.getr(`${poll.accountId}/profile`);
+let profile = Social.getr(`${state.poll.accountId}/profile`);
 
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
@@ -39,7 +40,7 @@ if (!profile) {
 }
 
 let pollsByThisCreator = Social.index("poll_question", "question-v3.0.2", {
-  accountId: poll.accountId,
+  accountId: state.poll.accountId,
 });
 
 if (
@@ -77,6 +78,7 @@ function isUpcoming(poll) {
 State.init({
   showQuestionsByThisUser: false,
   descriptionHeightLimited: true,
+  poll: {},
   polls: [{}],
   profile: {},
   pollsByThisCreator: [{}],
@@ -224,7 +226,7 @@ const renderModal = () => {
           >
             <Widget
               src={`${widgetOwner}/widget/showQuestionsHandler`}
-              props={{ accountId: poll.accountId }}
+              props={{ accountId: state.poll.accountId }}
             />
           </div>
           <div className="modal-footer">
@@ -264,7 +266,7 @@ return (
               src="mob.near/widget/ProfileImage"
               props={{
                 profile,
-                question: poll.accountId,
+                question: state.poll.accountId,
                 className: "float-start d-inline-block me-2",
                 style: {
                   width: "3.5rem",
@@ -280,15 +282,16 @@ return (
                 Created by
               </span>
               <span style={{ fontWeight: "500" }}>
-                {sliceString(poll.accountId, 18)}
+                {sliceString(state.poll.accountId, 18)}
               </span>
             </div>
           </div>
 
-          {Date.now() < poll.value.endTimestamp && (
+          {Date.now() < state.poll.value.endTimestamp && (
             <>
               <span>
-                Start {new Date(poll.value.startTimestamp).toLocaleDateString()}
+                Start{" "}
+                {new Date(state.poll.value.startTimestamp).toLocaleDateString()}
               </span>
 
               <span
@@ -302,7 +305,7 @@ return (
                 <Widget
                   src={`silkking.near/widget/timeAgo`}
                   props={{
-                    timeInFuture: poll.value.endTimestamp,
+                    timeInFuture: state.poll.value.endTimestamp,
                     reduced: true,
                   }}
                 />
@@ -311,9 +314,9 @@ return (
           )}
           <span
             style={{
-              backgroundColor: isUpcoming(poll)
+              backgroundColor: isUpcoming(state.poll)
                 ? "#ffe06e"
-                : isActive(poll)
+                : isActive(state.poll)
                 ? "#D9FCEF"
                 : "#FFE5E5",
 
@@ -325,17 +328,17 @@ return (
               lineHeight: "1.9rem",
               fontSize: "1rem",
               letterSpacing: "-0.025rem",
-              color: isUpcoming(poll)
+              color: isUpcoming(state.poll)
                 ? "#FFC905"
-                : isActive(poll)
+                : isActive(state.poll)
                 ? "#00B37D"
                 : "#FF4747",
               fontWeight: "500",
             }}
           >
-            {isUpcoming(poll)
+            {isUpcoming(state.poll)
               ? "Upcoming"
-              : isActive(poll)
+              : isActive(state.poll)
               ? "Active"
               : "Closed"}
           </span>
@@ -362,7 +365,7 @@ return (
               wordWrap: "anywhere",
             }}
           >
-            {poll.value.title}
+            {state.poll.value.title}
           </h2>
         </div>
         <div
@@ -384,9 +387,9 @@ return (
             Description
           </h3>
           <p style={{ fontSize: "0.9rem" }}>
-            {showDescription(poll.value.description)}
+            {showDescription(state.poll.value.description)}
           </p>
-          {poll.value.description.length > 501 &&
+          {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
             <div
               style={{
@@ -413,7 +416,7 @@ return (
               </h4>
             </div>
           ) : (
-            poll.value.description.length > 501 && (
+            state.poll.value.description.length > 501 && (
               <div
                 style={{
                   position: "absolute",
@@ -443,7 +446,7 @@ return (
             )
           )}
         </div>
-        {poll.value.tgLink != "" && poll.value.tgLink != undefined && (
+        {state.poll.value.tgLink != "" && state.poll.value.tgLink != undefined && (
           <div
             className="mt-3 d-flex justify-content-between"
             style={{
@@ -476,8 +479,11 @@ return (
                   Discussion link
                 </p>
                 <h6>
-                  <a style={{ color: "#2346B1" }} href={poll.value.tgLink}>
-                    {sliceString(poll.value.tgLink, 30)}
+                  <a
+                    style={{ color: "#2346B1" }}
+                    href={state.poll.value.tgLink}
+                  >
+                    {sliceString(state.poll.value.tgLink, 30)}
                   </a>
                 </h6>
               </div>
@@ -485,7 +491,7 @@ return (
             <div className="d-flex align-items-center">
               <a
                 target="_blank"
-                href={poll.value.tgLink}
+                href={state.poll.value.tgLink}
                 style={{ userSelect: "none" }}
               >
                 <i
@@ -504,13 +510,12 @@ return (
                   cursor: "pointer",
                   marginLeft: "0.8rem",
                 }}
-                onClick={() => clipboard.writeText(poll.value.tgLink)}
+                onClick={() => clipboard.writeText(state.poll.value.tgLink)}
               ></i>
             </div>
           </div>
         )}
-        {poll.value.questions.map((question) => {
-          console.log("in");
+        {state.poll.value.questions.map((question) => {
           return (
             <div
               style={{
@@ -522,15 +527,13 @@ return (
             >
               <h4>{question.question}</h4>
 
-              {poll && (
-                <Widget
-                  src={`${widgetOwner}/widget/allVotingWidget`}
-                  props={{
-                    blockHeight: poll.blockHeight,
-                    isPreview,
-                  }}
-                />
-              )}
+              <Widget
+                src={`${widgetOwner}/widget/allVotingWidget`}
+                props={{
+                  blockHeight: state.poll.blockHeight,
+                  isPreview,
+                }}
+              />
             </div>
           );
         })}
