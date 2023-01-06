@@ -28,18 +28,18 @@ function uniteAccountId(accountId0, accountId1) {
 State.init({ message: "" });
 
 const incomingMessages = Social.index(
-  "private_message",
+  "receive_private_message",
   accountId.toLowerCase(),
   {
     subscribe: true,
     order: "desc",
-    accountId: props.receiverAccountId,
+    accountId: props.receiverAccountId.toLowerCase(),
   }
 );
 
 const outgoingMessages = Social.index(
-  "private_message",
-  props.receiverAccountId.toLowerCase(),
+  "send_private_message",
+  accountId.toLowerCase(),
   {
     subscribe: true,
     order: "desc",
@@ -49,11 +49,11 @@ const outgoingMessages = Social.index(
 
 if (incomingMessages === null || outgoingMessages === null) return "Loading...";
 
+console.log(outgoingMessages);
+
 const messages = outgoingMessages
   .concat(incomingMessages)
   .sort((a, b) => b.blockHeight - a.blockHeight);
-
-console.log(messages);
 
 return (
   <div>
@@ -106,7 +106,15 @@ return (
               },
             },
             index: {
-              private_message: JSON.stringify([
+              send_private_message: JSON.stringify([
+                {
+                  key: accountId.toLowerCase(),
+                  value: {
+                    version: "0",
+                  },
+                },
+              ]),
+              receive_private_message: JSON.stringify([
                 {
                   key: props.receiverAccountId.toLowerCase(),
                   value: {
