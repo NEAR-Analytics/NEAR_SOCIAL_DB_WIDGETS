@@ -78,7 +78,6 @@ return (
               const key = `load${id}`;
               !state[key] && State.update({ [key]: true });
               State.update({ articleId: undefined, authorId: undefined });
-              console.log("key", key);
             }}
           >
             {title}
