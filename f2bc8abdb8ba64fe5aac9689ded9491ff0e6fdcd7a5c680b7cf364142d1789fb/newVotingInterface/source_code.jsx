@@ -2,14 +2,12 @@ if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
 
-console.log(props.blockHeight);
-
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
 const polls =
-  !props.previewInfo && Social.index("poll_question", "question-v3.0.2");
+  !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
 
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
@@ -41,7 +39,7 @@ if (!profile) {
   return "Loading";
 }
 
-let pollsByThisCreator = Social.index("poll_question", "question-v3.0.2", {
+let pollsByThisCreator = Social.index("poll_question", "question-v3.1.0", {
   accountId: state.poll.accountId,
 });
 
@@ -93,7 +91,7 @@ const widgetOwner =
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let poll = polls.find(q => q.blockHeight == questionBlockHeight)
 
-  const answers = Social.index("poll_question", "answer-v3.0.2");
+  const answers = Social.index("poll_question", "answer-v3.1.0");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
@@ -518,7 +516,6 @@ return (
           </div>
         )}
         {state.poll.value.questions.map((question) => {
-          console.log(state.poll);
           return (
             <div
               style={{
