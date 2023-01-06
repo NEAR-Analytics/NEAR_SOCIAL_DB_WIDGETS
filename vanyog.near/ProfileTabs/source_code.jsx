@@ -23,7 +23,7 @@ const pills = [
   { id: "main", title: "Main" },
   { id: "articles", title: "Articles" },
   { id: "authors", title: "Authors" },
-  { id: "createArticle", title: "Create Article" },
+  { id: "create", title: "Create Article" },
 ];
 
 const handleArticle = (e, articleId) => {
@@ -45,10 +45,6 @@ const authorArticles =
   Near.view("thewiki.near", "get_account", {
     account_id: state?.authorId,
   });
-
-const mainPageNavigation = Near.view("thewiki.near", "get_article", {
-  article_id: "main_nav",
-});
 
 const mainPage = Near.view("thewiki.near", "get_article", {
   article_id: "",
@@ -82,6 +78,7 @@ return (
               const key = `load${id}`;
               !state[key] && State.update({ [key]: true });
               State.update({ articleId: undefined, authorId: undefined });
+              console.log("key", key);
             }}
           >
             {title}
@@ -96,20 +93,7 @@ return (
         id="pills-main"
         role="tabpanel"
         aria-labelledby="pills-main-tab"
-        onClickCapture={(e) => {
-          console.log("makrdown click", e);
-          try {
-            e.preventDefault();
-            e.stopPropagation();
-          } catch (e) {
-            console.log("error", e);
-            if (e.target.href.includes("https://near.social/")) {
-              console.log("!!!!LINK!!!! magic");
-            }
-          }
-        }}
       >
-        <Markdown text={mainPageNavigation.body} />
         <Markdown text={mainPage.body} />
       </div>
 
@@ -121,11 +105,10 @@ return (
       >
         {state.loadarticles && (
           <div>
-            <p className="mt-2">articlesNum = {articlesNum} </p>
+            {!state?.articleId && <h1>Articles</h1>}
 
             {state?.articleId ? (
               <div>
-                <p>Article name: {state?.articleId}</p>
                 <button
                   onClick={() => {
                     State.update({ articleId: undefined });
@@ -143,49 +126,51 @@ return (
                 </button>
 
                 {state.editArticle && (
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => {
-                      if (!state.note || article.body === state.note) return;
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => {
+                        if (!state.note || article.body === state.note) return;
 
-                      const args = {
-                        article_id: state?.articleId,
-                        body: state.note,
-                        navigation_id: null,
-                      };
+                        const args = {
+                          article_id: state?.articleId,
+                          body: state.note,
+                          navigation_id: null,
+                        };
 
-                      saveArticle(args);
-                    }}
-                  >
-                    Save Article{" "}
-                  </button>
+                        saveArticle(args);
+                      }}
+                    >
+                      Save Article{" "}
+                    </button>
+
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        State.update({
+                          editArticle: false,
+                          note: article.body,
+                        });
+                      }}
+                    >
+                      Cancel{" "}
+                    </button>
+                    <textarea
+                      id="textarea1"
+                      type="text"
+                      rows={10}
+                      className="form-control mt-2"
+                      value={state.note || article.body}
+                      onChange={(e) => {
+                        State.update({ ...state, note: e.target.value });
+                      }}
+                    />
+                  </>
                 )}
 
-                {state.editArticle && (
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => {
-                      State.update({ editArticle: false, note: article.body });
-                    }}
-                  >
-                    Cancel{" "}
-                  </button>
-                )}
-
-                {state.editArticle && (
-                  <textarea
-                    id="textarea1"
-                    type="text"
-                    rows={10}
-                    className="form-control mt-2"
-                    value={state.note || article.body}
-                    onChange={(e) => {
-                      State.update({ ...state, note: e.target.value });
-                    }}
-                  />
-                )}
+                <Markdown text={article.body} />
 
                 {article && (
                   <div className="mt-5 alert alert-secondary">
@@ -206,28 +191,28 @@ return (
                     {buttons}
                   </div>
                 )}
-
-                <Markdown text={article.body} />
               </div>
             ) : state?.authorId ? (
               <div>
-                {state.authorId}
+                <h4>Author: {state.authorId}</h4>
                 <ul>
-                  {authorArticles?.articles?.map((article, index) => (
-                    <li>
-                      <a
-                        href="#"
-                        onClick={(e) =>
-                          handleArticle(
-                            e,
-                            articles[articles.length - index - 1]
-                          )
-                        }
-                      >
-                        #{index + 1} {article}
-                      </a>
-                    </li>
-                  ))}
+                  {authorArticles &&
+                    authorArticles.articles &&
+                    authorArticles.articles.map((article, index) => (
+                      <li>
+                        <a
+                          href="#"
+                          onClick={(e) =>
+                            handleArticle(
+                              e,
+                              articles[articles.length - index - 1]
+                            )
+                          }
+                        >
+                          #{index + 1} {article}
+                        </a>
+                      </li>
+                    ))}
                 </ul>
               </div>
             ) : (
@@ -262,9 +247,21 @@ return (
       >
         {state.loadauthors && (
           <div>
-            {" "}
-            <p>authors tab</p>
             <Widget src="eugenewolf507.near/widget/TestWiki_Authors" />
+          </div>
+        )}
+      </div>
+
+      <div
+        className="tab-pane fade"
+        id="pills-create"
+        role="tabpanel"
+        aria-labelledby="pills-create-tab"
+      >
+        {state.loadcreate && (
+          <div>
+            <h1 className="mb-3"> Create Article</h1>
+            <Widget src="eugenewolf507.near/widget/TestWiki_CreateArticle" />
           </div>
         )}
       </div>
