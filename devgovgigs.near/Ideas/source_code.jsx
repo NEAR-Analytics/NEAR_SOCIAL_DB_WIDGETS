@@ -233,7 +233,7 @@ return (
     {navbar}
     <Widget
       src={`${ownerId}/widget/IdeasList`}
-      props={{ postIds: state.postIds }}
+      props={{ recency: state.recency, label: state.label }}
     />
   </div>
 );
