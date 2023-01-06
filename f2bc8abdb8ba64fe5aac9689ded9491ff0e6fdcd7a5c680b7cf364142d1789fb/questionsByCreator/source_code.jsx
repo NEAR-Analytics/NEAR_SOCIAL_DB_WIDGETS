@@ -1,20 +1,20 @@
 State.init({
   showQuestion: false,
   modalBlockHeight: 0,
-  questions: {},
+  polls: {},
   answers: {},
 });
 
 let isShort = props.isShort;
-let questions = Social.index("poll_question", "question-v3.0.1", {
+let polls = Social.index("poll_question", "question-v3.0.2", {
   accountId: props.accountId,
 });
 
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
+if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
+  State.update({ polls: polls });
 }
 
-if (!questions) {
+if (!polls) {
   return "Loading";
 }
 
@@ -25,21 +25,21 @@ function sliceString(string, newStringLength) {
   return string;
 }
 
-function isActive(question) {
+function isActive(poll) {
   return (
-    question.value.startTimestamp < Date.now() &&
-    Date.now() < question.value.endTimestamp
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp
   );
 }
 
-function isUpcoming(question) {
-  return question.value.startTimestamp > Date.now();
+function isUpcoming(poll) {
+  return poll.value.startTimestamp > Date.now();
 }
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  // let questionParams = questions.find(q => q.blockHeight == questionBlockHeight)
+  // let questionParams = polls.find(q => q.blockHeight == questionBlockHeight)
 
-  const answers = Social.index("poll_question", "answer-v3.0.1");
+  const answers = Social.index("poll_question", "answer-v3.0.2");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
@@ -66,6 +66,32 @@ function closeModalClickingOnTransparent() {
 
 let widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
+const renderPollTypeIcon = (poll) => {
+  let allPollTypes = [];
+  for (let i = 0; i < poll.value.questions.length; i++) {
+    if (!allPollTypes.includes(poll.value.questions[i].questionType)) {
+      allPollTypes.push(poll.value.questions[i].questionType);
+    }
+  }
+
+  allPollTypes.length == 1 &&
+  (allPollTypes[0] == "0" || allPollTypes[0] == "1") ? (
+    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "2" ? (
+    <i
+      style={{
+        transform: "rotate(90deg)",
+        padding: "0.6rem 0.8rem",
+      }}
+      className="bi bi-bar-chart-line"
+    ></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "3" ? (
+    <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : (
+    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+  );
+};
 
 const renderModal = () => {
   return (
@@ -130,7 +156,7 @@ const renderModal = () => {
 
 return (
   <>
-    {questions.map((questionByCreator, index) => {
+    {polls.map((poll, index) => {
       if ((isShort && index < 2) || !isShort) {
         return (
           <div
@@ -149,7 +175,7 @@ return (
             onClick={() => {
               State.update({
                 showQuestion: true,
-                modalBlockHeight: questionByCreator.blockHeight,
+                modalBlockHeight: poll.blockHeight,
               });
             }}
           >
@@ -164,25 +190,10 @@ return (
                   marginRight: "0.8rem",
                 }}
               >
-                {questionByCreator.value.questionType == "0" ? (
-                  <i
-                    className="bi bi-file-text"
-                    style={{ padding: "0.6rem 0.8rem" }}
-                  ></i>
-                ) : (
-                  questionByCreator.value.questionType == "1" && (
-                    <i
-                      style={{
-                        transform: "rotate(90deg)",
-                        padding: "0.6rem 0.8rem",
-                      }}
-                      className="bi bi-bar-chart-line"
-                    ></i>
-                  )
-                )}
+                {renderPollTypeIcon(poll)}
               </div>
               <p style={{ margin: "0.5rem 0 0 0", fontWeight: "500" }}>
-                {sliceString(questionByCreator.value.title, 20)}
+                {sliceString(poll.value.title, 20)}
               </p>
             </div>
             <div className="d-flex">
@@ -199,9 +210,7 @@ return (
                 <div>
                   <i className="bi bi-people"></i>
                   <span>
-                    {getValidAnswersQtyFromQuestion(
-                      questionByCreator.blockHeight
-                    )}
+                    {getValidAnswersQtyFromQuestion(poll.blockHeight)}
                   </span>
                 </div>
                 <span>
@@ -210,13 +219,13 @@ return (
                     src={`silkking.near/widget/timeAgo`}
                     props={{
                       reduced: true,
-                      timeInFuture: questionByCreator.value.endTimestamp,
+                      timeInFuture: poll.value.endTimestamp,
                     }}
                   />
                 </span>
                 <span
                   style={{
-                    backgroundColor: isUpcoming(questionByCreator)
+                    backgroundColor: isUpcoming(poll)
                       ? "#ffe06e"
                       : isActive()
                       ? "#D9FCEF"
@@ -230,7 +239,7 @@ return (
                     lineHeight: "1.5rem",
                     fontSize: "0.8rem",
                     letterSpacing: "-0.025rem",
-                    color: isUpcoming(questionByCreator)
+                    color: isUpcoming(poll)
                       ? "#FFC905"
                       : isActive()
                       ? "#00B37D"
@@ -238,7 +247,7 @@ return (
                     fontWeight: "500",
                   }}
                 >
-                  {isUpcoming(questionByCreator)
+                  {isUpcoming(poll)
                     ? "Upcoming"
                     : isActive()
                     ? "Active"
