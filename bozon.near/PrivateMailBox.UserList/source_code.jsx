@@ -8,37 +8,102 @@ if (!props.secretKeyBase64 || !props.onSelectedUser) {
 }
 
 let allProfiles =
-  Social.get(["*/profile/name", "*/private_message/public_key/*"]) || {};
+  Social.get(["*/profile/name", "*/profile/tags/*"], "final") || {};
 // allProfiles = Object.keys(allProfilesRequest).map((accountId) => {
 //   return [accountId, allProfilesRequest[accountId]?.profile?.name];
 // });
 
 const follows = Social.get(`${accountId}/graph/follow/**`);
 
-if (follows === null) return "Loading...";
+const incomingMessages = Social.index(
+  "receive_private_message",
+  accountId.toLowerCase(),
+  {
+    subscribe: true,
+  }
+);
+
+const outgoingMessages = Social.index(
+  "send_private_message",
+  accountId.toLowerCase(),
+  {
+    subscribe: true,
+  }
+);
+
+if (follows === null || incomingMessages === null || outgoingMessages === null)
+  return "Loading...";
 
 const allFollowers = follows
   ? Object.keys(follows).map((f) => {
-      return f;
+      return {
+        accountId: f,
+      };
     })
   : [];
 
-State.init({
-  userList: allFollowers,
-});
+const allMessagesCountPerAccountsObj = incomingMessages
+  .map((el) => {
+    return el.accountId;
+  })
+  .concat(allFollowers)
+  .concat(
+    outgoingMessages.map((el) => {
+      return {
+        accountId: el.value?.receiver_account_id,
+        blockHeight: el.blockHeight,
+      };
+    })
+  )
+  .filter((el) => el?.accountId)
+  .reduce((acc, el) => {
+    acc[el.accountId] = {
+      // countMessages:
+      //   acc[el.accountId].countMessages !== undefined
+      //     ? acc[el.accountId].countMessages + 1
+      //     : 0,
+      lastMessageBlockHeight:
+        el.blockHeight > (acc[el.accountId].lastMessageBlockHeight || 0)
+          ? el.blockHeight
+          : acc[el.accountId].lastMessageBlockHeight,
+    };
+    return acc;
+  }, {});
 
+const allMessagesCountPerAccountsArray = Object.keys(
+  allMessagesCountPerAccountsObj
+)
+  .map((acc) => {
+    return {
+      accountId: acc,
+      // countMessages: allMessagesCountPerAccountsObj[acc].countMessages,
+      lastMessageBlockHeight:
+        allMessagesCountPerAccountsObj[acc].lastMessageBlockHeight,
+    };
+  })
+  .sort(
+    (a, b) => b.lastMessageBlockHeight || 0 - a.lastMessageBlockHeight || 0
+  );
+
+State.init({
+  userList: allMessagesCountPerAccountsArray,
+});
+console.log(allMessagesCountPerAccountsArray);
 return (
   <div>
     <input
       class="mb-3 form-control"
       placeholder="🔍 Input username"
       onChange={(e) => {
-        const newFollowersArray = allFollowers.filter(
-          (accountId) => accountId.indexOf(e.target.value) !== -1
+        const newFollowersArray = allMessagesArray.filter(
+          (el) => el.accountId.indexOf(e.target.value) !== -1
         );
 
         if (allProfiles[e.target.value])
-          newFollowersArray.unshift(e.target.value);
+          newFollowersArray.unshift({
+            accountId: e.target.value,
+            //countMessages: 0,
+          });
 
         State.update({
           userList: newFollowersArray,
@@ -47,9 +112,9 @@ return (
     ></input>
 
     {allFollowers.length === 0 && <p>You don't have any followers yet</p>}
-    {state.userList.map((follower, i) => {
+    {state.userList.map((account, i) => {
       const followerRegisteredPublicKey = Social.get(
-        `${follower}/private_message/public_key`
+        `${account.accountId}/private_message/public_key`
       );
 
       return (
@@ -60,7 +125,7 @@ return (
           <Widget
             src="mob.near/widget/Profile.ShortInlineBlock"
             props={{
-              accountId: follower,
+              accountId: account.accountId,
             }}
           />
 
@@ -72,13 +137,24 @@ return (
               User not registered
             </span>
           ) : (
-            <button
-              onClick={() => {
-                props.onSelectedUser(follower, followerRegisteredPublicKey);
-              }}
-            >
-              Send message
-            </button>
+            <div>
+              {account.lastMessageBlockHeight && (
+                <Widget
+                  src={`mob.near/widget/TimeAgo`}
+                  props={{ blockHeight: account.lastMessageBlockHeight }}
+                />
+              )}
+              <button
+                onClick={() => {
+                  props.onSelectedUser(
+                    account.accountId,
+                    followerRegisteredPublicKey
+                  );
+                }}
+              >
+                Send message
+              </button>
+            </div>
           )}
         </div>
       );
