@@ -227,7 +227,7 @@ return (
                   style={{
                     backgroundColor: isUpcoming(poll)
                       ? "#ffe06e"
-                      : isActive()
+                      : isActive(poll)
                       ? "#D9FCEF"
                       : "#FFE5E5",
 
@@ -241,7 +241,7 @@ return (
                     letterSpacing: "-0.025rem",
                     color: isUpcoming(poll)
                       ? "#FFC905"
-                      : isActive()
+                      : isActive(poll)
                       ? "#00B37D"
                       : "#FF4747",
                     fontWeight: "500",
@@ -249,7 +249,7 @@ return (
                 >
                   {isUpcoming(poll)
                     ? "Upcoming"
-                    : isActive()
+                    : isActive(poll)
                     ? "Active"
                     : "Closed"}
                 </span>
