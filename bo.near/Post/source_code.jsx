@@ -336,7 +336,8 @@ const postsList =
           ? childPostIds.map((childId) => {
               return (
                 <Widget
-                  src={`${ownerId}/widget/Post`}
+                  src="bo.near/widget/Post"
+                  // src={`${ownerId}/widget/Post`}
                   props={{ id: childId, isUnderPost: true }}
                 />
               );
@@ -376,6 +377,7 @@ return (
       {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
+      {postsList}
     </div>
   </Card>
 );
