@@ -118,10 +118,10 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   if (!answers) {
     return "Loading";
   }
-  const answersFromThisQuestion = answers.filter(
+  const answersFromThisPoll = answers.filter(
     (a) => a.value.questionBlockHeight == questionBlockHeight
   );
-  const usersWithAnswers = answersFromThisQuestion.map((a) => a.accountId);
+  const usersWithAnswers = answersFromThisPoll.map((a) => a.accountId);
   const usersWithAnswersWithoutDuplicates = usersWithAnswers.filter(
     (u, index) => usersWithAnswers.indexOf(u) == index
   );
@@ -388,7 +388,6 @@ return (
             {questionParams.value.title}
           </h2>
         </div>
-
         <div
           className="p-3"
           style={{
@@ -467,7 +466,6 @@ return (
             )
           )}
         </div>
-
         {questionParams.value.tgLink != "" &&
           questionParams.value.tgLink != undefined && (
             <div
@@ -540,21 +538,25 @@ return (
               </div>
             </div>
           )}
+        {questionParams.value.questions.map((question) => {
+          return (
+            <div
+              style={{
+                border: "1.5px solid rgb(206, 212, 218)",
+                borderRadius: "24px",
+                position: "relative",
+              }}
+              className="p-3 my-3"
+            >
+              <h4>{question.question}</h4>
 
-        <div
-          style={{
-            border: "1.5px solid rgb(206, 212, 218)",
-            borderRadius: "24px",
-            position: "relative",
-          }}
-          className="p-3 my-3"
-        >
-          <h4>{questionParams.value.question}</h4>
-
-          {questionParams.value.questionType == "0"
-            ? renderVoteText()
-            : renderVoteMultipleChoice()}
-        </div>
+              {question.questionType == "3"
+                ? renderVoteText()
+                : renderVoteMultipleChoice(question.questionType)}
+            </div>
+          );
+        })}
+        //TODO add voting button and it's logic
       </div>
       <div style={{ minWidth: "17rem" }}>
         {questionsByCreator.length != 1 && (
