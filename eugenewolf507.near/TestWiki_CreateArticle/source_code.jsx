@@ -19,6 +19,10 @@ const initialState = {
 
 State.init(initialState);
 
+const saveArticle = (args) => {
+  Near.call("thewiki.near", "post_article", args, "30000000000000");
+};
+
 // === SAVE HANDLER ===
 const saveHandler = () => {
   State.update({ ...state, errorId: "", errorBody: "" });
@@ -33,7 +37,15 @@ const saveHandler = () => {
     if (!isArticleIdDublicated) {
       const idWithoutSpaces = state.articleId.replace(/\s+/g, "");
       State.update({ ...state, articleId: idWithoutSpaces });
+
       console.log("SAVE ARTICLE");
+      const args = {
+        article_id: idWithoutSpaces,
+        body: state.articleBody,
+        navigation_id: null,
+      };
+
+      saveArticle(args);
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
