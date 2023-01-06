@@ -369,6 +369,10 @@ const descriptionArea = isUnderPost ? (
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
-    <div className="card-body"></div>
+    <div className="card-body">
+      {postLables}
+      {postTitle}
+      {postExtra}
+    </div>
   </Card>
 );
