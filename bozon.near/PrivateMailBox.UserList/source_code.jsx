@@ -70,9 +70,7 @@ const allMessagesCountPerAccountsObj = incomingMessages
     return acc;
   }, {});
 
-const allMessagesCountPerAccountsArray = Object.keys(
-  allMessagesCountPerAccountsObj
-)
+const allAccountsArray = Object.keys(allMessagesCountPerAccountsObj)
   .map((acc) => {
     return {
       accountId: acc,
@@ -86,27 +84,27 @@ const allMessagesCountPerAccountsArray = Object.keys(
   );
 
 State.init({
-  userList: allMessagesCountPerAccountsArray,
+  userList: allAccountsArray,
 });
-console.log(allMessagesCountPerAccountsArray);
+
 return (
   <div>
     <input
       class="mb-3 form-control"
       placeholder="🔍 Input username"
       onChange={(e) => {
-        const newFollowersArray = allMessagesArray.filter(
+        const newAllAccountsArray = allAccountsArray.filter(
           (el) => el.accountId.indexOf(e.target.value) !== -1
         );
 
         if (allProfiles[e.target.value])
-          newFollowersArray.unshift({
+          newAllAccountsArray.unshift({
             accountId: e.target.value,
             //countMessages: 0,
           });
 
         State.update({
-          userList: newFollowersArray,
+          userList: newAllAccountsArray,
         });
       }}
     ></input>
