@@ -92,9 +92,6 @@ return (
         id="pills-main"
         role="tabpanel"
         aria-labelledby="pills-main-tab"
-        onClick={(e) => {
-          console.log("!!!e", e);
-        }}
       >
         {mainPage && <Markdown text={mainPage.body} />}
       </div>
@@ -219,22 +216,26 @@ return (
               </div>
             ) : (
               <ul>
-                {articles?.map((article, index, articles) => (
-                  <li key={article}>
-                    #{" "}
-                    <a
-                      href="#"
-                      onClick={(e) =>
-                        handleArticle(e, articles[articles.length - index - 1])
-                      }
-                    >
-                      {articles.length - index}{" "}
-                      {index === articles.length - 1
-                        ? "main page"
-                        : articles[articles.length - index - 1]}
-                    </a>
-                  </li>
-                ))}
+                {articles &&
+                  articles.map((article, index, articles) => (
+                    <li key={article}>
+                      #{" "}
+                      <a
+                        href="#"
+                        onClick={(e) =>
+                          handleArticle(
+                            e,
+                            articles[articles.length - index - 1]
+                          )
+                        }
+                      >
+                        {articles.length - index}{" "}
+                        {index === articles.length - 1
+                          ? "main page"
+                          : articles[articles.length - index - 1]}
+                      </a>
+                    </li>
+                  ))}
               </ul>
             )}
           </div>
