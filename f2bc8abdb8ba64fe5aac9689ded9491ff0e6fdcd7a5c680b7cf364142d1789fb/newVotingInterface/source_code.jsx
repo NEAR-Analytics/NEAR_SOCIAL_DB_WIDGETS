@@ -1,3 +1,13 @@
+State.init({
+  showQuestionsByThisUser: false,
+  descriptionHeightLimited: true,
+  poll: {},
+  polls: [{}],
+  profile: {},
+  pollsByThisCreator: [{}],
+  answers: [{}],
+});
+
 if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
 }
@@ -6,27 +16,28 @@ let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
+
 const polls =
   !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
-
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
+console.log("state.polls: ", state.polls);
 
 if (!state.polls) {
   return "Loading";
-}
+} else {
+  const poll =
+    props.previewInfo ??
+    state.polls.find((q) => q.blockHeight == questionBlockHeight);
 
-const poll =
-  props.previewInfo ??
-  state.polls.find((q) => q.blockHeight == questionBlockHeight);
+  if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
+    State.update({ poll: poll });
+  }
 
-if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
-  State.update({ poll: poll });
-}
-
-if (!state.poll && !isPreview) {
-  return "Loading...";
+  if (!state.poll && !isPreview) {
+    return "Loading...";
+  }
 }
 
 let profile = Social.getr(`${state.poll.accountId}/profile`);
@@ -74,16 +85,6 @@ function isActive(poll) {
 function isUpcoming(poll) {
   return poll.value.startTimestamp > Date.now();
 }
-
-State.init({
-  showQuestionsByThisUser: false,
-  descriptionHeightLimited: true,
-  poll: {},
-  polls: [{}],
-  profile: {},
-  pollsByThisCreator: [{}],
-  answers: [{}],
-});
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
