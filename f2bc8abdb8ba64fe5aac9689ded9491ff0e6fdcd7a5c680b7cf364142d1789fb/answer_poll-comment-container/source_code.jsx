@@ -6,7 +6,7 @@ if (!props.answers) {
 if (!props.questionNumber) {
   return "Prop questionNumber not set";
 }
-let answers = JSON.parse(props.answers);
+let answers = props.answers;
 let questionNumber = props.questionNumber;
 
 return (
