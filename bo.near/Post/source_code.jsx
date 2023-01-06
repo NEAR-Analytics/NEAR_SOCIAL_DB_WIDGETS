@@ -162,8 +162,6 @@ const btnCreatorWidget = (postType, icon, name) => {
   );
 };
 
-console.log("aaaaaaa");
-
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="col-8">
