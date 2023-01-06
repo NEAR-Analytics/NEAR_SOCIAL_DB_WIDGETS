@@ -36,7 +36,9 @@ if (follows === null || incomingMessages === null || outgoingMessages === null)
 
 const allFollowers = follows
   ? Object.keys(follows).map((f) => {
-      return f;
+      return {
+        accountId: f,
+      };
     })
   : [];
 
@@ -47,28 +49,46 @@ const allMessagesCountPerAccountsObj = incomingMessages
   .concat(allFollowers)
   .concat(
     outgoingMessages.map((el) => {
-      return el.value?.receiver_account_id;
+      return {
+        accountId: el.value?.receiver_account_id,
+        blockHeight: el.blockHeight,
+      };
     })
   )
-  .filter((el) => el)
+  .filter((el) => el?.accountId)
   .reduce((acc, el) => {
-    acc[el] += 1;
+    acc[el.accountId] = {
+      // countMessages:
+      //   acc[el.accountId].countMessages !== undefined
+      //     ? acc[el.accountId].countMessages + 1
+      //     : 0,
+      lastMessageBlockHeight:
+        el.blockHeight > (acc[el.accountId].lastMessageBlockHeight || 0)
+          ? el.blockHeight
+          : acc[el.accountId].lastMessageBlockHeight,
+    };
     return acc;
   }, {});
 
 const allMessagesCountPerAccountsArray = Object.keys(
   allMessagesCountPerAccountsObj
-).map((acc) => {
-  return {
-    accountId: acc,
-    countMessages: allMessagesCountPerAccountsObj[acc],
-  };
-});
+)
+  .map((acc) => {
+    return {
+      accountId: acc,
+      // countMessages: allMessagesCountPerAccountsObj[acc].countMessages,
+      lastMessageBlockHeight:
+        allMessagesCountPerAccountsObj[acc].lastMessageBlockHeight,
+    };
+  })
+  .sort(
+    (a, b) => b.lastMessageBlockHeight || 0 - a.lastMessageBlockHeight || 0
+  );
 
 State.init({
   userList: allMessagesCountPerAccountsArray,
 });
-
+console.log(allMessagesCountPerAccountsArray);
 return (
   <div>
     <input
@@ -82,7 +102,7 @@ return (
         if (allProfiles[e.target.value])
           newFollowersArray.unshift({
             accountId: e.target.value,
-            countMessages: 0,
+            //countMessages: 0,
           });
 
         State.update({
@@ -118,7 +138,12 @@ return (
             </span>
           ) : (
             <div>
-              {account.countMessages}
+              {account.lastMessageBlockHeight && (
+                <Widget
+                  src={`mob.near/widget/TimeAgo`}
+                  props={{ blockHeight: account.lastMessageBlockHeight }}
+                />
+              )}
               <button
                 onClick={() => {
                   props.onSelectedUser(follower, followerRegisteredPublicKey);
