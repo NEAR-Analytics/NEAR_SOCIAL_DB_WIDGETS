@@ -20,7 +20,7 @@ const onLabelSelected = (selectedLabels) => {
   let newURL = `${home}?label=${selectedLabels[0].name}`;
   console.log(newURL);
   if (selectedLabels.length == 1) {
-    window.location.replace(newURL);
+    location.href = newURL;
   }
 };
 
