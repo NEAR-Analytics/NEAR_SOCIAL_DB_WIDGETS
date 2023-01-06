@@ -56,17 +56,17 @@ const allMessagesCountPerAccountsObj = incomingMessages
     return acc;
   }, {});
 
-const allMessagesArray = Object.keys(allMessagesCountPerAccountsObj).map(
-  (acc) => {
-    return {
-      accountId: acc,
-      countMessages: allMessagesCountPerAccountsObj[acc],
-    };
-  }
-);
+const allMessagesCountPerAccountsArray = Object.keys(
+  allMessagesCountPerAccountsObj
+).map((acc) => {
+  return {
+    accountId: acc,
+    countMessages: allMessagesCountPerAccountsObj[acc],
+  };
+});
 
 State.init({
-  userList: allMessagesArray,
+  userList: allMessagesCountPerAccountsArray,
 });
 
 return (
