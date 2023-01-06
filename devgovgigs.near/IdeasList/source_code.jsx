@@ -9,7 +9,7 @@ const postIds = props.label
   ? allPosts
   : allTopPosts;
 
-console.log("Showing list of ids %s", postIds);
+console.log("Showing list of ids %s", postIds, state);
 
 return (
   <div>
