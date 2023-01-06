@@ -370,13 +370,13 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
-      {postLables}
-      {postTitle}
-      {postExtra}
-      {descriptionArea}
-      {buttonsFooter}
-      {editorsFooter}
-      {postsList}
+      // {postLables}
+      // {postTitle}
+      // {postExtra}
+      // {descriptionArea}
+      // {buttonsFooter}
+      // {editorsFooter}
+      // {postsList}
     </div>
   </Card>
 );
