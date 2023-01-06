@@ -2,10 +2,25 @@ if (!props.isPreview && !props.poll) {
   return "Property poll not set";
 }
 
+const isPreview = props.isPreview ?? false;
+
+// Getting question
+const poll = props.poll;
+
+let defaultVotes = [];
+for (let i = 0; i < poll.value.questions.length; i++) {
+  if (poll.value.questions[i].questionType == "2") {
+    defaultVotes.push([""]);
+  } else {
+    defaultVotes.push("");
+  }
+}
+
 State.init({
-  vote: userVote ?? [""],
+  vote: userVote ?? defaultVotes,
   answers: {},
   showErrorsInForm: false,
+  hoveringElement: "",
 });
 
 let bgBlue = "#96C0FF";
@@ -98,18 +113,32 @@ function getFontColor(index) {
       ];
 }
 
-function getInputStyles(index) {
-  return index + "" == state.vote
-    ? {
-        borderColor: "black",
-        backgroundColor: "black",
-        width: "1rem",
-        marginRight: "0.7rem",
-      }
-    : {
-        width: "1rem",
-        marginRight: "0.7rem",
-      };
+function getInputStyles(questionType, questionNumber, optionNumber) {
+  if (questionType == "2") {
+    return state.vote[questionNumber].includes(optionNumber + "")
+      ? {
+          borderColor: "black",
+          backgroundColor: "black",
+          width: "1rem",
+          marginRight: "0.7rem",
+        }
+      : {
+          width: "1rem",
+          marginRight: "0.7rem",
+        };
+  } else {
+    return optionNumber + "" == state.vote[questionNumber]
+      ? {
+          borderColor: "black",
+          backgroundColor: "black",
+          width: "1rem",
+          marginRight: "0.7rem",
+        }
+      : {
+          width: "1rem",
+          marginRight: "0.7rem",
+        };
+  }
 }
 
 // Utility function
@@ -141,13 +170,13 @@ function getTimeRelatedValidAnswers(answers) {
   return answers.slice(0, high);
 }
 
-//TODO review this since new poll structure brake the function
+//TODO review this since new poll structure breake the function
 function getOptionRelatedValidAnswers(answers) {
-  return answers.filter(
-    (a) =>
-      0 <= Number(a.value.answer) &&
-      Number(a.value.answer) < pollParams.value.choicesOptions.length
-  );
+  return answers.filter((a) => {
+    // console.log(a);
+    0 <= Number(a.value.answer) &&
+      Number(a.value.answer) < poll.value.choicesOptions.length;
+  });
 }
 
 function getValidAnswers() {
@@ -155,12 +184,6 @@ function getValidAnswers() {
   let validOptionAndTime = getOptionRelatedValidAnswers(validTime);
   return validOptionAndTime;
 }
-
-const isPreview = props.isPreview ?? false;
-
-// Getting question
-const poll = props.poll;
-console.log("poll: ", poll);
 
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.1.0");
@@ -195,7 +218,7 @@ const canVote = !hasVoted && isQuestionOpen;
 // Counting votes to display
 
 //TODO check if this needs to consider the type of votes (Multiselect might be broking it since it have an array of strings instead of a single string)
-function countVotes(questionNumber) {
+function countVotes(questionNumber, questionType) {
   return validAnswersToThisPoll.reduce((acc, curr) => {
     let ans = curr.value.answers[questionNumber];
     acc[Number(ans)] += 1;
@@ -203,6 +226,7 @@ function countVotes(questionNumber) {
   }, new Array(pollParams.value.choicesOptions.length).fill(0));
 }
 
+//TODO review this
 const getPublicationParams = () => {
   return {
     index: {
@@ -223,13 +247,13 @@ const getPublicationParams = () => {
 
 //TODO check this
 function isVoteValid() {
-  let voteValid = true && state.vote.length == questionParams.questions.length;
-  for (let i = 0; i < questionParams.questions.length; i++) {
+  let voteValid = true && state.vote.length == poll.value.questions.length;
+  for (let i = 0; i < poll.value.questions.length; i++) {
     voteValid =
       (voteValid &&
-        questionParams.quesitons.questionType == "2" &&
+        poll.value.quesitons.questionType == "2" &&
         state.vote[i].filter((a) => a != "").length > 0) ||
-      (questionParams.questions.questionType != "2" && state.vote[i] != "");
+      (poll.value.questions.questionType != "2" && state.vote[i] != "");
   }
   return voteValid;
 }
@@ -239,39 +263,14 @@ function calculatePercentage(votesToThisOption) {
   return ((votesToThisOption / validAnswersToThisPoll.length) * 100).toFixed(2);
 }
 
-//TODO check this function since poll structure has changed
-function getBorderRadious(index) {
-  if (index == 0) {
+function getBorderRadious(optionNumber) {
+  if (optionNumber == 0) {
     return "12px 12px 4px 4px";
-  } else if (index == pollParams.value.choicesOptions.length - 1) {
+  } else if (optionNumber == poll.value.choicesOptions.length - 1) {
     return "4px 4px 12px 12px";
   } else {
     return "4px";
   }
-}
-
-function getStyles(index) {
-  return !canVote
-    ? {
-        display: "flex",
-        alignContent: "center",
-        backgroundColor: `${getBgColor(index, false)}`,
-        color: `${getFontColor(index)}`,
-        width: "100%",
-        margin: "0.3rem 0px",
-        height: "2.4rem",
-        borderRadius: `${getBorderRadious(index)}`,
-        overflow: "hidden",
-        position: "relative",
-      }
-    : {
-        appearance: "auto",
-        width: "100%",
-        display: "flex",
-        justifyContent: "flex-start",
-        margin: "0.4rem 0",
-        position: "relative",
-      };
 }
 
 const isValidInput = () => {
@@ -292,126 +291,154 @@ const renderAnswers = (questionNumber) => {
   });
 };
 
-function clickSelectionInputHandler(e) {
+function clickRadioInputHandler(questionNumber, optionNumber) {
   return () => {
     let newVote = state.vote;
 
-    if (questionParams.questionType[questionNumber] == "2") {
-      if (e.target.checked) {
-        let newRealVotes = [];
-
-        for (let i = 0; i < newVote[questionNumber].length; i++) {
-          if (i != index) {
-            newRealVotes.push(newVote[questionNumber][i]);
-          }
-          newVote[questionNumber] = newRealVotes;
-        }
-      } else {
-        newVote[questionNumber].push(index + "");
-      }
-    } else {
-      newVote[questionNumber] = index + "";
-    }
+    newVote[questionNumber] = optionNumber + "";
     State.update({ vote: newVote });
   };
 }
 
-const renderMultipleChoiceVotingInterface = (
-  questionParams,
-  questionNumber
+function clickCheckboxInputHandler(questionNumber, optionNumber) {
+  return () => {
+    let newVote = state.vote;
+
+    let oldQuestionVotes = newVote[questionNumber];
+    let newQuestionVotes = [];
+
+    if (!oldQuestionVotes.includes(optionNumber + "")) {
+      newQuestionVotes = oldQuestionVotes;
+      newQuestionVotes.push(optionNumber + "");
+    } else {
+      for (let i = 0; i < oldQuestionVotes.length; i++) {
+        if (oldQuestionVotes[i] != optionNumber + "") {
+          newQuestionVotes.push(oldQuestionVotes[i]);
+        }
+      }
+    }
+
+    newVote[questionNumber] = newQuestionVotes.filter((a) => a != "");
+
+    State.update({ votes: newVote });
+  };
+}
+
+const renderMultipleChoiceInput = (
+  questionNumber,
+  questionType,
+  option,
+  optionNumber
 ) => {
   return (
     <>
-      {canVote && <p style={{ margin: "0" }}>Make a choice:</p>}
-      {questionParams.choicesOptions.map((option, index) => {
-        return (
-          <div>
-            <div className="d-flex align-content-center">
-              {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-              {!canVote ? (
-                <div style={getStyles(index)}>
-                  <div
-                    style={{
-                      height: "100%",
-                      padding: "0.01em 22px 0.01em 11px",
-                      display: "inline-block",
-                      width: `${calculatePercentage(
-                        countVotes(questionNumber)[index]
-                      )}%`,
-                      textAlign: "center",
-                      overflow: "visible",
-                      whiteSpace: "nowrap",
-                      textAlign: "left",
-                      backgroundColor: `${getBgColor(index, true)}`,
-                      borderRadius: "4px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        overflow: "visible",
-                        fontWeight: "500",
-                        lineHeight: "2.5rem",
-                      }}
-                    >
-                      {option} •
-                      <span
-                        className="text-secondary"
-                        style={{
-                          marginLeft: "1rem",
-                          fontWeight: "400",
-                        }}
-                      >
-                        ({countVotes(questionNumber)[index]} votes)
-                      </span>
-                    </span>
-                  </div>
+      <div>
+        <div className="d-flex align-content-center">
+          {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
+          {!canVote ? (
+            <div
+              style={{
+                display: "flex",
+                alignContent: "center",
+                backgroundColor: `${getBgColor(optionNumber, false)}`,
+                color: `${getFontColor(optionNumber)}`,
+                width: "100%",
+                margin: "0.3rem 0px",
+                height: "2.4rem",
+                borderRadius: `${getBorderRadious(optionNumber)}`,
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  padding: "0.01em 22px 0.01em 11px",
+                  display: "inline-block",
+                  width: `${calculatePercentage(
+                    countVotes(questionNumber, questionType)[optionNumber]
+                  )}%`,
+                  textAlign: "center",
+                  overflow: "visible",
+                  whiteSpace: "nowrap",
+                  textAlign: "left",
+                  backgroundColor: `${getBgColor(optionNumber, true)}`,
+                  borderRadius: "4px",
+                }}
+              >
+                <span
+                  style={{
+                    overflow: "visible",
+                    fontWeight: "500",
+                    lineHeight: "2.5rem",
+                  }}
+                >
+                  {option} •
                   <span
+                    className="text-secondary"
                     style={{
-                      minWidth: "max-content",
-                      margin: "0.4rem 0px 0.4rem 0.3rem",
-                      fontWeight: "500",
-                      position: "absolute",
-                      right: "1.7rem",
+                      marginLeft: "1rem",
+                      fontWeight: "400",
                     }}
                   >
-                    {calculatePercentage(countVotes(questionNumber)[index])}%
+                    ({countVotes(questionNumber, questionType)[optionNumber]}{" "}
+                    votes)
                   </span>
-                </div>
-              ) : (
-                <>
-                  <input
-                    className="form-check-input"
-                    id={"input" + index}
-                    name="selectMultipleChoice"
-                    key={index + "-" + state.vote}
-                    style={getInputStyles(index)}
-                    type={
-                      questionParams.questionType[questionNumber] == "2"
-                        ? "checkbox"
-                        : "radio"
-                    }
-                    value={index}
-                    checked={
-                      questionParams.questionType[questionNumber] == "2"
-                        ? state.vote[questionNumber].includes(index + "")
-                        : state.vote[questionNumber] == index + ""
-                    }
-                    onClick={clickSelectionInputHandler(e)}
-                  />
-                  <label for={`input-${questionNumber}-${index}`}>
-                    {option}
-                  </label>
-                </>
-              )}
+                </span>
+              </div>
+              <span
+                style={{
+                  minWidth: "max-content",
+                  margin: "0.4rem 0px 0.4rem 0.3rem",
+                  fontWeight: "500",
+                  position: "absolute",
+                  right: "1.7rem",
+                }}
+              >
+                {calculatePercentage(
+                  countVotes(questionNumber, questionType)[optionNumber]
+                )}
+                %
+              </span>
             </div>
-          </div>
-        );
-      })}
+          ) : (
+            <>
+              <input
+                className="form-check-input"
+                id={`${questionNumber}-${optionNumber}`}
+                name={`${questionNumber}-${questionType}`}
+                key={`${questionNumber}-${optionNumber}-${state.vote}`}
+                style={getInputStyles(
+                  questionType,
+                  questionNumber,
+                  optionNumber
+                )}
+                type={questionType == "2" ? "checkbox" : "radio"}
+                value={optionNumber}
+                checked={
+                  questionType == "2"
+                    ? state.vote[questionNumber].includes(optionNumber + "")
+                    : state.vote[questionNumber] == optionNumber + ""
+                }
+                onClick={
+                  questionType != "2" &&
+                  clickRadioInputHandler(questionNumber, optionNumber)
+                }
+                onChange={
+                  questionType == "2" &&
+                  clickCheckboxInputHandler(questionNumber, optionNumber)
+                }
+              />
+              <label for={`${questionNumber}-${optionNumber}`}>{option}</label>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 };
 
-const renderTextVotingInterface = (questionNumber) => {
+const renderTextInput = (questionNumber) => {
   return (
     <div>
       {hasVoted ? (
@@ -438,7 +465,7 @@ const renderTextVotingInterface = (questionNumber) => {
 
 return (
   <>
-    {poll.value.questions.map((question) => {
+    {poll.value.questions.map((question, questionNumber) => {
       return (
         <div
           style={{
@@ -449,69 +476,108 @@ return (
           className="p-3 my-3"
         >
           <h4>{question.question}</h4>
-          {poll.value.questions.map((questionParams, questionNumber) => {
-            questionParams.questionType != "3"
-              ? renderMultipleChoiceVotingInterface(
-                  questionParams,
-                  questionNumber
-                )
-              : renderTextVotingInterface(questionNumber);
-          })}
-          {isQuestionOpen ? (
-            hasVoted ? (
-              <p
-                className="text-primary"
-                style={{ textAlign: "center", fontWeight: "500" }}
-              >
-                Voted
-              </p>
-            ) : isVoteValid() ? (
-              <CommitButton
-                className="w-100"
-                style={{
+          <p className="mb-1">
+            {question.questionType == "0" || question.questionType == "1"
+              ? "Select one option:"
+              : question.questionType == "2"
+              ? "You can check multiple options:"
+              : "Write your answer"}
+          </p>
+          {question.questionType != "3"
+            ? question.choicesOptions.map((option, optionNumber) => {
+                return renderMultipleChoiceInput(
+                  questionNumber,
+                  question.questionType,
+                  option,
+                  optionNumber
+                );
+              })
+            : renderTextInput(questionNumber)}
+        </div>
+      );
+    })}
+    {isQuestionOpen ? (
+      hasVoted ? (
+        ""
+      ) : isVoteValid() ? (
+        <CommitButton
+          className="w-100"
+          style={
+            state.hoveringElement != "voteButton"
+              ? {
                   marginTop: "0.5rem",
                   padding: "0.5rem",
                   backgroundColor: "#000000",
                   color: "#FFFFFF",
                   fontSize: "1rem",
                   borderRadius: "9px",
-                  border: "none",
-                }}
-                data={getPublicationParams()}
-              >
-                Vote
-              </CommitButton>
-            ) : (
-              <>
-                <button
-                  className="my-2 btn btn-primary"
-                  onClick={() => State.update({ showErrorsInForm: true })}
-                >
-                  Done
-                </button>
-                {state.showErrorsInForm && (
-                  <span className="text-danger">
-                    Please answer all the questions
-                  </span>
-                )}
-              </>
-            )
-          ) : (
-            ""
-          )}
-          <p
-            style={{
-              fontWeight: "500",
-              fontSize: "1.1rem",
-              color: "#767B8E",
-              letterSpacing: "-0.02em",
-              marginTop: "0.8rem",
-            }}
+                  border: "1.5px solid transparent",
+                }
+              : {
+                  marginTop: "0.5rem",
+                  padding: "0.5rem",
+                  backgroundColor: "#FFFFFF",
+                  color: "#000000",
+                  fontSize: "1rem",
+                  borderRadius: "9px",
+                  border: "1.5px solid #000000",
+                }
+          }
+          onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
+          onMouseLeave={() => State.update({ hoveringElement: "" })}
+          data={getPublicationParams()}
+        >
+          Vote
+        </CommitButton>
+      ) : (
+        <>
+          <button
+            className="w-100"
+            style={
+              state.hoveringElement != "voteButton"
+                ? {
+                    marginTop: "0.5rem",
+                    padding: "0.5rem",
+                    backgroundColor: "#000000",
+                    color: "#FFFFFF",
+                    fontSize: "1rem",
+                    borderRadius: "9px",
+                    border: "1.5px solid transparent",
+                  }
+                : {
+                    marginTop: "0.5rem",
+                    padding: "0.5rem",
+                    backgroundColor: "#FFFFFF",
+                    color: "#000000",
+                    fontSize: "1rem",
+                    borderRadius: "9px",
+                    border: "1.5px solid #000000",
+                  }
+            }
+            onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
+            onMouseLeave={() => State.update({ hoveringElement: "" })}
+            onClick={() => State.update({ showErrorsInForm: true })}
           >
-            {validAnswersToThisPoll.length} votes
-          </p>
-        </div>
-      );
-    })}
+            Vote
+          </button>
+          {state.showErrorsInForm && (
+            <span className="text-danger">Please answer all the questions</span>
+          )}
+        </>
+      )
+    ) : (
+      ""
+    )}
+    <p
+      style={{
+        fontWeight: "500",
+        fontSize: "1.1rem",
+        color: "#767B8E",
+        letterSpacing: "-0.02em",
+        marginTop: "0.8rem",
+      }}
+    >
+      {validAnswersToThisPoll.length} votes
+    </p>
   </>
 );
