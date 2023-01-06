@@ -37,8 +37,9 @@ return (
   <div>
     {registeredPublicKeyBase64 && (
       <div class="mb-3">
-        You already registered. If your key is compromised, you can re-register.
-        You can read old messages using old secret key{" "}
+        {
+          "You already registered. If your key is compromised, you can re-register. You can't read old messages using new secret key"
+        }
       </div>
     )}
     <div class="mb-3">
