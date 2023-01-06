@@ -1,16 +1,9 @@
 const ownerId = "devgovgigs.near";
 const postId = "Root";
-const allPosts = Near.view(ownerId, "get_all_post_ids").reverse();
-const allTopPosts = Near.view(ownerId, "get_children_ids").reverse();
-
-const postIds = props.label
-  ? Near.view(ownerId, "get_posts_by_label", { label: props.label }).reverse()
-  : props.recency == "all"
-  ? allPosts
-  : allTopPosts;
 
 initState({
-  postIds,
+  recency: props.recency,
+  label: props.label,
 });
 
 const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
@@ -22,13 +15,16 @@ const wrappedLabels = labels.map((l) => {
 
 const onLabelSelected = (selectedLabels) => {
   if (selectedLabels.length == 1) {
-    let newPostIds = Near.view(ownerId, "get_posts_by_label", {
-      label: selectedLabels[0].name,
-    }).reverse();
-    console.log("new ids");
-    console.log(newPostIds);
+    console.log("Selected label %s", selectedLabels[0].name);
     State.update({
-      postIds: newPostIds,
+      label: selectedLabels[0].name,
+      recency: null,
+    });
+  } else {
+    console.log("Unselected label");
+    State.update({
+      recency: props.recency,
+      label: null,
     });
   }
 };
