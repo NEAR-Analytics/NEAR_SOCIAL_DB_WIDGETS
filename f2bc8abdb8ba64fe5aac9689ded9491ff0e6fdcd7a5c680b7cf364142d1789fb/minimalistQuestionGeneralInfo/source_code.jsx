@@ -27,7 +27,7 @@ State.init({
 function getValidAnswersQtyFromQuestion() {
   let questionBlockHeight = poll.blockHeight;
 
-  const answers = Social.index("poll_question", "answer-v3.0.2");
+  const answers = Social.index("poll_question", "answer-v3.1.0");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
