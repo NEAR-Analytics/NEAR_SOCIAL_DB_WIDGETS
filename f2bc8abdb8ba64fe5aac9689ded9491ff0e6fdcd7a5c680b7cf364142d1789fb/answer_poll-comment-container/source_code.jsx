@@ -1,11 +1,11 @@
-if (!props.validAnswersToThisPoll) {
+if (!props.answers) {
   return "Prop validAnswersToThisPoll not set";
 }
 
 if (!props.questionNumber) {
   return "Prop questionNumber not set";
 }
-let answers = props.validAnswersToThisPoll;
+let answers = props.answers;
 console.log("answers: ", answers);
 let questionNumber = props.questionNumber;
 
