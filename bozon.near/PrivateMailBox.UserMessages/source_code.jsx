@@ -32,7 +32,6 @@ const incomingMessages = Social.index(
   accountId.toLowerCase(),
   {
     subscribe: true,
-    order: "desc",
     accountId: props.receiverAccountId.toLowerCase(),
   }
 );
@@ -42,7 +41,6 @@ const outgoingMessages = Social.index(
   accountId.toLowerCase(),
   {
     subscribe: true,
-    order: "desc",
     accountId: accountId.toLowerCase(),
   }
 );
