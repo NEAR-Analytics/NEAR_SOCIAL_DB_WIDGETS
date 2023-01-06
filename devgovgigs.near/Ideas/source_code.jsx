@@ -13,6 +13,20 @@ const wrappedLabels = labels.map((l) => {
   return { name: l };
 });
 
+const onHomeClick = () => {
+  State.update({
+    recency: null,
+    label: null,
+  });
+};
+
+const onRecentClick = () => {
+  State.update({
+    recency: "all",
+    label: null,
+  });
+};
+
 const onLabelSelected = (selectedLabels) => {
   if (selectedLabels.length == 1) {
     console.log("Selected label %s", selectedLabels[0].name);
@@ -199,21 +213,25 @@ const navbar = (
     <div class="nav navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href={home}>
+          <li class="nav-item ">
+            <a
+              class="nav-link active button"
+              onClick={onHomeClick}
+              role="button"
+            >
               <i class="bi-house-fill"> </i>
               Home
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href={`${home}?recency=all`}>
+            <a class="nav-link active" onClick={onRecentClick} role="button">
               <i class="bi-fire"> </i>
               Recent
             </a>
           </li>
-
-          <li class="nav-item active">
+          <li class="nav-item active ms-2">
             <Typeahead
+              clearButton
               id="basic-typeahead-single"
               labelKey="name"
               onChange={onLabelSelected}
@@ -237,29 +255,3 @@ return (
     />
   </div>
 );
-
-<li class="nav-item dropdown">
-  <a
-    class="nav-link active"
-    href="#"
-    role="button"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    <i class="bi bi-filter"></i>
-    Topics
-  </a>
-  <ul class="dropdown-menu">
-    {labels
-      ? labels.map((l) => {
-          return (
-            <li>
-              <a class="dropdown-item" href={`${home}?label=${l}`}>
-                {l}
-              </a>
-            </li>
-          );
-        })
-      : null}
-  </ul>
-</li>;
