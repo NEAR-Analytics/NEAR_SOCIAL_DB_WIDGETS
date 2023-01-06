@@ -1,12 +1,12 @@
 State.init({ profile: {} });
 
-if (state.profile == {}) {
-  return "Loading";
-}
-
 let profile = Social.getr(`${props.accountId}/profile`);
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
+}
+
+if (state.profile == {}) {
+  return "Loading";
 }
 
 let amountOfQuestionsByThisUser = 0;
