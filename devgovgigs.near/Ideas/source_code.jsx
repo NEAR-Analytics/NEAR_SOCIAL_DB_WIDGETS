@@ -21,13 +21,11 @@ const wrappedLabels = labels.map((l) => {
 });
 
 const onLabelSelected = (selectedLabels) => {
-  console.log("onLabelSelected");
-  let newURL = `${home}?label=${selectedLabels[0].name}`;
-  console.log(newURL);
   if (selectedLabels.length == 1) {
     let newPostIds = Near.view(ownerId, "get_posts_by_label", {
-      label: props.label,
+      label: selectedLabels[0].name,
     }).reverse();
+
     State.update({
       postIds: newPostIds,
     });
