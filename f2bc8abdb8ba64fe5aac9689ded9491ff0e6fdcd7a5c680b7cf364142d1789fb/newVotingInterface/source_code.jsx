@@ -516,7 +516,7 @@ return (
           </div>
         )}
         {state.poll.value.questions.map((question) => {
-          console.log("question: ", question);
+          console.log("state.poll: ", state.poll);
           return (
             <div
               style={{
