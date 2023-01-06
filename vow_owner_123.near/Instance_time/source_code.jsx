@@ -3,12 +3,12 @@ State.init({
   _from: ["0", "0", "0", "0", "0", "0", "0"],
   _to: ["1", "1", "1", "1", "1", "1", "1"],
   _time_zone: "(UTC+00:00) UTC",
+  _validate_result: true,
+  _validate_error: [true, true, true, true, true, true, true],
 });
-
 const widgetName = "Instance_time";
 const widgetPath = `vow_owner_123.near/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
-
 const card = {
   background: "linear-gradient(to right, #4deeea, #f000ff)",
   border: "1px solid black",
@@ -17,7 +17,6 @@ const card = {
   color: "white",
   padding: "10px",
 };
-
 const button = {
   borderRadius: "5px",
   margin: "5px 0",
@@ -27,7 +26,6 @@ const button = {
   border: "2px solid black",
   fontWeight: "bold",
 };
-
 const imgWH = {
   width: "25px",
   height: "25px",
@@ -110,19 +108,55 @@ const days = [
   "Saturday",
   "Sunday",
 ];
-
 const data = Social.index("Instance_time", "data");
 if (!data) {
   return "Loading datas";
 }
-
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
 var accountIds = [];
+const validate = () => {
+  var result = true;
+  for (var i = 0; i < 7; i++) {
+    if (!state._validate_error[i]) result = false;
+  }
+  State.update({ _validate_result: result });
+};
+const onTimeChanged = (e, index, is_from_to) => {
+  let temp = state._from;
+  temp[index] = e.target.value;
+  is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
+  let error_temp = state._validate_error;
+  if (parseInt(state._from[index]) >= parseInt(state._to[index])) {
+    error_temp[index] = false;
+  } else {
+    error_temp[index] = true;
+  }
+  validate();
+  State.update({
+    _validate_error: error_temp,
+  });
+};
+const sortAndRemoveRepeated = (flag, data) => {
+  var temp = data;
+  if (flag) temp.push(0, 168);
+  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+
+  var final = [];
+  for (var k = 0; k < sortedTimeData.length; k++) {
+    var repeated = false;
+    for (var l = 0; l < sortedTimeData.length; l++) {
+      if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
+        repeated = true;
+      }
+    }
+    if (!repeated) final.push(sortedTimeData[k]);
+  }
+  return final;
+};
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
-    console.log(sortedData[i]);
     var date = new Date();
     var utc_offset = -date.getTimezoneOffset() / 60;
     var times = sortedData[i].value._data;
@@ -139,20 +173,7 @@ for (let i = 0; i < sortedData.length; i++) {
         flag = true;
       } else temp.push(time);
     }
-    if (flag) temp.push(0, 168);
-    var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
-
-    var final = [];
-    for (var k = 0; k < sortedTimeData.length; k++) {
-      var repeated = false;
-      for (var l = 0; l < sortedTimeData.length; l++) {
-        if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
-          repeated = true;
-        }
-      }
-      if (!repeated) final.push(sortedTimeData[k]);
-    }
-
+    const final = sortAndRemoveRepeated(flag, temp);
     for (var m = 0; m < final.length - 1; m += 2) {
       const _from = final[m];
       const _to = final[m + 1];
@@ -163,7 +184,6 @@ for (let i = 0; i < sortedData.length; i++) {
       }
     }
     var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
-
     var weeklyData = [];
     for (var t = 0; t < 7; t++) {
       var dailyData = [];
@@ -171,7 +191,6 @@ for (let i = 0; i < sortedData.length; i++) {
       for (var p = 0; p < sortedTimeDataNew.length - 1; p += 2) {
         var _from = sortedTimeDataNew[p];
         var _to = sortedTimeDataNew[p + 1];
-        // console.log(_from, _to, p, t * 24, (t + 1) * 24);
         if (_to > t * 24 && _to <= (t + 1) * 24) {
           dailyData.push({
             _from: _from - t * 24,
@@ -191,24 +210,27 @@ for (let i = 0; i < sortedData.length; i++) {
     });
   }
 }
-
 return (
   <div>
     <br />
     <br />
-    <p>Select Time zone</p>
-    <select
-      name="zones"
-      id="zones"
-      value={state._time_zone}
-      onChange={(e) => {
-        State.update({ _time_zone: e.target.value });
-      }}
-    >
-      {time_zones.map((zone) => (
-        <option value={zone}>{zone}</option>
-      ))}
-    </select>
+    <h3>Weekly Schedule</h3>
+    <p>current_user: {context.accountId}</p>
+    <div className="d-flex">
+      <p>Select Time zone: </p>
+      <select
+        name="zones"
+        id="zones"
+        value={state._time_zone}
+        onChange={(e) => {
+          State.update({ _time_zone: e.target.value });
+        }}
+      >
+        {time_zones.map((zone) => (
+          <option value={zone}>{zone}</option>
+        ))}
+      </select>
+    </div>
     <div className="d-flex flex-column w-75 justify-content-around">
       {days.map((day, index) => (
         <div>
@@ -216,8 +238,6 @@ return (
           <div className="d-flex justify-content-around">
             <p>On or Off</p>
             <select
-              name="times"
-              id="time"
               value={state._is_on[index]}
               onChange={(e) => {
                 let temp = state._is_on;
@@ -225,7 +245,12 @@ return (
                 State.update({ _is_on: temp });
                 if (e.target.value == "off") {
                   state._from[index] = "0";
-                  state._to[index] = "0";
+                  state._to[index] = "1";
+                  let error_temp = state._validate_error;
+                  State.update({
+                    _error_msg: `${(error_temp[index] = true)}`,
+                  });
+                  validate();
                 }
               }}
             >
@@ -236,15 +261,9 @@ return (
               <>
                 <p>From</p>
                 <select
-                  name="times"
-                  id="time"
                   value={state._from[index]}
                   onChange={(e) => {
-                    let temp = state._from;
-                    if (parseInt(e.target.value) < parseInt(state._to[index])) {
-                      temp[index] = e.target.value;
-                      State.update({ _from: temp });
-                    }
+                    onTimeChanged(e, index, true);
                   }}
                 >
                   {hours.map((hour) => (
@@ -253,15 +272,9 @@ return (
                 </select>
                 <p>To</p>
                 <select
-                  name="times"
-                  id="time"
                   value={state._to[index]}
                   onChange={(e) => {
-                    let temp = state._to;
-                    if (parseInt(e.target.value) > parseInt(state._to[index])) {
-                      temp[index] = e.target.value;
-                      State.update({ _to: temp });
-                    }
+                    onTimeChanged(e, index, false);
                   }}
                 >
                   {hours.map((hour) => (
@@ -274,11 +287,17 @@ return (
         </div>
       ))}
     </div>
+    <p>
+      {days.map((day, index) => {
+        return !state._validate_error[index] && `${day} `;
+      })}
+      {!state._validate_result && "time set wrong"}
+    </p>
     <CommitButton
       style={button}
+      disabled={!state._validate_result}
       data={() => {
         const offset = -utc_times[time_zones.indexOf(state._time_zone)];
-        console.log(offset);
         var temp = [];
         var flag = false;
         for (var i = 0; i < 7; i++) {
@@ -301,25 +320,14 @@ return (
             } else temp.push(_to);
           }
         }
-        if (flag) temp.push(0, 168);
-        const sortedData = temp.sort((d2, d1) => d2 - d1);
-        var finalData = [];
-        for (var i = 0; i < sortedData.length; i++) {
-          var repeated = false;
-          for (var j = 0; j < sortedData.length; j++) {
-            if (i != j && sortedData[i] == sortedData[j]) {
-              repeated = true;
-            }
-          }
-          if (!repeated) finalData.push(sortedData[i]);
-        }
+        const final = sortAndRemoveRepeated(flag, temp);
         return {
           index: {
             Instance_time: JSON.stringify(
               {
                 key: "data",
                 value: {
-                  _data: finalData,
+                  _data: final,
                 },
               },
               undefined,
@@ -327,11 +335,6 @@ return (
             ),
           },
         };
-      }}
-      onCommit={() => {
-        State.update({
-          reloadData: true,
-        });
       }}
     >
       Send It!
