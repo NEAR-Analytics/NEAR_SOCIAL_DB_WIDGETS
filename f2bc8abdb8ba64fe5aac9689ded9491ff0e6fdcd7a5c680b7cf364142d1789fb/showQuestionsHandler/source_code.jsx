@@ -202,11 +202,11 @@ return (
         onlyUsersPolls
           ? {
               display: "grid",
-              gridTemplateColumns: "auto auto",
+              gridTemplateColumns: " repeat(2, 1fr)",
             }
           : {
               display: "grid",
-              gridTemplateColumns: "auto auto auto",
+              gridTemplateColumns: " repeat(3, 1fr)",
             }
       }
     >
