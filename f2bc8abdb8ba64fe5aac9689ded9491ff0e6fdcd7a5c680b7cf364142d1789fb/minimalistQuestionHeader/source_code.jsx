@@ -1,8 +1,36 @@
-let question = props;
+let poll = props;
 
-if (!question) {
+if (!poll) {
   return "Prop passed wrongly to minimalistQuestionHeader";
 }
+
+function haveMultipleQuestionsTypes(allQuestionTypes) {}
+
+const renderPollTypeIcon = () => {
+  let allPollTypes = [];
+  for (let i = 0; i < poll.value.questions.length; i++) {
+    if (!allPollTypes.includes(poll.value.questions[i].questionType)) {
+      allPollTypes.push(poll.value.questions[i].questionType);
+    }
+  }
+
+  allPollTypes.length == 1 &&
+  (allPollTypes[0] == "0" || allPollTypes[0] == "1") ? (
+    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "2" ? (
+    <i
+      style={{
+        transform: "rotate(90deg)",
+        padding: "0.6rem 0.8rem",
+      }}
+      className="bi bi-bar-chart-line"
+    ></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "3" ? (
+    <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : (
+    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+  );
+};
 
 return (
   <div className="d-flex justify-content-start align-items-center mb-3">
@@ -16,19 +44,7 @@ return (
         marginRight: "0.8rem",
       }}
     >
-      {question.value.questionType == "0" ? (
-        <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
-      ) : (
-        question.value.questionType == "1" && (
-          <i
-            style={{
-              transform: "rotate(90deg)",
-              padding: "0.6rem 0.8rem",
-            }}
-            className="bi bi-bar-chart-line"
-          ></i>
-        )
-      )}
+      {renderPollTypeIcon()}
     </div>
     <h3
       style={{
@@ -38,7 +54,7 @@ return (
         fontWeight: "700",
       }}
     >
-      {question.value.title}
+      {poll.value.title}
     </h3>
   </div>
 );
