@@ -6,6 +6,8 @@ initState({
   label: props.label,
 });
 
+const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
+
 const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
 
 const labels = Near.view(ownerId, "get_all_labels");
@@ -237,6 +239,7 @@ const navbar = (
               onChange={onLabelSelected}
               options={wrappedLabels}
               placeholder="Search"
+              defaultSelected={defaultSelectedLabels}
             />
           </li>
         </ul>
