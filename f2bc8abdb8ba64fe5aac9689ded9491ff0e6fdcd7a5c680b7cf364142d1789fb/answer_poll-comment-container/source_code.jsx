@@ -5,8 +5,8 @@ if (!props.validAnswersToThisPoll) {
 if (!props.questionNumber) {
   return "Prop questionNumber not set";
 }
-console.log(answers);
 let answers = props.validAnswersToThisPoll;
+console.log("answers: ", answers);
 let questionNumber = props.questionNumber;
 
 return (
