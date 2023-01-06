@@ -376,7 +376,6 @@ return (
       {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
-      {postsList}
     </div>
   </Card>
 );
