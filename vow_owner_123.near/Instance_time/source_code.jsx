@@ -34,11 +34,11 @@ const time_zones = [
   "(UTC-11:00) Samoa",
   "(UTC-10:00) Hawaii",
   "(UTC-09:00) Alaska",
-  "(UTC-08:00) Pacific Time (US &amp; Canada)",
+  "(UTC-08:00) Pacific Time (US; Canada)",
   "(UTC-07:00) Arizona",
   "(UTC-06:00) Central America",
   "(UTC-06:00) Saskatchewan",
-  "(UTC-05:00) Eastern Time (US &amp; Canada)",
+  "(UTC-05:00) Eastern Time (US; Canada)",
   "(UTC-04:00) Atlantic Time (Canada)",
   "(UTC-04:30) Caracas",
   "(UTC-04:00) Santiago",
@@ -68,36 +68,9 @@ const time_zones = [
   "(UTC+12:00) Auckland",
   "(UTC+13:00) Nuku'alofa",
 ];
-const utc_times = [
-  -11, -10, -9, -8, -7, -6, -6, -5, -4, -4.5, -4, -3.5, -3, -2, -1, 0, 1, 2, 3,
-  4, 4.5, 5, 5.5, 5.75, 6, 6.5, 7, 8, 9, 9, 9, 9.5, 10, 11, 12, 13,
-];
 const hours = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19",
-  "20",
-  "21",
-  "22",
-  "23",
-  "24",
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+  22, 23, 24,
 ];
 const days = [
   "Monday",
@@ -297,7 +270,10 @@ return (
       style={button}
       disabled={!state._validate_result}
       data={() => {
-        const offset = -utc_times[time_zones.indexOf(state._time_zone)];
+        var zone = state._time_zone.split(" ")[0].split("UTC")[1].split(":");
+        var hours = parseInt(zone[0]);
+        var offset = hours + (parseInt(zone[1]) / 60) * ((hours > 0) * 2 - 1);
+
         var temp = [];
         var flag = false;
         for (var i = 0; i < 7; i++) {
