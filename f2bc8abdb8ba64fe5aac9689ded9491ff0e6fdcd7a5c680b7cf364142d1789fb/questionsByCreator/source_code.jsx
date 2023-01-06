@@ -226,7 +226,7 @@ return (
                 <span
                   style={{
                     backgroundColor: isUpcoming(poll)
-                      ? "#ffe06e"
+                      ? "#FFF3B4"
                       : isActive(poll)
                       ? "#D9FCEF"
                       : "#FFE5E5",
