@@ -159,7 +159,7 @@ function getValidAnswers() {
   return validOptionAndTime;
 }
 
-const isPreview = props.isPreview;
+const isPreview = props.isPreview ?? false;
 
 // Getting question
 const questionBlockHeight = Number(props.blockHeight);
@@ -334,7 +334,7 @@ const renderMultipleChoiceVotingInterface = (
   return (
     <>
       {canVote && <p style={{ margin: "0" }}>Make a choice:</p>}
-      {questionParams.value.choicesOptions.map((option, index) => {
+      {questionParams.choicesOptions.map((option, index) => {
         return (
           <div>
             <div className="d-flex align-content-center">
@@ -422,7 +422,7 @@ const renderMultipleChoiceVotingInterface = (
   );
 };
 
-const renderTextVotingInterface = (questionParams, questionNumber) => {
+const renderTextVotingInterface = (questionNumber) => {
   return (
     <div>
       {hasVoted ? (
@@ -453,7 +453,7 @@ return (
     {pollParams.value.questions.map((questionParams, questionNumber) => {
       questionParams.questionType != "3"
         ? renderMultipleChoiceVotingInterface(questionParams, questionNumber)
-        : renderTextVotingInterface(questionParams, questionNumber);
+        : renderTextVotingInterface(questionNumber);
     })}
     {isQuestionOpen ? (
       hasVoted ? (
