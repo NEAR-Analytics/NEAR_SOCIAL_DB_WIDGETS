@@ -146,7 +146,10 @@ return (
               )}
               <button
                 onClick={() => {
-                  props.onSelectedUser(follower, followerRegisteredPublicKey);
+                  props.onSelectedUser(
+                    account.accountId,
+                    followerRegisteredPublicKey
+                  );
                 }}
               >
                 Send message
