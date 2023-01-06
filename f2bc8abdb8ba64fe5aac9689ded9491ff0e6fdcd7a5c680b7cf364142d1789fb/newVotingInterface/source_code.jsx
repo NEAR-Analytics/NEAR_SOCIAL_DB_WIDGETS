@@ -6,22 +6,21 @@ let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
-const questions =
-  !props.previewInfo && Social.index("poll_question", "question-v3.0.1");
+const polls =
+  !props.previewInfo && Social.index("poll_question", "question-v3.0.2");
 
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
+if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
+  State.update({ polls: polls });
 }
 
-if (!questions) {
+if (!polls) {
   return "Loading";
 }
 
-const questionParams =
-  props.previewInfo ??
-  questions.find((q) => q.blockHeight == questionBlockHeight);
+const poll =
+  props.previewInfo ?? polls.find((q) => q.blockHeight == questionBlockHeight);
 
-let profile = Social.getr(`${questionParams.accountId}/profile`);
+let profile = Social.getr(`${poll.accountId}/profile`);
 
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
@@ -31,22 +30,21 @@ if (!profile) {
   return "Loading";
 }
 
-let questionsByThisCreator = Social.index("poll_question", "question-v3.0.1", {
-  accountId: questionParams.accountId,
+let pollsByThisCreator = Social.index("poll_question", "question-v3.0.2", {
+  accountId: poll.accountId,
 });
 
 if (
-  JSON.stringify(questionsByThisCreator) !=
-  JSON.stringify(state.questionsByThisCreator)
+  JSON.stringify(pollsByThisCreator) != JSON.stringify(state.pollsByThisCreator)
 ) {
-  State.update({ questionsByThisCreator: questionsByThisCreator });
+  State.update({ pollsByThisCreator: pollsByThisCreator });
 }
 
-if (!questionsByThisCreator) {
+if (!state.pollsByThisCreator) {
   return "Loading";
 }
 
-if (!questionParams && !isPreview) {
+if (!state.poll && !isPreview) {
   return "Loading...";
 }
 
@@ -61,64 +59,42 @@ function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
 
-function isActive() {
+function isActive(poll) {
   return (
-    question.value.startTimestamp < Date.now() &&
-    Date.now() < question.value.endTimestamp
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp
   );
 }
 
-function isUpcoming() {
-  return question.value.startTimestamp > Date.now();
+function isUpcoming(poll) {
+  return poll.value.startTimestamp > Date.now();
 }
 
 State.init({
   showQuestionsByThisUser: false,
   descriptionHeightLimited: true,
-  questions: {},
+  polls: [{}],
   profile: {},
-  questionsByThisCreator: {},
+  pollsByThisCreator: [{}],
+  answers: [{}],
 });
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-const renderVoteMultipleChoice = () => {
-  if (questionParams) {
-    return (
-      <Widget
-        src={`${widgetOwner}/widget/voteMultipleChoice`}
-        props={{
-          ...questionParams,
-          isPreview,
-        }}
-      />
-    );
-  } else {
-    return "Invalid block height provided.";
-  }
-};
-
-const renderVoteText = () => {
-  if (questionParams) {
-    return (
-      <Widget
-        src={`${widgetOwner}/widget/voteWithText`}
-        props={{ ...questionParams, isPreview }}
-      />
-    );
-  } else {
-    return "Invalid block height provided.";
-  }
-};
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  // let questionParams = questions.find(q => q.blockHeight == questionBlockHeight)
+  // let poll = polls.find(q => q.blockHeight == questionBlockHeight)
 
-  const answers = Social.index("poll_question", "answer-v3.0.1");
-  if (!answers) {
+  const answers = Social.index("poll_question", "answer-v3.0.2");
+
+  if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+    State.update({ answers: answers });
+  }
+
+  if (!state.answers) {
     return "Loading";
   }
-  const answersFromThisPoll = answers.filter(
+  const answersFromThisPoll = state.answers.filter(
     (a) => a.value.questionBlockHeight == questionBlockHeight
   );
   const usersWithAnswers = answersFromThisPoll.map((a) => a.accountId);
@@ -130,7 +106,7 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
 
 const renderQuestionsByThisCreator = () => {
   //TODO show only the 2 polls
-  return questionsByThisCreator.map((questionByCreator, index) => {
+  return state.pollsByThisCreator.map((pollByCreator, index) => {
     let divStyle =
       index == 0
         ? {}
@@ -138,13 +114,13 @@ const renderQuestionsByThisCreator = () => {
     return (
       <div style={divStyle}>
         <p style={{ fontWeight: "500" }}>
-          {sliceString(questionByCreator.value.title, 20)}
+          {sliceString(pollByCreator.value.title, 20)}
         </p>
         <div className="d-flex justify-content-between flex-nowrap text-secondary mb-2">
           <div>
             <i className="bi bi-people"></i>
             <span>
-              {getValidAnswersQtyFromQuestion(questionByCreator.blockHeight)}
+              {getValidAnswersQtyFromQuestion(pollByCreator.blockHeight)}
             </span>
           </div>
           <span>
@@ -152,16 +128,16 @@ const renderQuestionsByThisCreator = () => {
             <Widget
               src={`silkking.near/widget/timeAgo`}
               props={{
-                timeInFuture: questionByCreator.value.endTimestamp,
+                timeInFuture: pollByCreator.value.endTimestamp,
                 reduced: true,
               }}
             />
           </span>
           <span
             style={{
-              backgroundColor: isUpcoming(questionByCreator)
+              backgroundColor: isUpcoming(pollByCreator)
                 ? "#ffe06e"
-                : isActive()
+                : isActive(pollByCreator)
                 ? "#D9FCEF"
                 : "#FFE5E5",
 
@@ -173,17 +149,17 @@ const renderQuestionsByThisCreator = () => {
               lineHeight: "1.5rem",
               fontSize: "0.8rem",
               letterSpacing: "-0.025rem",
-              color: isUpcoming(questionByCreator)
+              color: isUpcoming(pollByCreator)
                 ? "#FFC905"
-                : isActive()
+                : isActive(pollByCreator)
                 ? "#00B37D"
                 : "#FF4747",
               fontWeight: "500",
             }}
           >
-            {isUpcoming(questionByCreator)
+            {isUpcoming(pollByCreator)
               ? "Upcoming"
-              : isActive()
+              : isActive(pollByCreator)
               ? "Active"
               : "Closed"}
           </span>
@@ -244,7 +220,7 @@ const renderModal = () => {
           >
             <Widget
               src={`${widgetOwner}/widget/showQuestionsHandler`}
-              props={{ accountId: questionParams.accountId }}
+              props={{ accountId: poll.accountId }}
             />
           </div>
           <div className="modal-footer">
@@ -284,7 +260,7 @@ return (
               src="mob.near/widget/ProfileImage"
               props={{
                 profile,
-                question: questionParams.accountId,
+                question: poll.accountId,
                 className: "float-start d-inline-block me-2",
                 style: {
                   width: "3.5rem",
@@ -300,18 +276,15 @@ return (
                 Created by
               </span>
               <span style={{ fontWeight: "500" }}>
-                {sliceString(questionParams.accountId, 18)}
+                {sliceString(poll.accountId, 18)}
               </span>
             </div>
           </div>
 
-          {Date.now() < questionParams.value.endTimestamp && (
+          {Date.now() < poll.value.endTimestamp && (
             <>
               <span>
-                Start{" "}
-                {new Date(
-                  questionParams.value.startTimestamp
-                ).toLocaleDateString()}
+                Start {new Date(poll.value.startTimestamp).toLocaleDateString()}
               </span>
 
               <span
@@ -325,7 +298,7 @@ return (
                 <Widget
                   src={`silkking.near/widget/timeAgo`}
                   props={{
-                    timeInFuture: questionParams.value.endTimestamp,
+                    timeInFuture: poll.value.endTimestamp,
                     reduced: true,
                   }}
                 />
@@ -334,9 +307,9 @@ return (
           )}
           <span
             style={{
-              backgroundColor: isUpcoming(questionByCreator)
+              backgroundColor: isUpcoming(poll)
                 ? "#ffe06e"
-                : isActive()
+                : isActive(poll)
                 ? "#D9FCEF"
                 : "#FFE5E5",
 
@@ -348,17 +321,17 @@ return (
               lineHeight: "1.9rem",
               fontSize: "1rem",
               letterSpacing: "-0.025rem",
-              color: isUpcoming(questionByCreator)
+              color: isUpcoming(poll)
                 ? "#FFC905"
-                : isActive()
+                : isActive(poll)
                 ? "#00B37D"
                 : "#FF4747",
               fontWeight: "500",
             }}
           >
-            {isUpcoming(questionByCreator)
+            {isUpcoming(poll)
               ? "Upcoming"
-              : isActive()
+              : isActive(poll)
               ? "Active"
               : "Closed"}
           </span>
@@ -385,7 +358,7 @@ return (
               wordWrap: "anywhere",
             }}
           >
-            {questionParams.value.title}
+            {poll.value.title}
           </h2>
         </div>
         <div
@@ -407,9 +380,9 @@ return (
             Description
           </h3>
           <p style={{ fontSize: "0.9rem" }}>
-            {showDescription(questionParams.value.description)}
+            {showDescription(poll.value.description)}
           </p>
-          {questionParams.value.description.length > 501 &&
+          {poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
             <div
               style={{
@@ -436,7 +409,7 @@ return (
               </h4>
             </div>
           ) : (
-            questionParams.value.description.length > 501 && (
+            poll.value.description.length > 501 && (
               <div
                 style={{
                   position: "absolute",
@@ -466,79 +439,73 @@ return (
             )
           )}
         </div>
-        {questionParams.value.tgLink != "" &&
-          questionParams.value.tgLink != undefined && (
-            <div
-              className="mt-3 d-flex justify-content-between"
-              style={{
-                border: "1.5px solid #D4E5FB",
-                padding: "1.2rem 1.7rem",
-                borderRadius: "24px",
-              }}
-            >
-              <div className="d-flex">
-                <i
-                  className="bi bi-people d-flex align-items-center justify-content-center"
+        {poll.value.tgLink != "" && poll.value.tgLink != undefined && (
+          <div
+            className="mt-3 d-flex justify-content-between"
+            style={{
+              border: "1.5px solid #D4E5FB",
+              padding: "1.2rem 1.7rem",
+              borderRadius: "24px",
+            }}
+          >
+            <div className="d-flex">
+              <i
+                className="bi bi-people d-flex align-items-center justify-content-center"
+                style={{
+                  height: "100%",
+                  aspectRatio: "1",
+                  backgroundColor: "#2F5BCF",
+                  borderRadius: "14px",
+                  marginRight: "1rem",
+                  color: "white",
+                }}
+              ></i>
+              <div>
+                <p
+                  className="m-0"
                   style={{
-                    height: "100%",
-                    aspectRatio: "1",
-                    backgroundColor: "#2F5BCF",
-                    borderRadius: "14px",
-                    marginRight: "1rem",
-                    color: "white",
-                  }}
-                ></i>
-                <div>
-                  <p
-                    className="m-0"
-                    style={{
-                      color: "#2F5BCF",
-                      fontWeight: "500",
-                      fontSize: "0.7rem",
-                    }}
-                  >
-                    Discussion link
-                  </p>
-                  <h6>
-                    <a
-                      style={{ color: "#2346B1" }}
-                      href={questionParams.value.tgLink}
-                    >
-                      {sliceString(questionParams.value.tgLink, 30)}
-                    </a>
-                  </h6>
-                </div>
-              </div>
-              <div className="d-flex align-items-center">
-                <a
-                  target="_blank"
-                  href={questionParams.value.tgLink}
-                  style={{ userSelect: "none" }}
-                >
-                  <i
-                    className="bi bi-box-arrow-up-right"
-                    style={{
-                      color: "#2F5BCF",
-                      cursor: "pointer",
-                    }}
-                  ></i>
-                </a>
-                <i
-                  className="bi bi-clipboard"
-                  style={{
-                    userSelect: "none",
                     color: "#2F5BCF",
-                    cursor: "pointer",
-                    marginLeft: "0.8rem",
+                    fontWeight: "500",
+                    fontSize: "0.7rem",
                   }}
-                  onClick={() =>
-                    clipboard.writeText(questionParams.value.tgLink)
-                  }
-                ></i>
+                >
+                  Discussion link
+                </p>
+                <h6>
+                  <a style={{ color: "#2346B1" }} href={poll.value.tgLink}>
+                    {sliceString(poll.value.tgLink, 30)}
+                  </a>
+                </h6>
               </div>
             </div>
-          )}
-        {questionParams.value.questions.map((question) => {
+            <div className="d-flex align-items-center">
+              <a
+                target="_blank"
+                href={poll.value.tgLink}
+                style={{ userSelect: "none" }}
+              >
+                <i
+                  className="bi bi-box-arrow-up-right"
+                  style={{
+                    color: "#2F5BCF",
+                    cursor: "pointer",
+                  }}
+                ></i>
+              </a>
+              <i
+                className="bi bi-clipboard"
+                style={{
+                  userSelect: "none",
+                  color: "#2F5BCF",
+                  cursor: "pointer",
+                  marginLeft: "0.8rem",
+                }}
+                onClick={() => clipboard.writeText(poll.value.tgLink)}
+              ></i>
+            </div>
+          </div>
+        )}
+        {poll.value.questions.map((question) => {
           return (
             <div
               style={{
@@ -550,9 +517,15 @@ return (
             >
               <h4>{question.question}</h4>
 
-              {question.questionType == "3"
-                ? renderVoteText()
-                : renderVoteMultipleChoice(question.questionType)}
+              {poll && (
+                <Widget
+                  src={`${widgetOwner}/widget/allVotingWidget`}
+                  props={{
+                    blockHeight: poll.blockHeight,
+                    isPreview,
+                  }}
+                />
+              )}
             </div>
           );
         })}
@@ -575,7 +548,7 @@ return (
                     }
               }
             >
-              <h5>Polls by creator ({questionsByThisCreator.length})</h5>
+              <h5>Polls by creator ({state.pollsByThisCreator.length})</h5>
 
               {shouldDisplayViewAll && (
                 <div style={{ margin: "1rem 0", textAlign: "center" }}>
