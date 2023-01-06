@@ -39,7 +39,7 @@ const getPublicationParams = (isDraft) => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "question-v3.0.1",
+          key: "question-v3.0.2",
           value: {
             isDraft,
             title: state.pollTitle,
@@ -901,10 +901,10 @@ return (
                         newPollTypes[questionNumber] = "0";
 
                         let newChoices = state.choices;
-                        newChoices[questionNumber] = [""];
+                        newChoices[questionNumber] = ["Yes", "No"];
 
                         let newAmountOfChoices = state.amountOfChoices;
-                        newAmountOfChoices[questionNumber] = 1;
+                        newAmountOfChoices[questionNumber] = 2;
 
                         State.update({
                           pollTypes: newPollTypes,
