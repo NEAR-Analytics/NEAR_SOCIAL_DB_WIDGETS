@@ -510,6 +510,7 @@ return (
           </div>
         )}
         {poll.value.questions.map((question) => {
+          console.log("in");
           return (
             <div
               style={{
