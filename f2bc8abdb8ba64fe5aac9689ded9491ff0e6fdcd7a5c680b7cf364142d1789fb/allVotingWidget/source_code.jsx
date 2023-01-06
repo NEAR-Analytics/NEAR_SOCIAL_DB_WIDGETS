@@ -181,10 +181,10 @@ if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
   State.update({ answers: answers });
 }
 
-if (!answers) {
+if (!state.answers) {
   return "Loading";
 }
-const answersToThisPoll = answers.filter(
+const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
 const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
@@ -449,7 +449,6 @@ const renderTextVotingInterface = (questionNumber) => {
 
 return (
   <>
-    {!isQuestionOpen && "This poll is not open"}
     {pollParams.value.questions.map((questionParams, questionNumber) => {
       questionParams.questionType != "3"
         ? renderMultipleChoiceVotingInterface(questionParams, questionNumber)
