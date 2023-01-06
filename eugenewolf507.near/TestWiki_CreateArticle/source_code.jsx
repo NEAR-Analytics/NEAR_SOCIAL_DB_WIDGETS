@@ -42,7 +42,7 @@ const saveHandler = () => {
         navigation_id: null,
       };
 
-      //   saveArticle(args);
+      saveArticle(args);
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
