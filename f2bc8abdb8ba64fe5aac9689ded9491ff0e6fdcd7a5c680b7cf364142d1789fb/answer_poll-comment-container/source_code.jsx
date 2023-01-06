@@ -1,4 +1,3 @@
-console.log("props: ", props);
 if (!props.answers) {
   return "Prop validAnswersToThisPoll not set";
 }
