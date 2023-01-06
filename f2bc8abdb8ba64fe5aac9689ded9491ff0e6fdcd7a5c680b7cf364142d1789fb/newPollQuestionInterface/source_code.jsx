@@ -6,10 +6,11 @@ State.init({
   pollEndDate: "",
   amountOfQuestions: 1,
   questions: [""],
+  //Next 3 are setted with those values so theres a default value for pollTypes
   // Treated as a number throws an error
   pollTypes: ["0"],
-  choices: [[""]],
-  amountOfChoices: [1],
+  choices: [["Yes", "No"]],
+  amountOfChoices: [2],
   showErrorsInForm: false,
   showPreview: false,
   showSendFeedback: false,
@@ -39,7 +40,7 @@ const getPublicationParams = (isDraft) => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "question-v3.0.2",
+          key: "question-v3.1.0",
           value: {
             isDraft,
             title: state.pollTitle,
@@ -70,17 +71,42 @@ function isValidHttpUrl(string) {
   return url.protocol === "http:" || url.protocol === "https:";
 }
 
-const isValidInput = (quesitonNumber) => {
+function validateOptionsSettedProperly() {
+  let allQuestionsValid = true;
+  for (let i = 0; i < amountOfQuestions.length; i++) {
+    if (
+      state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
+      state.pollTypes[i] == pollTypes.MULTISELECT.id
+    ) {
+      allQuestionsValid =
+        allQuestionsValid &&
+        state.choices[i].filter((c) => c != "").length >= 2;
+    }
+  }
+  return allQuestionsValid;
+}
+
+function validateQuestionsSettedProperly() {
+  let allQuestionsValid = true;
+  for (let i = 0; i < amountOfQuestions.length; i++) {
+    allQuestionsValid = allQuestionsValid && state.questions[i] != "";
+  }
+  return allQuestionsValid;
+}
+
+const isValidInput = () => {
   // TODO validate date and link types
-  let result = result && state.pollTitle != "";
+  let result = true;
+  result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
   result = result && isValidTelegramLink();
   result = result && state.pollStartDate != "";
   result = result && state.pollEndDate != "";
-  result = result && state.questions[quesitonNumber] != "";
+  result = result && validateQuestionsSettedProperly();
   result =
     result &&
     getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
+  result = result && validateOptionsSettedProperly();
   // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
 };
