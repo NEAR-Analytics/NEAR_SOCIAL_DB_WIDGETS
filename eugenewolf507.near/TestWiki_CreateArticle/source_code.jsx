@@ -35,9 +35,6 @@ const saveHandler = () => {
       (id) => id.toLowerCase() === state.articleId.toLowerCase()
     );
     if (!isArticleIdDublicated) {
-      const idWithoutSpaces = state.articleId.replace(/\s+/g, "");
-      State.update({ ...state, articleId: idWithoutSpaces });
-
       console.log("SAVE ARTICLE");
       const args = {
         article_id: idWithoutSpaces,
@@ -45,7 +42,7 @@ const saveHandler = () => {
         navigation_id: null,
       };
 
-      saveArticle(args);
+      //   saveArticle(args);
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
@@ -100,7 +97,10 @@ return (
         id="inputArticleId"
         value={state.articleId}
         onChange={(e) => {
-          State.update({ ...state, articleId: e.target.value });
+          State.update({
+            ...state,
+            articleId: e.target.value.replace(/\s+/g, ""),
+          });
         }}
       />
     </div>
