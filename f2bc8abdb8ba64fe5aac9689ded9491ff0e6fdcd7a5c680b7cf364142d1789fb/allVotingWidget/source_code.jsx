@@ -163,7 +163,7 @@ const isPreview = props.isPreview;
 
 // Getting question
 const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.0.1");
+const questions = Social.index("poll_question", "question-v3.0.2");
 
 if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
   State.update({ questions: questions });
@@ -175,7 +175,7 @@ if (!questions) {
 const pollParams = questions.find((q) => q.blockHeight == questionBlockHeight);
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.0.1");
+const answers = Social.index("poll_question", "answer-v3.0.2");
 
 if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
   State.update({ answers: answers });
@@ -219,7 +219,7 @@ const getPublicationParams = () => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.0.1",
+          key: "answer-v3.0.2",
           value: {
             answer: state.vote,
             questionBlockHeight,
@@ -231,6 +231,19 @@ const getPublicationParams = () => {
     },
   };
 };
+
+//TODO check this
+function isVoteValid() {
+  let voteValid = true && state.vote.length == questionParams.questions.length;
+  for (let i = 0; i < questionParams.questions.length; i++) {
+    voteValid =
+      (voteValid &&
+        questionParams.quesitons.questionType == "2" &&
+        state.vote[i].filter((a) => a != "").length > 0) ||
+      (questionParams.questions.questionType != "2" && state.vote[i] != "");
+  }
+  return voteValid;
+}
 
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisPoll.length == 0) return 0;
@@ -288,6 +301,30 @@ const renderAnswers = (questionNumber) => {
     );
   });
 };
+
+function clickSelectionInputHandler(e) {
+  return () => {
+    let newVote = state.vote;
+
+    if (questionParams.questionType[questionNumber] == "2") {
+      if (e.target.checked) {
+        let newRealVotes = [];
+
+        for (let i = 0; i < newVote[questionNumber].length; i++) {
+          if (i != index) {
+            newRealVotes.push(newVote[questionNumber][i]);
+          }
+          newVote[questionNumber] = newRealVotes;
+        }
+      } else {
+        newVote[questionNumber].push(index + "");
+      }
+    } else {
+      newVote[questionNumber] = index + "";
+    }
+    State.update({ vote: newVote });
+  };
+}
 
 const renderMultipleChoiceVotingInterface = (
   questionParams,
@@ -358,15 +395,18 @@ const renderMultipleChoiceVotingInterface = (
                     name="selectMultipleChoice"
                     key={index + "-" + state.vote}
                     style={getInputStyles(index)}
-                    type="radio"
+                    type={
+                      questionParams.questionType[questionNumber] == "2"
+                        ? "checkbox"
+                        : "radio"
+                    }
                     value={index}
-                    checked={state.vote[questionNumber] == index + ""}
-                    onClick={() => {
-                      let newVote = state.vote;
-                      newVote[questionNumber] = index + "";
-
-                      State.update({ vote: newVote });
-                    }}
+                    checked={
+                      questionParams.questionType[questionNumber] == "2"
+                        ? state.vote[questionNumber].includes(index + "")
+                        : state.vote[questionNumber] == index + ""
+                    }
+                    onClick={clickSelectionInputHandler(e)}
                   />
                   <label for={`input-${questionNumber}-${index}`}>
                     {option}
@@ -422,7 +462,7 @@ return (
         >
           Voted
         </p>
-      ) : state.vote != [""] ? (
+      ) : isVoteValid() ? (
         <CommitButton
           className="w-100"
           style={{
@@ -446,6 +486,9 @@ return (
           >
             Done
           </button>
+          {state.showErrorsInForm && (
+            <span className="text-danger">Please answer all the questions</span>
+          )}
         </>
       )
     ) : (
