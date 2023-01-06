@@ -1,24 +1,14 @@
-const ideas = Near.view("devgovgigs.near", "get_ideas");
-
-// TODO: Sort ideas based on how much in total USD equivalent was pledged through sponsorships.
-// TODO: Sort ideas based on a criteria that includes social activity, like attestations.
-
-console.log(ideas);
+const ownerId = "devgovgigs.near";
+const postIds =
+  props.postIds ?? Near.view(ownerId, "get_children_ids").reverse();
 
 return (
   <div>
-    <h2>Ideas</h2>
-    <p>
-      <a
-        className="btn btn-outline-primary ms-2"
-        href="#/devgovgigs.near/widget/AddIdea"
-      >
-        Add idea
-      </a>
-    </p>
-    {ideas
-      ? ideas.map((idea) => {
-          return <Widget src="devgovgigs.near/widget/Idea" props={{ idea }} />;
+    {postIds
+      ? postIds.map((postId) => {
+          return (
+            <Widget src={`${ownerId}/widget/Post`} props={{ id: postId }} />
+          );
         })
       : ""}
   </div>
