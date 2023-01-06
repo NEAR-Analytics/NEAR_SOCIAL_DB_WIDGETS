@@ -11,9 +11,9 @@ let questionNumber = props.questionNumber;
 
 return (
   <>
-    {answers.map((answer, index) => {
+    {answers.map((answer) => {
       <div className="flex-column my-2 border border-primary p-2">
-        if(questionNumber == index) return (<p className="m-3">{answer}</p>);
+        <p className="m-3">{answer.value.answer[questionNumber]}</p>
       </div>;
     })}
   </>
