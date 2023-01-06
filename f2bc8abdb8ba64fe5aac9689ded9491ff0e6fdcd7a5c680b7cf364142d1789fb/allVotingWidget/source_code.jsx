@@ -173,7 +173,7 @@ function getTimeRelatedValidAnswers(answers) {
 //TODO review this since new poll structure breake the function
 function getOptionRelatedValidAnswers(answers) {
   return answers.filter((a) => {
-    // console.log(a);
+    console.log("a: ", a);
     0 <= Number(a.value.answer) &&
       Number(a.value.answer) < poll.value.choicesOptions.length;
   });
@@ -198,7 +198,18 @@ if (!state.answers) {
 const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
-const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+// const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+const validAnswersToThisPoll = [
+  {
+    accountId:
+      "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
+    blockHeight: 82327114,
+    value: {
+      answer: ["0", "1", ["0", "1"], "Testing text answer"],
+      questionBlockHeight: 82308351,
+    },
+  },
+];
 
 let userVote;
 // Getting if user has already voted
@@ -263,10 +274,13 @@ function calculatePercentage(votesToThisOption) {
   return ((votesToThisOption / validAnswersToThisPoll.length) * 100).toFixed(2);
 }
 
-function getBorderRadious(optionNumber) {
+function getBorderRadious(questionNumber, optionNumber) {
   if (optionNumber == 0) {
     return "12px 12px 4px 4px";
-  } else if (optionNumber == poll.value.choicesOptions.length - 1) {
+  } else if (
+    optionNumber ==
+    poll.value.questions[questionNumber].choicesOptions.length - 1
+  ) {
     return "4px 4px 12px 12px";
   } else {
     return "4px";
@@ -345,7 +359,10 @@ const renderMultipleChoiceInput = (
                 width: "100%",
                 margin: "0.3rem 0px",
                 height: "2.4rem",
-                borderRadius: `${getBorderRadious(optionNumber)}`,
+                borderRadius: `${getBorderRadious(
+                  questionNumber,
+                  optionNumber
+                )}`,
                 overflow: "hidden",
                 position: "relative",
               }}
