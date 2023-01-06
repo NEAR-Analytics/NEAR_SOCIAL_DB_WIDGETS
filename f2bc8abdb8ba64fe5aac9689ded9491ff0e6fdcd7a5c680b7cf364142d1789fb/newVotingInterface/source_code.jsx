@@ -247,65 +247,65 @@ const renderModal = () => {
   );
 };
 
-function getBlockTimestamp(blockHeight) {
-  // It is stored in nanoseconds which is 1e-6 miliseconds
-  return Near.block(blockHeight).header.timestamp / 1e6;
-}
+// function getBlockTimestamp(blockHeight) {
+//   // It is stored in nanoseconds which is 1e-6 miliseconds
+//   return Near.block(blockHeight).header.timestamp / 1e6;
+// }
 
-function getTimeRelatedValidAnswers(answers) {
-  let low = 0;
-  let high = answers.length - 1;
-  const questionEndTimestamp = poll.value.endTimestamp;
-  let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
-  if (endBlockTimestamp < questionEndTimestamp) return answers;
-  // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
-  let tries = 10;
-  while (high - low > 1 && tries > 0) {
-    tries--;
-    let curr = Math.floor((high - low) / 2) + low;
-    let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
-    if (currBlockTimestamp < questionEndTimestamp) {
-      low = curr;
-    } else {
-      high = curr;
-    }
-  }
-  // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
-  return answers.slice(0, high);
-}
+// function getTimeRelatedValidAnswers(answers) {
+//   let low = 0;
+//   let high = answers.length - 1;
+//   const questionEndTimestamp = poll.value.endTimestamp;
+//   let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
+//   if (endBlockTimestamp < questionEndTimestamp) return answers;
+//   // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
+//   let tries = 10;
+//   while (high - low > 1 && tries > 0) {
+//     tries--;
+//     let curr = Math.floor((high - low) / 2) + low;
+//     let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
+//     if (currBlockTimestamp < questionEndTimestamp) {
+//       low = curr;
+//     } else {
+//       high = curr;
+//     }
+//   }
+//   // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
+//   return answers.slice(0, high);
+// }
 
-const answersToThisPoll = state.answers.filter(
-  (a) => a.value.questionBlockHeight == questionBlockHeight
-);
+// const answersToThisPoll = state.answers.filter(
+//   (a) => a.value.questionBlockHeight == questionBlockHeight
+// );
 
-function getValidAnswers() {
-  let validTime = getTimeRelatedValidAnswers(answersToThisPoll);
-  let validOptionAndTime = getOptionRelatedValidAnswers(validTime);
-  return validOptionAndTime;
-}
+// function getValidAnswers() {
+//   let validTime = getTimeRelatedValidAnswers(answersToThisPoll);
+//   let validOptionAndTime = getOptionRelatedValidAnswers(validTime);
+//   return validOptionAndTime;
+// }
 
-function getOptionRelatedValidAnswers(answers) {
-  return answers.filter(
-    (a) =>
-      0 <= Number(a.value.answer) &&
-      Number(a.value.answer) < pollParams.value.choicesOptions.length
-  );
-}
+// function getOptionRelatedValidAnswers(answers) {
+//   return answers.filter(
+//     (a) =>
+//       0 <= Number(a.value.answer) &&
+//       Number(a.value.answer) < pollParams.value.choicesOptions.length
+//   );
+// }
 
-const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+// const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
-function userHasVoted() {
-  return (
-    validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
-    undefined
-  );
-}
-let hasVoted = userHasVoted();
+// function userHasVoted() {
+//   return (
+//     validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
+//     undefined
+//   );
+// }
+// let hasVoted = userHasVoted();
 
-const isQuestionOpen =
-  state.poll.value.startTimestamp < Date.now() &&
-  Date.now() < state.poll.value.endTimestamp;
-const canVote = !hasVoted && isQuestionOpen;
+// const isQuestionOpen =
+//   state.poll.value.startTimestamp < Date.now() &&
+//   Date.now() < state.poll.value.endTimestamp;
+// const canVote = !hasVoted && isQuestionOpen;
 
 function showDescription(description) {
   if (state.descriptionHeightLimited && description.length > 501) {
@@ -577,31 +577,15 @@ return (
             </div>
           </div>
         )}
-        {!isQuestionOpen
-          ? "This poll is not open"
-          : state.poll.value.questions.map((question) => {
-              return (
-                <div
-                  style={{
-                    border: "1.5px solid rgb(206, 212, 218)",
-                    borderRadius: "24px",
-                    position: "relative",
-                  }}
-                  className="p-3 my-3"
-                >
-                  <h4>{question.question}</h4>
-
-                  <Widget
-                    src={`${widgetOwner}/widget/allVotingWidget`}
-                    props={{
-                      blockHeight: state.poll.blockHeight,
-                      isPreview,
-                    }}
-                  />
-                </div>
-              );
-            })}
-        //TODO add voting button and it\'s logic
+        {
+          <Widget
+            src={`${widgetOwner}/widget/allVotingWidget`}
+            props={{
+              poll: state.poll,
+              isPreview,
+            }}
+          />
+        }
       </div>
       <div style={{ minWidth: "17rem" }}>
         {questionsByCreator.length != 1 && (
