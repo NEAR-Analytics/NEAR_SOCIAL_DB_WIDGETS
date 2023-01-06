@@ -92,6 +92,11 @@ return (
         id="pills-main"
         role="tabpanel"
         aria-labelledby="pills-main-tab"
+        onClick={(e) => {
+          console.log("!!!e", e);
+          const href = e.target.href || "";
+          console.log("href", href);
+        }}
       >
         <Markdown text={mainPage.body} />
       </div>
