@@ -108,6 +108,7 @@ return (
                 {
                   key: accountId.toLowerCase(),
                   value: {
+                    receiver_account_id: props.receiverAccountId.toLowerCase(),
                     version: "0",
                   },
                 },
