@@ -504,7 +504,6 @@ const renderTextInput = (questionNumber) => {
 return (
   <>
     {poll.value.questions.map((question, questionNumber) => {
-      console.log(!hasVoted);
       return (
         <div
           style={{
@@ -519,10 +518,10 @@ return (
           {!hasVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : question.questionType == "2" ? (
+          ) : !hasVoted && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            <p className="mb-1">Write your answer:</p>
+            !hasVoted && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
