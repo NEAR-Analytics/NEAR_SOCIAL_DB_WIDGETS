@@ -143,7 +143,7 @@ const renderQuestionsByThisCreator = () => {
   return state.pollsByThisCreator.map((pollByCreator, index) => {
     let divStyle =
       index == 0
-        ? {}
+        ? { backGroundColor: "white" }
         : { backGroundColor: "white", borderTop: "1px solid #ced4da" };
     return (
       <div style={divStyle}>
@@ -681,8 +681,6 @@ return (
 
               <div
                 style={{
-                  border: "1px solid #ced4da",
-                  borderRadius: "0.375rem",
                   padding: "0.5rem 1rem",
                 }}
               >
