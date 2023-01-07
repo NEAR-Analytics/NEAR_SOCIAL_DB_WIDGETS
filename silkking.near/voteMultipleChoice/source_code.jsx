@@ -6,8 +6,111 @@ if (!props.isPreview && isNaN(props.blockHeight)) {
 }
 
 State.init({
-  vote: userVote ?? "",
+  vote: userVote ?? [""],
+  questions: {},
+  answers: {},
 });
+
+let bgBlue = "#96C0FF";
+let bgRed = "#FFB4B4";
+let bgYellow = "#FFE999";
+let bgPurple = "#E6C0FF";
+let bgGreen = "#96FFE0";
+let bgPink = "#FF96B9";
+let bgSkyBlue = "#96EAFF";
+let bgIndigo = "#96DCD2";
+
+let allBgColors = [
+  bgBlue,
+  bgRed,
+  bgYellow,
+  bgPurple,
+  bgGreen,
+  bgPink,
+  bgSkyBlue,
+  bgIndigo,
+];
+
+let secondaryBgBlue = "#E6F0FF";
+let secondaryBgRed = "#FFEDED";
+let secondaryBgYellow = "#FFFAE6";
+let secondaryBgPurple = "#F9F0FF";
+let secondaryBgGreen = "#E6FFF7";
+let secondaryBgPink = "#FFE6EE";
+let secondaryBgSkyBlue = "#E6FAFF";
+let secondaryBgIndigo = "#E6F6F4";
+
+let allSecondaryBgColors = [
+  secondaryBgBlue,
+  secondaryBgRed,
+  secondaryBgYellow,
+  secondaryBgPurple,
+  secondaryBgGreen,
+  secondaryBgPink,
+  secondaryBgSkyBlue,
+  secondaryBgIndigo,
+];
+
+let fontColorBlue = "#003E9C";
+let fontColorRed = "#9C2B2B";
+let fontColorYellow = "#9C7B03";
+let fontColorPurple = "#763E9C";
+let fontColorGreen = "#009C6D";
+let fontColorPink = "#9C0034";
+let fontColorSkyBlue = "#007C9C";
+let fontColorIndigo = "#006758";
+
+let allFontColors = [
+  fontColorBlue,
+  fontColorRed,
+  fontColorYellow,
+  fontColorPurple,
+  fontColorGreen,
+  fontColorPink,
+  fontColorSkyBlue,
+  fontColorIndigo,
+];
+
+let secondaryColor = "#E9EBF8";
+
+function getBgColor(index, isPrimary) {
+  let allColorsOfThisType =
+    state.vote != `${index}` && isPrimary ? allBgColors : allSecondaryBgColors;
+
+  return Number.isInteger((index + 1) / allColorsOfThisType.length)
+    ? allColorsOfThisType[0]
+    : allColorsOfThisType[
+        ((index + 1) / allColorsOfThisType.length -
+          Math.trunc((index + 1) / allColorsOfThisType.length)) *
+          allColorsOfThisType.length -
+          1
+      ];
+}
+
+function getFontColor(index) {
+  return Number.isInteger((index + 1) / allFontColors.length)
+    ? allFontColors[0]
+    : allFontColors[
+        ((index + 1) / allFontColors.length -
+          Math.trunc((index + 1) / allFontColors.length)) *
+          allFontColors.length -
+          1
+      ];
+}
+
+function getInputStyles(index) {
+  return index + "" == state.vote
+    ? {
+        borderColor: "black",
+        backgroundColor: "black",
+        width: "1rem",
+        marginRight: "0.7rem",
+      }
+    : {
+        width: "1rem",
+        marginRight: "0.7rem",
+      };
+}
 
 // Utility function
 function getBlockTimestamp(blockHeight) {
@@ -56,7 +159,12 @@ const isPreview = props.isPreview;
 
 // Getting question
 const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.0.1");
+const questions = Social.index("poll_question", "question-v3.1.0");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!questions) {
   return "Loading";
 }
@@ -65,7 +173,12 @@ const questionParams = questions.find(
 );
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.0.1");
+const answers = Social.index("poll_question", "answer-v3.1.0");
+
+if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+  State.update({ answers: answers });
+}
+
 if (!answers) {
   return "Loading";
 }
@@ -73,7 +186,6 @@ const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
 const validAnswersToThisQuestion = getValidAnswers(answersToThisQuestion);
-console.log(1, validAnswersToThisQuestion);
 
 let userVote;
 // Getting if user has already voted
@@ -103,7 +215,7 @@ const getPublicationParams = () => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.0.1",
+          key: "answer-v3.1.0",
           value: {
             answer: state.vote,
             questionBlockHeight,
@@ -124,9 +236,39 @@ function calculatePercentage(votesToThisOption) {
   ).toFixed(2);
 }
 
-let styles = hasVoted
-  ? { color: "#000", width: "90%" }
-  : { color: "#000", width: "100%" };
+function getBorderRadious(index) {
+  if (index == 0) {
+    return "12px 12px 4px 4px";
+  } else if (index == questionParams.value.choicesOptions.length - 1) {
+    return "4px 4px 12px 12px";
+  } else {
+    return "4px";
+  }
+}
+
+function getStyles(index) {
+  return !canVote
+    ? {
+        display: "flex",
+        alignContent: "center",
+        backgroundColor: `${getBgColor(index, false)}`,
+        color: `${getFontColor(index)}`,
+        width: "100%",
+        margin: "0.3rem 0px",
+        height: "2.4rem",
+        borderRadius: `${getBorderRadious(index)}`,
+        overflow: "hidden",
+        position: "relative",
+      }
+    : {
+        appearance: "auto",
+        width: "100%",
+        display: "flex",
+        justifyContent: "flex-start",
+        margin: "0.4rem 0",
+        position: "relative",
+      };
+}
 
 const isValidInput = () => {
   let result = state.vote != "";
@@ -136,59 +278,74 @@ const isValidInput = () => {
 return (
   <>
     {!isQuestionOpen ? "This question is already closed" : ""}
+    {canVote && <p style={{ margin: "0" }}>Make a choice:</p>}
     {questionParams.value.choicesOptions.map((option, index) => {
       return (
         <div>
-          <div className="d-flex">
-            <div style={styles}>
-              {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-              <div
-                style={{
-                  margin: "0.3rem 0px",
-                  content: "",
-                  display: "table",
-                  clear: "both",
-                  padding: "0.01em 16px",
-                  display: "inline-block",
-                  width: `${
-                    !canVote ? calculatePercentage(countVotes[index]) : 100
-                  }%`,
-                  textAlign: "center",
-                  overflow: "visible",
-                  whiteSpace: "nowrap",
-                  textAlign: "left",
-                  backgroundColor: `${
-                    (hasVoted && state.vote == index) ||
-                    state.vote == index + ""
-                      ? "rgb(153, 255, 153)"
-                      : "lightgray"
-                  }`,
-                }}
-                onClick={() => canVote && State.update({ vote: index + "" })}
-              >
-                <span style={{ overflow: "visible", fontWeight: "500" }}>
-                  {option}
-                  {!canVote && (
+          <div className="d-flex align-content-center">
+            {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
+            {!canVote ? (
+              <div style={getStyles(index)}>
+                <div
+                  style={{
+                    height: "100%",
+                    padding: "0.01em 22px 0.01em 11px",
+                    display: "inline-block",
+                    width: `${calculatePercentage(countVotes[index])}%`,
+                    textAlign: "center",
+                    overflow: "visible",
+                    whiteSpace: "nowrap",
+                    textAlign: "left",
+                    backgroundColor: `${getBgColor(index, true)}`,
+                    borderRadius: "4px",
+                  }}
+                >
+                  <span
+                    style={{
+                      overflow: "visible",
+                      fontWeight: "500",
+                      lineHeight: "2.5rem",
+                    }}
+                  >
+                    {option} •
                     <span
                       className="text-secondary"
-                      style={{ marginLeft: "1rem", fontWeight: "400" }}
+                      style={{
+                        marginLeft: "1rem",
+                        fontWeight: "400",
+                      }}
                     >
                       ({countVotes[index]} votes)
                     </span>
-                  )}
+                  </span>
+                </div>
+                <span
+                  style={{
+                    minWidth: "max-content",
+                    margin: "0.4rem 0px 0.4rem 0.3rem",
+                    fontWeight: "500",
+                    position: "absolute",
+                    right: "1.7rem",
+                  }}
+                >
+                  {calculatePercentage(countVotes[index])}%
                 </span>
               </div>
-            </div>
-            {!canVote && (
-              <span
-                style={{
-                  minWidth: "max-content",
-                  margin: "0.3rem 0px 0.3rem 0.3rem",
-                  fontWeight: "500",
-                }}
-              >
-                {calculatePercentage(countVotes[index])}%
-              </span>
+            ) : (
+              <>
+                <input
+                  className="form-check-input"
+                  id={"input" + index}
+                  name="selectMultipleChoice"
+                  key={index + "-" + state.vote}
+                  style={getInputStyles(index)}
+                  type="radio"
+                  value={index}
+                  checked={state.vote == index + ""}
+                  onClick={() => State.update({ vote: index + "" })}
+                />
+                <label for={"input" + index}>{option}</label>
+              </>
             )}
           </div>
         </div>
@@ -202,16 +359,54 @@ return (
         >
           Voted
         </p>
-      ) : (
+      ) : state.vote != "" ? (
         <CommitButton
-          className="my-2 btn btn-primary"
+          className="w-100"
+          style={{
+            marginTop: "0.5rem",
+            padding: "0.5rem",
+            backgroundColor: "#000000",
+            color: "#FFFFFF",
+            fontSize: "1rem",
+            borderRadius: "9px",
+            border: "none",
+          }}
           data={getPublicationParams()}
         >
           Vote
         </CommitButton>
+      ) : (
+        <>
+          <button
+            className="w-100"
+            style={{
+              marginTop: "0.5rem",
+              padding: "0.5em",
+              backgroundColor: "#F2F6FA",
+              color: "#B0B3BE",
+              fontSize: "1rem",
+              borderRadius: "9px",
+              border: "none",
+            }}
+            disabled
+          >
+            Vote
+          </button>
+        </>
       )
     ) : (
       ""
     )}
+    <p
+      style={{
+        fontWeight: "500",
+        fontSize: "1.1rem",
+        color: "#767B8E",
+        letterSpacing: "-0.02em",
+        marginTop: "0.8rem",
+      }}
+    >
+      {validAnswersToThisQuestion.length} votes
+    </p>
   </>
 );
