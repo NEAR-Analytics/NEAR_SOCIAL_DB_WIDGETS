@@ -26,7 +26,7 @@ const linkToParent =
   isUnderPost || !parentId ? null : (
     <div className="card-header">
       <a
-        href={`https://near.social/#/devgovgigs.near/widget/Post?id=${parentId}`}
+        href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${parentId}`}
       >
         <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
       </a>
