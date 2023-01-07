@@ -85,7 +85,11 @@ return (
           borderRight: "1.5px solid #F2F6FA",
         }}
       >
-        <p style={{ margin: "0" }}>Started</p>
+        {Date.now() > poll.value.startTimestamp ? (
+          <p style={{ margin: "0" }}>Started</p>
+        ) : (
+          <p style={{ margin: "0" }}>Start</p>
+        )}
         <p
           style={{
             fontWeight: "600",
