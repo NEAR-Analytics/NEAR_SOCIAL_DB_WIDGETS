@@ -148,8 +148,19 @@ const renderQuestionsByThisCreator = () => {
     return (
       <div style={divStyle}>
         <div className="d-flex align-items-center">
-          {renderPollTypeIcon()}
-          <p style={{ fontWeight: "500" }}>
+          <div
+            className="d-flex justify-content-center"
+            style={{
+              maxHeight: "2.8rem",
+              aspectRatio: "1",
+              borderRadius: "16px",
+              backgroundColor: "#F2F6FA",
+              marginRight: "0.8rem",
+            }}
+          >
+            {renderPollTypeIcon(poll)}
+          </div>
+          <p style={{ fontWeight: "500", margin: "0" }}>
             {sliceString(pollByCreator.value.title, 20)}
           </p>
         </div>
