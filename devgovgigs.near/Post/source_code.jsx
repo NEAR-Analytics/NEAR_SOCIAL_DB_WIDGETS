@@ -5,7 +5,7 @@ const snapshot = post.snapshot;
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 // Whether the post should be presented in the most compact way possible.
-const isCompact = props.isMinimized ? true : false;
+const isCompact = props.isCompact ? true : false;
 const parentId = Near.view(ownerId, "get_parent_id", { post_id: postId });
 
 const childPostIdsUnordered =
