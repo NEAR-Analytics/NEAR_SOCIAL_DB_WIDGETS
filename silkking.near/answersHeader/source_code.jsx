@@ -1,9 +1,18 @@
+State.init({
+  questions: {},
+  profile: {},
+});
+
 if (!props.blockHeight) {
   return "Prop blockHeight is not set";
 }
 
 const questionBlockHeight = props.blockHeight;
-let questions = Social.index("poll_question", "question-v3.0.1");
+let questions = Social.index("poll_question", "question-v3.1.0");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
 if (!questions) {
   return "Loading";
 }
@@ -23,9 +32,13 @@ function isUpcoming() {
 }
 
 let profile = Social.getr(`${props.accountId}/profile`);
-// if (!profile) {
-//   return "Loading";
-// }
+
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
+if (!profile) {
+  return "Loading";
+}
 
 return (
   <div className="my-2">
@@ -43,16 +56,21 @@ return (
         <span
           style={{
             backgroundColor: isUpcoming()
-              ? "rgb(255, 255, 128)"
+              ? "#FFF3B4"
               : isActive()
-              ? "rgb(153, 255, 153)"
-              : "rgb(255, 128, 128)",
+              ? "#D9FCEF"
+              : "#FFE5E5",
 
             height: "max-content",
             width: "6rem",
             border: "1px solid rgb(0, 82, 204)",
             textAlign: "center",
             borderRadius: "80px",
+            color: isUpcoming()
+              ? "#FFC905"
+              : isActive()
+              ? "#00B37D"
+              : "#FF4747",
           }}
         >
           {isUpcoming() ? "Upcoming" : isActive() ? "Active" : "Closed"}
