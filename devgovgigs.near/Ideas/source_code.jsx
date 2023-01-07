@@ -3,6 +3,8 @@ const postId = "Root";
 
 console.log("props", props);
 
+const defaultSelectedBoard = "nearsocial";
+
 initState({
   recency: props.recency,
   label: props.label,
@@ -58,9 +60,9 @@ const onLabelSelected = (selectedLabels) => {
 };
 
 const onBoardsClick = () => {
-  console.log("Selected board id", props.selectedBoardId ?? 0);
   State.update({
-    selectedBoardId: props.selectedBoardId == null ? null : 0,
+    selectedBoardId:
+      props.selectedBoardId == null ? null : defaultSelectedBoard,
     selectedPost: null,
   });
 };
