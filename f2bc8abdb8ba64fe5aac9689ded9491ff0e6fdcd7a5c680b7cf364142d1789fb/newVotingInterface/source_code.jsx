@@ -356,18 +356,15 @@ function showDescription(description) {
 }
 
 return (
-  <div style={{ backgroundColor: "#FAFAFB" }}>
-    <div
-      className="d-flex content-align-start justify-content-between"
-      style={{
-        borderRadius: "3px",
-        padding: "2rem 3rem",
-      }}
-    >
+  <div>
+    <div className="d-flex content-align-start justify-content-between">
       <div
         style={{
           width: "75%",
-          marginRight: "2rem",
+          margin: "2rem 0.5rem 2rem 2rem",
+          padding: "2rem",
+          borderRadius: "18px",
+          background: "white",
         }}
       >
         <div className="d-flex justify-content-between">
@@ -634,55 +631,64 @@ return (
         }
       </div>
       <div style={{ minWidth: "17rem" }}>
-        {questionsByCreator.length != 1 && (
-          <>
-            <div
-              className="d-flex"
-              style={
-                shouldDisplayViewAll
-                  ? {
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }
-                  : {
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                    }
-              }
-            >
-              <h5>Polls by creator ({state.pollsByThisCreator.length})</h5>
+        <div
+          style={{
+            margin: "2rem 2rem 2rem 0.5rem",
+            padding: "2rem",
+            borderRadius: "18px",
+            backgroundColor: "white",
+          }}
+        >
+          {questionsByCreator.length != 1 && (
+            <>
+              <div
+                className="d-flex"
+                style={
+                  shouldDisplayViewAll
+                    ? {
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }
+                    : {
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                      }
+                }
+              >
+                <h5>Polls by creator ({state.pollsByThisCreator.length})</h5>
 
-              {shouldDisplayViewAll && (
-                <div style={{ margin: "1rem 0", textAlign: "center" }}>
-                  <p
-                    style={{
-                      color: "#2346B1",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      State.update({ showQuestionsByThisUser: true });
-                    }}
-                  >
-                    View All <i className="bi bi-arrow-right"></i>
-                  </p>
-                </div>
-              )}
-            </div>
+                {shouldDisplayViewAll && (
+                  <div style={{ margin: "1rem 0", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#2346B1",
+                        fontWeight: "500",
+                        fontSize: "1rem",
+                        margin: "0",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        State.update({ showQuestionsByThisUser: true });
+                      }}
+                    >
+                      View All <i className="bi bi-arrow-right"></i>
+                    </p>
+                  </div>
+                )}
+              </div>
 
-            <div
-              style={{
-                border: "1px solid #ced4da",
-                borderRadius: "0.375rem",
-                padding: "0.5rem 1rem",
-              }}
-            >
-              {renderQuestionsByThisCreator()}
-            </div>
-          </>
-        )}
+              <div
+                style={{
+                  border: "1px solid #ced4da",
+                  borderRadius: "0.375rem",
+                  padding: "0.5rem 1rem",
+                }}
+              >
+                {renderQuestionsByThisCreator()}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
     {state.showQuestionsByThisUser && renderModal()}
