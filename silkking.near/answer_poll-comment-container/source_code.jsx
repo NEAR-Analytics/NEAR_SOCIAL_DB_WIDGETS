@@ -10,18 +10,25 @@ let questionNumber = props.questionNumber;
 
 return (
   <>
-    {answers.map((answer) => {
+    {answers.map((answer, i) => {
       return (
         <div
-          className="flex-column my-2 py-1 px-2"
-          style={{
-            backgroundColor: "#F2F6FA",
-            color: "#59606A",
-            border: "1px solid #F2F6FA",
-            borderRadius: "8px",
-          }}
+          style={
+            i % 2 == 0 ? { marginRight: "0.5rem" } : { marginLeft: "0.5rem" }
+          }
         >
-          <p className="m-3">{answer.value.answer[questionNumber]}</p>
+          <p
+            className="py-2 px-3"
+            style={{
+              backgroundColor: "#F2F6FA",
+              color: "#59606A",
+              border: "1px solid #F2F6FA",
+              borderRadius: "8px",
+              minHeight: "3rem",
+            }}
+          >
+            {answer.value.answer[questionNumber]}
+          </p>
         </div>
       );
     })}
