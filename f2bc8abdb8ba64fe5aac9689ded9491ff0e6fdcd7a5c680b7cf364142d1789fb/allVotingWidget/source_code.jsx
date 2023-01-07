@@ -517,7 +517,7 @@ return (
             <p
               style={{
                 backgroundColor: "#353A40",
-                padding: "0.15rem 0.65rem;",
+                padding: "0.15rem 0.65rem",
                 borderRadius: "9px",
                 color: "white",
               }}
