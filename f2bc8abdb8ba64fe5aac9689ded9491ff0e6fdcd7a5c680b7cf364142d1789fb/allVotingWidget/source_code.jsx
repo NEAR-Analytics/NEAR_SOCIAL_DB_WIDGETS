@@ -270,6 +270,7 @@ const getPublicationParams = () => {
 
 function isVoteValid() {
   let isValid = state.vote.length == poll.value.questions.length;
+  isValid = isValid && context.accountId;
   for (let i = 0; i < state.vote.length; i++) {
     const vote = state.vote[i];
     // vote should always be a string, but in one case is treated as an array. Replace array with csv
