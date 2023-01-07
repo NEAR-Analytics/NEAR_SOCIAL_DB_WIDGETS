@@ -1,7 +1,8 @@
 const ownerId = "devgovgigs.near";
 
-const selectedBoardId = props.selectedBoardId ?? 0;
+const selectedBoardId = props.selectedBoardId ?? "nearsocial";
 
+console.log("selectedBoardId", selectedBoardId);
 const boards = props.boards ?? [
   {
     name: "near.social",
@@ -23,10 +24,6 @@ const boards = props.boards ?? [
   },
 ];
 
-initState({
-  currentBoard: boards[selectedBoardId].config,
-});
-
 return (
   <div>
     <ul class="nav nav-tabs my-3" id="pills-tab" role="tablist">
@@ -34,17 +31,13 @@ return (
         return (
           <li class="nav-item" role="presentation">
             <button
-              class={`nav-link ${
-                board.id == boards[selectedBoardId].id ? "active" : ""
-              }`}
+              class={`nav-link ${board.id == selectedBoardId ? "active" : ""}`}
               data-bs-toggle="pill"
               data-bs-target={`#board${board.id}`}
               type="button"
               role="tab"
               aria-controls={`board${board.id}`}
-              aria-selected={
-                board.id == boards[selectedBoardId].id ? "true" : "false"
-              }
+              aria-selected={board.id == selectedBoardId ? "true" : "false"}
             >
               {board.name}
             </button>
@@ -57,7 +50,7 @@ return (
         return (
           <div
             class={`tab-pane fade ${
-              board.id == boards[selectedBoardId].id ? "show active" : ""
+              board.id == selectedBoardId ? "show active" : ""
             }`}
             id={`board${board.id}`}
             role="tabpanel"
