@@ -513,7 +513,18 @@ return (
           }}
           className="p-3 my-3"
         >
-          <h4>{question.question}</h4>
+          <div>
+            <p
+              style={{
+                backgroundColor: "#353A40",
+                padding: "0.2rem 0.5rem",
+                borderRadius: "14px",
+              }}
+            >
+              {questionNumber + 1}
+            </p>
+            <h4>{question.question}</h4>
+          </div>
 
           {!hasVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
