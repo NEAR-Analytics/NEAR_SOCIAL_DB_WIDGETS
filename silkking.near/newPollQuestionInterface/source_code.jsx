@@ -3,41 +3,52 @@ State.init({
   pollDescription: "",
   pollDiscussionLink: "",
   pollStartDate: "",
-  startTime: "",
   pollEndDate: "",
-  endTime: "",
-  question: "",
+  amountOfQuestions: 1,
+  questions: [""],
+  //Next 3 are setted with those values so theres a default value for pollTypes
   // Treated as a number throws an error
-  pollType: "0",
-  choices: [],
-  amountOfChoices: 1,
-  expandOptions: false,
+  pollTypes: ["0"],
+  choices: [["Yes", "No"]],
+  amountOfChoices: [2],
   showErrorsInForm: false,
   showPreview: false,
   showSendFeedback: false,
+  sectionShown: "mainInfo",
+  hoveringElement: "",
 });
 
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
-  MULTIPLE_CHOICE: { id: "1", value: "Multiple choice" },
+  SINGLE_ANSWER: { id: "1", value: "Single answer" },
+  MULTISELECT: { id: "2", value: "Multiselect" },
+  YES_OR_NO: { id: "3", value: "Yes or No" },
 };
 
 const getPublicationParams = (isDraft) => {
+  let paramQuestions = [];
+
+  for (let i = 0; i < state.questions.length; i++) {
+    paramQuestions.push({
+      question: state.questions[i],
+      questionType: state.pollTypes[i],
+      choicesOptions: state.choices[i].filter((c) => c != ""),
+    });
+  }
+
   return {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "question-v3.0.1",
+          key: "question-v3.1.0",
           value: {
             isDraft,
             title: state.pollTitle,
             description: state.pollDescription,
             tgLink: state.pollDiscussionLink,
-            startTimestamp: getTimestamp(state.pollStartDate, state.startTime),
-            endTimestamp: getTimestamp(state.pollEndDate, state.endTime),
-            questionType: state.pollType,
-            question: state.question,
-            choicesOptions: state.choices.filter((c) => c != ""),
+            startTimestamp: getTimestamp(state.pollStartDate),
+            endTimestamp: getTimestamp(state.pollEndDate),
+            questions: paramQuestions,
             timestamp: Date.now(),
           },
         },
@@ -48,7 +59,7 @@ const getPublicationParams = (isDraft) => {
   };
 };
 
-const getTimestamp = (date, time) => new Date(`${date} ${time}`).getTime();
+const getTimestamp = (date) => new Date(`${date}`).getTime();
 
 function isValidHttpUrl(string) {
   let url;
@@ -60,24 +71,42 @@ function isValidHttpUrl(string) {
   return url.protocol === "http:" || url.protocol === "https:";
 }
 
+function validateOptionsSettedProperly() {
+  let allQuestionsValid = true;
+  for (let i = 0; i < amountOfQuestions.length; i++) {
+    if (
+      state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
+      state.pollTypes[i] == pollTypes.MULTISELECT.id
+    ) {
+      allQuestionsValid =
+        allQuestionsValid &&
+        state.choices[i].filter((c) => c != "").length >= 2;
+    }
+  }
+  return allQuestionsValid;
+}
+
+function validateQuestionsSettedProperly() {
+  let allQuestionsValid = true;
+  for (let i = 0; i < amountOfQuestions.length; i++) {
+    allQuestionsValid = allQuestionsValid && state.questions[i] != "";
+  }
+  return allQuestionsValid;
+}
+
 const isValidInput = () => {
   // TODO validate date and link types
-  let result =
-    (state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
-      state.choices.filter((c) => c != "").length >= 2) ||
-    state.pollType != pollTypes.MULTIPLE_CHOICE.id;
+  let result = true;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
   result = result && isValidTelegramLink();
   result = result && state.pollStartDate != "";
-  result = result && state.startTime != "";
   result = result && state.pollEndDate != "";
-  result = result && state.endTime != "";
-  result = result && state.question != "";
+  result = result && validateQuestionsSettedProperly();
   result =
     result &&
-    getTimestamp(state.pollStartDate, state.startTime) <
-      getTimestamp(state.pollEndDate, state.endTime);
+    getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
+  result = result && validateOptionsSettedProperly();
   // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
 };
@@ -85,10 +114,24 @@ const isValidInput = () => {
 function getStyles(inputData) {
   return !inputData && state.showErrorsInForm
     ? {
+        backgroundColor: "white",
+        padding: "0.5rem 1.5rem",
+        borderRadius: "0.8rem",
+        color: "#474D55",
+        letterSpacing: "-0.01em",
+        width: "100%",
         border: "1px solid #dc3545",
         borderOpacity: "1",
       }
-    : { backgroundColor: "rgb(230, 230, 230)" };
+    : {
+        border: "1.5px solid #E1E9F0",
+        backgroundColor: "white",
+        padding: "0.5rem 1.5rem",
+        borderRadius: "0.8rem",
+        color: "#474D55",
+        letterSpacing: "-0.01em",
+        width: "100%",
+      };
 }
 
 const widgetOwner = "silkking.near";
@@ -113,14 +156,12 @@ const renderModal = (whatModal) => {
             pollDescription: "",
             pollDiscussionLink: "",
             pollStartDate: "",
-            startTime: "",
             pollEndDate: "",
-            endTime: "",
-            question: "",
-            pollType: "0",
-            choices: [],
-            amountOfChoices: 1,
-            expandOptions: false,
+            amountOfQuestions: 1,
+            questions: [""],
+            pollTypes: ["0"],
+            choices: [[""]],
+            amountOfChoices: [1],
             showSendFeedback: false,
           });
         } else if (e.target.id == "modal") {
@@ -151,14 +192,12 @@ const renderModal = (whatModal) => {
                     pollDescription: "",
                     pollDiscussionLink: "",
                     pollStartDate: "",
-                    startTime: "",
                     pollEndDate: "",
-                    endTime: "",
-                    question: "",
-                    pollType: "0",
-                    choices: [],
-                    amountOfChoices: 1,
-                    expandOptions: false,
+                    amountOfQuestions: 1,
+                    questions: [""],
+                    pollTypes: ["0"],
+                    choices: [[""]],
+                    amountOfChoices: [1],
                     showSendFeedback: false,
                   });
                 } else {
@@ -191,17 +230,13 @@ const renderModal = (whatModal) => {
                       isDraft,
                       title: state.pollTitle,
                       description: state.pollDescription,
-                      startTimestamp: getTimestamp(
-                        state.pollStartDate,
-                        state.startTime
+                      startTimestamp: getTimestamp(state.pollStartDate),
+                      endTimestamp: getTimestamp(state.pollEndDate),
+                      questions: state.questions,
+                      questionTypes: state.pollTypes,
+                      choicesOptions: state.choices.forEach((questionChoices) =>
+                        questionChoices.filter((c) => c != "")
                       ),
-                      endTimestamp: getTimestamp(
-                        state.pollEndDate,
-                        state.endTime
-                      ),
-                      questionType: state.pollType,
-                      question: state.question,
-                      choicesOptions: state.choices.filter((c) => c != ""),
                       timestamp: Date.now(),
                     },
                   },
@@ -224,14 +259,12 @@ const renderModal = (whatModal) => {
                     pollDescription: "",
                     pollDiscussionLink: "",
                     pollStartDate: "",
-                    startTime: "",
                     pollEndDate: "",
-                    endTime: "",
-                    question: "",
-                    pollType: "0",
-                    choices: [],
-                    amountOfChoices: 1,
-                    expandOptions: false,
+                    amountOfQuestions: 1,
+                    questions: [""],
+                    pollTypes: ["0"],
+                    choices: [[""]],
+                    amountOfChoices: [1],
                     showSendFeedback: false,
                   });
                 } else {
@@ -251,140 +284,185 @@ const renderModal = (whatModal) => {
   );
 };
 
-const renderTextInputsForChoices = () => {
-  let choices = [];
+const renderTextInputsForChoices = (questionNumber) => {
+  let thisQuestionChoices = [];
 
-  for (let i = 0; i < state.amountOfChoices; i++) {
-    choices.push(i);
+  for (let i = 0; i < state.amountOfChoices[questionNumber]; i++) {
+    thisQuestionChoices.push(i);
   }
 
   return (
     <>
-      {choices.map((choiceIndex) => {
+      {thisQuestionChoices.map((choiceNumber) => {
         return (
-          <div className="my-3" key={`choice-input-${choiceIndex}`}>
-            <label>Answer option {choiceIndex + 1}</label>
-            <div className="d-flex">
+          <div className="mb-2">
+            <div style={{ position: "relative" }}>
               <input
-                style={
-                  state.choices[choiceIndex] == "" && state.showErrorsInForm
-                    ? {
-                        border: "1px solid #dc3545",
-                        borderOpacity: "1",
-                        borderRadius: "0.375rem",
-                      }
-                    : {
-                        backgroundColor: "rgb(230, 230, 230)",
-                        border: "1px solid #ced4da",
-                        borderRadius: "0.375rem",
-                      }
-                }
+                style={{
+                  backgroundColor: "white",
+                  padding: "0.5rem 1.5rem",
+                  borderRadius: "0.8rem",
+                  border: "1.5px solid #E1E9F0",
+                  color: "#474D55",
+                  letterSpacing: "-0.01em",
+                  width: "100%",
+                }}
                 type="text"
-                className="w-100 mx-2"
-                value={state.choices[choiceIndex]}
-                onChange={handleWriteChoiceInputChange(choiceIndex)}
+                className={
+                  !state.choices[questionNumber][choiceNumber] &&
+                  state.showErrorsInForm
+                    ? "border border-danger mb-2"
+                    : "mb-2"
+                }
+                id={`question-${questionNumber}-${choiceNumber}`}
+                value={state.choices[questionNumber][choiceNumber]}
+                onChange={(e) => {
+                  let newChoices = state.choices;
+                  newChoices[questionNumber][choiceNumber] = e.target.value;
+
+                  State.update({ choices: newChoices });
+                }}
               />
-              <button
-                type="button"
-                className="btn btn-outline-danger"
-                onClick={deleteChoiceHandler(choiceIndex)}
-              >
-                <i className="bi bi-x-octagon"></i>
-              </button>
+              <i
+                className="bi bi-x"
+                style={{
+                  color: "#767B8E",
+                  cursor: "pointer",
+                  position: "absolute",
+                  right: "1rem",
+                  top: "0.55rem",
+                }}
+                onClick={() =>
+                  deleteChoiceHandler(questionNumber, choiceNumber)
+                }
+              ></i>
             </div>
           </div>
         );
       })}
-      <button
-        type="button"
-        className="btn btn-outline-primary d-flex"
-        style={{ margin: "0 auto" }}
-        onClick={addChoicesHandler}
+      <div
+        className="d-flex align-items-center"
+        style={{ cursor: "pointer", maxWidth: "max-content" }}
+        onClick={() => addChoicesHandler(questionNumber)}
       >
-        <i className="bi bi-plus-lg"></i>
-        <span>Add option</span>
-      </button>
+        <i
+          className="bi bi-plus-lg"
+          style={{ color: "#4B516A", marginRight: "0.7rem" }}
+        ></i>
+        <span
+          style={{
+            color: "#4B516A",
+            fontSize: "0.8rem",
+            dontWeight: "500",
+            letterSpacing: "0.01em",
+          }}
+        >
+          Add another option
+        </span>
+      </div>
     </>
   );
 };
 
-const renderOptions = () => {
-  return (
-    <div style={{ width: "max-content" }}>
-      <input
-        style={{
-          cursor: "pointer",
-          backgroundColor: "rgb(230, 230, 230)",
-          borderRadius: "0px",
-          position: "absolute",
-          top: "100%",
-          minWidth: "max-content",
-          width: "152px",
-        }}
-        type="text"
-        value="Text"
-        readonly
-        onClick={() => {
-          State.update({ pollType: "0", expandOptions: !state.expandOptions });
-        }}
-      />
+// const renderOptions = (questionNumber) => {
+//   function changeQuestionType(questionType) {
+//     let newPollTypes = state.pollTypes;
+//     newPollTypes[questionNumber] = questionType;
+//   }
 
-      <input
-        style={{
-          cursor: "pointer",
-          backgroundColor: "rgb(230, 230, 230)",
-          borderRadius: "0px",
-          position: "absolute",
-          top: "200%",
-          minWidth: "max-content",
-          width: "152px",
-        }}
-        type="text"
-        value="Multiple choice"
-        readonly
-        onClick={() => {
-          State.update({ pollType: "1", expandOptions: !state.expandOptions });
-        }}
-      />
-    </div>
-  );
-};
+//   return (
+//     <div style={{ width: "max-content" }}>
+//       <input
+//         style={{
+//           cursor: "pointer",
+//           backgroundColor: "rgb(230, 230, 230)",
+//           borderRadius: "0px",
+//           position: "absolute",
+//           top: "100%",
+//           minWidth: "max-content",
+//           width: "152px",
+//         }}
+//         type="text"
+//         value="Text"
+//         readonly
+//         onClick={() => {
+//           State.update({
+//             pollTypes: changeQuestionType("0"),
+//           });
+//         }}
+//       />
 
-function handleWriteChoiceInputChange(choiceIndex) {
-  return (event) => {
-    const newChoices = state.choices;
+//       <input
+//         style={{
+//           cursor: "pointer",
+//           backgroundColor: "rgb(230, 230, 230)",
+//           borderRadius: "0px",
+//           position: "absolute",
+//           top: "200%",
+//           minWidth: "max-content",
+//           width: "152px",
+//         }}
+//         type="text"
+//         value="Multiple choice"
+//         readonly
+//         onClick={() => {
+//           State.update({
+//             pollTypes: changeQuestionType("1"),
+//           });
+//         }}
+//       />
+//     </div>
+//   );
+// };
 
-    newChoices[Number(choiceIndex)] = event.target.value;
+// function handleWriteChoiceInputChange(questionNumber, choiceIndex) {
+//   return (event) => {
+//     const newChoices = state.choices;
+//     newChoices[questionNumber][Number(choiceIndex)] = event.target.value;
 
-    State.update({
-      choices: newChoices,
-    });
-  };
-}
+//     State.update({
+//       choices: newChoices,
+//     });
+//   };
+// }
 
-function deleteChoiceHandler(choiceIndex) {
-  return () => {
-    let choices = state.choices;
-    let newChoices = [];
-    for (let i = 0; i < choices.length; i++) {
-      if (i != choiceIndex) {
-        newChoices.push(choices[i]);
+function deleteChoiceHandler(questionNumber, choiceNumber) {
+  if (state.amountOfChoices[questionNumber] > 1) {
+    let thisQuestionChoices = state.choices[questionNumber];
+
+    let newThisQuestionChoices = [];
+
+    for (let i = 0; i < thisQuestionChoices.length; i++) {
+      if (i != choiceNumber) {
+        newThisQuestionChoices.push(thisQuestionChoices[i]);
       }
     }
 
+    let newChoices = state.choices;
+    newChoices[questionNumber] = newThisQuestionChoices;
+
+    let newAmountOfChoices = state.amountOfChoices;
+    newAmountOfChoices[questionNumber] =
+      Number(newAmountOfChoices[questionNumber]) - 1;
+
     State.update({
-      amountOfChoices: Number(state.amountOfChoices) - 1,
+      amountOfChoices: newAmountOfChoices,
       choices: newChoices,
     });
-  };
+  }
 }
 
-function addChoicesHandler() {
-  let choices = state.choices;
-  choices.push("");
+function addChoicesHandler(questionNumber) {
+  let newchoices = state.choices;
+  newchoices[questionNumber].push("");
+
+  let newAmountOfChoices = state.amountOfChoices;
+  newAmountOfChoices[questionNumber] =
+    Number(newAmountOfChoices[questionNumber]) + 1;
+
   State.update({
-    amountOfChoices: Number(state.amountOfChoices) + 1,
-    choices: choices,
+    amountOfChoices: newAmountOfChoices,
+    choices: newchoices,
   });
 }
 
@@ -393,253 +471,1046 @@ function isValidTelegramLink() {
   return state.pollDiscussionLink.startsWith("https://t.me");
 }
 
+function getTypeOfQuestionSelectionStyles(questionNumber, typeOfQuestion) {
+  if (state.pollTypes[questionNumber] == typeOfQuestion) {
+    return {
+      padding: "1rem",
+      borderRadius: "1rem",
+      cursor: "pointer",
+      border: "1.5px solid #353A40",
+      position: "relative",
+    };
+  } else {
+    return {
+      padding: "1rem",
+      borderRadius: "1rem",
+      cursor: "pointer",
+      border: "1.5px solid #E1E9F0",
+    };
+  }
+}
+
+function getDangerClassIfNeeded(tab) {
+  let normalStyles = true;
+  if (state.showErrorsInForm) {
+    for (let i = 0; i < state.amountOfQuestions; i++) {
+      if (tab == "MainInformation") {
+        normalStyles = normalStyles && state.pollTitle != "";
+        normalStyles = normalStyles && state.pollDescription != "";
+        normalStyles = normalStyles && isValidTelegramLink();
+        normalStyles = normalStyles && state.pollStartDate != "";
+        normalStyles = normalStyles && state.pollEndDate != "";
+        normalStyles =
+          normalStyles &&
+          getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
+      } else {
+        if (
+          state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
+          state.pollTypes[i] == pollTypes.MULTISELECT.id
+        ) {
+          normalStyles =
+            normalStyles &&
+            !(state.choices[i].filter((c) => c != "").length < 2);
+        }
+        normalStyles = normalStyles && state.questions[i] != "";
+      }
+    }
+  }
+
+  if (state.showErrorsInForm) {
+    return !normalStyles && "text-danger";
+  }
+  return "";
+}
+
+let amountOfQuestions = [];
+for (let i = 0; i < state.amountOfQuestions; i++) {
+  amountOfQuestions.push(i);
+}
+
+// console.log(JSON.stringify(getPublicationParams()));
+
 return (
   <div
-    className="d-flex align-items-start justify-content-around pt-4"
+    className="pt-4"
     style={{
       borderRadius: "0.375rem",
-      height: "100vh",
       backgroundColor: "white",
+      margin: "0 auto",
     }}
   >
-    <div className="d-flex flex-column w-75 justify-content-around">
-      <label for="pollTitle">Title*</label>
-      <input
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        type="text"
-        className={
-          !state.pollTitle && state.showErrorsInForm
-            ? "border border-danger mb-2"
-            : "mb-2"
+    <div style={{ margin: "0 auto" }}>
+      <span
+        className={getDangerClassIfNeeded("MainInformation")}
+        style={
+          state.sectionShown == "mainInfo"
+            ? {
+                color: "#353A40",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }
+            : {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }
         }
-        id="pollTitle"
-        value={state.pollTitle}
-        onChange={(e) => {
-          State.update({ pollTitle: e.target.value });
+        onClick={() => {
+          State.update({ sectionShown: "mainInfo" });
         }}
-      />
-      {!state.pollTitle && state.showErrorsInForm && (
-        <p className="text-danger">Title cannot be empty</p>
-      )}
-
-      <label for="pollDescription" className="mt-2">
-        Description*
-      </label>
-      <textarea
-        id="pollDescription"
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        rows="3"
-        className={
-          !state.pollDescription &&
-          state.showErrorsInForm &&
-          "border border-danger"
-        }
-        value={state.pollDescription}
-        onChange={(e) => {
-          State.update({ pollDescription: e.target.value });
-        }}
-      ></textarea>
-      {!state.pollDescription && state.showErrorsInForm && (
-        <p className="text-danger">Description cannot be empty</p>
-      )}
-
-      <label for="pollDiscussionLink" className="mt-3">
-        Discussion link (optional)
-      </label>
-      <input
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        type="text"
-        className={
-          !isValidTelegramLink() && state.showErrorsInForm
-            ? "border border-danger mb-2"
-            : "mb-2"
-        }
-        id="pollDiscussionLink"
-        value={state.pollDiscussionLink}
-        onChange={(e) => {
-          State.update({ pollDiscussionLink: e.target.value });
-        }}
-      />
-      {!isValidTelegramLink() && state.showErrorsInForm && (
-        <p className="text-danger">Not a valid link</p>
-      )}
-
-      <div
-        className="d-flex justify-content-around flex-wrap"
-        style={{ maxWidth: "100%" }}
       >
-        <div className="d-flex flex-row">
-          <div className="d-flex flex-column mx-2">
-            <label for="pollStartDate">Start date*</label>
-            {/*You have min and max properties on dates input*/}
-            <input
-              style={getStyles(state.pollStartDate)}
-              type="date"
-              id="pollStartDate"
-              value={state.pollStartDate}
-              onChange={(e) => {
-                State.update({ pollStartDate: e.target.value });
-              }}
-            />
-            {!state.pollStartDate && state.showErrorsInForm && (
-              <p className="text-danger">Start date cannot be empty</p>
-            )}
-          </div>
-          <div>
-            <div>Start time*</div>
-            <input
-              type="time"
-              style={getStyles(state.startTime)}
-              onChange={(e) => {
-                State.update({ startTime: e.target.value });
-              }}
-            />
-            {!state.pollStartDate && state.showErrorsInForm && (
-              <p className="text-danger">Start time cannot be empty</p>
-            )}
-          </div>
-        </div>
-        <div className="d-flex flex-row">
-          <div className="d-flex flex-column mx-2">
-            <label for="pollEndDate">End date*</label>
-            <input
-              style={getStyles(state.pollEndDate)}
-              type="date"
-              id="pollStartDate"
-              value={state.pollEndDate}
-              onChange={(e) => {
-                State.update({ pollEndDate: e.target.value });
-              }}
-            />
-            {!state.pollEndDate && state.showErrorsInForm && (
-              <p className="text-danger">End date cannot be empty</p>
-            )}
-          </div>
-          <div>
-            <div>End time*</div>
-            <input
-              type="time"
-              style={getStyles(state.endTime)}
-              value={state.endTime}
-              onChange={(e) => {
-                State.update({ endTime: e.target.value });
-              }}
-            />
-            {!state.pollEndDate && state.showErrorsInForm && (
-              <p className="text-danger">End time cannot be empty</p>
-            )}
-          </div>
-        </div>
-      </div>
-      {getTimestamp(state.pollStartDate, state.startTime) >=
-        getTimestamp(state.pollEndDate, state.endTime) &&
-        state.showErrorsInForm && (
-          <div>
-            <p className="text-danger">Poll should start before it ends</p>
-          </div>
-        )}
-
-      <div
-        style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
-        className="p-3 my-3"
+        <i className="bi bi-square-fill"></i> Main information
+      </span>
+      <span
+        className={getDangerClassIfNeeded("Questions")}
+        style={
+          state.sectionShown == "questions"
+            ? {
+                color: "#353A40",
+                fontSize: "0.8rem",
+                position: "relative",
+                userSelect: "none",
+                cursor: "pointer",
+              }
+            : {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                position: "relative",
+                userSelect: "none",
+                cursor: "pointer",
+              }
+        }
+        onClick={() => {
+          State.update({ sectionShown: "questions" });
+        }}
       >
-        <label for="question">Question*</label>
-        <input
-          style={
-            !state.question && state.showErrorsInForm
-              ? {
-                  border: "1px solid #dc3545",
-                  borderOpacity: "1",
-                  borderRadius: "0.375rem",
-                }
-              : { backgroundColor: "rgb(230, 230, 230)" }
-          }
-          type="text"
-          id="question"
-          value={state.question}
-          onChange={(e) => {
-            State.update({ question: e.target.value });
+        <i className="bi bi-square-fill"></i>
+        Questions
+        <span
+          style={{
+            fontSize: "0.7rem",
+            position: "absolute",
+            top: "-8%",
+            left: "103%",
+            userSelect: "none",
+            cursor: "pointer",
           }}
-        />
-        {!state.question && state.showErrorsInForm && (
-          <p className="text-danger">Question cannot be empty</p>
+        >
+          {state.amountOfQuestions + ""}
+        </span>
+      </span>
+    </div>
+    <div className="pt-4">
+      <div className="mb-3" style={{ maxHeight: "50vh", overflowY: "scroll" }}>
+        {state.sectionShown == "mainInfo" && (
+          <div
+            className="d-flex flex-column justify-content-center"
+            style={{ margin: "0 auto" }}
+          >
+            <label
+              for="pollTitle"
+              style={{
+                fontSize: "0.8rem",
+                letterSpacing: "-0.01em",
+                color: "#474D55",
+                marginBottom: "0.3rem",
+              }}
+            >
+              Title*
+            </label>
+            <div style={{ position: "relative" }}>
+              <input
+                style={{
+                  backgroundColor: "white",
+                  padding: "0.5rem 1.5rem",
+                  borderRadius: "0.8rem",
+                  border: "1.5px solid #E1E9F0",
+                  color: "#474D55",
+                  letterSpacing: "-0.01em",
+                  width: "100%",
+                }}
+                type="text"
+                className={
+                  !state.pollTitle && state.showErrorsInForm
+                    ? "border border-danger mb-2"
+                    : "mb-2"
+                }
+                id="pollTitle"
+                value={state.pollTitle}
+                onChange={(e) => {
+                  State.update({ pollTitle: e.target.value });
+                }}
+              />
+              <i
+                className="bi bi-x-circle-fill"
+                style={{
+                  color: "#E1E9F0",
+                  cursor: "pointer",
+                  position: "absolute",
+                  right: "1rem",
+                  top: "0.55rem",
+                }}
+                onClick={() => {
+                  State.update({ pollTitle: "" });
+                }}
+              ></i>
+            </div>
+            {!state.pollTitle && state.showErrorsInForm && (
+              <p className="text-danger">Title cannot be empty</p>
+            )}
+
+            <label
+              for="pollDescription"
+              className="mt-2"
+              style={{
+                fontSize: "0.8rem",
+                letterSpacing: "-0.01em",
+                color: "#474D55",
+                marginBottom: "0.3rem",
+              }}
+            >
+              Description*
+            </label>
+            <textarea
+              id="pollDescription"
+              style={{
+                backgroundColor: "white",
+                padding: "0.5rem 1.5rem",
+                borderRadius: "0.8rem",
+                border: "1.5px solid #E1E9F0",
+                color: "#474D55",
+                letterSpacing: "-0.01em",
+                width: "100%",
+              }}
+              rows="3"
+              className={
+                !state.pollDescription &&
+                state.showErrorsInForm &&
+                "border border-danger"
+              }
+              value={state.pollDescription}
+              onChange={(e) => {
+                State.update({ pollDescription: e.target.value });
+              }}
+            ></textarea>
+            {!state.pollDescription && state.showErrorsInForm && (
+              <p className="text-danger">Description cannot be empty</p>
+            )}
+
+            <label
+              for="pollDiscussionLink"
+              className="mt-3"
+              style={{
+                fontSize: "0.8rem",
+                letterSpacing: "-0.01em",
+                color: "#474D55",
+                marginBottom: "0.3rem",
+              }}
+            >
+              Discussion link (optional)
+            </label>
+            <div style={{ position: "relative" }}>
+              <i
+                className="bi bi-people"
+                style={{
+                  color: "#767B8E",
+                  position: "absolute",
+                  left: "1rem",
+                  top: "0.55rem",
+                }}
+              ></i>
+              <input
+                style={{
+                  backgroundColor: "white",
+                  padding: "0.5rem 1.5rem 0.5rem 2.2rem",
+                  borderRadius: "0.8rem",
+                  border: "1.5px solid #E1E9F0",
+                  color: "#474D55",
+                  letterSpacing: "-0.01em",
+                  width: "100%",
+                }}
+                type="text"
+                className={
+                  !isValidTelegramLink() && state.showErrorsInForm
+                    ? "border border-danger mb-2"
+                    : "mb-2"
+                }
+                id="pollDiscussionLink"
+                value={state.pollDiscussionLink}
+                onChange={(e) => {
+                  State.update({ pollDiscussionLink: e.target.value });
+                }}
+              />
+              <i
+                className="bi bi-x-circle-fill"
+                style={{
+                  color: "#E1E9F0",
+                  cursor: "pointer",
+                  position: "absolute",
+                  right: "1rem",
+                  top: "0.55rem",
+                }}
+                onClick={() => {
+                  State.update({ pollDiscussionLink: "" });
+                }}
+              ></i>
+            </div>
+            {!isValidTelegramLink() && state.showErrorsInForm && (
+              <p className="text-danger">Not a valid link</p>
+            )}
+
+            <div
+              className="d-flex justify-content-between flex-wrap mb-3"
+              style={{ maxWidth: "100%" }}
+            >
+              <div className="d-flex flex-column" style={{ width: "48%" }}>
+                <label
+                  for="pollStartDate"
+                  style={{
+                    fontSize: "0.8rem",
+                    letterSpacing: "-0.01em",
+                    color: "#474D55",
+                    marginBottom: "0.3rem",
+                  }}
+                >
+                  Start date*
+                </label>
+                {/*You have min and max properties on dates input*/}
+                <input
+                  style={getStyles(state.pollStartDate)}
+                  type="datetime-local"
+                  id="pollStartDate"
+                  value={state.pollStartDate}
+                  onChange={(e) => {
+                    State.update({ pollStartDate: e.target.value });
+                  }}
+                />
+                {!state.pollStartDate && state.showErrorsInForm && (
+                  <p className="text-danger">Start date cannot be empty</p>
+                )}
+              </div>
+              <div className="d-flex flex-column" style={{ width: "48%" }}>
+                <label
+                  for="pollEndDate"
+                  style={{
+                    fontSize: "0.8rem",
+                    letterSpacing: "-0.01em",
+                    color: "#474D55",
+                    marginBottom: "0.3rem",
+                  }}
+                >
+                  End date*
+                </label>
+                <input
+                  style={getStyles(state.pollEndDate)}
+                  type="datetime-local"
+                  id="pollStartDate"
+                  value={state.pollEndDate}
+                  onChange={(e) => {
+                    State.update({ pollEndDate: e.target.value });
+                  }}
+                />
+                {!state.pollEndDate && state.showErrorsInForm && (
+                  <p className="text-danger">End date cannot be empty</p>
+                )}
+              </div>
+            </div>
+            {getTimestamp(state.pollStartDate) >=
+              getTimestamp(state.pollEndDate) &&
+              state.showErrorsInForm && (
+                <div>
+                  <p className="text-danger">
+                    Poll should start before it ends
+                  </p>
+                </div>
+              )}
+          </div>
         )}
-        <label className="mt-3" for="pollType">
-          Pool type*
-        </label>
-        <div className="dropdown">
+
+        {state.sectionShown == "questions" &&
+          amountOfQuestions.map((questionNumber) => {
+            return (
+              <>
+                <div
+                  className="d-flex flex-column justify-content-center"
+                  style={{
+                    border: "1.5px solid #E1E9F0",
+                    padding: "1.5rem 1rem",
+                    borderRadius: "1.2rem",
+                    margin: "1rem auto",
+                  }}
+                >
+                  <label
+                    for="question"
+                    style={{
+                      fontSize: "0.8rem",
+                      letterSpacing: "-0.01em",
+                      color: "#474D55",
+                      marginBottom: "0.3rem",
+                    }}
+                  >
+                    Question*
+                  </label>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      style={{
+                        backgroundColor: "white",
+                        padding: "0.5rem 1.5rem",
+                        borderRadius: "0.8rem",
+                        border: "1.5px solid #E1E9F0",
+                        color: "#474D55",
+                        letterSpacing: "-0.01em",
+                        width: "100%",
+                      }}
+                      type="text"
+                      className={
+                        !state.questions[questionNumber] &&
+                        state.showErrorsInForm
+                          ? "border border-danger mb-2"
+                          : "mb-2"
+                      }
+                      id={`question${questionNumber}`}
+                      value={state.questions[questionNumber]}
+                      onChange={(e) => {
+                        let newQuestions = state.questions;
+                        newQuestions[questionNumber] = e.target.value;
+
+                        State.update({ questions: newQuestions });
+                      }}
+                    />
+                    <i
+                      className="bi bi-x-circle-fill"
+                      style={{
+                        color: "#E1E9F0",
+                        cursor: "pointer",
+                        position: "absolute",
+                        right: "1rem",
+                        top: "0.55rem",
+                      }}
+                      onClick={() => {
+                        let newQuestions = state.questions;
+                        newQuestions[questionNumber] = "";
+
+                        State.update({ question: newQuestions });
+                      }}
+                    ></i>
+                  </div>
+                  {!state.questions[questionNumber] &&
+                    state.showErrorsInForm && (
+                      <p className="text-danger">Question cannot be empty</p>
+                    )}
+
+                  <label
+                    className="mt-3"
+                    for="pollType"
+                    style={{
+                      fontSize: "0.8rem",
+                      letterSpacing: "-0.01em",
+                      color: "#474D55",
+                      marginBottom: "0.3rem",
+                    }}
+                  >
+                    Type of question
+                  </label>
+                  <div className="d-flex justify-content-between">
+                    <div
+                      style={getTypeOfQuestionSelectionStyles(
+                        questionNumber,
+                        "0"
+                      )}
+                      onClick={() => {
+                        let newPollTypes = state.pollTypes;
+                        newPollTypes[questionNumber] = "0";
+
+                        let newChoices = state.choices;
+                        newChoices[questionNumber] = ["Yes", "No"];
+
+                        let newAmountOfChoices = state.amountOfChoices;
+                        newAmountOfChoices[questionNumber] = 2;
+
+                        State.update({
+                          pollTypes: newPollTypes,
+                          choices: newChoices,
+                          amountOfChoices: newAmountOfChoices,
+                        });
+                      }}
+                    >
+                      {state.pollTypes[questionNumber] == "0" && (
+                        <i
+                          className="bi bi-check2-circle"
+                          style={{
+                            position: "absolute",
+                            top: "-0.5rem",
+                            right: "-0.2rem",
+                            color: "rgb(53, 58, 64)",
+                            backgroundColor: "white",
+                            borderRadius: "100px",
+                          }}
+                        ></i>
+                      )}
+                      <p
+                        style={{
+                          letterSpacing: "-0.01em",
+                          fontWeight: "500",
+                          color: "#010A2D",
+                          fontSize: "0.8rem",
+                          userSelect: "none",
+                        }}
+                      >
+                        Yes or No
+                      </p>
+                      <div className="d-flex mb-1">
+                        <input
+                          style={{
+                            appearance: "auto",
+                            width: "16px",
+                            marginRight: "0.2rem",
+                            cursor: "pointer",
+                          }}
+                          type="radio"
+                          disabled
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "16px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                      <div className="d-flex">
+                        <input
+                          className="form-check-input"
+                          style={{
+                            appearance: "auto",
+                            width: "16px",
+                            marginRight: "0.2rem",
+                            backgroundColor: "black",
+                            cursor: "pointer",
+                          }}
+                          type="radio"
+                          disabled
+                          checked
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "16px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div
+                      style={getTypeOfQuestionSelectionStyles(
+                        questionNumber,
+                        "1"
+                      )}
+                      onClick={() => {
+                        let newPollTypes = state.pollTypes;
+                        newPollTypes[questionNumber] = "1";
+
+                        State.update({ pollTypes: newPollTypes });
+                      }}
+                    >
+                      {state.pollTypes[questionNumber] == "1" && (
+                        <i
+                          className="bi bi-check2-circle"
+                          style={{
+                            position: "absolute",
+                            top: "-0.5rem",
+                            right: "-0.2rem",
+                            color: "rgb(53, 58, 64)",
+                            backgroundColor: "white",
+                            borderRadius: "100px",
+                          }}
+                        ></i>
+                      )}
+                      <p
+                        style={{
+                          letterSpacing: "-0.01em",
+                          fontWeight: "500",
+                          color: "#010A2D",
+                          fontSize: "0.8rem",
+                          userSelect: "none",
+                        }}
+                      >
+                        Single Answer
+                      </p>
+                      <div className="d-flex mb-1">
+                        <input
+                          style={{
+                            appearance: "auto",
+                            width: "12px",
+                            marginRight: "0.2rem",
+                            cursor: "pointer",
+                          }}
+                          type="radio"
+                          disabled
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "12px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                      <div className="d-flex mb-1">
+                        <input
+                          style={{
+                            appearance: "auto",
+                            width: "12px",
+                            marginRight: "0.2rem",
+                            cursor: "pointer",
+                          }}
+                          type="radio"
+                          disabled
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "12px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                      <div className="d-flex align-items-center">
+                        <input
+                          className="form-check-input"
+                          style={{
+                            appearance: "auto",
+                            width: "12px",
+                            marginTop: "0",
+                            marginRight: "0.2rem",
+                            backgroundColor: "black",
+                            cursor: "pointer",
+                          }}
+                          type="radio"
+                          disabled
+                          checked
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "12px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div
+                      style={getTypeOfQuestionSelectionStyles(
+                        questionNumber,
+                        "2"
+                      )}
+                      onClick={() => {
+                        let newPollTypes = state.pollTypes;
+                        newPollTypes[questionNumber] = "2";
+
+                        State.update({ pollTypes: newPollTypes });
+                      }}
+                    >
+                      {state.pollTypes[questionNumber] == "2" && (
+                        <i
+                          className="bi bi-check2-circle"
+                          style={{
+                            position: "absolute",
+                            top: "-0.5rem",
+                            right: "-0.2rem",
+                            color: "rgb(53, 58, 64)",
+                            backgroundColor: "white",
+                            borderRadius: "100px",
+                          }}
+                        ></i>
+                      )}
+                      <p
+                        style={{
+                          letterSpacing: "-0.01em",
+                          fontWeight: "500",
+                          color: "#010A2D",
+                          fontSize: "0.8rem",
+                          userSelect: "none",
+                        }}
+                      >
+                        Multiselect
+                      </p>
+                      <div className="d-flex mb-1">
+                        <input
+                          style={{
+                            appearance: "auto",
+                            width: "12px",
+                            marginRight: "0.2rem",
+                            cursor: "pointer",
+                          }}
+                          type="checkbox"
+                          disabled
+                          checked
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "12px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                      <div className="d-flex mb-1">
+                        <input
+                          style={{
+                            appearance: "auto",
+                            width: "12px",
+                            marginRight: "0.2rem",
+                            cursor: "pointer",
+                          }}
+                          type="checkbox"
+                          disabled
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "12px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                      <div className="d-flex align-items-center">
+                        <input
+                          className="form-check-input"
+                          style={{
+                            appearance: "auto",
+                            width: "12px",
+                            marginTop: "0",
+                            marginRight: "0.2rem",
+                            backgroundColor: "black",
+                            cursor: "pointer",
+                          }}
+                          type="checkbox"
+                          disabled
+                          checked
+                        />
+                        <input
+                          style={{
+                            padding: "0",
+                            border: "none",
+                            borderRadius: "30px",
+                            height: "12px",
+                            cursor: "pointer",
+                          }}
+                          type="text"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div
+                      style={getTypeOfQuestionSelectionStyles(
+                        questionNumber,
+                        "3"
+                      )}
+                      onClick={() => {
+                        let newPollTypes = state.pollTypes;
+                        newPollTypes[questionNumber] = "3";
+
+                        let newChoices = state.choices;
+                        newChoices[questionNumber] = [""];
+
+                        let newAmountOfChoices = state.amountOfChoices;
+                        newAmountOfChoices[questionNumber] = 1;
+
+                        State.update({
+                          pollTypes: newPollTypes,
+                          choices: newChoices,
+                          newAmountOfChoices: newAmountOfChoices,
+                        });
+                      }}
+                    >
+                      {state.pollTypes[questionNumber] == "3" && (
+                        <i
+                          className="bi bi-check2-circle"
+                          style={{
+                            position: "absolute",
+                            top: "-0.5rem",
+                            right: "-0.2rem",
+                            color: "rgb(53, 58, 64)",
+                            backgroundColor: "white",
+                            borderRadius: "100px",
+                          }}
+                        ></i>
+                      )}
+                      <p
+                        style={{
+                          letterSpacing: "-0.01em",
+                          fontWeight: "500",
+                          color: "#010A2D",
+                          fontSize: "0.8rem",
+                          userSelect: "none",
+                        }}
+                      >
+                        Text Answer
+                      </p>
+                      <input
+                        style={{
+                          marginBottom: "0.5rem",
+                          padding: "0",
+                          border: "none",
+                          borderRadius: "30px",
+                          height: "12px",
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                        type="text"
+                        disabled
+                      />
+                      <input
+                        style={{
+                          marginBottom: "0.5rem",
+                          padding: "0",
+                          border: "none",
+                          borderRadius: "30px",
+                          height: "12px",
+                          width: "90%",
+                          cursor: "pointer",
+                        }}
+                        type="text"
+                        disabled
+                      />
+                      <input
+                        style={{
+                          padding: "0",
+                          border: "none",
+                          borderRadius: "30px",
+                          height: "12px",
+                          width: "100%",
+                          cursor: "pointer",
+                        }}
+                        type="text"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  {(state.pollTypes[questionNumber] ==
+                    pollTypes.SINGLE_ANSWER.id ||
+                    state.pollTypes[questionNumber] ==
+                      pollTypes.MULTISELECT.id) && (
+                    <div>
+                      <label
+                        className="mt-3"
+                        for="pollType"
+                        style={{
+                          fontSize: "0.8rem",
+                          letterSpacing: "-0.01em",
+                          color: "#474D55",
+                          marginBottom: "0.3rem",
+                        }}
+                      >
+                        Answer options
+                      </label>
+                      {renderTextInputsForChoices(questionNumber)}
+                    </div>
+                  )}
+                  {state.showErrorsInForm &&
+                    (state.pollTypes[questionNumber] ==
+                      pollTypes.SINGLE_ANSWER.id ||
+                      state.pollTypes[questionNumber] ==
+                        pollTypes.MULTISELECT.id) &&
+                    state.choices[questionNumber].filter((c) => c != "")
+                      .length < 2 && (
+                      <p className="text-danger">
+                        Should have at least 2 options
+                      </p>
+                    )}
+                </div>
+              </>
+            );
+          })}
+        {state.sectionShown == "questions" && (
           <button
-            style={{ backgroundColor: "rgb(230, 230, 230)" }}
-            className="btn dropdown-toggle"
-            type="button"
+            className="d-flex justify-content-center align-items-center py-3 w-100"
+            style={{
+              margin: "1rem auto",
+              backgroundColor: "#F2F6FA",
+              borderColor: "transparent",
+              borderRadius: "20px",
+            }}
             onClick={() => {
-              State.update({ expandOptions: !state.expandOptions });
+              let oldPollTypes = state.pollTypes;
+              let newPollTypes = [];
+
+              for (let i = 0; i < oldPollTypes.length; i++) {
+                newPollTypes.push(oldPollTypes[i]);
+              }
+              newPollTypes.push("0");
+
+              let oldChoices = state.choices;
+              let newChoices = [];
+
+              for (let i = 0; i < oldChoices.length; i++) {
+                newChoices.push(oldChoices[i]);
+              }
+              newChoices.push([""]);
+
+              let oldAmountOfChoices = state.amountOfChoices;
+              let newAmountOfChoices = [];
+
+              for (let i = 0; i < oldAmountOfChoices.length; i++) {
+                newAmountOfChoices.push(oldAmountOfChoices[i]);
+              }
+              newAmountOfChoices.push(1);
+
+              let oldQuestions = state.questions;
+              let newQuestions = [];
+              for (let i = 0; i < oldQuestions.length; i++) {
+                newQuestions.push(oldQuestions[i]);
+              }
+              newQuestions.push("");
+
+              State.update({
+                questions: newQuestions,
+                amountOfQuestions: state.amountOfQuestions + 1,
+                pollTypes: newPollTypes,
+                choices: newChoices,
+                amountOfChoices: newAmountOfChoices,
+              });
             }}
           >
-            {state.pollType == "0"
-              ? "Text"
-              : state.pollType == "1"
-              ? "Multiple choice"
-              : undefined}
+            <i
+              className="bi bi-plus-lg"
+              style={{ color: "#010A2D", marginRight: "0.7rem" }}
+            ></i>
+            <span
+              style={{
+                color: "#010A2D",
+                fontSize: "1rem",
+                dontWeight: "700",
+              }}
+            >
+              Add question
+            </span>
           </button>
-
-          {state.expandOptions && renderOptions()}
-        </div>
-        {state.pollType == "1" && renderTextInputsForChoices()}
-        {state.showErrorsInForm &&
-          state.pollType == pollTypes.MULTIPLE_CHOICE.id &&
-          state.choices.filter((c) => c != "").length < 2 && (
-            <p className="text-danger">Should have at least 2 options</p>
-          )}
+        )}
       </div>
-    </div>
 
-    <div
-      style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
-      className="p-3 d-flex flex-column justify-content-center"
-    >
-      <button
-        className="my-2 btn btn-outline-primary"
-        onClick={() => State.update({ showPreview: true })}
-      >
-        Preview
-      </button>
-
-      {isValidInput() ? (
-        <CommitButton
-          className="my-2 btn btn-primary"
-          data={getPublicationParams(false)}
-          onClick={() => {
-            State.update({
-              showSendFeedback: true,
-            });
-          }}
+      <div className="d-flex flex-row-reverse">
+        {/*<button
+          className="my-2 btn btn-outline-primary"
+          onClick={() => State.update({ showPreview: true })}
         >
-          Create poll
-        </CommitButton>
-      ) : (
-        <button
-          className="my-2 btn btn-primary"
-          onClick={() => State.update({ showErrorsInForm: true })}
-        >
-          Create poll
-        </button>
-      )}
-    </div>
+          Preview
+        </button>*/}
 
-    {state.showPreview && renderModal("preview")}
-    {state.showSendFeedback && renderModal("sendFeedback")}
+        {isValidInput() ? (
+          <CommitButton
+            style={
+              state.hoveringElement == "createPollButton"
+                ? {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+                : {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+            }
+            data={getPublicationParams(false)}
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "createPollButton" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onMouse
+            onClick={() => {
+              State.update({
+                showSendFeedback: true,
+              });
+            }}
+          >
+            Create
+          </CommitButton>
+        ) : (
+          <button
+            style={
+              state.hoveringElement == "createPollButton"
+                ? {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+                : {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+            }
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "createPollButton" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => State.update({ showErrorsInForm: true })}
+          >
+            Create
+          </button>
+        )}
+      </div>
+
+      {state.showPreview && renderModal("preview")}
+      {state.showSendFeedback && renderModal("sendFeedback")}
+    </div>
   </div>
 );
