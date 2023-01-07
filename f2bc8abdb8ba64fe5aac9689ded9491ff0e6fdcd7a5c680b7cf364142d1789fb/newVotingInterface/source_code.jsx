@@ -158,7 +158,7 @@ const renderQuestionsByThisCreator = () => {
               marginRight: "0.8rem",
             }}
           >
-            {renderPollTypeIcon(poll)}
+            {renderPollTypeIcon(pollByCreator)}
           </div>
           <p style={{ fontWeight: "500", margin: "0" }}>
             {sliceString(pollByCreator.value.title, 20)}
