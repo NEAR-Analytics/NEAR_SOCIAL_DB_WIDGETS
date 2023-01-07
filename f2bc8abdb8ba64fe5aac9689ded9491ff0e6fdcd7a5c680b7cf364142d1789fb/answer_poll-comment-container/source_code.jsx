@@ -19,7 +19,6 @@ return (
             color: "#59606A",
             border: "1px solid #F2F6FA",
             borderRadius: "8px",
-            width: "45%",
           }}
         >
           <p className="m-3">{answer.value.answer[questionNumber]}</p>
