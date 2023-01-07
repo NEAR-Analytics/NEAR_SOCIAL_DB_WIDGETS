@@ -482,7 +482,7 @@ const renderTextInput = (questionNumber) => {
   return (
     <div>
       {hasVoted ? (
-        <div className="d-flex justify-content-between flex-wrap">
+        <div style={{ display: "grid", gridTemplateColums: "repreat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
       ) : (
