@@ -365,6 +365,7 @@ return (
           padding: "2rem",
           borderRadius: "18px",
           background: "white",
+          boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
         }}
       >
         <div className="d-flex justify-content-between">
@@ -637,6 +638,7 @@ return (
             padding: "2rem",
             borderRadius: "18px",
             backgroundColor: "white",
+            boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
           }}
         >
           {questionsByCreator.length != 1 && (
