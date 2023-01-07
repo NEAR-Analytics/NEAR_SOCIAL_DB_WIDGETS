@@ -519,7 +519,8 @@ return (
         >
           <h4>{question.question}</h4>
           <p className="mb-1">
-            {question.questionType == "0" || question.questionType == "1"
+            {!hasVoted &&
+            (question.questionType == "0" || question.questionType == "1")
               ? "Select one option:"
               : question.questionType == "2"
               ? "You can check multiple options:"
