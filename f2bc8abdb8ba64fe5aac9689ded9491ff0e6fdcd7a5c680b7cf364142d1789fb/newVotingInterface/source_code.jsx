@@ -380,19 +380,17 @@ return (
               }}
             />
             <div>
-              <span className="mr-3" style={{ fontWeight: "300" }}>
-                Created by
-              </span>
-              <span style={{ fontWeight: "500" }}>
+              <p style={{ margin: "0", fontWeight: "300" }}>Created by</p>
+              <p style={{ fontWeight: "500" }}>
                 {sliceString(state.poll.accountId, 18)}
-              </span>
+              </p>
             </div>
           </div>
 
           {Date.now() < state.poll.value.endTimestamp && (
             <>
               <span>
-                Start{" "}
+                Started{" "}
                 {new Date(state.poll.value.startTimestamp).toLocaleDateString()}
               </span>
 
