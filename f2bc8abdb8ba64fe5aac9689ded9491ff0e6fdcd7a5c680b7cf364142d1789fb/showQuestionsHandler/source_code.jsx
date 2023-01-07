@@ -4,6 +4,8 @@ State.init({
   modalBlockHeight: question.blockHeight,
 });
 
+let globalAccountId = props.accountId ?? context.accountId;
+
 const onlyUsersPolls = props.onlyUser ?? false;
 
 let polls = Social.index("poll_question", "question-v3.1.0");
@@ -18,7 +20,7 @@ if (!polls) {
 
 if (onlyUsersPolls) {
   polls = state.polls.filter((poll) => {
-    if (poll.accountId == context.accountId) {
+    if (poll.accountId == globalAccountId) {
       return true;
     } else {
       return false;
