@@ -1,19 +1,32 @@
-State.init({ showQuestion: false, modalBlockHeight: 0, questions: {} });
-
-const displayAnswerWidgetNames = [
-  "newTextAnswerInterface",
-  "newMiniMultipleChoiceInterface",
-];
-
-let questions = Social.index("poll_question", "question-v3.0.1", {
-  accountId: props.accountId,
+State.init({
+  polls: {},
+  showQuestion: false,
+  modalBlockHeight: question.blockHeight,
 });
 
-if (!questions) {
+const onlyUsersPolls = props.onlyUser ?? false;
+
+let polls = Social.index("poll_question", "question-v3.1.0");
+
+if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
+  State.update({ polls: polls });
+}
+
+if (!polls) {
   return "Loading";
 }
 
-questions = questions.sort((q1, q2) => {
+if (onlyUsersPolls) {
+  polls = state.polls.filter((poll) => {
+    if (poll.accountId == context.accountId) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+}
+
+polls = polls.sort((q1, q2) => {
   const isQ1Finished = q1.value.endTimestamp < Date.now();
   const isQ2Finished = q2.value.endTimestamp < Date.now();
   if (isQ1Finished && !isQ2Finished) return 1;
@@ -23,17 +36,22 @@ questions = questions.sort((q1, q2) => {
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
 
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
+//TODO review this
+let usersMakingQuestions = [];
+for (let i = 0; i < polls.length; i++) {
+  if (!usersMakingQuestions.includes(polls[i].accountId)) {
+    usersMakingQuestions.push(polls[i].accountId);
+  }
 }
+
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 function closeModalClickingOnTransparent() {
   return (e) => {
     e.target.id == "modal" && State.update({ showQuestion: false });
   };
 }
-
-const widgetOwner = "silkking.near";
 
 const renderModal = () => {
   return (
@@ -76,7 +94,7 @@ const renderModal = () => {
               src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
                 blockHeight: state.modalBlockHeight,
-                shouldDisplayViewAll: props.accountId == undefined,
+                shouldDisplayViewAll: false,
               }}
             />
           </div>
@@ -96,47 +114,105 @@ const renderModal = () => {
   );
 };
 
-const renderQuestions = () => {
-  return questions.map((question) => {
+const renderPolls = (onlyUsersPolls) => {
+  if (onlyUsersPolls) {
+    return polls.map((poll, index) => {
+      return (
+        <div
+          className="mx-1 py-3 px-4 my-2"
+          style={
+            polls.length == 1
+              ? {
+                  boxSizing: "border-box",
+                  boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                  maxWidth: "40vw",
+                }
+              : {
+                  boxSizing: "border-box",
+                  boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                }
+          }
+          onClick={() => {
+            State.update({
+              showQuestion: true,
+              modalBlockHeight: poll.blockHeight,
+            });
+          }}
+        >
+          <Widget
+            src={
+              "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionHeader"
+            }
+            props={{ ...poll }}
+          />
+          <Widget
+            src={
+              "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionGeneralInfo"
+            }
+            props={{ ...poll }}
+          />
+        </div>
+      );
+    });
+  } else {
     return (
-      <div
-        className="my-5 py-3 px-4"
-        style={{
-          backgroundColor: "white",
-          borderRadius: "1rem",
-          cursor: "pointer",
-        }}
-        onClick={() => {
-          State.update({
-            showQuestion: true,
-            modalBlockHeight: question.blockHeight,
-          });
-        }}
-      >
-        <Widget
-          src={`${widgetOwner}/widget/answersHeader`}
-          props={{ ...question }}
-        />
-        <Widget
-          src={`${widgetOwner}/widget/${
-            displayAnswerWidgetNames[question.value.questionType]
-          }`}
-          props={{ ...question }}
-        />
-      </div>
+      <>
+        {usersMakingQuestions.map((accountId) => {
+          return (
+            <div
+              className="mx-1 py-3 px-4 my-2"
+              style={{
+                boxSizing: "border-box",
+                boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                backgroundColor: "white",
+                borderRadius: "1rem",
+              }}
+            >
+              <Widget
+                src={`${widgetOwner}/widget/displayQuestionHeader`}
+                props={{ allUsersQuestions: polls, accountId }}
+              />
+              <Widget
+                src={`${widgetOwner}/widget/questionsByCreator`}
+                props={{ accountId }}
+              />
+            </div>
+          );
+        })}
+      </>
     );
-  });
+  }
 };
 
 return (
   <div
     style={{
       borderRadius: "3px",
-      padding: "0px 2%",
       backgroundColor: "rgb(230, 230, 230)",
     }}
   >
-    {renderQuestions()}
+    <div
+      style={
+        onlyUsersPolls
+          ? {
+              display: "grid",
+              gridTemplateColumns: " repeat(2, 1fr)",
+            }
+          : {
+              display: "grid",
+              gridTemplateColumns: " repeat(3, 1fr)",
+            }
+      }
+    >
+      {renderPolls(onlyUsersPolls)}
+    </div>
+    {/*TODO add a page picker instead the infinite scroll?*/}
     {state.showQuestion && renderModal()}
   </div>
 );
