@@ -356,12 +356,20 @@ function showDescription(description) {
 }
 
 return (
-  <>
+  <div style={{ backgroundColor: "#FAFAFB" }}>
     <div
       className="d-flex content-align-start justify-content-between"
-      style={{ borderRadius: "3px", padding: "2rem 3rem" }}
+      style={{
+        borderRadius: "3px",
+        padding: "2rem 3rem",
+      }}
     >
-      <div style={{ width: "75%", marginRight: "2rem" }}>
+      <div
+        style={{
+          width: "75%",
+          marginRight: "2rem",
+        }}
+      >
         <div className="d-flex justify-content-between">
           <div className="d-flex">
             <Widget
@@ -678,5 +686,5 @@ return (
       </div>
     </div>
     {state.showQuestionsByThisUser && renderModal()}
-  </>
+  </div>
 );
