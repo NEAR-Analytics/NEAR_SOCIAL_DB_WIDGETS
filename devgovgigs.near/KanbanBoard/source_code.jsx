@@ -28,27 +28,45 @@ const postsPerLabel = columnLabels.map((cl) => {
 });
 
 return (
-  <div class="row">
-    {postsPerLabel.map((col) => {
-      return (
-        <div class="col">
-          <div class="card">
-            <div class="card-header">
-              <span class="badge text-bg-primary">{col.label}</span>
-            </div>
-            <div class="card-body border-secondary">
-              {col.posts.map((postId) => {
-                return (
-                  <Widget
-                    src={`${ownerId}/widget/CompactPost`}
-                    props={{ id: postId }}
-                  />
-                );
-              })}
+  <div>
+    <div class="row mb-2">
+      <div class="col">
+        <small class="text-muted">
+          Required labels:
+          {requiredLabels.map((label) => {
+            return (
+              <a
+                href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
+              >
+                <span class="badge text-bg-primary me-1">{label}</span>
+              </a>
+            );
+          })}
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      {postsPerLabel.map((col) => {
+        return (
+          <div class="col">
+            <div class="card">
+              <div class="card-body border-secondary">
+                <h6 class="card-title">
+                  {col.label.toUpperCase()}({col.posts.length})
+                </h6>
+                {col.posts.map((postId) => {
+                  return (
+                    <Widget
+                      src={`${ownerId}/widget/CompactPost`}
+                      props={{ id: postId }}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      );
-    })}
+        );
+      })}
+    </div>
   </div>
 );
