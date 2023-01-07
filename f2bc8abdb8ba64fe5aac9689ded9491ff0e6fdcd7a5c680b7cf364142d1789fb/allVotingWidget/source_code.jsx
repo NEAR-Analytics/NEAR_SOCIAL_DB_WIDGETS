@@ -513,7 +513,7 @@ return (
           }}
           className="p-3 my-3"
         >
-          <div>
+          <div className="d-flex">
             <p
               style={{
                 backgroundColor: "#353A40",
@@ -524,7 +524,7 @@ return (
             >
               {questionNumber + 1}
             </p>
-            <h4>{question.question}</h4>
+            <h4 className="ml-3">{question.question}</h4>
           </div>
 
           {!hasVoted &&
