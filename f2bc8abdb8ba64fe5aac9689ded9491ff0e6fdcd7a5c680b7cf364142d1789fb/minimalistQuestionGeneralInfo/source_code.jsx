@@ -101,7 +101,9 @@ return (
       </div>
 
       <div className="px-2 my-2">
-        <p style={{ margin: "0" }}>Ends</p>
+        <p style={{ margin: "0" }}>
+          {Date.now() > poll.value.endTimestamp ? Ended : Ends}
+        </p>
         <p
           style={{
             fontWeight: "600",
