@@ -112,18 +112,62 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   return usersWithAnswersWithoutDuplicates.length;
 }
 
+const renderPollTypeIcon = () => {
+  let allPollTypes = [];
+  for (let i = 0; i < poll.value.questions.length; i++) {
+    if (!allPollTypes.includes(poll.value.questions[i].questionType)) {
+      allPollTypes.push(poll.value.questions[i].questionType);
+    }
+  }
+
+  return allPollTypes.length == 1 &&
+    (allPollTypes[0] == "0" || allPollTypes[0] == "1") ? (
+    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "2" ? (
+    <i
+      style={{
+        transform: "rotate(90deg)",
+        padding: "0.6rem 0.8rem",
+      }}
+      className="bi bi-bar-chart-line"
+    ></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "3" ? (
+    <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : (
+    <i className="bi bi-collection" style={{ padding: "0.6rem 0.8rem" }}></i>
+  );
+};
+
 const renderQuestionsByThisCreator = () => {
   //TODO show only the 2 polls
   return state.pollsByThisCreator.map((pollByCreator, index) => {
     let divStyle =
       index == 0
-        ? {}
-        : { backGroundColor: "white", borderTop: "1px solid #ced4da" };
+        ? { backGroundColor: "white" }
+        : {
+            backGroundColor: "white",
+            paddingTop: "1rem",
+            borderTop: "1px solid #ced4da",
+          };
     return (
       <div style={divStyle}>
-        <p style={{ fontWeight: "500" }}>
-          {sliceString(pollByCreator.value.title, 20)}
-        </p>
+        <div className="d-flex align-items-center">
+          <div
+            className="d-flex justify-content-center"
+            style={{
+              maxHeight: "2.8rem",
+              aspectRatio: "1",
+              borderRadius: "16px",
+              backgroundColor: "#F2F6FA",
+              marginRight: "0.8rem",
+            }}
+          >
+            {renderPollTypeIcon(pollByCreator)}
+          </div>
+          <p style={{ fontWeight: "500", margin: "0" }}>
+            {sliceString(pollByCreator.value.title, 20)}
+          </p>
+        </div>
         <div className="d-flex justify-content-between flex-nowrap text-secondary mb-2">
           <div>
             <i className="bi bi-people"></i>
@@ -228,7 +272,7 @@ const renderModal = () => {
           >
             <Widget
               src={`${widgetOwner}/widget/showQuestionsHandler`}
-              props={{ accountId: state.poll.accountId }}
+              props={{ accountId: state.poll.accountId, onlyUser: true }}
             />
           </div>
           <div className="modal-footer">
@@ -316,12 +360,18 @@ function showDescription(description) {
 }
 
 return (
-  <>
-    <div
-      className="d-flex content-align-start justify-content-between"
-      style={{ borderRadius: "3px", padding: "2rem 3rem" }}
-    >
-      <div style={{ width: "75%", marginRight: "2rem" }}>
+  <div>
+    <div className="d-flex content-align-start justify-content-between">
+      <div
+        style={{
+          width: "75%",
+          margin: "2rem 0.5rem 2rem 2rem",
+          padding: "2rem",
+          borderRadius: "18px",
+          background: "white",
+          boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+        }}
+      >
         <div className="d-flex justify-content-between">
           <div className="d-flex">
             <Widget
@@ -340,19 +390,17 @@ return (
               }}
             />
             <div>
-              <span className="mr-3" style={{ fontWeight: "300" }}>
-                Created by
-              </span>
-              <span style={{ fontWeight: "500" }}>
+              <p style={{ margin: "0", fontWeight: "300" }}>Created by</p>
+              <p style={{ fontWeight: "500" }}>
                 {sliceString(state.poll.accountId, 18)}
-              </span>
+              </p>
             </div>
           </div>
 
           {Date.now() < state.poll.value.endTimestamp && (
             <>
               <span>
-                Start{" "}
+                Started{" "}
                 {new Date(state.poll.value.startTimestamp).toLocaleDateString()}
               </span>
 
@@ -588,57 +636,65 @@ return (
         }
       </div>
       <div style={{ minWidth: "17rem" }}>
-        {questionsByCreator.length != 1 && (
-          <>
-            <div
-              className="d-flex"
-              style={
-                shouldDisplayViewAll
-                  ? {
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }
-                  : {
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                    }
-              }
-            >
-              <h5>Polls by creator ({state.pollsByThisCreator.length})</h5>
+        <div
+          style={{
+            margin: "2rem 2rem 2rem 0.5rem",
+            padding: "2rem",
+            borderRadius: "18px",
+            backgroundColor: "white",
+            boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+          }}
+        >
+          {questionsByCreator.length != 1 && (
+            <>
+              <div
+                className="d-flex"
+                style={
+                  shouldDisplayViewAll
+                    ? {
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }
+                    : {
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                      }
+                }
+              >
+                <h5>Polls by creator ({state.pollsByThisCreator.length})</h5>
 
-              {shouldDisplayViewAll && (
-                <div style={{ margin: "1rem 0", textAlign: "center" }}>
-                  <p
-                    style={{
-                      color: "#2346B1",
-                      fontWeight: "500",
-                      fontSize: "1rem",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      State.update({ showQuestionsByThisUser: true });
-                    }}
-                  >
-                    View All <i className="bi bi-arrow-right"></i>
-                  </p>
-                </div>
-              )}
-            </div>
+                {shouldDisplayViewAll && (
+                  <div style={{ margin: "1rem 0", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#2346B1",
+                        fontWeight: "500",
+                        fontSize: "1rem",
+                        margin: "0",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        State.update({ showQuestionsByThisUser: true });
+                      }}
+                    >
+                      View All <i className="bi bi-arrow-right"></i>
+                    </p>
+                  </div>
+                )}
+              </div>
 
-            <div
-              style={{
-                border: "1px solid #ced4da",
-                borderRadius: "0.375rem",
-                padding: "0.5rem 1rem",
-              }}
-            >
-              {renderQuestionsByThisCreator()}
-            </div>
-          </>
-        )}
+              <div
+                style={{
+                  padding: "0.5rem 1rem",
+                }}
+              >
+                {renderQuestionsByThisCreator()}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
     {state.showQuestionsByThisUser && renderModal()}
-  </>
+  </div>
 );
