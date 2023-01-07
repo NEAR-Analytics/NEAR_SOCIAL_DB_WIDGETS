@@ -4,6 +4,8 @@ const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 const snapshot = post.snapshot;
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
+// Whether the post should be presented in the most compact way possible.
+const isCompact = props.isMinimized ? true : false;
 const parentId = Near.view(ownerId, "get_parent_id", { post_id: postId });
 
 const childPostIdsUnordered =
@@ -92,7 +94,25 @@ const shareButton = props.isPreview ? null : (
   </a>
 );
 
-const header = (
+const header = isCompact ? (
+  <div className="card-header">
+    <small class="text-muted">
+      <div class="vstack">
+        <div class="hstack">
+          <Widget
+            src={`mob.near/widget/ProfileLine`}
+            props={{ accountId: post.author_id }}
+          />
+        </div>
+        <div class="hstack">
+          {timestamp}
+          <div class="bi bi-clock-history px-2"></div>
+          {shareButton}
+        </div>
+      </div>
+    </small>
+  </div>
+) : (
   <div className="card-header">
     <small class="text-muted">
       <div class="row justify-content-between">
@@ -171,64 +191,69 @@ const btnCreatorWidget = (postType, icon, name) => {
   );
 };
 
-const buttonsFooter = props.isPreview ? null : (
-  <div class="row">
-    <div class="col-8">
-      <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          style={{ border: "0px" }}
-          onClick={onLike}
-        >
-          <i class={`bi ${likeBtnClass}`}> </i>
-          Like ({post.likes.length ?? 0})
-        </button>
-        <div class="btn-group" role="group">
+const buttonsFooter =
+  props.isPreview || isCompact ? null : (
+    <div class="row">
+      <div class="col-8">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
           <button
             type="button"
             class="btn btn-outline-primary"
             style={{ border: "0px" }}
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+            onClick={onLike}
           >
-            <i class={`bi ${emptyIcons.Reply}`}> </i> Reply
+            <i class={`bi ${likeBtnClass}`}> </i>
+            Like ({post.likes.length ?? 0})
           </button>
-          <ul class="dropdown-menu">
-            {btnCreatorWidget("Idea", emptyIcons.Idea, "Idea")}
-            {btnCreatorWidget("Submission", emptyIcons.Submission, "Solution")}
-            {btnCreatorWidget(
-              "Attestation",
-              emptyIcons.Attestation,
-              "Attestation"
-            )}
-            {btnCreatorWidget(
-              "Sponsorship",
-              emptyIcons.Sponsorship,
-              "Sponsorship"
-            )}
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            {btnCreatorWidget("Comment", emptyIcons.Comment, "Comment")}
-          </ul>
+          <div class="btn-group" role="group">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              style={{ border: "0px" }}
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class={`bi ${emptyIcons.Reply}`}> </i> Reply
+            </button>
+            <ul class="dropdown-menu">
+              {btnCreatorWidget("Idea", emptyIcons.Idea, "Idea")}
+              {btnCreatorWidget(
+                "Submission",
+                emptyIcons.Submission,
+                "Solution"
+              )}
+              {btnCreatorWidget(
+                "Attestation",
+                emptyIcons.Attestation,
+                "Attestation"
+              )}
+              {btnCreatorWidget(
+                "Sponsorship",
+                emptyIcons.Sponsorship,
+                "Sponsorship"
+              )}
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              {btnCreatorWidget("Comment", emptyIcons.Comment, "Comment")}
+            </ul>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            style={{ border: "0px" }}
+            data-bs-toggle="collapse"
+            href={`#collapseChildPosts${postId}`}
+            aria-expanded="false"
+            aria-controls={`collapseChildPosts${postId}`}
+          >
+            <i class="bi bi-arrows-expand"> </i>{" "}
+            {`Expand Replies (${childPostIds.length})`}
+          </button>
         </div>
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          style={{ border: "0px" }}
-          data-bs-toggle="collapse"
-          href={`#collapseChildPosts${postId}`}
-          aria-expanded="false"
-          aria-controls={`collapseChildPosts${postId}`}
-        >
-          <i class="bi bi-arrows-expand"> </i>{" "}
-          {`Expand Replies (${childPostIds.length})`}
-        </button>
       </div>
     </div>
-  </div>
-);
+  );
 
 const CreatorWidget = (postType) => {
   return (
@@ -360,18 +385,23 @@ const Card = styled.div`
 
 `;
 
-const limitedMarkdown = styled.div`
+const limitedMarkdown = isCompact
+  ? styled.div`
+      max-height: 6em;
+`
+  : styled.div`
       max-height: 20em;
 `;
 
 // Should make sure the posts under the currently top viewed post are limited in size.
-const descriptionArea = isUnderPost ? (
-  <limitedMarkdown className="overflow-auto">
+const descriptionArea =
+  isUnderPost || isCompact ? (
+    <limitedMarkdown className="overflow-auto">
+      <Markdown class="card-text" text={snapshot.description}></Markdown>
+    </limitedMarkdown>
+  ) : (
     <Markdown class="card-text" text={snapshot.description}></Markdown>
-  </limitedMarkdown>
-) : (
-  <Markdown class="card-text" text={snapshot.description}></Markdown>
-);
+  );
 
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
