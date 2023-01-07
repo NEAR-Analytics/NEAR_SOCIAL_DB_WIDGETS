@@ -272,7 +272,7 @@ const renderModal = () => {
           >
             <Widget
               src={`${widgetOwner}/widget/showQuestionsHandler`}
-              props={{ accountId: state.poll.accountId }}
+              props={{ accountId: state.poll.accountId, onlyUser: true }}
             />
           </div>
           <div className="modal-footer">
