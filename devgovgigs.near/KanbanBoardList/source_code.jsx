@@ -63,6 +63,7 @@ return (
                 requiredLabels: board.config.requiredLabels,
                 excludedLabels: board.config.excludedLabels,
                 columnLabels: board.config.columnLabels,
+                boardId: board.id,
               }}
             />
           </div>
