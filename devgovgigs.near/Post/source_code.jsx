@@ -83,7 +83,7 @@ const editControl = allowedToEdit ? (
 const shareButton = props.isPreview ? null : (
   <a
     class="card-link"
-    href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
+    href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${postId}`}
     role="button"
     target="_blank"
     title="Open in new tab"
