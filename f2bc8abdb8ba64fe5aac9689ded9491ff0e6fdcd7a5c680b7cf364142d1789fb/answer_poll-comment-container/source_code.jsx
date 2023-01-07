@@ -12,9 +12,9 @@ return (
   <>
     {answers.map((answer) => {
       return (
-        <div className="m-3">
+        <div className="m-2">
           <p
-            className="py-1 px-2"
+            className="py-2 px-3"
             style={{
               backgroundColor: "#F2F6FA",
               color: "#59606A",
