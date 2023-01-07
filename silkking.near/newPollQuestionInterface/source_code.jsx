@@ -18,6 +18,8 @@ State.init({
   hoveringElement: "",
 });
 
+const widgetOwner = "silkking.near";
+
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
   SINGLE_ANSWER: { id: "1", value: "Single answer" },
@@ -96,6 +98,7 @@ function validateQuestionsSettedProperly() {
 
 const isValidInput = () => {
   // TODO validate date and link types
+
   let result = true;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
@@ -106,6 +109,7 @@ const isValidInput = () => {
   result =
     result &&
     getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
+  result = result && Date.now() < getTimestamp(state.pollEndDate);
   result = result && validateOptionsSettedProperly();
   // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
@@ -133,8 +137,6 @@ function getStyles(inputData) {
         width: "100%",
       };
 }
-
-const widgetOwner = "silkking.near";
 
 const renderModal = (whatModal) => {
   return (
@@ -877,6 +879,12 @@ return (
                       value={state.questions[questionNumber]}
                       onChange={(e) => {
                         let newQuestions = state.questions;
+                        console.log(
+                          1,
+                          newQuestions,
+                          questionNumber,
+                          e.target.value
+                        );
                         newQuestions[questionNumber] = e.target.value;
 
                         State.update({ questions: newQuestions });
@@ -1462,12 +1470,14 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            onMouse
-            onClick={() => {
+            onCommit={() =>
               State.update({
                 showSendFeedback: true,
-              });
-            }}
+              })
+            }
+            // onClick={() => State.update({
+            //   showSendFeedback: true,
+            // })}
           >
             Create
           </CommitButton>
