@@ -170,19 +170,36 @@ function getTimeRelatedValidAnswers(answers) {
   return answers.slice(0, high);
 }
 
-//TODO review this since new poll structure breake the function
 function getOptionRelatedValidAnswers(answers) {
   return answers.filter((a) => {
-    console.log("a: ", a);
-    0 <= Number(a.value.answer) &&
-      Number(a.value.answer) < poll.value.choicesOptions.length;
+    const userAnswers = a.value.answer;
+    return userAnswers.every((an, i) => {
+      // If has choicesOptions, then it's needs validation answer is among the options. If not, any answer is just fine
+      if (poll.value.questions[i].choicesOptions.length > 0) {
+        if (Array.isArray(an)) {
+          return an.every(
+            (ans) =>
+              0 <= Number(ans) &&
+              Number(ans) < poll.value.questions[i].choicesOptions.length
+          );
+        } else {
+          return (
+            0 <= Number(an) &&
+            Number(an) < poll.value.questions[i].choicesOptions.length
+          );
+        }
+      } else {
+        return true;
+      }
+    });
   });
 }
 
 function getValidAnswers() {
-  let validTime = getTimeRelatedValidAnswers(answersToThisPoll);
-  let validOptionAndTime = getOptionRelatedValidAnswers(validTime);
-  return validOptionAndTime;
+  let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
+  let validOptionAndTimeAnswers =
+    getOptionRelatedValidAnswers(validTimeAnswers);
+  return validOptionAndTimeAnswers;
 }
 
 // Getting valid answers
@@ -216,17 +233,25 @@ const isQuestionOpen =
 const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
-
-//TODO check if this needs to consider the type of votes (Multiselect might be broking it since it have an array of strings instead of a single string)
 function countVotes(questionNumber, questionType) {
+  if (questionType == "3") return;
+  console.log(1, validAnswersToThisPoll);
   return validAnswersToThisPoll.reduce((acc, curr) => {
-    let ans = curr.value.answers[questionNumber];
-    acc[Number(ans)] += 1;
+    let ans = curr.value.answer[questionNumber];
+    console.log(2, ans);
+    if (Array.isArray(ans)) {
+      ans.forEach((a) => {
+        acc[Number(a)] += 1;
+      });
+    } else {
+      acc[Number(ans)] += 1;
+    }
+
     return acc;
-  }, new Array(pollParams.value.choicesOptions.length).fill(0));
+  }, new Array(poll.value.questions[questionNumber].choicesOptions.length).fill(0));
 }
 
-//TODO review this
+//TODO review this!
 const getPublicationParams = () => {
   return {
     index: {
@@ -245,22 +270,30 @@ const getPublicationParams = () => {
   };
 };
 
-//TODO check this
 function isVoteValid() {
-  let voteValid = state.vote.length == poll.value.questions.length;
-  for (let i = 0; i < poll.value.questions.length; i++) {
-    voteValid =
-      (voteValid &&
-        poll.value.quesitons.questionType == "2" &&
-        state.vote[i].filter((a) => a != "").length > 0) ||
-      (poll.value.questions.questionType != "2" && state.vote[i] != "");
+  let isValid = state.vote.length == poll.value.questions.length;
+  for (let i = 0; i < state.vote.length; i++) {
+    const vote = state.vote[i];
+    // vote should always be a string, but in one case is treated as an array. Replace array with csv
+    if (Array.isArray(vote)) {
+      isValid = isValid && vote.filter((v) => v.trim() != "").length > 0;
+    } else {
+      isValid = isValid && vote.trim() != "";
+    }
   }
-  return voteValid;
+  return isValid;
 }
 
 function calculatePercentage(votesToThisOption) {
   if (validAnswersToThisPoll.length == 0) return 0;
   return ((votesToThisOption / validAnswersToThisPoll.length) * 100).toFixed(2);
+}
+
+function calculatePercentageOfOption(votes, index) {
+  if (votes.length == 0) return 0;
+  const votesToThisOption = votes[index];
+  const validAnswers = votes.reduce((acc, curr) => acc + curr, 0);
+  return ((votesToThisOption / validAnswers) * 100).toFixed(2);
 }
 
 function getBorderRadious(questionNumber, optionNumber) {
@@ -362,8 +395,9 @@ const renderMultipleChoiceInput = (
                   height: "100%",
                   padding: "0.01em 22px 0.01em 11px",
                   display: "inline-block",
-                  width: `${calculatePercentage(
-                    countVotes(questionNumber, questionType)[optionNumber]
+                  width: `${calculatePercentageOfOption(
+                    countVotes(questionNumber, questionType),
+                    optionNumber
                   )}%`,
                   textAlign: "center",
                   overflow: "visible",
@@ -402,8 +436,9 @@ const renderMultipleChoiceInput = (
                   right: "1.7rem",
                 }}
               >
-                {calculatePercentage(
-                  countVotes(questionNumber, questionType)[optionNumber]
+                {calculatePercentageOfOption(
+                  countVotes(questionNumber, questionType),
+                  optionNumber
                 )}
                 %
               </span>
