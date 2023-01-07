@@ -284,8 +284,8 @@ const prevCode = props.prevBlockHeight
 if (currentCode === null || prevCode === null) return "Loading";
 
 const diffResult = patienceDiff(
-  prevCode ? prevCode.split("\r\n") : [],
-  currentCode.split("\r\n")
+  prevCode ? prevCode.split(/\r\n|\n/) : [],
+  currentCode.split(/\r\n|\n/)
 );
 
 let Line = styled.div`
