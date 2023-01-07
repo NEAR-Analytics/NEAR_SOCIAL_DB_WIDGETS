@@ -235,10 +235,8 @@ const canVote = !hasVoted && isQuestionOpen;
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
   if (questionType == "3") return;
-  console.log(1, validAnswersToThisPoll);
   return validAnswersToThisPoll.reduce((acc, curr) => {
     let ans = curr.value.answer[questionNumber];
-    console.log(2, ans);
     if (Array.isArray(ans)) {
       ans.forEach((a) => {
         acc[Number(a)] += 1;
@@ -272,6 +270,7 @@ const getPublicationParams = () => {
 
 function isVoteValid() {
   let isValid = state.vote.length == poll.value.questions.length;
+  isValid = isValid && context.accountId;
   for (let i = 0; i < state.vote.length; i++) {
     const vote = state.vote[i];
     // vote should always be a string, but in one case is treated as an array. Replace array with csv
@@ -316,15 +315,13 @@ const isValidInput = () => {
 
 const renderAnswers = (questionNumber) => {
   return (
-    <div style={{ width: "45%" }}>
-      <Widget
-        src={`${widgetOwner}/widget/answer_poll-comment-container`}
-        props={{
-          answers: validAnswersToThisPoll,
-          questionNumber,
-        }}
-      />
-    </div>
+    <Widget
+      src={`${widgetOwner}/widget/answer_poll-comment-container`}
+      props={{
+        answers: validAnswersToThisPoll,
+        questionNumber,
+      }}
+    />
   );
 };
 
@@ -484,7 +481,7 @@ const renderTextInput = (questionNumber) => {
   return (
     <div>
       {hasVoted ? (
-        <div className="d-flex justify-content-between flex-wrap">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
       ) : (
@@ -517,14 +514,30 @@ return (
           }}
           className="p-3 my-3"
         >
-          <h4>{question.question}</h4>
-          <p className="mb-1">
-            {question.questionType == "0" || question.questionType == "1"
-              ? "Select one option:"
-              : question.questionType == "2"
-              ? "You can check multiple options:"
-              : "Write your answer:"}
-          </p>
+          <div className="d-flex">
+            <p
+              style={{
+                backgroundColor: "#353A40",
+                padding: "0.15rem 0.65rem",
+                borderRadius: "9px",
+                color: "white",
+              }}
+            >
+              {questionNumber + 1}
+            </p>
+            <h4 style={{ fontWeight: "700", marginLeft: "0.8rem" }}>
+              {question.question}
+            </h4>
+          </div>
+
+          {!hasVoted &&
+          (question.questionType == "0" || question.questionType == "1") ? (
+            <p className="mb-1">Select one option:</p>
+          ) : !hasVoted && question.questionType == "2" ? (
+            <p className="mb-1">You can check multiple options:</p>
+          ) : (
+            !hasVoted && <p className="mb-1">Write your answer:</p>
+          )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
                 return renderMultipleChoiceInput(
