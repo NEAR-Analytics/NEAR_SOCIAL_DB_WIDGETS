@@ -9,7 +9,7 @@ let answers = props.answers;
 let questionNumber = props.questionNumber;
 
 return (
-  <>
+  <div style={{ width: "45%" }}>
     {answers.map((answer) => {
       return (
         <div
@@ -25,5 +25,5 @@ return (
         </div>
       );
     })}
-  </>
+  </div>
 );
