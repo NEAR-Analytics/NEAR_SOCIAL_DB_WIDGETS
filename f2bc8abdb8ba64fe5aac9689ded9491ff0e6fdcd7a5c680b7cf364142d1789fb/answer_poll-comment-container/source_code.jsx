@@ -12,7 +12,11 @@ return (
   <>
     {answers.map((answer, i) => {
       return (
-        <div className={i % 2 == 0 ? "mr-2" : "ml-2"}>
+        <div
+          style={
+            i % 2 == 0 ? { marginRight: "0.5rem" } : { marginLeft: "0.5rem" }
+          }
+        >
           <p
             className="py-2 px-3"
             style={{
