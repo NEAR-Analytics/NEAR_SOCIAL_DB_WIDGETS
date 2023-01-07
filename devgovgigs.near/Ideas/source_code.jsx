@@ -17,6 +17,9 @@ const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
 const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
 
 const labels = Near.view(ownerId, "get_all_labels");
+if (!labels) {
+  return <div>Loading ...</div>;
+}
 const wrappedLabels = labels.map((l) => {
   return { name: l };
 });
