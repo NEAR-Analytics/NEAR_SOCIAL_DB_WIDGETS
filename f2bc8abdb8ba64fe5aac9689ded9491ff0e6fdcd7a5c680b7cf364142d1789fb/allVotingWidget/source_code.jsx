@@ -482,7 +482,7 @@ const renderTextInput = (questionNumber) => {
   return (
     <div>
       {hasVoted ? (
-        <div style={{ display: "grid", gridTemplateColums: "repreat(2,1fr)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repreat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
       ) : (
