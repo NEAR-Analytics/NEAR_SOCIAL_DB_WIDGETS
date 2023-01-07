@@ -524,7 +524,7 @@ return (
             >
               {questionNumber + 1}
             </p>
-            <h4 style={{ marginLeft: "2rem" }}>{question.question}</h4>
+            <h4 style={{ marginLeft: "0.8rem" }}>{question.question}</h4>
           </div>
 
           {!hasVoted &&
