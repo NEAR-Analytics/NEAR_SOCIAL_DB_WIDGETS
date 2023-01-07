@@ -45,6 +45,25 @@ const postsPerLabel = columnLabels.map((cl) => {
 return (
   <div>
     <div class="row mb-2">
+      {props.boardId ? (
+        <div class="col">
+          <small class="text-muted">
+            <a
+              class="card-link"
+              href={`https://near.social/#/devgovgigs.near/widget/Ideas?selectedBoardId=${props.boardId}`}
+              role="button"
+              target="_blank"
+              title="Link to this board"
+            >
+              <div class="hstack gap-3">
+                <div class="bi bi-share"></div>
+                <div>Link to this board</div>
+              </div>
+            </a>
+          </small>
+        </div>
+      ) : null}
+
       {requiredLabels.length > 0 ? (
         <div class="col">
           <small class="text-muted">
