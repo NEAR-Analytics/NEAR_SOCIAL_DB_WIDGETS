@@ -5,6 +5,7 @@ initState({
   recency: props.recency,
   label: props.label,
   isBoardsSelected: false,
+  selectedPost: props.postId,
 });
 
 const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
@@ -21,6 +22,7 @@ const onHomeClick = () => {
     recency: null,
     label: null,
     isBoardsSelected: false,
+    selectedPost: null,
   });
 };
 
@@ -29,6 +31,7 @@ const onRecentClick = () => {
     recency: "all",
     label: null,
     isBoardsSelected: false,
+    selectedPost: null,
   });
 };
 
@@ -38,6 +41,7 @@ const onLabelSelected = (selectedLabels) => {
     State.update({
       label: selectedLabels[0].name,
       recency: null,
+      selectedPost: null,
     });
   } else {
     console.log("Unselected label");
@@ -45,6 +49,7 @@ const onLabelSelected = (selectedLabels) => {
       recency: props.recency,
       label: null,
       isBoardsSelected: false,
+      selectedPost: null,
     });
   }
 };
@@ -52,6 +57,7 @@ const onLabelSelected = (selectedLabels) => {
 const onBoardsClick = () => {
   State.update({
     isBoardsSelected: true,
+    selectedPost: null,
   });
 };
 
@@ -270,6 +276,11 @@ return (
     {navbar}
     {state.isBoardsSelected ? (
       <Widget src={`${ownerId}/widget/KanbanBoardList`} />
+    ) : state.selectedPost ? (
+      <Widget
+        src={`${ownerId}/widget/Post`}
+        props={{ id: state.selectedPost }}
+      />
     ) : (
       <Widget
         src={`${ownerId}/widget/IdeasList`}
