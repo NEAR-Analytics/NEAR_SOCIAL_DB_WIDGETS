@@ -235,10 +235,8 @@ const canVote = !hasVoted && isQuestionOpen;
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
   if (questionType == "3") return;
-  console.log(1, validAnswersToThisPoll);
   return validAnswersToThisPoll.reduce((acc, curr) => {
     let ans = curr.value.answer[questionNumber];
-    console.log(2, ans);
     if (Array.isArray(ans)) {
       ans.forEach((a) => {
         acc[Number(a)] += 1;
@@ -520,11 +518,11 @@ return (
 
           {!hasVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
-            <p className="mb-1">"Select one option:"</p>
+            <p className="mb-1">Select one option:</p>
           ) : question.questionType == "2" ? (
-            <p className="mb-1">"You can check multiple options:"</p>
+            <p className="mb-1">You can check multiple options:</p>
           ) : (
-            <p className="mb-1">"Write your answer:"</p>
+            <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
