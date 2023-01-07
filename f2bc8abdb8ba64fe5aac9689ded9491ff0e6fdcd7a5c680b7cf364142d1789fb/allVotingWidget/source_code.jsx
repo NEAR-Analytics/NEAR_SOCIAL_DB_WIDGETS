@@ -316,15 +316,13 @@ const isValidInput = () => {
 
 const renderAnswers = (questionNumber) => {
   return (
-    <div style={{ width: "45%" }}>
-      <Widget
-        src={`${widgetOwner}/widget/answer_poll-comment-container`}
-        props={{
-          answers: validAnswersToThisPoll,
-          questionNumber,
-        }}
-      />
-    </div>
+    <Widget
+      src={`${widgetOwner}/widget/answer_poll-comment-container`}
+      props={{
+        answers: validAnswersToThisPoll,
+        questionNumber,
+      }}
+    />
   );
 };
 
