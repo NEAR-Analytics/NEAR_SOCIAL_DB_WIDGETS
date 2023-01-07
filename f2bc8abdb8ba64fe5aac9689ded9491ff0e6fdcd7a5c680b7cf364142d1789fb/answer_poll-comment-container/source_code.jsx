@@ -24,7 +24,7 @@ return (
               color: "#59606A",
               border: "1px solid #F2F6FA",
               borderRadius: "8px",
-              minHeight: "2rem",
+              minHeight: "3rem",
             }}
           >
             {answer.value.answer[questionNumber]}
