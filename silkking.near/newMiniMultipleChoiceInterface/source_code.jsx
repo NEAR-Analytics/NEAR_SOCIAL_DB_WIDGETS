@@ -2,6 +2,8 @@ if (!props.blockHeight) {
   return "Property blockHeight not set";
 }
 
+State.init({ vote: "", showErrorsInForm: false, questions: {}, answers: {} });
+
 // Utility function. Consider moving it to an utility widget
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
@@ -32,22 +34,33 @@ function getTimeRelatedValidAnswers(answers) {
 }
 
 const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.0.1");
+const questions = Social.index("poll_question", "question-v3.1.0");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!questions) {
   return "Loading";
 }
 const questionParams = questions.find(
   (q) => q.blockHeight == questionBlockHeight
 );
-State.init({ vote: "", showErrorsInForm: false });
 
-const answers = Social.index("poll_question", "answer-v3.0.1");
+const answers = Social.index("poll_question", "answer-v3.1.0");
+
+if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
+  State.update({ questions: questions });
+}
+
 if (!answers) {
   return "Loading";
 }
+
 const answersToThisQuestion = answers.filter(
   (a) => a.value.questionBlockHeight == questionBlockHeight
 );
+
 let usersWithAnswersToThisQuestion = [];
 let validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
@@ -58,6 +71,7 @@ let validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
   }
   return !didUserAlreadyAnswered;
 });
+
 validAnswersToThisQuestion = getTimeRelatedValidAnswers(
   validAnswersToThisQuestion
 );
