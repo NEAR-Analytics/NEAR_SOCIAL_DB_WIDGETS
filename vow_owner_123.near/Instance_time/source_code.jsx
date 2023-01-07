@@ -135,7 +135,6 @@ for (let i = 0; i < sortedData.length; i++) {
     var times = sortedData[i].value._data;
     var temp = [];
     var flag = false;
-
     for (var j = 0; j < times.length; j++) {
       const time = times[j] + utc_offset;
       if (time > 168) {
@@ -279,8 +278,8 @@ return (
             for (var j = 0; j < 2; j++) {
               const time =
                 j == 0
-                  ? parseInt(state._from[i]) + 24 * i + offset
-                  : parseInt(state._to[i]) + 24 * i + offset;
+                  ? parseInt(state._from[i]) + 24 * i - offset
+                  : parseInt(state._to[i]) + 24 * i - offset;
               if (time > 168) {
                 temp.push(time - 168);
                 flag = true;
