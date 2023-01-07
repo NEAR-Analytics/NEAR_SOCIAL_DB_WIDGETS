@@ -10,9 +10,11 @@ const columnLabels = props.columnLabels ?? [
 
 const labelsToIdSet = (labels) => {
   const ids = labels.map((label) => {
-    return Near.view(ownerId, "get_posts_by_label", {
-      label,
-    });
+    return (
+      Near.view(ownerId, "get_posts_by_label", {
+        label,
+      }) ?? []
+    );
   });
   const idsFlat = ids.flat(1);
   return new Set(idsFlat);
@@ -22,9 +24,11 @@ const requiredPostsSet = labelsToIdSet(requiredLabels);
 const excludedPostsSet = labelsToIdSet(excludedLabels);
 
 const postsPerLabel = columnLabels.map((cl) => {
-  let allIds = Near.view(ownerId, "get_posts_by_label", {
-    label: cl,
-  }).reverse();
+  let allIds = (
+    Near.view(ownerId, "get_posts_by_label", {
+      label: cl,
+    }) ?? []
+  ).reverse();
   if (requiredLabels.length > 0) {
     return {
       label: cl,
