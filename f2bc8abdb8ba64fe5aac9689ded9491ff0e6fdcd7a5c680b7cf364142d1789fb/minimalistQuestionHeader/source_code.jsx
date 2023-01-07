@@ -4,8 +4,6 @@ if (!poll) {
   return "Prop passed wrongly to minimalistQuestionHeader";
 }
 
-function haveMultipleQuestionsTypes(allQuestionTypes) {}
-
 const renderPollTypeIcon = () => {
   let allPollTypes = [];
   for (let i = 0; i < poll.value.questions.length; i++) {
@@ -14,8 +12,8 @@ const renderPollTypeIcon = () => {
     }
   }
 
-  allPollTypes.length == 1 &&
-  (allPollTypes[0] == "0" || allPollTypes[0] == "1") ? (
+  return allPollTypes.length == 1 &&
+    (allPollTypes[0] == "0" || allPollTypes[0] == "1") ? (
     <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
   ) : allPollTypes.length == 1 && allPollTypes[0] == "2" ? (
     <i
@@ -28,7 +26,7 @@ const renderPollTypeIcon = () => {
   ) : allPollTypes.length == 1 && allPollTypes[0] == "3" ? (
     <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
   ) : (
-    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+    <i className="bi bi-collection" style={{ padding: "0.6rem 0.8rem" }}></i>
   );
 };
 
