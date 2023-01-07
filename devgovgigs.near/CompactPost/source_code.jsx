@@ -28,7 +28,7 @@ const header = (
               src="mob.near/widget/ProfileImage"
               props={{
                 metadata,
-                accountId,
+                accountId: post.author_id,
                 widgetName,
                 style: { height: "1.5em", width: "1.5em", minWidth: "1.5em" },
               }}
