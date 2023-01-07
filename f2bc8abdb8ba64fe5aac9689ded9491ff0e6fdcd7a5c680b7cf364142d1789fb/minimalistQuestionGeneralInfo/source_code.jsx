@@ -101,10 +101,10 @@ return (
       </div>
 
       <div className="px-2 my-2">
-        {Date.now() < poll.value.endTimestamp ? (
+        {Date.now() > poll.value.endTimestamp ? (
           <p style={{ margin: "0" }}>Ended</p>
         ) : (
-          <p style={{ margin: "0" }}>Ended</p>
+          <p style={{ margin: "0" }}>Ends</p>
         )}
         <p
           style={{
