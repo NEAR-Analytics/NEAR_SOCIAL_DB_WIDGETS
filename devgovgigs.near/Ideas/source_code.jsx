@@ -2,10 +2,11 @@ const ownerId = "devgovgigs.near";
 const postId = "Root";
 
 console.log("props", props);
+
 initState({
   recency: props.recency,
   label: props.label,
-  isBoardsSelected: false,
+  selectedBoardId: props.selectedBoardId ?? null,
   selectedPost: props.postId,
 });
 
@@ -22,7 +23,7 @@ const onHomeClick = () => {
   State.update({
     recency: null,
     label: null,
-    isBoardsSelected: false,
+    selectedBoardId: null,
     selectedPost: null,
   });
 };
@@ -31,7 +32,7 @@ const onRecentClick = () => {
   State.update({
     recency: "all",
     label: null,
-    isBoardsSelected: false,
+    selectedBoardId: null,
     selectedPost: null,
   });
 };
@@ -43,21 +44,23 @@ const onLabelSelected = (selectedLabels) => {
       label: selectedLabels[0].name,
       recency: null,
       selectedPost: null,
+      selectedBoardId: null,
     });
   } else {
     console.log("Unselected label");
     State.update({
       recency: props.recency,
       label: null,
-      isBoardsSelected: false,
+      selectedBoardId: false,
       selectedPost: null,
     });
   }
 };
 
 const onBoardsClick = () => {
+  console.log("Selected board id", props.selectedBoardId ?? 0);
   State.update({
-    isBoardsSelected: true,
+    selectedBoardId: props.selectedBoardId == null ? null : 0,
     selectedPost: null,
   });
 };
@@ -275,8 +278,11 @@ return (
   <div>
     {controls}
     {navbar}
-    {state.isBoardsSelected ? (
-      <Widget src={`${ownerId}/widget/KanbanBoardList`} />
+    {state.selectedBoardId != null ? (
+      <Widget
+        src={`${ownerId}/widget/KanbanBoardList`}
+        props={{ selectedBoardId: state.selectedBoardId }}
+      />
     ) : state.selectedPost ? (
       <Widget
         src={`${ownerId}/widget/Post`}
