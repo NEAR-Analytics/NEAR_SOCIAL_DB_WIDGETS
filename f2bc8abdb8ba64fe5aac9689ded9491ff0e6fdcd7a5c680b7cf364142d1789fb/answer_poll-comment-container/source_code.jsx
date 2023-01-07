@@ -9,7 +9,7 @@ let answers = props.answers;
 let questionNumber = props.questionNumber;
 
 return (
-  <>
+  <div>
     {answers.map((answer) => {
       return (
         <div
@@ -25,5 +25,5 @@ return (
         </div>
       );
     })}
-  </>
+  </div>
 );
