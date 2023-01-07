@@ -517,8 +517,9 @@ return (
             <p
               style={{
                 backgroundColor: "#353A40",
-                padding: "0.2rem 0.5rem",
-                borderRadius: "14px",
+                padding: "0.15rem 0.65rem;",
+                borderRadius: "9px",
+                color: "white",
               }}
             >
               {questionNumber + 1}
