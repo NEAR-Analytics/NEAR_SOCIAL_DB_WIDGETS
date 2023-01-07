@@ -216,9 +216,11 @@ return (
                 <span>
                   {Date.now() < poll.value.startTimestamp ||
                   (Date.now() > poll.value.startTimestamp &&
-                    Date.now() < poll.value.endTimestamp)
-                    ? Ends
-                    : Ended}
+                    Date.now() < poll.value.endTimestamp) ? (
+                    <span>Ends</span>
+                  ) : (
+                    <span>Ended</span>
+                  )}
                   <Widget
                     src={`silkking.near/widget/timeAgo`}
                     props={{
