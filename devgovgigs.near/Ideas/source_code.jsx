@@ -51,7 +51,7 @@ const onLabelSelected = (selectedLabels) => {
     State.update({
       recency: props.recency,
       label: null,
-      selectedBoardId: false,
+      selectedBoardId: null,
       selectedPost: null,
     });
   }
