@@ -1,6 +1,7 @@
 const ownerId = "devgovgigs.near";
 const postId = "Root";
 
+console.log("props", props);
 initState({
   recency: props.recency,
   label: props.label,
