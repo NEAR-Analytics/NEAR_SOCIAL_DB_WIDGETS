@@ -144,7 +144,11 @@ const renderQuestionsByThisCreator = () => {
     let divStyle =
       index == 0
         ? { backGroundColor: "white" }
-        : { backGroundColor: "white", borderTop: "1px solid #ced4da" };
+        : {
+            backGroundColor: "white",
+            paddingTop: "1rem",
+            borderTop: "1px solid #ced4da",
+          };
     return (
       <div style={divStyle}>
         <div className="d-flex align-items-center">
