@@ -112,6 +112,32 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   return usersWithAnswersWithoutDuplicates.length;
 }
 
+const renderPollTypeIcon = () => {
+  let allPollTypes = [];
+  for (let i = 0; i < poll.value.questions.length; i++) {
+    if (!allPollTypes.includes(poll.value.questions[i].questionType)) {
+      allPollTypes.push(poll.value.questions[i].questionType);
+    }
+  }
+
+  return allPollTypes.length == 1 &&
+    (allPollTypes[0] == "0" || allPollTypes[0] == "1") ? (
+    <i className="bi bi-pie-chart" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "2" ? (
+    <i
+      style={{
+        transform: "rotate(90deg)",
+        padding: "0.6rem 0.8rem",
+      }}
+      className="bi bi-bar-chart-line"
+    ></i>
+  ) : allPollTypes.length == 1 && allPollTypes[0] == "3" ? (
+    <i className="bi bi-file-text" style={{ padding: "0.6rem 0.8rem" }}></i>
+  ) : (
+    <i className="bi bi-collection" style={{ padding: "0.6rem 0.8rem" }}></i>
+  );
+};
+
 const renderQuestionsByThisCreator = () => {
   //TODO show only the 2 polls
   return state.pollsByThisCreator.map((pollByCreator, index) => {
@@ -121,9 +147,12 @@ const renderQuestionsByThisCreator = () => {
         : { backGroundColor: "white", borderTop: "1px solid #ced4da" };
     return (
       <div style={divStyle}>
-        <p style={{ fontWeight: "500" }}>
-          {sliceString(pollByCreator.value.title, 20)}
-        </p>
+        <div className="d-flex align-items-center">
+          {renderPollTypeIcon()}
+          <p style={{ fontWeight: "500" }}>
+            {sliceString(pollByCreator.value.title, 20)}
+          </p>
+        </div>
         <div className="d-flex justify-content-between flex-nowrap text-secondary mb-2">
           <div>
             <i className="bi bi-people"></i>
