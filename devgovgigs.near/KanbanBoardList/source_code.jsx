@@ -27,7 +27,7 @@ initState({
 
 return (
   <div>
-    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-tabs my-3" id="pills-tab" role="tablist">
       {boards.map((board) => {
         return (
           <li class="nav-item" role="presentation">
