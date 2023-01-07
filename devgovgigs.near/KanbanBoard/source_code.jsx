@@ -1,26 +1,37 @@
 const ownerId = "devgovgigs.near";
 
 const requiredLabels = props.requiredLabels ?? ["near-social"];
+const excludedLabels = props.excludedLabels ?? ["nft"];
 const columnLabels = props.columnLabels ?? [
   "widget",
   "integration",
   "feature-request",
 ];
 
-const requiredPostsNested = requiredLabels.map((rl) => {
-  return Near.view(ownerId, "get_posts_by_label", {
-    label: rl,
+const labelsToIdSet = (labels) => {
+  const ids = labels.map((label) => {
+    return Near.view(ownerId, "get_posts_by_label", {
+      label,
+    });
   });
-});
-const requiredPostsFlat = requiredPostsNested.flat(1);
-const requiredPostsSet = new Set(requiredPostsFlat);
+  const idsFlat = ids.flat(1);
+  return new Set(idsFlat);
+};
+
+const requiredPostsSet = labelsToIdSet(requiredLabels);
+const excludedPostsSet = labelsToIdSet(excludedLabels);
 
 const postsPerLabel = columnLabels.map((cl) => {
   let allIds = Near.view(ownerId, "get_posts_by_label", {
     label: cl,
   }).reverse();
   if (requiredLabels.length > 0) {
-    return { label: cl, posts: allIds.filter((i) => requiredPostsSet.has(i)) };
+    return {
+      label: cl,
+      posts: allIds.filter(
+        (i) => requiredPostsSet.has(i) && !excludedPostsSet.has(i)
+      ),
+    };
   } else {
     // No extra filtering is required.
     return { label: cl, posts: allIds };
@@ -30,20 +41,38 @@ const postsPerLabel = columnLabels.map((cl) => {
 return (
   <div>
     <div class="row mb-2">
-      <div class="col">
-        <small class="text-muted">
-          Required labels:
-          {requiredLabels.map((label) => {
-            return (
-              <a
-                href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
-              >
-                <span class="badge text-bg-primary me-1">{label}</span>
-              </a>
-            );
-          })}
-        </small>
-      </div>
+      {requiredLabels.length > 0 ? (
+        <div class="col">
+          <small class="text-muted">
+            Required labels:
+            {requiredLabels.map((label) => {
+              return (
+                <a
+                  href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
+                >
+                  <span class="badge text-bg-primary me-1">{label}</span>
+                </a>
+              );
+            })}
+          </small>
+        </div>
+      ) : null}
+      {excludedLabels.length > 0 ? (
+        <div class="col">
+          <small class="text-muted">
+            Excluded labels:
+            {excludedLabels.map((label) => {
+              return (
+                <a
+                  href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
+                >
+                  <span class="badge text-bg-primary me-1">{label}</span>
+                </a>
+              );
+            })}
+          </small>
+        </div>
+      ) : null}
     </div>
     <div class="row">
       {postsPerLabel.map((col) => {
