@@ -4,6 +4,7 @@ const postId = "Root";
 initState({
   recency: props.recency,
   label: props.label,
+  isBoardsSelected: false,
 });
 
 const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
@@ -19,6 +20,7 @@ const onHomeClick = () => {
   State.update({
     recency: null,
     label: null,
+    isBoardsSelected: false,
   });
 };
 
@@ -26,6 +28,7 @@ const onRecentClick = () => {
   State.update({
     recency: "all",
     label: null,
+    isBoardsSelected: false,
   });
 };
 
@@ -41,8 +44,15 @@ const onLabelSelected = (selectedLabels) => {
     State.update({
       recency: props.recency,
       label: null,
+      isBoardsSelected: false,
     });
   }
+};
+
+const onBoardsClick = () => {
+  State.update({
+    isBoardsSelected: true,
+  });
 };
 
 // TODO: Sort ideas based on how much in total USD equivalent was pledged through sponsorships.
@@ -231,6 +241,12 @@ const navbar = (
               Recent
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" onClick={onBoardsClick} role="button">
+              <i class="bi-kanban"> </i>
+              Boards
+            </a>
+          </li>
           <li class="nav-item active ms-2">
             <Typeahead
               clearButton
@@ -252,9 +268,13 @@ return (
   <div>
     {controls}
     {navbar}
-    <Widget
-      src={`${ownerId}/widget/IdeasList`}
-      props={{ recency: state.recency, label: state.label }}
-    />
+    {state.isBoardsSelected ? (
+      <Widget src={`${ownerId}/widget/KanbanBoardList`} />
+    ) : (
+      <Widget
+        src={`${ownerId}/widget/IdeasList`}
+        props={{ recency: state.recency, label: state.label }}
+      />
+    )}
   </div>
 );
