@@ -6,6 +6,7 @@
 if (!props.pathToWidget || !props.currentBlockHeight)
   return "send pathToWidget and currentBlockHeight in props";
 
+//code from this - https://github.com/jonTrent/PatienceDiff
 function patienceDiff(aLines, bLines, diffPlusFlag) {
   //
   // findUnique finds all unique values in arr[lo..hi], inclusive.  This
