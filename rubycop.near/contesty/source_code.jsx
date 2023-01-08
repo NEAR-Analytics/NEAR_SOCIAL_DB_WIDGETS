@@ -22,8 +22,7 @@ const getRandom = (max) => {
   return Math.floor(Math.random() * max);
 };
 
-const findUser = (_retry) => {
-  let retry = _retry || RETRY;
+const findUser = (retry) => {
   if (retry === 0) return;
 
   const profileNames = Object.keys(profiles);
@@ -47,8 +46,8 @@ const findUser = (_retry) => {
 const getPair = () => {
   State.update({ loading: true });
 
-  const userNFT1 = findUser();
-  const userNFT2 = findUser();
+  const userNFT1 = findUser(RETRY);
+  const userNFT2 = findUser(RETRY);
 
   State.update({
     nftPair: [userNFT1, userNFT2],
