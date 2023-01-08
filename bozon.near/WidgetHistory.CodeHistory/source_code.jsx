@@ -321,7 +321,7 @@ return (
       return (
         <div>
           <Line
-            className="row no-gutter"
+            className="no-gutter"
             added={el.aIndex === -1}
             deleted={el.bIndex === -1}
             deleted={el.bIndex === -1}
