@@ -1,3 +1,4 @@
+const RETRY = 30;
 State.init({ nftPair: [], loading: false });
 
 const getSample = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -21,17 +22,20 @@ const getRandom = (max) => {
   return Math.floor(Math.random() * max);
 };
 
-const findUser = () => {
+const findUser = (_retry) => {
+  let retry = _retry || RETRY;
+  if (retry === 0) return;
+
   const profileNames = Object.keys(profiles);
   const accountId = profileNames[getRandom(profileNames.length)];
   const contractId = getUserNFTContract(accountId);
 
-  if (!contractId) return findUser();
+  if (!contractId) return findUser(retry - 1);
 
   const userNFTs = allNfts(contractId, accountId);
   const nft = getSample(userNFTs);
 
-  if (!nft || !nft.token_id) return findUser();
+  if (!nft || !nft.token_id) return findUser(retry - 1);
 
   return {
     contractId: contractId,
@@ -45,9 +49,6 @@ const getPair = () => {
 
   const userNFT1 = findUser();
   const userNFT2 = findUser();
-
-  console.log(userNFT1);
-  console.log(userNFT2);
 
   State.update({
     nftPair: [userNFT1, userNFT2],
@@ -121,8 +122,8 @@ return (
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">rating</th>
-            <th scope="col">token id</th>
+            <th scope="col">NFT contract rating</th>
+            <th scope="col">NFT token id</th>
           </tr>
         </thead>
         <tbody>
