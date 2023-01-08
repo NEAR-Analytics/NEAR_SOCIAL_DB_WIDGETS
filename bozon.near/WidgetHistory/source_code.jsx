@@ -34,18 +34,36 @@ const blockHeightToWidget = (blockHeight) => {
     prevBlockHeight: blocksChanges[index + 1],
   });
   return (
-    <div style={{ minHeight: "200px" }} key={blockHeight}>
-      <hr />
-      <div>changes in block #{blockHeight}</div>
-      <Widget src={`mob.near/widget/TimeAgo`} props={{ blockHeight }} />
-      <Widget
-        src={`bozon.near/widget/WidgetHistory.CodeHistory`}
-        props={{
-          pathToWidget: state.widgetPath,
-          currentBlockHeight: blockHeight,
-          prevBlockHeight: blocksChanges[index + 1],
-        }}
-      />
+    <div
+      className="card my-2 border-primary"
+      style={{ minHeight: "200px" }}
+      key={blockHeight}
+    >
+      <div className="card-header">
+        <small class="text-muted">
+          <div class="row justify-content-between">
+            <div class="col-4">changes in block #{blockHeight}</div>
+            <div class="col-4">
+              <div class="d-flex justify-content-end">
+                <Widget
+                  src={`mob.near/widget/TimeAgo`}
+                  props={{ blockHeight }}
+                />
+              </div>
+            </div>
+          </div>
+        </small>
+      </div>
+      <div className="card-body">
+        <Widget
+          src={`bozon.near/widget/WidgetHistory.CodeHistory`}
+          props={{
+            pathToWidget: state.widgetPath,
+            currentBlockHeight: blockHeight,
+            prevBlockHeight: blocksChanges[index + 1],
+          }}
+        />
+      </div>
     </div>
   );
 };
