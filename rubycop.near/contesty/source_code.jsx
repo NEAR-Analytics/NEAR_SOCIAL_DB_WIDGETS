@@ -7,7 +7,7 @@ const fetchCollections = (accountId) =>
 
 const profiles = Social.get(["*/profile/name"], "final") || {};
 const stats = Social.get("rubycop.near/nft_stats/**") || {};
-console.log(stats);
+
 const getUserNFTContract = (accountId) => {
   const nftResponse = fetchCollections(accountId);
   if (!nftResponse.ok) return;
