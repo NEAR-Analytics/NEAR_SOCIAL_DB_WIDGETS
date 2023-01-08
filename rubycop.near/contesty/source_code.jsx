@@ -1,5 +1,5 @@
-const RETRY = 30;
-State.init({ nftPair: [], loading: false });
+const RETRY = 50;
+State.init({ nftPair: [], loading: false, tryAgain: false });
 
 const getSample = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -49,6 +49,14 @@ const getPair = () => {
   const userNFT1 = findUser(RETRY);
   const userNFT2 = findUser(RETRY);
 
+  if (!userNFT1 || !userNFT2) {
+    State.update({
+      tryAgain: true,
+      loading: false,
+    });
+    return;
+  }
+
   State.update({
     nftPair: [userNFT1, userNFT2],
     loading: false,
@@ -66,52 +74,57 @@ if (state.loading) return <div>Loading ... </div>;
 
 return (
   <>
-    <div className="d-flex gap-1 flex-wrap">
-      {state.nftPair.map((obj, i) => (
-        <div className="d-block">
-          <Widget
-            src="mob.near/widget/NftImage"
-            props={{
-              nft: {
-                tokenId: obj.nft.token_id,
-                contractId: obj.contractId,
-              },
-              style: {
-                width: "10em",
-                height: "10em",
-                objectFit: "cover",
-                minWidth: "10em",
-                minHeight: "10em",
-                maxWidth: "10em",
-                maxHeight: "10em",
-                overflowWrap: "break-word",
-              },
-              className: "img-thumbnail",
-              fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-              alt: `NFT ${obj.contractId} ${obj.nft.token_id}`,
-            }}
-          />
+    {state.tryAgain ? (
+      "Try again"
+    ) : (
+      <div className="d-flex gap-1 flex-wrap">
+        {state.nftPair.map((obj, i) => (
+          <div className="d-block">
+            <Widget
+              src="mob.near/widget/NftImage"
+              props={{
+                nft: {
+                  tokenId: obj.nft.token_id,
+                  contractId: obj.contractId,
+                },
+                style: {
+                  width: "10em",
+                  height: "10em",
+                  objectFit: "cover",
+                  minWidth: "10em",
+                  minHeight: "10em",
+                  maxWidth: "10em",
+                  maxHeight: "10em",
+                  overflowWrap: "break-word",
+                },
+                className: "img-thumbnail",
+                fallbackUrl:
+                  "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+                alt: `NFT ${obj.contractId} ${obj.nft.token_id}`,
+              }}
+            />
 
-          {obj.nft.token_id && (
-            <div className="btn-block mt-1">
-              <CommitButton
-                data={{
-                  nft_stats: {
-                    [obj.contractId]: {
-                      token_id: obj.nft.token_id,
-                      rating: obj.rating + 1,
+            {obj.nft.token_id && (
+              <div className="btn-block mt-1">
+                <CommitButton
+                  data={{
+                    nft_stats: {
+                      [obj.contractId]: {
+                        token_id: obj.nft.token_id,
+                        rating: obj.rating + 1,
+                      },
                     },
-                  },
-                }}
-              >
-                {`Like (${obj.rating || 0})`}
-              </CommitButton>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+                  }}
+                >
+                  {`Like (${obj.rating || 0})`}
+                </CommitButton>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+
     <div>
       <div className="btn-block my-2">
         <button onClick={getPair}>Find Random NFT Pair</button>
