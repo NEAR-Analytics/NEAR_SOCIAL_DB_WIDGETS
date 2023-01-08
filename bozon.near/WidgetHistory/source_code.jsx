@@ -54,16 +54,14 @@ const blockHeightToWidget = (blockHeight) => {
           </div>
         </small>
       </div>
-      <div className="card-body">
-        <Widget
-          src={`bozon.near/widget/WidgetHistory.CodeHistory`}
-          props={{
-            pathToWidget: state.widgetPath,
-            currentBlockHeight: blockHeight,
-            prevBlockHeight: blocksChanges[index + 1],
-          }}
-        />
-      </div>
+      <Widget
+        src={`bozon.near/widget/WidgetHistory.CodeHistory`}
+        props={{
+          pathToWidget: state.widgetPath,
+          currentBlockHeight: blockHeight,
+          prevBlockHeight: blocksChanges[index + 1],
+        }}
+      />
     </div>
   );
 };
