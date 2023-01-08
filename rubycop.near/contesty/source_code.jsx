@@ -7,7 +7,7 @@ const fetchCollections = (accountId) =>
 
 const profiles = Social.get(["*/profile/name"], "final") || {};
 const stats = Social.get("rubycop.near/nft_stats/**") || {};
-
+console.log(stats);
 const getUserNFTContract = (accountId) => {
   const nftResponse = fetchCollections(accountId);
   if (!nftResponse.ok) return;
@@ -30,7 +30,7 @@ const getPair = () => {
     .map((item) => {
       const userNFTs = allNfts(item[0], item[1]);
       const nft = getSample(userNFTs);
-      const rating = nft.token_id ? parseInt(stats[item[0]].rating) + 1 : 0;
+      const rating = nft.token_id ? parseInt(stats[item[0]].rating) : 0;
 
       return {
         contractId: item[0],
