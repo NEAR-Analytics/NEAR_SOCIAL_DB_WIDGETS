@@ -17,33 +17,42 @@ const getUserNFTContract = (accountId) => {
   return getSample(collections);
 };
 
+const getRandom = (max) => {
+  return Math.floor(Math.random() * max);
+};
+
+const findUser = () => {
+  const profileNames = Object.keys(profiles);
+  const accountId = profileNames[getRandom(profileNames.length)];
+  const contractId = getUserNFTContract(accountId);
+
+  if (!contractId) return findUser();
+
+  const userNFTs = allNfts(contractId, accountId);
+  const nft = getSample(userNFTs);
+
+  if (!nft || !nft.token_id) return findUser();
+
+  return {
+    contractId: contractId,
+    nft: nft,
+    rating: stats[contractId] ? parseInt(stats[contractId].rating) : 0,
+  };
+};
+
 const getPair = () => {
   State.update({ loading: true });
 
-  const accIds = Object.keys(profiles);
-  const accIdContractIds = accIds.map((id) => [getUserNFTContract(id), id]);
-  const usersWithContracts = accIdContractIds.filter(
-    (item) => item[0] && item[1]
-  );
+  const userNFT1 = findUser();
+  const userNFT2 = findUser();
 
-  const resultSet = usersWithContracts
-    .map((item) => {
-      const userNFTs = allNfts(item[0], item[1]);
-      const nft = getSample(userNFTs);
-      const rating = nft.token_id ? parseInt(stats[item[0]].rating) : 0;
+  console.log(userNFT1);
+  console.log(userNFT2);
 
-      return {
-        contractId: item[0],
-        nft: nft,
-        rating: rating,
-      };
-    })
-    .filter((obj) => obj.nft?.token_id);
-
-  const result = [getSample(resultSet), getSample(resultSet)];
-  State.update({ nftPair: result, loading: false });
-
-  return result;
+  State.update({
+    nftPair: [userNFT1, userNFT2],
+    loading: false,
+  });
 };
 
 const allNfts = (contractId, accountId) =>
@@ -138,8 +147,7 @@ return (
       </table>
       <div className="mt-2">
         <small>
-          Follow <a href="https://twitter.com/ContestyNFT">Contesty.app</a> -
-          contest based NFT app on NEAR
+          Follow <a href="https://twitter.com/ContestyNFT">Contesty.app</a>
         </small>
       </div>
     </div>
