@@ -1,5 +1,3 @@
-if (!props.account_id) return "";
-
 let stats = Social.index("graph", "nft_likes", { order: "desc" });
 stats = stats.map((k) => k.value.nft_likes).sort((b, a) => b.rating - a.rating);
 stats = [...new Map(stats.map((item) => [item.token_id, item])).values()];
@@ -19,7 +17,7 @@ return (
       <tbody>
         {stats
           .sort((a, b) => b.rating - a.rating)
-          .map(({ contract_id, token_id, rating }, i) => (
+          .map(({ account_id, contract_id, token_id, rating }, i) => (
             <tr className="align-middle" key={i}>
               <td>{i + 1}</td>
               <td className="text-center">
