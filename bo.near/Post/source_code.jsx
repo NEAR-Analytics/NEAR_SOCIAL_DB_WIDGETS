@@ -189,16 +189,16 @@ const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="col-8">
       <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <CommitButton
+        <button
           type="button"
           class="btn btn-outline-primary"
           style={{ border: "0px" }}
           onClick={onLike}
-          data={likeNotify}
         >
           <i class={`bi ${likeBtnClass}`}> </i>
           Like ({post.likes.length ?? 0})
-        </CommitButton>
+        </button>
+        <CommitButton data={likeNotify}>Notify author I liked</CommitButton>
         <div class="btn-group" role="group">
           <button
             type="button"
