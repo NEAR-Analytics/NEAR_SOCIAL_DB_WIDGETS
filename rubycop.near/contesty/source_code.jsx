@@ -1,4 +1,17 @@
-const RETRY = 50;
+if (!props.accountId || !context.accountId) {
+  return "";
+}
+
+const RETRY = 40;
+const index = {
+  action: "graph",
+  key: "nft_stats",
+  options: {
+    subscribe: true,
+    order: "desc",
+  },
+};
+
 State.init({ nftPair: [], loading: false, tryAgain: false });
 
 const getSample = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -7,7 +20,8 @@ const fetchCollections = (accountId) =>
   fetch(`https://api.kitwallet.app/account/${accountId}/likelyNFTsFromBlock`);
 
 const profiles = Social.get(["*/profile/name"], "final") || {};
-const stats = Social.get("rubycop.near/nft_stats/**") || {};
+const stats = Social.index("graph", "nft_stats", { order: "desc" });
+console.log("", stats);
 
 const getUserNFTContract = (accountId) => {
   const nftResponse = fetchCollections(accountId);
@@ -36,10 +50,13 @@ const findUser = (retry) => {
 
   if (!nft || !nft.token_id) return findUser(retry - 1);
 
+  const data = stats.find((i) => i.value.nft_stats.contract_id === contractId);
+
   return {
+    accountId: accountId,
     contractId: contractId,
     nft: nft,
-    rating: stats[contractId] ? parseInt(stats[contractId].rating) : 0,
+    rating: data ? data.rating : 0,
   };
 };
 
@@ -97,11 +114,21 @@ return (
             <div className="btn-block mt-1">
               <CommitButton
                 data={{
-                  nft_stats: {
-                    [obj.contractId]: {
-                      token_id: obj.nft.token_id,
-                      rating: obj.rating + 1,
-                    },
+                  index: {
+                    graph: JSON.stringify({
+                      key: "nft_stats",
+                      value: {
+                        nft_stats: {
+                          contract_id: obj.contractId,
+                          token_id: obj.nft.token_id,
+                          rating: obj.rating + 1,
+                        },
+                      },
+                    }),
+                    notify: JSON.stringify({
+                      key: obj.accountId,
+                      value: "Congrats! 🎉 your NFT was liked",
+                    }),
                   },
                 }}
               >
@@ -127,9 +154,10 @@ return (
           </tr>
         </thead>
         <tbody>
-          {Object.entries(stats)
-            .sort((a, b) => parseInt(b[1].rating) - parseInt(a[1].rating))
-            .map(([contractId, { token_id, rating }], i) => (
+          {stats
+            .map((k) => k.value.nft_stats)
+            .sort((a, b) => b.rating - a.rating)
+            .map(({ contract_id, token_id, rating }, i) => (
               <tr key={i}>
                 <td>{i + 1}</td>
                 <td>
@@ -137,7 +165,7 @@ return (
                 </td>
                 <td>
                   <a
-                    href={`#mob.near/widget/NftImage?tokenId=${token_id}&contractId=${contractId}`}
+                    href={`#mob.near/widget/NftImage?tokenId=${token_id}&contractId=${contract_id}`}
                   >
                     {token_id}
                   </a>
