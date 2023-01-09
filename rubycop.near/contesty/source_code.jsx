@@ -99,28 +99,15 @@ return (
 
           {obj.nft.token_id && (
             <div className="btn-block mt-1">
-              <CommitButton
-                data={{
-                  index: {
-                    graph: JSON.stringify({
-                      key: "nft_likes",
-                      value: {
-                        nft_likes: {
-                          contract_id: obj.contractId,
-                          token_id: obj.nft.token_id,
-                          rating: obj.rating + 1,
-                        },
-                      },
-                    }),
-                    notify: JSON.stringify({
-                      key: obj.accountId,
-                      value: "Congrats! 🎉 your NFT was liked",
-                    }),
-                  },
+              <Widget
+                src="rubycop.near/widget/NftVotingButton"
+                props={{
+                  account_id: obj.accountId,
+                  contract_id: obj.contractId,
+                  token_id: obj.nft.token_id,
+                  rating: obj.rating.toString(),
                 }}
-              >
-                {`Like (${obj.rating || 0})`}
-              </CommitButton>
+              />
             </div>
           )}
         </div>
@@ -132,7 +119,7 @@ return (
         <button onClick={getPair}>Find Random NFT Pair</button>
       </div>
 
-      <Widget src="rubycop.near/widget/contesty_leaderboard" />
+      <Widget src="rubycop.near/widget/NftVotingLeaderboard" />
 
       <div className="mt-2">
         <small>
