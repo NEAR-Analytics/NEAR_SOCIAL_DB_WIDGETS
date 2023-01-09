@@ -175,16 +175,13 @@ const btnCreatorWidget = (postType, icon, name) => {
 };
 
 const likeNotify = {
-  index: {
-    notify: JSON.stringify({
-      key: post.author_id,
-      value: {
-        type: "devgovgigs/like",
-        who: context.accountId,
-        post: postId,
-      },
-    }),
-  },
+  notify: JSON.stringify({
+    key: post.author_id,
+    value: {
+      type: "devgovgigs/like",
+      post: postId,
+    },
+  }),
 };
 
 const buttonsFooter = props.isPreview ? null : (
