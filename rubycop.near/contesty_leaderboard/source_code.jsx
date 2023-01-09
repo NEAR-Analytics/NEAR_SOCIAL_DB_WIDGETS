@@ -26,7 +26,11 @@ return (
                 <Widget
                   key={i}
                   src={"mob.near/widget/NftImage"}
-                  props={{ tokenId: token_id, contractId: contract_id }}
+                  props={{
+                    tokenId: token_id,
+                    contractId: contract_id,
+                    className: "img-fluid w-10 h-10",
+                  }}
                 />
               </td>
               <td>
