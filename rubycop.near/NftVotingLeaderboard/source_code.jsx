@@ -1,6 +1,4 @@
-const account_id = props.accountId || context.accountId;
-
-if (!account_id) return "";
+if (!props.account_id) return "";
 
 let stats = Social.index("graph", "nft_likes", { order: "desc" });
 stats = stats.map((k) => k.value.nft_likes).sort((b, a) => b.rating - a.rating);
