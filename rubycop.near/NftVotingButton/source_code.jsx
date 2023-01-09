@@ -1,4 +1,4 @@
-if (!props.accountId || !props.contractId || !props.token_id || !props.rating)
+if (!props.account_id || !props.contract_id || !props.token_id || !props.rating)
   return "";
 
 return (
@@ -9,14 +9,14 @@ return (
           key: "nft_likes",
           value: {
             nft_likes: {
-              contract_id: props.contractId,
+              contract_id: props.contract_id,
               token_id: props.token_id,
               rating: props.rating + 1,
             },
           },
         }),
         notify: JSON.stringify({
-          key: props.accountId,
+          key: props.account_id,
           value: "Congrats! 🎉 your NFT was liked",
         }),
       },
