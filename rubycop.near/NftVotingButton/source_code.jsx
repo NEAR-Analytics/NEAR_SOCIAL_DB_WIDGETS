@@ -1,5 +1,4 @@
-if (!props.account_id || !props.contract_id || !props.token_id || !props.rating)
-  return "";
+if (!props.contract_id || !props.token_id || !props.rating) return "";
 
 return (
   <CommitButton
