@@ -8,7 +8,7 @@ const fetchCollections = (accountId) =>
   fetch(`https://api.kitwallet.app/account/${accountId}/likelyNFTsFromBlock`);
 
 const profiles = Social.get(["*/profile/name"], "final") || {};
-const stats = Social.index("graph", "nft_stats", { order: "desc" });
+const stats = Social.index("graph", "nft_likes", { order: "desc" });
 
 const getUserNFTContract = (accountId) => {
   const nftResponse = fetchCollections(accountId);
@@ -38,12 +38,12 @@ const findUser = (retry) => {
   if (!nft || !nft.token_id) return findUser(retry - 1);
 
   const data = stats.find((i) => i.value.nft_stats.contract_id === contractId);
-
+  console.log(data);
   return {
     accountId: accountId,
     contractId: contractId,
     nft: nft,
-    rating: data ? data.rating : 0,
+    rating: data ? data.rating || 0 : 0,
   };
 };
 
@@ -103,7 +103,7 @@ return (
                 data={{
                   index: {
                     graph: JSON.stringify({
-                      key: "nft_stats",
+                      key: "nft_likes",
                       value: {
                         nft_stats: {
                           contract_id: obj.contractId,
