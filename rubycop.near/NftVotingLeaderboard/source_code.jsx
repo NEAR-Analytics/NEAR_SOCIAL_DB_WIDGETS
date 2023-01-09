@@ -1,3 +1,7 @@
+const account_id = props.accountId || context.accountId;
+
+if (!account_id) return "";
+
 const stats = Social.index("graph", "nft_likes", { order: "desc" });
 
 return (
@@ -7,7 +11,7 @@ return (
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Rating</th>
+          <th scope="col">Action</th>
           <th scope="col">Preview</th>
           <th scope="col">NFT token id</th>
         </tr>
@@ -20,7 +24,15 @@ return (
             <tr className="align-middle" key={i}>
               <td>{i + 1}</td>
               <td className="text-center">
-                <b>{rating}</b>
+                <Widget
+                  src="rubycop.near/widget/NftVotingButton"
+                  props={{
+                    account_id,
+                    contract_id,
+                    token_id,
+                    rating,
+                  }}
+                />
               </td>
               <td>
                 <Widget
