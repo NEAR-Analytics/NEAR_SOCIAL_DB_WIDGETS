@@ -37,8 +37,8 @@ const findUser = (retry) => {
 
   if (!nft || !nft.token_id) return findUser(retry - 1);
 
-  const data = stats.find((i) => i.value.nft_stats.contract_id === contractId);
-  console.log(data);
+  const data = stats.find((i) => i.value.nft_likes.contract_id === contractId);
+
   return {
     accountId: accountId,
     contractId: contractId,
