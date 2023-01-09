@@ -29,7 +29,7 @@ return (
                   props={{
                     tokenId: token_id,
                     contractId: contract_id,
-                    className: "img-fluid w-10 h-10",
+                    className: "img-fluid w-25 h-25",
                   }}
                 />
               </td>
