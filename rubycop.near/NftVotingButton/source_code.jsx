@@ -9,6 +9,7 @@ return (
           key: "nft_likes",
           value: {
             nft_likes: {
+              account_id: props.account_id,
               contract_id: props.contract_id,
               token_id: props.token_id,
               rating: parseInt(props.rating) + 1,
