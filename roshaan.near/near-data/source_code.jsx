@@ -10,13 +10,11 @@ const Title = styled.h1`
 `;
 
 const GraphContainer = styled.div`
-  width: 80%;
   height: 500px;
   border: 1px solid lightblue;
 `;
 
 const Dropdown = styled.select`
-  width: 80%;
   height: 30px;
   margin-top: 20px;
   border: 1px solid lightblue;
