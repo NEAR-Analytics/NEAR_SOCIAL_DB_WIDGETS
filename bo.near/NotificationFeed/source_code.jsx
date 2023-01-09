@@ -84,7 +84,7 @@ return (
                 )}
               </>
             ) : value.type === "devgovgigs/like" ? (
-              <>devgovgigs like</>
+              <>liked your post id = {value.post}</>
             ) : (
               "???"
             )}
