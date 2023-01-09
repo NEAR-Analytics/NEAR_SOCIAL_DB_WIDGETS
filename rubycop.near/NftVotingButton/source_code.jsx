@@ -11,7 +11,7 @@ return (
             nft_likes: {
               contract_id: props.contract_id,
               token_id: props.token_id,
-              rating: props.rating + 1,
+              rating: parseInt(props.rating) + 1,
             },
           },
         }),
