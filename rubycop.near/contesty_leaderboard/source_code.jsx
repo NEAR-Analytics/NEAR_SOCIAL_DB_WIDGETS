@@ -1,5 +1,5 @@
 const stats = Social.index("graph", "nft_likes", { order: "desc" });
-console.log(stats);
+
 return (
   <>
     <h3>NFT Leaderboard</h3>
@@ -7,7 +7,8 @@ return (
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">NFT contract rating</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Preview</th>
           <th scope="col">NFT token id</th>
         </tr>
       </thead>
@@ -22,10 +23,17 @@ return (
                 <b>{rating}</b>
               </td>
               <td>
+                <Widget
+                  key={i}
+                  src={"mob.near/widget/NftImage"}
+                  props={{ tokenId: token_id, contractId: contract_id }}
+                />
+              </td>
+              <td>
                 <a
                   href={`#mob.near/widget/NftImage?tokenId=${token_id}&contractId=${contract_id}`}
                 >
-                  {token_id}
+                  {contract_id}:{token_id}
                 </a>
               </td>
             </tr>
