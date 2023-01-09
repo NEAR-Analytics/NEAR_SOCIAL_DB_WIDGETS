@@ -17,11 +17,11 @@ return (
         }),
         notify: JSON.stringify({
           key: props.account_id,
-          value: "Congrats! 🎉 your NFT was liked",
+          value: "❤️ your NFT was liked",
         }),
       },
     }}
   >
-    {`Like (${props.rating || 0})`}
+    {`❤️ ${props.rating || 0}`}
   </CommitButton>
 );
