@@ -105,7 +105,7 @@ return (
                     graph: JSON.stringify({
                       key: "nft_likes",
                       value: {
-                        nft_stats: {
+                        nft_likes: {
                           contract_id: obj.contractId,
                           token_id: obj.nft.token_id,
                           rating: obj.rating + 1,
