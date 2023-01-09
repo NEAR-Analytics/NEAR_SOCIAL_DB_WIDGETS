@@ -1,16 +1,4 @@
-if (!props.accountId || !context.accountId) {
-  return "";
-}
-
 const RETRY = 40;
-const index = {
-  action: "graph",
-  key: "nft_stats",
-  options: {
-    subscribe: true,
-    order: "desc",
-  },
-};
 
 State.init({ nftPair: [], loading: false, tryAgain: false });
 
@@ -21,7 +9,6 @@ const fetchCollections = (accountId) =>
 
 const profiles = Social.get(["*/profile/name"], "final") || {};
 const stats = Social.index("graph", "nft_stats", { order: "desc" });
-console.log("", stats);
 
 const getUserNFTContract = (accountId) => {
   const nftResponse = fetchCollections(accountId);
