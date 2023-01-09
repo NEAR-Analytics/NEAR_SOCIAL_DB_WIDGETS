@@ -1,6 +1,5 @@
 const ownerId = "devgovgigs.near";
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
-
 const post = props.post ?? Near.view(ownerId, "get_post", { post_id: postId });
 if (!post) {
   return <div>Loading ...</div>;
@@ -8,6 +7,7 @@ if (!post) {
 const snapshot = post.snapshot;
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
+const parentId = Near.view(ownerId, "get_parent_id", { post_id: postId });
 
 const childPostIdsUnordered =
   Near.view(ownerId, "get_children_ids", {
@@ -24,6 +24,17 @@ function readableDate(timestamp) {
 const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
+
+const linkToParent =
+  isUnderPost || !parentId ? null : (
+    <div className="card-header">
+      <a
+        href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${parentId}`}
+      >
+        <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
+      </a>
+    </div>
+  );
 
 const allowedToEdit =
   !props.isPreview &&
@@ -75,7 +86,7 @@ const editControl = allowedToEdit ? (
 const shareButton = props.isPreview ? null : (
   <a
     class="card-link"
-    href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
+    href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${postId}`}
     role="button"
     target="_blank"
     title="Open in new tab"
@@ -163,19 +174,31 @@ const btnCreatorWidget = (postType, icon, name) => {
   );
 };
 
+const likeNotify = {
+  notify: JSON.stringify({
+    key: post.author_id,
+    value: {
+      type: "devgovgigs/like",
+      who: context.accountId,
+      post: postId,
+    },
+  }),
+};
+
 const buttonsFooter = props.isPreview ? null : (
   <div class="row">
     <div class="col-8">
       <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button
+        <CommitButton
           type="button"
           class="btn btn-outline-primary"
           style={{ border: "0px" }}
           onClick={onLike}
+          data={likeNotify}
         >
           <i class={`bi ${likeBtnClass}`}> </i>
           Like ({post.likes.length ?? 0})
-        </button>
+        </CommitButton>
         <div class="btn-group" role="group">
           <button
             type="button"
@@ -335,8 +358,7 @@ const postsList =
           ? childPostIds.map((childId) => {
               return (
                 <Widget
-                  src="bo.near/widget/Post"
-                  // src={`${ownerId}/widget/Post`}
+                  src={`${ownerId}/widget/Post`}
                   props={{ id: childId, isUnderPost: true }}
                 />
               );
@@ -368,6 +390,7 @@ const descriptionArea = isUnderPost ? (
 
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
+    {linkToParent}
     {header}
     <div className="card-body">
       {postLables}
