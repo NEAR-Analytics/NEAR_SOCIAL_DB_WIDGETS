@@ -17,9 +17,9 @@ return (
           .map((k) => k.value.nft_likes)
           .sort((a, b) => b.rating - a.rating)
           .map(({ contract_id, token_id, rating }, i) => (
-            <tr key={i}>
+            <tr className="align-middle" key={i}>
               <td>{i + 1}</td>
-              <td>
+              <td className="text-center">
                 <b>{rating}</b>
               </td>
               <td>
