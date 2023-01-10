@@ -1,4 +1,4 @@
-const RETRY = 40;
+const RETRY = 100;
 
 State.init({ nftPair: [], loading: false, tryAgain: false });
 
