@@ -84,7 +84,15 @@ return (
                 )}
               </>
             ) : value.type === "devgovgigs/like" ? (
-              <>liked your post id = {value.post}</>
+              <>
+                liked your
+                <a
+                  className="fw-bold text-muted"
+                  href={`#/devgovgigs.near/widget/Ideas?postId=${value.post}`}
+                >
+                  Developer Gigs Post
+                </a>
+              </>
             ) : (
               "???"
             )}
