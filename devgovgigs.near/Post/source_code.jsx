@@ -138,6 +138,8 @@ const fillIcons = {
   Reply: "bi-reply-fill",
 };
 
+// Trigger saving this widget.
+
 const borders = {
   Idea: "border-secondary",
   Comment: "border-secondary",
