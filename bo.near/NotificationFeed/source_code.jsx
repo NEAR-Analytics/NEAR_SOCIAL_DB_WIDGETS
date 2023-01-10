@@ -146,7 +146,7 @@ return (
             <>
               <a
                 className="btn btn-outline-dark"
-                href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+                href={`#/devgovgigs.near/widget/Ideas?postId=${value.post}`}
               >
                 View Developer Gigs Post
               </a>
