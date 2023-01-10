@@ -28,9 +28,7 @@ const timestamp = readableDate(
 const linkToParent =
   isUnderPost || !parentId ? null : (
     <div className="card-header">
-      <a
-        href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${parentId}`}
-      >
+      <a href={`https://near.social/#/bo.near/widget/Ideas?postId=${parentId}`}>
         <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
       </a>
     </div>
@@ -175,13 +173,15 @@ const btnCreatorWidget = (postType, icon, name) => {
 };
 
 const likeNotify = {
-  notify: JSON.stringify({
-    key: post.author_id,
-    value: {
-      type: "devgovgigs/like",
-      post: postId,
-    },
-  }),
+  index: {
+    notify: JSON.stringify({
+      key: post.author_id,
+      value: {
+        type: "devgovgigs/like",
+        post: postId,
+      },
+    }),
+  },
 };
 
 const buttonsFooter = props.isPreview ? null : (
