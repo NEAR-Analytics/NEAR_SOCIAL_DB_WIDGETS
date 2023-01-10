@@ -1,10 +1,21 @@
 const ownerId = "devgovgigs.near";
 const postId = "Root";
 
+console.log("props", props);
+
+const defaultSelectedBoard = "nearsocial";
+
 initState({
   recency: props.recency,
   label: props.label,
+  selectedBoardId: props.selectedBoardId ?? null,
+  selectedPost: props.postId,
 });
+if (state.selectedPost != props.postId) {
+  state.update({ selectedPost: props.postId });
+}
+
+const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
 
 const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
 
@@ -16,20 +27,50 @@ const wrappedLabels = labels.map((l) => {
   return { name: l };
 });
 
+const onHomeClick = () => {
+  State.update({
+    recency: null,
+    label: null,
+    selectedBoardId: null,
+    selectedPost: null,
+  });
+};
+
+const onRecentClick = () => {
+  State.update({
+    recency: "all",
+    label: null,
+    selectedBoardId: null,
+    selectedPost: null,
+  });
+};
+
 const onLabelSelected = (selectedLabels) => {
   if (selectedLabels.length == 1) {
     console.log("Selected label %s", selectedLabels[0].name);
     State.update({
       label: selectedLabels[0].name,
       recency: null,
+      selectedPost: null,
+      selectedBoardId: null,
     });
   } else {
     console.log("Unselected label");
     State.update({
       recency: props.recency,
       label: null,
+      selectedBoardId: null,
+      selectedPost: null,
     });
   }
+};
+
+const onBoardsClick = () => {
+  State.update({
+    selectedBoardId:
+      props.selectedBoardId == null ? null : defaultSelectedBoard,
+    selectedPost: null,
+  });
 };
 
 // TODO: Sort ideas based on how much in total USD equivalent was pledged through sponsorships.
@@ -202,26 +243,37 @@ const navbar = (
     <div class="nav navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href={home}>
+          <li class="nav-item ">
+            <a
+              class="nav-link active button"
+              onClick={onHomeClick}
+              role="button"
+            >
               <i class="bi-house-fill"> </i>
               Home
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href={`${home}?recency=all`}>
+            <a class="nav-link active" onClick={onRecentClick} role="button">
               <i class="bi-fire"> </i>
               Recent
             </a>
           </li>
-
-          <li class="nav-item active">
+          <li class="nav-item">
+            <a class="nav-link active" onClick={onBoardsClick} role="button">
+              <i class="bi-kanban"> </i>
+              Boards
+            </a>
+          </li>
+          <li class="nav-item active ms-2">
             <Typeahead
+              clearButton
               id="basic-typeahead-single"
               labelKey="name"
               onChange={onLabelSelected}
               options={wrappedLabels}
               placeholder="Search"
+              defaultSelected={defaultSelectedLabels}
             />
           </li>
         </ul>
@@ -234,36 +286,21 @@ return (
   <div>
     {controls}
     {navbar}
-    <Widget
-      src="bo.near/widget/IdeasList"
-      // src={`${ownerId}/widget/IdeasList`}
-      props={{ recency: state.recency, label: state.label }}
-    />
+    {state.selectedBoardId != null ? (
+      <Widget
+        src={`${ownerId}/widget/KanbanBoardList`}
+        props={{ selectedBoardId: state.selectedBoardId }}
+      />
+    ) : state.selectedPost ? (
+      <Widget
+        src={`${ownerId}/widget/Post`}
+        props={{ id: state.selectedPost }}
+      />
+    ) : (
+      <Widget
+        src={`${ownerId}/widget/IdeasList`}
+        props={{ recency: state.recency, label: state.label }}
+      />
+    )}
   </div>
 );
-
-<li class="nav-item dropdown">
-  <a
-    class="nav-link active"
-    href="#"
-    role="button"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    <i class="bi bi-filter"></i>
-    Topics
-  </a>
-  <ul class="dropdown-menu">
-    {labels
-      ? labels.map((l) => {
-          return (
-            <li>
-              <a class="dropdown-item" href={`${home}?label=${l}`}>
-                {l}
-              </a>
-            </li>
-          );
-        })
-      : null}
-  </ul>
-</li>;
