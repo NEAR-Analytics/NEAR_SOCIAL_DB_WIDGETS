@@ -10,6 +10,8 @@ State.init({
 
 if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
+} else {
+  console.log(props.blockHeight);
 }
 
 let isPreview = props.isPreview ?? false;
