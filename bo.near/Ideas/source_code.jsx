@@ -12,7 +12,7 @@ initState({
   selectedPost: props.postId,
 });
 if (state.selectedPost != props.postId) {
-  state.update({ selectedPost: props.postId });
+  State.update({ selectedPost: props.postId });
 }
 
 const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
