@@ -29,7 +29,7 @@ const linkToParent =
   isUnderPost || !parentId ? null : (
     <div className="card-header">
       <a
-        href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${parentId}`}
+        href={`https://near.social/#/devgovgigs.near/widget/Post?id=${parentId}`}
       >
         <i class="bi bi-arrow-90deg-up"></i>Go to parent{" "}
       </a>
@@ -86,7 +86,7 @@ const editControl = allowedToEdit ? (
 const shareButton = props.isPreview ? null : (
   <a
     class="card-link"
-    href={`https://near.social/#/devgovgigs.near/widget/Ideas?postId=${postId}`}
+    href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
     role="button"
     target="_blank"
     title="Open in new tab"
@@ -277,6 +277,7 @@ const EditorWidget = (postType) => {
           amount: post.snapshot.amount,
           token: post.snapshot.token,
           supervisor: post.snapshot.supervisor,
+          githubLink: post.snapshot.github_link,
         }}
       />
     </div>
@@ -295,6 +296,8 @@ const editorsFooter = props.isPreview ? null : (
     {EditorWidget("Attestation")}
     {CreatorWidget("Sponsorship")}
     {EditorWidget("Sponsorship")}
+    {CreatorWidget("Github")}
+    {EditorWidget("Github")}
   </div>
 );
 
