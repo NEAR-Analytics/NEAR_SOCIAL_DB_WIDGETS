@@ -25,6 +25,15 @@ const pollTypes = {
   YES_OR_NO: { id: "3", value: "Yes or No" },
 };
 
+const styleUnderline = {
+  backgroundImage: "linear-gradient(black 0 0)",
+  backgroundPosition: "bottom center",
+  backgroundSize:
+    "60% 2px" /*Adjust the background size to control length and height*/,
+  backgroundRepeat: "no-repeat",
+  paddingBottom: "4px" /* this can also control the position */,
+};
+
 const getPublicationParams = (isDraft) => {
   let paramQuestions = [];
 
@@ -530,6 +539,16 @@ for (let i = 0; i < state.amountOfQuestions; i++) {
   amountOfQuestions.push(i);
 }
 
+function test() {
+  console.log(
+    "hola",
+    state.sectionShown,
+    state.sectionShown == "questions",
+    isValidInput(false)
+  );
+  return true;
+}
+
 // console.log(JSON.stringify(getPublicationParams()));
 
 return (
@@ -547,6 +566,7 @@ return (
         style={
           state.sectionShown == "mainInfo"
             ? {
+                ...styleUnderline,
                 color: "#353A40",
                 fontSize: "0.8rem",
                 userSelect: "none",
@@ -567,22 +587,17 @@ return (
       >
         <i className="bi bi-square-fill"></i> Main information
       </span>
+
       <span
         className={getDangerClassIfNeeded("Questions")}
         style={
-          isValidInput(false)
+          state.sectionShown == "questions"
             ? {
-                color: "#767B8E",
-                fontSize: "0.8rem",
-                position: "relative",
-                userSelect: "none",
-              }
-            : state.sectionShown == "questions"
-            ? {
+                ...styleUnderline,
                 color: "#353A40",
                 fontSize: "0.8rem",
-                position: "relative",
                 userSelect: "none",
+                position: "relative",
                 cursor: "pointer",
               }
             : {
@@ -1482,6 +1497,7 @@ return (
               State.update({ hoveringElement: "" });
             }}
             onClick={() => {
+              console.log("Click on continue");
               isValidInput(false)
                 ? State.update({
                     showErrorsInForm: false,
