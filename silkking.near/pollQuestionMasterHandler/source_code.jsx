@@ -1,7 +1,7 @@
 const tabs = {
   MY_POLLS: { id: 0, text: "My Polls" },
   ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
-  NEW_POLL: { id: 2, text: "Create a poll" },
+  NEW_POLL: { id: 2, text: "Create poll" },
 };
 
 const widgetOwner =
@@ -401,7 +401,7 @@ return (
                 fontWeight: "700",
               }}
             >
-              Create a poll
+              Create poll
             </h2>
           </div>
           <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
