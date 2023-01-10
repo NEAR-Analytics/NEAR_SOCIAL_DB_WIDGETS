@@ -72,6 +72,7 @@ const onClick = () => {
       name: state.name,
       description: state.description,
       github_version: "V0",
+      github_link: state.githubLink,
     },
   }[postType];
   body["post_type"] = postType;
