@@ -131,16 +131,16 @@ const labelEditor = (
   </div>
 );
 
-// const githubLinkDiv = fields.includes("githubLink") ? (
-//   <div className="col-lg-12  mb-2">
-//     Github Issue:
-//     <input
-//       type="text"
-//       value={state.githubLink}
-//       onChange={(event) => State.update({ githubLink: event.target.value })}
-//     />
-//   </div>
-// ) : null;
+const githubLinkDiv = fields.includes("githubLink") ? (
+  <div className="col-lg-12  mb-2">
+    Github Issue URL:
+    <input
+      type="text"
+      value={state.githubLink}
+      onChange={(event) => State.update({ githubLink: event.target.value })}
+    />
+  </div>
+) : null;
 
 const nameDiv = fields.includes("name") ? (
   <div className="col-lg-6  mb-2">
@@ -210,6 +210,8 @@ const disclaimer = (
 );
 
 const renamedPostType = postType == "Submission" ? "Solution" : postType;
+// Below there is a weird code with fields.includes("githubLink") ternary operator.
+// This is to hack around rendering bug of near.social.
 return (
   <div className="card">
     <div className="card-header">
@@ -217,14 +219,23 @@ return (
     </div>
 
     <div class="card-body">
-      <div className="row">
-        {labelEditor}
-        {nameDiv}
-        {amountDiv}
-        {tokenDiv}
-        {supervisorDiv}
-        {descriptionDiv}
-      </div>
+      {fields.includes("githubLink") ? (
+        <div className="row">
+          {githubLinkDiv}
+          {labelEditor}
+          {nameDiv}
+          {descriptionDiv}
+        </div>
+      ) : (
+        <div className="row">
+          {labelEditor}
+          {nameDiv}
+          {amountDiv}
+          {tokenDiv}
+          {supervisorDiv}
+          {descriptionDiv}
+        </div>
+      )}
 
       <a className="btn btn-outline-primary mb-2" onClick={onClick}>
         Submit
