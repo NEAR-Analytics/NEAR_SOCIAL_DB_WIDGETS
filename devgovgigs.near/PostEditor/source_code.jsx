@@ -22,6 +22,7 @@ initState({
   amount: props.amount ?? "0",
   token: props.token ?? "Near",
   supervisor: props.supervisor ?? "",
+  githubLink: props.githubLink ?? "",
 });
 
 let fields = {
@@ -36,6 +37,7 @@ let fields = {
     "sponsorship_token",
     "supervisor",
   ],
+  Github: ["githubLink", "name", "description"],
 }[postType];
 
 const onClick = () => {
@@ -64,6 +66,11 @@ const onClick = () => {
       sponsorship_token: state.token,
       supervisor: state.supervisor,
       sponsorship_version: "V1",
+    },
+    Github: {
+      name: state.name,
+      description: state.description,
+      github_version: "V0",
     },
   }[postType];
   body["post_type"] = postType;
@@ -122,6 +129,17 @@ const labelEditor = (
     />
   </div>
 );
+
+const githubLinkDiv = fields.includes("githubLink") ? (
+  <div className="col-lg-12  mb-2">
+    Github Issue:
+    <input
+      type="text"
+      value={state.githubLink}
+      onChange={(event) => State.update({ githubLink: event.target.value })}
+    />
+  </div>
+) : null;
 
 const nameDiv = fields.includes("name") ? (
   <div className="col-lg-6  mb-2">
@@ -200,6 +218,7 @@ return (
     <div class="card-body">
       <div className="row">
         {labelEditor}
+        {githubLinkDiv}
         {nameDiv}
         {amountDiv}
         {tokenDiv}
@@ -231,6 +250,7 @@ return (
               amount: state.amount,
               sponsorship_token: state.token,
               supervisor: state.supervisor,
+              github_link: state.githubLink,
             },
           },
         }}
