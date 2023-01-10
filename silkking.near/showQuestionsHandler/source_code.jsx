@@ -29,6 +29,7 @@ if (onlyUsersPolls) {
 }
 
 polls = polls.sort((q1, q2) => {
+  console.log("Poll", q1);
   const isQ1Finished = q1.value.endTimestamp < Date.now();
   const isQ2Finished = q2.value.endTimestamp < Date.now();
   if (isQ1Finished && !isQ2Finished) return 1;
@@ -38,7 +39,7 @@ polls = polls.sort((q1, q2) => {
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
 
-//TODO review this
+//TODO review this!
 let usersMakingQuestions = [];
 for (let i = 0; i < polls.length; i++) {
   if (!usersMakingQuestions.includes(polls[i].accountId)) {
@@ -46,8 +47,7 @@ for (let i = 0; i < polls.length; i++) {
   }
 }
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+const widgetOwner = "silkking.near";
 
 function closeModalClickingOnTransparent() {
   return (e) => {
