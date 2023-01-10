@@ -70,7 +70,7 @@ return (
       <input
         class="form-control"
         placeholder={initWidgetPath}
-        defaultValue={initWidgetPath}
+        defaultValue={state.widgetPath || initWidgetPath}
         onBlur={(e) => {
           State.update({
             widgetPath: e.target.value,
