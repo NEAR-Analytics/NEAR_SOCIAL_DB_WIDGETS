@@ -25,8 +25,6 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
-// Force save.
-
 const linkToParent =
   isUnderPost || !parentId ? null : (
     <div className="card-header">
@@ -126,6 +124,7 @@ const emptyIcons = {
   Submission: "bi-rocket",
   Attestation: "bi-check-circle",
   Sponsorship: "bi-cash-coin",
+  Github: "bi-github",
   Like: "bi-heart",
   Reply: "bi-reply",
 };
@@ -136,6 +135,7 @@ const fillIcons = {
   Submission: "bi-rocket-fill",
   Attestation: "bi-check-circle-fill",
   Sponsorship: "bi-cash-coin",
+  Github: "bi-github",
   Like: "bi-heart-fill",
   Reply: "bi-reply-fill",
 };
@@ -148,6 +148,7 @@ const borders = {
   Submission: "border-secondary",
   Attestation: "border-secondary",
   Sponsorship: "border-secondary",
+  Github: "border-secondary",
 };
 
 const containsLike = props.isPreview
