@@ -292,10 +292,7 @@ return (
         props={{ selectedBoardId: state.selectedBoardId }}
       />
     ) : state.selectedPost ? (
-      <Widget
-        src={`${ownerId}/widget/Post`}
-        props={{ id: state.selectedPost }}
-      />
+      <Widget src={`bo.near/widget/Post`} props={{ id: state.selectedPost }} />
     ) : (
       <Widget
         src={`${ownerId}/widget/IdeasList`}
