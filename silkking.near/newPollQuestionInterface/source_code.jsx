@@ -18,8 +18,6 @@ State.init({
   hoveringElement: "",
 });
 
-const widgetOwner = "silkking.near";
-
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
   SINGLE_ANSWER: { id: "1", value: "Single answer" },
@@ -96,20 +94,20 @@ function validateQuestionsSettedProperly() {
   return allQuestionsValid;
 }
 
-const isValidInput = () => {
+const isValidInput = (validateQuestions) => {
   // TODO validate date and link types
-
   let result = true;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
   result = result && isValidTelegramLink();
   result = result && state.pollStartDate != "";
   result = result && state.pollEndDate != "";
-  result = result && validateQuestionsSettedProperly();
+  if (validateQuestions) {
+    result = result && validateQuestionsSettedProperly();
+  }
   result =
     result &&
     getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
-  result = result && Date.now() < getTimestamp(state.pollEndDate);
   result = result && validateOptionsSettedProperly();
   // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
@@ -137,6 +135,8 @@ function getStyles(inputData) {
         width: "100%",
       };
 }
+
+const widgetOwner = "silkking.near";
 
 const renderModal = (whatModal) => {
   return (
@@ -505,7 +505,7 @@ function getDangerClassIfNeeded(tab) {
         normalStyles =
           normalStyles &&
           getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
-      } else {
+      } else if (state.sectionShown == "questions") {
         if (
           state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
           state.pollTypes[i] == pollTypes.MULTISELECT.id
@@ -570,7 +570,14 @@ return (
       <span
         className={getDangerClassIfNeeded("Questions")}
         style={
-          state.sectionShown == "questions"
+          isValidInput(false)
+            ? {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                position: "relative",
+                userSelect: "none",
+              }
+            : state.sectionShown == "questions"
             ? {
                 color: "#353A40",
                 fontSize: "0.8rem",
@@ -587,20 +594,30 @@ return (
               }
         }
         onClick={() => {
-          State.update({ sectionShown: "questions" });
+          isValidInput(false) && State.update({ sectionShown: "questions" });
         }}
       >
         <i className="bi bi-square-fill"></i>
         Questions
         <span
-          style={{
-            fontSize: "0.7rem",
-            position: "absolute",
-            top: "-8%",
-            left: "103%",
-            userSelect: "none",
-            cursor: "pointer",
-          }}
+          style={
+            isValidInput(false)
+              ? {
+                  fontSize: "0.7rem",
+                  position: "absolute",
+                  top: "-8%",
+                  left: "103%",
+                  userSelect: "none",
+                }
+              : {
+                  fontSize: "0.7rem",
+                  position: "absolute",
+                  top: "-8%",
+                  left: "103%",
+                  userSelect: "none",
+                  cursor: "pointer",
+                }
+          }
         >
           {state.amountOfQuestions + ""}
         </span>
@@ -879,12 +896,6 @@ return (
                       value={state.questions[questionNumber]}
                       onChange={(e) => {
                         let newQuestions = state.questions;
-                        console.log(
-                          1,
-                          newQuestions,
-                          questionNumber,
-                          e.target.value
-                        );
                         newQuestions[questionNumber] = e.target.value;
 
                         State.update({ questions: newQuestions });
@@ -1438,7 +1449,50 @@ return (
           Preview
         </button>*/}
 
-        {isValidInput() ? (
+        {state.sectionShown == "mainInfo" ? (
+          <button
+            style={
+              state.hoveringElement == "continueButton"
+                ? {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+                : {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+            }
+            data={getPublicationParams(false)}
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "continueButton" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => {
+              isValidInput(false)
+                ? State.update({
+                    showErrorsInForm: false,
+                    sectionShown: "questions",
+                  })
+                : State.update({ showErrorsInForm: true });
+            }}
+          >
+            Continue
+          </button>
+        ) : isValidInput(true) ? (
           <CommitButton
             style={
               state.hoveringElement == "createPollButton"
@@ -1470,14 +1524,11 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            onCommit={() =>
+            onClick={() => {
               State.update({
                 showSendFeedback: true,
-              })
-            }
-            // onClick={() => State.update({
-            //   showSendFeedback: true,
-            // })}
+              });
+            }}
           >
             Create
           </CommitButton>
