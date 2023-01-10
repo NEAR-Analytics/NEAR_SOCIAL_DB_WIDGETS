@@ -218,7 +218,6 @@ return (
 
     <div class="card-body">
       <div className="row">
-        {githubLinkDiv}
         {labelEditor}
         {nameDiv}
         {amountDiv}
