@@ -39,6 +39,7 @@ let fields = {
   ],
   Github: ["githubLink", "name", "description"],
 }[postType];
+console.log("fields", fields);
 
 const onClick = () => {
   let labels = state.labelStrings;
@@ -130,16 +131,16 @@ const labelEditor = (
   </div>
 );
 
-const githubLinkDiv = fields.includes("githubLink") ? (
-  <div className="col-lg-12  mb-2">
-    Github Issue:
-    <input
-      type="text"
-      value={state.githubLink}
-      onChange={(event) => State.update({ githubLink: event.target.value })}
-    />
-  </div>
-) : null;
+// const githubLinkDiv = fields.includes("githubLink") ? (
+//   <div className="col-lg-12  mb-2">
+//     Github Issue:
+//     <input
+//       type="text"
+//       value={state.githubLink}
+//       onChange={(event) => State.update({ githubLink: event.target.value })}
+//     />
+//   </div>
+// ) : null;
 
 const nameDiv = fields.includes("name") ? (
   <div className="col-lg-6  mb-2">
@@ -217,8 +218,8 @@ return (
 
     <div class="card-body">
       <div className="row">
-        {labelEditor}
         {githubLinkDiv}
+        {labelEditor}
         {nameDiv}
         {amountDiv}
         {tokenDiv}
