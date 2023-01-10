@@ -142,6 +142,15 @@ return (
                 </a>
               )}
             </>
+          ) : value.type === "devgovgigs/like" ? (
+            <>
+              <a
+                className="btn btn-outline-dark"
+                href={`#/mob.near/widget/MainPage.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+              >
+                View Developer Gigs Post
+              </a>
+            </>
           ) : (
             ""
           )}
