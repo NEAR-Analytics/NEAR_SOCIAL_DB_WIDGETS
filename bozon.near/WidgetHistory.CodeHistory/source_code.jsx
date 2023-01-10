@@ -1,8 +1,21 @@
-//props
-//props.pathToWidget - string ("bozon.near/widget/PrivateMailBox")
-//props.currentBlockHeight - number
-//props.prevBlockHeight? - number
+/*
+---props---
 
+props.pathToWidget: string ("bozon.near/widget/PrivateMailBox")
+
+props.currentBlockHeight: number
+
+props.prevBlockHeight?: number
+
+props.findUniqueResult(
+  lineCountDeleted: number, 
+  lineCountInserted: inserted,
+  lineCountCurrentCode: number,
+  lineCountPrevCode: number,
+  allLineCount: number
+)?: function
+
+*/
 if (!props.pathToWidget || !props.currentBlockHeight)
   return "send pathToWidget and currentBlockHeight in props";
 
@@ -288,6 +301,15 @@ const diffResult = patienceDiff(
   prevCode ? prevCode.split(/\r\n|\n/) : [],
   currentCode.split(/\r\n|\n/)
 );
+
+if (props.findUniqueResult)
+  props.findUniqueResult(
+    diffResult.lineCountDeleted,
+    diffResult.lineCountInserted,
+    currentCode.split(/\r\n|\n/).length,
+    prevCode ? prevCode.split(/\r\n|\n/).length : 0,
+    diffResult.lines.length
+  );
 
 let Line = styled.div`
 & > .col.md {
