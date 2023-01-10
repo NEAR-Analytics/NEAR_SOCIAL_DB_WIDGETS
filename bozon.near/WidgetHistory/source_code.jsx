@@ -19,6 +19,12 @@ if (blocksChanges) blocksChanges = blocksChanges?.sort((a, b) => b - a);
 
 if (!state.selectedBlockHeight) state.selectedBlockHeight = blocksChanges[0];
 
+function getDatastringFromBlockHeight(blockHeight) {
+  const block = Near.block(blockHeight);
+  const date = new Date(block.header.timestamp_nanosec / 1e6);
+  return date.toDateString() + " " + date.toLocaleTimeString();
+}
+
 const renderBlockChangesLink = (blockHeight) => {
   return (
     <button
@@ -36,12 +42,6 @@ const renderBlockChangesLink = (blockHeight) => {
   );
 };
 
-function getDatastringFromBlockHeight(blockHeight) {
-  const block = Near.block(blockHeight);
-  const date = new Date(block.header.timestamp_nanosec / 1e6);
-  return date.toDateString() + " " + date.toLocaleTimeString();
-}
-
 function blockHeightToWidget(blockHeight) {
   const index = blocksChanges.findIndex((el) => el == blockHeight);
   console.log({
@@ -49,32 +49,16 @@ function blockHeightToWidget(blockHeight) {
     prevBlockHeight: blocksChanges[index + 1],
   });
   return (
-    <div
-      className="card my-2 border-primary"
+    <Widget
       style={{ minHeight: "200px" }}
       key={blockHeight}
-    >
-      <div className="card-header">
-        <small class="text-muted">
-          <div class="row justify-content-between">
-            <div class="col-4">changes in block #{blockHeight}</div>
-            <div class="col-4">
-              <div class="d-flex justify-content-end">
-                {getDatastringFromBlockHeight(blockHeight)}
-              </div>
-            </div>
-          </div>
-        </small>
-      </div>
-      <Widget
-        src={`bozon.near/widget/WidgetHistory.CodeHistory`}
-        props={{
-          pathToWidget: state.widgetPath,
-          currentBlockHeight: blockHeight,
-          prevBlockHeight: blocksChanges[index + 1],
-        }}
-      />
-    </div>
+      src={`bozon.near/widget/WidgetHistory.CodeHistoryCard`}
+      props={{
+        pathToWidget: state.widgetPath,
+        currentBlockHeight: blockHeight,
+        prevBlockHeight: blocksChanges[index + 1],
+      }}
+    />
   );
 }
 
