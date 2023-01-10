@@ -25,7 +25,7 @@ return (
     <Title>Near Explorer Data</Title>
     <GraphContainer>
       <iframe
-        src="https://social.metabaseapp.com/public/dashboard/f9b90a2a-c356-4100-b694-ba7fbc18337c"
+        src="https://near-data-social.vercel.app/"
         frameborder="0"
         width="800"
         height="600"
