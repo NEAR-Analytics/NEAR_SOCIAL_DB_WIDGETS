@@ -25,6 +25,8 @@ const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
 );
 
+// Force save.
+
 const linkToParent =
   isUnderPost || !parentId ? null : (
     <div className="card-header">
