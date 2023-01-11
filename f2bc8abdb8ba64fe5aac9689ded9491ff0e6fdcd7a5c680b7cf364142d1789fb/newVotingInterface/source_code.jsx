@@ -367,6 +367,7 @@ return (
       <div
         style={{
           width: "75%",
+          maxWidth: "1000px",
           margin: "2rem 0.5rem 2rem 2rem",
           padding: "2rem",
           borderRadius: "18px",
