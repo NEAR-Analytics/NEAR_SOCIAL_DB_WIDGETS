@@ -522,7 +522,7 @@ return (
               <p
                 style={{
                   color: "#474D55",
-                  letterSpacing: "-0.1em",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 Use this link to share the poll with your participants
