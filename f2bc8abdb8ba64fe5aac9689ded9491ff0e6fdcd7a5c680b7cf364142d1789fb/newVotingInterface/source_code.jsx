@@ -538,30 +538,46 @@ return (
                 <span
                   style={{ color: "#0065FF", wordWrap: "anywhere" }}
                 >{`https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`}</span>
-                <i
-                  className="bi-clipboard"
-                  style={
-                    state.linkCopied
-                      ? {
-                          color: "#0065FF",
-                          marginLeft: "1rem",
-                          transition: "color 0.3s linear",
-                          cursor: "pointer",
-                        }
-                      : {
-                          marginLeft: "1rem",
-                          transition: "color 0.3s linear",
-                          cursor: "pointer",
-                          color: "black",
-                        }
-                  }
-                  onClick={() => {
-                    clipboard.writeText(
-                      `https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`
-                    );
-                    State.update({ linkCopied: true });
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginLeft: "0.5rem",
+                    minWidth: "2.5rem",
                   }}
-                ></i>
+                >
+                  <i
+                    className="bi-clipboard"
+                    style={
+                      state.linkCopied
+                        ? {
+                            color: "#0065FF",
+                            transition: "color 0.3s linear",
+                            cursor: "pointer",
+                          }
+                        : {
+                            transition: "color 0.3s linear",
+                            cursor: "pointer",
+                            color: "black",
+                          }
+                    }
+                    onClick={() => {
+                      clipboard.writeText(
+                        `https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`
+                      );
+                      State.update({ linkCopied: true });
+                    }}
+                  ></i>
+                  {state.linkCopied && (
+                    <span
+                      className="text-secondary"
+                      style={{ fontSize: "0.7rem" }}
+                    >
+                      Copied!
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           )}
