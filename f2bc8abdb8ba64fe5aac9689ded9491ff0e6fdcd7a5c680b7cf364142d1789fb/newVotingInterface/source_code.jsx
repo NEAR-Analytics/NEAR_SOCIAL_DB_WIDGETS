@@ -6,6 +6,8 @@ State.init({
   profile: {},
   pollsByThisCreator: [{}],
   answers: [{}],
+  showShareOptions: false,
+  linkCopied: false,
 });
 
 if (!props.isPreview && !props.blockHeight) {
@@ -479,6 +481,92 @@ return (
           </h2>
         </div>
         <div
+          style={{
+            position: "relative",
+            maxWidth: "max-content",
+            margin: "1rem",
+          }}
+        >
+          <i
+            style={{ cursor: "pointer" }}
+            className="bi bi-share"
+            onClick={() => {
+              State.update({ showShareOptions: !state.showShareOptions });
+            }}
+          ></i>
+          {state.showShareOptions && (
+            <div
+              style={{
+                position: "absolute",
+                left: "1rem",
+                backgroundColor: "#FFFFFF",
+                border: "1.5px solid #F0F4F7",
+                boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                borderRadius: "28px",
+                zIndex: "1",
+                width: "40vw",
+                padding: "1rem",
+                border: "1.5px solid #F0F4F7",
+              }}
+            >
+              <div className="d-flex flex-row-reverse">
+                <i
+                  className="bi bi-x"
+                  style={{ cursor: "pointer" }}
+                  onClick={() =>
+                    State.update({ showShareOptions: false, linkCopied: false })
+                  }
+                ></i>
+              </div>
+              <h3>Share</h3>
+              <p
+                style={{
+                  color: "#474D55",
+                  letterSpacing: "-0.1em",
+                }}
+              >
+                Use this link to share the poll with your participants
+              </p>
+              <div
+                className="d-flex justify-content-between align-items-center"
+                style={{
+                  backgroundColor: "#F2F6FA",
+                  padding: "1rem 2rem",
+                  borderRadius: "17px",
+                }}
+              >
+                <span
+                  style={{ color: "#0065FF", wordWrap: "anywhere" }}
+                >{`https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`}</span>
+                <i
+                  className="bi-clipboard"
+                  style={
+                    state.linkCopied
+                      ? {
+                          color: "#0065FF",
+                          marginLeft: "1rem",
+                          transition: "color 0.3s linear",
+                          cursor: "pointer",
+                        }
+                      : {
+                          marginLeft: "1rem",
+                          transition: "color 0.3s linear",
+                          cursor: "pointer",
+                          color: "black",
+                        }
+                  }
+                  onClick={() => {
+                    clipboard.writeText(
+                      `https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`
+                    );
+                    State.update({ linkCopied: true });
+                  }}
+                ></i>
+              </div>
+            </div>
+          )}
+        </div>
+        <div
           className="p-3"
           style={{
             position: "relative",
@@ -698,3 +786,4 @@ return (
     {state.showQuestionsByThisUser && renderModal()}
   </div>
 );
+a;
