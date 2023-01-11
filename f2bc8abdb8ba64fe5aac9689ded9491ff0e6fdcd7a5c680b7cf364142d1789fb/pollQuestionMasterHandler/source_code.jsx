@@ -1,3 +1,5 @@
+let sharedBlockHeight = props.sharedBlockHeight;
+
 const tabs = {
   MY_POLLS: { id: 0, text: "My Polls" },
   ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
@@ -360,7 +362,10 @@ return (
         <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
           All existing polls
         </h2>
-        <Widget src={`${widgetOwner}/widget/showQuestionsHandler`} />
+        <Widget
+          src={`${widgetOwner}/widget/showQuestionsHandler`}
+          props={{ sharedBlockHeight }}
+        />
       </div>
     ) : state.displaying == tabs.MY_POLLS.id ? (
       <div className="px-4">
@@ -369,7 +374,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler`}
-          props={{ onlyUser: true }}
+          props={{ sharedBlockHeight, onlyUser: true }}
         />
       </div>
     ) : (
