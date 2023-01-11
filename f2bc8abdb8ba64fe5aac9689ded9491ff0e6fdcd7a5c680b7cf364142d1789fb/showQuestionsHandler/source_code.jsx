@@ -2,7 +2,7 @@ let sharedBlockHeight = props.sharedBlockHeight;
 
 State.init({
   polls: {},
-  showQuestion: false,
+  showQuestion: sharedBlockHeight,
   modalBlockHeight: sharedBlockHeight ?? question.blockHeight,
 });
 
@@ -209,6 +209,6 @@ return (
       {renderPolls(onlyUsersPolls)}
     </div>
     {/*TODO add a page picker instead the infinite scroll?*/}
-    {state.showQuestion || (sharedBlockHeight && renderModal())}
+    {state.showQuestion && renderModal()}
   </div>
 );
