@@ -1,5 +1,5 @@
 const ownerId = "devgigsboard.bo.near";
-const postType = props.postType ?? "Sponsorship";
+const postType = props.postType ?? "Idea";
 const parentId = props.parentId ?? null;
 const postId = props.postId ?? null;
 const mode = props.mode ?? "Create";
