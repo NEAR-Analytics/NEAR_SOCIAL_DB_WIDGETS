@@ -4,6 +4,8 @@ if (!props.isPreview && !props.poll) {
 
 const isPreview = props.isPreview ?? false;
 
+let widgetOwner = "silkking.near";
+
 // Getting question
 const poll = props.poll;
 
@@ -84,9 +86,6 @@ let allFontColors = [
 ];
 
 let secondaryColor = "#E9EBF8";
-
-let widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 function getBgColor(index, isPrimary) {
   let allColorsOfThisType =
@@ -289,9 +288,11 @@ function calculatePercentage(votesToThisOption) {
 }
 
 function calculatePercentageOfOption(votes, index) {
-  if (votes.length == 0) return 0;
-  const votesToThisOption = votes[index];
   const validAnswers = votes.reduce((acc, curr) => acc + curr, 0);
+
+  if (validAnswers == 0 || votes.length == 0) return 0;
+
+  const votesToThisOption = votes[index];
   return ((votesToThisOption / validAnswers) * 100).toFixed(2);
 }
 
