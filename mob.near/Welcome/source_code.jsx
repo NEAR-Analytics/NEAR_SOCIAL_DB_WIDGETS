@@ -1,165 +1,71 @@
 return (
   <>
     <Widget src="mob.near/widget/ProfileOnboarding" />
-    {context.accountId && (
-      <div className="text-bg-light rounded-4 p-3 mb-3">
-        <div className="d-flex justify-content-between align-items-center">
-          <a
-            href={`#/mob.near/widget/ProfilePage`}
-            className="text-decoration-none link-dark me-2 text-truncate"
-          >
-            <Widget
-              src="mob.near/widget/Profile.InlineBlock"
-              props={{ accountId: context.accountId }}
-            />
-          </a>
-
-          <div className="d-none text-nowrap d-md-block">
-            <a
-              href={`#/mob.near/widget/ProfileEditor`}
-              className="btn btn-outline-secondary"
-            >
-              Edit Profile
-            </a>
-          </div>
-        </div>
-      </div>
-    )}
-    <div className="text-bg-light rounded-4 p-3 mb-3">
-      <Widget src="mob.near/widget/Applications" />
-    </div>
-    <div className="text-bg-light rounded-4 p-3 mb-3">
-      <Widget src="mob.near/widget/People" />
-    </div>
-    <div className="text-bg-light rounded-4 p-3 mb-3">
-      <div>
-        <h4>Get involved</h4>
-        <div className="mb-2 d-flex gap-2 flex-wrap">
-          <a
-            className="btn btn-outline-primary"
-            href="https://thewiki.near.page/PastPresentAndFutureOfNearSocial"
-          >
-            What's Near Social?
-          </a>
-          <a
-            className="btn btn-outline-primary"
-            href="https://thewiki.near.page/near.social_docs"
-          >
-            Documentation
-          </a>
-        </div>
-        <div className="mb-2 d-flex gap-2 flex-wrap">
-          <a
-            className="btn btn-outline-secondary border-0"
-            href="#/mob.near/widget/ProfilePage?accountId=self.social.near"
-          >
-            <i className="bi bi-person-circle"></i>
-          </a>
-          <a
-            className="btn btn-outline-secondary border-0"
-            href="https://t.me/NearSocial"
-          >
-            <i className="bi bi-telegram"></i>
-          </a>
-          <a
-            className="btn btn-outline-secondary border-0"
-            href="https://github.com/NearSocial"
-          >
-            <i className="bi bi-github"></i>
-          </a>
-          <a
-            className="btn btn-outline-secondary border-0"
-            href="https://twitter.com/NearSocial_"
-          >
-            <i className="bi bi-twitter"></i>
-          </a>
-          <a
-            className="btn btn-outline-secondary border-0"
-            href="https://thewiki.near.page/near.social"
-          >
-            <i className="bi bi-wikipedia"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
     <ul
-      className="d-block d-lg-none nav nav-pills nav-fill mb-3"
+      className="nav nav-pills nav-fill mb-3 d-lg-none"
       id="pills-tab"
       role="tablist"
     >
       <li className="nav-item" role="presentation">
         <button
           className="nav-link active"
-          id="pills-posts-tab"
+          id="pills-feed-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-posts"
+          data-bs-target="#pills-feed"
           type="button"
           role="tab"
-          aria-controls="pills-posts"
+          aria-controls="pills-feed"
           aria-selected="true"
         >
-          Posts
+          Feed
         </button>
       </li>
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"
-          id="pills-graph-tab"
+          id="pills-explore-tab"
           data-bs-toggle="pill"
-          data-bs-target="#pills-graph"
+          data-bs-target="#pills-explore"
           type="button"
           role="tab"
-          aria-controls="pills-graph"
+          aria-controls="pills-explore"
           aria-selected="false"
         >
-          Graph
-        </button>
-      </li>
-      <li className="nav-item" role="presentation">
-        <button
-          className="nav-link"
-          id="pills-pokes-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-pokes"
-          type="button"
-          role="tab"
-          aria-controls="pills-pokes"
-          aria-selected="false"
-        >
-          Pokes
+          Explore
         </button>
       </li>
     </ul>
     <div className="tab-content row p-0" id="pills-tabContent">
       <div
-        className="tab-pane d-lg-block col-lg-3"
-        id="pills-graph"
+        className="tab-pane show active d-lg-block col-lg-8"
+        id="pills-feed"
         role="tabpanel"
-        aria-labelledby="pills-graph-tab"
-      >
-        <div className="text-bg-light rounded-4 p-3">
-          <h5>Follow activity</h5>
-          <Widget src="mob.near/widget/FollowFeed" />
-        </div>
-      </div>
-      <div
-        className="tab-pane show active d-lg-block col-lg-6"
-        id="pills-posts"
-        role="tabpanel"
-        aria-labelledby="pills-posts-tab"
+        aria-labelledby="pills-feed-tab"
       >
         <Widget src="mob.near/widget/MainPage.Content" />
       </div>
       <div
-        className="tab-pane d-lg-block col-lg-3"
-        id="pills-pokes"
+        className="tab-pane d-lg-block col-lg-4"
+        id="pills-explore"
         role="tabpanel"
-        aria-labelledby="pills-pokes-tab"
+        aria-labelledby="pills-explore-tab"
       >
-        <div className="text-bg-light rounded-4 p-3">
+        <div className="text-bg-light rounded-4 p-3 mb-3">
+          <Widget src="mob.near/widget/Welcome.GetInvolved" />
+        </div>
+        <div className="text-bg-light rounded-4 p-3 mb-3">
+          <Widget src="mob.near/widget/Applications" />
+        </div>
+        <div className="text-bg-light rounded-4 p-3 mb-3">
+          <Widget src="mob.near/widget/People" />
+        </div>
+        <div className="text-bg-light rounded-4 p-3 mb-3">
+          <h5>Follow activity</h5>
+          <Widget src="mob.near/widget/Welcome.FollowFeed" />
+        </div>
+        <div className="text-bg-light rounded-4 p-3 mb-3">
           <h5>Poke activity</h5>
-          <Widget src="mob.near/widget/PokeFeed" />
+          <Widget src="mob.near/widget/Welcome.PokeFeed" />
         </div>
       </div>
     </div>
