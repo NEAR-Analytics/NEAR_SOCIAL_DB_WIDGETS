@@ -488,7 +488,7 @@ return (
         >
           <Widget
             src={`${widgetOwner}/widget/shareWidget`}
-            props={{ questionBlockHeight }}
+            props={{ blockHeight: questionBlockHeight }}
           />
         </div>
         <div
