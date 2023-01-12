@@ -273,7 +273,7 @@ return (
         {state.loadcreate && (
           <div>
             <h1 className="mb-3"> Create Article</h1>
-            <Widget src="eugenewolf507.near/widget/TestWiki_CreateArticle" />
+            <Widget src="vanyog.near/widget/CreateWikiArticle" />
           </div>
         )}
       </div>
