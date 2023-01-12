@@ -1,4 +1,4 @@
-const accountsNum = Near.view("thewiki.near", "get_num_accounts");
+const accountsNum = Near.view("testwiki.near", "get_num_accounts");
 
 return (
   <div>
