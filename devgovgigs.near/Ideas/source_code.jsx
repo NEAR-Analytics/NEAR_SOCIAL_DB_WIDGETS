@@ -17,6 +17,9 @@ initState({
 if (state.selectedPost != props.postId) {
   State.update({ selectedPost: props.postId });
 }
+if (state.label != props.label) {
+  State.update({ label: props.label });
+}
 
 const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
 
