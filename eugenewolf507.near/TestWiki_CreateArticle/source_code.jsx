@@ -20,14 +20,14 @@ const initialState = {
 State.init(initialState);
 
 const saveArticle = (args) => {
-  Near.call("thewiki.near", "post_article", args, "30000000000000");
+  Near.call("testwiki.near", "post_article", args, "30000000000000");
 };
 
 // === SAVE HANDLER ===
 const saveHandler = () => {
   State.update({ ...state, errorId: "", errorBody: "" });
   if (state.articleId && state.articleBody) {
-    const articles = Near.view("thewiki.near", "get_article_ids_paged", {
+    const articles = Near.view("testwiki.near", "get_article_ids_paged", {
       from_index: 0,
       limit: 250,
     });
