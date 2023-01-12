@@ -10,9 +10,9 @@ State.init({
 
 if (!props.isPreview && !props.blockHeight) {
   return "Prop block height wasn't provided";
-} else {
-  console.log(props.blockHeight);
 }
+
+const widgetOwner = "silkking.near";
 
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
@@ -86,9 +86,6 @@ function isActive(poll) {
 function isUpcoming(poll) {
   return poll.value.startTimestamp > Date.now();
 }
-
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   // let poll = polls.find(q => q.blockHeight == questionBlockHeight)
@@ -367,6 +364,7 @@ return (
       <div
         style={{
           width: "75%",
+          maxWidth: "1000px",
           margin: "2rem 0.5rem 2rem 2rem",
           padding: "2rem",
           borderRadius: "18px",
@@ -479,6 +477,18 @@ return (
           >
             {state.poll.value.title}
           </h2>
+        </div>
+        <div
+          style={{
+            position: "relative",
+            width: "max-content",
+            margin: "1rem",
+          }}
+        >
+          <Widget
+            src={`${widgetOwner}/widget/shareWidget`}
+            props={{ blockHeight: questionBlockHeight }}
+          />
         </div>
         <div
           className="p-3"
@@ -700,3 +710,4 @@ return (
     {state.showQuestionsByThisUser && renderModal()}
   </div>
 );
+a;
