@@ -5,6 +5,9 @@ State.init({
   linkCopied: false,
 });
 
+let widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 return (
   <>
     <i
@@ -57,7 +60,7 @@ return (
         >
           <span
             style={{ color: "#0065FF", wordWrap: "anywhere" }}
-          >{`https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`}</span>
+          >{`https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${blockHeightToShare}`}</span>
           <div
             style={{
               display: "flex",
@@ -84,7 +87,7 @@ return (
               }
               onClick={() => {
                 clipboard.writeText(
-                  `https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${questionBlockHeight}`
+                  `https://near.social/#/${widgetOwner}/widget/pollQuestionMasterHandler?sharedBlockHeight=${blockHeightToShare}`
                 );
                 State.update({ linkCopied: true });
               }}
