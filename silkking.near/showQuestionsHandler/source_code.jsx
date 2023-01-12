@@ -1,8 +1,12 @@
+let sharedBlockHeight = props.sharedBlockHeight;
+
 State.init({
   polls: {},
-  showQuestion: false,
-  modalBlockHeight: question.blockHeight,
+  showQuestion: sharedBlockHeight,
+  modalBlockHeight: sharedBlockHeight ?? question.blockHeight,
 });
+
+const widgetOwner = "silkking.near";
 
 let globalAccountId = props.accountId ?? context.accountId;
 
@@ -29,7 +33,6 @@ if (onlyUsersPolls) {
 }
 
 polls = polls.sort((q1, q2) => {
-  console.log("Poll", q1);
   const isQ1Finished = q1.value.endTimestamp < Date.now();
   const isQ2Finished = q2.value.endTimestamp < Date.now();
   if (isQ1Finished && !isQ2Finished) return 1;
@@ -39,15 +42,13 @@ polls = polls.sort((q1, q2) => {
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
 
-//TODO review this!
+//TODO review this
 let usersMakingQuestions = [];
 for (let i = 0; i < polls.length; i++) {
   if (!usersMakingQuestions.includes(polls[i].accountId)) {
     usersMakingQuestions.push(polls[i].accountId);
   }
 }
-
-const widgetOwner = "silkking.near";
 
 function closeModalClickingOnTransparent() {
   return (e) => {
