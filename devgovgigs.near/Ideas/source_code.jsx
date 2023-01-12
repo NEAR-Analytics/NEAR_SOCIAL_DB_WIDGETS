@@ -12,14 +12,14 @@ initState({
   selectedPost: props.postId,
 });
 
-// A workaround for weird VM behavior. It does not call initState when the same
-// widget is reopened in the same tab.
-if (state.selectedPost != props.postId) {
-  State.update({ selectedPost: props.postId });
-}
-if (state.label != props.label) {
-  State.update({ label: props.label });
-}
+// // A workaround for weird VM behavior. It does not call initState when the same
+// // widget is reopened in the same tab.
+// if (state.selectedPost != props.postId) {
+//   State.update({ selectedPost: props.postId });
+// }
+// if (state.label != props.label) {
+//   State.update({ label: props.label });
+// }
 
 const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
 
