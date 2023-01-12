@@ -1,11 +1,12 @@
+let sharedBlockHeight = props.sharedBlockHeight;
+
 const tabs = {
   MY_POLLS: { id: 0, text: "My Polls" },
   ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
-  NEW_POLL: { id: 2, text: "Create poll" },
+  NEW_POLL: { id: 2, text: "Create a poll" },
 };
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+const widgetOwner = "silkking.near";
 
 State.init({
   displaying: tabs.MY_POLLS.id,
@@ -360,7 +361,10 @@ return (
         <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
           All existing polls
         </h2>
-        <Widget src={`${widgetOwner}/widget/showQuestionsHandler`} />
+        <Widget
+          src={`${widgetOwner}/widget/showQuestionsHandler`}
+          props={{ sharedBlockHeight }}
+        />
       </div>
     ) : state.displaying == tabs.MY_POLLS.id ? (
       <div className="px-4">
@@ -369,7 +373,7 @@ return (
         </h2>
         <Widget
           src={`${widgetOwner}/widget/showQuestionsHandler`}
-          props={{ onlyUser: true }}
+          props={{ sharedBlockHeight, onlyUser: true }}
         />
       </div>
     ) : (
@@ -401,7 +405,7 @@ return (
                 fontWeight: "700",
               }}
             >
-              Create poll
+              Create a poll
             </h2>
           </div>
           <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
