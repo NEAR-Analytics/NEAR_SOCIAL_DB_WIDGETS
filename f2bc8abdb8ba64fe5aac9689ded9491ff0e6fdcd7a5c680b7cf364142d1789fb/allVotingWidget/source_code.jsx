@@ -289,10 +289,11 @@ function calculatePercentage(votesToThisOption) {
 }
 
 function calculatePercentageOfOption(votes, index) {
-  if (votes.length == 0) return 0;
-  const votesToThisOption = votes[index];
   const validAnswers = votes.reduce((acc, curr) => acc + curr, 0);
-  if (validAnswers == 0) return 0;
+
+  if (validAnswers == 0 || votes.length == 0) return 0;
+
+  const votesToThisOption = votes[index];
   return ((votesToThisOption / validAnswers) * 100).toFixed(2);
 }
 
