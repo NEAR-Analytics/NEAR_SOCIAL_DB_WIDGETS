@@ -22,6 +22,20 @@ const boards = props.boards ?? [
       excludedLabels: [],
     },
   },
+  {
+    name: "Funding",
+    id: "funding",
+    config: {
+      requiredLabels: ["wg-funding-requested"],
+      columnLabels: [
+        "wg-funding-requested",
+        "funding-info-received",
+        "funding-info-approved",
+        "funding-transfer-received",
+      ],
+      excludedLabels: [],
+    },
+  },
 ];
 
 return (
