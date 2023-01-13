@@ -1,6 +1,6 @@
 return (
   <div>
-    <h4>Get involved</h4>
+    <h5>Get involved</h5>
     <div className="mb-2 d-flex gap-2 flex-wrap">
       <a
         className="btn btn-outline-primary"
