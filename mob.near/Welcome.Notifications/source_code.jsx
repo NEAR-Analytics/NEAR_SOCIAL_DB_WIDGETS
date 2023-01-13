@@ -26,6 +26,7 @@ const renderItem = (item, i) => {
 
 return (
   <>
+    <h5>Last notifications</h5>
     {items.map(renderItem)}
     <div>
       <a href="#/mob.near/widget/NotificationFeed">All Notifications</a>
