@@ -53,6 +53,11 @@ return (
         <div className="text-bg-light rounded-4 p-3 mb-3">
           <Widget src="mob.near/widget/Welcome.GetInvolved" />
         </div>
+        {context.accountId && (
+          <div className="text-bg-light rounded-4 p-3 mb-3">
+            <Widget src="mob.near/widget/Welcome.Notifications" />
+          </div>
+        )}
         <div className="text-bg-light rounded-4 p-3 mb-3">
           <Widget src="mob.near/widget/Applications" />
         </div>
