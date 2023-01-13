@@ -13,7 +13,7 @@ initState({
 
 if (
   Near.view("social.near", "is_write_permission_granted", {
-    predecessor_id: context.accountId,
+    predecessor_id: ownerId,
     key: context.accountId + "/index/notify",
   }) === false
 ) {
@@ -21,7 +21,7 @@ if (
     "social.near",
     "grant_write_permission",
     {
-      predecessor_id: context.accountId,
+      predecessor_id: ownerId,
       keys: [context.accountId + "/index/notify"],
     },
     30_000_000_000_000n,
