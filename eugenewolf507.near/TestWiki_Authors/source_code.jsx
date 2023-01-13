@@ -34,20 +34,21 @@ return (
     <h1>Authors</h1>
     <div>Total: {accountsNum} authors</div>
     <ul>
-      {accounts.map(([accountId, account]) => (
-        <li key={accountId}>
-          <span>
-            {accountId} -
-            {account.articles.length > 0 && (
-              <span>
-                {" "}
-                {account.articles.length} article
-                {account.articles.length > 1 ? "s" : ""}
-              </span>
-            )}
-          </span>
-        </li>
-      ))}
+      {accounts &&
+        accounts.map(([accountId, account]) => (
+          <li key={accountId}>
+            <span>
+              {accountId} -
+              {account.articles.length > 0 && (
+                <span>
+                  {" "}
+                  {account.articles.length} article
+                  {account.articles.length > 1 ? "s" : ""}
+                </span>
+              )}
+            </span>
+          </li>
+        ))}
     </ul>
   </div>
 );
