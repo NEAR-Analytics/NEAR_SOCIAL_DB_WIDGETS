@@ -93,6 +93,26 @@ return (
                   Developer Gigs Post
                 </a>
               </>
+            ) : value.type === "devgovgigs/reply" ? (
+              <>
+                replied your
+                <a
+                  className="fw-bold text-muted"
+                  href={`#/devgigsboard.bo.near/widget/Ideas?postId=${value.post}`}
+                >
+                  Developer Gigs Post
+                </a>
+              </>
+            ) : value.type === "devgovgigs/edit" ? (
+              <>
+                edited your
+                <a
+                  className="fw-bold text-muted"
+                  href={`#/devgigsboard.bo.near/widget/Ideas?postId=${value.post}`}
+                >
+                  Developer Gigs Post
+                </a>
+              </>
             ) : (
               "???"
             )}
@@ -142,7 +162,9 @@ return (
                 </a>
               )}
             </>
-          ) : value.type === "devgovgigs/like" ? (
+          ) : value.type === "devgovgigs/like" ||
+            value.type === "devgovgigs/reply" ||
+            value.type === "devgovgigs/edit" ? (
             <>
               <a
                 className="btn btn-outline-dark"
