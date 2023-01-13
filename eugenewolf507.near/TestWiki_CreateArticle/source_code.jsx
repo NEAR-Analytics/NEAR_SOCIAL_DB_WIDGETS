@@ -31,9 +31,12 @@ const saveHandler = () => {
       from_index: 0,
       limit: 250,
     });
-    const isArticleIdDublicated = articles.some(
-      (id) => id.toLowerCase() === state.articleId.toLowerCase()
-    );
+    console.log(articles);
+    const isArticleIdDublicated = articles
+      ? articles.some(
+          (id) => id.toLowerCase() === state.articleId.toLowerCase()
+        )
+      : false;
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
       const args = {
