@@ -26,7 +26,7 @@ if (
       keys: [context.accountId + "/index/notify"],
     },
     30_000_000_000_000n,
-    10_000_000_000_000_000_000_000n
+    1n
   );
 }
 
