@@ -26,10 +26,10 @@ const renderItem = (item, i) => {
 
 return (
   <>
-    <h5>Last notifications</h5>
+    <h5>Notifications</h5>
     {items.map(renderItem)}
     <div>
-      <a href="#/mob.near/widget/NotificationFeed">All Notifications</a>
+      <a href="#/mob.near/widget/NotificationFeed">View other notifications</a>
     </div>
   </>
 );
