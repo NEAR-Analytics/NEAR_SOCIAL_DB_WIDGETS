@@ -13,24 +13,24 @@ initState({
 
 // A workaround for weird VM behavior. It does not call initState when the same
 // widget is reopened in the same tab.
-if (
-  state.recency != props.recency ||
-  state.label != props.label ||
-  (state.selectedBoardId != props.selectedBoardId &&
-    state.selectedBoardId !== null) ||
-  state.selectedPost != props.postId
-) {
-  State.update({
-    recency: props.recency,
-    label: props.label,
-    selectedBoardId: props.selectedBoardId ?? null,
-    selectedPost: props.postId,
-  });
-}
+// if (
+//   state.recency != props.recency ||
+//   state.label != props.label ||
+//   (state.selectedBoardId != props.selectedBoardId &&
+//     state.selectedBoardId !== null) ||
+//   state.selectedPost != props.postId
+// ) {
+//   State.update({
+//     recency: props.recency,
+//     label: props.label,
+//     selectedBoardId: props.selectedBoardId ?? null,
+//     selectedPost: props.postId,
+//   });
+// }
 
 const defaultSelectedLabels = props.label ? [{ name: props.label }] : [];
 
-const home = "https://near.social/#/devgovgigs.near/widget/Ideas";
+const home = "https://near.social/#/devgigsboard.bo.near/widget/Ideas";
 
 const labels = Near.view(ownerId, "get_all_labels");
 if (!labels) {
