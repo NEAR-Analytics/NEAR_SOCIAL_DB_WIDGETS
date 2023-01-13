@@ -12,6 +12,7 @@ initState({
 });
 
 if (
+  context.accountId &&
   Near.view("social.near", "is_write_permission_granted", {
     predecessor_id: ownerId,
     key: context.accountId + "/index/notify",
