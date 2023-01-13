@@ -1,4 +1,4 @@
-const ownerId = "devgovgigs.near";
+const ownerId = "devgigsboard.bo.near";
 const postId = "Root";
 console.log("props", props);
 
@@ -10,6 +10,24 @@ initState({
   selectedBoardId: props.selectedBoardId ?? null,
   selectedPost: props.postId,
 });
+
+if (
+  Near.view("social.near", "is_write_permission_granted", {
+    predecessor_id: context.accountId,
+    key: context.accountId + "/index/notify",
+  }) === false
+) {
+  Near.call(
+    "social.near",
+    "grant_write_permission",
+    {
+      predecessor_id: context.accountId,
+      keys: [context.accountId + "/index/notify"],
+    },
+    30_000_000_000_000n,
+    1n
+  );
+}
 
 // A workaround for weird VM behavior. It does not call initState when the same
 // widget is reopened in the same tab.
