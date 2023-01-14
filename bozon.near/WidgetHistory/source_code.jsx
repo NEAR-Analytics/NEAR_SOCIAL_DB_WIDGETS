@@ -27,18 +27,18 @@ function getDatastringFromBlockHeight(blockHeight) {
 
 const renderBlockChangesLink = (blockHeight) => {
   return (
-    <button
-      className={`btn btn-link ${
-        state.selectedBlockHeight == blockHeight
-          ? "link-dark text-decoration-none"
-          : "btn-link"
-      }`}
-      onClick={() => {
-        State.update({ selectedBlockHeight: blockHeight });
-      }}
-    >
-      #{blockHeight} * {getDatastringFromBlockHeight(blockHeight)}
-    </button>
+    <div>
+      <button
+        className={`list-group-item list-group-item-action ${
+          state.selectedBlockHeight != blockHeight ? "" : "list-group-item-info"
+        }`}
+        onClick={() => {
+          State.update({ selectedBlockHeight: blockHeight });
+        }}
+      >
+        #{blockHeight} * {getDatastringFromBlockHeight(blockHeight)}
+      </button>
+    </div>
   );
 };
 
@@ -83,31 +83,31 @@ return (
       <div>incorrent widget path</div>
     ) : (
       <div>
-        <div div class="card p-2 mb-3">
-          <div class="d-flex flex-column">
+        <div div class="card mb-3">
+          <h3 class="card-header">Commits</h3>
+
+          <div class="list-group">
             {blocksChanges
               .slice(0, 5)
               .map((height) => renderBlockChangesLink(height))}
-          </div>
 
-          <div class="collapse" id="collapseExample">
-            <div class=" d-flex flex-column">
+            <div class="collapse" id="collapseExample">
               {blocksChanges
                 .slice(5)
                 .map((height) => renderBlockChangesLink(height))}
             </div>
-          </div>
 
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExample"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            Show all
-          </button>
+            <button
+              class="list-group-item active"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              Show all
+            </button>
+          </div>
         </div>
 
         <div>{blockHeightToWidget(state.selectedBlockHeight)}</div>
