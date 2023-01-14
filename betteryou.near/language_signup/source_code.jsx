@@ -212,6 +212,9 @@ return (
         <option value="English">English</option>
         <option value="Polish">Polish</option>
         <option value="Italian">Italian</option>
+        <option value="Korean">Korean</option>
+        <option value="Spanish">Spanish</option>
+        <option value="Japanese">Japanese</option>
       </select>
     </div>
     <div style={inputBox}>
