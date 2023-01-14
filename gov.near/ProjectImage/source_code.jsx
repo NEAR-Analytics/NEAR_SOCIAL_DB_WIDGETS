@@ -1,14 +1,14 @@
 const accountId = props.accountId ?? context.accountId;
-const className = props.className ?? "profile-image d-inline-block";
+const className = props.className ?? "project-image d-inline-block";
 const style = props.style ?? { width: "3em", height: "3em" };
 const imageStyle = props.imageStyle ?? { objectFit: "cover" };
 const imageClassName = props.imageClassName ?? "rounded w-100 h-100";
 const thumbnail = props.thumbnail ?? "thumbnail";
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const project = props.project ?? Social.getr(`${accountId}/project`);
 
-const name = profile.name || "No-name profile";
-const image = profile.image;
+const name = project.name || "No-name project";
+const image = project.image;
 const title = props.title ?? `${name} @${accountId}`;
 const tooltip =
   props.tooltip && (props.tooltip === true ? title : props.tooltip);
