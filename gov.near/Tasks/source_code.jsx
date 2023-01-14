@@ -1,9 +1,9 @@
-const ownerId = "devgovgigs.near";
+const ownerId = "gov.near";
 const postId = "Root";
 
 console.log("props", props);
 
-const defaultSelectedBoard = "nearsocial";
+const projectBoard = "nearsocial";
 
 initState({
   recency: props.recency,
@@ -73,8 +73,7 @@ const onLabelSelected = (selectedLabels) => {
 
 const onBoardsClick = () => {
   State.update({
-    selectedBoardId:
-      props.selectedBoardId == null ? null : defaultSelectedBoard,
+    selectedBoardId: props.selectedBoardId == null ? null : projectBoard,
     selectedPost: null,
   });
 };
