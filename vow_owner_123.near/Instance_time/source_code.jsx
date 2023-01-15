@@ -222,7 +222,7 @@ const timeSelector = (f, index) => {
       <div className="d-flex">
         <select
           style={comboBox}
-          value={state._from[index]}
+          value={f ? state._from[index] : state._to[index]}
           disabled={state._is_on[index] == "off"}
           onChange={(e) => {
             onTimeChanged(e.target.value, index, f);
@@ -236,14 +236,16 @@ const timeSelector = (f, index) => {
       <div style={flex_column}>
         <div
           onClick={() => {
-            onTimeChanged(parseInt(state._from[index]) + 1, index, f);
+            const value = f ? state._from[index] : state._to[index];
+            onTimeChanged(parseInt(value) + 1, index, f);
           }}
         >
           <i class="bi-caret-up"></i>
         </div>
         <div
           onClick={() => {
-            onTimeChanged(parseInt(state._from[index]) - 1, index, f);
+            const value = f ? state._from[index] : state._to[index];
+            onTimeChanged(parseInt(value) - 1, index, f);
           }}
         >
           <i class="bi-caret-down"></i>
