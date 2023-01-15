@@ -339,13 +339,25 @@ return (
         })}
         {!state._validate_result && "time set wrong"}
       </div>
-      <CommitButton
-        style={button}
-        disabled={!state._validate_result}
-        data={getData()}
-      >
-        Send It!
-      </CommitButton>
+      <div style={flex_row}>
+        <CommitButton
+          className="m-2"
+          style={button}
+          disabled={!state._validate_result}
+          data={getData()}
+        >
+          Send It!
+        </CommitButton>
+        <div style={button} className="m-2">
+          <a
+            href={
+              "https://near.social/#/vow_owner_123.near/widget/Instance_time"
+            }
+          >
+            Back
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 );
