@@ -157,7 +157,6 @@ return (
           style={container_on}
         >
           <a
-            className="text-truncate text-dark stretched-link"
             href={
               "https://near.social/#/vow_owner_123.near/widget/Instance_time_setting"
             }
