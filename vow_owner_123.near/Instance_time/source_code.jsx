@@ -17,6 +17,7 @@ const title = {
   borderRadius: "2rem",
   fontWeight: 600,
   fontSize: "xx-large",
+  boxShadow: "5px 5px lightyellow",
 };
 const container = {
   display: "flex",
@@ -39,7 +40,7 @@ const tbl_container = {
   fontWeight: 400,
   borderRadius: "1rem",
   flexDirection: "column",
-  boxShadow: "4px 4px",
+  boxShadow: "4px 4px pink",
 };
 const button = {
   borderRadius: "5px",
