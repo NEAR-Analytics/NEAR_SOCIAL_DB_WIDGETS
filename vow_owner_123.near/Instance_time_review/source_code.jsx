@@ -8,6 +8,7 @@ const card = {
   textAlign: "center",
   color: "white",
   padding: "10px",
+  margin: "1rem",
 };
 const comboBox = {
   background: "black",
