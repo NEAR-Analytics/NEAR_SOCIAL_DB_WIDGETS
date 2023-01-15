@@ -39,6 +39,7 @@ const tbl_container = {
   fontWeight: 400,
   borderRadius: "1rem",
   flexDirection: "column",
+  boxShadow: "4px 4px",
 };
 const button = {
   borderRadius: "5px",
@@ -60,6 +61,7 @@ const comboBoxTimezone = {
   color: "white",
   borderRadius: "1rem",
   padding: "1rem",
+  boxShadow: "2px 2px white",
 };
 const table = {
   display: "flex",
