@@ -6,28 +6,83 @@ State.init({
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
 });
+const title = {
+  display: "flex",
+  justifyContent: "center",
+  width: "70%",
+  padding: "1.5rem",
+  marginBottom: "1rem",
+  background: "#9747FF",
+  color: "white",
+  borderRadius: "2rem",
+  fontWeight: 600,
+  fontSize: "xx-large",
+};
+const container = {
+  display: "flex",
+  width: "100%",
+  justifyContent: "center",
+  padding: "3rem",
+  background: "#FFA629",
+  color: "black",
+  fontWeight: 400,
+  borderRadius: "1rem",
+  flexDirection: "column",
+};
+const tbl_container = {
+  display: "flex",
+  marginTop: "1rem",
+  justifyContent: "center",
+  padding: "2rem",
+  background: "#9747FF",
+  color: "black",
+  fontWeight: 400,
+  borderRadius: "1rem",
+  flexDirection: "column",
+};
 const button = {
   borderRadius: "5px",
   margin: "5px 0",
   padding: "8px",
   marginTop: "10px",
   textAlign: "center",
-  background: "linear-gradient(to right, #4deeea, #f000ff)",
+  background: "#9747FF",
+  fontSize: "x-large",
   border: "2px solid black",
   fontWeight: "bold",
+};
+const comboBox = {
+  borderRadius: "1rem",
+  padding: "1rem",
+};
+const comboBoxTimezone = {
+  background: "black",
+  color: "white",
+  borderRadius: "1rem",
+  padding: "1rem",
 };
 const table = {
   display: "flex",
   flex: "1",
-  marginTop: "1rem",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 600,
 };
 const flex_row = {
   display: "flex",
+  flex: "1",
   flexDirection: "row",
+  fontSize: "large",
 };
 const flex_column = {
   display: "flex",
   flexDirection: "column",
+};
+const tbl_row = {
+  display: "flex",
+  background: "white",
+  margin: "1px",
+  padding: "6px",
 };
 const time_zones = [
   "(UTC-11:00) Samoa",
@@ -161,146 +216,133 @@ const getData = () => {
   };
 };
 
+const timeSelector = (f, index) => {
+  return (
+    <div style={table}>
+      <div className="d-flex">
+        <select
+          style={comboBox}
+          value={state._from[index]}
+          disabled={state._is_on[index] == "off"}
+          onChange={(e) => {
+            onTimeChanged(e.target.value, index, f);
+          }}
+        >
+          {hours.map((hour) => (
+            <option value={hour}>{hour}</option>
+          ))}
+        </select>
+      </div>
+      <div style={flex_column}>
+        <div
+          onClick={() => {
+            onTimeChanged(parseInt(state._from[index]) + 1, index, f);
+          }}
+        >
+          <i class="bi-caret-up"></i>
+        </div>
+        <div
+          onClick={() => {
+            onTimeChanged(parseInt(state._from[index]) - 1, index, f);
+          }}
+        >
+          <i class="bi-caret-down"></i>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 return (
   <div>
     <br />
     <br />
-    <div style={flex_column} className="align-self-center">
-      <h3>Weekly Schedule</h3>
-      <div style={flex_row} className="align-items-center">
-        <div className="p-2" style={table}>
-          current_user:
+    <div style={flex_column} className="align-items-center">
+      <div style={title}>Weekly Schedule</div>
+      <div style={container}>
+        <div style={flex_row} className="p-3">
+          <div style={flex_row}>
+            <div style={table}>current_user:</div>
+            <div style={table}>
+              <div style={comboBoxTimezone}>{context.accountId}</div>
+            </div>
+          </div>
+          <div style={flex_row}>
+            <div style={table}>Select Time zone:</div>
+            <div style={table}>
+              <select
+                style={comboBoxTimezone}
+                name="zones"
+                id="zones"
+                value={state._time_zone}
+                onChange={(e) => {
+                  State.update({ _time_zone: e.target.value });
+                }}
+              >
+                {time_zones.map((zone) => (
+                  <option value={zone}>{zone}</option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
-        <div style={table}>{context.accountId}</div>
-      </div>
-      <div style={flex_row}>
-        <div className="p-2 flex-1" style={table}>
-          Select Time zone:
-        </div>
-        <div style={table}>
-          <select
-            name="zones"
-            id="zones"
-            value={state._time_zone}
-            onChange={(e) => {
-              State.update({ _time_zone: e.target.value });
-            }}
-          >
-            {time_zones.map((zone) => (
-              <option value={zone}>{zone}</option>
+        <div style={tbl_container}>
+          <div style={flex_column} className="mt-3">
+            <div style={tbl_row}>
+              <div style={flex_row}>
+                {tbl_headers.map((header) => (
+                  <div style={table}>{header}</div>
+                ))}
+              </div>
+            </div>
+            {days.map((day, index) => (
+              <div style={tbl_row}>
+                <div style={flex_row}>
+                  <div style={table}>{day}</div>
+                  <div style={table}>
+                    <select
+                      style={comboBox}
+                      value={state._is_on[index]}
+                      onChange={(e) => {
+                        let temp = state._is_on;
+                        temp[index] = e.target.value;
+                        State.update({ _is_on: temp });
+                        if (e.target.value == "off") {
+                          state._from[index] = "0";
+                          state._to[index] = "0";
+                          let error_temp = state._validate_error;
+                          State.update({
+                            _error_msg: `${(error_temp[index] = true)}`,
+                          });
+                          validate();
+                        }
+                      }}
+                    >
+                      <option value="on">on</option>
+                      <option value="off">off</option>
+                    </select>
+                  </div>
+                  {timeSelector(true, index)}
+                  {timeSelector(false, index)}
+                </div>
+              </div>
             ))}
-          </select>
+          </div>
         </div>
       </div>
-    </div>
-    <div style={flex_column} className="mt-3">
+      <CommitButton
+        style={button}
+        disabled={!state._validate_result}
+        data={getData()}
+      >
+        Send It!
+      </CommitButton>
       <div style={flex_row}>
-        {tbl_headers.map((header) => (
-          <div style={table}>{header}</div>
-        ))}
+        {days.map((day, index) => {
+          return !state._validate_error[index] && `${day} `;
+        })}
+        {!state._validate_result && "time set wrong"}
       </div>
-      {days.map((day, index) => (
-        <div style={flex_row}>
-          <div style={table}>{day}</div>
-          <div style={table}>
-            <select
-              value={state._is_on[index]}
-              onChange={(e) => {
-                let temp = state._is_on;
-                temp[index] = e.target.value;
-                State.update({ _is_on: temp });
-                if (e.target.value == "off") {
-                  state._from[index] = "0";
-                  state._to[index] = "1";
-                  let error_temp = state._validate_error;
-                  State.update({
-                    _error_msg: `${(error_temp[index] = true)}`,
-                  });
-                  validate();
-                }
-              }}
-            >
-              <option value="on">on</option>
-              <option value="off">off</option>
-            </select>
-          </div>
-          <div style={table}>
-            <div className="d-flex">
-              <select
-                value={state._from[index]}
-                disabled={state._is_on[index] == "off"}
-                onChange={(e) => {
-                  onTimeChanged(e.target.value, index, true);
-                }}
-              >
-                {hours.map((hour) => (
-                  <option value={hour}>{hour}</option>
-                ))}
-              </select>
-            </div>
-            <div style={flex_column}>
-              <div
-                onClick={() => {
-                  onTimeChanged(parseInt(state._from[index]) + 1, index, true);
-                }}
-              >
-                <i class="bi-caret-up"></i>
-              </div>
-              <div
-                onClick={() => {
-                  onTimeChanged(parseInt(state._from[index]) - 1, index, true);
-                }}
-              >
-                <i class="bi-caret-down"></i>
-              </div>
-            </div>
-          </div>
-          <div style={table}>
-            <div style={flex_row}>
-              <select
-                value={state._to[index]}
-                disabled={state._is_on[index] == "off"}
-                onChange={(e) => {
-                  onTimeChanged(e.target.value, index, false);
-                }}
-              >
-                {hours.map((hour) => (
-                  <option value={hour}>{hour}</option>
-                ))}
-              </select>
-            </div>
-            <div style={flex_column}>
-              <div
-                onClick={() => {
-                  onTimeChanged(parseInt(state._to[index]) + 1, index, false);
-                }}
-              >
-                <i class="bi-caret-up"></i>
-              </div>
-              <div
-                onClick={() => {
-                  onTimeChanged(parseInt(state._to[index]) - 1, index, false);
-                }}
-              >
-                <i class="bi-caret-down"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-    <CommitButton
-      style={button}
-      disabled={!state._validate_result}
-      data={getData()}
-    >
-      Send It!
-    </CommitButton>
-    <div className="pt=4">
-      {days.map((day, index) => {
-        return !state._validate_error[index] && `${day} `;
-      })}
-      {!state._validate_result && "time set wrong"}
     </div>
     <br />
     <br />
