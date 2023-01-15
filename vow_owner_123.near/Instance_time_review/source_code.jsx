@@ -1,10 +1,45 @@
+State.init({
+  _account: "all",
+});
 const card = {
-  background: "linear-gradient(to right, #4deeea, #f000ff)",
+  background: "#FFA629",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
   color: "white",
   padding: "10px",
+};
+const comboBox = {
+  background: "black",
+  color: "white",
+  borderRadius: "1rem",
+  padding: "1rem",
+};
+const container_on = {
+  display: "flex",
+  width: "100%",
+  justifyContent: "center",
+  padding: "1rem",
+  margin: "0.5rem",
+  background: "#9747FF",
+  color: "white",
+  fontWeight: 400,
+  fontSize: "16px",
+  borderRadius: "1rem",
+  flexDirection: "column",
+};
+const container_off = {
+  display: "flex",
+  width: "100%",
+  justifyContent: "center",
+  padding: "1rem",
+  margin: "0.5rem",
+  background: "rgb(170 173 201)",
+  color: "white",
+  fontWeight: 400,
+  fontSize: "16px",
+  borderRadius: "1rem",
+  flexDirection: "column",
 };
 const days = [
   "Monday",
@@ -21,7 +56,7 @@ if (!data) {
 }
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
-var accountIds = [];
+var accountIds = ["all"];
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
@@ -99,6 +134,22 @@ for (let i = 0; i < sortedData.length; i++) {
 
 return (
   <div>
+    <div className="p-2 d-flex flex-row align-items-center">
+      <h4 className="p-2">Account: </h4>
+      <select
+        style={comboBox}
+        name="accounts"
+        id="accounts"
+        value={state._account}
+        onChange={(e) => {
+          State.update({ _account: e.target.value });
+        }}
+      >
+        {accountIds.map((account) => (
+          <option value={account}>{account}</option>
+        ))}
+      </select>
+    </div>
     {finalData
       ? finalData.map((d) => (
           <div style={card}>
@@ -107,28 +158,28 @@ return (
               props={{
                 accountId: d.accountId,
                 className: "d-inline-block",
-                style: { width: "1.5em", height: "1.5em" },
+                style: { width: "1.5em", height: "1.5em", fontSize: "x-large" },
               }}
             />
             <a href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}>
               {d.accountId}
             </a>
             <div>
-              <div>
-                <b>
-                  {d.value._data.map((week, index) => {
-                    return (
-                      <>
-                        <div>{`${days[index]} : ${week.on_off}`}</div>
-                        <div>
-                          {week.data.map((y) => (
-                            <li>{`${y._from} - ${y._to}`}</li>
-                          ))}
-                        </div>
-                      </>
-                    );
-                  })}
-                </b>
+              <div className="d-flex flex-row">
+                {d.value._data.map((week, index) => {
+                  return (
+                    <div
+                      style={week.on_off == "on" ? container_on : container_off}
+                    >
+                      <div>{`${days[index]}`}</div>
+                      <div>
+                        {week.data.map((y) => (
+                          <li>{`${y._from}:00 - ${y._to}:00`}</li>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
