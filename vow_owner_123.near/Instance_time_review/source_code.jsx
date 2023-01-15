@@ -1,5 +1,5 @@
 State.init({
-  _account: "all",
+  _account: "All",
 });
 const card = {
   background: "#FFA629",
@@ -57,7 +57,7 @@ if (!data) {
 }
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
-var accountIds = ["all"];
+var accountIds = ["All"];
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
@@ -152,39 +152,51 @@ return (
       </select>
     </div>
     {finalData
-      ? finalData.map((d) => (
-          <div style={card}>
-            <Widget
-              src="mob.near/widget/ProfileImage"
-              props={{
-                accountId: d.accountId,
-                className: "d-inline-block",
-                style: { width: "1.5em", height: "1.5em", fontSize: "x-large" },
-              }}
-            />
-            <a href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}>
-              {d.accountId}
-            </a>
-            <div>
-              <div className="d-flex flex-row">
-                {d.value._data.map((week, index) => {
-                  return (
-                    <div
-                      style={week.on_off == "on" ? container_on : container_off}
-                    >
-                      <div>{`${days[index]}`}</div>
-                      <div>
-                        {week.data.map((y) => (
-                          <li>{`${y._from}:00 - ${y._to}:00`}</li>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
+      ? finalData.map((d) => {
+          if (state._account == "All" || state._account == d.accountId) {
+            return (
+              <div style={card}>
+                <Widget
+                  src="mob.near/widget/ProfileImage"
+                  props={{
+                    accountId: d.accountId,
+                    className: "d-inline-block",
+                    style: {
+                      width: "1.5em",
+                      height: "1.5em",
+                      fontSize: "x-large",
+                    },
+                  }}
+                />
+                <a
+                  href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}
+                >
+                  {d.accountId}
+                </a>
+                <div>
+                  <div className="d-flex flex-row">
+                    {d.value._data.map((week, index) => {
+                      return (
+                        <div
+                          style={
+                            week.on_off == "on" ? container_on : container_off
+                          }
+                        >
+                          <div>{`${days[index]}`}</div>
+                          <div>
+                            {week.data.map((y) => (
+                              <li>{`${y._from}:00 - ${y._to}:00`}</li>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))
+            );
+          }
+        })
       : "Loading..."}
   </div>
 );
