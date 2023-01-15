@@ -135,21 +135,37 @@ for (let i = 0; i < sortedData.length; i++) {
 
 return (
   <div>
-    <div className="p-2 d-flex flex-row align-items-center">
-      <h4 className="p-2">Account: </h4>
-      <select
-        style={comboBox}
-        name="accounts"
-        id="accounts"
-        value={state._account}
-        onChange={(e) => {
-          State.update({ _account: e.target.value });
-        }}
-      >
-        {accountIds.map((account) => (
-          <option value={account}>{account}</option>
-        ))}
-      </select>
+    <div className="d-flex flex-row">
+      <div className="w-50 p-2 d-flex flex-row align-items-left justify-content-left">
+        <select
+          style={comboBox}
+          name="accounts"
+          id="accounts"
+          value={state._account}
+          onChange={(e) => {
+            State.update({ _account: e.target.value });
+          }}
+        >
+          {accountIds.map((account) => (
+            <option value={account}>{account}</option>
+          ))}
+        </select>
+      </div>
+      <div className="w-50 d-flex justify-content-end">
+        <div
+          className="w-50 d-flex align-items-center cursor-pointer"
+          style={container_on}
+        >
+          <a
+            className="text-truncate text-dark stretched-link"
+            href={
+              "https://near.social/#/vow_owner_123.near/widget/Instance_time_setting"
+            }
+          >
+            Set Schedule
+          </a>
+        </div>
+      </div>
     </div>
     {finalData
       ? finalData.map((d) => {
