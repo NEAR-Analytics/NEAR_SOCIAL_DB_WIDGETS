@@ -260,8 +260,6 @@ const timeSelector = (f, index) => {
 
 return (
   <div>
-    <br />
-    <br />
     <div style={flex_column} className="align-items-center">
       <div style={title}>Weekly Schedule</div>
       <div style={container}>
