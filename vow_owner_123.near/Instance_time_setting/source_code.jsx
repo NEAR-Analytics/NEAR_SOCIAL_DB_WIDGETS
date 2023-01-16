@@ -290,104 +290,108 @@ const timeSelector = (f, index) => {
 
 return (
   <div>
-    <div style={flex_column} className="align-items-center">
-      <div style={title}>Weekly Schedule</div>
-      <div style={container}>
-        <div style={flex_row} className="p-3">
-          <div style={flex_row}>
-            <div style={table}>current_user:</div>
-            <div style={table}>
-              <div style={comboBoxTimezone}>{context.accountId}</div>
-            </div>
-          </div>
-          <div style={flex_row}>
-            <div style={table}>Select Time zone:</div>
-            <div style={table}>
-              <select
-                style={comboBoxTimezone}
-                name="zones"
-                id="zones"
-                value={state._time_zone}
-                onChange={(e) => {
-                  State.update({ _time_zone: e.target.value });
-                }}
-              >
-                {time_zones.map((zone) => (
-                  <option value={zone}>{zone}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
-        <div style={tbl_container}>
-          <div style={flex_column} className="mt-3">
-            <div style={tbl_row}>
-              <div style={flex_row}>
-                {tbl_headers.map((header) => (
-                  <div style={table}>{header}</div>
-                ))}
+    {context.accountId ? (
+      <div style={flex_column} className="align-items-center">
+        <div style={title}>Weekly Schedule</div>
+        <div style={container}>
+          <div style={flex_row} className="p-3">
+            <div style={flex_row}>
+              <div style={table}>current_user:</div>
+              <div style={table}>
+                <div style={comboBoxTimezone}>{context.accountId}</div>
               </div>
             </div>
-            {days.map((day, index) => (
+            <div style={flex_row}>
+              <div style={table}>Select Time zone:</div>
+              <div style={table}>
+                <select
+                  style={comboBoxTimezone}
+                  name="zones"
+                  id="zones"
+                  value={state._time_zone}
+                  onChange={(e) => {
+                    State.update({ _time_zone: e.target.value });
+                  }}
+                >
+                  {time_zones.map((zone) => (
+                    <option value={zone}>{zone}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div style={tbl_container}>
+            <div style={flex_column} className="mt-3">
               <div style={tbl_row}>
                 <div style={flex_row}>
-                  <div style={table}>{day}</div>
-                  <div style={table}>
-                    <select
-                      style={comboBox}
-                      value={state._is_on[index]}
-                      onChange={(e) => {
-                        let temp = state._is_on;
-                        temp[index] = e.target.value;
-                        State.update({ _is_on: temp });
-                        if (e.target.value == "off") {
-                          state._from[index] = "0";
-                          state._to[index] = "0";
-                          let error_temp = state._validate_error;
-                          State.update({
-                            _error_msg: `${(error_temp[index] = true)}`,
-                          });
-                          validate();
-                        }
-                      }}
-                    >
-                      <option value="on">on</option>
-                      <option value="off">off</option>
-                    </select>
-                  </div>
-                  {timeSelector(true, index)}
-                  {timeSelector(false, index)}
+                  {tbl_headers.map((header) => (
+                    <div style={table}>{header}</div>
+                  ))}
                 </div>
               </div>
-            ))}
+              {days.map((day, index) => (
+                <div style={tbl_row}>
+                  <div style={flex_row}>
+                    <div style={table}>{day}</div>
+                    <div style={table}>
+                      <select
+                        style={comboBox}
+                        value={state._is_on[index]}
+                        onChange={(e) => {
+                          let temp = state._is_on;
+                          temp[index] = e.target.value;
+                          State.update({ _is_on: temp });
+                          if (e.target.value == "off") {
+                            state._from[index] = "0";
+                            state._to[index] = "0";
+                            let error_temp = state._validate_error;
+                            State.update({
+                              _error_msg: `${(error_temp[index] = true)}`,
+                            });
+                            validate();
+                          }
+                        }}
+                      >
+                        <option value="on">on</option>
+                        <option value="off">off</option>
+                      </select>
+                    </div>
+                    {timeSelector(true, index)}
+                    {timeSelector(false, index)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={flex_row}>
+          {days.map((day, index) => {
+            return !state._validate_error[index] && `${day} `;
+          })}
+          {!state._validate_result && "time set wrong"}
+        </div>
+        <div style={flex_row}>
+          <CommitButton
+            className="m-2"
+            style={button}
+            disabled={!state._validate_result}
+            data={getData()}
+          >
+            Send It!
+          </CommitButton>
+          <div style={button} className="m-2">
+            <a
+              href={
+                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
+              }
+            >
+              Back
+            </a>
           </div>
         </div>
       </div>
-      <div style={flex_row}>
-        {days.map((day, index) => {
-          return !state._validate_error[index] && `${day} `;
-        })}
-        {!state._validate_result && "time set wrong"}
-      </div>
-      <div style={flex_row}>
-        <CommitButton
-          className="m-2"
-          style={button}
-          disabled={!state._validate_result}
-          data={getData()}
-        >
-          Send It!
-        </CommitButton>
-        <div style={button} className="m-2">
-          <a
-            href={
-              "https://near.social/#/vow_owner_123.near/widget/Instance_time"
-            }
-          >
-            Back
-          </a>
-        </div>
-      </div>
-    </div>
+    ) : (
+      <div>SignIn first plz!</div>
+    )}
   </div>
 );
