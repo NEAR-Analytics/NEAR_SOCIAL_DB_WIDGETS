@@ -14,7 +14,6 @@ const title = {
 const flex_column = {
   display: "flex",
   flexDirection: "column",
-  width: "95%",
 };
 return (
   <div style={flex_column} className="align-items-center">
@@ -24,7 +23,7 @@ return (
       props={{
         accountId: d.accountId,
         className: "d-inline-block",
-        style: { width: "1.5em", height: "1.5em" },
+        style: { width: "95%", height: "1.5em" },
       }}
     />
   </div>
