@@ -3,6 +3,12 @@ let accountId = context.accountId;
 let selectedTokenId;
 let amount;
 
+const shrinkToken = (value, decimals, fixed) => {
+  return new Big(value).div(new Big(10).pow(decimals)).toFixed(fixed);
+};
+
+const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
+
 if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
@@ -40,7 +46,13 @@ const listAssets = assets
   ?.filter((a) => a.accountBalance > 0)
   ?.map((asset) => {
     console.log(asset);
-    return <option value={asset.token_id}>{asset.metadata.symbol}</option>;
+    const { token_id, accountBalance, metadata } = asset;
+    const balance = shrinkToken(accountBalance, metadata.decimals);
+    return (
+      <option value={token_id}>
+        {metadata.symbol} - {formatToken(balance)}
+      </option>
+    );
   });
 
 const handleSelect = (e) => {
