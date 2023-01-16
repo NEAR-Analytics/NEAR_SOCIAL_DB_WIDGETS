@@ -1,17 +1,19 @@
+let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
-
-let selected = undefined;
+let selectedTokenId;
+let amount;
 
 if (!accountId) {
   return "Please sign in with NEAR wallet";
 }
 
 function getAssets() {
-  const assets = Near.view("contract.main.burrow.near", "get_assets_paged");
+  const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
   if (!assets) return null;
+
   const tokenIds = assets?.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
-    Near.view("contract.main.burrow.near", "get_asset", { token_id })
+    Near.view(BURROW_CONTRACT, "get_asset", { token_id })
   );
   const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
@@ -42,11 +44,16 @@ const listAssets = assets
   });
 
 const handleSelect = (e) => {
-  selected = e.target.value;
+  selectedTokenId = e.target.value;
+};
+
+const handleAmount = (e) => {
+  amount = e.target.value;
 };
 
 const handleDeposit = () => {
-  if (!selected) return;
+  console.log(selectedTokenId, amount);
+  if (!selectedTokenId || !amount) return;
 
   Near.call([
     {
@@ -72,7 +79,7 @@ return (
         <option value="">Deposit an asset</option>
         {listAssets}
       </select>
-      <input type="number" />
+      <input type="number" onChange={handleAmount} />
       <button onClick={handleDeposit}>Deposit</button>
     </div>
   </div>
