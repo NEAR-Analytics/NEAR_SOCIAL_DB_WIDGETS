@@ -14,6 +14,7 @@ const title = {
 const flex_column = {
   display: "flex",
   flexDirection: "column",
+  width: "95%",
 };
 return (
   <div style={flex_column} className="align-items-center">
