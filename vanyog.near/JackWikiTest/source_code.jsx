@@ -9,7 +9,16 @@ if (profile === null) {
   return "Loading";
 }
 
-const articles = Social.get(`${accountId}/wiki/articles`);
+const experimentalArticle = Social.get(`${accountId}/experimental/article`);
+const experimentalNote = Social.get(`${accountId}/experimental/note`);
+
+const wikiArticles = Social.get(`${accountId}/wiki/articles`);
+const wikiArticle = Social.get(`${accountId}/wiki/article`);
+
+console.log("experimentalArticle", experimentalArticle);
+console.log("experimentalNote", experimentalNote);
+console.log("wikiArticles", wikiArticles);
+console.log("wikiArticle", wikiArticle);
 
 State.init({ articles: articles || [] });
 console.log("state.", state);
@@ -108,7 +117,7 @@ return (
       </button>
 
       {state.article && (
-        <CommitButton data={{ wiki: { article: state.article } }}>
+        <CommitButton data={{ experimental: { article: state.article } }}>
           Save article
         </CommitButton>
       )}
