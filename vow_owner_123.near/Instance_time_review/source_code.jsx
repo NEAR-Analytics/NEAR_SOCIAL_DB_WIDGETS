@@ -61,6 +61,8 @@ var accountIds = ["All"];
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
+  console.log("temp", temp);
+  const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
   var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
 
@@ -72,7 +74,15 @@ const sortAndRemoveRepeated = (flag, data) => {
         repeated = true;
       }
     }
-    if (!repeated) final.push(sortedTimeData[k]);
+    if (!repeated) {
+      if (
+        !(
+          (flag1 && sortedTimeData[k] == 0) ||
+          (flag1 && sortedTimeData[k] == 168)
+        )
+      )
+        final.push(sortedTimeData[k]);
+    }
   }
   return final;
 };
