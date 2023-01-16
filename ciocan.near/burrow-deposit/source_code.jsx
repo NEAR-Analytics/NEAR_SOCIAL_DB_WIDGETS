@@ -16,7 +16,6 @@ function getAssets() {
   const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
   );
-
   const balances = tokenIds.map((token_id) =>
     Near.view(token_id, "ft_balance_of", { account_id: accountId })
   );
@@ -33,14 +32,14 @@ function getAssets() {
 const assets = getAssets();
 // console.log(assets);
 
+if (!assets.length || !assets[0]) return <div>loading...</div>;
+
 const listAssets = assets
   ?.filter((a) => a.accountBalance > 0)
-  .map((asset) => {
+  ?.map((asset) => {
     console.log(asset);
     return <option value={asset.token_id}>{asset.metadata.symbol}</option>;
   });
-
-if (!assets.length || !assets[0]) return <div>loading...</div>;
 
 const handleSelect = (e) => {
   selected = e.target.value;
