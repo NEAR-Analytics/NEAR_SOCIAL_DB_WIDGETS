@@ -209,14 +209,14 @@ return (
                           }
                         >
                           <div>{`${days[index]}`}</div>
-                          <li>
+                          <div>
                             {week.data.map((y) => (
                               <div>
                                 <div>{getFormatedTime(y._from)}</div>~
                                 <div>{getFormatedTime(y._to)}</div>
                               </div>
                             ))}
-                          </li>
+                          </div>
                         </div>
                       );
                     })}
