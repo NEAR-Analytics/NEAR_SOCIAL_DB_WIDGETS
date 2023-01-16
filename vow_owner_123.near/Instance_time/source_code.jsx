@@ -4,12 +4,11 @@ const title = {
   width: "70%",
   padding: "1.5rem",
   marginBottom: "1rem",
-  background: "#9747FF",
-  color: "white",
+  color: "black",
   borderRadius: "2rem",
   fontWeight: 600,
   fontSize: "xx-large",
-  boxShadow: "5px 5px lightyellow",
+  boxShadow: "2px 2px 2px 2px grey",
 };
 const flex_column = {
   display: "flex",
