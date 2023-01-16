@@ -145,7 +145,7 @@ const getFormatedTime = (time) => {
 };
 
 return (
-  <div>
+  <div className="w-100">
     <div className="d-flex flex-row">
       <div className="w-50 p-2 d-flex flex-row align-items-left justify-content-left">
         <select
