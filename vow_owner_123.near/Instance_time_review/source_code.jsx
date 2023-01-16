@@ -212,6 +212,7 @@ return (
                           <div>
                             {week.data.map((y) => (
                               <div>
+                                <br />
                                 <div>{getFormatedTime(y._from)}</div>~
                                 <div>{getFormatedTime(y._to)}</div>
                               </div>
