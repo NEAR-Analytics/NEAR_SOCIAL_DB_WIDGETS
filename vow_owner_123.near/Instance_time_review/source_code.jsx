@@ -76,7 +76,6 @@ const sortAndRemoveRepeated = (flag, data) => {
   }
   return final;
 };
-
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
@@ -85,6 +84,7 @@ for (let i = 0; i < sortedData.length; i++) {
     var times = sortedData[i].value._data;
     var temp = [];
     var flag = false;
+    console.log("times", times);
     for (var j = 0; j < times.length; j++) {
       const time = times[j] + utc_offset;
       if (time > 168) {
@@ -96,6 +96,7 @@ for (let i = 0; i < sortedData.length; i++) {
       } else temp.push(time);
     }
     const final = sortAndRemoveRepeated(flag, temp);
+    console.log("final", final);
     for (var m = 0; m < final.length - 1; m += 2) {
       const _from = final[m];
       const _to = final[m + 1];
@@ -124,6 +125,7 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
+    console.log(weeklyData);
     finalData.push({
       accountId: sortedData[i].accountId,
       value: {
@@ -132,6 +134,15 @@ for (let i = 0; i < sortedData.length; i++) {
     });
   }
 }
+const getFormatedTime = (time) => {
+  const hours = parseInt(time);
+  const mins = (time - hours) * 60;
+  let formated =
+    hours > 12
+      ? `${hours - 12}:${mins == 0 ? "00" : mins} PM`
+      : `${hours}:${mins == 0 ? "00" : mins} AM`;
+  return formated;
+};
 
 return (
   <div>
@@ -200,7 +211,9 @@ return (
                           <div>{`${days[index]}`}</div>
                           <div>
                             {week.data.map((y) => (
-                              <li>{`${y._from}:00 - ${y._to}:00`}</li>
+                              <li>{`${getFormatedTime(
+                                y._from
+                              )} - ${getFormatedTime(y._to)}`}</li>
                             ))}
                           </div>
                         </div>
