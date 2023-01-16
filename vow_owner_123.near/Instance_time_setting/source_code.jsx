@@ -1,7 +1,15 @@
 State.init({
   _is_on: ["on", "on", "on", "on", "on", "off", "off"],
-  _from: ["10", "10", "10", "10", "10", "10", "10"],
-  _to: ["18", "18", "18", "18", "18", "18", "18"],
+  _from: [
+    "10:0 AM",
+    "10:0 AM",
+    "10:0 AM",
+    "10:0 AM",
+    "10:0 AM",
+    "10:0 AM",
+    "10:0 AM",
+  ],
+  _to: ["6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM"],
   _time_zone: "(UTC+00:00) UTC",
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
@@ -125,10 +133,7 @@ const time_zones = [
   "(UTC+12:00) Auckland",
   "(UTC+13:00) Nuku'alofa",
 ];
-const hours = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-  22, 23, 24,
-];
+const hours = [];
 const days = [
   "Monday",
   "Tuesday",
@@ -139,6 +144,16 @@ const days = [
   "Sunday",
 ];
 const tbl_headers = ["Day", "On", "From", "To"];
+const initialize = () => {
+  for (var i = 0; i < 2; i++)
+    for (var j = 0; j <= 12; j++)
+      for (var k = 0; k < 4; k++) {
+        i % 2 == 0
+          ? hours.push(`${j}:${k * 15} AM`)
+          : hours.push(`${j}:${k * 15} PM`);
+      }
+};
+initialize();
 
 const validate = () => {
   var result = true;
@@ -147,20 +162,31 @@ const validate = () => {
   }
   State.update({ _validate_result: result });
 };
-const onTimeChanged = (value, index, is_from_to) => {
+const getTime = (time) => {
+  const ap = time.split(" ")[1];
+  const hour = parseInt(time.split(":")[0]);
+  const mins = parseInt(time.split(":")[1]) / 60;
+  const time_by_hours = ap == "AM" ? hour + mins : hour + 12 + mins;
+  return time_by_hours;
+};
+const onTimeChanged = (value, index, is_from_to, in_de) => {
   let temp = is_from_to ? state._from : state._to;
-  temp[index] = value;
-  is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
-  let error_temp = state._validate_error;
-  if (parseInt(state._from[index]) >= parseInt(state._to[index])) {
-    error_temp[index] = false;
-  } else {
-    error_temp[index] = true;
+  const i = hours.indexOf(value);
+  console.log(i, in_de);
+  if (i + in_de >= 0 && i + in_de < hours.length) {
+    temp[index] = hours[i + in_de];
+    is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
+    let error_temp = state._validate_error;
+    if (getTime(state._from[index]) >= getTime(state._to[index])) {
+      error_temp[index] = false;
+    } else {
+      error_temp[index] = true;
+    }
+    validate();
+    State.update({
+      _validate_error: error_temp,
+    });
   }
-  validate();
-  State.update({
-    _validate_error: error_temp,
-  });
 };
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
@@ -190,8 +216,8 @@ const getData = () => {
       for (var j = 0; j < 2; j++) {
         const time =
           j == 0
-            ? parseInt(state._from[i]) + 24 * i - offset
-            : parseInt(state._to[i]) + 24 * i - offset;
+            ? getTime(state._from[i]) + 24 * i - offset
+            : getTime(state._to[i]) + 24 * i - offset;
         if (time > 168) {
           temp.push(time - 168);
           flag = true;
@@ -218,7 +244,6 @@ const getData = () => {
     },
   };
 };
-
 const timeSelector = (f, index) => {
   return (
     <div style={table}>
@@ -228,7 +253,7 @@ const timeSelector = (f, index) => {
           value={f ? state._from[index] : state._to[index]}
           disabled={state._is_on[index] == "off"}
           onChange={(e) => {
-            onTimeChanged(e.target.value, index, f);
+            onTimeChanged(e.target.value, index, f, 0);
           }}
         >
           {hours.map((hour) => (
@@ -240,7 +265,7 @@ const timeSelector = (f, index) => {
         <div
           onClick={() => {
             const value = f ? state._from[index] : state._to[index];
-            onTimeChanged(parseInt(value) + 1, index, f);
+            onTimeChanged(value, index, f, 1);
           }}
         >
           <i class="bi-caret-up"></i>
@@ -248,7 +273,7 @@ const timeSelector = (f, index) => {
         <div
           onClick={() => {
             const value = f ? state._from[index] : state._to[index];
-            onTimeChanged(parseInt(value) - 1, index, f);
+            onTimeChanged(value, index, f, -1);
           }}
         >
           <i class="bi-caret-down"></i>
