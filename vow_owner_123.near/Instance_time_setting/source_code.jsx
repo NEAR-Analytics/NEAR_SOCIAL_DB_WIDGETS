@@ -1,15 +1,23 @@
 State.init({
   _is_on: ["on", "on", "on", "on", "on", "off", "off"],
   _from: [
-    "10:0 AM",
-    "10:0 AM",
-    "10:0 AM",
-    "10:0 AM",
-    "10:0 AM",
-    "10:0 AM",
-    "10:0 AM",
+    "10:00 AM",
+    "10:00 AM",
+    "10:00 AM",
+    "10:00 AM",
+    "10:00 AM",
+    "10:00 AM",
+    "10:00 AM",
   ],
-  _to: ["6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM", "6:0 PM"],
+  _to: [
+    "6:00 PM",
+    "6:00 PM",
+    "6:00 PM",
+    "6:00 PM",
+    "6:00 PM",
+    "6:00 PM",
+    "6:00 PM",
+  ],
   _time_zone: "(UTC+00:00) UTC",
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
@@ -145,12 +153,13 @@ const days = [
 ];
 const tbl_headers = ["Day", "On", "From", "To"];
 const initialize = () => {
+  hours = [];
   for (var i = 0; i < 2; i++)
     for (var j = 0; j <= 12; j++)
       for (var k = 0; k < 4; k++) {
         i % 2 == 0
-          ? hours.push(`${j}:${k * 15} AM`)
-          : hours.push(`${j}:${k * 15} PM`);
+          ? hours.push(`${j < 10 ? `0${j}` : j}:${k == 0 ? "00" : k * 15} AM`)
+          : hours.push(`${j < 10 ? `0${j}` : j}:${k == 0 ? "00" : k * 15} PM`);
       }
 };
 initialize();
