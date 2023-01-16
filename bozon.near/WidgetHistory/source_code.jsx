@@ -84,7 +84,7 @@ return (
     ) : (
       <div>
         <div div class="card mb-3">
-          <h3 class="card-header">Commits</h3>
+          <h3 class="card-header">{blocksChanges.length} Commits</h3>
 
           <div class="list-group">
             {blocksChanges
