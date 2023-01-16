@@ -9,7 +9,9 @@ if (profile === null) {
   return "Loading";
 }
 
-const experimentalArticle = Social.get(`${accountId}/experimental/article`);
+const experimentalArticle = JSON.parse(
+  Social.get(`${accountId}/experimental/article`)
+);
 const experimentalNote = Social.get(`${accountId}/experimental/note`);
 
 const wikiArticles = Social.get(`${accountId}/wiki/articles`);
@@ -117,7 +119,9 @@ return (
       </button>
 
       {state.article && (
-        <CommitButton data={{ experimental: { article: state.article } }}>
+        <CommitButton
+          data={{ wiki: { article: JSON.stringify(state.article) } }}
+        >
           Save article
         </CommitButton>
       )}
