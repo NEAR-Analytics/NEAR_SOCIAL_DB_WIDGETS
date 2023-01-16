@@ -28,19 +28,17 @@ const title = {
   width: "70%",
   padding: "1.5rem",
   marginBottom: "1rem",
-  background: "#9747FF",
-  color: "white",
+  color: "black",
   borderRadius: "2rem",
   fontWeight: 600,
   fontSize: "xx-large",
-  boxShadow: "5px 5px lightyellow",
+  boxShadow: "2px 2px 2px 2px grey",
 };
 const container = {
   display: "flex",
   width: "100%",
   justifyContent: "center",
   padding: "3rem",
-  background: "#FFA629",
   color: "black",
   fontWeight: 400,
   borderRadius: "1rem",
@@ -51,12 +49,10 @@ const tbl_container = {
   marginTop: "1rem",
   justifyContent: "center",
   padding: "2rem",
-  background: "#9747FF",
   color: "black",
   fontWeight: 400,
   borderRadius: "1rem",
   flexDirection: "column",
-  boxShadow: "4px 4px pink",
 };
 const button = {
   borderRadius: "5px",
@@ -64,7 +60,6 @@ const button = {
   padding: "8px",
   marginTop: "10px",
   textAlign: "center",
-  background: "#9747FF",
   fontSize: "x-large",
   border: "2px solid black",
   fontWeight: "bold",
@@ -238,6 +233,7 @@ const getData = () => {
     }
   }
   const final = sortAndRemoveRepeated(flag, temp);
+  console.log("final", final);
   return {
     index: {
       Instance_time: JSON.stringify(
