@@ -40,8 +40,8 @@ const getArticleData = () => {
     articleId: state.articleId,
     author: accountId,
     lastEditor: accountId,
-    timeLastEdit: Date.noew(),
-    timeCreate: Date.noew(),
+    timeLastEdit: Date.now(),
+    timeCreate: Date.now(),
     body: state.articleBody,
     version: 0,
     navigation_id: null,
@@ -51,6 +51,7 @@ const getArticleData = () => {
 
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
+  let args = {};
   State.update({ ...state, errorId: "", errorBody: "" });
   if (state.articleId && state.articleBody) {
     const articles = Near.view("testwiki.near", "get_article_ids_paged", {
@@ -63,18 +64,16 @@ const saveHandler = (e) => {
 
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
-      const args = {
+      args = {
         articleId: state.articleId,
         author: accountId,
         lastEditor: accountId,
-        timeLastEdit: Date.noew(),
-        timeCreate: Date.noew(),
+        timeLastEdit: Date.now(),
+        timeCreate: Date.now(),
         body: state.articleBody,
         version: 0,
         navigation_id: null,
       };
-
-      saveArticle(args);
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
@@ -86,6 +85,8 @@ const saveHandler = (e) => {
       State.update({ ...state, errorBody: errTextNoBody });
     }
   }
+
+  State.update({ ...state, article: args });
 };
 
 // === CANCEL HANDLER ===
@@ -102,13 +103,16 @@ const cancelHandler = () => {
 return (
   <div>
     <div>
-      <button
-        type="submit"
-        className="btn btn-success"
-        onClick={(e) => saveHandler(e)}
-      >
+      <button type="submit" className="btn btn-success" onClick={saveHandler}>
         Save Article
       </button>
+
+      {state.article && (
+        <CommitButton data={{ wiki: { article: state.article } }}>
+          Save article
+        </CommitButton>
+      )}
+
       <button
         type="button"
         className="btn btn-danger"
