@@ -44,10 +44,6 @@ const renderBlockChangesLink = (blockHeight) => {
 
 function blockHeightToWidget(blockHeight) {
   const index = blocksChanges.findIndex((el) => el == blockHeight);
-  console.log({
-    currentBlockHeight: blockHeight,
-    prevBlockHeight: blocksChanges[index + 1],
-  });
   return (
     <Widget
       style={{ minHeight: "200px" }}
@@ -74,6 +70,7 @@ return (
         onBlur={(e) => {
           State.update({
             widgetPath: e.target.value,
+            selectedBlockHeight: undefined,
           });
         }}
       />
@@ -97,16 +94,18 @@ return (
                 .map((height) => renderBlockChangesLink(height))}
             </div>
 
-            <button
-              class="list-group-item active"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseExample"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              Show all
-            </button>
+            {blocksChanges.length > 5 && (
+              <button
+                class="list-group-item active"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                Show all
+              </button>
+            )}
           </div>
         </div>
 
