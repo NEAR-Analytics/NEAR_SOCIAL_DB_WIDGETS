@@ -2,7 +2,6 @@ State.init({
   _account: "All",
 });
 const card = {
-  background: "#FFA629",
   border: "1px solid black",
   borderRadius: "5px",
   textAlign: "center",
@@ -22,11 +21,12 @@ const container_on = {
   justifyContent: "center",
   padding: "1rem",
   margin: "0.5rem",
-  background: "#9747FF",
-  color: "white",
+  background: "white",
+  color: "black",
   fontWeight: 400,
   fontSize: "16px",
   borderRadius: "1rem",
+  border: "1px solid black",
   flexDirection: "column",
 };
 const container_off = {
@@ -35,11 +35,11 @@ const container_off = {
   justifyContent: "center",
   padding: "1rem",
   margin: "0.5rem",
-  background: "rgb(170 173 201)",
-  color: "white",
+  background: "grey",
   fontWeight: 400,
   fontSize: "16px",
   borderRadius: "1rem",
+  border: "1px solid black",
   flexDirection: "column",
 };
 const days = [
