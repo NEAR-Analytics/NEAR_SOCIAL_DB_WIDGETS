@@ -6,7 +6,11 @@ console.log("INIT...", state);
 const { selectedTokenId, amount, hasError } = state;
 
 const shrinkToken = (value, decimals, fixed) => {
-  return new Big(value).div(new Big(10).pow(decimals)).toFixed(fixed);
+  return new Big(value).div(new Big(10).pow(decimals));
+};
+
+const expandToken = (value, decimals) => {
+  return new Big(value).mul(new Big(10).pow(decimals));
 };
 
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
@@ -48,7 +52,9 @@ const listAssets = assets
   ?.filter((a) => a.accountBalance > 0)
   ?.map((asset) => {
     const { token_id, accountBalance, metadata } = asset;
-    const balance = formatToken(shrinkToken(accountBalance, metadata.decimals));
+    const balance = formatToken(
+      shrinkToken(accountBalance, metadata.decimals).toFixed()
+    );
 
     return (
       <option value={token_id}>
@@ -84,29 +90,50 @@ const handleDeposit = () => {
   );
   if (!selectedTokenId || !amount || !state || hasError) return;
   const asset = assets.find((a) => a.token_id === selectedTokenId);
-  const { token_id, accountBalance, metadata } = asset;
-  const balance = formatToken(shrinkToken(accountBalance, metadata.decimals));
+  const { token_id, accountBalance, metadata, config } = asset;
+  const balance = formatToken(
+    shrinkToken(accountBalance, metadata.decimals).toFixed()
+  );
 
   if (amount > balance) {
     State.update({ selectedTokenId, amount, hasError: true });
     return;
   }
 
+  const expandedAmount = expandToken(amount, metadata.decimals).toFixed();
+  const collateralAmount = expandToken(
+    amount,
+    metadata.decimals + config.extra_decimals
+  ).toFixed();
+
   Near.call([
     {
-      contractName: "wrap.near",
-      methodName: "near_deposit",
-    },
-    {
-      contractName: "wrap.near",
+      contractName: token_id,
       methodName: "ft_transfer_call",
       args: {
         receiver_id: BURROW_CONTRACT,
-        amount: "1000000000000000000000000",
-        msg: '{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"1000000000000000000000000"}}]}}',
+        amount: expandedAmount,
+        msg: `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`,
       },
     },
   ]);
+
+  // for near deposit only
+  // Near.call([
+  //   {
+  //     contractName: "wrap.near",
+  //     methodName: "near_deposit",
+  //   },
+  //   {
+  //     contractName: "wrap.near",
+  //     methodName: "ft_transfer_call",
+  //     args: {
+  //       receiver_id: BURROW_CONTRACT,
+  //       amount: "1000000000000000000000000",
+  //       msg: '{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"1000000000000000000000000"}}]}}',
+  //     },
+  //   },
+  // ]);
 };
 
 return (
