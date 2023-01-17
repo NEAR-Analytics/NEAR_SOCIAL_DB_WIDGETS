@@ -1,14 +1,9 @@
 let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
 
-State.init({
-  selectedTokenId: undefined,
-  amount: undefined,
-  hasError: false,
-});
+console.log("INIT...", state);
 
 const { selectedTokenId, amount, hasError } = state;
-console.log("INIT...", selectedTokenId, amount, hasError);
 
 const shrinkToken = (value, decimals, fixed) => {
   return new Big(value).div(new Big(10).pow(decimals)).toFixed(fixed);
@@ -45,7 +40,7 @@ function getAssets() {
 }
 
 const assets = getAssets();
-console.log("assets", assets);
+// console.log("assets", assets);
 
 if (!assets.length || !assets[0]) return <div>loading...</div>;
 
@@ -63,23 +58,37 @@ const listAssets = assets
   });
 
 const handleSelect = (e) => {
-  State.update({ ...state, selectedTokenId: e.target.value });
+  State.update({
+    selectedTokenId: e.target.value,
+    amount: "",
+    hasError: false,
+  });
 };
 
 const handleAmount = (e) => {
-  State.update({ ...state, amount: Number(e.target.value) });
+  State.update({
+    amount: Number(e.target.value),
+    selectedTokenId,
+    hasError: false,
+  });
 };
 
 const handleDeposit = () => {
-  console.log("handleDeposit", assets, selectedTokenId, amount);
-  if (!selectedTokenId || !amount) return;
+  console.log(
+    "handleDeposit",
+    assets,
+    state,
+    selectedTokenId,
+    amount,
+    hasError
+  );
+  if (!selectedTokenId || !amount || !state || hasError) return;
   const asset = assets.find((a) => a.token_id === selectedTokenId);
-  console.log(selectedTokenId, amount, asset, balance);
   const { token_id, accountBalance, metadata } = asset;
   const balance = formatToken(shrinkToken(accountBalance, metadata.decimals));
 
   if (amount > balance) {
-    State.update({ ...state, hasError: true });
+    State.update({ selectedTokenId, amount, hasError: true });
     return;
   }
 
