@@ -106,24 +106,44 @@ const handleDeposit = () => {
     metadata.decimals + config.extra_decimals
   ).toFixed();
 
-  let transactions = [
-    {
-      contractName: token_id,
-      methodName: "ft_transfer_call",
-      args: {
-        receiver_id: BURROW_CONTRACT,
-        amount: expandedAmount,
-        msg: `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`,
-      },
-    },
-  ];
-
-  const storage = Near.view(BURROW_CONTRACT, "storage_balance_of", {
+  const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
     account_id: accountId,
   });
 
-  if (!storage) {
-    const storageTransaction = {
+  const storageToken = Near.view(token_id, "storage_balance_of", {
+    account_id: accountId,
+  });
+
+  const depositTransaction = {
+    receiverId: token_id,
+    functionCalls: [
+      {
+        methodName: "ft_transfer_call",
+        args: {
+          receiver_id: BURROW_CONTRACT,
+          amount: expandedAmount,
+          msg: `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`,
+        },
+      },
+    ],
+  };
+
+  if (!storageToken) {
+    depositTransaction.functionCalls.push({
+      receiverId: token_id,
+      functionCalls: [
+        {
+          methodName: "storage_deposit",
+          attachedDeposit: expandToken(0.25, 24).toFixed(),
+        },
+      ],
+    });
+  }
+
+  const transactions = [];
+
+  if (!storageBurrow) {
+    transactions.push({
       receiverId: BURROW_CONTRACT,
       functionCalls: [
         {
@@ -131,30 +151,32 @@ const handleDeposit = () => {
           attachedDeposit: expandToken(0.25, 24).toFixed(),
         },
       ],
-    };
-    transactions = [storageTransaction, ...transactions];
+    });
   }
+
+  transactions.push(depositTransaction);
 
   console.log("transactions", transactions);
 
   Near.call(transactions);
+};
 
-  // for near deposit only
-  // Near.call([
-  //   {
-  //     contractName: "wrap.near",
-  //     methodName: "near_deposit",
-  //   },
-  //   {
-  //     contractName: "wrap.near",
-  //     methodName: "ft_transfer_call",
-  //     args: {
-  //       receiver_id: BURROW_CONTRACT,
-  //       amount: "1000000000000000000000000",
-  //       msg: '{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"1000000000000000000000000"}}]}}',
-  //     },
-  //   },
-  // ]);
+const handleDepositNear = () => {
+  Near.call([
+    {
+      contractName: "wrap.near",
+      methodName: "near_deposit",
+    },
+    {
+      contractName: "wrap.near",
+      methodName: "ft_transfer_call",
+      args: {
+        receiver_id: BURROW_CONTRACT,
+        amount: "1000000000000000000000000",
+        msg: '{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"1000000000000000000000000"}}]}}',
+      },
+    },
+  ]);
 };
 
 return (
