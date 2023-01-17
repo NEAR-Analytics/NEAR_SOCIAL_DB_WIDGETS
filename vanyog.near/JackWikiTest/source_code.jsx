@@ -9,18 +9,9 @@ if (profile === null) {
   return "Loading";
 }
 
-const experimentalArticle = JSON.parse(
-  Social.get(`${accountId}/experimental/article`)
-);
-const experimentalNote = Social.get(`${accountId}/experimental/note`);
+const articles = Social.get(`${accountId}/wiki/article`);
 
-const wikiArticles = Social.get(`${accountId}/wiki/articles`);
-const wikiArticle = Social.get(`${accountId}/wiki/article`);
-
-console.log("experimentalArticle", experimentalArticle);
-console.log("experimentalNote", experimentalNote);
-console.log("wikiArticles", wikiArticles);
-console.log("wikiArticle", wikiArticle);
+console.log("wikiArticle", JSON.parse(articles));
 
 State.init({ articles: articles || [] });
 console.log("state.", state);
@@ -62,7 +53,6 @@ const getArticleData = () => {
 
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
-  let args = {};
   State.update({ ...state, errorId: "", errorBody: "" });
   if (state.articleId && state.articleBody) {
     const articles = Near.view("testwiki.near", "get_article_ids_paged", {
@@ -71,11 +61,13 @@ const saveHandler = (e) => {
     });
     const isArticleIdDublicated =
       articles &&
-      articles.some((id) => id.toLowerCase() === state.articleId.toLowerCase());
+      articles.some(
+        (articleId) => articleId.toLowerCase() === state.articleId.toLowerCase()
+      );
 
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
-      args = {
+      const newArticle = {
         articleId: state.articleId,
         author: accountId,
         lastEditor: accountId,
@@ -85,6 +77,9 @@ const saveHandler = (e) => {
         version: 0,
         navigation_id: null,
       };
+      console.log("articles", [newArticle]);
+
+      Social.set({ articles: JSON.stringify([newArticle]) });
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
@@ -96,8 +91,6 @@ const saveHandler = (e) => {
       State.update({ ...state, errorBody: errTextNoBody });
     }
   }
-
-  State.update({ ...state, article: args });
 };
 
 // === CANCEL HANDLER ===
@@ -117,14 +110,6 @@ return (
       <button type="submit" className="btn btn-success" onClick={saveHandler}>
         Save Article
       </button>
-
-      {state.article && (
-        <CommitButton
-          data={{ wiki: { article: JSON.stringify(state.article) } }}
-        >
-          Save article
-        </CommitButton>
-      )}
 
       <button
         type="button"
