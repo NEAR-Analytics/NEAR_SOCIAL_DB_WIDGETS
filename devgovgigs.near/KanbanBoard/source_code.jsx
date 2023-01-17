@@ -100,7 +100,7 @@ return (
     <div class="row">
       {postsPerLabel.map((col) => {
         return (
-          <div class="col">
+          <div class="col-4">
             <div class="card">
               <div class="card-body border-secondary">
                 <h6 class="card-title">
