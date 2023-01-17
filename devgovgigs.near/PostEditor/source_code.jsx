@@ -64,7 +64,8 @@ const onClick = () => {
       name: state.name,
       description: state.description,
       amount: state.amount,
-      sponsorship_token: state.token,
+      sponsorship_token:
+        state.token == "Near" ? state.token : { NEP141: state.token },
       supervisor: state.supervisor,
       sponsorship_version: "V1",
     },
