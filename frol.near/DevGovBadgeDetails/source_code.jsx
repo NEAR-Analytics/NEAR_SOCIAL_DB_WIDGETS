@@ -1,6 +1,23 @@
 const nearDevGovBadgesContractId = "devgov-badges.frol.near";
 
-const badgeId = props.badgeId;
+let badgeId, ownerAccountId;
+if (props.tokenId) {
+  let [_badgeId, _ownerAccountId] = props.tokenId.split(":", 2);
+  badgeId = _badgeId;
+  ownerAccountId = _ownerAccountId;
+} else {
+  badgeId = props.badgeId;
+}
+
+if (!badgeId) {
+  return (
+    <>
+      Please, provide <pre>badgeId</pre> or <pre>tokenId</pre> to the
+      DevGovBadgeDetails component
+    </>
+  );
+}
+
 let badgeMetadata =
   props.badgeMetadata ??
   Near.view(nearDevGovBadgesContractId, "get_badge", {
