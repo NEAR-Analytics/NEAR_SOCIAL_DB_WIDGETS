@@ -6,12 +6,12 @@ if (!accountId) {
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 if (profile === null) {
-  return "Loading";
+  return "Loading ";
 }
 
-const articles = Social.get(`${accountId}/wiki/article`);
+const articles = JSON.parse(Social.get(`${accountId}/articles`));
 
-console.log("wikiArticle", JSON.parse(articles));
+console.log("wikiArticle", articles);
 
 State.init({ articles: articles || [] });
 console.log("state.", state);
@@ -77,9 +77,8 @@ const saveHandler = (e) => {
         version: 0,
         navigation_id: null,
       };
-      console.log("articles", [newArticle]);
 
-      Social.set({ articles: JSON.stringify([newArticle]) });
+      Social.set({ articles: JSON.stringify([...state.articles, newArticle]) });
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
