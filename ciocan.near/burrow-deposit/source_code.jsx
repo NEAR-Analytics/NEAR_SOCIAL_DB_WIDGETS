@@ -1,7 +1,14 @@
 let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
-let selectedTokenId;
-let amount;
+
+State.init({
+  selectedTokenId: undefined,
+  amount: undefined,
+  hasError: false,
+});
+
+const { selectedTokenId, amount, hasError } = state;
+console.log("INIT...", selectedTokenId, amount, hasError);
 
 const shrinkToken = (value, decimals, fixed) => {
   return new Big(value).div(new Big(10).pow(decimals)).toFixed(fixed);
@@ -38,34 +45,43 @@ function getAssets() {
 }
 
 const assets = getAssets();
-// console.log(assets);
+console.log("assets", assets);
 
 if (!assets.length || !assets[0]) return <div>loading...</div>;
 
 const listAssets = assets
   ?.filter((a) => a.accountBalance > 0)
   ?.map((asset) => {
-    console.log(asset);
     const { token_id, accountBalance, metadata } = asset;
-    const balance = shrinkToken(accountBalance, metadata.decimals);
+    const balance = formatToken(shrinkToken(accountBalance, metadata.decimals));
+
     return (
       <option value={token_id}>
-        {metadata.symbol} - {formatToken(balance)}
+        {metadata.symbol} - {balance}
       </option>
     );
   });
 
 const handleSelect = (e) => {
-  selectedTokenId = e.target.value;
+  State.update({ ...state, selectedTokenId: e.target.value });
 };
 
 const handleAmount = (e) => {
-  amount = e.target.value;
+  State.update({ ...state, amount: Number(e.target.value) });
 };
 
 const handleDeposit = () => {
-  console.log(selectedTokenId, amount);
+  console.log("handleDeposit", assets, selectedTokenId, amount);
   if (!selectedTokenId || !amount) return;
+  const asset = assets.find((a) => a.token_id === selectedTokenId);
+  console.log(selectedTokenId, amount, asset, balance);
+  const { token_id, accountBalance, metadata } = asset;
+  const balance = formatToken(shrinkToken(accountBalance, metadata.decimals));
+
+  if (amount > balance) {
+    State.update({ ...state, hasError: true });
+    return;
+  }
 
   Near.call([
     {
@@ -76,7 +92,7 @@ const handleDeposit = () => {
       contractName: "wrap.near",
       methodName: "ft_transfer_call",
       args: {
-        receiver_id: "contract.main.burrow.near",
+        receiver_id: BURROW_CONTRACT,
         amount: "1000000000000000000000000",
         msg: '{"Execute":{"actions":[{"IncreaseCollateral":{"token_id":"wrap.near","max_amount":"1000000000000000000000000"}}]}}',
       },
@@ -91,7 +107,12 @@ return (
         <option value="">Deposit an asset</option>
         {listAssets}
       </select>
-      <input type="number" onChange={handleAmount} />
+      <input type="number" value={amount} onChange={handleAmount} />
+      {hasError && (
+        <p class="alert alert-danger" role="alert">
+          Amount greater than balance
+        </p>
+      )}
       <button onClick={handleDeposit}>Deposit</button>
     </div>
   </div>
