@@ -19,27 +19,20 @@ if (!accountId) {
 
 function getAssets() {
   const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
-  // if (!assets) return null;
 
   const tokenIds = assets?.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view(BURROW_CONTRACT, "get_asset", { token_id })
   );
-  // if (!assetsDetailed?.length) return null;
 
   const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
   );
-  // if (!metadata?.length) return null;
 
   const balances = tokenIds.map((token_id) =>
     Near.view(token_id, "ft_balance_of", { account_id: accountId })
   );
-  // if (!balances?.length) return null;
 
-  // console.log("assets", assets);
-  // console.log("assetsDetailed", assetsDetailed);
-  // console.log("metadata", metadata);
   return assetsDetailed?.map((asset, i) => {
     return {
       ...asset,
