@@ -106,7 +106,7 @@ const handleDeposit = () => {
     metadata.decimals + config.extra_decimals
   ).toFixed();
 
-  Near.call([
+  let transactions = [
     {
       contractName: token_id,
       methodName: "ft_transfer_call",
@@ -116,7 +116,28 @@ const handleDeposit = () => {
         msg: `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`,
       },
     },
-  ]);
+  ];
+
+  const storage = Near.view(BURROW_CONTRACT, "storage_balance_of", {
+    account_id: accountId,
+  });
+
+  if (!storage) {
+    const storageTransaction = {
+      receiverId: BURROW_CONTRACT,
+      functionCalls: [
+        {
+          methodName: "storage_deposit",
+          attachedDeposit: expandToken(0.25, 24).toFixed(),
+        },
+      ],
+    };
+    transactions = [storageTransaction, ...transactions];
+  }
+
+  console.log("transactions", transactions);
+
+  Near.call(transactions);
 
   // for near deposit only
   // Near.call([
