@@ -19,8 +19,10 @@ if (!accountId) {
 
 function getAssets() {
   const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
+  if (!assets) return null;
 
   const tokenIds = assets?.map(([id]) => id);
+
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view(BURROW_CONTRACT, "get_asset", { token_id })
   );
