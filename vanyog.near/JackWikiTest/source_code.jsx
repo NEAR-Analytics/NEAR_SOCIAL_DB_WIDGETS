@@ -11,10 +11,9 @@ if (profile === null) {
 
 const articles = JSON.parse(Social.get(`${accountId}/articles`));
 
-console.log("wikiArticle", articles);
+console.log("articles", articles);
 
 State.init({ articles: articles || [] });
-console.log("state.", state);
 
 const initialBody = `# Markdown heading level 1
 
