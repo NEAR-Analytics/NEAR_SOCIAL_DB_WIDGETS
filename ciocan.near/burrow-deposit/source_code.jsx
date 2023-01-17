@@ -1,11 +1,9 @@
 let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
 
-console.log("INIT...", state);
-
 const { selectedTokenId, amount, hasError } = state;
 
-const shrinkToken = (value, decimals, fixed) => {
+const shrinkToken = (value, decimals) => {
   return new Big(value).div(new Big(10).pow(decimals));
 };
 
@@ -21,19 +19,27 @@ if (!accountId) {
 
 function getAssets() {
   const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
-  if (!assets) return null;
+  // if (!assets) return null;
 
   const tokenIds = assets?.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view(BURROW_CONTRACT, "get_asset", { token_id })
   );
+  // if (!assetsDetailed?.length) return null;
+
   const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
   );
+  // if (!metadata?.length) return null;
+
   const balances = tokenIds.map((token_id) =>
     Near.view(token_id, "ft_balance_of", { account_id: accountId })
   );
+  // if (!balances?.length) return null;
 
+  // console.log("assets", assets);
+  // console.log("assetsDetailed", assetsDetailed);
+  // console.log("metadata", metadata);
   return assetsDetailed?.map((asset, i) => {
     return {
       ...asset,
@@ -44,7 +50,7 @@ function getAssets() {
 }
 
 const assets = getAssets();
-// console.log("assets", assets);
+console.log("INIT...", state, assets);
 
 if (!assets.length || !assets[0]) return <div>loading...</div>;
 
@@ -88,12 +94,18 @@ const handleDeposit = () => {
     amount,
     hasError
   );
-  if (!selectedTokenId || !amount || !state || hasError) return;
+  if (!selectedTokenId || !amount || hasError) return;
   const asset = assets.find((a) => a.token_id === selectedTokenId);
   const { token_id, accountBalance, metadata, config } = asset;
+  console.log("asset", asset);
+  console.log("metadata", metadata);
+  console.log("config", config);
+
   const balance = formatToken(
     shrinkToken(accountBalance, metadata.decimals).toFixed()
   );
+
+  console.log("balance", balance);
 
   if (amount > balance) {
     State.update({ selectedTokenId, amount, hasError: true });
@@ -114,6 +126,10 @@ const handleDeposit = () => {
     account_id: accountId,
   });
 
+  const collateralMsg = config.can_use_as_collateral
+    ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`
+    : "";
+
   const depositTransaction = {
     receiverId: token_id,
     functionCalls: [
@@ -122,13 +138,13 @@ const handleDeposit = () => {
         args: {
           receiver_id: BURROW_CONTRACT,
           amount: expandedAmount,
-          msg: `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`,
+          msg: collateralMsg,
         },
       },
     ],
   };
 
-  if (!storageToken) {
+  if (storageToken?.available === "0" || !storageToken?.available) {
     depositTransaction.functionCalls.push({
       receiverId: token_id,
       functionCalls: [
@@ -142,7 +158,7 @@ const handleDeposit = () => {
 
   const transactions = [];
 
-  if (!storageBurrow) {
+  if (storageBurrow?.available === "0" || !storageBurrow?.available) {
     transactions.push({
       receiverId: BURROW_CONTRACT,
       functionCalls: [
@@ -156,6 +172,8 @@ const handleDeposit = () => {
 
   transactions.push(depositTransaction);
 
+  console.log("storageBurrow", storageBurrow);
+  console.log("storageToken", storageToken);
   console.log("transactions", transactions);
 
   Near.call(transactions);
