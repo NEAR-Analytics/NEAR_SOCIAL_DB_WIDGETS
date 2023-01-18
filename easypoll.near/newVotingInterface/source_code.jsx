@@ -47,9 +47,9 @@ if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
 }
 
-if (!profile) {
-  return "Loading";
-}
+// if (!profile) {
+//   return "Loading";
+// }
 
 let pollsByThisCreator = Social.index("poll_question", "question-v3.1.0", {
   accountId: state.poll.accountId,
