@@ -148,6 +148,7 @@ const handleDeposit = () => {
       receiver_id: BURROW_CONTRACT,
       amount: expandedAmount,
       msg: collateralMsg,
+      attachedDeposit: new Big("1").toFixed(),
     },
   };
 
