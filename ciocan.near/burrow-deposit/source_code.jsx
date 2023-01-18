@@ -133,6 +133,7 @@ const handleDeposit = () => {
     contractName: token_id,
     methodName: "ft_transfer_call",
     deposit: new Big("1").toFixed(),
+    gas: expandToken(300, 12),
     args: {
       receiver_id: BURROW_CONTRACT,
       amount: expandedAmount,
