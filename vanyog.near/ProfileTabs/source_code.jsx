@@ -16,7 +16,6 @@ const articles = Near.view("thewiki.near", "get_article_ids_paged", {
   from_index: 0,
   limit: 250,
 });
-console.log("articlesNum", articlesNum);
 
 console.log("articles", articles);
 
@@ -42,7 +41,6 @@ const article =
   Near.view("thewiki.near", "get_article", {
     article_id: state?.articleId,
   });
-Social.get("///wiki/article");
 
 console.log("article", article);
 
