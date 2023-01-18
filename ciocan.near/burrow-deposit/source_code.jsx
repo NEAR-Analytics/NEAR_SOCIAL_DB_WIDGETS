@@ -144,11 +144,11 @@ const handleDeposit = () => {
   const depositTransaction = {
     contractName: token_id,
     methodName: "ft_transfer_call",
+    attachedDeposit: new Big("1").toFixed(),
     args: {
       receiver_id: BURROW_CONTRACT,
       amount: expandedAmount,
       msg: collateralMsg,
-      attachedDeposit: new Big("1").toFixed(),
     },
   };
 
