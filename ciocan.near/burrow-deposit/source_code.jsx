@@ -64,6 +64,16 @@ const listAssets = assets
     );
   });
 
+const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
+  account_id: accountId,
+});
+
+const storageToken = selectedTokenId
+  ? Near.view(selectedTokenId, "storage_balance_of", {
+      account_id: accountId,
+    })
+  : null;
+
 const handleSelect = (e) => {
   State.update({
     selectedTokenId: e.target.value,
@@ -112,14 +122,6 @@ const handleDeposit = () => {
     amount,
     metadata.decimals + config.extra_decimals
   ).toFixed();
-
-  const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
-    account_id: accountId,
-  });
-
-  const storageToken = Near.view(token_id, "storage_balance_of", {
-    account_id: accountId,
-  });
 
   const collateralMsg = config.can_use_as_collateral
     ? `{"Execute":{"actions":[{"IncreaseCollateral":{"token_id": "${token_id}","max_amount":"${collateralAmount}"}}]}}`
