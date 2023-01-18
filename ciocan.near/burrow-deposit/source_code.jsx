@@ -154,6 +154,7 @@ const handleDeposit = () => {
       contractName: BURROW_CONTRACT,
       methodName: "storage_deposit",
       deposit: expandToken(0.25, 24).toFixed(),
+      gas: expandToken(140, 12),
     });
   }
 
