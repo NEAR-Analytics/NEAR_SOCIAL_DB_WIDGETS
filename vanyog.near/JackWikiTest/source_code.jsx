@@ -78,10 +78,6 @@ const saveHandler = (e) => {
       };
 
       Social.set({ articles: JSON.stringify([...state.articles, newArticle]) });
-
-      Social.set({
-        articlesNavigation: JSON.stringify([...state.articles, nameOfArticle]),
-      });
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
