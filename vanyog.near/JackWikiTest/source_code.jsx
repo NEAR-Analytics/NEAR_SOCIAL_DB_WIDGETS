@@ -11,11 +11,13 @@ if (profile === null) {
 
 const articles = JSON.parse(Social.get(`vanyog.near/articles`));
 const articlesJule = JSON.parse(Social.get(`vanjule.near/articles`));
+const articlesEugeno = JSON.parse(Social.get(`eugenewolf507.near/articles`));
 
-const test = JSON.parse(Social.get({ keys: ["vanyog.near/profile/name"] }));
+const test = Social.keys("*/articles", "final");
 console.log("test", test);
-console.log("articles", articles);
+console.log("articlesf", articles);
 console.log("articlesJule", articlesJule);
+console.log("articlesEugeno", articlesEugeno);
 
 State.init({ articles: articles || [] });
 
