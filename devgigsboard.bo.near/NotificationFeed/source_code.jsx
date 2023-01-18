@@ -90,7 +90,7 @@ return (
                   className="fw-bold text-muted"
                   href={`#/devgigsboard.bo.near/widget/Ideas?postId=${value.post}`}
                 >
-                  Developer Gigs Post
+                  Developer Governance post
                 </a>
               </>
             ) : value.type === "devgovgigs/reply" ? (
@@ -100,7 +100,7 @@ return (
                   className="fw-bold text-muted"
                   href={`#/devgigsboard.bo.near/widget/Ideas?postId=${value.post}`}
                 >
-                  Developer Gigs Post
+                  Developer Governance post
                 </a>
               </>
             ) : value.type === "devgovgigs/edit" ? (
@@ -110,7 +110,7 @@ return (
                   className="fw-bold text-muted"
                   href={`#/devgigsboard.bo.near/widget/Ideas?postId=${value.post}`}
                 >
-                  Developer Gigs Post
+                  Developer Governance post
                 </a>
               </>
             ) : (
@@ -170,7 +170,7 @@ return (
                 className="btn btn-outline-dark"
                 href={`#/devgigsboard.bo.near/widget/Ideas?postId=${value.post}`}
               >
-                View Developer Gigs Post
+                View Developer Governance post
               </a>
             </>
           ) : (
