@@ -9,7 +9,7 @@ if (profile === null) {
   return "Loading ";
 }
 
-const articles = JSON.parse(Social.get(`${accountId}/articles`));
+const articles = JSON.parse(Social.get(`vanyog.near/articles`));
 
 console.log("articles", articles);
 
