@@ -25,40 +25,76 @@ const dataStructure = {
       },
     },
   },
-  articlesNav: ["article1", "article2", "articleA", "articleB"],
+  articlesNav: ["articleA", "articleB", "article1", "article2"],
 };
 
 // ========= HANDLERS =========
-const clickHandlerLocalStructure = () => {
-  console.log(dataStructure);
-};
-const clickHandlerGetStructure = () => {
-  const articles1 = JSON.parse(Social.get(`${accountId}/articles`));
-  console.log(articles1);
-};
-const clickHandlerGetAuthor = () => {
-  const data2 = Social.get(`${accountId}/articles`);
-  console.log(data2);
-};
 const clickHandlerSetStructure = () => {
   Social.set(JSON.stringify(dataStructure));
+};
+const clickHandlerGetStructure = () => {
+  // path that works
+  // const path = "/*";
+  const path = "/widget/*";
+  // const path = "/widget/Draft_Eugene2";
+
+  // path that doesn't works
+  // const path = "/articles/articlesAll";
+
+  const data1 = Social.get(`${accountId}${path}`);
+  // console.log(data1);
+
+  const data2 = Social.keys("*/widget/*", "final");
+  console.log(data2);
 };
 
 // ========= RETURN =========
 return (
   <div>
     <p>Press button and check log in browser</p>
-    <button onClick={clickHandlerLocalStructure}>Local Structure</button>
+    <div>
+      <button onClick={clickHandlerSetStructure}>Set Structure</button>
+      <CommitButton
+        data={{
+          articles: {
+            articlesAll: {
+              testwiki: {
+                article1: {
+                  author: "testwiki",
+                  body: "body for article 1 by testwiki",
+                },
+                article2: {
+                  author: "testwiki",
+                  body: "body for article 2 by testwiki",
+                },
+              },
+              eugenewolf507: {
+                articleA: {
+                  author: "testwiki",
+                  body: "body for article A by eugenewolf507",
+                },
+                articleB: {
+                  author: "testwiki",
+                  body: "body for article B by eugenewolf507",
+                },
+              },
+            },
+            articlesNav: [
+              "articleA",
+              "articleB",
+              "articleC",
+              "article1",
+              "article2",
+            ],
+          },
+        }}
+        // data={{
+        //   articles: { "eugenewolf507.near": { homepage: state.homepage } },
+        // }}
+      >
+        SetStructure with CommitButton
+      </CommitButton>
+    </div>
     <button onClick={clickHandlerGetStructure}>Get Structure</button>
-    <button onClick={clickHandlerGetAuthor}>Get Author</button>
-    <button onClick={clickHandlerSetStructure}>Set Structure</button>
-    <CommitButton
-      data={{ experimental: dataStructure }}
-      // data={{
-      //   articles: { "eugenewolf507.near": { homepage: state.homepage } },
-      // }}
-    >
-      SetStructure with CommitButton
-    </CommitButton>
   </div>
 );
