@@ -20,14 +20,6 @@ testArray &&
   });
 console.log("result", result);
 
-const articles = JSON.parse(Social.get(`vanyog.near/articles`));
-const articlesEugeno = JSON.parse(Social.get(`eugenewolf507.near/articles`));
-
-console.log("test  ", test);
-console.log("articlesf", articles);
-console.log("articlesJule", articlesJule);
-console.log("articlesEugeno", articlesEugeno);
-
 State.init({ articles: articles || [] });
 
 const initialBody = `# Markdown heading level 1
