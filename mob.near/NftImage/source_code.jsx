@@ -49,13 +49,25 @@ if (nftMetadata && nftToken) {
       ? `https://ipfs.near.social/ipfs/${tokenMedia}`
       : tokenMedia;
 
-  if (
-    !tokenMedia &&
-    tokenMetadata.reference &&
-    nftMetadata.base_uri === "https://arweave.net"
-  ) {
-    const res = fetch(`${nftMetadata.base_uri}/${tokenMetadata.reference}`);
-    imageUrl = res.body.media;
+  if (!tokenMedia && tokenMetadata.reference) {
+    if (
+      nftMetadata.base_uri === "https://arweave.net" &&
+      !tokenMetadata.reference.startsWith("https://")
+    ) {
+      const res = fetch(`${nftMetadata.base_uri}/${tokenMetadata.reference}`);
+      imageUrl = res.body.media;
+    } else if (
+      tokenMetadata.reference.startsWith("https://") ||
+      tokenMetadata.reference.startsWith("http://")
+    ) {
+      const res = fetch(tokenMetadata.reference);
+      imageUrl = JSON.parse(res.body).media;
+    } else if (tokenMetadata.reference.startsWith("ar://")) {
+      const res = fetch(
+        `${"https://arweave.net"}/${tokenMetadata.reference.split("//")[1]}`
+      );
+      imageUrl = JSON.parse(res.body).media;
+    }
   }
 
   if (!imageUrl) {
