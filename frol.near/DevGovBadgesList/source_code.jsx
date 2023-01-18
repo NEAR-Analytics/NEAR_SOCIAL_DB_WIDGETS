@@ -1,5 +1,16 @@
 const accountId = props.accountId || context.accountId;
-const style = props.style || { width: "1.5em", height: "1.5em" };
+const mode = props.mode || "normal";
+
+let style;
+if (mode === "normal") {
+  style = { width: "3em", height: "3em" };
+} else if (mode === "compact") {
+  style = { width: "1.5em", height: "1.5em" };
+}
+if (props.style) {
+  style = props.style;
+}
+
 const nearDevGovBadgesContractId = "devgov-badges.frol.near";
 
 const ownedBadges = Near.view(
@@ -16,20 +27,32 @@ if (!ownedBadges) {
 
 return (
   <>
-    {ownedBadges.map(({ token_id: tokenId, metadata }) => (
-      <a
-        href={`#/devgov-badges.frol.near/widget/DevGovBadgeDetails?tokenId=${tokenId}`}
-        title={`NEAR DevGov Badge - ${metadata.title}`}
-      >
-        <Widget
-          src="mob.near/widget/Image"
-          props={{
-            style,
-            image: { ipfs_cid: metadata.media },
-            alt: `NEAR DevGov Badge - ${metadata.title}`,
-          }}
-        />
-      </a>
-    ))}
+    {ownedBadges.map(({ token_id: tokenId, metadata }) => {
+      const badgeImage = (
+        <a
+          href={`#/frol.near/widget/DevGovBadgeDetails?tokenId=${tokenId}`}
+          title={`NEAR DevGov Badge - ${metadata.title}`}
+        >
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              style,
+              image: { ipfs_cid: metadata.media },
+              alt: `NEAR DevGov Badge - ${metadata.title}`,
+            }}
+          />
+        </a>
+      );
+      if (mode === "compact") {
+        return badgeImage;
+      }
+      return (
+        <ul>
+          <li style={{ listStyleType: "none" }}>
+            {badgeImage} {metadata.description}
+          </li>
+        </ul>
+      );
+    })}
   </>
 );
