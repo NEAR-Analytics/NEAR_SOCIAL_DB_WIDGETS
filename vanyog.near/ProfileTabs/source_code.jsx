@@ -11,8 +11,8 @@ if (profile === null) {
 
 State.init({ loadarticles: true });
 
-const articlesNum = Near.view("testwiki.near", "get_num_articles");
-const articles = Near.view("testwiki.near", "get_article_ids_paged", {
+const articlesNum = Near.view("thewiki.near", "get_num_articles");
+const articles = Near.view("thewiki.near", "get_article_ids_paged", {
   from_index: 0,
   limit: 250,
 });
@@ -39,21 +39,22 @@ const handleAuthor = (e, authorId) => {
 
 const article =
   state?.articleId &&
-  Near.view("testwiki.near", "get_article", {
+  Near.view("thewiki.near", "get_article", {
     article_id: state?.articleId,
   });
+Social.get("///wiki/article");
 
 console.log("article", article);
 
 const authorArticles =
   state?.authorId &&
-  Near.view("testwiki.near", "get_account", {
+  Near.view("thewiki.near", "get_account", {
     account_id: state?.authorId,
   });
 
 console.log("authorArticles", authorArticles);
 
-const mainPage = Near.view("testwiki.near", "get_article", {
+const mainPage = Near.view("thewiki.near", "get_article", {
   article_id: "",
 });
 
@@ -66,7 +67,7 @@ const getDate = (timestamp) => {
 };
 
 const saveArticle = (args) => {
-  Near.call("testwiki.near", "post_article", args, "30000000000000");
+  Near.call("thewiki.near", "post_article", args, "30000000000000");
 };
 
 return (
