@@ -14,6 +14,7 @@ return (
       src="frol.near/widget/DevGovBadgesList"
       props={{
         accountId,
+        mode: "compact",
       }}
     />
   </span>
