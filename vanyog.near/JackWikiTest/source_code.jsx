@@ -9,12 +9,21 @@ if (profile === null) {
   return "Loading ";
 }
 
+const test = Social.keys("*/articles", "final");
+const testArray = Object.keys(test);
+const result = [];
+testArray &&
+  testArray.forEach((item, index) => {
+    const fetch1 = JSON.parse(Social.get(`${item}/articles`));
+    console.log("fetch1", fetch1);
+    result.push(fetch1);
+  });
+console.log("result", result);
+
 const articles = JSON.parse(Social.get(`vanyog.near/articles`));
-const articlesJule = JSON.parse(Social.get(`vanjule.near/articles`));
 const articlesEugeno = JSON.parse(Social.get(`eugenewolf507.near/articles`));
 
-const test = Social.keys("*/articles", "final");
-console.log("test", test);
+console.log("test  ", test);
 console.log("articlesf", articles);
 console.log("articlesJule", articlesJule);
 console.log("articlesEugeno", articlesEugeno);
