@@ -129,24 +129,10 @@ const handleDeposit = () => {
 
   const transactions = [];
 
-  // const depositTransaction = {
-  //   receiverId: token_id,
-  //   functionCalls: [
-  //     {
-  //       methodName: "ft_transfer_call",
-  //       args: {
-  //         receiver_id: BURROW_CONTRACT,
-  //         amount: expandedAmount,
-  //         msg: collateralMsg,
-  //       },
-  //     },
-  //   ],
-  // };
-
   const depositTransaction = {
     contractName: token_id,
     methodName: "ft_transfer_call",
-    attachedDeposit: new Big("1").toFixed(),
+    deposit: new Big("1").toFixed(),
     args: {
       receiver_id: BURROW_CONTRACT,
       amount: expandedAmount,
@@ -155,36 +141,18 @@ const handleDeposit = () => {
   };
 
   if (storageToken?.available === "0" || !storageToken?.available) {
-    // depositTransaction.functionCalls.push({
-    //   receiverId: token_id,
-    //   functionCalls: [
-    //     {
-    //       methodName: "storage_deposit",
-    //       attachedDeposit: expandToken(0.25, 24).toFixed(),
-    //     },
-    //   ],
-    // });
     transactions.push({
       contractName: token_id,
       methodName: "storage_deposit",
-      attachedDeposit: expandToken(0.25, 24).toFixed(),
+      deposit: expandToken(0.25, 24).toFixed(),
     });
   }
 
   if (storageBurrow?.available === "0" || !storageBurrow?.available) {
-    // transactions.push({
-    //   receiverId: BURROW_CONTRACT,
-    //   functionCalls: [
-    //     {
-    //       methodName: "storage_deposit",
-    //       attachedDeposit: expandToken(0.25, 24).toFixed(),
-    //     },
-    //   ],
-    // });
     transactions.push({
       contractName: BURROW_CONTRACT,
       methodName: "storage_deposit",
-      attachedDeposit: expandToken(0.25, 24).toFixed(),
+      deposit: expandToken(0.25, 24).toFixed(),
     });
   }
 
