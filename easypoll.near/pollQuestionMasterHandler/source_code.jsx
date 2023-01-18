@@ -29,10 +29,6 @@ if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
 }
 
-if (!profile) {
-  return "Loading...";
-}
-
 function abortPollCreation() {
   State.update({ showAbortPollCreation: true });
 }
