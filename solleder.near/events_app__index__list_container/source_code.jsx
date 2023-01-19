@@ -15,7 +15,12 @@ account_id: accountId,
 }
 
 if (!events) {
-return Loading;
+return Loading!;
 }
 
-return <Widget src={`${CONTRACT_OWNER}/widget/index__list`} events={events} />;
+return (
+<Widget
+src={`${CONTRACT_OWNER}/widget/index__list`}
+props={{ events: events }}
+/>
+);
