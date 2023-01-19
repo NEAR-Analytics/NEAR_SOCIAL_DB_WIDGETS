@@ -33,6 +33,11 @@ return (
               >
                 comment
               </a>
+            ) : value.type.startsWith("devgovgigs/") ? (
+              <Widget
+                src="devgigsboard.bo.near/widget/DevGov.Notification.Item.Left"
+                props={{ accountId }}
+              />
             ) : (
               "item???"
             )}
@@ -106,6 +111,11 @@ return (
             </a>
           )}
         </>
+      ) : value.type.startsWith("devgovgigs/") ? (
+        <Widget
+          src="devgigsboard.bo.near/widget/DevGov.Notification.Item.Right"
+          props={{ accountId }}
+        />
       ) : (
         ""
       )}
