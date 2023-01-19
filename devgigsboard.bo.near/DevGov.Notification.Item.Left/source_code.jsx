@@ -17,7 +17,7 @@ return props.type ? (
       className="fw-bold text-muted"
       href={`#/devgigsboard.bo.near/widget/Ideas?postId=${props.post}`}
     >
-      Developer Governance Post
+      Developer Governance post
     </a>
   </>
 ) : (
