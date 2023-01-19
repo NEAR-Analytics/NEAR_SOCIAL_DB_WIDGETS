@@ -8,7 +8,7 @@ return props.type ? (
     {type == "like"
       ? "liked"
       : type == "reply"
-      ? "relied"
+      ? "replied"
       : type == "edit"
       ? "edited"
       : "???"}{" "}
