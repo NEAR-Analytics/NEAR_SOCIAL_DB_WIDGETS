@@ -60,7 +60,7 @@ return (
         ) : value.type.startsWith("devgovgigs/") ? (
           <Widget
             src="devgigsboard.bo.near/widget/DevGov.Notification.Item.Left"
-            props={{ accountId }}
+            props={{ type: value.type, post: value.post }}
           />
         ) : (
           "???"
@@ -114,7 +114,7 @@ return (
       ) : value.type.startsWith("devgovgigs/") ? (
         <Widget
           src="devgigsboard.bo.near/widget/DevGov.Notification.Item.Right"
-          props={{ accountId }}
+          props={{ post: value.post }}
         />
       ) : (
         ""
