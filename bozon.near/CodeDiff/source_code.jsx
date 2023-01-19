@@ -287,16 +287,16 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
 }
 
 const diffResult = patienceDiff(
-  prevCode ? prevCode.split(/\r\n|\n/) : [],
-  currentCode.split(/\r\n|\n/)
+  props.prevCode ? props.prevCode.split(/\r\n|\n/) : [],
+  props.currentCode.split(/\r\n|\n/)
 );
 
 if (props.findUniqueResult)
   props.findUniqueResult(
     diffResult.lineCountDeleted,
     diffResult.lineCountInserted,
-    currentCode.split(/\r\n|\n/).length,
-    prevCode ? prevCode.split(/\r\n|\n/).length : 0,
+    props.currentCode.split(/\r\n|\n/).length,
+    props.prevCode ? props.prevCode.split(/\r\n|\n/).length : 0,
     diffResult.lines.length
   );
 
