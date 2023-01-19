@@ -36,7 +36,7 @@ const linktreeObjects = linktree.map((o, i) => {
   );
   return e.prefix ? (
     <div key={i}>
-      <a href={`${e.prefix}${value}`}>
+      <a target="_blank" href={`${e.prefix}${value}`}>
         {icon}
         {value}
       </a>
