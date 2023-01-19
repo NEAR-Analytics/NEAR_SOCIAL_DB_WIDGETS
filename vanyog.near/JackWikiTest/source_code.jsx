@@ -10,8 +10,13 @@ if (profile === null) {
 }
 
 const test = Social.keys("*/articles", "final");
-const test2 = Social.keys("*/widget/JackWikiTest_CreateArticle", "final");
 
+const test2 = Social.get("vanyog.near/articles");
+
+const test3 = Near.view("social.near", "get", {
+  keys: ["vanyog.near/**"],
+});
+console.log("test3", test3);
 console.log("test2", test2);
 
 const testArray = Object.keys(test);
@@ -79,7 +84,9 @@ const saveHandler = (e) => {
       console.log("SAVE ARTICLE");
       const newArticle = getArticleData();
 
-      Social.set({ articles: JSON.stringify([...state.articles, newArticle]) });
+      Social.set({
+        wikiTest: { articles: { [newArticle.articleId]: { newArticle } } },
+      });
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
