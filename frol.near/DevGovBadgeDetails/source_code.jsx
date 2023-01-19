@@ -37,11 +37,14 @@ return (
           style={{ transform: "translateY(7rem)" }}
         >
           <Widget
-            src="mob.near/widget/Image"
+            src="frol.near/widget/NftImage"
             props={{
               style: { width: "10em", height: "10em" },
               className: "rounded-circle w-100 h-100 img-thumbnail d-block",
-              image: { ipfs_cid: badgeMetadata.media },
+              nft: {
+                tokenMetadata: badgeMetadata,
+                contractId: nearDevGovBadgesContractId,
+              },
               alt: badgeMetadata.title,
             }}
           />
