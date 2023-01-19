@@ -5,16 +5,17 @@ const CONTRACT_OWNER = "solleder.near";
 // if no accountID is provided, all events are displayed
 const accountId = props.accountId;
 
-let events =
-  accountId === undefined
-    ? Near.view(CONTRACT, "get_all_events")
-    : Near.view(CONTRACT, "get_all_events_by_account", {
-        account_id: accountId,
-      });
+let events = [];
+if (accountId === undefined) {
+  events = Near.view(CONTRACT, "get_all_events");
+} else {
+  events = Near.view(CONTRACT, "get_all_events_by_account", {
+    account_id: accountId,
+  });
+}
 
 if (!events) {
   return "Loading";
 }
-console.log(events);
 
 return <Widget src={`${CONTRACT_OWNER}/widget/index__list`} events={events} />;
