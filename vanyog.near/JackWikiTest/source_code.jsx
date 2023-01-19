@@ -130,6 +130,22 @@ const saveArticle = (args) => {
   console.log("save article");
 };
 
+const getAuthors = () => {
+  const authors = Array.from(resultArticles, ({ author }) => author);
+  const uniqAuthors = Array.from(new Set(authors));
+  console.log("authors", authors);
+  console.log("uniqAuthors", uniqAuthors);
+
+  return uniqAuthors.map((author) => (
+    <li>
+      <a
+        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+      >
+        {author}
+      </a>
+    </li>
+  ));
+};
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
@@ -296,7 +312,7 @@ return (
       >
         {state.loadauthors && (
           <div>
-            <Widget src="eugenewolf507.near/widget/TestWiki_Authors" />
+            <ul>{resultArticles && getAuthors()}</ul>
           </div>
         )}
       </div>
