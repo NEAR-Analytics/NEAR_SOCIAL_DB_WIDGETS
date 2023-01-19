@@ -1,12 +1,11 @@
-const CONTRACT = "events_v1.near";
+const CONTRACT_OWNER = "solleder.near";
 
-let events = prop.events;
+let events = props.events || [];
 
 // return data;
 if (!events) {
   return "Loading";
 }
-console.log(events);
 
 // if events are empty we want to show an empty list message
 if (events.length === 0) {
@@ -34,7 +33,7 @@ const eventsList = events.map((event) => {
   console.log(event);
   return (
     <Widget
-      src={"minz.near/widget/ViewActivity"}
+      src={`${CONTRACT_OWNER}/widget/index__list_item`}
       props={{ event }}
       key={event.event_id}
     />
