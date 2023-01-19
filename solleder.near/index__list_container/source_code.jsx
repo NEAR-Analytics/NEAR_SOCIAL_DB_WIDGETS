@@ -15,7 +15,7 @@ if (accountId === undefined) {
 }
 
 if (!events) {
-  return "Loading1";
+  return "Loading!";
 }
 
 return <Widget src={`${CONTRACT_OWNER}/widget/index__list`} events={events} />;
