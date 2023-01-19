@@ -6,7 +6,7 @@ return props.post === undefined ? (
       className="btn btn-outline-dark"
       href={`#/devgigsboard.bo.near/widget/Ideas?postId=${props.post}`}
     >
-      View Developer Governance Post
+      View Developer Governance post
     </a>
   </>
 );
