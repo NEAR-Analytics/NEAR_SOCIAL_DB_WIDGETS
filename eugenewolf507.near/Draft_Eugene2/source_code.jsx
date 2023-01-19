@@ -35,16 +35,23 @@ const clickHandlerSetStructure = () => {
 const clickHandlerGetStructure = () => {
   // path that works
   // const path = "/*";
-  const path = "/widget/*";
+  // const path = "/widget/*";
   // const path = "/widget/Draft_Eugene2";
+  const path = "/articles/**";
 
   // path that doesn't works
   // const path = "/articles/articlesAll";
 
   const data1 = Social.get(`${accountId}${path}`);
-  // console.log(data1);
+  console.log(data1);
 
-  const data2 = Social.keys("*/widget/*", "final");
+  // const data2 = Social.keys("*/widget/*", "final");
+  // const data2 = Social.keys("*/articles/*", "final");
+  // const data2 = Social.getr("bearner.near/nametag/bearner.near/tags", "final");
+  const data2 = Social.getr(
+    "eugenewolf507.near/articles/articlesAll/eugenewolf507/articleA",
+    "final"
+  );
   console.log(data2);
 };
 
