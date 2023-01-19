@@ -169,132 +169,131 @@ return (
         role="tabpanel"
         aria-labelledby="pills-main-tab"
       >
-        <div>
-          {state?.articleId ? (
-            <div>
-              <button
-                onClick={() => {
-                  State.update({ articleId: undefined });
-                }}
-              >
-                {" "}
-                Back to articles{" "}
-              </button>
-              <button
-                onClick={() => {
-                  State.update({ editArticle: true });
-                }}
-              >
-                Edit Article{" "}
-              </button>
+        {state.loadauthors && (
+          <div>
+            {state?.articleId ? (
+              <div>
+                <button
+                  onClick={() => {
+                    State.update({ articleId: undefined });
+                  }}
+                >
+                  {" "}
+                  Back to articles{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    State.update({ editArticle: true });
+                  }}
+                >
+                  Edit Article{" "}
+                </button>
 
-              {state.editArticle && (
-                <>
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => {
-                      if (!state.note || article.body === state.note) return;
+                {state.editArticle && (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => {
+                        if (!state.note || article.body === state.note) return;
 
-                      const args = {
-                        article_id: state?.articleId,
-                        body: state.note,
-                        navigation_id: null,
-                      };
+                        const args = {
+                          article_id: state?.articleId,
+                          body: state.note,
+                          navigation_id: null,
+                        };
 
-                      saveArticle(args);
-                    }}
-                  >
-                    Save Article{" "}
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => {
-                      State.update({
-                        editArticle: false,
-                        note: article.body,
-                      });
-                    }}
-                  >
-                    Cancel{" "}
-                  </button>
-                  <textarea
-                    id="textarea1"
-                    type="text"
-                    rows={10}
-                    className="form-control mt-2"
-                    value={state.note || article.body}
-                    onChange={(e) => {
-                      State.update({ ...state, note: e.target.value });
-                    }}
-                  />
-                </>
-              )}
-
-              <Markdown text={article.body} />
-
-              {article && (
-                <div className="mt-5 alert alert-secondary">
-                  <div>
-                    Last edit by{" "}
-                    <a
-                      href=""
-                      style={{ textDecoration: "underline" }}
-                      onClick={(e) => handleAuthor(e, article.author)}
+                        saveArticle(args);
+                      }}
                     >
-                      {article.author}
-                    </a>
-                    <br />
-                    Edited on {getDate(article.timestamp)}
-                    <br />
-                    Edit versions: {article.edit_version + 1}
+                      Save Article{" "}
+                    </button>
+
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        State.update({
+                          editArticle: false,
+                          note: article.body,
+                        });
+                      }}
+                    >
+                      Cancel{" "}
+                    </button>
+                    <textarea
+                      id="textarea1"
+                      type="text"
+                      rows={10}
+                      className="form-control mt-2"
+                      value={state.note || article.body}
+                      onChange={(e) => {
+                        State.update({ ...state, note: e.target.value });
+                      }}
+                    />
+                  </>
+                )}
+
+                <Markdown text={article.body} />
+
+                {article && (
+                  <div className="mt-5 alert alert-secondary">
+                    <div>
+                      Last edit by{" "}
+                      <a
+                        href=""
+                        style={{ textDecoration: "underline" }}
+                        onClick={(e) => handleAuthor(e, article.author)}
+                      >
+                        {article.author}
+                      </a>
+                      <br />
+                      Edited on {getDate(article.timestamp)}
+                      <br />
+                      Edit versions: {article.edit_version + 1}
+                    </div>
+                    {buttons}
                   </div>
-                  {buttons}
-                </div>
-              )}
-            </div>
-          ) : state?.authorId ? (
-            <div>
-              <h4>Author: {state.authorId}</h4>
+                )}
+              </div>
+            ) : state?.authorId ? (
+              <div>
+                <h4>Author: {state.authorId}</h4>
+                <ul>
+                  {authorArticles &&
+                    authorArticles.articles &&
+                    authorArticles.articles.map((article, index) => (
+                      <li>
+                        <a
+                          href="#"
+                          onClick={(e) =>
+                            handleArticle(e, articles[index].articleId)
+                          }
+                        >
+                          #{index + 1} {article}
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ) : (
               <ul>
-                {authorArticles &&
-                  authorArticles.articles &&
-                  authorArticles.articles.map((article, index) => (
-                    <li>
+                {resultArticles &&
+                  resultArticles.map((article, index, articles) => (
+                    <li key={article}>
+                      #{" "}
                       <a
                         href="#"
-                        onClick={(e) =>
-                          handleArticle(
-                            e,
-                            articles[articles.length - index - 1]
-                          )
-                        }
+                        onClick={(e) => handleArticle(e, articles[index])}
                       >
-                        #{index + 1} {article}
+                        {index + 1} {article.articleId}
                       </a>
                     </li>
                   ))}
               </ul>
-            </div>
-          ) : (
-            <ul>
-              {resultArticles &&
-                resultArticles.map((article, index, articles) => (
-                  <li key={article}>
-                    #{" "}
-                    <a
-                      href="#"
-                      onClick={(e) => handleArticle(e, articles[index])}
-                    >
-                      {index + 1} {article.articleId}
-                    </a>
-                  </li>
-                ))}
-            </ul>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
 
       <div
