@@ -6,19 +6,21 @@ if (!accountId) {
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 if (profile === null) {
-  return "Loading ";
+  return "Loadig";
 }
 
 const test = Social.keys("*/articles", "final");
 const test2 = Social.keys("*/widget/JackWikiTest_CreateArticle", "final");
 
 console.log("test2", test2);
+
 const testArray = Object.keys(test);
 const resultArticles = [];
 
 // TODO make better checks for data
-testArray &&
-  testArray.forEach((item, index) => {
+!resultArticles.length &&
+  testArray &&
+  testArray.forEach((item, index, arr) => {
     const data = JSON.parse(Social.get(`${item}/articles`));
 
     if (Array.isArray(data)) resultArticles.push(...data);
@@ -44,7 +46,10 @@ const initialCreateArticleState = {
   errorBody: "",
 };
 
-State.init({ createArticle: initialCreateArticleState });
+State.init({
+  currentTab: "loadarticles",
+  createArticle: initialCreateArticleState,
+});
 
 const getArticleData = () => {
   const args = {
@@ -136,15 +141,20 @@ const getAuthors = () => {
   console.log("authors", authors);
   console.log("uniqAuthors", uniqAuthors);
 
-  return uniqAuthors.map((author) => (
-    <li>
-      <a
-        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
-      >
-        {author}
-      </a>
-    </li>
-  ));
+  return (
+    <ul>
+      <li>total authors: {uniqAuthors.length} </li>
+      {uniqAuthors.map((author) => (
+        <li>
+          <a
+            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+          >
+            {author}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
 };
 return (
   <>
@@ -162,8 +172,13 @@ return (
             aria-selected={i === 0}
             onClick={() => {
               const key = `load${id}`;
-              !state[key] && State.update({ [key]: true });
-              State.update({ articleId: undefined, authorId: undefined });
+
+              State.update({
+                articleId: undefined,
+                authorId: undefined,
+                currentTab: key,
+              });
+              console.log("state", state);
             }}
           >
             {title}
@@ -179,127 +194,25 @@ return (
         role="tabpanel"
         aria-labelledby="pills-main-tab"
       >
-        {state.loadauthors && (
+        {state.currentTab === "loadarticles" && (
           <div>
-            {state?.article ? (
-              <div>
-                <button
-                  onClick={() => {
-                    State.update({ article: undefined });
-                  }}
-                >
-                  {" "}
-                  Back to articles{" "}
-                </button>
-                <button
-                  onClick={() => {
-                    State.update({ editArticle: true });
-                  }}
-                >
-                  Edit Article{" "}
-                </button>
-
-                {state.editArticle && (
-                  <>
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      onClick={() => {
-                        if (!state.note || article.body === state.note) return;
-
-                        const args = {
-                          article_id: state?.articleId,
-                          body: state.note,
-                          navigation_id: null,
-                        };
-
-                        saveArticle(args);
-                      }}
-                    >
-                      Save Article{" "}
-                    </button>
-
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={() => {
-                        State.update({
-                          editArticle: false,
-                          note: article.body,
-                        });
-                      }}
-                    >
-                      Cancel{" "}
-                    </button>
-                    <textarea
-                      id="textarea1"
-                      type="text"
-                      rows={10}
-                      className="form-control mt-2"
-                      value={state.note || article.body}
-                      onChange={(e) => {
-                        State.update({ ...state, note: e.target.value });
-                      }}
-                    />
-                  </>
-                )}
-
-                <Markdown className="mt-2" text={state.article.body} />
-
-                <div className="mt-5 alert alert-secondary">
-                  <div>
-                    Last edit by{" "}
+            hello
+            {console.log("state", state)}
+            <ul>
+              {resultArticles &&
+                resultArticles.map((article, index, articles) => (
+                  <li key={article}>
+                    #{" "}
                     <a
-                      href=""
-                      style={{ textDecoration: "underline" }}
-                      onClick={(e) => handleAuthor(e, state.article.author)}
+                      href="#"
+                      onClick={(e) => handleArticle(e, articles[index])}
                     >
-                      {state.article.author}
+                      {index + 1} {article.articleId}
                     </a>
-                    <br />
-                    Edited on {getDate(state.article.timeLastEdit)}
-                    <br />
-                    Edit versions: {state.article.edit_version + 1}
-                  </div>
-                  {buttons}
-                </div>
-              </div>
-            ) : state?.authorId ? (
-              <div>
-                <h4>Author: {state.authorId}</h4>
-                <ul>
-                  {authorArticles &&
-                    authorArticles.articles &&
-                    authorArticles.articles.map((article, index) => (
-                      <li>
-                        <a
-                          href="#"
-                          onClick={(e) =>
-                            handleArticle(e, articles[index].articleId)
-                          }
-                        >
-                          #{index + 1} {article}
-                        </a>
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            ) : (
-              <ul>
-                {resultArticles &&
-                  resultArticles.map((article, index, articles) => (
-                    <li key={article}>
-                      #{" "}
-                      <a
-                        href="#"
-                        onClick={(e) => handleArticle(e, articles[index])}
-                      >
-                        {index + 1} {article.articleId}
-                      </a>
-                    </li>
-                  ))}
-              </ul>
-            )}
+                  </li>
+                ))}
+            </ul>
+            )
           </div>
         )}
       </div>
@@ -310,10 +223,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-authors-tab"
       >
-        {state.loadauthors && (
-          <div>
-            <ul>{resultArticles && getAuthors()}</ul>
-          </div>
+        {state.currentTab === "loadauthors" && (
+          <div>{resultArticles && getAuthors()}</div>
         )}
       </div>
 
@@ -323,7 +234,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-create-tab"
       >
-        {state.loadcreate && (
+        {state.currentTab === "loadcreate" && (
           <div>
             <h1 className="mb-3"> Create Article</h1>
             <div>
