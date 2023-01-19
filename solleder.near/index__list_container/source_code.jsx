@@ -7,16 +7,12 @@ const accountId = props.accountId;
 
 let events = [];
 if (accountId === undefined) {
-  console.log(111);
   events = Near.view(CONTRACT, "get_all_events");
 } else {
-  console.log(111);
   events = Near.view(CONTRACT, "get_all_events_by_account", {
     account_id: accountId,
   });
 }
-
-console.log("events", events);
 
 if (!events) {
   return "Loading!";
