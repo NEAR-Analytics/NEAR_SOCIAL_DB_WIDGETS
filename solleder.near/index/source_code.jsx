@@ -18,7 +18,7 @@ return (
   <div>
     <h1>Events</h1>
     <a
-      href={`#/${CONTRACT_OWNER}/widget/new_event?accountId=${accountId}`}
+      href={`#/${CONTRACT_OWNER}/widget/new?accountId=${accountId}`}
       className="TODO"
     >
       <Button>Create new Event</Button>
