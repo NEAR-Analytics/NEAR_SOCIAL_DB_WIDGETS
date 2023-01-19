@@ -1,4 +1,6 @@
-return (
+return props.post === undefined ? (
+  "Loading ..."
+) : (
   <>
     <a
       className="btn btn-outline-dark"
