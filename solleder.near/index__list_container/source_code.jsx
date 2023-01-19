@@ -17,4 +17,4 @@ if (!events) {
 }
 console.log(events);
 
-return <Widget src={`${CONTRACT_OWNER}/widgets/index__list`} events={events} />;
+return <Widget src={`${CONTRACT_OWNER}/widget/index__list`} events={events} />;
