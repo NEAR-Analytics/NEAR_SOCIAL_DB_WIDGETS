@@ -76,18 +76,22 @@ return (
           <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
             <div className="me-2 position-relative">
               {link ? (
-                <a
-                  className="text-truncate text-dark stretched-link"
-                  href={link}
-                >
+                <a className="text-truncate text-dark" href={link}>
                   {nameHeader}
                 </a>
               ) : (
                 nameHeader
               )}
               <div className="small text-truncate">
-                <i className="bi bi-person-fill text-secondary me-1"></i>
+                <i className="bi bi-person-fill text-secondary"></i>
                 {accountId}
+                <Widget
+                  src="mob.near/widget/CopyButton"
+                  props={{
+                    text: accountId,
+                    className: "btn btn-sm btn-outline-dark border-0",
+                  }}
+                />
                 <Widget
                   src="mob.near/widget/FollowsYouBadge"
                   props={{ accountId }}
