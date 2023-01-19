@@ -116,9 +116,10 @@ const pills = [
   { id: "create", title: "Create Article" },
 ];
 
-const handleArticle = (e, articleId) => {
+const handleArticle = (e, article) => {
   console.log("click article");
-  State.update({ ...state, articleId: articleId, authorId: undefined });
+  console.log("article:", article);
+  State.update({ ...state, article: article, authorId: undefined });
 };
 
 const handleAuthor = (e, authorId) => {
@@ -127,8 +128,8 @@ const handleAuthor = (e, authorId) => {
 };
 
 const getDate = (timestamp) => {
-  const newTimestamp = timestamp.slice(0, timestamp.length - 6);
-  const date = new Date(Number(newTimestamp));
+  console.log("timestamp", timestamp);
+  const date = new Date(Number(timestamp));
   return date.toDateString();
 };
 
@@ -171,11 +172,11 @@ return (
       >
         {state.loadauthors && (
           <div>
-            {state?.articleId ? (
+            {state?.article ? (
               <div>
                 <button
                   onClick={() => {
-                    State.update({ articleId: undefined });
+                    State.update({ article: undefined });
                   }}
                 >
                   {" "}
@@ -234,27 +235,25 @@ return (
                   </>
                 )}
 
-                <Markdown text={article.body} />
+                <Markdown className="mt-2" text={state.article.body} />
 
-                {article && (
-                  <div className="mt-5 alert alert-secondary">
-                    <div>
-                      Last edit by{" "}
-                      <a
-                        href=""
-                        style={{ textDecoration: "underline" }}
-                        onClick={(e) => handleAuthor(e, article.author)}
-                      >
-                        {article.author}
-                      </a>
-                      <br />
-                      Edited on {getDate(article.timestamp)}
-                      <br />
-                      Edit versions: {article.edit_version + 1}
-                    </div>
-                    {buttons}
+                <div className="mt-5 alert alert-secondary">
+                  <div>
+                    Last edit by{" "}
+                    <a
+                      href=""
+                      style={{ textDecoration: "underline" }}
+                      onClick={(e) => handleAuthor(e, state.article.author)}
+                    >
+                      {state.article.author}
+                    </a>
+                    <br />
+                    Edited on {getDate(state.article.timeLastEdit)}
+                    <br />
+                    Edit versions: {state.article.edit_version + 1}
                   </div>
-                )}
+                  {buttons}
+                </div>
               </div>
             ) : state?.authorId ? (
               <div>
