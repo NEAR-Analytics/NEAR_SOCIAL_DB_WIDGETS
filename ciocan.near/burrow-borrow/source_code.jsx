@@ -138,14 +138,16 @@ function getMaxAmount() {
   const volatiliyRatio = asset.config.volatility_ratio || 0;
   const price = asset.price?.usd || Infinity;
 
-  const available = B(adjustedCollateralSum)
-    .sub(B(adjustedBorrowedSum))
-    .mul(volatiliyRatio)
-    .div(MAX_RATIO)
-    .div(price)
-    .mul(95)
-    .div(100)
-    .toFixed(4);
+  const available = Number(
+    B(adjustedCollateralSum)
+      .sub(B(adjustedBorrowedSum))
+      .mul(volatiliyRatio)
+      .div(MAX_RATIO)
+      .div(price)
+      .mul(95)
+      .div(100)
+      .toFixed(4)
+  );
   return [available, (asset.price.usd * available).toFixed(2)];
 }
 
@@ -186,7 +188,17 @@ const handleAmount = (e) => {
 };
 
 const handleBorrow = () => {
-  console.log("handleBorrow");
+  if (!selectedTokenId || !amount || hasError) return;
+  const asset = assets.find((a) => a.token_id === selectedTokenId);
+  const { metadata, config } = asset;
+  console.log("asset", asset);
+  console.log("metadata", metadata);
+  console.log("config", config);
+
+  if (amount > available) {
+    State.update({ selectedTokenId, amount, hasError: true });
+    return;
+  }
 };
 
 return (
@@ -205,7 +217,7 @@ return (
       <input type="number" value={amount} onChange={handleAmount} />
       {hasError && (
         <p class="alert alert-danger" role="alert">
-          Amount greater than balance
+          Amount greater than available
         </p>
       )}
       <button onClick={handleBorrow}>Borrow</button>
