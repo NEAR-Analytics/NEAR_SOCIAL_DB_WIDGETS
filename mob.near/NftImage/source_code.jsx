@@ -27,15 +27,17 @@ if (contractId !== state.contractId || tokenId !== tokenId) {
   });
 }
 
-const nftMetadata = Near.view(contractId, "nft_metadata");
-const nftToken = Near.view(contractId, "nft_token", {
-  token_id: tokenId,
-});
+const nftMetadata =
+  nft.contractMetadata ?? Near.view(contractId, "nft_metadata");
+const tokenMetadata =
+  nft.tokenMetadata ??
+  Near.view(contractId, "nft_token", {
+    token_id: tokenId,
+  }).metadata;
 
 let imageUrl = null;
 
-if (nftMetadata && nftToken) {
-  let tokenMetadata = nftToken.metadata;
+if (nftMetadata && tokenMetadata) {
   let tokenMedia = tokenMetadata.media || "";
 
   imageUrl =
