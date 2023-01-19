@@ -63,7 +63,7 @@ const getArticleData = () => {
     lastEditor: accountId,
     timeLastEdit: Date.now(),
     timeCreate: Date.now(),
-    body: state.articleBody,
+    body: state.createArticle.articleBody,
     version: 0,
     navigation_id: null,
   };
@@ -72,8 +72,11 @@ const getArticleData = () => {
 
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
+  console.log("CLICK SAVE");
+  console.log("state", state);
   State.update({ ...state, createArticle: { errorId: "", errorBody: "" } });
   if (state.createArticle.articleId && state.createArticle.articleBody) {
+    console.log("1");
     // TODO check it automaticle
     const isArticleIdDublicated = false;
 
@@ -85,14 +88,23 @@ const saveHandler = (e) => {
         wikiTest: { articles: { [newArticle.articleId]: { newArticle } } },
       });
     } else {
-      State.update({ ...state, errorId: errTextDublicatedId });
+      State.update({
+        ...state,
+        createArticle: { ...state.createArticle, errorId: errTextDublicatedId },
+      });
     }
   } else {
     if (!state.articleId) {
-      State.update({ ...state, errorId: errTextNoId });
+      State.update({
+        ...state,
+        createArticle: { ...state.createArticle, errorId: errTextNoId },
+      });
     }
-    if (!state.articleBody) {
-      State.update({ ...state, errorBody: errTextNoBody });
+    if (!state.createArticle.articleBody) {
+      State.update({
+        ...state,
+        createArticle: { ...state.createArticle, errorBody: errTextNoBody },
+      });
     }
   }
 };
@@ -288,7 +300,7 @@ return (
                 <textarea
                   id="textareaArticleBody"
                   type="text"
-                  value={state.articleBody}
+                  value={state.createArticle.articleBody}
                   rows={10}
                   className="form-control mt-2"
                   onChange={(e) => {
@@ -298,7 +310,7 @@ return (
               </div>
               <div class="pt-3">
                 Article preview:
-                <Markdown text={state.articleBody} />
+                <Markdown text={state.createArticle.articleBody} />
               </div>
             </div>
           </div>
