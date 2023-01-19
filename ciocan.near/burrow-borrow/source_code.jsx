@@ -119,9 +119,10 @@ function getAdjustedSum(type) {
     .reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
 }
 
+const adjustedCollateralSum = getAdjustedSum("collateral");
+const adjustedBorrowedSum = getAdjustedSum("borrowed");
+
 function getHealthFactor() {
-  const adjustedCollateralSum = getAdjustedSum("collateral");
-  const adjustedBorrowedSum = getAdjustedSum("borrowed");
   const healthFactor = B(adjustedCollateralSum)
     .div(B(adjustedBorrowedSum))
     .mul(100)
@@ -130,6 +131,25 @@ function getHealthFactor() {
 }
 
 const healthFactor = getHealthFactor();
+
+function getMaxAmount() {
+  if (!selectedTokenId) return 0;
+  const asset = assets.find((a) => a.token_id === selectedTokenId);
+  const volatiliyRatio = asset.config.volatility_ratio || 0;
+  const price = asset.price?.usd || Infinity;
+
+  const available = B(adjustedCollateralSum)
+    .sub(B(adjustedBorrowedSum))
+    .mul(volatiliyRatio)
+    .div(MAX_RATIO)
+    .div(price)
+    .mul(95)
+    .div(100)
+    .toFixed(4);
+  return [available, (asset.price.usd * available).toFixed(2)];
+}
+
+const [available, availableUSD] = getMaxAmount();
 
 const listAssets = assets
   ?.filter((a) => a.config.can_borrow)
@@ -177,6 +197,11 @@ return (
         <option value="">Borrow an asset</option>
         {listAssets}
       </select>
+      {selectedTokenId && (
+        <span>
+          Available: {available} (${availableUSD})
+        </span>
+      )}
       <input type="number" value={amount} onChange={handleAmount} />
       {hasError && (
         <p class="alert alert-danger" role="alert">
