@@ -74,11 +74,8 @@ const getArticleData = () => {
 const saveHandler = (e) => {
   State.update({ ...state, createArticle: { errorId: "", errorBody: "" } });
   if (state.createArticle.articleId && state.createArticle.articleBody) {
-    const isArticleIdDublicated =
-      articles &&
-      articles.some(
-        (articleId) => articleId.toLowerCase() === state.articleId.toLowerCase()
-      );
+    // TODO check it automaticle
+    const isArticleIdDublicated = false;
 
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
