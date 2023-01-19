@@ -10,6 +10,9 @@ if (profile === null) {
 }
 
 const test = Social.keys("*/articles", "final");
+const test2 = Social.keys("*/widget/JackWikiTest_CreateArticle", "final");
+
+console.log("test2", test2);
 const testArray = Object.keys(test);
 const resultArticles = [];
 
@@ -34,18 +37,18 @@ const errTextNoBody = "ERROR: no article Body",
   errTextNoId = "ERROR: no article Id",
   errTextDublicatedId = "ERROR: there is article with such name";
 
-const initialState = {
+const initialCreateArticleState = {
   articleId: "",
   articleBody: initialBody,
   errorId: "",
   errorBody: "",
 };
 
-State.init(initialState);
+State.init({ createArticle: initialCreateArticleState });
 
 const getArticleData = () => {
   const args = {
-    articleId: state.articleId,
+    articleId: state.createArticle.articleId,
     author: accountId,
     lastEditor: accountId,
     timeLastEdit: Date.now(),
@@ -59,12 +62,8 @@ const getArticleData = () => {
 
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
-  State.update({ ...state, errorId: "", errorBody: "" });
-  if (state.articleId && state.articleBody) {
-    const articles = Near.view("testwiki.near", "get_article_ids_paged", {
-      from_index: 0,
-      limit: 250,
-    });
+  State.update({ ...state, createArticle: { errorId: "", errorBody: "" } });
+  if (state.createArticle.articleId && state.createArticle.articleBody) {
     const isArticleIdDublicated =
       articles &&
       articles.some(
@@ -73,16 +72,7 @@ const saveHandler = (e) => {
 
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
-      const newArticle = {
-        articleId: state.articleId,
-        author: accountId,
-        lastEditor: accountId,
-        timeLastEdit: Date.now(),
-        timeCreate: Date.now(),
-        body: state.articleBody,
-        version: 0,
-        navigation_id: null,
-      };
+      const newArticle = getArticleData();
 
       Social.set({ articles: JSON.stringify([...state.articles, newArticle]) });
     } else {
@@ -101,10 +91,13 @@ const saveHandler = (e) => {
 // === CANCEL HANDLER ===
 const cancelHandler = () => {
   State.update({
-    articleId: "",
-    articleBody: "",
-    errorId: null,
-    errorBody: null,
+    ...state,
+    createArticle: {
+      articleId: "",
+      articleBody: "",
+      errorId: null,
+      errorBody: null,
+    },
   });
 };
 
@@ -330,7 +323,7 @@ return (
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => cancelHandler()}
+                  onClick={cancelHandler}
                 >
                   Cancel / Clear
                 </button>
