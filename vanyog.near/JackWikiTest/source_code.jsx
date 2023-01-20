@@ -16,6 +16,7 @@ const test2 = Social.get("vanyog.near/articles");
 const test3 = Near.view("social.near", "get", {
   keys: ["vanyog.near/**"],
 });
+
 console.log("test3", test3);
 console.log("test2", test2);
 
@@ -74,7 +75,10 @@ const getArticleData = () => {
 const saveHandler = (e) => {
   console.log("CLICK SAVE");
   console.log("state", state);
-  State.update({ ...state, createArticle: { errorId: "", errorBody: "" } });
+  State.update({
+    ...state,
+    createArticle: { ...createArticle, errorId: "", errorBody: "" },
+  });
   if (state.createArticle.articleId && state.createArticle.articleBody) {
     console.log("1");
     // TODO check it automaticle
@@ -85,7 +89,7 @@ const saveHandler = (e) => {
       const newArticle = getArticleData();
 
       Social.set({
-        wikiTest: { articles: { [newArticle.articleId]: { newArticle } } },
+        wikiTest: { articles: { [newArticle.articleId]: { ...newArticle } } },
       });
     } else {
       State.update({
@@ -94,7 +98,7 @@ const saveHandler = (e) => {
       });
     }
   } else {
-    if (!state.articleId) {
+    if (!state.createArticle.articleId) {
       State.update({
         ...state,
         createArticle: { ...state.createArticle, errorId: errTextNoId },
