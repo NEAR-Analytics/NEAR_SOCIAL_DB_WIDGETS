@@ -29,7 +29,7 @@ const resultArticles = [];
       keys: [`${item}/wikiTest/articles/**`],
     });
     //   console.log("data", data[item].wikiTest.articles);
-    const articles = Object.keys(data[item].wikiTest.articles);
+    const articles = data && Object.keys(data[item].wikiTest.articles);
     const array = articles.map((key) => {
       return data[item].wikiTest.articles[key];
     });
