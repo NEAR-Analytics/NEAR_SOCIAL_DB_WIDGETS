@@ -18,6 +18,12 @@ const test3 = Near.view("social.near", "get", {
 });
 
 console.log("test3", test3);
+
+const test4 = Near.view("social.near", "get", {
+  keys: ["vanjule.near/**"],
+});
+
+console.log("test4", test4);
 const testArray = Object.keys(test);
 const resultArticles = [];
 
@@ -29,15 +35,11 @@ const resultArticles = [];
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-    console.log("data", data);
     // console.log("data", data[item].wikiTest.articles);
     const articles = Object.keys(data[item].wikiTest.articles);
-    console.log("articles", articles);
     const array = articles.map((key) => {
-      console.log("key", data[item].wikiTest.articles[key]);
       return data[item].wikiTest.articles[key];
     });
-    console.log("array", array);
     resultArticles.push(...array);
   });
 
@@ -143,7 +145,6 @@ const pills = [
 
 const handleArticle = (e, article) => {
   State.update({ ...state, article: article, authorId: undefined });
-  console.log("newState", { ...state, article: article, authorId: undefined });
 };
 
 const handleAuthor = (e, authorId) => {
@@ -158,12 +159,27 @@ const getDate = (timestamp) => {
 };
 
 const saveArticle = (args) => {
-  console.log("save article");
+  console.log("SAVE ARTICLE", state);
+  const newArticleData = {
+    ...state.article,
+    body: state.note,
+    lastEditor: accountId,
+    timeLastEdit: Date.now(),
+    version: Number(state.article.version) + 1,
+  };
+  console.log("newArticleData", newArticleData);
+
+  Social.set({
+    wikiTest: {
+      articles: { [state.article.articleId]: { ...newArticleData } },
+    },
+  });
 };
 
 const getAuthors = () => {
   const authors = Array.from(resultArticles, ({ author }) => author);
   const uniqAuthors = Array.from(new Set(authors));
+
   console.log("authors", authors);
   console.log("uniqAuthors", uniqAuthors);
 
@@ -203,6 +219,8 @@ return (
                 ...state,
                 article: undefined,
                 authorId: undefined,
+                note: undefined,
+                editArticle: false,
                 currentTab: key,
               });
               console.log("state", state);
@@ -230,7 +248,8 @@ return (
                     <li key={article.articleId}>
                       #{" "}
                       <a href="" onClick={(e) => handleArticle(e, article)}>
-                        {index + 1} {article.articleId}
+                        {index + 1} {article.articleId}{" "}
+                        <small>(author: {article.author})</small>
                       </a>
                     </li>
                   ))}
@@ -239,9 +258,15 @@ return (
 
             {state.article && (
               <div>
+                <h4>Article: {state.article.articleId}</h4>
                 <button
                   onClick={() => {
-                    State.update({ ...state, article: undefined });
+                    State.update({
+                      ...state,
+                      note: undefined,
+                      article: undefined,
+                      editArticle: false,
+                    });
                   }}
                 >
                   {" "}
@@ -254,10 +279,57 @@ return (
                 >
                   Edit Article{" "}
                 </button>
-                <Markdown text={state.article.body} />
+                {state.editArticle && (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => {
+                        if (!state.note || article.body === state.note) return;
+
+                        const args = {
+                          article_id: state?.articleId,
+                          body: state.note,
+                          navigation_id: null,
+                        };
+
+                        saveArticle(args);
+                      }}
+                    >
+                      Save Article{" "}
+                    </button>
+
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        State.update({
+                          ...state,
+                          editArticle: false,
+                          note: undefined,
+                        });
+                      }}
+                    >
+                      Cancel{" "}
+                    </button>
+
+                    <textarea
+                      id="textarea1"
+                      type="text"
+                      rows={10}
+                      className="form-control mt-2"
+                      value={state.note || state.article.body}
+                      onChange={(e) => {
+                        console.log("newState", state);
+                        State.update({ ...state, note: e.target.value });
+                      }}
+                    />
+                  </>
+                )}
+                <Markdown text={state.note || state.article.body} />
                 <div className="mt-5 alert alert-secondary">
                   <div>
-                    Last edit by{" "}
+                    Created by{" "}
                     <a
                       href=""
                       style={{ textDecoration: "underline" }}
@@ -266,13 +338,21 @@ return (
                       {state.article.author}
                     </a>
                     <br />
+                    Last edit by{" "}
+                    <a
+                      href=""
+                      style={{ textDecoration: "underline" }}
+                      onClick={(e) => handleAuthor(e, article.lastEditor)}
+                    >
+                      {state.article.lastEditor}
+                    </a>
+                    <br />
                     Edited on {getDate(state.article.timeLastEdit)}
                     <br />
                     Edit versions: {state.article.version}
                   </div>
                   {buttons}
                 </div>
-                Article: {state.article.articleId}
               </div>
             )}
           </div>
