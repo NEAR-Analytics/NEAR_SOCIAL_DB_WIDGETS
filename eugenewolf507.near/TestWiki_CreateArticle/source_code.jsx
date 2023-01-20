@@ -1,3 +1,6 @@
+// =========  =========
+const accountId = props.accountId ?? context.accountId;
+
 const initialBody = `# Markdown heading level 1
 
 This is a markdown paragraph. So, here are a few examples of markdown syntax and what it looks like.
@@ -19,10 +22,6 @@ const initialState = {
 
 State.init(initialState);
 
-const saveArticle = (args) => {
-  Near.call("testwiki.near", "post_article", args, "30000000000000");
-};
-
 // === SAVE HANDLER ===
 const saveHandler = () => {
   State.update({ ...state, errorId: "", errorBody: "" });
@@ -39,13 +38,15 @@ const saveHandler = () => {
       : false;
     if (!isArticleIdDublicated) {
       console.log("SAVE ARTICLE");
-      const args = {
-        article_id: state.articleId,
-        body: state.articleBody,
-        navigation_id: null,
-      };
-
-      saveArticle(args);
+      Social.set({
+        articlesPersonal2: {
+          [state.articleId]: {
+            author: accountId,
+            body: state.articleBody,
+            navigation_id: null,
+          },
+        },
+      });
     } else {
       State.update({ ...state, errorId: errTextDublicatedId });
     }
