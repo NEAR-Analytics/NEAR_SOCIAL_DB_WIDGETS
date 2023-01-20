@@ -35,16 +35,22 @@ const resultArticles = [];
     });
     resultArticles.push(...array);
   });
-console.log("resultArticles ", resultArticles);
-const sortResultArticles = resultArticles.sort((a, b) => {
-  console.log("sort a", Number(a.timeLastEdit));
-  console.log("sort b", Number(b.timeLastEdit));
-  const result = Number(a.timeLastEdit) - Number(b.timeLastEdit);
-  console.log("result sort", result);
-  return Number(a.timeLastEdit) - Number(b.timeLastEdit);
+resultArticles.length &&
+  resultArticles.sort((a, b) => {
+    return Number(b.timeLastEdit) - Number(a.timeLastEdit);
+  });
+
+const filteredArticles = [];
+resultArticles.forEach((article, index) => {
+  if (
+    !filteredArticles.some(({ articleId }) => articleId === article.articleId)
+  ) {
+    filteredArticles.push(article);
+  }
 });
+
 console.log("resultArticles ", resultArticles);
-console.log("sortResultArticles", sortResultArticles);
+console.log("filteredArticles", filteredArticles);
 
 const initialBody = `# Markdown heading level 1
 
@@ -178,8 +184,6 @@ const saveArticle = (args) => {
 };
 
 const getDateLastEdit = (timestamp) => {
-  console.log("timestamp", timestamp);
-  console.log("timestampData", new Date(Number(timestamp)));
   const date = new Date(Number(timestamp));
   const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
   return dateString;
@@ -255,7 +259,7 @@ return (
             {!state.article && (
               <ul>
                 {resultArticles &&
-                  resultArticles.map((article, index) => (
+                  filteredArticles.map((article, index) => (
                     <li key={article.articleId}>
                       #{" "}
                       <a href="" onClick={(e) => handleArticle(e, article)}>
