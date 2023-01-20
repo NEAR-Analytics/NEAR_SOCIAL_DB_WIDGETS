@@ -32,14 +32,27 @@ if (!block) {
 }
 
 const timeMs = parseFloat(block.header.timestamp_nanosec) / 1e6;
+const date = new Date(timeMs);
+const title = `${date.toLocaleTimeString([], {
+  hour: "2-digit",
+  minute: "2-digit",
+})} ${date.toLocaleDateString([], {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+})}`;
 
 const timeAgo = (diffSec) =>
   diffSec < 60000
-    ? `${(diffSec / 1000) | 0}s ago`
+    ? `${(diffSec / 1000) | 0}s`
     : diffSec < 3600000
-    ? `${(diffSec / 60000) | 0}m ago`
+    ? `${(diffSec / 60000) | 0}m`
     : diffSec < 86400000
-    ? `${(diffSec / 3600000) | 0}h ago`
-    : `${(diffSec / 86400000) | 0}d ago`;
+    ? `${(diffSec / 3600000) | 0}h`
+    : `${(diffSec / 86400000) | 0}d`;
 
-return timeAgo(Date.now() - timeMs);
+return (
+  <span className={props.className} title={title}>
+    {timeAgo(Date.now() - timeMs)}
+  </span>
+);
