@@ -33,6 +33,7 @@ const resultArticles = [];
     const articles = Object.keys(data[item].wikiTest.articles);
     resultArticles.push(...articles);
   });
+
 console.log("resultArticles", resultArticles);
 
 const initialBody = `# Markdown heading level 1
@@ -217,14 +218,11 @@ return (
           <div>
             <ul>
               {resultArticles &&
-                resultArticles.map((article, index, articles) => (
-                  <li key={article}>
+                resultArticles.map((articleId, index) => (
+                  <li key={articleId}>
                     #{" "}
-                    <a
-                      href="#"
-                      onClick={(e) => handleArticle(e, articles[index])}
-                    >
-                      {index + 1} {article.articleId}
+                    <a href="#" onClick={(e) => handleArticle(e, articleId)}>
+                      {index + 1} {articleId}
                     </a>
                   </li>
                 ))}
