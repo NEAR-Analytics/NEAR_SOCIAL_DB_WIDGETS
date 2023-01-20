@@ -27,14 +27,16 @@ const resultArticles = [];
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-    console.log("data", data && data[item].wikiTest.articles);
-    const articles = data && Object.keys(data[item].wikiTest.articles);
-    const array =
-      data &&
-      articles.map((key) => {
-        return data[item].wikiTest.articles[key];
-      });
-    resultArticles.push(...array);
+    if (data) {
+      console.log("data", data && data[item].wikiTest.articles);
+      const articles = data && Object.keys(data[item].wikiTest.articles);
+      const array =
+        data &&
+        articles.map((key) => {
+          return data[item].wikiTest.articles[key];
+        });
+      resultArticles.push(...array);
+    }
   });
 
 resultArticles.length &&
