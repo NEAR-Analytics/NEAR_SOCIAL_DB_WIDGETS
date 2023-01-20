@@ -14,8 +14,7 @@ let UpdateIndexerCode = () => {
       name: indexer_name,
       code: indexer_code,
     },
-    gas,
-    deposit
+    gas
   );
 };
 
