@@ -51,6 +51,15 @@ const onRecentClick = () => {
   });
 };
 
+const onRecurrentClick = () => {
+  State.update({
+    recency: null,
+    label: "recurrent",
+    selectedBoardId: null,
+    selectedPost: null,
+  });
+};
+
 const onLabelSelected = (selectedLabels) => {
   if (selectedLabels.length == 1) {
     console.log("Selected label %s", selectedLabels[0].name);
@@ -266,11 +275,17 @@ const navbar = (
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" onClick={onRecurrentClick} role="button">
+              <i class="bi-repeat"> </i> Recurrent
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" onClick={onBoardsClick} role="button">
               <i class="bi-kanban"> </i>
               Boards
             </a>
           </li>
+
           <li class="nav-item active ms-2">
             <Typeahead
               clearButton
