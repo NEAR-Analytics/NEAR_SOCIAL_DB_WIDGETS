@@ -26,18 +26,42 @@ return (
           />
         </a>
       </div>
-      <small className="text-nowrap text-muted">
-        {blockHeight === "now" ? (
-          "now"
-        ) : (
+      <span className="text-nowrap text-muted">
+        <small>
+          {blockHeight === "now" ? (
+            "now"
+          ) : (
+            <a
+              className="text-muted"
+              href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+            >
+              <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+            </a>
+          )}
+        </small>
+        <span>
           <a
-            className="text-muted"
-            href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+            href="javascript:void"
+            className="link-secondary ms-2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+            <i className="fs-6 bi bi-three-dots" />
           </a>
-        )}
-      </small>
+          <ul className="dropdown-menu">
+            <li>
+              <Widget
+                src="mob.near/widget/CopyButton"
+                props={{
+                  text: `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`,
+                  className: "btn btn-outline-dark dropdown-item",
+                  label: "Copy link to post",
+                }}
+              />
+            </li>
+          </ul>
+        </span>
+      </span>
     </div>
     <div className="mt-3 text-break">
       {content ? (
