@@ -10,21 +10,14 @@ if (profile === null) {
 }
 
 const test = Social.keys("*/wikiTest/articles", "final");
-
 console.log("test ", test);
 
-const test3 = Near.view("social.near", "get", {
-  keys: ["vanyog.near/**"],
-});
-
-console.log("test3", test3);
-
 const test4 = Near.view("social.near", "get", {
-  keys: ["vanjule.near/**"],
+  keys: ["vanjule.near/**", "vanyog.near/**"],
 });
-
 console.log("test4", test4);
-const testArray = Object.keys(test);
+
+const testArray = test && Object.keys(test);
 const resultArticles = [];
 
 // TODO make better checks for  data
@@ -35,15 +28,23 @@ const resultArticles = [];
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-    // console.log("data", data[item].wikiTest.articles);
+    //   console.log("data", data[item].wikiTest.articles);
     const articles = Object.keys(data[item].wikiTest.articles);
     const array = articles.map((key) => {
       return data[item].wikiTest.articles[key];
     });
     resultArticles.push(...array);
   });
-
 console.log("resultArticles ", resultArticles);
+const sortResultArticles = resultArticles.sort((a, b) => {
+  console.log("sort a", Number(a.timeLastEdit));
+  console.log("sort b", Number(b.timeLastEdit));
+  const result = Number(a.timeLastEdit) - Number(b.timeLastEdit);
+  console.log("result sort", result);
+  return Number(a.timeLastEdit) - Number(b.timeLastEdit);
+});
+console.log("resultArticles ", resultArticles);
+console.log("sortResultArticles", sortResultArticles);
 
 const initialBody = `# Markdown heading level 1
 
@@ -176,6 +177,14 @@ const saveArticle = (args) => {
   });
 };
 
+const getDateLastEdit = (timestamp) => {
+  console.log("timestamp", timestamp);
+  console.log("timestampData", new Date(Number(timestamp)));
+  const date = new Date(Number(timestamp));
+  const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
+  return dateString;
+};
+
 const getAuthors = () => {
   const authors = Array.from(resultArticles, ({ author }) => author);
   const uniqAuthors = Array.from(new Set(authors));
@@ -251,7 +260,10 @@ return (
                       #{" "}
                       <a href="" onClick={(e) => handleArticle(e, article)}>
                         {index + 1} {article.articleId}{" "}
-                        <small>(author: {article.author})</small>
+                        <small>
+                          (author: {article.author}
+                          {getDateLastEdit(article.timeLastEdit)})
+                        </small>
                       </a>
                     </li>
                   ))}
