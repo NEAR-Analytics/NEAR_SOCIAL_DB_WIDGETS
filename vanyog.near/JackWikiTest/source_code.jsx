@@ -25,9 +25,13 @@ const resultArticles = [];
 !resultArticles.length &&
   testArray &&
   testArray.forEach((item, index, arr) => {
-    const data = JSON.parse(Social.get(`${item}/articles`));
-
-    if (Array.isArray(data)) resultArticles.push(...data);
+    console.log("item", item);
+    const data = Near.view("social.near", "get", {
+      keys: [`${item}/**`],
+    });
+    console.log("data", data[item].wikiTest.articles);
+    const articles = Object.keys(data[item].wikiTest.articles);
+    resultArticles.push(...articles);
   });
 console.log("resultArticles", resultArticles);
 
