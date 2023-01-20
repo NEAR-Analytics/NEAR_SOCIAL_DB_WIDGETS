@@ -25,13 +25,20 @@ const resultArticles = [];
 !resultArticles.length &&
   testArray &&
   testArray.forEach((item, index, arr) => {
-    console.log("item", item);
+    // console.log("item", item);
     const data = Near.view("social.near", "get", {
-      keys: [`${item}/**`],
+      keys: [`${item}/wikiTest/articles/**`],
     });
-    console.log("data", data[item].wikiTest.articles);
+    console.log("data", data);
+    // console.log("data", data[item].wikiTest.articles);
     const articles = Object.keys(data[item].wikiTest.articles);
-    resultArticles.push(...articles);
+    console.log("articles", articles);
+    const array = articles.map((key) => {
+      console.log("key", data[item].wikiTest.articles[key]);
+      return data[item].wikiTest.articles[key];
+    });
+    console.log("array", array);
+    resultArticles.push(...array);
   });
 
 console.log("resultArticles", resultArticles);
@@ -135,8 +142,8 @@ const pills = [
 ];
 
 const handleArticle = (e, article) => {
-  console.log("article:", article);
   State.update({ ...state, article: article, authorId: undefined });
+  console.log("newState", { ...state, article: article, authorId: undefined });
 };
 
 const handleAuthor = (e, authorId) => {
@@ -216,18 +223,58 @@ return (
       >
         {state.currentTab === "loadarticles" && (
           <div>
-            <ul>
-              {resultArticles &&
-                resultArticles.map((articleId, index) => (
-                  <li key={articleId}>
-                    #{" "}
-                    <a href="#" onClick={(e) => handleArticle(e, articleId)}>
-                      {index + 1} {articleId}
+            {!state.article && (
+              <ul>
+                {resultArticles &&
+                  resultArticles.map((article, index) => (
+                    <li key={article.articleId}>
+                      #{" "}
+                      <a href="" onClick={(e) => handleArticle(e, article)}>
+                        {index + 1} {article.articleId}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            )}
+
+            {state.article && (
+              <div>
+                <button
+                  onClick={() => {
+                    State.update({ ...state, article: undefined });
+                  }}
+                >
+                  {" "}
+                  Back to articles{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    State.update({ ...state, editArticle: true });
+                  }}
+                >
+                  Edit Article{" "}
+                </button>
+                <Markdown text={state.article.body} />
+                <div className="mt-5 alert alert-secondary">
+                  <div>
+                    Last edit by{" "}
+                    <a
+                      href=""
+                      style={{ textDecoration: "underline" }}
+                      onClick={(e) => handleAuthor(e, article.author)}
+                    >
+                      {state.article.author}
                     </a>
-                  </li>
-                ))}
-            </ul>
-            )
+                    <br />
+                    Edited on {getDate(state.article.timeLastEdit)}
+                    <br />
+                    Edit versions: {state.article.version}
+                  </div>
+                  {buttons}
+                </div>
+                Article: {state.article.articleId}
+              </div>
+            )}
           </div>
         )}
       </div>
