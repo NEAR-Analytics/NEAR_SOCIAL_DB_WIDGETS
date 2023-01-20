@@ -3,9 +3,6 @@ let contractId = "near-indexer.near";
 let indexer_name = props.indexer_name;
 let indexer_code = props.indexer_code;
 
-const YoctoToNear = (amountYocto) =>
-  new Big(amountYocto).div(new Big(10).pow(24)).toString();
-
 let UpdateIndexerCode = () => {
   const gas = 200000000000000;
   const deposit = new Big(MIN_DEPOSIT).toFixed(0);
