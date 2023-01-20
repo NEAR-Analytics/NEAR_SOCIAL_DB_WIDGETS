@@ -15,7 +15,6 @@ console.log("test ", test);
 const test4 = Near.view("social.near", "get", {
   keys: ["vanjule.near/**", "vanyog.near/**"],
 });
-console.log("test4", test4);
 
 const testArray = test && Object.keys(test);
 const resultArticles = [];
@@ -28,7 +27,7 @@ const resultArticles = [];
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-    console.log("data", data[item].wikiTest.articles);
+    console.log("data", data && data[item].wikiTest.articles);
     const articles = data && Object.keys(data[item].wikiTest.articles);
     const array =
       data &&
