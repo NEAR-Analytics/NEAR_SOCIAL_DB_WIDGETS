@@ -24,15 +24,17 @@ const resultArticles = [];
 !resultArticles.length &&
   testArray &&
   testArray.forEach((item, index, arr) => {
-    // console.log("item", item);
+    console.log("item", item);
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-    //   console.log("data", data[item].wikiTest.articles);
+    console.log("data", data[item].wikiTest.articles);
     const articles = data && Object.keys(data[item].wikiTest.articles);
-    const array = articles.map((key) => {
-      return data[item].wikiTest.articles[key];
-    });
+    const array =
+      data &&
+      articles.map((key) => {
+        return data[item].wikiTest.articles[key];
+      });
     resultArticles.push(...array);
   });
 
