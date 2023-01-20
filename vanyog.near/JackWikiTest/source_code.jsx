@@ -77,7 +77,7 @@ const saveHandler = (e) => {
   console.log("state", state);
   State.update({
     ...state,
-    createArticle: { ...createArticle, errorId: "", errorBody: "" },
+    createArticle: { ...state.createArticle, errorId: "", errorBody: "" },
   });
   if (state.createArticle.articleId && state.createArticle.articleBody) {
     console.log("1");
@@ -142,7 +142,7 @@ const handleArticle = (e, article) => {
 
 const handleAuthor = (e, authorId) => {
   console.log("click author");
-  State.update({ ...state, articleId: undefined, authorId });
+  State.update({ ...state, article: undefined, authorId });
 };
 
 const getDate = (timestamp) => {
@@ -194,7 +194,8 @@ return (
               const key = `load${id}`;
 
               State.update({
-                articleId: undefined,
+                ...state,
+                article: undefined,
                 authorId: undefined,
                 currentTab: key,
               });
@@ -285,11 +286,14 @@ return (
                 <input
                   className="form-control mt-2"
                   id="inputArticleId"
-                  value={state.articleId}
+                  value={state.createArticle.articleId}
                   onChange={(e) => {
                     State.update({
                       ...state,
-                      articleId: e.target.value.replace(/\s+/g, ""),
+                      createArticle: {
+                        ...state.createArticle,
+                        articleId: e.target.value.replace(/\s+/g, ""),
+                      },
                     });
                   }}
                 />
@@ -308,7 +312,13 @@ return (
                   rows={10}
                   className="form-control mt-2"
                   onChange={(e) => {
-                    State.update({ ...state, articleBody: e.target.value });
+                    State.update({
+                      ...state,
+                      createArticle: {
+                        ...state.createArticle,
+                        articleBody: e.target.value,
+                      },
+                    });
                   }}
                 />
               </div>
