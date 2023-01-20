@@ -226,7 +226,8 @@ const handleBorrow = () => {
   const borrowTransaction = {
     contractName: config.oracle_account_id,
     methodName: "oracle_call",
-    gas: B(100000000000000).toFixed(),
+    deposit: B("1").toFixed(),
+    gas: expandToken(300, 12),
     args: {
       receiver_id: BURROW_CONTRACT,
       msg: JSON.stringify(borrowTemplate),
@@ -259,6 +260,7 @@ const handleBorrow = () => {
     transactions.push({
       contractName: selectedTokenId,
       methodName: "near_withdraw",
+      deposit: B("1").toFixed(),
       args: {
         amount: expandedAmount.sub(10).toFixed(0),
       },
