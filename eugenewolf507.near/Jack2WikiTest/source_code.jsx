@@ -10,12 +10,12 @@ if (profile === null) {
 }
 
 const test = Social.keys("*/wikiTest/articles", "final");
-console.log("test ", test);
+// console.log("test ", test);
 
 const test4 = Near.view("social.near", "get", {
   keys: ["vanjule.near/**", "vanyog.near/**"],
 });
-console.log("test4", test4);
+// console.log("test4", test4);
 
 const testArray = test && Object.keys(test);
 const resultArticles = [];
@@ -24,11 +24,11 @@ const resultArticles = [];
 !resultArticles.length &&
   testArray &&
   testArray.forEach((item, index, arr) => {
-    console.log("item", item);
+    // console.log("item", item);
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-    console.log("data", data[item].wikiTest.articles);
+    // console.log("data", data[item].wikiTest.articles);
     const articles = data && Object.keys(data[item].wikiTest.articles);
     const array =
       data &&
@@ -52,8 +52,8 @@ resultArticles.length &&
     }
   });
 
-console.log("resultArticles  ", resultArticles);
-console.log("filteredArticles", filteredArticles);
+// console.log("resultArticles  ", resultArticles);
+// console.log("filteredArticles", filteredArticles);
 
 const initialBody = `# Markdown heading level 1
 
@@ -104,7 +104,7 @@ const saveHandler = (e) => {
     const isArticleIdDublicated = false;
 
     if (!isArticleIdDublicated) {
-      console.log("SAVE ARTICLE");
+      // console.log("SAVE ARTICLE");
       const newArticle = getArticleData();
 
       Social.set({
@@ -158,18 +158,18 @@ const handleArticle = (e, article) => {
 };
 
 const handleAuthor = (e, authorId) => {
-  console.log("click author");
+  // console.log("click author");
   State.update({ ...state, article: undefined, authorId });
 };
 
 const getDate = (timestamp) => {
-  console.log("timestamp", timestamp);
+  // console.log("timestamp", timestamp);
   const date = new Date(Number(timestamp));
   return date.toDateString();
 };
 
 const saveArticle = (args) => {
-  console.log("SAVE ARTICLE", state);
+  // console.log("SAVE ARTICLE", state);
   const newArticleData = {
     ...state.article,
     body: state.note,
@@ -177,7 +177,7 @@ const saveArticle = (args) => {
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
   };
-  console.log("newArticleData", newArticleData);
+  // console.log("newArticleData", newArticleData);
 
   Social.set({
     wikiTest: {
@@ -196,8 +196,8 @@ const getAuthors = () => {
   const authors = Array.from(resultArticles, ({ author }) => author);
   const uniqAuthors = Array.from(new Set(authors));
 
-  console.log("authors", authors);
-  console.log("uniqAuthors", uniqAuthors);
+  // console.log("authors", authors);
+  // console.log("uniqAuthors", uniqAuthors);
 
   return (
     <>
@@ -241,7 +241,7 @@ return (
                 editArticle: false,
                 currentTab: key,
               });
-              console.log("state", state);
+              // console.log("state", state);
             }}
           >
             {title}
@@ -340,7 +340,7 @@ return (
                       className="form-control mt-2"
                       value={state.note || state.article.body}
                       onChange={(e) => {
-                        console.log("newState", state);
+                        // console.log("newState", state);
                         State.update({ ...state, note: e.target.value });
                       }}
                     />
