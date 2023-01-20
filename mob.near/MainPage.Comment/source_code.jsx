@@ -5,33 +5,14 @@ const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
 
+const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+
 return (
   <div className={"pt-3 border-top pb-2"}>
-    <div className="d-flex flex-row align-items-center">
-      <div className="flex-grow-1 text-truncate">
-        <a
-          className="text-dark text-decoration-none text-truncate"
-          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
-        >
-          <Widget
-            src="mob.near/widget/Profile.ShortInlineBlock"
-            props={{ accountId }}
-          />
-        </a>
-      </div>
-      <small className="text-nowrap text-muted">
-        {blockHeight === "now" ? (
-          "now"
-        ) : (
-          <a
-            className="text-muted"
-            href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
-          >
-            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
-          </a>
-        )}
-      </small>
-    </div>
+    <Widget
+      src="mob.near/widget/MainPage.Post.Header"
+      props={{ accountId, blockHeight, link, postType: "comment" }}
+    />
     <div className="mt-2 text-break">
       {content ? (
         <>
