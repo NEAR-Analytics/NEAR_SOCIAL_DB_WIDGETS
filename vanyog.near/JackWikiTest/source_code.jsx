@@ -9,21 +9,19 @@ if (profile === null) {
   return "Loadig";
 }
 
-const test = Social.keys("*/articles", "final");
+const test = Social.keys("*/wikiTest/articles", "final");
 
-const test2 = Social.get("vanyog.near/articles");
+console.log("test ", test);
 
 const test3 = Near.view("social.near", "get", {
   keys: ["vanyog.near/**"],
 });
 
 console.log("test3", test3);
-console.log("test2", test2);
-
 const testArray = Object.keys(test);
 const resultArticles = [];
 
-// TODO make better checks for data
+// TODO make better checks for  data
 !resultArticles.length &&
   testArray &&
   testArray.forEach((item, index, arr) => {
@@ -73,14 +71,11 @@ const getArticleData = () => {
 
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
-  console.log("CLICK SAVE");
-  console.log("state", state);
   State.update({
     ...state,
     createArticle: { ...state.createArticle, errorId: "", errorBody: "" },
   });
   if (state.createArticle.articleId && state.createArticle.articleBody) {
-    console.log("1");
     // TODO check it automaticle
     const isArticleIdDublicated = false;
 
@@ -135,7 +130,6 @@ const pills = [
 ];
 
 const handleArticle = (e, article) => {
-  console.log("click article");
   console.log("article:", article);
   State.update({ ...state, article: article, authorId: undefined });
 };
@@ -217,8 +211,6 @@ return (
       >
         {state.currentTab === "loadarticles" && (
           <div>
-            hello
-            {console.log("state", state)}
             <ul>
               {resultArticles &&
                 resultArticles.map((article, index, articles) => (
