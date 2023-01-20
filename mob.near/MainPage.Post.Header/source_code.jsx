@@ -26,28 +26,30 @@ return (
           </a>
         )}
       </small>
-      <span>
-        <a
-          href="javascript:void"
-          className="link-secondary ms-2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i className="fs-6 bi bi-three-dots" />
-        </a>
-        <ul className="dropdown-menu">
-          <li>
-            <Widget
-              src="mob.near/widget/CopyButton"
-              props={{
-                text: `https://near.social/${link}`,
-                className: "btn btn-outline-dark dropdown-item",
-                label: `Copy link to ${postType}`,
-              }}
-            />
-          </li>
-        </ul>
-      </span>
+      {blockHeight !== "now" && (
+        <span>
+          <a
+            href="javascript:void"
+            className="link-secondary ms-2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i className="fs-6 bi bi-three-dots" />
+          </a>
+          <ul className="dropdown-menu">
+            <li>
+              <Widget
+                src="mob.near/widget/CopyButton"
+                props={{
+                  text: `https://near.social/${link}`,
+                  className: "btn btn-outline-dark dropdown-item",
+                  label: `Copy link to ${postType}`,
+                }}
+              />
+            </li>
+          </ul>
+        </span>
+      )}
     </span>
   </div>
 );
