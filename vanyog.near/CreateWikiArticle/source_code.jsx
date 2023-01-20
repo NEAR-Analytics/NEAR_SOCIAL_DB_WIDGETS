@@ -123,6 +123,42 @@ return (
         }}
       />
     </div>
+    <div class="d-flex flex-column pt-3">
+      <label for="textareaArticleBody">
+        Input article body (in makrdown format):
+      </label>
+      <label for="textareaArticleBody" class="small text-danger">
+        {state.errorBody}
+      </label>
+      <textarea
+        id="textareaArticleBody"
+        type="text"
+        value={state.articleBody}
+        rows={10}
+        className="form-control mt-2"
+        onChange={(e) => {
+          State.update({ ...state, articleBody: e.target.value });
+        }}
+      />
+    </div>
+    <div class="d-flex flex-column pt-3">
+      <label for="textareaArticleBody">
+        Input article body (in makrdown format):
+      </label>
+      <label for="textareaArticleBody" class="small text-danger">
+        {state.errorBody}
+      </label>
+      <textarea
+        id="textareaArticleBody"
+        type="text"
+        value={state.articleBody}
+        rows={10}
+        className="form-control mt-2"
+        onChange={(e) => {
+          State.update({ ...state, articleBody: e.target.value });
+        }}
+      />
+    </div>
     <div class="pt-3">
       Article preview:
       <Markdown text={state.articleBody} />
