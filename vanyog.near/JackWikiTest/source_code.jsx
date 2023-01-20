@@ -49,7 +49,7 @@ resultArticles.forEach((article, index) => {
   }
 });
 
-console.log("resultArticles ", resultArticles);
+console.log("resultArticles  ", resultArticles);
 console.log("filteredArticles", filteredArticles);
 
 const initialBody = `# Markdown heading level 1
