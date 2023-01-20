@@ -12,57 +12,14 @@ const item = {
   blockHeight,
 };
 
+const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+
 return (
   <div className="border rounded-4 p-3 pb-1">
-    <div className="d-flex flex-row align-items-center">
-      <div className="flex-grow-1 text-truncate">
-        <a
-          className="text-dark text-decoration-none text-truncate"
-          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
-        >
-          <Widget
-            src="mob.near/widget/Profile.ShortInlineBlock"
-            props={{ accountId }}
-          />
-        </a>
-      </div>
-      <span className="text-nowrap text-muted">
-        <small>
-          {blockHeight === "now" ? (
-            "now"
-          ) : (
-            <a
-              className="text-muted"
-              href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
-            >
-              <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
-            </a>
-          )}
-        </small>
-        <span>
-          <a
-            href="javascript:void"
-            className="link-secondary ms-2"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i className="fs-6 bi bi-three-dots" />
-          </a>
-          <ul className="dropdown-menu">
-            <li>
-              <Widget
-                src="mob.near/widget/CopyButton"
-                props={{
-                  text: `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`,
-                  className: "btn btn-outline-dark dropdown-item",
-                  label: "Copy link to post",
-                }}
-              />
-            </li>
-          </ul>
-        </span>
-      </span>
-    </div>
+    <Widget
+      src="mob.near/widget/MainPage.Post.Header"
+      props={{ accountId, blockHeight, link, postType: "post" }}
+    />
     <div className="mt-3 text-break">
       {content ? (
         <>
