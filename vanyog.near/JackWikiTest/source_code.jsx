@@ -43,7 +43,7 @@ const resultArticles = [];
     resultArticles.push(...array);
   });
 
-console.log("resultArticles", resultArticles);
+console.log("resultArticles ", resultArticles);
 
 const initialBody = `# Markdown heading level 1
 
@@ -184,18 +184,20 @@ const getAuthors = () => {
   console.log("uniqAuthors", uniqAuthors);
 
   return (
-    <ul>
-      <li>total authors: {uniqAuthors.length} </li>
-      {uniqAuthors.map((author) => (
-        <li>
-          <a
-            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
-          >
-            {author}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h6>Total authors: {uniqAuthors.length}</h6>
+      <ul>
+        {uniqAuthors.map((author) => (
+          <li>
+            <a
+              href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+            >
+              {author}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 return (
@@ -331,18 +333,16 @@ return (
                   <div>
                     Created by{" "}
                     <a
-                      href=""
+                      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.author}`}
                       style={{ textDecoration: "underline" }}
-                      onClick={(e) => handleAuthor(e, article.author)}
                     >
                       {state.article.author}
                     </a>
                     <br />
                     Last edit by{" "}
                     <a
-                      href=""
+                      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
                       style={{ textDecoration: "underline" }}
-                      onClick={(e) => handleAuthor(e, article.lastEditor)}
                     >
                       {state.article.lastEditor}
                     </a>
@@ -427,7 +427,7 @@ return (
                   {state.errorBody}
                 </label>
                 <textarea
-                  id="textareaArticleBody"
+                  id="textareaArticleBody "
                   type="text"
                   value={state.createArticle.articleBody}
                   rows={10}
