@@ -475,6 +475,75 @@ return (
                 >
                   Cancel / Clear
                 </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={saveHandler}
+                >
+                  Save Article
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={saveHandler}
+                >
+                  Save Article
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={saveHandler}
+                >
+                  Save Article
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
               </div>
             </div>
           </div>
