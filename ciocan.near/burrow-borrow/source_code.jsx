@@ -17,16 +17,6 @@ const expandToken = (value, decimals) => {
 
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 
-const toUsd = (balance, asset) =>
-  asset?.price?.usd
-    ? Number(
-        shrinkToken(
-          balance,
-          asset.metadata.decimals + asset.config.extra_decimals
-        )
-      ) * asset.price.usd
-    : 0;
-
 const power = (x, y) => {
   if (y === 0) {
     return 1;
