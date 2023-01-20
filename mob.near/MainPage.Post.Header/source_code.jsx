@@ -42,7 +42,7 @@ return (
               props={{
                 text: `https://near.social/${link}`,
                 className: "btn btn-outline-dark dropdown-item",
-                label: "Copy link to post",
+                label: `Copy link to ${postType}`,
               }}
             />
           </li>
