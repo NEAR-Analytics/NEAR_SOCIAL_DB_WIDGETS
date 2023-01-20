@@ -35,19 +35,21 @@ const resultArticles = [];
     });
     resultArticles.push(...array);
   });
+
 resultArticles.length &&
   resultArticles.sort((a, b) => {
     return Number(b.timeLastEdit) - Number(a.timeLastEdit);
   });
 
 const filteredArticles = [];
-resultArticles.forEach((article, index) => {
-  if (
-    !filteredArticles.some(({ articleId }) => articleId === article.articleId)
-  ) {
-    filteredArticles.push(article);
-  }
-});
+resultArticles.length &&
+  resultArticles.forEach((article, index) => {
+    if (
+      !filteredArticles.some(({ articleId }) => articleId === article.articleId)
+    ) {
+      filteredArticles.push(article);
+    }
+  });
 
 console.log("resultArticles  ", resultArticles);
 console.log("filteredArticles", filteredArticles);
