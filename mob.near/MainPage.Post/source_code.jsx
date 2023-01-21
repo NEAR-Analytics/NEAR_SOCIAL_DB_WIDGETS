@@ -21,29 +21,7 @@ return (
       props={{ accountId, blockHeight, link, postType: "post" }}
     />
     <div className="mt-3 text-break">
-      {content ? (
-        <>
-          {content.text && <Markdown text={content.text} />}
-          {content.image && (
-            <div className="w-100 rounded-3 text-center">
-              <Widget
-                src="mob.near/widget/Image"
-                props={{
-                  image: content.image,
-                  className: "img-fluid rounded-3",
-                  style: { maxHeight: "20em" },
-                }}
-              />
-            </div>
-          )}
-        </>
-      ) : (
-        <span
-          className="spinner-grow spinner-grow-sm me-1"
-          role="status"
-          aria-hidden="true"
-        />
-      )}
+      <Widget src="mob.near/widget/MainPage.Post.Content" props={{ content }} />
     </div>
     {blockHeight !== "now" && (
       <div className="mt-1 d-flex justify-content-between">
