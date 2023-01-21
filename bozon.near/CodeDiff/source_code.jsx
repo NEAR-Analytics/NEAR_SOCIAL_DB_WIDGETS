@@ -15,8 +15,7 @@ props.findUniqueResult(
 props.showLineNumber?: bool
 
 */
-if (!props.currentCode || !props.prevCode)
-  return "send currentCode and prevCode in props";
+if (!props.prevCode) return "send prevCode in props";
 
 //code from this - https://github.com/jonTrent/PatienceDiff
 function patienceDiff(aLines, bLines, diffPlusFlag) {
