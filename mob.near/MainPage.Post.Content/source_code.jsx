@@ -1,7 +1,12 @@
 const content = props.content;
 return content ? (
   <>
-    {content.text && <Markdown text={content.text} />}
+    {content.text && (
+      <Widget
+        src="mob.near/widget/SocialMarkdown"
+        props={{ text: content.text }}
+      />
+    )}
     {content.image && (
       <div className="w-100 rounded-3 text-center">
         <Widget
