@@ -332,7 +332,7 @@ return (
       <tbody>
         {diffResult.lines.map((el, index) => {
           return (
-            <tr>
+            <tr index={index}>
               {props.showLineNumber && (
                 <td class="p-0" style={{ "user-select": "none" }}>
                   <Line
