@@ -29,11 +29,7 @@ return (
     style={{ paddingBottom: "2rem" }}
   >
     <div className="d-flex flex-row" style={{ width: "100%" }}>
-      <img
-        src={`https://ipfs.near.social/ipfs/bafkreicysjx5rmiu2j7wm7obt74zlmkb6algnl5i3wrqp5ear3mvi5ddfi`}
-        alt="Genie"
-        style={{ width: "10rem", marginBottom: "2rem" }}
-      />
+      <h1>Devs Q&A</h1>
     </div>
     {state.selectedQuestion && (
       <div
