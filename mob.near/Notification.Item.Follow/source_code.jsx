@@ -1,4 +1,5 @@
 const { accountId, value } = props;
+console.log(props);
 
 return (
   <Widget
