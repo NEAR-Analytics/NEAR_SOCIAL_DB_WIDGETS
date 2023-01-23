@@ -66,16 +66,17 @@ const postTitle = (
   </h5>
 );
 
+const description = isPreview
+  ? snapshot.description
+  : contributionRequest.description;
+
 // Should make sure the posts under the currently top viewed post are limited in size.
 const descriptionArea = isUnderPost ? (
   <limitedMarkdown className="overflow-auto">
-    <Markdown
-      class="card-text"
-      text={contributionRequest.description}
-    ></Markdown>
+    <Markdown class="card-text" text={description}></Markdown>
   </limitedMarkdown>
 ) : (
-  <Markdown class="card-text" text={contributionRequest.description}></Markdown>
+  <Markdown class="card-text" text={description}></Markdown>
 );
 
 return (
