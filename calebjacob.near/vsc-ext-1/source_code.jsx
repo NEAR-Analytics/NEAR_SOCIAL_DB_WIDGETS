@@ -1,11 +1,1 @@
-const accountId = props.accountId || context.accountId;
-
-return (
-  <>
-    {accountId}
-    <Widget
-      src="mob.near/widget/Profile"
-      props={{ accountId: 'calebjacob.near' }}
-    />
-  </>
-);
+return <div>Hello World</div>;
