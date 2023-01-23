@@ -20,7 +20,6 @@ if (!contributionRequest) {
   return <div>Loading...</div>;
 }
 
-const snapshot = post.snapshot;
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 
@@ -67,7 +66,7 @@ const postTitle = (
 );
 
 const description = isPreview
-  ? snapshot.description
+  ? props.contributionRequest.description
   : contributionRequest.description;
 
 // Should make sure the posts under the currently top viewed post are limited in size.
