@@ -34,10 +34,13 @@ return (
           title={`NEAR DevGov Badge - ${metadata.title}`}
         >
           <Widget
-            src="mob.near/widget/Image"
+            src="mob.near/widget/NftImage"
             props={{
               style,
-              image: { ipfs_cid: metadata.media },
+              nft: {
+                tokenMetadata: metadata,
+                contractId: nearDevGovBadgesContractId,
+              },
               alt: `NEAR DevGov Badge - ${metadata.title}`,
             }}
           />
@@ -49,7 +52,8 @@ return (
       return (
         <ul>
           <li style={{ listStyleType: "none" }}>
-            {badgeImage} {metadata.description}
+            {badgeImage}
+            <Markdown text={metadata.description} />
           </li>
         </ul>
       );
