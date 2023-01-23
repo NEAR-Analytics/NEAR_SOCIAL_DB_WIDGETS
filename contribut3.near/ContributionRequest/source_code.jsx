@@ -47,10 +47,7 @@ const header = (
           />
         </div>
         <div class="col-5">
-          <div class="d-flex justify-content-end">
-            <div class="bi bi-clock-history px-2"></div>
-            {shareButton}
-          </div>
+          <div class="d-flex justify-content-end">{shareButton}</div>
         </div>
       </div>
     </small>
