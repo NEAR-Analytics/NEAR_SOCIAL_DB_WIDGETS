@@ -1,4 +1,5 @@
 const { accountId, blockHeight, value } = props;
+console.log(props);
 
 return (
   <div className="d-flex justify-content-between">
