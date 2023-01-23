@@ -67,7 +67,9 @@ return (
                 <span className="text-muted">developers</span>
               </div>
             </div>
-            <div>{badgeMetadata.description}</div>
+            <div>
+              <Markdown text={badgeMetadata.description} />
+            </div>
           </div>
         </div>
       </div>
