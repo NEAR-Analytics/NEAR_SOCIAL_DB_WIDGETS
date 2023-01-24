@@ -1,6 +1,7 @@
 const ownerId = "maxdev.near";
 const moderatorsIds = ["maxdev.near"];
 
+const isModerator = moderatorsIds.includes(context.accountId);
 State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
 const clearSelected = () => {
@@ -42,6 +43,15 @@ return (
           Ask a question
         </div>
       </button>
+      {isModerator && (
+        <a
+          style={{ margin: 15 }}
+          href={`https://near.social/#/maxdev.near/widget/GenieModeration`}
+          role="button"
+        >
+          Moderation
+        </a>
+      )}
     </div>
     {state.selectedQuestion && (
       <div
@@ -61,7 +71,6 @@ return (
           src={`${ownerId}/widget/GenieQuestionAnswerView`}
           props={{
             questionRef: state.selectedQuestion,
-            onSubmitFinish: () => State.update({ showAskForm: fase }),
           }}
         />
       </div>
@@ -80,7 +89,11 @@ return (
         </div>
         <Widget
           src={`${ownerId}/widget/GenieSaveQuestion`}
-          props={{ searchString: state.searchString, setSearchString }}
+          props={{
+            searchString: state.searchString,
+            setSearchString,
+            onSubmitFinish: () => State.update({ showAskForm: fase }),
+          }}
         />
       </Wrapper>
     )}
