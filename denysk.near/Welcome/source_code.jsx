@@ -1,7 +1,6 @@
 return (
   <>
     <Widget src="mob.near/widget/ProfileOnboarding" />
-    <Widget src="denysk.near/widget/PriceStats" />
     <ul
       className="nav nav-pills nav-fill mb-3 d-lg-none"
       id="pills-tab"
@@ -51,6 +50,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-explore-tab"
       >
+        <Widget src="denysk.near/widget/PriceStats" />
+
         <div className="text-bg-light rounded-4 p-3 mb-3">
           <Widget src="mob.near/widget/Welcome.GetInvolved" />
         </div>
