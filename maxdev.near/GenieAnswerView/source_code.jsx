@@ -1,4 +1,4 @@
-const ownerId = "maxhr.near";
+const ownerId = "maxdev.near";
 const { answeredBy, questionRef } = props;
 
 if (!answeredBy || !questionRef) {
