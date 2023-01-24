@@ -1,22 +1,31 @@
+/********** Start initialization ************/
+
 State.init({ profile: {} });
 
 let profile = Social.getr(`${props.accountId}/profile`);
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
 }
-
 if (state.profile == {}) {
   return "Loading";
 }
 
 let amountOfQuestionsByThisUser = 0;
-
-//TODO review this
 for (let i = 0; i < props.allUsersQuestions.length; i++) {
   if (props.allUsersQuestions[i].accountId == props.accountId) {
     amountOfQuestionsByThisUser++;
   }
 }
+
+/********** End initialization ************/
+
+/********** Start constants ************/
+/********** End constants ************/
+
+/********** Start styles ************/
+/********** End styles ************/
+
+/********** Start functions ************/
 
 function makeAccountIdShorter(accountId) {
   if (accountId.length > 12) {
@@ -24,6 +33,11 @@ function makeAccountIdShorter(accountId) {
   }
   return accountId;
 }
+
+/********** End functions ************/
+
+/********** Start components ************/
+/********** End components ************/
 
 return (
   <div className="d-flex justify-content-between w-100">
