@@ -7,7 +7,7 @@ State.init({
   answers: {},
 });
 
-// Add documentation or put a more descriptive name
+// When true, displays only two polls.
 let isShort = props.isShort;
 
 let polls = Social.index("poll_question", "question-v3.1.0", {
