@@ -35,7 +35,17 @@ return (
     <div className="d-flex justify-content-end"></div>
     <div className="d-flex flex-column gap-3">
       {yourBlockedQuestions.length > 0 && (
-        <h3>Your posts have been blocked by moderators:</h3>
+        <div
+          style={{
+            backgroundColor: "red",
+            color: "white",
+            borderRadius: 10,
+            padding: 10,
+            fontWeight: "bold",
+          }}
+        >
+          Your posts have been blocked by moderators:
+        </div>
       )}
       {yourBlockedQuestions.map((bq) => {
         return (
