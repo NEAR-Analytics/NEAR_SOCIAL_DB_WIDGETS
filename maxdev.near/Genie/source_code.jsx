@@ -59,7 +59,10 @@ return (
         </div>
         <Widget
           src={`${ownerId}/widget/GenieQuestionAnswerView`}
-          props={{ questionRef: state.selectedQuestion }}
+          props={{
+            questionRef: state.selectedQuestion,
+            onSubmitFinish: () => State.update({ showAskForm: fase }),
+          }}
         />
       </div>
     )}
