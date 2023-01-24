@@ -8,7 +8,11 @@ const blockedQuestions =
   Social.index("neardevs_beta1", "blocked", {
     accountId: moderators,
   }) || [];
-console.log(blockedQuestions);
+
+const yourBlockedQuestions = blockedQuestions.filter(
+  (bq) => bq.value.split("--")[0] === context.accountId
+);
+
 // const unblockedQuestions = Social.index("neardevs_beta1", "unblocked") || [];
 
 // const finalBlockedQuestions = [...blockedQuestions, ...unblockedQuestions]
@@ -30,6 +34,19 @@ return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex justify-content-end"></div>
     <div className="d-flex flex-column gap-3">
+      {yourBlockedQuestions.length > 0 && (
+        <h3>Your posts have been blocked by moderators:</h3>
+      )}
+      {yourBlockedQuestions.map((bq) => {
+        <div style={{ border: "2px solid red" }}>
+          <Widget
+            src={`${ownerId}/widget/GenieQuestionView`}
+            props={{
+              questionRef: bq.value,
+            }}
+          />
+        </div>;
+      })}
       {notBlockedQuestions.map((q) => {
         const asker = q.value.split("--")[0];
         const question = Social.getr(
