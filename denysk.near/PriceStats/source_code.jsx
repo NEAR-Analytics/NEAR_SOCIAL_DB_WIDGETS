@@ -1,27 +1,27 @@
-const test = fetch("https://api.coingecko.com/api/v3/coins/near", {
+const data = fetch("https://api.coingecko.com/api/v3/coins/near", {
   method: "GET",
   headers: {
     Accept: "*/*",
   },
 });
 
-return (
+return data !== null ? (
   <div>
     <div class="d-flex flex-row">
       <div class="p-2">
         <div>NEAR/USD</div>
         <h3>
-          ${test.body.market_data.current_price.usd}
+          ${data.body.market_data.current_price.usd}
           <small
             class={
-              test.body.market_data.price_change_percentage_24h_in_currency
+              data.body.market_data.price_change_percentage_24h_in_currency
                 .usd < 0
                 ? "text-danger"
                 : "text-success"
             }
             style={{ "font-size": "12px" }}
           >
-            {test.body.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
+            {data.body.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
               2
             )}
             %
@@ -30,21 +30,21 @@ return (
       </div>
       <div class="p-2">
         ATH
-        <p class="text-success">${test.body.market_data.ath.usd.toFixed(2)}</p>
+        <p class="text-success">${data.body.market_data.ath.usd.toFixed(2)}</p>
       </div>
       <div class="p-2">
         24h high
-        <p>${test.body.market_data.high_24h.usd.toFixed(2)}</p>
+        <p>${data.body.market_data.high_24h.usd.toFixed(2)}</p>
       </div>
       <div class="p-2">
         24h low
-        <p>${test.body.market_data.low_24h.usd.toFixed(2)}</p>
+        <p>${data.body.market_data.low_24h.usd.toFixed(2)}</p>
       </div>
       <div class="p-2">
         Market Cap
         <p>
           $
-          {test.body.market_data.market_cap.usd
+          {data.body.market_data.market_cap.usd
             .toFixed(0)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -54,7 +54,7 @@ return (
         Volume
         <p>
           $
-          {test.body.market_data.total_volume.usd
+          {data.body.market_data.total_volume.usd
             .toFixed(0)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -64,7 +64,7 @@ return (
         Circulating Supply
         <p>
           $
-          {test.body.market_data.circulating_supply
+          {data.body.market_data.circulating_supply
             .toFixed(0)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -103,4 +103,6 @@ return (
       </div>
     </div>
   </div>
+) : (
+  <p>loading...</p>
 );
