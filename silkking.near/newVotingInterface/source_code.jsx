@@ -1,3 +1,13 @@
+/********** Start validations ************/
+
+if (!props.isPreview && !props.blockHeight) {
+  return "Prop block height wasn't provided";
+}
+
+/********** End validations ************/
+
+/********** Start initialization ************/
+
 State.init({
   showQuestionsByThisUser: false,
   descriptionHeightLimited: true,
@@ -7,12 +17,6 @@ State.init({
   pollsByThisCreator: [{}],
   answers: [{}],
 });
-
-if (!props.isPreview && !props.blockHeight) {
-  return "Prop block height wasn't provided";
-}
-
-const widgetOwner = "silkking.near";
 
 let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
@@ -27,22 +31,22 @@ if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
 
 if (!state.polls) {
   return "Loading";
-} else {
-  const poll =
-    props.previewInfo ??
-    state.polls.find((q) => q.blockHeight == questionBlockHeight);
-
-  if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
-    State.update({ poll: poll });
-  }
-
-  if (!state.poll && !isPreview) {
-    return "Loading...";
-  }
 }
 
-let profile = Social.getr(`${state.poll.accountId}/profile`);
+const poll =
+  props.previewInfo ??
+  state.polls.find((q) => q.blockHeight == questionBlockHeight);
 
+if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
+  State.update({ poll: poll });
+}
+
+if (!state.poll && !isPreview) {
+  return "Loading...";
+}
+const pollStatus = getPollStatus(state.poll);
+
+let profile = Social.getr(`${state.poll.accountId}/profile`);
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile: profile });
 }
@@ -58,12 +62,46 @@ let pollsByThisCreator = Social.index("poll_question", "question-v3.1.0", {
 if (
   JSON.stringify(pollsByThisCreator) != JSON.stringify(state.pollsByThisCreator)
 ) {
-  State.update({ pollsByThisCreator: pollsByThisCreator });
+  State.update({ pollsByThisCreator });
 }
 
 if (!state.pollsByThisCreator) {
   return "Loading";
 }
+
+/********** End initialization ************/
+
+/********** Start constants ************/
+
+const widgetOwner = "silkking.near";
+
+const QUESTION_STATUSES = {
+  ACTIVE: {
+    id: 0,
+    text: "Active",
+    backgroundColor: "#D9FCEF",
+    fontColor: "#00B37D",
+  },
+  CLOSED: {
+    id: 1,
+    text: "Closed",
+    backgroundColor: "#FFE5E5",
+    fontColor: "#FF4747",
+  },
+  UPCOMING: {
+    id: 2,
+    text: "Upcoming",
+    backgroundColor: "#FFF3B4",
+    fontColor: "#FFC905",
+  },
+};
+
+/********** End constants ************/
+
+/********** Start styles ************/
+/********** End styles ************/
+
+/********** Start functions ************/
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
@@ -74,6 +112,14 @@ function sliceString(string, newStringLength) {
 
 function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
+}
+
+function getPollStatus(poll) {
+  return isUpcoming(poll)
+    ? QUESTION_STATUSES.UPCOMING
+    : isActive(poll)
+    ? QUESTION_STATUSES.ACTIVE
+    : QUESTION_STATUSES.CLOSED;
 }
 
 function isActive(poll) {
@@ -88,8 +134,6 @@ function isUpcoming(poll) {
 }
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  // let poll = polls.find(q => q.blockHeight == questionBlockHeight)
-
   const answers = Social.index("poll_question", "answer-v3.1.0");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
@@ -110,6 +154,24 @@ function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   );
   return usersWithAnswersWithoutDuplicates.length;
 }
+
+function closeModalClickingOnTransparent() {
+  return (e) => {
+    e.target.id == "modal" && State.update({ showQuestionsByThisUser: false });
+  };
+}
+
+function showDescription(description) {
+  if (state.descriptionHeightLimited && description.length > 501) {
+    return description.slice(0, 500) + "...";
+  } else {
+    return description;
+  }
+}
+
+/********** End functions ************/
+
+/********** Start components ************/
 
 const renderPollTypeIcon = () => {
   let allPollTypes = [];
@@ -138,7 +200,6 @@ const renderPollTypeIcon = () => {
 };
 
 const renderQuestionsByThisCreator = () => {
-  //TODO show only the 2 polls
   return state.pollsByThisCreator.map((pollByCreator, index) => {
     let divStyle =
       index == 0
@@ -148,6 +209,7 @@ const renderQuestionsByThisCreator = () => {
             paddingTop: "1rem",
             borderTop: "1px solid #ced4da",
           };
+    let pollByCreatorStatus = getPollStatus(pollByCreator);
     return (
       <div style={divStyle}>
         <div className="d-flex align-items-center">
@@ -186,12 +248,7 @@ const renderQuestionsByThisCreator = () => {
           </span>
           <span
             style={{
-              backgroundColor: isUpcoming(pollByCreator)
-                ? "#FFF3B4"
-                : isActive(pollByCreator)
-                ? "#D9FCEF"
-                : "#FFE5E5",
-
+              backgroundColor: pollByCreatorStatus.backgroundColor,
               height: "1.5rem",
               width: "4rem",
               textAlign: "center",
@@ -200,31 +257,17 @@ const renderQuestionsByThisCreator = () => {
               lineHeight: "1.5rem",
               fontSize: "0.8rem",
               letterSpacing: "-0.025rem",
-              color: isUpcoming(pollByCreator)
-                ? "#FFC905"
-                : isActive(pollByCreator)
-                ? "#00B37D"
-                : "#FF4747",
+              color: pollByCreatorStatus.fontColor,
               fontWeight: "500",
             }}
           >
-            {isUpcoming(pollByCreator)
-              ? "Upcoming"
-              : isActive(pollByCreator)
-              ? "Active"
-              : "Closed"}
+            {pollByCreatorStatus.text}
           </span>
         </div>
       </div>
     );
   });
 };
-
-function closeModalClickingOnTransparent() {
-  return (e) => {
-    e.target.id == "modal" && State.update({ showQuestionsByThisUser: false });
-  };
-}
 
 const renderModal = () => {
   return (
@@ -290,74 +333,9 @@ const renderModal = () => {
   );
 };
 
-// function getBlockTimestamp(blockHeight) {
-//   // It is stored in nanoseconds which is 1e-6 miliseconds
-//   return Near.block(blockHeight).header.timestamp / 1e6;
-// }
+/********** End components ************/
 
-// function getTimeRelatedValidAnswers(answers) {
-//   let low = 0;
-//   let high = answers.length - 1;
-//   const questionEndTimestamp = poll.value.endTimestamp;
-//   let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
-//   if (endBlockTimestamp < questionEndTimestamp) return answers;
-//   // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
-//   let tries = 10;
-//   while (high - low > 1 && tries > 0) {
-//     tries--;
-//     let curr = Math.floor((high - low) / 2) + low;
-//     let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
-//     if (currBlockTimestamp < questionEndTimestamp) {
-//       low = curr;
-//     } else {
-//       high = curr;
-//     }
-//   }
-//   // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
-//   return answers.slice(0, high);
-// }
-
-// const answersToThisPoll = state.answers.filter(
-//   (a) => a.value.questionBlockHeight == questionBlockHeight
-// );
-
-// function getValidAnswers() {
-//   let validTime = getTimeRelatedValidAnswers(answersToThisPoll);
-//   let validOptionAndTime = getOptionRelatedValidAnswers(validTime);
-//   return validOptionAndTime;
-// }
-
-// function getOptionRelatedValidAnswers(answers) {
-//   return answers.filter(
-//     (a) =>
-//       0 <= Number(a.value.answer) &&
-//       Number(a.value.answer) < pollParams.value.choicesOptions.length
-//   );
-// }
-
-// const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
-
-// function userHasVoted() {
-//   return (
-//     validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
-//     undefined
-//   );
-// }
-// let hasVoted = userHasVoted();
-
-// const isQuestionOpen =
-//   state.poll.value.startTimestamp < Date.now() &&
-//   Date.now() < state.poll.value.endTimestamp;
-// const canVote = !hasVoted && isQuestionOpen;
-
-function showDescription(description) {
-  if (state.descriptionHeightLimited && description.length > 501) {
-    return description.slice(0, 500) + "...";
-  } else {
-    return description;
-  }
-}
-
+/********** Start rendering ************/
 return (
   <div>
     <div className="d-flex content-align-start justify-content-between">
@@ -424,12 +402,7 @@ return (
           )}
           <span
             style={{
-              backgroundColor: isUpcoming(state.poll)
-                ? "#FFF3B4"
-                : isActive(state.poll)
-                ? "#D9FCEF"
-                : "#FFE5E5",
-
+              backgroundColor: pollStatus.backgroundColor,
               height: "2.1rem",
               width: "5rem",
               textAlign: "center",
@@ -438,19 +411,11 @@ return (
               lineHeight: "1.9rem",
               fontSize: "1rem",
               letterSpacing: "-0.025rem",
-              color: isUpcoming(state.poll)
-                ? "#FFC905"
-                : isActive(state.poll)
-                ? "#00B37D"
-                : "#FF4747",
+              color: pollStatus.fontColor,
               fontWeight: "500",
             }}
           >
-            {isUpcoming(state.poll)
-              ? "Upcoming"
-              : isActive(state.poll)
-              ? "Active"
-              : "Closed"}
+            {pollStatus.text}
           </span>
         </div>
         <div className="d-flex my-3">
@@ -568,7 +533,7 @@ return (
             )
           )}
         </div>
-        {state.poll.value.tgLink != "" && state.poll.value.tgLink != undefined && (
+        {state.poll.value.tgLink && state.poll.value.tgLink != "" && (
           <div
             className="mt-3 d-flex justify-content-between"
             style={{
@@ -710,4 +675,4 @@ return (
     {state.showQuestionsByThisUser && renderModal()}
   </div>
 );
-a;
+/********** End rendering ************/
