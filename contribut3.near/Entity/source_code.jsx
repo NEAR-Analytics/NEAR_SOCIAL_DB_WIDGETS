@@ -30,6 +30,61 @@ const shareButton = props.isPreview ? null : (
   </a>
 );
 
+const currentContributor = Near.view(
+  ownerId,
+  "get_contribution",
+  { entity_id: accountId, contributor_id: context.accountId },
+  "final"
+);
+
+const isAuthorized =
+  !!currentContributor && currentContributor.permissions.includes("Admin");
+
+const contributions = Near.view(
+  ownerId,
+  "get_entity_contributions",
+  {
+    entity_id: accountId,
+  },
+  "final"
+);
+
+const contributionRequests = Near.view(
+  ownerId,
+  "get_entity_contribution_requests",
+  {
+    entity_id: accountId,
+  },
+  "final"
+);
+
+const contributionsList = !notStandalone ? (
+  <div className="mb-2">
+    Contributions:
+    <br />
+    {contributions.map(([contributorId]) => (
+      <Widget
+        src={`${ownerId}/widget/Contribution`}
+        props={{ entityId: accountId, contributorId, id: contributorId }}
+      />
+    ))}
+  </div>
+) : null;
+
+const requestsList =
+  isAuthorized && !notStandalone ? (
+    <div>
+      Contribution requests:
+      <br />
+      {contributionRequests.map(([contributorId]) => (
+        <Widget
+          src={`${ownerId}/widget/ContributionRequest`}
+          props={{ entityId: accountId, contributorId, id: contributorId }}
+        />
+      ))}
+    </div>
+  ) : null;
+
 return (
   <div className="card">
     <div className="card-header">
@@ -48,6 +103,8 @@ return (
       <div>
         Founded at: {new Date(Number(entity.start_date)).toLocaleDateString()}
       </div>
+      {contributionsList}
+      {requestsList}
     </div>
   </div>
 );
