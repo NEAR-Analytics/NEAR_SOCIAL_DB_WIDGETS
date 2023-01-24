@@ -30,6 +30,18 @@ return (
   >
     <div className="d-flex flex-row" style={{ width: "100%" }}>
       <h1>Devs Q&A</h1>
+      <button
+        style={{ marginLeft: "20px" }}
+        className="btn btn-primary text-nowrap"
+        onClick={() => {
+          State.update({ showAskForm: true });
+        }}
+      >
+        <div>
+          <i class="bi bi-chat" />
+          Ask a question
+        </div>
+      </button>
     </div>
     {state.selectedQuestion && (
       <div
@@ -76,7 +88,11 @@ return (
           maxWidth: "50rem",
         }}
       >
-        <div className="d-flex align-items-center gap-3">
+        <div
+          className="d-flex align-items-center gap-3"
+          style={{ marginTop: "30px" }}
+        >
+          Search:
           <i class="bi bi-search" />
           <div class="input-group input-group-lg">
             <input
@@ -88,17 +104,6 @@ return (
               }}
             />
           </div>
-          <button
-            className="btn btn-primary text-nowrap"
-            onClick={() => {
-              State.update({ showAskForm: true });
-            }}
-          >
-            <div>
-              <i class="bi bi-chat" />
-              Ask a question
-            </div>
-          </button>
         </div>
         <Widget
           src={`${ownerId}/widget/GenieQuestionList`}
