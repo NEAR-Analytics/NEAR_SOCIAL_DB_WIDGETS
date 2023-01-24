@@ -81,7 +81,6 @@ return (
           <div class="input-group input-group-lg">
             <input
               type="text"
-              placeholder="Your wish is my command"
               className="form-control input-group input-group-lg"
               value={state.searchString}
               onChange={(e) => {
