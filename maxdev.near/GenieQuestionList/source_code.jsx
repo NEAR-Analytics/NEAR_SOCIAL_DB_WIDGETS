@@ -49,39 +49,46 @@ return (
           return <></>;
         }
         return (
-          <div
-            key={q.value}
-            className="d-flex flex-column gap-1"
-            style={{
-              borderTop: "0.5px solid #D3D3D3",
-              padding: "1.5rem 0 0 0",
-            }}
-            onClick={() => {
-              setSelectedQuestion(q.value);
-            }}
-          >
-            <Widget
-              src={`${ownerId}/widget/GenieQuestionView`}
-              props={{ questionRef: q.value, searchString: props.searchString }}
-            />
-            {isModerator && (
-              <CommitButton
-                className="btn btn-secondary"
-                style={{ width: 100 }}
-                onCommit={() => {}}
-                // const questionRef = `${context.accountId}--${Date.now()}`;
-                data={{
-                  index: {
-                    neardevs_beta1: JSON.stringify({
-                      key: "blocked",
-                      value: questionRef,
-                    }),
-                  },
+          <div>
+            <div
+              key={q.value}
+              className="d-flex flex-column gap-1"
+              style={{
+                borderTop: "0.5px solid #D3D3D3",
+                padding: "1.5rem 0 0 0",
+              }}
+              onClick={() => {
+                setSelectedQuestion(q.value);
+              }}
+            >
+              <Widget
+                src={`${ownerId}/widget/GenieQuestionView`}
+                props={{
+                  questionRef: q.value,
+                  searchString: props.searchString,
                 }}
-              >
-                Block
-              </CommitButton>
-            )}
+              />
+            </div>
+            <div>
+              {isModerator && (
+                <CommitButton
+                  className="btn btn-secondary"
+                  style={{ width: 100 }}
+                  onCommit={() => {}}
+                  // const questionRef = `${context.accountId}--${Date.now()}`;
+                  data={{
+                    index: {
+                      neardevs_beta1: JSON.stringify({
+                        key: "blocked",
+                        value: questionRef,
+                      }),
+                    },
+                  }}
+                >
+                  Block
+                </CommitButton>
+              )}
+            </div>
           </div>
         );
       })}
