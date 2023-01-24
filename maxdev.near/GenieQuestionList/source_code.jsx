@@ -1,6 +1,14 @@
 const ownerId = "maxdev.near";
-const questions = Social.index("genie", "asked") || [];
-questions = questions.reverse();
+let questionRefsData = Social.index("neardevs_beta1", "asked") || [];
+const blockedQuestionRefs = Social.index("neardevs_beta1", "blocked") || [];
+const blockedQuestionsMap = Object.fromEntries(
+  blockedQuestionRefs.map((q) => [q.value, true])
+);
+const notBlockedQuestions = questionRefsData.filter(
+  (q) => !blockedQuestionsMap[q.value]
+);
+
+questionRefsData = questionRefsData.reverse();
 
 const { searchString, setSelectedQuestion } = props;
 
@@ -8,7 +16,7 @@ return (
   <div className="d-flex flex-column gap-1">
     <div className="d-flex justify-content-end"></div>
     <div className="d-flex flex-column gap-3">
-      {questions.map((q) => {
+      {notBlockedQuestions.map((q) => {
         const asker = q.value.split("--")[0];
         const question = Social.getr(
           `${asker}/neardevs_beta1/questions/${q.value}`
