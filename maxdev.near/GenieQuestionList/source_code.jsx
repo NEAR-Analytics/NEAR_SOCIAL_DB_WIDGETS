@@ -38,14 +38,18 @@ return (
         <h3>Your posts have been blocked by moderators:</h3>
       )}
       {yourBlockedQuestions.map((bq) => {
-        <div style={{ border: "2px solid red" }}>
-          <Widget
-            src={`${ownerId}/widget/GenieQuestionView`}
-            props={{
-              questionRef: bq.value,
-            }}
-          />
-        </div>;
+        return (
+          <div
+            style={{ border: "2px solid red", borderRadius: 10, padding: 20 }}
+          >
+            <Widget
+              src={`${ownerId}/widget/GenieQuestionView`}
+              props={{
+                questionRef: bq.value,
+              }}
+            />
+          </div>
+        );
       })}
       {notBlockedQuestions.map((q) => {
         const asker = q.value.split("--")[0];
