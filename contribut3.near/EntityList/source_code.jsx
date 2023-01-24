@@ -8,7 +8,9 @@ return (
   <div>
     {allEntities
       ? allEntities.map(([accountId]) => (
-          <Widget src={`${ownerId}/widget/Entity`} props={{ accountId }} />
+          <div key={accountId} className="mb-2">
+            <Widget src={`${ownerId}/widget/Entity`} props={{ accountId }} />
+          </div>
         ))
       : ""}
   </div>
