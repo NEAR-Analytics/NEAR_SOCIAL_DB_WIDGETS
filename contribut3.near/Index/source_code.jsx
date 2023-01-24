@@ -22,16 +22,16 @@ const onHomeClick = () => {
 };
 
 const editorsFooter = props.isPreview ? null : (
-  <div class="row" id={`accordion`}>
+  <div className="row" id={`accordion`}>
     <div
-      class="collapse"
+      className="collapse"
       id={`collapseContributionRequestForm`}
       data-bs-parent={`#accordion`}
     >
       <Widget src={`contribut3.near/widget/ContributionRequestForm`} />
     </div>
     <div
-      class="collapse"
+      className="collapse"
       id={`collapseEntityForm`}
       data-bs-parent={`#accordion`}
     >
@@ -41,10 +41,10 @@ const editorsFooter = props.isPreview ? null : (
 );
 
 const controls = (
-  <div class="card border-secondary mb-2">
-    <div class="nav navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <div class="navbar-brand">
+  <div className="card border-secondary mb-2">
+    <div className="nav navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <div className="navbar-brand">
           <Widget
             src="mob.near/widget/ProfileImage"
             props={{
@@ -56,11 +56,11 @@ const controls = (
             }}
           />
         </div>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+        <div className="collapse navbar-collapse" id="navbarText">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <a
-                class="nav-link active"
+                className="nav-link active"
                 aria-current="page"
                 href="#"
                 data-bs-toggle="collapse"
@@ -69,13 +69,13 @@ const controls = (
                 aria-expanded="false"
                 aria-controls={`collapseContributionRequestForm`}
               >
-                <i class="bi-plus-circle"> </i>
+                <i className="bi-plus-circle"> </i>
                 Request Contribution
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
-                class="nav-link active"
+                className="nav-link active"
                 href="#"
                 data-bs-toggle="collapse"
                 href={`#collapseEntityForm`}
@@ -83,7 +83,7 @@ const controls = (
                 aria-expanded="false"
                 aria-controls={`collapseEntityForm`}
               >
-                <i class="bi-rocket-fill"> </i>
+                <i className="bi-rocket-fill"> </i>
                 Create Entity
               </a>
             </li>
@@ -96,17 +96,17 @@ const controls = (
 );
 
 const navbar = (
-  <div class="card border-secondary">
-    <div class="nav navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item ">
+  <div className="card border-secondary">
+    <div className="nav navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item ">
             <a
-              class="nav-link active button"
+              className="nav-link active button"
               onClick={onHomeClick}
               role="button"
             >
-              <i class="bi-house-fill"> </i>
+              <i className="bi-house-fill"> </i>
               Entities
             </a>
           </li>
@@ -120,7 +120,7 @@ return (
   <div>
     {controls}
     {navbar}
-    <div class="mt-2">
+    <div className="mt-2">
       <Widget src={`${ownerId}/widget/EntityList`} />
     </div>
   </div>
