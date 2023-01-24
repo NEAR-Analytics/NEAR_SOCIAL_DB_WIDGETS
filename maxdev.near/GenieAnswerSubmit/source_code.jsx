@@ -22,15 +22,13 @@ return (
         State.update({ answerContent: "" });
       }}
       data={{
-        experimental: {
-          genie: {
-            answers: {
-              [questionRef]: state.answerContent,
-            },
+        neardevs_beta1: {
+          answers: {
+            [questionRef]: state.answerContent,
           },
         },
         index: {
-          genie: JSON.stringify({
+          neardevs_beta1: JSON.stringify({
             key: `answered/${questionRef}`,
             value: 1,
           }),
