@@ -1,7 +1,7 @@
 const ownerId = "maxdev.near";
-const moderatorsIds = ["maxdev.near"];
+const moderators = ["maxdev.near"];
 
-const isModerator = moderatorsIds.includes(context.accountId);
+const isModerator = moderators.includes(context.accountId);
 State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
 const clearSelected = () => {
@@ -123,7 +123,11 @@ return (
         </div>
         <Widget
           src={`${ownerId}/widget/GenieQuestionList`}
-          props={{ searchString: state.searchString, setSelectedQuestion }}
+          props={{
+            searchString: state.searchString,
+            setSelectedQuestion,
+            moderators,
+          }}
         />
       </div>
     )}
