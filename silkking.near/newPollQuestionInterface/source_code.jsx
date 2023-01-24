@@ -1,3 +1,9 @@
+/********** Start validations ************/
+
+/********** End validations ************/
+
+/********** Start initialization ************/
+
 State.init({
   pollTitle: "",
   pollDescription: "",
@@ -18,12 +24,64 @@ State.init({
   hoveringElement: "",
 });
 
+let amountOfQuestions = [];
+for (let i = 0; i < state.amountOfQuestions; i++) {
+  amountOfQuestions.push(i);
+}
+/********** End initialization ************/
+
+/********** Start constants ************/
+
 const pollTypes = {
   TEXT: { id: "0", value: "Text" },
   SINGLE_ANSWER: { id: "1", value: "Single answer" },
   MULTISELECT: { id: "2", value: "Multiselect" },
   YES_OR_NO: { id: "3", value: "Yes or No" },
 };
+
+const widgetOwner = "silkking.near";
+
+const MODAL_TYPES = {
+  PREVIEW: {
+    id: 0,
+    text: "preview",
+  },
+  SEND_FEEDBACK: {
+    id: 1,
+    text: "sendFeedback",
+  },
+};
+
+const QUESTION_TYPE_DISPLAY = {
+  YES_NO: {
+    id: 0,
+    text: "Yes or no",
+    type: "radio",
+    length: 2,
+  },
+  SINGLE_ANSWER: {
+    id: 1,
+    text: "Single Answer",
+    type: "radio",
+    length: 3,
+  },
+  MULTISELECT: {
+    id: 2,
+    text: "Multiselect",
+    type: "checkbox",
+    length: 3,
+  },
+  TEXT_ANSWER: {
+    id: 3,
+    text: "Text Answer",
+    type: null,
+    length: 3,
+  },
+};
+
+/********** End constants ************/
+
+/********** Start styles ************/
 
 const styleUnderline = {
   backgroundImage: "linear-gradient(black 0 0)",
@@ -34,7 +92,94 @@ const styleUnderline = {
   paddingBottom: "4px" /* this can also control the position */,
 };
 
-const getPublicationParams = (isDraft) => {
+function getStyles(inputData) {
+  return !inputData && state.showErrorsInForm
+    ? {
+        backgroundColor: "white",
+        padding: "0.5rem 1.5rem",
+        borderRadius: "0.8rem",
+        color: "#474D55",
+        letterSpacing: "-0.01em",
+        width: "100%",
+        border: "1px solid #dc3545",
+        borderOpacity: "1",
+      }
+    : {
+        border: "1.5px solid #E1E9F0",
+        backgroundColor: "white",
+        padding: "0.5rem 1.5rem",
+        borderRadius: "0.8rem",
+        color: "#474D55",
+        letterSpacing: "-0.01em",
+        width: "100%",
+      };
+}
+
+function getTypeOfQuestionSelectionStyles(questionNumber, typeOfQuestion) {
+  let style = {
+    padding: "1rem",
+    borderRadius: "1rem",
+    cursor: "pointer",
+  };
+  if (state.pollTypes[questionNumber] == typeOfQuestion) {
+    return {
+      ...style,
+      border: "1.5px solid #353A40",
+      position: "relative",
+    };
+  } else {
+    return {
+      ...style,
+      border: "1.5px solid #E1E9F0",
+    };
+  }
+}
+
+// TODO compare with function isValidInput and use it
+function getDangerClassIfNeeded(tab) {
+  let shouldDisplayNormalStyles = true;
+  if (state.showErrorsInForm) {
+    for (let i = 0; i < state.amountOfQuestions; i++) {
+      if (tab == "MainInformation") {
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles && state.pollTitle != "";
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles && state.pollDescription != "";
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles && isValidTelegramLink();
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles && state.pollStartDate != "";
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles && state.pollEndDate != "";
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles &&
+          getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
+      } else if (state.sectionShown == "questions") {
+        if (
+          state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
+          state.pollTypes[i] == pollTypes.MULTISELECT.id
+        ) {
+          shouldDisplayNormalStyles =
+            shouldDisplayNormalStyles &&
+            !(state.choices[i].filter((c) => c != "").length < 2);
+        }
+        shouldDisplayNormalStyles =
+          shouldDisplayNormalStyles && state.questions[i] != "";
+      }
+    }
+  }
+
+  if (state.showErrorsInForm) {
+    return !shouldDisplayNormalStyles && "text-danger";
+  }
+  return "";
+}
+
+/********** End styles ************/
+
+/********** Start functions ************/
+
+function getPublicationParams(isDraft) {
   let paramQuestions = [];
 
   for (let i = 0; i < state.questions.length; i++) {
@@ -66,9 +211,11 @@ const getPublicationParams = (isDraft) => {
       ),
     },
   };
-};
+}
 
-const getTimestamp = (date) => new Date(`${date}`).getTime();
+function getTimestamp(date) {
+  return new Date(`${date}`).getTime();
+}
 
 function isValidHttpUrl(string) {
   let url;
@@ -103,8 +250,7 @@ function validateQuestionsSettedProperly() {
   return allQuestionsValid;
 }
 
-const isValidInput = (validateQuestions) => {
-  // TODO validate date and link types
+function isValidInput(validateQuestions) {
   let result = true;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
@@ -118,36 +264,59 @@ const isValidInput = (validateQuestions) => {
     result &&
     getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
   result = result && validateOptionsSettedProperly();
-  // result = result && !state.pollDiscussionLink.includes("https://t.me/");
   return result;
-};
-
-function getStyles(inputData) {
-  return !inputData && state.showErrorsInForm
-    ? {
-        backgroundColor: "white",
-        padding: "0.5rem 1.5rem",
-        borderRadius: "0.8rem",
-        color: "#474D55",
-        letterSpacing: "-0.01em",
-        width: "100%",
-        border: "1px solid #dc3545",
-        borderOpacity: "1",
-      }
-    : {
-        border: "1.5px solid #E1E9F0",
-        backgroundColor: "white",
-        padding: "0.5rem 1.5rem",
-        borderRadius: "0.8rem",
-        color: "#474D55",
-        letterSpacing: "-0.01em",
-        width: "100%",
-      };
 }
 
-const widgetOwner = "silkking.near";
+function deleteChoiceHandler(questionNumber, choiceNumber) {
+  if (state.amountOfChoices[questionNumber] > 1) {
+    let thisQuestionChoices = state.choices[questionNumber];
 
-const renderModal = (whatModal) => {
+    let newThisQuestionChoices = [];
+
+    for (let i = 0; i < thisQuestionChoices.length; i++) {
+      if (i != choiceNumber) {
+        newThisQuestionChoices.push(thisQuestionChoices[i]);
+      }
+    }
+
+    let newChoices = state.choices;
+    newChoices[questionNumber] = newThisQuestionChoices;
+
+    let newAmountOfChoices = state.amountOfChoices;
+    newAmountOfChoices[questionNumber] =
+      Number(newAmountOfChoices[questionNumber]) - 1;
+
+    State.update({
+      amountOfChoices: newAmountOfChoices,
+      choices: newChoices,
+    });
+  }
+}
+
+function addChoicesHandler(questionNumber) {
+  let newchoices = state.choices;
+  newchoices[questionNumber].push("");
+
+  let newAmountOfChoices = state.amountOfChoices;
+  newAmountOfChoices[questionNumber] =
+    Number(newAmountOfChoices[questionNumber]) + 1;
+
+  State.update({
+    amountOfChoices: newAmountOfChoices,
+    choices: newchoices,
+  });
+}
+
+function isValidTelegramLink() {
+  if (!state.pollDiscussionLink) return true;
+  return state.pollDiscussionLink.startsWith("https://t.me");
+}
+
+/********** End functions ************/
+
+/********** Start components ************/
+
+const renderModal = (modalType) => {
   return (
     <div
       className="modal"
@@ -228,7 +397,7 @@ const renderModal = (whatModal) => {
               margin: "0 auto",
             }}
           >
-            {whatModal == "preview" ? (
+            {modalType == MODAL_TYPES.PREVIEW ? (
               <Widget
                 src={`${widgetOwner}/widget/newVotingInterface`}
                 props={{
@@ -254,7 +423,7 @@ const renderModal = (whatModal) => {
                 }}
               />
             ) : (
-              whatModal == "sendFeedback" && (
+              modalType == MODAL_TYPES.SEND_FEEDBACK && (
                 <p styles={{ textAling: "center" }}>
                   Poll created succesfully!
                 </p>
@@ -375,181 +544,9 @@ const renderTextInputsForChoices = (questionNumber) => {
   );
 };
 
-// const renderOptions = (questionNumber) => {
-//   function changeQuestionType(questionType) {
-//     let newPollTypes = state.pollTypes;
-//     newPollTypes[questionNumber] = questionType;
-//   }
+/********** End components ************/
 
-//   return (
-//     <div style={{ width: "max-content" }}>
-//       <input
-//         style={{
-//           cursor: "pointer",
-//           backgroundColor: "rgb(230, 230, 230)",
-//           borderRadius: "0px",
-//           position: "absolute",
-//           top: "100%",
-//           minWidth: "max-content",
-//           width: "152px",
-//         }}
-//         type="text"
-//         value="Text"
-//         readonly
-//         onClick={() => {
-//           State.update({
-//             pollTypes: changeQuestionType("0"),
-//           });
-//         }}
-//       />
-
-//       <input
-//         style={{
-//           cursor: "pointer",
-//           backgroundColor: "rgb(230, 230, 230)",
-//           borderRadius: "0px",
-//           position: "absolute",
-//           top: "200%",
-//           minWidth: "max-content",
-//           width: "152px",
-//         }}
-//         type="text"
-//         value="Multiple choice"
-//         readonly
-//         onClick={() => {
-//           State.update({
-//             pollTypes: changeQuestionType("1"),
-//           });
-//         }}
-//       />
-//     </div>
-//   );
-// };
-
-// function handleWriteChoiceInputChange(questionNumber, choiceIndex) {
-//   return (event) => {
-//     const newChoices = state.choices;
-//     newChoices[questionNumber][Number(choiceIndex)] = event.target.value;
-
-//     State.update({
-//       choices: newChoices,
-//     });
-//   };
-// }
-
-function deleteChoiceHandler(questionNumber, choiceNumber) {
-  if (state.amountOfChoices[questionNumber] > 1) {
-    let thisQuestionChoices = state.choices[questionNumber];
-
-    let newThisQuestionChoices = [];
-
-    for (let i = 0; i < thisQuestionChoices.length; i++) {
-      if (i != choiceNumber) {
-        newThisQuestionChoices.push(thisQuestionChoices[i]);
-      }
-    }
-
-    let newChoices = state.choices;
-    newChoices[questionNumber] = newThisQuestionChoices;
-
-    let newAmountOfChoices = state.amountOfChoices;
-    newAmountOfChoices[questionNumber] =
-      Number(newAmountOfChoices[questionNumber]) - 1;
-
-    State.update({
-      amountOfChoices: newAmountOfChoices,
-      choices: newChoices,
-    });
-  }
-}
-
-function addChoicesHandler(questionNumber) {
-  let newchoices = state.choices;
-  newchoices[questionNumber].push("");
-
-  let newAmountOfChoices = state.amountOfChoices;
-  newAmountOfChoices[questionNumber] =
-    Number(newAmountOfChoices[questionNumber]) + 1;
-
-  State.update({
-    amountOfChoices: newAmountOfChoices,
-    choices: newchoices,
-  });
-}
-
-function isValidTelegramLink() {
-  if (!state.pollDiscussionLink) return true;
-  return state.pollDiscussionLink.startsWith("https://t.me");
-}
-
-function getTypeOfQuestionSelectionStyles(questionNumber, typeOfQuestion) {
-  if (state.pollTypes[questionNumber] == typeOfQuestion) {
-    return {
-      padding: "1rem",
-      borderRadius: "1rem",
-      cursor: "pointer",
-      border: "1.5px solid #353A40",
-      position: "relative",
-    };
-  } else {
-    return {
-      padding: "1rem",
-      borderRadius: "1rem",
-      cursor: "pointer",
-      border: "1.5px solid #E1E9F0",
-    };
-  }
-}
-
-function getDangerClassIfNeeded(tab) {
-  let normalStyles = true;
-  if (state.showErrorsInForm) {
-    for (let i = 0; i < state.amountOfQuestions; i++) {
-      if (tab == "MainInformation") {
-        normalStyles = normalStyles && state.pollTitle != "";
-        normalStyles = normalStyles && state.pollDescription != "";
-        normalStyles = normalStyles && isValidTelegramLink();
-        normalStyles = normalStyles && state.pollStartDate != "";
-        normalStyles = normalStyles && state.pollEndDate != "";
-        normalStyles =
-          normalStyles &&
-          getTimestamp(state.pollStartDate) < getTimestamp(state.pollEndDate);
-      } else if (state.sectionShown == "questions") {
-        if (
-          state.pollTypes[i] == pollTypes.SINGLE_ANSWER.id ||
-          state.pollTypes[i] == pollTypes.MULTISELECT.id
-        ) {
-          normalStyles =
-            normalStyles &&
-            !(state.choices[i].filter((c) => c != "").length < 2);
-        }
-        normalStyles = normalStyles && state.questions[i] != "";
-      }
-    }
-  }
-
-  if (state.showErrorsInForm) {
-    return !normalStyles && "text-danger";
-  }
-  return "";
-}
-
-let amountOfQuestions = [];
-for (let i = 0; i < state.amountOfQuestions; i++) {
-  amountOfQuestions.push(i);
-}
-
-function test() {
-  console.log(
-    "hola",
-    state.sectionShown,
-    state.sectionShown == "questions",
-    isValidInput(false)
-  );
-  return true;
-}
-
-// console.log(JSON.stringify(getPublicationParams()));
+/********** Start rendering ************/
 
 return (
   <div
@@ -1586,8 +1583,9 @@ return (
         )}
       </div>
 
-      {state.showPreview && renderModal("preview")}
-      {state.showSendFeedback && renderModal("sendFeedback")}
+      {state.showPreview && renderModal(MODAL_TYPES.PREVIEW)}
+      {state.showSendFeedback && renderModal(MODAL_TYPES.SEND_FEEDBACK)}
     </div>
   </div>
 );
+/********** End rendering ************/
