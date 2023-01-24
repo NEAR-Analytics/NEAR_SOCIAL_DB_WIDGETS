@@ -18,15 +18,29 @@ if (!entity) {
   return <div>Loading...</div>;
 }
 
+const shareButton = props.isPreview ? null : (
+  <a
+    className="card-link"
+    href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+    role="button"
+    target="_blank"
+    title="Open in new tab"
+  >
+    <div className="bi bi-share"></div>
+  </a>
+);
+
 return (
   <div className="card">
     <div className="card-header">
-      <Widget
-        src="mob.near/widget/ProfileLine"
-        props={{
-          accountId,
-        }}
-      />
+      <div className="row justify-content-between">
+        <div className="col-4">
+          <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
+        </div>
+        <div className="col-5">
+          <div className="d-flex justify-content-end">{shareButton}</div>
+        </div>
+      </div>
     </div>
     <div className="card-body">
       <div>Type: {entity.kind}</div>
