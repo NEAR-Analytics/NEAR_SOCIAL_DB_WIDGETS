@@ -68,28 +68,28 @@ const finishButton =
 
 const shareButton = props.isPreview ? null : (
   <a
-    class="card-link"
+    className="card-link"
     href={`https://near.social/#/${ownerId}/widget/Contribution?entityId=${entityId}&contributorId=${contributorId}`}
     role="button"
     target="_blank"
     title="Open in new tab"
   >
-    <div class="bi bi-share"></div>
+    <div className="bi bi-share"></div>
   </a>
 );
 
 const header = (
   <div className="card-header">
-    <small class="text-muted">
-      <div class="row justify-content-between">
-        <div class="col-4">
+    <small className="text-muted">
+      <div className="row justify-content-between">
+        <div className="col-4">
           <Widget
             src={`mob.near/widget/ProfileLine`}
             props={{ accountId: contributorId }}
           />
         </div>
-        <div class="col-5">
-          <div class="d-flex justify-content-end">{shareButton}</div>
+        <div className="col-5">
+          <div className="d-flex justify-content-end">{shareButton}</div>
         </div>
       </div>
     </small>
