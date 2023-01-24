@@ -3,6 +3,7 @@ const initWidgetPath = "devgovgigs.near/widget/Ideas";
 State.init({
   widgetPath: initWidgetPath,
   code: "",
+  memo: "",
 });
 
 const widgetCode = Social.get(state.widgetPath);
@@ -45,6 +46,18 @@ return (
               onBlur={(e) => {
                 State.update({
                   code: e.target.value,
+                });
+              }}
+            />
+            Memo:
+            <textarea
+              type="text"
+              rows={2}
+              class="form-control"
+              placeholder="code"
+              onBlur={(e) => {
+                State.update({
+                  memo,
                 });
               }}
             />
