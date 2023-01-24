@@ -62,12 +62,16 @@ const contributionsList = !notStandalone ? (
   <div className="mb-2">
     Contributions:
     <br />
-    {contributions.map(([contributorId]) => (
-      <Widget
-        src={`${ownerId}/widget/Contribution`}
-        props={{ entityId: accountId, contributorId, id: contributorId }}
-      />
-    ))}
+    {!contributions ? (
+      <div>Loading...</div>
+    ) : (
+      contributions.map(([contributorId]) => (
+        <Widget
+          src={`${ownerId}/widget/Contribution`}
+          props={{ entityId: accountId, contributorId, id: contributorId }}
+        />
+      ))
+    )}
   </div>
 ) : null;
 
@@ -76,12 +80,16 @@ const requestsList =
     <div>
       Contribution requests:
       <br />
-      {contributionRequests.map(([contributorId]) => (
-        <Widget
-          src={`${ownerId}/widget/ContributionRequest`}
-          props={{ entityId: accountId, contributorId, id: contributorId }}
-        />
-      ))}
+      {!contributionRequests ? (
+        <div>Loading...</div>
+      ) : (
+        contributionRequests.map(([contributorId]) => (
+          <Widget
+            src={`${ownerId}/widget/ContributionRequest`}
+            props={{ entityId: accountId, contributorId, id: contributorId }}
+          />
+        ))
+      )}
     </div>
   ) : null;
 
