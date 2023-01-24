@@ -1,6 +1,6 @@
 const ownerId = "maxdev.near";
 const { searchString, setSelectedQuestion, moderators } = props;
-
+console.log("context.moderators", context.moderators);
 let questionRefsData = Social.index("neardevs_beta1", "asked") || [];
 
 console.log(questionRefsData);
