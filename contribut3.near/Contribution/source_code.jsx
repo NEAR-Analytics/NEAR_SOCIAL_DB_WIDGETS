@@ -1,6 +1,11 @@
 const ownerId = "contribut3.near";
 const entityId = props.entityId;
 const contributorId = props.contributorId;
+const accountId = context.accountId;
+
+initState({
+  endDate: new Date().toLocaleDateString(),
+});
 
 if (!entityId || !contributorId) {
   return (
@@ -15,9 +20,51 @@ const contribution = Near.view(
   "final"
 );
 
+const currentAccountContribution = Near.view(
+  ownerId,
+  "get_contribution",
+  { entity_id: entityId, contributor_id: accountId },
+  "final"
+);
+
 if (!contribution) {
   return <div>Loading...</div>;
 }
+
+const isAuthorized =
+  !!currentAccountContribution &&
+  currentAccountContribution.permissions.includes("Admin");
+
+const endDateInput = (
+  <div className="col-lg-6 mb-2">
+    End date of contribution:
+    <input
+      type="date"
+      value={state.endDate}
+      onChange={(e) => State.update({ endDate: e.target.value })}
+    />
+  </div>
+);
+
+const finishButton =
+  isAuthorized && !contribution.current.end_date ? (
+    <div>
+      {endDateInput}
+      <a
+        className="btn btn-outline-primary mb-2"
+        onClick={() => {
+          const args = {
+            entity_id: entityId,
+            contributor_id: contributorId,
+            end_date: `${new Date(state.endDate).getTime()}`,
+          };
+          Near.call(ownerId, "finish_contribution", args);
+        }}
+      >
+        Finish
+      </a>
+    </div>
+  ) : null;
 
 const shareButton = props.isPreview ? null : (
   <a
@@ -51,17 +98,21 @@ const header = (
 
 const detail = ({ description, start_date, end_date }) => (
   <div className="card">
-    Description:
-    <br />
-    <p>{description || "Founded entity"}</p>
-    Start date:
-    <br />
-    <p>{new Date(Number(start_date)).toLocaleDateString()}</p>
-    {end_date ? (
-      <>
-        End date: <br /> <p>{end_date}</p>
-      </>
-    ) : null}
+    <div className="card-header">Details</div>
+    <div className="card-body">
+      Description:
+      <br />
+      <p>{description || "Founded entity"}</p>
+      Start date:
+      <br />
+      <p>{new Date(Number(start_date)).toLocaleDateString()}</p>
+      {end_date ? (
+        <>
+          End date: <br /> <p>{end_date}</p>
+        </>
+      ) : null}
+    </div>
+    <div className="card-footer">{finishButton}</div>
   </div>
 );
 
