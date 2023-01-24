@@ -1,5 +1,5 @@
-const ownerId = "maxhr.near";
-const moderatorsIds = ["maxhr.near"];
+const ownerId = "maxdev.near";
+const moderatorsIds = ["maxdev.near"];
 
 State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
