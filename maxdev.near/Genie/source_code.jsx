@@ -1,6 +1,6 @@
 const ownerId = "maxdev.near";
 const moderators = ["maxdev.near"];
-
+context.moderators = moderators;
 const isModerator = moderators.includes(context.accountId);
 State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
