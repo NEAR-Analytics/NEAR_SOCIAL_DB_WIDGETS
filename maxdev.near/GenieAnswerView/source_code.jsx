@@ -6,7 +6,7 @@ if (!answeredBy || !questionRef) {
 }
 
 const answer = Social.get(
-  `${answeredBy}/experimental/genie/answers/${questionRef}`
+  `${answeredBy}/neardevs_beta1/answers/${questionRef}`
 );
 
 const BodyText = styled.p`
