@@ -1,4 +1,4 @@
-const ownerId = "maxhr.near";
+const ownerId = "maxdev.near";
 const { questionRef, answeredBy } = props;
 
 const votes = Social.index("genie", `vote/${questionRef}/${answeredBy}`) || [];
