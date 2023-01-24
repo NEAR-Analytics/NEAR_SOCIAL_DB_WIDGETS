@@ -11,7 +11,7 @@ return (
       {questions.map((q) => {
         const asker = q.value.split("--")[0];
         const question = Social.getr(
-          `${asker}/experimental/genie/questions/${q.value}`
+          `${asker}/neardevs_beta1/questions/${q.value}`
         );
         // return nothing if data does not meet schema
         if (!question?.title || !question?.content) {
