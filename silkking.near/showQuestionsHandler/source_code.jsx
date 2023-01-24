@@ -1,4 +1,8 @@
+/********** Start initialization ************/
+
 let sharedBlockHeight = props.sharedBlockHeight;
+
+let globalAccountId = props.accountId ?? context.accountId;
 
 State.init({
   polls: {},
@@ -6,14 +10,7 @@ State.init({
   modalBlockHeight: sharedBlockHeight ?? question.blockHeight,
 });
 
-const widgetOwner = "silkking.near";
-
-let globalAccountId = props.accountId ?? context.accountId;
-
-const onlyUsersPolls = props.onlyUser ?? false;
-
 let polls = Social.index("poll_question", "question-v3.1.0");
-
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
@@ -22,14 +19,9 @@ if (!polls) {
   return "Loading";
 }
 
+const onlyUsersPolls = props.onlyUser ?? false;
 if (onlyUsersPolls) {
-  polls = state.polls.filter((poll) => {
-    if (poll.accountId == globalAccountId) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  polls = state.polls.filter((poll) => poll.accountId == globalAccountId);
 }
 
 polls = polls.sort((q1, q2) => {
@@ -42,19 +34,36 @@ polls = polls.sort((q1, q2) => {
   return q1.value.endTimestamp - q2.value.endTimestamp;
 });
 
-//TODO review this
 let usersMakingQuestions = [];
 for (let i = 0; i < polls.length; i++) {
   if (!usersMakingQuestions.includes(polls[i].accountId)) {
     usersMakingQuestions.push(polls[i].accountId);
   }
 }
+/********** End initialization ************/
+
+/********** Start constants ************/
+
+const widgetOwner = "easypoll.near";
+
+// Whether it should be display the questions of only one user or all
+
+/********** End constants ************/
+
+/********** Start styles ************/
+/********** End styles ************/
+
+/********** Start functions ************/
 
 function closeModalClickingOnTransparent() {
   return (e) => {
     e.target.id == "modal" && State.update({ showQuestion: false });
   };
 }
+
+/********** End functions ************/
+
+/********** Start components ************/
 
 const renderModal = () => {
   return (
@@ -111,7 +120,7 @@ const renderModal = () => {
 
 const renderPolls = (onlyUsersPolls) => {
   if (onlyUsersPolls) {
-    return polls.map((poll, index) => {
+    return polls.map((poll) => {
       return (
         <div
           className="mx-1 py-3 px-4 my-2"
@@ -141,15 +150,11 @@ const renderPolls = (onlyUsersPolls) => {
           }}
         >
           <Widget
-            src={
-              "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionHeader"
-            }
+            src={`${widgetOwner}/widget/minimalistQuestionHeader`}
             props={{ ...poll }}
           />
           <Widget
-            src={
-              "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/minimalistQuestionGeneralInfo"
-            }
+            src={`${widgetOwner}/widget/minimalistQuestionGeneralInfo`}
             props={{ ...poll }}
           />
         </div>
@@ -184,6 +189,8 @@ const renderPolls = (onlyUsersPolls) => {
     );
   }
 };
+
+/********** End components ************/
 
 return (
   <div
