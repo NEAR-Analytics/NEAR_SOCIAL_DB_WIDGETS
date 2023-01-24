@@ -19,30 +19,48 @@ function getDatastringFromBlockHeight(blockHeight) {
 
 return (
   <div>
-    <h1 class="text-center">Create Pull Request</h1>
+    <div className="card">
+      <div className="card-header">Create Pull Request</div>
 
-    <input
-      class="form-control mb-3"
-      placeholder="path to widget"
-      defaultValue={state.widgetPath || initWidgetPath}
-      onBlur={(e) => {
-        State.update({
-          widgetPath: e.target.value,
-        });
-      }}
-    />
+      <div class="card-body">
+        <div className="row">
+          <div className="col-lg-12  mb-2">
+            Widget path:
+            <input
+              class="form-control mb-3"
+              placeholder="path to widget"
+              defaultValue={state.widgetPath || initWidgetPath}
+              onBlur={(e) => {
+                State.update({
+                  widgetPath: e.target.value,
+                });
+              }}
+            />
+            Code:
+            <textarea
+              type="text"
+              rows={6}
+              class="form-control"
+              placeholder="code"
+              onBlur={(e) => {
+                State.update({
+                  code: e.target.value,
+                });
+              }}
+            />
+          </div>
+        </div>
 
-    {widgetCode ? (
-      <div>
-        <textarea
-          class="form-control mb-3"
-          placeholder="code"
-          onBlur={(e) => {
-            State.update({
-              code: e.target.value,
-            });
-          }}
-        />
+        <button
+          onClick={onClick}
+          class={`btn btn-primary`}
+          disabled={widgetCode === undefined}
+        >
+          {widgetCode ? "Submit" : "Widget not found"}
+        </button>
+      </div>
+      <div class="card-footer">
+        Preview:
         <Widget
           src={`bozon.near/widget/CodeDiff`}
           props={{
@@ -51,8 +69,6 @@ return (
           }}
         />
       </div>
-    ) : (
-      <div>Widget not found</div>
-    )}
+    </div>
   </div>
 );
