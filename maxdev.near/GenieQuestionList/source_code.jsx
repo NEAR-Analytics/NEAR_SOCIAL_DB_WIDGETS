@@ -1,16 +1,29 @@
 const ownerId = "maxdev.near";
+const { searchString, setSelectedQuestion, moderators } = props;
+
 let questionRefsData = Social.index("neardevs_beta1", "asked") || [];
-const blockedQuestionRefs = Social.index("neardevs_beta1", "blocked") || [];
+
+console.log(questionRefsData);
+const blockedQuestions =
+  Social.index("neardevs_beta1", "blocked", {
+    accountId: moderators,
+  }) || [];
+// const unblockedQuestions = Social.index("neardevs_beta1", "unblocked") || [];
+
+// const finalBlockedQuestions = [...blockedQuestions, ...unblockedQuestions]
+//   .filter(q => moderators.includes(q.accountId))
+//   .sort((a, b) => a.blockHeight < b.blockHeight)
+//   .reduce((acc, q) => (acc.find((a) => q.value === a.value) ? null : q), [])
+//   .filter((q) => q !== null);
+
 const blockedQuestionsMap = Object.fromEntries(
-  blockedQuestionRefs.map((q) => [q.value, true])
+  blockedQuestions.map((q) => [q.value, true])
 );
-const notBlockedQuestions = questionRefsData.filter(
+let notBlockedQuestions = questionRefsData.filter(
   (q) => !blockedQuestionsMap[q.value]
 );
 
-questionRefsData = questionRefsData.reverse();
-
-const { searchString, setSelectedQuestion } = props;
+notBlockedQuestions = notBlockedQuestions.reverse();
 
 return (
   <div className="d-flex flex-column gap-1">
