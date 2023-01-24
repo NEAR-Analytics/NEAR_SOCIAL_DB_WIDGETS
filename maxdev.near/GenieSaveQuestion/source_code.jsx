@@ -3,15 +3,14 @@ State.init({
   questionContent: "",
   timestamp: Date.now(),
 });
-const { questionRef, onSubmitFinish } = props;
+const { onSubmitFinish } = props;
 
 if (!context.accountId) {
   return <p>Please log in to ask a question</p>;
 }
 
-if (!questionRef) {
-  throw Error("no questionRef");
-}
+const questionRef = `${context.accountId}--${Date.now()}`;
+
 return (
   <div className="d-flex flex-column">
     <div className="d-flex flex-column gap-2">
