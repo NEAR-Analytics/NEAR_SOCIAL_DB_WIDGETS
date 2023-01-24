@@ -1,14 +1,14 @@
 const ownerId = "maxdev.near";
 const { searchString, setSelectedQuestion, moderators } = props;
 let questionRefsData = Social.index("neardevs_beta1", "asked") || [];
-
+console.log("questionRefsData", questionRefsData);
 const isModerator = moderators.includes(context.accountId);
 
 const blockedQuestions =
   Social.index("neardevs_beta1", "blocked", {
     accountId: moderators,
   }) || [];
-
+console.log("blockedQuestions", blockedQuestions);
 const yourBlockedQuestions = blockedQuestions.filter(
   (bq) => bq.value.split("--")[0] === context.accountId
 );
