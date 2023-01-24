@@ -37,11 +37,14 @@ return (
         className="btn btn-primary"
         onCommit={() => {
           State.update({ questionContent: "", questionTitle: "" });
-          onSubmitFinish();
+          if (typeof onSubmitFinish === "function") {
+            onSubmitFinish();
+          }
         }}
         onClick={() => {
           State.update({ timestamp: Date.now() });
         }}
+        // const questionRef = `${context.accountId}--${Date.now()}`;
         data={{
           neardevs_beta1: {
             questions: {
