@@ -56,7 +56,7 @@ return (
   <div className="card">
     <div className="card-header">Request contribution</div>
 
-    <div class="card-body">
+    <div className="card-body">
       <div className="row">
         {entityEditor}
         {descriptionDiv}
@@ -66,7 +66,7 @@ return (
         Submit
       </a>
     </div>
-    <div class="card-footer">
+    <div className="card-footer">
       Preview:
       <Widget
         src={`${ownerId}/widget/ContributionRequest`}
