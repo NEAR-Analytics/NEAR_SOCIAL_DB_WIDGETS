@@ -1,4 +1,4 @@
-const ownerId = "maxhr.near";
+const ownerId = "maxdev.near";
 State.init({ showAnswerForm: false });
 
 const { questionRef } = props;
