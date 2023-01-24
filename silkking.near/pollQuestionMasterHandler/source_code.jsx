@@ -1,4 +1,4 @@
-//     Begin initialization   //
+/********** Start initialization ************/
 let sharedBlockHeight = props.sharedBlockHeight;
 
 State.init({
@@ -13,9 +13,9 @@ const profile = Social.getr(`${context.accountId}/profile`);
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
   State.update({ profile });
 }
-//     End initialization   //
+/********** End initialization ************/
 
-//      Begin constants      //
+/********** Start constants ************/
 
 const TABS = {
   MY_POLLS: { id: 0, text: "My Polls" },
@@ -31,9 +31,9 @@ const HOVERING_ELEMENTS = {
   CANCEL_NEW_POLL: "cancelNewPoll",
 };
 
-//      End constants      //
+/********** End constants ************/
 
-//      Begin Styles      //
+/********** Start styles ************/
 
 const styleAlignCenter = {
   display: "flex",
@@ -46,9 +46,9 @@ const styleColorGreyTransparent = {
   backdropFilter: "blur(4px)",
 };
 
-//      End Styles      //
+/********** End styles ************/
 
-//     Begin functions       //
+/********** Start functions ************/
 function makeAccountIdShorter(accountId, length) {
   if (accountId.length > length) {
     return accountId.slice(0, length) + "...";
@@ -66,7 +66,7 @@ function closeModalClickingOnTransparent() {
   };
 }
 
-//     End functions       //
+/********** End functions ************/
 
 const renderAbortPollCreationModal = () => {
   return (
