@@ -4,11 +4,11 @@ let questionRefsData = Social.index("neardevs_beta1", "asked") || [];
 
 const isModerator = moderators.includes(context.accountId);
 
-console.log(questionRefsData);
 const blockedQuestions =
   Social.index("neardevs_beta1", "blocked", {
     accountId: moderators,
   }) || [];
+console.log(blockedQuestions);
 // const unblockedQuestions = Social.index("neardevs_beta1", "unblocked") || [];
 
 // const finalBlockedQuestions = [...blockedQuestions, ...unblockedQuestions]
@@ -80,7 +80,7 @@ return (
                     index: {
                       neardevs_beta1: JSON.stringify({
                         key: "blocked",
-                        value: questionRef,
+                        value: q.value,
                       }),
                     },
                   }}
