@@ -40,7 +40,7 @@ return (
           State.update({ timestamp: Date.now() });
         }}
         data={{
-          neardevs: {
+          neardevs_beta1: {
             questions: {
               [questionRef]: {
                 title: state.questionTitle,
@@ -49,7 +49,7 @@ return (
             },
           },
           index: {
-            neardevs: JSON.stringify({
+            neardevs_beta1: JSON.stringify({
               key: "asked",
               value: questionRef,
             }),
