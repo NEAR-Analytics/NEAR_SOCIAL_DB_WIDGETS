@@ -30,6 +30,9 @@ return (
     <div className="card-body">
       <div>Type: {entity.kind}</div>
       <div>Status: {entity.status}</div>
+      <div>
+        Founded at: {new Date(Number(entity.start_date)).toLocaleDateString()}
+      </div>
     </div>
   </div>
 );
