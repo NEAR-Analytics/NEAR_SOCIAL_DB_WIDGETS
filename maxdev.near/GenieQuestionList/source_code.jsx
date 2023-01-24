@@ -2,6 +2,8 @@ const ownerId = "maxdev.near";
 const { searchString, setSelectedQuestion, moderators } = props;
 let questionRefsData = Social.index("neardevs_beta1", "asked") || [];
 
+const isModerator = moderators.includes(context.accountId);
+
 console.log(questionRefsData);
 const blockedQuestions =
   Social.index("neardevs_beta1", "blocked", {
@@ -62,6 +64,24 @@ return (
               src={`${ownerId}/widget/GenieQuestionView`}
               props={{ questionRef: q.value, searchString: props.searchString }}
             />
+            {isModerator && (
+              <CommitButton
+                className="btn btn-secondary"
+                style={{ width: 100 }}
+                onCommit={() => {}}
+                // const questionRef = `${context.accountId}--${Date.now()}`;
+                data={{
+                  index: {
+                    neardevs_beta1: JSON.stringify({
+                      key: "blocked",
+                      value: questionRef,
+                    }),
+                  },
+                }}
+              >
+                Block
+              </CommitButton>
+            )}
           </div>
         );
       })}
