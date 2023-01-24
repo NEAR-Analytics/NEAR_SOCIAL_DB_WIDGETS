@@ -1,19 +1,20 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
+const isPreview = props.isPreview ?? false;
 
 if (!accountId) {
   return <div>Cannot show entity without account ID!</div>;
 }
 
-const entity = Near.view(
-  ownerId,
-  "get_entity",
-  { account_id: accountId },
-  "final"
-);
+const entity = isPreview
+  ? props.entity
+  : Near.view(ownerId, "get_entity", { account_id: accountId }, "final");
 
 if (!entity) {
+  if (isPreview) {
+    return <div>You must provide an entity object in preview mode</div>;
+  }
   return <div>Loading...</div>;
 }
 
