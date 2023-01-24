@@ -40,18 +40,16 @@ return (
           State.update({ timestamp: Date.now() });
         }}
         data={{
-          experimental: {
-            genie: {
-              questions: {
-                [questionRef]: {
-                  title: state.questionTitle,
-                  content: state.questionContent,
-                },
+          neardevs: {
+            questions: {
+              [questionRef]: {
+                title: state.questionTitle,
+                content: state.questionContent,
               },
             },
           },
           index: {
-            genie: JSON.stringify({
+            neardevs: JSON.stringify({
               key: "asked",
               value: questionRef,
             }),
