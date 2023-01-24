@@ -1,4 +1,4 @@
-const ownerId = "maxhr.near";
+const ownerId = "maxdev.near";
 const { questionRef, searchString } = props;
 
 const asker = questionRef.split("--")[0];
