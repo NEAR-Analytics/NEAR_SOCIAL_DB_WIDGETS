@@ -9,7 +9,6 @@ if (!context.accountId) {
   return <p>Please log in to ask a question</p>;
 }
 
-// const questionRef = `${context.accountId}--${Date.now()}`;
 if (!questionRef) {
   throw Error("no questionRef");
 }
