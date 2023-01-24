@@ -1,36 +1,59 @@
+//     Begin initialization   //
 let sharedBlockHeight = props.sharedBlockHeight;
 
-const tabs = {
-  MY_POLLS: { id: 0, text: "My Polls" },
-  ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
-  NEW_POLL: { id: 2, text: "Create a poll" },
-};
-
-const widgetOwner = "silkking.near";
-
 State.init({
-  displaying: tabs.MY_POLLS.id,
+  displaying: TABS.MY_POLLS.id,
   hoveringElement: "",
   showAbortPollCreation: false,
   abortThroughAllExistingPolls: false,
   profile: {},
 });
 
+const profile = Social.getr(`${context.accountId}/profile`);
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile });
+}
+//     End initialization   //
+
+//      Begin constants      //
+
+const TABS = {
+  MY_POLLS: { id: 0, text: "My Polls" },
+  ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
+  NEW_POLL: { id: 2, text: "Create a poll" },
+};
+
+const widgetOwner = "easypoll.near";
+
+const MODAL = "modal";
+
+const HOVERING_ELEMENTS = {
+  CANCEL_NEW_POLL: "cancelNewPoll",
+};
+
+//      End constants      //
+
+//      Begin Styles      //
+
+const styleAlignCenter = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+const styleColorGreyTransparent = {
+  backgroundColor: "#7e7e7e70",
+  backdropFilter: "blur(4px)",
+};
+
+//      End Styles      //
+
+//     Begin functions       //
 function makeAccountIdShorter(accountId, length) {
   if (accountId.length > length) {
     return accountId.slice(0, length) + "...";
   }
   return accountId;
-}
-
-const profile = Social.getr(`${context.accountId}/profile`);
-
-if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
-  State.update({ profile: profile });
-}
-
-if (!profile) {
-  return "Loading...";
 }
 
 function abortPollCreation() {
@@ -43,18 +66,17 @@ function closeModalClickingOnTransparent() {
   };
 }
 
+//     End functions       //
+
 const renderAbortPollCreationModal = () => {
   return (
     <div
-      className="modal"
-      id="modal"
+      className={MODAL}
+      id={MODAL}
       style={
         state.showAbortPollCreation && {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#7e7e7e70",
-          backdropFilter: "blur(4px)",
+          ...styleAlignCenter,
+          ...styleColorGreyTransparent,
         }
       }
       tabindex="-1"
@@ -161,14 +183,14 @@ const renderAbortPollCreationModal = () => {
               onClick={() => {
                 if (state.abortThroughAllExistingPolls) {
                   State.update({
-                    displaying: tabs.ALL_EXISTING_POLLS.id,
+                    displaying: TABS.ALL_EXISTING_POLLS.id,
                     abortThroughAllExistingPolls: false,
                     hoveringElement: "",
                     showAbortPollCreation: false,
                   });
                 } else {
                   State.update({
-                    displaying: tabs.MY_POLLS.id,
+                    displaying: TABS.MY_POLLS.id,
                     hoveringElement: "",
                     showAbortPollCreation: false,
                   });
@@ -234,9 +256,9 @@ return (
       >
         <div style={{ marginTop: "0.6rem" }}>
           <div className="d-flex">
-            {Object.keys(tabs).map((tabKey) => {
-              const tab = tabs[tabKey];
-              if (tabKey != "NEW_POLL") {
+            {Object.keys(TABS).map((tabKey) => {
+              const tab = TABS[tabKey];
+              if (tab.id != TABS.NEW_POLL.id) {
                 return (
                   <div
                     style={{
@@ -255,9 +277,9 @@ return (
                         State.update({ hoveringElement: "" });
                       }}
                       onClick={() => {
-                        state.displaying != tabs.NEW_POLL.id
+                        state.displaying != TABS.NEW_POLL.id
                           ? State.update({ displaying: tab.id })
-                          : tab.id == tabs.ALL_EXISTING_POLLS.id
+                          : tab.id == TABS.ALL_EXISTING_POLLS.id
                           ? State.update({
                               showAbortPollCreation: true,
                               abortThroughAllExistingPolls: true,
@@ -298,17 +320,17 @@ return (
         <div className="d-flex">
           <button
             onMouseEnter={() => {
-              State.update({ hoveringElement: tabs.NEW_POLL.id });
+              State.update({ hoveringElement: TABS.NEW_POLL.id });
             }}
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
             onClick={() => {
-              State.update({ displaying: tabs.NEW_POLL.id });
+              State.update({ displaying: TABS.NEW_POLL.id });
             }}
             style={
-              state.hoveringElement == tabs.NEW_POLL.id ||
-              state.displaying == tabs.NEW_POLL.id
+              state.hoveringElement == TABS.NEW_POLL.id ||
+              state.displaying == TABS.NEW_POLL.id
                 ? {
                     border: "2px solid black",
                     color: "black",
@@ -334,13 +356,13 @@ return (
             <i
               className="bi bi-plus-lg"
               style={
-                state.hoveringElement == tabs.NEW_POLL.id ||
-                state.displaying == tabs.NEW_POLL.id
+                state.hoveringElement == TABS.NEW_POLL.id ||
+                state.displaying == TABS.NEW_POLL.id
                   ? { color: "black" }
                   : { color: "white" }
               }
             ></i>
-            {tabs.NEW_POLL.text}
+            {TABS.NEW_POLL.text}
           </button>
         </div>
       </div>
@@ -356,7 +378,7 @@ return (
       </div>
     </div>
 
-    {state.displaying == tabs.ALL_EXISTING_POLLS.id ? (
+    {state.displaying == TABS.ALL_EXISTING_POLLS.id ? (
       <div className="px-4">
         <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
           All existing polls
@@ -366,7 +388,7 @@ return (
           props={{ sharedBlockHeight }}
         />
       </div>
-    ) : state.displaying == tabs.MY_POLLS.id ? (
+    ) : state.displaying == TABS.MY_POLLS.id ? (
       <div className="px-4">
         <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
           My Polls
@@ -377,7 +399,7 @@ return (
         />
       </div>
     ) : (
-      state.displaying == tabs.NEW_POLL.id && (
+      state.displaying == TABS.NEW_POLL.id && (
         <div
           className="px-4"
           style={{
@@ -411,14 +433,16 @@ return (
           <Widget src={`${widgetOwner}/widget/newPollQuestionInterface`} />
           <button
             onMouseEnter={() => {
-              State.update({ hoveringElement: "cancelNewPoll" });
+              State.update({
+                hoveringElement: HOVERING_ELEMENTS.CANCEL_NEW_POLL,
+              });
             }}
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
             onClick={abortPollCreation}
             style={
-              state.hoveringElement == "cancelNewPoll"
+              state.hoveringElement == HOVERING_ELEMENTS.CANCEL_NEW_POLL
                 ? {
                     border: "2px solid transparent",
                     fontWeight: "500",
