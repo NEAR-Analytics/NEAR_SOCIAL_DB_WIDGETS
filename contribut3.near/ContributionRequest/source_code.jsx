@@ -46,28 +46,28 @@ const isUnderPost = props.isUnderPost ? true : false;
 
 const shareButton = props.isPreview ? null : (
   <a
-    class="card-link"
+    className="card-link"
     href={`https://near.social/#/${ownerId}/widget/ContributionRequest?entityId=${entityId}&contributorId=${contributorId}`}
     role="button"
     target="_blank"
     title="Open in new tab"
   >
-    <div class="bi bi-share"></div>
+    <div className="bi bi-share"></div>
   </a>
 );
 
 const header = (
   <div className="card-header">
-    <small class="text-muted">
-      <div class="row justify-content-between">
-        <div class="col-4">
+    <small className="text-muted">
+      <div className="row justify-content-between">
+        <div className="col-4">
           <Widget
             src={`mob.near/widget/ProfileLine`}
             props={{ accountId: contributorId }}
           />
         </div>
-        <div class="col-5">
-          <div class="d-flex justify-content-end">{shareButton}</div>
+        <div className="col-5">
+          <div className="d-flex justify-content-end">{shareButton}</div>
         </div>
       </div>
     </small>
@@ -79,9 +79,9 @@ const entityLink = (
 );
 
 const postTitle = (
-  <h5 class="card-title">
+  <h5 className="card-title">
     <div className="row justify-content-between">
-      <div class="col-9">Contribution Request for {entityLink}</div>
+      <div className="col-9">Contribution Request for {entityLink}</div>
     </div>
   </h5>
 );
@@ -93,10 +93,10 @@ const description = isPreview
 // Should make sure the posts under the currently top viewed post are limited in size.
 const descriptionArea = isUnderPost ? (
   <limitedMarkdown className="overflow-auto">
-    <Markdown class="card-text" text={description}></Markdown>
+    <Markdown className="card-text" text={description}></Markdown>
   </limitedMarkdown>
 ) : (
-  <Markdown class="card-text" text={description}></Markdown>
+  <Markdown className="card-text" text={description}></Markdown>
 );
 
 const startDateInput = (
@@ -150,7 +150,7 @@ const approveButton =
           }}
         >
           Approve
-        </a>{" "}
+        </a>
       </div>
     </div>
   ) : null;
