@@ -1,4 +1,4 @@
-const ownerId = "maxhr.near";
+const ownerId = "maxdev.near";
 const questions = Social.index("genie", "asked") || [];
 questions = questions.reverse();
 
