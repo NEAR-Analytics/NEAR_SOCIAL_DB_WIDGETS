@@ -1,6 +1,6 @@
 const ownerId = "maxdev.near";
 const moderators = ["maxdev.near"];
-context.moderators = moderators;
+
 const isModerator = moderators.includes(context.accountId);
 State.init({ selectedQuestion: "", searchString: "", showAskForm: false });
 
@@ -43,15 +43,6 @@ return (
           Ask a question
         </div>
       </button>
-      {isModerator && (
-        <a
-          style={{ margin: 15 }}
-          href={`https://near.social/#/maxdev.near/widget/GenieModeration`}
-          role="button"
-        >
-          Moderation
-        </a>
-      )}
     </div>
     {state.selectedQuestion && (
       <div
