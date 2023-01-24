@@ -3,12 +3,16 @@ State.init({
   questionContent: "",
   timestamp: Date.now(),
 });
+const { questionRef, onSubmitFinish } = props;
 
 if (!context.accountId) {
   return <p>Please log in to ask a question</p>;
 }
 
-const questionRef = `${context.accountId}--${Date.now()}`;
+// const questionRef = `${context.accountId}--${Date.now()}`;
+if (!questionRef) {
+  throw Error("no questionRef");
+}
 return (
   <div className="d-flex flex-column">
     <div className="d-flex flex-column gap-2">
@@ -34,7 +38,8 @@ return (
         disabled={!state.questionTitle || !state.questionContent}
         className="btn btn-primary"
         onCommit={() => {
-          State.update({ questionContent: "", showAskForm: false });
+          State.update({ questionContent: "", questionTitle: "" });
+          onSubmitFinish();
         }}
         onClick={() => {
           State.update({ timestamp: Date.now() });
