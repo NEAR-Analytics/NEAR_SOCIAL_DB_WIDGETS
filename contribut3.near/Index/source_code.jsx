@@ -25,23 +25,17 @@ const editorsFooter = props.isPreview ? null : (
   <div class="row" id={`accordion`}>
     <div
       class="collapse"
-      id={`collapseIdeaEditor`}
+      id={`collapseContributionRequestForm`}
       data-bs-parent={`#accordion`}
     >
       <Widget src={`contribut3.near/widget/ContributionRequestForm`} />
     </div>
     <div
       class="collapse"
-      id={`collapseSubmissionEditor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
+      id={`collapseEntityForm`}
+      data-bs-parent={`#accordion`}
     >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType: "Submission",
-          parentId: null,
-        }}
-      />
+      <Widget src={`${ownerId}/widget/EntityForm`} />
     </div>
   </div>
 );
@@ -70,10 +64,10 @@ const controls = (
                 aria-current="page"
                 href="#"
                 data-bs-toggle="collapse"
-                href={`#collapseIdeaEditor`}
+                href={`#collapseContributionRequestForm`}
                 role="button"
                 aria-expanded="false"
-                aria-controls={`collapseIdeaEditor`}
+                aria-controls={`collapseContributionRequestForm`}
               >
                 <i class="bi-plus-circle"> </i>
                 Request Contribution
@@ -84,10 +78,10 @@ const controls = (
                 class="nav-link active"
                 href="#"
                 data-bs-toggle="collapse"
-                href={`#collapseSubmissionEditor${postId}`}
+                href={`#collapseEntityForm`}
                 role="button"
                 aria-expanded="false"
-                aria-controls={`collapseSubmissionEditor${postId}`}
+                aria-controls={`collapseEntityForm`}
               >
                 <i class="bi-rocket-fill"> </i>
                 Create Entity
