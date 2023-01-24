@@ -4,7 +4,7 @@ const { questionRef, searchString } = props;
 const asker = questionRef.split("--")[0];
 
 const question = Social.getr(
-  `${asker}/experimental/genie/questions/${questionRef}`
+  `${asker}/neardevs_beta1/questions/${questionRef}`
 );
 
 const BodyText = styled.p`
