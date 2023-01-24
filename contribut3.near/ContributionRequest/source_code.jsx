@@ -10,13 +10,19 @@ if (!entityId || !contributorId) {
   );
 }
 
-const contributionRequest =
-  props.contributionRequest ??
-  Near.view(ownerId, "get_contribution_request", {
-    entity_id: entityId,
-    contributor_id: contributorId,
-  });
+const contributionRequest = isPreview
+  ? props.contributionRequest
+  : Near.view(ownerId, "get_contribution_request", {
+      entity_id: entityId,
+      contributor_id: contributorId,
+    });
+
 if (!contributionRequest) {
+  if (isPreview) {
+    return (
+      <div>You must provide contribution request object in preview mode.</div>
+    );
+  }
   return <div>Loading...</div>;
 }
 
