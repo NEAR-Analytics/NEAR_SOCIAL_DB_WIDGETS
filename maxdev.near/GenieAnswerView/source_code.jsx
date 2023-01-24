@@ -27,10 +27,6 @@ return (
         src={`${ownerId}/widget/GenieAnswerVote`}
         props={{ questionRef, answeredBy }}
       />
-      <Widget
-        src="michaelpeter.near/widget/GenieTip"
-        props={{ questionRef, answeredBy }}
-      />
     </div>
   </div>
 );
