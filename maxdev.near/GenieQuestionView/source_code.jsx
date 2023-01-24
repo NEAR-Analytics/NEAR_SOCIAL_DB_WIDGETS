@@ -36,7 +36,7 @@ if (!state.questionRef) {
 const asker = state.questionRef.split("--")[0];
 
 const question = Social.getr(
-  `${asker}/experimental/genie/questions/${state.questionRef}`
+  `${asker}/neardevs_beta1/questions/${state.questionRef}`
 );
 
 const BodyText = styled.p`
