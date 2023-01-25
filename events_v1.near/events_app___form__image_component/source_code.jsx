@@ -21,6 +21,8 @@ if (!onRemove) {
 State.init({
   img: image.url || '',
   type: image.type,
+
+  localImg: '',
 });
 
 if (!state) {
@@ -40,6 +42,10 @@ const Select = styled.select`
   border-radius: 4px;
   box-sizing: border-box;
 `;
+
+if (state.localImg) {
+  console.log('state.localImg', state.localImg);
+}
 
 return (
   <>
@@ -63,7 +69,7 @@ return (
 
     <div className="ms-2">
       {JSON.stringify(image)}
-      <IpfsImageUpload image={image.url} />
+      <IpfsImageUpload image={localImg} />
     </div>
 
     <button
