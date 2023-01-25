@@ -185,6 +185,7 @@ const saveArticle = (args) => {
     },
   });
 };
+
 const getDateLastEdit = (timestamp) => {
   const date = new Date(Number(timestamp));
   const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
@@ -275,3 +276,25 @@ return (
               </ul>
             )}
 
+            {state.article && (
+              <div>
+                <h4>Article: {state.article.articleId}</h4>
+                <button
+                  onClick={() => {
+                    State.update({
+                      ...state,
+                      note: undefined,
+                      article: undefined,
+                      editArticle: false,
+                    });
+                  }}
+                >
+                  {" "}
+                  Back to articles{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    State.update({ ...state, editArticle: true });
+                  }}
+                >
+ 
