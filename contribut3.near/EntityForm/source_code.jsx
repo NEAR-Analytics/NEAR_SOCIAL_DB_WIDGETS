@@ -50,7 +50,7 @@ const startDateInput = (
 const onSubmit = () => {
   const args = {
     account_id: state.accountId,
-    kind: state.kind.name,
+    kind: state.kind[0].name,
     start_date: `${new Date(state.startDate).getTime()}`,
   };
 
