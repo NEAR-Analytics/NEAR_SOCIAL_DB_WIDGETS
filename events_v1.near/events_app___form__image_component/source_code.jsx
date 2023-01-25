@@ -47,7 +47,6 @@ return (
       style={{ width: '100px' }}
       value={state.type}
       onChange={(event) => {
-        console.log('type', { event });
         State.update({ type: event.target.value });
         onChange({
           url: state.url,
@@ -66,7 +65,6 @@ return (
       <IpfsImageUpload
         image={state.url}
         onChange={(event) => {
-          console.log('url', { event });
           onChange({
             url: event.target.value,
             type: state.type,
