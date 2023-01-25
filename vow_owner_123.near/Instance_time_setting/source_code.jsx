@@ -20,6 +20,7 @@ State.init({
   ],
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
+  hoveringElement: "",
 });
 const time_zone = props.time_zone ?? "(UTC+00:00) UTC";
 const container = {
@@ -308,10 +309,26 @@ return (
           })}
           {!state._validate_result && "time set wrong"}
         </div>
-        <div style={flex_row}>
+        <div
+          style={flex_row}
+          onMouseEnter={() => {
+            State.update({ hoveringElement: "send" });
+          }}
+          onMouseLeave={() => {
+            State.update({ hoveringElement: "" });
+          }}
+        >
           <CommitButton
             className="m-2"
-            style={button}
+            style={{
+              border: "2px solid transparent",
+              fontWeight: "500",
+              fontSize: "1rem",
+              padding: "0.3rem 1.5rem",
+              backgroundColor: "#010A2D",
+              borderRadius: "12px",
+              color: "white",
+            }}
             disabled={!state._validate_result}
             data={getData()}
           >
