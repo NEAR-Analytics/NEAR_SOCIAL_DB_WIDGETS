@@ -146,8 +146,7 @@ function getDangerClassIfNeeded(tab) {
           shouldDisplayNormalStyles && state.pollTitle != "";
         shouldDisplayNormalStyles =
           shouldDisplayNormalStyles && state.pollDescription != "";
-        shouldDisplayNormalStyles =
-          shouldDisplayNormalStyles && isValidTelegramLink();
+        shouldDisplayNormalStyles = shouldDisplayNormalStyles && isValidLink();
         shouldDisplayNormalStyles =
           shouldDisplayNormalStyles && state.pollStartDate != "";
         shouldDisplayNormalStyles =
@@ -255,7 +254,7 @@ function isValidInput(validateQuestions) {
   let result = true;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
-  result = result && isValidTelegramLink();
+  result = result && isValidLink();
   result = result && state.pollStartDate != "";
   result = result && state.pollEndDate != "";
   if (validateQuestions) {
@@ -308,9 +307,15 @@ function addChoicesHandler(questionNumber) {
   });
 }
 
-function isValidTelegramLink() {
+function isValidLink() {
   if (!state.pollDiscussionLink) return true;
-  return state.pollDiscussionLink.startsWith("https://t.me");
+  return (
+    state.pollDiscussionLink.startsWith("https://t.me") ||
+    state.pollDiscussionLink.startsWith("https://miro.com/") ||
+    state.pollDiscussionLink.startsWith("https://docs.google.com/") ||
+    state.pollDiscussionLink.startsWith("https://gov.near.org/") ||
+    state.pollDiscussionLink.startsWith("https://discord.gg/")
+  );
 }
 
 /********** End functions ************/
@@ -767,7 +772,7 @@ return (
                 }}
                 type="text"
                 className={
-                  !isValidTelegramLink() && state.showErrorsInForm
+                  !isValidLink() && state.showErrorsInForm
                     ? "border border-danger mb-2"
                     : "mb-2"
                 }
@@ -791,7 +796,7 @@ return (
                 }}
               ></i>
             </div>
-            {!isValidTelegramLink() && state.showErrorsInForm && (
+            {!isValidLink() && state.showErrorsInForm && (
               <p className="text-danger">Not a valid link</p>
             )}
 
