@@ -44,7 +44,11 @@ const Select = styled.select`
 `;
 
 // hack to call an update on parent
-if (state.localImg && !state.localImg.uploading) {
+if (
+  state.localImg &&
+  !state.localImg.uploading &&
+  state.localImg.cid !== image.url.cid
+) {
   console.log('UPDATE');
   onChange({
     url: { cid: state.localImg.cid },
