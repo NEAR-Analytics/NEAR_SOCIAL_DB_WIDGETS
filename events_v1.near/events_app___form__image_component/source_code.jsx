@@ -67,6 +67,7 @@ return (
         onChange={(event) => {
           const { cid } = event.target.value;
           const url = `https://ipfs.near.social/ipfs/${cid}`;
+          console.log('url', url);
           onChange({
             url: url,
             type: state.type,
