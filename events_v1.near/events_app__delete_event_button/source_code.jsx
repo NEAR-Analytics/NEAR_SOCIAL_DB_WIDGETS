@@ -15,10 +15,10 @@ if (!event) {
 const TGAS_300 = '300000000000000';
 const ONE_NEAR = '1000000000000000000000000';
 
-function deleteEvent() {
+function removeEvent() {
   Near.call(
     EVENTS_CONTRACT,
-    'delete_event',
+    'remove_event',
     {
       account_id: accountId,
       event_id: event.id,
@@ -41,7 +41,7 @@ const DeleteEventButton = styled.button`
 return (
   <DeleteEventButton
     onClick={() => {
-      deleteEvent();
+      removeEvent();
     }}
   >
     Delete event
