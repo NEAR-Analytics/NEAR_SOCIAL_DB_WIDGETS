@@ -109,6 +109,7 @@ function renderComponent(name, props) {
         ...props,
         routing,
         ...buildRenderingInfo(),
+        Components,
         accountId,
         env,
         VERSION,
