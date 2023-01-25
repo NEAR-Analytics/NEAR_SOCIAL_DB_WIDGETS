@@ -21,7 +21,7 @@ function deleteEvent() {
     'delete_event',
     {
       account_id: accountId,
-      event_id: eventId,
+      event_id: event.id,
     },
     TGAS_300,
     ONE_NEAR
