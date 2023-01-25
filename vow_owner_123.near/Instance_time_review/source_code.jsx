@@ -198,21 +198,40 @@ return (
                       return (
                         <div
                           style={{
-                            paddingTop: "0.5rem",
+                            paddingTop: "1rem",
                             display: "flex",
                             justifyContent: "space-between",
                           }}
                         >
                           <div>{`${days[index]}`}</div>
                           <div>
-                            {week.on_off == "on"
-                              ? week.data.map((y) => (
-                                  <div>
-                                    {getFormatedTime(y._from)}~
-                                    {getFormatedTime(y._to)}
-                                  </div>
-                                ))
-                              : "Closed"}
+                            {week.on_off == "on" ? (
+                              week.data.map((y) => (
+                                <div>
+                                  {getFormatedTime(y._from)}~
+                                  {getFormatedTime(y._to)}
+                                </div>
+                              ))
+                            ) : (
+                              <span
+                                style={{
+                                  backgroundColor: "#FFE5E5",
+                                  height: "1.5rem",
+                                  width: "4rem",
+                                  textAlign: "center",
+                                  borderRadius: "16px",
+                                  marginRight: "1rem",
+                                  lineHeight: "1.5rem",
+                                  fontSize: "0.8rem",
+                                  letterSpacing: "-0.025rem",
+                                  color: "#FF4747",
+                                  fontWeight: "500",
+                                  padding: "0.7rem",
+                                }}
+                              >
+                                Closed
+                              </span>
+                            )}
                           </div>
                         </div>
                       );
