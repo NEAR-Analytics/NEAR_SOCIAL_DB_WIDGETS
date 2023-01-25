@@ -48,6 +48,7 @@ return (
       value={state.type}
       onChange={(event) => {
         console.log('type', { event });
+        State.update({ type: event.target.value });
         onChange({
           url: state.url,
           type: event.target.value,
@@ -77,7 +78,7 @@ return (
     <button
       className="ms-2 btn btn-danger"
       onClick={() => {
-        onRemove(image);
+        onRemove();
       }}
     >
       Remove
