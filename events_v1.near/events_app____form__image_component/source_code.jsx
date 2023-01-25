@@ -13,6 +13,7 @@ if (!onChange) {
   return <ErrorMessage>onChange is required</ErrorMessage>;
 }
 
+const onRemove = props.onRemove;
 if (!onRemove) {
   const ErrorMessage = styled.div`
     color: red;
