@@ -15,7 +15,7 @@ console.log(allEntities);
 return (
   <div>
     {allEntities && allEntities.length > 0
-      ? allEntities.map(([accountId]) => (
+      ? allEntities.map((accountId) => (
           <div key={accountId} className="mb-2">
             <Widget
               src={`${ownerId}/widget/Entity`}
