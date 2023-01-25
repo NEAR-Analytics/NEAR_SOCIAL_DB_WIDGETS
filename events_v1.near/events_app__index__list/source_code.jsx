@@ -31,7 +31,6 @@ const IndexList = styled.div`
 `;
 
 const eventsList = events.map((event) => {
-  console.log(event);
   return (
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}__index__list_item`}
