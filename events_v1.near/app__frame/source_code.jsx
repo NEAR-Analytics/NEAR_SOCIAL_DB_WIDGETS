@@ -2,7 +2,6 @@ const VERSION = '0.0.1';
 
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
-const EVENTS_CONTRACT = 'events_v1.near';
 const ENTRY_ROUTE = 'index';
 
 const accountId = context.accountId;
