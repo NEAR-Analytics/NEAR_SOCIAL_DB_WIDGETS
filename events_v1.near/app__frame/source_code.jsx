@@ -34,7 +34,7 @@ const Loading = styled.div`
 `;
 
 if (!state) {
-  return <Loading>Loading...</Loading;
+  return <Loading>Loading...</Loading>;
 }
 
 function slugFromName(name) {
