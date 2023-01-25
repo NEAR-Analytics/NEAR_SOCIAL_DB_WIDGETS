@@ -82,7 +82,7 @@ return (
     </div>
 
     <button
-      className="ms-2 btn btn-danger"
+      className="ms-4 btn btn-danger"
       onClick={() => {
         onRemove();
       }}
