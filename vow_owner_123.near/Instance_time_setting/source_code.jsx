@@ -281,7 +281,7 @@ return (
         <div style={container}>
           <div style={flex_row}>
             <div style={flex_row}>
-              <div style={table}>
+              <div>
                 <div>Select Time zone:</div>
                 <div style={table}>
                   <select
