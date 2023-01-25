@@ -203,7 +203,11 @@ return (
                             justifyContent: "space-between",
                           }}
                         >
-                          <div>{`${days[index]}`}</div>
+                          <div
+                            style={{
+                              fontWeight: "800",
+                            }}
+                          >{`${days[index]}`}</div>
                           <div>
                             {week.on_off == "on" ? (
                               week.data.map((y) => (
