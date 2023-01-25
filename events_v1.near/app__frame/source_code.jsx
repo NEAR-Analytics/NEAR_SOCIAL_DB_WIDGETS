@@ -25,12 +25,16 @@ State.init({
   ],
 });
 
-const Loading = () => {
-  return <div>Loading...</div>;
-};
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
 
 if (!state) {
-  return <Loading />;
+  return <Loading>Loading...</Loading;
 }
 
 function slugFromName(name) {
