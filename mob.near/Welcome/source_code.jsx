@@ -50,28 +50,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-explore-tab"
       >
-        <div className="text-bg-light rounded-4 p-3 mb-3">
-          <Widget src="mob.near/widget/Welcome.GetInvolved" />
-        </div>
-        {context.accountId && (
-          <div className="text-bg-light rounded-4 p-3 mb-3">
-            <Widget src="mob.near/widget/Welcome.Notifications" />
-          </div>
-        )}
-        <div className="text-bg-light rounded-4 p-3 mb-3">
-          <Widget src="mob.near/widget/Applications" />
-        </div>
-        <div className="text-bg-light rounded-4 p-3 mb-3">
-          <Widget src="mob.near/widget/People" />
-        </div>
-        <div className="text-bg-light rounded-4 p-3 mb-3">
-          <h5>Follow activity</h5>
-          <Widget src="mob.near/widget/Welcome.FollowFeed" />
-        </div>
-        <div className="text-bg-light rounded-4 p-3 mb-3">
-          <h5>Poke activity</h5>
-          <Widget src="mob.near/widget/Welcome.PokeFeed" />
-        </div>
+        <Widget src="mob.near/widget/Welcome.RHS" />
       </div>
     </div>
   </>
