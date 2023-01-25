@@ -333,9 +333,10 @@ return (
               fontWeight: "500",
               fontSize: "1rem",
               padding: "1rem",
-              backgroundColor: "#010A2D",
               borderRadius: "12px",
-              color: "white",
+              background: "rgb(230, 230, 230)",
+              border: "1px solid",
+              color: "black",
             }}
             disabled={!state._validate_result}
             data={getData()}
