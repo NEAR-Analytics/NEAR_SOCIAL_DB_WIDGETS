@@ -132,7 +132,7 @@ function renderComponent(name, props, layout, layoutProps) {
       src={layoutFromName(localLayoutName)}
       props={{
         ...componentProps,
-        layout: localLayoutProps
+        layout: localLayoutProps,
         component: {
           src: `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`,
           props: componentProps,
