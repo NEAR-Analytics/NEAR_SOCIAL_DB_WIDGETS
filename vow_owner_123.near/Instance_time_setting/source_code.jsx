@@ -330,7 +330,7 @@ return (
             style={{
               border: "2px solid transparent",
               fontWeight: "500",
-              fontSize: "1rem",
+              fontSize: "1.5rem",
               padding: "0.3rem 1.5rem",
               backgroundColor: "#010A2D",
               borderRadius: "12px",
