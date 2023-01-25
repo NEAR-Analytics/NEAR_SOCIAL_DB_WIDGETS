@@ -4,13 +4,20 @@ if (!image) {
   return 'loading';
 }
 
-const onChange = props.onChange;
+const ErrorMessage = styled.div`
+  color: red;
+`;
 
+const onChange = props.onChange;
 if (!onChange) {
+  return <ErrorMessage>onChange is required</ErrorMessage>;
+}
+
+if (!onRemove) {
   const ErrorMessage = styled.div`
     color: red;
   `;
-  return <ErrorMessage>onChange is required</ErrorMessage>;
+  return <ErrorMessage>onRemove is required</ErrorMessage>;
 }
 
 const ImageTypes = [
