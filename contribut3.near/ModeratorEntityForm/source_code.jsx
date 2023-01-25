@@ -31,7 +31,7 @@ const accountIdInput = (
     <Typeahead
       id="account-id-input"
       labelKey="name"
-      onChange={(accountId) => State.update({ accountId, updated: true })}
+      onChange={(accountId) => State.update({ accountId })}
       options={allAccountIds}
       placeholder="contribut3.near, social.near..."
       selected={state.accountId}
