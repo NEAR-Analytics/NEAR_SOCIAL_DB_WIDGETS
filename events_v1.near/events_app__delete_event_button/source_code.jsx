@@ -1,17 +1,11 @@
 const EVENTS_CONTRACT = 'events_v1.near';
 
-const accountId = context.accountId;
-if (!accountId) {
-  return 'Please connect your NEAR wallet to create an activity';
-}
-
 const event = props.event;
 if (!event) {
   return 'props.event is required';
 }
 
 const TGAS_300 = '300000000000000';
-// const ONE_NEAR = '1000000000000000000000000';
 
 function removeEvent() {
   Near.call(
