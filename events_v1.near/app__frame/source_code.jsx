@@ -129,7 +129,7 @@ return (
             width: '100%',
             height: '100%',
             position: 'fixed',
-            backgroundColor: 'red',
+            backgroundColor: 'white',
             top: 72, // sit right below the navbar
             left: 0,
             right: 0,
