@@ -95,6 +95,8 @@ const navbar = (
             <a
               className="nav-link active button"
               href={`https://near.social/#/${ownerId}/widget/Index?content=entities`}
+              role="button"
+              target="_self"
             >
               <i className="bi-house-fill" />
               Entities
@@ -104,6 +106,8 @@ const navbar = (
             <a
               className="nav-link active button"
               href={`https://near.social/#/${ownerId}/widget/Index?content=contributors`}
+              role="button"
+              target="_self"
             >
               <i className="bi-person-plus-fill" />
               Contributors
@@ -113,6 +117,8 @@ const navbar = (
             <a
               className="nav-link active button"
               href={`https://near.social/#/${ownerId}/widget/Index?content=admin`}
+              role="button"
+              target="_self"
             >
               <i className="bi-person-plus-fill" />
               Manage Entities
