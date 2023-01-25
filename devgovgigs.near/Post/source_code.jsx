@@ -101,7 +101,7 @@ const header = (
       <div class="row justify-content-between">
         <div class="col-4">
           <Widget
-            src={`mob.near/widget/ProfileLine`}
+            src={`neardevgov.near/widget/ProfileLine`}
             props={{ accountId: post.author_id }}
           />
         </div>
@@ -339,7 +339,7 @@ const postExtra =
       <h6 class="card-subtitle mb-2 text-muted">
         Supervisor:{" "}
         <Widget
-          src={`mob.near/widget/ProfileLine`}
+          src={`neardevgov.near/widget/ProfileLine`}
           props={{ accountId: snapshot.supervisor }}
         />
       </h6>
