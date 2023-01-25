@@ -32,6 +32,15 @@ const contributionRequest = props.isPreview
       contributor_id: contributorId,
     });
 
+if (!contributionRequest) {
+  if (props.isPreview) {
+    return (
+      <div>You must provide contribution request object in preview mode.</div>
+    );
+  }
+  return <div>Loading...</div>;
+}
+
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 
