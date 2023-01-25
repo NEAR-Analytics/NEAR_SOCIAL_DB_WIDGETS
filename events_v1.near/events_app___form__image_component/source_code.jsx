@@ -22,6 +22,7 @@ State.init({
   url: image.url,
   type: image.type,
 });
+
 if (!state) {
   return <div>Loading...</div>;
 }
@@ -44,10 +45,13 @@ return (
   <>
     <Select
       style={{ width: '100px' }}
-      value={image.type}
+      value={state.type}
       onChange={(event) => {
-        image.type = event.target.value;
-        onChange(image);
+        console.log('type', { event });
+        onChange({
+          url: state.url,
+          type: event.target.value,
+        });
       }}
     >
       {ImageTypes.map((type) => (
@@ -59,10 +63,13 @@ return (
 
     <div className="ms-2">
       <IpfsImageUpload
-        image={image.url}
+        image={state.url}
         onChange={(event) => {
-          image.url = event.target.value;
-          onChange(image);
+          console.log('url', { event });
+          onChange({
+            url: event.target.value,
+            type: state.type,
+          });
         }}
       />
     </div>
