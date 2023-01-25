@@ -65,6 +65,7 @@ return (
       <IpfsImageUpload
         image={state.url}
         onChange={(event) => {
+          console.log('event', event);
           State.update({ url: event.target.value });
           onChange({
             url: state.url,
