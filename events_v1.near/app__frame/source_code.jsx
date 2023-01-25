@@ -86,7 +86,7 @@ function push(name, props) {
       },
     ],
   });
-  window.location.pathname = `#/${APP_OWNER}/widget/${APP_NAME}__${slugFromName(
+  window.location.search = `#/${APP_OWNER}/widget/${APP_NAME}__${slugFromName(
     name
   )}`;
 }
