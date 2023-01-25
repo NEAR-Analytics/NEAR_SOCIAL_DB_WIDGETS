@@ -1,4 +1,4 @@
-const title = props.title ?? '';
+const title = props.layoutProps.title ?? '';
 
 return (
   <>
