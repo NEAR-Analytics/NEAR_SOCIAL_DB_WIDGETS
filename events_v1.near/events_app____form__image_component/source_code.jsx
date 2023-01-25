@@ -4,14 +4,14 @@ if (!image) {
   return 'loading';
 }
 
-const Select = styled.select`
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
+const onChange = props.onChange;
+
+if (!onChange) {
+  const ErrorMessage = styled.div`
+    color: red;
+  `;
+  return <ErrorMessage>onChange is required</ErrorMessage>;
+}
 
 return (
   <>
