@@ -127,6 +127,8 @@ function renderComponent(name, props, layout, layoutProps) {
     accountId,
     env,
     VERSION,
+    layout,
+    layoutProps,
   };
 
   return (
@@ -134,7 +136,6 @@ function renderComponent(name, props, layout, layoutProps) {
       src={layoutFromName(_layoutName)}
       props={{
         ...componentProps,
-        layout: _layoutProps,
         component: {
           src: `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`,
           props: componentProps,
