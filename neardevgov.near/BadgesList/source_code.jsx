@@ -22,41 +22,39 @@ const ownedBadges = Near.view(
 );
 
 if (!ownedBadges) {
-  return <>Loading...</>;
+  return <>{mode === "compact" ? "..." : "Loading..."}</>;
 }
 
-return (
-  <>
-    {ownedBadges.map(({ token_id: tokenId, metadata }) => {
-      const badgeImage = (
-        <a
-          href={`#/neardevgov.near/widget/BadgeDetails?tokenId=${tokenId}`}
-          title={`NEAR DevGov Badge - ${metadata.title}`}
-        >
-          <Widget
-            src="mob.near/widget/NftImage"
-            props={{
-              style,
-              nft: {
-                tokenMetadata: metadata,
-                contractId: nearDevGovBadgesContractId,
-              },
-              alt: `NEAR DevGov Badge - ${metadata.title}`,
-            }}
-          />
-        </a>
-      );
-      if (mode === "compact") {
-        return badgeImage;
-      }
-      return (
-        <ul>
-          <li style={{ listStyleType: "none" }}>
-            {badgeImage}
-            <Markdown text={metadata.description} />
-          </li>
-        </ul>
-      );
-    })}
-  </>
+const renderedOwnedBadgesList = ownedBadges.map(
+  ({ token_id: tokenId, metadata }) => (
+    <a
+      href={`#/neardevgov.near/widget/BadgeDetails?tokenId=${tokenId}`}
+      title={`NEAR DevGov Badge - ${metadata.title}`}
+    >
+      <Widget
+        src="mob.near/widget/NftImage"
+        props={{
+          style,
+          nft: {
+            tokenMetadata: metadata,
+            contractId: nearDevGovBadgesContractId,
+          },
+          alt: `NEAR DevGov Badge - ${metadata.title}`,
+        }}
+      />
+      {mode === "compact" ? null : metadata.title}
+    </a>
+  )
 );
+
+if (mode === "compact") {
+  return <>{renderedOwnedBadgesList}</>;
+} else {
+  return (
+    <ul>
+      {renderedOwnedBadgesList.map((renderedBadge) => (
+        <li style={{ listStyleType: "none" }}>{renderedBadge}</li>
+      ))}
+    </ul>
+  );
+}
