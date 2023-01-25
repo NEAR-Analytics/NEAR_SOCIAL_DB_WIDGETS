@@ -1,3 +1,6 @@
+const APP_OWNER = 'events_v1.near';
+const APP_NAME = 'events_app';
+
 const accountId = context.accountId;
 if (!accountId) {
   return 'Please connect your NEAR wallet to create an activity';
@@ -337,7 +340,9 @@ return (
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
-          <Widget src=`${APP_OWNER}/widget/` />
+          <Widget
+            src={`${APP_OWNER}/widget/${APP_NAME}___form__image_component`}
+          />
         </div>
       ))}
 
