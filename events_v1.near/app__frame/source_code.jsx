@@ -44,10 +44,19 @@ const engine = {
 return (
   <>
     {/* main widget */}
-
-    <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
-      props={{ ...routeProps, engine }}
-    />
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        overflow: 'hidden',
+        backgroundColor: 'red',
+      }}
+    >
+      <Widget
+        src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
+        props={{ ...routeProps, engine }}
+      />
+    </div>
   </>
 );
