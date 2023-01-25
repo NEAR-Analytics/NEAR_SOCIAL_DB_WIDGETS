@@ -35,6 +35,11 @@ const rendering = {
   renderComponent,
 };
 
+const routing = {
+  transitionTo,
+  currentRoute: state.route,
+};
+
 function transitionTo(name, props) {
   State.set({
     route: {
@@ -52,11 +57,6 @@ function renderComponent(name, props) {
     />
   );
 }
-
-const routing = {
-  transitionTo,
-  currentRoute: state.route,
-};
 
 return (
   <>
