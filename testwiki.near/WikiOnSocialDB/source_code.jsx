@@ -185,3 +185,93 @@ const saveArticle = (args) => {
     },
   });
 };
+const getDateLastEdit = (timestamp) => {
+  const date = new Date(Number(timestamp));
+  const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
+  return dateString;
+};
+
+const getAuthors = () => {
+  const authors = Array.from(resultArticles, ({ author }) => author);
+  const uniqAuthors = Array.from(new Set(authors));
+
+  // console.log("authors", authors);
+  // console.log("uniqAuthors", uniqAuthors);
+
+  return (
+    <>
+      <h6>Total authors: {uniqAuthors.length}</h6>
+      <ul>
+        {uniqAuthors.map((author) => (
+          <li>
+            <a
+              href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+            >
+              {author}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
+return (
+  <>
+    <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
+      {pills.map(({ id, title }, i) => (
+        <li className="nav-item" role="presentation" key={i}>
+          <button
+            className={`nav-link ${i === 0 ? "active" : ""}`}
+            id={`pills-${id}-tab`}
+            data-bs-toggle="pill"
+            data-bs-target={`#pills-${id}`}
+            type="button"
+            role="tab"
+            aria-controls={`pills-${id}`}
+            aria-selected={i === 0}
+            onClick={() => {
+              const key = `load${id}`;
+
+              State.update({
+                ...state,
+                article: undefined,
+                authorId: undefined,
+                note: undefined,
+                editArticle: false,
+                currentTab: key,
+              });
+              // console.log("state", state);
+            }}
+          >
+            {title}
+          </button>
+        </li>
+      ))}
+    </ul>
+    <div className="tab-content" id="pills-tabContent">
+      <div
+        className="tab-pane fade show active"
+        id="pills-main"
+        role="tabpanel"
+        aria-labelledby="pills-main-tab"
+      >
+        {state.currentTab === "loadarticles" && (
+          <div>
+            {!state.article && (
+              <ul>
+                {resultArticles &&
+                  filteredArticles.map((article, index) => (
+                    <li key={article.articleId}>
+                      #{" "}
+                      <a href="" onClick={(e) => handleArticle(e, article)}>
+                        {index + 1} {article.articleId}{" "}
+                        <small>
+                          (author: {article.author}
+                          {getDateLastEdit(article.timeLastEdit)})
+                        </small>
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            )}
+
