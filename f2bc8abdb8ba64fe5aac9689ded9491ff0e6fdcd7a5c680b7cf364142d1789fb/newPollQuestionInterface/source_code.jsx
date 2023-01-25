@@ -39,7 +39,8 @@ const pollTypes = {
   YES_OR_NO: { id: "3", value: "Yes or No" },
 };
 
-const widgetOwner = "silkking.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const MODAL_TYPES = {
   PREVIEW: {
