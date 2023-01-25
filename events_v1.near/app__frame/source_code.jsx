@@ -1,6 +1,6 @@
-const APP_OWNER = '{{ env.APP_OWNER }}';
-const APP_NAME = '{{ env.APP_NAME }}';
-const EVENTS_CONTRACT = '{{ env.EVENTS_CONTRACT }}';
+const APP_OWNER = 'events_v1.near';
+const APP_NAME = 'events_app';
+const EVENTS_CONTRACT = 'events_v1.near';
 
 const env = {
   APP_OWNER,
