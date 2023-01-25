@@ -1,6 +1,12 @@
 /********** Start initialization ************/
 let sharedBlockHeight = props.sharedBlockHeight;
 
+const TABS = {
+  MY_POLLS: { id: 0, text: "My Polls" },
+  ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
+  NEW_POLL: { id: 2, text: "Create a poll" },
+};
+
 State.init({
   displaying: TABS.MY_POLLS.id,
   hoveringElement: "",
@@ -16,14 +22,8 @@ if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
 /********** End initialization ************/
 
 /********** Start constants ************/
-
-const TABS = {
-  MY_POLLS: { id: 0, text: "My Polls" },
-  ALL_EXISTING_POLLS: { id: 1, text: "All existing polls" },
-  NEW_POLL: { id: 2, text: "Create a poll" },
-};
-
-const widgetOwner = "easypoll.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const MODAL = "modal";
 
