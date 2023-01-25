@@ -27,7 +27,9 @@ if (!state) {
 }
 
 const routeSlug = state.route.name.split('.').join('__');
-const routeProps = state.route.props;
+const routeProps = {
+  ...state.route.props,
+};
 
 function transitionTo(name, props) {
   State.set({
@@ -38,9 +40,22 @@ function transitionTo(name, props) {
   });
 }
 
+function renderComponent(name, props) {
+  return (
+    <Widget
+      src={`${APP_OWNER}/widget/${APP_NAME}__${name}`}
+      props={{ ...props, routing, rendering }}
+    />
+  );
+}
+
 const routing = {
   transitionTo,
   currentRoute: state.route,
+};
+
+const rendering = {
+  renderComponent,
 };
 
 return (
