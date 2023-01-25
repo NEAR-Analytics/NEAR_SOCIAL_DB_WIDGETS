@@ -99,7 +99,7 @@ return (
         </div>
         <div class="d-flex flex-column">
           <div>{profile.name}</div>
-          <div>{context.accountId}</div>
+          <div>@{context.accountId}</div>
         </div>
       </div>
       <div className="w-100 d-flex flex-row justify-content-between align-items-center">
