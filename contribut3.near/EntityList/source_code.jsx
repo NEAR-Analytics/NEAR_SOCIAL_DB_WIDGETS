@@ -1,6 +1,9 @@
 const ownerId = "contribut3.near";
+const search = props.search ?? "";
 
-const allEntities = Near.view(ownerId, "get_entities", {}, "final") ?? [];
+const allEntities = (
+  Near.view(ownerId, "get_entities", {}, "final") ?? []
+).filter((accountId) => (search ? accountId.includes(search) : true));
 
 allEntities.sort(([a], [b]) => a.localeCompare(b));
 
