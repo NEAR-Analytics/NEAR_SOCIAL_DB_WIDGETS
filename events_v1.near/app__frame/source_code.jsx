@@ -88,13 +88,15 @@ const engine = {
   renderComponent,
 };
 
-function push(name, props) {
+function push(name, props, layout, layoutProps) {
   State.update({
     layers: [
       ...state.layers,
       {
         name,
         props: props || {},
+        layout: layout || 'default',
+        layoutProps: layoutProps || {},
       },
     ],
   });
