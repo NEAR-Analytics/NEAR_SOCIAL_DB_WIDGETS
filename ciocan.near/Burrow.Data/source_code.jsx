@@ -1,9 +1,11 @@
+const assets = Near.view("contract.main.burrow.near", "get_assets_paged");
+
 const data = {
-  assets: { near: 123 },
+  assets,
 };
 
 if (typeof props.onLoad === "function") {
   props.onLoad(data);
 }
 
-return <div>Burrow.Data</div>;
+return <div />;
