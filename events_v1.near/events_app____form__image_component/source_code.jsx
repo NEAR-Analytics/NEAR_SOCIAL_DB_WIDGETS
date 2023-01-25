@@ -48,10 +48,8 @@ return (
       <IpfsImageUpload
         image={image.url}
         onChange={(event) => {
-          const images = [...state.images];
-          images[index].url = event.target.value;
-          State.update({ images });
-          sanitizeAndValidate({ ...state, images });
+          image.url = event.target.value;
+          onChange(image);
         }}
       />
     </div>
