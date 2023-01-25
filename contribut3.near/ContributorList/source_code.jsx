@@ -2,14 +2,8 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 
 const allContributors = (
-  Near.view(ownerId, "get_contributors", {}, "final") ?? []
-).filter((accountId) => {
-  const res = search ? accountId.includes(search) : true;
-
-  console.log(accountId, search);
-
-  return res;
-});
+  Near.view(ownerId, "get_contributors", {}, "final", true) ?? []
+).filter((accountId) => (search ? accountId.includes(search) : true));
 
 allContributors.sort((a, b) => a.localeCompare(b));
 
