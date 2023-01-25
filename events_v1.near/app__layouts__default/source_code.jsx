@@ -1,1 +1,1 @@
-return (<Widget src={props.component.src} props={props.component.props}>)
+return <Widget src={props.component.src} props={props.component.props} />;
