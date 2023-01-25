@@ -44,6 +44,26 @@ if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
 if (!state.poll && !isPreview) {
   return "Loading...";
 }
+
+function getPollStatus(poll) {
+  return isUpcoming(poll)
+    ? QUESTION_STATUSES.UPCOMING
+    : isActive(poll)
+    ? QUESTION_STATUSES.ACTIVE
+    : QUESTION_STATUSES.CLOSED;
+}
+
+function isActive(poll) {
+  return (
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp
+  );
+}
+
+function isUpcoming(poll) {
+  return poll.value.startTimestamp > Date.now();
+}
+
 const pollStatus = getPollStatus(state.poll);
 
 let profile = Social.getr(`${state.poll.accountId}/profile`);
@@ -114,25 +134,6 @@ function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
 
-function getPollStatus(poll) {
-  return isUpcoming(poll)
-    ? QUESTION_STATUSES.UPCOMING
-    : isActive(poll)
-    ? QUESTION_STATUSES.ACTIVE
-    : QUESTION_STATUSES.CLOSED;
-}
-
-function isActive(poll) {
-  return (
-    poll.value.startTimestamp < Date.now() &&
-    Date.now() < poll.value.endTimestamp
-  );
-}
-
-function isUpcoming(poll) {
-  return poll.value.startTimestamp > Date.now();
-}
-
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
   const answers = Social.index("poll_question", "answer-v3.1.0");
 
@@ -161,7 +162,7 @@ function closeModalClickingOnTransparent() {
   };
 }
 
-function showDescription(description) {
+function descriptionText(description) {
   if (state.descriptionHeightLimited && description.length > 501) {
     return description.slice(0, 500) + "...";
   } else {
@@ -473,9 +474,12 @@ return (
           >
             Description
           </h3>
-          <p style={{ fontSize: "0.9rem" }}>
-            {showDescription(state.poll.value.description)}
-          </p>
+          <Markdown text={descriptionText(state.poll.value.description)} />
+
+          {/*<p style={{ fontSize: "0.9rem" }}>
+            {descriptionText(state.poll.value.description)}
+            
+          </p>*/}
           {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
             <div
