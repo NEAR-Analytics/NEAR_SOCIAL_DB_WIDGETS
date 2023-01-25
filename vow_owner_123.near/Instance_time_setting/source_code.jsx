@@ -22,18 +22,6 @@ State.init({
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
 });
-const title = {
-  display: "flex",
-  justifyContent: "center",
-  width: "70%",
-  padding: "1.5rem",
-  marginBottom: "1rem",
-  color: "black",
-  borderRadius: "2rem",
-  fontWeight: 600,
-  fontSize: "xx-large",
-  boxShadow: "2px 2px 2px 2px grey",
-};
 const container = {
   display: "flex",
   width: "100%",
@@ -176,7 +164,6 @@ const getTime = (time) => {
 const onTimeChanged = (value, index, is_from_to, in_de) => {
   let temp = is_from_to ? state._from : state._to;
   const i = hours.indexOf(value);
-  console.log(i, in_de);
   if (i + in_de >= 0 && i + in_de < hours.length) {
     temp[index] = hours[i + in_de];
     is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
@@ -233,7 +220,6 @@ const getData = () => {
     }
   }
   const final = sortAndRemoveRepeated(flag, temp);
-  console.log("final", final);
   return {
     index: {
       Instance_time: JSON.stringify(
@@ -292,31 +278,26 @@ return (
   <div>
     {context.accountId ? (
       <div style={flex_column} className="align-items-center">
-        <div style={title}>Weekly Schedule</div>
         <div style={container}>
-          <div style={flex_row} className="p-3">
+          <div style={flex_row}>
             <div style={flex_row}>
-              <div style={table}>current_user:</div>
               <div style={table}>
-                <div style={comboBoxTimezone}>{context.accountId}</div>
-              </div>
-            </div>
-            <div style={flex_row}>
-              <div style={table}>Select Time zone:</div>
-              <div style={table}>
-                <select
-                  style={comboBoxTimezone}
-                  name="zones"
-                  id="zones"
-                  value={state._time_zone}
-                  onChange={(e) => {
-                    State.update({ _time_zone: e.target.value });
-                  }}
-                >
-                  {time_zones.map((zone) => (
-                    <option value={zone}>{zone}</option>
-                  ))}
-                </select>
+                <div>Select Time zone:</div>
+                <div style={table}>
+                  <select
+                    style={comboBoxTimezone}
+                    name="zones"
+                    id="zones"
+                    value={state._time_zone}
+                    onChange={(e) => {
+                      State.update({ _time_zone: e.target.value });
+                    }}
+                  >
+                    {time_zones.map((zone) => (
+                      <option value={zone}>{zone}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
           </div>
