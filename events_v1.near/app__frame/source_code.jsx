@@ -30,6 +30,36 @@ function slugFromName(name) {
   return name.split(/\.|\//gu).join('__');
 }
 
+const routeSlug = slugFromName(state.route.name);
+const routeProps = {
+  ...state.route.props,
+};
+
+const Select = styled.select`
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+`;
+
+const rendering = {
+  renderComponent,
+  components: {
+    Select,
+  },
+};
+
+const routing = {
+  transitionTo,
+  currentRoute: state.route,
+};
+
 function transitionTo(name, props) {
   State.set({
     route: {
@@ -47,20 +77,6 @@ function renderComponent(name, props) {
     />
   );
 }
-
-const routeSlug = slugFromName(state.route.name);
-const routeProps = {
-  ...state.route.props,
-};
-
-const rendering = {
-  renderComponent,
-};
-
-const routing = {
-  transitionTo,
-  currentRoute: state.route,
-};
 
 return (
   <>
