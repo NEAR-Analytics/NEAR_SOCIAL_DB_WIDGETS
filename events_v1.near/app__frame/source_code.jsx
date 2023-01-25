@@ -117,13 +117,11 @@ function renderComponent(name, props) {
 
   return (
     <Widget
-      src={`${APP_OWNER}/widget/app__${layoutFromName(layout)}`}
+      src={`${APP_OWNER}/widget/app__layouts__${layoutFromName(layout)}`}
       props={{
         ...componentProps,
         component: {
-          src: `${APP_OWNER}/widget/${APP_NAME}__layouts__${slugFromName(
-            name
-          )}`,
+          src: `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`,
           props: componentProps,
         },
       }}
