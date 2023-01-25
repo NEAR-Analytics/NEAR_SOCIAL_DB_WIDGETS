@@ -18,7 +18,7 @@ if (!allEntities || allEntities.length === 0) {
 }
 
 return (
-  <div>
+  <>
     {allEntities.map((accountId) => (
       <div key={accountId} className="mb-2">
         <Widget
@@ -27,5 +27,5 @@ return (
         />
       </div>
     ))}
-  </div>
+  </>
 );
