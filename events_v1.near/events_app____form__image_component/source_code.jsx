@@ -57,10 +57,7 @@ return (
     <button
       className="ms-2 btn btn-danger"
       onClick={() => {
-        const images = [...state.images];
-        images.splice(index, 1);
-        State.update({ images });
-        sanitizeAndValidate({ ...state, images });
+        onRemove(image);
       }}
     >
       Remove
