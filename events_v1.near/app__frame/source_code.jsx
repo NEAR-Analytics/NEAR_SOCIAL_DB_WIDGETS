@@ -63,6 +63,8 @@ const Button = styled.button`
   }
 `;
 
+const currentRoute = state.layers[state.layers.length - 1];
+
 const rendering = {
   renderComponent,
   Components: {
@@ -73,7 +75,7 @@ const rendering = {
 
 const routing = {
   push,
-  currentRoute: state.route,
+  currentRoute,
 };
 
 function push(name, props) {
@@ -100,20 +102,25 @@ function renderComponent(name, props) {
 return (
   <>
     {/* main widget */}
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'fixed',
-        backgroundColor: 'red',
-        top: 72, // sit right below the navbar
-        left: 0,
-        right: 0,
-        bottom: 0,
-        padding: 0,
-      }}
-    >
-      {renderComponent(state.route.name, state.route.props)}
-    </div>
+    {state.layers.map((layer, index) => {
+      return (
+        <div
+          key={index}
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'fixed',
+            backgroundColor: 'red',
+            top: 72, // sit right below the navbar
+            left: 0,
+            right: 0,
+            bottom: 0,
+            padding: 0,
+          }}
+        >
+          {renderComponent(layer.name, layer.props)}
+        </div>
+      );
+    })}
   </>
 );
