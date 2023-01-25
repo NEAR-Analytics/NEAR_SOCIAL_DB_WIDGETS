@@ -12,7 +12,6 @@ if (!accountId) {
 const env = {
   APP_OWNER,
   APP_NAME,
-  EVENTS_CONTRACT,
 };
 
 // TODO: get layers from URL
