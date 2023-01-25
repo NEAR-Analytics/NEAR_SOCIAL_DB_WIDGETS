@@ -1,8 +1,5 @@
 const _account = props.accountId ?? "All";
 console.log("accountId", props.accountId);
-if (!_account) {
-  return "No account ID";
-}
 const card = {
   border: "1px solid black",
   borderRadius: "5px",
@@ -16,33 +13,6 @@ const comboBox = {
   color: "white",
   borderRadius: "1rem",
   padding: "1rem",
-};
-const container_on = {
-  display: "flex",
-  width: "100%",
-  justifyContent: "center",
-  padding: "1rem",
-  margin: "0.5rem",
-  background: "white",
-  color: "black",
-  fontWeight: 400,
-  fontSize: "16px",
-  borderRadius: "1rem",
-  border: "1px solid black",
-  flexDirection: "column",
-};
-const container_off = {
-  display: "flex",
-  width: "100%",
-  justifyContent: "center",
-  padding: "1rem",
-  margin: "0.5rem",
-  background: "grey",
-  fontWeight: 400,
-  fontSize: "16px",
-  borderRadius: "1rem",
-  border: "1px solid black",
-  flexDirection: "column",
 };
 const days = [
   "Monday",
@@ -153,57 +123,90 @@ const getFormatedTime = (time) => {
 };
 
 return (
-  <div className="w-100">
-    {finalData
-      ? finalData.map((d) => {
-          if (_account == "All" || _account == d.accountId) {
-            return (
-              <div style={card}>
-                <Widget
-                  src="mob.near/widget/ProfileImage"
-                  props={{
-                    accountId: d.accountId,
-                    className: "d-inline-block",
-                    style: {
-                      width: "1.5em",
-                      height: "1.5em",
-                      fontSize: "x-large",
-                    },
+  <div
+    style={{
+      borderRadius: "3px",
+      backgroundColor: "rgb(230, 230, 230)",
+      width: "100%",
+      padding: "0.5rem",
+    }}
+  >
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: " repeat(3, 1fr)",
+      }}
+    >
+      {finalData
+        ? finalData.map((d) => {
+            if (_account == "All" || _account == d.accountId) {
+              return (
+                <div
+                  style={{
+                    boxSizing: "border-box",
+                    boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                    backgroundColor: "white",
+                    borderRadius: "1rem",
+                    margin: "8px",
+                    cursor: "pointer",
                   }}
-                />
-                <a
-                  href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}
                 >
-                  {d.accountId}
-                </a>
-                <div>
-                  <div className="d-flex flex-row">
+                  <div
+                    style={{
+                      padding: "1rem",
+                    }}
+                  >
+                    <div
+                      style={{
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      <Widget
+                        src="mob.near/widget/ProfileImage"
+                        props={{
+                          accountId: d.accountId,
+                          className: "d-inline-block",
+                          style: {
+                            width: "1.5em",
+                            height: "1.5em",
+                            fontSize: "x-large",
+                          },
+                        }}
+                      />
+                      <a
+                        href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}
+                      >
+                        {d.accountId}
+                      </a>
+                    </div>
                     {d.value._data.map((week, index) => {
                       return (
                         <div
-                          style={
-                            week.on_off == "on" ? container_on : container_off
-                          }
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
                         >
                           <div>{`${days[index]}`}</div>
                           <div>
-                            {week.data.map((y) => (
-                              <div>
-                                <br />
-                                <div>{getFormatedTime(y._from)}</div>~
-                                <div>{getFormatedTime(y._to)}</div>
-                              </div>
-                            ))}
+                            {week.on_off == "on"
+                              ? week.data.map((y) => (
+                                  <div>
+                                    {getFormatedTime(y._from)}~
+                                    {getFormatedTime(y._to)}
+                                  </div>
+                                ))
+                              : "Closed"}
                           </div>
                         </div>
                       );
                     })}
                   </div>
                 </div>
-              </div>
-            );
-          }
-        })
-      : "Loading..."}
+              );
+            }
+          })
+        : "Loading..."}
+    </div>
   </div>
 );
