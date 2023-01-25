@@ -13,7 +13,7 @@ if (!event) {
 }
 
 const TGAS_300 = '300000000000000';
-const ONE_NEAR = '1000000000000000000000000';
+// const ONE_NEAR = '1000000000000000000000000';
 
 function removeEvent() {
   Near.call(
@@ -23,14 +23,13 @@ function removeEvent() {
       account_id: accountId,
       event_id: event.id,
     },
-    TGAS_300,
-    0
+    TGAS_300
   );
 }
 
 const DeleteEventButton = styled.button`
-  background-color: #ff0000;
-  color: #ffffff;
+  background-color: #c0392b;
+  color: #fff;
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
