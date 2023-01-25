@@ -9,12 +9,14 @@ console.log('props', props);
 return (
   <div>
     <h1>Events</h1>
-    <a
-      href={`#/${APP_OWNER}/widget/${APP_NAME}__new?accountId=${accountId}`}
-      className="TODO"
+
+    <Button
+      onClick={() => {
+        props.routing.push('new');
+      }}
     >
-      <Button onClick={props.routing.push('new')}>Create new Event</Button>
-    </a>
+      Create new Event
+    </Button>
 
     <a
       href={`#/${APP_OWNER}/widget/${APP_NAME}__index__list_container?accountId=${accountId}`}
