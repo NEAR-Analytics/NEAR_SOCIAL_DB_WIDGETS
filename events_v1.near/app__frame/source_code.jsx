@@ -37,6 +37,10 @@ function transitionTo(name, props) {
   });
 }
 
+const engine = {
+  transitionTo,
+};
+
 return (
   <>
     {/* main widget */}
