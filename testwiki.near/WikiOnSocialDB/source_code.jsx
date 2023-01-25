@@ -348,19 +348,19 @@ return (
                 )}
                 <Markdown text={state.note || state.article.body} />
                 <div className="mt-5 alert alert-secondary">
-                                  <div>
-                    Created by{' '}
+                  <div>
+                    Created by{" "}
                     <a
                       href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.author}`}
-                      style={{ textDecoration: 'underline' }}
+                      style={{ textDecoration: "underline" }}
                     >
                       {state.article.author}
                     </a>
                     <br />
-                    Last edit by{' '}
+                    Last edit by{" "}
                     <a
                       href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
-                      style={{ textDecoration: 'underline' }}
+                      style={{ textDecoration: "underline" }}
                     >
                       {state.article.lastEditor}
                     </a>
@@ -368,7 +368,7 @@ return (
                     Edited on {getDate(state.article.timeLastEdit)}
                     <br />
                     Edit versions: {state.article.version}
-                                      </div>
+                  </div>
                   {buttons}
                 </div>
               </div>
@@ -383,9 +383,92 @@ return (
         role="tabpanel"
         aria-labelledby="pills-authors-tab"
       >
-        {state.currentTab === 'loadauthors' && (
+        {state.currentTab === "loadauthors" && (
           <div>{resultArticles && getAuthors()}</div>
         )}
       </div>
 
       <div
+        className="tab-pane fade"
+        id="pills-create"
+        role="tabpanel"
+        aria-labelledby="pills-create-tab"
+      >
+        {state.currentTab === "loadcreate" && (
+          <div>
+            <h1 className="mb-3"> Create Article</h1>
+            <div>
+              <div>
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={saveHandler}
+                >
+                  Save Article
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+              </div>
+              <div class="d-flex flex-column pt-3">
+                <label for="inputArticleId">
+                  Input article id (case-sensitive, without spaces):
+                </label>
+                <label for="inputArticleId" class="small text-danger">
+                  {state.errorId}
+                </label>
+                <input
+                  className="form-control mt-2"
+                  id="inputArticleId"
+                  value={state.createArticle.articleId}
+                  onChange={(e) => {
+                    State.update({
+                      ...state,
+                      createArticle: {
+                        ...state.createArticle,
+                        articleId: e.target.value.replace(/\s+/g, ""),
+                      },
+                    });
+                  }}
+                />
+              </div>
+              <div class="d-flex flex-column pt-3">
+                <label for="textareaArticleBody">
+                  Input article body (in makrdown format):
+                </label>
+                <label for="textareaArticleBody" class="small text-danger">
+                  {state.errorBody}
+                </label>
+                <textarea
+                  id="textareaArticleBody "
+                  type="text"
+                  value={state.createArticle.articleBody}
+                  rows={10}
+                  className="form-control mt-2"
+                  onChange={(e) => {
+                    State.update({
+                      ...state,
+                      createArticle: {
+                        ...state.createArticle,
+                        articleBody: e.target.value,
+                      },
+                    });
+                  }}
+                />
+              </div>
+              <div class="pt-3">
+                Article preview:
+                <Markdown text={state.createArticle.articleBody} />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </>
+);
