@@ -127,7 +127,7 @@ function renderComponent(name, props, layout, layoutProps) {
     accountId,
     env,
     VERSION,
-    layout: layout || 'default',
+    layout: _layoutName,
     layoutProps: layoutProps || {},
   };
 
