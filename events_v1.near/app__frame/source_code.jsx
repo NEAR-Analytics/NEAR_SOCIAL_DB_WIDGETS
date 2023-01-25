@@ -101,7 +101,7 @@ return (
         height: '100%',
         position: 'fixed',
         backgroundColor: 'red',
-        top: 0,
+        top: 72,
         left: 0,
         right: 0,
         bottom: 0,
