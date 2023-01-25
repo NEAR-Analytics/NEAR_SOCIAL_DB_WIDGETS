@@ -1,6 +1,7 @@
 State.init({
   _account: props.accountId ?? "All",
 });
+console.log("accountId", props.accountId);
 const card = {
   border: "1px solid black",
   borderRadius: "5px",
