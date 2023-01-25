@@ -3,7 +3,7 @@ const search = props.search ?? "";
 
 const allContributors = (
   Near.view(ownerId, "get_contributors", {}, "final") ?? []
-).filter(([accountId]) => {
+).filter((accountId) => {
   const res = search ? accountId.includes(search) : true;
 
   console.log(accountId, search);
@@ -11,12 +11,12 @@ const allContributors = (
   return res;
 });
 
-allContributors.sort(([a], [b]) => a.localeCompare(b));
+allContributors.sort((a, b) => a.localeCompare(b));
 
 return (
   <div>
     {allContributors
-      ? allContributors.map(([accountId]) => (
+      ? allContributors.map((accountId) => (
           <div key={accountId} className="mb-2">
             <Widget
               src={`${ownerId}/widget/Contributor`}
