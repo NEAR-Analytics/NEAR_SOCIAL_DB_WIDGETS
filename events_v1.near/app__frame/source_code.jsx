@@ -25,8 +25,12 @@ State.init({
   ],
 });
 
+const Loading = () => {
+  return <div>Loading...</div>;
+};
+
 if (!state) {
-  return 'Loading';
+  return <Loading />;
 }
 
 function slugFromName(name) {
@@ -69,6 +73,7 @@ const Button = styled.button`
 const Components = {
   Select,
   Button,
+  Loading,
 };
 
 const currentRoute = state.layers[state.layers.length - 1];
