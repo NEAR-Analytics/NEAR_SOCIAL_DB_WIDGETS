@@ -107,10 +107,10 @@ return (
         backgroundColor: 'red',
       }}
     >
-      <Widget
+      {/* <Widget
         src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}`}
         props={{ ...routeProps, routing }}
-      />
+      /> */}
     </div>
   </>
 );
