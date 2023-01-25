@@ -9,11 +9,7 @@ initState({
 });
 
 if (!entityId || !contributorId) {
-  return (
-    <div>
-      Cannot show contribution request without entityId or contributorId!
-    </div>
-  );
+  return "Cannot show contribution request without entityId or contributorId!";
 }
 
 const contributor = Near.view(
@@ -33,16 +29,10 @@ const contributionRequest = props.isPreview
     });
 
 if (!contributionRequest) {
-  if (props.isPreview) {
-    return (
-      <div>You must provide contribution request object in preview mode.</div>
-    );
-  }
-  return <div>Loading...</div>;
+  return props.isPreview
+    ? "You must provide contribution request object in preview mode!"
+    : "Loading...";
 }
-
-// If this post is displayed under another post. Used to limit the size.
-const isUnderPost = props.isUnderPost ? true : false;
 
 const shareButton = props.isPreview ? null : (
   <a
@@ -52,7 +42,7 @@ const shareButton = props.isPreview ? null : (
     target="_blank"
     title="Open in new tab"
   >
-    <div className="bi bi-share"></div>
+    <div className="bi bi-share" />
   </a>
 );
 
@@ -90,14 +80,7 @@ const description = isPreview
   ? props.contributionRequest.description
   : contributionRequest.description;
 
-// Should make sure the posts under the currently top viewed post are limited in size.
-const descriptionArea = isUnderPost ? (
-  <limitedMarkdown className="overflow-auto">
-    <Markdown className="card-text" text={description}></Markdown>
-  </limitedMarkdown>
-) : (
-  <Markdown className="card-text" text={description}></Markdown>
-);
+const descriptionArea = <Markdown className="card-text" text={description} />;
 
 const startDateInput = (
   <div className="col-lg-6 mb-2">
@@ -124,10 +107,17 @@ const descriptionDiv = (
   </div>
 );
 
-const approveButton =
-  isAuthorized && !isPreview ? (
+const body = (
+  <div className="card-body">
+    {postTitle}
+    {descriptionArea}
+  </div>
+);
+
+const footer =
+  !isAuthorized || isPreview ? null : (
     <div className="card-footer">
-      <div className="">
+      <div>
         {startDateInput}
         {descriptionDiv}
         <a
@@ -153,15 +143,12 @@ const approveButton =
         </a>
       </div>
     </div>
-  ) : null;
+  );
 
 return (
   <div className={`card my-2`}>
     {header}
-    <div className="card-body">
-      {postTitle}
-      {descriptionArea}
-    </div>
-    {approveButton}
+    {body}
+    {footer}
   </div>
 );
