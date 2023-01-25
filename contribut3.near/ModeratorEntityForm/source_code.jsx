@@ -146,7 +146,7 @@ const footer = (
         accountId: state.accountId[0].name,
         notStandalone: true,
         entity:
-          state.updated || !existing
+          state.updated || !state.existing
             ? {
                 kind: state.kind[0].name,
                 status: state.entityStatus[0].name,
