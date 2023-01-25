@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 
 initState({
   search: "",
+  content: props.content ?? "entities",
 });
 
 // // A workaround for weird VM behavior. It does not call initState when the same
@@ -18,6 +19,7 @@ const home = "https://near.social/#/contribut3.near/widget/Index";
 const onHomeClick = () => {
   State.update({
     search: "",
+    content: "entities",
   });
 };
 
@@ -110,18 +112,39 @@ const navbar = (
               Entities
             </a>
           </li>
+          <li className="nav-item ">
+            <a
+              className="nav-link active button"
+              onClick={() => State.update({ content: "contributors" })}
+              role="button"
+            >
+              <i className="bi-person-plus-fill"> </i>
+              Contributors
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 );
 
+const content = {
+  entities: (
+    <div className="mt-2">
+      <Widget src={`${ownerId}/widget/EntityList`} />
+    </div>
+  ),
+  contributors: (
+    <div className="mt-2">
+      <Widget src={`${ownerId}/widget/ContributorList`} />
+    </div>
+  ),
+}[state.content];
+
 return (
   <div>
     {controls}
     {navbar}
-    <div className="mt-2">
-      <Widget src={`${ownerId}/widget/EntityList`} />
-    </div>
+    {content}
   </div>
 );
