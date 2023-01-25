@@ -117,8 +117,8 @@ const routing = {
 
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props, layout, layoutProps) {
-  const localLayoutName = layout || 'default';
-  const localLayoutProps = layoutProps || {};
+  const _layoutName = layout || 'default';
+  const _layoutProps = layoutProps || {};
   const componentProps = {
     ...props,
     routing,
@@ -131,10 +131,10 @@ function renderComponent(name, props, layout, layoutProps) {
 
   return (
     <Widget
-      src={layoutFromName(localLayoutName)}
+      src={layoutFromName(_layoutName)}
       props={{
         ...componentProps,
-        layout: localLayoutProps,
+        layout: _layoutProps,
         component: {
           src: `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`,
           props: componentProps,
