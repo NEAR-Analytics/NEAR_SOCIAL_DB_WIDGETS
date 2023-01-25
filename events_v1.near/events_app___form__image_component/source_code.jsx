@@ -43,8 +43,13 @@ const Select = styled.select`
   box-sizing: border-box;
 `;
 
-if (state.localImg) {
-  console.log('state.localImg', state.localImg);
+// hack to call an update on parent
+if (state.localImg && !state.localImg.uploading) {
+  console.log('UPDATE');
+  onChange({
+    url: { cid: state.localImg.cid },
+    type: state.type,
+  });
 }
 
 return (
@@ -69,7 +74,6 @@ return (
 
     <div className="ms-2">
       {JSON.stringify(image)}
-      {JSON.stringify(state.localImg)}
       <IpfsImageUpload image={state.localImg} />
     </div>
 
