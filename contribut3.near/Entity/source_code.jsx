@@ -4,7 +4,7 @@ const notStandalone = props.notStandalone ?? false;
 const isPreview = props.isPreview ?? false;
 
 if (!accountId) {
-  return <div>Cannot show entity without account ID!</div>;
+  return "Cannot show entity without account ID!";
 }
 
 const entity = isPreview
@@ -12,13 +12,12 @@ const entity = isPreview
   : Near.view(ownerId, "get_entity", { account_id: accountId }, "final");
 
 if (!entity) {
-  if (isPreview) {
-    return <div>You must provide an entity object in preview mode</div>;
-  }
-  return <div>Loading...</div>;
+  return isPreview
+    ? "You must provide an entity object in preview mode"
+    : "Loading...";
 }
 
-const shareButton = props.isPreview ? null : (
+const shareButton = isPreview ? null : (
   <a
     className="card-link"
     href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
@@ -26,7 +25,7 @@ const shareButton = props.isPreview ? null : (
     target="_blank"
     title="Open in new tab"
   >
-    <div className="bi bi-share"></div>
+    <div className="bi bi-share" />
   </a>
 );
 
@@ -43,76 +42,76 @@ const isAuthorized =
 const contributions = Near.view(
   ownerId,
   "get_entity_contributions",
-  {
-    entity_id: accountId,
-  },
+  { entity_id: accountId },
   "final"
 );
 
 const contributionRequests = Near.view(
   ownerId,
   "get_entity_contribution_requests",
-  {
-    entity_id: accountId,
-  },
+  { entity_id: accountId },
   "final"
 );
 
-const contributionsList = !notStandalone ? (
+const contributionsList = notStandalone ? null : (
   <div className="mb-2">
     Contributions:
     <br />
-    {!contributions ? (
-      <div>Loading...</div>
-    ) : (
-      contributions.map(([contributorId]) => (
-        <Widget
-          src={`${ownerId}/widget/Contribution`}
-          props={{ entityId: accountId, contributorId, id: contributorId }}
-        />
-      ))
-    )}
+    {!contributions
+      ? "Loading..."
+      : contributions.map(([contributorId]) => (
+          <Widget
+            src={`${ownerId}/widget/Contribution`}
+            props={{ entityId: accountId, contributorId, id: contributorId }}
+          />
+        ))}
   </div>
-) : null;
+);
 
 const requestsList =
-  isAuthorized && !notStandalone ? (
+  !isAuthorized || notStandalone ? null : (
     <div>
       Contribution requests:
       <br />
-      {!contributionRequests ? (
-        <div>Loading...</div>
-      ) : (
-        contributionRequests.map(([contributorId]) => (
-          <Widget
-            src={`${ownerId}/widget/ContributionRequest`}
-            props={{ entityId: accountId, contributorId, id: contributorId }}
-          />
-        ))
-      )}
+      {!contributionRequests
+        ? "Loading..."
+        : contributionRequests.map(([contributorId]) => (
+            <Widget
+              src={`${ownerId}/widget/ContributionRequest`}
+              props={{ entityId: accountId, contributorId, id: contributorId }}
+            />
+          ))}
     </div>
-  ) : null;
+  );
+
+const header = (
+  <div className="card-header">
+    <div className="row justify-content-between">
+      <div className="col-4">
+        <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
+      </div>
+      <div className="col-5">
+        <div className="d-flex justify-content-end">{shareButton}</div>
+      </div>
+    </div>
+  </div>
+);
+
+const body = (
+  <div className="card-body">
+    <div>Type: {entity.kind}</div>
+    <div>Status: {entity.status}</div>
+    <div>
+      Founded at: {new Date(Number(entity.start_date)).toLocaleDateString()}
+    </div>
+    {contributionsList}
+    {requestsList}
+  </div>
+);
 
 return (
   <div className="card">
-    <div className="card-header">
-      <div className="row justify-content-between">
-        <div className="col-4">
-          <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
-        </div>
-        <div className="col-5">
-          <div className="d-flex justify-content-end">{shareButton}</div>
-        </div>
-      </div>
-    </div>
-    <div className="card-body">
-      <div>Type: {entity.kind}</div>
-      <div>Status: {entity.status}</div>
-      <div>
-        Founded at: {new Date(Number(entity.start_date)).toLocaleDateString()}
-      </div>
-      {contributionsList}
-      {requestsList}
-    </div>
+    {header}
+    {body}
   </div>
 );
