@@ -87,7 +87,7 @@ function renderComponent(name, props) {
   return (
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
-      props={{ ...props, routing, rendering }}
+      props={{ ...props, routing, rendering, accountId, env }}
     />
   );
 }
