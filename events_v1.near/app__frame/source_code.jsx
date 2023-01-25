@@ -118,7 +118,6 @@ const routing = {
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props, layout, layoutProps) {
   const _layoutName = layout || 'default';
-  const _layoutProps = layoutProps || {};
   const componentProps = {
     ...props,
     routing,
