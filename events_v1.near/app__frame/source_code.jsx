@@ -101,6 +101,8 @@ const routing = {
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props) {
   const layout = props.layout || 'default';
+  const componentProps = {...props,routing,engine,Components,accountId,env,VERSION,};
+
   if (layout === 'default') {
     return (
       <Widget
@@ -116,6 +118,19 @@ function renderComponent(name, props) {
         }}
       />
     );
+  }else{
+    return (
+      <Widget
+        src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
+        props={{
+          ...props,
+          routing,
+          engine,
+          Components,
+          accountId,
+          env,
+          VERSION,
+        }}
   }
 }
 
