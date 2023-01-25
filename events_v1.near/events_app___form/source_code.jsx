@@ -34,11 +34,11 @@ const DEFAULT_STATE = {
   location: '',
   images: [
     {
-      url: '',
+      url: null,
       type: 'tile',
     },
     {
-      url: '',
+      url: null,
       type: 'banner',
     },
   ],
