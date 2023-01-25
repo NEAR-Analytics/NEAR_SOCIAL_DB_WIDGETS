@@ -63,7 +63,7 @@ return (
 
     <div className="ms-2">
       {JSON.stringify(image)}
-      <IpfsImageUpload image={state.url} />
+      <IpfsImageUpload image={image.url} />
     </div>
 
     <button
