@@ -100,20 +100,23 @@ const routing = {
 
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props) {
-  return (
-    <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
-      props={{
-        ...props,
-        routing,
-        engine,
-        Components,
-        accountId,
-        env,
-        VERSION,
-      }}
-    />
-  );
+  const layout = props.layout || 'default';
+  if (layout === 'default') {
+    return (
+      <Widget
+        src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
+        props={{
+          ...props,
+          routing,
+          engine,
+          Components,
+          accountId,
+          env,
+          VERSION,
+        }}
+      />
+    );
+  }
 }
 
 return (
