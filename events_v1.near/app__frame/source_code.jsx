@@ -26,7 +26,7 @@ State.init({
 });
 
 if (!state) {
-  return 'Loading...';
+  return '';
 }
 
 function slugFromName(name) {
