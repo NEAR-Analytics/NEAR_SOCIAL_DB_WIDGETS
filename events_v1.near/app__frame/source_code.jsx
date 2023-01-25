@@ -2,6 +2,11 @@ const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
 const EVENTS_CONTRACT = 'events_v1.near';
 
+const accountId = context.accountId;
+if (!accountId) {
+  return 'Please connect your NEAR wallet to create an activity';
+}
+
 const env = {
   APP_OWNER,
   APP_NAME,
