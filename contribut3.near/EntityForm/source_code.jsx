@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId ?? "";
-const kind = { name: props.kind ?? "" };
+const kind = props.kind ? [{ name: props.kind }] : [];
 const startDate = props.startDate ?? "";
 
 initState({
@@ -27,10 +27,10 @@ const kindInput = (
     Type of entity:
     <Typeahead
       labelKey="name"
-      onChange={([kind]) => State.update({ kind })}
+      onChange={(kind) => State.update({ kind })}
       options={allKinds}
       placeholder="Project, Organization or DAO"
-      selected={[state.kind]}
+      selected={state.kind}
       positionFixed
     />
   </div>
