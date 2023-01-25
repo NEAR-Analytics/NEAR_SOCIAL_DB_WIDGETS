@@ -63,17 +63,7 @@ return (
 
     <div className="ms-2">
       {JSON.stringify(image)}
-      <IpfsImageUpload
-        image={state.url}
-        onChange={(event) => {
-          console.log('event', event);
-          State.update({ url: event.target.value });
-          onChange({
-            url: state.url,
-            type: state.type,
-          });
-        }}
-      />
+      <IpfsImageUpload image={state.url} />
     </div>
 
     <button
