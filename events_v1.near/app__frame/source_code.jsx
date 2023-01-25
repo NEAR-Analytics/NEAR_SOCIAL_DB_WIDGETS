@@ -104,10 +104,6 @@ return (
         backgroundColor: 'red',
       }}
     >
-      {/* <Widget
-        src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}`}
-        props={{ ...state.route.props, routing }}
-      /> */}
       {renderComponent(state.route.name, state.route.props)}
     </div>
   </>
