@@ -297,4 +297,54 @@ return (
                     State.update({ ...state, editArticle: true });
                   }}
                 >
- 
+                  Edit Article{" "}
+                </button>
+                {state.editArticle && (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => {
+                        if (!state.note || article.body === state.note) return;
+
+                        const args = {
+                          article_id: state?.articleId,
+                          body: state.note,
+                          navigation_id: null,
+                        };
+
+                        saveArticle(args);
+                      }}
+                    >
+                      Save Article{" "}
+                    </button>
+
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        State.update({
+                          ...state,
+                          editArticle: false,
+                          note: undefined,
+                        });
+                      }}
+                    >
+                      Cancel{" "}
+                    </button>
+
+                    <textarea
+                      id="textarea1"
+                      type="text"
+                      rows={10}
+                      className="form-control mt-2"
+                      value={state.note || state.article.body}
+                      onChange={(e) => {
+                        // console.log("newState", state);
+                        State.update({ ...state, note: e.target.value });
+                      }}
+                    />
+                  </>
+                )}
+                <Markdown text={state.note || state.article.body} />
+                <div className="mt-5 alert alert-secondary">
