@@ -26,7 +26,7 @@ if (!state) {
   return 'Loading';
 }
 
-const routeSlug = state.route.name.split('.').join('__');
+const routeSlug = slugFromName(state.route.name);
 const routeProps = {
   ...state.route.props,
 };
@@ -52,7 +52,7 @@ function transitionTo(name, props) {
 function renderComponent(name, props) {
   return (
     <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}__${name}`}
+      src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
       props={{ ...props, routing, rendering }}
     />
   );
