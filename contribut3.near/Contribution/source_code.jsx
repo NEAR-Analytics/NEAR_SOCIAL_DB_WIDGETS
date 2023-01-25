@@ -8,9 +8,7 @@ initState({
 });
 
 if (!entityId || !contributorId) {
-  return (
-    <div>Cannot show contribution without entity ID or contributor ID!</div>
-  );
+  return "Cannot show contribution without entity ID or contributor ID!";
 }
 
 const contribution = Near.view(
@@ -28,7 +26,7 @@ const currentAccountContribution = Near.view(
 );
 
 if (!contribution) {
-  return <div>Loading...</div>;
+  return "Loading...";
 }
 
 const isAuthorized =
@@ -48,7 +46,7 @@ const endDateInput = (
 
 const finishButton =
   isAuthorized && !contribution.current.end_date ? (
-    <div>
+    <div className="card-footer">
       {endDateInput}
       <a
         className="btn btn-outline-primary mb-2"
@@ -74,7 +72,7 @@ const shareButton = props.isPreview ? null : (
     target="_blank"
     title="Open in new tab"
   >
-    <div className="bi bi-share"></div>
+    <div className="bi bi-share" />
   </a>
 );
 
@@ -112,32 +110,36 @@ const detail = ({ description, start_date, end_date }) => (
         </>
       ) : null}
     </div>
-    <div className="card-footer">{finishButton}</div>
+    {finishButton}
   </div>
 );
 
 const pastWork =
-  contribution.history && contribution.history.length ? (
+  !contribution.history || contribution.history.length === 0 ? null : (
     <>
       Past work:
       {contribution.history.map(detail)}
     </>
-  ) : null;
+  );
+
+const body = (
+  <div className="card-body">
+    <div>
+      Contribution to:
+      <Widget
+        src={`mob.near/widget/ProfileLine`}
+        props={{ accountId: entityId }}
+      />
+    </div>
+    Current work:
+    {detail(contribution.current)}
+    {pastWork}
+  </div>
+);
 
 return (
   <div className="card">
     {header}
-    <div className="card-body">
-      <div>
-        Contribution to:
-        <Widget
-          src={`mob.near/widget/ProfileLine`}
-          props={{ accountId: entityId }}
-        />
-      </div>
-      Current work:
-      {detail(contribution.current)}
-      {pastWork}
-    </div>
+    {body}
   </div>
 );
