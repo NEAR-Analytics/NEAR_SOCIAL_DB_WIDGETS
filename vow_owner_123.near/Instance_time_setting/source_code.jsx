@@ -22,23 +22,10 @@ State.init({
   _validate_error: [true, true, true, true, true, true, true],
 });
 const time_zone = props.time_zone ?? "(UTC+00:00) UTC";
-const title = {
-  display: "flex",
-  justifyContent: "center",
-  width: "70%",
-  padding: "1.5rem",
-  marginBottom: "1rem",
-  color: "black",
-  borderRadius: "2rem",
-  fontWeight: 600,
-  fontSize: "xx-large",
-  boxShadow: "2px 2px 2px 2px grey",
-};
 const container = {
   display: "flex",
   width: "100%",
   justifyContent: "center",
-  padding: "3rem",
   color: "black",
   fontWeight: 400,
   borderRadius: "1rem",
@@ -67,13 +54,6 @@ const button = {
 const comboBox = {
   borderRadius: "1rem",
   padding: "1rem",
-};
-const comboBoxTimezone = {
-  background: "black",
-  color: "white",
-  borderRadius: "1rem",
-  padding: "1rem",
-  boxShadow: "2px 2px white",
 };
 const table = {
   display: "flex",
