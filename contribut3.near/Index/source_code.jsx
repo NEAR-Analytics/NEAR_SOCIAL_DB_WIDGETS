@@ -5,23 +5,56 @@ initState({
   content: props.content ?? "entities",
 });
 
+const isModerator = Near.view(
+  ownerId,
+  "check_is_moderator",
+  { account_id: context.accountId },
+  "final",
+  true
+);
+
 const editorsFooter = props.isPreview ? null : (
   <div className="row" id={`accordion`}>
     <div
       className="collapse"
-      id={`collapseContributionRequestForm`}
-      data-bs-parent={`#accordion`}
+      id="collapseContributionRequestForm"
+      data-bs-parent="#accordion"
     >
-      <Widget src={`contribut3.near/widget/ContributionRequestForm`} />
+      <Widget src={`${ownerId}/widget/ContributionRequestForm`} />
     </div>
     <div
       className="collapse"
-      id={`collapseEntityForm`}
-      data-bs-parent={`#accordion`}
+      id="collapseEntityForm"
+      data-bs-parent="#accordion"
     >
       <Widget src={`${ownerId}/widget/EntityForm`} />
     </div>
+    <div
+      className="collapse"
+      id="collapseModeratorForm"
+      data-bs-parent="#accordion"
+    >
+      <Widget src={`${ownerId}/widget/ModeratorEntityForm`} />
+    </div>
   </div>
+);
+
+const control = ({ formName, text }) => (
+  <li className="nav-item">
+    <a
+      className="nav-link active"
+      aria-current="page"
+      href="#"
+      data-bs-toggle="collapse"
+      href={`#collapse${formName}Form`}
+      role="button"
+      aria-expanded="false"
+      aria-controls={`collapse${formName}Form`}
+    >
+      <i className="bi-plus-circle" />
+      {text}
+    </a>
+  </li>
 );
 
 const controls = (
@@ -42,35 +75,14 @@ const controls = (
         </div>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseContributionRequestForm`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseContributionRequestForm`}
-              >
-                <i className="bi-plus-circle" />
-                Request Contribution
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link active"
-                href="#"
-                data-bs-toggle="collapse"
-                href={`#collapseEntityForm`}
-                role="button"
-                aria-expanded="false"
-                aria-controls={`collapseEntityForm`}
-              >
-                <i className="bi-rocket-fill" />
-                Create Entity
-              </a>
-            </li>
+            {control({
+              formName: "ContributionRequest",
+              text: "Request Contribution",
+            })}
+            {control({ formName: "Entity", text: "Create Entity" })}
+            {!isModerator
+              ? null
+              : control({ formName: "Moderator", text: "Edit/Create Entity" })}
           </ul>
         </div>
       </div>
