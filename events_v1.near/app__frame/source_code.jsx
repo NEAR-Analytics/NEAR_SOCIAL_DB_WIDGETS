@@ -1,3 +1,5 @@
+const VERSION = '0.0.1';
+
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
 const EVENTS_CONTRACT = 'events_v1.near';
@@ -85,7 +87,7 @@ function renderComponent(name, props) {
   return (
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
-      props={{ ...props, routing, rendering, accountId, env }}
+      props={{ ...props, routing, rendering, accountId, env, version: VERSION }}
     />
   );
 }
