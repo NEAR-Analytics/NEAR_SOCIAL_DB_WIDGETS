@@ -1,3 +1,5 @@
+/********** Start initialization ************/
+
 State.init({
   showQuestion: false,
   modalBlockHeight: 0,
@@ -5,18 +7,52 @@ State.init({
   answers: {},
 });
 
+// When true, displays only two polls.
 let isShort = props.isShort;
+
 let polls = Social.index("poll_question", "question-v3.1.0", {
   accountId: props.accountId,
 });
-
-if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
-  State.update({ polls: polls });
-}
-
 if (!polls) {
   return "Loading";
 }
+if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
+  State.update({ polls });
+}
+
+/********** End initialization ************/
+
+/********** Start constants ************/
+
+let widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
+const QUESTION_STATUSES = {
+  ACTIVE: {
+    id: 0,
+    text: "Active",
+    backgroundColor: "#D9FCEF",
+    fontColor: "#00B37D",
+  },
+  CLOSED: {
+    id: 1,
+    text: "Closed",
+    backgroundColor: "#FFE5E5",
+    fontColor: "#FF4747",
+  },
+  UPCOMING: {
+    id: 2,
+    text: "Upcoming",
+    backgroundColor: "#FFF3B4",
+    fontColor: "#FFC905",
+  },
+};
+/********** End constants ************/
+
+/********** Start styles ************/
+/********** End styles ************/
+
+/********** Start functions ************/
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
@@ -32,13 +68,19 @@ function isActive(poll) {
   );
 }
 
+function getQuestionStatus(poll) {
+  return isUpcoming(poll)
+    ? QUESTION_STATUSES.UPCOMING
+    : isActive(poll)
+    ? QUESTION_STATUSES.ACTIVE
+    : QUESTION_STATUSES.CLOSED;
+}
+
 function isUpcoming(poll) {
   return poll.value.startTimestamp > Date.now();
 }
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  // let questionParams = polls.find(q => q.blockHeight == questionBlockHeight)
-
   const answers = Social.index("poll_question", "answer-v3.1.0");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
@@ -63,10 +105,9 @@ function closeModalClickingOnTransparent() {
     e.target.id == "modal" && State.update({ showQuestion: false });
   };
 }
+/********** End functions ************/
 
-let widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-
+/********** Start components ************/
 const renderPollTypeIcon = () => {
   let allPollTypes = [];
   for (let i = 0; i < poll.value.questions.length; i++) {
@@ -146,9 +187,12 @@ const renderModal = () => {
   );
 };
 
+/********** End components ************/
+
 return (
   <>
     {polls.map((poll, index) => {
+      const questionStatus = getQuestionStatus(poll);
       if ((isShort && index < 2) || !isShort) {
         return (
           <div
@@ -223,12 +267,7 @@ return (
                 </span>
                 <span
                   style={{
-                    backgroundColor: isUpcoming(poll)
-                      ? "#FFF3B4"
-                      : isActive(poll)
-                      ? "#D9FCEF"
-                      : "#FFE5E5",
-
+                    backgroundColor: questionStatus.backgroundColor,
                     height: "1.5rem",
                     width: "4rem",
                     textAlign: "center",
@@ -237,19 +276,11 @@ return (
                     lineHeight: "1.5rem",
                     fontSize: "0.8rem",
                     letterSpacing: "-0.025rem",
-                    color: isUpcoming(poll)
-                      ? "#FFC905"
-                      : isActive(poll)
-                      ? "#00B37D"
-                      : "#FF4747",
+                    color: questionStatus.fontColor,
                     fontWeight: "500",
                   }}
                 >
-                  {isUpcoming(poll)
-                    ? "Upcoming"
-                    : isActive(poll)
-                    ? "Active"
-                    : "Closed"}
+                  {questionStatus.text}
                 </span>
               </div>
             </div>
