@@ -6,6 +6,9 @@ const entityStatus = props.status ? [{ name: props.status }] : [];
 const startDate = props.startDate ?? "";
 const endDate = props.endDate ?? "";
 
+const getEntity = (account_id) =>
+  Near.view(ownerId, "get_entity", { account_id }, "final");
+
 initState({
   fixed: !!props.accountId,
   accountId,
@@ -14,10 +17,10 @@ initState({
   startDate,
   endDate,
   updated: false,
+  existing: accountId.name
+    ? Near.view(ownerId, "get_entity", { account_id: accountId.name }, "final")
+    : null,
 });
-const existing = accountId.name
-  ? Near.view(ownerId, "get_entity", { account_id: accountId.name }, "final")
-  : null;
 
 const allKinds = ["Project", "Organization", "DAO"].map((name) => ({ name }));
 const allStatuses = ["Active", "Flagged"].map((name) => ({ name }));
@@ -31,7 +34,9 @@ const accountIdInput = (
     <Typeahead
       id="account-id-input"
       labelKey="name"
-      onChange={(accountId) => State.update({ accountId })}
+      onChange={(accountId) =>
+        State.update({ accountId, existing: getEntity(accountId[0].name) })
+      }
       options={allAccountIds}
       placeholder="contribut3.near, social.near..."
       selected={state.accountId}
