@@ -48,7 +48,7 @@ const Select = styled.select`
 const Button = styled.button`
   background-color: #4caf50;
   border: none;
-  color: blue;
+  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
