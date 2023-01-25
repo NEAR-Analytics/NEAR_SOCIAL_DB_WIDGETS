@@ -38,8 +38,9 @@ function transitionTo(name, props) {
   });
 }
 
-const engine = {
+const routing = {
   transitionTo,
+  currentRoute: state.route,
 };
 
 return (
@@ -56,7 +57,7 @@ return (
     >
       <Widget
         src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}`}
-        props={{ ...routeProps, engine }}
+        props={{ ...routeProps, routing }}
       />
     </div>
   </>
