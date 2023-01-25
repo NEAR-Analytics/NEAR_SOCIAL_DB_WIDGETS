@@ -15,8 +15,6 @@ if (accountId === undefined) {
   });
 }
 
-console.log({ events });
-
 if (!events) {
   return 'Loading';
 }
