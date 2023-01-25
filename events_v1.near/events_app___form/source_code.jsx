@@ -347,7 +347,6 @@ return (
               onChange: (changed) => {
                 console.log({ changed });
                 state.images[index] = changed;
-                State.update({ images: state.images });
                 sanitizeAndValidate({ ...state, images: state.images });
               },
               onRemove: () => {
