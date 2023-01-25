@@ -158,7 +158,7 @@ function sanitize(data) {
     start_date,
     end_date,
     location,
-    image,
+    images,
     links,
     description,
   } = data;
@@ -170,7 +170,7 @@ function sanitize(data) {
     start_date: new Date(start_date).getTime(),
     end_date: new Date(end_date).getTime(),
     location,
-    image,
+    images,
     links,
     description,
   };
