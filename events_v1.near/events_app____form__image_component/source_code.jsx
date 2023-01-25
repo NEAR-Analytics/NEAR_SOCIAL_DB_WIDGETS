@@ -6,12 +6,26 @@ if (!image) {
 
 const onChange = props.onChange;
 
-const ErrorMessage = styled.div`
-  color: red;
-`;
 if (!onChange) {
+  const ErrorMessage = styled.div`
+    color: red;
+  `;
   return <ErrorMessage>onChange is required</ErrorMessage>;
 }
+
+const ImageTypes = [
+  { value: 'tile', label: 'Tile' },
+  { value: 'banner', label: 'Banner' },
+];
+
+const Select = styled.select`
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+`;
 
 return (
   <>
