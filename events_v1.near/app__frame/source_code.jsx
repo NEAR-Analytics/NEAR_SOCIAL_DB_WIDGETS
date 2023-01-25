@@ -138,7 +138,19 @@ return (
             zIndex: Math.pow(10, 1 + index) + 10000,
           }}
         >
-          {renderComponent(layer.name, layer.props)}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              left: 0,
+              overflow: 'scroll',
+              width: '100%',
+              minHeight: '100%',
+            }}
+          >
+            {renderComponent(layer.name, layer.props)}
+          </div>
         </div>
       );
     })}
