@@ -147,6 +147,7 @@ return (
               overflow: 'scroll',
               width: '100%',
               minHeight: '100%',
+              backgroundColor: 'blue',
             }}
           >
             {renderComponent(layer.name, layer.props)}
