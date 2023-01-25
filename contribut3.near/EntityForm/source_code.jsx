@@ -85,7 +85,7 @@ const footer = (
         notStandalone: true,
         entity: {
           entity: state.entity,
-          kind: state.kind.name,
+          kind: state.kind[0].name,
           start_date: `${new Date(state.startDate).getTime()}`,
         },
       }}
