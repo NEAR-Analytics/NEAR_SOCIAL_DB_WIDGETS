@@ -18,10 +18,12 @@ const env = {
 
 State.init({
   env,
-  route: {
-    name: ENTRY_ROUTE,
-    props: {},
-  },
+  layers: [
+    {
+      name: ENTRY_ROUTE,
+      props: {},
+    },
+  ],
 });
 
 if (!state) {
@@ -80,8 +82,11 @@ function transitionTo(name, props) {
       name,
       props,
     },
+    overlay: null,
   });
 }
+
+const route = state.route;
 
 function renderComponent(name, props) {
   return (
@@ -101,7 +106,7 @@ return (
         height: '100%',
         position: 'fixed',
         backgroundColor: 'red',
-        top: 72,
+        top: 72, // sit right below the navbar
         left: 0,
         right: 0,
         bottom: 0,
