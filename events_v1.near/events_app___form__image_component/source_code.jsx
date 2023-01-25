@@ -50,7 +50,7 @@ return (
         State.update({ type: event.target.value });
         onChange({
           url: state.url,
-          type: event.target.value,
+          type: state.type,
         });
       }}
     >
@@ -65,11 +65,9 @@ return (
       <IpfsImageUpload
         image={state.url}
         onChange={(event) => {
-          const { cid } = event.target.value;
-          const url = `https://ipfs.near.social/ipfs/${cid}`;
-          console.log('url', url);
+          State.update({ url: event.target.value });
           onChange({
-            url: url,
+            url: state.url,
             type: state.type,
           });
         }}
