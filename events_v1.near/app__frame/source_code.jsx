@@ -21,6 +21,8 @@ State.init({
     {
       name: ENTRY_ROUTE,
       props: {},
+      layout: 'default',
+      layoutProps: {},
     },
   ],
 });
