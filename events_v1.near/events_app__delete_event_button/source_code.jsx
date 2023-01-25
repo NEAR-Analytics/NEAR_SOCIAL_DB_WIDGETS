@@ -15,6 +15,8 @@ if (!event) {
 const TGAS_300 = '300000000000000';
 const ONE_NEAR = '1000000000000000000000000';
 
+console.log({ props });
+
 function deleteEvent() {
   Near.call(
     EVENTS_CONTRACT,
