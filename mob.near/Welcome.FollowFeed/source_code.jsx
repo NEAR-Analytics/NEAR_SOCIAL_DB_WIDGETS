@@ -39,10 +39,11 @@ const renderItem = (a) => (
 );
 
 return (
-  <div>
+  <>
+    <h5>Follow activity</h5>
     <Widget
       src="mob.near/widget/ManualIndexFeed"
       props={{ index, renderItem, nextLimit: 25, loadMoreText: "Show more" }}
     />
-  </div>
+  </>
 );
