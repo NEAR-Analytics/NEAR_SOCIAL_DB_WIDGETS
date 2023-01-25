@@ -6,10 +6,10 @@ if (!image) {
 
 const onChange = props.onChange;
 
+const ErrorMessage = styled.div`
+  color: red;
+`;
 if (!onChange) {
-  const ErrorMessage = styled.div`
-    color: red;
-  `;
   return <ErrorMessage>onChange is required</ErrorMessage>;
 }
 
