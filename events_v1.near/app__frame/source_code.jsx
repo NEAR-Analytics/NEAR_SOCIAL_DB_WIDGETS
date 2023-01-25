@@ -76,7 +76,7 @@ function buildRenderingInfo() {
   };
 }
 
-function push(name, props) {
+function push(name, props = {}) {
   State.update({
     layers: [
       ...state.layers,
