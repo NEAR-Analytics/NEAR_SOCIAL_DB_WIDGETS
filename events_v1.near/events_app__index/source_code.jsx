@@ -13,7 +13,7 @@ return (
       href={`#/${APP_OWNER}/widget/${APP_NAME}__new?accountId=${accountId}`}
       className="TODO"
     >
-      <Button>Create new Event</Button>
+      <Button onClick={props.routing.push('new')}>Create new Event</Button>
     </a>
 
     <a
