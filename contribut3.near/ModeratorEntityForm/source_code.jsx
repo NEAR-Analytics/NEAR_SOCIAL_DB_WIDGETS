@@ -153,7 +153,7 @@ const footer = (
                 start_date: `${new Date(state.startDate).getTime()}`,
                 end_date: `${new Date(state.endDate).getTime()}`,
               }
-            : existing,
+            : state.existing,
       }}
     />
   </div>
