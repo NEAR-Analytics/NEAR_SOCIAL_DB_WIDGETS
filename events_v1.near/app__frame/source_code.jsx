@@ -86,9 +86,6 @@ function push(name, props) {
       },
     ],
   });
-  window.location.search = `#/${APP_OWNER}/widget/${APP_NAME}__${slugFromName(
-    name
-  )}`;
 }
 
 // pop from the stack, ensure we always have at least one layer
