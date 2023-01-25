@@ -1,10 +1,8 @@
 const ownerId = "contribut3.near";
-const accountId = { name: props.accountId ?? "" };
+const accountId = props.accountId ? [{ name: props.accountId }] : [];
 
-const kind = { name: props.kind ?? "" };
-const entityStatus = {
-  name: props.status ?? "",
-};
+const kind = props.kind ? [{ name: props.kind }] : [];
+const entityStatus = props.status ? [{ name: props.status }] : [];
 const startDate = props.startDate ?? "";
 const endDate = props.endDate ?? "";
 
@@ -31,12 +29,14 @@ const accountIdInput = (
   <div className="col-lg-12 mb-2">
     Account ID of entity:
     <Typeahead
+      id="account-id-input"
       labelKey="name"
-      onChange={([accountId]) => State.update({ accountId, updated: true })}
+      onChange={(accountId) => State.update({ accountId, updated: true })}
       options={allAccountIds}
       placeholder="contribut3.near, social.near..."
-      selected={[state.accountId]}
+      selected={state.accountId}
       positionFixed
+      allowNew
       disabled={state.fixed}
     />
   </div>
@@ -47,10 +47,10 @@ const kindInput = (
     Type of entity:
     <Typeahead
       labelKey="name"
-      onChange={([kind]) => State.update({ kind, updated: true })}
+      onChange={(kind) => State.update({ kind, updated: true })}
       options={allKinds}
       placeholder="Project, Organization or DAO"
-      selected={[state.kind]}
+      selected={state.kind}
       positionFixed
     />
   </div>
@@ -61,12 +61,10 @@ const statusInput = (
     Status of entity:
     <Typeahead
       labelKey="name"
-      onChange={([entityStatus]) =>
-        State.update({ entityStatus, updated: true })
-      }
+      onChange={(entityStatus) => State.update({ entityStatus, updated: true })}
       options={allStatuses}
       placeholder="Active or Flagged"
-      selected={[state.entityStatus]}
+      selected={state.entityStatus}
       positionFixed
     />
   </div>
@@ -98,10 +96,10 @@ const endDateInput = (
 
 const onSubmit = () => {
   const args = {
-    account_id: state.accountId,
+    account_id: state.accountId[0].name,
     entity: {
-      status: state.entityStatus.name,
-      kind: state.kind.name,
+      status: state.entityStatus[0].name,
+      kind: state.kind[0].name,
       start_date: `${new Date(state.startDate).getTime()}`,
       end_date: `${new Date(state.endDate).getTime()}`,
     },
@@ -140,16 +138,17 @@ const footer = (
       props={{
         isPreview: true,
         id: 0, // irrelevant
-        accountId: state.accountId.name,
+        accountId: state.accountId[0].name,
         notStandalone: true,
-        entity: state.updated
-          ? {
-              kind: state.kind.name,
-              status: state.entityStatus.name,
-              start_date: `${new Date(state.startDate).getTime()}`,
-              end_date: `${new Date(state.endDate).getTime()}`,
-            }
-          : existing,
+        entity:
+          state.updated || !existing
+            ? {
+                kind: state.kind[0].name,
+                status: state.entityStatus[0].name,
+                start_date: `${new Date(state.startDate).getTime()}`,
+                end_date: `${new Date(state.endDate).getTime()}`,
+              }
+            : existing,
       }}
     />
   </div>
