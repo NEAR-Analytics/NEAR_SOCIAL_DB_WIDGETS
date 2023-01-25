@@ -78,10 +78,6 @@ function buildRenderingInfo() {
 }
 
 function push(name, props) {
-  window.open(
-    '#/' + APP_OWNER + '/widget/' + APP_NAME + '__' + slugFromName(name),
-    '_self'
-  );
   State.update({
     layers: [
       ...state.layers,
