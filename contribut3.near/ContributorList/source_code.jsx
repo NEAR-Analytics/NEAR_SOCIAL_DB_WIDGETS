@@ -12,7 +12,7 @@ if (!allContributors || allContributors.length === 0) {
 }
 
 return (
-  <div>
+  <>
     {allContributors.map((accountId) => (
       <div key={accountId} className="mb-2">
         <Widget
@@ -21,5 +21,5 @@ return (
         />
       </div>
     ))}
-  </div>
+  </>
 );
