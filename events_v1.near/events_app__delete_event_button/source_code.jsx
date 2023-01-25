@@ -1,6 +1,4 @@
 const EVENTS_CONTRACT = 'events_v1.near';
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
 
 const accountId = context.accountId;
 if (!accountId) {
