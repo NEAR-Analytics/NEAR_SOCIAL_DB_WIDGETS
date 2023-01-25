@@ -117,7 +117,7 @@ function renderComponent(name, props) {
 
   return (
     <Widget
-      src={`${APP_OWNER}/widget/app__layouts__${layoutFromName(layout)}`}
+      src={layoutFromName(layout)}
       props={{
         ...componentProps,
         component: {
