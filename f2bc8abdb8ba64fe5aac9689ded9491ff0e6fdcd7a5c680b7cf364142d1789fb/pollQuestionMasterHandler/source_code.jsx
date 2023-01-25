@@ -223,7 +223,11 @@ return (
         boxShadow: "0px 4px 28px rgba(43, 68, 106, 0.04)",
       }}
     >
-      <div className="d-flex align-items-center">
+      <a
+        href="https://near.social/#/mob.near/widget/ProfilePage?accountId=easypoll.near"
+        className="d-flex align-items-center"
+        style={{ cursor: "pointer", textDecoration: "none" }}
+      >
         <div
           className="d-flex align-items-center justify-content-center"
           style={{
@@ -248,7 +252,7 @@ return (
         >
           EasyPoll
         </h3>
-      </div>
+      </a>
 
       <div
         className="w-100 d-flex justify-content-between"
