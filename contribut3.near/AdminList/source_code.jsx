@@ -4,7 +4,7 @@ const allEntities =
   Near.view(
     ownerId,
     "get_contributor_admin_entities",
-    { account_id: props.accountId },
+    { account_id: context.accountId },
     "final"
   ) ?? [];
 
