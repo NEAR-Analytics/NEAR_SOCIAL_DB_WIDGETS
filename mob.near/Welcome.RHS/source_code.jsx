@@ -1,4 +1,12 @@
-const widgets = [
+const rhs = context.accountId
+  ? Social.get(`${context.accountId}/settings/near.social/homepage.rhs`)
+  : undefined;
+
+if (rhs === null) {
+  return "";
+}
+
+const widgets = (rhs && JSON.parse(rhs)) ?? [
   {
     src: "mob.near/widget/Welcome.GetInvolved",
   },
