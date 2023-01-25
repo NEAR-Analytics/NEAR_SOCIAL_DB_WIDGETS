@@ -34,7 +34,7 @@ function slugFromName(name) {
 }
 
 function layoutFromName(name) {
-  return `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`;
+  return `${APP_OWNER}/widget/${APP_NAME}__layouts__${slugFromName(name)}`;
 }
 
 const Select = styled.select`
