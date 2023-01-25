@@ -57,37 +57,46 @@ const onSubmit = () => {
   Near.call(ownerId, "add_entity", args);
 };
 
+const header = <div className="card-header">Create an entity</div>;
+
+const body = (
+  <div className="card-body">
+    <div className="row">
+      {accountIdInput}
+      {kindInput}
+      {startDateInput}
+    </div>
+
+    <a className="btn btn-outline-primary mb-2" onClick={onSubmit}>
+      Submit
+    </a>
+  </div>
+);
+
+const footer = (
+  <div className="card-footer">
+    Preview:
+    <Widget
+      src={`${ownerId}/widget/Entity`}
+      props={{
+        isPreview: true,
+        id: 0, // irrelevant
+        accountId: state.accountId,
+        notStandalone: true,
+        entity: {
+          entity: state.entity,
+          kind: state.kind.name,
+          start_date: `${new Date(state.startDate).getTime()}`,
+        },
+      }}
+    />
+  </div>
+);
+
 return (
   <div className="card">
-    <div className="card-header">Create an entity</div>
-
-    <div className="card-body">
-      <div className="row">
-        {accountIdInput}
-        {kindInput}
-        {startDateInput}
-      </div>
-
-      <a className="btn btn-outline-primary mb-2" onClick={onSubmit}>
-        Submit
-      </a>
-    </div>
-    <div className="card-footer">
-      Preview:
-      <Widget
-        src={`${ownerId}/widget/Entity`}
-        props={{
-          isPreview: true,
-          id: 0, // irrelevant
-          accountId: state.accountId,
-          notStandalone: true,
-          entity: {
-            entity: state.entity,
-            kind: state.kind.name,
-            start_date: `${new Date(state.startDate).getTime()}`,
-          },
-        }}
-      />
-    </div>
+    {header}
+    {body}
+    {footer}
   </div>
 );
