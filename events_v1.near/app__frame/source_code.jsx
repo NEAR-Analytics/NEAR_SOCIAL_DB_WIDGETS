@@ -79,7 +79,7 @@ const routing = {
 };
 
 function push(name, props) {
-  State.set({
+  State.update({
     layers: [
       ...state.layers,
       {
@@ -87,6 +87,13 @@ function push(name, props) {
         props,
       },
     ],
+  });
+}
+
+// pop from the stack, ensure we always have at least one layer
+function pop() {
+  State.update({
+    layers: state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers,
   });
 }
 
