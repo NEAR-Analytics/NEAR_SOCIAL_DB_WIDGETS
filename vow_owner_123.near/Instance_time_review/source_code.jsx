@@ -1,5 +1,8 @@
 const _account = props.accountId ?? "All";
 console.log("accountId", props.accountId);
+if (!_account) {
+  return "No account ID";
+}
 const card = {
   border: "1px solid black",
   borderRadius: "5px",
