@@ -72,9 +72,9 @@ const footer = (
         isPreview: true,
         id: 0, // irrelevant
         contributorId: context.accountId,
-        entityId: state.entity.name,
+        entityId: state.entity[0].name,
         contributionRequest: {
-          entity: state.entity,
+          entity: state.entity[0].name,
           description: state.description,
         },
       }}
