@@ -30,8 +30,6 @@ function slugFromName(name) {
   return name.split(/\.|\//gu).join('__');
 }
 
-const routeSlug = slugFromName(state.route.name);
-
 const Select = styled.select`
   background-color: #4caf50;
   border: none;
