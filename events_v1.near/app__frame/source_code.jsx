@@ -30,20 +30,6 @@ function slugFromName(name) {
   return name.split(/\.|\//gu).join('__');
 }
 
-const routeSlug = slugFromName(state.route.name);
-const routeProps = {
-  ...state.route.props,
-};
-
-const rendering = {
-  renderComponent,
-};
-
-const routing = {
-  transitionTo,
-  currentRoute: state.route,
-};
-
 function transitionTo(name, props) {
   State.set({
     route: {
@@ -61,6 +47,20 @@ function renderComponent(name, props) {
     />
   );
 }
+
+const routeSlug = slugFromName(state.route.name);
+const routeProps = {
+  ...state.route.props,
+};
+
+const rendering = {
+  renderComponent,
+};
+
+const routing = {
+  transitionTo,
+  currentRoute: state.route,
+};
 
 return (
   <>
