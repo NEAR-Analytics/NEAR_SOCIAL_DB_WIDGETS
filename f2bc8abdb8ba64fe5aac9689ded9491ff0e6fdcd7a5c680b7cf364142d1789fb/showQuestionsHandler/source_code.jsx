@@ -18,7 +18,6 @@ if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
 if (!polls) {
   return "Loading";
 }
-console.log(polls);
 
 const onlyUsersPolls = props.onlyUser ?? false;
 if (onlyUsersPolls) {
