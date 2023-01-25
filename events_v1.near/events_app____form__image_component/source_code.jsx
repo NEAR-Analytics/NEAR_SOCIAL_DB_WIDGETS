@@ -1,3 +1,9 @@
+const image = props.image;
+
+if (!image) {
+  return 'loading';
+}
+
 const Select = styled.select`
   width: 100%;
   padding: 0.5rem;
@@ -7,22 +13,14 @@ const Select = styled.select`
   box-sizing: border-box;
 `;
 
-const image = props.image;
-
-if (!image) {
-  return 'loading';
-}
-
 return (
   <>
     <Select
       style={{ width: '100px' }}
       value={image.type}
       onChange={(event) => {
-        const images = [...state.images];
-        images[index].type = event.target.value;
-        State.update({ images });
-        sanitizeAndValidate({ ...state, images });
+        image.type = event.target.value;
+        onChange(image);
       }}
     >
       {ImageTypes.map((type) => (
