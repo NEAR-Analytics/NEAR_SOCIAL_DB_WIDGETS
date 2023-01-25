@@ -136,22 +136,10 @@ return (
             bottom: 0,
             padding: 0,
             zIndex: Math.pow(10, 1 + index) + 10000,
+            overflow: 'auto',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              left: 0,
-              overflow: 'scroll',
-              width: '100%',
-              minHeight: '100%',
-              backgroundColor: 'blue',
-            }}
-          >
-            {renderComponent(layer.name, layer.props)}
-          </div>
+          {renderComponent(layer.name, layer.props)}
         </div>
       );
     })}
