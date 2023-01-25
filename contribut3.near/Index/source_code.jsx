@@ -122,6 +122,16 @@ const navbar = (
               Contributors
             </a>
           </li>
+          <li className="nav-item ">
+            <a
+              className="nav-link active button"
+              onClick={() => State.update({ content: "admin" })}
+              role="button"
+            >
+              <i className="bi-person-plus-fill"> </i>
+              Manage Entities
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -137,6 +147,11 @@ const content = {
   contributors: (
     <div className="mt-2">
       <Widget src={`${ownerId}/widget/ContributorList`} />
+    </div>
+  ),
+  admin: (
+    <div className="mt-2">
+      <Widget src={`${ownerId}/widget/AdminList`} />
     </div>
   ),
 }[state.content];
