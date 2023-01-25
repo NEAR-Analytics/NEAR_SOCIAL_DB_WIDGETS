@@ -65,13 +65,15 @@ const Button = styled.button`
 
 const currentRoute = state.layers[state.layers.length - 1];
 
-function buildRenderingInfo(){
-  renderComponent,
-  Components: {
-    Select,
-    Button,
-  },
-};
+function buildRenderingInfo() {
+  return {
+    renderComponent,
+    Components: {
+      Select,
+      Button,
+    },
+  };
+}
 
 function push(name, props) {
   State.update({
@@ -102,7 +104,14 @@ function renderComponent(name, props) {
   return (
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
-      props={{ ...props, routing, ...buildRenderingInfo(), accountId, env, VERSION }}
+      props={{
+        ...props,
+        routing,
+        ...buildRenderingInfo(),
+        accountId,
+        env,
+        VERSION,
+      }}
     />
   );
 }
