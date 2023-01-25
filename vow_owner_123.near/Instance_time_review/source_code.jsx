@@ -1,5 +1,5 @@
 State.init({
-  _account: "All",
+  _account: props.accountId ?? "All",
 });
 const card = {
   border: "1px solid black",
