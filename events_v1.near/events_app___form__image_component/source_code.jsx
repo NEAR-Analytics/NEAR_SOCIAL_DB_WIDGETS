@@ -18,6 +18,14 @@ if (!onRemove) {
   return <ErrorMessage>onRemove is required</ErrorMessage>;
 }
 
+State.init({
+  url: image.url,
+  type: image.type,
+});
+if (!state) {
+  return <div>Loading...</div>;
+}
+
 const ImageTypes = [
   { value: 'tile', label: 'Tile' },
   { value: 'banner', label: 'Banner' },
@@ -31,11 +39,6 @@ const Select = styled.select`
   border-radius: 4px;
   box-sizing: border-box;
 `;
-
-State.update({
-  url: image.url,
-  type: image.type,
-});
 
 return (
   <>
