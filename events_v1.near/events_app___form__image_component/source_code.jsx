@@ -32,6 +32,11 @@ const Select = styled.select`
   box-sizing: border-box;
 `;
 
+State.update({
+  url: image.url,
+  type: image.type,
+});
+
 return (
   <>
     <Select
