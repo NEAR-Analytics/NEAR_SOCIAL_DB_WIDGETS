@@ -348,3 +348,23 @@ return (
                 )}
                 <Markdown text={state.note || state.article.body} />
                 <div className="mt-5 alert alert-secondary">
+                                  <div>
+                    Created by{' '}
+                    <a
+                      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.author}`}
+                      style={{ textDecoration: 'underline' }}
+                    >
+                      {state.article.author}
+                    </a>
+                    <br />
+                    Last edit by{' '}
+                    <a
+                      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
+                      style={{ textDecoration: 'underline' }}
+                    >
+                      {state.article.lastEditor}
+                    </a>
+                    <br />
+                    Edited on {getDate(state.article.timeLastEdit)}
+                    <br />
+                    Edit versions: {state.article.version}
