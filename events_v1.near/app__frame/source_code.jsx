@@ -14,13 +14,14 @@ State.init({
     name: '',
     props: {},
   },
-})
+});
 
-if(!state){return "Loading"}
+if (!state) {
+  return 'Loading';
+}
 
 const routeSlug = state.route.name.split('.').join('__');
 const routeProps = state.route.props;
-
 
 function transitionTo(name, props) {
   State.set({
@@ -31,14 +32,13 @@ function transitionTo(name, props) {
   });
 }
 
+return (
+  <>
+    {/* main widget */}
 
-
-return <>
-  {/* main widget */}
-  
-  <Widget
-    src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
-    props={{...routeProps, {engine: {transitionTo}}}}
-  />
-
-</>;
+    <Widget
+      src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
+      props={{ ...routeProps, engine }}
+    />
+  </>
+);
