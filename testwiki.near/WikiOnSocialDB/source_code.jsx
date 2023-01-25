@@ -368,3 +368,22 @@ return (
                     Edited on {getDate(state.article.timeLastEdit)}
                     <br />
                     Edit versions: {state.article.version}
+                                      </div>
+                  {buttons}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div
+        className="tab-pane fade"
+        id="pills-authors"
+        role="tabpanel"
+        aria-labelledby="pills-authors-tab"
+      >
+        {state.currentTab === 'loadauthors' && (
+          <div>{resultArticles && getAuthors()}</div>
+        )}
+      </div>
