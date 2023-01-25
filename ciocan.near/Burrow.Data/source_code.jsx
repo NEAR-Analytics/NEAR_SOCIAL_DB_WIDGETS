@@ -2,7 +2,7 @@ const data = {
   assets: { near: 123 },
 };
 
-if (props.onLoad) {
+if (typeof props.onLoad === "function") {
   console.log("Burrow.Data", props, typeof props.onLoad);
   // onLoad(data);
 }
