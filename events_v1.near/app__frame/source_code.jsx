@@ -124,6 +124,7 @@ return (
             right: 0,
             bottom: 0,
             padding: 0,
+            zIndex: Math.pow(10, 1 + index) + 10000,
           }}
         >
           {renderComponent(layer.name, layer.props)}
