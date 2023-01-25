@@ -35,6 +35,10 @@ const DeleteEventButton = styled.button`
   padding: 4px 8px;
   font-size: 14px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #e74c3c;
+  }
 `;
 
 return (
