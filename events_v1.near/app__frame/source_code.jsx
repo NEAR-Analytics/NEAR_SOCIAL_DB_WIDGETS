@@ -59,7 +59,7 @@ function renderComponent(name, props) {
 }
 
 function slugFromName(name) {
-  return name.split('.').join('__');
+  return name.split(/\.|\//gu).join('__');
 }
 
 return (
