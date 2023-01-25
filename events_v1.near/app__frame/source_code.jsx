@@ -26,6 +26,10 @@ if (!state) {
   return 'Loading';
 }
 
+function slugFromName(name) {
+  return name.split(/\.|\//gu).join('__');
+}
+
 const routeSlug = slugFromName(state.route.name);
 const routeProps = {
   ...state.route.props,
@@ -56,10 +60,6 @@ function renderComponent(name, props) {
       props={{ ...props, routing, rendering }}
     />
   );
-}
-
-function slugFromName(name) {
-  return name.split(/\.|\//gu).join('__');
 }
 
 return (
