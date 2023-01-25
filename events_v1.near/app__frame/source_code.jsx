@@ -38,7 +38,7 @@ return <>
   
   <Widget
     src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
-    props={{...routeProps, {engine: {transitionTo}}}}}
+    props={{...routeProps, {engine: {transitionTo}}}}
   />
 
 </>;
