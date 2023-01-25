@@ -43,6 +43,7 @@ const Select = styled.select`
   box-sizing: border-box;
 `;
 
+console.log('state.localImg', state.localImg);
 if (state.localImg) {
   console.log('state.localImg', state.localImg);
 }
@@ -69,7 +70,7 @@ return (
 
     <div className="ms-2">
       {JSON.stringify(image)}
-      <IpfsImageUpload image={localImg} />
+      <IpfsImageUpload image={state.localImg} />
     </div>
 
     <button
