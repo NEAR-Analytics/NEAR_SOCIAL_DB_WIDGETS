@@ -65,7 +65,7 @@ const Button = styled.button`
 
 const currentRoute = state.layers[state.layers.length - 1];
 
-const rendering = {
+function buildRenderingInfo(){
   renderComponent,
   Components: {
     Select,
@@ -102,7 +102,7 @@ function renderComponent(name, props) {
   return (
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
-      props={{ ...props, routing, rendering, accountId, env, VERSION }}
+      props={{ ...props, routing, ...buildRenderingInfo(), accountId, env, VERSION }}
     />
   );
 }
