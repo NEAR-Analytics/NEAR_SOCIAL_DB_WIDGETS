@@ -342,6 +342,20 @@ return (
         <div key={index} className="mb-4 d-flex">
           <Widget
             src={`${APP_OWNER}/widget/${APP_NAME}___form__image_component`}
+            props={{
+              image: image,
+              onChange: (changed) => {
+                state.images[index] = changed;
+                State.update({ images: state.images });
+                sanitizeAndValidate({ ...state, images: state.images });
+              },
+              onRemove: () => {
+                const images = [...state.images];
+                images.splice(index, 1);
+                State.update({ images });
+                sanitizeAndValidate({ ...state, images });
+              },
+            }}
           />
         </div>
       ))}
