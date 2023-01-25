@@ -1,7 +1,7 @@
 const VERSION = '0.0.1';
 
 const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
+const APP_NAME = 'app';
 const ENTRY_ROUTE = 'index';
 
 const accountId = context.accountId;
@@ -31,6 +31,10 @@ if (!state) {
 
 function slugFromName(name) {
   return name.split(/\.|\//gu).join('__');
+}
+
+function layoutFromName(name) {
+  return `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`;
 }
 
 const Select = styled.select`
@@ -121,7 +125,7 @@ function renderComponent(name, props) {
   }
   return (
     <Widget
-      src={`${APP_OWNER}/widget/app__layouts__${slugFromName(layout)}`}
+      src={`${APP_OWNER}/widget/app__${layoutFromName(layout)}`}
       props={{
         ...componentProps,
         component: {
