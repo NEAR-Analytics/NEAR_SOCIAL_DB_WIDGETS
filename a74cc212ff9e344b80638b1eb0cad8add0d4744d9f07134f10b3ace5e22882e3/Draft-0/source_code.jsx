@@ -8,7 +8,7 @@ const image = project.image;
 const editProjectButton = (
   <div>
     <a className="btn btn-success" href="#/gov.near/widget/ProjectEditor">
-      Edit Project
+      Create Project
     </a>
   </div>
 );
