@@ -78,7 +78,6 @@ return (
     </Select>
 
     <div className="ms-2">
-      {JSON.stringify(image, null, 4)}
       <IpfsImageUpload image={state.localImg} />
     </div>
 
