@@ -7,9 +7,6 @@ const entityStatus = {
 };
 const startDate = props.startDate ?? "";
 const endDate = props.endDate ?? "";
-const existing = accountId.name
-  ? Near.view(ownerId, "get_entity", { account_id: accountId.name }, "final")
-  : null;
 
 initState({
   fixed: !!props.accountId,
@@ -18,9 +15,11 @@ initState({
   entityStatus,
   startDate,
   endDate,
-  existing,
   updated: false,
 });
+const existing = accountId.name
+  ? Near.view(ownerId, "get_entity", { account_id: accountId.name }, "final")
+  : null;
 
 const allKinds = ["Project", "Organization", "DAO"].map((name) => ({ name }));
 const allStatuses = ["Active", "Flagged"].map((name) => ({ name }));
@@ -150,7 +149,7 @@ const footer = (
               start_date: `${new Date(state.startDate).getTime()}`,
               end_date: `${new Date(state.endDate).getTime()}`,
             }
-          : state.existing,
+          : existing,
       }}
     />
   </div>
