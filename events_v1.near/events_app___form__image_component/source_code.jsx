@@ -62,6 +62,7 @@ return (
     </Select>
 
     <div className="ms-2">
+      {JSON.stringify(image)}
       <IpfsImageUpload
         image={image.url}
         onChange={(event) => {
