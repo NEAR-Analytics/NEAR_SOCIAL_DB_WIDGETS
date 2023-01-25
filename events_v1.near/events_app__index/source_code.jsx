@@ -2,7 +2,7 @@ const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
 const accountId = props.accountId ?? context.accountId;
 
-const Button = props.rendering.Components.Button;
+const Button = props.Components.Button;
 
 console.log('props', props);
 
