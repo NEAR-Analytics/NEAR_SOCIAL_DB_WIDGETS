@@ -30,7 +30,7 @@ return (
     <h1>{event.name}</h1>
 
     <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}__delete_event_button`}
+      src={`${APP_OWNER}/widget/${APP_NAME}__components__buttons__delete_event`}
       props={{ event }}
     />
 
