@@ -310,7 +310,15 @@ return (
             </div>
           </div>
         </div>
-        <div style={flex_row}>
+        <div
+          style={{
+            display: "flex",
+            flex: "1",
+            flexDirection: "row",
+            fontSize: "large",
+            color: "red",
+          }}
+        >
           {days.map((day, index) => {
             return !state._validate_error[index] && `${day} `;
           })}
