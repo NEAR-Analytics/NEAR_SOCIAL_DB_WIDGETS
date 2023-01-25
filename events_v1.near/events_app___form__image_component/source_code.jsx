@@ -65,6 +65,8 @@ return (
       <IpfsImageUpload
         image={state.url}
         onChange={(event) => {
+          const { cid } = event.target.value;
+          const url = `https://ipfs.near.social/ipfs/${cid}`;
           onChange({
             url: event.target.value,
             type: state.type,
