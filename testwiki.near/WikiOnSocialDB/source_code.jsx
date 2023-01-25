@@ -387,3 +387,5 @@ return (
           <div>{resultArticles && getAuthors()}</div>
         )}
       </div>
+
+      <div
