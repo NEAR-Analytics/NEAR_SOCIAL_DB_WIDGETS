@@ -345,6 +345,7 @@ return (
             props={{
               image: image,
               onChange: (changed) => {
+                console.log({ changed });
                 state.images[index] = changed;
                 State.update({ images: state.images });
                 sanitizeAndValidate({ ...state, images: state.images });
