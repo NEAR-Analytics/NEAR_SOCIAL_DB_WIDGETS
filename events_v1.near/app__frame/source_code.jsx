@@ -71,11 +71,9 @@ const Components = {
 
 const currentRoute = state.layers[state.layers.length - 1];
 
-function buildRenderingInfo() {
-  return {
-    renderComponent,
-  };
-}
+const engine = {
+  renderComponent,
+};
 
 function push(name, props) {
   State.update({
@@ -110,7 +108,7 @@ function renderComponent(name, props) {
       props={{
         ...props,
         routing,
-        ...buildRenderingInfo(),
+        engine,
         Components,
         accountId,
         env,
