@@ -101,6 +101,7 @@ const routing = {
   currentRoute,
 };
 
+// TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props) {
   return (
     <Widget
