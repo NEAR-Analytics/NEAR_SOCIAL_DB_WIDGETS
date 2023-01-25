@@ -16,6 +16,7 @@ const env = {
   EVENTS_CONTRACT,
 };
 
+// TODO: get layers from URL
 State.init({
   env,
   layers: [
