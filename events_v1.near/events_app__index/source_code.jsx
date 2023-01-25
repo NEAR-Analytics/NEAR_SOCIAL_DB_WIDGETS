@@ -4,6 +4,8 @@ const accountId = props.accountId ?? context.accountId;
 
 const Button = props.rendering.Components.Button;
 
+console.log('props', props);
+
 return (
   <div>
     <h1>Events</h1>
