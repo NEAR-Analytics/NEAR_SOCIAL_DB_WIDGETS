@@ -45,7 +45,7 @@ return (
   <>
     <Select
       style={{ width: '100px' }}
-      value={type}
+      value={state.type}
       onChange={(event) => {
         State.update({ type: event.target.value });
         onChange({
