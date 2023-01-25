@@ -337,46 +337,7 @@ return (
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
-          <Select
-            style={{ width: '100px' }}
-            value={image.type}
-            onChange={(event) => {
-              const images = [...state.images];
-              images[index].type = event.target.value;
-              State.update({ images });
-              sanitizeAndValidate({ ...state, images });
-            }}
-          >
-            {ImageTypes.map((type) => (
-              <option key={type.value} value={type.value}>
-                {type.label}
-              </option>
-            ))}
-          </Select>
-
-          <div className="ms-2">
-            <IpfsImageUpload
-              image={image.url}
-              onChange={(event) => {
-                const images = [...state.images];
-                images[index].url = event.target.value;
-                State.update({ images });
-                sanitizeAndValidate({ ...state, images });
-              }}
-            />
-          </div>
-
-          <button
-            className="ms-2 btn btn-danger"
-            onClick={() => {
-              const images = [...state.images];
-              images.splice(index, 1);
-              State.update({ images });
-              sanitizeAndValidate({ ...state, images });
-            }}
-          >
-            Remove
-          </button>
+          <Widget src=`${APP_OWNER}/widget/` />
         </div>
       ))}
 
