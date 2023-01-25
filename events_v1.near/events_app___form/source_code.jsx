@@ -118,11 +118,6 @@ const EventTypes = [
   { value: 'mixed', label: 'Both' },
 ];
 
-const ImageTypes = [
-  { value: 'tile', label: 'Tile' },
-  { value: 'banner', label: 'Banner' },
-];
-
 const LinkTypes = [
   { value: 'register', label: 'Register' },
   { value: 'tickets', label: 'Tickets' },
@@ -339,6 +334,7 @@ return (
 
     <div className="mt-3">
       <Label>Images</Label>
+
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
           <Select
