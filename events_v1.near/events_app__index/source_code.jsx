@@ -12,7 +12,10 @@ return (
 
     <Button
       onClick={() => {
-        props.routing.push('new');
+        props.routing.push('new', {}, 'container', {
+          title: 'Create new Event',
+          back: true,
+        });
       }}
     >
       Create new Event
