@@ -66,8 +66,9 @@ const Button = styled.button`
 
 const rendering = {
   renderComponent,
-  components: {
+  Components: {
     Select,
+    Button,
   },
 };
 
