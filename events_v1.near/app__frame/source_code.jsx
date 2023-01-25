@@ -55,7 +55,7 @@ return (
       }}
     >
       <Widget
-        src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
+        src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}`}
         props={{ ...routeProps, engine }}
       />
     </div>
