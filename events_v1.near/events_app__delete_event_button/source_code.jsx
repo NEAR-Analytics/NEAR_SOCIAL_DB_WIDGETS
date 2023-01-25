@@ -24,7 +24,7 @@ function removeEvent() {
       event_id: event.id,
     },
     TGAS_300,
-    ONE_NEAR
+    0
   );
 }
 
