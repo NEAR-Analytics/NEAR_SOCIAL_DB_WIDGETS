@@ -5,8 +5,6 @@ initState({
   content: props.content ?? "entities",
 });
 
-const home = "https://contribut3.near.social";
-
 const onHomeClick = () => {
   State.update({
     search: "",
@@ -96,30 +94,27 @@ const navbar = (
           <li className="nav-item ">
             <a
               className="nav-link active button"
-              onClick={onHomeClick}
-              role="button"
+              href={`https://near.social/#/${ownerId}/widget/Index?content=entities`}
             >
-              <i className="bi-house-fill"> </i>
+              <i className="bi-house-fill" />
               Entities
             </a>
           </li>
           <li className="nav-item ">
             <a
               className="nav-link active button"
-              onClick={() => State.update({ content: "contributors" })}
-              role="button"
+              href={`https://near.social/#/${ownerId}/widget/Index?content=contributors`}
             >
-              <i className="bi-person-plus-fill"> </i>
+              <i className="bi-person-plus-fill" />
               Contributors
             </a>
           </li>
           <li className="nav-item ">
             <a
               className="nav-link active button"
-              onClick={() => State.update({ content: "admin" })}
-              role="button"
+              href={`https://near.social/#/${ownerId}/widget/Index?content=admin`}
             >
-              <i className="bi-person-plus-fill"> </i>
+              <i className="bi-person-plus-fill" />
               Manage Entities
             </a>
           </li>
