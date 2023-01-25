@@ -221,10 +221,7 @@ const updateState = (event, key) => {
 return (
   <div
     style={{
-      width: '50%',
-      margin: '0 auto',
-      minWidth: '300px',
-      maxWidth: '600px',
+      width: '100%',
       backgroundColor: '#fff',
       padding: '1rem',
     }}
