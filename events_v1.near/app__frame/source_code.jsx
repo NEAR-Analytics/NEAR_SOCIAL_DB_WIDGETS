@@ -73,7 +73,6 @@ const currentRoute = state.layers[state.layers.length - 1];
 function buildRenderingInfo() {
   return {
     renderComponent,
-    Components,
   };
 }
 
