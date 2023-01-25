@@ -6,7 +6,8 @@ const allEntities = (
     ownerId,
     "get_contributor_admin_entities",
     { account_id: context.accountId },
-    "final"
+    "final",
+    true
   ) ?? []
 ).filter((accountId) => (search ? accountId.includes(search) : true));
 
