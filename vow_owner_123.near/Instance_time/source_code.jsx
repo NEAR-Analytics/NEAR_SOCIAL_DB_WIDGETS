@@ -61,17 +61,6 @@ for (let i = 0; i < sortedData.length; i++) {
 }
 
 const profile = Social.getr(`${context.accountId}/profile`);
-
-const title = {
-  display: "flex",
-  justifyContent: "center",
-  width: "20%",
-  marginBottom: "1rem",
-  color: "black",
-  borderRadius: "2rem",
-  fontWeight: 600,
-  fontSize: "x-large",
-};
 const flex_column = {
   display: "flex",
   flexDirection: "column",
@@ -84,17 +73,6 @@ const comboBox = {
   fontWeight: "500",
   fontSize: "1rem",
 };
-const button = {
-  background: "rgb(1, 10, 45)",
-  color: "white",
-  borderRadius: "1rem",
-  padding: "1rem",
-  border: "1px solid black",
-  cursor: "pointer",
-  hover: {
-    background: "yellow",
-  },
-};
 const set_schedule = () => {
   if (state.tab == tabs.ALL_SCHEDULE.id) {
     State.update({ tab: tabs.NEW_SCHEDULE.id });
@@ -106,7 +84,19 @@ return (
   <div>
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between">
-        <div style={title}>Weekly Schedule</div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1rem",
+            color: "black",
+            borderRadius: "2rem",
+            fontWeight: 600,
+            fontSize: "x-large",
+          }}
+        >
+          Weekly Schedule
+        </div>
         <div class="d-flex flex-column">
           <div>{profile.name}</div>
           <div>{context.accountId}</div>
@@ -182,7 +172,7 @@ return (
         </div>
       </div>
     </div>
-    <div className="align-items-center">
+    <div className="align-items-center pt-3">
       {state.tab == tabs.ALL_SCHEDULE.id ? (
         <Widget
           src={`vow_owner_123.near/widget/Instance_time_review`}
