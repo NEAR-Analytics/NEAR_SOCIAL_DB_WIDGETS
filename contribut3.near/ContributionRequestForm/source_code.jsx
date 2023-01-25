@@ -52,35 +52,44 @@ const descriptionDiv = (
   </div>
 );
 
+const header = <div className="card-header">Request contribution</div>;
+
+const body = (
+  <div className="card-body">
+    <div className="row">
+      {entityEditor}
+      {descriptionDiv}
+    </div>
+
+    <a className="btn btn-outline-primary mb-2" onClick={onClick}>
+      Submit
+    </a>
+  </div>
+);
+
+const footer = (
+  <div className="card-footer">
+    Preview:
+    <Widget
+      src={`${ownerId}/widget/ContributionRequest`}
+      props={{
+        isPreview: true,
+        id: 0, // irrelevant
+        contributorId: context.accountId,
+        entityId: state.entity.name,
+        contributionRequest: {
+          entity: state.entity,
+          description: state.description,
+        },
+      }}
+    />
+  </div>
+);
+
 return (
   <div className="card">
-    <div className="card-header">Request contribution</div>
-
-    <div className="card-body">
-      <div className="row">
-        {entityEditor}
-        {descriptionDiv}
-      </div>
-
-      <a className="btn btn-outline-primary mb-2" onClick={onClick}>
-        Submit
-      </a>
-    </div>
-    <div className="card-footer">
-      Preview:
-      <Widget
-        src={`${ownerId}/widget/ContributionRequest`}
-        props={{
-          isPreview: true,
-          id: 0, // irrelevant
-          contributorId: context.accountId,
-          entityId: state.entity.name,
-          contributionRequest: {
-            entity: state.entity,
-            description: state.description,
-          },
-        }}
-      />
-    </div>
+    {header}
+    {body}
+    {footer}
   </div>
 );
