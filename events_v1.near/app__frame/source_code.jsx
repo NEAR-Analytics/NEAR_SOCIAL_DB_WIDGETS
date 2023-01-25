@@ -31,9 +31,6 @@ function slugFromName(name) {
 }
 
 const routeSlug = slugFromName(state.route.name);
-const routeProps = {
-  ...state.route.props,
-};
 
 const Select = styled.select`
   background-color: #4caf50;
@@ -109,8 +106,9 @@ return (
     >
       {/* <Widget
         src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}`}
-        props={{ ...routeProps, routing }}
+        props={{ ...state.route.props, routing }}
       /> */}
+      {renderComponent(state.route.name, state.route.props)}
     </div>
   </>
 );
