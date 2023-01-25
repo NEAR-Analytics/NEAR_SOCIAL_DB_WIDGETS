@@ -36,7 +36,7 @@ const tbl_container = {
   display: "flex",
   marginTop: "1rem",
   justifyContent: "center",
-  padding: "2rem",
+  width: "100%",
   color: "black",
   fontWeight: 400,
   borderRadius: "1rem",
@@ -227,14 +227,7 @@ const timeSelector = (f, index) => {
 };
 
 return (
-  <div
-    style={{
-      borderRadius: "3px",
-      backgroundColor: "rgb(230, 230, 230)",
-      width: "100%",
-      padding: "0.5rem",
-    }}
-  >
+  <div>
     {context.accountId ? (
       <div
         style={{
@@ -338,8 +331,8 @@ return (
             style={{
               border: "2px solid transparent",
               fontWeight: "500",
-              fontSize: "1.5rem",
-              padding: "0.3rem 1.5rem",
+              fontSize: "1rem",
+              padding: "1rem",
               backgroundColor: "#010A2D",
               borderRadius: "12px",
               color: "white",
