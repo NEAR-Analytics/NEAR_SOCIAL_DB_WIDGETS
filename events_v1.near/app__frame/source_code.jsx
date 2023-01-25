@@ -72,21 +72,21 @@ const rendering = {
 };
 
 const routing = {
-  transitionTo,
+  push,
   currentRoute: state.route,
 };
 
-function transitionTo(name, props) {
+function push(name, props) {
   State.set({
-    route: {
-      name,
-      props,
-    },
-    overlay: null,
+    layers: [
+      ...state.layers,
+      {
+        name,
+        props,
+      },
+    ],
   });
 }
-
-const route = state.route;
 
 function renderComponent(name, props) {
   return (
