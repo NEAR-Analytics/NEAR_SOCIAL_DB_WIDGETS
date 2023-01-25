@@ -2,7 +2,12 @@ const title = props.layoutProps.title ?? '';
 
 return (
   <>
-    <div className="container">
+    <div
+      className="container"
+      style={{
+        paddingTop: '1rem',
+      }}
+    >
       <div className="row">
         <div className="col-12">
           <h1>{title}</h1>
