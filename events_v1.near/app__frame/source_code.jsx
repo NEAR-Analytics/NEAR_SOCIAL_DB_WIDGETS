@@ -25,14 +25,6 @@ State.init({
   ],
 });
 
-const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-`;
-
 if (!state) {
   return 'Loading...';
 }
@@ -72,6 +64,14 @@ const Button = styled.button`
   &:hover {
     background-color: #3e8e41;
   }
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 
 const Components = {
