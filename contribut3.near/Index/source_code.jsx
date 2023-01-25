@@ -5,13 +5,6 @@ initState({
   content: props.content ?? "entities",
 });
 
-const onHomeClick = () => {
-  State.update({
-    search: "",
-    content: "entities",
-  });
-};
-
 const editorsFooter = props.isPreview ? null : (
   <div className="row" id={`accordion`}>
     <div
@@ -60,7 +53,7 @@ const controls = (
                 aria-expanded="false"
                 aria-controls={`collapseContributionRequestForm`}
               >
-                <i className="bi-plus-circle"> </i>
+                <i className="bi-plus-circle" />
                 Request Contribution
               </a>
             </li>
@@ -74,7 +67,7 @@ const controls = (
                 aria-expanded="false"
                 aria-controls={`collapseEntityForm`}
               >
-                <i className="bi-rocket-fill"> </i>
+                <i className="bi-rocket-fill" />
                 Create Entity
               </a>
             </li>
@@ -96,7 +89,7 @@ const navbar = (
               className="nav-link active button"
               href={`https://near.social/#/${ownerId}/widget/Index?content=entities`}
               role="button"
-              target="_self"
+              onClick={() => State.update({ content: "entities" })}
             >
               <i className="bi-house-fill" />
               Entities
@@ -107,7 +100,7 @@ const navbar = (
               className="nav-link active button"
               href={`https://near.social/#/${ownerId}/widget/Index?content=contributors`}
               role="button"
-              target="_self"
+              onClick={() => State.update({ content: "contributors" })}
             >
               <i className="bi-person-plus-fill" />
               Contributors
@@ -118,7 +111,7 @@ const navbar = (
               className="nav-link active button"
               href={`https://near.social/#/${ownerId}/widget/Index?content=admin`}
               role="button"
-              target="_self"
+              onClick={() => State.update({ content: "admin" })}
             >
               <i className="bi-person-plus-fill" />
               Manage Entities
