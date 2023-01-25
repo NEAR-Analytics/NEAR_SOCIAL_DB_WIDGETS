@@ -86,11 +86,9 @@ function push(name, props) {
       },
     ],
   });
-  window.history.pushState(
-    {},
-    '',
-    `#/${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`
-  );
+  window.location.pathname = `#/${APP_OWNER}/widget/${APP_NAME}__${slugFromName(
+    name
+  )}`;
 }
 
 // pop from the stack, ensure we always have at least one layer
