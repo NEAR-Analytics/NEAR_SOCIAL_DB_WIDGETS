@@ -7,15 +7,13 @@ if (!accountId) {
   return 'Please connect your NEAR wallet to create an activity';
 }
 
-const eventId = props.event;
+const event = props.event;
 if (!event) {
   return 'props.event is required';
 }
 
 const TGAS_300 = '300000000000000';
 const ONE_NEAR = '1000000000000000000000000';
-
-console.log({ props });
 
 function deleteEvent() {
   Near.call(
