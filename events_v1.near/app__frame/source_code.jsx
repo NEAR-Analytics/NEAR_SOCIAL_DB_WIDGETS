@@ -2,7 +2,7 @@ const VERSION = '0.0.1';
 
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
-const ENTRY_ROUTE = '{{ env.ENTRY_ROUTE }}';
+const ENTRY_ROUTE = 'index';
 
 const accountId = context.accountId;
 if (!accountId) {
