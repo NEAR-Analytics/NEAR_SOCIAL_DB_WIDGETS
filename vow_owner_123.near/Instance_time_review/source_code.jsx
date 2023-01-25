@@ -1,6 +1,4 @@
-State.init({
-  _account: props.accountId ?? "All",
-});
+const _account = props.accountId ?? "All";
 console.log("accountId", props.accountId);
 const card = {
   border: "1px solid black",
@@ -159,7 +157,7 @@ return (
   <div className="w-100">
     {finalData
       ? finalData.map((d) => {
-          if (state._account == "All" || state._account == d.accountId) {
+          if (_account == "All" || _account == d.accountId) {
             return (
               <div style={card}>
                 <Widget
