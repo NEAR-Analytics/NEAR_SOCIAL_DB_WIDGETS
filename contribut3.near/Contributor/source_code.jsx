@@ -3,7 +3,7 @@ const accountId = "petarvujovic.near";
 const notStandalone = props.notStandalone ?? false;
 
 if (!accountId) {
-  return <div>Cannot show contributor without account ID!</div>;
+  return "Cannot show contributor without account ID!";
 }
 
 const shareButton = props.isPreview ? null : (
@@ -14,7 +14,7 @@ const shareButton = props.isPreview ? null : (
     target="_blank"
     title="Open in new tab"
   >
-    <div className="bi bi-share"></div>
+    <div className="bi bi-share" />
   </a>
 );
 
@@ -42,7 +42,7 @@ const contributions = Near.view(
   "final"
 );
 
-const contributionsList = !notStandalone ? (
+const contributionsList = notStandalone ? null : (
   <div className="mb-2">
     Contributions:
     <br />
@@ -57,7 +57,7 @@ const contributionsList = !notStandalone ? (
       ))
     )}
   </div>
-) : null;
+);
 
 const header = (
   <div className="card-header">
@@ -74,9 +74,11 @@ const header = (
   </div>
 );
 
+const body = <div className="card-body">{contributionsList}</div>;
+
 return (
   <div className="card">
     {header}
-    <div className="card-body">{contributionsList}</div>
+    {body}
   </div>
 );
