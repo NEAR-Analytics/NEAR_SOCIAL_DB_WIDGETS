@@ -66,8 +66,8 @@ const flex_column = {
   flexDirection: "column",
 };
 const comboBox = {
-  background: "rgb(1, 10, 45)",
-  color: "white",
+  background: "rgb(230, 230, 230)",
+  color: "black",
   borderRadius: "1rem",
   padding: "1rem",
   fontWeight: "500",
