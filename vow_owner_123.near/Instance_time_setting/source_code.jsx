@@ -21,7 +21,19 @@ State.init({
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
 });
-const _time_zone = props._time_zone ? parseInt(props._time_zone) : 0;
+const time_zone = props.time_zone ?? "(UTC+00:00) UTC";
+const title = {
+  display: "flex",
+  justifyContent: "center",
+  width: "70%",
+  padding: "1.5rem",
+  marginBottom: "1rem",
+  color: "black",
+  borderRadius: "2rem",
+  fontWeight: 600,
+  fontSize: "xx-large",
+  boxShadow: "2px 2px 2px 2px grey",
+};
 const container = {
   display: "flex",
   width: "100%",
@@ -126,6 +138,7 @@ const getTime = (time) => {
 const onTimeChanged = (value, index, is_from_to, in_de) => {
   let temp = is_from_to ? state._from : state._to;
   const i = hours.indexOf(value);
+  console.log(i, in_de);
   if (i + in_de >= 0 && i + in_de < hours.length) {
     temp[index] = hours[i + in_de];
     is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
@@ -159,7 +172,9 @@ const sortAndRemoveRepeated = (flag, data) => {
   return final;
 };
 const getData = () => {
-  var offset = _time_zone + (parseInt(zone[1]) / 60) * ((hours > 0) * 2 - 1);
+  var zone = time_zone.split(" ")[0].split("UTC")[1].split(":");
+  var hours = parseInt(zone[0]);
+  var offset = hours + (parseInt(zone[1]) / 60) * ((hours > 0) * 2 - 1);
   var temp = [];
   var flag = false;
   for (var i = 0; i < 7; i++) {
@@ -180,6 +195,7 @@ const getData = () => {
     }
   }
   const final = sortAndRemoveRepeated(flag, temp);
+  console.log("final", final);
   return {
     index: {
       Instance_time: JSON.stringify(
@@ -298,6 +314,15 @@ return (
           >
             Send It!
           </CommitButton>
+          <div style={button} className="m-2">
+            <a
+              href={
+                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
+              }
+            >
+              Back
+            </a>
+          </div>
         </div>
       </div>
     ) : (
