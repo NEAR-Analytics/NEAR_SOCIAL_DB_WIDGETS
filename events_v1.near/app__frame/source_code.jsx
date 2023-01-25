@@ -73,11 +73,6 @@ const rendering = {
   },
 };
 
-const routing = {
-  push,
-  currentRoute,
-};
-
 function push(name, props) {
   State.update({
     layers: [
@@ -96,6 +91,12 @@ function pop() {
     layers: state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers,
   });
 }
+
+const routing = {
+  push,
+  pop,
+  currentRoute,
+};
 
 function renderComponent(name, props) {
   return (
