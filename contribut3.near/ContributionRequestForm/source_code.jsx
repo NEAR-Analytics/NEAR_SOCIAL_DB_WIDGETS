@@ -2,22 +2,18 @@ const ownerId = "contribut3.near";
 
 initState({
   // The entity to which to request a contribution.
-  entity: props.entity ?? { name: "" },
+  entity: props.entity ? [{ name: props.entity }] : [],
   // The description of the contribution request.
   description: props.description ?? "",
 });
 
 const onClick = () => {
   const args = {
-    entity_id: state.entity.name,
+    entity_id: state.entity[0].name,
     description: state.description,
   };
 
   Near.call(ownerId, "request_contribution", args);
-};
-
-const setEntity = ([entity]) => {
-  State.update({ entity });
 };
 
 const existingEntities = (
@@ -29,10 +25,10 @@ const entityEditor = (
     Entity:
     <Typeahead
       labelKey="name"
-      onChange={setEntity}
+      onChange={(entity) => State.update({ entity })}
       options={existingEntities}
       placeholder="social.near, contribut3.near"
-      selected={[state.entity]}
+      selected={state.entity}
       positionFixed
     />
   </div>
