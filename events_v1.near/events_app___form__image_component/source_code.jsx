@@ -22,7 +22,7 @@ State.init({
   img: image.url || '',
   type: image.type,
 
-  localImg: '',
+  localImg: {},
 });
 
 if (!state) {
@@ -43,7 +43,6 @@ const Select = styled.select`
   box-sizing: border-box;
 `;
 
-console.log('state.localImg', state.localImg);
 if (state.localImg) {
   console.log('state.localImg', state.localImg);
 }
