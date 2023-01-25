@@ -158,7 +158,10 @@ return (
                   >
                     <div
                       style={{
-                        marginBottom: "1rem",
+                        paddingBottom: "0.5rem",
+                        borderBottom: "2px solid grey",
+                        display: "flex",
+                        flexDirection: "row",
                       }}
                     >
                       <Widget
@@ -167,22 +170,35 @@ return (
                           accountId: d.accountId,
                           className: "d-inline-block",
                           style: {
-                            width: "1.5em",
-                            height: "1.5em",
-                            fontSize: "x-large",
+                            width: "2em",
+                            height: "2em",
+                            fontSize: "xx-large",
                           },
                         }}
                       />
-                      <a
-                        href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}
+                      <div
+                        style={{
+                          paddingLeft: "0.5rem",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
                       >
-                        {d.accountId}
-                      </a>
+                        <div
+                          style={{
+                            fontSize: "1.5rem",
+                            fontWeight: "800",
+                          }}
+                        >
+                          {d.accountId}
+                        </div>
+                        <div>{Social.getr(`${d.accountId}/profile`).name}</div>
+                      </div>
                     </div>
                     {d.value._data.map((week, index) => {
                       return (
                         <div
                           style={{
+                            paddingTop: "0.5rem",
                             display: "flex",
                             justifyContent: "space-between",
                           }}
