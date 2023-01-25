@@ -121,7 +121,7 @@ function renderComponent(name, props) {
       props={{
         ...componentProps,
         component: {
-          name,
+          src: `${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`,
           props: componentProps,
         },
       }}
