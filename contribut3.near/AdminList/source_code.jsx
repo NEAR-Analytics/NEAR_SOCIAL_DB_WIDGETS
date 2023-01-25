@@ -10,8 +10,6 @@ const allEntities =
 
 allEntities.sort((a, b) => a.localeCompare(b));
 
-console.log(allEntities);
-
 return (
   <div>
     {allEntities && allEntities.length > 0
