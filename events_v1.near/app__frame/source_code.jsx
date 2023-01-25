@@ -63,15 +63,17 @@ const Button = styled.button`
   }
 `;
 
+const Components = {
+      Select,
+      Button,
+    },
 const currentRoute = state.layers[state.layers.length - 1];
+
 
 function buildRenderingInfo() {
   return {
     renderComponent,
-    Components: {
-      Select,
-      Button,
-    },
+    Components
   };
 }
 
