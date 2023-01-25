@@ -1,6 +1,7 @@
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
 const EVENTS_CONTRACT = 'events_v1.near';
+const ENTRY_ROUTE = '{{ env.ENTRY_ROUTE }}';
 
 const accountId = context.accountId;
 if (!accountId) {
@@ -16,7 +17,7 @@ const env = {
 State.init({
   env,
   route: {
-    name: '',
+    name: ENTRY_ROUTE,
     props: {},
   },
 });
