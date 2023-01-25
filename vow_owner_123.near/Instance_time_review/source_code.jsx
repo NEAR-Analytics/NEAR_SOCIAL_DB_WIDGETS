@@ -60,7 +60,6 @@ var accountIds = ["All"];
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
-  console.log("temp", temp);
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
   var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
@@ -93,7 +92,6 @@ for (let i = 0; i < sortedData.length; i++) {
     var times = sortedData[i].value._data;
     var temp = [];
     var flag = false;
-    console.log("times", times);
     for (var j = 0; j < times.length; j++) {
       const time = times[j] + utc_offset;
       if (time > 168) {
@@ -105,7 +103,6 @@ for (let i = 0; i < sortedData.length; i++) {
       } else temp.push(time);
     }
     const final = sortAndRemoveRepeated(flag, temp);
-    console.log("final", final);
     for (var m = 0; m < final.length - 1; m += 2) {
       const _from = final[m];
       const _to = final[m + 1];
@@ -134,7 +131,6 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
-    console.log(weeklyData);
     finalData.push({
       accountId: sortedData[i].accountId,
       value: {
