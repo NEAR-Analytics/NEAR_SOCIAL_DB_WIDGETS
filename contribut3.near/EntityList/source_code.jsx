@@ -3,7 +3,7 @@ const search = props.search ?? "";
 
 const allEntities = (
   Near.view(ownerId, "get_entities", {}, "final") ?? []
-).filter((accountId) => (search ? accountId.includes(search) : true));
+).filter(([accountId]) => (search ? accountId.includes(search) : true));
 
 allEntities.sort(([a], [b]) => a.localeCompare(b));
 
