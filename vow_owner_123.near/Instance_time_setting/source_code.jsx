@@ -227,7 +227,14 @@ const timeSelector = (f, index) => {
 };
 
 return (
-  <div>
+  <div
+    style={{
+      borderRadius: "3px",
+      backgroundColor: "rgb(230, 230, 230)",
+      width: "100%",
+      padding: "0.5rem",
+    }}
+  >
     {context.accountId ? (
       <div
         style={{
