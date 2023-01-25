@@ -3,8 +3,7 @@ const data = {
 };
 
 if (typeof props.onLoad === "function") {
-  console.log("Burrow.Data", props, typeof props.onLoad);
-  // onLoad(data);
+  props.onLoad(data);
 }
 
 return <div>Burrow.Data</div>;
