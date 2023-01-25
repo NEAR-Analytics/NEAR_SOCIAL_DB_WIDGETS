@@ -19,7 +19,7 @@ if (!onRemove) {
 }
 
 State.init({
-  url: image.url,
+  img: image.url || '',
   type: image.type,
 });
 
@@ -45,7 +45,7 @@ return (
   <>
     <Select
       style={{ width: '100px' }}
-      value={state.type}
+      value={type}
       onChange={(event) => {
         State.update({ type: event.target.value });
         onChange({
