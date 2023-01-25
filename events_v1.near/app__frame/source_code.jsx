@@ -161,7 +161,12 @@ return (
             overflow: 'auto',
           }}
         >
-          {renderComponent(layer.name, layer.props)}
+          {renderComponent(
+            layer.name,
+            layer.props,
+            layer.layout,
+            layer.layoutProps
+          )}
         </div>
       );
     })}
