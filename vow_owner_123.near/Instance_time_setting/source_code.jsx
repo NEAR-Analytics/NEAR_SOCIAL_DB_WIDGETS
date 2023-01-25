@@ -18,10 +18,10 @@ State.init({
     "06:00 PM",
     "06:00 PM",
   ],
-  _time_zone: "(UTC+00:00) UTC",
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
 });
+const _time_zone = props._time_zone ? parseInt(props._time_zone) : 0;
 const container = {
   display: "flex",
   width: "100%",
@@ -86,44 +86,6 @@ const tbl_row = {
   margin: "1px",
   padding: "6px",
 };
-const time_zones = [
-  "(UTC-11:00) Samoa",
-  "(UTC-10:00) Hawaii",
-  "(UTC-09:00) Alaska",
-  "(UTC-08:00) Pacific Time",
-  "(UTC-07:00) Arizona",
-  "(UTC-06:00) Central America",
-  "(UTC-06:00) Saskatchewan",
-  "(UTC-05:00) Eastern Time",
-  "(UTC-04:00) Atlantic Time",
-  "(UTC-04:30) Caracas",
-  "(UTC-04:00) Santiago",
-  "(UTC-03:30) Newfoundland",
-  "(UTC-03:00) Brasilia",
-  "(UTC-02:00) Mid-Atlantic",
-  "(UTC-01:00) Azores",
-  "(UTC+00:00) UTC",
-  "(UTC+01:00) Amsterdam",
-  "(UTC+02:00) Athens",
-  "(UTC+03:00) Baghdad",
-  "(UTC+04:00) Abu Dhabi",
-  "(UTC+04:30) Kabul",
-  "(UTC+05:00) Islamabad",
-  "(UTC+05:30) Chennai",
-  "(UTC+05:45) Kathmandu",
-  "(UTC+06:00) Almaty",
-  "(UTC+06:30) Rangoon",
-  "(UTC+07:00) Bangkok",
-  "(UTC+08:00) Beijing",
-  "(UTC+09:00) Irkutsk",
-  "(UTC+09:00) Seoul",
-  "(UTC+09:00) Tokyo",
-  "(UTC+09:30) Adelaide",
-  "(UTC+10:00) Guam",
-  "(UTC+11:00) Vladivostok",
-  "(UTC+12:00) Auckland",
-  "(UTC+13:00) Nuku'alofa",
-];
 const hours = [];
 const days = [
   "Monday",
@@ -197,9 +159,7 @@ const sortAndRemoveRepeated = (flag, data) => {
   return final;
 };
 const getData = () => {
-  var zone = state._time_zone.split(" ")[0].split("UTC")[1].split(":");
-  var hours = parseInt(zone[0]);
-  var offset = hours + (parseInt(zone[1]) / 60) * ((hours > 0) * 2 - 1);
+  var offset = _time_zone + (parseInt(zone[1]) / 60) * ((hours > 0) * 2 - 1);
   var temp = [];
   var flag = false;
   for (var i = 0; i < 7; i++) {
@@ -279,28 +239,6 @@ return (
     {context.accountId ? (
       <div style={flex_column} className="align-items-center">
         <div style={container}>
-          <div style={flex_row}>
-            <div style={flex_row}>
-              <div>
-                <div>Select Time zone:</div>
-                <div style={table}>
-                  <select
-                    style={comboBoxTimezone}
-                    name="zones"
-                    id="zones"
-                    value={state._time_zone}
-                    onChange={(e) => {
-                      State.update({ _time_zone: e.target.value });
-                    }}
-                  >
-                    {time_zones.map((zone) => (
-                      <option value={zone}>{zone}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
           <div style={tbl_container}>
             <div style={flex_column} className="mt-3">
               <div style={tbl_row}>
