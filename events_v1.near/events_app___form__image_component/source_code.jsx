@@ -70,6 +70,7 @@ return (
 
     <div className="ms-2">
       {JSON.stringify(image)}
+      {JSON.stringify(state.localImg)}
       <IpfsImageUpload image={state.localImg} />
     </div>
 
