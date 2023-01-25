@@ -7,6 +7,12 @@ const Select = styled.select`
   box-sizing: border-box;
 `;
 
+const image = props.image;
+
+if (!image) {
+  return 'loading';
+}
+
 return (
   <>
     <Select
