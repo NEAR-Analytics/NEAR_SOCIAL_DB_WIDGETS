@@ -77,7 +77,7 @@ return (
       ))}
     </Select>
 
-    <div className="ms-2">
+    <div className="ms-4">
       <IpfsImageUpload image={state.localImg} />
     </div>
 
