@@ -8,4 +8,37 @@ const env = {
   EVENTS_CONTRACT,
 };
 
-return <>{JSON.stringify(env, null, 4)}</>;
+State.init({
+  env,
+  route: {
+    name: '',
+    props: {},
+  },
+})
+
+if(!state){return "Loading"}
+
+const routeSlug = state.route.name.split('.').join('__');
+const routeProps = state.route.props;
+
+
+function transitionTo(name, props) {
+  State.set({
+    route: {
+      name,
+      props,
+    },
+  });
+}
+
+
+
+return <>
+  {/* main widget */}
+  
+  <Widget
+    src={`${APP_OWNER}/widget/${APP_NAME}__${routeSlug}?accountId=${accountId}`}
+    props={{...routeProps, {engine: {transitionTo}}}}}
+  />
+
+</>;
