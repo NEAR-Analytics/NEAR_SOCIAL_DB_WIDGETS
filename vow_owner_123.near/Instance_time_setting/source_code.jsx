@@ -294,15 +294,6 @@ return (
           >
             Send It!
           </CommitButton>
-          <div style={button} className="m-2">
-            <a
-              href={
-                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
-              }
-            >
-              Back
-            </a>
-          </div>
         </div>
       </div>
     ) : (
