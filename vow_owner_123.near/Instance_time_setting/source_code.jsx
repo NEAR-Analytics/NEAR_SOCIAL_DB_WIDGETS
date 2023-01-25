@@ -68,16 +68,6 @@ const flex_row = {
   flexDirection: "row",
   fontSize: "large",
 };
-const flex_column = {
-  display: "flex",
-  flexDirection: "column",
-};
-const tbl_row = {
-  display: "flex",
-  background: "white",
-  margin: "1px",
-  padding: "6px",
-};
 const hours = [];
 const days = [
   "Monday",
@@ -208,7 +198,12 @@ const timeSelector = (f, index) => {
           ))}
         </select>
       </div>
-      <div style={flex_column}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <div
           onClick={() => {
             const value = f ? state._from[index] : state._to[index];
@@ -233,11 +228,30 @@ const timeSelector = (f, index) => {
 return (
   <div>
     {context.accountId ? (
-      <div style={flex_column} className="align-items-center">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+        className="align-items-center"
+      >
         <div style={container}>
           <div style={tbl_container}>
-            <div style={flex_column} className="mt-3">
-              <div style={tbl_row}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+              className="mt-3"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  background: "white",
+                  border: "2px solid grey",
+                  padding: "6px",
+                }}
+              >
                 <div style={flex_row}>
                   {tbl_headers.map((header) => (
                     <div style={table}>{header}</div>
@@ -245,7 +259,16 @@ return (
                 </div>
               </div>
               {days.map((day, index) => (
-                <div style={tbl_row}>
+                <div
+                  style={{
+                    display: "flex",
+                    background: "white",
+                    borderBottom: "2px solid grey",
+                    borderLeft: "2px solid grey",
+                    borderRight: "2px solid grey",
+                    padding: "6px",
+                  }}
+                >
                   <div style={flex_row}>
                     <div style={table}>{day}</div>
                     <div style={table}>
