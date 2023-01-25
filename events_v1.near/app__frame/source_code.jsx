@@ -101,7 +101,15 @@ const routing = {
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props) {
   const layout = props.layout || 'default';
-  const componentProps = {...props,routing,engine,Components,accountId,env,VERSION};
+  const componentProps = {
+    ...props,
+    routing,
+    engine,
+    Components,
+    accountId,
+    env,
+    VERSION,
+  };
 
   if (layout === 'default') {
     return (
@@ -110,20 +118,19 @@ function renderComponent(name, props) {
         props={componentProps}
       />
     );
-  }else{
-    return (
-      <Widget
-        src={`${APP_OWNER}/widget/${APP_NAME}__${slugFromName(name)}`}
-        props={{
-          ...props,
-          routing,
-          engine,
-          Components,
-          accountId,
-          env,
-          VERSION,
-        }}
   }
+  return (
+    <Widget
+      src={`${APP_OWNER}/widget/app__layouts__${slugFromName(layout)}`}
+      props={{
+        ...componentProps,
+        component: {
+          name,
+          props: componentProps,
+        },
+      }}
+    />
+  );
 }
 
 return (
