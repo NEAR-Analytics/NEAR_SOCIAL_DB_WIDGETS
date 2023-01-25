@@ -5,16 +5,7 @@ initState({
   content: props.content ?? "entities",
 });
 
-// // A workaround for weird VM behavior. It does not call initState when the same
-// // widget is reopened in the same tab.
-// if (state.selectedPost != props.postId) {
-//   State.update({ selectedPost: props.postId });
-// }
-// if (state.label != props.label) {
-//   State.update({ label: props.label });
-// }
-
-const home = "https://near.social/#/contribut3.near/widget/Index";
+const home = "https://contribut3.near.social";
 
 const onHomeClick = () => {
   State.update({
@@ -132,6 +123,14 @@ const navbar = (
               Manage Entities
             </a>
           </li>
+          <li className="nav-item">
+            <input
+              type="text"
+              value={state.search}
+              placeholder="Search"
+              onChange={(e) => State.update({ search: e.target.value })}
+            />
+          </li>
         </ul>
       </div>
     </div>
@@ -140,19 +139,22 @@ const navbar = (
 
 const content = {
   entities: (
-    <div className="mt-2">
-      <Widget src={`${ownerId}/widget/EntityList`} />
-    </div>
+    <Widget
+      src={`${ownerId}/widget/EntityList`}
+      props={{ search: state.search }}
+    />
   ),
   contributors: (
-    <div className="mt-2">
-      <Widget src={`${ownerId}/widget/ContributorList`} />
-    </div>
+    <Widget
+      src={`${ownerId}/widget/ContributorList`}
+      props={{ search: state.search }}
+    />
   ),
   admin: (
-    <div className="mt-2">
-      <Widget src={`${ownerId}/widget/AdminList`} />
-    </div>
+    <Widget
+      src={`${ownerId}/widget/AdminList`}
+      props={{ search: state.search }}
+    />
   ),
 }[state.content];
 
@@ -160,6 +162,6 @@ return (
   <div>
     {controls}
     {navbar}
-    {content}
+    <div className="mt-2">{content}</div>{" "}
   </div>
 );
