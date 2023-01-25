@@ -120,7 +120,7 @@ return (
     </div>
     <div style={flex_column} className="align-items-center">
       <Widget
-        src={`vow_owner_123.near/widget/Instance_time_review?accountId=${state._account}`}
+        src={`#/vow_owner_123.near/widget/Instance_time_review?accountId=All`}
         props={{
           accountId: d.accountId,
           className: "d-inline-block",
