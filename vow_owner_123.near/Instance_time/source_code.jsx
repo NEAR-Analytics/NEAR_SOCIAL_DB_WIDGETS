@@ -1,11 +1,50 @@
 const tabs = {
-  ALL_SCHEDULE: { id: 0, text: "All existing polls" },
-  NEW_SCHEDULE: { id: 1, text: "Create a poll" },
+  ALL_SCHEDULE: { id: 0, text: "Create Schedule" },
+  NEW_SCHEDULE: { id: 1, text: "View All Schedules" },
 };
+const time_zones = [
+  "(UTC-11:00) Samoa",
+  "(UTC-10:00) Hawaii",
+  "(UTC-09:00) Alaska",
+  "(UTC-08:00) Pacific Time",
+  "(UTC-07:00) Arizona",
+  "(UTC-06:00) Central America",
+  "(UTC-06:00) Saskatchewan",
+  "(UTC-05:00) Eastern Time",
+  "(UTC-04:00) Atlantic Time",
+  "(UTC-04:30) Caracas",
+  "(UTC-04:00) Santiago",
+  "(UTC-03:30) Newfoundland",
+  "(UTC-03:00) Brasilia",
+  "(UTC-02:00) Mid-Atlantic",
+  "(UTC-01:00) Azores",
+  "(UTC+00:00) UTC",
+  "(UTC+01:00) Amsterdam",
+  "(UTC+02:00) Athens",
+  "(UTC+03:00) Baghdad",
+  "(UTC+04:00) Abu Dhabi",
+  "(UTC+04:30) Kabul",
+  "(UTC+05:00) Islamabad",
+  "(UTC+05:30) Chennai",
+  "(UTC+05:45) Kathmandu",
+  "(UTC+06:00) Almaty",
+  "(UTC+06:30) Rangoon",
+  "(UTC+07:00) Bangkok",
+  "(UTC+08:00) Beijing",
+  "(UTC+09:00) Irkutsk",
+  "(UTC+09:00) Seoul",
+  "(UTC+09:00) Tokyo",
+  "(UTC+09:30) Adelaide",
+  "(UTC+10:00) Guam",
+  "(UTC+11:00) Vladivostok",
+  "(UTC+12:00) Auckland",
+  "(UTC+13:00) Nuku'alofa",
+];
 State.init({
   tab: tabs.ALL_SCHEDULE.id,
   hoveringElement: "",
   _account: "All",
+  _time_zone: "(UTC+00:00) UTC",
 });
 
 const data = Social.index("Instance_time", "data");
@@ -56,6 +95,13 @@ const button = {
     background: "yellow",
   },
 };
+const set_schedule = () => {
+  if (state.tab == tabs.ALL_SCHEDULE.id) {
+    State.update({ tab: tabs.NEW_SCHEDULE.id });
+  } else {
+    State.update({ tab: tabs.ALL_SCHEDULE.id });
+  }
+};
 return (
   <div>
     <div className="d-flex flex-column">
@@ -68,19 +114,35 @@ return (
       </div>
       <div className="w-100 d-flex flex-row justify-content-between align-items-center">
         <div>
-          <select
-            style={comboBox}
-            name="accounts"
-            id="accounts"
-            value={state._account}
-            onChange={(e) => {
-              State.update({ _account: e.target.value });
-            }}
-          >
-            {accountIds.map((account) => (
-              <option value={account}>{account}</option>
-            ))}
-          </select>
+          {state.tab == tabs.ALL_SCHEDULE.id ? (
+            <select
+              style={comboBox}
+              name="accounts"
+              id="accounts"
+              value={state._account}
+              onChange={(e) => {
+                State.update({ _account: e.target.value });
+              }}
+            >
+              {accountIds.map((account) => (
+                <option value={account}>{account}</option>
+              ))}
+            </select>
+          ) : (
+            <select
+              style={comboBox}
+              name="zones"
+              id="zones"
+              value={state._time_zone}
+              onChange={(e) => {
+                State.update({ _time_zone: e.target.value });
+              }}
+            >
+              {time_zones.map((zone) => (
+                <option value={zone}>{zone}</option>
+              ))}
+            </select>
+          )}
         </div>
         <div>
           <button
@@ -90,7 +152,7 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            onClick={abortPollCreation}
+            onClick={set_schedule}
             style={
               state.hoveringElement == "create"
                 ? {
@@ -113,20 +175,32 @@ return (
                   }
             }
           >
-            Set Schedule
+            {state.tab == tabs.ALL_SCHEDULE.id
+              ? tabs.ALL_SCHEDULE.text
+              : tabs.NEW_SCHEDULE.text}
           </button>
         </div>
       </div>
     </div>
-    <div style={flex_column} className="align-items-center">
-      <Widget
-        src={`#/vow_owner_123.near/widget/Instance_time_review?accountId=All`}
-        props={{
-          accountId: d.accountId,
-          className: "d-inline-block",
-          style: { width: "95%", height: "1.5em" },
-        }}
-      />
+    <div className="align-items-center">
+      {state.tab == tabs.ALL_SCHEDULE.id ? (
+        <Widget
+          src={`vow_owner_123.near/widget/Instance_time_review`}
+          props={{
+            accountId: state._account,
+            className: "d-inline-block",
+            style: { width: "100%", height: "1.5em" },
+          }}
+        />
+      ) : (
+        <Widget
+          src={`vow_owner_123.near/widget/Instance_time_setting`}
+          props={{
+            time_zone: state._time_zone,
+            style: { width: "100%", height: "1.5em" },
+          }}
+        />
+      )}
     </div>
   </div>
 );
