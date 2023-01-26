@@ -10,9 +10,7 @@ return (
     >
       <div className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="">
-            {title}
-          </a>
+          <h2 className="navbar-brand">{title}</h2>
 
           <button
             className="navbar-toggler"
