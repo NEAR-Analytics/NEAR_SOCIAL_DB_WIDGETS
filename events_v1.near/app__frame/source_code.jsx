@@ -166,7 +166,7 @@ return (
         height: '100%',
         position: 'fixed',
         backgroundColor: 'white',
-        top: 72, // sit right below the navbar
+        top: 0,
         left: 0,
         right: 0,
         bottom: 0,
