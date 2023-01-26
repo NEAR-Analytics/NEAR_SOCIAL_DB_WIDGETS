@@ -27,7 +27,7 @@ const result = state.show ? (
 ) : null;
 
 return (
-  <div>
+  <div style={{ height: "80vh" }}>
     <div className="card">
       <div className="card-body">
         <label htmlFor="search">Check:</label>
