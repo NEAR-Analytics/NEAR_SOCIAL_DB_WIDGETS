@@ -45,48 +45,6 @@ return (
         {/* container */}
         <div style={{ height: '100%' }}>
           {props.engine.renderComponent(props.component.src)}
-
-          {/* <Widget src={props.component.src} props={props.component.props} /> */}
-
-          {/* <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              display: 'flex',
-              justifyContent: 'flex-end',
-            }}
-          >
-            
-          </div> */}
-
-          {/* <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              display: 'flex',
-              justifyContent: 'flex-end',
-
-              // backgroundColor: 'red',
-            }}
-          >
-            <button
-              style={{
-                // position: 'absolute',
-                // bottom: 0,
-                // right: 0,
-                // backgroundColor: 'red',
-              }}
-              onClick={() => {
-                props.routing.pop();
-              }}
-            >
-              
-            </button>
-          </div> */}
         </div>
       </div>
     </div>
