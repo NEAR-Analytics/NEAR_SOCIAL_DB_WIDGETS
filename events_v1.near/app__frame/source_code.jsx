@@ -170,7 +170,7 @@ return (
         overflow: 'auto',
       }}
     >
-      <div data-state={JSON.stringify(state) id="app-state"}></div>
+      <div id="app-state" data-state={JSON.stringify(state)}></div>
       {renderComponent(
         state.layers[state.layers.length - 1].name,
         state.layers[state.layers.length - 1].props,
