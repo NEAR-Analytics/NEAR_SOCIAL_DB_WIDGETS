@@ -59,6 +59,7 @@ return (
           height: 72,
           position: 'fixed',
           top: 72,
+          width: '100%',
         }}
       >
         <div className="container-fluid h-100 flex">
