@@ -177,7 +177,7 @@ return (
       }}
     >
       <div id="app-state" data-state={JSON.stringify(state)}></div>
-      {state.renderCycles}
+
       {renderComponent(
         state.layers[state.layers.length - 1].name,
         state.layers[state.layers.length - 1].props,
