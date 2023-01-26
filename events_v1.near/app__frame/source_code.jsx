@@ -6,7 +6,7 @@ const ENTRY_ROUTE = 'index';
 
 const accountId = context.accountId;
 if (!accountId) {
-  return 'Please connect your NEAR wallet to create an activity';
+  return 'Please connect your NEAR wallet';
 }
 
 const env = {
