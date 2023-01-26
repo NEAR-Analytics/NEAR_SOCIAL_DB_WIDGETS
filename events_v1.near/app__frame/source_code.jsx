@@ -196,13 +196,13 @@ function loadRoutingInfo() {
   return info;
 }
 
-const lastRoute = loadRoutingInfo();
-const hasLastRouteAndIsDifferent =
-  lastRoute &&
-  lastRoute.name !== entryRoute &&
-  lastRoute.props !== entryProps &&
-  lastRoute.layout !== entryLayout &&
-  lastRoute.layoutProps !== entryLayoutProps;
+// const lastRoute = loadRoutingInfo();
+// const hasLastRouteAndIsDifferent =
+//   lastRoute &&
+//   lastRoute.name !== entryRoute &&
+//   lastRoute.props !== entryProps &&
+//   lastRoute.layout !== entryLayout &&
+//   lastRoute.layoutProps !== entryLayoutProps;
 
 // TODO: get layers from URL
 State.init({
