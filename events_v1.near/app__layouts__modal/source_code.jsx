@@ -45,6 +45,7 @@ return (
           <button
             style={{
               position: 'absolute',
+              backgroundColor: 'transparent',
               top: 0,
               right: 0,
               width: 48,
@@ -55,8 +56,7 @@ return (
               color: 'black',
               fontSize: 32,
               borderRadius: '0 0 0 16px',
-              textShadow:
-                '0.5px 0.5px 0.5px #ccc, -0.5px -0.5px 0.5px #ccc, 0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
+              textShadow: ' 0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
             }}
             onClick={() => {
               props.routing.pop();
