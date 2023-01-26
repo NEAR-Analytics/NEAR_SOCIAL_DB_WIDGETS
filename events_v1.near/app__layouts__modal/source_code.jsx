@@ -91,6 +91,7 @@ return (
             style={{
               height: '100%',
               width: '100%',
+              maxWidth: '100%',
               overflow: 'auto',
             }}
           >
