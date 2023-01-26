@@ -111,11 +111,11 @@ const routing = {
   currentRoute,
 };
 
-const engine = function () {
+function engine() {
   return {
     renderComponent,
   };
-};
+}
 
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props, layout, layoutProps) {
