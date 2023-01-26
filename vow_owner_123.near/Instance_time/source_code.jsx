@@ -40,10 +40,7 @@ for (let i = 0; i < sortedData.length; i++) {
       var time_zone = sortedData[i].value._time_zone ?? "(UTC+00:00) UTC";
       var zone = time_zone.split(" ")[0].split("UTC")[1].split(":");
       var hour = parseInt(zone[0]);
-      var utc_offset = -(
-        hour +
-        (parseInt(zone[1]) / 60) * ((hour > 0) * 2 - 1)
-      );
+      var utc_offset = hour + (parseInt(zone[1]) / 60) * ((hour > 0) * 2 - 1);
       var times = sortedData[i].value._data;
       var temp = [];
       var flag = false;
@@ -136,7 +133,7 @@ State.init({
   tab: tabs.ALL_SCHEDULE.id,
   hoveringElement: "",
   _account: "All",
-  _time_zone: final._time_zone ?? "(UTC+00:00) UTC",
+  _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC",
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
@@ -157,6 +154,7 @@ const set_schedule = () => {
     State.update({ tab: tabs.NEW_SCHEDULE.id });
   } else {
     State.update({ tab: tabs.ALL_SCHEDULE.id });
+    State.update({ _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC" });
   }
 };
 return (
@@ -202,9 +200,7 @@ return (
               style={comboBox}
               name="zones"
               id="zones"
-              value={
-                tabs.ALL_SCHEDULE.id ? state._time_zone : finalData.time_zone
-              }
+              value={state._time_zone}
               onChange={(e) => {
                 State.update({ _time_zone: e.target.value });
               }}
@@ -269,10 +265,7 @@ return (
           props={{
             data: {
               schedule: finalData.schedule,
-              time_zone:
-                state.tab == tabs.ALL_SCHEDULE.id
-                  ? state._time_zone
-                  : finalData.time_zone,
+              time_zone: state._time_zone,
             },
             style: { width: "100%", height: "1.5em" },
           }}
