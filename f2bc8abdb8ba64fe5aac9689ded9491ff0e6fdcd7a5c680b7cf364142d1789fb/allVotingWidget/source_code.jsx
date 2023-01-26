@@ -217,6 +217,7 @@ const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
 const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+console.log("validAnswersToThisPoll: ", validAnswersToThisPoll);
 
 let userVote;
 // Getting if user has already voted
@@ -482,8 +483,6 @@ const renderMultipleChoiceInput = (
 };
 
 const renderTextInput = (questionNumber) => {
-  console.log("hasVoted: ", hasVoted);
-  console.log("state.justVoted: ", state.justVoted);
   return (
     <div>
       {hasVoted || state.justVoted ? (
@@ -537,14 +536,16 @@ return (
           </div>
 
           {!hasVoted &&
+          !state.justVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && question.questionType == "2" ? (
+          ) : !hasVoted && !state.justVoted && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted && <p className="mb-1">Write your answer:</p>
+            !hasVoted &&
+            !state.justVoted && <p className="mb-1">Write your answer:</p>
           )}
-          {question.questionType != "3" && !state.justVoted
+          {question.questionType != "3" && state.justVoted
             ? question.choicesOptions.map((option, optionNumber) => {
                 return renderMultipleChoiceInput(
                   questionNumber,
@@ -587,7 +588,10 @@ return (
           onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
-          onCommit={() => State.update({ justVoted: true })}
+          onCommit={() => {
+            State.update({ justVoted: true });
+            validAnswersToThisPoll.push();
+          }}
         >
           Vote
         </CommitButton>
