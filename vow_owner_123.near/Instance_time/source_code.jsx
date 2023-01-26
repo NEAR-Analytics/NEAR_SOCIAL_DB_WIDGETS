@@ -2,15 +2,91 @@ const data = Social.index("Instance_time", "data");
 if (!data) {
   return "Loading datas";
 }
-var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var accountIds = ["All"];
-var final = {};
+var finalData = {};
+
+const sortAndRemoveRepeated = (flag, data) => {
+  var temp = data;
+  const flag1 = data.indexOf(0);
+  if (flag) temp.push(0, 168);
+  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+
+  var final = [];
+  for (var k = 0; k < sortedTimeData.length; k++) {
+    var repeated = false;
+    for (var l = 0; l < sortedTimeData.length; l++) {
+      if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
+        repeated = true;
+      }
+    }
+    if (!repeated) {
+      if (
+        !(
+          (flag1 && sortedTimeData[k] == 0) ||
+          (flag1 && sortedTimeData[k] == 168)
+        )
+      )
+        final.push(sortedTimeData[k]);
+    }
+  }
+  return final;
+};
 
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
     if (sortedData[i].accountId == context.accountId) {
-      final = sortedData[i];
+      var time_zone = sortedData[i].value._time_zone ?? "(UTC+00:00) UTC";
+      var zone = time_zone.split(" ")[0].split("UTC")[1].split(":");
+      var hour = parseInt(zone[0]);
+      var utc_offset = -(
+        hour +
+        (parseInt(zone[1]) / 60) * ((hour > 0) * 2 - 1)
+      );
+      var times = sortedData[i].value._data;
+      var temp = [];
+      var flag = false;
+      for (var j = 0; j < times.length; j++) {
+        const time = times[j] + utc_offset;
+        if (time > 168) {
+          temp.push(time - 168);
+          flag = true;
+        } else if (time < 0) {
+          temp.push(time + 168);
+          flag = true;
+        } else temp.push(time);
+      }
+      const final = sortAndRemoveRepeated(flag, temp);
+      for (var m = 0; m < final.length - 1; m += 2) {
+        const _from = final[m];
+        const _to = final[m + 1];
+        for (var o = 1; o < 7; o++) {
+          if (o * 24 > _from && o * 24 < _to) {
+            final.push(o * 24, o * 24);
+          }
+        }
+      }
+      var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
+      var weeklyData = [];
+      for (var t = 0; t < 7; t++) {
+        var dailyData = [];
+        var exist = false;
+        for (var p = 0; p < sortedTimeDataNew.length - 1; p += 2) {
+          var _from = sortedTimeDataNew[p];
+          var _to = sortedTimeDataNew[p + 1];
+          if (_to > t * 24 && _to <= (t + 1) * 24) {
+            dailyData.push({
+              _from: _from - t * 24,
+              _to: _to - t * 24,
+            });
+            exist = true;
+          }
+        }
+        if (!exist) weeklyData.push({ on_off: "off", data: [] });
+        else weeklyData.push({ on_off: "on", data: dailyData });
+      }
+      finalData = { schedule: weeklyData, time_zone: time_zone };
     }
   }
 }
@@ -189,7 +265,7 @@ return (
         <Widget
           src={`vow_owner_123.near/widget/Instance_time_setting`}
           props={{
-            time_zone: state._time_zone,
+            data: finalData,
             style: { width: "100%", height: "1.5em" },
           }}
         />
