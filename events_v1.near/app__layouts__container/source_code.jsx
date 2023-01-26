@@ -57,7 +57,6 @@ return (
       <div className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
-
           {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
         </div>
       </div>
