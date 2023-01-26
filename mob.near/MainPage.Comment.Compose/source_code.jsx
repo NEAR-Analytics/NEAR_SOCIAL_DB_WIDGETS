@@ -8,39 +8,38 @@ if (!context.accountId) {
   return "";
 }
 
-State.init({
-  composeData: ({ content }) => {
-    const data = {
-      post: {
-        comment: JSON.stringify(Object.assign({ item }, content)),
-      },
-      index: {
-        comment: JSON.stringify({
-          key: item,
-          value: {
-            type: "md",
-          },
-        }),
-      },
-    };
-
-    if (props.notifyAccountId) {
-      data.index.notify = JSON.stringify({
-        key: props.notifyAccountId,
+const composeData = () => {
+  const data = {
+    post: {
+      comment: JSON.stringify(Object.assign({ item }, state.content)),
+    },
+    index: {
+      comment: JSON.stringify({
+        key: item,
         value: {
-          type: "comment",
-          item,
+          type: "md",
         },
-      });
-    }
-    return data;
-  },
+      }),
+    },
+  };
+
+  if (props.notifyAccountId) {
+    data.index.notify = JSON.stringify({
+      key: props.notifyAccountId,
+      value: {
+        type: "comment",
+        item,
+      },
+    });
+  }
+  return data;
+};
+
+State.init({
   onChange: ({ content }) => {
     State.update({ content });
   },
-  onCompose: () => {
-    props.onComment && props.onComment(state.content);
-  },
+  onCompose: () => {},
 });
 
 return (
@@ -48,11 +47,22 @@ return (
     <Widget
       src="mob.near/widget/Common.Compose"
       props={{
-        composeData: state.composeData,
-        composeText: "Comment",
         placeholder: "Reply",
         onChange: state.onChange,
-        onCompose: state.onCompose,
+        composeButton: (onCompose) => (
+          <CommitButton
+            disabled={!state.content}
+            force
+            className="btn btn-dark rounded-3"
+            data={composeData}
+            onCommit={() => {
+              onCompose();
+              props.onComment && props.onComment(state.content);
+            }}
+          >
+            Comment
+          </CommitButton>
+        ),
       }}
     />
     {state.content && (
