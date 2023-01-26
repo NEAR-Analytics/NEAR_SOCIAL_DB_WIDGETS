@@ -122,7 +122,9 @@ function renderComponent(name, props, layout, layoutProps) {
     ...(props || {}),
     routing,
     engine: {
-      renderComponent,
+      renderComponent: () => {
+        return 'renderComponent not implemented';
+      },
     },
     Components,
     accountId,
