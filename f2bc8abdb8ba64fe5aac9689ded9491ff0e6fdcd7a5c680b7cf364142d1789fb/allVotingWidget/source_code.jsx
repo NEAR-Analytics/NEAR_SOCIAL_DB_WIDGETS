@@ -206,15 +206,8 @@ function getValidAnswers() {
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.1.1");
 
-//When user vote i create a loop until the users vote gets updated so the shown results gets updated
-if (
-  JSON.stringify(answers) != JSON.stringify(state.answers) ||
-  state.justVoted
-) {
-  if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
-    State.update({ answers: answers, justVoted: false });
-  }
-  State.update({ answers: answers });
+if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+  State.update({ answers: answers, justVoted: false });
 }
 
 if (!state.answers) {
