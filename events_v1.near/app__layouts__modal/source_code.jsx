@@ -25,12 +25,6 @@ return (
           height: '80%',
           maxWidth: 600,
           maxHeight: 600,
-          padding: 32,
-          borderRadius: 16,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'stretch',
 
           boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
         }}
@@ -40,6 +34,12 @@ return (
             height: '100%',
             width: '100%',
             position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'stretch',
+            padding: 32,
+            borderRadius: 16,
           }}
         >
           {/* close button */}
