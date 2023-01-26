@@ -33,6 +33,6 @@ return (
 
     <br />
 
-    {props.engine.renderComponent('index.list_container')}
+    {props.engine().renderComponent('index.list_container')}
   </div>
 );
