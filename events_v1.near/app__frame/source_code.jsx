@@ -222,10 +222,10 @@ function restoreRoutes() {
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
-    console.log('update route from storage');
-    State.update({
-      layers: info,
-    });
+    // console.log('update route from storage');
+    // State.update({
+    //   layers: info,
+    // });
   }
 }
 
@@ -287,21 +287,14 @@ function pop() {
   rerender();
 }
 
-function getUid() {
-  const uid = storageGet('uid', 0) + 1;
-  storageSet('uid', uid);
-  return uid;
-}
-
-function renderComponent(name, props) {
+function renderComponent(name, props, layout, layoutProps) {
   if (!name) {
     return null;
   }
-  console.log('renderComponent', name, props);
-
-  const uid = getUid();
-
-  const engineProps = {
+  // console.log('renderComponent', name, props, layout, layoutProps);
+  const _layoutName = layout || 'default';
+  const componentProps = {
+    ...(props || {}),
     routing: {
       push,
       pop,
@@ -322,65 +315,43 @@ function renderComponent(name, props) {
       propIsRequiredMessage,
     },
     accountId,
-
-    _: {
-      uid,
-      callbacks: [],
-      addCallback: (callback) => {
-        engineProps._.callbacks.push(callback);
-      },
-    },
+    VERSION,
+    layout: _layoutName,
+    layoutProps: layoutProps || {},
   };
+  const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
+  const widgetKey = props && props.key ? props.key : name;
+  const key = layoutKey || widgetKey;
 
-  const key = props && props.key ? props.key : name;
+  const innerLayout = (layoutProps || {}).innerLayout || 'default';
+  const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
 
-  // const widget = (
-  //   <Widget
-  //     src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
-  //     key={key}
-  //     props={engineProps}
-  //   />
-  // );
+  // guard to allow 'default' layout exit infinite render loop
+  if (_layoutName === 'none') {
+    return (
+      <Widget
+        src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
+        key={key}
+        props={componentProps}
+      />
+    );
+  }
 
-  engineProps.engine.registerLayout = (lname, lprops) => {
-    engineProps.layout = lname;
-    engineProps.layoutProps = lprops;
-    // engineProps.layoutCallback();
-  };
-
-  const widget = (
+  return (
     <Widget
-      src={layoutFromName('_dynamic')}
+      src={layoutFromName(_layoutName)}
       key={key}
       props={{
-        engineProps,
-        componentProps: {
-          ...(props || {}),
+        ...componentProps,
+        component: {
+          name: name,
+          props: componentProps,
+          layout: innerLayout,
+          layoutProps: innerLayoutProps,
         },
       }}
     />
   );
-
-  return widget;
-
-  // return (
-  //   <Widget
-  //     src={layoutFromName(_layoutName)}
-  //     key={key}
-  //     props={{
-  //       ...componentProps,
-  //       __component: {
-  //         name: name,
-  //         props: {
-  //           ...(props || {}),
-  //           componentProps,
-  //         },
-  //         layout: innerLayout,
-  //         layoutProps: innerLayoutProps,
-  //       },
-  //     }}
-  //   />
-  // );
 }
 
 return (
@@ -404,8 +375,6 @@ return (
             overflow: 'auto',
           }}
         >
-          {layer.name}
-          {layer.layout}
           {renderComponent(
             layer.name,
             layer.props,
