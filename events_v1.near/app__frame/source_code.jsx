@@ -345,7 +345,7 @@ function renderComponent(name, props) {
   engineProps.engine.registerLayout = (lname, lprops) => {
     engineProps.layout = lname;
     engineProps.layoutProps = lprops;
-    engineProps.layoutCallback();
+    // engineProps.layoutCallback();
   };
 
   return (
