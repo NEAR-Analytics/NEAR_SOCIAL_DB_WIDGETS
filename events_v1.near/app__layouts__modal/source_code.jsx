@@ -57,15 +57,15 @@ return (
                 marginBottom: 0,
                 fontSize: 24,
                 fontWeight: 'bold',
-                backgroundColor: 'rgba(255,255,255,0.85)',
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
                 padding: '12px 16px',
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
                 zIndex: 10,
-                backdropFilter: 'blur(10px)',
                 borderRadius: `${BORDER_RADIUS}px ${BORDER_RADIUS}px 0 0`,
+                backgroundColor: 'rgba(255,255,255,0.85)',
+                backdropFilter: 'blur(10px) saturate(180%)',
               }}
             >
               {title}
