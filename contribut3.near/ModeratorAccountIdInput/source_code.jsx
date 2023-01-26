@@ -1,3 +1,4 @@
+const ownerId = "contribut3.near";
 const allAccountIds = props.allAccountIds;
 const accountId = props.accountId;
 const fixed = props.fixed;
@@ -11,12 +12,10 @@ return (
       labelKey="name"
       onChange={(accountId) => {
         const args = { account_id: accountId[0].name };
-        console.log(args);
         const existing = Near.view(ownerId, "get_entity", args, "final");
         const updatedState = {
           accountId,
         };
-        console.log(existing);
 
         if (existing) {
           updatedState.existing = existing;
