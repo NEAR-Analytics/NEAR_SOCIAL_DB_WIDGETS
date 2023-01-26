@@ -34,25 +34,61 @@ const defaultWidgets = [
   },
 ];
 
-const widgets = (rhs && JSON.parse(rhs)) ?? defaultWidgets;
+if (state.widgets === undefined) {
+  const widgets = (rhs && JSON.parse(rhs)) ?? defaultWidgets;
+  State.update({ widgets });
+}
+
+const move = (fromIndex, toIndex) => {
+  const widget = state.widgets.splice(fromIndex, 1)[0];
+  if (toIndex !== undefined) {
+    state.widgets.splice(toIndex, 0, widget);
+  }
+  State.update();
+};
 
 const renderMenu = (src, requireLogin, index) => {
   return (
-    <div className="mb-3">
-      <div className="font-monospace">{src}</div>
+    <div className="mb-3" key="menu">
+      <div className="font-monospace mb-2">{src}</div>
       <button
-        className="btn btn-outline-dark"
+        className="btn btn-primary"
         title="Move Up"
         disabled={index === 0}
+        onClick={() => move(index, index - 1)}
       >
-        <i className="bi bi-caret-up-fill" />
+        <i className="bi bi-chevron-up" />
       </button>
       <button
-        className="btn btn-outline-dark"
+        className="btn btn-primary"
         title="Move Down"
-        disabled={index + 1 === widgets.length}
+        disabled={index + 1 === state.widgets.length}
+        onClick={() => move(index, index + 1)}
       >
-        <i className="bi bi-caret-up-fill" />
+        <i className="bi bi-chevron-down" />
+      </button>
+      <button
+        className="btn btn-primary"
+        title="Move to the Tottom"
+        disabled={index === 0}
+        onClick={() => move(index, 0)}
+      >
+        <i className="bi bi-chevron-double-up" />
+      </button>
+      <button
+        className="btn btn-primary"
+        title="Move to the Bottom"
+        disabled={index + 1 === state.widgets.length}
+        onClick={() => move(index, state.widgets.length - 1)}
+      >
+        <i className="bi bi-chevron-double-down" />
+      </button>
+      <button
+        className="btn btn-danger ms-4"
+        title="Remove"
+        onClick={() => move(index, undefined)}
+      >
+        <i className="bi bi-trash3" /> Remove
       </button>
     </div>
   );
@@ -61,8 +97,8 @@ const renderMenu = (src, requireLogin, index) => {
 return (
   <>
     <h3>Right-Hand Side menu editor</h3>
-    {widgets.map(({ src, requiresLogin }, i) => (
-      <div key={i} className="border rounded-4 p-3 mb-3">
+    {state.widgets.map(({ src, requiresLogin }, i) => (
+      <div key={src} className="border rounded-4 p-3 mb-3">
         {renderMenu(src, requireLogin, i)}
         <div className="text-bg-light rounded-4 p-3">
           <Widget src={src} />
