@@ -44,31 +44,6 @@ return (
             borderRadius: 16,
           }}
         >
-          {/* close button */}
-          <button
-            style={{
-              position: 'absolute',
-              backgroundColor: 'transparent',
-              top: 0,
-              right: 0,
-              width: 48,
-              border: 'none',
-              outline: 'none',
-              padding: '0',
-              cursor: 'pointer',
-              color: 'black',
-              fontSize: 32,
-              borderRadius: '0 0 0 16px',
-              textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
-              lineHeight: '40px',
-            }}
-            onClick={() => {
-              props.routing.pop();
-            }}
-          >
-            &times;
-          </button>
-
           {/* title */}
           {title ? (
             <div
@@ -85,13 +60,40 @@ return (
                 minHeight: 48,
                 padding: '12px 16px',
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
-                zIndex: 100,
+                zIndex: 10,
                 backdropFilter: 'blur(10px)',
               }}
             >
               {title}
             </div>
           ) : null}
+
+          {/* close button */}
+
+          <button
+            style={{
+              position: 'absolute',
+              backgroundColor: 'transparent',
+              top: 0,
+              right: 0,
+              width: 48,
+              border: 'none',
+              outline: 'none',
+              padding: '0',
+              cursor: 'pointer',
+              color: 'black',
+              fontSize: 32,
+              borderRadius: '0 0 0 16px',
+              textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
+              lineHeight: '40px',
+              zIndex: 1000,
+            }}
+            onClick={() => {
+              props.routing.pop();
+            }}
+          >
+            &times;
+          </button>
 
           {/* container */}
           <div
