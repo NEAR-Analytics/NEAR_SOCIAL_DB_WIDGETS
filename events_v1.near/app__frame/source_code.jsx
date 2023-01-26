@@ -215,6 +215,7 @@ State.init({
       layout: entryLayout,
       layoutProps: entryLayoutProps,
     },
+    hasLastRouteAndIsDifferent ? lastRoute : null,
   ],
 });
 
