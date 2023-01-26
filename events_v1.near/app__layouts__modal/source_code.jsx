@@ -64,6 +64,7 @@ return (
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
                 zIndex: 10,
                 backdropFilter: 'blur(10px)',
+                borderRadius: '16px 16px 0 0',
               }}
             >
               {title}
