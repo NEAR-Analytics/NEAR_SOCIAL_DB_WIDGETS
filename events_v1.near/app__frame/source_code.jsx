@@ -1,3 +1,7 @@
+const {
+  resolveTypeReferenceDirective,
+} = require('@ts-morph/common/lib/typescript');
+
 const VERSION = '0.0.1';
 
 const APP_OWNER = 'events_v1.near';
@@ -87,6 +91,13 @@ const Components = {
   Loading,
 };
 
+function rerender() {
+  // HACK: force a re-render
+  State.update({
+    renderCycles: state.renderCycles + 1,
+  });
+}
+
 function push(name, props, layout, layoutProps) {
   console.log('push', name, props, layout, layoutProps);
   const layer = {
@@ -101,10 +112,7 @@ function push(name, props, layout, layoutProps) {
     layers: newLayers,
   });
 
-  // HACK: force a re-render
-  State.update({
-    renderCycles: state.renderCycles + 1,
-  });
+  rerender();
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -112,6 +120,8 @@ function pop() {
   State.update({
     layers: state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers,
   });
+
+  rerender();
 }
 
 const routing = {
@@ -128,6 +138,7 @@ function renderComponent(name, props, layout, layoutProps) {
     routing,
     engine: {
       renderComponent,
+      rerender,
     },
     Components,
     accountId,
