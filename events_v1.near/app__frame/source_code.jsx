@@ -94,11 +94,11 @@ function push(name, props, layout, layoutProps) {
     layout: layout || 'default',
     layoutProps: layoutProps || {},
   };
+  const newLayers = [...state.layers, layer];
 
   State.update({
-    layers: [...state.layers, layer],
+    layers: newLayers,
   });
-  console.log('state', state.layers);
 }
 
 // pop from the stack, ensure we always have at least one layer
