@@ -57,10 +57,11 @@ return (
         className="navbar navbar-expand-lg navbar-dark bg-primary"
         style={{
           height: 72,
+          position: 'fixed',
+          top: 72,
         }}
       >
         <div className="container-fluid h-100 flex">
-          {/* if back */}
           {props.layoutProps.back ? (
             <button
               className=""
