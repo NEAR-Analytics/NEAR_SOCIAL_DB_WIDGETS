@@ -73,7 +73,9 @@ console.log('event', event);
 console.log('props', props);
 
 function gotoEvent() {
-  props.routing.push('show', { event }, 'container', { title: event.name });
+  props.routing.push('show', { event_id: event.id }, 'container', {
+    title: event.name,
+  });
 }
 
 return (
