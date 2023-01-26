@@ -1,5 +1,14 @@
 const VERSION = '0.0.2';
 
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 const accountId = context.accountId;
 if (!accountId) {
   return 'Please connect your NEAR wallet to continue.';
