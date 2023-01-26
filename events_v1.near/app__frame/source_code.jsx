@@ -363,23 +363,13 @@ return (
             backgroundColor: 'transparent',
             zIndex: index,
             position: 'fixed',
-            top: 0,
+            top: 72,
             left: 0,
             right: 0,
             bottom: 0,
             overflow: 'auto',
           }}
         >
-          lajsdflkjahsdlfkjhaslkdjfh
-          <br />
-          lajsdflkjahsdlfkjhaslkdjfh
-          <br />
-          lajsdflkjahsdlfkjhaslkdjfh
-          <br />
-          lajsdflkjahsdlfkjhaslkdjfh
-          <br />
-          lajsdflkjahsdlfkjhaslkdjfh
-          <br />
           {renderComponent(
             layer.name,
             layer.props,
