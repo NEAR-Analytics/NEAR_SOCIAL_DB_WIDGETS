@@ -69,6 +69,9 @@ const EventBody = styled.div`
   padding: 1rem;
 `;
 
+console.log('event', event);
+console.log('props', props);
+
 return (
   <div
     onClick={() => {
