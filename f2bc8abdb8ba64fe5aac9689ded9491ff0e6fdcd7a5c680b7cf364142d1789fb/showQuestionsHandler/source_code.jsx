@@ -10,7 +10,7 @@ State.init({
   modalBlockHeight: sharedBlockHeight ?? question.blockHeight,
 });
 
-let polls = Social.index("poll_question", "question-v3.1.0");
+let polls = Social.index("poll_question", "question-v3.1.1");
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
