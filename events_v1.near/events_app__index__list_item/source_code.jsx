@@ -74,6 +74,11 @@ return (
     onClick={() => {
       props.engine.push('show', { event });
     }}
+    onKeyPress={(e) => {
+      if (e.key === 'Enter') {
+        props.engine.push('show', { event });
+      }
+    }}
     className="text-decoration-none"
     role="button"
     tabIndex={0}
