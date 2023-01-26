@@ -1,4 +1,4 @@
-const VERSION = '0.0.1';
+const VERSION = '0.0.2';
 
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
