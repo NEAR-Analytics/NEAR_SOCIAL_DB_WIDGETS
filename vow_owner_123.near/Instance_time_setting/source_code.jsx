@@ -17,31 +17,33 @@ const sortAndRemoveRepeated = (flag, data) => {
   return final;
 };
 
+const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
+const _from = props.data._from ?? [
+  "10:00 AM",
+  "10:00 AM",
+  "10:00 AM",
+  "10:00 AM",
+  "10:00 AM",
+  "10:00 AM",
+  "10:00 AM",
+];
+const _to = props.data._to ?? [
+  "06:00 PM",
+  "06:00 PM",
+  "06:00 PM",
+  "06:00 PM",
+  "06:00 PM",
+  "06:00 PM",
+  "06:00 PM",
+];
+
 State.init({
   _is_on: ["on", "on", "on", "on", "on", "off", "off"],
-  _from: [
-    "10:00 AM",
-    "10:00 AM",
-    "10:00 AM",
-    "10:00 AM",
-    "10:00 AM",
-    "10:00 AM",
-    "10:00 AM",
-  ],
-  _to: [
-    "06:00 PM",
-    "06:00 PM",
-    "06:00 PM",
-    "06:00 PM",
-    "06:00 PM",
-    "06:00 PM",
-    "06:00 PM",
-  ],
+  _from: _from,
+  _to: _to,
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
 });
-
-const time_zone = props.time_zone ?? "(UTC+00:00) UTC";
 const container = {
   display: "flex",
   width: "100%",
