@@ -88,7 +88,7 @@ return (
 
           {/* container */}
           <div
-            style={{ height: '100%', overflowY: 'scroll', overflowX: 'hidden' }}
+            style={{ height: '100%', width: '100%' overflowY: 'scroll', overflowX: 'hidden' }}
           >
             {props.engine.renderComponent(
               props.component.name,
