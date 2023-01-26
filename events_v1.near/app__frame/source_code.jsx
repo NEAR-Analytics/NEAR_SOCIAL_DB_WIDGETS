@@ -350,7 +350,7 @@ return (
           style={{
             width: '100vw',
             minHeight: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: 'transparent',
             zIndex: index,
             position: 'fixed',
             top: 0,
