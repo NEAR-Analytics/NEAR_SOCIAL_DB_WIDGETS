@@ -72,15 +72,17 @@ const EventBody = styled.div`
 console.log('event', event);
 console.log('props', props);
 
+function gotoEvent() {
+  props.engine.push('show', { event }, 'container', { title: event.name });
+}
+
 return (
   <div
     onClick={() => {
-      props.engine.push('show', { event });
+      gotoEvent();
     }}
     onKeyDown={(e) => {
-      if (e.key === 'Enter') {
-        props.engine.push('show', { event });
-      }
+      gotoEvent();
     }}
     className="text-decoration-none"
     role="button"
