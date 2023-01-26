@@ -97,7 +97,7 @@ return (
       >
         <div className="col-12">
           {props.engine.renderComponent(
-            props.component.src,
+            props.component.name,
             props.component.props,
             props.component.layout,
             props.component.layoutProps
