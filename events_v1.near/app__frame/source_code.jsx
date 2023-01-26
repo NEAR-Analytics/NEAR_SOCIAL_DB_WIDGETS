@@ -132,7 +132,7 @@ function renderComponent(name, props, layout, layoutProps) {
     routing,
     engine: {
       renderComponent,
-      reloadApp,
+      rerender,
     },
     Components,
     accountId,
