@@ -19,7 +19,7 @@ const result = state.show ? (
       backgroundColor: "grey",
     }}
   >
-    <div className="card">
+    <div className="card" style={{ opacity: 1 }}>
       <div className="card-header">Verification score for {state.query}</div>
       <div className="card-body">The verification score is: {state.result}</div>
     </div>
