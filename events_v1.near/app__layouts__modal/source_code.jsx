@@ -73,6 +73,10 @@ return (
                 fontWeight: 'bold',
                 backgroundColor: 'white',
                 borderBottom: '1px solid #ccc',
+                width: '100%',
+                minHeight: 48,
+
+                boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
               }}
             >
               {title}
