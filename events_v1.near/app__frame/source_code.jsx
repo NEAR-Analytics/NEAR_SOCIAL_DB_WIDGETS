@@ -196,7 +196,7 @@ function loadRoutingInfo() {
   return info;
 }
 
-// const lastRoute = loadRoutingInfo();
+const lastRoute = loadRoutingInfo();
 // const hasLastRouteAndIsDifferent =
 //   lastRoute &&
 //   lastRoute.name !== entryRoute &&
