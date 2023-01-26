@@ -69,6 +69,10 @@ return (
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: 32,
+                fontSize: 24,
+                fontWeight: 'bold',
+                backgroundColor: 'white',
+                borderBottom: '1px solid #ccc',
               }}
             >
               {title}
