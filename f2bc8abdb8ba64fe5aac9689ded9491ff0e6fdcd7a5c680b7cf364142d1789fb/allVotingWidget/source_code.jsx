@@ -506,7 +506,7 @@ const renderTextInput = (questionNumber) => {
 };
 
 console.log("state.answers: ", state.answers);
-console.log("state.vote: ", state.vote);
+console.log("getPublicationParams: ", getPublicationParams());
 
 return (
   <>
