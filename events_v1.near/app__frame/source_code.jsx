@@ -215,7 +215,7 @@ State.init({
       layout: entryLayout,
       layoutProps: entryLayoutProps,
     },
-    hasLastRouteAndIsDifferent ? lastRoute : null,
+    // hasLastRouteAndIsDifferent ? lastRoute : null,
   ],
 });
 
@@ -290,6 +290,8 @@ function renderComponent(name, props, layout, layoutProps) {
     engine: {
       renderComponent,
       rerender,
+      storageGet,
+      storageSet,
     },
     Components: {
       Select,
