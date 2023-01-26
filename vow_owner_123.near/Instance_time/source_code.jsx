@@ -1,4 +1,4 @@
-const data = Social.index("Instance_time", "data");
+const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
 }
