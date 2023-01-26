@@ -21,7 +21,20 @@ const result = state.show ? (
   >
     <div className="card" style={{ opacity: 1 }}>
       <div className="card-header">Verification score for {state.query}</div>
-      <div className="card-body">The verification score is: {state.result}</div>
+      {isNaN(state.result) ? (
+        <>
+          <div>There is no entry for this query</div>
+          <a
+            href={`https://near.social/#/v3rify.near/widget/Submit?${state.query}`}
+          >
+            Submit a verification
+          </a>
+        </>
+      ) : (
+        <div className="card-body">
+          The verification score is: {state.result}
+        </div>
+      )}
     </div>
   </div>
 ) : null;
