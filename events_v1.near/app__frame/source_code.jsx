@@ -121,7 +121,9 @@ function renderComponent(name, props, layout, layoutProps) {
   const componentProps = {
     ...props,
     routing,
-    engine,
+    engine: {
+      renderComponent,
+    },
     Components,
     accountId,
     env,
