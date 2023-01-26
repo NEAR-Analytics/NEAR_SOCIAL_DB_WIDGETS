@@ -1,17 +1,35 @@
 const VERSION = '0.0.2';
 
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
-const ENTRY_ROUTE = 'index';
-
 const accountId = context.accountId;
 if (!accountId) {
   return 'Please connect your NEAR wallet to continue.';
 }
 
+const appOwner = props.appOwner;
+if (!appOwner) {
+  return 'props.appOwner is required';
+}
+
+const appName = props.appName;
+if (!appName) {
+  return 'props.appName is required';
+}
+
+const entryRoute = props.entryRoute;
+if (!entryRoute) {
+  return 'props.entryRoute is required';
+}
+
+const entryProps = props.entryProps || {};
+const entryLayout = props.entryLayout || 'default';
+const entryLayoutProps = props.entryLayoutProps || {};
+
 const env = {
-  APP_OWNER,
-  APP_NAME,
+  app: {
+    owner: APP_OWNER,
+    name: APP_NAME,
+  },
+  VERSION,
 };
 
 // TODO: get layers from URL
@@ -20,10 +38,10 @@ State.init({
   renderCycles: state ? state.renderCycles + 1 : 1,
   layers: [
     {
-      name: ENTRY_ROUTE,
-      props: {},
-      layout: 'default',
-      layoutProps: {},
+      name: entryRoute,
+      props: entryProps,
+      layout: entryLayout,
+      layoutProps: entryLayoutProps,
     },
   ],
 });
