@@ -1,5 +1,5 @@
-const PADDING_TITLE_WITH = 12;
-const PADDING_TITLE_WITHOUT = 16;
+const PADDING_TITLE_WITH = 64;
+const PADDING_TITLE_WITHOUT = 48;
 
 const title = props.layoutProps.title || null;
 
