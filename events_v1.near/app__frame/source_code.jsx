@@ -44,12 +44,6 @@ const VERSION = '0.0.2';
  *
  *
  *
- *
- *
- *
- *
- *
- *
  *  Functions available to widgets:
  *
  *
@@ -77,30 +71,44 @@ const VERSION = '0.0.2';
  *  pop()
  *    pops the current layer off the stack of layers to render.
  *    Functions the same as the back button
- *
- *
- *
+ 
  *
  */
 
+/**
+ * Adjust these:
+ * */
+
+const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
+const PLEASE_CONNECT_WALLET_MESSAGE =
+  'Please connect your NEAR wallet to continue.';
+
+/**
+ *   I suggest you don't edit anything below this line
+ * */
+
 const accountId = context.accountId;
 if (!accountId) {
-  return 'Please connect your NEAR wallet to continue.';
+  return PLEASE_CONNECT_WALLET_MESSAGE;
+}
+
+function propIsRequiredMessage(prop) {
+  return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
 }
 
 const appOwner = props.appOwner;
 if (!appOwner) {
-  return 'props.appOwner is required';
+  return propIsRequiredMessage('appOwner');
 }
 
 const appName = props.appName;
 if (!appName) {
-  return 'props.appName is required';
+  return propIsRequiredMessage('appName');
 }
 
 const entryRoute = props.entryRoute;
 if (!entryRoute) {
-  return 'props.entryRoute is required';
+  return propIsRequiredMessage('entryRoute');
 }
 
 const entryProps = props.entryProps || {};
