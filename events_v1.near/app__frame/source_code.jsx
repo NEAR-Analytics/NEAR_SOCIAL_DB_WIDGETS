@@ -146,10 +146,6 @@ function renderComponent(name, props, layout, layoutProps) {
   );
 }
 
-const engine = {
-  renderComponent,
-};
-
 return (
   <>
     {/* main widget */}
@@ -170,7 +166,14 @@ return (
             zIndex: Math.pow(10, 1 + index) + 10000,
             overflow: 'auto',
           }}
-        ></div>
+        >
+          {renderComponent(
+            layer.name,
+            layer.props,
+            layer.layout,
+            layer.layoutProps
+          )}
+        </div>
       );
     })}
   </>
