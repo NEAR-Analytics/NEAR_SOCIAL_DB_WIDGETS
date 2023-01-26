@@ -12,5 +12,6 @@ return (
       entryProps: {},
       entryLayout: 'default',
       entryLayoutProps: {},
-    }  />
+    }}
+  />
 );
