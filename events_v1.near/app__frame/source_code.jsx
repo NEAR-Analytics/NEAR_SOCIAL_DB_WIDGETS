@@ -327,7 +327,6 @@ function renderComponent(name, props, layout, layoutProps) {
 
   // guard to allow 'default' layout exit infinite render loop
   if (_layoutName === 'none') {
-    console.log('NONE: ', name, '', '', '');
     return <Widget src={slugFromName(name)} key={key} props={componentProps} />;
   }
 
@@ -362,7 +361,7 @@ return (
             backgroundColor: 'transparent',
             zIndex: index,
             position: 'fixed',
-            top: 0,
+            top: 72,
             left: 0,
             right: 0,
             bottom: 0,
