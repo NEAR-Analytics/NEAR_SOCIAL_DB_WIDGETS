@@ -332,12 +332,7 @@ return (
       style={{
         width: '100vw',
         height: '100%',
-        // position: 'fixed',
         backgroundColor: 'white',
-        // top: 0,
-        // left: 0,
-        // right: 0,
-        // bottom: 0,
         padding: 0,
         zIndex: 10000,
         overflow: 'auto',
