@@ -1,7 +1,7 @@
 if (state.image === undefined) {
   State.init({
     image: {},
-    text: "",
+    text: props.initialText || "",
   });
 
   if (props.onHelper) {
