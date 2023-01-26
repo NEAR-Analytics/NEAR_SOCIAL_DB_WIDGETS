@@ -287,7 +287,66 @@ function pop() {
 }
 
 function renderComponent(name, props, layout, layoutProps) {
-  return 'asdf';
+  if (!name) {
+    console.log(
+      'Cannot render component without a name',
+      name,
+      props,
+      layout,
+      layoutProps
+    );
+    return null;
+  }
+  console.log('renderComponent', name, props, layout, layoutProps);
+  const _layoutName = layout || 'default';
+  const componentProps = {
+    ...(props || {}),
+    routing: {
+      push,
+      pop,
+    },
+    engine: {
+      renderComponent,
+      rerender,
+      storageGet,
+      storageSet,
+    },
+    Components: {
+      Select,
+      Button,
+      Loading,
+      PageTitle,
+    },
+    helpers: {
+      propIsRequiredMessage,
+    },
+    accountId,
+    VERSION,
+    layout: _layoutName,
+    layoutProps: layoutProps || {},
+  };
+  const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
+  const widgetKey = props && props.key ? props.key : name;
+  const key = layoutKey || widgetKey;
+
+  const innerLayout = (layoutProps || {}).innerLayout || 'default';
+  const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
+
+  return (
+    <Widget
+      src={layoutFromName(_layoutName)}
+      key={key}
+      props={{
+        ...componentProps,
+        component: {
+          name: slugFromName(name),
+          props: componentProps,
+          layout: innerLayout,
+          layoutProps: innerLayoutProps,
+        },
+      }}
+    />
+  );
 }
 
 return (
