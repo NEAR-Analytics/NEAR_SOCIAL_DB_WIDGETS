@@ -1,7 +1,32 @@
-State.init({
-  image: {},
-  text: "",
-});
+if (state.image === undefined) {
+  State.init({
+    image: {},
+    text: "",
+  });
+
+  if (props.onHelper) {
+    props.onHelper({
+      extractMentions: (text) => {
+        const mentionRegex =
+          /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
+        mentionRegex.lastIndex = 0;
+        const accountIds = new Set();
+        for (const match of text.matchAll(mentionRegex)) {
+          console.log(match);
+          if (
+            !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
+            !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
+            match[1].length >= 2 &&
+            match[1].length <= 64
+          ) {
+            accountIds.add(match[1].toLowerCase());
+          }
+        }
+        return [...accountIds];
+      },
+    });
+  }
+}
 
 const content = (state.text || state.image.cid) && {
   type: "md",
