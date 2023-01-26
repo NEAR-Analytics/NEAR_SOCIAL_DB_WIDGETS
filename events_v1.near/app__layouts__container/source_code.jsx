@@ -12,7 +12,8 @@ return (
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
 
-          <button
+          {props.items ? (
+            <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -82,7 +83,9 @@ return (
                 Search
               </button>
             </div>
-          </div>
+          </div>  
+          ) : null}
+          
         </div>
       </div>
 
