@@ -11,8 +11,9 @@ return (
       <div className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Navbar
+            {title}
           </a>
+
           <button
             className="navbar-toggler"
             type="button"
