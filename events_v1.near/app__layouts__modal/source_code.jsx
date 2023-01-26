@@ -50,7 +50,12 @@ return (
 
         {/* container */}
         <div style={{ height: '100%', overflow: 'scroll' }}>
-          {props.engine.renderComponent(props.component.src)}
+          {props.engine.renderComponent(
+            props.component.src,
+            props.component.props,
+            props.component.layout,
+            props.component.layoutProps
+          )}
         </div>
       </div>
     </div>
