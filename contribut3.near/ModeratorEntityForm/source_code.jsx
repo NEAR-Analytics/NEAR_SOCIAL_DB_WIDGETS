@@ -6,9 +6,6 @@ const entityStatus = props.status ? [{ name: props.status }] : [];
 const startDate = props.startDate ?? "";
 const endDate = props.endDate ?? "";
 
-const getEntity = (account_id) =>
-  Near.view(ownerId, "get_entity", { account_id }, "final");
-
 initState({
   fixed: !!props.accountId,
   accountId,
@@ -29,22 +26,15 @@ const allAccountIds = (
 ).map(([name]) => ({ name }));
 
 const accountIdInput = (
-  <div className="col-lg-12 mb-2">
-    Account ID of entity:
-    <Typeahead
-      id="account-id-input"
-      labelKey="name"
-      onChange={(accountId) =>
-        State.update({ accountId, existing: getEntity(accountId[0].name) })
-      }
-      options={allAccountIds}
-      placeholder="contribut3.near, social.near..."
-      selected={state.accountId}
-      positionFixed
-      allowNew
-      disabled={state.fixed}
-    />
-  </div>
+  <Widget
+    src={`${ownerId}/widget/ModeratorAccountInput`}
+    props={{
+      accountId: state.accountId,
+      allAccountIds,
+      fixed: state.fixed,
+      update: (updatedState) => State.update(updatedState),
+    }}
+  />
 );
 
 const kindInput = (
