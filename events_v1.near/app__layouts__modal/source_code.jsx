@@ -44,7 +44,7 @@ return (
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'stretch',
-            borderRadius: 16,
+            borderRadius: BORDER_RADIUS,
           }}
         >
           {/* title */}
@@ -77,7 +77,7 @@ return (
           <button
             style={{
               position: 'absolute',
-              backgroundColor: 'transparent',
+              backgroundColor: 'red',
               top: 0,
               right: 0,
               width: 48,
@@ -87,7 +87,7 @@ return (
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
-              borderRadius: '0 0 0 16px',
+              borderRadius: `${BORDER_RADIUS}px 0 0 ${BORDER_RADIUS}px`,
               textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
               lineHeight: '40px',
               zIndex: 1000,
