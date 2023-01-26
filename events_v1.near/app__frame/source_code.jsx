@@ -205,12 +205,6 @@ const Loading = styled.div`
   width: 100%;
 `;
 
-const Components = {
-  Select,
-  Button,
-  Loading,
-};
-
 function rerender() {
   // HACK: force a re-render
   State.update({
@@ -259,7 +253,11 @@ function renderComponent(name, props, layout, layoutProps) {
       renderComponent,
       rerender,
     },
-    Components,
+    Components: {
+      Select,
+      Button,
+      Loading,
+    },
     helpers: {
       propIsRequiredMessage,
     },
