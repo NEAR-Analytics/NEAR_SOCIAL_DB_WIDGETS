@@ -60,6 +60,10 @@ const startDateInput = (
 );
 
 const onSubmit = () => {
+  if (state.exists) {
+    return;
+  }
+
   const args = {
     account_id: state.accountId,
     kind: state.kind[0].name,
@@ -80,9 +84,8 @@ const body = (
     </div>
 
     <a
-      className="btn btn-outline-primary mb-2"
+      className={`btn ${state.exists ? "btn-secondary" : "btn-primary"} mb-2`}
       onClick={onSubmit}
-      disabled={state.exists}
     >
       Submit
     </a>
