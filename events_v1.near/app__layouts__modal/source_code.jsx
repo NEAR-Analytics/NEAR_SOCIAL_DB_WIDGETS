@@ -56,7 +56,7 @@ return (
               color: 'black',
               fontSize: 32,
               borderRadius: '0 0 0 16px',
-              textShadow: ' 0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
+              textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
             }}
             onClick={() => {
               props.routing.pop();
@@ -79,7 +79,7 @@ return (
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
-                boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
+                boxShadow: '10px 0 10px -10px rgba(0,0,0,0.5)',
               }}
             >
               {title}
