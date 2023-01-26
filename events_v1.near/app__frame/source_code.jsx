@@ -322,7 +322,10 @@ function renderComponent(name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
-  // console.log('renderComponent', _layoutName, name);
+  const innerLayoutDef = {
+    innerLayout: 'default',
+    innerLayoutProps: {},
+    ...(layoutProps || {})};
 
   return (
     <Widget
@@ -331,8 +334,10 @@ function renderComponent(name, props, layout, layoutProps) {
       props={{
         ...componentProps,
         component: {
-          src: `${appOwner}/widget/${appName}__${slugFromName(name)}`,
+          src: name,
           props: componentProps,
+          innerLayoutDef.innerLayout,
+          innerLayoutDef.innerLayoutProps,
         },
       }}
     />
