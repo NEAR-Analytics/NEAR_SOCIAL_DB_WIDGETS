@@ -265,7 +265,13 @@ return (
         <Widget
           src={`vow_owner_123.near/widget/Instance_time_setting`}
           props={{
-            data: finalData,
+            data: {
+              schedule: finalData.schedule,
+              time_zone:
+                state.tab == tabs.NEW_SCHEDULE.id
+                  ? state._time_zone
+                  : finalData.time_zone,
+            },
             style: { width: "100%", height: "1.5em" },
           }}
         />
