@@ -326,6 +326,7 @@ function renderComponent(name, props) {
   };
 
   const key = props && props.key ? props.key : name;
+
   const widget = (
     <Widget
       src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
@@ -334,7 +335,11 @@ function renderComponent(name, props) {
     />
   );
 
-  componentProps.engine.registerLayout = () => {};
+  componentProps.engine.registerLayout = (name, props) => {
+    componentProps.layout = name;
+    componentProps.layoutProps = props;
+    componentProps.layoutCallback();
+  };
 
   // guard to allow 'default' layout exit infinite render loop
   if (_layoutName === 'none') {
