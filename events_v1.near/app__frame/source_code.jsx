@@ -217,15 +217,12 @@ function restoreRoutes() {
 
   const layers = state.layers;
   console.log('checking if routing info has changed', layers);
-  if (layers && JSON.stringify(info) === JSON.stringify(layers)) {
-    console.log('no change in routing info');
-    return;
+  if (layers && JSON.stringify(info) !== JSON.stringify(layers)) {
+    console.log('change detected in routing info');
+    State.update({
+      layers: info,
+    });
   }
-
-  console.log('change detected in routing info');
-  State.update({
-    layers: info,
-  });
 }
 
 restoreRoutes();
@@ -236,7 +233,7 @@ function persistRoutingInformation(newState) {
 }
 
 function slugFromName(name) {
-  // console.log('slugFromName', name);
+  console.log('slugFromName', name);
   return name.split('.').join('__');
 }
 
