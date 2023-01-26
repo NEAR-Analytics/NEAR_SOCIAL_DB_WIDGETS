@@ -224,7 +224,7 @@ function restoreRoutes() {
 
   console.log('change detected in routing info');
   State.update({
-    layers: [],
+    layers: info,
   });
 }
 
