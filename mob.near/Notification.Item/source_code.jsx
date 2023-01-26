@@ -12,6 +12,8 @@ return (
       <Widget src="mob.near/widget/Notification.Item.Comment" props={props} />
     ) : value.type && value.type?.startsWith("devgovgigs/") ? (
       <Widget src="mob.near/widget/Notification.Item.DevGov" props={props} />
+    ) : value.type === "tag" ? (
+      <Widget src="mob.near/widget/Notification.Item.Tag" props={props} />
     ) : (
       "???"
     )}
