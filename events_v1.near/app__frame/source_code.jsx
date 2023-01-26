@@ -263,6 +263,7 @@ function renderComponent(name, props, layout, layoutProps) {
       Select,
       Button,
       Loading,
+      PageTitle,
     },
     helpers: {
       propIsRequiredMessage,
