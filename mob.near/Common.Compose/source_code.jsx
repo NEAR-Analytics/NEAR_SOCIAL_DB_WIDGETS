@@ -5,24 +5,36 @@ if (state.image === undefined) {
   });
 
   if (props.onHelper) {
-    props.onHelper({
-      extractMentions: (text) => {
-        const mentionRegex =
-          /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
-        mentionRegex.lastIndex = 0;
-        const accountIds = new Set();
-        for (const match of text.matchAll(mentionRegex)) {
-          if (
-            !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
-            !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
-            match[1].length >= 2 &&
-            match[1].length <= 64
-          ) {
-            accountIds.add(match[1].toLowerCase());
-          }
+    const extractMentions = (text) => {
+      const mentionRegex =
+        /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
+      mentionRegex.lastIndex = 0;
+      const accountIds = new Set();
+      for (const match of text.matchAll(mentionRegex)) {
+        console.log(match);
+        if (
+          !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
+          !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
+          match[1].length >= 2 &&
+          match[1].length <= 64
+        ) {
+          accountIds.add(match[1].toLowerCase());
         }
-        return [...accountIds];
-      },
+      }
+      return [...accountIds];
+    };
+    const extractTagNotifications = (text, item) =>
+      extractMentions(text || "").map((accountId) => ({
+        key: accountId,
+        value: {
+          type: "tag",
+          item,
+        },
+      }));
+
+    props.onHelper({
+      extractMentions,
+      extractTagNotifications,
     });
   }
 }
