@@ -22,7 +22,7 @@ const Dropdown =
           {dropdownItems.map((item, idx) => {
             return (
               <li className="nav-item" key={idx}>
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page">
                   {item}
                 </a>
               </li>
