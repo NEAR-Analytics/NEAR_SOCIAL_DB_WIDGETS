@@ -23,6 +23,13 @@ if (props.onChange && jContent !== state.jContent) {
   props.onChange({ content });
 }
 
+const onCompose = () => {
+  State.update({
+    image: {},
+    text: "",
+  });
+};
+
 return (
   <div className="text-bg-light rounded-4">
     <div className="p-2">
@@ -40,23 +47,7 @@ return (
           className="btn btn-outline-secondary border-0 rounded-3"
         />
       </div>
-      <div>
-        <CommitButton
-          disabled={!content}
-          force
-          className="btn btn-dark rounded-3"
-          data={() => props.composeData({ content })}
-          onCommit={() => {
-            State.update({
-              image: {},
-              text: "",
-            });
-            props?.onCompose();
-          }}
-        >
-          {props.composeText || "Compose"}
-        </CommitButton>
-      </div>
+      <div>{props.composeButton && props.composeButton(onCompose)}</div>
     </div>
   </div>
 );
