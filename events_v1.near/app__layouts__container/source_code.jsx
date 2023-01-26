@@ -14,7 +14,7 @@ return (
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
 
-          {items ? (
+          {items && items.length > 0 && (
             <button
             className="navbar-toggler"
             type="button"
