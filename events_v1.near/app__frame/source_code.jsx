@@ -142,6 +142,8 @@ function renderComponent(name, props, layout, layoutProps) {
   };
   // const key = props && props.key ? props.key : name;
 
+  // keep it this way for now, instantly returning for some reason
+  // causes the app to not render/ update...
   const widget = (
     <Widget
       src={layoutFromName(_layoutName)}
