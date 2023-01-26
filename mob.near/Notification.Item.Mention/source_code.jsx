@@ -30,14 +30,14 @@ return (
         value.item.path === `${accountId}/post/main` ? (
           <a
             className="btn btn-outline-dark"
-            href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${value.item.blockHeight}`}
+            href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
           >
             View post
           </a>
         ) : value.item.path === `${accountId}/post/comment` ? (
           <a
             className="btn btn-outline-dark"
-            href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${value.item.blockHeight}`}
+            href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
           >
             View comment
           </a>
