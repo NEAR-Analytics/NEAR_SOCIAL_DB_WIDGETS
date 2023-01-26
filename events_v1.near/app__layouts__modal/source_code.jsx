@@ -11,7 +11,7 @@ return (
         bottom: 0,
         zIndex: 1000,
         backgroundColor: 'rgba(0,0,0,0.5)',
-        overflow: 'scroll',
+        overflow: 'hidden',
       }}
     >
       <div
@@ -27,6 +27,12 @@ return (
           maxHeight: 600,
           padding: 32,
           borderRadius: 16,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'stretch',
+
+          boxShadow: '0 0 0 1000px rgba(0,0,0,0.5)',
         }}
       >
         {title ? (
