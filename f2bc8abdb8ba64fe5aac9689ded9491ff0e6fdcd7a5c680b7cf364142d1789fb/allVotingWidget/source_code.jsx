@@ -24,6 +24,7 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
+  justVoted: false,
 });
 
 let bgBlue = "#96C0FF";
@@ -483,7 +484,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {hasVoted ? (
+      {hasVoted || !state.justVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -533,13 +534,16 @@ return (
             </h4>
           </div>
 
-          {!hasVoted &&
+          {(!hasVoted || !state.justVoted) &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && question.questionType == "2" ? (
+          ) : (!hasVoted || !state.justVoted) &&
+            question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted && <p className="mb-1">Write your answer:</p>
+            (!hasVoted || !state.justVoted) && (
+              <p className="mb-1">Write your answer:</p>
+            )
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -555,7 +559,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      hasVoted ? (
+      hasVoted || !state.justVoted ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
@@ -584,6 +588,7 @@ return (
           onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
+          onCommit={() => State.update({ justVoted: true })}
         >
           Vote
         </CommitButton>
