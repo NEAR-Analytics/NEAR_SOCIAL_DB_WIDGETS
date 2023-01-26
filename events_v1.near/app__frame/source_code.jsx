@@ -292,6 +292,7 @@ function getUid() {
   storageSet('uid', uid);
   return uid;
 }
+
 function renderComponent(name, props) {
   if (!name) {
     return null;
@@ -324,24 +325,20 @@ function renderComponent(name, props) {
     uid,
   };
 
-  componentProps.engine.registerLayout = ()=>{
-        
-        rerender()
-      },
+  const key = props && props.key ? props.key : name;
+  const widget = (
+    <Widget
+      src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
+      key={key}
+      props={componentProps}
+    />
+  );
 
-  const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
-  const widgetKey = props && props.key ? props.key : name;
-  const key = layoutKey || widgetKey;
+  componentProps.engine.registerLayout = () => {};
 
   // guard to allow 'default' layout exit infinite render loop
   if (_layoutName === 'none') {
-    return (
-      <Widget
-        src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
-        key={key}
-        props={componentProps}
-      />
-    );
+    return;
   }
 
   return (
