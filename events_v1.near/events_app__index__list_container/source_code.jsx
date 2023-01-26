@@ -1,6 +1,4 @@
 const EVENTS_CONTRACT = 'events_v1.near';
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
 
 // accountID is used to determine for whom the events are displayed
 // if no accountID is provided, all events are displayed
@@ -15,8 +13,9 @@ if (accountId === undefined) {
   });
 }
 
+const Loading = props.Components.Loading;
 if (!events) {
-  return 'Loading';
+  return <Loading>Loading events</Loading>;
 }
 
 return (
