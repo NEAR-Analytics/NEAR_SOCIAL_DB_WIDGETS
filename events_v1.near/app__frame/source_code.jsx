@@ -218,6 +218,10 @@ function rerender() {
   });
 }
 
+function persistState() {
+  Storage.set('global__state', state ? JSON.stringify(state) : null);
+}
+
 function push(name, props, layout, layoutProps) {
   console.log('push', name, props, layout, layoutProps);
   const layer = {
