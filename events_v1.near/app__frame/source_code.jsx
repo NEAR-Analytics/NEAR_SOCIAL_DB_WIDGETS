@@ -220,7 +220,7 @@ function restoreRoutes() {
     return;
   }
 
-  console.log('change detected in routing');
+  console.log('change detected in routing info');
   State.update({
     layers: info,
   });
