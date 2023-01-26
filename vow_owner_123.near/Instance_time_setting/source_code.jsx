@@ -19,7 +19,8 @@ const sortAndRemoveRepeated = (flag, data) => {
 console.log("props.data: ", props.data);
 
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
-const _from = props.data._from ?? [
+var is_on = ["on", "on", "on", "on", "on", "off", "off"];
+var _from = [
   "10:00 AM",
   "10:00 AM",
   "10:00 AM",
@@ -28,7 +29,7 @@ const _from = props.data._from ?? [
   "10:00 AM",
   "10:00 AM",
 ];
-const _to = props.data._to ?? [
+var _to = [
   "06:00 PM",
   "06:00 PM",
   "06:00 PM",
@@ -38,8 +39,18 @@ const _to = props.data._to ?? [
   "06:00 PM",
 ];
 
+if (props.data.schedule) {
+  for (var i = 0; i < 7; i++) {
+    is_on[i] = props.data.schedule[i].on_off;
+    if (is_on[i] == "on") {
+      _from[i] = getFormatedTime(props.data.schedule.data[0]._from);
+      _to[i] = getFormatedTime(props.data.schedule.data[0]._to);
+    }
+  }
+}
+
 State.init({
-  _is_on: ["on", "on", "on", "on", "on", "off", "off"],
+  _is_on: is_on,
   _from: _from,
   _to: _to,
   _validate_result: true,
