@@ -351,7 +351,7 @@ return (
             width: '100vw',
             minHeight: '100vh',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 10000 + index,
+            zIndex: index,
             position: 'fixed',
             top: 0,
             left: 0,
