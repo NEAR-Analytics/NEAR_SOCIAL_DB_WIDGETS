@@ -13,6 +13,7 @@ return (
       onChange={(accountId) => {
         const args = { account_id: accountId[0].name };
         const existing = Near.view(ownerId, "get_entity", args, "final");
+        console.log(existing);
         const updatedState = {
           accountId,
         };
