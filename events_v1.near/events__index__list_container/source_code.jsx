@@ -1,4 +1,4 @@
-const EVENTS_CONTRACT = '{{ env.EVENTS_CONTRACT }}';
+const EVENTS_CONTRACT = 'events_v1.near';
 
 // accountID is used to determine for whom the events are displayed
 // if no accountID is provided, all events are displayed
