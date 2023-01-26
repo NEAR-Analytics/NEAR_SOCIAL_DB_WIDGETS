@@ -341,23 +341,33 @@ function renderComponent(name, props, layout, layoutProps) {
 
 return (
   <>
-    <div
-      style={{
-        width: '100vw',
-        height: '100%',
-        backgroundColor: 'white',
-        padding: 0,
-        zIndex: 10000,
-        overflow: 'auto',
-      }}
-    >
-      <div id="app-state" data-state={JSON.stringify(state)}></div>
-      {renderComponent(
-        state.layers[state.layers.length - 1].name,
-        state.layers[state.layers.length - 1].props,
-        state.layers[state.layers.length - 1].layout,
-        state.layers[state.layers.length - 1].layoutProps
-      )}
-    </div>
+    <div id="app-state" data-state={JSON.stringify(state)}></div>
+
+    {state.layers.map((layer, index) => {
+      return (
+        <div
+          key={index}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 10000 - index,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {renderComponent(
+            layer.name,
+            layer.props,
+            layer.layout,
+            layer.layoutProps
+          )}
+        </div>
+      );
+    })}
   </>
 );
