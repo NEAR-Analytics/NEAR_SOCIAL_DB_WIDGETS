@@ -209,7 +209,7 @@ const renderAbortPollCreationModal = () => {
 
 /********** Start rendering ************/
 
-if (context.accountId) {
+if (!context.accountId) {
   return (
     <div
       style={{
