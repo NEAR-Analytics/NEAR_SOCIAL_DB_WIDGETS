@@ -1,12 +1,14 @@
 const renderMention =
   props.renderMention ??
   ((accountId) => (
-    <strong>
-      <Widget
-        src="mob.near/widget/ProfileLine"
-        props={{ accountId, hideAccountId: true, tooltip: true }}
-      />
-    </strong>
+    <Widget
+      src="mob.near/widget/ProfileLine"
+      props={{
+        accountId: accountId.toLowerCase(),
+        hideAccountId: true,
+        tooltip: true,
+      }}
+    />
   ));
 
 return <Markdown text={props.text} onMention={renderMention} />;
