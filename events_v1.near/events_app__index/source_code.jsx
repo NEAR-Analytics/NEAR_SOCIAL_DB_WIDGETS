@@ -1,8 +1,3 @@
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
-
-const accountId = props.accountId;
-
 const Button = props.Components.Button;
 
 const engine = props.engine();
