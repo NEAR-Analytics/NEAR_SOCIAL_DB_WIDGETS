@@ -211,11 +211,12 @@ if (!state) {
 function restoreRoutes() {
   const info = storageGet('routing', null);
   console.log('restoreRoutes', info);
-  if (info == null || info === undefined) {
+  if (info === null || info === undefined) {
     return;
   }
 
-  return storageGet('routing', null);
+  if (JSON.stringify(info) === JSON.stringify(state.layers)) {
+  }
 }
 
 restoreRoutes();
