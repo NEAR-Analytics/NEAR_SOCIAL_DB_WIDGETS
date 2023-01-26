@@ -84,7 +84,6 @@ const Components = {
   Loading,
 };
 
-
 function push(name, props, layout, layoutProps) {
   console.log('push', name, props, layout, layoutProps);
   const layer = {
@@ -176,6 +175,10 @@ return (
       );
     })} */}
     {renderComponent(
-      currentRoute.name,
+      state.layers[state.layers.length - 1].name,
+      state.layers[state.layers.length - 1].props,
+      state.layers[state.layers.length - 1].layout,
+      state.layers[state.layers.length - 1].layoutProps
+    )}
   </>
 );
