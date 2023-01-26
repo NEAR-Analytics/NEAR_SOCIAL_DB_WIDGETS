@@ -294,11 +294,9 @@ function renderComponent(name, props, layout, layoutProps) {
   const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
-    routing: {
+    engine: {
       push,
       pop,
-    },
-    engine: {
       renderComponent,
       rerender,
       storageGet,
