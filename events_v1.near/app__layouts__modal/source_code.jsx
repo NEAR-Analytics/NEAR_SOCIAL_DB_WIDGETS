@@ -49,14 +49,11 @@ return (
               right: 0,
               border: 'none',
               outline: 'none',
-              background: 'transparent',
+              background: 'blue',
               padding: 8,
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
-              hover: {
-                color: 'red',
-              },
             }}
             onClick={() => {
               props.routing.pop();
