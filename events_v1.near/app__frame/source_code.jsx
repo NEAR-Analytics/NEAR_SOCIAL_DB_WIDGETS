@@ -30,8 +30,8 @@ const VERSION = '0.0.3';
  *      - a way to build apps quickly
  *        - development tools (dev server, deploy script)
  *      - a sample app
- * 
- * 
+ *
+ *
  *  This component is responsible for:
  *  - Loading the app's state/environment
  *  - Rendering the app's layouts
@@ -89,7 +89,6 @@ const VERSION = '0.0.3';
  *  pop()
  *    pops the current layer off the stack of layers to render.
  *    Functions the same as the back button
- 
  *
  */
 
