@@ -32,7 +32,7 @@ return (
           alignItems: 'center',
           justifyContent: 'stretch',
 
-          boxShadow: '0 0 0 10px rgba(0,0,0,0.5)',
+          boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
         }}
       >
         {title ? (
