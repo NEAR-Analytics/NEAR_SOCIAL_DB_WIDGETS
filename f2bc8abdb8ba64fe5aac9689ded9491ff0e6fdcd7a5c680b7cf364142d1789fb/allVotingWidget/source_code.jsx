@@ -206,7 +206,14 @@ function getValidAnswers() {
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.1.1");
 
-if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+//When user vote i create a loop until the users vote gets updated so the shown results gets updated
+if (
+  JSON.stringify(answers) != JSON.stringify(state.answers) ||
+  state.justVoted
+) {
+  if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+    State.update({ answers: answers, justVoted: false });
+  }
   State.update({ answers: answers });
 }
 
@@ -588,7 +595,7 @@ return (
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
           onCommit={() => {
-            State.update({ justVoted: false });
+            State.update({ justVoted: true });
           }}
         >
           Vote
