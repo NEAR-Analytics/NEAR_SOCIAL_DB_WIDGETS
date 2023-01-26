@@ -67,7 +67,7 @@ const EventBody = styled.div`
 `;
 
 function gotoEvent() {
-  props.routing.push('show', { event_id: event.id }, 'container', {
+  props.engine.push('show', { event_id: event.id }, 'container', {
     title: event.name,
     back: true,
     dropdownItems: [
@@ -76,7 +76,7 @@ function gotoEvent() {
         props: {
           label: 'Edit',
           onClick: () => {
-            props.routing.push('edit', { event_id: event.id }, 'container', {
+            props.engine.push('edit', { event_id: event.id }, 'container', {
               title: 'Edit Event',
               back: true,
             });
