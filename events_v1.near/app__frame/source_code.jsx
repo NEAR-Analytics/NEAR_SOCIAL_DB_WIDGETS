@@ -332,7 +332,7 @@ function renderComponent(name, props, layout, layoutProps) {
       props={{
         ...componentProps,
         component: {
-          src: name,
+          src: slugFromName(name),
           props: componentProps,
           layout: innerLayout,
           layoutProps: innerLayoutProps,
