@@ -347,7 +347,7 @@ function renderComponent(name, props, layout, layoutProps) {
     );
   }
 
-  console.log('Render: w/ layout', name);
+  console.log('Render: w/ layout', name, { _layoutName });
   return (
     <Widget
       src={layoutFromName(_layoutName)}
