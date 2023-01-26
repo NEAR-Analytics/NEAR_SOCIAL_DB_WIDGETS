@@ -154,6 +154,7 @@ const set_schedule = () => {
   if (state.tab == tabs.ALL_SCHEDULE.id) {
     State.update({ tab: tabs.NEW_SCHEDULE.id });
   } else {
+    refreshed = false;
     State.update({ tab: tabs.ALL_SCHEDULE.id });
     State.update({ _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC" });
   }
