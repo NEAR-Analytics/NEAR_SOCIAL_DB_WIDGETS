@@ -373,7 +373,7 @@ const renderMultipleChoiceInput = (
       <div>
         <div className="d-flex align-content-center">
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-          {!canVote ? (
+          {!canVote || state.justVoted ? (
             <div
               style={{
                 display: "flex",
@@ -485,7 +485,7 @@ const renderTextInput = (questionNumber) => {
   console.log("hasVoted: ", hasVoted);
   return (
     <div>
-      {hasVoted || state.justVoted ? (
+      {hasVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -545,7 +545,7 @@ return (
               <p className="mb-1">Write your answer:</p>
             )
           )}
-          {question.questionType != "3"
+          {question.questionType != "3" && !state.justVoted
             ? question.choicesOptions.map((option, optionNumber) => {
                 return renderMultipleChoiceInput(
                   questionNumber,
