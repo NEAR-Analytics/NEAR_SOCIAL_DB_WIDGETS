@@ -63,36 +63,9 @@ State.init({
   _to: _to,
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
+  _sent: false,
 });
-const container = {
-  display: "flex",
-  width: "100%",
-  justifyContent: "center",
-  color: "black",
-  fontWeight: 400,
-  borderRadius: "1rem",
-  flexDirection: "column",
-};
-const tbl_container = {
-  display: "flex",
-  marginTop: "1rem",
-  justifyContent: "center",
-  width: "100%",
-  color: "black",
-  fontWeight: 400,
-  borderRadius: "1rem",
-  flexDirection: "column",
-};
-const button = {
-  borderRadius: "5px",
-  margin: "5px 0",
-  padding: "8px",
-  marginTop: "10px",
-  textAlign: "center",
-  fontSize: "x-large",
-  border: "2px solid black",
-  fontWeight: "bold",
-};
+
 const comboBox = {
   borderRadius: "1rem",
   padding: "1rem",
@@ -260,8 +233,26 @@ return (
         }}
         className="align-items-center"
       >
-        <div style={container}>
-          <div style={tbl_container}>
+        <div
+          style={{
+            width: "100%",
+            justifyContent: "center",
+            color: "black",
+            borderRadius: "1rem",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            style={{
+              marginTop: "1rem",
+              justifyContent: "center",
+              width: "100%",
+              color: "black",
+              fontWeight: 400,
+              borderRadius: "1rem",
+              flexDirection: "column",
+            }}
+          >
             <div
               style={{
                 display: "flex",
@@ -342,23 +333,48 @@ return (
           {!state._validate_result && "time set wrong"}
         </div>
         <div style={flex_row}>
-          <CommitButton
-            className="m-2"
-            style={{
-              border: "2px solid transparent",
-              fontWeight: "500",
-              fontSize: "1rem",
-              padding: "1rem",
-              borderRadius: "12px",
-              background: "rgb(230, 230, 230)",
-              border: "1px solid",
-              color: "black",
-            }}
-            disabled={!state._validate_result}
-            data={getData()}
-          >
-            Send It!
-          </CommitButton>
+          {!state._sent ? (
+            <CommitButton
+              className="m-2"
+              onCommit={() => {
+                State.update({ _sent: true });
+              }}
+              style={{
+                border: "2px solid transparent",
+                fontWeight: "500",
+                fontSize: "1rem",
+                padding: "1rem",
+                borderRadius: "12px",
+                background: "rgb(230, 230, 230)",
+                border: "1px solid",
+                color: "black",
+              }}
+              disabled={!state._validate_result}
+              data={getData()}
+            >
+              Save
+            </CommitButton>
+          ) : (
+            <a
+              href={
+                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
+              }
+              style={{
+                margin: "2rem",
+                border: "2px solid transparent",
+                fontWeight: "500",
+                fontSize: "1rem",
+                padding: "1rem",
+                borderRadius: "12px",
+                background: "rgb(230, 230, 230)",
+                border: "1px solid",
+                color: "black",
+                cursor: "pointer",
+              }}
+            >
+              View Scheduels
+            </a>
+          )}
         </div>
       </div>
     ) : (
