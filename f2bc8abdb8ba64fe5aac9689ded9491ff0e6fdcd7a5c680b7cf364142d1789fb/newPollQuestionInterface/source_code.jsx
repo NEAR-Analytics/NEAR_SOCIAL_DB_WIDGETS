@@ -365,7 +365,18 @@ const renderModal = (modalType) => {
           }
         >
           <div className="modal-header">
-            <h5 className="modal-title">Preview</h5>
+            <h5 className="modal-title">
+              {
+                //Comparing objects allways returns false
+                JSON.stringify(modalType) ==
+                  JSON.stringify(MODAL_TYPES.PREVIEW) && "Preview"
+              }
+              {
+                //Comparing objects allways returns false
+                JSON.stringify(modalType) ==
+                  JSON.stringify(MODAL_TYPES.SEND_FEEDBACK) && "Success!"
+              }
+            </h5>
             <button
               type="button"
               className="close"
@@ -403,38 +414,45 @@ const renderModal = (modalType) => {
               margin: "0 auto",
             }}
           >
-            {modalType == MODAL_TYPES.PREVIEW ? (
-              <Widget
-                src={`${widgetOwner}/widget/newVotingInterface`}
-                props={{
-                  isPreview: true,
-                  previewInfo: {
-                    accountId: context.accountId,
-                    blockHeight: undefined,
-                    value: {
-                      tgLink: state.pollDiscussionLink,
-                      isDraft,
-                      title: state.pollTitle,
-                      description: state.pollDescription,
-                      startTimestamp: getTimestamp(state.pollStartDate),
-                      endTimestamp: getTimestamp(state.pollEndDate),
-                      questions: state.questions,
-                      questionTypes: state.pollTypes,
-                      choicesOptions: state.choices.forEach((questionChoices) =>
-                        questionChoices.filter((c) => c != "")
-                      ),
-                      timestamp: Date.now(),
+            {
+              //Comparing objects allways returns false
+              JSON.stringify(modalType) ==
+              JSON.stringify(MODAL_TYPES.PREVIEW) ? (
+                <Widget
+                  src={`${widgetOwner}/widget/newVotingInterface`}
+                  props={{
+                    isPreview: true,
+                    previewInfo: {
+                      accountId: context.accountId,
+                      blockHeight: undefined,
+                      value: {
+                        tgLink: state.pollDiscussionLink,
+                        isDraft,
+                        title: state.pollTitle,
+                        description: state.pollDescription,
+                        startTimestamp: getTimestamp(state.pollStartDate),
+                        endTimestamp: getTimestamp(state.pollEndDate),
+                        questions: state.questions,
+                        questionTypes: state.pollTypes,
+                        choicesOptions: state.choices.forEach(
+                          (questionChoices) =>
+                            questionChoices.filter((c) => c != "")
+                        ),
+                        timestamp: Date.now(),
+                      },
                     },
-                  },
-                }}
-              />
-            ) : (
-              modalType == MODAL_TYPES.SEND_FEEDBACK && (
-                <p styles={{ textAling: "center" }}>
-                  Poll created succesfully!
-                </p>
+                  }}
+                />
+              ) : (
+                //Comparing objects allways returns false
+                JSON.stringify(modalType) ==
+                  JSON.stringify(MODAL_TYPES.SEND_FEEDBACK) && (
+                  <p styles={{ textAling: "center" }}>
+                    Poll created succesfully!
+                  </p>
+                )
               )
-            )}
+            }
           </div>
           <div className="modal-footer">
             <button
@@ -1500,7 +1518,6 @@ return (
               State.update({ hoveringElement: "" });
             }}
             onClick={() => {
-              console.log("Click on continue");
               isValidInput(false)
                 ? State.update({
                     showErrorsInForm: false,
@@ -1543,7 +1560,7 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            onClick={() => {
+            onCommit={() => {
               State.update({
                 showSendFeedback: true,
               });
