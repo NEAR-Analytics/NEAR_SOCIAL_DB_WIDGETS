@@ -15,6 +15,8 @@ return (
         zIndex: 1000,
         backgroundColor: 'rgba(0,0,0,0.5)',
         overflow: 'hidden',
+
+        backdropFilter: 'blur(10px)',
       }}
     >
       <div
@@ -31,7 +33,6 @@ return (
 
           boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
           borderRadius: 16,
-          overflow: 'hidden',
         }}
       >
         <div
