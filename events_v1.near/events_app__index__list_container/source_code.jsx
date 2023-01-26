@@ -19,8 +19,5 @@ if (!events) {
 }
 
 return (
-  <Widget
-    src={`${APP_OWNER}/widget/${APP_NAME}__index__list`}
-    props={{ events: events }}
-  />
+  {props.engine.renderComponent('index.list', {events})
 );
