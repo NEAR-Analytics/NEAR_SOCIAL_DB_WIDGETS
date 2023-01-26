@@ -13,7 +13,7 @@ return (
       onChange={(accountId) => {
         const args = { account_id: accountId[0].name };
         const existing = args.account_id
-          ? Near.viewAsync(ownerId, "get_entity", args, "final")
+          ? Near.asyncView(ownerId, "get_entity", args, "final")
           : null;
         console.log(existing);
         const updatedState = {
