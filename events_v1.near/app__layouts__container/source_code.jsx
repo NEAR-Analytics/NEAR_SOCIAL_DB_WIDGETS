@@ -1,5 +1,7 @@
 const title = props.layoutProps.title ?? '';
 
+const items = props.layoutProps.items ?? [];
+
 return (
   <>
     <div
@@ -12,7 +14,7 @@ return (
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
 
-          {props.items ? (
+          {items ? (
             <button
             className="navbar-toggler"
             type="button"
