@@ -112,7 +112,7 @@ function push(name, props, layout, layoutProps) {
     layers: newLayers,
   });
 
-  rerender();
+  reloadApp();
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -121,7 +121,7 @@ function pop() {
     layers: state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers,
   });
 
-  rerender();
+  reloadApp();
 }
 
 const routing = {
@@ -138,7 +138,7 @@ function renderComponent(name, props, layout, layoutProps) {
     routing,
     engine: {
       renderComponent,
-      rerender,
+      reloadApp,
     },
     Components,
     accountId,
