@@ -26,8 +26,8 @@ const entryLayoutProps = props.entryLayoutProps || {};
 
 const env = {
   app: {
-    owner: APP_OWNER,
-    name: APP_NAME,
+    owner: appOwner,
+    name: appName,
   },
   VERSION,
 };
