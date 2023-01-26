@@ -6,6 +6,14 @@ const content =
   JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
 const parentItem = content.item;
 
+const extractNotifyAccountId = (item) => {
+  if (!item || item.type !== "social" || !item.path) {
+    return undefined;
+  }
+  const accountId = item.path.split("/")[0];
+  return `${accountId}/post/main` === item.path ? accountId : undefined;
+};
+
 const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 return (
@@ -46,8 +54,8 @@ return (
         <Widget
           src="mob.near/widget/MainPage.Comment.Compose"
           props={{
-            notifyAccountId,
             initialText: `@${accountId}, `,
+            notifyAccountId: extractNotifyAccountId(parentItem),
             item: parentItem,
             onComment: () => State.update({ showReply: false }),
           }}
