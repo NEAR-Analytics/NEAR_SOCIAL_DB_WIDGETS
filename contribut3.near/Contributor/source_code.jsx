@@ -1,5 +1,5 @@
 const ownerId = "contribut3.near";
-const accountId = "petarvujovic.near";
+const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
 
 if (!accountId) {
