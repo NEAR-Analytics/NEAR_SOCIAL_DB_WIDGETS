@@ -22,25 +22,14 @@ const dropdownElement =
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {dropdownItems.map((item, idx) => {
-            return (
-              <li className="nav-item" key={idx}>
-                <button
-                  className="nav-link active"
-                  aria-current="page"
-                  href=""
-                  onClick={(e) => {
-                    e.preventDefault();
-                    props.routing.push(
-                      item.route,
-                      item.props,
-                      item.layout,
-                      item.layoutProps
-                    );
-                  }}
-                >
-                  {item.title}
-                </button>
-              </li>
+            return renderComponent(
+              item.component,
+              {
+                ...item.props,
+                key: `dropdown_item_${idx}`,
+              },
+              item.layout,
+              item.layoutProps
             );
           })}
         </ul>
