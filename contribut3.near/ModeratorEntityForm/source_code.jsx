@@ -106,9 +106,12 @@ const onSubmit = () => {
       status: state.entityStatus[0].name,
       kind: state.kind[0].name,
       start_date: `${new Date(state.startDate).getTime()}`,
-      end_date: `${new Date(state.endDate).getTime()}`,
     },
   };
+
+  if (state.endDate) {
+    args.entity.end_date = `${new Date(state.endDate).getTime()}`;
+  }
 
   Near.call(ownerId, "set_entity", args);
 };
