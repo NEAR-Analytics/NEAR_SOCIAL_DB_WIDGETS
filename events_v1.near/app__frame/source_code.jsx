@@ -222,7 +222,7 @@ function restoreRoutes() {
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
-    console.log('update route from storage');
+    // console.log('update route from storage');
     State.update({
       layers: info,
     });
@@ -232,12 +232,12 @@ function restoreRoutes() {
 restoreRoutes();
 
 function persistRoutingInformation(newState) {
-  console.log('persistRoutingInformation', newState);
+  // console.log('persistRoutingInformation', newState);
   storageSet('routing', newState);
 }
 
 function slugFromName(name) {
-  console.log('slugFromName', name, name.split('.').join('__'));
+  // console.log('slugFromName', name, name.split('.').join('__'));
   return name.split('.').join('__');
 }
 
@@ -254,7 +254,7 @@ function rerender() {
 }
 
 function push(name, props, layout, layoutProps) {
-  console.log('push', name, props, layout, layoutProps);
+  // console.log('push', name, props, layout, layoutProps);
   const layer = {
     name,
     props: props || {},
@@ -291,7 +291,7 @@ function renderComponent(name, props, layout, layoutProps) {
   if (!name) {
     return null;
   }
-  console.log('renderComponent', name, props, layout, layoutProps);
+  // console.log('renderComponent', name, props, layout, layoutProps);
   const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
