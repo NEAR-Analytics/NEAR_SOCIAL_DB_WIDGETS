@@ -1,6 +1,5 @@
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
-  const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
   var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
 
@@ -19,16 +18,17 @@ const sortAndRemoveRepeated = (flag, data) => {
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
   const mins = (time - hours) * 60;
-  let formated =
+  const formated =
     hours > 12
-      ? `${hours - 12}:${mins == 0 ? "00" : mins} PM`
-      : `${hours}:${mins == 0 ? "00" : mins} AM`;
+      ? `${hours - 12 < 10 && "0"}${hours - 12}:${mins == 0 ? "00" : mins} PM`
+      : `${hours < 10 && "0"}${hours}:${mins == 0 ? "00" : mins} AM`;
   return formated;
 };
 console.log("props.data: ", props.data);
 
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
 var is_on = ["on", "on", "on", "on", "on", "off", "off"];
+console.log("time", getFormatedTime("8.5"));
 var _from = [
   "10:00 AM",
   "10:00 AM",
