@@ -85,7 +85,7 @@ function gotoEvent() {
             });
           },
         },
-        layout: 'app.layouts.dropdown_item',
+        layout: 'dropdown_item',
         layoutProps: {},
       },
     ],
