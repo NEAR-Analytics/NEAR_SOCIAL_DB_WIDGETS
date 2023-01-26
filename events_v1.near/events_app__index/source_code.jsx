@@ -1,8 +1,9 @@
 const Button = props.Components.Button;
+const PageTitle = props.Components.PageTitle;
 
 return (
   <div>
-    <h1>Events</h1>
+    <PageTitle>Events</PageTitle>
 
     <Button
       onClick={() => {
