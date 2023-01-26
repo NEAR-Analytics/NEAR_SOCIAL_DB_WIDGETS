@@ -1,6 +1,6 @@
-const EVENTS_CONTRACT = 'events_v1.near';
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events';
+const EVENTS_CONTRACT = '{{ env.EVENTS_CONTRACT }}';
+const APP_OWNER = '{{ env.APP_OWNER }}';
+const APP_NAME = '{{ env.APP_NAME }}';
 
 const accountId = context.accountId;
 if (!accountId) {
