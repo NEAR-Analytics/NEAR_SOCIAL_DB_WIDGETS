@@ -20,7 +20,7 @@ if (!events) {
 
 return (
   <>
-  <button onClick={props.engine.pop()}>
-  &lt;
-  </button>
-  {props.engine.renderComponent('index.list', { events })}</>;
+    <button onClick={props.engine.pop()}>&lt;</button>
+    {props.engine.renderComponent('index.list', { events })}
+  </>
+);
