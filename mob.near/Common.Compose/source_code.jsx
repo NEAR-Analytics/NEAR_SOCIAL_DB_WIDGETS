@@ -11,7 +11,6 @@ if (state.image === undefined) {
       mentionRegex.lastIndex = 0;
       const accountIds = new Set();
       for (const match of text.matchAll(mentionRegex)) {
-        console.log(match);
         if (
           !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
           !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
