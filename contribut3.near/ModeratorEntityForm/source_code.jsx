@@ -32,7 +32,10 @@ const accountIdInput = (
       accountId: state.accountId,
       allAccountIds,
       fixed: state.fixed,
-      update: (updatedState) => State.update(updatedState),
+      update: (updatedState) => {
+        console.log(updatedState);
+        State.update(updatedState);
+      },
     }}
   />
 );
