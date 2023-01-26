@@ -77,6 +77,7 @@ return (
                   height: '100%',
                   border: 'none',
                   outline: 'none',
+                  background: 'transparent',
                   width: NAVBAR_HEIGHT,
                 }}
                 type="button"
