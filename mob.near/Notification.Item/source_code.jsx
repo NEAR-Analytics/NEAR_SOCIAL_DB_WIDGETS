@@ -12,10 +12,13 @@ return (
       <Widget src="mob.near/widget/Notification.Item.Comment" props={props} />
     ) : value.type && value.type?.startsWith("devgovgigs/") ? (
       <Widget src="mob.near/widget/Notification.Item.DevGov" props={props} />
-    ) : value.type === "tag" ? (
-      <Widget src="mob.near/widget/Notification.Item.Tag" props={props} />
+    ) : value.type === "mention" ? (
+      <Widget src="mob.near/widget/Notification.Item.Mention" props={props} />
     ) : (
-      "???"
+      <div>
+        Unknown notification:{" "}
+        <span className="font-monospace">{JSON.stringify(value)}</span>
+      </div>
     )}
   </div>
 );
