@@ -32,7 +32,7 @@ if (!state) {
 }
 
 function slugFromName(name) {
-  return name.split(/\.|\//gu).join('__');
+  return name.split(/\./g).join('__');
 }
 
 function layoutFromName(name) {
