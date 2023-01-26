@@ -94,6 +94,12 @@ return (
       >
         <div className="col-12">
           {console.log('1')}
+          {
+            (props.__component.name,
+            props.__component.props,
+            props.__component.layout,
+            props.__component.layoutProps)
+          }
           {props.engine.renderComponent(
             props.__component.name,
             props.__component.props,
