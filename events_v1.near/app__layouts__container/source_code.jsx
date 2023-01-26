@@ -1,4 +1,4 @@
-const NAVBAR_HEIGHT = 48;
+const NAVBAR_HEIGHT = 64;
 const NAVBAR_OFFSET_TOP = 72;
 
 const title = props.layoutProps.title ?? '';
