@@ -251,7 +251,6 @@ function countVotes(questionNumber, questionType) {
   }, new Array(poll.value.questions[questionNumber].choicesOptions.length).fill(0));
 }
 
-//TODO review this!
 const getPublicationParams = () => {
   return {
     index: {
@@ -505,6 +504,9 @@ const renderTextInput = (questionNumber) => {
     </div>
   );
 };
+
+console.log("state.answers: ", state.answers);
+console.log("state.vote: ", state.vote);
 
 return (
   <>
