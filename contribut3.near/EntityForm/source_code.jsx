@@ -7,6 +7,7 @@ initState({
   accountId,
   kind,
   startDate,
+  exists: false,
 });
 
 const allKinds = ["Project", "Organization", "DAO"].map((name) => ({ name }));
@@ -18,6 +19,17 @@ const accountIdInput = (
       type="text"
       value={state.accountId}
       onChange={(event) => State.update({ accountId: event.target.value })}
+      onBlur={() =>
+        Near.asyncView(
+          ownerId,
+          "get_entity",
+          { account_id: state.accountId },
+          "final"
+        ).then((entity) => State.update({ exists: !!entity }))
+      }
+      style={{
+        ...(state.exists ? { borderColor: "red" } : {}),
+      }}
     />
   </div>
 );
@@ -67,7 +79,11 @@ const body = (
       {startDateInput}
     </div>
 
-    <a className="btn btn-outline-primary mb-2" onClick={onSubmit}>
+    <a
+      className="btn btn-outline-primary mb-2"
+      onClick={onSubmit}
+      disabled={state.exists}
+    >
       Submit
     </a>
   </div>
