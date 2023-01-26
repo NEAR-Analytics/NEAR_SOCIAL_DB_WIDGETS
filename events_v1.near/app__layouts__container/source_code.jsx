@@ -54,18 +54,30 @@ return (
         width: '100%',
       }}
     >
-      <div className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container-fluid">
+      <div
+        className="navbar navbar-expand-lg navbar-dark bg-primary"
+        style={{
+          height: 72,
+        }}
+      >
+        <div className="container-fluid h-100">
           {/* if back */}
           {props.layoutProps.back ? (
             <button
-              className="navbar-toggler"
+              className=""
+              style={{
+                color: 'black',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+              }}
               type="button"
               onClick={() => {
                 props.routing.pop();
               }}
             >
-              <span className="navbar-toggler-icon"></span>
+              &lt;
             </button>
           ) : null}
 
