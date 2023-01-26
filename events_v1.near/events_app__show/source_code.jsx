@@ -29,16 +29,6 @@ return (
 
     <h1>{event.name}</h1>
 
-    <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}__components__buttons__delete_event`}
-      props={{ event }}
-    />
-
-    <a
-      href={`#/${APP_OWNER}/widget/${APP_NAME}__edit?event_id=${event.id}`}
-      className="text-decoration-none"
-    >
-      Edit
-    </a>
+    <p>{event.description}</p>
   </>
 );
