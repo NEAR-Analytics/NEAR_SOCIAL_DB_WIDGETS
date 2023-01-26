@@ -294,7 +294,6 @@ function renderComponent(name, props, layout, layoutProps) {
   const _layoutName = layout || null;
 
   if (_layoutName === null && name === 'index.list_container') {
-    debugger;
   }
   const componentProps = {
     ...(props || {}),
