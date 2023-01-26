@@ -2,7 +2,7 @@ const title = props.layoutProps.title ?? '';
 
 const dropdownItems = props.layoutProps.dropdownItems ?? [];
 
-const Dropdown =
+const dropdownElement =
   dropdownItems && dropdownItems.length > 0 ? (
     <>
       <button
@@ -58,7 +58,7 @@ return (
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
 
-          {dropdownItems && dropdownItems.length > 0 ? Dropdown : null}
+          {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
         </div>
       </div>
 
