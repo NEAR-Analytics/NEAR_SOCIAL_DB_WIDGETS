@@ -102,9 +102,9 @@ function push(name, props, layout, layoutProps) {
   });
 
   // HACK: force a re-render
-  // State.update({
-  //   renderCycles: state.renderCycles + 1,
-  // });
+  State.update({
+    renderCycles: state.renderCycles + 1,
+  });
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -170,7 +170,6 @@ return (
         overflow: 'auto',
       }}
     >
-      {state.renderCycles}
       {renderComponent(
         state.layers[state.layers.length - 1].name,
         state.layers[state.layers.length - 1].props,
