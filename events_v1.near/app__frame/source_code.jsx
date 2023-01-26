@@ -15,7 +15,7 @@ const VERSION = '0.0.3';
  *  HOW?
  *  this app provides common functionality often needed in apps
  *  - routing
- *  - state management
+
  *  - layout management
  *
  *  Requirements:
