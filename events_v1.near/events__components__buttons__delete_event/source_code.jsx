@@ -1,4 +1,4 @@
-const EVENTS_CONTRACT = '{{ env.EVENTS_CONTRACT }}';
+const EVENTS_CONTRACT = 'events_v1.near';
 
 const accountId = context.accountId;
 if (!accountId) {
