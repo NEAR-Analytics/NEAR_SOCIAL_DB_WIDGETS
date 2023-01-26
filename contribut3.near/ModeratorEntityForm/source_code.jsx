@@ -77,7 +77,7 @@ const statusInput = (
 
 const startDateInput = (
   <div className="col-lg-6 mb-2">
-    Start date of entity
+    Start date of entity:
     <input
       type="date"
       value={state.startDate}
@@ -90,7 +90,7 @@ const startDateInput = (
 
 const endDateInput = (
   <div className="col-lg-6 mb-2">
-    End date of entity
+    End date of entity (optional):
     <input
       type="date"
       value={state.endDate}
