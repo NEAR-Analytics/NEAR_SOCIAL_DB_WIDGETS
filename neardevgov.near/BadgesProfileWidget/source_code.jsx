@@ -9,7 +9,7 @@ const ownedBadges = Near.view(
     account_id: accountId,
   }
 );
-if (!ownedBadges) {
+if (!ownedBadges || ownedBadges.length === 0) {
   return <></>;
 }
 
