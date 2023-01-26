@@ -1,6 +1,6 @@
 return (
   <button
-    className="nav-link active"
+    className="nav-link"
     aria-current="page"
     href=""
     onClick={(e) => {
