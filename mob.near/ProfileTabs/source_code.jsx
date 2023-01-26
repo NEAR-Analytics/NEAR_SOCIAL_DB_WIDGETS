@@ -12,7 +12,6 @@ if (profile === null) {
 const description = profile.description;
 
 const pills = [
-  { id: "bio", title: "Bio" },
   { id: "posts", title: "Posts" },
   { id: "nfts", title: "NFTs" },
   { id: "widget", title: "Widgets" },
@@ -45,26 +44,22 @@ return (
     <div className="tab-content" id="pills-tabContent">
       <div
         className="tab-pane fade show active"
-        id="pills-bio"
-        role="tabpanel"
-        aria-labelledby="pills-bio-tab"
-      >
-        <Markdown text={description} />
-      </div>
-      <div
-        className="tab-pane fade"
         id="pills-posts"
         role="tabpanel"
         aria-labelledby="pills-posts-tab"
       >
-        {state.loadposts && (
-          <div className="col-lg-6 mx-auto">
-            <Widget
-              src="mob.near/widget/MainPage.Feed"
-              props={{ accounts: [accountId] }}
-            />
+        <div className="col-lg-6 mx-auto">
+          <div className="border rounded-4 p-3 pb-0 mb-3">
+            <h4>
+              <i class="bi bi-pin-angle" /> Bio
+            </h4>
+            <Markdown text={description} />
           </div>
-        )}
+          <Widget
+            src="mob.near/widget/MainPage.Feed"
+            props={{ accounts: [accountId] }}
+          />
+        </div>
       </div>
       <div
         className="tab-pane fade"
