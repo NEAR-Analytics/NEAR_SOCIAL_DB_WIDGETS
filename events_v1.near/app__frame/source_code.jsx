@@ -206,6 +206,12 @@ const Loading = styled.div`
   width: 100%;
 `;
 
+const PageTitle = styled.h1`
+  font-size: 2em;
+  text-align: center;
+  color: palevioletred;
+`;
+
 function rerender() {
   // HACK: force a re-render
   State.update({
