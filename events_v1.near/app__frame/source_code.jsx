@@ -172,7 +172,7 @@ if (!entryRoute) {
 }
 
 const entryProps = props.entryProps || {};
-const entryLayout = props.entryLayout;
+const entryLayout = props.entryLayout || null;
 const entryLayoutProps = props.entryLayoutProps || {};
 
 const env = {
