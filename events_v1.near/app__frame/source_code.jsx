@@ -155,34 +155,6 @@ function renderComponent(name, props, layout, layoutProps) {
 
 return (
   <>
-    {/* main widget */}
-    {/* {state.layers.map((layer, index) => {
-      return (
-        <div
-          key={index}
-          style={{
-            width: '100%',
-            height: '100%',
-            position: 'fixed',
-            backgroundColor: 'white',
-            top: 72, // sit right below the navbar
-            left: 0,
-            right: 0,
-            bottom: 0,
-            padding: 0,
-            zIndex: index + 10000,
-            overflow: 'auto',
-          }}
-        >
-          {renderComponent(
-            layer.name,
-            layer.props,
-            layer.layout,
-            layer.layoutProps
-          )}
-        </div>
-      );
-    })} */}
     <div
       style={{
         width: '100%',
@@ -198,6 +170,7 @@ return (
         overflow: 'auto',
       }}
     >
+      {state.renderCycles}
       {renderComponent(
         state.layers[state.layers.length - 1].name,
         state.layers[state.layers.length - 1].props,
