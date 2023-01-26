@@ -15,6 +15,7 @@ return (
           <h2 className="navbar-brand">{title}</h2>
 
           {items && items.length > 0 && (
+            <>
             <button
             className="navbar-toggler"
             type="button"
@@ -86,7 +87,7 @@ return (
               </button>
             </div>
           </div>  
-          ) : null}
+          </>) : null}
           
         </div>
       </div>
