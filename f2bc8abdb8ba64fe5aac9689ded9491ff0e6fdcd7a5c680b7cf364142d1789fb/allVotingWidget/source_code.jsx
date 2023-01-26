@@ -545,7 +545,7 @@ return (
             !hasVoted &&
             !state.justVoted && <p className="mb-1">Write your answer:</p>
           )}
-          {question.questionType != "3" && state.justVoted
+          {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
                 return renderMultipleChoiceInput(
                   questionNumber,
@@ -590,7 +590,14 @@ return (
           data={getPublicationParams()}
           onCommit={() => {
             State.update({ justVoted: true });
-            validAnswersToThisPoll.push();
+            validAnswersToThisPoll.push({
+              accountId: context.accountId,
+              blockHeight: props.poll.blockHeight,
+              value: {
+                answer: state.vote,
+              },
+              questionBlockHeight: props.poll.blockHeight,
+            });
           }}
         >
           Vote
