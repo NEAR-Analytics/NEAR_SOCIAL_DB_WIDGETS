@@ -2,8 +2,7 @@ const Button = props.Components.Button;
 
 const engine = props.engine();
 
-console.log('props', props);
-console.log('props 2', props.engine());
+console.log('engine', engine);
 
 return (
   <div>
