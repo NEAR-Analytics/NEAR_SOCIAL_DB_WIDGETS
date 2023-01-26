@@ -142,7 +142,7 @@ function renderComponent(name, props, layout, layoutProps) {
   };
   // const key = props && props.key ? props.key : name;
 
-  // keep it this way for now, instantly returning for some reason
+  // keep it this way for now, instantly returning the widget
   // causes the app to not render/ update...
   const widget = (
     <Widget
