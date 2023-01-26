@@ -81,7 +81,7 @@ return (
               top: 0,
               right: 0,
               width: 48,
-              padding: 32,
+              padding: 12,
               border: 'none',
               outline: 'none',
               cursor: 'pointer',
