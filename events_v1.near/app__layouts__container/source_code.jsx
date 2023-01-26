@@ -23,7 +23,7 @@ const dropdownElement =
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {dropdownItems.map((item, idx) => {
             return props.engine.renderComponent(
-              item.component,
+              item.__component,
               {
                 ...item.props,
                 key: `dropdown_item_${idx}`,
@@ -39,7 +39,7 @@ const dropdownElement =
 
 return (
   <>
-    {JSON.stringify(props, null, 4))}
+    {JSON.stringify(props, null, 4)}
     <div
       style={{
         width: '100vw',
@@ -95,10 +95,10 @@ return (
       >
         <div className="col-12">
           {props.engine.renderComponent(
-            props.component.name,
-            props.component.props,
-            props.component.layout,
-            props.component.layoutProps
+            props.__component.name,
+            props.__component.props,
+            props.__component.layout,
+            props.__component.layoutProps
           )}
         </div>
       </div>
