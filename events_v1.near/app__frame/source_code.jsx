@@ -339,7 +339,7 @@ function renderComponent(name, props, layout, layoutProps) {
       props={{
         ...componentProps,
         component: {
-          name: slugFromName(name),
+          name: name,
           props: componentProps,
           layout: innerLayout,
           layoutProps: innerLayoutProps,
