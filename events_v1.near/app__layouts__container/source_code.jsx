@@ -1,5 +1,7 @@
-const title = props.layoutProps.title ?? '';
+const NAVBAR_HEIGHT = 48;
+const NAVBAR_OFFSET_TOP = 72;
 
+const title = props.layoutProps.title ?? '';
 const dropdownItems = props.layoutProps.dropdownItems ?? [];
 
 const dropdownElement =
@@ -56,9 +58,9 @@ return (
       <div
         className="navbar navbar-expand-lg navbar-dark bg-primary"
         style={{
-          height: 72,
+          height: NAVBAR_HEIGHT,
           position: 'fixed',
-          top: 72,
+          top: NAVBAR_OFFSET_TOP,
           width: '100%',
         }}
       >
@@ -74,7 +76,7 @@ return (
                 height: '100%',
                 border: 'none',
                 outline: 'none',
-                width: 72,
+                width: NAVBAR_HEIGHT,
               }}
               type="button"
               onClick={() => {
@@ -91,7 +93,12 @@ return (
         </div>
       </div>
 
-      <div className="row">
+      <div
+        className="row"
+        style={{
+          marginTop: NAVBAR_HEIGHT,
+        }}
+      >
         <div className="col-12">
           <Widget src={props.component.src} props={props.component.props} />
         </div>
