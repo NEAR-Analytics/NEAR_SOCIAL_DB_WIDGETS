@@ -49,12 +49,14 @@ return (
         aria-labelledby="pills-posts-tab"
       >
         <div className="col-lg-6 mx-auto">
-          <div className="border rounded-4 p-3 pb-0 mb-3">
-            <h4>
-              <i class="bi bi-pin-angle" /> Bio
-            </h4>
-            <Markdown text={description} />
-          </div>
+          {description && (
+            <div className="border rounded-4 p-3 pb-0 mb-3">
+              <h4>
+                <i class="bi bi-pin-angle" /> Bio
+              </h4>
+              <Markdown text={description} />
+            </div>
+          )}
           <Widget
             src="mob.near/widget/MainPage.Feed"
             props={{ accounts: [accountId] }}
