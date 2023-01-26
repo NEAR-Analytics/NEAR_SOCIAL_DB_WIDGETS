@@ -2,22 +2,23 @@ if (!context.accountId) {
   return "";
 }
 
+const composeData = () => {
+  return {
+    post: {
+      main: JSON.stringify(state.content),
+    },
+    index: {
+      post: JSON.stringify({
+        key: "main",
+        value: {
+          type: "md",
+        },
+      }),
+    },
+  };
+};
+
 State.init({
-  composeData: ({ content }) => {
-    return {
-      post: {
-        main: JSON.stringify(content),
-      },
-      index: {
-        post: JSON.stringify({
-          key: "main",
-          value: {
-            type: "md",
-          },
-        }),
-      },
-    };
-  },
   onChange: ({ content }) => {
     State.update({ content });
   },
@@ -28,9 +29,21 @@ return (
     <Widget
       src="mob.near/widget/Common.Compose"
       props={{
-        composeData: state.composeData,
         composeText: "Post",
         onChange: state.onChange,
+        composeButton: (onCompose) => (
+          <CommitButton
+            disabled={!state.content}
+            force
+            className="btn btn-dark rounded-3"
+            data={composeData}
+            onCommit={() => {
+              onCompose();
+            }}
+          >
+            Post
+          </CommitButton>
+        ),
       }}
     />
     {state.content && (
