@@ -114,13 +114,6 @@ const routing = {
   currentRoute,
 };
 
-function engine() {
-  console.log('engine');
-  return {
-    renderComponent,
-  };
-}
-
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props, layout, layoutProps) {
   console.log('renderComponent', name, props, layout, layoutProps);
@@ -151,6 +144,13 @@ function renderComponent(name, props, layout, layoutProps) {
   );
 }
 
+function engine() {
+  console.log('engine');
+  return {
+    renderComponent,
+  };
+}
+
 return (
   <>
     {/* main widget */}
@@ -171,14 +171,7 @@ return (
             zIndex: Math.pow(10, 1 + index) + 10000,
             overflow: 'auto',
           }}
-        >
-          {renderComponent(
-            layer.name,
-            layer.props,
-            layer.layout,
-            layer.layoutProps
-          )}
-        </div>
+        ></div>
       );
     })}
   </>
