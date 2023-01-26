@@ -90,8 +90,6 @@ return (
           <div
             style={{ height: '100%', overflowY: 'scroll', overflowX: 'hidden' }}
           >
-            {props.component.name}
-            {props.component.layout}
             {props.engine.renderComponent(
               props.component.name,
               props.component.props,
