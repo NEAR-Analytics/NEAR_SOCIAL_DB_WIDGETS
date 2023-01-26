@@ -349,7 +349,10 @@ return (
       }}
     >
       <div id="app-state" data-state={JSON.stringify(state)}></div>
-      {console.log(JSON.stringify(state.layers[state.layers.length - 1]))}
+      {console.log(
+        'state',
+        JSON.stringify(state.layers[state.layers.length - 1])
+      )}
       {renderComponent(
         state.layers[state.layers.length - 1].name,
         state.layers[state.layers.length - 1].props,
