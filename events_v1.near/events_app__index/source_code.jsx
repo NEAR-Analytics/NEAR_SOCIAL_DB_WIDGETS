@@ -2,12 +2,6 @@ const Button = props.Components.Button;
 
 const engine = props.engine;
 
-console.log('engine', engine);
-
-if (!engine) {
-  return 'loading';
-}
-
 return (
   <div>
     <h1>Events</h1>
