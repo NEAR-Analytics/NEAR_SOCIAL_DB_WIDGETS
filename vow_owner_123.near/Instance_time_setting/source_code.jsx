@@ -54,7 +54,7 @@ if (props.data.schedule) {
       _to[i] = getFormatedTime(props.data.schedule[i].data[0]._to);
     }
   }
-  console.log("props.data: ", is_on, _from, _to);
+  console.log("props.data: ", props.data, is_on, _from, _to);
 }
 State.init({
   _is_on: is_on,
