@@ -1,8 +1,66 @@
 const VERSION = '0.0.2';
 
 /**
+ *  NEAR Social App
+ *
+ *  This is the main app component that is used to render the app.
+ *
+ *  It is responsible for:
+ *  - Loading the app's state/environment
+ *  - Rendering the app's layouts
+ *  - Rendering the app's components
+ *
+ *  It follows conventsions:
+ *  - The app's environment is loaded from the props
+ *    - props.appOwner
+ *    - props.appName
+ *  - An app is a collection of widgets
+ *  - each widgets must be namespaced by the app's owner and name
+ *     Widgets are named as follows:
+ *       - you choose an app_name like 'my_app'
+ *       - you choose a widget like 'my_widget'
+ *       - app, widgets and subwidgets are separated by '__'
+ *       - In order to use the widget in your app, you must upload it to your account with the name: `my_app__my_widget`
+ *     - e.g. app_name__component1
+ *     - e.g. app_name__component1__subcomponent
+ *  - Each widget can have a layout
+ *    - lyouts can be passed to the renderComponent function
+ *      - calling `renderComponent('parent.subcomponent', {}, 'my_layout', { someLayoutProp: 'someValue' })`
+ *        - will render the widget 'parent' using the layout 'my_layout'
+ *        - the layout will be passed the props: { someLayoutProp: 'someValue' }
+ *        - the corresponding layout widget must be uploaded to your account with the name: `app__layouts__my_layout`
+ *           - NOTE: the layouts can be shared across apps, so they are namespaced within 'app' **not** the app's name
+ *        - the corresponding widget must be uploaded to your account with the name: `my_app__my_widget__subcomponent`
+ *    - layouts are also rendered as widgets and get passed the same props as the widget they are rendering
  *
  *
+ *  Functions available to widgets:
+ *
+ *
+ *  @param {String} name - the name of the widget to render
+ *  @param {Object} props - the props to pass to the widget
+ *  @param {String} layout - the name of the layout to use
+ *  @param {Object} layoutProps - the props to pass to the layout
+ *  available in: props.engine
+ *  renderComponent(name, props, layout, layoutProps)
+ *    renders a widget with the given name and props within the given layout,
+ *    use this instead of <Widget src="" />
+ *
+ *
+ *  @param {String} name - the name of the widget to render
+ *  @param {Object} props - the props to pass to the widget
+ *  @param {String} layout - the name of the layout to use
+ *  @param {Object} layoutProps - the props to pass to the layout
+ *  available in: props.routing
+ *  push(name, props, layout, layoutProps)
+ *    pushes a new layer onto the stack of layers to render
+ *    this will cause the app to render a new layer on top of the current layer
+ *
+ *
+ *  available in: props.routing
+ *  pop()
+ *    pops the current layer off the stack of layers to render.
+ *    Functions the same as the back button
  *
  *
  *
