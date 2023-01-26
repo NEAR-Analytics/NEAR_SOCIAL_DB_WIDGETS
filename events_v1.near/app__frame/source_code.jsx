@@ -205,18 +205,21 @@ const hasLastRouteAndIsDifferent =
   lastRoute.layoutProps !== entryLayoutProps;
 
 const rootRoute = {
-      name: entryRoute,
-      props: entryProps,
-      layout: entryLayout,
-      layoutProps: entryLayoutProps,
-    }
-const appLayers = hasLastRouteAndIsDifferent ? [rootRoute, lastRoute] : [rootRoute];
+  name: entryRoute,
+  props: entryProps,
+  layout: entryLayout,
+  layoutProps: entryLayoutProps,
+};
+
+const appLayers = hasLastRouteAndIsDifferent
+  ? [rootRoute, lastRoute]
+  : [rootRoute];
 
 // TODO: get layers from URL
 State.init({
   env,
   renderCycles: state ? state.renderCycles + 1 : 1,
-  layers: appLayers),
+  layers: appLayers,
 });
 
 if (!state) {
