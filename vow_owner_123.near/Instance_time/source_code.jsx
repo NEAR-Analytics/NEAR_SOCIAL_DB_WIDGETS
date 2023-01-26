@@ -202,7 +202,9 @@ return (
               style={comboBox}
               name="zones"
               id="zones"
-              value={state._time_zone}
+              value={
+                tabs.ALL_SCHEDULE.id ? state._time_zone : finalData.time_zone
+              }
               onChange={(e) => {
                 State.update({ _time_zone: e.target.value });
               }}
@@ -268,7 +270,7 @@ return (
             data: {
               schedule: finalData.schedule,
               time_zone:
-                state.tab == tabs.NEW_SCHEDULE.id
+                state.tab == tabs.ALL_SCHEDULE.id
                   ? state._time_zone
                   : finalData.time_zone,
             },
