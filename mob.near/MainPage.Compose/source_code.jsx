@@ -29,6 +29,7 @@ return (
     <Widget
       src="mob.near/widget/Common.Compose"
       props={{
+        placeholder: "What's happening?",
         onChange: state.onChange,
         composeButton: (onCompose) => (
           <CommitButton
