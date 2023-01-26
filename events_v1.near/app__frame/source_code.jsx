@@ -328,11 +328,16 @@ function renderComponent(name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
-  const innerLayout = (layoutProps || {}).innerLayout || 'default';
+  const innerLayout = (layoutProps || {}).innerLayout;
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
 
   // guard to allow 'default' layout exit infinite render loop
-  if (_layoutName === 'none') {
+  if (
+    _layoutName === 'default' ||
+    _layoutName === null ||
+    _layoutName === '' ||
+    _layoutName === undefined
+  ) {
     return (
       <Widget
         src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
