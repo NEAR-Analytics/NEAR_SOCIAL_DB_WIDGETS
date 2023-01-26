@@ -73,7 +73,7 @@ return (
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: 12,
+                marginBottom: 0,
                 fontSize: 24,
                 fontWeight: 'bold',
                 backgroundColor: 'white',
@@ -95,6 +95,7 @@ return (
               width: '100%',
               maxWidth: '100%',
               overflow: 'auto',
+              paddingTop: title ? 12 : 16,
             }}
           >
             {props.engine.renderComponent(
