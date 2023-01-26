@@ -1,7 +1,5 @@
 const Button = props.Components.Button;
 
-const engine = props.engine;
-
 return (
   <div>
     <h1>Events</h1>
@@ -19,10 +17,17 @@ return (
 
     <Button
       onClick={() => {
-        props.routing.push('index.list_container', {}, 'container', {
-          title: 'My Events',
-          back: true,
-        });
+        props.routing.push(
+          'index.list_container',
+          {
+            forAccountId: props.accountId,
+          },
+          'container',
+          {
+            title: 'My Events',
+            back: true,
+          }
+        );
       }}
     >
       My Events
