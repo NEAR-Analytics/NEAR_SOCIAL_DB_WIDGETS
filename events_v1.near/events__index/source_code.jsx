@@ -7,7 +7,7 @@ return (
 
     <Button
       onClick={() => {
-        props.routing.push('new', {}, 'modal', {
+        props.engine.push('new', {}, 'modal', {
           title: 'Create new Event',
           back: true,
         });
@@ -18,7 +18,7 @@ return (
 
     <Button
       onClick={() => {
-        props.routing.push(
+        props.engine.push(
           'index.list_container',
           {
             forAccountId: props.accountId,
