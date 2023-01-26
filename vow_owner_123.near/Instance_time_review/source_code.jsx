@@ -226,7 +226,7 @@ return (
                                   padding: "0.5rem",
                                 }}
                               >
-                                Closed
+                                Off
                               </span>
                             )}
                           </div>
