@@ -293,8 +293,6 @@ function renderComponent(name, props, layout, layoutProps) {
   }
   const _layoutName = layout || null;
 
-  if (_layoutName === null && name === 'index.list_container') {
-  }
   const componentProps = {
     ...(props || {}),
     engine: {
@@ -339,6 +337,7 @@ function renderComponent(name, props, layout, layoutProps) {
     _layoutName === '' ||
     _layoutName === undefined
   ) {
+    console.log('Render: raw', name);
     return (
       <Widget
         src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
@@ -348,6 +347,7 @@ function renderComponent(name, props, layout, layoutProps) {
     );
   }
 
+  console.log('Render: w/ layout', name);
   return (
     <Widget
       src={layoutFromName(_layoutName)}
