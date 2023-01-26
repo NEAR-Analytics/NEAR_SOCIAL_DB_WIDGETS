@@ -96,7 +96,12 @@ return (
         }}
       >
         <div className="col-12">
-          <Widget src={props.component.src} props={props.component.props} />
+          {props.engine.renderComponent(
+            props.component.src,
+            props.component.props,
+            props.component.layout,
+            props.component.layoutProps
+          )}
         </div>
       </div>
     </div>
