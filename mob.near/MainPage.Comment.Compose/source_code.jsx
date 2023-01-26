@@ -25,7 +25,7 @@ const composeData = () => {
 
   const notifications = state.extractTagNotifications(state.content.text, {
     type: "social",
-    path: `${context.accountId}/post/main`,
+    path: `${context.accountId}/post/comment`,
   });
 
   if (props.notifyAccountId) {
