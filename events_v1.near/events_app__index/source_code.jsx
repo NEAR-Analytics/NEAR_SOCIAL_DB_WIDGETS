@@ -5,6 +5,8 @@ const accountId = props.accountId;
 
 const Button = props.Components.Button;
 
+const engine = props.engine();
+
 return (
   <div>
     <h1>Events</h1>
@@ -33,6 +35,6 @@ return (
 
     <br />
 
-    {props.engine().renderComponent('index.list_container')}
+    {JSON.stringify(engine, null, 2)}
   </div>
 );
