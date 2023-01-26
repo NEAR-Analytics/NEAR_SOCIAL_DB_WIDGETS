@@ -21,7 +21,7 @@ const result = state.show ? (
   >
     <div className="card" style={{ opacity: 1 }}>
       <div className="card-header">Verification score for {state.query}</div>
-      {isNaN(state.result) ? (
+      {state.result === null ? (
         <>
           <div>There is no entry for this query</div>
           <a
