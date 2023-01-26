@@ -92,7 +92,7 @@ return (
               zIndex: 1000,
             }}
             onClick={() => {
-              props.routing.pop();
+              props.engine.pop();
             }}
           >
             &times;
