@@ -210,13 +210,13 @@ if (!state) {
 
 function restoreRoutes() {
   const info = storageGet('routing', null);
-  // console.log('restoreRoutes', info);
+  console.log('restoreRoutes', info);
   if (info === null || info === undefined) {
     return;
   }
 
   const layers = state.layers;
-  // console.log('checking if routing info has changed', layers);
+  console.log('checking if routing info has changed', layers);
   if (
     layers &&
     Array.isArray(info) &&
@@ -231,17 +231,17 @@ function restoreRoutes() {
 restoreRoutes();
 
 function persistRoutingInformation(newState) {
-  // console.log('persistRoutingInformation', newState);
+  console.log('persistRoutingInformation', newState);
   storageSet('routing', newState);
 }
 
 function slugFromName(name) {
-  // console.log('slugFromName', name);
+  console.log('slugFromName', name);
   return name.split('.').join('__');
 }
 
 function layoutFromName(name) {
-  // console.log('layoutFromName', name);
+  console.log('layoutFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
@@ -253,7 +253,7 @@ function rerender() {
 }
 
 function push(name, props, layout, layoutProps) {
-  // console.log('push', name, props, layout, layoutProps);
+  console.log('push', name, props, layout, layoutProps);
   const layer = {
     name,
     props: props || {},
