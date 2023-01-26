@@ -1,6 +1,6 @@
 const Button = props.Components.Button;
 
-const engine = props.engine();
+const engine = props.engine;
 
 console.log('engine', engine);
 
