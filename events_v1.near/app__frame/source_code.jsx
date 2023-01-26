@@ -84,12 +84,6 @@ const Components = {
 
 const currentRoute = state.layers[state.layers.length - 1];
 
-const engine = function () {
-  return {
-    renderComponent,
-  };
-};
-
 function push(name, props, layout, layoutProps) {
   State.update({
     layers: [
@@ -115,6 +109,12 @@ const routing = {
   push,
   pop,
   currentRoute,
+};
+
+const engine = function () {
+  return {
+    renderComponent,
+  };
 };
 
 // TODO: layouting, render widgets in widgets for maximum awesomeness
