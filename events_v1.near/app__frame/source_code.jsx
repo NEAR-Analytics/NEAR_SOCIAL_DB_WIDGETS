@@ -146,9 +146,9 @@ function renderComponent(name, props, layout, layoutProps) {
   );
 
   // HACK: force a re-render
-  State.update({
-    renderCycles: state.renderCycles + 1,
-  });
+  // State.update({
+  //   renderCycles: state.renderCycles + 1,
+  // });
 
   return widget;
 }
