@@ -18,4 +18,9 @@ if (!events) {
   return <Loading>Loading events</Loading>;
 }
 
-return props.engine.renderComponent('index.list', { events });
+return (
+  <>
+  <button onClick={props.engine.pop()}>
+  &lt;
+  </button>
+  {props.engine.renderComponent('index.list', { events })}</>;
