@@ -15,14 +15,6 @@ const IndexList = styled.div`
   & > * {
     margin: 1rem;
   }
-
-  & > *:nth-child(3n + 1) {
-    margin-left: 0;
-  }
-
-  & > *:nth-child(3n) {
-    margin-right: 0;
-  }
 `;
 
 return (
