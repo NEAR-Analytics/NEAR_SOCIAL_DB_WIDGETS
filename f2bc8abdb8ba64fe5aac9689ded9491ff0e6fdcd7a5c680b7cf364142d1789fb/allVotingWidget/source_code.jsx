@@ -217,7 +217,6 @@ const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
 const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
-console.log("validAnswersToThisPoll: ", validAnswersToThisPoll);
 
 let userVote;
 // Getting if user has already voted
@@ -589,15 +588,7 @@ return (
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
           onCommit={() => {
-            State.update({ justVoted: true });
-            validAnswersToThisPoll.push({
-              accountId: context.accountId,
-              blockHeight: props.poll.blockHeight,
-              value: {
-                answer: state.vote,
-              },
-              questionBlockHeight: props.poll.blockHeight,
-            });
+            State.update({ justVoted: false });
           }}
         >
           Vote
