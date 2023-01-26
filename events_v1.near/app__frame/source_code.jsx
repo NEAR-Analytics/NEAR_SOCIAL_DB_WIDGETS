@@ -215,7 +215,9 @@ function restoreRoutes() {
     return;
   }
 
-  if (JSON.stringify(info) === JSON.stringify(state.layers)) {
+  const layers = state.layers;
+
+  if (layers && JSON.stringify(info) === JSON.stringify(layers)) {
     console.log('no change in routing info');
     return;
   }
