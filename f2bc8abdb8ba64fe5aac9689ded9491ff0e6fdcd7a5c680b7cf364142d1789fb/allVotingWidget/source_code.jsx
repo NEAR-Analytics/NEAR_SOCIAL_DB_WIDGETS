@@ -508,6 +508,7 @@ const renderTextInput = (questionNumber) => {
 return (
   <>
     {poll.value.questions.map((question, questionNumber) => {
+      console.log("QN: ", questionNumber);
       return (
         <div
           style={{
