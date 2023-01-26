@@ -1,6 +1,6 @@
 let events = props.events || [];
 if (!events) {
-  return;
+  return '';
 }
 
 // if events are empty we want to show an empty list message
