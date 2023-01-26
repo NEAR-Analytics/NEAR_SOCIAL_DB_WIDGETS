@@ -100,6 +100,11 @@ function push(name, props, layout, layoutProps) {
   State.update({
     layers: newLayers,
   });
+
+  // HACK: force a re-render
+  // State.update({
+  //   renderCycles: state.renderCycles + 1,
+  // });
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -144,11 +149,6 @@ function renderComponent(name, props, layout, layoutProps) {
       }}
     />
   );
-
-  // HACK: force a re-render
-  // State.update({
-  //   renderCycles: state.renderCycles + 1,
-  // });
 
   return widget;
 }
