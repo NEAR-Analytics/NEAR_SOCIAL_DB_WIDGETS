@@ -4,6 +4,6 @@ const APP_NAME = 'events_app';
 return (
   <Widget
     src={`embed/${APP_OWNER}/widget/app__frame`}
-    props={{ ...props, appOwner: APP_OWNER, appName: APP_NAME, entryRoute: 'index', entryProps: { }}
+    props={{ ...props, appOwner: APP_OWNER, appName: APP_NAME, entryRoute: 'index', entryProps: {}, entryLayout: 'default', entryLayoutProps: {} }
   />
 );
