@@ -140,13 +140,12 @@ function renderComponent(name, props, layout, layoutProps) {
     layout: _layoutName,
     layoutProps: layoutProps || {},
   };
-  // const key = props && props.key ? props.key : name;
+  const key = props && props.key ? props.key : name;
 
-  // keep it this way for now, instantly returning the widget
-  // causes the app to not render/ update...
   return (
     <Widget
       src={layoutFromName(_layoutName)}
+      key={key}
       props={{
         ...componentProps,
         component: {
@@ -156,7 +155,6 @@ function renderComponent(name, props, layout, layoutProps) {
       }}
     />
   );
-
 }
 
 return (
