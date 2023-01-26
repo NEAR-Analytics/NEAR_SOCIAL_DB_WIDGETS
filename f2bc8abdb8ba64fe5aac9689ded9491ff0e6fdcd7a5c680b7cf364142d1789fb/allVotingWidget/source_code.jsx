@@ -24,7 +24,7 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
-  justVoted: false,
+  justVoted: true,
 });
 
 let bgBlue = "#96C0FF";
