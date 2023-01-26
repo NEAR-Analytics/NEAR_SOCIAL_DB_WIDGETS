@@ -32,6 +32,7 @@ if (!state) {
 }
 
 function slugFromName(name) {
+  console.log('slugFromName', name);
   return name.split('.').join('__');
   // return name.split(/\./gu).join('__');
 }
