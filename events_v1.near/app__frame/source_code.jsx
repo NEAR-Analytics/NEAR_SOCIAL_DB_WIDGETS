@@ -29,6 +29,7 @@ const VERSION = '0.0.3';
  *        - naming conventions
  *      - a way to build apps quickly
  *        - development tools (dev server, deploy script)
+ *        - env var injection
  *      - a sample app
  *
  *
