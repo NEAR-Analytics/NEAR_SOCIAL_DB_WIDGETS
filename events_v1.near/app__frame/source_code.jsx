@@ -136,7 +136,6 @@ function renderComponent(name, props, layout, layoutProps) {
   return (
     <Widget
       src={layoutFromName(_layoutName)}
-      key={key}
       props={{
         ...componentProps,
         component: {
