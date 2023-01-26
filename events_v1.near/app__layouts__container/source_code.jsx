@@ -1,9 +1,9 @@
 const title = props.layoutProps.title ?? '';
 
-const items = props.layoutProps.items ?? [];
+const dropdownItems = props.layoutProps.dropdownItems ?? [];
 
 const Dropdown =
-  items && items.length > 0 ? (
+  dropdownItems && dropdownItems.length > 0 ? (
     <>
       <button
         className="navbar-toggler"
@@ -19,11 +19,15 @@ const Dropdown =
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">
-              Home
-            </a>
-          </li>
+          {dropdownItems.map((item) => {
+            return (
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </>
@@ -41,7 +45,7 @@ return (
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
 
-          {items && items.length > 0 ? Dropdown : null}
+          {dropdownItems && dropdownItems.length > 0 ? Dropdown : null}
         </div>
       </div>
 
