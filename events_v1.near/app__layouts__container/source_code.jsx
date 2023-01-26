@@ -26,7 +26,7 @@ const dropdownElement =
               item.name,
               {
                 ...item.props,
-                key: `dropdown_item_${idx}`,
+                key: `${item.name}_dropdown_item_${idx}`,
               },
               item.layout,
               item.layoutProps
