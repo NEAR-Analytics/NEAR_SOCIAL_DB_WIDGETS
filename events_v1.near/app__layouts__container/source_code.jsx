@@ -73,7 +73,6 @@ return (
               }}
               type="button"
               onClick={() => {
-                console.log('back');
                 props.routing.pop();
               }}
             >
