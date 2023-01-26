@@ -20,13 +20,10 @@ const IndexList = styled.div`
 return (
   <IndexList>
     {events.map((event) => {
-      return (
-        <Widget
-          src={`${APP_OWNER}/widget/${APP_NAME}__index__list_item`}
-          props={{ event }}
-          key={event.event_id}
-        />
-      );
+      return props.engine.renderComponent('index.list_item', {
+        event,
+        key: event.event_id,
+      });
     })}
   </IndexList>
 );
