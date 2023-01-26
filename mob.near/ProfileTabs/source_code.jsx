@@ -48,7 +48,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-posts-tab"
       >
-        <div className="col-lg-6 mx-auto">
+        <div className="col-lg-8 mx-auto">
           {description && (
             <div className="border rounded-4 p-3 pb-0 mb-3">
               <h4>
