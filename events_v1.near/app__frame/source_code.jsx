@@ -204,11 +204,15 @@ const hasLastRouteAndIsDifferent =
   lastRoute.layout !== entryLayout &&
   lastRoute.layoutProps !== entryLayoutProps;
 
-// TODO: get layers from URL
-State.init({
-  env,
-  renderCycles: state ? state.renderCycles + 1 : 1,
-  layers: [
+const rootRoute = 
+    {
+      name: entryRoute,
+      props: entryProps,
+      layout: entryLayout,
+      layoutProps: entryLayoutProps,
+    }
+const appLayers = hasLastRouteAndIsDifferent ? [lastRoute] : [entryRoute];
+[
     {
       name: entryRoute,
       props: entryProps,
@@ -216,7 +220,13 @@ State.init({
       layoutProps: entryLayoutProps,
     },
     // hasLastRouteAndIsDifferent ? lastRoute : null,
-  ],
+  ].filter((e)=>
+
+// TODO: get layers from URL
+State.init({
+  env,
+  renderCycles: state ? state.renderCycles + 1 : 1,
+  layers: appLayers),
 });
 
 if (!state) {
