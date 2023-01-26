@@ -110,7 +110,6 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
-  hasVoted: userHasVoted(),
 });
 
 let bgBlue = "#96C0FF";
@@ -228,10 +227,12 @@ function getInputStyles(questionType, questionNumber, optionNumber) {
   }
 }
 
+let hasVoted = userHasVoted();
+
 const isQuestionOpen =
   poll.value.startTimestamp < Date.now() &&
   Date.now() < poll.value.endTimestamp;
-const canVote = !state.hasVoted && isQuestionOpen;
+const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
@@ -483,7 +484,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {state.hasVoted ? (
+      {hasVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -533,13 +534,13 @@ return (
             </h4>
           </div>
 
-          {!state.hasVoted &&
+          {!hasVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !state.hasVoted && question.questionType == "2" ? (
+          ) : !hasVoted && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !state.hasVoted && <p className="mb-1">Write your answer:</p>
+            !hasVoted && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -555,7 +556,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      state.hasVoted ? (
+      hasVoted ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
@@ -584,7 +585,6 @@ return (
           onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
-          onCommit={() => State.update({ hasVoted: true })}
         >
           Vote
         </CommitButton>
