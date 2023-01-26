@@ -27,7 +27,7 @@ const allAccountIds = (
 
 const accountIdInput = (
   <Widget
-    src={`${ownerId}/widget/ModeratorAccountInput`}
+    src={`${ownerId}/widget/ModeratorAccountIdInput`}
     props={{
       accountId: state.accountId,
       allAccountIds,
