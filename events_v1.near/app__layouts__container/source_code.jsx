@@ -23,7 +23,7 @@ const dropdownElement =
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {dropdownItems.map((item, idx) => {
             return props.engine.renderComponent(
-              item.__component,
+              item.name,
               {
                 ...item.props,
                 key: `dropdown_item_${idx}`,
