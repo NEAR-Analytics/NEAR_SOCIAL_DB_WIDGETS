@@ -319,6 +319,9 @@ function renderComponent(name, props, layout, layoutProps) {
     layoutProps: layoutProps || {},
     _: {
       callbacks: [],
+      registerCallback: (callback) => {
+        componentProps._.callbacks.push(callback);
+      },
     },
   };
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
