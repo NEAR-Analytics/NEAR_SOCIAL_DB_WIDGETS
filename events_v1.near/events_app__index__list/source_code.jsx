@@ -1,11 +1,6 @@
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
-
 let events = props.events || [];
-
-// return data;
 if (!events) {
-  return 'Loading';
+  return;
 }
 
 // if events are empty we want to show an empty list message
