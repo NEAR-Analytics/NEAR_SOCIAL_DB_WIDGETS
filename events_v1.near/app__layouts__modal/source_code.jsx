@@ -77,11 +77,11 @@ return (
           <button
             style={{
               position: 'absolute',
-              backgroundColor: 'red',
+              backgroundColor: 'transparent',
               top: 0,
               right: 0,
               width: 48,
-              padding: 12,
+              padding: 10,
               border: 'none',
               outline: 'none',
               cursor: 'pointer',
