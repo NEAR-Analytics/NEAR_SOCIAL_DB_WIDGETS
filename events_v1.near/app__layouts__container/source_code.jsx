@@ -73,7 +73,7 @@ return (
               }}
               type="button"
               onClick={() => {
-                props.routing.pop();
+                props.engine.pop();
               }}
             >
               &lt;
