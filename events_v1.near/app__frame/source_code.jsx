@@ -99,7 +99,7 @@ function push(name, props, layout, layoutProps) {
       },
     ],
   });
-  console.log('state', state);
+  console.log('state', state.layers);
 }
 
 // pop from the stack, ensure we always have at least one layer
