@@ -144,12 +144,9 @@ function renderComponent(name, props, layout, layoutProps) {
   );
 }
 
-function engine() {
-  console.log('engine');
-  return {
-    renderComponent,
-  };
-}
+const engine = {
+  renderComponent,
+};
 
 return (
   <>
