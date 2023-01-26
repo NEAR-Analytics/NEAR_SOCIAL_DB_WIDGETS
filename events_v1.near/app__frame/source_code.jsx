@@ -19,7 +19,7 @@ const env = {
 // TODO: get layers from URL
 State.init({
   env,
-  renderCycles: 0,
+  renderCycles: state ? state.renderCycles + 1 : 0,
   layers: [
     {
       name: ENTRY_ROUTE,
