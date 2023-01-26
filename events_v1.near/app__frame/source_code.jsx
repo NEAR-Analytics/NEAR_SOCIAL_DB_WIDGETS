@@ -216,11 +216,11 @@ function restoreRoutes() {
   }
 
   if (JSON.stringify(info) === JSON.stringify(state.layers)) {
-    console.log('no change');
+    console.log('no change in routing info');
     return;
   }
 
-  console.log('change detected');
+  console.log('change detected in routing');
   State.update({
     layers: info,
   });
