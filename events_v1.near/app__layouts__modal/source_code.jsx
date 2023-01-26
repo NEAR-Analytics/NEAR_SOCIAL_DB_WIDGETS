@@ -47,13 +47,15 @@ return (
               position: 'absolute',
               top: 0,
               right: 0,
+              width: 48,
               border: 'none',
               outline: 'none',
               background: 'blue',
-              padding: 8,
+              padding: '0 8px',
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
+              borderRadius: '0 0 0 16px',
             }}
             onClick={() => {
               props.routing.pop();
@@ -76,7 +78,6 @@ return (
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
-
                 boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
               }}
             >
