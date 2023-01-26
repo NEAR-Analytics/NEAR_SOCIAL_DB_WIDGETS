@@ -222,10 +222,10 @@ function restoreRoutes() {
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
-    // console.log('update route from storage');
-    // State.update({
-    //   layers: info,
-    // });
+    console.log('update route from storage');
+    State.update({
+      layers: info,
+    });
   }
 }
 
@@ -348,7 +348,7 @@ function renderComponent(name, props) {
     // engineProps.layoutCallback();
   };
 
-  widget = (
+  const widget = (
     <Widget
       src={layoutFromName('_dynamic')}
       key={key}
