@@ -70,9 +70,13 @@ const EventBody = styled.div`
 `;
 
 return (
-  <a
-    href={`#/${APP_OWNER}/widget/${APP_NAME}__show?event_id=${event.id}`}
+  <div
+    onClick={() => {
+      props.engine.push('show', { event });
+    }}
     className="text-decoration-none"
+    role="button"
+    tabIndex={0}
   >
     <EventCard>
       <EventHeader>
@@ -86,5 +90,5 @@ return (
         <EventDate>{event.end_date}</EventDate>
       </EventBody>
     </EventCard>
-  </a>
+  </div>
 );
