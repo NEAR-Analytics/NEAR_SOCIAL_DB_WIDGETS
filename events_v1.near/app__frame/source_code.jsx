@@ -327,6 +327,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   // guard to allow 'default' layout exit infinite render loop
   if (_layoutName === 'none') {
+    console.log('NONE: ', name, '', '', '');
     return <Widget src={slugFromName(name)} key={key} props={componentProps} />;
   }
 
