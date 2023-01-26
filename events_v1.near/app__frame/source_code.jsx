@@ -84,7 +84,6 @@ const Components = {
   Loading,
 };
 
-const currentRoute = state.layers[state.layers.length - 1];
 
 function push(name, props, layout, layoutProps) {
   console.log('push', name, props, layout, layoutProps);
@@ -111,7 +110,6 @@ function pop() {
 const routing = {
   push,
   pop,
-  currentRoute,
 };
 
 // TODO: layouting, render widgets in widgets for maximum awesomeness
@@ -131,7 +129,7 @@ function renderComponent(name, props, layout, layoutProps) {
     layout: _layoutName,
     layoutProps: layoutProps || {},
   };
-  const key = props && props.key ? props.key : name;
+  // const key = props && props.key ? props.key : name;
 
   return (
     <Widget
@@ -150,7 +148,7 @@ function renderComponent(name, props, layout, layoutProps) {
 return (
   <>
     {/* main widget */}
-    {state.layers.map((layer, index) => {
+    {/* {state.layers.map((layer, index) => {
       return (
         <div
           key={index}
@@ -176,6 +174,8 @@ return (
           )}
         </div>
       );
-    })}
+    })} */}
+    {renderComponent(
+      currentRoute.name,
   </>
 );
