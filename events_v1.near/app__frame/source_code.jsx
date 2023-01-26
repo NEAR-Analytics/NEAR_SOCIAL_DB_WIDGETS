@@ -326,7 +326,7 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
 
   // guard to allow 'default' layout exit infinite render loop
-  if (layout === 'none') {
+  if (_layoutName === 'none') {
     return <Widget src={slugFromName(name)} key={key} props={componentProps} />;
   }
 
