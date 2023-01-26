@@ -3,7 +3,7 @@ const APP_NAME = 'events_app';
 
 return (
   <Widget
-    src={`/embed/${APP_OWNER}/widget/app__frame`}
+    src={`${APP_OWNER}/widget/app__frame`}
     props={{
       ...props,
       appOwner: APP_OWNER,
