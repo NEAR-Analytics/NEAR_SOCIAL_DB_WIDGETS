@@ -301,7 +301,7 @@ function renderComponent(name, props) {
 
   const uid = getUid();
 
-  const componentProps = {
+  const engineProps = {
     routing: {
       push,
       pop,
@@ -327,29 +327,38 @@ function renderComponent(name, props) {
       uid,
       callbacks: [],
       addCallback: (callback) => {
-        componentProps._.callbacks.push(callback);
+        engineProps._.callbacks.push(callback);
       },
     },
   };
 
   const key = props && props.key ? props.key : name;
 
-  const widget = (
-    <Widget
-      src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
-      key={key}
-      props={componentProps}
-    />
-  );
+  // const widget = (
+  //   <Widget
+  //     src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
+  //     key={key}
+  //     props={engineProps}
+  //   />
+  // );
 
-  componentProps.engine.registerLayout = (lname, lprops) => {
-    componentProps.layout = lname;
-    componentProps.layoutProps = lprops;
-    componentProps.layoutCallback();
+  engineProps.engine.registerLayout = (lname, lprops) => {
+    engineProps.layout = lname;
+    engineProps.layoutProps = lprops;
+    engineProps.layoutCallback();
   };
 
   return (
-    <Widget src={layoutFromName('_dynamic')} key={key} props={componentProps} />
+    <Widget
+      src={layoutFromName('_dynamic')}
+      key={key}
+      props={{
+        engineProps,
+        componentProps: {
+          ...(props || {}),
+        },
+      }}
+    />
   );
 
   // return (
