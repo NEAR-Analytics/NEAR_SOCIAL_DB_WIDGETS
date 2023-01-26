@@ -335,35 +335,34 @@ function renderComponent(name, props) {
     />
   );
 
-  componentProps.engine.registerLayout = (name, props) => {
-    componentProps.layout = name;
-    componentProps.layoutProps = props;
+  componentProps.engine.registerLayout = (lname, lprops) => {
+    componentProps.layout = lname;
+    componentProps.layoutProps = lprops;
     componentProps.layoutCallback();
   };
 
-  // guard to allow 'default' layout exit infinite render loop
-  if (_layoutName === 'none') {
-    return;
-  }
-
   return (
-    <Widget
-      src={layoutFromName(_layoutName)}
-      key={key}
-      props={{
-        ...componentProps,
-        __component: {
-          name: name,
-          props: {
-            ...(props || {}),
-            componentProps,
-          },
-          layout: innerLayout,
-          layoutProps: innerLayoutProps,
-        },
-      }}
-    />
+    <Widget src={layoutFromName('_dynamic')} key={key} props={componentProps} />
   );
+
+  // return (
+  //   <Widget
+  //     src={layoutFromName(_layoutName)}
+  //     key={key}
+  //     props={{
+  //       ...componentProps,
+  //       __component: {
+  //         name: name,
+  //         props: {
+  //           ...(props || {}),
+  //           componentProps,
+  //         },
+  //         layout: innerLayout,
+  //         layoutProps: innerLayoutProps,
+  //       },
+  //     }}
+  //   />
+  // );
 }
 
 return (
