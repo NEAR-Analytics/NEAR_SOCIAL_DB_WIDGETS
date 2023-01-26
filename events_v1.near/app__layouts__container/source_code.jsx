@@ -54,9 +54,23 @@ return (
         width: '100%',
       }}
     >
-      <div className="navbar navbar-expand-lg bg-light">
+      <div className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
+          {/* if back */}
+          {props.layoutProps.back ? (
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={() => {
+                props.routing.pop();
+              }}
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          ) : null}
+
           <h2 className="navbar-brand">{title}</h2>
+
           {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
         </div>
       </div>
