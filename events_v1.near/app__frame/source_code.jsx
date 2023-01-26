@@ -91,7 +91,7 @@ const Components = {
   Loading,
 };
 
-function rerender() {
+function reloadApp() {
   // HACK: force a re-render
   State.update({
     renderCycles: state.renderCycles + 1,
