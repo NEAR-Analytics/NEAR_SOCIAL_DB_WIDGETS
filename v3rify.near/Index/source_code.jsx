@@ -27,33 +27,35 @@ const result = state.show ? (
 ) : null;
 
 return (
-  <div className="card">
-    <div className="card-body">
-      <label htmlFor="search">Check:</label>
-      <input
-        type="text"
-        role="search"
-        id="search"
-        placeholder="near.org"
-        value={state.query}
-        onChange={(e) => State.update({ query: e.target.value })}
-      />
+  <div>
+    <div className="card">
+      <div className="card-body">
+        <label htmlFor="search">Check:</label>
+        <input
+          type="text"
+          role="search"
+          id="search"
+          placeholder="near.org"
+          value={state.query}
+          onChange={(e) => State.update({ query: e.target.value })}
+        />
 
-      <a
-        role="button"
-        className="btn btn-primary mt-2"
-        // href={`https://near.social/#/v3rify.near/widget/Index?query=${state.query}`}
-        onClick={() =>
-          Near.asyncView(
-            "v3rify.near",
-            "get_verification",
-            { entry_id: state.query },
-            "final"
-          ).then((result) => State.update({ result, show: true }))
-        }
-      >
-        Check
-      </a>
+        <a
+          role="button"
+          className="btn btn-primary mt-2"
+          // href={`https://near.social/#/v3rify.near/widget/Index?query=${state.query}`}
+          onClick={() =>
+            Near.asyncView(
+              "v3rify.near",
+              "get_verification",
+              { entry_id: state.query },
+              "final"
+            ).then((result) => State.update({ result, show: true }))
+          }
+        >
+          Check
+        </a>
+      </div>
     </div>
     {result}
   </div>
