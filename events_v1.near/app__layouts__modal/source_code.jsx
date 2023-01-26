@@ -65,7 +65,7 @@ return (
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
                 zIndex: 10,
                 backdropFilter: 'blur(10px)',
-                borderRadius: `${BORDER_RADIUS}px ${BORDER_RADIUS}px 0 0`,
+                borderRadius: `0 ${BORDER_RADIUS}px 0 0`,
               }}
             >
               {title}
