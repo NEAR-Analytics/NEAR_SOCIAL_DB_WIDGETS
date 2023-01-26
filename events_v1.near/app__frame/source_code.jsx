@@ -9,6 +9,8 @@ if (!accountId) {
   return 'Please connect your NEAR wallet to continue.';
 }
 
+console.log('props', props);
+
 const env = {
   APP_OWNER,
   APP_NAME,
@@ -17,6 +19,7 @@ const env = {
 // TODO: get layers from URL
 State.init({
   env,
+  renderCycles: 0,
   layers: [
     {
       name: ENTRY_ROUTE,
@@ -123,14 +126,13 @@ function renderComponent(name, props, layout, layoutProps) {
     },
     Components,
     accountId,
-    env,
     VERSION,
     layout: _layoutName,
     layoutProps: layoutProps || {},
   };
   // const key = props && props.key ? props.key : name;
 
-  return (
+  const widget = (
     <Widget
       src={layoutFromName(_layoutName)}
       props={{
@@ -142,6 +144,13 @@ function renderComponent(name, props, layout, layoutProps) {
       }}
     />
   );
+
+  // HACK: force a re-render
+  State.update({
+    renderCycles: state.renderCycles + 1,
+  });
+
+  return widget;
 }
 
 return (
@@ -185,7 +194,7 @@ return (
         right: 0,
         bottom: 0,
         padding: 0,
-        zIndex: index + 10000,
+        zIndex: 10000,
         overflow: 'auto',
       }}
     >
