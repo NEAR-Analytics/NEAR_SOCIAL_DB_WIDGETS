@@ -1,3 +1,9 @@
+const accountId = props.accountId || context.accountId;
+
+if (!accountId) {
+  return `Not connected...`;
+}
+
 const data = fetch("https://graph.mintbase.xyz", {
   method: "POST",
   headers: {
@@ -8,10 +14,16 @@ const data = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_store_minters(limit: 10) {
-          minter_id
-        }
-      }`,
+        mb_views_active_listings(limit: 10, order_by: {created_at: desc}, where: {market_id: {_eq: "simple.market.mintbase1.near"}}) {
+            listed_by
+            created_at
+            price
+            nft_contract_id
+            token_id
+            metadata_id
+        }   
+      }
+`,
   }),
 });
 
@@ -19,4 +31,52 @@ if (!data.ok) {
   return "Loading";
 }
 
-return data !== null ? <div>Marketplace</div> : <p>loading...</p>;
+const size = "10em";
+
+return data !== null ? (
+  <>
+    <h1>My Market</h1>
+    <p>Buying from this widget will redirect 1.25% of the sale for me.</p>
+    <div className="d-flex gap-4 flex-wrap">
+      {data.body.data?.mb_views_active_listings.map((listing, i) => {
+        const priceNear = (listing.price / 1e24)
+          .toLocaleString()
+          .replace(/,/g, "");
+        const priceYocto = listing.price.toLocaleString().replace(/,/g, "");
+
+        return (
+          <div className="d-flex flex-column gap-1">
+            <Widget
+              src="mob.near/widget/NftImage"
+              props={{
+                nft: {
+                  tokenId: listing.token_id,
+                  contractId: listing.nft_contract_id,
+                },
+                style: {
+                  width: size,
+                  height: size,
+                  objectFit: "cover",
+                  minWidth: size,
+                  minHeight: size,
+                  maxWidth: size,
+                  maxHeight: size,
+                  overflowWrap: "break-word",
+                },
+                thumbnail: "thumbnail",
+                className: "",
+                fallbackUrl:
+                  "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+              }}
+            />
+            <button onClick={() => console.log(1)}>
+              Buy for {priceNear} N
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  </>
+) : (
+  <p>loading...</p>
+);
