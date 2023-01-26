@@ -1,5 +1,5 @@
 const NAVBAR_HEIGHT = 64;
-const NAVBAR_OFFSET_TOP = 72;
+const NAVBAR_OFFSET_TOP = 0;
 
 const title = props.layoutProps.title ?? '';
 const dropdownItems = props.layoutProps.dropdownItems ?? [];
