@@ -1,6 +1,6 @@
 const accountId = props.accountId || context.accountId;
 const marketId = "simple.market.mintbase1.near";
-const AFFILIATE_ACCOUNT = "microchipgnu.near";
+const AFFILIATE_ACCOUNT = props.affiliateAccount || "microchipgnu.near";
 
 if (!accountId) {
   return `Not connected...`;
