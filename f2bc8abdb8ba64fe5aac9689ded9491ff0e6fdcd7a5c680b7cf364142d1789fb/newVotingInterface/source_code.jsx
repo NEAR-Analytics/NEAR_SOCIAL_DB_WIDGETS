@@ -336,7 +336,7 @@ const renderModal = () => {
 };
 
 /********** End components ************/
-console.log("poll: ", state.poll);
+
 /********** Start rendering ************/
 return (
   <div>
