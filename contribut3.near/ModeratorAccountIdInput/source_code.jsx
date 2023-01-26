@@ -6,8 +6,7 @@ const update = props.update;
 
 const formatDate = (timestampString) => {
   const date = new Date(Number(timestampString));
-  return `${date.getFullYear()}-${date
-    .getMonth()
+  return `${date.getFullYear()}-${(date.getMonth() + 1)
     .toString()
     .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 };
