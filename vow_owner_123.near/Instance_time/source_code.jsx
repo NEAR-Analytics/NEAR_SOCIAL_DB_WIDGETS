@@ -1,3 +1,19 @@
+const data = Social.index("Instance_time", "data");
+if (!data) {
+  return "Loading datas";
+}
+var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+var accountIds = ["All"];
+var final = {};
+
+for (let i = 0; i < sortedData.length; i++) {
+  if (accountIds.indexOf(sortedData[i].accountId) < 0) {
+    accountIds.push(sortedData[i].accountId);
+    if (sortedData[i].accountId == context.accountId) {
+      final = sortedData[i];
+    }
+  }
+}
 const tabs = {
   ALL_SCHEDULE: { id: 0, text: "Create Schedule" },
   NEW_SCHEDULE: { id: 1, text: "View All Schedules" },
@@ -44,21 +60,8 @@ State.init({
   tab: tabs.ALL_SCHEDULE.id,
   hoveringElement: "",
   _account: "All",
-  _time_zone: "(UTC+00:00) UTC",
+  _time_zone: final._time_zone ?? "(UTC+00:00) UTC",
 });
-
-const data = Social.index("Instance_time", "data");
-if (!data) {
-  return "Loading datas";
-}
-var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
-var accountIds = ["All"];
-
-for (let i = 0; i < sortedData.length; i++) {
-  if (accountIds.indexOf(sortedData[i].accountId) < 0) {
-    accountIds.push(sortedData[i].accountId);
-  }
-}
 
 const profile = Social.getr(`${context.accountId}/profile`);
 const flex_column = {
