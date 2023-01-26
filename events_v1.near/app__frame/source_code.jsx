@@ -326,6 +326,7 @@ function renderComponent(name, props, layout, layoutProps) {
     layoutProps: layoutProps || {},
     _: {
       uuid,
+      callbacks: [],
     },
   };
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
