@@ -30,7 +30,7 @@ return (
           height: '80%',
           maxWidth: 600,
           maxHeight: 600,
-          boxShadow: '0 0 40px -10px black',
+          boxShadow: '0 0 40px -10px rgba(0,0,0,0.5)',
           borderRadius: BORDER_RADIUS,
         }}
       >
