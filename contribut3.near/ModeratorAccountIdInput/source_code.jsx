@@ -3,6 +3,9 @@ const accountId = props.accountId;
 const fixed = props.fixed;
 const update = props.update;
 
+const getEntity = (account_id) =>
+  Near.view(ownerId, "get_entity", { account_id }, "final");
+
 return (
   <div className="col-lg-12 mb-2">
     Account ID of entity:
