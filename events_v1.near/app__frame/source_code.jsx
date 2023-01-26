@@ -9,8 +9,6 @@ if (!accountId) {
   return 'Please connect your NEAR wallet to continue.';
 }
 
-console.log('props', props);
-
 const env = {
   APP_OWNER,
   APP_NAME,
