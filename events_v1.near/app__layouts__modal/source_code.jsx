@@ -24,6 +24,7 @@ return (
           width: '80%',
           height: '80%',
           maxWidth: 600,
+          maxHeight: 600,
           padding: 32,
           borderRadius: 16,
         }}
