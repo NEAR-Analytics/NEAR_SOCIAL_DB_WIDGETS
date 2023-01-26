@@ -71,7 +71,7 @@ return (
                 <a className="nav-link disabled">Disabled</a>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            <div className="d-flex" role="search">
               <input
                 className="form-control me-2"
                 type="search"
@@ -81,7 +81,7 @@ return (
               <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
