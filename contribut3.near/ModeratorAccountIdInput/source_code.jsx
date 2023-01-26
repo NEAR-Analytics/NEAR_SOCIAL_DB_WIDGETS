@@ -15,22 +15,21 @@ return (
         const existing = args.account_id
           ? Near.asyncView(ownerId, "get_entity", args, "final")
           : null;
-        console.log(existing);
         const updatedState = {
           accountId,
         };
 
         if (existing) {
           updatedState.existing = existing;
-          updatedState.kind = [{ name: entity.kind }];
-          updatedState.entityStatus = [{ name: entity.status }];
+          updatedState.kind = [{ name: existing.kind }];
+          updatedState.entityStatus = [{ name: existing.status }];
           updatedState.startDate = new Date(
-            Number(entity.start_date)
+            Number(existing.start_date)
           ).toLocaleDateString();
 
           if (existing.end_date) {
             updatedState.endDate = new Date(
-              Number(entity.end_date)
+              Number(existing.end_date)
             ).toLocaleDateString();
           }
         }
