@@ -1,6 +1,3 @@
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events_app';
-
 let event = props.event || null;
 
 // return data;
