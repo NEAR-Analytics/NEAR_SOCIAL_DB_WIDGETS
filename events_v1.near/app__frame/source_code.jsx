@@ -286,6 +286,12 @@ function pop() {
   rerender();
 }
 
+function getUUID() {
+  const uid = storageGet('uuid', 0) + 1;
+  storageSet('uuid', uid);
+  return uid;
+}
+
 function renderComponent(name, props, layout, layoutProps) {
   console.log('renderComponent', name, props, layout, layoutProps);
   if (!name) {
