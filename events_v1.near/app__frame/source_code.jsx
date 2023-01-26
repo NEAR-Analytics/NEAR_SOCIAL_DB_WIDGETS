@@ -288,13 +288,6 @@ function pop() {
 
 function renderComponent(name, props, layout, layoutProps) {
   if (!name) {
-    console.log(
-      'Cannot render component without a name',
-      name,
-      props,
-      layout,
-      layoutProps
-    );
     return null;
   }
   console.log('renderComponent', name, props, layout, layoutProps);
