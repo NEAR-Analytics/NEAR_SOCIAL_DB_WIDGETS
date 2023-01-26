@@ -325,7 +325,8 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayoutDef = {
     innerLayout: 'default',
     innerLayoutProps: {},
-    ...(layoutProps || {})};
+    ...(layoutProps || {}),
+  };
 
   return (
     <Widget
@@ -336,8 +337,8 @@ function renderComponent(name, props, layout, layoutProps) {
         component: {
           src: name,
           props: componentProps,
-          innerLayoutDef.innerLayout,
-          innerLayoutDef.innerLayoutProps,
+          layout: innerLayoutDef.innerLayout,
+          layoutProps: innerLayoutDef.innerLayoutProps,
         },
       }}
     />
