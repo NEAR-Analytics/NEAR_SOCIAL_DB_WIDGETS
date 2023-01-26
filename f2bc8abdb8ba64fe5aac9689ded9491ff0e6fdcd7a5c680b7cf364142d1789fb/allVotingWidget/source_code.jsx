@@ -321,8 +321,8 @@ const renderAnswers = (questionNumber) => {
     <Widget
       src={`${widgetOwner}/widget/answer_poll-comment-container`}
       props={{
-        answers: validAnswersToThisPoll,
         questionNumber,
+        answers: validAnswersToThisPoll,
       }}
     />
   );
