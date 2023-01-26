@@ -9,34 +9,15 @@ if (profile === null) {
   return "Loadig";
 }
 
-const test = Social.keys("*/wikiTest/articles", "final");
-console.log("test ", test);
+const wikiTestData = Social.get("*/wikiTest/articles/**", "final");
+const wikiTestArr = wikiTestData && Object.values(wikiTestData);
+const resultArticles =
+  wikiTestArr &&
+  wikiTestArr.reduce(
+    (acc, account) => acc.concat(Object.values(account.wikiTest.articles)),
+    []
+  );
 
-const test4 = Near.view("social.near", "get", {
-  keys: ["vanjule.near/**", "vanyog.near/**"],
-});
-// console.log("test4", test4);
-
-const testArray = test && Object.keys(test);
-const resultArticles = [];
-
-// TODO make better checks for  data
-!resultArticles.length &&
-  testArray &&
-  testArray.forEach((item, index, arr) => {
-    console.log("item", item);
-    const data = Near.view("social.near", "get", {
-      keys: [`${item}/wikiTest/articles/**`],
-    });
-    console.log("data", data[item].wikiTest.articles);
-    const articles = data && Object.keys(data[item].wikiTest.articles);
-    const array =
-      data &&
-      articles.map((key) => {
-        return data[item].wikiTest.articles[key];
-      });
-    data && resultArticles.push(...array);
-  });
 resultArticles.length &&
   resultArticles.sort((a, b) => {
     return Number(b.timeLastEdit) - Number(a.timeLastEdit);
@@ -163,9 +144,9 @@ const handleAuthor = (e, authorId) => {
 };
 
 const getDate = (timestamp) => {
-  console.log("timestamp", timestamp);
+  //console.log("timestamp", timestamp);
   const date = new Date(Number(timestamp));
-  console.log("getDate ", date.toDateString());
+  //console.log("getDate ", date.toDateString());
   return date.toDateString();
 };
 
@@ -178,7 +159,7 @@ const saveArticle = (args) => {
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
   };
-  console.log("newArticleData", newArticleData);
+  //console.log("newArticleData", newArticleData);
 
   Social.set({
     wikiTest: {
@@ -190,7 +171,7 @@ const saveArticle = (args) => {
 const getDateLastEdit = (timestamp) => {
   const date = new Date(Number(timestamp));
   const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
-  console.log("getDateLastEdit ", dateString);
+  //console.log("getDateLastEdit ", dateString);
   return dateString;
 };
 
@@ -198,8 +179,8 @@ const getAuthors = () => {
   const authors = Array.from(resultArticles, ({ author }) => author);
   const uniqAuthors = Array.from(new Set(authors));
 
-  console.log("authors", authors);
-  console.log("uniqAuthors", uniqAuthors);
+  //console.log("authors", authors);
+  //console.log("uniqAuthors", uniqAuthors);
 
   return (
     <>
@@ -243,7 +224,7 @@ return (
                 editArticle: false,
                 currentTab: key,
               });
-              console.log("state", state);
+              //("state", state);
             }}
           >
             {title}
