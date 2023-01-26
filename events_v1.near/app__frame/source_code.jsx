@@ -19,7 +19,7 @@ const env = {
 // TODO: get layers from URL
 State.init({
   env,
-  renderCycles: state ? state.renderCycles + 1 : 0,
+  renderCycles: state ? state.renderCycles + 1 : 1,
   layers: [
     {
       name: ENTRY_ROUTE,
@@ -87,7 +87,7 @@ const Components = {
   Loading,
 };
 
-function reloadApp() {
+function rerender() {
   // HACK: force a re-render
   State.update({
     renderCycles: state.renderCycles + 1,
@@ -108,7 +108,7 @@ function push(name, props, layout, layoutProps) {
     layers: newLayers,
   });
 
-  reloadApp();
+  rerender();
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -117,7 +117,7 @@ function pop() {
     layers: state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers,
   });
 
-  reloadApp();
+  rerender();
 }
 
 const routing = {
