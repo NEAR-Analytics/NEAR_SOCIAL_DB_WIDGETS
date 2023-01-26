@@ -59,7 +59,7 @@ return (
           height: 72,
         }}
       >
-        <div className="container-fluid h-100">
+        <div className="container-fluid h-100 flex">
           {/* if back */}
           {props.layoutProps.back ? (
             <button
@@ -72,6 +72,7 @@ return (
                 height: '100%',
                 border: 'none',
                 outline: 'none',
+                width: 72,
               }}
               type="button"
               onClick={() => {
