@@ -50,12 +50,12 @@ return (
               width: 48,
               border: 'none',
               outline: 'none',
-              background: 'blue',
               padding: '0',
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
               borderRadius: '0 0 0 16px',
+              textShadow: '0.5px 0.5px 0.5px #ccc, -0.5px -0.5px 0.5px #ccc',
             }}
             onClick={() => {
               props.routing.pop();
