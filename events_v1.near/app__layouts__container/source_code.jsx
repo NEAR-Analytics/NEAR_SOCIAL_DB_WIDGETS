@@ -2,10 +2,10 @@ const title = props.layoutProps.title ?? '';
 
 const items = props.layoutProps.items ?? [];
 
-
-const Dropdown = items && items.length > 0 ? (
-  <>
-     <button
+const Dropdown =
+  items && items.length > 0 ? (
+    <>
+      <button
         className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
@@ -27,8 +27,7 @@ const Dropdown = items && items.length > 0 ? (
         </ul>
       </div>
     </>
-)
-
+  ) : null;
 
 return (
   <>
@@ -42,8 +41,7 @@ return (
         <div className="container-fluid">
           <h2 className="navbar-brand">{title}</h2>
 
-          {(items && items.length > 0) ? Dropdown : null}
-          
+          {items && items.length > 0 ? Dropdown : null}
         </div>
       </div>
 
