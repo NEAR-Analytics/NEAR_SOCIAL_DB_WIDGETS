@@ -50,8 +50,8 @@ if (props.data.schedule) {
   for (var i = 0; i < 7; i++) {
     is_on[i] = props.data.schedule[i].on_off;
     if (is_on[i] == "on") {
-      _from[i] = getFormatedTime(props.data.schedule.data[0]._from);
-      _to[i] = getFormatedTime(props.data.schedule.data[0]._to);
+      _from[i] = getFormatedTime(props.data.schedule[i].data[0]._from);
+      _to[i] = getFormatedTime(props.data.schedule[i].data[0]._to);
     }
   }
   console.log("props.data: ", is_on, _from, _to);
