@@ -1,4 +1,4 @@
-const VERSION = '{{ env.VERSION }}';
+const VERSION = '0.1.0';
 
 /**
  *  NEAR Social App
@@ -218,8 +218,8 @@ function rerender() {
   });
 }
 
-function persistState() {
-  Storage.set('global__state', state ? JSON.stringify(state) : null);
+function persistState(currentRoute) {
+  Storage.set('currentRoute', currentRoute);
 }
 
 function push(name, props, layout, layoutProps) {
@@ -232,10 +232,7 @@ function push(name, props, layout, layoutProps) {
   };
   const newLayers = [...state.layers, layer];
 
-  Storage.set({
-    key: 'layers',
-    value: JSON.stringify(newLayers),
-  });
+  persistState(newLayers[newLayers.length - 1]);
 
   State.update({
     layers: newLayers,
@@ -246,9 +243,14 @@ function push(name, props, layout, layoutProps) {
 
 // pop from the stack, ensure we always have at least one layer
 function pop() {
-  State.update({
+  const newLayers =
     // eslint-disable-next-line no-magic-numbers
-    layers: state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers,
+    state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
+
+  persistState(newLayers[newLayers.length - 1]);
+
+  State.update({
+    layers: newLayers,
   });
 
   rerender();
