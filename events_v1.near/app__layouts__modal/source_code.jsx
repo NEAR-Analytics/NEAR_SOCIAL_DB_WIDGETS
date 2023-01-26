@@ -55,7 +55,8 @@ return (
               color: 'black',
               fontSize: 32,
               borderRadius: '0 0 0 16px',
-              textShadow: '0.5px 0.5px 0.5px #ccc, -0.5px -0.5px 0.5px #ccc',
+              textShadow:
+                '0.5px 0.5px 0.5px #ccc, -0.5px -0.5px 0.5px #ccc, 0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
             }}
             onClick={() => {
               props.routing.pop();
@@ -90,6 +91,7 @@ return (
             style={{ height: '100%', overflowY: 'scroll', overflowX: 'hidden' }}
           >
             {props.component.name}
+            {props.component.layout}
             {props.engine.renderComponent(
               props.component.name,
               props.component.props,
