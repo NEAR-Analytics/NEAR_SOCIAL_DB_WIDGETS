@@ -73,26 +73,31 @@ function gotoEvent() {
   props.routing.push('show', { event_id: event.id }, 'container', {
     title: event.name,
     back: true,
-    // dropdownItems: [
-    //   {
-    //     label: 'Edit',
-    //     onClick: () => {
-    //       props.routing.push('edit', { event_id: event.id }, 'container', {
-    //         title: 'Edit Event',
-    //         back: true,
-    //       });
-    //     },
-    //   },
-    //   {
-    //     label: 'Delete',
-    //     onClick: () => {
-    //       props.routing.push('delete', { event_id: event.id }, 'container', {
-    //         title: 'Delete Event',
-    //         back: true,
-    //       });
-    //     },
-    //   },
-    // ],
+    dropdownItems: [
+      {
+        component: 'components.dropdown_item',
+        props: {
+          label: 'Edit',
+          onClick: () => {
+            props.routing.push('edit', { event_id: event.id }, 'container', {
+              title: 'Edit Event',
+              back: true,
+            });
+          },
+        },
+        layout: 'app.layouts.dropdown_item',
+        layoutProps: {},
+      },
+      {
+        label: 'Delete',
+        onClick: () => {
+          props.routing.push('delete', { event_id: event.id }, 'container', {
+            title: 'Delete Event',
+            back: true,
+          });
+        },
+      },
+    ],
   });
 }
 
