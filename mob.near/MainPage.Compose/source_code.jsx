@@ -3,7 +3,7 @@ if (!context.accountId) {
 }
 
 const composeData = () => {
-  return {
+  const data = {
     post: {
       main: JSON.stringify(state.content),
     },
@@ -16,6 +16,19 @@ const composeData = () => {
       }),
     },
   };
+
+  const notifications = state.extractTagNotifications(state.content.text, {
+    type: "social",
+    path: `${context.accountId}/post/main`,
+  });
+
+  if (notifications.length) {
+    data.index.notify = JSON.stringify(
+      notifications.length > 1 ? notifications : notifications[0]
+    );
+  }
+
+  return data;
 };
 
 State.init({
@@ -31,6 +44,9 @@ return (
       props={{
         placeholder: "What's happening?",
         onChange: state.onChange,
+        onHelper: ({ extractTagNotifications }) => {
+          State.update({ extractTagNotifications });
+        },
         composeButton: (onCompose) => (
           <CommitButton
             disabled={!state.content}
