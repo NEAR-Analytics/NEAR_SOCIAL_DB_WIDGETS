@@ -482,9 +482,10 @@ const renderMultipleChoiceInput = (
 };
 
 const renderTextInput = (questionNumber) => {
+  console.log("hasVoted: ", hasVoted);
   return (
     <div>
-      {hasVoted || !state.justVoted ? (
+      {hasVoted || state.justVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -534,14 +535,13 @@ return (
             </h4>
           </div>
 
-          {(!hasVoted || !state.justVoted) &&
+          {(!hasVoted || state.justVoted) &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : (!hasVoted || !state.justVoted) &&
-            question.questionType == "2" ? (
+          ) : (!hasVoted || state.justVoted) && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            (!hasVoted || !state.justVoted) && (
+            (!hasVoted || state.justVoted) && (
               <p className="mb-1">Write your answer:</p>
             )
           )}
@@ -559,7 +559,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      hasVoted || !state.justVoted ? (
+      hasVoted || state.justVoted ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
