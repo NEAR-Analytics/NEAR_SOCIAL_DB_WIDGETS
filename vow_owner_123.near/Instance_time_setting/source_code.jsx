@@ -357,7 +357,7 @@ return (
           ) : (
             <a
               href={
-                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
+                "https://near.social/#/vow_owner_123.near/widget/Instance_time?refreshed=true"
               }
               style={{
                 margin: "2rem",
