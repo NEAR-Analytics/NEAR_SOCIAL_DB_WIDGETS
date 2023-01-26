@@ -4,7 +4,7 @@ const APP_NAME = 'events_app';
 
 // accountID is used to determine for whom the events are displayed
 // if no accountID is provided, all events are displayed
-const accountId = props.viewAccountId;
+const accountId = props.forAccountId;
 
 let events = [];
 if (accountId === undefined) {
