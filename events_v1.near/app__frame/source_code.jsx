@@ -5,17 +5,26 @@ const VERSION = '0.0.2';
  *
  *  This is the main app component that is used to render the app.
  *
- *  It is responsible for:
+ *
+ *  WHY?
+ *  - DRY: we don't want to have to copy/paste the same code into every app
+ *  - Speed: we want to be able to build apps quickly
+ *  - Functionality: we want to be able to add functionality to all apps at once
+ *
+ *
+ *  HOW?
+ *
+ *  This component is responsible for:
  *  - Loading the app's state/environment
  *  - Rendering the app's layouts
  *  - Rendering the app's components
  *
- *  It follows conventsions:
+ *  It follows conventions:
  *  - The app's environment is loaded from the props
  *    - props.appOwner
  *    - props.appName
  *  - An app is a collection of widgets
- *  - each widgets must be namespaced by the app's owner and name
+ *  - each widget must be namespaced by the app's owner and name
  *     Widgets are named as follows:
  *       - you choose an app_name like 'my_app'
  *       - you choose a widget like 'my_widget'
@@ -32,6 +41,13 @@ const VERSION = '0.0.2';
  *           - NOTE: the layouts can be shared across apps, so they are namespaced within 'app' **not** the app's name
  *        - the corresponding widget must be uploaded to your account with the name: `my_app__my_widget__subcomponent`
  *    - layouts are also rendered as widgets and get passed the same props as the widget they are rendering
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  *
  *
  *  Functions available to widgets:
