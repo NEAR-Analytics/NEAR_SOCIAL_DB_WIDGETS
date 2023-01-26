@@ -291,7 +291,7 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
   console.log('renderComponent', name, props, layout, layoutProps);
-  const _layoutName = layout || 'none';
+  const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
     routing: {
@@ -322,10 +322,10 @@ function renderComponent(name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
-  const innerLayout = (layoutProps || {}).innerLayout || 'none';
+  const innerLayout = (layoutProps || {}).innerLayout || 'default';
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
 
-  // guard to allow 'default' layout to exit infinite loop
+  // guard to allow 'default' layout exit infinite render loop
   if (layout === 'none') {
     return <Widget src={slugFromName(name)} key={key} props={componentProps} />;
   }
