@@ -20,7 +20,9 @@ const getFormatedTime = (time) => {
   const mins = (time - hours) * 60;
   const formated =
     hours > 12
-      ? `${hours - 12 < 10 && "0"}${hours - 12}:${mins == 0 ? "00" : mins} PM`
+      ? `${hours - 12 < 10 ? "0" : ""}${hours - 12}:${
+          mins == 0 ? "00" : mins
+        } PM`
       : `${hours < 10 ? "0" : ""}${hours}:${mins == 0 ? "00" : mins} AM`;
   return formated;
 };
