@@ -214,10 +214,11 @@ function persistRoutingInformation(newState) {
 }
 
 function loadRoutingInfo() {
+  console.log('loadRoutingInfo', storageGet('routing', null));
   return storageGet('routing', null);
 }
-const lastRoute = loadRoutingInfo();
-const hasLastRouteAndIsDifferent = lastRoute;
+
+loadRoutingInfo();
 
 function slugFromName(name) {
   // console.log('slugFromName', name);
