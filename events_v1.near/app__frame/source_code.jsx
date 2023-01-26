@@ -38,6 +38,7 @@ function slugFromName(name) {
 }
 
 function layoutFromName(name) {
+  console.log('layoutFromName', name);
   return `${APP_OWNER}/widget/app__layouts__${slugFromName(name)}`;
 }
 
@@ -114,6 +115,7 @@ const routing = {
 };
 
 function engine() {
+  console.log('engine');
   return {
     renderComponent,
   };
