@@ -238,17 +238,15 @@ function pop() {
   rerender();
 }
 
-const routing = {
-  push,
-  pop,
-};
-
 function renderComponent(name, props, layout, layoutProps) {
   console.log('renderComponent', name, props, layout, layoutProps);
   const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
-    routing,
+    routing: {
+      push,
+      pop,
+    },
     engine: {
       renderComponent,
       rerender,
