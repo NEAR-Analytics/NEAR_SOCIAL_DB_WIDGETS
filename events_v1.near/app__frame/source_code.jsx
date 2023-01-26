@@ -291,7 +291,7 @@ function renderComponent(name, props, layout, layoutProps) {
   if (!name) {
     return null;
   }
-  // console.log('renderComponent', name, props, layout, layoutProps);
+  console.log('renderComponent', name, props, layout, layoutProps);
   const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
@@ -375,6 +375,8 @@ return (
             overflow: 'auto',
           }}
         >
+          {layer.name}
+          {layer.layout}
           {renderComponent(
             layer.name,
             layer.props,
