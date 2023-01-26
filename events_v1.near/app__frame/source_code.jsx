@@ -205,20 +205,25 @@ State.init({
 });
 
 if (!state) {
-  return '';
+  return 'Loading...';
 }
+
+function restoreRoutes() {
+  const info = storageGet('routing', null);
+  console.log('restoreRoutes', info);
+  if (info == null || info === undefined) {
+    return;
+  }
+
+  return storageGet('routing', null);
+}
+
+restoreRoutes();
 
 function persistRoutingInformation(newState) {
   console.log('persistRoutingInformation', newState);
   storageSet('routing', newState);
 }
-
-function loadRoutingInfo() {
-  console.log('loadRoutingInfo', storageGet('routing', null));
-  return storageGet('routing', null);
-}
-
-loadRoutingInfo();
 
 function slugFromName(name) {
   // console.log('slugFromName', name);
