@@ -57,7 +57,7 @@ function slugFromName(name) {
 
 function layoutFromName(name) {
   // console.log('layoutFromName', name);
-  return `${APP_OWNER}/widget/app__layouts__${slugFromName(name)}`;
+  return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
 const Select = styled.select`
