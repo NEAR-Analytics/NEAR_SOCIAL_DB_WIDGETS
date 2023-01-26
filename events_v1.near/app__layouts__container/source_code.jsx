@@ -2,20 +2,9 @@ const title = props.layoutProps.title ?? '';
 
 const items = props.layoutProps.items ?? [];
 
-return (
-  <>
-    <div
-      className="container-fluid"
-      style={{
-        width: '100%',
-      }}
-    >
-      <div className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <h2 className="navbar-brand">{title}</h2>
 
-          {items && items.length > 0 && (
-            <>
+const Dropdown = items && items.length > 0 ? (
+  <>
             <button
             className="navbar-toggler"
             type="button"
@@ -87,7 +76,23 @@ return (
               </button>
             </div>
           </div>  
-        </>) : null}
+        </>
+)
+
+
+return (
+  <>
+    <div
+      className="container-fluid"
+      style={{
+        width: '100%',
+      }}
+    >
+      <div className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <h2 className="navbar-brand">{title}</h2>
+
+          {(items && items.length > 0) ? Dropdown : null}
           
         </div>
       </div>
