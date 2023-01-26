@@ -35,27 +35,55 @@ return (
           boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
         }}
       >
-        {title ? (
-          <div
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            position: 'relative',
+          }}
+        >
+          {/* close button */}
+          <button
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 32,
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              border: 'none',
+              outline: 'none',
+              background: 'transparent',
+              padding: 16,
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              props.routing.pop();
             }}
           >
-            {title}
-          </div>
-        ) : null}
+            &times;
+          </button>
 
-        {/* container */}
-        <div style={{ height: '100%', overflow: 'scroll' }}>
-          {props.engine.renderComponent(
-            props.component.name,
-            props.component.props,
-            props.component.layout,
-            props.component.layoutProps
-          )}
+          {/* title */}
+          {title ? (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: 32,
+              }}
+            >
+              {title}
+            </div>
+          ) : null}
+
+          {/* container */}
+          <div style={{ height: '100%', overflow: 'scroll' }}>
+            {props.engine.renderComponent(
+              props.component.name,
+              props.component.props,
+              props.component.layout,
+              props.component.layoutProps
+            )}
+          </div>
         </div>
       </div>
     </div>
