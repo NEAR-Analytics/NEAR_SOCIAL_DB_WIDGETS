@@ -210,7 +210,7 @@ if (!state) {
 
 function restoreRoutes() {
   const info = storageGet('routing', null);
-  console.log('restoreRoutes', info);
+  // console.log('restoreRoutes', info);
   if (info === null || info === undefined) {
     return;
   }
