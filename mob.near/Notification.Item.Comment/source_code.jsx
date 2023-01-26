@@ -1,4 +1,4 @@
-const { accountId, value } = props;
+const { accountId, blockHeight, value } = props;
 
 return (
   <Widget
