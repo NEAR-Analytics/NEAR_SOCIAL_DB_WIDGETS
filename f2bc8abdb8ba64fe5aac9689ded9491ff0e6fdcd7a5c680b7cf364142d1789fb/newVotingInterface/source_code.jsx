@@ -24,7 +24,7 @@ let shouldDisplayViewAll = props.shouldDisplayViewAll;
 let questionBlockHeight = Number(props.blockHeight);
 
 const polls =
-  !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
+  !props.previewInfo && Social.index("poll_question", "question-v3.1.1");
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
@@ -75,7 +75,7 @@ if (!profile) {
   return "Loading";
 }
 
-let pollsByThisCreator = Social.index("poll_question", "question-v3.1.0", {
+let pollsByThisCreator = Social.index("poll_question", "question-v3.1.1", {
   accountId: state.poll.accountId,
 });
 
@@ -136,7 +136,7 @@ function transformDateFormat(date) {
 }
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  const answers = Social.index("poll_question", "answer-v3.1.0");
+  const answers = Social.index("poll_question", "answer-v3.1.1");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
@@ -336,7 +336,7 @@ const renderModal = () => {
 };
 
 /********** End components ************/
-
+console.log("poll: ", state.poll);
 /********** Start rendering ************/
 return (
   <div>
@@ -477,10 +477,6 @@ return (
           </h3>
           <Markdown text={descriptionText(state.poll.value.description)} />
 
-          {/*<p style={{ fontSize: "0.9rem" }}>
-            {descriptionText(state.poll.value.description)}
-            
-          </p>*/}
           {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
             <div
