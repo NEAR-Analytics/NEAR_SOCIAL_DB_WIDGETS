@@ -79,12 +79,14 @@ return (
                 marginBottom: 0,
                 fontSize: 24,
                 fontWeight: 'bold',
-                backgroundColor: 'white',
+                backgroundColor: 'rgba(0,0,0,0.05)',
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
                 padding: '12px 16px',
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
+                zIndex: 100,
+                backdropFilter: 'blur(10px)',
               }}
             >
               {title}
