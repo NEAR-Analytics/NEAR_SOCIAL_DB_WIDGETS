@@ -6,7 +6,7 @@ const ENTRY_ROUTE = 'index';
 
 const accountId = context.accountId;
 if (!accountId) {
-  return 'Please connect your NEAR wallet';
+  return 'Please connect your NEAR wallet to continue.';
 }
 
 const env = {
@@ -84,8 +84,10 @@ const Components = {
 
 const currentRoute = state.layers[state.layers.length - 1];
 
-const engine = {
-  renderComponent,
+const engine = function () {
+  return {
+    renderComponent,
+  };
 };
 
 function push(name, props, layout, layoutProps) {
