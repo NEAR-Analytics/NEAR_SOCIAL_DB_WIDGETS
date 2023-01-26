@@ -54,6 +54,9 @@ return (
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
+              hover: {
+                color: 'red',
+              },
             }}
             onClick={() => {
               props.routing.pop();
