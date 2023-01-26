@@ -1,10 +1,9 @@
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events_app';
-const accountId = props.accountId ?? context.accountId;
+
+const accountId = props.accountId;
 
 const Button = props.Components.Button;
-
-console.log('props', props);
 
 return (
   <div>
@@ -21,12 +20,16 @@ return (
       Create new Event
     </Button>
 
-    <a
-      href={`#/${APP_OWNER}/widget/${APP_NAME}__index__list_container?accountId=${accountId}`}
-      className="TODO"
+    <Button
+      onClick={() => {
+        props.routing.push('index.list_container', {}, 'container', {
+          title: 'My Events',
+          back: true,
+        });
+      }}
     >
-      <Button>My events</Button>
-    </a>
+      My Events
+    </Button>
 
     <br />
 
