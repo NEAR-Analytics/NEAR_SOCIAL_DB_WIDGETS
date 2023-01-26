@@ -204,7 +204,7 @@ function getValidAnswers() {
 }
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.1.0");
+const answers = Social.index("poll_question", "answer-v3.1.1");
 
 if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
   State.update({ answers: answers });
@@ -257,7 +257,7 @@ const getPublicationParams = () => {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.1.0",
+          key: "answer-v3.1.1",
           value: {
             answer: state.vote,
             questionBlockHeight: props.poll.blockHeight,
