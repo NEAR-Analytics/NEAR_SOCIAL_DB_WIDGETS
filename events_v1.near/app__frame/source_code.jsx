@@ -32,13 +32,13 @@ if (!state) {
 }
 
 function slugFromName(name) {
-  console.log('slugFromName', name);
+  // console.log('slugFromName', name);
   return name.split('.').join('__');
   // return name.split(/\./gu).join('__');
 }
 
 function layoutFromName(name) {
-  console.log('layoutFromName', name);
+  // console.log('layoutFromName', name);
   return `${APP_OWNER}/widget/app__layouts__${slugFromName(name)}`;
 }
 
@@ -116,7 +116,7 @@ const routing = {
 
 // TODO: layouting, render widgets in widgets for maximum awesomeness
 function renderComponent(name, props, layout, layoutProps) {
-  console.log('renderComponent', name, props, layout, layoutProps);
+  // console.log('renderComponent', name, props, layout, layoutProps);
   const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
