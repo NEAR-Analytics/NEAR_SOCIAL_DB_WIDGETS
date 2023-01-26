@@ -1,6 +1,4 @@
-const NAVBAR_HEIGHT = 64;
-
-const title = props.layoutProps.title ?? null;
+const title = props.layoutProps.title || null;
 
 return (
   <>
