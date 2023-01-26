@@ -11,6 +11,7 @@ return (
         bottom: 0,
         zIndex: 1000,
         backgroundColor: 'rgba(0,0,0,0.5)',
+        overflow: 'scroll',
       }}
     >
       <div
