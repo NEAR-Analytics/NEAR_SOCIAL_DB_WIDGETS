@@ -73,7 +73,7 @@ console.log('event', event);
 console.log('props', props);
 
 function gotoEvent() {
-  props.engine.push('show', { event }, 'container', { title: event.name });
+  props.routing.push('show', { event }, 'container', { title: event.name });
 }
 
 return (
@@ -82,7 +82,9 @@ return (
       gotoEvent();
     }}
     onKeyDown={(e) => {
-      gotoEvent();
+      if (e.key === 'Enter') {
+        gotoEvent();
+      }
     }}
     className="text-decoration-none"
     role="button"
