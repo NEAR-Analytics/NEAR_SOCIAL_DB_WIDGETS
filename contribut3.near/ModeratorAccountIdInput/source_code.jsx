@@ -5,7 +5,7 @@ const update = props.update;
 
 const getEntity = (account_id) => {
   console.log(account_id);
-  Near.view(ownerId, "get_entity", { account_id }, "final");
+  return Near.view(ownerId, "get_entity", { account_id }, "final");
 };
 
 return (
