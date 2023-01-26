@@ -41,9 +41,10 @@ return (
   <>
     <div
       style={{
-        width: '100%',
+        width: '100vw',
         minHeight: '100%',
         backgroundColor: 'white',
+        overflow: 'auto',
       }}
     >
       <div
