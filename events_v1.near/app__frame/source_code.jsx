@@ -298,6 +298,7 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
   const _layoutName = layout || 'default';
+  const uuid = getUUID();
   const componentProps = {
     ...(props || {}),
     routing: {
@@ -323,6 +324,9 @@ function renderComponent(name, props, layout, layoutProps) {
     VERSION,
     layout: _layoutName,
     layoutProps: layoutProps || {},
+    _: {
+      uuid,
+    },
   };
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
