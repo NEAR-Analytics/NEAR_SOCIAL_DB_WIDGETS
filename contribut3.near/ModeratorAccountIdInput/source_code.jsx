@@ -23,14 +23,19 @@ return (
               updatedState.existing = existing;
               updatedState.kind = [{ name: existing.kind }];
               updatedState.entityStatus = [{ name: existing.status }];
-              updatedState.startDate = new Date(
-                Number(existing.start_date)
-              ).toDateString();
+              updatedState.startDate = new Date(Number(existing.start_date))
+                .toLocaleDateString()
+                .split("/")
+                .reverse()
+                .join("-");
 
               if (existing.end_date) {
-                updatedState.endDate = new Date(
-                  Number(existing.end_date)
-                ).toLocaleDateString();
+                updatedState.endDate = new Date(Number(existing.end_date))
+                  .toLocaleDateString()
+                  .toLocaleDateString()
+                  .split("/")
+                  .reverse()
+                  .join("-");
               }
             }
 
