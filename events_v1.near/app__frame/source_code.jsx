@@ -370,7 +370,7 @@ return (
             overflow: 'auto',
           }}
         >
-          hello world, something is no working... :&rbbrk;
+          hello world, something is no working... :(
           {renderComponent(
             layer.name,
             layer.props,
