@@ -1,7 +1,3 @@
-const {
-  resolveTypeReferenceDirective,
-} = require('@ts-morph/common/lib/typescript');
-
 const VERSION = '0.0.1';
 
 const APP_OWNER = 'events_v1.near';
