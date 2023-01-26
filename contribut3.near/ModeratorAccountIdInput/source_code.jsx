@@ -3,11 +3,6 @@ const accountId = props.accountId;
 const fixed = props.fixed;
 const update = props.update;
 
-const getEntity = (account_id) => {
-  console.log(account_id);
-  return Near.view(ownerId, "get_entity", { account_id }, "final");
-};
-
 return (
   <div className="col-lg-12 mb-2">
     Account ID of entity:
@@ -16,7 +11,12 @@ return (
       labelKey="name"
       onChange={(accountId) => {
         console.log(accountId[0].name);
-        const existing = getEntity(accountId[0].name);
+        const existing = Near.view(
+          ownerId,
+          "get_entity",
+          { account_id: accountId[0].name },
+          "final"
+        );
         const updatedState = {
           accountId,
         };
