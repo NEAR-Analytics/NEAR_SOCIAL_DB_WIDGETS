@@ -58,29 +58,27 @@ return (
       >
         <div className="container-fluid h-100 flex">
           <div className="d-flex">
-            {props.layoutProps.back ? (
-              <button
-                className=""
-                style={{
-                  color: 'black',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '100%',
-                  border: 'none',
-                  outline: 'none',
-                  background: 'transparent',
-                  width: NAVBAR_HEIGHT,
-                }}
-                type="button"
-                onClick={() => {
-                  console.log('back');
-                  props.routing.pop();
-                }}
-              >
-                &lt;
-              </button>
-            ) : null}
+            <button
+              className=""
+              style={{
+                color: 'black',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+                border: 'none',
+                outline: 'none',
+                background: 'transparent',
+                width: NAVBAR_HEIGHT,
+              }}
+              type="button"
+              onClick={() => {
+                console.log('back');
+                props.routing.pop();
+              }}
+            >
+              &lt;
+            </button>
 
             <h2 className="navbar-brand">{title}</h2>
           </div>
