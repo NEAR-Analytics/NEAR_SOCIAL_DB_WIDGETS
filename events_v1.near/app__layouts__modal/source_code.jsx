@@ -1,5 +1,4 @@
-const PADDING_TITLE_WITH = 64;
-const PADDING_TITLE_WITHOUT = 48;
+const PADDING_WITH_TITLE = 64;
 
 const title = props.layoutProps.title || null;
 
@@ -110,7 +109,7 @@ return (
               left: 0,
               right: 0,
               bottom: 0,
-              paddingTop: title ? PADDING_TITLE_WITH : PADDING_TITLE_WITHOUT,
+              paddingTop: title ? PADDING_WITH_TITLE : 0,
             }}
           >
             {props.engine.renderComponent(
