@@ -10,13 +10,9 @@ return (
       id="account-id-input"
       labelKey="name"
       onChange={(accountId) => {
-        console.log(accountId[0].name);
-        const existing = Near.view(
-          ownerId,
-          "get_entity",
-          { account_id: accountId[0].name },
-          "final"
-        );
+        const args = { account_id: accountId[0].name };
+        console.log(args);
+        const existing = Near.view(ownerId, "get_entity", args, "final");
         const updatedState = {
           accountId,
         };
