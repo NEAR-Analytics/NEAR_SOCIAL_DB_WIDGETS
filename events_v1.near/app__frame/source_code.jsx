@@ -316,6 +316,8 @@ function renderComponent(name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
+  console.log('renderComponent', _layoutName);
+
   return (
     <Widget
       src={layoutFromName(_layoutName)}
