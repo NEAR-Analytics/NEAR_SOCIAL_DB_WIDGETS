@@ -18,6 +18,7 @@ return (
         const updatedState = {
           accountId,
         };
+        console.log(existing);
 
         if (existing) {
           updatedState.existing = existing;
