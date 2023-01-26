@@ -348,7 +348,7 @@ function renderComponent(name, props) {
     // engineProps.layoutCallback();
   };
 
-  return (
+  widget = (
     <Widget
       src={layoutFromName('_dynamic')}
       key={key}
@@ -360,6 +360,8 @@ function renderComponent(name, props) {
       }}
     />
   );
+
+  return widget;
 
   // return (
   //   <Widget
