@@ -354,7 +354,7 @@ return (
             width: '100vw',
             height: '100vh',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 10000 - index,
+            zIndex: 10000 + index,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
