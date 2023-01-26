@@ -65,7 +65,7 @@ return (
         }}
       >
         <div className="container-fluid h-100 flex">
-          <div>
+          <div className="flex">
             {props.layoutProps.back ? (
               <button
                 className=""
