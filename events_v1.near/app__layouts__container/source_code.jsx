@@ -22,8 +22,21 @@ const Dropdown =
           {dropdownItems.map((item, idx) => {
             return (
               <li className="nav-item" key={idx}>
-                <a className="nav-link active" aria-current="page">
-                  {item}
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    props.routing.push(
+                      item.route,
+                      item.props,
+                      item.layout,
+                      item.layoutProps
+                    );
+                  }}
+                >
+                  {item.title}
                 </a>
               </li>
             );
