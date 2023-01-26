@@ -322,7 +322,14 @@ function renderComponent(name, props) {
       propIsRequiredMessage,
     },
     accountId,
-    uid,
+
+    _: {
+      uid,
+      callbacks: [],
+      addCallback: (callback) => {
+        componentProps._.callbacks.push(callback);
+      },
+    },
   };
 
   const key = props && props.key ? props.key : name;
