@@ -1,8 +1,8 @@
 const accountId = props.accountId;
 const widgetName = props.widgetName;
-const widgetPath = `${accountId}/widget/${widgetName}/metadata`;
+const widgetPath = `${accountId}/widget/${widgetName}`;
 const blockHeight = props.blockHeight;
-const metadata = Social.getr(widgetPath);
+const metadata = Social.getr(`${widgetPath}/metadata`);
 
 const name = metadata.name ?? widgetName;
 const image = metadata.image;
