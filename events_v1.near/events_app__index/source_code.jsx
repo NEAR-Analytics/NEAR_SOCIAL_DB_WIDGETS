@@ -4,6 +4,10 @@ const engine = props.engine();
 
 console.log('engine', engine);
 
+if(!engine){
+  return 'loading';
+}
+
 return (
   <div>
     <h1>Events</h1>
@@ -32,6 +36,6 @@ return (
 
     <br />
 
-    {JSON.stringify(engine, null, 2)}
+    {engine.renderComponent('index.list_container')
   </div>
 );
