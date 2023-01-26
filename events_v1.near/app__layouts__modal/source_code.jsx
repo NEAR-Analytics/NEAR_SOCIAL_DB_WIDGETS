@@ -73,13 +73,15 @@ return (
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: 32,
+                marginBottom: 12,
                 fontSize: 24,
                 fontWeight: 'bold',
                 backgroundColor: 'white',
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
+                padding: '12px 16px',
+                boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
               }}
             >
               {title}
