@@ -16,6 +16,15 @@ const sortAndRemoveRepeated = (flag, data) => {
   }
   return final;
 };
+const getFormatedTime = (time) => {
+  const hours = parseInt(time);
+  const mins = (time - hours) * 60;
+  let formated =
+    hours > 12
+      ? `${hours - 12}:${mins == 0 ? "00" : mins} PM`
+      : `${hours}:${mins == 0 ? "00" : mins} AM`;
+  return formated;
+};
 console.log("props.data: ", props.data);
 
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
@@ -124,16 +133,6 @@ const initialize = () => {
       }
 };
 initialize();
-const getFormatedTime = (time) => {
-  const hours = parseInt(time);
-  const mins = (time - hours) * 60;
-  let formated =
-    hours > 12
-      ? `${hours - 12}:${mins == 0 ? "00" : mins} PM`
-      : `${hours}:${mins == 0 ? "00" : mins} AM`;
-  return formated;
-};
-
 const validate = () => {
   var result = true;
   for (var i = 0; i < 7; i++) {
