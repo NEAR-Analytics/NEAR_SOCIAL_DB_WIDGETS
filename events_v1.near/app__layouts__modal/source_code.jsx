@@ -13,7 +13,7 @@ return (
         right: 0,
         bottom: 0,
         zIndex: 1000,
-        backgroundColor: 'rgba(255,255,255,0.85)',
+        backgroundColor: 'rgba(200,200,200,0.85)',
         overflow: 'hidden',
 
         backdropFilter: 'blur(20px) saturate(180%)',
