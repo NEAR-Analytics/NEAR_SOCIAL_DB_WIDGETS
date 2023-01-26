@@ -33,7 +33,7 @@ let buy = (price, token_id, nft_contract_id) => {
   const deposit = new Big(price).toFixed(0);
 
   Near.call(
-    contractId,
+    marketId,
     "buy",
     {
       nft_contract_id: nft_contract_id,
