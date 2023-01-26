@@ -260,6 +260,9 @@ function renderComponent(name, props, layout, layoutProps) {
       rerender,
     },
     Components,
+    helpers: {
+      propIsRequiredMessage,
+    },
     accountId,
     VERSION,
     layout: _layoutName,
