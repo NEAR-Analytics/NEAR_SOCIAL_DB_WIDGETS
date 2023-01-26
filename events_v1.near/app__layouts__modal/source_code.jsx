@@ -78,7 +78,7 @@ return (
           {/* container */}
           <div style={{ height: '100%', overflow: 'scroll' }}>
             {props.component.name}
-            {props.component.props}
+            {JSON.stringify(props.component.props)}
             {props.engine.renderComponent(
               props.component.name,
               props.component.props,
