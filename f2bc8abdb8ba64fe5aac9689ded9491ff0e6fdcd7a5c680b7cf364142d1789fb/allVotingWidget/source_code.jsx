@@ -505,8 +505,6 @@ const renderTextInput = (questionNumber) => {
   );
 };
 
-console.log("state.answers: ", state.answers);
-
 return (
   <>
     {poll.value.questions.map((question, questionNumber) => {
