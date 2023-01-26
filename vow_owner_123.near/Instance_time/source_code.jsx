@@ -5,6 +5,7 @@ if (!data) {
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var accountIds = ["All"];
 var finalData = {};
+var refreshed = props.refreshed;
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
@@ -252,7 +253,7 @@ return (
       </div>
     </div>
     <div className="align-items-center pt-3">
-      {state.tab == tabs.ALL_SCHEDULE.id ? (
+      {state.tab == tabs.ALL_SCHEDULE.id || refreshed ? (
         <Widget
           src={`vow_owner_123.near/widget/Instance_time_review`}
           props={{
