@@ -70,6 +70,8 @@ return (
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: '100%',
+                border: 'none',
+                outline: 'none',
               }}
               type="button"
               onClick={() => {
