@@ -291,7 +291,7 @@ function renderComponent(name, props, layout, layoutProps) {
   if (!name) {
     return null;
   }
-  const _layoutName = layout || 'default';
+  const _layoutName = layout || null;
   const componentProps = {
     ...(props || {}),
     engine: {
