@@ -4,6 +4,13 @@ const accountId = props.accountId;
 const fixed = props.fixed;
 const update = props.update;
 
+const formatDate = (timestampString) => {
+  const date = new Date(Number(timestampString));
+  return `${date.getFullYear()}-${date.getMonth().toPrecision(2)}-${date
+    .getDate()
+    .toPrecision(2)}`;
+};
+
 return (
   <div className="col-lg-12 mb-2">
     Account ID of entity:
@@ -23,19 +30,10 @@ return (
               updatedState.existing = existing;
               updatedState.kind = [{ name: existing.kind }];
               updatedState.entityStatus = [{ name: existing.status }];
-              updatedState.startDate = new Date(Number(existing.start_date))
-                .toLocaleDateString()
-                .split("/")
-                .reverse()
-                .join("-");
+              updatedState.startDate = formatDate(existing.start_date);
 
               if (existing.end_date) {
-                updatedState.endDate = new Date(Number(existing.end_date))
-                  .toLocaleDateString()
-                  .toLocaleDateString()
-                  .split("/")
-                  .reverse()
-                  .join("-");
+                updatedState.endDate = formatDate(existing.endDate);
               }
             }
 
