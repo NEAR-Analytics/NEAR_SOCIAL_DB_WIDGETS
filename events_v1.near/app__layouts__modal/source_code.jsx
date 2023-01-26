@@ -51,7 +51,7 @@ return (
               border: 'none',
               outline: 'none',
               background: 'blue',
-              padding: '0 8px',
+              padding: '0',
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
