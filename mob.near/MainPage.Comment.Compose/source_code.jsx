@@ -4,92 +4,65 @@ if (!context.accountId) {
 
 const item = props.item;
 
-State.init({
-  image: {},
-  text: "",
-});
-
-const content = (state.text || state.image.cid) && {
-  type: "md",
-  text: state.text,
-  image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
-};
-
-const onChange = (text) => {
-  State.update({
-    text,
-  });
-};
-
-const data = {
-  post: {
-    comment: JSON.stringify(Object.assign({ item }, content)),
-  },
-  index: {
-    comment: JSON.stringify({
-      key: item,
-      value: {
-        type: "md",
-      },
-    }),
-  },
-};
-
-if (props.notifyAccountId) {
-  data.index.notify = JSON.stringify({
-    key: props.notifyAccountId,
-    value: {
-      type: "comment",
-      item,
-    },
-  });
+if (!context.accountId) {
+  return "";
 }
+
+State.init({
+  composeData: ({ content }) => {
+    const data = {
+      post: {
+        comment: JSON.stringify(Object.assign({ item }, content)),
+      },
+      index: {
+        comment: JSON.stringify({
+          key: item,
+          value: {
+            type: "md",
+          },
+        }),
+      },
+    };
+
+    if (props.notifyAccountId) {
+      data.index.notify = JSON.stringify({
+        key: props.notifyAccountId,
+        value: {
+          type: "comment",
+          item,
+        },
+      });
+    }
+    return data;
+  },
+  onChange: ({ content }) => {
+    State.update({ content });
+  },
+  onCompose: () => {
+    props.onComment && props.onComment(state.content);
+  },
+});
 
 return (
   <>
-    <div className="text-bg-light rounded-4">
-      <div className="p-2">
-        <textarea
-          className="form-control border-0 text-bg-light w-100"
-          value={state.text || ""}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder="Reply"
-        />
-      </div>
-      <div className="d-flex flex-row p-2 border-top">
-        <div className="flex-grow-1">
-          <IpfsImageUpload
-            image={state.image}
-            className="btn btn-outline-secondary border-0 rounded-3"
-          />
-        </div>
-        <div>
-          <CommitButton
-            disabled={!content}
-            force
-            className="btn btn-dark rounded-3"
-            data={data}
-            onCommit={() => {
-              State.update({
-                image: {},
-                text: "",
-              });
-              props.onComment && props.onComment(content);
-            }}
-          >
-            Comment
-          </CommitButton>
-        </div>
-      </div>
-    </div>
-    {content && (
+    <Widget
+      src="mob.near/widget/Common.Compose"
+      props={{
+        composeData: state.composeData,
+        composeText: "Comment",
+        placeholder: "Reply",
+        onChange: state.onChange,
+        onCompose: state.onCompose,
+      }}
+    />
+    {state.content && (
       <div className="mt-3">
         <Widget
           src="mob.near/widget/MainPage.Comment"
           props={{
             item,
             accountId: context.accountId,
-            content,
+            content: state.content,
             blockHeight: "now",
           }}
         />
