@@ -32,7 +32,7 @@ return (
           maxHeight: 600,
 
           boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
-          borderRadius: 16,
+          borderRadius: BORDER_RADIUS,
         }}
       >
         <div
@@ -65,7 +65,7 @@ return (
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
                 zIndex: 10,
                 backdropFilter: 'blur(10px)',
-                borderRadius: `0 ${BORDER_RADIUS}px 0 0`,
+                borderRadius: `0 0 ${BORDER_RADIUS}px ${BORDER_RADIUS}px`,
               }}
             >
               {title}
@@ -87,7 +87,7 @@ return (
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
-              borderRadius: `${BORDER_RADIUS}px 0 0 ${BORDER_RADIUS}px`,
+              borderRadius: `0 ${BORDER_RADIUS}px 0 0 0`,
               textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
               lineHeight: '40px',
               zIndex: 1000,
