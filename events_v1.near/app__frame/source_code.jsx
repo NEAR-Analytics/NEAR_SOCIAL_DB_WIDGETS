@@ -144,7 +144,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   // keep it this way for now, instantly returning the widget
   // causes the app to not render/ update...
-  const widget = (
+  return (
     <Widget
       src={layoutFromName(_layoutName)}
       props={{
@@ -157,7 +157,6 @@ function renderComponent(name, props, layout, layoutProps) {
     />
   );
 
-  return widget;
 }
 
 return (
