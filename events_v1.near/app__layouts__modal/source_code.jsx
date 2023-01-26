@@ -57,6 +57,7 @@ return (
               fontSize: 32,
               borderRadius: '0 0 0 16px',
               textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
+              lineHeight: '40px',
             }}
             onClick={() => {
               props.routing.pop();
