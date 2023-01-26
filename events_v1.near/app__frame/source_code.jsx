@@ -140,7 +140,12 @@ function renderComponent(name, props, layout, layoutProps) {
     layout: _layoutName,
     layoutProps: layoutProps || {},
   };
-  const key = props && props.key ? props.key : name;
+  const key =
+    props && props.key
+      ? props.key
+      : layoutProps && layoutProps.key
+        ? layoutProps.key
+        : name;
 
   return (
     <Widget
