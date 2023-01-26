@@ -33,6 +33,8 @@ return (
 
     <br />
 
+    {renderComponent('index.list_container', {})}
+
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}__index__list_container`}
       props={{}}
