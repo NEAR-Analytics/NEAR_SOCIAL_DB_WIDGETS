@@ -119,12 +119,10 @@ function renderComponent(name, props, layout, layoutProps) {
   console.log('renderComponent', name, props, layout, layoutProps);
   const _layoutName = layout || 'default';
   const componentProps = {
-    ...props,
+    ...(props || {}),
     routing,
     engine: {
-      renderComponent: () => {
-        return 'renderComponent not implemented';
-      },
+      renderComponent,
     },
     Components,
     accountId,
