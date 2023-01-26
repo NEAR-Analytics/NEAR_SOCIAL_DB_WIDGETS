@@ -38,7 +38,6 @@ return (
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'stretch',
-            padding: 32,
             borderRadius: 16,
           }}
         >
