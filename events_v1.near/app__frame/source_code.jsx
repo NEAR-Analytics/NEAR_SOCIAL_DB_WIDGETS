@@ -183,6 +183,22 @@ const env = {
   VERSION,
 };
 
+function storageGet(prop, defaultValue) {
+  return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+}
+function storageSet(prop, value) {
+  return Storage.set(`${appOwner}.${appName}.${prop}`, value);
+}
+
+function loadRoutingInfo() {
+  const info = storageGet('routing', null);
+  console.log(info);
+  return info;
+}
+
+const lastRoute = loadRoutingInfo();
+const hasLastRouteAndIsDifferent = lastRoute && lastRoute.name !== entryRoute;
+
 // TODO: get layers from URL
 State.init({
   env,
@@ -218,8 +234,8 @@ function rerender() {
   });
 }
 
-function persistState(currentRoute) {
-  Storage.set('currentRoute', currentRoute);
+function persistRoutingInformation(currentRoute) {
+  storageSet('routing', currentRoute);
 }
 
 function push(name, props, layout, layoutProps) {
@@ -232,7 +248,7 @@ function push(name, props, layout, layoutProps) {
   };
   const newLayers = [...state.layers, layer];
 
-  persistState(newLayers[newLayers.length - 1]);
+  persistRoutingInformation(newLayers[newLayers.length - 1]);
 
   State.update({
     layers: newLayers,
@@ -247,7 +263,7 @@ function pop() {
     // eslint-disable-next-line no-magic-numbers
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
-  persistState(newLayers[newLayers.length - 1]);
+  persistRoutingInformation(newLayers[newLayers.length - 1]);
 
   State.update({
     layers: newLayers,
