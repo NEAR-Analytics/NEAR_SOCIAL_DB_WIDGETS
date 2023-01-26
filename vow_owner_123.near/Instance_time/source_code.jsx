@@ -243,7 +243,9 @@ return (
             }
           >
             {state.tab == tabs.ALL_SCHEDULE.id
-              ? tabs.ALL_SCHEDULE.text
+              ? finalData.schedule
+                ? "Edit Schedule"
+                : tabs.ALL_SCHEDULE.text
               : tabs.NEW_SCHEDULE.text}
           </button>
         </div>
