@@ -184,7 +184,6 @@ const env = {
 };
 
 function storageGet(prop, defaultValue) {
-  console.log;
   return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
 function storageSet(prop, value) {
