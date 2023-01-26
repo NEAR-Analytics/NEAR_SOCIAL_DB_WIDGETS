@@ -91,8 +91,6 @@ return (
             style={{
               height: '100%',
               width: '100%',
-              overflowY: 'scroll',
-              overflowX: 'hidden',
             }}
           >
             {props.engine.renderComponent(
