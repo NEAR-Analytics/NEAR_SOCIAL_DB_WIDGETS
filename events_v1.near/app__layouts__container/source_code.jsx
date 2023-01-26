@@ -65,29 +65,31 @@ return (
         }}
       >
         <div className="container-fluid h-100 flex">
-          {props.layoutProps.back ? (
-            <button
-              className=""
-              style={{
-                color: 'black',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100%',
-                border: 'none',
-                outline: 'none',
-                width: NAVBAR_HEIGHT,
-              }}
-              type="button"
-              onClick={() => {
-                props.routing.pop();
-              }}
-            >
-              &lt;
-            </button>
-          ) : null}
+          <div>
+            {props.layoutProps.back ? (
+              <button
+                className=""
+                style={{
+                  color: 'black',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '100%',
+                  border: 'none',
+                  outline: 'none',
+                  width: NAVBAR_HEIGHT,
+                }}
+                type="button"
+                onClick={() => {
+                  props.routing.pop();
+                }}
+              >
+                &lt;
+              </button>
+            ) : null}
 
-          <h2 className="navbar-brand">{title}</h2>
+            <h2 className="navbar-brand">{title}</h2>
+          </div>
 
           {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
         </div>
