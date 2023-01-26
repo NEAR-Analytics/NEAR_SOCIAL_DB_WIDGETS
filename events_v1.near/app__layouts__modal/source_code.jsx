@@ -1,4 +1,5 @@
 const PADDING_WITH_TITLE = 64;
+const BORDER_RADIUS = 16;
 
 const title = props.layoutProps.title || null;
 
@@ -64,7 +65,7 @@ return (
                 boxShadow: '0 0 10px -3px rgba(0,0,0,0.2)',
                 zIndex: 10,
                 backdropFilter: 'blur(10px)',
-                borderRadius: '16px 16px 0 0',
+                borderRadius: `${BORDER_RADIUS}px ${BORDER_RADIUS}px 0 0`,
               }}
             >
               {title}
