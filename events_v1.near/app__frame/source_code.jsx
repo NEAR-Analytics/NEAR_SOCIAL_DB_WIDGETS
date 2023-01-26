@@ -210,13 +210,13 @@ if (!state) {
 
 function restoreRoutes() {
   const info = storageGet('routing', null);
-  console.log('restoreRoutes', info);
+  // console.log('restoreRoutes', info);
   if (info === null || info === undefined) {
     return;
   }
 
   const layers = state.layers;
-  console.log('checking if routing info has changed', layers);
+  // console.log('checking if routing info has changed', layers);
   if (
     layers &&
     Array.isArray(info) &&
@@ -231,17 +231,17 @@ function restoreRoutes() {
 restoreRoutes();
 
 function persistRoutingInformation(newState) {
-  console.log('persistRoutingInformation', newState);
+  // console.log('persistRoutingInformation', newState);
   storageSet('routing', newState);
 }
 
 function slugFromName(name) {
-  console.log('slugFromName', name);
+  // console.log('slugFromName', name);
   return name.split('.').join('__');
 }
 
 function layoutFromName(name) {
-  console.log('layoutFromName', name);
+  // console.log('layoutFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
@@ -253,7 +253,7 @@ function rerender() {
 }
 
 function push(name, props, layout, layoutProps) {
-  console.log('push', name, props, layout, layoutProps);
+  // console.log('push', name, props, layout, layoutProps);
   const layer = {
     name,
     props: props || {},
@@ -290,7 +290,7 @@ function renderComponent(name, props, layout, layoutProps) {
   if (!name) {
     return null;
   }
-  console.log('renderComponent', name, props, layout, layoutProps);
+  // console.log('renderComponent', name, props, layout, layoutProps);
   const _layoutName = layout || 'default';
   const componentProps = {
     ...(props || {}),
@@ -322,7 +322,7 @@ function renderComponent(name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
-  console.log('renderComponent', _layoutName, name);
+  // console.log('renderComponent', _layoutName, name);
 
   return (
     <Widget
@@ -352,10 +352,6 @@ return (
       }}
     >
       <div id="app-state" data-state={JSON.stringify(state)}></div>
-      {console.log(
-        'state',
-        JSON.stringify(state.layers[state.layers.length - 1])
-      )}
       {renderComponent(
         state.layers[state.layers.length - 1].name,
         state.layers[state.layers.length - 1].props,
