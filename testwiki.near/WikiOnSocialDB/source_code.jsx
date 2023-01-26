@@ -243,7 +243,7 @@ return (
                 editArticle: false,
                 currentTab: key,
               });
-              // console.log("state", state);
+              console.log("state", state);
             }}
           >
             {title}
