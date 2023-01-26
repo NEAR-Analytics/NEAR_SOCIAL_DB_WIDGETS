@@ -12,30 +12,31 @@ return (
       labelKey="name"
       onChange={(accountId) => {
         const args = { account_id: accountId[0].name };
-        const existing = args.account_id
-          ? Near.asyncView(ownerId, "get_entity", args, "final")
-          : null;
-        const updatedState = {
-          accountId,
-        };
-        console.log(existing);
+        Near.asyncView(ownerId, "get_entity", args, "final").then(
+          (existing) => {
+            const updatedState = {
+              accountId,
+            };
+            console.log(existing);
 
-        if (existing) {
-          updatedState.existing = existing;
-          updatedState.kind = [{ name: existing.kind }];
-          updatedState.entityStatus = [{ name: existing.status }];
-          updatedState.startDate = new Date(
-            Number(existing.start_date)
-          ).toLocaleDateString();
+            if (existing) {
+              updatedState.existing = existing;
+              updatedState.kind = [{ name: existing.kind }];
+              updatedState.entityStatus = [{ name: existing.status }];
+              updatedState.startDate = new Date(
+                Number(existing.start_date)
+              ).toLocaleDateString();
 
-          if (existing.end_date) {
-            updatedState.endDate = new Date(
-              Number(existing.end_date)
-            ).toLocaleDateString();
+              if (existing.end_date) {
+                updatedState.endDate = new Date(
+                  Number(existing.end_date)
+                ).toLocaleDateString();
+              }
+            }
+
+            update(updatedState);
           }
-        }
-
-        update(updatedState);
+        );
       }}
       options={allAccountIds}
       placeholder="contribut3.near, social.near..."
