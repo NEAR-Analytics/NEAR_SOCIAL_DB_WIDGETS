@@ -16,7 +16,7 @@ return (
         backgroundColor: 'rgba(255,255,255,0.5)',
         overflow: 'hidden',
 
-        backdropFilter: 'blur(10px) saturate(180%)',
+        backdropFilter: 'blur(10px) ',
       }}
     >
       <div
