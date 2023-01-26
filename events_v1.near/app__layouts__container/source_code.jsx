@@ -39,7 +39,6 @@ const dropdownElement =
 
 return (
   <>
-    {JSON.stringify(props, null, 4)}
     <div
       style={{
         width: '100vw',
