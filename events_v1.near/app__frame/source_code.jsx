@@ -292,7 +292,6 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
   const _layoutName = layout || 'default';
-  const uuid = getUUID();
   const componentProps = {
     ...(props || {}),
     routing: {
