@@ -15,7 +15,11 @@ const onChange = (text) => {
   });
 };
 
-if (props.onChange) {
+const jContent = JSON.stringify(content);
+if (props.onChange && jContent !== state.jContent) {
+  State.update({
+    jContent,
+  });
   props.onChange({ content });
 }
 
@@ -26,7 +30,7 @@ return (
         className="form-control border-0 text-bg-light w-100"
         value={state.text || ""}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="What's happening?"
+        placeholder={props.placeholder ?? "What's happening?"}
       />
     </div>
     <div className="d-flex flex-row p-2 border-top">
@@ -50,7 +54,7 @@ return (
             props?.onCompose();
           }}
         >
-          {props.composeText || "Post"}
+          {props.composeText || "Compose"}
         </CommitButton>
       </div>
     </div>
