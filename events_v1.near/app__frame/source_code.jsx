@@ -229,6 +229,11 @@ function push(name, props, layout, layoutProps) {
   };
   const newLayers = [...state.layers, layer];
 
+  Storage.set({
+    key: 'layers',
+    value: JSON.stringify(newLayers),
+  });
+
   State.update({
     layers: newLayers,
   });
