@@ -221,10 +221,10 @@ function restoreRoutes() {
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
-    // console.log('update route from storage');
-    // State.update({
-    //   layers: info,
-    // });
+    console.log('update route from storage');
+    State.update({
+      layers: info,
+    });
   }
 }
 
