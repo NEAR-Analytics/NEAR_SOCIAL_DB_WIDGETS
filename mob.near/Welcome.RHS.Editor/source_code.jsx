@@ -34,8 +34,10 @@ const defaultWidgets = [
   },
 ];
 
+const settingWidgets = rhs && JSON.parse(rhs);
+
 if (state.widgets === undefined) {
-  const widgets = (rhs && JSON.parse(rhs)) ?? defaultWidgets;
+  const widgets = settingWidgets ?? defaultWidgets;
   State.update({ widgets });
 }
 
@@ -94,9 +96,59 @@ const renderMenu = (src, requireLogin, index) => {
   );
 };
 
+const openButton = ({ widgetPath: src, onHide }) => {
+  return (
+    <button
+      className="btn btn-primary"
+      onClick={() => {
+        state.widgets.splice(0, 0, { src });
+        State.update();
+        onHide();
+      }}
+    >
+      <i className="bi bi-plus-lg" /> Add
+    </button>
+  );
+};
+
 return (
   <>
     <h3>Right-Hand Side menu editor</h3>
+    <div className="mb-2">
+      <Widget
+        src="mob.near/widget/Welcome.RHS.Editor.ComponentSearch"
+        props={{ extraButtons: openButton }}
+      />
+    </div>
+    <div className="mb-2">
+      <CommitButton
+        data={{
+          settings: {
+            "near.social": { "homepage.rhs": JSON.stringify(state.widgets) },
+          },
+        }}
+      >
+        Save Changes
+      </CommitButton>
+      {settingWidgets &&
+        JSON.stringify(state.widgets) !== JSON.stringify(settingWidgets) && (
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => State.update({ widgets: settingWidgets })}
+          >
+            Revert changes
+          </button>
+        )}
+      {JSON.stringify(state.widgets) !== JSON.stringify(defaultWidgets) && (
+        <button
+          className="btn btn-outline-danger float-end"
+          onClick={() => State.update({ widgets: defaultWidgets })}
+        >
+          Reset to Default
+        </button>
+      )}
+    </div>
+    <hr />
     {state.widgets.map(({ src, requiresLogin }, i) => (
       <div key={src} className="border rounded-4 p-3 mb-3">
         {renderMenu(src, requireLogin, i)}
