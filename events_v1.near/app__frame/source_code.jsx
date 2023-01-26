@@ -1,4 +1,4 @@
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 
 /**
  *  NEAR Social App
@@ -13,7 +13,25 @@ const VERSION = '0.0.2';
  *
  *
  *  HOW?
+ *  this app provides common functionality often needed in apps
+ *  - routing
+ *  - state management
+ *  - layout management
  *
+ *  Requirements:
+ *  - Fork the following widgets into your account:
+ *    - app__layouts__default
+ *    - app__frame (this component)
+ *  - You should also take a look at: https://github.com/NEARFoundation/events-platform
+ *    as it provides a lot of the functionality you need to build an app, it provides:
+ *      - an opinionated way to build apps
+ *        - directory structure
+ *        - naming conventions
+ *      - a way to build apps quickly
+ *        - development tools (dev server, deploy script)
+ *      - a sample app
+ * 
+ * 
  *  This component is responsible for:
  *  - Loading the app's state/environment
  *  - Rendering the app's layouts
