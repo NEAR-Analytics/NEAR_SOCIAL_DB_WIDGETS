@@ -74,7 +74,7 @@ return (
     onClick={() => {
       props.engine.push('show', { event });
     }}
-    onKeyPress={(e) => {
+    onKeyDown={(e) => {
       if (e.key === 'Enter') {
         props.engine.push('show', { event });
       }
