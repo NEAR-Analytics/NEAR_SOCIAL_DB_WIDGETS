@@ -79,7 +79,6 @@ return (
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
-                boxShadow: '10px 0 10px -10px rgba(0,0,0,0.5)',
               }}
             >
               {title}
