@@ -101,6 +101,48 @@ const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
 
+const Select = styled.select`
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+`;
+
+const Button = styled.button`
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: #3e8e41;
+  }
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 2em;
+  text-align: center;
+  color: palevioletred;
+`;
 /**
  *   I suggest you don't edit anything below this line
  * */
@@ -168,49 +210,6 @@ function layoutFromName(name) {
   // console.log('layoutFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
-
-const Select = styled.select`
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-`;
-
-const Button = styled.button`
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition: all 0.5s ease;
-
-  &:hover {
-    background-color: #3e8e41;
-  }
-`;
-
-const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-`;
-
-const PageTitle = styled.h1`
-  font-size: 2em;
-  text-align: center;
-  color: palevioletred;
-`;
 
 function rerender() {
   // HACK: force a re-render
