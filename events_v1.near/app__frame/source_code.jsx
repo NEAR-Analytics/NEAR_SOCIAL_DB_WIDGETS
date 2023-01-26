@@ -325,6 +325,10 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayout = (layoutProps || {}).innerLayout || 'default';
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
 
+  if (layout === 'none') {
+    return <Widget src={slugFromName(name)} key={key} props={componentProps} />;
+  }
+
   return (
     <Widget
       src={layoutFromName(_layoutName)}
