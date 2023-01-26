@@ -88,15 +88,6 @@ function gotoEvent() {
         layout: 'app.layouts.dropdown_item',
         layoutProps: {},
       },
-      {
-        label: 'Delete',
-        onClick: () => {
-          props.routing.push('delete', { event_id: event.id }, 'container', {
-            title: 'Delete Event',
-            back: true,
-          });
-        },
-      },
     ],
   });
 }
