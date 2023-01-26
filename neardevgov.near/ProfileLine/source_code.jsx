@@ -8,6 +8,7 @@ return (
       props={{
         accountId,
         profile,
+        link: `#/neardevgov.near/widget/ProfilePage?accountId=${accountId}`,
       }}
     />
     <Widget
