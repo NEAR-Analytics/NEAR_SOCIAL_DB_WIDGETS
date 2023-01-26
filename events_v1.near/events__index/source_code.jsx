@@ -7,7 +7,7 @@ return (
 
     <Button
       onClick={() => {
-        props.routing.push('new', {}, 'container', {
+        props.routing.push('new', {}, 'modal', {
           title: 'Create new Event',
           back: true,
         });
