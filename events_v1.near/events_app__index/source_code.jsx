@@ -4,7 +4,7 @@ const engine = props.engine();
 
 console.log('engine', engine);
 
-if(!engine){
+if (!engine) {
   return 'loading';
 }
 
@@ -36,6 +36,6 @@ return (
 
     <br />
 
-    {engine.renderComponent('index.list_container')
+    {engine.renderComponent('index.list_container', {})}
   </div>
 );
