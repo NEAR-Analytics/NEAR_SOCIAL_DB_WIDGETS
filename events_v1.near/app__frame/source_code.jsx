@@ -216,7 +216,12 @@ function restoreRoutes() {
   }
 
   if (JSON.stringify(info) === JSON.stringify(state.layers)) {
+    return;
   }
+
+  State.update({
+    layers: info,
+  });
 }
 
 restoreRoutes();
