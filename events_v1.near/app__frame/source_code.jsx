@@ -307,7 +307,6 @@ function renderComponent(name, props) {
     },
     engine: {
       renderComponent,
-      registerLayout() {},
       rerender,
       storageGet,
       storageSet,
@@ -324,6 +323,11 @@ function renderComponent(name, props) {
     accountId,
     uid,
   };
+
+  componentProps.engine.registerLayout = ()=>{
+        
+        rerender()
+      },
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
