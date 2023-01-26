@@ -13,6 +13,7 @@ return (
       id="account-id-input"
       labelKey="name"
       onChange={(accountId) => {
+        console.log(accountId);
         const existing = getEntity(accountId[0].name);
         const updatedState = {
           accountId,
