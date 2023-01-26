@@ -19,11 +19,98 @@ for (let i = 0; i < poll.value.questions.length; i++) {
   }
 }
 
+// Utility function
+function getBlockTimestamp(blockHeight) {
+  // It is stored in nanoseconds which is 1e-6 miliseconds
+  return Near.block(blockHeight).header.timestamp / 1e6;
+}
+
+// Discards answers that were posted after question's end date
+function getTimeRelatedValidAnswers(answers) {
+  let low = 0;
+  let high = answers.length - 1;
+  const questionEndTimestamp = poll.value.endTimestamp;
+  let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
+  if (endBlockTimestamp < questionEndTimestamp) return answers;
+  // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
+  let tries = 10;
+  while (high - low > 1 && tries > 0) {
+    tries--;
+    let curr = Math.floor((high - low) / 2) + low;
+    let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
+    if (currBlockTimestamp < questionEndTimestamp) {
+      low = curr;
+    } else {
+      high = curr;
+    }
+  }
+  // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
+  return answers.slice(0, high);
+}
+
+function getOptionRelatedValidAnswers(answers) {
+  return answers.filter((a) => {
+    const userAnswers = a.value.answer;
+    return userAnswers.every((an, i) => {
+      // If has choicesOptions, then it's needs validation answer is among the options. If not, any answer is just fine
+      if (poll.value.questions[i].choicesOptions.length > 0) {
+        if (Array.isArray(an)) {
+          return an.every(
+            (ans) =>
+              0 <= Number(ans) &&
+              Number(ans) < poll.value.questions[i].choicesOptions.length
+          );
+        } else {
+          return (
+            0 <= Number(an) &&
+            Number(an) < poll.value.questions[i].choicesOptions.length
+          );
+        }
+      } else {
+        return true;
+      }
+    });
+  });
+}
+
+function getValidAnswers() {
+  let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
+  let validOptionAndTimeAnswers =
+    getOptionRelatedValidAnswers(validTimeAnswers);
+  return validOptionAndTimeAnswers;
+}
+
+// Getting valid answers
+const answers = Social.index("poll_question", "answer-v3.1.0");
+
+if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+  State.update({ answers: answers });
+}
+
+if (!state.answers) {
+  return "Loading";
+}
+const answersToThisPoll = state.answers.filter(
+  (a) => a.value.questionBlockHeight == props.poll.blockHeight
+);
+const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+
+let userVote;
+// Getting if user has already voted
+const currAccountId = context.accountId ?? "";
+function userHasVoted() {
+  return (
+    validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
+    undefined
+  );
+}
+
 State.init({
   vote: userVote ?? defaultVotes,
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
+  hasVoted: userHasVoted(),
 });
 
 let bgBlue = "#96C0FF";
@@ -141,96 +228,10 @@ function getInputStyles(questionType, questionNumber, optionNumber) {
   }
 }
 
-// Utility function
-function getBlockTimestamp(blockHeight) {
-  // It is stored in nanoseconds which is 1e-6 miliseconds
-  return Near.block(blockHeight).header.timestamp / 1e6;
-}
-
-// Discards answers that were posted after question's end date
-function getTimeRelatedValidAnswers(answers) {
-  let low = 0;
-  let high = answers.length - 1;
-  const questionEndTimestamp = poll.value.endTimestamp;
-  let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
-  if (endBlockTimestamp < questionEndTimestamp) return answers;
-  // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
-  let tries = 10;
-  while (high - low > 1 && tries > 0) {
-    tries--;
-    let curr = Math.floor((high - low) / 2) + low;
-    let currBlockTimestamp = getBlockTimestamp(answers[curr].blockHeight);
-    if (currBlockTimestamp < questionEndTimestamp) {
-      low = curr;
-    } else {
-      high = curr;
-    }
-  }
-  // Slice ignores the index of the last one. Since high - low == 1, high = low + 1
-  return answers.slice(0, high);
-}
-
-function getOptionRelatedValidAnswers(answers) {
-  return answers.filter((a) => {
-    const userAnswers = a.value.answer;
-    return userAnswers.every((an, i) => {
-      // If has choicesOptions, then it's needs validation answer is among the options. If not, any answer is just fine
-      if (poll.value.questions[i].choicesOptions.length > 0) {
-        if (Array.isArray(an)) {
-          return an.every(
-            (ans) =>
-              0 <= Number(ans) &&
-              Number(ans) < poll.value.questions[i].choicesOptions.length
-          );
-        } else {
-          return (
-            0 <= Number(an) &&
-            Number(an) < poll.value.questions[i].choicesOptions.length
-          );
-        }
-      } else {
-        return true;
-      }
-    });
-  });
-}
-
-function getValidAnswers() {
-  let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
-  let validOptionAndTimeAnswers =
-    getOptionRelatedValidAnswers(validTimeAnswers);
-  return validOptionAndTimeAnswers;
-}
-
-// Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.1.0");
-
-if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
-  State.update({ answers: answers });
-}
-
-if (!state.answers) {
-  return "Loading";
-}
-const answersToThisPoll = state.answers.filter(
-  (a) => a.value.questionBlockHeight == props.poll.blockHeight
-);
-const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
-
-let userVote;
-// Getting if user has already voted
-const currAccountId = context.accountId ?? "";
-function userHasVoted() {
-  return (
-    validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
-    undefined
-  );
-}
-let hasVoted = userHasVoted();
 const isQuestionOpen =
   poll.value.startTimestamp < Date.now() &&
   Date.now() < poll.value.endTimestamp;
-const canVote = !hasVoted && isQuestionOpen;
+const canVote = !state.hasVoted && isQuestionOpen;
 
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
@@ -482,7 +483,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {hasVoted ? (
+      {state.hasVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -532,13 +533,13 @@ return (
             </h4>
           </div>
 
-          {!hasVoted &&
+          {!state.hasVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && question.questionType == "2" ? (
+          ) : !state.hasVoted && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted && <p className="mb-1">Write your answer:</p>
+            !state.hasVoted && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -554,7 +555,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      hasVoted ? (
+      state.hasVoted ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
@@ -583,6 +584,7 @@ return (
           onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
+          onCommit={() => State.update({ hasVoted: true })}
         >
           Vote
         </CommitButton>
