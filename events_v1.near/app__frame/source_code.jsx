@@ -174,11 +174,27 @@ return (
         </div>
       );
     })} */}
-    {renderComponent(
-      state.layers[state.layers.length - 1].name,
-      state.layers[state.layers.length - 1].props,
-      state.layers[state.layers.length - 1].layout,
-      state.layers[state.layers.length - 1].layoutProps
-    )}
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'fixed',
+        backgroundColor: 'white',
+        top: 72, // sit right below the navbar
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: 0,
+        zIndex: index + 10000,
+        overflow: 'auto',
+      }}
+    >
+      {renderComponent(
+        state.layers[state.layers.length - 1].name,
+        state.layers[state.layers.length - 1].props,
+        state.layers[state.layers.length - 1].layout,
+        state.layers[state.layers.length - 1].layoutProps
+      )}
+    </div>
   </>
 );
