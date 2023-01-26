@@ -49,7 +49,6 @@ const dropdownElement =
 return (
   <>
     <div
-      className="container-fluid"
       style={{
         width: '100%',
       }}
