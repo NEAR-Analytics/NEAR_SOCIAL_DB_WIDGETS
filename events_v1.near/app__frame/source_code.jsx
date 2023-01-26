@@ -287,12 +287,19 @@ function pop() {
   rerender();
 }
 
-function renderComponent(name, props, layout, layoutProps) {
+function getUid() {
+  const uid = storageGet('uid', 0) + 1;
+  storageSet('uid', uid);
+  return uid;
+}
+function renderComponent(name, props) {
   if (!name) {
     return null;
   }
-  console.log('renderComponent', name, props, layout, layoutProps);
-  const _layoutName = layout || 'default';
+  console.log('renderComponent', name, props);
+
+  const uid = getUid();
+
   const componentProps = {
     routing: {
       push,
@@ -300,6 +307,7 @@ function renderComponent(name, props, layout, layoutProps) {
     },
     engine: {
       renderComponent,
+      registerLayout() {},
       rerender,
       storageGet,
       storageSet,
@@ -314,16 +322,12 @@ function renderComponent(name, props, layout, layoutProps) {
       propIsRequiredMessage,
     },
     accountId,
-    VERSION,
-    layout: _layoutName,
-    layoutProps: layoutProps || {},
+    uid,
   };
+
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
-
-  const innerLayout = (layoutProps || {}).innerLayout || 'default';
-  const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
 
   // guard to allow 'default' layout exit infinite render loop
   if (_layoutName === 'none') {
