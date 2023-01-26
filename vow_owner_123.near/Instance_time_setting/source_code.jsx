@@ -16,6 +16,7 @@ const sortAndRemoveRepeated = (flag, data) => {
   }
   return final;
 };
+console.log("props.data: ", props.data);
 
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
 const _from = props.data._from ?? [
