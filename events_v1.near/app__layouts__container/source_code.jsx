@@ -24,6 +24,7 @@ const Dropdown = items && items.length > 0 ? (
                   Home
                 </a>
               </li>
+            </ul>
             </div>
           </div>  
         </>
