@@ -3,7 +3,7 @@ const title = props.layoutProps.title ?? '';
 return (
   <>
     <div
-      className="container"
+      className="container-fluid"
       style={{
         width: '100%',
       }}
