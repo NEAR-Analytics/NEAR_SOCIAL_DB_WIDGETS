@@ -190,33 +190,34 @@ function storageSet(prop, value) {
   return Storage.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
-function loadRoutingInfo() {
-  return storageGet('routing', null);
-}
- 
-const lastRoute; = loadRoutingInfo();
-conastRouteAndIsDifferent = lastRoute 
-;
-nst rootRoute = {
- name: entryRoute,
+const rootRoute = {
+  name: entryRoute,
+  props: entryProps,
   layout: entryLayout,
-  layoutProps: entryLayoutProps,;
+  layoutProps: entryLayoutProps,
 };
-
-const appLayers = hasLastRouteAndIsDifferent
-  ? [rootRoute, lastRoute]
-  : [rootRoute];
 
 // TODO: get layers from URL
 State.init({
   env,
   renderCycles: state ? state.renderCycles + 1 : 1,
-  layers: appLayers,
+  layers: [rootRoute],
 });
 
 if (!state) {
   return '';
 }
+
+function persistRoutingInformation(newState) {
+  console.log('persistRoutingInformation', newState);
+  storageSet('routing', newState);
+}
+
+function loadRoutingInfo() {
+  return storageGet('routing', null);
+}
+const lastRoute = loadRoutingInfo();
+const hasLastRouteAndIsDifferent = lastRoute;
 
 function slugFromName(name) {
   // console.log('slugFromName', name);
@@ -235,11 +236,6 @@ function rerender() {
   });
 }
 
-function persistRoutingInformation(currentRoute) {
-  console.log('persistRoutingInformation', currentRoute);
-  storageSet('routing', currentRoute);
-}
-
 function push(name, props, layout, layoutProps) {
   console.log('push', name, props, layout, layoutProps);
   const layer = {
@@ -250,7 +246,7 @@ function push(name, props, layout, layoutProps) {
   };
   const newLayers = [...state.layers, layer];
 
-  persistRoutingInformation(newLayers[newLayers.length - 1]);
+  persistRoutingInformation(newLayers);
 
   State.update({
     layers: newLayers,
@@ -265,7 +261,7 @@ function pop() {
     // eslint-disable-next-line no-magic-numbers
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
-  persistRoutingInformation(newLayers[newLayers.length - 1]);
+  persistRoutingInformation(newLayers);
 
   State.update({
     layers: newLayers,
