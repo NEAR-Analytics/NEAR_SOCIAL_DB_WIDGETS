@@ -1,3 +1,6 @@
+const PADDING_TITLE_WITH = 12;
+const PADDING_TITLE_WITHOUT = 16;
+
 const title = props.layoutProps.title || null;
 
 return (
@@ -95,7 +98,7 @@ return (
               width: '100%',
               maxWidth: '100%',
               overflow: 'auto',
-              paddingTop: title ? 12 : 16,
+              paddingTop: title ? PADDING_TITLE_WITH : PADDING_TITLE_WITHOUT,
             }}
           >
             {props.engine.renderComponent(
