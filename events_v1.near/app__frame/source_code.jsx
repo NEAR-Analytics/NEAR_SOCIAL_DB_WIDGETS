@@ -222,9 +222,9 @@ function restoreRoutes() {
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
-    // State.update({
-    //   layers: info,
-    // });
+    State.update({
+      layers: info,
+    });
   }
 }
 
