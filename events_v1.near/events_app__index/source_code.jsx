@@ -2,6 +2,8 @@ const Button = props.Components.Button;
 
 const engine = props.engine();
 
+console.log('props', props);
+
 return (
   <div>
     <h1>Events</h1>
