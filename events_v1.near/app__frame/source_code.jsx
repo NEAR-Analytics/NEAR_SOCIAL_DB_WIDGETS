@@ -191,24 +191,16 @@ function storageSet(prop, value) {
 }
 
 function loadRoutingInfo() {
-  const info = storageGet('routing', null);
-  console.log({ info });
-  return info;
+  return storageGet('routing', null);
 }
-
-const lastRoute = loadRoutingInfo();
-const hasLastRouteAndIsDifferent =
-  lastRoute &&
-  lastRoute.name !== entryRoute &&
-  lastRoute.props !== entryProps &&
-  lastRoute.layout !== entryLayout &&
-  lastRoute.layoutProps !== entryLayoutProps;
-
-const rootRoute = {
-  name: entryRoute,
-  props: entryProps,
+ 
+const lastRoute; = loadRoutingInfo();
+conastRouteAndIsDifferent = lastRoute 
+;
+nst rootRoute = {
+ name: entryRoute,
   layout: entryLayout,
-  layoutProps: entryLayoutProps,
+  layoutProps: entryLayoutProps,;
 };
 
 const appLayers = hasLastRouteAndIsDifferent
