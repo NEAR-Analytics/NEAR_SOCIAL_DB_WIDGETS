@@ -87,7 +87,7 @@ return (
               cursor: 'pointer',
               color: 'black',
               fontSize: 32,
-              borderRadius: `0 ${BORDER_RADIUS}px 0 0 0`,
+              borderRadius: `0 ${BORDER_RADIUS}px 0 0 `,
               textShadow: '0.5px -0.5px 0.5px #ccc, -0.5px 0.5px 0.5px #ccc',
               lineHeight: '40px',
               zIndex: 1000,
