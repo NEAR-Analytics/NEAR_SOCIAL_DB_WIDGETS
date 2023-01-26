@@ -87,6 +87,7 @@ const Components = {
 const currentRoute = state.layers[state.layers.length - 1];
 
 function push(name, props, layout, layoutProps) {
+  console.log('push', name, props, layout, layoutProps);
   State.update({
     layers: [
       ...state.layers,
