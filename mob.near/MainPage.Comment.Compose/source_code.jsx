@@ -59,6 +59,7 @@ return (
       src="mob.near/widget/Common.Compose"
       props={{
         placeholder: "Reply",
+        initialText: props.initialText,
         onChange: state.onChange,
         onHelper: ({ extractTagNotifications }) => {
           State.update({ extractTagNotifications });
