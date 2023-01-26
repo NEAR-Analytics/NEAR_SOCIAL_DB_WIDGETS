@@ -43,7 +43,7 @@ return (
         ) : null}
 
         {/* container */}
-        <div style={{ height: '100%' }}>
+        <div style={{ height: '100%', overflow: 'scroll' }}>
           {props.engine.renderComponent(props.component.src)}
         </div>
       </div>
