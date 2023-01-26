@@ -26,7 +26,7 @@ if (state.image === undefined) {
       extractMentions(text || "").map((accountId) => ({
         key: accountId,
         value: {
-          type: "tag",
+          type: "mention",
           item,
         },
       }));
