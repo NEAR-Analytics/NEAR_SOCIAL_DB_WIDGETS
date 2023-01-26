@@ -6,9 +6,10 @@ const update = props.update;
 
 const formatDate = (timestampString) => {
   const date = new Date(Number(timestampString));
-  return `${date.getFullYear()}-${(date.getMonth() + 1).toPrecision(2)}-${date
-    .getDate()
-    .toPrecision(2)}`;
+  return `${date.getFullYear()}-${date
+    .getMonth()
+    .toString()
+    .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 };
 
 return (
