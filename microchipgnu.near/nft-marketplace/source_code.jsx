@@ -2,10 +2,6 @@ const accountId = props.accountId || context.accountId;
 const marketId = "simple.market.mintbase1.near";
 const AFFILIATE_ACCOUNT = props.affiliateAccount || "microchipgnu.near";
 
-if (!accountId) {
-  return `Not connected...`;
-}
-
 const data = fetch("https://graph.mintbase.xyz", {
   method: "POST",
   headers: {
@@ -95,9 +91,11 @@ return data !== null ? (
               />
             </a>
             <button
-              onClick={() =>
-                buy(priceYocto, listing.token_id, listing.nft_contract_id)
-              }
+              disabled={!accountId}
+              onClick={() => {
+                if (!accountId) return;
+                buy(priceYocto, listing.token_id, listing.nft_contract_id);
+              }}
             >
               Buy for {priceNear} N
             </button>
