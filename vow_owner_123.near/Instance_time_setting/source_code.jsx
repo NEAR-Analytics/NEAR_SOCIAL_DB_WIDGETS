@@ -28,7 +28,6 @@ const getFormatedTime = (time) => {
 };
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
 var is_on = ["on", "on", "on", "on", "on", "off", "off"];
-console.log("time", getFormatedTime("8.5"));
 var _from = [
   "10:00 AM",
   "10:00 AM",
@@ -195,7 +194,7 @@ const getData = () => {
     index: {
       Instance_time: JSON.stringify(
         {
-          key: "data",
+          key: "schedule",
           value: {
             _data: final,
             _time_zone: time_zone,
