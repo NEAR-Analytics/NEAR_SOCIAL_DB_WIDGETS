@@ -13,10 +13,10 @@ return (
         right: 0,
         bottom: 0,
         zIndex: 1000,
-        backgroundColor: 'rgba(255,255,255,0.5)',
+        backgroundColor: 'rgba(255,255,255,0.85)',
         overflow: 'hidden',
 
-        backdropFilter: 'blur(10px) ',
+        backdropFilter: 'blur(10px) saturate(180%)',
       }}
     >
       <div
