@@ -56,7 +56,7 @@ return (
                 marginBottom: 0,
                 fontSize: 24,
                 fontWeight: 'bold',
-                backgroundColor: 'rgba(0,0,0,0.85)',
+                backgroundColor: 'rgba(255,255,255,0.85)',
                 borderBottom: '1px solid #ccc',
                 width: '100%',
                 minHeight: 48,
