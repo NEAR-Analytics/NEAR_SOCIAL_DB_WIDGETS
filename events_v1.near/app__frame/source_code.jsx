@@ -342,7 +342,7 @@ function renderComponent(name, props, layout, layoutProps) {
       key={key}
       props={{
         ...componentProps,
-        component: {
+        __component: {
           name: name,
           props: {
             ...(props || {}),
