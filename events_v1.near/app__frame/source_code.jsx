@@ -192,7 +192,7 @@ function storageSet(prop, value) {
 
 function loadRoutingInfo() {
   const info = storageGet('routing', null);
-  console.log(info);
+  console.log({ info });
   return info;
 }
 
