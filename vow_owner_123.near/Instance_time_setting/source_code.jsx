@@ -24,8 +24,6 @@ const getFormatedTime = (time) => {
       : `${hours < 10 && "0"}${hours}:${mins == 0 ? "00" : mins} AM`;
   return formated;
 };
-console.log("props.data: ", props.data);
-
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
 var is_on = ["on", "on", "on", "on", "on", "off", "off"];
 console.log("time", getFormatedTime("8.5"));
@@ -56,8 +54,8 @@ if (props.data.schedule) {
       _to[i] = getFormatedTime(props.data.schedule.data[0]._to);
     }
   }
+  console.log("props.data: ", is_on, _from, _to);
 }
-
 State.init({
   _is_on: is_on,
   _from: _from,
