@@ -1,4 +1,4 @@
-const VERSION = '0.1.0';
+const VERSION = '{{ env.VERSION }}';
 
 /**
  *  NEAR Social App
