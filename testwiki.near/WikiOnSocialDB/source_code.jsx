@@ -10,7 +10,7 @@ if (profile === null) {
 }
 
 const test = Social.keys("*/wikiTest/articles", "final");
- console/.log("test ", test);
+console.log("test ", test);
 
 const test4 = Near.view("social.near", "get", {
   keys: ["vanjule.near/**", "vanyog.near/**"],
@@ -24,11 +24,11 @@ const resultArticles = [];
 !resultArticles.length &&
   testArray &&
   testArray.forEach((item, index, arr) => {
-     console.log("item", item);
+    console.log("item", item);
     const data = Near.view("social.near", "get", {
       keys: [`${item}/wikiTest/articles/**`],
     });
-     console.log("data", data[item].wikiTest.articles);
+    console.log("data", data[item].wikiTest.articles);
     const articles = data && Object.keys(data[item].wikiTest.articles);
     const array =
       data &&
@@ -52,8 +52,8 @@ resultArticles.length &&
     }
   });
 
- console.log("resultArticles  ", resultArticles);
- console.log("filteredArticles", filteredArticles);
+console.log("resultArticles  ", resultArticles);
+console.log("filteredArticles", filteredArticles);
 
 const initialBody = `# Markdown heading level 1
 
@@ -163,9 +163,9 @@ const handleAuthor = (e, authorId) => {
 };
 
 const getDate = (timestamp) => {
-   console.log("timestamp", timestamp);
+  console.log("timestamp", timestamp);
   const date = new Date(Number(timestamp));
-  console.log('getDate ', date.toDateString())
+  console.log("getDate ", date.toDateString());
   return date.toDateString();
 };
 
@@ -178,7 +178,7 @@ const saveArticle = (args) => {
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
   };
-   console.log("newArticleData", newArticleData);
+  console.log("newArticleData", newArticleData);
 
   Social.set({
     wikiTest: {
@@ -190,7 +190,7 @@ const saveArticle = (args) => {
 const getDateLastEdit = (timestamp) => {
   const date = new Date(Number(timestamp));
   const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
-  console.log('getDateLastEdit ', dateString)
+  console.log("getDateLastEdit ", dateString);
   return dateString;
 };
 
@@ -198,8 +198,8 @@ const getAuthors = () => {
   const authors = Array.from(resultArticles, ({ author }) => author);
   const uniqAuthors = Array.from(new Set(authors));
 
-   console.log("authors", authors);
-   console.log("uniqAuthors", uniqAuthors);
+  console.log("authors", authors);
+  console.log("uniqAuthors", uniqAuthors);
 
   return (
     <>
