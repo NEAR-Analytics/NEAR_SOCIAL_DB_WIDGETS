@@ -1,3 +1,90 @@
+const sortAndRemoveRepeated = (flag, data, validated) => {
+  var temp = data;
+  const flag1 = data.indexOf(0);
+  if (flag) temp.push(0, 168);
+  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+
+  var final = [];
+  for (var k = 0; k < sortedTimeData.length; k++) {
+    var repeated = false;
+    for (var l = 0; l < sortedTimeData.length; l++) {
+      if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
+        repeated = true;
+      }
+    }
+    if (validated) {
+      if (!repeated) {
+        if (
+          !(
+            (flag1 && sortedTimeData[k] == 0) ||
+            (flag1 && sortedTimeData[k] == 168)
+          )
+        )
+          final.push(sortedTimeData[k]);
+      }
+    } else {
+      if (!repeated) final.push(sortedTimeData[k]);
+    }
+  }
+  return final;
+};
+const data = Social.index("Instance_time", "data");
+if (!data) {
+  return "Loading datas";
+}
+var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+var finalData = {};
+for (let i = 0; i < sortedData.length; i++) {
+  if (sortedData[i].accountId == context.accountId) {
+    console.log("sortedData[i]: ", sortedData[i]);
+    var date = new Date();
+    var utc_offset = -date.getTimezoneOffset() / 60;
+    var times = sortedData[i].value._data;
+    var temp = [];
+    var flag = false;
+    for (var j = 0; j < times.length; j++) {
+      const time = times[j] + utc_offset;
+      if (time > 168) {
+        temp.push(time - 168);
+        flag = true;
+      } else if (time < 0) {
+        temp.push(time + 168);
+        flag = true;
+      } else temp.push(time);
+    }
+    const final = sortAndRemoveRepeated(flag, temp, true);
+    for (var m = 0; m < final.length - 1; m += 2) {
+      const _from = final[m];
+      const _to = final[m + 1];
+      for (var o = 1; o < 7; o++) {
+        if (o * 24 > _from && o * 24 < _to) {
+          final.push(o * 24, o * 24);
+        }
+      }
+    }
+    var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
+    var weeklyData = [];
+    for (var t = 0; t < 7; t++) {
+      var dailyData = [];
+      var exist = false;
+      for (var p = 0; p < sortedTimeDataNew.length - 1; p += 2) {
+        var _from = sortedTimeDataNew[p];
+        var _to = sortedTimeDataNew[p + 1];
+        if (_to > t * 24 && _to <= (t + 1) * 24) {
+          dailyData.push({
+            _from: _from - t * 24,
+            _to: _to - t * 24,
+          });
+          exist = true;
+        }
+      }
+      if (!exist) weeklyData.push({ on_off: "off", data: [] });
+      else weeklyData.push({ on_off: "on", data: dailyData });
+    }
+    finalData = weeklyData;
+    console.log("finaleData: ", finalData);
+  }
+}
 State.init({
   _is_on: ["on", "on", "on", "on", "on", "off", "off"],
   _from: [
@@ -20,8 +107,8 @@ State.init({
   ],
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
-  hoveringElement: "",
 });
+
 const time_zone = props.time_zone ?? "(UTC+00:00) UTC";
 const container = {
   display: "flex",
@@ -91,6 +178,15 @@ const initialize = () => {
       }
 };
 initialize();
+const getFormatedTime = (time) => {
+  const hours = parseInt(time);
+  const mins = (time - hours) * 60;
+  let formated =
+    hours > 12
+      ? `${hours - 12}:${mins == 0 ? "00" : mins} PM`
+      : `${hours}:${mins == 0 ? "00" : mins} AM`;
+  return formated;
+};
 
 const validate = () => {
   var result = true;
@@ -125,23 +221,7 @@ const onTimeChanged = (value, index, is_from_to, in_de) => {
     });
   }
 };
-const sortAndRemoveRepeated = (flag, data) => {
-  var temp = data;
-  if (flag) temp.push(0, 168);
-  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
 
-  var final = [];
-  for (var k = 0; k < sortedTimeData.length; k++) {
-    var repeated = false;
-    for (var l = 0; l < sortedTimeData.length; l++) {
-      if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
-        repeated = true;
-      }
-    }
-    if (!repeated) final.push(sortedTimeData[k]);
-  }
-  return final;
-};
 const getData = () => {
   var zone = time_zone.split(" ")[0].split("UTC")[1].split(":");
   var hours = parseInt(zone[0]);
@@ -166,7 +246,6 @@ const getData = () => {
     }
   }
   const final = sortAndRemoveRepeated(flag, temp);
-  console.log("final", final);
   return {
     index: {
       Instance_time: JSON.stringify(
@@ -174,6 +253,7 @@ const getData = () => {
           key: "data",
           value: {
             _data: final,
+            _time_zone: time_zone,
           },
         },
         undefined,
@@ -317,15 +397,7 @@ return (
           })}
           {!state._validate_result && "time set wrong"}
         </div>
-        <div
-          style={flex_row}
-          onMouseEnter={() => {
-            State.update({ hoveringElement: "send" });
-          }}
-          onMouseLeave={() => {
-            State.update({ hoveringElement: "" });
-          }}
-        >
+        <div style={flex_row}>
           <CommitButton
             className="m-2"
             style={{
