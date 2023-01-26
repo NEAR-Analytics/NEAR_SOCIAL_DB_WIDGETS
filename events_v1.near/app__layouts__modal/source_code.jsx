@@ -53,6 +53,7 @@ return (
               background: 'transparent',
               padding: 16,
               cursor: 'pointer',
+              color: 'black',
             }}
             onClick={() => {
               props.routing.pop();
