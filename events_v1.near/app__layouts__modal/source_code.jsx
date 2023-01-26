@@ -30,6 +30,7 @@ return (
           maxHeight: 600,
 
           boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
+          borderRadius: 16,
         }}
       >
         <div
