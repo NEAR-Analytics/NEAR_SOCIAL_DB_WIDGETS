@@ -25,7 +25,7 @@ return (
               updatedState.entityStatus = [{ name: existing.status }];
               updatedState.startDate = new Date(
                 Number(existing.start_date)
-              ).toLocaleDateString();
+              ).toDateString();
 
               if (existing.end_date) {
                 updatedState.endDate = new Date(
