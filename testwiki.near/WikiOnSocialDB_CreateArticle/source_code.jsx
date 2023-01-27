@@ -22,8 +22,8 @@ State.init(initialCreateArticleState);
 const getArticleData = () => {
   const args = {
     articleId: state.articleId,
-    author: accountId,
-    lastEditor: accountId,
+    author: props.author,
+    lastEditor: props.author,
     timeLastEdit: Date.now(),
     timeCreate: Date.now(),
     body: state.articleBody,
