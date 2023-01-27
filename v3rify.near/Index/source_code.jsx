@@ -82,7 +82,7 @@ return (
               "get_verification",
               { entry_id: state.query },
               "final"
-            ).then((result) => State.update({ result }))
+            ).then((result) => State.update({ result, show: true }))
           }
         >
           Check
