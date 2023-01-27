@@ -1,7 +1,9 @@
 initState({
-  authorities: (props.authorities ?? "").split(",").map((accountId) => ({
-    accountId,
-  })),
+  authorities: props.authorities
+    ? props.authorities.split(",").map((accountId) => ({
+        accountId,
+      }))
+    : [],
 });
 
 return (
