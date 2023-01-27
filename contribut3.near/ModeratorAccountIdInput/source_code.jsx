@@ -104,6 +104,7 @@ return (
       options={allAccountIds}
       placeholder="contribut3.near, social.near..."
       selected={state.accountId}
+      isInvalid={!state.valid}
       positionFixed
       allowNew
       disabled={state.fixed}
