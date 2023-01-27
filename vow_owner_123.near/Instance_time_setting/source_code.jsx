@@ -360,7 +360,7 @@ return (
           ) : (
             <div
               href={
-                "https://near.social/#/vow_owner_123.near/widget/Instance_time_edit"
+                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
               }
               style={{
                 margin: "2rem",
