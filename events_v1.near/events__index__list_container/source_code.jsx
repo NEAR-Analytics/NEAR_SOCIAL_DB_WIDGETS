@@ -4,6 +4,8 @@ const EVENTS_CONTRACT = 'events_v1.near';
 // if no accountID is provided, all events are displayed
 const accountId = props.forAccountId;
 
+console.log('accountId', accountId);
+
 let events = [];
 if (accountId === undefined) {
   events = Near.view(EVENTS_CONTRACT, 'get_all_events');
