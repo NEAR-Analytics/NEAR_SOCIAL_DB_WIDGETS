@@ -295,7 +295,7 @@ function renderComponent(name, props, layout, layoutProps) {
   let componentProps = { };
   
   function setLayout(){
-    componentProps.__renderController.setLayout(layout, layoutProps);
+    componentProps.__.controller.setLayout(layout, layoutProps);
   }
 
   componentProps = {
