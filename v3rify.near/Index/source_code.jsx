@@ -2,17 +2,7 @@ initState({
   query: props.query ?? "",
   result: 0,
   show: false,
-  closed: false,
 });
-
-if (!state.show && !state.closed) {
-  Near.asyncView(
-    "v3rify.near",
-    "get_verification",
-    { entry_id: state.query },
-    "final"
-  ).then((result) => State.update({ result, show: true }));
-}
 
 const result = state.show ? (
   <div
@@ -48,21 +38,21 @@ const result = state.show ? (
             Submit a verification
           </a>
         ) : (
-          <div
+          <a
             role="button"
             className="btn btn-primary"
-            onClick={() => State.update({ show: false, closed: true })}
+            onClick={() => State.update({ show: false })}
           >
             OK
-          </div>
+          </a>
         )}
-        <div
+        <a
           role="button"
           className="btn btn-secondary"
-          onClick={() => State.update({ show: false, closed: true })}
+          onClick={() => State.update({ show: false })}
         >
           Close
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -85,8 +75,15 @@ return (
         <a
           role="button"
           className="btn btn-primary mt-2"
-          href={`https://near.social/#/v3rify.near/widget/Index?query=${state.query}`}
-          onChange={() => State.update({ closed: false })}
+          // href={`https://near.social/#/v3rify.near/widget/Index?query=${state.query}`}
+          onChange={() =>
+            Near.asyncView(
+              "v3rify.near",
+              "get_verification",
+              { entry_id: state.query },
+              "final"
+            ).then((result) => State.update({ result }))
+          }
         >
           Check
         </a>
