@@ -10,9 +10,9 @@ console.log({ props });
 
 const layout = state.layout;
 
-props.componentProps.setController = {
+props.dynProps.setController = {
   setLayout: (_layout) => {
-    props.componentProps.__.setLayout = _layout;
+    props.dynProps.__.setLayout = _layout;
     State.update({
       layout: _layout,
     });
@@ -32,8 +32,7 @@ if (
     <Widget
       src={props.__.engine.widgetFromName(props.component.name)}
       key={key}
-      props={
-        {...props.componentProps,
+      props={{...props.dynProps,
         props.component.props}}
     />
   );
@@ -44,7 +43,7 @@ return (
     src={layoutFromName(layout)}
     key={key}
     props={{
-      ...componentProps,
+      ...dynProps,
       ...(layoutProps || {}),
       component: {
         name: name,
