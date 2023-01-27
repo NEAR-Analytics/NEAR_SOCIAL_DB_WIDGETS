@@ -6,24 +6,17 @@ if (!state) {
   return '';
 }
 
-console.log({ props });
-
-console.log(1);
 const layout = state.layout;
 
-console.log(2);
 props.__.engine.setLayoutController((_layout) => {
-  console.log('setLayout', _layout);
   // props.__.setLayout = _layout;
   State.update({
     layout: _layout,
   });
 });
 
-console.log(3);
 const key = props.key;
 
-console.log(4);
 // guard to allow 'default' layout exit infinite render loop
 if (
   layout === 'default' ||
@@ -31,8 +24,6 @@ if (
   layout === '' ||
   layout === undefined
 ) {
-  console.log(5);
-  console.log('rendering component', props.component.name);
   return (
     <Widget
       src={props.__.engine.widgetFromName(props.component.name)}
@@ -42,7 +33,6 @@ if (
   );
 }
 
-console.log(6);
 return null;
 // return (
 //   <Widget
