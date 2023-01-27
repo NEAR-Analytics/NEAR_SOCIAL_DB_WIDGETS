@@ -11,7 +11,7 @@ const isAuthority = Near.view(
   true
 );
 
-const GAS = "30_000_000_000_000";
+const GAS = "30000000000000";
 
 return (
   <div className="card">
