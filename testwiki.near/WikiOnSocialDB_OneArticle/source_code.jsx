@@ -4,19 +4,6 @@ return (
     <h4>Article: {state.article.articleId}</h4>
     <button
       onClick={() => {
-        State.update({
-          ...state,
-          note: undefined,
-          article: undefined,
-          editArticle: false,
-        });
-      }}
-    >
-      {" "}
-      Back to articles{" "}
-    </button>
-    <button
-      onClick={() => {
         State.update({ ...state, editArticle: true });
       }}
     >
