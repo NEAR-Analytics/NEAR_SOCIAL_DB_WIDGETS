@@ -304,6 +304,9 @@ function renderComponent(name, props, layout, layoutProps) {
     controller.setLayout(lay, layProp);
   }
   function setLayoutController(setLayoutFn) {
+    if (controller) {
+      return;
+    }
     controller = {
       setLayout: setLayoutFn,
     };
