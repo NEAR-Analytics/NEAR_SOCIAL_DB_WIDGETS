@@ -5,7 +5,7 @@ initState({
   closed: false,
 });
 
-if (!state.show) {
+if (!state.show && !state.closed) {
   Near.asyncView(
     "v3rify.near",
     "get_verification",
@@ -51,7 +51,7 @@ const result = state.show ? (
           <div
             role="button"
             className="btn btn-primary"
-            onClick={() => State.update({ show: false })}
+            onClick={() => State.update({ show: false, closed: true })}
           >
             OK
           </div>
@@ -59,7 +59,7 @@ const result = state.show ? (
         <div
           role="button"
           className="btn btn-secondary"
-          onClick={() => State.update({ show: false })}
+          onClick={() => State.update({ show: false, closed: true })}
         >
           Close
         </div>
