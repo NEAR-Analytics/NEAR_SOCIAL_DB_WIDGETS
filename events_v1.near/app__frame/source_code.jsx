@@ -247,9 +247,9 @@ function layoutFromName(name) {
 
 function rerender() {
   // HACK: force a re-render
-  State.update({
-    renderCycles: state.renderCycles + 1,
-  });
+  // State.update({
+  //   renderCycles: state.renderCycles + 1,
+  // });
 }
 
 function push(name, props, layout, layoutProps) {
