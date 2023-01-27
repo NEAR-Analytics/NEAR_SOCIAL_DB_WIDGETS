@@ -5,7 +5,7 @@ if (!data) {
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var accountIds = ["All"];
 var finalData = {};
-var refreshed = props.refreshed;
+var refreshed = state.tab == tabs.ALL_SCHEDULE ? undefined : props.refreshed;
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
