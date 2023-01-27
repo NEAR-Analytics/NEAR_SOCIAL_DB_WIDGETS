@@ -116,6 +116,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-main-tab"
       >
+        {/* === ALL ARTICLES LIST === */}
         {state.currentTab === "loadarticles" && (
           <div>
             {!state.article && (
@@ -135,7 +136,7 @@ return (
                   ))}
               </ul>
             )}
-
+            {/* === ONE ARTICLE === */}
             {state.article && (
               <div>
                 <h4>Article: {state.article.articleId}</h4>
@@ -159,6 +160,7 @@ return (
                 >
                   Edit Article{" "}
                 </button>
+                {/* === EDIT ARTICLE === */}
                 {state.editArticle && (
                   <>
                     <button
@@ -228,7 +230,6 @@ return (
                     <br />
                     Edit versions: {state.article.version}
                   </div>
-                  {buttons}
                 </div>
               </div>
             )}
