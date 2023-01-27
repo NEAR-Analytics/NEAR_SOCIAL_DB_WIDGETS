@@ -348,7 +348,7 @@ return (
         aria-labelledby="pills-authors-tab"
       >
         {state.currentTab === "loadauthors" && (
-                      <div>{resultArticles && getAuthors()}</div>
+          <div>{resultArticles && getAuthors()}</div>
         )}
       </div>
 
@@ -358,7 +358,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-create-tab"
       >
-        {state.currentTab === 'loadcreate' && (
+        {state.currentTab === "loadcreate" && (
           <div>
             <h1 className="mb-3"> Create Article</h1>
             <div>
@@ -395,5 +395,44 @@ return (
                       ...state,
                       createArticle: {
                         ...state.createArticle,
-                        articleId: e.target.value.replace(/\s+/g, ''),
+                        articleId: e.target.value.replace(/\s+/g, ""),
                       },
+                    });
+                  }}
+                />
+              </div>
+              <div class="d-flex flex-column pt-3">
+                <label for="textareaArticleBody">
+                  Input article body (in makrdown format):
+                </label>
+                <label for="textareaArticleBody" class="small text-danger">
+                  {state.errorBody}
+                </label>
+                <textarea
+                  id="textareaArticleBody "
+                  type="text"
+                  value={state.createArticle.articleBody}
+                  rows={10}
+                  className="form-control mt-2"
+                  onChange={(e) => {
+                    State.update({
+                      ...state,
+                      createArticle: {
+                        ...state.createArticle,
+                        articleBody: e.target.value,
+                      },
+                    });
+                  }}
+                />
+              </div>
+              <div class="pt-3">
+                Article preview:
+                <Markdown text={state.createArticle.articleBody} />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </>
+);
