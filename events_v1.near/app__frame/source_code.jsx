@@ -326,6 +326,8 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayout = (layoutProps || {}).innerLayout || null;
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
 
+  const widgetProps = { ...componentProps, ...(props || {}) };
+
   // guard to allow 'default' layout exit infinite render loop
   if (
     layout === 'default' ||
@@ -337,7 +339,7 @@ function renderComponent(name, props, layout, layoutProps) {
       <Widget
         src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
         key={key}
-        props={{ ...componentProps, ...(props || {}) }}
+        props={widgetProps}
       />
     );
   }
@@ -351,7 +353,7 @@ function renderComponent(name, props, layout, layoutProps) {
         ...(layoutProps || {}),
         component: {
           name: name,
-          props: { ...componentProps, ...(props || {}) },
+          props: widgetProps,
           layout: innerLayout,
           layoutProps: innerLayoutProps,
         },
