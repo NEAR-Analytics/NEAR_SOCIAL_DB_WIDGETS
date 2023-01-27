@@ -9,6 +9,7 @@ if (!state) {
 const layout = state.layout;
 
 props.__.engine.setLayoutController((_layout) => {
+  console.log('setLayout', _layout);
   // props.__.setLayout = _layout;
   State.update({
     layout: _layout,
