@@ -21,12 +21,12 @@ State.init(initialCreateArticleState);
 
 const getArticleData = () => {
   const args = {
-    articleId: state.createArticle.articleId,
+    articleId: state.articleId,
     author: accountId,
     lastEditor: accountId,
     timeLastEdit: Date.now(),
     timeCreate: Date.now(),
-    body: state.createArticle.articleBody,
+    body: state.articleBody,
     version: 0,
     navigation_id: null,
   };
@@ -37,9 +37,10 @@ const getArticleData = () => {
 const saveHandler = (e) => {
   State.update({
     ...state,
-    createArticle: { ...state.createArticle, errorId: "", errorBody: "" },
+    errorId: "",
+    errorBody: "",
   });
-  if (state.createArticle.articleId && state.createArticle.articleBody) {
+  if (state.articleId && state.articleBody) {
     // TODO check it automaticle
     const isArticleIdDublicated = false;
 
@@ -51,21 +52,18 @@ const saveHandler = (e) => {
     } else {
       State.update({
         ...state,
-        createArticle: { ...state.createArticle, errorId: errTextDublicatedId },
+        errorId: errTextDublicatedId,
       });
     }
   } else {
-    if (!state.createArticle.articleId) {
+    if (!state.articleId) {
       State.update({
         ...state,
-        createArticle: { ...state.createArticle, errorId: errTextNoId },
+        errorId: errTextNoId,
       });
     }
-    if (!state.createArticle.articleBody) {
-      State.update({
-        ...state,
-        createArticle: { ...state.createArticle, errorBody: errTextNoBody },
-      });
+    if (!state.articleBody) {
+      State.update({ ...state, errorBody: errTextNoBody });
     }
   }
 };
@@ -73,13 +71,10 @@ const saveHandler = (e) => {
 // === CANCEL HANDLER ===
 const cancelHandler = () => {
   State.update({
-    ...state,
-    createArticle: {
-      articleId: "",
-      articleBody: "",
-      errorId: null,
-      errorBody: null,
-    },
+    articleId: "",
+    articleBody: "",
+    errorId: null,
+    errorBody: null,
   });
 };
 
@@ -105,19 +100,16 @@ return (
           Input article id (case-sensitive, without spaces):
         </label>
         <label for="inputArticleId" class="small text-danger">
-          {state.createArticle.errorId}
+          {state.errorId}
         </label>
         <input
           className="form-control mt-2"
           id="inputArticleId"
-          value={state.createArticle.articleId}
+          value={state.articleId}
           onChange={(e) => {
             State.update({
               ...state,
-              createArticle: {
-                ...state.createArticle,
-                articleId: e.target.value.replace(/\s+/g, ""),
-              },
+              articleId: e.target.value.replace(/\s+/g, ""),
             });
           }}
         />
@@ -127,28 +119,25 @@ return (
           Input article body (in makrdown format):
         </label>
         <label for="textareaArticleBody" class="small text-danger">
-          {state.createArticle.errorBody}
+          {state.errorBody}
         </label>
         <textarea
           id="textareaArticleBody "
           type="text"
-          value={state.createArticle.articleBody}
+          value={state.articleBody}
           rows={10}
           className="form-control mt-2"
           onChange={(e) => {
             State.update({
               ...state,
-              createArticle: {
-                ...state.createArticle,
-                articleBody: e.target.value,
-              },
+              articleBody: e.target.value,
             });
           }}
         />
       </div>
       <div class="pt-3">
         Article preview:
-        <Markdown text={state.createArticle.articleBody} />
+        <Markdown text={state.articleBody} />
       </div>
     </div>
   </div>
