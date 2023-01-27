@@ -1,3 +1,4 @@
+const { address } = props;
 const initialBody = `# Markdown heading level 1
 
 This is a markdown paragraph. So, here are a few examples of markdown syntax and what it looks like.
@@ -47,7 +48,7 @@ const saveHandler = (e) => {
     if (!isArticleIdDublicated) {
       const newArticle = getArticleData();
       Social.set({
-        wikiTest: { articles: { [newArticle.articleId]: { ...newArticle } } },
+        [address]: { articles: { [newArticle.articleId]: { ...newArticle } } },
       });
     } else {
       State.update({
