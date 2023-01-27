@@ -27,6 +27,7 @@ const result = state.show ? (
             <div>There is no entry for this query</div>
             <a
               role="button"
+              className="btn btn-primary"
               href={`https://near.social/#/v3rify.near/widget/Submit?${state.query}`}
             >
               Submit a verification
