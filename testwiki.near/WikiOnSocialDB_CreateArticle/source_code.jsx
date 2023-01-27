@@ -47,6 +47,10 @@ const saveHandler = (e) => {
 
     if (!isArticleIdDublicated) {
       const newArticle = getArticleData();
+      console.log("CHECK IT!!!!!!!");
+      console.log({
+        [address]: { articles: { [newArticle.articleId]: { ...newArticle } } },
+      });
       Social.set({
         [address]: { articles: { [newArticle.articleId]: { ...newArticle } } },
       });
