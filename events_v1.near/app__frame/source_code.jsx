@@ -294,7 +294,6 @@ function renderComponent(name, props, layout, layoutProps) {
   const _layoutName = layout || null;
 
   const componentProps = {
-    ...(props || {}),
     engine: {
       push,
       pop,
@@ -342,7 +341,7 @@ function renderComponent(name, props, layout, layoutProps) {
       <Widget
         src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
         key={key}
-        props={componentProps}
+        props={{ ...componentProps }}
       />
     );
   }
@@ -356,7 +355,7 @@ function renderComponent(name, props, layout, layoutProps) {
         ...componentProps,
         __component: {
           name: name,
-          props: { ...componentProps },
+          props: { ...componentProps, ...(props || {}) },
           layout: innerLayout,
           layoutProps: innerLayoutProps,
         },
