@@ -30,7 +30,7 @@ return (
         <input
           type="checkbox"
           className="form-check-input"
-          checked={state.trusted}
+          value={state.trusted}
           onChange={(e) => State.update({ trusted: e.target.checked })}
         />
       </div>
