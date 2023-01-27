@@ -74,9 +74,7 @@ mapped.reduce(
 
 return (
   <div>
-    {JSON.stringify(mapped)}
-    <CommitButton data={{ post: { test: "probando2" } }}>
-      Post this
-    </CommitButton>
+    <div className="d-lg-none">Dani es jurío</div>
+    <div className="d-none d-lg-block">Dani usa lentes</div>
   </div>
 );
