@@ -10,11 +10,9 @@ console.log({ props });
 
 const layout = state.layout;
 
-const appOwner = props.componentProps.appOwner;
-
 props.componentProps.setController = {
   setLayout: (layout) => {
-    props.componentProps.layout = layout;
+    props.componentProps.__.setLayout = layout;
   },
 };
 
