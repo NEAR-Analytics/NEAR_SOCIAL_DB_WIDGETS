@@ -370,6 +370,9 @@ return (
     <div id="app-state" data-state={JSON.stringify(state)}></div>
 
     {state.layers.map((layer, index) => {
+      if (index < state.layers.length - 2) {
+        return null;
+      }
       return (
         <div
           key={index}
