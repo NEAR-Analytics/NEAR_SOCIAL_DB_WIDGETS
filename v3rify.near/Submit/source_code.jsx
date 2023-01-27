@@ -11,6 +11,8 @@ const isAuthority = Near.view(
   true
 );
 
+const GAS = "30_000_000_000_000";
+
 return (
   <div className="card">
     <div className="card-body">
@@ -46,6 +48,7 @@ return (
               entry_id: state.entryId,
               trusted: state.trusted,
             },
+            GAS,
             "1"
           )
         }
@@ -65,6 +68,7 @@ return (
                 entry_id: state.entryId,
                 trusted: state.trusted,
               },
+              GAS,
               "1"
             )
           }
