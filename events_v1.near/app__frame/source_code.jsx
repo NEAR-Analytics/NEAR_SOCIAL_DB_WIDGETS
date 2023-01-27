@@ -246,6 +246,7 @@ function layoutFromName(name) {
 }
 
 function widgetFromName(name) {
+  // console.log('widgetFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
@@ -390,5 +391,3 @@ function renderComponent(name, props, layout, layoutProps) {
   //   />
   // );
 }
-
-
