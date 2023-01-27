@@ -161,26 +161,6 @@ const getDateLastEdit = (timestamp) => {
   return dateString;
 };
 
-const getAuthors = () => {
-  const authors = Array.from(resultArticles, ({ author }) => author);
-  const uniqAuthors = Array.from(new Set(authors));
-  return (
-    <>
-      <h6>Total authors: {uniqAuthors.length}</h6>
-      <ul>
-        {uniqAuthors.map((author) => (
-          <li>
-            <a
-              href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
-            >
-              {author}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-};
 return (
   <>
     <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
@@ -339,7 +319,7 @@ return (
           </div>
         )}
       </div>
-
+      {/* === LOAD AUTHORS === */}
       <div
         className="tab-pane fade"
         id="pills-authors"
@@ -347,15 +327,12 @@ return (
         aria-labelledby="pills-authors-tab"
       >
         {state.currentTab === "loadauthors" && (
-          <>
-            <div>{resultArticles && getAuthors()}</div>
-            <Widget
-              src="testwiki.near/widget/WikiOnSocialDB_Authors"
-              props={{
-                resultArticles,
-              }}
-            />
-          </>
+          <Widget
+            src="testwiki.near/widget/WikiOnSocialDB_Authors"
+            props={{
+              resultArticles,
+            }}
+          />
         )}
       </div>
 
