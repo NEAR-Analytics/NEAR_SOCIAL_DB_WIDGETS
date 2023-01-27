@@ -1,7 +1,9 @@
 const renderMention =
   props.renderMention ??
   ((accountId) => (
-    <strong>
+    <span
+      style={{ fontWeight: 500, marginRight: "-0.2rem", marginLeft: "0.1rem" }}
+    >
       <Widget
         src="mob.near/widget/ProfileLine"
         props={{
@@ -10,7 +12,7 @@ const renderMention =
           tooltip: true,
         }}
       />
-    </strong>
+    </span>
   ));
 
 return <Markdown text={props.text} onMention={renderMention} />;
