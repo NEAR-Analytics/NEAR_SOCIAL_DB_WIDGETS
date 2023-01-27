@@ -5,7 +5,7 @@ const value = props.value;
 
 initState({
   valid: props.valid ?? true,
-  errorMessage: "",
+  errorMessage: <></>,
 });
 
 const validate = (accountId) => {
@@ -42,8 +42,15 @@ const validate = (accountId) => {
   if (!accountIdRegex.test(accountId)) {
     State.update({
       valid: false,
-      errorMessage:
-        'Account ID must follow the rules specified <a href="https://nomicon.io/DataStructures/Account#account-id-rules">here</a>!',
+      errorMessage: (
+        <>
+          Account ID must follow the rules specified{" "}
+          <a href="https://nomicon.io/DataStructures/Account#account-id-rules">
+            here
+          </a>
+          !
+        </>
+      ),
     });
     update(accountId, false);
     return;
