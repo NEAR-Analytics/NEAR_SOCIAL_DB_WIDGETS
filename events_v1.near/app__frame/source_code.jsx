@@ -303,7 +303,7 @@ function renderComponent(name, props, layout, layoutProps) {
   function setLayout(lay, layProp) {
     controller.setLayout(lay, layProp);
   }
-  function setController(setLayoutFn) {
+  function setLayoutController(setLayoutFn) {
     controller = {
       setLayout: setLayoutFn,
     };
@@ -319,7 +319,7 @@ function renderComponent(name, props, layout, layoutProps) {
         storageGet,
         storageSet,
         setLayout,
-        setController,
+        setLayoutController,
         widgetFromName,
       },
       Components: {
