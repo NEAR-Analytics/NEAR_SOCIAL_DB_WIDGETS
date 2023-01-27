@@ -1,7 +1,7 @@
 const PADDING_WITH_TITLE = 64;
 const BORDER_RADIUS = 16;
 
-const title = props.layoutProps.title || null;
+const title = props.title || null;
 
 return (
   <>
