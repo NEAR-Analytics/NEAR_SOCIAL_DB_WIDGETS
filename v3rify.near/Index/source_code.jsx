@@ -28,27 +28,40 @@ const result = state.show ? (
       backgroundColor: "grey",
     }}
   >
-    <div
-      className="card"
-      style={{ opacity: 1 }}
-      onBlur={() => State.update({ show: false })}
-    >
-      <div className="card-header">Verification score for {state.query}</div>
+    <div className="card" style={{ opacity: 1 }}>
+      <div className="card-header">
+        <span>Verification score for {state.query}</span>
+      </div>
       <div className="card-body">
+        {state.result === null
+          ? "There is no entry for this query"
+          : `The verification score is: ${state.result}`}
+      </div>
+      <div className="card-footer">
         {state.result === null ? (
-          <>
-            <div>There is no entry for this query</div>
-            <a
-              role="button"
-              className="btn btn-primary"
-              href={`https://near.social/#/v3rify.near/widget/Submit?entryId=${state.query}`}
-            >
-              Submit a verification
-            </a>
-          </>
+          <a
+            role="button"
+            className="btn btn-primary"
+            href={`https://near.social/#/v3rify.near/widget/Submit?entryId=${state.query}`}
+          >
+            Submit a verification
+          </a>
         ) : (
-          `The verification score is: ${state.result}`
+          <a
+            role="button"
+            className="btn btn-primary"
+            onClick={() => State.update({ show: false })}
+          >
+            OK
+          </a>
         )}
+        <a
+          role="button"
+          className="btn btn-secondary"
+          onClick={() => State.update({ show: false })}
+        >
+          Close
+        </a>
       </div>
     </div>
   </div>
