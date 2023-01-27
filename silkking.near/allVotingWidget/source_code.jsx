@@ -24,6 +24,7 @@ State.init({
   showErrorsInForm: false,
   hoveringElement: "",
   canVote: true,
+  displaySpinner: false,
   repeat: 0,
 });
 
@@ -224,15 +225,19 @@ function setValidAnswersToThisPoll() {
 
   const canVote = !hasVoted && isQuestionOpen;
 
+  const displaySpinner = state.displaySpinner && canVote;
+
   //Comparing objects checks memory position
   if (
     (JSON.stringify(state.answers) != JSON.stringify(validAnswersToThisPoll) ||
-      state.canVote != canVote) &&
+      state.canVote != canVote ||
+      state.displaySpinner != displaySpinner) &&
     state.repeat < 5
   ) {
     State.update({
       answers: validAnswersToThisPoll,
       canVote,
+      displaySpinner,
       repeat: state.repeat + 1,
     });
   }
