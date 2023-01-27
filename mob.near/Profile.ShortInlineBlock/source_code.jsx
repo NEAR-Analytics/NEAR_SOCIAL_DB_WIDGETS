@@ -4,7 +4,7 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 const name = profile.name;
 
-return (
+const inner = (
   <div className="d-flex flex-row">
     <Widget
       src="mob.near/widget/ProfileImage"
@@ -25,4 +25,13 @@ return (
       </div>
     </div>
   </div>
+);
+
+return props.tooltip ? (
+  <Widget
+    src="mob.near/widget/Profile.OverlayTrigger"
+    props={{ accountId, children: inner }}
+  />
+) : (
+  inner
 );
