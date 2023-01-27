@@ -338,7 +338,12 @@ function renderComponent(name, props, layout, layoutProps) {
       key={key}
       props={{
         componentProps,
-        widgetProps,
+        component: {
+          name: name,
+          props: props,
+          layout: innerLayout,
+          layoutProps: innerLayoutProps,
+        },
       }}
     />
   );
