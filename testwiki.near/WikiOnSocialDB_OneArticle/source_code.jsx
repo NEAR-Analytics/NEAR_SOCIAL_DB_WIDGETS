@@ -1,4 +1,24 @@
-const { getDate, state } = props;
+const { getDate, article } = props;
+
+State.init({
+  article,
+});
+
+const saveArticle = (args) => {
+  const newArticleData = {
+    ...state.article,
+    body: state.note,
+    lastEditor: accountId,
+    timeLastEdit: Date.now(),
+    version: Number(state.article.version) + 1,
+  };
+  Social.set({
+    [addressForArticles]: {
+      articles: { [state.article.articleId]: { ...newArticleData } },
+    },
+  });
+};
+
 return (
   <div>
     <h4>Article: {state.article.articleId}</h4>
