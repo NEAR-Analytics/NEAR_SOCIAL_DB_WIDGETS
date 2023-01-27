@@ -39,7 +39,7 @@ if (
 
 console.log(4);
 console.log('HELP:::1', props.__.engine.layoutFromName(state.layout));
-console.log('HELP:::2', ...(state.layoutProps || {});
+console.log('HELP:::2', ...(state.layoutProps || {}));
 return (
   <Widget
     src={props.__.engine.layoutFromName(state.layout)}
