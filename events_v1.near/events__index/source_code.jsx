@@ -36,6 +36,6 @@ return (
 
     <br />
 
-    {props.__.engine.renderComponent('index.list_container')}
+    {props.__.engine.renderComponent('index.list_container', {})}
   </div>
 );
