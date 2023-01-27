@@ -247,9 +247,9 @@ function layoutFromName(name) {
 
 function rerender() {
   // HACK: force a re-render
-  // State.update({
-  //   renderCycles: state.renderCycles + 1,
-  // });
+  State.update({
+    renderCycles: state.renderCycles + 1,
+  });
 }
 
 function push(name, props, layout, layoutProps) {
@@ -268,7 +268,7 @@ function push(name, props, layout, layoutProps) {
     layers: newLayers,
   });
 
-  rerender();
+  // rerender();
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -283,7 +283,7 @@ function pop() {
     layers: newLayers,
   });
 
-  rerender();
+  // rerender();
 }
 
 function renderComponent(name, props, layout, layoutProps) {
