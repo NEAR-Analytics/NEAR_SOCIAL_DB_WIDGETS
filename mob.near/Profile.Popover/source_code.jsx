@@ -5,7 +5,12 @@ if (!accountId) {
 
 return (
   <div className="d-flex flex-column gap-1">
-    <Widget src="mob.near/widget/Profile.InlineBlock" props={{ accountId }} />
+    <a
+      href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+      className="link-dark text-truncate"
+    >
+      <Widget src="mob.near/widget/Profile.InlineBlock" props={{ accountId }} />
+    </a>
     <div className="d-flex">
       <div className="me-3">
         <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
