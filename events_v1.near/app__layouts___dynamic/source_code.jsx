@@ -34,19 +34,4 @@ if (
 }
 
 return null;
-// return (
-//   <Widget
-//     src={props.__.layoutFromName(layout)}
-//     key={key}
-//     props={{
-//       ...props,
-//       ...(props.layoutProps || {}),
-//       component: {
-//         name: props.component.name,
-//         props: props.component.props,
-//         layout: props.component.innerLayout,
-//         layoutProps: props.component.innerLayoutProps,
-//       },
-//     }}
-//   />
-// );
+
