@@ -27,76 +27,203 @@ State.init({
   justVoted: false,
 });
 
-/* --------------------------------------------------------
- ---------------    Human Verification     ---------------- 
- -------------------------------------------------------- */
-function userIsHuman(reQuery, checkFor) {
+/* -------------------------------------------------
+ ---------------    Humanity check     -------------
+ --------------------------------------------------- */
+/** Check if is human. 1: Unknown, 2: Yes, 3: No, but can retry, 4: No  */
+function userIsHuman(reQuery) {
   if (!reQuery) {
-    if (state.isHuman == undefined) return userIsHuman(true, checkFor);
-    else return state.isHuman;
+    if (state.HumanityStatus == undefined) return userIsHuman(true);
+    else return state.HumanityStatus;
   }
-  var url = "";
-  console.log(checkFor);
-  switch (checkFor) {
-    case "notfound":
-      url = "https://tato.ar/near/notfound.txt";
-      console.log(url);
-      break;
-    case "green":
-      url = "https://tato.ar/near/green.txt";
-      break;
-    case "redr":
-      url = "https://tato.ar/near/redr.txt";
-      break;
-    case "redf":
-      url = "https://tato.ar/near/redf.txt";
-      break;
-    default:
-      url = "none";
-      break;
-  }
+  const url = "https://tato.ar/near/rt.txt";
   console.log(url);
 
   const response = fetch(url);
+
   console.log(response);
-  var isHuman = false;
-  var canRetry = false;
-  if (response.body.code == 404) isHuman = false;
-  else if (response.review.reviewResult.reviewAnswer == "GREEN") isHuman = true;
-  else if (response.review.reviewResult.reviewAnswer == "RED") {
-    if (response.review.reviewResult.reviewRejectType == "FINAL")
-      canRetry = false;
-    if (response.review.reviewResult.reviewRejectType == "RETRY")
-      canRetry = true;
+  if (response.status != 200) {
+    console.log("Can't connect to verification API");
+    return;
+  }
+  const obj = JSON.parse(response.body);
+  console.log(obj);
+  var result = 1;
+  if (obj.body.code != 404) {
+    if (obj.review.reviewResult.reviewAnswer == "GREEN") result = 2;
+    else if (obj.review.reviewResult.reviewAnswer == "RED") {
+      if (obj.review.reviewRejectType == "FINAL") result = 4;
+      if (obj.review.reviewRejectType == "RETRY") result = 3;
+    }
   }
 
-  console.log("isHuman: " + isHuman);
-  console.log("canRetry: " + canRetry);
+  console.log("isHuman: " + result);
 
-  State.update({ isHuman: isHuman });
-  State.update({ isHumanCanRetry: canRetry });
+  State.update({ HumanityStatus: result });
 
-  return isHuman;
+  return result;
 }
 
 const proveYoureHumanButton = () => {
   return (
     <div>
-      <a href="https://www.google.com" target="_blank">
-        <button>Click here to prove you are human</button>
-      </a>
-      <button onclikc="{userIsHuman(true, 'notfound')}">
-        Click here once you proved your humanity
-      </button>
-      <button
-        className="w-100"
-        style={PrimaryButtonStyle()}
-        onMouseEnter={() => State.update({ hoveringElement: "primaryButton" })}
-        onMouseLeave={() => State.update({ hoveringElement: "" })}
-      >
-        Vote (you must prove you're human)
-      </button>
+      {state.HumanityStatus == 1 ? (
+        <p style={{ textAlign: "center" }} className="alert alert-info">
+          Humanity not checked
+        </p>
+      ) : state.HumanityStatus == 2 ? (
+        ""
+      ) : state.HumanityStatus == 3 ? (
+        <p style={{ textAlign: "center" }} className="alert alert-info">
+          Humanity check failed. Please try again
+        </p>
+      ) : (
+        <p style={{ textAlign: "center" }} className="alert alert-danger">
+          Humanity check failed. You can't continue
+        </p>
+      )}
+      {state.HumanityStatus < 4 ? (
+        <>
+          <div style={{ textAlign: "center" }}>
+            <a
+              href="https://www.google.com"
+              target="_blank"
+              onClick={() => showCheckHumanModal()}
+            >
+              <button>Click here to prove you are human</button>
+            </a>
+          </div>
+          <button
+            className="w-100"
+            style={PrimaryButtonStyle()}
+            onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
+            onMouseLeave={() => State.update({ hoveringElement: "" })}
+          >
+            Vote (you must prove you're human)
+          </button>
+        </>
+      ) : (
+        ""
+      )}
     </div>
+  );
+};
+
+const showCheckHumanModal = () => {
+  console.log("show");
+  State.update({ HumanityModal: "show" });
+};
+
+const closeCheckHumanModal = () => {
+  console.log("hide");
+  State.update({ HumanityModal: "hide" });
+  userIsHuman(true);
+};
+
+const renderCheckHumanModal = () => {
+  console.log("state.HumanityModal: " + state.HumanityModal);
+  return state.HumanityModal == "show" ? (
+    <>
+      <div
+        className="modal"
+        id="modal"
+        style={{
+          display: "block",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#7e7e7e70",
+          backdropFilter: "blur(4px)",
+        }}
+        tabindex="-1"
+        role="dialog"
+      >
+        <div
+          className="modal-dialog"
+          style={{ width: "540px", borderRadius: "28px" }}
+          role="document"
+        >
+          <div
+            className="modal-content"
+            style={{ border: "none", borderRadius: "28px" }}
+          >
+            <div
+              className="modal-header flex-row-reverse"
+              style={{ padding: "0", margin: "0", border: "none" }}
+            >
+              <button
+                type="button"
+                className="close"
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  margin: "0.5rem 0.5rem 0px 0px",
+                  borderRadius: "28px",
+                  marginRight: "0.3rem",
+                  padding: "0.3rem 0.7rem 0 0",
+                }}
+                data-bs-dismiss="modal"
+                ariaLabel="Close"
+                onClick={() => closeCheckHumanModal()}
+              >
+                <i className="bi bi-x-lg"></i>
+              </button>
+            </div>
+            <div
+              className="modal-body"
+              style={{
+                width: "90%",
+                borderRadius: "1rem",
+                margin: "0 auto",
+                padding: "0",
+              }}
+            >
+              <h3
+                style={{
+                  fontWeight: "700",
+                  fontSize: "1.5rem",
+                  letterSpacing: "0.1px",
+                  textAlign: "center",
+                }}
+              >
+                Humanity check pending...
+              </h3>
+              <p
+                style={{
+                  letterSpacing: "-0.01",
+                  color: "#4B516A",
+                  fontSize: "1rem",
+                  textAlign: "center",
+                }}
+              >
+                Close this once you completed the humanity check process
+              </p>
+              <div
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  ariaLabel="Close"
+                  onClick={() => closeCheckHumanModal()}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+            <div
+              className="modal-footer"
+              style={{ border: "none", justifyContent: "space-around" }}
+            ></div>
+          </div>
+        </div>
+      </div>
+    </>
+  ) : (
+    ""
   );
 };
 
@@ -627,6 +754,7 @@ function SecondaryButtonStyle() {
 
 return (
   <>
+    {renderCheckHumanModal()}
     {poll.value.questions.map((question, questionNumber) => {
       return (
         <div
@@ -680,7 +808,7 @@ return (
       hasVoted ? (
         ""
       ) : isVoteValid() ? (
-        userIsHuman(false, "notfound") ? (
+        userIsHuman(false) == 2 ? (
           // human is verified
           <CommitButton
             className="w-100"
