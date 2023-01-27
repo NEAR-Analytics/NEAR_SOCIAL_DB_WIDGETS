@@ -11,7 +11,7 @@ const isAuthority = Near.view(
   true
 );
 
-const GAS = "30000000000000";
+const GAS = `${30 * (10 ^ 12)}`;
 
 return (
   <div className="card">
