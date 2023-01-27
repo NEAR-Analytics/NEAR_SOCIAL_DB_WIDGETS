@@ -368,7 +368,7 @@ return (
                   Input article id (case-sensitive, without spaces):
                 </label>
                 <label for="inputArticleId" class="small text-danger">
-                  {state.errorId}
+                  {state.createArticle.errorId}
                 </label>
                 <input
                   className="form-control mt-2"
@@ -390,7 +390,7 @@ return (
                   Input article body (in makrdown format):
                 </label>
                 <label for="textareaArticleBody" class="small text-danger">
-                  {state.errorBody}
+                  {state.createArticle.errorBody}
                 </label>
                 <textarea
                   id="textareaArticleBody "
