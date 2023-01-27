@@ -8,6 +8,8 @@ if (!state) {
 
 const layout = state.layout;
 
+const appOwner = props.componentProps.appOwner;
+
 props.componentProps.setController = {
   setLayout: (layout) => {
     props.componentProps.layout = layout;
@@ -23,7 +25,7 @@ if (
 ) {
   return (
     <Widget
-      src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
+      src={props.__.engine.widgetFromName(name)}}
       key={key}
       props={widgetProps}
     />
