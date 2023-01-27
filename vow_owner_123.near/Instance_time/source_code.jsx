@@ -5,7 +5,7 @@ if (!data) {
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var accountIds = ["All"];
 var finalData = {};
-var refreshed = state.tab == tabs.ALL_SCHEDULE ? undefined : props.refreshed;
+var refreshed = state.tab == tabs.ALL_SCHEDULE ? false : props.refreshed;
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
@@ -92,6 +92,9 @@ const tabs = {
   ALL_SCHEDULE: { id: 0, text: "Create Schedule" },
   NEW_SCHEDULE: { id: 1, text: "View All Schedules" },
 };
+const show = () => {
+  console.log("successed");
+};
 const time_zones = [
   "(UTC-11:00) Samoa",
   "(UTC-10:00) Hawaii",
@@ -152,9 +155,10 @@ const comboBox = {
 };
 const set_schedule = () => {
   if (state.tab == tabs.ALL_SCHEDULE.id) {
-    props.refreshed = false;
+    props.refreshed = true;
     State.update({ tab: tabs.NEW_SCHEDULE.id });
   } else {
+    props.refreshed = false;
     State.update({ tab: tabs.ALL_SCHEDULE.id });
     State.update({ _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC" });
   }
@@ -254,7 +258,7 @@ return (
       </div>
     </div>
     <div className="align-items-center pt-3">
-      {state.tab == tabs.ALL_SCHEDULE.id || refreshed ? (
+      {state.tab == tabs.ALL_SCHEDULE.id ? (
         <Widget
           src={`vow_owner_123.near/widget/Instance_time_review`}
           props={{
@@ -273,6 +277,7 @@ return (
             },
             style: { width: "100%", height: "1.5em" },
           }}
+          rawCode={show}
         />
       )}
     </div>
