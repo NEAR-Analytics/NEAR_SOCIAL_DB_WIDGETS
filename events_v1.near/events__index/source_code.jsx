@@ -21,7 +21,7 @@ return (
         props.__.engine.push(
           'index.list_container',
           {
-            forAccountId: props.accountId,
+            forAccountId: props.__.accountId,
           },
           'container',
           {
