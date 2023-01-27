@@ -22,10 +22,10 @@ const key = props.key;
 
 // guard to allow 'default' layout exit infinite render loop
 if (
-  layout === 'default' ||
-  layout === null ||
-  layout === '' ||
-  layout === undefined
+  state.layout === 'default' ||
+  state.layout === null ||
+  state.layout === '' ||
+  state.layout === undefined
 ) {
   console.log(3);
   return (
