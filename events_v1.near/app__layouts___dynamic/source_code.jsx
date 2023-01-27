@@ -36,6 +36,7 @@ if (
   );
 }
 
+return null;
 // return (
 //   <Widget
 //     src={props.wrapperProps.__.layoutFromName(layout)}
