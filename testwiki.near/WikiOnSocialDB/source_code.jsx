@@ -30,7 +30,6 @@ const filteredArticles =
       return acc;
     }
   }, []);
-console.log("filteredArticles", filteredArticles);
 
 const initialBody = `# Markdown heading level 1
 
