@@ -300,7 +300,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   componentProps = {
     __: {
-      controller: null,
+      controller: null, // set by the layout wrapper
       engine: {
         push,
         pop,
