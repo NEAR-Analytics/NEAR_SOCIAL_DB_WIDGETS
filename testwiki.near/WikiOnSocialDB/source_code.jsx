@@ -348,3 +348,52 @@ return (
         aria-labelledby="pills-authors-tab"
       >
         {state.currentTab === "loadauthors" && (
+                      <div>{resultArticles && getAuthors()}</div>
+        )}
+      </div>
+
+      <div
+        className="tab-pane fade"
+        id="pills-create"
+        role="tabpanel"
+        aria-labelledby="pills-create-tab"
+      >
+        {state.currentTab === 'loadcreate' && (
+          <div>
+            <h1 className="mb-3"> Create Article</h1>
+            <div>
+              <div>
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={saveHandler}
+                >
+                  Save Article
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={cancelHandler}
+                >
+                  Cancel / Clear
+                </button>
+              </div>
+              <div class="d-flex flex-column pt-3">
+                <label for="inputArticleId">
+                  Input article id (case-sensitive, without spaces):
+                </label>
+                <label for="inputArticleId" class="small text-danger">
+                  {state.errorId}
+                </label>
+                <input
+                  className="form-control mt-2"
+                  id="inputArticleId"
+                  value={state.createArticle.articleId}
+                  onChange={(e) => {
+                    State.update({
+                      ...state,
+                      createArticle: {
+                        ...state.createArticle,
+                        articleId: e.target.value.replace(/\s+/g, ''),
+                      },
