@@ -4,7 +4,10 @@ return (
   <div className="d-flex justify-content-between">
     <div className="me-2 text-truncate">
       <div className="text-truncate">
-        <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
+        <Widget
+          src="mob.near/widget/ProfileLine"
+          props={{ accountId, tooltip: true }}
+        />
       </div>
       <div
         className="text-truncate text-muted"
