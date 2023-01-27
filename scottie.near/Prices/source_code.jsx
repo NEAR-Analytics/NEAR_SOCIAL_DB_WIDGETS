@@ -28,10 +28,10 @@ let prices = assets.map((asset) => {
       <tr></tr>
       <tr>
         <td style={{ width: "120px" }}>
-          <div style={{ color: "#838180" }}>{asset_name}USD</div>
+          <div style={{ color: "#6E757C" }}>{asset_name}USD</div>
         </td>
         <td style={{ width: "120px" }}>
-          <div style={{ color: "#838180", textAlign: "right" }}>
+          <div style={{ color: "#6E757C", textAlign: "right" }}>
             ${price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
           </div>
         </td>
@@ -44,16 +44,16 @@ return (
   <div
     class="container"
     style={{
-      background: "#F5F3F3",
+      background: "#F8F9FA",
       borderRadius: "12px",
       width: "240px",
-      margin: "16px",
-      padding: "15px",
+      margin: "auto",
+      padding: "16px",
     }}
   >
-    <h5 style={{ color: "#5F5B5B", textAlign: "center" }}>Coin Price Data</h5>
+    <h5 style={{ color: "#6E757C", textAlign: "center" }}>Coin Price Data</h5>
     <div>
-      <table style={{ color: "#838180", tableLayout: "fixed" }}>
+      <table style={{ color: "#6E757C", tableLayout: "fixed" }}>
         <tr>
           <th style={{ width: "120px" }}>Asset</th>
           <th style={{ width: "120px", textAlign: "right" }}>Price</th>
