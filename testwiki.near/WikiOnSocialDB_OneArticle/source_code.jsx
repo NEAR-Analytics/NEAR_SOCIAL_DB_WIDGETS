@@ -1,4 +1,4 @@
-const { getDate, article } = props;
+const { getDate, article, addressForArticles } = props;
 
 State.init({
   article,
