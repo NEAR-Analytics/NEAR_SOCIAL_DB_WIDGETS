@@ -293,12 +293,11 @@ function renderComponent(name, props, layout, layoutProps) {
   }
 
   let componentProps = {};
-  let controller = null;
 
+  let controller = null;
   function setLayout() {
     controller.setLayout(layout, layoutProps);
   }
-
   function setController(conn) {
     controller = conn;
   }
