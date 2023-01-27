@@ -18,8 +18,4 @@ if (!events) {
   return <Loading>Loading events</Loading>;
 }
 
-return (
-
-    {props.__.engine.renderComponent('index.list', { events })}
-
-);
+return props.__.engine.renderComponent('index.list', { events });
