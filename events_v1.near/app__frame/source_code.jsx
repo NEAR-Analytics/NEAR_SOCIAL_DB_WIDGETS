@@ -353,7 +353,7 @@ function renderComponent(name, props, layout, layoutProps) {
         ...(layoutProps || {}),
         component: {
           name: name,
-          props: widgetProps,
+          props: props,
           layout: innerLayout,
           layoutProps: innerLayoutProps,
         },
