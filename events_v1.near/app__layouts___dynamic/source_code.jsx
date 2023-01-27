@@ -30,9 +30,9 @@ if (
 ) {
   return (
     <Widget
-      src={props.__.engine.widgetFromName(name)}
+      src={props.__.engine.widgetFromName(props.component.name)}
       key={key}
-      props={widgetProps}
+      props={props.component.props}
     />
   );
 }
