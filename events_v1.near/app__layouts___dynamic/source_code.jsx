@@ -35,7 +35,7 @@ if (
   console.log('rendering component', props.component.name);
   return (
     <Widget
-      src={props.__.engine.widgetFromName(props.component.name)}
+      src={props.wrapperProps.__.engine.widgetFromName(props.component.name)}
       key={key}
       props={{ ...props.wrapperProps, ...props.component.props }}
     />
