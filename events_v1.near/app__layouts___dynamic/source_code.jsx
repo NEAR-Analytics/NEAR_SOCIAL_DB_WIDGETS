@@ -50,4 +50,4 @@ const nextProps = {
   },
 };
 
-return <Widget src={layoutSource} key={key} props={layoutProps} />;
+return <Widget src={nextSource} key={key} props={nextProps} />;
