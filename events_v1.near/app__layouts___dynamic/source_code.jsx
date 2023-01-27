@@ -39,7 +39,7 @@ if (
 
 return (
   <Widget
-    src={layoutFromName(layout)}
+    src={props.dynProps.__.layoutFromName(layout)}
     key={key}
     props={{
       ...dynProps,
