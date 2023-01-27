@@ -121,7 +121,7 @@ return (
           <div>
             {!state.article && (
               <ul>
-                {resultArticles &&
+                {filteredArticles &&
                   filteredArticles.map((article, index) => (
                     <li key={article.articleId}>
                       #{" "}
