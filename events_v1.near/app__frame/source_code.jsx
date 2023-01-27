@@ -330,7 +330,7 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayout = (layoutProps || {}).innerLayout || null;
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
 
-  const widgetProps = { ...componentProps, ...(props || {}) };
+  // const widgetProps = { ...componentProps, ...(props || {}) };
 
   return (
     <Widget
