@@ -294,28 +294,28 @@ function renderComponent(name, props, layout, layoutProps) {
   const _layoutName = layout || null;
 
   const componentProps = {
-    engine: {
-      push,
-      pop,
-      renderComponent,
-      rerender,
-      storageGet,
-      storageSet,
-    },
-    Components: {
-      Select,
-      Button,
-      Loading,
-      PageTitle,
-    },
-    helpers: {
-      propIsRequiredMessage,
-    },
-    accountId,
-    VERSION,
-    layout: _layoutName,
-    layoutProps: layoutProps || {},
-    _: {
+    __: {
+      engine: {
+        push,
+        pop,
+        renderComponent,
+        rerender,
+        storageGet,
+        storageSet,
+      },
+      Components: {
+        Select,
+        Button,
+        Loading,
+        PageTitle,
+      },
+      helpers: {
+        propIsRequiredMessage,
+      },
+      accountId,
+      VERSION,
+      layout: _layoutName,
+      layoutProps: layoutProps || {},
       callbacks: [],
       registerCallback: (callback) => {
         componentProps._.callbacks.push(callback);
