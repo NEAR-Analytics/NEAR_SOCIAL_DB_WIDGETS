@@ -141,6 +141,7 @@ return (
                   props={{
                     getDate,
                     article: state.article,
+                    addressForArticles,
                   }}
                 />
                 <h4>Article: {state.article.articleId}</h4>
