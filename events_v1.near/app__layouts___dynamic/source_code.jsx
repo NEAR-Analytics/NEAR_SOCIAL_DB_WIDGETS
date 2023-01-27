@@ -40,7 +40,7 @@ if (
 console.log(4);
 return (
   <Widget
-    src={props.__.layoutFromName(state.layout)}
+    src={props.__.engine.layoutFromName(state.layout)}
     key={key}
     props={{
       ...(state.layoutProps || {}),
