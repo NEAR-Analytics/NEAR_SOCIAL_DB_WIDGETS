@@ -224,9 +224,6 @@ function setValidAnswersToThisPoll() {
 
   const canVote = !hasVoted && isQuestionOpen;
 
-  console.log(1, state.answers, validAnswersToThisPoll);
-  console.log(2, state.canVote, canVote);
-
   //Comparing objects checks memory position
   if (
     (JSON.stringify(state.answers) != JSON.stringify(validAnswersToThisPoll) ||
@@ -540,10 +537,7 @@ const renderTextInput = (questionNumber) => {
 
 setValidAnswersToThisPoll();
 
-function debug() {
-  console.log(1, state.canVote);
-  console.log(2, props.poll);
-}
+function debug() {}
 
 debug();
 
@@ -597,7 +591,7 @@ return (
       );
     })}
 
-    {state.canVote ? (
+    {!state.canVote ? (
       ""
     ) : isVoteValid() ? (
       <CommitButton
