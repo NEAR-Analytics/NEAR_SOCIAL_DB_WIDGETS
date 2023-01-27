@@ -12,7 +12,7 @@ State.init({
 const overlay = (
   <div
     className="border m-3 p-3 rounded-4 bg-white shadow"
-    style={{ maxWidth: "20em" }}
+    style={{ maxWidth: "24em" }}
     onMouseEnter={handleOnMouseEnter}
     onMouseLeave={handleOnMouseLeave}
   >
@@ -31,8 +31,12 @@ return (
     placement="auto"
     overlay={overlay}
   >
-    <span onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
-      <button>test {props.children}</button>
+    <span
+      className="d-inline-flex"
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+    >
+      {props.children}
     </span>
   </OverlayTrigger>
 );
