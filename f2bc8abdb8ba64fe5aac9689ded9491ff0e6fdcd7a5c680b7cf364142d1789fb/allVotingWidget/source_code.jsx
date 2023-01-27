@@ -501,7 +501,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {hasVoted ? (
+      {state.canVote ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -551,13 +551,13 @@ return (
             </h4>
           </div>
 
-          {!hasVoted &&
+          {!state.canVote &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && question.questionType == "2" ? (
+          ) : !state.canVote && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted && <p className="mb-1">Write your answer:</p>
+            !state.canVote && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -573,7 +573,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      hasVoted ? (
+      state.canVote ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
