@@ -4,20 +4,20 @@ const update = props.update;
 const value = props.value;
 
 initState({
-  valid: true,
+  valid: props.valid ?? true,
   errorMessage: "",
 });
 
 const validate = (accountId) => {
   const accountIdRegex =
     /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/;
-  console.log(`called with ${accountId}`);
 
   if (typeof accountId !== "string") {
     State.update({
       valid: false,
       errorMessage: "Account ID must be a text value!",
     });
+    update(accountId, false);
     return;
   }
 
@@ -26,6 +26,7 @@ const validate = (accountId) => {
       valid: false,
       errorMessage: "Account ID must be at least 2 characters long!",
     });
+    update(accountId, false);
     return;
   }
 
@@ -34,6 +35,7 @@ const validate = (accountId) => {
       valid: false,
       errorMessage: "Account ID must be at most 64 characters long!",
     });
+    update(accountId, false);
     return;
   }
 
@@ -43,6 +45,7 @@ const validate = (accountId) => {
       errorMessage:
         'Account ID must follow the rules specified <a href="https://nomicon.io/DataStructures/Account#account-id-rules">here</a>!',
     });
+    update(accountId, false);
     return;
   }
 
@@ -51,10 +54,12 @@ const validate = (accountId) => {
       valid: false,
       errorMessage: "This account ID has already been used!",
     });
+    update(accountId, false);
     return;
   }
 
   State.update({ valid: true, errorMessage: "" });
+  update(accountId, true);
 };
 
 if (typeof value !== "string") {
