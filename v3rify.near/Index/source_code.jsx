@@ -28,7 +28,11 @@ const result = state.show ? (
       backgroundColor: "grey",
     }}
   >
-    <div className="card" style={{ opacity: 1 }}>
+    <div
+      className="card"
+      style={{ opacity: 1 }}
+      onBlur={() => State.update({ show: false })}
+    >
       <div className="card-header">Verification score for {state.query}</div>
       <div className="card-body">
         {state.result === null ? (
