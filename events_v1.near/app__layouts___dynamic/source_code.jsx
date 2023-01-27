@@ -12,9 +12,9 @@ console.log(1);
 const layout = state.layout;
 
 console.log(2);
-props.wrapperProps.__.engine.setLayoutController((_layout) => {
+props.__.engine.setLayoutController((_layout) => {
   console.log('setLayout', _layout);
-  // props.wrapperProps.__.setLayout = _layout;
+  // props.__.setLayout = _layout;
   State.update({
     layout: _layout,
   });
@@ -35,9 +35,9 @@ if (
   console.log('rendering component', props.component.name);
   return (
     <Widget
-      src={props.wrapperProps.__.engine.widgetFromName(props.component.name)}
+      src={props.__.engine.widgetFromName(props.component.name)}
       key={key}
-      props={{ ...props.wrapperProps, ...props.component.props }}
+      props={{ props.__, ...props.component.props }}
     />
   );
 }
@@ -46,10 +46,10 @@ console.log(6);
 return null;
 // return (
 //   <Widget
-//     src={props.wrapperProps.__.layoutFromName(layout)}
+//     src={props.__.layoutFromName(layout)}
 //     key={key}
 //     props={{
-//       ...props.wrapperProps,
+//       ...props,
 //       ...(props.layoutProps || {}),
 //       component: {
 //         name: props.component.name,
