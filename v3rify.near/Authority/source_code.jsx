@@ -1,5 +1,5 @@
 initState({
-  authorities: (props.authorities.split(",") ?? []).map((accountId) => ({
+  authorities: (props.authorities ?? "").split(",").map((accountId) => ({
     accountId,
   })),
 });
