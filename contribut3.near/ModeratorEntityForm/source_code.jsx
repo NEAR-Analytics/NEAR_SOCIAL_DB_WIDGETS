@@ -131,7 +131,7 @@ const body = (
 
     <a
       className={`btn ${
-        sstate.accountIdValid ? "btn-primary" : "btn-secondary"
+        state.accountIdValid ? "btn-primary" : "btn-secondary"
       } mb-2`}
       onClick={onSubmit}
     >
