@@ -39,6 +39,7 @@ if (
 
 console.log(4);
 const nextSource = props.__.engine.layoutFromName(state.layout);
+console.log(5);
 const nextProps = {
   ...(state.layoutProps || {}),
   ...{ __: props.__ },
@@ -49,5 +50,6 @@ const nextProps = {
     layoutProps: props.component.innerLayoutProps,
   },
 };
+console.log(6);
 
 return <Widget src={nextSource} key={key} props={nextProps} />;
