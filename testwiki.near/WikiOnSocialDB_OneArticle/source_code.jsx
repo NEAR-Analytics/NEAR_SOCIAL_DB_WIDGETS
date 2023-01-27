@@ -1,4 +1,4 @@
-const { getDate } = props;
+const { getDate, state } = props;
 return (
   <div>
     <h4>Article: {state.article.articleId}</h4>
