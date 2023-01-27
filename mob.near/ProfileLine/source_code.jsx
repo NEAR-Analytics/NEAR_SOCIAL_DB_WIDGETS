@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
+const accountId = props.accountId;
 const link = props.link ?? true;
 const hideAccountId = props.hideAccountId;
 const hideName = props.hideName;
