@@ -353,7 +353,6 @@ return (
               src="testwiki.near/widget/WikiOnSocialDB_Authors"
               props={{
                 resultArticles,
-                text: "Hello",
               }}
             />
           </>
