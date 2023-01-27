@@ -19,14 +19,7 @@ if (!events) {
 }
 
 return (
-  <>
-    <button
-      onClick={() => {
-        props.__.engine.pop();
-      }}
-    >
-      &lt;
-    </button>
+
     {props.__.engine.renderComponent('index.list', { events })}
-  </>
+
 );
