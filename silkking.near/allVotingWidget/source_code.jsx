@@ -4,8 +4,7 @@ if (!props.isPreview && !props.poll) {
 
 const isPreview = props.isPreview ?? false;
 
-let widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+let widgetOwner = "silkking.near";
 
 // Getting question
 const poll = props.poll;
@@ -590,8 +589,7 @@ return (
         </div>
       );
     })}
-    {isQuestionOpen ? (
-      state.canVote ? (
+    {!state.canVote ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
