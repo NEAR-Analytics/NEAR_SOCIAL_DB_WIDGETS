@@ -31,98 +31,9 @@ const filteredArticles =
     }
   }, []);
 
-// *** Start
-const initialBody = `# Markdown heading level 1
-
-This is a markdown paragraph. So, here are a few examples of markdown syntax and what it looks like.
-
-1. markdown
-2. ordered
-3. list`;
-
-const errTextNoBody = "ERROR: no article Body",
-  errTextNoId = "ERROR: no article Id",
-  errTextDublicatedId = "ERROR: there is article with such name";
-
-const initialCreateArticleState = {
-  articleId: "",
-  articleBody: initialBody,
-  errorId: "",
-  errorBody: "",
-};
-// *** End
-
-// *** Partly Delete
 State.init({
   currentTab: "loadarticles",
-  createArticle: initialCreateArticleState,
 });
-
-// *** Start
-const getArticleData = () => {
-  const args = {
-    articleId: state.createArticle.articleId,
-    author: accountId,
-    lastEditor: accountId,
-    timeLastEdit: Date.now(),
-    timeCreate: Date.now(),
-    body: state.createArticle.articleBody,
-    version: 0,
-    navigation_id: null,
-  };
-  return args;
-};
-
-// === SAVE HANDLER ===
-const saveHandler = (e) => {
-  State.update({
-    ...state,
-    createArticle: { ...state.createArticle, errorId: "", errorBody: "" },
-  });
-  if (state.createArticle.articleId && state.createArticle.articleBody) {
-    // TODO check it automaticle
-    const isArticleIdDublicated = false;
-
-    if (!isArticleIdDublicated) {
-      const newArticle = getArticleData();
-      Social.set({
-        wikiTest: { articles: { [newArticle.articleId]: { ...newArticle } } },
-      });
-    } else {
-      State.update({
-        ...state,
-        createArticle: { ...state.createArticle, errorId: errTextDublicatedId },
-      });
-    }
-  } else {
-    if (!state.createArticle.articleId) {
-      State.update({
-        ...state,
-        createArticle: { ...state.createArticle, errorId: errTextNoId },
-      });
-    }
-    if (!state.createArticle.articleBody) {
-      State.update({
-        ...state,
-        createArticle: { ...state.createArticle, errorBody: errTextNoBody },
-      });
-    }
-  }
-};
-
-// === CANCEL HANDLER ===
-const cancelHandler = () => {
-  State.update({
-    ...state,
-    createArticle: {
-      articleId: "",
-      articleBody: "",
-      errorId: null,
-      errorBody: null,
-    },
-  });
-};
-// *** End
 
 const description = profile.description;
 
