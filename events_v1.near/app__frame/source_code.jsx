@@ -347,6 +347,7 @@ function renderComponent(name, props, layout, layoutProps) {
       key={key}
       props={{
         componentProps,
+        key,
         component: {
           name: name,
           props: props,
