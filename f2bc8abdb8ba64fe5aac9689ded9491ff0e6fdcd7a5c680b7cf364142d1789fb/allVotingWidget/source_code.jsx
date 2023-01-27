@@ -203,7 +203,7 @@ function getValidAnswers(answersToThisPoll) {
   return validOptionAndTimeAnswers;
 }
 
-function getValidAnswersToThisPoll() {
+function setValidAnswersToThisPoll() {
   let answers = Social.index("poll_question", "answer-v3.1.1");
 
   if (!answers) {
@@ -240,7 +240,7 @@ if (!state.answers) {
 const answersToThisPoll = state.answers.filter(
   (a) => a.value.questionBlockHeight == props.poll.blockHeight
 );
-const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+// const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
 let userVote;
 // Getting if user has already voted
@@ -303,8 +303,8 @@ function isVoteValid() {
 }
 
 function calculatePercentage(votesToThisOption) {
-  if (validAnswersToThisPoll.length == 0) return 0;
-  return ((votesToThisOption / validAnswersToThisPoll.length) * 100).toFixed(2);
+  if (state.answers.length == 0) return 0;
+  return ((votesToThisOption / state.answers.length) * 100).toFixed(2);
 }
 
 function calculatePercentageOfOption(votes, index) {
@@ -340,7 +340,7 @@ const renderAnswers = (questionNumber) => {
       src={`${widgetOwner}/widget/answer_poll-comment-container`}
       props={{
         questionNumber: questionNumber + "",
-        answers: validAnswersToThisPoll,
+        answers: state.answers,
       }}
     />
   );
@@ -523,6 +523,8 @@ const renderTextInput = (questionNumber) => {
   );
 };
 
+setValidAnswersToThisPoll();
+
 return (
   <>
     {poll.value.questions.map((question, questionNumber) => {
@@ -603,7 +605,7 @@ return (
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
           onCommit={() => {
-            getValidAnswersToThisPoll();
+            setValidAnswersToThisPoll();
           }}
         >
           Vote
@@ -656,7 +658,7 @@ return (
         marginTop: "0.8rem",
       }}
     >
-      {validAnswersToThisPoll.length} votes
+      {state.answers.length} votes
     </p>
   </>
 );
