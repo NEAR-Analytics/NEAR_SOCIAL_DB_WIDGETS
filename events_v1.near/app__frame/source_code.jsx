@@ -292,9 +292,9 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
-  let componentProps = { };
-  
-  function setLayout(){
+  let componentProps = {};
+
+  function setLayout() {
     componentProps.__.controller.setLayout(layout, layoutProps);
   }
 
@@ -307,8 +307,7 @@ function renderComponent(name, props, layout, layoutProps) {
         rerender,
         storageGet,
         storageSet,
-        setLayout
-        }
+        setLayout,
       },
       Components: {
         Select,
@@ -320,7 +319,7 @@ function renderComponent(name, props, layout, layoutProps) {
         propIsRequiredMessage,
       },
       accountId,
-      VERSION
+      VERSION,
     },
   };
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
