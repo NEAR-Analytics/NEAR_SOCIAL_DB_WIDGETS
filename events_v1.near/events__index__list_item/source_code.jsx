@@ -72,7 +72,7 @@ function gotoEvent() {
     back: true,
     dropdownItems: [
       {
-        component: 'components.dropdown_item',
+        name: 'components.dropdown_item',
         props: {
           label: 'Edit',
           onClick: () => {
