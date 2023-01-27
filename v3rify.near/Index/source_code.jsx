@@ -75,7 +75,7 @@ return (
         <a
           role="button"
           className="btn btn-primary mt-2"
-          // href={`https://near.social/#/v3rify.near/widget/Index?query=${state.query}`}
+          href={`https://near.social/#/v3rify.near/widget/Index?query=${state.query}`}
           onClick={() =>
             Near.asyncView(
               "v3rify.near",
