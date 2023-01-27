@@ -2,33 +2,31 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId ?? "";
 const kind = props.kind ? [{ name: props.kind }] : [];
 const startDate = props.startDate ?? "";
+const forbiddenIds = new Set(
+  (Near.view(ownerId, "get_entities", {}, "final", true) ?? []).map(
+    ([accountId]) => accountId
+  )
+);
 
 initState({
   accountId,
+  accountIdValid: true,
   kind,
   startDate,
-  exists: false,
 });
 
 const allKinds = ["Project", "Organization", "DAO"].map((name) => ({ name }));
 
 const accountIdInput = (
   <div className="col-lg-12  mb-2">
-    Account ID of entity:
-    <input
-      type="text"
-      value={state.accountId}
-      onChange={(event) => State.update({ accountId: event.target.value })}
-      onBlur={() =>
-        Near.asyncView(
-          ownerId,
-          "get_entity",
-          { account_id: state.accountId },
-          "final"
-        ).then((entity) => State.update({ exists: !!entity }))
-      }
-      style={{
-        ...(state.exists ? { borderColor: "red" } : {}),
+    <Widget
+      src={`${ownerId}/widget/ValidatedAccountIdInput`}
+      props={{
+        label: "Account ID of entity:",
+        value: state.accountId,
+        update: (accountId, accountIdValid) =>
+          State.update({ accountId, accountIdValid }),
+        forbiddenIds,
       }}
     />
   </div>
@@ -60,7 +58,7 @@ const startDateInput = (
 );
 
 const onSubmit = () => {
-  if (state.exists) {
+  if (!state.accountIdValid) {
     return;
   }
 
@@ -84,7 +82,9 @@ const body = (
     </div>
 
     <a
-      className={`btn ${state.exists ? "btn-secondary" : "btn-primary"} mb-2`}
+      className={`btn ${
+        !state.accountIdValid ? "btn-secondary" : "btn-primary"
+      } mb-2`}
       onClick={onSubmit}
     >
       Submit
