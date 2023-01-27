@@ -19,6 +19,8 @@ props.componentProps.setController = {
   },
 };
 
+const key = props.key;
+
 // guard to allow 'default' layout exit infinite render loop
 if (
   layout === 'default' ||
