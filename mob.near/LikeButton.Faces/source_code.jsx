@@ -60,16 +60,24 @@ return (
           className="text-decoration-none d-inline-block"
         >
           <Widget
-            src="mob.near/widget/ProfileImage"
+            src="mob.near/widget/Profile.OverlayTrigger"
             props={{
-              metadata,
               accountId,
-              widgetName,
-              style: { zIndex: 10 - i },
-              className: "face",
-              tooltip: true,
-              imageStyle: {},
-              imageClassName: "",
+              children: (
+                <Widget
+                  src="mob.near/widget/ProfileImage"
+                  props={{
+                    metadata,
+                    accountId,
+                    widgetName,
+                    style: { zIndex: 10 - i },
+                    className: "face",
+                    tooltip: false,
+                    imageStyle: {},
+                    imageClassName: "",
+                  }}
+                />
+              ),
             }}
           />
         </a>
