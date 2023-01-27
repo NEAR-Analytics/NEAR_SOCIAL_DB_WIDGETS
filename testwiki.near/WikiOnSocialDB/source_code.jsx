@@ -136,6 +136,13 @@ return (
             {/* === ONE ARTICLE === */}
             {state.article && (
               <div>
+                <Widget
+                  src="testwiki.near/widget/WikiOnSocialDB_OneArticle"
+                  props={{
+                    getDate,
+                    article: state.article,
+                  }}
+                />
                 <h4>Article: {state.article.articleId}</h4>
                 <button
                   onClick={() => {
