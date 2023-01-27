@@ -32,7 +32,9 @@ if (
     <Widget
       src={props.__.engine.widgetFromName(props.component.name)}
       key={key}
-      props={props.component.props}
+      props={
+        {...props.componentProps,
+        props.component.props}}
     />
   );
 }
