@@ -3,4 +3,8 @@ if (!accountId) {
   return "Requires accountID prop";
 }
 
-return <div>Hello @{accountId}</div>;
+return (
+  <div>
+    Hello @{accountId} {new Date().toString()}
+  </div>
+);
