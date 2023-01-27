@@ -306,6 +306,7 @@ function renderComponent(name, props, layout, layoutProps) {
   function setLayoutController(setLayoutFn) {
     // prevent infinite loop
     if (controller) {
+      console.Console.log('has controller');
       return;
     }
     controller = {
