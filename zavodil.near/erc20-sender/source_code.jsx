@@ -43,7 +43,6 @@ const setSendTo = (sendTo) => {
 const setToken = (token) => {
   State.update({ token });
   getTokenDecimals();
-  refreshBalances();
 };
 
 const getTokenBalance = (receiver) => {
@@ -77,6 +76,7 @@ const getTokenDecimals = () => {
     })
     .then((tokenDecimals) => {
       State.update({ tokenDecimals: parseInt(Number(tokenDecimals)) });
+      refreshBalances();
     });
 };
 
