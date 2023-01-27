@@ -4,7 +4,8 @@ if (!props.isPreview && !props.poll) {
 
 const isPreview = props.isPreview ?? false;
 
-let widgetOwner = "easypoll.near";
+// let widgetOwner = "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+let widgetOwner = "ciencia.near";
 
 // Getting question
 const poll = props.poll;
@@ -23,7 +24,83 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
+  justVoted: false,
 });
+
+/* --------------------------------------------------------
+ ---------------    Human Verification     ---------------- 
+ -------------------------------------------------------- */
+function userIsHuman(reQuery, checkFor) {
+  if (!reQuery) {
+    if (state.isHuman == undefined) return userIsHuman(true, checkFor);
+    else return state.isHuman;
+  }
+  var url = "";
+  console.log(checkFor);
+  switch (checkFor) {
+    case "notfound":
+      url = "https://tato.ar/near/notfound.txt";
+      console.log(url);
+      break;
+    case "green":
+      url = "https://tato.ar/near/green.txt";
+      break;
+    case "redr":
+      url = "https://tato.ar/near/redr.txt";
+      break;
+    case "redf":
+      url = "https://tato.ar/near/redf.txt";
+      break;
+    default:
+      url = "none";
+      break;
+  }
+  console.log(url);
+
+  const response = fetch(url);
+  console.log(response);
+  var isHuman = false;
+  var canRetry = false;
+  if (response.body.code == 404) isHuman = false;
+  else if (response.review.reviewResult.reviewAnswer == "GREEN") isHuman = true;
+  else if (response.review.reviewResult.reviewAnswer == "RED") {
+    if (response.review.reviewResult.reviewRejectType == "FINAL")
+      canRetry = false;
+    if (response.review.reviewResult.reviewRejectType == "RETRY")
+      canRetry = true;
+  }
+
+  console.log("isHuman: " + isHuman);
+  console.log("canRetry: " + canRetry);
+
+  State.update({ isHuman: isHuman });
+  State.update({ isHumanCanRetry: canRetry });
+
+  return isHuman;
+}
+
+const proveYoureHumanButton = () => {
+  return (
+    <div>
+      <a href="https://www.google.com" target="_blank">
+        <button>Click here to prove you are human</button>
+      </a>
+      <button onclikc="{userIsHuman(true, 'notfound')}">
+        Click here once you proved your humanity
+      </button>
+      <button
+        className="w-100"
+        style={PrimaryButtonStyle()}
+        onMouseEnter={() => State.update({ hoveringElement: "primaryButton" })}
+        onMouseLeave={() => State.update({ hoveringElement: "" })}
+      >
+        Vote (you must prove you're human)
+      </button>
+    </div>
+  );
+};
+
+/* ------------------------------------------------------------ */
 
 let bgBlue = "#96C0FF";
 let bgRed = "#FFB4B4";
@@ -202,10 +279,10 @@ function getValidAnswers() {
 }
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.1.0");
+const answers = Social.index("poll_question", "answer-v3.1.1");
 
 if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
-  State.update({ answers: answers });
+  State.update({ answers: answers, justVoted: false });
 }
 
 if (!state.answers) {
@@ -225,7 +302,9 @@ function userHasVoted() {
     undefined
   );
 }
+
 let hasVoted = userHasVoted();
+
 const isQuestionOpen =
   poll.value.startTimestamp < Date.now() &&
   Date.now() < poll.value.endTimestamp;
@@ -248,13 +327,12 @@ function countVotes(questionNumber, questionType) {
   }, new Array(poll.value.questions[questionNumber].choicesOptions.length).fill(0));
 }
 
-//TODO review this!
 const getPublicationParams = () => {
   return {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.1.0",
+          key: "answer-v3.1.1",
           value: {
             answer: state.vote,
             questionBlockHeight: props.poll.blockHeight,
@@ -319,8 +397,8 @@ const renderAnswers = (questionNumber) => {
     <Widget
       src={`${widgetOwner}/widget/answer_poll-comment-container`}
       props={{
+        questionNumber: questionNumber + "",
         answers: validAnswersToThisPoll,
-        questionNumber,
       }}
     />
   );
@@ -370,7 +448,7 @@ const renderMultipleChoiceInput = (
       <div>
         <div className="d-flex align-content-center">
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-          {!canVote ? (
+          {!canVote || state.justVoted ? (
             <div
               style={{
                 display: "flex",
@@ -481,7 +559,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {hasVoted ? (
+      {hasVoted || state.justVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -502,6 +580,50 @@ const renderTextInput = (questionNumber) => {
     </div>
   );
 };
+
+function PrimaryButtonStyle() {
+  return state.hoveringElement != "primaryButton"
+    ? {
+        marginTop: "0.5rem",
+        padding: "0.5rem",
+        backgroundColor: "#000000",
+        color: "#FFFFFF",
+        fontSize: "1rem",
+        borderRadius: "9px",
+        border: "1.5px solid transparent",
+      }
+    : {
+        marginTop: "0.5rem",
+        padding: "0.5rem",
+        backgroundColor: "#FFFFFF",
+        color: "#000000",
+        fontSize: "1rem",
+        borderRadius: "9px",
+        border: "1.5px solid #000000",
+      };
+}
+
+function SecondaryButtonStyle() {
+  return state.hoveringElement != "secondaryButton"
+    ? {
+        marginTop: "0.5rem",
+        padding: "0.5rem",
+        backgroundColor: "#888",
+        color: "#FFFFFF",
+        fontSize: "1rem",
+        borderRadius: "9px",
+        border: "1.5px solid transparent",
+      }
+    : {
+        marginTop: "0.5rem",
+        padding: "0.5rem",
+        backgroundColor: "#FFFFFF",
+        color: "#000000",
+        fontSize: "1rem",
+        borderRadius: "9px",
+        border: "1.5px solid #000000",
+      };
+}
 
 return (
   <>
@@ -532,12 +654,14 @@ return (
           </div>
 
           {!hasVoted &&
+          !state.justVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && question.questionType == "2" ? (
+          ) : !hasVoted && !state.justVoted && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted && <p className="mb-1">Write your answer:</p>
+            !hasVoted &&
+            !state.justVoted && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -556,61 +680,34 @@ return (
       hasVoted ? (
         ""
       ) : isVoteValid() ? (
-        <CommitButton
-          className="w-100"
-          style={
-            state.hoveringElement != "voteButton"
-              ? {
-                  marginTop: "0.5rem",
-                  padding: "0.5rem",
-                  backgroundColor: "#000000",
-                  color: "#FFFFFF",
-                  fontSize: "1rem",
-                  borderRadius: "9px",
-                  border: "1.5px solid transparent",
-                }
-              : {
-                  marginTop: "0.5rem",
-                  padding: "0.5rem",
-                  backgroundColor: "#FFFFFF",
-                  color: "#000000",
-                  fontSize: "1rem",
-                  borderRadius: "9px",
-                  border: "1.5px solid #000000",
-                }
-          }
-          onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
-          onMouseLeave={() => State.update({ hoveringElement: "" })}
-          data={getPublicationParams()}
-        >
-          Vote
-        </CommitButton>
+        userIsHuman(false, "notfound") ? (
+          // human is verified
+          <CommitButton
+            className="w-100"
+            style={PrimaryButtonStyle()}
+            onMouseEnter={() =>
+              State.update({ hoveringElement: "primaryButton" })
+            }
+            onMouseLeave={() => State.update({ hoveringElement: "" })}
+            data={getPublicationParams()}
+            onCommit={() => {
+              State.update({ justVoted: true });
+            }}
+          >
+            Vote
+          </CommitButton>
+        ) : (
+          // human not verified
+          proveYoureHumanButton()
+        )
       ) : (
         <>
           <button
             className="w-100"
-            style={
-              state.hoveringElement != "voteButton"
-                ? {
-                    marginTop: "0.5rem",
-                    padding: "0.5rem",
-                    backgroundColor: "#000000",
-                    color: "#FFFFFF",
-                    fontSize: "1rem",
-                    borderRadius: "9px",
-                    border: "1.5px solid transparent",
-                  }
-                : {
-                    marginTop: "0.5rem",
-                    padding: "0.5rem",
-                    backgroundColor: "#FFFFFF",
-                    color: "#000000",
-                    fontSize: "1rem",
-                    borderRadius: "9px",
-                    border: "1.5px solid #000000",
-                  }
+            style={PrimaryButtonStyle()}
+            onMouseEnter={() =>
+              State.update({ hoveringElement: "primaryButton" })
             }
-            onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
             onMouseLeave={() => State.update({ hoveringElement: "" })}
             onClick={() => State.update({ showErrorsInForm: true })}
           >
