@@ -293,19 +293,18 @@ function renderComponent(name, props, layout, layoutProps) {
   }
 
   let componentProps = {};
-
   let controller = null;
 
   function setLayout() {
     controller.setLayout(layout, layoutProps);
   }
+
   function setController(conn) {
     controller = conn;
   }
 
   componentProps = {
     __: {
-      controller: null, // set by the _dynamic layout wrapper
       engine: {
         push,
         pop,
