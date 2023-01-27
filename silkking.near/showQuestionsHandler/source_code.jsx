@@ -10,7 +10,7 @@ State.init({
   modalBlockHeight: sharedBlockHeight ?? question.blockHeight,
 });
 
-let polls = Social.index("poll_question", "question-v3.1.0");
+let polls = Social.index("poll_question", "question-v3.1.1");
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
@@ -44,7 +44,8 @@ for (let i = 0; i < polls.length; i++) {
 
 /********** Start constants ************/
 
-const widgetOwner = "easypoll.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 // Whether it should be display the questions of only one user or all
 
