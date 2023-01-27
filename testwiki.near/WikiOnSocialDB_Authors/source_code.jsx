@@ -1,4 +1,4 @@
-console.log(props.text);
+console.log(props);
 // const authors = Array.from(props.resultArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 return (
