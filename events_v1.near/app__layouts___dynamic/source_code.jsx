@@ -27,6 +27,7 @@ if (
   layout === '' ||
   layout === undefined
 ) {
+  console.log('rendering component', props.component.name);
   return (
     <Widget
       src={props.__.engine.widgetFromName(props.component.name)}
