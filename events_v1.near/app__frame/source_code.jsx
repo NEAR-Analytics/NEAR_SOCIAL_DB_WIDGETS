@@ -296,7 +296,7 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
-  let componentProps = {};
+  let dynProps = {};
 
   let controller = null;
   function setLayout() {
@@ -306,7 +306,7 @@ function renderComponent(name, props, layout, layoutProps) {
     controller = conn;
   }
 
-  componentProps = {
+  dynProps = {
     __: {
       engine: {
         push,
@@ -339,7 +339,7 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayout = (layoutProps || {}).innerLayout || null;
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
 
-  // const widgetProps = { ...componentProps, ...(props || {}) };
+  // const widgetProps = { ...dynProps, ...(props || {}) };
 
   return (
     <Widget
@@ -379,7 +379,7 @@ function renderComponent(name, props, layout, layoutProps) {
   //     src={layoutFromName(layout)}
   //     key={key}
   //     props={{
-  //       ...componentProps,
+  //       ...dynProps,
   //       ...(layoutProps || {}),
   //       component: {
   //         name: name,
