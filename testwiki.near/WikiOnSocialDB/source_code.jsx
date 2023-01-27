@@ -261,6 +261,7 @@ return (
             src="testwiki.near/widget/WikiOnSocialDB_CreateArticle"
             props={{
               author: accountId,
+              address: addressForArticles,
             }}
           />
         )}
