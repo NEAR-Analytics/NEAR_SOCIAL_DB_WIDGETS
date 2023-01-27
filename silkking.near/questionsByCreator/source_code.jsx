@@ -10,7 +10,7 @@ State.init({
 // When true, displays only two polls.
 let isShort = props.isShort;
 
-let polls = Social.index("poll_question", "question-v3.1.0", {
+let polls = Social.index("poll_question", "question-v3.1.1", {
   accountId: props.accountId,
 });
 if (!polls) {
@@ -81,7 +81,7 @@ function isUpcoming(poll) {
 }
 
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  const answers = Social.index("poll_question", "answer-v3.1.0");
+  const answers = Social.index("poll_question", "answer-v3.1.1");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
