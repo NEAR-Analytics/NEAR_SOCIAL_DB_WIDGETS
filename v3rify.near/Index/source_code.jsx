@@ -2,9 +2,10 @@ initState({
   query: props.query ?? "",
   result: 0,
   show: false,
+  closed: false,
 });
 
-if (!props.show) {
+if (!state.show) {
   Near.asyncView(
     "v3rify.near",
     "get_verification",
