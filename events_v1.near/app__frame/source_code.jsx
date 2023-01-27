@@ -353,7 +353,7 @@ function renderComponent(name, props, layout, layoutProps) {
       key={key}
       props={{
         ...componentProps,
-        __component: {
+        component: {
           name: name,
           props: { ...componentProps, ...(props || {}) },
           layout: innerLayout,
