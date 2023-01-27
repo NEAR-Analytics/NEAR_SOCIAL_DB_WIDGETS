@@ -10,7 +10,7 @@ console.log({ props });
 
 const layout = state.layout;
 
-props.wrapperProps.__.engine.setController((_layout) => {
+props.wrapperProps.__.engine.setLayoutController((_layout) => {
   props.wrapperProps.__.setLayout = _layout;
   State.update({
     layout: _layout,
