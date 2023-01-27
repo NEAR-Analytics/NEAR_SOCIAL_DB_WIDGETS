@@ -3,8 +3,12 @@ if (!accountId) {
   return "Requires accountID prop";
 }
 
+State.init({
+  date: new Date().toString(),
+});
+
 return (
   <div>
-    Hello @{accountId} {new Date().toString()}
+    Hello @{accountId} {state.date}
   </div>
 );
