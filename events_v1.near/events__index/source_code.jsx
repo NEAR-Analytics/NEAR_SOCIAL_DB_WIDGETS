@@ -1,5 +1,5 @@
-const Button = props.Components.Button;
-const PageTitle = props.Components.PageTitle;
+const Button = props.__.Components.Button;
+const PageTitle = props.__.Components.PageTitle;
 
 return (
   <div>
