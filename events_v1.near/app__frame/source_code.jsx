@@ -300,6 +300,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   componentProps = {
     __: {
+      controller: null,
       engine: {
         push,
         pop,
