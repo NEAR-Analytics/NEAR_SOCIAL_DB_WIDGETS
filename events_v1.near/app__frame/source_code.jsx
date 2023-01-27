@@ -296,17 +296,18 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
-  let dynProps = {};
+  let wrapperProps = {};
 
   let controller = null;
-  function setLayout() {
-    controller.setLayout(layout, layoutProps);
+
+  function setLayout(lay, layProp) {
+    controller.setLayout(lay, layProp);
   }
   function setController(conn) {
     controller = conn;
   }
 
-  dynProps = {
+  wrapperProps = {
     __: {
       engine: {
         push,
@@ -339,14 +340,14 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayout = (layoutProps || {}).innerLayout || null;
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
 
-  // const widgetProps = { ...dynProps, ...(props || {}) };
+  // const widgetProps = { ...wrapperProps, ...(props || {}) };
 
   return (
     <Widget
       src={layoutFromName('_dynamic')}
       key={key}
       props={{
-        dynProps,
+        wrapperProps,
         key,
         component: {
           name: name,
