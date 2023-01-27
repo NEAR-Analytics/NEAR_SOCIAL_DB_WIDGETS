@@ -4,7 +4,7 @@ const NAVBAR_OFFSET_TOP = 0;
 const title = props.__.layoutProps.title ?? '';
 const dropdownItems = props.__.layoutProps.dropdownItems ?? [];
 
-console.log('__component', props.__component);
+console.log('component', props.__.component);
 
 const dropdownElement =
   dropdownItems && dropdownItems.length > 0 ? (
@@ -96,10 +96,10 @@ return (
       >
         <div className="col-12">
           {props.engine.renderComponent(
-            props.__component.name,
-            props.__component.props,
-            props.__component.layout,
-            props.__component.layoutProps
+            props.component.name,
+            props.component.props,
+            props.component.layout,
+            props.component.layoutProps
           )}
         </div>
       </div>
