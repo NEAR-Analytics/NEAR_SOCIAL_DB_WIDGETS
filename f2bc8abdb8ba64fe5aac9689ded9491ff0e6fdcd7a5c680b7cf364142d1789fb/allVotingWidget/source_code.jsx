@@ -25,6 +25,7 @@ State.init({
   showErrorsInForm: false,
   hoveringElement: "",
   canVote: true,
+  repeat: 0,
 });
 
 let bgBlue = "#96C0FF";
@@ -210,7 +211,7 @@ function setValidAnswersToThisPoll() {
     return "Loading";
   }
 
-  const answersToThisPoll = state.answers.filter(
+  const answersToThisPoll = answers.filter(
     (a) => a.value.questionBlockHeight == props.poll.blockHeight
   );
 
@@ -224,22 +225,37 @@ function setValidAnswersToThisPoll() {
 
   const canVote = !hasVoted && isQuestionOpen;
 
-  State.update({ answers: validAnswersToThisPoll, canVote });
+  console.log(1, state.answers, validAnswersToThisPoll);
+  console.log(2, state.canVote, canVote);
+
+  //Comparing objects checks memory position
+  if (
+    (JSON.stringify(state.answers) != JSON.stringify(validAnswersToThisPoll) ||
+      state.canVote != canVote) &&
+    state.repeat < 5
+  ) {
+    State.update({
+      answers: validAnswersToThisPoll,
+      canVote,
+      repeat: state.repeat + 1,
+    });
+  }
 }
 
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.1.1");
+// const answers = Social.index("poll_question", "answer-v3.1.1");
 
-if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
-  State.update({ answers: answers });
-}
+//Comparing objects checks memory position
+// if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+//   State.update({ answers: answers });
+// }
 
-if (!state.answers) {
-  return "Loading";
-}
-const answersToThisPoll = state.answers.filter(
-  (a) => a.value.questionBlockHeight == props.poll.blockHeight
-);
+// if (!state.answers) {
+//   return "Loading";
+// }
+// const answersToThisPoll = state.answers.filter(
+//   (a) => a.value.questionBlockHeight == props.poll.blockHeight
+// );
 // const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
 let userVote;
@@ -255,7 +271,7 @@ function userHasVoted(validAnswersToThisPoll) {
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
   if (questionType == "3") return;
-  return validAnswersToThisPoll.reduce((acc, curr) => {
+  return state.answers.reduce((acc, curr) => {
     let ans = curr.value.answer[questionNumber];
     if (Array.isArray(ans)) {
       ans.forEach((a) => {
