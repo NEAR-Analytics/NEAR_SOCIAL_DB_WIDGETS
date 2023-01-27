@@ -120,20 +120,15 @@ return (
         {state.currentTab === "loadarticles" && (
           <div>
             {!state.article && (
-              <ol>
-                {filteredArticles &&
-                  filteredArticles.map((article, index) => (
-                    <li key={article.articleId}>
-                      <a href="" onClick={(e) => handleArticle(e, article)}>
-                        {article.articleId}{" "}
-                        <small>
-                          (author: {article.author}
-                          {getDateLastEdit(article.timeLastEdit)})
-                        </small>
-                      </a>
-                    </li>
-                  ))}
-              </ol>
+              <Widget
+                src="testwiki.near/widget/WikiOnSocialDB_AllArticlesList"
+                props={{
+                  filteredArticles,
+                  getDateLastEdit,
+                  handleArticle,
+                  state,
+                }}
+              />
             )}
             {/* === ONE ARTICLE === */}
             {state.article && (
