@@ -334,7 +334,6 @@ function renderComponent(name, props, layout, layoutProps) {
     _layoutName === '' ||
     _layoutName === undefined
   ) {
-    console.log('Render: raw', name);
     return (
       <Widget
         src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
@@ -344,7 +343,6 @@ function renderComponent(name, props, layout, layoutProps) {
     );
   }
 
-  console.log('Render: w/ layout', name, { _layoutName });
   return (
     <Widget
       src={layoutFromName(_layoutName)}
