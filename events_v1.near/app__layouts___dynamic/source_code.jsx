@@ -7,7 +7,7 @@ if (!state) {
   return '';
 }
 
-console.log(1);
+console.log(1, state);
 props.__.engine.setLayoutController((_layout, _layoutProps) => {
   console.log('setLayout', _layout);
   State.update({
