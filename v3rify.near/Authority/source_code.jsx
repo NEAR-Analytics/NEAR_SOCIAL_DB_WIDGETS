@@ -34,7 +34,7 @@ return (
             {
               authorities: state.authorities.map(({ accountId }) => accountId),
             },
-            `${30 * (10 ^ 12)}`,
+            `${30 * 10 ** 12}`,
             "1"
           )
         }
