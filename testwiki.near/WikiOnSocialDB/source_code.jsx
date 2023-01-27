@@ -7,12 +7,15 @@ if (profile === null) {
   return "Loading";
 }
 
-const wikiTestData = Social.get("*/wikiTest/articles/**", "final");
+const addressForArticles = "wikiTest";
+
+const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
 const wikiTestArr = wikiTestData && Object.values(wikiTestData);
 const resultArticles =
   wikiTestArr &&
   wikiTestArr.reduce(
-    (acc, account) => acc.concat(Object.values(account.wikiTest.articles)),
+    (acc, account) =>
+      acc.concat(Object.values(account[addressForArticles].articles)),
     []
   );
 
@@ -65,7 +68,7 @@ const saveArticle = (args) => {
     version: Number(state.article.version) + 1,
   };
   Social.set({
-    wikiTest: {
+    [addressForArticles]: {
       articles: { [state.article.articleId]: { ...newArticleData } },
     },
   });
