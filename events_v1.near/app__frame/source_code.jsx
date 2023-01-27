@@ -346,7 +346,7 @@ function renderComponent(name, props, layout, layoutProps) {
       src={layoutFromName('_dynamic')}
       key={key}
       props={{
-        componentProps,
+        dynProps,
         key,
         component: {
           name: name,
