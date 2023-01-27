@@ -2,11 +2,9 @@ const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
 }
-
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
-
 if (profile === null) {
-  return "Loadig";
+  return "Loading";
 }
 
 const wikiTestData = Social.get("*/wikiTest/articles/**", "final");
@@ -23,17 +21,15 @@ resultArticles.length &&
     return Number(b.timeLastEdit) - Number(a.timeLastEdit);
   });
 
-const filteredArticles = [];
-resultArticles.length &&
-  resultArticles.forEach((article, index) => {
-    if (
-      !filteredArticles.some(({ articleId }) => articleId === article.articleId)
-    ) {
-      filteredArticles.push(article);
+const filteredArticles =
+  resultArticles.length &&
+  resultArticles.reduce((acc, article) => {
+    if (!acc.some(({ articleId }) => articleId === article.articleId)) {
+      return [...acc, article];
+    } else {
+      return acc;
     }
-  });
-
-console.log("resultArticles  ", resultArticles);
+  }, []);
 console.log("filteredArticles", filteredArticles);
 
 const initialBody = `# Markdown heading level 1
@@ -85,9 +81,7 @@ const saveHandler = (e) => {
     const isArticleIdDublicated = false;
 
     if (!isArticleIdDublicated) {
-      // console.log("SAVE ARTICLE");
       const newArticle = getArticleData();
-
       Social.set({
         wikiTest: { articles: { [newArticle.articleId]: { ...newArticle } } },
       });
@@ -139,19 +133,15 @@ const handleArticle = (e, article) => {
 };
 
 const handleAuthor = (e, authorId) => {
-  // console.log("click author");
   State.update({ ...state, article: undefined, authorId });
 };
 
 const getDate = (timestamp) => {
-  //console.log("timestamp", timestamp);
   const date = new Date(Number(timestamp));
-  //console.log("getDate ", date.toDateString());
   return date.toDateString();
 };
 
 const saveArticle = (args) => {
-  // console.log("SAVE ARTICLE", state);
   const newArticleData = {
     ...state.article,
     body: state.note,
@@ -159,8 +149,6 @@ const saveArticle = (args) => {
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
   };
-  //console.log("newArticleData", newArticleData);
-
   Social.set({
     wikiTest: {
       articles: { [state.article.articleId]: { ...newArticleData } },
@@ -171,17 +159,12 @@ const saveArticle = (args) => {
 const getDateLastEdit = (timestamp) => {
   const date = new Date(Number(timestamp));
   const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
-  //console.log("getDateLastEdit ", dateString);
   return dateString;
 };
 
 const getAuthors = () => {
   const authors = Array.from(resultArticles, ({ author }) => author);
   const uniqAuthors = Array.from(new Set(authors));
-
-  //console.log("authors", authors);
-  //console.log("uniqAuthors", uniqAuthors);
-
   return (
     <>
       <h6>Total authors: {uniqAuthors.length}</h6>
@@ -224,7 +207,6 @@ return (
                 editArticle: false,
                 currentTab: key,
               });
-              //("state", state);
             }}
           >
             {title}
@@ -323,7 +305,6 @@ return (
                       className="form-control mt-2"
                       value={state.note || state.article.body}
                       onChange={(e) => {
-                        // console.log("newState", state);
                         State.update({ ...state, note: e.target.value });
                       }}
                     />
@@ -367,91 +348,3 @@ return (
         aria-labelledby="pills-authors-tab"
       >
         {state.currentTab === "loadauthors" && (
-          <div>{resultArticles && getAuthors()}</div>
-        )}
-      </div>
-
-      <div
-        className="tab-pane fade"
-        id="pills-create"
-        role="tabpanel"
-        aria-labelledby="pills-create-tab"
-      >
-        {state.currentTab === "loadcreate" && (
-          <div>
-            <h1 className="mb-3"> Create Article</h1>
-            <div>
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-success"
-                  onClick={saveHandler}
-                >
-                  Save Article
-                </button>
-
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={cancelHandler}
-                >
-                  Cancel / Clear
-                </button>
-              </div>
-              <div class="d-flex flex-column pt-3">
-                <label for="inputArticleId">
-                  Input article id (case-sensitive, without spaces):
-                </label>
-                <label for="inputArticleId" class="small text-danger">
-                  {state.errorId}
-                </label>
-                <input
-                  className="form-control mt-2"
-                  id="inputArticleId"
-                  value={state.createArticle.articleId}
-                  onChange={(e) => {
-                    State.update({
-                      ...state,
-                      createArticle: {
-                        ...state.createArticle,
-                        articleId: e.target.value.replace(/\s+/g, ""),
-                      },
-                    });
-                  }}
-                />
-              </div>
-              <div class="d-flex flex-column pt-3">
-                <label for="textareaArticleBody">
-                  Input article body (in makrdown format):
-                </label>
-                <label for="textareaArticleBody" class="small text-danger">
-                  {state.errorBody}
-                </label>
-                <textarea
-                  id="textareaArticleBody "
-                  type="text"
-                  value={state.createArticle.articleBody}
-                  rows={10}
-                  className="form-control mt-2"
-                  onChange={(e) => {
-                    State.update({
-                      ...state,
-                      createArticle: {
-                        ...state.createArticle,
-                        articleBody: e.target.value,
-                      },
-                    });
-                  }}
-                />
-              </div>
-              <div class="pt-3">
-                Article preview:
-                <Markdown text={state.createArticle.articleBody} />
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  </>
-);
