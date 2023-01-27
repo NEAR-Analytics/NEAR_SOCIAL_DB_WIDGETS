@@ -120,13 +120,12 @@ return (
         {state.currentTab === "loadarticles" && (
           <div>
             {!state.article && (
-              <ul>
+              <ol>
                 {filteredArticles &&
                   filteredArticles.map((article, index) => (
                     <li key={article.articleId}>
-                      #{" "}
                       <a href="" onClick={(e) => handleArticle(e, article)}>
-                        {index + 1} {article.articleId}{" "}
+                        {article.articleId}{" "}
                         <small>
                           (author: {article.author}
                           {getDateLastEdit(article.timeLastEdit)})
@@ -134,7 +133,7 @@ return (
                       </a>
                     </li>
                   ))}
-              </ul>
+              </ol>
             )}
             {/* === ONE ARTICLE === */}
             {state.article && (
