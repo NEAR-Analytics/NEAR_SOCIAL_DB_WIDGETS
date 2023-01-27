@@ -51,7 +51,7 @@ return (
       padding: "16px",
     }}
   >
-    <h5 style={{ color: "#6E757C", textAlign: "center" }}>Coin Price Data</h5>
+    <h5 style={{ color: "black", textAlign: "center" }}>Coin Price Data</h5>
     <div>
       <table style={{ color: "#6E757C", tableLayout: "fixed" }}>
         <tr>
