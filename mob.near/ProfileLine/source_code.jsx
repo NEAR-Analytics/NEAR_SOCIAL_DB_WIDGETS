@@ -42,6 +42,14 @@ inner = link ? (
   <span className="text-truncate d-inline-flex">{inner}</span>
 );
 
+if (props.tooltip === true) {
+  return (
+    <Widget
+      src="mob.near/widget/Profile.OverlayTrigger"
+      props={{ accountId, children: inner }}
+    />
+  );
+}
 if (tooltip) {
   inner = (
     <OverlayTrigger placement="auto" overlay={<Tooltip>{tooltip}</Tooltip>}>
