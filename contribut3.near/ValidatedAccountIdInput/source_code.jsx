@@ -11,6 +11,7 @@ initState({
 const validate = (accountId) => {
   const accountIdRegex =
     /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/;
+  console.log(`called with ${accountId}`);
 
   if (typeof accountId !== "string") {
     State.update({
