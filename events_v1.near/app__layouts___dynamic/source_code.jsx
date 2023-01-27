@@ -38,22 +38,16 @@ if (
 }
 
 console.log(4);
-console.log('HELP:::0', state.layout, state.layoutProps);
-console.log('HELP:::1', props.__.engine.layoutFromName(state.layout));
-console.log('HELP:::2', { ...(state.layoutProps || {}) });
-return (
-  <Widget
-    src={props.__.engine.layoutFromName(state.layout)}
-    key={key}
-    props={{
-      ...(state.layoutProps || {}),
-      ...{ __: props.__ },
-      component: {
-        name: props.component.name,
-        props: props.component.props,
-        layout: props.component.innerLayout,
-        layoutProps: props.component.innerLayoutProps,
-      },
-    }}
-  />
-);
+const nextSource = props.__.engine.layoutFromName(state.layout);
+const nextProps = {
+  ...(state.layoutProps || {}),
+  ...{ __: props.__ },
+  component: {
+    name: props.component.name,
+    props: props.component.props,
+    layout: props.component.innerLayout,
+    layoutProps: props.component.innerLayoutProps,
+  },
+};
+
+return <Widget src={layoutSource} key={key} props={layoutProps} />;
