@@ -1,7 +1,7 @@
 const renderMention =
   props.renderMention ??
   ((accountId) => (
-    <span style={{ fontWeight: 550 }}>
+    <span className="d-inline-flex" style={{ fontWeight: 500 }}>
       <Widget
         src="mob.near/widget/ProfileLine"
         props={{
