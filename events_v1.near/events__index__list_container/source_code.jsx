@@ -13,7 +13,7 @@ if (accountId === undefined) {
   });
 }
 
-const Loading = props.Components.Loading;
+const Loading = props.__.Components.Loading;
 if (!events) {
   return <Loading>Loading events</Loading>;
 }
@@ -22,11 +22,11 @@ return (
   <>
     <button
       onClick={() => {
-        props.engine.pop();
+        props.__.engine.pop();
       }}
     >
       &lt;
     </button>
-    {props.engine.renderComponent('index.list', { events })}
+    {props.__.engine.renderComponent('index.list', { events })}
   </>
 );
