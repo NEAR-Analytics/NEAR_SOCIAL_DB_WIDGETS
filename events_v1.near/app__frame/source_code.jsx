@@ -302,7 +302,6 @@ function renderComponent(name, props, layout, layoutProps) {
   }
 
   componentProps = {
-    setController,
     __: {
       controller: null, // set by the _dynamic layout wrapper
       engine: {
@@ -313,6 +312,7 @@ function renderComponent(name, props, layout, layoutProps) {
         storageGet,
         storageSet,
         setLayout,
+        setController,
       },
       Components: {
         Select,
