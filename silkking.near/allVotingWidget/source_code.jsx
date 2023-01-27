@@ -4,7 +4,8 @@ if (!props.isPreview && !props.poll) {
 
 const isPreview = props.isPreview ?? false;
 
-let widgetOwner = "silkking.near";
+let widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 // Getting question
 const poll = props.poll;
@@ -23,6 +24,8 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
+  canVote: true,
+  repeat: 0,
 });
 
 let bgBlue = "#96C0FF";
@@ -194,47 +197,81 @@ function getOptionRelatedValidAnswers(answers) {
   });
 }
 
-function getValidAnswers() {
+function getValidAnswers(answersToThisPoll) {
   let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
   let validOptionAndTimeAnswers =
     getOptionRelatedValidAnswers(validTimeAnswers);
   return validOptionAndTimeAnswers;
 }
 
+function setValidAnswersToThisPoll() {
+  let answers = Social.index("poll_question", "answer-v3.1.1");
+
+  if (!answers) {
+    return "Loading";
+  }
+
+  const answersToThisPoll = answers.filter(
+    (a) => a.value.questionBlockHeight == props.poll.blockHeight
+  );
+
+  const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+
+  let hasVoted = userHasVoted(validAnswersToThisPoll);
+
+  const isQuestionOpen =
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp;
+
+  const canVote = !hasVoted && isQuestionOpen;
+
+  console.log(1, state.answers, validAnswersToThisPoll);
+  console.log(2, state.canVote, canVote);
+
+  //Comparing objects checks memory position
+  if (
+    (JSON.stringify(state.answers) != JSON.stringify(validAnswersToThisPoll) ||
+      state.canVote != canVote) &&
+    state.repeat < 5
+  ) {
+    State.update({
+      answers: validAnswersToThisPoll,
+      canVote,
+      repeat: state.repeat + 1,
+    });
+  }
+}
+
 // Getting valid answers
-const answers = Social.index("poll_question", "answer-v3.1.0");
+// const answers = Social.index("poll_question", "answer-v3.1.1");
 
-if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
-  State.update({ answers: answers });
-}
+//Comparing objects checks memory position
+// if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
+//   State.update({ answers: answers });
+// }
 
-if (!state.answers) {
-  return "Loading";
-}
-const answersToThisPoll = state.answers.filter(
-  (a) => a.value.questionBlockHeight == props.poll.blockHeight
-);
-const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+// if (!state.answers) {
+//   return "Loading";
+// }
+// const answersToThisPoll = state.answers.filter(
+//   (a) => a.value.questionBlockHeight == props.poll.blockHeight
+// );
+// const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
 let userVote;
 // Getting if user has already voted
 const currAccountId = context.accountId ?? "";
-function userHasVoted() {
+function userHasVoted(validAnswersToThisPoll) {
   return (
     validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
     undefined
   );
 }
-let hasVoted = userHasVoted();
-const isQuestionOpen =
-  poll.value.startTimestamp < Date.now() &&
-  Date.now() < poll.value.endTimestamp;
-const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
   if (questionType == "3") return;
-  return validAnswersToThisPoll.reduce((acc, curr) => {
+  return state.answers.reduce((acc, curr) => {
     let ans = curr.value.answer[questionNumber];
     if (Array.isArray(ans)) {
       ans.forEach((a) => {
@@ -248,13 +285,12 @@ function countVotes(questionNumber, questionType) {
   }, new Array(poll.value.questions[questionNumber].choicesOptions.length).fill(0));
 }
 
-//TODO review this!
 const getPublicationParams = () => {
   return {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "answer-v3.1.0",
+          key: "answer-v3.1.1",
           value: {
             answer: state.vote,
             questionBlockHeight: props.poll.blockHeight,
@@ -283,8 +319,8 @@ function isVoteValid() {
 }
 
 function calculatePercentage(votesToThisOption) {
-  if (validAnswersToThisPoll.length == 0) return 0;
-  return ((votesToThisOption / validAnswersToThisPoll.length) * 100).toFixed(2);
+  if (state.answers.length == 0) return 0;
+  return ((votesToThisOption / state.answers.length) * 100).toFixed(2);
 }
 
 function calculatePercentageOfOption(votes, index) {
@@ -319,8 +355,8 @@ const renderAnswers = (questionNumber) => {
     <Widget
       src={`${widgetOwner}/widget/answer_poll-comment-container`}
       props={{
-        answers: validAnswersToThisPoll,
-        questionNumber,
+        questionNumber: questionNumber + "",
+        answers: state.answers,
       }}
     />
   );
@@ -370,7 +406,7 @@ const renderMultipleChoiceInput = (
       <div>
         <div className="d-flex align-content-center">
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-          {!canVote ? (
+          {!state.canVote ? (
             <div
               style={{
                 display: "flex",
@@ -481,7 +517,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {hasVoted ? (
+      {state.canVote ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -502,6 +538,8 @@ const renderTextInput = (questionNumber) => {
     </div>
   );
 };
+
+setValidAnswersToThisPoll();
 
 return (
   <>
@@ -531,13 +569,13 @@ return (
             </h4>
           </div>
 
-          {!hasVoted &&
+          {!state.canVote &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && question.questionType == "2" ? (
+          ) : !state.canVote && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted && <p className="mb-1">Write your answer:</p>
+            !state.canVote && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -553,7 +591,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      hasVoted ? (
+      state.canVote ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
@@ -582,6 +620,9 @@ return (
           onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
+          onCommit={() => {
+            setValidAnswersToThisPoll();
+          }}
         >
           Vote
         </CommitButton>
@@ -633,7 +674,7 @@ return (
         marginTop: "0.8rem",
       }}
     >
-      {validAnswersToThisPoll.length} votes
+      {state.answers.length} votes
     </p>
   </>
 );
