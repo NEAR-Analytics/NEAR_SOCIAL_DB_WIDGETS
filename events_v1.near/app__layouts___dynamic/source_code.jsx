@@ -43,6 +43,6 @@ const nextProps = {
     layoutProps: props.component.innerLayoutProps,
   },
 };
-console.log(6);
+console.log('aaaaaaaaaa', nextSource, nextProps);
 
 return <Widget src={nextSource} key={key} props={nextProps} />;
