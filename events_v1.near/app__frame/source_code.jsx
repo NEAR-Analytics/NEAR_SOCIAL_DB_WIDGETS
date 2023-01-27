@@ -287,11 +287,10 @@ function pop() {
 }
 
 function renderComponent(name, props, layout, layoutProps) {
-  console.log('renderComponent', name, props, layout);
+  console.log('renderComponent', name, layout, props);
   if (!name) {
     return null;
   }
-  const _layoutName = layout || null;
 
   const componentProps = {
     __: {
@@ -329,10 +328,10 @@ function renderComponent(name, props, layout, layoutProps) {
 
   // guard to allow 'default' layout exit infinite render loop
   if (
-    _layoutName === 'default' ||
-    _layoutName === null ||
-    _layoutName === '' ||
-    _layoutName === undefined
+    layout === 'default' ||
+    layout === null ||
+    layout === '' ||
+    layout === undefined
   ) {
     return (
       <Widget
@@ -345,7 +344,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   return (
     <Widget
-      src={layoutFromName(_layoutName)}
+      src={layoutFromName(layout)}
       key={key}
       props={{
         ...componentProps,
