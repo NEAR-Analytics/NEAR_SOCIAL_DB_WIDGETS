@@ -1,301 +1,98 @@
-let question = props.question ?? {
-  title: "Multiple choice test",
-  tgLink: "",
-  accountId: "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-  choicesOptions: ["a", "b", "c"],
-  question: "Testing multiple choice",
-  description: "This is a simple test",
-  questionBlockHeight: 79932918,
-  startDate: Date.now(),
-  endDate: Date.now() + 10000000,
-  storingTimestamp: Date.now(),
-  questionType: "1",
-  answers: [
-    {
-      accountId:
-        "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb",
-      answer: "0",
-      timeStamp: Date.now(),
-    },
-  ],
-};
+/********** Start initialization ************/
 
-let profile = Social.getr(`${question.accountId}/profile`);
+State.init({ profile: {} });
 
-//TODO
-let questionsByThisCreator = [{}];
-
-let thisUserVote = 0;
-function userHaveVoted() {
-  //TODO validate this to return boolean and if it's true set value to thisUserVote
-  return false;
+let profile = Social.getr(`${props.accountId}/profile`);
+if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
+  State.update({ profile: profile });
+}
+if (state.profile == {}) {
+  return "Loading";
 }
 
-function sliceString(string, newStringLenght) {
-  if (string.length > newStringLenght) {
-    return string.slice(0, newStringLenght) + "...";
+let amountOfQuestionsByThisUser = 0;
+for (let i = 0; i < props.allUsersQuestions.length; i++) {
+  if (props.allUsersQuestions[i].accountId == props.accountId) {
+    amountOfQuestionsByThisUser++;
   }
-  return string;
 }
 
-//TODO get this data
-let otherQuestionsFromThisUser = [{}];
+/********** End initialization ************/
 
-//TODO get this data
-let countVotes = [1, 0, 0];
+/********** Start constants ************/
+/********** End constants ************/
 
-State.init({
-  vote: "",
-});
+/********** Start styles ************/
+/********** End styles ************/
 
-function calculatePercentage(votesToThisOption) {
-  return (votesToThisOption / question.answers.length) * 100;
+/********** Start functions ************/
+
+function makeAccountIdShorter(accountId) {
+  if (accountId.length > 12) {
+    return accountId.slice(0, 12) + "...";
+  }
+  return accountId;
 }
 
-function transformDateFormat(date) {
-  //TODO
-  return date;
-}
+/********** End functions ************/
 
-const renderOptions = () => {
-  return question.choicesOptions.map((option, index) => {
-    let styles = userHaveVoted()
-      ? { color: "#000", width: "90%" }
-      : { color: "#000", width: "100%" };
-    return (
-      <div className="d-flex">
-        <div style={styles}>
-          {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-          <div
-            style={{
-              margin: "0.3rem 0px",
-              content: "",
-              display: "table",
-              clear: "both",
-              padding: "0.01em 16px",
-              display: "inline-block",
-              width: `${
-                userHaveVoted() ? calculatePercentage(countVotes[index]) : 100
-              }%`,
-              textAlign: "center",
-              overflow: "visible",
-              whiteSpace: "nowrap",
-              textAlign: "left",
-              backgroundColor: `${
-                (userHaveVoted() && thisUserVote == index) ||
-                state.vote == index + ""
-                  ? "rgb(153, 255, 153)"
-                  : "lightgray"
-              }`,
-            }}
-            onClick={() => !userHaveVoted && State.update({ vote: index + "" })}
-          >
-            <span style={{ overflow: "visible", fontWeight: "500" }}>
-              {option}
-              {userHaveVoted() && (
-                <span
-                  className="text-secondary"
-                  style={{ marginLeft: "1rem", fontWeight: "400" }}
-                >
-                  ({question.answers.length} votes)
-                </span>
-              )}
-            </span>
-          </div>
-        </div>
-        {userHaveVoted() && (
-          <span
-            style={{
-              minWidth: "max-content",
-              margin: "0.3rem 0px 0.3rem 0.3rem",
-              fontWeight: "500",
-            }}
-          >
-            {calculatePercentage(countVotes[index])}%
-          </span>
-        )}
-      </div>
-    );
-  });
-};
-
-const renderOtherQuestions = () => {
-  return questionsByThisCreator.map((questionByCreator, index) => {
-    let divStyle = index == 0 ? {} : { borderTop: "1px solid #ced4da" };
-    return (
-      <div style={divStyle}>
-        <p style={{ fontWeight: "500" }}>
-          {sliceString(questionByCreator.title, 12)}
-        </p>
-        <div className="d-flex justify-content-between flex-nowrap text-secondary">
-          <span>End date</span>
-          <span>{transformDateFormat(questionByCreator.endDate)}</span>
-        </div>
-        <div className="d-flex justify-content-between flex-nowrap text-secondary">
-          <span>Votes</span>
-          <span>({questionByCreator.answers.length})</span>
-        </div>
-      </div>
-    );
-  });
-};
-
-function calculateTimeLeft() {
-  //TODO
-  return Date.now() - Number(endDate);
-}
+/********** Start components ************/
+/********** End components ************/
 
 return (
-  <div
-    className="d-flex content-align-start justify-content-between"
-    style={{ borderRadius: "3px", padding: "2rem 3rem" }}
-  >
-    <div style={{ width: "75%", marginRight: "2rem" }}>
-      <div className="d-flex">
-        <span
-          style={{
-            backgroundColor:
-              question.startDate < Date.now() && question.endDate > Date.now()
-                ? "rgb(153, 255, 153)"
-                : "rgb(255, 128, 128)",
-
-            height: "max-content",
-            width: "6rem",
-            border: "1px solid rgb(0, 82, 204)",
-            textAlign: "center",
-            borderRadius: "80px",
-            marginRight: "1rem",
-          }}
-        >
-          {question.startDate < Date.now() && question.endDate > Date.now()
-            ? "Active"
-            : "Closed"}
-        </span>
-
-        <span
-          style={{
-            paddingLeft: "1.5rem",
-            borderLeft: "2px solid #ced4da",
-          }}
-        >
-          End in {calculateTimeLeft()}
-        </span>
-      </div>
-
-      <h2>{question.title}</h2>
-
-      <div className="d-flex">
-        <span className="mr-3" style={{ fontWeight: "500" }}>
-          Created by
-        </span>
-
+  <div className="d-flex justify-content-between w-100">
+    <a
+      className="d-flex"
+      href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${props.accountId}`}
+      style={{ color: "#010A2D" }}
+    >
+      {profile ? (
         <Widget
           src="mob.near/widget/ProfileImage"
           props={{
             profile,
-            accountId,
+            accountId: props.accountId,
             className: "float-start d-inline-block me-2",
-            style: {
-              width: "1.5rem",
-              marginLeft: "1rem",
-            },
           }}
         />
-
-        <span style={{ fontWeigth: "500" }}>
-          {sliceString(question.accountId, 12)}
-        </span>
-      </div>
-
-      <p>{question.description}</p>
-
-      {question.tgLink != "" && (
-        <h4>
-          Discussion link: <a href={question.tgLink}>{question.tgLink}</a>
-        </h4>
-      )}
-
-      <div
-        style={{ border: "1px solid #ced4da", borderRadius: "0.375rem" }}
-        className="p-3 my-3"
-      >
-        <h4>{question.question}</h4>
-
-        {renderOptions()}
-
-        {userHaveVoted() ? (
-          <p
-            className="text-primary"
-            style={{ textAlign: "center", fontWeight: "500" }}
+      ) : (
+        <div className="d-flex">
+          <div
+            className="profile-image d-inline-block"
+            style={{ width: "3em", height: "3em" }}
           >
-            Voted
-          </p>
-        ) : (
-          <>{/*TODO replace with commit button*/}</>
-        )}
-      </div>
-    </div>
-
-    <div style={{ minWidth: "17rem" }}>
-      <h5>Information</h5>
-      <div
-        className="mb-2"
-        style={{
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-          fontWeight: "500",
-          padding: "0.5rem 1rem",
-        }}
-      >
-        <div className="d-flex justify-content-between">
-          <span>Status</span>
-          <span>
-            {question.startDate < Date.now() && question.endDate > Date.now()
-              ? "Active"
-              : "Closed"}
-          </span>
+            <img
+              className="rounded w-100 h-100"
+              src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm"
+              alt={props.accountId}
+              style={{ objectFit: "cover" }}
+            />
+          </div>
         </div>
-
-        <div className="d-flex justify-content-between">
-          <span>Start date</span>
-          <span>{transformDateFormat(question.startDate)}</span>
-        </div>
-
-        <div className="d-flex justify-content-between">
-          <span>End date</span>
-          <span>{transformDateFormat(question.endDate)}</span>
-        </div>
-
-        <div className="d-flex justify-content-between">
-          <span>Creator</span>
-          <span>{sliceString(question.accountId, 8)}</span>
-        </div>
-
-        <div className="d-flex justify-content-between">
-          <span>Polls by creator</span>
-          <span>{/*TODO*/}</span>
-        </div>
-      </div>
-
-      <div className="d-flex">
-        <h5>Poll by creator</h5>
-        <h5 style={{ marginLeft: "0.5rem" }}>
-          ({questionsByThisCreator.length})
-        </h5>
-      </div>
-
-      {questionByCreator.length != 0 && (
-        <div
+      )}
+      <div style={{ marginLeft: "1rem" }}>
+        <p
           style={{
-            border: "1px solid #ced4da",
-            borderRadius: "0.375rem",
-            padding: "0.5rem 1rem",
+            margin: "0",
+            fontWeight: "700",
+            fontSize: "1.2rem",
+            textDecotarion: "none",
           }}
         >
-          {renderOtherQuestions()}
-          {/*TODO add view all button*/}
-        </div>
-      )}
-    </div>
+          {profile == {}
+            ? "Loading"
+            : profile != undefined
+            ? makeAccountIdShorter(profile.name)
+            : makeAccountIdShorter(props.accountId)}
+        </p>
+        <p
+          className="text-secondary"
+          style={{ margin: "0", textDecotarion: "none" }}
+        >
+          {makeAccountIdShorter(props.accountId)}
+        </p>
+      </div>
+    </a>
+    <p className="text-secondary">Total: {amountOfQuestionsByThisUser}</p>
   </div>
 );
