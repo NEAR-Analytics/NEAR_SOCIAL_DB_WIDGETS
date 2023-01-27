@@ -19,6 +19,19 @@ return (
       labelKey="name"
       onChange={(accountId) => {
         const args = { account_id: accountId[0].name };
+        const [{ name }] = accountId;
+        if (
+          !(
+            typeof name === "string" &&
+            name.length >= 2 &&
+            name.length <= 64 &&
+            /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/.test(name)
+          )
+        ) {
+          accountId = [];
+          return;
+        }
+
         Near.asyncView(ownerId, "get_entity", args, "final").then(
           (existing) => {
             const updatedState = {
@@ -44,18 +57,7 @@ return (
       placeholder="contribut3.near, social.near..."
       selected={state.accountId}
       positionFixed
-      allowNew={(accountIds, props) => {
-        console.log(accountIds, props);
-
-        const [{ name }] = accountIds;
-
-        return (
-          typeof name === "string" &&
-          name.length >= 2 &&
-          name.length <= 64 &&
-          /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/.test(name)
-        );
-      }}
+      allowNew
       disabled={state.fixed}
     />
   </div>
