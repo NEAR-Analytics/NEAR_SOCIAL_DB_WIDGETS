@@ -257,8 +257,8 @@ function push(name, props, layout, layoutProps) {
   const layer = {
     name,
     props: props || {},
-    layout: layout,
-    layoutProps: layoutProps || {},
+    layout: layout || null,
+    layoutProps: layoutProps || null,
   };
   const newLayers = [...state.layers, layer];
 
