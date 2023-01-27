@@ -1,19 +1,20 @@
 State.init({
   layout: null,
+  layoutProps: null,
 });
 
 if (!state) {
   return '';
 }
 
-const layout = state.layout;
-
-props.__.engine.setLayoutController((_layout) => {
+console.log(1);
+props.__.engine.setLayoutController((_layout, _layoutProps) => {
   console.log('setLayout', _layout);
   State.update({
     layout: _layout,
+    layoutProps: _layoutProps,
   });
-  console.log(1);
+  console.log('setLayout 222222', _layout, _layoutProps);
 });
 
 console.log(2);
@@ -39,10 +40,10 @@ if (
 console.log(4);
 return (
   <Widget
-    src={props.__.layoutFromName(layout)}
+    src={props.__.layoutFromName(state.layout)}
     key={key}
     props={{
-      ...(props.layoutProps || {}),
+      ...(state.layoutProps || {}),
       ...{ __: props.__ },
       component: {
         name: props.component.name,
