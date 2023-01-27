@@ -1,3 +1,4 @@
+console.log(props.author);
 const initialBody = `# Markdown heading level 1
 
 This is a markdown paragraph. So, here are a few examples of markdown syntax and what it looks like.
