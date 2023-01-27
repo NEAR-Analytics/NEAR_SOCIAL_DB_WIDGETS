@@ -297,8 +297,12 @@ function renderComponent(name, props, layout, layoutProps) {
   function setLayout() {
     componentProps.__.controller.setLayout(layout, layoutProps);
   }
+  function setController(controller) {
+    componentProps.__.controller = controller;
+  }
 
   componentProps = {
+    setController,
     __: {
       controller: null, // set by the _dynamic layout wrapper
       engine: {
