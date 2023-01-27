@@ -1,9 +1,7 @@
 const renderMention =
   props.renderMention ??
   ((accountId) => (
-    <span
-      style={{ fontWeight: 500, marginRight: "-0.2rem", marginLeft: "0.1rem" }}
-    >
+    <span style={{ fontWeight: 550 }}>
       <Widget
         src="mob.near/widget/ProfileLine"
         props={{
