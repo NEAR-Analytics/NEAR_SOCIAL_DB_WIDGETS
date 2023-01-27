@@ -37,7 +37,7 @@ if (
     <Widget
       src={props.__.engine.widgetFromName(props.component.name)}
       key={key}
-      props={{ props.__, ...props.component.props }}
+      props={{ ...props.component.props }}
     />
   );
 }
