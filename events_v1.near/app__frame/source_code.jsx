@@ -287,7 +287,7 @@ function pop() {
 }
 
 function renderComponent(name, props, layout, layoutProps) {
-  console.log('renderComponent', name, layout);
+  console.log('renderComponent', name, props, layout);
   if (!name) {
     return null;
   }
