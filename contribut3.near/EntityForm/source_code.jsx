@@ -92,7 +92,7 @@ const body = (
   </div>
 );
 
-const footer = (
+const footer = state.accountIdValid ? (
   <div className="card-footer">
     Preview:
     <Widget
@@ -110,7 +110,7 @@ const footer = (
       }}
     />
   </div>
-);
+) : null;
 
 return (
   <div className="card">
