@@ -43,7 +43,7 @@ return (
     key={key}
     props={{
       ...(props.layoutProps || {}),
-      ...props,
+      ...{ __: props__ },
       component: {
         name: props.component.name,
         props: props.component.props,
