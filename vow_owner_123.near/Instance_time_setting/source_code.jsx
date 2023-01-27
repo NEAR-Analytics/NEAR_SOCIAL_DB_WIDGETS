@@ -336,6 +336,9 @@ return (
           {!state._sent ? (
             <CommitButton
               className="m-2"
+              onClick={() => {
+                console.log("window: ", document);
+              }}
               onCommit={() => {
                 State.update({ _sent: true });
               }}
@@ -355,7 +358,7 @@ return (
               Save
             </CommitButton>
           ) : (
-            <a
+            <div
               href={
                 "https://near.social/#/vow_owner_123.near/widget/Instance_time?refreshed=true"
               }
@@ -370,10 +373,11 @@ return (
                 border: "1px solid",
                 color: "black",
                 cursor: "pointer",
+                textDecoration: "none",
               }}
             >
               View Scheduels
-            </a>
+            </div>
           )}
         </div>
       </div>
