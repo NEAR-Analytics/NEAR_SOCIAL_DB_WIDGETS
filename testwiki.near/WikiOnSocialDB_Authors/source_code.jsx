@@ -1,1 +1,1 @@
-return <div>Author Widget</div>;
+return <div>Author Widget {props.text}</div>;
