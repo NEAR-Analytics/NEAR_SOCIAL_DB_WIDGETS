@@ -292,7 +292,13 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
-  const componentProps = {
+  let componentProps = {__renderController: null};
+  
+  function setLayout(){
+    componentProps.__renderController.setLayout(layout, layoutProps);
+  }
+
+  componentProps = {
     __: {
       engine: {
         push,
@@ -301,6 +307,8 @@ function renderComponent(name, props, layout, layoutProps) {
         rerender,
         storageGet,
         storageSet,
+        setLayout
+        }
       },
       Components: {
         Select,
@@ -312,11 +320,7 @@ function renderComponent(name, props, layout, layoutProps) {
         propIsRequiredMessage,
       },
       accountId,
-      VERSION,
-      callbacks: [],
-      registerCallback: (callback) => {
-        componentProps._.callbacks.push(callback);
-      },
+      VERSION
     },
   };
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
