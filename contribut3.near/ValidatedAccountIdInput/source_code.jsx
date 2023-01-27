@@ -75,7 +75,7 @@ return (
       id="account-id"
       value={value}
       onChange={({ target }) => update(target.value)}
-      onBlur={() => State.update({ valid: validate(value) })}
+      onBlur={() => validate(value)}
       style={{
         ...(!state.valid ? { borderColor: "red" } : {}),
       }}
