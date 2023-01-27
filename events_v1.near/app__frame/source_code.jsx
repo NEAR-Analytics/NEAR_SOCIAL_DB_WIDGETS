@@ -321,6 +321,7 @@ function renderComponent(name, props, layout, layoutProps) {
         setLayout,
         setLayoutController,
         widgetFromName,
+        layoutFromName,
       },
       Components: {
         Select,
