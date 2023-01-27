@@ -1,24 +1,68 @@
-if (!props.blockHeight) {
-  return "Property blockHeight not set";
+//////////////////////// Private methods ////////////////////////
+// Not actually private, but can't be called directly. Look for public methods to see what this widget can do)
+
+/**
+ * @param optional props.accountId filters by the accountId provided, if provided
+ * Returns all the questions asked to poll_question key, with different versions
+ */
+function getQuestions() {
+  return Social.index("poll_question", "question-v3.0.1", {
+    accountId: props.accountId,
+  });
 }
 
-State.init({ vote: "", showErrorsInForm: false, questions: {}, answers: {} });
+/**
+ * @param props.blockHeight blockHeight of the question. It should be a number, but it may come as a string if it comes from an url
+ * Returns the question that matches the block height provided
+ */
+function getQuestionFromBlockHeight(blockHeight) {
+  if (!props.blockHeight && !blockHeight) {
+    return "Function getQuestionFromBlockHeight needs prop blockHeight";
+  }
+  blockHeight = props.blockHeight ?? blockHeight;
+  const questions = getQuestions();
+  return questions.find((q) => q.blockHeight == Number(blockHeight));
+}
 
-// Utility function. Consider moving it to an utility widget
+/**
+ * Returns all the questions asked to poll_question key, with different versions
+ */
+function getAnswers() {
+  return Social.index("poll_question", "answer-v3.0.1");
+}
+
+/**
+ * @param props.questionBlockHeight blockHeight of the question. It should be a number, but it may come as a string if it comes from an url
+ * Filters answers by the question's block height
+ */
+function getAnswersToQuestion() {
+  if (!props.questionBlockHeight) {
+    return "Function getAnswersToQuestion needs prop questionBlockHeight";
+  }
+  const answers = getAnswers();
+  return answers.filter(
+    (a) => a.value.questionBlockHeight == props.questionBlockHeight
+  );
+}
+
+// Utility function. Move to time related widget
 function getBlockTimestamp(blockHeight) {
   // It is stored in nanoseconds which is 1e-6 miliseconds
   return Near.block(blockHeight).header.timestamp / 1e6;
 }
 
-// Discards answers that were posted after question's end date. Consider moving to utility widget
-function getTimeRelatedValidAnswers(answers) {
+/**
+ * @param answers array obtained from getAnswers()'s structure
+ * Discards answers that were posted after question's end date
+ */
+function filterOutOfTimeAnswers(answers) {
   let low = 0;
   let high = answers.length - 1;
   const questionEndTimestamp = questionParams.value.endTimestamp;
   let endBlockTimestamp = getBlockTimestamp(answers[high].blockHeight);
   if (endBlockTimestamp < questionEndTimestamp) return answers;
   // For tries to exceed 50 there should be more than 10e15 answers which will never happen. But if you mess up and make an infinite cycle it will crash. This way it will never be infinite
-  let tries = 50;
+  let tries = 10;
   while (high - low > 1 && tries > 0) {
     tries--;
     let curr = Math.floor((high - low) / 2) + low;
@@ -33,141 +77,70 @@ function getTimeRelatedValidAnswers(answers) {
   return answers.slice(0, high);
 }
 
-const questionBlockHeight = Number(props.blockHeight);
-const questions = Social.index("poll_question", "question-v3.1.0");
-
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
-}
-
-if (!questions) {
-  return "Loading";
-}
-const questionParams = questions.find(
-  (q) => q.blockHeight == questionBlockHeight
-);
-
-const answers = Social.index("poll_question", "answer-v3.1.0");
-
-if (JSON.stringify(questions) != JSON.stringify(state.questions)) {
-  State.update({ questions: questions });
-}
-
-if (!answers) {
-  return "Loading";
-}
-
-const answersToThisQuestion = answers.filter(
-  (a) => a.value.questionBlockHeight == questionBlockHeight
-);
-
-let usersWithAnswersToThisQuestion = [];
-let validAnswersToThisQuestion = answersToThisQuestion.filter((a) => {
-  const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
-    a.accountId
+/**
+ * @param questionParams question brought by social index
+ * @param answers answers brought by social index that correspond the question
+ * Removes any answer that is not a valid index for the multiple choice. Even though the answer is a number, it is formatted as a string because there were another issues with it while displaying if treated as a number
+ */
+function filterMultipleChoiceValidAnswers(questionParams, answers) {
+  return answers.filter(
+    (a) =>
+      0 <= Number(a.value.answer) &&
+      Number(a.value.answer) < questionParams.value.choicesOptions.length
   );
-  if (!didUserAlreadyAnswered) {
-    usersWithAnswersToThisQuestion.push(a.accountId);
-  }
-  return !didUserAlreadyAnswered;
-});
-
-validAnswersToThisQuestion = getTimeRelatedValidAnswers(
-  validAnswersToThisQuestion
-);
-
-function calculatePercentage(votesToThisOption) {
-  if (validAnswersToThisQuestion.length == 0) return 100;
-  return (
-    (votesToThisOption / validAnswersToThisQuestion.length) *
-    100
-  ).toFixed(2);
 }
 
-const currAccId = context.accountId ?? "";
-const userHasVoted = validAnswersToThisQuestion.find(
-  (a) => a.accountId == currAccId
-);
-const isQuestionOpen =
-  questionParams.value.startTimestamp < Date.now() &&
-  Date.now() < questionParams.value.endTimestamp;
-const displayAnswers = userHasVoted || !isQuestionOpen;
-
-let countVotes = new Array(questionParams.value.choicesOptions.length).fill(0);
-countVotes = !displayAnswers
-  ? countVotes
-  : validAnswersToThisQuestion.reduce((acc, curr) => {
-      const ans = curr.value.answer;
-      const isValidAnswer =
-        !isNaN(ans) &&
-        Number(ans) >= 0 &&
-        Number(ans) < questionParams.value.choicesOptions.length;
-      if (isValidAnswer) {
-        acc[Number(ans)] += 1;
-        return acc;
-      } else {
-        return acc;
-      }
-    }, countVotes);
-
-function displayableOptionName(option) {
-  if (option.length > 20) {
-    return option.slice(0, 20) + "...";
-  }
-  return option;
+/**
+ * @param answers answers to a question
+ * Filters any answer that was pushed by a user that already replied, so we always have the first answer by the user
+ */
+function filterRepeatedUsersAnswers(answers) {
+  let usersWithAnswersToThisQuestion = [];
+  return answers.filter((a) => {
+    const didUserAlreadyAnswered = usersWithAnswersToThisQuestion.includes(
+      a.accountId
+    );
+    if (!didUserAlreadyAnswered) {
+      usersWithAnswersToThisQuestion.push(a.accountId);
+    }
+    return !didUserAlreadyAnswered;
+  });
 }
 
-const renderOption = (option, index) => {
-  return (
-    <div className="d-flex">
-      <div style={{ color: "#000", width: "90%" }}>
-        {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-        <div
-          style={{
-            margin: "0.3rem 0px",
-            content: "",
-            display: "table",
-            clear: "both",
-            padding: "0.01em 16px",
-            display: "inline-block",
-            width: `${
-              displayAnswers ? calculatePercentage(countVotes[index]) : 100
-            }%`,
-            textAlign: "center",
-            overflow: "visible",
-            whiteSpace: "nowrap",
-            textAlign: "left",
-            backgroundColor: "lightgray",
-          }}
-        >
-          <span style={{ overflow: "visible", fontWeight: "500" }}>
-            {displayableOptionName(option)}
-            <span
-              className="text-secondary"
-              style={{ marginLeft: "1rem", fontWeight: "400" }}
-            >
-              {displayAnswers && `(${countVotes[index]} votes)`}
-            </span>
-          </span>
-        </div>
-      </div>
-      <span
-        style={{
-          minWidth: "max-content",
-          marginLeft: "0.3rem",
-          fontWeight: "500",
-        }}
-      >
-        {displayAnswers && `${calculatePercentage(countVotes[index])}%`}
-      </span>
-    </div>
-  );
-};
+/**
+ * @param questionBlockHeight block height of the question you want the answers
+ * Returns all valid answers to question provided
+ */
+function getValidAnswersToQuestion() {
+  if (!props.questionBlockHeight) {
+    return "Function getValidAnswersToQuestion needs prop questionBlockHeight";
+  }
+  const answersToThisQuestion = getAnswersToQuestion();
+  let validAnswers = filterOutOfTimeAnswers(answersToThisQuestion);
+  validAnswers = filterRepeatedUsersAnswers(validAnswers);
 
-return (
-  <div className="m-2">
-    {questionParams.value.choicesOptions.map((option, index) => {
-      return renderOption(option, index);
-    })}
-  </div>
-);
+  const questionParams = getQuestionFromBlockHeight(props.questionBlockHeight);
+  // Type "1" means multiple choice. Check widget newPollQuestionInterface for more info
+  if (questionParams.value.questionType == "1") {
+    validAnswers = filterMultipleChoiceValidAnswers(
+      questionParams,
+      validAnswers
+    );
+  }
+  return validAnswers;
+}
+
+//////////////////////// Public methods ////////////////////////
+
+// Switch doesn't work on Near Social and couldn't find a way to call a function from a string
+let outputObject;
+if (props.fn == "getQuestions") {
+  outputObject = getQuestions();
+} else if (props.fn == "getQuestionFromBlockHeight") {
+  outputObject = getQuestionFromBlockHeight();
+} else if (props.fn == "getValidAnswersToQuestion") {
+  outputObject = getValidAnswersToQuestion();
+} else {
+  outputObject = "fn not set or not defined";
+}
+return JSON.stringify(outputObject);
