@@ -540,6 +540,13 @@ const renderTextInput = (questionNumber) => {
 
 setValidAnswersToThisPoll();
 
+function debug() {
+  console.log(1, state.canVote);
+  console.log(2, props.poll);
+}
+
+debug();
+
 return (
   <>
     {poll.value.questions.map((question, questionNumber) => {
@@ -589,6 +596,7 @@ return (
         </div>
       );
     })}
+
     {state.canVote ? (
       ""
     ) : isVoteValid() ? (
