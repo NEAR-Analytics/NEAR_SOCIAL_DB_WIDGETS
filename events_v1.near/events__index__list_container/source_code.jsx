@@ -18,4 +18,6 @@ if (!events) {
   return <Loading>Loading events</Loading>;
 }
 
+props.__.engine.registerLayout('modal', {});
+
 return props.__.engine.renderComponent('index.list', { events });
