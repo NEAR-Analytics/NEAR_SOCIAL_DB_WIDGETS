@@ -328,7 +328,7 @@ function renderComponent(name, props, layout, layoutProps) {
   const key = layoutKey || widgetKey;
 
   const innerLayout = (layoutProps || {}).innerLayout;
-  const innerLayoutProps = (layoutProps || {}).innerLayoutProps || {};
+  const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
 
   // guard to allow 'default' layout exit infinite render loop
   if (
