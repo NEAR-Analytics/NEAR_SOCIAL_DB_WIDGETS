@@ -2,7 +2,7 @@ const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
 }
-var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 var finalData = {};
 
 const sortAndRemoveRepeated = (flag, data) => {
@@ -80,6 +80,7 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
+    console.log("finalData: ", finalData);
     finalData = { schedule: weeklyData, time_zone: time_zone };
   }
 }
