@@ -358,7 +358,7 @@ return (
               Save
             </CommitButton>
           ) : (
-            <div
+            <a
               href={
                 "https://near.social/#/vow_owner_123.near/widget/Instance_time"
               }
@@ -377,7 +377,7 @@ return (
               }}
             >
               View Scheduels
-            </div>
+            </a>
           )}
         </div>
       </div>
