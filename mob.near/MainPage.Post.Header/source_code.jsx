@@ -12,7 +12,7 @@ return (
       >
         <Widget
           src="mob.near/widget/Profile.ShortInlineBlock"
-          props={{ accountId }}
+          props={{ accountId, tooltip: true }}
         />
       </a>
     </div>
