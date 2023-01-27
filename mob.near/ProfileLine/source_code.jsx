@@ -15,10 +15,10 @@ let inner = (
     <Widget
       src="mob.near/widget/ProfileImage"
       props={{
-        style: { width: "1.5em", height: "1.5em" },
+        style: { width: "1.5em", height: "1.5em", marginRight: "0.1em" },
         profile,
         accountId,
-        className: "d-inline-block me-1",
+        className: "d-inline-block",
         imageClassName: "rounded w-100 h-100 align-top",
       }}
     />
