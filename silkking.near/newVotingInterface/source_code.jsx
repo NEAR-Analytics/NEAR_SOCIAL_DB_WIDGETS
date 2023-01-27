@@ -24,7 +24,7 @@ let shouldDisplayViewAll = props.shouldDisplayViewAll;
 let questionBlockHeight = Number(props.blockHeight);
 
 const polls =
-  !props.previewInfo && Social.index("poll_question", "question-v3.1.0");
+  !props.previewInfo && Social.index("poll_question", "question-v3.1.1");
 if (JSON.stringify(polls) != JSON.stringify(state.polls)) {
   State.update({ polls: polls });
 }
@@ -44,6 +44,26 @@ if (JSON.stringify(poll) != JSON.stringify(state.poll)) {
 if (!state.poll && !isPreview) {
   return "Loading...";
 }
+
+function getPollStatus(poll) {
+  return isUpcoming(poll)
+    ? QUESTION_STATUSES.UPCOMING
+    : isActive(poll)
+    ? QUESTION_STATUSES.ACTIVE
+    : QUESTION_STATUSES.CLOSED;
+}
+
+function isActive(poll) {
+  return (
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp
+  );
+}
+
+function isUpcoming(poll) {
+  return poll.value.startTimestamp > Date.now();
+}
+
 const pollStatus = getPollStatus(state.poll);
 
 let profile = Social.getr(`${state.poll.accountId}/profile`);
@@ -55,7 +75,7 @@ if (!profile) {
   return "Loading";
 }
 
-let pollsByThisCreator = Social.index("poll_question", "question-v3.1.0", {
+let pollsByThisCreator = Social.index("poll_question", "question-v3.1.1", {
   accountId: state.poll.accountId,
 });
 
@@ -73,7 +93,8 @@ if (!state.pollsByThisCreator) {
 
 /********** Start constants ************/
 
-const widgetOwner = "silkking.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const QUESTION_STATUSES = {
   ACTIVE: {
@@ -114,27 +135,8 @@ function transformDateFormat(date) {
   return new Date(date).toLocaleDateString();
 }
 
-function getPollStatus(poll) {
-  return isUpcoming(poll)
-    ? QUESTION_STATUSES.UPCOMING
-    : isActive(poll)
-    ? QUESTION_STATUSES.ACTIVE
-    : QUESTION_STATUSES.CLOSED;
-}
-
-function isActive(poll) {
-  return (
-    poll.value.startTimestamp < Date.now() &&
-    Date.now() < poll.value.endTimestamp
-  );
-}
-
-function isUpcoming(poll) {
-  return poll.value.startTimestamp > Date.now();
-}
-
 function getValidAnswersQtyFromQuestion(questionBlockHeight) {
-  const answers = Social.index("poll_question", "answer-v3.1.0");
+  const answers = Social.index("poll_question", "answer-v3.1.1");
 
   if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
     State.update({ answers: answers });
@@ -161,7 +163,7 @@ function closeModalClickingOnTransparent() {
   };
 }
 
-function showDescription(description) {
+function descriptionText(description) {
   if (state.descriptionHeightLimited && description.length > 501) {
     return description.slice(0, 500) + "...";
   } else {
@@ -473,9 +475,8 @@ return (
           >
             Description
           </h3>
-          <p style={{ fontSize: "0.9rem" }}>
-            {showDescription(state.poll.value.description)}
-          </p>
+          <Markdown text={descriptionText(state.poll.value.description)} />
+
           {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
             <div
