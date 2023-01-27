@@ -380,7 +380,7 @@ return (
             backgroundColor: 'transparent',
             zIndex: index,
             position: 'fixed',
-            top: 72,
+            top: 0,
             left: 0,
             right: 0,
             bottom: 0,
