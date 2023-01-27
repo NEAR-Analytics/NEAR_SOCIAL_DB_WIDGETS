@@ -6,7 +6,7 @@ if (!state) {
   return '';
 }
 
-console.log({props})
+console.log({ props });
 
 const layout = state.layout;
 
@@ -27,7 +27,7 @@ if (
 ) {
   return (
     <Widget
-      src={props.__.engine.widgetFromName(name)}}
+      src={props.__.engine.widgetFromName(name)}
       key={key}
       props={widgetProps}
     />
