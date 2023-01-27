@@ -303,8 +303,10 @@ function renderComponent(name, props, layout, layoutProps) {
   function setLayout(lay, layProp) {
     controller.setLayout(lay, layProp);
   }
-  function setController(conn) {
-    controller = conn;
+  function setController(setLayoutFn) {
+    controller = {
+      setLayout: setLayoutFn,
+    };
   }
 
   wrapperProps = {
