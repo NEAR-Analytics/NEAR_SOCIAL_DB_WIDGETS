@@ -24,7 +24,6 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
-  justVoted: false,
 });
 
 let bgBlue = "#96C0FF";
@@ -196,18 +195,35 @@ function getOptionRelatedValidAnswers(answers) {
   });
 }
 
-function getValidAnswers() {
+function getValidAnswers(answersToThisPoll) {
   let validTimeAnswers = getTimeRelatedValidAnswers(answersToThisPoll);
   let validOptionAndTimeAnswers =
     getOptionRelatedValidAnswers(validTimeAnswers);
   return validOptionAndTimeAnswers;
 }
 
+function getValidAnswersToThisPoll() {
+  let answers = Social.index("poll_question", "answer-v3.1.1");
+
+  if (!answers) {
+    return "Loading";
+  }
+
+  const answersToThisPoll = state.answers.filter(
+    (a) => a.value.questionBlockHeight == props.poll.blockHeight
+  );
+  const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
+
+  if (JSON.stringify(validAnswersToThisPoll) != JSON.stringify(state.answers)) {
+    State.update({ answers: validAnswersToThisPoll });
+  }
+}
+
 // Getting valid answers
 const answers = Social.index("poll_question", "answer-v3.1.1");
 
 if (JSON.stringify(answers) != JSON.stringify(state.answers)) {
-  State.update({ answers: answers, justVoted: false });
+  State.update({ answers: answers });
 }
 
 if (!state.answers) {
@@ -373,7 +389,7 @@ const renderMultipleChoiceInput = (
       <div>
         <div className="d-flex align-content-center">
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-          {!canVote || state.justVoted ? (
+          {!canVote ? (
             <div
               style={{
                 display: "flex",
@@ -484,7 +500,7 @@ const renderMultipleChoiceInput = (
 const renderTextInput = (questionNumber) => {
   return (
     <div>
-      {hasVoted || state.justVoted ? (
+      {hasVoted ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
           {renderAnswers(questionNumber)}
         </div>
@@ -535,14 +551,12 @@ return (
           </div>
 
           {!hasVoted &&
-          !state.justVoted &&
           (question.questionType == "0" || question.questionType == "1") ? (
             <p className="mb-1">Select one option:</p>
-          ) : !hasVoted && !state.justVoted && question.questionType == "2" ? (
+          ) : !hasVoted && question.questionType == "2" ? (
             <p className="mb-1">You can check multiple options:</p>
           ) : (
-            !hasVoted &&
-            !state.justVoted && <p className="mb-1">Write your answer:</p>
+            !hasVoted && <p className="mb-1">Write your answer:</p>
           )}
           {question.questionType != "3"
             ? question.choicesOptions.map((option, optionNumber) => {
@@ -588,7 +602,7 @@ return (
           onMouseLeave={() => State.update({ hoveringElement: "" })}
           data={getPublicationParams()}
           onCommit={() => {
-            State.update({ justVoted: true });
+            getValidAnswersToThisPoll();
           }}
         >
           Vote
