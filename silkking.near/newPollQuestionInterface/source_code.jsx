@@ -39,7 +39,8 @@ const pollTypes = {
   YES_OR_NO: { id: "3", value: "Yes or No" },
 };
 
-const widgetOwner = "silkking.near";
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const MODAL_TYPES = {
   PREVIEW: {
@@ -145,8 +146,7 @@ function getDangerClassIfNeeded(tab) {
           shouldDisplayNormalStyles && state.pollTitle != "";
         shouldDisplayNormalStyles =
           shouldDisplayNormalStyles && state.pollDescription != "";
-        shouldDisplayNormalStyles =
-          shouldDisplayNormalStyles && isValidTelegramLink();
+        shouldDisplayNormalStyles = shouldDisplayNormalStyles && isValidLink();
         shouldDisplayNormalStyles =
           shouldDisplayNormalStyles && state.pollStartDate != "";
         shouldDisplayNormalStyles =
@@ -194,7 +194,7 @@ function getPublicationParams(isDraft) {
     index: {
       poll_question: JSON.stringify(
         {
-          key: "question-v3.1.0",
+          key: "question-v3.1.1",
           value: {
             isDraft,
             title: state.pollTitle,
@@ -254,7 +254,7 @@ function isValidInput(validateQuestions) {
   let result = true;
   result = result && state.pollTitle != "";
   result = result && state.pollDescription != "";
-  result = result && isValidTelegramLink();
+  result = result && isValidLink();
   result = result && state.pollStartDate != "";
   result = result && state.pollEndDate != "";
   if (validateQuestions) {
@@ -307,9 +307,15 @@ function addChoicesHandler(questionNumber) {
   });
 }
 
-function isValidTelegramLink() {
+function isValidLink() {
   if (!state.pollDiscussionLink) return true;
-  return state.pollDiscussionLink.startsWith("https://t.me");
+  return (
+    state.pollDiscussionLink.startsWith("https://t.me") ||
+    state.pollDiscussionLink.startsWith("https://miro.com/") ||
+    state.pollDiscussionLink.startsWith("https://docs.google.com/") ||
+    state.pollDiscussionLink.startsWith("https://gov.near.org/") ||
+    state.pollDiscussionLink.startsWith("https://discord.gg/")
+  );
 }
 
 /********** End functions ************/
@@ -359,7 +365,18 @@ const renderModal = (modalType) => {
           }
         >
           <div className="modal-header">
-            <h5 className="modal-title">Preview</h5>
+            <h5 className="modal-title">
+              {
+                //Comparing objects allways returns false
+                JSON.stringify(modalType) ==
+                  JSON.stringify(MODAL_TYPES.PREVIEW) && "Preview"
+              }
+              {
+                //Comparing objects allways returns false
+                JSON.stringify(modalType) ==
+                  JSON.stringify(MODAL_TYPES.SEND_FEEDBACK) && "Success!"
+              }
+            </h5>
             <button
               type="button"
               className="close"
@@ -397,38 +414,45 @@ const renderModal = (modalType) => {
               margin: "0 auto",
             }}
           >
-            {modalType == MODAL_TYPES.PREVIEW ? (
-              <Widget
-                src={`${widgetOwner}/widget/newVotingInterface`}
-                props={{
-                  isPreview: true,
-                  previewInfo: {
-                    accountId: context.accountId,
-                    blockHeight: undefined,
-                    value: {
-                      tgLink: state.pollDiscussionLink,
-                      isDraft,
-                      title: state.pollTitle,
-                      description: state.pollDescription,
-                      startTimestamp: getTimestamp(state.pollStartDate),
-                      endTimestamp: getTimestamp(state.pollEndDate),
-                      questions: state.questions,
-                      questionTypes: state.pollTypes,
-                      choicesOptions: state.choices.forEach((questionChoices) =>
-                        questionChoices.filter((c) => c != "")
-                      ),
-                      timestamp: Date.now(),
+            {
+              //Comparing objects allways returns false
+              JSON.stringify(modalType) ==
+              JSON.stringify(MODAL_TYPES.PREVIEW) ? (
+                <Widget
+                  src={`${widgetOwner}/widget/newVotingInterface`}
+                  props={{
+                    isPreview: true,
+                    previewInfo: {
+                      accountId: context.accountId,
+                      blockHeight: undefined,
+                      value: {
+                        tgLink: state.pollDiscussionLink,
+                        isDraft,
+                        title: state.pollTitle,
+                        description: state.pollDescription,
+                        startTimestamp: getTimestamp(state.pollStartDate),
+                        endTimestamp: getTimestamp(state.pollEndDate),
+                        questions: state.questions,
+                        questionTypes: state.pollTypes,
+                        choicesOptions: state.choices.forEach(
+                          (questionChoices) =>
+                            questionChoices.filter((c) => c != "")
+                        ),
+                        timestamp: Date.now(),
+                      },
                     },
-                  },
-                }}
-              />
-            ) : (
-              modalType == MODAL_TYPES.SEND_FEEDBACK && (
-                <p styles={{ textAling: "center" }}>
-                  Poll created succesfully!
-                </p>
+                  }}
+                />
+              ) : (
+                //Comparing objects allways returns false
+                JSON.stringify(modalType) ==
+                  JSON.stringify(MODAL_TYPES.SEND_FEEDBACK) && (
+                  <p styles={{ textAling: "center" }}>
+                    Poll created succesfully!
+                  </p>
+                )
               )
-            )}
+            }
           </div>
           <div className="modal-footer">
             <button
@@ -766,7 +790,7 @@ return (
                 }}
                 type="text"
                 className={
-                  !isValidTelegramLink() && state.showErrorsInForm
+                  !isValidLink() && state.showErrorsInForm
                     ? "border border-danger mb-2"
                     : "mb-2"
                 }
@@ -790,7 +814,7 @@ return (
                 }}
               ></i>
             </div>
-            {!isValidTelegramLink() && state.showErrorsInForm && (
+            {!isValidLink() && state.showErrorsInForm && (
               <p className="text-danger">Not a valid link</p>
             )}
 
@@ -1494,7 +1518,6 @@ return (
               State.update({ hoveringElement: "" });
             }}
             onClick={() => {
-              console.log("Click on continue");
               isValidInput(false)
                 ? State.update({
                     showErrorsInForm: false,
@@ -1537,7 +1560,7 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            onClick={() => {
+            onCommit={() => {
               State.update({
                 showSendFeedback: true,
               });
