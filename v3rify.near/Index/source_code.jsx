@@ -47,23 +47,21 @@ const result = state.show ? (
             Submit a verification
           </a>
         ) : (
-          <a
+          <div
             role="button"
             className="btn btn-primary"
-            href="#"
             onClick={() => State.update({ show: false })}
           >
             OK
-          </a>
+          </div>
         )}
-        <a
+        <div
           role="button"
           className="btn btn-secondary"
-          href="#"
           onClick={() => State.update({ show: false })}
         >
           Close
-        </a>
+        </div>
       </div>
     </div>
   </div>
