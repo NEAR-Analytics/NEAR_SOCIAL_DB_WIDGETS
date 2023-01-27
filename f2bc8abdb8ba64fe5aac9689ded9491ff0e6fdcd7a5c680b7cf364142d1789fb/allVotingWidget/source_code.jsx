@@ -24,6 +24,7 @@ State.init({
   answers: {},
   showErrorsInForm: false,
   hoveringElement: "",
+  canVote: true,
 });
 
 let bgBlue = "#96C0FF";
@@ -212,11 +213,18 @@ function getValidAnswersToThisPoll() {
   const answersToThisPoll = state.answers.filter(
     (a) => a.value.questionBlockHeight == props.poll.blockHeight
   );
+
   const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
-  if (JSON.stringify(validAnswersToThisPoll) != JSON.stringify(state.answers)) {
-    State.update({ answers: validAnswersToThisPoll });
-  }
+  let hasVoted = userHasVoted(validAnswersToThisPoll);
+
+  const isQuestionOpen =
+    poll.value.startTimestamp < Date.now() &&
+    Date.now() < poll.value.endTimestamp;
+
+  const canVote = !hasVoted && isQuestionOpen;
+
+  State.update({ answers: validAnswersToThisPoll, canVote });
 }
 
 // Getting valid answers
@@ -237,19 +245,12 @@ const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 let userVote;
 // Getting if user has already voted
 const currAccountId = context.accountId ?? "";
-function userHasVoted() {
+function userHasVoted(validAnswersToThisPoll) {
   return (
     validAnswersToThisPoll.find((a) => a.accountId == currAccountId) !=
     undefined
   );
 }
-
-let hasVoted = userHasVoted();
-
-const isQuestionOpen =
-  poll.value.startTimestamp < Date.now() &&
-  Date.now() < poll.value.endTimestamp;
-const canVote = !hasVoted && isQuestionOpen;
 
 // Counting votes to display
 function countVotes(questionNumber, questionType) {
@@ -389,7 +390,7 @@ const renderMultipleChoiceInput = (
       <div>
         <div className="d-flex align-content-center">
           {/* Set the width of the next div to make the bar grow. At the same, use the same value to fill the span tag */}
-          {!canVote ? (
+          {!state.canVote ? (
             <div
               style={{
                 display: "flex",
