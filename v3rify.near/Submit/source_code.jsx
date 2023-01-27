@@ -25,12 +25,12 @@ return (
 
       <div className="form-check">
         <label htmlFor="trust" className="form-check-label">
-          Trusted:
+          Trusted
         </label>
         <input
           type="checkbox"
           className="form-check-input"
-          value={state.trusted}
+          checked={state.trusted}
           onChange={(e) => State.update({ trusted: e.target.checked })}
         />
       </div>
