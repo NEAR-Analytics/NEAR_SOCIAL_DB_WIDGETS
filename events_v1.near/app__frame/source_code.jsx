@@ -341,7 +341,7 @@ function renderComponent(name, props, layout, layoutProps) {
       <Widget
         src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
         key={key}
-        props={{ ...componentProps }}
+        props={componentProps}
       />
     );
   }
