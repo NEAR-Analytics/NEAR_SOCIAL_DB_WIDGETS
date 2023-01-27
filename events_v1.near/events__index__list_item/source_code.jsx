@@ -75,12 +75,12 @@ function gotoEvent() {
         name: 'components.dropdown_item',
         props: {
           label: 'Edit',
-          onClick: () => {
-            props.__.engine.push('edit', { event_id: event.id }, 'container', {
-              title: 'Edit Event',
-              back: true,
-            });
-          },
+          // onClick: () => {
+          //   props.__.engine.push('edit', { event_id: event.id }, 'container', {
+          //     title: 'Edit Event',
+          //     back: true,
+          //   });
+          // },
         },
         layout: 'dropdown_item',
         layoutProps: {},
