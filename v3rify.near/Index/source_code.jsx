@@ -28,7 +28,7 @@ const result = state.show ? (
             <a
               role="button"
               className="btn btn-primary"
-              href={`https://near.social/#/v3rify.near/widget/Submit?${state.query}`}
+              href={`https://near.social/#/v3rify.near/widget/Submit?entryId=${state.query}`}
             >
               Submit a verification
             </a>
