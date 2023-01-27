@@ -6,6 +6,8 @@ if (!state) {
   return '';
 }
 
+console.log({props})
+
 const layout = state.layout;
 
 const appOwner = props.componentProps.appOwner;
