@@ -246,7 +246,6 @@ function layoutFromName(name) {
 }
 
 function widgetFromName(name) {
-  // console.log('widgetFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
@@ -391,3 +390,39 @@ function renderComponent(name, props, layout, layoutProps) {
   //   />
   // );
 }
+
+return (
+  <>
+    <div id="app-state" data-state={JSON.stringify(state)}></div>
+
+    {state.layers.map((layer, index) => {
+      if (index < state.layers.length - 2) {
+        return null;
+      }
+      return (
+        <div
+          key={index}
+          style={{
+            width: '100vw',
+            minHeight: '100vh',
+            backgroundColor: 'transparent',
+            zIndex: index,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflow: 'auto',
+          }}
+        >
+          {renderComponent(
+            layer.name,
+            layer.props,
+            layer.layout,
+            layer.layoutProps
+          )}
+        </div>
+      );
+    })}
+  </>
+);
