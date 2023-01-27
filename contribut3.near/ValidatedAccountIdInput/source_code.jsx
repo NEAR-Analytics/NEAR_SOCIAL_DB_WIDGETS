@@ -86,7 +86,9 @@ return (
     <input
       type="text"
       id="account-id"
-      className={`form-control ${state.valid ? "" : "is-invalid"}`}
+      className={`form-control ${
+        state.valid ? "" : "was-validated is-invalid"
+      }`}
       value={value}
       onChange={({ target }) => update(target.value)}
       onBlur={() => validate(value)}
