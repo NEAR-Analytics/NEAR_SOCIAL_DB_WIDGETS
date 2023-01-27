@@ -23,12 +23,17 @@ return (
         onChange={(e) => State.update({ entryId: e.target.value })}
       />
 
-      <label htmlFor="trust">Trusted:</label>
-      <input
-        type="checkbox"
-        value={state.trusted}
-        onChange={(e) => State.update({ trusted: e.target.checked })}
-      />
+      <div className="form-check">
+        <label htmlFor="trust" className="form-check-label">
+          Trusted:
+        </label>
+        <input
+          type="checkbox"
+          className="form-check-input"
+          value={state.trusted}
+          onChange={(e) => State.update({ trusted: e.target.checked })}
+        />
+      </div>
 
       <a
         role="button"
