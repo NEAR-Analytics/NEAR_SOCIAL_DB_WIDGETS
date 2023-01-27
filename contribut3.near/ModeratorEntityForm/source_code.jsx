@@ -9,6 +9,7 @@ const endDate = props.endDate ?? "";
 initState({
   fixed: !!props.accountId,
   accountId,
+  accountIdValid: true,
   kind,
   entityStatus,
   startDate,
@@ -32,7 +33,9 @@ const accountIdInput = (
       accountId: state.accountId,
       allAccountIds,
       fixed: state.fixed,
-      update: (updatedState) => State.update(updatedState),
+      update: (update, accountIdValid) =>
+        State.update({ ...update, accountIdValid }),
+      valid: state.accountIdValid,
     }}
   />
 );
