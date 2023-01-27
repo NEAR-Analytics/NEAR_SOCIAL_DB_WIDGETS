@@ -225,6 +225,7 @@ function setValidAnswersToThisPoll() {
 
   const canVote = !hasVoted && isQuestionOpen;
 
+  // When the data is commited and it isn't yet updated in the blockchain, so this time should be brief
   const displaySpinner = state.displaySpinner && canVote;
 
   //Comparing objects checks memory position
