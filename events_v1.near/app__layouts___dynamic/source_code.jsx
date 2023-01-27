@@ -10,12 +10,13 @@ const layout = state.layout;
 
 props.__.engine.setLayoutController((_layout) => {
   console.log('setLayout', _layout);
-  // props.__.setLayout = _layout;
   State.update({
     layout: _layout,
   });
+  console.log(1);
 });
 
+console.log(2);
 const key = props.key;
 
 // guard to allow 'default' layout exit infinite render loop
@@ -25,6 +26,7 @@ if (
   layout === '' ||
   layout === undefined
 ) {
+  console.log(3);
   return (
     <Widget
       src={props.__.engine.widgetFromName(props.component.name)}
@@ -34,6 +36,7 @@ if (
   );
 }
 
+console.log(4);
 return (
   <Widget
     src={props.__.layoutFromName(layout)}
