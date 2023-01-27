@@ -245,10 +245,6 @@ function layoutFromName(name) {
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
-function widgetFromName(name) {
-  return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
-}
-
 function rerender() {
   // HACK: force a re-render
   State.update({
@@ -272,7 +268,7 @@ function push(name, props, layout, layoutProps) {
     layers: newLayers,
   });
 
-  // rerender();
+  rerender();
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -287,7 +283,7 @@ function pop() {
     layers: newLayers,
   });
 
-  // rerender();
+  rerender();
 }
 
 function renderComponent(name, props, layout, layoutProps) {
@@ -296,25 +292,7 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
-  let wrapperProps = {};
-
-  let controller = null;
-
-  function setLayout(lay, layProp) {
-    controller.setLayout(lay, layProp);
-  }
-  function setLayoutController(setLayoutFn) {
-    // prevent infinite loop
-    if (controller) {
-      console.log('has controller');
-      return;
-    }
-    controller = {
-      setLayout: setLayoutFn,
-    };
-  }
-
-  wrapperProps = {
+  const componentProps = {
     __: {
       engine: {
         push,
@@ -323,10 +301,6 @@ function renderComponent(name, props, layout, layoutProps) {
         rerender,
         storageGet,
         storageSet,
-        setLayout,
-        setLayoutController,
-        widgetFromName,
-        layoutFromName,
       },
       Components: {
         Select,
@@ -339,6 +313,10 @@ function renderComponent(name, props, layout, layoutProps) {
       },
       accountId,
       VERSION,
+      callbacks: [],
+      registerCallback: (callback) => {
+        componentProps._.callbacks.push(callback);
+      },
     },
   };
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
@@ -348,16 +326,31 @@ function renderComponent(name, props, layout, layoutProps) {
   const innerLayout = (layoutProps || {}).innerLayout || null;
   const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
 
-  // const widgetProps = { ...wrapperProps, ...(props || {}) };
+  const widgetProps = { ...componentProps, ...(props || {}) };
+
+  // guard to allow 'default' layout exit infinite render loop
+  if (
+    layout === 'default' ||
+    layout === null ||
+    layout === '' ||
+    layout === undefined
+  ) {
+    return (
+      <Widget
+        src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
+        key={key}
+        props={widgetProps}
+      />
+    );
+  }
 
   return (
     <Widget
-      src={layoutFromName('_dynamic')}
+      src={layoutFromName(layout)}
       key={key}
       props={{
+        ...componentProps,
         ...(layoutProps || {}),
-        ...wrapperProps,
-        key,
         component: {
           name: name,
           props: props,
@@ -367,39 +360,6 @@ function renderComponent(name, props, layout, layoutProps) {
       }}
     />
   );
-
-  // // guard to allow 'default' layout exit infinite render loop
-  // if (
-  //   layout === 'default' ||
-  //   layout === null ||
-  //   layout === '' ||
-  //   layout === undefined
-  // ) {
-  //   return (
-  //     <Widget
-  //       src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
-  //       key={key}
-  //       props={widgetProps}
-  //     />
-  //   );
-  // }
-
-  // return (
-  //   <Widget
-  //     src={layoutFromName(layout)}
-  //     key={key}
-  //     props={{
-  //       ...dynProps,
-  //       ...(layoutProps || {}),
-  //       component: {
-  //         name: name,
-  //         props: props,
-  //         layout: innerLayout,
-  //         layoutProps: innerLayoutProps,
-  //       },
-  //     }}
-  //   />
-  // );
 }
 
 return (
