@@ -350,7 +350,7 @@ function renderComponent(name, props, layout, layoutProps) {
       key={key}
       props={{
         ...(layoutProps || {}),
-        wrapperProps,
+        ...wrapperProps,
         key,
         component: {
           name: name,
