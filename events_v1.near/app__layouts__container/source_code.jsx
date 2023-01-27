@@ -1,8 +1,8 @@
 const NAVBAR_HEIGHT = 64;
 const NAVBAR_OFFSET_TOP = 0;
 
-const title = props.title ?? '';
-const dropdownItems = props.dropdownItems ?? [];
+const title = props.title || '';
+const dropdownItems = props.dropdownItems || [];
 
 const dropdownElement =
   dropdownItems && dropdownItems.length > 0 ? (
