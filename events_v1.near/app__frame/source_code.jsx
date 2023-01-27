@@ -245,6 +245,10 @@ function layoutFromName(name) {
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
+function widgetFromName(name) {
+  return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
+}
+
 function rerender() {
   // HACK: force a re-render
   State.update({
@@ -313,6 +317,7 @@ function renderComponent(name, props, layout, layoutProps) {
         storageSet,
         setLayout,
         setController,
+        widgetFromName,
       },
       Components: {
         Select,
@@ -386,38 +391,4 @@ function renderComponent(name, props, layout, layoutProps) {
   // );
 }
 
-return (
-  <>
-    <div id="app-state" data-state={JSON.stringify(state)}></div>
 
-    {state.layers.map((layer, index) => {
-      if (index < state.layers.length - 2) {
-        return null;
-      }
-      return (
-        <div
-          key={index}
-          style={{
-            width: '100vw',
-            minHeight: '100vh',
-            backgroundColor: 'transparent',
-            zIndex: index,
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            overflow: 'auto',
-          }}
-        >
-          {renderComponent(
-            layer.name,
-            layer.props,
-            layer.layout,
-            layer.layoutProps
-          )}
-        </div>
-      );
-    })}
-  </>
-);
