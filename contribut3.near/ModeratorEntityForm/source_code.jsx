@@ -93,6 +93,10 @@ const endDateInput = (
 );
 
 const onSubmit = () => {
+  if (!state.accountIdValid) {
+    return;
+  }
+
   const args = {
     account_id: state.accountId[0].name,
     entity: {
@@ -125,7 +129,12 @@ const body = (
       {endDateInput}
     </div>
 
-    <a className="btn btn-outline-primary mb-2" onClick={onSubmit}>
+    <a
+      className={`btn ${
+        sstate.accountIdValid ? "btn-primary" : "btn-secondary"
+      } mb-2`}
+      onClick={onSubmit}
+    >
       Submit
     </a>
   </div>
@@ -134,24 +143,26 @@ const body = (
 const footer = (
   <div className="card-footer">
     Preview:
-    <Widget
-      src={`${ownerId}/widget/Entity`}
-      props={{
-        isPreview: true,
-        id: 0, // irrelevant
-        accountId: state.accountId[0].name,
-        notStandalone: true,
-        entity:
-          state.updated || !state.existing
-            ? {
-                kind: state.kind[0].name,
-                status: state.entityStatus[0].name,
-                start_date: `${new Date(state.startDate).getTime()}`,
-                end_date: `${new Date(state.endDate).getTime()}`,
-              }
-            : state.existing,
-      }}
-    />
+    {state.accountIdValid ? (
+      <Widget
+        src={`${ownerId}/widget/Entity`}
+        props={{
+          isPreview: true,
+          id: 0, // irrelevant
+          accountId: state.accountId[0].name,
+          notStandalone: true,
+          entity:
+            state.updated || !state.existing
+              ? {
+                  kind: state.kind[0].name,
+                  status: state.entityStatus[0].name,
+                  start_date: `${new Date(state.startDate).getTime()}`,
+                  end_date: `${new Date(state.endDate).getTime()}`,
+                }
+              : state.existing,
+        }}
+      />
+    ) : null}
   </div>
 );
 
