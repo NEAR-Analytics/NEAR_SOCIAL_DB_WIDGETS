@@ -44,8 +44,8 @@ return (
       placeholder="contribut3.near, social.near..."
       selected={state.accountId}
       positionFixed
-      allowNew={(accountIds) => {
-        console.log(accountIds);
+      allowNew={(accountIds, props) => {
+        console.log(accountIds, props);
 
         const [{ name }] = accountIds;
 
