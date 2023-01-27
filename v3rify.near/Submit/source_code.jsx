@@ -23,7 +23,7 @@ return (
         onChange={(e) => State.update({ entryId: e.target.value })}
       />
 
-      <div className="form-check">
+      <div className="form-check mt-2">
         <label htmlFor="trust" className="form-check-label">
           Trusted
         </label>
