@@ -114,10 +114,10 @@ return (
             }}
           >
             {props.__.engine.renderComponent(
-              props.__component.name,
-              props.__component.props,
-              props.__component.layout,
-              props.__component.layoutProps
+              props.component.name,
+              props.component.props,
+              props.component.layout,
+              props.component.layoutProps
             )}
           </div>
         </div>
