@@ -304,6 +304,7 @@ function renderComponent(name, props, layout, layoutProps) {
     controller.setLayout(lay, layProp);
   }
   function setLayoutController(setLayoutFn) {
+    // prevent infinite loop
     if (controller) {
       return;
     }
