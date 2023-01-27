@@ -1,4 +1,4 @@
-const { filteredArticles } = props;
+const { filteredArticles, getDateLastEdit } = props;
 return (
   <ol>
     {filteredArticles &&
