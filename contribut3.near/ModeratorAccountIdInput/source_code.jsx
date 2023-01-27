@@ -44,7 +44,12 @@ return (
       placeholder="contribut3.near, social.near..."
       selected={state.accountId}
       positionFixed
-      allowNew
+      allowNew={([{ name }]) =>
+        typeof name === "string" &&
+        name.length >= 2 &&
+        name.length <= 64 &&
+        /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/.test(name)
+      }
       disabled={state.fixed}
     />
   </div>
