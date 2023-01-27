@@ -6,7 +6,7 @@ if (!state) {
   return '';
 }
 
-props.componentProps.controller = {
+props.componentProps.setController = {
   setLayout: (layout) => {
     props.componentProps.layout = layout;
   },
