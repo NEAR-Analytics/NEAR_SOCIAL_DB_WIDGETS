@@ -10,7 +10,7 @@ return (
       <label htmlFor="search">
         Authorities to add (a comma separated list of account IDs):
       </label>
-      <Typeadead
+      <Typeahead
         id="authorities"
         labelKey="accountId"
         placeholder="v3rify.near"
