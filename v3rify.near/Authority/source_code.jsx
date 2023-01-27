@@ -18,7 +18,7 @@ return (
         placeholder="v3rify.near"
         selected={state.authorities}
         onChange={(authorities) => State.update({ authorities })}
-        optionis={[]}
+        options={[]}
         multiple
         allowNew
         positionFixed
