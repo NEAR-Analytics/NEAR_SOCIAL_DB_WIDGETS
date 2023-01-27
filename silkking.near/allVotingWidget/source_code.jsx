@@ -543,7 +543,9 @@ const renderTextInput = (questionNumber) => {
 
 setValidAnswersToThisPoll();
 
-function debug() {}
+function debug() {
+  console.log(1, props.poll);
+}
 
 debug();
 
