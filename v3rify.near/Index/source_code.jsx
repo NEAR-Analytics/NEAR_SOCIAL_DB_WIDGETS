@@ -50,6 +50,7 @@ const result = state.show ? (
           <a
             role="button"
             className="btn btn-primary"
+            href="#"
             onClick={() => State.update({ show: false })}
           >
             OK
@@ -58,6 +59,7 @@ const result = state.show ? (
         <a
           role="button"
           className="btn btn-secondary"
+          href="#"
           onClick={() => State.update({ show: false })}
         >
           Close
