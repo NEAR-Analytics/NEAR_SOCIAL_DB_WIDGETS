@@ -8,10 +8,10 @@ if (!state) {
 }
 
 props.__.engine.setLayoutController((_layout, _layoutProps) => {
-  State.update({
-    layout: _layout,
-    layoutProps: _layoutProps,
-  });
+  // State.update({
+  //   layout: _layout,
+  //   layoutProps: _layoutProps,
+  // });
 });
 
 const key = props.key;
