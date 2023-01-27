@@ -12,7 +12,7 @@ State.init({
 const overlay = (
   <div
     className="border m-3 p-3 rounded-4 bg-white shadow"
-    style={{ maxWidth: "24em" }}
+    style={{ maxWidth: "24em", zIndex: 1070 }}
     onMouseEnter={handleOnMouseEnter}
     onMouseLeave={handleOnMouseLeave}
   >
