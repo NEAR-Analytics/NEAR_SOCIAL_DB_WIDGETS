@@ -11,8 +11,11 @@ console.log({ props });
 const layout = state.layout;
 
 props.componentProps.setController = {
-  setLayout: (layout) => {
-    props.componentProps.__.setLayout = layout;
+  setLayout: (_layout) => {
+    props.componentProps.__.setLayout = _layout;
+    State.update({
+      layout: _layout,
+    });
   },
 };
 
