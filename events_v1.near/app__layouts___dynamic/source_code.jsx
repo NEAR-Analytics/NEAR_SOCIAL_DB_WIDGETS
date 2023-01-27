@@ -42,13 +42,13 @@ return (
     src={props.dynProps.__.layoutFromName(layout)}
     key={key}
     props={{
-      ...dynProps,
+      ...props.dynProps,
       ...(layoutProps || {}),
       component: {
-        name: name,
-        props: props,
-        layout: innerLayout,
-        layoutProps: innerLayoutProps,
+        name: props.component.name,
+        props: props.component.props,
+        layout: props.component.innerLayout,
+        layoutProps: props.component.innerLayoutProps,
       },
     }}
   />
