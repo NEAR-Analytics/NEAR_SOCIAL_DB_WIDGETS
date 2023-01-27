@@ -18,12 +18,12 @@ let inner = (
         style: { width: "1.5em", height: "1.5em" },
         profile,
         accountId,
-        className: "d-inline-block",
+        className: "d-inline-block me-1",
         imageClassName: "rounded w-100 h-100 align-top",
       }}
     />
     {!hideName && name}
-    {!hideAccountId && <span className="text-muted">@{accountId}</span>}
+    {!hideAccountId && <span className="text-muted ms-1">@{accountId}</span>}
   </>
 );
 
@@ -34,12 +34,12 @@ inner = link ? (
         ? link
         : `#/mob.near/widget/ProfilePage?accountId=${accountId}`
     }
-    className="link-dark text-truncate"
+    className="link-dark text-truncate d-inline-flex"
   >
     {inner}
   </a>
 ) : (
-  <span className="text-truncate">{inner}</span>
+  <span className="text-truncate d-inline-flex">{inner}</span>
 );
 
 if (tooltip) {
