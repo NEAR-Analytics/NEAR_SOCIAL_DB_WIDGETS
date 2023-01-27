@@ -39,12 +39,10 @@ return (
         role="button"
         className="btn btn-primary mt-2"
         onClick={() =>
-          Near.call(
-            "v3rify.near",
-            "submit_verification",
-            { entry_id: state.entryId, trusted: state.trusted },
-            "final"
-          )
+          Near.call("v3rify.near", "submit_verification", {
+            entry_id: state.entryId,
+            trusted: state.trusted,
+          })
         }
       >
         Submit
@@ -55,12 +53,10 @@ return (
           role="button"
           className="btn btn-info mt-2"
           onClick={() =>
-            Near.call(
-              "v3rify.near",
-              "pin_verification",
-              { entry_id: state.entryId, trusted: state.trusted },
-              "final"
-            )
+            Near.call("v3rify.near", "pin_verification", {
+              entry_id: state.entryId,
+              trusted: state.trusted,
+            })
           }
         >
           Pin
