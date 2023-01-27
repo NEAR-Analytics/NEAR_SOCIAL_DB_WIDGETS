@@ -92,25 +92,27 @@ const body = (
   </div>
 );
 
-const footer = state.accountIdValid ? (
+const footer = (
   <div className="card-footer">
     Preview:
-    <Widget
-      src={`${ownerId}/widget/Entity`}
-      props={{
-        isPreview: true,
-        id: 0, // irrelevant
-        accountId: state.accountId,
-        notStandalone: true,
-        entity: {
-          entity: state.entity,
-          kind: state.kind[0].name,
-          start_date: `${new Date(state.startDate).getTime()}`,
-        },
-      }}
-    />
+    {state.accountIdValid ? (
+      <Widget
+        src={`${ownerId}/widget/Entity`}
+        props={{
+          isPreview: true,
+          id: 0, // irrelevant
+          accountId: state.accountId,
+          notStandalone: true,
+          entity: {
+            entity: state.entity,
+            kind: state.kind[0].name,
+            start_date: `${new Date(state.startDate).getTime()}`,
+          },
+        }}
+      />
+    ) : null}
   </div>
-) : null;
+);
 
 return (
   <div className="card">
