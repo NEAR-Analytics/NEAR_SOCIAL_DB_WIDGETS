@@ -336,7 +336,13 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
       props: _layoutProps,
     });
 
-    console.log(getOwnerChain(ref));
+    const owner = getOwnerChain(ref)[0];
+    if (owner) {
+      owner.__stateRef.update({
+        layout: _layout,
+        layoutProps: _layoutProps,
+      });
+    }
   }
 
   let componentProps = {
