@@ -15,6 +15,7 @@ return (
           <img
             src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
             key={image.cid}
+            alt={image.url.cid}
           />
         );
       })}
