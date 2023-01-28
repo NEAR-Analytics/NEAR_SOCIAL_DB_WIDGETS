@@ -37,8 +37,6 @@ return (
       event,
     })}
 
-    {props.__.ref}
-
     <h1>{event.name}</h1>
 
     <p>{event.description}</p>
