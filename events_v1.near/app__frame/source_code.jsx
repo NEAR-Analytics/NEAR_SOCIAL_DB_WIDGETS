@@ -351,10 +351,6 @@ function renderComponent(name, props, layout, layoutProps) {
       },
       accountId,
       VERSION,
-      callbacks: [],
-      registerCallback: (callback) => {
-        componentProps._.callbacks.push(callback);
-      },
     },
   };
 
