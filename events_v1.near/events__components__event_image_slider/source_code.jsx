@@ -11,7 +11,7 @@ const EventImage = styled.img`
   height: auto;
 `;
 
-console.log(event.images);
+// console.log(event.images);
 
 const imagesWithCid = (event.images || [])
   .filter((image) => {
