@@ -1,4 +1,4 @@
-const EVENTS_CONTRACT = 'events_v1.near';
+const EVENTS_CONTRACT = '{{ env.EVENTS_CONTRACT }}';
 
 const eventId = props.event_id;
 if (!eventId) {
@@ -21,9 +21,7 @@ const EventImage = styled.img`
 
 return (
   <>
-    {images.map((image, idx) => {
-      return <EventImage src={image} key={`image_idx_${idx}`} />;
-    })}
+    {renderComponent('event_image_slider', {event})
 
     <h1>{event.name}</h1>
 
