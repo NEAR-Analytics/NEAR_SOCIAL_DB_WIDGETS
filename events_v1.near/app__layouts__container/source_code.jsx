@@ -1,3 +1,7 @@
+props.__.__registerLayoutController(props.__, (o) => {
+  State.update(o);
+});
+
 const NAVBAR_HEIGHT = 64;
 const NAVBAR_OFFSET_TOP = 0;
 
