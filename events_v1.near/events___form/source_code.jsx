@@ -64,7 +64,6 @@ const DEFAULT_STATE = {
   errors: {},
 };
 if (model) {
-  console.log('model', model);
   State.init({
     ...model,
     images: model.images || DEFAULT_STATE.images,
