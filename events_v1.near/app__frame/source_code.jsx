@@ -326,7 +326,7 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
       name: a,
       props: b,
     });
-    console.log(appStateGet(`owner__${ref}`)
+    console.log(appStateGet(`owner__${ref}`));
   }
 
   let componentProps = {
@@ -342,7 +342,6 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
         appStateGet,
         appStateSet,
         registerLayout,
-        registerLayoutController,
       },
       Components: {
         Select,
