@@ -318,11 +318,8 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
   const ref = counter + 1;
 
   function renderComponent(_name, _props, _layout, _layoutProps) {
-    console.log('renderComponent', ref, _name, _props, _layout, _layoutProps);
     return _renderComponent(ref, _name, _props, _layout, _layoutProps);
   }
-
-  console.log({ parent });
 
   function registerLayout(a, b) {
     appStateSet(`layout__${ref}`, {
@@ -338,6 +335,7 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
   let componentProps = {
     __: {
       ref,
+      controller: {},
       engine: {
         push,
         pop,
@@ -361,6 +359,8 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
       VERSION,
     },
   };
+
+  appStateSet(`renderController__${ref}`, componentProps.__.controller);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
