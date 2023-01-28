@@ -89,6 +89,8 @@ function gotoEvent() {
   });
 }
 
+const imageCID = event?.image?[0]?.cid || 'QmZ5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z';
+
 return (
   <div
     onClick={() => {
@@ -105,7 +107,7 @@ return (
   >
     <EventCard>
       <EventHeader>
-        <EventImage src={`https://ipfs.near.social/ipfs/${event.image.cid}`} />
+        <EventImage src={`https://ipfs.near.social/ipfs/${imageCID}`} />
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
 
