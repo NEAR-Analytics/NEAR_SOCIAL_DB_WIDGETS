@@ -128,7 +128,6 @@ const LinkTypes = [
 ];
 
 function addError(key, message) {
-  console.log('addError', key, message);
   State.update({ errors: { ...state.errors, [key]: message } });
 }
 
@@ -345,7 +344,6 @@ return (
             props={{
               image: image,
               onChange: (changed) => {
-                console.log({ changed });
                 state.images[index] = changed;
                 sanitizeAndValidate({ ...state, images: state.images });
               },
