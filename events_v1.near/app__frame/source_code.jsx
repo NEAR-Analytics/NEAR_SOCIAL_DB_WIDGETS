@@ -203,6 +203,13 @@ function appStateSet(prop, value) {
   return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
+function storageGet(prop, defaultValue) {
+  return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+}
+function storageSet(prop, value) {
+  return Storage.set(`${appOwner}.${appName}.${prop}`, value);
+}
+
 const rootRoute = {
   name: entryRoute,
   props: entryProps,
@@ -222,7 +229,7 @@ if (!state) {
 }
 
 function restoreRoutes() {
-  const info = appStateGet('routing', null);
+  const info = storageGet('routing', null);
   if (info === null || info === undefined) {
     return;
   }
@@ -245,7 +252,7 @@ restoreRoutes();
 
 function persistRoutingInformation(newState) {
   // console.log('persistRoutingInformation', newState);
-  appStateSet('routing', newState);
+  storageSet('routing', newState);
 }
 
 function slugFromName(name) {
