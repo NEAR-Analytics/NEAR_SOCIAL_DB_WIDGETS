@@ -112,7 +112,7 @@ return (
           event.images.map((image) => {
             return (
               <EventImage
-                src={`https://ipfs.near.social/ipfs/${image.cid}`}
+                src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
                 key={image.cid}
               />
             );
