@@ -24,10 +24,7 @@ const dropdownElement =
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {dropdownItems.map((item, idx) => {
-            return (
-              <>
-                {console.log(item)}
-                {props.__.engine.renderComponent(
+            return props.__.engine.renderComponent(
                   item.name,
                   {
                     ...item.props,
@@ -35,9 +32,7 @@ const dropdownElement =
                   },
                   item.layout,
                   item.layoutProps
-                )}
-              </>
-            );
+                ))
           })}
         </ul>
       </div>
