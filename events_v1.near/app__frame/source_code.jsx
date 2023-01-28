@@ -286,10 +286,6 @@ function pop() {
   rerender();
 }
 
-function registerLayout(ref, layout, layoutProps) {
-  console.log('registerLayout', layout, layoutProps);
-}
-
 let ref = 0;
 function renderComponent(name, props, layout, layoutProps) {
   // console.log('renderComponent', name, layout, props);
@@ -297,9 +293,15 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
+  ref = ref + 1;
+
+  function registerLayout(ref, layout, layoutProps) {
+    console.log('registerLayout', layout, layoutProps);
+  }
+
   const componentProps = {
     __: {
-      // ref: ,
+      ref,
       engine: {
         push,
         pop,
@@ -307,9 +309,6 @@ function renderComponent(name, props, layout, layoutProps) {
         rerender,
         storageGet,
         storageSet,
-        // registerLayout: function (la, lap) {
-        //   registerLayout(componentProps.__.ref, la, lap);
-        // },
         registerLayout,
       },
       Components: {
