@@ -12,13 +12,6 @@ if (!event) {
   return 'Loading';
 }
 
-const images = event.images || [];
-
-const EventImage = styled.img`
-  width: 100%;
-  height: auto;
-`;
-
 return (
   <>
     {props.__.engine.renderComponent('event_image_slider', { event })}
