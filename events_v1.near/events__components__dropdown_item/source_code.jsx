@@ -83,7 +83,6 @@ const DropdownButton = styled.button`
 
 return (
   <DropdownButton
-    className="nav-link"
     aria-current="page"
     href=""
     onClick={(e) => {
