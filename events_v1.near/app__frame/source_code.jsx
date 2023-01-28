@@ -1,4 +1,4 @@
-const VERSION = '0.1.0';
+const VERSION = '{{ env.VERSION }}';
 
 /**
  *  NEAR Social App
@@ -379,7 +379,7 @@ return (
             backgroundColor: 'transparent',
             zIndex: index,
             position: 'fixed',
-            top: 0,
+            top: 72,
             left: 0,
             right: 0,
             bottom: 0,
