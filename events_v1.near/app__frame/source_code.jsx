@@ -295,8 +295,8 @@ function renderComponent(name, props, layout, layoutProps) {
 
   ref = ref + 1;
 
-  function registerLayout(ref, layout, layoutProps) {
-    console.log('registerLayout', layout, layoutProps);
+  function registerLayout(a, b) {
+    console.log('registerLayout', a, b);
   }
 
   const componentProps = {
