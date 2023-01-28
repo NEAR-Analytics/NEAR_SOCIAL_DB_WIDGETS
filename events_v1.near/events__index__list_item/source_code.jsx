@@ -105,7 +105,7 @@ return (
   >
     <EventCard>
       <EventHeader>
-        <EventImage src={event.image} />
+        <EventImage src={`https://ipfs.near.social/ipfs/${event.image.cid}`} />
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
 
