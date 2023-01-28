@@ -326,10 +326,7 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
       name: a,
       props: b,
     });
-  }
-
-  function registerLayoutController(controller) {
-    appStateSet(`layout__controller__${ref}`, controller);
+    console.log(appStateGet(`layout__${ref}`)
   }
 
   let componentProps = {
