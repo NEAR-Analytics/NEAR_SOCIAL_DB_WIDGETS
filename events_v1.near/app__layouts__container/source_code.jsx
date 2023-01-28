@@ -93,6 +93,7 @@ return (
         overflow: 'auto',
       }}
     >
+      {dropdownMenu}
       <div
         className="row"
         style={{
