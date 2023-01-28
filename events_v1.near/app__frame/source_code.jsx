@@ -307,7 +307,8 @@ function pop() {
 }
 
 function getOwnerChain(ref) {
-  const owner = appStateGet(`owner__${ref}`, null);
+  const ownerID = appStateGet(`owner__${ref}`, null);
+  const owner = appStateGet(`component__${ownerID}`, null);
   if (owner === null) {
     return [];
   }
@@ -327,15 +328,6 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
 
   function renderComponent(_name, _props, _layout, _layoutProps) {
     return _renderComponent(ref, _name, _props, _layout, _layoutProps);
-  }
-
-  function registerLayout(_layout, _layoutProps) {
-    appStateSet(`layout__${ref}`, {
-      name: _layout,
-      props: _layoutProps,
-    });
-
-    console.log('registerLayout', AppState._state);
   }
 
   function registerLayout(_layout, _layoutProps) {
@@ -374,7 +366,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     },
   };
 
-  appStateSet(`__${ref}`, componentProps.__);
+  appStateSet(`component__${ref}`, componentProps.__);
   appStateSet(`owner__${ref}`, componentProps.__.__owner);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
