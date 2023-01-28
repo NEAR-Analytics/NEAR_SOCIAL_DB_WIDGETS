@@ -299,7 +299,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   const componentProps = {
     __: {
-      ref: ref++,
+      // ref: ,
       engine: {
         push,
         pop,
