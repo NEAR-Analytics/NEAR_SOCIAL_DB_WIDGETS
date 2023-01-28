@@ -290,6 +290,7 @@ function registerLayout(layout, layoutProps) {
   console.log('registerLayout', layout, layoutProps);
 }
 
+let ref = 0;
 function renderComponent(name, props, layout, layoutProps) {
   // console.log('renderComponent', name, layout, props);
   if (!name) {
@@ -298,6 +299,7 @@ function renderComponent(name, props, layout, layoutProps) {
 
   const componentProps = {
     __: {
+      ref: ref++,
       engine: {
         push,
         pop,
