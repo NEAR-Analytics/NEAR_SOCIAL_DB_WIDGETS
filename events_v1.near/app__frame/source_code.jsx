@@ -183,24 +183,24 @@ const env = {
   VERSION,
 };
 
-const StorageProxy = {
+const AppState = {
   _state: {},
   set: (prop, value) => {
-    StorageProxy._state[prop] = value;
+    AppState._state[prop] = value;
     return true;
   },
   get: (prop) => {
-    return StorageProxy._state[prop];
+    return AppState._state[prop];
   },
 };
 
 function storageGet(prop, defaultValue) {
   // return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
-  return StorageProxy.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+  return AppState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
 function storageSet(prop, value) {
   // return Storage.set(`${appOwner}.${appName}.${prop}`, value);
-  return StorageProxy.set(`${appOwner}.${appName}.${prop}`, value);
+  return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
 const rootRoute = {
