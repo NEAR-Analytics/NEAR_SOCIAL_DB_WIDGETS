@@ -1,4 +1,4 @@
-const VERSION = '{{ env.VERSION }}';
+const VERSION = '0.1.0';
 
 /**
  *  NEAR Social App
@@ -286,6 +286,10 @@ function pop() {
   rerender();
 }
 
+function registerLayout(layout, layoutProps) {
+  console.log('registerLayout', layout, layoutProps);
+}
+
 function renderComponent(name, props, layout, layoutProps) {
   // console.log('renderComponent', name, layout, props);
   if (!name) {
@@ -301,6 +305,7 @@ function renderComponent(name, props, layout, layoutProps) {
         rerender,
         storageGet,
         storageSet,
+        registerLayout,
       },
       Components: {
         Select,
