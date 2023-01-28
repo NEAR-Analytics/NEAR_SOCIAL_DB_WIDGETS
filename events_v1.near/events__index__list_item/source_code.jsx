@@ -107,6 +107,17 @@ return (
   >
     <EventCard>
       <EventHeader>
+        {event.images && event.images.length > 0 && (
+          event.images.map((image) => {
+            return (
+              <EventImage
+                src={`https://ipfs.near.social/ipfs/${image.cid}`}
+                key={image.cid}
+              />
+            );
+          }
+          )
+        )}
         <EventImage src={`https://ipfs.near.social/ipfs/${imageCID}`} />
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
