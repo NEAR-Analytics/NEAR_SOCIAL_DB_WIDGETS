@@ -6,18 +6,17 @@ let event = props.event || null;
 //   return (<img src="" />);
 // }
 
-
-
-return <>
+return (
+  <>
     {event.images &&
       event.images.length > 0 &&
       event.images.map((image) => {
         return (
-          <EventImage
+          <img
             src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
             key={image.cid}
           />
         );
-      }
+      })}
   </>
-
+);
