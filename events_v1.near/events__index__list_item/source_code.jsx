@@ -62,7 +62,7 @@ const EventBody = styled.div`
 `;
 
 function gotoEvent() {
-  props.__.engine.push('show', { event_id: event.id }, 'modal', {
+  props.__.engine.push('show', { event_id: event.id }, 'container', {
     title: event.name,
     back: true,
     dropdownItems: [
