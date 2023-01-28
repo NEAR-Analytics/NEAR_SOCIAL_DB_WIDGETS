@@ -286,17 +286,18 @@ function pop() {
   rerender();
 }
 
-let ref = 0;
+let counter = 0;
 function renderComponent(name, props, layout, layoutProps) {
-  console.log('renderComponent', name, layout, props);
+  // console.log('renderComponent', name, layout, props);
   if (!name) {
     return null;
   }
 
-  ref = ref + 1;
+  counter = counter + 1;
+  const ref = counter + 1;
 
   function registerLayout(a, b) {
-    console.log('registerLayout', name, ref, a, b);
+    console.log('registerLayout', ref, counter, a, b);
   }
 
   let componentProps = {
