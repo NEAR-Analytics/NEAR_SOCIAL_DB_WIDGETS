@@ -318,6 +318,7 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
   const ref = counter + 1;
 
   function renderComponent() {
+    console.log('renderComponent', ref);
     return _renderComponent(ref, name, props, layout, layoutProps);
   }
 
