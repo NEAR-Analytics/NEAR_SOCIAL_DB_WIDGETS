@@ -307,18 +307,21 @@ function pop() {
 }
 
 let counter = 0;
-function renderComponent(name, props, layout, layoutProps) {
+function _renderComponent(parent, name, props, layout, layoutProps) {
+  counter = counter + 1;
+
   // console.log('renderComponent', name, layout, props);
   if (!name) {
     return null;
   }
 
-  const parent = props.__;
-
-  console.log(parent);
-
-  counter = counter + 1;
   const ref = counter + 1;
+
+  function renderComponent() {
+    return _renderComponent(ref, name, props, layout, layoutProps);
+  }
+
+  console.log({ parent });
 
   function registerLayout(a, b) {
     appStateSet(`layout__${ref}`, {
@@ -425,7 +428,7 @@ return (
             overflow: 'auto',
           }}
         >
-          {renderComponent(
+          {_renderComponent(
             layer.name,
             layer.props,
             layer.layout,
