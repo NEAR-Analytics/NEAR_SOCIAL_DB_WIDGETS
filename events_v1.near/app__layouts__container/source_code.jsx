@@ -1,4 +1,5 @@
 props.__.__registerLayoutController(props.__, (o) => {
+  console.log('LAYOUT CONTROLLER', { o });
   State.update(o);
 });
 
