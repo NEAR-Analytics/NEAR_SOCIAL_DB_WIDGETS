@@ -105,6 +105,7 @@ return (
   >
     <EventCard>
       <EventHeader>
+        {renderComponent('components.event_image_slider', { event })}
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
 
