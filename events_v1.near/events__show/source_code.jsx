@@ -21,7 +21,7 @@ const EventImage = styled.img`
 
 return (
   <>
-    {renderComponent('event_image_slider', {event})
+    {props.__.engine.renderComponent('event_image_slider', { event })}
 
     <h1>{event.name}</h1>
 
