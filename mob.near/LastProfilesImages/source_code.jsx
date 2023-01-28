@@ -35,7 +35,7 @@ for (let i = 0; i < accounts.length; ++i) {
 
 return (
   <div>
-    <div>{allWidgets}</div>
+    <div class="d-flex flex-wrap gap-1">{allWidgets}</div>
     <div>Total {numAccounts} profiles</div>
   </div>
 );
