@@ -286,7 +286,7 @@ function pop() {
   rerender();
 }
 
-function registerLayout(layout, layoutProps) {
+function registerLayout(ref, layout, layoutProps) {
   console.log('registerLayout', layout, layoutProps);
 }
 
