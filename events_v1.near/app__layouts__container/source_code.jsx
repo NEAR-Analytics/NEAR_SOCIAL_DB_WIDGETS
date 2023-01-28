@@ -24,6 +24,7 @@ const dropdownElement =
           {dropdownItems.map((item, idx) => {
             return (
               <>
+                {console.log(item)}
                 {props.__.engine.renderComponent(
                   item.name,
                   {
@@ -41,6 +42,47 @@ const dropdownElement =
     </>
   ) : null;
 
+const dropdownMenu = (
+  <div
+    className="navbar navbar-expand-lg navbar-dark bg-primary"
+    style={{
+      height: NAVBAR_HEIGHT,
+      position: 'fixed',
+      top: NAVBAR_OFFSET_TOP,
+      width: '100%',
+    }}
+  >
+    <div className="container-fluid h-100 flex">
+      <div className="d-flex">
+        <button
+          className=""
+          style={{
+            color: 'black',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            width: NAVBAR_HEIGHT,
+          }}
+          type="button"
+          onClick={() => {
+            props.__.engine.pop();
+          }}
+        >
+          &lt;
+        </button>
+
+        <h2 className="navbar-brand">{title}</h2>
+      </div>
+
+      {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
+    </div>
+  </div>
+);
+
 return (
   <>
     <div
@@ -51,45 +93,6 @@ return (
         overflow: 'auto',
       }}
     >
-      <div
-        className="navbar navbar-expand-lg navbar-dark bg-primary"
-        style={{
-          height: NAVBAR_HEIGHT,
-          position: 'fixed',
-          top: NAVBAR_OFFSET_TOP,
-          width: '100%',
-        }}
-      >
-        <div className="container-fluid h-100 flex">
-          <div className="d-flex">
-            <button
-              className=""
-              style={{
-                color: 'black',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100%',
-                border: 'none',
-                outline: 'none',
-                background: 'transparent',
-                width: NAVBAR_HEIGHT,
-              }}
-              type="button"
-              onClick={() => {
-                props.__.engine.pop();
-              }}
-            >
-              &lt;
-            </button>
-
-            <h2 className="navbar-brand">{title}</h2>
-          </div>
-
-          {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
-        </div>
-      </div>
-
       <div
         className="row"
         style={{
