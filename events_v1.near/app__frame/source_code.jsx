@@ -360,7 +360,7 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
     },
   };
 
-  appStateSet(`renderController__${ref}`, componentProps.__.controller);
+  appStateSet(`controller__${ref}`, componentProps.__.controller);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
