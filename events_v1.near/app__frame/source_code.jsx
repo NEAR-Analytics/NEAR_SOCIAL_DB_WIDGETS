@@ -296,7 +296,7 @@ function renderComponent(name, props, layout, layoutProps) {
   ref = ref + 1;
 
   function registerLayout(a, b) {
-    console.log('registerLayout', ref, a, b);
+    console.log('registerLayout', name, ref, a, b);
   }
 
   let componentProps = {
@@ -328,6 +328,7 @@ function renderComponent(name, props, layout, layoutProps) {
       },
     },
   };
+
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
