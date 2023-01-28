@@ -307,7 +307,7 @@ function pop() {
 }
 
 let counter = 0;
-function _renderComponent(name, props, layout, layoutProps) {
+function _renderComponent(parent, name, props, layout, layoutProps) {
   counter = counter + 1;
 
   // console.log('renderComponent', name, layout, props);
@@ -317,10 +317,12 @@ function _renderComponent(name, props, layout, layoutProps) {
 
   const ref = counter + 1;
 
-  function renderComponent() {
-    console.log('renderComponent', ref, name, props, layout, layoutProps);
-    return _renderComponent(name, props, layout, layoutProps);
+  function renderComponent(_name, _props, _layout, _layoutProps) {
+    console.log('renderComponent', ref, _name, _props, _layout, _layoutProps);
+    return _renderComponent(ref, _name, _props, _layout, _layoutProps);
   }
+
+  console.log({ parent });
 
   function registerLayout(a, b) {
     appStateSet(`layout__${ref}`, {
