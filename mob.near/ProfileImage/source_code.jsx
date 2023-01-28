@@ -30,10 +30,11 @@ const inner = (
   </div>
 );
 
-return tooltip ? (
-  <OverlayTrigger placement="auto" overlay={<Tooltip>{title}</Tooltip>}>
-    {inner}
-  </OverlayTrigger>
+return props.tooltip ? (
+  <Widget
+    src="mob.near/widget/Profile.OverlayTrigger"
+    props={{ accountId, children: inner }}
+  />
 ) : (
   inner
 );
