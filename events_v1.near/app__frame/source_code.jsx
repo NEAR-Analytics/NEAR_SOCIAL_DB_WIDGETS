@@ -306,6 +306,14 @@ function pop() {
   rerender();
 }
 
+function getOwnerChain(ref) {
+  const owner = appStateGet(`owner__${ref}`, null);
+  if (owner === null) {
+    return [];
+  }
+  return [owner, ...getOwnerChain(owner)].flat();
+}
+
 let counter = 0;
 function _renderComponent(__owner, name, props, layout, layoutProps) {
   counter = counter + 1;
@@ -328,6 +336,15 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     });
 
     console.log('registerLayout', AppState._state);
+  }
+
+  function registerLayout(_layout, _layoutProps) {
+    appStateSet(`layout__${ref}`, {
+      name: _layout,
+      props: _layoutProps,
+    });
+
+    console.log(getOwnerChain(ref));
   }
 
   let componentProps = {
