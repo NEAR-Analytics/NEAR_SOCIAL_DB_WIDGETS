@@ -357,7 +357,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     },
   };
 
-  appStateSet(`owner__${ref}`, componentProps.__);
+  appStateSet(`owner__${ref}`, componentProps.__.__owner);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
