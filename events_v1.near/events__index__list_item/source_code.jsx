@@ -89,8 +89,6 @@ function gotoEvent() {
   });
 }
 
-console.log(event.images);
-
 return (
   <div
     onClick={() => {
