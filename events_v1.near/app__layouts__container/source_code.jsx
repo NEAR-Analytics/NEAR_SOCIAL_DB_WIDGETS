@@ -4,8 +4,6 @@ const NAVBAR_OFFSET_TOP = 0;
 const title = props.title || '';
 const dropdownItems = props.dropdownItems || [];
 
-console.log({ dropdownItems });
-
 const dropdownElement =
   dropdownItems && dropdownItems.length > 0 ? (
     <>
