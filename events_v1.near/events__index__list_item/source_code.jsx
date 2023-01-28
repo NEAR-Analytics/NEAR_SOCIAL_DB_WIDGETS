@@ -22,11 +22,6 @@ const EventCard = styled.div`
   border: 1px solid #ccc;
 `;
 
-const EventImage = styled.img`
-  width: 100%;
-  height: auto;
-`;
-
 const EventHeader = styled.div`
   display: flex;
   flex-direction: column;
