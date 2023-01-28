@@ -1,4 +1,3 @@
-console.log('COMPONENT', { props });
 const DropdownButton = styled.button`
   background-color: transparent;
   border: none;
