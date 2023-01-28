@@ -331,7 +331,6 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   }
 
   function registerLayout(_layout, _layoutProps) {
-    console.log();
     appStateSet(`layout__${ref}`, {
       name: _layout,
       props: _layoutProps,
@@ -348,7 +347,6 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
 
   function registerLayoutController(_ref, _stateRef) {
     const obj = appStateGet(`component__${_ref}`, null);
-    console.log(obj, _ref);
     obj.__stateRef = _stateRef;
     appStateSet(`component__${ref}`, obj);
   }
