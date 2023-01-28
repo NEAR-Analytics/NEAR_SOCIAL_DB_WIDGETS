@@ -307,7 +307,7 @@ function pop() {
 }
 
 let counter = 0;
-function _renderComponent(parent, name, props, layout, layoutProps) {
+function _renderComponent(owner, name, props, layout, layoutProps) {
   counter = counter + 1;
 
   // console.log('renderComponent', name, layout, props);
@@ -326,14 +326,14 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
       name: a,
       props: b,
     });
-    console.log(appStateGet(`layout__${ref}`)
+    console.log(appStateGet(`owner__${ref}`)
   }
 
   let componentProps = {
     __: {
       ref,
       controller: {},
-      parent: appStateGet(`controller__${parent}`),
+      owner: appStateGet(`owner__${owner}`),
       engine: {
         push,
         pop,
@@ -358,7 +358,7 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
     },
   };
 
-  appStateSet(`controller__${ref}`, componentProps.__.controller);
+  appStateSet(`owner__${ref}`, componentProps.__.controller);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
