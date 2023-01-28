@@ -336,6 +336,7 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
     __: {
       ref,
       controller: {},
+      parent: appStateGet(`controller__${parent}`),
       engine: {
         push,
         pop,
