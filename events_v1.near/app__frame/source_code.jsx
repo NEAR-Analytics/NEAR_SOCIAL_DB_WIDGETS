@@ -331,6 +331,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   }
 
   function registerLayout(_layout, _layoutProps) {
+    console.log();
     appStateSet(`layout__${ref}`, {
       name: _layout,
       props: _layoutProps,
