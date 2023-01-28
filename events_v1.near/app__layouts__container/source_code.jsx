@@ -1,4 +1,4 @@
-props.__.engine.registerLayoutController(props.__, (o) => {
+props.__.engine.registerLayoutController(props.__.ref, (o) => {
   console.log('LAYOUT CONTROLLER', props.__.ref, { o });
   State.update(o);
 });
