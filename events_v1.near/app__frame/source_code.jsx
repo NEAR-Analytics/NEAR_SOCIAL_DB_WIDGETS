@@ -312,7 +312,7 @@ function getOwnerChain(ref) {
   if (owner === null) {
     return [];
   }
-  return [owner, ...getOwnerChain(owner)].flat();
+  return [owner, ...getOwnerChain(owner.__owner)].flat();
 }
 
 let counter = 0;
