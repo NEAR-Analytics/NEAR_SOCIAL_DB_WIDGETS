@@ -194,11 +194,11 @@ const AppState = {
   },
 };
 
-function storageGet(prop, defaultValue) {
+function appStateGet(prop, defaultValue) {
   // return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
   return AppState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
-function storageSet(prop, value) {
+function appStateSet(prop, value) {
   // return Storage.set(`${appOwner}.${appName}.${prop}`, value);
   return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
@@ -222,7 +222,7 @@ if (!state) {
 }
 
 function restoreRoutes() {
-  const info = storageGet('routing', null);
+  const info = appStateGet('routing', null);
   if (info === null || info === undefined) {
     return;
   }
@@ -245,7 +245,7 @@ restoreRoutes();
 
 function persistRoutingInformation(newState) {
   // console.log('persistRoutingInformation', newState);
-  storageSet('routing', newState);
+  appStateSet('routing', newState);
 }
 
 function slugFromName(name) {
@@ -311,11 +311,11 @@ function renderComponent(name, props, layout, layoutProps) {
 
   function registerLayout(a, b) {
     console.log('registerLayout', ref, counter, a, b);
-    storageSet(`layout__${ref}`, {
+    appStateSet(`layout__${ref}`, {
       name: a,
       props: b,
     });
-    console.log('registerLayout', storageGet(`layout__${ref}`));
+    console.log('registerLayout', appStateGet(`layout__${ref}`));
   }
 
   let componentProps = {
@@ -326,8 +326,8 @@ function renderComponent(name, props, layout, layoutProps) {
         pop,
         renderComponent,
         rerender,
-        storageGet,
-        storageSet,
+        appStateGet,
+        appStateSet,
         registerLayout,
       },
       Components: {
