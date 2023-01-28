@@ -317,12 +317,17 @@ function renderComponent(name, props, layout, layoutProps) {
   const ref = counter + 1;
 
   function registerLayout(a, b) {
-    console.log('registerLayout', ref, counter, a, b);
     appStateSet(`layout__${ref}`, {
       name: a,
       props: b,
     });
-    console.log('registerLayout', appStateGet(`layout__${ref}`));
+  }
+
+  function registerLayoutController(controller) {
+    appStateSet(`layout__controller__${ref}`, {
+      name: a,
+      props: b,
+    });
   }
 
   let componentProps = {
