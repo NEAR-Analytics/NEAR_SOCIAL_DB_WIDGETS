@@ -82,7 +82,7 @@ const DropdownButton = styled.button`
 `;
 
 return (
-  <button
+  <DropdownButton
     className="nav-link"
     aria-current="page"
     href=""
@@ -92,5 +92,5 @@ return (
     }}
   >
     {props.label}
-  </button>
+  </DropdownButton>
 );
