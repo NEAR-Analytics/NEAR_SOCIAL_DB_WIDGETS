@@ -89,8 +89,6 @@ function gotoEvent() {
   });
 }
 
-const imageCID = event?.image?[0]?.cid || 'QmZ5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z5Y2J9Z2Z';
-
 return (
   <div
     onClick={() => {
@@ -107,7 +105,8 @@ return (
   >
     <EventCard>
       <EventHeader>
-        {event.images && event.images.length > 0 && (
+        {event.images &&
+          event.images.length > 0 &&
           event.images.map((image) => {
             return (
               <EventImage
@@ -115,10 +114,7 @@ return (
                 key={image.cid}
               />
             );
-          }
-          )
-        )}
-        <EventImage src={`https://ipfs.near.social/ipfs/${imageCID}`} />
+          })}
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
 
