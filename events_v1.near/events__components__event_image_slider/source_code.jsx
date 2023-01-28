@@ -8,8 +8,7 @@ let event = props.event || null;
 
 
 
-return (
-  <>
+return <>
     {event.images &&
       event.images.length > 0 &&
       event.images.map((image) => {
@@ -20,4 +19,4 @@ return (
           />
         );
   </>
-);
+
