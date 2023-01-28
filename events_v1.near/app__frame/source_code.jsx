@@ -345,6 +345,10 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     }
   }
 
+  function registerLayoutController(_ref, _stateRef) {
+    _ref.__stateRef = _stateRef;
+  }
+
   let componentProps = {
     __: {
       ref,
