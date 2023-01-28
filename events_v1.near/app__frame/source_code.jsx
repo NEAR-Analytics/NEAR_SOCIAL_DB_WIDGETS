@@ -313,6 +313,8 @@ function renderComponent(name, props, layout, layoutProps) {
     return null;
   }
 
+  const parent = props.__?.ref;
+
   counter = counter + 1;
   const ref = counter + 1;
 
