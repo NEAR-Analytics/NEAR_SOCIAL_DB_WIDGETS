@@ -58,8 +58,6 @@ function callContract(data) {
 }
 
 function onSave(data) {
-  console.log('onSave', data);
-
   callContract(data);
 }
 
