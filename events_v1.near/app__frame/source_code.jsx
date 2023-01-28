@@ -299,7 +299,7 @@ function renderComponent(name, props, layout, layoutProps) {
     console.log('registerLayout', ref, a, b);
   }
 
-  const componentProps = {
+  let componentProps = {
     __: {
       ref,
       engine: {
