@@ -308,7 +308,7 @@ function renderComponent(name, props, layout, layoutProps) {
         storageGet,
         storageSet,
         registerLayout(la, lap) {
-          registerLayout(componentProps.__.ref, la, lap);
+          // registerLayout(componentProps.__.ref, la, lap);
         },
       },
       Components: {
