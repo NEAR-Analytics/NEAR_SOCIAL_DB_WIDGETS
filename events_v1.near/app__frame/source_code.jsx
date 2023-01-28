@@ -327,7 +327,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
       props: _layoutProps,
     });
 
-    console.log('registerLayout', AppState);
+    console.log('registerLayout', AppState._state);
   }
 
   let componentProps = {
