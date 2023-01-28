@@ -319,10 +319,8 @@ function _renderComponent(parent, name, props, layout, layoutProps) {
 
   function renderComponent() {
     console.log('renderComponent', ref, name, props, layout, layoutProps);
-    // return _renderComponent(ref, name, props, layout, layoutProps);
+    return _renderComponent(ref, name, props, layout, layoutProps);
   }
-
-  console.log({ parent });
 
   function registerLayout(a, b) {
     appStateSet(`layout__${ref}`, {
