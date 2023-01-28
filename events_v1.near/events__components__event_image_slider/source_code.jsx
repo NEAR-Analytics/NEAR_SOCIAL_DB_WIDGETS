@@ -11,11 +11,23 @@ const EventImage = styled.img`
   height: auto;
 `;
 
+const imagesWithCid = (event.images || [])
+  .filter((image) => {
+    return image.url && image.url.cid;
+  })
+  .filter((image) => {
+    return image.url.cid.length > 0;
+  });
+
+const bannerImages = imagesWithCid.filter((image) => {
+  return image.type === 'banner';
+});
+
 return (
   <>
-    {event.images &&
-      event.images.length > 0 &&
-      event.images.map((image) => {
+    {bannerImages &&
+      bannerImages.length > 0 &&
+      bannerImages.map((image) => {
         return (
           <EventImage
             src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
