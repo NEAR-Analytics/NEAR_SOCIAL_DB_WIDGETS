@@ -324,10 +324,7 @@ function renderComponent(name, props, layout, layoutProps) {
   }
 
   function registerLayoutController(controller) {
-    appStateSet(`layout__controller__${ref}`, {
-      name: a,
-      props: b,
-    });
+    appStateSet(`layout__controller__${ref}`, controller);
   }
 
   let componentProps = {
@@ -341,6 +338,7 @@ function renderComponent(name, props, layout, layoutProps) {
         appStateGet,
         appStateSet,
         registerLayout,
+        registerLayoutController,
       },
       Components: {
         Select,
