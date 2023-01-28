@@ -298,6 +298,11 @@ function renderComponent(name, props, layout, layoutProps) {
 
   function registerLayout(a, b) {
     console.log('registerLayout', ref, counter, a, b);
+    storageSet(`layout__${ref}`, {
+      name: a,
+      props: b,
+    });
+    console.log('registerLayout', storageGet(`layout__${ref}`));
   }
 
   let componentProps = {
