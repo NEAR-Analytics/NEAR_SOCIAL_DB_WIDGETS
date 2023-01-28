@@ -12,7 +12,7 @@ return (
   <div
         {event.images &&
           event.images.length > 0 &&
-          event.images.map((image) => {
+          (event.images.map((image) => {
             return (
               <EventImage
                 src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
