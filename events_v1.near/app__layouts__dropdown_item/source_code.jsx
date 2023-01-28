@@ -1,7 +1,8 @@
-const key = props.key || props.component.src;
-
-return (
-  <li className="nav-item" key={key}>
-    <Widget src={props.component.src} props={props.component.props} />
-  </li>
-);
+{
+  props.__.engine.renderComponent(
+    props.component.name,
+    props.component.props,
+    props.component.layout,
+    props.component.layoutProps
+  );
+}
