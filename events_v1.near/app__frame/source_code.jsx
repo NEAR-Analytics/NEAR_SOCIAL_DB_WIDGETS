@@ -349,7 +349,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   }
 
   function registerLayoutController(_ref, _stateRef) {
-    console.log('registerLayoutController', _ref, _stateRef);
+    console.log('registerLayoutController', ref, _ref, _stateRef);
     _ref.__stateRef = _stateRef;
   }
 
