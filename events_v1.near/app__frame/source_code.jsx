@@ -338,10 +338,10 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
 
     const owner = getOwnerChain(ref)[0];
     if (owner) {
-      owner.__stateRef({
-        layout: _layout,
-        layoutProps: _layoutProps,
-      });
+      // owner.__stateRef({
+      //   layout: _layout,
+      //   layoutProps: _layoutProps,
+      // });
     }
   }
 
