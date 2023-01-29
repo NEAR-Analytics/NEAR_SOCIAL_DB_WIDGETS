@@ -110,7 +110,7 @@ return (
               left: 0,
               right: 0,
               bottom: 0,
-              paddingTop: title ? PADDING_WITH_TITLE : 0,
+              paddingTop: title ? PADDING_WITH_TITLE : BORDER_RADIUS,
             }}
           >
             {props.__engine.renderComponent(
