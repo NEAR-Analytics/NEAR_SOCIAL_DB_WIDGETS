@@ -7,6 +7,7 @@ State.init({
 });
 
 if (state === undefined || state === null) {
+  console.log('no state');
   return null;
 }
 
