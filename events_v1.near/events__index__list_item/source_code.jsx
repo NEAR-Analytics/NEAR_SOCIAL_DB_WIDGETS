@@ -5,8 +5,6 @@ if (!event) {
   return '';
 }
 
-console.log({ props });
-
 const BG_CARD = '#ffffff';
 
 const EventCard = styled.div`
