@@ -1,4 +1,4 @@
-props.__layout.register('container', {
+props.__layout.change('container', {
   back: true,
 });
 
