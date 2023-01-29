@@ -12,6 +12,9 @@ if (!state) {
   return null;
 }
 
+const layout = state.layout;
+const layoutProps = state.layoutProps || {};
+
 // guard to allow layout exit infinite render loop
 if (
   layout === '' ||
