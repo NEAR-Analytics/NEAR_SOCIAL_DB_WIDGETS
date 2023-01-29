@@ -83,6 +83,7 @@ return (
           alignItems: 'center',
           padding: '4px 0',
           borderBottom: '1px solid #ccc',
+          marginBottom: '20px',
         }}
       >
         {props.__engine.accountId === event.account_id ? (
