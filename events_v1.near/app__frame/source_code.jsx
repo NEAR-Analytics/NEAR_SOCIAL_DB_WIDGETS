@@ -339,8 +339,8 @@ function _renderComponent(owner, name, props) {
     },
   };
 
-  appStateSet(`component__${ref}`, __engine);
-  appStateSet(`owner__${ref}`, __engine.owner);
+  appStateSet(`component__${ref}`, engine);
+  appStateSet(`owner__${ref}`, engine.owner);
 
   return (
     <Widget
