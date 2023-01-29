@@ -41,7 +41,6 @@ return (
     {/* text link buttons to edit the event */}
     <div
       style={{
-        display: 'flex',
         padding: '40px 20px',
       }}
     >
