@@ -58,7 +58,7 @@ return (
     props={{
       ...layoutProps,
       __engine: props.__engine,
-      __controller: { __layout },
+      __controller: { ...(props.__controller || {}), __layout },
       component: {
         name: props.component.name,
         props: props.component.props,
