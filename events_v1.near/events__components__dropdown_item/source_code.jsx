@@ -18,8 +18,6 @@ return (
     href=""
     onClick={(e) => {
       props.handleClick(e);
-      console.log('click', e);
-      console.log(props.handleClick);
     }}
   >
     {props.label}
