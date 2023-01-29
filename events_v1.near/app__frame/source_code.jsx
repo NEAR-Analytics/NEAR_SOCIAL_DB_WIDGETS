@@ -296,15 +296,6 @@ function pop() {
   rerender();
 }
 
-function getOwnerChain(ref) {
-  const ownerID = appStateGet(`owner__${ref}`, null);
-  const owner = appStateGet(`component__${ownerID}`, null);
-  if (owner === null) {
-    return [];
-  }
-  return [owner, ...getOwnerChain(owner.owner)].flat();
-}
-
 let counter = 0;
 function _renderComponent(owner, name, props) {
   counter = counter + 1;
@@ -320,34 +311,36 @@ function _renderComponent(owner, name, props) {
     return _renderComponent(ref, _name, _props);
   }
 
-  let container = {
-    __engine: {
-      env,
-      accountId,
+  let engine = {
+    env,
+    accountId,
 
-      ref,
-      owner,
+    ref,
+    owner,
 
-      push,
-      pop,
-      renderComponent,
-      rerender,
-      appStateGet,
-      appStateSet,
-      layoutFromName,
-      widgetFromName,
+    push,
+    pop,
+    renderComponent,
+    rerender,
+    appStateGet,
+    appStateSet,
+    layoutFromName,
+    widgetFromName,
 
-      Components: {
-        Select,
-        Button,
-        Loading,
-        PageTitle,
-      },
-
-      helpers: {
-        propIsRequiredMessage,
-      },
+    Components: {
+      Select,
+      Button,
+      Loading,
+      PageTitle,
     },
+
+    helpers: {
+      propIsRequiredMessage,
+    },
+  };
+
+  let container = {
+    __engine: engine,
   };
 
   appStateSet(`component__${ref}`, container.__engine);
