@@ -24,7 +24,7 @@ State.init({
   img: image.url || { cid: null },
   type: image.type,
 
-  localImg: image.url || { cid: null },
+  localImg: image.url,
 });
 
 if (!state) {
