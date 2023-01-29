@@ -252,12 +252,12 @@ function slugFromName(name) {
 }
 
 function layoutFromName(name) {
-  console.log('layoutFromName', name);
+  // console.log('layoutFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
 function widgetFromName(name) {
-  console.log('layoutFromName', name);
+  // console.log('layoutFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
@@ -268,13 +268,11 @@ function rerender() {
   });
 }
 
-function push(name, props, layout, layoutProps) {
-  // console.log('push', name, props, layout, layoutProps);
+function push(name, props) {
+  // console.log('push', name, props);
   const layer = {
     name,
     props: props || {},
-    layout: layout || null,
-    layoutProps: layoutProps || null,
   };
   const newLayers = [...state.layers, layer];
 
