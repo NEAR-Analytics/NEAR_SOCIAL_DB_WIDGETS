@@ -1,5 +1,4 @@
 function changeLayout(name, props) {
-  console.log('CHANGE LAYOUT', name, props);
   if (
     state &&
     state.layout === name &&
