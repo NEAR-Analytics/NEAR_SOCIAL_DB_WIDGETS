@@ -1,4 +1,6 @@
-props.__layout.change('modal', {});
+props.__layout.setLayout('modal', {
+  title: 'Create Event',
+});
 
 const EVENTS_CONTRACT = 'events_v1.near';
 const APP_OWNER = 'events_v1.near';
