@@ -371,6 +371,7 @@ return (
     >
       <Button
         onClick={() => {
+          storageSet('routing', [rootRoute]);
           State.update({
             layers: [rootRoute],
           });
