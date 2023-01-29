@@ -7,7 +7,7 @@ return (
 
     <Button
       onClick={() => {
-        props.__.engine.push('new', {}, 'modal', {
+        props.__engine.push('new', {}, 'modal', {
           title: 'Create new Event',
           back: true,
         });
@@ -18,7 +18,7 @@ return (
 
     <Button
       onClick={() => {
-        props.__.engine.push(
+        props.__engine.push(
           'index.list_container',
           {
             forAccountId: props.__.accountId,
@@ -36,6 +36,6 @@ return (
 
     <br />
 
-    {props.__.engine.renderComponent('index.list_container', {})}
+    {props.__engine.renderComponent('index.list_container', {})}
   </div>
 );
