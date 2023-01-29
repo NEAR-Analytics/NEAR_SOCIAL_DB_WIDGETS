@@ -314,7 +314,11 @@ function _renderComponent(owner, name, props) {
   let engine = {};
 
   function extend(obj) {
-    return Object.assign(engine, obj);
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        engine[key] = obj[key];
+      }
+    }
   }
 
   engine = {
