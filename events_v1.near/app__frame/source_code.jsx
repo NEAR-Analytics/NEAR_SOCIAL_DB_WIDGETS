@@ -52,15 +52,7 @@ const VERSION = '0.1.0';
  *     - e.g. app_name__component1
  *     - e.g. app_name__component1__subcomponent
  *  - Each widget can have a layout
- *    - lyouts can be passed to the renderComponent function
- *      - calling `renderComponent('parent.subcomponent', {}, 'my_layout', { someLayoutProp: 'someValue' })`
- *        - will render the widget 'parent' using the layout 'my_layout'
- *        - the layout will be passed the props: { someLayoutProp: 'someValue' }
- *        - the corresponding layout widget must be uploaded to your account with the name: `app__layouts__my_layout`
- *           - NOTE: the layouts can be shared across apps, so they are namespaced within 'app' **not** the app's name
- *        - the corresponding widget must be uploaded to your account with the name: `my_app__my_widget__subcomponent`
- *    - layouts are also rendered as widgets and get passed the same props as the widget they are rendering
- *
+ *    
  *
  *
  *  Functions available to widgets:
