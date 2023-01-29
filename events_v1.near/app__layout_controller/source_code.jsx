@@ -13,8 +13,10 @@ function setLayout(name, props) {
     state.layout === name &&
     JSON.stringify(state.layoutProps) === JSON.stringify(props)
   ) {
+    console.log('setLayout: no change');
     return;
   }
+  console.log('setLayout: updating', name, props);
   State.update({
     layout: name,
     layoutProps: props,
