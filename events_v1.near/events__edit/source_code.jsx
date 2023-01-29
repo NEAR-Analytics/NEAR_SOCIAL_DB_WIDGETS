@@ -37,7 +37,7 @@ function callContract(data) {
   } = data;
   Near.call(
     EVENTS_CONTRACT,
-    'create_event',
+    'update_event',
     {
       account_id: props.__engine.accountId,
       name,
@@ -61,10 +61,8 @@ function onSave(data) {
 }
 
 return (
-  <>
-    <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}___form`}
-      props={{ model: event, onSave, buttonText: 'Update event' }}
-    />
-  </>
+  <Widget
+    src={`${APP_OWNER}/widget/${APP_NAME}___form`}
+    props={{ model: event, onSave, buttonText: 'Update event' }}
+  />
 );
