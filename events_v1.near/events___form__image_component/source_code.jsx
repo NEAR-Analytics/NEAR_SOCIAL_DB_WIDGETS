@@ -4,6 +4,8 @@ if (!image) {
   return 'loading';
 }
 
+console.log({ props });
+
 const ErrorMessage = styled.div`
   color: red;
 `;
