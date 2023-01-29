@@ -98,8 +98,7 @@ return (
         <div className="col-12">
           {props.__engine.renderComponent(
             props.__component.name,
-            props.__component.props,
-            props.__controller
+            props.__component.props
           )}
         </div>
       </div>
