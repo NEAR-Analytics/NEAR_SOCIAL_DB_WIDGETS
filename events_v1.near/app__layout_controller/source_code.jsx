@@ -38,6 +38,9 @@ function setLayout(name, props) {
   });
 }
 
+const layout = state.layout;
+const layoutProps = state.layoutProps || {};
+
 let layoutName = layout;
 if (
   layout === '' ||
@@ -47,9 +50,6 @@ if (
 ) {
   layoutName = 'default';
 }
-
-const layout = state.layout;
-const layoutProps = state.layoutProps || {};
 
 const __layout = {
   setLayout: setLayout,
