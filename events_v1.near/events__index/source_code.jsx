@@ -6,7 +6,11 @@ props.controller.setLayout('container', {
 const Button = props.__engine.Components.Button;
 
 return (
-  <div>
+  <div
+    style={{
+      padding: '40px 20px',
+    }}
+  >
     <Button
       onClick={() => {
         props.__engine.push('new', {}, 'modal', {
