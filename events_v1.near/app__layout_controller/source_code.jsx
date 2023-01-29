@@ -7,13 +7,13 @@ if (!state) {
   return null;
 }
 
-function changeLayout(name, props) {
+function setLayout(name, props) {
   if (
     state &&
     state.layout === name &&
     JSON.stringify(state.layoutProps) === JSON.stringify(props)
   ) {
-    // no change
+    // no setLayout
     console.log('NO CHANGE', name, props);
     return;
   }
@@ -28,7 +28,7 @@ const layout = state.layout;
 const layoutProps = state.layoutProps || {};
 
 const __layout = {
-  change: changeLayout,
+  setLayout: setLayout,
 };
 
 // guard to allow layout exit infinite render loop
