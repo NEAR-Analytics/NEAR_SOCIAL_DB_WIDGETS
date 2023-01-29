@@ -57,20 +57,20 @@ return (
           display: 'flex',
           justifyContent: 'middle',
           alignItems: 'center',
-          padding: '10px 0',
+          padding: '4px 0',
           borderBottom: '1px solid #ccc',
         }}
       >
         <p
           style={{
-            margin: '0 10px',
+            margin: '0 4px',
           }}
         >
           {event.location}
         </p>
         <p
           style={{
-            margin: '0 10px',
+            margin: '0 4px',
           }}
         >
           {startDate.getDate()}{' '}
@@ -87,7 +87,7 @@ return (
           display: 'flex',
           justifyContent: 'middle',
           alignItems: 'center',
-          padding: '10px 0',
+          padding: '4px 0',
           borderBottom: '1px solid #ccc',
         }}
       >
