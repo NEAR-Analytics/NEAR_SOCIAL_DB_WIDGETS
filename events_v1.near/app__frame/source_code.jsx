@@ -366,7 +366,7 @@ return (
         right: 0,
         zIndex: 9999,
         padding: 8,
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
       }}
     >
       <Button
