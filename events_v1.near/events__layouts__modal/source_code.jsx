@@ -106,7 +106,7 @@ return (
               maxWidth: '100%',
               overflow: 'auto',
               position: 'absolute',
-              // offset by border-radius, so that scrollbars don't show up right
+              // offset by border-radius, so that scrollbars don't show up top-right
               top: BORDER_RADIUS,
               left: 0,
               right: 0,
