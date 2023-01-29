@@ -36,7 +36,24 @@ return (
     {props.__engine.renderComponent('components.event_image_slider', {
       event,
     })}
-    <h1>{event.name}</h1>
-    <p>{event.description}</p>
+    {/* text link buttons to edit the event */}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: '0 20px',
+      }}
+    >
+      <h1>{event.name}</h1>
+      <p>{event.description}</p>
+      <p>{event.location}</p>
+      <p>{event.start_date}</p>
+      <p>{event.end_date}</p>
+      <p>{event.type}</p>
+      <p>{event.category}</p>
+      <p>{event.status}</p>
+      <p>{event.links}</p>
+      <p>{event.image}</p>
+    </div>
   </>
 );
