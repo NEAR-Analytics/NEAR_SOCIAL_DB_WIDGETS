@@ -62,7 +62,6 @@ function onSave(data) {
 
 return (
   <>
-    <h1> Edit Event</h1>
     <Widget
       src={`${APP_OWNER}/widget/${APP_NAME}___form`}
       props={{ model: event, onSave, buttonText: 'Update event' }}
