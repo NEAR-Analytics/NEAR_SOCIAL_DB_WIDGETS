@@ -1,4 +1,4 @@
-props.__layout.change('container', {
+props.__layout.setLayout('container', {
   dropdownItems: [
     {
       name: 'components.dropdown_item',
