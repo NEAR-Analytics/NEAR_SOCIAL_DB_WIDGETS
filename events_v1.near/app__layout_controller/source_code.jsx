@@ -7,20 +7,20 @@ if (state === undefined || state === null) {
 }
 
 function setLayout(name, props) {
-  console.log('setLayout', name, props);
+  // console.log('setLayout', name, props);
   if (
     state &&
     state.layout === name &&
     JSON.stringify(state.layoutProps) === JSON.stringify(props)
   ) {
-    console.log({ state });
-    console.log(state.layout === name);
-    console.log(JSON.stringify(state.layoutProps) === JSON.stringify(props));
-    console.log(JSON.stringify(state.layoutProps));
-    console.log('setLayout: no change');
+    // console.log({ state });
+    // console.log(state.layout === name);
+    // console.log(JSON.stringify(state.layoutProps) === JSON.stringify(props));
+    // console.log(JSON.stringify(state.layoutProps));
+    // console.log('setLayout: no change');
     return;
   }
-  console.log('setLayout: updating', name, props);
+  // console.log('setLayout: updating', name, props);
   State.update({
     layout: name,
     layoutProps: props,
@@ -40,7 +40,7 @@ if (
   layoutName = 'default';
 }
 
-console.log(
+// console.log(
   props.component.name,
   'Has controller',
   props.component.props.controller ? true : false
@@ -60,7 +60,7 @@ const layProps = {
   },
 };
 
-console.log({ layProps });
+// console.log({ layProps });
 
 const path = props.__engine.layoutPathFromName(layoutName);
 return <Widget src={path} props={layProps} />;
