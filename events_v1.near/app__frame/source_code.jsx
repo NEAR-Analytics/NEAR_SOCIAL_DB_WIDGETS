@@ -358,8 +358,8 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
 
   let container = {
     __engine: {
-      __ref: ref,
-      owner: owner,
+      ref,
+      owner,
       push,
       pop,
       renderComponent,
