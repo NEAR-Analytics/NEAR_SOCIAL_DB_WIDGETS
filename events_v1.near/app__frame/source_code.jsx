@@ -395,13 +395,10 @@ function _renderComponent(owner, name, props) {
   appStateSet(`component__${ref}`, container.__engine);
   appStateSet(`owner__${ref}`, container.__engine.owner);
 
-  const widgetKey = props && props.key ? props.key : name;
-  const key = layoutKey || widgetKey;
-
   return (
     <Widget
       src={`${appOwner}/widget/app__layout_controller`}
-      key={key}
+      key={props && props.key ? props.key : name}
       props={{
         ...container,
         component: {
