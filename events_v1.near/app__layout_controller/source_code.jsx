@@ -1,5 +1,3 @@
-console.log('3');
-
 State.init({
   layout: props.layout.name,
   layoutProps: props.layout.props,
@@ -8,6 +6,7 @@ State.init({
 if (!state) {
   return null;
 }
+console.log('3');
 
 function changeLayout(name, props) {
   if (
@@ -16,7 +15,7 @@ function changeLayout(name, props) {
     JSON.stringify(state.layoutProps) === JSON.stringify(props)
   ) {
     // no change
-    // console.log('NO CHANGE', name, props);
+    console.log('NO CHANGE', name, props);
     return;
   }
   console.log('CHANGE', name, props);
