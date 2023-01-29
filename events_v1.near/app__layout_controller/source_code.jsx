@@ -17,13 +17,13 @@ const layoutProps = state.layoutProps;
 
 // guard to allow layout exit infinite render loop
 if (
-  layout === 'default' ||
   layout === '' ||
+  layout === 'default' ||
   layout === null ||
   layout === undefined
 ) {
   return (
-    <Widget src={props.__engine.widgetFromName(name)} props={widgetProps} />
+    <Widget src={props.__engine.widgetFromName(name)} props={} />
   );
 }
 
@@ -31,13 +31,10 @@ return (
   <Widget
     src={props.__engine.layoutFromName(layout)}
     props={{
-      ...componentProps,
-      ...(layoutProps || {}),
+      __engine: props.__engine,
       component: {
         name: name,
         props: props,
-        layout: innerLayout,
-        layoutProps: innerLayoutProps,
       },
     }}
   />
