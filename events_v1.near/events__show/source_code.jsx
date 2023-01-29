@@ -27,6 +27,7 @@ props.controller.setLayout('container', {
       },
     },
   ],
+  back: true,
 });
 
 return (
