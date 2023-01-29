@@ -311,6 +311,10 @@ function _renderComponent(owner, name, props) {
     return _renderComponent(ref, _name, _props);
   }
 
+  function extend(obj) {
+    return Object.assign(engine, obj);
+  }
+
   const engine = {
     env,
     accountId,
@@ -320,6 +324,7 @@ function _renderComponent(owner, name, props) {
 
     push,
     pop,
+    extend,
     renderComponent,
     rerender,
     appStateGet,
@@ -336,11 +341,6 @@ function _renderComponent(owner, name, props) {
 
     helpers: {
       propIsRequiredMessage,
-    },
-
-    extend(obj) {
-      // this is a hack to allow extending the engine
-      return Object.assign(engine, obj);
     },
   };
 
