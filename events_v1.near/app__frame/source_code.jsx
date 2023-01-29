@@ -165,6 +165,17 @@ if (!entryRoute) {
   return propIsRequiredMessage('entryRoute');
 }
 
+// TODO: get layers from URL
+State.init({
+  env,
+  renderCycles: state ? state.renderCycles + 1 : 1,
+  layers: [rootRoute],
+});
+
+if (!state) {
+  return 'Loading...';
+}
+
 const entryProps = props.entryProps || {};
 const entryLayout = props.entryLayout || null;
 const entryLayoutProps = props.entryLayoutProps || {};
@@ -208,17 +219,6 @@ const rootRoute = {
   layout: entryLayout,
   layoutProps: entryLayoutProps,
 };
-
-// TODO: get layers from URL
-State.init({
-  env,
-  renderCycles: state ? state.renderCycles + 1 : 1,
-  layers: [rootRoute],
-});
-
-if (!state) {
-  return 'Loading...';
-}
 
 function restoreRoutes() {
   const info = storageGet('routing', null);
