@@ -51,9 +51,17 @@ if (
   );
 }
 
-// console.log('5');
-
-return props.__engine.renderComponent(`layouts__${layout}`, {
-  ...layoutProps,
-  component: props.component,
-});
+console.log('render layout', layout);
+return (
+  <Widget
+    src={props.__engine.layoutPathFromName(layout)}
+    props={{
+      __layout,
+      __engine: props.__engine,
+      component: {
+        name: props.component.name,
+        props: props.component.props,
+      },
+    }}
+  />
+);
