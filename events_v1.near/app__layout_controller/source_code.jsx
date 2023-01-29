@@ -63,8 +63,7 @@ const layoutedPath = props.__engine.layoutPathFromName(layout);
 
 console.log('2', layoutedPath);
 console.log({ widgetProps }, widgetProps.__component.props.__layout);
-
-console.log('render with layout', props.__component.name, { layout });
+console.log('render **with** layout', props.__component.name, { layout });
 
 const layoutedWidget = <Widget src={layoutedPath} props={widgetProps} />;
 console.log('3');
