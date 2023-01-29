@@ -16,6 +16,7 @@ function setLayout(name, props) {
     console.log({ state });
     console.log(state.layout === name);
     console.log(JSON.stringify(state.layoutProps) === JSON.stringify(props));
+    console.log(JSON.stringify(state.layoutProps));
     console.log('setLayout: no change');
     return;
   }
