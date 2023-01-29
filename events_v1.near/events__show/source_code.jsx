@@ -92,13 +92,20 @@ return (
         }}
       >
         {props.__engine.accountId === event.account_id ? (
-          <a
+          <span
+            style={{
+              color: '#000',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 0',
+            }}
             onClick={() => {
               props.__engine.push('edit', { event_id: props.event_id });
             }}
           >
             Edit
-          </a>
+          </span>
         ) : null}
 
         {event.links.map((link, idx) => {
