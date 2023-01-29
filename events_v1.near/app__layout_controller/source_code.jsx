@@ -29,7 +29,7 @@ if (
 
 return (
   <Widget
-    src={layoutFromName(layout)}
+    src={props.__engine.layoutFromName(layout)}
     key={key}
     props={{
       ...componentProps,
