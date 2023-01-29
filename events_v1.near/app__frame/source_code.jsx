@@ -296,28 +296,24 @@ function pop() {
   rerender();
 }
 
-let counter = 0;
+// let counter = 0;
 function _renderComponent(owner, name, props) {
-  counter = counter + 1;
+  // counter = counter + 1;
 
-  if (!name) {
-    return null;
-  }
-
-  // need another const ref to prevent vm to re-render
-  const ref = counter + 1;
+  // // need another const ref to prevent vm to re-render
+  // const ref = counter + 1;
 
   function renderComponent(_name, _props) {
     console.log('renderComponent', _name, _props);
-    return _renderComponent(ref, _name, _props);
+    return _renderComponent(_name, _props);
   }
 
   const engine = {
     env,
     accountId,
 
-    ref,
-    owner,
+    // ref,
+    // owner,
 
     push,
     pop,
