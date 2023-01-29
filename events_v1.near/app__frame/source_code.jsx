@@ -382,12 +382,6 @@ return (
     </div>
 
     {state.layers.map((layer, index) => {
-      // // DEBUG: render only the last layer
-      // if (index !== state.layers.length - 1) {
-      //   return null;
-      // }
-      // console.log('layers', state.layers);
-      // console.log('LOOP LAYER', index, layer);
       return (
         <div
           key={index}
