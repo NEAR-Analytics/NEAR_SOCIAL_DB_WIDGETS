@@ -363,7 +363,7 @@ return (
       style={{
         position: 'fixed',
         top: 0,
-        right: 0,
+        right: '50%',
         zIndex: 9999,
         padding: 8,
         backgroundColor: 'white',
@@ -398,7 +398,7 @@ return (
             zIndex: index,
             position: 'fixed',
             top: 0,
-            left: '50%',
+            left: 0,
             right: 0,
             bottom: 0,
             overflow: 'auto',
