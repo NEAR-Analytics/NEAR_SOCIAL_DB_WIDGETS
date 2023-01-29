@@ -5,15 +5,7 @@ props.__layout.change('container', {
       props: {
         label: 'Edit',
         onClick: () => {
-          props.__engine.push(
-            'edit',
-            { event_id: props.event_id },
-            'container',
-            {
-              title: 'Edit Event',
-              back: true,
-            }
-          );
+          props.__engine.push('edit', { event_id: props.event_id });
         },
       },
     },
