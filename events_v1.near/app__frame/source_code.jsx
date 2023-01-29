@@ -374,7 +374,6 @@ return (
           State.update({
             layers: [rootRoute],
           });
-          window.location.reload();
         }}
       >
         Reset
