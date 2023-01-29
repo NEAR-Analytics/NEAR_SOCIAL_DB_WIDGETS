@@ -1,1 +1,4 @@
-return props.__engine.renderRaw(props.component.name, props.component.props);
+return props.__engine.renderComponent(
+  props.component.name,
+  props.component.props
+);
