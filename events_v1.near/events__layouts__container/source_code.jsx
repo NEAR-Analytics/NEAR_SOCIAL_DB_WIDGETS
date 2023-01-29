@@ -87,7 +87,6 @@ return (
         overflow: 'auto',
       }}
     >
-      {console.log('1')}
       {dropdownMenu}
 
       <div
@@ -97,8 +96,7 @@ return (
         }}
       >
         <div className="col-12">
-          {console.log('2')}
-          {props.__engine.renderComponent(
+          {props.__engine.renderSlot(
             props.component.name,
             props.component.props
           )}
