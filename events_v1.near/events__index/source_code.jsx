@@ -18,17 +18,7 @@ return (
 
     <Button
       onClick={() => {
-        props.__engine.push(
-          'index.list_container',
-          {
-            forAccountId: props.__engine.accountId,
-          },
-          'container',
-          {
-            title: 'My Events',
-            back: true,
-          }
-        );
+        props.__engine.push('my_events');
       }}
     >
       My Events
