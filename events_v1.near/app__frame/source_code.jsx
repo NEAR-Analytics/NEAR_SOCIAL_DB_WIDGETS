@@ -345,8 +345,6 @@ function _renderComponent(owner, name, props) {
       name: name,
       props: props,
     },
-
-    useLayout,
   };
 
   return (
