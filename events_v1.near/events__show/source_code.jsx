@@ -33,11 +33,7 @@ props.controller.setLayout('container', {
 
 return (
   <>
-    <div
-      style={{
-        maxWidth: '600px',
-      }}
-    >
+    <div style={{}}>
       {props.__engine.renderComponent('components.event_image_slider', {
         event,
       })}
