@@ -28,7 +28,7 @@ if (!state) {
   return 'Loading...';
 }
 
-console.log('ImageComponent', { state.localImg })
+console.log('ImageComponent', state.localImg, image.url.cid);
 
 const ImageTypes = [
   { value: 'tile', label: 'Tile' },
