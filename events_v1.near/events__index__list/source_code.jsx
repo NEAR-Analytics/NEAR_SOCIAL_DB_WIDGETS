@@ -20,7 +20,7 @@ const IndexList = styled.div`
 return (
   <IndexList>
     {events.map((event) => {
-      return props.__.engine.renderComponent('index.list_item', {
+      return props.__engine.renderComponent('index.list_item', {
         event,
         key: event.event_id,
       });
