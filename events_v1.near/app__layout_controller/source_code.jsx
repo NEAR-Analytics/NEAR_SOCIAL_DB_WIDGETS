@@ -42,7 +42,7 @@ if (
 ) {
   return (
     <Widget
-      src={props.__engine.widgetFromName(props.component.name)}
+      src={props.__engine.widgetPathFromName(props.component.name)}
       props={{
         __layout,
         __engine: props.__engine,
