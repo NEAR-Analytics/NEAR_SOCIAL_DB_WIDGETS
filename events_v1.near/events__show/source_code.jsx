@@ -40,7 +40,7 @@ return (
     <div
       style={{
         display: 'flex',
-        padding: '0 20px',
+        padding: '40px 20px',
       }}
     >
       {event.links.map((link, idx) => {
