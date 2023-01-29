@@ -339,9 +339,6 @@ function _renderComponent(owner, name, props) {
     },
   };
 
-  appStateSet(`component__${ref}`, engine);
-  appStateSet(`owner__${ref}`, engine.owner);
-
   return (
     <Widget
       src={`${appOwner}/widget/app__layout_controller`}
