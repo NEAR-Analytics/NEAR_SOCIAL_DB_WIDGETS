@@ -305,7 +305,7 @@ function _renderComponent(owner, name, props) {
 
   function renderComponent(_name, _props) {
     console.log('renderComponent', _name, _props);
-    return _renderComponent(_name, _props);
+    return _renderComponent(null, _name, _props);
   }
 
   const engine = {
