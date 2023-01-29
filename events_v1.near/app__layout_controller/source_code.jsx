@@ -1,6 +1,6 @@
 // console.log('props', JSON.stringify(props, null, 2));
-console.log('state', JSON.stringify(state, null, 2));
-console.log('state', state);
+console.log('state 1', JSON.stringify(state, null, 2));
+console.log('state 2', state);
 
 if (state === undefined || state === null) {
   console.log('no state set');
