@@ -24,7 +24,7 @@ if (
 ) {
   return (
     <Widget
-      src={props.__engine.widgetFromName(name)}
+      src={props.__engine.widgetFromName(props.component.name)}
       props={{
         __engine: props.__engine,
         ...props.component.props,
