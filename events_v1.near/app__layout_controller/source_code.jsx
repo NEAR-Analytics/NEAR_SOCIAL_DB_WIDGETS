@@ -56,7 +56,6 @@ return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
     props={{
-      __layout,
       __engine: props.__engine,
       component: {
         name: props.component.name,
