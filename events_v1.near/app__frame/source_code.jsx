@@ -251,7 +251,7 @@ function slugFromName(name) {
 
 function layoutPathFromName(name) {
   console.log('layoutPathFromName', name);
-  return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
+  return `${appOwner}/widget/${appName}__layouts__${slugFromName(name)}`;
 }
 
 function widgetPathFromName(name) {
