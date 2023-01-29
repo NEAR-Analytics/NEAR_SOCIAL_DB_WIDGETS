@@ -56,6 +56,7 @@ return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
     props={{
+      ...layoutProps,
       __engine: props.__engine,
       __controller: __layout,
       component: {
