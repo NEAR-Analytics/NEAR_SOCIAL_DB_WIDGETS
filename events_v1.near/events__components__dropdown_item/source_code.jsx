@@ -15,7 +15,6 @@ return (
     aria-current="page"
     href=""
     onClick={(e) => {
-      e.preventDefault();
       props.onClick();
     }}
   >
