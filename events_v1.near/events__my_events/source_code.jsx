@@ -1,8 +1,4 @@
-// if (!props.__layout) {
-//   console.log('no layout');
-//   return '';
-// }
-props.__layout.setLayout('container', {
+props.controller.setLayout('container', {
   title: 'My events',
 });
 
