@@ -397,7 +397,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   const widgetProps = { ...componentProps, ...(props || {}) };
 
   <Widget
-    src={widget(layout)}
+    src={`${appOwner}/widget/app__layout_controller`}
     key={key}
     props={{
       ...componentProps,
