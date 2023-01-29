@@ -1,8 +1,3 @@
-props.__.engine.registerLayoutController(props.__.ref, (o) => {
-  console.log('LAYOUT CONTROLLER', props.__.ref, { o });
-  State.update(o);
-});
-
 const NAVBAR_HEIGHT = 64;
 const NAVBAR_OFFSET_TOP = 0;
 
