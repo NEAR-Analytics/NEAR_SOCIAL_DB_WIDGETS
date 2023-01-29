@@ -1,5 +1,5 @@
-props.__engine.registerLayoutController(props.__ref, (o) => {
-  console.log('LAYOUT CONTROLLER', props.__ref, { o });
+props.__engine.registerLayoutController(props.__engine.ref, (o) => {
+  console.log('LAYOUT CONTROLLER', props.__engine.ref, { o });
   State.update(o);
 });
 
@@ -37,7 +37,7 @@ return (
   <Widget
     src={props.__engine.layoutFromName(layout)}
     props={{
-      ...(state.layoutProps || {}),
+      ...layoutProps,
       __engine: props.__engine,
       component: {
         name: props.component.name,
