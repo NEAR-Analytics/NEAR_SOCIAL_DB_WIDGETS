@@ -17,8 +17,6 @@ return (
     aria-current="page"
     href=""
     onClick={(e) => {
-      console.log('DropdownItem', props.label, 'onClick');
-      console.log({ props });
       props.handleClick(e);
     }}
   >
