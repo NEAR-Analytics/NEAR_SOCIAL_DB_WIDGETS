@@ -33,6 +33,11 @@ if (
   layoutName = 'default';
 }
 
+console.log(
+  props.component.name,
+  'Has controller',
+  props.component.props.controller ? true : false
+);
 // get existing controller from component props or create a new one
 const controller = props.component.props.controller || {
   setLayout,
@@ -48,7 +53,7 @@ const layProps = {
   },
 };
 
-console.log(layProps);
+console.log({ layProps });
 
 const path = props.__engine.layoutPathFromName(layoutName);
 return <Widget src={path} props={layProps} />;
