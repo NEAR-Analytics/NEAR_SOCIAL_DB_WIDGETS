@@ -101,12 +101,12 @@ return (
           {/* container */}
           <div
             style={{
-              height: '100%',
+              height: 'auto',
               width: '100%',
               maxWidth: '100%',
               overflow: 'auto',
               position: 'absolute',
-              // offset by border-radius, so that scrollbars don't show up
+              // offset by border-radius, so that scrollbars don't show up right
               top: BORDER_RADIUS,
               left: 0,
               right: 0,
