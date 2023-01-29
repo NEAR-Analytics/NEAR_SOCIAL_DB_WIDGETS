@@ -360,6 +360,7 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
     __engine: {
       ref,
       owner,
+
       push,
       pop,
       renderComponent,
@@ -395,7 +396,6 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
     key={key}
     props={{
       ...container,
-      __container: container,
       layout: {
         name: layout,
         props: layoutProps,
