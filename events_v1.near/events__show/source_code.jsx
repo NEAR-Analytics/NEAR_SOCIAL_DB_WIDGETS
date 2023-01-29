@@ -100,6 +100,27 @@ return (
             >
               <a></a>
             </p>
+
+            {event.links.map((link, idx) => {
+              console.log('link', link);
+              return (
+                <a
+                  href={link.url}
+                  key={idx}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#000',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    padding: '10px 0',
+                  }}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
         ) : null}
       </div>
