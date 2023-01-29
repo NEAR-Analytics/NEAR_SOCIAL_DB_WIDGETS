@@ -391,9 +391,6 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
-  const innerLayout = (layoutProps || {}).innerLayout || null;
-  const innerLayoutProps = (layoutProps || {}).innerLayoutProps || null;
-
   const widgetProps = { ...componentProps, ...(props || {}) };
 
   <Widget
@@ -401,12 +398,13 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     key={key}
     props={{
       ...componentProps,
-      ...(layoutProps || {}),
+      layout: {
+        name: layout,
+        props: layoutProps,
+      },
       component: {
         name: name,
         props: props,
-        layout: innerLayout,
-        layoutProps: innerLayoutProps,
       },
     }}
   />;
