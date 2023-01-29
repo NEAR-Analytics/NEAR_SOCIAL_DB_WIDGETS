@@ -189,11 +189,9 @@ const AppState = {
 };
 
 function appStateGet(prop, defaultValue) {
-  // return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
   return AppState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
 function appStateSet(prop, value) {
-  // return Storage.set(`${appOwner}.${appName}.${prop}`, value);
   return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
