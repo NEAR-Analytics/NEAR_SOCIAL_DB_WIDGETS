@@ -17,7 +17,7 @@ return (
     aria-current="page"
     href=""
     onClick={(e) => {
-      props.handleClick(e);
+      props.handleOnClick(e);
     }}
   >
     {props.label}
