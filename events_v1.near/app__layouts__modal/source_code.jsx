@@ -92,7 +92,7 @@ return (
               zIndex: 1000,
             }}
             onClick={() => {
-              props.__.engine.pop();
+              props.__engine.pop();
             }}
           >
             &times;
