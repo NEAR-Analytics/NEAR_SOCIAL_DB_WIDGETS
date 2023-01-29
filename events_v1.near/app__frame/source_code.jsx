@@ -244,7 +244,7 @@ function persistRoutingInformation(newState) {
 
 function slugFromName(name) {
   // console.log('slugFromName', name);
-  return name.split('.').join('__');
+  return name.split('.').join('__').split('-').join('_');
 }
 
 function widgetPathFromName(name) {
