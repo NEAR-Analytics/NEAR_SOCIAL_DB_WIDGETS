@@ -337,6 +337,10 @@ function _renderComponent(owner, name, props) {
     helpers: {
       propIsRequiredMessage,
     },
+
+    extend(obj) {
+      return Object.assign(engine, obj);
+    },
   };
 
   let container = {
