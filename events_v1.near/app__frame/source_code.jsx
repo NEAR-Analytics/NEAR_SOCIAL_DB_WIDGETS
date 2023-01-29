@@ -342,20 +342,22 @@ function _renderComponent(owner, name, props, useLayout) {
     },
   };
 
+  const controllerProps = {
+    __engine: engine,
+
+    component: {
+      name: name,
+      props: props,
+    },
+
+    useLayout,
+  };
+
   return (
     <Widget
       src={`${appOwner}/widget/app__layout_controller`}
       key={props && props.key ? props.key : name}
-      props={{
-        __engine: engine,
-
-        component: {
-          name: name,
-          props: props,
-        },
-
-        useLayout,
-      }}
+      props={controllerProps}
     />
   );
 }
