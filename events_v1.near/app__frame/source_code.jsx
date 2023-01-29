@@ -357,9 +357,9 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   }
 
   let container = {
-    __ref: ref,
-    __owner: __owner,
     __engine: {
+      __ref: ref,
+      __owner: __owner,
       push,
       pop,
       renderComponent,
@@ -368,18 +368,19 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
       appStateSet,
       registerLayout,
       registerLayoutController,
+
+      Components: {
+        Select,
+        Button,
+        Loading,
+        PageTitle,
+      },
+      __helpers: {
+        propIsRequiredMessage,
+      },
+      accountId,
+      __env: env,
     },
-    Components: {
-      Select,
-      Button,
-      Loading,
-      PageTitle,
-    },
-    __helpers: {
-      propIsRequiredMessage,
-    },
-    accountId,
-    __env: env,
   };
 
   appStateSet(`component__${ref}`, container.__);
@@ -394,6 +395,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     key={key}
     props={{
       ...container,
+      __container: container,
       layout: {
         name: layout,
         props: layoutProps,
