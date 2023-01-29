@@ -317,11 +317,11 @@ function getOwnerChain(ref) {
   if (owner === null) {
     return [];
   }
-  return [owner, ...getOwnerChain(owner.__owner)].flat();
+  return [owner, ...getOwnerChain(owner.owner)].flat();
 }
 
 let counter = 0;
-function _renderComponent(__owner, name, props, layout, layoutProps) {
+function _renderComponent(owner, name, props, layout, layoutProps) {
   counter = counter + 1;
 
   // console.log('renderComponent', name, layout, props);
@@ -359,7 +359,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
   let container = {
     __engine: {
       __ref: ref,
-      __owner: __owner,
+      owner: owner,
       push,
       pop,
       renderComponent,
@@ -383,8 +383,8 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     },
   };
 
-  appStateSet(`component__${ref}`, container.__);
-  appStateSet(`owner__${ref}`, container.__owner);
+  appStateSet(`component__${ref}`, container.__engine);
+  appStateSet(`owner__${ref}`, container.__engine.owner);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
