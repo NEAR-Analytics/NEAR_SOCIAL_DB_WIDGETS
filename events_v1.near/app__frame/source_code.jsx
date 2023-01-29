@@ -256,7 +256,10 @@ function persistRoutingInformation(newState) {
 }
 
 function slugFromName(name) {
-  console.log('slugFromName', name, name.split('.').join('__'));
+  console.log('slugFromName', name);
+  if (!name) {
+    return '';
+  }
   return name.split('.').join('__');
 }
 
