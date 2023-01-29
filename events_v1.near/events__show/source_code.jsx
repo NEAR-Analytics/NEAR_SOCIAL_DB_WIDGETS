@@ -33,9 +33,15 @@ props.controller.setLayout('container', {
 
 return (
   <>
-    {props.__engine.renderComponent('components.event_image_slider', {
-      event,
-    })}
+    <div
+      style={{
+        maxWidth: '600px',
+      }}
+    >
+      {props.__engine.renderComponent('components.event_image_slider', {
+        event,
+      })}
+    </div>
     {/* text link buttons to edit the event */}
     <div
       style={{
