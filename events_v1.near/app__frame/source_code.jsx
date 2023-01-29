@@ -353,6 +353,7 @@ function safeRender(_name, _props) {
         <pre>{JSON.stringify(_props, null, 4)}</pre>
         <br />
         <pre>{err.toString()}</pre>
+        <br />
       </div>
     );
   }
