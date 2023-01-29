@@ -25,7 +25,7 @@ function renderControl() {
   ) {
     return (
       <Widget
-        src={`${appOwner}/widget/${appName}__${slugFromName(name)}`}
+        src={props.__engine.widgetFromName(name)}
         key={key}
         props={widgetProps}
       />
