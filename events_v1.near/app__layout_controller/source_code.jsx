@@ -65,5 +65,4 @@ const layProps = {
 };
 
 const path = props.__engine.layoutPathFromName(layoutName);
-const layoutedWidget = <Widget src={path} props={layProps} />;
-return layoutedWidget;
+return <Widget src={path} props={layProps} />;
