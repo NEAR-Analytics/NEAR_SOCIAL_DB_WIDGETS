@@ -379,7 +379,7 @@ return (
     </div>
 
     {state.layers.map((layer, index) => {
-      if (index < state.layers.length - 2) {
+      if (index != state.layers.length - 2) {
         return null;
       }
       return (
