@@ -40,6 +40,7 @@ if (
   layout === null ||
   layout === undefined
 ) {
+  console.log('4');
   return (
     <Widget
       src={props.__engine.widgetPathFromName(props.component.name)}
@@ -52,6 +53,7 @@ if (
   );
 }
 
+console.log('5');
 return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
