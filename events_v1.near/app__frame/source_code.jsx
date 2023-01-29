@@ -391,21 +391,23 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
-  <Widget
-    src={`${appOwner}/widget/app__layout_controller`}
-    key={key}
-    props={{
-      ...container,
-      layout: {
-        name: layout,
-        props: layoutProps,
-      },
-      component: {
-        name: name,
-        props: props,
-      },
-    }}
-  />;
+  return (
+    <Widget
+      src={`${appOwner}/widget/app__layout_controller`}
+      key={key}
+      props={{
+        ...container,
+        layout: {
+          name: layout,
+          props: layoutProps,
+        },
+        component: {
+          name: name,
+          props: props,
+        },
+      }}
+    />
+  );
 }
 
 return (
