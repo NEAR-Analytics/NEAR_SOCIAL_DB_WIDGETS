@@ -28,6 +28,7 @@ props.controller.setLayout('container', {
     },
   ],
   back: true,
+  title: event.name,
 });
 
 return (
