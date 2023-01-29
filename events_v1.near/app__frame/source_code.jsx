@@ -232,6 +232,8 @@ function restoreRoutes() {
     State.update({
       layers: info,
     });
+
+    console.log('rerendering', info);
   }
 }
 
