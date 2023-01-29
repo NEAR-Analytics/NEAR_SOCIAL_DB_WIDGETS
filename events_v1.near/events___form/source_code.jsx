@@ -342,7 +342,6 @@ return (
               onChange: (changed) => {
                 state.images[index] = changed;
                 sanitizeAndValidate({ ...state, images: state.images });
-                console.log({ changed, state });
               },
               onRemove: () => {
                 const images = [...state.images];
@@ -368,6 +367,7 @@ return (
       </button>
     </div>
     <ErrorMessage>{getError('images')}</ErrorMessage>
+
     <div className="mt-3">
       <Label>Links</Label>
       {state.links.map((link, index) => (
