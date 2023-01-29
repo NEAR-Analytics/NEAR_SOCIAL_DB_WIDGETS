@@ -339,6 +339,7 @@ function _renderComponent(owner, name, props) {
     },
 
     extend(obj) {
+      // this is a hack to allow extending the engine
       return Object.assign(engine, obj);
     },
   };
