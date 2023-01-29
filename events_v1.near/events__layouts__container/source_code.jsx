@@ -11,15 +11,15 @@ const dropdownElement =
         className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+        data-bs-target="#mainMenuDropdown"
+        aria-controls="mainMenuDropdown"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse" id="mainMenuDropdown">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {dropdownItems.map((item, idx) => {
             return props.__engine.renderComponent(item.name, {
@@ -32,11 +32,11 @@ const dropdownElement =
     </>
   ) : null;
 
-const dropdownMenu = (
+const navbar = (
   <div
     className="navbar navbar-expand-lg navbar-dark bg-primary"
     style={{
-      height: NAVBAR_HEIGHT,
+      // height: NAVBAR_HEIGHT,
       position: 'fixed',
       top: NAVBAR_OFFSET_TOP,
       width: '100%',
@@ -83,7 +83,7 @@ return (
         overflow: 'auto',
       }}
     >
-      {dropdownMenu}
+      {navbar}
       <div
         className="row"
         style={{
