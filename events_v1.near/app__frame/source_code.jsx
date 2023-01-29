@@ -380,7 +380,7 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
         Loading,
         PageTitle,
       },
-      __helpers: {
+      helpers: {
         propIsRequiredMessage,
       },
       accountId,
