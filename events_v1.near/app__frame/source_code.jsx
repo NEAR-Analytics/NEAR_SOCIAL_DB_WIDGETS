@@ -52,7 +52,9 @@ const VERSION = '0.1.0';
  *     - e.g. app_name__component1
  *     - e.g. app_name__component1__subcomponent
  *  - Each widget can have a layout
- *    
+ *    - layouts are also widgets
+ *   - layouts are named as follows:
+ *    - you choose a layout like 'my_layout'
  *
  *
  *  Functions available to widgets:
