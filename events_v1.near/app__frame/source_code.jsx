@@ -253,7 +253,7 @@ function layoutFromName(name) {
 }
 
 function widgetFromName(name) {
-  // console.log('layoutFromName', name);
+  // console.log('widgetFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
@@ -328,6 +328,7 @@ function _renderComponent(owner, name, props) {
     });
 
     const owner = getOwnerChain(ref)[0];
+    console.log('owner', owner);
     if (owner) {
       // owner.__stateRef({
       //   layout: _layout,
