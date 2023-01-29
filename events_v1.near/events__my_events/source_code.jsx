@@ -1,4 +1,5 @@
 if (!props.__layout) {
+  console.log('no layout');
   return '';
 }
 props.__layout.setLayout('container', {
