@@ -48,7 +48,8 @@ if (
 }
 
 console.log('render with layout', props.__component.name, layout);
-console.log({layoutProps}, props.__component});
+console.log({ layoutProps }, props.__component);
+console.log('es', { ...props.__component.props, __layout });
 return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
