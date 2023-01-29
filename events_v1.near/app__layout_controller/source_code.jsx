@@ -15,11 +15,11 @@ if (!state) {
 const layout = state.layout;
 const layoutProps = state.layoutProps;
 
-// guard to allow 'default' layout exit infinite render loop
+// guard to allow layout exit infinite render loop
 if (
   layout === 'default' ||
-  layout === null ||
   layout === '' ||
+  layout === null ||
   layout === undefined
 ) {
   return (
@@ -30,7 +30,6 @@ if (
 return (
   <Widget
     src={props.__engine.layoutFromName(layout)}
-    key={key}
     props={{
       ...componentProps,
       ...(layoutProps || {}),
