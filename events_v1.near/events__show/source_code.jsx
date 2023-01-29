@@ -99,7 +99,6 @@ return (
               fontSize: '14px',
               fontWeight: 'bold',
               padding: '10px 0',
-              marginLeft: '10px',
             }}
             role="button"
             tabIndex={0}
