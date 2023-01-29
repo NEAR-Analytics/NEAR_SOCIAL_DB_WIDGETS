@@ -1,7 +1,7 @@
 console.log('props', props);
 
 if (!props.__layout) {
-  return;
+  return '';
 }
 props.__layout.setLayout('container', {
   title: 'My events',
