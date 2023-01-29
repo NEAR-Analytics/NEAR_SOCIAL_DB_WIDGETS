@@ -1,5 +1,6 @@
 props.controller.setLayout('container', {
   title: 'ND Events',
+  back: false,
 });
 
 const Button = props.__engine.Components.Button;
