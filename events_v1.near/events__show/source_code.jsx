@@ -36,7 +36,6 @@ return (
     {props.__engine.renderComponent('components.event_image_slider', {
       event,
     })}
-    asdkjfg
     <h1>{event.name}</h1>
     <p>{event.description}</p>
   </>
