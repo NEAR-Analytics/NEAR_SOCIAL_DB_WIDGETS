@@ -33,6 +33,7 @@ return (
       height: '40vh',
       maxHeight: '400px',
       minHeight: '200px',
+      maxWidth: '100%',
     }}
   >
     {bannerImages.map((image) => {
