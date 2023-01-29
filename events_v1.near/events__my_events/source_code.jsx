@@ -1,3 +1,5 @@
+console.log('props', props);
+
 props.__layout.setLayout('container', {
   title: 'My events',
 });
