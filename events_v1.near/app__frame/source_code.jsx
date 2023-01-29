@@ -299,13 +299,13 @@ function pop() {
 
 // let counter = 0;
 function _renderComponent(owner, name, props) {
-  console.log('renderComponent', owner, name, props);
+  console.log('renderComponent', name, props);
   // counter = counter + 1;
   // // need another const ref to prevent vm to re-render
   // const ref = counter + 1;
 
   function renderComponent(_name, _props) {
-    return _renderComponent(ref, _name, _props);
+    return _renderComponent(null, _name, _props);
   }
 
   const engine = {
