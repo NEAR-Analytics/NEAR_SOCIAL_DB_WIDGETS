@@ -352,7 +352,7 @@ function safeRender(_name, _props) {
         Failed to render component {_name} with props{' '}
         <pre>{JSON.stringify(_props, null, 4)}</pre>
         <br />
-        <pre>{err}</pre>
+        <pre>{err.toString()}</pre>
       </div>
     );
   }
