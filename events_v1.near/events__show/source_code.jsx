@@ -5,6 +5,13 @@ if (!eventId) {
   return 'props.eventId is required';
 }
 
+const event = Near.view(EVENTS_CONTRACT, 'get_event', {
+  event_id: props.event_id,
+});
+if (!event) {
+  return 'Loading';
+}
+
 function onClick(e) {
   console.log('Edit Event1 ', e);
   props.__engine.push('edit', { event_id: props.event_id });
@@ -21,13 +28,6 @@ props.controller.setLayout('container', {
     },
   ],
 });
-
-const event = Near.view(EVENTS_CONTRACT, 'get_event', {
-  event_id: props.event_id,
-});
-if (!event) {
-  return 'Loading';
-}
 
 return (
   <>
