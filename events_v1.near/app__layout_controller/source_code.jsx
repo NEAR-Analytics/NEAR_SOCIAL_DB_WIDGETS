@@ -53,6 +53,11 @@ if (
   );
 }
 
+console.log('5');
+return props.__engine.renderComponent(layout, {
+  component: props.component,
+});
+
 // console.log('5');
 // return (
 //   <Widget
@@ -71,13 +76,3 @@ if (
 //     }}
 //   />
 // );
-
-return (
-  <Widget
-    src={props.__engine.widgetPathFromName(props.component.name)}
-  props={{
-      __layout,
-      __engine: props.__engine,
-      ...props.component.props,
-  }}
-/>
