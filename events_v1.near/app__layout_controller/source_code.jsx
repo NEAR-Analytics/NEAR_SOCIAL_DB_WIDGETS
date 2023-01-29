@@ -37,7 +37,7 @@ return (
   <Widget
     src={props.__engine.layoutFromName(layout)}
     props={{
-      ...{state.layoutProps || {}},
+      ...(state.layoutProps || }),
 
       __engine: props.__engine,
       component: {
