@@ -38,6 +38,16 @@ function setLayout(name, props) {
   });
 }
 
+let layoutName = layout;
+if (
+  layout === '' ||
+  layout === 'default' ||
+  layout === null ||
+  layout === undefined
+) {
+  layoutName = 'default';
+}
+
 const layout = state.layout;
 const layoutProps = state.layoutProps || {};
 
@@ -53,16 +63,6 @@ const layProps = {
     props: { ...props.component.props, __layout },
   },
 };
-
-let layoutName = layout;
-if (
-  layout === '' ||
-  layout === 'default' ||
-  layout === null ||
-  layout === undefined
-) {
-  layoutName = 'default';
-}
 
 const path = props.__engine.layoutPathFromName(layoutName);
 const layoutedWidget = <Widget src={path} props={layProps} />;
