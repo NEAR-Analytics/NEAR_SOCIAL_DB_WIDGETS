@@ -3,10 +3,10 @@ console.log('state', JSON.stringify(state, null, 2));
 console.log('state', state);
 
 if (state === undefined || state === null) {
-  console.log('no state');
+  console.log('no state set');
   State.init({
-    layout: props.layout.name,
-    layoutProps: props.layout.props,
+    layout: null,
+    layoutProps: null,
   });
   return null;
 }
