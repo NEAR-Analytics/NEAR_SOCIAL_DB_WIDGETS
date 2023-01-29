@@ -339,19 +339,15 @@ function _renderComponent(owner, name, props) {
     },
   };
 
-  let container = {
-    __engine: engine,
-  };
-
-  appStateSet(`component__${ref}`, container.__engine);
-  appStateSet(`owner__${ref}`, container.__engine.owner);
+  appStateSet(`component__${ref}`, __engine);
+  appStateSet(`owner__${ref}`, __engine.owner);
 
   return (
     <Widget
       src={`${appOwner}/widget/app__layout_controller`}
       key={props && props.key ? props.key : name}
       props={{
-        ...container,
+        __engine: engine,
         component: {
           name: name,
           props: props,
