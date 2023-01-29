@@ -54,7 +54,7 @@ if (
 
 return (
   <Widget
-    src={props.__engine.layoutFromName(layout)}
+    src={props.__engine.layoutPathFromName(layout)}
     props={{
       ...layoutProps,
       __engine: props.__engine,
