@@ -44,7 +44,7 @@ const navbar = (
     }}
   >
     <div className="container-fluid h-100 flex">
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center text-center">
         {props.back ? (
           <button
             className=""
