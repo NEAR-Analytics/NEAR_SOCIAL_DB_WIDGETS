@@ -55,19 +55,12 @@ return (
       <div
         style={{
           display: 'flex',
-          justifyContent: 'middle',
           alignItems: 'center',
           padding: '4px 0',
           borderBottom: '1px solid #ccc',
         }}
       >
-        <p
-          style={{
-            margin: '4px 0',
-          }}
-        >
-          {event.location}
-        </p>
+        <p style={{}}>{event.location}</p>
 
         <p
           style={{
