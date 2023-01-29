@@ -45,6 +45,7 @@ return (
           style={{
             width: 'auto',
             height: '100%',
+            maxWidth: '100%',
             boxSizing: 'border-box',
           }}
         />
