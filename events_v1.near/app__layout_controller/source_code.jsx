@@ -12,9 +12,6 @@ if (!state) {
   return null;
 }
 
-const layout = state.layout;
-const layoutProps = state.layoutProps;
-
 // guard to allow layout exit infinite render loop
 if (
   layout === '' ||
@@ -37,8 +34,7 @@ return (
   <Widget
     src={props.__engine.layoutFromName(layout)}
     props={{
-      ...(state.layoutProps || }),
-
+      ...(state.layoutProps || {}),
       __engine: props.__engine,
       component: {
         name: props.component.name,
