@@ -1,5 +1,4 @@
 if (state === undefined || state === null) {
-  console.log('no state set');
   State.init({
     layout: null,
     layoutProps: null,
@@ -17,9 +16,6 @@ function setLayout(name, props) {
     console.log('NO CHANGE', name, props);
     return;
   }
-  console.log('CHANGE');
-  console.log('BEFORE', state);
-  console.log('AFTER', { layout: name, layoutProps: props });
   State.update({
     layout: name,
     layoutProps: props,
