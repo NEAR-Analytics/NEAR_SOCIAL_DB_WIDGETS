@@ -356,36 +356,34 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     appStateSet(`component__${ref}`, obj);
   }
 
-  let componentProps = {
-    __: {
-      __ref,
-      __owner: __owner,
-      __engine: {
-        push,
-        pop,
-        renderComponent,
-        rerender,
-        appStateGet,
-        appStateSet,
-        registerLayout,
-        registerLayoutController,
-      },
-      Components: {
-        Select,
-        Button,
-        Loading,
-        PageTitle,
-      },
-      __helpers: {
-        propIsRequiredMessage,
-      },
-      accountId,
-      __env: env,
+  let container = {
+    __ref: ref,
+    __owner: __owner,
+    __engine: {
+      push,
+      pop,
+      renderComponent,
+      rerender,
+      appStateGet,
+      appStateSet,
+      registerLayout,
+      registerLayoutController,
     },
+    Components: {
+      Select,
+      Button,
+      Loading,
+      PageTitle,
+    },
+    __helpers: {
+      propIsRequiredMessage,
+    },
+    accountId,
+    __env: env,
   };
 
-  appStateSet(`component__${ref}`, componentProps.__);
-  appStateSet(`owner__${ref}`, componentProps.__.__owner);
+  appStateSet(`component__${ref}`, container.__);
+  appStateSet(`owner__${ref}`, container.__owner);
 
   const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
@@ -395,7 +393,7 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
     src={`${appOwner}/widget/app__layout_controller`}
     key={key}
     props={{
-      ...componentProps,
+      ...container,
       layout: {
         name: layout,
         props: layoutProps,
