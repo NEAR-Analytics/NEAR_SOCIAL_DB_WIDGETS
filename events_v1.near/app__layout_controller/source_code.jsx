@@ -1,13 +1,13 @@
 // console.log('props', JSON.stringify(props, null, 2));
 console.log('state', JSON.stringify(state, null, 2));
-
-State.init({
-  layout: props.layout.name,
-  layoutProps: props.layout.props,
-});
+console.log('state', state);
 
 if (state === undefined || state === null) {
   console.log('no state');
+  State.init({
+    layout: props.layout.name,
+    layoutProps: props.layout.props,
+  });
   return null;
 }
 
