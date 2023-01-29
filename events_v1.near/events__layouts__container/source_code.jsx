@@ -63,7 +63,7 @@ const navbar = (
             props.__engine.pop();
           }}
         >
-          <span style={{ fontSize: 32 }}>&lt;</span>
+          <i className="bi bi-chevron-left"></i>
         </button>
 
         <h2 className="navbar-brand">{title}</h2>
