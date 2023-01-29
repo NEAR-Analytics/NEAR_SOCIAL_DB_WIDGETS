@@ -1,4 +1,4 @@
-props.__layout.setLayout('modal', {
+props.controller.setLayout('modal', {
   title: 'Create Event',
 });
 
