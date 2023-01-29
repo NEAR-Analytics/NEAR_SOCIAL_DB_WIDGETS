@@ -340,8 +340,18 @@ function renderComponent(name, props) {
   );
 }
 
-function renderComponent(_name, _props) {
-  return renderComponent(null, _name, _props);
+function safeRender(_name, _props) {
+  try {
+    return renderComponent(_name, _props);
+  } catch (err) {
+    console.error(err);
+    return (
+      <div>
+        Failed to render component {_name} with props{' '}
+        {JSON.stringify(_props, null, 4)}
+      </div>
+    );
+  }
 }
 
 return (
