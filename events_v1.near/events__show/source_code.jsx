@@ -86,6 +86,9 @@ return (
         <p>
           {startDate.getDate()}{' '}
           {startDate.toLocaleString('default', { month: 'short' })}{' '}
+          {startDate.getFullYear()} - {endDate.getDate()}{' '}
+          {endDate.toLocaleString('default', { month: 'short' })}{' '}
+          {endDate.getFullYear()}
         </p>
       </div>
 
