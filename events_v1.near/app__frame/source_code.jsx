@@ -247,7 +247,7 @@ function persistRoutingInformation(newState) {
 }
 
 function slugFromName(name) {
-  console.log('slugFromName', name);
+  // console.log('slugFromName', name);
   if (!name) {
     return '';
   }
