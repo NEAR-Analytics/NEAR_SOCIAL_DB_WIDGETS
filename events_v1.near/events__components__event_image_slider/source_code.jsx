@@ -24,17 +24,25 @@ const bannerImages = imagesWithCid.filter((image) => {
 });
 
 return (
-  <>
-    {bannerImages &&
-      bannerImages.length > 0 &&
-      bannerImages.map((image) => {
-        return (
-          <EventImage
-            src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
-            key={image.cid}
-            alt={image.url.cid}
-          />
-        );
-      })}
-  </>
+  <div
+    style={{
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '40vh',
+      maxHeight: '400px',
+      minHeight: '200px',
+    }}
+  >
+    {bannerImages.map((image) => {
+      return (
+        <EventImage
+          src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
+          key={image.cid}
+          alt={image.url.cid}
+        />
+      );
+    })}
+  </div>
 );
