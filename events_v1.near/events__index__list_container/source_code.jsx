@@ -1,3 +1,4 @@
+console.log('__layout', props.__layout);
 props.__layout.change('container', {
   back: true,
 });
