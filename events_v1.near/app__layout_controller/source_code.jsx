@@ -38,7 +38,7 @@ if (
   layout === null ||
   layout === undefined
 ) {
-  console.log('render raw');
+  console.log('render raw component', props.component.name);
   return (
     <Widget
       src={props.__engine.widgetPathFromName(props.component.name)}
