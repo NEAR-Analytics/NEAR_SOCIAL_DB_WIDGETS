@@ -19,10 +19,7 @@ function setLayout(name, props) {
   }
   console.log('CHANGE');
   console.log('BEFORE', state);
-  console.log('AFTER', {
-    layout: name,
-    layoutProps: props,
-  });
+  console.log('AFTER', { layout: name, layoutProps: props });
   State.update({
     layout: name,
     layoutProps: props,
@@ -43,7 +40,7 @@ if (
   layout === null ||
   layout === undefined
 ) {
-  console.log('render raw component', props.component.name);
+  console.log('render without layout', props.component.name);
   return (
     <Widget
       src={props.__engine.widgetPathFromName(props.component.name)}
@@ -56,7 +53,7 @@ if (
   );
 }
 
-console.log('render layout', layout);
+console.log('render with layout', layout);
 return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
