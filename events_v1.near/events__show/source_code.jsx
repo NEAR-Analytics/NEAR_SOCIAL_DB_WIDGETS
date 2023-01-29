@@ -100,6 +100,8 @@ return (
               fontWeight: 'bold',
               padding: '10px 0',
             }}
+            role="button"
+            tabIndex={0}
             onClick={() => {
               props.__engine.push('edit', { event_id: props.event_id });
             }}
