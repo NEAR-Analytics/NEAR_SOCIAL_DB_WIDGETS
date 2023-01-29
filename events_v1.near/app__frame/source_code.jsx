@@ -315,7 +315,7 @@ function _renderComponent(owner, name, props) {
 
   function extend(obj) {
     for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (Object.hasOwnProperty(key)) {
         engine[key] = obj[key];
       }
     }
