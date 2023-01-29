@@ -1,3 +1,7 @@
+props.__engine.registerLayout('container', {
+  back: true,
+});
+
 const EVENTS_CONTRACT = 'events_v1.near';
 
 // accountID is used to determine for whom the events are displayed
