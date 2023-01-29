@@ -5,11 +5,11 @@ props.controller.setLayout('container', {
       props: {
         label: 'Edit Event',
         handleOnClick: (e) => {
-          console.log('Edit Event', e);
+          console.log('Edit Event1 ', e);
           props.__engine.push('edit', { event_id: props.event_id });
         },
         onClick: (e) => {
-          console.log('Edit Event', e);
+          console.log('Edit Event 2', e);
           props.__engine.push('edit', { event_id: props.event_id });
         },
       },
