@@ -13,7 +13,7 @@ if (forAccountId === undefined) {
   });
 }
 
-const Loading = props.__.Components.Loading;
+const Loading = props.__engine.Components.Loading;
 if (!events) {
   return <Loading>Loading events</Loading>;
 }
