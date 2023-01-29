@@ -60,7 +60,7 @@ const widgetProps = {
   },
 };
 console.log('2');
-console.log({ widgetProps });
+console.log({ widgetProps }, widgetProps.__component.props.__layout);
 
 console.log('render with layout', props.__component.name, { layout });
 
