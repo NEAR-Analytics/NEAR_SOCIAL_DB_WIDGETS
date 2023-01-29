@@ -1,7 +1,10 @@
-props.__engine.registerLayoutController(props.__engine.ref, (o) => {
-  console.log('LAYOUT CONTROLLER', props.__engine.ref, { o });
-  State.update(o);
-});
+function registerLayout(name, props) {
+  console.log('REGISTER LAYOUT', name, props);
+  State.update({
+    layout: name,
+    layoutProps: props,
+  });
+}
 
 State.init({
   layout: props.layout.name,
@@ -26,7 +29,9 @@ if (
     <Widget
       src={props.__engine.widgetFromName(props.component.name)}
       props={{
-        __engine: props.__engine,
+        __engine: props.__engine.extend({
+          registerLayout,
+        }),
         ...props.component.props,
       }}
     />
@@ -42,7 +47,9 @@ return (
       component: {
         name: props.component.name,
         props: {
-          __engine: props.__engine,
+          __engine: props.__engine.extend({
+            registerLayout,
+          }),
           ...props.component.props,
         },
       },
