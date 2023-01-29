@@ -54,6 +54,7 @@ console.log('1');
 const widgetProps = {
   ...layoutProps,
   __engine: props.__engine,
+  __layout,
   __component: {
     name: props.__component.name,
     props: { ...props.__component.props, __layout },
