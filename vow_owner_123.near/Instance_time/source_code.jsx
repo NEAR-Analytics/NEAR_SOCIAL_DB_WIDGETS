@@ -13,12 +13,19 @@ for (let i = 0; i < sortedData.length; i++) {
     }
   }
 }
-
 State.init({
   tab: tabs.ALL_SCHEDULE.id,
   hoveringElement: "",
   _account: "All",
 });
+
+const getFormatedTime = (time) => {
+  const hours = parseInt(time);
+  const mins = (time - hours) * 60;
+  let formated = `${hours}:${mins == 0 ? "00" : mins}`;
+
+  return formated;
+};
 
 const profile = Social.getr(`${context.accountId}/profile`);
 const flex_column = {
@@ -54,6 +61,16 @@ return (
         <div class="d-flex flex-column">
           <div>{profile.name}</div>
           <div>@{context.accountId}</div>
+          <div>
+            {`(UTC ${getFormatedTime(
+              new Date().getTimezoneOffset() / 60
+            )}) ${new Date()
+              .toLocaleDateString(undefined, {
+                day: "2-digit",
+                timeZoneName: "long",
+              })
+              .substring(4)}`}
+          </div>
         </div>
       </div>
       <div className="w-100 d-flex flex-row justify-content-between align-items-center">
