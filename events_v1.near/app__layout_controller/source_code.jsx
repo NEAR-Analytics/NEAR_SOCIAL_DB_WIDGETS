@@ -7,6 +7,7 @@ if (state === undefined || state === null) {
 }
 
 function setLayout(name, props) {
+  console.log('setLayout', name, props);
   if (
     state &&
     state.layout === name &&
