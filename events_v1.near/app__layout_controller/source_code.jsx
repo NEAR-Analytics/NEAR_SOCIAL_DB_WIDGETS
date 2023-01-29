@@ -33,6 +33,7 @@ if (
   layoutName = 'default';
 }
 
+// get existing controller from component props or create a new one
 const controller = props.component.props.controller || {
   setLayout,
 };
