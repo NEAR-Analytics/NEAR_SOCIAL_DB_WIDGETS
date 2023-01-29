@@ -23,7 +23,10 @@ if (
   layout === undefined
 ) {
   return (
-    <Widget src={props.__engine.widgetFromName(name)} props={} />
+    <Widget src={props.__engine.widgetFromName(name)} props={{
+      __engine: props.__engine,
+      ...props.component.props}
+    }} />
   );
 }
 
