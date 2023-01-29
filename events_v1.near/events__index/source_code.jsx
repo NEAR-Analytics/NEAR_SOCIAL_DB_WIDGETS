@@ -1,5 +1,5 @@
-const Button = props.__.Components.Button;
-const PageTitle = props.__.Components.PageTitle;
+const Button = props.__engine.Components.Button;
+const PageTitle = props.__engine.Components.PageTitle;
 
 return (
   <div>
@@ -21,7 +21,7 @@ return (
         props.__engine.push(
           'index.list_container',
           {
-            forAccountId: props.__.accountId,
+            forAccountId: props.__engine.accountId,
           },
           'container',
           {
