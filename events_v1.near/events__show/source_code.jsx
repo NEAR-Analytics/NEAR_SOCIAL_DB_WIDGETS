@@ -84,8 +84,8 @@ return (
         {/* if on same day, only show start and end time */}
 
         <p>
-          {startDate.getDate()} {startDate.toLocaleString('default', { month: 'short' })
-          {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+          {startDate.getDate()}{' '}
+          {startDate.toLocaleString('default', { month: 'short' })}{' '}
         </p>
       </div>
 
