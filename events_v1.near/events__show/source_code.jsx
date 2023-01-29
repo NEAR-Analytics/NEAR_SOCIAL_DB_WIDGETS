@@ -34,6 +34,8 @@ props.controller.setLayout('container', {
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 
+console.log('event', { event })
+
 return (
   <>
     <div style={{}}>
@@ -46,26 +48,7 @@ return (
         padding: '40px 20px',
       }}
     >
-      {event.links.map((link, idx) => {
-        console.log('link', link);
-        return (
-          <a
-            href={link.url}
-            key={idx}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: '#000',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '10px 0',
-            }}
-          >
-            {link.label}
-          </a>
-        );
-      })}
+      
       {/* title */}
       <h1>{event.name}</h1>
 
@@ -99,8 +82,29 @@ return (
         </p>
       </div>
 
-      {/* text link buttons to edit the event */}
-      <div></div>
+      {/* second bar with links */}
+      <div>
+        {props.__engine.accountId === event.account_id ? (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'middle',
+              alignItems: 'center',
+              padding: '10px 0',
+              borderBottom: '1px solid #ccc',
+            }}
+          >
+            <p
+              style={{
+                margin: '0 10px',
+              }}
+            >
+              <a
+                ></a>
+            </p>
+              </div>
+
+      </div>
 
       <p>{event.description}</p>
       <p>{event.start_date}</p>
