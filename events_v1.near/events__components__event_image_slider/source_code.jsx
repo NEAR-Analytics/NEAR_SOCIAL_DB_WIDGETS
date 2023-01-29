@@ -48,7 +48,7 @@ return (
             height: '100%',
             maxWidth: '100%',
             boxSizing: 'border-box',
-            objectFit: 'cover',
+            objectFit: 'contain',
           }}
         />
       );
