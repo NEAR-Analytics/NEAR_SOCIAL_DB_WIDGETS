@@ -165,6 +165,10 @@ if (!entryRoute) {
   return propIsRequiredMessage('entryRoute');
 }
 
+const entryProps = props.entryProps || {};
+const entryLayout = props.entryLayout || null;
+const entryLayoutProps = props.entryLayoutProps || {};
+
 const rootRoute = {
   name: entryRoute,
   props: entryProps,
@@ -180,10 +184,6 @@ State.init({
 if (!state) {
   return 'Loading...';
 }
-
-const entryProps = props.entryProps || {};
-const entryLayout = props.entryLayout || null;
-const entryLayoutProps = props.entryLayoutProps || {};
 
 const env = {
   app: {
