@@ -70,7 +70,7 @@ if (
   layoutName = 'default';
 }
 
-const layoutedPath = props.__engine.layoutPathFromName(layout);
+const layoutedPath = props.__engine.layoutPathFromName(layoutName);
 
 console.log('2', layoutedPath);
 console.log({ widgetProps }, widgetProps.__component.props.__layout);
