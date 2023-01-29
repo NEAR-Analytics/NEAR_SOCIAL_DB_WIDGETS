@@ -59,6 +59,7 @@ const DEFAULT_STATE = {
   errors: {},
 };
 
+console.log({ props });
 if (!state) {
   if (model) {
     State.init({
@@ -71,8 +72,6 @@ if (!state) {
   }
   return 'Loading...';
 }
-
-console.log({ props });
 
 const Button = styled.button`
   width: 100%;
