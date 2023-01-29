@@ -229,9 +229,9 @@ function restoreRoutes() {
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
     // console.log('update route from storage');
-    State.update({
-      layers: info,
-    });
+    // State.update({
+    //   layers: info,
+    // });
   }
 }
 
