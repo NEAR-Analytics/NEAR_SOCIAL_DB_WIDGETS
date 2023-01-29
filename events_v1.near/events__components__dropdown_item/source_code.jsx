@@ -18,6 +18,7 @@ return (
     href=""
     onClick={(e) => {
       props.handleClick(e);
+      console.log('click', e);
     }}
   >
     {props.label}
