@@ -106,11 +106,11 @@ return (
               maxWidth: '100%',
               overflow: 'auto',
               position: 'absolute',
-              top: 0,
+              top: BORDER_RADIUS,
               left: 0,
               right: 0,
               bottom: 0,
-              paddingTop: title ? PADDING_WITH_TITLE : BORDER_RADIUS,
+              paddingTop: title ? PADDING_WITH_TITLE : 0,
             }}
           >
             {props.__engine.renderComponent(
