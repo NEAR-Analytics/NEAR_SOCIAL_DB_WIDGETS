@@ -1,5 +1,6 @@
 function changeLayout(name, props) {
-  console.log('REGISTER LAYOUT', name, props);
+  console.log('CHANGE LAYOUT', name, props);
+  // TODO: prevent infinite loop
   State.update({
     layout: name,
     layoutProps: props,
@@ -33,6 +34,7 @@ if (
     <Widget
       src={props.__engine.widgetFromName(props.component.name)}
       props={{
+        __layout,
         __engine: props.__engine,
         ...props.component.props,
       }}
@@ -49,6 +51,7 @@ return (
       component: {
         name: props.component.name,
         props: {
+          __layout,
           __engine: props.__engine,
           ...props.component.props,
         },
