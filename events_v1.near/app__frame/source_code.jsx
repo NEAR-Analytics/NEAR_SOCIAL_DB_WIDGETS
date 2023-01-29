@@ -304,15 +304,15 @@ function _renderComponent(owner, name, props) {
   // const ref = counter + 1;
 
   function renderComponent(_name, _props) {
-    return _renderComponent(ref, _name, _props);
+    return _renderComponent(null, _name, _props);
   }
 
   const engine = {
     env,
     accountId,
 
-    ref,
-    owner,
+    // ref,
+    // owner,
 
     push,
     pop,
