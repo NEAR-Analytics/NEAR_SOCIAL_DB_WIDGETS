@@ -6,6 +6,8 @@ if (state === undefined || state === null) {
   return null;
 }
 
+console.log({ props });
+
 if (!props.useLayout) {
   return (
     <Widget
