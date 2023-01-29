@@ -1,3 +1,14 @@
+console.log('3');
+
+State.init({
+  layout: props.layout.name,
+  layoutProps: props.layout.props,
+});
+
+if (!state) {
+  return null;
+}
+
 function changeLayout(name, props) {
   if (
     state &&
@@ -13,15 +24,6 @@ function changeLayout(name, props) {
     layout: name,
     layoutProps: props,
   });
-}
-
-State.init({
-  layout: props.layout.name,
-  layoutProps: props.layout.props,
-});
-
-if (!state) {
-  return null;
 }
 
 const layout = state.layout;
