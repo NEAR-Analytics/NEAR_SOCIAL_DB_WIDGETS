@@ -62,8 +62,6 @@ const VERSION = '0.2.0';
  *
  *  @param {String} name - the name of the widget to render
  *  @param {Object} props - the props to pass to the widget
- *  @param {String} layout - the name of the layout to use
- *  @param {Object} layoutProps - the props to pass to the layout
  *  available in: props.engine
  *  renderComponent(name, props, layout, layoutProps)
  *    renders a widget with the given name and props within the given layout,
@@ -72,8 +70,6 @@ const VERSION = '0.2.0';
  *
  *  @param {String} name - the name of the widget to render
  *  @param {Object} props - the props to pass to the widget
- *  @param {String} layout - the name of the layout to use
- *  @param {Object} layoutProps - the props to pass to the layout
  *  available in: props.routing
  *  push(name, props, layout, layoutProps)
  *    pushes a new layer onto the stack of layers to render
@@ -317,7 +313,7 @@ function _renderComponent(owner, name, props) {
     return null;
   }
 
-  // need const to prevent vm to re-render
+  // need another const ref to prevent vm to re-render
   const ref = counter + 1;
 
   function renderComponent(_name, _props) {
@@ -325,6 +321,7 @@ function _renderComponent(owner, name, props) {
   }
 
   function registerLayout(layout, layoutProps) {
+    console.log('registerLayout', layout, layoutProps);
     appStateSet(`layout__${ref}`, {
       name: layout,
       props: layoutProps,
