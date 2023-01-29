@@ -39,7 +39,7 @@ function callContract(data) {
     EVENTS_CONTRACT,
     'create_event',
     {
-      account_id: accountId,
+      account_id: props.__engine.accountId,
       name,
       type,
       category,
