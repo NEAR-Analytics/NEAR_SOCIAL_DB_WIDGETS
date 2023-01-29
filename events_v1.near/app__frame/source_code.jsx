@@ -172,13 +172,11 @@ const rootRoute = {
   layoutProps: entryLayoutProps,
 };
 
-// TODO: get layers from URL
-State.init({
-  renderCycles: state ? state.renderCycles + 1 : 1,
-  layers: [rootRoute],
-});
-
 if (!state) {
+  State.init({
+    renderCycles: state ? state.renderCycles + 1 : 1,
+    layers: [rootRoute],
+  });
   return 'Loading...';
 }
 
