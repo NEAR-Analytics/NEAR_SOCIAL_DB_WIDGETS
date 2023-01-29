@@ -1,4 +1,4 @@
-props.__layout.change('container', {
+props.__layout.setLayout('container', {
   title: 'My events',
 });
 
