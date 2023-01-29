@@ -21,7 +21,7 @@ if (!onRemove) {
 }
 
 State.init({
-  img: image.url || '',
+  img: image.url || { cid: null },
   type: image.type,
 
   localImg: {},
