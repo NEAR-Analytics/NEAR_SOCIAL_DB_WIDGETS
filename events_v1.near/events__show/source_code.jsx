@@ -12,14 +12,14 @@ if (!event) {
   return 'Loading';
 }
 
-props.__.engine.registerLayout('container', {
+props.__engine.registerLayout('container', {
   dropdownItems: [
     {
       name: 'components.dropdown_item',
       props: {
         label: 'Edit',
         onClick: () => {
-          props.__.engine.push('edit', { event_id: event.id }, 'container', {
+          props.__engine.push('edit', { event_id: event.id }, 'container', {
             title: 'Edit Event',
             back: true,
           });
@@ -33,7 +33,7 @@ props.__.engine.registerLayout('container', {
 
 return (
   <>
-    {props.__.engine.renderComponent('components.event_image_slider', {
+    {props.__engine.renderComponent('components.event_image_slider', {
       event,
     })}
 
