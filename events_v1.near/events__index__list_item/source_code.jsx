@@ -62,7 +62,7 @@ const EventBody = styled.div`
 `;
 
 function gotoEvent() {
-  props.__.engine.push('show', { event_id: event.id }, 'container', {
+  props.__engine.push('show', { event_id: event.id }, 'container', {
     title: event.name,
     back: true,
     dropdownItems: [
@@ -71,7 +71,7 @@ function gotoEvent() {
         props: {
           label: 'Edit',
           // onClick: () => {
-          //   props.__.engine.push('edit', { event_id: event.id }, 'container', {
+          //   props.__engine.push('edit', { event_id: event.id }, 'container', {
           //     title: 'Edit Event',
           //     back: true,
           //   });
