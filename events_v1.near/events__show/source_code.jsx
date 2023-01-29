@@ -78,12 +78,22 @@ return (
           padding: '10px 0',
         }}
       >
-        <p>{event.location}</p>
+        <p
+          style={{
+            margin: '0 10px',
+          }}
+        >
+          {event.location}
+        </p>
         {/* format start to end date */}
         {/* by: day x till day y */}
         {/* if on same day, only show start and end time */}
 
-        <p>
+        <p
+          style={{
+            margin: '0 10px',
+          }}
+        >
           {startDate.getDate()}{' '}
           {startDate.toLocaleString('default', { month: 'short' })}{' '}
           {startDate.getFullYear()} - {endDate.getDate()}{' '}
