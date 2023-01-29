@@ -73,7 +73,7 @@ return (
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'middle',
           alignItems: 'center',
           padding: '10px 0',
         }}
