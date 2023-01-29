@@ -1,8 +1,4 @@
-if (!props.__layout) {
-  console.log('show, no layout');
-  return '';
-}
-props.__layout.setLayout('container', {
+props.controller.setLayout('container', {
   dropdownItems: [
     {
       name: 'components.dropdown_item',
