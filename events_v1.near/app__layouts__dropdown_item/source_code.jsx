@@ -4,9 +4,7 @@ return (
   <li className="nav-item" key={key}>
     {props.__engine.renderComponent(
       props.component.name,
-      props.component.props,
-      props.component.layout,
-      props.component.layoutProps
+      props.component.props
     )}
   </li>
 );
