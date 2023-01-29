@@ -1,3 +1,7 @@
+props.controller.setLayout('modal', {
+  title: 'Create Event',
+});
+
 const Button = props.__engine.Components.Button;
 const PageTitle = props.__engine.Components.PageTitle;
 
