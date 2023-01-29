@@ -221,28 +221,6 @@ return (
     <div className="mt-3">
       <Label>Images</Label>
 
-      {state.images.map((image, index) => (
-        <div key={index} className="mb-4 d-flex">
-          <Widget
-            src={`${APP_OWNER}/widget/${APP_NAME}___form__image_component`}
-            props={{
-              image: image,
-              onChange: (changed) => {
-                state.images[index] = changed;
-                sanitizeAndValidate({ ...state, images: state.images });
-                console.log({ changed, state });
-              },
-              onRemove: () => {
-                const images = [...state.images];
-                images.splice(index, 1);
-                State.update({ images });
-                sanitizeAndValidate({ ...state, images });
-              },
-            }}
-          />
-        </div>
-      ))}
-
       <button
         className="btn btn-secondary"
         onClick={() => {
@@ -369,6 +347,27 @@ return (
     </div>
     <ErrorMessage>{getError('location')}</ErrorMessage>
 
+    {state.images.map((image, index) => (
+      <div key={index} className="mb-4 d-flex">
+        <Widget
+          src={`${APP_OWNER}/widget/${APP_NAME}___form__image_component`}
+          props={{
+            image: image,
+            onChange: (changed) => {
+              state.images[index] = changed;
+              sanitizeAndValidate({ ...state, images: state.images });
+              console.log({ changed, state });
+            },
+            onRemove: () => {
+              const images = [...state.images];
+              images.splice(index, 1);
+              State.update({ images });
+              sanitizeAndValidate({ ...state, images });
+            },
+          }}
+        />
+      </div>
+    ))}
     <div className="mt-3">
       <Label>Links</Label>
       {state.links.map((link, index) => (
