@@ -49,8 +49,8 @@ const VERSION = '0.2.0';
  *       - you choose a widget like 'my_widget'
  *       - app, widgets and subwidgets are separated by '__'
  *       - In order to use the widget in your app, you must upload it to your account with the name: `my_app__my_widget`
- *     - e.g. app_name__component1
- *     - e.g. app_name__component1__subcomponent
+ *     - e.g. app_namecomponent1
+ *     - e.g. app_namecomponent1__subcomponent
  *  - Each widget can have a layout
  *    - layouts are also widgets
  *   - layouts are named as follows:
@@ -298,14 +298,18 @@ function pop() {
 }
 
 // let counter = 0;
-function _renderComponent(owner, name, props) {
-  console.log('renderComponent', name, props);
+function _renderComponent(owner, name, props, useLayout) {
+  console.log('renderComponent', name, props, useLayout);
   // counter = counter + 1;
   // // need another const ref to prevent vm to re-render
   // const ref = counter + 1;
 
   function renderComponent(_name, _props) {
-    return _renderComponent(null, _name, _props);
+    return _renderComponent(null, _name, _props, true);
+  }
+
+  function renderRaw(_name, _props) {
+    return _renderComponent(null, _name, _props, false);
   }
 
   const engine = {
@@ -317,12 +321,14 @@ function _renderComponent(owner, name, props) {
 
     push,
     pop,
-    renderComponent,
     rerender,
     appStateGet,
     appStateSet,
     layoutPathFromName,
     widgetPathFromName,
+
+    renderComponent,
+    renderRaw,
 
     Components: {
       Select,
@@ -342,10 +348,13 @@ function _renderComponent(owner, name, props) {
       key={props && props.key ? props.key : name}
       props={{
         __engine: engine,
-        __component: {
+
+        component: {
           name: name,
           props: props,
         },
+
+        useLayout,
       }}
     />
   );
