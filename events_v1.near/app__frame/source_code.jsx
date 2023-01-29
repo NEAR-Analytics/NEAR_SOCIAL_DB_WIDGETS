@@ -411,7 +411,7 @@ return (
             overflow: 'auto',
           }}
         >
-          {_renderComponent(null, layer.name, layer.props)}
+          {_renderComponent(null, layer.name, layer.props, true)}
         </div>
       );
     })}
