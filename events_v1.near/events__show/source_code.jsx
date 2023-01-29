@@ -12,7 +12,7 @@ if (!event) {
   return 'Loading';
 }
 
-props.__engine.registerLayout('container', {
+props.__lyout.change('container', {
   dropdownItems: [
     {
       name: 'components.dropdown_item',
