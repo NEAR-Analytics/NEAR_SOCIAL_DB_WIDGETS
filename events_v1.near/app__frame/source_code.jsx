@@ -341,7 +341,7 @@ function _renderComponent(owner, name, props) {
       key={props && props.key ? props.key : name}
       props={{
         __engine: engine,
-        component: {
+        __component: {
           name: name,
           props: props,
         },
