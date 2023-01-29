@@ -1,5 +1,3 @@
-props.controller.setLayout('dropdown-item', {});
-
 const DropdownButton = styled.button`
   background-color: transparent;
   border: none;
@@ -13,15 +11,17 @@ const DropdownButton = styled.button`
 `;
 
 return (
-  <DropdownButton
-    aria-current="page"
-    href=""
-    onClick={(e) => {
-      console.log('DropdownItem onClick', e);
-      props.onClick(e);
-      console.log('DropdownItem onClick after', props.onClick);
-    }}
-  >
-    {props.label}
-  </DropdownButton>
+  <li className="nav-item" key={props.key}>
+    <DropdownButton
+      aria-current="page"
+      href=""
+      onClick={(e) => {
+        console.log('DropdownItem onClick', e);
+        props.onClick(e);
+        console.log('DropdownItem onClick after', props.onClick);
+      }}
+    >
+      {props.label}
+    </DropdownButton>
+  </li>
 );
