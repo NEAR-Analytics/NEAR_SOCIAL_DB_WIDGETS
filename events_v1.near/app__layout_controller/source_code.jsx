@@ -1,7 +1,16 @@
-props.__engine.registerLayoutController(props.__.ref, (o) => {
-  console.log('LAYOUT CONTROLLER', props.__.ref, { o });
+props.__engine.registerLayoutController(props.__ref, (o) => {
+  console.log('LAYOUT CONTROLLER', props.__ref, { o });
   State.update(o);
 });
+
+State.init({
+  layout: null,
+  layoutProps: null,
+});
+
+if (!state) {
+  return null;
+}
 
 function renderControl() {
   // guard to allow 'default' layout exit infinite render loop
