@@ -40,6 +40,7 @@ const __layout = {
 const layProps = {
   ...layoutProps,
   __engine: props.__engine,
+  controller: { __layout },
   component: {
     name: props.component.name,
     props: { ...props.component.props, __layout },
