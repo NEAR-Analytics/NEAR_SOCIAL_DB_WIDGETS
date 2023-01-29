@@ -6,7 +6,6 @@ State.init({
 if (!state) {
   return null;
 }
-console.log('3');
 
 function changeLayout(name, props) {
   if (
@@ -39,7 +38,7 @@ if (
   layout === null ||
   layout === undefined
 ) {
-  console.log('4');
+  console.log('render raw');
   return (
     <Widget
       src={props.__engine.widgetPathFromName(props.component.name)}
