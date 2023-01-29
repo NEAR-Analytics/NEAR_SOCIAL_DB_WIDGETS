@@ -384,7 +384,7 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
         propIsRequiredMessage,
       },
       accountId,
-      __env: env,
+      env: env,
     },
   };
 
