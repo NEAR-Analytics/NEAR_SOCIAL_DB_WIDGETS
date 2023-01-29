@@ -41,10 +41,10 @@ if (
 }
 
 // console.log(
-  props.component.name,
-  'Has controller',
-  props.component.props.controller ? true : false
-);
+//   props.component.name,
+//   'Has controller',
+//   props.component.props.controller ? true : false
+// );
 // get existing controller from component props or create a new one
 const controller = props.component.props.controller || {
   setLayout,
