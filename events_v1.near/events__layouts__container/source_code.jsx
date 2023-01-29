@@ -34,12 +34,13 @@ const dropdownElement =
 
 const navbar = (
   <div
-    className="navbar navbar-expand-lg navbar-dark bg-primary"
+    className="navbar navbar-expand-lg navbar-dark"
     style={{
       // height: NAVBAR_HEIGHT,
       position: 'fixed',
       top: NAVBAR_OFFSET_TOP,
       width: '100%',
+      backgroundColor: '#2c2c54',
     }}
   >
     <div className="container-fluid h-100 flex">
@@ -47,7 +48,7 @@ const navbar = (
         <button
           className=""
           style={{
-            color: 'black',
+            color: 'white',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
