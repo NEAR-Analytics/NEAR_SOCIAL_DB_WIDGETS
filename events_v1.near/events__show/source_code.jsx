@@ -1,13 +1,15 @@
+function onClick(e) {
+  console.log('Edit Event1 ', e);
+  props.__engine.push('edit', { event_id: props.event_id });
+}
+
 props.controller.setLayout('container', {
   dropdownItems: [
     {
       name: 'components.dropdown_item',
       props: {
         label: 'Edit Event',
-        onClick: (e) => {
-          console.log('Edit Event1 ', e);
-          props.__engine.push('edit', { event_id: props.event_id });
-        },
+        onClick,
       },
     },
   ],
