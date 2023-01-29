@@ -31,6 +31,9 @@ props.controller.setLayout('container', {
   title: event.name,
 });
 
+const startDate = new Date(event.start_date);
+const endDate = new Date(event.end_date);
+
 return (
   <>
     <div style={{}}>
@@ -38,7 +41,6 @@ return (
         event,
       })}
     </div>
-    {/* text link buttons to edit the event */}
     <div
       style={{
         padding: '40px 20px',
@@ -64,9 +66,32 @@ return (
           </a>
         );
       })}
+      {/* title */}
       <h1>{event.name}</h1>
+
+      {/* info bar with condensed info */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '10px 0',
+        }}
+      >
+        <p>{event.location}</p>
+        {/* format start to end date */}
+        {/* by: day x till day y */}
+        {/* if on same day, only show start and end time */}
+
+        <p>
+          {event.start_date.split('T')[0]} till {event.end_date.split('T')[0]}
+        </p>
+      </div>
+
+      {/* text link buttons to edit the event */}
+      <div></div>
+
       <p>{event.description}</p>
-      <p>{event.location}</p>
       <p>{event.start_date}</p>
       <p>{event.end_date}</p>
       <p>{event.type}</p>
