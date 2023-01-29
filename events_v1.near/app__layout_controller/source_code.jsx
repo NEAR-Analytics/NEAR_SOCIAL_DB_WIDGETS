@@ -12,8 +12,6 @@ function setLayout(name, props) {
     state.layout === name &&
     JSON.stringify(state.layoutProps) === JSON.stringify(props)
   ) {
-    // no setLayout
-    console.log('NO CHANGE', name, props);
     return;
   }
   State.update({
@@ -50,6 +48,7 @@ if (
 }
 
 console.log('render with layout', props.__component.name, layout);
+console.log({layoutProps}, props.__component});
 return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
