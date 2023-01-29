@@ -346,7 +346,7 @@ function safeRender(_name, _props) {
   try {
     return renderComponent(_name, _props);
   } catch (err) {
-    console.error(err);
+    console.log(err);
     return (
       <div>
         Failed to render component {_name} with props{' '}
