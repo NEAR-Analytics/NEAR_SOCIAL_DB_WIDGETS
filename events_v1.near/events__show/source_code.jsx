@@ -44,10 +44,11 @@ return (
         padding: '0 20px',
       }}
     >
-      {event.links.map((link) => {
+      {event.links.map((link, idx) => {
         return (
           <a
             href={link.url}
+            key={idx}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -61,7 +62,7 @@ return (
             {link.label}
           </a>
         );
-      })
+      })}
       <h1>{event.name}</h1>
       <p>{event.description}</p>
       <p>{event.location}</p>
