@@ -84,7 +84,8 @@ return (
         {/* if on same day, only show start and end time */}
 
         <p>
-          {event.start_date.split('T')[0]} till {event.end_date.split('T')[0]}
+          {startDate.getDate()} {startDate.toLocaleString('default', { month: 'short' })
+          {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
         </p>
       </div>
 
