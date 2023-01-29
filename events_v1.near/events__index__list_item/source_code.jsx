@@ -5,6 +5,8 @@ if (!event) {
   return '';
 }
 
+console.log({ props });
+
 const BG_CARD = '#ffffff';
 
 const EventCard = styled.div`
@@ -100,7 +102,7 @@ return (
   >
     <EventCard>
       <EventHeader>
-        {props.__.engine.renderComponent('components.event_image_slider', {
+        {props.__engine.renderComponent('components.event_image_slider', {
           event,
         })}
         <EventTitle>{event.name}</EventTitle>
