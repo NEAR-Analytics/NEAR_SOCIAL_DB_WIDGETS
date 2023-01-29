@@ -44,13 +44,32 @@ return (
         padding: '0 20px',
       }}
     >
+      {event.links.map((link) => {
+        return (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: '#000',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 0',
+            }}
+          >
+            {link.label}
+          </a>
+        );
+      })
       <h1>{event.name}</h1>
       <p>{event.description}</p>
       <p>{event.location}</p>
+      <p>{event.start_date}</p>
+      <p>{event.end_date}</p>
       <p>{event.type}</p>
       <p>{event.category}</p>
       <p>{event.status}</p>
-      <p>{event.links}</p>
     </div>
   </>
 );
