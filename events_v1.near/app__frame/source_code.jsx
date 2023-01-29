@@ -247,8 +247,8 @@ function slugFromName(name) {
   return name.split('.').join('__');
 }
 
-function layoutFromName(name) {
-  // console.log('layoutFromName', name);
+function layoutPathFromName(name) {
+  // console.log('layoutPathFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
@@ -321,7 +321,7 @@ function _renderComponent(owner, name, props) {
     rerender,
     appStateGet,
     appStateSet,
-    layoutFromName,
+    layoutPathFromName,
     widgetPathFromName,
 
     Components: {
