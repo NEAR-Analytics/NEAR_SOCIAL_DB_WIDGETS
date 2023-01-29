@@ -1,13 +1,11 @@
-const DropdownButton = styled.button`
+const DropdownButton = styled.div`
   background-color: transparent;
-  border: none;
-  outline: none;
   color: black;
-  font-size: 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
   cursor: pointer;
   padding: 0;
   margin: 0;
-  margin-right: 1rem;
 `;
 
 return (
