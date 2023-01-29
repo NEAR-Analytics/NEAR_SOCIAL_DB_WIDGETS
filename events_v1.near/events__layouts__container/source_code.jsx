@@ -44,7 +44,6 @@ const navbar = (
     }}
   >
     <div className="container-fluid h-100 flex">
-      {/* align middle */}
       <div className="d-flex align-items-center">
         <button
           className=""
@@ -67,7 +66,17 @@ const navbar = (
           <i className="bi bi-chevron-left"></i>
         </button>
 
-        <h2 className="navbar-brand">{title}</h2>
+        <h2
+          style={{
+            color: 'white',
+            margin: 0,
+            padding: 0,
+            marginLeft: 10,
+            fontSize: 20,
+          }}
+        >
+          {title}
+        </h2>
       </div>
 
       {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
