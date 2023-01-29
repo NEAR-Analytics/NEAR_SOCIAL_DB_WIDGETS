@@ -68,9 +68,10 @@ return (
         >
           {event.location}
         </p>
+
         <p
           style={{
-            margin: '0 4px',
+            marginLeft: '10px',
           }}
         >
           {startDate.getDate()}{' '}
