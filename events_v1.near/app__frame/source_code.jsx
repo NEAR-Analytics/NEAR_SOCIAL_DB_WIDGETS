@@ -311,11 +311,13 @@ function _renderComponent(owner, name, props) {
     return _renderComponent(ref, _name, _props);
   }
 
+  let engine = {};
+
   function extend(obj) {
     return Object.assign(engine, obj);
   }
 
-  const engine = {
+  engine = {
     env,
     accountId,
 
