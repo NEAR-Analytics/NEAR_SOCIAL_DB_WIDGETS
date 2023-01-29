@@ -44,7 +44,8 @@ const navbar = (
     }}
   >
     <div className="container-fluid h-100 flex">
-      <div className="d-flex">
+      {/* align middle */}
+      <div className="d-flex align-items-center">
         <button
           className=""
           style={{
