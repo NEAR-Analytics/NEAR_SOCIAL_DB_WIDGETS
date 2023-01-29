@@ -360,6 +360,9 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
 
   let container = {
     __engine: {
+      env,
+      accountId,
+
       ref,
       owner,
 
@@ -380,11 +383,10 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
         Loading,
         PageTitle,
       },
+
       helpers: {
         propIsRequiredMessage,
       },
-      accountId,
-      env: env,
     },
   };
 
