@@ -300,6 +300,8 @@ function pop() {
 // let counter = 0;
 function _renderComponent(owner, name, props, useLayout) {
   console.log('renderComponent', name, props, useLayout);
+  console.log('renderComponent 2', props.__layout);
+
   // counter = counter + 1;
   // // need another const ref to prevent vm to re-render
   // const ref = counter + 1;
