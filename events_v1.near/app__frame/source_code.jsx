@@ -352,7 +352,7 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
 
   function registerLayoutController(_ref, _stateRef) {
     console.log('registerLayoutController', _ref, _stateRef);
-    console.log(AppState);
+    console.log(AppState._state);
     const obj = appStateGet(`component__${_ref}`, null);
     obj.__stateRef = _stateRef;
     appStateSet(`component__${ref}`, obj);
@@ -371,6 +371,8 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
       appStateSet,
       registerLayout,
       registerLayoutController,
+      layoutFromName,
+      widgetFromName,
 
       Components: {
         Select,
