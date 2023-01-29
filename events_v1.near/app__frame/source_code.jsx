@@ -330,9 +330,6 @@ function renderComponent(name, props) {
       props: props,
     },
   };
-
-  window.asdf();
-
   return (
     <Widget
       src={`${appOwner}/widget/app__layout_controller`}
