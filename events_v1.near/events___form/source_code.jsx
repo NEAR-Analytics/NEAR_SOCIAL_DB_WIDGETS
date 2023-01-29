@@ -232,6 +232,7 @@ return (
               onChange: (changed) => {
                 state.images[index] = changed;
                 sanitizeAndValidate({ ...state, images: state.images });
+                console.log({ changed, state });
               },
               onRemove: () => {
                 const images = [...state.images];
