@@ -105,6 +105,11 @@ return (
             onClick={() => {
               props.__engine.push('edit', { event_id: props.event_id });
             }}
+            onKeyDown={() => {
+              if (event.key === 'Enter') {
+                props.__engine.push('edit', { event_id: props.event_id });
+              }
+            }}
           >
             Edit
           </span>
