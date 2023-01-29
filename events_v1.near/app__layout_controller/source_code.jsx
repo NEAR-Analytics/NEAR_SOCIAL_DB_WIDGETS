@@ -58,7 +58,8 @@ if (
 //   component: props.component,
 // });
 
-
-return (<>
-  <Widget src={`${props.__engine.env.appOwner}/widget/${}`}></Widget>
-</>)
+return (
+  <>
+    <Widget src={props.layoutPathFromName(layout)} />
+  </>
+);
