@@ -83,7 +83,7 @@ return (
         overflow: 'auto',
       }}
     >
-      {dropdownMenu}
+      {/* {dropdownMenu} */}
 
       <div
         className="row"
@@ -93,8 +93,8 @@ return (
       >
         <div className="col-12">
           {props.__engine.renderComponent(
-            props.__component.name,
-            props.__component.props
+            props.component.name,
+            props.component.props
           )}
         </div>
       </div>
