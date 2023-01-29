@@ -91,7 +91,36 @@ return (
           borderBottom: '1px solid #ccc',
         }}
       >
-        {props.__engine.accountId === event.account_id ? <div></div> : null}
+        {props.__engine.accountId === event.account_id ? (
+          <a
+            onClick={() => {
+              props.__engine.push('edit', { event_id: props.event_id });
+            }}
+          >
+            Edit
+          </a>
+        ) : null}
+
+        {event.links.map((link, idx) => {
+          console.log('link', link);
+          return (
+            <a
+              href={link.url}
+              key={idx}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#000',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 0',
+              }}
+            >
+              {link.label}
+            </a>
+          );
+        })}
       </div>
 
       <p>{event.description}</p>
