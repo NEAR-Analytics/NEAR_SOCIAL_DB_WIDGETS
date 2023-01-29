@@ -1,6 +1,6 @@
 const DropdownButton = styled.div`
   background-color: transparent;
-  color: black;
+  color: white;
   cursor: pointer;
   font-size: 1rem;
   cursor: pointer;
