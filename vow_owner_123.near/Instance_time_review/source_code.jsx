@@ -146,6 +146,7 @@ return (
                     boxSizing: "border-box",
                     boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
                     backgroundColor: "white",
+                    color: "black",
                     borderRadius: "1rem",
                     margin: "8px",
                     cursor:
