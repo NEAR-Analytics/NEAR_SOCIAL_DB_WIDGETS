@@ -41,7 +41,7 @@ const layProps = {
   controller,
   component: {
     name: props.component.name,
-    props: props.component.props,
+    props: { ...props.component.props, controller },
   },
 };
 
