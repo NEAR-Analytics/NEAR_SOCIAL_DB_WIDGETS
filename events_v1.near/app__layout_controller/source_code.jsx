@@ -58,22 +58,3 @@ return props.__engine.renderComponent(`layouts__${layout}`, {
   ...layoutProps,
   component: props.component,
 });
-
-// console.log('5');
-// return (
-//   <Widget
-//     src={props.__engine.layoutPathFromName(layout)}
-//     props={{
-//       ...layoutProps,
-//       __engine: props.__engine,
-//       component: {
-//         name: props.component.name,
-//         props: {
-//           __layout,
-//           __engine: props.__engine,
-//           ...props.component.props,
-//         },
-//       },
-//     }}
-//   />
-// );
