@@ -17,7 +17,12 @@ function setLayout(name, props) {
     console.log('NO CHANGE', name, props);
     return;
   }
-  console.log('CHANGE', name, props);
+  console.log('CHANGE');
+  console.log('BEFORE', state);
+  console.log('AFTER', {
+    layout: name,
+    layoutProps: props,
+  });
   State.update({
     layout: name,
     layoutProps: props,
