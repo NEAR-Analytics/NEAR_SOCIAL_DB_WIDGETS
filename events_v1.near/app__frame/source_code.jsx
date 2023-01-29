@@ -305,7 +305,6 @@ function _renderComponent(owner, name, props) {
   // const ref = counter + 1;
 
   function renderComponent(_name, _props) {
-    console.log('renderComponent', _name, _props);
     return _renderComponent(null, _name, _props);
   }
 
