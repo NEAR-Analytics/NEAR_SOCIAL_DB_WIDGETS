@@ -1,4 +1,4 @@
-props.__engine.registerLayout('container', {
+props.__layout.register('container', {
   back: true,
 });
 
