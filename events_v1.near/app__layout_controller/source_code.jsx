@@ -33,8 +33,8 @@ return (
     props={{
       __engine: props.__engine,
       component: {
-        name: name,
-        props: props,
+        name: props.component.name,
+        props: props.component.props,
       },
     }}
   />
