@@ -59,7 +59,6 @@ const DEFAULT_STATE = {
   errors: {},
 };
 
-console.log({ props });
 if (!state) {
   if (model) {
     State.init({
