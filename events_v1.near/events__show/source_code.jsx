@@ -8,6 +8,10 @@ props.controller.setLayout('container', {
           console.log('Edit Event', e);
           props.__engine.push('edit', { event_id: props.event_id });
         },
+        onClick: (e) => {
+          console.log('Edit Event', e);
+          props.__engine.push('edit', { event_id: props.event_id });
+        },
       },
     },
   ],
