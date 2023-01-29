@@ -33,7 +33,9 @@ if (
   layoutName = 'default';
 }
 
-const controller = { setLayout };
+const controller = props.component.props.controller || {
+  setLayout,
+};
 
 const layProps = {
   ...layoutProps,
@@ -41,7 +43,7 @@ const layProps = {
   controller,
   component: {
     name: props.component.name,
-    props: { ...props.component.props, controller },
+    props: { ...props.component.props, controller, __engine: props.__engine },
   },
 };
 
