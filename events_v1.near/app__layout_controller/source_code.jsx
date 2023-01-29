@@ -33,14 +33,11 @@ if (
   layoutName = 'default';
 }
 
-const __layout = {
-  setLayout: setLayout,
-};
-
+const controller = { setLayout };
 const layProps = {
   ...layoutProps,
   __engine: props.__engine,
-  controller: { setLayout },
+  controller,
   component: {
     name: props.component.name,
     props: props.component.props,
