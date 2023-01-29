@@ -231,7 +231,7 @@ function restoreRoutes() {
       layers: info,
     });
 
-    console.log('rerendering', info);
+    // console.log('rerendering', info);
   }
 }
 
