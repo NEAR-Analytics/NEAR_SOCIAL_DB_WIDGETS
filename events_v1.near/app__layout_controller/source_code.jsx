@@ -52,8 +52,13 @@ if (
   );
 }
 
-console.log('5');
-return props.__engine.renderComponent(`layouts__${layout}`, {
-  ...layoutProps,
-  component: props.component,
-});
+// console.log('5');
+// return props.__engine.renderComponent(`layouts__${layout}`, {
+//   ...layoutProps,
+//   component: props.component,
+// });
+
+
+return (<>
+  <Widget src={`${props.__engine.env.appOwner}/widget/${}`}></Widget>
+</>)
