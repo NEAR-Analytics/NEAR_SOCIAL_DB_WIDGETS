@@ -4,8 +4,6 @@ if (!image) {
   return 'loading';
 }
 
-console.log({ props });
-
 const ErrorMessage = styled.div`
   color: red;
 `;
@@ -29,6 +27,8 @@ if (!state) {
   });
   return 'Loading...';
 }
+
+console.log('ImageComponent', { state.localImg })
 
 const ImageTypes = [
   { value: 'tile', label: 'Tile' },
