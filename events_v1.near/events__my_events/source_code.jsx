@@ -1,5 +1,3 @@
-console.log('props', props);
-
 if (!props.__layout) {
   return '';
 }
