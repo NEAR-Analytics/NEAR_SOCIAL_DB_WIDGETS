@@ -1,4 +1,4 @@
-const key = props.key || props.component.src;
+const key = props.key || props.component.name;
 
 return (
   <li className="nav-item" key={key}>
