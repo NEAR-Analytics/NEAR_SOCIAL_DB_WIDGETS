@@ -36,7 +36,7 @@ const navbar = (
   <div
     className="navbar navbar-expand-lg navbar-dark"
     style={{
-      // height: NAVBAR_HEIGHT,
+      minHeight: NAVBAR_HEIGHT,
       position: 'fixed',
       top: NAVBAR_OFFSET_TOP,
       width: '100%',
