@@ -314,10 +314,8 @@ function _renderComponent(owner, name, props) {
   let engine = {};
 
   function extend(obj) {
-    for (const key in obj) {
-      if (Object.hasOwnProperty(key)) {
-        engine[key] = obj[key];
-      }
+    [...Object.entries(obj)].forEach(([key, value]) => {
+      engine[key] = value;
     }
   }
 
