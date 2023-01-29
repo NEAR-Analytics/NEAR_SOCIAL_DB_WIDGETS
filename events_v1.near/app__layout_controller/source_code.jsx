@@ -4,8 +4,8 @@ props.__engine.registerLayoutController(props.__ref, (o) => {
 });
 
 State.init({
-  layout: null,
-  layoutProps: null,
+  layout: props.layout.name,
+  layoutProps: props.layout.props,
 });
 
 if (!state) {
@@ -24,11 +24,7 @@ function renderControl() {
     layout === undefined
   ) {
     return (
-      <Widget
-        src={props.__engine.widgetFromName(name)}
-        key={key}
-        props={widgetProps}
-      />
+      <Widget src={props.__engine.widgetFromName(name)} props={widgetProps} />
     );
   }
 
