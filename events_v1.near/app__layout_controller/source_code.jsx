@@ -1,6 +1,12 @@
 function changeLayout(name, props) {
   console.log('CHANGE LAYOUT', name, props);
-  // TODO: prevent infinite loop
+  if (
+    state &&
+    state.layout === name &&
+    JSON.stringify(state.layoutProps) === JSON.stringify(props)
+  ) {
+    return;
+  }
   State.update({
     layout: name,
     layoutProps: props,
