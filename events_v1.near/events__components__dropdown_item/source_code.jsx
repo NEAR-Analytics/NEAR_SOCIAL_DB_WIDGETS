@@ -1,3 +1,7 @@
+props.controller.setLayout('dropdown-item', {
+  title: 'Edit Event',
+});
+
 const DropdownButton = styled.button`
   background-color: transparent;
   border: none;
