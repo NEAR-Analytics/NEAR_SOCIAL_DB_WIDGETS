@@ -26,6 +26,10 @@ const dropdownElement =
             return props.__engine.renderComponent(item.name, {
               ...item.props,
               key: `dropdown_item_${item.name}_${idx}`,
+              onClick: (e) => {
+                console.log('item', item, 'idx', idx);
+                item.props.handleOnClick(e);
+              },
             });
           })}
         </ul>
