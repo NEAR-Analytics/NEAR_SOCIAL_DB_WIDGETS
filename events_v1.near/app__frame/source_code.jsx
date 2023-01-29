@@ -314,9 +314,10 @@ function _renderComponent(owner, name, props) {
   let engine = {};
 
   function extend(obj) {
+    // for in and Object.asign are not working in vm
     [...Object.entries(obj)].forEach(([key, value]) => {
       engine[key] = value;
-    }
+    });
   }
 
   engine = {
