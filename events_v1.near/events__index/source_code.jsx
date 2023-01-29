@@ -1,5 +1,5 @@
-props.controller.setLayout('modal', {
-  title: 'Create Event',
+props.controller.setLayout('container', {
+  title: 'ND Events',
 });
 
 const Button = props.__engine.Components.Button;
