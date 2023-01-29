@@ -4,7 +4,6 @@ const NAVBAR_OFFSET_TOP = 0;
 const title = props.title || '';
 const dropdownItems = props.dropdownItems || [];
 
-console.log('6');
 const dropdownElement =
   dropdownItems && dropdownItems.length > 0 ? (
     <>
@@ -33,7 +32,6 @@ const dropdownElement =
     </>
   ) : null;
 
-console.log('7');
 const dropdownMenu = (
   <div
     className="navbar navbar-expand-lg navbar-dark bg-primary"
@@ -74,9 +72,6 @@ const dropdownMenu = (
     </div>
   </div>
 );
-
-console.log('8');
-console.log('props', { props });
 
 return (
   <>
