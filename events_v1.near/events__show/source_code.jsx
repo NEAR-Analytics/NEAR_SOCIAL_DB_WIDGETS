@@ -34,7 +34,7 @@ props.controller.setLayout('container', {
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 
-console.log('event', { event })
+console.log('event', { event });
 
 return (
   <>
@@ -48,7 +48,6 @@ return (
         padding: '40px 20px',
       }}
     >
-      
       {/* title */}
       <h1>{event.name}</h1>
 
@@ -99,11 +98,10 @@ return (
                 margin: '0 10px',
               }}
             >
-              <a
-                ></a>
+              <a></a>
             </p>
-              </div>
-
+          </div>
+        ) : null}
       </div>
 
       <p>{event.description}</p>
