@@ -297,7 +297,7 @@ function pop() {
 
 // let counter = 0;
 function _renderComponent(owner, name, props) {
-  console.log('renderComponent', name, props);
+  // console.log('renderComponent', name, props);
 
   // counter = counter + 1;
   // // need another const ref to prevent vm to re-render
@@ -382,12 +382,12 @@ return (
     </div>
 
     {state.layers.map((layer, index) => {
-      // DEBUG: render only the last layer
-      if (index !== state.layers.length - 1) {
-        return null;
-      }
-      console.log('layers', state.layers);
-      console.log('LOOP LAYER', index, layer);
+      // // DEBUG: render only the last layer
+      // if (index !== state.layers.length - 1) {
+      //   return null;
+      // }
+      // console.log('layers', state.layers);
+      // console.log('LOOP LAYER', index, layer);
       return (
         <div
           key={index}
