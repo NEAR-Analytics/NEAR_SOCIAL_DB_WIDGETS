@@ -320,32 +320,6 @@ function _renderComponent(owner, name, props) {
     return _renderComponent(ref, _name, _props);
   }
 
-  function registerLayout(layout, layoutProps) {
-    console.log('registerLayout', layout, layoutProps);
-    appStateSet(`layout__${ref}`, {
-      name: layout,
-      props: layoutProps,
-    });
-
-    const owner = getOwnerChain(ref)[0];
-    console.log('owner', owner);
-    if (owner) {
-      // owner.__stateRef({
-      //   layout: _layout,
-      //   layoutProps: _layoutProps,
-      // });
-    }
-  }
-
-  function registerLayoutController(_ref, stateRef) {
-    // console.log('registerLayoutController', _ref, stateRef);
-    // console.log(AppState._state);
-    console.log('registerLayoutController', _ref);
-    const obj = appStateGet(`component__${_ref}`, null);
-    obj._stateRef = stateRef;
-    appStateSet(`component__${_ref}`, obj);
-  }
-
   let container = {
     __engine: {
       env,
@@ -360,8 +334,6 @@ function _renderComponent(owner, name, props) {
       rerender,
       appStateGet,
       appStateSet,
-      registerLayout,
-      registerLayoutController,
       layoutFromName,
       widgetFromName,
 
