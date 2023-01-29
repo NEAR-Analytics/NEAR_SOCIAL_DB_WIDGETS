@@ -248,12 +248,12 @@ function slugFromName(name) {
 }
 
 function layoutPathFromName(name) {
-  // console.log('layoutPathFromName', name);
+  console.log('layoutPathFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
 function widgetPathFromName(name) {
-  // console.log('widgetPathFromName', name);
+  console.log('widgetPathFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
