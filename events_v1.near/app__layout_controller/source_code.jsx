@@ -27,28 +27,28 @@ const __layout = {
   setLayout: setLayout,
 };
 
-// guard to allow layout exit infinite render loop
-if (
-  layout === '' ||
-  layout === 'default' ||
-  layout === null ||
-  layout === undefined
-) {
-  console.log('render without layout', props.__component.name);
+// // guard to allow layout exit infinite render loop
+// if (
+//   layout === '' ||
+//   layout === 'default' ||
+//   layout === null ||
+//   layout === undefined
+// ) {
+//   console.log('render without layout', props.__component.name);
 
-  const widget = (
-    <Widget
-      src={props.__engine.widgetPathFromName(props.__component.name)}
-      props={{
-        ...props.__component.props,
-        __engine: props.__engine,
-        __layout,
-      }}
-    />
-  );
+//   const widget = (
+//     <Widget
+//       src={props.__engine.widgetPathFromName(props.__component.name)}
+//       props={{
+//         ...props.__component.props,
+//         __engine: props.__engine,
+//         __layout,
+//       }}
+//     />
+//   );
 
-  return widget;
-}
+//   return widget;
+// }
 
 console.log('1');
 const widgetProps = {
@@ -59,6 +59,17 @@ const widgetProps = {
     props: { ...props.__component.props, __layout },
   },
 };
+
+let layoutName = layout;
+if (
+  layout === '' ||
+  layout === 'default' ||
+  layout === null ||
+  layout === undefined
+) {
+  layoutName = 'default';
+}
+
 const layoutedPath = props.__engine.layoutPathFromName(layout);
 
 console.log('2', layoutedPath);
