@@ -311,16 +311,7 @@ function _renderComponent(owner, name, props) {
     return _renderComponent(ref, _name, _props);
   }
 
-  let engine = {};
-
-  function extend(obj) {
-    // for in and Object.asign are not working in vm
-    [...Object.entries(obj)].forEach(([key, value]) => {
-      engine[key] = value;
-    });
-  }
-
-  engine = {
+  const engine = {
     env,
     accountId,
 
@@ -329,7 +320,6 @@ function _renderComponent(owner, name, props) {
 
     push,
     pop,
-    extend,
     renderComponent,
     rerender,
     appStateGet,
