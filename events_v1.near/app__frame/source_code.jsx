@@ -362,8 +362,8 @@ return (
     <div
       style={{
         position: 'fixed',
-        top: 0,
-        right: '50%',
+        bottom: 0,
+        right: 0,
         zIndex: 9999,
         padding: 8,
         backgroundColor: 'white',
