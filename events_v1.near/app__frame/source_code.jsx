@@ -358,9 +358,9 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
 
   let componentProps = {
     __: {
-      ref,
+      __ref,
       __owner: __owner,
-      engine: {
+      __engine: {
         push,
         pop,
         renderComponent,
@@ -376,11 +376,11 @@ function _renderComponent(__owner, name, props, layout, layoutProps) {
         Loading,
         PageTitle,
       },
-      helpers: {
+      __helpers: {
         propIsRequiredMessage,
       },
       accountId,
-      VERSION,
+      __env: env,
     },
   };
 
