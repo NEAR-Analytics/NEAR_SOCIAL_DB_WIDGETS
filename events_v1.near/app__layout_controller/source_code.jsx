@@ -45,28 +45,6 @@ const __layout = {
   setLayout: setLayout,
 };
 
-// // guard to allow layout exit infinite render loop
-// if (
-//   layout === '' ||
-//   layout === 'default' ||
-//   layout === null ||
-//   layout === undefined
-// ) {
-
-//   const widget = (
-//     <Widget
-//       src={props.__engine.widgetPathFromName(props.component.name)}
-//       props={{
-//         ...props.component.props,
-//         __engine: props.__engine,
-//         __layout,
-//       }}
-//     />
-//   );
-
-//   return widget;
-// }
-
 const layProps = {
   ...layoutProps,
   __engine: props.__engine,
