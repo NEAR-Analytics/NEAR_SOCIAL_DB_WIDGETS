@@ -63,7 +63,7 @@ return (
       >
         <p
           style={{
-            margin: '0 4px',
+            margin: '4px 0',
           }}
         >
           {event.location}
