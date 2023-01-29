@@ -12,6 +12,9 @@ if (!state) {
   return null;
 }
 
+const layout = state.layout;
+const layoutProps = state.layoutProps;
+
 function renderControl() {
   // guard to allow 'default' layout exit infinite render loop
   if (
