@@ -113,11 +113,9 @@ return (
               paddingTop: title ? PADDING_WITH_TITLE : 0,
             }}
           >
-            {props.__.engine.renderComponent(
+            {props.__engine.renderComponent(
               props.component.name,
-              props.component.props,
-              props.component.layout,
-              props.component.layoutProps
+              props.component.props
             )}
           </div>
         </div>
