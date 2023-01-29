@@ -349,7 +349,7 @@ function safeRender(_name, _props) {
     console.log(err);
     return (
       <div>
-        Failed to render component <strong>{_name}</strong> with props:
+        Failed to render component <strong>{_name}</strong> with props:{' '}
         <pre>{JSON.stringify(_props, null, 4)}</pre>
         <br />
         <pre>{err.toString()}</pre>
