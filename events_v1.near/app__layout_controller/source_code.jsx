@@ -53,7 +53,7 @@ if (
   );
 }
 
-console.log('render with layout', layout);
+console.log('render with layout', props.component.name, layout);
 return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
