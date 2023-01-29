@@ -53,13 +53,8 @@ if (
 }
 
 // console.log('5');
-// return props.__engine.renderComponent(`layouts__${layout}`, {
-//   ...layoutProps,
-//   component: props.component,
-// });
 
-return (
-  <>
-    <Widget src={props.layoutPathFromName(layout)} />
-  </>
-);
+return props.__engine.renderComponent(`layouts__${layout}`, {
+  ...layoutProps,
+  component: props.component,
+});
