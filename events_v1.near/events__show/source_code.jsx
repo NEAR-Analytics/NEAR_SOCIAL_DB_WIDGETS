@@ -131,7 +131,8 @@ return (
                 padding: '10px 0',
               }}
             >
-              {link.label}
+              {/* TODO: for each link type find and display icon */}
+              {link.text}
             </a>
           );
         })}
