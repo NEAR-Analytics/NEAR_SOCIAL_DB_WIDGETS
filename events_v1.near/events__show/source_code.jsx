@@ -53,7 +53,6 @@ return (
       <p>{event.category}</p>
       <p>{event.status}</p>
       <p>{event.links}</p>
-      <p>{event.image}</p>
     </div>
   </>
 );
