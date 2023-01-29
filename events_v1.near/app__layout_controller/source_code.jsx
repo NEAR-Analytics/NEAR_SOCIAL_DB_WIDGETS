@@ -40,20 +40,20 @@ if (
   layout === null ||
   layout === undefined
 ) {
-  console.log('render without layout', props.component.name);
+  console.log('render without layout', props.__component.name);
   return (
     <Widget
-      src={props.__engine.widgetPathFromName(props.component.name)}
+      src={props.__engine.widgetPathFromName(props.__component.name)}
       props={{
         __layout,
         __engine: props.__engine,
-        ...props.component.props,
+        ...props.__component.props,
       }}
     />
   );
 }
 
-console.log('render with layout', props.component.name, layout);
+console.log('render with layout', props.__component.name, layout);
 return (
   <Widget
     src={props.__engine.layoutPathFromName(layout)}
@@ -61,8 +61,8 @@ return (
       ...layoutProps,
       __engine: props.__engine,
       __component: {
-        name: props.component.name,
-        props: { ...props.component.props, __layout },
+        name: props.__component.name,
+        props: { ...props.__component.props, __layout },
       },
     }}
   />
