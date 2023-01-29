@@ -76,6 +76,7 @@ const dropdownMenu = (
 );
 
 console.log('8');
+console.log(props);
 
 return (
   <>
