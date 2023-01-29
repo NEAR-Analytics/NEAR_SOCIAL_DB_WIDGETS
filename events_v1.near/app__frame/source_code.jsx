@@ -386,6 +386,7 @@ return (
       if (index !== state.layers.length - 1) {
         return null;
       }
+      console.log('layers', state.layers);
       console.log('LOOP LAYER', index, layer);
       return (
         <div
