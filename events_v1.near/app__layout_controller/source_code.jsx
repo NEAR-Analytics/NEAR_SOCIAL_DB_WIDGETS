@@ -6,24 +6,6 @@ if (state === undefined || state === null) {
   return null;
 }
 
-if (!props.useLayout) {
-  return (
-    <Widget
-      src={props.__engine.widgetPathFromName(props.component.name)}
-      props={{
-        ...props.component.props,
-        __engine: props.__engine,
-        __layout: {
-          setLayout: () => {
-            console.log('setLayout no-op');
-            // no-op
-          },
-        },
-      }}
-    />
-  );
-}
-
 function setLayout(name, props) {
   if (
     state &&
