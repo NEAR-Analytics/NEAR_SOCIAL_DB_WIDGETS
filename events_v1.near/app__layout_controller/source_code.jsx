@@ -48,5 +48,7 @@ const layProps = {
   },
 };
 
+console.log(layProps);
+
 const path = props.__engine.layoutPathFromName(layoutName);
 return <Widget src={path} props={layProps} />;
