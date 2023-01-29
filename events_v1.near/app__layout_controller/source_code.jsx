@@ -6,6 +6,23 @@ if (state === undefined || state === null) {
   return null;
 }
 
+if (!props.useLayout) {
+  return (
+    <Widget
+      src={props.__engine.widgetPathFromName(props.component.name)}
+      props={{
+        ...props.component.props,
+        __engine: props.__engine,
+        __layout: {
+          setLayout: () => {
+            // no-op
+          },
+        },
+      }}
+    />
+  );
+}
+
 function setLayout(name, props) {
   if (
     state &&
@@ -34,13 +51,12 @@ const __layout = {
 //   layout === null ||
 //   layout === undefined
 // ) {
-//   console.log('render without layout', props.__component.name);
 
 //   const widget = (
 //     <Widget
-//       src={props.__engine.widgetPathFromName(props.__component.name)}
+//       src={props.__engine.widgetPathFromName(props.component.name)}
 //       props={{
-//         ...props.__component.props,
+//         ...props.component.props,
 //         __engine: props.__engine,
 //         __layout,
 //       }}
@@ -50,13 +66,12 @@ const __layout = {
 //   return widget;
 // }
 
-console.log('1');
-const widgetProps = {
+const layProps = {
   ...layoutProps,
   __engine: props.__engine,
-  __component: {
-    name: props.__component.name,
-    props: { ...props.__component.props, __layout },
+  component: {
+    name: props.component.name,
+    props: { ...props.component.props, __layout },
   },
 };
 
@@ -70,12 +85,6 @@ if (
   layoutName = 'default';
 }
 
-const layoutedPath = props.__engine.layoutPathFromName(layoutName);
-
-console.log('2', layoutedPath);
-console.log({ widgetProps }, widgetProps.__component.props.__layout);
-console.log('render **with** layout', props.__component.name, { layout });
-
-const layoutedWidget = <Widget src={layoutedPath} props={widgetProps} />;
-console.log('3');
+const path = props.__engine.layoutPathFromName(layoutName);
+const layoutedWidget = <Widget src={path} props={layProps} />;
 return layoutedWidget;
