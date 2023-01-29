@@ -252,8 +252,8 @@ function layoutFromName(name) {
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
-function widgetFromName(name) {
-  // console.log('widgetFromName', name);
+function widgetPathFromName(name) {
+  // console.log('widgetPathFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
@@ -322,7 +322,7 @@ function _renderComponent(owner, name, props) {
     appStateGet,
     appStateSet,
     layoutFromName,
-    widgetFromName,
+    widgetPathFromName,
 
     Components: {
       Select,
