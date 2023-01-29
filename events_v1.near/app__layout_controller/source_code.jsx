@@ -1,3 +1,6 @@
+console.log('props', JSON.stringify(props, null, 2));
+console.log('state', JSON.stringify(state, null, 2));
+
 State.init({
   layout: props.layout.name,
   layoutProps: props.layout.props,
