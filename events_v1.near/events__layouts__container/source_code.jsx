@@ -62,7 +62,7 @@ const navbar = (
             props.__engine.pop();
           }}
         >
-          &lt;&nbsp;Zurück
+          <span style={{ fontSize: 32 }}>&lt;</span>&nbsp;Back
         </button>
 
         <h2 className="navbar-brand">{title}</h2>
