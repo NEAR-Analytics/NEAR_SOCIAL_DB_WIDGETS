@@ -34,6 +34,7 @@ return (
       maxHeight: '400px',
       minHeight: '200px',
       maxWidth: '100%',
+      overflow: 'hidden',
     }}
   >
     {bannerImages.map((image) => {
