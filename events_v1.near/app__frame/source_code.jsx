@@ -324,24 +324,23 @@ function getOwnerChain(ref) {
 }
 
 let counter = 0;
-function _renderComponent(owner, name, props, layout, layoutProps) {
+function _renderComponent(owner, name, props) {
   counter = counter + 1;
 
-  // console.log('renderComponent', name, layout, props);
   if (!name) {
     return null;
   }
 
   const ref = counter + 1;
 
-  function renderComponent(_name, _props, _layout, _layoutProps) {
-    return _renderComponent(ref, _name, _props, _layout, _layoutProps);
+  function renderComponent(_name, _props) {
+    return _renderComponent(ref, _name, _props);
   }
 
-  function registerLayout(_layout, _layoutProps) {
+  function registerLayout(layout, layoutProps) {
     appStateSet(`layout__${ref}`, {
-      name: _layout,
-      props: _layoutProps,
+      name: layout,
+      props: layoutProps,
     });
 
     const owner = getOwnerChain(ref)[0];
@@ -353,12 +352,12 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
     }
   }
 
-  function registerLayoutController(_ref, _stateRef) {
-    console.log('registerLayoutController', _ref, _stateRef);
+  function registerLayoutController(_ref, stateRef) {
+    console.log('registerLayoutController', _ref, stateRef);
     console.log(AppState._state);
     const obj = appStateGet(`component__${_ref}`, null);
-    obj.__stateRef = _stateRef;
-    appStateSet(`component__${ref}`, obj);
+    obj._stateRef = stateRef;
+    appStateSet(`component__${_ref}`, obj);
   }
 
   let container = {
@@ -396,7 +395,6 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
   appStateSet(`component__${ref}`, container.__engine);
   appStateSet(`owner__${ref}`, container.__engine.owner);
 
-  const layoutKey = layoutProps && layoutProps.key ? layoutProps.key : null;
   const widgetKey = props && props.key ? props.key : name;
   const key = layoutKey || widgetKey;
 
@@ -406,10 +404,6 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
       key={key}
       props={{
         ...container,
-        layout: {
-          name: layout,
-          props: layoutProps,
-        },
         component: {
           name: name,
           props: props,
