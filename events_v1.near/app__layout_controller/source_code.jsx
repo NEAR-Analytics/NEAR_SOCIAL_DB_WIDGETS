@@ -39,9 +39,9 @@ if (
     <Widget
       src={props.__engine.widgetPathFromName(props.__component.name)}
       props={{
-        __layout,
-        __engine: props.__engine,
         ...props.__component.props,
+        __engine: props.__engine,
+        __layout,
       }}
     />
   );
