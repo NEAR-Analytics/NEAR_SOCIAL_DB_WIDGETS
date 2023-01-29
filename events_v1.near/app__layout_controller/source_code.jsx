@@ -41,7 +41,10 @@ return (
       __engine: props.__engine,
       component: {
         name: props.component.name,
-        props: props.component.props,
+        props: {
+          __engine: props.__engine,
+          ...props.component.props,
+        },
       },
     }}
   />
