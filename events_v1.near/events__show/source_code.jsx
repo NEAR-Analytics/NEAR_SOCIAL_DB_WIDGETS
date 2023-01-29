@@ -47,8 +47,6 @@ return (
       <h1>{event.name}</h1>
       <p>{event.description}</p>
       <p>{event.location}</p>
-      <p>{event.start_date}</p>
-      <p>{event.end_date}</p>
       <p>{event.type}</p>
       <p>{event.category}</p>
       <p>{event.status}</p>
