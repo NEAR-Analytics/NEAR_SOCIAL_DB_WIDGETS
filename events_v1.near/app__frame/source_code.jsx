@@ -285,6 +285,8 @@ function push(name, props, layout, layoutProps) {
   const layer = {
     name,
     props: props || {},
+    layout: layout || null,
+    layoutProps: layoutProps || null,
   };
   const newLayers = [...state.layers, layer];
 
@@ -441,13 +443,7 @@ return (
             overflow: 'auto',
           }}
         >
-          {_renderComponent(
-            null,
-            layer.name,
-            layer.props,
-            layer.layout,
-            layer.layoutProps
-          )}
+          {_renderComponent(null, layer.name, layer.props)}
         </div>
       );
     })}
