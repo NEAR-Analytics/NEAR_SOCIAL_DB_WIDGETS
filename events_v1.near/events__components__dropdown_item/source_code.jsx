@@ -1,4 +1,4 @@
-// props.controller.setLayout('dropdown-item', {});
+props.controller.setLayout('dropdown-item', {});
 
 const DropdownButton = styled.button`
   background-color: transparent;
