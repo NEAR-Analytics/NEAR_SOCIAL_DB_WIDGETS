@@ -97,7 +97,6 @@ return (
       >
         <div className="col-12">
           {props.__engine.renderSlot(
-            'main',
             props.component.name,
             props.component.props
           )}
