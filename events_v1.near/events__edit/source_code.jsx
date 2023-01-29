@@ -1,11 +1,10 @@
+props.__layout.setLayout('modal', {
+  title: 'Edit Event',
+});
+
 const EVENTS_CONTRACT = 'events_v1.near';
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events';
-
-const accountId = context.accountId;
-if (!accountId) {
-  return 'Please connect your NEAR wallet to create an activity';
-}
 
 const eventId = props.event_id;
 if (!eventId) {
