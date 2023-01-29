@@ -295,24 +295,10 @@ function pop() {
   rerender();
 }
 
-// let counter = 0;
-function _renderComponent(owner, name, props) {
-  // console.log('renderComponent', name, props);
-
-  // counter = counter + 1;
-  // // need another const ref to prevent vm to re-render
-  // const ref = counter + 1;
-
-  function renderComponent(_name, _props) {
-    return _renderComponent(null, _name, _props);
-  }
-
+function renderComponent(name, props) {
   const engine = {
     env,
     accountId,
-
-    // ref,
-    // owner,
 
     push,
     pop,
@@ -352,6 +338,10 @@ function _renderComponent(owner, name, props) {
       props={controllerProps}
     />
   );
+}
+
+function renderComponent(_name, _props) {
+  return renderComponent(null, _name, _props);
 }
 
 return (
@@ -398,7 +388,7 @@ return (
             overflow: 'auto',
           }}
         >
-          {_renderComponent(null, layer.name, layer.props, true)}
+          {safeRender(layer.name, layer.props)}
         </div>
       );
     })}
