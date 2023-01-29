@@ -248,19 +248,16 @@ function persistRoutingInformation(newState) {
 
 function slugFromName(name) {
   // console.log('slugFromName', name);
-  if (!name) {
-    return '';
-  }
   return name.split('.').join('__');
 }
 
 function layoutFromName(name) {
-  // console.log('layoutFromName', name);
+  console.log('layoutFromName', name);
   return `${appOwner}/widget/app__layouts__${slugFromName(name)}`;
 }
 
 function widgetFromName(name) {
-  // console.log('layoutFromName', name);
+  console.log('layoutFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
