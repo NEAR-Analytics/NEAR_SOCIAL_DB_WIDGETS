@@ -55,6 +55,7 @@ if (
 
 console.log('5');
 return props.__engine.renderComponent(layout, {
+  ...layoutProps,
   component: props.component,
 });
 
