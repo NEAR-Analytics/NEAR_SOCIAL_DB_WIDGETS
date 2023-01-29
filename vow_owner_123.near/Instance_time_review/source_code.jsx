@@ -1,5 +1,5 @@
 const _account = props.accountId ?? "All";
-console.log("accountId", props.accountId);
+const owner = context.accountId;
 const card = {
   border: "1px solid black",
   borderRadius: "5px",
@@ -141,15 +141,22 @@ return (
         ? finalData.map((d) => {
             if (_account == "All" || _account == d.accountId) {
               return (
-                <div
+                <a
                   style={{
                     boxSizing: "border-box",
                     boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
                     backgroundColor: "white",
                     borderRadius: "1rem",
                     margin: "8px",
-                    cursor: "pointer",
+                    cursor:
+                      context.accountId == d.accountId ? "pointer" : "default",
+                    textDecoration: "none",
                   }}
+                  href={
+                    context.accountId == d.accountId
+                      ? "https://near.social/#/vow_owner_123.near/widget/Instance_time_edit"
+                      : ""
+                  }
                 >
                   <div
                     style={{
@@ -234,7 +241,7 @@ return (
                       );
                     })}
                   </div>
-                </div>
+                </a>
               );
             }
           })
