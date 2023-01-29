@@ -6,7 +6,7 @@ State.init({
   layoutProps: props.layout.props,
 });
 
-if (!state) {
+if (state === undefined || state === null) {
   return null;
 }
 
