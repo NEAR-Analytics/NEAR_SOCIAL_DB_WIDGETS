@@ -358,6 +358,27 @@ return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
 
+    {/* state reset button */}
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 9999,
+        padding: 8,
+        backgroundColor: 'white',
+      }}
+    >
+      <Button
+        onClick={() => {
+          State.reset();
+          window.location.reload();
+        }}
+      >
+        Reset
+      </Button>
+    </div>
+
     {state.layers.map((layer, index) => {
       if (index < state.layers.length - 2) {
         return null;
