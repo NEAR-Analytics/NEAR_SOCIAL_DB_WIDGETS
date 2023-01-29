@@ -308,7 +308,7 @@ function renderComponent(name, props) {
     layoutPathFromName,
     widgetPathFromName,
 
-    renderComponent,
+    renderComponent: safeRender,
 
     Components: {
       Select,
