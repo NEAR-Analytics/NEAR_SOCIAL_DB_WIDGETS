@@ -1,4 +1,4 @@
-function registerLayout(name, props) {
+function changeLayout(name, props) {
   console.log('REGISTER LAYOUT', name, props);
   State.update({
     layout: name,
@@ -17,6 +17,10 @@ if (!state) {
 
 const layout = state.layout;
 const layoutProps = state.layoutProps || {};
+
+const __layout = {
+  change: changeLayout,
+};
 
 // guard to allow layout exit infinite render loop
 if (
