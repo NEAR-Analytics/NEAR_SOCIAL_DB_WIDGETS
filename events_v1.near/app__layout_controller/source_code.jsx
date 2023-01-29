@@ -23,10 +23,13 @@ if (
   layout === undefined
 ) {
   return (
-    <Widget src={props.__engine.widgetFromName(name)} props={{
-      __engine: props.__engine,
-      ...props.component.props}
-    }} />
+    <Widget
+      src={props.__engine.widgetFromName(name)}
+      props={{
+        __engine: props.__engine,
+        ...props.component.props,
+      }}
+    />
   );
 }
 
@@ -34,6 +37,8 @@ return (
   <Widget
     src={props.__engine.layoutFromName(layout)}
     props={{
+      ...{state.layoutProps || {}},
+
       __engine: props.__engine,
       component: {
         name: props.component.name,
