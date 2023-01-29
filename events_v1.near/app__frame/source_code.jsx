@@ -352,6 +352,7 @@ function _renderComponent(owner, name, props, layout, layoutProps) {
 
   function registerLayoutController(_ref, _stateRef) {
     console.log('registerLayoutController', _ref, _stateRef);
+    console.log(AppState);
     const obj = appStateGet(`component__${_ref}`, null);
     obj.__stateRef = _stateRef;
     appStateSet(`component__${ref}`, obj);
