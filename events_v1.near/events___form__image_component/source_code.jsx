@@ -20,15 +20,14 @@ if (!onRemove) {
   return <ErrorMessage>onRemove is required</ErrorMessage>;
 }
 
-State.init({
-  img: image.url || { cid: null },
-  type: image.type,
-
-  localImg: image.url,
-});
-
 if (!state) {
-  return <div>Loading...</div>;
+  State.init({
+    img: image.url || { cid: null },
+    type: image.type,
+
+    localImg: image.url,
+  });
+  return 'Loading...';
 }
 
 const ImageTypes = [
