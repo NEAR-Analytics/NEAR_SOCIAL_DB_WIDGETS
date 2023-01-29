@@ -19,6 +19,7 @@ return (
     onClick={(e) => {
       console.log('DropdownItem onClick', e);
       props.onClick(e);
+      console.log('DropdownItem onClick after');
     }}
   >
     {props.label}
