@@ -76,6 +76,7 @@ return (
           justifyContent: 'middle',
           alignItems: 'center',
           padding: '10px 0',
+          borderBottom: '1px solid #ccc',
         }}
       >
         <p
@@ -85,10 +86,6 @@ return (
         >
           {event.location}
         </p>
-        {/* format start to end date */}
-        {/* by: day x till day y */}
-        {/* if on same day, only show start and end time */}
-
         <p
           style={{
             margin: '0 10px',
