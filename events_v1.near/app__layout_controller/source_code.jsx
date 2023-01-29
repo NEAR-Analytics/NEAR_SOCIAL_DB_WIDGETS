@@ -53,21 +53,31 @@ if (
   );
 }
 
-console.log('5');
+// console.log('5');
+// return (
+//   <Widget
+//     src={props.__engine.layoutPathFromName(layout)}
+//     props={{
+//       ...layoutProps,
+//       __engine: props.__engine,
+//       component: {
+//         name: props.component.name,
+//         props: {
+//           __layout,
+//           __engine: props.__engine,
+//           ...props.component.props,
+//         },
+//       },
+//     }}
+//   />
+// );
+
 return (
   <Widget
-    src={props.__engine.layoutPathFromName(layout)}
-    props={{
-      ...layoutProps,
+    src={props.__engine.widgetPathFromName(props.component.name)}
+  props={{
+      __layout,
       __engine: props.__engine,
-      component: {
-        name: props.component.name,
-        props: {
-          __layout,
-          __engine: props.__engine,
-          ...props.component.props,
-        },
-      },
-    }}
-  />
-);
+      ...props.component.props,
+  }}
+/>
