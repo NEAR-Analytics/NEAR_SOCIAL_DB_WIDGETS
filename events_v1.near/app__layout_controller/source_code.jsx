@@ -15,6 +15,7 @@ if (!props.useLayout) {
         __engine: props.__engine,
         __layout: {
           setLayout: () => {
+            console.log('setLayout no-op');
             // no-op
           },
         },
