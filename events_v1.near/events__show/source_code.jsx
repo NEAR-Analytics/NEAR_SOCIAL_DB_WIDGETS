@@ -16,8 +16,6 @@ props.__layout.change('container', {
           );
         },
       },
-      layout: 'dropdown_item',
-      layoutProps: {},
     },
   ],
 });
