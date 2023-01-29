@@ -317,6 +317,7 @@ function _renderComponent(owner, name, props) {
     return null;
   }
 
+  // need const to prevent vm to re-render
   const ref = counter + 1;
 
   function renderComponent(_name, _props) {
