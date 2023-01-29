@@ -35,7 +35,8 @@ if (
   layout === undefined
 ) {
   console.log('render without layout', props.__component.name);
-  return (
+
+  const widget = (
     <Widget
       src={props.__engine.widgetPathFromName(props.__component.name)}
       props={{
@@ -45,6 +46,8 @@ if (
       }}
     />
   );
+
+  return widget;
 }
 
 console.log('render with layout', props.__component.name, { layout });
