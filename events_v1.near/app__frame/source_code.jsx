@@ -249,14 +249,13 @@ function slugFromName(name) {
   return name.split('.').join('__');
 }
 
-function layoutPathFromName(name) {
-  console.log('layoutPathFromName', name);
-  return `${appOwner}/widget/${appName}__layouts__${slugFromName(name)}`;
-}
-
 function widgetPathFromName(name) {
   console.log('widgetPathFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
+}
+
+function layoutPathFromName(name) {
+  return widgetPathFromName(`layouts.${name}`);
 }
 
 function rerender() {
