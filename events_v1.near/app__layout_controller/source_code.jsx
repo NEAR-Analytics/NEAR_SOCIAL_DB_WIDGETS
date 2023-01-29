@@ -50,7 +50,7 @@ if (
   return widget;
 }
 
-console.log("1")
+console.log('1');
 const widgetProps = {
   ...layoutProps,
   __engine: props.__engine,
@@ -59,12 +59,13 @@ const widgetProps = {
     props: { ...props.__component.props, __layout },
   },
 };
-console.log("2")
-console.log({widgetProps})
+console.log('2');
+console.log({ widgetProps });
 
 console.log('render with layout', props.__component.name, { layout });
 
-const layoutedWidget = (<Widget src={props.__engine.layoutPathFromName(layout)} props={widgetProps} />)
-return (
-  
+const layoutedWidget = (
+  <Widget src={props.__engine.layoutPathFromName(layout)} props={widgetProps} />
 );
+console.log('3');
+return layoutedWidget;
