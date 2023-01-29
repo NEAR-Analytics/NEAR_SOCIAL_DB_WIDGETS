@@ -82,47 +82,16 @@ return (
       </div>
 
       {/* second bar with links */}
-      <div>
-        {props.__engine.accountId === event.account_id ? (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'middle',
-              alignItems: 'center',
-              padding: '10px 0',
-              borderBottom: '1px solid #ccc',
-            }}
-          >
-            <p
-              style={{
-                margin: '0 10px',
-              }}
-            >
-              <a></a>
-            </p>
-
-            {event.links.map((link, idx) => {
-              console.log('link', link);
-              return (
-                <a
-                  href={link.url}
-                  key={idx}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: '#000',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    padding: '10px 0',
-                  }}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-        ) : null}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'middle',
+          alignItems: 'center',
+          padding: '10px 0',
+          borderBottom: '1px solid #ccc',
+        }}
+      >
+        {props.__engine.accountId === event.account_id ? <div></div> : null}
       </div>
 
       <p>{event.description}</p>
