@@ -53,7 +53,7 @@ return (
             color: "black",
             borderRadius: "2rem",
             fontWeight: 600,
-            fontSize: "x-large",
+            fontSize: "xx-large",
           }}
         >
           Weekly Schedule
