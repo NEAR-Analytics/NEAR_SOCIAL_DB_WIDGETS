@@ -3,7 +3,7 @@ props.controller.setLayout('container', {
     {
       name: 'components.dropdown_item',
       props: {
-        label: 'Edit',
+        label: 'Edit Event',
         handleClick: (e) => {
           console.log('Edit Event', e);
           props.__engine.push('edit', { event_id: props.event_id });
