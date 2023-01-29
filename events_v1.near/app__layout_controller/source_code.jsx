@@ -5,9 +5,10 @@ function changeLayout(name, props) {
     JSON.stringify(state.layoutProps) === JSON.stringify(props)
   ) {
     // no change
-    console.log('NO CHANGE', name, props);
+    // console.log('NO CHANGE', name, props);
     return;
   }
+  console.log('CHANGE', name, props);
   State.update({
     layout: name,
     layoutProps: props,
