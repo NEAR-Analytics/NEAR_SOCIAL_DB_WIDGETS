@@ -297,14 +297,14 @@ function pop() {
 }
 
 let counter = 0;
-function _renderComponent(owner, name, props) {
+function _renderComponent(owner, name, props, controller) {
   console.log('renderComponent', owner, name, props);
   counter = counter + 1;
   // need another const ref to prevent vm to re-render
   const ref = counter + 1;
 
-  function renderComponent(_name, _props) {
-    return _renderComponent(ref, _name, _props);
+  function renderComponent(_name, _props, _controller) {
+    return _renderComponent(ref, _name, _props, _controller);
   }
 
   const engine = {
@@ -334,6 +334,21 @@ function _renderComponent(owner, name, props) {
       propIsRequiredMessage,
     },
   };
+
+  // if controlling component is provided, render component raw with controller provided
+  if (controller) {
+    return (
+      <Widget
+        src={widgetPathFromName(name)}
+        key={props && props.key ? props.key : name}
+        props={{
+          __engine: engine,
+          ...controller,
+          ...props,
+        }}
+      />
+    );
+  }
 
   return (
     <Widget
