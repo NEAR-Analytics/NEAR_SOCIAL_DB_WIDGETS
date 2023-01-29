@@ -380,7 +380,7 @@ return (
 
     {state.layers.map((layer, index) => {
       // DEBUG: render only the last layer
-      if (index !== state.layers.length - 2) {
+      if (index !== state.layers.length - 1) {
         return null;
       }
       return (
