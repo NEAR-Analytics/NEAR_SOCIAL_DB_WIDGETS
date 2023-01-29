@@ -92,7 +92,6 @@ return (
         }}
       >
         <div className="col-12">
-          {console.log('asdflkjasgldf alskjdhf', props.component))}
           {props.__engine.renderComponent(
             props.component.name,
             props.component.props
