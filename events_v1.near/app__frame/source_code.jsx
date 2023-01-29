@@ -165,9 +165,14 @@ if (!entryRoute) {
   return propIsRequiredMessage('entryRoute');
 }
 
+const rootRoute = {
+  name: entryRoute,
+  props: entryProps,
+  layout: entryLayout,
+  layoutProps: entryLayoutProps,
+};
 // TODO: get layers from URL
 State.init({
-  env,
   renderCycles: state ? state.renderCycles + 1 : 1,
   layers: [rootRoute],
 });
@@ -212,13 +217,6 @@ function storageGet(prop, defaultValue) {
 function storageSet(prop, value) {
   return Storage.set(`${appOwner}.${appName}.${prop}`, value);
 }
-
-const rootRoute = {
-  name: entryRoute,
-  props: entryProps,
-  layout: entryLayout,
-  layoutProps: entryLayoutProps,
-};
 
 function restoreRoutes() {
   const info = storageGet('routing', null);
