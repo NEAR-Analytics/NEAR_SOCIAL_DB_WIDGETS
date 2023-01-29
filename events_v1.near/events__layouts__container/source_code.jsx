@@ -45,26 +45,28 @@ const navbar = (
   >
     <div className="container-fluid h-100 flex">
       <div className="d-flex align-items-center">
-        <button
-          className=""
-          style={{
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-            border: 'none',
-            outline: 'none',
-            background: 'transparent',
-            width: NAVBAR_HEIGHT,
-          }}
-          type="button"
-          onClick={() => {
-            props.__engine.pop();
-          }}
-        >
-          <i className="bi bi-chevron-left"></i>
-        </button>
+        {props.back ? (
+          <button
+            className=""
+            style={{
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              border: 'none',
+              outline: 'none',
+              background: 'transparent',
+              width: NAVBAR_HEIGHT,
+            }}
+            type="button"
+            onClick={() => {
+              props.__engine.pop();
+            }}
+          >
+            <i className="bi bi-chevron-left"></i>
+          </button>
+        ) : null}
 
         <h2
           style={{
