@@ -29,9 +29,7 @@ if (
     <Widget
       src={props.__engine.widgetFromName(props.component.name)}
       props={{
-        __engine: props.__engine.extend({
-          registerLayout,
-        }),
+        __engine: props.__engine,
         ...props.component.props,
       }}
     />
@@ -47,9 +45,7 @@ return (
       component: {
         name: props.component.name,
         props: {
-          __engine: props.__engine.extend({
-            registerLayout,
-          }),
+          __engine: props.__engine,
           ...props.component.props,
         },
       },
