@@ -1,4 +1,4 @@
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 
 /**
  *  NEAR Social App
@@ -175,6 +175,7 @@ const rootRoute = {
   layout: entryLayout,
   layoutProps: entryLayoutProps,
 };
+
 // TODO: get layers from URL
 State.init({
   renderCycles: state ? state.renderCycles + 1 : 1,
