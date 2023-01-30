@@ -83,6 +83,21 @@ const navbar = (
         >
           {title}
         </h2>
+
+        {props.primaryButton ? (
+          <button
+            className="btn btn-primary"
+            style={{
+              marginLeft: 'auto',
+            }}
+            type="button"
+            onClick={() => {
+              props.primaryButton.onClick();
+            }}
+          >
+            {props.primaryButton.label}
+          </button>
+        ) : null}
       </div>
 
       {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
