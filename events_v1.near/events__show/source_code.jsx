@@ -20,8 +20,6 @@ props.controller.setLayout('container', {
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 
-console.log('event', { event });
-
 return (
   <>
     <div
