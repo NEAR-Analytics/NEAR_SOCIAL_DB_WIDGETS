@@ -41,8 +41,8 @@ const navbar = (
       top: NAVBAR_OFFSET_TOP,
       width: '100%',
       // dark purple #2c2c54 with backdrop filter blur
-      backgroundColor: 'rgba(44, 44, 84, 0.8)',
-      backdropFilter: 'blur(10px)',
+      backgroundColor: 'rgba(44, 44, 84, 0.9)',
+      backdropFilter: 'blur(20px)',
       zIndex: 99999999,
     }}
   >
