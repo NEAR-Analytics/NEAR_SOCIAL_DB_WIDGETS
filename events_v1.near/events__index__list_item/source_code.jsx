@@ -62,7 +62,7 @@ const EventDate = styled.div`
 
 const EventBody = styled.div`
   width: 100%;
-  padding: calc(max(0.5rem, 0.5vw));
+  height: auto;
   flex-grow: 1;
   flex-shrink: 0;
   background-color: red;
@@ -96,9 +96,9 @@ return (
       })}
     </EventHeaderImage>
 
-    <EventTitle>{event.name}</EventTitle>
-
-    <EventBody></EventBody>
+    <EventBody>
+      <EventTitle>{event.name}</EventTitle>
+    </EventBody>
 
     <EventDate>
       {datesAreEqual ? (
