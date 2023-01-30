@@ -347,6 +347,11 @@ function pop() {
   rerender();
 }
 
+function dirtyEval(args) {
+  console.log(args);
+  const [check, key, ...arguss] = args;
+}
+
 function renderComponent(name, props) {
   const engine = {
     env,
