@@ -51,6 +51,12 @@ const NavPrimaryButton = styled.button`
   }
 `;
 
+function onPrimaryActionClick() {
+  if (props.primaryAction) {
+    props.primaryAction.onClick();
+  }
+}
+
 const navbar = (
   <div
     className="navbar navbar-expand-lg navbar-dark"
@@ -109,13 +115,8 @@ const navbar = (
             type="button"
             onClick={(event) => {
               console.log('primary action clicked');
-
-              function executor() {
-                props.primaryAction.onClick(event);
-              }
-
-              console.log(1);
-              executor();
+              onPrimaryActionClick();
+              console.log(2);
             }}
           >
             {props.primaryAction.label}
