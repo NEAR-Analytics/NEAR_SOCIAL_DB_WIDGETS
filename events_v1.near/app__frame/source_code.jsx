@@ -348,12 +348,20 @@ function pop() {
 }
 
 function dirtyEval(args) {
-  console.log(args);
   const method = args[0];
   const key = args[1];
-  const arguss = args.slice(2);
+  const mArgs = args.slice(2);
 
-  console.log(method, key, arguss);
+  switch (method) {
+    case 'push':
+      return push(key, mArgs[0]);
+    case 'replace':
+      return replace(key, mArgs[0]);
+    case 'pop':
+      return pop();
+    default:
+      throw new Error(`Unknown method ${method}`);
+  }
 }
 
 function renderComponent(name, props) {
