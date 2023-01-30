@@ -110,8 +110,7 @@ const Loading = styled.div`
 
 const PageTitle = styled.h1`
   font-size: 2em;
-  text-align: center;
-  color: palevioletred;
+  color: #4caf50;
 `;
 /**
  *   I suggest you don't edit anything below this line
