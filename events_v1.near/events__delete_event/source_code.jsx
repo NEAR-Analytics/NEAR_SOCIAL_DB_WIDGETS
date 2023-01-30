@@ -14,12 +14,12 @@ const deposit = '0';
 
 console.log('state', state);
 console.log(
-  'appState',
-  props.__engine.appStateGet(`delete_event_${props.event.id}`)
+  'storage',
+  props.__engine.storageGet(`delete_event_${props.event.id}`)
 );
 
 // if
-if (!state && props.__engine.appStateGet(`delete_event_${props.event.id}`)) {
+if (!state && props.__engine.storageGet(`delete_event_${props.event.id}`)) {
   props.__engine.pop();
   return 'Loading';
 }
@@ -37,7 +37,7 @@ function callAction() {
 
   Near.call(contract, method, args, gas, deposit);
 
-  props.__engine.appStateSet(`delete_event_${props.event.id}`, true);
+  props.__engine.storageSet(`delete_event_${props.event.id}`, true);
   State.update({ inFlight: true });
 }
 
