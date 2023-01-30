@@ -49,7 +49,7 @@ const EventTitle = styled.h1`
   flex-grow: 1;
 `;
 
-const EventDate = styled.p`
+const EventDate = styled.div`
   font-size: 0.8vw;
   font-weight: 400;
   margin: 0;
