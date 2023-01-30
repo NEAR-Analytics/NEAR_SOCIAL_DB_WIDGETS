@@ -206,10 +206,11 @@ function appStateSet(prop, value) {
   return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
-function getLocal(prop) {
+function getLocal(prop, defaultValue) {
   const getter = appStateGet('getState');
   if (getter) {
-    return getter(prop);
+    const local = getter();
+    return local[prop] || defaultValue;
   }
 }
 
