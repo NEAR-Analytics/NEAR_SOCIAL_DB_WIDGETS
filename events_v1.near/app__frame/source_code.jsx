@@ -140,7 +140,7 @@ const InfoBarItem = styled.div`
 `;
 
 const TextHeader = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   color: #424242;
 `;
 
@@ -153,7 +153,7 @@ const InlineTag = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   color: #424242;
   margin-right: 8px;
 `;
