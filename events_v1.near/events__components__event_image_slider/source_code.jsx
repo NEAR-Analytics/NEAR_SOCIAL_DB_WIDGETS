@@ -25,7 +25,12 @@ const displayImages = imagesWithCid.filter((image) => {
 
 // HACK: this is a hack to get regular update calls
 const data = `
-console.log({props})
+
+if(!state){
+  State.init({ index: 0 });
+  return
+}
+
 fetch('https://api.coingecko.com/api/v3/coins/near', {
   subscribe: true,
   method: 'GET',
@@ -33,6 +38,11 @@ fetch('https://api.coingecko.com/api/v3/coins/near', {
     Accept: '*/*',
   },
 });
+
+if(state < 2){
+  State.update({ index: state.index + 1 });
+  return
+}
 
 props.onUpdate()
 
