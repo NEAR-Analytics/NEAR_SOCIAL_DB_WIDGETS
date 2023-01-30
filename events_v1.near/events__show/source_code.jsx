@@ -199,7 +199,6 @@ return (
               marginRight: '10px',
             }}
             onMouseEnter={(e) => {
-              console.log('e', e);
               e.target.style.textDecoration = 'underline';
             }}
             onMouseLeave={(e) => {
