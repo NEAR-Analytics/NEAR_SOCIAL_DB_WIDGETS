@@ -413,6 +413,7 @@ return ''
 `;
 
 function onTickUpdate() {
+  console.log('onTickUpdate');
   const tickCallbacks = appStateGet('tickCallbacks', []);
   appStateSet(
     'tickCallbacks',
