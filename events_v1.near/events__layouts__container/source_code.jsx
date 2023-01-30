@@ -108,7 +108,7 @@ const navbar = (
           <NavPrimaryButton
             type="button"
             onClick={(event) => {
-              onPrimaryActionClick(event);
+              props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
               return true;
             }}
           >
