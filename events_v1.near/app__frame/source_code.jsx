@@ -368,6 +368,7 @@ function renderComponent(name, props) {
       Container,
       InfoBar,
       InfoBarItem,
+      InfoBarLink,
       TextHeader,
       InlineTag,
       Text,
