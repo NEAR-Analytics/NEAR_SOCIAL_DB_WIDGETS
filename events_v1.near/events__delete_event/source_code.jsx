@@ -8,6 +8,7 @@ const TGAS_300 = '300000000000000';
 const eventId = props.event.id;
 
 if (!state) {
+  console.log('init state');
   State.init({ inFlight: null });
   return 'Loading';
 }
