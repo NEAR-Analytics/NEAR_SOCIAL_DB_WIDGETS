@@ -73,9 +73,6 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 
-// dark purple
-const PrimaryColor = '#4a148c';
-
 const Select = styled.select`
   background-color: #4caf50;
   border: none;
