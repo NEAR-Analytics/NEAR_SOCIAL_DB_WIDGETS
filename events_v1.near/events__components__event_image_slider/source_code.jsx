@@ -24,7 +24,7 @@ const displayImages = imagesWithCid.filter((image) => {
 });
 
 props.__engine.onTick(1, () => {
-  console.log('tick');
+  console.log('tick', this);
 });
 
 return (
