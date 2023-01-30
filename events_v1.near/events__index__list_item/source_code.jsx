@@ -63,7 +63,7 @@ const EventBody = styled.div`
   padding: calc(max(0.5rem, 0.5vw));
 `;
 
-function gotoEvent() {
+function showEvent() {
   props.__engine.push('show', { event_id: event.id });
 }
 
@@ -75,11 +75,11 @@ const shortDesc =
 return (
   <EventCard
     onClick={() => {
-      gotoEvent();
+      showEvent();
     }}
     onKeyDown={(e) => {
       if (e.key === 'Enter') {
-        gotoEvent();
+        showEvent();
       }
     }}
     role="button"
