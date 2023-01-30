@@ -83,7 +83,7 @@ function gotoEvent() {
 }
 
 return (
-  <div
+  <EventCard
     onClick={() => {
       gotoEvent();
     }}
@@ -92,27 +92,23 @@ return (
         gotoEvent();
       }
     }}
-    className="text-decoration-none"
     role="button"
     tabIndex={0}
-    style={{ cursor: 'pointer', width: '100%', margin: '0' }}
   >
-    <EventCard>
-      <EventHeader>
-        <div style={{ height: '40vh', maxHeight: '400px', minHeight: '200px' }}>
-          {props.__engine.renderComponent('components.event_image_slider', {
-            event,
-            mode: 'tile',
-          })}
-        </div>
-        <EventTitle>{event.name}</EventTitle>
-      </EventHeader>
+    <EventHeader>
+      <div style={{ height: '40vh', maxHeight: '400px', minHeight: '200px' }}>
+        {props.__engine.renderComponent('components.event_image_slider', {
+          event,
+          mode: 'tile',
+        })}
+      </div>
+      <EventTitle>{event.name}</EventTitle>
+    </EventHeader>
 
-      <EventBody>
-        <EventDescription>{event.description}</EventDescription>
-        <EventDate>{event.start_date}</EventDate>
-        <EventDate>{event.end_date}</EventDate>
-      </EventBody>
-    </EventCard>
-  </div>
+    <EventBody>
+      <EventDescription>{event.description}</EventDescription>
+      <EventDate>{event.start_date}</EventDate>
+      <EventDate>{event.end_date}</EventDate>
+    </EventBody>
+  </EventCard>
 );
