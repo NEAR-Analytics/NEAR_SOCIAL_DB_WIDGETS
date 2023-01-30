@@ -25,7 +25,7 @@ return (
 
     <Button
       onClick={() => {
-        props.__engine.push('my_events');
+        return props.__engine.push('my_events');
       }}
     >
       My Events
