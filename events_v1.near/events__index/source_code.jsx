@@ -4,13 +4,10 @@ props.controller.setLayout('container', {
 });
 
 const Button = props.__engine.Components.Button;
+const Container = props.__engine.Components.Container;
 
 return (
-  <div
-    style={{
-      padding: '40px 20px',
-    }}
-  >
+  <Container>
     <Button
       onClick={() => {
         props.__engine.push('new', {}, 'modal', {
@@ -33,5 +30,5 @@ return (
     <br />
 
     {props.__engine.renderComponent('index.list_container', {})}
-  </div>
+  </Container>
 );
