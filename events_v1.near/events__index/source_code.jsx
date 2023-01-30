@@ -1,6 +1,16 @@
 props.controller.setLayout('container', {
   title: 'ND Events',
   back: false,
+
+  primaryButton: {
+    title: 'Create new Event',
+    onClick: () => {
+      props.__engine.push('new', {}, 'modal', {
+        title: 'Create new Event',
+        back: true,
+      });
+    },
+  },
 });
 
 const Button = props.__engine.Components.Button;
