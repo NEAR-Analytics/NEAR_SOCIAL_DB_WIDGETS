@@ -141,8 +141,7 @@ const InfoBarItem = styled.div`
 
 const TextHeader = styled.div`
   font-size: 18px;
-  /* darken primary color */
-  color: #311b92;
+  color: #424242;
 `;
 
 const InlineTag = styled.div`
