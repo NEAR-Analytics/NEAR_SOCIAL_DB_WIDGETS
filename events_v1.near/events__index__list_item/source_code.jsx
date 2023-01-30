@@ -13,7 +13,6 @@ const EventCard = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 400px;
   margin: 2rem auto;
   padding: 0;
   background-color: ${BG_CARD};
