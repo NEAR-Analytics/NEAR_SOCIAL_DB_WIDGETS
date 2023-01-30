@@ -23,9 +23,17 @@ const displayImages = imagesWithCid.filter((image) => {
   return image.type === mode;
 });
 
-props.__engine.onTick(1, () => {
-  console.log('tick', this);
-});
+const onTick = () => {
+  if (displayImages.length > 1) {
+    State.update((state) => {
+      state.index = (state.index + 1) % displayImages.length;
+    });
+  }
+
+  props.__engine.onTick(1, onTick);
+};
+
+props.__engine.onTick(1, onTick);
 
 return (
   <div
