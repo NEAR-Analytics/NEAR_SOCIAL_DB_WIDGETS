@@ -32,7 +32,7 @@ const dropdownElement =
     </>
   ) : null;
 
-const primaryButton = styled.button`
+const NavPrimaryButton = styled.button`
   background-color: #2c2c54;
   border: none;
   color: white;
@@ -105,7 +105,7 @@ const navbar = (
         </h2>
 
         {props.primaryButton ? (
-          <button
+          <NavPrimaryButton
             style={{
               marginLeft: 10,
               color: 'white',
@@ -122,7 +122,7 @@ const navbar = (
             }}
           >
             {props.primaryButton.label}
-          </button>
+          </NavPrimaryButton>
         ) : null}
       </div>
 
