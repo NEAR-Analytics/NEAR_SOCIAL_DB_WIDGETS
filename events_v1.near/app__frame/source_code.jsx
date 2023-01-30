@@ -377,10 +377,46 @@ function safeRender(_name, _props) {
   }
 }
 
+// HACK: this is a hack to get regular update calls
+const updateHackCode = `
+
+if(!state){
+  State.init({ index: 0 });
+  return ''
+}
+
+fetch('https://api.coingecko.com/api/v3/coins/near', {
+  subscribe: true,
+  method: 'GET',
+  headers: {
+    Accept: '*/*',
+  },
+});
+
+const index = Storage.get('index') || 0;
+if(Storage.get('index') < 20){
+  console.log("index", index)
+  Storage.set('index', Storage.get('index') + 1);
+  return ''
+}
+
+props.onUpdate()
+Storage.set('index', 0)
+
+return ''
+`;
+
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-
+    <Widget
+      code={data}
+      props={{
+        onUpdate: () => {
+          State.update({ index: (state.index + 1) % displayImages.length });
+        },
+      }}
+    />
     {/* state reset button */}
     <div
       style={{
