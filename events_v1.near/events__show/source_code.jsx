@@ -190,6 +190,8 @@ return (
             key={idx}
             target="_blank"
             rel="noopener noreferrer"
+            id="asdf"
+            ref="asdfasdf"
             style={{
               color: '#000',
               textDecoration: 'none',
