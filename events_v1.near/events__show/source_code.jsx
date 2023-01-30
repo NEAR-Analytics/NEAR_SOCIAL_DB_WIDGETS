@@ -32,7 +32,7 @@ function removeEvent() {
 const PageTitle = props.__engine.Components.PageTitle;
 const Container = props.__engine.Components.Container;
 const InfoBar = props.__engine.Components.InfoBar;
-const TextLabel = props.__engine.Components.TextLabel;
+const TextHeader = props.__engine.Components.TextHeader;
 
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
@@ -203,7 +203,7 @@ return (
       }}
     >
       <Container>
-        <TextLabel>Description</TextLabel>
+        <TextHeader>Description</TextHeader>
 
         <div
           style={{
