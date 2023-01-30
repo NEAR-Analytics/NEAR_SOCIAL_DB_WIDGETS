@@ -176,7 +176,7 @@ return (
               }
             }}
           >
-            Delete
+            Delete Event
           </InfoBarLink>
         </>
       ) : null}
