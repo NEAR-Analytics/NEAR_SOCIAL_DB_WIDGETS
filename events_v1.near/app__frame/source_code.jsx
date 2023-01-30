@@ -313,7 +313,7 @@ function pop() {
 }
 
 function onTick(tick, callback) {
-  console.log('onTick', tick, callback);
+  // console.log('onTick', tick, callback);
   const tickCallbacks = appStateGet('tickCallbacks', []);
   tickCallbacks.push({
     tick,
