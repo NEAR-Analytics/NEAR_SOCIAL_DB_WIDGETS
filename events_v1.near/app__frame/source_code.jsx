@@ -206,6 +206,20 @@ function appStateSet(prop, value) {
   return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
+function getLocal(prop) {
+  const getter = appStateGet('getState');
+  if (getter) {
+    return getter(prop);
+  }
+}
+
+function setLocal(prop, value) {
+  const setter = appStateGet('setState');
+  if (setter) {
+    return setter(prop, value);
+  }
+}
+
 function storageGet(prop, defaultValue) {
   return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
@@ -430,11 +444,14 @@ const updateStateHackCode = `
 function onTickUpdate() {
   console.log('onTickUpdate');
   const tickCallbacks = appStateGet('tickCallbacks', []);
+  const tick = appStateGet('getState')().tick;
+  console.log('tick', tick);
+
   appStateSet(
     'tickCallbacks',
     tickCallbacks
       .map((tickCallback) => {
-        if (tickCallback.tick === appStateGet('getState')().tick) {
+        if (tickCallback.tick === tick) {
           tickCallback.callback();
           return null;
         }
@@ -442,6 +459,7 @@ function onTickUpdate() {
       })
       .filter((tickCallback) => tickCallback !== null)
   );
+
   appStateGet('setState')({
     tick: state.tick + 1,
   });
