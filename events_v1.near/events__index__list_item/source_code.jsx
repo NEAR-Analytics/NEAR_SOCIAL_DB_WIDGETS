@@ -78,7 +78,7 @@ return (
     <EventHeader>
       <div
         style={{
-          height: '40vh',
+          height: '250px',
           maxHeight: '400px',
           minHeight: '200px',
           width: '100%',
