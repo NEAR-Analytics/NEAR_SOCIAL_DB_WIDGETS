@@ -15,11 +15,11 @@ const IndexList = styled.div`
   justify-content: flex-start;
 
   width: auto;
-  margin-left: -2vw;
-  margin-right: -2vw;
+  margin-left: -20px;
+  margin-right: -20px;
 
   & > * {
-    margin: 2vw 2vw;
+    margin: 20px 20px;
     max-width: 520px;
     min-width: 220px;
     width: 240px;
