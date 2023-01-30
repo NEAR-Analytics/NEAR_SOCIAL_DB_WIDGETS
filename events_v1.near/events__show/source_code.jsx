@@ -198,7 +198,7 @@ return (
               padding: '10px 0',
               marginRight: '10px',
               // on hover underline
-              '&:hover': {
+              hover: {
                 textDecoration: 'underline',
               },
             }}
