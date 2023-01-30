@@ -46,14 +46,22 @@ return (
           minWidth: '100px',
           minHeight: '100px',
           background: 'white',
-          borderRadius: 12,
-          overflow: 'hidden',
+          borderRadius: 14,
         }}
       >
-        {props.__engine.renderComponent('components.event_image_slider', {
-          event,
-          mode: 'tile',
-        })}
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+            borderRadius: 12,
+          }}
+        >
+          {props.__engine.renderComponent('components.event_image_slider', {
+            event,
+            mode: 'tile',
+          })}
+        </div>
       </div>
     </div>
     <div
