@@ -11,7 +11,9 @@ if (events.length === 0) {
 const IndexList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
+  justify-content: center;
+
   & > * {
     margin: 1rem;
   }
