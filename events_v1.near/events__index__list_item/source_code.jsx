@@ -84,7 +84,7 @@ return (
           width: '100%',
           aspectRatio: '1/1',
           overflow: 'hidden',
-          borderRadius: '12px 12px 0 0',
+          borderRadius: '10px 10px 0 0',
           borderBottom: '0.1vw solid black',
         }}
       >
