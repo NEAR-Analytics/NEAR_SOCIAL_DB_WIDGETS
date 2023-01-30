@@ -117,6 +117,8 @@ return (
               height: elHeight,
               backgroundColor: 'rgba(44, 44, 84, 0.85)',
               backdropFilter: `blur(${maxBlur - i * blurDelta}px)`,
+              width: '100%',
+              zIndex: 99999999,
             }}
           />
         );
