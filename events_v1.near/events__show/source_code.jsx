@@ -18,6 +18,8 @@ props.controller.setLayout('container', {
   title: event.name,
 });
 
+const PageTitle = props.__engine.Components.PageTitle;
+
 function removeEvent() {
   const contract = EVENTS_CONTRACT;
   const method = 'remove_event';
