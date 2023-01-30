@@ -100,10 +100,12 @@ return (
   >
     <EventCard>
       <EventHeader>
-        {props.__engine.renderComponent('components.event_image_slider', {
-          event,
-          mode: 'tile',
-        })}
+        <div style={{ height: '40vh', maxHeight: '400px', minHeight: '200px' }}>
+          {props.__engine.renderComponent('components.event_image_slider', {
+            event,
+            mode: 'tile',
+          })}
+        </div>
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
 
