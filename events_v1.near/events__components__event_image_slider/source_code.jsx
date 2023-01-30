@@ -75,8 +75,9 @@ return (
         }}
       />
     ) : null}
-    {displayImages.map((_, i) => {
-      const image = displayImages[(i + state.index) % displayImages.length];
+
+    {displayImages.map((image) => {
+      // const image = displayImages[(i + state.index) % displayImages.length];
 
       return (
         <img
@@ -89,6 +90,10 @@ return (
             maxWidth: '100%',
             boxSizing: 'border-box',
             objectFit: 'cover',
+            transform: `translateX(-${
+              (state.index * 100) / displayImages.length
+            }%)`,
+            transition: 'transform 0.5s',
           }}
         />
       );
