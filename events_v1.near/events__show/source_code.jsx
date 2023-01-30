@@ -110,6 +110,8 @@ return (
     <InfoBar>
       <InfoBarItem>
         <Text>
+          <i className="bi bi-calendar"></i>
+
           {datesAreEqual ? (
             <>
               {startDate.getDate()}{' '}
