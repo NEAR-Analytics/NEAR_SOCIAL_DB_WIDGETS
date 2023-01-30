@@ -2,7 +2,7 @@ props.controller.setLayout('container', {
   title: 'ND Events',
   back: false,
 
-  primaryButton: {
+  primaryAction: {
     label: 'Create new Event',
     onClick: () => {
       props.__engine.push('new', {});
