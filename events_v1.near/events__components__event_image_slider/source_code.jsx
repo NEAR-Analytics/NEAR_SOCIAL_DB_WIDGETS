@@ -1,14 +1,8 @@
 let event = props.event || null;
 
-// HACK: this is a hack to get regular update calls
-const data = fetch('https://api.coingecko.com/api/v3/coins/near', {
-  subscribe: true,
-  method: 'GET',
-  headers: {
-    Accept: '*/*',
-  },
-});
-console.log({ data });
+if (!state) {
+  State.init({ index: 0 });
+}
 
 if (!event) {
   // TODO: return default image
@@ -28,6 +22,20 @@ const imagesWithCid = (event.images || [])
 const displayImages = imagesWithCid.filter((image) => {
   return image.type === mode;
 });
+
+// HACK: this is a hack to get regular update calls
+const data = `
+fetch('https://api.coingecko.com/api/v3/coins/near', {
+  subscribe: true,
+  method: 'GET',
+  headers: {
+    Accept: '*/*',
+  },
+});
+
+props.onUpdate()
+
+`;
 
 return (
   <div
