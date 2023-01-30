@@ -1,11 +1,16 @@
 props.controller.setLayout('modal', {
   title: 'Delete Event',
 });
-
 const EVENTS_CONTRACT = 'events_v1.near';
 const TGAS_300 = '300000000000000';
 
-const eventId = props.event.id;
+const contract = EVENTS_CONTRACT;
+const method = 'remove_event';
+const args = {
+  event_id: props.event.id,
+};
+const gas = TGAS_300;
+const deposit = '0';
 
 if (!state) {
   console.log('init state');
@@ -15,21 +20,18 @@ if (!state) {
 
 function deleteEvent() {
   if (state.inFlight) {
-    console.log('already deleted', state.inFlight);
-    props.__engine.pop();
     return;
   }
 
-  const result = Near.call(
+  Near.call(
     EVENTS_CONTRACT,
     'remove_event',
     {
       event_id: eventId,
     },
-    TGAS_300
+    TGAS_300,
+    deposit
   );
-
-  console.log('result', result);
 
   State.update({ inFlight: true });
 }
