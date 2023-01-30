@@ -197,10 +197,6 @@ return (
               fontWeight: 'bold',
               padding: '10px 0',
               marginRight: '10px',
-              // on hover underline
-              hover: {
-                textDecoration: 'underline',
-              },
             }}
           >
             {/* TODO: for each link type find and display icon */}
