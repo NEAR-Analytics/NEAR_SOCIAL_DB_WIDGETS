@@ -59,26 +59,7 @@ const EventBody = styled.div`
 `;
 
 function gotoEvent() {
-  props.__engine.push('show', { event_id: event.id }, 'container', {
-    title: event.name,
-    back: true,
-    dropdownItems: [
-      {
-        name: 'components.dropdown_item',
-        props: {
-          label: 'Edit',
-          // onClick: () => {
-          //   props.__engine.push('edit', { event_id: event.id }, 'container', {
-          //     title: 'Edit Event',
-          //     back: true,
-          //   });
-          // },
-        },
-        layout: 'dropdown_item',
-        layoutProps: {},
-      },
-    ],
-  });
+  props.__engine.push('show', { event_id: event.id }, 'container');
 }
 
 return (
