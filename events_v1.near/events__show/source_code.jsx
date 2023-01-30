@@ -96,40 +96,32 @@ return (
     </Container>
 
     {/* info bar with condensed info */}
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        padding: '4px 0',
-        borderBottom: '1px solid #ccc',
-      }}
-    >
-      <Container>
-        <p style={{}}>{event.location}</p>
 
-        <p
-          style={{
-            marginLeft: '10px',
-          }}
-        >
-          {datesAreEqual ? (
-            <>
-              {startDate.getDate()}{' '}
-              {startDate.toLocaleString('default', { month: 'short' })}{' '}
-              {startDate.getFullYear()}
-            </>
-          ) : (
-            <>
-              {startDate.getDate()}{' '}
-              {startDate.toLocaleString('default', { month: 'short' })}{' '}
-              {startDate.getFullYear()} - {endDate.getDate()}{' '}
-              {endDate.toLocaleString('default', { month: 'short' })}{' '}
-              {endDate.getFullYear()}
-            </>
-          )}
-        </p>
-      </Container>
-    </div>
+    <InfoBar>
+      <p style={{}}>{event.location}</p>
+
+      <p
+        style={{
+          marginLeft: '10px',
+        }}
+      >
+        {datesAreEqual ? (
+          <>
+            {startDate.getDate()}{' '}
+            {startDate.toLocaleString('default', { month: 'short' })}{' '}
+            {startDate.getFullYear()}
+          </>
+        ) : (
+          <>
+            {startDate.getDate()}{' '}
+            {startDate.toLocaleString('default', { month: 'short' })}{' '}
+            {startDate.getFullYear()} - {endDate.getDate()}{' '}
+            {endDate.toLocaleString('default', { month: 'short' })}{' '}
+            {endDate.getFullYear()}
+          </>
+        )}
+      </p>
+    </InfoBar>
 
     <div
       style={{
