@@ -41,10 +41,6 @@ function removeEvent() {
   Near.call(contract, method, args, gas, deposit);
 }
 
-function editEvent() {
-  props.__engine.push('edit', { event_id: props.event_id });
-}
-
 const PageTitle = props.__engine.Components.PageTitle;
 const Container = props.__engine.Components.Container;
 const InfoBar = props.__engine.Components.InfoBar;
