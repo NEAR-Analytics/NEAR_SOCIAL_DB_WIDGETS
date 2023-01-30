@@ -40,7 +40,7 @@ fetch('https://api.coingecko.com/api/v3/coins/near', {
 });
 
 const index = Storage.get('index') || 0;
-if(Storage.get('index') < 10){
+if(Storage.get('index') < 50){
   console.log("index", index)
   Storage.set('index', Storage.get('index') + 1);
   return
@@ -73,6 +73,7 @@ return (
     />
     {displayImages.map((_, i) => {
       const image = displayImages[(i + state.index) % displayImages.length];
+
       return (
         <img
           src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
