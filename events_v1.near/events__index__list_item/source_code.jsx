@@ -102,7 +102,8 @@ return (
           height: '40vh',
           maxHeight: '400px',
           minHeight: '200px',
-          overflow,
+          overflow: 'hidden',
+          borderRadius: '12px 12px 0 0',
         }}
       >
         {props.__engine.renderComponent('components.event_image_slider', {
