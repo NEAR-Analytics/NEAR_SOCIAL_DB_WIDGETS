@@ -66,9 +66,11 @@ return (
         </div>
       </div>
     </div>
+
     <div
       style={{
         padding: '40px 20px',
+        marginTop: '40px',
       }}
     >
       {/* title */}
