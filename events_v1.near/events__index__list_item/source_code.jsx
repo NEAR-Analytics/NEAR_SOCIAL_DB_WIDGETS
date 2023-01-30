@@ -37,15 +37,12 @@ const EventHeader = styled.div`
 `;
 
 const EventHeaderImage = styled.div`
-  width: 100%;
-  height: 10vw;
-  min-height: 100px;
-  max-height: 200px;
-  background-image: url(${event.image_url});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 16px 16px 0 0;
+ height: 'auto',
+    width: '100%',
+    aspectRatio: '1/1',
+    overflow: 'hidden',
+    borderRadius: '14px 14px 0 0',
+    borderBottom: '0.1vw solid #cccccc',
 `;
 
 const EventTitle = styled.h1`
