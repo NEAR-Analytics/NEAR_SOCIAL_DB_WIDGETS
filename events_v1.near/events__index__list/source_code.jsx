@@ -16,12 +16,16 @@ const IndexList = styled.div`
   width: 100%;
 
   & > * {
-    margin: 1rem;
+    margin-right: 2vw;
     max-width: 320px;
     min-width: 240px;
     width: 100%;
     flex-grow: 3;
     flex-shrink: 1;
+
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+    }
   }
 `;
 
