@@ -41,6 +41,8 @@ const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 const datesAreEqual = startDate.toDateString() === endDate.toDateString();
 
+console.log('event', event);
+
 return (
   <>
     {/* Header Images */}
