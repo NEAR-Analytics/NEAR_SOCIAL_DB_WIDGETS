@@ -88,9 +88,11 @@ return (
     </div>
 
     {/* title */}
-    <Container>
-      <PageTitle>{event.name}</PageTitle>
-    </Container>
+    <div style={{ marginTop: '4vw' }}>
+      <Container>
+        <PageTitle>{event.name}</PageTitle>
+      </Container>
+    </div>
 
     {/* info bar with condensed info */}
 
