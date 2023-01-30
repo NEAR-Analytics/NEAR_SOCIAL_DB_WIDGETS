@@ -100,29 +100,29 @@ return (
     {/* info bar with condensed info */}
 
     <InfoBar>
-      <p style={{}}>{event.location}</p>
+      <InfoBarItem>
+        <Text>{event.location}</Text>
+      </InfoBarItem>
 
-      <p
-        style={{
-          marginLeft: '10px',
-        }}
-      >
-        {datesAreEqual ? (
-          <>
-            {startDate.getDate()}{' '}
-            {startDate.toLocaleString('default', { month: 'short' })}{' '}
-            {startDate.getFullYear()}
-          </>
-        ) : (
-          <>
-            {startDate.getDate()}{' '}
-            {startDate.toLocaleString('default', { month: 'short' })}{' '}
-            {startDate.getFullYear()} - {endDate.getDate()}{' '}
-            {endDate.toLocaleString('default', { month: 'short' })}{' '}
-            {endDate.getFullYear()}
-          </>
-        )}
-      </p>
+      <InfoBarItem>
+        <Text>
+          {datesAreEqual ? (
+            <>
+              {startDate.getDate()}{' '}
+              {startDate.toLocaleString('default', { month: 'short' })}{' '}
+              {startDate.getFullYear()}
+            </>
+          ) : (
+            <>
+              {startDate.getDate()}{' '}
+              {startDate.toLocaleString('default', { month: 'short' })}{' '}
+              {startDate.getFullYear()} - {endDate.getDate()}{' '}
+              {endDate.toLocaleString('default', { month: 'short' })}{' '}
+              {endDate.getFullYear()}
+            </>
+          )}
+        </Text>
+      </InfoBarItem>
     </InfoBar>
 
     {/* link bar */}
@@ -209,9 +209,7 @@ return (
         <Text>{event.description}</Text>
       </Container>
 
-      <p>{event.description}</p>
       <p>{event.type}</p>
-      <p>{event.category}</p>
       <p>{event.status}</p>
     </div>
   </>
