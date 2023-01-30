@@ -350,7 +350,7 @@ function pop() {
 function dirtyEval(args) {
   const method = args[0];
   console.log('dirtyEval', typeof method);
-  if (typeof method === 'Function') {
+  if (typeof method === 'function') {
     console.log('dirtyEval', method);
     return method();
   }
