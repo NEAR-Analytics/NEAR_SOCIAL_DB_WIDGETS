@@ -53,7 +53,11 @@ return (
   >
     <Widget
       code={data}
-      onUpdate={() => State.update({ index: state.index + 1 })}
+      props={{
+        onUpdate: () => {
+          State.update({ index: state.index + 1 });
+        },
+      }}
     />
     {displayImages.map((image) => {
       return (
