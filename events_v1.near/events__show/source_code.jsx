@@ -48,7 +48,7 @@ return (
           minHeight: '100px',
           background: 'white',
           borderRadius: 14,
-          border: '2px solid black',
+          border: '0.3vw solid black',
         }}
       >
         <div
