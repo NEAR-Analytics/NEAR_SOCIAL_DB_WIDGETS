@@ -44,7 +44,6 @@ const EventTitle = styled.h1`
   margin: 0;
   padding: 1vw calc(max(0.5rem, 0.5vw));
   width: 100%;
-  border-bottom: 0.1vw solid #cccccc;
 `;
 
 const EventDate = styled.div`
@@ -56,6 +55,7 @@ const EventDate = styled.div`
   flex-grow: 0;
   flex-shrink: 0;
   width: 100%;
+  border-top: 0.1vw solid #cccccc;
 `;
 
 const EventBody = styled.div`
