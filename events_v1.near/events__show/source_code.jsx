@@ -24,6 +24,8 @@ props.controller.setLayout('container', {
     // why we have to use another method of calling functions.
     // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
     // will not work. VM Bug?
+    // might be related to us rerendering all the time to implement layouting.
+    //
     onClick: ['push', 'edit', { event_id: props.event_id }],
   },
 });
