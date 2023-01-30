@@ -23,15 +23,7 @@ function deleteEvent() {
     return;
   }
 
-  Near.call(
-    EVENTS_CONTRACT,
-    'remove_event',
-    {
-      event_id: eventId,
-    },
-    TGAS_300,
-    deposit
-  );
+  Near.call(contract, method, args, gas, deposit);
 
   State.update({ inFlight: true });
 }
