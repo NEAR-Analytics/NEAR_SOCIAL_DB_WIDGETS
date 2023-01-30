@@ -83,7 +83,7 @@ return (
 
     <div
       style={{
-        padding: '25px 20px',
+        padding: '25px 10vw',
         marginTop: '5vw',
       }}
     >
