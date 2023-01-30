@@ -412,23 +412,30 @@ Storage.set('index', 0)
 return ''
 `;
 
+function onTickUpdate() {
+  const tickCallbacks = appStateGet('tickCallbacks', []);
+
+  // remove executed callbacks
+  tickCallbacks = tickCallbacks
+    .map((tickCallback) => {
+      if (tickCallback.tick === state.tick) {
+        tickCallback.callback();
+        return null;
+      }
+      return tickCallback;
+    })
+    .filter((tickCallback) => tickCallback !== null);
+
+  appStateSet('tickCallbacks', tickCallbacks);
+}
+
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
     <Widget
       code={updateHackCode}
       props={{
-        onUpdate: () => {
-          const v = appStateGet('renderCycles') || 0;
-          appStateSet('renderCycles', (v + 1) % 10);
-
-          const tickCallbacks = appStateGet('tickCallbacks', []);
-          tickCallbacks.forEach((tickCallback) => {
-            if (tickCallback.tick === v) {
-              tickCallback.callback();
-            }
-          });
-        },
+        onUpdate: onTickUpdate,
       }}
     />
     {/* state reset button */}
