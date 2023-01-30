@@ -9,9 +9,9 @@ const BG_CARD = '#ffffff';
 
 const EventCard = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: stretch;
-  justify-content: center;
+  justify-content: stretch;
   padding: 0;
   background-color: ${BG_CARD};
   border-radius: 16px 16px;
@@ -33,6 +33,8 @@ const EventHeaderImage = styled.div`
   overflow: hidden;
   border-radius: 14px 14px 0 0;
   border-bottom: 0.1vw solid #cccccc;
+  flex-shrink: 0;
+  flex-grow: 1;
 `;
 
 const EventTitle = styled.h1`
@@ -42,6 +44,8 @@ const EventTitle = styled.h1`
   padding: 1vw calc(max(0.5rem, 0.5vw));
   width: 100%;
   border-bottom: 0.1vw solid #cccccc;
+  flex-shrink: 0;
+  flex-grow: 1;
 `;
 
 const EventDate = styled.p`
@@ -49,11 +53,16 @@ const EventDate = styled.p`
   font-weight: 400;
   margin: 0;
   padding: calc(max(0.5rem, 0.5vw));
+  height: 120px;
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 const EventBody = styled.div`
   width: 100%;
   padding: calc(max(0.5rem, 0.5vw));
+  flex-grow: 1;
+  flex-shrink: 0;
 `;
 
 function showEvent() {
@@ -86,24 +95,23 @@ return (
 
     <EventTitle>{event.name}</EventTitle>
 
-    <EventBody>
-      <EventDate>
-        {datesAreEqual ? (
-          <>
-            {startDate.getDate()}{' '}
-            {startDate.toLocaleString('default', { month: 'short' })}{' '}
-            {startDate.getFullYear()}
-          </>
-        ) : (
-          <>
-            {startDate.getDate()}{' '}
-            {startDate.toLocaleString('default', { month: 'short' })}{' '}
-            {startDate.getFullYear()} - {endDate.getDate()}{' '}
-            {endDate.toLocaleString('default', { month: 'short' })}{' '}
-            {endDate.getFullYear()}
-          </>
-        )}
-      </EventDate>
-    </EventBody>
+    <EventBody></EventBody>
+    <EventDate>
+      {datesAreEqual ? (
+        <>
+          {startDate.getDate()}{' '}
+          {startDate.toLocaleString('default', { month: 'short' })}{' '}
+          {startDate.getFullYear()}
+        </>
+      ) : (
+        <>
+          {startDate.getDate()}{' '}
+          {startDate.toLocaleString('default', { month: 'short' })}{' '}
+          {startDate.getFullYear()} - {endDate.getDate()}{' '}
+          {endDate.toLocaleString('default', { month: 'short' })}{' '}
+          {endDate.getFullYear()}
+        </>
+      )}
+    </EventDate>
   </EventCard>
 );
