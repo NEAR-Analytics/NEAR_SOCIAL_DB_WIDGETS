@@ -67,6 +67,10 @@ function showEvent() {
   props.__engine.push('show', { event_id: event.id });
 }
 
+const startDate = new Date(event.start_date);
+const endDate = new Date(event.end_date);
+const datesAreEqual = startDate.toDateString() === endDate.toDateString();
+
 const shortDesc =
   event.description.length > 100
     ? event.description.substring(0, 100) + '...'
