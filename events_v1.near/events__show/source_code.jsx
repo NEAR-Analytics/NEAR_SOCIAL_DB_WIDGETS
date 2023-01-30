@@ -18,7 +18,6 @@ props.controller.setLayout('container', {
 });
 
 function removeEvent() {
-  const id = props.event.id;
   const contract = EVENTS_CONTRACT;
   const method = 'remove_event';
   const args = {
@@ -26,7 +25,7 @@ function removeEvent() {
   };
   const gas = TGAS_300;
   const deposit = '0';
-  Near.call(contract, method, args, gas, null);
+  Near.call(contract, method, args, gas, deposit);
 }
 
 const startDate = new Date(event.start_date);
