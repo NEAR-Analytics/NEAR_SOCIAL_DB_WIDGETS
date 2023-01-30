@@ -7,7 +7,17 @@ const TGAS_300 = '300000000000000';
 
 const eventId = props.event.id;
 
+if (!state) {
+  State.init({ result: null });
+}
+
 function deleteEvent() {
+  if (state.result) {
+    console.log('already deleted', state.result);
+    props.__engine.pop();
+    return;
+  }
+
   const result = Near.call(
     EVENTS_CONTRACT,
     'remove_event',
@@ -18,10 +28,15 @@ function deleteEvent() {
   );
 
   console.log('result', result);
+
+  State.update({ result });
 }
 
 deleteEvent();
 
-props.__engine.pop();
-
-return '';
+return (
+  <>
+    <h2>Deleting Event</h2>
+    {JSON.stringify(state.result)}
+  </>
+);
