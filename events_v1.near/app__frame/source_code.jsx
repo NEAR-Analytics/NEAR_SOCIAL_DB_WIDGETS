@@ -71,7 +71,7 @@ const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
 
-const PaddingLeftRight = 'calc(max(28px, 1.6vw))';
+const PagePaddingHorizontal = 'calc(max(28px, 1.6vw))';
 
 const Select = styled.select`
   background-color: #4caf50;
@@ -116,8 +116,8 @@ const PageTitle = styled.h1`
 `;
 
 const Container = styled.div`
-  paddingleft: ${PaddingLeftRight};
-  paddingright: ${PaddingLeftRight};
+  paddingleft: ${PagePaddingHorizontal};
+  paddingright: ${PagePaddingHorizontal};
   paddingtop: 12px;
   paddingbottom: 12px;
 `;
@@ -125,7 +125,7 @@ const Container = styled.div`
 const InfoBar = styled.div`
   display: flex;
   align-items: center;
-  padding: 4px ${PaddingLeftRight};
+  padding: 4px ${PagePaddingHorizontal};
   border-bottom: 1px solid #e0e0e0;
 `;
 
