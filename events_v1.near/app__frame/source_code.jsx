@@ -389,6 +389,8 @@ return (
       <div
         style={{
           position: 'relative',
+          width: '100vw',
+          minHeight: '100vh',
         }}
       >
         <div id="app-state" data-state={JSON.stringify(state)}></div>
