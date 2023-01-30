@@ -33,6 +33,8 @@ const PageTitle = props.__engine.Components.PageTitle;
 const Container = props.__engine.Components.Container;
 const InfoBar = props.__engine.Components.InfoBar;
 const TextHeader = props.__engine.Components.TextHeader;
+const Text = props.__engine.Components.Text;
+const InlineTag = props.__engine.Components.InlineTag;
 
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
