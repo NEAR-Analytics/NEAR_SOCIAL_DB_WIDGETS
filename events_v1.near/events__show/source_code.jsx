@@ -36,6 +36,7 @@ const TextHeader = props.__engine.Components.TextHeader;
 const Text = props.__engine.Components.Text;
 const InlineTag = props.__engine.Components.InlineTag;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
+const InfoBarLink = props.__engine.Components.InfoBarLink;
 
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
@@ -185,19 +186,11 @@ return (
 
       {event.links.map((link, idx) => {
         return (
-          <a
+          <InfoBarLink
             href={link.url}
             key={idx}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              color: '#000',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '10px 0',
-              marginRight: '10px',
-            }}
             onMouseEnter={(e) => {
               e.target.style.textDecoration = 'underline';
             }}
@@ -207,7 +200,7 @@ return (
           >
             {/* TODO: for each link type find and display icon */}
             {link.text}
-          </a>
+          </InfoBarLink>
         );
       })}
     </InfoBar>
