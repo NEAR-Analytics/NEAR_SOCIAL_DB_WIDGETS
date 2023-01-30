@@ -12,25 +12,34 @@ const args = {
 const gas = TGAS_300;
 const deposit = '0';
 
+// if state is inFlight and the appState is not set, then we returned from the call and can exit the screen
+if (
+  state &&
+  state.inFlight &&
+  !props.__engine.appStateGet(`delete_event_${props.event.id}`)
+) {
+  props.__engine.pop();
+  return 'Loading';
+}
+
 if (!state) {
   console.log('init state');
   State.init({ inFlight: null });
   return 'Loading';
 }
 
-function deleteEvent() {
+function callAction() {
   if (state.inFlight) {
     return;
   }
 
   Near.call(contract, method, args, gas, deposit);
 
+  props.__engine.appStateSet(`delete_event_${props.event.id}`, true);
   State.update({ inFlight: true });
 }
 
-console.log('state', JSON.stringify(state, null, 2));
-
-deleteEvent();
+callAction();
 
 return (
   <>
