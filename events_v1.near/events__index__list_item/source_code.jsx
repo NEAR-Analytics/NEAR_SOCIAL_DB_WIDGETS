@@ -36,6 +36,18 @@ const EventHeader = styled.div`
   border-bottom: 0.1vw solid #cccccc;
 `;
 
+const EventHeaderImage = styled.div`
+  width: 100%;
+  height: 10vw;
+  min-height: 100px;
+  max-height: 200px;
+  background-image: url(${event.image_url});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 16px 16px 0 0;
+`;
+
 const EventTitle = styled.h1`
   font-size: 1.25vw;
   font-weight: 500;
@@ -77,21 +89,13 @@ return (
     role="button"
     tabIndex={0}
   >
-    <div
-      style={{
-        height: 'auto',
-        width: '100%',
-        aspectRatio: '1/1',
-        overflow: 'hidden',
-        borderRadius: '14px 14px 0 0',
-        borderBottom: '0.1vw solid #cccccc',
-      }}
-    >
+    <EventHeaderImage>
       {props.__engine.renderComponent('components.event_image_slider', {
         event,
         mode: 'tile',
       })}
-    </div>
+    </EventHeaderImage>
+
     <EventHeader>
       <EventTitle>{event.name}</EventTitle>
     </EventHeader>
