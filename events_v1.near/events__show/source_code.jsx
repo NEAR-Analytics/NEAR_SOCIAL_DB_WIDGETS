@@ -37,11 +37,16 @@ return (
       <div
         style={{
           position: 'absolute',
-          top: '0',
           left: '0',
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0, 0, 0, 0.3)',
+          bottom: '0',
+          transform: 'translate(0, -50%)',
+          padding: '4px',
+          width: '20vw',
+          height: '20vw',
+          minWidth: '100px',
+          minHeight: '100px',
+          background: 'white',
+          borderRadius: 12,
         }}
       >
         {props.__engine.renderComponent('components.event_image_slider', {
