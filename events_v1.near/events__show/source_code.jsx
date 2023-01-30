@@ -16,6 +16,10 @@ if (!event) {
 props.controller.setLayout('container', {
   back: true,
   title: event.name,
+  primaryAction: {
+    label: 'Edit',
+    onClick: ['push', 'edit', { event_id: props.event_id }],
+  },
 });
 
 function removeEvent() {
