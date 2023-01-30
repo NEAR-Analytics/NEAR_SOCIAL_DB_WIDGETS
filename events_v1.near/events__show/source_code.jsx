@@ -198,6 +198,12 @@ return (
               padding: '10px 0',
               marginRight: '10px',
             }}
+            onMouseEnter={(e) => {
+              e.target.style.textDecoration = 'underline';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.textDecoration = 'none';
+            }}
           >
             {/* TODO: for each link type find and display icon */}
             {link.text}
