@@ -86,6 +86,7 @@ return (
     <input
       type="text"
       id="account-id"
+      placeholder="social.near, john.near..."
       className={`form-control ${
         state.valid ? "" : "was-validated is-invalid"
       }`}
