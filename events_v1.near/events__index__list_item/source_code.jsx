@@ -78,11 +78,9 @@ return (
     <EventHeader>
       <div
         style={{
-          height: '250px',
-          maxHeight: '400px',
-          minHeight: '200px',
+          height: 'auto',
           width: '100%',
-          maxWidth: '100%',
+          aspectRatio: '1/1',
           overflow: 'hidden',
           borderRadius: '12px 12px 0 0',
         }}
