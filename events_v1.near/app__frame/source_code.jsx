@@ -1,5 +1,7 @@
 const VERSION = '0.2.0';
 
+const data = require('near-sdk-as/data');
+
 /**
  *  NEAR Social App
  *
