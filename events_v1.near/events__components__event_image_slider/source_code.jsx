@@ -1,5 +1,15 @@
 let event = props.event || null;
 
+// HACK: this is a hack to get regular update calls
+const data = fetch('https://api.coingecko.com/api/v3/coins/near', {
+  subscribe: true,
+  method: 'GET',
+  headers: {
+    Accept: '*/*',
+  },
+});
+console.log({ data });
+
 if (!event) {
   // TODO: return default image
   return <img src="" alt="Event!" />;
