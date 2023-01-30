@@ -59,7 +59,7 @@ const EventBody = styled.div`
 `;
 
 function gotoEvent() {
-  props.__engine.push('show', { event_id: event.id }, 'container');
+  props.__engine.push('show', { event_id: event.id });
 }
 
 return (
