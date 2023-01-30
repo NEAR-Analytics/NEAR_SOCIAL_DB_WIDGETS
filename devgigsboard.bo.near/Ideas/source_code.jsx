@@ -11,23 +11,26 @@ initState({
   selectedPost: props.postId,
 });
 
-if (
-  context.accountId &&
-  Near.view("social.near", "is_write_permission_granted", {
+if (context.accountId) {
+  let grantNotify = Near.view("social.near", "is_write_permission_granted", {
     predecessor_id: ownerId,
     key: context.accountId + "/index/notify",
-  }) === false
-) {
-  Near.call(
-    "social.near",
-    "grant_write_permission",
-    {
-      predecessor_id: ownerId,
-      keys: [context.accountId + "/index/notify"],
-    },
-    30_000_000_000_000n,
-    1n
-  );
+  });
+  console.log(grantNotify);
+  if (grantNotify === false) {
+    Near.call(
+      "social.near",
+      "grant_write_permission",
+      {
+        predecessor_id: ownerId,
+        keys: [context.accountId + "/index/notify"],
+      },
+      30_000_000_000_000n,
+      1n
+    );
+  } else {
+    console.log(grantNotify);
+  }
 }
 
 // A workaround for weird VM behavior. It does not call initState when the same
