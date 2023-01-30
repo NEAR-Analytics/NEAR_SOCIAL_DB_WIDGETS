@@ -108,7 +108,7 @@ return (
       {navbar}
 
       {blurs.map((i) => {
-        const elHeight = 1;
+        const elHeight = 4;
         const minBlur = 30;
         const maxBlur = 80;
         const blurDelta = (maxBlur - minBlur) / elHeight;
