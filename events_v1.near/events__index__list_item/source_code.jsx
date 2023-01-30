@@ -30,7 +30,7 @@ const EventHeader = styled.div`
 `;
 
 const EventTitle = styled.h1`
-  font-size: 1.5rem;
+  font-size: 2vw;
   font-weight: 500;
   margin: 0;
   padding: 1rem;
