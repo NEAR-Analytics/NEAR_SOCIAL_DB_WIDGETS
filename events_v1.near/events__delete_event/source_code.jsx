@@ -4,6 +4,7 @@ props.controller.setLayout('modal', {
 const EVENTS_CONTRACT = 'events_v1.near';
 const TGAS_300 = '300000000000000';
 
+const id = props.event.id;
 const contract = EVENTS_CONTRACT;
 const method = 'remove_event';
 const args = {
@@ -13,34 +14,26 @@ const gas = TGAS_300;
 const deposit = '0';
 
 console.log('state', state);
-console.log(
-  'storage',
-  props.__engine.storageGet(`delete_event_${props.event.id}`)
-);
-
-// if
-if (!state && props.__engine.storageGet(`delete_event_${props.event.id}`)) {
-  console.log('pop');
-  props.__engine.pop();
-  return 'Loading';
-}
+console.log('storage', props.__engine.storageGet(`${method}_${id}`));
 
 if (!state) {
+  if (props.__engine.storageGet(`${method}_${id}`)) {
+    props.__engine.pop();
+    return 'Loading';
+  }
+
   console.log('init state');
-  State.init({ inFlight: null });
+  State.init({ inFlight: false });
   return 'Loading';
 }
 
-function callAction() {
-  if (state.inFlight) {
-    return;
-  }
-
-  Near.call(contract, method, args, gas, deposit);
-
-  props.__engine.storageSet(`delete_event_${props.event.id}`, true);
-  State.update({ inFlight: true });
+if (state.inFlight) {
+  return;
 }
+
+Near.call(contract, method, args, gas, deposit);
+State.update({ inFlight: true });
+props.__engine.storageSet(`${method}_${id}`, true);
 
 callAction();
 
