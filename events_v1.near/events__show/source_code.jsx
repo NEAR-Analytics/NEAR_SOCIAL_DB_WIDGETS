@@ -206,7 +206,7 @@ return (
 
     <div
       style={{
-        padding: '82px 0',
+        marginTop: '4vw',
       }}
     >
       <Container>
