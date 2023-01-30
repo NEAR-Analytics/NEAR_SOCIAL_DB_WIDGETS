@@ -10,7 +10,7 @@ const BG_CARD = '#ffffff';
 const EventCard = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   padding: 0;
   background-color: ${BG_CARD};
@@ -93,9 +93,7 @@ return (
       })}
     </EventHeaderImage>
 
-    <EventHeader>
-      <EventTitle>{event.name}</EventTitle>
-    </EventHeader>
+    <EventTitle>{event.name}</EventTitle>
 
     <EventBody>
       <EventDate>
