@@ -88,7 +88,7 @@ return (
     </div>
 
     {/* title */}
-    <div style={{ marginTop: '4vw' }}>
+    <div style={{ marginTop: '4vw', padding: '85px 0' }}>
       <Container>
         <PageTitle>{event.name}</PageTitle>
       </Container>
