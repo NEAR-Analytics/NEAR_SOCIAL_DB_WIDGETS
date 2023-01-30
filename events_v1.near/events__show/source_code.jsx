@@ -137,7 +137,7 @@ return (
         </Text>
       </InfoBarItem>
 
-      {event.category ? (
+      {event.category && event.category !== '' ? (
         <InfoBarItem>
           <i className="bi bi-tag"></i>
 
