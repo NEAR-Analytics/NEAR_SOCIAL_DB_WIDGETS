@@ -382,7 +382,7 @@ return (
     {/* state reset button */}
     <div
       style={{
-        position: 'absolute',
+        position: 'fixed',
         bottom: 0,
         right: 0,
         zIndex: 9999,
