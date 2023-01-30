@@ -112,6 +112,13 @@ const PageTitle = styled.h1`
   font-size: calc(max(32px, 2.5vw));
   color: black;
 `;
+
+const Container = styled.div`
+  paddingleft: calc(max(28px, 1.6vw));
+  paddingright: calc(max(28px, 1.6vw));
+  paddingtop: 12px;
+  paddingbottom: 12px;
+`;
 /**
  *   I suggest you don't edit anything below this line
  * */
