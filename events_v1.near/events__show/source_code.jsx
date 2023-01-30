@@ -121,6 +121,7 @@ return (
                 fontSize: '14px',
                 fontWeight: 'bold',
                 padding: '10px 0',
+                marginRight: '10px',
               }}
               role="button"
               tabIndex={0}
@@ -142,6 +143,7 @@ return (
                 fontSize: '14px',
                 fontWeight: 'bold',
                 padding: '10px 0',
+                marginRight: '10px',
               }}
               role="button"
               tabIndex={0}
@@ -172,7 +174,7 @@ return (
                 fontSize: '14px',
                 fontWeight: 'bold',
                 padding: '10px 0',
-                marginLeft: '10px',
+                marginRight: '10px',
               }}
             >
               {/* TODO: for each link type find and display icon */}
