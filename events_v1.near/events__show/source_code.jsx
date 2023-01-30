@@ -56,7 +56,7 @@ return (
             width: '100%',
             height: '100%',
             overflow: 'hidden',
-            borderRadius: 14,
+            borderRadius: 12,
           }}
         >
           {props.__engine.renderComponent('components.event_image_slider', {
