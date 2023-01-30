@@ -302,6 +302,7 @@ function renderComponent(name, props) {
 
     push,
     pop,
+    replace,
     rerender,
     appStateGet,
     appStateSet,
