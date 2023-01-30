@@ -1,14 +1,10 @@
-function createEvent() {
-  props.__engine.push('new', {});
-}
-
 props.controller.setLayout('container', {
   title: 'ND Events',
   back: false,
 
   primaryAction: {
     label: 'Create new Event',
-    onClick: 'push:new:{}',
+    onClick: ['push', 'new', {}]],
   },
 });
 
