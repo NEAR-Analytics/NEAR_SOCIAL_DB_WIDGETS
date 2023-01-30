@@ -277,7 +277,7 @@ function push(name, props) {
     layers: newLayers,
   });
 
-  rerender();
+  // rerender();
 }
 
 function replace(name, props) {
@@ -294,7 +294,7 @@ function replace(name, props) {
     layers: newLayers,
   });
 
-  rerender();
+  // rerender();
 }
 
 // pop from the stack, ensure we always have at least one layer
