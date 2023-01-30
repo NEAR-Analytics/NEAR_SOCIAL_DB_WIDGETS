@@ -3,6 +3,7 @@ props.controller.setLayout('modal', {
 });
 
 const EVENTS_CONTRACT = 'events_v1.near';
+const TGAS_300 = '300000000000000';
 
 const eventId = props.event.id;
 
