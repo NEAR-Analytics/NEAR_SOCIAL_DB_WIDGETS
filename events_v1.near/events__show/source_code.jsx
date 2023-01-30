@@ -34,6 +34,8 @@ function removeEvent() {
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 
+const datesAreEqual = startDate.toDateString() === endDate.toDateString();
+
 return (
   <>
     <div
@@ -108,11 +110,21 @@ return (
             marginLeft: '10px',
           }}
         >
-          {startDate.getDate()}{' '}
-          {startDate.toLocaleString('default', { month: 'short' })}{' '}
-          {startDate.getFullYear()} - {endDate.getDate()}{' '}
-          {endDate.toLocaleString('default', { month: 'short' })}{' '}
-          {endDate.getFullYear()}
+          {datesAreEqual ? (
+            <>
+              {startDate.getDate()}{' '}
+              {startDate.toLocaleString('default', { month: 'short' })}{' '}
+              {startDate.getFullYear()}
+            </>
+          ) : (
+            <>
+              {startDate.getDate()}{' '}
+              {startDate.toLocaleString('default', { month: 'short' })}{' '}
+              {startDate.getFullYear()} - {endDate.getDate()}{' '}
+              {endDate.toLocaleString('default', { month: 'short' })}{' '}
+              {endDate.getFullYear()}
+            </>
+          )}
         </p>
       </div>
 
