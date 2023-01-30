@@ -67,7 +67,7 @@ return (
       code={data}
       props={{
         onUpdate: () => {
-          State.update({ index: state.index + 1 });
+          State.update({ index: (state.index + 1) % displayImages.length });
         },
       }}
     />
