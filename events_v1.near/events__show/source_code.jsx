@@ -20,6 +20,7 @@ props.controller.setLayout('container', {
 
 const PageTitle = props.__engine.Components.PageTitle;
 const Container = props.__engine.Components.Container;
+const InfoBar = props.__engine.Components.InfoBar;
 
 function removeEvent() {
   const contract = EVENTS_CONTRACT;
