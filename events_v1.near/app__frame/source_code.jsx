@@ -134,12 +134,14 @@ const InfoBarItem = styled.div`
   display: flex;
   align-items: center;
   margin-right: 8px;
+  padding: 4px 0;
 `;
 const InfoBarLink = styled.a`
   font-size: 16px;
   color: #424242;
   text-decoration: none;
   margin-right: 8px;
+  padding: 4px 0;
 
   &:hover {
     text-decoration: underline;
