@@ -35,7 +35,7 @@ const EventHeaderImage = styled.div`
   border-radius: 14px 14px 0 0;
   border-bottom: 0.1vw solid #cccccc;
   flex-shrink: 0;
-  flex-grow: 1;
+  flex-grow: 0;
 `;
 
 const EventTitle = styled.h1`
