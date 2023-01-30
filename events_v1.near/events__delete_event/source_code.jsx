@@ -33,7 +33,6 @@ if (state.inFlight) {
 }
 
 State.update({ inFlight: true });
-Near.call(contract, method, args, gas, null);
 props.__engine.storageSet(`${method}_${id}`, true);
 
 return (
