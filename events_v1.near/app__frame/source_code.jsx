@@ -136,12 +136,29 @@ const InfoBarItem = styled.div`
   margin-right: 8px;
   padding: 4px 0;
 `;
+
 const InfoBarLink = styled.a`
   font-size: 16px;
   color: #424242;
   text-decoration: none;
   margin-right: 8px;
   padding: 4px 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:visited {
+    color: #424242;
+  }
+
+  &:active {
+    color: #424242;
+  }
 `;
 
 const TextHeader = styled.div`
