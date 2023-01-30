@@ -41,6 +41,7 @@ const navbar = (
       top: NAVBAR_OFFSET_TOP,
       width: '100%',
       backgroundColor: '#2c2c54',
+      zIndex: 99999999,
     }}
   >
     <div className="container-fluid h-100 flex">
