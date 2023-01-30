@@ -70,7 +70,7 @@ return (
     <div
       style={{
         padding: '40px 20px',
-        marginTop: '10vh',
+        marginTop: '10vw',
       }}
     >
       {/* title */}
