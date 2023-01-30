@@ -19,10 +19,10 @@ const EventCard = styled.div`
   border: 0.1vw solid #848484;
   cursor: pointer;
 
-  transition: all 0.5s ease;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 0 20px 2px rgba(0, 0, 0, 0.2);
   }
 `;
 
