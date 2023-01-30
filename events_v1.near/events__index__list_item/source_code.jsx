@@ -33,7 +33,7 @@ const EventTitle = styled.h1`
   font-size: 2vw;
   font-weight: 500;
   margin: 0;
-  padding: 1rem;
+  padding: calc(max(0.5rem, 0.5vw));
   width: 100%;
 `;
 
