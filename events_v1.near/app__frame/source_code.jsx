@@ -348,8 +348,11 @@ function pop() {
 }
 
 function dirtyEval(args) {
+  const method = args[0];
   const key = args[1];
   const mArgs = args.slice(2);
+
+  console.log('dirtyEval', method, key, mArgs);
 
   switch (method) {
     case 'push':
