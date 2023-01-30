@@ -356,7 +356,7 @@ function dirtyEval(args) {
   switch (method) {
     case 'push':
       result = push(key, mArgs[0]);
-      break;
+    break;
     case 'replace':
       result = replace(key, mArgs[0]);
       break;
