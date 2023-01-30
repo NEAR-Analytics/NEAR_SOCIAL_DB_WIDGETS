@@ -12,12 +12,14 @@ const args = {
 const gas = TGAS_300;
 const deposit = '0';
 
-// if state is inFlight and the appState is not set, then we returned from the call and can exit the screen
-if (
-  state &&
-  state.inFlight &&
-  !props.__engine.appStateGet(`delete_event_${props.event.id}`)
-) {
+console.log('state', state);
+console.log(
+  'appState',
+  props.__engine.appStateGet(`delete_event_${props.event.id}`)
+);
+
+// if
+if (!state && !props.__engine.appStateGet(`delete_event_${props.event.id}`)) {
   props.__engine.pop();
   return 'Loading';
 }
