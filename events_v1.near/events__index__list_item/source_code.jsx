@@ -64,6 +64,7 @@ const EventBody = styled.div`
   padding: calc(max(0.5rem, 0.5vw));
   flex-grow: 1;
   flex-shrink: 0;
+  background-color: red;
 `;
 
 function showEvent() {
