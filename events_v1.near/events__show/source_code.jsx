@@ -113,27 +113,50 @@ return (
         }}
       >
         {props.__engine.accountId === event.account_id ? (
-          <span
-            style={{
-              color: '#000',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '10px 0',
-            }}
-            role="button"
-            tabIndex={0}
-            onClick={() => {
-              props.__engine.push('edit', { event_id: props.event_id });
-            }}
-            onKeyDown={() => {
-              if (event.key === 'Enter') {
+          <>
+            <span
+              style={{
+                color: '#000',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 0',
+              }}
+              role="button"
+              tabIndex={0}
+              onClick={() => {
                 props.__engine.push('edit', { event_id: props.event_id });
-              }
-            }}
-          >
-            Edit
-          </span>
+              }}
+              onKeyDown={() => {
+                if (event.key === 'Enter') {
+                  props.__engine.push('edit', { event_id: props.event_id });
+                }
+              }}
+            >
+              Edit
+            </span>
+            <span
+              style={{
+                color: '#000',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 0',
+              }}
+              role="button"
+              tabIndex={0}
+              onClick={() => {
+                props.__engine.push('edit', { event_id: props.event_id });
+              }}
+              onKeyDown={() => {
+                if (event.key === 'Enter') {
+                  props.__engine.push('edit', { event_id: props.event_id });
+                }
+              }}
+            >
+              Edit
+            </span>
+          </>
         ) : null}
 
         {event.links.map((link, idx) => {
