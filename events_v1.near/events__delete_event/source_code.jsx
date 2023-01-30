@@ -35,7 +35,6 @@ function deleteEvent() {
 }
 
 console.log('state', JSON.stringify(state, null, 2));
-console.log('props', JSON.stringify(props, null, 2));
 
 deleteEvent();
 
