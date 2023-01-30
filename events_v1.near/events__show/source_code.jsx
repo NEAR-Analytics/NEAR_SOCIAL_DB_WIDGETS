@@ -138,6 +138,8 @@ return (
       </InfoBarItem>
 
       <InfoBarItem>
+        <i className="bi bi-tag"></i>
+
         <InlineTag>{event.category}</InlineTag>
       </InfoBarItem>
     </InfoBar>
