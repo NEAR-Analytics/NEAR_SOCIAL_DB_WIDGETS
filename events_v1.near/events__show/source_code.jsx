@@ -137,11 +137,13 @@ return (
         </Text>
       </InfoBarItem>
 
-      <InfoBarItem>
-        <i className="bi bi-tag"></i>
+      {event.category ? (
+        <InfoBarItem>
+          <i className="bi bi-tag"></i>
 
-        <InlineTag>{event.category}</InlineTag>
-      </InfoBarItem>
+          <InlineTag>{event.category}</InlineTag>
+        </InfoBarItem>
+      ) : null}
     </InfoBar>
 
     {/* link bar */}
