@@ -26,16 +26,6 @@ const EventCard = styled.div`
   }
 `;
 
-const EventHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  border-bottom: 0.1vw solid #cccccc;
-`;
-
 const EventHeaderImage = styled.div`
   height: 'auto';
   width: '100%';
@@ -51,6 +41,7 @@ const EventTitle = styled.h1`
   margin: 0;
   padding: 1vw calc(max(0.5rem, 0.5vw));
   width: 100%;
+  border-bottom: 0.1vw solid #cccccc;
 `;
 
 const EventDate = styled.p`
