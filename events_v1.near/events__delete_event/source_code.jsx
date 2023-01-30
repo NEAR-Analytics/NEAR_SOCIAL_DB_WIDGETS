@@ -2,6 +2,8 @@ props.controller.setLayout('modal', {
   title: 'Delete Event',
 });
 
+const EVENTS_CONTRACT = 'events_v1.near';
+
 function deleteEvent() {
   Near.call(
     EVENTS_CONTRACT,
