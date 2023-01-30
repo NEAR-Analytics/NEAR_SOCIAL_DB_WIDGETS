@@ -132,6 +132,12 @@ const InfoBar = styled.div`
   border-bottom: 1px solid #e0e0e0;
 `;
 
+const InfoBarItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+`;
+
 const TextHeader = styled.div`
   font-size: 14px;
   color: ${PrimaryColor};
@@ -344,8 +350,10 @@ function renderComponent(name, props) {
       PageTitle,
       Container,
       InfoBar,
+      InfoBarItem,
       TextHeader,
       InlineTag,
+      Text,
     },
 
     helpers: {
