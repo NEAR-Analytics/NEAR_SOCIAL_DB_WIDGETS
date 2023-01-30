@@ -37,12 +37,11 @@ return (
     <div
       style={{
         position: 'relative',
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         minHeight: '200px',
         maxHeight: '50vh',
         height: '400px',
         borderBottom: '0.3vw solid black',
-        paddingBottom: '4px',
       }}
     >
       {props.__engine.renderComponent('components.event_image_slider', {
