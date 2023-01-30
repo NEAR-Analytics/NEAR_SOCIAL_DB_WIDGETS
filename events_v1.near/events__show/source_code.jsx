@@ -215,7 +215,6 @@ return (
       </Container>
 
       <p>{event.type}</p>
-      <p>{event.status}</p>
     </div>
   </>
 );
