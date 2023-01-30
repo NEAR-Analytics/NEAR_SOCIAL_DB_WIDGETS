@@ -32,6 +32,7 @@ function removeEvent() {
 const PageTitle = props.__engine.Components.PageTitle;
 const Container = props.__engine.Components.Container;
 const InfoBar = props.__engine.Components.InfoBar;
+const TextLabel = props.__engine.Components.TextLabel;
 
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
@@ -202,15 +203,8 @@ return (
       }}
     >
       <Container>
-        <div
-          style={{
-            fontSize: '18px',
-            fontWeight: 'bold',
-            marginBottom: '4vw',
-          }}
-        >
-          Description
-        </div>
+        <TextLabel>Description</TextLabel>
+
         <div
           style={{
             fontSize: '16px',
@@ -220,11 +214,11 @@ return (
           {event.description}
         </div>
       </Container>
-    </div>
 
-    <p>{event.description}</p>
-    <p>{event.type}</p>
-    <p>{event.category}</p>
-    <p>{event.status}</p>
+      <p>{event.description}</p>
+      <p>{event.type}</p>
+      <p>{event.category}</p>
+      <p>{event.status}</p>
+    </div>
   </>
 );
