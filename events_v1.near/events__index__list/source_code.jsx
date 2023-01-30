@@ -13,7 +13,7 @@ const IndexList = styled.div`
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: flex-start;
-  width: 100%;
+  width: auto;
 
   margin-left: -2vw;
   margin-right: -2vw;
