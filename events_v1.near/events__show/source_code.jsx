@@ -40,7 +40,7 @@ return (
           position: 'absolute',
           left: '0',
           bottom: '0',
-          transform: 'translate(0, 33%)',
+          transform: 'translate(10%, 33%)',
           padding: '8px',
           width: '20vw',
           height: '20vw',
