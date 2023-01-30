@@ -330,21 +330,6 @@ function pop() {
   rerender();
 }
 
-function onTick(tick, callback) {
-  // console.log('onTick', tick, callback);
-  const tickCallbacks = getLocal('tickCallbacks', []);
-
-  setLocal(
-    'tickCallbacks',
-    tickCallbacks.concat([
-      {
-        tick,
-        callback,
-      },
-    ])
-  );
-}
-
 function renderComponent(name, props) {
   const engine = {
     env,
@@ -360,8 +345,6 @@ function renderComponent(name, props) {
     storageSet,
     layoutPathFromName,
     widgetPathFromName,
-
-    onTick,
 
     renderComponent: safeRender,
 
@@ -412,82 +395,9 @@ function safeRender(_name, _props) {
   }
 }
 
-// HACK: this is a hack to get regular update calls
-const updateHackCode = `
-  fetch('https://api.coingecko.com/api/v3/coins/near', {
-    subscribe: true,
-    method: 'GET',
-    headers: {
-      Accept: '*/*',
-    },
-  });
-
-  const index = Storage.get('index') || 0;
-  if(Storage.get('index') < 2){
-    // console.log("index", index)
-    Storage.set('index', Storage.get('index') + 1);
-    return ''
-  }
-
-  props.onUpdate()
-  Storage.set('index', 0)
-
-  return ''
-`;
-
-const updateStateHackCode = `
-  if(!state){
-    State.init({})
-    return ''
-  }
-
-  props.register((newState)=>{
-    State.update(newState)
-  }, ()=>{
-    return state
-  })
-
-  return ''
-`;
-
-function onTickUpdate() {
-  console.log('onTickUpdate');
-  const tickCallbacks = getLocal('tickCallbacks', []);
-  const tick = getLocal('tick');
-  console.log('tick', tick);
-
-  setLocal(
-    'tickCallbacks',
-    tickCallbacks
-      .map((tickCallback) => {
-        if (tickCallback.tick === tick) {
-          tickCallback.callback();
-          return null;
-        }
-        return tickCallback;
-      })
-      .filter((tickCallback) => tickCallback !== null)
-  );
-
-  setLocal('tick', tick + 1);
-}
-
-function registerStateProxy(setState, getState) {
-  console.log('registerStateProxy');
-  appStateSet('setState', setState);
-  appStateSet('getState', getState);
-}
-
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    <div style={{ display: 'none' }}>
-      <Widget
-        code={updateStateHackCode}
-        props={{ register: registerStateProxy }}
-      />
-      <Widget code={updateHackCode} props={{ onUpdate: onTickUpdate }} />
-    </div>
     {/* state reset button */}
     <div
       style={{
