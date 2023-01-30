@@ -24,9 +24,11 @@ console.log('event', { event });
 
 return (
   <>
-    <div style={{
-      position: 'relative',
-    }}>
+    <div
+      style={{
+        position: 'relative',
+      }}
+    >
       {props.__engine.renderComponent('components.event_image_slider', {
         event,
       })}
@@ -39,12 +41,12 @@ return (
           height: '100%',
           background: 'rgba(0, 0, 0, 0.3)',
         }}
-      />
+      >
         {props.__engine.renderComponent('components.event_image_slider', {
           event,
           mode: 'tile',
         })}
-        </div>
+      </div>
     </div>
     <div
       style={{
