@@ -414,19 +414,18 @@ return ''
 
 function onTickUpdate() {
   const tickCallbacks = appStateGet('tickCallbacks', []);
-
-  // remove executed callbacks
-  newTickCallbacks = tickCallbacks
-    .map((tickCallback) => {
-      if (tickCallback.tick === state.tick) {
-        tickCallback.callback();
-        return null;
-      }
-      return tickCallback;
-    })
-    .filter((tickCallback) => tickCallback !== null);
-
-  appStateSet('tickCallbacks', newTickCallbacks);
+  appStateSet(
+    'tickCallbacks',
+    tickCallbacks
+      .map((tickCallback) => {
+        if (tickCallback.tick === state.tick) {
+          tickCallback.callback();
+          return null;
+        }
+        return tickCallback;
+      })
+      .filter((tickCallback) => tickCallback !== null)
+  );
 }
 
 return (
