@@ -52,10 +52,6 @@ const EventDate = styled.p`
 `;
 
 const EventBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   padding: calc(max(0.5rem, 0.5vw));
 `;
