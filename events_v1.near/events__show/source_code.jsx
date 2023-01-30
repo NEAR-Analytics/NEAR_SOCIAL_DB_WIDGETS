@@ -191,7 +191,9 @@ return (
             target="_blank"
             rel="noopener noreferrer"
             id="asdf"
-            ref="asdfasdf"
+            ref={(el) => {
+              console.log('el', el);
+            }}
             style={{
               color: '#000',
               textDecoration: 'none',
