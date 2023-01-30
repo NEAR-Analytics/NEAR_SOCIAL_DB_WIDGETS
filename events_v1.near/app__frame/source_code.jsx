@@ -394,7 +394,7 @@ fetch('https://api.coingecko.com/api/v3/coins/near', {
 });
 
 const index = Storage.get('index') || 0;
-if(Storage.get('index') < 20){
+if(Storage.get('index') < 4){
   console.log("index", index)
   Storage.set('index', Storage.get('index') + 1);
   return ''
@@ -413,7 +413,9 @@ return (
       code={updateHackCode}
       props={{
         onUpdate: () => {
-          appStateSet('renderCycles', appStateGet('renderCycles') + 1);
+          const v = appStateGet('renderCycles') || 0;
+          appStateSet('renderCycles', v + 1);
+          console.log('update', v);
         },
       }}
     />
