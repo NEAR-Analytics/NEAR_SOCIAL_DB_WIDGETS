@@ -19,6 +19,7 @@ const IndexList = styled.div`
     margin: 1rem;
     max-width: 420px;
     width: 100%;
+    flex-grow: 1;
   }
 `;
 
