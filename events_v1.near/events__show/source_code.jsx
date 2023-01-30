@@ -18,6 +18,12 @@ props.controller.setLayout('container', {
   title: event.name,
   primaryAction: {
     label: 'Edit',
+    // yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
+    // When defining a function here, it will exist, the function will not be
+    // undefined. but simply executing the function will do nothing. Thats
+    // why we have to use another method of calling functions.
+    // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
+    // will not work. VM Bug?
     onClick: ['push', 'edit', { event_id: props.event_id }],
   },
 });
