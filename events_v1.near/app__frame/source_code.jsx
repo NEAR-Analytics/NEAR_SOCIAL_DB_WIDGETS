@@ -116,10 +116,10 @@ const PageTitle = styled.h1`
 `;
 
 const Container = styled.div`
-  paddingleft: ${ContainerPaddingHorizontal};
-  paddingright: ${ContainerPaddingHorizontal};
-  paddingtop: 12px;
-  paddingbottom: 12px;
+  padding-left: ${ContainerPaddingHorizontal};
+  padding-right: ${ContainerPaddingHorizontal};
+  padding-top: 12px;
+  padding-bottom: 12px;
 `;
 
 const InfoBar = styled.div`
