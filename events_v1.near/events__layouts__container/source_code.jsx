@@ -53,6 +53,7 @@ const NavPrimaryButton = styled.button`
 
 function onPrimaryActionClick() {
   if (props.primaryAction) {
+    console.log('primary action clicked');
     props.primaryAction.onClick();
   }
 }
