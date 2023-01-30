@@ -96,7 +96,6 @@ const footer = (
         src={`${ownerId}/widget/Entity`}
         props={{
           isPreview: true,
-          id: 0, // irrelevant
           accountId: state.accountId,
           notStandalone: true,
           entity: {
