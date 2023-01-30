@@ -218,7 +218,9 @@ function getLocal(prop, defaultValue) {
 function setLocal(prop, value) {
   const setter = appStateGet('setState');
   if (setter) {
-    setter(prop, value);
+    setter({
+      [prop]: value,
+    });
   }
 }
 
