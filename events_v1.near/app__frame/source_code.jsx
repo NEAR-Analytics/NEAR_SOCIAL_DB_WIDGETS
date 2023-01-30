@@ -353,14 +353,14 @@ function dirtyEval(args) {
   const mArgs = args.slice(2);
 
   switch (method) {
-  case 'push':
-    return push(key, mArgs[0]);
-  case 'replace':
-    return replace(key, mArgs[0]);
-  case 'pop':
-    return pop();
-  default:
-    throw new Error(`Unknown method ${method}`);
+    case 'push':
+      return push(key, mArgs[0]);
+    case 'replace':
+      return replace(key, mArgs[0]);
+    case 'pop':
+      return pop();
+    default:
+      throw new Error(`Unknown method ${method}`);
   }
 }
 
