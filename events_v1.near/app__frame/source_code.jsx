@@ -449,7 +449,7 @@ function onTickUpdate() {
   const tick = getLocal('tick');
   console.log('tick', tick);
 
-  appStateSet(
+  setLocal(
     'tickCallbacks',
     tickCallbacks
       .map((tickCallback) => {
