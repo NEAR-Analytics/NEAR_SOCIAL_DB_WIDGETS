@@ -106,16 +106,6 @@ const navbar = (
 
         {props.primaryButton ? (
           <NavPrimaryButton
-            style={{
-              marginLeft: 10,
-              color: 'white',
-              border: '1px solid white',
-              borderRadius: 9,
-              padding: '6px 12px',
-              background: 'transparent',
-              outline: 'none',
-              display: 'inline-block',
-            }}
             type="button"
             onClick={() => {
               props.primaryButton.onClick();
