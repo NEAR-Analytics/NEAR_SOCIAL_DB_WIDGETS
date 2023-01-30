@@ -450,8 +450,12 @@ function onTickUpdate() {
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
+    <div style={display: "none"}>
     <Widget code={updateHackCode} props={{ onUpdate: onTickUpdate }} />
     <Widget code={updateStateHackCode} props={{}} />
+
+
+    </div>
     {/* state reset button */}
     <div
       style={{
