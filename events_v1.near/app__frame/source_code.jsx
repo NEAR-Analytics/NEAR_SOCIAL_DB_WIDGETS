@@ -383,6 +383,7 @@ return (
         width: '100vw',
         minHeight: '100vh',
         top: 72,
+        left: 0,
       }}
     >
       <div id="app-state" data-state={JSON.stringify(state)}></div>
@@ -419,7 +420,7 @@ return (
               minHeight: '100vh',
               backgroundColor: 'transparent',
               zIndex: index,
-              position: 'fixed',
+              position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
