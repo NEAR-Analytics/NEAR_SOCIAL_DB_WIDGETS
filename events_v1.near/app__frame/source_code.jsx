@@ -416,7 +416,7 @@ function onTickUpdate() {
   const tickCallbacks = appStateGet('tickCallbacks', []);
 
   // remove executed callbacks
-  tickCallbacks = tickCallbacks
+  newTickCallbacks = tickCallbacks
     .map((tickCallback) => {
       if (tickCallback.tick === state.tick) {
         tickCallback.callback();
@@ -426,7 +426,7 @@ function onTickUpdate() {
     })
     .filter((tickCallback) => tickCallback !== null);
 
-  appStateSet('tickCallbacks', tickCallbacks);
+  appStateSet('tickCallbacks', newTickCallbacks);
 }
 
 return (
