@@ -51,8 +51,8 @@ const NavPrimaryButton = styled.button`
   }
 `;
 
-function onPrimaryActionClick(event) {
-  return props.__engine.eval(props.primaryAction.onClick);
+function onPrimaryActionClick() {
+  return props.__engine.hacks.eval(props.primaryAction.onClick);
 }
 
 const navbar = (
