@@ -349,7 +349,10 @@ function pop() {
 
 function dirtyEval(args) {
   console.log(args);
-  const [method, key, ...arguss] = args;
+  const method = args[0];
+  const key = args[1];
+  const arguss = args.slice(2);
+
   console.log(method, key, arguss);
 }
 
