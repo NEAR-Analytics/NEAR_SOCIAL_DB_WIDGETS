@@ -5,7 +5,7 @@ props.controller.setLayout('container', {
 
 const Button = props.__engine.Components.Button;
 
-console.log(window.location);
+console.log(Object.entries(window.location));
 
 return (
   <div
