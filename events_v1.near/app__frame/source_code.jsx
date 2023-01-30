@@ -462,9 +462,7 @@ function onTickUpdate() {
       .filter((tickCallback) => tickCallback !== null)
   );
 
-  setLocal({
-    tick: state.tick + 1,
-  });
+  setLocal('tick', tick + 1);
 }
 
 function registerStateProxy(setState, getState) {
