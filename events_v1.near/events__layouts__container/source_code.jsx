@@ -111,7 +111,7 @@ return (
         const elHeight = 4;
         const minBlur = 30;
         const maxBlur = 80;
-        const blurDelta = (maxBlur - minBlur) / elHeight;
+        const blurDelta = (maxBlur - minBlur) / blurs.length;
 
         return (
           <div
