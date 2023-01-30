@@ -67,6 +67,11 @@ function gotoEvent() {
   props.__engine.push('show', { event_id: event.id });
 }
 
+const shortDesc =
+  event.description.length > 100
+    ? event.description.substring(0, 100) + '...'
+    : event.description;
+
 return (
   <EventCard
     onClick={() => {
@@ -100,7 +105,7 @@ return (
     </EventHeader>
 
     <EventBody>
-      <EventDescription>{event.description.slice(0, 100)}</EventDescription>
+      <EventDescription>{shortDesc}</EventDescription>
       <EventDate>{event.start_date}</EventDate>
       <EventDate>{event.end_date}</EventDate>
     </EventBody>
