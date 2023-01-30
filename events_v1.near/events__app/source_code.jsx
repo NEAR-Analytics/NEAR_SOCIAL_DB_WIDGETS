@@ -10,8 +10,6 @@ return (
       appName: APP_NAME,
       entryRoute: 'index',
       entryProps: {},
-      entryLayout: 'default',
-      entryLayoutProps: {},
     }}
   />
 );
