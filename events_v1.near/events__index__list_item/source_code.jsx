@@ -9,7 +9,7 @@ const BG_CARD = '#ffffff';
 
 const EventCard = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: stretch;
