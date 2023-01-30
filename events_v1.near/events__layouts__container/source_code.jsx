@@ -90,9 +90,9 @@ const navbar = (
             style={{
               marginLeft: 10,
               color: 'white',
-              border: '2px solid white',
-              borderRadius: 4,
-              padding: '4px 8px',
+              border: '1px solid white',
+              borderRadius: 9,
+              padding: '6px 12px',
               background: 'transparent',
               outline: 'none',
               display: 'inline-block',
