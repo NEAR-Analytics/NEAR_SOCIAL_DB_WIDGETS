@@ -267,7 +267,6 @@ function replace(name, props) {
 // pop from the stack, ensure we always have at least one layer
 function pop() {
   const newLayers =
-    // eslint-disable-next-line no-magic-numbers
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
   persistRoutingInformation(newLayers);
