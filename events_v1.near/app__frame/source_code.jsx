@@ -147,6 +147,12 @@ const InlineTag = styled.div`
   margin-right: 8px;
 `;
 
+const Text = styled.div`
+  font-size: 14px;
+  color: #424242;
+  margin-right: 8px;
+`;
+
 /**
  *   I suggest you don't edit anything below this line
  * */
