@@ -50,6 +50,10 @@ return (
       userSelect: 'none',
     }}
   >
+    <Widget
+      data={data}
+      onUpdate={() => State.update({ index: state.index + 1 })}
+    />
     {displayImages.map((image) => {
       return (
         <img
