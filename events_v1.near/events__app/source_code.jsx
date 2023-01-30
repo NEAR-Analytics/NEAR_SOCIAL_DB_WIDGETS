@@ -15,15 +15,5 @@ return (
         entryProps: {},
       }}
     />
-    <Widget
-      src={`${APP_OWNER}/widget/app__frame`}
-      props={{
-        ...props,
-        appOwner: APP_OWNER,
-        appName: APP_NAME,
-        entryRoute: 'new',
-        entryProps: {},
-      }}
-    />
   </>
 );
