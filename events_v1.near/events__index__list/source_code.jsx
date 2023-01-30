@@ -33,5 +33,8 @@ return (
         key: event.event_id,
       });
     })}
+    <div>{/* spacer */}</div>
+    <div>{/* spacer */}</div>
+    <div>{/* spacer */}</div>
   </IndexList>
 );
