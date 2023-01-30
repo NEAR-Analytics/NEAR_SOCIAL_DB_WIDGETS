@@ -52,8 +52,8 @@ const EventDate = styled.div`
   margin: 0;
   padding: calc(max(0.5rem, 0.5vw));
   height: 42px;
-  flex-grow: 0;
-  flex-shrink: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
   width: 100%;
   border-top: 0.1vw solid #cccccc;
 `;
