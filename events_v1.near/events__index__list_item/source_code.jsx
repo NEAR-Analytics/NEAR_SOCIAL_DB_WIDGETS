@@ -30,7 +30,7 @@ const EventHeader = styled.div`
 `;
 
 const EventTitle = styled.h1`
-  font-size: 2vw;
+  font-size: 1.25vw;
   font-weight: 500;
   margin: 0;
   padding: calc(max(0.5rem, 0.5vw));
@@ -38,14 +38,14 @@ const EventTitle = styled.h1`
 `;
 
 const EventDescription = styled.p`
-  font-size: 1.5vw;
+  font-size: 0.8vw;
   font-weight: 400;
   margin: 0;
   padding: calc(max(0.5rem, 0.5vw));
 `;
 
 const EventDate = styled.p`
-  font-size: 1.5vw;
+  font-size: 0.8vw;
   font-weight: 400;
   margin: 0;
   padding: calc(max(0.5rem, 0.5vw));
