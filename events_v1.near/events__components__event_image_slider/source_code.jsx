@@ -1,6 +1,5 @@
 let event = props.event || null;
 
-// return data;
 if (!event) {
   // TODO: return default image
   return <img src="" alt="Event!" />;
