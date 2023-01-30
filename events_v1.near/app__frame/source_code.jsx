@@ -312,6 +312,16 @@ function pop() {
   rerender();
 }
 
+function onTick(tick, callback) {
+  console.log('onTick', tick, callback);
+  const tickCallbacks = appStateGet('tickCallbacks', []);
+  tickCallbacks.push({
+    tick,
+    callback,
+  });
+  appStateSet('tickCallbacks', tickCallbacks);
+}
+
 function renderComponent(name, props) {
   const engine = {
     env,
@@ -327,6 +337,8 @@ function renderComponent(name, props) {
     storageSet,
     layoutPathFromName,
     widgetPathFromName,
+
+    onTick,
 
     renderComponent: safeRender,
 
