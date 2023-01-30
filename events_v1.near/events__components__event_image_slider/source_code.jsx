@@ -6,10 +6,7 @@ if (!event) {
   return <img src="" alt="Event!" />;
 }
 
-const EventImage = styled.img`
-  width: 100%;
-  height: auto;
-`;
+const mode = props.mode || 'banner';
 
 const imagesWithCid = (event.images || [])
   .filter((image) => {
@@ -19,8 +16,8 @@ const imagesWithCid = (event.images || [])
     return image.url.cid.length > 0;
   });
 
-const bannerImages = imagesWithCid.filter((image) => {
-  return image.type === 'banner';
+const displayImages = imagesWithCid.filter((image) => {
+  return image.type === mode;
 });
 
 return (
@@ -37,9 +34,9 @@ return (
       overflow: 'hidden',
     }}
   >
-    {bannerImages.map((image) => {
+    {displayImages.map((image) => {
       return (
-        <EventImage
+        <img
           src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
           key={image.cid}
           alt={image.url.cid}
