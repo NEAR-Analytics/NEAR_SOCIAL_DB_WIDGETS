@@ -19,7 +19,7 @@ console.log(
 );
 
 // if
-if (!state && !props.__engine.appStateGet(`delete_event_${props.event.id}`)) {
+if (!state && props.__engine.appStateGet(`delete_event_${props.event.id}`)) {
   props.__engine.pop();
   return 'Loading';
 }
