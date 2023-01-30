@@ -51,9 +51,11 @@ const NavPrimaryButton = styled.button`
   }
 `;
 
-function onPrimaryActionClick() {
+function onPrimaryActionClick(event) {
   console.log('primary action clicked!!');
-  return props.primaryAction.onClick();
+  console.log(props.primaryAction.onClick);
+
+  return props.primaryAction.onClick.apply(null, event);
 }
 
 const navbar = (
