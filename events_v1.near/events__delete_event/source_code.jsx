@@ -9,6 +9,7 @@ const eventId = props.event.id;
 
 if (!state) {
   State.init({ result: null });
+  return 'Loading';
 }
 
 function deleteEvent() {
