@@ -15,29 +15,15 @@ const IndexList = styled.div`
   justify-content: flex-start;
   width: 100%;
 
+  margin-left: -2vw;
+
   & > * {
-    margin-right: 2vw;
+    margin: 0 2vw;
     max-width: 320px;
     min-width: 240px;
     width: 25vw;
     flex-grow: 3;
     flex-shrink: 3;
-
-    &:nth-child(3n + 1) {
-      margin-left: 0;
-    }
-
-    &:nth-child(3n + 2) {
-      margin-left: 2vw;
-    }
-
-    &:nth-child(3n + 3) {
-      margin-left: 4vw;
-    }
-
-    &:nth-child(3n + 4) {
-      margin-left: 6vw;
-    }
   }
 `;
 
