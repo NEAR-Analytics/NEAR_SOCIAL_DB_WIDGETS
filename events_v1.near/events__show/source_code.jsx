@@ -27,6 +27,7 @@ return (
     <div
       style={{
         position: 'relative',
+        backgroundColor: 'black',
       }}
     >
       {props.__engine.renderComponent('components.event_image_slider', {
