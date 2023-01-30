@@ -381,7 +381,11 @@ function safeRender(_name, _props) {
 
 return (
   <>
-    <div>
+    <div
+      style={{
+        position: 'relative',
+      }}
+    >
       <div id="app-state" data-state={JSON.stringify(state)}></div>
       {/* state reset button */}
       <div
