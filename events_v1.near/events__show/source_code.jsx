@@ -28,7 +28,7 @@ return (
         backgroundColor: 'black',
         minHeight: '200px',
         maxHeight: '50vh',
-        height: '300px',
+        height: '400px',
       }}
     >
       {props.__engine.renderComponent('components.event_image_slider', {
