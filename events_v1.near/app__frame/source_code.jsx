@@ -127,6 +127,7 @@ const Container = styled.div`
 
 const InfoBar = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 4px ${ContainerPaddingHorizontal};
   border-bottom: 1px solid #e0e0e0;
