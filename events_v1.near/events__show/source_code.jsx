@@ -41,7 +41,7 @@ return (
           left: '0',
           bottom: '0',
           transform: 'translate(10%, 33%)',
-          padding: '1vw',
+          padding: '4px',
           width: '14vw',
           height: '14vw',
           minWidth: '100px',
@@ -56,7 +56,7 @@ return (
             width: '100%',
             height: '100%',
             overflow: 'hidden',
-            borderRadius: 10,
+            borderRadius: 14,
           }}
         >
           {props.__engine.renderComponent('components.event_image_slider', {
