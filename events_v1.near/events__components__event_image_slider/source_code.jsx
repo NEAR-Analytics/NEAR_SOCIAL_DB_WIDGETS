@@ -65,14 +65,17 @@ return (
       userSelect: 'none',
     }}
   >
-    <Widget
-      code={data}
-      props={{
-        onUpdate: () => {
-          State.update({ index: (state.index + 1) % displayImages.length });
-        },
-      }}
-    />
+    {displayImages.length > 1 ? (
+      <Widget
+        code={data}
+        props={{
+          onUpdate: () => {
+            State.update({ index: (state.index + 1) % displayImages.length });
+          },
+        }}
+      />)
+      
+    }
     {displayImages.map((_, i) => {
       const image = displayImages[(i + state.index) % displayImages.length];
 
