@@ -1,6 +1,8 @@
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events';
 
+console.log({ props });
+
 return (
   <Widget
     src={`${APP_OWNER}/widget/app__frame`}
