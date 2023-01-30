@@ -6,7 +6,7 @@ props.controller.setLayout('container', {
     title: 'Create new Event',
     onClick: () => {
       props.__engine.push('new', {}, 'modal', {
-        title: 'Create new Event',
+        label: 'Create new Event',
         back: true,
       });
     },
