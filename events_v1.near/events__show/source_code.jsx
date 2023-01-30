@@ -18,7 +18,7 @@ props.controller.setLayout('container', {
   title: event.name,
   primaryAction: {
     label: 'Edit',
-    // yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
+    // Yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
     // When defining a function here, it will exist, the function will not be
     // undefined. but simply executing the function will do nothing. Thats
     // why we have to use another method of calling functions.
@@ -26,7 +26,10 @@ props.controller.setLayout('container', {
     // will not work. VM Bug?
     // might be related to us rerendering all the time to implement layouting.
     //
-    onClick: ['push', 'edit', { event_id: props.event_id }],
+    // onClick: ['push', 'edit', { event_id: props.event_id }],
+    onClick: () => {
+      props.__engine.push('edit', { event_id: props.event_id });
+    },
   },
 });
 
