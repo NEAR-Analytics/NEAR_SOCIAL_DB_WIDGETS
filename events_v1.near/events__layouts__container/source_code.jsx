@@ -79,6 +79,7 @@ const navbar = (
             marginLeft: 10,
             marginRight: 'auto',
             fontSize: 20,
+            display: 'flex',
           }}
         >
           {title}
