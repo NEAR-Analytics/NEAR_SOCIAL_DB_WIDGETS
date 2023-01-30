@@ -333,11 +333,16 @@ function pop() {
 function onTick(tick, callback) {
   // console.log('onTick', tick, callback);
   const tickCallbacks = getLocal('tickCallbacks', []);
-  tickCallbacks.push({
-    tick,
-    callback,
-  });
-  setLocal('tickCallbacks', tickCallbacks);
+
+  setLocal(
+    'tickCallbacks',
+    tickCallbacks.concat([
+      {
+        tick,
+        callback,
+      },
+    ])
+  );
 }
 
 function renderComponent(name, props) {
