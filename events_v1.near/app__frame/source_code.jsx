@@ -64,7 +64,7 @@ const VERSION = '0.2.0';
  *  @param {String} name - the name of the widget to render
  *  @param {Object} props - the props to pass to the widget
  *  available in: props.engine
- *  renderComponent(name, props, layout, layoutProps)
+ *  renderComponent(name, props)
  *    renders a widget with the given name and props within the given layout,
  *    use this instead of <Widget src="" />
  *
@@ -72,7 +72,7 @@ const VERSION = '0.2.0';
  *  @param {String} name - the name of the widget to render
  *  @param {Object} props - the props to pass to the widget
  *  available in: props.routing
- *  push(name, props, layout, layoutProps)
+ *  push(name, props)
  *    pushes a new layer onto the stack of layers to render
  *    this will cause the app to render a new layer on top of the current layer
  *
