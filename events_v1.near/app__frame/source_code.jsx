@@ -427,6 +427,9 @@ function onTickUpdate() {
       })
       .filter((tickCallback) => tickCallback !== null)
   );
+  State.update({
+    tick: state.tick + 1,
+  });
 }
 
 return (
