@@ -9,7 +9,7 @@ if (!eventId) {
 const event = Near.view(EVENTS_CONTRACT, 'get_event', {
   event_id: props.event_id,
 });
-if (!event) {
+if (event === undefined) {
   return 'Loading';
 }
 
