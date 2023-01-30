@@ -22,7 +22,7 @@ function removeEvent() {
   const contract = EVENTS_CONTRACT;
   const method = 'remove_event';
   const args = {
-    event_id: props.event.id,
+    event_id: event.id,
   };
   const gas = TGAS_300;
   const deposit = '0';
