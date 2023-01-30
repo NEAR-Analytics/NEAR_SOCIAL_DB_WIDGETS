@@ -26,10 +26,7 @@ props.controller.setLayout('container', {
     // will not work. VM Bug?
     // might be related to us rerendering all the time to implement layouting.
     //
-    // onClick: ['push', 'edit', { event_id: props.event_id }],
-    onClick: () => {
-      props.__engine.push('edit', { event_id: props.event_id });
-    },
+    onClick: ['push', 'edit', { event_id: props.event_id }],
   },
 });
 
