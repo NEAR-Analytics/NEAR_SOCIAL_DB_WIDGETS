@@ -26,8 +26,7 @@ return (
               >
                 {data.body.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
                   2
-                )}
-                %
+                ) + "%"}
               </small>
             </h1>
           </div>
