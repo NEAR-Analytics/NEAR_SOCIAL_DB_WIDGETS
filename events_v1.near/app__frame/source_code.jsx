@@ -330,6 +330,7 @@ function renderComponent(name, props) {
       PageTitle,
       Container,
       InfoBar,
+      TextLabel,
     },
 
     helpers: {
