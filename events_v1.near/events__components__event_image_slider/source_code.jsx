@@ -46,8 +46,9 @@ if(Storage.get('index') < 2){
   return
 }
 
-props.onUpdate()
 
+props.onUpdate()
+Storage.set('index', 0)
 `;
 
 return (
