@@ -16,6 +16,7 @@ const IndexList = styled.div`
   width: 100%;
 
   margin-left: -2vw;
+  margin-right: -2vw;
 
   & > * {
     margin: 2vw 2vw;
