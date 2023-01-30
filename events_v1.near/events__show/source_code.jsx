@@ -29,6 +29,10 @@ function removeEvent() {
   Near.call(contract, method, args, gas, deposit);
 }
 
+function editEvent() {
+  props.__engine.push('edit', { event_id: props.event_id });
+}
+
 const PageTitle = props.__engine.Components.PageTitle;
 const Container = props.__engine.Components.Container;
 const InfoBar = props.__engine.Components.InfoBar;
@@ -141,11 +145,11 @@ return (
             role="button"
             tabIndex={0}
             onClick={() => {
-              props.__engine.push('edit', { event_id: props.event_id });
+              editEvent();
             }}
             onKeyDown={() => {
               if (event.key === 'Enter') {
-                props.__engine.push('edit', { event_id: props.event_id });
+                editEvent();
               }
             }}
           >
