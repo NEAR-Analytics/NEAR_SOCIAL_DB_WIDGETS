@@ -10,6 +10,7 @@ const BG_CARD = '#ffffff';
 const EventCard = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: stretch;
   justify-content: stretch;
   padding: 0;
@@ -96,6 +97,7 @@ return (
     <EventTitle>{event.name}</EventTitle>
 
     <EventBody></EventBody>
+
     <EventDate>
       {datesAreEqual ? (
         <>
