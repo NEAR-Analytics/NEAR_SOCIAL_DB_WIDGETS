@@ -48,11 +48,14 @@ const kindInput = (
 
 const startDateInput = (
   <div className="col-lg-6 mb-2">
-    Start date of entity
-    <input
-      type="date"
-      value={state.startDate}
-      onChange={(e) => State.update({ startDate: e.target.value })}
+    <Widget
+      src={`${ownerId}/widget/DateInput`}
+      props={{
+        id: "start-date",
+        text: " Start date of entity:",
+        date: state.startDate,
+        update: (startDate) => State.update({ startDate }),
+      }}
     />
   </div>
 );
