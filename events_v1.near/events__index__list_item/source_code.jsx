@@ -109,9 +109,10 @@ return (
     </EventHeader>
 
     <EventBody>
-      <EventDescription>{shortDesc}</EventDescription>
+      <EventDescription>
+        <Markdown text={shortDesc} />
+      </EventDescription>
       <EventDate>
-        {' '}
         {datesAreEqual ? (
           <>
             {startDate.getDate()}{' '}
