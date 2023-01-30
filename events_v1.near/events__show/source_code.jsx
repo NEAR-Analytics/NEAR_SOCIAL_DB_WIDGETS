@@ -122,6 +122,80 @@ return (
       </p>
     </InfoBar>
 
+    {/* link bar */}
+    <InfoBar>
+      {props.__engine.accountId === event.account_id ? (
+        <>
+          <span
+            style={{
+              color: '#000',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 0',
+              marginRight: '10px',
+            }}
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              props.__engine.push('edit', { event_id: props.event_id });
+            }}
+            onKeyDown={() => {
+              if (event.key === 'Enter') {
+                props.__engine.push('edit', { event_id: props.event_id });
+              }
+            }}
+          >
+            Edit
+          </span>
+          <span
+            style={{
+              color: '#000',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 0',
+              marginRight: '10px',
+            }}
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              removeEvent();
+            }}
+            onKeyDown={() => {
+              if (event.key === 'Enter') {
+                removeEvent();
+              }
+            }}
+          >
+            Delete
+          </span>
+        </>
+      ) : null}
+
+      {event.links.map((link, idx) => {
+        return (
+          <a
+            href={link.url}
+            key={idx}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: '#000',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 0',
+              marginRight: '10px',
+            }}
+          >
+            {/* TODO: for each link type find and display icon */}
+            {link.text}
+          </a>
+        );
+      })}
+    </InfoBar>
+
     <div
       style={{
         padding: '82px 0',
@@ -129,87 +203,6 @@ return (
       }}
     >
       {/* second bar with links */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'middle',
-          alignItems: 'center',
-          padding: '4px 0',
-          borderBottom: '1px solid #ccc',
-          marginBottom: '20px',
-        }}
-      >
-        {props.__engine.accountId === event.account_id ? (
-          <>
-            <span
-              style={{
-                color: '#000',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                padding: '10px 0',
-                marginRight: '10px',
-              }}
-              role="button"
-              tabIndex={0}
-              onClick={() => {
-                props.__engine.push('edit', { event_id: props.event_id });
-              }}
-              onKeyDown={() => {
-                if (event.key === 'Enter') {
-                  props.__engine.push('edit', { event_id: props.event_id });
-                }
-              }}
-            >
-              Edit
-            </span>
-            <span
-              style={{
-                color: '#000',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                padding: '10px 0',
-                marginRight: '10px',
-              }}
-              role="button"
-              tabIndex={0}
-              onClick={() => {
-                removeEvent();
-              }}
-              onKeyDown={() => {
-                if (event.key === 'Enter') {
-                  removeEvent();
-                }
-              }}
-            >
-              Delete
-            </span>
-          </>
-        ) : null}
-
-        {event.links.map((link, idx) => {
-          return (
-            <a
-              href={link.url}
-              key={idx}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#000',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: 'bold',
-                padding: '10px 0',
-                marginRight: '10px',
-              }}
-            >
-              {/* TODO: for each link type find and display icon */}
-              {link.text}
-            </a>
-          );
-        })}
-      </div>
 
       <p>{event.description}</p>
       <p>{event.type}</p>
