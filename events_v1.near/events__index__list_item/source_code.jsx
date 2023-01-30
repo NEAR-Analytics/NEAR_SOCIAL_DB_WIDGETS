@@ -77,22 +77,22 @@ return (
     role="button"
     tabIndex={0}
   >
+    <div
+      style={{
+        height: 'auto',
+        width: '100%',
+        aspectRatio: '1/1',
+        overflow: 'hidden',
+        borderRadius: '14px 14px 0 0',
+        borderBottom: '0.1vw solid #cccccc',
+      }}
+    >
+      {props.__engine.renderComponent('components.event_image_slider', {
+        event,
+        mode: 'tile',
+      })}
+    </div>
     <EventHeader>
-      <div
-        style={{
-          height: 'auto',
-          width: '100%',
-          aspectRatio: '1/1',
-          overflow: 'hidden',
-          borderRadius: '14px 14px 0 0',
-          borderBottom: '0.1vw solid #cccccc',
-        }}
-      >
-        {props.__engine.renderComponent('components.event_image_slider', {
-          event,
-          mode: 'tile',
-        })}
-      </div>
       <EventTitle>{event.name}</EventTitle>
     </EventHeader>
 
