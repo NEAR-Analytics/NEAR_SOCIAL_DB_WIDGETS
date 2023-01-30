@@ -77,6 +77,7 @@ const navbar = (
             margin: 0,
             padding: 0,
             marginLeft: 10,
+            marginRight: 'auto',
             fontSize: 20,
             width: '100%',
           }}
