@@ -129,7 +129,10 @@ return (
       </InfoBarItem>
 
       <InfoBarItem>
-        <Text>{event.location}</Text>
+        <Text>
+          <i className="bi bi-geo"></i>
+          {event.location}
+        </Text>
       </InfoBarItem>
 
       <InfoBarItem>
