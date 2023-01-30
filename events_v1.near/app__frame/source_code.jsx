@@ -77,10 +77,11 @@ const VERSION = '0.2.0';
  *    this will cause the app to render a new layer on top of the current layer
  *
  *
- *  available in: props.routing
  *  pop()
  *    pops the current layer off the stack of layers to render.
  *    Functions the same as the back button
+ *    this will cause the app to render the previous layer
+ * 
  *
  */
 
