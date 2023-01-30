@@ -317,6 +317,7 @@ function renderComponent(name, props) {
       Loading,
       PageTitle,
       Container,
+      InfoBar,
     },
 
     helpers: {
