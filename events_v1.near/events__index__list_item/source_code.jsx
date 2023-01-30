@@ -16,7 +16,7 @@ const EventCard = styled.div`
   background-color: ${BG_CARD};
   border-radius: 12px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  border: 0.3vw solid black;
+  border: 0.1vw solid black;
 `;
 
 const EventHeader = styled.div`
@@ -26,7 +26,7 @@ const EventHeader = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  border-bottom: 0.3vw solid black;
+  border-bottom: 0.1vw solid black;
 `;
 
 const EventTitle = styled.h1`
@@ -85,7 +85,7 @@ return (
           aspectRatio: '1/1',
           overflow: 'hidden',
           borderRadius: '12px 12px 0 0',
-          borderBottom: '0.3vw solid black',
+          borderBottom: '0.1vw solid black',
         }}
       >
         {props.__engine.renderComponent('components.event_image_slider', {
