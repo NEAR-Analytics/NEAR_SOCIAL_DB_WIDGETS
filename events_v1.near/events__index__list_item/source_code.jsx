@@ -44,13 +44,6 @@ const EventTitle = styled.h1`
   width: 100%;
 `;
 
-const EventDescription = styled.p`
-  font-size: 0.8vw;
-  font-weight: 400;
-  margin: 0;
-  padding: calc(max(0.5rem, 0.5vw));
-`;
-
 const EventDate = styled.p`
   font-size: 0.8vw;
   font-weight: 400;
