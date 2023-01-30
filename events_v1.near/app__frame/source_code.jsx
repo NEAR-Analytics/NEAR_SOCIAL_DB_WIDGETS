@@ -55,6 +55,7 @@ const VERSION = '0.2.0';
  *    - layouts are also widgets
  *   - layouts are named as follows:
  *    - you choose a layout like 'my_layout'
+ *   - In order to use the layout in your app, you must upload it to your account with the name: `my_app__layouts__my_layout`
  *
  *
  *  Functions available to widgets:
