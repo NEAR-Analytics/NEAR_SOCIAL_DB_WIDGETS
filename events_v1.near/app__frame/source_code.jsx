@@ -126,23 +126,23 @@ const InfoBar = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 4px ${ContainerPaddingHorizontal};
+  padding: 0px ${ContainerPaddingHorizontal};
   border-bottom: 1px solid #e0e0e0;
 `;
 
 const InfoBarItem = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 8px;
-  padding: 4px 0;
+  margin-right: 12px;
+  padding: 8px 0;
 `;
 
 const InfoBarLink = styled.a`
   font-size: 16px;
   color: #424242;
   text-decoration: none;
-  margin-right: 8px;
-  padding: 4px 0;
+  margin-right: 12px;
+  padding: 8px 0;
 
   &:hover {
     text-decoration: underline;
