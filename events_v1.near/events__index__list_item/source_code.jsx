@@ -34,6 +34,7 @@ const EventTitle = styled.h1`
   font-weight: 500;
   margin: 0;
   padding: 1rem;
+  width: 100%;
 `;
 
 const EventDescription = styled.p`
