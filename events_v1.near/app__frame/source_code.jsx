@@ -139,6 +139,14 @@ const TextHeader = styled.div`
   opacity: 0.8;
 `;
 
+const InlineTag = styled.div`
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+`;
+
 /**
  *   I suggest you don't edit anything below this line
  * */
@@ -331,6 +339,7 @@ function renderComponent(name, props) {
       Container,
       InfoBar,
       TextHeader,
+      InlineTag,
     },
 
     helpers: {
