@@ -16,7 +16,7 @@ if (!state) {
 function deleteEvent() {
   if (state.inFlight) {
     console.log('already deleted', state.inFlight);
-    // props.__engine.pop();
+    props.__engine.pop();
     return;
   }
 
