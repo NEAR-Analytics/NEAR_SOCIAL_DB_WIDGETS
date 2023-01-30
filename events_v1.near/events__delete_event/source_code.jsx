@@ -20,6 +20,7 @@ console.log(
 
 // if
 if (!state && props.__engine.storageGet(`delete_event_${props.event.id}`)) {
+  console.log('pop');
   props.__engine.pop();
   return 'Loading';
 }
