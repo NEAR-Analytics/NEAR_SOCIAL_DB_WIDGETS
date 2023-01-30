@@ -106,8 +106,10 @@ return (
 
       {blurs.map((i) => {
         const elHeight = 5;
-        const maxBlur = 40;
-        const blurDelta = maxBlur / elHeight;
+        const minBlur = 30;
+        const maxBlur = 80;
+        const blurDelta = (maxBlur - minBlur) / elHeight;
+
         return (
           <div
             key={i}
@@ -115,7 +117,7 @@ return (
               position: 'fixed',
               top: NAVBAR_OFFSET_TOP + NAVBAR_HEIGHT + i * elHeight,
               height: elHeight,
-              backgroundColor: 'rgba(44, 44, 84, 0.85)',
+              backgroundColor: 'rgba(255,255,255, 0.5)',
               backdropFilter: `blur(${maxBlur - i * blurDelta}px)`,
               width: '100%',
               zIndex: 99999999,
