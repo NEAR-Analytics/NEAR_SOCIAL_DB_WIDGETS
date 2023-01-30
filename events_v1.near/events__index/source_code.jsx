@@ -3,12 +3,9 @@ props.controller.setLayout('container', {
   back: false,
 
   primaryButton: {
-    title: 'Create new Event',
+    label: 'Create new Event',
     onClick: () => {
-      props.__engine.push('new', {}, 'modal', {
-        label: 'Create new Event',
-        back: true,
-      });
+      props.__engine.push('new', {});
     },
   },
 });
@@ -20,10 +17,7 @@ return (
   <Container>
     <Button
       onClick={() => {
-        props.__engine.push('new', {}, 'modal', {
-          title: 'Create new Event',
-          back: true,
-        });
+        props.__engine.push('new', {});
       }}
     >
       Create new Event
