@@ -3,8 +3,6 @@ props.controller.setLayout('modal', {
 });
 
 const EVENTS_CONTRACT = 'events_v1.near';
-const APP_OWNER = 'events_v1.near';
-const APP_NAME = 'events';
 
 const eventId = props.event_id;
 if (!eventId) {
