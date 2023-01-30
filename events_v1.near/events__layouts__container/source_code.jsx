@@ -32,6 +32,25 @@ const dropdownElement =
     </>
   ) : null;
 
+const primaryButton = styled.button`
+  background-color: #2c2c54;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all 0.5s ease;
+  border-radius: 4px;
+  margin-left: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2c2c54;
+  }
+`;
+
 const navbar = (
   <div
     className="navbar navbar-expand-lg navbar-dark"
