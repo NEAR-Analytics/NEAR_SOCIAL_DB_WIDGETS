@@ -124,6 +124,9 @@ return (
           )}
         </Text>
       </InfoBarItem>
+
+      <InfoBarItem>
+        <InlineTag>{event.category}</InlineTag>
     </InfoBar>
 
     {/* link bar */}
