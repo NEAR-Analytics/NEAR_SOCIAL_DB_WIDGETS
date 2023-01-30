@@ -110,8 +110,24 @@ return (
 
     <EventBody>
       <EventDescription>{shortDesc}</EventDescription>
-      <EventDate>{event.start_date}</EventDate>
-      <EventDate>{event.end_date}</EventDate>
+      <EventDate>
+        {' '}
+        {datesAreEqual ? (
+          <>
+            {startDate.getDate()}{' '}
+            {startDate.toLocaleString('default', { month: 'short' })}{' '}
+            {startDate.getFullYear()}
+          </>
+        ) : (
+          <>
+            {startDate.getDate()}{' '}
+            {startDate.toLocaleString('default', { month: 'short' })}{' '}
+            {startDate.getFullYear()} - {endDate.getDate()}{' '}
+            {endDate.toLocaleString('default', { month: 'short' })}{' '}
+            {endDate.getFullYear()}
+          </>
+        )}
+      </EventDate>
     </EventBody>
   </EventCard>
 );
