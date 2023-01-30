@@ -71,7 +71,8 @@ return (
         },
       }}
     />
-    {displayImages.map((image) => {
+    {displayImages.map((_, i) => {
+      const image = displayImages[(i + state.index) % displayImages.length];
       return (
         <img
           src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
