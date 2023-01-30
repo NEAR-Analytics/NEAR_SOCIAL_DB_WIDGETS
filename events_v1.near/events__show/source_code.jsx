@@ -202,12 +202,30 @@ return (
         marginTop: '4vw',
       }}
     >
-      {/* second bar with links */}
-
-      <p>{event.description}</p>
-      <p>{event.type}</p>
-      <p>{event.category}</p>
-      <p>{event.status}</p>
+      <Container>
+        <div
+          style={{
+            fontSize: '18px',
+            fontWeight: 'bold',
+            marginBottom: '4vw',
+          }}
+        >
+          Description
+        </div>
+        <div
+          style={{
+            fontSize: '16px',
+            lineHeight: '1.5',
+          }}
+        >
+          {event.description}
+        </div>
+      </Container>
     </div>
+
+    <p>{event.description}</p>
+    <p>{event.type}</p>
+    <p>{event.category}</p>
+    <p>{event.status}</p>
   </>
 );
