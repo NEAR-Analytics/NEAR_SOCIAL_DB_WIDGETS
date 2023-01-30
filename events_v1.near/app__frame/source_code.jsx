@@ -212,12 +212,13 @@ function getLocal(prop, defaultValue) {
     const local = getter();
     return local[prop] || defaultValue;
   }
+  return defaultValue;
 }
 
 function setLocal(prop, value) {
   const setter = appStateGet('setState');
   if (setter) {
-    return setter(prop, value);
+    setter(prop, value);
   }
 }
 
