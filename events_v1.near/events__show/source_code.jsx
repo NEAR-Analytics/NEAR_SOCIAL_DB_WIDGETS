@@ -168,21 +168,6 @@ return (
             role="button"
             tabIndex={0}
             onClick={() => {
-              editEvent();
-            }}
-            onKeyDown={() => {
-              if (event.key === 'Enter') {
-                editEvent();
-              }
-            }}
-          >
-            Edit
-          </InfoBarLink>
-
-          <InfoBarLink
-            role="button"
-            tabIndex={0}
-            onClick={() => {
               removeEvent();
             }}
             onKeyDown={() => {
