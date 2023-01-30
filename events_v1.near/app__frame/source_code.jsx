@@ -172,6 +172,7 @@ const InlineTag = styled.div`
   padding: 4px 8px;
   border-radius: 4px;
   margin-right: 8px;
+  margin-left: 8px;
 `;
 
 const Text = styled.div`
