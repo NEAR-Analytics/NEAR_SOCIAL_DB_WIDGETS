@@ -73,6 +73,9 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 
+// dark purple
+const PrimaryColor = '#4a148c';
+
 const Select = styled.select`
   background-color: #4caf50;
   border: none;
@@ -127,6 +130,13 @@ const InfoBar = styled.div`
   align-items: center;
   padding: 4px ${ContainerPaddingHorizontal};
   border-bottom: 1px solid #e0e0e0;
+`;
+
+const TextLabel = styled.div`
+  font-size: 14px;
+  color: ${PrimaryColor};
+  margin-right: 8px;
+  opacity: 0.8;
 `;
 
 /**
