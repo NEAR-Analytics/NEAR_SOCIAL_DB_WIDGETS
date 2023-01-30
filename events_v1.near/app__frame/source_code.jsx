@@ -305,6 +305,8 @@ function renderComponent(name, props) {
     rerender,
     appStateGet,
     appStateSet,
+    storageGet,
+    storageSet,
     layoutPathFromName,
     widgetPathFromName,
 
@@ -330,6 +332,7 @@ function renderComponent(name, props) {
       props: props,
     },
   };
+
   return (
     <Widget
       src={`${appOwner}/widget/app__layout_controller`}
