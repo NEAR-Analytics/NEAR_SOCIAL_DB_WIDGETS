@@ -130,12 +130,14 @@ return (
         </Text>
       </InfoBarItem>
 
-      <InfoBarItem>
-        <Text>
-          <i className="bi bi-geo"></i>
-          {event.location}
-        </Text>
-      </InfoBarItem>
+      {event.location && event.location !== '' ? (
+        <InfoBarItem>
+          <Text>
+            <i className="bi bi-geo"></i>
+            {event.location}
+          </Text>
+        </InfoBarItem>
+      ) : null}
 
       {event.category && event.category !== '' ? (
         <InfoBarItem>
