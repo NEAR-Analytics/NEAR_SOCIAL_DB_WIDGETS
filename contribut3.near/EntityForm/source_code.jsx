@@ -15,8 +15,6 @@ initState({
   startDate,
 });
 
-const allKinds = ["Project", "Organization", "DAO"].map((name) => ({ name }));
-
 const accountIdInput = (
   <div className="col-lg-12  mb-2">
     <Widget
@@ -34,14 +32,9 @@ const accountIdInput = (
 
 const kindInput = (
   <div className="col-lg-6  mb-2">
-    Type of entity:
-    <Typeahead
-      labelKey="name"
-      onChange={(kind) => State.update({ kind })}
-      options={allKinds}
-      placeholder="Project, Organization or DAO"
-      selected={state.kind}
-      positionFixed
+    <Widget
+      src={`${ownerId}/widget/EntityTypeInput`}
+      props={{ kind: state.kind, update: (kind) => State.update({ kind }) }}
     />
   </div>
 );
