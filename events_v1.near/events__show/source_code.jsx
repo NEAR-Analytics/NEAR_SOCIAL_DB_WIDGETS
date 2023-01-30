@@ -1,8 +1,3 @@
-props.controller.setLayout('container', {
-  back: true,
-  title: event.name,
-});
-
 const EVENTS_CONTRACT = 'events_v1.near';
 const TGAS_300 = '300000000000000';
 
@@ -17,6 +12,10 @@ const event = Near.view(EVENTS_CONTRACT, 'get_event', {
 if (!event) {
   return 'Loading';
 }
+props.controller.setLayout('container', {
+  back: true,
+  title: event.name,
+});
 
 function removeEvent() {
   const contract = EVENTS_CONTRACT;
