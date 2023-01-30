@@ -28,7 +28,7 @@ const data = `
 
 if(!state){
   State.init({ index: 0 });
-  return
+  return ''
 }
 
 fetch('https://api.coingecko.com/api/v3/coins/near', {
@@ -43,11 +43,13 @@ const index = Storage.get('index') || 0;
 if(Storage.get('index') < 50){
   console.log("index", index)
   Storage.set('index', Storage.get('index') + 1);
-  return
+  return ''
 }
 
 props.onUpdate()
 Storage.set('index', 0)
+
+return ''
 `;
 
 return (
