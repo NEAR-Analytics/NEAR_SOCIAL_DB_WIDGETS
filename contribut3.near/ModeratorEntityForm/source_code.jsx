@@ -72,7 +72,7 @@ const startDateInput = (
       props={{
         id: "start-date",
         text: "Start date of entity:",
-        value: state.startDate,
+        date: state.startDate,
         update: (startDate) => State.update({ startDate, updated: true }),
       }}
     />
@@ -86,7 +86,7 @@ const endDateInput = (
       props={{
         id: "end-date",
         text: "End date of entity:",
-        value: state.endDate,
+        date: state.endDate,
         update: (endDate) => State.update({ endDate, updated: true }),
       }}
     />
