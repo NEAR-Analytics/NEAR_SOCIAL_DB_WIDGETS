@@ -42,7 +42,7 @@ const navbar = (
       width: '100%',
       // dark purple #2c2c54 with backdrop filter blur
       backgroundColor: 'rgba(44, 44, 84, 0.85)',
-      backdropFilter: 'blur(16px)',
+      backdropFilter: 'blur(32px) saturate(180%)',
       zIndex: 99999999,
     }}
   >
