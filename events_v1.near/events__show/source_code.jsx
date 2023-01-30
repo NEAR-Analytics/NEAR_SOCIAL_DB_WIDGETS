@@ -17,6 +17,18 @@ props.controller.setLayout('container', {
   title: event.name,
 });
 
+function removeEvent() {
+  const id = props.event.id;
+  const contract = EVENTS_CONTRACT;
+  const method = 'remove_event';
+  const args = {
+    event_id: props.event.id,
+  };
+  const gas = TGAS_300;
+  const deposit = '0';
+  Near.call(contract, method, args, gas, null);
+}
+
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 
@@ -148,11 +160,11 @@ return (
               role="button"
               tabIndex={0}
               onClick={() => {
-                props.__engine.replace('delete_event', { event: event });
+                removeEvent();
               }}
               onKeyDown={() => {
                 if (event.key === 'Enter') {
-                  props.__engine.replace('delete_event', { event: event });
+                  removeEvent();
                 }
               }}
             >
