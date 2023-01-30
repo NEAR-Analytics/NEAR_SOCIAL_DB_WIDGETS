@@ -52,7 +52,6 @@ const NavPrimaryButton = styled.button`
 `;
 
 function onPrimaryActionClick(event) {
-  props.__engine.pop();
   return props.primaryAction.onClick(event);
 }
 
