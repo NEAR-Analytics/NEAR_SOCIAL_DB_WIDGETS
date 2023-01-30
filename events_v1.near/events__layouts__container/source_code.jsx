@@ -107,10 +107,10 @@ const navbar = (
         {props.primaryAction ? (
           <NavPrimaryButton
             type="button"
-            onClick={() => {
+            onClick={(event) => {
               console.log('primary action clicked');
               console.log(props.primaryAction);
-              props.primaryAction.onClick();
+              props.primaryAction.onClick(event);
             }}
           >
             {props.primaryAction.label}
