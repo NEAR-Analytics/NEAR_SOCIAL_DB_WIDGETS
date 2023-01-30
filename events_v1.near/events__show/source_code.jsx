@@ -206,15 +206,7 @@ return (
     >
       <Container>
         <TextHeader>Description</TextHeader>
-
-        <div
-          style={{
-            fontSize: '16px',
-            lineHeight: '1.5',
-          }}
-        >
-          {event.description}
-        </div>
+        <Text>{event.description}</Text>
       </Container>
 
       <p>{event.description}</p>
