@@ -12,7 +12,6 @@ const args = {
 };
 const gas = TGAS_300;
 const deposit = '0';
-Near.call(contract, method, args, gas, null);
 
 console.log('state', state);
 console.log('storage', props.__engine.storageGet(`${method}_${id}`));
@@ -34,6 +33,7 @@ if (state.inFlight) {
 }
 
 State.update({ inFlight: true });
+Near.call(contract, method, args, gas, null);
 props.__engine.storageSet(`${method}_${id}`, true);
 
 return (
