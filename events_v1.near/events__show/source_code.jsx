@@ -104,29 +104,31 @@ return (
         borderBottom: '1px solid #ccc',
       }}
     >
-      <p style={{}}>{event.location}</p>
+      <Container>
+        <p style={{}}>{event.location}</p>
 
-      <p
-        style={{
-          marginLeft: '10px',
-        }}
-      >
-        {datesAreEqual ? (
-          <>
-            {startDate.getDate()}{' '}
-            {startDate.toLocaleString('default', { month: 'short' })}{' '}
-            {startDate.getFullYear()}
-          </>
-        ) : (
-          <>
-            {startDate.getDate()}{' '}
-            {startDate.toLocaleString('default', { month: 'short' })}{' '}
-            {startDate.getFullYear()} - {endDate.getDate()}{' '}
-            {endDate.toLocaleString('default', { month: 'short' })}{' '}
-            {endDate.getFullYear()}
-          </>
-        )}
-      </p>
+        <p
+          style={{
+            marginLeft: '10px',
+          }}
+        >
+          {datesAreEqual ? (
+            <>
+              {startDate.getDate()}{' '}
+              {startDate.toLocaleString('default', { month: 'short' })}{' '}
+              {startDate.getFullYear()}
+            </>
+          ) : (
+            <>
+              {startDate.getDate()}{' '}
+              {startDate.toLocaleString('default', { month: 'short' })}{' '}
+              {startDate.getFullYear()} - {endDate.getDate()}{' '}
+              {endDate.toLocaleString('default', { month: 'short' })}{' '}
+              {endDate.getFullYear()}
+            </>
+          )}
+        </p>
+      </Container>
     </div>
 
     <div
