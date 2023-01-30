@@ -348,6 +348,7 @@ function pop() {
 }
 
 function dirtyEval(args) {
+  console.log('dirtyEval', args);
   const method = args[0];
   console.log('dirtyEval', method, typeof method);
   if (typeof method === 'function') {
