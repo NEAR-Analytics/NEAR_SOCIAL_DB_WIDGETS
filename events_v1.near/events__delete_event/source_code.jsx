@@ -41,6 +41,6 @@ deleteEvent();
 return (
   <>
     <h2>Deleting Event</h2>
-    {JSON.stringify(state.inFlight)}
+    <pre>{JSON.stringify(state, null, 4)}</pre>
   </>
 );
