@@ -332,12 +332,12 @@ function pop() {
 
 function onTick(tick, callback) {
   // console.log('onTick', tick, callback);
-  const tickCallbacks = appStateGet('tickCallbacks', []);
+  const tickCallbacks = getLocal('tickCallbacks', []);
   tickCallbacks.push({
     tick,
     callback,
   });
-  appStateSet('tickCallbacks', tickCallbacks);
+  setLocal('tickCallbacks', tickCallbacks);
 }
 
 function renderComponent(name, props) {
