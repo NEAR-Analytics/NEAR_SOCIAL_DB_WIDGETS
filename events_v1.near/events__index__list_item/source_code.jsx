@@ -57,7 +57,7 @@ const EventBody = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.5rem;
+  padding: calc(max(0.5rem, 0.5vw));
 `;
 
 function gotoEvent() {
