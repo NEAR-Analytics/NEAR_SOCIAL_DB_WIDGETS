@@ -18,7 +18,8 @@ console.log('storage', props.__engine.storageGet(`${method}_${id}`));
 
 if (!state) {
   if (props.__engine.storageGet(`${method}_${id}`)) {
-    props.__engine.pop();
+    console.log('in flight');
+    // props.__engine.pop();
     return 'Loading';
   }
 
@@ -28,14 +29,12 @@ if (!state) {
 }
 
 if (state.inFlight) {
-  return;
+  return 'Loading';
 }
 
 Near.call(contract, method, args, gas, deposit);
 State.update({ inFlight: true });
 props.__engine.storageSet(`${method}_${id}`, true);
-
-callAction();
 
 return (
   <>
