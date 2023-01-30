@@ -8,7 +8,7 @@ const TGAS_300 = '300000000000000';
 const eventId = props.event.id;
 
 function deleteEvent() {
-  Near.call(
+  const result = Near.call(
     EVENTS_CONTRACT,
     'remove_event',
     {
@@ -16,8 +16,12 @@ function deleteEvent() {
     },
     TGAS_300
   );
+
+  console.log('result', result);
 }
 
 deleteEvent();
+
+props.__engine.pop();
 
 return '';
