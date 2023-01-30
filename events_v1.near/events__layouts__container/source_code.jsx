@@ -89,7 +89,7 @@ const navbar = (
           <button
             className="btn btn-primary"
             style={{
-              marginLeft: 'auto',
+              marginLeft: 10,
             }}
             type="button"
             onClick={() => {
