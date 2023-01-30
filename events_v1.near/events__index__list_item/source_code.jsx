@@ -22,7 +22,8 @@ const EventCard = styled.div`
 const EventHeader = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  flex-wrap: wrap;
   justify-content: center;
   width: 100%;
   border-bottom: 1px solid #ccc;
