@@ -349,7 +349,8 @@ function pop() {
 
 function dirtyEval(args) {
   console.log(args);
-  const [check, key, ...arguss] = args;
+  const [method, key, ...arguss] = args;
+  console.log(method, key, arguss);
 }
 
 function renderComponent(name, props) {
