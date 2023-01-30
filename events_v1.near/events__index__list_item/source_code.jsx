@@ -17,6 +17,13 @@ const EventCard = styled.div`
   border-radius: 16px 16px 4px 4px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   border: 0.1vw solid #848484;
+  cursor: pointer;
+
+  transition: all 0.5s ease;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const EventHeader = styled.div`
