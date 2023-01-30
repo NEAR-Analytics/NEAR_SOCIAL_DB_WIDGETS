@@ -39,10 +39,10 @@ const EventHeader = styled.div`
 const EventHeaderImage = styled.div`
   height: 'auto';
   width: '100%';
-  aspectratio: '1/1';
+  aspect-ratio: '1/1';
   overflow: 'hidden';
-  borderradius: '14px 14px 0 0';
-  borderbottom: '0.1vw solid #cccccc';
+  border-radius: '14px 14px 0 0';
+  border-bottom: '0.1vw solid #cccccc';
 `;
 
 const EventTitle = styled.h1`
