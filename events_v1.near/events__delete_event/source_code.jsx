@@ -8,13 +8,13 @@ const TGAS_300 = '300000000000000';
 const eventId = props.event.id;
 
 if (!state) {
-  State.init({ result: null });
+  State.init({ inFlight: null });
   return 'Loading';
 }
 
 function deleteEvent() {
-  if (state.result) {
-    console.log('already deleted', state.result);
+  if (state.inFlight) {
+    console.log('already deleted', state.inFlight);
     props.__engine.pop();
     return;
   }
@@ -30,7 +30,7 @@ function deleteEvent() {
 
   console.log('result', result);
 
-  State.update({ result });
+  State.update({ inFlight: true });
 }
 
 deleteEvent();
@@ -38,6 +38,6 @@ deleteEvent();
 return (
   <>
     <h2>Deleting Event</h2>
-    {JSON.stringify(state.result)}
+    {JSON.stringify(state.inFlight)}
   </>
 );
