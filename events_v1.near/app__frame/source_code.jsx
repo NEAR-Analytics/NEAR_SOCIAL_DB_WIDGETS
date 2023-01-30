@@ -434,7 +434,7 @@ function onTickUpdate() {
     'tickCallbacks',
     tickCallbacks
       .map((tickCallback) => {
-        if (tickCallback.tick === state.tick) {
+        if (tickCallback.tick === appStateGet('getState')().tick) {
           tickCallback.callback();
           return null;
         }
@@ -442,20 +442,26 @@ function onTickUpdate() {
       })
       .filter((tickCallback) => tickCallback !== null)
   );
-  // State.update({
-  //   tick: state.tick + 1,
-  // });
+  appStateGet('setState')({
+    tick: state.tick + 1,
+  });
+}
+
+function registerStateProxy(setState, getState) {
+  console.log('registerStateProxy');
+  appStateSet('setState', setState);
+  appStateSet('getState', getState);
 }
 
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
     <div style={{ display: 'none' }}>
-      <Widget code={updateHackCode} props={{ onUpdate: onTickUpdate }} />
       <Widget
         code={updateStateHackCode}
         props={{ register: registerStateProxy }}
       />
+      <Widget code={updateHackCode} props={{ onUpdate: onTickUpdate }} />
     </div>
     {/* state reset button */}
     <div
