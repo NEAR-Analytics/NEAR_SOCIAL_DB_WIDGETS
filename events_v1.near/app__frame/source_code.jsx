@@ -350,6 +350,7 @@ function pop() {
 function dirtyEval(args) {
   const method = args[0];
   if (method instanceof Function) {
+    console.log('dirtyEval', method);
     return method();
   }
   const key = args[1];
