@@ -136,6 +136,7 @@ const InfoBarItem = styled.div`
   margin-right: 8px;
 `;
 const InfoBarLink = styled.a`
+  font-size: 16px;
   color: #424242;
   text-decoration: none;
   margin-right: 8px;
