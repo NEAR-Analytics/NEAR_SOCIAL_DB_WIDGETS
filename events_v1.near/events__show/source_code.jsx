@@ -47,6 +47,7 @@ return (
           minHeight: '100px',
           background: 'white',
           borderRadius: 12,
+          overflow: 'hidden',
         }}
       >
         {props.__engine.renderComponent('components.event_image_slider', {
