@@ -164,14 +164,10 @@ if (!entryRoute) {
 }
 
 const entryProps = props.entryProps || {};
-const entryLayout = props.entryLayout || null;
-const entryLayoutProps = props.entryLayoutProps || {};
 
 const rootRoute = {
   name: entryRoute,
   props: entryProps,
-  layout: entryLayout,
-  layoutProps: entryLayoutProps,
 };
 
 if (!state) {
