@@ -97,7 +97,14 @@ return (
     tabIndex={0}
   >
     <EventHeader>
-      <div style={{ height: '40vh', maxHeight: '400px', minHeight: '200px' }}>
+      <div
+        style={{
+          height: '40vh',
+          maxHeight: '400px',
+          minHeight: '200px',
+          overflow,
+        }}
+      >
         {props.__engine.renderComponent('components.event_image_slider', {
           event,
           mode: 'tile',
