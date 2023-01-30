@@ -308,6 +308,7 @@ function renderComponent(name, props) {
       Button,
       Loading,
       PageTitle,
+      Container,
     },
 
     helpers: {
