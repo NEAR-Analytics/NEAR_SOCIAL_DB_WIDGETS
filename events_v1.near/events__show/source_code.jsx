@@ -207,7 +207,6 @@ return (
         <TextHeader>Description</TextHeader>
         <Text>
           <Markdown text={event.description} />
-          {event.description}
         </Text>
       </Container>
 
