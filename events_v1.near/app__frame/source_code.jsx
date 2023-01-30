@@ -206,24 +206,6 @@ function appStateSet(prop, value) {
   return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
-function getLocal(prop, defaultValue) {
-  const getter = appStateGet('getState');
-  if (getter) {
-    const local = getter();
-    return local[prop] || defaultValue;
-  }
-  return defaultValue;
-}
-
-function setLocal(prop, value) {
-  const setter = appStateGet('setState');
-  if (setter) {
-    setter({
-      [prop]: value,
-    });
-  }
-}
-
 function storageGet(prop, defaultValue) {
   return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
