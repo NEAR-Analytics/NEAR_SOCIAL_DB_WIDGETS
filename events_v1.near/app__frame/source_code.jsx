@@ -382,6 +382,10 @@ function renderComponent(name, props) {
     helpers: {
       propIsRequiredMessage,
     },
+
+    hacks: {
+      dirtyEval,
+    },
   };
 
   const controllerProps = {
