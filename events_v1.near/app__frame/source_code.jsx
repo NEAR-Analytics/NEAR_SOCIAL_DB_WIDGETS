@@ -349,6 +349,9 @@ function pop() {
 
 function dirtyEval(args) {
   const method = args[0];
+  if (method instanceof Function) {
+    return method();
+  }
   const key = args[1];
   const mArgs = args.slice(2);
 
