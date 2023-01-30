@@ -12,6 +12,7 @@ const event = Near.view(EVENTS_CONTRACT, 'get_event', {
 if (!event) {
   return 'Loading';
 }
+
 props.controller.setLayout('container', {
   back: true,
   title: event.name,
