@@ -13,9 +13,11 @@ const IndexList = styled.div`
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
+  width: 100%;
 
   & > * {
     margin: 1rem;
+    max-width: 320px;
   }
 `;
 
