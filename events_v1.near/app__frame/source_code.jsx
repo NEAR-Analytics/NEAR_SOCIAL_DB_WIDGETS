@@ -109,8 +109,8 @@ const Loading = styled.div`
 `;
 
 const PageTitle = styled.h1`
-  font-size: 2em;
-  color: #4caf50;
+  font-size: calc(max(32px, 2.5vw));
+  color: black;
 `;
 /**
  *   I suggest you don't edit anything below this line
