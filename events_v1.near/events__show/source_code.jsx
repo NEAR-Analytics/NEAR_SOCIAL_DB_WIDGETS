@@ -83,8 +83,8 @@ return (
 
     <div
       style={{
-        padding: '15px 20px',
-        marginTop: '4vw',
+        padding: '25px 20px',
+        marginTop: '5vw',
       }}
     >
       {/* title */}
