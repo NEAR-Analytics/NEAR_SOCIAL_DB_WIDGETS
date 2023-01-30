@@ -1,8 +1,26 @@
 props.controller.setLayout('container', {
   title: 'My events',
   back: true,
+
+  primaryAction: {
+    label: 'Create new Event',
+    onClick: ['push', 'new', {}],
+  },
 });
 
-return props.__engine.renderComponent('index.list_container', {
-  forAccountId: props.__engine.accountId,
-});
+const Container = props.__engine.Components.Container;
+
+
+return (
+    <Container>
+      {
+        props.__engine.renderComponent('index.list_container', {
+          forAccountId: props.__engine.accountId,
+        });
+
+      }
+    </Container>
+
+
+)
+
