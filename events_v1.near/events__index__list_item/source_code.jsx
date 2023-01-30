@@ -52,8 +52,8 @@ const EventDate = styled.div`
   margin: 0;
   padding: calc(max(0.5rem, 0.5vw));
   height: 42px;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
   width: 100%;
   border-top: 0.1vw solid #cccccc;
 `;
@@ -61,7 +61,7 @@ const EventDate = styled.div`
 const EventBody = styled.div`
   width: 100%;
   height: auto;
-  flex-grow: 1;
+  flex-grow: 100;
   flex-shrink: 0;
   background-color: rgba(222, 222, 222, 0.9);
 `;
