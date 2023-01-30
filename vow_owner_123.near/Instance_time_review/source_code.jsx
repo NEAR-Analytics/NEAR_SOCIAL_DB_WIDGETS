@@ -151,6 +151,7 @@ return (
                     margin: "8px",
                     cursor:
                       context.accountId == d.accountId ? "pointer" : "default",
+                    disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
                   href={
