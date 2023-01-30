@@ -57,6 +57,7 @@ const EventDate = styled.div`
   height: 42px;
   flex-grow: 0;
   flex-shrink: 0;
+  width: 100%;
 `;
 
 const EventBody = styled.div`
