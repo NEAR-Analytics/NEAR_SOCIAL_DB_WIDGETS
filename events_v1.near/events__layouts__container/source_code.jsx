@@ -40,7 +40,9 @@ const navbar = (
       position: 'fixed',
       top: NAVBAR_OFFSET_TOP,
       width: '100%',
-      backgroundColor: '#2c2c54',
+      // dark purple #2c2c54 with backdrop filter blur
+      backgroundColor: 'rgba(44, 44, 84, 0.8)',
+      backdropFilter: 'blur(10px)',
       zIndex: 99999999,
     }}
   >
