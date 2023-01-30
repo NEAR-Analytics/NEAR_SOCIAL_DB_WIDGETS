@@ -443,8 +443,8 @@ const updateStateHackCode = `
 
 function onTickUpdate() {
   console.log('onTickUpdate');
-  const tickCallbacks = appStateGet('tickCallbacks', []);
-  const tick = appStateGet('getState')().tick;
+  const tickCallbacks = getLocal('tickCallbacks', []);
+  const tick = getLocal('tick');
   console.log('tick', tick);
 
   appStateSet(
@@ -460,7 +460,7 @@ function onTickUpdate() {
       .filter((tickCallback) => tickCallback !== null)
   );
 
-  appStateGet('setState')({
+  setLocal({
     tick: state.tick + 1,
   });
 }
