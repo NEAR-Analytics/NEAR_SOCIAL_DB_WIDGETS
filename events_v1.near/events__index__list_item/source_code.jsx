@@ -37,12 +37,12 @@ const EventHeader = styled.div`
 `;
 
 const EventHeaderImage = styled.div`
-  height: 'auto',
-  width: '100%',
-  aspectRatio: '1/1',
-  overflow: 'hidden',
-  borderRadius: '14px 14px 0 0',
-  borderBottom: '0.1vw solid #cccccc',
+  height: 'auto';
+  width: '100%';
+  aspectratio: '1/1';
+  overflow: 'hidden';
+  borderradius: '14px 14px 0 0';
+  borderbottom: '0.1vw solid #cccccc';
 `;
 
 const EventTitle = styled.h1`
