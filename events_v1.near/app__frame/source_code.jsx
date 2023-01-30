@@ -420,7 +420,7 @@ return (
       props={{
         onUpdate: () => {
           const v = appStateGet('renderCycles') || 0;
-          appStateSet('renderCycles', (v + 1) % 100);
+          appStateSet('renderCycles', (v + 1) % 10);
 
           const tickCallbacks = appStateGet('tickCallbacks', []);
           tickCallbacks.forEach((tickCallback) => {
