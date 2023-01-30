@@ -21,8 +21,8 @@ const IndexList = styled.div`
   & > * {
     margin: 2vw 2vw;
     max-width: 520px;
-    min-width: 240px;
-    width: 320px;
+    min-width: 220px;
+    width: 240px;
     flex-grow: 3;
     flex-shrink: 3;
   }
