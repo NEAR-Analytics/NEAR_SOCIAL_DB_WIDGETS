@@ -135,8 +135,6 @@ return (
         marginTop: '4vw',
       }}
     >
-      {/* info bar with condensed info */}
-
       {/* second bar with links */}
       <div
         style={{
