@@ -4,6 +4,8 @@ props.controller.setLayout('modal', {
 
 const EVENTS_CONTRACT = 'events_v1.near';
 
+const eventId = props.event.id;
+
 function deleteEvent() {
   Near.call(
     EVENTS_CONTRACT,
@@ -11,8 +13,7 @@ function deleteEvent() {
     {
       event_id: eventId,
     },
-    TGAS_300,
-    ONE_HALF_NEAR
+    TGAS_300
   );
 }
 
