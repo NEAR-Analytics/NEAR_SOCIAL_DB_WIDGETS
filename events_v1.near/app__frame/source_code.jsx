@@ -119,6 +119,14 @@ const Container = styled.div`
   paddingtop: 12px;
   paddingbottom: 12px;
 `;
+
+const InfoBar = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid #e0e0e0;
+`;
+
 /**
  *   I suggest you don't edit anything below this line
  * */
