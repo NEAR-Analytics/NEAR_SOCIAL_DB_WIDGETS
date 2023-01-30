@@ -102,10 +102,6 @@ return (
 
     <InfoBar>
       <InfoBarItem>
-        <Text>{event.location}</Text>
-      </InfoBarItem>
-
-      <InfoBarItem>
         <Text>
           {datesAreEqual ? (
             <>
@@ -126,7 +122,12 @@ return (
       </InfoBarItem>
 
       <InfoBarItem>
+        <Text>{event.location}</Text>
+      </InfoBarItem>
+
+      <InfoBarItem>
         <InlineTag>{event.category}</InlineTag>
+      </InfoBarItem>
     </InfoBar>
 
     {/* link bar */}
