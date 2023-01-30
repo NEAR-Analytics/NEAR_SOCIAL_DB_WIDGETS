@@ -51,10 +51,6 @@ const NavPrimaryButton = styled.button`
   }
 `;
 
-function onPrimaryActionClick() {
-  return props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
-}
-
 const navbar = (
   <div
     className="navbar navbar-expand-lg navbar-dark"
@@ -113,7 +109,6 @@ const navbar = (
             type="button"
             onClick={(event) => {
               onPrimaryActionClick(event);
-              console.log(2);
               return true;
             }}
           >
