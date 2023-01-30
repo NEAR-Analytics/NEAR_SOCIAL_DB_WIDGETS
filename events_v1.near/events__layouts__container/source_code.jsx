@@ -79,7 +79,7 @@ const navbar = (
             marginLeft: 10,
             marginRight: 'auto',
             fontSize: 20,
-            display: 'flex',
+            display: 'inline-block',
           }}
         >
           {title}
@@ -95,6 +95,7 @@ const navbar = (
               padding: '4px 8px',
               background: 'transparent',
               outline: 'none',
+              display: 'inline-block',
             }}
             type="button"
             onClick={() => {
