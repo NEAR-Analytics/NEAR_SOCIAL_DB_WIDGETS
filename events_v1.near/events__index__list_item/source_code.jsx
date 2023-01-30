@@ -100,7 +100,7 @@ return (
     </EventHeader>
 
     <EventBody>
-      <EventDescription>{event.description}</EventDescription>
+      <EventDescription>{event.description.slice(0, 100)}</EventDescription>
       <EventDate>{event.start_date}</EventDate>
       <EventDate>{event.end_date}</EventDate>
     </EventBody>
