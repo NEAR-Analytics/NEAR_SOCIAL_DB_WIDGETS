@@ -155,6 +155,7 @@ return (
           >
             Edit
           </InfoBarLink>
+
           <InfoBarLink
             role="button"
             tabIndex={0}
