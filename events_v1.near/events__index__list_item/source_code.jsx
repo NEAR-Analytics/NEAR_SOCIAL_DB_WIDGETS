@@ -97,6 +97,7 @@ return (
     className="text-decoration-none"
     role="button"
     tabIndex={0}
+    style={{ cursor: 'pointer', width: '100%' }}
   >
     <EventCard>
       <EventHeader>
