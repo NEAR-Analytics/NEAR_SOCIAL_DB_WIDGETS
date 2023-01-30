@@ -355,14 +355,11 @@ function dirtyEval(args) {
   let result = null;
   switch (method) {
     case 'push':
-      result = push(key, mArgs[0]);
-    break;
+      return push(key, mArgs[0]);
     case 'replace':
-      result = replace(key, mArgs[0]);
-      break;
+      return (esult = replace(key, mArgs[0]));
     case 'pop':
-      result = pop();
-      break;
+      return (esult = pop());
     default:
       throw new Error(`Unknown method ${method}`);
   }
