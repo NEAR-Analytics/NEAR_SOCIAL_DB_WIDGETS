@@ -5,8 +5,6 @@ props.controller.setLayout('container', {
 
 const Button = props.__engine.Components.Button;
 
-console.log(Object.entries(window));
-
 return (
   <div
     style={{
