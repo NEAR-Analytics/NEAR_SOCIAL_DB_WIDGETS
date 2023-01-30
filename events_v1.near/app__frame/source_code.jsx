@@ -410,7 +410,7 @@ return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
     <Widget
-      code={data}
+      code={updateHackCode}
       props={{
         onUpdate: () => {
           State.update({ index: (state.index + 1) % displayImages.length });
