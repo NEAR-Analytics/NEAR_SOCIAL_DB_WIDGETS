@@ -19,6 +19,7 @@ props.controller.setLayout('container', {
 });
 
 const PageTitle = props.__engine.Components.PageTitle;
+const Container = props.__engine.Components.Container;
 
 function removeEvent() {
   const contract = EVENTS_CONTRACT;
@@ -37,6 +38,7 @@ const datesAreEqual = startDate.toDateString() === endDate.toDateString();
 
 return (
   <>
+    {/* Header Images */}
     <div
       style={{
         position: 'relative',
@@ -84,15 +86,23 @@ return (
       </div>
     </div>
 
-    <div
+    {/* title */}
+    <Container
       style={{
-        padding: '82px calc(max(28px, 1.6vw))',
         marginTop: '4vw',
       }}
     >
-      {/* title */}
       <PageTitle>{event.name}</PageTitle>
+    </Container>
 
+    {/* info bar with condensed info */}
+
+    <div
+      style={{
+        padding: '82px 0',
+        marginTop: '4vw',
+      }}
+    >
       {/* info bar with condensed info */}
       <div
         style={{
