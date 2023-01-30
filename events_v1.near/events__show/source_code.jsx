@@ -148,11 +148,11 @@ return (
               role="button"
               tabIndex={0}
               onClick={() => {
-                props.__engine.push('delete_event', { event: event });
+                props.__engine.replace('delete_event', { event: event });
               }}
               onKeyDown={() => {
                 if (event.key === 'Enter') {
-                  props.__engine.push('delete_event', { event: event });
+                  props.__engine.replace('delete_event', { event: event });
                 }
               }}
             >
