@@ -205,7 +205,10 @@ return (
     >
       <Container>
         <TextHeader>Description</TextHeader>
-        <Text>{event.description}</Text>
+        <Text>
+          <Markdown text={event.description} />
+          {event.description}
+        </Text>
       </Container>
 
       <p>{event.type}</p>
