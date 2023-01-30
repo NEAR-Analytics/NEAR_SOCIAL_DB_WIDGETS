@@ -137,15 +137,7 @@ return (
     <InfoBar>
       {props.__engine.accountId === event.account_id ? (
         <>
-          <span
-            style={{
-              color: '#000',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '10px 0',
-              marginRight: '10px',
-            }}
+          <InfoBarLink
             role="button"
             tabIndex={0}
             onClick={() => {
@@ -158,16 +150,8 @@ return (
             }}
           >
             Edit
-          </span>
-          <span
-            style={{
-              color: '#000',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '10px 0',
-              marginRight: '10px',
-            }}
+          </InfoBarLink>
+          <InfoBarLink
             role="button"
             tabIndex={0}
             onClick={() => {
@@ -180,7 +164,7 @@ return (
             }}
           >
             Delete
-          </span>
+          </InfoBarLink>
         </>
       ) : null}
 
