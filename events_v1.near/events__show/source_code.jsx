@@ -40,7 +40,7 @@ return (
           position: 'absolute',
           left: '0',
           bottom: '0',
-          transform: 'translate(0, -25%)',
+          transform: 'translate(0, 25%)',
           padding: '8px',
           width: '20vw',
           height: '20vw',
@@ -48,7 +48,7 @@ return (
           minHeight: '100px',
           background: 'white',
           borderRadius: 14,
-          border: '2px solid white',
+          border: '2px solid black',
         }}
       >
         <div
