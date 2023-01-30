@@ -139,10 +139,9 @@ const InfoBarItem = styled.div`
 `;
 
 const TextHeader = styled.div`
-  font-size: 14px;
-  color: ${PrimaryColor};
-  margin-right: 8px;
-  opacity: 0.8;
+  font-size: 18px;
+  /* darken primary color */
+  color: #311b92;
 `;
 
 const InlineTag = styled.div`
