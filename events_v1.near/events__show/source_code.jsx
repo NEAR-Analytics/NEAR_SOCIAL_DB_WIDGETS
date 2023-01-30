@@ -34,19 +34,21 @@ return (
         event,
         mode: 'banner',
       })}
+
       <div
         style={{
           position: 'absolute',
           left: '0',
           bottom: '0',
-          transform: 'translate(0, -50%)',
-          padding: '4px',
+          transform: 'translate(0, -25%)',
+          padding: '8px',
           width: '20vw',
           height: '20vw',
           minWidth: '100px',
           minHeight: '100px',
           background: 'white',
           borderRadius: 14,
+          border: '2px solid white',
         }}
       >
         <div
