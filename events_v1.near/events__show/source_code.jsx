@@ -190,10 +190,6 @@ return (
             key={idx}
             target="_blank"
             rel="noopener noreferrer"
-            id="asdf"
-            ref={(el) => {
-              console.log('el', el);
-            }}
             style={{
               color: '#000',
               textDecoration: 'none',
