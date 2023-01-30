@@ -38,17 +38,17 @@ const EventTitle = styled.h1`
 `;
 
 const EventDescription = styled.p`
-  font-size: 1rem;
+  font-size: 1.5vw;
   font-weight: 400;
   margin: 0;
-  padding: 1rem;
+  padding: calc(max(0.5rem, 0.5vw));
 `;
 
 const EventDate = styled.p`
-  font-size: 1rem;
+  font-size: 1.5vw;
   font-weight: 400;
   margin: 0;
-  padding: 1rem;
+  padding: calc(max(0.5rem, 0.5vw));
 `;
 
 const EventBody = styled.div`
@@ -57,7 +57,7 @@ const EventBody = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
 `;
 
 function gotoEvent() {
