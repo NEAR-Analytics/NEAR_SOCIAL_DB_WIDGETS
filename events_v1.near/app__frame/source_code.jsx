@@ -132,7 +132,7 @@ const InfoBar = styled.div`
   border-bottom: 1px solid #e0e0e0;
 `;
 
-const TextLabel = styled.div`
+const TextHeader = styled.div`
   font-size: 14px;
   color: ${PrimaryColor};
   margin-right: 8px;
@@ -330,7 +330,7 @@ function renderComponent(name, props) {
       PageTitle,
       Container,
       InfoBar,
-      TextLabel,
+      TextHeader,
     },
 
     helpers: {
