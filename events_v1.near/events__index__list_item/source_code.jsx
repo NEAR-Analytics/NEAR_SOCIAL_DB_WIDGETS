@@ -81,6 +81,8 @@ return (
           height: '40vh',
           maxHeight: '400px',
           minHeight: '200px',
+          width: '100%',
+          maxWidth: '100%',
           overflow: 'hidden',
           borderRadius: '12px 12px 0 0',
         }}
