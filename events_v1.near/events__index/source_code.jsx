@@ -4,7 +4,7 @@ props.controller.setLayout('container', {
 
   primaryAction: {
     label: 'Create new Event',
-    onClick: () => {
+    onClick:{
       props.__engine.push('new', {});
     },
   },
@@ -25,7 +25,7 @@ return (
 
     <Button
       onClick={() => {
-        return props.__engine.push('my_events');
+        return props.__engine.push('my_events', {});
       }}
     >
       My Events
