@@ -383,7 +383,7 @@ return (
   <>
     <div
       style={{
-        position: 'relative',
+        position: 'absolute',
         width: '100vw',
         minHeight: '100vh',
         top: 72,
