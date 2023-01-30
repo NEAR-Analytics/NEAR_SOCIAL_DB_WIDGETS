@@ -195,35 +195,28 @@ function restoreRoutes() {
   }
 
   const layers = state.layers;
-  // console.log('checking if routing info has changed', layers);
   if (
     layers &&
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
-    // console.log('update route from storage');
     State.update({
       layers: info,
     });
-
-    // console.log('rerendering', info);
   }
 }
 
 restoreRoutes();
 
 function persistRoutingInformation(newState) {
-  // console.log('persistRoutingInformation', newState);
   storageSet('routing', newState);
 }
 
 function slugFromName(name) {
-  // console.log('slugFromName', name);
   return name.split('.').join('__').split('-').join('_');
 }
 
 function widgetPathFromName(name) {
-  // console.log('widgetPathFromName', name);
   return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
 }
 
@@ -239,7 +232,6 @@ function rerender() {
 }
 
 function push(name, props) {
-  // console.log('push', name, props);
   const layer = {
     name,
     props: props || {},
