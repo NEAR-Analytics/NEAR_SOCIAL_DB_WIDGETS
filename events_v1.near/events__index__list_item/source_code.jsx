@@ -102,6 +102,7 @@ return (
       <EventHeader>
         {props.__engine.renderComponent('components.event_image_slider', {
           event,
+          mode: 'tile',
         })}
         <EventTitle>{event.name}</EventTitle>
       </EventHeader>
