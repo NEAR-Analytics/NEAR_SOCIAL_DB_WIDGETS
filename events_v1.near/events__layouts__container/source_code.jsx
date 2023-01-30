@@ -104,14 +104,14 @@ const navbar = (
           {title}
         </h2>
 
-        {props.primaryButton ? (
+        {props.primaryAction ? (
           <NavPrimaryButton
             type="button"
             onClick={() => {
-              props.primaryButton.onClick();
+              props.primaryAction.onClick();
             }}
           >
-            {props.primaryButton.label}
+            {props.primaryAction.label}
           </NavPrimaryButton>
         ) : null}
       </div>
