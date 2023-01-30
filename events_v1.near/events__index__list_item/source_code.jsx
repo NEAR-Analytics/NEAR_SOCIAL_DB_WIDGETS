@@ -14,7 +14,7 @@ const EventCard = styled.div`
   justify-content: center;
   padding: 0;
   background-color: ${BG_CARD};
-  border-radius: 14px;
+  border-radius: 18px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   border: 0.1vw solid #848484;
 `;
