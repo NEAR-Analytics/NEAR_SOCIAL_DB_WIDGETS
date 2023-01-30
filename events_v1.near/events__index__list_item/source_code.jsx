@@ -63,7 +63,7 @@ const EventBody = styled.div`
   height: auto;
   flex-grow: 1;
   flex-shrink: 0;
-  background-color: rgba(200, 200, 200, 0.9);
+  background-color: rgba(222, 222, 222, 0.9);
 `;
 
 function showEvent() {
