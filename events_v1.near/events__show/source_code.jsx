@@ -136,7 +136,6 @@ return (
         ) : null}
 
         {event.links.map((link, idx) => {
-          console.log('link', link);
           return (
             <a
               href={link.url}
