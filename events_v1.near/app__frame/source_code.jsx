@@ -386,52 +386,58 @@ return (
         left: 0,
       }}
     >
-      <div id="app-state" data-state={JSON.stringify(state)}></div>
-
-      {/* state reset button */}
       <div
         style={{
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          zIndex: 9999,
-          padding: 8,
-          backgroundColor: 'transparent',
+          position: 'relative',
         }}
       >
-        <Button
-          onClick={() => {
-            storageSet('routing', [rootRoute]);
-            State.update({
-              layers: [rootRoute],
-            });
+        <div id="app-state" data-state={JSON.stringify(state)}></div>
+
+        {/* state reset button */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            zIndex: 9999,
+            padding: 8,
+            backgroundColor: 'transparent',
           }}
         >
-          Reset
-        </Button>
-      </div>
-
-      {state.layers.map((layer, index) => {
-        return (
-          <div
-            key={index}
-            style={{
-              width: '100vw',
-              minHeight: '100vh',
-              backgroundColor: 'transparent',
-              zIndex: index,
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              overflow: 'auto',
+          <Button
+            onClick={() => {
+              storageSet('routing', [rootRoute]);
+              State.update({
+                layers: [rootRoute],
+              });
             }}
           >
-            {safeRender(layer.name, layer.props)}
-          </div>
-        );
-      })}
+            Reset
+          </Button>
+        </div>
+
+        {state.layers.map((layer, index) => {
+          return (
+            <div
+              key={index}
+              style={{
+                width: '100vw',
+                minHeight: '100vh',
+                backgroundColor: 'transparent',
+                zIndex: index,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                overflow: 'auto',
+              }}
+            >
+              {safeRender(layer.name, layer.props)}
+            </div>
+          );
+        })}
+      </div>
     </div>
   </>
 );
