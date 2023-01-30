@@ -37,7 +37,7 @@ return (
     <div
       style={{
         position: 'relative',
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         minHeight: '200px',
         maxHeight: '50vh',
         height: '400px',
