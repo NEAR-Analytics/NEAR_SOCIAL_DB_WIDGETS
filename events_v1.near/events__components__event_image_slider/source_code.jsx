@@ -40,7 +40,7 @@ return (
           key={image.cid}
           alt={image.url.cid}
           style={{
-            width: 'auto',
+            width: '100%',
             height: '100%',
             maxWidth: '100%',
             boxSizing: 'border-box',
