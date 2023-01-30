@@ -36,7 +36,7 @@ return (
       userSelect: 'none',
     }}
   >
-    {displayImages.map((image, i) => {
+    {displayImages.map((image) => {
       // const image = displayImages[(i + state.index) % displayImages.length];
 
       return (
