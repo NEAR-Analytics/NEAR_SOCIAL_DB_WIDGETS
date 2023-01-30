@@ -23,6 +23,10 @@ const displayImages = imagesWithCid.filter((image) => {
   return image.type === mode;
 });
 
+props.__engine.onTick(1, () => {
+  console.log('tick');
+});
+
 return (
   <div
     style={{
