@@ -20,7 +20,6 @@ initState({
     : null,
 });
 
-const allKinds = ["Project", "Organization", "DAO"].map((name) => ({ name }));
 const allStatuses = ["Active", "Flagged"].map((name) => ({ name }));
 const allAccountIds = (
   Near.view(ownerId, "get_entities", {}, "final", true) ?? []
@@ -42,14 +41,12 @@ const accountIdInput = (
 
 const kindInput = (
   <div className="col-lg-6  mb-2">
-    Type of entity:
-    <Typeahead
-      labelKey="name"
-      onChange={(kind) => State.update({ kind, updated: true })}
-      options={allKinds}
-      placeholder="Project, Organization or DAO"
-      selected={state.kind}
-      positionFixed
+    <Widget
+      src={`${ownerId}/widget/EntityTypeInput`}
+      props={{
+        kind: state.kind,
+        update: (kind) => State.update({ kind, updated: true }),
+      }}
     />
   </div>
 );
@@ -70,24 +67,28 @@ const statusInput = (
 
 const startDateInput = (
   <div className="col-lg-6 mb-2">
-    Start date of entity:
-    <input
-      type="date"
-      value={state.startDate}
-      onChange={(e) =>
-        State.update({ startDate: e.target.value, updated: true })
-      }
+    <Widget
+      src={`${ownerId}/widget/DateInput`}
+      props={{
+        id: "start-date",
+        text: "Start date of entity:",
+        value: state.startDate,
+        update: (startDate) => State.update({ startDate, updated: true }),
+      }}
     />
   </div>
 );
 
 const endDateInput = (
   <div className="col-lg-6 mb-2">
-    End date of entity (optional):
-    <input
-      type="date"
-      value={state.endDate}
-      onChange={(e) => State.update({ endDate: e.target.value, updated: true })}
+    <Widget
+      src={`${ownerId}/widget/DateInput`}
+      props={{
+        id: "end-date",
+        text: "End date of entity:",
+        value: state.endDate,
+        update: (endDate) => State.update({ endDate, updated: true }),
+      }}
     />
   </div>
 );
@@ -148,7 +149,6 @@ const footer = (
         src={`${ownerId}/widget/Entity`}
         props={{
           isPreview: true,
-          id: 0, // irrelevant
           accountId: state.accountId[0].name,
           notStandalone: true,
           entity:
