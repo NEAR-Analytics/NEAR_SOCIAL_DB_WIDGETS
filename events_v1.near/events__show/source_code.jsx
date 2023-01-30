@@ -88,7 +88,7 @@ return (
       }}
     >
       {/* title */}
-      <h1>{event.name}</h1>
+      <PageTitle>{event.name}</PageTitle>
 
       {/* info bar with condensed info */}
       <div
