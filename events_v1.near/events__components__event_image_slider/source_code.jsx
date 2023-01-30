@@ -27,9 +27,6 @@ return (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '40vh',
-      maxHeight: '400px',
-      minHeight: '200px',
       maxWidth: '100%',
       overflow: 'hidden',
     }}
