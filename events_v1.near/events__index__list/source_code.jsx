@@ -17,9 +17,9 @@ const IndexList = styled.div`
 
   & > * {
     margin: 1rem;
-    max-width: 640px;
-    min-width: 320px;
-    width: 320px;
+    max-width: 480px;
+    min-width: 240px;
+    width: 33vw;
     flex-grow: 1;
     flex-shrink: 1;
   }
