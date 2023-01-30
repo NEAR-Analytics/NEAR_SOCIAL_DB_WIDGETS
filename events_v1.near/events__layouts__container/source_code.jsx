@@ -108,6 +108,8 @@ const navbar = (
           <NavPrimaryButton
             type="button"
             onClick={() => {
+              console.log('primary action clicked');
+              console.log(props.primaryAction);
               props.primaryAction.onClick();
             }}
           >
