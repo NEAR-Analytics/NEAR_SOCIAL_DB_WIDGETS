@@ -413,7 +413,7 @@ return (
       code={updateHackCode}
       props={{
         onUpdate: () => {
-          State.update({ index: (state.index + 1) % displayImages.length });
+          appStateSet('renderCycles', appStateGet('renderCycles') + 1);
         },
       }}
     />
