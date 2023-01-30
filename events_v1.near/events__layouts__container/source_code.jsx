@@ -109,7 +109,7 @@ const navbar = (
             type="button"
             onClick={(event) => {
               console.log('primary action clicked');
-              (() => {
+              (function () {
                 props.primaryAction.onClick(event);
               })();
               console.log(props.primaryAction);
