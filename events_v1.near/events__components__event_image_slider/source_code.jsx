@@ -76,8 +76,8 @@ return (
       />
     ) : null}
 
-    {displayImages.map((image) => {
-      // const image = displayImages[(i + state.index) % displayImages.length];
+    {displayImages.map((_, i) => {
+      const image = displayImages[(i + state.index) % displayImages.length];
 
       return (
         <img
