@@ -87,9 +87,14 @@ const navbar = (
 
         {props.primaryButton ? (
           <button
-            className="btn btn-primary"
             style={{
               marginLeft: 10,
+              color: 'white',
+              border: '2px solid white',
+              borderRadius: 4,
+              padding: '4px 8px',
+              background: 'transparent',
+              outline: 'none',
             }}
             type="button"
             onClick={() => {
