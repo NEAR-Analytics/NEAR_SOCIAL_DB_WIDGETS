@@ -349,12 +349,12 @@ function pop() {
 
 function dirtyEval(args) {
   console.log('dirtyEval', args);
+  if (typeof args === 'function') {
+    console.log('dirtyEval', args);
+    return args();
+  }
   const method = args[0];
   console.log('dirtyEval', method, typeof method);
-  if (typeof method === 'function') {
-    console.log('dirtyEval', method);
-    return method();
-  }
   const key = args[1];
   const mArgs = args.slice(2);
 
