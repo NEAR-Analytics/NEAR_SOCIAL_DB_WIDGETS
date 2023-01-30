@@ -90,6 +90,8 @@ const navbar = (
   </div>
 );
 
+const blurs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 return (
   <>
     <div
@@ -101,6 +103,24 @@ return (
       }}
     >
       {navbar}
+
+      {blurs.map((i) => {
+        const elHeight = 10;
+        const maxBlur = 40;
+        const blurDelta = maxBlur / elHeight;
+        return (
+          <div
+            key={i}
+            style={{
+              position: 'fixed',
+              top: NAVBAR_OFFSET_TOP + NAVBAR_HEIGHT + i * elHeight,
+              height: elHeight,
+              backgroundColor: 'rgba(44, 44, 84, 0.85)',
+              backdropFilter: `blur(${maxBlur - i * blurDelta}px)`,
+            }}
+          />
+        );
+      })}
       <div
         className="row"
         style={{
