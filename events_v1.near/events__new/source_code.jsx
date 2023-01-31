@@ -38,12 +38,7 @@ function createEvent(data) {
     description,
   };
 
-  let cost = ONE_NEAR;
-  try {
-    cost = props.__engine.helpers.calculateStorageCost(eventData);
-  } catch (e) {
-    console.log('Error calculating storage cost', e);
-  }
+  const cost = props.__engine.helpers.calculateStorageCost(eventData);
 
   Near.call(EVENTS_CONTRACT, 'create_event', eventData, TGAS_300, cost);
 }
