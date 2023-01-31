@@ -64,8 +64,8 @@ const DEFAULT_STATE = {
 if (!state) {
   if (model) {
     console.log('model', model);
-    console.log(model.start_date, new Date(model.start_date));
-    console.log(model.end_date, new Date(model.end_date));
+    console.log(model.start_date);
+    console.log(new Date(model.start_date));
 
     State.init({
       ...model,
