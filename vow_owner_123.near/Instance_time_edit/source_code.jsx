@@ -134,6 +134,7 @@ State.init({
   hoveringElement: "",
   _account: "All",
   _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC",
+  _is_on: finalData.is_on ?? "off",
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
@@ -199,6 +200,16 @@ return (
               <option value={zone}>{zone}</option>
             ))}
           </select>
+          <select
+            style={comboBox}
+            value={state._is_on}
+            onChange={(e) => {
+              State.update({ _is_on: e.target.value });
+            }}
+          >
+            <option value="on">on</option>
+            <option value="off">off</option>
+          </select>
         </div>
         <div>
           <a
@@ -244,6 +255,7 @@ return (
           data: {
             schedule: finalData.schedule,
             time_zone: state._time_zone,
+            is_on: state._is_on,
           },
           style: { width: "100%", height: "1.5em" },
         }}
