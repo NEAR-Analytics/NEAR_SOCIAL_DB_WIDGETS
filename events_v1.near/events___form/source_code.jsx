@@ -286,21 +286,21 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
-    start_date !== null && start_date !== undefined,
+    start_date !== null && start_date !== undefined && start_date !== '',
     'start_date',
     'Event must have a start date'
   );
 
   valid = assertCondition(
     valid,
-    category !== null && category !== undefined,
-    'categrory',
+    category !== null && category !== undefined && category !== '',
+    'category',
     'Event must have a category'
   );
 
   valid = assertCondition(
     valid,
-    location !== null && location !== undefined,
+    location !== null && location !== undefined && location !== '',
     'location',
     'Event must have a location'
   );
