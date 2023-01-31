@@ -136,7 +136,9 @@ const LinkTypes = [
 ];
 
 function addError(key, message) {
-  State.update({ errors: { ...state.errors, [key]: message } });
+  State.update({
+    errors: { ...state.errors, [key]: [...(state.errors[key] || []), message] },
+  });
 }
 
 function clearError(key) {
