@@ -233,7 +233,7 @@ const env = {
 };
 
 // eslint-disable-next-line no-magic-numbers
-const COST_NEAR_PER_BYTE = Math.pow(10, 19);
+const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 
 const AppState = {
   _state: {},
@@ -387,7 +387,7 @@ function byteLength(str) {
 
 function calculateStorageCost(value) {
   // get number of bytes without TextEncoder or Blob
-  const bytes = byteLength(JSON.stringify(value));
+  const bytes = byteLength(JSON.stringify(value)) + 20;
   console.log('bytes', bytes, value);
   return COST_NEAR_PER_BYTE * bytes;
 }
