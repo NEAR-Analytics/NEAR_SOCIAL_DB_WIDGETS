@@ -86,7 +86,7 @@ return (
               }
               onClick={() => {
                 clipboard.writeText(
-                  `https://near.social/#/${widgetOwner}/widget/EasyPoll?sharedBlockHeight=${blockHeightToShare}`
+                  `https://near.social/#/${widgetOwner}/vow_owner_123.near/widget/Instance_time_card?accountId=${accountId}`
                 );
                 State.update({ linkCopied: true });
               }}
