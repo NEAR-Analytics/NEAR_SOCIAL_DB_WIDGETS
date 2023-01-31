@@ -211,13 +211,9 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
-    start_date !== null &&
-      start_date !== undefined &&
-      start_date !== '' &&
-      start_date !== 'Invalid Date' &&
-      start_date !== 'NaN',
-    'end_date',
-    'End date must be after start date, or empty'
+    start_date !== null && start_date !== undefined && start_date !== '',
+    'start_date',
+    'Event must take at some day'
   );
 
   return valid;
