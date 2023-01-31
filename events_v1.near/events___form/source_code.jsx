@@ -152,8 +152,8 @@ function addError(key, message) {
   });
 }
 
-function clearError(key) {
-  State.update({ errors: { ...state.errors, [key]: null } });
+function clearErrors() {
+  State.update({ errors: {  });
 }
 
 function getErrors(key) {
@@ -180,12 +180,10 @@ function getErrors(key) {
 }
 
 function assertCondition(valid, condition, key, message) {
-  console.log('assertCondition', key, !condition, message);
   if (!condition) {
     addError(key, message);
     return false;
   }
-  clearError(key);
   return valid;
 }
 
@@ -229,6 +227,8 @@ function validate(data) {
     type,
     location,
   } = data;
+
+  clearErrors();
 
   valid = assertCondition(
     valid,
