@@ -371,7 +371,6 @@ function dirtyEval(args) {
 }
 
 function isDate(value) {
-  console.log('isDate', { value }, value);
   // we have no instanceof or typeof, so we check for the interface
   try {
     value.getFullYear();
@@ -382,15 +381,12 @@ function isDate(value) {
     value.getSeconds();
     return true;
   } catch (e) {
-    console.log('isDate', e);
     return false;
   }
 }
 
 function formatDate(date, format) {
-  console.log('formatDate', { date, format });
   const properDate = isDate(date) ? date : new Date(date);
-  console.log('formatDate', { properDate }, isDate(date), date);
 
   const parts = {
     YYYY: properDate.getFullYear(),
@@ -400,6 +396,12 @@ function formatDate(date, format) {
     hh: properDate.getHours(),
     mm: properDate.getMinutes(),
     ss: properDate.getSeconds(),
+    '0Y': `${properDate.getFullYear()}`.padStart(2, '0'),
+    '0M': `${properDate.getMonth() + 1}`.padStart(2, '0'),
+    '0D': `${properDate.getDate()}`.padStart(2, '0'),
+    '0h': `${properDate.getHours()}`.padStart(2, '0'),
+    '0m': `${properDate.getMinutes()}`.padStart(2, '0'),
+    '0s': `${properDate.getSeconds()}`.padStart(2, '0'),
   };
 
   // replace {{YY}} with the proper value
