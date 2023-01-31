@@ -112,9 +112,9 @@ const Label = styled.label`
 `;
 
 const ErrorMessage = styled.div`
-  color: red;
+  color: #c00;
   font-size: 0.8rem;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
 `;
 
 const EventStatus = [
