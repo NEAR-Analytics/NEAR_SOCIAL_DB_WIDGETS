@@ -232,6 +232,7 @@ const env = {
   VERSION,
 };
 
+// eslint-disable-next-line no-magic-numbers
 const COST_NEAR_PER_BYTE = Math.pow(10, 19);
 
 const AppState = {
@@ -366,8 +367,16 @@ function dirtyEval(args) {
   }
 }
 
+function lengthInUtf8Bytes(str) {
+  // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
+  const m = encodeURIComponent(str).match(/%[89ABab]/gu);
+  return str.length + (m ? m.length : 0);
+}
+
 function calculateStorageCost(value) {
-  const bytes = new TextEncoder().encode(value).length;
+  // get number of bytes without TextEncoder or Blob
+  // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
+  const bytes = lengthInUtf8Bytes(value);
   return COST_NEAR_PER_BYTE * bytes;
 }
 
