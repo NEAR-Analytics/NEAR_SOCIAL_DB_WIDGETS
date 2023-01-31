@@ -370,30 +370,17 @@ function dirtyEval(args) {
   }
 }
 
-function formatDate(date, format) {
-  const properDate = date instanceof Date ? new Date(date) : date;
-  console.log('formatDate', { properDate });
-  const parts = {
-    YYYY: properDate.getFullYear(),
-    YY: properDate.getFullYear().toString().substring(2),
-    MM: properDate.getMonth() + 1,
-    DD: properDate.getDate(),
-    hh: properDate.getHours(),
-    mm: properDate.getMinutes(),
-    ss: properDate.getSeconds(),
-  };
-
-  // replace {{YY}} with the proper value
-  const string = format.replace(
-    /\{\{\s*(YY|YYYY|MM|DD|hh|mm|ss)\s*\}\}/gu,
-    (match, part) => {
-      return parts[part];
-    }
+function isDate(value) {
+  // we have no instanceof or typeof, so we check for the interface
+  return (
+    value &&
+    value.getFullYear &&
+    value.getMonth &&
+    value.getDate &&
+    value.getHours &&
+    value.getMinutes &&
+    value.getSeconds
   );
-
-  console.log('formatDate', date, format, string);
-
-  return string;
 }
 
 // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
