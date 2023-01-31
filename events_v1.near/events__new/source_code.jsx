@@ -19,7 +19,7 @@ function createEvent(data) {
     start_date,
     end_date,
     location,
-    image,
+    images,
     links,
     description,
   } = data;
@@ -36,7 +36,7 @@ function createEvent(data) {
       start_date,
       end_date,
       location,
-      image,
+      images,
       links,
       description,
     },
