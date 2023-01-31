@@ -69,7 +69,7 @@ const VERSION = '0.2.0';
  * Adjust these:
  * */
 
-const NEAR_STORAGE_BYTES_SAFTY_OFFSET = 100;
+const NEAR_STORAGE_BYTES_SAFTY_OFFSET = 42;
 const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
@@ -235,7 +235,7 @@ const env = {
   VERSION,
 };
 
-const COST_NEAR_PER_BYTE = Math.pow(10, 19);
+const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
 
 const AppState = {
@@ -403,7 +403,7 @@ function calculateStorageCost(value) {
 
 function contractCall(contractName, methodName, args) {
   const cost = calculateStorageCost(args);
-  Near.call(contractName, methodName, args, props.__engine.TGAS_300, cost);
+  Near.call(contractName, methodName, args, TGAS_300, cost);
 }
 
 function renderComponent(name, props) {
