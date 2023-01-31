@@ -27,6 +27,8 @@ const IndexList = styled.div`
     flex-shrink: 3;
   }
 `;
+const endDateIsNull =
+  endDate === null || endDate.toDateString() === new Date(0).toDateString();
 
 return (
   <IndexList>
