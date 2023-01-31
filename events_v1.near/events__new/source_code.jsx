@@ -38,9 +38,15 @@ function createEvent(data) {
     description,
   };
 
-  const cost = props.__engine.helpers.calculateStorageCost(eventData);
+  const cost = props.__engine.helpers.calculateStorageCost(eventData, true);
 
-  Near.call(EVENTS_CONTRACT, 'create_event', eventData, props.__engine.TGAS_300,, cost);
+  Near.call(
+    EVENTS_CONTRACT,
+    'create_event',
+    eventData,
+    props.__engine.TGAS_300,
+    cost
+  );
 }
 
 function onSave(data) {
