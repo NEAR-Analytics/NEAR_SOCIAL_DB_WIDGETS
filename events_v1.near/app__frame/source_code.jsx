@@ -466,6 +466,7 @@ function renderComponent(name, props) {
     helpers: {
       propIsRequiredMessage,
       calculateStorageCost,
+      formatDate,
     },
 
     hacks: {
