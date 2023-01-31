@@ -2,4 +2,4 @@ props.controller.setLayout('modal', {
   title: 'Alert',
 });
 
-return <div>{props.message || 'unknown Error'}</div>;
+return <div>{props.message || 'Not Found'}</div>;
