@@ -69,6 +69,7 @@ const VERSION = '0.2.0';
  * Adjust these:
  * */
 
+const NEAR_STORAGE_BYTES_SAFTY_OFFSET = 100;
 const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
@@ -234,7 +235,7 @@ const env = {
   VERSION,
 };
 
-const COST_NEAR_PER_BYTE = Math.pow(10, 20);
+const COST_NEAR_PER_BYTE = Math.pow(10, 19);
 
 const AppState = {
   _state: {},
@@ -388,9 +389,15 @@ function byteLength(str) {
 
 function calculateStorageCost(value) {
   // get number of bytes without TextEncoder or Blob
-  const bytes = byteLength(JSON.stringify(value)) + 20;
-  console.log('bytes', bytes, value);
-  return COST_NEAR_PER_BYTE * bytes;
+  const bytes = byteLength(JSON.stringify(value));
+  const estimated =
+    COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
+  console.log('calculateStorageCost', {
+    bytes,
+    estimated,
+    const: NEAR_STORAGE_BYTES_SAFTY_OFFSET,
+  });
+  return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
 }
 
 function renderComponent(name, props) {
