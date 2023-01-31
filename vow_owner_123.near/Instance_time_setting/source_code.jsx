@@ -170,7 +170,7 @@ const getData = () => {
           value: {
             _data: final,
             _time_zone: time_zone,
-            is_on: props.is_on,
+            is_on: props.data.is_on,
           },
         },
         undefined,
