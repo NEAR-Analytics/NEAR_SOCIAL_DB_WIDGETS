@@ -59,6 +59,7 @@ return (
         props={{
           item,
           highlightComment: props.highlightComment,
+          limit: props.commentsLimit,
         }}
       />
     </div>
