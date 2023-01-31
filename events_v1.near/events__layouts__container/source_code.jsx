@@ -34,7 +34,7 @@ const dropdownElement =
 
 const NavPrimaryButton = styled.button`
   background-color: #2c2c54;
-  border: none;
+  border: 2px solid white;
   color: white;
   padding: 8px 16px;
   text-align: center;
