@@ -17,9 +17,10 @@ const getPublicationParamsAllArticles = () => ({
 const clickHandlerGetStructure = () => {
   // const answers = Social.index("poll_question", "answer-v3.1.0");
   // console.log(answers);
-
-  const questions = Social.index("poll_question", "question-v3.1.0");
-  console.log(questions);
+  // const questions = Social.index("poll_question", "question-v3.1.0");
+  // console.log(questions);
+  const articles = Social.index("wiki_test", "wikitest-v0.0.0");
+  console.log(articles);
 };
 
 // ========= RETURN =========
