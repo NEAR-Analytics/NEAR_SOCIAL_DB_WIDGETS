@@ -235,6 +235,13 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
+    description.length < MAX_LENGTH_DESCRIPTION,
+    'description',
+    `Description must be less than ${MAX_LENGTH_DESCRIPTION} characters long`
+  );
+
+  valid = assertCondition(
+    valid,
     !end_date || new Date(end_date).getTime() > new Date(start_date).getTime(),
     'end_date',
     'End date must be after start date, or empty'
