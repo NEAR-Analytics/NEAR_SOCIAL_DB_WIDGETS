@@ -184,12 +184,6 @@ return (
             key={idx}
             target="_blank"
             rel="noopener noreferrer"
-            onMouseEnter={(e) => {
-              e.target.style.textDecoration = 'underline';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.textDecoration = 'none';
-            }}
           >
             {/* TODO: for each link type find and display icon */}
             {link.text}
