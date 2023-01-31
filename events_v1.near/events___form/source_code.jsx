@@ -24,11 +24,23 @@ const ONE_WEEK = DAYS_IN_WEEK * MILLISECONDS_IN_DAY;
 
 const formatDate = props.__engine.helpers.formatDate;
 
+const EventStatus = [
+  { value: 'draft', label: 'Draft' },
+  { value: 'published', label: 'Published' },
+  { value: 'cancelled', label: 'Cancelled' },
+];
+
+const EventTypes = [
+  { value: 'virtual', label: 'Online' },
+  { value: 'irl', label: 'In Person' },
+  { value: 'mixed', label: 'Both' },
+];
+
 const DEFAULT_STATE = {
   name: '',
-  type: '',
+  type: EventTypes[0].value,
   category: '',
-  status: '',
+  status: EventStatus[0].value,
   start_date: new Date(TODAY + ONE_WEEK),
   end_date: new Date(TOMORROW + ONE_WEEK),
   location: '',
@@ -119,18 +131,6 @@ const ErrorMessage = styled.div`
   font-size: 0.8rem;
   margin: 0.5rem 0 0 0;
 `;
-
-const EventStatus = [
-  { value: 'draft', label: 'Draft' },
-  { value: 'published', label: 'Published' },
-  { value: 'cancelled', label: 'Cancelled' },
-];
-
-const EventTypes = [
-  { value: 'virtual', label: 'Online' },
-  { value: 'irl', label: 'In Person' },
-  { value: 'mixed', label: 'Both' },
-];
 
 const LinkTypes = [
   { value: 'register', label: 'Register' },
