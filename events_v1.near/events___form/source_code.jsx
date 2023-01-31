@@ -19,6 +19,8 @@ const TODAY =
 const TOMORROW = TODAY + MILLISECONDS_IN_DAY;
 const ONE_WEEK = DAYS_IN_WEEK * MILLISECONDS_IN_DAY;
 
+const formatDate = props.__engine.helpers.formatDate;
+
 const DEFAULT_STATE = {
   name: '',
   type: '',
@@ -65,8 +67,14 @@ if (!state) {
       ...model,
       images: model.images || DEFAULT_STATE.images,
       links: model.links || DEFAULT_STATE.links,
-      start_date: new Date(model.start_date),
-      end_date: new Date(model.end_date),
+      start_date: formatDate(
+        new Date(model.start_date),
+        '{{ YYYY }}-{{ MM }}-{{ DD }}'
+      ),
+      end_date: formatDate(
+        new Date(model.end_date),
+        '{{ YYYY }}-{{ MM }}-{{ DD }}'
+      ),
     });
   } else {
     State.init(DEFAULT_STATE);
