@@ -15,6 +15,8 @@ const MAX_LENGTH_NAME = 100;
 const MAX_LENGTH_DESCRIPTION = 2000;
 const MIN_LENGTH_LOCATION = 10;
 const MAX_LENGTH_LOCATION = 400;
+const MIN_LENGTH_CATEGORY = 3;
+const MAX_LENGTH_CATEGORY = 20;
 
 const MILLISECONDS_IN_DAY = 86400000;
 const DAYS_IN_WEEK = 7;
@@ -227,6 +229,7 @@ function validate(data) {
     images,
     category,
     type,
+    status,
     location,
   } = data;
 
@@ -254,6 +257,15 @@ function validate(data) {
       location.length < MAX_LENGTH_LOCATION,
     'location',
     `Location must be between ${MIN_LENGTH_LOCATION} and ${MAX_LENGTH_LOCATION} characters long. Currently: ${location.length} characters.`
+  );
+
+  valid = assertCondition(
+    valid,
+    category !== null &&
+      category.length >= MIN_LENGTH_CATEGORY &&
+      category.length < MAX_LENGTH_CATEGORY,
+    'category',
+    `Category must be between ${MIN_LENGTH_CATEGORY} and ${MAX_LENGTH_CATEGORY} characters long. Currently: ${category.length} characters.`
   );
 
   valid = assertCondition(
