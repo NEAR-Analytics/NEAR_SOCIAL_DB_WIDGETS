@@ -212,6 +212,7 @@ function validate(data) {
   valid = assertCondition(
     valid,
     start_date !== null &&
+      start_date !== undefined &&
       start_date !== '' &&
       start_date !== 'Invalid Date' &&
       start_date !== 'NaN',
