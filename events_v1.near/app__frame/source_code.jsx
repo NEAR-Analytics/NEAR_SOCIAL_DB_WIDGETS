@@ -1,3 +1,5 @@
+/* eslint no-magic-numbers: 0 */
+
 const VERSION = '0.2.0';
 
 /**
@@ -232,7 +234,6 @@ const env = {
   VERSION,
 };
 
-// eslint-disable-next-line no-magic-numbers
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 
 const AppState = {
