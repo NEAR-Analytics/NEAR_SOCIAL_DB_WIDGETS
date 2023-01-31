@@ -236,6 +236,7 @@ const env = {
 };
 
 const COST_NEAR_PER_BYTE = Math.pow(10, 19);
+const TGAS_300 = '300000000000000';
 
 const AppState = {
   _state: {},
@@ -440,6 +441,8 @@ function renderComponent(name, props) {
     hacks: {
       dirtyEval,
     },
+
+    TGAS_300,
   };
 
   const controllerProps = {
