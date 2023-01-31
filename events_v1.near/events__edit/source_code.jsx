@@ -16,8 +16,12 @@ if (!event) {
   return 'Loading';
 }
 
+const SECONDS_10 = 10000;
 // if event was just updated within the last 10 seconds, return to the show page
-if (new Date().getTime() - new Date(event.last_updated_at).getTime() < 10000) {
+if (
+  new Date().getTime() - new Date(event.last_updated_at).getTime() <
+  SECONDS_10
+) {
   props.__engine.pop();
   return 'Event updated';
 }
