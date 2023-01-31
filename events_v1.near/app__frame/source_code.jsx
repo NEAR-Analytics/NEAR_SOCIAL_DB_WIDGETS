@@ -390,7 +390,6 @@ function formatDate(date, format) {
 
   const parts = {
     YYYY: properDate.getFullYear(),
-    YY: properDate.getFullYear().toString().substring(2),
     YY: `${properDate.getFullYear().toString().substring(2)}`.padStart(2, '0'),
     MM: `${properDate.getMonth() + 1}`.padStart(2, '0'),
     DD: `${properDate.getDate()}`.padStart(2, '0'),
@@ -401,7 +400,7 @@ function formatDate(date, format) {
 
   // replace {{YY}} with the proper value
   const string = format.replace(
-    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|0Y|0M|0D|0h|0m|0s)\s*\}\}/gu,
+    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss)\s*\}\}/gu,
     (match, part) => {
       return parts[part];
     }
