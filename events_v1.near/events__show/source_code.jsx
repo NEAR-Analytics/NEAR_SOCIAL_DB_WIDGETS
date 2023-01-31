@@ -15,6 +15,7 @@ if (hasEvent === null) {
 if (hasEvent === false) {
   props.__engine.push('not_found', {
     message: `Event with id ${props.event_id} not found.`,
+    pop: 2,
   });
   return 'Event not found';
 }
