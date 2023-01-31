@@ -273,6 +273,61 @@ function validate(data) {
     'Event must have a start date'
   );
 
+  valid = assertCondition(
+    valid,
+    category !== null && category !== undefined && category !== '',
+    'categrory',
+    'Event must have a category'
+  );
+
+  valid = assertCondition(
+    valid,
+    location !== null && location !== undefined && location !== '',
+    'location',
+    'Event must have a location'
+  );
+
+  valid = assertCondition(
+    valid,
+    images !== null &&
+      images !== undefined &&
+      images.length >= 2 &&
+      reduce(
+        images,
+        (acc, image) =>
+          acc &&
+          image.url !== null &&
+          image.url !== undefined &&
+          image.url !== '',
+        true
+      ) &&
+      reduce(
+        images,
+        (acc, image) =>
+          acc &&
+          image.type !== null &&
+          image.type !== undefined &&
+          image.type !== '',
+        true
+      ),
+    'images',
+    'Event must have at least 2 images with a url and type'
+  );
+
+  valid = assertCondition(
+    valid,
+    type !== null && type !== undefined && type !== '',
+    'type',
+    'Event must have a type'
+  );
+
+  valid = assertCondition(
+    valid,
+    status !== null && status !== undefined && status !== '',
+    'status',
+    'Event must have a status'
+  );
+
   return valid;
 }
 
