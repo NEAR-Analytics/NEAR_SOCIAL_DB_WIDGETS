@@ -44,8 +44,6 @@ function callContract(data) {
     description,
   };
 
-  const cost = props.__engine.helpers.calculateStorageCost(eventData);
-
   // Near.call(
   //   EVENTS_CONTRACT,
   //   'update_event',
