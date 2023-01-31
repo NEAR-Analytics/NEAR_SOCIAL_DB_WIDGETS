@@ -210,7 +210,16 @@ function sanitize(data) {
 function validate(data) {
   let valid = true;
 
-  const { name, description, end_date, start_date, images, category } = data;
+  const {
+    name,
+    description,
+    end_date,
+    start_date,
+    images,
+    category,
+    type,
+    location,
+  } = data;
 
   valid = assertCondition(
     valid,
