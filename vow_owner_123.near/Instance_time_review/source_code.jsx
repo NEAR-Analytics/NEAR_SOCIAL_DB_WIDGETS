@@ -281,7 +281,7 @@ return (
                                   letterSpacing: "-0.025rem",
                                   color: "#FF4747",
                                   fontWeight: "500",
-                                  padding: "0.5rem",
+                                  padding: "0.5rem 1rem",
                                 }}
                               >
                                 Off
