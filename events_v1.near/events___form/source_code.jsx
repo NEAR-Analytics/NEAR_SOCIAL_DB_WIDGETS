@@ -65,7 +65,6 @@ if (!state) {
   if (model) {
     console.log('model', model);
     console.log(model.start_date);
-    console.log(new Date(model.start_date));
 
     const start_date = model.start_date
       ? formatDate(model.start_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
