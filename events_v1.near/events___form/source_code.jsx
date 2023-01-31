@@ -340,10 +340,8 @@ return (
             props={{
               image: image,
               onChange: (changed) => {
-                console.log('changed', changed);
                 state.images[index] = changed;
                 sanitizeAndValidate({ ...state, images: state.images });
-                console.log('state', state);
               },
               onRemove: () => {
                 const images = [...state.images];
