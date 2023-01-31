@@ -53,7 +53,7 @@ function callContract(data) {
       event_id: eventId,
       event: eventData,
     },
-    TGAS_300,
+    props.__engine.TGAS_300,
     cost
   );
 }
