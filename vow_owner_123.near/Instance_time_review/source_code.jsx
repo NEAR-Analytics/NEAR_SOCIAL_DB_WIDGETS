@@ -176,18 +176,27 @@ return (
                         flexDirection: "row",
                       }}
                     >
-                      <Widget
-                        src="mob.near/widget/ProfileImage"
-                        props={{
-                          accountId: d.accountId,
-                          className: "d-inline-block",
-                          style: {
-                            width: "2em",
-                            height: "2em",
-                            fontSize: "xx-large",
-                          },
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
                         }}
-                      />
+                      >
+                        <Widget
+                          src="mob.near/widget/ProfileImage"
+                          props={{
+                            accountId: d.accountId,
+                            className: "d-inline-block",
+                            style: {
+                              width: "2em",
+                              height: "2em",
+                              fontSize: "xx-large",
+                            },
+                          }}
+                        />
+                        <div>{Social.getr(`${d.accountId}/profile`).name}</div>
+                      </div>
                       <div
                         style={{
                           paddingLeft: "0.5rem",
@@ -213,9 +222,6 @@ return (
                           }}
                         >
                           <div>
-                            <div>
-                              {Social.getr(`${d.accountId}/profile`).name}
-                            </div>
                             <div
                               style={{
                                 margin: "0.5rem 0rem",
