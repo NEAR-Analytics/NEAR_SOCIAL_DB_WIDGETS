@@ -45,7 +45,6 @@ const Select = styled.select`
 // HACK: to call an update on parent as IPFS upload has no callback.
 // we instead check if the localImg exists and differs from the
 // image.url.cid
-console.log('state.localImg', state.localImg);
 if (
   state.localImg &&
   !state.localImg.uploading &&
