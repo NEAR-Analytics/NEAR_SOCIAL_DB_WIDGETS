@@ -398,7 +398,8 @@ function formatDate(date, format) {
     ss: `${properDate.getSeconds()}`.padStart(2, '0'),
   };
 
-  // replace {{YY}} with the proper value
+  console.log('parts', parts);
+
   return format.replace(
     /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss)\s*\}\}/gu,
     (match, part) => {
