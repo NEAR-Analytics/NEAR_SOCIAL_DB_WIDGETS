@@ -200,7 +200,37 @@ return (
                         >
                           {d.accountId}
                         </div>
-                        <div>{Social.getr(`${d.accountId}/profile`).name}</div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                          }}
+                        >
+                          <div>
+                            {Social.getr(`${d.accountId}/profile`).name}
+                          </div>
+                          <span
+                            style={{
+                              backgroundColor:
+                                d.on_off == "on"
+                                  ? "rgb(217, 252, 239)"
+                                  : "rgb(255, 229, 229)",
+                              textAlign: "center",
+                              borderRadius: "16px",
+                              fontSize: "0.8rem",
+                              color:
+                                d.on_off == "on"
+                                  ? "rgb(0, 179, 125)"
+                                  : "rgb(255, 71, 71)",
+                              fontWeight: "500",
+                              padding: "0.5rem",
+                              marginLeft: "1rem",
+                            }}
+                          >
+                            {d.on_off ?? "off"}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     {d.value._data.map((week, index) => {
