@@ -74,7 +74,7 @@ if (!state) {
     console.log(
       model.start_date,
       formatDate(
-        model.start_date,
+        new Date(),
         `
       {{ YYYY }} {{ MM }} {{ DD }} {{ hh }} {{ mm }} {{ ss }}
       `
