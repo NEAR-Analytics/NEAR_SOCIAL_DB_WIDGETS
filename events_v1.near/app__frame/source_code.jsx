@@ -383,6 +383,33 @@ function isDate(value) {
   );
 }
 
+function formatDate(date, format) {
+  const properDate = isDate(date) ? new Date(date) : date;
+  console.log('formatDate', { properDate });
+
+  const parts = {
+    YYYY: properDate.getFullYear(),
+    YY: properDate.getFullYear().toString().substring(2),
+    MM: properDate.getMonth() + 1,
+    DD: properDate.getDate(),
+    hh: properDate.getHours(),
+    mm: properDate.getMinutes(),
+    ss: properDate.getSeconds(),
+  };
+
+  // replace {{YY}} with the proper value
+  const string = format.replace(
+    /\{\{\s*(YY|YYYY|MM|DD|hh|mm|ss)\s*\}\}/gu,
+    (match, part) => {
+      return parts[part];
+    }
+  );
+
+  console.log('formatDate', date, format, string);
+
+  return string;
+}
+
 // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
 function byteLength(str) {
   // returns the byte length of an utf8 string
