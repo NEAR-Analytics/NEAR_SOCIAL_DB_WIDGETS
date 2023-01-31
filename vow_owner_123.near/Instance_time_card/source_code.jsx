@@ -109,6 +109,16 @@ const days = [
   "Sunday",
 ];
 
+State.init({
+  showQuestionsByThisUser: false,
+  descriptionHeightLimited: true,
+  poll: {},
+  polls: [{}],
+  profile: {},
+  pollsByThisCreator: [{}],
+  answers: [{}],
+});
+
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
     return string.slice(0, newStringLength) + "...";
@@ -141,7 +151,12 @@ return (
         }}
       >
         <div className="d-flex justify-content-between">
-          <div className="d-flex">
+          <div
+            className="d-flex"
+            style={{
+              justifyContent: "space-between",
+            }}
+          >
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
@@ -161,6 +176,42 @@ return (
               <p style={{ margin: "0", fontWeight: "300" }}>Created by</p>
               <p style={{ fontWeight: "500" }}>{sliceString(accountId, 18)}</p>
             </div>
+          </div>
+          <div>
+            <a
+              href="https://near.social/#/vow_owner_123.near/widget/Instance_time"
+              onMouseEnter={() => {
+                State.update({ hoveringElement: "create" });
+              }}
+              onMouseLeave={() => {
+                State.update({ hoveringElement: "" });
+              }}
+              style={
+                state.hoveringElement == "create"
+                  ? {
+                      border: "2px solid transparent",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      padding: "0.3rem 1.5rem",
+                      backgroundColor: "#010A2D",
+                      borderRadius: "12px",
+                      color: "white",
+                      textDecoration: "none",
+                    }
+                  : {
+                      border: "2px solid black",
+                      color: "black",
+                      backgroundColor: "white",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      padding: "0.3rem 1.5rem",
+                      borderRadius: "12px",
+                      textDecoration: "none",
+                    }
+              }
+            >
+              View Schedules
+            </a>
           </div>
         </div>
         <div className="d-flex my-3">
@@ -208,7 +259,7 @@ return (
             >
               <Widget
                 src={`vow_owner_123.near/widget/Instance_time_share`}
-                props={{ accountId: finalData.accountId }}
+                props={{ accountId: "vow_owner_123.near" }}
               />
             </div>
             <span
