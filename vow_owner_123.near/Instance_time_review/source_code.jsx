@@ -113,7 +113,6 @@ for (let i = 0; i < sortedData.length; i++) {
         _data: weeklyData,
       },
     });
-    console.log("*******", finalData);
   }
 }
 const getFormatedTime = (time) => {
