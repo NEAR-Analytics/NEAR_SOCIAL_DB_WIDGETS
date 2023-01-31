@@ -32,18 +32,17 @@ if (!event) {
 props.controller.setLayout('container', {
   back: true,
   title: event.name,
-  primaryAction: {
+  {{primaryAction: {
     label: 'Edit',
+    // will not work. VM Bug?
+    // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
     // Yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
     // When defining a function here, it will exist, the function will not be
-    // undefined. but simply executing the function will do nothing. Thats
+    // undefined, but executing the function will just do nothing. Thats
     // why we have to use another method of calling functions.
-    // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
-    // will not work. VM Bug?
     // might be related to us rerendering all the time to implement layouting.
-    //
     onClick: ['push', 'edit', { event_id: props.event_id }],
-  },
+  }}},
 });
 
 function removeEvent() {
@@ -65,10 +64,6 @@ const Text = props.__engine.Components.Text;
 const InlineTag = props.__engine.Components.InlineTag;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
 const InfoBarLink = props.__engine.Components.InfoBarLink;
-
-const startDate = new Date(event.start_date);
-const endDate = new Date(event.end_date);
-const datesAreEqual = startDate.toDateString() === endDate.toDateString();
 
 // console.log('event', event);
 
