@@ -13,6 +13,9 @@ if (hasEvent === null) {
   return 'Loading';
 }
 if (hasEvent === false) {
+  props.__engine.push('not_found', {
+    message: `Event with id ${props.event_id} not found.`,
+  });
   return 'Event not found';
 }
 
