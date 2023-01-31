@@ -76,8 +76,7 @@ if (!state) {
       formatDate(
         model.start_date,
         `
-      {{ YYYY }} {{ YY }} {{ MM }} {{ DD }} {{ hh }} {{ mm }} {{ ss }}
-      
+      {{ YYYY }} {{ MM }} {{ DD }} {{ hh }} {{ mm }} {{ ss }}
       `
       )
     );
