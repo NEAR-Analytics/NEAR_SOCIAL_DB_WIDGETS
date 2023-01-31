@@ -180,7 +180,6 @@ return (
         </InfoBarItem>
       ) : null}
 
-      {/* same for event.type */}
       {event.type && event.type !== '' ? (
         <InfoBarItem>
           <i className="bi bi-tag"></i>
