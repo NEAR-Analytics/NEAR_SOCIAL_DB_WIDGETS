@@ -67,17 +67,20 @@ if (!state) {
     console.log(model.start_date);
     console.log(new Date(model.start_date));
     console.log(model.start_date ? true : false);
+    const start_date = model.start_date
+      ? formatDate(new Date(model.start_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
+      : null;
+
+    const end_date = model.end_date
+      ? formatDate(new Date(model.end_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
+      : null;
 
     State.init({
       ...model,
       images: model.images || DEFAULT_STATE.images,
       links: model.links || DEFAULT_STATE.links,
-      start_date: model.start_date
-        ? formatDate(new Date(model.start_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
-        : null,
-      end_date: model.end_date
-        ? formatDate(new Date(model.end_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
-        : null,
+      start_date,
+      end_date,
     });
   } else {
     State.init(DEFAULT_STATE);
