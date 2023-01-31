@@ -398,6 +398,10 @@ function formatDate(date, format) {
     ss: `${properDate.getSeconds()}`.padStart(2, '0'),
   };
 
+  console.log(properDate.getHours());
+  console.log(properDate.getMinutes());
+  console.log(properDate.getSeconds());
+
   console.log('parts', parts);
 
   return format.replace(
