@@ -406,7 +406,7 @@ function formatDate(date, format) {
 
   // replace {{YY}} with the proper value
   const string = format.replace(
-    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|0Y|0M|0D|0h|0m|0s)\s*\}\}/g,
+    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|0Y|0M|0D|0h|0m|0s)\s*\}\}/gu,
     (match, part) => {
       return parts[part];
     }
