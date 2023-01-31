@@ -70,10 +70,9 @@ if (!state) {
       start_date: model.start_date
         ? formatDate(new Date(model.start_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
         : null,
-      end_date: formatDate(
-        new Date(model.end_date),
-        '{{ YYYY }}-{{ MM }}-{{ DD }}'
-      ),
+      end_date: model.end_date
+        ? formatDate(new Date(model.end_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
+        : null,
     });
   } else {
     State.init(DEFAULT_STATE);
