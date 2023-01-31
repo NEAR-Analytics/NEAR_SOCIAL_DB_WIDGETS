@@ -29,24 +29,24 @@ if (!event) {
   return 'Loading';
 }
 
+const primaryAction =
+  props.__engine.accountId === event.account_id
+    ? {
+      label: 'Edit',
+      // will not work. VM Bug?
+      // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
+      // Yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
+      // When defining a function here, it will exist, the function will not be
+      // undefined, but executing the function will just do nothing. Thats
+        // why we have to use another method of calling functions.
+      // might be related to us rerendering all the time to implement layouting.
+      onClick: ['push', 'edit', { event_id: props.event_id }],
+      }
+    : {};
 props.controller.setLayout('container', {
   back: true,
   title: event.name,
-  ...(props.__engine.accountId === event.account_id
-    ? {
-        primaryAction: {
-          label: 'Edit',
-          // will not work. VM Bug?
-          // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
-          // Yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
-          // When defining a function here, it will exist, the function will not be
-          // undefined, but executing the function will just do nothing. Thats
-          // why we have to use another method of calling functions.
-          // might be related to us rerendering all the time to implement layouting.
-          onClick: ['push', 'edit', { event_id: props.event_id }],
-        },
-      }
-    : {}),
+  ...primaryAction,
 });
 
 function removeEvent() {
