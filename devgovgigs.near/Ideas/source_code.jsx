@@ -3,7 +3,7 @@ const postId = "Root";
 
 console.log("props", props);
 
-const defaultSelectedBoard = "nearsocial";
+const defaultSelectedBoard = "mnwtransition";
 
 initState({
   recency: props.recency,
