@@ -1,4 +1,3 @@
-const qId = props.qId ?? null;
 const mode = "Create";
 
 const labelStrings = props.labels ?? [];
@@ -20,7 +19,16 @@ const setLabels = (labels) => {
   State.update({ labels, labelStrings });
 };
 
-const existingLabelStrings = props.existingLabels;
+const existingLabelStrings = [
+  "NFT",
+  "FT",
+  "Smart Contract",
+  "Cross-Contract Call",
+  "Rust",
+  "Javascript",
+  "Frontend",
+  "CLI",
+];
 const existingLabels = existingLabelStrings.map((s) => {
   return { name: s };
 });
