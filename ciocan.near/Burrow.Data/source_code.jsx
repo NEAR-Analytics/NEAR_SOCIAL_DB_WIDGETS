@@ -218,7 +218,7 @@ const getRewards = (assets) => {
 const assets = getAssets();
 const rewards = getRewards(assets);
 
-if (!asserts || !rewards) return <div />;
+if (!assets || !rewards) return "<span>loading...</span>";
 
 const data = {
   assets,
