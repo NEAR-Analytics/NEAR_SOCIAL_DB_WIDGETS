@@ -401,6 +401,11 @@ function calculateStorageCost(value) {
   return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
 }
 
+function contractCall(contractName, methodName, args) {
+  const cost = calculateStorageCost(args);
+  Near.call(contractName, methodName, args, props.__engine.TGAS_300, cost);
+}
+
 function renderComponent(name, props) {
   const engine = {
     env,
