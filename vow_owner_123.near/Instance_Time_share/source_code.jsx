@@ -59,7 +59,7 @@ return (
         >
           <span
             style={{ color: "#0065FF", wordWrap: "anywhere" }}
-          >{`https://near.social/#/${widgetOwner}/vow_owner_123.near/widget/Instance_time_card?accountId=${accountId}`}</span>
+          >{`https://near.social/#/${widgetOwner}/widget/Instance_time_card?accountId=${accountId}`}</span>
           <div
             style={{
               display: "flex",
