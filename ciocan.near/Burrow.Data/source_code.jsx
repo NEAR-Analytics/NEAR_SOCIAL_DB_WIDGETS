@@ -217,7 +217,7 @@ const getRewards = (assets) => {
 
 const assets = getAssets();
 
-if (!assets) return null;
+if (!assets) return <div />;
 
 const rewards = getRewards(assets);
 
