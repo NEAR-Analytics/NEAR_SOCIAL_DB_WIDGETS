@@ -80,18 +80,5 @@ return (
         ),
       }}
     />
-    {state.content && (
-      <div className="mt-3">
-        <Widget
-          src="mob.near/widget/MainPage.Comment"
-          props={{
-            item,
-            accountId: context.accountId,
-            content: state.content,
-            blockHeight: "now",
-          }}
-        />
-      </div>
-    )}
   </>
 );
