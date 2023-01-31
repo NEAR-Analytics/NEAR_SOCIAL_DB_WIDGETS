@@ -21,6 +21,9 @@ if (context.accountId) {
     return "Initializing ...";
   }
   if (grantNotify === false) {
+    alert(
+      "We will request your permission to receive notifications when your post is liked, replied to, or edited by a moderator. Please approve the next transaction."
+    );
     Near.call(
       "social.near",
       "grant_write_permission",
