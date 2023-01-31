@@ -172,6 +172,7 @@ function getErrors(key) {
 }
 
 function assertCondition(valid, condition, key, message) {
+  console.log('assertCondition', key, !condition, message);
   if (!condition) {
     addError(key, message);
     return false;
