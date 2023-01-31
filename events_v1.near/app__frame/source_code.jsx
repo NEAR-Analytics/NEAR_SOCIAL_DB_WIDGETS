@@ -400,10 +400,6 @@ function formatDate(date, format) {
     ss: dateString.substring(17, 19),
   };
 
-  console.log(properDate.getHours());
-  console.log(properDate.getMinutes());
-  console.log(properDate.getSeconds());
-
   console.log('parts', parts);
 
   return format.replace(
