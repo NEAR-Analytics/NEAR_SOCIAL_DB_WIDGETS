@@ -153,8 +153,7 @@ return (
                     color: "black",
                     borderRadius: "1rem",
                     margin: "8px",
-                    cursor:
-                      context.accountId == d.accountId ? "pointer" : "default",
+                    cursor: "pointer",
                     disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
