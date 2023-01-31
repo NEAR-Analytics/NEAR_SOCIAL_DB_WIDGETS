@@ -47,7 +47,7 @@ return (
             letterSpacing: "-0.01em",
           }}
         >
-          Use this link to share the poll with your participants
+          Use this link to share the instance time with your participants
         </p>
         <div
           className="d-flex justify-content-between align-items-center"
