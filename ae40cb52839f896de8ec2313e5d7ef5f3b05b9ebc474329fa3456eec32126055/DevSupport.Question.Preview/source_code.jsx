@@ -13,11 +13,11 @@ const item = {
   blockHeight,
 };
 
-const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
-  return a.toDateString() + " " + a.toLocaleTimeString();
+  return a.toDateString();
 }
 
 const timestamp = readableDate(
@@ -44,7 +44,7 @@ const footer = (
   <div className="card-header">
     <small class="text-muted">
       <div class="row justify-content-between">
-        <div class="col-6">
+        <div class="col-8">
           <a href="#" onClick={onLike}>
             <i class={`bi ${likeBtnClass}`}> </i>
             Upvote ({post.likes.length ?? 0})
@@ -54,9 +54,14 @@ const footer = (
             <i class={`bi bi-flag`}> </i>
             Flag Question
           </a>
+
+          <a href="#" class="ms-3" onClick={onLike}>
+            <i class={`bi bi-chat`}> </i>
+            (0) Answers
+          </a>
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
           <div class="d-flex justify-content-end">
             {timestamp}
             <i class="bi bi-clock-history px-2"></i>
@@ -70,7 +75,11 @@ const footer = (
 
 return (
   <div className="border p-3">
-    <h2>{question.title}</h2>
+    <h2>
+      <a className="text-black" href={link}>
+        {question.title}
+      </a>
+    </h2>
     {postLables}
 
     <div className="pt-2 text-break">
