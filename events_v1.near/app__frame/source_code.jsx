@@ -367,11 +367,12 @@ function dirtyEval(args) {
   }
 }
 
+// https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
 function byteLength(str) {
   // returns the byte length of an utf8 string
   var s = str.length;
-  for (var i = str.length - 1; i >= 0; i--) {
-    var code = str.charCodeAt(i);
+  for (let i = str.length - 1; i >= 0; i--) {
+    let code = str.charCodeAt(i);
     if (code > 0x7f && code <= 0x7ff) {
       s++;
     } else if (code > 0x7ff && code <= 0xffff) {
@@ -386,7 +387,6 @@ function byteLength(str) {
 
 function calculateStorageCost(value) {
   // get number of bytes without TextEncoder or Blob
-  // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
   const bytes = byteLength(value);
   return COST_NEAR_PER_BYTE * bytes;
 }
