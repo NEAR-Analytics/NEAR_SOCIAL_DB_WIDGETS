@@ -3,7 +3,6 @@ const toAPY = (v) => Math.round(v * 100) / 100;
 const { assets, rewards } = state;
 
 const onLoad = (data) => {
-  if (!data.assets || !data.rewards) return;
   if (!state) {
     State.update(data);
   }
