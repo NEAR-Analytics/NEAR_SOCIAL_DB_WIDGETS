@@ -33,7 +33,7 @@ const dropdownElement =
   ) : null;
 
 const NavPrimaryButton = styled.button`
-  background-color: #2c2c54;
+  background-color: transparent;
   border: 2px solid white;
   color: white;
   padding: 8px 16px;
