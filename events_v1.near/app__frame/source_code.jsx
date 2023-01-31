@@ -374,12 +374,12 @@ function isDate(value) {
   // we have no instanceof or typeof, so we check for the interface
   return (
     value &&
-    value.getFullYear &&
-    value.getMonth &&
-    value.getDate &&
-    value.getHours &&
-    value.getMinutes &&
-    value.getSeconds
+    !value.getFullYear &&
+    !value.getMonth &&
+    !value.getDate &&
+    !value.getHours &&
+    !value.getMinutes &&
+    !value.getSeconds
   );
 }
 
