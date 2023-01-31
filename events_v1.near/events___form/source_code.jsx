@@ -66,13 +66,13 @@ if (!state) {
     console.log('model', model);
     console.log(model.start_date);
     console.log(new Date(model.start_date));
-    console.log(model.start_date ? true : false);
+
     const start_date = model.start_date
-      ? formatDate(new Date(model.start_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
+      ? formatDate(model.start_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
       : null;
 
     const end_date = model.end_date
-      ? formatDate(new Date(model.end_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
+      ? formatDate(model.end_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
       : null;
 
     State.init({
