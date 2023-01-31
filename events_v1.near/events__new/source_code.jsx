@@ -14,6 +14,8 @@ if (!latestEvent) {
   return 'Loading';
 }
 
+console.log('latestEvent', latestEvent);
+
 const SECONDS_8 = 8000;
 // if event was just created, pop the stack and return
 if (
