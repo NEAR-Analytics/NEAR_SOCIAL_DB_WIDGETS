@@ -72,7 +72,7 @@ const datesAreEqual = startDate.toDateString() === endDate.toDateString();
 const endDateIsNull =
   endDate === null || endDate.toDateString() === new Date(0).toDateString();
 
-console.log('event', event);
+// console.log('event', event);
 
 return (
   <>
