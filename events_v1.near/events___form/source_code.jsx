@@ -234,42 +234,26 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
-    name.length >= MIN_LENGTH_NAME,
+    name.length >= MIN_LENGTH_NAME && name.length < MAX_LENGTH_NAME,
     'name',
-    `
-      Name must be at least ${MIN_LENGTH_NAME} characters long
-      Currently: ${name.length} characters.
-    `
+    `Name must be between ${MIN_LENGTH_NAME} and ${MAX_LENGTH_NAME} characters long. Currently: ${name.length} characters.`
   );
 
   valid = assertCondition(
     valid,
-    name.length < MAX_LENGTH_NAME,
-    'name',
-    `
-      Name must be less than ${MAX_LENGTH_NAME} characters long
-      Currently: ${name.length} characters.
-    `
-  );
-
-  valid = assertCondition(
-    valid,
-    description.length >= MIN_LENGTH_DESCRIPTION,
+    description.length >= MIN_LENGTH_DESCRIPTION &&
+      description.length < MAX_LENGTH_DESCRIPTION,
     'description',
-    `
-      Description must be at least ${MIN_LENGTH_DESCRIPTION} characters long.
-      Currently: ${description.length} characters.
-    `
+    `Description must be between ${MIN_LENGTH_DESCRIPTION} and ${MAX_LENGTH_DESCRIPTION} characters long. Currently: ${description.length} characters.`
   );
 
   valid = assertCondition(
     valid,
-    description.length < MAX_LENGTH_DESCRIPTION,
-    'description',
-    `
-      Description must be less than ${MAX_LENGTH_DESCRIPTION} characters long
-      Currently: ${description.length} characters.
-    `
+    location !== null &&
+      location.length >= MIN_LENGTH_LOCATION &&
+      location.length < MAX_LENGTH_LOCATION,
+    'location',
+    `Location must be between ${MIN_LENGTH_LOCATION} and ${MAX_LENGTH_LOCATION} characters long. Currently: ${location.length} characters.`
   );
 
   valid = assertCondition(
@@ -305,23 +289,6 @@ function validate(data) {
     location !== null && location !== undefined && location !== '',
     'location',
     'Event must have a location'
-  );
-
-  valid = assertCondition(
-    valid,
-    location !== null && location.length >= MIN_LENGTH_LOCATION,
-    'location',
-    `
-      Location must be at least ${MIN_LENGTH_LOCATION} characters long
-      Currently: ${location.length} characters.
-    `
-  );
-  valid = assertCondition(
-    valid,
-    location !== null && location.length < MAX_LENGTH_LOCATION,
-    'location',
-    `Location must be less than ${MAX_LENGTH_LOCATION} characters long
-      Currently: ${location.length} characters.`
   );
 
   valid = assertCondition(
