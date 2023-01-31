@@ -5,6 +5,7 @@ const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
 const parentItem = content.item;
+const highlight = !!props.highlight;
 
 const extractNotifyAccountId = (item) => {
   if (!item || item.type !== "social" || !item.path) {
@@ -17,7 +18,11 @@ const extractNotifyAccountId = (item) => {
 const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 return (
-  <div className={"pt-3 border-top pb-2"}>
+  <div
+    className={`pt-3 border-top pb-2 ${
+      highlight ? "bg-warning bg-opacity-10" : ""
+    }`}
+  >
     <Widget
       src="mob.near/widget/MainPage.Post.Header"
       props={{ accountId, blockHeight, link, postType: "comment" }}
