@@ -182,9 +182,11 @@ return (
 
       {event.type && event.type !== '' ? (
         <InfoBarItem>
-          <i className="bi bi-tag"></i>
+          <InlineTag>
+            <i className="bi bi-tag"></i>
 
-          <InlineTag>{event.type}</InlineTag>
+            {event.type}
+          </InlineTag>
         </InfoBarItem>
       ) : null}
     </InfoBar>
