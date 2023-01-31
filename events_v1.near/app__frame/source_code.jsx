@@ -400,8 +400,6 @@ function formatDate(date, format) {
     ss: dateString.substring(17, 19),
   };
 
-  console.log('parts', parts);
-
   return format.replace(
     /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss)\s*\}\}/gu,
     (match, part) => {
