@@ -1,16 +1,4 @@
 const accountId = props.accountId ?? context.accountId;
-// ========= STRUCTURE =========
-const dataStructure = {
-  articleA: {
-    author: "EV",
-    body: "body A (index)",
-  },
-  articleB: {
-    author: "EV",
-    body: "body B (index)",
-  },
-};
-
 // ========= HANDLER SET =========
 const getPublicationParamsAllArticles = () => ({
   index: {
@@ -27,10 +15,6 @@ const getPublicationParamsAllArticles = () => ({
 
 // ========= HANDLER GET =========
 const clickHandlerGetStructure = () => {
-  // const path = "/articlesPersonal2/**";
-  // const data1 = Social.get(`${accountId}${path}`);
-  // console.log(data1);
-
   // const answers = Social.index("poll_question", "answer-v3.1.0");
   // console.log(answers);
 
