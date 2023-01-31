@@ -232,6 +232,8 @@ const env = {
   VERSION,
 };
 
+const COST_NEAR_PER_BYTE = Math.pow(10, 19);
+
 const AppState = {
   _state: {},
   set: (prop, value) => {
@@ -364,6 +366,11 @@ function dirtyEval(args) {
   }
 }
 
+function calculateStorageCost(value) {
+  const bytes = new TextEncoder().encode(value).length;
+  return COST_NEAR_PER_BYTE * bytes;
+}
+
 function renderComponent(name, props) {
   const engine = {
     env,
@@ -398,6 +405,7 @@ function renderComponent(name, props) {
 
     helpers: {
       propIsRequiredMessage,
+      calculateStorageCost,
     },
 
     hacks: {
