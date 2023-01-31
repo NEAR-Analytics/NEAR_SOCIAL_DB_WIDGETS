@@ -372,7 +372,7 @@ function dirtyEval(args) {
 
 function formatDate(date, format) {
   const properDate = typeof date === 'string' ? new Date(date) : date;
-
+  console.log('formatDate', { properDate });
   const parts = {
     YYYY: properDate.getFullYear(),
     YY: properDate.getFullYear().toString().substring(2),
