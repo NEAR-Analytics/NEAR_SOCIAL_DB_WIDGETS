@@ -218,6 +218,8 @@ const getRewards = (assets) => {
 const assets = getAssets();
 const rewards = getRewards(assets);
 
+if (!asserts || !rewards) return <div />;
+
 const data = {
   assets,
   rewards,
