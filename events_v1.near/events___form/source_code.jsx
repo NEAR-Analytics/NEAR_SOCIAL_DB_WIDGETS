@@ -149,6 +149,7 @@ function getErrors(key) {
   const errors = state.errors[key];
   const hasErrors = errors && errors.length > 0;
   if (hasErrors && errors.length === 1) {
+    return errors[0];
   }
 
   if (!hasErrors) {
@@ -159,8 +160,8 @@ function getErrors(key) {
     <>
       <div>{key}</div>
       <ul>
-        {errors.map((error, index) => (
-          <li key={index}>{error}</li>
+        {errors.map((message, index) => (
+          <li key={index}>{message}</li>
         ))}
       </ul>
     </>
