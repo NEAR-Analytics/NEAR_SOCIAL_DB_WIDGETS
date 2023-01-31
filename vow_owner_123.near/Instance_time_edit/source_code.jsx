@@ -80,10 +80,14 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
-    console.log("finalData: ", finalData);
-    finalData = { schedule: weeklyData, time_zone: time_zone };
+    finalData = {
+      schedule: weeklyData,
+      time_zone: time_zone,
+      is_on: sortedData[i].value._is_on,
+    };
   }
 }
+console.log("finalData: ", finalData);
 
 const time_zones = [
   "(UTC-11:00) Samoa",
@@ -255,7 +259,7 @@ return (
           data: {
             schedule: finalData.schedule,
             time_zone: state._time_zone,
-            is_on: state._is_on,
+            is_on: state.is_on,
           },
           style: { width: "100%", height: "1.5em" },
         }}
