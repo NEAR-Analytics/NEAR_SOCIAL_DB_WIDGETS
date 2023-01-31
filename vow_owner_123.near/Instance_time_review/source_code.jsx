@@ -193,6 +193,7 @@ return (
                           paddingLeft: "0.5rem",
                           display: "flex",
                           flexDirection: "column",
+                          width: "100%",
                         }}
                       >
                         <div
@@ -208,6 +209,7 @@ return (
                             display: "flex",
                             flexDirection: "row",
                             alignItems: "center",
+                            justifyContent: "space-between",
                           }}
                         >
                           <div>
