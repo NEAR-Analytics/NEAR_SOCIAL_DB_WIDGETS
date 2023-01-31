@@ -6,8 +6,6 @@ const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
 
-console.log("A", question);
-
 const notifyAccountId = accountId;
 const item = {
   type: "social",
@@ -72,7 +70,7 @@ const footer = (
 
 return (
   <div className="border p-3">
-    <h1>{question.title}</h1>
+    <h2>{question.title}</h2>
     {postLables}
 
     <div className="pt-2 text-break">
