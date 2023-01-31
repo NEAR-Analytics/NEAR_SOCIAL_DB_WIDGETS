@@ -258,13 +258,23 @@ return (
                           }}
                         >
                           <div>{`${days[index]}`}</div>
-                          <div>
+                          <div
+                            style={{
+                              display: "flex",
+                            }}
+                          >
                             {week.on_off == "on" ? (
                               week.data.map((y) => (
-                                <div>
+                                <p
+                                  style={{
+                                    display: "flex",
+                                    fontSize: "0.9rem",
+                                    paddingRight: "0.9rem",
+                                  }}
+                                >
                                   {getFormatedTime(y._from)}~
                                   {getFormatedTime(y._to)}
-                                </div>
+                                </p>
                               ))
                             ) : (
                               <span
