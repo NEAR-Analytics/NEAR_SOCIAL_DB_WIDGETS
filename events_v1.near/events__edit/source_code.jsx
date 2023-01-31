@@ -30,34 +30,21 @@ function callContract(data) {
     description,
   } = data;
 
-  const eventData = ;
-
-  // Near.call(
-  //   EVENTS_CONTRACT,
-  //   'update_event',
-  //   {
-  //     event_id: eventId,
-  //     event: eventData,
-  //   },
-  //   props.__engine.TGAS_300,
-  //   cost
-  // );
-
   props.__engine.contract.call(EVENTS_CONTRACT, 'update_event', {
     event_id: eventId,
     event: {
-    account_id: props.__engine.accountId,
-    name,
-    type,
-    category,
-    status,
-    start_date,
-    end_date,
-    location,
-    images,
-    links,
-    description,
-  },
+      account_id: props.__engine.accountId,
+      name,
+      type,
+      category,
+      status,
+      start_date,
+      end_date,
+      location,
+      images,
+      links,
+      description,
+    },
   });
 }
 
