@@ -388,14 +388,16 @@ function isDate(value) {
 function formatDate(date, format) {
   const properDate = isDate(date) ? date : new Date(date);
 
+  const dateString = properDate.toISOString();
+
   const parts = {
-    YYYY: properDate.getFullYear(),
-    YY: `${properDate.getFullYear().toString().substring(2)}`.padStart(2, '0'),
-    MM: `${properDate.getMonth() + 1}`.padStart(2, '0'),
-    DD: `${properDate.getDate()}`.padStart(2, '0'),
-    hh: `${properDate.getHours()}`.padStart(2, '0'),
-    mm: `${properDate.getMinutes()}`.padStart(2, '0'),
-    ss: `${properDate.getSeconds()}`.padStart(2, '0'),
+    YYYY: dateString.substring(0, 4),
+    YY: dateString.substring(2, 4),
+    MM: dateString.substring(5, 7),
+    DD: dateString.substring(8, 10),
+    hh: dateString.substring(11, 13),
+    mm: dateString.substring(14, 16),
+    ss: dateString.substring(17, 19),
   };
 
   console.log(properDate.getHours());
