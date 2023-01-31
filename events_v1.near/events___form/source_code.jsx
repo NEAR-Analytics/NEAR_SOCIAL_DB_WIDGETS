@@ -139,16 +139,15 @@ const LinkTypes = [
 ];
 
 function addError(key, message) {
-  console.log('addError', key, message);
-
   const oldErrors = { ...state.errors };
-  console.log('oldErrors', JSON.stringify(oldErrors));
   const oldKeyErrors = oldErrors[key] || [];
-  console.log('oldKeyErrors', JSON.stringify(oldKeyErrors));
+
+  if (oldKeyErrors.includes(message)) {
+    return;
+  }
+
   const newKeyErrors = [...oldKeyErrors, message];
-  console.log('newKeyErrors', JSON.stringify(newKeyErrors));
   const newErrors = { ...oldErrors, [key]: newKeyErrors };
-  console.log('newErrors', JSON.stringify(newErrors));
 
   State.update({
     errors: newErrors,
