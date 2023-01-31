@@ -5,7 +5,7 @@ State.init({
   linkCopied: false,
 });
 
-let widgetOwner = "easypoll.near";
+let widgetOwner = "vow_owner_123.near";
 
 return (
   <>
