@@ -172,14 +172,11 @@ function getErrors(key) {
   }
 
   return (
-    <>
-      <div>{key}</div>
-      <ul>
-        {errors.map((message, index) => (
-          <li key={index}>{message}</li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {errors.map((message, index) => (
+        <li key={index}>{message}</li>
+      ))}
+    </ul>
   );
 }
 
