@@ -218,7 +218,7 @@ const getRewards = (assets) => {
 const assets = getAssets();
 const rewards = getRewards(assets);
 
-if (!assets || !rewards) return "<span>loading...</span>";
+if (!assets || !rewards) return <span>loading...</span>;
 
 const data = {
   assets,
@@ -226,7 +226,7 @@ const data = {
 };
 
 if (typeof props.onLoad === "function") {
-  props.onLoad(data);
+  // props.onLoad(data);
 }
 
 return <div />;
