@@ -47,12 +47,8 @@ function callContract(data) {
     description,
   };
 
-  let cost = ONE_NEAR;
-  try {
-    cost = props.__engine.helpers.calculateStorageCost(eventData);
-  } catch (e) {
-    console.log('Error calculating storage cost', e);
-  }
+  const cost = props.__engine.helpers.calculateStorageCost(eventData);
+
   Near.call(
     EVENTS_CONTRACT,
     'update_event',
