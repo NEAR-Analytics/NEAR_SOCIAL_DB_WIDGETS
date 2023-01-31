@@ -213,7 +213,7 @@ function validate(data) {
     valid,
     start_date !== null && start_date !== undefined && start_date !== '',
     'start_date',
-    'Event must take at some day'
+    'Event must have a start date'
   );
 
   return valid;
