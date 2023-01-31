@@ -37,8 +37,6 @@ const data = fetch("https://graph.mintbase.xyz", {
   }),
 });
 
-console.log(data.body.data.token);
-
 if (data?.body?.data?.token) {
   posts = data?.body?.data?.token;
 }
@@ -49,7 +47,27 @@ return (
       <div class="text-center">
         <p>Minsta</p>
 
-        <input type="file" name="picture" accept="image/*" capture="user" />
+        <label
+          for="file-upload"
+          class="rounded"
+          style={{
+            border: "1px solid #ccc",
+            display: "inline-block",
+            padding: "6px 12px",
+            cursor: "pointer",
+          }}
+        >
+          Camera
+        </label>
+
+        <input
+          id="file-upload"
+          type="file"
+          name="picture"
+          accept="image/*"
+          capture="user"
+          style={{ backgroundColor: "black", display: "none" }}
+        />
       </div>
     </div>
     <div class="container-fluid d-flex flex-wrap justify-content-center gap-2">
