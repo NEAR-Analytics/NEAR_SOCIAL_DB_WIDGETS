@@ -249,6 +249,13 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
+    !end_date || new Date(end_date).getTime() > new Date().getTime(),
+    'end_date',
+    'End date must be in the future, or empty'
+  );
+
+  valid = assertCondition(
+    valid,
     start_date !== null && start_date !== undefined && start_date !== '',
     'start_date',
     'Event must have a start date'
