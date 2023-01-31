@@ -195,8 +195,6 @@ function validate(data) {
 
 function sanitizeValidateAndCall(data) {
   const sanitized = sanitize(data);
-  console.log('data', data);
-  console.log('sanitized', sanitized);
   const valid = validate(sanitized);
   if (valid && onSave) {
     onSave(sanitized);
