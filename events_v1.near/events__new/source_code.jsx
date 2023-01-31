@@ -43,8 +43,6 @@ function createEvent(data) {
     TGAS_300,
     ONE_NEAR
   );
-
-  console.log('event', { event });
 }
 
 function onSave(data) {
