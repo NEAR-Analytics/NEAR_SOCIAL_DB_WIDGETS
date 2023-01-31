@@ -35,13 +35,19 @@ function getAssets() {
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view("contract.main.burrow.near", "get_asset", { token_id })
   );
+  if (!assetsDetailed) return null;
   const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
   );
+  if (!metadata) return null;
 
   const config = Near.view("contract.main.burrow.near", "get_config");
+  if (!config) return null;
+
   const prices =
     config && Near.view(config?.["oracle_account_id"], "get_price_data");
+
+  if (!prices) return null;
 
   const refPricesResponse = fetch(
     "https://raw.githubusercontent.com/NearDeFi/token-prices/main/ref-prices.json"
