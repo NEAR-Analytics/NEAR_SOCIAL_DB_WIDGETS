@@ -24,25 +24,28 @@ function createEvent(data) {
     description,
   } = data;
 
-  const event = Near.call(
-    EVENTS_CONTRACT,
-    'create_event',
-    {
-      account_id: props.__engine.accountId,
-      name,
-      type,
-      category,
-      status,
-      start_date,
-      end_date,
-      location,
-      images,
-      links,
-      description,
-    },
-    TGAS_300,
-    ONE_NEAR
-  );
+  const eventData = {
+    account_id: props.__engine.accountId,
+    name,
+    type,
+    category,
+    status,
+    start_date,
+    end_date,
+    location,
+    images,
+    links,
+    description,
+  };
+
+  let cost = ONE_NEAR;
+  try {
+    cost = props.__engine.calculateStorageCost(eventData);
+  } catch (e) {
+    console.log('Error calculating storage cost', e);
+  }
+
+  Near.call(EVENTS_CONTRACT, 'create_event', eventData, TGAS_300, ONE_NEAR);
 }
 
 function onSave(data) {
