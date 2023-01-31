@@ -30,19 +30,7 @@ function callContract(data) {
     description,
   } = data;
 
-  const eventData = {
-    account_id: props.__engine.accountId,
-    name,
-    type,
-    category,
-    status,
-    start_date,
-    end_date,
-    location,
-    images,
-    links,
-    description,
-  };
+  const eventData = ;
 
   // Near.call(
   //   EVENTS_CONTRACT,
@@ -57,7 +45,19 @@ function callContract(data) {
 
   props.__engine.contract.call(EVENTS_CONTRACT, 'update_event', {
     event_id: eventId,
-    event: eventData,
+    event: {
+    account_id: props.__engine.accountId,
+    name,
+    type,
+    category,
+    status,
+    start_date,
+    end_date,
+    location,
+    images,
+    links,
+    description,
+  },
   });
 }
 
