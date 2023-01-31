@@ -23,7 +23,11 @@ const parentPost = extractParentPost(item);
 return parentPost ? (
   <Widget
     src="mob.near/widget/MainPage.Post"
-    props={{ ...parentPost, highlightComment: props, commentsLimit: 30 }}
+    props={{
+      ...parentPost,
+      highlightComment: { accountId, blockHeight },
+      commentsLimit: 30,
+    }}
   />
 ) : (
   <Widget src="mob.near/widget/MainPage.Comment" props={props} />
