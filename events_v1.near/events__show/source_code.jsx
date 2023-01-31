@@ -50,9 +50,11 @@ const InlineTag = props.__engine.Components.InlineTag;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
 const InfoBarLink = props.__engine.Components.InfoBarLink;
 
+console.log('event', event);
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 const datesAreEqual = startDate.toDateString() === endDate.toDateString();
+const endDateIsNull = endDate.toDateString() === new Date(0).toDateString();
 
 // console.log('event', event);
 
