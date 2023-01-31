@@ -174,16 +174,17 @@ return (
 
       {event.category && event.category !== '' ? (
         <InfoBarItem>
-          <i className="bi bi-tag"></i>
-
-          <InlineTag>{event.category}</InlineTag>
+          <InlineTag>
+            <i className="bi bi-tag"></i>
+            {event.category}
+          </InlineTag>
         </InfoBarItem>
       ) : null}
 
       {event.type && event.type !== '' ? (
         <InfoBarItem>
           <InlineTag>
-            <i className="bi bi-tag"></i>
+            <i className="bi bi-braces"></i>
 
             {event.type}
           </InlineTag>
