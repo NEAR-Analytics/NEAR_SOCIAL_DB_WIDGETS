@@ -63,9 +63,6 @@ const DEFAULT_STATE = {
 
 if (!state) {
   if (model) {
-    console.log('model', model);
-    console.log(model.start_date, JSON.stringify(model.start_date));
-
     const start_date = model.start_date
       ? formatDate(model.start_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
       : null;
