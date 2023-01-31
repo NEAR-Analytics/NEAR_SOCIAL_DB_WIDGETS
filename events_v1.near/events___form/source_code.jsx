@@ -12,7 +12,7 @@ const buttonText = props.buttonText || 'Save';
 const MIN_LENGTH_NAME = 4;
 const MIN_LENGTH_DESCRIPTION = 10;
 const MAX_LENGTH_NAME = 100;
-const MAX_LENGTH_DESCRIPTION = 1000;
+const MAX_LENGTH_DESCRIPTION = 2000;
 
 const MILLISECONDS_IN_DAY = 86400000;
 const DAYS_IN_WEEK = 7;
@@ -230,7 +230,10 @@ function validate(data) {
     valid,
     description.length >= MIN_LENGTH_DESCRIPTION,
     'description',
-    `Description must be at least ${MIN_LENGTH_DESCRIPTION} characters long`
+    `
+      Description must be at least ${MIN_LENGTH_DESCRIPTION} characters long.
+      Currently: ${description.length} characters.
+    `
   );
 
   valid = assertCondition(
