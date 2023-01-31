@@ -61,7 +61,7 @@ const contentDiv = (
       props={{
         placeholder: "",
         initialText: props.initialText,
-        onChange: ({ content }) => State.update({ content: content.text }),
+        onChange: ({ content }) => State.update({ content: content }),
       }}
     />
   </div>
@@ -72,14 +72,16 @@ const commitButton = (
     force
     className="btn btn-primary"
     data={{
-      "dev-question": JSON.stringify({
-        title: state.title,
-        labels: state.labelStrings,
-        content: state.content,
-      }),
+      question: {
+        main: JSON.stringify({
+          title: state.title,
+          labels: state.labelStrings,
+          content: state.content,
+        }),
+      },
       index: {
         question: JSON.stringify({
-          key: item,
+          key: "main",
           value: { type: "md" },
         }),
       },
