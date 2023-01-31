@@ -71,16 +71,6 @@ if (!state) {
       ? formatDate(model.end_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
       : null;
 
-    console.log(
-      model.start_date,
-      formatDate(
-        new Date().toISOString(),
-        `
-      {{ YYYY }} {{ MM }} {{ DD }} {{ hh }} {{ mm }} {{ ss }}
-      `
-      )
-    );
-
     State.init({
       ...model,
       images: model.images || DEFAULT_STATE.images,
