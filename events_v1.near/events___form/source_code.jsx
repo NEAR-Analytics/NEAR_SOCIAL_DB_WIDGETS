@@ -240,7 +240,10 @@ function validate(data) {
     valid,
     description.length < MAX_LENGTH_DESCRIPTION,
     'description',
-    `Description must be less than ${MAX_LENGTH_DESCRIPTION} characters long`
+    `
+      Description must be less than ${MAX_LENGTH_DESCRIPTION} characters long
+      Currently: ${description.length} characters.
+    `
   );
 
   valid = assertCondition(
