@@ -1,4 +1,5 @@
-const { accountId, blockHeight } = props;
+const accountId = props.accountId;
+const blockHeight = parseInt(props.blockHeight);
 
 const content = JSON.parse(
   Social.get(`${accountId}/post/comment`, blockHeight) ?? "null"
