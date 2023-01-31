@@ -386,7 +386,7 @@ function isDate(value) {
 }
 
 function formatDate(date, format) {
-  const properDate = isDate(date) ? new Date(date) : date;
+  const properDate = isDate(date) ? date : new Date(date);
   console.log('formatDate', { properDate });
 
   const parts = {
