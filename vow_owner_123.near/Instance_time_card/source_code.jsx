@@ -33,12 +33,21 @@ const sortAndRemoveRepeated = (flag, data) => {
   return final;
 };
 
+const getFormatedTime = (time) => {
+  const hours = parseInt(time);
+  const mins = (time - hours) * 60;
+  let formated =
+    hours > 12
+      ? `${hours - 12}:${mins == 0 ? "00" : mins} PM`
+      : `${hours}:${mins == 0 ? "00" : mins} AM`;
+  return formated;
+};
+
+var date = new Date();
+var utc_offset = -date.getTimezoneOffset() / 60;
 for (let i = 0; i < sortedData.length; i++) {
   if (sortedData[i].accountId == accountId) {
     var time_zone = sortedData[i].value._time_zone ?? "(UTC+00:00) UTC";
-    var zone = time_zone.split(" ")[0].split("UTC")[1].split(":");
-    var hour = parseInt(zone[0]);
-    var utc_offset = hour + (parseInt(zone[1]) / 60) * ((hour > 0) * 2 - 1);
     var times = sortedData[i].value._data;
     var temp = [];
     var flag = false;
@@ -81,11 +90,15 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
-    finalData = {
-      schedule: weeklyData,
-      time_zone: time_zone,
+
+    finalData.push({
+      accountId: sortedData[i].accountId,
       is_on: sortedData[i].value._is_on,
-    };
+      time_zone: sortedData[i].value._time_zone,
+      value: {
+        _data: weeklyData,
+      },
+    });
   }
 }
 
