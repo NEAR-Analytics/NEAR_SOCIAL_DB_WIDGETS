@@ -65,6 +65,8 @@ if (!state) {
       ...model,
       images: model.images || DEFAULT_STATE.images,
       links: model.links || DEFAULT_STATE.links,
+      start_date: new Date(model.start_date),
+      end_date: new Date(model.end_date),
     });
   } else {
     State.init(DEFAULT_STATE);
