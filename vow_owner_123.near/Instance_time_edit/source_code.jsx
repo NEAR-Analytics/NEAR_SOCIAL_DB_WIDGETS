@@ -259,7 +259,7 @@ return (
           data: {
             schedule: finalData.schedule,
             time_zone: state._time_zone,
-            is_on: state.is_on,
+            is_on: state._is_on,
           },
           style: { width: "100%", height: "1.5em" },
         }}
