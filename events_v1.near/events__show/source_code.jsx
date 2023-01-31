@@ -13,6 +13,7 @@ if (hasEvent === null) {
   return 'Loading';
 }
 if (hasEvent === false) {
+  console.log('event does not exist');
   props.__engine.replace('not_found', {
     message: `Event with id ${props.event_id} not found.`,
   });
