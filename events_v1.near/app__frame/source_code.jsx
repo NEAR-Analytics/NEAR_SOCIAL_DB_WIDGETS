@@ -372,15 +372,17 @@ function dirtyEval(args) {
 
 function isDate(value) {
   // we have no instanceof or typeof, so we check for the interface
-  return (
-    value &&
-    !value.getFullYear &&
-    !value.getMonth &&
-    !value.getDate &&
-    !value.getHours &&
-    !value.getMinutes &&
-    !value.getSeconds
-  );
+  try {
+    value.getFullYear();
+    value.getMonth();
+    value.getDate();
+    value.getHours();
+    value.getMinutes();
+    value.getSeconds();
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
 
 function formatDate(date, format) {
