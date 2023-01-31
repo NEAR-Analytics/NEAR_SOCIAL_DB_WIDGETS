@@ -38,7 +38,7 @@ return (
             ))}
           </>
         )}
-        {description}
+        {!props.hideDescription && description}
       </div>
     </div>
   </div>
