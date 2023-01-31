@@ -153,7 +153,7 @@ function addError(key, message) {
 }
 
 function clearErrors() {
-  State.update({ errors: {  });
+  State.update({ errors: {} });
 }
 
 function getErrors(key) {
