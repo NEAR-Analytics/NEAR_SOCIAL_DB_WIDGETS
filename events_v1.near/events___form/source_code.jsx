@@ -209,6 +209,16 @@ function validate(data) {
     'End date must be after start date, or empty'
   );
 
+  valid = assertCondition(
+    valid,
+    start_date !== null &&
+      start_date !== '' &&
+      start_date !== 'Invalid Date' &&
+      start_date !== 'NaN',
+    'end_date',
+    'End date must be after start date, or empty'
+  );
+
   return valid;
 }
 
