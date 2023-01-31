@@ -7,9 +7,6 @@ const EVENTS_CONTRACT = 'events_v1.near';
 const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events';
 
-const TGAS_300 = '300000000000000';
-// const ONE_NEAR = '1000000000000000000000000';
-
 function createEvent(data) {
   const {
     name,
@@ -24,7 +21,7 @@ function createEvent(data) {
     description,
   } = data;
 
-  const eventData = {
+  props.__engine.contract.call(EVENTS_CONTRACT, 'create_event', {
     account_id: props.__engine.accountId,
     name,
     type,
@@ -36,17 +33,7 @@ function createEvent(data) {
     images,
     links,
     description,
-  };
-
-  const cost = props.__engine.helpers.calculateStorageCost(eventData, true);
-
-  Near.call(
-    EVENTS_CONTRACT,
-    'create_event',
-    eventData,
-    props.__engine.TGAS_300,
-    cost
-  );
+  });
 }
 
 function onSave(data) {
