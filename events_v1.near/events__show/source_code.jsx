@@ -175,7 +175,7 @@ return (
       {event.category && event.category !== '' ? (
         <InfoBarItem>
           <InlineTag>
-            <i className="bi bi-tag"></i>
+            <i className="bi bi-bookmark-heart"></i>
             {event.category}
           </InlineTag>
         </InfoBarItem>
