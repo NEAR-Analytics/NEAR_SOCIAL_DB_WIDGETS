@@ -67,10 +67,9 @@ if (!state) {
       ...model,
       images: model.images || DEFAULT_STATE.images,
       links: model.links || DEFAULT_STATE.links,
-      start_date: formatDate(
-        new Date(model.start_date),
-        '{{ YYYY }}-{{ MM }}-{{ DD }}'
-      ),
+      start_date: model.start_date
+        ? formatDate(new Date(model.start_date), '{{ YYYY }}-{{ MM }}-{{ DD }}')
+        : null,
       end_date: formatDate(
         new Date(model.end_date),
         '{{ YYYY }}-{{ MM }}-{{ DD }}'
