@@ -58,6 +58,7 @@ return (
         src="mob.near/widget/MainPage.Comment.Feed"
         props={{
           item,
+          highlightComment: props.highlightComment,
         }}
       />
     </div>
