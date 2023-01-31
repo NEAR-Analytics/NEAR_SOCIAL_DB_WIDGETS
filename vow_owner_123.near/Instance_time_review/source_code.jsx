@@ -104,12 +104,16 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
+
     finalData.push({
       accountId: sortedData[i].accountId,
+      is_on: sortedData[i].value._is_on,
+      time_zone: sortedData[i].value._time_zone,
       value: {
         _data: weeklyData,
       },
     });
+    console.log("*******", finalData);
   }
 }
 const getFormatedTime = (time) => {
@@ -213,14 +217,14 @@ return (
                           <span
                             style={{
                               backgroundColor:
-                                d.on_off == "on"
+                                d.is_on == "on"
                                   ? "rgb(217, 252, 239)"
                                   : "rgb(255, 229, 229)",
                               textAlign: "center",
                               borderRadius: "16px",
                               fontSize: "0.8rem",
                               color:
-                                d.on_off == "on"
+                                d.is_on == "on"
                                   ? "rgb(0, 179, 125)"
                                   : "rgb(255, 71, 71)",
                               fontWeight: "500",
@@ -228,8 +232,9 @@ return (
                               marginLeft: "1rem",
                             }}
                           >
-                            {d.on_off ?? "off"}
+                            {d.is_on ?? "off"}
                           </span>
+                          <div>{d.time_zone}</div>
                         </div>
                       </div>
                     </div>
