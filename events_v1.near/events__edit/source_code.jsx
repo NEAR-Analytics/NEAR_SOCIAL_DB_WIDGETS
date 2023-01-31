@@ -46,16 +46,21 @@ function callContract(data) {
 
   const cost = props.__engine.helpers.calculateStorageCost(eventData);
 
-  Near.call(
-    EVENTS_CONTRACT,
-    'update_event',
-    {
-      event_id: eventId,
-      event: eventData,
-    },
-    props.__engine.TGAS_300,
-    cost
-  );
+  // Near.call(
+  //   EVENTS_CONTRACT,
+  //   'update_event',
+  //   {
+  //     event_id: eventId,
+  //     event: eventData,
+  //   },
+  //   props.__engine.TGAS_300,
+  //   cost
+  // );
+
+  props.__engine.contract.call(EVENTS_CONTRACT, 'update_event', {
+    event_id: eventId,
+    event: eventData,
+  });
 }
 
 function onSave(data) {
