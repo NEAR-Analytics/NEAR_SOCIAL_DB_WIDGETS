@@ -179,6 +179,15 @@ return (
           <InlineTag>{event.category}</InlineTag>
         </InfoBarItem>
       ) : null}
+
+      {/* same for event.type */}
+      {event.type && event.type !== '' ? (
+        <InfoBarItem>
+          <i className="bi bi-tag"></i>
+
+          <InlineTag>{event.type}</InlineTag>
+        </InfoBarItem>
+      ) : null}
     </InfoBar>
 
     {/* link bar */}
@@ -228,8 +237,6 @@ return (
           <Markdown text={event.description} />
         </Text>
       </Container>
-
-      <p>{event.type}</p>
     </div>
   </>
 );
