@@ -33,7 +33,7 @@ const dropdownElement =
   ) : null;
 
 const NavPrimaryButton = styled.button`
-  background-color: transparent;
+  background-color: #2c2c54;
   border: 2px solid white;
   color: white;
   padding: 8px 16px;
@@ -47,7 +47,8 @@ const NavPrimaryButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #2c2c54;
+    /* darker and transparent */
+    background-color: rgba(44, 44, 84, 0.85);
   }
 `;
 
