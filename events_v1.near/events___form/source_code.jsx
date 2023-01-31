@@ -13,8 +13,8 @@ const MIN_LENGTH_NAME = 4;
 const MIN_LENGTH_DESCRIPTION = 10;
 const MAX_LENGTH_NAME = 100;
 const MAX_LENGTH_DESCRIPTION = 2000;
-const LOCATION_MIN_LENGTH = 10;
-const LOCATION_MAX_LENGTH = 400;
+const MIN_LENGTH_LOCATION = 10;
+const MAX_LENGTH_LOCATION = 400;
 
 const MILLISECONDS_IN_DAY = 86400000;
 const DAYS_IN_WEEK = 7;
@@ -309,18 +309,18 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
-    location !== null && location.length >= LOCATION_MIN_LENGTH,
+    location !== null && location.length >= MIN_LENGTH_LOCATION,
     'location',
     `
-      Location must be at least ${LOCATION_MIN_LENGTH} characters long
+      Location must be at least ${MIN_LENGTH_LOCATION} characters long
       Currently: ${location.length} characters.
     `
   );
   valid = assertCondition(
     valid,
-    location !== null && location.length < LOCATION_MAX_LENGTH,
+    location !== null && location.length < MAX_LENGTH_LOCATION,
     'location',
-    `Location must be less than ${LOCATION_MAX_LENGTH} characters long
+    `Location must be less than ${MAX_LENGTH_LOCATION} characters long
       Currently: ${location.length} characters.`
   );
 
