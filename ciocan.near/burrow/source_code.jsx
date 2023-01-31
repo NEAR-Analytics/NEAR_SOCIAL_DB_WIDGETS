@@ -3,16 +3,15 @@ const toAPY = (v) => Math.round(v * 100) / 100;
 const { assets, rewards } = state;
 
 const onLoad = (data) => {
-  console.log("onLoad", data);
-  if (!assets) {
+  if (!data.assets || !data.rewards) return;
+  if (!state) {
     State.update(data);
   }
-  return data;
 };
 
-const allAssets = assets
+const allAssets = state
   ? assets.map((asset) => {
-      const r = rewards?.find((a) => a.token_id === asset.token_id);
+      const r = rewards.find((a) => a.token_id === asset.token_id);
       return (
         <li class="list-group-item">
           <span>{asset.metadata.symbol}</span>
@@ -20,7 +19,7 @@ const allAssets = assets
         </li>
       );
     })
-  : null;
+  : undefined;
 
 return (
   <div class="card" style={{ maxWidth: "300px" }}>
