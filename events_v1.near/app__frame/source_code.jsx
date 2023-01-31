@@ -406,8 +406,6 @@ function formatDate(date, format) {
     }
   );
 
-  console.log('formatDate', date, format, string);
-
   return string;
 }
 
