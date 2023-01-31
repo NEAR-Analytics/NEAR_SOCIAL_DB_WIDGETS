@@ -399,14 +399,12 @@ function formatDate(date, format) {
   };
 
   // replace {{YY}} with the proper value
-  const string = format.replace(
+  return format.replace(
     /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss)\s*\}\}/gu,
     (match, part) => {
       return parts[part];
     }
   );
-
-  return string;
 }
 
 // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
