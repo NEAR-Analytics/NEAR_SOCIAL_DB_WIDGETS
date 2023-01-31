@@ -208,7 +208,7 @@ return (
             >
               <Widget
                 src={`vow_owner_123.near/widget/Instance_time_share`}
-                props={{ accountId: "vow_owner_123.near" }}
+                props={{ accountId: finalData.accountId }}
               />
             </div>
             <span
