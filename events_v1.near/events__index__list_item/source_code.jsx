@@ -110,9 +110,16 @@ return (
         <>
           {startDate.getDate()}{' '}
           {startDate.toLocaleString('default', { month: 'short' })}{' '}
-          {startDate.getFullYear()} - {endDate.getDate()}{' '}
-          {endDate.toLocaleString('default', { month: 'short' })}{' '}
-          {endDate.getFullYear()}
+          {startDate.getFullYear()}
+          {endDateIsNull ? (
+            <> - ongoing</>
+          ) : (
+            <>
+              - {endDate.getDate()}{' '}
+              {endDate.toLocaleString('default', { month: 'short' })}{' '}
+              {endDate.getFullYear()}
+            </>
+          )}
         </>
       )}
     </EventDate>
