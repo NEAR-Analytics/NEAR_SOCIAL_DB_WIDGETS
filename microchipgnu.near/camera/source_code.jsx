@@ -20,6 +20,7 @@ const data = fetch("https://graph.mintbase.xyz", {
         burned_timestamp: { _is_null: true }
       }
       order_by: { minted_timestamp: desc }
+      limit: 30
     ) {
       id: token_id
       createdAt: minted_timestamp
@@ -43,17 +44,22 @@ if (data?.body?.data?.token) {
 
 return (
   <div class="bg-black text-white p-2 rounded container-fluid">
-    <div class="w-full d-flex justify-content-center py-4">
-      <div class="text-center">
-        <p>Minsta</p>
+    <div class="w-full d-flex justify-content-between py-4 px-4">
+      <div
+        style={{
+          display: "inline-block",
+          padding: "6px 6px",
+        }}
+      >
+        Minsta
+      </div>
 
+      <div>
         <label
           for="file-upload"
-          class="rounded"
           style={{
-            border: "1px solid #ccc",
             display: "inline-block",
-            padding: "6px 12px",
+            padding: "6px 6px",
             cursor: "pointer",
           }}
         >
@@ -66,7 +72,7 @@ return (
           name="picture"
           accept="image/*"
           capture="user"
-          style={{ backgroundColor: "black", display: "none" }}
+          style={{ display: "none" }}
         />
       </div>
     </div>
