@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-// ========= TRY OBJECT STRUCTURE =========
+// ========= STRUCTURE =========
 const dataStructure = {
   article3G: {
     author: "EV",
@@ -14,7 +14,6 @@ const getPublicationParamsAllArticles = () => {
 
 // ========= HANDLER GET =========
 const clickHandlerGetStructure = () => {
-  // === ALL ARTICLES
   const path = "/articlesPersonal2/**";
   const data1 = Social.get(`${accountId}${path}`);
   console.log(data1);
