@@ -40,7 +40,7 @@ function createEvent(data) {
 
   let cost = ONE_NEAR;
   try {
-    cost = props.__engine.helpers/.calculateStorageCost(eventData);
+    cost = props.__engine.helpers.calculateStorageCost(eventData);
   } catch (e) {
     console.log('Error calculating storage cost', e);
   }
