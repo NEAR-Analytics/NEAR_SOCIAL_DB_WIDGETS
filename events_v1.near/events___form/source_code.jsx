@@ -216,14 +216,20 @@ function validate(data) {
     valid,
     name.length >= MIN_LENGTH_NAME,
     'name',
-    `Name must be at least ${MIN_LENGTH_NAME} characters long`
+    `
+      Name must be at least ${MIN_LENGTH_NAME} characters long
+      Currently: ${name.length} characters.
+    `
   );
 
   valid = assertCondition(
     valid,
     name.length < MAX_LENGTH_NAME,
     'name',
-    `Name must be less than ${MAX_LENGTH_NAME} characters long`
+    `
+      Name must be less than ${MAX_LENGTH_NAME} characters long
+      Currently: ${name.length} characters.
+    `
   );
 
   valid = assertCondition(
