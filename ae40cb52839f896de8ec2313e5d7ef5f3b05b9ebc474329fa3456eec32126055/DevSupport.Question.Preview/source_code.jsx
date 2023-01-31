@@ -48,8 +48,13 @@ const footer = (
       <div class="row justify-content-between">
         <div class="col-6">
           <a href="#" onClick={onLike}>
-            <i class={`bi ${likeBtnClass} me-1`}> </i>
+            <i class={`bi ${likeBtnClass}`}> </i>
             Upvote ({post.likes.length ?? 0})
+          </a>
+
+          <a href="#" class="text-danger ms-3" onClick={onLike}>
+            <i class={`bi bi-flag`}> </i>
+            Flag Question
           </a>
         </div>
 
