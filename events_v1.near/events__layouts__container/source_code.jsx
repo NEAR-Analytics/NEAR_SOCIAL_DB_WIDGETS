@@ -47,7 +47,8 @@ const NavPrimaryButton = styled.button`
 
   border-radius: 8px;
   border: 1px solid white;
-  box-shadow: 0 0 2px 1px rgb(0 0 0 / 30%), 0 0 89px 2px rgb(255 255 255 / 40%);
+  box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
+    0 0 89px 2px rgb(255, 255, 255, 0.4);
 
   &:hover {
     /* darker and transparent */
