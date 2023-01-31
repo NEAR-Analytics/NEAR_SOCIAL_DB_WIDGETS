@@ -227,8 +227,8 @@ return (
                                   ? "rgb(0, 179, 125)"
                                   : "rgb(255, 71, 71)",
                               fontWeight: "500",
-                              padding: "0.5rem",
-                              marginLeft: "1rem",
+                              padding: "0.5rem 1rem",
+                              margin: "0rem 1rem",
                             }}
                           >
                             {d.is_on ?? "off"}
