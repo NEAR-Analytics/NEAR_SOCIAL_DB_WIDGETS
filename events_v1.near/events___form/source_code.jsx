@@ -174,7 +174,7 @@ function sanitize(data) {
 function validate(data) {
   let valid = true;
 
-  const { name, description } = data;
+  const { name, description, end_date, start_date } = data;
 
   valid = assertCondition(
     valid,
@@ -188,6 +188,13 @@ function validate(data) {
     description.length >= MIN_LENGTH_DESCRIPTION,
     'description',
     `Description must be at least ${MIN_LENGTH_DESCRIPTION} characters long`
+  );
+
+  valid = assertCondition(
+    valid,
+    !end_date || new Date(end_date).getTime() > new Date(start_date).getTime(),
+    'end_date',
+    'End date must be after start date, or empty'
   );
 
   return valid;
