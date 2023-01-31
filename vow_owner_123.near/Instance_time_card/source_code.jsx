@@ -171,9 +171,7 @@ return (
             />
             <div>
               <p style={{ margin: "0", fontWeight: "300" }}>Created by</p>
-              <p style={{ fontWeight: "500" }}>
-                {sliceString(context.accountId, 18)}
-              </p>
+              <p style={{ fontWeight: "500" }}>{sliceString(accountId, 18)}</p>
             </div>
           </div>
         </div>
