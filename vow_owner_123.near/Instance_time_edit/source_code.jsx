@@ -206,9 +206,9 @@ return (
           </select>
           <select
             style={comboBox}
-            value={state._is_on}
+            value={state.is_on}
             onChange={(e) => {
-              State.update({ _is_on: e.target.value });
+              State.update({ is_on: e.target.value });
             }}
           >
             <option value="on">on</option>
