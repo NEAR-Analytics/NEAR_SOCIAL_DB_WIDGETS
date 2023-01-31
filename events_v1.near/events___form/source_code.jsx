@@ -142,11 +142,9 @@ function addError(key, message) {
   const oldErrors = { ...state.errors };
   const oldKeyErrors = oldErrors[key] || [];
 
-  if (oldKeyErrors.includes(message)) {
-    return;
-  }
-
-  const newKeyErrors = [...oldKeyErrors, message];
+  const newKeyErrors = oldKeyErrors.includes(message)
+    ? oldKeyErrors
+    : [...oldKeyErrors, message];
   const newErrors = { ...oldErrors, [key]: newKeyErrors };
 
   State.update({
