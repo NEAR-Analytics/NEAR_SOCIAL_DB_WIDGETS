@@ -388,6 +388,7 @@ function byteLength(str) {
 function calculateStorageCost(value) {
   // get number of bytes without TextEncoder or Blob
   const bytes = byteLength(value);
+  console.log('bytes', bytes);
   return COST_NEAR_PER_BYTE * bytes;
 }
 
