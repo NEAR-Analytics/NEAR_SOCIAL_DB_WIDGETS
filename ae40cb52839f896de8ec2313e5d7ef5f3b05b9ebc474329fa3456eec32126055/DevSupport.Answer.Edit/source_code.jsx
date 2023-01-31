@@ -10,11 +10,11 @@ if (!context.accountId) {
 
 const composeData = () => {
   const data = {
-    post: {
-      comment: JSON.stringify(Object.assign({ item }, state.content)),
+    question: {
+      answer: JSON.stringify(Object.assign({ item }, state.content)),
     },
     index: {
-      comment: JSON.stringify({
+      answer: JSON.stringify({
         key: item,
         value: {
           type: "md",
