@@ -109,18 +109,6 @@ const days = [
   "Sunday",
 ];
 
-console.log("*****", finalData.value._data);
-
-State.init({
-  showQuestionsByThisUser: false,
-  descriptionHeightLimited: true,
-  poll: {},
-  polls: [{}],
-  profile: {},
-  pollsByThisCreator: [{}],
-  answers: [{}],
-});
-
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
     return string.slice(0, newStringLength) + "...";
