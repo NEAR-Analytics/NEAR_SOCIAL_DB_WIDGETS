@@ -301,8 +301,7 @@ function validate(data) {
     images !== null &&
       images !== undefined &&
       images.length >= 2 &&
-      reduce(
-        images,
+      images.reduce
         (acc, image) =>
           acc &&
           image.url !== null &&
@@ -310,8 +309,7 @@ function validate(data) {
           image.url !== '',
         true
       ) &&
-      reduce(
-        images,
+      images.reduce
         (acc, image) =>
           acc &&
           image.type !== null &&
