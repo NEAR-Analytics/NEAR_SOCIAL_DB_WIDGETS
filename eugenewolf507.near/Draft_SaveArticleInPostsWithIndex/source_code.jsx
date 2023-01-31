@@ -16,14 +16,14 @@ const getPublicationParamsAllArticles = () => {
   // return { articlesPersonal2: dataStructure };
   return {
     index: {
-      wiki_test: JSON.stringify({
+      wiki_test: {
         key: "wikitest-v0.0.0",
         value: {
           articleId: "articleA",
           author: "EV",
           body: "body A (index)",
         },
-      }),
+      },
     },
   };
 };
