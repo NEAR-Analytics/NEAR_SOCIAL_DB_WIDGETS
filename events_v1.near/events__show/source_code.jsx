@@ -54,7 +54,8 @@ console.log('event', event);
 const startDate = new Date(event.start_date);
 const endDate = new Date(event.end_date);
 const datesAreEqual = startDate.toDateString() === endDate.toDateString();
-const endDateIsNull = endDate.toDateString() === new Date(0).toDateString();
+const endDateIsNull =
+  endDate === null || endDate.toDateString() === new Date(0).toDateString();
 
 // console.log('event', event);
 
