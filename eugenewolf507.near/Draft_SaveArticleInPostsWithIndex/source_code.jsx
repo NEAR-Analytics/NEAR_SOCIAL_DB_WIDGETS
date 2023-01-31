@@ -1,22 +1,44 @@
 const accountId = props.accountId ?? context.accountId;
 // ========= STRUCTURE =========
 const dataStructure = {
-  article3G: {
+  articleA: {
     author: "EV",
-    body: "body for article 3G",
+    body: "body A (index)",
+  },
+  articleB: {
+    author: "EV",
+    body: "body B (index)",
   },
 };
 
 // ========= HANDLER SET =========
 const getPublicationParamsAllArticles = () => {
-  return { articlesPersonal2: dataStructure };
+  // return { articlesPersonal2: dataStructure };
+  return {
+    index: {
+      wiki_test: JSON.stringify({
+        key: "wikitest-v0.0.0",
+        value: {
+          articleId: "articleA",
+          author: "EV",
+          body: "body A (index)",
+        },
+      }),
+    },
+  };
 };
 
 // ========= HANDLER GET =========
 const clickHandlerGetStructure = () => {
-  const path = "/articlesPersonal2/**";
-  const data1 = Social.get(`${accountId}${path}`);
-  console.log(data1);
+  // const path = "/articlesPersonal2/**";
+  // const data1 = Social.get(`${accountId}${path}`);
+  // console.log(data1);
+
+  // const answers = Social.index("poll_question", "answer-v3.1.0");
+  // console.log(answers);
+
+  const questions = Social.index("poll_question", "question-v3.1.0");
+  console.log(questions);
 };
 
 // ========= RETURN =========
