@@ -307,6 +307,23 @@ function validate(data) {
 
   valid = assertCondition(
     valid,
+    location !== null && location.length >= LOCATION_MIN_LENGTH,
+    'location',
+    `
+      Location must be at least ${LOCATION_MIN_LENGTH} characters long
+      Currently: ${location.length} characters.
+    `
+  );
+  valid = assertCondition(
+    valid,
+    location !== null && location.length < LOCATION_MAX_LENGTH,
+    'location',
+    `      Location must be less than ${LOCATION_MAX_LENGTH} characters long
+      Currently: ${location.length} characters.`
+  );
+
+  valid = assertCondition(
+    valid,
     images !== null &&
       images !== undefined &&
       images.length >= 2 &&
