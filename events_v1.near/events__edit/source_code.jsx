@@ -16,6 +16,12 @@ if (!event) {
   return 'Loading';
 }
 
+// if event was just updated within the last 10 seconds, return to the show page
+if (new Date().getTime() - new Date(event.last_updated_at).getTime() < 10000) {
+  props.__engine.pop();
+  return 'Event updated';
+}
+
 function callContract(data) {
   const {
     name,
