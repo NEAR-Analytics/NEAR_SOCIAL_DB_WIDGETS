@@ -33,27 +33,36 @@ function callContract(data) {
     links,
     description,
   } = data;
+
+  const eventData = {
+    account_id: props.__engine.accountId,
+    name,
+    type,
+    category,
+    status,
+    start_date,
+    end_date,
+    location,
+    images,
+    links,
+    description,
+  };
+
+  let cost = ONE_NEAR;
+  try {
+    cost = props.__engine.helpers.calculateStorageCost(eventData);
+  } catch (e) {
+    console.log('Error calculating storage cost', e);
+  }
   Near.call(
     EVENTS_CONTRACT,
     'update_event',
     {
       event_id: eventId,
-      event: {
-        account_id: props.__engine.accountId,
-        name,
-        type,
-        category,
-        status,
-        start_date,
-        end_date,
-        location,
-        images,
-        links,
-        description,
-      },
+      event: eventDate,
     },
     TGAS_300,
-    ONE_HALF_NEAR
+    cost
   );
 }
 
