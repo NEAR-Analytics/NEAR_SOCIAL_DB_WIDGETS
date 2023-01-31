@@ -371,7 +371,7 @@ function dirtyEval(args) {
 }
 
 function isDate(value) {
-  console.log('isDate', { value });
+  console.log('isDate', { value }, value);
   // we have no instanceof or typeof, so we check for the interface
   try {
     value.getFullYear();
