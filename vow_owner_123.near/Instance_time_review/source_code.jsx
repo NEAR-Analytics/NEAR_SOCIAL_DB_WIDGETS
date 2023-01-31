@@ -257,7 +257,12 @@ return (
                             justifyContent: "space-between",
                           }}
                         >
-                          <div>{`${days[index]}`}</div>
+                          <div
+                            style={{
+                              fontSize: "1.2rem",
+                              fontWeight: "600",
+                            }}
+                          >{`${days[index]}`}</div>
                           <div
                             style={{
                               display: "flex",
