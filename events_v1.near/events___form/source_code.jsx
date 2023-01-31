@@ -145,8 +145,26 @@ function clearError(key) {
   State.update({ errors: { ...state.errors, [key]: null } });
 }
 
-function getError(key) {
-  return state.errors[key];
+function getErrors(key) {
+  const errors = state.errors[key];
+  const hasErrors = errors && errors.length > 0;
+  if (hasErrors && errors.length === 1) {
+  }
+
+  if (!hasErrors) {
+    return null;
+  }
+
+  return (
+    <>
+      <div>{key}</div>
+      <ul>
+        {errors.map((error, index) => (
+          <li key={index}>{error}</li>
+        ))}
+      </ul>
+    </>
+  );
 }
 
 function assertCondition(valid, condition, key, message) {
@@ -257,7 +275,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getError('name')}</ErrorMessage>
+    <ErrorMessage>{getErrors('name')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Description</Label>
@@ -271,7 +289,7 @@ return (
         rows={3}
       />
     </div>
-    <ErrorMessage>{getError('description')}</ErrorMessage>
+    <ErrorMessage>{getErrors('description')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Type</Label>
@@ -288,7 +306,7 @@ return (
         ))}
       </Select>
     </div>
-    <ErrorMessage>{getError('type')}</ErrorMessage>
+    <ErrorMessage>{getErrors('type')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Category</Label>
@@ -301,7 +319,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getError('category')}</ErrorMessage>
+    <ErrorMessage>{getErrors('category')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Status</Label>
@@ -318,7 +336,7 @@ return (
         ))}
       </Select>
     </div>
-    <ErrorMessage>{getError('status')}</ErrorMessage>
+    <ErrorMessage>{getErrors('status')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Start Date</Label>
@@ -330,7 +348,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getError('start_date')}</ErrorMessage>
+    <ErrorMessage>{getErrors('start_date')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>End Date</Label>
@@ -342,7 +360,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getError('end_date')}</ErrorMessage>
+    <ErrorMessage>{getErrors('end_date')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Location</Label>
@@ -356,7 +374,7 @@ return (
         rows={3}
       />
     </div>
-    <ErrorMessage>{getError('location')}</ErrorMessage>
+    <ErrorMessage>{getErrors('location')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Images</Label>
@@ -394,7 +412,7 @@ return (
         Add Image
       </button>
     </div>
-    <ErrorMessage>{getError('images')}</ErrorMessage>
+    <ErrorMessage>{getErrors('images')}</ErrorMessage>
 
     <div className="mt-3">
       <Label>Links</Label>
@@ -482,7 +500,7 @@ return (
         Add Link
       </button>
     </div>
-    <ErrorMessage>{getError('links')}</ErrorMessage>
+    <ErrorMessage>{getErrors('links')}</ErrorMessage>
 
     <br />
     <Button
