@@ -387,7 +387,7 @@ function isDate(value) {
 
 function formatDate(date, format) {
   const properDate = isDate(date) ? date : new Date(date);
-  console.log('formatDate', { properDate }, isDate(date));
+  console.log('formatDate', { properDate }, isDate(date), date);
 
   const parts = {
     YYYY: properDate.getFullYear(),
