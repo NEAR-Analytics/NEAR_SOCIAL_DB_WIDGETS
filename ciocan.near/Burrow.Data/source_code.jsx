@@ -30,19 +30,19 @@ const shrinkToken = (value, decimals, fixed) => {
 
 function getAssets() {
   const assets = Near.view("contract.main.burrow.near", "get_assets_paged");
-  if (!assets) return null;
+  if (!assets) return;
   const tokenIds = assets?.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
     Near.view("contract.main.burrow.near", "get_asset", { token_id })
   );
-  if (!assetsDetailed) return null;
+  if (!assetsDetailed) return;
   const metadata = tokenIds?.map((token_id) =>
     Near.view(token_id, "ft_metadata")
   );
-  if (!metadata) return null;
+  if (!metadata) return;
 
   const config = Near.view("contract.main.burrow.near", "get_config");
-  if (!config) return null;
+  if (!config) return;
 
   const prices =
     config && Near.view(config?.["oracle_account_id"], "get_price_data");
@@ -54,7 +54,7 @@ function getAssets() {
   );
   const refPrices = JSON.parse(refPricesResponse.body);
 
-  if (!config || !prices || !refPricesResponse) return null;
+  if (!config || !prices || !refPricesResponse) return;
 
   return assetsDetailed?.map((asset, i) => {
     const price = prices?.prices?.find((p) => p.asset_id === asset?.token_id);
@@ -93,7 +93,7 @@ const getNetLiquidityAPY = (assets) => {
     { farm_id: "NetTvl" }
   );
 
-  if (!netLiquidityFarm) return null;
+  if (!netLiquidityFarm) return;
 
   const totalDailyNetLiquidityRewards = Object.entries(netLiquidityFarm.rewards)
     .map(([rewardTokenId, farm]) => {
@@ -216,9 +216,10 @@ const getRewards = (assets) => {
 };
 
 const assets = getAssets();
-const rewards = getRewards(assets);
 
-if (!assets || !rewards) return <span>loading...</span>;
+if (!assets) return null;
+
+const rewards = getRewards(assets);
 
 const data = {
   assets,
@@ -226,7 +227,7 @@ const data = {
 };
 
 if (typeof props.onLoad === "function") {
-  // props.onLoad(data);
+  props.onLoad(data);
 }
 
 return <div />;
