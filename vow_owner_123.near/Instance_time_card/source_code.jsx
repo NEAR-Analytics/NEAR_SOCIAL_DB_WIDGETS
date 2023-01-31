@@ -1,4 +1,5 @@
-const accountId = props.accountId;
+// const accountId = props.accountId;
+const accountId = "vow_owner_123.near";
 const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
@@ -47,7 +48,6 @@ var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
 for (let i = 0; i < sortedData.length; i++) {
   if (sortedData[i].accountId == accountId) {
-    var time_zone = sortedData[i].value._time_zone ?? "(UTC+00:00) UTC";
     var times = sortedData[i].value._data;
     var temp = [];
     var flag = false;
@@ -90,19 +90,27 @@ for (let i = 0; i < sortedData.length; i++) {
       if (!exist) weeklyData.push({ on_off: "off", data: [] });
       else weeklyData.push({ on_off: "on", data: dailyData });
     }
-
-    finalData.push({
+    finalData = {
       accountId: sortedData[i].accountId,
       is_on: sortedData[i].value._is_on,
       time_zone: sortedData[i].value._time_zone,
       value: {
         _data: weeklyData,
       },
-    });
+    };
   }
 }
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 
-console.log("*****", accountId, finalData);
+console.log("*****", finalData.value._data);
 
 State.init({
   showQuestionsByThisUser: false,
@@ -237,7 +245,7 @@ return (
             </span>
           </div>
 
-          <div>{"d.time_zone"}</div>
+          <div>{finalData.time_zone}</div>
         </div>
         <div
           className="p-3"
@@ -258,20 +266,44 @@ return (
           >
             Schedule
           </h3>
-          <p style={{ fontSize: "0.9rem" }}>
-            {showDescription(state.poll.value.description)}
-          </p>
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-1.125rem",
-              left: "0",
-              right: "0",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          ></div>
+          {finalData.value._data.map((week, index) => {
+            return (
+              <div
+                style={{
+                  paddingTop: "1rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>{`${days[index]}`}</div>
+                <div style={{ display: "flex" }}>
+                  {week.on_off == "on" ? (
+                    week.data.map((y) => (
+                      <p style={{ paddingRight: "0.7rem" }}>
+                        {getFormatedTime(y._from)}~{getFormatedTime(y._to)}
+                      </p>
+                    ))
+                  ) : (
+                    <span
+                      style={{
+                        backgroundColor: "#FFE5E5",
+                        textAlign: "center",
+                        borderRadius: "16px",
+                        marginRight: "1rem",
+                        fontSize: "0.8rem",
+                        letterSpacing: "-0.025rem",
+                        color: "#FF4747",
+                        fontWeight: "500",
+                        padding: "0.5rem 2rem",
+                      }}
+                    >
+                      Off
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
