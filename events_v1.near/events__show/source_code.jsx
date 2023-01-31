@@ -138,28 +138,7 @@ return (
         <Text>
           <i className="bi bi-calendar"></i>
 
-          {datesAreEqual ? (
-            <>
-              {startDate.getDate()}{' '}
-              {startDate.toLocaleString('default', { month: 'short' })}{' '}
-              {startDate.getFullYear()}
-            </>
-          ) : (
-            <>
-              {startDate.getDate()}{' '}
-              {startDate.toLocaleString('default', { month: 'short' })}{' '}
-              {startDate.getFullYear()}
-              {endDateIsNull ? (
-                <> - ongoing</>
-              ) : (
-                <>
-                  - {endDate.getDate()}{' '}
-                  {endDate.toLocaleString('default', { month: 'short' })}{' '}
-                  {endDate.getFullYear()}
-                </>
-              )}
-            </>
-          )}
+          {props.__engine.renderComponent('components.event_date', { event })}
         </Text>
       </InfoBarItem>
 
