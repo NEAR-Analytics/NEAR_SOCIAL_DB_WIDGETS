@@ -2,7 +2,7 @@ const index = {
   action: "comment",
   key: props.item,
   options: {
-    limit: 3,
+    limit: props.limit ?? 3,
     order: "desc",
     accountId: props.accounts,
   },
@@ -13,7 +13,13 @@ const renderItem = (a) =>
     <div key={JSON.stringify(a)}>
       <Widget
         src="mob.near/widget/MainPage.Comment"
-        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+        props={{
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+          highlight:
+            a.accountId === props.highlightComment?.accountId &&
+            a.blockHeight === props.highlightComment?.blockHeight,
+        }}
       />
     </div>
   );
