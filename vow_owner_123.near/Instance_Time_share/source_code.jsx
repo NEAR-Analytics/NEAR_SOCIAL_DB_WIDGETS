@@ -85,11 +85,9 @@ return (
                     }
               }
               onClick={() => {
-                console.log(
-                  "*****",
-                  `https://near.social/#/${widgetOwner}/vow_owner_123.near/widget/Instance_time_card?accountId=${accountId}`
+                clipboard.writeText(
+                  `https://near.social/#/${widgetOwner}/widget/EasyPoll?sharedBlockHeight=${blockHeightToShare}`
                 );
-                clipboard.writeText(`zxcvzxcvzxcv`);
                 State.update({ linkCopied: true });
               }}
             ></i>
