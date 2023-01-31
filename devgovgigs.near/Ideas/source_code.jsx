@@ -12,6 +12,28 @@ initState({
   selectedPost: props.postId,
 });
 
+if (context.accountId) {
+  let grantNotify = Near.view("social.near", "is_write_permission_granted", {
+    predecessor_id: ownerId,
+    key: context.accountId + "/index/notify",
+  });
+  if (grantNotify === null) {
+    return "Initializing ...";
+  }
+  if (grantNotify === false) {
+    Near.call(
+      "social.near",
+      "grant_write_permission",
+      {
+        predecessor_id: ownerId,
+        keys: [context.accountId + "/index/notify"],
+      },
+      30_000_000_000_000n,
+      1n
+    );
+  }
+}
+
 // // A workaround for weird VM behavior. It does not call initState when the same
 // // widget is reopened in the same tab.
 // if (state.selectedPost != props.postId) {
