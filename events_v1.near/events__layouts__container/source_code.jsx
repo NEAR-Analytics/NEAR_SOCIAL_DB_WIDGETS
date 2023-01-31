@@ -34,7 +34,7 @@ const dropdownElement =
 
 const NavPrimaryButton = styled.button`
   background-color: transparent;
-  border: 2px solid white;
+  user-select: none;
   color: white;
   padding: 8px 16px;
   text-align: center;
@@ -42,9 +42,12 @@ const NavPrimaryButton = styled.button`
   display: inline-block;
   font-size: 16px;
   transition: all 0.5s ease;
-  border-radius: 4px;
   margin-left: 8px;
   cursor: pointer;
+
+  border-radius: 8px;
+  border: 1px solid white;
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 30%), 0 0 89px 2px rgb(255 255 255 / 40%);
 
   &:hover {
     /* darker and transparent */
