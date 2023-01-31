@@ -58,7 +58,7 @@ function callContract(data) {
     'update_event',
     {
       event_id: eventId,
-      event: eventDate,
+      event: eventData,
     },
     TGAS_300,
     cost
