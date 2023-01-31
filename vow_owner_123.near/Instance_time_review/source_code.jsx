@@ -57,11 +57,12 @@ const sortAndRemoveRepeated = (flag, data) => {
   }
   return final;
 };
+var date = new Date();
+var utc_offset = -date.getTimezoneOffset() / 60;
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
-    var date = new Date();
-    var utc_offset = -date.getTimezoneOffset() / 60;
+
     var times = sortedData[i].value._data;
     var temp = [];
     var flag = false;
