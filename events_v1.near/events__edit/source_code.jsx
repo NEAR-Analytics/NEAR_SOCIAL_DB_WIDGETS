@@ -17,8 +17,7 @@ if (!event) {
 }
 
 const TGAS_300 = '300000000000000';
-// const ONE_NEAR = '1000000000000000000000000';
-const ONE_HALF_NEAR = '500000000000000000000000';
+const ONE_NEAR = '1000000000000000000000000';
 
 function callContract(data) {
   const {
