@@ -391,17 +391,12 @@ function formatDate(date, format) {
   const parts = {
     YYYY: properDate.getFullYear(),
     YY: properDate.getFullYear().toString().substring(2),
-    MM: properDate.getMonth() + 1,
-    DD: properDate.getDate(),
-    hh: properDate.getHours(),
-    mm: properDate.getMinutes(),
-    ss: properDate.getSeconds(),
-    '0Y': `${properDate.getFullYear()}`.padStart(2, '0'),
-    '0M': `${properDate.getMonth() + 1}`.padStart(2, '0'),
-    '0D': `${properDate.getDate()}`.padStart(2, '0'),
-    '0h': `${properDate.getHours()}`.padStart(2, '0'),
-    '0m': `${properDate.getMinutes()}`.padStart(2, '0'),
-    '0s': `${properDate.getSeconds()}`.padStart(2, '0'),
+    YY: `${properDate.getFullYear().toString().substring(2)}`.padStart(2, '0'),
+    MM: `${properDate.getMonth() + 1}`.padStart(2, '0'),
+    DD: `${properDate.getDate()}`.padStart(2, '0'),
+    hh: `${properDate.getHours()}`.padStart(2, '0'),
+    mm: `${properDate.getMinutes()}`.padStart(2, '0'),
+    ss: `${properDate.getSeconds()}`.padStart(2, '0'),
   };
 
   // replace {{YY}} with the proper value
