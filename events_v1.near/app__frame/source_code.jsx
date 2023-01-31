@@ -443,6 +443,10 @@ function renderComponent(name, props) {
     },
 
     TGAS_300,
+
+    contract: {
+      call: contractCall,
+    },
   };
 
   const controllerProps = {
