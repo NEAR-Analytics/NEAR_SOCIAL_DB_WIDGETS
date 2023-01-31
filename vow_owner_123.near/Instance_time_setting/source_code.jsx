@@ -122,7 +122,6 @@ const getTime = (time) => {
 const onTimeChanged = (value, index, is_from_to, in_de) => {
   let temp = is_from_to ? state._from : state._to;
   const i = hours.indexOf(value);
-  console.log(i, in_de);
   if (i + in_de >= 0 && i + in_de < hours.length) {
     temp[index] = hours[i + in_de];
     is_from_to ? State.update({ _from: temp }) : State.update({ _to: temp });
