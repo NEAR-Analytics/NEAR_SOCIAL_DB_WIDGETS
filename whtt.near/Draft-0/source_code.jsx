@@ -7,7 +7,7 @@ const onButtonClick = () => {
   const gas = 300 * 1000000000000;
   const deposit = 0;
 
-  Near.call("move.sputnik-dao.near", "claim", {}, gas, deposit);
+  Near.call("lockup.burrow.near", "claim", {}, gas, deposit);
 };
 
 return (
