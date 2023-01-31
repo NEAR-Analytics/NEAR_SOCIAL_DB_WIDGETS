@@ -1,5 +1,4 @@
-// const accountId = props.accountId;
-const accountId = "vow_owner_123.near";
+const accountId = props.accountId ?? context.accountId;
 const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
@@ -147,8 +146,6 @@ return (
       <div
         style={{
           width: "100%",
-          maxWidth: "1000px",
-          height: "1000px",
           margin: "2rem 0.5rem 2rem 2rem",
           borderRadius: "18px",
           background: "white",
