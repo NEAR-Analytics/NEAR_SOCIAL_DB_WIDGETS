@@ -6,6 +6,33 @@ if (!data) {
 var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 var finalData = {};
 
+const sortAndRemoveRepeated = (flag, data) => {
+  var temp = data;
+  const flag1 = data.indexOf(0);
+  if (flag) temp.push(0, 168);
+  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+
+  var final = [];
+  for (var k = 0; k < sortedTimeData.length; k++) {
+    var repeated = false;
+    for (var l = 0; l < sortedTimeData.length; l++) {
+      if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
+        repeated = true;
+      }
+    }
+    if (!repeated) {
+      if (
+        !(
+          (flag1 && sortedTimeData[k] == 0) ||
+          (flag1 && sortedTimeData[k] == 168)
+        )
+      )
+        final.push(sortedTimeData[k]);
+    }
+  }
+  return final;
+};
+
 for (let i = 0; i < sortedData.length; i++) {
   if (sortedData[i].accountId == accountId) {
     var time_zone = sortedData[i].value._time_zone ?? "(UTC+00:00) UTC";
@@ -63,33 +90,6 @@ for (let i = 0; i < sortedData.length; i++) {
 }
 
 console.log("*****", accountId, finalData);
-
-const sortAndRemoveRepeated = (flag, data) => {
-  var temp = data;
-  const flag1 = data.indexOf(0);
-  if (flag) temp.push(0, 168);
-  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
-
-  var final = [];
-  for (var k = 0; k < sortedTimeData.length; k++) {
-    var repeated = false;
-    for (var l = 0; l < sortedTimeData.length; l++) {
-      if (k != l && sortedTimeData[k] == sortedTimeData[l]) {
-        repeated = true;
-      }
-    }
-    if (!repeated) {
-      if (
-        !(
-          (flag1 && sortedTimeData[k] == 0) ||
-          (flag1 && sortedTimeData[k] == 168)
-        )
-      )
-        final.push(sortedTimeData[k]);
-    }
-  }
-  return final;
-};
 
 State.init({
   showQuestionsByThisUser: false,
