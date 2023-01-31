@@ -381,6 +381,7 @@ function isDate(value) {
     value.getSeconds();
     return true;
   } catch (e) {
+    console.log('isDate', e);
     return false;
   }
 }
