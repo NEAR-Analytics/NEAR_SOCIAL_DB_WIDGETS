@@ -384,7 +384,7 @@ function formatDate(date, format) {
 
   // replace {{YY}} with the proper value
   const string = format.replace(
-    /{{(YY|YYYY|MM|DD|hh|mm|ss)}}/g,
+    /{{(YY|YYYY|MM|DD|hh|mm|ss)}}/gu,
     (match, part) => {
       return parts[part];
     }
