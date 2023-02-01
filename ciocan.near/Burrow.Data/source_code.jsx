@@ -47,7 +47,7 @@ function getAssets() {
   const prices =
     config && Near.view(config?.["oracle_account_id"], "get_price_data");
 
-  if (!prices) return null;
+  if (!prices) return;
 
   const refPricesResponse = fetch(
     "https://raw.githubusercontent.com/NearDeFi/token-prices/main/ref-prices.json"
@@ -220,6 +220,8 @@ const assets = getAssets();
 if (!assets) return <div />;
 
 const rewards = getRewards(assets);
+
+if (!rewards) return <div />;
 
 const data = {
   assets,
