@@ -26,6 +26,7 @@ initState({
   fixed: !!props.accountId,
   accountId,
   accountIdValid: true,
+  name: props.name ?? "",
   kind,
   entityStatus,
   startDate,
@@ -53,6 +54,19 @@ const accountIdInput = (
       valid: state.accountIdValid,
     }}
   />
+);
+
+const nameInput = (
+  <div className="col-lg-12 mb-2">
+    <Widget
+      src={`${ownerId}/widget/NameInput`}
+      props={{
+        label: "Name of entity:",
+        value: state.name,
+        update: (name) => State.update({ name }),
+      }}
+    />
+  </div>
 );
 
 const kindInput = (
@@ -118,6 +132,7 @@ const onSubmit = () => {
     account_id: state.accountId[0].name,
     entity: {
       status: state.entityStatus[0].name,
+      name: state.name,
       kind: state.kind[0].name,
       start_date: `${new Date(state.startDate).getTime()}`,
     },
@@ -140,6 +155,7 @@ const body = (
   <div className="card-body">
     <div className="row">
       {accountIdInput}
+      {nameInput}
       {kindInput}
       {statusInput}
       {startDateInput}
