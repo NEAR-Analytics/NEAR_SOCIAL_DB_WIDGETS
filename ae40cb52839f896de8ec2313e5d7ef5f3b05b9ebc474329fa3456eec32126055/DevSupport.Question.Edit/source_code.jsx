@@ -27,9 +27,22 @@ const setLabels = (labels) => {
   State.update({ labels, labelStrings });
 };
 
+// Form
+const titleDiv = (
+  <div className="col-lg-12  mb-2">
+    Title:
+    <input
+      type="text"
+      placeholder={"A title for your question"}
+      value={state.title}
+      onChange={(event) => State.update({ title: event.target.value })}
+    />
+  </div>
+);
+
 const labelEditor = (
   <div className="col-lg-12  mb-2">
-    Labels (multiple):
+    Labels:
     <Typeahead
       multiple
       labelKey="label"
@@ -39,18 +52,6 @@ const labelEditor = (
       selected={state.labels}
       positionFixed={true}
       allowNew={false}
-    />
-  </div>
-);
-
-const titleDiv = (
-  <div className="col-lg-12  mb-2">
-    Title:
-    <input
-      type="text"
-      placeholder={"A title for your question"}
-      value={state.title}
-      onChange={(event) => State.update({ title: event.target.value })}
     />
   </div>
 );
