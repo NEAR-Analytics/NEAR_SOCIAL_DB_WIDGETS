@@ -72,7 +72,7 @@ const formatDate = (timestampString) => {
 
 return (
   <div className="col-lg-12 mb-2">
-    Account ID of entity:
+    <label htmlFor="account-id-input">Account ID of entity:</label>
     <small style={{ color: "red" }}>
       {state.valid ? null : state.errorMessage}
     </small>
