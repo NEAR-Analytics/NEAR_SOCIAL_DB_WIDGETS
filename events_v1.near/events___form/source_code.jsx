@@ -474,7 +474,19 @@ return (
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
-          {props.__engine.renderComponent('_form.image_component')}
+          {props.__engine.renderComponent('_form.image_component', {
+            image: image,
+            onChange: (changed) => {
+              state.images[index] = changed;
+              sanitizeAndValidate({ ...state, images: state.images });
+            },
+            onRemove: () => {
+              const images = [...state.images];
+              images.splice(index, 1);
+              State.update({ images });
+              sanitizeAndValidate({ ...state, images });
+            },
+          })}
           <Widget
             src={`${APP_OWNER}/widget/${APP_NAME}___form__image_component`}
             props={{
