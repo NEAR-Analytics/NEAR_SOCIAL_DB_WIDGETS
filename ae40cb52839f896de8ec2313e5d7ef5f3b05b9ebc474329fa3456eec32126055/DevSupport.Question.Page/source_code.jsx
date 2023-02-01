@@ -76,13 +76,20 @@ return (
       props={{ item }}
     />
 
-    <Widget
-      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
-      props={{
-        notifyAccountId: accountId,
-        item,
-        onComment: () => State.update({ showReply: false }),
-      }}
-    />
+    {context.accountId && (
+      <>
+        <hr />
+        <h4> Reply </h4>
+
+        <Widget
+          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
+          props={{
+            notifyAccountId: accountId,
+            item,
+            onComment: () => State.update({ showReply: false }),
+          }}
+        />
+      </>
+    )}
   </div>
 );
