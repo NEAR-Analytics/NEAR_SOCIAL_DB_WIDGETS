@@ -133,7 +133,6 @@ const body = (
       {contributionTypesInput}
       {skillsInput}
       {resumeInput}
-      {lookingForWorkInput}
     </div>
 
     <a className="btn btn-primary mb-2" onClick={onSubmit}>
