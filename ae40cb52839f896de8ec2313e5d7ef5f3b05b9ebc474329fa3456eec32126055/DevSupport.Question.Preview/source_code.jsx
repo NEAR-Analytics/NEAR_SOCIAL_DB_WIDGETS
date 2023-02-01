@@ -29,20 +29,22 @@ return (
 
     <div>
       <small class="text-muted">
-        <div class="row justify-content-between">
-          <div class="col-8">
+        <div class="row">
+          <div class="col pe-0 justify-content-start">
             {/* Make into a widget */}
             <a href="#">
               <i class={`bi bi-arrow-up-square`}> </i>
               Upvote (0)
             </a>
-
+          </div>
+          <div class="col-3 pe-0 justify-content-start">
             {/* Make into a widget */}
             <a href="#" class="text-danger ms-3">
               <i class={`bi bi-flag`}> </i>
               Flag Question
             </a>
-
+          </div>
+          <div class="col pe-0 justify-content-start">
             {/* Make into a widget */}
             <a href="#" class="ms-3">
               <i class={`bi bi-chat`}> </i>
@@ -50,7 +52,7 @@ return (
             </a>
           </div>
 
-          <div class="col-4">
+          <div class="col-4 ps-0">
             <div class="d-flex justify-content-end">
               <Widget
                 src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/BlockToDate"
