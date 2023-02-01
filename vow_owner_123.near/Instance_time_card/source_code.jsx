@@ -265,17 +265,21 @@ return (
             <span
               style={{
                 backgroundColor:
-                  d.is_on == "on" ? "rgb(217, 252, 239)" : "rgb(255, 229, 229)",
+                  finalData.is_on == "on"
+                    ? "rgb(217, 252, 239)"
+                    : "rgb(255, 229, 229)",
                 textAlign: "center",
                 borderRadius: "16px",
                 fontSize: "0.8rem",
                 color:
-                  d.is_on == "on" ? "rgb(0, 179, 125)" : "rgb(255, 71, 71)",
+                  finalData.is_on == "on"
+                    ? "rgb(0, 179, 125)"
+                    : "rgb(255, 71, 71)",
                 fontWeight: "500",
                 padding: "0.5rem 1rem",
               }}
             >
-              {d.is_on ?? "off"}
+              {finalData.is_on ?? "off"}
             </span>
           </div>
 
