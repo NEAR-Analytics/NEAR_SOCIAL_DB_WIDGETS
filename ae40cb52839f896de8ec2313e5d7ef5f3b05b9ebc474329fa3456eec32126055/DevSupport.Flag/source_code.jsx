@@ -1,17 +1,19 @@
 const admin = "gagdiez.near";
+const question = { accountId: props.accountId, blockHeight: props.blockHeight };
 
 const data = {
   index: {
     graph: JSON.stringify({
       key: "poke",
       value: {
-        accountId: admin,
+        poke: admin,
       },
     }),
     notify: JSON.stringify({
       key: admin,
       value: {
         type: "poke",
+        question: question,
       },
     }),
   },
