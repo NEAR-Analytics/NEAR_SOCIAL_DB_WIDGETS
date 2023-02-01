@@ -98,7 +98,7 @@ const body = (
       Contribution types:
       <ul>
         {contributor.contribution_types.map((ct) => (
-          <li>{ct}</li>
+          <li>{typeof ct !== "string" ? `Other: ${ct.Other}` : ct}</li>
         ))}
       </ul>
     </div>
