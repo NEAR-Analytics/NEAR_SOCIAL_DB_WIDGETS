@@ -94,17 +94,17 @@ const lookingForWorkInput = !state.existing ? null : (
   <div className="col-lg-6  mb-2">
     <div className="form-check">
       <label htmlFor="looking-for-work" className="form-check-label">
-        Looking for work
+        Looking for work:
       </label>
-      <input
+      <Typeahead
         id="looking-for-work"
-        type="checkbox"
-        className="form-check-input"
-        checked={state.lookingForWork}
-        onClick={(e) => {
-          console.log(e.target);
-          State.update({ lookingForWork: !state.lookingForWork });
-        }}
+        labelKey="name"
+        selected={[{ name: state.lookingForWork ? "Yes" : "No" }]}
+        options={[{ name: "Yes" }, { name: "No" }]}
+        positionFixed
+        onChange={(selected) =>
+          State.update({ lookingForWorkInput: selected[0].name === "Yes" })
+        }
       />
     </div>
   </div>
