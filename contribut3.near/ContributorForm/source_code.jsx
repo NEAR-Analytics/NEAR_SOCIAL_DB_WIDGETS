@@ -161,7 +161,7 @@ const footer = (
 
 return (
   <div className="card">
-    {header}
+    <div className="card-header">Edit contributor details</div>
     {body}
     {footer}
   </div>
