@@ -2,15 +2,18 @@ const toAPY = (v) => Math.round(v * 100) / 100;
 
 const { assets, rewards } = state;
 
+const hasData = assets.length > 0 && rewards.length > 0;
+
 const onLoad = (data) => {
-  if (!state) {
+  if (!hasData) {
     State.update(data);
   }
 };
 
-const allAssets = state
+const allAssets = hasData
   ? assets.map((asset) => {
       const r = rewards.find((a) => a.token_id === asset.token_id);
+      console.log(rewards);
       return (
         <li class="list-group-item">
           <span>{asset.metadata.symbol}</span>
