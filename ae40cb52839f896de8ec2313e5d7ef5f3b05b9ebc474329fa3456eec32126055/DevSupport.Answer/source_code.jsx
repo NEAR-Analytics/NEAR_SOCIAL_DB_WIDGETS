@@ -5,4 +5,4 @@ const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
 
-return answer;
+return `${accountId}, ${blockHeight}`;
