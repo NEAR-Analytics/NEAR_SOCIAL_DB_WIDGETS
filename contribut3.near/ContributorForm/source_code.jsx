@@ -123,7 +123,7 @@ const onSubmit = () => {
 };
 
 const header = (
-  <div className="card-header" id="header">
+  <div className="card-header">
     {state.existing ? "Edit profile" : "Register as a contributor"}
   </div>
 );
@@ -165,6 +165,7 @@ const footer = (
 
 return (
   <div className="card">
+    {header}
     {body}
     {footer}
   </div>
