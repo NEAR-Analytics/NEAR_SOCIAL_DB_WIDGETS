@@ -5,4 +5,9 @@ const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
 
-return `${accountId}, ${blockHeight}`;
+return (
+  <>
+    <div className="border p-3">{answer.text}</div>
+    {JSON.stringify(props)}
+  </>
+);
