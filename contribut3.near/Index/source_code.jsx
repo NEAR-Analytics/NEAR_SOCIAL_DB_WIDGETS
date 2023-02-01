@@ -13,36 +13,22 @@ const isModerator = Near.view(
   true
 );
 
+const editorForm = ({ formName }) => (
+  <div
+    className="collapse"
+    id={`collapse${formName}Form`}
+    data-bs-parent="#accordion"
+  >
+    <Widget src={`${ownerId}/widget/${formName}Form`} />
+  </div>
+);
+
 const editorsFooter = props.isPreview ? null : (
-  <div className="row" id={`accordion`}>
-    <div
-      className="collapse"
-      id="collapseContributionRequestForm"
-      data-bs-parent="#accordion"
-    >
-      <Widget src={`${ownerId}/widget/ContributionRequestForm`} />
-    </div>
-    <div
-      className="collapse"
-      id="collapseEntityForm"
-      data-bs-parent="#accordion"
-    >
-      <Widget src={`${ownerId}/widget/EntityForm`} />
-    </div>
-    <div
-      className="collapse"
-      id="collapseModeratorForm"
-      data-bs-parent="#accordion"
-    >
-      <Widget src={`${ownerId}/widget/ModeratorEntityForm`} />
-    </div>
-    <div
-      className="collapse"
-      id="collapseModeratorSetForm"
-      data-bs-parent="#accordion"
-    >
-      <Widget src={`${ownerId}/widget/ModeratorSetForm`} />
-    </div>
+  <div className="row" id="accordion">
+    {editorForm({ formName: "ContributionRequest" })}
+    {editorForm({ formName: "Entity" })}
+    {editorForm({ formName: "ModeratorEntity" })}
+    {editorForm({ formName: "ModeratorSet" })}
   </div>
 );
 
@@ -84,7 +70,7 @@ const controls = (
             {!isModerator
               ? null
               : control({
-                  formName: "Moderator",
+                  formName: "ModeratorEntity",
                   text: "Edit/Create Entity",
                   icon: "bi-pencil-square",
                 })}
