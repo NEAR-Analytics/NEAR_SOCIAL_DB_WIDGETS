@@ -55,9 +55,7 @@ function onSave(data) {
   createEvent(data);
 }
 
-return (
-    {props.__engine.renderComponent('_form', {
-      onSave,
-      buttonText: 'Create event',
-    })}
-);
+return props.__engine.renderComponent('_form', {
+  onSave,
+  buttonText: 'Create event',
+});
