@@ -30,7 +30,6 @@ Near.asyncView(
   true
 ).then((contributor) => {
   if (contributor) {
-    console.log(contributor);
     State.update({
       contributionTypes: contributor.contribution_types.map((t) =>
         typeof t === "string" ? { name: t } : { name: t.Other }
