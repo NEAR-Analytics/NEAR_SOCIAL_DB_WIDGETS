@@ -46,22 +46,11 @@ const editorsFooter = props.isPreview ? null : (
   </div>
 );
 
-const control = ({ formName, text }) => (
-  <li className="nav-item">
-    <a
-      className="nav-link active"
-      aria-current="page"
-      href="#"
-      data-bs-toggle="collapse"
-      href={`#collapse${formName}Form`}
-      role="button"
-      aria-expanded="false"
-      aria-controls={`collapse${formName}Form`}
-    >
-      <i className="bi-plus-circle" />
-      {text}
-    </a>
-  </li>
+const control = ({ formName, text, icon }) => (
+  <Widget
+    src={`${ownerId}/widget/NavbarControl`}
+    props={{ formName, text, icon }}
+  />
 );
 
 const controls = (
@@ -85,14 +74,27 @@ const controls = (
             {control({
               formName: "ContributionRequest",
               text: "Request Contribution",
+              icon: "bi-plus-circle",
             })}
-            {control({ formName: "Entity", text: "Create Entity" })}
+            {control({
+              formName: "Entity",
+              text: "Create Entity",
+              icon: "bi-plus-circle",
+            })}
             {!isModerator
               ? null
-              : control({ formName: "Moderator", text: "Edit/Create Entity" })}
+              : control({
+                  formName: "Moderator",
+                  text: "Edit/Create Entity",
+                  icon: "bi-pencil-square",
+                })}
             {!isModerator
               ? null
-              : control({ formName: "ModeratorSet", text: "Change moderator" })}
+              : control({
+                  formName: "ModeratorSet",
+                  text: "Change moderator",
+                  icon: "bi-person-lock",
+                })}
           </ul>
         </div>
       </div>
