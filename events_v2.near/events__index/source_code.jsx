@@ -13,7 +13,7 @@ const Container = props.__engine.Components.Container;
 
 return (
   <Container>
-    <div
+    {/* <div
       style={{
         marginBottom: '20px',
       }}
@@ -24,7 +24,7 @@ return (
         Events Fullscreen:
         https://near.social/#/embed/events_v2.near/widget/events__app
       </a>
-    </div>
+    </div> */}
 
     <Button
       onClick={() => {
