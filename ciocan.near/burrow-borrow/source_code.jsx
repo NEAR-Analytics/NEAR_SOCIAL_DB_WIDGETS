@@ -5,7 +5,15 @@ let accountId = context.accountId;
 let B = Big();
 B.DP = 60;
 
-const { selectedTokenId, amount, hasError } = state;
+const toAPY = (v) => Math.round(v * 100) / 100;
+
+const { selectedTokenId, amount, hasError, assets, rewards } = state;
+
+const hasData = assets.length > 0 && rewards.length > 0;
+
+const onLoad = (data) => {
+  State.update(data);
+};
 
 const shrinkToken = (value, decimals) => {
   return B(value).div(B(10).pow(decimals));
@@ -33,58 +41,16 @@ if (!accountId) {
 
 const config = Near.view(BURROW_CONTRACT, "get_config");
 
-function getAssets() {
-  const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
-  if (!assets) return null;
-
-  const tokenIds = assets?.map(([id]) => id);
-
-  const assetsDetailed = tokenIds.map((token_id) =>
-    Near.view(BURROW_CONTRACT, "get_asset", { token_id })
-  );
-
-  const metadata = tokenIds?.map((token_id) =>
-    Near.view(token_id, "ft_metadata")
-  );
-
-  const prices =
-    config && Near.view(config?.["oracle_account_id"], "get_price_data");
-
-  const refPricesResponse = fetch(
-    "https://raw.githubusercontent.com/NearDeFi/token-prices/main/ref-prices.json"
-  );
-  const refPrices = JSON.parse(refPricesResponse.body);
-
-  if (!config || !prices || !refPricesResponse) return null;
-
-  return assetsDetailed?.map((asset, i) => {
-    const price = prices?.prices?.find((p) => p.asset_id === asset?.token_id);
-
-    const decimals =
-      parseInt(price?.price?.decimals || 0) - parseInt(metadata?.[i].decimals);
-    const usd = price?.price?.multiplier / power(10, decimals);
-
-    return {
-      ...asset,
-      metadata: metadata?.[i],
-      price: {
-        ...price.price,
-        usd: usd ? usd : parseFloat(refPrices?.[asset.token_id]?.price),
-      },
-    };
-  });
-}
-
 const account = Near.view(BURROW_CONTRACT, "get_account", {
   account_id: accountId,
 });
 
-const assets = getAssets();
-console.log("INIT...", state, assets, account);
+console.log("INIT...", state);
 
-if (!assets.length || !assets[0] || !account) return <div>loading...</div>;
+if (!account) return <div>loading...</div>;
 
 function getAdjustedSum(type) {
+  if (!assets) return B(1);
   return account[type]
     .map((assetInAccount) => {
       const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
@@ -144,13 +110,15 @@ function getMaxAmount() {
 
 const [available, availableUSD] = getMaxAmount();
 
-const listAssets = assets
-  ?.filter((a) => a.config.can_borrow)
-  ?.map((asset) => {
-    const { token_id, metadata } = asset;
+const listAssets =
+  assets &&
+  assets
+    ?.filter((a) => a.config.can_borrow)
+    ?.map((asset) => {
+      const { token_id, metadata } = asset;
 
-    return <option value={token_id}>{metadata.symbol}</option>;
-  });
+      return <option value={token_id}>{metadata.symbol}</option>;
+    });
 
 const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
   account_id: accountId,
@@ -261,8 +229,13 @@ const handleBorrow = () => {
   Near.call(transactions);
 };
 
+const reward = rewards && rewards.find((a) => a.token_id === selectedTokenId);
+
 return (
   <div class="card" style={{ maxWidth: "300px" }}>
+    {!hasData && (
+      <Widget src="ciocan.near/widget/Burrow.Data" props={{ onLoad }} />
+    )}
     <div class="card-body d-grid gap-3">
       <h6>Health {healthFactor}%</h6>
       <select onChange={handleSelect}>
@@ -270,9 +243,12 @@ return (
         {listAssets}
       </select>
       {selectedTokenId && (
-        <span>
-          Available: {available} (${availableUSD})
-        </span>
+        <div>
+          <div>
+            Available: {available} (${availableUSD})
+          </div>
+          <div>APY: {toAPY(reward.apyBaseBorrow)}%</div>
+        </div>
       )}
       <input type="number" value={amount} onChange={handleAmount} />
       {hasError && (
