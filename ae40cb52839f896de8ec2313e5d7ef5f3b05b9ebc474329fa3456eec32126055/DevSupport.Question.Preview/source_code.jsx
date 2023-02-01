@@ -33,20 +33,18 @@ return (
           <div class="col-8">
             {/* Make into a widget */}
             <a href="#">
-              <i class={`bi bi-arrow-up-square`}> </i>
-              Upvote (0)
+              <i class={`bi bi-arrow-up-square`}> </i> Upvotes [0]
             </a>
 
-            {/* Make into a widget */}
-            <a href="#" class="text-danger ms-3">
-              <i class={`bi bi-flag`}> </i>
-              Flag Question
-            </a>
+            {/* Flag question widget */}
+            <Widget
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Flag"
+              props={{ accountId, blockHeight }}
+            />
 
             {/* Make into a widget */}
             <a href="#" class="ms-3">
-              <i class={`bi bi-chat`}> </i>
-              (0) Answers
+              <i class={`bi bi-chat`}> </i> Answers [0]
             </a>
           </div>
 
