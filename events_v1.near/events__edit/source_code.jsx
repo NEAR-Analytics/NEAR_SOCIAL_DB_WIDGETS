@@ -62,14 +62,7 @@ function onSave(data) {
   callContract(data);
 }
 
-return (
-  <Widget
-    src={props.__engine.widgetPathFromName('_form')}
-    props={{
-      model: event,
-      onSave,
-      buttonText: 'Update event',
-      __engine: props.__engine,
-    }}
-  />
-);
+return props.__engine.renderComponent('_form', {
+  onSave,
+  buttonText: 'Update event!',
+});
