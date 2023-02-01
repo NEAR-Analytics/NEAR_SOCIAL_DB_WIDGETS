@@ -1,25 +1,11 @@
-const mode = "Create";
-
-const labelStrings = props.labels ?? [];
-const labels = labelStrings.map((s) => {
-  return { name: s };
-});
-
 initState({
-  author_id: context.accountId,
-  labels,
+  labels: [],
   title: props.title ?? "",
   content: props.content ?? "",
 });
 
-const setLabels = (labels) => {
-  let labelStrings = labels.map((o) => {
-    return o.name;
-  });
-  State.update({ labels, labelStrings });
-};
-
-const existingLabelStrings = [
+// Predefined Labels
+const predefinedLabels = [
   "NFT",
   "FT",
   "Smart Contract",
@@ -29,31 +15,40 @@ const existingLabelStrings = [
   "Frontend",
   "CLI",
 ];
-const existingLabels = existingLabelStrings.map((s) => {
-  return { name: s };
+
+const labelOptions = predefinedLabels.map((s) => {
+  return { label: s };
 });
+
+const setLabels = (labels) => {
+  let labelStrings = labels.map((o) => {
+    return o.label;
+  });
+  State.update({ labels, labelStrings });
+};
 
 const labelEditor = (
   <div className="col-lg-12  mb-2">
     Labels (multiple):
     <Typeahead
       multiple
-      labelKey="name"
+      labelKey="label"
       onChange={setLabels}
-      options={existingLabels}
-      placeholder="Frontend, NFT, Rust"
+      options={labelOptions}
+      placeholder="Frontend, NFT, Rust ..."
       selected={state.labels}
-      positionFixed
+      positionFixed={true}
       allowNew={false}
     />
   </div>
 );
 
-const nameDiv = (
+const titleDiv = (
   <div className="col-lg-12  mb-2">
     Title:
     <input
       type="text"
+      placeholder={"A title for your question"}
       value={state.title}
       onChange={(event) => State.update({ title: event.target.value })}
     />
@@ -62,12 +57,11 @@ const nameDiv = (
 
 const contentDiv = (
   <div className="col-lg-12  mb-2">
-    {" "}
     Content:
     <Widget
-      src="mob.near/widget/Common.Compose"
+      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Compose"
       props={{
-        placeholder: "",
+        placeholder: "Describe your question so we can help you",
         initialText: props.initialText,
         onChange: ({ content }) => State.update({ content: content }),
       }}
@@ -95,7 +89,7 @@ const commitButton = (
       },
     }}
   >
-    Post
+    <i class="bi bi-chat"></i> Ask
   </CommitButton>
 );
 
@@ -103,7 +97,7 @@ return (
   <div className="card">
     <div class="card-body">
       <div className="row">
-        {nameDiv}
+        {titleDiv}
         {labelEditor}
         {contentDiv}
       </div>
