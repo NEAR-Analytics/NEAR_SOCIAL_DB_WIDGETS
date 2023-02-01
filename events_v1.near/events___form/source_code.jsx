@@ -1,4 +1,4 @@
-const APP_OWNER = 'events_v2.near';
+const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events';
 
 const onSave = props.onSave;
