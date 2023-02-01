@@ -28,7 +28,7 @@ const contributionTypesInput = (
       labelKey="name"
       onChange={(contributionTypes) => State.update({ contributionTypes })}
       options={allContributionTypes}
-      placeholder="Rust, JavaScript, React..."
+      placeholder="Development, Investment, Legal..."
       selected={state.contributionTypes}
       positionFixed
       multiple
@@ -75,7 +75,7 @@ const onSubmit = () => {
     resume: state.resume,
   };
 
-  Near.call(ownerId, "register", args, "30000000000", "1");
+  Near.call(ownerId, "register", args, "30000000000000", "1");
 };
 
 const header = <div className="card-header">Register as a contributor</div>;
@@ -103,7 +103,7 @@ const footer = (
         isPreview: true,
         accountId: context.accountId,
         contributor: {
-          contribution_types: state.conribution_types.map((t) =>
+          contribution_types: state.contributionTypes.map((t) =>
             convertType(t)
           ),
           skills: state.skills.map(({ name }) => name),
