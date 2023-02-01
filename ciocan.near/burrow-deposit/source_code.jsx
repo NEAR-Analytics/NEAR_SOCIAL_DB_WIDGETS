@@ -206,7 +206,7 @@ const handleDepositNear = (amount) => {
 return (
   <div class="card" style={{ maxWidth: "300px" }}>
     {!hasData && (
-      <Widget src="ciocan.near/widget/Burrow.Data" props={{ onLoad }} />
+      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
     <div class="card-body d-grid gap-3">
       <select onChange={handleSelect}>
