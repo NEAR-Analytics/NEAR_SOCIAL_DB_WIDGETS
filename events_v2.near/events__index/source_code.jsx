@@ -10,7 +10,6 @@ props.controller.setLayout('container', {
 
 const Button = props.__engine.Components.Button;
 const Container = props.__engine.Components.Container;
-const PageTitle = props.__engine.Components.PageTitle;
 
 return (
   <Container>
@@ -20,6 +19,7 @@ return (
       Events Fullscreen:
       https://near.social/#/embed/events_v2.near/widget/events__app
     </a>
+    <br />
     <Button
       onClick={() => {
         return props.__engine.push('my_events', {});
