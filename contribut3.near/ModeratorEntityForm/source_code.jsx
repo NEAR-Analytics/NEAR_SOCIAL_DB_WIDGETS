@@ -135,9 +135,7 @@ const onSubmit = () => {
       name: state.name,
       kind: state.kind[0].name,
       start_date: `${new Date(state.startDate).getTime()}`,
-      end_date: state.endDate
-        ? `${new Date(state.endDate).getTime()}`
-        : undefined,
+      end_date: state.endDate ? `${new Date(state.endDate).getTime()}` : "",
     },
   };
 
