@@ -7,7 +7,10 @@ const answer = JSON.parse(
 
 return (
   <>
-    <div className="border p-3">{answer.text}</div>
-    {JSON.stringify(props)}
+    <div className="border m-3 p-3">
+      <b>@{accountId}</b>
+
+      {answer.text}
+    </div>
   </>
 );
