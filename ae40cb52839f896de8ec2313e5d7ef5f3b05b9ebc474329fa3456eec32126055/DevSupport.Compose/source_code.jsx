@@ -67,7 +67,7 @@ const onCompose = () => {
 
 return (
   <div>
-    <div className="p-2">
+    <div className="py-2">
       <textarea
         className="form-control border-1"
         style={{ "min-height": "30vh" }}
@@ -78,6 +78,7 @@ return (
     </div>
     <div className="d-flex flex-row p-2 border-top">
       <div className="flex-grow-1">
+        Include an Image:
         <IpfsImageUpload
           image={state.image}
           className="btn btn-outline-secondary border-1"
