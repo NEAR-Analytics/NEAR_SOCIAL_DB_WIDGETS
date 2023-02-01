@@ -43,10 +43,11 @@ return (
               props={{ accountId, blockHeight }}
             />
 
-            {/* Make into a widget */}
-            <a href="#" class="ms-3">
-              <i class={`bi bi-chat`}> </i> Answers [0]
-            </a>
+            {/* Answers widget */}
+            <Widget
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Answers"
+              props={{ accountId, blockHeight }}
+            />
           </div>
 
           <div class="col-4">
