@@ -1,7 +1,16 @@
+const createDate = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
+
 const ownerId = "contribut3.near";
 const accountId = props.accountId ?? "";
 const kind = props.kind ? [{ name: props.kind }] : [];
-const startDate = props.startDate ?? "";
+const startDate = props.startDate ?? createDate();
 const forbiddenIds = new Set(
   (Near.view(ownerId, "get_entities", {}, "final", true) ?? []).map(
     ([accountId]) => accountId
