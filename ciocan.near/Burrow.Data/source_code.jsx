@@ -130,7 +130,7 @@ const getRewards = (assets) => {
     assets,
     netLiquidityFarm
   );
-  console.log(apyRewardTvl);
+
   const rewards = assets.map((asset) => {
     const apyBase = asset["supply_apr"] * 100;
     const apyBaseBorrow = asset["borrow_apr"] * 100;
@@ -201,7 +201,7 @@ const getRewards = (assets) => {
       symbol: asset.metadata.symbol,
       tvlUsd: totalSupplyUsd - totalBorrowUsd,
       apyReward,
-      apyRewardTvl,
+      apyRewardTvl: apyRewardTvl || 0,
       apyBase,
       rewardTokens,
       totalSupplyUsd,
