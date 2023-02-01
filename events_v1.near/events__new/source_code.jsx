@@ -22,16 +22,17 @@ if (hasEvents === true) {
   if (!latestEvent) {
     return 'Loading';
   }
-}
 
-const SECONDS_8 = 8000;
-// if event was just created, pop the stack and return
-if (
-  latestEvent &&
-  new Date().getTime() - new Date(latestEvent.created_at).getTime() < SECONDS_8
-) {
-  props.__engine.pop();
-  return 'Event created';
+  const SECONDS_8 = 8000;
+  // if event was just created, pop the stack and return
+  if (
+    latestEvent &&
+    new Date().getTime() - new Date(latestEvent.created_at).getTime() <
+      SECONDS_8
+  ) {
+    props.__engine.pop();
+    return 'Event created';
+  }
 }
 
 function createEvent(data) {
