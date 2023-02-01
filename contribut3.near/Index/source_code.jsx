@@ -33,7 +33,7 @@ const editorForm = ({ formName }) => (
 
 const editorsFooter = props.isPreview ? null : (
   <div className="row" id="accordion">
-    {isContributor ? null : editorForm({ formName: "Contributor" })}
+    {editorForm({ formName: "Contributor" })}
     {editorForm({ formName: "ContributionRequest" })}
     {editorForm({ formName: "Entity" })}
     {!isModerator ? null : editorForm({ formName: "ModeratorEntity" })}
@@ -66,13 +66,13 @@ const controls = (
         </div>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {isContributor
-              ? null
-              : control({
-                  formName: "Contributor",
-                  text: "Register as a contributor",
-                  icon: "bi-person-fill-add",
-                })}
+            {control({
+              formName: "Contributor",
+              text: isContributor
+                ? "Edit contributor profile"
+                : "Register as a contributor",
+              icon: "bi-person-fill-add",
+            })}
             {control({
               formName: "ContributionRequest",
               text: "Request Contribution",
