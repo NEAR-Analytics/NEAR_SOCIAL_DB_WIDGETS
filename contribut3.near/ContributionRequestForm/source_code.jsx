@@ -22,8 +22,9 @@ const existingEntities = (
 
 const entityEditor = (
   <div className="col-lg-12  mb-2">
-    Entity:
+    <label htmlFor="enity-id">Entity account ID:</label>
     <Typeahead
+      id="entity-id"
       labelKey="name"
       onChange={(entity) => State.update({ entity })}
       options={existingEntities}
@@ -36,9 +37,9 @@ const entityEditor = (
 
 const descriptionDiv = (
   <div className="col-lg-12  mb-2">
-    Description:
-    <br />
+    <label htmlFor="description">Description:</label>
     <textarea
+      id="description"
       value={state.description}
       type="text"
       rows={6}
