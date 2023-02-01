@@ -56,10 +56,8 @@ function onSave(data) {
 }
 
 return (
-  <div>
     {props.__engine.renderComponent('_form', {
       onSave,
       buttonText: 'Create event',
     })}
-  </div>
 );
