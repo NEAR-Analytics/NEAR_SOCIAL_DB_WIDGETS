@@ -11,7 +11,7 @@ const latestEvent = Near.view(EVENTS_CONTRACT, 'get_latest_event', {
   account_id: props.__engine.accountId,
 });
 if (!latestEvent) {
-  return 'Loading';
+  // return 'Loading';
 }
 
 const SECONDS_8 = 8000;
