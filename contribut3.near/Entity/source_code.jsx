@@ -99,6 +99,7 @@ const header = (
 
 const body = (
   <div className="card-body">
+    <div>Name: {entity.name}</div>
     <div>Type: {entity.kind}</div>
     <div>Status: {entity.status}</div>
     <div>
