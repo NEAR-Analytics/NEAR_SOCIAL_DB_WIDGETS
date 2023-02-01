@@ -31,14 +31,15 @@ return (
       <small class="text-muted">
         <div class="row justify-content-between">
           <div class="col-8">
-            {/* Make into a widget */}
-            <a href="#">
-              <i class={`bi bi-arrow-up-square`}> </i> Upvotes [0]
-            </a>
+            {/* Upvote Widget */}
+            <Widget
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
+              props={{ accountId, blockHeight }}
+            />
 
             {/* Flag question widget */}
             <Widget
-              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Flag"
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Flag"
               props={{ accountId, blockHeight }}
             />
 
