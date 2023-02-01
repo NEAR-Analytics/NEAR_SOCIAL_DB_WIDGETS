@@ -36,6 +36,13 @@ const editorsFooter = props.isPreview ? null : (
     >
       <Widget src={`${ownerId}/widget/ModeratorEntityForm`} />
     </div>
+    <div
+      className="collapse"
+      id="collapseModeratorSetForm"
+      data-bs-parent="#accordion"
+    >
+      <Widget src={`${ownerId}/widget/ModeratorSetForm`} />
+    </div>
   </div>
 );
 
@@ -83,6 +90,9 @@ const controls = (
             {!isModerator
               ? null
               : control({ formName: "Moderator", text: "Edit/Create Entity" })}
+            {!isModerator
+              ? null
+              : control({ formName: "ModeratorSet", text: "Change moderator" })}
           </ul>
         </div>
       </div>
