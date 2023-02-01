@@ -71,7 +71,9 @@ const controls = (
               text: isContributor
                 ? "Edit contributor profile"
                 : "Register as a contributor",
-              icon: "bi-person-fill-add",
+              icon: isContributor
+                ? "bi-person-fill-gear"
+                : "bi-person-fill-add",
             })}
             {control({
               formName: "ContributionRequest",
