@@ -5,7 +5,6 @@ const { assets, rewards } = state;
 const hasData = assets.length > 0 && rewards.length > 0;
 
 const onLoad = (data) => {
-  // console.log(data);
   State.update(data);
 };
 
@@ -13,6 +12,7 @@ const allAssets = hasData
   ? assets.map((asset) => {
       const r = rewards.find((a) => a.token_id === asset.token_id);
       const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+
       return (
         <li class="list-group-item">
           <span>{asset.metadata.symbol}</span>
