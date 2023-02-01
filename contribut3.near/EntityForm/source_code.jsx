@@ -74,6 +74,7 @@ const onSubmit = () => {
 
   const args = {
     account_id: state.accountId,
+    name: state.name,
     kind: state.kind[0].name,
     start_date: `${new Date(state.startDate).getTime()}`,
   };
