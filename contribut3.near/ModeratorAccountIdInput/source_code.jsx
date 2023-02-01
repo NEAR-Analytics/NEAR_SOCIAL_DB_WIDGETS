@@ -89,6 +89,7 @@ return (
 
             if (existing) {
               updatedState.existing = existing;
+              updatedState.name = existing.name;
               updatedState.kind = [{ name: existing.kind }];
               updatedState.entityStatus = [{ name: existing.status }];
               updatedState.startDate = formatDate(existing.start_date);
