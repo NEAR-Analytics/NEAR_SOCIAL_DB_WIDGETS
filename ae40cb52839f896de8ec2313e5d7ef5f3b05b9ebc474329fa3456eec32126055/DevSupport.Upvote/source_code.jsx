@@ -3,8 +3,8 @@ const blockHeight = props.blockHeight;
 
 const item = {
   type: "social",
-  path: `${props.accountId}/question/main`,
-  blockHeight: props.blockHeight,
+  path: `${accountId}/question/main`,
+  blockHeight,
 };
 
 const likes = Social.index("upvote", item);
