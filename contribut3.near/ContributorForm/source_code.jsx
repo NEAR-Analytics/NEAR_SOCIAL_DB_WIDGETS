@@ -165,7 +165,6 @@ const footer = (
 
 return (
   <div className="card">
-    {header}
     {body}
     {footer}
   </div>
