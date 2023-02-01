@@ -103,7 +103,7 @@ const lookingForWorkInput = !state.existing ? null : (
         checked={state.lookingForWork}
         onChange={(e) => {
           console.log(e.target);
-          State.update({ lookingForWork: e.target.checked });
+          State.update({ lookingForWork: !state.lookingForWork });
         }}
       />
     </div>
