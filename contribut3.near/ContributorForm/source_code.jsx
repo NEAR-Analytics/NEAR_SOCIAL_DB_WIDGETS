@@ -18,6 +18,28 @@ initState({
   contributionTypes: [],
   skills: [],
   resume: "",
+  lookingForWork: true,
+  existing: false,
+});
+
+Near.asyncView(
+  ownerId,
+  "get_contributor",
+  { account_id: context.accountId },
+  "final",
+  true
+).then((contributor) => {
+  if (contributor) {
+    State.update({
+      contributioinTypes: contributor.contribution_types.map((t) =>
+        typeof t === "string" ? { name: t } : { name: t.Other }
+      ),
+      skills: contributor.skills.map((name) => ({ name })),
+      resume: contributor.resume,
+      lookingForWork: contributor.looking_for_work,
+      existing: true,
+    });
+  }
 });
 
 const contributionTypesInput = (
@@ -68,11 +90,29 @@ const resumeInput = (
   </div>
 );
 
+const lookingForWorkInput = !state.existing ? null : (
+  <div className="col-lg-6  mb-2">
+    <div className="form-check">
+      <label htmlFor="looking-for-work" className="form-check-label">
+        Looking for work
+      </label>
+      <input
+        id="looking-for-work"
+        type="checkbox"
+        className="form-check-input"
+        checked={state.trusted}
+        onChange={(e) => State.update({ trusted: e.target.checked })}
+      />
+    </div>
+  </div>
+);
+
 const onSubmit = () => {
   const args = {
     contribution_types: state.contributionTypes.map((t) => convertType(t)),
     skills: state.skills.map(({ name }) => name),
     resume: state.resume,
+    looking_for_work: state.lookingForWork,
   };
 
   Near.call(ownerId, "register", args, "30000000000000", "1");
@@ -86,6 +126,7 @@ const body = (
       {contributionTypesInput}
       {skillsInput}
       {resumeInput}
+      {lookingForWorkInput}
     </div>
 
     <a className="btn btn-primary mb-2" onClick={onSubmit}>
