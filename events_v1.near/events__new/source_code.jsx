@@ -57,12 +57,9 @@ function onSave(data) {
 
 return (
   <div>
-    <Widget
-      src={`${APP_OWNER}/widget/${APP_NAME}___form`}
-      props={{
-        onSave,
-        buttonText: 'Create event',
-      }}
-    />
+    {props.__engine.renderComponent('_form', {
+      onSave,
+      buttonText: 'Create event',
+    })}
   </div>
 );
