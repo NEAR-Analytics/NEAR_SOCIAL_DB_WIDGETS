@@ -17,7 +17,7 @@ if (!isModerator) {
 }
 
 initState({
-  accountId: [],
+  accountId: "",
   valid: true,
 });
 
