@@ -100,10 +100,10 @@ const lookingForWorkInput = !state.existing ? null : (
         id="looking-for-work"
         type="checkbox"
         className="form-check-input"
-        checked={state.lookingForWork}
+        value={state.lookingForWork ? "on" : "off"}
         onChange={(e) => {
           console.log(e.target);
-          State.update({ lookingForWork: !state.lookingForWork });
+          State.update({ lookingForWork: e.target.value === "on" });
         }}
       />
     </div>
