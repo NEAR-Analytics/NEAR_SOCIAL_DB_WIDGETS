@@ -15,7 +15,7 @@ return (
             State.update({ askQuestion: !state.askQuestion });
           }}
         >
-          Ask a Question
+          <i class="bi bi-chat-dots"></i> Ask a Question
         </button>
       </div>
     </div>
