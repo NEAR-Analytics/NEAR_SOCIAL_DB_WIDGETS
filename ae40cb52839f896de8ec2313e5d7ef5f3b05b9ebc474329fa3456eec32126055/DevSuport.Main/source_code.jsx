@@ -19,13 +19,13 @@ return (
         </button>
       </div>
     </div>
-    {/* Element to create the question */}
+    {/* Widget to create the question */}
     <div class="my-3">
       {state.askQuestion && (
         <Widget src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Edit" />
       )}
     </div>
-    {/* Feed of Questions */}
+    {/* Widget to display Feed of Questions */}
     <Widget src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Feed" />
   </div>
 );
