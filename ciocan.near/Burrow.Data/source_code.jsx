@@ -86,15 +86,7 @@ const getTotalBalance = (assets, source) =>
     })
     .reduce(sumReducer, 0);
 
-const getNetLiquidityAPY = (assets) => {
-  const netLiquidityFarm = Near.view(
-    "contract.main.burrow.near",
-    "get_asset_farm",
-    { farm_id: "NetTvl" }
-  );
-
-  if (!netLiquidityFarm) return;
-
+const getNetLiquidityAPY = (assets, netLiquidityFarm) => {
   const totalDailyNetLiquidityRewards = Object.entries(netLiquidityFarm.rewards)
     .map(([rewardTokenId, farm]) => {
       const rewardAsset = assets.find((a) => a.token_id === rewardTokenId);
@@ -126,8 +118,19 @@ const getNetLiquidityAPY = (assets) => {
 };
 
 const getRewards = (assets) => {
-  const [apyRewardTvl, rewardTokensTVL] = getNetLiquidityAPY(assets);
+  const netLiquidityFarm = Near.view(
+    "contract.main.burrow.near",
+    "get_asset_farm",
+    { farm_id: "NetTvl" }
+  );
 
+  if (!netLiquidityFarm) return;
+
+  const [apyRewardTvl, rewardTokensTVL] = getNetLiquidityAPY(
+    assets,
+    netLiquidityFarm
+  );
+  console.log(apyRewardTvl);
   const rewards = assets.map((asset) => {
     const apyBase = asset["supply_apr"] * 100;
     const apyBaseBorrow = asset["borrow_apr"] * 100;
@@ -195,8 +198,6 @@ const getRewards = (assets) => {
 
     return {
       token_id: asset.token_id,
-      chain: "NEAR",
-      project: "Burrow",
       symbol: asset.metadata.symbol,
       tvlUsd: totalSupplyUsd - totalBorrowUsd,
       apyReward,
