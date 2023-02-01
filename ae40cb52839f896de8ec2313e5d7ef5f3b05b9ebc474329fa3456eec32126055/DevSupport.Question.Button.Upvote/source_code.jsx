@@ -76,7 +76,7 @@ return (
       ) : (
         <i class={`bi bi-arrow-up-square`}> </i>
       )}
-      Upvotes [{upvotes}]
+      Upvote [{upvotes}]
     </button>
   </div>
 );
