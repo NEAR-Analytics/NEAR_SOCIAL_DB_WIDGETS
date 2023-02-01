@@ -47,9 +47,8 @@ const footer = (
 
 return (
   <div className="container">
-    <a href="#" onClick={() => history.back()}>
-      {" "}
-      Go Back{" "}
+    <a href="https://near.social/#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSuport.Main">
+      Go Back
     </a>
 
     <h2 class="mt-3">
