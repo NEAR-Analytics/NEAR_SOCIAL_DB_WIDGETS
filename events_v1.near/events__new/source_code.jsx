@@ -10,12 +10,18 @@ const APP_NAME = 'events';
 const hasEvents = Near.view(EVENTS_CONTRACT, 'has_events', {
   account_id: props.__engine.accountId,
 });
+
 if (hasEvents === null) {
   return 'Loading';
 }
 
-const latestEvent = Near.view(EVENTS_CONTRACT, 'get_latest_event', {
-  account_id: props.__engine.accountId,
+if (hasEvents === true) {
+  const latestEvent = Near.view(EVENTS_CONTRACT, 'get_latest_event', {
+    account_id: props.__engine.accountId,
+  });
+  if (!latestEvent) {
+    return 'Loading';
+  }
 }
 
 const SECONDS_8 = 8000;
