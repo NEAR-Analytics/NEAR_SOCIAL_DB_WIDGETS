@@ -73,8 +73,10 @@ return (
           role="status"
           aria-hidden="true"
         />
-      ) : null}
-      <i class={`bi bi-arrow-up-square`}> </i> Upvotes [{upvotes}]
+      ) : (
+        <i class={`bi bi-arrow-up-square`}> </i>
+      )}
+      Upvotes [{upvotes}]
     </button>
   </div>
 );
