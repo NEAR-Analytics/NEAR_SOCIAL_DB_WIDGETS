@@ -7,7 +7,7 @@ const answer = JSON.parse(
 
 return (
   <>
-    <div className="border m-3 p-3">
+    <div className="border mt-3 p-3">
       <Widget
         src="mob.near/widget/Profile.ShortInlineBlock"
         props={{ accountId, tooltip: false }}
