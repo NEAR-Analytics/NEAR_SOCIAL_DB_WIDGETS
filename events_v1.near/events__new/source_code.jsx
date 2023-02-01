@@ -3,8 +3,8 @@ props.controller.setLayout('modal', {
   back: true,
 });
 
-const EVENTS_CONTRACT = 'events_v2.near';
-const APP_OWNER = 'events_v2.near';
+const EVENTS_CONTRACT = 'events_v1.near';
+const APP_OWNER = 'events_v1.near';
 const APP_NAME = 'events';
 
 const latestEvent = Near.view(EVENTS_CONTRACT, 'get_latest_event', {
