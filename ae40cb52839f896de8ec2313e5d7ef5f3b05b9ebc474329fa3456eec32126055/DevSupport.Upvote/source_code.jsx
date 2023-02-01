@@ -1,11 +1,11 @@
 const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 
-const item = props.item;
-
-if (!item) {
-  return "";
-}
+const item = {
+  type: "social",
+  path: `${props.accountId}/question/main`,
+  blockHeight: props.blockHeight,
+};
 
 const likes = Social.index("upvote", item);
 
