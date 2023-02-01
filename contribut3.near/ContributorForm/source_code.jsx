@@ -101,9 +101,9 @@ const lookingForWorkInput = !state.existing ? null : (
         type="checkbox"
         className="form-check-input"
         checked={state.lookingForWork}
-        onChange={(e) => {
+        onClick={(e) => {
           console.log(e.target);
-          State.update({ lookingForWork: e.target.value === "on" });
+          State.update({ lookingForWork: e.target.checked });
         }}
       />
     </div>
