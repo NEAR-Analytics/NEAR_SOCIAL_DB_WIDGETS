@@ -20,9 +20,9 @@ return (
     >
       Important: open in /embed/:
       <br />
-      <a href="https://near.social/#/embed/events_v2.near/widget/events__app">
+      <a href="https://near.social/#/embed/events_v1.near/widget/events__app">
         Events Fullscreen:
-        https://near.social/#/embed/events_v2.near/widget/events__app
+        https://near.social/#/embed/events_v1.near/widget/events__app
       </a>
     </div>
 
