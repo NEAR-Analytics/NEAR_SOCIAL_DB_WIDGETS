@@ -6,6 +6,22 @@ const entityStatus = props.status ? [{ name: props.status }] : [];
 const startDate = props.startDate ?? "";
 const endDate = props.endDate ?? "";
 
+const isModerator = Near.view(
+  ownerId,
+  "check_is_moderator",
+  { account_id: context.accountId },
+  "final",
+  true
+);
+
+if (isModerator === false) {
+  return "You are not authorized to access this widget!";
+}
+
+if (!isModerator) {
+  return "Loading...";
+}
+
 initState({
   fixed: !!props.accountId,
   accountId,
