@@ -6,13 +6,13 @@ return (
     props={{
       L: (
         <Widget
-          src="devgigsboard.bo.near/widget/DevGov.Notification.Item.Left"
+          src="devgovgigs.near/widget/DevGov.Notification.Item.Left"
           props={{ type: value.type, post: value.post }}
         />
       ),
       R: (
         <Widget
-          src="devgigsboard.bo.near/widget/DevGov.Notification.Item.Right"
+          src="devgovgigs.near/widget/DevGov.Notification.Item.Right"
           props={{ post: value.post }}
         />
       ),
