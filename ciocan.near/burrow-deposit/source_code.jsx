@@ -46,6 +46,8 @@ if (!account) return <div>loading...</div>;
 
 const nearBalance = shrinkToken(account.body.result.amount, 24).toFixed(2);
 
+const toAPY = (v) => Math.round(v * 100) / 100;
+
 const listAssets =
   assets &&
   assets
@@ -54,11 +56,16 @@ const listAssets =
       const { token_id, accountBalance, metadata } = asset;
       const balance = formatToken(
         shrinkToken(accountBalance, metadata.decimals).toFixed()
-      );
+      ).toString();
+
+      const r = rewards.find((a) => a.token_id === asset.token_id);
+      const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+
+      const spaces = "".padStart(15 - (metadata.symbol + balance).length, "-");
 
       return (
         <option value={token_id}>
-          {metadata.symbol} - {balance}
+          {metadata.symbol} - {balance} {spaces} APY {toAPY(totalApy)}%
         </option>
       );
     });
