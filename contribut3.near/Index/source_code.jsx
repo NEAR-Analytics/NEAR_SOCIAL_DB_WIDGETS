@@ -77,7 +77,7 @@ const controls = (
             })}
             {control({
               formName: "ContributionRequest",
-              text: "Request Contribution",
+              text: "Propose Contribution",
               icon: "bi-plus-circle",
             })}
             {control({
