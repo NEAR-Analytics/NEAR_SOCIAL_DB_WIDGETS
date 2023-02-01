@@ -47,7 +47,12 @@ const footer = (
 
 return (
   <div className="container">
-    <h2>
+    <a href="#" onClick={() => history.back()}>
+      {" "}
+      Go Back{" "}
+    </a>
+
+    <h2 class="mt-3">
       <a className="text-black" href={link}>
         {question.title}
       </a>
