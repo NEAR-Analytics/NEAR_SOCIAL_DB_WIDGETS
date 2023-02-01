@@ -100,8 +100,8 @@ const lookingForWorkInput = !state.existing ? null : (
         id="looking-for-work"
         type="checkbox"
         className="form-check-input"
-        checked={state.trusted}
-        onChange={(e) => State.update({ trusted: e.target.checked })}
+        checked={state.lookingForWork}
+        onChange={(e) => State.update({ lookingForWork: e.target.checked })}
       />
     </div>
   </div>
@@ -115,10 +115,18 @@ const onSubmit = () => {
     looking_for_work: state.lookingForWork,
   };
 
-  Near.call(ownerId, "register", args, "30000000000000", "1");
+  if (state.existing) {
+    Near.call(ownerId, "edit_contributor", args);
+  } else {
+    Near.call(ownerId, "register", args, "30000000000000", "1");
+  }
 };
 
-const header = <div className="card-header">Register as a contributor</div>;
+const header = (
+  <div className="card-header">
+    {state.existing ? "Edit profile" : "Register as a contributor"}
+  </div>
+);
 
 const body = (
   <div className="card-body">
