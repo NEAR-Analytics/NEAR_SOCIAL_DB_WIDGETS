@@ -97,10 +97,7 @@ const body = (
     <div className="mb-2">
       Contribution types:
       <ul>
-        {(isPreview
-          ? contributor.contributionTypes
-          : contributor.contribution_types
-        ).map((ct) => (
+        {contributor.contribution_types.map((ct) => (
           <li>{ct}</li>
         ))}
       </ul>
