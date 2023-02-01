@@ -1,6 +1,7 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
+const isPreview = props.isPreview ?? false;
 
 if (!accountId) {
   return "Cannot show contributor without account ID!";
@@ -35,11 +36,28 @@ if (notStandalone) {
   );
 }
 
+const contributor = isPreview
+  ? props.contributor
+  : Near.view(
+      ownerId,
+      "get_contributor",
+      { account_id: accountId },
+      "final",
+      true
+    );
+
+if (!contributor) {
+  return isPreview
+    ? "You must provide a contributor object in preview mode!"
+    : "Loading...";
+}
+
 const contributions = Near.view(
   ownerId,
   "get_contributor_contributions",
   { account_id: accountId },
-  "final"
+  "final",
+  true
 );
 
 const contributionsList = notStandalone ? null : (
@@ -74,7 +92,34 @@ const header = (
   </div>
 );
 
-const body = <div className="card-body">{contributionsList}</div>;
+const body = (
+  <div className="card-body">
+    <div className="mb-2">
+      Contribution types:
+      <ul>
+        {(isPreview
+          ? contributor.contributionTypes
+          : contributor.contribution_types
+        ).map((ct) => (
+          <li>{ct}</li>
+        ))}
+      </ul>
+    </div>
+    <div className="mb-2">
+      Skills:
+      <ul>
+        {contributor.skills.map((s) => (
+          <li>{s}</li>
+        ))}
+      </ul>
+    </div>
+    <div className="mb-2">
+      Resume:
+      <p>{contributor.resume}</p>
+    </div>
+    {contributionsList}
+  </div>
+);
 
 return (
   <div className="card">
