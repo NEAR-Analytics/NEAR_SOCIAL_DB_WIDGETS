@@ -161,7 +161,9 @@ const footer = (
 
 return (
   <div className="card">
-    <div className="card-header">Edit contributor details</div>
+    <div className="card-header">
+      {state.existing ? "Edit profile" : "Register as contributor"}
+    </div>
     {body}
     {footer}
   </div>
