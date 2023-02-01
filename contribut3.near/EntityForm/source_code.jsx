@@ -10,13 +10,14 @@ const forbiddenIds = new Set(
 
 initState({
   accountId,
+  name: props.name ?? "",
   accountIdValid: true,
   kind,
   startDate,
 });
 
 const accountIdInput = (
-  <div className="col-lg-12  mb-2">
+  <div className="col-lg-12 mb-2">
     <Widget
       src={`${ownerId}/widget/ValidatedAccountIdInput`}
       props={{
@@ -25,6 +26,19 @@ const accountIdInput = (
         update: (accountId, accountIdValid) =>
           State.update({ accountId, accountIdValid }),
         forbiddenIds,
+      }}
+    />
+  </div>
+);
+
+const nameInput = (
+  <div className="col-lg-12 mb-2">
+    <Widget
+      src={`${ownerId}/widget/NameInput`}
+      props={{
+        label: "Name of entity:",
+        value: state.name,
+        update: (name) => State.update({ name }),
       }}
     />
   </div>
@@ -73,6 +87,7 @@ const body = (
   <div className="card-body">
     <div className="row">
       {accountIdInput}
+      {nameInput}
       {kindInput}
       {startDateInput}
     </div>
