@@ -89,44 +89,40 @@ const controls = (
   </div>
 );
 
+const navbarButton = ({ content, text, icon }) => (
+  <li className="nav-item ">
+    <a
+      className="nav-link active button"
+      href={`https://near.social/#/${ownerId}/widget/Index?content=${content}`}
+      role="button"
+      onClick={() => State.update({ content })}
+    >
+      <i className={icon} />
+      {text}
+    </a>
+  </li>
+);
+
 const navbar = (
   <div className="card border-secondary">
     <div className="nav navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item ">
-            <a
-              className="nav-link active button"
-              href={`https://near.social/#/${ownerId}/widget/Index?content=entities`}
-              role="button"
-              onClick={() => State.update({ content: "entities" })}
-            >
-              <i className="bi-house-fill" />
-              Entities
-            </a>
-          </li>
-          <li className="nav-item ">
-            <a
-              className="nav-link active button"
-              href={`https://near.social/#/${ownerId}/widget/Index?content=contributors`}
-              role="button"
-              onClick={() => State.update({ content: "contributors" })}
-            >
-              <i className="bi-person-plus-fill" />
-              Contributors
-            </a>
-          </li>
-          <li className="nav-item ">
-            <a
-              className="nav-link active button"
-              href={`https://near.social/#/${ownerId}/widget/Index?content=admin`}
-              role="button"
-              onClick={() => State.update({ content: "admin" })}
-            >
-              <i className="bi-person-plus-fill" />
-              Manage Entities
-            </a>
-          </li>
+          {navbarButton({
+            content: "entities",
+            text: "Entities",
+            icon: "bi-house-fill",
+          })}
+          {navbarButton({
+            content: "contributors",
+            text: "Contributors",
+            icon: "bi-person-plus-fill",
+          })}
+          {navbarButton({
+            content: "admin",
+            text: "Manage entities",
+            icon: "bi-house-lock-fill",
+          })}
           <li className="nav-item">
             <input
               type="text"
