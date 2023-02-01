@@ -1,3 +1,5 @@
+const accountId = context.accountId;
+
 const unique = (value, index, self) => {
   return self.indexOf(value) === index;
 };
@@ -56,6 +58,12 @@ function getAssets() {
 
   if (!config || !prices || !refPricesResponse) return;
 
+  const balances = accountId
+    ? tokenIds.map((token_id) =>
+        Near.view(token_id, "ft_balance_of", { account_id: accountId })
+      )
+    : undefined;
+
   return assetsDetailed?.map((asset, i) => {
     const price = prices?.prices?.find((p) => p.asset_id === asset?.token_id);
     const decimals =
@@ -65,6 +73,7 @@ function getAssets() {
     return {
       ...asset,
       metadata: metadata?.[i],
+      accountBalance: accountId ? balances?.[i] : undefined,
       price: {
         ...price.price,
         usd: usd ? usd : parseFloat(refPrices?.[asset.token_id]?.price),
