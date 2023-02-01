@@ -5,19 +5,18 @@ const { assets, rewards } = state;
 const hasData = assets.length > 0 && rewards.length > 0;
 
 const onLoad = (data) => {
-  if (!hasData) {
-    State.update(data);
-  }
+  // console.log(data);
+  State.update(data);
 };
 
 const allAssets = hasData
   ? assets.map((asset) => {
       const r = rewards.find((a) => a.token_id === asset.token_id);
-      console.log(rewards);
+      const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
       return (
         <li class="list-group-item">
           <span>{asset.metadata.symbol}</span>
-          <span>({toAPY(r.apyBase + r.apyRewardTvl + r.apyReward)}% APY)</span>
+          <span>({toAPY(totalApy)}% APY)</span>
         </li>
       );
     })
@@ -25,7 +24,9 @@ const allAssets = hasData
 
 return (
   <div class="card" style={{ maxWidth: "300px" }}>
-    <Widget src="ciocan.near/widget/Burrow.Data" props={{ onLoad }} />
+    {!hasData && (
+      <Widget src="ciocan.near/widget/Burrow.Data" props={{ onLoad }} />
+    )}
     <div class="card-body">
       <h4>Burrow supplied assets</h4>
       <ul class="list-group list-group-flush mb-2">{allAssets}</ul>
