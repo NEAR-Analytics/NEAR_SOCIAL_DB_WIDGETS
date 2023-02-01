@@ -64,7 +64,7 @@ return (
   <div className="d-inline-flex align-items-center">
     <button
       disabled={state.loading || dataLoading || !context.accountId}
-      className="btn text-primary"
+      className="text-primary border-0 bg-white"
       onClick={likeClick}
     >
       {state.loading || dataLoading ? (
