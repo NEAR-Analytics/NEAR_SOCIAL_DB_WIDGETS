@@ -122,11 +122,8 @@ const onSubmit = () => {
   }
 };
 
-const header = state.existing ? (
-  <div className="card-header">Edit profile</div>
-) : (
-  <div className="card-header">Register as a contributor</div>
-);
+const header = <div className="card-header">Edit contributor details</div>;
+
 const body = (
   <div className="card-body">
     <div className="row">
