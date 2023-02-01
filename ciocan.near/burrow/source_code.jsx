@@ -25,7 +25,7 @@ const allAssets = hasData
 return (
   <div class="card" style={{ maxWidth: "300px" }}>
     {!hasData && (
-      <Widget src="ciocan.near/widget/Burrow.Data" props={{ onLoad }} />
+      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
     <div class="card-body">
       <h4>Burrow supplied assets</h4>
