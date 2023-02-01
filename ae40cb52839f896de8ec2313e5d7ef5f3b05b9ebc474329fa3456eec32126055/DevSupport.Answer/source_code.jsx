@@ -8,9 +8,13 @@ const answer = JSON.parse(
 return (
   <>
     <div className="border m-3 p-3">
-      <b>@{accountId}</b>
+      <Widget
+        src="mob.near/widget/Profile.ShortInlineBlock"
+        props={{ accountId, tooltip: false }}
+      />
+      <hr />
 
-      {answer.text}
+      <div class="mt-3">{answer.text}</div>
     </div>
   </>
 );
