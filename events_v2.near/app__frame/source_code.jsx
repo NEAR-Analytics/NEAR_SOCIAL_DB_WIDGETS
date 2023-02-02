@@ -559,7 +559,7 @@ const fadeInOut = styled.keyframes`
 `;
 
 const AppLayer = styled.div`
-  animation: ${FadeIn} 1s;
+  animation: ${FadeIn} 0.5s ease-in-out;
   animation-fill-mode: forwards;
   width: 100vw;
   min-height: 100vh;
