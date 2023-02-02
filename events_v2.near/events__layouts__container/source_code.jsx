@@ -32,7 +32,7 @@ const dropdownElement =
     </>
   ) : null;
 
-const Pulse = keyframes`
+const Pulse = styled.keyframes`
   0% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
