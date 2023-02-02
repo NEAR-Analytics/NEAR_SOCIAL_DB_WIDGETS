@@ -1,6 +1,3 @@
-const APP_OWNER = 'events_v2.near';
-const APP_NAME = 'events';
-
 const onSave = props.onSave;
 if (onSave === undefined || onSave === null) {
   return 'props.onSave is required';
@@ -130,10 +127,20 @@ const Label = styled.label`
   box-sizing: border-box;
 `;
 
+const slideDownSmall = styled.keyframes`
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
 const ErrorMessage = styled.div`
   color: #c00;
   font-size: 0.8rem;
   margin: 0.5rem 0 0 0;
+  animation: ${slideDownSmall} 0.3s ease-in-out;
 `;
 
 const LinkTypes = [
@@ -477,22 +484,19 @@ return (
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
-          <Widget
-            src={`${APP_OWNER}/widget/${APP_NAME}___form__image_component`}
-            props={{
-              image: image,
-              onChange: (changed) => {
-                state.images[index] = changed;
-                sanitizeAndValidate({ ...state, images: state.images });
-              },
-              onRemove: () => {
-                const images = [...state.images];
-                images.splice(index, 1);
-                State.update({ images });
-                sanitizeAndValidate({ ...state, images });
-              },
-            }}
-          />
+          {props.__engine.renderComponent('_form.image_component', {
+            image: image,
+            onChange: (changed) => {
+              state.images[index] = changed;
+              sanitizeAndValidate({ ...state, images: state.images });
+            },
+            onRemove: () => {
+              const images = [...state.images];
+              images.splice(index, 1);
+              State.update({ images });
+              sanitizeAndValidate({ ...state, images });
+            },
+          })}
         </div>
       ))}
 
