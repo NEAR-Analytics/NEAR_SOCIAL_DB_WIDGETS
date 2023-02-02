@@ -22,25 +22,27 @@ initState({
   existing: false,
 });
 
-Near.asyncView(
-  ownerId,
-  "get_contributor",
-  { account_id: context.accountId },
-  "final",
-  true
-).then((contributor) => {
-  if (contributor) {
-    State.update({
-      contributionTypes: contributor.contribution_types.map((t) =>
-        typeof t === "string" ? { name: t } : { name: t.Other }
-      ),
-      skills: contributor.skills.map((name) => ({ name })),
-      resume: contributor.resume,
-      lookingForWork: contributor.looking_for_work,
-      existing: true,
-    });
-  }
-});
+if (!existing) {
+  Near.asyncView(
+    ownerId,
+    "get_contributor",
+    { account_id: context.accountId },
+    "final",
+    true
+  ).then((contributor) => {
+    if (contributor) {
+      State.update({
+        contributionTypes: contributor.contribution_types.map((t) =>
+          typeof t === "string" ? { name: t } : { name: t.Other }
+        ),
+        skills: contributor.skills.map((name) => ({ name })),
+        resume: contributor.resume,
+        lookingForWork: contributor.looking_for_work,
+        existing: true,
+      });
+    }
+  });
+}
 
 const contributionTypesInput = (
   <div className="col-lg-12 mb-2">
@@ -51,6 +53,7 @@ const contributionTypesInput = (
         contributionType: state.contributionTypes,
         multiple: true,
         update: (contributionTypes) => State.update({ contributionTypes }),
+        allContributionTypes,
       }}
     />
   </div>
