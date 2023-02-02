@@ -600,6 +600,10 @@ function callTimers() {
   });
 }
 
+setInterval(() => {
+  console.log('timers');
+}, 1000);
+
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
