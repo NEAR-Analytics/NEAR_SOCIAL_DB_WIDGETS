@@ -129,11 +129,11 @@ const Label = styled.label`
 
 const slideDownSmall = styled.keyframes`
   0% {
-    transform: translateY(-4px) scale(0.9);
+    transform: translateY(-1px) translateX(-4px);
     opacity: 0;
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) translateX(0);
     opacity: 1;
   }
 `;
