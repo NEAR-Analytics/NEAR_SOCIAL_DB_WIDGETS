@@ -548,7 +548,7 @@ const FadeOut = styled.keyframes`
 
 const AppLayer = styled.div`
   animation: ${(props) =>
-      props.fadeIn ? FadeIn : props.fadeOut ? FadeOut : 'none'}
+    props.fadeIn ? FadeIn : props.fadeOut ? FadeOut : 'none'}
     0.5s;
   animation-fill-mode: forwards;
   width: 100vw;
@@ -604,17 +604,28 @@ return (
       return (
         <AppLayer
           key={index}
-          style={{
-            width: '100vw',
-            minHeight: '100vh',
-            backgroundColor: 'transparent',
-            zIndex: index,
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            overflow: 'auto',
+          className={layer.fadeIn ? 'fade-in' : layer.fadeOut ? 'fade-out' : ''}
+          fadeIn={layer.fadeIn}
+          fadeOut={layer.fadeOut}
+          zIndex={index}
+          // onTransitionEnd={() => {
+          //   if (layer.fadeOut) {
+          //     State.update({
+          //       layers: state.layers.filter((l) => l !== layer),
+          //     });
+          //   }
+          // }}
+
+          // onAnimationEnd={() => {
+          //   if (layer.fadeOut) {
+          //     State.update({
+          //       layers: state.layers.filter((l) => l !== layer),
+          //     });
+          //   }
+          // }}
+
+          onAnimationEnd={() => {
+            console.log('onAnimationEnd', layer);
           }}
         >
           {safeRender(layer.name, layer.props)}
