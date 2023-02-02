@@ -16,14 +16,19 @@ const getVotingPowerBalance = () => {
   return parseInt(balanceYocto) / 1000000000000000000000000;
 };
 
-initState({ amount: "0", poolId, balance: getVotingPowerBalance() });
+initState({
+  amount: 0,
+  poolId,
+  valid: false,
+  balance: getVotingPowerBalance(),
+});
 
 const onVoteClick = () => {
   const gas = 200 * 1000000000000;
   const deposit = "";
   const args = {
     contract_address: VOTE_CONTRACT_ADDRESS_ARG,
-    voting_power: state.amount,
+    voting_power: state.amount + "000000000000000000000000",
     votable_object_id: state.poolId,
   };
 
@@ -31,8 +36,18 @@ const onVoteClick = () => {
 };
 const onUseMaxClick = () => {
   const balance = getVotingPowerBalance();
-  console.log("balance", balance);
-  State.update({ amount: balance });
+  State.update({ amount: balance, balance, valid: balance > 0 });
+};
+
+const handleChange = (e) => {
+  console.log("value", e.target.value);
+  State.update({
+    amount: e.target.value,
+    valid:
+      e.target.value > 0 &&
+      state.balance > 0 &&
+      e.target.value <= state.balance,
+  });
 };
 return (
   <div>
@@ -45,9 +60,10 @@ return (
         <input
           type="number"
           value={state.amount}
+          onChange={handleChange}
           class="form-control"
-          placeholder="Input group example"
-          aria-label="Input group example"
+          placeholder="Amount Voting Power"
+          aria-label="amount-voting-power"
           aria-describedby="btnGroupAddon"
         />
         <div class="input-group-prepend">
@@ -66,7 +82,7 @@ return (
     </p>
 
     <button
-      disabled={context.loading}
+      disabled={context.loading || !state.valid}
       className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
       onClick={onVoteClick}
     >
