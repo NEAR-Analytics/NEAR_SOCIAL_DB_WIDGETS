@@ -573,13 +573,22 @@ const AppLayer = styled.div`
   overflow: auto;
 `;
 
-const Timer = (props) => {
+const Timer = (fn, ms) => {
   const tRef = styled.div`
     animation: none ${({ duration }) => duration}ms linear;
     display: none;
   `;
 
-  return tRef(props);
+  return (
+    <>
+      <tRef
+        onAnimationEnd={() => {
+          fn();
+        }}
+        duration={ms}
+      />
+    </>
+  );
 };
 
 return (
