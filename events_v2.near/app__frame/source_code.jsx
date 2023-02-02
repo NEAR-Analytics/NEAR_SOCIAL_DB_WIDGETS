@@ -553,7 +553,7 @@ const AppLayer = styled.div`
 `;
 
 const TimerRef = styled.div`
-  animation: none ${({ duration }) => duration}ms linear;
+  animation: ${FadeIn} ${({ duration }) => duration}ms ease-out;
   display: none;
 `;
 
