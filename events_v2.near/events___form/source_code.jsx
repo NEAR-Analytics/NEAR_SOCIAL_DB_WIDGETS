@@ -130,7 +130,7 @@ const Label = styled.label`
 const ErrorMessage = styled.div`
   color: #c00;
   font-size: 0.8rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0 0;
 `;
 
 const LinkTypes = [
@@ -474,7 +474,6 @@ return (
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
-          {console.log(props.__engine)}
           {props.__engine.renderComponent('_form.image_component', {
             image: image,
             onChange: (changed) => {
