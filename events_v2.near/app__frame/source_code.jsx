@@ -553,7 +553,7 @@ const AppLayer = styled.div`
 `;
 
 const TimerRef = styled.div`
-  animation: ${FadeIn} ${({ duration }) => duration}ms ease-out;
+  animation: ${FadeIn} ${({ duration }) => duration}ms infinite;
   width: 0;
   height: 0;
 `;
@@ -602,7 +602,7 @@ function callTimers() {
 
 setInterval(() => {
   console.log('interval');
-}, 100);
+}, 300);
 
 setTimeout(() => {
   console.log('timeout');
