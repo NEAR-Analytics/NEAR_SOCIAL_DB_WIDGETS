@@ -541,7 +541,7 @@ const AppLayer = styled.div`
   animation: ${FadeIn} 0.3s ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
-  animation-speed: ${(props) => props.speed};
+  animation-duration: ${(props) => props.duration};
   width: 100vw;
   min-height: 100vh;
   background-color: transparent;
@@ -599,7 +599,7 @@ return (
         <AppLayer
           key={index}
           delay={isLast ? '0.0s' : '0.2s'}
-          speed={isLast ? '2s' : '1s'}
+          duration={isLast ? '2s' : '1s'}
           transitionDelay={isLast ? '0s' : '1s'}
           backdropFilter={
             isLast
