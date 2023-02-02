@@ -130,6 +130,7 @@ return (
             props.component.name,
             props.component.props
           )} */}
+          {console.log(props.__engine)}
         </div>
       </div>
     </ModalContent>
