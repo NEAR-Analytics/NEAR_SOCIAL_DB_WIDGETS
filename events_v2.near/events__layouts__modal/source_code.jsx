@@ -19,6 +19,7 @@ const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transform-origin: center center;
   background-color: white;
   width: 80%;
   height: 80%;
