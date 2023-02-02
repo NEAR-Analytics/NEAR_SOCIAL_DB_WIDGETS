@@ -14,7 +14,10 @@ return (
     <Typeahead
       id="contribution-type"
       labelKey="name"
-      onChange={(contributionTypes) => update(contributionTypes)}
+      onChange={(contributionTypes) => {
+        console.log(contributionTypes);
+        update(contributionTypes);
+      }}
       options={allContributionTypes}
       placeholder="Development, Investment, Legal..."
       selected={contributionType}
