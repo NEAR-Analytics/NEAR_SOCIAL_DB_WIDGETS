@@ -1,6 +1,6 @@
 /* eslint no-magic-numbers: 0 */
 
-const VERSION = '0.2.0';
+const VERSION = '0.3.0';
 
 /**
  *  NEAR Social App
@@ -527,6 +527,31 @@ function safeRender(_name, _props) {
     );
   }
 }
+
+const FadeIn = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const FadeOut = styled.keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+const AppLayer = styled.div`
+  animation: ${(props) =>
+    props.fadeIn ? FadeIn : props.fadeOut ? FadeOut : 'none'}
+    0.5s;
+  animation-fill-mode: forwards;
+`;
 
 return (
   <>
