@@ -561,6 +561,7 @@ const AppLayer = styled.div`
   }};
 
   transition: backdrop-filter 0.3s ease-in-out;
+  transition-delay: ${(props) => props.delay};
 `;
 
 return (
