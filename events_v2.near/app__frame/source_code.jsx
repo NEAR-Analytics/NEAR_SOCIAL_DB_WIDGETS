@@ -565,26 +565,16 @@ const AppLayer = styled.div`
   min-height: 100vh;
   background-color: transparent;
   z-index: ${(props) => props.zIndex};
-  transform: ${(props) => {
-    console.log('AppLayer props!!', props);
-    return null;
-  }};
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   overflow: auto;
+`;
 
-  &.fade-out {
-    animation: ${FadeOut} 0.5s;
-    animation-fill-mode: forwards;
-  }
-
-  &.fade-in {
-    animation: ${FadeIn} 0.5s;
-    animation-fill-mode: forwards;
-  }
+const Timer = styled.div`
+  animation: none $((props) =>props.duration}s linear;);
 `;
 
 return (
