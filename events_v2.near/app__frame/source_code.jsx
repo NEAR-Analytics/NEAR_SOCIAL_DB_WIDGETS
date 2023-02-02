@@ -538,6 +538,10 @@ const FadeIn = styled.keyframes`
 `;
 
 const AppLayer = styled.div`
+  test: ${(props) => {
+    console.log('test', props);
+    return '';
+  }};
   animation: ${(props) => props.animation} 3s ease-out;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
@@ -552,9 +556,6 @@ const AppLayer = styled.div`
   bottom: 0;
   overflow: auto;
   opacity: 0;
-  test: ${(props) => {
-    console.log('test', props);
-  }};
 `;
 
 return (
