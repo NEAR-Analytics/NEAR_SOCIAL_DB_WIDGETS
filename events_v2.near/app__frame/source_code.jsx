@@ -585,7 +585,11 @@ return (
       const isLast = index === state.layers.length - 1;
 
       return (
-        <AppLayer key={index} delay={isLast ? '0s' : '2s'} zIndex={index + 100}>
+        <AppLayer
+          key={index}
+          delay={isLast ? '0s' : '0.3s'}
+          zIndex={index + 100}
+        >
           {safeRender(layer.name, layer.props)}
         </AppLayer>
       );
