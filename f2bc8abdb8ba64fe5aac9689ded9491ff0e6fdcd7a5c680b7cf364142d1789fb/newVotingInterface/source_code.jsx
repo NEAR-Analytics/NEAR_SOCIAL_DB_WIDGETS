@@ -22,6 +22,7 @@ let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
+console.log("questionBlockHeight: ", questionBlockHeight);
 
 const polls =
   !props.previewInfo && Social.index("poll_question", "question-v3.1.1");
