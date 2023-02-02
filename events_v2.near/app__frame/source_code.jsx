@@ -542,7 +542,7 @@ const AppLayer = styled.div`
     console.log('test', props);
     return '';
   }};
-  animation: ${(props) => props.animation} 3s ease-out;
+  animation: ${(props) => props.animation} 1s ease-out;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
   width: 100vw;
