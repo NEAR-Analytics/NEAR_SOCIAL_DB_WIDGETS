@@ -623,16 +623,7 @@ return (
 
     {state.layers.map((layer, index) => {
       return (
-        <AppLayer
-          key={index}
-          zIndex={index + 100}
-          onAnimationEnd={() => {
-            console.log('onAnimationEnd', layer);
-          }}
-          onAnimationStart={() => {
-            console.log('onAnimationStart', layer);
-          }}
-        >
+        <AppLayer key={index} zIndex={index + 100}>
           {safeRender(layer.name, layer.props)}
         </AppLayer>
       );
