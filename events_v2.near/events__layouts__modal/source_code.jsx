@@ -7,12 +7,12 @@ const FadeInSpecial = styled.keyframes`
   0% {
     opacity: 0;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    top: 20%;
+    top: 45%;
   }
   70% {
     opacity: 1;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    top: 20%;
+    top: 45%;
   }
   100% {
     opacity: 1;
@@ -35,7 +35,7 @@ const ModalContent = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
-  animation: ${FadeInSpecial} 0.4s ease-out;
+  animation: ${FadeInSpecial} 0.3s ease-in-out;
 `;
 
 return (
