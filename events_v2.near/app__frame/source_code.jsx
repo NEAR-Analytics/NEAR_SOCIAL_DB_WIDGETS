@@ -565,6 +565,10 @@ const AppLayer = styled.div`
   min-height: 100vh;
   background-color: transparent;
   z-index: ${(props) => props.zIndex};
+  transform: ${(props) => {
+    console.log('AppLayer', props);
+    return null;
+  }};
   position: fixed;
   top: 0;
   left: 0;
