@@ -583,7 +583,13 @@ return (
 
     {state.layers.map((layer, index) => {
       return (
-        <AppLayer key={index} zIndex={index + 100}>
+        <AppLayer
+          key={index}
+          props={{
+            isLast: index === state.layers.length - 1,
+            zIndex: index + 100,
+          }}
+        >
           {safeRender(layer.name, layer.props)}
         </AppLayer>
       );
