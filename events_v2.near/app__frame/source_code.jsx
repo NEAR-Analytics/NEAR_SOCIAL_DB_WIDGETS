@@ -561,9 +561,8 @@ const TimerRef = styled.div`
 const Timer = (fn, ms) => {
   return (
     <TimerRef
-      onAnimationEnd={(e) => {
-        fn();
-      }}
+      onAnimationEnd={() => 
+        fn();}
       duration={ms}
     />
   );
