@@ -560,15 +560,12 @@ const TimerRef = styled.div`
 
 const Timer = (fn, ms) => {
   return (
-    <>
-      <TimerRef
-        onAnimationEnd={(e) => {
-          console.log('timer end', e);
-          fn();
-        }}
-        duration={ms}
-      />
-    </>
+    <TimerRef
+      onAnimationEnd={(e) => {
+        fn();
+      }}
+      duration={ms}
+    />
   );
 };
 
