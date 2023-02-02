@@ -11,6 +11,8 @@ const FadeInSpecial = styled.keyframes`
   }
   70% {
     opacity: 1;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    top: 20%;
   }
   100% {
     opacity: 1;
