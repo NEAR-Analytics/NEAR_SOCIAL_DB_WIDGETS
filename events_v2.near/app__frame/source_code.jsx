@@ -552,8 +552,8 @@ const AppLayer = styled.div`
   bottom: 0;
   overflow: auto;
   opacity: 0;
-  backdrop-filter: blur(20px) saturate(180%) brightness(90%);
-  webkit-backdrop-filter: blur(20px) saturate(180%) brightness(90%);
+  backdrop-filter: blur(20px) saturate(140%) brightness(80%);
+  webkit-backdrop-filter: blur(20px) saturate(140%) brightness(80%);
 `;
 
 return (
