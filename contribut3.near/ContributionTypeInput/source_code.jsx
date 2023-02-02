@@ -17,7 +17,7 @@ return (
       onChange={(contributionTypes) => update(contributionTypes)}
       options={allContributionTypes}
       placeholder="Development, Investment, Legal..."
-      selected={kind}
+      selected={contributionType}
       positionFixed
       multiple={multiple}
       allowNew
