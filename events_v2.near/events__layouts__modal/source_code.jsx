@@ -14,6 +14,21 @@ const FadeInScaleUpSmall = styled.keyframes`
   }
 `;
 
+const ModalContent = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  max-width: 600px;
+  max-height: 600px;
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
+  border-radius: ${BORDER_RADIUS}px;
+  animation: ${FadeInScaleUpSmall} 0.3s ease-in-out;
+`;
+
 return (
   <>
     <div
@@ -30,22 +45,7 @@ return (
         backdropFilter: 'blur(20px) saturate(180%)',
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'white',
-          width: '80%',
-          height: '80%',
-          maxWidth: 600,
-          maxHeight: 600,
-          boxShadow: '0 0 40px -10px rgba(0,0,0,0.5)',
-          borderRadius: BORDER_RADIUS,
-          animation: `${FadeInScaleUpSmall} 0.5s ease`,
-        }}
-      >
+      <ModalContent>
         <div
           style={{
             height: '100%',
@@ -132,7 +132,7 @@ return (
             )}
           </div>
         </div>
-      </div>
+      </ModalContent>
     </div>
   </>
 );
