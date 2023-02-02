@@ -614,9 +614,12 @@ return (
       return (
         <AppLayer
           key={index}
-          zIndex={index}
+          zIndex={index + 100}
           onAnimationEnd={() => {
             console.log('onAnimationEnd', layer);
+          }}
+          onAnimationStart={() => {
+            console.log('onAnimationStart', layer);
           }}
         >
           {safeRender(layer.name, layer.props)}
