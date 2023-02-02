@@ -4,6 +4,7 @@ const blockHeight =
 const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
+const subscribe = !!props.subscribe;
 
 const notifyAccountId = accountId;
 const item = {
@@ -60,6 +61,7 @@ return (
           item,
           highlightComment: props.highlightComment,
           limit: props.commentsLimit,
+          subscribe,
         }}
       />
     </div>
