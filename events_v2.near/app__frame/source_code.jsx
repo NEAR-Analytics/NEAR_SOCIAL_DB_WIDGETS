@@ -603,9 +603,7 @@ function callTimers() {
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    {Timer(() => {
-      callTimers();
-    }, 100)}
+    {Timer(() => callTimers(), 100)}
 
     {/* state reset button */}
     <div
