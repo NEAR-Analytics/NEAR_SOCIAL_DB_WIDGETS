@@ -44,17 +44,14 @@ Near.asyncView(
 
 const contributionTypesInput = (
   <div className="col-lg-12 mb-2">
-    <label htmlFor="contribution-types">Contribution types:</label>
-    <Typeahead
-      id="contribution-types"
-      labelKey="name"
-      onChange={(contributionTypes) => State.update({ contributionTypes })}
-      options={allContributionTypes}
-      placeholder="Development, Investment, Legal..."
-      selected={state.contributionTypes}
-      positionFixed
-      multiple
-      allowNew
+    <Widget
+      src={`${ownerId}/widget/ContributionTypeInput`}
+      props={{
+        text: "Contribution types:",
+        contributionType: state.contributionTypes,
+        multiple: true,
+        update: (contributionTypes) => State.update({ contributionTypes }),
+      }}
     />
   </div>
 );
