@@ -36,15 +36,8 @@ const onUseMaxClick = () => {
 };
 return (
   <div>
-    <h1>
-      Vote&nbsp;for&nbsp;{state.poolId}
-      <a href="/#/manzanal.near/widget/ValidatorsStakingVote" target="_blank">
-        <span className="badge bg-secondary fs-6 align-middle">Validators</span>
-      </a>
-    </h1>
-    <p>
-      Validator: <input value={state.poolId} readOnly />
-    </p>
+    <h1>Vote&nbsp;for&nbsp;{state.poolId}</h1>
+    <p>Validator: {state.poolId}</p>
     <p>Balance: {state.balance} Voting Power</p>
     <p>
       Amount (Voting Power):
@@ -79,5 +72,15 @@ return (
     >
       Vote
     </button>
+    <a
+      disabled={context.loading}
+      className={`btn ${
+        context.loading ? "btn-outline-dark" : "btn-secondary"
+      }`}
+      href={`/#/manzanal.near/widget/ValidatorsStakingVote`}
+      role="button"
+    >
+      Back&nbsp;to&nbsp;Validators
+    </a>
   </div>
 );
