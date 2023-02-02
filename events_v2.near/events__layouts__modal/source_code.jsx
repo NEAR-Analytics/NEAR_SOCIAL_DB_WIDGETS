@@ -3,6 +3,17 @@ const BORDER_RADIUS = 16;
 
 const title = props.title || null;
 
+const FadeInScaleUpSmall = styled.keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 return (
   <>
     <div
@@ -32,6 +43,7 @@ return (
           maxHeight: 600,
           boxShadow: '0 0 40px -10px rgba(0,0,0,0.5)',
           borderRadius: BORDER_RADIUS,
+          animation: `${FadeInScaleUpSmall} 0.5s ease`,
         }}
       >
         <div
