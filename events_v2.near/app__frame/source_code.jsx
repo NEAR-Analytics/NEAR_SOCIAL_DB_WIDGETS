@@ -553,7 +553,7 @@ const AppLayer = styled.div`
 `;
 
 const TimerRef = styled.div`
-  animation: ${FadeIn} ${({ duration }) => duration}ms ease-out;
+  animation: ${FadeIn} 10ms ease-out;
   width: 0;
   height: 0;
 `;
