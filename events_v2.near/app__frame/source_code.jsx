@@ -574,7 +574,7 @@ const AppLayer = styled.div`
 `;
 
 const Timer = styled.div`
-  animation: none $((props) =>props.duration}s linear;
+  animation: none ${(props) => props.duration}ms linear;
 `;
 
 return (
