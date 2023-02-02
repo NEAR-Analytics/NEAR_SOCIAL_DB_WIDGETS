@@ -6,24 +6,17 @@ const title = props.title || null;
 const FadeInSpecial = styled.keyframes`
   0% {
     opacity: 0;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    top: 45%;
     transform: scale(0.9) translate(-50%, -50%);
-  }
-  70% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    top: 45%;
   }
   100% {
     opacity: 1;
-    box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
-    top: 50%;
     transform: scale(1) translate(-50%, -50%);
   }
 `;
 
 const ModalContent = styled.div`
+  top: 50%;
+  left: 50%;
   position: absolute;
   transform-origin: center center;
   background-color: white;
@@ -32,11 +25,9 @@ const ModalContent = styled.div`
   max-width: 600px;
   max-height: 600px;
   border-radius: ${BORDER_RADIUS}px;
-  left: 50%;
-
-  top: 50%;
-  transform: translate(-50%, -50%);
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
+
+  transform: translate(-50%, -50%);
   animation: ${FadeInSpecial} 0.3s ease-in-out;
 `;
 
