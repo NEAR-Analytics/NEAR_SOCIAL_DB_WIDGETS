@@ -540,6 +540,7 @@ const FadeIn = styled.keyframes`
 const AppLayer = styled.div`
   animation: ${FadeIn} 0.2s ease-out;
   animation-fill-mode: forwards;
+  animation-delay: 0.1s;
   width: 100vw;
   min-height: 100vh;
   background-color: transparent;
