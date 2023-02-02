@@ -595,7 +595,9 @@ return (
           key={index}
           delay={isLast ? '0.2s' : '0.2s'}
           backdropFilter={
-            isLast ? 'blur(16px) saturate(140%) brightness(80%)' : 'blur(0px)'
+            isLast
+              ? 'blur(16px) saturate(140%) brightness(80%)'
+              : 'blur(16px) saturate(100%) brightness(100%)'
           }
           zIndex={index + 100}
         >
