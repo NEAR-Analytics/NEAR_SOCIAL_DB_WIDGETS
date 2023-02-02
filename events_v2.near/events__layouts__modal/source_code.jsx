@@ -3,17 +3,6 @@ const BORDER_RADIUS = 16;
 
 const title = props.title || null;
 
-const FadeInSpecial = styled.keyframes`
-  0% {
-    opacity: 0;
-    transform: scale(0.9) translate(-50%, -50%);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translate(-50%, -50%);
-  }
-`;
-
 const ModalContent = styled.div`
   top: 50%;
   left: 50%;
