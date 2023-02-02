@@ -50,7 +50,7 @@ return (
             key: event.event_id,
           })}
         </div>
-      }</div>;
+      };
     })}
     <div>{/* spacer */}</div>
     <div>{/* spacer */}</div>
