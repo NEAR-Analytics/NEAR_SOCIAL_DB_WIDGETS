@@ -27,6 +27,7 @@ return parentPost ? (
       ...parentPost,
       highlightComment: { accountId, blockHeight },
       commentsLimit: 30,
+      subscribe: true,
     }}
   />
 ) : (
