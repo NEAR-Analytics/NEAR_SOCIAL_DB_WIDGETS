@@ -538,12 +538,7 @@ const FadeIn = styled.keyframes`
 `;
 
 const AppLayer = styled.div`
-  test: ${(props) => {
-    console.log('test', props);
-    return '';
-  }};
   animation: ${FadeIn} 1s ease-out;
-  animation-name: ${(props) => props.skipAnimation && 'none'};
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
   width: 100vw;
@@ -590,12 +585,7 @@ return (
       const isLast = index === state.layers.length - 1;
 
       return (
-        <AppLayer
-          key={index}
-          skipAnimation={!isLast}
-          delay={isLast ? '0s' : '2s'}
-          zIndex={index + 100}
-        >
+        <AppLayer key={index} delay={isLast ? '0s' : '2s'} zIndex={index + 100}>
           {safeRender(layer.name, layer.props)}
         </AppLayer>
       );
