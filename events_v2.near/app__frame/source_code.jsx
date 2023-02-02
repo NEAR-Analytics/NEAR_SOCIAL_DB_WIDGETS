@@ -562,8 +562,8 @@ const Timer = (fn, ms) => {
   return (
     <>
       <TimerRef
-        onAnimationEnd={() => {
-          console.log('timer end');
+        onAnimationEnd={(e) => {
+          console.log('timer end', e);
           fn();
         }}
         duration={ms}
