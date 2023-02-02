@@ -548,7 +548,7 @@ const FadeOut = styled.keyframes`
 
 const AppLayer = styled.div`
   animation: ${(props) =>
-    props.fadeIn ? FadeIn : props.fadeOut ? FadeOut : 'none'}
+      props.fadeIn ? FadeIn : props.fadeOut ? FadeOut : 'none'}
     0.5s;
   animation-fill-mode: forwards;
 `;
@@ -582,7 +582,7 @@ return (
 
     {state.layers.map((layer, index) => {
       return (
-        <div
+        <AppLayer
           key={index}
           style={{
             width: '100vw',
@@ -598,7 +598,7 @@ return (
           }}
         >
           {safeRender(layer.name, layer.props)}
-        </div>
+        </AppLayer>
       );
     })}
   </>
