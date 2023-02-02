@@ -2,9 +2,7 @@ const contributionType = props.contributionType ?? [];
 const text = props.text ?? "Type of contribution:";
 const multiple = props.multiple ?? false;
 const update = props.update;
-const allContributionTypes = (
-  Near.view(ownerId, "get_contribution_types", {}, "final", true) ?? []
-).map((name) => ({ name }));
+const allContributionTypes = props.allContributionTypes ?? [];
 
 if (!update) {
   return "Cannot render contribution type input without update function!";
