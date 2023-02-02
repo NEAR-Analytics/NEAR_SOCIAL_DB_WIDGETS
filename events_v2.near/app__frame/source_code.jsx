@@ -552,8 +552,12 @@ const AppLayer = styled.div`
   bottom: 0;
   overflow: auto;
   opacity: 0;
-  backdrop-filter: blur(16px) saturate(140%) brightness(80%);
-  webkit-backdrop-filter: blur(16px) saturate(140%) brightness(80%);
+  backdrop-filter: ${(props) => {
+    return props.backdropFilter;
+  }};
+  webkit-backdrop-filter: ${(props) => {
+    return props.backdropFilter;
+  }};
 `;
 
 return (
@@ -590,6 +594,9 @@ return (
         <AppLayer
           key={index}
           delay={isLast ? '0.2s' : '0.2s'}
+          backdropFilter={
+            isLast ? 'blur(16px) saturate(140%) brightness(80%)' : 'blur(0px)'
+          }
           zIndex={index + 100}
         >
           {safeRender(layer.name, layer.props)}
