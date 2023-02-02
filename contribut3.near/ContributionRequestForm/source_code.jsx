@@ -1,16 +1,32 @@
 const ownerId = "contribut3.near";
+const allContributionTypes = (
+  Near.view(ownerId, "get_contribution_types", {}, "final", true) ?? []
+).map((name) => ({ name }));
+
+const convertType = (contributionType) => {
+  if (allContributionTypes.some(({ name }) => name === contributionType.name)) {
+    return contributionType.name;
+  }
+
+  return { Other: contributionType.name };
+};
 
 initState({
   // The entity to which to request a contribution.
   entity: props.entity ? [{ name: props.entity }] : [],
   // The description of the contribution request.
   description: props.description ?? "",
+  contributionType: props.contributionType
+    ? [{ name: props.contributionType }]
+    : [],
 });
 
 const onClick = () => {
   const args = {
     entity_id: state.entity[0].name,
     description: state.description,
+    contribution_type: convertType(state.contributionType[0]),
+    need: null,
   };
 
   Near.call(ownerId, "request_contribution", args);
@@ -49,6 +65,19 @@ const descriptionDiv = (
   </div>
 );
 
+const contributionTypeInput = (
+  <div className="col-lg-12 mb-2">
+    <Widget
+      src={`${ownerId}/widget/ContributionTypeInput`}
+      props={{
+        contributionType: state.contributionType,
+        update: (contributionType) => State.update({ contributionType }),
+        allContributionTypes,
+      }}
+    />
+  </div>
+);
+
 const header = <div className="card-header">Request contribution</div>;
 
 const body = (
@@ -56,6 +85,7 @@ const body = (
     <div className="row">
       {entityEditor}
       {descriptionDiv}
+      {contributionTypeInput}
     </div>
 
     <a className="btn btn-outline-primary mb-2" onClick={onClick}>
