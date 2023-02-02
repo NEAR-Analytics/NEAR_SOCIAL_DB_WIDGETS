@@ -565,24 +565,47 @@ const Timer = (fn, ms) => {
 const TIMERS = [];
 
 function setTimeout(fn, ms) {
-  const timer = Timer(fn, ms);
+  const timer = { fn, ms, once: true, id: Math.random() };
   TIMERS.push(timer);
-  return timer;
+  return timer.id;
 }
 
-setTimeout(() => {
-  console.log('test');
-  setTimeout(() => {
-    console.log('test2');
-  }, 1000);
-}, 500);
+function setInterval(fn, ms) {
+  const timer = { fn, ms, once: false, id: Math.random() };
+  TIMERS.push(timer);
+  return timer.id;
+}
+
+function clearTimeout(id) {
+  const index = TIMERS.findIndex((timer) => timer.id === id);
+  if (index > -1) {
+    TIMERS.splice(index, 1);
+  }
+}
+
+function clearInterval(id) {
+  clearTimeout(id);
+}
+
+function callTimers() {
+  const now = Date.now();
+  TIMERS.forEach((timer) => {
+    if (now - timer.last > timer.ms) {
+      timer.fn();
+      timer.last = now;
+      if (timer.once) {
+        clearTimeout(timer.id);
+      }
+    }
+  });
+}
 
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    {TIMERS.map((timer, index) => {
-      return <div key={index}>{timer}</div>;
-    })}
+    {Timer(() => {
+      callTimers();
+    }, 100)}
 
     {/* state reset button */}
     <div
