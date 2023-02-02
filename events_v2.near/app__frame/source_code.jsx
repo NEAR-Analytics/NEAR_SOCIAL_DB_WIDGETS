@@ -567,7 +567,7 @@ const Timer = (fn, ms) => {
           console.log('timer end');
           fn();
         }}
-        props={{ duration: ms }}
+        duration={ms}
       />
     </>
   );
