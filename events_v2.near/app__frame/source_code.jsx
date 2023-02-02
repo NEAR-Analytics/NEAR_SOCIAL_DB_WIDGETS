@@ -566,7 +566,7 @@ const AppLayer = styled.div`
   background-color: transparent;
   z-index: ${(props) => props.zIndex};
   transform: ${(props) => {
-    console.log('AppLayer', props);
+    console.log('AppLayer props!!', props);
     return null;
   }};
   position: fixed;
