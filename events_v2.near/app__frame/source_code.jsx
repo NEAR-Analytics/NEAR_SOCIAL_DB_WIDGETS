@@ -600,7 +600,7 @@ return (
           backdropFilter={
             isLast
               ? 'blur(16px) saturate(140%) brightness(80%)'
-              : 'blur(16px) saturate(100%) brightness(100%)'
+              : 'blur(0px) saturate(100%) brightness(100%)'
           }
           zIndex={index + 100}
         >
