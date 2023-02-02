@@ -22,13 +22,12 @@ initState({
   existing: false,
 });
 
-if (!existing) {
+if (!state.existing) {
   Near.asyncView(
     ownerId,
     "get_contributor",
     { account_id: context.accountId },
-    "final",
-    true
+    "final"
   ).then((contributor) => {
     if (contributor) {
       State.update({
