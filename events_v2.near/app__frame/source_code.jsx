@@ -589,7 +589,7 @@ return (
       return (
         <AppLayer
           key={index}
-          delay={isLast ? '0s' : '0.2s'}
+          delay={isLast ? '0.5s' : '0s'}
           zIndex={index + 100}
         >
           {safeRender(layer.name, layer.props)}
