@@ -126,6 +126,8 @@ return (
             paddingTop: title ? PADDING_WITH_TITLE : 0,
           }}
         >
+          {console.log(props.component)}
+          {console.log(props.__engine.renderComponent)}
           {props.__engine.renderComponent(
             props.component.name,
             props.component.props
