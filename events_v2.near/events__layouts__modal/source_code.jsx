@@ -18,7 +18,7 @@ const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   position: absolute;
-  transform-origin: bottom;
+  transform-origin: bottom left;
   background-color: white;
   width: 80%;
   height: 80%;
