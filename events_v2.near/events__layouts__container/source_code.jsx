@@ -40,7 +40,7 @@ const Pulse = styled.keyframes`
     transform: scale(1);
   }
   100% {
-    transform: scale(0.95);
+    transform: scale(0.99);
   }
 `;
 
