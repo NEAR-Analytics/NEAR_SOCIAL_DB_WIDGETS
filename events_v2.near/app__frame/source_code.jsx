@@ -590,11 +590,9 @@ return (
       return (
         <AppLayer
           key={index}
-          props={{
-            animation: isLast ? FadeIn : 'none',
-            delay: isLast ? '0s' : '2s',
-            zIndex: index + 100,
-          }}
+          animation={isLast ? FadeIn : 'none'}
+          delay={isLast ? '0s' : '2s'}
+          zIndex={index + 100}
         >
           {safeRender(layer.name, layer.props)}
         </AppLayer>
