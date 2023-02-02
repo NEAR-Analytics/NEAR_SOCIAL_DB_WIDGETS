@@ -2,6 +2,9 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId ?? "";
 const kind = props.kind ? [{ name: props.kind }] : [];
 const startDate = props.startDate ?? "";
+const allContributionTypes = (
+  Near.view(ownerId, "get_contribution_types", {}, "final", true) ?? []
+).map((name) => ({ name }));
 
 const convertType = (contributionType) => {
   if (allContributionTypes.some(({ name }) => name === contributionType.name)) {
