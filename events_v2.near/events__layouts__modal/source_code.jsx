@@ -28,7 +28,7 @@ const ModalContent = styled.div`
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
 
   transform: translate(-50%, -50%);
-  /* animation: ${FadeInSpecial} 0.3s ease-in-out; */
+  animation: ${FadeInSpecial} 0.3s ease-in-out;
 `;
 
 return (
