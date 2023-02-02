@@ -484,6 +484,7 @@ return (
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
+          {console.log(props.__engine)}
           {props.__engine.renderComponent('_form.image_component', {
             image: image,
             onChange: (changed) => {
