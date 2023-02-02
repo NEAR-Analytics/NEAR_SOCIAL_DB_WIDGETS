@@ -554,7 +554,8 @@ const AppLayer = styled.div`
 
 const TimerRef = styled.div`
   animation: ${FadeIn} ${({ duration }) => duration}ms ease-out;
-  display: none;
+  width: 0;
+  height: 0;
 `;
 
 const Timer = (fn, ms) => {
