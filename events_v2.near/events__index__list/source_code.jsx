@@ -8,6 +8,17 @@ if (events.length === 0) {
   return 'No events found';
 }
 
+const SlideInLeft = styled.keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const IndexList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -27,17 +38,6 @@ const IndexList = styled.div`
     flex-shrink: 3;
 
     animation: ${SlideInLeft} 0.3s ease-in-out;
-  }
-`;
-
-const SlideInLeft = styled.keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
   }
 `;
 
