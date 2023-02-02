@@ -3,20 +3,19 @@ const BORDER_RADIUS = 16;
 
 const title = props.title || null;
 
-const FadeInScaleUpSmall = styled.keyframes`
+const FadeInSpecial = styled.keyframes`
   0% {
     opacity: 0;
-    transform: scale(0.2) translate(-50%, -50%);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     top: 20%;
+    max-width: 300px;
   }
-  80% {
+  70% {
     opacity: 1;
-    transform: scale(1) translate(-50%, -50%);
+    max-width: 600px;
   }
   100% {
     opacity: 1;
-    transform: scale(1) translate(-50%, -50%);
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
     top: 50%;
   }
@@ -36,7 +35,7 @@ const ModalContent = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
-  animation: ${FadeInScaleUpSmall} 0.6s ease-out;
+  animation: ${FadeInSpecial} 0.6s ease-out;
 `;
 
 return (
