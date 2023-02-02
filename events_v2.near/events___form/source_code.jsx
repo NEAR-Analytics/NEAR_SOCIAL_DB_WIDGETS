@@ -361,257 +361,255 @@ const updateState = (event, key) => {
 };
 
 return (
-  <>
-    <div
-      style={{
-        width: '100%',
-        padding: '1rem',
-      }}
-    >
-      <div className="mt-3">
-        <Label>Name</Label>
-        <input
-          type="text"
-          placeholder="Event Name"
-          value={state.name || ''}
-          onChange={(event) => {
-            updateState(event, 'name');
-          }}
-        />
-      </div>
-      <ErrorMessage>{getErrors('name')}</ErrorMessage>
+  <div
+    style={{
+      width: '100%',
+      padding: '1rem',
+    }}
+  >
+    <div className="mt-3">
+      <Label>Name</Label>
+      <input
+        type="text"
+        placeholder="Event Name"
+        value={state.name || ''}
+        onChange={(event) => {
+          updateState(event, 'name');
+        }}
+      />
+    </div>
+    <ErrorMessage>{getErrors('name')}</ErrorMessage>
 
-      <div className="mt-3">
-        <Label>Description</Label>
-        <textarea
-          className="w-100"
-          placeholder="Event Description"
-          value={state.description}
-          onChange={(event) => {
-            updateState(event, 'description');
-          }}
-          rows={3}
-        />
-      </div>
-      <ErrorMessage>{getErrors('description')}</ErrorMessage>
+    <div className="mt-3">
+      <Label>Description</Label>
+      <textarea
+        className="w-100"
+        placeholder="Event Description"
+        value={state.description}
+        onChange={(event) => {
+          updateState(event, 'description');
+        }}
+        rows={3}
+      />
+    </div>
+    <ErrorMessage>{getErrors('description')}</ErrorMessage>
 
-      <div className="mt-3">
-        <Label>Type</Label>
-        <Select
-          value={state.type}
-          onChange={(event) => {
-            updateState(event, 'type');
-          }}
-        >
-          {EventTypes.map((type) => (
-            <option key={type.value} value={type.value}>
-              {type.label}
-            </option>
-          ))}
-        </Select>
-      </div>
-      <ErrorMessage>{getErrors('type')}</ErrorMessage>
-
-      <div className="mt-3">
-        <Label>Category</Label>
-        <input
-          type="text"
-          placeholder="Event Category"
-          value={state.category}
-          onChange={(event) => {
-            updateState(event, 'category');
-          }}
-        />
-      </div>
-      <ErrorMessage>{getErrors('category')}</ErrorMessage>
-
-      <div className="mt-3">
-        <Label>Status</Label>
-        <Select
-          value={state.status}
-          onChange={(event) => {
-            updateState(event, 'status');
-          }}
-        >
-          {EventStatus.map((status) => (
-            <option key={status.value} value={status.value}>
-              {status.label}
-            </option>
-          ))}
-        </Select>
-      </div>
-      <ErrorMessage>{getErrors('status')}</ErrorMessage>
-
-      <div className="mt-3">
-        <Label>Start Date</Label>
-        <input
-          type="date"
-          value={state.start_date}
-          onChange={(event) => {
-            updateState(event, 'start_date');
-          }}
-        />
-      </div>
-      <ErrorMessage>{getErrors('start_date')}</ErrorMessage>
-
-      <div className="mt-3">
-        <Label>End Date</Label>
-        <input
-          type="date"
-          value={state.end_date}
-          onChange={(event) => {
-            updateState(event, 'end_date');
-          }}
-        />
-      </div>
-      <ErrorMessage>{getErrors('end_date')}</ErrorMessage>
-
-      <div className="mt-3">
-        <Label>Location</Label>
-        <textarea
-          className="w-100"
-          placeholder="Event Location"
-          value={state.location}
-          onChange={(event) => {
-            updateState(event, 'location');
-          }}
-          rows={3}
-        />
-      </div>
-      <ErrorMessage>{getErrors('location')}</ErrorMessage>
-
-      <div className="mt-3">
-        <Label>Images</Label>
-
-        {state.images.map((image, index) => (
-          <div key={index} className="mb-4 d-flex">
-            {props.__engine.renderComponent('_form.image_component', {
-              image: image,
-              onChange: (changed) => {
-                state.images[index] = changed;
-                sanitizeAndValidate({ ...state, images: state.images });
-              },
-              onRemove: () => {
-                const images = [...state.images];
-                images.splice(index, 1);
-                State.update({ images });
-                sanitizeAndValidate({ ...state, images });
-              },
-            })}
-          </div>
+    <div className="mt-3">
+      <Label>Type</Label>
+      <Select
+        value={state.type}
+        onChange={(event) => {
+          updateState(event, 'type');
+        }}
+      >
+        {EventTypes.map((type) => (
+          <option key={type.value} value={type.value}>
+            {type.label}
+          </option>
         ))}
+      </Select>
+    </div>
+    <ErrorMessage>{getErrors('type')}</ErrorMessage>
 
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            const images = [...state.images];
-            images.push({ type: 'tile', image: '' });
-            State.update({ images });
-            sanitizeAndValidate({ ...state, images });
-          }}
-        >
-          Add Image
-        </button>
-      </div>
-      <ErrorMessage>{getErrors('images')}</ErrorMessage>
+    <div className="mt-3">
+      <Label>Category</Label>
+      <input
+        type="text"
+        placeholder="Event Category"
+        value={state.category}
+        onChange={(event) => {
+          updateState(event, 'category');
+        }}
+      />
+    </div>
+    <ErrorMessage>{getErrors('category')}</ErrorMessage>
 
-      <div className="mt-3">
-        <Label>Links</Label>
-        {state.links.map((link, index) => (
-          <div key={index} className="mb-4">
+    <div className="mt-3">
+      <Label>Status</Label>
+      <Select
+        value={state.status}
+        onChange={(event) => {
+          updateState(event, 'status');
+        }}
+      >
+        {EventStatus.map((status) => (
+          <option key={status.value} value={status.value}>
+            {status.label}
+          </option>
+        ))}
+      </Select>
+    </div>
+    <ErrorMessage>{getErrors('status')}</ErrorMessage>
+
+    <div className="mt-3">
+      <Label>Start Date</Label>
+      <input
+        type="date"
+        value={state.start_date}
+        onChange={(event) => {
+          updateState(event, 'start_date');
+        }}
+      />
+    </div>
+    <ErrorMessage>{getErrors('start_date')}</ErrorMessage>
+
+    <div className="mt-3">
+      <Label>End Date</Label>
+      <input
+        type="date"
+        value={state.end_date}
+        onChange={(event) => {
+          updateState(event, 'end_date');
+        }}
+      />
+    </div>
+    <ErrorMessage>{getErrors('end_date')}</ErrorMessage>
+
+    <div className="mt-3">
+      <Label>Location</Label>
+      <textarea
+        className="w-100"
+        placeholder="Event Location"
+        value={state.location}
+        onChange={(event) => {
+          updateState(event, 'location');
+        }}
+        rows={3}
+      />
+    </div>
+    <ErrorMessage>{getErrors('location')}</ErrorMessage>
+
+    <div className="mt-3">
+      <Label>Images</Label>
+
+      {state.images.map((image, index) => (
+        <div key={index} className="mb-4 d-flex">
+          {props.__engine.renderComponent('_form.image_component', {
+            image: image,
+            onChange: (changed) => {
+              state.images[index] = changed;
+              sanitizeAndValidate({ ...state, images: state.images });
+            },
+            onRemove: () => {
+              const images = [...state.images];
+              images.splice(index, 1);
+              State.update({ images });
+              sanitizeAndValidate({ ...state, images });
+            },
+          })}
+        </div>
+      ))}
+
+      <button
+        className="btn btn-secondary"
+        onClick={() => {
+          const images = [...state.images];
+          images.push({ type: 'tile', image: '' });
+          State.update({ images });
+          sanitizeAndValidate({ ...state, images });
+        }}
+      >
+        Add Image
+      </button>
+    </div>
+    <ErrorMessage>{getErrors('images')}</ErrorMessage>
+
+    <div className="mt-3">
+      <Label>Links</Label>
+      {state.links.map((link, index) => (
+        <div key={index} className="mb-4">
+          <input
+            type="text"
+            placeholder="Link URL"
+            className="mb-2"
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              boxSizing: 'border-box',
+            }}
+            value={link.url}
+            onChange={(event) => {
+              const links = [...state.links];
+              links[index].url = event.target.value;
+              State.update({ links });
+              sanitizeAndValidate({ ...state, links });
+            }}
+          />
+
+          <div>
             <input
               type="text"
-              placeholder="Link URL"
-              className="mb-2"
+              placeholder="Link Text"
               style={{
-                width: '100%',
-                padding: '0.5rem',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
+                width: '200px',
+                display: 'inline-block',
                 boxSizing: 'border-box',
               }}
-              value={link.url}
+              value={link.text}
               onChange={(event) => {
                 const links = [...state.links];
-                links[index].url = event.target.value;
+                links[index].text = event.target.value;
                 State.update({ links });
                 sanitizeAndValidate({ ...state, links });
               }}
             />
 
-            <div>
-              <input
-                type="text"
-                placeholder="Link Text"
-                style={{
-                  width: '200px',
-                  display: 'inline-block',
-                  boxSizing: 'border-box',
-                }}
-                value={link.text}
-                onChange={(event) => {
-                  const links = [...state.links];
-                  links[index].text = event.target.value;
-                  State.update({ links });
-                  sanitizeAndValidate({ ...state, links });
-                }}
-              />
+            <Select
+              className="ms-2"
+              style={{ width: '100px' }}
+              value={link.type}
+              onChange={(event) => {
+                const links = [...state.links];
+                links[index].type = event.target.value;
+                State.update({ links });
+                sanitizeAndValidate({ ...state, links });
+              }}
+            >
+              {LinkTypes.map((type) => (
+                <option key={type.value} value={type.value}>
+                  {type.label}
+                </option>
+              ))}
+            </Select>
 
-              <Select
-                className="ms-2"
-                style={{ width: '100px' }}
-                value={link.type}
-                onChange={(event) => {
-                  const links = [...state.links];
-                  links[index].type = event.target.value;
-                  State.update({ links });
-                  sanitizeAndValidate({ ...state, links });
-                }}
-              >
-                {LinkTypes.map((type) => (
-                  <option key={type.value} value={type.value}>
-                    {type.label}
-                  </option>
-                ))}
-              </Select>
-
-              <button
-                className="ms-2 btn btn-danger"
-                onClick={() => {
-                  const links = [...state.links];
-                  links.splice(index, 1);
-                  State.update({ links });
-                  sanitizeAndValidate({ ...state, links });
-                }}
-              >
-                Remove
-              </button>
-            </div>
+            <button
+              className="ms-2 btn btn-danger"
+              onClick={() => {
+                const links = [...state.links];
+                links.splice(index, 1);
+                State.update({ links });
+                sanitizeAndValidate({ ...state, links });
+              }}
+            >
+              Remove
+            </button>
           </div>
-        ))}
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            const links = [...state.links];
-            links.push('');
-            State.update({ links });
-            sanitizeAndValidate({ ...state, links });
-          }}
-        >
-          Add Link
-        </button>
-      </div>
-      <ErrorMessage>{getErrors('links')}</ErrorMessage>
-
-      <br />
-      <Button
-        className="mt-3"
+        </div>
+      ))}
+      <button
+        className="btn btn-secondary"
         onClick={() => {
-          sanitizeValidateAndCall(state);
+          const links = [...state.links];
+          links.push('');
+          State.update({ links });
+          sanitizeAndValidate({ ...state, links });
         }}
       >
-        {buttonText}
-      </Button>
+        Add Link
+      </button>
     </div>
-  </>
+    <ErrorMessage>{getErrors('links')}</ErrorMessage>
+
+    <br />
+    <Button
+      className="mt-3"
+      onClick={() => {
+        sanitizeValidateAndCall(state);
+      }}
+    >
+      {buttonText}
+    </Button>
+  </div>
 );
