@@ -47,7 +47,7 @@ return (
         backdropFilter: 'blur(20px) saturate(180%)',
       }}
     >
-      <div>
+      <ModalContent>
         <div
           style={{
             height: '100%',
@@ -133,7 +133,7 @@ return (
             )}
           </div>
         </div>
-      </div>
+      </ModalContent>
     </div>
   </>
 );
