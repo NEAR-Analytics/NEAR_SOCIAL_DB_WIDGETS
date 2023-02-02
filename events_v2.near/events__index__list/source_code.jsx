@@ -28,13 +28,29 @@ const IndexList = styled.div`
   }
 `;
 
+const Pulse = styled.keyframes`
+  0% {
+    transform: scale(0.99);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.95);
+  }
+`;
+
 return (
   <IndexList>
     {events.map((event) => {
-      return props.__engine.renderComponent('index.list_item', {
-        event,
-        key: event.event_id,
-      });
+      return (
+        <div>
+          {props.__engine.renderComponent('index.list_item', {
+            event,
+            key: event.event_id,
+          })}
+        </div>
+      }</div>;
     })}
     <div>{/* spacer */}</div>
     <div>{/* spacer */}</div>
