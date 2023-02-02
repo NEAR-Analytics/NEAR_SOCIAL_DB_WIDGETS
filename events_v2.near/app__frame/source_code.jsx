@@ -537,27 +537,6 @@ const FadeIn = styled.keyframes`
   }
 `;
 
-const FadeOut = styled.keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`;
-
-const fadeInOut = styled.keyframes`
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`;
-
 const AppLayer = styled.div`
   animation: ${FadeIn} 0.5s ease-in-out;
   animation-fill-mode: forwards;
