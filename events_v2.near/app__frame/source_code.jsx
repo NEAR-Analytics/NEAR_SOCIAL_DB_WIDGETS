@@ -552,6 +552,9 @@ const AppLayer = styled.div`
   bottom: 0;
   overflow: auto;
   opacity: 0;
+  test: ${(props) => {
+    console.log('test', props);
+  }};
 `;
 
 return (
