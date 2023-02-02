@@ -546,10 +546,20 @@ const FadeOut = styled.keyframes`
   }
 `;
 
+const fadeInOut = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
 const AppLayer = styled.div`
-  animation: ${(props) =>
-    props.fadeIn ? FadeIn : props.fadeOut ? FadeOut : 'none'}
-    0.5s;
+  animation: ${fadeInOut} 1s;
   animation-fill-mode: forwards;
   width: 100vw;
   min-height: 100vh;
@@ -608,22 +618,6 @@ return (
           fadeIn={layer.fadeIn}
           fadeOut={layer.fadeOut}
           zIndex={index}
-          // onTransitionEnd={() => {
-          //   if (layer.fadeOut) {
-          //     State.update({
-          //       layers: state.layers.filter((l) => l !== layer),
-          //     });
-          //   }
-          // }}
-
-          // onAnimationEnd={() => {
-          //   if (layer.fadeOut) {
-          //     State.update({
-          //       layers: state.layers.filter((l) => l !== layer),
-          //     });
-          //   }
-          // }}
-
           onAnimationEnd={() => {
             console.log('onAnimationEnd', layer);
           }}
