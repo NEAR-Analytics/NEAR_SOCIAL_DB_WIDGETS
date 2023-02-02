@@ -562,6 +562,7 @@ const Timer = (fn, ms) => {
     <>
       <TimerRef
         onAnimationEnd={() => {
+          console.log('timer end');
           fn();
         }}
         props={{ duration: ms }}
