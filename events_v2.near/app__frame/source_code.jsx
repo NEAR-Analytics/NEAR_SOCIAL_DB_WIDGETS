@@ -573,13 +573,21 @@ const AppLayer = styled.div`
   overflow: auto;
 `;
 
-const Timer = styled.div`
+const Timer = 
+
+const Timer = (props)=>{
+  const tRef = styled.div`
   animation: none ${(props) => props.duration}ms linear;
+  display: none;
 `;
+
+  return tRef(props)
+}
 
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
+    <Timer duration={state.duration} onAnimationEnd/>
 
     {/* state reset button */}
     <div
