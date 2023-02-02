@@ -9,19 +9,16 @@ const FadeInScaleUpSmall = styled.keyframes`
     transform: scale(0.2) translate(-50%, -50%);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     top: 20%;
-    max-width: 400px;
   }
   80% {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
-    max-width: 500px;
   }
   100% {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
     top: 50%;
-    max-width: 600px;
   }
 `;
 
