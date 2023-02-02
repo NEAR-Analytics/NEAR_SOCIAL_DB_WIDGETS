@@ -127,20 +127,10 @@ const Label = styled.label`
   box-sizing: border-box;
 `;
 
-const slideDownSmall = styled.keyframes`
-  0% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`;
-
 const ErrorMessage = styled.div`
   color: #c00;
   font-size: 0.8rem;
   margin: 0.5rem 0 0 0;
-  animation: ${slideDownSmall} 0.3s ease-in-out;
 `;
 
 const LinkTypes = [
