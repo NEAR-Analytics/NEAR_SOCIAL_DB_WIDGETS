@@ -565,7 +565,7 @@ const Timer = (fn, ms) => {
 const TIMERS = [];
 
 function setTimeout(fn, ms) {
-  const timer = { fn, ms, once: true, id: Math.random() };
+  const timer = { fn, ms, once: true, id: Math.random(), last: Date.now() };
   TIMERS.push(timer);
   return timer.id;
 }
