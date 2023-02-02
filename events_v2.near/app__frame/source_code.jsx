@@ -573,15 +573,14 @@ const AppLayer = styled.div`
   overflow: auto;
 `;
 
+const TimerRef = styled.div`
+  animation: none ${({ duration }) => duration}ms linear;
+  display: none;
+`;
 const Timer = (fn, ms) => {
-  const tRef = styled.div`
-    animation: none ${({ duration }) => duration}ms linear;
-    display: none;
-  `;
-
   return (
     <>
-      <tRef
+      <TimerRef
         onAnimationEnd={() => {
           fn();
         }}
