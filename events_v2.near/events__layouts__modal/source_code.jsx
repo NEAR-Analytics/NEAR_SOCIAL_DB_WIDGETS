@@ -8,6 +8,7 @@ const FadeInSpecial = styled.keyframes`
     opacity: 0;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     top: 45%;
+    transform: scale(0.9) translate(-50%, -50%);
   }
   70% {
     opacity: 1;
@@ -18,6 +19,7 @@ const FadeInSpecial = styled.keyframes`
     opacity: 1;
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
     top: 50%;
+    transform: scale(1) translate(-50%, -50%);
   }
 `;
 
