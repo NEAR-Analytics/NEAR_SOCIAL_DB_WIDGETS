@@ -594,7 +594,9 @@ const Timer = (fn, ms) => {
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    <Timer duration={state.duration} onAnimationEnd />
+    {Timer(() => {
+      console.log('timer');
+    }, 1000)}
 
     {/* state reset button */}
     <div
