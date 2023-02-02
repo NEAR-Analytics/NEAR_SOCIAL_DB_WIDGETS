@@ -577,6 +577,7 @@ const TimerRef = styled.div`
   animation: none ${({ duration }) => duration}ms linear;
   display: none;
 `;
+
 const Timer = (fn, ms) => {
   return (
     <>
