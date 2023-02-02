@@ -22,8 +22,7 @@ let pools = Object.entries(validators.body).map((item) => {
           data-toggle="tooltip"
           title="Pool performance in the last four epochs is low, votes will not be considered until the validator has four epochs with good performance"
           trigger="hover focus"
-          class="cursor-help"
-          className={Number(pool.extraData.apy) > 0 ? "d-none" : ""}
+          className={Number(pool.extraData.apy) > 0 ? "d-none" : "text-warning"}
         >
           ⚠
         </span>
@@ -38,8 +37,7 @@ let pools = Object.entries(validators.body).map((item) => {
         </span>
       </td>
       <td class="text-end">
-        {pool.votes.toLocaleString("en-US")}&nbsp;(
-        {pool.votes_weight.toFixed(2)}%)
+        {pool.votes.toLocaleString("en-US")} ({pool.votes_weight.toFixed(2)}%)
       </td>
       <td class="text-end">
         {pool.stakedAsignedByVotes.toLocaleString("en-US")}&nbsp;Ⓝ
