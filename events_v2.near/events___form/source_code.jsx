@@ -130,7 +130,7 @@ const Label = styled.label`
 const slideDownSmall = styled.keyframes`
   0% {
     transform: translateY(-1px) translateX(-4px);
-    opacity: 0;
+    opacity: 0.85;
   }
   100% {
     transform: translateY(0) translateX(0);
