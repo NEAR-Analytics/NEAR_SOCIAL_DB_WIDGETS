@@ -592,7 +592,7 @@ return (
       return (
         <AppLayer
           key={index}
-          animation={isLast ? FadeIn : 'none'}
+          skipAnimation={!isLast}
           delay={isLast ? '0s' : '2s'}
           zIndex={index + 100}
         >
