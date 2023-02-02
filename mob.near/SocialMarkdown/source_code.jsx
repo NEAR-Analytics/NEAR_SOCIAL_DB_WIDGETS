@@ -1,7 +1,7 @@
 const renderMention =
   props.renderMention ??
   ((accountId) => (
-    <span className="d-inline-flex" style={{ fontWeight: 500 }}>
+    <span key={accountId} className="d-inline-flex" style={{ fontWeight: 500 }}>
       <Widget
         src="mob.near/widget/ProfileLine"
         props={{
