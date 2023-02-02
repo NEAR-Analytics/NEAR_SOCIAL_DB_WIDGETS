@@ -552,6 +552,7 @@ const AppLayer = styled.div`
   bottom: 0;
   overflow: auto;
   opacity: 0;
+  backdropfilter: blur(20px) saturate(180%) brightness(90%);
 `;
 
 return (
@@ -587,7 +588,7 @@ return (
       return (
         <AppLayer
           key={index}
-          delay={isLast ? '0s' : '0.3s'}
+          delay={isLast ? '0s' : '0.6s'}
           zIndex={index + 100}
         >
           {safeRender(layer.name, layer.props)}
