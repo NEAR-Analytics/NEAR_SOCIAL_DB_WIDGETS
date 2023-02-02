@@ -538,13 +538,13 @@ const FadeIn = styled.keyframes`
 `;
 
 const AppLayer = styled.div`
-  animation: ${(props) => (props.isLast ? FadeIn : null)} 3s ease-out;
+  animation: ${(props) => props.animation} 3s ease-out;
   animation-fill-mode: forwards;
-  animation-delay: 1s;
+  animation-delay: ${(props) => props.delay};
   width: 100vw;
   min-height: 100vh;
   background-color: transparent;
-  z-index: ${(props) => props.zIndex + 99};
+  z-index: ${(props) => props.zIndex};
   position: fixed;
   top: 0;
   left: 0;
