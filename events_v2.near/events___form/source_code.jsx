@@ -127,22 +127,10 @@ const Label = styled.label`
   box-sizing: border-box;
 `;
 
-const slideDownSmall = styled.keyframes`
-  0% {
-    transform: translateY(-1px);
-    opacity: 0.85;
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 1;
-  }
-`;
-
 const ErrorMessage = styled.div`
   color: #c00;
   font-size: 0.8rem;
-  margin: 4px 0 0 0;
-  animation: ${slideDownSmall} 0.2s ease-in-out;
+  margin: 0.5rem 0;
 `;
 
 const LinkTypes = [
