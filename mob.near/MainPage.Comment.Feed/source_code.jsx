@@ -5,6 +5,7 @@ const index = {
     limit: props.limit ?? 3,
     order: "desc",
     accountId: props.accounts,
+    subscribe: props.subscribe,
   },
 };
 
