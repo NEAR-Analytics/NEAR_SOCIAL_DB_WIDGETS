@@ -22,7 +22,6 @@ let isPreview = props.isPreview ?? false;
 let shouldDisplayViewAll = props.shouldDisplayViewAll;
 
 let questionBlockHeight = Number(props.blockHeight);
-console.log("questionBlockHeight: ", questionBlockHeight);
 
 const polls =
   !props.previewInfo && Social.index("poll_question", "question-v3.1.1");
@@ -339,6 +338,7 @@ const renderModal = () => {
 /********** End components ************/
 
 /********** Start rendering ************/
+console.log("poll: ", state.poll);
 return (
   <div>
     <div className="d-flex content-align-start justify-content-between">
