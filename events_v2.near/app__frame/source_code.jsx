@@ -582,11 +582,14 @@ return (
     </div>
 
     {state.layers.map((layer, index) => {
+      const isLast = index === state.layers.length - 1;
+
       return (
         <AppLayer
           key={index}
           props={{
-            isLast: index === state.layers.length - 1,
+            animation: isLast ? FadeIn : 'none',
+            delay: isLast ? '0s' : '2s',
             zIndex: index + 100,
           }}
         >
