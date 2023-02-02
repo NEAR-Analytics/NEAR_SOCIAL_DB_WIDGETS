@@ -12,12 +12,13 @@ const FadeInSpecial = styled.keyframes`
   }
   70% {
     opacity: 1;
-    max-width: 600px;
+    max-width: 300px;
   }
   100% {
     opacity: 1;
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
     top: 50%;
+    max-width: 600px;
   }
 `;
 
