@@ -6,7 +6,7 @@ const title = props.title || null;
 const FadeInScaleUpSmall = styled.keyframes`
   0% {
     opacity: 0;
-    transform: scale(0.9) translate(-50%, -50%);
+    transform: scale(0.2) translate(-50%, -50%);
   }
   100% {
     opacity: 1;
