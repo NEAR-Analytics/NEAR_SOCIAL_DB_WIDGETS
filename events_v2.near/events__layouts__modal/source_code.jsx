@@ -3,22 +3,21 @@ const BORDER_RADIUS = 16;
 
 const title = props.title || null;
 
-const ModalContent = styled.div`
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform-origin: bottom left;
-  background-color: white;
-  width: 80%;
-  height: 80%;
-  max-width: 600px;
-  max-height: 600px;
-  border-radius: ${BORDER_RADIUS}px;
-  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
+// const ModalContent = styled.div`
+//   top: 50%;
+//   left: 50%;
+//   position: absolute;
+//   transform-origin: bottom left;
+//   background-color: white;
+//   width: 80%;
+//   height: 80%;
+//   max-width: 600px;
+//   max-height: 600px;
+//   border-radius: ${BORDER_RADIUS}px;
+//   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
 
-  transform: translate(-50%, -50%);
-  /* animation: ${FadeInSpecial} 0.3s ease-in-out; */
-`;
+//   transform: translate(-50%, -50%);
+// `;
 
 return (
   <div
