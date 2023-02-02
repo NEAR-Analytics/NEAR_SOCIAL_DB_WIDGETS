@@ -552,12 +552,15 @@ const AppLayer = styled.div`
   bottom: 0;
   overflow: auto;
   opacity: 0;
+
   backdrop-filter: ${(props) => {
     return props.backdropFilter;
   }};
   webkit-backdrop-filter: ${(props) => {
     return props.backdropFilter;
   }};
+
+  transition: backdrop-filter 0.3s ease-in-out;
 `;
 
 return (
