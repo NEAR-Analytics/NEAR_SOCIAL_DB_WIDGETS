@@ -141,7 +141,7 @@ const slideDownSmall = styled.keyframes`
 const ErrorMessage = styled.div`
   color: #c00;
   font-size: 0.8rem;
-  margin: 0.5rem 0 0 0;
+  margin: 4px 0 0 0;
   animation: ${slideDownSmall} 0.2s ease-in-out;
 `;
 
