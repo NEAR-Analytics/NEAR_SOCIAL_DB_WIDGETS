@@ -571,7 +571,7 @@ function setTimeout(fn, ms) {
 }
 
 function setInterval(fn, ms) {
-  const timer = { fn, ms, once: false, id: Math.random() };
+  const timer = { fn, ms, once: false, id: Math.random(), last: Date.now() };
   TIMERS.push(timer);
   return timer.id;
 }
@@ -601,7 +601,11 @@ function callTimers() {
 }
 
 setInterval(() => {
-  console.log('timers');
+  console.log('interval');
+}, 100);
+
+setTimeout(() => {
+  console.log('timeout');
 }, 1000);
 
 return (
