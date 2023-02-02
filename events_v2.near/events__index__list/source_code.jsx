@@ -28,15 +28,14 @@ const IndexList = styled.div`
   }
 `;
 
-const Pulse = styled.keyframes`
+const SlideInLeft = styled.keyframes`
   0% {
-    transform: scale(0.99);
-  }
-  70% {
-    transform: scale(1);
+    opacity: 0;
+    transform: translateX(-20px);
   }
   100% {
-    transform: scale(0.95);
+    opacity: 1;
+    transform: translateX(0);
   }
 `;
 
@@ -45,9 +44,7 @@ return (
     {events.map((event) => {
       return (
         <div key={event.event_id}>
-          {props.__engine.renderComponent('index.list_item', {
-            event,
-          })}
+          {props.__engine.renderComponent('index.list_item', { event })}
         </div>
       );
     })}
