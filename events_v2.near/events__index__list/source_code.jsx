@@ -25,6 +25,8 @@ const IndexList = styled.div`
     width: 240px;
     flex-grow: 3;
     flex-shrink: 3;
+
+    animation: ${SlideInLeft} 0.3s ease-in-out;
   }
 `;
 
