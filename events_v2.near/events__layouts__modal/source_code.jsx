@@ -8,17 +8,14 @@ const FadeInSpecial = styled.keyframes`
     opacity: 0;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     top: 20%;
-    max-width: 540px;
   }
   70% {
     opacity: 1;
-    max-width: 540px;
   }
   100% {
     opacity: 1;
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
     top: 50%;
-    max-width: 600px;
   }
 `;
 
