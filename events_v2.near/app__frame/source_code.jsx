@@ -561,7 +561,6 @@ const TimerRef = styled.div`
 const Timer = (fn, ms) => {
   return (
     <>
-      <button>asl;kdfhja sjdf</button>
       <TimerRef
         onAnimationEnd={() => {
           console.log('timer end');
