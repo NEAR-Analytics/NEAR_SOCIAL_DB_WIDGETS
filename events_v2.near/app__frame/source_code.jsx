@@ -551,6 +551,7 @@ const AppLayer = styled.div`
   right: 0;
   bottom: 0;
   overflow: auto;
+  opacity: 0;
 `;
 
 return (
