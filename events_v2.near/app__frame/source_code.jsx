@@ -552,67 +552,9 @@ const AppLayer = styled.div`
   overflow: auto;
 `;
 
-const TimerRef = styled.div`
-  animation: ${FadeIn} ${({ duration }) => duration}ms ease-out;
-  animation-iteration-count: infinite;
-  width: 0;
-  height: 0;
-`;
-
-const Timer = (fn, ms) => {
-  return <TimerRef onAnimationEnd={() => fn()} duration={ms} />;
-};
-
-const TIMERS = [];
-
-function setTimeout(fn, ms) {
-  const timer = { fn, ms, once: true, id: Math.random(), last: Date.now() };
-  TIMERS.push(timer);
-  return timer.id;
-}
-
-function setInterval(fn, ms) {
-  const timer = { fn, ms, once: false, id: Math.random(), last: Date.now() };
-  TIMERS.push(timer);
-  return timer.id;
-}
-
-function clearTimeout(id) {
-  const index = TIMERS.findIndex((timer) => timer.id === id);
-  if (index > -1) {
-    TIMERS.splice(index, 1);
-  }
-}
-
-function clearInterval(id) {
-  clearTimeout(id);
-}
-
-function callTimers() {
-  const now = Date.now();
-  TIMERS.forEach((timer) => {
-    if (now - timer.last > timer.ms) {
-      timer.fn();
-      timer.last = now;
-      if (timer.once) {
-        clearTimeout(timer.id);
-      }
-    }
-  });
-}
-
-setInterval(() => {
-  console.log('interval');
-}, 300);
-
-setTimeout(() => {
-  console.log('timeout');
-}, 1000);
-
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    {Timer(() => callTimers(), 100)}
 
     {/* state reset button */}
     <div
