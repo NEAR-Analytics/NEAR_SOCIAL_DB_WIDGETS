@@ -614,9 +614,6 @@ return (
       return (
         <AppLayer
           key={index}
-          className={layer.fadeIn ? 'fade-in' : layer.fadeOut ? 'fade-out' : ''}
-          fadeIn={layer.fadeIn}
-          fadeOut={layer.fadeOut}
           zIndex={index}
           onAnimationEnd={() => {
             console.log('onAnimationEnd', layer);
