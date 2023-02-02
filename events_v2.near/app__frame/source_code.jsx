@@ -559,21 +559,25 @@ const TimerRef = styled.div`
 `;
 
 const Timer = (fn, ms) => {
-  return (
-    <TimerRef
-      onAnimationEnd={() => 
-        fn();}
-      duration={ms}
-    />
-  );
+  return <TimerRef onAnimationEnd={() => fn()} duration={ms} />;
 };
+
+const TIMERS = []
+
+function setTimeout(fn, ms){
+  const timer = Timer(fn, ms);
+  TIMERS.push(timer);
+  return timer;
+}
 
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    {Timer(() => {
-      console.log('timer');
-    }, 1000)}
+    {
+      TIMERS.map((timer, index) => {
+        return <div key={index}>{timer}</div>
+      }
+    }
 
     {/* state reset button */}
     <div
