@@ -585,7 +585,7 @@ const Timer = (fn, ms) => {
         onAnimationEnd={() => {
           fn();
         }}
-        duration={ms}
+        props={{ duration: ms }}
       />
     </>
   );
