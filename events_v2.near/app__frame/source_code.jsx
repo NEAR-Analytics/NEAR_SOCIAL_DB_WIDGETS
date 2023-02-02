@@ -562,22 +562,24 @@ const Timer = (fn, ms) => {
   return <TimerRef onAnimationEnd={() => fn()} duration={ms} />;
 };
 
-const TIMERS = []
+const TIMERS = [];
 
-function setTimeout(fn, ms){
+function setTimeout(fn, ms) {
   const timer = Timer(fn, ms);
   TIMERS.push(timer);
   return timer;
 }
 
+setTimeout(() => {
+  console.log('test');
+}, 500);
+
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
-    {
-      TIMERS.map((timer, index) => {
-        return <div key={index}>{timer}</div>
-      }
-    }
+    {TIMERS.map((timer, index) => {
+      return <div key={index}>{timer}</div>;
+    })}
 
     {/* state reset button */}
     <div
