@@ -44,10 +44,9 @@ return (
   <IndexList>
     {events.map((event) => {
       return (
-        <div>
+        <div key={event.event_id}>
           {props.__engine.renderComponent('index.list_item', {
             event,
-            key: event.event_id,
           })}
         </div>
       );
