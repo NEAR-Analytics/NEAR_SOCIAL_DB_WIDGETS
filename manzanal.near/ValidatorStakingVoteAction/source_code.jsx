@@ -1,6 +1,5 @@
-//ValidatorStakingVoteAction
 if (!context.accountId) {
-  return "Please sign in with NEAR wallet to stake NEAR";
+  return "Please sign in with NEAR wallet";
 }
 
 const poolId = props.validator_account_id || "idtcn4.poolv1.near";
@@ -13,15 +12,18 @@ const getVotingPowerBalance = () => {
   const balanceYocto = Near.view(CONTRACT_ID, GET_VP_METHOD, {
     voter_id: context.accountId,
   });
-  return parseInt(balanceYocto) / 1000000000000000000000000;
+  const _balance = parseInt(balanceYocto) / 1000000000000000000000000;
+  return _balance.toFixed(2);
 };
 
 initState({
   amount: 0,
   poolId,
   valid: false,
-  balance: getVotingPowerBalance(),
+  balance: 0,
 });
+
+State.update({ balance: getVotingPowerBalance() });
 
 const onVoteClick = () => {
   const gas = 200 * 1000000000000;
