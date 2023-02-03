@@ -2,6 +2,7 @@ const index = props.index;
 if (!index) {
   return "props.index is not defined";
 }
+console.log("index: ", index);
 
 const renderItem = props.renderItem ?? ((i) => JSON.stringify(i));
 index.options = index.options || {};
