@@ -31,9 +31,10 @@ return (
       src="mob.near/widget/ManualIndexFeed"
       props={{
         index,
+        reverse: true,
         renderItem,
         nextLimit: 10,
-        loadMoreText: "Show more comments",
+        loadMoreText: "Show earlier comments...",
       }}
     />
   </div>
