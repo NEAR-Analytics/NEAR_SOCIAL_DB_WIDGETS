@@ -113,7 +113,7 @@ const footer =
           Accept
         </a>
         <a
-          className="btn btn-outline-cancel mb-2"
+          className="btn btn-outline-danger mb-2"
           onClick={() => {
             const args = {
               account_id: entityId,
