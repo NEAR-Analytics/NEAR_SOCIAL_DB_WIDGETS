@@ -7,7 +7,7 @@ if (!update) {
 }
 
 return (
-  <div className="col-lg-12  mb-2">
+  <>
     <label htmlFor="description">{text}</label>
     <textarea
       id="description"
@@ -17,5 +17,5 @@ return (
       className="form-control"
       onChange={(event) => update(event.target.value)}
     />
-  </div>
+  </>
 );
