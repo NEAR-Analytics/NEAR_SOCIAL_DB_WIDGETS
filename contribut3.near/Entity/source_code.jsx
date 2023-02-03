@@ -84,6 +84,11 @@ const requestsList =
     </div>
   );
 
+const needForm =
+  !isAuthorized || notStandalone ? null : (
+    <Widget src={`${ownerId}/widget/NeedForm?accountId=${accountId}`} />
+  );
+
 const header = (
   <div className="card-header">
     <div className="row justify-content-between">
@@ -116,3 +121,4 @@ return (
     {body}
   </div>
 );
+c;
