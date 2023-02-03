@@ -114,7 +114,8 @@ const entityIdInput = (
     <Typeahead
       id="entity-id-input"
       labelKey="name"
-      onChange={(entityId) =>
+      onChange={(entityId) => {
+        State.update({ entityId });
         Near.asyncView(
           ownerId,
           "get_entity_invites",
@@ -122,11 +123,10 @@ const entityIdInput = (
           "final"
         ).then((invites) =>
           State.update({
-            entityId,
             forbiddenIds: new Set(Object.keys(invites)),
           })
-        )
-      }
+        );
+      }}
       options={(
         Near.view(
           ownerId,
