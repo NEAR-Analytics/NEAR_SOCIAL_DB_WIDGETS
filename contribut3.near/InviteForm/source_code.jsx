@@ -118,7 +118,7 @@ const entityIdInput = (
         Near.asyncView(
           ownerId,
           "get_entity_invites",
-          { entity_id: entityId[0].name },
+          { account_id: entityId[0].name },
           "final"
         ).then((invites) =>
           State.update({
