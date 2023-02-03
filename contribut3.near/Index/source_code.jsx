@@ -152,6 +152,11 @@ const navbar = (
             text: "Contribution needs",
             icon: "bi-clipboard-check-fill",
           })}
+          {navbarButton({
+            content: "invites",
+            text: "Contribution invites",
+            icon: "bi-person-fill-add",
+          })}
           <li className="nav-item">
             <input
               type="text"
@@ -188,6 +193,12 @@ const content = {
   needs: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
+      props={{ search: state.search }}
+    />
+  ),
+  invites: (
+    <Widget
+      src={`${ownerId}/widget/InviteList`}
       props={{ search: state.search }}
     />
   ),
