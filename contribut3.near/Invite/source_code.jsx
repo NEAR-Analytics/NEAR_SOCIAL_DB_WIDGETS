@@ -53,16 +53,22 @@ const header = (
 );
 
 const postTitle = (
-  <h5 className="card-title">
-    <div className="row justify-content-between">
-      <div className="col-9">
-        Invite for{" "}
-        {typeof invite.contribution_type !== "string"
-          ? invite.contribution_type.Other
-          : invite.contribution_type}
+  <>
+    <h5 className="card-title">
+      <div className="row justify-content-between">
+        <div className="col-9">
+          Invite for{" "}
+          {typeof invite.contribution_type !== "string"
+            ? invite.contribution_type.Other
+            : invite.contribution_type}
+        </div>
       </div>
-    </div>
-  </h5>
+    </h5>
+    <Widget
+      src={`mob.near/widget/ProfileLine`}
+      props={{ accountId: contributorId }}
+    />
+  </>
 );
 
 const descriptionArea = (
