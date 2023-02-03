@@ -10,7 +10,7 @@ const VOTE_CONTRACT_ADDRESS_ARG = "metastaking.app";
 
 const getVotingPowerBalance = () => {
   const balanceYocto = Near.view(CONTRACT_ID, GET_VP_METHOD, {
-    voter_id: "metachill.near",
+    voter_id: context.accountId,
   });
   const _balance = parseInt(balanceYocto) / 1000000000000000000000000;
   return _balance.toFixed(2);
@@ -40,7 +40,6 @@ const onUseMaxClick = () => {
 };
 
 const handleChange = (e) => {
-  console.log("value", e.target.value);
   State.update({
     amount: e.target.value,
     valid:
