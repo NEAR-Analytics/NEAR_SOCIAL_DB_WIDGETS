@@ -102,13 +102,14 @@ const body = (
   </div>
 );
 
-const proposed = Near.view(
-  ownerId,
-  "check_if_need_proposed",
-  { entity_id: accountId, contributor_id: context.accountId, cid },
-  "final",
-  true
-);
+const proposed =
+  Near.view(
+    ownerId,
+    "check_if_need_proposed",
+    { entity_id: accountId, contributor_id: context.accountId, cid },
+    "final",
+    true
+  ) ?? true;
 
 const footer =
   !isContributor || isPreview || !contributionNeed.active || proposed ? null : (
