@@ -2,7 +2,7 @@
 initState({ askQuestion: false });
 
 const adminContract = "admin.dev-support.near";
-const admins = NEAR.view(adminContract, "get_admins");
+const admins = Near.view(adminContract, "get_admins", {});
 
 return (
   <div class="container">
