@@ -64,7 +64,7 @@ const postTitle = (
         </div>
       </div>
     </h5>
-    <small>
+    <small className="mb-2">
       <Widget
         src={`mob.near/widget/ProfileLine`}
         props={{ accountId: contributorId }}
