@@ -2,7 +2,7 @@ const ownerId = "contribut3.near";
 const entityId = props.entityId;
 const contributorId = props.contributorId ?? context.accountId;
 
-if (!entityId || !context.accountId) {
+if (!entityId || !contributorId) {
   return "Cannot show contribution invite without entity or contributor ID!";
 }
 
