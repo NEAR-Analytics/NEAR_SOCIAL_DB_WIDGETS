@@ -131,7 +131,6 @@ const items = state.items ? state.items.slice(0, state.displayCount) : [];
 if (reverse) {
   items.reverse();
 }
-console.log(items);
 
 return (
   <>
