@@ -13,7 +13,7 @@ const getVotingPowerBalance = () => {
     voter_id: context.accountId,
   });
   const _balance = parseInt(balanceYocto) / 1000000000000000000000000;
-  return _balance.toFixed(2);
+  return _balance.toFixed(0);
 };
 
 initState({
@@ -28,7 +28,7 @@ const onVoteClick = () => {
   const deposit = "";
   const args = {
     contract_address: VOTE_CONTRACT_ADDRESS_ARG,
-    voting_power: state.amount + "000000000000000000000000",
+    voting_power: parseInt(state.amount) + "000000000000000000000000",
     votable_object_id: state.poolId,
   };
 
@@ -48,6 +48,11 @@ const handleChange = (e) => {
       e.target.value <= state.balance,
   });
 };
+
+const handleBlur = (e) => {
+  State.update({ amount: parseInt(state.amount) });
+};
+
 return (
   <div>
     <h1>Vote&nbsp;for&nbsp;{state.poolId}</h1>
@@ -60,6 +65,7 @@ return (
           type="number"
           value={state.amount}
           onChange={handleChange}
+          onBlur={handleBlur}
           class="form-control"
           placeholder="Amount Voting Power"
           aria-label="amount-voting-power"
