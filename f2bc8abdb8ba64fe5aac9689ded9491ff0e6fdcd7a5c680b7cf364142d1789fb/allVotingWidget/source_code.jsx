@@ -115,6 +115,34 @@ function getFontColor(index) {
       ];
 }
 
+function getValidAnswersAccountIds() {
+  let accountsIds = [];
+  for (let i = 0; i < state.answers.length; i++) {
+    accountsIds.push(state.answers[i].accountId);
+  }
+  return accountsIds;
+}
+
+const index = {
+  action: "post",
+  key: "main",
+  options: {
+    limit: 10,
+    order: "desc",
+    accountId: getValidAnswersAccountIds(),
+  },
+};
+
+const renderItem = (a) =>
+  a.value.type === "md" && (
+    <div key={JSON.stringify(a)} className="mb-3">
+      <Widget
+        src="mob.near/widget/MainPage.Post"
+        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+      />
+    </div>
+  );
+
 function getInputStyles(questionType, questionNumber, optionNumber) {
   if (questionType == "2") {
     return state.vote[questionNumber].includes(optionNumber + "")
@@ -224,9 +252,6 @@ function setValidAnswersToThisPoll() {
     Date.now() < poll.value.endTimestamp;
 
   const canVote = !hasVoted && isQuestionOpen;
-
-  console.log(1, state.answers, validAnswersToThisPoll);
-  console.log(2, state.canVote, canVote);
 
   //Comparing objects checks memory position
   if (
@@ -665,6 +690,10 @@ return (
     ) : (
       ""
     )}
+    <Widget
+      src={`${widgetOwner}/widget/IndexFeed`}
+      props={{ index, renderItem }}
+    />
     <p
       style={{
         fontWeight: "500",
