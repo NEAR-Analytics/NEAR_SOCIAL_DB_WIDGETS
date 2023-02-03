@@ -1,5 +1,7 @@
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
+const admins = props.admins;
+const adminContract = props.adminContract;
 
 const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
@@ -21,15 +23,29 @@ const footer = (
     <small class="text-muted">
       <div class="row justify-content-between">
         <div class="col-8">
-          <a href="#" onClick={onLike}>
-            <i class={`bi ${likeBtnClass}`}> </i>
-            Upvote ({post.likes.length ?? 0})
-          </a>
+          {/* Upvote Widget */}
+          <Widget
+            src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
+            props={{ accountId, blockHeight }}
+          />
 
-          <a href="#" class="text-danger ms-3" onClick={onLike}>
-            <i class={`bi bi-flag`}> </i>
-            Flag Question
-          </a>
+          {/* Flag question widget */}
+          <Widget
+            src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Flag"
+            props={{ accountId, blockHeight }}
+          />
+
+          {/* Answers widget */}
+          <Widget
+            src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Answers"
+            props={{ accountId, blockHeight }}
+          />
+
+          {/* Delete widget */}
+          <Widget
+            src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Delete"
+            props={{ accountId, blockHeight, admins, adminContract }}
+          />
         </div>
 
         <div class="col-4">
