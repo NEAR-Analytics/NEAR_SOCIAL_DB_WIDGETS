@@ -53,6 +53,14 @@ const contributionRequests = Near.view(
   "final"
 );
 
+const invites = Near.view(
+  ownerId,
+  "get_entity_invites",
+  { account_id: accountId },
+  "final",
+  true
+);
+
 const contributionsList = notStandalone ? null : (
   <div className="mb-2">
     Contributions:
@@ -79,6 +87,22 @@ const requestsList =
             <Widget
               src={`${ownerId}/widget/ContributionRequest`}
               props={{ entityId: accountId, contributorId, id: contributorId }}
+            />
+          ))}
+    </div>
+  );
+
+const inviteList =
+  !isAuthorized || notStandalone ? null : (
+    <div>
+      Sent invites:
+      <br />
+      {!invites
+        ? "Loading..."
+        : Object.keys(invites).map((contributorId) => (
+            <Widget
+              src={`${ownerId}/widget/Invite`}
+              props={{ entityId: accountId, contributorId }}
             />
           ))}
     </div>
@@ -113,6 +137,7 @@ const body = (
     {needForm}
     {contributionsList}
     {requestsList}
+    {inviteList}
   </div>
 );
 
