@@ -110,6 +110,7 @@ const body = (
     <div>
       Founded at: {new Date(Number(entity.start_date)).toLocaleDateString()}
     </div>
+    {needForm}
     {contributionsList}
     {requestsList}
   </div>
