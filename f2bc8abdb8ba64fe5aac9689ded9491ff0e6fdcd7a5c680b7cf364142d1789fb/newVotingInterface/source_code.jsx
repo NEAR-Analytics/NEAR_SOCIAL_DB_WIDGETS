@@ -338,7 +338,6 @@ const renderModal = () => {
 /********** End components ************/
 
 /********** Start rendering ************/
-console.log("poll: ", state.poll);
 return (
   <div>
     <div className="d-flex content-align-start justify-content-between">
