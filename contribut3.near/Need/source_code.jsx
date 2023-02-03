@@ -64,7 +64,7 @@ const header = (
   </div>
 );
 
-const postTitle = (
+const needTitle = (
   <h5 className="card-title">
     <div className="row justify-content-between">
       <div className="col-9">
