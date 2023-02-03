@@ -98,7 +98,7 @@ const makeMoreItems = () => {
 
 const fetchMore =
   state.fetchFrom && state.items.length < state.displayCount ? (
-    <div className="loader">
+    <div className="loader" key={"loader"}>
       <span
         className="spinner-grow spinner-grow-sm me-1"
         role="status"
@@ -108,7 +108,7 @@ const fetchMore =
     </div>
   ) : (
     state.displayCount < state.items.length && (
-      <div>
+      <div key={"loader more"}>
         <a href="javascript:void" onClick={(e) => makeMoreItems()}>
           {props.loadMoreText ?? "Load more..."}
         </a>
@@ -120,6 +120,7 @@ const items = state.items ? state.items.slice(0, state.displayCount) : [];
 if (reverse) {
   items.reverse();
 }
+console.log(items);
 
 return (
   <>
