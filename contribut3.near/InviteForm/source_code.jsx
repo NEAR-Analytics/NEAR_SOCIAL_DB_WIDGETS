@@ -160,7 +160,7 @@ const onSubmit = () => {
   Near.call(ownerId, "invite_contributor", args);
 };
 
-const header = <div className="card-header">Create an entity</div>;
+const header = <div className="card-header">Invite contributor</div>;
 
 const body = (
   <div className="card-body">
