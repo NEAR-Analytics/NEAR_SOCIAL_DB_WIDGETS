@@ -690,10 +690,7 @@ return (
     ) : (
       ""
     )}
-    <Widget
-      src={`${widgetOwner}/widget/IndexFeed`}
-      props={{ index, renderItem }}
-    />
+
     <p
       style={{
         fontWeight: "500",
