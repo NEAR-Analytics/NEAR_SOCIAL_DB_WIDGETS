@@ -36,6 +36,7 @@ const editorsFooter = props.isPreview ? null : (
     {editorForm({ formName: "Contributor" })}
     {editorForm({ formName: "ContributionRequest" })}
     {editorForm({ formName: "Entity" })}
+    {editorForm({ formName: "Invite" })}
     {!isModerator ? null : editorForm({ formName: "ModeratorEntity" })}
     {!isModerator ? null : editorForm({ formName: "ModeratorSet" })}
   </div>
@@ -84,6 +85,11 @@ const controls = (
               formName: "Entity",
               text: "Create Entity",
               icon: "bi-plus-circle",
+            })}
+            {control({
+              formName: "Invite",
+              text: "Invite Contributor",
+              icon: "bi-person-add",
             })}
             {!isModerator
               ? null
