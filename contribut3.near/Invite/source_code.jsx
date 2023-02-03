@@ -1,8 +1,9 @@
 const ownerId = "contribut3.near";
 const entityId = props.entityId;
+const contributorId = props.contributorId ?? context.contributorId;
 
 if (!entityId || !context.accountId) {
-  return "Cannot show contribution invite without entityId or contributorId!";
+  return "Cannot show contribution invite without entity or contributor ID!";
 }
 
 const invite = props.isPrevew
@@ -10,7 +11,7 @@ const invite = props.isPrevew
   : Near.view(
       ownerId,
       "get_invite",
-      { entity_id: entityId, contributor_id: context.accountId },
+      { entity_id: entityId, contributor_id: contributorId },
       "final",
       true
     );
@@ -79,24 +80,48 @@ const body = (
   </div>
 );
 
-const footer = (
-  <div className="card-footer">
-    <div>
-      <a
-        className="btn btn-outline-primary mb-2"
-        onClick={() => {
-          const args = {
-            account_id: entityId,
-          };
-
-          Near.call(ownerId, "accept_invite", args);
-        }}
-      >
-        Accept
-      </a>
-    </div>
-  </div>
+const currentContributor = Near.view(
+  ownerId,
+  "get_contribution",
+  { entity_id: entityId, contributor_id: contributorId },
+  "final",
+  true
 );
+
+const isAuthorized =
+  !!currentContributor && currentContributor.permissions.includes("Admin");
+
+const footer =
+  context.accountId !== contributorId ? null : (
+    <div className="card-footer">
+      <div>
+        <a
+          className="btn btn-outline-primary mb-2"
+          onClick={() => {
+            const args = {
+              account_id: entityId,
+            };
+
+            Near.call(ownerId, "accept_invite", args);
+          }}
+        >
+          Accept
+        </a>
+        <a
+          className="btn btn-outline-cancel mb-2"
+          onClick={() => {
+            const args = {
+              account_id: entityId,
+            };
+
+            Near.call(ownerId, "rejhect_invite", args);
+          }}
+        >
+          Reject
+        </a>
+      </div>
+    </div>
+  );
 
 return (
   <div className={`card my-2`}>
