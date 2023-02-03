@@ -10,7 +10,7 @@ const VOTE_CONTRACT_ADDRESS_ARG = "metastaking.app";
 
 const getVotingPowerBalance = () => {
   const balanceYocto = Near.view(CONTRACT_ID, GET_VP_METHOD, {
-    voter_id: context.accountId,
+    voter_id: "metachill.near",
   });
   const _balance = parseInt(balanceYocto) / 1000000000000000000000000;
   return _balance.toFixed(2);
@@ -20,10 +20,8 @@ initState({
   amount: 0,
   poolId,
   valid: false,
-  balance: 0,
+  balance: getVotingPowerBalance(),
 });
-
-State.update({ balance: getVotingPowerBalance() });
 
 const onVoteClick = () => {
   const gas = 200 * 1000000000000;
