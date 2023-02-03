@@ -53,7 +53,7 @@ const accountIdInput = (
 const descriptionInput = (
   <div className="col-lg-12 mb-2">
     <Widget
-      src={`${ownerId}/widget/DescrpitionInput`}
+      src={`${ownerId}/widget/DescriptionInput`}
       props={{
         description: state.description,
         update: (description) => State.update({ description }),
