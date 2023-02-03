@@ -114,7 +114,7 @@ const footer =
               account_id: entityId,
             };
 
-            Near.call(ownerId, "rejhect_invite", args);
+            Near.call(ownerId, "reject_invite", args);
           }}
         >
           Reject
