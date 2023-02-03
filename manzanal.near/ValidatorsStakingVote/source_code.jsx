@@ -58,13 +58,13 @@ let pools = Object.entries(validators.body).map((item) => {
         <span>Ⓝ</span>
       </td>
       <td>
-        <a
-          className="btn btn-primary"
-          href={`/#/manzanal.near/widget/ValidatorStakingVoteAction?validator_account_id=${pool.account_id}`}
-          role="button"
-        >
-          Vote
-        </a>
+        <Widget
+          src="manzanal.near/widget/VoteValidatorButton"
+          props={{
+            accountId: pool.account_id,
+            short: true,
+          }}
+        />
       </td>
     </tr>
   );
