@@ -14,7 +14,7 @@ const onClick = () => {
 return (
   <button
     disabled={state.loading || dataLoading || !context.accountId}
-    className="text-black border-0 bg-white"
+    className="text-black border-0 bg-white ms-3"
     onClick={onClick}
   >
     <i class={`bi bi-trash`}> </i>
