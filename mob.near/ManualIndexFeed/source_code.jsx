@@ -3,9 +3,21 @@ if (!index) {
   return "props.index is not defined";
 }
 
-const renderItem = props.renderItem ?? ((i) => JSON.stringify(i));
+const renderItem =
+  props.renderItem ??
+  ((item, i) => (
+    <div key={i}>
+      #{i}: {JSON.stringify(item)}
+    </div>
+  ));
 index.options = index.options || {};
-index.options.limit = Math.min(index.options.limit, 100);
+const initialRenderLimit =
+  props.initialRenderLimit ?? index.options.limit ?? 10;
+index.options.limit = Math.min(
+  Math.max(initialRenderLimit * 2, index.options.limit),
+  100
+);
+const reverse = !!props.reverse;
 
 const initialItems = Social.index(index.action, index.key, index.options);
 if (initialItems === null) {
@@ -20,6 +32,17 @@ const computeFetchFrom = (items, limit) => {
   return index.options.order === "desc" ? blockHeight - 1 : blockHeight + 1;
 };
 
+const mergeItems = (newItems) => {
+  const items = [
+    ...new Set([...newItems, ...state.items].map((i) => JSON.stringify(i))),
+  ].map((i) => JSON.parse(i));
+  items.sort((a, b) => a.blockHeight - b.blockHeight);
+  if (index.options.order === "desc") {
+    items.reverse();
+  }
+  return items;
+};
+
 const jInitialItems = JSON.stringify(initialItems);
 if (state.jInitialItems !== jInitialItems) {
   const jIndex = JSON.stringify(index);
@@ -27,21 +50,21 @@ if (state.jInitialItems !== jInitialItems) {
     State.update({
       jIndex,
       jInitialItems,
-      initialItems,
-      items: [],
+      items: initialItems,
       fetchFrom: false,
       nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
+      displayCount: initialRenderLimit,
     });
   } else {
     State.update({
-      initialItems,
       jInitialItems,
+      items: mergeItems(initialItems),
     });
   }
 }
 
 if (state.fetchFrom) {
-  const limit = props.nextLimit ?? index.options.limit;
+  const limit = Math.max(props.nextLimit, index.options.limit);
   const newItems = Social.index(
     index.action,
     index.key,
@@ -52,8 +75,8 @@ if (state.fetchFrom) {
     })
   );
   if (newItems !== null) {
-    state.items.push(...newItems);
     State.update({
+      items: mergeItems(newItems),
       fetchFrom: false,
       nextFetchFrom: computeFetchFrom(newItems, limit),
     });
@@ -61,6 +84,11 @@ if (state.fetchFrom) {
 }
 
 const makeMoreItems = () => {
+  State.update({
+    displayCount:
+      state.displayCount +
+      (props.nextLimit ?? index.initialRenderLimit ?? index.options.limit),
+  });
   if (state.nextFetchFrom && state.nextFetchFrom !== state.fetchFrom) {
     State.update({
       fetchFrom: state.nextFetchFrom,
@@ -68,27 +96,35 @@ const makeMoreItems = () => {
   }
 };
 
+const fetchMore =
+  state.fetchFrom && state.items.length < state.displayCount ? (
+    <div className="loader">
+      <span
+        className="spinner-grow spinner-grow-sm me-1"
+        role="status"
+        aria-hidden="true"
+      />
+      Loading ...
+    </div>
+  ) : (
+    state.displayCount < state.items.length && (
+      <div>
+        <a href="javascript:void" onClick={(e) => makeMoreItems()}>
+          {props.loadMoreText ?? "Load more..."}
+        </a>
+      </div>
+    )
+  );
+
+const items = state.items ? state.items.slice(0, state.displayCount) : [];
+if (reverse) {
+  items.reverse();
+}
+
 return (
   <>
-    {state.initialItems &&
-      [...state.initialItems, ...state.items].map(renderItem)}
-    {state.fetchFrom ? (
-      <div className="loader">
-        <span
-          className="spinner-grow spinner-grow-sm me-1"
-          role="status"
-          aria-hidden="true"
-        />
-        Loading ...
-      </div>
-    ) : (
-      !!state.nextFetchFrom && (
-        <div>
-          <a href="javascript:void" onClick={(e) => makeMoreItems()}>
-            {props.loadMoreText ?? "Load more..."}
-          </a>
-        </div>
-      )
-    )}
+    {reverse && fetchMore}
+    {items.map(renderItem)}
+    {!reverse && fetchMore}
   </>
 );
