@@ -141,6 +141,11 @@ const navbar = (
             text: "Manage entities",
             icon: "bi-house-lock-fill",
           })}
+          {navbarButton({
+            content: "needs",
+            text: "Contribution needs",
+            icon: "bi-clipboard-check-fill",
+          })}
           <li className="nav-item">
             <input
               type="text"
@@ -171,6 +176,12 @@ const content = {
   admin: (
     <Widget
       src={`${ownerId}/widget/AdminList`}
+      props={{ search: state.search }}
+    />
+  ),
+  needs: (
+    <Widget
+      src={`${ownerId}/widget/NeedList`}
       props={{ search: state.search }}
     />
   ),
