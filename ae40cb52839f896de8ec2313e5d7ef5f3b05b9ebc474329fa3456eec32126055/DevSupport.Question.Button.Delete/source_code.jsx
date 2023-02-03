@@ -8,7 +8,7 @@ if (!admins.includes(context.accountId)) {
 }
 
 const onClick = () => {
-  NEAR.call(adminContract, "hide_element", { id: { accountId, blockHeight } });
+  Near.call(adminContract, "hide_element", { id: { accountId, blockHeight } });
 };
 
 return (
