@@ -86,7 +86,7 @@ const requestsList =
 
 const needForm =
   !isAuthorized || notStandalone ? null : (
-    <Widget src={`${ownerId}/widget/NeedForm?accountId=${accountId}`} />
+    <Widget src={`${ownerId}/widget/NeedForm`} props={{ accountId }} />
   );
 
 const header = (
