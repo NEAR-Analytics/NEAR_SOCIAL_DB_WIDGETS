@@ -3,6 +3,11 @@ const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 
+const is_hidden = Near.view(adminContract, "is_hidden", {
+  id: { account_id: accountId, block_height: blockHeight },
+});
+const border = is_hidden ? "border-danger" : "";
+
 const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
@@ -10,7 +15,7 @@ const question = JSON.parse(
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 return (
-  <div className="border p-3">
+  <div className={`border ${border} p-3`}>
     <h2>
       <a className="text-black" href={link}>
         {question.title}
