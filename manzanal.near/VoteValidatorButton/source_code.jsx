@@ -9,7 +9,7 @@ return (
       href={`/#/manzanal.near/widget/ValidatorStakingVoteAction?validator_account_id=${props.accountId}`}
       role="button"
     >
-      {"Vote for " + props.accountId}
+      {props.short ? "Vote" : "Vote for " + props.accountId}
     </a>
   </>
 );
