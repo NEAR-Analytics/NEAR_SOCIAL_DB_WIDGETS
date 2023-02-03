@@ -10,6 +10,16 @@ const renderItem =
       #{i}: {JSON.stringify(item)}
     </div>
   ));
+const cachedRenderItem = (item, i) => {
+  const key = JSON.stringify(item);
+
+  if (!(key in state.cachedItems)) {
+    state.cachedItems[key] = renderItem(item, i);
+    State.update();
+  }
+  return state.cachedItems[key];
+};
+
 index.options = index.options || {};
 const initialRenderLimit =
   props.initialRenderLimit ?? index.options.limit ?? 10;
@@ -54,6 +64,7 @@ if (state.jInitialItems !== jInitialItems) {
       fetchFrom: false,
       nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
       displayCount: initialRenderLimit,
+      cachedItems: {},
     });
   } else {
     State.update({
@@ -125,7 +136,7 @@ console.log(items);
 return (
   <>
     {reverse && fetchMore}
-    {items.map(renderItem)}
+    {items.map(cachedRenderItem)}
     {!reverse && fetchMore}
   </>
 );
