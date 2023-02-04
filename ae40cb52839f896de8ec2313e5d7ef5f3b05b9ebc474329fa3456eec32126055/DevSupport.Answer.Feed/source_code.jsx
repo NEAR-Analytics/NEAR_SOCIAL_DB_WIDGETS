@@ -8,6 +8,9 @@ const index = {
   },
 };
 
+const admins = props.admins;
+const adminContract = propos.adminContract;
+
 const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
@@ -16,6 +19,8 @@ const renderItem = (a) =>
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
+          admins,
+          adminContract,
         }}
       />
     </div>
