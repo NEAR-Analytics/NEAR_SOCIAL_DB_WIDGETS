@@ -9,7 +9,7 @@ const index = {
 };
 
 const admins = props.admins;
-const adminContract = propos.adminContract;
+const adminContract = props.adminContract;
 
 const renderItem = (a) =>
   a.value.type === "md" && (
