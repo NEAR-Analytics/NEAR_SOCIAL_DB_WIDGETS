@@ -160,7 +160,7 @@ return (
           <Widget
             src="testwiki.near/widget/WikiOnSocialDB_Authors"
             props={{
-              resultArticles,
+              filteredArticles,
             }}
           />
         )}
