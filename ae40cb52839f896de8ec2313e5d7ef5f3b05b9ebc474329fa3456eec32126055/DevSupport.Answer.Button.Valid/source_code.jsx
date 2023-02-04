@@ -3,6 +3,7 @@ const blockHeight = props.blockHeight;
 const adminContract = props.adminContract;
 const admins = props.admins;
 
+return props.adminContract;
 if (!admins.includes(context.accountId)) {
   return "";
 }
