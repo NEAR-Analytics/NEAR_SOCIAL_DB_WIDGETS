@@ -4,7 +4,7 @@ const postType = props.postType ?? "post";
 const link = props.link;
 
 return (
-  <div className="d-flex flex-row align-items-center">
+  <div className="d-flex flex-row align-items-center vh-100">
     <div className="flex-grow-1 text-truncate">
       <a
         className="text-dark text-decoration-none text-truncate"
@@ -46,6 +46,14 @@ return (
                   label: `Copy link to ${postType}`,
                 }}
               />
+            </li>
+            <li className="dropdown-item">
+              <a
+                className="link-dark text-decoration-none"
+                href={`${link}&raw=true`}
+              >
+                View raw markdown source
+              </a>
             </li>
           </ul>
         </span>
