@@ -1,4 +1,4 @@
-// const authors = Array.from(props.resultArticles, ({ author }) => author);
+const authors = Array.from(props.filteredArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 
 const getAuthorsStats = (acc, author) => {
@@ -9,9 +9,8 @@ const getAuthorsStats = (acc, author) => {
   return acc;
 };
 const countAuthors = (arr) => arr.reduce(getAuthorsStats, {});
-const authorsCountObject = countAuthors(props.filteredArticles);
+const authorsCountObject = countAuthors(authors);
 const authorsCountArray = Object.entries(authorsCountObject);
-console.log(authorsCountArray);
 
 return (
   <>
