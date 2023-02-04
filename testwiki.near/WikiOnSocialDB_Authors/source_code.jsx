@@ -1,4 +1,4 @@
-const authors = Array.from(props.resultArticles, ({ author }) => author);
+// const authors = Array.from(props.resultArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 
 const getAuthorsStats = (acc, author) => {
