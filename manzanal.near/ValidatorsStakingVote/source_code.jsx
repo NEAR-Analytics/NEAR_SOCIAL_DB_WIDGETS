@@ -24,10 +24,9 @@ return (
       props={{
         data: validators.body,
         searchTermKey: "account_id",
-        minLength: 2,
+        minLength: 0,
         placeholder: "Search Valdator",
         onChange: onChangeData,
-        debug: false,
       }}
     />
     <div class="table-responsive">
