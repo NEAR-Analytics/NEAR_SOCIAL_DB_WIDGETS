@@ -1,13 +1,13 @@
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
-const contract = props.contract;
+const adminContract = props.adminContract;
 
 const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
 
-const is_valid = Near.view(contract, "is_valid", {
+const is_valid = Near.view(adminContract, "is_valid", {
   id: { account_id: accountId, block_height: blockHeight },
 });
 const border = is_valid ? "border-success" : "";
