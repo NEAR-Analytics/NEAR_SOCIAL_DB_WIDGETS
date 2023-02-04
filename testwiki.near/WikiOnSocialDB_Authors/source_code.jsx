@@ -9,7 +9,7 @@ const getAuthorsStats = (acc, author) => {
   return acc;
 };
 const countAuthors = (arr) => arr.reduce(getAuthorsStats, {});
-const authorsCountObject = countAuthors(authors);
+const authorsCountObject = countAuthors(props.filteredArticles);
 const authorsCountArray = Object.entries(authorsCountObject);
 console.log(authorsCountArray);
 
