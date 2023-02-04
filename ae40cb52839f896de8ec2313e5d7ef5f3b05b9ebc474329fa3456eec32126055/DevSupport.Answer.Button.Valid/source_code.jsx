@@ -10,7 +10,7 @@ if (!admins.includes(context.accountId)) {
 const onClick = () => {
   Near.call(adminContract, "mark_useful", {
     id: { account_id: accountId, block_height: blockHeight },
-    amount: 0,
+    amount: "0",
   });
 };
 
