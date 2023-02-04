@@ -7,10 +7,10 @@ const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
 
-const is_valid = Near.view(adminContract, "is_valid", {
+const is_useful = Near.view(adminContract, "is_useful", {
   id: { account_id: accountId, block_height: blockHeight },
 });
-const border = is_valid ? "border-success" : "border-black";
+const border = is_useful ? "border-success" : "border-black";
 
 return (
   <>
@@ -21,9 +21,7 @@ return (
       />
       <hr />
 
-      <div class="mt-3">
-        {answer.text} - {border}
-      </div>
+      <div class="mt-3">{answer.text}</div>
 
       <Widget
         src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Button.Valid"
