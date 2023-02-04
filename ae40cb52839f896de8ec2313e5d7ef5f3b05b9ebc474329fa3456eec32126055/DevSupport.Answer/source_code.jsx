@@ -7,9 +7,14 @@ const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
 
+const is_valid = Near.view(adminContract, "is_valid", {
+  id: { account_id: accountId, block_height: blockHeight },
+});
+const border = is_valid ? "border-success" : "";
+
 return (
   <>
-    <div className="border mt-3 p-3">
+    <div className={`border ${border} mt-3 p-3`}>
       <Widget
         src="mob.near/widget/Profile.ShortInlineBlock"
         props={{ accountId, tooltip: false }}
