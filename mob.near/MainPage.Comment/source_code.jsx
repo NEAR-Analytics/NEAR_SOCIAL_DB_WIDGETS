@@ -6,6 +6,7 @@ const content =
   JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
 const parentItem = content.item;
 const highlight = !!props.highlight;
+const raw = !!props.raw;
 
 const extractNotifyAccountId = (item) => {
   if (!item || item.type !== "social" || !item.path) {
@@ -31,7 +32,7 @@ return (
       <div className="mt-2 text-break">
         <Widget
           src="mob.near/widget/MainPage.Post.Content"
-          props={{ content }}
+          props={{ content, raw }}
         />
       </div>
       {blockHeight !== "now" && (
