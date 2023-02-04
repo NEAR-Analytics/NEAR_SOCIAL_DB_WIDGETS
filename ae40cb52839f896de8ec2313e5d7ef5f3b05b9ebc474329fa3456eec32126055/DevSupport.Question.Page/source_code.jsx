@@ -1,7 +1,8 @@
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
-const admins = props.admins;
 const adminContract = props.adminContract;
+
+const admins = Near.view(adminContract, "get_admins", {});
 
 const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
