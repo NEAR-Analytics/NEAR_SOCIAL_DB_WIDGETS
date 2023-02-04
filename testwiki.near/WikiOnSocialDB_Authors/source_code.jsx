@@ -1,6 +1,6 @@
 const authors = Array.from(props.resultArticles, ({ author }) => author);
 const uniqAuthors = Array.from(new Set(authors));
-console.log(uniqAuthors);
+console.log(authors);
 return (
   <>
     <h6>Total authors: {uniqAuthors.length}</h6>
