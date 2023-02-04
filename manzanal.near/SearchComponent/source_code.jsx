@@ -9,18 +9,17 @@ initState({
   data,
   searchText: initSearchText,
   result: data,
-  minLength: minLength,
   placeholder,
 });
 
 const handleSearch = (_search) => {
   const _result =
-    !_search || _search.length < state.minLength
+    !_search || _search.length < minLength
       ? state.data
-      : state.data.filter((item) =>
-          item[searchTermKey]
-            .toLowerCase()
-            .includes(state.searchText.toLowerCase())
+      : state.data.filter(
+          (item) =>
+            item[searchTermKey].toLowerCase().indexOf(_search.toLowerCase()) !==
+            -1
         );
 
   State.update({
