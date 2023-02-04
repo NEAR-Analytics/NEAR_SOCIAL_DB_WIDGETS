@@ -5,6 +5,7 @@ const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
 const subscribe = !!props.subscribe;
+const raw = !!props.raw;
 
 const notifyAccountId = accountId;
 const item = {
@@ -22,7 +23,10 @@ return (
       props={{ accountId, blockHeight, link, postType: "post" }}
     />
     <div className="mt-3 text-break">
-      <Widget src="mob.near/widget/MainPage.Post.Content" props={{ content }} />
+      <Widget
+        src="mob.near/widget/MainPage.Post.Content"
+        props={{ content, raw }}
+      />
     </div>
     {blockHeight !== "now" && (
       <div className="mt-1 d-flex justify-content-between">
@@ -62,6 +66,7 @@ return (
           highlightComment: props.highlightComment,
           limit: props.commentsLimit,
           subscribe,
+          raw,
         }}
       />
     </div>
