@@ -9,6 +9,8 @@ const index = {
   },
 };
 
+const raw = !!props.raw;
+
 const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
@@ -20,6 +22,7 @@ const renderItem = (a) =>
           highlight:
             a.accountId === props.highlightComment?.accountId &&
             a.blockHeight === props.highlightComment?.blockHeight,
+          raw,
         }}
       />
     </div>
