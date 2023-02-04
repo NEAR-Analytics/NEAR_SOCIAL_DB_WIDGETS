@@ -1,6 +1,6 @@
 const accountId = props.accountId;
 const blockHeight = props.blockHeight;
-const contract = props.contract;
+const adminContract = props.adminContract;
 const admins = props.admins;
 
 if (!admins.includes(context.accountId)) {
@@ -8,7 +8,7 @@ if (!admins.includes(context.accountId)) {
 }
 
 const onClick = () => {
-  Near.call(contract, "mark_useful", {
+  Near.call(adminContract, "mark_useful", {
     id: { account_id: accountId, block_height: blockHeight },
     amount: 0,
   });
