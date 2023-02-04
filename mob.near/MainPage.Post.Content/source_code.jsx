@@ -5,7 +5,7 @@ return content ? (
   <>
     {content.text &&
       (raw ? (
-        <pre>{content.text}</pre>
+        <pre style={{ whiteSpace: "pre-wrap" }}>{content.text}</pre>
       ) : (
         <Widget
           src="mob.near/widget/SocialMarkdown"
@@ -14,7 +14,9 @@ return content ? (
       ))}
     {content.image &&
       (raw ? (
-        <pre>{content.image}</pre>
+        <div>
+          <pre>{JSON.stringify(content.image, undefined, 2)}</pre>
+        </div>
       ) : (
         <div className="w-100 rounded-3 text-center">
           <Widget
