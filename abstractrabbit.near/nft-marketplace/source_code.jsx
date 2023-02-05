@@ -12,7 +12,7 @@ const data = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_active_listings(limit: 700, order_by: {created_at: desc}, where: {market_id: {_eq: "simple.market.mintbase1.near"}, , nft_contract_id: {_eq: "abstractrabbit.near"}}) {
+        mb_views_active_listings(limit: 700, order_by: {created_at: desc}, where: {market_id: {_eq: "x.paras.near"}, , nft_contract_id: {_eq: "abstractrabbit.near"}}) {
             listed_by
             created_at
             price
