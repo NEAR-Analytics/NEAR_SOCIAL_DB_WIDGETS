@@ -5,7 +5,7 @@ return (
         src="mob.near/widget/ComponentSearch"
         props={{
           limit: 10,
-          term: state.term,
+          term: "canto",
           filterTag: "canto-test",
           onChange: ({ result: components, term }) =>
             State.update({ components, term }),
