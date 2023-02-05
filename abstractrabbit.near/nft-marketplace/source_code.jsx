@@ -54,10 +54,7 @@ const size = "10em";
 return data !== null ? (
   <>
     <h1>Abstract Rabbit Marketplace</h1>
-    <p>
-      Buying from this widget will redirect 1.25% of the sale to Abstract
-      Rabbit.
-    </p>
+    <p>Buying from this widget will permit to feed Abstract Rabbit.</p>
     <div className="d-flex gap-4 flex-wrap">
       {data.body.data?.mb_views_active_listings.map((listing, i) => {
         const priceYocto = listing.price.toLocaleString().replace(/,/g, "");
