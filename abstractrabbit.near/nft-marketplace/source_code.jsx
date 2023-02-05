@@ -12,7 +12,7 @@ const data = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_active_listings(limit: 700, order_by: {created_at: asc},where: {listed_by: {_eq: "abstractrabbit.near"}}) {
+        mb_views_active_listings(limit: 700, order_by: {price: desc},where: {listed_by: {_eq: "abstractrabbit.near"}}) {
             listed_by
             created_at
             price
