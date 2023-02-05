@@ -5,14 +5,14 @@ const AFFILIATE_ACCOUNT = props.affiliateAccount || "abstractrabbit.near";
 const data = fetch("https://graph.mintbase.xyz", {
   method: "POST",
   headers: {
-    "mb-api-key": "omni-site",
+    "mb-api-key": "anon",
     "Content-Type": "application/json",
     "x-hasura-role": "anonymous",
   },
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_active_listings(limit: 700, order_by: {created_at: desc}, where: {market_id: {_eq: "x.paras.near"}, , nft_contract_id: {_eq: "abstractrabbit.near"}}) {
+        mb_views_active_listings(limit: 700, order_by: {created_at: desc},where: {listed_by: {_eq: "abstractrabbit.near"}}, nft_contract_id: {_eq: "abstractrabbit.near"}}) {
             listed_by
             created_at
             price
