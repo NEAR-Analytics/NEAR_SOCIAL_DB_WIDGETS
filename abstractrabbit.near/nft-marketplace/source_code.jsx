@@ -1,6 +1,6 @@
 const accountId = props.accountId || context.accountId;
 const marketId = "simple.market.mintbase1.near";
-const AFFILIATE_ACCOUNT = props.affiliateAccount || "toolipse.near";
+const AFFILIATE_ACCOUNT = props.affiliateAccount || "abstractrabbit.near";
 
 const data = fetch("https://graph.mintbase.xyz", {
   method: "POST",
@@ -53,8 +53,11 @@ const size = "10em";
 
 return data !== null ? (
   <>
-    <h1>Muti Marketplace</h1>
-    <p>Buying from this widget will redirect 1.25% of the sale to Jaswinder.</p>
+    <h1>Abstract Rabbit Marketplace</h1>
+    <p>
+      Buying from this widget will redirect 1.25% of the sale to Abstract
+      Rabbit.
+    </p>
     <div className="d-flex gap-4 flex-wrap">
       {data.body.data?.mb_views_active_listings.map((listing, i) => {
         const priceYocto = listing.price.toLocaleString().replace(/,/g, "");
