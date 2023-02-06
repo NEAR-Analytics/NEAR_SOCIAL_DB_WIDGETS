@@ -18,11 +18,11 @@ if (!events) {
   return <Loading>Loading events</Loading>;
 }
 
-const PageTitle = props.__engine.Components.PageTitle;
+const ContainerHeader = props.__engine.Components.ContainerHeader;
 const header = props.header;
 return (
   <>
-    {header ? <PageTitle>{header}</PageTitle> : null}
+    {header ? <ContainerHeader>{header}</ContainerHeader> : null}
     {props.__engine.renderComponent('index.list', { events })}
   </>
 );
