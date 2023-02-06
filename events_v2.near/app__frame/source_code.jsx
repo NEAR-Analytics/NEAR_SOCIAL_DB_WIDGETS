@@ -391,6 +391,21 @@ const RubberBand = styled.keyframes`
   }
 `;
 
+const Animations = {
+  Bounce: Bounce,
+  FadeIn: FadeIn,
+  FadeOut: FadeOut,
+  Flip: Flip,
+  Glow: Glow,
+  HeartBeat: HeartBeat,
+  Jello: Jello,
+  Jump: Jump,
+  RubberBand: RubberBand,
+  Swing: Swing,
+  Flash: Flash,
+  Shake: Shake,
+};
+
 console.log({ Animations });
 
 /**
