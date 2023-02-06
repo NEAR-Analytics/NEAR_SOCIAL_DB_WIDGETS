@@ -66,7 +66,7 @@ const NavPrimaryButton = styled.button`
     /* darker and transparent */
     background-color: rgba(44, 44, 84, 0.85);
 
-    animation: ${Pulse} 4s infinite;
+    animation: ${Pulse} 2s infinite;
   }
 `;
 
