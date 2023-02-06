@@ -91,15 +91,6 @@ const Animations = {
   `,
 };
 
-const FadeIn = styled.keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
 /**
  * Components
  * */
@@ -557,7 +548,7 @@ function safeRender(_name, _props) {
 }
 
 const AppLayer = styled.div`
-  animation: ${FadeIn} 0.3s ease-in-out;
+  animation: ${Animations.FadeIn} 0.3s ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
   animation-duration: ${(props) => props.duration};
