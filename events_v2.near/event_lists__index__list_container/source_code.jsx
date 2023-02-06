@@ -13,6 +13,8 @@ if (forAccountId === undefined) {
   });
 }
 
+console.log('event_lists', event_lists);
+
 const Loading = props.__engine.Components.Loading;
 if (!event_lists) {
   return <Loading>Loading event_lists</Loading>;
