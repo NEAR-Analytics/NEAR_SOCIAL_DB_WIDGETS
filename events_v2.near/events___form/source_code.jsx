@@ -127,11 +127,7 @@ const Label = styled.label`
   box-sizing: border-box;
 `;
 
-const ErrorMessage = styled.div`
-  color: #c00;
-  font-size: 0.8rem;
-  margin: 0.5rem 0 0 0;
-`;
+const ValidationError = props.__engine.Components.ValidationError;
 
 const LinkTypes = [
   { value: 'register', label: 'Register' },
@@ -368,7 +364,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('name')}</ErrorMessage>
+    <ValidationError>{getErrors('name')}</ValidationError>
 
     <div className="mt-3">
       <Label>Description</Label>
@@ -382,7 +378,7 @@ return (
         rows={3}
       />
     </div>
-    <ErrorMessage>{getErrors('description')}</ErrorMessage>
+    <ValidationError>{getErrors('description')}</ValidationError>
 
     <div className="mt-3">
       <Label>Type</Label>
@@ -399,7 +395,7 @@ return (
         ))}
       </Select>
     </div>
-    <ErrorMessage>{getErrors('type')}</ErrorMessage>
+    <ValidationError>{getErrors('type')}</ValidationError>
 
     <div className="mt-3">
       <Label>Category</Label>
@@ -412,7 +408,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('category')}</ErrorMessage>
+    <ValidationError>{getErrors('category')}</ValidationError>
 
     <div className="mt-3">
       <Label>Status</Label>
@@ -429,7 +425,7 @@ return (
         ))}
       </Select>
     </div>
-    <ErrorMessage>{getErrors('status')}</ErrorMessage>
+    <ValidationError>{getErrors('status')}</ValidationError>
 
     <div className="mt-3">
       <Label>Start Date</Label>
@@ -441,7 +437,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('start_date')}</ErrorMessage>
+    <ValidationError>{getErrors('start_date')}</ValidationError>
 
     <div className="mt-3">
       <Label>End Date</Label>
@@ -453,7 +449,7 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('end_date')}</ErrorMessage>
+    <ValidationError>{getErrors('end_date')}</ValidationError>
 
     <div className="mt-3">
       <Label>Location</Label>
@@ -467,7 +463,7 @@ return (
         rows={3}
       />
     </div>
-    <ErrorMessage>{getErrors('location')}</ErrorMessage>
+    <ValidationError>{getErrors('location')}</ValidationError>
 
     <div className="mt-3">
       <Label>Images</Label>
@@ -502,7 +498,7 @@ return (
         Add Image
       </button>
     </div>
-    <ErrorMessage>{getErrors('images')}</ErrorMessage>
+    <ValidationError>{getErrors('images')}</ValidationError>
 
     <div className="mt-3">
       <Label>Links</Label>
@@ -590,7 +586,7 @@ return (
         Add Link
       </button>
     </div>
-    <ErrorMessage>{getErrors('links')}</ErrorMessage>
+    <ValidationError>{getErrors('links')}</ValidationError>
 
     <br />
     <Button
