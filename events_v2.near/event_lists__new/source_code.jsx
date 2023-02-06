@@ -39,5 +39,5 @@ function onSave(data) {
 
 return props.__engine.renderComponent('_form', {
   onSave,
-  buttonText: 'Create event_list',
+  buttonText: 'Create event list',
 });
