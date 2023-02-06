@@ -89,6 +89,30 @@ const Animations = {
       opacity: 1;
     }
   `,
+  FadeOut: styled.keyframes`
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  `,
+  SlideIn: styled.keyframes`
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  `,
+  SlideOut: styled.keyframes`
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  `,
 };
 
 /**
