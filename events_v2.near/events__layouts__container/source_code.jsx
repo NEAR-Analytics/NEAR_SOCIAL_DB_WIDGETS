@@ -34,16 +34,13 @@ const dropdownElement =
 
 const Pulse = styled.keyframes`
   0% {
-    box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
-      0 0 89px 2px rgb(255, 255, 255, 0.4);
+    transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
-      0 0 89px 2px rgb(255, 255, 255, 0.4), 0 0 2px 1px rgb(255, 255, 255, 0.4);
+    transform: scale(1.1);
   }
   100% {
-    box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
-      0 0 89px 2px rgb(255, 255, 255, 0.4);
+    transform: scale(1);
   }
 `;
 
@@ -62,6 +59,9 @@ const NavPrimaryButton = styled.button`
 
   border-radius: 8px;
   border: 1px solid white;
+  box-shadow: box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
+      0 0 49px 2px rgb(255, 255, 255, 0.4)
+  
 
   &:hover {
     /* darker and transparent */
