@@ -150,34 +150,6 @@ const Bounce = styled.keyframes`
   }
 `;
 
-const BounceIn = styled.keyframes`
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
-const BounceOut = styled.keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-`;
-
 const ColorChange = styled.keyframes`
   0% {
     background-color: #4caf50;
