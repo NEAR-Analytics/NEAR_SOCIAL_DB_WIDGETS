@@ -8,6 +8,17 @@ if (events.length === 0) {
   return 'No events found';
 }
 
+const SlideInLeft = styled.keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const IndexList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -25,17 +36,21 @@ const IndexList = styled.div`
     width: 240px;
     flex-grow: 3;
     flex-shrink: 3;
+
+    animation: ${SlideInLeft} 0.3s ease-in-out;
   }
 `;
 
 return (
   <IndexList>
     {events.map((event) => {
-      return props.__engine.renderComponent('index.list_item', {
-        event,
-        key: event.event_id,
-      });
+      return (
+        <div key={event.event_id}>
+          {props.__engine.renderComponent('index.list_item', { event })}
+        </div>
+      );
     })}
+
     <div>{/* spacer */}</div>
     <div>{/* spacer */}</div>
     <div>{/* spacer */}</div>
