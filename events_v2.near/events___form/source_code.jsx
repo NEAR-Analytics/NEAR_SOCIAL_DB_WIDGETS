@@ -110,7 +110,7 @@ const Select = styled.select`
 `;
 const ValidationError = props.__engine.Components.ValidationError;
 const FullActionButton = props.__engine.Components.FullActionButton;
-const FormFormLabel = props.__engine.Components.FormFormLabel;
+const FormLabel = props.__engine.Components.FormLabel;
 
 const LinkTypes = [
   { value: 'register', label: 'Register' },
@@ -572,13 +572,13 @@ return (
     <ValidationError>{getErrors('links')}</ValidationError>
 
     <br />
-    <Button
+    <FullActionButton
       className="mt-3"
       onClick={() => {
         sanitizeValidateAndCall(state);
       }}
     >
       {buttonText}
-    </Button>
+    </FullActionButton>
   </div>
 );
