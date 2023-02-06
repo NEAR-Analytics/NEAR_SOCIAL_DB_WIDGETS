@@ -8,7 +8,6 @@ props.controller.setLayout('layouts:container', {
   },
 });
 
-const Button = props.__engine.Components.Button;
 const Container = props.__engine.Components.Container;
 
 return (
