@@ -257,6 +257,8 @@ if (!entryRoute) {
   return propIsRequiredMessage('entryRoute');
 }
 
+const DEBUG = props.DEBUG || true;
+
 const entryProps = props.entryProps || {};
 
 const rootRoute = {
@@ -600,29 +602,28 @@ return (
 
     {/* state reset button */}
     {DEBUG ? (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: 0,
-        right: 0,
-        zIndex: 9999,
-        padding: 8,
-        backgroundColor: 'transparent',
-      }}
-    >
-      <Button
-        onClick={() => {
-          storageSet('routing', [rootRoute]);
-          State.update({
-            layers: [rootRoute],
-          });
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          right: 0,
+          zIndex: 9999,
+          padding: 8,
+          backgroundColor: 'transparent',
         }}
       >
-        Reset
-      </Button>
-    </div>)
-      
-    }
+        <Button
+          onClick={() => {
+            storageSet('routing', [rootRoute]);
+            State.update({
+              layers: [rootRoute],
+            });
+          }}
+        >
+          Reset
+        </Button>
+      </div>
+    ) : null}
 
     {state.layers.map((layer, index) => {
       const isLast = index === state.layers.length - 1;
