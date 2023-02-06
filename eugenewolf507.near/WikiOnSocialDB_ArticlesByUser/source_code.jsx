@@ -35,5 +35,16 @@ const filteredArticles =
     }
   }, []);
 
-console.log(filteredArticles);
+const filteredArticlesByUser =
+  filteredArticles.length &&
+  filteredArticles.reduce((acc, article) => {
+    console.log(article.author, article.author === mOKEDAYTHOR);
+    if (article.author === mOKEDAYTHOR) {
+      return [...acc, article];
+    } else {
+      return acc;
+    }
+  }, []);
+
+console.log(filteredArticlesByUser);
 return <div>Hello World</div>;
