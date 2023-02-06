@@ -1,3 +1,5 @@
+const addressForArticles = "wikiTest";
+const authorForWidget = "testwiki.near";
 const { filteredArticles, getDateLastEdit, handleArticle, state } = props;
 return (
   <ol>
