@@ -10,7 +10,7 @@ return (
       appName: APP_NAME,
       entryRoute: 'index',
       entryProps: {},
-      DEBUG: '{{ env.DEBUG }}',
+      DEBUG: 'true' === 'true',
     }}
   />
 );
