@@ -64,8 +64,6 @@ const NavPrimaryButton = styled.button`
 
   transform: scale(0.975);
 
-  transition-duration: 3s;
-
   &:hover {
     /* darker and transparent */
     background-color: rgba(44, 44, 84, 0.85);
