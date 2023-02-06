@@ -76,6 +76,23 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 
+/**
+ * Animations
+ * */
+
+const FadeIn = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+/**
+ * Components
+ * */
+
 const Select = styled.select`
   background-color: #4caf50;
   border: none;
@@ -527,15 +544,6 @@ function safeRender(_name, _props) {
     );
   }
 }
-
-const FadeIn = styled.keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
 
 const AppLayer = styled.div`
   animation: ${FadeIn} 0.3s ease-in-out;
