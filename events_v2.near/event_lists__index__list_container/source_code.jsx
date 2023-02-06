@@ -19,6 +19,7 @@ if (!events) {
 }
 
 const PageTitle = props.__engine.Components.PageTitle;
+const header = props.header;
 return (
   <>
     {header ? <PageTitle>{header}</PageTitle> : null}
