@@ -32,7 +32,6 @@ const dropdownElement =
     </>
   ) : null;
 
-const Pulse = props.__engine.Animations.Pulse;
 const NavPrimaryButton = styled.button`
   background-color: transparent;
   user-select: none;
