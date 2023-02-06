@@ -32,6 +32,21 @@ const dropdownElement =
     </>
   ) : null;
 
+const Pulse = styled.keyframes`
+  0% {
+    box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
+      0 0 89px 2px rgb(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
+      0 0 89px 2px rgb(255, 255, 255, 0.4), 0 0 2px 1px rgb(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
+      0 0 89px 2px rgb(255, 255, 255, 0.4);
+  }
+`;
+
 const NavPrimaryButton = styled.button`
   background-color: transparent;
   user-select: none;
