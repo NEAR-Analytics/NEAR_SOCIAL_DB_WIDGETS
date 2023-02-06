@@ -376,6 +376,14 @@ const Animations = {
   Swing: Swing,
   Flash: Flash,
   Shake: Shake,
+  SlideIn: SlideIn,
+  SlideOut: SlideOut,
+  Pulse: Pulse,
+  Spin: Spin,
+  ColorChange: ColorChange,
+  DropShadow: DropShadow,
+  Expand: Expand,
+  Shrink: Shrink,
 };
 
 console.log({ Animations });
