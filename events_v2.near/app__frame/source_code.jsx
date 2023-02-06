@@ -524,6 +524,14 @@ function safeRender(_name, _props) {
   }
 }
 
+const FadeIn = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 const AppLayer = styled.div`
   animation: ${FadeIn} 0.3s ease-in-out;
   animation-fill-mode: forwards;
@@ -556,14 +564,6 @@ const AppLayer = styled.div`
 // It cannot render <Components.Button /> :(
 const { Button } = Components;
 
-const FadeIn = styled.keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
