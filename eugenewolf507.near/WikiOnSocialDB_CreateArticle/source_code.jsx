@@ -1,6 +1,5 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-const { address } = props;
 const initialBody = `# Markdown heading level 1
 
 This is a markdown paragraph. So, here are a few examples of markdown syntax and what it looks like.
@@ -51,10 +50,14 @@ const saveHandler = (e) => {
       const newArticle = getArticleData();
       console.log("CHECK IT!!!!!!!");
       console.log({
-        [address]: { articles: { [newArticle.articleId]: { ...newArticle } } },
+        [addressForArticles]: {
+          articles: { [newArticle.articleId]: { ...newArticle } },
+        },
       });
       Social.set({
-        [address]: { articles: { [newArticle.articleId]: { ...newArticle } } },
+        [addressForArticles]: {
+          articles: { [newArticle.articleId]: { ...newArticle } },
+        },
       });
     } else {
       State.update({
