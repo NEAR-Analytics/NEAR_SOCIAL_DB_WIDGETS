@@ -31,7 +31,7 @@ if (!state) {
 
 const ValidationError = props.__engine.Components.ValidationError;
 const FullActionButton = props.__engine.Components.FullActionButton;
-const FormFormLabel = props.__engine.Components.FormFormLabel;
+const FormLabel = props.__engine.Components.FormLabel;
 
 function addError(key, message) {
   const oldErrors = { ...state.errors };
