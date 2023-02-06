@@ -590,6 +590,8 @@ const AppLayer = styled.div`
   transition-delay: ${(props) => props.transitionDelay};
 `;
 
+// have to deconstruct Components here because of a bug in the VM.
+// It cannot render <Components.Button /> :(
 const { Button } = Components;
 
 return (
