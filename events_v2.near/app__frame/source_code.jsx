@@ -77,19 +77,6 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 
 /**
- * Animations
- * */
-
-const FadeIn = styled.keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-/**
  * Components
  * */
 
@@ -569,6 +556,14 @@ const AppLayer = styled.div`
 // It cannot render <Components.Button /> :(
 const { Button } = Components;
 
+const FadeIn = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
