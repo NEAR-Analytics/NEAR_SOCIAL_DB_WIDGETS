@@ -606,6 +606,24 @@ return (
       TEST
     </a>
 
+    <a
+      href={`https://near.social/#/embed/${appOwner}/widget/${appName}?entryRoute=my_events`}
+    >
+      TEST
+    </a>
+
+    <a
+      href={`https://near.social/#/embed/${appOwner}/widget/${appName}?entryRoute=my_events`}
+    >
+      TEST
+    </a>
+
+    <a
+      href={`https://near.social/#/embed/${appOwner}/widget/${appName}?entryRoute=my_events`}
+    >
+      TEST
+    </a>
+
     {/* state reset button */}
     {DEBUG ? (
       <div
