@@ -1,6 +1,6 @@
 /* eslint no-magic-numbers: 0 */
 
-const VERSION = '{{ env.VERSION }}';
+const VERSION = '0.3.0';
 
 /**
  *  NEAR Social App
