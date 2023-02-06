@@ -28,10 +28,8 @@ function createEventList(data) {
 
   props.__engine.contract.call(EVENTS_CONTRACT, 'create_event_list', {
     account_id: props.__engine.accountId,
-    event_list: {
-      name,
-      description,
-    },
+    name,
+    description,
   });
 }
 
