@@ -141,7 +141,6 @@ return (
                   props={{
                     getDate,
                     article: state.article,
-                    addressForArticles,
                   }}
                 />
               </div>
@@ -177,7 +176,6 @@ return (
             src={`${authorForWidget}/widget/WikiOnSocialDB_CreateArticle`}
             props={{
               author: accountId,
-              address: addressForArticles,
             }}
           />
         )}
