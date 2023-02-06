@@ -53,7 +53,7 @@ const NavPrimaryButton = styled.button`
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  transition: all 0.5s ease;
+  transition: all 1s ease-in-out;
   margin-left: 8px;
   cursor: pointer;
 
@@ -63,6 +63,8 @@ const NavPrimaryButton = styled.button`
     0 0 89px 2px rgb(255, 255, 255, 0.4);
 
   transform: scale(0.975);
+
+  animation-duration: 3s;
 
   &:hover {
     /* darker and transparent */
