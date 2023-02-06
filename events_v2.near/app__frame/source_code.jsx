@@ -599,6 +599,7 @@ return (
     <div id="app-state" data-state={JSON.stringify(state)}></div>
 
     {/* state reset button */}
+    {DEBUG ? (
     <div
       style={{
         position: 'fixed',
@@ -619,7 +620,9 @@ return (
       >
         Reset
       </Button>
-    </div>
+    </div>)
+      
+    }
 
     {state.layers.map((layer, index) => {
       const isLast = index === state.layers.length - 1;
