@@ -98,7 +98,7 @@ const Components = {
     padding: 8px 0;
   `,
 
-  InfoBarLink: styled.div`
+  InfoBarLink: styled.a`
     font-size: 16px;
     color: #424242;
     text-decoration: none;
