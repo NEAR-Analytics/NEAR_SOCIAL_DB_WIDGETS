@@ -125,6 +125,153 @@ const Animations = {
       transform: scale(0.95);
     }
   `,
+
+  Spin: styled.keyframes`
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  `,
+
+  Bounce: styled.keyframes`
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  `,
+
+  BounceIn: styled.keyframes`
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  `,
+
+  BounceOut: styled.keyframes`
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+  `,
+
+  ColorChange: styled.keyframes`
+    0% {
+      background-color: #4caf50;
+    }
+    50% {
+      background-color: #3e8e41;
+    }
+    100% {
+      background-color: #4caf50;
+    }
+  `,
+
+  DropShadow: styled.keyframes`
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+  `,
+
+  Expand: styled.keyframes`
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  `,
+  Shrink: styled.keyframes`
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  `,
+
+  Shake: styled.keyframes`
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translate(-20px);
+    }
+
+    25%,
+    75% {
+      transform: translate(10px);
+    }
+  `,
+
+  Flash: styled.keyframes`
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
+  `,
+
+  Flip: styled.keyframes`
+    0% {
+      transform: perspective(400px) rotateY(0deg);
+    }
+    40% {
+      transform: perspective(400px) rotateY(150deg);
+    }
+    50% {
+      transform: perspective(400px) rotateY(150deg) rotateX(0deg);
+    }
+    80% {
+      transform: perspective(400px) rotateY(150deg) rotateX(-180deg);
+    }
+    100% {
+      transform: perspective(400px) rotateY(150deg) rotateX(-180deg)
+        rotateY(180deg);
+    }
+  `,
 };
 
 /**
