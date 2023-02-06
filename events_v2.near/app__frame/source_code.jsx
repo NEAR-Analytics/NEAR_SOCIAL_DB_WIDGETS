@@ -18,6 +18,7 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
 
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
+const ContainerPaddingVertical = 'calc(max(12px, 1.2vw))';
 
 /**
  * Components
