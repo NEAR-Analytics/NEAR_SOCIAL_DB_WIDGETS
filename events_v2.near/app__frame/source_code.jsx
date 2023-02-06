@@ -4,64 +4,7 @@ const VERSION = '0.3.0';
 
 /**
  *  NEAR Social App
- *
- *  This is the main app component that is used to render the app.
- *
- *
- *  WHY?
- *  - DRY: we don't want to have to copy/paste the same code into every app
- *  - Speed: we want to be able to build apps quickly
- *  - Functionality: we want to be able to add functionality to all apps at once
- *
- *
- *  HOW?
- *  this app provides common functionality often needed in apps
- *  - routing
-
- *  - layout management
- *
- *  Requirements:
- *  - Fork the following widgets into your account:
- *    - app__layouts__default
- *    - app__frame (this component)
- *  - You should also take a look at: https://github.com/NEARFoundation/events-platform
- *    as it provides a lot of the functionality you need to build an app, it provides:
- *      - an opinionated way to build apps
- *        - directory structure
- *        - naming conventions
- *      - a way to build apps quickly
- *        - development tools (dev server, deploy script)
- *        - env var injection
- *      - a sample app
- *
- *
- *  This component is responsible for:
- *  - Loading the app's state/environment
- *  - Rendering the app's layouts
- *  - Rendering the app's components
- *
- *  It follows conventions:
- *  - The app's environment is loaded from the props
- *    - props.appOwner
- *    - props.appName
- *  - An app is a collection of widgets
- *  - each widget must be namespaced by the app's owner and name
- *     Widgets are named as follows:
- *       - you choose an app_name like 'my_app'
- *       - you choose a widget like 'my_widget'
- *       - app, widgets and subwidgets are separated by '__'
- *       - In order to use the widget in your app, you must upload it to your account with the name: `my_app__my_widget`
- *     - e.g. app_namecomponent1
- *     - e.g. app_namecomponent1__subcomponent
- *  - Each widget can have a layout
- *    - layouts are also widgets
- *   - layouts are named as follows:
- *    - you choose a layout like 'my_layout'
- *   - In order to use the layout in your app, you must upload it to your account with the name: `my_app__layouts__my_layout`
- *
- *
- *  Functions available to widgets:
- *  - TODO: document
+ *  Docs: https://github.com/NEARFoundation/events-platform
  *
  */
 
