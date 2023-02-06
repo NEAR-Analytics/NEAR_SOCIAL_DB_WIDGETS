@@ -12,6 +12,9 @@ const Container = props.__engine.Components.Container;
 
 return (
   <Container>
-    {props.__engine.renderComponent('index.list_container', {})}
+    {props.__engine.renderComponent('index.list_container', {
+      header: 'Your event lists',
+      forAccountId: props.__engine.accountId,
+    })}
   </Container>
 );
