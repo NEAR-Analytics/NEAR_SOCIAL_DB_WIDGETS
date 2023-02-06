@@ -34,13 +34,13 @@ const dropdownElement =
 
 const Pulse = styled.keyframes`
   0% {
-    transform: scale(0.975);
+    transform: scale(0.9);
   }
-  70% {
+  50% {
     transform: scale(1);
   }
   100% {
-    transform: scale(0.975);
+    transform: scale(0.9);
   }
 `;
 
@@ -67,7 +67,7 @@ const NavPrimaryButton = styled.button`
     background-color: rgba(44, 44, 84, 0.85);
   }
 
-  animation: ${Pulse} 2s infinite;
+  animation: ${Pulse} 4s infinite;
 `;
 
 const navbar = (
