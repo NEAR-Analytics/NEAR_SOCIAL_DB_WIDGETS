@@ -29,11 +29,9 @@ if (!state) {
   return 'Loading...';
 }
 
-const ErrorMessage = styled.div`
-  color: #c00;
-  font-size: 0.8rem;
-  margin: 0.5rem 0 0 0;
-`;
+const ValidationError = props.__engine.Components.ValidationError;
+const FullActionButton = props.__engine.Components.FullActionButton;
+const FormLabel = props.__engine.Components.FormLabel;
 
 const LinkTypes = [
   { value: 'register', label: 'Register' },
