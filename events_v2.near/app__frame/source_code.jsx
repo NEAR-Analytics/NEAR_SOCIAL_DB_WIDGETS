@@ -113,6 +113,18 @@ const Animations = {
       transform: translateX(100%);
     }
   `,
+
+  Pulse: styled.keyframes`
+    0% {
+      transform: scale(0.95);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.95);
+    }
+  `,
 };
 
 /**
