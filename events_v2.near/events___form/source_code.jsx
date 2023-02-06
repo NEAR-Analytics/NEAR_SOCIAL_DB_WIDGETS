@@ -96,16 +96,9 @@ if (!state) {
   return 'Loading...';
 }
 
-const Label = styled.label`
-  width: 100%;
-  color: #666;
-  padding: 0.5rem 0;
-  margin: 0.5rem 0 0 0;
-  box-sizing: border-box;
-`;
-
 const ValidationError = props.__engine.Components.ValidationError;
 const FullActionButton = props.__engine.Components.FullActionButton;
+const FormLabel = props.__engine.Components.FormLabel;
 
 function addError(key, message) {
   const oldErrors = { ...state.errors };
@@ -212,7 +205,7 @@ return (
     }}
   >
     <div className="mt-3">
-      <Label>Name</Label>
+      <FormLabel>Name</FormLabel>
       <input
         type="text"
         placeholder="Event Name"
@@ -225,7 +218,7 @@ return (
     <ValidationError>{getErrors('name')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Description</Label>
+      <FormLabel>Description</FormLabel>
       <textarea
         className="w-100"
         placeholder="Event Description"
