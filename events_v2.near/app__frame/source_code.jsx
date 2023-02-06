@@ -76,158 +76,113 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 
-/**
- * Animations
- * */
+const Select = styled.select`
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+`;
 
-const Animations = {
-  FadeIn: styled.keyframes`
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  `,
-  FadeOut: styled.keyframes`
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  `,
-  SlideIn: styled.keyframes`
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  `,
-  SlideOut: styled.keyframes`
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  `,
-};
+const Button = styled.button`
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all 0.5s ease;
 
-/**
- * Components
- * */
+  &:hover {
+    background-color: #3e8e41;
+  }
+`;
 
-const Components = {
-  Select: styled.select`
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  `,
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
 
-  Button: styled.button`
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition: all 0.5s ease;
+const PageTitle = styled.h1`
+  font-size: calc(max(32px, 2.5vw));
+  color: black;
+`;
 
-    &:hover {
-      background-color: #3e8e41;
-    }
-  `,
+const Container = styled.div`
+  padding-left: ${ContainerPaddingHorizontal};
+  padding-right: ${ContainerPaddingHorizontal};
+  padding-top: 12px;
+  padding-bottom: 12px;
+`;
 
-  Loading: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  `,
+const InfoBar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0px ${ContainerPaddingHorizontal};
+  border-bottom: 1px solid #e0e0e0;
+`;
 
-  PageTitle: styled.h1`
-    font-size: calc(max(32px, 2.5vw));
-    color: black;
-  `,
+const InfoBarItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+  padding: 8px 0;
+`;
 
-  Container: styled.div`
-    padding-left: ${ContainerPaddingHorizontal};
-    padding-right: ${ContainerPaddingHorizontal};
-    padding-top: 12px;
-    padding-bottom: 12px;
-  `,
+const InfoBarLink = styled.a`
+  font-size: 16px;
+  color: #424242;
+  text-decoration: none;
+  margin-right: 12px;
+  padding: 8px 0;
 
-  InfoBar: styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 0px ${ContainerPaddingHorizontal};
-    border-bottom: 1px solid #e0e0e0;
-  `,
+  &:hover {
+    text-decoration: underline;
+  }
 
-  InfoBarItem: styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: 12px;
-    padding: 8px 0;
-  `,
+  &:last-child {
+    margin-right: 0;
+  }
 
-  InfoBarLink: styled.a`
-    font-size: 16px;
+  &:visited {
     color: #424242;
-    text-decoration: none;
-    margin-right: 12px;
-    padding: 8px 0;
+  }
 
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &:visited {
-      color: #424242;
-    }
-
-    &:active {
-      color: #424242;
-    }
-  `,
-
-  TextHeader: styled.div`
-    font-size: 20px;
+  &:active {
     color: #424242;
-  `,
+  }
+`;
 
-  InlineTag: styled.div`
-    display: inline-block;
-    background-color: #e0e0e0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-right: 8px;
-    margin-left: 8px;
-  `,
+const TextHeader = styled.div`
+  font-size: 20px;
+  color: #424242;
+`;
 
-  Text: styled.div`
-    font-size: 16px;
-    color: #424242;
-    margin-right: 8px;
-  `,
-};
+const InlineTag = styled.div`
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+  margin-left: 8px;
+`;
+
+const Text = styled.div`
+  font-size: 16px;
+  color: #424242;
+  margin-right: 8px;
+`;
 
 /**
  *   I suggest you don't edit anything below this line
@@ -257,8 +212,6 @@ if (!entryRoute) {
   return propIsRequiredMessage('entryRoute');
 }
 
-const DEBUG = props.DEBUG || false;
-
 const entryProps = props.entryProps || {};
 
 const rootRoute = {
@@ -285,22 +238,22 @@ const env = {
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
 
-const SessionState = {
+const AppState = {
   _state: {},
   set: (prop, value) => {
-    SessionState._state[prop] = value;
+    AppState._state[prop] = value;
     return true;
   },
   get: (prop) => {
-    return SessionState._state[prop];
+    return AppState._state[prop];
   },
 };
 
-function sessionGet(prop, defaultValue) {
-  return SessionState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+function appStateGet(prop, defaultValue) {
+  return AppState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
-function sessionSet(prop, value) {
-  return SessionState.set(`${appOwner}.${appName}.${prop}`, value);
+function appStateSet(prop, value) {
+  return AppState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
 function storageGet(prop, defaultValue) {
@@ -500,8 +453,8 @@ function renderComponent(name, props) {
     pop,
     replace,
     rerender,
-    sessionGet,
-    sessionSet,
+    appStateGet,
+    appStateSet,
     storageGet,
     storageSet,
     layoutPathFromName,
@@ -509,8 +462,19 @@ function renderComponent(name, props) {
 
     renderComponent: safeRender,
 
-    Components,
-    Animations,
+    Components: {
+      Select,
+      Button,
+      Loading,
+      PageTitle,
+      Container,
+      InfoBar,
+      InfoBarItem,
+      InfoBarLink,
+      TextHeader,
+      InlineTag,
+      Text,
+    },
 
     helpers: {
       propIsRequiredMessage,
@@ -564,85 +528,52 @@ function safeRender(_name, _props) {
   }
 }
 
-const AppLayer = styled.div`
-  animation: ${Animations.FadeIn} 0.3s ease-in-out;
-  animation-fill-mode: forwards;
-  animation-delay: ${(props) => props.delay};
-  animation-duration: ${(props) => props.duration};
-  width: 100vw;
-  min-height: 100vh;
-  background-color: transparent;
-  z-index: ${(props) => props.zIndex};
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  opacity: 0;
-
-  backdrop-filter: ${(props) => {
-    return props.backdropFilter;
-  }};
-  webkit-backdrop-filter: ${(props) => {
-    return props.backdropFilter;
-  }};
-
-  transition: backdrop-filter 0.3s ease-in-out;
-  transition-delay: ${(props) => props.transitionDelay};
-`;
-
-// have to deconstruct Components here because of a bug in the VM.
-// It cannot render <Components.Button /> :(
-const { Button } = Components;
-
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
 
     {/* state reset button */}
-    {DEBUG ? (
-      <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          right: 0,
-          zIndex: 9999,
-          padding: 8,
-          backgroundColor: 'transparent',
+    <div
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        right: 0,
+        zIndex: 9999,
+        padding: 8,
+        backgroundColor: 'transparent',
+      }}
+    >
+      <Button
+        onClick={() => {
+          storageSet('routing', [rootRoute]);
+          State.update({
+            layers: [rootRoute],
+          });
         }}
       >
-        <Button
-          onClick={() => {
-            storageSet('routing', [rootRoute]);
-            State.update({
-              layers: [rootRoute],
-            });
-          }}
-        >
-          Reset
-        </Button>
-      </div>
-    ) : null}
+        Reset
+      </Button>
+    </div>
 
     {state.layers.map((layer, index) => {
-      const isLast = index === state.layers.length - 1;
-
       return (
-        <AppLayer
+        <div
           key={index}
-          delay={isLast ? '0.0s' : '0.2s'}
-          duration={isLast ? '0.3s' : '1s'}
-          transitionDelay={isLast ? '0s' : '1s'}
-          backdropFilter={
-            isLast
-              ? 'blur(16px) saturate(140%) brightness(80%)'
-              : 'blur(0px) saturate(100%) brightness(100%)'
-          }
-          zIndex={index + 100}
+          style={{
+            width: '100vw',
+            minHeight: '100vh',
+            backgroundColor: 'transparent',
+            zIndex: index,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflow: 'auto',
+          }}
         >
           {safeRender(layer.name, layer.props)}
-        </AppLayer>
+        </div>
       );
     })}
   </>
