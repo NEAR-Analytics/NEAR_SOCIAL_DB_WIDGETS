@@ -508,7 +508,7 @@ function renderComponent(name, props) {
     renderComponent: safeRender,
 
     Components,
-    Animations
+    Animations,
 
     helpers: {
       propIsRequiredMessage,
@@ -605,7 +605,7 @@ return (
         backgroundColor: 'transparent',
       }}
     >
-      <Button
+      <Components.Button
         onClick={() => {
           storageSet('routing', [rootRoute]);
           State.update({
@@ -614,7 +614,7 @@ return (
         }}
       >
         Reset
-      </Button>
+      </Components.Button>
     </div>
 
     {state.layers.map((layer, index) => {
