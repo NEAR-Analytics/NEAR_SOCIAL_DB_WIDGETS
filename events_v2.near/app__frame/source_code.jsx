@@ -257,7 +257,7 @@ if (!entryRoute) {
   return propIsRequiredMessage('entryRoute');
 }
 
-const DEBUG = props.DEBUG || true;
+const DEBUG = props.DEBUG || false;
 
 const entryProps = props.entryProps || {};
 
