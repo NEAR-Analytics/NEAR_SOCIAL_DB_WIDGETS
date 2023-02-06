@@ -296,10 +296,10 @@ const SessionState = {
   },
 };
 
-function sessionStateGet(prop, defaultValue) {
+function sessionGet(prop, defaultValue) {
   return SessionState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
-function sessionStateSet(prop, value) {
+function sessionSet(prop, value) {
   return SessionState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
@@ -500,8 +500,8 @@ function renderComponent(name, props) {
     pop,
     replace,
     rerender,
-    sessionStateGet,
-    sessionStateSet,
+    sessionGet,
+    sessionSet,
     storageGet,
     storageSet,
     layoutPathFromName,
