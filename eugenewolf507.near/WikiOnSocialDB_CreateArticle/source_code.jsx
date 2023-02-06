@@ -1,3 +1,5 @@
+const addressForArticles = "wikiTest";
+const authorForWidget = "testwiki.near";
 const { address } = props;
 const initialBody = `# Markdown heading level 1
 
