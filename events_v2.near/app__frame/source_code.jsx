@@ -80,6 +80,17 @@ const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
  * Animations
  * */
 
+const Animations = {
+  FadeIn: styled.keyframes`
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  `,
+};
+
 const FadeIn = styled.keyframes`
   0% {
     opacity: 0;
