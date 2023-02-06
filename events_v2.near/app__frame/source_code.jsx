@@ -274,8 +274,7 @@ function widgetPathFromName(widgetName) {
 }
 
 function layoutPathFromName(layoutName) {
-  const { owner, name, slug } = fetchPathOptions(layoutName);
-  return `${owner}/widget/${name}__${slug}`;
+  return widgetPathFromName(layoutName);
 }
 
 function rerender() {
