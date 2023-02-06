@@ -1,3 +1,3 @@
 const addressForArticles = "wikiTest";
-const authorForWidget = "testwiki.near";
+const authorForWidget = "eugenewolf507.near";
 return <div>Hello World</div>;
