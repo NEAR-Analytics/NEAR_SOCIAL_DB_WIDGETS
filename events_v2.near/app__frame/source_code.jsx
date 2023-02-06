@@ -73,6 +73,12 @@ const Components = {
     padding-bottom: 12px;
   `,
 
+  ContainerHeader: styled.div`
+    font-size: 24px;
+    color: #424242;
+    padding: 12px 0;
+  `,
+
   InfoBar: styled.div`
     display: flex;
     flex-wrap: wrap;
