@@ -10,68 +10,9 @@ const MIN_LENGTH_NAME = 4;
 const MIN_LENGTH_DESCRIPTION = 10;
 const MAX_LENGTH_NAME = 100;
 const MAX_LENGTH_DESCRIPTION = 2000;
-const MIN_LENGTH_LOCATION = 10;
-const MAX_LENGTH_LOCATION = 400;
-const MIN_LENGTH_CATEGORY = 3;
-const MAX_LENGTH_CATEGORY = 20;
-
-const MILLISECONDS_IN_DAY = 86400000;
-const DAYS_IN_WEEK = 7;
-
-const TODAY =
-  Math.floor((Date.now() + 0) / MILLISECONDS_IN_DAY) * MILLISECONDS_IN_DAY;
-const TOMORROW = TODAY + MILLISECONDS_IN_DAY;
-const ONE_WEEK = DAYS_IN_WEEK * MILLISECONDS_IN_DAY;
-
-const formatDate = props.__engine.helpers.formatDate;
-
-const EventStatus = [
-  { value: 'draft', label: 'Draft' },
-  { value: 'published', label: 'Published' },
-  { value: 'cancelled', label: 'Cancelled' },
-];
-
-const EventTypes = [
-  { value: 'virtual', label: 'Online' },
-  { value: 'irl', label: 'In Person' },
-  { value: 'mixed', label: 'Both' },
-];
 
 const DEFAULT_STATE = {
   name: '',
-  type: EventTypes[0].value,
-  category: '',
-  status: EventStatus[0].value,
-  start_date: new Date(TODAY + ONE_WEEK),
-  end_date: new Date(TOMORROW + ONE_WEEK),
-  location: '',
-  images: [
-    {
-      url: null,
-      type: 'tile',
-    },
-    {
-      url: null,
-      type: 'banner',
-    },
-  ],
-  links: [
-    {
-      text: 'Register here',
-      url: '',
-      type: 'register',
-    },
-    {
-      text: 'Get tickets',
-      url: '',
-      type: 'tickets',
-    },
-    {
-      text: 'Watch live',
-      url: '',
-      type: 'join_stream',
-    },
-  ],
   description: '',
 
   errors: {},
@@ -79,53 +20,14 @@ const DEFAULT_STATE = {
 
 if (!state) {
   if (model) {
-    const start_date = model.start_date
-      ? formatDate(model.start_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
-      : null;
-
-    const end_date = model.end_date
-      ? formatDate(model.end_date, '{{ YYYY }}-{{ MM }}-{{ DD }}')
-      : null;
-
     State.init({
       ...model,
-      images: model.images || DEFAULT_STATE.images,
-      links: model.links || DEFAULT_STATE.links,
-      start_date,
-      end_date,
     });
   } else {
     State.init(DEFAULT_STATE);
   }
   return 'Loading...';
 }
-
-const Button = styled.button`
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ccc;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
-
-const Label = styled.label`
-  width: 100%;
-  color: #666;
-  padding: 0.5rem 0;
-  margin: 0.5rem 0 0 0;
-  box-sizing: border-box;
-`;
 
 const ErrorMessage = styled.div`
   color: #c00;
