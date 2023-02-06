@@ -272,6 +272,137 @@ const Animations = {
         rotateY(180deg);
     }
   `,
+
+  Glow: styled.keyframes`
+    0% {
+      box-shadow: 0 0 3px #4caf50, 0 0 5px #4caf50;
+    }
+    50% {
+      box-shadow: 0 0 2px #4caf50, 0 0 10px #4caf50;
+    }
+    100% {
+      box-shadow: 0 0 5px #4caf50, 0 0 10px #4caf50;
+    }
+  `,
+
+  HeartBeat: styled.keyframes`
+    0% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(0.75);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(0.75);
+    }
+    70% {
+      transform: scale(1);
+    }
+  `,
+
+  Jello: styled.keyframes`
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    11.1% {
+      transform: scale(0.9) skewX(-12.5deg) skewY(-12.5deg);
+    }
+    22.2% {
+      transform: scale(0.9) skewX(6.25deg) skewY(6.25deg);
+    }
+    33.3% {
+      transform: scale(0.9) skewX(-3.125deg) skewY(-3.125deg);
+    }
+    44.4% {
+      transform: scale(0.9) skewX(1.5625deg) skewY(1.5625deg);
+    }
+    55.5% {
+      transform: scale(0.9) skewX(-0.78125deg) skewY(-0.78125deg);
+    }
+    66.6% {
+      transform: scale(0.9) skewX(0.390625deg) skewY(0.390625deg);
+    }
+    77.7% {
+      transform: scale(0.9) skewX(-0.1953125deg) skewY(-0.1953125deg);
+    }
+    88.8% {
+      transform: scale(0.9) skewX(0.09765625deg) skewY(0.09765625deg);
+    }
+  `,
+
+  Jump: styled.keyframes`
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+  `,
+
+  Pulse: styled.keyframes`
+    0% {
+      transform: scale(0.95);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.95);
+    }
+  `,
+
+  Swing: styled.keyframes`
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(10deg);
+    }
+    30% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+    57% {
+      transform: rotate(0deg);
+    }
+    64% {
+      transform: rotate(5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  `,
+
+  RubberBand: styled.keyframes`
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(1.25) rotate(-3deg);
+    }
+    40% {
+      transform: scale(0.75) rotate(3deg);
+    }
+    50% {
+      transform: scale(1.15) rotate(-3deg);
+    }
+    65% {
+      transform: scale(0.95) rotate(3deg);
+    }
+    75% {
+      transform: scale(1.05) rotate(-3deg);
+    }
+    100% {
+      transform: scale(1) rotate(0);
+    }
+  `,
 };
 
 /**
