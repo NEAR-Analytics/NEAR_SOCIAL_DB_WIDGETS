@@ -119,113 +119,115 @@ const Animations = {
  * Components
  * */
 
-const Select = styled.select`
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-`;
+const Components = {
+  Select: styled.select`
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  `,
 
-const Button = styled.button`
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition: all 0.5s ease;
+  Button: styled.button`
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: all 0.5s ease;
 
-  &:hover {
-    background-color: #3e8e41;
-  }
-`;
+    &:hover {
+      background-color: #3e8e41;
+    }
+  `,
 
-const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-`;
+  Loading: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  `,
 
-const PageTitle = styled.h1`
-  font-size: calc(max(32px, 2.5vw));
-  color: black;
-`;
+  PageTitle: styled.h1`
+    font-size: calc(max(32px, 2.5vw));
+    color: black;
+  `,
 
-const Container = styled.div`
-  padding-left: ${ContainerPaddingHorizontal};
-  padding-right: ${ContainerPaddingHorizontal};
-  padding-top: 12px;
-  padding-bottom: 12px;
-`;
+  Container: styled.div`
+    padding-left: ${ContainerPaddingHorizontal};
+    padding-right: ${ContainerPaddingHorizontal};
+    padding-top: 12px;
+    padding-bottom: 12px;
+  `,
 
-const InfoBar = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 0px ${ContainerPaddingHorizontal};
-  border-bottom: 1px solid #e0e0e0;
-`;
+  InfoBar: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0px ${ContainerPaddingHorizontal};
+    border-bottom: 1px solid #e0e0e0;
+  `,
 
-const InfoBarItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 12px;
-  padding: 8px 0;
-`;
+  InfoBarItem: styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    padding: 8px 0;
+  `,
 
-const InfoBarLink = styled.a`
-  font-size: 16px;
-  color: #424242;
-  text-decoration: none;
-  margin-right: 12px;
-  padding: 8px 0;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  &:visited {
+  InfoBarLink: styled.a`
+    font-size: 16px;
     color: #424242;
-  }
+    text-decoration: none;
+    margin-right: 12px;
+    padding: 8px 0;
 
-  &:active {
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:visited {
+      color: #424242;
+    }
+
+    &:active {
+      color: #424242;
+    }
+  `,
+
+  TextHeader: styled.div`
+    font-size: 20px;
     color: #424242;
-  }
-`;
+  `,
 
-const TextHeader = styled.div`
-  font-size: 20px;
-  color: #424242;
-`;
+  InlineTag: styled.div`
+    display: inline-block;
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    margin-left: 8px;
+  `,
 
-const InlineTag = styled.div`
-  display: inline-block;
-  background-color: #e0e0e0;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-right: 8px;
-  margin-left: 8px;
-`;
-
-const Text = styled.div`
-  font-size: 16px;
-  color: #424242;
-  margin-right: 8px;
-`;
+  Text: styled.div`
+    font-size: 16px;
+    color: #424242;
+    margin-right: 8px;
+  `,
+};
 
 /**
  *   I suggest you don't edit anything below this line
