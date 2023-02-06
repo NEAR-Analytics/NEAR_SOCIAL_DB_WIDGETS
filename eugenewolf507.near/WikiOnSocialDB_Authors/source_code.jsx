@@ -1,3 +1,5 @@
+const addressForArticles = "wikiTest";
+const authorForWidget = "testwiki.near";
 const authors = Array.from(props.filteredArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 
