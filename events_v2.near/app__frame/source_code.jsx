@@ -285,22 +285,22 @@ const env = {
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
 
-const AppState = {
+const SessionState = {
   _state: {},
   set: (prop, value) => {
-    AppState._state[prop] = value;
+    SessionState._state[prop] = value;
     return true;
   },
   get: (prop) => {
-    return AppState._state[prop];
+    return SessionState._state[prop];
   },
 };
 
-function appStateGet(prop, defaultValue) {
-  return AppState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+function sessionStateGet(prop, defaultValue) {
+  return SessionState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
 }
-function appStateSet(prop, value) {
-  return AppState.set(`${appOwner}.${appName}.${prop}`, value);
+function sessionStateSet(prop, value) {
+  return SessionState.set(`${appOwner}.${appName}.${prop}`, value);
 }
 
 function storageGet(prop, defaultValue) {
@@ -500,8 +500,8 @@ function renderComponent(name, props) {
     pop,
     replace,
     rerender,
-    appStateGet,
-    appStateSet,
+    sessionStateGet,
+    sessionStateSet,
     storageGet,
     storageSet,
     layoutPathFromName,
