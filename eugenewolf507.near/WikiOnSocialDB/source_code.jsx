@@ -1,3 +1,5 @@
+const addressForArticles = "wikiTest";
+const authorForWidget = "testwiki.near";
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
@@ -6,8 +8,6 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 if (profile === null) {
   return "Loading";
 }
-
-const addressForArticles = "wikiTest";
 
 const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
 const wikiTestArr = wikiTestData && Object.values(wikiTestData);
@@ -124,7 +124,7 @@ return (
           <div>
             {!state.article && (
               <Widget
-                src="testwiki.near/widget/WikiOnSocialDB_AllArticlesList"
+                src={`${authorForWidget}/widget/WikiOnSocialDB_AllArticlesList`}
                 props={{
                   filteredArticles,
                   getDateLastEdit,
@@ -137,7 +137,7 @@ return (
             {state.article && (
               <div>
                 <Widget
-                  src="testwiki.near/widget/WikiOnSocialDB_OneArticle"
+                  src={`${authorForWidget}/widget/WikiOnSocialDB_OneArticle`}
                   props={{
                     getDate,
                     article: state.article,
@@ -158,7 +158,7 @@ return (
       >
         {state.currentTab === "loadauthors" && (
           <Widget
-            src="testwiki.near/widget/WikiOnSocialDB_Authors"
+            src={`${authorForWidget}/widget/WikiOnSocialDB_Authors`}
             props={{
               filteredArticles,
             }}
@@ -174,7 +174,7 @@ return (
       >
         {state.currentTab === "loadcreate" && (
           <Widget
-            src="testwiki.near/widget/WikiOnSocialDB_CreateArticle"
+            src={`${authorForWidget}/widget/WikiOnSocialDB_CreateArticle`}
             props={{
               author: accountId,
               address: addressForArticles,
