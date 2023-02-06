@@ -590,6 +590,8 @@ const AppLayer = styled.div`
   transition-delay: ${(props) => props.transitionDelay};
 `;
 
+const { Button } = Components;
+
 return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
@@ -605,7 +607,7 @@ return (
         backgroundColor: 'transparent',
       }}
     >
-      <Components.Button
+      <Button
         onClick={() => {
           storageSet('routing', [rootRoute]);
           State.update({
@@ -614,7 +616,7 @@ return (
         }}
       >
         Reset
-      </Components.Button>
+      </Button>
     </div>
 
     {state.layers.map((layer, index) => {
