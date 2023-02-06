@@ -507,19 +507,8 @@ function renderComponent(name, props) {
 
     renderComponent: safeRender,
 
-    Components: {
-      Select,
-      Button,
-      Loading,
-      PageTitle,
-      Container,
-      InfoBar,
-      InfoBarItem,
-      InfoBarLink,
-      TextHeader,
-      InlineTag,
-      Text,
-    },
+    Components,
+    Animations
 
     helpers: {
       propIsRequiredMessage,
