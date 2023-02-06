@@ -37,7 +37,7 @@ const Pulse = styled.keyframes`
     transform: scale(0.95);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.025);
   }
   100% {
     transform: scale(0.95);
