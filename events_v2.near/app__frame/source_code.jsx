@@ -600,30 +600,6 @@ return (
   <>
     <div id="app-state" data-state={JSON.stringify(state)}></div>
 
-    <a
-      href={`https://near.social/#/embed/${appOwner}/widget/app?entryRoute=my_events`}
-    >
-      TEST
-    </a>
-
-    <a
-      href={`https://near.social/#/embed/${appOwner}/widget/app?entryRoute=my_events`}
-    >
-      TEST
-    </a>
-
-    <a
-      href={`https://near.social/#/embed/${appOwner}/widget/app?entryRoute=my_events`}
-    >
-      TEST
-    </a>
-
-    <a
-      href={`https://near.social/#/embed/${appOwner}/widget/app?entryRoute=my_events`}
-    >
-      TEST
-    </a>
-
     {/* state reset button */}
     {DEBUG ? (
       <div
