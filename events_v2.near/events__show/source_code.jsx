@@ -41,7 +41,7 @@ const primaryAction = {
   onClick: ['push', 'edit', { event_id: props.event_id }],
 };
 
-props.controller.setLayout('container', {
+props.controller.setLayout('layouts:container', {
   back: true,
   title: event.name,
   primaryAction:
