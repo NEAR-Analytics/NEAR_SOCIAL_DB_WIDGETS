@@ -157,6 +157,14 @@ const Components = {
     box-sizing: border-box;
     background-color: #ccc;
   `,
+
+  FormLabel: styled.label`
+    width: 100%;
+    color: #666;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0 0 0;
+    box-sizing: border-box;
+  `,
 };
 
 /**
