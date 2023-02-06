@@ -32,6 +32,7 @@ const dropdownElement =
     </>
   ) : null;
 
+const Pulse = props.__engine.Animations.Pulse;
 const NavPrimaryButton = styled.button`
   background-color: transparent;
   user-select: none;
@@ -54,7 +55,7 @@ const NavPrimaryButton = styled.button`
     /* darker and transparent */
     background-color: rgba(44, 44, 84, 0.85);
 
-    animation: ${props.__engine.Animations.Pulse} 2s infinite;
+    animation: ${Pulse} 2s infinite;
   }
 `;
 
