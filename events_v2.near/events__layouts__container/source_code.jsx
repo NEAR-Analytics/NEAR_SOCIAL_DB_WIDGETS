@@ -34,13 +34,13 @@ const dropdownElement =
 
 const Pulse = styled.keyframes`
   0% {
-    transform: scale(0.97);
+    transform: scale(0.975);
   }
   50% {
     transform: scale(1.025);
   }
   100% {
-    transform: scale(0.97);
+    transform: scale(0.975);
   }
 `;
 
