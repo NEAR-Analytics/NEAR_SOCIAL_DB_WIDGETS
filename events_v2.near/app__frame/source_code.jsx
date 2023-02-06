@@ -77,6 +77,9 @@ const Components = {
     font-size: 24px;
     color: #424242;
     padding: 12px 0;
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
   `,
 
   InfoBar: styled.div`
