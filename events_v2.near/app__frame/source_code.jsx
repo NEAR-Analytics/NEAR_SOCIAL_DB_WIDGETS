@@ -243,7 +243,7 @@ function slugFromName(name) {
 }
 
 function fetchPathOptions(path) {
-  const nameParts = name.split(':');
+  const nameParts = path.split(':');
   if (nameParts.length === 1) {
     return {
       owner: appOwner,
