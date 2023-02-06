@@ -344,18 +344,6 @@ const Animations = {
     }
   `,
 
-  Pulse: styled.keyframes`
-    0% {
-      transform: scale(0.95);
-    }
-    50% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(0.95);
-    }
-  `,
-
   Swing: styled.keyframes`
     0% {
       transform: rotate(0deg);
