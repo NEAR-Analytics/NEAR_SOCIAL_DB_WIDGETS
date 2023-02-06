@@ -32,18 +32,6 @@ const dropdownElement =
     </>
   ) : null;
 
-const Pulse = styled.keyframes`
-  0% {
-    transform: scale(0.9);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.9);
-  }
-`;
-
 const NavPrimaryButton = styled.button`
   background-color: transparent;
   user-select: none;
@@ -66,8 +54,6 @@ const NavPrimaryButton = styled.button`
     /* darker and transparent */
     background-color: rgba(44, 44, 84, 0.85);
   }
-
-  animation: ${Pulse} 4s infinite;
 `;
 
 const navbar = (
