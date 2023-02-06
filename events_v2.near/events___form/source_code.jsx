@@ -129,12 +129,6 @@ const Label = styled.label`
 
 const ValidationError = props.__engine.Components.ValidationError;
 
-const LinkTypes = [
-  { value: 'register', label: 'Register' },
-  { value: 'tickets', label: 'Tickets' },
-  { value: 'join_stream', label: 'Stream URL' },
-];
-
 function addError(key, message) {
   const oldErrors = { ...state.errors };
   const oldKeyErrors = oldErrors[key] || [];
