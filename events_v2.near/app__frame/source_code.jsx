@@ -538,7 +538,7 @@ function safeRender(_name, _props) {
 }
 
 const AppLayer = styled.div`
-  animation: ${Animations.FadeIn} 0.3s ease-in-out;
+  animation: ${FadeIn} 0.3s ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
   animation-duration: ${(props) => props.duration};
