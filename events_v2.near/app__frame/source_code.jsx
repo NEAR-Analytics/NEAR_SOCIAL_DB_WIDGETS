@@ -141,6 +141,13 @@ const Components = {
     color: #424242;
     margin-right: 8px;
   `,
+
+
+const ValidationError = styled.div`
+  color: #c00;
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0 0;
+`;
 };
 
 /**
