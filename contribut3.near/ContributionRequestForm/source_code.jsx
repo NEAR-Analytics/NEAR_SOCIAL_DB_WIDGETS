@@ -78,7 +78,7 @@ const contributionTypeInput = (
   </div>
 );
 
-const header = <div className="card-header">Request contribution</div>;
+const header = <div className="card-header">Propose contribution</div>;
 
 const body = (
   <div className="card-body">
