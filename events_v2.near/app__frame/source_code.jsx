@@ -147,6 +147,16 @@ const Components = {
     font-size: 0.8rem;
     margin: 0.5rem 0 0 0;
   `,
+
+  FullActionButton: styled.button`
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #ccc;
+  `,
 };
 
 /**
