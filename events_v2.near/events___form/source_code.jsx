@@ -96,25 +96,6 @@ if (!state) {
   return 'Loading...';
 }
 
-const Button = styled.button`
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ccc;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
-
 const Label = styled.label`
   width: 100%;
   color: #666;
@@ -124,6 +105,7 @@ const Label = styled.label`
 `;
 
 const ValidationError = props.__engine.Components.ValidationError;
+const FullActionButton = props.__engine.Components.FullActionButton;
 
 function addError(key, message) {
   const oldErrors = { ...state.errors };
@@ -257,13 +239,13 @@ return (
     <ValidationError>{getErrors('description')}</ValidationError>
 
     <br />
-    <Button
+    <FullActionButton
       className="mt-3"
       onClick={() => {
         sanitizeValidateAndCall(state);
       }}
     >
       {buttonText}
-    </Button>
+    </FullActionButton>
   </div>
 );
