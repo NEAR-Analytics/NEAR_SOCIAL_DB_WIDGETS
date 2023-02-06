@@ -62,7 +62,7 @@ const NavPrimaryButton = styled.button`
   box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
     0 0 89px 2px rgb(255, 255, 255, 0.4);
 
-  transform: scale(1);
+  transform: scale(0.975);
 
   &:hover {
     /* darker and transparent */
