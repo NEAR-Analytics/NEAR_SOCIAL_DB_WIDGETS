@@ -144,30 +144,29 @@ const navbar = (
 );
 
 return (
-  <>
+  <div
+    style={{
+      width: '100vw',
+      minHeight: '100%',
+      backgroundColor: 'white',
+      overflow: 'auto',
+    }}
+  >
+    {navbar}
+
     <div
+      className="row"
       style={{
-        width: '100vw',
-        minHeight: '100%',
-        backgroundColor: 'white',
-        overflow: 'auto',
+        marginTop: NAVBAR_HEIGHT,
       }}
     >
-      {navbar}
-
-      <div
-        className="row"
-        style={{
-          marginTop: NAVBAR_HEIGHT,
-        }}
-      >
-        <div className="col-12">
-          {props.__engine.renderComponent(
-            props.component.name,
-            props.component.props
-          )}
-        </div>
+      <div className="col-12">
+        {props.__engine.renderComponent(
+          props.component.name,
+          props.component.props
+        )}
       </div>
     </div>
-  </>
+  </div>
+  </div>
 );
