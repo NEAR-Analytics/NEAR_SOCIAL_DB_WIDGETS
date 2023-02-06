@@ -393,6 +393,8 @@ const Animations = {
   `,
 };
 
+console.log(Components);
+
 /**
  * Components
  * */
