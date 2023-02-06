@@ -64,7 +64,7 @@ const NavPrimaryButton = styled.button`
 
   transform: scale(0.975);
 
-  animation-duration: 3s;
+  transition-duration: 3s;
 
   &:hover {
     /* darker and transparent */
