@@ -268,13 +268,13 @@ function fetchPathOptions(path) {
   throw new Error(`Invalid path: ${path}`);
 }
 
-function widgetPathFromName(name) {
-  const { owner, name, slug } = fetchPathOptions(name);
+function widgetPathFromName(widgetName) {
+  const { owner, name, slug } = fetchPathOptions(widgetName);
   return `${owner}/widget/${name}__${slug}`;
 }
 
-function layoutPathFromName(name) {
-  const { owner, name, slug } = fetchPathOptions(name);
+function layoutPathFromName(layoutName) {
+  const { owner, name, slug } = fetchPathOptions(layoutName);
   return `${owner}/widget/${name}__layouts__${slug}`;
 }
 
