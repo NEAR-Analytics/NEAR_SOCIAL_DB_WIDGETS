@@ -242,12 +242,59 @@ function slugFromName(name) {
   return name.split('.').join('__').split('-').join('_');
 }
 
+function fetchPathOptions(path) {
+  const nameParts = name.split(':');
+  if (nameParts.length === 1) {
+    return {
+      appOwner,
+      appName,
+      slug: slugFromName(nameParts[0]),
+    };
+  }
+  if (nameParts.length === 2) {
+    return {
+      appOwner,
+      appName: nameParts[0],
+      slug: slugFromName(nameParts[1]),
+    };
+  }
+  if (nameParts.length === 3) {
+    return {
+      appOwner: nameParts[0],
+      appName: nameParts[1],
+      slug: slugFromName(nameParts[2]),
+    };
+  }
+  throw new Error(`Invalid path: ${path}`);
+}
+
 function widgetPathFromName(name) {
-  return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
+  const { appOwner, appName, slug } = fetchPathOptions(name);
+  return `${appOwner}/widget/${appName}__${slug}`;
 }
 
 function layoutPathFromName(name) {
-  return widgetPathFromName(`layouts.${name}`);
+  // we determine if we need to override the appOwner and appName
+  // those are denominated by a colon
+
+  // convention: if the name is just a single word, it's a layout by the same app owner and name
+  if (nameParts.length === 1) {
+    return `${appOwner}/widget/${appName}__${slugFromName(name)}`;
+  }
+
+  // convention: if the name is two words, it's a layout by the same app owner but a different name
+  if (nameParts.length === 2) {
+    const layoutName = nameParts[0];
+    const layoutSlug = nameParts[1];
+    return `${appOwner}/widget/${layoutName}__${slugFromName(layoutSlug)}`;
+  }
+
+  if (nameParts.length === 3) {
+    const layoutOwner = nameParts[0];
+    const layoutName = nameParts[1];
+    const layoutSlug = nameParts[2];
+    return `${layoutOwner}/widget/${layoutName}__${slugFromName(layoutSlug)}`;
+  }
 }
 
 function rerender() {
