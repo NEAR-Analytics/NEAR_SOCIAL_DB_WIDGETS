@@ -70,14 +70,14 @@ const Components = {
   Container: styled.div`
     padding-left: ${ContainerPaddingHorizontal};
     padding-right: ${ContainerPaddingHorizontal};
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: ${ContainerPaddingVertical};
+    padding-bottom: ${ContainerPaddingVertical};
   `,
 
   ContainerHeader: styled.div`
     font-size: 24px;
     color: #424242;
-    padding: 12px 0;
+    padding: ${ContainerPaddingVertical} 0;
     @media (max-width: 768px) {
       font-size: 20px;
     }
