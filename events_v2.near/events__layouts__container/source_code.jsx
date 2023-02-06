@@ -34,13 +34,13 @@ const dropdownElement =
 
 const Pulse = styled.keyframes`
   0% {
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
   50% {
     transform: scale(1.025);
   }
   100% {
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
 `;
 
@@ -61,6 +61,8 @@ const NavPrimaryButton = styled.button`
   border: 1px solid white;
   box-shadow: 0 0 2px 1px rgb(0, 0, 0, 0.3),
     0 0 89px 2px rgb(255, 255, 255, 0.4);
+
+  transform: scale(0.95);
 
   &:hover {
     /* darker and transparent */
