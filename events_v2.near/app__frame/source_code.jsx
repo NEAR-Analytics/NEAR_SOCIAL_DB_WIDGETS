@@ -361,7 +361,7 @@ const Animations = {
       transform: rotate(0deg);
     }
     64% {
-      transform: rotate(5deg);
+      transform: rotate(-5deg);
     }
     100% {
       transform: rotate(0deg);
