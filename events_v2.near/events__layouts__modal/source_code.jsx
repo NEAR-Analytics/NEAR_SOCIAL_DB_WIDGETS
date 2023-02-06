@@ -3,6 +3,34 @@ const BORDER_RADIUS = 16;
 
 const title = props.title || null;
 
+const FadeInSpecial = styled.keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translate(-50%, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+`;
+
+const ModalContent = styled.div`
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform-origin: bottom left;
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  max-width: 600px;
+  max-height: 600px;
+  border-radius: ${BORDER_RADIUS}px;
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
+
+  transform: translate(-50%, -50%);
+  animation: ${FadeInSpecial} 0.3s ease-in-out;
+`;
+
 return (
   <>
     <div
@@ -13,27 +41,10 @@ return (
         right: 0,
         bottom: 0,
         zIndex: 1000,
-        backgroundColor: 'rgba(200,200,200,0.66)',
         overflow: 'hidden',
-
-        backdropFilter: 'blur(20px) saturate(180%)',
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'white',
-          width: '80%',
-          height: '80%',
-          maxWidth: 600,
-          maxHeight: 600,
-          boxShadow: '0 0 40px -10px rgba(0,0,0,0.5)',
-          borderRadius: BORDER_RADIUS,
-        }}
-      >
+      <ModalContent>
         <div
           style={{
             height: '100%',
@@ -72,7 +83,6 @@ return (
           ) : null}
 
           {/* close button */}
-
           <button
             style={{
               position: 'absolute',
@@ -120,7 +130,7 @@ return (
             )}
           </div>
         </div>
-      </div>
+      </ModalContent>
     </div>
   </>
 );
