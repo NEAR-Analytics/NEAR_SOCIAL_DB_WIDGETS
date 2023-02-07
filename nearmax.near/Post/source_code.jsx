@@ -250,16 +250,7 @@ const CreatorWidget = (postType) => {
       class="collapse"
       id={`collapse${postType}Creator${postId}`}
       data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType,
-          parentId: postId,
-          mode: "Create",
-        }}
-      />
-    </div>
+    ></div>
   );
 };
 
@@ -269,24 +260,7 @@ const EditorWidget = (postType) => {
       class="collapse"
       id={`collapse${postType}Editor${postId}`}
       data-bs-parent={`#accordion${postId}`}
-    >
-      <Widget
-        src={`${ownerId}/widget/PostEditor`}
-        props={{
-          postType,
-          postId,
-          mode: "Edit",
-          author_id: post.author_id,
-          labels: post.snapshot.labels,
-          name: post.snapshot.name,
-          description: post.snapshot.description,
-          amount: post.snapshot.amount,
-          token: post.snapshot.sponsorship_token,
-          supervisor: post.snapshot.supervisor,
-          githubLink: post.snapshot.github_link,
-        }}
-      />
-    </div>
+    ></div>
   );
 };
 
