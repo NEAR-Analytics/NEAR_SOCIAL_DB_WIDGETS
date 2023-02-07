@@ -34,7 +34,7 @@ const Dot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #f00;
+  background-color: #ccc;
   animation: ${fadeInOut} 2s ease-in-out infinite;
   animation-delay: ${(props) => props.delay};
   margin: 0 5px;
@@ -52,7 +52,7 @@ return (
     <AlertContent>
       <div>
         <DotContainer>
-          {new Array(20).fill(0).map((_, i) => (
+          {new Array(10).fill(0).map((_, i) => (
             <Dot delay={`${i * 0.1}s`} key={i} />
           ))}
         </DotContainer>
