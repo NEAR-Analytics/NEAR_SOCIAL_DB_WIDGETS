@@ -244,31 +244,6 @@ const buttonsFooter = props.isPreview ? null : (
   </div>
 );
 
-const CreatorWidget = (postType) => {
-  return <div></div>;
-};
-
-const EditorWidget = (postType) => {
-  return <div></div>;
-};
-
-const editorsFooter = props.isPreview ? null : (
-  <div class="row" id={`accordion${postId}`}>
-    {CreatorWidget("Comment")}
-    {EditorWidget("Comment")}
-    {CreatorWidget("Idea")}
-    {EditorWidget("Idea")}
-    {CreatorWidget("Submission")}
-    {EditorWidget("Submission")}
-    {CreatorWidget("Attestation")}
-    {EditorWidget("Attestation")}
-    {CreatorWidget("Sponsorship")}
-    {EditorWidget("Sponsorship")}
-    {CreatorWidget("Github")}
-    {EditorWidget("Github")}
-  </div>
-);
-
 const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
