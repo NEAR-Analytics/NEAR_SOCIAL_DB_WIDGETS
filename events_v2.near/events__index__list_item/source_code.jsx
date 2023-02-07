@@ -8,6 +8,7 @@ if (!event) {
 const Card = props.__engine.Components.Card;
 const CardHeaderImage = props.__engine.Components.CardHeaderImage;
 const CardBody = props.__engine.Components.CardBody;
+const CardFooter = props.__engine.Components.CardFooter;
 
 const EventTitle = styled.h1`
   font-size: calc(max(1.25rem, 1.25vw));
@@ -15,18 +16,6 @@ const EventTitle = styled.h1`
   margin: 0;
   padding: 1vw calc(max(0.5rem, 0.5vw));
   width: 100%;
-`;
-
-const CardFooter = styled.div`
-  font-size: 0.8vw;
-  font-weight: 400;
-  margin: 0;
-  padding: calc(max(0.5rem, 0.5vw));
-  height: 42px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 100%;
-  border-top: 0.1vw solid #cccccc;
 `;
 
 function showEvent() {
