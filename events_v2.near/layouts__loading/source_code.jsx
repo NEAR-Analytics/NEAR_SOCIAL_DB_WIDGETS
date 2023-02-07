@@ -50,17 +50,15 @@ const DotContainer = styled.div`
 return (
   <>
     <AlertContent>
-      <div>
-        <DotContainer>
-          {new Array(10).fill(0).map((_, i) => (
-            <Dot delay={`${i * 0.1}s`} key={i} />
-          ))}
-        </DotContainer>
-        {props.__engine.renderComponent(
-          props.component.name,
-          props.component.props
-        )}
-      </div>
+      <DotContainer>
+        {new Array(10).fill(0).map((_, i) => (
+          <Dot delay={`${i * 0.1}s`} key={i} />
+        ))}
+      </DotContainer>
+      {props.__engine.renderComponent(
+        props.component.name,
+        props.component.props
+      )}
     </AlertContent>
   </>
 );
