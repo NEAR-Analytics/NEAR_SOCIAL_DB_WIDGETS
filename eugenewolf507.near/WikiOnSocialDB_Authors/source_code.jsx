@@ -60,6 +60,7 @@ return (
           <li>
             <a
               href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+              target="_blank"
             >
               {author}
             </a>{" "}
