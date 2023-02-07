@@ -15,6 +15,7 @@ const AlertContent = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+  overflow: scroll;
 `;
 
 return (
