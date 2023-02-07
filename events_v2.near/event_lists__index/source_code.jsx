@@ -1,3 +1,4 @@
+props.controller.setLayout('layouts:loading', {});
 props.controller.setLayout('layouts:container', {
   title: 'ND Event Lists',
   back: false,
