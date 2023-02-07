@@ -393,7 +393,6 @@ const descriptionArea = isUnderPost ? (
 
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
-    {linkToParent}
     {header}
     <div className="card-body">
       {postTitle}
@@ -401,7 +400,6 @@ return (
       {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
-      {postsList}
     </div>
   </Card>
 );
