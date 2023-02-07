@@ -1,5 +1,7 @@
 const accountId = context?.accountId;
+const marketAddress = "simple.market.mintbase1.near";
 
+const LISTING_DEPOSIT_IN_NEAR_PER_TOKEN = 10000000000000000000000;
 const size = "5em";
 
 State.init({
@@ -56,14 +58,56 @@ const removeFromCart = (token_id, nft_contract_id) => {
   });
 };
 
-const listMarket = () => {};
-
 const numTokensSelected = Object.keys(state.tokens).length;
+
+const YoctoToNear = (amountYocto) =>
+  new Big(amountYocto).div(new Big(10).pow(24)).toString();
+
+const listMarket = () => {
+  const gas = 200000000000000;
+
+  const storageDeposit = new Big(
+    LISTING_DEPOSIT_IN_NEAR_PER_TOKEN * numTokensSelected
+  ).toFixed(0);
+
+  const approvals = Object.values(state.tokens).map((token) => {
+    console.log(token);
+    return {
+      methodName: "nft_approve",
+      contractAddress: token.nftContractId,
+      gas: gas,
+      args: {
+        token_id: token.tokenId,
+        account_id: marketAddress,
+        msg: JSON.stringify({
+          price: 1,
+        }),
+      },
+      deposit: 1,
+    };
+  });
+
+  Near.call([
+    {
+      contractName: marketAddress,
+      methodName: "deposit_storage",
+      args: {},
+      gas: gas,
+      deposit: storageDeposit,
+    },
+    ...approvals,
+  ]);
+};
 
 return (
   <div class="d-flex flex-column gap-2">
-    <div>{numTokensSelected}</div>
-    <button>List for 1N</button>
+    <button
+      onClick={() => {
+        listMarket();
+      }}
+    >
+      List {numTokensSelected} tokens for 1N
+    </button>
     {data.map(({ token_id, nft_contract_id }) => {
       const key = `${token_id}::${nft_contract_id}`;
       const addedToken = !!state.tokens[key];
