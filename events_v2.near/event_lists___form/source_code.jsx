@@ -1,6 +1,6 @@
 const onSave = props.onSave;
 if (onSave === undefined || onSave === null) {
-  return 'props.onSave is required';
+  return props.__engine.helpers.propIsRequiredMessage('onSave');
 }
 
 const model = props.model;
