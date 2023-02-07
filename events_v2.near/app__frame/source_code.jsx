@@ -544,8 +544,8 @@ function contractView(contractName, methodName, args) {
 }
 
 function loading(displayText) {
-  const text = displayText || 'Loading...';
-  return renderComponent('app:loading', { text });
+  const text = displayText || '...';
+  return renderComponent('app:loading', { text: `Loading ${text}` });
 }
 
 function renderComponent(name, props) {
