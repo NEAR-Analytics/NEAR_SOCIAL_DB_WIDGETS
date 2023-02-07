@@ -22,10 +22,7 @@ return (
         }}
       />
       <h1> Hello Guys</h1>
-      <img
-        src={"https://i.ibb.co/tK5Dvsn/Screenshot-605.png"}
-        alt="Bulbasaur"
-      />
+
       <div className="mt-3">
         <Widget
           src="mob.near/widget/ProfileTabs"
