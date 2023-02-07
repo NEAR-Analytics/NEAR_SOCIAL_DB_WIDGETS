@@ -8,8 +8,13 @@ function showEventList() {
   props.__engine.push('show', { event_list_id: event_list.id });
 }
 
+const Card = props.__engine.Components.Card;
+const CardHeaderImage = props.__engine.Components.CardHeaderImage;
+const CardBody = props.__engine.Components.CardBody;
+const CardFooter = props.__engine.Components.CardFooter;
+
 return (
-  <div
+  <Card
     onClick={() => {
       showEventList();
     }}
@@ -21,8 +26,8 @@ return (
     role="button"
     tabIndex={0}
   >
-    <div>
+    <CardBody>
       <div>{event_list.name}</div>
-    </div>
-  </div>
+    </CardBody>
+  </Card>
 );
