@@ -388,11 +388,15 @@ const limitedMarkdown = styled.div`
 
 // Should make sure the posts under the currently top viewed post are limited in size.
 const descriptionArea = isUnderPost ? (
-  <limitedMarkdown className="overflow-auto">
+  <limitedMarkdown className="overflow-auto" key={`postDescription${postId}`}>
     <Markdown class="card-text" text={snapshot.description}></Markdown>
   </limitedMarkdown>
 ) : (
-  <Markdown class="card-text" text={snapshot.description}></Markdown>
+  <Markdown
+    class="card-text"
+    text={snapshot.description}
+    key={`postDescription${postId}`}
+  ></Markdown>
 );
 
 return (
