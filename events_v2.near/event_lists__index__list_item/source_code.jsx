@@ -32,33 +32,34 @@ const CardHeader = styled.div`
   padding: 1vw calc(max(0.5rem, 0.5vw));
 `;
 
-
-const eventsListSlider = (<div
-      style={{
-        width: '100%',
-        height: 'auto',
-        flexGrow: 100,
-        flexShrink: 0,
-        overflowY: 'hidden',
-        overflowX: 'scroll',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        padding: '0',
-        margin: '0',
-        backgroundColor: 'red',
-        flexWrap: 'nowrap',
-      }}
-    >
-      {events.map((event) => {
-        return (
-          <div key={event.id}>
-            {props.__engine.renderComponent('index.event_list_item', { event })}
-          </div>
-        );
-      })}
-    </div>)
+const eventsListSlider = (
+  <div
+    style={{
+      width: '100%',
+      height: 'auto',
+      flexGrow: 100,
+      flexShrink: 0,
+      overflowY: 'hidden',
+      overflowX: 'scroll',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      padding: '0',
+      margin: '0',
+      backgroundColor: 'red',
+      flexWrap: 'nowrap',
+    }}
+  >
+    {events.map((event) => {
+      return (
+        <div key={event.id}>
+          {props.__engine.renderComponent('index.event_list_item', { event })}
+        </div>
+      );
+    })}
+  </div>
+);
 
 return (
   <Card
@@ -83,9 +84,7 @@ return (
       </div>
     </CardHeader>
 
-    { events.length > 0 || loadingEvents ? (
-    
-    ) : (
+    {events.length > 0 || loadingEvents ? eventsListSlider : eventsListSlider}
 
     <CardBody>{event_list.description}</CardBody>
   </Card>
