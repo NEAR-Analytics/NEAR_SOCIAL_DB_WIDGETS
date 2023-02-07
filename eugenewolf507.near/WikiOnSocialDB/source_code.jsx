@@ -116,38 +116,6 @@ return (
           </div>
         )}
       </div>
-      {/* === AUTHORS === */}
-      <div
-        className="tab-pane fade"
-        id="pills-authors"
-        role="tabpanel"
-        aria-labelledby="pills-authors-tab"
-      >
-        {state.currentTab === "loadauthors" && (
-          <Widget
-            src={`${authorForWidget}/widget/WikiOnSocialDB_Authors`}
-            props={{
-              filteredArticles,
-            }}
-          />
-        )}
-      </div>
-      {/* === CREATE ARTICLE === */}
-      <div
-        className="tab-pane fade"
-        id="pills-create"
-        role="tabpanel"
-        aria-labelledby="pills-create-tab"
-      >
-        {state.currentTab === "loadcreate" && (
-          <Widget
-            src={`${authorForWidget}/widget/WikiOnSocialDB_CreateArticle`}
-            props={{
-              author: accountId,
-            }}
-          />
-        )}
-      </div>
     </div>
   </>
 );
