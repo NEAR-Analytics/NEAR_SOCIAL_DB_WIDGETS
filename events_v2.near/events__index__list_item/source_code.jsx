@@ -7,7 +7,7 @@ if (!event) {
 
 const BG_CARD = '#ffffff';
 
-const EventCard = props.__engine.Components.Card;
+const Card = props.__engine.Components.Card;
 
 const EventHeaderImage = styled.div`
   height: auto;
@@ -52,7 +52,7 @@ function showEvent() {
 }
 
 return (
-  <EventCard
+  <Card
     onClick={() => {
       showEvent();
     }}
@@ -78,5 +78,5 @@ return (
     <EventDate>
       {props.__engine.renderComponent('components.event_date', { event })}
     </EventDate>
-  </EventCard>
+  </Card>
 );
