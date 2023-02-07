@@ -117,31 +117,41 @@ return (
       )}
     </div>
 
-    <div>
-      <p>People:</p>
+    {state.term && (
+      <>
+        {state.people?.length > 0 && (
+          <div>
+            <p>People:</p>
 
-      <ul>
-        {state.people &&
-          state.people.map((person, i) => (
-            <li key={i}>
-              {person.name}, {person.accountId}
-            </li>
-          ))}
-      </ul>
-    </div>
+            <ul>
+              {state.people.map((person, i) => (
+                <li key={i}>
+                  {person.name}, {person.accountId}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-    <div>
-      <p>Applications:</p>
+        {state.apps?.length > 0 && (
+          <div>
+            <p>Applications:</p>
 
-      <ul>
-        {state.apps &&
-          state.apps.map((app, i) => (
-            <li key={i}>
-              {app.widgetName}, {app.accountId}
-            </li>
-          ))}
-      </ul>
-    </div>
+            <ul>
+              {state.apps.map((app, i) => (
+                <li key={i}>
+                  {app.widgetName}, {app.accountId}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </>
+    )}
+
+    {state.term && state.apps?.length === 0 && state.people?.length === 0 && (
+      <p>No people or applications match your search.</p>
+    )}
 
     {props.debug && (
       <div>
