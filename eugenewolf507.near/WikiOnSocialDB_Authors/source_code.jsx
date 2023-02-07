@@ -17,6 +17,10 @@ const authorsCountArray = Object.entries(authorsCountObject);
 
 return (
   <>
+    <Widget
+      src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
+      props={{ currentPill: "authors" }}
+    />
     <h6>Total authors: {authorsCountArray.length}</h6>
     <a
       href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByUser?author=${mOKEDAYTHOR}`}
