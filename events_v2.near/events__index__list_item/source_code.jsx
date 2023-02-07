@@ -5,8 +5,6 @@ if (!event) {
   return '';
 }
 
-const BG_CARD = '#ffffff';
-
 const Card = props.__engine.Components.Card;
 
 const EventHeaderImage = styled.div`
