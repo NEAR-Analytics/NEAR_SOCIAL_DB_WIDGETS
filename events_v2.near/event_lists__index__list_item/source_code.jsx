@@ -63,24 +63,13 @@ return (
         flexWrap: 'nowrap',
       }}
     >
-      <div>
-        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      </div>
-      <div>
-        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      </div>
-      <div>
-        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      </div>
-      <div>
-        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      </div>
-      <div>
-        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      </div>
-      <div>
-        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      </div>
+      {events.map((event) => {
+        return (
+          <div key={event.id}>
+            {props.__engine.renderComponent('index.event_list_item', { event })}
+          </div>
+        );
+      })}
     </div>
     <CardBody>{event_list.description}</CardBody>
   </Card>
