@@ -31,8 +31,8 @@ const fadeInOut = styled.keyframes`
 `;
 
 const Dot = styled.div`
-  width: 10px;
-  height: 10px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background-color: #ccc;
   animation: ${fadeInOut} 2s ease-in-out infinite;
@@ -51,7 +51,7 @@ return (
   <>
     <AlertContent>
       <DotContainer>
-        {new Array(10).fill(0).map((_, i) => (
+        {new Array(12).fill(0).map((_, i) => (
           <Dot delay={`${i * 0.1}s`} key={i} />
         ))}
       </DotContainer>
