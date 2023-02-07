@@ -248,6 +248,18 @@ const Components = {
     flex-grow: 100;
     flex-shrink: 0;
   `,
+
+  CardFooter: styled.div`
+    font-size: 0.8vw;
+    font-weight: 400;
+    margin: 0;
+    padding: calc(max(0.5rem, 0.5vw));
+    height: 42px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    border-top: 0.1vw solid #cccccc;
+  `,
 };
 
 /**
