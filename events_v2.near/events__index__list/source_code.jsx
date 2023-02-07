@@ -8,6 +8,8 @@ if (events.length === 0) {
   return 'No events found';
 }
 
+const GridContainer = props.__engine.Components.GridContainer;
+
 return (
   <GridContainer itemWidth={'240px'}>
     {events.map((event) => {
