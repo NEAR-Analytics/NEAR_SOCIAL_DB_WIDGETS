@@ -31,7 +31,7 @@ return (
           </a>{" "}
           -
           <a
-            href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByUser?author=${author}`}
+            href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByAuthor?author=${author}`}
           >
             {quantity}
           </a>
