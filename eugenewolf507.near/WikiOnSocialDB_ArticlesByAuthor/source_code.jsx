@@ -1,5 +1,6 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
+const authorId = props.author;
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
@@ -43,7 +44,7 @@ const filteredArticles =
 const filteredArticlesByUser =
   filteredArticles.length &&
   filteredArticles.reduce((acc, article) => {
-    if (article.author === props.author) {
+    if (article.author === authorId) {
       return [...acc, article];
     } else {
       return acc;
@@ -59,10 +60,10 @@ return (
     <div>
       Author:
       <a
-        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${props.author}`}
+        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${authorId}`}
         target="_blank"
       >
-        {props.author}
+        {authorId}
       </a>
       <ol>
         {filteredArticlesByUser &&
