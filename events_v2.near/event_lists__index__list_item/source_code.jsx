@@ -63,10 +63,24 @@ return (
         flexWrap: 'nowrap',
       }}
     >
-      scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
-      jaghsdfkj gaskjdfhga ksjdhfg kajshgdf kajhsgdfk jaghsfdkjh agskdfjhgas
-      kjdfhgaskjdfg akjshdgf kjashgdfkjahsg dkfjhags dkfjhgaskdfjhgaskjdhfg
-      aksjhdfgk ajsdghfkajs dfgkjahsgdfk ajhsgdfk gasdf
+      <div>
+        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      </div>
+      <div>
+        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      </div>
+      <div>
+        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      </div>
+      <div>
+        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      </div>
+      <div>
+        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      </div>
+      <div>
+        scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      </div>
     </div>
     <CardBody></CardBody>
   </Card>
