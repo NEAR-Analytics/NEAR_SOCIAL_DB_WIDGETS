@@ -6,7 +6,7 @@ const AlertContent = styled.div`
   background-color: white;
   width: 50%;
   height: auto;
-  max-width: 200px;
+  max-width: 300px;
   max-height: 200px;
   border-radius: 12px;
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
@@ -18,13 +18,40 @@ const AlertContent = styled.div`
   overflow: scroll;
 `;
 
+const fadeInOut = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+const dot = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f00;
+  animation: ${fadeInOut} 1s infinite;
+`;
+
 return (
   <>
     <AlertContent>
-      {props.__engine.renderComponent(
-        props.component.name,
-        props.component.props
-      )}
+      <div>
+        <div>
+          <dot />
+          <dot />
+          <dot />
+        </div>
+        {props.__engine.renderComponent(
+          props.component.name,
+          props.component.props
+        )}
+      </div>
     </AlertContent>
   </>
 );
