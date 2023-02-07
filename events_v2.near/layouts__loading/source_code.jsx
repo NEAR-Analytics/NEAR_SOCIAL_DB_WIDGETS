@@ -39,6 +39,7 @@ const Dot = styled.div`
   animation: ${fadeInOut} 2s ease-in-out infinite;
   animation-delay: ${(props) => props.delay};
   margin: 0 4px;
+  opacity: 0;
 `;
 
 const DotContainer = styled.div`
