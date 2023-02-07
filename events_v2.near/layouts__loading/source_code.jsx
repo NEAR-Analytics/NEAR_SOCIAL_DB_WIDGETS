@@ -37,6 +37,7 @@ const Dot = styled.div`
   background-color: #f00;
   animation: ${fadeInOut} 1s infinite;
   animation-delay: ${(props) => props.delay};
+  margin: 0 5px;
 `;
 
 const DotContainer = styled.div`
