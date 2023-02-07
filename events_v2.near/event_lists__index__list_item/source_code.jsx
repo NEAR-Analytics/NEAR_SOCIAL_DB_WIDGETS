@@ -14,10 +14,7 @@ const CardBody = props.__engine.Components.CardBody;
 // const CardFooter = props.__engine.Components.CardFooter;
 
 const CardHeader = styled.div`
-  height: auto;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
   border-radius: 14px 14px 0 0;
   border-bottom: 0.1vw solid #cccccc;
   flex-shrink: 0;
