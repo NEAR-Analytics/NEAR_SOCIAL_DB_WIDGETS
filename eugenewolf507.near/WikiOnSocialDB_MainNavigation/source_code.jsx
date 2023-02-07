@@ -1,3 +1,4 @@
+const currentNavPill = props.currentPill ?? "articles";
 const authorForWidget = "eugenewolf507.near";
 const pills = [
   {
@@ -16,6 +17,7 @@ const pills = [
     widgetName: "WikiOnSocialDB_CreateArticle",
   },
 ];
+
 return (
   <div>
     <ul className="nav nav-pills nav-fill mb-4">
@@ -23,7 +25,9 @@ return (
         <li className="nav-item">
           <a
             href={`${authorForWidget}/widget/${widgetName}`}
-            class={`nav-link ${id === "authors" ? "active" : ""}`}
+            class={`nav-link ${
+              id === currentNavPill ? "active" : ""
+            } text-decoration-none`}
           >
             {title}
           </a>
