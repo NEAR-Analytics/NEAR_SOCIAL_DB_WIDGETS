@@ -24,7 +24,7 @@ return (
   <>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
-      props={{ currentPill: "articles" }}
+      props={{ currentNavPill: "articles" }}
     />
     <div>
       <h4>Article: {state.article.articleId}</h4>
