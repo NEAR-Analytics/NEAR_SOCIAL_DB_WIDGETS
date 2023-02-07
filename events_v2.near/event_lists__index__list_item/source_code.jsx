@@ -4,7 +4,7 @@ if (!event_list) {
   return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
 
-let events = props.__engine.view('get_events_in_event_list', {
+let events = props.__engine.contract.view('get_events_in_event_list', {
   event_list_id: event_list.id,
 });
 let loadingEvents = false;
