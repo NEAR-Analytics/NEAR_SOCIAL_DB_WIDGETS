@@ -58,7 +58,12 @@ return (
     />
     <div>
       Author:
-      {props.author}
+      <a
+        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+        target="_blank"
+      >
+        {props.author}
+      </a>
       <ol>
         {filteredArticlesByUser &&
           filteredArticlesByUser.map((article, index) => (
