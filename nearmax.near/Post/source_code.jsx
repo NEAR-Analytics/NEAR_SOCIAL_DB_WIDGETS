@@ -405,7 +405,6 @@ return (
     {header}
     <div className="card-body">
       {postTitle}
-      {postExtra}
       {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
