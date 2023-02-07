@@ -244,6 +244,14 @@ const buttonsFooter = props.isPreview ? null : (
   </div>
 );
 
+const CreatorWidget = (postType) => {
+  return <div></div>;
+};
+
+const EditorWidget = (postType) => {
+  return <div></div>;
+};
+
 const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
