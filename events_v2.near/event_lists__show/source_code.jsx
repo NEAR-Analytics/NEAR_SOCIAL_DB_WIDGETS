@@ -1,3 +1,5 @@
+props.__engine.loading('event list exists');
+
 const EVENTS_CONTRACT = 'events_v2.near';
 
 const event_list_id = props.event_list_id;
