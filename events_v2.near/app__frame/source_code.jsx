@@ -551,11 +551,17 @@ function contractView(contractName, methodName, args) {
   return Near.view(contractName, methodName, args);
 }
 
+function loading(displayText) {
+  const text = displayText || 'Loading...';
+  return renderComponent('app__loading', { text });
+}
+
 function renderComponent(name, props) {
   const engine = {
     env,
     accountId,
 
+    loading,
     push,
     pop,
     replace,
