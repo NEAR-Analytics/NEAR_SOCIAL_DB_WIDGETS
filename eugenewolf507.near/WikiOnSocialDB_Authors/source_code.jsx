@@ -19,7 +19,7 @@ return (
   <>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
-      props={{ currentPill: "authors" }}
+      props={{ currentNavPill: "authors" }}
     />
     <h6>Total authors: {authorsCountArray.length}</h6>
     <a
