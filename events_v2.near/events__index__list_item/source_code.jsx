@@ -14,7 +14,6 @@ const EventTitle = styled.h1`
   font-size: calc(max(1.25rem, 1.25vw));
   font-weight: 500;
   margin: 0;
-  padding: 1vw calc(max(0.5rem, 0.5vw));
   width: 100%;
 `;
 
