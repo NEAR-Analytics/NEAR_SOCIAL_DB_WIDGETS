@@ -12,7 +12,7 @@ const inputTerm = props.term;
 const computeResults = (term) => {
   const terms = (term || "")
     .toLowerCase()
-    .split(/[^\w._-]/)
+    .split(/[^\w._\/-]/)
     .filter((s) => !!s.trim());
 
   const matchedWidgets = [];
@@ -20,7 +20,7 @@ const computeResults = (term) => {
   const limit = props.limit ?? 30;
 
   const MaxSingleScore = 20;
-  const MaxScore = MaxSingleScore * 3.5;
+  const MaxScore = MaxSingleScore * 4;
 
   const computeScore = (s) => {
     s = s.toLowerCase();
@@ -35,14 +35,17 @@ const computeResults = (term) => {
   };
 
   Object.entries(keys).forEach(([accountId, data]) => {
-    const accountIdScore = computeScore(accountId);
     Object.keys(data.widget).forEach((componentId) => {
+      const widgetSrc = `${accountId}/widget/${componentId}`;
+      const widgetSrcScore = computeScore(widgetSrc);
       const componentIdScore = computeScore(componentId);
       const metadata = allMetadata[accountId].widget[componentId].metadata;
-      const name = metadata.name || "";
+      const name = metadata.name || componentId;
       if (requiredTag && !(metadata.tags && requiredTag in metadata.tags)) {
         return;
       }
+      const boosted =
+        boostedTag && metadata.tags && boostedTag in metadata.tags;
       const tags = Object.keys(metadata.tags || {}).slice(0, 10);
       const nameScore = computeScore(name);
       const tagsScore = Math.min(
@@ -50,16 +53,16 @@ const computeResults = (term) => {
         tags.map(computeScore).reduce((s, v) => s + v, 0)
       );
       const score =
-        (accountIdScore / 2 + componentIdScore + nameScore + tagsScore) /
-        MaxScore;
+        (widgetSrcScore + componentIdScore + nameScore + tagsScore) / MaxScore;
       if (score > 0) {
         matchedWidgets.push({
           score,
           accountId,
           widgetName: componentId,
-          widgetSrc: `${accountId}/widget/${componentId}`,
+          widgetSrc,
           name,
           tags,
+          boosted,
         });
       }
     });
