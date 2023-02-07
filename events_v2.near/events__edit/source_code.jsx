@@ -6,7 +6,7 @@ const EVENTS_CONTRACT = 'events_v2.near';
 
 const eventId = props.event_id;
 if (!eventId) {
-  return 'props.eventId is required';
+  return props.__engine.helpers.propsIsRequiredMessage('event_id');
 }
 
 const event = Near.view(EVENTS_CONTRACT, 'get_event', {
