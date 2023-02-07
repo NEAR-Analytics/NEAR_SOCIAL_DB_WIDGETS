@@ -101,7 +101,7 @@ const computeResults = (term) => {
 };
 
 return (
-  <>
+  <div>
     <div>
       <input
         type="text"
@@ -120,9 +120,8 @@ return (
       <p>People:</p>
 
       <ul>
-        {state.people.map((accountId, i) => (
-          <li key={i}>{accountId}</li>
-        ))}
+        {state.people &&
+          state.people.map((accountId, i) => <li key={i}>{accountId}</li>)}
       </ul>
     </div>
 
@@ -130,14 +129,13 @@ return (
       <p>Applications:</p>
 
       <ul>
-        {state.apps.map((app, i) => (
-          <li key={i}>
-            {app.widgetName}, {app.accountId}
-          </li>
-        ))}
+        {state.apps &&
+          state.apps.map((app, i) => (
+            <li key={i}>
+              {app.widgetName}, {app.accountId}
+            </li>
+          ))}
       </ul>
     </div>
-
-    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
-  </>
+  </div>
 );
