@@ -45,6 +45,21 @@ return (
       </div>
     </CardHeader>
 
+    <div
+      style={{
+        width: '100%',
+        height: 'auto',
+        flexGrow: 100,
+        flexShrink: 0,
+        overflowY: 'hidden',
+        overflowX: 'scroll',
+      }}
+    >
+      scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
+      jaghsdfkj gaskjdfhga ksjdhfg kajshgdf kajhsgdfk jaghsfdkjh agskdfjhgas
+      kjdfhgaskjdfg akjshdgf kjashgdfkjahsg dkfjhags dkfjhgaskdfjhgaskjdhfg
+      aksjhdfgk ajsdghfkajs dfgkjahsgdfk ajhsgdfk gasdf
+    </div>
     <CardBody></CardBody>
   </Card>
 );
