@@ -53,6 +53,14 @@ return (
         flexShrink: 0,
         overflowY: 'hidden',
         overflowX: 'scroll',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        padding: '0',
+        margin: '0',
+        backgroundColor: 'red',
+        flexWrap: 'nowrap',
       }}
     >
       scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
