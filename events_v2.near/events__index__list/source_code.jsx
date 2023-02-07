@@ -33,7 +33,7 @@ const IndexList = styled.div`
     margin: 20px 20px;
     max-width: 520px;
     min-width: 320px;
-    width: 240px;
+    width: ${({ itemWidth }) => itemWidth || '240px'};
     flex-grow: 3;
     flex-shrink: 3;
 
