@@ -287,7 +287,7 @@ const postLables = post.snapshot.labels ? (
   </div>
 ) : null;
 
-const postTitle = null;
+const postTitle = "";
 
 const postExtra =
   snapshot.post_type == "Sponsorship" ? (
