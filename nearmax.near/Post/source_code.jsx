@@ -245,23 +245,11 @@ const buttonsFooter = props.isPreview ? null : (
 );
 
 const CreatorWidget = (postType) => {
-  return (
-    <div
-      class="collapse"
-      id={`collapse${postType}Creator${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    ></div>
-  );
+  return <div></div>;
 };
 
 const EditorWidget = (postType) => {
-  return (
-    <div
-      class="collapse"
-      id={`collapse${postType}Editor${postId}`}
-      data-bs-parent={`#accordion${postId}`}
-    ></div>
-  );
+  return <div></div>;
 };
 
 const editorsFooter = props.isPreview ? null : (
