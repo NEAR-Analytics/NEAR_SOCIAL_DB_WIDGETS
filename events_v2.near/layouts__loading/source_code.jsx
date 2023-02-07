@@ -53,7 +53,7 @@ return (
       <div>
         <DotContainer>
           {new Array(20).fill(0).map((_, i) => (
-            <Dot delay={`${i * 0.1}s`} />
+            <Dot delay={`${i * 0.1}s`} key={i} />
           ))}
         </DotContainer>
         {props.__engine.renderComponent(
