@@ -13,7 +13,7 @@ const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
   event_id: props.event_id,
 });
 if (!event) {
-  return 'Loading';
+  return props.__engine.loading('event');
 }
 
 const SECONDS_10 = 10000;
