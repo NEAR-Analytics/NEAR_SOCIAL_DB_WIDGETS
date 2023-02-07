@@ -21,7 +21,7 @@ if (has_event_list === null) {
 
 if (has_event_list === false) {
   props.__engine.pop();
-  return 'EventListhas_event_list not found';
+  return '';
 }
 
 const event_list = props.__engine.contract.view(
