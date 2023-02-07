@@ -39,15 +39,22 @@ const Dot = styled.div`
   animation-delay: ${(props) => props.delay};
 `;
 
+const DotContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
 return (
   <>
     <AlertContent>
       <div>
-        <div>
+        <DotContainer>
           <Dot delay={'0s'}></Dot>
           <Dot delay={'0.2s'}></Dot>
           <Dot delay={'0.4s'}></Dot>
-        </div>
+        </DotContainer>
         {props.__engine.renderComponent(
           props.component.name,
           props.component.props
