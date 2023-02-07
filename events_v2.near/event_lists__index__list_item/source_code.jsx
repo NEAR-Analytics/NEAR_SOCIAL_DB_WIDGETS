@@ -56,7 +56,7 @@ const eventsListSlider = (
         );
       } : null}
   </div>
-);
+));
 
 return (
   <Card
