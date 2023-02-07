@@ -9,7 +9,7 @@ let events = props.__engine.contract.view('get_events_in_event_list', {
 });
 let loadingEvents = false;
 
-if (events === null) {
+if (events === null || events === undefined) {
   events = [];
   loadingEvents = true;
 }
