@@ -1,8 +1,7 @@
-let event_list = props.event_list || null;
+const event_list = props.event_list || null;
 
-// return data;
 if (!event_list) {
-  return '';
+  return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
 
 function showEventList() {
