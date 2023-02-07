@@ -32,30 +32,8 @@ const CardHeader = styled.div`
   padding: 1vw calc(max(0.5rem, 0.5vw));
 `;
 
-return (
-  <Card
-    onClick={() => {
-      showEventList();
-    }}
-    onKeyDown={(e) => {
-      if (e.key === 'Enter') {
-        showEventList();
-      }
-    }}
-    role="button"
-    tabIndex={0}
-  >
-    <CardHeader>
-      <div
-        style={{
-          fontSize: 'calc(max(1.25rem, 1.25vw))',
-        }}
-      >
-        {event_list.name}
-      </div>
-    </CardHeader>
 
-    <div
+const eventsListSlider = (<div
       style={{
         width: '100%',
         height: 'auto',
@@ -80,7 +58,35 @@ return (
           </div>
         );
       })}
-    </div>
+    </div>)
+
+return (
+  <Card
+    onClick={() => {
+      showEventList();
+    }}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter') {
+        showEventList();
+      }
+    }}
+    role="button"
+    tabIndex={0}
+  >
+    <CardHeader>
+      <div
+        style={{
+          fontSize: 'calc(max(1.25rem, 1.25vw))',
+        }}
+      >
+        {event_list.name}
+      </div>
+    </CardHeader>
+
+    { events.length > 0 || loadingEvents ? (
+    
+    ) : (
+
     <CardBody>{event_list.description}</CardBody>
   </Card>
 );
