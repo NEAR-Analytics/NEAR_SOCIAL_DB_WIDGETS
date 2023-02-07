@@ -53,7 +53,7 @@ return (
   <>
     <AlertContent>
       <DotContainer>
-        {new Array(20).fill(0).map((_, i) => (
+        {new Array(12).fill(0).map((_, i) => (
           <Dot delay={`${i * 0.1}s`} key={i} />
         ))}
       </DotContainer>
