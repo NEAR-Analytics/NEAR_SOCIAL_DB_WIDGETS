@@ -44,7 +44,7 @@ function callContract(data) {
   } = data;
 
   props.__engine.contract.call(EVENTS_CONTRACT, 'update_event_list', {
-    event_list_id: event_list_id,
+    event_list_id: props.event_list_id,
     event_list: {
       account_id: props.__engine.accountId,
       name,
