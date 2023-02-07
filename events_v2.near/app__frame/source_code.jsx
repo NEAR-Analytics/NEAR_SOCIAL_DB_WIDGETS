@@ -210,6 +210,26 @@ const Components = {
       animation: ${SlideInLeft} 0.3s ease-in-out;
     }
   `,
+
+  Card: styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 16px 16px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border: 0.1vw solid #cccccc;
+    cursor: pointer;
+
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &:hover {
+      box-shadow: 5px 0 15px -2px rgba(0, 0, 0, 0.2);
+    }
+  `,
 };
 
 /**
