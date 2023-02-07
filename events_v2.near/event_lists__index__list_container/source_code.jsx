@@ -1,4 +1,3 @@
-props.controller.setLayout('layouts:loading', {});
 const EVENTS_CONTRACT = 'events_v2.near';
 
 // accountID is used to determine for whom the event_lists are displayed
