@@ -450,6 +450,11 @@ function contractCall(contractName, methodName, args) {
   Near.call(contractName, methodName, args, TGAS_300, cost);
 }
 
+function contractView(contractName, methodName, args) {
+  console.log('contractView', { contractName, methodName, args });
+  return Near.view(contractName, methodName, args);
+}
+
 function renderComponent(name, props) {
   const engine = {
     env,
@@ -484,6 +489,7 @@ function renderComponent(name, props) {
 
     contract: {
       call: contractCall,
+      view: contractView,
     },
   };
 
