@@ -15,23 +15,11 @@ const AlertContent = styled.div`
 
 return (
   <>
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 1000,
-        overflow: 'hidden',
-      }}
-    >
-      <AlertContent>
-        {props.__engine.renderComponent(
-          props.component.name,
-          props.component.props
-        )}
-      </AlertContent>
-    </div>
+    <AlertContent>
+      {props.__engine.renderComponent(
+        props.component.name,
+        props.component.props
+      )}
+    </AlertContent>
   </>
 );
