@@ -7,6 +7,7 @@ if (!event) {
 
 const Card = props.__engine.Components.Card;
 const CardHeaderImage = props.__engine.Components.CardHeaderImage;
+const CardBody = props.__engine.Components.CardBody;
 
 const EventTitle = styled.h1`
   font-size: calc(max(1.25rem, 1.25vw));
@@ -16,7 +17,7 @@ const EventTitle = styled.h1`
   width: 100%;
 `;
 
-const EventDate = styled.div`
+const CardFooter = styled.div`
   font-size: 0.8vw;
   font-weight: 400;
   margin: 0;
@@ -26,13 +27,6 @@ const EventDate = styled.div`
   flex-shrink: 0;
   width: 100%;
   border-top: 0.1vw solid #cccccc;
-`;
-
-const CardBody = styled.div`
-  width: 100%;
-  height: auto;
-  flex-grow: 100;
-  flex-shrink: 0;
 `;
 
 function showEvent() {
@@ -63,8 +57,8 @@ return (
       <EventTitle>{event.name}</EventTitle>
     </CardBody>
 
-    <EventDate>
+    <CardFooter>
       {props.__engine.renderComponent('components.event_date', { event })}
-    </EventDate>
+    </CardFooter>
   </Card>
 );
