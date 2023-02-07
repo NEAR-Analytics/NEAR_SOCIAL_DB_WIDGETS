@@ -22,11 +22,6 @@ return (
       props={{ currentNavPill: "authors" }}
     />
     <h6>Total authors: {authorsCountArray.length}</h6>
-    <a
-      href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByUser?author=${mOKEDAYTHOR}`}
-    >
-      Author: MOCKED vanyog.near
-    </a>
     <ul>
       {authorsCountArray.map(([author, quantity]) => (
         <li>
@@ -35,7 +30,12 @@ return (
           >
             {author}
           </a>{" "}
-          - {quantity}
+          -
+          <a
+            href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByUser?author=${author}`}
+          >
+            {quantity}
+          </a>
         </li>
       ))}
     </ul>
