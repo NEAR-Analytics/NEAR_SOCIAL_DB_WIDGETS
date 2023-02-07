@@ -67,6 +67,6 @@ function onSave(data) {
 
 return props.__engine.renderComponent('_form', {
   onSave,
-  buttonText: 'Update event_list',
+  buttonText: 'Update event list',
   model: event_list,
 });
