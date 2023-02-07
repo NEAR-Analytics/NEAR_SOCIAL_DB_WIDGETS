@@ -28,7 +28,7 @@ const EventDate = styled.div`
   border-top: 0.1vw solid #cccccc;
 `;
 
-const EventBody = styled.div`
+const CardBody = styled.div`
   width: 100%;
   height: auto;
   flex-grow: 100;
@@ -59,9 +59,9 @@ return (
       })}
     </CardHeaderImage>
 
-    <EventBody>
+    <CardBody>
       <EventTitle>{event.name}</EventTitle>
-    </EventBody>
+    </CardBody>
 
     <EventDate>
       {props.__engine.renderComponent('components.event_date', { event })}
