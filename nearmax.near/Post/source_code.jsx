@@ -272,25 +272,9 @@ const editorsFooter = props.isPreview ? null : (
 const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
-const postLables = post.snapshot.labels ? (
-  <div class="card-title">
-    {post.snapshot.labels.map((label) => {
-      return (
-        <a
-          href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
-          key={`label${label}of${postId}`}
-        >
-          <span class="badge text-bg-primary me-1">{label}</span>
-        </a>
-      );
-    })}
-  </div>
-) : null;
-
 const postTitle =
-  snapshot.post_type == "Comment" ? (
-    <div></div>
-  ) : (
+  snapshot.post_type == "Comment" ? null : (
+    //(<div></div>)
     <h5 class="card-title">
       <div className="row justify-content-between">
         <div class="col-9">
@@ -299,45 +283,6 @@ const postTitle =
         </div>
       </div>
     </h5>
-  );
-
-const postExtra =
-  snapshot.post_type == "Sponsorship" ? (
-    <div>
-      <h6
-        class="card-subtitle mb-2 text-muted"
-        key={`sponsorshipAmount${postId}`}
-      >
-        Maximum amount: {snapshot.amount} {snapshot.sponsorship_token}
-      </h6>
-      <h6 class="card-subtitle mb-2 text-muted">
-        Supervisor:{" "}
-        <Widget
-          src={`mob.near/widget/ProfileLine`}
-          props={{ accountId: snapshot.supervisor }}
-          key={`sponsorshipSupervisor${postId}`}
-        />
-      </h6>
-    </div>
-  ) : null;
-
-const postsList =
-  props.isPreview || childPostIds.length == 0 ? null : (
-    <div class="row">
-      <div class="collapse" id={`collapseChildPosts${postId}`}>
-        {childPostIds
-          ? childPostIds.map((childId) => {
-              return (
-                <Widget
-                  src={`${ownerId}/widget/Post`}
-                  props={{ id: childId, isUnderPost: true }}
-                  key={`subpost${childId}of${postId}`}
-                />
-              );
-            })
-          : ""}
-      </div>
-    </div>
   );
 
 const Card = styled.div`
