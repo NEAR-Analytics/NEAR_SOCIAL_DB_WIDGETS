@@ -22,7 +22,7 @@ const fadeInOut = styled.keyframes`
   0% {
     opacity: 0;
   }
-  50% {
+  80% {
     opacity: 1;
   }
   100% {
@@ -31,13 +31,13 @@ const fadeInOut = styled.keyframes`
 `;
 
 const Dot = styled.div`
-  width: 4px;
-  height: 4px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: #ccc;
   animation: ${fadeInOut} 2s ease-in-out infinite;
   animation-delay: ${(props) => props.delay};
-  margin: 0 2px;
+  margin: 0 4px;
 `;
 
 const DotContainer = styled.div`
