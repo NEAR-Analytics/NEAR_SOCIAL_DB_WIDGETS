@@ -97,23 +97,7 @@ const shareButton = props.isPreview ? null : (
 
 const header = (
   <div className="card-header">
-    <small class="text-muted">
-      <div class="row justify-content-between">
-        <div class="col-4">
-          <Widget
-            src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: post.author_id }}
-          />
-        </div>
-        <div class="col-5">
-          <div class="d-flex justify-content-end">
-            {timestamp}
-            <div class="bi bi-clock-history px-2"></div>
-            {shareButton}
-          </div>
-        </div>
-      </div>
-    </small>
+    <small class="text-muted"></small>
   </div>
 );
 
