@@ -82,7 +82,7 @@ const listMarket = () => {
           price: 1,
         }),
       },
-      deposit: 1,
+      deposit: 800000000000000000000,
     };
   });
 
