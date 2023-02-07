@@ -11,17 +11,16 @@ const appKeys =
   Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const appFilterTag = "app";
+const limitPerGroup = 10;
 
 const computeResults = (term) => {
   const terms = (term || "")
     .toLowerCase()
     .split(/[^\w._-]/)
     .filter((s) => !!s.trim());
+
   const matchedAccountIds = [];
   const matchedApps = [];
-
-  const limit = props.limit ?? 10;
-
   const MaxSingleScore = 20;
   const MaxScore = MaxSingleScore * 3;
 
@@ -36,6 +35,8 @@ const computeResults = (term) => {
         .reduce((s, v) => s + v, 0) / terms.length
     );
   };
+
+  // Search people:
 
   Object.entries(profiles).forEach(([accountId, data]) => {
     const accountIdScore = computeScore(accountId);
@@ -53,7 +54,9 @@ const computeResults = (term) => {
   });
 
   matchedAccountIds.sort((a, b) => b.score - a.score);
-  const people = matchedAccountIds.slice(0, limit);
+  const people = matchedAccountIds.slice(0, limitPerGroup);
+
+  // Search apps:
 
   Object.entries(appKeys).forEach(([accountId, data]) => {
     const accountIdScore = computeScore(accountId);
@@ -87,17 +90,15 @@ const computeResults = (term) => {
   });
 
   matchedApps.sort((a, b) => b.score - a.score);
-  const apps = matchedApps.slice(0, limit);
+  const apps = matchedApps.slice(0, limitPerGroup);
+
+  // Update state:
 
   State.update({
     term,
     people,
     apps,
   });
-
-  if (props.onChange) {
-    props.onChange({ term, people, apps });
-  }
 };
 
 return (
@@ -144,6 +145,7 @@ return (
 
     {props.debug && (
       <div>
+        <p>Debug Data:</p>
         <pre>{JSON.stringify(state, undefined, 2)}</pre>
       </div>
     )}
