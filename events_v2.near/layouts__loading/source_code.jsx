@@ -45,6 +45,8 @@ return (
       <div>
         <div>
           <Dot delay={'0s'} />
+          <Dot delay={'0.2s'} />
+          <Dot delay={'0.4s'} />
         </div>
         {props.__engine.renderComponent(
           props.component.name,
