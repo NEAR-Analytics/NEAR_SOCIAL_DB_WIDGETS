@@ -33,7 +33,7 @@ const IndexList = styled.div`
     margin: 20px 20px;
     max-width: 520px;
     min-width: 320px;
-    width: 240px;
+    width: 45vw;
     flex-grow: 3;
     flex-shrink: 3;
 
@@ -43,15 +43,14 @@ const IndexList = styled.div`
 
 return (
   <IndexList>
-    {event_lists.map((event) => {
+    {event_lists.map((event_list) => {
       return (
-        <div key={event.event_id}>
-          {props.__engine.renderComponent('index.list_item', { event })}
+        <div key={event_list.event_list_id}>
+          {props.__engine.renderComponent('index.list_item', { event_list })}
         </div>
       );
     })}
 
-    <div>{/* spacer */}</div>
     <div>{/* spacer */}</div>
     <div>{/* spacer */}</div>
   </IndexList>
