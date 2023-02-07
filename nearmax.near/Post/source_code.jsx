@@ -349,7 +349,7 @@ const postExtra =
       <h6 class="card-subtitle mb-2 text-muted">
         Supervisor:{" "}
         <Widget
-          src={`neardevgov.near/widget/ProfileLine`}
+          src={`mob.near/widget/ProfileLine`}
           props={{ accountId: snapshot.supervisor }}
           key={`sponsorshipSupervisor${postId}`}
         />
