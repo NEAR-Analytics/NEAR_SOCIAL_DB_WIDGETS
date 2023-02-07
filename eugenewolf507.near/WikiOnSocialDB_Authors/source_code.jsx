@@ -26,7 +26,9 @@ const filteredArticles =
     }
   }, []);
 
-const authors = Array.from(filteredArticles, ({ author }) => author);
+const authors =
+  filteredArticles.length &&
+  Array.from(filteredArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 
 const getAuthorsStats = (acc, author) => {
