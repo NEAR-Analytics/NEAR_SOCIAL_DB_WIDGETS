@@ -23,7 +23,7 @@ const fadeInOut = styled.keyframes`
   0% {
     opacity: 0;
   }
-  80% {
+  50% {
     opacity: 1;
   }
   100% {
