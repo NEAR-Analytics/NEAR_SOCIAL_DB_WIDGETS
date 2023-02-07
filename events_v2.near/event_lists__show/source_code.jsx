@@ -32,7 +32,7 @@ const event_list = props.__engine.contract.view(
   }
 );
 if (!event_list) {
-  return 'Loading';
+  return props.__engine.loading('event list');
 }
 
 const primaryAction = {
