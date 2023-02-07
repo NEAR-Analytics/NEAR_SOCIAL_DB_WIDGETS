@@ -101,7 +101,7 @@ const header = (
       <div class="row justify-content-between">
         <div class="col-4">
           <Widget
-            src={`neardevgov.near/widget/ProfileLine`}
+            src={`mob.near/widget/ProfileLine`}
             props={{ accountId: post.author_id }}
           />
         </div>
