@@ -36,6 +36,7 @@ const dot = styled.div`
   border-radius: 50%;
   background-color: #f00;
   animation: ${fadeInOut} 1s infinite;
+  animation-delay: ${(props) => props.delay};
 `;
 
 return (
