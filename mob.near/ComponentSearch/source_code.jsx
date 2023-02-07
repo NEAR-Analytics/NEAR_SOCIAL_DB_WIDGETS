@@ -6,6 +6,7 @@ const allMetadata =
 const keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const requiredTag = props.filterTag;
+const boostedTag = props.boostedTag;
 const inputTerm = props.term;
 
 const computeResults = (term) => {
