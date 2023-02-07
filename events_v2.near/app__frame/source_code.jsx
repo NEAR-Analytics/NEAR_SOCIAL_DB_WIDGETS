@@ -247,6 +247,7 @@ const Components = {
     height: auto;
     flex-grow: 100;
     flex-shrink: 0;
+    padding: 1vw calc(max(0.5rem, 0.5vw));
   `,
 
   CardFooter: styled.div`
