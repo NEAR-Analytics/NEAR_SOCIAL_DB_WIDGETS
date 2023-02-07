@@ -54,7 +54,7 @@ const eventsListSlider = (
             })}
           </div>
         );
-      })
+      }
       : null}
   </div>
 );
