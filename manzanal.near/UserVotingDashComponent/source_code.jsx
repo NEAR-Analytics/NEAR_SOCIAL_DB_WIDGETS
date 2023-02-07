@@ -25,15 +25,15 @@ let data = {
 };
 
 return (
-  <div className="text-bg-light rounded-2 p-1">
+  <div className="text-bg-light rounded-4 p-2">
     {data !== null ? (
       <p>
         <div class="d-flex justify-content-around clearfix">
-          <div class="p-1">
+          <div class="p-3">
             <div>AVAILABLE VOTING POWER</div>
             <h2 class="text-success">{data.available}</h2>
           </div>
-          <div class="p-1">
+          <div class="p-3">
             <div>IN USE VOTING POWER</div>
             <h2 class="text-danger">{data.inUse}</h2>
           </div>
