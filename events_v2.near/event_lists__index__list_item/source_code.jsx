@@ -1,4 +1,3 @@
-props.controller.setLayout('layouts:loading', {});
 const event_list = props.event_list || null;
 
 if (!event_list) {
