@@ -19,6 +19,7 @@ const CardHeader = styled.div`
   border-bottom: 0.1vw solid #cccccc;
   flex-shrink: 0;
   flex-grow: 0;
+  padding: 1vw calc(max(0.5rem, 0.5vw));
 `;
 
 return (
