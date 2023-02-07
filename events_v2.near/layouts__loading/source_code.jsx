@@ -44,9 +44,9 @@ return (
     <AlertContent>
       <div>
         <div>
-          <Dot delay={'0s'}>1</Dot>
-          <Dot delay={'0.2s'}>3</Dot>
-          <Dot delay={'0.4s'}>5</Dot>
+          <Dot delay={'0s'}></Dot>
+          <Dot delay={'0.2s'}></Dot>
+          <Dot delay={'0.4s'}></Dot>
         </div>
         {props.__engine.renderComponent(
           props.component.name,
