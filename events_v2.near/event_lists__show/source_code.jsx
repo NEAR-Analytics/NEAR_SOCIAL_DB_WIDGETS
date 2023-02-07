@@ -1,3 +1,5 @@
+props.controller.setLayout('layouts:loading', {});
+
 const EVENTS_CONTRACT = 'events_v2.near';
 
 const event_list_id = props.event_list_id;
