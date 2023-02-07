@@ -6,11 +6,18 @@ const forAccountId = props.forAccountId;
 
 let event_lists = [];
 if (forAccountId === undefined) {
-  event_lists = Near.view(EVENTS_CONTRACT, 'get_all_event_lists');
+  event_lists = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_all_event_lists'
+  );
 } else {
-  event_lists = Near.view(EVENTS_CONTRACT, 'get_all_event_lists_by_account', {
-    account_id: forAccountId,
-  });
+  event_lists = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_all_event_lists_by_account',
+    {
+      account_id: forAccountId,
+    }
+  );
 }
 
 console.log('event_lists', event_lists);
