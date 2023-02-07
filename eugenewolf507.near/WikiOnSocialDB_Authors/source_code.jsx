@@ -1,5 +1,6 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
+const mOKEDAYTHOR = "vanyog.near";
 const authors = Array.from(props.filteredArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 
@@ -17,6 +18,11 @@ const authorsCountArray = Object.entries(authorsCountObject);
 return (
   <>
     <h6>Total authors: {authorsCountArray.length}</h6>
+    <a
+      href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByUser?author=${mOKEDAYTHOR}`}
+    >
+      Author: MOCKED vanyog.near
+    </a>
     <ul>
       {authorsCountArray.map(([author, quantity]) => (
         <li>
