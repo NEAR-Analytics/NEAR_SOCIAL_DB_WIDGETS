@@ -230,6 +230,17 @@ const Components = {
       box-shadow: 5px 0 15px -2px rgba(0, 0, 0, 0.2);
     }
   `,
+
+  CardImage: styled.div`
+    height: auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 14px 14px 0 0;
+    border-bottom: 0.1vw solid #cccccc;
+    flex-shrink: 0;
+    flex-grow: 0;
+  `,
 };
 
 /**
