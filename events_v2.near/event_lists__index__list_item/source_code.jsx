@@ -46,7 +46,7 @@ const eventsListSlider = (
     }}
   >
     {events && events.length >= 1
-      ? (events.map((event) => {
+      ? events.map((event) => {
         return (
           <div key={event.id}>
             {props.__engine.renderComponent('index.event_list_item', {
@@ -54,7 +54,8 @@ const eventsListSlider = (
             })}
           </div>
         );
-      }) : null}
+      })
+      : null}
   </div>
 );
 
