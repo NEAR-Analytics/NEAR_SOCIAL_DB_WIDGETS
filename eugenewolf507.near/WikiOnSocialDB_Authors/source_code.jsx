@@ -1,6 +1,32 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-const authors = Array.from(props.filteredArticles, ({ author }) => author);
+
+const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
+const wikiTestArr = wikiTestData && Object.values(wikiTestData);
+const resultArticles =
+  wikiTestArr &&
+  wikiTestArr.reduce(
+    (acc, account) =>
+      acc.concat(Object.values(account[addressForArticles].articles)),
+    []
+  );
+
+resultArticles.length &&
+  resultArticles.sort((a, b) => {
+    return Number(b.timeLastEdit) - Number(a.timeLastEdit);
+  });
+
+const filteredArticles =
+  resultArticles.length &&
+  resultArticles.reduce((acc, article) => {
+    if (!acc.some(({ articleId }) => articleId === article.articleId)) {
+      return [...acc, article];
+    } else {
+      return acc;
+    }
+  }, []);
+
+const authors = Array.from(filteredArticles, ({ author }) => author);
 // const uniqAuthors = Array.from(new Set(authors));
 
 const getAuthorsStats = (acc, author) => {
