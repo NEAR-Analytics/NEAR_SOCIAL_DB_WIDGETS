@@ -51,22 +51,28 @@ const filteredArticlesByUser =
   }, []);
 
 return (
-  <div>
-    Author:
-    {props.author}
-    <ol>
-      {filteredArticlesByUser &&
-        filteredArticlesByUser.map((article, index) => (
-          <li key={article.articleId}>
-            <a href="">
-              {article.articleId}{" "}
-              <small>
-                (last edited:
-                {getDateLastEdit(article.timeLastEdit)})
-              </small>
-            </a>
-          </li>
-        ))}
-    </ol>
-  </div>
+  <>
+    <Widget
+      src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
+      props={{ currentPill: "authors" }}
+    />
+    <div>
+      Author:
+      {props.author}
+      <ol>
+        {filteredArticlesByUser &&
+          filteredArticlesByUser.map((article, index) => (
+            <li key={article.articleId}>
+              <a href="">
+                {article.articleId}{" "}
+                <small>
+                  (last edited:
+                  {getDateLastEdit(article.timeLastEdit)})
+                </small>
+              </a>
+            </li>
+          ))}
+      </ol>
+    </div>
+  </>
 );
