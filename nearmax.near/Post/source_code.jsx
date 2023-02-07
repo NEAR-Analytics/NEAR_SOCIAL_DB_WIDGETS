@@ -287,17 +287,16 @@ const postLables = post.snapshot.labels ? (
   </div>
 ) : null;
 
-const postTitle =
-  snapshot.post_type == "Comment" ? null : (
-    <h5 class="card-title">
-      <div className="row justify-content-between">
-        <div class="col-9">
-          <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
-          {renamedPostType}: {snapshot.name}
-        </div>
+const postTitle = (
+  <h5 class="card-title">
+    <div className="row justify-content-between">
+      <div class="col-9">
+        <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
+        {renamedPostType}: {snapshot.name}
       </div>
-    </h5>
-  );
+    </div>
+  </h5>
+);
 
 const postExtra =
   snapshot.post_type == "Sponsorship" ? (
@@ -349,6 +348,7 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
+      {postTitle}
       {buttonsFooter}
       {editorsFooter}
     </div>
