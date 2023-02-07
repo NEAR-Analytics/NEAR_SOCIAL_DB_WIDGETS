@@ -24,7 +24,7 @@ return (
       {pills.map(({ id, title, widgetName }, i) => (
         <li className="nav-item">
           <a
-            href={`${authorForWidget}/widget/${widgetName}`}
+            href={`#/${authorForWidget}/widget/${widgetName}`}
             class={`nav-link ${
               id === currentPill ? "active" : ""
             } text-decoration-none`}
