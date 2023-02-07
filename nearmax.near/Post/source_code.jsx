@@ -389,6 +389,7 @@ return (
     <div className="card-body">
       {postTitle}
       {buttonsFooter}
+      {editorsFooter}
     </div>
   </Card>
 );
