@@ -34,4 +34,4 @@ if (text) {
   ]);
 }
 
-return <div>Hello World</div>;
+return <div>Post Shortcut by microchipgnu.near</div>;
