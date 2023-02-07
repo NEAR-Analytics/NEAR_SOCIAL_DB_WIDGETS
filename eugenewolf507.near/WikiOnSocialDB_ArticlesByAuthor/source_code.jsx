@@ -59,7 +59,7 @@ return (
     <div>
       Author:
       <a
-        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+        href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${props.author}`}
         target="_blank"
       >
         {props.author}
