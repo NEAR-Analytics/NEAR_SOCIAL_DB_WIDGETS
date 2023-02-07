@@ -45,7 +45,7 @@ const allowedToEdit =
 
 const btnEditorWidget = (postType, name) => {
   return (
-    <li>
+    <li key={`btnEditorWidget-${postType}`}>
       <a
         class="dropdown-item"
         href="#"
@@ -62,7 +62,7 @@ const btnEditorWidget = (postType, name) => {
 };
 
 const editControl = allowedToEdit ? (
-  <div class="btn-group" role="group">
+  <div key={`editControl`} class="btn-group" role="group">
     <a
       class="card-link px-2"
       role="button"
@@ -85,6 +85,7 @@ const editControl = allowedToEdit ? (
 
 const shareButton = props.isPreview ? null : (
   <a
+    key={`shareButton`}
     class="card-link"
     href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
     role="button"
@@ -96,7 +97,7 @@ const shareButton = props.isPreview ? null : (
 );
 
 const header = (
-  <div className="card-header">
+  <div key={`header`} className="card-header">
     <small class="text-muted">
       <div class="row justify-content-between">
         <div class="col-4">
@@ -169,7 +170,7 @@ const onLike = () => {
 
 const btnCreatorWidget = (postType, icon, name) => {
   return (
-    <li>
+    <li key={`btnCreatorWidget-${postType}`}>
       <a
         class="dropdown-item"
         href="#"
@@ -186,7 +187,7 @@ const btnCreatorWidget = (postType, icon, name) => {
 };
 
 const buttonsFooter = props.isPreview ? null : (
-  <div class="row">
+  <div key={`buttonsFooter`} class="row">
     <div class="col-8">
       <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button
@@ -245,15 +246,15 @@ const buttonsFooter = props.isPreview ? null : (
 );
 
 const CreatorWidget = (postType) => {
-  return <div></div>;
+  return <div key={`CreatorWidget-${postType}`}></div>;
 };
 
 const EditorWidget = (postType) => {
-  return <div></div>;
+  return <div key={`EditorWidget-${postType}`}></div>;
 };
 
 const editorsFooter = props.isPreview ? null : (
-  <div class="row" id={`accordion${postId}`}>
+  <div key={`editorsFooter`} class="row" id={`accordion${postId}`}>
     {CreatorWidget("Comment")}
     {EditorWidget("Comment")}
     {CreatorWidget("Idea")}
@@ -273,7 +274,7 @@ const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
 const postLables = post.snapshot.labels ? (
-  <div class="card-title">
+  <div key={`postLables`} class="card-title">
     {post.snapshot.labels.map((label) => {
       return (
         <a
@@ -290,7 +291,7 @@ const postLables = post.snapshot.labels ? (
 const postTitle =
   snapshot.post_type == "Comment" ? null : (
     //(<div></div>)
-    <h5 class="card-title">
+    <h5 key={`postTitle`} class="card-title">
       <div className="row justify-content-between">
         <div class="col-9">
           <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
@@ -302,7 +303,7 @@ const postTitle =
 
 const postExtra =
   snapshot.post_type == "Sponsorship" ? (
-    <div>
+    <div key={`postExtra`}>
       <h6
         class="card-subtitle mb-2 text-muted"
         key={`sponsorshipAmount${postId}`}
@@ -324,7 +325,6 @@ const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   }
-
 `;
 
 return (
