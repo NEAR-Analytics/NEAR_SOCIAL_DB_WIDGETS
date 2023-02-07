@@ -1,5 +1,4 @@
 const EVENTS_CONTRACT = 'events_v2.near';
-const TGAS_300 = '300000000000000';
 
 const event_list_id = props.event_list_id;
 if (!event_list_id) {
@@ -16,7 +15,7 @@ const has_event_list = props.__engine.contract.view(
 );
 
 if (has_event_list === null) {
-  return 'Loading';
+  return props.__engine.loading('event list exists');
 }
 
 if (has_event_list === false) {
@@ -51,7 +50,9 @@ props.controller.setLayout('layouts:container', {
   back: true,
   title: event_list.name,
   primaryAction:
-    props.__engine.accountId === event_list.account_id ? primaryAction : null,
+    props.__engine.accountId === event_list.owner_account_id
+      ? primaryAction
+      : null,
 });
 
 console.log('event_list', event_list);
