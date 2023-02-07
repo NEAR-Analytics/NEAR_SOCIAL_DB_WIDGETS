@@ -1,29 +1,32 @@
 props.controller.setLayout('layouts:modal', {
-  title: 'Edit Event',
+  title: 'Edit event list',
 });
 
 const EVENTS_CONTRACT = 'events_v2.near';
 
-const eventId = props.event_id;
-if (!eventId) {
-  return props.__engine.helpers.propsIsRequiredMessage('event_id');
+if (!props.event_list_id) {
+  return props.__engine.helpers.propsIsRequiredMessage('event_list_id');
 }
 
-const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
-  event_id: props.event_id,
-});
-if (!event) {
-  return props.__engine.loading('event');
+const event_list = props.__engine.contract.view(
+  EVENTS_CONTRACT,
+  'get_event_list',
+  {
+    event_list_id: props.event_list_id,
+  }
+);
+if (!event_list) {
+  return props.__engine.loading('event_list');
 }
 
 const SECONDS_10 = 10000;
-// if event was just updated within the last 10 seconds, return to the show page
+// if event_list was just updated within the last 10 seconds, return to the show page
 if (
-  new Date().getTime() - new Date(event.last_updated_at).getTime() <
+  new Date().getTime() - new Date(event_list.last_updated_at).getTime() <
   SECONDS_10
 ) {
   props.__engine.pop();
-  return 'Event updated';
+  return 'EventList updated';
 }
 
 function callContract(data) {
@@ -40,9 +43,9 @@ function callContract(data) {
     description,
   } = data;
 
-  props.__engine.contract.call(EVENTS_CONTRACT, 'update_event', {
-    event_id: eventId,
-    event: {
+  props.__engine.contract.call(EVENTS_CONTRACT, 'update_event_list', {
+    event_list_id: event_listId,
+    event_list: {
       account_id: props.__engine.accountId,
       name,
       type,
@@ -64,6 +67,6 @@ function onSave(data) {
 
 return props.__engine.renderComponent('_form', {
   onSave,
-  buttonText: 'Update event',
-  model: event,
+  buttonText: 'Update event_list',
+  model: event_list,
 });
