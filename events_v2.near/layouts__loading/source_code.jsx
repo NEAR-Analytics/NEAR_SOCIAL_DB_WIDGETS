@@ -11,6 +11,9 @@ const AlertContent = styled.div`
   border-radius: 12px;
   box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.5);
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 return (
