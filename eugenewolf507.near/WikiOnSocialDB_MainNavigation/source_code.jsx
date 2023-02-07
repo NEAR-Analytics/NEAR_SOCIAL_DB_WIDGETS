@@ -1,4 +1,4 @@
-const currentNavPill = props.currentPill ?? "articles";
+const currentPill = props.currentNavPill ?? "articles";
 const authorForWidget = "eugenewolf507.near";
 const pills = [
   {
@@ -26,7 +26,7 @@ return (
           <a
             href={`${authorForWidget}/widget/${widgetName}`}
             class={`nav-link ${
-              id === currentNavPill ? "active" : ""
+              id === currentPill ? "active" : ""
             } text-decoration-none`}
           >
             {title}
