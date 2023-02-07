@@ -1,6 +1,6 @@
 let event_lists = props.event_lists || [];
 if (!event_lists) {
-  return '';
+  return props.__engine.loading('event lists');
 }
 
 // if event_lists are empty we want to show an empty list message
