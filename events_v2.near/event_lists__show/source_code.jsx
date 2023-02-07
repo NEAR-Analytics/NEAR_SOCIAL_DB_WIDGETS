@@ -19,9 +19,6 @@ if (has_event_list === null) {
 }
 
 if (has_event_list === false) {
-  // props.__engine.replace('not_found', {
-  //   message: `EventListhas_event_list with id ${event_list_id} not found.`,
-  // });
   props.__engine.pop();
   return 'EventListhas_event_list not found';
 }
