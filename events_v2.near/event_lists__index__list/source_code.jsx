@@ -5,7 +5,7 @@ if (!event_lists) {
 
 // if event_lists are empty we want to show an empty list message
 if (event_lists.length === 0) {
-  return 'No Results';
+  return 'No results';
 }
 
 const GridContainer = props.__engine.Components.GridContainer;
