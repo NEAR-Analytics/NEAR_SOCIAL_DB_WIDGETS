@@ -45,8 +45,8 @@ const filteredArticles =
 const filteredArticlesByUser =
   filteredArticles.length &&
   filteredArticles.reduce((acc, article) => {
-    console.log(article.author, article.author === mOKEDAYTHOR);
-    if (article.author === mOKEDAYTHOR) {
+    console.log(article.author, article.author === props.author);
+    if (article.author === props.author) {
       return [...acc, article];
     } else {
       return acc;
@@ -57,7 +57,7 @@ console.log(filteredArticlesByUser);
 return (
   <div>
     Author:
-    {mOKEDAYTHOR}
+    {props.author}
     <ol>
       {filteredArticlesByUser &&
         filteredArticlesByUser.map((article, index) => (
