@@ -13,7 +13,7 @@ if (!event) {
 const TGAS_300 = '300000000000000';
 
 function removeEvent() {
-  Near.call(
+  props.__engine.contract.call(
     EVENTS_CONTRACT,
     'remove_event',
     {
