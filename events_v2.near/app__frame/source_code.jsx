@@ -77,14 +77,6 @@ const Components = {
     }
   `,
 
-  Loading: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  `,
-
   PageTitle: styled.h1`
     font-size: calc(max(32px, 2.5vw));
     color: black;
