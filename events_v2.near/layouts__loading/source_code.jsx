@@ -30,7 +30,7 @@ const fadeInOut = styled.keyframes`
   }
 `;
 
-const dot = styled.div`
+const Dot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -44,9 +44,7 @@ return (
     <AlertContent>
       <div>
         <div>
-          <dot />
-          <dot />
-          <dot />
+          <Dot delay={'0s'} />
         </div>
         {props.__engine.renderComponent(
           props.component.name,
