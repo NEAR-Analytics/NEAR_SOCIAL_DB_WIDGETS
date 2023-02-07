@@ -396,12 +396,12 @@ return (
     {linkToParent}
     {header}
     <div className="card-body">
-      {postLables}
       {postTitle}
       {postExtra}
       {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
+      {postsList}
     </div>
   </Card>
 );
