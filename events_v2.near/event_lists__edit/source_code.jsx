@@ -26,7 +26,7 @@ if (
   SECONDS_10
 ) {
   props.__engine.pop();
-  return 'EventList updated';
+  return <></>;
 }
 
 function callContract(data) {
