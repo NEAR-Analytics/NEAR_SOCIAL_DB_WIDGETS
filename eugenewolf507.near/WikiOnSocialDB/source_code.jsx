@@ -78,7 +78,7 @@ return (
   <>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
-      props={{ currentPill: "articles" }}
+      props={{ currentNavPill: "articles" }}
     />
     <div className="tab-content" id="pills-tabContent">
       <div
