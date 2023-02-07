@@ -1,5 +1,13 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
+const accountId = props.accountId ?? context.accountId;
+if (!accountId) {
+  return "No account ID";
+}
+const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+if (profile === null) {
+  return "Loading";
+}
 const initialBody = `# Markdown heading level 1
 
 This is a markdown paragraph. So, here are a few examples of markdown syntax and what it looks like.
@@ -24,8 +32,8 @@ State.init(initialCreateArticleState);
 const getArticleData = () => {
   const args = {
     articleId: state.articleId,
-    author: props.author,
-    lastEditor: props.author,
+    author: accountId,
+    lastEditor: accountId,
     timeLastEdit: Date.now(),
     timeCreate: Date.now(),
     body: state.articleBody,
