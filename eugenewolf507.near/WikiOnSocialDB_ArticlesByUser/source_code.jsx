@@ -1,6 +1,7 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
 const mOKEDAYTHOR = "vanyog.near";
+console.log(props);
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
