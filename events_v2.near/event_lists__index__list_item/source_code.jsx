@@ -37,8 +37,9 @@ return (
     role="button"
     tabIndex={0}
   >
-    <CardBody>
+    <CardHeader>
       <div>{event_list.name}</div>
-    </CardBody>
+    </CardHeader>
+    <CardBody>test</CardBody>
   </Card>
 );
