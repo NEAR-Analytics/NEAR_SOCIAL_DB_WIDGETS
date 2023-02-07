@@ -287,16 +287,7 @@ const postLables = post.snapshot.labels ? (
   </div>
 ) : null;
 
-const postTitle = (
-  <h5 class="card-title">
-    <div className="row justify-content-between">
-      <div class="col-9">
-        <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
-        {renamedPostType}: {snapshot.name}
-      </div>
-    </div>
-  </h5>
-);
+const postTitle = null;
 
 const postExtra =
   snapshot.post_type == "Sponsorship" ? (
