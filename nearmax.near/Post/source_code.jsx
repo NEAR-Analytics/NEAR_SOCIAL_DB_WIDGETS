@@ -101,7 +101,7 @@ const header = (
       <div class="row justify-content-between">
         <div class="col-4">
           <Widget
-            src={`mob.near/widget/ProfileLine`}
+            src={`neardevgov.near/widget/ProfileLine`}
             props={{ accountId: post.author_id }}
           />
         </div>
@@ -404,6 +404,7 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
+      {postTitle}
       {buttonsFooter}
       {editorsFooter}
     </div>
