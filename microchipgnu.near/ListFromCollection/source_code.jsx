@@ -71,10 +71,9 @@ const listMarket = () => {
   ).toFixed(0);
 
   const approvals = Object.values(state.tokens).map((token) => {
-    console.log(token);
     return {
       methodName: "nft_approve",
-      contractAddress: token.nftContractId,
+      contractName: token.nftContractId,
       gas: gas,
       args: {
         token_id: token.tokenId,
