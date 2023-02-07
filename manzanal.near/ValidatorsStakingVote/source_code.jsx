@@ -1,5 +1,8 @@
 let validators = fetch("https://vote.metapool.app/api/validators_extended", {
   subscribe: true,
+  headers: {
+    allow,
+  },
 });
 if (!validators) {
   return "Loading";
@@ -35,7 +38,7 @@ return (
     <Widget
       src="manzanal.near/widget/SearchComponent"
       props={{
-        data: validators.body,
+        data: validators.body.data,
         searchTermKey: "account_id",
         minLength: 0,
         placeholder: "Search Valdator",
