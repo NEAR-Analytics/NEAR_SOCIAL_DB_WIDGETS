@@ -5,8 +5,6 @@ if (!event_list) {
   return '';
 }
 
-const BG_CARD = '#ffffff';
-
 function showEventList() {
   props.__engine.push('show', { event_list_id: event_list.id });
 }
