@@ -19,7 +19,7 @@ const computeResults = (term) => {
 
   const limit = props.limit ?? 30;
 
-  const MaxSingleScore = 20;
+  const MaxSingleScore = 1;
   const MaxScore = MaxSingleScore * 4;
 
   const computeScore = (s) => {
@@ -28,7 +28,7 @@ const computeResults = (term) => {
       terms
         .map((term) => {
           const pos = s.indexOf(term);
-          return pos >= 0 ? Math.max(1, 20 - pos) : 0;
+          return pos >= 0 ? Math.exp(-pos) : 0;
         })
         .reduce((s, v) => s + v, 0) / terms.length
     );
@@ -49,7 +49,7 @@ const computeResults = (term) => {
       const tags = Object.keys(metadata.tags || {}).slice(0, 10);
       const nameScore = computeScore(name);
       const tagsScore = Math.min(
-        20,
+        MaxSingleScore,
         tags.map(computeScore).reduce((s, v) => s + v, 0)
       );
       const score =
@@ -68,7 +68,9 @@ const computeResults = (term) => {
     });
   });
 
-  matchedWidgets.sort((a, b) => b.score - a.score);
+  matchedWidgets.sort(
+    (a, b) => (b.boosted ? 2 : 0) + b.score - (a.boosted ? 2 : 0) - a.score
+  );
   const result = matchedWidgets.slice(0, limit);
 
   State.update({
