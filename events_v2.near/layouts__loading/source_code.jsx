@@ -5,7 +5,7 @@ const AlertContent = styled.div`
   transform-origin: bottom left;
   background-color: white;
   width: 50%;
-  height: 50%;
+  height: auto;
   max-width: 200px;
   max-height: 200px;
   border-radius: 12px;
