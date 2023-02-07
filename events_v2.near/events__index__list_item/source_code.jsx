@@ -6,17 +6,7 @@ if (!event) {
 }
 
 const Card = props.__engine.Components.Card;
-
-const EventHeaderImage = styled.div`
-  height: auto;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 14px 14px 0 0;
-  border-bottom: 0.1vw solid #cccccc;
-  flex-shrink: 0;
-  flex-grow: 0;
-`;
+const CardHeaderImage = props.__engine.Components.CardHeaderImage;
 
 const EventTitle = styled.h1`
   font-size: calc(max(1.25rem, 1.25vw));
@@ -62,12 +52,12 @@ return (
     role="button"
     tabIndex={0}
   >
-    <EventHeaderImage>
+    <CardHeaderImage>
       {props.__engine.renderComponent('components.event_image_slider', {
         event,
         mode: 'tile',
       })}
-    </EventHeaderImage>
+    </CardHeaderImage>
 
     <EventBody>
       <EventTitle>{event.name}</EventTitle>
