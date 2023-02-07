@@ -56,7 +56,7 @@ function removeEvent() {
   };
   const gas = TGAS_300;
   const deposit = '0';
-  Near.call(contract, method, args, gas, deposit);
+  props.__engine.contract.call(contract, method, args, gas, deposit);
 }
 
 const PageTitle = props.__engine.Components.PageTitle;
