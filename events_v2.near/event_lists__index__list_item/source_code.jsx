@@ -82,6 +82,6 @@ return (
         scrollContainer aksjhdgf kjaghskdfjg asjdfhg akjshdfg kjahsgdf kjahgsdfk
       </div>
     </div>
-    <CardBody></CardBody>
+    <CardBody>{event_list.description}</CardBody>
   </Card>
 );
