@@ -339,7 +339,10 @@ const postTitle =
 const postExtra =
   snapshot.post_type == "Sponsorship" ? (
     <div>
-      <h6 class="card-subtitle mb-2 text-muted">
+      <h6
+        class="card-subtitle mb-2 text-muted"
+        key={`sponsorshipAmount${postId}`}
+      >
         Maximum amount: {snapshot.amount} {snapshot.sponsorship_token}
       </h6>
       <h6 class="card-subtitle mb-2 text-muted">
@@ -347,6 +350,7 @@ const postExtra =
         <Widget
           src={`neardevgov.near/widget/ProfileLine`}
           props={{ accountId: snapshot.supervisor }}
+          key={`sponsorshipSupervisor${postId}`}
         />
       </h6>
     </div>
@@ -395,6 +399,9 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
+      {postTitle}
+      {postExtra}
+      {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
     </div>
