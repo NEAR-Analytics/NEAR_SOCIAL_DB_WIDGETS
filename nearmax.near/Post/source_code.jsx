@@ -186,7 +186,7 @@ const btnCreatorWidget = (postType, icon, name) => {
 };
 
 const buttonsFooter = props.isPreview ? null : (
-  <div class="row" key={`postFooter${postId}`}>
+  <div class="row">
     <div class="col-8">
       <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button
