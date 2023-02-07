@@ -59,7 +59,7 @@ const computeResults = (term) => {
     const accountIdScore = computeScore(accountId);
     Object.keys(data.widget).forEach((componentId) => {
       const componentIdScore = computeScore(componentId);
-      const metadata = allAppMetadata[accountId].widget[componentId].metadata;
+      const metadata = appMetadata[accountId].widget[componentId].metadata;
       const name = metadata.name || "";
       if (appFilterTag && !(metadata.tags && appFilterTag in metadata.tags)) {
         return;
@@ -121,7 +121,11 @@ return (
 
       <ul>
         {state.people &&
-          state.people.map((accountId, i) => <li key={i}>{accountId}</li>)}
+          state.people.map((person, i) => (
+            <li key={i}>
+              {person.name}, {person.accountId}
+            </li>
+          ))}
       </ul>
     </div>
 
@@ -137,5 +141,11 @@ return (
           ))}
       </ul>
     </div>
+
+    {props.debug && (
+      <div>
+        <pre>{JSON.stringify(state, undefined, 2)}</pre>
+      </div>
+    )}
   </div>
 );
