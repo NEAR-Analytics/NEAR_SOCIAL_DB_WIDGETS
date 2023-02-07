@@ -36,8 +36,15 @@ return (
     tabIndex={0}
   >
     <CardHeader>
-      <div>{event_list.name}</div>
+      <div
+        style={{
+          fontSize: 'calc(max(1.25rem, 1.25vw))',
+        }}
+      >
+        {event_list.name}
+      </div>
     </CardHeader>
-    <CardBody>test</CardBody>
+
+    <CardBody></CardBody>
   </Card>
 );
