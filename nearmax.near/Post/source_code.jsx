@@ -404,6 +404,7 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
+      {postTitle}
       {buttonsFooter}
       {editorsFooter}
     </div>
