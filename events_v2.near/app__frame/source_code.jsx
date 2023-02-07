@@ -231,7 +231,7 @@ const Components = {
     }
   `,
 
-  CardImage: styled.div`
+  CardHeaderImage: styled.div`
     height: auto;
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -240,6 +240,13 @@ const Components = {
     border-bottom: 0.1vw solid #cccccc;
     flex-shrink: 0;
     flex-grow: 0;
+  `,
+
+  CardBody: styled.div`
+    width: 100%;
+    height: auto;
+    flex-grow: 100;
+    flex-shrink: 0;
   `,
 };
 
