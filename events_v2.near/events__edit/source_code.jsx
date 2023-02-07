@@ -9,7 +9,7 @@ if (!eventId) {
   return props.__engine.helpers.propsIsRequiredMessage('event_id');
 }
 
-const event = Near.view(EVENTS_CONTRACT, 'get_event', {
+const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
   event_id: props.event_id,
 });
 if (!event) {
