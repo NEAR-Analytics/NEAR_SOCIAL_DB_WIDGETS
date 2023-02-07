@@ -3,6 +3,7 @@ const authorForWidget = "eugenewolf507.near";
 
 const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
 const wikiTestArr = wikiTestData && Object.values(wikiTestData);
+
 const resultArticles =
   wikiTestArr &&
   wikiTestArr.reduce(
@@ -38,9 +39,13 @@ const getAuthorsStats = (acc, author) => {
   acc[author] += 1;
   return acc;
 };
+
 const countAuthors = (arr) => arr.reduce(getAuthorsStats, {});
-const authorsCountObject = countAuthors(authors);
-const authorsCountArray = Object.entries(authorsCountObject);
+
+const authorsCountObject = filteredArticles.length && countAuthors(authors);
+
+const authorsCountArray =
+  filteredArticles.length && Object.entries(authorsCountObject);
 
 return (
   <>
@@ -50,21 +55,22 @@ return (
     />
     <h6>Total authors: {authorsCountArray.length}</h6>
     <ul>
-      {authorsCountArray.map(([author, quantity]) => (
-        <li>
-          <a
-            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
-          >
-            {author}
-          </a>{" "}
-          -
-          <a
-            href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByAuthor?author=${author}`}
-          >
-            {quantity}
-          </a>
-        </li>
-      ))}
+      {authorsCountArray &&
+        authorsCountArray.map(([author, quantity]) => (
+          <li>
+            <a
+              href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${author}`}
+            >
+              {author}
+            </a>{" "}
+            -
+            <a
+              href={`#/${authorForWidget}/widget/WikiOnSocialDB_ArticlesByAuthor?author=${author}`}
+            >
+              {quantity}
+            </a>
+          </li>
+        ))}
     </ul>
   </>
 );
