@@ -252,8 +252,40 @@ const EditorWidget = (postType) => {
   return <div></div>;
 };
 
+const editorsFooter = props.isPreview ? null : (
+  <div class="row" id={`accordion${postId}`}>
+    {CreatorWidget("Comment")}
+    {EditorWidget("Comment")}
+    {CreatorWidget("Idea")}
+    {EditorWidget("Idea")}
+    {CreatorWidget("Submission")}
+    {EditorWidget("Submission")}
+    {CreatorWidget("Attestation")}
+    {EditorWidget("Attestation")}
+    {CreatorWidget("Sponsorship")}
+    {EditorWidget("Sponsorship")}
+    {CreatorWidget("Github")}
+    {EditorWidget("Github")}
+  </div>
+);
+
 const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
+
+const postLables = post.snapshot.labels ? (
+  <div class="card-title">
+    {post.snapshot.labels.map((label) => {
+      return (
+        <a
+          href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
+          key={`label${label}of${postId}`}
+        >
+          <span class="badge text-bg-primary me-1">{label}</span>
+        </a>
+      );
+    })}
+  </div>
+) : null;
 
 const postTitle =
   snapshot.post_type == "Comment" ? null : (
@@ -267,6 +299,26 @@ const postTitle =
       </div>
     </h5>
   );
+
+const postExtra =
+  snapshot.post_type == "Sponsorship" ? (
+    <div>
+      <h6
+        class="card-subtitle mb-2 text-muted"
+        key={`sponsorshipAmount${postId}`}
+      >
+        Maximum amount: {snapshot.amount} {snapshot.sponsorship_token}
+      </h6>
+      <h6 class="card-subtitle mb-2 text-muted">
+        Supervisor:{" "}
+        <Widget
+          src={`mob.near/widget/ProfileLine`}
+          props={{ accountId: snapshot.supervisor }}
+          key={`sponsorshipSupervisor${postId}`}
+        />
+      </h6>
+    </div>
+  ) : null;
 
 const Card = styled.div`
   &:hover {
