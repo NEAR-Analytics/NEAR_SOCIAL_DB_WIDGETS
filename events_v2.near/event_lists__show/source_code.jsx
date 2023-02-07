@@ -11,6 +11,7 @@ const has_event_list = props.__engine.contract.view(
   'has_event_list',
   {
     event_list_id: event_list_id,
+    include_events: true,
   }
 );
 
@@ -53,27 +54,7 @@ props.controller.setLayout('layouts:container', {
     props.__engine.accountId === event_list.account_id ? primaryAction : null,
 });
 
-function removeEventListhas_event_list() {
-  const contract = EVENTS_CONTRACT;
-  const method = 'remove_event_list';
-  const args = {
-    event_list_id: event_list.id,
-  };
-  const gas = TGAS_300;
-  const deposit = '0';
-  Near.call(contract, method, args, gas, deposit);
-}
-
-const PageTitle = props.__engine.Components.PageTitle;
-const Container = props.__engine.Components.Container;
-const InfoBar = props.__engine.Components.InfoBar;
-const TextHeader = props.__engine.Components.TextHeader;
-const Text = props.__engine.Components.Text;
-const InlineTag = props.__engine.Components.InlineTag;
-const InfoBarItem = props.__engine.Components.InfoBarItem;
-const InfoBarLink = props.__engine.Components.InfoBarLink;
-
-// console.log('event_list', event_list);
+console.log('event_list', event_list);
 
 return (
   <>
