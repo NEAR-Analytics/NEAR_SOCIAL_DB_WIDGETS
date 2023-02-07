@@ -4,15 +4,9 @@ if (!event_list) {
   return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
 
-let events = props.__engine.contract.view('get_events_in_event_list', {
+const events = props.__engine.contract.view('get_events_in_event_list', {
   event_list_id: event_list.id,
 });
-let loadingEvents = false;
-
-if (events === null || events === undefined) {
-  events = [];
-  loadingEvents = true;
-}
 
 function showEventList() {
   props.__engine.push('show', { event_list_id: event_list.id });
@@ -51,13 +45,17 @@ const eventsListSlider = (
       flexWrap: 'nowrap',
     }}
   >
-    {events.map((event) => {
-      return (
-        <div key={event.id}>
-          {props.__engine.renderComponent('index.event_list_item', { event })}
-        </div>
-      );
-    })}
+    {events && events.length >= 1
+      ? events.map((event) => {
+        return (
+          <div key={event.id}>
+            {props.__engine.renderComponent('index.event_list_item', {
+              event,
+            })}
+          </div>
+        );
+      })
+      : null}
   </div>
 );
 
