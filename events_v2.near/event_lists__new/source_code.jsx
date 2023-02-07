@@ -12,9 +12,6 @@ const latestEventList = props.__engine.contract.view(
     account_id: props.__engine.accountId,
   }
 );
-if (!latestEventList) {
-  // return 'Loading';
-}
 
 const SECONDS_8 = 8000;
 // if event_list was just created, pop the stack and return
@@ -24,7 +21,7 @@ if (
     SECONDS_8
 ) {
   props.__engine.pop();
-  return 'EventList created';
+  return <></>;
 }
 
 function createEventList(data) {
