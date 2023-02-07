@@ -316,6 +316,7 @@ const postLables = post.snapshot.labels ? (
       return (
         <a
           href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
+          key={`label${label}of${postId}`}
         >
           <span class="badge text-bg-primary me-1">{label}</span>
         </a>
