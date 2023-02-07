@@ -1,4 +1,3 @@
-props.controller.setLayout('layouts:loading', {});
 props.controller.setLayout('layouts:modal', {
   title: 'Create event list',
   back: true,
