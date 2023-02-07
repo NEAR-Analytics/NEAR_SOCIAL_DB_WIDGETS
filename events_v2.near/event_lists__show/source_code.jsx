@@ -75,4 +75,10 @@ const InfoBarLink = props.__engine.Components.InfoBarLink;
 
 // console.log('event_list', event_list);
 
-return <>"Hello World"</>;
+return (
+  <>
+    <div>
+      Hello {event_list.name} {event_list.id}
+    </div>
+  </>
+);
