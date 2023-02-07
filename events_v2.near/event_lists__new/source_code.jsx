@@ -5,9 +5,13 @@ props.controller.setLayout('layouts:modal', {
 
 const EVENTS_CONTRACT = 'events_v2.near';
 
-const latestEventList = Near.view(EVENTS_CONTRACT, 'get_latest_event_list', {
-  account_id: props.__engine.accountId,
-});
+const latestEventList = props.__engine.contract.view(
+  EVENTS_CONTRACT,
+  'get_latest_event_list',
+  {
+    account_id: props.__engine.accountId,
+  }
+);
 if (!latestEventList) {
   // return 'Loading';
 }
