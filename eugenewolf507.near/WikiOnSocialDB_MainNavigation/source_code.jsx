@@ -1,4 +1,4 @@
-const currentPill = props.currentNavPill ?? "articles";
+const currentPill = props.currentNavPill ?? "";
 const authorForWidget = "eugenewolf507.near";
 const pills = [
   {
