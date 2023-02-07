@@ -10,6 +10,12 @@ if (profile === null) {
   return "Loading";
 }
 
+const getDateLastEdit = (timestamp) => {
+  const date = new Date(Number(timestamp));
+  const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
+  return dateString;
+};
+
 const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
 const wikiTestArr = wikiTestData && Object.values(wikiTestData);
 const resultArticles =
@@ -47,4 +53,23 @@ const filteredArticlesByUser =
   }, []);
 
 console.log(filteredArticlesByUser);
-return <div>Hello World</div>;
+return (
+  <div>
+    Author:
+    {mOKEDAYTHOR}
+    <ol>
+      {filteredArticlesByUser &&
+        filteredArticlesByUser.map((article, index) => (
+          <li key={article.articleId}>
+            <a href="">
+              {article.articleId}{" "}
+              <small>
+                (last edited:
+                {getDateLastEdit(article.timeLastEdit)})
+              </small>
+            </a>
+          </li>
+        ))}
+    </ol>
+  </div>
+);
