@@ -40,12 +40,6 @@ State.init({
 
 const description = profile.description;
 
-const pills = [
-  { id: "articles", title: "Articles" },
-  { id: "authors", title: "Authors" },
-  { id: "create", title: "Create Article" },
-];
-
 const handleArticle = (e, article) => {
   State.update({ ...state, article: article, authorId: undefined });
 };
@@ -82,36 +76,10 @@ const getDateLastEdit = (timestamp) => {
 
 return (
   <>
-    <ul className="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
-      {pills.map(({ id, title }, i) => (
-        <li className="nav-item" role="presentation" key={i}>
-          <button
-            className={`nav-link ${i === 0 ? "active" : ""}`}
-            id={`pills-${id}-tab`}
-            data-bs-toggle="pill"
-            data-bs-target={`#pills-${id}`}
-            type="button"
-            role="tab"
-            aria-controls={`pills-${id}`}
-            aria-selected={i === 0}
-            onClick={() => {
-              const key = `load${id}`;
-
-              State.update({
-                ...state,
-                article: undefined,
-                authorId: undefined,
-                note: undefined,
-                editArticle: false,
-                currentTab: key,
-              });
-            }}
-          >
-            {title}
-          </button>
-        </li>
-      ))}
-    </ul>
+    <Widget
+      src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
+      props={{ currentPill: "articles" }}
+    />
     <div className="tab-content" id="pills-tabContent">
       <div
         className="tab-pane fade show active"
