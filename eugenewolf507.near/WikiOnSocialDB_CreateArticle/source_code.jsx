@@ -100,7 +100,7 @@ return (
   <>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
-      props={{ currentPill: "create" }}
+      props={{ currentNavPill: "create" }}
     />
     <div>
       <h1 className="mb-3"> Create Article</h1>
