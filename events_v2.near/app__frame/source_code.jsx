@@ -326,11 +326,7 @@ if (!state) {
   return 'Loading...';
 }
 
-const env = {
-  appOwner,
-  appName,
-  VERSION,
-};
+const env = { appOwner, appName, VERSION };
 
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
@@ -632,6 +628,7 @@ function renderComponent(name, props, appNameOverride) {
   const engine = {
     env: {
       ...env,
+      appOwner: appNameOverride || appOwner,
     },
     accountId,
 
