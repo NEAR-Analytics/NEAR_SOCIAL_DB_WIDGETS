@@ -28,7 +28,7 @@ const composeData = () => {
     path: `${context.accountId}/post/comment`,
   });
 
-  if (props.notifyAccountId) {
+  if (props.notifyAccountId && props.notifyAccountId !== context.accountId) {
     notifications.push({
       key: props.notifyAccountId,
       value: {
