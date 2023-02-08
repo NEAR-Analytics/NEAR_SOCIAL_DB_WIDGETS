@@ -95,12 +95,12 @@ const ConditionalButton = styled.button`
   font-weight: 600;
   cursor: pointer;
 
-  transition: background 0.2s ease-in-out, animation 2s ease-in-out infinite;
+  transition: background 0.2s ease-in-out, animation 0.5s ease-in-out;
   transform: scale(1);
 
   &:hover {
     background: ${(props) => (props.add ? '#27ae60' : '#c0392b')};
-    animation: ${AnimationPulse} 0.5s ease-in-out;
+    animation: ${AnimationPulse} 2s ease-in-out infinite;
   }
 `;
 
