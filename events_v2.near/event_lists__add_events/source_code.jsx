@@ -205,7 +205,7 @@ return (
                 event,
                 mode: 'tile',
               })}
-            }</div>
+            </div>
             <div style={{ flexGrow: 100, marginLeft: 8 }}>
               <div className="flex items-center">{event.name}</div>
               <div className="flex items-center">
