@@ -530,7 +530,7 @@ function isDate(value) {
 
 function formatDate(date, format) {
   if (date === null || date === undefined) {
-    console.error('date is null or undefined', date, format);
+    console.error('formatDate', 'date is null or undefined', date, format);
     return '';
   }
   const properDate = isDate(date) ? date : new Date(date);
