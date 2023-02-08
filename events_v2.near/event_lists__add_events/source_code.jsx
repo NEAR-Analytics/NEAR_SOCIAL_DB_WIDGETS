@@ -25,8 +25,6 @@ props.controller.setLayout('layouts:modal', {
   title: `Add events to ${event_list.name}`,
 });
 
-console.log('event_list', event_list);
-
 function addEventToList(event_id, position) {
   props.__engine.contract.call(EVENTS_CONTRACT, 'add_event_to_event_list', {
     event_list_id,
@@ -57,7 +55,7 @@ const Searchbar = styled.input`
 
 const allEvents = props.__engine.contract.view(
   EVENTS_CONTRACT,
-  'get_events',
+  'get_all_events',
   {}
 );
 
@@ -72,6 +70,8 @@ const events = allEvents.filter((event) => {
 if (!events) {
   return props.__engine.loading();
 }
+
+console.log('event_list', event_list);
 
 return (
   <>
