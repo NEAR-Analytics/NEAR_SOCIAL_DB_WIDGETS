@@ -56,6 +56,7 @@ props.controller.setLayout('layouts:container', {
       : null,
 });
 
+const Text = props.__engine.Components.Text;
 const Container = props.__engine.Components.Container;
 const PageTitle = props.__engine.Components.PageTitle;
 const InfoBar = props.__engine.Components.InfoBar;
