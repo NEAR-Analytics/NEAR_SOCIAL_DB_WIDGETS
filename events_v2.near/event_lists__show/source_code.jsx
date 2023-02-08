@@ -135,7 +135,7 @@ return (
 
     <Container>
       <GridContainer>
-        {state.event_list.events.map(({ event }) => {
+        {state.events.map(({ event }) => {
           return props.__engine.renderComponent(
             'index.list_item',
             {
