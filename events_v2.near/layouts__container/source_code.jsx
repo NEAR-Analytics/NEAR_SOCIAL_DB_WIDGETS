@@ -129,8 +129,14 @@ const navbar = (
         {props.primaryAction ? (
           <NavPrimaryButton
             type="button"
+            tabIndex={0}
             onClick={() => {
               props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
+              }
             }}
           >
             {props.primaryAction.label}
