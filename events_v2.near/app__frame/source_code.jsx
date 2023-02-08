@@ -214,7 +214,7 @@ const Components = {
     align-items: stretch;
     justify-content: flex-start;
 
-    width: auto;
+    width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -236,7 +236,7 @@ const Components = {
     @media (max-width: 768px) {
       & > * {
         width: 40%;
-        max-width: 50%;
+        max-width: 40%;
       }
     }
   `,
