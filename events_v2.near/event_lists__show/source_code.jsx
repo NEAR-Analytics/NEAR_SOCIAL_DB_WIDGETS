@@ -58,6 +58,7 @@ props.controller.setLayout('layouts:container', {
 });
 
 const Container = props.__engine.Components.Container;
+const PageTitle = props.__engine.Components.PageTitle;
 console.log('event_list', event_list);
 
 return (
