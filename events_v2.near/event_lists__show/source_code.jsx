@@ -62,6 +62,7 @@ const Container = props.__engine.Components.Container;
 const PageTitle = props.__engine.Components.PageTitle;
 const InfoBar = props.__engine.Components.InfoBar;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
+const InfoBarLink = props.__engine.Components.InfoBarLink;
 
 console.log('event_list', event_list);
 
