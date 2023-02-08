@@ -182,10 +182,7 @@ return (
         return (
           <>
             <div style={{ flexGrow: 100, marginLeft: 8 }}>
-              <div className="flex items-center">{event.name}</div>
-              <div className="flex items-center">
-                {event.description.slice(0, 100)}
-              </div>
+              <div>{event.name}</div>
             </div>
           </>
         );
@@ -201,10 +198,8 @@ return (
               })}
             </ImageTileContainer>
             <div style={{ flexGrow: 100, marginLeft: 8 }}>
-              <div className="flex items-center">{event.name}</div>
-              <div className="flex items-center">
-                {event.description.slice(0, 100)}
-              </div>
+              <div>{event.name}</div>
+              <div>{event.description.slice(0, 100)}</div>
             </div>
 
             <div>
