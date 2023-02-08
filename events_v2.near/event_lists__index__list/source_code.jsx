@@ -13,10 +13,14 @@ const GridContainer = props.__engine.Components.GridContainer;
 return (
   <GridContainer>
     {event_lists.map((event_list) => {
-      return props.__engine.renderComponent('index.list_item', {
-        event_list,
-        key: event_list.event_list_id,
-      });
+      return (
+        <>
+          {props.__engine.renderComponent('index.list_item', {
+            event_list,
+            key: event_list.event_list_id,
+          })}
+        </>
+      );
     })}
 
     <div>{/* spacer */}</div>
