@@ -109,7 +109,7 @@ return (
             borderRadius: 10,
           }}
         >
-          {props.__engine.renderComponent('components.event_image_slider', {
+          {props.__engine.renderComponent('components:event_image_slider', {
             event,
             mode: 'tile',
           })}
@@ -131,7 +131,7 @@ return (
         <Text>
           <i className="bi bi-calendar"></i>
 
-          {props.__engine.renderComponent('components.event_date', { event })}
+          {props.__engine.renderComponent('components:event_date', { event })}
         </Text>
       </InfoBarItem>
 
