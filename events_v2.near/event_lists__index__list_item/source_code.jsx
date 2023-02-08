@@ -28,7 +28,7 @@ const CardHeader = styled.div`
 const CardBody = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   padding: 0 20px;
   width: 66%;
   overflow-y: hidden;
