@@ -205,9 +205,7 @@ const Components = {
 
   Card: styled.div`
     display: flex;
-    flex-direction: ${({ orientation }) => {
-      return orientation2FlexDirection(orientation);
-  }};
+    flex-direction: ${orientation2FlexDirection};
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: stretch;
@@ -324,7 +322,7 @@ const SessionState = {
   },
 };
 
-function orientation2FlexDirection(orientation) {
+function orientation2FlexDirection({ orientation }) {
   switch (orientation) {
     case 'horizontal':
       return 'row';
