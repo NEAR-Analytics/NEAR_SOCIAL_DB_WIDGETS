@@ -161,7 +161,10 @@ const EventTile = styled.div`
   align-items: start;
 
   padding: 0.5rem;
+
   border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+
   transition: background 0.2s ease-in-out;
   background: #fff;
 
