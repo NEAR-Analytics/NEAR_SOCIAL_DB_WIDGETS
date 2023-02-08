@@ -29,7 +29,7 @@ const CardBody = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
-  padding: 0;
+  padding: 0 20px;
   /* purple */
   backgroundcolor: #f3e5f5;
   width: 66%;
