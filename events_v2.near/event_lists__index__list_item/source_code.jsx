@@ -84,7 +84,7 @@ return (
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
       <Text>
-        <Markdown text={event_list.description} />
+        <Markdown text={event_list.description.slice(0, 200)} />
       </Text>
     </CardHeader>
 
