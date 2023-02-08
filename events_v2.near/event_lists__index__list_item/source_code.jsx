@@ -86,7 +86,7 @@ const EventTileWrapper = styled.div`
   height: 100%;
   margin-right: 20px;
   animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
-  animation-delay: ${(props) => props.delay + 500}ms;
+  animation-delay: ${(props) => props.delay + 200}ms;
   animation-fill-mode: both;
   opacity: 0;
 
