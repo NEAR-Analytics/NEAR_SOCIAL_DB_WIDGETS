@@ -96,7 +96,7 @@ const scrollingEvents =
             return a - b;
           })
           .map(({ event }, idx) => {
-            return props.__engine.renderComponent(
+            return ({props.__engine.renderComponent(
               'index.list_item',
               {
                 event: event,
@@ -104,7 +104,7 @@ const scrollingEvents =
                 small: true,
               },
               { appName: 'events' }
-            );
+            )})
           })}
       </HorizontalScroll>
     </ScrollingEventsContainer>
