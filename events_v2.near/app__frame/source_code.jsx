@@ -628,8 +628,7 @@ function contractView(contractName, methodName, args) {
 }
 
 function loading(displayText) {
-  const text = displayText || '...';
-  return <>text</>;
+  return <>{displayText || '...'}</>;
 }
 
 function renderComponent(name, props) {
