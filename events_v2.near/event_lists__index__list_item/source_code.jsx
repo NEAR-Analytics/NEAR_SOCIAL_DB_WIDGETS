@@ -178,14 +178,23 @@ const TextButton = styled.button`
   }
 `;
 
+const FlexGrowDesktop = styled.div`
+  flex-grow: 1;
+  flex-shrink: 0;
+  @media (max-width: 768px) {
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
+`;
+
 return (
   <Card orientation="horizontal">
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
 
-      <div style={{ flexGrow: 100 }}>
+      <FlexGrowDesktop>
         <Text>{elDescription}</Text>
-      </div>
+      </FlexGrowDesktop>
       <TextButton
         onClick={() => {
           showEventList();
