@@ -1,5 +1,4 @@
 const initialMetadata = props.initialMetadata ?? {};
-initialMetadata.tags.push("canto-test");
 const onChange = props.onChange;
 const options = props.options;
 
