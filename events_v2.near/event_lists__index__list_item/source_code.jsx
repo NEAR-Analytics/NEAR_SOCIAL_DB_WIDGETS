@@ -33,6 +33,7 @@ function showEventList() {
 
 const Card = props.__engine.Components.Card;
 const CardTitle = props.__engine.Components.CardTitle;
+const CardBody = props.__engine.Components.CardBody;
 const Text = props.__engine.Components.Text;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
@@ -60,32 +61,32 @@ const CardHeaderWrapper = styled.div`
   }
 `;
 
-const CardBody = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  width: 66%;
-  height: 100%;
-  flex-wrap: nowrap;
-  flex-grow: 1;
+// const CardBody = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 0;
+//   width: 66%;
+//   height: 100%;
+//   flex-wrap: nowrap;
+//   flex-grow: 1;
 
-  @media (max-width: 768px) {
-    width: 100%;
-  }
+//   @media (max-width: 768px) {
+//     width: 100%;
+//   }
 
-  & > * {
-    height: 100%;
-    padding: 20px;
-  }
+//   & > * {
+//     height: 100%;
+//     padding: 20px;
+//   }
 
-  @media (max-width: 768px) {
-    & > * {
-      padding: 10px;
-    }
-  }
-`;
+//   @media (max-width: 768px) {
+//     & > * {
+//       padding: 10px;
+//     }
+//   }
+// `;
 
 const AnimationSlideFadeInLeft = styled.keyframes`
   0% {
@@ -191,6 +192,7 @@ return (
       <FlexGrowDesktop>
         <Text>{elDescription}</Text>
       </FlexGrowDesktop>
+
       <TextButton
         onClick={() => {
           showEventList();
