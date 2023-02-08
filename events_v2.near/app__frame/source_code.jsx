@@ -215,10 +215,6 @@ const Components = {
     justify-content: flex-start;
 
     width: auto;
-    margin-left: -20px;
-    margin-right: -20px;
-
-    padding-right: 20px;
 
     & > * {
       margin-right: 20px;
