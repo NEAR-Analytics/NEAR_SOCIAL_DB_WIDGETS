@@ -633,19 +633,21 @@ function loading(displayText) {
   return <>{displayText || '...'}</>;
 }
 
-function renderComponent(name, props, env) {
-  // add all keys from env which are not null or undefined
-  const customEnv = Object.entries(env || {}).reduce((acc, [key, value]) => {
-    if (value !== null && value !== undefined) {
-      acc[key] = value;
-    }
-    return acc;
-  }, {});
-
-  const widgetEnv = {
-    ...ENV,
-    ...customEnv,
+function mergeEnv(env, newEnv) {
+  return {
+    ...env,
+    // add all keys from env which are not null or undefined
+    ...Object.entries(newEnv || {}).reduce((acc, [key, value]) => {
+      if (value !== null && value !== undefined) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {}),
   };
+}
+
+function renderComponent(name, props, env) {
+  const widgetEnv = mergeEnv(ENV, env);
 
   const _sessionGet = (...args) => {
     return sessionGet(widgetEnv, ...args);
@@ -677,6 +679,10 @@ function renderComponent(name, props, env) {
     return replace(widgetEnv, _name, _props);
   };
 
+  const _renderComponent = (name, props, env) => {
+    return safeRender(name, props, mergeEnv(widgetEnv, env));
+  };
+
   const engine = {
     env: widgetEnv,
     accountId,
@@ -693,7 +699,7 @@ function renderComponent(name, props, env) {
     layoutPathFromName: _layoutPathFromName,
     widgetPathFromName: _widgetPathFromName,
 
-    renderComponent: safeRender,
+    renderComponent: _renderComponent,
 
     Components,
 
