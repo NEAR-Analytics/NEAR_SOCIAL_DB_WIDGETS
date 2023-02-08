@@ -142,13 +142,7 @@ function addEventButton(event_id) {
 
 function removeEventButton(event_id) {
   return (
-    <ConditionalButton
-      onClick={() => {
-        removeEventFromList(event_id);
-      }}
-    >
-      Remove
-    </ConditionalButton>
+    
   );
 }
 
@@ -221,7 +215,13 @@ return (
 
             <div>
               {findEventInList(event.id)
-                ? removeEventButton(event.id)
+                ? (<ConditionalButton
+      onClick={() => {
+        removeEventFromList(event.id);
+      }}
+    >
+      Remove
+    </ConditionalButton>)
                 : addEventButton(event.id)}
             </div>
           </EventTile>
