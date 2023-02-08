@@ -1,6 +1,7 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-const { article } = props;
+const { article, articleId } = props;
+console.log(articleId);
 State.init({
   article,
 });
