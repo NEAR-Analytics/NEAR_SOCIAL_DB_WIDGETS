@@ -66,8 +66,6 @@ const CardBody = styled.div`
   padding: 0;
   width: 66%;
   height: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
   flex-wrap: nowrap;
   flex-grow: 1;
 
