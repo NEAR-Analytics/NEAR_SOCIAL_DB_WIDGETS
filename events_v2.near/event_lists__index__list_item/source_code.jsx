@@ -9,8 +9,8 @@ function showEventList() {
 }
 
 const Card = props.__engine.Components.Card;
-// const CardHeader = props.__engine.Components.CardHeader;
 const CardBody = props.__engine.Components.CardBody;
+// const CardHeader = props.__engine.Components.CardHeader;
 // const CardFooter = props.__engine.Components.CardFooter;
 
 const CardHeader = styled.div`
@@ -34,6 +34,7 @@ return (
     }}
     role="button"
     tabIndex={0}
+    orientation="horizontal"
   >
     <CardHeader>
       <div
