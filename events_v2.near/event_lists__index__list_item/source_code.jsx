@@ -13,7 +13,7 @@ const Card = props.__engine.Components.Card;
 const CardHeader = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: stretch;
   padding: 0 1rem;
   width: 50%;
   border-right: 1px solid #e0e0e0;
