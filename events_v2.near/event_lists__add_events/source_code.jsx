@@ -178,16 +178,6 @@ return (
         paddingTop: 44,
       }}
     >
-      {state.event_list.events.map(({ event }) => {
-        return (
-          <>
-            <div style={{ flexGrow: 100, marginLeft: 8 }}>
-              <div>{event.name}</div>
-            </div>
-          </>
-        );
-      })}
-
       {events.map((event) => {
         return (
           <EventTile key={event.id}>
