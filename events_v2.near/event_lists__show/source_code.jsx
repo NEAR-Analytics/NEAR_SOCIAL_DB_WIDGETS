@@ -5,14 +5,6 @@ if (!event_list_id) {
   return props.__engine.helpers.propIsRequiredMessage('event_list_id');
 }
 
-const event_list = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_event_list',
-  {
-    event_list_id: event_list_id,
-  }
-);
-
 const has_event_list = props.__engine.contract.view(
   EVENTS_CONTRACT,
   'has_event_list',
@@ -31,7 +23,18 @@ if (has_event_list === false) {
   return <></>;
 }
 
-if (!event_list) {
+if (!state) {
+  const event_list = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_event_list',
+    {
+      event_list_id: event_list_id,
+    }
+  );
+  if (!event_list) {
+    return props.__engine.loading();
+  }
+  State.init({ event_list });
   return props.__engine.loading();
 }
 
