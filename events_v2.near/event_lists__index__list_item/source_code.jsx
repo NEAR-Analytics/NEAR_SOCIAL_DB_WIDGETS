@@ -82,22 +82,17 @@ const elDescription =
     : event_list.description;
 
 return (
-  <Card
-    onClick={() => {
-      showEventList();
-    }}
-    onKeyDown={(e) => {
-      if (e.key === 'Enter') {
-        showEventList();
-      }
-    }}
-    role="button"
-    tabIndex={0}
-    orientation="horizontal"
-  >
+  <Card orientation="horizontal">
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
       <Text>{elDescription}</Text>
+      <button
+        onClick={() => {
+          showEventList;
+        }}
+      >
+        View
+      </button>
     </CardHeader>
 
     <CardBody>{scrollingEvents}</CardBody>
