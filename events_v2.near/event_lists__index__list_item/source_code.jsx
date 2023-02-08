@@ -78,7 +78,7 @@ const scrollingEvents =
       })}
 
       {event_list.event_count > EVENTS_LIMIT && (
-        <Text>
+        <Text mobile-hidden>
           And {event_list.event_count - EVENTS_LIMIT} more events in this list.
         </Text>
       )}
