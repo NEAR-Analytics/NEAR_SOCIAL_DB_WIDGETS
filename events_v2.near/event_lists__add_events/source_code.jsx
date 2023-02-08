@@ -90,9 +90,8 @@ return (
               key={event.event_id}
               className="flex items-center justify-between p-2 border-b border-gray-200"
             >
-              <div className="flex items-center">
-                {event.name}
-              </div>
+              <div className="flex items-center">{event.name}</div>
+
               <div>
                 <button
                   className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
@@ -102,13 +101,11 @@ return (
                 >
                   Add
                 </button>
-
-                </div>
-                </div>
-                );
-                })}
-                
-
+              </div>
+            </div>
+        })
+        })}
+      </div>
     </div>
   </>
 );
