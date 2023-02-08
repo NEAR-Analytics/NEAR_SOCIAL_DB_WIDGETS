@@ -201,7 +201,7 @@ return (
         return (
           <EventTile key={event.id}>
             <div>{}</div>
-            <div style={{ flexGrow: 100 }}>
+            <div style={{ flexGrow: 100, marginLeft: 8 }}>
               <div className="flex items-center">{event.name}</div>
               <div className="flex items-center">
                 {event.description.slice(0, 100)}
