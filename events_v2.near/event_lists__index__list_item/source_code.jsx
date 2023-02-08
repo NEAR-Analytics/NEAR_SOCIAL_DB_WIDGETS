@@ -36,16 +36,8 @@ return (
     tabIndex={0}
     orientation="horizontal"
   >
-    <CardHeader>
-      <div
-        style={{
-          fontSize: 'calc(max(1.25rem, 1.25vw))',
-        }}
-      >
-        {event_list.name}
-      </div>
-    </CardHeader>
+    <div>left</div>
 
-    <CardBody>{event_list.description}</CardBody>
+    <div>right</div>
   </Card>
 );
