@@ -73,6 +73,8 @@ if (!events) {
 const Container = props.__engine.Components.Container;
 
 console.log('event_list', event_list);
+console.log('allEvents', allEvents);
+console.log('events', events);
 
 return (
   <>
