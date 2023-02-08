@@ -55,8 +55,7 @@ const Searchbar = styled.input`
 
 const allEvents = props.__engine.contract.view(
   EVENTS_CONTRACT,
-  'get_all_events',
-  {}
+  'get_all_events'
 );
 
 if (!allEvents) {
