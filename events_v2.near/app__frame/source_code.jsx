@@ -20,6 +20,29 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 const ContainerPaddingVertical = 'calc(max(12px, 1.2vw))';
 
+const GRID_PADDING = '20px';
+const GRID_PADDING_SMALL = '10px';
+const GRID_PADDING_BIG = '30px';
+
+const DEFAULT_FONT_SIZE = '16px';
+const FONT_SIZE = 'calc(max(24px, 1.75vw))';
+const FONT_SIZE_SMALL = 'calc(max(18px, 1.25vw))';
+const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
+const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
+
+const BUTTON_PADDING = `${GRID_PADDING_SMALL} ${GRID_PADDING}`;
+
+const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
+
+const DEFAULT_BORDER_RADIUS = '4px';
+
+const TEXT_COLOR = '#333333';
+
+const BORDER_COLOR = '#e6e6e6';
+
+const ERROR_COLOR = '#cc0000';
+
+const BUTTON_BG_COLOR = '#4CAF50';
 /**
  * Animation
  * */
@@ -47,18 +70,10 @@ const SlideInLeft = styled.keyframes`
  * Components
  * */
 
-const GRID_PADDING = '20px';
-const GRID_PADDING_SMALL = '10px';
-const GRID_PADDING_BIG = '30px';
-
-const DEFAULT_FONT_SIZE = '16px';
-const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
-
-const BUTTON_PADDING = `${GRID_PADDING_SMALL} ${GRID_PADDING}`;
 
 const Components = {
   Select: styled.select`
-    background-color: #4caf50;
+    background-color: ${BUTTON_BG_COLOR}
     border: none;
     color: white;
     padding: ${GRID_PADDING} ${GRID_PADDING_BIG};
@@ -71,7 +86,7 @@ const Components = {
   `,
 
   Button: styled.button`
-    background-color: #4caf50;
+    background-color: ${BUTTON_BG_COLOR}
     border: none;
     color: white;
     padding: ${BUTTON_PADDING};
@@ -99,17 +114,17 @@ const Components = {
   `,
 
   ContainerHeader: styled.div`
-    font-size: 24px;
-    color: #424242;
+    font-size: ${FONT_SIZE};
+    color: ${TEXT_COLOR};
     padding: ${ContainerPaddingVertical} 0;
     @media (max-width: 768px) {
-      font-size: 20px;
+      font-size: ${FONT_SIZE_SMALL};
     }
   `,
 
   Hr: styled.div`
     width: 100%;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid ${BORDER_COLOR};
   `,
 
   InfoBar: styled.div`
@@ -117,22 +132,22 @@ const Components = {
     flex-wrap: wrap;
     align-items: center;
     padding: 0px ${ContainerPaddingHorizontal};
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid ${BORDER_COLOR};
   `,
 
   InfoBarItem: styled.div`
     display: flex;
     align-items: center;
-    margin-right: 12px;
+    margin-right: ${GRID_PADDING};
     padding: 8px 0;
   `,
 
   InfoBarLink: styled.a`
-    font-size: 16px;
-    color: #424242;
+    font-size: ${FONT_SIZE_SMALL};
+    color: ${TEXT_COLOR};
     text-decoration: none;
-    margin-right: 12px;
-    padding: 8px 0;
+    margin-right: ${GRID_PADDING};
+    padding: ${GRID_PADDING} 0;
 
     &:hover {
       text-decoration: underline;
@@ -143,48 +158,48 @@ const Components = {
     }
 
     &:visited {
-      color: #424242;
+      color: ${TEXT_COLOR};
     }
 
     &:active {
-      color: #424242;
+      color: ${TEXT_COLOR};
     }
   `,
 
   TextHeader: styled.div`
-    font-size: 20px;
-    color: #424242;
+    font-size: ${FONT_SIZE};
+    color: ${TEXT_COLOR};
   `,
 
   InlineTag: styled.div`
     display: inline-block;
-    background-color: #e0e0e0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-right: 8px;
-    margin-left: 8px;
+    background-color: ${BORDER_COLOR};
+    padding: ${TAG_PADDING};
+    border-radius: ${DEFAULT_BORDER_RADIUS};
+    margin-right: ${GRID_PADDING};
+    margin-left: ${GRID_PADDING};
   `,
 
   Text: styled.div`
-    font-size: 16px;
-    color: #424242;
-    margin-right: 8px;
+    font-size: ${FONT_SIZE_SMALL};
+    color: ${TEXT_COLOR};
+    margin-right: ${GRID_PADDING};
   `,
 
   ValidationError: styled.div`
-    color: #c00;
-    font-size: 0.8rem;
-    margin: 0.5rem 0 0 0;
+    color: ${ERROR_COLOR};
+    font-size: ${FONT_SIZE_TINY};
+    margin-top: ${GRID_PADDING_SMALL};
   `,
 
   FullActionButton: styled.button`
     width: 100%;
-    padding: 0.5rem;
+    padding: ${BUTTON_PADDING};
     margin: 0;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: ${DEFAULT_BORDER_RADIUS};
     box-sizing: border-box;
-    background-color: #ccc;
+    background-color: ${({ disabled }) => (disabled ? '#ccc' :  ${BUTTON_BG_COLOR})};
   `,
 
   FormLabel: styled.label`
