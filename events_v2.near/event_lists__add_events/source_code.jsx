@@ -37,18 +37,18 @@ const Text = props.__engine.Components.Text;
 const Hr = props.__engine.Components.Hr;
 
 const Searchbar = styled.input`
-  width: 100%;
+  width: auto;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 0;
   outline: none;
   font-size: 1rem;
   margin: 0.5rem 0.5rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
   right: 0;
+  z-index: 1;
 
   &:focus {
     outline: none;
@@ -90,28 +90,34 @@ return (
     />
 
     {/* search results */}
-    <Container>
-      {events.map((event) => {
-        return (
-          <div
-            key={event.id}
-            className="flex items-center justify-between p-2 border-b border-gray-200"
-          >
-            <div className="flex items-center">{event.name}</div>
+    <div
+      style={{
+        paddingTop: '64px',
+      }}
+    >
+      <Container>
+        {events.map((event) => {
+          return (
+            <div
+              key={event.id}
+              className="flex items-center justify-between p-2 border-b border-gray-200"
+            >
+              <div className="flex items-center">{event.name}</div>
 
-            <div>
-              <button
-                className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
-                onClick={() => {
-                  addEventToList(event.id, event_list.events.length);
-                }}
-              >
-                Add
-              </button>
+              <div>
+                <button
+                  className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
+                  onClick={() => {
+                    addEventToList(event.id, event_list.events.length);
+                  }}
+                >
+                  Add
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </Container>
+          );
+        })}
+      </Container>
+    </div>
   </div>
 );
