@@ -171,12 +171,10 @@ return (
         marginTop: NAVBAR_HEIGHT,
       }}
     >
-      <div>
-        {props.__engine.renderComponent(
-          props.component.name,
-          props.component.props
-        )}
-      </div>
+      {props.__engine.renderComponent(
+        props.component.name,
+        props.component.props
+      )}
     </div>
   </div>
 );
