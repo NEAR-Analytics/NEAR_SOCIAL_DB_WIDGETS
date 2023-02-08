@@ -95,7 +95,6 @@ return (
             showEventList();
           }
         }}
-        role="button"
         tabIndex={0}
       >
         View
