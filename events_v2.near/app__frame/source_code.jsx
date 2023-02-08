@@ -364,18 +364,18 @@ function orientation2FlexWrap({ orientation }) {
   }
 }
 
-function sessionGet(prop, defaultValue) {
-  return SessionState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+function session_name, _defaultValueGet: ()=>{a, benv, )}(env, session_name, _defaultValue) {
+  return SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
 }
-function sessionSet(prop, value) {
-  return SessionState.set(`${appOwner}.${appName}.${prop}`, value);
+function sessionSet(env, prop, value) {
+  return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
-function storageGet(prop, defaultValue) {
-  return Storage.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
+function storageGet(env, prop, defaultValue) {
+  return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
 }
-function storageSet(prop, value) {
-  return Storage.set(`${appOwner}.${appName}.${prop}`, value);
+function storageSet(env, prop, value) {
+  return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
 function restoreRoutes() {
@@ -639,7 +639,7 @@ function renderComponent(name, props, customEnv) {
     pop,
     replace,
     rerender,
-    sessionGet,
+    sessionGet: (_name, _defaultValue)=>{return sessionGet(env, _name, _defaultValue)},
     sessionSet,
     storageGet,
     storageSet,
