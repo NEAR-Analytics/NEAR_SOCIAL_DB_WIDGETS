@@ -219,7 +219,7 @@ const Components = {
     margin-right: -20px;
 
     & > * {
-      margin: 20px 20px;
+      margin-right: 10px;
       min-width: 20px;
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
@@ -227,6 +227,10 @@ const Components = {
       flex-shrink: 0;
 
       animation: ${SlideInLeft} 0.3s ease-in-out;
+    }
+
+    & > *:last-child {
+      margin-right: 0;
     }
 
     @media (max-width: 768px) {
