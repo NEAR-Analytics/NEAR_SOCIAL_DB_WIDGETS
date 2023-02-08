@@ -20,10 +20,8 @@ if (forAccountId === undefined) {
   );
 }
 
-console.log('event_lists', event_lists);
-
 if (!event_lists) {
-  return props.__engine.loading('event lists');
+  return <></>;
 }
 
 const ContainerHeader = props.__engine.Components.ContainerHeader;
