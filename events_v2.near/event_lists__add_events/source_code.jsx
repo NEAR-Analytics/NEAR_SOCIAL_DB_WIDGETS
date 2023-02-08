@@ -157,8 +157,9 @@ function removeEventButton(event_id) {
 const EventTile = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: stretch;
+  align-items: start;
+
   padding: 0.5rem;
   border-bottom: 1px solid #ccc;
   transition: background 0.2s ease-in-out;
@@ -166,6 +167,10 @@ const EventTile = styled.div`
 
   &:hover {
     background: #f5f5f5;
+  }
+
+  & > div {
+    flex-grow: 0;
   }
 `;
 
@@ -189,7 +194,7 @@ return (
         return (
           <EventTile key={event.id}>
             <div>image</div>
-            <div>
+            <div style={{ flexGrow: 100 }}>
               <div className="flex items-center">{event.name}</div>
               <div className="flex items-center">
                 {event.description.slice(0, 100)}
