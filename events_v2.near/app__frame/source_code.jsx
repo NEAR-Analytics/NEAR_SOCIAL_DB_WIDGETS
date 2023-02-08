@@ -47,16 +47,25 @@ const SlideInLeft = styled.keyframes`
  * Components
  * */
 
+const GRID_PADDING = '20px';
+const GRID_PADDING_SMALL = '10px';
+const GRID_PADDING_BIG = '30px';
+
+const DEFAULT_FONT_SIZE = '16px';
+const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
+
+const BUTTON_PADDING = `${GRID_PADDING_SMALL} ${GRID_PADDING}`;
+
 const Components = {
   Select: styled.select`
     background-color: #4caf50;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: ${GRID_PADDING} ${GRID_PADDING_BIG};
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: ${DEFAULT_FONT_SIZE};
     margin: 4px 2px;
     cursor: pointer;
   `,
@@ -65,11 +74,11 @@ const Components = {
     background-color: #4caf50;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: ${BUTTON_PADDING};
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: ${DEFAULT_FONT_SIZE};
     transition: all 0.5s ease;
 
     &:hover {
@@ -78,7 +87,7 @@ const Components = {
   `,
 
   PageTitle: styled.h1`
-    font-size: calc(max(32px, 2.5vw));
+    font-size: ${FONT_SIZE_GIANT};
     color: black;
   `,
 
