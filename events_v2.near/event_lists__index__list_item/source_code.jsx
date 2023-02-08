@@ -31,6 +31,7 @@ const CardBody = styled.div`
   justify-content: center;
   padding: 0 20px;
   width: 66%;
+  height: 100%;
   overflow-y: hidden;
   overflow-x: auto;
   flex-wrap: nowrap;
