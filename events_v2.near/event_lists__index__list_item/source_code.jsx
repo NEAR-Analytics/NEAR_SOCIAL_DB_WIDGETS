@@ -60,8 +60,6 @@ const ScrollingEventsContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  padding: 20px 0;
-
   @media (max-width: 768px) {
     height: auto;
     flex-wrap: wrap;
@@ -96,12 +94,6 @@ const scrollingEvents =
           );
         })}
       </HorizontalScroll>
-
-      {event_list.event_count > EVENTS_LIMIT && (
-        <Text>
-          And {event_list.event_count - EVENTS_LIMIT} more in this list.
-        </Text>
-      )}
     </ScrollingEventsContainer>
   ) : (
     <Text>This list is empty :(</Text>
