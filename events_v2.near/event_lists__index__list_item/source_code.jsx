@@ -1,4 +1,8 @@
 const EVENTS_CONTRACT = 'events_v2.near';
+const EVENTS_LIMIT = 5;
+const DESCRIPTION_MAX_LENGTH = 100;
+const ANIMATION_DELAY = 200;
+
 const event_list = props.event_list || null;
 
 if (!event_list) {
@@ -89,9 +93,6 @@ const EventTileWrapper = styled.div`
   animation-fill-mode: both;
   opacity: 0;
 `;
-
-const EVENTS_LIMIT = 5;
-const DESCRIPTION_MAX_LENGTH = 100;
 
 if (!state) {
   const events = props.__engine.contract.view(
