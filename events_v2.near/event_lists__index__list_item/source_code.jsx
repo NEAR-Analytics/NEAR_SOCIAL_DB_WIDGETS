@@ -117,7 +117,7 @@ const EventTileWrapper = styled.div`
 
 const scrollingEvents =
   (state.events || []).length > 0 ? (
-    <HorizontalScroll itemWidth={'33%'}>
+    <HorizontalScroll itemWidth={'42%'}>
       {state.events
         .sort(({ position: a }, { position: b }) => {
           return a - b;
