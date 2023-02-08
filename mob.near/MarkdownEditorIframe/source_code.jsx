@@ -1,4 +1,4 @@
-const initialText = props.initialText || "# Hello World\n\n";
+const initialText = props.initialText ?? "# Hello World\n\n";
 
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
