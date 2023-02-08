@@ -94,6 +94,12 @@ const EventTileWrapper = styled.div`
     margin-right: 0;
     margin-bottom: 20px;
   }
+
+  /* reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+  }
 `;
 
 const EVENTS_LIMIT = 5;
