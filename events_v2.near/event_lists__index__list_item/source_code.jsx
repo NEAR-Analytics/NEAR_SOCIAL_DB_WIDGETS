@@ -64,7 +64,7 @@ const scrollingEvents =
                 event,
                 key: `${event.id}-${idx}`,
               },
-              { appOwner: 'events' }
+              { appName: 'events' }
             )}
           </>
         );
