@@ -5,28 +5,35 @@ if (!event_list_id) {
   return props.__engine.helpers.propsIsRequiredMessage('event_list_id');
 }
 
-const event_list = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_event_list',
-  { event_list_id, include_events: true }
-);
-if (!event_list) {
-  return props.__engine.loading();
-}
-
 if (!state) {
+  const event_list = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_event_list',
+    { event_list_id, include_events: true }
+  );
+  const allEvents = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_all_events'
+  );
+  if (!event_list) {
+    return props.__engine.loading();
+  }
+  if (!allEvents) {
+    return props.__engine.loading();
+  }
+
   State.init({
     term: '',
+    allEvents,
+    event_list,
   });
+
   return <></>;
 }
 
 props.controller.setLayout('layouts:modal', {
   title: 'Add events',
 });
-
-const Text = props.__engine.Components.Text;
-const Hr = props.__engine.Components.Hr;
 
 const Searchbar = styled.input`
   width: auto;
@@ -52,15 +59,6 @@ const Searchbar = styled.input`
     color: #999;
   }
 `;
-
-const allEvents = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_all_events'
-);
-
-if (!allEvents) {
-  return props.__engine.loading();
-}
 
 const events = allEvents.filter((event) => {
   return event.name.toLowerCase().includes(state.term.toLowerCase());
