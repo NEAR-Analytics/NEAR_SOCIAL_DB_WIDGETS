@@ -82,17 +82,21 @@ const scrollingEvents =
   (events || []).length > 0 ? (
     <ScrollingEventsContainer>
       <HorizontalScroll itemWidth={'33%'}>
-        {events.map(({ event }, idx) => {
-          return props.__engine.renderComponent(
-            'index.list_item',
-            {
-              event: event,
-              key: `${idx}-${event.id}`,
-              small: true,
-            },
-            { appName: 'events' }
-          );
-        })}
+        {events
+          .sort(({ position: a }, { position: b }) => {
+            return a - b;
+          })
+          .map(({ event }, idx) => {
+            return props.__engine.renderComponent(
+              'index.list_item',
+              {
+                event: event,
+                key: `${idx}-${event.id}`,
+                small: true,
+              },
+              { appName: 'events' }
+            );
+          })}
       </HorizontalScroll>
     </ScrollingEventsContainer>
   ) : (
