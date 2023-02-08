@@ -57,6 +57,7 @@ props.controller.setLayout('layouts:container', {
       : null,
 });
 
+const Container = props.__engine.Components.Container;
 console.log('event_list', event_list);
 
 return (
