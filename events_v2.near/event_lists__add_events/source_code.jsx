@@ -8,7 +8,7 @@ if (!event_list_id) {
 const event_list = props.__engine.contract.view(
   EVENTS_CONTRACT,
   'get_event_list',
-  { event_list_id }
+  { event_list_id, include_events: true }
 );
 if (!event_list) {
   return props.__engine.loading();
