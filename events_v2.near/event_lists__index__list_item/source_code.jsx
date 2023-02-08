@@ -50,7 +50,7 @@ const CardBody = styled.div`
   }
 `;
 
-const EVENTS_LIMIT = 2;
+const EVENTS_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 100;
 
 const events = props.__engine.contract.view(
