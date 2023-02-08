@@ -350,7 +350,6 @@ const SessionState = {
 };
 
 function orientation2FlexDirection({ orientation }) {
-  console.log('orientation2FlexDirection', orientation);
   switch (orientation) {
     case 'horizontal':
       return 'row';
