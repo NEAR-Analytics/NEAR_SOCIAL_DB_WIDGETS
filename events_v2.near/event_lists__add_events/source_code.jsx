@@ -60,7 +60,7 @@ const Searchbar = styled.input`
   }
 `;
 
-const events = allEvents.filter((event) => {
+const events = state.allEvents.filter((event) => {
   return event.name.toLowerCase().includes(state.term.toLowerCase());
 });
 
@@ -122,7 +122,7 @@ function removeEventFromList(event_id) {
 }
 
 function findEventInList(event_id) {
-  return event_list.events.find((event) => {
+  return state.event_list.events.find((event) => {
     return event.id === event_id;
   });
 }
