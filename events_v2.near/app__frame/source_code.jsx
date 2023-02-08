@@ -219,7 +219,7 @@ const Components = {
     margin-right: -20px;
 
     & > * {
-      margin-right: 10px;
+      margin-right: 20px;
       min-width: 20px;
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
