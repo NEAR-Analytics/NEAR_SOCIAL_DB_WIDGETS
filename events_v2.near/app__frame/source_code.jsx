@@ -354,7 +354,7 @@ const Components = {
 
   CardTitle: styled.div`
     font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
-    font-weight: 400;
+    font-weight: 600;
     margin: 0;
     height: auto;
     flex-grow: 0;
