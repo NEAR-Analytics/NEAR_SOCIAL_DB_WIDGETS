@@ -200,7 +200,12 @@ return (
       {events.map((event) => {
         return (
           <EventTile key={event.id}>
-            <div>{}</div>
+            <div>
+              {props.__engine.renderComponent('components:event_image_slider', {
+                event,
+                mode: 'tile',
+              })}
+            }</div>
             <div style={{ flexGrow: 100, marginLeft: 8 }}>
               <div className="flex items-center">{event.name}</div>
               <div className="flex items-center">
