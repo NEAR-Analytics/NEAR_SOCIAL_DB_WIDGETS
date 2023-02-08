@@ -322,7 +322,9 @@ const SessionState = {
   },
 };
 
-function orientation2FlexDirection({ orientation }) {
+function orientation2FlexDirection(props) {
+  console.log('orientation2FlexDirection', props);
+  const { orientation } = props;
   switch (orientation) {
     case 'horizontal':
       return 'row';
