@@ -1,5 +1,4 @@
 const EVENTS_CONTRACT = 'events_v2.near';
-const TGAS_300 = '300000000000000';
 
 const eventId = props.event_id;
 if (!eventId) {
