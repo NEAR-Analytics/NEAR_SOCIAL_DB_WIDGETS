@@ -17,7 +17,7 @@ const CardHeader = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  padding: 0 1rem;
+  padding: 20px;
   width: 33%;
   border-right: 1px solid #e0e0e0;
   min-height: 200px;
@@ -29,7 +29,7 @@ const CardBody = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
-  padding: 0 1rem;
+  padding: 20px;
   backgroundcolor: #f5f5f5;
   width: 66%;
   overflow-y: hidden;
