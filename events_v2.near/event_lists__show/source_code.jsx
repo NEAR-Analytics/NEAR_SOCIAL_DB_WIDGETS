@@ -64,8 +64,6 @@ const InfoBar = props.__engine.Components.InfoBar;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
 const InfoBarLink = props.__engine.Components.InfoBarLink;
 
-console.log('event_list', event_list);
-
 function removeEventList() {
   const contract = EVENTS_CONTRACT;
   const method = 'remove_event_list';
@@ -74,6 +72,8 @@ function removeEventList() {
   };
   props.__engine.contract.call(contract, method, args);
 }
+
+console.log('event_list', event_list);
 
 return (
   <>
