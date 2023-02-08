@@ -85,7 +85,7 @@ return (
     </InfoBar>
 
     <Container>
-      <Markdown>{event_list.description}</Markdown>
+      <Markdown text={event_list.description} />
     </Container>
   </>
 );
