@@ -171,6 +171,7 @@ const EventTile = styled.div`
 
   & > div {
     flex-grow: 0;
+    flex-shrink: 1;
   }
 `;
 
