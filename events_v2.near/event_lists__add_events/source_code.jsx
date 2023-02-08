@@ -106,14 +106,9 @@ return (
               <div className="flex items-center">{event.name}</div>
 
               <div>
-                <button
-                  className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
-                  onClick={() => {
-                    addEventToList(event.id, event_list.events.length);
-                  }}
-                >
-                  Add
-                </button>
+                {eventInList(event.id)
+                  ? addEventButton(event.id)
+                  : removeEventButton(event.id)}
               </div>
             </div>
           );
