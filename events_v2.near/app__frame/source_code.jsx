@@ -17,9 +17,6 @@ const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
 
-const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
-const ContainerPaddingVertical = 'calc(max(12px, 1.2vw))';
-
 const GRID_PAD_TINY = '4px';
 const GRID_PAD_SMALL = '10px';
 const GRID_PAD = '20px';
@@ -107,16 +104,16 @@ const Components = {
   `,
 
   Container: styled.div`
-    padding-left: ${ContainerPaddingHorizontal};
-    padding-right: ${ContainerPaddingHorizontal};
-    padding-top: ${ContainerPaddingVertical};
-    padding-bottom: ${ContainerPaddingVertical};
+    padding-left: ${GRID_PAD};
+    padding-right: ${GRID_PAD};
+    padding-top: ${GRID_PAD_SMALL};
+    padding-bottom: ${GRID_PAD_SMALL};
   `,
 
   ContainerHeader: styled.div`
     font-size: ${FONT_SIZE_DEFAULT};
     color: ${TEXT_COLOR};
-    padding: ${ContainerPaddingVertical} 0;
+    padding: ${GRID_PAD_SMALL} 0;
     @media (max-width: 768px) {
       font-size: ${FONT_SIZE_SMALL};
     }
@@ -131,7 +128,7 @@ const Components = {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 0px ${ContainerPaddingHorizontal};
+    padding: 0px ${GRID_PAD};
     border-bottom: 1px solid ${BORDER_COLOR};
   `,
 
