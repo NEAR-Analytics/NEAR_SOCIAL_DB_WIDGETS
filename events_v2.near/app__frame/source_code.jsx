@@ -20,17 +20,17 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 const ContainerPaddingVertical = 'calc(max(12px, 1.2vw))';
 
-const GRID_PADDING_TINY = '4px';
-const GRID_PADDING_SMALL = '10px';
-const GRID_PADDING = '20px';
-const GRID_PADDING_BIG = '30px';
+const GRID_PAD_TINY = '4px';
+const GRID_PAD_SMALL = '10px';
+const GRID_PAD = '20px';
+const GRID_PAD_BIG = '30px';
 
 const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
 const FONT_SIZE_SMALL = 'calc(max(16px, 1.25vw))';
 const FONT_SIZE_DEFAULT = 'calc(max(22px, 1.66vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
 
-const BUTTON_PADDING = `${GRID_PADDING_SMALL} ${GRID_PADDING}`;
+const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
 
 const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 
@@ -76,7 +76,7 @@ const Components = {
     background-color: ${BUTTON_BG_COLOR}
     border: none;
     color: white;
-    padding: ${GRID_PADDING} ${GRID_PADDING_BIG};
+    padding: ${GRID_PAD} ${GRID_PAD_BIG};
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -138,7 +138,7 @@ const Components = {
   InfoBarItem: styled.div`
     display: flex;
     align-items: center;
-    margin-right: ${GRID_PADDING};
+    margin-right: ${GRID_PAD};
     padding: 8px 0;
   `,
 
@@ -146,8 +146,8 @@ const Components = {
     font-size: ${FONT_SIZE_SMALL};
     color: ${TEXT_COLOR};
     text-decoration: none;
-    margin-right: ${GRID_PADDING};
-    padding: ${GRID_PADDING} 0;
+    margin-right: ${GRID_PAD};
+    padding: ${GRID_PAD} 0;
 
     &:hover {
       text-decoration: underline;
@@ -176,20 +176,20 @@ const Components = {
     background-color: ${BORDER_COLOR};
     padding: ${TAG_PADDING};
     border-radius: ${DEFAULT_BORDER_RADIUS};
-    margin-right: ${GRID_PADDING};
-    margin-left: ${GRID_PADDING};
+    margin-right: ${GRID_PAD};
+    margin-left: ${GRID_PAD};
   `,
 
   Text: styled.div`
     font-size: ${FONT_SIZE_SMALL};
     color: ${TEXT_COLOR};
-    margin-right: ${GRID_PADDING};
+    margin-right: ${GRID_PAD};
   `,
 
   ValidationError: styled.div`
     color: ${ERROR_COLOR};
     font-size: ${FONT_SIZE_TINY};
-    margin-top: ${GRID_PADDING_SMALL};
+    margin-top: ${GRID_PAD_SMALL};
   `,
 
   FullActionButton: styled.button`
@@ -205,7 +205,7 @@ const Components = {
   FormLabel: styled.label`
     width: 100%;
     color: ${TEXT_COLOR_LIGHT};
-    padding: ${GRID_PADDING_SMALL} 0;
+    padding: ${GRID_PAD_SMALL} 0;
     margin: 0;
     box-sizing: border-box;
   `,
@@ -217,11 +217,11 @@ const Components = {
     justify-content: flex-start;
 
     width: auto;
-    margin-left: -${GRID_PADDING};
-    margin-right: -${GRID_PADDING};
+    margin-left: -${GRID_PAD};
+    margin-right: -${GRID_PAD};
 
     & > * {
-      margin: ${GRID_PADDING};
+      margin: ${GRID_PAD};
       min-width: 320px;
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
@@ -243,7 +243,7 @@ const Components = {
     overflow-y: hidden;
 
     & > * {
-      margin-right: ${GRID_PADDING};
+      margin-right: ${GRID_PAD};
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
       flex-grow: 3;
@@ -261,7 +261,7 @@ const Components = {
         width: 45%;
         max-width: 45%;
 
-        margin-right: ${GRID_PADDING_SMALL};
+        margin-right: ${GRID_PAD_SMALL};
       }
     }
   `,
@@ -312,7 +312,7 @@ const Components = {
     word-break: break-all;
     height: 100%;
 
-    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
+    padding: ${({ small }) => (small ? GRID_PAD_SMALL : GRID_PAD)};
 
     @media (max-width: 768px) {
       width: 100%;
@@ -321,7 +321,7 @@ const Components = {
       height: auto;
       min-height: 0px;
 
-      padding: ${GRID_PADDING_SMALL};
+      padding: ${GRID_PAD_SMALL};
     }
   `,
 
@@ -330,14 +330,14 @@ const Components = {
     height: auto;
     flex-grow: 100;
     flex-shrink: 0;
-    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
+    padding: ${({ small }) => (small ? GRID_PAD_SMALL : GRID_PAD)};
   `,
 
   CardFooter: styled.div`
     font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
     font-weight: 400;
     margin: 0;
-    padding: ${({ small }) => (small ? GRID_PADDING_TINY : GRID_PADDING_SMALL)};
+    padding: ${({ small }) => (small ? GRID_PAD_TINY : GRID_PAD_SMALL)};
     height: auto;
     flex-grow: 0;
     flex-shrink: 0;
@@ -360,8 +360,7 @@ const Components = {
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
-    margin-bottom: ${({ small }) =>
-    small ? GRID_PADDING_TINY : GRID_PADDING_SMALL};
+    margin-bottom: ${({ small }) => (small ? GRID_PAD_TINY : GRID_PAD_SMALL)};
 
     @media (max-width: 768px) {
       font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
