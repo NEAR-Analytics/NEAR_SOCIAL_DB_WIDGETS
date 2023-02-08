@@ -10,8 +10,9 @@ const appMetadata =
 const appKeys =
   Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
-const appFilterTag = "app";
-const limitPerGroup = 10;
+const boostedAppTag = "app";
+const requiredAppTag = null;
+const limitPerGroup = 5;
 
 const computeResults = (term) => {
   const terms = (term || "")
@@ -19,8 +20,79 @@ const computeResults = (term) => {
     .split(/[^\w._-]/)
     .filter((s) => !!s.trim());
 
-  const matchedAccountIds = [];
-  const matchedApps = [];
+  State.update({
+    term,
+    people: computePeople(terms),
+    apps: computeApps(terms),
+  });
+};
+
+const computeApps = (terms) => {
+  const results = [];
+  const MaxSingleScore = 1;
+  const MaxScore = MaxSingleScore * 4;
+
+  const computeScore = (s) => {
+    s = s.toLowerCase();
+    return (
+      terms
+        .map((term) => {
+          const pos = s.indexOf(term);
+          return pos >= 0 ? Math.exp(-pos) : 0;
+        })
+        .reduce((s, v) => s + v, 0) / terms.length
+    );
+  };
+
+  Object.entries(appKeys).forEach(([accountId, data]) => {
+    Object.keys(data.widget).forEach((componentId) => {
+      const widgetSrc = `${accountId}/widget/${componentId}`;
+      const widgetSrcScore = computeScore(widgetSrc);
+      const componentIdScore = computeScore(componentId);
+      const metadata = appMetadata[accountId].widget[componentId].metadata;
+      const name = metadata.name || componentId;
+
+      if (
+        requiredAppTag &&
+        !(metadata.tags && requiredAppTag in metadata.tags)
+      ) {
+        return;
+      }
+
+      const boosted =
+        boostedAppTag && metadata.tags && boostedAppTag in metadata.tags;
+      const tags = Object.keys(metadata.tags || {}).slice(0, 10);
+      const nameScore = computeScore(name);
+      const tagsScore = Math.min(
+        MaxSingleScore,
+        tags.map(computeScore).reduce((s, v) => s + v, 0)
+      );
+      const score =
+        (widgetSrcScore + componentIdScore + nameScore + tagsScore) / MaxScore;
+
+      if (score > 0) {
+        results.push({
+          score,
+          accountId,
+          widgetName: componentId,
+          widgetSrc,
+          name,
+          tags,
+          boosted,
+        });
+      }
+    });
+  });
+
+  results.sort(
+    (a, b) => (b.boosted ? 2 : 0) + b.score - (a.boosted ? 2 : 0) - a.score
+  );
+
+  return results.slice(0, limitPerGroup);
+};
+
+const computePeople = (terms) => {
+  const results = [];
   const MaxSingleScore = 20;
   const MaxScore = MaxSingleScore * 3;
 
@@ -36,8 +108,6 @@ const computeResults = (term) => {
     );
   };
 
-  // Search people:
-
   Object.entries(profiles).forEach(([accountId, data]) => {
     const accountIdScore = computeScore(accountId);
     const name = data.profile.name || "";
@@ -49,56 +119,13 @@ const computeResults = (term) => {
     );
     const score = (accountIdScore + nameScore + tagsScore) / MaxScore;
     if (score > 0) {
-      matchedAccountIds.push({ score, accountId, name, tags });
+      results.push({ score, accountId, name, tags });
     }
   });
 
-  matchedAccountIds.sort((a, b) => b.score - a.score);
-  const people = matchedAccountIds.slice(0, limitPerGroup);
+  results.sort((a, b) => b.score - a.score);
 
-  // Search apps:
-
-  Object.entries(appKeys).forEach(([accountId, data]) => {
-    const accountIdScore = computeScore(accountId);
-    Object.keys(data.widget).forEach((componentId) => {
-      const componentIdScore = computeScore(componentId);
-      const metadata = appMetadata[accountId].widget[componentId].metadata;
-      const name = metadata.name || "";
-      if (appFilterTag && !(metadata.tags && appFilterTag in metadata.tags)) {
-        return;
-      }
-      const tags = Object.keys(metadata.tags || {}).slice(0, 10);
-      const nameScore = computeScore(name);
-      const tagsScore = Math.min(
-        20,
-        tags.map(computeScore).reduce((s, v) => s + v, 0)
-      );
-      const score =
-        (accountIdScore / 2 + componentIdScore + nameScore + tagsScore) /
-        MaxScore;
-      if (score > 0) {
-        matchedApps.push({
-          score,
-          accountId,
-          widgetName: componentId,
-          widgetSrc: `${accountId}/widget/${componentId}`,
-          name,
-          tags,
-        });
-      }
-    });
-  });
-
-  matchedApps.sort((a, b) => b.score - a.score);
-  const apps = matchedApps.slice(0, limitPerGroup);
-
-  // Update state:
-
-  State.update({
-    term,
-    people,
-    apps,
-  });
+  return results.slice(0, limitPerGroup);
 };
 
 return (
@@ -141,6 +168,8 @@ return (
               {state.apps.map((app, i) => (
                 <li key={i}>
                   {app.widgetName}, {app.accountId}
+                  <br />
+                  {app.tags.join(", ")}
                 </li>
               ))}
             </ul>
