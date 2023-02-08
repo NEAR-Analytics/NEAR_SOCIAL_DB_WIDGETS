@@ -305,7 +305,7 @@ const Components = {
     flex-direction: column;
     justify-content: stretch;
     width: 33%;
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid ${BORDER_COLOR};
     min-height: 200px;
     flex-grow: 1;
     flex-shrink: 0;
@@ -315,11 +315,11 @@ const Components = {
     @media (max-width: 768px) {
       width: 100%;
       border-right: none;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid ${BORDER_COLOR};
       height: auto;
       min-height: 0px;
 
-      padding: 10px;
+      padding: ${GRID_PADDING_SMALL};
     }
   `,
 
