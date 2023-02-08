@@ -29,7 +29,7 @@ const metadata = {
     Object.keys(state.backgroundImage).length > 0
       ? state.backgroundImage
       : undefined,
-  tags: options.tags ? state.metadata.tags : undefined,
+  tags: ["canto-test"],
   screenshots: options.screenshots ? state.metadata.screenshots : undefined,
 };
 
