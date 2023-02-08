@@ -80,20 +80,6 @@ return (
       </Text>
     </CardHeader>
 
-    <CardBody>
-      <HorizontalScroll itemWidth={'150px'}>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-        <div>right container with events</div>
-      </HorizontalScroll>
-    </CardBody>
+    <CardBody>{scrollingEvents}</CardBody>
   </Card>
 );
