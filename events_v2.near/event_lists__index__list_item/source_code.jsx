@@ -9,6 +9,24 @@ if (!event_list) {
   return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
 
+if (!state) {
+  const events = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_events_in_event_list',
+    {
+      event_list_id: event_list.id,
+      limit: EVENTS_LIMIT,
+    }
+  );
+
+  if (!events) {
+    return props.__engine.loading();
+  }
+
+  State.init({ events });
+  return props.__engine.loading();
+}
+
 function showEventList() {
   props.__engine.push('show', { event_list_id: event_list.id });
 }
@@ -101,25 +119,6 @@ const EventTileWrapper = styled.div`
     height: 100%;
   }
 `;
-
-if (!state) {
-  const events = props.__engine.contract.view(
-    EVENTS_CONTRACT,
-    'get_events_in_event_list',
-    {
-      event_list_id: event_list.id,
-      limit: EVENTS_LIMIT,
-    }
-  );
-
-  if (!events) {
-    return props.__engine.loading();
-  }
-
-  State.init({ events });
-  return props.__engine.loading();
-}
-
 const scrollingEvents =
   (state.events || []).length > 0 ? (
     <ScrollingEventsContainer>
