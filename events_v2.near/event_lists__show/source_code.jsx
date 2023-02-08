@@ -133,8 +133,6 @@ return (
 
     <Hr></Hr>
 
-    {/* TODO: show all event list events via small cards */}
-
     <Container>
       <GridContainer>
         {state.event_list.events.map(({ event }) => {
