@@ -61,6 +61,10 @@ const allEvents = props.__engine.contract.view(
   {}
 );
 
+const events = allEvents.filter((event) => {
+  return event.name.toLowerCase().includes(state.term.toLowerCase());
+});
+
 return (
   <>
     <div className="p-4">
@@ -77,6 +81,30 @@ return (
           placeholder="Search for events"
         />
       </div>
+
+      {/* search results */}
+      <div className="mt-4">
+        {events.map((event) => {
+          return (
+            <div
+              key={event.event_id}
+              className="flex items-center justify-between p-2 border-b border-gray-200"
+            >
+              <div className="flex items-center">
+                {event.name}
+              </div>
+              <div>
+                <button
+                  className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
+                  onClick={() => {
+                    addEventToList(event.event_id, event_list.events.length);
+                  }}
+                >
+                  Add
+                </button>
+
+                </div>
+
     </div>
   </>
 );
