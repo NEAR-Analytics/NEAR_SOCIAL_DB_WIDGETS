@@ -313,7 +313,7 @@ const Components = {
     font-weight: 400;
     margin: 0;
     padding: ${({ small }) => (small ? '0.5vw' : '1vw')};
-    height: 44px;
+    height: auto;
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
