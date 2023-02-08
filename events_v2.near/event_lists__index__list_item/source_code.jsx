@@ -9,6 +9,8 @@ function showEventList() {
 }
 
 const Card = props.__engine.Components.Card;
+const Text = props.__engine.Components.Text;
+const TextHeader = props.__engine.Components.TextHeader;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
 const CardHeader = styled.div`
@@ -51,13 +53,10 @@ return (
     orientation="horizontal"
   >
     <CardHeader>
-      <div>
-        <h3>{event_list.name}</h3>
-      </div>
-
-      <div>
-        <p>{event_list.description}</p>
-      </div>
+      <TextHeader>Description</TextHeader>
+      <Text>
+        <Markdown text={event.description} />
+      </Text>
     </CardHeader>
 
     <CardBody>
