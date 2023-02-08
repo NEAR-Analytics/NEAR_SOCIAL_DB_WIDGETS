@@ -215,6 +215,8 @@ const Components = {
     justify-content: flex-start;
 
     width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 
     & > * {
       margin-right: 20px;
