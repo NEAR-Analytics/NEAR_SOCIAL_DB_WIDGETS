@@ -21,7 +21,7 @@ if (forAccountId === undefined) {
 }
 
 if (!event_lists) {
-  return props.__engine.loading('event lists');
+  return props.__engine.loading();
 }
 
 const ContainerHeader = props.__engine.Components.ContainerHeader;
