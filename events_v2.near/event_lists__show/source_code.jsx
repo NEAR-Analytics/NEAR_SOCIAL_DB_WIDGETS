@@ -94,26 +94,24 @@ return (
       </InfoBarItem>
     </InfoBar>
 
-    <InfoBar>
-      {props.__engine.accountId === event_list.owner_account_id ? (
-        <>
-          <InfoBarLink
-            role="button"
-            tabIndex={0}
-            onClick={() => {
+    {props.__engine.accountId === event_list.owner_account_id ? (
+      <InfoBar>
+        <InfoBarLink
+          role="button"
+          tabIndex={0}
+          onClick={() => {
+            removeEventList();
+          }}
+          onKeyDown={(evt) => {
+            if (evt.key === 'Enter') {
               removeEventList();
-            }}
-            onKeyDown={(evt) => {
-              if (evt.key === 'Enter') {
-                removeEventList();
-              }
-            }}
-          >
-            Delete event list
-          </InfoBarLink>
-        </>
-      ) : null}
-    </InfoBar>
+            }
+          }}
+        >
+          Delete event list
+        </InfoBarLink>
+      </InfoBar>
+    ) : null}
 
     <Container>
       <Markdown text={event_list.description} />
