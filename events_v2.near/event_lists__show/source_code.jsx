@@ -56,6 +56,7 @@ props.controller.setLayout('layouts:container', {
       : null,
 });
 
+const Hr = props.__engine.Components.Hr;
 const Text = props.__engine.Components.Text;
 const Container = props.__engine.Components.Container;
 const PageTitle = props.__engine.Components.PageTitle;
@@ -70,7 +71,7 @@ return (
       <PageTitle>{event_list.name}</PageTitle>
     </Container>
 
-    <InfoBar></InfoBar>
+    <Hr></Hr>
     <InfoBar>
       <InfoBarItem>
         <Text>
