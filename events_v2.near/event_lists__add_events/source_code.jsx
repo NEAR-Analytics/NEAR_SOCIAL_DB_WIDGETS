@@ -84,7 +84,8 @@ return (
 
       {/* search results */}
       <div className="mt-4">
-        {events.map((event) => {
+        {
+        events.map((event) => {
           return (
             <div
               key={event.event_id}
