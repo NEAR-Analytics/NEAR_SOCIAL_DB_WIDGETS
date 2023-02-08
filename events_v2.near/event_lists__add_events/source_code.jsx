@@ -18,7 +18,7 @@ if (!state) {
   State.init({
     term: '',
   });
-  return;
+  return <></>;
 }
 
 props.controller.setLayout('layouts:modal', {
