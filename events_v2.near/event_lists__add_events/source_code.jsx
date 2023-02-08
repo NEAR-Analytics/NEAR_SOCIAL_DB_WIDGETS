@@ -163,10 +163,13 @@ const EventTile = styled.div`
   padding: 0.5rem;
 
   border-bottom: 1px solid #ccc;
-  border-top: 1px solid #ccc;
 
   transition: background 0.2s ease-in-out;
   background: #fff;
+
+  &:first-child {
+    border-top: 1px solid #ccc;
+  }
 
   &:hover {
     background: #f5f5f5;
