@@ -32,8 +32,15 @@ function onSave(data) {
   callContract(data);
 }
 
-return props.__engine.renderComponent('_form', {
-  onSave,
-  buttonText: 'Update event list',
-  model: event_list,
-});
+return (
+  <>
+    <div className="p-4">
+      <Text>
+        Add events to <b>{event_list.name}</b>
+      </Text>
+      <Hr />
+
+      <div className="mt-4"></div>
+    </div>
+  </>
+);
