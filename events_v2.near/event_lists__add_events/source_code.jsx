@@ -70,6 +70,18 @@ if (!events) {
   return props.__engine.loading();
 }
 
+const AnimationPulse = styled.keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 const ConditionalButton = styled.button`
   background: ${(props) => (props.add ? '#2ecc71' : '#e74c3c')};
   border-radius: 12px;
@@ -78,10 +90,17 @@ const ConditionalButton = styled.button`
   border: none;
   outline: none;
 
-  transition: background 0.2s ease-in-out;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.2s ease-in-out, animation 0.5s ease-in-out;
+  transform: scale(1);
 
   &:hover {
     background: ${(props) => (props.add ? '#27ae60' : '#c0392b')};
+    animation: ${AnimationPulse} 0.5s ease-in-out;
   }
 `;
 
