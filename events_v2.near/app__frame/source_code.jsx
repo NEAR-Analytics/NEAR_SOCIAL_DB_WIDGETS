@@ -551,6 +551,13 @@ function numberToMonth(number, format) {
   return map[month - 1][0];
 }
 
+function dayWithSuffix(day) {
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const value = parseInt(day, 10);
+  const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
+  return `${value}${suffix}`;
+}
+
 function formatDate(date, format) {
   if (date === null || date === undefined) {
     console.error('formatDate', 'date is null or undefined', date, format);
@@ -569,6 +576,7 @@ function formatDate(date, format) {
     ss: dateString.substring(17, 19),
     Mshort: numberToMonth(dateString.substring(5, 7)),
     Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
+    Dst: dayWithSuffix(dateString.substring(8, 10)),
   };
 
   return format.replace(
