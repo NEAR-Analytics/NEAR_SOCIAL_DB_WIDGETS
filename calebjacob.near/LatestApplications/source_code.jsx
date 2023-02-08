@@ -5,9 +5,24 @@ const H2 = styled.h2`
   margin: 0 0 25px;
 `;
 
+const CardWrapper = styled.div`
+  margin: 0 0 16px;
+`;
+
 return (
   <>
     <H2>Latest Applications</H2>
-    <Widget src="calebjacob.near/widget/ApplicationCard" />
+
+    <CardWrapper>
+      <Widget src="calebjacob.near/widget/ApplicationCard" />
+    </CardWrapper>
+
+    <CardWrapper>
+      <Widget src="calebjacob.near/widget/ApplicationCard" />
+    </CardWrapper>
+
+    <CardWrapper>
+      <Widget src="calebjacob.near/widget/ApplicationCard" />
+    </CardWrapper>
   </>
 );
