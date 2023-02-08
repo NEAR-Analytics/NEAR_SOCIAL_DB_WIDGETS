@@ -69,6 +69,11 @@ const scrollingEvents =
     <Text>There are no events in this list yet.</Text>
   );
 
+const elDescription =
+  event_list.description.length > DESCRIPTION_MAX_LENGTH
+    ? event_list.description.substring(0, DESCRIPTION_MAX_LENGTH) + '...'
+    : event_list.description;
+
 return (
   <Card
     onClick={() => {
@@ -86,9 +91,7 @@ return (
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
       <Text>
-        <Markdown
-          text={event_list.description.slice(0, DESCRIPTION_MAX_LENGTH)}
-        />
+        <Markdown text={elDescription} />
       </Text>
     </CardHeader>
 
