@@ -75,7 +75,7 @@ const AnimationPulse = styled.keyframes`
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);
@@ -95,7 +95,7 @@ const ConditionalButton = styled.button`
   font-weight: 600;
   cursor: pointer;
 
-  transition: background 0.2s ease-in-out, animation 0.5s ease-in-out;
+  transition: background 0.2s ease-in-out, animation 2s ease-in-out infinite;
   transform: scale(1);
 
   &:hover {
