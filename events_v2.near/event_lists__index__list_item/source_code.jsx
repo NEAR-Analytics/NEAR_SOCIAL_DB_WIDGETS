@@ -52,18 +52,6 @@ const CardBody = styled.div`
   }
 `;
 
-const EVENTS_LIMIT = 5;
-const DESCRIPTION_MAX_LENGTH = 100;
-
-const events = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_events_in_event_list',
-  {
-    event_list_id: event_list.id,
-    limit: EVENTS_LIMIT,
-  }
-);
-
 const ScrollingEventsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,6 +67,18 @@ const ScrollingEventsContainer = styled.div`
     flex-wrap: wrap;
   }
 `;
+
+const EVENTS_LIMIT = 5;
+const DESCRIPTION_MAX_LENGTH = 100;
+
+const events = props.__engine.contract.view(
+  EVENTS_CONTRACT,
+  'get_events_in_event_list',
+  {
+    event_list_id: event_list.id,
+    limit: EVENTS_LIMIT,
+  }
+);
 
 const scrollingEvents =
   (events || []).length > 0 ? (
