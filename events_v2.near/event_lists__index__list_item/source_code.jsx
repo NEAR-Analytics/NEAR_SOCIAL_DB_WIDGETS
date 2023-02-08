@@ -37,6 +37,10 @@ const CardBody = styled.div`
   flex-grow: 1;
 `;
 
+const events = props.__engine.contract.view('get_events_in_list', {
+  event_list_id: event_list.id,
+});
+
 const scrollingEvents =
   (events || []).length > 0 ? (
     <HorizontalScroll itemWidth={'150px'}>
@@ -46,7 +50,7 @@ const scrollingEvents =
             {props.__engine.renderComponent('events:index.list_item', {
               event,
               key: `${event.id}-${idx}`,
-            })
+            })}
           </>
         );
       })}
