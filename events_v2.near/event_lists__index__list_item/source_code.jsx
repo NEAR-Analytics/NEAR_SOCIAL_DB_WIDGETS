@@ -9,6 +9,7 @@ function showEventList() {
 }
 
 const Card = props.__engine.Components.Card;
+const GridContainer = props.__engine.Components.GridContainer;
 
 const CardHeader = styled.div`
   display: flex;
@@ -27,10 +28,9 @@ const CardBody = styled.div`
   flex-direction: row;
   justify-content: start;
   padding: 0 1rem;
+  backgroundcolor: #f5f5f5;
   width: 66%;
-  overflow-y: hidden;
-  overflow-x: auto;
-  flex-wrap: nowrap;
+  overflow: hidden;
   flex-grow: 1;
 `;
 
@@ -51,17 +51,19 @@ return (
     <CardHeader>left</CardHeader>
 
     <CardBody>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
-      <div>right container with events</div>
+      <GridContainer>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+        <div>right container with events</div>
+      </GridContainer>
     </CardBody>
   </Card>
 );
