@@ -37,6 +37,7 @@ const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 const DEFAULT_BORDER_RADIUS = '4px';
 
 const TEXT_COLOR = '#333333';
+const TEXT_COLOR_LIGHT = '#666666';
 
 const BORDER_COLOR = '#e6e6e6';
 
@@ -195,7 +196,7 @@ const Components = {
     width: 100%;
     padding: ${BUTTON_PADDING};
     margin: 0;
-    border: 1px solid #ccc;
+    border: 1px solid ${BORDER_COLOR};
     border-radius: ${DEFAULT_BORDER_RADIUS};
     box-sizing: border-box;
     background-color: ${BUTTON_BG_COLOR};
@@ -203,9 +204,9 @@ const Components = {
 
   FormLabel: styled.label`
     width: 100%;
-    color: #666;
-    padding: 0.5rem 0;
-    margin: 0.5rem 0 0 0;
+    color: ${TEXT_COLOR_LIGHT};
+    padding: ${GRID_PADDING_SMALL} 0;
+    margin: 0;
     box-sizing: border-box;
   `,
 
@@ -216,16 +217,16 @@ const Components = {
     justify-content: flex-start;
 
     width: auto;
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-left: -${GRID_PADDING};
+    margin-right: -${GRID_PADDING};
 
     & > * {
-      margin: 20px 20px;
+      margin: ${GRID_PADDING};
       min-width: 320px;
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
-      flex-grow: 3;
-      flex-shrink: 3;
+      flex-grow: 1;
+      flex-shrink: 1;
 
       animation: ${SlideInLeft} 0.3s ease-in-out;
     }
@@ -242,8 +243,7 @@ const Components = {
     overflow-y: hidden;
 
     & > * {
-      margin-right: 20px;
-      min-width: 20px;
+      margin-right: ${GRID_PADDING};
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
       flex-grow: 3;
