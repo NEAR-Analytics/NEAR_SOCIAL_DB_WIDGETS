@@ -624,11 +624,11 @@ function loading(displayText) {
   return <>{displayText || '...'}</>;
 }
 
-function renderComponent(name, props, appNameOverride) {
+function renderComponent(name, props, customEnv) {
   const engine = {
     env: {
       ...env,
-      appOwner: appNameOverride || appOwner,
+      ...customEnv,
     },
     accountId,
 
