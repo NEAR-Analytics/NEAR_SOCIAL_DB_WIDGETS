@@ -64,25 +64,28 @@ const events = props.__engine.contract.view(
 
 const scrollingEvents =
   (events || []).length > 0 ? (
-    <HorizontalScroll itemWidth={'33%'}>
-      {events.map(({ event }, idx) => {
-        return props.__engine.renderComponent(
-          'index.list_item',
-          {
-            event: event,
-            key: `${idx}-${event.id}`,
-            small: true,
-          },
-          { appName: 'events' }
-        );
-      })}
+    <div>
+      <HorizontalScroll itemWidth={'33%'}>
+        {events.map(({ event }, idx) => {
+          return props.__engine.renderComponent(
+            'index.list_item',
+            {
+              event: event,
+              key: `${idx}-${event.id}`,
+              small: true,
+            },
+            { appName: 'events' }
+          );
+        })}
 
-      {event_list.event_count > EVENTS_LIMIT && (
-        <Text mobile-hidden>
-          And {event_list.event_count - EVENTS_LIMIT} more events in this list.
-        </Text>
-      )}
-    </HorizontalScroll>
+        {event_list.event_count > EVENTS_LIMIT && (
+          <Text>
+            And {event_list.event_count - EVENTS_LIMIT} more events in this
+            list.
+          </Text>
+        )}
+      </HorizontalScroll>
+    </div>
   ) : (
     <Text>This list is empty :(</Text>
   );
