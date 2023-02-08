@@ -89,7 +89,7 @@ return (
       </InfoBarItem>
     </InfoBar>
 
-    {props.__engine.accountId === event_list.owner_account_id ? (
+    {props.__engine.accountId === state.event_list.owner_account_id ? (
       <InfoBar>
         <InfoBarLink
           role="button"
@@ -126,7 +126,7 @@ return (
     ) : null}
 
     <Container>
-      <Markdown text={event_list.description} />
+      <Markdown text={state.event_list.description} />
     </Container>
 
     <Hr></Hr>
@@ -135,7 +135,7 @@ return (
 
     <Container>
       <GridContainer>
-        {event_list.events.map(({ event }) => {
+        {state.event_list.events.map(({ event }) => {
           return props.__engine.renderComponent(
             'index.list_item',
             {
