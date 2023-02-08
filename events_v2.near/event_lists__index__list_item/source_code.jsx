@@ -88,8 +88,15 @@ return (
       <Text>{elDescription}</Text>
       <button
         onClick={() => {
-          showEventList;
+          showEventList();
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            showEventList();
+          }
+        }}
+        role="button"
+        tabIndex={0}
       >
         View
       </button>
