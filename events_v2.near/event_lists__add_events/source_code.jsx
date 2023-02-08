@@ -70,14 +70,15 @@ if (!events) {
   return props.__engine.loading();
 }
 
-const Container = props.__engine.Components.Container;
-
-const AddRemoveButton = styled.button`
+const ConditionalButton = styled.button`
   background: ${(props) => (props.add ? '#2ecc71' : '#e74c3c')};
-  border: 1px solid #ccc;
-  border-radius: 2px;
+  border-radius: 12px;
   padding: 0.5rem;
+
+  border: none;
   outline: none;
+
+  transition: background 0.2s ease-in-out;
 
   &:hover {
     background: ${(props) => (props.add ? '#27ae60' : '#c0392b')};
@@ -111,26 +112,26 @@ function findEventInList(event_id) {
 
 function addEventButton(event_id) {
   return (
-    <AddRemoveButton
+    <ConditionalButton
       add
       onClick={() => {
         addEventToList(event_id, event_list.events.length);
       }}
     >
       Add
-    </AddRemoveButton>
+    </ConditionalButton>
   );
 }
 
 function removeEventButton(event_id) {
   return (
-    <AddRemoveButton
+    <ConditionalButton
       onClick={() => {
         removeEventFromList(event_id);
       }}
     >
       Remove
-    </AddRemoveButton>
+    </ConditionalButton>
   );
 }
 
