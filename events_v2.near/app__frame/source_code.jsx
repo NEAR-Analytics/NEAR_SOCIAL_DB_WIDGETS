@@ -309,10 +309,10 @@ const Components = {
   `,
 
   CardFooter: styled.div`
-    font-size: ${({ small }) => (small ? '0.6rem' : '0.8vw')};
+    font-size: ${({ small }) => (small ? FONT_SIZE_SMALL : FONT_SIZE)};
     font-weight: 400;
     margin: 0;
-    padding: ${({ small }) => (small ? '0.5vw' : '1vw')};
+    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
     height: auto;
     flex-grow: 0;
     flex-shrink: 0;
