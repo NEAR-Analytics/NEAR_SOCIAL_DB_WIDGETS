@@ -123,7 +123,8 @@ const TextButton = styled.button`
   padding: 0;
   text-decoration: underline;
   transition: color 0.15s ease-in-out;
-  display: inline-flex;
+  display: inline-block;
+  width: fit-content;
 
   &:hover {
     color: #0056b3;
