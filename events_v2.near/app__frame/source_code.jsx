@@ -327,10 +327,8 @@ if (!state) {
 }
 
 const env = {
-  app: {
-    owner: appOwner,
-    name: appName,
-  },
+  appOwner,
+  appName,
   VERSION,
 };
 
@@ -630,9 +628,11 @@ function loading(displayText) {
   return <>{displayText || '...'}</>;
 }
 
-function renderComponent(name, props) {
+function renderComponent(name, props, appNameOverride) {
   const engine = {
-    env,
+    env: {
+      ...env,
+    },
     accountId,
 
     loading,
@@ -687,9 +687,9 @@ function renderComponent(name, props) {
   );
 }
 
-function safeRender(_name, _props) {
+function safeRender(_name, _props, _appNameOverride) {
   try {
-    return renderComponent(_name, _props);
+    return renderComponent(_name, _props, _appNameOverride);
   } catch (err) {
     console.log(err);
     return (
