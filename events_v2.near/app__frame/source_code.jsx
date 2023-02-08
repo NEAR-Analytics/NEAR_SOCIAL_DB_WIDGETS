@@ -24,10 +24,9 @@ const GRID_PADDING = '20px';
 const GRID_PADDING_SMALL = '10px';
 const GRID_PADDING_BIG = '30px';
 
-const DEFAULT_FONT_SIZE = '16px';
-const FONT_SIZE = 'calc(max(24px, 1.75vw))';
 const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
-const FONT_SIZE_SMALL = 'calc(max(18px, 1.25vw))';
+const FONT_SIZE_SMALL = 'calc(max(16px, 1.25vw))';
+const FONT_SIZE_DEFAULT = 'calc(max(22px, 1.66vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
 
 const BUTTON_PADDING = `${GRID_PADDING_SMALL} ${GRID_PADDING}`;
@@ -80,7 +79,7 @@ const Components = {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: ${DEFAULT_FONT_SIZE};
+    font-size: ${FONT_SIZE_DEFAULT};
     margin: 4px 2px;
     cursor: pointer;
   `,
@@ -93,7 +92,7 @@ const Components = {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: ${DEFAULT_FONT_SIZE};
+    font-size: ${FONT_SIZE_DEFAULT};
     transition: all 0.5s ease;
 
     &:hover {
@@ -114,7 +113,7 @@ const Components = {
   `,
 
   ContainerHeader: styled.div`
-    font-size: ${FONT_SIZE};
+    font-size: ${FONT_SIZE_DEFAULT};
     color: ${TEXT_COLOR};
     padding: ${ContainerPaddingVertical} 0;
     @media (max-width: 768px) {
@@ -167,7 +166,7 @@ const Components = {
   `,
 
   TextHeader: styled.div`
-    font-size: ${FONT_SIZE};
+    font-size: ${FONT_SIZE_DEFAULT};
     color: ${TEXT_COLOR};
   `,
 
@@ -309,7 +308,7 @@ const Components = {
   `,
 
   CardFooter: styled.div`
-    font-size: ${({ small }) => (small ? FONT_SIZE_SMALL : FONT_SIZE)};
+    font-size: ${({ small }) => (small ? FONT_SIZE_SMALL : FONT_SIZE_DEFAULT)};
     font-weight: 400;
     margin: 0;
     padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
