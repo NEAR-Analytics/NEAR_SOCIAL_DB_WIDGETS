@@ -200,7 +200,7 @@ return (
     {/* search results */}
     <div
       style={{
-        paddingTop: '64px',
+        paddingTop: '44px',
       }}
     >
       {events.map((event) => {
