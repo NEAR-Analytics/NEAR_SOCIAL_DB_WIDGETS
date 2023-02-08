@@ -206,7 +206,7 @@ const Components = {
   Card: styled.div`
     display: flex;
     flex-direction: ${orientation2FlexDirection};
-    flex-wrap: wrap;
+    flex-wrap: ${orientation2FlexWrap};
     align-items: stretch;
     justify-content: stretch;
     padding: 0;
@@ -330,6 +330,19 @@ function orientation2FlexDirection({ orientation }) {
       return 'column';
     default:
       return 'column';
+  }
+}
+
+function orientation2FlexWrap(props) {
+  console.log('orientation2FlexWrap', props);
+  const { orientation } = props;
+  switch (orientation) {
+    case 'horizontal':
+      return 'nowrap';
+    case 'vertical':
+      return 'wrap';
+    default:
+      return 'nowrap';
   }
 }
 
