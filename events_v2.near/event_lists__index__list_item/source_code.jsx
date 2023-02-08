@@ -57,7 +57,7 @@ const scrollingEvents =
         );
       })}
 
-      {events.length > EVENTS_LIMIT && (
+      {event_list.event_count > EVENTS_LIMIT && (
         <Text>
           And {events.length - EVENTS_LIMIT} more events in this list.
         </Text>
