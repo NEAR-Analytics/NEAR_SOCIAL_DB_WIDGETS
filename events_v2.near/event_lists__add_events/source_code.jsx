@@ -141,6 +141,21 @@ function removeEventButton(event_id) {
   );
 }
 
+const EventTile = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  transition: background 0.2s ease-in-out;
+  background: #fff;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+`;
+
 return (
   <div style={{ position: 'relative' }}>
     <Searchbar
@@ -160,10 +175,7 @@ return (
       <Container>
         {events.map((event) => {
           return (
-            <div
-              key={event.id}
-              className="flex items-center justify-between p-2 border-b border-gray-200"
-            >
+            <EventTile key={event.id}>
               <div className="flex items-center">{event.name}</div>
 
               <div>
@@ -171,7 +183,7 @@ return (
                   ? removeEventButton(event.id)
                   : addEventButton(event.id)}
               </div>
-            </div>
+            </EventTile>
           );
         })}
       </Container>
