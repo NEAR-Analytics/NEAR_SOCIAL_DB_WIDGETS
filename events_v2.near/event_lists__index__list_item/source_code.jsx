@@ -37,8 +37,10 @@ const CardBody = styled.div`
   flex-grow: 1;
 `;
 
+const EVENTS_LIMIT = 5;
 const events = props.__engine.contract.view('get_events_in_event_list', {
   event_list_id: event_list.id,
+  limit: EVENTS_LIMIT,
 });
 
 const scrollingEvents =
@@ -54,6 +56,12 @@ const scrollingEvents =
           </>
         );
       })}
+
+      {events.length > EVENTS_LIMIT && (
+        <Text>
+          And {events.length - EVENTS_LIMIT} more events in this list.
+        </Text>
+      )}
     </HorizontalScroll>
   ) : (
     <Text>There are no events in this list yet.</Text>
