@@ -61,8 +61,8 @@ console.log('event_list', event_list);
 
 return (
   <>
-    <div>
-      Hello {event_list.name} {event_list.id}
-    </div>
+    <Container>
+      <PageTitle>{event_list.name}</PageTitle>
+    </Container>
   </>
 );
