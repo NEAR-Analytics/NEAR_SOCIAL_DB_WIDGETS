@@ -631,7 +631,6 @@ function loading(displayText) {
 }
 
 function renderComponent(name, props) {
-  console.log('renderComponent', name, props);
   const engine = {
     env,
     accountId,
