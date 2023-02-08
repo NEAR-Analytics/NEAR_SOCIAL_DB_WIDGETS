@@ -47,8 +47,6 @@ const CardBody = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e0e0e0;
   }
 `;
 
@@ -66,7 +64,7 @@ const events = props.__engine.contract.view(
 
 const scrollingEvents =
   (events || []).length > 0 ? (
-    <HorizontalScroll itemWidth={'150px'}>
+    <HorizontalScroll itemWidth={'33%'}>
       {events.map(({ event }, idx) => {
         return props.__engine.renderComponent(
           'index.list_item',
