@@ -49,21 +49,6 @@ const getDate = (timestamp) => {
   return date.toDateString();
 };
 
-const saveArticle = (args) => {
-  const newArticleData = {
-    ...state.article,
-    body: state.note,
-    lastEditor: accountId,
-    timeLastEdit: Date.now(),
-    version: Number(state.article.version) + 1,
-  };
-  Social.set({
-    [addressForArticles]: {
-      articles: { [state.article.articleId]: { ...newArticleData } },
-    },
-  });
-};
-
 const getDateLastEdit = (timestamp) => {
   const date = new Date(Number(timestamp));
   const dateString = `${date.toLocaleDateString()} / ${date.toLocaleTimeString()}`;
