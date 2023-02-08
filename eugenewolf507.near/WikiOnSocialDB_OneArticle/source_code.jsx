@@ -1,7 +1,6 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-const { article, articleId } = props;
-console.log(articleId);
+const { articleId } = props;
 
 const allArticlesWithOneID = Social.get(
   `*/${addressForArticles}/articles/${articleId}/*`,
@@ -21,7 +20,7 @@ resultArticlesWithOneId.length &&
     return Number(b.timeLastEdit) - Number(a.timeLastEdit);
   });
 
-article = resultArticlesWithOneId[0];
+const article = resultArticlesWithOneId[0];
 console.log(article);
 
 State.init({
