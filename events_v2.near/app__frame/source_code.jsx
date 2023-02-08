@@ -666,7 +666,7 @@ function renderComponent(name, props, customEnv) {
     return pop(widgetEnv);
   };
   const _replace = (_name, _props) => {
-    return replace(widgetEnv);
+    return replace(widgetEnv, _name, _props);
   };
 
   const engine = {
