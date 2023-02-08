@@ -237,6 +237,8 @@ const Components = {
       & > * {
         width: 45%;
         max-width: 45%;
+
+        margin-right: 10px;
       }
     }
   `,
