@@ -156,7 +156,7 @@ const EventTile = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: stretch;
-  align-items: start;
+  align-items: center;
 
   padding: 0.5rem;
 
@@ -200,7 +200,7 @@ return (
     {/* search results */}
     <div
       style={{
-        paddingTop: '44px',
+        paddingTop: 44,
       }}
     >
       {events.map((event) => {
