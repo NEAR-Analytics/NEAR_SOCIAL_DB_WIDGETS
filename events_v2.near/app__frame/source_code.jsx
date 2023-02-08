@@ -235,7 +235,7 @@ const Components = {
 
     @media (max-width: 768px) {
       & > * {
-        width: 50%;
+        width: 40%;
         max-width: 50%;
       }
     }
