@@ -560,12 +560,12 @@ function calculateStorageCost(value) {
 
 function contractCall(contractName, methodName, args) {
   const cost = calculateStorageCost(args);
-  console.log('contractCall', { contractName, methodName, args, cost });
+  // console.log('contractCall', { contractName, methodName, args, cost });
   Near.call(contractName, methodName, args, TGAS_300, cost);
 }
 
 function contractView(contractName, methodName, args) {
-  console.log('contractView', { contractName, methodName, args });
+  // console.log('contractView', { contractName, methodName, args });
   return Near.view(contractName, methodName, args);
 }
 
