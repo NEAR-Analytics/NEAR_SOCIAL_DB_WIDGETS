@@ -93,12 +93,12 @@ const EventTileWrapper = styled.div`
   justify-content: stretch;
   align-items: stretch;
   width: 100%;
-  height: 100%;
   animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: both;
   opacity: 0;
 
+  height: 100%;
   & > * {
     height: 100%;
   }
