@@ -104,8 +104,14 @@ const navbar = (
               width: NAVBAR_HEIGHT,
             }}
             type="button"
+            tabIndex={0}
             onClick={() => {
               props.__engine.pop();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                props.__engine.pop();
+              }
             }}
           >
             <i className="bi bi-chevron-left"></i>
