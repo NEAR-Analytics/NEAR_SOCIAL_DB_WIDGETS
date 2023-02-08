@@ -42,10 +42,14 @@ const CardBody = styled.div`
 const EVENTS_LIMIT = 2;
 const DESCRIPTION_MAX_LENGTH = 100;
 
-const events = props.__engine.contract.view('get_events_in_event_list', {
-  event_list_id: event_list.id,
-  limit: EVENTS_LIMIT,
-});
+const events = props.__engine.contract.view(
+  EVENTS_CONTRACT,
+  'get_events_in_event_list',
+  {
+    event_list_id: event_list.id,
+    limit: EVENTS_LIMIT,
+  }
+);
 
 const scrollingEvents =
   (events || []).length > 0 ? (
