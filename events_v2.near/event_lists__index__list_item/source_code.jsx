@@ -53,7 +53,7 @@ return (
     <CardHeader>left</CardHeader>
 
     <CardBody>
-      <HorizontalScroll>
+      <HorizontalScroll itemWidth={'150px'}>
         <div>right container with events</div>
         <div>right container with events</div>
         <div>right container with events</div>
