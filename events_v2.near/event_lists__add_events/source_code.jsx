@@ -55,6 +55,12 @@ const Searchbar = styled.input`
   }
 `;
 
+const allEvents = props.__engine.contract.view(
+  EVENTS_CONTRACT,
+  'get_events',
+  {}
+);
+
 return (
   <>
     <div className="p-4">
