@@ -38,7 +38,7 @@ return (
     </CardHeaderImage>
 
     <CardBody>
-      <EventTitle>{event.name}</EventTitle>
+      <TextHeader>{event.name}</TextHeader>
     </CardBody>
 
     <CardFooter small={small}>
