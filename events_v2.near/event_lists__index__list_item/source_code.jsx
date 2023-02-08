@@ -58,7 +58,7 @@ const scrollingEvents =
       {events.map((event, idx) => {
         return (
           <>
-            {props.__engine.renderComponent('events:index.list_item', {
+            {props.__engine.renderComponent('index.list_item', {
               event,
               key: `${event.id}-${idx}`,
             })}
