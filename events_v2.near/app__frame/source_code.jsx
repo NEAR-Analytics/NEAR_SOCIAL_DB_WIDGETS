@@ -206,11 +206,7 @@ const Components = {
   Card: styled.div`
     display: flex;
     flex-direction: ${({ orientation }) => {
-    return !orientation
-      ? 'column'
-      : orientation === 'horizontal'
-        ? 'row'
-        : 'column';
+      return orientation2FlexDirection(orientation);
     }};
     flex-wrap: wrap;
     align-items: stretch;
