@@ -126,14 +126,7 @@ function removeEventButton(event_id) {
   return (
     <AddRemoveButton
       onClick={() => {
-        props.__engine.contract.call(
-          EVENTS_CONTRACT,
-          'remove_event_from_event_list',
-          {
-            event_list_id,
-            event_id,
-          }
-        );
+        removeEventFromList(event_id);
       }}
     >
       Remove
