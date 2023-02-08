@@ -174,8 +174,8 @@ return (
             onClick={() => {
               removeEvent();
             }}
-            onKeyDown={() => {
-              if (event.key === 'Enter') {
+            onKeyDown={(evt) => {
+              if (evt.key === 'Enter') {
                 removeEvent();
               }
             }}
