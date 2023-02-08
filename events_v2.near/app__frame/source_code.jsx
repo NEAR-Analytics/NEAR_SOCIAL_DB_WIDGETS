@@ -26,9 +26,9 @@ const GRID_PADDING_BIG = '30px';
 
 const DEFAULT_FONT_SIZE = '16px';
 const FONT_SIZE = 'calc(max(24px, 1.75vw))';
+const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
 const FONT_SIZE_SMALL = 'calc(max(18px, 1.25vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
-const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
 
 const BUTTON_PADDING = `${GRID_PADDING_SMALL} ${GRID_PADDING}`;
 
@@ -328,7 +328,7 @@ const Components = {
   `,
 
   CardHeader: styled.div`
-    font-size: ${({ small }) => (small ? FONT_SIZE_SMALL : FONT_SIZE)};
+    font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
     font-weight: 400;
     margin: 0;
     padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
@@ -336,10 +336,6 @@ const Components = {
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
-    border-bottom: 0.1vw solid #cccccc;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
     @media (max-width: 768px) {
       font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
