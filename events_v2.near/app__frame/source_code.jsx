@@ -225,7 +225,8 @@ const Components = {
       flex-grow: 1;
       flex-shrink: 1;
 
-      animation: ${SlideInLeft} 0.3s ease-in-out;
+      animation: ${FadeIn} 0.5s ease-in-out;
+      animation-delay: ${({ delay }) => delay || '0s'};
     }
   `,
 
@@ -306,7 +307,6 @@ const Components = {
     min-height: 200px;
     flex-grow: 1;
     flex-shrink: 0;
-    word-break: break-all;
     height: 100%;
 
     padding: ${({ small }) => (small ? GRID_PAD_SMALL : GRID_PAD)};
