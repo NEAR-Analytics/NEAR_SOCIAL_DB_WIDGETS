@@ -80,7 +80,7 @@ return (
         borderBottom: '0.3vw solid black',
       }}
     >
-      {props.__engine.renderComponent('components.event_image_slider', {
+      {props.__engine.renderComponent('components:event_image_slider', {
         event,
         mode: 'banner',
       })}
