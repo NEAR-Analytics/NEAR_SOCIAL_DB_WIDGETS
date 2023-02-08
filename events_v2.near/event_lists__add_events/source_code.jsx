@@ -39,7 +39,14 @@ return (
       </Text>
       <Hr />
 
-      <div className="mt-4"></div>
+      <div className="mt-4">
+        <Searchbar
+          onChange={(term) => {
+            State.update({ term });
+          }}
+          placeholder="Search for events"
+        />
+      </div>
     </div>
   </>
 );
