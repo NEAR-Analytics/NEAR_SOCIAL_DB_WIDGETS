@@ -30,8 +30,6 @@ const CardBody = styled.div`
   flex-direction: row;
   justify-content: start;
   padding: 0 20px;
-  /* purple */
-  background-color: #f3e5f5;
   width: 66%;
   overflow-y: hidden;
   overflow-x: auto;
