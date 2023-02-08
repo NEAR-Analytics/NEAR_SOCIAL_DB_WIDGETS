@@ -357,6 +357,7 @@ const Components = {
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
+    word-break: break-word;
     margin-bottom: ${({ small }) => (small ? GRID_PAD_TINY : GRID_PAD_SMALL)};
 
     @media (max-width: 768px) {
