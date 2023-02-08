@@ -9,17 +9,9 @@ const Card = props.__engine.Components.Card;
 const CardHeaderImage = props.__engine.Components.CardHeaderImage;
 const CardBody = props.__engine.Components.CardBody;
 const CardFooter = props.__engine.Components.CardFooter;
+const TextHeader = props.__engine.Components.TextHeader;
 
 const small = props.small || false;
-
-const EventTitle = styled.h1`
-  font-size: ${small
-    ? 'calc(max(0.75rem, 0.8vw))'
-    : 'calc(max(1.25rem, 1.25vw))'};
-  font-weight: 500;
-  margin: 0;
-  width: 100%;
-`;
 
 function showEvent() {
   props.__engine.push('show', { event_id: event.id });
