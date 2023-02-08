@@ -85,7 +85,7 @@ const AnimationPulse = styled.keyframes`
 const ConditionalButton = styled.button`
   background: ${(props) => (props.add ? '#2ecc71' : '#e74c3c')};
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 
   border: none;
   outline: none;
