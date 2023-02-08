@@ -29,8 +29,10 @@ if (!state) {
     'get_event_list',
     {
       event_list_id: event_list_id,
+      include_events: true,
     }
   );
+
   if (!event_list) {
     return props.__engine.loading();
   }
@@ -135,7 +137,7 @@ return (
 
     <Container>
       <GridContainer>
-        {state.events.map(({ event }) => {
+        {state.event_list.events.map(({ event }) => {
           return props.__engine.renderComponent(
             'index.list_item',
             {
