@@ -51,17 +51,17 @@ return (
     <CardHeader>left</CardHeader>
 
     <CardBody>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
-      <div>right</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
+      <div>right container with events</div>
     </CardBody>
   </Card>
 );
