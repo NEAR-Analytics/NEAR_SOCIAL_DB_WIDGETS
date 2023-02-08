@@ -40,13 +40,6 @@ if (!state) {
 
 const primaryAction = {
   label: 'Edit',
-  // will not work. VM Bug?
-  // onClick: ()=>{props.__engine.push('edit', { event_list_id: event_list_id })}
-  // Yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
-  // When defining a function here, it will exist, the function will not be
-  // undefined, but executing the function will just do nothing. Thats
-  // why we have to use another method of calling functions.
-  // might be related to us rerendering all the time to implement layouting.
   onClick: ['push', 'edit', { event_list_id: event_list_id }],
 };
 
@@ -80,7 +73,7 @@ function removeEventList() {
 return (
   <>
     <Container>
-      <PageTitle>{event_list.name}</PageTitle>
+      <PageTitle>{state.event_list.name}</PageTitle>
     </Container>
 
     <Hr></Hr>
@@ -89,7 +82,7 @@ return (
         <Text>
           <strong>Created at: </strong>
           {props.__engine.helpers.formatDate(
-            event_list.created_at,
+            state.event_list.created_at,
             '{{Dst}}. {{Mlong}} {{YYYY}}'
           )}
         </Text>
