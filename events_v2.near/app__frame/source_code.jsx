@@ -198,7 +198,7 @@ const Components = {
       width: ${({ itemWidth }) => {
         console.log({ itemWidth });
         return itemWidth || '240px';
-  }};
+      }};
       flex-grow: 3;
       flex-shrink: 3;
 
