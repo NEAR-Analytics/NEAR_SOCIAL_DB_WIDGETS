@@ -176,7 +176,13 @@ return (
         {events.map((event) => {
           return (
             <EventTile key={event.id}>
-              <div className="flex items-center">{event.name}</div>
+              <div>image</div>
+              <div>
+                <div className="flex items-center">{event.name}</div>
+                <div className="flex items-center">
+                  {event.description.slice(0, 200)}
+                </div>
+              </div>
 
               <div>
                 {findEventInList(event.id)
