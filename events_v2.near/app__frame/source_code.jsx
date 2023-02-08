@@ -408,18 +408,18 @@ function slugFromName(name) {
   return name.split('.').join('__').split('-').join('_');
 }
 
-function fetchPathOptions(path) {
+function fetchPathOptions(env, path) {
   const nameParts = path.split(':');
   if (nameParts.length === 1) {
     return {
-      owner: appOwner,
-      name: appName,
+      owner: env.appOwner,
+      name: env.appName,
       slug: slugFromName(nameParts[0]),
     };
   }
   if (nameParts.length === 2) {
     return {
-      owner: appOwner,
+      owner: env.appOwner,
       name: nameParts[0],
       slug: slugFromName(nameParts[1]),
     };
@@ -434,13 +434,13 @@ function fetchPathOptions(path) {
   throw new Error(`Invalid path: ${path}`);
 }
 
-function widgetPathFromName(widgetName) {
-  const { owner, name, slug } = fetchPathOptions(widgetName);
+function widgetPathFromName(env, widgetName) {
+  const { owner, name, slug } = fetchPathOptions(env, widgetName);
   return `${owner}/widget/${name}__${slug}`;
 }
 
-function layoutPathFromName(layoutName) {
-  return widgetPathFromName(layoutName);
+function layoutPathFromName(env, layoutName) {
+  return widgetPathFromName(env, layoutName);
 }
 
 function rerender() {
