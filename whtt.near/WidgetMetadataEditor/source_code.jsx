@@ -8,6 +8,10 @@ if (metadata === null) {
 if (metadata !== undefined) {
   metadata["tags"] = { "canto-test": "" };
 }
+if (metadata === undefined) {
+  metadata = {};
+  metadata["tags"] = { "canto-test": "" };
+}
 
 return (
   <Widget
