@@ -206,6 +206,31 @@ const Components = {
     }
   `,
 
+  HorizontalScroll: styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    width: auto;
+    margin-left: -20px;
+    margin-right: -20px;
+
+    & > * {
+      margin: 20px 20px;
+      min-width: 20px;
+      max-width: ${({ itemWidth }) => {
+        console.log({ itemWidth });
+        return itemWidth || '540px';
+      }};
+      width: 100%;
+      flex-grow: 3;
+      flex-shrink: 0;
+
+      animation: ${SlideInLeft} 0.3s ease-in-out;
+    }
+  `,
+
   Card: styled.div`
     display: flex;
     flex-direction: ${(args) => orientation2FlexDirection(args)};
