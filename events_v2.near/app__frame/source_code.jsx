@@ -312,6 +312,8 @@ const Components = {
     word-break: break-all;
     height: 100%;
 
+    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
+
     @media (max-width: 768px) {
       width: 100%;
       border-right: none;
