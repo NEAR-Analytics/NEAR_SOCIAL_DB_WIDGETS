@@ -22,8 +22,8 @@ const CardHeader = styled.div`
 
 const CardBody = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: start;
   padding: 0 1rem;
   width: 50%;
 `;
