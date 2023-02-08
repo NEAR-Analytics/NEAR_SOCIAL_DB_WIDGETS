@@ -659,15 +659,25 @@ function renderComponent(name, props, customEnv) {
     return widgetPathFromName(widgetEnv, path);
   };
 
+  const _push = (_name, _props) => {
+    return push(widgetEnv, _name, _props);
+  };
+  const _pop = () => {
+    return pop(widgetEnv);
+  };
+  const _replace = (_name, _props) => {
+    return replace(widgetEnv);
+  };
+
   const engine = {
     env: widgetEnv,
     accountId,
 
     loading,
-    push,
-    pop,
-    replace,
     rerender,
+    push: _push,
+    pop: _pop,
+    replace: _replace,
     sessionGet: _sessionGet,
     sessionSet: _sessionSet,
     storageGet: _storageGet,
