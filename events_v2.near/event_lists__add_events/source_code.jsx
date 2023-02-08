@@ -127,10 +127,7 @@ function findEventInList(event_id) {
   });
 }
 
-function addEventButton(event_id) {
-  
-}
-
+function addEventButton(event_id) {}
 
 const EventTile = styled.div`
   display: flex;
@@ -207,13 +204,13 @@ return (
                   }}
                 >
                   Remove
-                </ConditionalButton>)
+                </ConditionalButton>
               ) : (
                 <ConditionalButton
                   add
                   onClick={() => {
                     addEventToList(event.id, state.event_list.events.length);
-                    }}
+                  }}
                 >
                   Add
                 </ConditionalButton>
