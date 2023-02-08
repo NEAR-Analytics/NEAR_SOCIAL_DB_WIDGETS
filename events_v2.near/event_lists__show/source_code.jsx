@@ -23,7 +23,7 @@ const has_event_list = props.__engine.contract.view(
 );
 
 if (has_event_list === null) {
-  return props.__engine.loading('event list exists');
+  return props.__engine.loading();
 }
 
 if (has_event_list === false) {
@@ -32,7 +32,7 @@ if (has_event_list === false) {
 }
 
 if (!event_list) {
-  return props.__engine.loading('event list');
+  return props.__engine.loading();
 }
 
 const primaryAction = {
@@ -109,7 +109,7 @@ return (
               }
             }}
           >
-            Delete list
+            Delete event list
           </InfoBarLink>
         </>
       ) : null}
