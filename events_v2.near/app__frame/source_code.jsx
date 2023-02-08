@@ -624,7 +624,7 @@ function contractCall(contractName, methodName, args) {
 
 function contractView(contractName, methodName, args) {
   // console.log('contractView', { contractName, methodName, args });
-  return Near.view(contractName, methodName, args);
+  return Near.view(contractName, methodName, args || {});
 }
 
 function loading(displayText) {
