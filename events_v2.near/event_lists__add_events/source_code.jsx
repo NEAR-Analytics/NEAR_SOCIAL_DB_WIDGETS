@@ -181,6 +181,14 @@ const EventTile = styled.div`
   }
 `;
 
+const ImageTileContainer = styled.div`
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+
+  overflow: hidden;
+`;
+
 return (
   <div style={{ position: 'relative' }}>
     <Searchbar
@@ -200,12 +208,12 @@ return (
       {events.map((event) => {
         return (
           <EventTile key={event.id}>
-            <div>
+            <ImageTileContainer>
               {props.__engine.renderComponent('components:event_image_slider', {
                 event,
                 mode: 'tile',
               })}
-            </div>
+            </ImageTileContainer>
             <div style={{ flexGrow: 100, marginLeft: 8 }}>
               <div className="flex items-center">{event.name}</div>
               <div className="flex items-center">
