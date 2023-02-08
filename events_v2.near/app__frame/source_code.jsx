@@ -360,6 +360,8 @@ const Components = {
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
+    margin-bottom: ${({ small }) =>
+    small ? GRID_PADDING_TINY : GRID_PADDING_SMALL};
 
     @media (max-width: 768px) {
       font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
