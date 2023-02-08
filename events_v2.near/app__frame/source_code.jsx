@@ -194,10 +194,7 @@ const Components = {
     & > * {
       margin: 20px 20px;
       min-width: 320px;
-      max-width: ${({ itemWidth }) => {
-        console.log({ itemWidth });
-        return itemWidth || '540px';
-      }};
+      max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
       flex-grow: 3;
       flex-shrink: 3;
@@ -219,10 +216,7 @@ const Components = {
     & > * {
       margin: 20px 20px;
       min-width: 20px;
-      max-width: ${({ itemWidth }) => {
-        console.log({ itemWidth });
-        return itemWidth || '540px';
-      }};
+      max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
       flex-grow: 3;
       flex-shrink: 0;
