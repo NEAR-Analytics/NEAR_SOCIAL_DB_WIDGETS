@@ -52,9 +52,9 @@ const primaryAction = {
 
 props.controller.setLayout('layouts:container', {
   back: true,
-  title: event_list.name,
+  title: state.event_list.name,
   primaryAction:
-    props.__engine.accountId === event_list.owner_account_id
+    props.__engine.accountId === state.event_list.owner_account_id
       ? primaryAction
       : null,
 });
