@@ -218,6 +218,8 @@ const Components = {
     margin-left: -20px;
     margin-right: -20px;
 
+    padding-right: 20px;
+
     & > * {
       margin-right: 20px;
       min-width: 20px;
