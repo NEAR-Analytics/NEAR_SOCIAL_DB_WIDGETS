@@ -70,6 +70,7 @@ return (
       <PageTitle>{event_list.name}</PageTitle>
     </Container>
 
+    <InfoBar></InfoBar>
     <InfoBar>
       <InfoBarItem>
         <Text>
