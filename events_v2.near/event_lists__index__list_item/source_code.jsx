@@ -169,6 +169,7 @@ const TextButton = styled.button`
   transition: color 0.15s ease-in-out;
   display: inline-block;
   width: fit-content;
+  margin-top: 10px;
 
   &:hover {
     color: #0056b3;
