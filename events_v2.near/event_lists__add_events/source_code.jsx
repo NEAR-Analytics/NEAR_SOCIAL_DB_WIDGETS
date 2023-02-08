@@ -180,7 +180,7 @@ return (
               <div>
                 <div className="flex items-center">{event.name}</div>
                 <div className="flex items-center">
-                  {event.description.slice(0, 200)}
+                  {event.description.slice(0, 100)}
                 </div>
               </div>
 
