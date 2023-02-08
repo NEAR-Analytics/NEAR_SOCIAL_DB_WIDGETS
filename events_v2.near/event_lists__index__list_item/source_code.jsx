@@ -33,6 +33,7 @@ function showEventList() {
 
 const Card = props.__engine.Components.Card;
 const CardTitle = props.__engine.Components.CardTitle;
+const CardHeader = props.__engine.Components.CardHeader;
 const Text = props.__engine.Components.Text;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
