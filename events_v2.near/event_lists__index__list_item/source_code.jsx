@@ -66,6 +66,36 @@ const ScrollingEventsContainer = styled.div`
   }
 `;
 
+const AnimationSlideFadeInLeft = styled.keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const EventTileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  margin-right: 20px;
+  animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
+  animation-delay: ${(props) => props.delay}ms;
+  animation-fill-mode: both;
+  opacity: 0;
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+`;
+
 const EVENTS_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 100;
 
