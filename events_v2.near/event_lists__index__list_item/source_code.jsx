@@ -17,6 +17,7 @@ const CardHeader = styled.div`
   padding: 0 1rem;
   width: 50%;
   border-right: 1px solid #e0e0e0;
+  min-height: 300px;
 `;
 
 const CardBody = styled.div`
