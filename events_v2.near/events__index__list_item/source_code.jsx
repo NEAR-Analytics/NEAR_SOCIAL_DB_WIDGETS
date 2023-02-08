@@ -37,7 +37,7 @@ return (
       })}
     </CardHeaderImage>
 
-    <CardBody>
+    <CardBody small={small}>
       <CardHeader small={small}>{event.name}</CardHeader>
     </CardBody>
 
