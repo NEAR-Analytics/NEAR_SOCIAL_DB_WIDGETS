@@ -14,6 +14,13 @@ if (!event_list) {
   return props.__engine.loading();
 }
 
+if (!state) {
+  State.init({
+    term: '',
+  });
+  return;
+}
+
 props.controller.setLayout('layouts:modal', {
   title: `Add events to ${event_list.name}`,
 });
