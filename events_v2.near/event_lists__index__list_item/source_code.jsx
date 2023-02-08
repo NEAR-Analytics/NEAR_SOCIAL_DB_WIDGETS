@@ -32,11 +32,12 @@ function showEventList() {
 }
 
 const Card = props.__engine.Components.Card;
+const CardTitle = props.__engine.Components.CardTitle;
 const Text = props.__engine.Components.Text;
 const TextHeader = props.__engine.Components.TextHeader;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
-const CardHeader = styled.div`
+const CardHeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -185,8 +186,8 @@ const FlexGrowDesktop = styled.div`
 
 return (
   <Card orientation="horizontal">
-    <CardHeader>
-      <TextHeader>{event_list.name}</TextHeader>
+    <CardHeaderWrapper>
+      <CardTitle>{event_list.name}</CardTitle>
 
       <FlexGrowDesktop>
         <Text>{elDescription}</Text>
@@ -204,7 +205,7 @@ return (
       >
         View
       </TextButton>
-    </CardHeader>
+    </CardHeaderWrapper>
 
     <CardBody>{scrollingEvents}</CardBody>
   </Card>
