@@ -53,7 +53,7 @@ return (
     <CardHeader>left</CardHeader>
 
     <CardBody>
-      <GridContainer>
+      <HorizontalScroll>
         <div>right container with events</div>
         <div>right container with events</div>
         <div>right container with events</div>
@@ -65,7 +65,7 @@ return (
         <div>right container with events</div>
         <div>right container with events</div>
         <div>right container with events</div>
-      </GridContainer>
+      </HorizontalScroll>
     </CardBody>
   </Card>
 );
