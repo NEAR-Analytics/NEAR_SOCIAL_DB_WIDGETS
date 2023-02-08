@@ -97,7 +97,7 @@ const scrollingEvents =
           })
           .map(({ event }, idx) => {
             return (
-              <>
+              <EventTileWrapper delay={idx * 200}>
                 {props.__engine.renderComponent(
                   'index.list_item',
                   {
@@ -107,7 +107,7 @@ const scrollingEvents =
                   },
                   { appName: 'events' }
                 )}
-              </>
+              </EventTileWrapper>
             );
           })}
       </HorizontalScroll>
