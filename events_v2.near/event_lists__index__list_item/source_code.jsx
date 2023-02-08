@@ -37,7 +37,7 @@ const CardBody = styled.div`
   flex-grow: 1;
 `;
 
-const EVENTS_LIMIT = 5;
+const EVENTS_LIMIT = 2;
 const events = props.__engine.contract.view('get_events_in_event_list', {
   event_list_id: event_list.id,
   limit: EVENTS_LIMIT,
