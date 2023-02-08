@@ -84,6 +84,27 @@ return (
       </InfoBarItem>
     </InfoBar>
 
+    <InfoBar>
+      {props.__engine.accountId === event.account_id ? (
+        <>
+          <InfoBarLink
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              removeEvent();
+            }}
+            onKeyDown={() => {
+              if (event.key === 'Enter') {
+                removeEvent();
+              }
+            }}
+          >
+            Delete Event
+          </InfoBarLink>
+        </>
+      ) : null}
+    </InfoBar>
+
     <Container>
       <Markdown text={event_list.description} />
     </Container>
