@@ -37,6 +37,20 @@ const CardBody = styled.div`
   flex-grow: 1;
 `;
 
+
+const scrollingEvents = (events || []).length > 0 ? (
+  <HorizontalScroll itemWidth={'150px'}>
+    {events.map((event, idx) => (
+      return props.__engine.renderComponent('events:index.list_item', {
+        event,
+        key: `${event.id}-${idx}`,
+      })};
+    ))}
+  </HorizontalScroll>
+) : (
+  <Text>There are no events in this list yet.</Text>
+);
+
 return (
   <Card
     onClick={() => {
