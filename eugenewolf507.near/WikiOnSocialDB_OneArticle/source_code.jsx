@@ -1,9 +1,14 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-const { getDate, article } = props;
+const { article } = props;
 State.init({
   article,
 });
+
+const getDate = (timestamp) => {
+  const date = new Date(Number(timestamp));
+  return date.toDateString();
+};
 
 const saveArticle = (args) => {
   const newArticleData = {
