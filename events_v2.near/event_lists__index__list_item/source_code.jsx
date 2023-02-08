@@ -69,14 +69,18 @@ const ScrollingEventsContainer = styled.div`
 const EVENTS_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 100;
 
-const events = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_events_in_event_list',
-  {
-    event_list_id: event_list.id,
-    limit: EVENTS_LIMIT,
-  }
-);
+if (!state) {
+  const events = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_events_in_event_list',
+    {
+      event_list_id: event_list.id,
+      limit: EVENTS_LIMIT,
+    }
+  );
+
+  State.init({ events });
+}
 
 const scrollingEvents =
   (events || []).length > 0 ? (
