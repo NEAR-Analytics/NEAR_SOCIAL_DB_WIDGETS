@@ -22,6 +22,7 @@ function showEvent() {
 }
 
 console.log('event', event);
+console.log('props', props);
 
 return (
   <Card
