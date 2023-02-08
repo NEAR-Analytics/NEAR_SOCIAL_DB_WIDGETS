@@ -228,6 +228,12 @@ const Components = {
 
       animation: ${SlideInLeft} 0.3s ease-in-out;
     }
+
+    @media (max-width: 768px) {
+      & > * {
+        width: 50%;
+      }
+    }
   `,
 
   Card: styled.div`
