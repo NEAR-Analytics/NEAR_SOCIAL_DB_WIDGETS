@@ -226,7 +226,6 @@ const Components = {
       flex-shrink: 1;
 
       animation: ${FadeIn} 0.5s ease-in-out;
-      animation-delay: ${({ delay }) => delay || '0s'};
     }
   `,
 
