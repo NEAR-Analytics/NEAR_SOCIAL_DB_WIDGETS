@@ -185,24 +185,26 @@ const elDescription =
 return (
   <Card orientation="horizontal">
     <CardHeaderWrapper>
-      <CardTitle>{event_list.name}</CardTitle>
+      <CardHeader>
+        <CardTitle>{event_list.name}</CardTitle>
 
-      <FlexGrowDesktop>
-        <Text>{elDescription}</Text>
-      </FlexGrowDesktop>
-      <TextButton
-        onClick={() => {
-          showEventList();
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
+        <FlexGrowDesktop>
+          <Text>{elDescription}</Text>
+        </FlexGrowDesktop>
+        <TextButton
+          onClick={() => {
             showEventList();
-          }
-        }}
-        tabIndex={0}
-      >
-        View
-      </TextButton>
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              showEventList();
+            }
+          }}
+          tabIndex={0}
+        >
+          View
+        </TextButton>
+      </CardHeader>
     </CardHeaderWrapper>
 
     <CardBody>{scrollingEvents}</CardBody>
