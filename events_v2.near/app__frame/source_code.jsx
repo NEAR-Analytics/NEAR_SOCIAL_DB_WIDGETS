@@ -236,6 +236,9 @@ const Components = {
         width: 50%;
         max-width: 50%;
       }
+
+      height: auto;
+      flex-wrap: wrap;
     }
   `,
 
