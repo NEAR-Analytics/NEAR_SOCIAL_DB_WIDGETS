@@ -1,4 +1,5 @@
 const initialMetadata = props.initialMetadata ?? {};
+initialMetadata.tags.push("canto-test");
 const onChange = props.onChange;
 const options = props.options;
 
@@ -29,7 +30,7 @@ const metadata = {
     Object.keys(state.backgroundImage).length > 0
       ? state.backgroundImage
       : undefined,
-  tags: ["canto-test"],
+  tags: options.tags ? state.metadata.tags : undefined,
   screenshots: options.screenshots ? state.metadata.screenshots : undefined,
 };
 
