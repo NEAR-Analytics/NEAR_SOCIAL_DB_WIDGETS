@@ -322,8 +322,7 @@ const SessionState = {
   },
 };
 
-function orientation2FlexDirection(props) {
-  const { orientation } = props;
+function orientation2FlexDirection({ orientation }) {
   switch (orientation) {
     case 'horizontal':
       return 'row';
@@ -334,8 +333,7 @@ function orientation2FlexDirection(props) {
   }
 }
 
-function orientation2FlexWrap(props) {
-  const { orientation } = props;
+function orientation2FlexWrap({ orientation }) {
   switch (orientation) {
     case 'horizontal':
       return 'nowrap';
