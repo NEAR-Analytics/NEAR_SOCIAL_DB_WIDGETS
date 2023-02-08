@@ -1,11 +1,17 @@
-props.controller.setLayout('layouts:loading', {});
-
 const EVENTS_CONTRACT = 'events_v2.near';
 
 const event_list_id = props.event_list_id;
 if (!event_list_id) {
   return props.__engine.helpers.propIsRequiredMessage('event_list_id');
 }
+
+const event_list = props.__engine.contract.view(
+  EVENTS_CONTRACT,
+  'get_event_list',
+  {
+    event_list_id: event_list_id,
+  }
+);
 
 const has_event_list = props.__engine.contract.view(
   EVENTS_CONTRACT,
@@ -25,13 +31,6 @@ if (has_event_list === false) {
   return <></>;
 }
 
-const event_list = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_event_list',
-  {
-    event_list_id: event_list_id,
-  }
-);
 if (!event_list) {
   return props.__engine.loading('event list');
 }
@@ -59,6 +58,8 @@ props.controller.setLayout('layouts:container', {
 
 const Container = props.__engine.Components.Container;
 const PageTitle = props.__engine.Components.PageTitle;
+const InfoBar = props.__engine.Components.InfoBar;
+const InfoBarItem = props.__engine.Components.InfoBarItem;
 
 console.log('event_list', event_list);
 
