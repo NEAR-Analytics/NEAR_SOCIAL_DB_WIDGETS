@@ -211,7 +211,7 @@ const Components = {
     justify-content: stretch;
     padding: 0;
     background-color: #ffffff;
-    border-radius: 16px 16px;
+    border-radius: 4px 4px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     border: 0.1vw solid #cccccc;
     cursor: pointer;
@@ -228,7 +228,7 @@ const Components = {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 14px 14px 0 0;
+    border-radius: 2px 2px 0 0;
     border-bottom: 0.1vw solid #cccccc;
     flex-shrink: 0;
     flex-grow: 0;
