@@ -80,6 +80,51 @@ if (!events) {
 
 const Container = props.__engine.Components.Container;
 
+function findEventInList(event_id) {
+  return event_list.events.find((event) => {
+    return event.id === event_id;
+  });
+}
+
+const AddRemoveButton = styled.button`
+  background: ${(props) => (props.add ? '#2ecc71' : '#e74c3c')};
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 0.5rem;
+  outline: none;
+
+  &:hover {
+    background: ${(props) => (props.add ? '#27ae60' : '#c0392b')};
+  }
+`;
+
+function addEventButton(event_id) {
+  return (
+    <AddRemoveButton
+      add
+      onClick={() => {
+        addEventToList(event_id, event_list.events.length);
+      }}
+    >
+      Add
+    </AddRemoveButton>
+  );
+}
+
+function removeEventButton(event_id) {
+  return styled.button`
+    background: #e74c3c;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 0.5rem;
+    outline: none;
+
+    &:hover {
+      background: #c0392b;
+    }
+  `;
+}
+
 return (
   <div style={{ position: 'relative' }}>
     <Searchbar
@@ -106,9 +151,9 @@ return (
               <div className="flex items-center">{event.name}</div>
 
               <div>
-                {eventInList(event.id)
-                  ? addEventButton(event.id)
-                  : removeEventButton(event.id)}
+                {findEventInList(event.id)
+                  ? removeEventButton(event.id)
+                  : addEventButton(event.id)}
               </div>
             </div>
           );
