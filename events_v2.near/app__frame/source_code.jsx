@@ -305,7 +305,7 @@ const Components = {
     height: auto;
     flex-grow: 100;
     flex-shrink: 0;
-    padding: 1vw ${GRID_PADDING};
+    padding: ${({ small }) => (small ? '0.5vw' : '1vw')};
   `,
 
   CardFooter: styled.div`
