@@ -514,18 +514,18 @@ function pop(/*_env*/) {
   // rerender();
 }
 
-function dirtyEval(args) {
+function dirtyEval(env, args) {
   const method = args[0];
   const key = args[1];
   const mArgs = args.slice(2);
 
   switch (method) {
     case 'push':
-      return push(key, mArgs[0]);
+      return push(env, key, mArgs[0]);
     case 'replace':
-      return replace(key, mArgs[0]);
+      return replace(env, key, mArgs[0]);
     case 'pop':
-      return pop();
+      return pop(env);
     default:
       throw new Error(`Unknown method ${method}`);
   }
@@ -694,6 +694,10 @@ function renderComponent(name, props, env) {
     return safeRender(_name, _props, mergeEnv(widgetEnv, _env));
   };
 
+  const _dirtyEval = (args) => {
+    return dirtyEval(widgetEnv, args);
+  };
+
   const engine = {
     env: widgetEnv,
     accountId,
@@ -721,7 +725,7 @@ function renderComponent(name, props, env) {
     },
 
     hacks: {
-      dirtyEval,
+      dirtyEval: _dirtyEval,
     },
 
     TGAS_300,
