@@ -35,7 +35,7 @@ return (
     tabIndex={0}
   >
     <CardHeaderImage>
-      {props.__engine.renderComponent('components.event_image_slider', {
+      {props.__engine.renderComponent('components:event_image_slider', {
         event,
         mode: 'tile',
       })}
