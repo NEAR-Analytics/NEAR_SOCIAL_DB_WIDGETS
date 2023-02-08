@@ -109,7 +109,7 @@ return (
               }
             }}
           >
-            Delete Event
+            Delete list
           </InfoBarLink>
         </>
       ) : null}
