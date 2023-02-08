@@ -436,7 +436,13 @@ function fetchPathOptions(env, path) {
 
 function widgetPathFromName(env, widgetName) {
   const { owner, name, slug } = fetchPathOptions(env, widgetName);
-  console.log('widgetPathFromName', owner, name, slug, widgetName);
+  console.log('widgetPathFromName', {
+    owner,
+    name,
+    slug,
+    widgetName,
+    path: `${owner}/widget/${name}__${slug}`,
+  });
   return `${owner}/widget/${name}__${slug}`;
 }
 
