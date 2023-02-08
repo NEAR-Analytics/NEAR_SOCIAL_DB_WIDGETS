@@ -84,15 +84,12 @@ const EventTileWrapper = styled.div`
   align-items: stretch;
   width: 100%;
   height: 100%;
-  margin-right: 20px;
   animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
   animation-delay: ${(props) => props.delay + 200}ms;
   animation-fill-mode: both;
   opacity: 0;
 
   @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 20px;
   }
 `;
 
