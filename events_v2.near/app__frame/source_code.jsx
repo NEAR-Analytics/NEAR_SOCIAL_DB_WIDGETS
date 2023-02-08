@@ -490,7 +490,7 @@ function replace(env, name, props) {
 }
 
 // pop from the stack, ensure we always have at least one layer
-function pop(_env) {
+function pop(/*_env*/) {
   const newLayers =
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
