@@ -2,7 +2,7 @@ const widgetPath = props.widgetPath;
 const onChange = props.onChange;
 
 let metadata = Social.getr(`${widgetPath}/metadata`);
-
+console.log(metadata);
 if (metadata === null) {
   return "Loading";
 }
