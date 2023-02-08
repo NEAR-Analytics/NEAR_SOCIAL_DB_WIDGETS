@@ -31,6 +31,7 @@ return (
         alt="Genie"
         style={{ width: "10rem", marginBottom: "2rem" }}
       />
+      X
     </div>
     {state.selectedQuestion && (
       <div
