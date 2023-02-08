@@ -96,15 +96,19 @@ const scrollingEvents =
             return a - b;
           })
           .map(({ event }, idx) => {
-            return ({props.__engine.renderComponent(
-              'index.list_item',
-              {
-                event: event,
-                key: `${idx}-${event.id}`,
-                small: true,
-              },
-              { appName: 'events' }
-            )})
+            return (
+              <>
+                {props.__engine.renderComponent(
+                  'index.list_item',
+                  {
+                    event: event,
+                    key: `${idx}-${event.id}`,
+                    small: true,
+                  },
+                  { appName: 'events' }
+                )}
+              </>
+            );
           })}
       </HorizontalScroll>
     </ScrollingEventsContainer>
