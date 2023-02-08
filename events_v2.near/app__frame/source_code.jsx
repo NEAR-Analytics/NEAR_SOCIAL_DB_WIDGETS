@@ -241,7 +241,6 @@ const Components = {
     border-radius: 4px 4px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     border: 0.1vw solid #cccccc;
-    cursor: pointer;
 
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 
