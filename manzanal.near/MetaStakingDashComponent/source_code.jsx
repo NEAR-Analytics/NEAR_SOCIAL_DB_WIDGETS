@@ -12,13 +12,13 @@ return (
       <div class="row">
         <div class="col-sm-6 p-3">
           <h6 class="card-subtitle mb-2 text-muted">Staked at Meta Pool</h6>
-          <h6 class="text-success">
+          <h6 class="text-primary">
             {numberWithCommas(near_staked.toFixed(0))} Ⓝ
           </h6>
         </div>
         <div class="col-sm-6 p-3">
           <h6 class="card-subtitle mb-2 text-muted">Assigned by Votes</h6>
-          <h6 class="text-warning">
+          <h6 class="text-primary">
             {numberWithCommas(near_assigned.toFixed(0))} Ⓝ
           </h6>
         </div>
