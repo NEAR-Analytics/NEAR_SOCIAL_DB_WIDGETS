@@ -247,6 +247,11 @@ const Components = {
     &:hover {
       box-shadow: 5px 0 15px -2px rgba(0, 0, 0, 0.2);
     }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
   `,
 
   CardHeaderImage: styled.div`
