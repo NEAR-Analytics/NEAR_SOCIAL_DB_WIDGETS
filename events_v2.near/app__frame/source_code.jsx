@@ -633,7 +633,15 @@ function loading(displayText) {
   return <>{displayText || '...'}</>;
 }
 
-function renderComponent(name, props, customEnv) {
+function renderComponent(name, props, env) {
+  // add all keys from env which are not null or undefined
+  const customEnv = Object.entries(env || {}).reduce((acc, [key, value]) => {
+    if (value !== null && value !== undefined) {
+      acc[key] = value;
+    }
+    return acc;
+  }, {});
+
   const widgetEnv = {
     ...ENV,
     ...customEnv,
