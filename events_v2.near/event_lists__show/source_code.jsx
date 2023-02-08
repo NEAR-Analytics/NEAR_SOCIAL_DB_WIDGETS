@@ -83,5 +83,9 @@ return (
         </Text>
       </InfoBarItem>
     </InfoBar>
+
+    <Container>
+      <Markdown>{event_list.description}</Markdown>
+    </Container>
   </>
 );
