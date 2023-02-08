@@ -74,14 +74,12 @@ console.log('event_list', event_list);
 
 return (
   <>
-    <div className="mt-4">
-      <Searchbar
-        onChange={(term) => {
-          State.update({ term });
-        }}
-        placeholder="Search for events"
-      />
-    </div>
+    <Searchbar
+      onChange={(term) => {
+        State.update({ term });
+      }}
+      placeholder="Search for events"
+    />
 
     {/* search results */}
     <div className="mt-4">
