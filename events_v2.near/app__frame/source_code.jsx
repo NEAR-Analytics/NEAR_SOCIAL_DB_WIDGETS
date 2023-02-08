@@ -305,14 +305,14 @@ const Components = {
     height: auto;
     flex-grow: 100;
     flex-shrink: 0;
-    padding: 1vw calc(max(0.5rem, 0.5vw));
+    padding: 1vw ${GRID_PADDING};
   `,
 
   CardFooter: styled.div`
     font-size: ${({ small }) => (small ? '0.6rem' : '0.8vw')};
     font-weight: 400;
     margin: 0;
-    padding: calc(max(0.5rem, 0.5vw));
+    padding: ${({ small }) => (small ? '0.5vw' : '1vw')};
     height: 42px;
     flex-grow: 0;
     flex-shrink: 0;
