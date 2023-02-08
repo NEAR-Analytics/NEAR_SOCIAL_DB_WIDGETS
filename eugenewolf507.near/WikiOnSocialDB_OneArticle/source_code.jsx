@@ -1,6 +1,7 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
 const { articleId } = props;
+State.init({});
 
 const allArticlesWithOneID = Social.get(
   `*/${addressForArticles}/articles/${articleId}/*`,
@@ -23,9 +24,7 @@ resultArticlesWithOneId.length &&
 const article = resultArticlesWithOneId[0];
 console.log(article);
 
-State.init({
-  article,
-});
+State.update({ article });
 
 const getDate = (timestamp) => {
   const date = new Date(Number(timestamp));
