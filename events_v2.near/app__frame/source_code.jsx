@@ -630,6 +630,11 @@ function renderComponent(name, props, customEnv) {
     ...customEnv,
   };
 
+  const _sessionGet = (...args)=>{return sessionGet(widgetEnv, ...args)}
+  const _sessionSet = (...args)=>{return sessionSet(widgetEnv, ...args)}
+  const _storageGet = (...args)=>{return storageGet(widgetEnv, ...args)}
+  const _storageSet = (...args)=>{return storageSet(widgetEnv, ...args)}
+
   const engine = {
     env: widgetEnv,
     accountId,
@@ -639,10 +644,10 @@ function renderComponent(name, props, customEnv) {
     pop,
     replace,
     rerender,
-    sessionGet(_name, _defaultValue){return sessionGet(env, _name, _defaultValue)},
-    sessionSet,
-    storageGet,
-    storageSet,
+    sessionGet: _sessionGet,
+    sessionSet: _sessionSet,
+    storageGet: _storageGet,
+    storageSet: _storageSet,
     layoutPathFromName,
     widgetPathFromName,
 
