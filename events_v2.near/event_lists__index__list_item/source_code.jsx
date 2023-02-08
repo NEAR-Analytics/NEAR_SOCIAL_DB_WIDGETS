@@ -30,7 +30,9 @@ const CardBody = styled.div`
   padding: 0 1rem;
   backgroundcolor: #f5f5f5;
   width: 66%;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
+  flex-wrap: nowrap;
   flex-grow: 1;
 `;
 
