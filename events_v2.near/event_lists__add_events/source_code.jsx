@@ -172,27 +172,25 @@ return (
         paddingTop: '64px',
       }}
     >
-      <Container>
-        {events.map((event) => {
-          return (
-            <EventTile key={event.id}>
-              <div>image</div>
-              <div>
-                <div className="flex items-center">{event.name}</div>
-                <div className="flex items-center">
-                  {event.description.slice(0, 100)}
-                </div>
+      {events.map((event) => {
+        return (
+          <EventTile key={event.id}>
+            <div>image</div>
+            <div>
+              <div className="flex items-center">{event.name}</div>
+              <div className="flex items-center">
+                {event.description.slice(0, 100)}
               </div>
+            </div>
 
-              <div>
-                {findEventInList(event.id)
-                  ? removeEventButton(event.id)
-                  : addEventButton(event.id)}
-              </div>
-            </EventTile>
-          );
-        })}
-      </Container>
+            <div>
+              {findEventInList(event.id)
+                ? removeEventButton(event.id)
+                : addEventButton(event.id)}
+            </div>
+          </EventTile>
+        );
+      })}
     </div>
   </div>
 );
