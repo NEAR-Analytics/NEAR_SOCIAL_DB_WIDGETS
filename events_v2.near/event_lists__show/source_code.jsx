@@ -59,6 +59,7 @@ props.controller.setLayout('layouts:container', {
 
 const Container = props.__engine.Components.Container;
 const PageTitle = props.__engine.Components.PageTitle;
+
 console.log('event_list', event_list);
 
 return (
@@ -66,5 +67,17 @@ return (
     <Container>
       <PageTitle>{event_list.name}</PageTitle>
     </Container>
+
+    <InfoBar>
+      <InfoBarItem>
+        <Text>
+          Created at:{' '}
+          {props.__engine.helpers.formatDate(
+            event_list.start_date,
+            '{{DD}} {{Mshort}} {{ YYYY }}'
+          )}
+        </Text>
+      </InfoBarItem>
+    </InfoBar>
   </>
 );
