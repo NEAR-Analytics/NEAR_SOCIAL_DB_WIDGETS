@@ -77,6 +77,7 @@ const ScrollingEventsContainer = styled.div`
     flex-wrap: wrap;
   }
 `;
+
 const scrollingEvents =
   (events || []).length > 0 ? (
     <ScrollingEventsContainer>
