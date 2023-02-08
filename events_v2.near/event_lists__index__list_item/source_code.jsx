@@ -55,7 +55,7 @@ const events = props.__engine.contract.view(
 const scrollingEvents =
   (events || []).length > 0 ? (
     <HorizontalScroll itemWidth={'150px'}>
-      {events.map((event, idx) => {
+      {events.map(({ event }, idx) => {
         return props.__engine.renderComponent(
           'index.list_item',
           {
