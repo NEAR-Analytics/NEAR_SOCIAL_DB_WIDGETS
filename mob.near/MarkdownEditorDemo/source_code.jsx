@@ -217,7 +217,7 @@ State.init({
 });
 
 return (
-  <div className="d-flex h-100 gap-2">
+  <div className="d-flex gap-2" style={{ minHeight: "300px" }}>
     <div className="w-50">
       <Widget
         src="mob.near/widget/MarkdownEditorIframe"
