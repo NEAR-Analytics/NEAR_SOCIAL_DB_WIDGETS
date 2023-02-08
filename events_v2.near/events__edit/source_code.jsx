@@ -43,7 +43,6 @@ function callContract(data) {
   props.__engine.contract.call(EVENTS_CONTRACT, 'update_event', {
     event_id: eventId,
     event: {
-      account_id: props.__engine.accountId,
       name,
       type,
       category,
