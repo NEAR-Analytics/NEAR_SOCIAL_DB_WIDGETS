@@ -1,3 +1,4 @@
+const EVENTS_CONTRACT = 'events_v2.near';
 const event_list = props.event_list || null;
 
 if (!event_list) {
