@@ -40,8 +40,15 @@ const Searchbar = styled.input`
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;
-  border-radius: 0.25rem;
+  border-radius: 0;
+  outline: none;
   font-size: 1rem;
+  margin: 0.5rem 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
 
   &:focus {
     outline: none;
@@ -49,7 +56,7 @@ const Searchbar = styled.input`
   }
 
   &::placeholder {
-    color: red;
+    color: #999;
   }
 `;
 
