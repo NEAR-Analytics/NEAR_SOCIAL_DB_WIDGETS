@@ -70,7 +70,6 @@ const SlideInLeft = styled.keyframes`
  * Components
  * */
 
-
 const Components = {
   Select: styled.select`
     background-color: ${BUTTON_BG_COLOR}
@@ -199,7 +198,8 @@ const Components = {
     border: 1px solid #ccc;
     border-radius: ${DEFAULT_BORDER_RADIUS};
     box-sizing: border-box;
-    background-color: ${({ disabled }) => (disabled ? '#ccc' :  ${BUTTON_BG_COLOR})};
+    background-color: ${({ disabled }) =>
+    disabled ? '#ccc' : BUTTON_BG_COLOR};
   `,
 
   FormLabel: styled.label`
