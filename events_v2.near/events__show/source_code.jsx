@@ -54,9 +54,7 @@ function removeEvent() {
   const args = {
     event_id: event.id,
   };
-  const gas = TGAS_300;
-  const deposit = '0';
-  props.__engine.contract.call(contract, method, args, gas, deposit);
+  props.__engine.contract.call(contract, method, args);
 }
 
 const PageTitle = props.__engine.Components.PageTitle;
