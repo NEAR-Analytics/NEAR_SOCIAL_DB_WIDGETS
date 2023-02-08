@@ -46,7 +46,7 @@ const Searchbar = styled.input`
   margin: 8px;
   border-radius: 8px;
   position: fixed;
-  top: 0;
+  top: 64px;
   left: 0;
   right: 0;
   z-index: 1;
