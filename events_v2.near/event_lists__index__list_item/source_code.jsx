@@ -92,9 +92,8 @@ return (
   >
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
-      <Text>
-        <Markdown text={elDescription} />
-      </Text>
+      <Markdown text={elDescription} />
+      <Text></Text>
     </CardHeader>
 
     <CardBody>{scrollingEvents}</CardBody>
