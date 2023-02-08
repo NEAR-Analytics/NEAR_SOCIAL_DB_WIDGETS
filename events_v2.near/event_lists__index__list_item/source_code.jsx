@@ -60,7 +60,7 @@ const scrollingEvents =
           'index.list_item',
           {
             event_id: event.id,
-            key: `${event.id}-${idx}`,
+            key: `${idx}-${event.id}`,
           },
           { appName: 'events' }
         );
