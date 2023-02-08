@@ -31,7 +31,7 @@ const CardBody = styled.div`
   justify-content: start;
   padding: 0 20px;
   /* purple */
-  backgroundcolor: #f3e5f5;
+  background-color: #f3e5f5;
   width: 66%;
   overflow-y: hidden;
   overflow-x: auto;
