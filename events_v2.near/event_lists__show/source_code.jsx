@@ -125,7 +125,7 @@ return (
             }
           }}
         >
-          Delete event list
+          Add events
         </InfoBarLink>
       </InfoBar>
     ) : null}
