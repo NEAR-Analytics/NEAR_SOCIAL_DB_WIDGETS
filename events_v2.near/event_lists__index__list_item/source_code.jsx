@@ -88,9 +88,6 @@ const EventTileWrapper = styled.div`
   animation-delay: ${(props) => props.delay + 200}ms;
   animation-fill-mode: both;
   opacity: 0;
-
-  @media (max-width: 768px) {
-  }
 `;
 
 const EVENTS_LIMIT = 5;
@@ -124,12 +121,11 @@ const scrollingEvents =
           })
           .map(({ event }, idx) => {
             return (
-              <EventTileWrapper delay={idx * 200}>
+              <EventTileWrapper delay={idx * 200} key={`${idx}-${event.id}`}>
                 {props.__engine.renderComponent(
                   'index.list_item',
                   {
                     event: event,
-                    key: `${idx}-${event.id}`,
                     small: true,
                   },
                   { appName: 'events' }
