@@ -300,6 +300,21 @@ const Components = {
     flex-grow: 0;
   `,
 
+  CardHeader: styled.div`
+    font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
+    font-weight: 400;
+    margin: 0;
+    padding: ${({ small }) => (small ? GRID_PADDING_TINY : GRID_PADDING_SMALL)};
+    height: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom: 0.1vw solid ${BORDER_COLOR};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `,
+
   CardBody: styled.div`
     width: 100%;
     height: auto;
