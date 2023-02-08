@@ -205,9 +205,8 @@ const Components = {
 
   Card: styled.div`
     display: flex;
-    flex-direction: ${({ orientation }) => {
-      return orientation2FlexDirection(orientation);
-    }};
+    flex-direction: ${({ orientation }) =>
+    orientation2FlexDirection(orientation) || 'column'};
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: stretch;
@@ -323,6 +322,17 @@ const SessionState = {
     return SessionState._state[prop];
   },
 };
+
+function orientation2FlexDirection(orientation) {
+  switch (orientation) {
+    case 'horizontal':
+      return 'row';
+    case 'vertical':
+      return 'column';
+    default:
+      return 'column';
+  }
+}
 
 function sessionGet(prop, defaultValue) {
   return SessionState.get(`${appOwner}.${appName}.${prop}`) || defaultValue;
