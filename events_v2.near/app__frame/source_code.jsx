@@ -473,7 +473,7 @@ function push(env, name, props) {
   });
 }
 
-function replace(name, props) {
+function replace(env, name, props) {
   const layer = {
     name,
     props: props || {},
@@ -490,7 +490,7 @@ function replace(name, props) {
 }
 
 // pop from the stack, ensure we always have at least one layer
-function pop() {
+function pop(_env) {
   const newLayers =
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
