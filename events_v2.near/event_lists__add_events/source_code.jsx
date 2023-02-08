@@ -122,7 +122,6 @@ function removeEventFromList(event_id) {
 }
 
 function findEventInList(event_id) {
-  console.log('findEventInList', event_id, state.event_list.events);
   return state.event_list.events.find(({ event }) => {
     return event.id === event_id;
   });
@@ -179,6 +178,19 @@ return (
         paddingTop: 44,
       }}
     >
+      {state.event_list.events.map(({ event }) => {
+        return (
+          <>
+            <div style={{ flexGrow: 100, marginLeft: 8 }}>
+              <div className="flex items-center">{event.name}</div>
+              <div className="flex items-center">
+                {event.description.slice(0, 100)}
+              </div>
+            </div>
+          </>
+        );
+      })}
+
       {events.map((event) => {
         return (
           <EventTile key={event.id}>
