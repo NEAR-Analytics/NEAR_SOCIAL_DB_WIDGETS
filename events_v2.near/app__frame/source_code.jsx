@@ -819,7 +819,10 @@ return (
           }
           zIndex={index + 100}
         >
-          {safeRender(layer.name, layer.props)}
+          {safeRender(layer.name, layer.props, {
+            appOwner: layer.appOwner,
+            appName: layer.appName,
+          })}
         </AppLayer>
       );
     })}
