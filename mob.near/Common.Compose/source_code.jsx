@@ -23,13 +23,15 @@ if (state.image === undefined) {
       return [...accountIds];
     };
     const extractTagNotifications = (text, item) =>
-      extractMentions(text || "").map((accountId) => ({
-        key: accountId,
-        value: {
-          type: "mention",
-          item,
-        },
-      }));
+      extractMentions(text || "")
+        .filter((accountId) => accountId !== context.accountId)
+        .map((accountId) => ({
+          key: accountId,
+          value: {
+            type: "mention",
+            item,
+          },
+        }));
 
     props.onHelper({
       extractMentions,
