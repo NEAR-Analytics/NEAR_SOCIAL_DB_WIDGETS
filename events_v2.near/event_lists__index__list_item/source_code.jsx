@@ -34,7 +34,6 @@ function showEventList() {
 const Card = props.__engine.Components.Card;
 const CardTitle = props.__engine.Components.CardTitle;
 const Text = props.__engine.Components.Text;
-const TextHeader = props.__engine.Components.TextHeader;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
 const CardHeaderWrapper = styled.div`
@@ -116,40 +115,6 @@ const EventTileWrapper = styled.div`
   }
 `;
 
-const scrollingEvents =
-  (state.events || []).length > 0 ? (
-    <HorizontalScroll itemWidth={'42%'}>
-      {state.events
-        .sort(({ position: a }, { position: b }) => {
-          return a - b;
-        })
-        .map(({ event }, idx) => {
-          return (
-            <EventTileWrapper
-              delay={idx * ANIMATION_DELAY}
-              key={`${idx}-${event.id}`}
-            >
-              {props.__engine.renderComponent(
-                'index.list_item',
-                {
-                  event: event,
-                  small: true,
-                },
-                { appName: 'events' }
-              )}
-            </EventTileWrapper>
-          );
-        })}
-    </HorizontalScroll>
-  ) : (
-    <Text>This list is empty :(</Text>
-  );
-
-const elDescription =
-  event_list.description.length > DESCRIPTION_MAX_LENGTH
-    ? event_list.description.substring(0, DESCRIPTION_MAX_LENGTH) + '...'
-    : event_list.description;
-
 const TextButton = styled.button`
   background: transparent;
   border: none;
@@ -183,6 +148,40 @@ const FlexGrowDesktop = styled.div`
     flex-shrink: 1;
   }
 `;
+
+const scrollingEvents =
+  (state.events || []).length > 0 ? (
+    <HorizontalScroll itemWidth={'42%'}>
+      {state.events
+        .sort(({ position: a }, { position: b }) => {
+          return a - b;
+        })
+        .map(({ event }, idx) => {
+          return (
+            <EventTileWrapper
+              delay={idx * ANIMATION_DELAY}
+              key={`${idx}-${event.id}`}
+            >
+              {props.__engine.renderComponent(
+                'index.list_item',
+                {
+                  event: event,
+                  small: true,
+                },
+                { appName: 'events' }
+              )}
+            </EventTileWrapper>
+          );
+        })}
+    </HorizontalScroll>
+  ) : (
+    <Text>This list is empty :(</Text>
+  );
+
+const elDescription =
+  event_list.description.length > DESCRIPTION_MAX_LENGTH
+    ? event_list.description.substring(0, DESCRIPTION_MAX_LENGTH) + '...'
+    : event_list.description;
 
 return (
   <Card orientation="horizontal">
