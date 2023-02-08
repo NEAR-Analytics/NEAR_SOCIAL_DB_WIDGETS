@@ -66,6 +66,15 @@ const InfoBarLink = props.__engine.Components.InfoBarLink;
 
 console.log('event_list', event_list);
 
+function removeEventList() {
+  const contract = EVENTS_CONTRACT;
+  const method = 'remove_event_list';
+  const args = {
+    event_list_id: event_list_id,
+  };
+  props.__engine.contract.call(contract, method, args);
+}
+
 return (
   <>
     <Container>
@@ -92,11 +101,11 @@ return (
             role="button"
             tabIndex={0}
             onClick={() => {
-              removeEvent();
+              removeEventList();
             }}
             onKeyDown={() => {
               if (event.key === 'Enter') {
-                removeEvent();
+                removeEventList();
               }
             }}
           >
