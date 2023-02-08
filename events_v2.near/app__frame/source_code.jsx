@@ -544,12 +544,11 @@ function numberToMonth(number, format) {
     ['Nov', 'November'],
     ['Dec', 'December'],
   ];
-  if (format === 'short') {
-    return map[month - 1][0];
-  }
+
   if (format === 'long') {
     return map[month - 1][1];
   }
+  return map[month - 1][0];
 }
 
 function formatDate(date, format) {
