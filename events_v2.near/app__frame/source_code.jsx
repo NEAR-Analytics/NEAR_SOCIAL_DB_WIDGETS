@@ -305,7 +305,7 @@ const Components = {
     height: auto;
     flex-grow: 100;
     flex-shrink: 0;
-    padding: ${({ small }) => (small ? '0.5vw' : '1vw')};
+    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
   `,
 
   CardFooter: styled.div`
@@ -323,7 +323,26 @@ const Components = {
     justify-content: space-between;
 
     @media (max-width: 768px) {
-      font-size: ${({ small }) => (small ? '0.4rem' : '0.6vw')};
+      font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
+    }
+  `,
+
+  CardHeader: styled.div`
+    font-size: ${({ small }) => (small ? FONT_SIZE_SMALL : FONT_SIZE)};
+    font-weight: 400;
+    margin: 0;
+    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
+    height: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom: 0.1vw solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
     }
   `,
 };
