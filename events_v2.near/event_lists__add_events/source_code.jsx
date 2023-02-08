@@ -18,6 +18,8 @@ props.controller.setLayout('layouts:modal', {
   title: `Add events to ${event_list.name}`,
 });
 
+console.log('event_list', event_list);
+
 function callContract(event_id, position) {
   props.__engine.contract.call(EVENTS_CONTRACT, 'add_event_to_event_list', {
     event_list_id,
