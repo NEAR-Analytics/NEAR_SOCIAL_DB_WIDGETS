@@ -37,29 +37,6 @@ const CardHeader = props.__engine.Components.CardHeader;
 const Text = props.__engine.Components.Text;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
-const CardHeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  width: 33%;
-  border-right: 1px solid #e0e0e0;
-  min-height: 200px;
-  flex-grow: 1;
-  flex-shrink: 0;
-  word-break: break-all;
-  height: 100%;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e0e0e0;
-    height: auto;
-    min-height: 0px;
-
-    padding: 10px;
-  }
-`;
-
 const CardBody = styled.div`
   display: flex;
   flex-direction: row;
@@ -185,28 +162,26 @@ const elDescription =
 
 return (
   <Card orientation="horizontal">
-    <CardHeaderWrapper>
-      <CardHeader>
-        <CardTitle>{event_list.name}</CardTitle>
+    <CardHeader>
+      <CardTitle>{event_list.name}</CardTitle>
 
-        <FlexGrowDesktop>
-          <Text>{elDescription}</Text>
-        </FlexGrowDesktop>
-        <TextButton
-          onClick={() => {
+      <FlexGrowDesktop>
+        <Text>{elDescription}</Text>
+      </FlexGrowDesktop>
+      <TextButton
+        onClick={() => {
+          showEventList();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
             showEventList();
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              showEventList();
-            }
-          }}
-          tabIndex={0}
-        >
-          View
-        </TextButton>
-      </CardHeader>
-    </CardHeaderWrapper>
+          }
+        }}
+        tabIndex={0}
+      >
+        View
+      </TextButton>
+    </CardHeader>
 
     <CardBody>{scrollingEvents}</CardBody>
   </Card>
