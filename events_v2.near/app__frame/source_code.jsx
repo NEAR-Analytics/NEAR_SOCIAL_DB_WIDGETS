@@ -205,7 +205,12 @@ const Components = {
 
   Card: styled.div`
     display: flex;
-    flex-direction: ${({ orientation }) => orientation || 'column'};
+    flex-direction: ${({ orientation }) =>
+    !orientation
+      ? 'column'
+      : orientation === 'horizontal'
+        ? 'row'
+        : 'column'};
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: stretch;
