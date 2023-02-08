@@ -75,7 +75,7 @@ return (
         <Text>
           Created at:{' '}
           {props.__engine.helpers.formatDate(
-            event_list.start_date,
+            new Date(event_list.start_date),
             '{{DD}} {{Mshort}} {{ YYYY }}'
           )}
         </Text>
