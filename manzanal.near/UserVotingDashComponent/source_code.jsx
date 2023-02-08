@@ -28,22 +28,19 @@ let data = {
 };
 
 return (
-  <div className="text-bg-light rounded-4 p-2">
-    {data !== null ? (
-      <p>
-        <div class="d-flex justify-content-around clearfix">
-          <div class="p-3">
-            <div>AVAILABLE VOTING POWER</div>
-            <h2 class="text-success">{numberWithCommas(data.available)}</h2>
-          </div>
-          <div class="p-3">
-            <div>IN USE VOTING POWER</div>
-            <h2 class="text-danger">{numberWithCommas(data.inUse)}</h2>
-          </div>
+  <div class="card w-50">
+    <div class="card-body p-3">
+      <h5 class="card-title">Your Voting Power Balance</h5>
+      <div class="row">
+        <div class="col-sm-4 p-3">
+          <h6 class="card-subtitle mb-2 text-muted">Available</h6>
+          <h6 class="text-success">{numberWithCommas(data.available)} VP</h6>
         </div>
-      </p>
-    ) : (
-      <div>Loading ...</div>
-    )}
+        <div class="col-sm-4 p-3">
+          <h6 class="card-subtitle mb-2 text-muted">In Use</h6>
+          <h6 class="text-warning">{numberWithCommas(data.inUse)} VP</h6>
+        </div>
+      </div>
+    </div>
   </div>
 );
