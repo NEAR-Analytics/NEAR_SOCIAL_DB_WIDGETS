@@ -50,7 +50,15 @@ return (
     tabIndex={0}
     orientation="horizontal"
   >
-    <CardHeader>left</CardHeader>
+    <CardHeader>
+      <div>
+        <h3>{event_list.name}</h3>
+      </div>
+
+      <div>
+        <p>{event_list.description}</p>
+      </div>
+    </CardHeader>
 
     <CardBody>
       <HorizontalScroll itemWidth={'150px'}>
