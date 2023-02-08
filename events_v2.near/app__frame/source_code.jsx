@@ -679,8 +679,8 @@ function renderComponent(name, props, env) {
     return replace(widgetEnv, _name, _props);
   };
 
-  const _renderComponent = (name, props, env) => {
-    return safeRender(name, props, mergeEnv(widgetEnv, env));
+  const _renderComponent = (_name, _props, _env) => {
+    return safeRender(_name, _props, mergeEnv(widgetEnv, _env));
   };
 
   const engine = {
