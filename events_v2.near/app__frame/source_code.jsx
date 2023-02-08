@@ -580,7 +580,7 @@ function formatDate(date, format) {
   };
 
   return format.replace(
-    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss)\s*\}\}/gu,
+    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|Mshort|Mlong|Dst)\s*\}\}/g,
     (match, part) => {
       return parts[part];
     }
