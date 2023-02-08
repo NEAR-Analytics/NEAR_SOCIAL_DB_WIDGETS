@@ -76,22 +76,6 @@ const CardBody = styled.div`
   }
 `;
 
-const ScrollingEventsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
-  width: 100%;
-  height: 100%;
-
-  padding: 20px 20px;
-
-  @media (max-width: 768px) {
-    height: auto;
-    flex-wrap: wrap;
-  }
-`;
-
 const AnimationSlideFadeInLeft = styled.keyframes`
   0% {
     opacity: 0;
@@ -122,31 +106,29 @@ const EventTileWrapper = styled.div`
 
 const scrollingEvents =
   (state.events || []).length > 0 ? (
-    <ScrollingEventsContainer>
-      <HorizontalScroll itemWidth={'33%'}>
-        {state.events
-          .sort(({ position: a }, { position: b }) => {
-            return a - b;
-          })
-          .map(({ event }, idx) => {
-            return (
-              <EventTileWrapper
-                delay={idx * ANIMATION_DELAY}
-                key={`${idx}-${event.id}`}
-              >
-                {props.__engine.renderComponent(
-                  'index.list_item',
-                  {
-                    event: event,
-                    small: true,
-                  },
-                  { appName: 'events' }
-                )}
-              </EventTileWrapper>
-            );
-          })}
-      </HorizontalScroll>
-    </ScrollingEventsContainer>
+    <HorizontalScroll itemWidth={'33%'}>
+      {state.events
+        .sort(({ position: a }, { position: b }) => {
+          return a - b;
+        })
+        .map(({ event }, idx) => {
+          return (
+            <EventTileWrapper
+              delay={idx * ANIMATION_DELAY}
+              key={`${idx}-${event.id}`}
+            >
+              {props.__engine.renderComponent(
+                'index.list_item',
+                {
+                  event: event,
+                  small: true,
+                },
+                { appName: 'events' }
+              )}
+            </EventTileWrapper>
+          );
+        })}
+    </HorizontalScroll>
   ) : (
     <Text>This list is empty :(</Text>
   );
