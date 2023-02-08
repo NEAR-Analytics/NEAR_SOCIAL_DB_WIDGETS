@@ -530,6 +530,8 @@ function isDate(value) {
 
 function formatDate(date, format) {
   const properDate = isDate(date) ? date : new Date(date);
+  console.log('isDate', isDate(date));
+  console.log('date', date);
   console.log('properDate', properDate);
   const dateString = properDate.toISOString();
 
