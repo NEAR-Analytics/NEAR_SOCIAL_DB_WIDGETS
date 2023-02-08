@@ -18,7 +18,14 @@ if (forAccountId === undefined) {
 }
 
 if (!events) {
-  return props.__engine.loading('loading events');
+  return props.__engine.loading('event lists');
 }
 
-return props.__engine.renderComponent('index.list', { events });
+const ContainerHeader = props.__engine.Components.ContainerHeader;
+const header = props.header;
+return (
+  <>
+    {header ? <ContainerHeader>{header}</ContainerHeader> : null}
+    {props.__engine.renderComponent('index.list', { events })}
+  </>
+);
