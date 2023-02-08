@@ -95,7 +95,7 @@ return (
     </InfoBar>
 
     <InfoBar>
-      {props.__engine.accountId === event.owner_account_id ? (
+      {props.__engine.accountId === event_list.owner_account_id ? (
         <>
           <InfoBarLink
             role="button"
