@@ -80,7 +80,7 @@ if (!events) {
 const Container = props.__engine.Components.Container;
 
 return (
-  <>
+  <div style={{ position: 'relative' }}>
     <Searchbar
       onChange={(e) => {
         const term = e.target.value;
@@ -113,5 +113,5 @@ return (
         );
       })}
     </Container>
-  </>
+  </div>
 );
