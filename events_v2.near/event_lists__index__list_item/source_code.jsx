@@ -34,7 +34,6 @@ function showEventList() {
 const Card = props.__engine.Components.Card;
 const CardTitle = props.__engine.Components.CardTitle;
 const Text = props.__engine.Components.Text;
-const TextHeader = props.__engine.Components.TextHeader;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
 const CardHeaderWrapper = styled.div`
