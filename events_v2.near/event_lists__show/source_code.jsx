@@ -136,6 +136,21 @@ return (
 
     {/* TODO: show all event list events via small cards */}
 
+    <Container>
+      <GridContainer>
+        {event_list.events.map(({ event }) => {
+          return props.__engine.renderComponent(
+            'index.list_item',
+            {
+              event: event,
+              small: true,
+            },
+            { appName: 'events' }
+          );
+        })}
+      </GridContainer>
+    </Container>
+
     <Hr></Hr>
   </>
 );
