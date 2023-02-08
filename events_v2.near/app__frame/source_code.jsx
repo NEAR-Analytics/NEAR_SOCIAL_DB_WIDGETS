@@ -20,9 +20,9 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 const ContainerPaddingVertical = 'calc(max(12px, 1.2vw))';
 
-const GRID_PADDING = '20px';
 const GRID_PADDING_TINY = '4px';
 const GRID_PADDING_SMALL = '10px';
+const GRID_PADDING = '20px';
 const GRID_PADDING_BIG = '30px';
 
 const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
