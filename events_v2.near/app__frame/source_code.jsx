@@ -274,9 +274,9 @@ const Components = {
     justify-content: stretch;
     padding: 0;
     background-color: #ffffff;
-    border-radius: 4px 4px;
+    border-radius: ${DEFAULT_BORDER_RADIUS};
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    border: 0.1vw solid #cccccc;
+    border: 0.1vw solid ${BORDER_COLOR};
 
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 
