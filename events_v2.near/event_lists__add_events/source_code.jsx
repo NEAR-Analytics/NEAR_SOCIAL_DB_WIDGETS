@@ -92,6 +92,17 @@ function addEventToList(event_id, position) {
   });
 }
 
+function removeEventFromList(event_id) {
+  props.__engine.contract.call(
+    EVENTS_CONTRACT,
+    'remove_event_from_event_list',
+    {
+      event_list_id,
+      event_id,
+    }
+  );
+}
+
 function findEventInList(event_id) {
   return event_list.events.find((event) => {
     return event.id === event_id;
