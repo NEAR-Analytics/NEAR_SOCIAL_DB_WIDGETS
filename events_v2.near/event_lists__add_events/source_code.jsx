@@ -22,7 +22,7 @@ if (!state) {
 }
 
 props.controller.setLayout('layouts:modal', {
-  title: `Add events to ${event_list.name}`,
+  title: 'Add events',
 });
 
 function addEventToList(event_id, position) {
