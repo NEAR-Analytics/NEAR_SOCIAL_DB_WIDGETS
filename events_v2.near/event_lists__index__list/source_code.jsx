@@ -14,9 +14,7 @@ return (
   <GridContainer>
     {event_lists.map((event_list) => {
       return (
-        <div key={event_list.event_list_id}>
-          {props.__engine.renderComponent('index.list_item', { event_list })}
-        </div>
+          {props.__engine.renderComponent('index.list_item', { event_list, key: event_list.event_list_id})}
       );
     })}
 
