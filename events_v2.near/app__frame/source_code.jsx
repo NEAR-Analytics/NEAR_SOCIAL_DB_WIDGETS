@@ -545,10 +545,10 @@ function numberToMonth(number, format) {
     ['Dec', 'December'],
   ];
   if (format === 'short') {
-    return map[month - 1];
+    return map[month - 1][0];
   }
   if (format === 'long') {
-    return map[month - 1];
+    return map[month - 1][1];
   }
 }
 
@@ -571,7 +571,7 @@ function formatDate(date, format) {
     hh: dateString.substring(11, 13),
     mm: dateString.substring(14, 16),
     ss: dateString.substring(17, 19),
-    Mshort: numberToMonth(dateString.substring(5, 7)),
+    Mshort: numberToMonth(dateString.substring(5, 7), 'short'),
   };
 
   return format.replace(
