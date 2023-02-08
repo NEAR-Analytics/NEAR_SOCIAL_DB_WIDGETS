@@ -625,11 +625,13 @@ function loading(displayText) {
 }
 
 function renderComponent(name, props, customEnv) {
+  const widgetEnv = {
+    ...env,
+    ...customEnv,
+  };
+
   const engine = {
-    env: {
-      ...env,
-      ...customEnv,
-    },
+    env: widgetEnv,
     accountId,
 
     loading,
@@ -684,9 +686,9 @@ function renderComponent(name, props, customEnv) {
   );
 }
 
-function safeRender(_name, _props, _appNameOverride) {
+function safeRender(_name, _props, _customEnv) {
   try {
-    return renderComponent(_name, _props, _appNameOverride);
+    return renderComponent(_name, _props, _customEnv);
   } catch (err) {
     console.log(err);
     return (
