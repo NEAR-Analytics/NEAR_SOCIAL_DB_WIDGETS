@@ -16,7 +16,7 @@ const event_list = props.__engine.contract.view(
   }
 );
 if (!event_list) {
-  return props.__engine.loading('event_list');
+  return props.__engine.loading();
 }
 
 const SECONDS_10 = 10000;
