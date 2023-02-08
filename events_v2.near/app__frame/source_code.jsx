@@ -467,7 +467,6 @@ function push(name, props) {
 }
 
 function replace(name, props) {
-  console.log('replace', name, props);
   const layer = {
     name,
     props: props || {},
