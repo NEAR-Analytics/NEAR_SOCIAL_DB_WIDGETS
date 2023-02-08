@@ -167,12 +167,11 @@ return (
     {navbar}
 
     <div
-      className="row"
       style={{
         marginTop: NAVBAR_HEIGHT,
       }}
     >
-      <div className="col-12">
+      <div>
         {props.__engine.renderComponent(
           props.component.name,
           props.component.props
