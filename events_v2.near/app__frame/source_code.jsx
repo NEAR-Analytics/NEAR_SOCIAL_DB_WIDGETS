@@ -318,6 +318,13 @@ const Components = {
     flex-shrink: 0;
     width: 100%;
     border-top: 0.1vw solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      font-size: ${({ small }) => (small ? '0.4rem' : '0.6vw')};
+    }
   `,
 };
 
