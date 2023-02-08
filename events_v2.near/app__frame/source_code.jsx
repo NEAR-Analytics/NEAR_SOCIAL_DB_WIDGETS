@@ -364,7 +364,7 @@ function orientation2FlexWrap({ orientation }) {
   }
 }
 
-function sessionGet(env, session_name, _defaultValue) {
+function sessionGet(env, prop, _defaultValue) {
   return (
     SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
   );
