@@ -110,6 +110,23 @@ return (
         >
           Delete event list
         </InfoBarLink>
+
+        <InfoBarLink
+          role="button"
+          tabIndex={0}
+          onClick={() => {
+            props.__engine.push('add-events', { event_list_id: event_list_id });
+          }}
+          onKeyDown={(evt) => {
+            if (evt.key === 'Enter') {
+              props.__engine.push('add-events', {
+                event_list_id: event_list_id,
+              });
+            }
+          }}
+        >
+          Delete event list
+        </InfoBarLink>
       </InfoBar>
     ) : null}
 
