@@ -457,10 +457,12 @@ function rerender() {
   });
 }
 
-function push(name, props) {
+function push(env, name, props) {
   const layer = {
     name,
     props: props || {},
+    appOwner: env.appOwner,
+    appName: env.appName,
   };
   const newLayers = [...state.layers, layer];
 
@@ -469,14 +471,14 @@ function push(name, props) {
   State.update({
     layers: newLayers,
   });
-
-  // rerender();
 }
 
 function replace(name, props) {
   const layer = {
     name,
     props: props || {},
+    appOwner: env.appOwner,
+    appName: env.appName,
   };
   const newLayers = [...state.layers.slice(0, -1), layer];
 
@@ -485,8 +487,6 @@ function replace(name, props) {
   State.update({
     layers: newLayers,
   });
-
-  // rerender();
 }
 
 // pop from the stack, ensure we always have at least one layer
@@ -500,7 +500,7 @@ function pop() {
     layers: newLayers,
   });
 
-  rerender();
+  // rerender();
 }
 
 function dirtyEval(args) {
