@@ -55,6 +55,8 @@ const CardHeader = styled.div`
     border-bottom: 1px solid #e0e0e0;
     height: auto;
     min-height: 0px;
+
+    padding: 10px;
   }
 `;
 
@@ -76,6 +78,12 @@ const CardBody = styled.div`
   & > * {
     height: 100%;
     padding: 20px;
+  }
+
+  @media (max-width: 768px) {
+    & > * {
+      padding: 10px;
+    }
   }
 `;
 
