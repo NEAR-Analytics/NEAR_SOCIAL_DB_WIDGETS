@@ -87,5 +87,11 @@ return (
     <Container>
       <Markdown text={event_list.description} />
     </Container>
+
+    <Hr></Hr>
+
+    {/* TODO: show all event list events via small cards */}
+
+    <Hr></Hr>
   </>
 );
