@@ -10,6 +10,9 @@ const CardBody = styled.div`
 `;
 
 const CardFooter = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   padding: 16px;
   border-top: 1px solid #ECEEF0;
 `;
@@ -53,8 +56,8 @@ const TagsWrapper = styled.div`
     content: '';
     display: block;
     height: 100%;
-    width: 20px;
-    background: linear-gradient(to left, red, white);
+    width: 16px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
     position: absolute;
     top: 0;
     right: 0;
@@ -67,23 +70,12 @@ const Tags = styled.ul`
   gap: 6px;
   overflow: auto;
   margin: 0;
-  padding: 6px 0 0 0;
+  padding: 6px 16px 0 0;
 
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    height: 100%;
-    width: 20px;
-    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
-    position: absolute;
-    top: 0;
-    right: 0;
   }
 `;
 
@@ -95,6 +87,25 @@ const Tag = styled.li`
   line-height: 18px;
   color: #687076;
   font-weight: 500;
+`;
+
+const ButtonLink = styled.a`
+  padding: 8px 24px;
+  height: 32px;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: ${(props) => (props.primary ? "#006ADC" : "#11181C")} !important;
+
+  &:hover {
+    background: #ECEDEE;
+    text-decoration: none;
+  }
 `;
 
 return (
@@ -122,7 +133,8 @@ return (
     </CardBody>
 
     <CardFooter>
-      <Title>Real Time Message</Title>
+      <ButtonLink>View Details</ButtonLink>
+      <ButtonLink primary>Open</ButtonLink>
     </CardFooter>
   </Card>
 );
