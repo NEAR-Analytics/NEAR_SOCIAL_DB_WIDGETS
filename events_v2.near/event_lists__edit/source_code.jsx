@@ -30,32 +30,12 @@ if (
 }
 
 function callContract(data) {
-  const {
-    name,
-    type,
-    category,
-    status,
-    start_date,
-    end_date,
-    location,
-    images,
-    links,
-    description,
-  } = data;
+  const { name, description } = data;
 
   props.__engine.contract.call(EVENTS_CONTRACT, 'update_event_list', {
     event_list_id: props.event_list_id,
     event_list: {
-      account_id: props.__engine.accountId,
       name,
-      type,
-      category,
-      status,
-      start_date,
-      end_date,
-      location,
-      images,
-      links,
       description,
     },
   });
