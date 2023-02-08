@@ -2,6 +2,28 @@ const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
 const { article, articleId } = props;
 console.log(articleId);
+
+const allArticlesWithOneID = Social.get(
+  `*/${addressForArticles}/articles/${articleId}/*`,
+  "final"
+);
+const articlesArr = allArticlesWithOneID && Object.values(allArticlesWithOneID);
+const resultArticlesWithOneId =
+  articlesArr &&
+  articlesArr.reduce(
+    (acc, account) =>
+      acc.concat(Object.values(account[addressForArticles].articles)),
+    []
+  );
+
+resultArticlesWithOneId.length &&
+  resultArticlesWithOneId.sort((a, b) => {
+    return Number(b.timeLastEdit) - Number(a.timeLastEdit);
+  });
+
+article = resultArticlesWithOneId[0];
+console.log(article);
+
 State.init({
   article,
 });
