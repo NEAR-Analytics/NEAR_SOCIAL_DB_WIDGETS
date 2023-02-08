@@ -59,7 +59,7 @@ const scrollingEvents =
         return props.__engine.renderComponent(
           'index.list_item',
           {
-            event_id: event.id,
+            event: event,
             key: `${idx}-${event.id}`,
           },
           { appName: 'events' }
