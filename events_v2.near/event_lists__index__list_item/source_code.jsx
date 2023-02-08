@@ -47,6 +47,18 @@ return (
   >
     <CardHeader>left</CardHeader>
 
-    <CardBody>right</CardBody>
+    <CardBody>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+      <div>right</div>
+    </CardBody>
   </Card>
 );
