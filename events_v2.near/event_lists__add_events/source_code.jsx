@@ -25,14 +25,6 @@ props.controller.setLayout('layouts:modal', {
   title: 'Add events',
 });
 
-function addEventToList(event_id, position) {
-  props.__engine.contract.call(EVENTS_CONTRACT, 'add_event_to_event_list', {
-    event_list_id,
-    event_id,
-    position,
-  });
-}
-
 const Text = props.__engine.Components.Text;
 const Hr = props.__engine.Components.Hr;
 
@@ -80,12 +72,6 @@ if (!events) {
 
 const Container = props.__engine.Components.Container;
 
-function findEventInList(event_id) {
-  return event_list.events.find((event) => {
-    return event.id === event_id;
-  });
-}
-
 const AddRemoveButton = styled.button`
   background: ${(props) => (props.add ? '#2ecc71' : '#e74c3c')};
   border: 1px solid #ccc;
@@ -97,6 +83,20 @@ const AddRemoveButton = styled.button`
     background: ${(props) => (props.add ? '#27ae60' : '#c0392b')};
   }
 `;
+
+function addEventToList(event_id, position) {
+  props.__engine.contract.call(EVENTS_CONTRACT, 'add_event_to_event_list', {
+    event_list_id,
+    event_id,
+    position,
+  });
+}
+
+function findEventInList(event_id) {
+  return event_list.events.find((event) => {
+    return event.id === event_id;
+  });
+}
 
 function addEventButton(event_id) {
   return (
@@ -112,17 +112,22 @@ function addEventButton(event_id) {
 }
 
 function removeEventButton(event_id) {
-  return styled.button`
-    background: #e74c3c;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 0.5rem;
-    outline: none;
-
-    &:hover {
-      background: #c0392b;
-    }
-  `;
+  return (
+    <AddRemoveButton
+      onClick={() => {
+        props.__engine.contract.call(
+          EVENTS_CONTRACT,
+          'remove_event_from_event_list',
+          {
+            event_list_id,
+            event_id,
+          }
+        );
+      }}
+    >
+      Remove
+    </AddRemoveButton>
+  );
 }
 
 return (
