@@ -79,14 +79,19 @@ if (!state) {
     }
   );
 
+  if (!events) {
+    return props.__engine.loading();
+  }
+
   State.init({ events });
+  return props.__engine.loading();
 }
 
 const scrollingEvents =
-  (events || []).length > 0 ? (
+  (state.events || []).length > 0 ? (
     <ScrollingEventsContainer>
       <HorizontalScroll itemWidth={'33%'}>
-        {events
+        {state.events
           .sort(({ position: a }, { position: b }) => {
             return a - b;
           })
