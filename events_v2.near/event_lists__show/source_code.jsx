@@ -76,7 +76,7 @@ return (
           Created at:{' '}
           {props.__engine.helpers.formatDate(
             event_list.created_at,
-            '{{Dst}} {{Mlong}} {{ YYYY }}'
+            '{{Dst}}. {{Mshort}} {{YYYY}}'
           )}
         </Text>
       </InfoBarItem>
