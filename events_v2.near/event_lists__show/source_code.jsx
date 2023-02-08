@@ -95,7 +95,7 @@ return (
     </InfoBar>
 
     <InfoBar>
-      {props.__engine.accountId === event.account_id ? (
+      {props.__engine.accountId === event.owner_account_id ? (
         <>
           <InfoBarLink
             role="button"
@@ -103,8 +103,8 @@ return (
             onClick={() => {
               removeEventList();
             }}
-            onKeyDown={() => {
-              if (event.key === 'Enter') {
+            onKeyDown={(evt) => {
+              if (evt.key === 'Enter') {
                 removeEventList();
               }
             }}
