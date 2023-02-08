@@ -9,7 +9,7 @@ function showEventList() {
 }
 
 const Card = props.__engine.Components.Card;
-const GridContainer = props.__engine.Components.GridContainer;
+const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
 const CardHeader = styled.div`
   display: flex;
