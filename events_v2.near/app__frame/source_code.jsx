@@ -364,8 +364,10 @@ function orientation2FlexWrap({ orientation }) {
   }
 }
 
-function session_name, _defaultValueGet: ()=>{a, benv, )}(env, session_name, _defaultValue) {
-  return SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
+function sessionGet(env, session_name, _defaultValue) {
+  return (
+    SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
+  );
 }
 function sessionSet(env, prop, value) {
   return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
@@ -630,10 +632,18 @@ function renderComponent(name, props, customEnv) {
     ...customEnv,
   };
 
-  const _sessionGet = (...args)=>{return sessionGet(widgetEnv, ...args)}
-  const _sessionSet = (...args)=>{return sessionSet(widgetEnv, ...args)}
-  const _storageGet = (...args)=>{return storageGet(widgetEnv, ...args)}
-  const _storageSet = (...args)=>{return storageSet(widgetEnv, ...args)}
+  const _sessionGet = (...args) => {
+    return sessionGet(widgetEnv, ...args);
+  };
+  const _sessionSet = (...args) => {
+    return sessionSet(widgetEnv, ...args);
+  };
+  const _storageGet = (...args) => {
+    return storageGet(widgetEnv, ...args);
+  };
+  const _storageSet = (...args) => {
+    return storageSet(widgetEnv, ...args);
+  };
 
   const engine = {
     env: widgetEnv,
