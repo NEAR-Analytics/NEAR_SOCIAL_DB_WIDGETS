@@ -91,7 +91,7 @@ return (
       {events.map((event) => {
         return (
           <div
-            key={event.event_id}
+            key={event.id}
             className="flex items-center justify-between p-2 border-b border-gray-200"
           >
             <div className="flex items-center">{event.name}</div>
@@ -100,7 +100,7 @@ return (
               <button
                 className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-700"
                 onClick={() => {
-                  addEventToList(event.event_id, event_list.events.length);
+                  addEventToList(event.id, event_list.events.length);
                 }}
               >
                 Add
