@@ -79,7 +79,8 @@ console.log('events', events);
 return (
   <>
     <Searchbar
-      onChange={(term) => {
+      onChange={(e) => {
+        const term = e.target.value;
         State.update({ term });
       }}
       placeholder="Search for events"
