@@ -6,22 +6,23 @@ function numberWithCommas(x) {
 }
 
 return (
-  <div className="text-bg-light rounded-4 p-2">
-    {data !== null ? (
-      <p>
-        <div class="d-flex justify-content-around clearfix">
-          <div class="p-3">
-            <div>STAKED AT METAPOOL</div>
-            <h2>{numberWithCommas(near_staked.toFixed(0))} Ⓝ</h2>
-          </div>
-          <div class="p-3">
-            <div>ASSIGNED BY VOTES</div>
-            <h2>{numberWithCommas(near_assigned.toFixed(0))} Ⓝ</h2>
-          </div>
+  <div class="card w-50">
+    <div class="card-body p-3">
+      <h5 class="card-title">Meta Pool Staking</h5>
+      <div class="row">
+        <div class="col-sm-4 p-3">
+          <h6 class="card-subtitle mb-2 text-muted">Staked at Meta Pool</h6>
+          <h6 class="text-success">
+            {numberWithCommas(near_staked.toFixed(0))} Ⓝ
+          </h6>
         </div>
-      </p>
-    ) : (
-      <div>Loading ...</div>
-    )}
+        <div class="col-sm-4 p-3">
+          <h6 class="card-subtitle mb-2 text-muted">Assigned by Votes</h6>
+          <h6 class="text-warning">
+            {numberWithCommas(near_assigned.toFixed(0))} Ⓝ
+          </h6>
+        </div>
+      </div>
+    </div>
   </div>
 );
