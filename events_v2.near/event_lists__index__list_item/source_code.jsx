@@ -139,7 +139,10 @@ return (
   <Card orientation="horizontal">
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
-      <Text>{elDescription}</Text>
+
+      <div style={{ flexGrow: 100 }}>
+        <Text>{elDescription}</Text>
+      </div>
       <TextButton
         onClick={() => {
           showEventList();
