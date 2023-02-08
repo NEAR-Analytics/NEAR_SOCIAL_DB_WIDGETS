@@ -21,6 +21,8 @@ function showEvent() {
   props.__engine.push('show', { event_id: event.id });
 }
 
+console.log('event', event);
+
 return (
   <Card
     onClick={() => {
@@ -46,7 +48,7 @@ return (
     </CardBody>
 
     <CardFooter>
-      {props.__engine.renderComponent('components.event_date', { event })}
+      {props.__engine.renderComponent('components:event_date', { event })}
     </CardFooter>
   </Card>
 );
