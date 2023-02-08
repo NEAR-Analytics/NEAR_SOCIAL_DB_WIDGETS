@@ -9,17 +9,22 @@ function showEventList() {
 }
 
 const Card = props.__engine.Components.Card;
-const CardBody = props.__engine.Components.CardBody;
-// const CardHeader = props.__engine.Components.CardHeader;
-// const CardFooter = props.__engine.Components.CardFooter;
 
 const CardHeader = styled.div`
-  width: 100%;
-  border-radius: 14px 14px 0 0;
-  border-bottom: 0.1vw solid #cccccc;
-  flex-shrink: 0;
-  flex-grow: 0;
-  padding: 1vw calc(max(0.5rem, 0.5vw));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+  width: 50%;
+  border-right: 1px solid #e0e0e0;
+`;
+
+const CardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+  width: 50%;
 `;
 
 return (
@@ -36,8 +41,8 @@ return (
     tabIndex={0}
     orientation="horizontal"
   >
-    <div>left</div>
+    <CardHeader>left</CardHeader>
 
-    <div>right</div>
+    <CardBody>right</CardBody>
   </Card>
 );
