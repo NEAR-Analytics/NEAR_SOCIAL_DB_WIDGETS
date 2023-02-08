@@ -629,7 +629,7 @@ function contractView(contractName, methodName, args) {
 
 function loading(displayText) {
   const text = displayText || '...';
-  return renderComponent('app:loading', { text: `Loading ${text}` });
+  return <>text</>;
 }
 
 function renderComponent(name, props) {
