@@ -9,7 +9,7 @@ const Card = props.__engine.Components.Card;
 const CardHeaderImage = props.__engine.Components.CardHeaderImage;
 const CardBody = props.__engine.Components.CardBody;
 const CardFooter = props.__engine.Components.CardFooter;
-const CardHeader = props.__engine.Components.CardHeader;
+const CardTitle = props.__engine.Components.CardTitle;
 
 const small = props.small || false;
 
@@ -38,7 +38,7 @@ return (
     </CardHeaderImage>
 
     <CardBody small={small}>
-      <CardHeader small={small}>{event.name}</CardHeader>
+      <CardTitle small={small}>{event.name}</CardTitle>
     </CardBody>
 
     <CardFooter small={small}>
