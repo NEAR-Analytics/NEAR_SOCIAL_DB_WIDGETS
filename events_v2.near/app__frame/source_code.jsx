@@ -232,8 +232,12 @@ const Components = {
 
   Card: styled.div`
     display: flex;
-    flex-direction: ${(args) => orientation2FlexDirection(args)};
-    flex-wrap: ${(args) => orientation2FlexWrap(args)};
+    flex-direction: ${(args) => {
+    return orientation2FlexDirection(args);
+  }};
+    flex-wrap: ${(args) => {
+    return orientation2FlexWrap(args);
+  }};
     align-items: stretch;
     justify-content: stretch;
     padding: 0;
