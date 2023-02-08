@@ -89,7 +89,7 @@ const EventTileWrapper = styled.div`
   width: 100%;
   height: 100%;
   animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
-  animation-delay: ${(props) => props.delay + 200}ms;
+  animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: both;
   opacity: 0;
 `;
@@ -122,7 +122,10 @@ const scrollingEvents =
           })
           .map(({ event }, idx) => {
             return (
-              <EventTileWrapper delay={idx * 200} key={`${idx}-${event.id}`}>
+              <EventTileWrapper
+                delay={idx * ANIMATION_DELAY}
+                key={`${idx}-${event.id}`}
+              >
                 {props.__engine.renderComponent(
                   'index.list_item',
                   {
