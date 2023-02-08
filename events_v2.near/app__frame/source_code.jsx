@@ -645,6 +645,13 @@ function renderComponent(name, props, customEnv) {
     return storageSet(widgetEnv, ...args);
   };
 
+  const _layoutPathFromName = (path) => {
+    return layoutPathFromName(widgetEnv, path);
+  };
+  const _widgetPathFromName = (path) => {
+    return widgetPathFromName(widgetEnv, path);
+  };
+
   const engine = {
     env: widgetEnv,
     accountId,
@@ -658,8 +665,8 @@ function renderComponent(name, props, customEnv) {
     sessionSet: _sessionSet,
     storageGet: _storageGet,
     storageSet: _storageSet,
-    layoutPathFromName,
-    widgetPathFromName,
+    layoutPathFromName: _layoutPathFromName,
+    widgetPathFromName: _widgetPathFromName,
 
     renderComponent: safeRender,
 
