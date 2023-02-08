@@ -63,7 +63,7 @@ const CardBody = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding: 0 20px;
   width: 66%;
   height: 100%;
   overflow-y: hidden;
