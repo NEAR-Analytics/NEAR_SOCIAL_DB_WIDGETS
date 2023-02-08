@@ -73,8 +73,6 @@ function removeEventList() {
   props.__engine.contract.call(contract, method, args);
 }
 
-console.log('event_list', event_list);
-
 return (
   <>
     <Container>
