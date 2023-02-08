@@ -528,6 +528,42 @@ function isDate(value) {
   }
 }
 
+function numberToMonth(number, format) {
+  const month = parseInt(number, 10);
+  const map = [
+    'Jan',
+    'January',
+    'Feb',
+    'February',
+    'Mar',
+    'March',
+    'Apr',
+    'April',
+    'May',
+    'May',
+    'Jun',
+    'June',
+    'Jul',
+    'July',
+    'Aug',
+    'August',
+    'Sep',
+    'September',
+    'Okt',
+    'Oktober',
+    'Nov',
+    'November',
+    'Dec',
+    'December',
+  ];
+  if (format === 'short') {
+    return map[month - 1];
+  }
+  if (format === 'long') {
+    return map[month - 1];
+  }
+}
+
 function formatDate(date, format) {
   if (date === null || date === undefined) {
     console.error('formatDate', 'date is null or undefined', date, format);
@@ -547,6 +583,7 @@ function formatDate(date, format) {
     hh: dateString.substring(11, 13),
     mm: dateString.substring(14, 16),
     ss: dateString.substring(17, 19),
+    Mshort: numberToMonth(dateString.substring(5, 7)),
   };
 
   return format.replace(
