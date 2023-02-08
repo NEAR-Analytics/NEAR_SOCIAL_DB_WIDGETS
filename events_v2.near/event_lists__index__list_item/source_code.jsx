@@ -29,6 +29,7 @@ const CardBody = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   padding: 0 20px;
   width: 66%;
   height: 100%;
