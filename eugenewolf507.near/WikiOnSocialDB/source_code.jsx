@@ -40,10 +40,6 @@ State.init({
 
 const description = profile.description;
 
-const handleArticle = (e, article) => {
-  State.update({ ...state, article: article, authorId: undefined });
-};
-
 const handleAuthor = (e, authorId) => {
   State.update({ ...state, article: undefined, authorId });
 };
@@ -80,41 +76,16 @@ return (
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
       props={{ currentNavPill: "articles" }}
     />
-    <div className="tab-content" id="pills-tabContent">
-      <div
-        className="tab-pane fade show active"
-        id="pills-main"
-        role="tabpanel"
-        aria-labelledby="pills-main-tab"
-      >
-        {/* === ALL ARTICLES LIST === */}
-        {state.currentTab === "loadarticles" && (
-          <div>
-            {!state.article && (
-              <Widget
-                src={`${authorForWidget}/widget/WikiOnSocialDB_AllArticlesList`}
-                props={{
-                  filteredArticles,
-                  getDateLastEdit,
-                  handleArticle,
-                  state,
-                }}
-              />
-            )}
-            {/* === ONE ARTICLE === */}
-            {state.article && (
-              <div>
-                <Widget
-                  src={`${authorForWidget}/widget/WikiOnSocialDB_OneArticle`}
-                  props={{
-                    article: state.article,
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+    <div>
+      <Widget
+        src={`${authorForWidget}/widget/WikiOnSocialDB_AllArticlesList`}
+        props={{
+          filteredArticles,
+          getDateLastEdit,
+          handleArticle,
+          state,
+        }}
+      />
     </div>
   </>
 );
