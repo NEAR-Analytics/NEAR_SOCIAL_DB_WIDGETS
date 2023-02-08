@@ -132,7 +132,7 @@ function addEventButton(event_id) {
     <ConditionalButton
       add
       onClick={() => {
-        addEventToList(event_id, event_list.events.length);
+        addEventToList(event_id, state.event_list.events.length);
       }}
     >
       Add
