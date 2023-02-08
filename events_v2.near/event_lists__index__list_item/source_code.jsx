@@ -81,12 +81,33 @@ const elDescription =
     ? event_list.description.substring(0, DESCRIPTION_MAX_LENGTH) + '...'
     : event_list.description;
 
+const TextButton = styled.button`
+  background: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  outline: none;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.15s ease-in-out;
+  &:hover {
+    color: #0056b3;
+  }
+
+  &:focus {
+    color: #0056b3;
+    outline: none;
+  }
+`;
+
 return (
   <Card orientation="horizontal">
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
       <Text>{elDescription}</Text>
-      <button
+      <TextButton
         onClick={() => {
           showEventList();
         }}
@@ -98,7 +119,7 @@ return (
         tabIndex={0}
       >
         View
-      </button>
+      </TextButton>
     </CardHeader>
 
     <CardBody>{scrollingEvents}</CardBody>
