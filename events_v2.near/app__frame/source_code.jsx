@@ -639,7 +639,7 @@ function renderComponent(name, props, customEnv) {
     pop,
     replace,
     rerender,
-    sessionGet: (_name, _defaultValue)=>{return sessionGet(env, _name, _defaultValue)},
+    sessionGet(_name, _defaultValue){return sessionGet(env, _name, _defaultValue)},
     sessionSet,
     storageGet,
     storageSet,
