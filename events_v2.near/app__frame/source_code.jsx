@@ -21,6 +21,7 @@ const ContainerPaddingHorizontal = 'calc(max(28px, 1.6vw))';
 const ContainerPaddingVertical = 'calc(max(12px, 1.2vw))';
 
 const GRID_PADDING = '20px';
+const GRID_PADDING_TINY = '4px';
 const GRID_PADDING_SMALL = '10px';
 const GRID_PADDING_BIG = '30px';
 
@@ -308,10 +309,10 @@ const Components = {
   `,
 
   CardFooter: styled.div`
-    font-size: ${({ small }) => (small ? FONT_SIZE_SMALL : FONT_SIZE_DEFAULT)};
+    font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
     font-weight: 400;
     margin: 0;
-    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
+    padding: ${({ small }) => (small ? GRID_PADDING_TINY : GRID_PADDING_SMALL)};
     height: auto;
     flex-grow: 0;
     flex-shrink: 0;
@@ -330,7 +331,7 @@ const Components = {
     font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
     font-weight: 400;
     margin: 0;
-    padding: ${({ small }) => (small ? GRID_PADDING_SMALL : GRID_PADDING)};
+    padding: ${({ small }) => (small ? GRID_PADDING_TINY : GRID_PADDING_SMALL)};
     height: auto;
     flex-grow: 0;
     flex-shrink: 0;
