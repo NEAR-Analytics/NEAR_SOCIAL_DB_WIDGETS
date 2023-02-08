@@ -206,7 +206,7 @@ const Components = {
   Card: styled.div`
     display: flex;
     flex-direction: ${({ orientation }) =>
-    orientation2FlexDirection(orientation) || 'column'};
+      orientation2FlexDirection(orientation) || 'column'};
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: stretch;
