@@ -53,9 +53,9 @@ return (
     orientation="horizontal"
   >
     <CardHeader>
-      <TextHeader>Description</TextHeader>
+      <TextHeader>{event_list.name}</TextHeader>
       <Text>
-        <Markdown text={event.description} />
+        <Markdown text={event_list.description} />
       </Text>
     </CardHeader>
 
