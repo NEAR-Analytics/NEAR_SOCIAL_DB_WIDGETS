@@ -557,9 +557,6 @@ function formatDate(date, format) {
     return '';
   }
   const properDate = isDate(date) ? date : new Date(date);
-  console.log('isDate', isDate(date));
-  console.log('date', date);
-  console.log('properDate', properDate);
   const dateString = properDate.toISOString();
 
   const parts = {
@@ -570,7 +567,8 @@ function formatDate(date, format) {
     hh: dateString.substring(11, 13),
     mm: dateString.substring(14, 16),
     ss: dateString.substring(17, 19),
-    Mshort: numberToMonth(dateString.substring(5, 7), 'short'),
+    Mshort: numberToMonth(dateString.substring(5, 7)),
+    Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
   };
 
   return format.replace(
