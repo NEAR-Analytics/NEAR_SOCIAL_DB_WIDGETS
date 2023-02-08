@@ -628,7 +628,7 @@ function loading(displayText) {
 
 function renderComponent(name, props, customEnv) {
   const widgetEnv = {
-    ...env,
+    ...ENV,
     ...customEnv,
   };
 
