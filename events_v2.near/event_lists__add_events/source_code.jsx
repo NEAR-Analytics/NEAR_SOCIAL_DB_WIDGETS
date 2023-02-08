@@ -122,12 +122,11 @@ function removeEventFromList(event_id) {
 }
 
 function findEventInList(event_id) {
+  console.log('findEventInList', event_id, state.event_list.events);
   return state.event_list.events.find((event) => {
     return event.id === event_id;
   });
 }
-
-function addEventButton(event_id) {}
 
 const EventTile = styled.div`
   display: flex;
