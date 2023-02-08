@@ -63,6 +63,7 @@ const PageTitle = props.__engine.Components.PageTitle;
 const InfoBar = props.__engine.Components.InfoBar;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
 const InfoBarLink = props.__engine.Components.InfoBarLink;
+const GridContainer = props.__engine.Components.GridContainer;
 
 function removeEventList() {
   const contract = EVENTS_CONTRACT;
