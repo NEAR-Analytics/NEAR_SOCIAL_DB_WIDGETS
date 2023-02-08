@@ -269,7 +269,7 @@ const Components = {
   `,
 
   CardFooter: styled.div`
-    font-size: 0.8vw;
+    font-size: ${({ small }) => (small ? '0.6rem' : '0.8vw')};
     font-weight: 400;
     margin: 0;
     padding: calc(max(0.5rem, 0.5vw));
