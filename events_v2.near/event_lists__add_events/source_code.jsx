@@ -70,6 +70,8 @@ if (!events) {
   return props.__engine.loading();
 }
 
+const Container = props.__engine.Components.Container;
+
 console.log('event_list', event_list);
 
 return (
@@ -82,7 +84,7 @@ return (
     />
 
     {/* search results */}
-    <div className="mt-4">
+    <Container>
       {events.map((event) => {
         return (
           <div
@@ -104,6 +106,6 @@ return (
           </div>
         );
       })}
-    </div>
+    </Container>
   </>
 );
