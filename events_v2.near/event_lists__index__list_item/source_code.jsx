@@ -38,6 +38,8 @@ const CardBody = styled.div`
 `;
 
 const EVENTS_LIMIT = 2;
+const DESCRIPTION_MAX_LENGTH = 100;
+
 const events = props.__engine.contract.view('get_events_in_event_list', {
   event_list_id: event_list.id,
   limit: EVENTS_LIMIT,
@@ -84,7 +86,9 @@ return (
     <CardHeader>
       <TextHeader>{event_list.name}</TextHeader>
       <Text>
-        <Markdown text={event_list.description.slice(0, 200)} />
+        <Markdown
+          text={event_list.description.slice(0, DESCRIPTION_MAX_LENGTH)}
+        />
       </Text>
     </CardHeader>
 
