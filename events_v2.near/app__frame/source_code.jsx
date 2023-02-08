@@ -196,7 +196,7 @@ const Components = {
       min-width: 320px;
       max-width: ${({ itemWidth }) => {
         console.log({ itemWidth });
-        return itemWidth || '240px';
+        return itemWidth || '540px';
       }};
       width: 100%;
       flex-grow: 3;
