@@ -128,23 +128,9 @@ function findEventInList(event_id) {
 }
 
 function addEventButton(event_id) {
-  return (
-    <ConditionalButton
-      add
-      onClick={() => {
-        addEventToList(event_id, state.event_list.events.length);
-      }}
-    >
-      Add
-    </ConditionalButton>
-  );
+  
 }
 
-function removeEventButton(event_id) {
-  return (
-    
-  );
-}
 
 const EventTile = styled.div`
   display: flex;
@@ -214,15 +200,24 @@ return (
             </div>
 
             <div>
-              {findEventInList(event.id)
-                ? (<ConditionalButton
-      onClick={() => {
-        removeEventFromList(event.id);
-      }}
-    >
-      Remove
-    </ConditionalButton>)
-                : addEventButton(event.id)}
+              {findEventInList(event.id) ? (
+                <ConditionalButton
+                  onClick={() => {
+                    removeEventFromList(event.id);
+                  }}
+                >
+                  Remove
+                </ConditionalButton>)
+              ) : (
+                <ConditionalButton
+                  add
+                  onClick={() => {
+                    addEventToList(event.id, state.event_list.events.length);
+                    }}
+                >
+                  Add
+                </ConditionalButton>
+              )}
             </div>
           </EventTile>
         );
