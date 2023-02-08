@@ -159,7 +159,7 @@ return (
         onChange={(event) => {
           updateState(event, 'description');
         }}
-        rows={3}
+        rows={9}
       />
     </div>
     <ValidationError>{getErrors('description')}</ValidationError>
