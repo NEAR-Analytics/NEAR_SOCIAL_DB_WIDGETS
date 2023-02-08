@@ -31,6 +31,23 @@ function addEventToList(event_id, position) {
 const Text = props.__engine.Components.Text;
 const Hr = props.__engine.Components.Hr;
 
+const Searchbar = styled.input`
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: #333;
+  }
+
+  &::placeholder {
+    color: red;
+  }
+`;
+
 return (
   <>
     <div className="p-4">
