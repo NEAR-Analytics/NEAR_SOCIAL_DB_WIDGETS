@@ -26,6 +26,9 @@ const CardBody = styled.div`
   justify-content: start;
   padding: 0 1rem;
   width: 50%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 `;
 
 return (
