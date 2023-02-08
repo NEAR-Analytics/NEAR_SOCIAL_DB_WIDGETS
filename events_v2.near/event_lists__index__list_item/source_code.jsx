@@ -62,9 +62,22 @@ const events = props.__engine.contract.view(
   }
 );
 
+const ScrollingEventsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-wrap: wrap;
+  }
+`;
 const scrollingEvents =
   (events || []).length > 0 ? (
-    <div>
+    <ScrollingEventsContainer>
       <HorizontalScroll itemWidth={'33%'}>
         {events.map(({ event }, idx) => {
           return props.__engine.renderComponent(
@@ -77,15 +90,14 @@ const scrollingEvents =
             { appName: 'events' }
           );
         })}
-
-        {event_list.event_count > EVENTS_LIMIT && (
-          <Text>
-            And {event_list.event_count - EVENTS_LIMIT} more events in this
-            list.
-          </Text>
-        )}
       </HorizontalScroll>
-    </div>
+
+      {event_list.event_count > EVENTS_LIMIT && (
+        <Text>
+          And {event_list.event_count - EVENTS_LIMIT} more events in this list.
+        </Text>
+      )}
+    </ScrollingEventsContainer>
   ) : (
     <Text>This list is empty :(</Text>
   );
