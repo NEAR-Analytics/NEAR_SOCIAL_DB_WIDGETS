@@ -107,7 +107,6 @@ return (
                 <Widget
                   src={`${authorForWidget}/widget/WikiOnSocialDB_OneArticle`}
                   props={{
-                    getDate,
                     article: state.article,
                   }}
                 />
