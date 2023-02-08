@@ -20,7 +20,7 @@ props.controller.setLayout('layouts:modal', {
 
 console.log('event_list', event_list);
 
-function callContract(event_id, position) {
+function addEventToList(event_id, position) {
   props.__engine.contract.call(EVENTS_CONTRACT, 'add_event_to_event_list', {
     event_list_id,
     event_id,
@@ -28,9 +28,8 @@ function callContract(event_id, position) {
   });
 }
 
-function onSave(data) {
-  callContract(data);
-}
+const Text = props.__engine.Components.Text;
+const Hr = props.__engine.Components.Hr;
 
 return (
   <>
