@@ -25,6 +25,7 @@ const CardHeader = styled.div`
   flex-grow: 1;
   flex-shrink: 0;
   word-break: break-all;
+  height: 100%;
 
   @media (max-width: 768px) {
     width: 100%;
