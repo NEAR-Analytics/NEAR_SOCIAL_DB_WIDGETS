@@ -376,7 +376,7 @@ const Components = {
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
-    border-top: 0.1vw solid #cccccc;
+    border-top: 0.1vw solid ${BORDER_COLOR};
     display: flex;
     align-items: center;
     justify-content: space-between;
