@@ -234,9 +234,9 @@ const Components = {
 
     & > * {
       padding: ${GRID_PAD};
-      min-width: 320px;
+      min-width: 100px;
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
-      width: 100%;
+      width: 0;
       flex-grow: 1;
       flex-shrink: 1;
 
