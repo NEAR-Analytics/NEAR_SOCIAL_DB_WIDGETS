@@ -10,6 +10,7 @@ if (include_events) {
     event_list,
   });
 }
+
 return props.__engine.renderComponent('index.list.item.default', {
   event_list,
 });
