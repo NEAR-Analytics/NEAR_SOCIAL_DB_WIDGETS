@@ -13,10 +13,6 @@ const GRID_PAD = props.__engine.Constants.GRID_PAD;
 const ListWrapper = styled.div`
   margin-bottom: ${GRID_PAD};
   width: 100%;
-
-  & > * {
-    /* width: 100%; */
-  }
 `;
 
 return event_lists.map((event_list, idx) => {
