@@ -56,15 +56,15 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         delay={props.delay || '0s'}
-        duration={props.duration || '0.2s'}
+        duration={props.duration || '0.5s'}
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
-          width: 1,
-          height: 1,
+          width: '100%',
+          height: '100%',
           objectFit: 'cover',
-          transform: 'scale(1000000)',
+          filter: 'blur(2000px)',
         }}
       />
     )}
@@ -74,7 +74,7 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '0.1s'}
+        delay={props.delay || '2s'}
         duration={props.duration || '2s'}
         onAnimationEnd={() => {
           console.log('Animation end 1');
