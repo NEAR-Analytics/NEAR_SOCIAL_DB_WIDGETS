@@ -94,7 +94,7 @@ return (
     </div>
     <div className="card-body">
       <p class="card-text" key="description">
-        {metadata.description}
+        <Markdown class="card-text" text={metadata.description}></Markdown>
       </p>
       {permissionsRenderer("edit-post")}
       {permissionsRenderer("use-labels")}
