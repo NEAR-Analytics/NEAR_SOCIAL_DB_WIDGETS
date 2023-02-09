@@ -5,7 +5,7 @@ if (!url) {
 }
 
 if (!state) {
-  State.init({ loaded: false, src: null, animated: false });
+  State.init({ loaded: false, src: null });
   return <></>;
 }
 
@@ -23,20 +23,12 @@ const AnimationFadeBlurIn = styled.keyframes`
   }
 `;
 
-const AnimationRotate = styled.keyframes`
-  from {
-  }
-
-  to {
-  }
-`;
-
 const LoadedImage = styled.img`
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: ${state.animated ? 1 : 0};
+  opacity: ${state.loaded ? 1 : 0};
 
   animation: ${AnimationFadeBlurIn} 1s ease-in-out;
   animation-delay: ${(props) => props.delay || '0s'};
@@ -68,13 +60,8 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={state.animated ? 0 : props.delay || '0.4s'}
-        duration={state.animated ? 0 : props.duration || '0.4s'}
-        onAnimationEnd={() => {
-          if (!state.animated) {
-            State.update({ animated: true });
-          }
-        }}
+        delay={state.loaded ? 0 : props.delay || '0.4s'}
+        duration={state.loaded ? 0 : props.duration || '0.4s'}
       />
     )}
   </>
