@@ -242,6 +242,7 @@ const Components = {
       & > * {
         width: 45%;
         max-width: 45%;
+        min-width: 0;
       }
     }
   `,
