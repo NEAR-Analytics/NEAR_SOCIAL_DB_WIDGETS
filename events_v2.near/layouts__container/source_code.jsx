@@ -101,23 +101,24 @@ const NavbarTitle = styled.h2`
   flex-grow: 1;
 `;
 
+const NavbarBackButton = styled.button`
+  background-color: transparent;
+  user-select: none;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: ${NAVBAR_HEIGHT}px;
+`;
+
 const navbar = (
   <Navbar className="navbar">
     <NavbarContainer>
       {props.back ? (
-        <button
-          className=""
-          style={{
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-            border: 'none',
-            outline: 'none',
-            background: 'transparent',
-            width: NAVBAR_HEIGHT,
-          }}
+        <NavbarBackButton
           type="button"
           tabIndex={0}
           onClick={() => {
@@ -130,14 +131,10 @@ const navbar = (
           }}
         >
           <i className="bi bi-chevron-left"></i>
-        </button>
+        </NavbarBackButton>
       ) : null}
 
-      <NavbarTitle
-        
-      >
-        {title}
-      </h2>
+      <NavbarTitle>{title}</NavbarTitle>
 
       {props.primaryAction ? (
         <NavPrimaryButton
