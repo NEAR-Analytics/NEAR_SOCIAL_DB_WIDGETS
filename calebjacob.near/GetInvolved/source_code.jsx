@@ -31,7 +31,6 @@ const IconButtonLink = styled.a`
   display: block;
   padding: 0;
   height: 32px;
-  width: 32px;
   border-radius: 6px;
   font-size: 16px;
   line-height: 32px;
@@ -57,7 +56,8 @@ const PrimaryButtons = styled.div`
 `;
 
 const IconButtons = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
 `;
 
