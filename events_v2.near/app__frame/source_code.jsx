@@ -497,7 +497,7 @@ function restoreRoutes() {
 restoreRoutes();
 
 function persistRoutingInformation(newState) {
-  storageSet('routing', newState);
+  storageSet(ENV, 'routing', newState);
 }
 
 function slugFromName(name) {
