@@ -93,7 +93,6 @@ const Navbar = styled.div`
   display: flex;
   align-items: center;
   justify-content: stretch;
-  height: 100%;
   width: 100%;
 `;
 
