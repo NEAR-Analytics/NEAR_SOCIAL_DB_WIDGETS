@@ -244,7 +244,7 @@ const Components = {
       flex-grow: 1;
       flex-shrink: 1;
 
-      animation: ${AnimationFadeIn} 0.5s ease-in-out;
+      animation: ${AnimationFadeIn} 0.5s ${EASE_DEFAULT};
     }
 
     @media (max-width: 768px) {
@@ -884,7 +884,7 @@ function safeRender(_name, _props, _customEnv) {
 }
 
 const AppLayer = styled.div`
-  animation: ${AnimationFadeIn} 0.3s ease-in-out;
+  animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
   animation-duration: ${(props) => props.duration};
@@ -908,7 +908,7 @@ const AppLayer = styled.div`
     return props.backdropFilter;
   }};
 
-  transition: backdrop-filter 0.3s ease-in-out;
+  transition: backdrop-filter 0.3s ${EASE_DEFAULT};
   transition-delay: ${(props) => props.transitionDelay};
 `;
 
