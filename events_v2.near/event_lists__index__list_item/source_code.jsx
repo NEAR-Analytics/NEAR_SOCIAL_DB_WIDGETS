@@ -144,7 +144,7 @@ const scrollingEvents =
                 {
                   event: event,
                   small: true,
-                  delay: (idx + 2) * ANIMATION_DELAY,
+                  delay: (idx + 10) * ANIMATION_DELAY,
                   duration: 500,
                 },
                 { appName: 'events' }
