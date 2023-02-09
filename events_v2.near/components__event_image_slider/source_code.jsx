@@ -37,9 +37,16 @@ return (
     }}
   >
     {displayImages.map((image) => {
+      let src = null;
+      const img = new Image();
+      img.src = `https://ipfs.near.social/ipfs/${image.url.cid}`;
+      img.onload = () => {
+        src = img.src;
+      };
+
       return (
         <img
-          src={`https://ipfs.near.social/ipfs/${image.url.cid}`}
+          src={src}
           key={image.cid}
           alt={image.url.cid}
           style={{
