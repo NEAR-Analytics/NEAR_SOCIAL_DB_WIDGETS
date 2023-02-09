@@ -4,7 +4,6 @@ const DESCRIPTION_MAX_LENGTH = 200;
 const ANIMATION_DELAY = 300;
 
 const event_list = props.event_list || null;
-
 if (!event_list) {
   return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
