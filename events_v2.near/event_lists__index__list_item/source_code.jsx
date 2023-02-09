@@ -89,8 +89,8 @@ const EventTileWrapper = styled.div`
 
   transform: scale(0.9875);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ${EASE_DEFAULT},
+    box-shadow 0.25s ${EASE_DEFAULT};
 
   &:hover {
     transform: scale(1.025);
