@@ -35,7 +35,8 @@ const TEXT_COLOR = '#333333';
 const TEXT_COLOR_LIGHT = '#666666';
 
 const BORDER_COLOR = '#e6e6e6';
-const BORDER_WIDTH_DEFAULT = '0.1vw';
+const BORDER_THICKNESS = '0.1vw';
+const DEFAULT_BORDER = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 
 const ERROR_COLOR = '#cc0000';
 
@@ -329,7 +330,7 @@ const Components = {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 2px 2px 0 0;
-    border-bottom: ${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR};
+    border-bottom: ${BORDER_THICKNESS} solid ${BORDER_COLOR};
     flex-shrink: 0;
     flex-grow: 0;
   `,
@@ -340,7 +341,7 @@ const Components = {
     justify-content: stretch;
     width: 33%;
     min-width: 320px;
-    border-right: ${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR};
+    border-right: ${BORDER_THICKNESS} solid ${BORDER_COLOR};
     min-height: 200px;
     flex-grow: 1;
     flex-shrink: 0;
@@ -351,7 +352,7 @@ const Components = {
     @media (max-width: 768px) {
       width: 100%;
       border-right: none;
-      border-bottom: ${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR};
+      border-bottom: ${BORDER_THICKNESS} solid ${BORDER_COLOR};
       height: auto;
       min-height: 0px;
 
@@ -377,7 +378,7 @@ const Components = {
     flex-grow: 0;
     flex-shrink: 0;
     width: 100%;
-    border-top: ${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR};
+    border-top: ${BORDER_THICKNESS} solid ${BORDER_COLOR};
     display: flex;
     align-items: center;
     justify-content: space-between;
