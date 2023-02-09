@@ -38,7 +38,14 @@ const Text = props.__engine.Components.Text;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
 const Constants = props.__engine.Constants;
-const { EASE_DEFAULT, GRID_PAD, GRID_PAD_SMALL, BORDER_DEFAULT } = Constants;
+const {
+  EASE_DEFAULT,
+  GRID_PAD,
+  GRID_PAD_SMALL,
+  BORDER_DEFAULT,
+  BOX_SHADOW_HOVER,
+  BOX_SHADOW_DEFAULT,
+} = Constants;
 
 const CardBody = styled.div`
   display: flex;
@@ -88,13 +95,13 @@ const EventTileWrapper = styled.div`
   border: ${BORDER_DEFAULT}
 
   transform: scale(0.9875);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+  box-shadow: ${BOX_SHADOW_DEFAULT};
   transition: transform 0.25s ${EASE_DEFAULT},
     box-shadow 0.25s ${EASE_DEFAULT};
 
   &:hover {
     transform: scale(1.025);
-    box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.4);
+    box-shadow:  ${BOX_SHADOW_HOVER}
   }
 
   flex-grow & > * {
