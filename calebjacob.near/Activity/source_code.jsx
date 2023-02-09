@@ -90,6 +90,6 @@ return (
       </TabsButton>
     </Tabs>
 
-    <Widget src="mob.near/widget/MainPage.Feed" props={{ accounts }} />
+    <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
   </>
 );
