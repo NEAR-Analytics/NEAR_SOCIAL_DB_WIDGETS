@@ -26,7 +26,7 @@ const LoadedImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: ${loaded ? 1 : 0};
+  opacity: ${state.loaded ? 1 : 0};
 
   animation: ${AnimationFadeBlurIn} 1s ease-in-out;
   animation-delay: ${(props) => props.delay || '0s'};
