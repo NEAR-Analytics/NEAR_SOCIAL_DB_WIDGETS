@@ -8,10 +8,7 @@ props.controller.setLayout('layouts:container', {
   },
 });
 
-return;
-{
-  props.__engine.renderComponent('index.list_container', {
-    header: 'Your event lists',
-    forAccountId: props.__engine.accountId,
-  });
-}
+return props.__engine.renderComponent('index.list_container', {
+  header: 'Your event lists',
+  forAccountId: props.__engine.accountId,
+});
