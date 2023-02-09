@@ -63,7 +63,7 @@ return (
     <Section>
       {context.accountId && (
         <ButtonLink key="edit" href={"#/mob.near/widget/Welcome.RHS.Editor"}>
-          <i class="bi bi-list" /> Edit
+          <i class="bi bi-list" /> Edit Widgets
         </ButtonLink>
       )}
     </Section>
