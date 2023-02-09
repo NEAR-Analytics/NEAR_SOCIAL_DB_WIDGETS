@@ -50,7 +50,7 @@ const IconButtonLink = styled.a`
 
 const PrimaryButtons = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 8px;
   margin-bottom: 8px;
 `;
