@@ -295,6 +295,14 @@ const Components = {
     }
   `,
 
+  GridItemWrapper: styled.div`
+    height: auto;
+
+    & > * {
+      height: 100%;
+    }
+  `,
+
   HorizontalScroll: styled.div`
     display: flex;
     flex-wrap: nowrap;
