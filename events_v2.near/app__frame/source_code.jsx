@@ -160,7 +160,6 @@ const Components = {
     display: flex;
     align-items: center;
     margin-right: ${GRID_PAD};
-    padding: 8px 0;
   `,
 
   InfoBarLink: styled.a`
