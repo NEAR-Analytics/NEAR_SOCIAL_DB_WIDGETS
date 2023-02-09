@@ -10,9 +10,9 @@ const index = {
 
 const renderItem = (a) =>
   a.value.type === "md" && (
-    <div key={JSON.stringify(a)} className="mb-3">
+    <div key={JSON.stringify(a)}>
       <Widget
-        src="mob.near/widget/MainPage.Post"
+        src="calebjacob.near/widget/FeedPost"
         props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
       />
     </div>
