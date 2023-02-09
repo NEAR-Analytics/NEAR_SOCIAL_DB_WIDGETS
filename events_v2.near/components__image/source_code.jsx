@@ -16,7 +16,7 @@ const AnimationFadeBlurIn = styled.keyframes`
     transform: rotate(-36deg);
   }
 
-  20% {
+  60% {
     transform: rotate(0deg);
   }
 
@@ -64,7 +64,7 @@ return (
         alt={props.alt || 'Image'}
         style={props.style || {}}
         delay={props.delay || '0'}
-        duration={props.duration || '0.4s'}
+        duration={props.duration || '0.8s'}
       />
     )}
   </>
