@@ -348,6 +348,7 @@ const Components = {
       border-bottom: 1px solid ${BORDER_COLOR};
       height: auto;
       min-height: 0px;
+      maxwidth: 100%;
 
       padding: ${GRID_PAD_SMALL};
     }
