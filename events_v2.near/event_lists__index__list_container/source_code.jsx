@@ -32,6 +32,9 @@ const header = props.header;
 return (
   <>
     {header ? <ContainerHeader>{header}</ContainerHeader> : null}
-    {props.__engine.renderComponent('index.list', { event_lists, listLayout })}
+    {props.__engine.renderComponent('index.list', {
+      event_lists,
+      layout: listLayout,
+    })}
   </>
 );
