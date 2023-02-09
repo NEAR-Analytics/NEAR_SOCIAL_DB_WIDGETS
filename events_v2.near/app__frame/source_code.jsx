@@ -24,7 +24,7 @@ const GRID_PAD_BIG = '30px';
 
 const FONT_SIZE_TINY = 'calc(max(12px, 0.75vw))';
 const FONT_SIZE_SMALL = 'calc(max(16px, 1.25vw))';
-const FONT_SIZE_DEFAULT = 'calc(max(22px, 1.66vw))';
+const FONT_SIZE_DEFAULT = 'calc(max(20px, 1.66vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
 
 const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
@@ -95,6 +95,8 @@ const Components = {
     display: inline-block;
     font-size: ${FONT_SIZE_DEFAULT};
     transition: all 0.5s ease;
+    cursor: pointer;
+    border-radius: ${DEFAULT_BORDER_RADIUS};
 
     &:hover {
       background-color: ${BUTTON_BG_HOVER_COLOR};
