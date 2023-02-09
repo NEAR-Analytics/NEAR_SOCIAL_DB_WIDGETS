@@ -24,6 +24,8 @@ const AnimationFadeBlurIn = styled.keyframes`
 `;
 
 console.log('delay', props.delay);
+console.log('duration', props.duration);
+
 const LoadedImage = styled.img`
   display: block;
   width: 100%;
@@ -35,6 +37,8 @@ const LoadedImage = styled.img`
   animation-delay: ${(props) => props.delay || '0s'};
   animation-fill-mode: forwards;
   animation-duration: ${(props) => props.duration || '0s'};
+
+  image-rendering: pixelated;
 `;
 
 return (
