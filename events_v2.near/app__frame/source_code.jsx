@@ -51,7 +51,7 @@ const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
 const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
-const Const = {
+const Constants = {
   NEAR_STORAGE_BYTES_SAFTY_OFFSET,
   PROP_IS_REQUIRED_MESSAGE,
   PLEASE_CONNECT_WALLET_MESSAGE,
@@ -862,7 +862,7 @@ function renderComponent(name, props, env) {
     renderComponent: _renderComponent,
 
     Components,
-    Const,
+    Constants,
 
     helpers: {
       propIsRequiredMessage,
