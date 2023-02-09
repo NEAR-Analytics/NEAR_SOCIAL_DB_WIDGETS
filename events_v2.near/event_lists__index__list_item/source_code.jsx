@@ -189,6 +189,7 @@ const scrollingEvents =
                 {
                   event: event,
                   small: true,
+                  border: false,
                   delay: `${(idx + 1) * ANIMATION_DELAY}ms`,
                   duration: '0.9s',
                 },
