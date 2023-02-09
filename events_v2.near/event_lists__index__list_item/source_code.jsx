@@ -125,7 +125,7 @@ const TextButton = styled.button`
   outline: none;
   padding: 0;
   text-decoration: underline;
-  transition: color 0.15s ease-in-out;
+  transition: color 0.15s ${EASE_DEFAULT};
   display: inline-block;
   width: fit-content;
   margin-top: 10px;
