@@ -96,7 +96,7 @@ return (
             Cancel{" "}
           </button>
 
-          <textarea
+          {/*<textarea
             id="textarea1"
             type="text"
             rows={10}
@@ -105,10 +105,12 @@ return (
             onChange={(e) => {
               State.update({ ...state, note: e.target.value });
             }}
-          />
+          />*/}
         </>
       )}
-      <Markdown text={state.note || state.article.body} />
+      {!state.editArticle && (
+        <Markdown text={state.note || state.article.body} />
+      )}
       <div className="mt-5 alert alert-secondary">
         <div>
           Created by{" "}
