@@ -12,11 +12,12 @@ if (!state) {
 const AnimationFadeBlurIn = styled.keyframes`
   0% {
     opacity: 0;
-    filter: blur(100px);
-    transform: rotate(-36deg);
+    filter: blur(50px);
+    transform: rotate(-90deg);
   }
 
   60% {
+    filter: blur(50px);
     transform: rotate(0deg);
   }
 
