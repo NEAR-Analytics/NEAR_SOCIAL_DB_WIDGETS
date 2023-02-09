@@ -54,7 +54,7 @@ return (
     )}
 
     {state.loaded && (
-      <img
+      <LoadedImage
         src={state.src}
         alt={props.alt || 'Image'}
         style={{
