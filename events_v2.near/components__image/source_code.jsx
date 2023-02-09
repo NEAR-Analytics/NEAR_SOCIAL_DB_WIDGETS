@@ -13,21 +13,21 @@ const AnimationFadeBlurIn = styled.keyframes`
   from {
     opacity: 0;
     filter: blur(100px);
+    transform: rotate(-36deg);
   }
 
   to {
     opacity: 1;
     filter: blur(0px);
+    transform: rotate(0deg);
   }
 `;
 
 const AnimationRotate = styled.keyframes`
   from {
-    transform: rotate(0deg);
   }
 
   to {
-    transform: rotate(360deg);
   }
 `;
 
@@ -43,22 +43,6 @@ const LoadedImage = styled.img`
   animation-fill-mode: both;
   animation-iteration-count: 1;
   animation-duration: ${(props) => props.duration || '0s'};
-`;
-
-const BlurredImage = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: ${state.animated ? 0 : 1};
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  filter: blur(100px);
-  animation: ${AnimationRotate} 10s linear infinite;
-  animation-fill-mode: both;
 `;
 
 return (
@@ -79,17 +63,13 @@ return (
       />
     )}
 
-    {state.loaded && !state.animated && (
-      <BlurredImage src={state.src} alt={props.alt || 'Image'} />
-    )}
-
     {state.loaded && (
       <LoadedImage
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={state.animated ? 0 : props.delay || '0.5s'}
-        duration={state.animated ? 0 : props.duration || '2s'}
+        delay={state.animated ? 0 : props.delay || '0.4s'}
+        duration={state.animated ? 0 : props.duration || '0.4s'}
         onAnimationEnd={() => {
           if (!state.animated) {
             State.update({ animated: true });
