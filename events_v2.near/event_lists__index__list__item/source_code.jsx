@@ -1,16 +1,15 @@
-const { event_lists } = props.component.props;
-if (!event_lists) {
-  return props.__engine.helpers.propIsRequiredMessage('event_lists');
+const { event_list } = props.component.props;
+if (!event_list) {
+  return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
 
-return (
-  <>
-    {event_lists.map((event_list, idx) => {
-      return (
-        <li key={`${idx}-${event_list.event_list_id}`}>
-          {props.__engine.renderComponent('index.list.item', { event_list })}
-        </li>
-      );
-    })}
-  </>
-);
+const { include_events } = props;
+
+if (include_events) {
+  return props.__engine.renderComponent('index.list.item.with-events', {
+    event_list,
+  });
+}
+return props.__engine.renderComponent('index.list.item.default', {
+  event_list,
+});
