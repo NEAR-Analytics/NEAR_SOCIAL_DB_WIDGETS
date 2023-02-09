@@ -40,8 +40,10 @@ const BORDER_COLOR = '#e6e6e6';
 
 const ERROR_COLOR = '#cc0000';
 
-// darlpurple
-const BUTTON_BG_COLOR = '#6a0dad';
+// dark purple
+const BUTTON_BG_COLOR = '#4d2c91';
+const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
+
 /**
  * Animation
  * */
@@ -95,7 +97,7 @@ const Components = {
     transition: all 0.5s ease;
 
     &:hover {
-      background-color: #3e8e41;
+      background-color: ${BUTTON_BG_HOVER_COLOR};
     }
   `,
 
