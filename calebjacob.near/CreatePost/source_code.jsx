@@ -28,7 +28,6 @@ const Textarea = styled.div`
   align-items: center;
   position: relative;
   align-items: stretch;
-  border-bottom: 1px solid;
   
   &::after,
   textarea {
@@ -55,6 +54,23 @@ const Textarea = styled.div`
   }
 `;
 
+const Button = styled.button`
+  background: #0091FF;
+  border-radius: 6px;
+  color: #fff;
+  height: 40px;
+  padding: 0 35px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: 12px;
+`;
+
 return (
   <Wrapper>
     <Avatar>
@@ -68,6 +84,8 @@ return (
       ></textarea>
     </Textarea>
 
-    <p>Buttons</p>
+    <Actions>
+      <Button type="button">Post</Button>
+    </Actions>
   </Wrapper>
 );
