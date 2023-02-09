@@ -18,12 +18,11 @@ const ListWrapper = styled.div`
 
 return (
   <Container>
-    {event_lists.map((event_list) => {
+    {event_lists.map((event_list, idx) => {
       return (
-        <ListWrapper>
+        <ListWrapper key={`${idx}-${event_list.event_list_id}`}>
           {props.__engine.renderComponent('index.list_item', {
             event_list,
-            key: event_list.event_list_id,
           })}
         </ListWrapper>
       );
