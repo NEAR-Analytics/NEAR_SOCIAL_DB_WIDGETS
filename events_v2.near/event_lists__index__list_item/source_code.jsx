@@ -80,7 +80,7 @@ const EventTileWrapper = styled.div`
   animation-fill-mode: forwards;
   opacity: 0;
 
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     transform: scale(1.05);
     z-index: 10;
