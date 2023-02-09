@@ -129,14 +129,14 @@ return (
           >
             {state.article.author}
           </a>
-          <br />
+          {/* <br />
           Last edit by{" "}
           <a
             href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
             style={{ textDecoration: "underline" }}
           >
             {state.article.lastEditor}
-          </a>
+          </a>*/}
           <br />
           Edited on {getDate(state.article.timeLastEdit)}
           <br />
