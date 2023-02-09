@@ -75,7 +75,6 @@ function onCommit() {
 }
 
 const Wrapper = styled.div`
-  border: 1px solid;
   position: relative;
 `;
 
