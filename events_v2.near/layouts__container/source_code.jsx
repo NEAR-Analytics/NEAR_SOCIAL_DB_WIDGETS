@@ -107,7 +107,10 @@ const NavbarTitle = styled.h2`
   margin: 0 12px;
 
   text-align: ${({ primaryAction, back }) => {
-    console.log({ primaryAction, back }, primaryAction || back);
+    console.log(
+      { primaryAction, back },
+      primaryAction || back ? 'left' : 'center'
+    );
     return primaryAction || back ? 'left' : 'center';
   }};
 
