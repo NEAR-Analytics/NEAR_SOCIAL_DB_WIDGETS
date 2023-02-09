@@ -409,7 +409,6 @@ const rootRoute = {
 };
 
 if (!state) {
-  console.log('initializing state');
   State.init({
     renderCycles: state ? state.renderCycles + 1 : 1,
     layers: [rootRoute],
@@ -465,23 +464,19 @@ function sessionSet(env, prop, value) {
 }
 
 function storageGet(env, prop, defaultValue) {
-  console.log('storageGet', `${env.appOwner}.${env.appName}.${prop}`);
   return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
 }
 function storageSet(env, prop, value) {
-  console.log('storageSet', `${env.appOwner}.${env.appName}.${prop}`, value);
   return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
 function restoreRoutes() {
   const info = storageGet(ENV, 'routing', null);
-  console.log('Restoring routing information', JSON.stringify(info, null, 2));
   if (info === null || info === undefined) {
     return;
   }
 
   const layers = state.layers;
-  console.log('Current routing information', JSON.stringify(layers, null, 2));
   if (
     layers &&
     Array.isArray(info) &&
@@ -490,7 +485,6 @@ function restoreRoutes() {
     State.update({
       layers: info,
     });
-    console.log('Restored routing information');
   }
 }
 
@@ -532,13 +526,6 @@ function fetchPathOptions(env, path) {
 
 function widgetPathFromName(env, widgetName) {
   const { owner, name, slug } = fetchPathOptions(env, widgetName);
-  console.log('widgetPathFromName', {
-    owner,
-    name,
-    slug,
-    widgetName,
-    path: `${owner}/widget/${name}__${slug}`,
-  });
   return `${owner}/widget/${name}__${slug}`;
 }
 
