@@ -52,7 +52,7 @@ const NavPrimaryButton = styled.button`
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1.25rem;
   transition: all 1s ease-in-out;
   margin-left: 8px;
   cursor: pointer;
@@ -64,11 +64,19 @@ const NavPrimaryButton = styled.button`
 
   transform: scale(0.975);
 
+  margin: 0 8px;
+
   &:hover {
     /* darker and transparent */
     background-color: rgba(44, 44, 84, 0.85);
 
     animation: ${Pulse} 2s infinite;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.05rem;
+    padding: 4px 8px;
+    margin: 0 4px;
   }
 `;
 
