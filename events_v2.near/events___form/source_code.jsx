@@ -100,16 +100,6 @@ if (!state) {
   return 'Loading...';
 }
 
-const Button = styled.button`
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: #ccc;
-`;
-
 const Select = styled.select`
   width: 100%;
   padding: 0.5rem;
@@ -118,20 +108,9 @@ const Select = styled.select`
   border-radius: 4px;
   box-sizing: border-box;
 `;
-
-const Label = styled.label`
-  width: 100%;
-  color: #666;
-  padding: 0.5rem 0;
-  margin: 0.5rem 0 0 0;
-  box-sizing: border-box;
-`;
-
-const ErrorMessage = styled.div`
-  color: #c00;
-  font-size: 0.8rem;
-  margin: 0.5rem 0 0 0;
-`;
+const ValidationError = props.__engine.Components.ValidationError;
+const FullActionButton = props.__engine.Components.FullActionButton;
+const FormLabel = props.__engine.Components.FormLabel;
 
 const LinkTypes = [
   { value: 'register', label: 'Register' },
@@ -358,7 +337,7 @@ return (
     }}
   >
     <div className="mt-3">
-      <Label>Name</Label>
+      <FormLabel>Name</FormLabel>
       <input
         type="text"
         placeholder="Event Name"
@@ -368,10 +347,10 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('name')}</ErrorMessage>
+    <ValidationError>{getErrors('name')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Description</Label>
+      <FormLabel>Description</FormLabel>
       <textarea
         className="w-100"
         placeholder="Event Description"
@@ -382,10 +361,10 @@ return (
         rows={3}
       />
     </div>
-    <ErrorMessage>{getErrors('description')}</ErrorMessage>
+    <ValidationError>{getErrors('description')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Type</Label>
+      <FormLabel>Type</FormLabel>
       <Select
         value={state.type}
         onChange={(event) => {
@@ -399,10 +378,10 @@ return (
         ))}
       </Select>
     </div>
-    <ErrorMessage>{getErrors('type')}</ErrorMessage>
+    <ValidationError>{getErrors('type')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Category</Label>
+      <FormLabel>Category</FormLabel>
       <input
         type="text"
         placeholder="Event Category"
@@ -412,10 +391,10 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('category')}</ErrorMessage>
+    <ValidationError>{getErrors('category')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Status</Label>
+      <FormLabel>Status</FormLabel>
       <Select
         value={state.status}
         onChange={(event) => {
@@ -429,10 +408,10 @@ return (
         ))}
       </Select>
     </div>
-    <ErrorMessage>{getErrors('status')}</ErrorMessage>
+    <ValidationError>{getErrors('status')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Start Date</Label>
+      <FormLabel>Start Date</FormLabel>
       <input
         type="date"
         value={state.start_date}
@@ -441,10 +420,10 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('start_date')}</ErrorMessage>
+    <ValidationError>{getErrors('start_date')}</ValidationError>
 
     <div className="mt-3">
-      <Label>End Date</Label>
+      <FormLabel>End Date</FormLabel>
       <input
         type="date"
         value={state.end_date}
@@ -453,10 +432,10 @@ return (
         }}
       />
     </div>
-    <ErrorMessage>{getErrors('end_date')}</ErrorMessage>
+    <ValidationError>{getErrors('end_date')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Location</Label>
+      <FormLabel>Location</FormLabel>
       <textarea
         className="w-100"
         placeholder="Event Location"
@@ -467,10 +446,10 @@ return (
         rows={3}
       />
     </div>
-    <ErrorMessage>{getErrors('location')}</ErrorMessage>
+    <ValidationError>{getErrors('location')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Images</Label>
+      <FormLabel>Images</FormLabel>
 
       {state.images.map((image, index) => (
         <div key={index} className="mb-4 d-flex">
@@ -502,10 +481,10 @@ return (
         Add Image
       </button>
     </div>
-    <ErrorMessage>{getErrors('images')}</ErrorMessage>
+    <ValidationError>{getErrors('images')}</ValidationError>
 
     <div className="mt-3">
-      <Label>Links</Label>
+      <FormLabel>Links</FormLabel>
       {state.links.map((link, index) => (
         <div key={index} className="mb-4">
           <input
@@ -590,16 +569,16 @@ return (
         Add Link
       </button>
     </div>
-    <ErrorMessage>{getErrors('links')}</ErrorMessage>
+    <ValidationError>{getErrors('links')}</ValidationError>
 
     <br />
-    <Button
+    <FullActionButton
       className="mt-3"
       onClick={() => {
         sanitizeValidateAndCall(state);
       }}
     >
       {buttonText}
-    </Button>
+    </FullActionButton>
   </div>
 );
