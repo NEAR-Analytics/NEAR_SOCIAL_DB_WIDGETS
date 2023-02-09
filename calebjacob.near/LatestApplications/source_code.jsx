@@ -1,3 +1,7 @@
+const Wrapper = styled.div`
+  padding-top: 24px;
+`;
+
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
@@ -10,7 +14,7 @@ const CardWrapper = styled.div`
 `;
 
 return (
-  <>
+  <Wrapper>
     <H2>Latest Applications</H2>
 
     <CardWrapper>
@@ -24,5 +28,5 @@ return (
     <CardWrapper>
       <Widget src="calebjacob.near/widget/ApplicationCard" />
     </CardWrapper>
-  </>
+  </Wrapper>
 );
