@@ -1,4 +1,4 @@
-props.controller.setLayout('layouts:container', {
+props.controller.setLayout('container', {
   title: 'My events',
   back: true,
 
