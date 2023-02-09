@@ -48,7 +48,7 @@ const BUTTON_BORDER_RADIUS = '8px';
 /**
  * Animation
  * */
-const FadeIn = styled.keyframes`
+const AnimationFadeIn = styled.keyframes`
   0% {
     opacity: 0;
   }
@@ -57,7 +57,7 @@ const FadeIn = styled.keyframes`
   }
 `;
 
-const SlideInLeft = styled.keyframes`
+const AnimationSlideInLeft = styled.keyframes`
   0% {
     opacity: 0;
     transform: translateX(-20px);
@@ -240,7 +240,7 @@ const Components = {
       flex-grow: 1;
       flex-shrink: 1;
 
-      animation: ${FadeIn} 0.5s ease-in-out;
+      animation: ${AnimationFadeIn} 0.5s ease-in-out;
     }
 
     @media (max-width: 768px) {
@@ -274,7 +274,7 @@ const Components = {
       flex-grow: 3;
       flex-shrink: 0;
 
-      animation: ${SlideInLeft} 0.3s ease-in-out;
+      animation: ${AnimationSlideInLeft} 0.3s ease-in-out;
     }
 
     & > *:last-child {
@@ -398,7 +398,7 @@ const Components = {
 
   FadeIn: styled.div`
     opacity: 0;
-    animation: ${FadeIn} 0.3s ease-in-out;
+    animation: ${AnimationFadeIn} 0.3s ease-in-out;
     animation-fill-mode: forwards;
     animation-delay: ${({ delay }) => delay || '0s'};
     animation-duration: ${({ duration }) => duration || '0.3s'};
@@ -878,7 +878,7 @@ function safeRender(_name, _props, _customEnv) {
 }
 
 const AppLayer = styled.div`
-  animation: ${FadeIn} 0.3s ease-in-out;
+  animation: ${AnimationFadeIn} 0.3s ease-in-out;
   animation-fill-mode: forwards;
   animation-delay: ${(props) => props.delay};
   animation-duration: ${(props) => props.duration};
