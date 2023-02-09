@@ -34,6 +34,8 @@ return (
       {props.__engine.renderComponent('components:event_image_slider', {
         event,
         mode: 'tile',
+        delay: props.delay,
+        duration: props.duration,
       })}
     </CardHeaderImage>
 
