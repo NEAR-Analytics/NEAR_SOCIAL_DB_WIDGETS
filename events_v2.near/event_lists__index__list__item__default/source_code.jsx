@@ -9,17 +9,18 @@ return (
   <>
     <TextButton
       onClick={() => {
-        props.__engine.navigate(`/event_lists/${event_list.event_list_id}`);
+        props.__engine.push(`/event_lists/${event_list.event_list_id}`);
       }}
       role="link"
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
-          props.__engine.navigate(`/event_lists/${event_list.event_list_id}`);
+          props.__engine.push(`/event_lists/${event_list.event_list_id}`);
         }
       }}
       tabIndex={0}
     >
       {event_list.name}
     </TextButton>
+    <br />
   </>
 );
