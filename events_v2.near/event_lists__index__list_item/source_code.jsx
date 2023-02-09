@@ -172,6 +172,7 @@ const scrollingEvents =
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              position: 'relative',
             }}
           >
             <Bobble>+{state.events.length - EVENTS_LIMIT}</Bobble>
