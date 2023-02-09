@@ -136,10 +136,14 @@ return (
     <Container>
       <GridContainer itemWidth={'300px'}>
         {state.event_list.events.map(({ event }) => {
-          return props.__engine.renderComponent(
-            'index.list_item',
-            { event: event },
-            { appName: 'events' }
+          return (
+            <div>
+              {props.__engine.renderComponent(
+                'index.list_item',
+                { event: event },
+                { appName: 'events' }
+              )}
+            </div>
           );
         })}
       </GridContainer>
