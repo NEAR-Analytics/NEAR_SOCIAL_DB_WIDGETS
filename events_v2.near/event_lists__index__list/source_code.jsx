@@ -8,10 +8,10 @@ if (event_lists.length === 0) {
   return 'No results';
 }
 
-const Container = props.__engine.Components.Container;
+const GRID_PAD = props.__engine.Constants.GRID_PAD;
 
 const ListWrapper = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: ${GRID_PAD};
   width: 100%;
 
   & > * {
