@@ -1,6 +1,4 @@
-console.log('big.jsx', props);
-
-const event_lists = props.component.props.event_lists;
+const { event_lists } = props.component.props;
 if (!event_lists) {
   return props.__engine.helpers.propIsRequiredMessage('event_lists');
 }
