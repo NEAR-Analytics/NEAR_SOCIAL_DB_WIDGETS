@@ -58,6 +58,9 @@ return (
         alt={props.alt || 'Image'}
         style={props.style || {}}
         delay={props.delay || '1s'}
+        onAnimationEnd={() => {
+          console.log('Animation end');
+        }}
       />
     )}
   </>
