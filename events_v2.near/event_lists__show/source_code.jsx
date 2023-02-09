@@ -74,7 +74,7 @@ function removeEventList() {
 
 return (
   <>
-    <Container>
+    <Container style={{ marginTop: 64 }}>
       <PageTitle>{state.event_list.name}</PageTitle>
     </Container>
 
