@@ -45,6 +45,11 @@ return (
           <h6 class="text-danger fs-5">{numberWithCommas(data.inUse)} VP</h6>
         </div>
       </div>
+      <div class="row">
+        <a href="metavote.app">
+          Get More Voting Power <i class="bi-box-arrow-up-right" />
+        </a>
+      </div>
     </div>
   </div>
 );
