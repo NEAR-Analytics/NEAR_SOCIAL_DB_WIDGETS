@@ -328,7 +328,7 @@ const Components = {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 2px 2px 0 0;
-    border-bottom: 0.1vw solid ${BORDER_COLOR};
+    border-bottom: ${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR};
     flex-shrink: 0;
     flex-grow: 0;
   `,
