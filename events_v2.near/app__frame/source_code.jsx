@@ -104,6 +104,22 @@ const Components = {
     }
   `,
 
+  FullActionButton: styled.button`
+    width: 100%;
+    padding: ${BUTTON_PADDING};
+    margin: 0;
+    border: 1px solid ${BORDER_COLOR};
+    border-radius: ${DEFAULT_BORDER_RADIUS};
+    box-sizing: border-box;
+    background-color: ${BUTTON_BG_COLOR};
+    color: ${BUTTON_COLOR};
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      background-color: ${BUTTON_BG_HOVER_COLOR};
+    }
+  `,
+
   PageTitle: styled.h1`
     font-size: ${FONT_SIZE_GIANT};
     color: black;
@@ -193,18 +209,6 @@ const Components = {
     color: ${ERROR_COLOR};
     font-size: ${FONT_SIZE_TINY};
     margin-top: ${GRID_PAD_SMALL};
-  `,
-
-  FullActionButton: styled.button`
-    width: 100%;
-    padding: ${BUTTON_PADDING};
-    margin: 0;
-    border: 1px solid ${BORDER_COLOR};
-    border-radius: ${DEFAULT_BORDER_RADIUS};
-    box-sizing: border-box;
-    background-color: ${BUTTON_BG_COLOR};
-    color: ${BUTTON_COLOR};
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   `,
 
   FormLabel: styled.label`
