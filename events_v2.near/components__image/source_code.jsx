@@ -65,7 +65,7 @@ return (
         alt={props.alt || 'Image'}
         style={props.style || {}}
         delay={props.delay || '0'}
-        duration={props.duration || '2.8s'}
+        duration={props.duration || '0.8s'}
       />
     )}
   </>
