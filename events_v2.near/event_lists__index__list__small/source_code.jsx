@@ -4,7 +4,6 @@ if (!event_lists) {
 }
 
 return (
-  <ul>
     {event_lists.map((event_list, idx) => {
       return (
         <li key={`${idx}-${event_list.event_list_id}`}>
@@ -12,5 +11,4 @@ return (
         </li>
       );
     })}
-  </ul>
 );
