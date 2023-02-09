@@ -1,3 +1,5 @@
+const ownerId = "nearmax.near";
+
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
@@ -66,8 +68,24 @@ const permissionsRenderer = (permissionType) => {
   }
 };
 
-const editPostPatterns = permissionsFilter("edit-post");
-const useLabelsPatterns = permissionsFilter("use-labels");
+const childrenRenderer = () => {
+  let children = metadata[member].children;
+  if (children) {
+    return (
+      <div class="vstack">
+        {children.map((child) => (
+          <Widget
+            src={`${ownerId}/widget/TeamInfo`}
+            props={{ member: child, members_list: props.members_list }}
+            key={`subpost-${child}-of-${member}`}
+          />
+        ))}
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
+};
 
 return (
   <Card className="card my-2 border-secondary" key={`member-${props.member}`}>
@@ -80,6 +98,7 @@ return (
       </p>
       {permissionsRenderer("edit-post")}
       {permissionsRenderer("use-labels")}
+      {childrenRenderer()}
     </div>
   </Card>
 );
