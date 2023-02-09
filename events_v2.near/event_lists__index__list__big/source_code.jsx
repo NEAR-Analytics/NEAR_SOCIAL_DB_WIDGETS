@@ -1,4 +1,4 @@
-let event_lists = props.event_lists;
+let event_lists = props.component.event_lists;
 if (!event_lists) {
   return props.__engine.helpers.propIsRequiredMessage('event_lists');
 }
