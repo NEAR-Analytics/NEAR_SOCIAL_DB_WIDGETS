@@ -1,7 +1,7 @@
 const accountId = context?.accountId;
 
 const proxyMinter = "proxy2.minsta.near";
-const nftContractId = "minsta.mintbase1.near";
+const nftContractId = props?.contractId || "minsta.mintbase1.near";
 const mbGraphEndpoint = "https://graph.mintbase.xyz";
 
 const ipfsUrl = (cid) => `https://ipfs.near.social/ipfs/${cid}`;
