@@ -47,6 +47,8 @@ return (
         display: 'none',
         width: 0,
         height: 0,
+        animation: 'none',
+        animationDuration: '2s',
       }}
       onAnimationEnd={() => {
         console.log('Animation end 1');
