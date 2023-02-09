@@ -163,7 +163,7 @@ const Actions = styled.div`
     color: #006ADC;
     border-radius: 6px;
     height: 40px;
-    width: 40px;
+    min-width: 40px;
     font-size: 0;
     border: none;
     cursor: pointer;
@@ -182,6 +182,21 @@ const Actions = styled.div`
     &:disabled {
       opacity: 0.5;
       pointer-events: none;
+    }
+
+    span {
+      margin-left: 12px;
+    }
+  }
+
+  .d-inline-block {
+    display: flex !important;
+    gap: 12px;
+    margin: 0 !important;
+
+    .overflow-hidden {
+      width: 40px !important;
+      height: 40px !important;
     }
   }
 `;
