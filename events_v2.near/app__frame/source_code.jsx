@@ -273,6 +273,7 @@ const Components = {
       min-width: ${({ itemWidth }) => itemWidth || '540px'};
       max-width: ${({ itemMaxWidth }) => itemMaxWidth || '540px'};
       width: 0;
+      height: auto;
       flex-grow: 1;
       flex-shrink: 1;
 
