@@ -39,10 +39,6 @@ return (
           {props.__engine.renderComponent('components:image', {
             url,
             key: url,
-            style: {
-              transform: `translateX(${state.index * -100}%)`,
-              transition: 'transform 0.5s ease-in-out',
-            },
           })}
         </>
       );
