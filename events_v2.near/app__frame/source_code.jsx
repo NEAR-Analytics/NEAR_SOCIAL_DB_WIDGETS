@@ -240,8 +240,8 @@ const Components = {
 
     @media (max-width: 768px) {
       & > * {
-        width: 100%;
-        max-width: 100%;
+        width: 45%;
+        max-width: 45%;
       }
     }
   `,
