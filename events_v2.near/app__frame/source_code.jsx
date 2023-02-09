@@ -301,7 +301,8 @@ const Components = {
     padding: 0;
     background-color: #ffffff;
     border-radius: ${DEFAULT_BORDER_RADIUS};
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: ${(args) =>
+    args.shadow ? '0 0 5px 0 rgba(0, 0, 0, 0.2)' : 'none'};
 
     border: ${(args) => (args.border ? `1px solid ${BORDER_COLOR}` : 'none')};
 
