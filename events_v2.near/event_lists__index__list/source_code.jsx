@@ -13,6 +13,10 @@ const Container = props.__engine.Components.Container;
 const ListWrapper = styled.div`
   margin-bottom: 20px;
   width: 100%;
+
+  & > * {
+    /* width: 100%; */
+  }
 `;
 
 return (
