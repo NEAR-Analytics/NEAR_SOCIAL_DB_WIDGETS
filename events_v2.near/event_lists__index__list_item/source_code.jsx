@@ -165,6 +165,7 @@ return (
       <FlexGrowDesktop>
         <Text>{elDescription}</Text>
       </FlexGrowDesktop>
+
       <TextButton
         onClick={() => {
           showEventList();
