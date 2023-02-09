@@ -45,7 +45,7 @@ const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
 const BUTTON_BORDER_RADIUS = '8px';
 
 const BOX_SHADOW_DEF = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
-const BOX_SHADOW_HOVER = '0 0 10px 0 rgba(0, 0, 0, 0.2)';
+const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
 /**
  * Animation
