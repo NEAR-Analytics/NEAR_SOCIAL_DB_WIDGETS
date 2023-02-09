@@ -46,12 +46,9 @@ return (
         display: 'none',
         width: 0,
         height: 0,
-        position: 'absolute',
-        top: '-1000px',
-        left: '-1000px',
       }}
       onAnimationEnd={() => {
-        console.log('Animation end 2');
+        console.log('Animation end 1');
       }}
     />
 
