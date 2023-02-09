@@ -15,6 +15,7 @@ return (
     {!state.loaded && (
       <img
         src={url}
+        alt={props.alt || 'Image'}
         onLoad={() => {
           State.update({ loaded: true, src: url });
         }}
@@ -25,6 +26,7 @@ return (
     {state.loaded && (
       <img
         src={state.src}
+        alt={props.alt || 'Image'}
         style={{
           display: 'block',
           width: '100%',
