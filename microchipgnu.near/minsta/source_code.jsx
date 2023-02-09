@@ -143,12 +143,6 @@ return (
           </div>
         );
       })}
-      <div
-        class="col-md-4 col-sm-6 px-1 d-flex justify-content-center align-items-center"
-        style={{ width: "150px", height: "150px" }}
-      >
-        {`>>>`}
-      </div>
     </div>
   </div>
 );
