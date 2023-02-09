@@ -43,6 +43,7 @@ const ERROR_COLOR = '#cc0000';
 // dark purple
 const BUTTON_BG_COLOR = '#4d2c91';
 const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
+const BUTTON_COLOR = '#ffffff';
 
 /**
  * Animation
@@ -88,7 +89,7 @@ const Components = {
   Button: styled.button`
     background-color: ${BUTTON_BG_COLOR}
     border: none;
-    color: white;
+    color: ${BUTTON_COLOR};
     padding: ${BUTTON_PADDING};
     text-align: center;
     text-decoration: none;
