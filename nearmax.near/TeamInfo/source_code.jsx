@@ -33,7 +33,7 @@ const permissionExplainer = (permission) => {
     if (s == "") {
       return "Any label";
     } else {
-      return `Labels that start with ${s}`;
+      return `Labels that start with "${s}"`;
     }
   } else {
     return permission;
