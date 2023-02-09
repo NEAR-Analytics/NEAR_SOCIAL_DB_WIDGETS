@@ -79,17 +79,19 @@ const EventTileWrapper = styled.div`
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
   opacity: 0;
-
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
   z-index: 10;
-  transform: scale(0.9875);
   border-radius: 17px;
   overflow: hidden;
   border: 1px solid;
 
+  transform: scale(0.9875);
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover {
     transform: scale(1.025);
+    box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.4);
   }
 
   flex-grow & > * {
