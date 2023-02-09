@@ -7,6 +7,8 @@ if (event_lists.length === 0) {
   return 'No results';
 }
 
+console.log('event_lists', event_lists);
+
 props.controller.setLayout(`index.list.${props.layout}`, { event_lists });
 
 return <></>;
