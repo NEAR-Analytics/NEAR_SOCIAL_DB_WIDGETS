@@ -35,6 +35,20 @@ const LoadedImage = styled.img`
   animation-duration: ${(props) => props.duration || '1s'};
 `;
 
+const BlurredImage = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: ${state.loaded ? 1 : 0};
+
+  filter: blur(100px);
+  animation: ${AnimationRotateSlowly} 1s ease-in-out infinite;
+  animation-delay: ${(props) => props.delay || '0s'};
+  animation-fill-mode: both;
+  animation-duration: ${(props) => props.duration || '2s'};
+`;
+
 return (
   <>
     {!state.loaded && (
@@ -54,20 +68,7 @@ return (
     )}
 
     {state.loaded && !state.animated && (
-      <img
-        src={state.src}
-        alt={props.alt || 'Image'}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: 'blur(100px)',
-          transform: 'rotate(45deg)',
-        }}
-      />
+      <BlurredImage src={state.src} alt={props.alt || 'Image'} />
     )}
 
     {state.loaded && (
