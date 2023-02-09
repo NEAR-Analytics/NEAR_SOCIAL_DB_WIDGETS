@@ -9,6 +9,29 @@ if (!state) {
   return <></>;
 }
 
+const AnimationFadeBlurIn = styled.keyframes`
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+`;
+
+const LoadedImage = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  ${(props) => props.style || ''}
+
+  animation: ${AnimationFadeBlurIn} 1s ease-in-out;
+`;
+
 return (
   <>
     {!state.loaded && (
