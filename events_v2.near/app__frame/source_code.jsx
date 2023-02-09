@@ -45,7 +45,7 @@ const BUTTON_COLOR = '#ffffff';
 const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
 const BUTTON_BORDER_RADIUS = '8px';
 
-const BOX_SHADOW_DEF = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
+const BOX_SHADOW_DEFAULT = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
 const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
 const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
@@ -75,7 +75,7 @@ const Constants = {
   BUTTON_COLOR,
   BUTTON_PADDING,
   BUTTON_BORDER_RADIUS,
-  BOX_SHADOW_DEF,
+  BOX_SHADOW_DEFAULT,
   BOX_SHADOW_HOVER,
   EASE_DEFAULT,
 };
@@ -337,7 +337,7 @@ const Components = {
     background-color: #ffffff;
     border-radius: ${BORDER_RADIUS_DEFAULT};
 
-    box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEF : 'none')};
+    box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEFAULT : 'none')};
     border: ${(args) => (args.border ? BORDER_DEFAULT : 'none')};
 
     transition: all 0.5s ${EASE_DEFAULT};
