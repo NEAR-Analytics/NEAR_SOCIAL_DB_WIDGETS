@@ -87,7 +87,7 @@ const EventTileWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-width: 25%;
+    max-width: 33%;
   }
 `;
 
