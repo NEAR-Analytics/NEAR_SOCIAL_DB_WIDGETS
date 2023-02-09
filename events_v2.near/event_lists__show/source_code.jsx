@@ -135,21 +135,19 @@ return (
 
     <Hr></Hr>
 
-    <Container>
-      <GridContainer itemWidth={'300px'}>
-        {state.event_list.events.map(({ event }, idx) => {
-          return (
-            <div key={`${idx}-${event.id}`}>
-              {props.__engine.renderComponent(
-                'index.list_item',
-                { event: event },
-                { appName: 'events' }
-              )}
-            </div>
-          );
-        })}
-      </GridContainer>
-    </Container>
+    <GridContainer itemWidth={'300px'}>
+      {state.event_list.events.map(({ event }, idx) => {
+        return (
+          <div key={`${idx}-${event.id}`}>
+            {props.__engine.renderComponent(
+              'index.list_item',
+              { event: event },
+              { appName: 'events' }
+            )}
+          </div>
+        );
+      })}
+    </GridContainer>
 
     <Hr></Hr>
   </>
