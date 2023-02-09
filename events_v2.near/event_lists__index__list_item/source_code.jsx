@@ -83,7 +83,7 @@ const EventTileWrapper = styled.div`
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   z-index: 10;
-  transform: scale(1);
+  transform: scale(0.9875);
   border-radius: 17px;
   overflow: hidden;
   border: 1px solid;
