@@ -49,11 +49,23 @@ const IconButtonLink = styled.a`
   }
 `;
 
+const PrimaryButtons = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+`;
+
+const IconButtons = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
 return (
   <>
     <H2>Get Involved</H2>
 
-    <div className="mb-2 d-flex gap-2 flex-wrap">
+    <PrimaryButtons>
       <ButtonLink href="https://thewiki.near.page/PastPresentAndFutureOfNearSocial">
         What's Near Social?
       </ButtonLink>
@@ -61,9 +73,9 @@ return (
       <ButtonLink href="https://thewiki.near.page/near.social_docs">
         Documentation
       </ButtonLink>
-    </div>
+    </PrimaryButtons>
 
-    <div className="mb-2 d-flex gap-2 flex-wrap">
+    <IconButtons>
       <IconButtonLink href="#/mob.near/widget/ProfilePage?accountId=self.social.near">
         <i className="bi bi-person-circle"></i>
       </IconButtonLink>
@@ -79,6 +91,6 @@ return (
       <IconButtonLink href="https://thewiki.near.page/near.social">
         <i className="bi bi-wikipedia"></i>
       </IconButtonLink>
-    </div>
+    </IconButtons>
   </>
 );
