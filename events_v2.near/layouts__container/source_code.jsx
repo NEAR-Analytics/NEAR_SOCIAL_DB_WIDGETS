@@ -105,12 +105,12 @@ const NavbarTitle = styled.h2`
   text-align: center;
   flex-grow: 1;
   word-break: break-all;
-  margin: 0 8px;
+  margin: 0 12px;
 
   @media (max-width: 768px) {
     font-size: 1.15rem;
 
-    margin: 0 4px;
+    margin: 0 8px;
   }
 `;
 
