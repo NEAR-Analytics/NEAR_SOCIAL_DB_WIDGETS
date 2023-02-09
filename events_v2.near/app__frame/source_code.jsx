@@ -203,7 +203,6 @@ const Components = {
   Text: styled.div`
     font-size: ${FONT_SIZE_SMALL};
     color: ${TEXT_COLOR};
-    margin-right: ${GRID_PAD};
   `,
 
   ValidationError: styled.div`
