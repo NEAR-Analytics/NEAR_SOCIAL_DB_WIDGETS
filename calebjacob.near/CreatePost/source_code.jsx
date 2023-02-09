@@ -129,6 +129,7 @@ const Actions = styled.div`
   display: flex;
   justify-content: end;
   gap: 12px;
+  padding: 0 24px 24px 24px;
 
   .commit-post-button {
     background: #0091FF;
