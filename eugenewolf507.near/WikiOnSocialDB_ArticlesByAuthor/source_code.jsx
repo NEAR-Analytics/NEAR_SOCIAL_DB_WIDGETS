@@ -69,7 +69,9 @@ return (
         {filteredArticlesByUser &&
           filteredArticlesByUser.map((article, index) => (
             <li key={article.articleId}>
-              <a href="">
+              <a
+                href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}`}
+              >
                 {article.articleId}{" "}
                 <small>
                   (last edited:
