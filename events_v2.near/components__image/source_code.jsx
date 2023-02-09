@@ -50,6 +50,9 @@ return (
         top: '-1000px',
         left: '-1000px',
       }}
+      onAnimationEnd={() => {
+        console.log('Animation end 2');
+      }}
     />
 
     {state.loaded && (
@@ -59,7 +62,7 @@ return (
         style={props.style || {}}
         delay={props.delay || '1s'}
         onAnimationEnd={() => {
-          console.log('Animation end');
+          console.log('Animation end 2');
         }}
       />
     )}
