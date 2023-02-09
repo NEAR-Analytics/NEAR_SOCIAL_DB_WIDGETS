@@ -122,8 +122,6 @@ const FlexGrowDesktop = styled.div`
 `;
 
 const Bobble = styled.div`
-  width: 100%;
-  height: 100%;
   background: #f8f9fa;
   border-radius: 50%;
   position: absolute;
