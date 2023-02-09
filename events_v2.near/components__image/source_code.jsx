@@ -19,7 +19,16 @@ return (
         onLoad={() => {
           State.update({ loaded: true, src: url });
         }}
-        style={{ display: 'none', visibility: 'hidden' }}
+        style={{
+          display: 'none',
+          visibility: 'hidden',
+          opacity: 0,
+          width: 0,
+          height: 0,
+          position: 'absolute',
+          top: '-1000px',
+          left: '-1000px',
+        }}
       />
     )}
 
