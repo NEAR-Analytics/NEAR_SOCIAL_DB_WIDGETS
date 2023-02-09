@@ -81,11 +81,13 @@ return (
     <Hr></Hr>
     <InfoBar>
       <InfoBarItem>
-        <strong>Created at: </strong>
-        {props.__engine.helpers.formatDate(
-          state.event_list.created_at,
-          '{{Dst}}. {{Mlong}} {{YYYY}}'
-        )}
+        <Text>
+          <strong>Created at: </strong>
+          {props.__engine.helpers.formatDate(
+            state.event_list.created_at,
+            '{{Dst}}. {{Mlong}} {{YYYY}}'
+          )}
+        </Text>
       </InfoBarItem>
     </InfoBar>
 
