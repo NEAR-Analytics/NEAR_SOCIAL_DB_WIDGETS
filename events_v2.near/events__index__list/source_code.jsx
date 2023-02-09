@@ -11,7 +11,7 @@ if (events.length === 0) {
 const GridContainer = props.__engine.Components.GridContainer;
 
 return (
-  <GridContainer itemWidth={'420px'}>
+  <GridContainer itemWidth={'380px'}>
     {events.map((event) => {
       return (
         <div key={event.event_id}>
