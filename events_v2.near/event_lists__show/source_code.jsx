@@ -138,9 +138,7 @@ return (
         {state.event_list.events.map(({ event }) => {
           return props.__engine.renderComponent(
             'index.list_item',
-            {
-              event: event,
-            },
+            { event: event },
             { appName: 'events' }
           );
         })}
