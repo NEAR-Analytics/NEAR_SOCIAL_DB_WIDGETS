@@ -1,12 +1,7 @@
-let event_lists = props.event_lists || [];
+const event_lists = props.event_lists || [];
 if (!event_lists) {
   return props.__engine.loading();
 }
+const widgetName = `index.list.${props.layout}`;
 
-if (event_lists.length === 0) {
-  return 'No results';
-}
-
-props.controller.setLayout(`index.list.${props.layout}`);
-
-return <></>;
+return <>{renderComponent(widgetName, { event_lists })}</>;
