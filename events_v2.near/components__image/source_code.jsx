@@ -57,13 +57,7 @@ return (
       <LoadedImage
         src={state.src}
         alt={props.alt || 'Image'}
-        style={{
-          display: 'block',
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          ...(props.style || {}),
-        }}
+        style={props.style || {}}
       />
     )}
   </>
