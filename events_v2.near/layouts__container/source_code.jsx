@@ -101,8 +101,14 @@ const NavbarTitle = styled.h2`
   flex-grow: 1;
   word-break: break-all;
 
+  background: red;
+
+  margin: 0 8px;
+
   @media (max-width: 768px) {
     font-size: 1.15rem;
+
+    margin: 0 4px;
   }
 `;
 
