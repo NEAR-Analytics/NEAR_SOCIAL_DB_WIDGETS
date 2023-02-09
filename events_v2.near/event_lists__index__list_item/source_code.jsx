@@ -134,6 +134,8 @@ const Bobble = styled.div`
   padding: 10px;
   font-size: 1.5rem;
 
+  aspect-ratio: 1/1;
+
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
     0 16px 24px 0 rgba(0, 0, 0, 0.1), 0 24px 32px 0 rgba(0, 0, 0, 0.1);
 `;
