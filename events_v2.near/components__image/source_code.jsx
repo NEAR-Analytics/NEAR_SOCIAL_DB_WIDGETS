@@ -59,8 +59,8 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={state.loaded ? 0 : props.delay || '2s'}
-        duration={state.loaded ? 0 : props.duration || '2s'}
+        delay={props.delay || '2s'}
+        duration={props.duration || '2s'}
       />
     )}
   </>
