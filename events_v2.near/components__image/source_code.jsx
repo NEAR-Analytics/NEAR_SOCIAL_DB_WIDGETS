@@ -64,7 +64,7 @@ return (
           width: 1,
           height: 1,
           objectFit: 'cover',
-          scale: 10000,
+          transform: 'scale(1000000)',
         }}
       />
     )}
