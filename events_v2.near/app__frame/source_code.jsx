@@ -27,8 +27,6 @@ const FONT_SIZE_SMALL = 'calc(max(16px, 1.25vw))';
 const FONT_SIZE_DEFAULT = 'calc(max(20px, 1.66vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
 
-const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
-
 const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 
 const DEFAULT_BORDER_RADIUS = '4px';
@@ -44,6 +42,7 @@ const ERROR_COLOR = '#cc0000';
 const BUTTON_BG_COLOR = '#4d2c91';
 const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
 const BUTTON_COLOR = '#ffffff';
+const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
 
 /**
  * Animation
