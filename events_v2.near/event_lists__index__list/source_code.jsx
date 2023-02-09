@@ -7,7 +7,7 @@ if (event_lists.length === 0) {
   return 'No results';
 }
 
-props.controller.setLayout(`index.list-${props.layout}`, {
+props.controller.setLayout(`index.list.${props.layout}`, {
   items: event_lists,
 });
 
