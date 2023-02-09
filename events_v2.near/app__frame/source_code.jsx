@@ -22,7 +22,7 @@ const GRID_PAD_SMALL = '10px';
 const GRID_PAD = '20px';
 const GRID_PAD_BIG = '30px';
 
-const FONT_SIZE_TINY = 'calc(max(12px, 1.15vw))';
+const FONT_SIZE_TINY = 'calc(max(12px, 1.05vw))';
 const FONT_SIZE_SMALL = 'calc(max(16px, 1.13vw))';
 const FONT_SIZE_DEFAULT = 'calc(max(20px, 1.2vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
