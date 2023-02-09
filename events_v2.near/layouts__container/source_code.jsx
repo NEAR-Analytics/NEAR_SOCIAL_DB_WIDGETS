@@ -83,73 +83,77 @@ const Navbar = styled.div`
   z-index: 99999999;
 `;
 
+const NavbarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  height: 100%;
+  width: 100%;
+`;
+
 const navbar = (
   <Navbar className="navbar">
-    <div className="container-fluid h-100 flex">
-      <div className="d-flex align-items-center w-100">
-        {props.back ? (
-          <button
-            className=""
-            style={{
-              color: 'white',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-              border: 'none',
-              outline: 'none',
-              background: 'transparent',
-              width: NAVBAR_HEIGHT,
-            }}
-            type="button"
-            tabIndex={0}
-            onClick={() => {
-              props.__engine.pop();
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                props.__engine.pop();
-              }
-            }}
-          >
-            <i className="bi bi-chevron-left"></i>
-          </button>
-        ) : null}
-
-        <h2
+    <NavbarContainer>
+      {props.back ? (
+        <button
+          className=""
           style={{
             color: 'white',
-            margin: 0,
-            padding: 0,
-            marginLeft: 10,
-            marginRight: 'auto',
-            fontSize: 20,
-            display: 'inline-block',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            width: NAVBAR_HEIGHT,
+          }}
+          type="button"
+          tabIndex={0}
+          onClick={() => {
+            props.__engine.pop();
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              props.__engine.pop();
+            }
           }}
         >
-          {title}
-        </h2>
+          <i className="bi bi-chevron-left"></i>
+        </button>
+      ) : null}
 
-        {props.primaryAction ? (
-          <NavPrimaryButton
-            type="button"
-            tabIndex={0}
-            onClick={() => {
+      <h2
+        style={{
+          color: 'white',
+          margin: 0,
+          padding: 0,
+          marginLeft: 10,
+          marginRight: 'auto',
+          fontSize: 20,
+          display: 'inline-block',
+        }}
+      >
+        {title}
+      </h2>
+
+      {props.primaryAction ? (
+        <NavPrimaryButton
+          type="button"
+          tabIndex={0}
+          onClick={() => {
+            props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
               props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
-              }
-            }}
-          >
-            {props.primaryAction.label}
-          </NavPrimaryButton>
-        ) : null}
-      </div>
-
-      {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
-    </div>
+            }
+          }}
+        >
+          {props.primaryAction.label}
+        </NavPrimaryButton>
+      ) : null}
+    </NavbarContainer>
   </Navbar>
 );
 
