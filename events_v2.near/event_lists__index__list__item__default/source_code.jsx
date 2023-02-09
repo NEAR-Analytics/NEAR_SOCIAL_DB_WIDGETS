@@ -9,12 +9,12 @@ return (
   <>
     <TextButton
       onClick={() => {
-        props.__engine.push('show', { event_list });
+        props.__engine.push('show', { event_list_id: event_list.id });
       }}
       role="link"
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
-          props.__engine.push('show', { event_list });
+          props.__engine.push('show', { event_list_id: event_list.id });
         }
       }}
       tabIndex={0}
