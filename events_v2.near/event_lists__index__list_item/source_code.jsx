@@ -82,7 +82,7 @@ const EventTileWrapper = styled.div`
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
   opacity: 0;
-
+  flex-grow: 1;
   & > * {
     height: 100%;
   }
