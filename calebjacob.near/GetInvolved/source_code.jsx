@@ -17,7 +17,7 @@ const ButtonLink = styled.a`
   cursor: pointer;
   border: 1px solid #D7DBDF;
   background: #FBFCFD;
-  color: #11181C;
+  color: #11181C !important;
 
   &:hover,
   &:focus {
@@ -39,7 +39,7 @@ const IconButtonLink = styled.a`
   cursor: pointer;
   border: none;
   background: #F1F3F5;
-  color: #006ADC;
+  color: #006ADC !important;
 
   &:hover,
   &:focus {
