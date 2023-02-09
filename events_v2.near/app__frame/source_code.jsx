@@ -356,6 +356,7 @@ const Components = {
     height: auto;
     flex-grow: 100;
     flex-shrink: 0;
+    position: relative;
     padding: ${({ small }) => (small ? GRID_PAD_SMALL : GRID_PAD)};
   `,
 
