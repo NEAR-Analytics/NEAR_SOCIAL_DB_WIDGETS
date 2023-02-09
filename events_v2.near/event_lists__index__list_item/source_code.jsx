@@ -147,6 +147,16 @@ const scrollingEvents =
             </EventTileWrapper>
           );
         })}
+
+      {state.events.length >= EVENTS_LIMIT && (
+        <EventTileWrapper delay={state.events.length * ANIMATION_DELAY}>
+          <Card>
+            <CardHeader>
+              <CardTitle>...</CardTitle>
+            </CardHeader>
+          </Card>
+        </EventTileWrapper>
+      )}
     </HorizontalScroll>
   ) : (
     <Text>This list is empty :(</Text>
