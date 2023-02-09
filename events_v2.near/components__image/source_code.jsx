@@ -48,7 +48,7 @@ return (
         display: 'none',
         width: 0,
         height: 0,
-        animation: 'none',
+        animationName: 'none',
         animationDuration: '2s',
       }}
       onAnimationEnd={() => {
