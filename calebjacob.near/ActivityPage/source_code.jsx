@@ -23,7 +23,7 @@ return (
       <Widget src="calebjacob.near/widget/Activity" />
     </Main>
     <Sidebar>
-      <h1>Explore</h1>
+      <Widget src="calebjacob.near/widget/CustomWidgetDisplay" />
     </Sidebar>
   </Wrapper>
 );
