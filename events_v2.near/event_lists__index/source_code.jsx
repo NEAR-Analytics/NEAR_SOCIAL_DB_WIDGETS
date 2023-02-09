@@ -14,7 +14,7 @@ const Hr = props.__engine.Components.Hr;
 return (
   <>
     <Container>
-      {props.__engine.renderComponent('index.list_container', {
+      {props.__engine.renderComponent('index.list.container', {
         header: 'Your event lists',
         forAccountId: props.__engine.accountId,
       })}
@@ -22,7 +22,7 @@ return (
     <Hr />
 
     <Container>
-      {props.__engine.renderComponent('index.list_container', {
+      {props.__engine.renderComponent('index.list.container', {
         header: 'All event lists',
         search: true,
       })}
