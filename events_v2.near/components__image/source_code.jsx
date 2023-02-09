@@ -19,7 +19,7 @@ return (
         onLoad={() => {
           State.update({ loaded: true, src: url });
         }}
-        style={{ display: hidden }}
+        style={{ display: 'none', visibility: 'hidden' }}
       />
     )}
 
