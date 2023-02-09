@@ -11,12 +11,7 @@ if (!state) {
 
 const AnimationFadeBlurIn = styled.keyframes`
   0% {
-    opacity: 0;
-    filter: blur(100px);
-    transform: scale(1.2);
-  }
-  10% {
-    opacity: 0.5;
+    opacity: 0.8;
     filter: blur(100px);
     transform: scale(1.2);
   }
@@ -64,7 +59,7 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '0.1s'}
+        delay={props.delay || '0s'}
         duration={props.duration || '0.4s'}
       />
     )}
