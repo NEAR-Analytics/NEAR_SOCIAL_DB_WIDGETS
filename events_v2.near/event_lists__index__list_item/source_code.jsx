@@ -37,6 +37,9 @@ const CardHeader = props.__engine.Components.CardHeader;
 const Text = props.__engine.Components.Text;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
+const Constants = props.__engine.Constants;
+const { EASE_DEFAULT, GRID_PAD, GRID_PAD_SMALL, BORDER_DEFAULT } = Constants;
+
 const CardBody = styled.div`
   display: flex;
   flex-direction: row;
@@ -53,12 +56,12 @@ const CardBody = styled.div`
   }
 
   & > * {
-    padding: 20px;
+    padding: ${GRID_PAD};
   }
 
   @media (max-width: 768px) {
     & > * {
-      padding: 10px;
+      padding: ${GRID_PAD_SMALL};
     }
   }
 `;
@@ -75,14 +78,14 @@ const FadeIn = styled.keyframes`
 const EventTileWrapper = styled.div`
   width: 100%;
   height: auto;
-  animation: ${FadeIn} 0.5s ease-in-out;
+  animation: ${FadeIn} 0.5s ${EASE_DEFAULT};
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
   opacity: 0;
   z-index: 10;
   border-radius: 17px;
   overflow: hidden;
-  border: 1px solid rgb(150, 150, 150);
+  border: ${BORDER_DEFAULT}
 
   transform: scale(0.9875);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
