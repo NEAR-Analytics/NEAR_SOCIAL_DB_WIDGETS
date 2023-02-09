@@ -90,8 +90,7 @@ const NavPrimaryButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.05rem;
-    padding: 4px 8px;
+    font-size: 1.15rem;
     margin: 0 8px;
   }
 `;
