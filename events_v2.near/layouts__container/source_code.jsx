@@ -99,7 +99,11 @@ const NavbarTitle = styled.h2`
   color: white;
   text-align: center;
   flex-grow: 1;
-  word-break: break-word;
+  word-break: break-all;
+
+  @media (max-width: 768px) {
+    font-size: 1.15rem;
+  }
 `;
 
 const NavbarBackButton = styled.button`
