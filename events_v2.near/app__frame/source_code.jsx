@@ -265,6 +265,7 @@ const Components = {
     justify-content: flex-start;
 
     width: auto;
+    height: auto;
     margin-left: -${GRID_PAD};
     margin-right: -${GRID_PAD};
 
