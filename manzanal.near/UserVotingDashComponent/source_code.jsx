@@ -28,7 +28,7 @@ let data = {
 };
 
 return (
-  <div class="card">
+  <div className={props.noborder ? "card border-0" : "card"}>
     <div class="card-body p-3">
       <h5 class="card-title">Your Voting Power Balance</h5>
       <div class="row">
