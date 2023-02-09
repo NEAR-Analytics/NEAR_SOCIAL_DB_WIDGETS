@@ -52,7 +52,7 @@ return (
     />
 
     {state.loaded && (
-      <LoadedImage
+      <img
         src={state.src}
         alt={props.alt || 'Image'}
         delay={props.delay || '0s'}
