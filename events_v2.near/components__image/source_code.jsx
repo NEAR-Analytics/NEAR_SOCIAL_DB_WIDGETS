@@ -75,10 +75,9 @@ return (
         delay={props.delay || '1s'}
         duration={props.duration || '2s'}
         onAnimationEnd={() => {
-          if (state.animated) {
-            return;
+          if (!state.animated) {
+            State.update({ animated: true });
           }
-          State.update({ animated: true });
         }}
       />
     )}
