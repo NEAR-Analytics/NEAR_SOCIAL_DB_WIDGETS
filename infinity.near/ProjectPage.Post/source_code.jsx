@@ -3,14 +3,14 @@ const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const content =
   props.content ??
-  JSON.parse(Social.get(`${accountId}/post/idea`, blockHeight) ?? "null");
+  JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
 const subscribe = !!props.subscribe;
 const raw = !!props.raw;
 
 const notifyAccountId = accountId;
 const item = {
   type: "social",
-  path: `${accountId}/post/idea`,
+  path: `${accountId}/post/main`,
   blockHeight,
 };
 
