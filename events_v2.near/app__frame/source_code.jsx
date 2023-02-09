@@ -97,7 +97,7 @@ const Components = {
     font-size: ${FONT_SIZE_DEFAULT};
     transition: all 0.5s ease;
     cursor: pointer;
-    border-radius: ${DEFAULT_BORDER_RADIUS};
+    border-radius: ${BUTTON_BORDER_RADIUS};
 
     &:hover {
       background-color: ${BUTTON_BG_HOVER_COLOR};
