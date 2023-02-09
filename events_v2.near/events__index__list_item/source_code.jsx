@@ -28,6 +28,7 @@ return (
       }
     }}
     role="button"
+    border
     tabIndex={0}
   >
     <CardHeaderImage>
