@@ -8,4 +8,4 @@ if (homepage === null) {
   return "Loading";
 }
 
-return <Widget src={homepage ?? "calebjacob.near/widget/FeedPage"} />;
+return <Widget src={homepage ?? "calebjacob.near/widget/ActivityPage"} />;
