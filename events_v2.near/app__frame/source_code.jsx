@@ -133,6 +133,7 @@ const Components = {
     padding-right: ${GRID_PAD};
     padding-top: ${GRID_PAD_SMALL};
     padding-bottom: ${GRID_PAD_SMALL};
+    width: 100%;
 
     @media (max-width: 768px) {
       padding-left: ${GRID_PAD_SMALL};
