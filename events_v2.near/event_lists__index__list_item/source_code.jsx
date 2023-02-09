@@ -51,6 +51,16 @@ const CardBody = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
+
+  & > * {
+    padding: 20px;
+  }
+
+  @media (max-width: 768px) {
+    & > * {
+      padding: 10px;
+    }
+  }
 `;
 
 const AnimationSlideFadeInLeft = styled.keyframes`
@@ -71,8 +81,7 @@ const EventTileWrapper = styled.div`
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
   opacity: 0;
-  flex-grow: 1;
-  & > * {
+  flex-grow & > * {
     height: 100%;
   }
 `;
