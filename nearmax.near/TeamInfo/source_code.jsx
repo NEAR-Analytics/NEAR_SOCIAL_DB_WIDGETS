@@ -52,7 +52,7 @@ const permissionsFilter = (permissionType) => {
 
 const permissionsRenderer = (permissionType) => {
   let permissions = permissionsFilter(permissionType);
-  if (permissions) {
+  if (permissions.length > 0) {
     return (
       <p class="card-text" key={`${permissionType}-permissions`}>
         {permissionDesc[permissionType]}:
