@@ -226,6 +226,6 @@ return (
       </TextButton>
     </CardHeader>
 
-    <CardBody>{scrollingEvents}</CardBody>
+    <CardBody style={{ height: 'auto' }}>{scrollingEvents}</CardBody>
   </Card>
 );
