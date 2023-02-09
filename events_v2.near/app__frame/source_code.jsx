@@ -237,6 +237,13 @@ const Components = {
 
       animation: ${FadeIn} 0.5s ease-in-out;
     }
+
+    @media (max-width: 768px) {
+      & > * {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
   `,
 
   HorizontalScroll: styled.div`
