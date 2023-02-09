@@ -21,6 +21,16 @@ const AnimationFadeBlurIn = styled.keyframes`
   }
 `;
 
+const AnimationRotate = styled.keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 const LoadedImage = styled.img`
   display: block;
   width: 100%;
@@ -43,7 +53,7 @@ const BlurredImage = styled.img`
   opacity: ${state.loaded ? 1 : 0};
 
   filter: blur(100px);
-  animation: ${AnimationRotateSlowly} 1s ease-in-out infinite;
+  animation: ${AnimationRotate} 1s ease-in-out infinite;
   animation-delay: ${(props) => props.delay || '0s'};
   animation-fill-mode: both;
   animation-duration: ${(props) => props.duration || '2s'};
