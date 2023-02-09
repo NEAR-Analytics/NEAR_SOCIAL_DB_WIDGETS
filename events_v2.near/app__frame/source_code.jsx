@@ -195,8 +195,6 @@ const Components = {
     background-color: ${BORDER_COLOR};
     padding: ${TAG_PADDING};
     border-radius: ${DEFAULT_BORDER_RADIUS};
-    margin-right: ${GRID_PAD};
-    margin-left: ${GRID_PAD};
   `,
 
   Text: styled.div`
