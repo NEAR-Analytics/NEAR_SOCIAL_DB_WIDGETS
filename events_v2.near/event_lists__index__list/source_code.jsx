@@ -4,4 +4,4 @@ if (!event_lists) {
 }
 const widgetName = `index.list.${props.layout}`;
 
-return <>{renderComponent(widgetName, { event_lists })}</>;
+return <>{props.__engine.renderComponent(widgetName, { event_lists })}</>;
