@@ -128,7 +128,7 @@ const TextButton = styled.button`
   transition: color 0.15s ${EASE_DEFAULT};
   display: inline-block;
   width: fit-content;
-  margin-top: 10px;
+  margin-top: ${GRID_PAD_SMALL};
 
   &:hover {
     color: #0056b3;
