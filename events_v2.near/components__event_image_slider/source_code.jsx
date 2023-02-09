@@ -2,7 +2,7 @@ let event = props.event || null;
 
 if (!state) {
   State.init({ index: 0 });
-  return;
+  return '';
 }
 
 const mode = props.mode || 'banner';
@@ -34,9 +34,14 @@ return (
   >
     {displayImages.map((image) => {
       const url = `https://ipfs.near.social/ipfs/${image.url.cid}`;
-      return <>
-        {props.__engine.renderComponent('components:image', { url, key: url })
-      </>
+      return (
+        <>
+          {props.__engine.renderComponent('components:image', {
+            url,
+            key: url,
+          })}
+        </>
+      );
     })}
   </div>
 );
