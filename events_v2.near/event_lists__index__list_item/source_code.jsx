@@ -181,10 +181,10 @@ const scrollingEvents =
           );
         })}
 
-      {state.events.length >= EVENTS_LIMIT && (
-        <EventTileWrapper delay={state.events.length * ANIMATION_DELAY}>
+      {event_list.event_count >= EVENTS_LIMIT && (
+        <EventTileWrapper delay={event_list.event_count * ANIMATION_DELAY}>
           <BobbleWrap>
-            <Bobble>+{state.events.length - EVENTS_LIMIT}</Bobble>
+            <Bobble>+{event_list.event_count - EVENTS_LIMIT}</Bobble>
           </BobbleWrap>
         </EventTileWrapper>
       )}
