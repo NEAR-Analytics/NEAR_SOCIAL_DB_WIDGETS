@@ -1,6 +1,78 @@
+if (!context.accountId) {
+  return "";
+}
+
 State.init({
-  message: "",
+  image: {},
+  text: "",
 });
+
+function extractMentions(text) {
+  const mentionRegex =
+    /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
+  mentionRegex.lastIndex = 0;
+  const accountIds = new Set();
+  for (const match of text.matchAll(mentionRegex)) {
+    if (
+      !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
+      !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
+      match[1].length >= 2 &&
+      match[1].length <= 64
+    ) {
+      accountIds.add(match[1].toLowerCase());
+    }
+  }
+  return [...accountIds];
+}
+
+function extractTagNotifications(text, item) {
+  return extractMentions(text || "")
+    .filter((accountId) => accountId !== context.accountId)
+    .map((accountId) => ({
+      key: accountId,
+      value: {
+        type: "mention",
+        item,
+      },
+    }));
+}
+
+function composeData() {
+  const data = {
+    post: {
+      main: JSON.stringify({
+        type: "md",
+        text: state.text,
+        image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
+      }),
+    },
+    index: {
+      post: JSON.stringify({
+        key: "main",
+        value: {
+          type: "md",
+        },
+      }),
+    },
+  };
+
+  const notifications = extractTagNotifications(state.text, {
+    type: "social",
+    path: `${context.accountId}/post/main`,
+  });
+
+  if (notifications.length) {
+    data.index.notify = JSON.stringify(
+      notifications.length > 1 ? notifications : notifications[0]
+    );
+  }
+
+  return data;
+}
+
+function onCommit() {
+  console.log("committed!");
+}
 
 const Wrapper = styled.div`
   border: 1px solid;
@@ -71,21 +143,32 @@ const Actions = styled.div`
   gap: 12px;
 `;
 
+console.log(composeData());
+
 return (
   <Wrapper>
     <Avatar>
       <img src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibhm4kokjpetrr7ztaixyanzbn5djvj4h4ryjshsfh2hgpi3v7uqu" />
     </Avatar>
 
-    <Textarea data-value={state.message}>
+    <Textarea data-value={state.text}>
       <textarea
         placeholder="What's happening?"
-        onInput={(event) => State.update({ message: event.target.value })}
+        onInput={(event) => State.update({ text: event.target.value })}
       ></textarea>
     </Textarea>
 
     <Actions>
-      <Button type="button">Post</Button>
+      // <Button type="button">Post</Button>
+      <CommitButton
+        disabled={!state.text}
+        force
+        className="btn btn-dark rounded-3"
+        data={composeData}
+        onCommit={onCommit}
+      >
+        Post
+      </CommitButton>
     </Actions>
   </Wrapper>
 );
