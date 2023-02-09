@@ -64,7 +64,7 @@ return (
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          filter: 'blur(2000px)',
+          filter: 'blur(200px)',
         }}
       />
     )}
