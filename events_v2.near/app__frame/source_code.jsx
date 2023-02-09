@@ -45,6 +45,8 @@ const BUTTON_COLOR = '#ffffff';
 const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
 const BUTTON_BORDER_RADIUS = '8px';
 
+const BOX_SHADOW_DEF = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
+
 /**
  * Animation
  * */
@@ -301,9 +303,8 @@ const Components = {
     padding: 0;
     background-color: #ffffff;
     border-radius: ${DEFAULT_BORDER_RADIUS};
-    box-shadow: ${(args) =>
-    args.shadow ? '0 0 5px 0 rgba(0, 0, 0, 0.2)' : 'none'};
 
+    box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEF : 'none')};
     border: ${(args) => (args.border ? `1px solid ${BORDER_COLOR}` : 'none')};
 
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
