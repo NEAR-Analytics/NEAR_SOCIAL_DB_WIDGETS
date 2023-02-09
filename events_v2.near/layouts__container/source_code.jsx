@@ -106,6 +106,10 @@ const NavbarTitle = styled.h2`
   word-break: break-all;
   margin: 0 12px;
 
+  text-align: ${(props) => {
+    return props.primaryAction ? 'left' : 'center';
+  }};
+
   @media (max-width: 768px) {
     font-size: 1.15rem;
 
