@@ -893,8 +893,6 @@ return (
           bottom: 0,
           right: 0,
           zIndex: 9999,
-          padding: 8,
-          backgroundColor: 'transparent',
         }}
       >
         <Button
