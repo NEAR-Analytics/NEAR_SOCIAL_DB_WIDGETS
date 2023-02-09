@@ -203,6 +203,7 @@ const Components = {
     border-radius: ${DEFAULT_BORDER_RADIUS};
     box-sizing: border-box;
     background-color: ${BUTTON_BG_COLOR};
+    color: ${BUTTON_COLOR};
   `,
 
   FormLabel: styled.label`
