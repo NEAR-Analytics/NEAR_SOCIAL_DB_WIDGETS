@@ -20,7 +20,7 @@ const ListWrapper = styled.div`
 `;
 
 return (
-  <Container>
+
     {event_lists.map((event_list, idx) => {
       return (
         <ListWrapper key={`${idx}-${event_list.event_list_id}`}>
@@ -28,5 +28,5 @@ return (
         </ListWrapper>
       );
     })}
-  </Container>
+
 );
