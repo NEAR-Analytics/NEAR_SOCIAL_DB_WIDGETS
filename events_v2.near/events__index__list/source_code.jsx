@@ -10,12 +10,11 @@ if (events.length === 0) {
   return 'No events found';
 }
 
-
 const FadeIn = props.__engine.Components.FadeIn;
 const GridContainer = props.__engine.Components.GridContainer;
 
 return (
-  <GridContainer itemWidth={'380px'} delay={`${(idx + 1) * ANIMATION_DELAY}ms`]>
+  <GridContainer itemWidth={'380px'} delay={`${(idx + 1) * ANIMATION_DELAY}ms`}>
     {events.map((event, idx) => {
       return (
         <FadeIn key={event.event_id}>
