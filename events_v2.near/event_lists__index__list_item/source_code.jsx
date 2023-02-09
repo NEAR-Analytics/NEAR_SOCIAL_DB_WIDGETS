@@ -182,7 +182,7 @@ const scrollingEvents =
         })}
 
       {event_list.event_count >= EVENTS_LIMIT && (
-        <EventTileWrapper delay={event_list.event_count * ANIMATION_DELAY}>
+        <EventTileWrapper delay={(state.events.length + 1) * ANIMATION_DELAY}>
           <BobbleWrap>
             <Bobble>+{event_list.event_count - EVENTS_LIMIT}</Bobble>
           </BobbleWrap>
