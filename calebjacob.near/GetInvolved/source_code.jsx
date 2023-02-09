@@ -1,51 +1,82 @@
+const H2 = styled.h2`
+  font-size: 19px;
+  line-height: 22px;
+  color: #11181C;
+  margin: 0 0 25px;
+`;
+
+const ButtonLink = styled.a`
+  padding: 8px;
+  height: 32px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #D7DBDF;
+  background: #FBFCFD;
+  color: #11181C;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+`;
+
+const IconButtonLink = styled.a`
+  padding: 0;
+  height: 32px;
+  width: 32px;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background: #F1F3F5;
+  color: #006ADC;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+`;
+
 return (
-  <div>
-    <h5>Get involved</h5>
+  <>
+    <H2>Get Involved</H2>
+
     <div className="mb-2 d-flex gap-2 flex-wrap">
-      <a
-        className="btn btn-outline-primary"
-        href="https://thewiki.near.page/PastPresentAndFutureOfNearSocial"
-      >
+      <ButtonLink href="https://thewiki.near.page/PastPresentAndFutureOfNearSocial">
         What's Near Social?
-      </a>
-      <a
-        className="btn btn-outline-primary"
-        href="https://thewiki.near.page/near.social_docs"
-      >
+      </ButtonLink>
+
+      <ButtonLink href="https://thewiki.near.page/near.social_docs">
         Documentation
-      </a>
+      </ButtonLink>
     </div>
+
     <div className="mb-2 d-flex gap-2 flex-wrap">
-      <a
-        className="btn btn-outline-secondary border-0"
-        href="#/mob.near/widget/ProfilePage?accountId=self.social.near"
-      >
+      <IconButtonLink href="#/mob.near/widget/ProfilePage?accountId=self.social.near">
         <i className="bi bi-person-circle"></i>
-      </a>
-      <a
-        className="btn btn-outline-secondary border-0"
-        href="https://t.me/NearSocial"
-      >
+      </IconButtonLink>
+      <IconButtonLink href="https://t.me/NearSocial">
         <i className="bi bi-telegram"></i>
-      </a>
-      <a
-        className="btn btn-outline-secondary border-0"
-        href="https://github.com/NearSocial"
-      >
+      </IconButtonLink>
+      <IconButtonLink href="https://github.com/NearSocial">
         <i className="bi bi-github"></i>
-      </a>
-      <a
-        className="btn btn-outline-secondary border-0"
-        href="https://twitter.com/NearSocial_"
-      >
+      </IconButtonLink>
+      <IconButtonLink href="https://twitter.com/NearSocial_">
         <i className="bi bi-twitter"></i>
-      </a>
-      <a
-        className="btn btn-outline-secondary border-0"
-        href="https://thewiki.near.page/near.social"
-      >
+      </IconButtonLink>
+      <IconButtonLink href="https://thewiki.near.page/near.social">
         <i className="bi bi-wikipedia"></i>
-      </a>
+      </IconButtonLink>
     </div>
-  </div>
+  </>
 );
