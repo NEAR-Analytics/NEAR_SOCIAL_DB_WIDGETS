@@ -351,7 +351,7 @@ const Components = {
     @media (max-width: 768px) {
       width: 100%;
       border-right: none;
-      border-bottom: 1px solid ${BORDER_COLOR};
+      border-bottom: ${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR};
       height: auto;
       min-height: 0px;
 
