@@ -16,12 +16,10 @@ const GridContainer = props.__engine.Components.GridContainer;
 return (
   <GridContainer itemWidth={'380px'}>
     {events.map((event, idx) => {
+      const delay = `${(idx + 2) * ANIMATION_DELAY}ms`;
       return (
-        <FadeIn key={event.event_id} delay={`${(idx + 1) * ANIMATION_DELAY}ms`}>
-          {props.__engine.renderComponent('index.list_item', {
-            event,
-            delay: `${(idx + 1) * ANIMATION_DELAY}ms`,
-          })}
+        <FadeIn key={event.event_id} delay={delay}>
+          {props.__engine.renderComponent('index.list_item', { event, delay })}
         </FadeIn>
       );
     })}
