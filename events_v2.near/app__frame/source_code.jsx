@@ -114,6 +114,7 @@ const Components = {
     background-color: ${BUTTON_BG_COLOR};
     color: ${BUTTON_COLOR};
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
 
     &:hover {
       background-color: ${BUTTON_BG_HOVER_COLOR};
