@@ -112,6 +112,9 @@ const NavbarBackButton = styled.button`
   outline: none;
   background: transparent;
   width: ${NAVBAR_HEIGHT}px;
+
+  flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 const navbar = (
