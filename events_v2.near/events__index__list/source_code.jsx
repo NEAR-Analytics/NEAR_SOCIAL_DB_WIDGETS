@@ -1,4 +1,4 @@
-const ANIMATION_DELAY = 200;
+const ANIMATION_DELAY = 50;
 
 let events = props.events || [];
 if (!events) {
