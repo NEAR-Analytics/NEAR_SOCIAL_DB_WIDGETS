@@ -1,3 +1,5 @@
+const ANIMATION_DELAY = 300;
+
 let events = props.events || [];
 if (!events) {
   return '';
@@ -12,10 +14,13 @@ const GridContainer = props.__engine.Components.GridContainer;
 
 return (
   <GridContainer itemWidth={'380px'}>
-    {events.map((event) => {
+    {events.map((event, idx) => {
       return (
         <div key={event.event_id}>
-          {props.__engine.renderComponent('index.list_item', { event })}
+          {props.__engine.renderComponent('index.list_item', {
+            event,
+            delay: `${(idx + 1) * ANIMATION_DELAY}ms`,
+          })}
         </div>
       );
     })}
