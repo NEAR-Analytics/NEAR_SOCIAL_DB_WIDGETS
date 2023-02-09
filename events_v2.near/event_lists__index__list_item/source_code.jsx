@@ -1,7 +1,7 @@
 const EVENTS_CONTRACT = 'events_v2.near';
 const EVENTS_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 100;
-const ANIMATION_DELAY = 200;
+const ANIMATION_DELAY = 400;
 
 const event_list = props.event_list || null;
 
@@ -144,8 +144,7 @@ const scrollingEvents =
                 {
                   event: event,
                   small: true,
-                  delay: `${idx * idx * ANIMATION_DELAY}ms`,
-                  duration: '1s',
+                  delay: `${idx * ANIMATION_DELAY}ms`,
                 },
                 { appName: 'events' }
               )}
