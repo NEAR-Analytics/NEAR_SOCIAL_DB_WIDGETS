@@ -1,17 +1,13 @@
-props.controller.setLayout('layouts:modal', {
+props.controller.setLayout('modal', {
   title: 'Create Event',
   back: true,
 });
 
 const EVENTS_CONTRACT = 'events_v2.near';
 
-const latestEvent = props.__engine.contract.view(
-  EVENTS_CONTRACT,
-  'get_latest_event',
-  {
-    account_id: props.__engine.accountId,
-  }
-);
+const latestEvent = Near.view(EVENTS_CONTRACT, 'get_latest_event', {
+  account_id: props.__engine.accountId,
+});
 if (!latestEvent) {
   // return 'Loading';
 }
