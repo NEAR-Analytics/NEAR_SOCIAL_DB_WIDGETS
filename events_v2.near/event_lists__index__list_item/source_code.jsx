@@ -45,6 +45,7 @@ const {
   BORDER_DEFAULT,
   BOX_SHADOW_HOVER,
   BOX_SHADOW_DEFAULT,
+  FONT_SIZE_DEFAULT,
 } = Constants;
 
 const CardBody = styled.div`
@@ -119,7 +120,7 @@ const TextButton = styled.button`
   border: none;
   color: #007bff;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: ${FONT_SIZE_DEFAULT};
   font-weight: 400;
   outline: none;
   padding: 0;
