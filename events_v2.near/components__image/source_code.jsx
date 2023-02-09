@@ -53,10 +53,8 @@ const BlurredImage = styled.img`
   opacity: ${state.loaded ? 1 : 0};
 
   filter: blur(100px);
-  animation: ${AnimationRotate} 1s ease-in-out infinite;
-  animation-delay: ${(props) => props.delay || '0s'};
+  animation: ${AnimationRotate} 10s linear infinite;
   animation-fill-mode: both;
-  animation-duration: 10s;
 `;
 
 return (
