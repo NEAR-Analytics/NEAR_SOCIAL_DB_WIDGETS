@@ -33,6 +33,7 @@ return (
     {props.__engine.renderComponent('index.list', {
       event_lists,
       layout: listLayout,
+      search: props.search || false,
     })}
   </>
 );
