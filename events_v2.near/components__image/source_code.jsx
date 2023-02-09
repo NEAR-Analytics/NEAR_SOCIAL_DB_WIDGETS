@@ -37,19 +37,21 @@ const LoadedImage = styled.img`
 
 return (
   <>
-    <img
-      src={url}
-      alt={props.alt || 'Image'}
-      onLoad={() => {
-        console.log('Image loaded');
-        State.update({ loaded: true, src: url });
-      }}
-      style={{
-        display: 'none',
-        width: 0,
-        height: 0,
-      }}
-    />
+    {!state.loaded && (
+      <img
+        src={url}
+        alt={props.alt || 'Image'}
+        onLoad={() => {
+          console.log('Image loaded');
+          State.update({ loaded: true, src: url });
+        }}
+        style={{
+          display: 'none',
+          width: 0,
+          height: 0,
+        }}
+      />
+    )}
 
     {state.loaded && !state.animated && (
       <img
