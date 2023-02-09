@@ -1,4 +1,3 @@
-let event = props.event || null;
 const url = props.url;
 
 if (!url) {
@@ -7,7 +6,7 @@ if (!url) {
 
 if (!state) {
   State.init({ loaded: false, src: null });
-  return;
+  return <></>;
 }
 
 return (
