@@ -23,6 +23,7 @@ const AnimationFadeBlurIn = styled.keyframes`
   }
 `;
 
+console.log('delay', props.delay);
 const LoadedImage = styled.img`
   display: block;
   width: 100%;
