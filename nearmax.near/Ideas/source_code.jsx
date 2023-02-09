@@ -311,6 +311,8 @@ const navbar = (
             <a
               class="nav-link active"
               href="https://near.social/#/nearmax.near/widget/TeamsList"
+              target="_blank"
+              title="View teams and permissions"
               role="button"
             >
               <i class="bi-people-fill"> </i>
