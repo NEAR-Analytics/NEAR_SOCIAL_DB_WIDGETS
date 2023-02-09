@@ -40,6 +40,7 @@ return (
       src={url}
       alt={props.alt || 'Image'}
       onLoad={() => {
+        console.log('Image loaded');
         State.update({ loaded: true, src: url });
       }}
       style={{
