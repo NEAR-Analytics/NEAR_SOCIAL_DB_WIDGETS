@@ -396,7 +396,7 @@ const Components = {
     }
   `,
 
-  FadeInContainer: styled.div`
+  FadeIn: styled.div`
     opacity: 0;
     animation: ${FadeIn} 0.3s ease-in-out;
     animation-fill-mode: forwards;
