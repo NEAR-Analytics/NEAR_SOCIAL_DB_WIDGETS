@@ -47,6 +47,7 @@ const BUTTON_BORDER_RADIUS = '8px';
 const BOX_SHADOW_DEF = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
 const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
+const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
 /**
  * Animation
  * */
@@ -277,7 +278,7 @@ const Components = {
       flex-grow: 3;
       flex-shrink: 0;
 
-      animation: ${AnimationSlideInLeft} 0.3s ease-in-out;
+      animation: ${AnimationSlideInLeft} 0.3s ${EASE_DEFAULT};
     }
 
     & > *:last-child {
@@ -307,7 +308,7 @@ const Components = {
     box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEF : 'none')};
     border: ${(args) => (args.border ? `1px solid ${BORDER_COLOR}` : 'none')};
 
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.5s ${EASE_DEFAULT};
 
     height: 100%;
     position: relative;
@@ -403,7 +404,7 @@ const Components = {
 
   FadeIn: styled.div`
     opacity: 0;
-    animation: ${AnimationFadeIn} 0.3s ease-in-out;
+    animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
     animation-fill-mode: forwards;
     animation-delay: ${({ delay }) => delay || '0s'};
     animation-duration: ${({ duration }) => duration || '0.3s'};
