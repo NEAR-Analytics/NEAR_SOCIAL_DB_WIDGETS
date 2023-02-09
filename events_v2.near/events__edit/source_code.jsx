@@ -1,4 +1,4 @@
-props.controller.setLayout('modal', {
+props.controller.setLayout('layouts:modal', {
   title: 'Edit Event',
 });
 
@@ -6,14 +6,14 @@ const EVENTS_CONTRACT = 'events_v2.near';
 
 const eventId = props.event_id;
 if (!eventId) {
-  return 'props.eventId is required';
+  return props.__engine.helpers.propsIsRequiredMessage('event_id');
 }
 
-const event = Near.view(EVENTS_CONTRACT, 'get_event', {
+const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
   event_id: props.event_id,
 });
 if (!event) {
-  return 'Loading';
+  return props.__engine.loading();
 }
 
 const SECONDS_10 = 10000;
@@ -43,7 +43,6 @@ function callContract(data) {
   props.__engine.contract.call(EVENTS_CONTRACT, 'update_event', {
     event_id: eventId,
     event: {
-      account_id: props.__engine.accountId,
       name,
       type,
       category,
