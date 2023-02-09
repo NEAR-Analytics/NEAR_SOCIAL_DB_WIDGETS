@@ -135,7 +135,7 @@ return (
 
     <Hr></Hr>
 
-    <GridContainer itemWidth={'300px'}>
+    <GridContainer itemWidth={'300px'} itemMaxWidth={'300px'}>
       {state.event_list.events.map(({ event }, idx) => {
         return (
           <div key={`${idx}-${event.id}`}>
