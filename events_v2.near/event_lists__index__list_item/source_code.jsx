@@ -1,5 +1,5 @@
 const EVENTS_CONTRACT = 'events_v2.near';
-const EVENTS_LIMIT = 1;
+const EVENTS_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 100;
 const ANIMATION_DELAY = 300;
 
