@@ -37,7 +37,7 @@ const LoadedImage = styled.img`
 
   animation: ${AnimationFadeBlurIn} 1s ease-in-out;
   animation-delay: ${(props) => props.delay || '0s'};
-  animation-fill-mode: both;
+  animation-fill-mode: forwards;
   animation-duration: ${(props) => props.duration || '0s'};
 `;
 
