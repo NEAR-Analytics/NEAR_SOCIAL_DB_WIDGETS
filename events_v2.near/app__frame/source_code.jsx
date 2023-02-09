@@ -336,7 +336,7 @@ const Components = {
     min-height: 200px;
     flex-grow: 1;
     flex-shrink: 0;
-    height: 100%;
+    height: auto;
 
     padding: ${({ small }) => (small ? GRID_PAD_SMALL : GRID_PAD)};
 
