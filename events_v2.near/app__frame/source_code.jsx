@@ -133,6 +133,13 @@ const Components = {
     padding-right: ${GRID_PAD};
     padding-top: ${GRID_PAD_SMALL};
     padding-bottom: ${GRID_PAD_SMALL};
+
+    @media (max-width: 768px) {
+      padding-left: ${GRID_PAD_SMALL};
+      padding-right: ${GRID_PAD_SMALL};
+    }
+
+    ${() => props.style || {}}
   `,
 
   ContainerHeader: styled.div`
