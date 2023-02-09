@@ -395,6 +395,14 @@ const Components = {
       font-size: ${({ small }) => (small ? FONT_SIZE_TINY : FONT_SIZE_SMALL)};
     }
   `,
+
+  FadeInContainer: styled.div`
+    opacity: 0;
+    animation: ${FadeIn} 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: ${({ delay }) => delay || '0s'};
+    animation-duration: ${({ duration }) => duration || '0.3s'};
+  `,
 };
 
 /**
