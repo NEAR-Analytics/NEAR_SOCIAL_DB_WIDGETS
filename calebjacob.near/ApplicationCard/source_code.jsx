@@ -102,9 +102,11 @@ const ButtonLink = styled.a`
   cursor: pointer;
   color: ${(props) => (props.primary ? "#006ADC" : "#11181C")} !important;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: #ECEDEE;
     text-decoration: none;
+    outline: none;
   }
 `;
 
@@ -133,8 +135,10 @@ return (
     </CardBody>
 
     <CardFooter>
-      <ButtonLink>View Details</ButtonLink>
-      <ButtonLink primary>Open</ButtonLink>
+      <ButtonLink href="/">View Details</ButtonLink>
+      <ButtonLink href="/" primary>
+        Open
+      </ButtonLink>
     </CardFooter>
   </Card>
 );
