@@ -107,7 +107,7 @@ const NavbarTitle = styled.h2`
   margin: 0 12px;
 
   text-align: ${(props) => {
-    return props.primaryAction ? 'left' : 'center';
+    return props.primaryAction || props.back ? 'left' : 'center';
   }};
 
   @media (max-width: 768px) {
