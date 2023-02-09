@@ -8,7 +8,7 @@ if (event_lists.length === 0) {
 }
 
 props.controller.setLayout(`index.list.${props.layout}`, {
-  items: event_lists,
+  event_lists: event_lists,
 });
 
 return <></>;
