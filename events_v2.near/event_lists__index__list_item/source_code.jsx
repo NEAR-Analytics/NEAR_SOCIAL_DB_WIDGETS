@@ -82,9 +82,9 @@ const EventTileWrapper = styled.div`
   animation-fill-mode: forwards;
   opacity: 0;
 
-  /* flex-grow & > * {
-    height: 100%;
-  } */
+  flex-grow & > * {
+    height: auto;
+  }
 `;
 
 const TextButton = styled.button`
