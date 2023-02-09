@@ -121,6 +121,16 @@ const FlexGrowDesktop = styled.div`
   }
 `;
 
+const BobbleWrap = styled.div`
+  position: relative;
+  width: 0;
+  height: 100%;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Bobble = styled.div`
   background: #f8f9fa;
   border-radius: 50%;
@@ -169,17 +179,9 @@ const scrollingEvents =
 
       {state.events.length >= EVENTS_LIMIT && (
         <EventTileWrapper delay={state.events.length * ANIMATION_DELAY}>
-          <div
-            style={{
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'relative',
-            }}
-          >
+          <BobbleWrap>
             <Bobble>+{state.events.length - EVENTS_LIMIT}</Bobble>
-          </div>
+          </BobbleWrap>
         </EventTileWrapper>
       )}
     </HorizontalScroll>
