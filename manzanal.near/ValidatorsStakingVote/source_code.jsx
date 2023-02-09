@@ -1,16 +1,12 @@
 let validators = fetch("https://vote.metapool.app/api/validators_extended", {
   subscribe: true,
-  headers: {
-    allow,
-  },
 });
 if (!validators) {
   return "Loading";
 }
-
+const TRUNCATE_LENGTH = 18;
 const near_staked = validators.body.near_staked;
 const near_assigned = validators.body.near_assigned;
-console.log(near_staked, near_assigned);
 initState({
   data: validators.body.data,
   filteredData: validators.body.data,
@@ -25,15 +21,25 @@ const onChangeData = (_data) => {
 };
 return (
   <>
-    <div class="d-flex justify-content-evenly clearfix m-2">
-      <Widget src="manzanal.near/widget/UserVotingDashComponent" props={{}} />
-      <Widget
-        src="manzanal.near/widget/MetaStakingDashComponent"
-        props={{
-          near_staked: near_staked,
-          near_assigned: near_assigned,
-        }}
-      />
+    <div class="d-flex justify-content-evenly m-2">
+      <div class="col-md-2">
+        <Widget
+          src="manzanal.near/widget/ValidatorsCount"
+          props={{ count: validators.body.data.length }}
+        />
+      </div>
+      <div class="col-md-5">
+        <Widget
+          src="manzanal.near/widget/MetaStakingDashComponent"
+          props={{
+            near_staked: near_staked,
+            near_assigned: near_assigned,
+          }}
+        />
+      </div>
+      <div class="col-md-4">
+        <Widget src="manzanal.near/widget/UserVotingDashComponent" props={{}} />
+      </div>
     </div>
     <Widget
       src="manzanal.near/widget/SearchComponent"
@@ -45,7 +51,7 @@ return (
         onChange: onChangeData,
       }}
     />
-    <div class="table-responsive mt-2">
+    <div class="table-responsive w-100 mt-2">
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
@@ -63,7 +69,17 @@ return (
           {Object.entries(state.filteredData).map(([key, pool]) => (
             <tr className="align-middle">
               <td class="text-start">
-                <span>{pool.account_id}</span>
+                <span
+                  class="fs-6"
+                  data-toggle="tooltip"
+                  title={pool.account_id}
+                  trigger="hover focus"
+                >
+                  {" "}
+                  {pool.account_id.length > TRUNCATE_LENGTH
+                    ? pool.account_id.substring(0, TRUNCATE_LENGTH) + "..."
+                    : pool.account_id}
+                </span>
                 <span
                   data-toggle="tooltip"
                   title="Pool performance in the last four epochs is low, votes will not be considered until the validator has four epochs with good performance"
@@ -86,20 +102,21 @@ return (
                   {pool.extraData.apy.toLocaleString("en-US")}%
                 </span>
               </td>
-              <td class="text-end">
-                {pool.votes.toLocaleString("en-US")} (
-                {pool.votes_weight.toFixed(2)}%)
+              <td class="text-end text-nowrap">
+                {`${pool.votes.toLocaleString(
+                  "en-US"
+                )}(${pool.votes_weight.toFixed(0)}%)`}
               </td>
               <td class="text-end">
                 {pool.stakedAsignedByVotes.toLocaleString("en-US")}&nbsp;Ⓝ
               </td>
               <td class="text-end">
-                {pool.stakedAssignedTotal.toLocaleString("en-US")}&nbsp;Ⓝ
+                {`${pool.stakedAssignedTotal.toLocaleString("en-US")} Ⓝ`}
               </td>
               <td class="text-end">
                 {pool.stakedn.toLocaleString("en-US")}&nbsp;Ⓝ
               </td>
-              <td class="text-end">
+              <td class="text-end text-nowrap">
                 <span
                   className={
                     Number(pool.pendingAmount) > 0
