@@ -108,7 +108,7 @@ return (
             <div className="w-50">
               <Widget
                 src="mob.near/widget/SocialMarkdown"
-                props={{ text: "state.note" }}
+                props={{ text: state.article.body }}
               />
             </div>
           </div>
