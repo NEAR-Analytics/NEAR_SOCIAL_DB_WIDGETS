@@ -125,6 +125,7 @@ return (
           Created by{" "}
           <a
             href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.author}`}
+            target="_blank"
             style={{ textDecoration: "underline" }}
           >
             {state.article.author}
