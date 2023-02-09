@@ -9,6 +9,9 @@ if (!event_list) {
   return props.__engine.helpers.propIsRequiredMessage('event_list');
 }
 
+''`js
+```;
+
 if (!state) {
   const events = props.__engine.contract.view(
     EVENTS_CONTRACT,
