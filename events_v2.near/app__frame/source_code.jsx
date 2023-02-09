@@ -307,7 +307,8 @@ const Components = {
     border-radius: ${DEFAULT_BORDER_RADIUS};
 
     box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEF : 'none')};
-    border: ${(args) => (args.border ? `1px solid ${BORDER_COLOR}` : 'none')};
+    border: ${(args) =>
+    args.border ? `${BORDER_WIDTH_DEFAULT} solid ${BORDER_COLOR}` : 'none'};
 
     transition: all 0.5s ${EASE_DEFAULT};
 
