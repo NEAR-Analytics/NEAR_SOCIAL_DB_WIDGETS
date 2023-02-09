@@ -204,6 +204,7 @@ const Components = {
     box-sizing: border-box;
     background-color: ${BUTTON_BG_COLOR};
     color: ${BUTTON_COLOR};
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   `,
 
   FormLabel: styled.label`
