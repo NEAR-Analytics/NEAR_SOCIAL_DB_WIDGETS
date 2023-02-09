@@ -496,7 +496,7 @@ function restoreRoutes() {
 
 restoreRoutes();
 
-function persistRoutingInformation(env, newState) {
+function persistRoutingInformation(newState) {
   storageSet(ENV, 'routing', newState);
 }
 
