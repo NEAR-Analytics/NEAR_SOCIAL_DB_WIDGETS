@@ -3,7 +3,6 @@
 const forAccountId = props.forAccountId;
 
 const showAllEvents = forAccountId === undefined;
-const listLayout = showAllEvents ? 'big' : 'small';
 
 let event_lists = [];
 if (showAllEvents) {
@@ -27,12 +26,14 @@ if (!event_lists) {
 
 const ContainerHeader = props.__engine.Components.ContainerHeader;
 const header = props.header;
+
+const listWidget = `index.list.${showAllEvents ? 'big' : 'small'}`;
+
 return (
   <>
     {header ? <ContainerHeader>{header}</ContainerHeader> : null}
-    {props.__engine.renderComponent('index.list', {
+    {props.__engine.renderComponent(listWidget, {
       event_lists,
-      layout: listLayout,
     })}
   </>
 );
