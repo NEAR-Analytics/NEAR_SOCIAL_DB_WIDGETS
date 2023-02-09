@@ -108,7 +108,7 @@ const Components = {
     width: 100%;
     padding: ${BUTTON_PADDING};
     margin: 0;
-    border: 1px solid ${BORDER_COLOR};
+    border: none;
     border-radius: ${DEFAULT_BORDER_RADIUS};
     box-sizing: border-box;
     background-color: ${BUTTON_BG_COLOR};
