@@ -123,7 +123,7 @@ const FlexGrowDesktop = styled.div`
 
 const scrollingEvents =
   (state.events || []).length > 0 ? (
-    <HorizontalScroll itemWidth={'36%'}>
+    <HorizontalScroll itemWidth={'200px'}>
       {state.events
         .sort(({ position: a }, { position: b }) => {
           return a - b;
