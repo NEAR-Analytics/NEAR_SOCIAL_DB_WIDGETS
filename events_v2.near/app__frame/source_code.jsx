@@ -333,7 +333,7 @@ const Components = {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    width: 33%;
+    width: 25%;
     border-right: 1px solid ${BORDER_COLOR};
     min-height: 200px;
     flex-grow: 1;
@@ -348,7 +348,6 @@ const Components = {
       border-bottom: 1px solid ${BORDER_COLOR};
       height: auto;
       min-height: 0px;
-      maxwidth: 100%;
 
       padding: ${GRID_PAD_SMALL};
     }
