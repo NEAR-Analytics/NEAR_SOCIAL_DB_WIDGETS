@@ -4,34 +4,6 @@ const NAVBAR_OFFSET_TOP = 0;
 const title = props.title || '';
 const dropdownItems = props.dropdownItems || [];
 
-const dropdownElement =
-  dropdownItems && dropdownItems.length > 0 ? (
-    <>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainMenuDropdown"
-        aria-controls="mainMenuDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-
-      <div className="collapse navbar-collapse" id="mainMenuDropdown">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          {dropdownItems.map((item, idx) => {
-            return props.__engine.renderComponent(item.name, {
-              ...item.props,
-              key: `dropdown_item_${item.name}_${idx}`,
-            });
-          })}
-        </ul>
-      </div>
-    </>
-  ) : null;
-
 const Pulse = styled.keyframes`
   0% {
     transform: scale(0.975);
