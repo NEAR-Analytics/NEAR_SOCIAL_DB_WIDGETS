@@ -31,7 +31,7 @@ if (
   layout === null ||
   layout === undefined
 ) {
-  layoutName = 'layouts:default';
+  layoutName = 'default';
 }
 
 // get existing controller from component props or create a new one
