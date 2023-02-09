@@ -7,11 +7,9 @@ if (event_lists.length === 0) {
   return 'No results';
 }
 
-const GRID_PAD = props.__engine.Constants.GRID_PAD;
-const ListWrapper = styled.div`
-  margin-bottom: ${GRID_PAD};
-  width: 100%;
-`;
+props.controller.setLayout(`index.list-${props.layout}`, {
+  items: event_lists,
+});
 
 return (
   <>
