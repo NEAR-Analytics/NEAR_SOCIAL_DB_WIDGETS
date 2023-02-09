@@ -69,7 +69,7 @@ const permissionsRenderer = (permissionType) => {
 };
 
 const childrenRenderer = () => {
-  let children = metadata[member].children;
+  let children = metadata.children;
   if (children) {
     return (
       <div class="vstack">
@@ -77,7 +77,7 @@ const childrenRenderer = () => {
           <Widget
             src={`${ownerId}/widget/TeamInfo`}
             props={{ member: child, members_list: props.members_list }}
-            key={`subpost-${child}-of-${member}`}
+            key={`subpost-${child}-of-${props.member}`}
           />
         ))}
       </div>
