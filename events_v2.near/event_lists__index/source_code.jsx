@@ -20,10 +20,11 @@ return (
       })}
     </Container>
     <Hr />
+
     <Container>
       {props.__engine.renderComponent('index.list_container', {
         header: 'Your event lists',
-        forAccountId: props.__engine.accountId,
+        search: true,
       })}
     </Container>
   </>
