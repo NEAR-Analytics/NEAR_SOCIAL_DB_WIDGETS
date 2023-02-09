@@ -305,6 +305,8 @@ const Components = {
 
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 
+    height: 100%;
+
     &:hover {
       box-shadow: 5px 0 15px -2px rgba(0, 0, 0, 0.2);
     }
