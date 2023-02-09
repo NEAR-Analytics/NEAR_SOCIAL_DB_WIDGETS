@@ -40,7 +40,8 @@ const BORDER_COLOR = '#e6e6e6';
 
 const ERROR_COLOR = '#cc0000';
 
-const BUTTON_BG_COLOR = '#4CAF50';
+// darlpurple
+const BUTTON_BG_COLOR = '#6a0dad';
 /**
  * Animation
  * */
