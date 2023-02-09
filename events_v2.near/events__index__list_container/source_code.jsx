@@ -6,16 +6,26 @@ const forAccountId = props.forAccountId;
 
 let events = [];
 if (forAccountId === undefined) {
-  events = Near.view(EVENTS_CONTRACT, 'get_all_events');
+  events = props.__engine.contract.view(EVENTS_CONTRACT, 'get_all_events');
 } else {
-  events = Near.view(EVENTS_CONTRACT, 'get_all_events_by_account', {
-    account_id: forAccountId,
-  });
+  events = props.__engine.contract.view(
+    EVENTS_CONTRACT,
+    'get_all_events_by_account',
+    {
+      account_id: forAccountId,
+    }
+  );
 }
 
-const Loading = props.__engine.Components.Loading;
 if (!events) {
-  return <Loading>Loading events</Loading>;
+  return props.__engine.loading();
 }
 
-return props.__engine.renderComponent('index.list', { events });
+const ContainerHeader = props.__engine.Components.ContainerHeader;
+const header = props.header;
+return (
+  <>
+    {header ? <ContainerHeader>{header}</ContainerHeader> : null}
+    {props.__engine.renderComponent('index.list', { events })}
+  </>
+);
