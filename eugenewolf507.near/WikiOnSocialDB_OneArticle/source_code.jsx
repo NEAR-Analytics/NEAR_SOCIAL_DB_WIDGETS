@@ -100,7 +100,7 @@ return (
               <Widget
                 src="mob.near/widget/MarkdownEditorIframe"
                 props={{
-                  initialText: state.article,
+                  initialText: "state.article",
                   onChange: (note) => State.update({ note }),
                 }}
               />
