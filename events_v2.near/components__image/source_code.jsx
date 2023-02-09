@@ -52,6 +52,12 @@ const BlurredImage = styled.img`
   object-fit: cover;
   opacity: ${state.loaded ? 1 : 0};
 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
   filter: blur(100px);
   animation: ${AnimationRotate} 10s linear infinite;
   animation-fill-mode: both;
