@@ -100,9 +100,6 @@ const NavbarTitle = styled.h2`
   text-align: center;
   flex-grow: 1;
   word-break: break-all;
-
-  background: red;
-
   margin: 0 8px;
 
   @media (max-width: 768px) {
