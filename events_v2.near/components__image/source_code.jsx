@@ -65,6 +65,7 @@ return (
           height: '100%',
           objectFit: 'cover',
           filter: 'blur(100px)',
+          transform: 'rotate(45deg)',
         }}
       />
     )}
