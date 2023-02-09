@@ -80,13 +80,15 @@ const EventTileWrapper = styled.div`
   animation-fill-mode: forwards;
   opacity: 0;
 
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  z-index: 10;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid;
+
   &:hover {
     transform: scale(1.05);
-    z-index: 10;
-    border-radius: 28px;
-    overflow: hidden;
-    border: 1px solid;
   }
 
   flex-grow & > * {
