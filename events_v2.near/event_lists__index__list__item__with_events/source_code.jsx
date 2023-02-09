@@ -45,7 +45,6 @@ const {
   BORDER_DEFAULT,
   BOX_SHADOW_HOVER,
   BOX_SHADOW_DEFAULT,
-  FONT_SIZE_DEFAULT,
 } = Constants;
 
 const CardBody = styled.div`
