@@ -90,9 +90,6 @@ const Navbar = styled.div`
   webkitbackdropfilter: blur(32px) saturate(180%);
   z-index: 99999999;
   overflow-x: hidden;
-`;
-
-const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: stretch;
@@ -136,43 +133,41 @@ const NavbarBackButton = styled.button`
 
 const navbar = (
   <Navbar className="navbar">
-    <NavbarContainer>
-      {props.back ? (
-        <NavbarBackButton
-          type="button"
-          tabIndex={0}
-          onClick={() => {
+    {props.back ? (
+      <NavbarBackButton
+        type="button"
+        tabIndex={0}
+        onClick={() => {
+          props.__engine.pop();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
             props.__engine.pop();
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              props.__engine.pop();
-            }
-          }}
-        >
-          <i className="bi bi-chevron-left"></i>
-        </NavbarBackButton>
-      ) : null}
+          }
+        }}
+      >
+        <i className="bi bi-chevron-left"></i>
+      </NavbarBackButton>
+    ) : null}
 
-      <NavbarTitle>{title}</NavbarTitle>
+    <NavbarTitle>{title}</NavbarTitle>
 
-      {props.primaryAction ? (
-        <NavPrimaryButton
-          type="button"
-          tabIndex={0}
-          onClick={() => {
+    {props.primaryAction ? (
+      <NavPrimaryButton
+        type="button"
+        tabIndex={0}
+        onClick={() => {
+          props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
             props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              props.__engine.hacks.dirtyEval(props.primaryAction.onClick);
-            }
-          }}
-        >
-          {props.primaryAction.label}
-        </NavPrimaryButton>
-      ) : null}
-    </NavbarContainer>
+          }
+        }}
+      >
+        {props.primaryAction.label}
+      </NavPrimaryButton>
+    ) : null}
   </Navbar>
 );
 
