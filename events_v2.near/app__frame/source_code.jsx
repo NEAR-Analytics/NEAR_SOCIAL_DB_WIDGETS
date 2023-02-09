@@ -38,7 +38,6 @@ const BORDER_COLOR = '#e6e6e6';
 
 const ERROR_COLOR = '#cc0000';
 
-// dark purple
 const BUTTON_BG_COLOR = '#4d2c91';
 const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
 const BUTTON_COLOR = '#ffffff';
@@ -46,6 +45,7 @@ const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
 const BUTTON_BORDER_RADIUS = '8px';
 
 const BOX_SHADOW_DEF = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
+const BOX_SHADOW_HOVER = '0 0 10px 0 rgba(0, 0, 0, 0.2)';
 
 /**
  * Animation
@@ -313,7 +313,7 @@ const Components = {
     position: relative;
 
     &:hover {
-      box-shadow: 5px 0 15px -2px rgba(0, 0, 0, 0.2);
+      box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_HOVER : 'none')};
     }
 
     @media (max-width: 768px) {
