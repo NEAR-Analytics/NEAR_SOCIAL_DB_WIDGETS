@@ -56,7 +56,7 @@ const BlurredImage = styled.img`
   animation: ${AnimationRotate} 1s ease-in-out infinite;
   animation-delay: ${(props) => props.delay || '0s'};
   animation-fill-mode: both;
-  animation-duration: ${(props) => props.duration || '2s'};
+  animation-duration: 10s;
 `;
 
 return (
