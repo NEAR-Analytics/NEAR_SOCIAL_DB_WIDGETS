@@ -26,11 +26,12 @@ const LoadedImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  ${(props) => props.style || ''}
+  opacity: 0;
 
   animation: ${AnimationFadeBlurIn} 1s ease-in-out;
   animation-delay: ${(props) => props.delay || '0s'};
+
+  ${(props) => props.style || ''}
 `;
 
 return (
