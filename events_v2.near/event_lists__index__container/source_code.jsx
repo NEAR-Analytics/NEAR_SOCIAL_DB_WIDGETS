@@ -29,7 +29,7 @@ const ContainerHeader = props.__engine.Components.ContainerHeader;
 
 return (
   <>
-    {header ? <ContainerHeader>{props.header}</ContainerHeader> : null}
+    {props.header && <ContainerHeader>{props.header}</ContainerHeader>}
     {props.__engine.renderComponent('index.list', {
       event_lists,
       layout: listLayout,
