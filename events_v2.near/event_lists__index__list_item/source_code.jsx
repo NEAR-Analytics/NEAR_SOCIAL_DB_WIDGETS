@@ -141,10 +141,13 @@ const Bobble = styled.div`
   transform: translate(-50%, -50%);
   border: 1px solid #e9ecef;
 
-  padding: 10px;
   font-size: 1.5rem;
   aspect-ratio: 1 / 1;
-  width: auto;
+  height: 4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.2);
 
