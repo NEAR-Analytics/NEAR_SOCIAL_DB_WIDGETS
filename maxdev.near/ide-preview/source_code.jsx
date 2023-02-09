@@ -4,7 +4,9 @@ const {
   config,
   props: p,
 } = typeof idePreview === "string" ? JSON.parse(idePreview) : idePreview;
-console.log("preview props", code, config, p);
+console.log("idePreview.code", code);
+console.log("idePreview.config", config);
+console.log("idePreview.props", p);
 if (typeof code !== "string") {
   throw {
     message: "No code supplied to perview. Props: " + JSON.stringify(props),
