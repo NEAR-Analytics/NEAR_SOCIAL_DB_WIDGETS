@@ -82,7 +82,7 @@ const EventTileWrapper = styled.div`
   z-index: 10;
   border-radius: 17px;
   overflow: hidden;
-  border: 1px solid #e9ecef;
+  border: 1px solid rgb(150, 150, 150);
 
   transform: scale(0.9875);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
