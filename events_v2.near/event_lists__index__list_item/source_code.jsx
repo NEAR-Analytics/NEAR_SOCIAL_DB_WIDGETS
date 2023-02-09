@@ -76,7 +76,7 @@ const AnimationSlideFadeInLeft = styled.keyframes`
 
 const EventTileWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
