@@ -479,7 +479,7 @@ function restoreRoutes() {
   }
 
   const layers = state.layers;
-  console.log('Current routing information', layers);
+  console.log('Current routing information', JSON.stringify(layers, null, 2));
   if (
     layers &&
     Array.isArray(info) &&
@@ -488,7 +488,7 @@ function restoreRoutes() {
     State.update({
       layers: info,
     });
-    console.log('Restored routing information', info);
+    console.log('Restored routing information');
   }
 }
 
