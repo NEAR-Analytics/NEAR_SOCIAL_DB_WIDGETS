@@ -129,7 +129,9 @@ return (
           >
             {state.article.author}
           </a>
-          {/* <br />
+          {/* 
+          TODO: add lastEditor to edit and create widgets
+          <br />
           Last edit by{" "}
           <a
             href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
