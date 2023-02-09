@@ -105,7 +105,7 @@ const EventTileWrapper = styled.div`
     box-shadow:  ${BOX_SHADOW_HOVER}
   }
 
-  flex-grow & > * {
+  & > * {
     height: auto;
   }
 
