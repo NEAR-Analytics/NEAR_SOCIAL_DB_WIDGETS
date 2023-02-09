@@ -62,7 +62,7 @@ return (
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          filter: 'blur(200px)',
+          filter: 'blur(100px)',
         }}
       />
     )}
@@ -72,7 +72,7 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '2s'}
+        delay={props.delay || '1s'}
         duration={props.duration || '2s'}
         onAnimationEnd={() => {
           console.log('Animation end 1');
