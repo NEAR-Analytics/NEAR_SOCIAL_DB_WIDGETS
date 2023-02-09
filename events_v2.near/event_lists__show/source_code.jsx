@@ -122,7 +122,7 @@ return (
             }
           }}
         >
-          Add events
+          Change events
         </InfoBarLink>
       </InfoBar>
     ) : null}
