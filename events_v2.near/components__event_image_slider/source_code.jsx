@@ -40,6 +40,8 @@ return (
           {props.__engine.renderComponent('components:image', {
             url,
             key: url,
+            delay: props.delay,
+            duration: props.duration,
           })}
         </>
       );
