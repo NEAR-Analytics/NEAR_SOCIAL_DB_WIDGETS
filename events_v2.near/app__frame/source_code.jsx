@@ -43,6 +43,7 @@ const BUTTON_BG_COLOR = '#4d2c91';
 const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
 const BUTTON_COLOR = '#ffffff';
 const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
+const BUTTON_BORDER_RADIUS = '8px';
 
 /**
  * Animation
