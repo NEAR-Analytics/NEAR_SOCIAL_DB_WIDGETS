@@ -156,7 +156,7 @@ const Bobble = styled.div`
 
 const scrollingEvents =
   (state.events || []).length > 0 ? (
-    <HorizontalScroll itemWidth={'200px'}>
+    <HorizontalScroll itemWidth={'200px'} style={{ height: 'auto' }}>
       {state.events
         .sort(({ position: a }, { position: b }) => {
           return a - b;
