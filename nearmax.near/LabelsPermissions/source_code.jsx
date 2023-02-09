@@ -22,6 +22,10 @@ const permissionExplainer = (permission) => {
 
 return (
   <div className="card border-secondary" key="labelpermissions">
+    <div className="card-header">
+      <i class="bi-lock-fill"> </i>
+      <small class="text-muted">Restricted Labels</small>
+    </div>
     <ul class="list-group list-group-flush">
       {Object.entries(rules_list).map(([pattern, metadata]) => (
         <li class="list-group-item" key={`${pattern}`}>
