@@ -200,11 +200,7 @@ const elDescription =
 
 return (
   <Card orientation="horizontal">
-    <CardHeader
-      style={{
-        width: '420px',
-      }}
-    >
+    <CardHeader>
       <CardTitle>{event_list.name}</CardTitle>
 
       <FlexGrowDesktop>
