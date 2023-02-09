@@ -22,7 +22,6 @@ resultArticlesWithOneId.length &&
   });
 
 const article = resultArticlesWithOneId[0];
-console.log(article);
 
 State.update({ article });
 
@@ -56,10 +55,14 @@ return (
       <h4>Article: {state.article.articleId}</h4>
       <button
         onClick={() => {
-          State.update({ ...state, editArticle: true });
+          State.update({
+            ...state,
+            editArticle: true,
+            note: state.article.body,
+          });
         }}
       >
-        Edit Article{" "}
+        Edit Article
       </button>
       {/* === EDIT ARTICLE === */}
       {state.editArticle && (
@@ -108,20 +111,10 @@ return (
             <div className="w-50">
               <Widget
                 src="mob.near/widget/SocialMarkdown"
-                props={{ text: state.article.body }}
+                props={{ text: state.note }}
               />
             </div>
           </div>
-          {/*<textarea
-            id="textarea1"
-            type="text"
-            rows={10}
-            className="form-control mt-2"
-            value={state.note || state.article.body}
-            onChange={(e) => {
-              State.update({ ...state, note: e.target.value });
-            }}
-          />*/}
         </>
       )}
       {!state.editArticle && (
