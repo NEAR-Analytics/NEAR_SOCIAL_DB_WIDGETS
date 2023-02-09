@@ -121,6 +121,22 @@ const FlexGrowDesktop = styled.div`
   }
 `;
 
+const Bobble = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #f8f9fa;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid #e9ecef;
+
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
+    0 16px 24px 0 rgba(0, 0, 0, 0.1), 0 24px 32px 0 rgba(0, 0, 0, 0.1);
+`;
+
 const scrollingEvents =
   (state.events || []).length > 0 ? (
     <HorizontalScroll itemWidth={'200px'}>
@@ -150,11 +166,16 @@ const scrollingEvents =
 
       {state.events.length >= EVENTS_LIMIT && (
         <EventTileWrapper delay={state.events.length * ANIMATION_DELAY}>
-          <Card>
-            <CardHeader>
-              <CardTitle>...</CardTitle>
-            </CardHeader>
-          </Card>
+          <div
+            style={{
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Bobble>+{state.events.length - EVENTS_LIMIT}</Bobble>
+          </div>
         </EventTileWrapper>
       )}
     </HorizontalScroll>
