@@ -140,7 +140,6 @@ return (
             'index.list_item',
             {
               event: event,
-              small: true,
             },
             { appName: 'events' }
           );
