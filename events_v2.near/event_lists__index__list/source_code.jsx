@@ -11,22 +11,22 @@ if (event_lists.length === 0) {
 const GridContainer = props.__engine.Components.GridContainer;
 const Container = props.__engine.Components.Container;
 
+const ListWrapper = styled.div`
+  margin-bottom: 20px;
+  width: 100%;
+`;
+
 return (
   <Container>
-    <GridContainer itemWidth={'100vw'}>
-      {event_lists.map((event_list) => {
-        return (
-          <>
-            {props.__engine.renderComponent('index.list_item', {
-              event_list,
-              key: event_list.event_list_id,
-            })}
-          </>
-        );
-      })}
-
-      <div>{/* spacer */}</div>
-      <div>{/* spacer */}</div>
-    </GridContainer>
+    {event_lists.map((event_list) => {
+      return (
+        <ListWrapper>
+          {props.__engine.renderComponent('index.list_item', {
+            event_list,
+            key: event_list.event_list_id,
+          })}
+        </ListWrapper>
+      );
+    })}
   </Container>
 );
