@@ -485,6 +485,7 @@ function restoreRoutes() {
     State.update({
       layers: info,
     });
+    console.log('Restored routing information', info);
   }
 }
 
