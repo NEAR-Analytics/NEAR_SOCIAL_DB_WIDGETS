@@ -21,7 +21,6 @@ return (
         }}
         style={{
           display: 'none',
-          visibility: 'hidden',
           opacity: 0,
           width: 0,
           height: 0,
