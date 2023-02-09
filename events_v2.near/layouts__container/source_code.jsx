@@ -91,6 +91,7 @@ const NavPrimaryButton = styled.button`
 
   @media (max-width: 768px) {
     font-size: 1.15rem;
+    padding: 6px 14px;
     margin: 0 8px;
   }
 `;
