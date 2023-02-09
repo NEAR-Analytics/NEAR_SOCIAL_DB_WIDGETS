@@ -35,11 +35,10 @@ const LoadedImage = styled.img`
 return (
   <>
     {!state.loaded && (
-      <img
+      <LoadedImage
         src={url}
         alt={props.alt || 'Image'}
         onLoad={() => {
-          console.log('loaded', url);
           State.update({ loaded: true, src: url });
         }}
         style={{
