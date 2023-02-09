@@ -342,7 +342,7 @@ const Components = {
 
     transition: all 0.5s ${EASE_DEFAULT};
 
-    height: 100%;
+    height: auto;
     position: relative;
 
     &:hover {
