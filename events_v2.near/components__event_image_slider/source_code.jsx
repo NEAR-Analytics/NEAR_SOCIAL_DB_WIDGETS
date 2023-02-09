@@ -2,7 +2,7 @@ let event = props.event || null;
 
 if (!state) {
   State.init({ index: 0 });
-  return '';
+  return <></>;
 }
 
 const mode = props.mode || 'banner';
