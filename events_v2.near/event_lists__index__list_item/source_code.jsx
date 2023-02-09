@@ -51,17 +51,6 @@ const CardBody = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
-
-  & > * {
-    height: 100%;
-    padding: 20px;
-  }
-
-  @media (max-width: 768px) {
-    & > * {
-      padding: 10px;
-    }
-  }
 `;
 
 const AnimationSlideFadeInLeft = styled.keyframes`
