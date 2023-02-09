@@ -90,7 +90,7 @@ const Tag = styled.li`
 `;
 
 const ButtonLink = styled.a`
-  padding: 8px 24px;
+  padding: 8px;
   height: 32px;
   background: #FBFCFD;
   border: 1px solid #D7DBDF;
