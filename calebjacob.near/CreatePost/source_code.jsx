@@ -126,21 +126,64 @@ const Textarea = styled.div`
   }
 `;
 
-const Button = styled.button`
-  background: #0091FF;
-  border-radius: 6px;
-  color: #fff;
-  height: 40px;
-  padding: 0 35px;
-  font-weight: 600;
-  font-size: 14px;
-  border: none;
-`;
-
 const Actions = styled.div`
   display: flex;
   justify-content: end;
   gap: 12px;
+
+  .commit-post-button {
+    background: #0091FF;
+    color: #fff;
+    border-radius: 6px;
+    height: 40px;
+    padding: 0 35px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background 200ms, opacity 200ms;
+
+    &:hover,
+    &:focus {
+      background: #076fbf;
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .upload-image-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F1F3F5;
+    color: #006ADC;
+    border-radius: 6px;
+    height: 40px;
+    width: 40px;
+    font-size: 0;
+    border: none;
+    cursor: pointer;
+    transition: background 200ms, opacity 200ms;
+
+    &::before {
+      font-size: 16px;
+    }
+
+    &:hover,
+    &:focus {
+      background: #d7dbde;
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
 `;
 
 console.log(composeData());
@@ -159,13 +202,17 @@ return (
     </Textarea>
 
     <Actions>
-      // <Button type="button">Post</Button>
+      <IpfsImageUpload
+        image={state.image}
+        className="upload-image-button bi bi-image"
+      />
+
       <CommitButton
         disabled={!state.text}
         force
-        className="btn btn-dark rounded-3"
         data={composeData}
         onCommit={onCommit}
+        className="commit-post-button"
       >
         Post
       </CommitButton>
