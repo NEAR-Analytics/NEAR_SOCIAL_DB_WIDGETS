@@ -138,30 +138,30 @@ const Components = {
     }
   `,
 
-  TextButton = styled.button`
-  background: transparent;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  font-size: ${FONT_SIZE_DEFAULT};
-  font-weight: 400;
-  outline: none;
-  padding: 0;
-  text-decoration: underline;
-  transition: color 0.15s ${EASE_DEFAULT};
-  display: inline-block;
-  width: fit-content;
-  margin-top: ${GRID_PAD_SMALL};
-
-  &:hover {
-    color: #0056b3;
-  }
-
-  &:focus {
-    color: #0056b3;
+  TextButton: styled.button`
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: ${FONT_SIZE_DEFAULT};
+    font-weight: 400;
     outline: none;
-  }
-`
+    padding: 0;
+    text-decoration: underline;
+    transition: color 0.15s ${EASE_DEFAULT};
+    display: inline-block;
+    width: fit-content;
+    margin-top: ${GRID_PAD_SMALL};
+
+    &:hover {
+      color: #0056b3;
+    }
+
+    &:focus {
+      color: #0056b3;
+      outline: none;
+    }
+  `,
 
   FullActionButton: styled.button`
     width: 100%;
