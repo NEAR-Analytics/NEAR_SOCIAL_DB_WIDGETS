@@ -55,8 +55,6 @@ return (
       <img
         src={state.src}
         alt={props.alt || 'Image'}
-        delay={props.delay || '0s'}
-        duration={props.duration || '0.5s'}
         style={{
           position: 'absolute',
           top: 0,
