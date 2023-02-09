@@ -202,7 +202,7 @@ return (
   <Card orientation="horizontal">
     <CardHeader
       style={{
-        maxWidth: '300px',
+        maxWidth: '420px',
       }}
     >
       <CardTitle>{event_list.name}</CardTitle>
