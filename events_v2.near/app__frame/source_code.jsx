@@ -35,6 +35,7 @@ const TEXT_COLOR = '#333333';
 const TEXT_COLOR_LIGHT = '#666666';
 
 const BORDER_COLOR = '#e6e6e6';
+const BORDER_WIDTH_DEFAULT = '0.1vw';
 
 const ERROR_COLOR = '#cc0000';
 
