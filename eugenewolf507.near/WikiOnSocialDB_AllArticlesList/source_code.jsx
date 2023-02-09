@@ -1,6 +1,6 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-const { filteredArticles, getDateLastEdit, handleArticle, state } = props;
+const { filteredArticles, getDateLastEdit } = props;
 return (
   <ol>
     {filteredArticles &&
