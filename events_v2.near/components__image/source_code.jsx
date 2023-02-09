@@ -48,11 +48,6 @@ return (
         display: 'none',
         width: 0,
         height: 0,
-        animationName: 'none',
-        animationDuration: '2s',
-      }}
-      onAnimationEnd={() => {
-        console.log('Animation end 1');
       }}
     />
 
@@ -60,8 +55,26 @@ return (
       <LoadedImage
         src={state.src}
         alt={props.alt || 'Image'}
+        delay={props.delay || '0s'}
+        duration={props.duration || '0.2s'}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: 1,
+          height: 1,
+          objectFit: 'cover',
+          scale: 10000,
+        }}
+      />
+    )}
+
+    {state.loaded && (
+      <LoadedImage
+        src={state.src}
+        alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '0.5s'}
+        delay={props.delay || '0.1s'}
         duration={props.duration || '2s'}
         onAnimationEnd={() => {
           console.log('Animation end 1');
