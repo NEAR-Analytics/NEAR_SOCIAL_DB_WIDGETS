@@ -72,21 +72,19 @@ const NavPrimaryButton = styled.button`
   }
 `;
 
+const Navbar = styled.div`
+  min-height: ${NAVBAR_HEIGHT}px;
+  position: fixed;
+  top: ${NAVBAR_OFFSET_TOP}px;
+  width: 100%;
+  background-color: rgba(44, 44, 84, 0.85);
+  backdrop-filter: blur(32px) saturate(180%);
+  webkitbackdropfilter: blur(32px) saturate(180%);
+  z-index: 99999999;
+`;
+
 const navbar = (
-  <div
-    className="navbar navbar-expand-lg navbar-dark"
-    style={{
-      minHeight: NAVBAR_HEIGHT,
-      position: 'fixed',
-      top: NAVBAR_OFFSET_TOP,
-      width: '100%',
-      // dark purple #2c2c54 with backdrop filter blur
-      backgroundColor: 'rgba(44, 44, 84, 0.85)',
-      backdropFilter: 'blur(32px) saturate(180%)',
-      webkitBackdropFilter: 'blur(32px) saturate(180%)',
-      zIndex: 99999999,
-    }}
-  >
+  <Navbar className="navbar">
     <div className="container-fluid h-100 flex">
       <div className="d-flex align-items-center w-100">
         {props.back ? (
@@ -152,7 +150,7 @@ const navbar = (
 
       {dropdownItems && dropdownItems.length > 0 ? dropdownElement : null}
     </div>
-  </div>
+  </Navbar>
 );
 
 return (
