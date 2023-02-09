@@ -102,7 +102,6 @@ const NavbarTitle = styled.h2`
   margin: 0;
   padding: 0;
   color: white;
-  text-align: center;
   flex-grow: 1;
   word-break: break-all;
   margin: 0 12px;
