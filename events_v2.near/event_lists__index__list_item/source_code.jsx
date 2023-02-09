@@ -63,21 +63,19 @@ const CardBody = styled.div`
   }
 `;
 
-const AnimationSlideFadeInLeft = styled.keyframes`
+const FadeIn = styled.keyframes`
   0% {
     opacity: 0;
-    transform: translateX(-20px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
   }
 `;
 
 const EventTileWrapper = styled.div`
   width: 100%;
   height: auto;
-  animation: ${AnimationSlideFadeInLeft} 0.5s ease-in-out;
+  animation: ${FadeIn} 0.5s ease-in-out;
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
   opacity: 0;
