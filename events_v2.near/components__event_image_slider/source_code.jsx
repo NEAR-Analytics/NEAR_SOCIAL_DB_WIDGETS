@@ -30,6 +30,7 @@ return (
       maxWidth: '100%',
       overflow: 'hidden',
       userSelect: 'none',
+      position: 'relative',
     }}
   >
     {displayImages.map((image) => {
