@@ -333,7 +333,7 @@ const Components = {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    width: 25%;
+    width: 33%;
     border-right: 1px solid ${BORDER_COLOR};
     min-height: 200px;
     flex-grow: 1;
