@@ -1,5 +1,3 @@
-const EVENTS_CONTRACT = 'events_v2.near';
-
 // accountID is used to determine for whom the event_lists are displayed
 // if no accountID is provided, all event_lists are displayed
 const forAccountId = props.forAccountId;
@@ -10,12 +8,12 @@ const listLayout = showAllEvents ? 'big' : 'small';
 let event_lists = [];
 if (showAllEvents) {
   event_lists = props.__engine.contract.view(
-    EVENTS_CONTRACT,
+    'events_v2.near',
     'get_all_event_lists'
   );
 } else {
   event_lists = props.__engine.contract.view(
-    EVENTS_CONTRACT,
+    'events_v2.near',
     'get_all_event_lists_by_account',
     {
       account_id: forAccountId,
