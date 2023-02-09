@@ -497,7 +497,7 @@ function restoreRoutes() {
 restoreRoutes();
 
 function persistRoutingInformation(env, newState) {
-  storageSet(env, 'routing', newState);
+  storageSet(ENV, 'routing', newState);
 }
 
 function slugFromName(name) {
@@ -562,7 +562,7 @@ function push(env, name, props) {
   };
   const newLayers = [...state.layers, layer];
 
-  persistRoutingInformation(env, newLayers);
+  persistRoutingInformation(newLayers);
 
   State.update({
     layers: newLayers,
@@ -578,7 +578,7 @@ function replace(env, name, props) {
   };
   const newLayers = [...state.layers.slice(0, -1), layer];
 
-  persistRoutingInformation(env, newLayers);
+  persistRoutingInformation(newLayers);
 
   State.update({
     layers: newLayers,
@@ -590,7 +590,7 @@ function pop(env) {
   const newLayers =
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
-  persistRoutingInformation(env, newLayers);
+  persistRoutingInformation(newLayers);
 
   State.update({
     layers: newLayers,
