@@ -228,7 +228,7 @@ const Components = {
     margin-right: -${GRID_PAD};
 
     & > * {
-      margin: ${GRID_PAD};
+      padding: ${GRID_PAD};
       min-width: 320px;
       max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
@@ -240,12 +240,13 @@ const Components = {
 
     @media (max-width: 768px) {
       width: 100%;
-      margin-left: 0;
-      margin-right: 0;
+      margin-left: -${GRID_PAD_SMALL};
+      margin-right: -${GRID_PAD_SMALL};
 
       & > * {
-        width: 45%;
-        max-width: 45%;
+        padding: ${GRID_PAD_SMALL};
+        width: 50%;
+        max-width: 50%;
         min-width: 0;
       }
     }
