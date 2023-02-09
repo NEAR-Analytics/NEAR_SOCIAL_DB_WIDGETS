@@ -42,7 +42,7 @@ const LoadedImage = styled.img`
   animation-delay: ${(props) => props.delay || '0s'};
   animation-fill-mode: both;
   animation-iteration-count: 1;
-  animation-duration: ${(props) => props.duration || '1s'};
+  animation-duration: ${(props) => props.duration || '0s'};
 `;
 
 const BlurredImage = styled.img`
@@ -88,8 +88,8 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={state.animated ? 0 : props.delay || '1s'}
-        duration={state.animated ? 0 : props.duration || '10s'}
+        delay={state.animated ? 0 : props.delay || '0s'}
+        duration={state.animated ? 0 : props.duration || '2s'}
         onAnimationEnd={() => {
           if (!state.animated) {
             State.update({ animated: true });
