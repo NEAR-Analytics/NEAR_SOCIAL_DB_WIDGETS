@@ -13,12 +13,12 @@ const AnimationFadeBlurIn = styled.keyframes`
   0% {
     opacity: 0;
     filter: blur(50px);
-    transform: rotate(-20deg) scale(1.2);
+    transform: rotate(-8deg) scale(2);
   }
 
   30% {
     filter: blur(40px);
-    transform: rotate(20deg) scale(1.2);
+    transform: rotate(8deg) scale(2);
   }
 
   100% {
