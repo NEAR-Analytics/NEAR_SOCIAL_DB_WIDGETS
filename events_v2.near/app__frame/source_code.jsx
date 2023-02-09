@@ -413,7 +413,7 @@ if (!state) {
     renderCycles: state ? state.renderCycles + 1 : 1,
     layers: [rootRoute],
   });
-  return 'Loading...';
+  return <></>;
 }
 
 const ENV = { appOwner, appName, VERSION };
