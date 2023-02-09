@@ -8,7 +8,6 @@ if (event_lists.length === 0) {
   return 'No results';
 }
 
-const GridContainer = props.__engine.Components.GridContainer;
 const Container = props.__engine.Components.Container;
 
 const ListWrapper = styled.div`
@@ -21,9 +20,7 @@ return (
     {event_lists.map((event_list, idx) => {
       return (
         <ListWrapper key={`${idx}-${event_list.event_list_id}`}>
-          {props.__engine.renderComponent('index.list_item', {
-            event_list,
-          })}
+          {props.__engine.renderComponent('index.list_item', { event_list })}
         </ListWrapper>
       );
     })}
