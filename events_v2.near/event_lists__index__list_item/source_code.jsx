@@ -147,6 +147,8 @@ const Bobble = styled.div`
   width: auto;
 
   box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.2);
+
+  user-select: none;
 `;
 
 const scrollingEvents =
