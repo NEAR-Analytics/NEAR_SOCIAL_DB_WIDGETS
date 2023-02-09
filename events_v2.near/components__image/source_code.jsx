@@ -50,7 +50,7 @@ const BlurredImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: ${state.loaded ? 1 : 0};
+  opacity: ${state.animated ? 0 : 1};
 
   position: absolute;
   top: 0;
