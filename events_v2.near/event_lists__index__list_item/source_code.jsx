@@ -177,7 +177,7 @@ const Bobble = styled.div`
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: ${BOX_SHADOW_DEFAULT};
 
   user-select: none;
 `;
