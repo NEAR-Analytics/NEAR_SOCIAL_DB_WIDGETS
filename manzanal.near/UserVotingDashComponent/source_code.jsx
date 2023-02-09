@@ -1,3 +1,5 @@
+if (!context.accountId)
+  return "Connect your wallet to see your voting power balance";
 const CONTRACT_ID = "meta-vote.near";
 const GET_VP_METHOD = "get_available_voting_power";
 const GET_IN_USE_VP_METHOD = "get_used_voting_power";
