@@ -75,8 +75,8 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={!state.animated ? props.delay || '1s' : 0}
-        duration={!state.animated ? props.duration || '2s' : 0}
+        delay={state.animated ? 0 : props.delay || '1s'}
+        duration={state.animated ? 0 : props.duration || '2s'}
         onAnimationEnd={() => {
           if (!state.animated) {
             State.update({ animated: true });
