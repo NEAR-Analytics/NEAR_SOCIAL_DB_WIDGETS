@@ -9,12 +9,22 @@ props.controller.setLayout('layouts:container', {
 });
 
 const Container = props.__engine.Components.Container;
+const Hr = props.__engine.Components.Hr;
 
 return (
-  <Container>
-    {props.__engine.renderComponent('index.list_container', {
-      header: 'Your event lists',
-      forAccountId: props.__engine.accountId,
-    })}
-  </Container>
+  <>
+    <Container>
+      {props.__engine.renderComponent('index.list_container', {
+        header: 'Your event lists',
+        forAccountId: props.__engine.accountId,
+      })}
+    </Container>
+    <Hr />
+    <Container>
+      {props.__engine.renderComponent('index.list_container', {
+        header: 'Your event lists',
+        forAccountId: props.__engine.accountId,
+      })}
+    </Container>
+  </>
 );
