@@ -125,6 +125,7 @@ const Components = {
   PageTitle: styled.h1`
     font-size: ${FONT_SIZE_GIANT};
     color: black;
+    word-break: break-word;
   `,
 
   Container: styled.div`
