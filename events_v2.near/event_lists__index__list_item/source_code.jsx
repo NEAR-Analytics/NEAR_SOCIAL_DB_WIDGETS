@@ -89,7 +89,7 @@ const EventTileWrapper = styled.div`
   border: 1px solid;
 
   &:hover {
-    transform: scale(1.25);
+    transform: scale(1.025);
   }
 
   flex-grow & > * {
