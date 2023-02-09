@@ -12,7 +12,7 @@ if (!state) {
 const AnimationFadeBlurIn = styled.keyframes`
   from {
     opacity: 0;
-    filter: blur(10px);
+    filter: blur(20px);
   }
 
   to {
@@ -57,7 +57,7 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '1s'}
+        delay={props.delay || '2s'}
         onAnimationEnd={() => {
           console.log('Animation end 2');
         }}
