@@ -152,7 +152,7 @@ const Components = {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 0px ${GRID_PAD};
+    padding: ${GRID_PAD_SMALL} ${GRID_PAD};
     border-bottom: 1px solid ${BORDER_COLOR};
   `,
 
@@ -167,7 +167,6 @@ const Components = {
     color: ${TEXT_COLOR};
     text-decoration: none;
     margin-right: ${GRID_PAD};
-    padding: ${GRID_PAD} 0;
 
     &:hover {
       text-decoration: underline;
