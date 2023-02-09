@@ -2,7 +2,6 @@ const NAVBAR_HEIGHT = 64;
 const NAVBAR_OFFSET_TOP = 0;
 
 const title = props.title || '';
-const dropdownItems = props.dropdownItems || [];
 
 const Pulse = styled.keyframes`
   0% {
@@ -30,6 +29,8 @@ const Navbar = styled.div`
   align-items: center;
   justify-content: stretch;
   width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
 `;
 
 const NavPrimaryButton = styled.button`
