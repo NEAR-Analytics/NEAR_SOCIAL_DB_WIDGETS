@@ -91,6 +91,16 @@ const NavbarContainer = styled.div`
   width: 100%;
 `;
 
+const NavbarTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-align: center;
+  flex-grow: 1;
+`;
+
 const navbar = (
   <Navbar className="navbar">
     <NavbarContainer>
@@ -123,16 +133,8 @@ const navbar = (
         </button>
       ) : null}
 
-      <h2
-        style={{
-          color: 'white',
-          margin: 0,
-          padding: 0,
-          marginLeft: 10,
-          marginRight: 'auto',
-          fontSize: 20,
-          display: 'inline-block',
-        }}
+      <NavbarTitle
+        
       >
         {title}
       </h2>
