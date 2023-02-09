@@ -3,13 +3,17 @@ State.init({
 });
 
 const Wrapper = styled.div`
-  padding: 24px;
+  border: 1px solid;
+  position: relative;
 `;
 
 const Avatar = styled.div`
   width: 40px;
   height: 40px;
   pointer-events: none;
+  position: absolute;
+  top: 24px;
+  left: 24px;
 
   img {
     object-fit: cover;
@@ -23,17 +27,17 @@ const Textarea = styled.div`
   vertical-align: top;
   align-items: center;
   position: relative;
-  padding: 16px;
-  margin: 0;
   align-items: stretch;
-  border: 1px solid;
+  border-bottom: 1px solid;
   
   &::after,
   textarea {
     width: 100%;
     min-width: 1em;
+    height: unset;
+    min-height: 130px;
     font: inherit;
-    padding: 0;
+    padding: 24px 24px 24px 88px;
     margin: 0;
     resize: none;
     background: none;
@@ -63,5 +67,7 @@ return (
         onInput={(event) => State.update({ message: event.target.value })}
       ></textarea>
     </Textarea>
+
+    <p>Buttons</p>
   </Wrapper>
 );
