@@ -138,8 +138,6 @@ const Components = {
       padding-left: ${GRID_PAD_SMALL};
       padding-right: ${GRID_PAD_SMALL};
     }
-
-    ${() => props.style || {}}
   `,
 
   ContainerHeader: styled.div`
