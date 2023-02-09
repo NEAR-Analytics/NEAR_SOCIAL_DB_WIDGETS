@@ -213,7 +213,7 @@ const elDescription =
     : event_list.description;
 
 return (
-  <Card orientation="horizontal">
+  <Card orientation="horizontal" border>
     <CardHeader>
       <CardTitle>{event_list.name}</CardTitle>
 
