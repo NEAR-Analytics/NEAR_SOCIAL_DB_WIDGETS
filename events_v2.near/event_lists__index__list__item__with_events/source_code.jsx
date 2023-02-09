@@ -34,6 +34,7 @@ const Card = props.__engine.Components.Card;
 const CardTitle = props.__engine.Components.CardTitle;
 const CardHeader = props.__engine.Components.CardHeader;
 const Text = props.__engine.Components.Text;
+const TextButton = props.__engine.Components.TextButton;
 const HorizontalScroll = props.__engine.Components.HorizontalScroll;
 
 const Constants = props.__engine.Constants;
@@ -111,31 +112,6 @@ const EventTileWrapper = styled.div`
   @media (max-width: 768px) {
     width: 30%;
     min-width: 199px;
-  }
-`;
-
-const TextButton = styled.button`
-  background: transparent;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  font-size: ${FONT_SIZE_DEFAULT};
-  font-weight: 400;
-  outline: none;
-  padding: 0;
-  text-decoration: underline;
-  transition: color 0.15s ${EASE_DEFAULT};
-  display: inline-block;
-  width: fit-content;
-  margin-top: ${GRID_PAD_SMALL};
-
-  &:hover {
-    color: #0056b3;
-  }
-
-  &:focus {
-    color: #0056b3;
-    outline: none;
   }
 `;
 
