@@ -29,14 +29,13 @@ const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
 
 const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 
-const DEFAULT_BORDER_RADIUS = '4px';
-
 const TEXT_COLOR = '#333333';
 const TEXT_COLOR_LIGHT = '#666666';
 
+const BORDER_RADIUS_DEFAULT = '4px';
 const BORDER_COLOR = '#e6e6e6';
 const BORDER_THICKNESS = '0.1vw';
-const DEFAULT_BORDER = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
+const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 
 const ERROR_COLOR = '#cc0000';
 
@@ -64,12 +63,12 @@ const Constants = {
   FONT_SIZE_DEFAULT,
   FONT_SIZE_GIANT,
   TAG_PADDING,
-  DEFAULT_BORDER_RADIUS,
+  BORDER_RADIUS_DEFAULT,
   TEXT_COLOR,
   TEXT_COLOR_LIGHT,
   BORDER_COLOR,
   BORDER_THICKNESS,
-  DEFAULT_BORDER,
+  BORDER_DEFAULT,
   ERROR_COLOR,
   BUTTON_BG_COLOR,
   BUTTON_BG_HOVER_COLOR,
@@ -144,7 +143,7 @@ const Components = {
     padding: ${BUTTON_PADDING};
     margin: 0;
     border: none;
-    border-radius: ${DEFAULT_BORDER_RADIUS};
+    border-radius: ${BORDER_RADIUS_DEFAULT};
     box-sizing: border-box;
     background-color: ${BUTTON_BG_COLOR};
     color: ${BUTTON_COLOR};
@@ -236,7 +235,7 @@ const Components = {
     display: inline-block;
     background-color: ${BORDER_COLOR};
     padding: ${TAG_PADDING};
-    border-radius: ${DEFAULT_BORDER_RADIUS};
+    border-radius: ${BORDER_RADIUS_DEFAULT};
   `,
 
   Text: styled.div`
@@ -336,10 +335,10 @@ const Components = {
     justify-content: stretch;
     padding: 0;
     background-color: #ffffff;
-    border-radius: ${DEFAULT_BORDER_RADIUS};
+    border-radius: ${BORDER_RADIUS_DEFAULT};
 
     box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEF : 'none')};
-    border: ${(args) => (args.border ? DEFAULT_BORDER : 'none')};
+    border: ${(args) => (args.border ? BORDER_DEFAULT : 'none')};
 
     transition: all 0.5s ${EASE_DEFAULT};
 
