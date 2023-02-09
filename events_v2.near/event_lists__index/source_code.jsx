@@ -23,7 +23,7 @@ return (
 
     <Container>
       {props.__engine.renderComponent('index.list_container', {
-        header: 'All Lists',
+        header: 'All event lists',
         search: true,
       })}
     </Container>
