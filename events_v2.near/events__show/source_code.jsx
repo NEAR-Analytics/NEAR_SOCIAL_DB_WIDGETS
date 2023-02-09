@@ -1,11 +1,12 @@
 const EVENTS_CONTRACT = 'events_v2.near';
+const TGAS_300 = '300000000000000';
 
 const eventId = props.event_id;
 if (!eventId) {
   return props.__engine.helpers.propIsRequiredMessage('event_id');
 }
 
-const hasEvent = props.__engine.contract.view(EVENTS_CONTRACT, 'has_event', {
+const hasEvent = Near.view(EVENTS_CONTRACT, 'has_event', {
   event_id: props.event_id,
 });
 
@@ -21,7 +22,7 @@ if (hasEvent === false) {
   return 'Event not found';
 }
 
-const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
+const event = Near.view(EVENTS_CONTRACT, 'get_event', {
   event_id: props.event_id,
 });
 if (!event) {
@@ -40,7 +41,7 @@ const primaryAction = {
   onClick: ['push', 'edit', { event_id: props.event_id }],
 };
 
-props.controller.setLayout('layouts:container', {
+props.controller.setLayout('container', {
   back: true,
   title: event.name,
   primaryAction:
@@ -53,7 +54,9 @@ function removeEvent() {
   const args = {
     event_id: event.id,
   };
-  props.__engine.contract.call(contract, method, args);
+  const gas = TGAS_300;
+  const deposit = '0';
+  Near.call(contract, method, args, gas, deposit);
 }
 
 const PageTitle = props.__engine.Components.PageTitle;
@@ -80,7 +83,7 @@ return (
         borderBottom: '0.3vw solid black',
       }}
     >
-      {props.__engine.renderComponent('components:event_image_slider', {
+      {props.__engine.renderComponent('components.event_image_slider', {
         event,
         mode: 'banner',
       })}
@@ -109,7 +112,7 @@ return (
             borderRadius: 10,
           }}
         >
-          {props.__engine.renderComponent('components:event_image_slider', {
+          {props.__engine.renderComponent('components.event_image_slider', {
             event,
             mode: 'tile',
           })}
@@ -131,7 +134,7 @@ return (
         <Text>
           <i className="bi bi-calendar"></i>
 
-          {props.__engine.renderComponent('components:event_date', { event })}
+          {props.__engine.renderComponent('components.event_date', { event })}
         </Text>
       </InfoBarItem>
 
@@ -174,8 +177,8 @@ return (
             onClick={() => {
               removeEvent();
             }}
-            onKeyDown={(evt) => {
-              if (evt.key === 'Enter') {
+            onKeyDown={() => {
+              if (event.key === 'Enter') {
                 removeEvent();
               }
             }}
