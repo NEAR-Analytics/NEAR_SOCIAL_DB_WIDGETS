@@ -44,6 +44,22 @@ const Pulse = styled.keyframes`
   }
 `;
 
+const Navbar = styled.div`
+  min-height: ${NAVBAR_HEIGHT}px;
+  position: fixed;
+  top: ${NAVBAR_OFFSET_TOP}px;
+  width: 100%;
+  background-color: rgba(44, 44, 84, 0.85);
+  backdrop-filter: blur(32px) saturate(180%);
+  webkitbackdropfilter: blur(32px) saturate(180%);
+  z-index: 99999999;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  width: 100%;
+`;
+
 const NavPrimaryButton = styled.button`
   background-color: transparent;
   user-select: none;
@@ -64,7 +80,7 @@ const NavPrimaryButton = styled.button`
 
   transform: scale(0.975);
 
-  margin: 0 8px;
+  margin: 0 12px;
 
   &:hover {
     /* darker and transparent */
@@ -76,24 +92,8 @@ const NavPrimaryButton = styled.button`
   @media (max-width: 768px) {
     font-size: 1.05rem;
     padding: 4px 8px;
-    margin: 0 4px;
+    margin: 0 8px;
   }
-`;
-
-const Navbar = styled.div`
-  min-height: ${NAVBAR_HEIGHT}px;
-  position: fixed;
-  top: ${NAVBAR_OFFSET_TOP}px;
-  width: 100%;
-  background-color: rgba(44, 44, 84, 0.85);
-  backdrop-filter: blur(32px) saturate(180%);
-  webkitbackdropfilter: blur(32px) saturate(180%);
-  z-index: 99999999;
-  overflow-x: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: stretch;
-  width: 100%;
 `;
 
 const NavbarTitle = styled.h2`
