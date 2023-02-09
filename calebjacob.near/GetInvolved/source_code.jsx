@@ -6,6 +6,7 @@ const H2 = styled.h2`
 `;
 
 const ButtonLink = styled.a`
+  display: block;
   padding: 8px;
   height: 32px;
   border-radius: 6px;
@@ -27,6 +28,7 @@ const ButtonLink = styled.a`
 `;
 
 const IconButtonLink = styled.a`
+  display: block;
   padding: 0;
   height: 32px;
   width: 32px;
