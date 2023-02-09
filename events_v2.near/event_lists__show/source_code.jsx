@@ -112,11 +112,13 @@ return (
           role="button"
           tabIndex={0}
           onClick={() => {
-            props.__engine.push('add-events', { event_list_id: event_list_id });
+            props.__engine.push('change-events', {
+              event_list_id: event_list_id,
+            });
           }}
           onKeyDown={(evt) => {
             if (evt.key === 'Enter') {
-              props.__engine.push('add-events', {
+              props.__engine.push('change-events', {
                 event_list_id: event_list_id,
               });
             }
