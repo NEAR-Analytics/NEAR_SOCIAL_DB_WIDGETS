@@ -95,7 +95,23 @@ return (
           >
             Cancel{" "}
           </button>
-
+          <div className="d-flex gap-2" style={{ minHeight: "300px" }}>
+            <div className="w-50">
+              <Widget
+                src="mob.near/widget/MarkdownEditorIframe"
+                props={{
+                  initialText: note,
+                  onChange: (note) => State.update({ note }),
+                }}
+              />
+            </div>
+            <div className="w-50">
+              <Widget
+                src="mob.near/widget/SocialMarkdown"
+                props={{ text: state.note }}
+              />
+            </div>
+          </div>
           {/*<textarea
             id="textarea1"
             type="text"
