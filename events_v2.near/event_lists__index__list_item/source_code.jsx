@@ -131,6 +131,9 @@ const Bobble = styled.div`
   transform: translate(-50%, -50%);
   border: 1px solid #e9ecef;
 
+  padding: 10px;
+  font-size: 1.5rem;
+
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1),
     0 16px 24px 0 rgba(0, 0, 0, 0.1), 0 24px 32px 0 rgba(0, 0, 0, 0.1);
 `;
