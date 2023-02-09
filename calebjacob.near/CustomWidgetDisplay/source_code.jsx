@@ -27,7 +27,8 @@ const Section = styled.div`
 `;
 
 const ButtonLink = styled.a`
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   gap: 8px;
   padding: 8px;
   height: 32px;
