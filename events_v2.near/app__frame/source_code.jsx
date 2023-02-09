@@ -472,12 +472,14 @@ function storageSet(env, prop, value) {
 }
 
 function restoreRoutes() {
+  console.log('Restoring routing information', ENV);
   const info = storageGet(ENV, 'routing', null);
   if (info === null || info === undefined) {
     return;
   }
 
   const layers = state.layers;
+  console.log('Current routing information', layers);
   if (
     layers &&
     Array.isArray(info) &&
