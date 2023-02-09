@@ -63,6 +63,7 @@ return (
         style={props.style || {}}
         delay={props.delay || '0.6s'}
         duration={props.duration || '0.8s'}
+        draggable={props.draggable || false}
       />
     )}
   </>
