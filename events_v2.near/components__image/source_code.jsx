@@ -10,13 +10,17 @@ if (!state) {
 }
 
 const AnimationFadeBlurIn = styled.keyframes`
-  from {
+  0% {
     opacity: 0;
     filter: blur(100px);
     transform: rotate(-36deg);
   }
 
-  to {
+  20% {
+    transform: rotate(0deg);
+  }
+
+  100% {
     opacity: 1;
     filter: blur(0px);
     transform: rotate(0deg);
@@ -59,8 +63,8 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '2s'}
-        duration={props.duration || '2s'}
+        delay={props.delay || '0'}
+        duration={props.duration || '0.4s'}
       />
     )}
   </>
