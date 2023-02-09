@@ -87,7 +87,7 @@ const Components = {
   `,
 
   Button: styled.button`
-    background-color: ${BUTTON_BG_COLOR}
+    background-color: ${BUTTON_BG_COLOR};
     border: none;
     color: ${BUTTON_COLOR};
     padding: ${BUTTON_BORDER_RADIUS};
