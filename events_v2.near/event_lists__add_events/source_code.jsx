@@ -32,7 +32,7 @@ if (!state) {
 }
 
 props.controller.setLayout('layouts:modal', {
-  title: 'Add events',
+  title: 'Change events',
 });
 
 const Searchbar = styled.input`
