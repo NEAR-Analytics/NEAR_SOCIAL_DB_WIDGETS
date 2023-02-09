@@ -81,9 +81,10 @@ const EventTileWrapper = styled.div`
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
   animation-fill-mode: forwards;
   opacity: 0;
-  flex-grow & > * {
+
+  /* flex-grow & > * {
     height: 100%;
-  }
+  } */
 `;
 
 const TextButton = styled.button`
