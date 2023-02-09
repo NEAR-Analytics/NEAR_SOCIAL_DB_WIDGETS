@@ -1,9 +1,3 @@
-const Wrapper = styled.div`
-  border-left: 1px solid #ECEEF0;
-  border-right: 1px solid #ECEEF0;
-  padding-top: 24px;
-`;
-
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
@@ -18,11 +12,11 @@ const CreatePostWrapper = styled.div`
 `;
 
 return (
-  <Wrapper>
+  <div>
     <H2>Activity</H2>
 
     <CreatePostWrapper>
       <Widget src="calebjacob.near/widget/CreatePost" />
     </CreatePostWrapper>
-  </Wrapper>
+  </div>
 );
