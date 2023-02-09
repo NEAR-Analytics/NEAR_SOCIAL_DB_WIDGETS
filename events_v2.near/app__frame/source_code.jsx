@@ -90,7 +90,7 @@ const Components = {
     background-color: ${BUTTON_BG_COLOR};
     border: none;
     color: ${BUTTON_COLOR};
-    padding: ${BUTTON_BORDER_RADIUS};
+    padding: ${BUTTON_PADDING};
     text-align: center;
     text-decoration: none;
     display: inline-block;
