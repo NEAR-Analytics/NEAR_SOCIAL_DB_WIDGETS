@@ -11,8 +11,8 @@ if (!state) {
 
 const AnimationFadeBlurIn = styled.keyframes`
   0% {
-    opacity: 0;
-    filter: blur(50px);
+    opacity: 0.5;
+    filter: blur(100px);
     transform: scale(1.2);
   }
 
