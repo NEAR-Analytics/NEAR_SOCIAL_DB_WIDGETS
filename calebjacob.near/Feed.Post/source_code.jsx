@@ -17,7 +17,7 @@ const item = {
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 return (
-  <div className="border p-3 pb-1">
+  <div className="p-3">
     <Widget
       src="mob.near/widget/MainPage.Post.Header"
       props={{ accountId, blockHeight, link, postType: "post" }}
