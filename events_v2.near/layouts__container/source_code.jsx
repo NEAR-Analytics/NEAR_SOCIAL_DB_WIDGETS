@@ -89,6 +89,7 @@ const Navbar = styled.div`
   backdrop-filter: blur(32px) saturate(180%);
   webkitbackdropfilter: blur(32px) saturate(180%);
   z-index: 99999999;
+  overflow-x: hidden;
 `;
 
 const NavbarContainer = styled.div`
