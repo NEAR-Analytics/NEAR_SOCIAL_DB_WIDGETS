@@ -5,7 +5,7 @@ if (!url) {
 }
 
 if (!state) {
-  State.init({ loaded: false, src: null });
+  State.init({ loaded: false, src: null, animated: false });
   return <></>;
 }
 
@@ -51,7 +51,7 @@ return (
       }}
     />
 
-    {state.loaded && (
+    {state.loaded && !state.animated && (
       <img
         src={state.src}
         alt={props.alt || 'Image'}
@@ -75,7 +75,10 @@ return (
         delay={props.delay || '1s'}
         duration={props.duration || '2s'}
         onAnimationEnd={() => {
-          console.log('Animation end 1');
+          if (state.animated) {
+            return;
+          }
+          State.update({ animated: true });
         }}
       />
     )}
