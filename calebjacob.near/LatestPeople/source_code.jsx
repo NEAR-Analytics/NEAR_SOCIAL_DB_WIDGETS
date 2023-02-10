@@ -153,7 +153,7 @@ return (
     ))}
 
     <ButtonLink href="/#/mob.near/widget/People">
-      View All <span>({totalAccounts})</span>
+      View All People <span>({totalAccounts})</span>
     </ButtonLink>
   </>
 );
