@@ -1,4 +1,5 @@
-const tags = Object.keys(metadata.tags ?? {});
+const app = props.app;
+const tags = Object.keys(app.metadata.tags || {});
 
 const Card = styled.div`
   border-radius: 12px;
@@ -48,6 +49,7 @@ const Thumbnail = styled.div`
 const Flex = styled.div`
   display: flex;
   gap: 16px;
+  align-items: center;
 
   > * {
       min-width: 0;
@@ -105,7 +107,7 @@ const ButtonLink = styled.a`
   line-height: 15px;
   text-align: center;
   cursor: pointer;
-  color: ${(props) => (props.primary ? "#006ADC" : "#11181C")} !important;
+  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
 
   &:hover,
   &:focus {
@@ -123,23 +125,23 @@ return (
           <Widget
             src="mob.near/widget/Image"
             props={{
-              image: props.app.metadata.image,
+              image: app.metadata.image,
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
-              alt: props.app.metadata.name,
+              alt: app.metadata.name,
             }}
           />
         </Thumbnail>
 
         <div>
-          <Title>{props.app.metadata.name || props.app.widgetName}</Title>
+          <Title>{app.metadata.name || app.widgetName}</Title>
 
           {tags.length > 0 && (
             <TagsWrapper>
               <Tags>
-                {tags.map((tag, i) => {
-                  <Tag key={i}>{tag}</Tag>;
-                })}
+                {tags.map((tag, i) => (
+                  <Tag key={i}>{tag}</Tag>
+                ))}
               </Tags>
             </TagsWrapper>
           )}
@@ -148,8 +150,12 @@ return (
     </CardBody>
 
     <CardFooter>
-      <ButtonLink href="/">View Details</ButtonLink>
-      <ButtonLink href="/" primary>
+      <ButtonLink
+        href={`/#/calebjacob.near/widget/ApplicationDetails?src=${app.accountId}/widget/${app.widgetName}`}
+      >
+        View Details
+      </ButtonLink>
+      <ButtonLink href={`/#/${app.accountId}/widget/${app.widgetName}`} primary>
         Open
       </ButtonLink>
     </CardFooter>
