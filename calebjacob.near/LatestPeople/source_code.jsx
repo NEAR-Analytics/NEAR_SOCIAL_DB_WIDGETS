@@ -108,8 +108,6 @@ const ButtonLink = styled.a`
   }
 `;
 
-console.log(accounts);
-
 return (
   <>
     <H2>People</H2>
