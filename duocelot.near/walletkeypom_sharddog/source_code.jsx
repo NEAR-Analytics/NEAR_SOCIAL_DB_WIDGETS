@@ -76,12 +76,12 @@ const Heart = styled.div`
   &:after {
     position: absolute;
     content: '';
-    left: 50px;
+    left: 70px;
     top: 0;
     width: 50px;
     height: 80px;
-    background: red;
-    border-radius: 50px 50px 0 0;
+    background: grey;
+    border-radius: 50px 50px 20px 50px;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
   }
@@ -105,8 +105,11 @@ const heartBeat = styled.keyframes`
 `;
 
 const AnimatedHeart = styled(Heart)`
-  animation: ${heartBeat} 2000ms ease-out infinite;
+  animation: ${heartBeat} 1200ms ease-out infinite;
   `;
+const AnimatedHeart2 = styled(Heart)`
+  animation: ${heartBeat} 1200ms ease-out infinite;
+   animation-delay: 500ms;`;
 
 return (
   <div
@@ -151,6 +154,7 @@ return (
       }}
     >
       <AnimatedHeart />
+      <AnimatedHeart2 />
     </div>
   </div>
 );
