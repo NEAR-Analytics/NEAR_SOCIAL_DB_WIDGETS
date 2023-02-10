@@ -5,6 +5,7 @@ const widgetBlockheightData = Social.keys("*/widget/*/metadata", "final", {
   return_type: "BlockHeight",
 });
 let apps = [];
+const totalApps = Object.keys(widgetMetadata).length;
 
 if (widgetMetadata && widgetBlockheightData) {
   const widgets = [];
@@ -43,6 +44,34 @@ const CardWrapper = styled.div`
   margin: 0 0 16px;
 `;
 
+const ButtonLink = styled.a`
+  display: block;
+  width: 100%;
+  padding: 8px;
+  height: 32px;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: #11181C !important;
+  margin-top: 32px;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+
+  span {
+    color: #687076 !important;
+  }
+`;
+
 return (
   <>
     <H2>Latest Applications</H2>
@@ -52,5 +81,9 @@ return (
         <Widget src="calebjacob.near/widget/AppCard" props={{ app }} />
       </CardWrapper>
     ))}
+
+    <ButtonLink href="/#/mob.near/widget/Applications">
+      View All <span>({totalApps})</span>
+    </ButtonLink>
   </>
 );
