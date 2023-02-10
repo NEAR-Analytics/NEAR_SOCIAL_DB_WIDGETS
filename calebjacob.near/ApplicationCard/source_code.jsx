@@ -1,3 +1,5 @@
+const tags = Object.keys(metadata.tags ?? {});
+
 const Card = styled.div`
   border-radius: 12px;
   background: #fff;
@@ -113,8 +115,6 @@ const ButtonLink = styled.a`
   }
 `;
 
-console.log(props.app);
-
 return (
   <Card>
     <CardBody>
@@ -133,16 +133,16 @@ return (
 
         <div>
           <Title>{props.app.metadata.name || props.app.widgetName}</Title>
-          <TagsWrapper>
-            <Tags>
-              <Tag>profile</Tag>
-              <Tag>editor</Tag>
-              <Tag>social</Tag>
-              <Tag>profile</Tag>
-              <Tag>editor</Tag>
-              <Tag>social</Tag>
-            </Tags>
-          </TagsWrapper>
+
+          {tags.length > 0 && (
+            <TagsWrapper>
+              <Tags>
+                {tags.map((tag, i) => {
+                  <Tag key={i}>{tag}</Tag>;
+                })}
+              </Tags>
+            </TagsWrapper>
+          )}
         </div>
       </Flex>
     </CardBody>
