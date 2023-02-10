@@ -10,7 +10,7 @@ const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-markdown-editor-lite@1.3.4/lib/index.js" crossorigin></script>
-<script src="https://unpkg.com/@monaco-editor/react@4.4.6/lib/umd/monaco-react.min.js " crossorigin></script>
+<script type="module" src="https://unpkg.com/@monaco-editor/react@4.4.6/lib/umd/monaco-react.min.js " crossorigin></script>
 <link rel="stylesheet" href="https://unpkg.com/react-markdown-editor-lite@1.3.4/lib/index.css" />
 
 <div id="editor-window"></div>
