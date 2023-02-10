@@ -41,7 +41,7 @@ return (
     </div>
     <Markdown text={state.m} />
     <Widget
-      src={'roshaan.near/widget/query_api__RegisterIndexerFunctionButton'}
+      src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
     />
   </>
 );
