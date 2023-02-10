@@ -151,7 +151,11 @@ return (
                     disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
-                  href={`https://near.social/#/vow_owner_123.near/widget/Instance_time_card?accountId=${d.accountId}`}
+                  href={
+                    context.accountId != d.accountId
+                      ? `https://near.social/#/vow_owner_123.near/widget/Instance_time_card?accountId=${d.accountId}`
+                      : `https://near.social/#/vow_owner_123.near/widget/Instance_time`
+                  }
                 >
                   <div
                     style={{
