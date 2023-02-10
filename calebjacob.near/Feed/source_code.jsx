@@ -8,14 +8,18 @@ const index = {
   },
 };
 
+const Post = styled.div`
+  border-bottom: 1px solid #ECEEF0;
+`;
+
 const renderItem = (a) =>
   a.value.type === "md" && (
-    <div key={JSON.stringify(a)}>
+    <Post key={JSON.stringify(a)}>
       <Widget
         src="calebjacob.near/widget/Feed.Post"
         props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
       />
-    </div>
+    </Post>
   );
 
 return (
