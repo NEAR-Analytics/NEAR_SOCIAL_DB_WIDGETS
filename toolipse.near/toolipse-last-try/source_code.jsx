@@ -12,7 +12,7 @@ const data = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_active_listings(limit: 700, order_by: {price: asc},where: {owner: {_eq: "toolipse.near"}, _and: {minter: {_eq: "toolipse.near"}}}) {
+        mb_views_active_listings(limit: 700, order_by: {price: desc},where: {minter: {_eq: "toolipse.near"}}) {
             listed_by
             created_at
             price
@@ -53,7 +53,7 @@ const size = "10em";
 
 return data !== null ? (
   <>
-    <h1>Last Artworks on @mintbase</h1>
+    <h1>Artworks available on @mintbase</h1>
     <p>Nice to see that my artworks can be buyable from here.</p>
     <div className="d-flex gap-4 flex-wrap">
       {data.body.data?.mb_views_active_listings.map((listing, i) => {
