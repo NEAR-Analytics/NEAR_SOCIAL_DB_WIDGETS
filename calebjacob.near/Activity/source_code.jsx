@@ -1,5 +1,6 @@
 State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
+  showFeed: true,
 });
 
 const previousSelectedTab = Storage.privateGet("selectedTab");
@@ -78,7 +79,9 @@ const TabsButton = styled.button`
 
 return (
   <>
-    <H2>Activity</H2>
+    <H2 onClick={() => State.update({ showFeed: !state.showFeed })}>
+      Activity
+    </H2>
 
     <CreatePostWrapper>
       <Widget src="calebjacob.near/widget/CreatePost" />
@@ -103,6 +106,8 @@ return (
       </TabsButton>
     </Tabs>
 
-    <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
+    {showFeed && (
+      <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
+    )}
   </>
 );
