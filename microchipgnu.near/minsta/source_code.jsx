@@ -188,5 +188,13 @@ return (
         })}
       </div>
     </div>
+
+    <a
+      href="https://twitter.com/microchipgnu/status/1542215896063672320"
+      target="_blank"
+      class="my-4"
+    >
+      What is this?{" "}
+    </a>
   </div>
 );
