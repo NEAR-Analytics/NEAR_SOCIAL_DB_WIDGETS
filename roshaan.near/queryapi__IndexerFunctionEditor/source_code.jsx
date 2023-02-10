@@ -13,6 +13,7 @@ const code = `
 <script src="https://unpkg.com/@monaco-editor/react@4.4.6/lib/umd/monaco-react.min.js " crossorigin></script>
 <link rel="stylesheet" href="https://unpkg.com/react-markdown-editor-lite@1.3.4/lib/index.css" />
 
+<div id="editor-window"></div>
 
 <div id="react-root"></div>
 
