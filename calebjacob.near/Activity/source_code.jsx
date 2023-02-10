@@ -2,6 +2,9 @@ State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
 });
 
+console.log(Storage.privateGet("selectedTab") || "all");
+console.log("state", state.selectedTab);
+
 let accounts = undefined;
 
 if (state.selectedTab === "following" && context.accountId) {
