@@ -90,6 +90,7 @@ const Avatar = styled.div`
     object-fit: cover;
     border-radius: 40px;
     width: 100%;
+    height: 100%;
   }
 `;
 
