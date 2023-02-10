@@ -32,10 +32,11 @@ const Thumbnail = styled.div`
   width: 48px;
   height: 48px;
   flex-shrink: 0;
+  border: 1px solid #ECEEF0;
+  border-radius: 8px;
+  overflow: hidden;
 
   img {
-    box-shadow: inset 0 0 0 1px #ECEEF0;
-    border-radius: 8px;
     object-fit: cover;
     width: 100%;
     height: 100%;
