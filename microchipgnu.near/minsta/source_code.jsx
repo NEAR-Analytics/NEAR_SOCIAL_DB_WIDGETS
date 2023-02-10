@@ -100,12 +100,12 @@ if (posts.length === 0) {
   return "Loading...";
 }
 
-console.log(posts);
 const size = "3em";
 
 return (
   <div class="text-black p-2 container-fluid d-flex flex-column w-100 text-center justify-content-center align-items-center">
     <h4>Minsta</h4>
+    <p style={{ fontSize: 12 }}>Capture, mint and share moments with others.</p>
     <div class="container-fluid text-center d-flex flex-column justify-content-center align-items-center">
       <Files
         multiple={false}
