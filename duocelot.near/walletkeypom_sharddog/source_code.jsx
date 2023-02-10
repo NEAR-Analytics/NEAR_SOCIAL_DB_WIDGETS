@@ -152,7 +152,7 @@ return (
       hello world
     </a>
     <div>
-      <Heart />
+      <AnimatedHeart />
     </div>
   </div>
 );
