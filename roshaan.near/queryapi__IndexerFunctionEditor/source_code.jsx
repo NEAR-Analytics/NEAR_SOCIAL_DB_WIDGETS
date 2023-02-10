@@ -17,6 +17,7 @@ const code = `
 
 <div id="root"></div>
 <script type="text/babel">
+import 
       class App extends React.Component {
         render() {
 
