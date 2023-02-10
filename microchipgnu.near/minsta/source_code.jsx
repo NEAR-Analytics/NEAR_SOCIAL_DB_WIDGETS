@@ -17,29 +17,16 @@ const data = fetch(mbGraphEndpoint, {
   },
   body: JSON.stringify({
     query: `
-  query FetchFeedMintedThings($accountId: String!, $contractAddress: String) {
-    token: mb_views_nft_tokens(
-      where: {
-        minter: { _eq: $accountId }
-        nft_contract_id: { _eq: $contractAddress }
-        burned_timestamp: { _is_null: true }
-      }
-      order_by: { minted_timestamp: desc }
-      limit: 3
-    ) {
-      id: token_id
-      createdAt: minted_timestamp
-      media
-      title
-      description
-      metadata_id
+  query FetchFeedMintedThings {
+  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "minsta.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
+      nft_contract_id
+      action_receiver
+      token_id
+      memo
+      timestamp
     }
   }
 `,
-    variables: {
-      accountId: proxyMinter,
-      contractAddress: nftContractId,
-    },
   }),
 });
 
@@ -105,17 +92,21 @@ const handleMint = (cid) => {
   ]);
 };
 
-if (data?.body?.data?.token) {
-  posts = data?.body?.data?.token;
+if (data?.body?.data?.nft_activities) {
+  posts = data?.body?.data?.nft_activities;
 }
 
 if (posts.length === 0) {
   return "Loading...";
 }
 
+console.log(posts);
+const size = "3em";
+
 return (
-  <div class="text-black p-2 container-fluid">
-    <div class="container-fluid d-flex flex-wrap justify-content-center gap-2">
+  <div class="text-black p-2 container-fluid d-flex flex-column w-100 text-center justify-content-center align-items-center">
+    <h3>Minsta</h3>
+    <div class="container-fluid text-center d-flex flex-column justify-content-center align-items-center">
       <Files
         multiple={false}
         accepts={["image/*"]}
@@ -125,24 +116,80 @@ return (
         style={{
           cursor: "pointer",
         }}
+        class="text-center d-flex justify-content-center align-items-center"
       >
         <div
           class="col-md-4 col-sm-6 px-1 d-flex justify-content-center align-items-center"
           style={{ width: "150px", height: "150px" }}
         >
-          {state.img?.uploading ? <>...</> : state.img?.cid ? "Replace" : "+"}
+          {state.img?.uploading ? (
+            <>...</>
+          ) : state.img?.cid ? (
+            "Replace"
+          ) : (
+            "Take photo"
+          )}
         </div>
       </Files>
-      {posts.map((post) => {
-        return (
-          <div
-            class="col-md-4 col-sm-6 px-1 d-flex justify-content-center"
-            style={{ width: "150px", height: "150px" }}
-          >
-            <img src={post.media} class="object-fit-contain w-100" />
-          </div>
-        );
-      })}
+      <div class="d-flex flex-column gap-2">
+        {posts.map((post) => {
+          const memo = JSON.parse(post.memo);
+          const split_between = memo.royalty.split_between;
+          const sender = Object.keys(split_between)[0];
+
+          return (
+            <div>
+              <Widget
+                src="mob.near/widget/ProfileLine"
+                props={{
+                  accountId: sender,
+                  hideName: true,
+                  hideAccountId: true,
+                  tooltip: true,
+                }}
+              />
+              <span role="img" aria-label="poked" title="poked">
+                📸
+              </span>
+              <Widget
+                src="mob.near/widget/NftImage"
+                props={{
+                  nft: {
+                    tokenId: post.token_id,
+                    contractId: post.nft_contract_id,
+                  },
+                  style: {
+                    width: size,
+                    height: size,
+                    objectFit: "cover",
+                    minWidth: size,
+                    minHeight: size,
+                    maxWidth: size,
+                    maxHeight: size,
+                    overflowWrap: "break-word",
+                  },
+                  thumbnail: "thumbnail",
+                  className: "",
+                  fallbackUrl:
+                    "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+                }}
+              />
+              <span role="img" aria-label="poked" title="poked">
+                ➡️
+              </span>
+              <Widget
+                src="mob.near/widget/ProfileLine"
+                props={{
+                  accountId: post.action_receiver,
+                  hideName: true,
+                  hideAccountId: true,
+                  tooltip: true,
+                }}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   </div>
 );
