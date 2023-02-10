@@ -177,17 +177,53 @@ return (
               <p style={{ fontWeight: "500" }}>{sliceString(accountId, 18)}</p>
             </div>
           </div>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <a
               href="https://near.social/#/vow_owner_123.near/widget/Instance_time"
               onMouseEnter={() => {
-                State.update({ hoveringElement: "create" });
+                State.update({ hoveringElement: "view" });
               }}
               onMouseLeave={() => {
                 State.update({ hoveringElement: "" });
               }}
               style={
-                state.hoveringElement == "create"
+                state.hoveringElement == "view"
+                  ? {
+                      border: "2px solid transparent",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      padding: "0.3rem 1.5rem",
+                      backgroundColor: "#010A2D",
+                      borderRadius: "12px",
+                      color: "white",
+                      textDecoration: "none",
+                      marginBottom: "0.5rem",
+                    }
+                  : {
+                      border: "2px solid black",
+                      color: "black",
+                      backgroundColor: "white",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      padding: "0.3rem 1.5rem",
+                      borderRadius: "12px",
+                      textDecoration: "none",
+                      marginBottom: "0.5rem",
+                    }
+              }
+            >
+              View Schedules
+            </a>
+            <a
+              href="https://near.social/#/vow_owner_123.near/widget/Instance_time_edit"
+              onMouseEnter={() => {
+                State.update({ hoveringElement: "edit" });
+              }}
+              onMouseLeave={() => {
+                State.update({ hoveringElement: "" });
+              }}
+              style={
+                state.hoveringElement == "edit"
                   ? {
                       border: "2px solid transparent",
                       fontWeight: "500",
@@ -210,7 +246,7 @@ return (
                     }
               }
             >
-              View Schedules
+              Edit Schedules
             </a>
           </div>
         </div>
