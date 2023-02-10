@@ -1,5 +1,5 @@
 const addressForArticles = "wikiTest";
-const authorForWidget = "eugenewolf507.near";
+const authorForWidget = "testwiki.near";
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
