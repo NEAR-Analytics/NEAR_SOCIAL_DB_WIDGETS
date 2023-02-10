@@ -80,7 +80,7 @@ const Heart = styled.div`
     top: 0;
     width: 50px;
     height: 80px;
-    background: white;
+    background: red;
     border-radius: 50px 50px 0 0;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
@@ -93,35 +93,20 @@ const Heart = styled.div`
 `;
 
 const heartBeat = styled.keyframes`
-  0%
-  {
-    transform: scale( .75 );
-  }
-  20%
-  {
-    transform: scale( 1.1 );
-  }
-  40%
-  {
-    transform: scale( .75 );
-  }
-  60%
-  {
-    transform: scale( 1.1 );
-  }
-  80%
-  {
-    transform: scale( .75 );
-  }
-  100%
-  {
-    transform: scale( .75 );
-  }
+  0%{
+        transform: rotate(0deg) translateX(100px);
+        opacity: 1;
+        filter:blur(1px);
+    }
+    100% {
+      transform: rotate(35deg) translateY(-80px) translateX(-20px);
+        opacity: 0;
+        filter:blur(20px);
 `;
 
 const AnimatedHeart = styled(Heart)`
-  animation: ${heartBeat} 1s infinite;
-`;
+  animation: ${heartBeat} 2000ms ease-out infinite;
+  `;
 
 return (
   <div
@@ -151,7 +136,20 @@ return (
     >
       hello world
     </a>
-    <div>
+    <div
+      style={{
+        width: "300px",
+        height: "100px",
+        backgroundSize: "100%",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "white",
+        position: "relative",
+        fontFamily: '"Press Start 2P", sans-serif',
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <AnimatedHeart />
     </div>
   </div>
