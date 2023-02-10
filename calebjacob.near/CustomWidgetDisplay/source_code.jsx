@@ -10,6 +10,9 @@ const defaultWidgets = [
   {
     src: "calebjacob.near/widget/GetInvolved",
   },
+  {
+    src: "calebjacob.near/widget/LatestPeople",
+  },
 ];
 
 const widgets = (customWidgets && JSON.parse(customWidgets)) ?? defaultWidgets;
