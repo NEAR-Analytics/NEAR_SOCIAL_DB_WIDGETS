@@ -76,9 +76,15 @@ return (
                   trigger="hover focus"
                 >
                   {" "}
-                  {pool.account_id.length > TRUNCATE_LENGTH
-                    ? pool.account_id.substring(0, TRUNCATE_LENGTH) + "..."
-                    : pool.account_id}
+                  {pool.account_id.substring(0, pool.account_id.indexOf("."))
+                    .length > TRUNCATE_LENGTH
+                    ? pool.account_id
+                        .substring(0, pool.account_id.indexOf("."))
+                        .substring(0, TRUNCATE_LENGTH) + "..."
+                    : pool.account_id.substring(
+                        0,
+                        pool.account_id.indexOf(".")
+                      )}
                 </span>
                 <span
                   data-toggle="tooltip"
