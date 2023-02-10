@@ -20,17 +20,18 @@ const code = `
 <script>
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
-  return React.createElement(ReactMarkdownEditorLite.default, {
-      value,
-      view: { menu: true, md: true, html: false },
-      canView: { menu: true, md: false, html: false, fullScreen: false, hideMenu: true },
-      onChange: ({ text }) => {
-        setValue(text);
-        window.top.postMessage(text, "*");
-      },
-      renderHTML: () => {},
-      className: "full",
-    }); 
+  return React.createElement(MonacoEditor.default, {})
+  // return React.createElement(ReactMarkdownEditorLite.default, {
+  //     value,
+  //     view: { menu: true, md: true, html: false },
+  //     canView: { menu: true, md: false, html: false, fullScreen: false, hideMenu: true },
+  //     onChange: ({ text }) => {
+  //       setValue(text);
+  //       window.top.postMessage(text, "*");
+  //     },
+  //     renderHTML: () => {},
+  //     className: "full",
+  //   }); 
 }
 
 const domContainer = document.querySelector('#react-root');
