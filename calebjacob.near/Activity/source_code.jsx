@@ -106,7 +106,7 @@ return (
       </TabsButton>
     </Tabs>
 
-    {showFeed && (
+    {state.showFeed && (
       <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
     )}
   </>
