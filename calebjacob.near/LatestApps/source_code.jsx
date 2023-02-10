@@ -5,7 +5,7 @@ const widgetBlockheightData = Social.keys("*/widget/*/metadata", "final", {
   return_type: "BlockHeight",
 });
 let apps = [];
-const totalApps = Object.keys(widgetMetadata).length;
+const totalApps = Object.keys(widgetMetadata || {}).length;
 
 if (widgetMetadata && widgetBlockheightData) {
   const widgets = [];
