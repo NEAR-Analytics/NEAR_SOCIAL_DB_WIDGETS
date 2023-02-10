@@ -34,8 +34,9 @@ const Thumbnail = styled.div`
   flex-shrink: 0;
 
   img {
-    object-fit: cover;
+    box-shadow: inset 0 0 0 1px #ECEEF0;
     border-radius: 8px;
+    object-fit: cover;
     width: 100%;
     height: 100%;
   }
