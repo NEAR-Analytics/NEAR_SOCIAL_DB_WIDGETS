@@ -42,7 +42,7 @@ const TabsButton = styled.button`
   line-height: 17px;
   padding: 0 12px;
   position: relative;
-  color: ${(props) => (props.selected ? "#11181C" : "#687076")};
+  color: ${(p) => (p.selected ? "#11181C" : "#687076")};
   background: none;
   border: none;
   outline: none;
@@ -53,7 +53,7 @@ const TabsButton = styled.button`
 
   &::after {
     content: '';
-    display: ${(props) => (props.selected ? "block" : "none")};
+    display: ${(p) => (p.selected ? "block" : "none")};
     position: absolute;
     bottom: 0;
     left: 12px;
