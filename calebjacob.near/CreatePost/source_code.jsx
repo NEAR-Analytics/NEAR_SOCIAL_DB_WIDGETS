@@ -108,9 +108,9 @@ const Textarea = styled.div`
     width: 100%;
     min-width: 1em;
     height: unset;
-    min-height: 130px;
+    min-height: 160px;
     font: inherit;
-    padding: 24px 24px 24px 88px;
+    padding: 24px 24px 88px 88px;
     margin: 0;
     resize: none;
     background: none;
@@ -126,13 +126,22 @@ const Textarea = styled.div`
     visibility: hidden;
     white-space: pre-wrap;
   }
+
+  textarea {
+    transition: all 200ms;
+
+    &:focus {
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
+    }
+  }
 `;
 
 const Actions = styled.div`
-  display: flex;
-  justify-content: end;
+  display: inline-flex;
   gap: 12px;
-  padding: 0 24px 24px 24px;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
 
   .commit-post-button {
     background: #0091FF;
