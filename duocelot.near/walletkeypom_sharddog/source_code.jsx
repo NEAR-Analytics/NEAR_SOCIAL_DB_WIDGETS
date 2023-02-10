@@ -80,7 +80,7 @@ const Heart = styled.div`
     top: 0;
     width: 50px;
     height: 80px;
-    background: red;
+    background: white;
     border-radius: 50px 50px 0 0;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
