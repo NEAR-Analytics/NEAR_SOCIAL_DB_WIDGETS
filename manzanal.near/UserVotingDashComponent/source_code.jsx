@@ -46,7 +46,7 @@ return (
         </div>
       </div>
       <div class="row">
-        <a href="metavote.app">
+        <a href="https://metavote.app/" class="external">
           Get More Voting Power <i class="bi-box-arrow-up-right" />
         </a>
       </div>
