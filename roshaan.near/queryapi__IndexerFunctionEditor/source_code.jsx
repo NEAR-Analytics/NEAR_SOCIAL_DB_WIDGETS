@@ -20,7 +20,7 @@ const code = `
 <script>
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
-  return React.createElement(ReactMarkdownEditorLite.default, {
+  return React.createElement(useMonaco.default, {
       value,
       view: { menu: true, md: true, html: false },
       canView: { menu: true, md: false, html: false, fullScreen: false, hideMenu: true },
