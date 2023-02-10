@@ -83,7 +83,7 @@ return (
     ))}
 
     <ButtonLink href="/#/mob.near/widget/Applications">
-      View All <span>({totalApps})</span>
+      View All Apps <span>({totalApps})</span>
     </ButtonLink>
   </>
 );
