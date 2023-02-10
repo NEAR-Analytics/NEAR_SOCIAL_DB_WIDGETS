@@ -61,7 +61,7 @@ return (
 
     {state.activeTab === 'editor-window' && (
       <TabContent>
-        <Widget src={'roshaan.near/widget/IndexerFunctionEditor'} />
+        <Widget src={'roshaan.near/widget/query_api__IndexerFunctionEditor'} />
         This is the Dashboard tab content. You can add any components or
         information related to the dashboard here.
       </TabContent>
@@ -69,7 +69,7 @@ return (
 
     {state.activeTab === 'graphql-playground' && (
       <TabContent>
-        <Widget src={'roshaan.near/widget/GraphQLPlaygroundView'} />
+        <Widget src={'roshaan.near/widget/query_api__GraphQLPlaygroundView'} />
         This is the GraphQL Playground tab content. You can add any components
         or information related to the GraphQL Playground here.
       </TabContent>
@@ -77,7 +77,7 @@ return (
 
     {state.activeTab === 'indexer-status' && (
       <TabContent>
-        <Widget src={'roshaan.near/widget/IndexerStatus'} />
+        <Widget src={'roshaan.near/widget/query_api__IndexerStatus'} />
         This is the Indexer Status tab content. You can add any components or
         information related to the indexer status here.
       </TabContent>
