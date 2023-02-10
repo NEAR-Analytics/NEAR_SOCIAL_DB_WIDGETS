@@ -18,7 +18,7 @@ const code = `
 <div id="react-root"></div>
 
 <script type="module">
-import Editor from '@monaco-editor/react';
+import Editor from './@monaco-editor/react';
 console.log(Editor);
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
