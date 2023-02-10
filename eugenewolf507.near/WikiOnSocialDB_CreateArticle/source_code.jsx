@@ -285,16 +285,6 @@ const saveHandler = (e) => {
   }
 };
 
-// === CANCEL HANDLER ===
-const cancelHandler = () => {
-  State.update({
-    articleId: "",
-    articleBody: "",
-    errorId: null,
-    errorBody: null,
-  });
-};
-
 return (
   <>
     <Widget
@@ -311,14 +301,6 @@ return (
             onClick={saveHandler}
           >
             Save Article
-          </button>
-
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={cancelHandler}
-          >
-            Cancel / Clear
           </button>
         </div>
         <div class="d-flex flex-column pt-3">
