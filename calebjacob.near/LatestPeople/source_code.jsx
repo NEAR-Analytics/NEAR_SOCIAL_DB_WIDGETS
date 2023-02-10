@@ -38,6 +38,7 @@ const H2 = styled.h2`
 
 const Person = styled.a`
   display: grid;
+  align-items: center;
   gap: 12px;
   grid-template-columns: auto 1fr;
   cursor: pointer;
@@ -79,6 +80,7 @@ const Avatar = styled.div`
 const Name = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2px;
 `;
 
 const ButtonLink = styled.a`
