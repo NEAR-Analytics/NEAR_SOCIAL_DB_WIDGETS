@@ -2,8 +2,13 @@ State.init({
   selectedTab: Storage.privateGet("selectedTab") || "all",
 });
 
-console.log(Storage.privateGet("selectedTab") || "all");
-console.log("state", state.selectedTab);
+const previousSelectedTab = Storage.privateGet("selectedTab");
+
+if (previousSelectedTab && previousSelectedTab !== state.selectedTab) {
+  State.update({
+    selectedTab: previousSelectedTab,
+  });
+}
 
 let accounts = undefined;
 
