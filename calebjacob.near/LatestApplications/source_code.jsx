@@ -7,9 +7,6 @@ const widgetBlockheightData = Social.keys("*/widget/*/metadata", "final", {
 let apps = [];
 
 if (widgetMetadata && widgetBlockheightData) {
-  console.log(widgetMetadata);
-  console.log(widgetBlockheightData);
-
   const widgets = [];
 
   Object.keys(widgetBlockheightData).forEach((accountId) => {
@@ -33,8 +30,6 @@ if (widgetMetadata && widgetBlockheightData) {
         widgetMetadata[widget.accountId].widget[widget.widgetName].metadata,
     };
   });
-
-  console.log(applications);
 }
 
 const H2 = styled.h2`
