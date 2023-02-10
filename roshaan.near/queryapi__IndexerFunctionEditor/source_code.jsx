@@ -17,7 +17,7 @@ const code = `
 
 <div id="root"></div>
 <script type="text/babel">
-const Editor = require("@monaco-editor/react");
+import React from "react";
       class App extends React.Component {
         render() {
 
