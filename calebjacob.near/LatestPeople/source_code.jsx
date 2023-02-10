@@ -80,7 +80,6 @@ const Avatar = styled.div`
 const Name = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2px;
 `;
 
 const ButtonLink = styled.a`
