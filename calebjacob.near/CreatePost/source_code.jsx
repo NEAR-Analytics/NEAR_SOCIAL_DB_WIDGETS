@@ -204,8 +204,6 @@ const Actions = styled.div`
   }
 `;
 
-console.log(profile);
-
 return (
   <Wrapper>
     <Avatar>
