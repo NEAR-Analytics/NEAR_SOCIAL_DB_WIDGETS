@@ -8,12 +8,6 @@ const card = {
   padding: "10px",
   margin: "1rem",
 };
-const comboBox = {
-  background: "black",
-  color: "white",
-  borderRadius: "1rem",
-  padding: "1rem",
-};
 const days = [
   "Monday",
   "Tuesday",
