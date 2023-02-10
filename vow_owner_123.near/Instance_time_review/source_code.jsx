@@ -147,7 +147,7 @@ return (
                     color: "black",
                     borderRadius: "1rem",
                     margin: "8px",
-                    cursor: "pointer",
+                    cursor: {context.accountId != d.accountId ? "pointer" : "auto"},
                     disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
