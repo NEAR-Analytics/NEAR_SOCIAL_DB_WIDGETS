@@ -160,7 +160,7 @@ const Actions = styled.div`
 
     &:hover,
     &:focus {
-      background: #076fbf;
+      background: #0484e5;
       outline: none;
     }
 
