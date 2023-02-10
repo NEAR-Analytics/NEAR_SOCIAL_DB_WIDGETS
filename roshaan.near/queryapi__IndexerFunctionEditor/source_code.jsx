@@ -16,7 +16,7 @@ const code = `
 <div id="editor-window"></div>
 
 <div id="root"></div>
-<script type="module">
+<script type="text/babel">
 import React from "react";
       class App extends React.Component {
         render() {
