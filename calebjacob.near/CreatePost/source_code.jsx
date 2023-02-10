@@ -2,6 +2,8 @@ if (!context.accountId) {
   return "";
 }
 
+const profile = Social.getr(`${context.accountId}/profile`);
+
 State.init({
   image: {},
   text: "",
@@ -202,10 +204,20 @@ const Actions = styled.div`
   }
 `;
 
+console.log(profile);
+
 return (
   <Wrapper>
     <Avatar>
-      <img src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreibhm4kokjpetrr7ztaixyanzbn5djvj4h4ryjshsfh2hgpi3v7uqu" />
+      <Widget
+        src="mob.near/widget/Image"
+        props={{
+          image: profile.image,
+          alt: profile.name,
+          fallbackUrl:
+            "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+        }}
+      />
     </Avatar>
 
     <Textarea data-value={state.text}>
