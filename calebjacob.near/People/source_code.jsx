@@ -39,8 +39,18 @@ const H2 = styled.h2`
 `;
 
 const Person = styled.div`
-  display: flex;
+  display: grid;
   gap: 12px;
+  grid-template-columns: auto 1fr;
+
+  > * {
+    min-width: 0;
+  }
+`;
+
+const List = styled.div`
+  display: grid;
+  gap: 24px;
 `;
 
 const Text = styled.p`
@@ -50,6 +60,9 @@ const Text = styled.p`
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
   font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
 `;
 
 const Avatar = styled.div`
@@ -74,38 +87,42 @@ return (
   <>
     <H2>People</H2>
 
-    {accounts.map((account) => (
-      <Person key={account.accountId}>
-        <Avatar>
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: account.profile.image,
-              alt: account.profile.name,
-              fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-            }}
-          />
-        </Avatar>
+    <List>
+      {accounts.map((account) => (
+        <Person key={account.accountId}>
+          <Avatar>
+            <Widget
+              src="mob.near/widget/Image"
+              props={{
+                image: account.profile.image,
+                alt: account.profile.name,
+                fallbackUrl:
+                  "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+              }}
+            />
+          </Avatar>
 
-        <div>
-          <Name>
-            <Text bold>{account.profile.name}</Text>
+          <div>
+            <Name>
+              <Text ellipsis bold>
+                {account.profile.name}
+              </Text>
 
-            <Text small>
-              Joined{" "}
-              <Widget
-                src="mob.near/widget/TimeAgo"
-                props={{ blockHeight: account.blockHeight }}
-              />{" "}
-              ago
-            </Text>
-          </Name>
+              <Text small>
+                Joined{" "}
+                <Widget
+                  src="mob.near/widget/TimeAgo"
+                  props={{ blockHeight: account.blockHeight }}
+                />{" "}
+                ago
+              </Text>
+            </Name>
 
-          <Text>{account.accountId}</Text>
-        </div>
-      </Person>
-    ))}
+            <Text ellipsis>{account.accountId}</Text>
+          </div>
+        </Person>
+      ))}
+    </List>
 
     <div>Total {totalAccounts} profiles</div>
   </>
