@@ -68,7 +68,7 @@ if (!accountId) {
   );
 }
 
-const Heart = styled.div`
+const Smoke = styled.div`
   position: relative;
   width: 100px;
   height: 90px;
@@ -92,7 +92,7 @@ const Heart = styled.div`
   }
 `;
 
-const heartBeat = styled.keyframes`
+const SmokeFade = styled.keyframes`
   0%{
         transform: rotate(0deg) translateX(100px);
         opacity: 1;
@@ -104,11 +104,11 @@ const heartBeat = styled.keyframes`
         filter:blur(20px);
 `;
 
-const AnimatedHeart = styled(Heart)`
-  animation: ${heartBeat} 1200ms ease-out infinite;
+const AnimatedSmoke = styled(Smoke)`
+  animation: ${SmokeFade} 1200ms ease-out infinite;
   `;
-const AnimatedHeart2 = styled(Heart)`
-  animation: ${heartBeat} 1200ms ease-out infinite;
+const AnimatedSmoke2 = styled(Smoke)`
+  animation: ${SmokeFade} 1200ms ease-out infinite;
    animation-delay: 500ms;`;
 
 return (
@@ -153,8 +153,8 @@ return (
         justifyContent: "center",
       }}
     >
-      <AnimatedHeart />
-      <AnimatedHeart2 />
+      <AnimatedSmoke />
+      <AnimatedSmoke2 />
     </div>
   </div>
 );
