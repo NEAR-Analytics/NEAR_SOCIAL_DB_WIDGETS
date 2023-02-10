@@ -1,5 +1,5 @@
 State.init({
-  selectedTab: "all",
+  selectedTab: Storage.privateGet("selectedTab") || "all",
 });
 
 let accounts = undefined;
@@ -14,6 +14,11 @@ if (state.selectedTab === "following" && context.accountId) {
   }
 } else {
   accounts = undefined;
+}
+
+function selectTab(selectedTab) {
+  Storage.privateSet("selectedTab", selectedTab);
+  State.update({ selectedTab });
 }
 
 const H2 = styled.h2`
@@ -74,7 +79,7 @@ return (
     <Tabs>
       <TabsButton
         type="button"
-        onClick={() => State.update({ selectedTab: "all" })}
+        onClick={() => selectTab("all")}
         selected={state.selectedTab === "all"}
       >
         All
@@ -82,7 +87,7 @@ return (
 
       <TabsButton
         type="button"
-        onClick={() => State.update({ selectedTab: "following" })}
+        onClick={() => selectTab("following")}
         selected={state.selectedTab === "following"}
         disabled={!context.accountId}
       >
