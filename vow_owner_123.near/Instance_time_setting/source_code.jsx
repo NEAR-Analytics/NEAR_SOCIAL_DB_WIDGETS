@@ -27,7 +27,7 @@ const getFormatedTime = (time) => {
   return formated;
 };
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
-var is_on = ["on", "on", "on", "on", "on", "off", "off"];
+var is_on = ["off", "off", "off", "off", "off", "off", "off"];
 var _from = [
   "10:00 AM",
   "10:00 AM",
