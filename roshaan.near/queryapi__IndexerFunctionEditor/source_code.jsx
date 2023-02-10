@@ -25,6 +25,7 @@ require(["vs/editor/editor.main"], () => {
 window.top.postMessage(monaco.editor.getModels()[0], "*"); 
 });
 
+</script>
 `;
 
 return (
