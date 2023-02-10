@@ -110,16 +110,26 @@ const ButtonLink = styled.a`
   }
 `;
 
+console.log(props.app);
+
 return (
   <Card>
     <CardBody>
       <Flex>
         <Thumbnail>
-          <img src="https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreiasfn5ydi54dolw33uzesvf6gycp437cnokgyv3q3spdz6jeefpma" />
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: props.app.metadata.image,
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+              alt: props.app.metadata.name,
+            }}
+          />
         </Thumbnail>
 
         <div>
-          <Title>Real Time Message</Title>
+          <Title>{props.app.metadata.name || props.app.widgetName}</Title>
           <TagsWrapper>
             <Tags>
               <Tag>profile</Tag>
