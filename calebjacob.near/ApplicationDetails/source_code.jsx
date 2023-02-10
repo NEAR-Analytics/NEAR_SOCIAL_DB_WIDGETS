@@ -190,6 +190,18 @@ return (
           </>
         )}
       </ButtonLink>
+
+      <ButtonLink href={`/#/edit/${props.src}`}>
+        {context.accountId === accountId ? (
+          <>
+            <i class="bi bi-pencil-fill"></i> Edit
+          </>
+        ) : (
+          <>
+            <i class="bi bi-git"></i> Fork
+          </>
+        )}
+      </ButtonLink>
     </Actions>
 
     <Tabs>
