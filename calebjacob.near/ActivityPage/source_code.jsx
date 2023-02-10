@@ -17,7 +17,7 @@ const Main = styled.div`
 return (
   <Wrapper>
     <Sidebar>
-      <Widget src="calebjacob.near/widget/LatestApplications" />
+      <Widget src="calebjacob.near/widget/LatestApps" />
     </Sidebar>
     <Main>
       <Widget src="calebjacob.near/widget/Activity" />
