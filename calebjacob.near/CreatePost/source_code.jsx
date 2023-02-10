@@ -202,8 +202,6 @@ const Actions = styled.div`
   }
 `;
 
-console.log(composeData());
-
 return (
   <Wrapper>
     <Avatar>
