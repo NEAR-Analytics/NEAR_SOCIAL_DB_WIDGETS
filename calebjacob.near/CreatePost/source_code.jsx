@@ -131,7 +131,7 @@ const Textarea = styled.div`
     transition: all 200ms;
 
     &:focus {
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
     }
   }
 `;
