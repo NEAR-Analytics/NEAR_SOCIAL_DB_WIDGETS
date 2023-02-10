@@ -19,32 +19,20 @@ const code = `
 
 <div id="react-root"></div>
 
-<script>
-function TestReact(props) {
-  const [value, setValue] = React.useState(props.initialText || "");
-  return React.createElement(ReactMarkdownEditorLite.default, {
-      value,
-      view: { menu: true, md: true, html: false },
-      canView: { menu: true, md: false, html: false, fullScreen: false, hideMenu: true },
-      onChange: ({ text }) => {
-        setValue(text);
-        window.top.postMessage(text, "*");
-      },
-      renderHTML: () => {},
-      className: "full",
-    }); 
-}
+<script type="text/babel">
+      class App extends React.Component {
+        render() {
 
-const domContainer = document.querySelector('#react-root');
-const root = ReactDOM.createRoot(domContainer);
-
-window.addEventListener("message", (event) => {
-  root.render(React.createElement(TestReact, {
-    initialText: event.data,
-  }));
-});
-
-</script>
+          return (<div>
+            <h1>React Setup</h1>
+          </div>);
+        }
+      }
+      ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+      );
+    </script>
 `;
 
 return (
