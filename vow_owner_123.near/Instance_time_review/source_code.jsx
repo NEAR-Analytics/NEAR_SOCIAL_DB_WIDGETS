@@ -147,15 +147,11 @@ return (
                     color: "black",
                     borderRadius: "1rem",
                     margin: "8px",
-                    cursor: {context.accountId != d.accountId ? "pointer" : "auto"},
+                    cursor: "pointer",
                     disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
-                  href={
-                    context.accountId != d.accountId
-                      ? `https://near.social/#/vow_owner_123.near/widget/Instance_time_card?accountId=${d.accountId}`
-                      : `https://near.social/#/vow_owner_123.near/widget/Instance_time`
-                  }
+                  href={`https://near.social/#/vow_owner_123.near/widget/Instance_time_card?accountId=${d.accountId}`}
                 >
                   <div
                     style={{
