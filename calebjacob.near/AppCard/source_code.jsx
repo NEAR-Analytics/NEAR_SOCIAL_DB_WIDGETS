@@ -10,6 +10,13 @@ const Card = styled.div`
 
 const CardBody = styled.div`
   padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  > * {
+      min-width: 0;
+  }
 `;
 
 const CardFooter = styled.div`
@@ -43,16 +50,6 @@ const Thumbnail = styled.div`
     object-fit: cover;
     width: 100%;
     height: 100%;
-  }
-`;
-
-const Flex = styled.div`
-  display: flex;
-  gap: 16px;
-  align-items: center;
-
-  > * {
-      min-width: 0;
   }
 `;
 
@@ -120,33 +117,31 @@ const ButtonLink = styled.a`
 return (
   <Card>
     <CardBody>
-      <Flex>
-        <Thumbnail>
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: app.metadata.image,
-              fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
-              alt: app.metadata.name,
-            }}
-          />
-        </Thumbnail>
+      <Thumbnail>
+        <Widget
+          src="mob.near/widget/Image"
+          props={{
+            image: app.metadata.image,
+            fallbackUrl:
+              "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+            alt: app.metadata.name,
+          }}
+        />
+      </Thumbnail>
 
-        <div>
-          <Title>{app.metadata.name || app.widgetName}</Title>
+      <div>
+        <Title>{app.metadata.name || app.widgetName}</Title>
 
-          {tags.length > 0 && (
-            <TagsWrapper>
-              <Tags>
-                {tags.map((tag, i) => (
-                  <Tag key={i}>{tag}</Tag>
-                ))}
-              </Tags>
-            </TagsWrapper>
-          )}
-        </div>
-      </Flex>
+        {tags.length > 0 && (
+          <TagsWrapper>
+            <Tags>
+              {tags.map((tag, i) => (
+                <Tag key={i}>{tag}</Tag>
+              ))}
+            </Tags>
+          </TagsWrapper>
+        )}
+      </div>
     </CardBody>
 
     <CardFooter>
