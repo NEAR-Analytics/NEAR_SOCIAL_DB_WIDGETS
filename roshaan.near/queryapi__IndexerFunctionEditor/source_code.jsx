@@ -20,7 +20,7 @@ const code = `
 <script>
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
-  return React.createElement(MonacoEditor.default, {})
+  return React.createElement(@monaco-editor/react.Editor, {})
 
 }
 
