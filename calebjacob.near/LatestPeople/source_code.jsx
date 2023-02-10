@@ -42,9 +42,11 @@ const Person = styled.a`
   display: grid;
   gap: 12px;
   grid-template-columns: auto 1fr;
-  text-decoration: none !important;
   cursor: pointer;
   margin-bottom: 24px;
+  color: #687076 !important;
+  outline: none;
+  text-decoration: none !important;
 
   > * {
     min-width: 0;
