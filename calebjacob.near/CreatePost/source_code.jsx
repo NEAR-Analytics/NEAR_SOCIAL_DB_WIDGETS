@@ -73,7 +73,10 @@ function composeData() {
 }
 
 function onCommit() {
-  console.log("committed!");
+  State.update({
+    image: {},
+    text: "",
+  });
 }
 
 const Wrapper = styled.div`
@@ -231,7 +234,8 @@ return (
       <textarea
         placeholder="What's happening?"
         onInput={(event) => State.update({ text: event.target.value })}
-      ></textarea>
+        value={state.text}
+      />
     </Textarea>
 
     <Actions>
