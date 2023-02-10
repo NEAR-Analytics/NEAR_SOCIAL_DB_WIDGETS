@@ -20,7 +20,7 @@ const code = `
 <script>
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
-  return React.createElement(useMonaco, {})
+  return React.createElement(useMonaco.Editor, {})
 }
 
 const domContainer = document.querySelector('#react-root');
