@@ -105,7 +105,7 @@ const size = "3em";
 
 return (
   <div class="text-black p-2 container-fluid d-flex flex-column w-100 text-center justify-content-center align-items-center">
-    <h3>Minsta</h3>
+    <h4>Minsta</h4>
     <div class="container-fluid text-center d-flex flex-column justify-content-center align-items-center">
       <Files
         multiple={false}
@@ -118,10 +118,7 @@ return (
         }}
         class="text-center d-flex justify-content-center align-items-center"
       >
-        <div
-          class="col-md-4 col-sm-6 px-1 d-flex justify-content-center align-items-center"
-          style={{ width: "150px", height: "150px" }}
-        >
+        <div class="d-flex m-4 px-2 py-1 rounded bg-black text-white justify-content-center align-items-center">
           {state.img?.uploading ? (
             <>...</>
           ) : state.img?.cid ? (
