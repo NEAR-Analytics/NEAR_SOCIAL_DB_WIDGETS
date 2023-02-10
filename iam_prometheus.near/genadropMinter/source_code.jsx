@@ -12,6 +12,9 @@ if (profile === null) {
 }
 
 const handleMint = () => {
+  if (!(state.title && state.description && state.image.cid)) {
+    return;
+  }
   const metadata = {
     name: state.title,
     description: state.description,
