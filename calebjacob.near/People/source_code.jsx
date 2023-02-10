@@ -38,19 +38,17 @@ const H2 = styled.h2`
   margin: 0 0 25px;
 `;
 
-const Person = styled.div`
+const Person = styled.a`
   display: grid;
   gap: 12px;
   grid-template-columns: auto 1fr;
+  text-decoration: none !important;
+  cursor: pointer;
+  margin-bottom: 24px;
 
   > * {
     min-width: 0;
   }
-`;
-
-const List = styled.div`
-  display: grid;
-  gap: 24px;
 `;
 
 const Text = styled.p`
@@ -83,47 +81,77 @@ const Name = styled.div`
   justify-content: space-between;
 `;
 
+const ButtonLink = styled.a`
+  display: block;
+  width: 100%;
+  padding: 8px;
+  height: 32px;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: #11181C !important;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+
+  span {
+    color: #687076 !important;
+  }
+`;
+
 return (
   <>
     <H2>People</H2>
 
-    <List>
-      {accounts.map((account) => (
-        <Person key={account.accountId}>
-          <Avatar>
-            <Widget
-              src="mob.near/widget/Image"
-              props={{
-                image: account.profile.image,
-                alt: account.profile.name,
-                fallbackUrl:
-                  "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-              }}
-            />
-          </Avatar>
+    {accounts.map((account) => (
+      <Person
+        key={account.accountId}
+        href={`/#/mob.near/widget/ProfilePage?accountId=${account.accountId}`}
+      >
+        <Avatar>
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: account.profile.image,
+              alt: account.profile.name,
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+            }}
+          />
+        </Avatar>
 
-          <div>
-            <Name>
-              <Text ellipsis bold>
-                {account.profile.name}
-              </Text>
+        <div>
+          <Name>
+            <Text ellipsis bold>
+              {account.profile.name}
+            </Text>
 
-              <Text small>
-                Joined{" "}
-                <Widget
-                  src="mob.near/widget/TimeAgo"
-                  props={{ blockHeight: account.blockHeight }}
-                />{" "}
-                ago
-              </Text>
-            </Name>
+            <Text small>
+              Joined{" "}
+              <Widget
+                src="mob.near/widget/TimeAgo"
+                props={{ blockHeight: account.blockHeight }}
+              />{" "}
+              ago
+            </Text>
+          </Name>
 
-            <Text ellipsis>{account.accountId}</Text>
-          </div>
-        </Person>
-      ))}
-    </List>
+          <Text ellipsis>{account.accountId}</Text>
+        </div>
+      </Person>
+    ))}
 
-    <div>Total {totalAccounts} profiles</div>
+    <ButtonLink href="/#/mob.near/widget/People">
+      View All <span>({totalAccounts})</span>
+    </ButtonLink>
   </>
 );
