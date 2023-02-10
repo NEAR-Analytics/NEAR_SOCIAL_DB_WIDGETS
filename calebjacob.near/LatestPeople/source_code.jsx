@@ -29,8 +29,6 @@ if (profileData) {
   });
 }
 
-console.log(accounts);
-
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
