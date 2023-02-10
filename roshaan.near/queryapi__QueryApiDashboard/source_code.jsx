@@ -30,7 +30,7 @@ const ConnectButton = styled.button`
 `;
 
 State.init({
-  activeTab: 'dashboard',
+  activeTab: 'editor-window',
 });
 const setActiveTab = (tab_name) => {
   State.update({ activeTab: tab_name });
@@ -43,7 +43,7 @@ return (
         active={state.activeTab === 'editor-window'}
         onClick={() => setActiveTab('editor-window')}
       >
-        Dashboard
+        Editor Window
       </Tab>
       <Tab
         active={state.activeTab === 'graphql-playground'}
