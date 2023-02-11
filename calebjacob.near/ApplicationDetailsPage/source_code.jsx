@@ -158,6 +158,58 @@ const TabsButton = styled.button`
   }
 `;
 
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 336px;
+  gap: 64px;
+`;
+
+const Sidebar = styled.div`
+    > div {
+      padding-bottom: 32px;
+      border-bottom: 1px solid #ECEEF0;
+      margin-bottom: 32px;
+
+      &:last-child {
+          padding-bottom: 0;
+          border-bottom: none;
+          margin-bottom: 0;
+      }
+    }
+`;
+
+const SmallTitle = styled.h3`
+  color: #687076;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+`;
+
+const TextLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0091FF;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+`;
+
+const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+
+  i {
+    margin-right: 4px;
+  }
+`;
+
 return (
   <>
     <Header>
@@ -249,25 +301,61 @@ return (
     </Tabs>
 
     {state.selectedTab === "about" && (
-      <>
-        <p>Description (MD)</p>
+      <Content>
+        <div>
+          <Markdown text={metadata.description} />
+        </div>
 
-        <p>Author</p>
+        <Sidebar>
+          <div>
+            <SmallTitle>Developer</SmallTitle>
+            <Widget
+              src="calebjacob.near/widget/AccountProfile"
+              props={{
+                accountId: accountId,
+              }}
+            />
+          </div>
 
-        <p>External Website</p>
+          {tags.length > 0 && (
+            <div>
+              <SmallTitle>Tags</SmallTitle>
+              <TagsWrapper>
+                <Tags>
+                  {tags.map((tag, i) => (
+                    <Tag key={i}>{tag}</Tag>
+                  ))}
+                </Tags>
+              </TagsWrapper>
+            </div>
+          )}
 
-        <p>Last Updated</p>
+          {metadata.linktree?.website && (
+            <div>
+              <SmallTitle>Website</SmallTitle>
+              <TextLink
+                href={`https://${metadata.linktree.website}`}
+                target="_blank"
+              >
+                {metadata.linktree.website}
+                <i class="bi bi-box-arrow-up-right"></i>
+              </TextLink>
+            </div>
+          )}
 
-        {tags.length > 0 && (
-          <TagsWrapper>
-            <Tags>
-              {tags.map((tag, i) => (
-                <Tag key={i}>{tag}</Tag>
-              ))}
-            </Tags>
-          </TagsWrapper>
-        )}
-      </>
+          <div>
+            <Text small>
+              <i class="bi bi-clock"></i>
+              Last updated
+              <Widget
+                src="mob.near/widget/TimeAgo"
+                props={{ keyPath: `${accountId}/widget/${widgetName}` }}
+              />{" "}
+              ago.
+            </Text>
+          </div>
+        </Sidebar>
+      </Content>
     )}
 
     {state.selectedTab === "source" && (
