@@ -336,7 +336,7 @@ return (
       <div
         style={{
           width: "auto",
-          height: "222px",
+          height: "234px",
           margin: "-180px 0px 40px 40px",
           position: "relative",
           display: "flex",
