@@ -19,7 +19,7 @@ const Wrapper = styled.a`
   &:hover,
   &:focus {
       div:first-child {
-          border-color: #687076;
+          border-color: #D0D5DD;
       }
   }
 `;
