@@ -63,7 +63,7 @@ return (
 
     <div>
       <Text ellipsis bold>
-        {metadata.name}
+        {metadata.name || widgetName}
       </Text>
 
       <Text ellipsis>{props.src}</Text>
