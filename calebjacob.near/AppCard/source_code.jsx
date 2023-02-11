@@ -150,7 +150,7 @@ return (
 
     <CardFooter>
       <ButtonLink
-        href={`/#/calebjacob.near/widget/ApplicationDetailsPage?src=${accountId}/widget/${widgetName}`}
+        href={`/#/calebjacob.near/widget/AppDetailsPage?src=${accountId}/widget/${widgetName}`}
       >
         View Details
       </ButtonLink>
