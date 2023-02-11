@@ -332,6 +332,53 @@ return (
         alignItems: "center",
         justifyContent: "center",
       }}
-    ></div>
+    >
+      <div
+        style={{
+          width: "auto",
+          height: "222px",
+          margin: "-180px 0px 40px 40px",
+          position: "relative",
+          display: "flex",
+          border: "2px solid white",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "black",
+            border: "2px solid white",
+
+            display: "flex",
+            width: "200px",
+            height: "200px",
+            position: "relative",
+            margin: "4px 4px 4px 4px",
+          }}
+        ></div>
+        <div
+          style={{
+            backgroundColor: "red",
+            border: "2px solid white",
+
+            display: "flex",
+            width: "200px",
+            height: "200px",
+            position: "relative",
+            margin: "4px 4px 4px 4px",
+          }}
+        ></div>
+        <div
+          style={{
+            backgroundColor: "black",
+            border: "2px solid white",
+            display: "flex",
+            width: "200px",
+            height: "200px",
+            position: "relative",
+            margin: "4px 4px 4px 4px",
+          }}
+        ></div>
+      </div>
+    </div>
   </div>
 );
