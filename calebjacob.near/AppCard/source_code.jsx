@@ -140,9 +140,7 @@ return (
           {metadata.name || widgetName}
         </Text>
 
-        <Text ellipsis small>
-          @{accountId}
-        </Text>
+        <Text ellipsis>@{accountId}</Text>
       </div>
     </CardBody>
 
