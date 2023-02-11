@@ -7,7 +7,7 @@ const Wrapper = styled.a`
   gap: 12px;
   grid-template-columns: auto 1fr;
   cursor: pointer;
-  margin-bottom: 24px;
+  margin: 0;
   color: #687076 !important;
   outline: none;
   text-decoration: none !important;
