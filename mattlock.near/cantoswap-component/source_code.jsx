@@ -3,6 +3,7 @@ if (!sender) return "Please login first";
 
 const PROPS = Object.assign(
   {
+    contractName: "cantoswap.fi",
     contractAddress: "0xe6e35e2AFfE85642eeE4a534d4370A689554133c",
     abiUrl:
       "https://gist.githubusercontent.com/mattlockyer/5395796cadd94a4836208956a69cb4f3/raw/19f2f00a513d73e4dc4c42b521658cf56cddece4/uniV2Abi",
@@ -71,17 +72,15 @@ if (!erc20Abi.ok) {
   return "scam";
 }
 
-const uniV2Abi = fetch(PROPS.abiUrl);
+const swapRouterAbi = fetch(PROPS.abiUrl);
 
 const ifaceToken = new ethers.utils.Interface(erc20Abi.body);
-const ifaceUni = new ethers.utils.Interface(uniV2Abi.body);
+const ifaceSwap = new ethers.utils.Interface(swapRouterAbi.body);
 
 const tokens = {
   "Select Token": "",
   ...PROPS.tokens,
 };
-
-console.log(tokens);
 
 const decimals = PROPS.decimals;
 
@@ -128,12 +127,11 @@ const getTokenBalance = (receiver, token) => {
       data: encodedData,
     })
     .then((rawBalance) => {
-      const receiverBalanceHex = ifaceToken.decodeFunctionResult(
+      const balanceHex = ifaceToken.decodeFunctionResult(
         "balanceOf",
         rawBalance
       );
-
-      return formatBig(receiverBalanceHex, decimals[token]);
+      return formatBig(balanceHex, decimals[token]);
     });
 };
 
@@ -149,15 +147,11 @@ const handleUpdateAmount = () => {
       data: encodedData,
     })
     .then((rawBalance) => {
-      const receiverBalanceHex = ifaceToken.decodeFunctionResult(
+      const balanceHex = ifaceToken.decodeFunctionResult(
         "allowance",
         rawBalance
       );
-
-      const allowanceFrom = formatBig(
-        receiverBalanceHex,
-        decimals[state.tokenFrom]
-      );
+      const allowanceFrom = formatBig(balanceHex, decimals[state.tokenFrom]);
       State.update({
         allowanceFrom,
         showApprove: allowanceFrom === "0.00",
@@ -189,7 +183,7 @@ const handleApprove = () => {
 const swapTokens = () => {
   const contract = new ethers.Contract(
     PROPS.contractAddress,
-    uniV2Abi.body,
+    swapRouterAbi.body,
     Ethers.provider().getSigner()
   );
 
@@ -239,6 +233,7 @@ const swapTokens = () => {
 return (
   <>
     <h3>Swap Tokens</h3>
+    <p>Where: {PROPS.contractName}</p>
     <p>Account: {sender}</p>
     {state.log.length > 1 && <p>Log: {state.log}</p>}
     {state.explorerLink.length > 1 && (
