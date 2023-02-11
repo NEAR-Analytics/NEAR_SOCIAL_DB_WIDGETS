@@ -44,8 +44,8 @@ const Text = styled.p`
 `;
 
 const Thumbnail = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
@@ -60,6 +60,7 @@ const Thumbnail = styled.div`
 
 const TagsWrapper = styled.div`
   position: relative;
+  padding: 0 16px 16px;
 
   &::after {
     content: '';
@@ -79,7 +80,7 @@ const Tags = styled.ul`
   gap: 6px;
   overflow: auto;
   margin: 0;
-  padding: 6px 16px 0 0;
+  padding: 0 16px 0 0;
 
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -139,19 +140,21 @@ return (
           {metadata.name || widgetName}
         </Text>
 
-        <Text ellipsis>{props.src}</Text>
-
-        {tags.length > 0 && (
-          <TagsWrapper>
-            <Tags>
-              {tags.map((tag, i) => (
-                <Tag key={i}>{tag}</Tag>
-              ))}
-            </Tags>
-          </TagsWrapper>
-        )}
+        <Text ellipsis small>
+          {props.src}
+        </Text>
       </div>
     </CardBody>
+
+    {tags.length > 0 && (
+      <TagsWrapper>
+        <Tags>
+          {tags.map((tag, i) => (
+            <Tag key={i}>{tag}</Tag>
+          ))}
+        </Tags>
+      </TagsWrapper>
+    )}
 
     <CardFooter>
       <ButtonLink
