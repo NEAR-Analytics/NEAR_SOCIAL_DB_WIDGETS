@@ -59,5 +59,11 @@ return (
       )}
     </div>
     <hr />
+    {(hasMeme || !props.noPrevMeme) && (
+      <Widget
+        src="duocelot.near/widget/Meme"
+        props={{ meme: hasMeme ? meme : undefined }}
+      />
+    )}
   </div>
 );
