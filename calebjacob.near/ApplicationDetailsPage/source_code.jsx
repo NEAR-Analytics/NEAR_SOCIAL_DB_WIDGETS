@@ -14,6 +14,11 @@ const metadata = data.metadata;
 const tags = Object.keys(metadata.tags || {});
 const shareUrl = `https://near.social/#/${props.src}`;
 
+const dependencyMatch = code && code.matchAll(/<Widget.+src="(.+)".+\/>/g);
+const dependencySources = [...dependencyMatch]
+  .map((r) => r[1])
+  .filter((r) => !!r);
+
 const sourceCode = `
 \`\`\`jsx
 ${code}
@@ -370,14 +375,21 @@ return (
     )}
 
     {state.selectedTab === "source" && (
-      <>
+      <Content>
         <Markdown text={sourceCode} />
 
-        <p>
-          Show all widget source references in sidebar (deduplicate, use app
-          card?)
-        </p>
-      </>
+        <Sidebar>
+          <SmallTitle>Dependencies ({dependencySources.length})</SmallTitle>
+
+          {dependencySources.length === 0 && (
+            <Text>This application contains no component dependencies.</Text>
+          )}
+
+          {dependencySources.map((source) => (
+            <p key={source}>{source}</p>
+          ))}
+        </Sidebar>
+      </Content>
     )}
   </>
 );
