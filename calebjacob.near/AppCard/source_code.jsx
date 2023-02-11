@@ -31,20 +31,21 @@ const CardFooter = styled.div`
   border-top: 1px solid #ECEEF0;
 `;
 
-const Title = styled.p`
-  font-size: 14px;
-  line-height: 17px;
-  color: #101828;
+const Text = styled.p`
   margin: 0;
-  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
   white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 `;
 
 const Thumbnail = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 70px;
+  height: 70px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
@@ -134,7 +135,11 @@ return (
       </Thumbnail>
 
       <div>
-        <Title>{metadata.name || widgetName}</Title>
+        <Text bold ellipsis>
+          {metadata.name || widgetName}
+        </Text>
+
+        <Text ellipsis>{props.src}</Text>
 
         {tags.length > 0 && (
           <TagsWrapper>
