@@ -233,7 +233,15 @@ const swapTokens = () => {
 return (
   <>
     <h3>Swap Tokens</h3>
-    <p>Where: {PROPS.contractName}</p>
+    <p>
+      Where: {PROPS.contractName} -
+      <a
+        href={`https://tuber.build/address/${PROPS.contractAddress}`}
+        target="_blank"
+      >
+        Explorer Link
+      </a>
+    </p>
     <p>Account: {sender}</p>
     {state.log.length > 1 && <p>Log: {state.log}</p>}
     {state.explorerLink.length > 1 && (
