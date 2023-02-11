@@ -141,7 +141,7 @@ return (
         </Text>
 
         <Text ellipsis small>
-          {props.src}
+          @{accountId}
         </Text>
       </div>
     </CardBody>
