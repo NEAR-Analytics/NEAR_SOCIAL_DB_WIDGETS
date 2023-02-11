@@ -18,7 +18,7 @@ const PROPS = Object.assign(
   props
 );
 
-console.log("PROPS", props);
+console.log("PROPS", PROPS);
 
 const MAX_AMOUNT =
   "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
