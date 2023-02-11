@@ -165,7 +165,7 @@ const TabsButton = styled.button`
 
 const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr 336px;
+  grid-template-columns: minmax(0, 1fr) 336px;
   gap: 64px;
 `;
 
