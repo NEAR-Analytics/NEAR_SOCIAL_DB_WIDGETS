@@ -6,6 +6,8 @@ State.init({
 });
 
 const [accountId, widget, widgetName] = props.src.split("/");
+const existsData = Social.keys(`${accountId}/widget/${widgetName}`);
+const exists = !existsData || Object.keys(existsData).length > 0;
 const data = Social.get(`${accountId}/widget/${widgetName}/**`);
 const code = data[""];
 const metadata = data.metadata;
@@ -209,6 +211,15 @@ const Text = styled.p`
     margin-right: 4px;
   }
 `;
+
+if (!exists) {
+  return (
+    <>
+      <Title>Error</Title>
+      <Text>Could not find: {props.src}</Text>
+    </>
+  );
+}
 
 return (
   <>
