@@ -275,7 +275,6 @@ return (
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           height: "526px",
-          width: "100%",
           color: "#333",
           display: "flex",
           alignItems: "center",
@@ -285,7 +284,15 @@ return (
         <div style={shadow}>
           <img
             src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
-            style={{ position: "absolute", zIndex: 0 }}
+            style={{
+              maxWidth: "512px",
+              maxHeight: "512px",
+              overflow: "auto",
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              zIndex: 0,
+            }}
           />
           <img
             src={imgSrc}
@@ -294,6 +301,11 @@ return (
               State.update(state);
             }}
             style={{
+              maxWidth: "512px",
+              maxHeight: "512px",
+              overflow: "auto",
+              width: "100%",
+              height: "100%",
               filter: `blur(${state.blur}px)`,
               position: "relative",
               zIndex: 1,
@@ -338,6 +350,8 @@ return (
     >
       <div
         style={{
+          maxWidth: "524px",
+          maxHeight: "524px",
           width: "100%",
           height: "100%",
           margin: "-180px 0px 40px 0px",
@@ -353,8 +367,11 @@ return (
             backgroundColor: "black",
             border: "2px solid white",
             display: "flex",
-            width: "90%",
-            height: "90%",
+            maxWidth: "512px",
+            maxHeight: "512px",
+            overflow: "auto",
+            width: "100%",
+            height: "100%",
             position: "relative",
             margin: "4px 4px 4px 4px",
           }}
