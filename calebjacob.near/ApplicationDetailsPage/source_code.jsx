@@ -270,6 +270,15 @@ return (
       </>
     )}
 
-    {state.selectedTab === "source" && <Markdown text={sourceCode} />}
+    {state.selectedTab === "source" && (
+      <>
+        <Markdown text={sourceCode} />
+
+        <p>
+          Show all widget source references in sidebar (deduplicate, use app
+          card?)
+        </p>
+      </>
+    )}
   </>
 );
