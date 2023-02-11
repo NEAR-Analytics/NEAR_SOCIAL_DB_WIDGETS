@@ -18,6 +18,13 @@ const Wrapper = styled.a`
   > * {
     min-width: 0;
   }
+
+  &:hover,
+  &:focus {
+      div:first-child {
+          border-color: #D0D5DD;
+      }
+  }
 `;
 
 const Text = styled.p`
@@ -39,6 +46,7 @@ const Thumbnail = styled.div`
   border: 1px solid #ECEEF0;
   border-radius: 8px;
   overflow: hidden;
+  transition: border-color 200ms;
 
   img {
     object-fit: cover;
