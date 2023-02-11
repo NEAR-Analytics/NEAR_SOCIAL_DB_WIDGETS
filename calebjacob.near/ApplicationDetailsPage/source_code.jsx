@@ -1,5 +1,3 @@
-if (!props.src) return "";
-
 State.init({
   copiedShareUrl: false,
   selectedTab: props.tab ?? "about",
