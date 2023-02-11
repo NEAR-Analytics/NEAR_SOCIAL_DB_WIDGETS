@@ -56,7 +56,7 @@ const Thumbnail = styled.div`
 `;
 
 return (
-  <Wrapper href={`/#/mob.near/widget/ProfilePage?accountId=${accountId}`}>
+  <Wrapper href={`/#/mob.near/widget/AppDetailsPage?src=${props.src}`}>
     <Thumbnail>
       <Widget
         src="mob.near/widget/Image"
