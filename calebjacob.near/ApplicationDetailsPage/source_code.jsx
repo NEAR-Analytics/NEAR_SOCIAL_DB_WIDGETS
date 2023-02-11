@@ -392,7 +392,7 @@ return (
             <SmallTitle>Dependencies ({dependencySources.length})</SmallTitle>
 
             {dependencySources.length === 0 && (
-              <Text>This application contains no component dependencies.</Text>
+              <Text>This component contains zero dependencies.</Text>
             )}
 
             {dependencySources.map((source) => (
