@@ -189,6 +189,8 @@ return (
       </div>
       <div
         style={{
+          width: "100%",
+          height: "100%",
           backgroundImage:
             "url(https://ipfs.fleek.co/ipfs/bafybeighshx342jt65t4nuisdpko3tar747kyzb2g6ud64pwuiwhxcvs7u)",
           backgroundSize: "auto",
@@ -335,45 +337,23 @@ return (
     >
       <div
         style={{
-          width: "auto",
-          height: "234px",
-          margin: "-180px 0px 40px 40px",
+          width: "100%",
+          height: "100%",
+          margin: "-180px 0px 40px 0px",
           position: "relative",
           display: "flex",
           border: "2px solid white",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <div
           style={{
             backgroundColor: "black",
             border: "2px solid white",
-
             display: "flex",
-            width: "200px",
-            height: "200px",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>
-        <div
-          style={{
-            backgroundColor: "red",
-            border: "2px solid white",
-
-            display: "flex",
-            width: "200px",
-            height: "200px",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>
-        <div
-          style={{
-            backgroundColor: "black",
-            border: "2px solid white",
-            display: "flex",
-            width: "200px",
-            height: "200px",
+            width: "90%",
+            height: "90%",
             position: "relative",
             margin: "4px 4px 4px 4px",
           }}
