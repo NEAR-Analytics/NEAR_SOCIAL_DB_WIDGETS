@@ -1,4 +1,4 @@
-const data = Social.keys("*/widget/*/metadata", "final", {
+const data = Social.keys("*/widget/*", "final", {
   return_type: "BlockHeight",
 });
 const limit = 5;
