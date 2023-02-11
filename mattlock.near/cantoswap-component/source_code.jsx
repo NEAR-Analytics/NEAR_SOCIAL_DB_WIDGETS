@@ -1,7 +1,22 @@
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 if (!sender) return "Please login first";
 
-const UNI_ADDRESS = "0xe6e35e2AFfE85642eeE4a534d4370A689554133c";
+const PROPS = Object.assign(
+  {
+    contractAddress: "0xe6e35e2AFfE85642eeE4a534d4370A689554133c",
+    abiUrl:
+      "https://gist.githubusercontent.com/mattlockyer/5395796cadd94a4836208956a69cb4f3/raw/19f2f00a513d73e4dc4c42b521658cf56cddece4/uniV2Abi",
+    tokens: {
+      NOTE: "0x4e71A2E537B7f9D9413D3991D37958c0b5e1e503",
+      USDC: "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd",
+    },
+    decimals: {
+      "0x4e71A2E537B7f9D9413D3991D37958c0b5e1e503": 18,
+      "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd": 6,
+    },
+  },
+  props
+);
 const MAX_AMOUNT =
   "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
@@ -53,23 +68,19 @@ if (!erc20Abi.ok) {
   return "scam";
 }
 
-const uniV2Abi = fetch(
-  "https://gist.githubusercontent.com/mattlockyer/5395796cadd94a4836208956a69cb4f3/raw/19f2f00a513d73e4dc4c42b521658cf56cddece4/uniV2Abi"
-);
+const uniV2Abi = fetch(PROPS.abiUrl);
 
 const ifaceToken = new ethers.utils.Interface(erc20Abi.body);
 const ifaceUni = new ethers.utils.Interface(uniV2Abi.body);
 
 const tokens = {
   "Select Token": "",
-  NOTE: "0x4e71A2E537B7f9D9413D3991D37958c0b5e1e503",
-  USDC: "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd",
+  ...PROPS.tokens,
 };
 
-const decimals = {
-  "0x4e71A2E537B7f9D9413D3991D37958c0b5e1e503": 18,
-  "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd": 6,
-};
+console.log(tokens);
+
+const decimals = PROPS.decimals;
 
 const tokensMenuItems = Object.keys(tokens).map((token) => (
   <option key={token} value={tokens[token]}>
@@ -126,7 +137,7 @@ const getTokenBalance = (receiver, token) => {
 const handleUpdateAmount = () => {
   const encodedData = ifaceToken.encodeFunctionData("allowance", [
     sender,
-    UNI_ADDRESS,
+    PROPS.contractAddress,
   ]);
 
   return Ethers.provider()
@@ -161,7 +172,7 @@ const handleApprove = () => {
   );
 
   contract
-    .approve(UNI_ADDRESS, MAX_AMOUNT)
+    .approve(PROPS.contractAddress, MAX_AMOUNT)
     .then((tx) => {
       console.log(tx);
       State.update({
@@ -174,7 +185,7 @@ const handleApprove = () => {
 
 const swapTokens = () => {
   const contract = new ethers.Contract(
-    UNI_ADDRESS,
+    PROPS.contractAddress,
     uniV2Abi.body,
     Ethers.provider().getSigner()
   );
