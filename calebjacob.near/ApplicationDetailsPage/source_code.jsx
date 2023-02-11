@@ -2,7 +2,7 @@ if (!props.src) return "";
 
 State.init({
   copiedShareUrl: false,
-  selectedTab: "about",
+  selectedTab: props.tab ?? "about",
 });
 
 const [accountId, widget, widgetName] = props.src.split("/");
@@ -126,9 +126,9 @@ const ButtonLink = styled.a`
 
 const Tabs = styled.div`
   display: flex;
-  padding: 0 12px;
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
+  margin-bottom: 32px;
 `;
 
 const TabsButton = styled.button`
