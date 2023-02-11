@@ -13,7 +13,7 @@ const tags = Object.keys(metadata.tags || {});
 const shareUrl = `https://near.social/#/${props.src}`;
 
 const dependencyMatch = code && code.matchAll(/<Widget.+src="(.+)".+\/>/g);
-const dependencySources = [...dependencyMatch]
+const dependencySources = [...(dependencyMatch || [])]
   .map((r) => r[1])
   .filter((r) => !!r);
 
@@ -215,6 +215,10 @@ const Text = styled.p`
   }
 `;
 
+const Dependency = styled.div`
+  margin-bottom: 24px;
+`;
+
 if (!exists) {
   return (
     <>
@@ -377,15 +381,22 @@ return (
         <Markdown text={sourceCode} />
 
         <Sidebar>
-          <SmallTitle>Dependencies ({dependencySources.length})</SmallTitle>
+          <div>
+            <SmallTitle>Dependencies ({dependencySources.length})</SmallTitle>
 
-          {dependencySources.length === 0 && (
-            <Text>This application contains no component dependencies.</Text>
-          )}
+            {dependencySources.length === 0 && (
+              <Text>This application contains no component dependencies.</Text>
+            )}
 
-          {dependencySources.map((source) => (
-            <p key={source}>{source}</p>
-          ))}
+            {dependencySources.map((source) => (
+              <Dependency key={source}>
+                <Widget
+                  src="calebjacob.near/widget/ComponentProfile"
+                  props={{ src: source }}
+                />
+              </Dependency>
+            ))}
+          </div>
         </Sidebar>
       </Content>
     )}
