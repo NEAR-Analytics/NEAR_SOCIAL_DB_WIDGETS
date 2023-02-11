@@ -41,7 +41,7 @@ const Title = styled.h1`
   font-size: 32px;
   line-height: 39px;
   color: #11181C;
-  margin: 0;
+  margin: 0 0 8px;
   font-weight: 600;
 `;
 
@@ -243,7 +243,10 @@ return (
         />
       </Thumbnail>
 
-      <Title>{metadata.name || widgetName}</Title>
+      <div>
+        <Title>{metadata.name || widgetName}</Title>
+        <Text>{props.src}</Text>
+      </div>
     </Header>
 
     <Actions>
@@ -321,7 +324,11 @@ return (
     {state.selectedTab === "about" && (
       <Content>
         <div>
-          <Markdown text={metadata.description} />
+          {metadata.description ? (
+            <Markdown text={metadata.description} />
+          ) : (
+            <Text>This component has no description.</Text>
+          )}
         </div>
 
         <Sidebar>
