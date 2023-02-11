@@ -1,6 +1,7 @@
 if (!props.src) return "";
 
 State.init({
+  copiedShareUrl: false,
   selectedTab: "about",
 });
 
@@ -9,6 +10,7 @@ const data = Social.get(`${accountId}/widget/${widgetName}/**`);
 const code = data[""];
 const metadata = data.metadata;
 const tags = Object.keys(metadata.tags || {});
+const shareUrl = `https://near.social/#/${props.src}`;
 
 const sourceCode = `
 \`\`\`jsx
@@ -191,17 +193,41 @@ return (
         )}
       </ButtonLink>
 
-      <ButtonLink href={`/#/edit/${props.src}`}>
-        {context.accountId === accountId ? (
-          <>
-            <i class="bi bi-pencil-fill"></i> Edit
-          </>
-        ) : (
-          <>
-            <i class="bi bi-git"></i> Fork
-          </>
-        )}
+      <ButtonLink
+        as="button"
+        type="button"
+        onClick={() => {
+          State.update({ selectedTab: "source" });
+        }}
+      >
+        <i class="bi bi-code-square"></i>
+        View Source
       </ButtonLink>
+
+      <OverlayTrigger
+        placement="top"
+        overlay={<Tooltip>Copy to clipboard</Tooltip>}
+      >
+        <ButtonLink
+          as="button"
+          type="button"
+          onMouseLeave={() => {
+            State.update({ copiedShareUrl: false });
+          }}
+          onClick={() => {
+            clipboard.writeText(shareUrl).then(() => {
+              State.update({ copiedShareUrl: true });
+            });
+          }}
+        >
+          {state.copiedShareUrl ? (
+            <i class="bi bi-check-circle"></i>
+          ) : (
+            <i class="bi bi-box-arrow-up-right"></i>
+          )}
+          Share URL
+        </ButtonLink>
+      </OverlayTrigger>
     </Actions>
 
     <Tabs>
