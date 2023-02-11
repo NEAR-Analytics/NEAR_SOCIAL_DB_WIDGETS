@@ -1,5 +1,9 @@
-const app = props.app;
-const tags = Object.keys(app.metadata.tags || {});
+const [accountId, widget, widgetName] = props.src.split("/");
+const metadata = Social.get(
+  `${accountId}/widget/${widgetName}/metadata/**`,
+  "final"
+);
+const tags = Object.keys(metadata.tags || {});
 
 const Card = styled.div`
   border-radius: 12px;
@@ -121,16 +125,16 @@ return (
         <Widget
           src="mob.near/widget/Image"
           props={{
-            image: app.metadata.image,
+            image: metadata.image,
             fallbackUrl:
               "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
-            alt: app.metadata.name,
+            alt: metadata.name,
           }}
         />
       </Thumbnail>
 
       <div>
-        <Title>{app.metadata.name || app.widgetName}</Title>
+        <Title>{metadata.name || widgetName}</Title>
 
         {tags.length > 0 && (
           <TagsWrapper>
@@ -146,11 +150,11 @@ return (
 
     <CardFooter>
       <ButtonLink
-        href={`/#/calebjacob.near/widget/ApplicationDetailsPage?src=${app.accountId}/widget/${app.widgetName}`}
+        href={`/#/calebjacob.near/widget/ApplicationDetailsPage?src=${accountId}/widget/${widgetName}`}
       >
         View Details
       </ButtonLink>
-      <ButtonLink href={`/#/${app.accountId}/widget/${app.widgetName}`} primary>
+      <ButtonLink href={`/#/${accountId}/widget/${widgetName}`} primary>
         Open
       </ButtonLink>
     </CardFooter>
