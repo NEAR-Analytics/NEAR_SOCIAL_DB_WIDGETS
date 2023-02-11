@@ -59,11 +59,5 @@ return (
       )}
     </div>
     <hr />
-    {(hasMeme || !props.noPrevMeme) && (
-      <Widget
-        src="https://near.social/#/duocelot.near/widget/AddImage"
-        props={{ meme: hasMeme ? meme : undefined }}
-      />
-    )}
   </div>
 );
