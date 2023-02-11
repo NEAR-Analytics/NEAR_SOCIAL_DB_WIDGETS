@@ -1,6 +1,6 @@
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 284px minmax(1px, max-content) 284px;
+  grid-template-columns: 284px minmax(0, 1fr) 284px;
   grid-gap: 16px;
 `;
 
