@@ -248,16 +248,28 @@ return (
       </TabsButton>
     </Tabs>
 
-    {tags.length > 0 && (
-      <TagsWrapper>
-        <Tags>
-          {tags.map((tag, i) => (
-            <Tag key={i}>{tag}</Tag>
-          ))}
-        </Tags>
-      </TagsWrapper>
+    {state.selectedTab === "about" && (
+      <>
+        <p>Description (MD)</p>
+
+        <p>Author</p>
+
+        <p>External Website</p>
+
+        <p>Last Updated</p>
+
+        {tags.length > 0 && (
+          <TagsWrapper>
+            <Tags>
+              {tags.map((tag, i) => (
+                <Tag key={i}>{tag}</Tag>
+              ))}
+            </Tags>
+          </TagsWrapper>
+        )}
+      </>
     )}
 
-    <Markdown text={sourceCode} />
+    {state.selectedTab === "source" && <Markdown text={sourceCode} />}
   </>
 );
