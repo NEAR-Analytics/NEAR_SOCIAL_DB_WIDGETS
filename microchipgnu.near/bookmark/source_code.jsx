@@ -1,12 +1,12 @@
+const accountId = context?.accountId;
+
 const onChangeMessage = (message) => {
   State.update({
     input: message,
   });
 };
 
-const bookmarks = Social.index("bookmarks", "bookmark");
-
-console.log(bookmarks);
+const bookmarks = Social.index(accountId, "bookmark");
 
 return (
   <>
@@ -22,7 +22,7 @@ return (
     <CommitButton
       data={{
         index: {
-          bookmarks: JSON.stringify(
+          [accountId]: JSON.stringify(
             {
               key: "bookmark",
               value: {
