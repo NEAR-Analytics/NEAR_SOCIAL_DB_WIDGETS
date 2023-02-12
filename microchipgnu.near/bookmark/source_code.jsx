@@ -47,7 +47,7 @@ return (
     {bookmarks?.map((bookmark) => {
       return (
         <>
-          <div>{bookmark?.value.url}</div>
+          <a href={bookmark?.value.url}>{bookmark?.value.url}</a>
           <br />
         </>
       );
