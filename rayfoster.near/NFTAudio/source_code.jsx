@@ -1,7 +1,7 @@
-const profile = Social.getr(`${context.accountId}/profile`);
-let tokenId = props.tokenId;
-let contractId = props.contractId;
-console.log(tokenId, contractId);
+const tokenId = props.tokenId;
+const contractId = props.contractId;
+const rootId = props.rootId;
+
 const nftMetadata = Near.view(contractId, "nft_metadata");
 const tokenMetadata = Near.view(contractId, "nft_token", {
   token_id: tokenId,
@@ -12,22 +12,17 @@ console.log(nftMetadata);
 console.log(tokenMetadata);
 console.log(extra);
 
-let dao = `https://daorecords.io:8443/fetch?cid=${extra.music_cid}`;
-let newAudio = new Audio(dao);
-let artUrl = `https://daorecords.io:8443/get/thumbnail?root_id=${props.rootId}&contract=${contractId}`;
+let audioUri = `https://daorecords.io:8443/fetch?cid=${extra.music_cid}`;
+let newAudio = new Audio(audioUri);
+let artUrl = `https://daorecords.io:8443/get/thumbnail?root_id=${rootId}&contract=${contractId}`;
 let artRes = fetch(artUrl).body.thumbnail;
 let artData = `data:image/webp;base64,${artRes}`;
 let paused = true;
 
-function updateTime() {
-  if (paused) {
-  } else {
-    console.log(newAudio.currentTime);
-    setTimeout(updateTime, 1000);
-  }
-}
+//Get's current time
+//newAudio.currentTime
 
-function playAudio() {
+function playAudio(e) {
   newAudio.play();
   paused = false;
 }
@@ -51,7 +46,7 @@ const playerArea = styled.div`
   backdrop-filter: blur(50px);
 `;
 
-const artist = styled.h2`
+const broadcaster = styled.h2`
   color:#555;
   text-align:center;
 `;
@@ -67,7 +62,7 @@ const description = styled.p`
   background-color:rgb(219, 219, 219,0.2);;
 `;
 const uiButtons = styled.button`
-  background-color:#aaa;
+  background-color:rgba(255,255,255,0.6);
   border-radius:20px;
   width:50px;
   height:50px;
@@ -92,6 +87,7 @@ const fgThumb = styled.img`
     margin-left: 120px;
     margin-top: 10px;
     filter: drop-shadow(2px 4px 6px black);
+    border-radius:15px;
 `;
 
 return (
@@ -99,13 +95,13 @@ return (
     <bgThumb src={artData} />
 
     <playerArea>
-      <artist>{nftMetadata.symbol}</artist>
+      <broadcaster>{nftMetadata.symbol}</broadcaster>
 
       <song>{tokenMetadata.title}</song>
       <description> {tokenMetadata.description}</description>
 
       <uiButtonArea>
-        <uiButtons onClick={playAudio}>
+        <uiButtons id="play" onClick={playAudio}>
           <svg
             width="24"
             height="24"
