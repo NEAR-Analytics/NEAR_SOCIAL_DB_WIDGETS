@@ -1,4 +1,7 @@
 const accountId = props.accountId ?? context.accountId;
+const style = props.style ?? "large";
+const font_small = style == "small" ? "0.8rem" : "0.9rem";
+const font_big = style == "small" ? "0.8rem" : "1rem";
 const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
@@ -122,7 +125,7 @@ return (
       <div
         style={{
           width: "100%",
-          margin: "2rem 0.5rem 2rem 2rem",
+          margin: style == "small" ? "0rem" : "2rem 0.5rem 2rem 2rem",
           borderRadius: "18px",
           background: "white",
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
@@ -142,9 +145,10 @@ return (
                 question: state.poll.accountId,
                 className: "float-start d-inline-block me-2",
                 style: {
-                  width: "3.5rem",
+                  width: style == "small" ? "2.5rem" : "3.5rem",
+                  height: style == "small" ? "2.5rem" : "3.5rem",
                   aspectRatio: "1",
-                  marginLeft: "1rem",
+                  marginLeft: font_small,
                   borderRadius: "100%",
                   overflow: "hidden",
                 },
@@ -169,7 +173,7 @@ return (
                   ? {
                       border: "2px solid transparent",
                       fontWeight: "500",
-                      fontSize: "1rem",
+                      fontSize: font_big,
                       padding: "0.3rem 1.5rem",
                       backgroundColor: "#010A2D",
                       borderRadius: "12px",
@@ -182,7 +186,7 @@ return (
                       color: "black",
                       backgroundColor: "white",
                       fontWeight: "500",
-                      fontSize: "1rem",
+                      fontSize: font_big,
                       padding: "0.3rem 1.5rem",
                       borderRadius: "12px",
                       textDecoration: "none",
@@ -206,7 +210,7 @@ return (
                     ? {
                         border: "2px solid transparent",
                         fontWeight: "500",
-                        fontSize: "1rem",
+                        fontSize: font_big,
                         padding: "0.3rem 1.5rem",
                         backgroundColor: "#010A2D",
                         borderRadius: "12px",
@@ -218,7 +222,7 @@ return (
                         color: "black",
                         backgroundColor: "white",
                         fontWeight: "500",
-                        fontSize: "1rem",
+                        fontSize: font_big,
                         padding: "0.3rem 1.5rem",
                         borderRadius: "12px",
                         textDecoration: "none",
@@ -246,7 +250,7 @@ return (
           <h2
             style={{
               fontWeight: "700",
-              fontSize: "2rem",
+              fontSize: style == "small" ? "1.5rem" : "2rem",
               letterSpacing: "0.1px",
               color: "#010A2D",
               wordWrap: "anywhere",
@@ -260,7 +264,7 @@ return (
             position: "relative",
             width: "max-content",
             display: "flex",
-            padding: "0.5rem 1rem",
+            padding: `0.5rem ${font_small}`,
             width: "100%",
             justifyContent: "space-between",
           }}
@@ -268,7 +272,7 @@ return (
           <div style={{ display: "flex" }}>
             <div
               style={{
-                paddingRight: "2rem",
+                paddingRight: style == "small" ? "1.2rem" : "2rem",
                 display: "flex",
                 alignItems: "center",
               }}
@@ -286,7 +290,7 @@ return (
                     : "rgb(255, 229, 229)",
                 textAlign: "center",
                 borderRadius: "16px",
-                fontSize: "0.8rem",
+                fontSize: font_small,
                 color:
                   finalData.is_on == "on"
                     ? "rgb(0, 179, 125)"
@@ -299,7 +303,7 @@ return (
             </span>
           </div>
 
-          <div>{finalData.time_zone}</div>
+          <div style={{ fontSize: font_big }}>{finalData.time_zone}</div>
         </div>
         <div
           className="p-3"
@@ -324,16 +328,18 @@ return (
             return (
               <div
                 style={{
-                  paddingTop: "1rem",
+                  paddingTop: font_small,
                   display: "flex",
                   justifyContent: "space-between",
                 }}
               >
-                <div>{`${days[index]}`}</div>
+                <div style={{ fontSize: font_small }}>{`${days[index]}`}</div>
                 <div style={{ display: "flex" }}>
                   {week.on_off == "on" ? (
                     week.data.map((y) => (
-                      <p style={{ paddingRight: "0.7rem" }}>
+                      <p
+                        style={{ paddingRight: "0.7rem", fontSize: font_small }}
+                      >
                         {getFormatedTime(y._from)}~{getFormatedTime(y._to)}
                       </p>
                     ))
@@ -343,8 +349,8 @@ return (
                         backgroundColor: "#FFE5E5",
                         textAlign: "center",
                         borderRadius: "16px",
-                        marginRight: "1rem",
-                        fontSize: "0.8rem",
+                        marginRight: font_small,
+                        fontSize: font_small,
                         letterSpacing: "-0.025rem",
                         color: "#FF4747",
                         fontWeight: "500",
