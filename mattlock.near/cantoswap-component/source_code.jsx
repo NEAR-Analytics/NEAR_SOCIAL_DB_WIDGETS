@@ -19,8 +19,6 @@ const PROPS = Object.assign(
   props
 );
 
-console.log("PROPS", PROPS);
-
 const MAX_AMOUNT =
   "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 
@@ -171,7 +169,6 @@ const handleApprove = () => {
   contract
     .approve(PROPS.contractAddress, MAX_AMOUNT)
     .then((tx) => {
-      console.log(tx);
       State.update({
         log: "The TX hash is: " + tx.hash,
         explorerLink: "https://tuber.build/tx/" + tx.hash,
@@ -210,8 +207,6 @@ const swapTokens = () => {
     return;
   }
 
-  // console.log(amountIn, amountOut);
-
   contract
     .swapExactTokensForTokens(
       amountIn,
@@ -221,7 +216,6 @@ const swapTokens = () => {
       Date.now() + 60 * 1000
     )
     .then((tx) => {
-      console.log(tx);
       State.update({
         log: "The TX hash is: " + tx.hash,
         explorerLink: "https://tuber.build/tx/" + tx.hash,
