@@ -139,6 +139,8 @@ const handleUpdateAmount = () => {
     PROPS.contractAddress,
   ]);
 
+  console.log(PROPS.contractAddress, state.tokenFrom);
+
   return Ethers.provider()
     .call({
       to: state.tokenFrom,
@@ -207,11 +209,30 @@ const swapTokens = () => {
     return;
   }
 
+  console.log(
+    amountIn,
+    amountOut,
+    [state.tokenFrom, state.tokenTo],
+    sender,
+    Date.now() + 60 * 1000
+  );
+
+  let routes = [state.tokenFrom, state.tokenTo];
+  if (PROPS.contractAddress === "0xa252eEE9BDe830Ca4793F054B506587027825a8e") {
+    routes = [
+      {
+        from: state.tokenFrom,
+        to: state.tokenTo,
+        stable: true,
+      },
+    ];
+  }
+
   contract
     .swapExactTokensForTokens(
       amountIn,
       amountOut,
-      [state.tokenFrom, state.tokenTo],
+      routes,
       sender,
       Date.now() + 60 * 1000
     )
