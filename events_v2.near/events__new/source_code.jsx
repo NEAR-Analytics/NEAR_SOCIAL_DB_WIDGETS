@@ -20,7 +20,7 @@ if (
   new Date().getTime() - new Date(latestEvent.created_at).getTime() < SECONDS_8
 ) {
   props.__engine.pop();
-  return 'Event created';
+  return <></>;
 }
 
 function createEvent(data) {
