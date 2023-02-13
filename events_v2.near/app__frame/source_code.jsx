@@ -711,9 +711,10 @@ function dirtyEval(env, args) {
   const controlled = args[0];
   const method = controlled.method ? controlled.method : args[0];
 
+  const customEnv = controlled.env ? controlled.env : {};
   const mArgs = args.slice(1);
 
-  const widgetEnv = mergeEnv(env, _customEnv || {});
+  const widgetEnv = mergeEnv(env, customEnv || {});
 
   switch (method) {
     case 'push':
