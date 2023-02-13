@@ -6,30 +6,48 @@ if (!state) {
   return props.__engine.loading();
 }
 
+function scoreWord(word, termWord, field) {
+  if (word === termWord) {
+    return 100;
+  }
+
+  if (word.startsWith(termWord)) {
+    return 50;
+  }
+
+  if (word.endsWith(termWord)) {
+    return 25;
+  }
+
+  if (word.includes(termWord)) {
+    return 10;
+  }
+
+  return 0;
+}
+
 function scoreItem(item) {
   const term = state.term.toLowerCase();
 
-  const itemFields = state.fields.map((field) => {
+  const termWords = term.split(/[,\-_\s]+/giu);
+
+  const fieldValues = state.fields.map((field) => {
     return item[field.key];
   });
 
-  const itemScores = itemFields.map((field) => {
-    if (!field) {
+  const itemScores = fieldValues.map((fieldValue) => {
+    if (!fieldValue) {
       return 0;
     }
 
-    console.log(item.name, field, field.toLowerCase().split(/[,\-_\s]+/giu));
-
-    return field
+    return fieldValue
       .toLowerCase()
       .split(/[,\-_\s]+/giu)
       .map((word) => {
-        const index = word.indexOf(term);
-        if (index === -1) {
-          return 0;
+        let score = 0;
+        for (const termWord of termWords) {
+          score += scoreWord(word, termWord, field);
         }
-
-        return 1 / (index + 1);
       })
       .map((score) => {
         return score * (field.weight || 1);
@@ -58,8 +76,6 @@ const items = state.all
     const subset = buildSubset(item);
     const score = scoreItem(subset);
 
-    console.log(subset.name, score);
-
     return {
       item,
       score,
@@ -74,7 +90,6 @@ const items = state.all
   });
 
 const hasChanged = JSON.stringify(items) !== JSON.stringify(state.items);
-console.log('search_bar.jsx', 4, { hasChanged });
 
 if (hasChanged) {
   props.onSearch(items);
