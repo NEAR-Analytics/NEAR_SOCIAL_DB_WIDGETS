@@ -186,6 +186,10 @@ const Components = {
     }
   `,
 
+  Spacer: styled.div`
+    height: ${(props) => props.height || GRID_PAD};
+  `,
+
   PageTitle: styled.h1`
     font-size: ${FONT_SIZE_GIANT};
     color: black;
