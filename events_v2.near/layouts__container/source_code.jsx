@@ -53,7 +53,7 @@ const NavPrimaryButton = styled.button`
 
   transform: scale(0.975);
 
-  margin: 0 12px;
+  margin: 8px 12px;
 
   &:hover {
     /* darker and transparent */
