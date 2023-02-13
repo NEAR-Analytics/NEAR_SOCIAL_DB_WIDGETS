@@ -602,7 +602,7 @@ function restoreRoutes() {
   }
 }
 
-restoreRoutes();
+// restoreRoutes();
 
 function persistRoutingInformation(newState) {
   storageSet(ENV, 'routing', newState);
