@@ -1,8 +1,7 @@
-const fields = Object.entries(props.fields || {}).map(([key, weight]) => {
-  return { key, weight };
-});
-
 if (!state) {
+  const fields = Object.entries(props.fields || {}).map(([key, weight]) => {
+    return { key, weight };
+  });
   const items = props.items || [];
   State.init({ all: items, filtered: [], term: '' });
   return props.__engine.loading();
