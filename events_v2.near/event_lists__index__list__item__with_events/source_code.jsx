@@ -160,7 +160,7 @@ const Bobble = styled.div`
 const scrollingEvents =
   (state.events || []).length > 0 ? (
     <HorizontalScroll
-      itemWidth={'calc(max(21.5vw, 210px))'}
+      itemWidth={'calc(max(15vw, 210px))'}
       style={{ height: '100%' }}
     >
       {state.events
