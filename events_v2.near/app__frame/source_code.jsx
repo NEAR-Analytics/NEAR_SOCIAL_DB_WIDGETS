@@ -509,6 +509,7 @@ if (!accountId) {
   return PLEASE_CONNECT_WALLET_MESSAGE;
 }
 
+console.log('propIsRequiredMessage');
 function propIsRequiredMessage(prop) {
   return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
 }
@@ -561,6 +562,7 @@ const SessionState = {
   },
 };
 
+console.log('orientation2FlexDirection');
 function orientation2FlexDirection({ orientation }) {
   switch (orientation) {
     case 'horizontal':
@@ -572,6 +574,7 @@ function orientation2FlexDirection({ orientation }) {
   }
 }
 
+console.log('orientation2FlexWrap');
 function orientation2FlexWrap({ orientation }) {
   switch (orientation) {
     case 'horizontal':
@@ -583,22 +586,27 @@ function orientation2FlexWrap({ orientation }) {
   }
 }
 
+console.log('sessionGet');
 function sessionGet(env, prop, defaultValue) {
   return (
     SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
   );
 }
+console.log('sessionSet');
 function sessionSet(env, prop, value) {
   return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
+console.log('storageGet');
 function storageGet(env, prop, defaultValue) {
   return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
 }
+console.log('storageSet');
 function storageSet(env, prop, value) {
   return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
+console.log('restoreRoutes');
 function restoreRoutes() {
   const info = storageGet(ENV, 'routing', null);
   console.log('restoreRoutes', info, state.layers);
@@ -620,14 +628,17 @@ function restoreRoutes() {
 
 restoreRoutes();
 
+console.log('persistRoutingInformation');
 function persistRoutingInformation(newState) {
   storageSet(ENV, 'routing', newState);
 }
 
+console.log('slugFromName');
 function slugFromName(name) {
   return name.split('.').join('__').split('-').join('_');
 }
 
+console.log('fetchPathOptions');
 function fetchPathOptions(env, path) {
   const nameParts = path.split(':');
   if (nameParts.length === 1) {
@@ -654,15 +665,18 @@ function fetchPathOptions(env, path) {
   throw new Error(`Invalid path: ${path}`);
 }
 
+console.log('widgetPathFromName');
 function widgetPathFromName(env, widgetName) {
   const { owner, name, slug } = fetchPathOptions(env, widgetName);
   return `${owner}/widget/${name}__${slug}`;
 }
 
+console.log('layoutPathFromName');
 function layoutPathFromName(env, layoutName) {
   return widgetPathFromName(env, layoutName);
 }
 
+console.log('rerender');
 function rerender() {
   // HACK: force a re-render
   State.update({
@@ -670,6 +684,7 @@ function rerender() {
   });
 }
 
+console.log('push');
 function push(env, name, props) {
   const layer = {
     name,
@@ -686,6 +701,7 @@ function push(env, name, props) {
   });
 }
 
+console.log('replace');
 function replace(env, name, props) {
   const layer = {
     name,
@@ -703,6 +719,7 @@ function replace(env, name, props) {
 }
 
 // pop from the stack, ensure we always have at least one layer
+console.log('pop');
 function pop(/* env */) {
   const newLayers =
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
@@ -716,6 +733,7 @@ function pop(/* env */) {
   // rerender();
 }
 
+console.log('dirtyEval');
 function dirtyEval(env, args) {
   const controlled = args[0];
   const method = controlled.method ? controlled.method : args[0];
@@ -740,6 +758,7 @@ function dirtyEval(env, args) {
   }
 }
 
+console.log('isDate');
 function isDate(value) {
   // we have no instanceof or typeof, so we check for the interface
   try {
@@ -755,6 +774,7 @@ function isDate(value) {
   }
 }
 
+console.log('numberToMonth');
 function numberToMonth(number, format) {
   const month = parseInt(number, 10);
   const map = [
@@ -778,6 +798,7 @@ function numberToMonth(number, format) {
   return map[month - 1][0];
 }
 
+console.log('dayWithSuffix');
 function dayWithSuffix(day) {
   const suffixes = ['th', 'st', 'nd', 'rd'];
   const value = parseInt(day, 10);
@@ -785,6 +806,7 @@ function dayWithSuffix(day) {
   return `${value}${suffix}`;
 }
 
+console.log('formatDate');
 function formatDate(date, format) {
   if (date === null || date === undefined) {
     console.error('formatDate', 'date is null or undefined', date, format);
@@ -815,6 +837,7 @@ function formatDate(date, format) {
 }
 
 // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
+console.log('byteLength');
 function byteLength(str) {
   // returns the byte length of an utf8 string
   var s = str.length;
@@ -832,27 +855,32 @@ function byteLength(str) {
   return s;
 }
 
+console.log('calculateStorageCost');
 function calculateStorageCost(value) {
   // get number of bytes without TextEncoder or Blob
   const bytes = byteLength(JSON.stringify(value));
   return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
 }
 
+console.log('contractCall');
 function contractCall(contractName, methodName, args) {
   const cost = calculateStorageCost(args);
   // console.log('contractCall', { contractName, methodName, args, cost });
   Near.call(contractName, methodName, args || {}, TGAS_300, cost);
 }
 
+console.log('contractView');
 function contractView(contractName, methodName, args) {
   // console.log('contractView', { contractName, methodName, args });
   return Near.view(contractName, methodName, args || {});
 }
 
+console.log('loading');
 function loading(displayText) {
   return <>{displayText || '...'}</>;
 }
 
+console.log('mergeEnv');
 function mergeEnv(env, newEnv) {
   return {
     ...env,
@@ -866,6 +894,7 @@ function mergeEnv(env, newEnv) {
   };
 }
 
+console.log('renderComponent');
 function renderComponent(name, props, env) {
   const widgetEnv = mergeEnv(ENV, env);
   console.log('renderComponent', { name, props, env, widgetEnv });
@@ -965,6 +994,7 @@ function renderComponent(name, props, env) {
   );
 }
 
+console.log('safeRender');
 function safeRender(_name, _props, _customEnv) {
   try {
     return renderComponent(_name, _props, _customEnv);
