@@ -70,7 +70,7 @@ const TagsWrapper = styled.div`
     background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
     position: absolute;
     top: 0;
-    right: 0;
+    right: 16px;
   }
 `;
 
