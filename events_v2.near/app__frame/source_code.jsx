@@ -1049,7 +1049,7 @@ return (
           key={index}
           delay={isLast ? '0s' : '0.8s'}
           duration={isLast ? '0.66s' : '1s'}
-          transitionDelay={isLast ? '0s' : '1s'}
+          transitionDelay={isLast ? '0.2s' : '1s'}
           backdropFilter={
             isLast
               ? 'blur(16px) saturate(140%) brightness(80%)'
