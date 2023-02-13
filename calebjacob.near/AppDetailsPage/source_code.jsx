@@ -220,8 +220,8 @@ const Dependency = styled.div`
 `;
 
 const HistoryContainer = styled.div`
-  h1,
-  .input-group.mb-3 {
+  > div > h1,
+  > div > .input-group.mb-3 {
     display: none;
   }
 `;
