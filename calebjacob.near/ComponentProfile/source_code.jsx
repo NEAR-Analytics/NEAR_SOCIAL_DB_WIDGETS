@@ -74,7 +74,7 @@ return (
         {metadata.name || widgetName}
       </Text>
 
-      <Text ellipsis>@{accountId}</Text>
+      <Text ellipsis>{props.src}</Text>
     </div>
   </Wrapper>
 );
