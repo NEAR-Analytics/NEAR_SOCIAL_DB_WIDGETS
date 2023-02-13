@@ -47,7 +47,11 @@ return (
     )}
     <table class="table">
       <thead>
-        <tr>
+        <tr
+          style={{
+            color: "rgba(0, 0, 0, 0.4)",
+          }}
+        >
           <th scope="col">Asset</th>
           <th scope="col" class="text-end">
             APY
