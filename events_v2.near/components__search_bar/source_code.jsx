@@ -148,6 +148,10 @@ return (
         padding: GRID_PAD,
         marginBottom: GRID_PAD,
         zIndex: 1,
+
+        '&:focus': {
+          outline: 'none',
+        },
       }}
     />
   </div>
