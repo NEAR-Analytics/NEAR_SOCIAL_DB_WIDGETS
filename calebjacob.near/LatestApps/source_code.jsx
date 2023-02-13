@@ -1,22 +1,34 @@
-const data = Social.keys("*/widget/*", "final", {
-  return_type: "BlockHeight",
-});
+const requiredTag = "app";
 const limit = 5;
 let apps = [];
 let totalApps = 0;
 
-if (data) {
+const taggedData = Social.keys(
+  `*/widget/*/metadata/tags/${requiredTag}`,
+  "final"
+);
+
+const data = Social.keys("*/widget/*", "final", {
+  return_type: "BlockHeight",
+});
+
+if (data && taggedData) {
   const result = [];
 
   Object.keys(data).forEach((accountId) => {
     return Object.keys(data[accountId].widget).forEach((widgetName) => {
-      totalApps++;
+      const hasRequiredTag =
+        taggedData[accountId]?.widget[widgetName]?.metadata?.tags?.app;
 
-      result.push({
-        accountId,
-        widgetName,
-        blockHeight: data[accountId].widget[widgetName],
-      });
+      if (hasRequiredTag) {
+        totalApps++;
+
+        result.push({
+          accountId,
+          widgetName,
+          blockHeight: data[accountId].widget[widgetName],
+        });
+      }
     });
   });
 
