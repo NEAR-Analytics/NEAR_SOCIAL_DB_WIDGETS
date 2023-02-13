@@ -64,6 +64,13 @@ const items = state.all.map((item) => {
   };
 });
 
+const hasChanged = JSON.stringify(items) !== JSON.stringify(state.items);
+if (hasChanged) {
+  props.onSearch(items);
+  State.update({ items });
+  console.log('searching', { items });
+}
+
 const Searchbar = styled.input`
   width: auto;
   padding: 0.5rem;
