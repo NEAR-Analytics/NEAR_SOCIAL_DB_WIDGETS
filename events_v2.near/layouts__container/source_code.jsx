@@ -106,6 +106,17 @@ const NavbarBackButton = styled.button`
   flex-shrink: 0;
 `;
 
+const NavbarItems = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+`;
+
 const navbar = (
   <Navbar className="navbar">
     {props.back ? (
@@ -125,7 +136,9 @@ const navbar = (
       </NavbarBackButton>
     ) : null}
 
-    <NavbarTitle>{title}</NavbarTitle>
+    {props.title && props.title.length > 0 && (
+      <NavbarTitle>{title}</NavbarTitle>
+    )}
 
     {props.primaryAction ? (
       <NavPrimaryButton
