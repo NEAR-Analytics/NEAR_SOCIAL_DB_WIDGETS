@@ -1048,7 +1048,7 @@ return (
         <AppLayer
           key={index}
           delay={isLast ? '0.2s' : '0.8s'}
-          duration={isLast ? '0.3s' : '1s'}
+          duration={isLast ? '0.66s' : '1s'}
           transitionDelay={isLast ? '0s' : '1s'}
           backdropFilter={
             isLast
