@@ -61,8 +61,8 @@ return (
         src={state.src}
         alt={props.alt || 'Image'}
         style={props.style || {}}
-        delay={props.delay || '0.6s'}
-        duration={props.duration || '0.8s'}
+        delay={props.delay || '0.3s'}
+        duration={props.duration || '0.6s'}
         draggable={props.draggable || false}
       />
     )}
