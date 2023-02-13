@@ -40,8 +40,8 @@ function scoreItem(item) {
   return itemScores.reduce((a, b) => a + b, 0);
 }
 
-const items = state.all.map((item) => {
-  const subset = fields.reduce((acc, field) => {
+function buildSubset(item) {
+  fields.reduce((acc, field) => {
     const value = item[field.key];
     if (!value) {
       return acc;
@@ -50,8 +50,11 @@ const items = state.all.map((item) => {
     acc[field.key] = value;
     return acc;
   }, {});
+}
 
-  const score = scoreItem(item);
+const items = state.all.map((item) => {
+  const subset = buildSubset(item);
+  const score = scoreItem(subset);
 
   return {
     item,
