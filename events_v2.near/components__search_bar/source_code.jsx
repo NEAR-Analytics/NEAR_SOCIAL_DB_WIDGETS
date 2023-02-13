@@ -22,7 +22,7 @@ const items = state.all.filter((item) => {
 
     return field
       .toLowerCase()
-      .split(/[ ,\w]+/gui)
+      .split(/[ ,\w]+/giu)
       .map((word) => {
         const index = word.indexOf(term);
         if (index === -1) {
@@ -35,13 +35,8 @@ const items = state.all.filter((item) => {
         return score * (field.weight || 1);
       })
       .reduce((a, b) => a + b, 0);
-
-    return fieldScore;
   });
-
-
-
-
+});
 
 const Searchbar = styled.input`
   width: auto;
