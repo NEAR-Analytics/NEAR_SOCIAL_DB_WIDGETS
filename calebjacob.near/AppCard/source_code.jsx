@@ -4,6 +4,9 @@ const metadata = Social.get(
   "final"
 );
 const tags = Object.keys(metadata.tags || {});
+const detailsUrl = `/#/calebjacob.near/widget/AppDetailsPage?src=${accountId}/widget/${widgetName}`;
+const appUrl = `/#/${accountId}/widget/${widgetName}`;
+const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 
 const Card = styled.div`
   border-radius: 12px;
@@ -43,7 +46,8 @@ const Text = styled.p`
   white-space: nowrap;
 `;
 
-const Thumbnail = styled.div`
+const Thumbnail = styled.a`
+  display: block;
   width: 48px;
   height: 48px;
   flex-shrink: 0;
@@ -123,7 +127,7 @@ const ButtonLink = styled.a`
 return (
   <Card>
     <CardBody>
-      <Thumbnail>
+      <Thumbnail href={detailsUrl}>
         <Widget
           src="mob.near/widget/Image"
           props={{
@@ -136,11 +140,13 @@ return (
       </Thumbnail>
 
       <div>
-        <Text bold ellipsis>
+        <Text as="a" href={detailsUrl} bold ellipsis>
           {metadata.name || widgetName}
         </Text>
 
-        <Text ellipsis>@{accountId}</Text>
+        <Text as="a" href={accountUrl} ellipsis>
+          @{accountId}
+        </Text>
       </div>
     </CardBody>
 
@@ -155,12 +161,8 @@ return (
     )}
 
     <CardFooter>
-      <ButtonLink
-        href={`/#/calebjacob.near/widget/AppDetailsPage?src=${accountId}/widget/${widgetName}`}
-      >
-        View Details
-      </ButtonLink>
-      <ButtonLink href={`/#/${accountId}/widget/${widgetName}`} primary>
+      <ButtonLink href={detailsUrl}>View Details</ButtonLink>
+      <ButtonLink href={appUrl} primary>
         Open
       </ButtonLink>
     </CardFooter>
