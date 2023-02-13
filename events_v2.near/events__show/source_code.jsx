@@ -55,8 +55,6 @@ const InlineTag = props.__engine.Components.InlineTag;
 const InfoBarItem = props.__engine.Components.InfoBarItem;
 const InfoBarLink = props.__engine.Components.InfoBarLink;
 
-// console.log('event', event);
-
 return (
   <>
     {/* Header Images */}
