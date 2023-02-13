@@ -7,22 +7,22 @@ if (!state) {
     return props.__engine.loading();
   }
 
-  State.init({ allItems: event_lists, items: [] });
+  State.init({ all: event_lists, filtered: [] });
   return props.__engine.loading();
 }
 
 const widgetName = `index.list.${props.layout}`;
 
 const SearchBar = props.__engine.renderComponent('components:search-bar', {
-  items: state.allItems,
+  filtered: state.all,
   fields: {
     name: 1,
     description: 0.8,
     location: 1.2,
     category: 1.1,
   },
-  onSearch: (items) => {
-    State.update({ items: items });
+  onSearch: (filtered) => {
+    State.update({ filtered: filtered });
   },
 });
 
@@ -30,7 +30,7 @@ return (
   <>
     {props.search && SearchBar}
     {props.__engine.renderComponent(widgetName, {
-      event_lists: props.search ? state.items : state.allItems,
+      event_lists: props.search ? state.filtered : state.all,
     })}
   </>
 );
