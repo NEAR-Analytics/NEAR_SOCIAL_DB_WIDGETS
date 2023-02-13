@@ -1043,26 +1043,7 @@ return (
       </div>
     ) : null}
 
-    {state.loading && (
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(255,255,255,0.95)',
-          backdropFilter: 'blur(16px) saturate(140%) brightness(80%)',
-          animation: `${AnimationFadeIn} 0.3s ${EASE_DEFAULT}`,
-        }}
-      >
-        |Loading!
-      </div>
-    )}
+    {state.loading && <Loader />}
 
     {!state.loading &&
       state.layers.map((layer, index) => {
