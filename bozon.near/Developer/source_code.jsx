@@ -2,7 +2,7 @@ const accountId = props.accountId || context.accountId;
 
 if (!accountId) return "login or send accountId in props";
 
-const widgetsHistoryChangesBlocks = Social.keys(
+const allWidgetsHistoryChangesBlocks = Social.keys(
   `${accountId}/widget/*`,
   "final",
   {
@@ -10,16 +10,20 @@ const widgetsHistoryChangesBlocks = Social.keys(
   }
 );
 
-if (widgetsHistoryChangesBlocks === null) return "Loading...";
+const notDeleted = Social.keys(`${accountId}/widget/*`, "final", {
+  values_only: true,
+});
+
+if (allWidgetsHistoryChangesBlocks === null) return "Loading...";
 
 State.init({
-  widgetsHistoryChangesBlocks: Object.keys(
-    widgetsHistoryChangesBlocks[accountId]["widget"]
+  allWidgetsHistoryChangesBlocks: Object.keys(
+    allWidgetsHistoryChangesBlocks[accountId]["widget"]
   )
     .map((key) => {
       return {
         name: key,
-        blocks: widgetsHistoryChangesBlocks[accountId]["widget"][key],
+        blocks: allWidgetsHistoryChangesBlocks[accountId]["widget"][key],
       };
     })
     .sort(
@@ -27,7 +31,7 @@ State.init({
     ),
 });
 
-console.log(state.widgetsHistoryChangesBlocks);
+console.log(notDeleted[accountId]["widget"]);
 
 return (
   <div>
@@ -38,16 +42,24 @@ return (
       />
     </div>
     <div div class="card mb-3">
+      Stats:
+      {}
+    </div>
+    <div div class="card mb-3">
       <h3 class="card-header">Widgets</h3>
 
       <div class="list-group">
-        {state.widgetsHistoryChangesBlocks.map((element) => (
+        {state.allWidgetsHistoryChangesBlocks.map((element) => (
           <div>
             <button
-              className={`d-flex flex-row list-group-item list-group-item-action`}
               onClick={() => {
                 State.update({ selectedBlockHeight: blockHeight });
               }}
+              className={`d-flex flex-row list-group-item list-group-item-action ${
+                notDeleted[accountId]["widget"][element.name]
+                  ? ""
+                  : "list-group-item-warning"
+              }`}
             >
               <div>{element.name}</div>
               <span class="badge text-bg-success p-2 me-1 align-self-center">
