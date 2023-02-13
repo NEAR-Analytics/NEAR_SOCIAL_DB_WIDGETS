@@ -7,7 +7,7 @@ if (!events) {
 
 // if events are empty we want to show an empty list message
 if (events.length === 0) {
-  return 'No events found';
+  return props.__engine.loading();
 }
 
 const SlideInLeft = props.__engine.Components.SlideInLeft;
