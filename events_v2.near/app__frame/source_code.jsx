@@ -868,6 +868,7 @@ function mergeEnv(env, newEnv) {
 
 function renderComponent(name, props, env) {
   const widgetEnv = mergeEnv(ENV, env);
+  console.log('renderComponent', { name, props, env, widgetEnv });
 
   const _sessionGet = (...args) => {
     return sessionGet(widgetEnv, ...args);
