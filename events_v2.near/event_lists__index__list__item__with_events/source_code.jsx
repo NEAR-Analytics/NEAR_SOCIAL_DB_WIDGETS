@@ -1,8 +1,9 @@
 const EVENTS_CONTRACT = 'events_v2.near';
+const EVENT_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 200;
 const ANIMATION_DELAY = 300;
 
-const EVENTS_LIMIT = props.limit || 5;
+const eventLimit = props.limit || EVENT_LIMIT;
 
 const event_list = props.event_list || null;
 if (!event_list) {
@@ -15,7 +16,7 @@ if (!state) {
     'get_events_in_event_list',
     {
       event_list_id: event_list.id,
-      limit: EVENTS_LIMIT,
+      limit: eventLimit,
     }
   );
 
@@ -190,9 +191,9 @@ const scrollingEvents =
           );
         })}
 
-      {event_list.event_count > EVENTS_LIMIT && (
+      {event_list.event_count > eventLimit && (
         <BobbleWrap>
-          <Bobble>+{event_list.event_count - EVENTS_LIMIT}</Bobble>
+          <Bobble>+{event_list.event_count - eventLimit}</Bobble>
         </BobbleWrap>
       )}
     </HorizontalScroll>
