@@ -490,6 +490,14 @@ const Components = {
     animation-delay: ${({ delay }) => delay || '0s'};
     animation-duration: ${({ duration }) => duration || '0.3s'};
   `,
+
+  SlideInLeft: styled.div`
+    opacity: 0;
+    animation: ${AnimationSlideInLeft} 0.3s ${EASE_DEFAULT};
+    animation-fill-mode: forwards;
+    animation-delay: ${({ delay }) => delay || '0s'};
+    animation-duration: ${({ duration }) => duration || '0.3s'};
+  `,
 };
 
 /**
