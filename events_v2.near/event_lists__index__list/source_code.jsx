@@ -9,10 +9,10 @@ const widgetName = `index.list.${props.layout}`;
 const SearchBar = props.__engine.renderComponent('index.search_bar', {
   items: event_lists,
   fields: {
-    name: 2,
-    description: 1,
-    location: 2.5,
-    category: 3,
+    name: 1,
+    description: 0.8,
+    location: 1.2,
+    category: 1.1,
   },
 });
 
