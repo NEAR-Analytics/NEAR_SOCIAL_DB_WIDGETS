@@ -12,27 +12,36 @@ const allAssets = hasData
   ? assets.map((asset) => {
       const r = rewards.find((a) => a.token_id === asset.token_id);
       const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
-
+      console.log(asset);
+      const liquidity = asset.availableLiquidity;
       return (
-        <li class="list-group-item">
-          <span>{asset.metadata.symbol}</span>
-          <span>({toAPY(totalApy)}% APY)</span>
-        </li>
+        <tr>
+          <td>{asset.metadata.symbol}</td>
+          <td class="text-end">{toAPY(totalApy)}%</td>
+          <td class="text-end">{liquidity}</td>
+        </tr>
       );
     })
   : undefined;
 
 return (
-  <div class="card" style={{ maxWidth: "300px" }}>
+  <div>
     {!hasData && (
       <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
-    <div class="card-body">
-      <h4>Burrow supplied assets</h4>
-      <ul class="list-group list-group-flush mb-2">{allAssets}</ul>
-      <a class="btn btn-primary" href="https://burrow.cash" target="_blank">
-        Deposit on Burrow
-      </a>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Asset</th>
+          <th scope="col" class="text-end">
+            APY
+          </th>
+          <th scope="col" class="text-end">
+            Liquidity
+          </th>
+        </tr>
+      </thead>
+      <tbody>{allAssets}</tbody>
+    </table>
   </div>
 );
