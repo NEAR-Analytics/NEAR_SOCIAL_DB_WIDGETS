@@ -46,6 +46,24 @@ const Text = styled.p`
   white-space: nowrap;
 `;
 
+const TextLink = styled.a`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
+  outline: none;
+
+  &:focus {
+    text-decoration: underline;
+  }
+`;
+
 const Thumbnail = styled.a`
   display: block;
   width: 48px;
@@ -54,6 +72,13 @@ const Thumbnail = styled.a`
   border: 1px solid #ECEEF0;
   border-radius: 8px;
   overflow: hidden;
+  outline: none;
+  transition: border-color 200ms;
+
+  &:focus,
+  &:hover {
+    border-color: #D0D5DD;
+  }
 
   img {
     object-fit: cover;
@@ -140,13 +165,13 @@ return (
       </Thumbnail>
 
       <div>
-        <Text as="a" href={detailsUrl} bold ellipsis>
+        <TextLink as="a" href={detailsUrl} bold ellipsis>
           {metadata.name || widgetName}
-        </Text>
+        </TextLink>
 
-        <Text as="a" href={accountUrl} ellipsis>
+        <TextLink as="a" href={accountUrl} ellipsis>
           @{accountId}
-        </Text>
+        </TextLink>
       </div>
     </CardBody>
 
