@@ -30,7 +30,7 @@ code editor </div>
 text editor
 </div>
 </div>
-<script type="module">
+<script>
 import MonacoEditor from "https://esm.sh/react-monaco-editor@0.51.0"
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
