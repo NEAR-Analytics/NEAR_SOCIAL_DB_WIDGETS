@@ -10,7 +10,7 @@ const data = Social.get(`${accountId}/widget/${widgetName}/**`);
 const code = data[""];
 const metadata = data.metadata;
 const tags = Object.keys(metadata.tags || {});
-const shareUrl = `https://near.social/#/${props.src}`;
+const shareUrl = `https://near.social/#/calebjacob.near/widget/AppDetailsPage?src=${props.src}`;
 
 const dependencyMatch = code && code.matchAll(/<Widget.+src="(.+)".+\/>/g);
 const dependencySources = [...(dependencyMatch || [])]
