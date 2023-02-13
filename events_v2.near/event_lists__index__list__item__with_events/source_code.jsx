@@ -186,11 +186,9 @@ const scrollingEvents =
         })}
 
       {event_list.event_count >= EVENTS_LIMIT && (
-        <EventTileWrapper delay={(state.events.length + 2) * ANIMATION_DELAY}>
-          <BobbleWrap>
-            <Bobble>+{event_list.event_count - EVENTS_LIMIT}</Bobble>
-          </BobbleWrap>
-        </EventTileWrapper>
+        <BobbleWrap>
+          <Bobble>+{event_list.event_count - EVENTS_LIMIT}</Bobble>
+        </BobbleWrap>
       )}
     </HorizontalScroll>
   ) : (
