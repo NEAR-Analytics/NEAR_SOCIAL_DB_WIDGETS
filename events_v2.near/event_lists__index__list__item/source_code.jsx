@@ -9,5 +9,5 @@ const widget = include_events
 
 return props.__engine.renderComponent(widget, {
   event_list,
-  limit: props.limit || 1,
+  limit: props.limit,
 });
