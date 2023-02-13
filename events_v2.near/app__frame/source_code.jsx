@@ -25,6 +25,7 @@ const GRID_PAD_BIG = '40px';
 const FONT_SIZE_TINY = 'calc(max(13px, 0.85vw))';
 const FONT_SIZE_SMALL = 'calc(max(16px, 0.95vw))';
 const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.0vw))';
+const FONT_SIZE_BIG = 'calc(max(22px, 1.15vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.25vw))';
 
 const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
@@ -214,7 +215,7 @@ const Components = {
   `,
 
   ContainerHeader: styled.div`
-    font-size: ${FONT_SIZE_DEFAULT};
+    font-size: ${FONT_SIZE_BIG};
     color: ${TEXT_COLOR};
     padding: ${GRID_PAD_SMALL} 0;
     @media (max-width: 768px) {
