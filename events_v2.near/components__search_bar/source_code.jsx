@@ -112,11 +112,11 @@ const Searchbar = styled.input`
   width: auto;
   outline: none;
 
-  border: INJECT.theme.BORDER_DEFAULT;
-  font-size: INJECT.theme.FONT_SIZE_DEFAULT;
-  border-radius: INJECT.theme.BORDER_RADIUS_DEFAULT;
-  padding: INJECT.theme.GRID_PAD;
-  margin-bottom: INJECT.theme.GRID_PAD;
+  border:{{BORDER_DEFAULT}};
+  font-size:{{FONT_SIZE_DEFAULT}};
+  border-radius:{{BORDER_RADIUS_DEFAULT}};
+  padding:{{GRID_PAD}};
+  margin-bottom:{{GRID_PAD}};
 
   z-index: 1;
 
