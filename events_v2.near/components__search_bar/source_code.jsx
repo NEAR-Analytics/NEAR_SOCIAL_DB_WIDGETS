@@ -31,11 +31,8 @@ function scoreItem(item) {
 
   const termWords = term.split(/[,\-_\s]+/giu);
 
-
-
-  const itemScores = state.fields.map((fieldValue) => {
+  const itemScores = state.fields.map((field) => {
     const fieldValue = item[field.key];
-
 
     if (!fieldValue) {
       return 0;
