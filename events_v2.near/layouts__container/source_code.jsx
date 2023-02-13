@@ -109,7 +109,7 @@ const NavbarBackButton = styled.button`
 const NavbarItems = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%;
   flex-grow: 1;
   flex-shrink: 1;
