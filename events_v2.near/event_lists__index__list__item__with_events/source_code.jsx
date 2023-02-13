@@ -194,7 +194,7 @@ const scrollingEvents =
       )}
     </HorizontalScroll>
   ) : (
-    <Text>This list is empty :(</Text>
+    <Text>This list has no events</Text>
   );
 
 const elDescription =
