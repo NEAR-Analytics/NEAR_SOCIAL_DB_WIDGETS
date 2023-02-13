@@ -509,6 +509,7 @@ if (!accountId) {
   return PLEASE_CONNECT_WALLET_MESSAGE;
 }
 
+console.log('propIsRequiredMessage');
 function propIsRequiredMessage(prop) {
   console.log('propIsRequiredMessage');
   return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
@@ -562,6 +563,7 @@ const SessionState = {
   },
 };
 
+console.log('orientation2FlexDirection');
 function orientation2FlexDirection({ orientation }) {
   console.log('orientation2FlexDirection');
   switch (orientation) {
@@ -574,6 +576,7 @@ function orientation2FlexDirection({ orientation }) {
   }
 }
 
+console.log('orientation2FlexWrap');
 function orientation2FlexWrap({ orientation }) {
   console.log('orientation2FlexWrap');
   switch (orientation) {
@@ -586,17 +589,20 @@ function orientation2FlexWrap({ orientation }) {
   }
 }
 
+console.log('sessionGet');
 function sessionGet(env, prop, defaultValue) {
   console.log('sessionGet');
   return (
     SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
   );
 }
+console.log('sessionSet');
 function sessionSet(env, prop, value) {
   console.log('sessionSet');
   return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
+console.log('storageGet');
 function storageGet(env, prop, defaultValue) {
   const value =
     Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
@@ -605,6 +611,7 @@ function storageGet(env, prop, defaultValue) {
   });
   return value;
 }
+console.log('storageSet');
 function storageSet(env, prop, value) {
   console.log('storageSet', `${env.appOwner}.${env.appName}.${prop}`, {
     value,
@@ -612,6 +619,7 @@ function storageSet(env, prop, value) {
   return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
+console.log('restoreRoutes');
 function restoreRoutes() {
   const info = storageGet(ENV, 'routing', null);
   console.log('restoreRoutes 1', { info });
@@ -637,16 +645,19 @@ function restoreRoutes() {
 
 restoreRoutes();
 
+console.log('persistRoutingInformation');
 function persistRoutingInformation(newState) {
   console.log('persistRoutingInformation');
   storageSet(ENV, 'routing', newState);
 }
 
+console.log('slugFromName');
 function slugFromName(name) {
   console.log('slugFromName');
   return name.split('.').join('__').split('-').join('_');
 }
 
+console.log('fetchPathOptions');
 function fetchPathOptions(env, path) {
   console.log('fetchPathOptions');
   const nameParts = path.split(':');
@@ -674,17 +685,20 @@ function fetchPathOptions(env, path) {
   throw new Error(`Invalid path: ${path}`);
 }
 
+console.log('widgetPathFromName');
 function widgetPathFromName(env, widgetName) {
   console.log('widgetPathFromName');
   const { owner, name, slug } = fetchPathOptions(env, widgetName);
   return `${owner}/widget/${name}__${slug}`;
 }
 
+console.log('layoutPathFromName');
 function layoutPathFromName(env, layoutName) {
   console.log('layoutPathFromName');
   return widgetPathFromName(env, layoutName);
 }
 
+console.log('rerender');
 function rerender() {
   console.log('rerender');
   // HACK: force a re-render
@@ -693,6 +707,7 @@ function rerender() {
   });
 }
 
+console.log('push');
 function push(env, name, props) {
   console.log('push');
   const layer = {
@@ -710,6 +725,7 @@ function push(env, name, props) {
   });
 }
 
+console.log('replace');
 function replace(env, name, props) {
   console.log('replace');
   const layer = {
@@ -728,6 +744,7 @@ function replace(env, name, props) {
 }
 
 // pop from the stack, ensure we always have at least one layer
+console.log('pop');
 function pop(/* env */) {
   console.log('pop');
   const newLayers =
@@ -742,6 +759,7 @@ function pop(/* env */) {
   // rerender();
 }
 
+console.log('dirtyEval');
 function dirtyEval(env, args) {
   console.log('dirtyEval');
   const controlled = args[0];
@@ -767,6 +785,7 @@ function dirtyEval(env, args) {
   }
 }
 
+console.log('isDate');
 function isDate(value) {
   console.log('isDate');
   // we have no instanceof or typeof, so we check for the interface
@@ -783,6 +802,7 @@ function isDate(value) {
   }
 }
 
+console.log('numberToMonth');
 function numberToMonth(number, format) {
   console.log('numberToMonth');
   const month = parseInt(number, 10);
@@ -807,6 +827,7 @@ function numberToMonth(number, format) {
   return map[month - 1][0];
 }
 
+console.log('dayWithSuffix');
 function dayWithSuffix(day) {
   console.log('dayWithSuffix');
   const suffixes = ['th', 'st', 'nd', 'rd'];
@@ -815,6 +836,7 @@ function dayWithSuffix(day) {
   return `${value}${suffix}`;
 }
 
+console.log('formatDate');
 function formatDate(date, format) {
   console.log('formatDate');
   if (date === null || date === undefined) {
@@ -845,6 +867,7 @@ function formatDate(date, format) {
 }
 
 // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
+console.log('byteLength');
 function byteLength(str) {
   console.log('byteLength');
   // returns the byte length of an utf8 string
@@ -863,6 +886,7 @@ function byteLength(str) {
   return s;
 }
 
+console.log('calculateStorageCost');
 function calculateStorageCost(value) {
   console.log('calculateStorageCost');
   // get number of bytes without TextEncoder or Blob
@@ -870,6 +894,7 @@ function calculateStorageCost(value) {
   return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
 }
 
+console.log('contractCall');
 function contractCall(contractName, methodName, args) {
   console.log('contractCall');
   const cost = calculateStorageCost(args);
@@ -877,17 +902,20 @@ function contractCall(contractName, methodName, args) {
   // console.log('contractCall', { contractName, methodName, args, cost });
 }
 
+console.log('contractView');
 function contractView(contractName, methodName, args) {
   console.log('contractView');
   return Near.view(contractName, methodName, args || {});
   // console.log('contractView', { contractName, methodName, args });
 }
 
+console.log('loading');
 function loading(displayText) {
   console.log('loading');
   return <>{displayText || '...'}</>;
 }
 
+console.log('mergeEnv');
 function mergeEnv(env, newEnv) {
   console.log('mergeEnv');
   return {
@@ -902,6 +930,7 @@ function mergeEnv(env, newEnv) {
   };
 }
 
+console.log('renderComponent');
 // function renderComponent(name, props, env) {
 //   console.log('renderComponent');
 //   const widgetEnv = mergeEnv(ENV, env);
@@ -1002,6 +1031,7 @@ function mergeEnv(env, newEnv) {
 //   );
 // }
 
+console.log('safeRender');
 // function safeRender(_name, _props, _customEnv) {
 //   try {
 //     console.log('safeRender', { _name, _props, _customEnv });
