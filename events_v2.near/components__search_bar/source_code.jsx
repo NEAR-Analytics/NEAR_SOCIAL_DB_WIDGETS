@@ -108,7 +108,7 @@ if (hasChanged) {
   State.update({ items });
 }
 
-const { GRID_PAD } = props.__engine.Constants;
+const { GRID_PAD, BORDER_RADIUS_DEFAULT } = props.__engine.Constants;
 
 const Searchbar = styled.input`
   width: auto;
@@ -116,9 +116,9 @@ const Searchbar = styled.input`
   border-radius: 0;
   outline: none;
   font-size: 1rem;
+  border-radius: ${BORDER_RADIUS_DEFAULT};
   padding: ${GRID_PAD};
   margin-bottom: ${GRID_PAD};
-  border-radius: 8px;
   z-index: 1;
 
   &:focus {
