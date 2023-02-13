@@ -160,6 +160,8 @@ const ImageTileContainer = styled.div`
   border-radius: 8px;
 
   overflow: hidden;
+
+  flex-shrink: 0;
 `;
 
 return (
