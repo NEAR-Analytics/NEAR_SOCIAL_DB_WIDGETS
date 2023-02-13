@@ -160,6 +160,7 @@ const navbar = (
             </NavPrimaryButton>
           );
         }
+      </NavbarItems>
     )}
 
     {props.primaryAction ? (
