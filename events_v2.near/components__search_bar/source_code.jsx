@@ -55,7 +55,7 @@ const items = state.all.map((item) => {
   const subset = buildSubset(item);
   const score = scoreItem(subset);
 
-  console.log({ subset, score });
+  console.log({ subset.name, score });
 
   return {
     item,
