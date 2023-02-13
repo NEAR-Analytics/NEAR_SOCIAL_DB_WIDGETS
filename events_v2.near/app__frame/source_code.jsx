@@ -809,7 +809,6 @@ function formatDate(date, format) {
   console.log('formatDate');
   if (date === null || date === undefined) {
     return '';
-    console.error('formatDate', 'date is null or undefined', date, format);
   }
   const properDate = isDate(date) ? date : new Date(date);
   const dateString = properDate.toISOString();
@@ -896,7 +895,7 @@ function mergeEnv(env, newEnv) {
 function renderComponent(name, props, env) {
   console.log('renderComponent');
   const widgetEnv = mergeEnv(ENV, env);
-  
+
   console.log('renderComponent', { name, props, env, widgetEnv });
   const _sessionGet = (...args) => {
     return sessionGet(widgetEnv, ...args);
@@ -998,8 +997,8 @@ function safeRender(_name, _props, _customEnv) {
     console.log('safeRender', { _name, _props, _customEnv });
     return renderComponent(_name, _props, _customEnv);
   } catch (err) {
+    console.log(err);
     return (
-      console.log(err);
       <div>
         Failed to render component <strong>{_name}</strong> with props:{' '}
         <pre>{JSON.stringify(_props, null, 4)}</pre>
