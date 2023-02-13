@@ -538,6 +538,7 @@ const rootRoute = {
 };
 
 if (!state) {
+  console.log('init state');
   State.init({
     renderCycles: state ? state.renderCycles + 1 : 1,
     layers: [rootRoute],
