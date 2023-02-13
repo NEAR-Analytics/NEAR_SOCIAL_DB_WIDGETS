@@ -1032,7 +1032,8 @@ const Loader = styled.div`
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px) saturate(140%) brightness(80%);
-  animation: ${AnimationDummy} 0.3s ${EASE_DEFAULT};
+  animation: ${AnimationDummy} 1s ${EASE_DEFAULT};
+  animation-duration: 1s;
 `;
 
 // have to deconstruct Components here because of a bug in the VM.
