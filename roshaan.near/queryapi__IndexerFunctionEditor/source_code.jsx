@@ -26,12 +26,12 @@ function TestReact(props) {
     // Handle incoming messages
     console.log("Received message:", event.data);
     // Forward the message to the parent window
-    window.parent.postMessage(event.data, "*");
+    window.top.postMessage(event.data, "*");
   };
   return React.createElement("iframe", {
     src:"http://localhost:3000/query-api-editor",
-    height: "400px",
-    width: "400px",
+    height: "750px",
+    width: "750px",
     }); 
 }
 
@@ -55,7 +55,7 @@ return (
       style={{ height: '300px' }}
       srcDoc={code}
       message={initialText}
-      onMessage={(m) => State.update({ m })}
+      onMessage={(m) => console.log(m, 'near social for the win')}
     />
     <Markdown text={state.m} />
   </div>
