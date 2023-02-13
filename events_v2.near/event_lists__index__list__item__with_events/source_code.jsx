@@ -14,7 +14,7 @@ if (!state) {
     'get_events_in_event_list',
     {
       event_list_id: event_list.id,
-      limit: EVENTS_LIMIT,
+      limit: props.limit || EVENTS_LIMIT,
     }
   );
 
