@@ -29,6 +29,8 @@ const SearchBar = props.__engine.renderComponent('components:search-bar', {
 return (
   <>
     {props.search && SearchBar}
-    {props.__engine.renderComponent(widgetName, { event_lists: state.items })}
+    {props.__engine.renderComponent(widgetName, {
+      event_lists: props.search ? state.items : state.allItems,
+    })}
   </>
 );
