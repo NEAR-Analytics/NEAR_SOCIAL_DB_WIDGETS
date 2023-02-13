@@ -171,7 +171,7 @@ const navbar = (
       <NavbarItems>
         {props.items.map((item, idx) => {
           return (
-            <NavPrimaryButton
+            <NavbarItem
               type="button"
               key={idx}
               tabIndex={0}
@@ -185,7 +185,7 @@ const navbar = (
               }}
             >
               {item.label}
-            </NavPrimaryButton>
+            </NavbarItem>
           );
         })}
       </NavbarItems>
