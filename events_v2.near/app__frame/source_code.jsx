@@ -625,6 +625,7 @@ function restoreRoutes() {
     Array.isArray(info) &&
     JSON.stringify(info) !== JSON.stringify(layers)
   ) {
+    console.log('restoreRoutes 3', { info, layers });
     State.update({
       layers: info,
     });
