@@ -26,7 +26,7 @@ const Navbar = styled.div`
   z-index: 99999999;
   overflow-x: hidden;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: stretch;
   width: 100%;
   flex-direction: row;
@@ -110,7 +110,7 @@ const NavbarItems = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
+  height: auto;
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: row;
