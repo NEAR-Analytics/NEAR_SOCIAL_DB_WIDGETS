@@ -68,7 +68,6 @@ console.log('search_bar.jsx', 4, { hasChanged });
 if (hasChanged) {
   props.onSearch(items);
   State.update({ items });
-  return <></>;
 }
 
 const Searchbar = styled.input`
