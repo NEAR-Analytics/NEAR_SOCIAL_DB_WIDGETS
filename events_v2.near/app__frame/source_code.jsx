@@ -598,7 +598,6 @@ function sessionSet(env, prop, value) {
 }
 
 function storageGet(env, prop, defaultValue) {
-  console.log('storageGet');
   const value =
     Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
   console.log('storageGet', { value });
