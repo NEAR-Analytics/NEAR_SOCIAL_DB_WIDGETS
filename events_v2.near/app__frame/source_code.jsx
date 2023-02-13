@@ -552,17 +552,6 @@ const ENV = { appOwner, appName, VERSION };
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
 
-const SessionState = {
-  _state: {},
-  set: (prop, value) => {
-    SessionState._state[prop] = value;
-    return true;
-  },
-  get: (prop) => {
-    return SessionState._state[prop];
-  },
-};
-
 console.log('orientation2FlexDirection');
 function orientation2FlexDirection({ orientation }) {
   console.log('orientation2FlexDirection');
@@ -587,19 +576,6 @@ function orientation2FlexWrap({ orientation }) {
     default:
       return 'nowrap';
   }
-}
-
-console.log('sessionGet');
-function sessionGet(env, prop, defaultValue) {
-  console.log('sessionGet');
-  return (
-    SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
-  );
-}
-console.log('sessionSet');
-function sessionSet(env, prop, value) {
-  console.log('sessionSet');
-  return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
 console.log('storageGet');
@@ -936,12 +912,6 @@ console.log('renderComponent');
 //   const widgetEnv = mergeEnv(ENV, env);
 
 //   console.log('renderComponent', { name, props, env, widgetEnv });
-//   const _sessionGet = (...args) => {
-//     return sessionGet(widgetEnv, ...args);
-//   };
-//   const _sessionSet = (...args) => {
-//     return sessionSet(widgetEnv, ...args);
-//   };
 //   const _storageGet = (...args) => {
 //     return storageGet(widgetEnv, ...args);
 //   };
