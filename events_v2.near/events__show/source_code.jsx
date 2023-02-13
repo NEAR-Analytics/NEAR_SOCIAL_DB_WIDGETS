@@ -1,10 +1,3 @@
-props.controller.setLayout('layouts:container', {
-  back: true,
-  title: event.name,
-  primaryAction:
-    props.__engine.accountId === event.account_id ? primaryAction : null,
-});
-
 const EVENTS_CONTRACT = 'events_v2.near';
 
 const eventId = props.event_id;
@@ -17,13 +10,10 @@ const hasEvent = props.__engine.contract.view(EVENTS_CONTRACT, 'has_event', {
 });
 
 if (hasEvent === null) {
-  return 'Loading';
+  return props.__engine.loading();
 }
 
 if (hasEvent === false) {
-  // props.__engine.replace('not_found', {
-  //   message: `Event with id ${props.event_id} not found.`,
-  // });
   props.__engine.pop();
   return 'Event not found';
 }
@@ -32,20 +22,19 @@ const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
   event_id: props.event_id,
 });
 if (!event) {
-  return 'Loading';
+  return props.__engine.loading();
 }
-
 const primaryAction = {
   label: 'Edit',
-  // will not work. VM Bug?
-  // onClick: ()=>{props.__engine.push('edit', { event_id: props.event_id })}
-  // Yes. sic!. this is a hack. The Viewer VM 'forgets' about functions
-  // When defining a function here, it will exist, the function will not be
-  // undefined, but executing the function will just do nothing. Thats
-  // why we have to use another method of calling functions.
-  // might be related to us rerendering all the time to implement layouting.
   onClick: ['push', 'edit', { event_id: props.event_id }],
 };
+
+props.controller.setLayout('layouts:container', {
+  back: true,
+  title: event.name,
+  primaryAction:
+    props.__engine.accountId === event.account_id ? primaryAction : null,
+});
 
 function removeEvent() {
   const contract = EVENTS_CONTRACT;
