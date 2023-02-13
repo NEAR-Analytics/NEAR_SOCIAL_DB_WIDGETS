@@ -849,7 +849,8 @@ function contractView(contractName, methodName, args) {
 }
 
 function loading(displayText) {
-  return <>{displayText || '...'}</>;
+  State.update({ loading: true });
+  return <></>;
 }
 
 function mergeEnv(env, newEnv) {
