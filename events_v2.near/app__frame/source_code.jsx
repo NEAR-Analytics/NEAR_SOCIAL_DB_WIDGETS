@@ -996,7 +996,7 @@ function renderComponent(name, props, env) {
 
 console.log('safeRender');
 function safeRender(_name, _props, _customEnv) {
-  console.log("safeRender", { _name, _props, _customEnv }")
+  console.log('safeRender', { _name, _props, _customEnv });
   try {
     return renderComponent(_name, _props, _customEnv);
   } catch (err) {
