@@ -128,7 +128,7 @@ const BobbleWrap = styled.div`
   width: 0;
   height: 100%;
   margin-left: 0;
-  padding-right: ${GRID_PAD};
+  padding-right: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
