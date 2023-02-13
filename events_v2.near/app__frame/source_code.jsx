@@ -1019,6 +1019,7 @@ const AnimationDummy = styled.keyframes`
     opacity: 1;
   }
 `;
+
 const Loader = styled.div`
   position: fixed;
   top: 0;
