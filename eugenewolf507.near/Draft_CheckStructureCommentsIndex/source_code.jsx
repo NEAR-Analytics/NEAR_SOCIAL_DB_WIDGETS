@@ -13,10 +13,12 @@ const getPublicationParamsAllArticles = () => ({
 });
 // ========= HANDLER GET =========
 const clickHandlerGetStructure = () => {
-  const questions = Social.index("poll_question", "question-v3.1.0");
-  console.log("questions", questions);
-  const wikiTestData = Social.get(`silkking.near/index/poll_question`, "final");
-  console.log("silkking.near/index/poll_question with get", wikiTestData);
+  const questionsIndex = Social.index("poll_question", "question-v3.1.0");
+  console.log("questionsIndex", questionsIndex);
+  const getData = Social.get(`mob.near/**`, "final");
+  console.log("getData", getData);
+  const getData = Social.get(`mob.near/**`, "final");
+  console.log("getData", getData);
 };
 
 // ========= RETURN =========
