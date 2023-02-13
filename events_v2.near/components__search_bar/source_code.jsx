@@ -112,11 +112,11 @@ const Searchbar = styled.input`
   width: auto;
   outline: none;
 
-  border: XX.BORDER_DEFAULT;
-  font-size: XX.FONT_SIZE_DEFAULT;
-  border-radius: XX.BORDER_RADIUS_DEFAULT;
-  padding: XX.GRID_PAD;
-  margin-bottom: XX.GRID_PAD;
+  border: XX.THEME.BORDER_DEFAULT;
+  font-size: XX.THEME.FONT_SIZE_DEFAULT;
+  border-radius: XX.THEME.BORDER_RADIUS_DEFAULT;
+  padding: XX.THEME.GRID_PAD;
+  margin-bottom: XX.THEME.GRID_PAD;
 
   z-index: 1;
 
