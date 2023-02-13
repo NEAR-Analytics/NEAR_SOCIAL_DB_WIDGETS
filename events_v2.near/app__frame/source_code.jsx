@@ -714,7 +714,13 @@ function dirtyEval(env, args) {
 
   switch (method) {
     case 'push':
-      return push(env, key, mArgs[0]);
+      if (mArgs.length === 1) {
+        return push(env, key, mArgs[0]);
+      }
+      if (mArgs.length === 2) {
+        const widgetEnv = mergeEnv(env, mArgs[1]);
+        return push(widgetEnv, key, mArgs[0]);
+      }
     case 'replace':
       return replace(env, key, mArgs[0]);
     case 'pop':
