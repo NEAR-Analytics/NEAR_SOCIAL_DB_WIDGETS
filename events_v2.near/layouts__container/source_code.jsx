@@ -104,8 +104,14 @@ const NavbarBackButton = styled.button`
   background: transparent;
   width: ${NAVBAR_HEIGHT}px;
 
+  transition: all 200ms ease-in-out;
+
   flex-grow: 0;
   flex-shrink: 0;
+
+  &:hover {
+    background-color: rgba(84, 44, 84, 0.25);
+  }
 `;
 
 const NavbarItems = styled.div`
@@ -131,7 +137,7 @@ const NavbarItem = styled.div`
   padding: 0 12px;
   background-color: transparent;
 
-  transition: all 1s ease-in-out;
+  transition: all 200ms ease-in-out;
 
   font-weight: ${(item) => {
     return item.active ? 'bold' : 'normal';
