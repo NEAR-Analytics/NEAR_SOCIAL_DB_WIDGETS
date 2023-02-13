@@ -721,6 +721,8 @@ function dirtyEval(env, args) {
         const widgetEnv = mergeEnv(env, mArgs[1]);
         return push(widgetEnv, key, mArgs[0]);
       }
+      throw new Error(`Invalid number of arguments for push: ${mArgs.length}`);
+
     case 'replace':
       return replace(env, key, mArgs[0]);
     case 'pop':
