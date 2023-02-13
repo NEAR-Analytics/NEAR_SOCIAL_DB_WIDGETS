@@ -18,7 +18,7 @@ return (
     {events.map((event, idx) => {
       const delay = `${(idx + 2) * ANIMATION_DELAY}ms`;
       return (
-        <FadeIn key={event.event_id} delay={delay} style={{ height: '100%' }}>
+        <FadeIn key={event.event_id} delay={delay}>
           {props.__engine.renderComponent('index.list_item', { event, delay })}
         </FadeIn>
       );
