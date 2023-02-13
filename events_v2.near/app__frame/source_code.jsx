@@ -1,6 +1,6 @@
 /* eslint no-magic-numbers: 0 */
 
-const VERSION = "0.3.0";
+const VERSION = '0.3.0';
 
 /**
  *  NEAR Social App
@@ -13,43 +13,43 @@ const VERSION = "0.3.0";
  * */
 
 const NEAR_STORAGE_BYTES_SAFTY_OFFSET = 42;
-const PROP_IS_REQUIRED_MESSAGE = "props.{prop} is required";
+const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
-  "Please connect your NEAR wallet to continue.";
+  'Please connect your NEAR wallet to continue.';
 
-const GRID_PAD_TINY = "4px";
-const GRID_PAD_SMALL = "10px";
-const GRID_PAD = "20px";
-const GRID_PAD_BIG = "40px";
+const GRID_PAD_TINY = '4px';
+const GRID_PAD_SMALL = '10px';
+const GRID_PAD = '20px';
+const GRID_PAD_BIG = '40px';
 
-const FONT_SIZE_TINY = "calc(max(13px, 0.85vw))";
-const FONT_SIZE_SMALL = "calc(max(16px, 0.95vw))";
-const FONT_SIZE_DEFAULT = "calc(max(18px, 1.0vw))";
-const FONT_SIZE_BIG = "calc(max(22px, 1.15vw))";
-const FONT_SIZE_GIANT = "calc(max(32px, 2.25vw))";
+const FONT_SIZE_TINY = 'calc(max(13px, 0.85vw))';
+const FONT_SIZE_SMALL = 'calc(max(16px, 0.95vw))';
+const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.0vw))';
+const FONT_SIZE_BIG = 'calc(max(22px, 1.15vw))';
+const FONT_SIZE_GIANT = 'calc(max(32px, 2.25vw))';
 
-const TAG_PADDING = "calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))";
+const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 
-const TEXT_COLOR = "#333333";
-const TEXT_COLOR_LIGHT = "#666666";
+const TEXT_COLOR = '#333333';
+const TEXT_COLOR_LIGHT = '#666666';
 
-const BORDER_RADIUS_DEFAULT = "4px";
-const BORDER_COLOR = "#e6e6e6";
-const BORDER_THICKNESS = "0.1vw";
+const BORDER_RADIUS_DEFAULT = '4px';
+const BORDER_COLOR = '#e6e6e6';
+const BORDER_THICKNESS = '0.1vw';
 const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 
-const ERROR_COLOR = "#cc0000";
+const ERROR_COLOR = '#cc0000';
 
-const BUTTON_BG_COLOR = "#4d2c91";
-const BUTTON_BG_HOVER_COLOR = "#3c1f6f";
-const BUTTON_COLOR = "#ffffff";
+const BUTTON_BG_COLOR = '#4d2c91';
+const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
+const BUTTON_COLOR = '#ffffff';
 const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
-const BUTTON_BORDER_RADIUS = "8px";
+const BUTTON_BORDER_RADIUS = '8px';
 
-const BOX_SHADOW_DEFAULT = "0 0 5px 0 rgba(0, 0, 0, 0.2)";
-const BOX_SHADOW_HOVER = "5px 0 15px -2px rgba(0, 0, 0, 0.2)";
+const BOX_SHADOW_DEFAULT = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
+const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
-const EASE_DEFAULT = "cubic-bezier(0.4, 0, 0.2, 1)";
+const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
 const Constants = {
   NEAR_STORAGE_BYTES_SAFTY_OFFSET,
@@ -310,8 +310,8 @@ const Components = {
 
     & > * {
       padding: ${GRID_PAD};
-      min-width: ${({ itemWidth }) => itemWidth || "540px"};
-      max-width: ${({ itemMaxWidth }) => itemMaxWidth || "540px"};
+      min-width: ${({ itemWidth }) => itemWidth || '540px'};
+      max-width: ${({ itemMaxWidth }) => itemMaxWidth || '540px'};
       width: 0;
       height: auto;
       flex-grow: 1;
@@ -354,7 +354,7 @@ const Components = {
 
     & > * {
       margin-right: ${GRID_PAD};
-      max-width: ${({ itemWidth }) => itemWidth || "540px"};
+      max-width: ${({ itemWidth }) => itemWidth || '540px'};
       width: 100%;
       flex-grow: 3;
       flex-shrink: 0;
@@ -378,16 +378,16 @@ const Components = {
 
   Card: styled.div`
     display: flex;
-    flex-direction: ${(args) => orientation2FlexDirection(args) || "column"};
-    flex-wrap: ${(args) => orientation2FlexWrap(args) || "wrap"};
+    flex-direction: ${(args) => orientation2FlexDirection(args) || 'column'};
+    flex-wrap: ${(args) => orientation2FlexWrap(args) || 'wrap'};
     align-items: stretch;
     justify-content: stretch;
     padding: 0;
     background-color: #ffffff;
     border-radius: ${BORDER_RADIUS_DEFAULT};
 
-    box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEFAULT : "none")};
-    border: ${(args) => (args.border ? BORDER_DEFAULT : "none")};
+    box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_DEFAULT : 'none')};
+    border: ${(args) => (args.border ? BORDER_DEFAULT : 'none')};
 
     transition: all 0.5s ${EASE_DEFAULT};
 
@@ -395,7 +395,7 @@ const Components = {
     position: relative;
 
     &:hover {
-      box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_HOVER : "none")};
+      box-shadow: ${(args) => (args.shadow ? BOX_SHADOW_HOVER : 'none')};
     }
 
     @media (max-width: 768px) {
@@ -487,16 +487,16 @@ const Components = {
     opacity: 0;
     animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
     animation-fill-mode: forwards;
-    animation-delay: ${({ delay }) => delay || "0s"};
-    animation-duration: ${({ duration }) => duration || "0.3s"};
+    animation-delay: ${({ delay }) => delay || '0s'};
+    animation-duration: ${({ duration }) => duration || '0.3s'};
   `,
 
   SlideInLeft: styled.div`
     opacity: 0;
     animation: ${AnimationSlideInLeft} 0.3s ${EASE_DEFAULT};
     animation-fill-mode: forwards;
-    animation-delay: ${({ delay }) => delay || "0s"};
-    animation-duration: ${({ duration }) => duration || "0.3s"};
+    animation-delay: ${({ delay }) => delay || '0s'};
+    animation-duration: ${({ duration }) => duration || '0.3s'};
   `,
 };
 
@@ -510,22 +510,22 @@ if (!accountId) {
 }
 
 function propIsRequiredMessage(prop) {
-  return PROP_IS_REQUIRED_MESSAGE.replace("{prop}", prop);
+  return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
 }
 
 const appOwner = props.appOwner;
 if (!appOwner) {
-  return propIsRequiredMessage("appOwner");
+  return propIsRequiredMessage('appOwner');
 }
 
 const appName = props.appName;
 if (!appName) {
-  return propIsRequiredMessage("appName");
+  return propIsRequiredMessage('appName');
 }
 
 const entryRoute = props.entryRoute;
 if (!entryRoute) {
-  return propIsRequiredMessage("entryRoute");
+  return propIsRequiredMessage('entryRoute');
 }
 
 const DEBUG = props.DEBUG || false;
@@ -548,7 +548,7 @@ if (!state) {
 const ENV = { appOwner, appName, VERSION };
 
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
-const TGAS_300 = "300000000000000";
+const TGAS_300 = '300000000000000';
 
 const SessionState = {
   _state: {},
@@ -563,23 +563,23 @@ const SessionState = {
 
 function orientation2FlexDirection({ orientation }) {
   switch (orientation) {
-    case "horizontal":
-      return "row";
-    case "vertical":
-      return "column";
+    case 'horizontal':
+      return 'row';
+    case 'vertical':
+      return 'column';
     default:
-      return "column";
+      return 'column';
   }
 }
 
 function orientation2FlexWrap({ orientation }) {
   switch (orientation) {
-    case "horizontal":
-      return "nowrap";
-    case "vertical":
-      return "wrap";
+    case 'horizontal':
+      return 'nowrap';
+    case 'vertical':
+      return 'wrap';
     default:
-      return "nowrap";
+      return 'nowrap';
   }
 }
 
@@ -600,7 +600,7 @@ function storageSet(env, prop, value) {
 }
 
 function restoreRoutes() {
-  const info = storageGet(ENV, "routing", null);
+  const info = storageGet(ENV, 'routing', null);
   if (info === null || info === undefined) {
     return;
   }
@@ -620,15 +620,15 @@ function restoreRoutes() {
 restoreRoutes();
 
 function persistRoutingInformation(newState) {
-  storageSet(ENV, "routing", newState);
+  storageSet(ENV, 'routing', newState);
 }
 
 function slugFromName(name) {
-  return name.split(".").join("__").split("-").join("_");
+  return name.split('.').join('__').split('-').join('_');
 }
 
 function fetchPathOptions(env, path) {
-  const nameParts = path.split(":");
+  const nameParts = path.split(':');
   if (nameParts.length === 1) {
     return {
       owner: env.appOwner,
@@ -728,11 +728,11 @@ function dirtyEval(env, args) {
   const widgetEnv = mergeEnv(env, customEnv || {});
 
   switch (method) {
-    case "push":
+    case 'push':
       return push(widgetEnv, mArgs[0], mArgs[1]);
-    case "replace":
+    case 'replace':
       return replace(widgetEnv, mArgs[0], mArgs[1]);
-    case "pop":
+    case 'pop':
       return pop(widgetEnv);
     default:
       throw new Error(`Unknown method ${method}`);
@@ -757,28 +757,28 @@ function isDate(value) {
 function numberToMonth(number, format) {
   const month = parseInt(number, 10);
   const map = [
-    ["Jan", "January"],
-    ["Feb", "February"],
-    ["Mar", "March"],
-    ["Apr", "April"],
-    ["May", "May"],
-    ["Jun", "June"],
-    ["Jul", "July"],
-    ["Aug", "August"],
-    ["Sep", "September"],
-    ["Okt", "Oktober"],
-    ["Nov", "November"],
-    ["Dec", "December"],
+    ['Jan', 'January'],
+    ['Feb', 'February'],
+    ['Mar', 'March'],
+    ['Apr', 'April'],
+    ['May', 'May'],
+    ['Jun', 'June'],
+    ['Jul', 'July'],
+    ['Aug', 'August'],
+    ['Sep', 'September'],
+    ['Okt', 'Oktober'],
+    ['Nov', 'November'],
+    ['Dec', 'December'],
   ];
 
-  if (format === "long") {
+  if (format === 'long') {
     return map[month - 1][1];
   }
   return map[month - 1][0];
 }
 
 function dayWithSuffix(day) {
-  const suffixes = ["th", "st", "nd", "rd"];
+  const suffixes = ['th', 'st', 'nd', 'rd'];
   const value = parseInt(day, 10);
   const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
   return `${value}${suffix}`;
@@ -786,8 +786,8 @@ function dayWithSuffix(day) {
 
 function formatDate(date, format) {
   if (date === null || date === undefined) {
-    console.error("formatDate", "date is null or undefined", date, format);
-    return "";
+    console.error('formatDate', 'date is null or undefined', date, format);
+    return '';
   }
   const properDate = isDate(date) ? date : new Date(date);
   const dateString = properDate.toISOString();
@@ -801,7 +801,7 @@ function formatDate(date, format) {
     mm: dateString.substring(14, 16),
     ss: dateString.substring(17, 19),
     Mshort: numberToMonth(dateString.substring(5, 7)),
-    Mlong: numberToMonth(dateString.substring(5, 7), "long"),
+    Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
     Dst: dayWithSuffix(dateString.substring(8, 10)),
   };
 
@@ -849,7 +849,7 @@ function contractView(contractName, methodName, args) {
 }
 
 function loading(displayText) {
-  return <>{displayText || "..."}</>;
+  return <>{displayText || '...'}</>;
 }
 
 function mergeEnv(env, newEnv) {
@@ -970,7 +970,7 @@ function safeRender(_name, _props, _customEnv) {
     console.log(err);
     return (
       <div>
-        Failed to render component <strong>{_name}</strong> with props:{" "}
+        Failed to render component <strong>{_name}</strong> with props:{' '}
         <pre>{JSON.stringify(_props, null, 4)}</pre>
         <br />
         <pre>{err.toString()}</pre>
@@ -1022,7 +1022,7 @@ return (
     {DEBUG ? (
       <div
         style={{
-          position: "fixed",
+          position: 'fixed',
           bottom: 0,
           right: 0,
           zIndex: 9999,
@@ -1031,7 +1031,7 @@ return (
       >
         <Button
           onClick={() => {
-            storageSet(ENV, "routing", [rootRoute]);
+            storageSet(ENV, 'routing', [rootRoute]);
             State.update({
               layers: [rootRoute],
             });
@@ -1048,14 +1048,14 @@ return (
       return (
         <AppLayer
           key={index}
-          delay={isLast ? "0s" : "0.8s"}
-          duration={isLast ? "0.66s" : "1s"}
-          transitionDuration={isLast ? "0.3s" : "1s"}
-          transitionDelay={isLast ? "0.2s" : "1s"}
+          delay={isLast ? '0s' : '0.8s'}
+          duration={isLast ? '0.66s' : '1s'}
+          transitionDuration={isLast ? '0.3s' : '1s'}
+          transitionDelay={isLast ? '0.2s' : '1s'}
           backdropFilter={
             isLast
-              ? "blur(16px) saturate(140%) brightness(80%)"
-              : "blur(0px) saturate(100%) brightness(100%)"
+              ? 'blur(16px) saturate(140%) brightness(80%)'
+              : 'blur(0px) saturate(100%) brightness(100%)'
           }
           zIndex={index + 100}
         >
