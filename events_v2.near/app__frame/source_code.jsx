@@ -552,27 +552,27 @@ const ENV = { appOwner, appName, VERSION };
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
 
-function orientation2FlexDirection({ orientation }) {
-  switch (orientation) {
-    case 'horizontal':
-      return 'row';
-    case 'vertical':
-      return 'column';
-    default:
-      return 'column';
-  }
-}
+// function orientation2FlexDirection({ orientation }) {
+//   switch (orientation) {
+//     case 'horizontal':
+//       return 'row';
+//     case 'vertical':
+//       return 'column';
+//     default:
+//       return 'column';
+//   }
+// }
 
-function orientation2FlexWrap({ orientation }) {
-  switch (orientation) {
-    case 'horizontal':
-      return 'nowrap';
-    case 'vertical':
-      return 'wrap';
-    default:
-      return 'nowrap';
-  }
-}
+// function orientation2FlexWrap({ orientation }) {
+//   switch (orientation) {
+//     case 'horizontal':
+//       return 'nowrap';
+//     case 'vertical':
+//       return 'wrap';
+//     default:
+//       return 'nowrap';
+//   }
+// }
 
 function storageGet(env, prop, defaultValue) {
   console.log('storageGet', `${env.appOwner}.${env.appName}.${prop}`);
