@@ -110,18 +110,18 @@ if (hasChanged) {
 
 const Searchbar = styled.input`
   width: auto;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0;
   outline: none;
-
-  border: XX.THEME.BORDER_DEFAULT;
-  font-size: XX.THEME.FONT_SIZE_DEFAULT;
-  border-radius: XX.THEME.BORDER_RADIUS_DEFAULT;
-  padding: XX.THEME.GRID_PAD;
-  margin-bottom: XX.THEME.GRID_PAD;
-
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
   z-index: 1;
 
   &:focus {
     outline: none;
+    border-color: #333;
   }
 
   &::placeholder {
@@ -136,7 +136,7 @@ return (
         const term = e.target.value;
         State.update({ term });
       }}
-      placeholder={props.placeholder || 'Search...'}
+      placeholder="Search for events"
     />
   </div>
 );
