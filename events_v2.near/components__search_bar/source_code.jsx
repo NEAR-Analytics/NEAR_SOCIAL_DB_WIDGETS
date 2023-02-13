@@ -1,3 +1,4 @@
+console.log('search_bar.jsx', 1);
 if (!state) {
   const fields = Object.entries(props.fields || {}).map(([key, weight]) => {
     return { key, weight };
@@ -5,6 +6,7 @@ if (!state) {
   State.init({ all: props.items || [], filtered: [], term: '', fields });
   return props.__engine.loading();
 }
+console.log('search_bar.jsx', 2);
 
 function scoreItem(item) {
   const term = state.term.toLowerCase();
@@ -61,13 +63,18 @@ const items = state.all.map((item) => {
     subset,
   };
 });
+console.log('search_bar.jsx', 3, items);
 
 const hasChanged = JSON.stringify(items) !== JSON.stringify(state.items);
+console.log('search_bar.jsx', 4, { hasChanged });
+
 if (hasChanged) {
   props.onSearch(items);
   State.update({ items });
   console.log('changeing items', { items, term: state.term });
 }
+
+console.log('search_bar.jsx', 5);
 
 const Searchbar = styled.input`
   width: auto;
