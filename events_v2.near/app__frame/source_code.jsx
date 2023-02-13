@@ -1058,19 +1058,7 @@ return (
           backgroundColor: 'rgba(0,0,0,0.5)',
         }}
       >
-        <div
-          style={{
-            width: 100,
-            height: 100,
-            borderRadius: 8,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Spinner />
-        </div>
+        |Loading!
       </div>
     )}
 
