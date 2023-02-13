@@ -1,11 +1,22 @@
 props.controller.setLayout('layouts:container', {
-  title: 'ND Events',
   back: false,
 
   primaryAction: {
     label: 'Create new Event',
     onClick: ['push', 'new', {}],
   },
+
+  items: [
+    {
+      label: 'Lists',
+      onClick: [{ appName: 'event_lists', method: 'push' }, 'index', {}],
+      active: true,
+    },
+    {
+      label: 'Events',
+      onClick: [{ appName: 'events', method: 'push' }, 'index', {}],
+    },
+  ],
 });
 
 const Button = props.__engine.Components.Button;
