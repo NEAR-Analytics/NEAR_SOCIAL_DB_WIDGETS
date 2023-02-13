@@ -133,7 +133,7 @@ const Searchbar = styled.input`
 
 return (
   <div style={{ position: 'relative' }}>
-    <input
+    <Searchbar
       onChange={(e) => {
         const term = e.target.value;
         State.update({ term });
