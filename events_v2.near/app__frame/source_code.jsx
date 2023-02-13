@@ -83,25 +83,25 @@ const Constants = {
 /**
  * Animation
  * */
-const AnimationFadeIn = styled.keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
+// const AnimationFadeIn = styled.keyframes`
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// `;
 
-const AnimationSlideInLeft = styled.keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
+// const AnimationSlideInLeft = styled.keyframes`
+//   0% {
+//     opacity: 0;
+//     transform: translateX(-20px);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateX(0);
+//   }
+// `;
 
 /**
  * Components
