@@ -108,9 +108,6 @@ if (hasChanged) {
   State.update({ items });
 }
 
-const { GRID_PAD, BORDER_RADIUS_DEFAULT, BORDER_DEFAULT, FONT_SIZE_DEFAULT } =
-  props.__engine.Constants;
-
 const Searchbar = styled.input`
   width: auto;
   outline: none;
