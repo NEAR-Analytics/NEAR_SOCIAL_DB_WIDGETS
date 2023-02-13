@@ -141,7 +141,7 @@ return (
       <FormLabel>Name</FormLabel>
       <input
         type="text"
-        placeholder="Event Name"
+        placeholder="Name"
         value={state.name || ''}
         onChange={(event) => {
           updateState(event, 'name');
@@ -154,7 +154,7 @@ return (
       <FormLabel>Description</FormLabel>
       <textarea
         className="w-100"
-        placeholder="Event Description"
+        placeholder="Description"
         value={state.description}
         onChange={(event) => {
           updateState(event, 'description');
