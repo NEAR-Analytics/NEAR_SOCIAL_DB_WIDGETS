@@ -1054,57 +1054,59 @@ const AppLayer = styled.div`
 // It cannot render <Components.Button /> :(
 const { Button } = Components;
 
-return (
-  <>
-    <div id="app-state" data-state={JSON.stringify(state)}></div>
+// return (
+//   <>
+//     <div id="app-state" data-state={JSON.stringify(state)}></div>
 
-    {/* state reset button */}
-    {DEBUG ? (
-      <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          right: 0,
-          zIndex: 9999,
-          padding: 8,
-        }}
-      >
-        <Button
-          onClick={() => {
-            storageSet(ENV, 'routing', [rootRoute]);
-            State.update({
-              layers: [rootRoute],
-            });
-          }}
-        >
-          Reset
-        </Button>
-      </div>
-    ) : null}
+//     {/* state reset button */}
+//     {DEBUG ? (
+//       <div
+//         style={{
+//           position: 'fixed',
+//           bottom: 0,
+//           right: 0,
+//           zIndex: 9999,
+//           padding: 8,
+//         }}
+//       >
+//         <Button
+//           onClick={() => {
+//             storageSet(ENV, 'routing', [rootRoute]);
+//             State.update({
+//               layers: [rootRoute],
+//             });
+//           }}
+//         >
+//           Reset
+//         </Button>
+//       </div>
+//     ) : null}
 
-    {state.layers.map((layer, index) => {
-      const isLast = index === state.layers.length - 1;
-      return <></>;
-      // return (
-      //   <AppLayer
-      //     key={index}
-      //     delay={isLast ? '0s' : '0.8s'}
-      //     duration={isLast ? '0.66s' : '1s'}
-      //     transitionDuration={isLast ? '0.3s' : '1s'}
-      //     transitionDelay={isLast ? '0.2s' : '1s'}
-      //     backdropFilter={
-      //       isLast
-      //         ? 'blur(16px) saturate(140%) brightness(80%)'
-      //         : 'blur(0px) saturate(100%) brightness(100%)'
-      //     }
-      //     zIndex={index + 100}
-      //   >
-      //     {safeRender(layer.name, layer.props, {
-      //       appOwner: layer.appOwner,
-      //       appName: layer.appName,
-      //     })}
-      //   </AppLayer>
-      // );
-    })}
-  </>
-);
+//     {state.layers.map((layer, index) => {
+//       const isLast = index === state.layers.length - 1;
+//       return <></>;
+//       // return (
+//       //   <AppLayer
+//       //     key={index}
+//       //     delay={isLast ? '0s' : '0.8s'}
+//       //     duration={isLast ? '0.66s' : '1s'}
+//       //     transitionDuration={isLast ? '0.3s' : '1s'}
+//       //     transitionDelay={isLast ? '0.2s' : '1s'}
+//       //     backdropFilter={
+//       //       isLast
+//       //         ? 'blur(16px) saturate(140%) brightness(80%)'
+//       //         : 'blur(0px) saturate(100%) brightness(100%)'
+//       //     }
+//       //     zIndex={index + 100}
+//       //   >
+//       //     {safeRender(layer.name, layer.props, {
+//       //       appOwner: layer.appOwner,
+//       //       appName: layer.appName,
+//       //     })}
+//       //   </AppLayer>
+//       // );
+//     })}
+//   </>
+// );
+
+return <></>;
