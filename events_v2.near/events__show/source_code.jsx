@@ -1,3 +1,10 @@
+props.controller.setLayout('layouts:container', {
+  back: true,
+  title: event.name,
+  primaryAction:
+    props.__engine.accountId === event.account_id ? primaryAction : null,
+});
+
 const EVENTS_CONTRACT = 'events_v2.near';
 
 const eventId = props.event_id;
@@ -39,13 +46,6 @@ const primaryAction = {
   // might be related to us rerendering all the time to implement layouting.
   onClick: ['push', 'edit', { event_id: props.event_id }],
 };
-
-props.controller.setLayout('layouts:container', {
-  back: true,
-  title: event.name,
-  primaryAction:
-    props.__engine.accountId === event.account_id ? primaryAction : null,
-});
 
 function removeEvent() {
   const contract = EVENTS_CONTRACT;
