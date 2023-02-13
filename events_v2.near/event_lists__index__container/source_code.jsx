@@ -35,6 +35,6 @@ return (
       layout: listLayout,
       search: props.search || false,
     })}
-    <div style={{ marginBottom: 20 }}></div>
+    <div style={{ marginBottom: 1000 }}></div>
   </>
 );
