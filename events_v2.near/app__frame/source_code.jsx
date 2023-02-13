@@ -714,6 +714,7 @@ function dirtyEval(env, args) {
 
   switch (method) {
     case 'push':
+      console.log('push', mArgs);
       if (mArgs.length === 1) {
         return push(env, key, mArgs[0]);
       }
