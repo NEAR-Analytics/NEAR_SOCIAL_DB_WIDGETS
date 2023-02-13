@@ -68,7 +68,7 @@ const hasChanged = JSON.stringify(items) !== JSON.stringify(state.items);
 if (hasChanged) {
   props.onSearch(items);
   State.update({ items });
-  console.log('searching', { items });
+  console.log('searching', { items, term: state.term });
 }
 
 const Searchbar = styled.input`
