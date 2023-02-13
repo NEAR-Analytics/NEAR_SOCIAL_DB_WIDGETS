@@ -22,7 +22,7 @@ function scoreItem(item) {
 
     return field
       .toLowerCase()
-      .split(/[ ,\w]+/giu)
+      .split(/[ ,-_\w\s]+/giu)
       .map((word) => {
         const index = word.indexOf(term);
         if (index === -1) {
