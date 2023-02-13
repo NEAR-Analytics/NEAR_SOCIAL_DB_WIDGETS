@@ -717,7 +717,6 @@ function dirtyEval(env, args) {
   };
 
   const mArgs = args.slice(1);
-
   const widgetEnv = mergeEnv(env, customEnv || {});
 
   switch (method) {
