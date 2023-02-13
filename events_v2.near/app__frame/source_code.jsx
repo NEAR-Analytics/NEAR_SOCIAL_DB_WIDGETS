@@ -17,39 +17,39 @@ const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
 
-const GRID_PAD_TINY = '4px';
-const GRID_PAD_SMALL = '10px';
-const GRID_PAD = '20px';
-const GRID_PAD_BIG = '40px';
+// const GRID_PAD_TINY = '4px';
+// const GRID_PAD_SMALL = '10px';
+// const GRID_PAD = '20px';
+// const GRID_PAD_BIG = '40px';
 
-const FONT_SIZE_TINY = 'calc(max(13px, 0.85vw))';
-const FONT_SIZE_SMALL = 'calc(max(16px, 0.95vw))';
-const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.0vw))';
-const FONT_SIZE_BIG = 'calc(max(22px, 1.15vw))';
-const FONT_SIZE_GIANT = 'calc(max(32px, 2.25vw))';
+// const FONT_SIZE_TINY = 'calc(max(13px, 0.85vw))';
+// const FONT_SIZE_SMALL = 'calc(max(16px, 0.95vw))';
+// const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.0vw))';
+// const FONT_SIZE_BIG = 'calc(max(22px, 1.15vw))';
+// const FONT_SIZE_GIANT = 'calc(max(32px, 2.25vw))';
 
-const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
+// const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 
-const TEXT_COLOR = '#333333';
-const TEXT_COLOR_LIGHT = '#666666';
+// const TEXT_COLOR = '#333333';
+// const TEXT_COLOR_LIGHT = '#666666';
 
-const BORDER_RADIUS_DEFAULT = '4px';
-const BORDER_COLOR = '#e6e6e6';
-const BORDER_THICKNESS = '0.1vw';
-const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
+// const BORDER_RADIUS_DEFAULT = '4px';
+// const BORDER_COLOR = '#e6e6e6';
+// const BORDER_THICKNESS = '0.1vw';
+// const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 
-const ERROR_COLOR = '#cc0000';
+// const ERROR_COLOR = '#cc0000';
 
-const BUTTON_BG_COLOR = '#4d2c91';
-const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
-const BUTTON_COLOR = '#ffffff';
-const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
-const BUTTON_BORDER_RADIUS = '8px';
+// const BUTTON_BG_COLOR = '#4d2c91';
+// const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
+// const BUTTON_COLOR = '#ffffff';
+// const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
+// const BUTTON_BORDER_RADIUS = '8px';
 
-const BOX_SHADOW_DEFAULT = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
-const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
+// const BOX_SHADOW_DEFAULT = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
+// const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
-const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
+// const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
 // const Constants = {
 //   NEAR_STORAGE_BYTES_SAFTY_OFFSET,
