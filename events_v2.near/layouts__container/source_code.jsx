@@ -187,7 +187,7 @@ const navbar = (
                   props.__engine.hacks.dirtyEval(item.onClick);
                 }
               }}
-              active={item.active ? true : false}
+              active={item.active}
             >
               {item.label}
             </NavbarItem>
