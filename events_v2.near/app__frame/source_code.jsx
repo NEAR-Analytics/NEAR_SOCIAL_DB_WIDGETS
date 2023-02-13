@@ -549,8 +549,8 @@ console.log('state', state);
 
 const ENV = { appOwner, appName, VERSION };
 
-const COST_NEAR_PER_BYTE = Math.pow(10, 20);
-const TGAS_300 = '300000000000000';
+// const COST_NEAR_PER_BYTE = Math.pow(10, 20);
+// const TGAS_300 = '300000000000000';
 
 // function orientation2FlexDirection({ orientation }) {
 //   switch (orientation) {
