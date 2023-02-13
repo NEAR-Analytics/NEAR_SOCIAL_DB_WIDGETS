@@ -12,9 +12,6 @@ const latestEvent = props.__engine.contract.view(
     account_id: props.__engine.accountId,
   }
 );
-if (!latestEvent) {
-  // return 'Loading';
-}
 
 const SECONDS_8 = 8000;
 // if event was just created, pop the stack and return
