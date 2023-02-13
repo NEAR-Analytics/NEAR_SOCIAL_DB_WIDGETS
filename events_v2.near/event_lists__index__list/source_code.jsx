@@ -14,7 +14,7 @@ if (!state) {
 const widgetName = `index.list.${props.layout}`;
 
 const SearchBar = props.__engine.renderComponent('components:search-bar', {
-  filtered: state.all,
+  items: state.all,
   fields: {
     name: 1,
     description: 0.8,
