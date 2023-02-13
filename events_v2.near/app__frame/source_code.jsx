@@ -1032,7 +1032,7 @@ const Loader = styled.div`
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px) saturate(140%) brightness(80%);
-  animation: ${AnimationDummy} 1s ${EASE_DEFAULT};
+  animation: ${AnimationDummy};
   animation-duration: 0.1s;
 `;
 
