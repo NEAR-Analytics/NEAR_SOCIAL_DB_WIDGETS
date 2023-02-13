@@ -606,7 +606,9 @@ function storageGet(env, prop, defaultValue) {
   return value;
 }
 function storageSet(env, prop, value) {
-  console.log('storageSet', `${env.appOwner}.${env.appName}.${prop}`, value);
+  console.log('storageSet', `${env.appOwner}.${env.appName}.${prop}`, {
+    value,
+  });
   return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
