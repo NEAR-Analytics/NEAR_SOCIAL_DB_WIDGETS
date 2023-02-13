@@ -2,8 +2,7 @@ if (!state) {
   const fields = Object.entries(props.fields || {}).map(([key, weight]) => {
     return { key, weight };
   });
-  const items = props.items || [];
-  State.init({ all: items, filtered: [], term: '', fields });
+  State.init({ all: props.items || [], filtered: [], term: '', fields });
   return props.__engine.loading();
 }
 
