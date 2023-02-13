@@ -319,6 +319,14 @@ return (
       >
         Source
       </TabsButton>
+
+      <TabsButton
+        type="button"
+        onClick={() => State.update({ selectedTab: "history" })}
+        selected={state.selectedTab === "history"}
+      >
+        History
+      </TabsButton>
     </Tabs>
 
     {state.selectedTab === "about" && (
@@ -406,6 +414,13 @@ return (
           </div>
         </Sidebar>
       </Content>
+    )}
+
+    {state.selectedTab === "history" && (
+      <Widget
+        src="bozon.near/widget/WidgetHistory"
+        props={{ widgetPath: props.src }}
+      />
     )}
   </>
 );
