@@ -230,10 +230,7 @@ return (
     </CardHeader>
 
     {(state.events || []).length > 0 ? (
-      <CardBody style={{ height: 'auto' }}>
-        {event_list.event_count}
-        {scrollingEvents}
-      </CardBody>
+      <CardBody style={{ height: 'auto' }}>{scrollingEvents}</CardBody>
     ) : (
       <></>
     )}
