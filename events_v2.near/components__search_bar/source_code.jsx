@@ -54,7 +54,10 @@ function scoreWord(word, termWord, weight) {
 }
 
 function scoreItem(item) {
-  const term = state.term.toLowerCase();
+  const term = state.term.toLowerCase().trim();
+  if (term === '') {
+    return 1;
+  }
 
   const termWords = term.split(/[,\-_\s]+/giu);
 
