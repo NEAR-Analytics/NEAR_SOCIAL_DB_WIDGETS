@@ -11,32 +11,40 @@ function scoreWord(word, termWord, weight) {
 
   if (word === termWord) {
     score += 1;
-    console.log('words match', word, { score });
+    console.log(word, 'words match', word, { score });
   } else if (word.startsWith(termWord)) {
     score += 0.5;
-    console.log('word starts with term', word, termWord, { score });
+    console.log(word, 'word starts with term', word, termWord, { score });
   } else if (word.endsWith(termWord)) {
     score += 0.33;
-    console.log('word ends with term', word, termWord, { score });
+    console.log(word, 'word ends with term', word, termWord, { score });
   } else if (word.includes(termWord)) {
     score += 0.2;
-    console.log('word includes term', word, termWord, word.indexOf(termWord), {
-      score,
-    });
+    console.log(
+      word,
+      'word includes term',
+      word,
+      termWord,
+      word.indexOf(termWord),
+      {
+        score,
+      }
+    );
   }
 
   if (termWord === word) {
     score += 1;
-    console.log('term words match', termWord, { score });
+    console.log(word, 'term words match', termWord, { score });
   } else if (termWord.startsWith(word)) {
     score += 0.5;
-    console.log('term word starts with word', termWord, word, { score });
+    console.log(word, 'term word starts with word', termWord, word, { score });
   } else if (termWord.endsWith(word)) {
     score += 0.33;
-    console.log('term word ends with word', termWord, word, { score });
+    console.log(word, 'term word ends with word', termWord, word, { score });
   } else if (termWord.includes(word)) {
     score += 0.2;
     console.log(
+      word,
       'term word includes word',
       termWord,
       word,
@@ -47,7 +55,7 @@ function scoreWord(word, termWord, weight) {
 
   if (word.length === termWord.length) {
     score += 0.05;
-    console.log('words are same length', word.length, { score });
+    console.log(word, 'words are same length', word.length, { score });
   }
 
   return score * weight;
