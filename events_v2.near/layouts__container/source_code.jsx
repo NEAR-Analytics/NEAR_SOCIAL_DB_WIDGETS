@@ -78,6 +78,8 @@ const NavbarTitle = styled.h2`
   flex-grow: 1;
   word-break: break-all;
   margin: 0 12px;
+  display: flex;
+  align-items: center;
 
   text-align: ${() => {
     return props.primaryAction || props.back ? 'left' : 'center';
