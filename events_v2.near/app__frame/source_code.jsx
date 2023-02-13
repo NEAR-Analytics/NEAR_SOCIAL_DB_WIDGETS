@@ -1011,6 +1011,14 @@ const AppLayer = styled.div`
   transition-delay: ${(props) => props.transitionDelay};
 `;
 
+const AnimationDummy = styled.keyframes`
+  0% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 const Loader = styled.div`
   position: fixed;
   top: 0;
@@ -1023,7 +1031,7 @@ const Loader = styled.div`
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px) saturate(140%) brightness(80%);
-  animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
+  animation: ${AnimationDummy} 0.3s ${EASE_DEFAULT};
 `;
 
 // have to deconstruct Components here because of a bug in the VM.
