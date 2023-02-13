@@ -41,9 +41,23 @@ function scoreItem(item) {
 }
 
 const items = state.all.map((item) => {
-  const term = state.term.toLowerCase();
+  const subset = fields.reduce((acc, field) => {
+    const value = item[field.key];
+    if (!value) {
+      return acc;
+    }
 
-  return {};
+    acc[field.key] = value;
+    return acc;
+  }, {});
+
+  const score = scoreItem(item);
+
+  return {
+    item,
+    score,
+    subset,
+  };
 });
 
 const Searchbar = styled.input`
