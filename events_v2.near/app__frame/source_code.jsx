@@ -707,17 +707,19 @@ function pop(/* env */) {
   // rerender();
 }
 
-function dirtyEval(env, args, _customEnv = {}) {
-  const method = args[0];
-  const key = args[1];
-  const mArgs = args.slice(2);
+function dirtyEval(env, args) {
+  const controlled = args[0];
+  const method = controlled.method ? controlled.method : args[0];
+
+  const mArgs = args.slice(1);
+
   const widgetEnv = mergeEnv(env, _customEnv || {});
 
   switch (method) {
     case 'push':
-      return push(widgetEnv, key, mArgs[0]);
+      return push(widgetEnv, mArgs[0], mArgs[1]);
     case 'replace':
-      return replace(widgetEnv, key, mArgs[0]);
+      return replace(widgetEnv, mArgs[0], mArgs[1]);
     case 'pop':
       return pop(widgetEnv);
     default:
