@@ -142,10 +142,11 @@ const navbar = (
 
     {props.items && props.items.length > 0 && (
       <NavbarItems>
-        {props.items.map((item) => {
+        {props.items.map((item, idx) => {
           return (
             <NavPrimaryButton
               type="button"
+              key={idx}
               tabIndex={0}
               onClick={() => {
                 props.__engine.hacks.dirtyEval(item.onClick);
