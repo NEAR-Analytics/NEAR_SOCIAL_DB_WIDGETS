@@ -140,6 +140,28 @@ const navbar = (
       <NavbarTitle>{title}</NavbarTitle>
     )}
 
+    {props.items && props.items.length > 0 && (
+      <NavbarItems>
+        {props.items.map((item) => {
+          return (
+            <NavPrimaryButton
+              type="button"
+              tabIndex={0}
+              onClick={() => {
+                props.__engine.hacks.dirtyEval(item.onClick);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  props.__engine.hacks.dirtyEval(item.onClick);
+                }
+              }}
+            >
+              {item.label}
+            </NavPrimaryButton>
+          );
+        }
+    )}
+
     {props.primaryAction ? (
       <NavPrimaryButton
         type="button"
