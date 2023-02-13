@@ -902,123 +902,123 @@ function mergeEnv(env, newEnv) {
   };
 }
 
-function renderComponent(name, props, env) {
-  console.log('renderComponent');
-  const widgetEnv = mergeEnv(ENV, env);
+// function renderComponent(name, props, env) {
+//   console.log('renderComponent');
+//   const widgetEnv = mergeEnv(ENV, env);
 
-  console.log('renderComponent', { name, props, env, widgetEnv });
-  const _sessionGet = (...args) => {
-    return sessionGet(widgetEnv, ...args);
-  };
-  const _sessionSet = (...args) => {
-    return sessionSet(widgetEnv, ...args);
-  };
-  const _storageGet = (...args) => {
-    return storageGet(widgetEnv, ...args);
-  };
-  const _storageSet = (...args) => {
-    return storageSet(widgetEnv, ...args);
-  };
+//   console.log('renderComponent', { name, props, env, widgetEnv });
+//   const _sessionGet = (...args) => {
+//     return sessionGet(widgetEnv, ...args);
+//   };
+//   const _sessionSet = (...args) => {
+//     return sessionSet(widgetEnv, ...args);
+//   };
+//   const _storageGet = (...args) => {
+//     return storageGet(widgetEnv, ...args);
+//   };
+//   const _storageSet = (...args) => {
+//     return storageSet(widgetEnv, ...args);
+//   };
 
-  const _layoutPathFromName = (path) => {
-    return layoutPathFromName(widgetEnv, path);
-  };
-  const _widgetPathFromName = (path) => {
-    return widgetPathFromName(widgetEnv, path);
-  };
+//   const _layoutPathFromName = (path) => {
+//     return layoutPathFromName(widgetEnv, path);
+//   };
+//   const _widgetPathFromName = (path) => {
+//     return widgetPathFromName(widgetEnv, path);
+//   };
 
-  const _push = (_name, _props) => {
-    return push(widgetEnv, _name, _props);
-  };
-  const _pop = () => {
-    return pop(widgetEnv);
-  };
-  const _replace = (_name, _props) => {
-    return replace(widgetEnv, _name, _props);
-  };
+//   const _push = (_name, _props) => {
+//     return push(widgetEnv, _name, _props);
+//   };
+//   const _pop = () => {
+//     return pop(widgetEnv);
+//   };
+//   const _replace = (_name, _props) => {
+//     return replace(widgetEnv, _name, _props);
+//   };
 
-  const _renderComponent = (_name, _props, _env) => {
-    return safeRender(_name, _props, mergeEnv(widgetEnv, _env));
-  };
+//   const _renderComponent = (_name, _props, _env) => {
+//     return safeRender(_name, _props, mergeEnv(widgetEnv, _env));
+//   };
 
-  const _dirtyEval = (args) => {
-    return dirtyEval(widgetEnv, args);
-  };
+//   const _dirtyEval = (args) => {
+//     return dirtyEval(widgetEnv, args);
+//   };
 
-  const engine = {
-    env: widgetEnv,
-    accountId,
+//   const engine = {
+//     env: widgetEnv,
+//     accountId,
 
-    loading,
-    rerender,
-    push: _push,
-    pop: _pop,
-    replace: _replace,
-    sessionGet: _sessionGet,
-    sessionSet: _sessionSet,
-    storageGet: _storageGet,
-    storageSet: _storageSet,
-    layoutPathFromName: _layoutPathFromName,
-    widgetPathFromName: _widgetPathFromName,
+//     loading,
+//     rerender,
+//     push: _push,
+//     pop: _pop,
+//     replace: _replace,
+//     sessionGet: _sessionGet,
+//     sessionSet: _sessionSet,
+//     storageGet: _storageGet,
+//     storageSet: _storageSet,
+//     layoutPathFromName: _layoutPathFromName,
+//     widgetPathFromName: _widgetPathFromName,
 
-    renderComponent: _renderComponent,
+//     renderComponent: _renderComponent,
 
-    Components,
-    Constants,
+//     Components,
+//     Constants,
 
-    helpers: {
-      propIsRequiredMessage,
-      calculateStorageCost,
-      formatDate,
-    },
+//     helpers: {
+//       propIsRequiredMessage,
+//       calculateStorageCost,
+//       formatDate,
+//     },
 
-    hacks: {
-      dirtyEval: _dirtyEval,
-    },
+//     hacks: {
+//       dirtyEval: _dirtyEval,
+//     },
 
-    TGAS_300,
+//     TGAS_300,
 
-    contract: {
-      call: contractCall,
-      view: contractView,
-    },
-  };
+//     contract: {
+//       call: contractCall,
+//       view: contractView,
+//     },
+//   };
 
-  const controllerProps = {
-    __engine: engine,
+//   const controllerProps = {
+//     __engine: engine,
 
-    component: {
-      name: name,
-      props: props,
-    },
-  };
+//     component: {
+//       name: name,
+//       props: props,
+//     },
+//   };
 
-  return (
-    <Widget
-      src={`${appOwner}/widget/app__layout_controller`}
-      key={props && props.key ? props.key : name}
-      props={controllerProps}
-    />
-  );
-}
+//   return (
+//     <Widget
+//       src={`${appOwner}/widget/app__layout_controller`}
+//       key={props && props.key ? props.key : name}
+//       props={controllerProps}
+//     />
+//   );
+// }
 
-function safeRender(_name, _props, _customEnv) {
-  try {
-    console.log('safeRender', { _name, _props, _customEnv });
-    return renderComponent(_name, _props, _customEnv);
-  } catch (err) {
-    console.log(err);
-    return (
-      <div>
-        Failed to render component <strong>{_name}</strong> with props:{' '}
-        <pre>{JSON.stringify(_props, null, 4)}</pre>
-        <br />
-        <pre>{err.toString()}</pre>
-        <br />
-      </div>
-    );
-  }
-}
+// function safeRender(_name, _props, _customEnv) {
+//   try {
+//     console.log('safeRender', { _name, _props, _customEnv });
+//     return renderComponent(_name, _props, _customEnv);
+//   } catch (err) {
+//     console.log(err);
+//     return (
+//       <div>
+//         Failed to render component <strong>{_name}</strong> with props:{' '}
+//         <pre>{JSON.stringify(_props, null, 4)}</pre>
+//         <br />
+//         <pre>{err.toString()}</pre>
+//         <br />
+//       </div>
+//     );
+//   }
+// }
 
 const AppLayer = styled.div`
   animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
