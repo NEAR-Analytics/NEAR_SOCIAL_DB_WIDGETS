@@ -22,9 +22,9 @@ const GRID_PAD_SMALL = '10px';
 const GRID_PAD = '20px';
 const GRID_PAD_BIG = '40px';
 
-const FONT_SIZE_TINY = 'calc(max(12px, 1.05vw))';
+const FONT_SIZE_TINY = 'calc(max(13px, 1.05vw))';
 const FONT_SIZE_SMALL = 'calc(max(16px, 1.13vw))';
-const FONT_SIZE_DEFAULT = 'calc(max(20px, 1.0vw))';
+const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.2vw))';
 const FONT_SIZE_GIANT = 'calc(max(32px, 2.5vw))';
 
 const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
