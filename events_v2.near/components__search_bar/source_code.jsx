@@ -8,7 +8,7 @@ if (!state) {
   return props.__engine.loading();
 }
 
-const items = state.all.filter((item) => {
+function scoreItem(item) {
   const term = state.term.toLowerCase();
 
   const itemFields = fields.map((field) => {
@@ -36,6 +36,14 @@ const items = state.all.filter((item) => {
       })
       .reduce((a, b) => a + b, 0);
   });
+
+  return itemScores.reduce((a, b) => a + b, 0);
+}
+
+const items = state.all.map((item) => {
+  const term = state.term.toLowerCase();
+
+  return {};
 });
 
 const Searchbar = styled.input`
