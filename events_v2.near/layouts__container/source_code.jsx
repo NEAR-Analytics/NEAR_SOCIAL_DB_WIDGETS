@@ -159,7 +159,7 @@ const navbar = (
               {item.label}
             </NavPrimaryButton>
           );
-        }
+        })}
       </NavbarItems>
     )}
 
