@@ -186,7 +186,7 @@ return (
             </ImageTileContainer>
 
             <div style={{ flexGrow: 100, marginLeft: 8, marginRight: 8 }}>
-              <div>{event.name}</div>
+              <strong>{event.name}</strong>
               <div>{event.description.slice(0, 100)}</div>
             </div>
 
