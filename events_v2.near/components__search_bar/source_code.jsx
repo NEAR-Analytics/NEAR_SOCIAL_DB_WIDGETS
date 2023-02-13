@@ -26,8 +26,8 @@ function scoreWord(word, termWord, weight) {
   }
 
   if (termWord === word) {
-    console.log('term words match', termWord, { score });
     score += 1;
+    console.log('term words match', termWord, { score });
   } else if (termWord.startsWith(word)) {
     score += 0.5;
     console.log('term word starts with word', termWord, word, { score });
