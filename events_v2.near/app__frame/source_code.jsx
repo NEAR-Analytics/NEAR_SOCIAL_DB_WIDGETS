@@ -1011,31 +1011,6 @@ const AppLayer = styled.div`
   transition-delay: ${(props) => props.transitionDelay};
 `;
 
-const AnimationDummy = styled.keyframes`
-  0% {
-    opacity: 0.95;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-const Loader = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(16px) saturate(140%) brightness(80%);
-  animation: ${AnimationDummy};
-  animation-duration: 0.1s;
-`;
-
 // have to deconstruct Components here because of a bug in the VM.
 // It cannot render <Components.Button /> :(
 const { Button } = Components;
@@ -1067,16 +1042,6 @@ return (
         </Button>
       </div>
     ) : null}
-
-    {state.loading && (
-      <Loader
-        onAnimationEnd={() => {
-          State.update({
-            loading: false,
-          });
-        }}
-      />
-    )}
 
     {state.layers.map((layer, index) => {
       const isLast = index === state.layers.length - 1;
