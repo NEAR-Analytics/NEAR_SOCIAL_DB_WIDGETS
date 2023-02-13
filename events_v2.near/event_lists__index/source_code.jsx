@@ -20,7 +20,7 @@ return (
       })}
     </Container>
     <Hr />
-    <div style={{ marginBottom: 40 }}></div>
+    <Spacer />
 
     <Container>
       {props.__engine.renderComponent('index.container', {
