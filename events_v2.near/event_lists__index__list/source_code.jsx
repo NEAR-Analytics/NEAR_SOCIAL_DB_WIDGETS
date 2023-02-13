@@ -13,7 +13,7 @@ if (!state) {
 
 const widgetName = `index.list.${props.layout}`;
 
-const SearchBar = props.__engine.renderComponent('components:search_bar', {
+const SearchBar = props.__engine.renderComponent('components:search-bar', {
   items: state.allItems,
   fields: {
     name: 1,
