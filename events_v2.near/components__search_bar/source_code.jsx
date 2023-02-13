@@ -112,11 +112,11 @@ const { GRID_PAD } = props.__engine.CONSTANTS;
 
 const Searchbar = styled.input`
   width: auto;
-  padding: ${GRID_PAD};
   border: 1px solid #ccc;
   border-radius: 0;
   outline: none;
   font-size: 1rem;
+  padding: ${GRID_PAD};
   margin-bottom: ${GRID_PAD};
   border-radius: 8px;
   z-index: 1;
