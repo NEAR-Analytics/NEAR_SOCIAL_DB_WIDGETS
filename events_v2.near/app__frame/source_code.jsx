@@ -20,7 +20,7 @@ const PLEASE_CONNECT_WALLET_MESSAGE =
 const GRID_PAD_TINY = '4px';
 const GRID_PAD_SMALL = '10px';
 const GRID_PAD = '20px';
-const GRID_PAD_BIG = '30px';
+const GRID_PAD_BIG = '40px';
 
 const FONT_SIZE_TINY = 'calc(max(12px, 1.05vw))';
 const FONT_SIZE_SMALL = 'calc(max(16px, 1.13vw))';
@@ -111,7 +111,7 @@ const Components = {
     background-color: ${BUTTON_BG_COLOR}
     border: none;
     color: white;
-    padding: ${GRID_PAD} ${GRID_PAD_BIG};
+    padding: ${GRID_PAD} ${GRID_PAD};
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -187,7 +187,11 @@ const Components = {
   `,
 
   Spacer: styled.div`
-    height: ${(props) => props.height || GRID_PAD};
+    height: ${(props) => props.height || GRID_PAD_BIG};
+
+    @media (max-width: 768px) {
+      height: ${(props) => props.heightMobile || props.height || GRID_PAD};
+    }
   `,
 
   PageTitle: styled.h1`
