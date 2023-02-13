@@ -719,7 +719,6 @@ function dirtyEval(env, args) {
         return push(env, key, mArgs[0]);
       }
       return push(widgetEnv, key);
-      throw new Error(`Invalid number of arguments for push: ${mArgs.length}`);
     case 'replace':
       return replace(env, key, mArgs[0]);
     case 'pop':
