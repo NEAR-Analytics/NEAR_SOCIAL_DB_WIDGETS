@@ -28,7 +28,6 @@ const allAssets = hasData
   ? assets.map((asset) => {
       const r = rewards.find((a) => a.token_id === asset.token_id);
       const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
-      console.log(asset);
       const liquidity = nFormat(asset.availableLiquidity, 2);
       return (
         <tr>
