@@ -122,11 +122,26 @@ const NavbarItem = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-direction: row;
-  flex-wrap: nowrap;
   font-size: 1.25rem;
+  text-decoration: none;
+
+  color: white;
+  padding: 0 12px;
+  background-color: blue;
+
+  &:hover {
+    background-color: rgba(44, 44, 84, 0.85);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.15rem;
+    padding: 0 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    padding: 0 4px;
+  }
 `;
 
 const navbar = (
