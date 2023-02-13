@@ -953,8 +953,6 @@ console.log('renderComponent');
 //     push: _push,
 //     pop: _pop,
 //     replace: _replace,
-//     sessionGet: _sessionGet,
-//     sessionSet: _sessionSet,
 //     storageGet: _storageGet,
 //     storageSet: _storageSet,
 //     layoutPathFromName: _layoutPathFromName,
