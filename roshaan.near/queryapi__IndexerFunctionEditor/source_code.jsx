@@ -62,15 +62,7 @@ window.addEventListener("message", (event) => {
 `;
 return (
   <>
-    <div>
-      <iframe
-        className="w-100"
-        style={{ height: '300px' }}
-        srcDoc={code}
-        message={initialText}
-        onMessage={(m) => console.log(m, 'yo')}
-      />
-    </div>
+    <div></div>
     <Markdown text={state.m} />
     <Widget
       src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
