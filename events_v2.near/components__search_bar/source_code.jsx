@@ -7,16 +7,28 @@ if (!state) {
 }
 
 function scoreWord(word, termWord, weight) {
-  let score = 0;
+  let score = 1;
 
   if (word === termWord) {
-    score = 1;
+    score += 0.5;
   } else if (word.startsWith(termWord)) {
-    score = 0.8;
+    score += 0.3;
   } else if (word.endsWith(termWord)) {
-    score = 0.6;
+    score += 0.2;
   } else if (word.includes(termWord)) {
-    score = 0.4;
+    score += 0.1;
+  }
+
+  if (termWord.startsWith(word)) {
+    score += 0.2;
+  }
+
+  if (termWord.endsWith(word)) {
+    score += 0.2;
+  }
+
+  if (termWord.includes(word)) {
+    score += 0.2;
   }
 
   if (word.length === termWord.length) {
