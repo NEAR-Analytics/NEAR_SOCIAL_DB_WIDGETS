@@ -74,7 +74,9 @@ return (
         {metadata.name || widgetName}
       </Text>
 
-      <Text ellipsis>{props.src}</Text>
+      <Text ellipsis small>
+        {props.src}
+      </Text>
     </div>
   </Wrapper>
 );
