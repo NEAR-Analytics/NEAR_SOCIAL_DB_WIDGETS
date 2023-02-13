@@ -606,250 +606,250 @@ function restoreRoutes() {
 
 // restoreRoutes();
 
-function persistRoutingInformation(newState) {
-  storageSet(ENV, 'routing', newState);
-}
+// function persistRoutingInformation(newState) {
+//   storageSet(ENV, 'routing', newState);
+// }
 
-function slugFromName(name) {
-  return name.split('.').join('__').split('-').join('_');
-}
+// function slugFromName(name) {
+//   return name.split('.').join('__').split('-').join('_');
+// }
 
-function fetchPathOptions(env, path) {
-  const nameParts = path.split(':');
-  if (nameParts.length === 1) {
-    return {
-      owner: env.appOwner,
-      name: env.appName,
-      slug: slugFromName(nameParts[0]),
-    };
-  }
-  if (nameParts.length === 2) {
-    return {
-      owner: env.appOwner,
-      name: nameParts[0],
-      slug: slugFromName(nameParts[1]),
-    };
-  }
-  if (nameParts.length === 3) {
-    return {
-      owner: nameParts[0],
-      name: nameParts[1],
-      slug: slugFromName(nameParts[2]),
-    };
-  }
-  throw new Error(`Invalid path: ${path}`);
-}
+// function fetchPathOptions(env, path) {
+//   const nameParts = path.split(':');
+//   if (nameParts.length === 1) {
+//     return {
+//       owner: env.appOwner,
+//       name: env.appName,
+//       slug: slugFromName(nameParts[0]),
+//     };
+//   }
+//   if (nameParts.length === 2) {
+//     return {
+//       owner: env.appOwner,
+//       name: nameParts[0],
+//       slug: slugFromName(nameParts[1]),
+//     };
+//   }
+//   if (nameParts.length === 3) {
+//     return {
+//       owner: nameParts[0],
+//       name: nameParts[1],
+//       slug: slugFromName(nameParts[2]),
+//     };
+//   }
+//   throw new Error(`Invalid path: ${path}`);
+// }
 
-function widgetPathFromName(env, widgetName) {
-  const { owner, name, slug } = fetchPathOptions(env, widgetName);
-  return `${owner}/widget/${name}__${slug}`;
-}
+// function widgetPathFromName(env, widgetName) {
+//   const { owner, name, slug } = fetchPathOptions(env, widgetName);
+//   return `${owner}/widget/${name}__${slug}`;
+// }
 
-function layoutPathFromName(env, layoutName) {
-  return widgetPathFromName(env, layoutName);
-}
+// function layoutPathFromName(env, layoutName) {
+//   return widgetPathFromName(env, layoutName);
+// }
 
-function rerender() {
-  // HACK: force a re-render
-  State.update({
-    renderCycles: state.renderCycles + 1,
-  });
-}
+// function rerender() {
+//   // HACK: force a re-render
+//   State.update({
+//     renderCycles: state.renderCycles + 1,
+//   });
+// }
 
-function push(env, name, props) {
-  const layer = {
-    name,
-    props: props || {},
-    appOwner: env.appOwner,
-    appName: env.appName,
-  };
-  const newLayers = [...state.layers, layer];
+// function push(env, name, props) {
+//   const layer = {
+//     name,
+//     props: props || {},
+//     appOwner: env.appOwner,
+//     appName: env.appName,
+//   };
+//   const newLayers = [...state.layers, layer];
 
-  persistRoutingInformation(newLayers);
+//   persistRoutingInformation(newLayers);
 
-  State.update({
-    layers: newLayers,
-  });
-}
+//   State.update({
+//     layers: newLayers,
+//   });
+// }
 
-function replace(env, name, props) {
-  const layer = {
-    name,
-    props: props || {},
-    appOwner: env.appOwner,
-    appName: env.appName,
-  };
-  const newLayers = [...state.layers.slice(0, -1), layer];
+// function replace(env, name, props) {
+//   const layer = {
+//     name,
+//     props: props || {},
+//     appOwner: env.appOwner,
+//     appName: env.appName,
+//   };
+//   const newLayers = [...state.layers.slice(0, -1), layer];
 
-  persistRoutingInformation(newLayers);
+//   persistRoutingInformation(newLayers);
 
-  State.update({
-    layers: newLayers,
-  });
-}
+//   State.update({
+//     layers: newLayers,
+//   });
+// }
 
-// pop from the stack, ensure we always have at least one layer
+// // pop from the stack, ensure we always have at least one layer
 
-function pop(/* env */) {
-  const newLayers =
-    state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
+// function pop(/* env */) {
+//   const newLayers =
+//     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
-  persistRoutingInformation(newLayers);
+//   persistRoutingInformation(newLayers);
 
-  State.update({
-    layers: newLayers,
-  });
+//   State.update({
+//     layers: newLayers,
+//   });
 
-  // rerender();
-}
+//   // rerender();
+// }
 
-function dirtyEval(env, args) {
-  const controlled = args[0];
-  const method = controlled.method ? controlled.method : args[0];
+// function dirtyEval(env, args) {
+//   const controlled = args[0];
+//   const method = controlled.method ? controlled.method : args[0];
 
-  const customEnv = {
-    appOwner: controlled.appOwner || env.appOwner,
-    appName: controlled.appName || env.appName,
-  };
+//   const customEnv = {
+//     appOwner: controlled.appOwner || env.appOwner,
+//     appName: controlled.appName || env.appName,
+//   };
 
-  const mArgs = args.slice(1);
-  const widgetEnv = mergeEnv(env, customEnv || {});
+//   const mArgs = args.slice(1);
+//   const widgetEnv = mergeEnv(env, customEnv || {});
 
-  switch (method) {
-    case 'push':
-      return push(widgetEnv, mArgs[0], mArgs[1]);
-    case 'replace':
-      return replace(widgetEnv, mArgs[0], mArgs[1]);
-    case 'pop':
-      return pop(widgetEnv);
-    default:
-      throw new Error(`Unknown method ${method}`);
-  }
-}
+//   switch (method) {
+//     case 'push':
+//       return push(widgetEnv, mArgs[0], mArgs[1]);
+//     case 'replace':
+//       return replace(widgetEnv, mArgs[0], mArgs[1]);
+//     case 'pop':
+//       return pop(widgetEnv);
+//     default:
+//       throw new Error(`Unknown method ${method}`);
+//   }
+// }
 
-function isDate(value) {
-  // we have no instanceof or typeof, so we check for the interface
-  try {
-    value.getFullYear();
-    value.getMonth();
-    value.getDate();
-    value.getHours();
-    value.getMinutes();
-    value.getSeconds();
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+// function isDate(value) {
+//   // we have no instanceof or typeof, so we check for the interface
+//   try {
+//     value.getFullYear();
+//     value.getMonth();
+//     value.getDate();
+//     value.getHours();
+//     value.getMinutes();
+//     value.getSeconds();
+//     return true;
+//   } catch (e) {
+//     return false;
+//   }
+// }
 
-function numberToMonth(number, format) {
-  const month = parseInt(number, 10);
-  const map = [
-    ['Jan', 'January'],
-    ['Feb', 'February'],
-    ['Mar', 'March'],
-    ['Apr', 'April'],
-    ['May', 'May'],
-    ['Jun', 'June'],
-    ['Jul', 'July'],
-    ['Aug', 'August'],
-    ['Sep', 'September'],
-    ['Okt', 'Oktober'],
-    ['Nov', 'November'],
-    ['Dec', 'December'],
-  ];
+// function numberToMonth(number, format) {
+//   const month = parseInt(number, 10);
+//   const map = [
+//     ['Jan', 'January'],
+//     ['Feb', 'February'],
+//     ['Mar', 'March'],
+//     ['Apr', 'April'],
+//     ['May', 'May'],
+//     ['Jun', 'June'],
+//     ['Jul', 'July'],
+//     ['Aug', 'August'],
+//     ['Sep', 'September'],
+//     ['Okt', 'Oktober'],
+//     ['Nov', 'November'],
+//     ['Dec', 'December'],
+//   ];
 
-  if (format === 'long') {
-    return map[month - 1][1];
-  }
-  return map[month - 1][0];
-}
+//   if (format === 'long') {
+//     return map[month - 1][1];
+//   }
+//   return map[month - 1][0];
+// }
 
-function dayWithSuffix(day) {
-  const suffixes = ['th', 'st', 'nd', 'rd'];
-  const value = parseInt(day, 10);
-  const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
-  return `${value}${suffix}`;
-}
+// function dayWithSuffix(day) {
+//   const suffixes = ['th', 'st', 'nd', 'rd'];
+//   const value = parseInt(day, 10);
+//   const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
+//   return `${value}${suffix}`;
+// }
 
-function formatDate(date, format) {
-  if (date === null || date === undefined) {
-    return '';
-  }
-  const properDate = isDate(date) ? date : new Date(date);
-  const dateString = properDate.toISOString();
+// function formatDate(date, format) {
+//   if (date === null || date === undefined) {
+//     return '';
+//   }
+//   const properDate = isDate(date) ? date : new Date(date);
+//   const dateString = properDate.toISOString();
 
-  const parts = {
-    YYYY: dateString.substring(0, 4),
-    YY: dateString.substring(2, 4),
-    MM: dateString.substring(5, 7),
-    DD: dateString.substring(8, 10),
-    hh: dateString.substring(11, 13),
-    mm: dateString.substring(14, 16),
-    ss: dateString.substring(17, 19),
-    Mshort: numberToMonth(dateString.substring(5, 7)),
-    Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
-    Dst: dayWithSuffix(dateString.substring(8, 10)),
-  };
+//   const parts = {
+//     YYYY: dateString.substring(0, 4),
+//     YY: dateString.substring(2, 4),
+//     MM: dateString.substring(5, 7),
+//     DD: dateString.substring(8, 10),
+//     hh: dateString.substring(11, 13),
+//     mm: dateString.substring(14, 16),
+//     ss: dateString.substring(17, 19),
+//     Mshort: numberToMonth(dateString.substring(5, 7)),
+//     Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
+//     Dst: dayWithSuffix(dateString.substring(8, 10)),
+//   };
 
-  return format.replace(
-    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|Mshort|Mlong|Dst)\s*\}\}/gu,
-    (_match, part) => {
-      return parts[part];
-    }
-  );
-}
+//   return format.replace(
+//     /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|Mshort|Mlong|Dst)\s*\}\}/gu,
+//     (_match, part) => {
+//       return parts[part];
+//     }
+//   );
+// }
 
-// https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
+// // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
 
-function byteLength(str) {
-  // returns the byte length of an utf8 string
-  var s = str.length;
-  for (let i = str.length - 1; i >= 0; i--) {
-    let code = str.charCodeAt(i);
-    if (code > 0x7f && code <= 0x7ff) {
-      s++;
-    } else if (code > 0x7ff && code <= 0xffff) {
-      s += 2;
-    }
-    if (code >= 0xdc00 && code <= 0xdfff) {
-      i--;
-    } //trail surrogate
-  }
-  return s;
-}
+// function byteLength(str) {
+//   // returns the byte length of an utf8 string
+//   var s = str.length;
+//   for (let i = str.length - 1; i >= 0; i--) {
+//     let code = str.charCodeAt(i);
+//     if (code > 0x7f && code <= 0x7ff) {
+//       s++;
+//     } else if (code > 0x7ff && code <= 0xffff) {
+//       s += 2;
+//     }
+//     if (code >= 0xdc00 && code <= 0xdfff) {
+//       i--;
+//     } //trail surrogate
+//   }
+//   return s;
+// }
 
-function calculateStorageCost(value) {
-  // get number of bytes without TextEncoder or Blob
-  const bytes = byteLength(JSON.stringify(value));
-  return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
-}
+// function calculateStorageCost(value) {
+//   // get number of bytes without TextEncoder or Blob
+//   const bytes = byteLength(JSON.stringify(value));
+//   return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
+// }
 
-function contractCall(contractName, methodName, args) {
-  const cost = calculateStorageCost(args);
-  Near.call(contractName, methodName, args || {}, TGAS_300, cost);
-}
+// function contractCall(contractName, methodName, args) {
+//   const cost = calculateStorageCost(args);
+//   Near.call(contractName, methodName, args || {}, TGAS_300, cost);
+// }
 
-function contractView(contractName, methodName, args) {
-  return Near.view(contractName, methodName, args || {});
-}
+// function contractView(contractName, methodName, args) {
+//   return Near.view(contractName, methodName, args || {});
+// }
 
-function loading(displayText) {
-  return <>{displayText || '...'}</>;
-}
+// function loading(displayText) {
+//   return <>{displayText || '...'}</>;
+// }
 
-function mergeEnv(env, newEnv) {
-  return {
-    ...env,
-    // add all keys from env which are not null or undefined
-    ...Object.entries(newEnv || {}).reduce((acc, [key, value]) => {
-      if (value !== null && value !== undefined) {
-        acc[key] = value;
-      }
-      return acc;
-    }, {}),
-  };
-}
+// function mergeEnv(env, newEnv) {
+//   return {
+//     ...env,
+//     // add all keys from env which are not null or undefined
+//     ...Object.entries(newEnv || {}).reduce((acc, [key, value]) => {
+//       if (value !== null && value !== undefined) {
+//         acc[key] = value;
+//       }
+//       return acc;
+//     }, {}),
+//   };
+// }
 
 // function renderComponent(name, props, env) {
 
@@ -960,39 +960,39 @@ function mergeEnv(env, newEnv) {
 //   }
 // }
 
-const AppLayer = styled.div`
-  animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
-  animation-fill-mode: forwards;
-  animation-delay: ${(props) => props.delay};
-  animation-duration: ${(props) => props.duration};
-  width: 100vw;
-  min-height: 100vh;
-  background-color: transparent;
-  z-index: ${(props) => props.zIndex};
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  opacity: 0;
+// const AppLayer = styled.div`
+//   animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
+//   animation-fill-mode: forwards;
+//   animation-delay: ${(props) => props.delay};
+//   animation-duration: ${(props) => props.duration};
+//   width: 100vw;
+//   min-height: 100vh;
+//   background-color: transparent;
+//   z-index: ${(props) => props.zIndex};
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   overflow-x: hidden;
+//   overflow-y: auto;
+//   opacity: 0;
 
-  backdrop-filter: ${(props) => {
-    return props.backdropFilter;
-  }};
-  webkit-backdrop-filter: ${(props) => {
-    return props.backdropFilter;
-  }};
+//   backdrop-filter: ${(props) => {
+//     return props.backdropFilter;
+//   }};
+//   webkit-backdrop-filter: ${(props) => {
+//     return props.backdropFilter;
+//   }};
 
-  transition: backdrop-filter ${(props) => props.transitionDuration}
-    ${EASE_DEFAULT};
-  transition-delay: ${(props) => props.transitionDelay};
-`;
+//   transition: backdrop-filter ${(props) => props.transitionDuration}
+//     ${EASE_DEFAULT};
+//   transition-delay: ${(props) => props.transitionDelay};
+// `;
 
 // have to deconstruct Components here because of a bug in the VM.
 // It cannot render <Components.Button /> :(
-const { Button } = Components;
+// const { Button } = Components;
 
 // return (
 //   <>
