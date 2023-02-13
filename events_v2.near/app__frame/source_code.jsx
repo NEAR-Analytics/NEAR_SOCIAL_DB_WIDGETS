@@ -1,18 +1,22 @@
-/* eslint no-magic-numbers: 0 */
+return (
+  <>
+    'hello <World></World>';
+  </>
+);
 
-const VERSION = '0.3.0';
+// /* eslint no-magic-numbers: 0 */
 
-/**
- *  NEAR Social App
- *  Docs: https://github.com/NEARFoundation/events-platform
- *
- */
+// const VERSION = '0.3.0';
 
-/**
- * Adjust these:
- * */
+// /**
+//  *  NEAR Social App
+//  *  Docs: https://github.com/NEARFoundation/events-platform
+//  *
+//  */
 
-return 'hello <World></World>';
+// /**
+//  * Adjust these:
+//  * */
 
 // const NEAR_STORAGE_BYTES_SAFTY_OFFSET = 42;
 // const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
