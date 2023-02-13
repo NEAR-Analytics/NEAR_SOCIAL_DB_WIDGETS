@@ -96,7 +96,7 @@ const NavbarBackButton = styled.button`
   color: white;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: auto;
   border: none;
   outline: none;
   background: transparent;
