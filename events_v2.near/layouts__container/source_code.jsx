@@ -129,6 +129,10 @@ const NavbarItem = styled.div`
   padding: 0 12px;
   background-color: blue;
 
+  font-weight: ${(item) => {
+    return item.active ? 'bold' : 'normal';
+  }};
+
   &:hover {
     background-color: rgba(44, 44, 84, 0.85);
   }
