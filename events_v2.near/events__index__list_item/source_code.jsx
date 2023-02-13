@@ -31,6 +31,9 @@ return (
     border={props.border === undefined ? true : props.border}
     shadow={props.shadow === undefined ? true : props.shadow}
     tabIndex={0}
+    style={{
+      height: '100%',
+    }}
   >
     <CardHeaderImage>
       {props.__engine.renderComponent('components:event_image_slider', {
