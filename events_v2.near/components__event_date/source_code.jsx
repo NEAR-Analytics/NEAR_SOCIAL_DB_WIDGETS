@@ -1,6 +1,6 @@
 const event = props.event;
 if (!event) {
-  return '';
+  return <></>;
 }
 
 const startDate = new Date(event.start_date);
