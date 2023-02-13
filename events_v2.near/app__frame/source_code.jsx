@@ -1055,7 +1055,9 @@ return (
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: 'rgba(0,0,0,0.5)',
+          backgroundColor: 'rgba(255,255,255,0.95)',
+          backdropFilter: 'blur(16px) saturate(140%) brightness(80%)',
+          animation: `${AnimationFadeIn} 0.3s ${EASE_DEFAULT}`,
         }}
       >
         |Loading!
