@@ -24,6 +24,7 @@ const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
 if (!event) {
   return props.__engine.loading();
 }
+
 const primaryAction = {
   label: 'Edit',
   onClick: ['push', 'edit', { event_id: props.event_id }],
