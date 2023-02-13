@@ -17,10 +17,6 @@ const Searchbar = styled.input`
   font-size: 1rem;
   margin: 8px;
   border-radius: 8px;
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
   z-index: 1;
 
   &:focus {
