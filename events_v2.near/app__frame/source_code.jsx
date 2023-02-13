@@ -545,6 +545,7 @@ if (!state) {
   });
   return <></>;
 }
+console.log('state', state);
 
 const ENV = { appOwner, appName, VERSION };
 
