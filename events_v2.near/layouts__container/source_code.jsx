@@ -127,14 +127,16 @@ const NavbarItem = styled.div`
 
   color: white;
   padding: 0 12px;
-  background-color: blue;
+  background-color: transparent;
+
+  transition: all 1s ease-in-out;
 
   font-weight: ${(item) => {
     return item.active ? 'bold' : 'normal';
   }};
 
   &:hover {
-    background-color: rgba(44, 44, 84, 0.85);
+    background-color: rgba(84, 44, 84, 0.25);
   }
 
   @media (max-width: 768px) {
