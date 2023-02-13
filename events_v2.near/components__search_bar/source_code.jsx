@@ -48,6 +48,7 @@ function scoreItem(item) {
         for (const termWord of termWords) {
           score += scoreWord(word, termWord, field);
         }
+        return score;
       })
       .map((score) => {
         return score * (field.weight || 1);
