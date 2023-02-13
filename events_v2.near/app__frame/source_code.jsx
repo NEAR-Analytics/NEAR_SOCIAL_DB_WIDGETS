@@ -849,7 +849,7 @@ function contractView(contractName, methodName, args) {
 }
 
 function loading(displayText) {
-  return <>{displayText}</>;
+  return <>{displayText || '...'}</>;
 }
 
 function mergeEnv(env, newEnv) {
