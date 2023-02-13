@@ -133,12 +133,22 @@ const Searchbar = styled.input`
 
 return (
   <div style={{ position: 'relative' }}>
-    <Searchbar
+    <input
       onChange={(e) => {
         const term = e.target.value;
         State.update({ term });
       }}
       placeholder={props.placeholder || 'Search...'}
+      style={{
+        width: '100%',
+        outline: 'none',
+        border: BORDER_DEFAULT,
+        fontSize: FONT_SIZE_DEFAULT,
+        borderRadius: BORDER_RADIUS_DEFAULT,
+        padding: GRID_PAD,
+        marginBottom: GRID_PAD,
+        zIndex: 1,
+      }}
     />
   </div>
 );
