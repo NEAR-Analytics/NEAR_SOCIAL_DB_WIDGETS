@@ -17,6 +17,7 @@ return (
           {props.__engine.renderComponent('index.list.item', {
             event_list,
             include_events: true,
+            limit: 3,
           })}
         </ListWrapper>
       );
