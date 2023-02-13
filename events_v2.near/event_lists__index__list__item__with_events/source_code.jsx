@@ -1,7 +1,8 @@
 const EVENTS_CONTRACT = 'events_v2.near';
-const EVENTS_LIMIT = 5;
 const DESCRIPTION_MAX_LENGTH = 200;
 const ANIMATION_DELAY = 300;
+
+const EVENTS_LIMIT = props.limit || 5;
 
 const event_list = props.event_list || null;
 if (!event_list) {
@@ -14,7 +15,7 @@ if (!state) {
     'get_events_in_event_list',
     {
       event_list_id: event_list.id,
-      limit: props.limit || EVENTS_LIMIT,
+      limit: EVENTS_LIMIT,
     }
   );
 
