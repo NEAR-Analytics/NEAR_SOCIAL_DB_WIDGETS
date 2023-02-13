@@ -147,11 +147,6 @@ const EventTile = styled.div`
   &:hover {
     background: #f5f5f5;
   }
-
-  & > div {
-    flex-grow: 0;
-    flex-shrink: 1;
-  }
 `;
 
 const ImageTileContainer = styled.div`
