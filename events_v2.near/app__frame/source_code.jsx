@@ -1,8 +1,4 @@
-return (
-  <>
-    'hello <World></World>';
-  </>
-);
+return <>hello world</>;
 
 // /* eslint no-magic-numbers: 0 */
 
