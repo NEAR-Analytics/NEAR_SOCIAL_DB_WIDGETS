@@ -18,6 +18,8 @@ function scoreItem(item) {
       return 0;
     }
 
+    console.log(field, field.toLowerCase().split(/[ ,\w]+/giu));
+
     return field
       .toLowerCase()
       .split(/[ ,\w]+/giu)
