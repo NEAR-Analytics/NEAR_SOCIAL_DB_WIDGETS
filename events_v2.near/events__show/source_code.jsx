@@ -15,7 +15,7 @@ if (hasEvent === null) {
 
 if (hasEvent === false) {
   props.__engine.pop();
-  return 'Event not found';
+  return <></>;
 }
 
 const event = props.__engine.contract.view(EVENTS_CONTRACT, 'get_event', {
