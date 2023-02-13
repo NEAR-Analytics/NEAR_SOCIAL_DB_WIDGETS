@@ -138,7 +138,7 @@ return (
         const term = e.target.value;
         State.update({ term });
       }}
-      placeholder="Search for events"
+      placeholder={props.placeholder || 'Search...'}
     />
   </div>
 );
