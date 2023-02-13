@@ -17,91 +17,91 @@ const PROP_IS_REQUIRED_MESSAGE = 'props.{prop} is required';
 const PLEASE_CONNECT_WALLET_MESSAGE =
   'Please connect your NEAR wallet to continue.';
 
-// const GRID_PAD_TINY = '4px';
-// const GRID_PAD_SMALL = '10px';
-// const GRID_PAD = '20px';
-// const GRID_PAD_BIG = '40px';
+const GRID_PAD_TINY = '4px';
+const GRID_PAD_SMALL = '10px';
+const GRID_PAD = '20px';
+const GRID_PAD_BIG = '40px';
 
-// const FONT_SIZE_TINY = 'calc(max(13px, 0.85vw))';
-// const FONT_SIZE_SMALL = 'calc(max(16px, 0.95vw))';
-// const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.0vw))';
-// const FONT_SIZE_BIG = 'calc(max(22px, 1.15vw))';
-// const FONT_SIZE_GIANT = 'calc(max(32px, 2.25vw))';
+const FONT_SIZE_TINY = 'calc(max(13px, 0.85vw))';
+const FONT_SIZE_SMALL = 'calc(max(16px, 0.95vw))';
+const FONT_SIZE_DEFAULT = 'calc(max(18px, 1.0vw))';
+const FONT_SIZE_BIG = 'calc(max(22px, 1.15vw))';
+const FONT_SIZE_GIANT = 'calc(max(32px, 2.25vw))';
 
-// const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
+const TAG_PADDING = 'calc(max(4px, 0.25vw)) calc(max(8px, 0.5vw))';
 
-// const TEXT_COLOR = '#333333';
-// const TEXT_COLOR_LIGHT = '#666666';
+const TEXT_COLOR = '#333333';
+const TEXT_COLOR_LIGHT = '#666666';
 
-// const BORDER_RADIUS_DEFAULT = '4px';
-// const BORDER_COLOR = '#e6e6e6';
-// const BORDER_THICKNESS = '0.1vw';
-// const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
+const BORDER_RADIUS_DEFAULT = '4px';
+const BORDER_COLOR = '#e6e6e6';
+const BORDER_THICKNESS = '0.1vw';
+const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 
-// const ERROR_COLOR = '#cc0000';
+const ERROR_COLOR = '#cc0000';
 
-// const BUTTON_BG_COLOR = '#4d2c91';
-// const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
-// const BUTTON_COLOR = '#ffffff';
-// const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
-// const BUTTON_BORDER_RADIUS = '8px';
+const BUTTON_BG_COLOR = '#4d2c91';
+const BUTTON_BG_HOVER_COLOR = '#3c1f6f';
+const BUTTON_COLOR = '#ffffff';
+const BUTTON_PADDING = `${GRID_PAD_SMALL} ${GRID_PAD}`;
+const BUTTON_BORDER_RADIUS = '8px';
 
-// const BOX_SHADOW_DEFAULT = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
-// const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
+const BOX_SHADOW_DEFAULT = '0 0 5px 0 rgba(0, 0, 0, 0.2)';
+const BOX_SHADOW_HOVER = '5px 0 15px -2px rgba(0, 0, 0, 0.2)';
 
-// const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
+const EASE_DEFAULT = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
-// const Constants = {
-//   NEAR_STORAGE_BYTES_SAFTY_OFFSET,
-//   PROP_IS_REQUIRED_MESSAGE,
-//   PLEASE_CONNECT_WALLET_MESSAGE,
-//   GRID_PAD_TINY,
-//   GRID_PAD_SMALL,
-//   GRID_PAD,
-//   GRID_PAD_BIG,
-//   FONT_SIZE_TINY,
-//   FONT_SIZE_SMALL,
-//   FONT_SIZE_DEFAULT,
-//   FONT_SIZE_GIANT,
-//   TAG_PADDING,
-//   BORDER_RADIUS_DEFAULT,
-//   TEXT_COLOR,
-//   TEXT_COLOR_LIGHT,
-//   BORDER_COLOR,
-//   BORDER_THICKNESS,
-//   BORDER_DEFAULT,
-//   ERROR_COLOR,
-//   BUTTON_BG_COLOR,
-//   BUTTON_BG_HOVER_COLOR,
-//   BUTTON_COLOR,
-//   BUTTON_PADDING,
-//   BUTTON_BORDER_RADIUS,
-//   BOX_SHADOW_DEFAULT,
-//   BOX_SHADOW_HOVER,
-//   EASE_DEFAULT,
-// };
+const Constants = {
+  NEAR_STORAGE_BYTES_SAFTY_OFFSET,
+  PROP_IS_REQUIRED_MESSAGE,
+  PLEASE_CONNECT_WALLET_MESSAGE,
+  GRID_PAD_TINY,
+  GRID_PAD_SMALL,
+  GRID_PAD,
+  GRID_PAD_BIG,
+  FONT_SIZE_TINY,
+  FONT_SIZE_SMALL,
+  FONT_SIZE_DEFAULT,
+  FONT_SIZE_GIANT,
+  TAG_PADDING,
+  BORDER_RADIUS_DEFAULT,
+  TEXT_COLOR,
+  TEXT_COLOR_LIGHT,
+  BORDER_COLOR,
+  BORDER_THICKNESS,
+  BORDER_DEFAULT,
+  ERROR_COLOR,
+  BUTTON_BG_COLOR,
+  BUTTON_BG_HOVER_COLOR,
+  BUTTON_COLOR,
+  BUTTON_PADDING,
+  BUTTON_BORDER_RADIUS,
+  BOX_SHADOW_DEFAULT,
+  BOX_SHADOW_HOVER,
+  EASE_DEFAULT,
+};
 /**
  * Animation
  * */
-// const AnimationFadeIn = styled.keyframes`
-//   0% {
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// `;
+const AnimationFadeIn = styled.keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
-// const AnimationSlideInLeft = styled.keyframes`
-//   0% {
-//     opacity: 0;
-//     transform: translateX(-20px);
-//   }
-//   100% {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-// `;
+const AnimationSlideInLeft = styled.keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 /**
  * Components
@@ -504,518 +504,516 @@ const Components = {
  *   I suggest you don't edit anything below this line
  * */
 
-return 'hello world';
-
-// const accountId = context.accountId;
-// if (!accountId) {
-//   return PLEASE_CONNECT_WALLET_MESSAGE;
-// }
-
-// function propIsRequiredMessage(prop) {
-//   return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
-// }
-
-// const appOwner = props.appOwner;
-// if (!appOwner) {
-//   return propIsRequiredMessage('appOwner');
-// }
-
-// const appName = props.appName;
-// if (!appName) {
-//   return propIsRequiredMessage('appName');
-// }
-
-// const entryRoute = props.entryRoute;
-// if (!entryRoute) {
-//   return propIsRequiredMessage('entryRoute');
-// }
-
-// const DEBUG = props.DEBUG || false;
-
-// const entryProps = props.entryProps || {};
-
-// const rootRoute = {
-//   name: entryRoute,
-//   props: entryProps,
-// };
-
-// if (!state) {
-//   State.init({
-//     renderCycles: state ? state.renderCycles + 1 : 1,
-//     layers: [rootRoute],
-//   });
-//   return <></>;
-// }
-
-// const ENV = { appOwner, appName, VERSION };
-
-// const COST_NEAR_PER_BYTE = Math.pow(10, 20);
-// const TGAS_300 = '300000000000000';
-
-// const SessionState = {
-//   _state: {},
-//   set: (prop, value) => {
-//     SessionState._state[prop] = value;
-//     return true;
-//   },
-//   get: (prop) => {
-//     return SessionState._state[prop];
-//   },
-// };
-
-// function orientation2FlexDirection({ orientation }) {
-//   switch (orientation) {
-//     case 'horizontal':
-//       return 'row';
-//     case 'vertical':
-//       return 'column';
-//     default:
-//       return 'column';
-//   }
-// }
-
-// function orientation2FlexWrap({ orientation }) {
-//   switch (orientation) {
-//     case 'horizontal':
-//       return 'nowrap';
-//     case 'vertical':
-//       return 'wrap';
-//     default:
-//       return 'nowrap';
-//   }
-// }
-
-// function sessionGet(env, prop, defaultValue) {
-//   return (
-//     SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
-//   );
-// }
-// function sessionSet(env, prop, value) {
-//   return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
-// }
-
-// function storageGet(env, prop, defaultValue) {
-//   return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
-// }
-// function storageSet(env, prop, value) {
-//   return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
-// }
-
-// function restoreRoutes() {
-//   storageSet(ENV, 'routing', []);
-//   const info = storageGet(ENV, 'routing', null);
-//   if (info === null || info === undefined) {
-//     return;
-//   }
-
-//   const layers = state.layers;
-//   if (
-//     layers &&
-//     Array.isArray(info) &&
-//     JSON.stringify(info) !== JSON.stringify(layers)
-//   ) {
-//     State.update({
-//       layers: info,
-//     });
-//   }
-// }
-
-// restoreRoutes();
-
-// function persistRoutingInformation(newState) {
-//   storageSet(ENV, 'routing', newState);
-// }
-
-// function slugFromName(name) {
-//   return name.split('.').join('__').split('-').join('_');
-// }
-
-// function fetchPathOptions(env, path) {
-//   const nameParts = path.split(':');
-//   if (nameParts.length === 1) {
-//     return {
-//       owner: env.appOwner,
-//       name: env.appName,
-//       slug: slugFromName(nameParts[0]),
-//     };
-//   }
-//   if (nameParts.length === 2) {
-//     return {
-//       owner: env.appOwner,
-//       name: nameParts[0],
-//       slug: slugFromName(nameParts[1]),
-//     };
-//   }
-//   if (nameParts.length === 3) {
-//     return {
-//       owner: nameParts[0],
-//       name: nameParts[1],
-//       slug: slugFromName(nameParts[2]),
-//     };
-//   }
-//   throw new Error(`Invalid path: ${path}`);
-// }
-
-// function widgetPathFromName(env, widgetName) {
-//   const { owner, name, slug } = fetchPathOptions(env, widgetName);
-//   return `${owner}/widget/${name}__${slug}`;
-// }
-
-// function layoutPathFromName(env, layoutName) {
-//   return widgetPathFromName(env, layoutName);
-// }
-
-// function rerender() {
-//   // HACK: force a re-render
-//   State.update({
-//     renderCycles: state.renderCycles + 1,
-//   });
-// }
-
-// function push(env, name, props) {
-//   const layer = {
-//     name,
-//     props: props || {},
-//     appOwner: env.appOwner,
-//     appName: env.appName,
-//   };
-//   const newLayers = [...state.layers, layer];
-
-//   persistRoutingInformation(newLayers);
-
-//   State.update({
-//     layers: newLayers,
-//   });
-// }
-
-// function replace(env, name, props) {
-//   const layer = {
-//     name,
-//     props: props || {},
-//     appOwner: env.appOwner,
-//     appName: env.appName,
-//   };
-//   const newLayers = [...state.layers.slice(0, -1), layer];
-
-//   persistRoutingInformation(newLayers);
-
-//   State.update({
-//     layers: newLayers,
-//   });
-// }
-
-// // pop from the stack, ensure we always have at least one layer
-// function pop(/* env */) {
-//   const newLayers =
-//     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
-
-//   persistRoutingInformation(newLayers);
-
-//   State.update({
-//     layers: newLayers,
-//   });
-
-//   // rerender();
-// }
-
-// function dirtyEval(env, args) {
-//   const controlled = args[0];
-//   const method = controlled.method ? controlled.method : args[0];
-
-//   const customEnv = {
-//     appOwner: controlled.appOwner || env.appOwner,
-//     appName: controlled.appName || env.appName,
-//   };
-
-//   const mArgs = args.slice(1);
-//   const widgetEnv = mergeEnv(env, customEnv || {});
-
-//   switch (method) {
-//     case 'push':
-//       return push(widgetEnv, mArgs[0], mArgs[1]);
-//     case 'replace':
-//       return replace(widgetEnv, mArgs[0], mArgs[1]);
-//     case 'pop':
-//       return pop(widgetEnv);
-//     default:
-//       throw new Error(`Unknown method ${method}`);
-//   }
-// }
-
-// function isDate(value) {
-//   // we have no instanceof or typeof, so we check for the interface
-//   try {
-//     value.getFullYear();
-//     value.getMonth();
-//     value.getDate();
-//     value.getHours();
-//     value.getMinutes();
-//     value.getSeconds();
-//     return true;
-//   } catch (e) {
-//     return false;
-//   }
-// }
-
-// function numberToMonth(number, format) {
-//   const month = parseInt(number, 10);
-//   const map = [
-//     ['Jan', 'January'],
-//     ['Feb', 'February'],
-//     ['Mar', 'March'],
-//     ['Apr', 'April'],
-//     ['May', 'May'],
-//     ['Jun', 'June'],
-//     ['Jul', 'July'],
-//     ['Aug', 'August'],
-//     ['Sep', 'September'],
-//     ['Okt', 'Oktober'],
-//     ['Nov', 'November'],
-//     ['Dec', 'December'],
-//   ];
-
-//   if (format === 'long') {
-//     return map[month - 1][1];
-//   }
-//   return map[month - 1][0];
-// }
-
-// function dayWithSuffix(day) {
-//   const suffixes = ['th', 'st', 'nd', 'rd'];
-//   const value = parseInt(day, 10);
-//   const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
-//   return `${value}${suffix}`;
-// }
-
-// function formatDate(date, format) {
-//   if (date === null || date === undefined) {
-//     console.error('formatDate', 'date is null or undefined', date, format);
-//     return '';
-//   }
-//   const properDate = isDate(date) ? date : new Date(date);
-//   const dateString = properDate.toISOString();
-
-//   const parts = {
-//     YYYY: dateString.substring(0, 4),
-//     YY: dateString.substring(2, 4),
-//     MM: dateString.substring(5, 7),
-//     DD: dateString.substring(8, 10),
-//     hh: dateString.substring(11, 13),
-//     mm: dateString.substring(14, 16),
-//     ss: dateString.substring(17, 19),
-//     Mshort: numberToMonth(dateString.substring(5, 7)),
-//     Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
-//     Dst: dayWithSuffix(dateString.substring(8, 10)),
-//   };
-
-//   return format.replace(
-//     /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|Mshort|Mlong|Dst)\s*\}\}/gu,
-//     (_match, part) => {
-//       return parts[part];
-//     }
-//   );
-// }
-
-// // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
-// function byteLength(str) {
-//   // returns the byte length of an utf8 string
-//   var s = str.length;
-//   for (let i = str.length - 1; i >= 0; i--) {
-//     let code = str.charCodeAt(i);
-//     if (code > 0x7f && code <= 0x7ff) {
-//       s++;
-//     } else if (code > 0x7ff && code <= 0xffff) {
-//       s += 2;
-//     }
-//     if (code >= 0xdc00 && code <= 0xdfff) {
-//       i--;
-//     } //trail surrogate
-//   }
-//   return s;
-// }
-
-// function calculateStorageCost(value) {
-//   // get number of bytes without TextEncoder or Blob
-//   const bytes = byteLength(JSON.stringify(value));
-//   return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
-// }
-
-// function contractCall(contractName, methodName, args) {
-//   const cost = calculateStorageCost(args);
-//   // console.log('contractCall', { contractName, methodName, args, cost });
-//   Near.call(contractName, methodName, args || {}, TGAS_300, cost);
-// }
-
-// function contractView(contractName, methodName, args) {
-//   // console.log('contractView', { contractName, methodName, args });
-//   return Near.view(contractName, methodName, args || {});
-// }
-
-// function loading(displayText) {
-//   return <>{displayText || '...'}</>;
-// }
-
-// function mergeEnv(env, newEnv) {
-//   return {
-//     ...env,
-//     // add all keys from env which are not null or undefined
-//     ...Object.entries(newEnv || {}).reduce((acc, [key, value]) => {
-//       if (value !== null && value !== undefined) {
-//         acc[key] = value;
-//       }
-//       return acc;
-//     }, {}),
-//   };
-// }
-
-// function renderComponent(name, props, env) {
-//   const widgetEnv = mergeEnv(ENV, env);
-
-//   const _sessionGet = (...args) => {
-//     return sessionGet(widgetEnv, ...args);
-//   };
-//   const _sessionSet = (...args) => {
-//     return sessionSet(widgetEnv, ...args);
-//   };
-//   const _storageGet = (...args) => {
-//     return storageGet(widgetEnv, ...args);
-//   };
-//   const _storageSet = (...args) => {
-//     return storageSet(widgetEnv, ...args);
-//   };
-
-//   const _layoutPathFromName = (path) => {
-//     return layoutPathFromName(widgetEnv, path);
-//   };
-//   const _widgetPathFromName = (path) => {
-//     return widgetPathFromName(widgetEnv, path);
-//   };
-
-//   const _push = (_name, _props) => {
-//     return push(widgetEnv, _name, _props);
-//   };
-//   const _pop = () => {
-//     return pop(widgetEnv);
-//   };
-//   const _replace = (_name, _props) => {
-//     return replace(widgetEnv, _name, _props);
-//   };
-
-//   const _renderComponent = (_name, _props, _env) => {
-//     return safeRender(_name, _props, mergeEnv(widgetEnv, _env));
-//   };
-
-//   const _dirtyEval = (args) => {
-//     return dirtyEval(widgetEnv, args);
-//   };
-
-//   const engine = {
-//     env: widgetEnv,
-//     accountId,
-
-//     loading,
-//     rerender,
-//     push: _push,
-//     pop: _pop,
-//     replace: _replace,
-//     sessionGet: _sessionGet,
-//     sessionSet: _sessionSet,
-//     storageGet: _storageGet,
-//     storageSet: _storageSet,
-//     layoutPathFromName: _layoutPathFromName,
-//     widgetPathFromName: _widgetPathFromName,
-
-//     renderComponent: _renderComponent,
-
-//     Components,
-//     Constants,
-
-//     helpers: {
-//       propIsRequiredMessage,
-//       calculateStorageCost,
-//       formatDate,
-//     },
-
-//     hacks: {
-//       dirtyEval: _dirtyEval,
-//     },
-
-//     TGAS_300,
-
-//     contract: {
-//       call: contractCall,
-//       view: contractView,
-//     },
-//   };
-
-//   const controllerProps = {
-//     __engine: engine,
-
-//     component: {
-//       name: name,
-//       props: props,
-//     },
-//   };
-
-//   return (
-//     <Widget
-//       src={`${appOwner}/widget/app__layout_controller`}
-//       key={props && props.key ? props.key : name}
-//       props={controllerProps}
-//     />
-//   );
-// }
-
-// function safeRender(_name, _props, _customEnv) {
-//   try {
-//     return renderComponent(_name, _props, _customEnv);
-//   } catch (err) {
-//     console.log(err);
-//     return (
-//       <div>
-//         Failed to render component <strong>{_name}</strong> with props:{' '}
-//         <pre>{JSON.stringify(_props, null, 4)}</pre>
-//         <br />
-//         <pre>{err.toString()}</pre>
-//         <br />
-//       </div>
-//     );
-//   }
-// }
-
-// const AppLayer = styled.div`
-//   animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
-//   animation-fill-mode: forwards;
-//   animation-delay: ${(props) => props.delay};
-//   animation-duration: ${(props) => props.duration};
-//   width: 100vw;
-//   min-height: 100vh;
-//   background-color: transparent;
-//   z-index: ${(props) => props.zIndex};
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   overflow-x: hidden;
-//   overflow-y: auto;
-//   opacity: 0;
-
-//   backdrop-filter: ${(props) => {
-//     return props.backdropFilter;
-//   }};
-//   webkit-backdrop-filter: ${(props) => {
-//     return props.backdropFilter;
-//   }};
-
-//   transition: backdrop-filter ${(props) => props.transitionDuration}
-//     ${EASE_DEFAULT};
-//   transition-delay: ${(props) => props.transitionDelay};
-// `;
-
-// // have to deconstruct Components here because of a bug in the VM.
-// // It cannot render <Components.Button /> :(
-// const { Button } = Components;
+const accountId = context.accountId;
+if (!accountId) {
+  return PLEASE_CONNECT_WALLET_MESSAGE;
+}
+
+function propIsRequiredMessage(prop) {
+  return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
+}
+
+const appOwner = props.appOwner;
+if (!appOwner) {
+  return propIsRequiredMessage('appOwner');
+}
+
+const appName = props.appName;
+if (!appName) {
+  return propIsRequiredMessage('appName');
+}
+
+const entryRoute = props.entryRoute;
+if (!entryRoute) {
+  return propIsRequiredMessage('entryRoute');
+}
+
+const DEBUG = props.DEBUG || false;
+
+const entryProps = props.entryProps || {};
+
+const rootRoute = {
+  name: entryRoute,
+  props: entryProps,
+};
+
+if (!state) {
+  State.init({
+    renderCycles: state ? state.renderCycles + 1 : 1,
+    layers: [rootRoute],
+  });
+  return <></>;
+}
+
+const ENV = { appOwner, appName, VERSION };
+
+const COST_NEAR_PER_BYTE = Math.pow(10, 20);
+const TGAS_300 = '300000000000000';
+
+const SessionState = {
+  _state: {},
+  set: (prop, value) => {
+    SessionState._state[prop] = value;
+    return true;
+  },
+  get: (prop) => {
+    return SessionState._state[prop];
+  },
+};
+
+function orientation2FlexDirection({ orientation }) {
+  switch (orientation) {
+    case 'horizontal':
+      return 'row';
+    case 'vertical':
+      return 'column';
+    default:
+      return 'column';
+  }
+}
+
+function orientation2FlexWrap({ orientation }) {
+  switch (orientation) {
+    case 'horizontal':
+      return 'nowrap';
+    case 'vertical':
+      return 'wrap';
+    default:
+      return 'nowrap';
+  }
+}
+
+function sessionGet(env, prop, defaultValue) {
+  return (
+    SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
+  );
+}
+function sessionSet(env, prop, value) {
+  return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
+}
+
+function storageGet(env, prop, defaultValue) {
+  return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
+}
+function storageSet(env, prop, value) {
+  return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
+}
+
+function restoreRoutes() {
+  storageSet(ENV, 'routing', []);
+  const info = storageGet(ENV, 'routing', null);
+  if (info === null || info === undefined) {
+    return;
+  }
+
+  const layers = state.layers;
+  if (
+    layers &&
+    Array.isArray(info) &&
+    JSON.stringify(info) !== JSON.stringify(layers)
+  ) {
+    State.update({
+      layers: info,
+    });
+  }
+}
+
+restoreRoutes();
+
+function persistRoutingInformation(newState) {
+  storageSet(ENV, 'routing', newState);
+}
+
+function slugFromName(name) {
+  return name.split('.').join('__').split('-').join('_');
+}
+
+function fetchPathOptions(env, path) {
+  const nameParts = path.split(':');
+  if (nameParts.length === 1) {
+    return {
+      owner: env.appOwner,
+      name: env.appName,
+      slug: slugFromName(nameParts[0]),
+    };
+  }
+  if (nameParts.length === 2) {
+    return {
+      owner: env.appOwner,
+      name: nameParts[0],
+      slug: slugFromName(nameParts[1]),
+    };
+  }
+  if (nameParts.length === 3) {
+    return {
+      owner: nameParts[0],
+      name: nameParts[1],
+      slug: slugFromName(nameParts[2]),
+    };
+  }
+  throw new Error(`Invalid path: ${path}`);
+}
+
+function widgetPathFromName(env, widgetName) {
+  const { owner, name, slug } = fetchPathOptions(env, widgetName);
+  return `${owner}/widget/${name}__${slug}`;
+}
+
+function layoutPathFromName(env, layoutName) {
+  return widgetPathFromName(env, layoutName);
+}
+
+function rerender() {
+  // HACK: force a re-render
+  State.update({
+    renderCycles: state.renderCycles + 1,
+  });
+}
+
+function push(env, name, props) {
+  const layer = {
+    name,
+    props: props || {},
+    appOwner: env.appOwner,
+    appName: env.appName,
+  };
+  const newLayers = [...state.layers, layer];
+
+  persistRoutingInformation(newLayers);
+
+  State.update({
+    layers: newLayers,
+  });
+}
+
+function replace(env, name, props) {
+  const layer = {
+    name,
+    props: props || {},
+    appOwner: env.appOwner,
+    appName: env.appName,
+  };
+  const newLayers = [...state.layers.slice(0, -1), layer];
+
+  persistRoutingInformation(newLayers);
+
+  State.update({
+    layers: newLayers,
+  });
+}
+
+// pop from the stack, ensure we always have at least one layer
+function pop(/* env */) {
+  const newLayers =
+    state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
+
+  persistRoutingInformation(newLayers);
+
+  State.update({
+    layers: newLayers,
+  });
+
+  // rerender();
+}
+
+function dirtyEval(env, args) {
+  const controlled = args[0];
+  const method = controlled.method ? controlled.method : args[0];
+
+  const customEnv = {
+    appOwner: controlled.appOwner || env.appOwner,
+    appName: controlled.appName || env.appName,
+  };
+
+  const mArgs = args.slice(1);
+  const widgetEnv = mergeEnv(env, customEnv || {});
+
+  switch (method) {
+    case 'push':
+      return push(widgetEnv, mArgs[0], mArgs[1]);
+    case 'replace':
+      return replace(widgetEnv, mArgs[0], mArgs[1]);
+    case 'pop':
+      return pop(widgetEnv);
+    default:
+      throw new Error(`Unknown method ${method}`);
+  }
+}
+
+function isDate(value) {
+  // we have no instanceof or typeof, so we check for the interface
+  try {
+    value.getFullYear();
+    value.getMonth();
+    value.getDate();
+    value.getHours();
+    value.getMinutes();
+    value.getSeconds();
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function numberToMonth(number, format) {
+  const month = parseInt(number, 10);
+  const map = [
+    ['Jan', 'January'],
+    ['Feb', 'February'],
+    ['Mar', 'March'],
+    ['Apr', 'April'],
+    ['May', 'May'],
+    ['Jun', 'June'],
+    ['Jul', 'July'],
+    ['Aug', 'August'],
+    ['Sep', 'September'],
+    ['Okt', 'Oktober'],
+    ['Nov', 'November'],
+    ['Dec', 'December'],
+  ];
+
+  if (format === 'long') {
+    return map[month - 1][1];
+  }
+  return map[month - 1][0];
+}
+
+function dayWithSuffix(day) {
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const value = parseInt(day, 10);
+  const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
+  return `${value}${suffix}`;
+}
+
+function formatDate(date, format) {
+  if (date === null || date === undefined) {
+    console.error('formatDate', 'date is null or undefined', date, format);
+    return '';
+  }
+  const properDate = isDate(date) ? date : new Date(date);
+  const dateString = properDate.toISOString();
+
+  const parts = {
+    YYYY: dateString.substring(0, 4),
+    YY: dateString.substring(2, 4),
+    MM: dateString.substring(5, 7),
+    DD: dateString.substring(8, 10),
+    hh: dateString.substring(11, 13),
+    mm: dateString.substring(14, 16),
+    ss: dateString.substring(17, 19),
+    Mshort: numberToMonth(dateString.substring(5, 7)),
+    Mlong: numberToMonth(dateString.substring(5, 7), 'long'),
+    Dst: dayWithSuffix(dateString.substring(8, 10)),
+  };
+
+  return format.replace(
+    /\{\{\s*(?<part>YYYY|YY|MM|DD|hh|mm|ss|Mshort|Mlong|Dst)\s*\}\}/gu,
+    (_match, part) => {
+      return parts[part];
+    }
+  );
+}
+
+// https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
+function byteLength(str) {
+  // returns the byte length of an utf8 string
+  var s = str.length;
+  for (let i = str.length - 1; i >= 0; i--) {
+    let code = str.charCodeAt(i);
+    if (code > 0x7f && code <= 0x7ff) {
+      s++;
+    } else if (code > 0x7ff && code <= 0xffff) {
+      s += 2;
+    }
+    if (code >= 0xdc00 && code <= 0xdfff) {
+      i--;
+    } //trail surrogate
+  }
+  return s;
+}
+
+function calculateStorageCost(value) {
+  // get number of bytes without TextEncoder or Blob
+  const bytes = byteLength(JSON.stringify(value));
+  return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
+}
+
+function contractCall(contractName, methodName, args) {
+  const cost = calculateStorageCost(args);
+  // console.log('contractCall', { contractName, methodName, args, cost });
+  Near.call(contractName, methodName, args || {}, TGAS_300, cost);
+}
+
+function contractView(contractName, methodName, args) {
+  // console.log('contractView', { contractName, methodName, args });
+  return Near.view(contractName, methodName, args || {});
+}
+
+function loading(displayText) {
+  return <>{displayText || '...'}</>;
+}
+
+function mergeEnv(env, newEnv) {
+  return {
+    ...env,
+    // add all keys from env which are not null or undefined
+    ...Object.entries(newEnv || {}).reduce((acc, [key, value]) => {
+      if (value !== null && value !== undefined) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {}),
+  };
+}
+
+function renderComponent(name, props, env) {
+  const widgetEnv = mergeEnv(ENV, env);
+
+  const _sessionGet = (...args) => {
+    return sessionGet(widgetEnv, ...args);
+  };
+  const _sessionSet = (...args) => {
+    return sessionSet(widgetEnv, ...args);
+  };
+  const _storageGet = (...args) => {
+    return storageGet(widgetEnv, ...args);
+  };
+  const _storageSet = (...args) => {
+    return storageSet(widgetEnv, ...args);
+  };
+
+  const _layoutPathFromName = (path) => {
+    return layoutPathFromName(widgetEnv, path);
+  };
+  const _widgetPathFromName = (path) => {
+    return widgetPathFromName(widgetEnv, path);
+  };
+
+  const _push = (_name, _props) => {
+    return push(widgetEnv, _name, _props);
+  };
+  const _pop = () => {
+    return pop(widgetEnv);
+  };
+  const _replace = (_name, _props) => {
+    return replace(widgetEnv, _name, _props);
+  };
+
+  const _renderComponent = (_name, _props, _env) => {
+    return safeRender(_name, _props, mergeEnv(widgetEnv, _env));
+  };
+
+  const _dirtyEval = (args) => {
+    return dirtyEval(widgetEnv, args);
+  };
+
+  const engine = {
+    env: widgetEnv,
+    accountId,
+
+    loading,
+    rerender,
+    push: _push,
+    pop: _pop,
+    replace: _replace,
+    sessionGet: _sessionGet,
+    sessionSet: _sessionSet,
+    storageGet: _storageGet,
+    storageSet: _storageSet,
+    layoutPathFromName: _layoutPathFromName,
+    widgetPathFromName: _widgetPathFromName,
+
+    renderComponent: _renderComponent,
+
+    Components,
+    Constants,
+
+    helpers: {
+      propIsRequiredMessage,
+      calculateStorageCost,
+      formatDate,
+    },
+
+    hacks: {
+      dirtyEval: _dirtyEval,
+    },
+
+    TGAS_300,
+
+    contract: {
+      call: contractCall,
+      view: contractView,
+    },
+  };
+
+  const controllerProps = {
+    __engine: engine,
+
+    component: {
+      name: name,
+      props: props,
+    },
+  };
+
+  return (
+    <Widget
+      src={`${appOwner}/widget/app__layout_controller`}
+      key={props && props.key ? props.key : name}
+      props={controllerProps}
+    />
+  );
+}
+
+function safeRender(_name, _props, _customEnv) {
+  try {
+    return renderComponent(_name, _props, _customEnv);
+  } catch (err) {
+    console.log(err);
+    return (
+      <div>
+        Failed to render component <strong>{_name}</strong> with props:{' '}
+        <pre>{JSON.stringify(_props, null, 4)}</pre>
+        <br />
+        <pre>{err.toString()}</pre>
+        <br />
+      </div>
+    );
+  }
+}
+
+const AppLayer = styled.div`
+  animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
+  animation-fill-mode: forwards;
+  animation-delay: ${(props) => props.delay};
+  animation-duration: ${(props) => props.duration};
+  width: 100vw;
+  min-height: 100vh;
+  background-color: transparent;
+  z-index: ${(props) => props.zIndex};
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 0;
+
+  backdrop-filter: ${(props) => {
+    return props.backdropFilter;
+  }};
+  webkit-backdrop-filter: ${(props) => {
+    return props.backdropFilter;
+  }};
+
+  transition: backdrop-filter ${(props) => props.transitionDuration}
+    ${EASE_DEFAULT};
+  transition-delay: ${(props) => props.transitionDelay};
+`;
+
+// have to deconstruct Components here because of a bug in the VM.
+// It cannot render <Components.Button /> :(
+const { Button } = Components;
 
 // return (
 //   <>
@@ -1071,3 +1069,5 @@ return 'hello world';
 //     })}
 //   </>
 // );
+
+return <>Hello World</>;
