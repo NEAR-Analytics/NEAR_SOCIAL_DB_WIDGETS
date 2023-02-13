@@ -601,7 +601,7 @@ function storageSet(env, prop, value) {
 
 function restoreRoutes() {
   const info = storageGet(ENV, 'routing', null);
-  console.log('restoreRoutes', info);
+  console.log('restoreRoutes', info, state);
   if (info === null || info === undefined) {
     return;
   }
