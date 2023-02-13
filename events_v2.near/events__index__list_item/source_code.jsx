@@ -2,7 +2,7 @@ let event = props.event || null;
 
 // return data;
 if (!event) {
-  return '';
+  return props.__engine.loading();
 }
 
 const Card = props.__engine.Components.Card;
