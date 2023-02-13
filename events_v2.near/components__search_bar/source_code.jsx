@@ -51,18 +51,25 @@ function buildSubset(item) {
   }, {});
 }
 
-const items = state.all.map((item) => {
-  const subset = buildSubset(item);
-  const score = scoreItem(subset);
+const items = state.all
+  .map((item) => {
+    const subset = buildSubset(item);
+    const score = scoreItem(subset);
 
-  console.log({ subset.name, score });
+    console.log(subset.name, score);
 
-  return {
-    item,
-    score,
-    subset,
-  };
-});
+    return {
+      item,
+      score,
+      subset,
+    };
+  })
+  .sort((a, b) => {
+    return b.score - a.score;
+  })
+  .filter((item) => {
+    return item.score > 0;
+  });
 
 const hasChanged = JSON.stringify(items) !== JSON.stringify(state.items);
 console.log('search_bar.jsx', 4, { hasChanged });
