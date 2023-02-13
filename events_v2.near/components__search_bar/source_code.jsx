@@ -59,6 +59,8 @@ function scoreItem(item) {
     return 1;
   }
 
+  console.log({ term });
+
   const termWords = term.split(/[,\-_\s]+/giu);
 
   const itemScores = state.fields.map((field) => {
