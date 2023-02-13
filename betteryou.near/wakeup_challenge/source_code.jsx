@@ -37,7 +37,8 @@ const inactiveButton = {
 };
 
 function isOwnerLoggedIn() {
-  return accountId == context.accountId;
+  //return accountId == context.accountId;
+  return true;
 }
 
 function ms2s(ms) {
@@ -63,7 +64,7 @@ function updateChallenge() {
 
 function finish_challenge() {
   console.log("finish challenge");
-  const result = Near.call(contractId, "finish_challenge", {});
+  const result = Near.call(contractId, "finish", {});
   console.log("finish result", result);
 }
 
@@ -144,6 +145,10 @@ function getWakeUpButton() {
   const days_passed = Math.floor(time_since_start / day_length);
 
   console.log(new Date(1000 * start).toString());
+
+  console.log("In finishes");
+  console.log(config.days, " ", days_passed);
+  console.log(now, " ", config.first_day);
 
   // The challenge is over.
   // - the actual days_passed is larger than the total number of days - can't do equal because user needs to register wake up on the last day.
