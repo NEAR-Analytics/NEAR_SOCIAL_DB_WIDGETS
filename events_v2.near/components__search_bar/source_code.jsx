@@ -71,7 +71,6 @@ console.log('search_bar.jsx', 4, { hasChanged });
 if (hasChanged) {
   props.onSearch(items);
   State.update({ items });
-  console.log('changeing items', { items, term: state.term });
 }
 
 console.log('search_bar.jsx', 5);
