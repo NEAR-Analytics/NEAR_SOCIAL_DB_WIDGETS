@@ -31,8 +31,7 @@ text editor
 </div>
 </div>
 <script type="module">
-import ReactMarkdownEditorLite from "https://esm.sh/react-markdown-editor-lite@1.3.4"
-import Editor from "https://esm.sh/@monaco-editor/react@4.4.6"
+import MonacoEditor from "https://esm.sh/react-monaco-editor@0.51.0"
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
   return React.createElement(ReactMarkdownEditorLite, {
