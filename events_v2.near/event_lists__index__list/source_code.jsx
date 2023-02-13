@@ -6,6 +6,13 @@ const widgetName = `index.list.${props.layout}`;
 
 // TODO: Search bar
 
-// const SearchBar = props.__engine.renderComponent('index.search_bar', { items: event_lists });
+const SearchBar = props.__engine.renderComponent('index.search_bar', {
+  items: event_lists,
+});
 
-return <>{props.__engine.renderComponent(widgetName, { event_lists })}</>;
+return (
+  <>
+    {SearchBar}
+    {props.__engine.renderComponent(widgetName, { event_lists })}
+  </>
+);
