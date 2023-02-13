@@ -19,10 +19,10 @@ function scoreWord(word, termWord, weight) {
     score += 0.33;
     console.log('word ends with term', word, termWord, { score });
   } else if (word.includes(termWord)) {
+    score += 0.2;
     console.log('word includes term', word, termWord, word.indexOf(termWord), {
       score,
     });
-    score += 0.2;
   }
 
   if (termWord === word) {
