@@ -189,7 +189,7 @@ const scrollingEvents =
           );
         })}
 
-      {event_list.event_count >= EVENTS_LIMIT && (
+      {event_list.event_count > EVENTS_LIMIT && (
         <BobbleWrap>
           <Bobble>+{event_list.event_count - EVENTS_LIMIT}</Bobble>
         </BobbleWrap>
