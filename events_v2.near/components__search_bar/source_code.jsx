@@ -10,37 +10,35 @@ function scoreWord(word, termWord, weight) {
   let score = 1;
 
   if (word === termWord) {
-    score += 0.5;
+    score += 1;
   } else if (word.startsWith(termWord)) {
-    score += 0.3;
+    score += 0.5;
   } else if (word.endsWith(termWord)) {
-    score += 0.2;
+    score += 0.33;
   } else if (word.includes(termWord)) {
-    score += 0.1;
-  }
-
-  if (termWord.startsWith(word)) {
     score += 0.2;
   }
 
-  if (termWord.endsWith(word)) {
-    score += 0.2;
-  }
-
-  if (termWord.includes(word)) {
+  if (termWord === word) {
+    score += 1;
+  } else if (termWord.startsWith(word)) {
+    score += 0.5;
+  } else if (termWord.endsWith(word)) {
+    score += 0.33;
+  } else if (termWord.includes(word)) {
     score += 0.2;
   }
 
   if (word.length === termWord.length) {
-    score += 0.2;
+    score += 0.05;
   }
 
   if (word.length > termWord.length) {
-    score += 0.1;
+    score += 0.025;
   }
 
   if (word.length < termWord.length) {
-    score -= 0.1;
+    score -= 0.025;
   }
 
   return score * weight;
