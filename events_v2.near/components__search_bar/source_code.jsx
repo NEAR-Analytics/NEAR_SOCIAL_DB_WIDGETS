@@ -108,7 +108,7 @@ if (hasChanged) {
   State.update({ items });
 }
 
-const { GRID_PAD } = props.__engine.CONSTANTS;
+const { GRID_PAD } = props.__engine.Constants;
 
 const Searchbar = styled.input`
   width: auto;
