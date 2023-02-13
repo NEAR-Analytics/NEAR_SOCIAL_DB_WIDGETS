@@ -145,7 +145,7 @@ const NavbarItem = styled.div`
 `;
 
 const navbar = (
-  <Navbar className="navbar">
+  <Navbar>
     {props.back ? (
       <NavbarBackButton
         type="button"
