@@ -9,6 +9,7 @@ props.controller.setLayout('layouts:container', {
 });
 
 const Container = props.__engine.Components.Container;
+const Spacer = props.__engine.Components.Spacer;
 const Hr = props.__engine.Components.Hr;
 
 return (
