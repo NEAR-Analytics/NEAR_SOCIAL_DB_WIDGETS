@@ -143,7 +143,6 @@ const Components = {
     border: none;
     color: #007bff;
     cursor: pointer;
-    font-size: ${FONT_SIZE_DEFAULT};
     font-weight: 400;
     outline: none;
     padding: 0;
@@ -153,6 +152,11 @@ const Components = {
     width: fit-content;
     margin-top: ${GRID_PAD_SMALL};
     text-align: left;
+
+    font-size: ${FONT_SIZE_DEFAULT};
+    @media (max-width: 768px) {
+      font-size: ${FONT_SIZE_SMALL};
+    }
 
     &:hover {
       color: #0056b3;
