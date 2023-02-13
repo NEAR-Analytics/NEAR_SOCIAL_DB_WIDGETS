@@ -711,7 +711,11 @@ function dirtyEval(env, args) {
   const controlled = args[0];
   const method = controlled.method ? controlled.method : args[0];
 
-  const customEnv = controlled.env ? controlled.env : {};
+  const customEnv = {
+    appOwner: controlled.appOwner || env.appOwner,
+    appName: controlled.appName || env.appName,
+  };
+
   const mArgs = args.slice(1);
 
   const widgetEnv = mergeEnv(env, customEnv || {});
