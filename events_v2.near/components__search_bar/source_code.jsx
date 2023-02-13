@@ -19,6 +19,26 @@ function scoreWord(word, termWord, weight) {
     score = 0.4;
   }
 
+  if (word.length === termWord.length) {
+    score += 0.2;
+  }
+
+  if (word.length > termWord.length) {
+    score += 0.1;
+  }
+
+  if (word.length < termWord.length) {
+    score -= 0.1;
+  }
+
+  if (word.length < 4) {
+    score -= 0.1;
+  }
+
+  if (word.length < 3) {
+    score -= 0.1;
+  }
+
   return score * weight;
 }
 
