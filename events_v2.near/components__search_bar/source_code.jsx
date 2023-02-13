@@ -9,7 +9,7 @@ if (!state) {
 function scoreItem(item) {
   const term = state.term.toLowerCase();
 
-  const itemFields = fields.map((field) => {
+  const itemFields = state.fields.map((field) => {
     return item[field.key];
   });
 
