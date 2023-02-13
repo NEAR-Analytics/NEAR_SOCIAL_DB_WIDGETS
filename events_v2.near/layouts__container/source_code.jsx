@@ -117,6 +117,18 @@ const NavbarItems = styled.div`
   flex-wrap: nowrap;
 `;
 
+const NavbarItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 1.25rem;
+`;
+
 const navbar = (
   <Navbar className="navbar">
     {props.back ? (
