@@ -111,7 +111,10 @@ let thisToken = nftList[thisIndex];
 
 const tokenId = thisToken.token_id;
 const contractId = thisToken.nft_contract_id;
-const rootId = thisToken.token_id.slice(0, thisToken.token_id.length - 3);
+
+let rootVals = thisToken.token_id.split("-");
+let rootValPop = rootVals.pop();
+const rootId = rootVals.join("-");
 
 const nftMetadata = Near.view(contractId, "nft_metadata");
 const tokenMetadata = Near.view(contractId, "nft_token", {
