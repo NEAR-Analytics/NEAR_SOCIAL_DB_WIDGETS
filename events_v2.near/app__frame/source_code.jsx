@@ -152,6 +152,7 @@ const Components = {
     display: inline-block;
     width: fit-content;
     margin-top: ${GRID_PAD_SMALL};
+    text-align: left;
 
     &:hover {
       color: #0056b3;
