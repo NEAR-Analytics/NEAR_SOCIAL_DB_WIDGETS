@@ -83,7 +83,6 @@ const FadeIn = styled.keyframes`
 `;
 
 const EventTileWrapper = styled.div`
-  width: 100%;
   height: auto;
   animation: ${FadeIn} 0.5s ${EASE_DEFAULT};
   animation-delay: ${(props) => props.delay + ANIMATION_DELAY}ms;
@@ -107,6 +106,8 @@ const EventTileWrapper = styled.div`
   & > * {
     height: 100%;
   }
+
+  width: 100vw  ;
 
   @media (max-width: 768px) {
     width: 30%;
