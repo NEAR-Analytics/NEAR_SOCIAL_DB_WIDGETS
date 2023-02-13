@@ -108,6 +108,8 @@ if (hasChanged) {
   State.update({ items });
 }
 
+const { GRID_PAD } = props.__engine.CONSTANTS;
+
 const Searchbar = styled.input`
   width: auto;
   padding: 0.5rem;
@@ -115,7 +117,7 @@ const Searchbar = styled.input`
   border-radius: 0;
   outline: none;
   font-size: 1rem;
-  margin: 8px;
+  margin-bottom: ${GRID_PAD};
   border-radius: 8px;
   z-index: 1;
 
