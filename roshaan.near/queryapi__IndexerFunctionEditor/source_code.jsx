@@ -34,7 +34,7 @@ text editor
 import MonacoEditor from "https://esm.sh/react-monaco-editor@0.51.0"
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
-  return React.createElement(ReactMarkdownEditorLite, {
+  return React.createElement(MonacoEditor, {
     height="400"
     language="javascript"
     theme={theme}
