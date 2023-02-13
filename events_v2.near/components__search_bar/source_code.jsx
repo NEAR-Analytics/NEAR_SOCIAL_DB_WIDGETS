@@ -43,6 +43,7 @@ function scoreItem(item) {
 function buildSubset(item) {
   fields.reduce((acc, field) => {
     const value = item[field.key];
+
     if (!value) {
       return acc;
     }
