@@ -7,32 +7,59 @@ State.init({
 });
 
 const code = `
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script crossorigin src="https://unpkg.com/@monaco-editor/react@4.4.6/lib/umd/monaco-react.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-markdown-editor-lite@1.3.4/lib/index.js" crossorigin></script>
 <link rel="stylesheet" href="https://unpkg.com/react-markdown-editor-lite@1.3.4/lib/index.css" />
 
-<div id="editor-window"></div>
+<style>
+#text-editor {
+  border: 1px solid red;
+}
+#react-root {
+  border: 1px solid blue;
+}
+</style>
+<div id="root">
+<h1> code editor </h1>
+<div id="code-editor">
+code editor </div>
+<h1> text editor </h1>
 
-<div id="root"></div>
-<script type="text/babel">
-import React from "react";
-      class App extends React.Component {
-        render() {
+<div id="text-editor">
+text editor
+</div>
+</div>
+<script type="module">
+import ReactMarkdownEditorLite from "https://esm.sh/react-markdown-editor-lite@1.3.4"
+import Editor from "https://esm.sh/@monaco-editor/react@4.4.6"
+function TestReact(props) {
+  const [value, setValue] = React.useState(props.initialText || "");
+  return React.createElement(ReactMarkdownEditorLite, {
+      value,
+      view: { menu: true, md: true, html: false },
+      canView: { menu: true, md: false, html: false, fullScreen: false, hideMenu: true },
+      onChange: ({ text }) => {
+        setValue(text);
+        window.top.postMessage(text, "*");
+      },
+      renderHTML: () => {},
+      className: "full",
+    }); 
+}
 
-          return (<div>
-            <h1>React Setup</h1>
-          </div>);
-        }
-      }
-      ReactDOM.render(
-        <App />,
-        document.getElementById('root')
-      );
-    </script>
+const domContainer = document.querySelector('#root');
+const root = ReactDOM.createRoot(domContainer);
+
+window.addEventListener("message", (event) => {
+  root.render(React.createElement(TestReact, {
+    initialText: event.data,
+  }));
+   
+});
+
+</script>
 `;
-
 return (
   <>
     <div>
