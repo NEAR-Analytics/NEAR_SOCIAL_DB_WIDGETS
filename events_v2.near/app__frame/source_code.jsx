@@ -718,7 +718,6 @@ function dirtyEval(env, args) {
       if (mArgs.length === 1) {
         return push(env, key, mArgs[0]);
       }
-      return push(widgetEnv, key);
     case 'replace':
       return replace(env, key, mArgs[0]);
     case 'pop':
