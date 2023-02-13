@@ -598,14 +598,7 @@ function sessionSet(env, prop, value) {
 }
 
 function storageGet(env, prop, defaultValue) {
-  console.log(
-    'storageGet',
-    Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue,
-    `${env.appOwner}.${env.appName}.${prop}`,
-    env,
-    prop,
-    defaultValue
-  );
+  console.log('storageGet');
   return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
 }
 function storageSet(env, prop, value) {
