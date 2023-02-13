@@ -1044,27 +1044,27 @@ return (
 
     {state.layers.map((layer, index) => {
       const isLast = index === state.layers.length - 1;
-
-      return (
-        <AppLayer
-          key={index}
-          delay={isLast ? '0s' : '0.8s'}
-          duration={isLast ? '0.66s' : '1s'}
-          transitionDuration={isLast ? '0.3s' : '1s'}
-          transitionDelay={isLast ? '0.2s' : '1s'}
-          backdropFilter={
-            isLast
-              ? 'blur(16px) saturate(140%) brightness(80%)'
-              : 'blur(0px) saturate(100%) brightness(100%)'
-          }
-          zIndex={index + 100}
-        >
-          {safeRender(layer.name, layer.props, {
-            appOwner: layer.appOwner,
-            appName: layer.appName,
-          })}
-        </AppLayer>
-      );
+      return <></>;
+      // return (
+      //   <AppLayer
+      //     key={index}
+      //     delay={isLast ? '0s' : '0.8s'}
+      //     duration={isLast ? '0.66s' : '1s'}
+      //     transitionDuration={isLast ? '0.3s' : '1s'}
+      //     transitionDelay={isLast ? '0.2s' : '1s'}
+      //     backdropFilter={
+      //       isLast
+      //         ? 'blur(16px) saturate(140%) brightness(80%)'
+      //         : 'blur(0px) saturate(100%) brightness(100%)'
+      //     }
+      //     zIndex={index + 100}
+      //   >
+      //     {safeRender(layer.name, layer.props, {
+      //       appOwner: layer.appOwner,
+      //       appName: layer.appName,
+      //     })}
+      //   </AppLayer>
+      // );
     })}
   </>
 );
