@@ -3,7 +3,7 @@ if (!state) {
     return { key, weight };
   });
   const items = props.items || [];
-  State.init({ all: items, filtered: [], term: '' });
+  State.init({ all: items, filtered: [], term: '', fields });
   return props.__engine.loading();
 }
 
