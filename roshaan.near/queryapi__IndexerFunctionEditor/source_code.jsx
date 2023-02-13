@@ -32,6 +32,7 @@ text editor
 </div>
 <script>
 import MonacoEditor from "https://esm.sh/react-monaco-editor@0.51.0"
+console.log(MonacoEditor, 'monaco editor')
 function TestReact(props) {
   const [value, setValue] = React.useState(props.initialText || "");
   return React.createElement(MonacoEditor, {
