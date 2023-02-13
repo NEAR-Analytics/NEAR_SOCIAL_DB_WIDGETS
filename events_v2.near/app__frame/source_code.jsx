@@ -1068,7 +1068,15 @@ return (
       </div>
     ) : null}
 
-    {state.loading && <Loader />}
+    {state.loading && (
+      <Loader
+        onAnimationEnd={() => {
+          State.update({
+            loading: false,
+          });
+        }}
+      />
+    )}
 
     {!state.loading &&
       state.layers.map((layer, index) => {
