@@ -36,7 +36,6 @@ function TestReact(props) {
   return React.createElement(MonacoEditor, {
     height="400"
     language="javascript"
-    theme={theme}
     }); 
 }
 
