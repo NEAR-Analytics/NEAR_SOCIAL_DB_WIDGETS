@@ -1,4 +1,4 @@
-const initWidgetPath = "devgovgigs.near/widget/Ideas";
+const initWidgetPath = props.widgetPath || "devgovgigs.near/widget/Ideas";
 
 State.init({
   widgetPath: initWidgetPath,
