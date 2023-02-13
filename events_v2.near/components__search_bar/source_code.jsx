@@ -18,11 +18,11 @@ function scoreItem(item) {
       return 0;
     }
 
-    console.log(item.name, field, field.toLowerCase().split(/[ ,-_\s]+/giu));
+    console.log(item.name, field, field.toLowerCase().split(/[,-_\s]+/giu));
 
     return field
       .toLowerCase()
-      .split(/[ ,-_\s]+/giu)
+      .split(/[,-_\s]+/giu)
       .map((word) => {
         const index = word.indexOf(term);
         if (index === -1) {
