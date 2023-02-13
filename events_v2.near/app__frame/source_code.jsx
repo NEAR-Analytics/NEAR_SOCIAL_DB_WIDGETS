@@ -421,7 +421,7 @@ const Components = {
     width: 33%;
     min-width: 320px;
     border-right: ${BORDER_THICKNESS} solid ${BORDER_COLOR};
-    min-height: 200px;
+    min-height: 100px;
     flex-grow: 1;
     flex-shrink: 0;
     height: auto;
