@@ -53,7 +53,7 @@ function removeEvent() {
   const args = {
     event_id: event.id,
   };
-  props.__engine.contract.view(contract, method, args);
+  props.__engine.contract.call(contract, method, args);
 }
 
 const PageTitle = props.__engine.Components.PageTitle;
