@@ -23,7 +23,7 @@ if (
   SECONDS_10
 ) {
   props.__engine.pop();
-  return 'Event updated';
+  return props.__engine.loading();
 }
 
 function callContract(data) {
