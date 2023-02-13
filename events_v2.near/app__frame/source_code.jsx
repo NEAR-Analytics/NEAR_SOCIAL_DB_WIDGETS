@@ -849,7 +849,6 @@ function contractView(contractName, methodName, args) {
 }
 
 function loading(displayText) {
-  State.update({ loading: true });
   return <>{displayText}</>;
 }
 
