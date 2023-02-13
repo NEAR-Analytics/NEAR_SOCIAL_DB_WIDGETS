@@ -219,6 +219,13 @@ const Dependency = styled.div`
   margin-bottom: 24px;
 `;
 
+const HistoryContainer = styled.div`
+  h1,
+  .input-group.mb-3 {
+    display: none;
+  }
+`;
+
 if (!exists) {
   return (
     <>
@@ -417,10 +424,12 @@ return (
     )}
 
     {state.selectedTab === "history" && (
-      <Widget
-        src="bozon.near/widget/WidgetHistory"
-        props={{ widgetPath: props.src }}
-      />
+      <HistoryContainer>
+        <Widget
+          src="bozon.near/widget/WidgetHistory"
+          props={{ widgetPath: props.src }}
+        />
+      </HistoryContainer>
     )}
   </>
 );
