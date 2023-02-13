@@ -23,7 +23,7 @@ const SearchBar = props.__engine.renderComponent('components:search-bar', {
   },
   onSearch: (filtered) => {
     console.log('filtered', filtered);
-    State.update({ filtered: filtered });
+    State.update({ filtered: filtered.map(({ item }) => item) });
   },
 });
 
