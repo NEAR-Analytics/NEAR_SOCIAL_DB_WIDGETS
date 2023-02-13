@@ -509,8 +509,8 @@ if (!accountId) {
   return PLEASE_CONNECT_WALLET_MESSAGE;
 }
 
-console.log('propIsRequiredMessage');
 function propIsRequiredMessage(prop) {
+  console.log('propIsRequiredMessage');
   return PROP_IS_REQUIRED_MESSAGE.replace('{prop}', prop);
 }
 
@@ -562,8 +562,8 @@ const SessionState = {
   },
 };
 
-console.log('orientation2FlexDirection');
 function orientation2FlexDirection({ orientation }) {
+  console.log('orientation2FlexDirection');
   switch (orientation) {
     case 'horizontal':
       return 'row';
@@ -574,8 +574,8 @@ function orientation2FlexDirection({ orientation }) {
   }
 }
 
-console.log('orientation2FlexWrap');
 function orientation2FlexWrap({ orientation }) {
+  console.log('orientation2FlexWrap');
   switch (orientation) {
     case 'horizontal':
       return 'nowrap';
@@ -586,30 +586,29 @@ function orientation2FlexWrap({ orientation }) {
   }
 }
 
-console.log('sessionGet');
 function sessionGet(env, prop, defaultValue) {
+  console.log('sessionGet');
   return (
     SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
   );
 }
-console.log('sessionSet');
 function sessionSet(env, prop, value) {
+  console.log('sessionSet');
   return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
-console.log('storageGet');
 function storageGet(env, prop, defaultValue) {
+  console.log('storageGet');
   return Storage.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue;
 }
-console.log('storageSet');
 function storageSet(env, prop, value) {
+  console.log('storageSet');
   return Storage.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
-console.log('restoreRoutes');
 function restoreRoutes() {
+  console.log('restoreRoutes');
   const info = storageGet(ENV, 'routing', null);
-  console.log('restoreRoutes', info, state.layers);
   if (info === null || info === undefined) {
     return;
   }
@@ -628,18 +627,18 @@ function restoreRoutes() {
 
 restoreRoutes();
 
-console.log('persistRoutingInformation');
 function persistRoutingInformation(newState) {
+  console.log('persistRoutingInformation');
   storageSet(ENV, 'routing', newState);
 }
 
-console.log('slugFromName');
 function slugFromName(name) {
+  console.log('slugFromName');
   return name.split('.').join('__').split('-').join('_');
 }
 
-console.log('fetchPathOptions');
 function fetchPathOptions(env, path) {
+  console.log('fetchPathOptions');
   const nameParts = path.split(':');
   if (nameParts.length === 1) {
     return {
@@ -665,27 +664,27 @@ function fetchPathOptions(env, path) {
   throw new Error(`Invalid path: ${path}`);
 }
 
-console.log('widgetPathFromName');
 function widgetPathFromName(env, widgetName) {
+  console.log('widgetPathFromName');
   const { owner, name, slug } = fetchPathOptions(env, widgetName);
   return `${owner}/widget/${name}__${slug}`;
 }
 
-console.log('layoutPathFromName');
 function layoutPathFromName(env, layoutName) {
+  console.log('layoutPathFromName');
   return widgetPathFromName(env, layoutName);
 }
 
-console.log('rerender');
 function rerender() {
+  console.log('rerender');
   // HACK: force a re-render
   State.update({
     renderCycles: state.renderCycles + 1,
   });
 }
 
-console.log('push');
 function push(env, name, props) {
+  console.log('push');
   const layer = {
     name,
     props: props || {},
@@ -701,8 +700,8 @@ function push(env, name, props) {
   });
 }
 
-console.log('replace');
 function replace(env, name, props) {
+  console.log('replace');
   const layer = {
     name,
     props: props || {},
@@ -719,8 +718,8 @@ function replace(env, name, props) {
 }
 
 // pop from the stack, ensure we always have at least one layer
-console.log('pop');
 function pop(/* env */) {
+  console.log('pop');
   const newLayers =
     state.layers.length > 1 ? state.layers.slice(0, -1) : state.layers;
 
@@ -733,8 +732,8 @@ function pop(/* env */) {
   // rerender();
 }
 
-console.log('dirtyEval');
 function dirtyEval(env, args) {
+  console.log('dirtyEval');
   const controlled = args[0];
   const method = controlled.method ? controlled.method : args[0];
 
@@ -758,8 +757,8 @@ function dirtyEval(env, args) {
   }
 }
 
-console.log('isDate');
 function isDate(value) {
+  console.log('isDate');
   // we have no instanceof or typeof, so we check for the interface
   try {
     value.getFullYear();
@@ -774,8 +773,8 @@ function isDate(value) {
   }
 }
 
-console.log('numberToMonth');
 function numberToMonth(number, format) {
+  console.log('numberToMonth');
   const month = parseInt(number, 10);
   const map = [
     ['Jan', 'January'],
@@ -798,19 +797,19 @@ function numberToMonth(number, format) {
   return map[month - 1][0];
 }
 
-console.log('dayWithSuffix');
 function dayWithSuffix(day) {
+  console.log('dayWithSuffix');
   const suffixes = ['th', 'st', 'nd', 'rd'];
   const value = parseInt(day, 10);
   const suffix = suffixes[value % 10 > 3 ? 0 : value % 10];
   return `${value}${suffix}`;
 }
 
-console.log('formatDate');
 function formatDate(date, format) {
+  console.log('formatDate');
   if (date === null || date === undefined) {
-    console.error('formatDate', 'date is null or undefined', date, format);
     return '';
+    console.error('formatDate', 'date is null or undefined', date, format);
   }
   const properDate = isDate(date) ? date : new Date(date);
   const dateString = properDate.toISOString();
@@ -837,8 +836,8 @@ function formatDate(date, format) {
 }
 
 // https://stackoverflow.com/questions/5515869/string-length-in-bytes-in-javascript
-console.log('byteLength');
 function byteLength(str) {
+  console.log('byteLength');
   // returns the byte length of an utf8 string
   var s = str.length;
   for (let i = str.length - 1; i >= 0; i--) {
@@ -855,33 +854,33 @@ function byteLength(str) {
   return s;
 }
 
-console.log('calculateStorageCost');
 function calculateStorageCost(value) {
+  console.log('calculateStorageCost');
   // get number of bytes without TextEncoder or Blob
   const bytes = byteLength(JSON.stringify(value));
   return COST_NEAR_PER_BYTE * (bytes + NEAR_STORAGE_BYTES_SAFTY_OFFSET);
 }
 
-console.log('contractCall');
 function contractCall(contractName, methodName, args) {
+  console.log('contractCall');
   const cost = calculateStorageCost(args);
-  // console.log('contractCall', { contractName, methodName, args, cost });
   Near.call(contractName, methodName, args || {}, TGAS_300, cost);
+  // console.log('contractCall', { contractName, methodName, args, cost });
 }
 
-console.log('contractView');
 function contractView(contractName, methodName, args) {
-  // console.log('contractView', { contractName, methodName, args });
+  console.log('contractView');
   return Near.view(contractName, methodName, args || {});
+  // console.log('contractView', { contractName, methodName, args });
 }
 
-console.log('loading');
 function loading(displayText) {
+  console.log('loading');
   return <>{displayText || '...'}</>;
 }
 
-console.log('mergeEnv');
 function mergeEnv(env, newEnv) {
+  console.log('mergeEnv');
   return {
     ...env,
     // add all keys from env which are not null or undefined
@@ -894,11 +893,11 @@ function mergeEnv(env, newEnv) {
   };
 }
 
-console.log('renderComponent');
 function renderComponent(name, props, env) {
+  console.log('renderComponent');
   const widgetEnv = mergeEnv(ENV, env);
+  
   console.log('renderComponent', { name, props, env, widgetEnv });
-
   const _sessionGet = (...args) => {
     return sessionGet(widgetEnv, ...args);
   };
@@ -995,12 +994,12 @@ function renderComponent(name, props, env) {
 }
 
 function safeRender(_name, _props, _customEnv) {
-  console.log('safeRender', { _name, _props, _customEnv });
   try {
+    console.log('safeRender', { _name, _props, _customEnv });
     return renderComponent(_name, _props, _customEnv);
   } catch (err) {
-    console.log(err);
     return (
+      console.log(err);
       <div>
         Failed to render component <strong>{_name}</strong> with props:{' '}
         <pre>{JSON.stringify(_props, null, 4)}</pre>
