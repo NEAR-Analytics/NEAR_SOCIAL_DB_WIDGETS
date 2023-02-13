@@ -1,3 +1,16 @@
+const nftSelectArea = styled.div`
+  text-align:center;
+  margin-bottom:20px;
+`;
+
+const nftSelect = styled.select`
+width: 300px;
+    background-color: #62949b;
+    color: white;
+    text-shadow: 0 0 4px white;
+    text-align: center;
+`;
+
 const playerArea = styled.div`
   width:500px;
   height:500px;
@@ -50,7 +63,7 @@ const rotate = styled.keyframes`
   }`;
 const bgThumb = styled.img`
     position: absolute;
-    top: 100px;
+    top: 160px;
     width: 350px;
     max-height: 350px;
     left:85px;
@@ -64,20 +77,48 @@ const fgThumb = styled.img`
     filter: drop-shadow(2px 4px 6px black);
     border-radius:15px;
 `;
+const playThis = styled.button`
+  padding:20px;
+`;
 
-const tokenId = props.tokenId;
-const contractId = props.contractId;
-const rootId = props.rootId;
+const accountId = context.accountId;
+const nftList = fetch("https://graph.mintbase.xyz", {
+  method: "POST",
+  headers: {
+    "mb-api-key": "omni-site",
+    "Content-Type": "application/json",
+    "x-hasura-role": "anonymous",
+  },
+  body: JSON.stringify({
+    query: `
+        query MyQuery ($accountId: String){
+            mb_views_nft_owned_tokens(limit: 100, where: {listing_kind: {_is_null: true}, owner: {_eq: $accountId}}) {
+                token_id
+                nft_contract_id
+                metadata_id
+                title
+                minter                
+            }
+        }
+`,
+    variables: {
+      accountId: accountId,
+    },
+  }),
+}).body.data.mb_views_nft_owned_tokens;
+let thisIndex = state.index ?? 0;
+let thisToken = nftList[thisIndex];
+
+const tokenId = thisToken.token_id;
+const contractId = thisToken.nft_contract_id;
+const rootId = thisToken.token_id.slice(0, thisToken.token_id.length - 3);
 
 const nftMetadata = Near.view(contractId, "nft_metadata");
 const tokenMetadata = Near.view(contractId, "nft_token", {
   token_id: tokenId,
 }).metadata;
 let extra = JSON.parse(tokenMetadata.extra);
-
-//console.log(nftMetadata);
-//console.log(tokenMetadata);
-//console.log(extra);
+let audioExist = !!extra.music_cid;
 
 let audioUri = `https://daorecords.io:8443/fetch?cid=${extra.music_cid}`;
 let newAudio = new Audio(audioUri);
@@ -100,21 +141,25 @@ function stopAudio() {
   newAudio.load();
 }
 
-let propsCheck = !props.tokenId || !props.contractId || !props.rootId;
+function selectedValue(v) {
+  let index = parseInt(v.target.value);
+  index = index === 0 ? 0 : index - 1;
+  State.update({ index });
+}
 
 return (
   <div>
-    {propsCheck ? (
-      <div>
-        <h3>Please make sure props are set up correctly</h3>
-        <p>
-          {`{
-        "contractId": "CONTRACTID",
-        "tokenId": "TOKENID",
-        "rootId": "ROOTID"
-      }`}
-        </p>
-      </div>
+    <nftSelectArea>
+      <h5>Select Audio NFT</h5>
+      <nftSelect name="token" onChange={selectedValue}>
+        <option value="0">Tokens</option>
+        {nftList.map((x, i) => (
+          <option value={i + 1}>{`${x.title} (${x.nft_contract_id})`}</option>
+        ))}
+      </nftSelect>
+    </nftSelectArea>
+    {(!state.index && state.index !== 0) || !audioExist ? (
+      <p>Select a compatible NFT</p>
     ) : (
       <div>
         <bgThumb src={artData} />
