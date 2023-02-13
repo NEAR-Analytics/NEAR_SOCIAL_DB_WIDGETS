@@ -22,6 +22,7 @@ const SearchBar = props.__engine.renderComponent('components:search-bar', {
     category: 1.1,
   },
   onSearch: (filtered) => {
+    console.log('filtered', filtered);
     State.update({ filtered: filtered });
   },
 });
