@@ -611,13 +611,13 @@ function storageSet(env, prop, value) {
 
 function restoreRoutes() {
   const info = storageGet(ENV, 'routing', null);
-  console.log('restoreRoutes', { info });
+  console.log('restoreRoutes 1', { info });
 
   if (info === null || info === undefined) {
     storageSet(ENV, 'routing', state.layers);
     return;
   }
-  console.log('restoreRoutes', { info, layers: state.layers });
+  console.log('restoreRoutes 2', { info, layers: state.layers });
 
   const layers = state.layers;
   if (
