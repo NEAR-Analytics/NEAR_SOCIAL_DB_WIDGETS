@@ -115,11 +115,11 @@ const Searchbar = styled.input`
   width: auto;
   outline: none;
 
-  border: ${BORDER_DEFAULT};
-  font-size: ${FONT_SIZE_DEFAULT};
-  border-radius: ${BORDER_RADIUS_DEFAULT};
-  padding: ${GRID_PAD};
-  margin-bottom: ${GRID_PAD};
+  border: Theme.BORDER_DEFAULT;
+  font-size: Theme.FONT_SIZE_DEFAULT;
+  border-radius: Theme.BORDER_RADIUS_DEFAULT;
+  padding: Theme.GRID_PAD;
+  margin-bottom: Theme.GRID_PAD;
   z-index: 1;
 
   &:focus {
