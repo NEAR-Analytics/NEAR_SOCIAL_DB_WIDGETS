@@ -10,11 +10,11 @@ props.controller.setLayout('layouts:container', {
     {
       label: 'Lists',
       onClick: [{ appName: 'event_lists', method: 'push' }, 'index', {}],
-      active: true,
     },
     {
       label: 'Events',
       onClick: [{ appName: 'events', method: 'push' }, 'index', {}],
+      active: true,
     },
   ],
 });
