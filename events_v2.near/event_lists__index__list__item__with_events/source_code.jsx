@@ -125,9 +125,9 @@ const FlexGrowDesktop = styled.div`
 
 const BobbleWrap = styled.div`
   position: relative;
-  width: ${GRID_PAD};
+  width: 0;
   height: 100%;
-  margin-left: ${GRID_PAD};
+  margin-left: 0;
   padding-right: ${GRID_PAD};
   display: flex;
   align-items: center;
