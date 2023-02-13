@@ -610,6 +610,7 @@ function restoreRoutes() {
   console.log('restoreRoutes');
   const info = storageGet(ENV, 'routing', null);
   if (info === null || info === undefined) {
+    storageSet(ENV, 'routing', state.layers);
     return;
   }
 
