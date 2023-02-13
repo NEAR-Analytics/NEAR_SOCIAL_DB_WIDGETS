@@ -19,18 +19,29 @@ props.controller.setLayout('layouts:container', {
   ],
 });
 
-const Button = props.__engine.Components.Button;
+const TextButton = props.__engine.Components.TextButton;
 const Container = props.__engine.Components.Container;
 
 return (
   <Container>
-    <Button
-      onClick={() => {
-        return props.__engine.push('my_events', {});
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
       }}
     >
-      My Events
-    </Button>
+      <TextButton
+        onClick={() => {
+          return props.__engine.push('my_events', {});
+        }}
+        style={{
+          marginLeft: 'auto',
+        }}
+      >
+        View my events
+      </TextButton>
+    </div>
 
     <br />
 
