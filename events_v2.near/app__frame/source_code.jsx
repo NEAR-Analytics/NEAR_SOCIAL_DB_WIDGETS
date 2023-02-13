@@ -1011,6 +1011,21 @@ const AppLayer = styled.div`
   transition-delay: ${(props) => props.transitionDelay};
 `;
 
+const Loader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px) saturate(140%) brightness(80%);
+  animation: ${AnimationFadeIn} 0.3s ${EASE_DEFAULT};
+`;
+
 // have to deconstruct Components here because of a bug in the VM.
 // It cannot render <Components.Button /> :(
 const { Button } = Components;
