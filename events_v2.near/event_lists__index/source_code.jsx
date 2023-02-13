@@ -20,7 +20,7 @@ return (
         forAccountId: props.__engine.accountId,
       })}
     </Container>
-    <Hr />
+
     <Spacer />
 
     <Container>
