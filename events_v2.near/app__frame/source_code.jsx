@@ -35,9 +35,9 @@ const TEXT_COLOR_LIGHT = '#666666';
 
 const BORDER_RADIUS_DEFAULT = '4px';
 const BORDER_THICKNESS = '0.1vw';
-const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 const BORDER_COLOR = '#e6e6e6';
 const BORDER_HOVER_COLOR = '#cccccc';
+const BORDER_DEFAULT = `${BORDER_THICKNESS} solid ${BORDER_COLOR}`;
 
 const ERROR_COLOR = '#cc0000';
 
