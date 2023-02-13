@@ -25,7 +25,7 @@ if (!state) {
 
     localImg: image.url,
   });
-  return 'Loading...';
+  return props.__engine.loading();
 }
 
 const ImageTypes = [
