@@ -66,9 +66,16 @@ function getAssets() {
 
   return assetsDetailed?.map((asset, i) => {
     const price = prices?.prices?.find((p) => p.asset_id === asset?.token_id);
-    const decimals =
+    const priceDecimals =
       parseInt(price?.price?.decimals || 0) - parseInt(metadata?.[i].decimals);
-    const usd = price?.price?.multiplier / power(10, decimals);
+    const usd = price?.price?.multiplier / power(10, priceDecimals);
+
+    const temp = Big(asset.supplied.balance)
+      .plus(Big(asset.reserved))
+      .minus(Big(asset.borrowed.balance));
+
+    const decimals = metadata?.[i].decimals + asset.config.extra_decimals;
+    const availableLiquidity = Number(shrinkToken(temp.toFixed(), decimals));
 
     return {
       ...asset,
@@ -78,6 +85,7 @@ function getAssets() {
         ...price.price,
         usd: usd ? usd : parseFloat(refPrices?.[asset.token_id]?.price),
       },
+      availableLiquidity,
     };
   });
 }
