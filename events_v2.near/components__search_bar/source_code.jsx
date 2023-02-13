@@ -6,7 +6,7 @@ if (!state) {
   return props.__engine.loading();
 }
 
-function scoreWord(word, termWord, field) {
+function scoreWord(word, termWord, weight) {
   if (word === termWord) {
     return 100;
   }
@@ -42,14 +42,9 @@ function scoreItem(item) {
       .toLowerCase()
       .split(/[,\-_\s]+/giu)
       .map((word) => {
-        let score = 0;
-        for (const termWord of termWords) {
-          score += scoreWord(word, termWord);
-        }
-        return score;
-      })
-      .map((score) => {
-        return score * (field.weight || 1);
+        return termWords.reduce((acc, termWord) => {
+          return acc + scoreWord(word, termWord, field.weight);
+        }, 0);
       })
       .reduce((a, b) => a + b, 0);
   });
