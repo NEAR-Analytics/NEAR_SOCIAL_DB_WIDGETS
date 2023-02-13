@@ -617,6 +617,7 @@ function restoreRoutes() {
     storageSet(ENV, 'routing', state.layers);
     return;
   }
+  console.log('restoreRoutes', { info, layers: state.layers });
 
   const layers = state.layers;
   if (
