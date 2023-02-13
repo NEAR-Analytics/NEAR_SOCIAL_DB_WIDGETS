@@ -16,7 +16,6 @@ return (
         if (!question?.title || !question?.content) {
           return <></>;
         }
-        asdsdaasdsaddsasaddsa;
 
         // return nothing if question does not meet search criteria
         if (
