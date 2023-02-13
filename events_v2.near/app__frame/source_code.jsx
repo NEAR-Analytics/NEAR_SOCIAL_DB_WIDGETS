@@ -715,7 +715,7 @@ function dirtyEval(env, args, _customEnv = {}) {
 
   switch (method) {
     case 'push':
-      return push(widgetEnv, key);
+      return push(widgetEnv, key, mArgs[0]);
     case 'replace':
       return replace(widgetEnv, key, mArgs[0]);
     case 'pop':
