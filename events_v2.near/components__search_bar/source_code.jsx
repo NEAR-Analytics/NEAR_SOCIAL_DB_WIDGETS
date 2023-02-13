@@ -108,14 +108,19 @@ if (hasChanged) {
   State.update({ items });
 }
 
-const { GRID_PAD, BORDER_RADIUS_DEFAULT, BORDER_DEFAULT, FONT_SIZE_DEFAULT } =
-  props.__engine.Constants;
+const {
+  GRID_PAD,
+  BORDER_RADIUS_DEFAULT,
+  BORDER_DEFAULT,
+  FONT_SIZE_DEFAULT,
+  BORDER_HOVER_COLOR,
+} = props.__engine.Constants;
 
 const Searchbar = styled.input`
   width: auto;
-  border: ${BORDER_DEFAULT};
   outline: none;
 
+  border: ${BORDER_DEFAULT};
   font-size: ${FONT_SIZE_DEFAULT};
   border-radius: ${BORDER_RADIUS_DEFAULT};
   padding: ${GRID_PAD};
@@ -124,7 +129,7 @@ const Searchbar = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #333;
+    border-color: ${BORDER_HOVER_COLOR};
   }
 
   &::placeholder {
