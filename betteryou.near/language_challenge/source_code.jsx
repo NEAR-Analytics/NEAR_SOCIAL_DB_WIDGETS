@@ -50,7 +50,7 @@ function updateContractChallengeState() {
 
 function finish_challenge() {
   console.log("finish challenge");
-  const result = Near.call(contractId, "finish_challenge", {});
+  const result = Near.call(contractId, "finish", {});
   console.log("finish result", result);
 }
 
