@@ -9,12 +9,12 @@ props.controller.setLayout('layouts:container', {
   items: [
     {
       label: 'Lists',
-      onClick: [{ appName: 'event_lists', method: 'push' }, 'index', {}],
+      onClick: [{ appName: 'event_lists', method: 'replace' }, 'index', {}],
       active: true,
     },
     {
       label: 'Events',
-      onClick: [{ appName: 'events', method: 'push' }, 'index', {}],
+      onClick: [{ appName: 'events', method: 'replace' }, 'index', {}],
     },
   ],
 });
