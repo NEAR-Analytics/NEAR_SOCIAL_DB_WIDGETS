@@ -108,6 +108,8 @@ const EventTileWrapper = styled.div`
     height: 100%;
   }
 
+  max-width: 300px;
+
   @media (max-width: 768px) {
     width: 30%;
     min-width: 199px;
