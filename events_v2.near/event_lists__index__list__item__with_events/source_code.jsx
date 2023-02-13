@@ -226,6 +226,10 @@ return (
       </TextButton>
     </CardHeader>
 
-    <CardBody style={{ height: 'auto' }}>{scrollingEvents}</CardBody>
+    {(state.events || []).length > 0 ? (
+      <CardBody style={{ height: 'auto' }}>{scrollingEvents}</CardBody>
+    ) : (
+      <></>
+    )}
   </Card>
 );
