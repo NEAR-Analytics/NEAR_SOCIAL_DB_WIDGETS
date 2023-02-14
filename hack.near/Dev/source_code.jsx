@@ -49,5 +49,60 @@ return (
       <li>Markdown Editor</li>
       <li>Styled Components</li>
     </ul>
+    <div className="row mb-3"></div>
+    <h4>Example Buttons</h4>
+    <div>
+      <a className="btn btn-primary" href="">
+        Primary
+      </a>
+      <a className="btn btn-secondary" href="">
+        Secondary
+      </a>
+      <a className="btn btn-success" href="">
+        Success
+      </a>
+      <a className="btn btn-warning" href="">
+        Warning
+      </a>
+      <a className="btn btn-danger" href="">
+        Danger
+      </a>
+      <a className="btn btn-info" href="">
+        Info
+      </a>
+      <a className="btn btn-light" href="">
+        Light
+      </a>
+      <a className="btn btn-dark" href="">
+        Dark
+      </a>
+    </div>
+    <div className="row mb-3"></div>
+    <div>
+      <a className="btn btn-outline-primary" href="">
+        Primary
+      </a>
+      <a className="btn btn-outline-secondary" href="">
+        Secondary
+      </a>
+      <a className="btn btn-outline-success" href="">
+        Success
+      </a>
+      <a className="btn btn-outline-warning" href="">
+        Warning
+      </a>
+      <a className="btn btn-outline-danger" href="">
+        Danger
+      </a>
+      <a className="btn btn-outline-info" href="">
+        Info
+      </a>
+      <a className="btn btn-outline-light" href="">
+        Light
+      </a>
+      <a className="btn btn-outline-dark" href="">
+        Dark
+      </a>
+    </div>
   </div>
 );
