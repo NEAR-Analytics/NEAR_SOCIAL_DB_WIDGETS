@@ -19,7 +19,7 @@ const myNft = [
   "zxc",
   "qwe",
 ];
-const pollId = props.pollId;
+const pollId = 0;
 const nftContract = props.nftContract;
 if (pollId == null) {
   return "No pollId";
@@ -78,27 +78,10 @@ const getPollDetatils = (poll) => {
     availableToVote: availableToVote,
     description: description,
     topic: topic,
+    votedTotal: votedTotal,
     myNftVoted: myNftVoted,
   };
 };
-
-if (!state.options) {
-  const polls = Near.view(CONTRACT, "get_votes_by_contract", {
-    contract_id: nftContract,
-    limit: 1000,
-    offset: 0,
-  });
-  const initState = getPollDetatils(polls[pollId]);
-
-  State.init({
-    viewMode: true,
-    options: initState.options,
-    availableToVote: initState.availableToVote,
-    description: initState.description,
-    myNftVoted: initState.myNftVoted,
-    topic: initState.topic,
-  });
-}
 
 const updateState = () => {
   const asyncPolls = Near.asyncView(CONTRACT, "get_votes_by_contract", {
@@ -113,10 +96,23 @@ const updateState = () => {
       availableToVote: currentState.availableToVote,
       description: currentState.description,
       myNftVoted: currentState.myNftVoted,
+      votedTotal: currentState.votedTotal,
       topic: currentState.topic,
     });
   });
 };
+
+if (!state.options) {
+  State.init({
+    viewMode: true,
+    options: [],
+    availableToVote: 0,
+    description: "",
+    myNftVoted: [],
+    topic: "",
+  });
+  updateState();
+}
 
 const vote = (answerId) => {
   const myNftVoted = state.myNftVoted;
@@ -140,7 +136,7 @@ const displayOptionsToView = state.options.map((option) => {
       delay={{ show: 250, hide: 400 }}
       overlay={
         <Tooltip id="button-tooltip">
-          Voted {option.votedTotal} out of {votedTotal}
+          Voted {option.votedTotal} out of {state.votedTotal}
         </Tooltip>
       }
     >
