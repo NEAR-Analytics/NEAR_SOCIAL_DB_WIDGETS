@@ -2,11 +2,32 @@ if (!props.tags?.length) return "";
 
 const TagsWrapper = styled.div`
   position: relative;
+
+  ${
+    props.scroll
+      ? `
+    ul {
+        padding-right: 16px;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 16px;
+        background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+        position: absolute;
+        top: 0;
+        right: 16px;
+    }
+  `
+      : ""
+  }
 `;
 
 const Tags = styled.ul`
   display: flex;
-  flex-wrap: ${(p) => (p.scroll ? "nowrap" : "wrap")};
+  flex-wrap: ${props.scroll ? "nowrap" : "wrap"};
   list-style: none;
   gap: 6px;
   overflow: auto;
@@ -31,7 +52,7 @@ const Tag = styled.li`
 
 return (
   <TagsWrapper>
-    <Tags scroll={!props.scroll}>
+    <Tags>
       {props.tags.map((tag, i) => (
         <Tag key={i}>{tag}</Tag>
       ))}
