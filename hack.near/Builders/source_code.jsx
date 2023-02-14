@@ -12,12 +12,19 @@ return (
           <a href="https://devgovgigs.near.social">Gigs Board</a>. You might
           want to add #hackathon and other tags to facilitate discovery!
         </p>
+        <div>
+          <h4>Prize Pools</h4>
+          <ul>
+            <li>ONBOARDING: $5000</li>
+            <li>GAMING: 1000 NEAR</li>
+          </ul>
+        </div>
         <div className="mb-3"></div>
         <a className="btn btn-primary" href="https://devgovgigs.near.social">
           Explore Ideas
         </a>
-        <a className="btn btn-outline-primary" href="https://nearbuilders.com">
-          Learn More
+        <a className="btn btn-outline-primary" href="https://t.me/NearSocial">
+          Chat
         </a>
         <div className="mb-3"></div>
         <div className="mb-3"></div>
