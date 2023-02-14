@@ -7,7 +7,7 @@ const renderItem =
   props.renderItem ??
   ((item, i) => (
     <div key={i}>
-      #{i}: {JSON.stringify(item)}
+      #{item.blockHeight}: {JSON.stringify(item)}
     </div>
   ));
 const cachedRenderItem = (item, i) => {
@@ -23,8 +23,11 @@ const cachedRenderItem = (item, i) => {
 index.options = index.options || {};
 const initialRenderLimit =
   props.initialRenderLimit ?? index.options.limit ?? 10;
+const addDisplayCount =
+  props.nextLimit ?? initialRenderLimit ?? index.options.limit;
+
 index.options.limit = Math.min(
-  Math.max(initialRenderLimit * 2, index.options.limit),
+  Math.max(initialRenderLimit + addDisplayCount, index.options.limit),
   100
 );
 const reverse = !!props.reverse;
@@ -75,7 +78,7 @@ if (state.jInitialItems !== jInitialItems) {
 }
 
 if (state.fetchFrom) {
-  const limit = Math.max(props.nextLimit, index.options.limit);
+  const limit = addDisplayCount;
   const newItems = Social.index(
     index.action,
     index.key,
@@ -96,11 +99,14 @@ if (state.fetchFrom) {
 
 const makeMoreItems = () => {
   State.update({
-    displayCount:
-      state.displayCount +
-      (props.nextLimit ?? index.initialRenderLimit ?? index.options.limit),
+    displayCount: state.displayCount + addDisplayCount,
   });
-  if (state.nextFetchFrom && state.nextFetchFrom !== state.fetchFrom) {
+  if (
+    state.items.length - state.displayCount < addDisplayCount &&
+    !state.fetchFrom &&
+    state.nextFetchFrom &&
+    state.nextFetchFrom !== state.fetchFrom
+  ) {
     State.update({
       fetchFrom: state.nextFetchFrom,
     });
