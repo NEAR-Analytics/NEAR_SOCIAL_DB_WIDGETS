@@ -7,6 +7,8 @@ const defaultSelectedBoard = "mnwtransition";
 
 const referralLabels = props.referral ? [`referral:${props.referral}`] : [];
 
+//Noop
+
 initState({
   recency: props.recency,
   label: props.label,
@@ -356,12 +358,16 @@ return (
     ) : state.selectedPost ? (
       <Widget
         src={`${ownerId}/widget/Post`}
-        props={{ id: state.selectedPost }}
+        props={{ id: state.selectedPost, referral: props.referral }}
       />
     ) : (
       <Widget
         src={`${ownerId}/widget/IdeasList`}
-        props={{ recency: state.recency, label: state.label }}
+        props={{
+          recency: state.recency,
+          label: state.label,
+          referral: props.referral,
+        }}
       />
     )}
   </div>
