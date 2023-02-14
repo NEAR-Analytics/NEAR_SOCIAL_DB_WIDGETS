@@ -1,5 +1,5 @@
 //props indexer_name
-let indexer_name = props.indexer_name;
+let indexer_name = props.indexer_name ?? 'indexer_name';
 let query = fetch(
   'https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql',
   {
