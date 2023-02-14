@@ -68,7 +68,7 @@ return (
     <Tabs>
       <TabsButton
         type="button"
-        onClick={() => selectTab("activity")}
+        onClick={() => State.update({ selectedTab: "activity" })}
         selected={state.selectedTab === "activity"}
       >
         Activity
@@ -76,7 +76,7 @@ return (
 
       <TabsButton
         type="button"
-        onClick={() => selectTab("apps")}
+        onClick={() => State.update({ selectedTab: "apps" })}
         selected={state.selectedTab === "apps"}
       >
         Latest Apps
@@ -84,7 +84,7 @@ return (
 
       <TabsButton
         type="button"
-        onClick={() => selectTab("explore")}
+        onClick={() => State.update({ selectedTab: "explore" })}
         selected={state.selectedTab === "explore"}
       >
         Explore
