@@ -40,8 +40,8 @@ const Tabs = styled.div`
   padding: 0 12px;
   height: 48px;
   background: #F8F9FA;
-  border-bottom: 1px solid #ECEEF0;
-  margin-bottom: 24px;
+  border-bottom: ${(p) => (p.noMargin ? "1px solid #ECEEF0" : "none")};
+  margin-bottom: ${(p) => (p.noMargin ? "24px" : "0")};
 
   @media (max-width: 1200px) {
     display: flex;
@@ -77,7 +77,7 @@ const TabsButton = styled.button`
 
 return (
   <Wrapper>
-    <Tabs>
+    <Tabs noMargin={state.selectedTab === "activity"}>
       <TabsButton
         type="button"
         onClick={() => State.update({ selectedTab: "activity" })}
