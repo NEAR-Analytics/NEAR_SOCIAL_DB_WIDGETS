@@ -18,7 +18,7 @@ const handleGrantAccount = () => {
   Near.call([
     {
       contractName: social_contract_id,
-      methodName: "grant_write_permissions",
+      methodName: "grant_write_permission",
       args: { predecessor_id: data.accountId, keys: [connected_account] },
       deposit: "1",
     },
