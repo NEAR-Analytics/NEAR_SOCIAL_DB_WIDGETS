@@ -203,16 +203,6 @@ return (
               <option value={zone}>{zone}</option>
             ))}
           </select>
-          <select
-            style={comboBox}
-            value={state._is_on}
-            onChange={(e) => {
-              State.update({ _is_on: e.target.value });
-            }}
-          >
-            <option value="on">on</option>
-            <option value="off">off</option>
-          </select>
         </div>
         <div>
           <a
