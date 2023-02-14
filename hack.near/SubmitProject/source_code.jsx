@@ -14,14 +14,14 @@ return (
   <div className="row">
     <div className="mb-2">
       <h5>Submit Your Project This Week!</h5>
-      <p>Make a custom page with your featured widget:</p>
+      <p>Make a custom page featuring your main widget:</p>
       <Widget
         src="gov.near/widget/MetadataEditor"
         props={{
           initialMetadata: project,
           onChange: (project) => State.update({ project }),
           options: {
-            name: { label: "Your Team / Project Name" },
+            name: { label: "Project Name" },
             featuredWidget: {
               label: "Featured Widget: <account>.near/widget/<Example>",
             },
