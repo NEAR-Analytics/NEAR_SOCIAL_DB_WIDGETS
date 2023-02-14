@@ -128,11 +128,11 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/PostEditor`}
+        src={`nearmax.near/widget/PostEditor`}
         props={{
           postType: "Comment",
           parentId: null,
-          referral: proprs.referral,
+          referral: props.referral,
         }}
       />
     </div>
@@ -142,11 +142,11 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/PostEditor`}
+        src={`nearmax.near/widget/PostEditor`}
         props={{
           postType: "Idea",
           parentId: null,
-          referral: proprs.referral,
+          referral: props.referral,
         }}
       />
     </div>
@@ -156,11 +156,11 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/PostEditor`}
+        src={`nearmax.near/widget/PostEditor`}
         props={{
           postType: "Submission",
           parentId: null,
-          referral: proprs.referral,
+          referral: props.referral,
         }}
       />
     </div>
@@ -170,11 +170,11 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/PostEditor`}
+        src={`nearmax.near/widget/PostEditor`}
         props={{
           postType: "Attestation",
           parentId: null,
-          referral: proprs.referral,
+          referral: props.referral,
         }}
       />
     </div>
@@ -184,11 +184,11 @@ const editorsFooter = props.isPreview ? null : (
       data-bs-parent={`#accordion${postId}`}
     >
       <Widget
-        src={`${ownerId}/widget/PostEditor`}
+        src={`nearmax.near/widget/PostEditor`}
         props={{
           postType: "Sponsorship",
           parentId: null,
-          referral: proprs.referral,
+          referral: props.referral,
         }}
       />
     </div>
