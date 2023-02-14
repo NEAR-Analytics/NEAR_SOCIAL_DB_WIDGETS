@@ -4,10 +4,16 @@ return (
 
     <div className="row mb-3">
       <div>
-        <h1>Near Social Hackathon Guide</h1>
-        <p>
-          Submit your project by creating a custom page with a featured widget!
-        </p>
+        <h1>Near Social Hackathon</h1>
+        <h3>February 8-17</h3>
+        <p>Goal: create a custom project page with a featured widget!</p>
+        <div className="mb-3"></div>
+        <a
+          className="btn btn-primary"
+          href="https://near.social/#/create.near/widget/PageEditor"
+        >
+          Submit Project
+        </a>
         <div className="mb-3"></div> <div className="mb-3"></div>
         <a
           className="btn btn-outline-primary"
@@ -19,21 +25,33 @@ return (
           className="btn btn-outline-primary"
           href="https://devgovgigs.near.social"
         >
-          Open Discussion
+          Ideas
         </a>
         <a className="btn btn-outline-primary" href="https://nearbuilders.com">
-          Learn More
+          Context
+        </a>
+        <div className="mb-3"></div>
+        <h2>Guides for Builders</h2>
+        <div className="mb-3"></div>
+        <a
+          className="btn btn-outline-primary"
+          href="https://near.social/#/create.near/widget/Page?accountId=create.near"
+        >
+          Widgets
+        </a>
+        <a
+          className="btn btn-outline-primary"
+          href="https://devgovgigs.near.social"
+        >
+          APIs
+        </a>
+        <a className="btn btn-outline-primary" href="https://nearbuilders.com">
+          Data
         </a>
       </div>
     </div>
     <div className="row mb-3">
       <div>
-        <h2>Guide for Builders</h2>
-        <p>
-          Together, open web devs are creating the future of decentralized
-          applications. We coordinate to build meaningful solutions for
-          everyone!
-        </p>
         <h3>Why Participate?</h3>
         <h4>Learn, Collaborate, Grow</h4>
         <p>
@@ -72,13 +90,6 @@ return (
           indicate mutual support. Finally, be sure to save your widget(s) to
           this profile.
         </p>
-        <div className="mb-3"></div>
-        <a
-          className="btn btn-primary"
-          href="https://near.social/#/create.near/widget/PageEditor"
-        >
-          Create Project Page
-        </a>
       </div>
     </div>
   </div>
