@@ -31,6 +31,7 @@ return (
     <Markdown text={state.m} />
     <Widget
       src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
+      props={{ indexer_name: 'roshaan', indexer_code: state.m }}
     />
   </div>
 );
