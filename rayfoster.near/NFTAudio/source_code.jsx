@@ -82,7 +82,8 @@ const playThis = styled.button`
 `;
 
 const accountId = context.accountId;
-const nftList = fetch("https://graph.mintbase.xyz", {
+
+const listCall = fetch("https://graph.mintbase.xyz", {
   method: "POST",
   headers: {
     "mb-api-key": "omni-site",
@@ -97,7 +98,7 @@ const nftList = fetch("https://graph.mintbase.xyz", {
                 nft_contract_id
                 metadata_id
                 title
-                minter                
+                minter   
             }
         }
 `,
@@ -105,46 +106,63 @@ const nftList = fetch("https://graph.mintbase.xyz", {
       accountId: accountId,
     },
   }),
-}).body.data.mb_views_nft_owned_tokens;
-let thisIndex = state.index ?? 0;
-let thisToken = nftList[thisIndex];
+});
 
-const tokenId = thisToken.token_id;
-const contractId = thisToken.nft_contract_id;
+let nftList = listCall.body ? listCall.body.data.mb_views_nft_owned_tokens : [];
+let musicNfts = [];
 
-let rootVals = thisToken.token_id.split("-");
+for (let i = 0; i < nftList.length; i++) {
+  if (nftList[i].nft_contract_id) {
+    let meta = Near.view(nftList[i].nft_contract_id, "nft_token", {
+      token_id: nftList[i].token_id,
+    }).metadata;
+
+    if (meta.extra) {
+      let ex = JSON.parse(meta.extra);
+      if (ex.music_cid) {
+        nftList[i].meta = meta;
+        nftList[i].extra = ex;
+        nftList[i].nftMeta = Near.view(contractId, "nft_metadata");
+
+        musicNfts.push(nftList[i]);
+      }
+    }
+  }
+}
+
+let audioElem = new Audio();
+let thisToken = musicNfts[state.index ?? 0];
+let tokenId = thisToken.token_id ?? "";
+let contractId = thisToken.nft_contract_id ?? "";
+
+let rootVals = thisToken.token_id.split("-") ?? [];
 let rootValPop = rootVals.pop();
 const rootId = rootVals.join("-");
 
-const nftMetadata = Near.view(contractId, "nft_metadata");
-const tokenMetadata = Near.view(contractId, "nft_token", {
-  token_id: tokenId,
-}).metadata;
-let extra = JSON.parse(tokenMetadata.extra);
-let audioExist = !!extra.music_cid;
-
-let audioUri = `https://daorecords.io:8443/fetch?cid=${extra.music_cid}`;
-let newAudio = new Audio(audioUri);
+let audioUri = `https://daorecords.io:8443/fetch?cid=${thisToken.extra.music_cid}`;
+audioElem.src = audioUri;
 let artUrl = `https://daorecords.io:8443/get/thumbnail?root_id=${rootId}&contract=${contractId}`;
-let artRes = fetch(artUrl).body.thumbnail;
-let artData = `data:image/webp;base64,${artRes}`;
+let artRes = fetch(artUrl);
+let thumb = artRes.body ? artRes.body.thumbnail : "";
+let artData = `data:image/webp;base64,${thumb}`;
 
 //Get's current time
 //newAudio.currentTime
 
 function playAudio() {
-  newAudio.play();
+  audioElem.play();
 }
 
 function pauseAudio() {
-  newAudio.pause();
+  audioElem.pause();
 }
 
 function stopAudio() {
-  newAudio.load();
+  audioElem.load();
 }
 
 function selectedValue(v) {
+  audioElem.load();
   let index = parseInt(v.target.value);
   index = index === 0 ? 0 : index - 1;
   State.update({ index });
@@ -152,57 +170,69 @@ function selectedValue(v) {
 
 return (
   <div>
-    <nftSelectArea>
-      <h5>Select Audio NFT</h5>
-      <nftSelect name="token" onChange={selectedValue}>
-        <option value="0">Tokens</option>
-        {nftList.map((x, i) => (
-          <option value={i + 1}>{`${x.title} (${x.nft_contract_id})`}</option>
-        ))}
-      </nftSelect>
-    </nftSelectArea>
-    {(!state.index && state.index !== 0) || !audioExist ? (
-      <p>Select a compatible NFT</p>
+    {musicNfts.length === 0 ? (
+      <div></div>
     ) : (
       <div>
-        <bgThumb src={artData} />
+        <nftSelectArea>
+          <h5>Select Audio NFT</h5>
+          <nftSelect name="token" onChange={selectedValue}>
+            <option value="0">Tokens</option>
+            {musicNfts.map((x, i) => (
+              <option
+                value={i + 1}
+              >{`${x.title} (${x.nft_contract_id})`}</option>
+            ))}
+          </nftSelect>
+        </nftSelectArea>
+        {!state.index && state.index !== 0 ? (
+          <p>Select a compatible NFT</p>
+        ) : (
+          <div>
+            <bgThumb src={artData} />
 
-        <playerArea>
-          <broadcaster>{nftMetadata.symbol}</broadcaster>
+            <playerArea>
+              <broadcaster>{thisToken.nftMeta.symbol}</broadcaster>
 
-          <song>{tokenMetadata.title}</song>
-          <description> {tokenMetadata.description}</description>
+              <song>{thisToken.meta.title}</song>
+              <description> {thisToken.meta.description}</description>
 
-          <uiButtonArea>
-            <uiButtons
-              style={ui.btnPlay ? { "background-color": "#fff" } : {}}
-              onClick={playAudio}
-            >
-              <svg width="24" height="24">
-                <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
-              </svg>
-            </uiButtons>
+              <uiButtonArea>
+                <uiButtons
+                  style={ui.btnPlay ? { "background-color": "#fff" } : {}}
+                  onClick={playAudio}
+                >
+                  <svg width="24" height="24">
+                    <path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z" />
+                  </svg>
+                </uiButtons>
 
-            <uiButtons
-              style={ui.btnPause ? { "background-color": "#fff" } : {}}
-              onClick={pauseAudio}
-            >
-              <svg width="24" height="24">
-                <path d="M10 24h-6v-24h6v24zm10 0h-6v-24h6v24zm-11-23h-4v22h4v-22zm10 0h-4v22h4v-22z" />
-              </svg>
-            </uiButtons>
+                <uiButtons
+                  style={ui.btnPause ? { "background-color": "#fff" } : {}}
+                  onClick={pauseAudio}
+                >
+                  <svg width="24" height="24">
+                    <path d="M10 24h-6v-24h6v24zm10 0h-6v-24h6v24zm-11-23h-4v22h4v-22zm10 0h-4v22h4v-22z" />
+                  </svg>
+                </uiButtons>
 
-            <uiButtons
-              style={ui.btnStop ? { "background-color": "#fff" } : {}}
-              onClick={stopAudio}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                <path d="M2 2h20v20h-20z" />
-              </svg>
-            </uiButtons>
-          </uiButtonArea>
-          <fgThumb src={artData} />
-        </playerArea>
+                <uiButtons
+                  style={ui.btnStop ? { "background-color": "#fff" } : {}}
+                  onClick={stopAudio}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                  >
+                    <path d="M2 2h20v20h-20z" />
+                  </svg>
+                </uiButtons>
+              </uiButtonArea>
+              <fgThumb src={artData} />
+            </playerArea>
+          </div>
+        )}
       </div>
     )}
   </div>
