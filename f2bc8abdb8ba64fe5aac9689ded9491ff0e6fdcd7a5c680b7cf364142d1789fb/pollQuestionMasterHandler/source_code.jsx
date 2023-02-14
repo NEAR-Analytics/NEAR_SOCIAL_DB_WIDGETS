@@ -259,7 +259,7 @@ if (!context.accountId) {
       {state.showLogInRequiredPopup && (
         <div
           className="alert alert-warning rounded-4 mb-3"
-          style={{ position: "absolute", top: "1rem", width: "90vw" }}
+          style={{ position: "absolute", top: "1rem", width: "90%" }}
         >
           <div className="text-end">
             <div className="fw-bold">
