@@ -134,7 +134,7 @@ setInterval(() => {
     }
   }
   finalData.value._data.is_on = is_on;
-}, 60000);
+}, 1000);
 
 return (
   <div>
@@ -316,7 +316,7 @@ return (
                 padding: "0.5rem 1rem",
               }}
             >
-              {finalData.is_on ?? "off"}
+              {finalData.is_on ? "on" : "off"}
             </span>
           </div>
 
