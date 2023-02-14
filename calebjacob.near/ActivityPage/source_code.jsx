@@ -35,7 +35,6 @@ const Section = styled.div`
 
 const Tabs = styled.div`
   display: none;
-  padding: 0 6px;
   height: 48px;
   background: #F8F9FA;
   border-bottom: ${(p) => (p.noMargin ? "none" : "1px solid #ECEEF0")};
@@ -68,8 +67,8 @@ const TabsButton = styled.button`
     display: ${(p) => (p.selected ? "block" : "none")};
     position: absolute;
     bottom: 0;
-    left: 12px;
-    right: 12px;
+    left: 0;
+    right: 0;
     height: 3px;
     background: #0091FF;
   }
