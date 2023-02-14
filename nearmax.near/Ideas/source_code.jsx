@@ -5,10 +5,6 @@ console.log("props", props);
 
 const defaultSelectedBoard = "mnwtransition";
 
-const referralLabels = props.referral ? [`referral:${props.referral}`] : [];
-
-//Noop
-
 initState({
   recency: props.recency,
   label: props.label,
@@ -136,7 +132,7 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Comment",
           parentId: null,
-          labels: referralLabels,
+          referral: props.referral,
         }}
       />
     </div>
@@ -150,7 +146,7 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Idea",
           parentId: null,
-          labels: referralLabels,
+          referral: props.referral,
         }}
       />
     </div>
@@ -164,7 +160,7 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Submission",
           parentId: null,
-          labels: referralLabels,
+          referral: props.referral,
         }}
       />
     </div>
@@ -178,7 +174,7 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Attestation",
           parentId: null,
-          labels: referralLabels,
+          referral: props.referral,
         }}
       />
     </div>
@@ -192,7 +188,7 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Sponsorship",
           parentId: null,
-          labels: referralLabels,
+          referral: props.referral,
         }}
       />
     </div>
