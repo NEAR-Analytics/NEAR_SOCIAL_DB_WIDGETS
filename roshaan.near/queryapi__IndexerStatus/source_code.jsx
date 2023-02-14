@@ -2,8 +2,8 @@
 let indexer_name = props.indexer_name ?? 'indexer_name';
 
 State.init({ logs: [], state: [] });
-fucntion query() {
-  let responseJson = fetch(
+function query() {
+  let response = fetch(
     'https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql',
     {
       method: 'POST',
@@ -29,11 +29,15 @@ fucntion query() {
     `,
       }),
     }
-  ).json();
-  // let state = responseJson.data;
-  // console.log(state, "state");
-  // State.update({ state: ["hello"] });
-};
+  );
+  console.log(response);
+  if (!response) {
+    return;
+  }
+  let state = response.body.data.indexer_state;
+  let logs = response.body.data.log_entries;
+  State.update({ state, logs });
+}
 
 if (indexer_name) {
   query();
@@ -42,8 +46,8 @@ return (
   <>
     <h1>Indexer Status</h1>
     <h1> State </h1>
-    {state.state || 'none'}
+    {state.state && JSON.stringify(state.state)}
     <h1> Logs </h1>
-    {state.state || 'none'}
+    {state.logs && JSON.stringify(state.logs)}
   </>
 );
