@@ -28,7 +28,7 @@ const Section = styled.div`
     margin: ${(p) => (p.negativeMargin ? "0 -12px" : "0")};
 
     > h2 {
-        display: none;
+        display: ${(p) => (p.hideTitle ? "none" : "")};
     }
   }
 `;
@@ -38,7 +38,7 @@ const Tabs = styled.div`
   height: 48px;
   background: #F8F9FA;
   border-bottom: ${(p) => (p.noMargin ? "none" : "1px solid #ECEEF0")};
-  margin-bottom: ${(p) => (p.noMargin ? "0" : p.halfMargin ? "12px" : "24px")};
+  margin-bottom: ${(p) => (p.noMargin ? "0" : p.halfMargin ? "24px" : "24px")};
 
   @media (max-width: 1200px) {
     display: flex;
@@ -93,7 +93,7 @@ return (
         onClick={() => State.update({ selectedTab: "apps" })}
         selected={state.selectedTab === "apps"}
       >
-        Latest Apps
+        Apps
       </TabsButton>
 
       <TabsButton
@@ -109,7 +109,12 @@ return (
       <Section active={state.selectedTab === "apps"}>
         <Widget src="calebjacob.near/widget/LatestApps" />
       </Section>
-      <Section negativeMargin primary active={state.selectedTab === "activity"}>
+      <Section
+        hideTitle
+        negativeMargin
+        primary
+        active={state.selectedTab === "activity"}
+      >
         <Widget src="calebjacob.near/widget/Activity" />
       </Section>
       <Section active={state.selectedTab === "explore"}>
