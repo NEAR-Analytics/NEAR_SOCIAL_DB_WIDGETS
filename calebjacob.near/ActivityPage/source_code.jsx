@@ -35,7 +35,7 @@ const Section = styled.div`
 
 const Tabs = styled.div`
   display: none;
-  padding: 0 12px;
+  padding: 0 6px;
   height: 48px;
   background: #F8F9FA;
   border-bottom: ${(p) => (p.noMargin ? "none" : "1px solid #ECEEF0")};
