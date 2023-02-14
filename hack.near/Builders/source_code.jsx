@@ -9,8 +9,7 @@ return (
         <h5>Learn, Create, and Grow</h5>
         <p>
           To get started, check out ideas on the{" "}
-          <a href="https://devgovgigs.near.social">Gigs Board</a>. You might
-          want to add #hackathon and other tags to facilitate discovery!
+          <a href="https://devgovgigs.near.social">Gigs Board</a>.
         </p>
         <div>
           <h4>Prize Pools</h4>
@@ -20,8 +19,14 @@ return (
           </ul>
         </div>
         <div className="mb-3"></div>
-        <a className="btn btn-primary" href="https://devgovgigs.near.social">
-          Explore Ideas
+        <a className="btn btn-success" href="https://devgovgigs.near.social">
+          Submit
+        </a>
+        <a
+          className="btn btn-outline-primary"
+          href="https://devgovgigs.near.social"
+        >
+          Explore
         </a>
         <a className="btn btn-outline-primary" href="https://t.me/NearSocial">
           Chat
@@ -31,19 +36,19 @@ return (
         <h3>Evolving Guides for Builders</h3>
         <div className="mb-3"></div>
         <a
-          className="btn btn-outline-primary"
+          className="btn btn-primary"
           href="https://near.social/#/hack.near/widget/Dev"
         >
           Widgets
         </a>
         <a
-          className="btn btn-outline-primary"
+          className="btn btn-primary"
           href="https://near.social/#/hack.near/widget/Docs"
         >
           APIs
         </a>
         <a
-          className="btn btn-outline-primary"
+          className="btn btn-primary"
           href="https://near.social/#/hack.near/widget/Data"
         >
           Data
