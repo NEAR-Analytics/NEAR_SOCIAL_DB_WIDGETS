@@ -23,7 +23,6 @@ return (
         onBlur={(e) => {
           State.update({
             widgetPath: e.target.value,
-            selectedBlockHeight: undefined,
           });
         }}
       />
