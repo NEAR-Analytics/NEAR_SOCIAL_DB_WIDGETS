@@ -40,6 +40,10 @@ const H2 = styled.h2`
 const CreatePostWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
   border-bottom: 1px solid #ECEEF0;
+
+  @media (max-width: 1200px) {
+    border-top: none;
+  }
 `;
 
 const Tabs = styled.div`
