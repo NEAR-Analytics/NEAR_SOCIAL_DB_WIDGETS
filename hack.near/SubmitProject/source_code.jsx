@@ -13,8 +13,8 @@ State.init({
 return (
   <div className="row">
     <div className="mb-2">
-      <h5>Submit Your Project This Week</h5>
-      <p>Make a custom page with your featured widget!</p>
+      <h5>Submit Your Project This Week!</h5>
+      <p>Make a custom page with your featured widget:</p>
       <Widget
         src="gov.near/widget/MetadataEditor"
         props={{
