@@ -238,57 +238,54 @@ const displayOptionsToVote = state.options.map((option, i) => {
 });
 
 return (
-  <div class="container my-5">
-    <div class="mx-0 mx-sm-auto">
-      <div class="card">
-        <div class="card-body">
-          <div>
-            <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
-            <p>
-              <strong>{state.topic}</strong>
-            </p>
-            <p>{state.description}</p>
-          </div>
-          <hr />
-          {state.viewMode ? (
-            <div>{displayOptionsToView}</div>
-          ) : (
-            <div>{displayOptionsToVote}</div>
-          )}
+  <div class="mx-2 my-3">
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <p>
+            <strong>{state.topic}</strong>
+          </p>
+          <p>{state.description}</p>
         </div>
-        <div class="card-footer text-end">
-          <button onClick={updateState} type="button" class="btn btn-primary">
-            <i class="bi bi-repeat"></i>
+        <hr />
+        {state.viewMode ? (
+          <div>{displayOptionsToView}</div>
+        ) : (
+          <div>{displayOptionsToVote}</div>
+        )}
+      </div>
+      <div class="card-footer text-end">
+        <button onClick={updateState} type="button" class="btn btn-primary">
+          <i class="bi bi-repeat"></i>
+        </button>
+        {state.viewMode ? (
+          <button
+            onClick={() => {
+              console.log("viewMode " + state.viewMode);
+              State.update({
+                viewMode: !state.viewMode,
+              });
+            }}
+            type="button"
+            class="btn btn-primary"
+            disabled={state.availableToVote < 1}
+          >
+            Vote mode ({state.availableToVote} votes left)
           </button>
-          {state.viewMode ? (
-            <button
-              onClick={() => {
-                console.log("viewMode " + state.viewMode);
-                State.update({
-                  viewMode: !state.viewMode,
-                });
-              }}
-              type="button"
-              class="btn btn-primary"
-              disabled={state.availableToVote < 1}
-            >
-              Vote mode ({state.availableToVote} votes left)
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                console.log("viewMode " + state.viewMode);
-                State.update({
-                  viewMode: !state.viewMode,
-                });
-              }}
-              type="button"
-              class="btn btn-primary"
-            >
-              View mode ({state.availableToVote} votes left)
-            </button>
-          )}
-        </div>
+        ) : (
+          <button
+            onClick={() => {
+              console.log("viewMode " + state.viewMode);
+              State.update({
+                viewMode: !state.viewMode,
+              });
+            }}
+            type="button"
+            class="btn btn-primary"
+          >
+            View mode ({state.availableToVote} votes left)
+          </button>
+        )}
       </div>
     </div>
   </div>
