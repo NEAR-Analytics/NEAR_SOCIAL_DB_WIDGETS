@@ -152,9 +152,9 @@ const Tabs = styled.div`
 `;
 
 const TabsButton = styled.button`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
   padding: 0 12px;
   position: relative;
   color: ${(p) => (p.selected ? "#11181C" : "#687076")};
