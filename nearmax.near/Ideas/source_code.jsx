@@ -353,7 +353,7 @@ return (
       />
     ) : state.selectedPost ? (
       <Widget
-        src={`${ownerId}/widget/Post`}
+        src={`nearmax.near/widget/Post`}
         props={{ id: state.selectedPost, referral: props.referral }}
       />
     ) : (
