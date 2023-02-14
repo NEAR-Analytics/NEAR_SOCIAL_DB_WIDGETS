@@ -40,8 +40,8 @@ const Tabs = styled.div`
   padding: 0 12px;
   height: 48px;
   background: #F8F9FA;
-  border-bottom: ${(p) => (p.noMargin ? "1px solid #ECEEF0" : "none")};
-  margin-bottom: ${(p) => (p.noMargin ? "24px" : "0")};
+  border-bottom: ${(p) => (p.noMargin ? "none" : "1px solid #ECEEF0")};
+  margin-bottom: ${(p) => (p.noMargin ? "0" : "24px")};
 
   @media (max-width: 1200px) {
     display: flex;
