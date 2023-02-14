@@ -299,6 +299,7 @@ return (
               maxHeight: "512px",
               overflow: "auto",
               width: "100%",
+              display: "flex",
               height: "100%",
               position: "absolute",
               zIndex: 1,
@@ -316,6 +317,8 @@ return (
               overflow: "auto",
               width: "100%",
               height: "100%",
+              display: "flex",
+
               filter: `blur(${state.blur}px)`,
               position: "relative",
               zIndex: 0,
@@ -360,6 +363,7 @@ return (
     >
       <div
         style={{
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
           maxWidth: "524px",
           maxHeight: "524px",
           width: "100%",
@@ -374,7 +378,7 @@ return (
       >
         <div
           style={{
-            backgroundColor: "black",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             border: "2px solid white",
             display: "flex",
             maxWidth: "512px",
