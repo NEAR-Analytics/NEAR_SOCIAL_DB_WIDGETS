@@ -37,7 +37,7 @@ const Tabs = styled.div`
   display: none;
   height: 48px;
   background: #F8F9FA;
-  border-bottom: "1px solid #ECEEF0";
+  border-bottom: 1px solid #ECEEF0;
   margin-bottom: ${(p) => (p.noMargin ? "0" : p.halfMargin ? "24px" : "24px")};
 
   @media (max-width: 1200px) {
