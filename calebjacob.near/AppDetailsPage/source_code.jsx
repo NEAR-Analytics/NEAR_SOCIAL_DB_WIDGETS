@@ -190,6 +190,7 @@ const Content = styled.div`
 
   @media (max-width: 995px) {
     grid-template-columns: 1fr;
+     gap: 24px;
   }
 `;
 
