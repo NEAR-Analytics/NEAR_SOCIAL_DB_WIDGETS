@@ -6,46 +6,31 @@ return (
       <div>
         <h1>Near Social Hackathon</h1>
         <h3>February 8-17</h3>
-        <p>Goal: create a custom project page with a featured widget!</p>
         <div className="mb-3"></div>
-        <a
-          className="btn btn-primary"
-          href="https://near.social/#/create.near/widget/PageEditor"
-        >
-          Submit Project
+        <a className="btn btn-primary" href="https://devgovgigs.near.social">
+          Explore Ideas on the Gigs Board
         </a>
-        <div className="mb-3"></div> <div className="mb-3"></div>
-        <a
-          className="btn btn-outline-primary"
-          href="https://near.social/#/create.near/widget/Page?accountId=create.near"
-        >
-          Example
-        </a>
-        <a
-          className="btn btn-outline-primary"
-          href="https://devgovgigs.near.social"
-        >
-          Ideas
-        </a>
-        <a className="btn btn-outline-primary" href="https://nearbuilders.com">
-          Context
-        </a>
+        <div className="mb-3"></div>
+        <Widget src="hack.near/widget/SubmitProject" />
         <div className="mb-3"></div>
         <h2>Guides for Builders</h2>
         <div className="mb-3"></div>
         <a
           className="btn btn-outline-primary"
-          href="https://near.social/#/create.near/widget/Page?accountId=create.near"
+          href="https://near.social/#/hack.near/widget/Dev"
         >
           Widgets
         </a>
         <a
           className="btn btn-outline-primary"
-          href="https://devgovgigs.near.social"
+          href="https://near.social/#/hack.near/widget/Docs"
         >
           APIs
         </a>
-        <a className="btn btn-outline-primary" href="https://nearbuilders.com">
+        <a
+          className="btn btn-outline-primary"
+          href="https://near.social/#/hack.near/widget/Data"
+        >
           Data
         </a>
       </div>
@@ -90,6 +75,9 @@ return (
           indicate mutual support. Finally, be sure to save your widget(s) to
           this profile.
         </p>
+        <a className="btn btn-outline-primary" href="https://nearbuilders.com">
+          Learn More
+        </a>
       </div>
     </div>
   </div>
