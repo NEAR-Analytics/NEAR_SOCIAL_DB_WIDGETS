@@ -130,10 +130,10 @@ setInterval(() => {
   const mins = new Date().getMinutes();
   const now = hours + mins / 60;
   var is_on = false;
-  var data = finalData.value._data[day];
-  if (data.on_off == "on") {
-    for (var j = 0; j < data.length; j++) {
-      if (now >= data._from && now < data._to) {
+  var temp = finalData.value._data[day];
+  if (temp.on_off == "on") {
+    for (var j = 0; j < temp.data.length; j++) {
+      if (now >= temp.data[j]._from && now < temp.data[j]._to) {
         is_on = true;
       }
     }
@@ -306,15 +306,13 @@ return (
             </div>
             <span
               style={{
-                backgroundColor:
-                  state.is_on == "on"
-                    ? "rgb(217, 252, 239)"
-                    : "rgb(255, 229, 229)",
+                backgroundColor: state.is_on
+                  ? "rgb(217, 252, 239)"
+                  : "rgb(255, 229, 229)",
                 textAlign: "center",
                 borderRadius: "16px",
                 fontSize: font_small,
-                color:
-                  state.is_on == "on" ? "rgb(0, 179, 125)" : "rgb(255, 71, 71)",
+                color: state.is_on ? "rgb(0, 179, 125)" : "rgb(255, 71, 71)",
                 fontWeight: "500",
                 padding: "0.5rem 1rem",
               }}
