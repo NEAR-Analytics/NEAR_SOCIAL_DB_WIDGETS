@@ -118,7 +118,7 @@ const Textarea = styled.div`
     height: unset;
     min-height: 160px;
     font: inherit;
-    padding: var(--padding) var(--padding) calc(64px + var(--padding)) calc(64px + var(--padding));
+    padding: var(--padding) var(--padding) calc(40px + (var(--padding) * 2)) calc(40px + (var(--padding) * 2));
     margin: 0;
     resize: none;
     background: none;
