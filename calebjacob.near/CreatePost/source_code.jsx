@@ -116,7 +116,7 @@ const Textarea = styled.div`
     width: 100%;
     min-width: 1em;
     height: unset;
-    min-height: 160px;
+    min-height: 164px;
     font: inherit;
     padding: var(--padding) var(--padding) calc(40px + (var(--padding) * 2)) calc(40px + (var(--padding) * 2));
     margin: 0;
@@ -127,6 +127,10 @@ const Textarea = styled.div`
     grid-area: 1 / 1;
     overflow: hidden;
     outline: none;
+
+    @media (max-width: 1200px) {
+        min-height: 124px;
+    }
   }
   
   &::after {
