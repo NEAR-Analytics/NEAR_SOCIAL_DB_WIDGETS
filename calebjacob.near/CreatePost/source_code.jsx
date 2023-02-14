@@ -129,7 +129,7 @@ const Textarea = styled.div`
     outline: none;
 
     @media (max-width: 1200px) {
-        min-height: 124px;
+      min-height: 124px;
     }
   }
   
