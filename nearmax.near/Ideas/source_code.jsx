@@ -310,7 +310,7 @@ const navbar = (
           <li class="nav-item">
             <a
               class="nav-link active"
-              href="https://near.social/#/nearmax.near/widget/TeamsList"
+              href="https://near.social/#/devgovgigs.near/widget/TeamsList"
               target="_blank"
               title="View teams and permissions"
               role="button"
