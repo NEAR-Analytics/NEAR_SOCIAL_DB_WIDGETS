@@ -167,6 +167,10 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: minmax(0, 1fr) 336px;
   gap: 64px;
+
+  '@media (max-width: 995px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Sidebar = styled.div`
