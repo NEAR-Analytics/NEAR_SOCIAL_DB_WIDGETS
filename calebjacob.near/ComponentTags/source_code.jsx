@@ -7,18 +7,18 @@ const TagsWrapper = styled.div`
     props.scroll
       ? `
     ul {
-        padding-right: 16px;
+      padding-right: 16px;
     }
 
     &::after {
-        content: '';
-        display: block;
-        height: 100%;
-        width: 16px;
-        background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
-        position: absolute;
-        top: 0;
-        right: 16px;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 16px;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   `
       : ""
