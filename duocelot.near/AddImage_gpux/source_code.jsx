@@ -281,7 +281,16 @@ return (
           justifyContent: "center",
         }}
       >
-        <div style={shadow}>
+        <div
+          style={{
+            boxShadow: "0px 12px 8px 14px rgba(0, 0, 0, 0.6)",
+            maxWidth: "512px",
+            maxHeight: "512px",
+            overflow: "auto",
+            width: "100%",
+            height: "100%",
+          }}
+        >
           <img
             src="https://ipfs.fleek.co/ipfs/bafybeiburel4azxripu5f6awh6azhitxbptqovppliyav6ilwndswk6yeq"
             style={{
