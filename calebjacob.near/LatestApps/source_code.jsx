@@ -83,7 +83,7 @@ return (
     {apps.map((app, i) => (
       <CardWrapper key={i}>
         <Widget
-          src="calebjacob.near/widget/AppCard"
+          src="calebjacob.near/widget/ComponentCard"
           props={{ src: `${app.accountId}/widget/${app.widgetName}` }}
         />
       </CardWrapper>
