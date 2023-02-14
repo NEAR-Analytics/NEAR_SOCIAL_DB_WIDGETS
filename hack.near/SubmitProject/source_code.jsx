@@ -14,7 +14,10 @@ return (
   <div className="row">
     <div className="mb-2">
       <h5>Submit Your Project This Week!</h5>
-      <p>Make a custom page featuring your main widget:</p>
+      <p>Make a custom page featuring your main widget.</p>
+      <p>
+        Due by <b>11:59pm UTC on Friday, February 17</b>
+      </p>
       <Widget
         src="gov.near/widget/MetadataEditor"
         props={{
