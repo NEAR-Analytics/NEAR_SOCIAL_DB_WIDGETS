@@ -3,9 +3,12 @@ State.init({
 });
 
 const Wrapper = styled.div`
-  @media (max-width: 1200px) {
-    margin: 0 -12px;
-  }
+  ${(p) =>
+    p.negativeMargin
+      ? `@media (max-width: 1200px) {
+          margin: 0 -12px;
+        }`
+      : ""}
 `;
 
 const Main = styled.div`
@@ -76,7 +79,7 @@ const TabsButton = styled.button`
 `;
 
 return (
-  <Wrapper>
+  <Wrapper negativeMargin={state.selectedTab === "activity"}>
     <Tabs noMargin={state.selectedTab === "activity"}>
       <TabsButton
         type="button"
