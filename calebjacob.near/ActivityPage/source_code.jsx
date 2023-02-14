@@ -43,7 +43,7 @@ const Tabs = styled.div`
   @media (max-width: 1200px) {
     display: flex;
     margin-left: -12px;
-    margin-right; -12px;
+    margin-right: -12px;
   }
 `;
 
