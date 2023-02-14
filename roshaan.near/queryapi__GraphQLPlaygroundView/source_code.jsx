@@ -21,17 +21,10 @@ return (
   <div>
     <iframe
       className="w-100"
-      style={{ height: '500px' }}
+      style={{ height: '1000px' }}
       srcDoc={code}
       message={initialText}
       onMessage={(m) => State.update({ m })}
-    />
-    <Widget
-      src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
-      props={{
-        indexer_name: 'registry.queryapi.testnet',
-        indexer_code: state.m,
-      }}
     />
   </div>
 );
