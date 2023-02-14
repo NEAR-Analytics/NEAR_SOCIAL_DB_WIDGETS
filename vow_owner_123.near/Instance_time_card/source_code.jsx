@@ -119,6 +119,23 @@ function sliceString(string, newStringLength) {
   return string;
 }
 
+setInterval(() => {
+  const day = (new Date().getDay() + 1) % 7;
+  const hours = new Date().getHours();
+  const mins = new Date().getMinutes();
+  const now = hours + mins / 60;
+  var is_on = false;
+  var data = finalData.value._data[day];
+  if (data.on_off == "on") {
+    for (var j = 0; j < data.length; j++) {
+      if (now >= data._from && now < data._to) {
+        is_on = true;
+      }
+    }
+  }
+  finalData.value._data.is_on = is_on;
+}, 60000);
+
 return (
   <div>
     <div className="d-flex content-align-start justify-content-between">
