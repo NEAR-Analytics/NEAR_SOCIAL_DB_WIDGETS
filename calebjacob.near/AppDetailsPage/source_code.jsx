@@ -190,22 +190,27 @@ const Content = styled.div`
 
   @media (max-width: 995px) {
     grid-template-columns: 1fr;
-     gap: 24px;
+    gap: 24px;
   }
 `;
 
 const Sidebar = styled.div`
-    > div {
-      padding-bottom: 32px;
-      border-bottom: 1px solid #ECEEF0;
-      margin-bottom: 32px;
+  > div {
+    padding-bottom: 32px;
+    border-bottom: 1px solid #ECEEF0;
+    margin-bottom: 32px;
 
-      &:last-child {
-          padding-bottom: 0;
-          border-bottom: none;
-          margin-bottom: 0;
-      }
+    &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
     }
+  }
+  
+  @media (max-width: 995px) {
+    padding-top: 32px;
+    border-top: 1px solid #ECEEF0;
+  }
 `;
 
 const SmallTitle = styled.h3`
