@@ -5,8 +5,8 @@ return (
     <div className="row mb-3">
       <div>
         <h1>Near Social Hackathon</h1>
-        <h3>February 8-17</h3>
-        <h4>Learn, Build, and Grow</h4>
+        <h2>February 8-17</h2>
+        <h5>Learn, Create, and Grow</h5>
         <p>
           To get started, check out ideas on the{" "}
           <a href="https://devgovgigs.near.social">Gigs Board</a>. You might
@@ -20,9 +20,8 @@ return (
           Learn More
         </a>
         <div className="mb-3"></div>
-        <Widget src="hack.near/widget/SubmitProject" />
         <div className="mb-3"></div>
-        <h2>Guides for Builders</h2>
+        <h3>Evolving Guides for Builders</h3>
         <div className="mb-3"></div>
         <a
           className="btn btn-outline-primary"
@@ -43,6 +42,8 @@ return (
           Data
         </a>
       </div>
+      <div className="mb-3"></div>
+      <Widget src="hack.near/widget/SubmitProject" />
     </div>
   </div>
 );
