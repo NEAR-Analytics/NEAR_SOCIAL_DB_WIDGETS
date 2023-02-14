@@ -29,5 +29,8 @@ return (
       onMessage={(m) => State.update({ m })}
     />
     <Markdown text={state.m} />
+    <Widget
+      src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
+    />
   </div>
 );
