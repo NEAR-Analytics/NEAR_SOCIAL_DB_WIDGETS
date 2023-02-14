@@ -220,6 +220,10 @@ const SmallTitle = styled.h3`
   line-height: 15px;
   margin-bottom: 32px;
   text-transform: uppercase;
+
+  @media (max-width: 770px) {
+    margin-bottom: 16px;
+  }
 `;
 
 const TextLink = styled.a`
