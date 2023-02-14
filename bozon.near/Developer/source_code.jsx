@@ -10,46 +10,54 @@ const allWidgetsHistoryChangesBlocks = Social.keys(
   }
 );
 
+if (allWidgetsHistoryChangesBlocks === null) return "Loading...";
+
 const notDeleted = Social.keys(`${accountId}/widget/*`, "final", {
   values_only: true,
 });
 
-if (allWidgetsHistoryChangesBlocks === null) return "Loading...";
+if (notDeleted === null) return "Loading...";
 
-State.init({
-  allWidgetsHistoryChangesBlocks: Object.keys(
-    allWidgetsHistoryChangesBlocks[accountId]["widget"]
-  )
-    .map((key) => {
-      return {
-        name: key,
-        blocks: allWidgetsHistoryChangesBlocks[accountId]["widget"][key],
-      };
-    })
-    .sort(
-      (a, b) => b.blocks[b.blocks.length - 1] - a.blocks[a.blocks.length - 1]
-    ),
-});
+const countAllWidgets = Object.keys(
+  allWidgetsHistoryChangesBlocks[accountId]["widget"]
+).length;
+const countNotDeleted = Object.keys(notDeleted[accountId]["widget"]).length;
+const countDeletedWidgets = countAllWidgets - countNotDeleted;
+const countCommits = Object.values(
+  allWidgetsHistoryChangesBlocks[accountId]["widget"]
+).reduce((cur, prev) => cur + prev.length, 0);
 
-console.log(notDeleted[accountId]["widget"]);
+const allWidgetsHistoryChangesBlocksComputedAdjusted = Object.keys(
+  allWidgetsHistoryChangesBlocks[accountId]["widget"]
+)
+  .map((key) => {
+    return {
+      name: key,
+      blocks: allWidgetsHistoryChangesBlocks[accountId]["widget"][key],
+    };
+  })
+  .sort(
+    (a, b) => b.blocks[b.blocks.length - 1] - a.blocks[a.blocks.length - 1]
+  );
 
 return (
   <div>
-    <div div class="card mb-3">
+    <div div class="card mb-3 p-2">
       <Widget
         src="mob.near/widget/Profile.ShortInlineBlock"
         props={{ accountId }}
       />
     </div>
-    <div div class="card mb-3">
-      Stats:
-      {}
+    <div div class="card mb-3 p-2">
+      <div>widgets: {countNotDeleted}</div>
+      <div>deleted widgets: {countDeletedWidgets}</div>
+      <div>commits: {countCommits}</div>
     </div>
     <div div class="card mb-3">
       <h3 class="card-header">Widgets</h3>
 
       <div class="list-group">
-        {state.allWidgetsHistoryChangesBlocks.map((element) => (
+        {allWidgetsHistoryChangesBlocksComputedAdjusted.map((element) => (
           <div>
             <button
               onClick={() => {
@@ -62,19 +70,31 @@ return (
               }`}
             >
               <div>{element.name}</div>
-              <span class="badge text-bg-success p-2 me-1 align-self-center">
-                {element.blocks.length}
-              </span>
-              <span class="badge text-bg-success p-2 me-1 align-self-center">
-                {
-                  <Widget
-                    src={`mob.near/widget/TimeAgo`}
-                    props={{
-                      blockHeight: element.blocks[element.blocks.length - 1],
-                    }}
-                  />
-                }
-              </span>
+
+              <OverlayTrigger
+                placement="auto"
+                overlay={<Tooltip>count commits</Tooltip>}
+              >
+                <span class="badge text-bg-success p-2 me-1 align-self-center">
+                  {element.blocks.length}
+                </span>
+              </OverlayTrigger>
+
+              <OverlayTrigger
+                placement="auto"
+                overlay={<Tooltip>last update</Tooltip>}
+              >
+                <span class="badge text-bg-success p-2 me-1 align-self-center">
+                  {
+                    <Widget
+                      src={`mob.near/widget/TimeAgo`}
+                      props={{
+                        blockHeight: element.blocks[element.blocks.length - 1],
+                      }}
+                    />
+                  }
+                </span>
+              </OverlayTrigger>
             </button>
           </div>
         ))}
