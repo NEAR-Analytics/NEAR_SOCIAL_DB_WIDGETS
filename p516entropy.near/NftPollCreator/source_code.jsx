@@ -75,85 +75,83 @@ const createdOptions = state.createdOptions.map((option, i) => {
 });
 
 return (
-  <div class="container my-5">
-    <div class="mx-0 mx-sm-auto">
-      <div class="card">
-        <div class="card-body">
-          <div>
-            <p>
-              <strong>"{nftContract}" NFT Poll Creator</strong>
-            </p>
-            <div class="form-group mb-3">
-              <label for="titleFormControlInput">Title</label>
-              <input
-                type="text"
-                class="form-control"
-                id="titleFormControlInput"
-                onChange={(e) => {
-                  State.update({ title: e.target.value });
-                }}
-              />
-            </div>
-            <div class="form-group">
-              <label for="descriptionFormControlTextarea">Description</label>
-              <textarea
-                class="form-control"
-                id="descriptionFormControlTextarea"
-                rows="3"
-                onChange={(e) => {
-                  State.update({ description: e.target.value });
-                }}
-              ></textarea>
-            </div>
-          </div>
-          <hr />
-          <div>{createdOptions}</div>
-          <div class="input-group mb-3">
+  <div class="mx-2 my-3">
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <p>
+            <strong>"{nftContract}" NFT Poll Creator</strong>
+          </p>
+          <div class="form-group mb-3">
+            <label for="titleFormControlInput">Title</label>
             <input
               type="text"
               class="form-control"
-              placeholder="A new poll option"
-              aria-label="A new poll option"
-              aria-describedby="basic-addon2"
+              id="titleFormControlInput"
               onChange={(e) => {
-                State.update({ newPollNoCommitted: e.target.value });
+                State.update({ title: e.target.value });
               }}
-              value={state.newPollNoCommitted}
             />
-            <div>
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                style={{
-                  "border-top-left-radius": 0,
-                  "border-bottom-left-radius": 0,
-                }}
-                disabled={!state.newPollNoCommitted}
-                onClick={() => {
-                  State.update({
-                    createdOptions: [
-                      ...state.createdOptions,
-                      { input: state.newPollNoCommitted },
-                    ],
-                    newPollNoCommitted: "",
-                  });
-                }}
-              >
-                Add
-              </button>
-            </div>
+          </div>
+          <div class="form-group">
+            <label for="descriptionFormControlTextarea">Description</label>
+            <textarea
+              class="form-control"
+              id="descriptionFormControlTextarea"
+              rows="3"
+              onChange={(e) => {
+                State.update({ description: e.target.value });
+              }}
+            ></textarea>
           </div>
         </div>
-        <div class="card-footer text-end">
-          <button
-            onClick={createPoll}
-            type="button"
-            class="btn btn-primary"
-            disabled={isCreateBtnDisabled()}
-          >
-            Create
-          </button>
+        <hr />
+        <div>{createdOptions}</div>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="A new poll option"
+            aria-label="A new poll option"
+            aria-describedby="basic-addon2"
+            onChange={(e) => {
+              State.update({ newPollNoCommitted: e.target.value });
+            }}
+            value={state.newPollNoCommitted}
+          />
+          <div>
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              style={{
+                "border-top-left-radius": 0,
+                "border-bottom-left-radius": 0,
+              }}
+              disabled={!state.newPollNoCommitted}
+              onClick={() => {
+                State.update({
+                  createdOptions: [
+                    ...state.createdOptions,
+                    { input: state.newPollNoCommitted },
+                  ],
+                  newPollNoCommitted: "",
+                });
+              }}
+            >
+              Add
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="card-footer text-end">
+        <button
+          onClick={createPoll}
+          type="button"
+          class="btn btn-primary"
+          disabled={isCreateBtnDisabled()}
+        >
+          Create
+        </button>
       </div>
     </div>
   </div>
