@@ -520,7 +520,6 @@ const renderMultipleChoiceInput = (
 };
 
 const renderTextInput = (questionNumber) => {
-  console.log("state.canVote in renderTextInput: ", state.canVote);
   return (
     <div>
       {!state.canVote ? (
