@@ -125,7 +125,7 @@ function sliceString(string, newStringLength) {
 }
 
 setInterval(() => {
-  const day = (new Date().getDay() + 1) % 7;
+  const day = new Date().getDay() == 0 ? 6 : new Date().getDay() - 1;
   const hours = new Date().getHours();
   const mins = new Date().getMinutes();
   const now = hours + mins / 60;
@@ -134,12 +134,15 @@ setInterval(() => {
   if (temp.on_off == "on") {
     for (var j = 0; j < temp.data.length; j++) {
       if (now >= temp.data[j]._from && now < temp.data[j]._to) {
+        // console.log(now, temp.data[j]._from, temp.data[j]._to, is_on);
         is_on = true;
       }
     }
   }
   State.update({ is_on: is_on });
 }, 1000);
+
+// console.log(finalData, temp, day);
 
 return (
   <div>
