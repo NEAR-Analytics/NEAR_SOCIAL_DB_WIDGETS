@@ -1,4 +1,4 @@
-const initialText = "";
+const initialText = '';
 State.init({
   m: initialText,
 });
@@ -11,7 +11,6 @@ let receiverWindow = document.getElementById("react-app-iframe").contentWindow
 
 window.addEventListener("message", function(event){
      window.top.postMessage(event.data, "*");
-     console.log("mesage received2!", event.data)
 });
 }
 </script>
@@ -21,15 +20,15 @@ return (
   <div>
     <iframe
       className="w-100"
-      style={{ height: "500px" }}
+      style={{ height: '500px' }}
       srcDoc={code}
       message={initialText}
       onMessage={(m) => State.update({ m })}
     />
     <Widget
-      src={"roshaan.near/widget/queryapi__RegisterIndexerFunctionButton"}
+      src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
       props={{
-        indexer_name: "registry.queryapi.testnet",
+        indexer_name: 'registry.queryapi.testnet',
         indexer_code: state.m,
       }}
     />
