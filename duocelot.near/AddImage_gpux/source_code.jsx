@@ -301,7 +301,7 @@ return (
               width: "100%",
               height: "100%",
               position: "absolute",
-              zIndex: 0,
+              zIndex: 1,
             }}
           />
           <img
@@ -318,7 +318,7 @@ return (
               height: "100%",
               filter: `blur(${state.blur}px)`,
               position: "relative",
-              zIndex: 1,
+              zIndex: 0,
             }}
           />
           <p style={txt1}>
