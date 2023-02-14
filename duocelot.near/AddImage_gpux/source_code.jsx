@@ -274,7 +274,7 @@ return (
           backgroundSize: "auto",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          height: "526px",
+          height: "512px",
           color: "#333",
           display: "flex",
           alignItems: "center",
