@@ -38,7 +38,7 @@ const Tabs = styled.div`
   height: 48px;
   background: #F8F9FA;
   border-bottom: ${(p) => (p.noMargin ? "none" : "1px solid #ECEEF0")};
-  margin-bottom: ${(p) => (p.noMargin ? "0" : "24px")};
+  margin-bottom: ${(p) => (p.noMargin ? "0" : p.halfMargin ? "12px" : "24px")};
 
   @media (max-width: 1200px) {
     display: flex;
@@ -76,7 +76,10 @@ const TabsButton = styled.button`
 
 return (
   <Wrapper negativeMargin={state.selectedTab === "activity"}>
-    <Tabs noMargin={state.selectedTab === "activity"}>
+    <Tabs
+      noMargin={state.selectedTab === "activity"}
+      halfMargin={state.selectedTab === "apps"}
+    >
       <TabsButton
         type="button"
         onClick={() => State.update({ selectedTab: "activity" })}
