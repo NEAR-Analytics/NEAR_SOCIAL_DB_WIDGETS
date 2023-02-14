@@ -74,7 +74,7 @@ function blockHeightToWidgetRender(blockHeight) {
       key={blockHeight}
       src={`bozon.near/widget/WidgetHistory.RenderCode`}
       props={{
-        pathToWidget: state.widgetPath,
+        pathToWidget: props.widgetPath,
         currentBlockHeight: blockHeight,
         prevBlockHeight: blocksChanges[index + 1],
       }}
