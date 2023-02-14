@@ -134,6 +134,7 @@ setInterval(() => {
     }
   }
   finalData.value._data.is_on = is_on;
+  console.log(new Date().toLocaleDateString(), is_on);
 }, 1000);
 
 return (
