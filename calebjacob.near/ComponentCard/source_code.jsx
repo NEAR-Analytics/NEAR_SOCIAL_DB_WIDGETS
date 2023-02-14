@@ -145,7 +145,7 @@ return (
           src="calebjacob.near/widget/ComponentTags"
           props={{
             tags,
-            scroll,
+            scroll: true,
           }}
         />
       </TagsWrapper>
