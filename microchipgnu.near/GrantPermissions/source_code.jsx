@@ -25,13 +25,15 @@ const handleGrantAccount = () => {
 
 return (
   <div class="d-flex flex-column gap-4">
-    <h4>Grant Permissions</h4>
-    {!!data.accountId && (
-      <p>
-        You are granting write permissions to{" "}
-        <span class="fw-bold">{data.accountId}</span>
-      </p>
-    )}
+    <div>
+      <h4>Grant Permissions</h4>
+      {!!data.accountId && (
+        <p>
+          You are granting write permissions to{" "}
+          <span class="fw-bold">{data.accountId}</span>
+        </p>
+      )}
+    </div>
     <div class="w-100 d-flex gap-4">
       <input id="accountid" type="text" value={state.account}></input>
       <button
@@ -49,7 +51,7 @@ return (
     <div>
       <h4>Future</h4>
       <ul>
-        <li>Show list of accounts permissions were granted </li>
+        <li>Show list of accounts that permissions were granted to</li>
       </ul>
     </div>
   </div>
