@@ -8,6 +8,7 @@ const Main = styled.div`
   display: grid;
   grid-template-columns: 284px minmax(0, 1fr) 284px;
   grid-gap: 16px;
+  padding-bottom: 24px;
 
   @media (max-width: 1200px) {
     display: block;
