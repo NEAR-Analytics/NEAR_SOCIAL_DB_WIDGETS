@@ -68,13 +68,13 @@ const getProgress = () => {
     if (date.getHours() < 6) timeDay = "Early Morning";
     else if (date.getHours() < 12) {
       timeDay = "Morning";
-      num = 6;
+      timeRange = 6;
     } else if (date.getHours() < 18) {
       timeDay = "Afternoon";
-      num = 12;
+      timeRange = 12;
     } else {
       timeDay = "Night";
-      num = 18;
+      timeRange = 18;
     }
 
     return {
