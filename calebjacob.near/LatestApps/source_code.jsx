@@ -62,7 +62,7 @@ const ButtonLink = styled.a`
   text-align: center;
   cursor: pointer;
   color: #11181C !important;
-  margin: 24px 0;
+  margin-top: 24px;
 
   &:hover,
   &:focus {
