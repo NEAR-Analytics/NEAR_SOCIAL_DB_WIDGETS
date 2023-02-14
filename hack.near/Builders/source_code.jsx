@@ -23,18 +23,18 @@ return (
           className="btn btn-success"
           href="https://near.social/#/hack.near/widget/SubmitProject"
         >
-          Submit
+          Edit Your Project Page
         </a>
+        <div className="mb-3"></div>
         <a
           className="btn btn-outline-primary"
           href="https://devgovgigs.near.social"
         >
-          Explore
+          Ideas
         </a>
         <a className="btn btn-outline-primary" href="https://t.me/NearSocial">
-          Chat
+          Group Chat
         </a>
-        <div className="mb-3"></div>
         <div className="mb-3"></div>
         <h3>Evolving Guides for Builders</h3>
         <div className="mb-3"></div>
