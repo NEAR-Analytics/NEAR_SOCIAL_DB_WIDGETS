@@ -19,7 +19,10 @@ return (
           </ul>
         </div>
         <div className="mb-3"></div>
-        <a className="btn btn-success" href="https://devgovgigs.near.social">
+        <a
+          className="btn btn-success"
+          href="https://near.social/#/hack.near/widget/SubmitProject"
+        >
           Submit
         </a>
         <a
