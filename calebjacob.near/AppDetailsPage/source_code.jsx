@@ -27,11 +27,10 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 
   @media (max-width: 770px) {
     gap: 16px;
-    margin-bottom: 24px;
   }
 `;
 
@@ -39,11 +38,7 @@ const Actions = styled.div`
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 32px;
-
-  @media (max-width: 770px) {
-    margin-bottom: 8px;
-  }
+  margin-bottom: 16px;
 `;
 
 const Title = styled.h1`
