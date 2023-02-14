@@ -2,7 +2,7 @@ return (
   <div className="container">
     <div className="row mb-3">
       <div>
-        <h1>Widget Factory</h1>
+        <h1>App Laboratory</h1>
         <h3>
           <b>Guide:</b> Building Open Web Apps
         </h3>
