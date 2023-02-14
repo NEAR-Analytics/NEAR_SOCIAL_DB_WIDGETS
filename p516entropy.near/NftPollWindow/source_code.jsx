@@ -19,7 +19,7 @@ const myNft = [
   "zxc",
   "qwe",
 ];
-const pollId = 0;
+const pollId = props.pollId;
 const nftContract = props.nftContract;
 if (pollId == null) {
   return "No pollId";
