@@ -39,6 +39,7 @@ const Tabs = styled.div`
   display: none;
   padding: 0 12px;
   height: 48px;
+  background: #F8F9FA;
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: 24px;
 
