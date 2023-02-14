@@ -9,6 +9,8 @@ const snapshot = post.snapshot;
 const isUnderPost = props.isUnderPost ? true : false;
 const parentId = Near.view(ownerId, "get_parent_id", { post_id: postId });
 
+const referralQueryParam = props.referral ? `&referral=${props.referral}` : "";
+
 const childPostIdsUnordered =
   Near.view(ownerId, "get_children_ids", {
     post_id: postId,
@@ -26,7 +28,9 @@ const timestamp = readableDate(
 );
 
 const linkToParent =
-  isUnderPost || !parentId ? null : (
+  isUnderPost || !parentId ? (
+    <div></div>
+  ) : (
     <div className="card-header">
       <a
         href={`https://near.social/#/devgovgigs.near/widget/Post?id=${parentId}`}
@@ -45,7 +49,7 @@ const allowedToEdit =
 
 const btnEditorWidget = (postType, name) => {
   return (
-    <li key={`btnEditorWidget-${postType}`}>
+    <li>
       <a
         class="dropdown-item"
         href="#"
@@ -62,7 +66,7 @@ const btnEditorWidget = (postType, name) => {
 };
 
 const editControl = allowedToEdit ? (
-  <div key={`editControl`} class="btn-group" role="group">
+  <div class="btn-group" role="group">
     <a
       class="card-link px-2"
       role="button"
@@ -81,13 +85,16 @@ const editControl = allowedToEdit ? (
       {btnEditorWidget("Comment", "Edit as a comment")}
     </ul>
   </div>
-) : null;
+) : (
+  <div></div>
+);
 
-const shareButton = props.isPreview ? null : (
+const shareButton = props.isPreview ? (
+  <div></div>
+) : (
   <a
-    key={`shareButton`}
     class="card-link"
-    href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}`}
+    href={`https://near.social/#/devgovgigs.near/widget/Post?id=${postId}${referralQueryParam}`}
     role="button"
     target="_blank"
     title="Open in new tab"
@@ -97,7 +104,7 @@ const shareButton = props.isPreview ? null : (
 );
 
 const header = (
-  <div key={`header`} className="card-header">
+  <div className="card-header">
     <small class="text-muted">
       <div class="row justify-content-between">
         <div class="col-4">
@@ -170,7 +177,7 @@ const onLike = () => {
 
 const btnCreatorWidget = (postType, icon, name) => {
   return (
-    <li key={`btnCreatorWidget-${postType}`}>
+    <li>
       <a
         class="dropdown-item"
         href="#"
@@ -186,8 +193,10 @@ const btnCreatorWidget = (postType, icon, name) => {
   );
 };
 
-const buttonsFooter = props.isPreview ? null : (
-  <div key={`buttonsFooter`} class="row">
+const buttonsFooter = props.isPreview ? (
+  <div></div>
+) : (
+  <div class="row">
     <div class="col-8">
       <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button
@@ -246,15 +255,57 @@ const buttonsFooter = props.isPreview ? null : (
 );
 
 const CreatorWidget = (postType) => {
-  return <div key={`CreatorWidget-${postType}`}></div>;
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Creator${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`nearmax.near/widget/PostEditor`}
+        props={{
+          postType,
+          parentId: postId,
+          mode: "Create",
+          referral: props.referral,
+        }}
+      />
+    </div>
+  );
 };
 
 const EditorWidget = (postType) => {
-  return <div key={`EditorWidget-${postType}`}></div>;
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Editor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      <Widget
+        src={`nearmax.near/widget/PostEditor`}
+        props={{
+          postType,
+          postId,
+          mode: "Edit",
+          author_id: post.author_id,
+          labels: post.snapshot.labels,
+          name: post.snapshot.name,
+          description: post.snapshot.description,
+          amount: post.snapshot.amount,
+          token: post.snapshot.sponsorship_token,
+          supervisor: post.snapshot.supervisor,
+          githubLink: post.snapshot.github_link,
+          referral: props.referral,
+        }}
+      />
+    </div>
+  );
 };
 
-const editorsFooter = props.isPreview ? null : (
-  <div key={`editorsFooter`} class="row" id={`accordion${postId}`}>
+const editorsFooter = props.isPreview ? (
+  <div></div>
+) : (
+  <div class="row" id={`accordion${postId}`}>
     {CreatorWidget("Comment")}
     {EditorWidget("Comment")}
     {CreatorWidget("Idea")}
@@ -274,24 +325,26 @@ const renamedPostType =
   snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
 
 const postLables = post.snapshot.labels ? (
-  <div key={`postLables`} class="card-title">
+  <div class="card-title">
     {post.snapshot.labels.map((label) => {
       return (
         <a
-          href={`https://near.social/#/devgovgigs.near/widget/Ideas?label=${label}`}
-          key={`label${label}of${postId}`}
+          href={`https://near.social/#/nearmax.near/widget/Ideas?label=${label}`}
         >
           <span class="badge text-bg-primary me-1">{label}</span>
         </a>
       );
     })}
   </div>
-) : null;
+) : (
+  <div></div>
+);
 
 const postTitle =
-  snapshot.post_type == "Comment" ? null : (
-    //(<div></div>)
-    <h5 key={`postTitle`} class="card-title">
+  snapshot.post_type == "Comment" ? (
+    <div></div>
+  ) : (
+    <h5 class="card-title">
       <div className="row justify-content-between">
         <div class="col-9">
           <i class={`bi ${emptyIcons[snapshot.post_type]}`}> </i>
@@ -303,37 +356,75 @@ const postTitle =
 
 const postExtra =
   snapshot.post_type == "Sponsorship" ? (
-    <div key={`postExtra`}>
-      <h6
-        class="card-subtitle mb-2 text-muted"
-        key={`sponsorshipAmount${postId}`}
-      >
+    <div>
+      <h6 class="card-subtitle mb-2 text-muted">
         Maximum amount: {snapshot.amount} {snapshot.sponsorship_token}
       </h6>
       <h6 class="card-subtitle mb-2 text-muted">
         Supervisor:{" "}
         <Widget
-          src={`mob.near/widget/ProfileLine`}
+          src={`neardevgov.near/widget/ProfileLine`}
           props={{ accountId: snapshot.supervisor }}
-          key={`sponsorshipSupervisor${postId}`}
         />
       </h6>
     </div>
-  ) : null;
+  ) : (
+    <div></div>
+  );
+
+const postsList =
+  props.isPreview || childPostIds.length == 0 ? (
+    <div></div>
+  ) : (
+    <div class="row">
+      <div class="collapse" id={`collapseChildPosts${postId}`}>
+        {childPostIds
+          ? childPostIds.map((childId) => {
+              return (
+                <Widget
+                  src={`${ownerId}/widget/Post`}
+                  props={{ id: childId, isUnderPost: true }}
+                  key={`subpost${childId}of${postId}`}
+                />
+              );
+            })
+          : ""}
+      </div>
+    </div>
+  );
 
 const Card = styled.div`
   &:hover {
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   }
+
 `;
+
+const limitedMarkdown = styled.div`
+      max-height: 20em;
+`;
+
+// Should make sure the posts under the currently top viewed post are limited in size.
+const descriptionArea = isUnderPost ? (
+  <limitedMarkdown className="overflow-auto">
+    <Markdown class="card-text" text={snapshot.description}></Markdown>
+  </limitedMarkdown>
+) : (
+  <Markdown class="card-text" text={snapshot.description}></Markdown>
+);
 
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
+    {linkToParent}
     {header}
     <div className="card-body">
+      {postLables}
       {postTitle}
+      {postExtra}
+      {descriptionArea}
       {buttonsFooter}
       {editorsFooter}
+      {postsList}
     </div>
   </Card>
 );
