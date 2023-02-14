@@ -10,6 +10,12 @@ let data = {
   accountId: state.account,
 };
 
+const accounts_granted_permissions = Near.view(
+  social_contract_id,
+  "debug_get_permissions",
+  { account_id: connected_account }
+);
+
 const handleGrantAccount = () => {
   const account = data.accountId;
 
@@ -22,6 +28,16 @@ const handleGrantAccount = () => {
     },
   ]);
 };
+
+const filtered_accounts_granted_permissions =
+  accounts_granted_permissions.filter((permissions) => {
+    return Object.keys(permissions[0])[0] === "AccountId";
+  });
+
+const map_filtered_accounts_granted_permissions =
+  filtered_accounts_granted_permissions.map((filter) => {
+    return filter[0].AccountId;
+  });
 
 return (
   <div class="d-flex flex-column gap-4">
@@ -48,10 +64,22 @@ return (
     <a href="https://near.social/#/mob.near/widget/MainPage.Post.Page?accountId=root.near&blockHeight=85026336">
       Learn more (Illia's post)
     </a>
+
+    <div>
+      <h4>Accounts Granted</h4>
+      <ul>
+        {map_filtered_accounts_granted_permissions.map((accountId) => {
+          return <li>{accountId}</li>;
+        })}
+      </ul>
+    </div>
     <div>
       <h4>Future</h4>
       <ul>
-        <li>Show list of accounts that permissions were granted to</li>
+        <li>Revoke permissions</li>
+        <li>
+          Set granular permissions (for example, just posting {account}/post/**)
+        </li>
       </ul>
     </div>
   </div>
