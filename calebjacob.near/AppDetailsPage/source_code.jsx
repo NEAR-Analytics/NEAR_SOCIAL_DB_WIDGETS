@@ -39,10 +39,10 @@ const Actions = styled.div`
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 
   @media (max-width: 770px) {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
   }
 `;
 
