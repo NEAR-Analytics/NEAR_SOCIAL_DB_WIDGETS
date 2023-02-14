@@ -33,9 +33,6 @@ const createPoll = () => {
   };
   console.log("NEAR.call: " + JSON.stringify(pollData));
   Near.call(CONTRACT, "create_vote", pollData);
-  if (props.hideCreator) {
-    props.hideCreator();
-  }
 };
 
 const createdOptions = state.createdOptions.map((option, i) => {
@@ -51,7 +48,9 @@ const createdOptions = state.createdOptions.map((option, i) => {
         value={option.input}
         onChange={(e) => {
           state.createdOptions[i] = e.target.value;
-          State.update({ createdOptions: state.createdOptions });
+          State.update({
+            createdOptions: state.createdOptions,
+          });
         }}
       />
       <div>
@@ -91,6 +90,7 @@ return (
               type="text"
               class="form-control"
               id="titleFormControlInput"
+              value={state.title}
               onChange={(e) => {
                 State.update({ title: e.target.value });
               }}
@@ -102,6 +102,7 @@ return (
               class="form-control"
               id="descriptionFormControlTextarea"
               rows="3"
+              value={state.description}
               onChange={(e) => {
                 State.update({ description: e.target.value });
               }}
