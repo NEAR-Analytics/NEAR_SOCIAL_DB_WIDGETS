@@ -80,7 +80,12 @@ function onCommit() {
 }
 
 const Wrapper = styled.div`
+  --padding: 24px;
   position: relative;
+
+  @media (max-width: 1200px) {
+    --padding: 12px;
+  }
 `;
 
 const Avatar = styled.div`
@@ -88,8 +93,8 @@ const Avatar = styled.div`
   height: 40px;
   pointer-events: none;
   position: absolute;
-  top: 24px;
-  left: 24px;
+  top: var(--padding);
+  left: var(--padding);
 
   img {
     object-fit: cover;
@@ -113,7 +118,7 @@ const Textarea = styled.div`
     height: unset;
     min-height: 160px;
     font: inherit;
-    padding: 24px 24px 88px 88px;
+    padding: var(--padding) var(--padding) calc(64px + var(--padding)) calc(64px + var(--padding));
     margin: 0;
     resize: none;
     background: none;
@@ -143,8 +148,8 @@ const Actions = styled.div`
   display: inline-flex;
   gap: 12px;
   position: absolute;
-  bottom: 24px;
-  right: 24px;
+  bottom: var(--padding);
+  right: var(--padding);
 
   .commit-post-button {
     background: #0091FF;
