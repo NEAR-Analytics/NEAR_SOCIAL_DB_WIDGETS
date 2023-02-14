@@ -22,6 +22,10 @@ const Section = styled.div`
     border-left: none;
     border-right: none;
     display: ${(p) => (p.active ? "block" : "none")};
+
+    > h2 {
+        display: none;
+    }
   }
 `;
 
@@ -30,6 +34,7 @@ const Tabs = styled.div`
   padding: 0 12px;
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
+  margin-bottom: 24px;
 
   @media (max-width: 1200px) {
     display: flex;
