@@ -2,6 +2,12 @@ State.init({
   selectedTab: "activity",
 });
 
+const Wrapper = styled.div`
+  @media (max-width: 1200px) {
+    margin: 0 -12px;
+  }
+`;
+
 const Main = styled.div`
   display: grid;
   grid-template-columns: 284px minmax(0, 1fr) 284px;
@@ -69,7 +75,7 @@ const TabsButton = styled.button`
 `;
 
 return (
-  <>
+  <Wrapper>
     <Tabs>
       <TabsButton
         type="button"
@@ -107,5 +113,5 @@ return (
         <Widget src="calebjacob.near/widget/CustomWidgetDisplay" />
       </Section>
     </Main>
-  </>
+  </Wrapper>
 );
