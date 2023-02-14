@@ -47,9 +47,10 @@ const createdOptions = state.createdOptions.map((option, i) => {
         aria-describedby="basic-addon2"
         value={option.input}
         onChange={(e) => {
-          state.createdOptions[i] = e.target.value;
+          const modifiedCreatedOptions = [...state.createdOptions];
+          modifiedCreatedOptions[i] = { input: e.target.value };
           State.update({
-            createdOptions: state.createdOptions,
+            createdOptions: modifiedCreatedOptions,
           });
         }}
       />
