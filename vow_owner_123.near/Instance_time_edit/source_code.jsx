@@ -138,7 +138,6 @@ State.init({
   hoveringElement: "",
   _account: "All",
   _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC",
-  _is_on: finalData.is_on ?? "off",
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
@@ -259,7 +258,6 @@ return (
           data: {
             schedule: finalData.schedule,
             time_zone: state._time_zone,
-            is_on: state._is_on,
           },
           style: { width: "100%", height: "1.5em" },
         }}
