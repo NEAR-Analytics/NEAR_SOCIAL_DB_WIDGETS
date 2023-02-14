@@ -1,5 +1,3 @@
-// near call social.near grant_write_permission ' --accountId yourproject.near --deposit 0.000000000000000000000001
-
 const connected_account = context.accountId;
 
 const social_contract_id = "social.near";
@@ -26,15 +24,33 @@ const handleGrantAccount = () => {
 };
 
 return (
-  <div>
-    <input id="accountid" type="text" value={state.account}></input>
-    <button
-      onClick={() => {
-        handleGrantAccount();
-      }}
-    >
-      {" "}
-      DUIT{" "}
-    </button>
+  <div class="d-flex flex-column gap-4">
+    <h4>Grant Permissions</h4>
+    {!!data.accountId && (
+      <p>
+        You are granting write permissions to{" "}
+        <span class="fw-bold">{data.accountId}</span>
+      </p>
+    )}
+    <div class="w-100 d-flex gap-4">
+      <input id="accountid" type="text" value={state.account}></input>
+      <button
+        onClick={() => {
+          handleGrantAccount();
+        }}
+      >
+        Grant
+      </button>
+    </div>
+
+    <a href="https://near.social/#/mob.near/widget/MainPage.Post.Page?accountId=root.near&blockHeight=85026336">
+      Learn more (Illia's post)
+    </a>
+    <div>
+      <h4>Future</h4>
+      <ul>
+        <li>Show list of accounts permissions were granted </li>
+      </ul>
+    </div>
   </div>
 );
