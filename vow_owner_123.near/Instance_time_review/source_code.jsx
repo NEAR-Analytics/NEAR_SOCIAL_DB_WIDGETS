@@ -1,5 +1,11 @@
 const _account = props.accountId ?? "All";
 const owner = context.accountId;
+
+State.init({
+  is_on: [],
+  accounts: [],
+});
+
 const card = {
   border: "1px solid black",
   borderRadius: "5px",
@@ -21,6 +27,7 @@ const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
 }
+
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
 var accountIds = ["All"];
@@ -119,6 +126,32 @@ const getFormatedTime = (time) => {
       : `${hours}:${mins == 0 ? "00" : mins} AM`;
   return formated;
 };
+console.log(finalData);
+
+setInterval(() => {
+  const day = new Date().getDay() == 0 ? 6 : new Date().getDay() - 1;
+  const hours = new Date().getHours();
+  const mins = new Date().getMinutes();
+  const now = hours + mins / 60;
+  var is_on_all = [];
+  var accounts = [];
+  for (var i = 0; i < finalData.length; i++) {
+    var is_on = false;
+    var temp = finalData[i].value._data[day];
+    if (temp.on_off == "on") {
+      for (var j = 0; j < temp.data.length; j++) {
+        if (now >= temp.data[j]._from && now < temp.data[j]._to) {
+          // console.log(now, temp.data[j]._from, temp.data[j]._to, is_on);
+          is_on = true;
+        }
+      }
+    }
+    accounts.push(finalData[i].accountId);
+    is_on_all.push(is_on);
+  }
+
+  State.update({ is_on: is_on_all, accounts: accounts });
+}, 1000);
 
 return (
   <div
@@ -219,22 +252,28 @@ return (
                             >
                               <span
                                 style={{
-                                  backgroundColor:
-                                    d.is_on == "on"
-                                      ? "rgb(217, 252, 239)"
-                                      : "rgb(255, 229, 229)",
+                                  backgroundColor: state.is_on[
+                                    state.accounts.indexOf(d.accountId)
+                                  ]
+                                    ? "rgb(217, 252, 239)"
+                                    : "rgb(255, 229, 229)",
                                   textAlign: "center",
                                   borderRadius: "16px",
                                   fontSize: "0.8rem",
-                                  color:
-                                    d.is_on == "on"
-                                      ? "rgb(0, 179, 125)"
-                                      : "rgb(255, 71, 71)",
+                                  color: state.is_on[
+                                    state.accounts.indexOf(d.accountId)
+                                  ]
+                                    ? "rgb(0, 179, 125)"
+                                    : "rgb(255, 71, 71)",
                                   fontWeight: "500",
                                   padding: "0.5rem 1rem",
                                 }}
                               >
-                                {d.is_on ?? "off"}
+                                {state.is_on[
+                                  state.accounts.indexOf(d.accountId)
+                                ]
+                                  ? "on"
+                                  : "off"}
                               </span>
                             </div>
                           </div>
