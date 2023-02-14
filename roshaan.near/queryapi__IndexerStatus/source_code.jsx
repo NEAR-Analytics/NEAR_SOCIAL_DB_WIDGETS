@@ -2,7 +2,7 @@
 let indexer_name = props.indexer_name ?? 'indexer_name';
 
 State.init({ logs: [], state: [] });
-const query = () => {
+fucntion query() {
   let responseJson = fetch(
     'https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql',
     {
