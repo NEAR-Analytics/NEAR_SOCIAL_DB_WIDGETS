@@ -79,6 +79,7 @@ initState({
   ipfsUpload: {},
   blur: 0,
   width: "auto",
+  margin: "4px",
 });
 
 function rollImage() {
@@ -122,6 +123,49 @@ const txt2 = {
   margin: "-44px 4px 4px 230px",
 };
 
+const Smoke = styled.div`
+  position: relative;
+  width: 100px;
+  height: 90px;
+  &:before,
+  &:after {
+    position: absolute;
+    content: '';
+    left: 70px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: grey;
+    border-radius: 50px 50px 20px 50px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  &:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+`;
+
+const SmokeFade = styled.keyframes`
+  0%{
+        transform: rotate(0deg) translateX(100px);
+        opacity: 1;
+        filter:blur(1px);
+    }
+    100% {
+      transform: rotate(35deg) translateY(-80px) translateX(-20px);
+        opacity: 0;
+        filter:blur(20px);
+`;
+
+const AnimatedSmoke = styled(Smoke)`
+  animation: ${SmokeFade} 1200ms ease-out infinite;
+  `;
+const AnimatedSmoke2 = styled(Smoke)`
+  animation: ${SmokeFade} 1200ms ease-out infinite;
+   animation-delay: 500ms;`;
+
 return (
   <div
     style={{
@@ -152,6 +196,7 @@ return (
         <img
           src="https://ipfs.fleek.co/ipfs/bafybeihjvub4e3yqyazxr62dxpbohji45wnx7hp7gadxjbiet2nrgkhapy"
           alt="VG Logo"
+          style={{ width: "300px", height: "auto" }}
         />
       </div>
 
@@ -391,6 +436,11 @@ return (
           }}
         ></div>
       </div>
+    </div>
+    <div style={{ backgroundColor: "red", width: "100%", height: "80px" }}>
+      {" "}
+      <AnimatedSmoke />
+      <AnimatedSmoke2 />
     </div>
   </div>
 );
