@@ -3,6 +3,11 @@ const style = props.style ?? "large";
 const font_small = style == "small" ? "0.8rem" : "0.9rem";
 const font_big = style == "small" ? "0.8rem" : "1rem";
 const data = Social.index("Instance_time", "schedule");
+
+State.init({
+  is_on: false,
+});
+
 if (!data) {
   return "Loading datas";
 }
@@ -133,8 +138,7 @@ setInterval(() => {
       }
     }
   }
-  finalData.value._data.is_on = is_on;
-  console.log(new Date().toLocaleDateString(), is_on);
+  State.update({ is_on: is_on });
 }, 1000);
 
 return (
@@ -303,21 +307,19 @@ return (
             <span
               style={{
                 backgroundColor:
-                  finalData.is_on == "on"
+                  state.is_on == "on"
                     ? "rgb(217, 252, 239)"
                     : "rgb(255, 229, 229)",
                 textAlign: "center",
                 borderRadius: "16px",
                 fontSize: font_small,
                 color:
-                  finalData.is_on == "on"
-                    ? "rgb(0, 179, 125)"
-                    : "rgb(255, 71, 71)",
+                  state.is_on == "on" ? "rgb(0, 179, 125)" : "rgb(255, 71, 71)",
                 fontWeight: "500",
                 padding: "0.5rem 1rem",
               }}
             >
-              {finalData.is_on ? "on" : "off"}
+              {state.is_on ? "on" : "off"}
             </span>
           </div>
 
