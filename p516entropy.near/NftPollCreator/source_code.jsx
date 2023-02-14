@@ -33,6 +33,9 @@ const createPoll = () => {
   };
   console.log("NEAR.call: " + JSON.stringify(pollData));
   Near.call(CONTRACT, "create_vote", pollData);
+  if (props.hideCreator) {
+    props.hideCreator();
+  }
 };
 
 const createdOptions = state.createdOptions.map((option, i) => {
