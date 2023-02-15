@@ -33,6 +33,7 @@ const ConnectButton = styled.button`
 
 State.init({
   activeTab: 'editor-window',
+  indexer_function_name: indexer_function_name,
 });
 const setActiveTab = (tab_name) => {
   State.update({ activeTab: tab_name });
@@ -66,7 +67,7 @@ return (
         <Widget
           src={'roshaan.near/widget/queryapi__IndexerFunctionEditor'}
           props={{
-            indexer_name: 'registry.queryapi.testnet',
+            indexer_name: indexer_function_name,
           }}
         />
         This is the Dashboard tab content. You can add any components or
