@@ -29,29 +29,16 @@ function selectTab(selectedTab) {
   State.update({ selectedTab });
 }
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 0 24px;
-  padding: 0 24px;
-
-  @media (max-width: 1200px) {
-    margin: 0 0 12px;
-    padding: 0 12px;
-    justify-content: center;
-
-    h2 {
-      display: none;
-    }
-  }
-`;
-
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
-  margin: 0;
+  margin: 0 0 24px;
+  padding: 0 24px;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const CreatePostWrapper = styled.div`
@@ -59,6 +46,15 @@ const CreatePostWrapper = styled.div`
 
   @media (max-width: 1200px) {
     border-top: none;
+  }
+`;
+
+const FilterWrapper = styled.div`
+  border-top: 1px solid #ECEEF0;
+  padding: 24px;
+
+  @media (max-width: 1200px) {
+    padding: 12px;
   }
 `;
 
@@ -101,34 +97,34 @@ const FeedWrapper = styled.div`
 
 return (
   <>
-    <Header>
-      <H2>Activity</H2>
-
-      {context.accountId && (
-        <PillSelect>
-          <PillSelectButton
-            type="button"
-            onClick={() => selectTab("all")}
-            selected={state.selectedTab === "all"}
-          >
-            All
-          </PillSelectButton>
-
-          <PillSelectButton
-            type="button"
-            onClick={() => selectTab("following")}
-            selected={state.selectedTab === "following"}
-          >
-            Following
-          </PillSelectButton>
-        </PillSelect>
-      )}
-    </Header>
+    <H2>Activity</H2>
 
     {context.accountId && (
-      <CreatePostWrapper>
-        <Widget src="calebjacob.near/widget/CreatePost" />
-      </CreatePostWrapper>
+      <>
+        <CreatePostWrapper>
+          <Widget src="calebjacob.near/widget/CreatePost" />
+        </CreatePostWrapper>
+
+        <FilterWrapper>
+          <PillSelect>
+            <PillSelectButton
+              type="button"
+              onClick={() => selectTab("all")}
+              selected={state.selectedTab === "all"}
+            >
+              All
+            </PillSelectButton>
+
+            <PillSelectButton
+              type="button"
+              onClick={() => selectTab("following")}
+              selected={state.selectedTab === "following"}
+            >
+              Following
+            </PillSelectButton>
+          </PillSelect>
+        </FilterWrapper>
+      </>
     )}
 
     <FeedWrapper>
