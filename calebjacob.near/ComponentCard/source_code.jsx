@@ -95,7 +95,6 @@ const TagsWrapper = styled.div`
 const ButtonLink = styled.a`
   padding: 8px;
   height: 32px;
-  background: #FBFCFD;
   border: 1px solid #D7DBDF;
   border-radius: 6px;
   font-weight: 600;
@@ -104,6 +103,7 @@ const ButtonLink = styled.a`
   text-align: center;
   cursor: pointer;
   color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+  background: #FBFCFD;
 
   &:hover,
   &:focus {
