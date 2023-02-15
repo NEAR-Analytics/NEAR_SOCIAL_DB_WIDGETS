@@ -71,7 +71,9 @@ const listMarket = () => {
     LISTING_DEPOSIT_IN_NEAR_PER_TOKEN * numTokensSelected
   ).toFixed(0);
 
-  const _price = Number(Big(price).mul(10).pow(24).toString())
+  const _price = Number(
+    Number(new Big(state.price).mul(new Big(10).pow(24)).toString())
+  )
     .toLocaleString()
     .replace(/,/g, "");
 
@@ -106,13 +108,13 @@ const listMarket = () => {
 return (
   <div class="d-flex flex-column gap-2">
     <div class="w-100 d-flex gap-4">
-      <input type="text" value={state.account}></input>
+      <input type="text" value={state.price}></input>
       <button
         onClick={() => {
           listMarket();
         }}
       >
-        List {numTokensSelected} tokens for {state.price}
+        List {numTokensSelected} tokens for {state.price}N
       </button>
     </div>
     {data.map(({ token_id, nft_contract_id }) => {
