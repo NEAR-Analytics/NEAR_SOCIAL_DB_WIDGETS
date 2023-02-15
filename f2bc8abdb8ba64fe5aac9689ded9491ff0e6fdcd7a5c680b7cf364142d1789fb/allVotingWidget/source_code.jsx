@@ -214,6 +214,10 @@ function getValidAnswers(answersToThisPoll) {
   return validOptionAndTimeAnswers;
 }
 
+const isQuestionOpen =
+  poll.value.startTimestamp < Date.now() &&
+  Date.now() < poll.value.endTimestamp;
+
 function setValidAnswersToThisPoll() {
   let answers = Social.index("poll_question", "answer-v3.1.1");
 
@@ -228,10 +232,6 @@ function setValidAnswersToThisPoll() {
   const validAnswersToThisPoll = getValidAnswers(answersToThisPoll);
 
   let hasVoted = userHasVoted(validAnswersToThisPoll);
-
-  const isQuestionOpen =
-    poll.value.startTimestamp < Date.now() &&
-    Date.now() < poll.value.endTimestamp;
 
   const canVote = !hasVoted && isQuestionOpen;
 
