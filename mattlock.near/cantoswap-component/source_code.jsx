@@ -8,6 +8,7 @@ const css = `
 
 img {
   height: 50px;
+  margin-bottom: 16px;
 }
 `;
 
