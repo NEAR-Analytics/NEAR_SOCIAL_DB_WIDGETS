@@ -598,7 +598,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      state.canVote ? (
+      !state.canVote ? (
         ""
       ) : isVoteValid() ? (
         <CommitButton
