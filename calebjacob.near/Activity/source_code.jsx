@@ -46,6 +46,7 @@ const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
+  margin: 0;
 `;
 
 const CreatePostWrapper = styled.div`
