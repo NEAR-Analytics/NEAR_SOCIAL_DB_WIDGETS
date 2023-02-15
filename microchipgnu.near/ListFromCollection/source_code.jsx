@@ -106,7 +106,7 @@ const listMarket = () => {
 };
 
 return (
-  <div class="d-flex flex-column gap-2">
+  <div class="d-flex flex-column gap-4">
     <h4>Multi-listing tool</h4>
 
     <div class="w-100">
@@ -125,53 +125,55 @@ return (
         </button>
       </div>
     </div>
-    {data.map(({ token_id, nft_contract_id }) => {
-      const key = `${token_id}::${nft_contract_id}`;
-      const addedToken = !!state.tokens[key];
+    <div>
+      <h4>Tokens from your collection</h4>
+      <div class="d-flex flex-wrap gap-4">
+        {data.map(({ token_id, nft_contract_id }) => {
+          const key = `${token_id}::${nft_contract_id}`;
+          const addedToken = !!state.tokens[key];
 
-      return (
-        <button
-          class={`p-2 ${
-            addedToken ? "bg-primary" : "bg-black"
-          } text-white d-flex gap-2 rounded`}
-          key={key}
-          onClick={() => {
-            if (!addedToken) {
-              addToListCart(token_id, nft_contract_id);
-            } else {
-              removeFromCart(token_id, nft_contract_id);
-            }
-          }}
-        >
-          <Widget
-            src="mob.near/widget/NftImage"
-            props={{
-              nft: {
-                tokenId: token_id,
-                contractId: nft_contract_id,
-              },
-              style: {
-                width: size,
-                height: size,
-                objectFit: "cover",
-                minWidth: size,
-                minHeight: size,
-                maxWidth: size,
-                maxHeight: size,
-                overflowWrap: "break-word",
-              },
-              thumbnail: "thumbnail",
-              className: "",
-              fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-            }}
-          />
-          <div>
-            <p>{token_id}</p>
-            <p>{nft_contract_id}</p>
-          </div>
-        </button>
-      );
-    })}
+          return (
+            <button
+              class={`p-2 ${
+                addedToken ? "bg-primary" : "bg-black"
+              } text-white rounded`}
+              key={key}
+              onClick={() => {
+                if (!addedToken) {
+                  addToListCart(token_id, nft_contract_id);
+                } else {
+                  removeFromCart(token_id, nft_contract_id);
+                }
+              }}
+            >
+              <Widget
+                src="mob.near/widget/NftImage"
+                props={{
+                  nft: {
+                    tokenId: token_id,
+                    contractId: nft_contract_id,
+                  },
+                  style: {
+                    width: size,
+                    height: size,
+                    objectFit: "cover",
+                    minWidth: size,
+                    minHeight: size,
+                    maxWidth: size,
+                    maxHeight: size,
+                    overflowWrap: "break-word",
+                  },
+                  thumbnail: "thumbnail",
+                  className: "",
+                  fallbackUrl:
+                    "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+                }}
+              />
+              <div></div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
   </div>
 );
