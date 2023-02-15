@@ -1,19 +1,20 @@
-const accountId = props.accountId;
+const CONTRACT = "nft-vote.near";
+const accountId = context.accountId;
 if (context.loading) {
   return "Loading";
 }
 if (!accountId) {
   return "Please sign in with NEAR wallet to use this widget";
 }
-const CONTRACT = "nft-vote.near";
 const pollId = props.pollId;
-const nftContract = props.nftContract;
 if (pollId == null) {
   return "No pollId";
 }
+const nftContract = props.nftContract;
 if (!nftContract) {
   return "No nftContract";
 }
+
 const userNftsData = Near.view(nftContract, "nft_tokens_for_owner", {
   account_id: accountId,
 });
