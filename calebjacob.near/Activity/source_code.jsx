@@ -65,6 +65,14 @@ const FilterWrapper = styled.div`
 const PillSelect = styled.div`
   display: inline-flex;
   align-items: center;
+
+  @media (max-width: 600px) {
+    width: 100%;
+
+    button {
+      flex-grow: 1;
+    }
+  }
 `;
 
 const PillSelectButton = styled.button`
