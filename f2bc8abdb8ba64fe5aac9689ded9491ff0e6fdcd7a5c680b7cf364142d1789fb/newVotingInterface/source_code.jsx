@@ -307,7 +307,7 @@ const renderModal = () => {
             </button>
           </div>
           <div
-            className="modal-body"
+            className="row modal-body"
             style={{
               width: "90%",
               borderRadius: "1rem",
