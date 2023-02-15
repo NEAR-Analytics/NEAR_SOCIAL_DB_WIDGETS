@@ -17,7 +17,12 @@ window.addEventListener("message", function(event){
 }
 </script>
 `;
-
+let QueryIndexerCode = () => {
+  Near.call(contractId, 'register_indexer_function', {
+    name: indexer_name,
+    code: indexer_code,
+  });
+};
 return (
   <div>
     <iframe
