@@ -52,7 +52,6 @@ const PillSelect = styled.div`
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
   align-items: center;
-  justify-content: center;
 
   @media (max-width: 1200px) {
     padding: 0 12px;
