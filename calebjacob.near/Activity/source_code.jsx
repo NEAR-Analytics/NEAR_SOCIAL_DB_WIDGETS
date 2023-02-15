@@ -41,17 +41,20 @@ const H2 = styled.h2`
   }
 `;
 
+const Content = styled.div`
+  @media (max-width: 1200px) {
+    > div:first-child {
+      border-top: none;
+    }
+  }
+`;
+
 const CreatePostWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
-
-  @media (max-width: 1200px) {
-    border-top: none;
-  }
 `;
 
 const FilterWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
-  border-bottom: 1px solid #ECEEF0;
   padding: 12px 24px;
 
   @media (max-width: 1200px) {
@@ -92,42 +95,46 @@ const PillSelectButton = styled.button`
   }
 `;
 
-const FeedWrapper = styled.div``;
+const FeedWrapper = styled.div`
+  border-top: 1px solid #ECEEF0;
+`;
 
 return (
   <>
     <H2>Activity</H2>
 
-    {context.accountId && (
-      <>
-        <CreatePostWrapper>
-          <Widget src="calebjacob.near/widget/CreatePost" />
-        </CreatePostWrapper>
+    <Content>
+      {context.accountId && (
+        <>
+          <CreatePostWrapper>
+            <Widget src="calebjacob.near/widget/CreatePost" />
+          </CreatePostWrapper>
 
-        <FilterWrapper>
-          <PillSelect>
-            <PillSelectButton
-              type="button"
-              onClick={() => selectTab("all")}
-              selected={state.selectedTab === "all"}
-            >
-              All
-            </PillSelectButton>
+          <FilterWrapper>
+            <PillSelect>
+              <PillSelectButton
+                type="button"
+                onClick={() => selectTab("all")}
+                selected={state.selectedTab === "all"}
+              >
+                All
+              </PillSelectButton>
 
-            <PillSelectButton
-              type="button"
-              onClick={() => selectTab("following")}
-              selected={state.selectedTab === "following"}
-            >
-              Following
-            </PillSelectButton>
-          </PillSelect>
-        </FilterWrapper>
-      </>
-    )}
+              <PillSelectButton
+                type="button"
+                onClick={() => selectTab("following")}
+                selected={state.selectedTab === "following"}
+              >
+                Following
+              </PillSelectButton>
+            </PillSelect>
+          </FilterWrapper>
+        </>
+      )}
 
-    <FeedWrapper>
-      <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
-    </FeedWrapper>
+      <FeedWrapper>
+        <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
+      </FeedWrapper>
+    </Content>
   </>
 );
