@@ -1,6 +1,7 @@
 const initialText = '';
 const indexer_function_name = props.indexer_function_name;
-const registry_contract_id = 'registry.queryapi.testnet';
+const registry_contract_id =
+  props.registry_contract_id || 'registry.queryapi.testnet';
 let accountId = context.accountId;
 
 if (!accountId) {
