@@ -9,6 +9,7 @@ const Main = styled.div`
   grid-template-columns: 284px minmax(0, 1fr) 284px;
   grid-gap: 16px;
   padding-bottom: 24px;
+  margin-top: calc(var(--body-top-padding) * -1);
 
   @media (max-width: 1200px) {
     display: block;
