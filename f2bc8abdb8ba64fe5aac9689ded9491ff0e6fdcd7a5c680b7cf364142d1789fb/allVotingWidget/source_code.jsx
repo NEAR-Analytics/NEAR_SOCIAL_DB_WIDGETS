@@ -2,8 +2,6 @@ if (!props.isPreview && !props.poll) {
   return "Property poll not set";
 }
 
-console.log("props.poll: ", props.poll);
-
 const isPreview = props.isPreview ?? false;
 
 let widgetOwner =
