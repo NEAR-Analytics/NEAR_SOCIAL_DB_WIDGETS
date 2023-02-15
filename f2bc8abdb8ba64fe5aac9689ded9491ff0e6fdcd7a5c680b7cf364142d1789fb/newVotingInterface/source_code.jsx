@@ -477,7 +477,7 @@ return (
           </h3>
           <Markdown
             text={descriptionText(state.poll.value.description)}
-            style={{ pointerEvent: all }}
+            style={{ pointerEvent: "all" }}
           />
 
           {state.poll.value.description.length > 501 &&
