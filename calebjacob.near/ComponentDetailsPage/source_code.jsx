@@ -182,6 +182,7 @@ return (
       <Widget
         src="calebjacob.near/widget/ComponentSummary"
         props={{
+          primaryAction: "open",
           size: "large",
           showTags: false,
           src,
