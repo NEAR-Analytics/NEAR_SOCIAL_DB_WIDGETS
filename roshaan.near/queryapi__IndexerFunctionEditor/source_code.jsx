@@ -1,4 +1,3 @@
-const initialText = '';
 const indexer_function_name = props.indexer_function_name;
 const registry_contract_id =
   props.registry_contract_id || 'registry.queryapi.testnet';
@@ -8,6 +7,15 @@ if (!accountId) {
   return 'Please sign in to use this widget.';
 }
 
+let QueryIndexerCode = () => {
+  Near.view(registry_contract_id, 'register_indexer_function', {
+    name: indexer_function_name,
+  });
+};
+let loadIndexerCode = QueryIndexerCode()
+if loadIndexerCode {
+  initialText = loadIndexerCode
+}
 State.init({
   m: initialText,
 });
@@ -25,11 +33,7 @@ window.addEventListener("message", function(event){
 </script>
 `;
 
-let QueryIndexerCode = () => {
-  Near.view(registry_contract_id, 'register_indexer_function', {
-    name: indexer_function_name,
-  });
-};
+
 return (
   <div>
     <iframe
