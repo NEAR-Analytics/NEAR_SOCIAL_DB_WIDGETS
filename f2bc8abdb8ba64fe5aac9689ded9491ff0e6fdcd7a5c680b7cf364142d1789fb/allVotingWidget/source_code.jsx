@@ -548,8 +548,6 @@ const renderTextInput = (questionNumber) => {
 
 setValidAnswersToThisPoll();
 
-console.log(isQuestionOpen, state.canVote, isVoteValid());
-
 return (
   <>
     {poll.value.questions.map((question, questionNumber) => {
@@ -600,9 +598,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      state.canVote ? (
-        ""
-      ) : isVoteValid() ? (
+      isVoteValid() ? (
         <CommitButton
           className="w-100"
           style={
