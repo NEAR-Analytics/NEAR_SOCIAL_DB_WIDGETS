@@ -29,12 +29,23 @@ function selectTab(selectedTab) {
   State.update({ selectedTab });
 }
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 24px;
+  padding: 0 24px;
+
+  @media (max-width: 1200px) {
+    margin: 0 0 12px;
+    padding: 0 12px;
+  }
+`;
+
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
-  margin: 0 0 24px;
-  padding: 0 24px;
 `;
 
 const CreatePostWrapper = styled.div`
@@ -46,15 +57,8 @@ const CreatePostWrapper = styled.div`
 `;
 
 const PillSelect = styled.div`
-  display: flex;
-  padding: 0 24px;
-  height: 48px;
-  border-top: 1px solid #ECEEF0;
+  display: inline-flex;
   align-items: center;
-
-  @media (max-width: 1200px) {
-    padding: 0 12px;
-  }
 `;
 
 const PillSelectButton = styled.button`
@@ -91,14 +95,10 @@ const FeedWrapper = styled.div`
 
 return (
   <>
-    <H2>Activity</H2>
+    <Header>
+      <H2>Activity</H2>
 
-    {context.accountId && (
-      <>
-        <CreatePostWrapper>
-          <Widget src="calebjacob.near/widget/CreatePost" />
-        </CreatePostWrapper>
-
+      {context.accountId && (
         <PillSelect>
           <PillSelectButton
             type="button"
@@ -116,7 +116,13 @@ return (
             Following
           </PillSelectButton>
         </PillSelect>
-      </>
+      )}
+    </Header>
+
+    {context.accountId && (
+      <CreatePostWrapper>
+        <Widget src="calebjacob.near/widget/CreatePost" />
+      </CreatePostWrapper>
     )}
 
     <FeedWrapper>
