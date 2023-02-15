@@ -85,6 +85,18 @@ return (
 
     {state.term && (
       <>
+        {state.profile?.length > 0 && (
+          <div>
+            <p>Profiles:</p>
+
+            <ul>
+              {state.profile.map((data, i) => (
+                <li key={i}>{data.author}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {state.post?.length > 0 && (
           <div>
             <p>Posts:</p>
