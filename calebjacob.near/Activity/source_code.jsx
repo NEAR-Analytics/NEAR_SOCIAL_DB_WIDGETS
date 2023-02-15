@@ -77,6 +77,7 @@ const PillSelect = styled.div`
 
 const PillSelectButton = styled.button`
   display: block;
+  position: relative;
   border: 1px solid #E6E8EB;
   border-right: none;
   padding: 3px 24px;
@@ -88,10 +89,16 @@ const PillSelectButton = styled.button`
   font-weight: 600;
   transition: all 200ms;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background: #ECEDEE;
     text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #006ADC !important;
+    box-shadow: 0 0 0 1px #006ADC;
+    z-index: 5;
   }
 
   &:first-child {
@@ -99,7 +106,7 @@ const PillSelectButton = styled.button`
   }
   &:last-child {
     border-radius: 0 6px 6px 0;
-    border: 1px solid #E6E8EB;
+    border-right: 1px solid #E6E8EB;
   }
 `;
 
