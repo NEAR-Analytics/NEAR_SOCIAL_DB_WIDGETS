@@ -43,6 +43,10 @@ const Tabs = styled.div`
     display: flex;
     margin-left: -12px;
     margin-right: -12px;
+
+    button {
+      flex: 1;
+    }
   }
 `;
 
