@@ -107,15 +107,23 @@ const listMarket = () => {
 
 return (
   <div class="d-flex flex-column gap-2">
-    <div class="w-100 d-flex gap-4">
-      <input type="text" value={state.price}></input>
-      <button
-        onClick={() => {
-          listMarket();
-        }}
-      >
-        List {numTokensSelected} tokens for {state.price}N
-      </button>
+    <h4>Multi-listing tool</h4>
+
+    <div class="w-100">
+      <div>
+        <p>Selected {numTokensSelected} tokens</p>
+        <p>Price: {state.price}N</p>
+      </div>
+      <div class="d-flex gap-2">
+        <input type="text" value={state.price}></input>
+        <button
+          onClick={() => {
+            listMarket();
+          }}
+        >
+          List
+        </button>
+      </div>
     </div>
     {data.map(({ token_id, nft_contract_id }) => {
       const key = `${token_id}::${nft_contract_id}`;
