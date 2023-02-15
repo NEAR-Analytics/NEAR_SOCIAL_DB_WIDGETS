@@ -19,7 +19,7 @@ const userNftsData = Near.view(nftContract, "nft_tokens_for_owner", {
   account_id: accountId,
 });
 const myNft = userNftsData.map((userNftData) => {
-  return userNftData.metadata.title;
+  return userNftData.token_id;
 });
 
 const getPollDetatils = (poll) => {
