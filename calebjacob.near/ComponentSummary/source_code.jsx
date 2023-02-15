@@ -26,6 +26,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
+  margin-bottom: 32px;
 
   @media (max-width: 770px) {
     gap: 16px;
