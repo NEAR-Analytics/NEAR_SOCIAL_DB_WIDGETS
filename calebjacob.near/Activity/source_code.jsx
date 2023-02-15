@@ -93,28 +93,30 @@ return (
   <>
     <H2>Activity</H2>
 
-    <CreatePostWrapper>
-      <Widget src="calebjacob.near/widget/CreatePost" />
-    </CreatePostWrapper>
-
     {context.accountId && (
-      <PillSelect>
-        <PillSelectButton
-          type="button"
-          onClick={() => selectTab("all")}
-          selected={state.selectedTab === "all"}
-        >
-          All
-        </PillSelectButton>
+      <>
+        <CreatePostWrapper>
+          <Widget src="calebjacob.near/widget/CreatePost" />
+        </CreatePostWrapper>
 
-        <PillSelectButton
-          type="button"
-          onClick={() => selectTab("following")}
-          selected={state.selectedTab === "following"}
-        >
-          Following
-        </PillSelectButton>
-      </PillSelect>
+        <PillSelect>
+          <PillSelectButton
+            type="button"
+            onClick={() => selectTab("all")}
+            selected={state.selectedTab === "all"}
+          >
+            All
+          </PillSelectButton>
+
+          <PillSelectButton
+            type="button"
+            onClick={() => selectTab("following")}
+            selected={state.selectedTab === "following"}
+          >
+            Following
+          </PillSelectButton>
+        </PillSelect>
+      </>
     )}
 
     <FeedWrapper>
