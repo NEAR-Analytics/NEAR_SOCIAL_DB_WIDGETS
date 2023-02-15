@@ -596,42 +596,9 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      state.canVote && isVoteValid() ? (
-        <CommitButton
-          className="w-100"
-          style={
-            state.hoveringElement != "voteButton"
-              ? {
-                  marginTop: "0.5rem",
-                  padding: "0.5rem",
-                  backgroundColor: "#000000",
-                  color: "#FFFFFF",
-                  fontSize: "1rem",
-                  borderRadius: "9px",
-                  border: "1.5px solid transparent",
-                }
-              : {
-                  marginTop: "0.5rem",
-                  padding: "0.5rem",
-                  backgroundColor: "#FFFFFF",
-                  color: "#000000",
-                  fontSize: "1rem",
-                  borderRadius: "9px",
-                  border: "1.5px solid #000000",
-                }
-          }
-          onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
-          onMouseLeave={() => State.update({ hoveringElement: "" })}
-          data={getPublicationParams()}
-          onCommit={() => {
-            setValidAnswersToThisPoll();
-          }}
-        >
-          Vote
-        </CommitButton>
-      ) : (
-        <>
-          <button
+      state.canVote ? (
+        isVoteValid() ? (
+          <CommitButton
             className="w-100"
             style={
               state.hoveringElement != "voteButton"
@@ -656,14 +623,55 @@ return (
             }
             onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
             onMouseLeave={() => State.update({ hoveringElement: "" })}
-            onClick={() => State.update({ showErrorsInForm: true })}
+            data={getPublicationParams()}
+            onCommit={() => {
+              setValidAnswersToThisPoll();
+            }}
           >
             Vote
-          </button>
-          {state.showErrorsInForm && (
-            <span className="text-danger">Please answer all the questions</span>
-          )}
-        </>
+          </CommitButton>
+        ) : (
+          <>
+            <button
+              className="w-100"
+              style={
+                state.hoveringElement != "voteButton"
+                  ? {
+                      marginTop: "0.5rem",
+                      padding: "0.5rem",
+                      backgroundColor: "#000000",
+                      color: "#FFFFFF",
+                      fontSize: "1rem",
+                      borderRadius: "9px",
+                      border: "1.5px solid transparent",
+                    }
+                  : {
+                      marginTop: "0.5rem",
+                      padding: "0.5rem",
+                      backgroundColor: "#FFFFFF",
+                      color: "#000000",
+                      fontSize: "1rem",
+                      borderRadius: "9px",
+                      border: "1.5px solid #000000",
+                    }
+              }
+              onMouseEnter={() =>
+                State.update({ hoveringElement: "voteButton" })
+              }
+              onMouseLeave={() => State.update({ hoveringElement: "" })}
+              onClick={() => State.update({ showErrorsInForm: true })}
+            >
+              Vote
+            </button>
+            {state.showErrorsInForm && (
+              <span className="text-danger">
+                Please answer all the questions
+              </span>
+            )}
+          </>
+        )
+      ) : (
+        ""
       )
     ) : (
       ""
