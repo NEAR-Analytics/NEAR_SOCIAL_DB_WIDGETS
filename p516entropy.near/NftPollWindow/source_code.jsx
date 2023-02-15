@@ -21,7 +21,6 @@ const userNftsData = Near.view(nftContract, "nft_tokens_for_owner", {
 const myNft = userNftsData.map((userNftData) => {
   return userNftData.metadata.title;
 });
-console.log(myNft);
 myNft.push("a", "b", "c", "d", "e");
 
 const getPollDetatils = (poll) => {
@@ -76,6 +75,8 @@ const getPollDetatils = (poll) => {
     topic: topic,
     votedTotal: votedTotal,
     myNftVoted: myNftVoted,
+    ownerId: poll.owner_id,
+    pollStatus: poll.status,
   };
 };
 
@@ -86,6 +87,8 @@ const updateState = () => {
     offset: 0,
   });
   asyncPolls.then((polls) => {
+    console.log(polls);
+
     const currentState = getPollDetatils(polls[pollId]);
     State.update({
       options: currentState.options,
@@ -93,6 +96,8 @@ const updateState = () => {
       description: currentState.description,
       myNftVoted: currentState.myNftVoted,
       votedTotal: currentState.votedTotal,
+      ownerId: currentState.ownerId,
+      pollStatus: currentState.pollStatus,
       topic: currentState.topic,
     });
   });
@@ -122,6 +127,16 @@ const vote = (answerId) => {
   console.log("NEAR.call: vote " + JSON.stringify(pollData));
   Near.call(CONTRACT, "vote", pollData);
   console.log("NEAR.call: vote finished");
+};
+
+const closePoll = () => {
+  const pollData = {
+    contract_id: nftContract,
+    index: pollId,
+  };
+  console.log("NEAR.call: close_vote " + JSON.stringify(pollData));
+  Near.call(CONTRACT, "close_vote", pollData);
+  console.log("NEAR.call: close_vote finished");
 };
 
 const displayOptionsToView = state.options.map((option) => {
@@ -236,6 +251,7 @@ return (
         <div>
           <p>
             <strong>{state.topic}</strong>
+            {state.pollStatus === 1 && <strong>(CLOSED)</strong>}
           </p>
           <p>{state.description}</p>
         </div>
@@ -247,6 +263,11 @@ return (
         )}
       </div>
       <div class="card-footer text-end">
+        {state.ownerId === accountId && (
+          <button type="button" onClick={closePoll} class="btn btn-danger">
+            Close
+          </button>
+        )}
         <button onClick={updateState} type="button" class="btn btn-primary">
           <i class="bi bi-repeat"></i>
         </button>
@@ -260,7 +281,7 @@ return (
             }}
             type="button"
             class="btn btn-primary"
-            disabled={state.availableToVote < 1}
+            disabled={state.availableToVote < 1 || state.pollStatus === 1}
           >
             Vote mode ({state.availableToVote} votes left)
           </button>
