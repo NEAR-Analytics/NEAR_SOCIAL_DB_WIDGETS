@@ -35,6 +35,7 @@ State.init({
   activeTab: 'editor-window',
   indexer_function_name: indexer_function_name,
 });
+
 const setActiveTab = (tab_name) => {
   State.update({ activeTab: tab_name });
 };
@@ -48,12 +49,12 @@ return (
       >
         Editor Window
       </Tab>
-      <Tab
+      {/* <Tab
         active={state.activeTab === 'graphql-playground'}
         onClick={() => setActiveTab('graphql-playground')}
       >
         GraphQL Playground
-      </Tab>
+      </Tab> */}
       <Tab
         active={state.activeTab === 'indexer-status'}
         onClick={() => setActiveTab('indexer-status')}
@@ -67,21 +68,17 @@ return (
         <Widget
           src={'roshaan.near/widget/queryapi__IndexerFunctionEditor'}
           props={{
-            indexer_name: indexer_function_name,
+            indexer_name: state.indexer_function_name,
           }}
         />
-        This is the Dashboard tab content. You can add any components or
-        information related to the dashboard here.
       </TabContent>
     )}
 
-    {state.activeTab === 'graphql-playground' && (
+    {/* {state.activeTab === 'graphql-playground' && (
       <TabContent>
         <Widget src={'roshaan.near/widget/queryapi__GraphQLPlaygroundView'} />
-        This is the GraphQL Playground tab content. You can add any components
-        or information related to the GraphQL Playground here.
       </TabContent>
-    )}
+    )} */}
 
     {state.activeTab === 'indexer-status' && (
       <TabContent>
