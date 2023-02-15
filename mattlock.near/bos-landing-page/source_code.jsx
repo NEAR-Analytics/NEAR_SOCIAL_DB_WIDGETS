@@ -25,7 +25,7 @@ const css = `
         font-size: 3rem;
         }
         h2 {
-            opacity: 0.7;
+            color: #ddd;
         }
         > div {
             display: flex;
@@ -42,6 +42,7 @@ const css = `
     height: 440px;
   transform-origin: 100% 0;
   transform: skew(-10deg);
+  border-right: 4px solid black;
 }
 
 .header-right {
@@ -71,7 +72,7 @@ const css = `
  .main {
      padding: 32px;
      p {
-         opacity: 0.7;
+         color: #ddd;
      }
  }
 `;
