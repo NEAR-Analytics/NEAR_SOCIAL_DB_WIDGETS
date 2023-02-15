@@ -1,5 +1,7 @@
+let questionNumber = props.questionNumber ?? -1;
+
 State.init({
-  questionNumber: -1,
+  questionNumber,
   somethingOnTop: false,
 });
 
@@ -30,7 +32,7 @@ function renderWithoutSomethingOnTop() {
 }
 
 function renderWithSomethingOnTop(widgetSrc) {
-  return <Widget src={widgetSrc} props={{}} />;
+  return <Widget src={widgetSrc} props={{ qn: 1 - state.questionNumber }} />;
 }
 
 return (
