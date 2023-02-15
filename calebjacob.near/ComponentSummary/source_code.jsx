@@ -127,6 +127,10 @@ const ButtonLink = styled.a`
   i {
     color: #7E868C;
   }
+
+  .bi-link-45deg {
+    font-size: 16px;
+  }
 `;
 
 const Text = styled.p`
@@ -210,7 +214,7 @@ return (
 
       <OverlayTrigger
         placement="top"
-        overlay={<Tooltip>Copy to clipboard</Tooltip>}
+        overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
       >
         <ButtonLink
           as="button"
@@ -227,9 +231,9 @@ return (
           {state.copiedShareUrl ? (
             <i className="bi bi-check-circle"></i>
           ) : (
-            <i className="bi bi-box-arrow-up-right"></i>
+            <i className="bi bi-link-45deg"></i>
           )}
-          Share URL
+          Share
         </ButtonLink>
       </OverlayTrigger>
     </Actions>
