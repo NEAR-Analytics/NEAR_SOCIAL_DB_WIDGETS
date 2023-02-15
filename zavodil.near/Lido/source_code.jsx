@@ -132,11 +132,16 @@ const css = fetch(
 
 if (!cssFont || !css) return "";
 
-const Theme = styled.div`
+if (!state.theme) {
+  State.update({
+    theme: styled.div`
     font-family: Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     ${cssFont}
     ${css}
-`;
+`,
+  });
+}
+const Theme = state.theme;
 
 // OUTPUT UI
 
