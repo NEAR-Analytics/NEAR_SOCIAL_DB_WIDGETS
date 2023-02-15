@@ -54,8 +54,6 @@ const CreatePostWrapper = styled.div`
 `;
 
 const FilterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
   border-top: 1px solid #ECEEF0;
   padding: 12px 24px;
 
