@@ -46,37 +46,39 @@ const CreatePostWrapper = styled.div`
   }
 `;
 
-const Tabs = styled.div`
+const PillSelect = styled.div`
   display: flex;
-  padding: 0 12px;
+  padding: 0 24px;
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
+  align-items: center;
 `;
 
-const TabsButton = styled.button`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  padding: 0 12px;
-  position: relative;
-  color: ${(p) => (p.selected ? "#11181C" : "#687076")};
-  background: none;
-  border: none;
-  outline: none;
+const PillSelectButton = styled.button`
+  display: block;
+  border: 1px solid #E6E8EB;
+  border-right: none;
+  padding: 3px 8px;
+  border-radius: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: ${(p) => (p.selected ? "#fff" : "#687076")};
+  background: ${(p) => (p.selected ? "#006ADC !important" : "#FBFCFD")};
+  font-weight: 600;
+  transition: all 200ms;
 
-  &:hover {
-    color: #11181C;
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
   }
 
-  &::after {
-    content: '';
-    display: ${(p) => (p.selected ? "block" : "none")};
-    position: absolute;
-    bottom: 0;
-    left: 12px;
-    right: 12px;
-    height: 3px;
-    background: #0091FF;
+  &:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+  &:last-child {
+    border-radius: 0 6px 6px 0;
+    border: 1px solid #E6E8EB;
   }
 `;
 
@@ -88,24 +90,24 @@ return (
       <Widget src="calebjacob.near/widget/CreatePost" />
     </CreatePostWrapper>
 
-    <Tabs>
-      <TabsButton
+    <PillSelect>
+      <PillSelectButton
         type="button"
         onClick={() => selectTab("all")}
         selected={state.selectedTab === "all"}
       >
         All
-      </TabsButton>
+      </PillSelectButton>
 
-      <TabsButton
+      <PillSelectButton
         type="button"
         onClick={() => selectTab("following")}
         selected={state.selectedTab === "following"}
         disabled={!context.accountId}
       >
         Following
-      </TabsButton>
-    </Tabs>
+      </PillSelectButton>
+    </PillSelect>
 
     <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
   </>
