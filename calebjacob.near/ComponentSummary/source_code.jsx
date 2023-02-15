@@ -185,11 +185,11 @@ return (
       <ButtonLink href={`/#/edit/${src}`}>
         {context.accountId === accountId ? (
           <>
-            <i class="bi bi-pencil-fill"></i> Edit
+            <i className="bi bi-pencil-fill"></i> Edit
           </>
         ) : (
           <>
-            <i class="bi bi-git"></i> Fork
+            <i className="bi bi-git"></i> Fork
           </>
         )}
       </ButtonLink>
@@ -197,7 +197,7 @@ return (
       <ButtonLink
         href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}&tab=source`}
       >
-        <i class="bi bi-code-square"></i>
+        <i className="bi bi-code-square"></i>
         View Source
       </ButtonLink>
 
@@ -218,9 +218,9 @@ return (
           }}
         >
           {state.copiedShareUrl ? (
-            <i class="bi bi-check-circle"></i>
+            <i className="bi bi-check-circle"></i>
           ) : (
-            <i class="bi bi-box-arrow-up-right"></i>
+            <i className="bi bi-box-arrow-up-right"></i>
           )}
           Share URL
         </ButtonLink>
