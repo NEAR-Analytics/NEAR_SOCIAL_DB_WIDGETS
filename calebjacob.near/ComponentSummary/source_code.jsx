@@ -12,10 +12,12 @@ const size = props.size || "large";
 
 const sizes = {
   medium: {
+    gap: "16px",
     thumbnail: "56px",
     title: "16px",
   },
   large: {
+    gap: "16px",
     thumbnail: "100px",
     title: "32px",
   },
@@ -26,7 +28,7 @@ const Wrapper = styled.div``;
 const Header = styled.div`
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: ${(p) => sizes[p.size].gap};
   margin-bottom: 32px;
 
   @media (max-width: 770px) {
@@ -118,7 +120,7 @@ const Text = styled.p`
 
 return (
   <Wrapper>
-    <Header>
+    <Header size={size}>
       <Thumbnail size={size}>
         <Widget
           src="mob.near/widget/Image"
