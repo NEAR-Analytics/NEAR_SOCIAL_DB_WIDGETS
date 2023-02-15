@@ -107,7 +107,7 @@ const listMarket = () => {
 
 return (
   <div class="d-flex flex-column gap-4">
-    <h4>Multi-listing tool</h4>
+    <h4>Multi-listing tool for NFTs</h4>
 
     <div class="w-100">
       <div>
