@@ -90,9 +90,11 @@ return (
   <>
     <H2>Activity</H2>
 
-    <CreatePostWrapper>
-      <Widget src="calebjacob.near/widget/CreatePost" />
-    </CreatePostWrapper>
+    {context.accountId && (
+      <CreatePostWrapper>
+        <Widget src="calebjacob.near/widget/CreatePost" />
+      </CreatePostWrapper>
+    )}
 
     {context.accountId && (
       <PillSelect>
