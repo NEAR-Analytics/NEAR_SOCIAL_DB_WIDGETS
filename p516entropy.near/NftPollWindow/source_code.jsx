@@ -21,7 +21,6 @@ const userNftsData = Near.view(nftContract, "nft_tokens_for_owner", {
 const myNft = userNftsData.map((userNftData) => {
   return userNftData.metadata.title;
 });
-myNft.push("a", "b", "c", "d", "e");
 
 const getPollDetatils = (poll) => {
   console.log(poll);
@@ -263,7 +262,7 @@ return (
         )}
       </div>
       <div class="card-footer text-end">
-        {state.ownerId === accountId && (
+        {state.ownerId === accountId && state.pollStatus === 0 && (
           <button type="button" onClick={closePoll} class="btn btn-danger">
             Close
           </button>
