@@ -1,8 +1,11 @@
+let initialText = '';
 const indexer_function_name = props.indexer_function_name;
 const registry_contract_id =
   props.registry_contract_id || 'registry.queryapi.testnet';
 let accountId = context.accountId;
-
+State.init({
+  m: initialText,
+});
 if (!accountId) {
   return 'Please sign in to use this widget.';
 }
@@ -12,13 +15,11 @@ let QueryIndexerCode = () => {
     name: indexer_function_name,
   });
 };
-let loadIndexerCode = QueryIndexerCode()
-if loadIndexerCode {
-  initialText = loadIndexerCode
+let loadIndexerCode = QueryIndexerCode();
+if (loadIndexerCode !== undefined) {
+  state.update({ m: loadIndexerCode });
+  initialText = loadIndexerCode;
 }
-State.init({
-  m: initialText,
-});
 
 const code = `
 <iframe id="react-app-iframe" onload="test()" src="https://query-api-react.vercel.app/query-api-editor" width="1250px" height="500px"></iframe>
@@ -32,7 +33,6 @@ window.addEventListener("message", function(event){
 }
 </script>
 `;
-
 
 return (
   <div>
