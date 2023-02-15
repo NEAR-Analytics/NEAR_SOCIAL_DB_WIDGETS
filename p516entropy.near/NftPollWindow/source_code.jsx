@@ -124,7 +124,7 @@ const vote = (answerId) => {
     nft_token_id: myNftNotVoted[0],
   };
   console.log("NEAR.call: vote " + JSON.stringify(pollData));
-  Near.call(CONTRACT, "vote", pollData);
+  Near.call(CONTRACT, "vote", pollData, 70 * Math.pow(10, 12));
   console.log("NEAR.call: vote finished");
 };
 
