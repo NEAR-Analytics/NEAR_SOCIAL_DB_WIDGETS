@@ -1,5 +1,10 @@
 const initialText = '';
 const indexer_function_name = props.indexer_function_name;
+let accountId = context.accountId;
+
+if (!accountId) {
+  return 'Please sign in to use this widget.';
+}
 
 State.init({
   m: initialText,
