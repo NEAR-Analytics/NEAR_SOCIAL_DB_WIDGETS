@@ -47,7 +47,7 @@ return (
     <Widget
       src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
       props={{
-        indexer_name: 'Roshaans indexer',
+        indexer_name: 'Roshaans_indexer',
         indexer_code: state.m,
       }}
     />
