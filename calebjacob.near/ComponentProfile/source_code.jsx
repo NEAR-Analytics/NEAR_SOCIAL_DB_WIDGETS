@@ -36,7 +36,7 @@ const Text = styled.p`
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
-  white-space: nowrap;
+  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
 `;
 
 const Thumbnail = styled.div`
