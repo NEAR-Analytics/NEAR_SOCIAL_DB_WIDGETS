@@ -6,6 +6,7 @@ const size = "5em";
 
 State.init({
   tokens: {},
+  price: 0,
 });
 
 const _data = fetch("https://graph.mintbase.xyz", {
@@ -70,6 +71,10 @@ const listMarket = () => {
     LISTING_DEPOSIT_IN_NEAR_PER_TOKEN * numTokensSelected
   ).toFixed(0);
 
+  const _price = Number(Big(price).mul(10).pow(24).toString())
+    .toLocaleString()
+    .replace(/,/g, "");
+
   const approvals = Object.values(state.tokens).map((token) => {
     return {
       methodName: "nft_approve",
@@ -79,7 +84,7 @@ const listMarket = () => {
         token_id: token.tokenId,
         account_id: marketAddress,
         msg: JSON.stringify({
-          price: 1,
+          price: _price,
         }),
       },
       deposit: 800000000000000000000,
@@ -100,13 +105,16 @@ const listMarket = () => {
 
 return (
   <div class="d-flex flex-column gap-2">
-    <button
-      onClick={() => {
-        listMarket();
-      }}
-    >
-      List {numTokensSelected} tokens for 1N
-    </button>
+    <div class="w-100 d-flex gap-4">
+      <input type="text" value={state.account}></input>
+      <button
+        onClick={() => {
+          listMarket();
+        }}
+      >
+        List {numTokensSelected} tokens for {state.price}
+      </button>
+    </div>
     {data.map(({ token_id, nft_contract_id }) => {
       const key = `${token_id}::${nft_contract_id}`;
       const addedToken = !!state.tokens[key];
