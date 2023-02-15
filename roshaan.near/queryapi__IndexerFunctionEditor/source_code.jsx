@@ -41,13 +41,13 @@ return (
       className="w-100"
       style={{ height: '500px' }}
       srcDoc={code}
-      message={stae.m}
+      message={state.m}
       onMessage={(m) => State.update({ m })}
     />
     <Widget
       src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
       props={{
-        indexer_name: 'registry.queryapi.testnet',
+        indexer_name: "roshaan's indexer",
         indexer_code: state.m,
       }}
     />
