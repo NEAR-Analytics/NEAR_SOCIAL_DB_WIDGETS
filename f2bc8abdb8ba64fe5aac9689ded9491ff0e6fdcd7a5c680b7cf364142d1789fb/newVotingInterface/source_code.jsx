@@ -475,7 +475,10 @@ return (
           >
             Description
           </h3>
-          <Markdown text={descriptionText(state.poll.value.description)} />
+          <Markdown
+            text={descriptionText(state.poll.value.description)}
+            onMention={undefined}
+          />
 
           {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
