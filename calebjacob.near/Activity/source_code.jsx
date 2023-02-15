@@ -70,7 +70,7 @@ const PillSelect = styled.div`
     width: 100%;
 
     button {
-      flex-grow: 1;
+      flex: 1;
     }
   }
 `;
