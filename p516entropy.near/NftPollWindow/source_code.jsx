@@ -22,6 +22,7 @@ const myNft = userNftsData.map((userNftData) => {
   return userNftData.metadata.title;
 });
 console.log(myNft);
+myNft.push("a", "b", "c", "d", "e");
 
 const getPollDetatils = (poll) => {
   console.log(poll);
