@@ -39,7 +39,6 @@ const H2 = styled.h2`
 
 const CreatePostWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
-  border-bottom: 1px solid #ECEEF0;
 
   @media (max-width: 1200px) {
     border-top: none;
@@ -50,7 +49,7 @@ const PillSelect = styled.div`
   display: flex;
   padding: 0 24px;
   height: 48px;
-  border-bottom: 1px solid #ECEEF0;
+  border-top: 1px solid #ECEEF0;
   align-items: center;
 
   @media (max-width: 1200px) {
@@ -86,15 +85,17 @@ const PillSelectButton = styled.button`
   }
 `;
 
+const FeedWrapper = styled.div`
+  border-top: 1px solid #ECEEF0;
+`;
+
 return (
   <>
     <H2>Activity</H2>
 
-    {context.accountId && (
-      <CreatePostWrapper>
-        <Widget src="calebjacob.near/widget/CreatePost" />
-      </CreatePostWrapper>
-    )}
+    <CreatePostWrapper>
+      <Widget src="calebjacob.near/widget/CreatePost" />
+    </CreatePostWrapper>
 
     {context.accountId && (
       <PillSelect>
@@ -116,6 +117,8 @@ return (
       </PillSelect>
     )}
 
-    <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
+    <FeedWrapper>
+      <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
+    </FeedWrapper>
   </>
 );
