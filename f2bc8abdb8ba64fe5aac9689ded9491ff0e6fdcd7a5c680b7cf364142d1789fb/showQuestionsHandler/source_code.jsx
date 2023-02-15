@@ -94,7 +94,10 @@ const renderModal = () => {
               <span ariaHidden="true">&times;</span>
             </button>
           </div>
-          <div className="modal-body" style={{ backgroundColor: "#FAFAFB" }}>
+          <div
+            className="row modal-body"
+            style={{ backgroundColor: "#FAFAFB" }}
+          >
             <Widget
               src={`${widgetOwner}/widget/newVotingInterface`}
               props={{
