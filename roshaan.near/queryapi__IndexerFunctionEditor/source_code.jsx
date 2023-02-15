@@ -1,4 +1,5 @@
 const initialText = '';
+
 State.init({
   m: initialText,
 });
