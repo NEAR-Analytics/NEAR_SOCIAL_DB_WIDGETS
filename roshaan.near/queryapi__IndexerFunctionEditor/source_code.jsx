@@ -1,5 +1,5 @@
 let initialText = '';
-const indexer_function_name = props.indexer_function_name;
+const indexer_function_name = props.indexer_name;
 const registry_contract_id =
   props.registry_contract_id || 'registry.queryapi.testnet';
 let accountId = context.accountId;
@@ -47,7 +47,7 @@ return (
     <Widget
       src={'roshaan.near/widget/queryapi__RegisterIndexerFunctionButton'}
       props={{
-        indexer_name: "roshaan's indexer",
+        indexer_name: 'Roshaans indexer',
         indexer_code: state.m,
       }}
     />
