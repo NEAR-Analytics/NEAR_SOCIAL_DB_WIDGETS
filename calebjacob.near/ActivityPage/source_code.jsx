@@ -75,10 +75,7 @@ const TabsButton = styled.button`
 
 return (
   <Wrapper negativeMargin={state.selectedTab === "activity"}>
-    <Tabs
-      noMargin={state.selectedTab === "activity"}
-      halfMargin={state.selectedTab === "apps"}
-    >
+    <Tabs halfMargin={state.selectedTab === "apps"}>
       <TabsButton
         type="button"
         onClick={() => State.update({ selectedTab: "activity" })}
