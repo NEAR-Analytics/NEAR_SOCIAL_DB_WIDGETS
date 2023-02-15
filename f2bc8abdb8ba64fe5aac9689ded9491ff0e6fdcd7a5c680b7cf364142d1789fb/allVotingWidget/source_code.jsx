@@ -596,7 +596,7 @@ return (
       );
     })}
     {isQuestionOpen ? (
-      !state.canVote && isVoteValid() ? (
+      state.canVote && isVoteValid() ? (
         <CommitButton
           className="w-100"
           style={
