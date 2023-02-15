@@ -1,3 +1,5 @@
+if (!props.src) return "";
+
 State.init({
   copiedShareUrl: false,
 });
