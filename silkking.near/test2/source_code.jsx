@@ -1,5 +1,5 @@
 let questionNumber = props.questionNumber ?? -1;
-
+console.log(props.questionNumber);
 State.init({
   questionNumber,
   somethingOnTop: false,
