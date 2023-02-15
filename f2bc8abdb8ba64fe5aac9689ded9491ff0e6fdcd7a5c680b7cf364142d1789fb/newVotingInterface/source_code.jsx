@@ -117,13 +117,6 @@ const QUESTION_STATUSES = {
   },
 };
 
-const renderMention = (accountId) => (
-  <Widget
-    src="mob.near/widget/ProfileLine"
-    props={{ accountId, hideAccountId: true, tooltip: true }}
-  />
-);
-
 /********** End constants ************/
 
 /********** Start styles ************/
@@ -482,10 +475,7 @@ return (
           >
             Description
           </h3>
-          <Markdown
-            text={descriptionText(state.poll.value.description)}
-            onMention={renderMention}
-          />
+          <Markdown text={descriptionText(state.poll.value.description)} />
 
           {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
