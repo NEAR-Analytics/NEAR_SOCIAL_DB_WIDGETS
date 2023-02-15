@@ -28,10 +28,6 @@ const Section = styled.div`
     border-right: none;
     display: ${(p) => (p.active ? "block" : "none")};
     margin: ${(p) => (p.negativeMargin ? "0 -12px" : "0")};
-
-    > h2 {
-        display: ${(p) => (p.hideTitle ? "none" : "")};
-    }
   }
 `;
 
@@ -112,12 +108,7 @@ return (
       <Section active={state.selectedTab === "apps"}>
         <Widget src="calebjacob.near/widget/LatestApps" />
       </Section>
-      <Section
-        hideTitle
-        negativeMargin
-        primary
-        active={state.selectedTab === "activity"}
-      >
+      <Section negativeMargin primary active={state.selectedTab === "activity"}>
         <Widget src="calebjacob.near/widget/Activity" />
       </Section>
       <Section active={state.selectedTab === "explore"}>
