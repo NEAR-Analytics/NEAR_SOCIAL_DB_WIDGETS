@@ -194,12 +194,19 @@ return (
         )}
       </ButtonLink>
 
-      <ButtonLink
-        href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}&tab=source`}
-      >
-        <i className="bi bi-code-square"></i>
-        View Source
-      </ButtonLink>
+      {props.onViewSource ? (
+        <ButtonLink as="button" type="button" onClick={props.onViewSource}>
+          <i className="bi bi-code-square"></i>
+          View Source
+        </ButtonLink>
+      ) : (
+        <ButtonLink
+          href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}&tab=source`}
+        >
+          <i className="bi bi-code-square"></i>
+          View Source
+        </ButtonLink>
+      )}
 
       <OverlayTrigger
         placement="top"
