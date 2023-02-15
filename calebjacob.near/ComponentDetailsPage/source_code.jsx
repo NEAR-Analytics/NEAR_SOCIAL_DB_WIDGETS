@@ -257,14 +257,14 @@ return (
                 target="_blank"
               >
                 {metadata.linktree.website}
-                <i class="bi bi-box-arrow-up-right"></i>
+                <i className="bi bi-box-arrow-up-right"></i>
               </TextLink>
             </div>
           )}
 
           <div>
             <Text small>
-              <i class="bi bi-clock"></i>
+              <i className="bi bi-clock"></i>
               Last updated
               <Widget
                 src="mob.near/widget/TimeAgo"
