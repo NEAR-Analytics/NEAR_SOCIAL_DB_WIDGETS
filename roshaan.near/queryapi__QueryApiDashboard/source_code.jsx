@@ -63,7 +63,7 @@ return (
 
     {state.activeTab === 'editor-window' && (
       <TabContent>
-        <Widget src={'roshaan.near/widget/queryapi__IndexerFunctionEditor' props={{indexer_function_name}}} />
+        <Widget src={'roshaan.near/widget/queryapi__IndexerFunctionEditor' props={indexer_function_name}} />
         This is the Dashboard tab content. You can add any components or
         information related to the dashboard here.
       </TabContent>
