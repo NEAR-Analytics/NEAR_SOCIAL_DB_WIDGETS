@@ -1,9 +1,37 @@
+const fontUrl = `https://ipfs.io/ipfs/bafkreicrs3gh7f77yhpw4xiejx35cd56jcczuhvqbwkn77g2ztkrjejopa`;
+
+const css = `
+@font-face {
+    font-family: "Pixter";
+    src: url("${fontUrl}");
+}
+
+img {
+  height: 50px;
+}
+`;
+
+if (!state.theme) {
+  State.update({
+    theme: styled.div`
+    font-family: Pixter;
+    background: black;
+    color: white;
+    padding: 32px;
+    ${css}
+`,
+  });
+}
+const Theme = state.theme;
+
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 if (!sender) return "Please login first";
 
 const PROPS = Object.assign(
   {
     contractName: "cantoswap.fi",
+    contractImg:
+      "https://www.cantoswap.fi/static/media/cantoswap_logo.07d38228.png",
     contractAddress: "0xe6e35e2AFfE85642eeE4a534d4370A689554133c",
     abiUrl:
       "https://gist.githubusercontent.com/mattlockyer/5395796cadd94a4836208956a69cb4f3/raw/19f2f00a513d73e4dc4c42b521658cf56cddece4/uniV2Abi",
@@ -246,10 +274,10 @@ const swapTokens = () => {
 };
 
 return (
-  <>
-    <h3>Swap Tokens</h3>
+  <Theme>
+    <img src={PROPS.contractImg} />
     <p>
-      Where: {PROPS.contractName} -
+      {PROPS.contractName} -
       <a
         href={`https://tuber.build/address/${PROPS.contractAddress}`}
         target="_blank"
@@ -277,7 +305,11 @@ return (
       </select>
       <p>Balance: {state.tokenFromBalance}</p>
       <p>Allowance: {state.allowanceFrom}</p>
-      {state.showApprove && <button onClick={handleApprove}>Approve</button>}
+      {state.showApprove && (
+        <button class="btn btn-success" onClick={handleApprove}>
+          Approve
+        </button>
+      )}
     </div>
 
     <div class="mb-3">
@@ -301,7 +333,7 @@ return (
         value={state.amount}
         class="form-control"
         id="amount"
-        placeholder=""
+        placeholder="1"
         onChange={(e) => {
           handleUpdateAmount(e.target.value);
           State.update({ amount: e.target.value });
@@ -310,7 +342,9 @@ return (
     </div>
 
     <div class="mb-3">
-      <button onClick={swapTokens}>Swap</button>
+      <button onClick={swapTokens} class="btn btn-success">
+        Swap
+      </button>
     </div>
-  </>
+  </Theme>
 );
