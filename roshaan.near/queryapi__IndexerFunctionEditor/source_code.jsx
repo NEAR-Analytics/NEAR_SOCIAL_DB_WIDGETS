@@ -26,7 +26,7 @@ window.addEventListener("message", function(event){
 `;
 
 let QueryIndexerCode = () => {
-  Near.view(contractId, 'register_indexer_function', {
+  Near.view(registry_contract_id, 'register_indexer_function', {
     name: indexer_function_name,
   });
 };
