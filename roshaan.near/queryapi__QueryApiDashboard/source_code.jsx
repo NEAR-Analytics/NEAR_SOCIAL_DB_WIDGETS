@@ -67,7 +67,6 @@ return (
           src={'roshaan.near/widget/queryapi__IndexerFunctionEditor'}
           props={{
             indexer_name: 'registry.queryapi.testnet',
-            indexer_code: state.m,
           }}
         />
         This is the Dashboard tab content. You can add any components or
