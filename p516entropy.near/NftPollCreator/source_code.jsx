@@ -23,6 +23,7 @@ const createPoll = () => {
     answers: state.createdOptions.map((option) => option.input),
     min_votes_to_win: 0,
     min_participations: 0,
+    meta: {},
   };
   console.log("NEAR.call: " + JSON.stringify(pollData));
   Near.call(CONTRACT, "create_vote", pollData);
