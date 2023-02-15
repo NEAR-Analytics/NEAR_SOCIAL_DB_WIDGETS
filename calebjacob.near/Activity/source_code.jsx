@@ -39,6 +39,11 @@ const Header = styled.div`
   @media (max-width: 1200px) {
     margin: 0 0 12px;
     padding: 0 12px;
+    justify-content: center;
+
+    h2 {
+      display: none;
+    }
   }
 `;
 
