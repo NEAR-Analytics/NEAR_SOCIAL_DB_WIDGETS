@@ -4,7 +4,8 @@ State.init({
 
 const src = props.src;
 const [accountId, widget, widgetName] = src.split("/");
-const metadata = Social.get(`${accountId}/widget/${widgetName}/metadata/**`);
+const data = Social.get(`${accountId}/widget/${widgetName}/metadata/**`);
+const metadata = data || {};
 const tags = Object.keys(metadata.tags || {});
 const shareUrl = `https://near.social/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
 const size = props.size || "large";
