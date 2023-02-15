@@ -1,3 +1,5 @@
+const indexer_function_name = props.indexer_function_name;
+
 const TabContainer = styled.div`
   display: flex;
   justify-content: space-between;
