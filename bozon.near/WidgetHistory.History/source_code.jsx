@@ -5,9 +5,7 @@ props.widgetPath: string,
 
 */
 
-if (
-  !(typeof props.widgetPath === "string" || props.widgetPath instanceof String)
-)
+if (typeof props.widgetPath !== "string")
   return "send {widgetPath} as string in props";
 
 State.init({
