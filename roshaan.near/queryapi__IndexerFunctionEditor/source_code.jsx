@@ -16,6 +16,7 @@ let QueryIndexerCode = () => {
   });
 };
 let loadIndexerCode = QueryIndexerCode();
+
 if (loadIndexerCode !== undefined) {
   console.log(loadIndexerCode);
   state.update({ m: loadIndexerCode });
