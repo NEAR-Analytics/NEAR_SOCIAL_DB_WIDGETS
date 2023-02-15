@@ -33,6 +33,10 @@ const Header = styled.div`
   gap: ${(p) => sizes[p.size].gap};
   margin-bottom: 32px;
 
+  > * {
+      min-width: 0;
+  }
+
   @media (max-width: 770px) {
     gap: 16px;
   }
@@ -118,6 +122,9 @@ const Text = styled.p`
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
   font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
 
   i {
     margin-right: 4px;
@@ -141,7 +148,7 @@ return (
 
       <div>
         <Title size={size}>{metadata.name || widgetName}</Title>
-        <Text>{src}</Text>
+        <Text ellipsis>{src}</Text>
       </div>
     </Header>
 
