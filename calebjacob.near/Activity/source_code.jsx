@@ -51,7 +51,7 @@ const CreatePostWrapper = styled.div`
 
 const FilterWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
-  padding: 24px;
+  padding: 12px 24px;
 
   @media (max-width: 1200px) {
     padding: 12px;
@@ -67,7 +67,7 @@ const PillSelectButton = styled.button`
   display: block;
   border: 1px solid #E6E8EB;
   border-right: none;
-  padding: 3px 8px;
+  padding: 3px 24px;
   border-radius: 0;
   font-size: 12px;
   line-height: 18px;
