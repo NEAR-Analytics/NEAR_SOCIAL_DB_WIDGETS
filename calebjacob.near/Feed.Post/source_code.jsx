@@ -16,8 +16,16 @@ const item = {
 
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
+const Post = styled.div`
+  padding: 24px;
+
+  @media (max-width: 1200px) {
+    padding: 24px 12px;
+  }
+`;
+
 return (
-  <div style={{ padding: "24px" }}>
+  <Post>
     <Widget
       src="mob.near/widget/MainPage.Post.Header"
       props={{ accountId, blockHeight, link, postType: "post" }}
@@ -70,5 +78,5 @@ return (
         }}
       />
     </div>
-  </div>
+  </Post>
 );
