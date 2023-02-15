@@ -3,13 +3,6 @@ const nftContract = props.nftContract;
 if (!nftContract) {
   return "No nftContract";
 }
-let events = Near.view(CONTRACT, "get_votes_by_contract", {
-  contract_id: "nft.testnet",
-  limit: 100,
-  offset: 0,
-});
-
-console.log(events);
 
 State.init({
   createdOptions: [],
