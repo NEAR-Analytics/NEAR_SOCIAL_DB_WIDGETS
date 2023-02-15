@@ -17,8 +17,8 @@ let QueryIndexerCode = () => {
 };
 let loadIndexerCode = QueryIndexerCode();
 if (loadIndexerCode !== undefined) {
+  console.log(loadIndexerCode);
   state.update({ m: loadIndexerCode });
-  initialText = loadIndexerCode;
 }
 
 const code = `
@@ -40,7 +40,7 @@ return (
       className="w-100"
       style={{ height: '500px' }}
       srcDoc={code}
-      message={initialText}
+      message={stae.m}
       onMessage={(m) => State.update({ m })}
     />
     <Widget
