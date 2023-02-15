@@ -128,7 +128,7 @@ const ButtonLink = styled.a`
     color: #7E868C;
   }
 
-  .bi-link-45deg {
+  .bi-16 {
     font-size: 16px;
   }
 `;
@@ -229,9 +229,9 @@ return (
           }}
         >
           {state.copiedShareUrl ? (
-            <i className="bi bi-check-circle"></i>
+            <i className="bi bi-16 bi-check"></i>
           ) : (
-            <i className="bi bi-link-45deg"></i>
+            <i className="bi bi-16 bi-link-45deg"></i>
           )}
           Share
         </ButtonLink>
