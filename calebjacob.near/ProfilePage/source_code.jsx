@@ -11,6 +11,7 @@ if (profile === null) {
 
 return (
   <div className="py-1 px-1">
+    <h1>Test</h1>
     <div className="mx-auto">
       <Widget
         src="mob.near/widget/ProfileLarge"
