@@ -94,24 +94,25 @@ return (
       <Widget src="calebjacob.near/widget/CreatePost" />
     </CreatePostWrapper>
 
-    <PillSelect>
-      <PillSelectButton
-        type="button"
-        onClick={() => selectTab("all")}
-        selected={state.selectedTab === "all"}
-      >
-        All
-      </PillSelectButton>
+    {context.accountId && (
+      <PillSelect>
+        <PillSelectButton
+          type="button"
+          onClick={() => selectTab("all")}
+          selected={state.selectedTab === "all"}
+        >
+          All
+        </PillSelectButton>
 
-      <PillSelectButton
-        type="button"
-        onClick={() => selectTab("following")}
-        selected={state.selectedTab === "following"}
-        disabled={!context.accountId}
-      >
-        Following
-      </PillSelectButton>
-    </PillSelect>
+        <PillSelectButton
+          type="button"
+          onClick={() => selectTab("following")}
+          selected={state.selectedTab === "following"}
+        >
+          Following
+        </PillSelectButton>
+      </PillSelect>
+    )}
 
     <Widget src="calebjacob.near/widget/Feed" props={{ accounts }} />
   </>
