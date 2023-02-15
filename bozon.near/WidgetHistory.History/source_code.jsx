@@ -5,7 +5,10 @@ props.widgetPath: string,
 
 */
 
-if (!props.widgetPath) return "send {widgetPath} in props";
+if (
+  !(typeof props.widgetPath === "string" || props.widgetPath instanceof String)
+)
+  return "send {widgetPath} as string in props";
 
 State.init({
   selectedTab: "code",
@@ -22,6 +25,8 @@ const [widgetAccountId, _, widgetName] = props.widgetPath.split("/");
 
 let blocksChanges =
   historyBlocksRequest[widgetAccountId]?.["widget"]?.[widgetName];
+
+console.log(blocksChanges);
 
 if (blocksChanges) blocksChanges = blocksChanges?.sort((a, b) => b - a);
 
