@@ -476,6 +476,10 @@ return (
             Description
           </h3>
           <Markdown text={descriptionText(state.poll.value.description)} />
+          <br />
+          <a href="https://www.typescriptlang.org/play?ssl=38&ssc=9&pln=38&pc=14#code/GYVwdgxgLglg9mABAZwBZwO4AoCUiDeAUIiYjMFhAgCYywJ5GnOID0riAMjGAKbEsS7Lj36ChHbnwGDhUseLmiZLJdPFtJyjWoWyt6xQb2rjK5rvOlLOs8wC+iXgBtkvAlYkjD+7yYt2Rn6emsG2YUHyITaR2rE+phG+UeEp8Sb2hJmEhKCQ9EhomLgezOSUNHTwYIwheRAAjLgqji5upeL1AEzNDlmEQA">
+            https://www.typescriptlang.org/play?ssl=38&ssc=9&pln=38&pc=14#code/GYVwdgxgLglg9mABAZwBZwO4AoCUiDeAUIiYjMFhAgCYywJ5GnOID0riAMjGAKbEsS7Lj36ChHbnwGDhUseLmiZLJdPFtJyjWoWyt6xQb2rjK5rvOlLOs8wC+iXgBtkvAlYkjD+7yYt2Rn6emsG2YUHyITaR2rE+phG+UeEp8Sb2hJmEhKCQ9EhomLgezOSUNHTwYIwheRAAjLgqji5upeL1AEzNDlmEQA
+          </a>
 
           {state.poll.value.description.length > 501 &&
           !state.descriptionHeightLimited ? (
