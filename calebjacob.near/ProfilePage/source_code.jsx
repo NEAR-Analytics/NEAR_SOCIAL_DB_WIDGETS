@@ -3,7 +3,34 @@ if (!accountId) {
   return "No account ID";
 }
 
+// Profile Data:
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const tags = Object.keys(profile.tags || {});
+const viewingOwnAccount = accountId === context.accountId;
+
+// Follower Count:
+const following = Social.keys(`${accountId}/graph/follow/*`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+const followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+const followingCount = following
+  ? Object.keys(following[accountId].graph.follow || {}).length
+  : null;
+const followersCount = followers ? Object.keys(followers || {}).length : null;
+
+// Account follows you:
+const accountFollowsYouData = Social.keys(
+  `${props.accountId}/graph/follow/${context.accountId}`,
+  undefined,
+  {
+    values_only: true,
+  }
+);
+const accountFollowsYou = Object.keys(accountFollowsYouData || {}).length > 0;
 
 const Wrapper = styled.div``;
 
@@ -33,6 +60,11 @@ const Sidebar = styled.div`
   position: relative;
   z-index: 5;
   margin-top: -55px;
+`;
+
+const SidebarSection = styled.div`
+  display: grid;
+  gap: 24px;
 `;
 
 const Avatar = styled.div`
@@ -68,12 +100,29 @@ const Text = styled.p`
   overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
   white-space: nowrap;
+
+  b {
+    font-weight: 600;
+    color: #11181C;
+  }
+`;
+
+const TextBadge = styled.p`
+  display: inline-block;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.1rem;
+  background: #687076;
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0 6px;
+  border-radius: 3px;
 `;
 
 const Actions = styled.div`
   display: flex;
   gap: 6px;
-  margin-top: 24px;
 `;
 
 const Button = styled.button`
@@ -96,7 +145,7 @@ const Button = styled.button`
 
   &:hover,
   &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+    background: #ECEDEE;
     text-decoration: none;
     outline: none;
   }
@@ -104,6 +153,15 @@ const Button = styled.button`
   i {
     color: #7E868C;
   }
+
+  .bi-16 {
+    font-size: 16px;
+  }
+`;
+
+const Stats = styled.div`
+  display: flex;
+  gap: 24px;
 `;
 
 console.log(profile);
@@ -142,22 +200,81 @@ return (
           />
         </Avatar>
 
-        <div>
-          <Title>{profile.name || accountId}</Title>
-          <Text>@{accountId}</Text>
+        <SidebarSection>
+          <div>
+            <Title>{profile.name || accountId}</Title>
+            <Text>@{accountId}</Text>
+
+            {accountFollowsYou && <TextBadge>Follows You</TextBadge>}
+          </div>
 
           <Actions>
-            <Button type="button" primary>
-              Follow
-            </Button>
-            <Button type="button">
-              <i className="bi bi-hand-index-thumb"></i> Poke
-            </Button>
-            <Button type="button">
-              <i className="bi bi-link-45deg"></i> Share
-            </Button>
+            {viewingOwnAccount ? (
+              <Button as="a" href="/#/mob.near/widget/ProfileEditor" primary>
+                Edit Profile
+              </Button>
+            ) : (
+              <>
+                <Button type="button" primary>
+                  Follow
+                </Button>
+
+                <Button type="button">
+                  <i className="bi bi-hand-index-thumb"></i> Poke
+                </Button>
+              </>
+            )}
+
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
+            >
+              <Button
+                type="button"
+                onMouseLeave={() => {
+                  State.update({ copiedShareUrl: false });
+                }}
+                onClick={() => {
+                  clipboard.writeText(shareUrl).then(() => {
+                    State.update({ copiedShareUrl: true });
+                  });
+                }}
+              >
+                {state.copiedShareUrl ? (
+                  <i className="bi-16 bi bi-check"></i>
+                ) : (
+                  <i className="bi-16 bi-link-45deg"></i>
+                )}
+                Share
+              </Button>
+            </OverlayTrigger>
           </Actions>
-        </div>
+        </SidebarSection>
+
+        {tags.length > 0 && (
+          <SidebarSection>
+            <Widget
+              src="calebjacob.near/widget/ComponentTags"
+              props={{
+                tags,
+              }}
+            />
+          </SidebarSection>
+        )}
+
+        <SidebarSection>
+          <Stats>
+            <Text>
+              <b bold as="span">
+                {followingCount === null ? "--" : followingCount}
+              </b>{" "}
+              Following
+            </Text>
+            <Text>
+              <b>{followersCount === null ? "--" : followersCount}</b> Followers
+            </Text>
+          </Stats>
+        </SidebarSection>
       </Sidebar>
     </Main>
   </Wrapper>
