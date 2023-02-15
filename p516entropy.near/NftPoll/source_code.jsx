@@ -13,28 +13,47 @@ if (!nftContract) {
 }
 
 const getNftData = () => {
-  const nftCollectionData = Near.view(nftContract, "nft_metadata");
-  console.log(nftCollectionData);
-  return {
-    nftSymbol: nftCollectionData.symbol,
-    name: nftCollectionData.name,
-    iconBase64: nftCollectionData.icon.startsWith("data:image/")
-      ? nftCollectionData.icon
-      : undefined,
-  };
+  const nftCollectionDataAsync = Near.asyncView(nftContract, "nft_metadata");
+  return nftCollectionDataAsync.then((nftCollectionData) => {
+    console.log(nftCollectionData);
+    return {
+      nftSymbol: nftCollectionData.symbol,
+      name: nftCollectionData.name,
+      iconBase64: nftCollectionData.icon.startsWith("data:image/")
+        ? nftCollectionData.icon
+        : undefined,
+    };
+  });
 };
 
 const canUseCreator = () => {
-  const usersNftData = Near.view(nftContract, "nft_tokens_for_owner", {
-    account_id: accountId,
+  const usersNftDataAsync = Near.asyncView(
+    nftContract,
+    "nft_tokens_for_owner",
+    {
+      account_id: accountId,
+    }
+  );
+  return usersNftDataAsync.then((usersNftData) => {
+    console.log(usersNftData);
+
+    return usersNftData.length > 0;
   });
-  console.log(usersNftData);
-  return usersNftData.length > 0;
 };
 
 const updateState = () => {
-  const nftCollectionData = getNftData();
-  const canUseCreator = canUseCreator();
+  getNftData().then((data) => {
+    State.update({
+      nftSymbol: data.nftSymbol,
+      name: data.name,
+      iconBase64: data.iconBase64,
+    });
+  });
+  canUseCreator().then((canUseCreator) => {
+    State.update({
+      canUseCreator: canUseCreator,
+    });
+  });
   const asyncPolls = Near.asyncView(CONTRACT, "get_votes_by_contract", {
     contract_id: nftContract,
     limit: 1000,
@@ -43,10 +62,6 @@ const updateState = () => {
   asyncPolls.then((polls) => {
     console.log(polls);
     State.update({
-      nftSymbol: nftCollectionData.nftSymbol,
-      name: nftCollectionData.name,
-      iconBase64: nftCollectionData.iconBase64,
-      canUseCreator: canUseCreator,
       showPollCreator: false,
       polls: polls,
     });
@@ -54,13 +69,12 @@ const updateState = () => {
 };
 
 if (!state.polls) {
-  const nftCollectionData = getNftData();
   State.init({
-    nftSymbol: nftCollectionData.nftSymbol,
-    name: nftCollectionData.name,
-    iconBase64: nftCollectionData.iconBase64,
+    nftSymbol: "",
+    name: "",
+    iconBase64: "",
     showPollCreator: false,
-    canUseCreator: canUseCreator(),
+    canUseCreator: false,
     polls: [],
   });
   updateState();
