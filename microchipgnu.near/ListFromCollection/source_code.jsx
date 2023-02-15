@@ -110,9 +110,13 @@ return (
     <h4>Multi-listing tool for NFTs</h4>
 
     <div class="w-100">
-      <div>
-        <p>Selected {numTokensSelected} tokens</p>
-        <p>Price: {state.price}N</p>
+      <div class="d-flex gap-2">
+        <p class="text-white p-2 bg-black rounded">
+          Tokens selected <span class="fw-bold">{numTokensSelected}</span>
+        </p>
+        <p class="text-white p-2 bg-black rounded">
+          Price: <span class="fw-bold">{state.price}N</span>
+        </p>
       </div>
       <div class="d-flex gap-2">
         <input type="text" value={state.price}></input>
