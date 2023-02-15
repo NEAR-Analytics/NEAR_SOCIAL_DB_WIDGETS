@@ -55,7 +55,7 @@ const CreatePostWrapper = styled.div`
 
 const FilterWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
-  padding: 12px 24px;
+  padding: 24px;
 
   @media (max-width: 1200px) {
     padding: 12px;
