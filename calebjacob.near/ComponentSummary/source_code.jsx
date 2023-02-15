@@ -36,6 +36,10 @@ const Header = styled.div`
   }
 `;
 
+const TagsWrapper = styled.div`
+  margin-bottom: 32px;
+`;
+
 const Actions = styled.div`
   display: flex;
   gap: 12px;
@@ -135,19 +139,20 @@ return (
 
       <div>
         <Title size={size}>{metadata.name || widgetName}</Title>
-
-        {props.showTags ? (
-          <Widget
-            src="calebjacob.near/widget/ComponentTags"
-            props={{
-              tags,
-            }}
-          />
-        ) : (
-          <Text>{src}</Text>
-        )}
+        <Text>{src}</Text>
       </div>
     </Header>
+
+    {props.showTags && tags.length > 0 && (
+      <TagsWrapper>
+        <Widget
+          src="calebjacob.near/widget/ComponentTags"
+          props={{
+            tags,
+          }}
+        />
+      </TagsWrapper>
+    )}
 
     <Actions>
       <ButtonLink primary href={`/#/${src}`}>
