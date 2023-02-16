@@ -61,7 +61,6 @@ const Sidebar = styled.div`
   position: relative;
   z-index: 5;
   margin-top: -55px;
-  overflow-wrap: anywhere;
 `;
 
 const SidebarSection = styled.div`
@@ -91,6 +90,7 @@ const Title = styled.h2`
   line-height: 30px;
   color: #11181C;
   margin: 0;
+  overflow-wrap: anywhere;
 `;
 
 const Text = styled.p`
@@ -102,6 +102,7 @@ const Text = styled.p`
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
+  overflow-wrap: anywhere;
 
   b {
     font-weight: 600;
