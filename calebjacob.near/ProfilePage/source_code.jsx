@@ -226,7 +226,7 @@ return (
               </ButtonLink>
             ) : (
               <>
-                <Button type="button" primary>
+                <Button type="button" primary as="span">
                   Follow
                 </Button>
 
