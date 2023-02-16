@@ -5,7 +5,7 @@ return (
     <a className="">
       <h2>
         <i className="bi-triangle" />
-        Web4 Combinator
+        Web3 Combinator
       </h2>
     </a>
     <a className="nav-link">
