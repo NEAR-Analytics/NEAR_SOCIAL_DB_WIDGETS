@@ -6,7 +6,7 @@ return (
       <h3>
         <i className="bi-triangle" />
         Web3 Combinator
-      </h2>
+      </h3>
     </a>
     <a className="nav-link">
       <i className="bi-house" />
