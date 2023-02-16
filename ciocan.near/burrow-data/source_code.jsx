@@ -251,16 +251,13 @@ const getAccount = () => {
 
 const assets = getAssets();
 
-// if (!assets) return <div />;
-
-const balances = getBalances(assets);
-
-// if (!balances) return <div />;
+if (!assets) return <div />;
 
 const rewards = getRewards(assets);
 
-// if (!rewards) return <div />;
+if (!rewards) return <div />;
 
+const balances = getBalances(assets);
 const account = getAccount();
 
 const data = {
