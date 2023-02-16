@@ -146,6 +146,38 @@ const Text = styled.p`
     font-weight: 600;
     color: #11181C;
   }
+  
+  &[href] {
+    display: inline-flex;
+    
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const TextLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #11181C !important;
+  font-weight: 400;
+  font-size: 14px;
+  white-space: nowrap;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+
+  i {
+    color: #7E868C;
+  }
 `;
 
 const TextBadge = styled.p`
@@ -169,6 +201,11 @@ const Actions = styled.div`
 const Stats = styled.div`
   display: flex;
   gap: 24px;
+`;
+
+const SocialLinks = styled.div`
+  display: grid;
+  gap: 9px;
 `;
 
 console.log(profile);
@@ -296,6 +333,48 @@ return (
             </Text>
           </Stats>
         </SidebarSection>
+
+        {profile.linktree && (
+          <SidebarSection>
+            <SocialLinks>
+              {profile.linktree.website && (
+                <TextLink
+                  href={`https://${profile.linktree.website}`}
+                  target="_blank"
+                >
+                  <i className="bi bi-globe"></i> {profile.linktree.website}
+                </TextLink>
+              )}
+
+              {profile.linktree.github && (
+                <TextLink
+                  href={`https://github.com/${profile.linktree.github}`}
+                  target="_blank"
+                >
+                  <i className="bi bi-github"></i> {profile.linktree.github}
+                </TextLink>
+              )}
+
+              {profile.linktree.twitter && (
+                <TextLink
+                  href={`https://twitter.com/${profile.linktree.twitter}`}
+                  target="_blank"
+                >
+                  <i className="bi bi-twitter"></i> {profile.linktree.twitter}
+                </TextLink>
+              )}
+
+              {profile.linktree.telegram && (
+                <TextLink
+                  href={`https://t.me/${profile.linktree.telegram}`}
+                  target="_blank"
+                >
+                  <i className="bi bi-telegram"></i> {profile.linktree.telegram}
+                </TextLink>
+              )}
+            </SocialLinks>
+          </SidebarSection>
+        )}
       </Sidebar>
     </Main>
   </Wrapper>
