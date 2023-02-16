@@ -14,7 +14,17 @@ const handleProposal = () => {
   if (!(state.description && state.kind && state.member_id && state.role)) {
     return;
   }
-  {
+  const proposal = {
+    description: state.description,
+    kind: {
+      AddMemberToRole: {
+        member_id: state.member_id,
+        role: state.role,
+      },
+    },
+  };
+  console.log("check", proposal);
+  asyncFetch().then(() => {
     const gas = 200000000000000;
     const deposit = 100000000000000000000000;
     Near.call([
@@ -31,7 +41,7 @@ const handleProposal = () => {
         deposit: deposit,
       },
     ]);
-  }
+  });
 };
 
 initState({
