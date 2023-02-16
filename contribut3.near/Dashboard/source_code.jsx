@@ -90,6 +90,7 @@ return (
           </label>
         </div>
         <input
+          className="w-25"
           type="text"
           value={state.search}
           placeholder="Search"
