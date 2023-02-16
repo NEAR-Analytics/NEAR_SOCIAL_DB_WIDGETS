@@ -89,7 +89,7 @@ return (
             <span>Requests</span>
           </label>
         </div>
-        <div>
+        <div className="col-12 col-md-10 col-lg-8">
           <div className="card card-sm">
             <div className="card-body row no-gutters align-items-center">
               <div className="col-auto">
@@ -103,8 +103,8 @@ return (
                   placeholder="Search"
                   onChange={(e) => State.update({ search: e.target.value })}
                 />
-              </div>{" "}
-            </div>{" "}
+              </div>
+            </div>
           </div>
         </div>
       </div>
