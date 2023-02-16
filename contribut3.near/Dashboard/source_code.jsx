@@ -9,7 +9,9 @@ return (
           Find projects, contributors or requests
         </p>
       </div>
-      <div></div>
+      <div>
+        <a className="btn btn-info">Create new...</a>
+      </div>
     </div>
   </div>
 );
