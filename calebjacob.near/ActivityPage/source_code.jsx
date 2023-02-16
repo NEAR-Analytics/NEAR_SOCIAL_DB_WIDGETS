@@ -116,7 +116,7 @@ return (
         <Widget src="calebjacob.near/widget/Activity" />
       </Section>
       <Section active={state.selectedTab === "explore"}>
-        <Widget src="calebjacob.near/widget/CustomWidgetDisplay" />
+        <Widget src="calebjacob.near/widget/ExploreWidgets" />
       </Section>
     </Main>
   </Wrapper>
