@@ -187,7 +187,6 @@ const footer = (
 return (
   <div className="card">
     <div className="card-body p-3">
-      {/* {header} */}
       {body}
       {details}
       {footer}
