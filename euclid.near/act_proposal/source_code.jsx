@@ -1,4 +1,8 @@
-initState({ dao: "open.sputnik-dao.near", proposal: "19" });
+initState({
+  dao: "open.sputnik-dao.near",
+  proposal: "19",
+  action: VoteApprove,
+});
 
 const onVoteClick = () => {
   const gas = 300000000000000;
