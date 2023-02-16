@@ -1,5 +1,6 @@
 //roshaan.near/NearSocialIndexer
 const [accountId, indexerName] = props.indexer_path.split("/");
+const selected = false || props.selected;
 // const registry_contract_id =
 //   props.registry_contract_id || 'registry.queryapi.near';
 // const indexerDetails = Near.asyncView(
@@ -14,7 +15,7 @@ const indexerEditorUrl = `/#/roshaan.near/widget/query_api__QueryApiDashboard?in
 const Card = styled.div`
   border-radius: 12px;
   background: #fff;
-  border: 1px solid #eceef0;
+  border: ${(div) => (div.selected ? "1px solid black" : "1px solid #eceef0")};
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
 `;
@@ -102,7 +103,7 @@ const ButtonLink = styled.a`
 `;
 
 return (
-  <Card>
+  <Card selected={selected}>
     <CardBody>
       <Thumbnail href={indexerEditorUrl}>
         <Widget
