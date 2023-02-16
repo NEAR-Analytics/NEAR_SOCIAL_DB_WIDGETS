@@ -34,18 +34,6 @@ const CardFooter = styled.div`
   border-top: 1px solid #ECEEF0;
 `;
 
-const Text = styled.p`
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
-  white-space: nowrap;
-`;
-
 const TextLink = styled.a`
   display: block;
   margin: 0;
