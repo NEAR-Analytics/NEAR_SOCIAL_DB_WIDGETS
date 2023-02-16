@@ -153,7 +153,7 @@ const circle = (
 const body = (
   <div className="d-flex flex-row justify-content-between align-items-start">
     <div className="d-flex flex-row justify-content-start">
-      <div>{circle}</div>
+      <div className="m-2">{circle}</div>
       <div className="d-flex flex-column justify-content-between align-items-start">
         <div>
           <b>{name}</b>
