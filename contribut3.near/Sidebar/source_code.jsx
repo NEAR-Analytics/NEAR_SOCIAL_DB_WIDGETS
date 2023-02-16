@@ -6,8 +6,7 @@ State.init({
 
 const navItem = ({ text, icon, link, id }) => (
   <a
-    className={`nav-link mb-2 ${id === state.selected ? "bg-light-subtle" : ""
-      }`}
+    className={`nav-link mb-2 ${id === state.selected ? "bg-secondary" : ""}`}
     href={link}
   >
     <i className={icon} />
