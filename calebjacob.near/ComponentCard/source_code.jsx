@@ -38,7 +38,7 @@ const TextLink = styled.a`
   display: block;
   margin: 0;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 18px;
   color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
   font-size: ${(p) => (p.small ? "12px" : "14px")};
@@ -55,8 +55,8 @@ const TextLink = styled.a`
 
 const Thumbnail = styled.a`
   display: block;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
@@ -76,9 +76,9 @@ const Thumbnail = styled.a`
   }
 `;
 
-const TagsWrapper = styled.div`
+const TagsInlineWrapper = styled.div`
   position: relative;
-  padding: 0 16px 16px;
+  margin-top: 3px;
 `;
 
 const ButtonLink = styled.a`
@@ -122,23 +122,23 @@ return (
           {metadata.name || widgetName}
         </TextLink>
 
-        <TextLink as="a" href={accountUrl} ellipsis>
+        <TextLink small as="a" href={accountUrl} ellipsis>
           @{accountId}
         </TextLink>
+
+        {tags.length > 0 && (
+          <TagsInlineWrapper>
+            <Widget
+              src="calebjacob.near/widget/ComponentTags"
+              props={{
+                tags,
+                scroll: true,
+              }}
+            />
+          </TagsInlineWrapper>
+        )}
       </div>
     </CardBody>
-
-    {tags.length > 0 && (
-      <TagsWrapper>
-        <Widget
-          src="calebjacob.near/widget/ComponentTags"
-          props={{
-            tags,
-            scroll: true,
-          }}
-        />
-      </TagsWrapper>
-    )}
 
     <CardFooter>
       <ButtonLink href={detailsUrl}>View Details</ButtonLink>
