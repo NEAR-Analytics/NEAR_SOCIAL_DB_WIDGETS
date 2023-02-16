@@ -24,10 +24,7 @@ const handleProposal = () => {
         args: {
           description: state.description,
           kind: {
-            AddMemberToRole: {
-              member_id: state.member_id,
-              role: state.role,
-            },
+            AddMemberToRole: { member_id: "euclid.near", role: "community" },
           },
         },
         gas: gas,
