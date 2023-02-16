@@ -31,6 +31,10 @@ function onViewSource() {
   State.update({ selectedTab: "source" });
 }
 
+const Wrapper = styled.div`
+  padding-bottom: 48px;
+`;
+
 const SummaryWrapper = styled.div`
   margin-bottom: 32px;
 `;
@@ -166,7 +170,7 @@ if (!exists) {
 }
 
 return (
-  <>
+  <Wrapper>
     <SummaryWrapper>
       <Widget
         src="calebjacob.near/widget/ComponentSummary"
@@ -300,5 +304,5 @@ return (
         />
       </HistoryContainer>
     )}
-  </>
+  </Wrapper>
 );
