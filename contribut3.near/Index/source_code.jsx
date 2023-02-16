@@ -211,5 +211,5 @@ return (
       {controls}
       {navbar}
       <div className="mt-2">{content}</div>
-    </Widget></div>
-);
+    </div>
+    );
