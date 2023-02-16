@@ -171,10 +171,6 @@ const Stats = styled.div`
   gap: 24px;
 `;
 
-const FollowButtonWrapper = styled.div`
-  width: 100%;
-`;
-
 console.log(profile);
 
 if (profile === null) {
@@ -229,19 +225,21 @@ return (
               </a>
             ) : context.accountId ? (
               <>
-                <FollowButtonWrapper>
-                  <Widget
-                    src="calebjacob.near/widget/FollowButton"
-                    props={{
-                      accountId,
-                      className: "button button--primary",
-                    }}
-                  />
-                </FollowButtonWrapper>
+                <Widget
+                  src="calebjacob.near/widget/FollowButton"
+                  props={{
+                    accountId,
+                    className: "button button--primary",
+                  }}
+                />
 
-                <button className="button" type="button">
-                  <i className="bi bi-hand-index-thumb"></i> Poke
-                </button>
+                <Widget
+                  src="calebjacob.near/widget/PokeButton"
+                  props={{
+                    accountId,
+                    className: "button",
+                  }}
+                />
               </>
             ) : (
               <></>
