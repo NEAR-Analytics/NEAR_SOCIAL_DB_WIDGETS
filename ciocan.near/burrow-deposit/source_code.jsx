@@ -20,7 +20,7 @@ const expandToken = (value, decimals) => {
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 
 if (!accountId) {
-  return "Please sign in with NEAR wallet";
+  return <div>Please sign in with NEAR wallet</div>;
 }
 
 console.log("INIT...", state);
