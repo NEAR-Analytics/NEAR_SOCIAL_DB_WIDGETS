@@ -133,7 +133,7 @@ const body = (
       <div className="m-2 d-flex flex-column justify-content-between align-items-start">
         <div>
           {/* <b>{name}</b> */}
-          <span className="text-muted">@{accountId}</span>
+          {/* <span className="text-muted">@{accountId}</span> */}
         </div>
         <div className="text-truncate text-muted">
           {tags.length > 0 ? (
