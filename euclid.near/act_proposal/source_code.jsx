@@ -1,12 +1,13 @@
 initState({
-  dao: "open.sputnik-dao.near",
-  proposal: 19,
-  action: "VoteApprove",
+  dao: "",
+  proposal: u64,
+  action: "",
 });
 
 const onVoteClick = () => {
-  const gas = 300000000000000;
-  console.log(gas);
+  const gas = 200000000000000;
+  const deposit = 10000000000000000000000;
+  console.log(gas, deposit);
   Near.call(
     state.dao,
     "act_proposal",
