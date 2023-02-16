@@ -1,4 +1,5 @@
 const accountId = props.accountId ?? "mob.near";
+const limitForPosts = props.limitForPosts ?? 5000;
 
 initState({});
 
@@ -29,7 +30,7 @@ const index = {
   key: "main",
   options: {
     subscribe: true,
-    limit: 10000,
+    limit: limitForPosts,
     order: "desc",
   },
 };
