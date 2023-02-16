@@ -175,8 +175,15 @@ const details = (
   </div>
 );
 
+const [founder] = contributions.filter((contribution) =>
+  [...contribution.history, contribution.current].some(
+    (detail) => detail.description === ""
+  )
+);
+
 const footer = (
   <div className="d-flex flex-row justify-content-start align-items-start text-muted">
+    <div></div>
     <div>
       <i className="bi-play" />
       {entity.status}
