@@ -11,7 +11,7 @@ return (
       <span>Profile</span>
     </a>
     <a>
-      <i className="bi-" />
+      <i className="bi-boxes" />
       <span>My projects</span>
     </a>
     <a>
