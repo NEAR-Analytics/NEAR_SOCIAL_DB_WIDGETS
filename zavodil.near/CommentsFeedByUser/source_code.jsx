@@ -1,7 +1,7 @@
 const accountId = props.accountId ?? "mob.near";
 const limitForPosts = props.limitForPosts ?? 5000;
 
-initState({});
+initState({ comments: [] });
 
 const renderItem = (a, post) =>
   a.value.type === "md" && (
@@ -44,7 +44,7 @@ if (!state.recentPosts) {
   return "";
 }
 
-if (!state.comments) {
+if (!state.comments.length) {
   const comments = [];
   state.recentPosts.map((post) => {
     const item = {
