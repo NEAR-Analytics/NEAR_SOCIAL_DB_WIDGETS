@@ -1,5 +1,43 @@
 const ownerId = "contribut3.near";
 
+const createNewDropdown = (
+  <div className="dropdown">
+    <a
+      className="btn btn-info dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Create new...
+    </a>
+    <ul className="dropdown-menu">
+      <li>
+        <a className="dropdown-item">
+          <i className="bi-ui-checks-grid" />
+          <span>Contribution request</span>
+        </a>
+      </li>
+      <li>
+        <hr className="dropdown-divider" />
+      </li>
+      <li>
+        <a className="dropdown-item">
+          <i className="bi-boxes" />
+          <span>Project</span>
+        </a>
+      </li>
+      <li>
+        <hr className="dropdown-divider" />
+      </li>
+      <li>
+        <a className="dropdown-item">
+          <i className="bi-diagram-2" />
+          <span>Organization</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+);
+
 return (
   <div>
     <div className="mb-5 ps-3">
@@ -10,42 +48,8 @@ return (
             Find projects, contributors or requests
           </p>
         </div>
-        <div className="dropdown">
-          <a
-            className="btn btn-info dropdown-toggle"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Create new...
-          </a>
-          <ul className="dropdown-menu">
-            <li>
-              <a className="dropdown-item">
-                <i className="bi-ui-checks-grid" />
-                <span>Contribution request</span>
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li>
-              <a className="dropdown-item">
-                <i className="bi-boxes" />
-                <span>Project</span>
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li>
-              <a className="dropdown-item">
-                <i className="bi-diagram-2" />
-                <span>Organization</span>
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
+      {dropdown}
       <div className="d-flex flex-row justify-content-between">
         <div
           className="btn-group"
