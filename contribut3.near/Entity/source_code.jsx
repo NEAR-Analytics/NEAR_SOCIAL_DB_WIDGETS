@@ -193,7 +193,7 @@ const founderCircle = (
   <div
     className="profile-circle d-inline-block"
     title={`${founderProfile.name} @${founder}`}
-    style={{ width: "2em", height: "2em" }}
+    style={{ width: "1em", height: "1em" }}
   >
     <img
       className="rounded-circle w-100 h-100"
