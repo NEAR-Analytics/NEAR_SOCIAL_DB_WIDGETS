@@ -76,7 +76,7 @@ const Tabs = styled.div`
   @media (max-width: 900px) {
     background: #F8F9FA;
     border-top: 1px solid #ECEEF0;
-    margin-bottom: 48px;
+    margin: 0 -12px 48px;
 
     button {
       flex: 1;
