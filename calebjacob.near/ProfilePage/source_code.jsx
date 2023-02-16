@@ -143,11 +143,6 @@ const sharedButtonStyles = `
     outline: none;
   }
 
-  &.primary { 
-    color: #006ADC !important;
-    width: 100%;
-  }
-
   i {
     color: #7E868C;
   }
