@@ -230,7 +230,7 @@ return (
               <ButtonLink href="/#/mob.near/widget/ProfileEditor" primary>
                 Edit Profile
               </ButtonLink>
-            ) : (
+            ) : context.accountId ? (
               <>
                 <FollowButtonWrapper>
                   <Widget
@@ -245,6 +245,8 @@ return (
                   <i className="bi bi-hand-index-thumb"></i> Poke
                 </Button>
               </>
+            ) : (
+              <></>
             )}
 
             <OverlayTrigger
