@@ -14,9 +14,12 @@ const Container = styled.div`
     --bs-btn-active-color: #000;
     --bs-btn-active-bg: #fff;
     --bs-btn-active-border-color: rgba(0, 0, 0, 0.1);
-}
+  }
 
-
+  .badge {
+    color: #4ED58A !important;
+    background: rgba(71, 200, 128, 0.1) !important;
+  }
 `;
 
 const Nav = styled.div`
