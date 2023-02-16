@@ -17,18 +17,6 @@ if (!entity) {
     : "Loading...";
 }
 
-const shareButton = isPreview ? null : (
-  <a
-    className="card-link"
-    href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-    role="button"
-    target="_blank"
-    title="Open in new tab"
-  >
-    <div className="bi bi-share" />
-  </a>
-);
-
 const currentContributor = Near.view(
   ownerId,
   "get_contribution",
@@ -112,19 +100,6 @@ const needForm =
   !isAuthorized || notStandalone ? null : (
     <Widget src={`${ownerId}/widget/NeedForm`} props={{ accountId }} />
   );
-
-const header = (
-  <div className="card-header">
-    <div className="row justify-content-between align-items-start">
-      <div className="col-4">
-        <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
-      </div>
-      <div className="col-5">
-        <div className="d-flex justify-content-end">{shareButton}</div>
-      </div>
-    </div>
-  </div>
-);
 
 const profile = Social.getr(`${accountId}/profile`);
 
