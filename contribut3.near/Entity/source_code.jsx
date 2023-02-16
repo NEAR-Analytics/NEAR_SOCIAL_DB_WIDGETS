@@ -135,22 +135,22 @@ const body = (
           <b>{name}</b>
           <span className="text-muted">@{accountId}</span>
         </div>
-        <div className="text-truncate text-muted">
-          {tags.length > 0 ? (
-            <>
-              {tags.map((tag) => (
-                <span
-                  className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                  key={tag}
-                >
-                  {tag}
-                </span>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
+        {/* <div className="text-truncate text-muted"> */}
+        {/*   {tags.length > 0 ? ( */}
+        {/*     <> */}
+        {/*       {tags.map((tag) => ( */}
+        {/*         <span */}
+        {/*           className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center" */}
+        {/*           key={tag} */}
+        {/*         > */}
+        {/*           {tag} */}
+        {/*         </span> */}
+        {/*       ))} */}
+        {/*     </> */}
+        {/*   ) : ( */}
+        {/*     <></> */}
+        {/*   )} */}
+        {/* </div> */}
       </div>
     </div>
     <div className="d-flex flex-row justify-content-end align-items-start">
