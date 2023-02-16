@@ -89,16 +89,21 @@ return (
             <span>Requests</span>
           </label>
         </div>
-        <div className="card card-sm">
-          <div className="card-body row no-gutters align-items-center">
-            <div>
-              <input
-                className="w-25 form-control form-control-borderless"
-                type="search"
-                value={state.search}
-                placeholder="Search"
-                onChange={(e) => State.update({ search: e.target.value })}
-              />
+        <div>
+          <div className="card card-sm">
+            <div className="card-body row no-gutters align-items-center">
+              <div className="col-auto">
+                <i className="bi-search" />
+              </div>
+              <div className="col">
+                <input
+                  className="w-25 form-control form-control-borderless"
+                  type="search"
+                  value={state.search}
+                  placeholder="Search"
+                  onChange={(e) => State.update({ search: e.target.value })}
+                />
+              </div>{" "}
             </div>{" "}
           </div>
         </div>
