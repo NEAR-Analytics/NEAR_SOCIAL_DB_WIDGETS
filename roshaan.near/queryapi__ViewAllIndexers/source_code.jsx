@@ -28,34 +28,59 @@ const CardWrapper = styled.div`
   margin: 0 0 16px;
 `;
 
-const ButtonLink = styled.a`
-  display: block;
-  width: 100%;
-  padding: 8px;
+const sharedButtonStyles = `
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   height: 32px;
-  background: #fbfcfd;
-  border: 1px solid #d7dbdf;
   border-radius: 6px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
   text-align: center;
   cursor: pointer;
-  color: #11181c !important;
-  margin-top: 24px;
-  margin-bottom: 24px;
+
   &:hover,
   &:focus {
-    background: #ecedee;
     text-decoration: none;
     outline: none;
   }
 
-  span {
-    color: #687076 !important;
+  i {
+    color: #7E868C;
+  }
+
+  .bi-16 {
+    font-size: 16px;
   }
 `;
 
+const Button = styled.button`
+  ${sharedButtonStyles}
+  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
+
+  &:hover,
+  &:focus {
+    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+  }
+`;
+
+const ButtonLink = styled.a`
+  ${sharedButtonStyles}
+  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
+
+  &:hover,
+  &:focus {
+    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+  }
+`;
 const Subheading = styled.h2`
   display: block;
   margin: 0;
@@ -71,7 +96,10 @@ const Subheading = styled.h2`
 `;
 return (
   <>
-    <ButtonLink href="/#/roshaan.near/widget/queryapi__QueryApiDashboard">
+    <ButtonLink
+      primary
+      href="/#/roshaan.near/widget/queryapi__QueryApiDashboard"
+    >
       Create New Indexer
     </ButtonLink>
     <H2>Latest Indexers</H2>
