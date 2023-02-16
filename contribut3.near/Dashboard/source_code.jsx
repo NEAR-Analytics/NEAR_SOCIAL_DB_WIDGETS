@@ -1,5 +1,14 @@
 const ownerId = "contribut3.near";
 
+const header = (
+  <div>
+    <h1 className="fs-2">Dashboard</h1>
+    <p className="fw-semibold fs-5 text-muted">
+      Find projects, contributors or requests
+    </p>
+  </div>
+);
+
 const createNewDropdown = (
   <div className="dropdown">
     <a
@@ -104,14 +113,9 @@ return (
   <div>
     <div className="mb-5 ps-3">
       <div className="d-flex flex-row justify-content-between mb-3">
-        <div>
-          <h1 className="fs-2">Dashboard</h1>
-          <p className="fw-semibold fs-5 text-muted">
-            Find projects, contributors or requests
-          </p>
-        </div>
+        {header}
+        {dropdown}
       </div>
-      {dropdown}
       <div className="d-flex flex-row justify-content-between">
         {contentSelector}
         {searchBar}
