@@ -232,31 +232,50 @@ const handleBorrow = () => {
 const reward = rewards && rewards.find((a) => a.token_id === selectedTokenId);
 
 return (
-  <div class="card" style={{ maxWidth: "300px" }}>
+  <div style={{ maxWidth: "300px" }}>
     {!hasData && (
       <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
     <div class="card-body d-grid gap-3">
-      <h6>Health {healthFactor}%</h6>
-      <select onChange={handleSelect}>
-        <option value="">Borrow an asset</option>
-        {listAssets}
-      </select>
-      {selectedTokenId && (
-        <div>
+      <div>
+        <div class="mb-2 text-muted">From</div>
+        <select
+          onChange={handleSelect}
+          class="p-2 mb-1"
+          style={{ width: "100%" }}
+        >
+          <option value="">Borrow an asset</option>
+          {listAssets}
+        </select>
+        {selectedTokenId && (
           <div>
-            Available: {available} (${availableUSD})
+            <span class="badge bg-light text-dark">
+              {available} (${availableUSD}) available
+            </span>
+            <span class="badge bg-light text-dark">
+              {toAPY(reward.apyBaseBorrow)}% APY
+            </span>
           </div>
-          <div>APY: {toAPY(reward.apyBaseBorrow)}%</div>
-        </div>
-      )}
-      <input type="number" value={amount} onChange={handleAmount} />
-      {hasError && (
-        <p class="alert alert-danger" role="alert">
-          Amount greater than available
-        </p>
-      )}
-      <button onClick={handleBorrow}>Borrow</button>
+        )}
+      </div>
+      <div>
+        <div class="mb-2 text-muted">Amount</div>
+        <input type="number" value={amount} onChange={handleAmount} />
+        {hasError && (
+          <p class="alert alert-danger" role="alert">
+            Amount greater than available
+          </p>
+        )}
+      </div>
+      <div>
+        <span class="badge bg-light text-dark">{healthFactor}% health</span>
+      </div>
+      <button
+        onClick={handleBorrow}
+        style={{ background: "#4ED58A", borderColor: "white" }}
+      >
+        Borrow
+      </button>
     </div>
   </div>
 );
