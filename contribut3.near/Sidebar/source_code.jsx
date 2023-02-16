@@ -2,6 +2,10 @@ const ownerId = "contribut3.near";
 
 return (
   <div className="d-flex flex-column">
+    <a className="">
+      <i className="bi-triangle" />
+      <h2>Web4 Combinator</h2>
+    </a>
     <a className="nav-link">
       <i className="bi-house" />
       <span>Dashboard</span>
