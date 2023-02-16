@@ -1,5 +1,12 @@
 const ownerId = "contribut3.near";
 
+const navItem = ({ text, icon, link }) => (
+  <a className="nav-link" href={link}>
+    <i className={link} />
+    <span>{text}</span>
+  </a>
+);
+
 return (
   <div className="d-flex flex-column">
     <a className="">
