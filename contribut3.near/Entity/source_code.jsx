@@ -206,7 +206,7 @@ const founderCircle = (
 
 const footer = (
   <div className="d-flex flex-row justify-content-start align-items-center text-muted">
-    <div>
+    <div className="d-flex flex-row justify-content-start align-items-center">
       {founderCircle}
       <span>{founderProfile.name}</span>
     </div>
