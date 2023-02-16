@@ -98,9 +98,7 @@ const Bio = styled.div`
   color: #11181C;
   font-size: 14px;
   line-height: 20px;
-  margin-bottom: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid #ECEEF0;
+  margin-bottom: 72px;
 
   > *:last-child {
     margin-bottom: 0 !important;
