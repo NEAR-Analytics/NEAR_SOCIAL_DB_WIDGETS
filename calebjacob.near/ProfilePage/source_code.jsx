@@ -96,6 +96,10 @@ const Bio = styled.div`
   margin-bottom: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #ECEEF0;
+
+  > *:last-child {
+    margin-bottom: 0 !important;
+  }
 `;
 
 if (profile === null) {
