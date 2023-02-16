@@ -126,7 +126,10 @@ const circle = (
 );
 
 const body = (
-  <div className="d-flex flex-row justify-content-between align-items-start">
+  <div
+    className="d-flex flex-row justify-content-between align-items-start"
+    id={accountId}
+  >
     <div className="d-flex flex-row justify-content-start">
       <div className="m-2">{circle}</div>
       <div className="m-2 d-flex flex-column justify-content-between align-items-start">
