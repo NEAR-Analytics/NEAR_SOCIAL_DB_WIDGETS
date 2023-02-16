@@ -97,7 +97,7 @@ return (
               </div>
               <div className="col">
                 <input
-                  className="form-control form-control-lg border-0"
+                  className="form-control border-0"
                   type="search"
                   value={state.search}
                   placeholder="Search"
