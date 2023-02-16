@@ -188,6 +188,7 @@ return (
       {/* {header} */}
       {body}
       {details}
+      {footer}
       {needForm}
       {contributionsList}
       {requestsList}
