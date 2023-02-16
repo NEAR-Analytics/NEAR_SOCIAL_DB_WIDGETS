@@ -1,7 +1,15 @@
 const ownerId = "contribut3.near";
 
-const navItem = ({ text, icon, link }) => (
-  <a className="nav-link mb-2" href={link}>
+State.init({
+  selected: props.tab ?? "dashboard",
+});
+
+const navItem = ({ text, icon, link, id }) => (
+  <a
+    className={`nav-link mb-2 ${id === state.selected ? "bg-light-subtle" : ""
+      }`}
+    href={link}
+  >
     <i className={icon} />
     <span>{text}</span>
   </a>
