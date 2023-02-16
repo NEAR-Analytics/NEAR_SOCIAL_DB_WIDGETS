@@ -94,17 +94,17 @@ const controls = (
             {!isModerator
               ? null
               : control({
-                  formName: "ModeratorEntity",
-                  text: "Edit/Create Entity",
-                  icon: "bi-pencil-square",
-                })}
+                formName: "ModeratorEntity",
+                text: "Edit/Create Entity",
+                icon: "bi-pencil-square",
+              })}
             {!isModerator
               ? null
               : control({
-                  formName: "ModeratorSet",
-                  text: "Change moderator",
-                  icon: "bi-person-lock",
-                })}
+                formName: "ModeratorSet",
+                text: "Change moderator",
+                icon: "bi-person-lock",
+              })}
           </ul>
         </div>
       </div>
