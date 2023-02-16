@@ -32,34 +32,6 @@ const SummaryWrapper = styled.div`
   margin-bottom: 32px;
 `;
 
-const ButtonLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  height: 32px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
-  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
-
-  &:hover,
-  &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
-    text-decoration: none;
-    outline: none;
-  }
-
-  i {
-    color: #7E868C;
-  }
-`;
-
 const Tabs = styled.div`
   display: flex;
   height: 48px;
