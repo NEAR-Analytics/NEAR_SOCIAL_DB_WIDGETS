@@ -218,7 +218,7 @@ return (
       />
     </div>
     <div className="vr mx-2" />
-    <div>
+    <div className="w-full">
       {tabContent}
       {/* {controls} */}
       {/* {navbar} */}
