@@ -248,6 +248,34 @@ const getArticleData = () => {
   return args;
 };
 
+// === *** NEW DATA BASE *** ===
+const newArticleCheck = {
+  articleId: "FirstNewDBTest",
+  author: accountId,
+  lastEditor: accountId,
+  timeLastEdit: Date.now(),
+  timeCreate: Date.now(),
+  body: "First New Data Base Structure Test",
+  version: 0,
+  navigation_id: null,
+};
+
+const composeData = () => {
+  const data = {
+    wikiTest2: {
+      main: JSON.stringify(newArticleCheck),
+    },
+    index: {
+      wikiTest2: JSON.stringify({
+        key: "main",
+        value: {
+          type: "md",
+        },
+      }),
+    },
+  };
+};
+
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
   State.update({
@@ -302,6 +330,11 @@ return (
           >
             Save Article
           </button>
+          {/* === *** NEW DATA BASE *** === */}
+          <CommitButton className="btn btn-warning" data={composeData}>
+            Post
+          </CommitButton>
+          {/* === *** NEW DATA BASE *** === */}
         </div>
         <div class="d-flex flex-column pt-3">
           <label for="inputArticleId">
