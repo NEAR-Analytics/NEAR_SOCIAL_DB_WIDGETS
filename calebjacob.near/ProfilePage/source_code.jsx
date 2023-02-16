@@ -61,6 +61,7 @@ const Sidebar = styled.div`
   position: relative;
   z-index: 5;
   margin-top: -55px;
+  overflow-wrap: anywhere;
 `;
 
 const SidebarSection = styled.div`
@@ -98,9 +99,9 @@ const Text = styled.p`
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
   font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
-  white-space: nowrap;
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
+  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
 
   b {
     font-weight: 600;
@@ -175,6 +176,10 @@ const Stats = styled.div`
   gap: 24px;
 `;
 
+const FollowButtonWrapper = styled.div`
+  width: 100%;
+`;
+
 console.log(profile);
 
 if (profile === null) {
@@ -226,9 +231,14 @@ return (
               </ButtonLink>
             ) : (
               <>
-                <Button type="button" primary>
-                  Follow
-                </Button>
+                <FollowButtonWrapper>
+                  <Widget
+                    src="calebjacob.near/widget/FollowButton"
+                    props={{
+                      accountId,
+                    }}
+                  />
+                </FollowButtonWrapper>
 
                 <Button type="button">
                   <i className="bi bi-hand-index-thumb"></i> Poke
