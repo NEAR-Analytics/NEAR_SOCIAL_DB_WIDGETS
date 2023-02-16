@@ -55,7 +55,7 @@ const contentSelectButton = ({ id, text, icon }) => (
   <a
     className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
       }`}
-    href={`https://near.social/#/${ownerId}/widget/Dashboard?tab=${props.tab
+    href={`https://near.social/#/${ownerId}/widget/Index?tab=${props.tab
       }&content=${id}${props.search ? "&search=" + props.search : ""}`}
     onClick={() => State.update({ content: id })}
   >
