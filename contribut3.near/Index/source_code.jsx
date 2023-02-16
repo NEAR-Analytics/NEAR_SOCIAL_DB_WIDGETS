@@ -205,6 +205,10 @@ const content = {
   ),
 }[state.content];
 
+const tabContent = {
+  dashboard: <Widget src={`${ownerId}/widget/Dashboard`} />,
+}[state.tab];
+
 return (
   <div className="d-flex flex-row">
     <div className="px-1">
