@@ -205,9 +205,11 @@ const content = {
 }[state.content];
 
 return (
-  <div>
-    {controls}
-    {navbar}
-    <div className="mt-2">{content}</div>
-  </div>
+  <div className="d-flex flex-row">
+    <Widget src={`${ownerId}/widget/Sidebar`} props={{ tab: props.tab }} />
+    <div>
+      {controls}
+      {navbar}
+      <div className="mt-2">{content}</div>
+    </Widget></div>
 );
