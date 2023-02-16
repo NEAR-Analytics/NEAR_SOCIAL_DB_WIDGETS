@@ -91,7 +91,7 @@ return (
         </div>
         <div className="w-25 col-12 col-md-10 col-lg-8">
           <div className="card card-sm">
-            <div className="card-body row p-1 align-items-center">
+            <div className="card-body row px-2 py-0 align-items-center">
               <div className="col-auto">
                 <i className="bi-search" />
               </div>
