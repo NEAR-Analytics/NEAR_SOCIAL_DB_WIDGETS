@@ -167,11 +167,7 @@ const body = (
   </div>
 );
 
-const details = (
-  <div className="">
-    <p>{profile.description}</p>
-  </div>
-);
+const details = <div className="text-truncate">{profile.description}</div>;
 
 return (
   <div className="card">
