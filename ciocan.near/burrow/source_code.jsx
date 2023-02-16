@@ -3,7 +3,16 @@ const Container = styled.div`
   flex-direction: column;
   gap: 2rem;
 
-  .btn-outline-primary {
+  .list .btn-outline-primary {
+    --bs-btn-bg: rgba(0, 0, 0, 0.05);
+    --bs-btn-color: rgba(0, 0, 0, 0.4);
+    --bs-btn-border-color: none;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #fff;
+    --bs-btn-bg: #fff;
+  }
+
+  .action .btn-outline-primary {
     --bs-btn-bg: rgba(0, 0, 0, 0.05);
     --bs-btn-color: rgba(0, 0, 0, 0.4);
     --bs-btn-border-color: rgba(0, 0, 0, 0.1);
@@ -24,6 +33,8 @@ const Container = styled.div`
 
 const Nav = styled.div`
   display: flex;
+  align-items: center;
+  gap: 2rem;
 `;
 
 const Main = styled.div`
@@ -47,22 +58,55 @@ if (!state.actionTabs) {
   State.update({ actionTabs: "deposit" });
 }
 
+if (!state.actionList) {
+  State.update({ actionList: "assets" });
+}
+
 return (
   <Container>
-    <Nav class="grid">
-      <div class="">Burrow logo</div>
-      <div class="px-4">Assets | Portfolio</div>
+    <Nav>
+      <div class="fw-bold">Burrow</div>
+      <div class="list btn-group" role="group" aria-label="List">
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradiolist"
+          id="assets"
+          autocomplete="off"
+          checked={state.actionList === "assets"}
+          onClick={() => State.update({ actionList: "assets" })}
+        />
+        <label class="btn btn-outline-primary" for="assets">
+          Assets
+        </label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradiolist"
+          id="portfolio"
+          autocomplete="off"
+          checked={state.actionList === "portfolio"}
+          onClick={() => State.update({ actionList: "portfolio" })}
+        />
+        <label class="btn btn-outline-primary" for="portfolio">
+          Portfolio
+        </label>
+      </div>
     </Nav>
     <Main>
       <LeftPanel>
-        <Widget src="ciocan.near/widget/burrow-list" />
+        {state.actionList === "assets" ? (
+          <Widget src="ciocan.near/widget/burrow-list" />
+        ) : (
+          <div>portfolio</div>
+        )}
       </LeftPanel>
       <RightPanel>
-        <div class="btn-group mb-4" role="group" aria-label="Deposit">
+        <div class="action btn-group mb-4" role="group" aria-label="Deposit">
           <input
             type="radio"
             class="btn-check"
-            name="btnradio"
+            name="btnradioaction"
             id="deposit"
             autocomplete="off"
             checked={state.actionTabs === "deposit"}
@@ -74,7 +118,7 @@ return (
           <input
             type="radio"
             class="btn-check"
-            name="btnradio"
+            name="btnradioaction"
             id="borrow"
             autocomplete="off"
             checked={state.actionTabs === "borrow"}
