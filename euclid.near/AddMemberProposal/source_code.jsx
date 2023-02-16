@@ -37,7 +37,7 @@ const handleProposal = () => {
             kind: {
               AddMemberToRole: {
                 member_id: state.member_id,
-                role: "council",
+                role: state.role,
               },
             },
           },
