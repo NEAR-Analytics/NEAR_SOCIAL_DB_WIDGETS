@@ -143,7 +143,9 @@ const body = (
 
 return (
   <div className="card">
-    {header}
-    {body}
+    <div className="card-body">
+      {header}
+      {body}
+    </div>
   </div>
 );
