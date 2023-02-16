@@ -15,7 +15,7 @@ const header = (
 
 const createNewButton = ({ id, text, icon }) => (
   <li>
-    <a className="dropdown-item" id>
+    <a className="dropdown-item" id={id}>
       <i className={icon} />
       <span>{text}</span>
     </a>
