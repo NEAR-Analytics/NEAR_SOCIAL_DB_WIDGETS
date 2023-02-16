@@ -77,6 +77,7 @@ const Wrapper = styled.div`
 
 return (
   <Wrapper>
+    test
     <CommitButton disabled={loading} className="follow-button" data={data}>
       {follow ? "Following" : inverse ? "Follow Back" : "Follow"}
     </CommitButton>
