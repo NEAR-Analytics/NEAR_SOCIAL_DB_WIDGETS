@@ -9,7 +9,9 @@ if (!accountId) {
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  padding-bottom: 48px;
+`;
 
 const Main = styled.div`
   display: grid;
