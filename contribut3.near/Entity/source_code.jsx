@@ -176,7 +176,7 @@ const details = (
 );
 
 const footer = (
-  <div className="d-flex flex-row justify-content-start align-items-start">
+  <div className="d-flex flex-row justify-content-start align-items-start text-muted">
     <div>
       <i className="bi-play" />
       {entity.status}
