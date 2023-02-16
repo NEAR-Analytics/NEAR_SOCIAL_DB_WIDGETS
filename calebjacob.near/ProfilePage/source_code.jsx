@@ -38,7 +38,12 @@ const SidebarWrapper = styled.div`
   margin-top: -55px;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  .post {
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;
 
 const Title = styled.h1`
   font-weight: 600;
