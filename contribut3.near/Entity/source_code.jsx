@@ -167,6 +167,12 @@ const body = (
   </div>
 );
 
+const details = (
+  <div className="">
+    <p>{profile.description}</p>
+  </div>
+);
+
 return (
   <div className="card">
     <div className="card-body p-3">
