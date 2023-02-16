@@ -212,6 +212,15 @@ return (
             />
           </>
         )}
+
+        {state.selectedTab === "nfts" && (
+          <>
+            <Widget
+              src="calebjacob.near/widget/NFTCollection"
+              props={{ accountId }}
+            />
+          </>
+        )}
       </Content>
     </Main>
   </Wrapper>
