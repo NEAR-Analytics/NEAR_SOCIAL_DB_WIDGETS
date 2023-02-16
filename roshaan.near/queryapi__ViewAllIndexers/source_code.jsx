@@ -17,6 +17,7 @@ const indexerDetails = Near.asyncView(
 });
 
 const H2 = styled.h2`
+
   font-size: 19px;
   line-height: 22px;
   color: #11181c;
@@ -42,7 +43,7 @@ const ButtonLink = styled.a`
   cursor: pointer;
   color: #11181c !important;
   margin-top: 24px;
-
+  margin-bottom: 24px;
   &:hover,
   &:focus {
     background: #ecedee;
@@ -55,14 +56,25 @@ const ButtonLink = styled.a`
   }
 `;
 
+const Subheading = styled.h2`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
+  outline: none;
+`;
 return (
   <>
     <ButtonLink href="/#/roshaan.near/widget/queryapi__QueryApiDashboard">
       Create New Indexer
     </ButtonLink>
-
     <H2>Latest Indexers</H2>
-
     {indexers.map((indexer, i) => (
       <CardWrapper key={i}>
         <Widget
@@ -73,9 +85,13 @@ return (
         />
       </CardWrapper>
     ))}
-
-    <ButtonLink href="/#/roshaan.near/widget/queryapi__ViewAllIndexersPublic">
-      View All Indexers <span>({totalIndexers})</span>
-    </ButtonLink>
+    {indexers.length == 0 && (
+      <Subheading> You have no indexers to show...</Subheading>
+    )}
+    {indexers.length > 0 && (
+      <ButtonLink href="/#/roshaan.near/widget/queryapi__ViewAllIndexersPublic">
+        View All Indexers <span>({totalIndexers})</span>
+      </ButtonLink>
+    )}
   </>
 );
