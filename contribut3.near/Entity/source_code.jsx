@@ -211,7 +211,10 @@ const footer = (
       <span className="ms-1">{founderProfile.name}</span>
     </div>
     <div className="ms-3">
-      <i className="bi-play" style={{ width: "1.5em", height: "1.5em" }} />
+      <i
+        className="bi-play d-inline-block"
+        style={{ width: "1.5em", height: "1.5em" }}
+      />
       <span className="ms-1">{entity.status}</span>
     </div>
   </div>
