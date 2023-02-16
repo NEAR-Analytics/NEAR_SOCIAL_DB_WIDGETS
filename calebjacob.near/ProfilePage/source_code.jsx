@@ -39,6 +39,10 @@ const BackgroundImage = styled.div`
     margin: calc(var(--body-top-padding) * -1) -12px 0;
     border-radius: 0;
   }
+
+   @media (max-width: 900px) {
+    height: 120px;
+  }
 `;
 
 const SidebarWrapper = styled.div`
