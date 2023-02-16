@@ -8,6 +8,7 @@ const navItem = ({ text, icon, id }) => (
   <a
     className={`nav-link mb-2 ${id === state.selected ? "bg-secondary" : ""}`}
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${id}`}
+    onClick={() => State.update({ selected: id })}
   >
     <i className={icon} />
     <span>{text}</span>
