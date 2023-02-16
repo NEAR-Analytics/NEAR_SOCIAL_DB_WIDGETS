@@ -38,6 +38,47 @@ const createNewDropdown = (
   </div>
 );
 
+const contentSelector = (
+  <div className="btn-group" role="group" aria-label="Content Tab Selector">
+    <input
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="projects"
+      autocomplete="off"
+      checked
+    />
+    <label className="btn btn-outline-secondary" htmlFor="projects">
+      <i className="bi-boxes" />
+      <span>Projects</span>
+    </label>
+
+    <input
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="contributors"
+      autocomplete="off"
+    />
+    <label className="btn btn-outline-secondary" htmlFor="contributors">
+      <i className="bi-person" />
+      <span>Contributors</span>
+    </label>
+
+    <input
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="requests"
+      autocomplete="off"
+    />
+    <label className="btn btn-outline-secondary" htmlFor="requests">
+      <i className="bi-ui-checks-grid" />
+      <span>Requests</span>
+    </label>
+  </div>
+);
+
 return (
   <div>
     <div className="mb-5 ps-3">
@@ -51,48 +92,7 @@ return (
       </div>
       {dropdown}
       <div className="d-flex flex-row justify-content-between">
-        <div
-          className="btn-group"
-          role="group"
-          aria-label="Content Tab Selector"
-        >
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="projects"
-            autocomplete="off"
-            checked
-          />
-          <label className="btn btn-outline-secondary" htmlFor="projects">
-            <i className="bi-boxes" />
-            <span>Projects</span>
-          </label>
-
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="contributors"
-            autocomplete="off"
-          />
-          <label className="btn btn-outline-secondary" htmlFor="contributors">
-            <i className="bi-person" />
-            <span>Contributors</span>
-          </label>
-
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="requests"
-            autocomplete="off"
-          />
-          <label className="btn btn-outline-secondary" htmlFor="requests">
-            <i className="bi-ui-checks-grid" />
-            <span>Requests</span>
-          </label>
-        </div>
+        {contentSelector}
         <div className="w-25 col-12 col-md-10 col-lg-8">
           <div className="card card-sm">
             <div className="card-body row p-0 ps-2 align-items-center">
