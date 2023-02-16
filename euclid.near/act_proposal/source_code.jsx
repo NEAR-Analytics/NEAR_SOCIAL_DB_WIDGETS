@@ -10,7 +10,7 @@ const onVoteClick = () => {
   Near.call(
     state.dao,
     "act_proposal",
-    { id: state.proposal, action: VoteApprove },
+    { id: state.proposal, action: state.action },
     gas,
     deposit
   );
