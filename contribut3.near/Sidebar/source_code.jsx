@@ -3,6 +3,7 @@ const ownerId = "contribut3.near";
 return (
   <div className="d-flex flex-column">
     <a>
+      <i className="bi-" />
       <span>Dashboard</span>
     </a>
     <a>
