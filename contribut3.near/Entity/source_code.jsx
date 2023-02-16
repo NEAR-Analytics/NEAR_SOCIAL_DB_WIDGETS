@@ -178,6 +178,7 @@ return (
     <div className="card-body p-3">
       {/* {header} */}
       {body}
+      {details}
       {needForm}
       {contributionsList}
       {requestsList}
