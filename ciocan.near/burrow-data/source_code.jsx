@@ -90,6 +90,17 @@ function getAssets() {
   });
 }
 
+const getBalances = (assets) => {
+  if (!assets) return;
+  const balances = accountId
+    ? assets.map(({ token_id }) =>
+        Near.view(token_id, "ft_balance_of", { account_id: accountId })
+      )
+    : undefined;
+
+  return balances;
+};
+
 const getTotalBalance = (assets, source) =>
   assets
     .map((asset) => {
@@ -237,6 +248,10 @@ const assets = getAssets();
 
 if (!assets) return <div />;
 
+const balances = getBalances(assets);
+
+if (!balances) return <div />;
+
 const rewards = getRewards(assets);
 
 if (!rewards) return <div />;
@@ -244,6 +259,7 @@ if (!rewards) return <div />;
 const data = {
   assets,
   rewards,
+  balances,
 };
 
 if (typeof props.onLoad === "function") {
