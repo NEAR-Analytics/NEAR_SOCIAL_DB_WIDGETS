@@ -32,7 +32,45 @@ const accountFollowsYouData = Social.keys(
 );
 const accountFollowsYou = Object.keys(accountFollowsYouData || {}).length > 0;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    height: 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+    color: #11181C;
+    background: #FBFCFD;
+    border: 1px solid #D7DBDF;
+
+    &:hover,
+    &:focus {
+      background: #ECEDEE;
+      text-decoration: none;
+      outline: none;
+    }
+
+    &.primary { 
+      color: #006ADC !important;
+      width: 100%;
+    }
+
+    i {
+      color: #7E868C;
+    }
+
+    .bi-16 {
+      font-size: 16px;
+    }
+  }
+`;
 
 const Main = styled.div`
   display: grid;
@@ -125,40 +163,6 @@ const Actions = styled.div`
   gap: 6px;
 `;
 
-const Button = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
-  height: 32px;
-  border-radius: 100px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
-  background: #FBFCFD;
-  border: 1px solid #D7DBDF;
-  width: ${(p) => (p.primary ? "100%" : "auto")};
-
-  &:hover,
-  &:focus {
-    background: #ECEDEE;
-    text-decoration: none;
-    outline: none;
-  }
-
-  i {
-    color: #7E868C;
-  }
-
-  .bi-16 {
-    font-size: 16px;
-  }
-`;
-
 const Stats = styled.div`
   display: flex;
   gap: 24px;
@@ -210,18 +214,22 @@ return (
 
           <Actions>
             {viewingOwnAccount ? (
-              <Button as="a" href="/#/mob.near/widget/ProfileEditor" primary>
+              <a
+                className="button primary"
+                href="/#/mob.near/widget/ProfileEditor"
+                primary
+              >
                 Edit Profile
-              </Button>
+              </a>
             ) : (
               <>
-                <Button type="button" primary>
+                <button className="button" type="button" primary>
                   Follow
-                </Button>
+                </button>
 
-                <Button type="button">
+                <button className="button" type="button">
                   <i className="bi bi-hand-index-thumb"></i> Poke
-                </Button>
+                </button>
               </>
             )}
 
@@ -229,7 +237,8 @@ return (
               placement="top"
               overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
             >
-              <Button
+              <button
+                className="button"
                 type="button"
                 onMouseLeave={() => {
                   State.update({ copiedShareUrl: false });
@@ -246,7 +255,7 @@ return (
                   <i className="bi-16 bi-link-45deg"></i>
                 )}
                 Share
-              </Button>
+              </button>
             </OverlayTrigger>
           </Actions>
         </SidebarSection>
