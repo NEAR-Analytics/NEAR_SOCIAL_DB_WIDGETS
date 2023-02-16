@@ -17,7 +17,14 @@ return (
         >
           Create new...
         </a>
-        <ul className="dropdown-menu"></ul>
+        <ul className="dropdown-menu">
+          <li>
+            <a className="dropdown-item">
+              <i className="bi-ui-checks-grid" />
+              <span>Contribution request</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
