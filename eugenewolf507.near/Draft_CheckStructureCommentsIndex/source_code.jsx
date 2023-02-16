@@ -19,20 +19,20 @@ const clickHandlerGetStructure = () => {
   const post = Social.get(`${accountId}/post/main`, 84722911);
   //84445357 - blockHeight put into post inside social get
   console.log("postGet", post);
-  const postData = Social.get(`bosco.near/**`, "final");
+  // const postData = Social.get(`bosco.near/**`, "final");
   console.log("postData", postData);
-  //   console.log(" ========== GET INDEX ARRAY FOR POSTS ========== ");
+  console.log(" ========== GET INDEX ARRAY FOR POSTS ========== ");
   const postsIndex = Social.index("post", "main", {
     limit: 10,
     order: "desc",
     accountId,
   });
   console.log(postsIndex);
-  // console.log(" ========== GET 10 POSTS ========== ");
-  // postsIndex.forEach(({ accountId, blockHeight }) => {
-  //   const postData = Social.get(`${accountId}/post/main`, blockHeight);
-  //   console.log(JSON.parse(postData));
-  // });
+  console.log(" ========== GET 10 POSTS ========== ");
+  postsIndex.forEach(({ accountId, blockHeight }) => {
+    const postData = Social.get(`${accountId}/post/main`, blockHeight);
+    console.log(JSON.parse(postData));
+  });
 
   console.log(" ========== GET SOME COMMENTS ========== ");
   const item = {
