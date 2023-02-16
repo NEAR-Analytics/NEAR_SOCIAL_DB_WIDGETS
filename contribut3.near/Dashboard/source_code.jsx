@@ -95,7 +95,7 @@ return (
               <div className="col-auto pe-0 me-0">
                 <i className="bi-search" />
               </div>
-              <div className="col">
+              <div className="col ms-0">
                 <input
                   className="form-control border-0"
                   type="search"
