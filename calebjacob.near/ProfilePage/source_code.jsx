@@ -223,6 +223,15 @@ return (
             />
           </>
         )}
+
+        {state.selectedTab === "apps" && (
+          <>
+            <Widget
+              src="calebjacob.near/widget/ComponentCollection"
+              props={{ accountId }}
+            />
+          </>
+        )}
       </Content>
     </Main>
   </Wrapper>
