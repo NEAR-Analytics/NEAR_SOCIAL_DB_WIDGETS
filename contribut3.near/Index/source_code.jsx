@@ -207,7 +207,10 @@ const content = {
 return (
   <div className="d-flex flex-row">
     <div className="px-1">
-      <Widget src={`${ownerId}/widget/Sidebar`} props={{ tab: props.tab }} />
+      <Widget
+        src={`${ownerId}/widget/Sidebar`}
+        props={{ tab: state.tab, update: (tab) => State.update({ tab }) }}
+      />
     </div>
     <div className="vr mx-2" />
     <div>
