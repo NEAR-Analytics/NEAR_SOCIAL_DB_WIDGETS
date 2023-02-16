@@ -189,12 +189,30 @@ const founderImageUrl =
     : founderImage.url) ||
   "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
+const founderCircle = (
+  <div
+    className="profile-circle d-inline-block"
+    title={`${founderProfile.name} @${founder}`}
+    style={{ width: "2em", height: "2em" }}
+  >
+    <img
+      className="rounded-circle w-100 h-100"
+      style={{ objectFit: "cover" }}
+      src={`https://i.near.social/thumbnail/${founderImageUrl}`}
+      alt="profile image"
+    />
+  </div>
+);
+
 const footer = (
   <div className="d-flex flex-row justify-content-start align-items-start text-muted">
-    <div></div>
+    <div>
+      {founderCircle}
+      <span>{founderProfile.name}</span>
+    </div>
     <div>
       <i className="bi-play" />
-      {entity.status}
+      <span>{entity.status}</span>
     </div>
   </div>
 );
