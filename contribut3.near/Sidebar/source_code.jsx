@@ -17,7 +17,7 @@ const navItem = ({ text, icon, id }) => (
 
 return (
   <div className="d-flex flex-column">
-    <a className="">
+    <a className="mb-4">
       <h4>
         <i className="bi-triangle" />
         Web3 Combinator
