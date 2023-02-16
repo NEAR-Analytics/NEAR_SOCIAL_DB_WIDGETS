@@ -219,6 +219,7 @@ return (
     </div>
     <div className="vr mx-2" />
     <div>
+      {tabContent}
       {controls}
       {navbar}
       <div className="mt-2">{content}</div>
