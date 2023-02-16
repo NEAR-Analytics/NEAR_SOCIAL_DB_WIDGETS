@@ -3,26 +3,33 @@ let indexers = [];
 let totalIndexers = 0;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
-const indexerDetails = Near.asyncView(
-  registry_contract_id,
-  "list_indexer_functions"
-).then((data) => {
-  let indexer_paths = Object.keys(data);
-  indexers = indexer_paths.map((indexer_path) => {
-    return {
-      accountId: indexer_path.split("/")[0],
-      indexerName: indexer_path.split("/").splice(1).join("/"),
-    };
-  });
-});
+let accountId = context.accountId;
 
 const H2 = styled.h2`
-
   font-size: 19px;
   line-height: 22px;
   color: #11181c;
   margin: 0 0 24px;
 `;
+
+if (!accountId) {
+  return <H2>Please sign in to see your widgets.</H2>;
+}
+
+const indexerDetails = Near.asyncView(
+  registry_contract_id,
+  "list_indexer_functions"
+).then((data) => {
+  let indexer_paths = Object.keys(data);
+  indexers = indexer_paths
+    .map((indexer_path) => {
+      return {
+        accountId: indexer_path.split("/")[0],
+        indexerName: indexer_path.split("/").splice(1).join("/"),
+      };
+    })
+    .filter((indexer) => indexer.accountId === accountId);
+});
 
 const CardWrapper = styled.div`
   margin: 0 0 16px;
