@@ -1,7 +1,7 @@
 const ownerId = "contribut3.near";
 
 return (
-  <nav className="d-flex flex-column">
+  <div className="d-flex flex-column">
     <a>
       <span>Dashboard</span>
     </a>
@@ -24,5 +24,5 @@ return (
     <a>
       <span>About this app</span>
     </a>
-  </nav>
+  </div>
 );
