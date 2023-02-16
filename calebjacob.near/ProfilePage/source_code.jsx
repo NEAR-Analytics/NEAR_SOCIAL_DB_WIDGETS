@@ -82,6 +82,7 @@ const Main = styled.div`
   display: grid;
   gap: 40px;
   grid-template-columns: 352px  minmax(0, 1fr);
+  align-items: start;
 `;
 
 const BackgroundImage = styled.div`
@@ -129,12 +130,12 @@ const Avatar = styled.div`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   font-weight: 600;
-  font-size: 25px;
-  line-height: 30px;
+  font-size: ${(p) => p.size || "25px"};
+  line-height: 1.2em;
   color: #11181C;
-  margin: 0;
+  margin: ${(p) => (p.margin ? "0 0 24px" : "0")};
   overflow-wrap: anywhere;
 `;
 
@@ -253,6 +254,15 @@ const TabsButton = styled.button`
     height: 3px;
     background: #0091FF;
   }
+`;
+
+const Bio = styled.div`
+  color: #11181C;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ECEEF0;
 `;
 
 if (profile === null) {
@@ -448,6 +458,23 @@ return (
             NFTs
           </TabsButton>
         </Tabs>
+
+        {state.selectedTab === "overview" && (
+          <>
+            <Bio>
+              {profile.description && <Markdown text={profile.description} />}
+            </Bio>
+
+            <Title as="h2" size="19px" margin>
+              Activity
+            </Title>
+
+            <Widget
+              src="calebjacob.near/widget/Feed"
+              props={{ accounts: [accountId] }}
+            />
+          </>
+        )}
       </Content>
     </Main>
   </Wrapper>
