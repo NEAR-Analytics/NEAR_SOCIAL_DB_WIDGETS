@@ -12,7 +12,7 @@ const metadata = data || {};
 const tags = Object.keys(metadata.tags || {});
 const appPath = `/#/${src}`;
 const detailsPath = `/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
-const shareUrl = `https://near.social/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
+const shareUrl = `https://alpha.near.org/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
 const size = props.size || "large";
 
 const primaryActions = {
