@@ -1,4 +1,5 @@
 const accountId = context.accountId;
+const BURROW_CONTRACT = "contract.main.burrow.near";
 
 const unique = (value, index, self) => {
   return self.indexOf(value) === index;
@@ -31,11 +32,11 @@ const shrinkToken = (value, decimals, fixed) => {
 };
 
 function getAssets() {
-  const assets = Near.view("contract.main.burrow.near", "get_assets_paged");
+  const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
   if (!assets) return;
   const tokenIds = assets?.map(([id]) => id);
   const assetsDetailed = tokenIds.map((token_id) =>
-    Near.view("contract.main.burrow.near", "get_asset", { token_id })
+    Near.view(BURROW_CONTRACT, "get_asset", { token_id })
   );
   if (!assetsDetailed) return;
   const metadata = tokenIds?.map((token_id) =>
@@ -43,7 +44,7 @@ function getAssets() {
   );
   if (!metadata) return;
 
-  const config = Near.view("contract.main.burrow.near", "get_config");
+  const config = Near.view(BURROW_CONTRACT, "get_config");
   if (!config) return;
 
   const prices =
@@ -146,11 +147,9 @@ const getNetLiquidityAPY = (assets, netLiquidityFarm) => {
 };
 
 const getRewards = (assets) => {
-  const netLiquidityFarm = Near.view(
-    "contract.main.burrow.near",
-    "get_asset_farm",
-    { farm_id: "NetTvl" }
-  );
+  const netLiquidityFarm = Near.view(BURROW_CONTRACT, "get_asset_farm", {
+    farm_id: "NetTvl",
+  });
 
   if (!netLiquidityFarm) return;
 
@@ -244,6 +243,14 @@ const getRewards = (assets) => {
   return rewards;
 };
 
+const getAccount = () => {
+  if (!accountId) return null;
+  const account = Near.view(BURROW_CONTRACT, "get_account", {
+    account_id: accountId,
+  });
+  return account;
+};
+
 const assets = getAssets();
 
 if (!assets) return <div />;
@@ -256,10 +263,13 @@ const rewards = getRewards(assets);
 
 if (!rewards) return <div />;
 
+const account = getAccount();
+
 const data = {
   assets,
   rewards,
   balances,
+  account,
 };
 
 if (typeof props.onLoad === "function") {
