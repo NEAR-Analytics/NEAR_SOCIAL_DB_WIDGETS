@@ -25,8 +25,11 @@ return (
     <p>
       Proposal: <input type="number" value={state.proposal} />
     </p>
+    <p>
+      Action: <input value={state.action} />
+    </p>
     <a className="btn btn-primary" onClick={onVoteClick}>
-      Approve
+      Submit
     </a>
   </div>
 );
