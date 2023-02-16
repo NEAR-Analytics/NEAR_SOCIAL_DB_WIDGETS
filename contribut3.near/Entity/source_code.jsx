@@ -178,12 +178,15 @@ const body = (
         </div>
       </div>
     </div>
-    <div>
+    <div className="d-flex flex-row justify-content-end align-items-start">
       <a
-        className="btn btn-outline-secondary"
+        className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
       >
         View details
+      </a>
+      <a className="btn btn-outline-secondary">
+        <i className="bi-box-arrow-up-right" />
       </a>
     </div>
   </div>
