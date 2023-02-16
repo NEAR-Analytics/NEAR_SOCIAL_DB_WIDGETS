@@ -178,16 +178,6 @@ const body = (
         </div>
       </div>
     </div>
-    <div>Name: {entity.name}</div>
-    <div>Type: {entity.kind}</div>
-    <div>Status: {entity.status}</div>
-    <div>
-      Founded at: {new Date(Number(entity.start_date)).toLocaleDateString()}
-    </div>
-    {needForm}
-    {contributionsList}
-    {requestsList}
-    {inviteList}
   </div>
 );
 
@@ -196,6 +186,10 @@ return (
     <div className="card-body p-3">
       {/* {header} */}
       {body}
+      {needForm}
+      {contributionsList}
+      {requestsList}
+      {inviteList}
     </div>
   </div>
 );
