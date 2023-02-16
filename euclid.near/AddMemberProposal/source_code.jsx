@@ -108,7 +108,13 @@ return (
     </div>
     <div className="mb-3"></div>
     <div>
-      <button onClick={handleProposal}>Submit Proposal</button>
+      <button
+        onClick={() => {
+          handleProposal();
+        }}
+      >
+        Submit
+      </button>
     </div>
   </div>
 );
