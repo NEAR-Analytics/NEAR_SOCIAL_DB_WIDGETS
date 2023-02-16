@@ -11,6 +11,8 @@ const entity = isPreview
   ? props.entity
   : Near.view(ownerId, "get_entity", { account_id: accountId }, "final");
 
+console.log(entity);
+
 if (!entity) {
   return isPreview
     ? "You must provide an entity object in preview mode"
