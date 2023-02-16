@@ -1,5 +1,9 @@
 const ownerId = "contribut3.near";
 
+State.init({
+  content: props.content ?? "projects",
+});
+
 const header = (
   <div>
     <h1 className="fs-2">Dashboard</h1>
@@ -45,6 +49,16 @@ const createNewDropdown = (
       </li>
     </ul>
   </div>
+);
+
+const contentSelectButton = ({ id, text, icon }) => (
+  <a
+    className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
+      }`}
+  >
+    <i className={icon} />
+    <span>{text}</span>
+  </a>
 );
 
 const contentSelector = (
