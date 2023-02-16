@@ -74,6 +74,10 @@ const Tabs = styled.div`
   margin-bottom: 72px;
 
   @media (max-width: 900px) {
+    background: #F8F9FA;
+    border-top: 1px solid #ECEEF0;
+    margin-bottom: 48px;
+
     button {
       flex: 1;
     }
@@ -115,6 +119,10 @@ const Bio = styled.div`
 
   > *:last-child {
     margin-bottom: 0 !important;
+  }
+
+  @media (max-width: 900px) {
+    margin-bottom: 48px;
   }
 `;
 
