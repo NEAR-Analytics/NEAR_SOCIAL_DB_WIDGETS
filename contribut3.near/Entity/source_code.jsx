@@ -177,7 +177,8 @@ const details = (
 
 const [[founder]] = (contributions ?? []).filter((contribution) => {
   const [_, details] = contribution;
-  console.log(details);
+  const all = [...details.history, details.current];
+  console.log(all);
   return true;
 });
 
