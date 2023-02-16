@@ -47,38 +47,8 @@ const data = {
   },
 };
 
-const Wrapper = styled.div`
-  .follow-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 16px;
-    height: 32px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-    background: #FBFCFD;
-    color: #006ADC;
-    border: 1px solid #D7DBDF;
-    width: 100%;
-
-    &:hover,
-    &:focus {
-      background: #ECEDEE;
-      text-decoration: none;
-      outline: none;
-    }
-  }
-`;
-
 return (
-  <Wrapper>
-    <CommitButton disabled={loading} className="follow-button" data={data}>
-      {follow ? "Following" : inverse ? "Follow Back" : "Follow"}
-    </CommitButton>
-  </Wrapper>
+  <CommitButton disabled={loading} className={props.className} data={data}>
+    {follow ? "Following" : inverse ? "Follow Back" : "Follow"}
+  </CommitButton>
 );
