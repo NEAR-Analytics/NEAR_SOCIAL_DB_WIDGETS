@@ -206,7 +206,9 @@ const content = {
 
 return (
   <div className="d-flex flex-row">
-    <Widget src={`${ownerId}/widget/Sidebar`} props={{ tab: props.tab }} />
+    <div>
+      <Widget src={`${ownerId}/widget/Sidebar`} props={{ tab: props.tab }} />
+    </div>
     <div>
       {controls}
       {navbar}
