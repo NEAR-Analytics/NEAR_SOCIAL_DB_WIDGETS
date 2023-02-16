@@ -32,45 +32,7 @@ const accountFollowsYouData = Social.keys(
 );
 const accountFollowsYou = Object.keys(accountFollowsYouData || {}).length > 0;
 
-const Wrapper = styled.div`
-  .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 16px;
-    height: 32px;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-    cursor: pointer;
-    color: #11181C;
-    background: #FBFCFD;
-    border: 1px solid #D7DBDF;
-
-    &:hover,
-    &:focus {
-      background: #ECEDEE;
-      text-decoration: none;
-      outline: none;
-    }
-
-    &.primary { 
-      color: #006ADC !important;
-      width: 100%;
-    }
-
-    i {
-      color: #7E868C;
-    }
-
-    .bi-16 {
-      font-size: 16px;
-    }
-  }
-`;
+const Wrapper = styled.div``;
 
 const Main = styled.div`
   display: grid;
@@ -158,6 +120,55 @@ const TextBadge = styled.p`
   border-radius: 3px;
 `;
 
+const sharedButtonStyles = `
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  height: 32px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+
+  &.primary { 
+    color: #006ADC !important;
+    width: 100%;
+  }
+
+  i {
+    color: #7E868C;
+  }
+
+  .bi-16 {
+    font-size: 16px;
+  }
+`;
+
+const Button = styled.button`
+  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+  width: ${(p) => (p.primary ? "100%" : "auto")};
+  ${sharedButtonStyles}
+`;
+
+const ButtonLink = styled.a`
+  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+  width: ${(p) => (p.primary ? "100%" : "auto")};
+  ${sharedButtonStyles}
+`;
+
 const Actions = styled.div`
   display: flex;
   gap: 6px;
@@ -214,22 +225,18 @@ return (
 
           <Actions>
             {viewingOwnAccount ? (
-              <a
-                className="button primary"
-                href="/#/mob.near/widget/ProfileEditor"
-                primary
-              >
+              <ButtonLink href="/#/mob.near/widget/ProfileEditor" primary>
                 Edit Profile
-              </a>
+              </ButtonLink>
             ) : (
               <>
-                <button className="button" type="button" primary>
+                <Button type="button" primary>
                   Follow
-                </button>
+                </Button>
 
-                <button className="button" type="button">
+                <Button type="button">
                   <i className="bi bi-hand-index-thumb"></i> Poke
-                </button>
+                </Button>
               </>
             )}
 
@@ -237,8 +244,7 @@ return (
               placement="top"
               overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
             >
-              <button
-                className="button"
+              <Button
                 type="button"
                 onMouseLeave={() => {
                   State.update({ copiedShareUrl: false });
@@ -255,7 +261,7 @@ return (
                   <i className="bi-16 bi-link-45deg"></i>
                 )}
                 Share
-              </button>
+              </Button>
             </OverlayTrigger>
           </Actions>
         </SidebarSection>
