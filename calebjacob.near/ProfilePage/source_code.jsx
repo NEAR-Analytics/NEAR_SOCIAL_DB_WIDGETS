@@ -7,6 +7,7 @@ if (!accountId) {
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const tags = Object.keys(profile.tags || {});
 const viewingOwnAccount = accountId === context.accountId;
+const shareUrl = `https://alpha.near.org/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 
 // Follower Count:
 const following = Social.keys(`${accountId}/graph/follow/*`, "final", {
