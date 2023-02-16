@@ -115,7 +115,7 @@ const needForm =
 
 const header = (
   <div className="card-header">
-    <div className="row justify-content-between">
+    <div className="row justify-content-between align-items-start">
       <div className="col-4">
         <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
       </div>
@@ -126,8 +126,33 @@ const header = (
   </div>
 );
 
+const profile = Social.getr(`${accountId}/profile`);
+
+const name = entity.name || profile.name;
+const image = profile.image;
+const url =
+  (image.ipfs_cid
+    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
+    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
+
+const circle = (
+  <div
+    className="profile-circle d-inline-block"
+    title={`${name} @${accountId}`}
+    style={{ width: "6em", height: "6em" }}
+  >
+    <img
+      className="rounded-circle w-100 h-100"
+      style={{ objectFit: "cover" }}
+      src={`https://i.near.social/thumbnail/${url}`}
+      alt="profile image"
+    />
+  </div>
+);
+
 const body = (
-  <div className="card-body">
+  <div className="d-flex flex-row justify-content-between align-items-start">
+    <div>{circle}</div>
     <div>Name: {entity.name}</div>
     <div>Type: {entity.kind}</div>
     <div>Status: {entity.status}</div>
