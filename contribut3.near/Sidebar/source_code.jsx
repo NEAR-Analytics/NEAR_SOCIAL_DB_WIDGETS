@@ -15,6 +15,7 @@ return (
         Web3 Combinator
       </h4>
     </a>
+    {navItem({ text: "Dashboard", link: "#", icon: "bi-house" })}
     <a className="nav-link">
       <i className="bi-house" />
       <span>Dashboard</span>
