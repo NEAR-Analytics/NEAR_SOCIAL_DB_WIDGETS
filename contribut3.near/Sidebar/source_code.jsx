@@ -20,7 +20,7 @@ return (
     <a>
       <span>My contributions</span>
     </a>
-    <div />
+    <hr className="border-2" />
     <a>
       <span>About this app</span>
     </a>
