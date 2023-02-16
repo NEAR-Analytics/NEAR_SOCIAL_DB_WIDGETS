@@ -165,7 +165,7 @@ const body = (
             <>
               {tags.map((tag) => (
                 <span
-                  className="d-inline-block mx-1 p-2 badge border border-secondary text-secondary text-muted"
+                  className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted"
                   key={tag}
                 >
                   {tag}
