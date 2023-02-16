@@ -84,6 +84,10 @@ const Wrapper = styled.div`
       font-size: 16px;
     }
   }
+
+  @media (max-width: 900px) {
+    gap: 24px;
+  }
 `;
 
 const Section = styled.div`
@@ -104,6 +108,11 @@ const Avatar = styled.div`
     object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: 900px) {
+    width: 80px;
+    height: 80px;
   }
 `;
 
