@@ -173,6 +173,15 @@ const details = (
   </div>
 );
 
+const footer = (
+  <div className="d-flex flex-row justify-content-start align-items-start">
+    <div>
+      <i className="bi-play" />
+      {entity.status}
+    </div>
+  </div>
+);
+
 return (
   <div className="card">
     <div className="card-body p-3">
