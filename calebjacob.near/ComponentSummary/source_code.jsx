@@ -101,7 +101,7 @@ const Thumbnail = styled.div`
   }
 `;
 
-const ButtonLink = styled.a`
+const sharedButtonStyles = `
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -113,13 +113,9 @@ const ButtonLink = styled.a`
   line-height: 15px;
   text-align: center;
   cursor: pointer;
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
-  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
 
   &:hover,
   &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
     text-decoration: none;
     outline: none;
   }
@@ -130,6 +126,30 @@ const ButtonLink = styled.a`
 
   .bi-16 {
     font-size: 16px;
+  }
+`;
+
+const Button = styled.button`
+  ${sharedButtonStyles}
+  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
+
+  &:hover,
+  &:focus {
+    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+  }
+`;
+
+const ButtonLink = styled.a`
+  ${sharedButtonStyles}
+  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
+
+  &:hover,
+  &:focus {
+    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
   }
 `;
 
@@ -199,10 +219,10 @@ return (
       </ButtonLink>
 
       {props.onViewSource ? (
-        <ButtonLink role="button" onClick={props.onViewSource}>
+        <Button type="button" onClick={props.onViewSource}>
           <i className="bi bi-code-square"></i>
           View Source
-        </ButtonLink>
+        </Button>
       ) : (
         <ButtonLink
           href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}&tab=source`}
@@ -216,8 +236,8 @@ return (
         placement="top"
         overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
       >
-        <ButtonLink
-          role="button"
+        <Button
+          type="button"
           onMouseLeave={() => {
             State.update({ copiedShareUrl: false });
           }}
@@ -233,7 +253,7 @@ return (
             <i className="bi bi-16 bi-link-45deg"></i>
           )}
           Share
-        </ButtonLink>
+        </Button>
       </OverlayTrigger>
     </Actions>
   </Wrapper>
