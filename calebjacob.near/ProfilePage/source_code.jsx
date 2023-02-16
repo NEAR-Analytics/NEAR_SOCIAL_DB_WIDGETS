@@ -34,6 +34,11 @@ const BackgroundImage = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  @media (max-width: 1200px) {
+    margin: calc(var(--body-top-padding) * -1) -12px 0;
+    border-radius: 0;
+  }
 `;
 
 const SidebarWrapper = styled.div`
@@ -64,7 +69,7 @@ const Tabs = styled.div`
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: 72px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 900px) {
     button {
       flex: 1;
     }
