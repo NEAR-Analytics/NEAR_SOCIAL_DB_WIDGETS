@@ -36,7 +36,7 @@ const power = (x, y) => {
 };
 
 if (!accountId) {
-  return "Please sign in with NEAR wallet";
+  return <div>Please sign in with NEAR wallet</div>;
 }
 
 const config = Near.view(BURROW_CONTRACT, "get_config");
