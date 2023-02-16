@@ -41,7 +41,7 @@ const BackgroundImage = styled.div`
   }
 
   @media (max-width: 900px) {
-    height: 120px;
+    height: 100px;
   }
 `;
 
