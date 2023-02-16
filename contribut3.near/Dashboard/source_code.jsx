@@ -24,6 +24,18 @@ return (
               <span>Contribution request</span>
             </a>
           </li>
+          <li>
+            <a className="dropdown-item">
+              <i className="bi-boxes" />
+              <span>Project</span>
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item">
+              <i className="bi-diagram-2" />
+              <span>Organization</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
