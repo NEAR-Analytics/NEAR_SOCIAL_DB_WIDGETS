@@ -199,7 +199,7 @@ return (
       </ButtonLink>
 
       {props.onViewSource ? (
-        <ButtonLink as="button" type="button" onClick={props.onViewSource}>
+        <ButtonLink role="button" onClick={props.onViewSource}>
           <i className="bi bi-code-square"></i>
           View Source
         </ButtonLink>
@@ -217,8 +217,7 @@ return (
         overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
       >
         <ButtonLink
-          as="button"
-          type="button"
+          role="button"
           onMouseLeave={() => {
             State.update({ copiedShareUrl: false });
           }}
