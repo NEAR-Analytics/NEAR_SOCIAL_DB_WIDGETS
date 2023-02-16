@@ -97,7 +97,7 @@ return (
               </div>
               <div className="col">
                 <input
-                  className="w-25 form-control form-control-borderless"
+                  className="form-control form-control-borderless"
                   type="search"
                   value={state.search}
                   placeholder="Search"
