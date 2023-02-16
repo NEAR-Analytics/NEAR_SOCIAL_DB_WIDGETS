@@ -209,6 +209,7 @@ return (
     <div>
       <Widget src={`${ownerId}/widget/Sidebar`} props={{ tab: props.tab }} />
     </div>
+    <div className="vr" />
     <div>
       {controls}
       {navbar}
