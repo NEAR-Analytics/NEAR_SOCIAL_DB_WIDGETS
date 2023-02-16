@@ -108,6 +108,27 @@ const searchBar = (
   </div>
 );
 
+const content = {
+  projects: (
+    <Widget
+      src={`${ownerId}/widget/EntityList`}
+      props={{ search: state.search }}
+    />
+  ),
+  contributors: (
+    <Widget
+      src={`${ownerId}/widget/ContributorList`}
+      props={{ search: state.search }}
+    />
+  ),
+  requests: (
+    <Widget
+      src={`${ownerId}/widget/NeedList`}
+      props={{ search: state.search }}
+    />
+  ),
+}[state.content];
+
 return (
   <div>
     <div className="mb-5 ps-3">
@@ -121,5 +142,6 @@ return (
       </div>
     </div>
     <hr className="border-2" />
+    {content}
   </div>
 );
