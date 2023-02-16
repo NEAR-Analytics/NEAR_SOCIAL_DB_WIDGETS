@@ -139,7 +139,7 @@ const circle = (
   <div
     className="profile-circle d-inline-block"
     title={`${name} @${accountId}`}
-    style={{ width: "6em", height: "6em" }}
+    style={{ width: "4em", height: "4em" }}
   >
     <img
       className="rounded-circle w-100 h-100"
