@@ -14,12 +14,6 @@ const handleProposal = () => {
   if (!(state.description && state.kind)) {
     return;
   }
-  const proposal = {
-    description: state.description,
-    kind: state.kind,
-    member_id: state.member_id,
-    role: state.role,
-  };
   {
     const gas = 200000000000000;
     const deposit = 10000000000000000000000;
