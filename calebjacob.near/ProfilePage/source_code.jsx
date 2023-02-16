@@ -33,7 +33,45 @@ const accountFollowsYouData = Social.keys(
 );
 const accountFollowsYou = Object.keys(accountFollowsYouData || {}).length > 0;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    height: 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+    background: #FBFCFD;
+    border: 1px solid #D7DBDF;
+    color: #11181C !important;
+
+    &.button--primary {
+      color: #006ADC !important;
+      width: 100%;
+    }
+
+    &:hover,
+    &:focus {
+      background: #ECEDEE;
+      text-decoration: none;
+      outline: none;
+    }
+
+    i {
+      color: #7E868C;
+    }
+
+    .bi-16 {
+      font-size: 16px;
+    }
+  }
+`;
 
 const Main = styled.div`
   display: grid;
@@ -123,50 +161,6 @@ const TextBadge = styled.p`
   border-radius: 3px;
 `;
 
-const sharedButtonStyles = `
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
-  height: 32px;
-  border-radius: 100px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  background: #FBFCFD;
-  border: 1px solid #D7DBDF;
-
-  &:hover,
-  &:focus {
-    background: #ECEDEE;
-    text-decoration: none;
-    outline: none;
-  }
-
-  i {
-    color: #7E868C;
-  }
-
-  .bi-16 {
-    font-size: 16px;
-  }
-`;
-
-const Button = styled.button`
-  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
-  width: ${(p) => (p.primary ? "100%" : "auto")};
-  ${sharedButtonStyles}
-`;
-
-const ButtonLink = styled.a`
-  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
-  width: ${(p) => (p.primary ? "100%" : "auto")};
-  ${sharedButtonStyles}
-`;
-
 const Actions = styled.div`
   display: flex;
   gap: 6px;
@@ -227,9 +221,12 @@ return (
 
           <Actions>
             {viewingOwnAccount ? (
-              <ButtonLink href="/#/mob.near/widget/ProfileEditor" primary>
+              <a
+                className="button button--primary"
+                href="/#/mob.near/widget/ProfileEditor"
+              >
                 Edit Profile
-              </ButtonLink>
+              </a>
             ) : context.accountId ? (
               <>
                 <FollowButtonWrapper>
@@ -237,13 +234,14 @@ return (
                     src="calebjacob.near/widget/FollowButton"
                     props={{
                       accountId,
+                      className: "button button--primary",
                     }}
                   />
                 </FollowButtonWrapper>
 
-                <Button type="button">
+                <button className="button" type="button">
                   <i className="bi bi-hand-index-thumb"></i> Poke
-                </Button>
+                </button>
               </>
             ) : (
               <></>
@@ -253,7 +251,8 @@ return (
               placement="top"
               overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
             >
-              <Button
+              <button
+                className="button"
                 type="button"
                 onMouseLeave={() => {
                   State.update({ copiedShareUrl: false });
@@ -270,7 +269,7 @@ return (
                   <i className="bi-16 bi-link-45deg"></i>
                 )}
                 Share
-              </Button>
+              </button>
             </OverlayTrigger>
           </Actions>
         </SidebarSection>
