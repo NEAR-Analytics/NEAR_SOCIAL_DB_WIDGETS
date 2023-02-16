@@ -1,3 +1,8 @@
+State.init({
+  copiedShareUrl: false,
+  selectedTab: "overview",
+});
+
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
@@ -81,10 +86,10 @@ const Main = styled.div`
 
 const BackgroundImage = styled.div`
   height: 240px;
-  width: 100%;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
   margin: 0 -12px;
+  background: #ECEEF0;
 
   img {
     object-fit: cover;
@@ -105,6 +110,8 @@ const SidebarSection = styled.div`
   display: grid;
   gap: 24px;
 `;
+
+const Content = styled.div``;
 
 const Avatar = styled.div`
   width: 133px;
@@ -208,7 +215,45 @@ const SocialLinks = styled.div`
   gap: 9px;
 `;
 
-console.log(profile);
+const Tabs = styled.div`
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid #ECEEF0;
+  margin-bottom: 24px;
+
+  @media (max-width: 1200px) {
+    button {
+      flex: 1;
+    }
+  }
+`;
+
+const TabsButton = styled.button`
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0 12px;
+  position: relative;
+  color: ${(p) => (p.selected ? "#11181C" : "#687076")};
+  background: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    color: #11181C;
+  }
+
+  &::after {
+    content: '';
+    display: ${(p) => (p.selected ? "block" : "none")};
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0091FF;
+  }
+`;
 
 if (profile === null) {
   return "Loading";
@@ -376,30 +421,34 @@ return (
           </SidebarSection>
         )}
       </Sidebar>
+
+      <Content>
+        <Tabs>
+          <TabsButton
+            type="button"
+            onClick={() => State.update({ selectedTab: "overview" })}
+            selected={state.selectedTab === "overview"}
+          >
+            Overview
+          </TabsButton>
+
+          <TabsButton
+            type="button"
+            onClick={() => State.update({ selectedTab: "apps" })}
+            selected={state.selectedTab === "apps"}
+          >
+            Applications
+          </TabsButton>
+
+          <TabsButton
+            type="button"
+            onClick={() => State.update({ selectedTab: "nfts" })}
+            selected={state.selectedTab === "nfts"}
+          >
+            NFTs
+          </TabsButton>
+        </Tabs>
+      </Content>
     </Main>
   </Wrapper>
 );
-
-// return (
-//   <div className="py-1 px-1">
-//     <h1>Testing</h1>
-//     <div className="mx-auto">
-//       <Widget
-//         src="mob.near/widget/ProfileLarge"
-//         props={{
-//           accountId,
-//           profile,
-//           link: true,
-//           showEditButton: !props.profile,
-//         }}
-//       />
-
-//       <div className="mt-3">
-//         <Widget
-//           src="mob.near/widget/ProfileTabs"
-//           props={{ accountId, profile }}
-//         />
-//       </div>
-//     </div>
-//   </div>
-// );
