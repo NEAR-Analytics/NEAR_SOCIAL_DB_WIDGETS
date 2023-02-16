@@ -46,6 +46,18 @@ return (
           </ul>
         </div>
       </div>
+      <div className="d-flex flex-row justify-content-between">
+        <div
+          className="btn-group"
+          role="group"
+          aria-label="Content Tab Selector"
+        >
+          <a>
+            <i className="bi-boxes" />
+            <span>Projects</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 );
