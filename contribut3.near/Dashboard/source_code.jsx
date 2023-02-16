@@ -142,6 +142,6 @@ return (
       </div>
     </div>
     <hr className="border-2" />
-    {content}
+    <div>{content}</div>
   </div>
 );
