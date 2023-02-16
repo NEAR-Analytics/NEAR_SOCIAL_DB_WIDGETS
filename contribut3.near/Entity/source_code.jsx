@@ -175,9 +175,7 @@ const details = (
   </div>
 );
 
-console.log(contributions);
-
-const [[founder]] = contributions.filter((contribution) =>
+const [[founder]] = contributions.filter(([, contribution]) =>
   [...contribution.history, contribution.current].some(
     (detail) => detail.description === ""
   )
