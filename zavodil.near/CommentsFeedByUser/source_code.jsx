@@ -73,12 +73,26 @@ if (!state.comments.length) {
 
     userComments
       .filter((comment) => !!comment)
-      .map((comment) => comments.push(renderItem(comment, post)));
+      .map((comment) =>
+        comments.push({
+          blockHeight: comment.blockHeight,
+          object: renderItem(comment, post),
+        })
+      );
   });
+
+  comments = comments
+    .sort((a, b) => b.blockHeight - a.blockHeight)
+    .map((comment) => comment.object);
 
   State.update({ comments });
 }
 
 if (!state.comments.length) return "No comments";
 
-return <>{state.comments}</>;
+return (
+  <>
+    <h1>Comments by {accountId}</h1>
+    {state.comments}
+  </>
+);
