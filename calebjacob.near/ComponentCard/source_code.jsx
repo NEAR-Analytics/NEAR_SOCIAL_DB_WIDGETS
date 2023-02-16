@@ -47,7 +47,8 @@ const TextLink = styled.a`
   white-space: nowrap;
   outline: none;
 
-  &:focus {
+  &:focus,
+  &:hover {
     text-decoration: underline;
   }
 `;
