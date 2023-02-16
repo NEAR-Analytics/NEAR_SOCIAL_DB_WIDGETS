@@ -114,7 +114,7 @@ return (
     <div className="mb-5 ps-3">
       <div className="d-flex flex-row justify-content-between mb-3">
         {header}
-        {dropdown}
+        {createNewDropdown}
       </div>
       <div className="d-flex flex-row justify-content-between">
         {contentSelector}
