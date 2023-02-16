@@ -18,9 +18,9 @@ const Wrapper = styled.a`
 
   &:hover,
   &:focus {
-      div:first-child {
-          border-color: #D0D5DD;
-      }
+    div:first-child {
+      border-color: #D0D5DD;
+    }
   }
 `;
 
