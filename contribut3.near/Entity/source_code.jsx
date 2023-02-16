@@ -178,6 +178,14 @@ const body = (
         </div>
       </div>
     </div>
+    <div>
+      <a
+        className="btn btn-outline-secondary"
+        href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+      >
+        View details
+      </a>
+    </div>
   </div>
 );
 
