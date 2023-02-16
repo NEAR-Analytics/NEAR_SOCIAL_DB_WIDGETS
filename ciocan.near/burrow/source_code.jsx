@@ -2,6 +2,21 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  .btn-outline-primary {
+    --bs-btn-bg: rgba(0, 0, 0, 0.05);
+    --bs-btn-color: rgba(0, 0, 0, 0.4);
+    --bs-btn-border-color: rgba(0, 0, 0, 0.1);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgba(0, 0, 0, 0.1);
+    --bs-btn-hover-border-color: #0d6efd;
+    --bs-btn-focus-shadow-rgb: 13,110,253;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #fff;
+    --bs-btn-active-border-color: rgba(0, 0, 0, 0.1);
+}
+
+
 `;
 
 const Nav = styled.div`
@@ -25,11 +40,16 @@ const RightPanel = styled.div`
   padding-left: 1rem;
 `;
 
-State.update({ actionTabs: "deposit" });
+if (!state.actionTabs) {
+  State.update({ actionTabs: "deposit" });
+}
 
 return (
   <Container>
-    <Nav>Burrow</Nav>
+    <Nav class="grid">
+      <div class="">Burrow logo</div>
+      <div class="px-4">Assets | Portfolio</div>
+    </Nav>
     <Main>
       <LeftPanel>
         <Widget src="ciocan.near/widget/burrow-list" />
@@ -61,10 +81,10 @@ return (
             Borrow
           </label>
         </div>
-        {state.actionTabs === "deposit" ? (
-          <Widget src="ciocan.near/widget/burrow-deposit" />
-        ) : (
+        {state.actionTabs === "borrow" ? (
           <Widget src="ciocan.near/widget/burrow-borrow" />
+        ) : (
+          <Widget src="ciocan.near/widget/burrow-deposit" />
         )}
       </RightPanel>
     </Main>
