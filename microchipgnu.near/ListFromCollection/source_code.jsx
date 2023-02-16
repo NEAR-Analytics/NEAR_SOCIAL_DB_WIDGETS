@@ -105,6 +105,8 @@ const listMarket = () => {
   ]);
 };
 
+if (!accountId) return <div>Sign in first</div>;
+
 return (
   <div class="d-flex flex-column gap-4">
     <h4>Multi-listing tool for NFTs</h4>
