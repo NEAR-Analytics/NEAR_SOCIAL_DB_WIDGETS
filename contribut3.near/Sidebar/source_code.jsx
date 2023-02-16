@@ -11,6 +11,7 @@ const navItem = ({ text, icon, id }) => (
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${id}`}
     onClick={() => {
       State.update({ selected: id });
+      props.update && props.update(id);
     }}
   >
     <i className={icon} />
