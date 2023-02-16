@@ -13,10 +13,13 @@ const metadata = data.metadata;
 const tags = Object.keys(metadata.tags || {});
 const shareUrl = `https://near.social/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
 
-const dependencyMatch = code && code.matchAll(/<Widget.*src="(.+)".*\/>/g);
+const dependencyMatch =
+  code && code.matchAll(/<Widget[\s\S]*?src="(.+)"[\s\S]*?\/>/g);
 const dependencySources = [...(dependencyMatch || [])]
   .map((r) => r[1])
   .filter((r) => !!r);
+
+console.log(code);
 
 const sourceCode = `
 \`\`\`jsx
