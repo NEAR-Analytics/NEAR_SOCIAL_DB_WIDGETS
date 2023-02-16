@@ -53,7 +53,7 @@ const Tabs = styled.div`
   display: flex;
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
-  margin-bottom: 24px;
+  margin-bottom: 72px;
 
   @media (max-width: 1200px) {
     button {
@@ -93,8 +93,8 @@ const Bio = styled.div`
   color: #11181C;
   font-size: 14px;
   line-height: 20px;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
   border-bottom: 1px solid #ECEEF0;
 
   > *:last-child {
@@ -174,7 +174,7 @@ return (
               </>
             )}
 
-            <Title as="h2" size="19px" margin>
+            <Title as="h2" size="19px">
               Activity
             </Title>
 
