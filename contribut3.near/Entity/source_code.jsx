@@ -175,11 +175,10 @@ const details = (
   </div>
 );
 
-const [[founder]] = contributions.filter(([, contribution]) =>
-  [...contribution.history, contribution.current].some(
-    (detail) => detail.description === ""
-  )
-);
+const [[founder]] = contributions.filter(([, contribution]) => {
+  console.log(contribution);
+  return true;
+});
 
 const founderProfile = Social.getr(`${founder}/profile`);
 const founderImage = profile.image;
