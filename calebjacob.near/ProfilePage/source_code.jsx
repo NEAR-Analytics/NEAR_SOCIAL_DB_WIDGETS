@@ -51,7 +51,7 @@ const SidebarWrapper = styled.div`
   margin-top: -55px;
 
   @media (max-width: 900px) {
-    margin-top: -60px;
+    margin-top: -40px;
   }
 `;
 
