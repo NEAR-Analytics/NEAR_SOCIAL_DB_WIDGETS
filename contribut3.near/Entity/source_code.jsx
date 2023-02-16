@@ -175,7 +175,7 @@ const details = (
   </div>
 );
 
-const [[founder]] = (contributions ?? []).filter(([, contribution]) => {
+const [[founder]] = (contributions ?? []).filter((contribution) => {
   console.log(contribution);
   return true;
 });
