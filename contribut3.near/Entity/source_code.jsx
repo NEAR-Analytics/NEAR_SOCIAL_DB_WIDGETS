@@ -170,7 +170,7 @@ const body = (
 );
 
 const details = (
-  <div className="text-truncate" style={{ maxWidth: "70%" }}>
+  <div className="text-truncate my-2" style={{ maxWidth: "70%" }}>
     {profile.description}
   </div>
 );
