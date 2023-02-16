@@ -98,7 +98,7 @@ return (
         {state.actionList === "assets" ? (
           <Widget src="ciocan.near/widget/burrow-list" />
         ) : (
-          <div>portfolio</div>
+          <Widget src="ciocan.near/widget/burrow-portfolio" />
         )}
       </LeftPanel>
       <RightPanel>
