@@ -16,6 +16,10 @@ const Main = styled.div`
   gap: 40px;
   grid-template-columns: 352px  minmax(0, 1fr);
   align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 `;
 
 const BackgroundImage = styled.div`
