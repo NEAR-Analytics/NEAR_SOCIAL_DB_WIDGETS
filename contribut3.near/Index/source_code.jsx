@@ -3,6 +3,7 @@ const ownerId = "contribut3.near";
 initState({
   search: "",
   content: props.content ?? "entities",
+  tab: props.tab ?? "dashboard",
 });
 
 const isModerator = Near.view(
