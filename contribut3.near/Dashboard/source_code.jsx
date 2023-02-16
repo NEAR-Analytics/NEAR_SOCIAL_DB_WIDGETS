@@ -9,6 +9,7 @@ return (
           Find projects, contributors or requests
         </p>
       </div>
+      <div></div>
     </div>
   </div>
 );
