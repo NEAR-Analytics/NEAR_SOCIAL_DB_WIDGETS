@@ -130,6 +130,7 @@ const profile = Social.getr(`${accountId}/profile`);
 
 const name = entity.name || profile.name;
 const image = profile.image;
+const tags = Object.keys(profile.tags ?? {});
 const url =
   (image.ipfs_cid
     ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
@@ -158,6 +159,22 @@ const body = (
         <div>
           <b>{name}</b>
           <span className="text-muted">@{accountId}</span>
+        </div>
+        <div className="text-truncate text-muted">
+          {tags.length > 0 ? (
+            <>
+              {tags.map((tag) => (
+                <span
+                  className="mx-1 p-1 badge border border-secondary"
+                  key={tag}
+                >
+                  {tag}
+                </span>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
