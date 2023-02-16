@@ -52,10 +52,18 @@ return (
           role="group"
           aria-label="Content Tab Selector"
         >
-          <a>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="projects"
+            autocomplete="off"
+            checked
+          />
+          <label className="btn btn-outline-secondary" htmlFor="projects">
             <i className="bi-boxes" />
             <span>Projects</span>
-          </a>
+          </label>
         </div>
       </div>
     </div>
