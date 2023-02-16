@@ -6,7 +6,7 @@ State.init({
 
 const navItem = ({ text, icon, id }) => (
   <a
-    className={`btn mt-2 rounded-3 p-2 ${id === state.selected ? "btn-secondary" : "btn-secondary-outline"
+    className={`nav-link mt-2 rounded-3 p-2 ${id === state.selected ? "bg-secondary" : ""
       }`}
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${id}`}
     onClick={() => {
