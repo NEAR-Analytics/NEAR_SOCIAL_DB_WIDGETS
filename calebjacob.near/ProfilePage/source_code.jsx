@@ -40,7 +40,7 @@ const BackgroundImage = styled.div`
     border-radius: 0;
   }
 
-   @media (max-width: 900px) {
+  @media (max-width: 900px) {
     height: 120px;
   }
 `;
@@ -49,6 +49,10 @@ const SidebarWrapper = styled.div`
   position: relative;
   z-index: 5;
   margin-top: -55px;
+
+  @media (max-width: 900px) {
+    margin-top: -40px;
+  }
 `;
 
 const Content = styled.div`
