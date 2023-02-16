@@ -90,13 +90,15 @@ return (
           </label>
         </div>
         <div>
-          <input
-            className="w-25 form-control form-control-borderless"
-            type="search"
-            value={state.search}
-            placeholder="Search"
-            onChange={(e) => State.update({ search: e.target.value })}
-          />
+          <div className="card-body row no-gutters align-items-center">
+            <input
+              className="w-25 form-control form-control-borderless"
+              type="search"
+              value={state.search}
+              placeholder="Search"
+              onChange={(e) => State.update({ search: e.target.value })}
+            />
+          </div>
         </div>
       </div>
     </div>
