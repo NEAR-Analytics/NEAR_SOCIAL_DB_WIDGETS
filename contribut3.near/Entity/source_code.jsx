@@ -103,8 +103,8 @@ const needForm =
 const profile = Social.getr(`${accountId}/profile`);
 
 const name = entity.name || profile.name;
-const image = profile.image;
 const tags = Object.keys(profile.tags ?? {});
+const image = profile.image;
 const url =
   (image.ipfs_cid
     ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
@@ -180,6 +180,14 @@ const [[founder]] = contributions.filter((contribution) =>
     (detail) => detail.description === ""
   )
 );
+
+const founderProfile = Social.getr(`${founder}/profile`);
+const founderImage = profile.image;
+const founderImageUrl =
+  (founderImage.ipfs_cid
+    ? `https://ipfs.near.social/ipfs/${founderImage.ipfs_cid}`
+    : founderImage.url) ||
+  "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
 const footer = (
   <div className="d-flex flex-row justify-content-start align-items-start text-muted">
