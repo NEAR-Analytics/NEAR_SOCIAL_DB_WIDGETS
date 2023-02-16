@@ -169,7 +169,7 @@ const body = (
 return (
   <div className="card">
     <div className="card-body">
-      {header}
+      {/* {header} */}
       {body}
     </div>
   </div>
