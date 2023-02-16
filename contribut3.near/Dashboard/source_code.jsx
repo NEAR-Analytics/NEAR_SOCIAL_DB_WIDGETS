@@ -27,7 +27,7 @@ const createNewDropdown = (
   <div className="dropdown">
     <a
       className="btn btn-info dropdown-toggle"
-      style={{ backgroundColor: "#7f56d9" }}
+      style={{ backgroundColor: "#7f56d9", borderColor: "#7f56d9" }}
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
