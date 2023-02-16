@@ -1,8 +1,7 @@
 const accountId = props.accountId || context.accountId;
-const thumbnails = props.thumbnails;
 
 if (!accountId) {
-  return <></>;
+  return "";
 }
 
 const data = fetch(
@@ -34,7 +33,7 @@ if (data.body?.list) {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 `;
 
