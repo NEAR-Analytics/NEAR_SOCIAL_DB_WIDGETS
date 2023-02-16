@@ -12,7 +12,7 @@ const shrinkToken = (value, decimals, fixed) => {
 
 const { assets, rewards, account } = state;
 
-const hasData = assets.length > 0 && rewards.length > 0;
+const hasData = assets.length > 0 && rewards.length > 0 && account;
 
 const onLoad = (data) => {
   State.update(data);
