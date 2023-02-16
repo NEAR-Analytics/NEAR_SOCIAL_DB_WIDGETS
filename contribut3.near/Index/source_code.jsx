@@ -161,7 +161,7 @@ const navbar = (
             <input
               type="text"
               value={state.search}
-              placeholder="Search "
+              placeholder="Search"
               onChange={(e) => State.update({ search: e.target.value })}
             />
           </li>
