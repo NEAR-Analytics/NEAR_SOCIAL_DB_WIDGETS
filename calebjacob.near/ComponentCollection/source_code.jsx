@@ -35,15 +35,12 @@ const CardWrapper = styled.div``;
 return (
   <Wrapper>
     {components.map((component, i) => (
-      <CardWrapper key={i}>
-        <Widget
-          src="calebjacob.near/widget/ComponentCard"
-          props={{
-            src: `${component.accountId}/widget/${component.widgetName}`,
-            tagsAsSubtitle: true,
-          }}
-        />
-      </CardWrapper>
+      <Widget
+        src="calebjacob.near/widget/ComponentCard"
+        props={{
+          src: `${component.accountId}/widget/${component.widgetName}`,
+        }}
+      />
     ))}
   </Wrapper>
 );
