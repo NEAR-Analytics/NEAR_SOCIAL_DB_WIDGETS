@@ -25,6 +25,8 @@ const RightPanel = styled.div`
   padding-left: 1rem;
 `;
 
+State.update({ actionTabs: "deposit" });
+
 return (
   <Container>
     <Nav>Burrow</Nav>
@@ -33,7 +35,37 @@ return (
         <Widget src="ciocan.near/widget/burrow-list" />
       </LeftPanel>
       <RightPanel>
-        <Widget src="ciocan.near/widget/burrow-deposit" />
+        <div class="btn-group mb-4" role="group" aria-label="Deposit">
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="deposit"
+            autocomplete="off"
+            checked={state.actionTabs === "deposit"}
+            onClick={() => State.update({ actionTabs: "deposit" })}
+          />
+          <label class="btn btn-outline-primary" for="deposit">
+            Deposit
+          </label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="borrow"
+            autocomplete="off"
+            checked={state.actionTabs === "borrow"}
+            onClick={() => State.update({ actionTabs: "borrow" })}
+          />
+          <label class="btn btn-outline-primary" for="borrow">
+            Borrow
+          </label>
+        </div>
+        {state.actionTabs === "deposit" ? (
+          <Widget src="ciocan.near/widget/burrow-deposit" />
+        ) : (
+          <Widget src="ciocan.near/widget/burrow-borrow" />
+        )}
       </RightPanel>
     </Main>
   </Container>
