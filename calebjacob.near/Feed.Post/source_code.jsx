@@ -25,7 +25,7 @@ const Post = styled.div`
 `;
 
 return (
-  <Post>
+  <Post className="post">
     <Widget
       src="mob.near/widget/MainPage.Post.Header"
       props={{ accountId, blockHeight, link, postType: "post" }}
