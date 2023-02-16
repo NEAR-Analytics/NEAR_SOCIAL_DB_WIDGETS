@@ -7,7 +7,7 @@ return (
       <span>Dashboard</span>
     </a>
     <a>
-      <i className="bi-" />
+      <i className="bi-person" />
       <span>Profile</span>
     </a>
     <a>
