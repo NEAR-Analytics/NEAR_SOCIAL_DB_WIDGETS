@@ -208,11 +208,11 @@ const footer = (
   <div className="d-flex flex-row justify-content-start align-items-center text-muted">
     <div className="d-flex flex-row justify-content-start align-items-center">
       {founderCircle}
-      <span className="ms-2">{founderProfile.name}</span>
+      <span className="ms-1">{founderProfile.name}</span>
     </div>
     <div className="ms-3">
       <i className="bi-play" />
-      <span className="ms-2">{entity.status}</span>
+      <span className="ms-1">{entity.status}</span>
     </div>
   </div>
 );
