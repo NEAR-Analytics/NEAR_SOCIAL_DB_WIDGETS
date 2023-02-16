@@ -33,7 +33,7 @@ const Text = styled.p`
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
-  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
+  white-space: nowrap;
 `;
 
 const Avatar = styled.div`
