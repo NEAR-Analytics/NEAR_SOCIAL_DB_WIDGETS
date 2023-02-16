@@ -71,42 +71,16 @@ const contentSelector = (
       text: "Projects",
       icon: "bi-boxes",
     })}
-    <input
-      type="radio"
-      class="btn-check"
-      name="btnradio"
-      id="projects"
-      autocomplete="off"
-      checked
-    />
-    <label className="btn btn-outline-secondary" htmlFor="projects">
-      <i className="bi-boxes" />
-      <span>Projects</span>
-    </label>
-
-    <input
-      type="radio"
-      class="btn-check"
-      name="btnradio"
-      id="contributors"
-      autocomplete="off"
-    />
-    <label className="btn btn-outline-secondary" htmlFor="contributors">
-      <i className="bi-person" />
-      <span>Contributors</span>
-    </label>
-
-    <input
-      type="radio"
-      class="btn-check"
-      name="btnradio"
-      id="requests"
-      autocomplete="off"
-    />
-    <label className="btn btn-outline-secondary" htmlFor="requests">
-      <i className="bi-ui-checks-grid" />
-      <span>Requests</span>
-    </label>
+    {contentSelectButton({
+      id: "contributors",
+      text: "Contributors",
+      icon: "bi-person",
+    })}
+    {contentSelectButton({
+      id: "requests",
+      text: "Requests",
+      icon: "bi-ui-checks-grid",
+    })}
   </div>
 );
 
