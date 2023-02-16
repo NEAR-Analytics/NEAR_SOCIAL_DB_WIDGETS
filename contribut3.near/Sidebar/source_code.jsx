@@ -16,34 +16,16 @@ return (
       </h4>
     </a>
     {navItem({ text: "Dashboard", link: "#", icon: "bi-house" })}
-    <a className="nav-link">
-      <i className="bi-house" />
-      <span>Dashboard</span>
-    </a>
-    <a className="nav-link">
-      <i className="bi-person" />
-      <span>Profile</span>
-    </a>
-    <a className="nav-link">
-      <i className="bi-boxes" />
-      <span>My projects</span>
-    </a>
-    <a className="nav-link">
-      <i className="bi-diagram-2" />
-      <span>My organizations</span>
-    </a>
-    <a className="nav-link">
-      <i className="bi-envelope" />
-      <span>My invites</span>
-    </a>
-    <a className="nav-link">
-      <i className="bi-ui-checks-grid" />
-      <span>My contributions</span>
-    </a>
+    {navItem({ text: "Profile", link: "#", icon: "bi-person" })}
+    {navItem({ text: "My projects", link: "#", icon: "bi-boxes" })}
+    {navItem({ text: "My organizations", link: "#", icon: "bi-diagram-2" })}
+    {navItem({ text: "My invites", link: "#", icon: "bi-envelope" })}
+    {navItem({
+      text: "My contributions",
+      link: "#",
+      icon: "bi-ui-checks-grid",
+    })}
     <hr className="border-2" />
-    <a className="nav-link">
-      <i className="bi-info-square" />
-      <span>About this app</span>
-    </a>
+    {navItem({ text: "About this app", link: "#", icon: "bi-info-square" })}
   </div>
 );
