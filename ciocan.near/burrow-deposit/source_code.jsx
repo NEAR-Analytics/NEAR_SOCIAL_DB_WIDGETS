@@ -226,7 +226,7 @@ const handleDepositNear = (amount) => {
 };
 
 return (
-  <div class="p-2" style={{ maxWidth: "300px" }}>
+  <div style={{ maxWidth: "300px" }}>
     {!hasData && (
       <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
