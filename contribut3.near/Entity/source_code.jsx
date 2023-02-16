@@ -68,11 +68,11 @@ const contributionsList = notStandalone ? null : (
     {!contributions
       ? "Loading..."
       : contributions.map(([contributorId]) => (
-          <Widget
-            src={`${ownerId}/widget/Contribution`}
-            props={{ entityId: accountId, contributorId, id: contributorId }}
-          />
-        ))}
+        <Widget
+          src={`${ownerId}/widget/Contribution`}
+          props={{ entityId: accountId, contributorId, id: contributorId }}
+        />
+      ))}
   </div>
 );
 
@@ -84,11 +84,11 @@ const requestsList =
       {!contributionRequests
         ? "Loading..."
         : contributionRequests.map(([contributorId]) => (
-            <Widget
-              src={`${ownerId}/widget/ContributionRequest`}
-              props={{ entityId: accountId, contributorId, id: contributorId }}
-            />
-          ))}
+          <Widget
+            src={`${ownerId}/widget/ContributionRequest`}
+            props={{ entityId: accountId, contributorId, id: contributorId }}
+          />
+        ))}
     </div>
   );
 
@@ -100,11 +100,11 @@ const inviteList =
       {!invites
         ? "Loading..."
         : Object.keys(invites).map((contributorId) => (
-            <Widget
-              src={`${ownerId}/widget/Invite`}
-              props={{ entityId: accountId, contributorId }}
-            />
-          ))}
+          <Widget
+            src={`${ownerId}/widget/Invite`}
+            props={{ entityId: accountId, contributorId }}
+          />
+        ))}
     </div>
   );
 
@@ -147,4 +147,3 @@ return (
     {body}
   </div>
 );
-c;
