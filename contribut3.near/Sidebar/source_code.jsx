@@ -2,7 +2,7 @@ const ownerId = "contribut3.near";
 
 const navItem = ({ text, icon, link }) => (
   <a className="nav-link" href={link}>
-    <i className={link} />
+    <i className={icon} />
     <span>{text}</span>
   </a>
 );
