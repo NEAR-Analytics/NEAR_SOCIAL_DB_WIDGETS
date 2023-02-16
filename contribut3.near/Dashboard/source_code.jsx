@@ -66,6 +66,11 @@ const contentSelectButton = ({ id, text, icon }) => (
 
 const contentSelector = (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
+    {contentSelectButton({
+      id: "projects",
+      text: "Projects",
+      icon: "bi-boxes",
+    })}
     <input
       type="radio"
       class="btn-check"
