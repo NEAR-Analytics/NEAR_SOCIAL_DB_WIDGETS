@@ -89,13 +89,15 @@ return (
             <span>Requests</span>
           </label>
         </div>
-        <input
-          className="w-25"
-          type="text"
-          value={state.search}
-          placeholder="Search"
-          onChange={(e) => State.update({ search: e.target.value })}
-        />
+        <div>
+          <input
+            className="w-25 form-control form-control-borderless"
+            type="search"
+            value={state.search}
+            placeholder="Search"
+            onChange={(e) => State.update({ search: e.target.value })}
+          />
+        </div>
       </div>
     </div>
   </div>
