@@ -35,7 +35,10 @@ const handleProposal = () => {
           proposal: {
             description: state.description,
             kind: {
-              AddMemberToRole: { member_id: state.member_id, role: state.role },
+              AddMemberToRole: {
+                member_id: state.member_id,
+                role: "council",
+              },
             },
           },
         },
