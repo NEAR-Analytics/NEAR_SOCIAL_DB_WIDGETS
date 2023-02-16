@@ -40,6 +40,16 @@ const Tabs = styled.div`
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: 32px;
+
+  @media (max-width: 900px) {
+    background: #F8F9FA;
+    border-top: 1px solid #ECEEF0;
+    margin: 0 -12px 48px;
+
+    button {
+      flex: 1;
+    }
+  }
 `;
 
 const TabsButton = styled.button`
