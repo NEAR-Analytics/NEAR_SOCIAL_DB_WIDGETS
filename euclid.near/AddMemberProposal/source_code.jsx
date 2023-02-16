@@ -24,7 +24,7 @@ const handleProposal = () => {
         args: {
           description: state.description,
           kind: {
-            AddMemberToRole: { member_id: "euclid.near", role: "community" },
+            AddMemberToRole: { member_id: state.member_id, role: state.role },
           },
         },
         gas: gas,
@@ -108,13 +108,7 @@ return (
     </div>
     <div className="mb-3"></div>
     <div>
-      <button
-        onClick={() => {
-          handleProposal();
-        }}
-      >
-        Submit
-      </button>
+      <button onClick={handleProposal}>Submit</button>
     </div>
   </div>
 );
