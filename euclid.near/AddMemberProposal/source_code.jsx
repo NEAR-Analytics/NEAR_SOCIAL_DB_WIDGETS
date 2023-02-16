@@ -11,7 +11,7 @@ if (profile === null) {
 }
 
 const handleProposal = () => {
-  if (!(state.description && state.kind)) {
+  if (!(state.description && state.kind && state.member_id && state.role)) {
     return;
   }
   {
