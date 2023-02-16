@@ -13,6 +13,15 @@ const header = (
   </div>
 );
 
+const createNewButton = ({ id, text, icon }) => (
+  <li>
+    <a className="dropdown-item" id>
+      <i className={icon} />
+      <span>{text}</span>
+    </a>
+  </li>
+);
+
 const createNewDropdown = (
   <div className="dropdown">
     <a
@@ -23,30 +32,23 @@ const createNewDropdown = (
       Create new...
     </a>
     <ul className="dropdown-menu">
-      <li>
-        <a className="dropdown-item">
-          <i className="bi-ui-checks-grid" />
-          <span>Contribution request</span>
-        </a>
-      </li>
-      <li>
-        <hr className="dropdown-divider" />
-      </li>
-      <li>
-        <a className="dropdown-item">
-          <i className="bi-boxes" />
-          <span>Project</span>
-        </a>
-      </li>
+      {createNewButton({
+        id: "request",
+        text: "Contribution request",
+        icon: "bi-ui-checks-grid",
+      })}
       <li>
         <hr className="dropdown-divider" />
       </li>
+      {createNewButton({ id: "project", text: "Project", icon: "bi-boxes" })}
       <li>
-        <a className="dropdown-item">
-          <i className="bi-diagram-2" />
-          <span>Organization</span>
-        </a>
+        <hr className="dropdown-divider" />
       </li>
+      {createNewButton({
+        id: "organization",
+        text: "Organization",
+        icon: "bi-diagram-2",
+      })}
     </ul>
   </div>
 );
