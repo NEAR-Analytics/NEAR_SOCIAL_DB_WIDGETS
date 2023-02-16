@@ -24,6 +24,7 @@ return (
               <span>Contribution request</span>
             </a>
           </li>
+          <li><hr className="dropdown-divider"</li>
           <li>
             <a className="dropdown-item">
               <i className="bi-boxes" />
