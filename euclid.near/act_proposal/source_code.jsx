@@ -1,7 +1,7 @@
 initState({
   dao: "open.sputnik-dao.near",
   proposal: "19",
-  action: VoteApprove,
+  action: "VoteApprove",
 });
 
 const onVoteClick = () => {
