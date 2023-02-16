@@ -15,20 +15,20 @@ return (
       <span>My projects</span>
     </a>
     <a>
-      <i className="bi-" />
+      <i className="bi-diagram-2" />
       <span>My organizations</span>
     </a>
     <a>
-      <i className="bi-" />
+      <i className="bi-envelope" />
       <span>My invites</span>
     </a>
     <a>
-      <i className="bi-" />
+      <i className="bi-ui-checks-grid" />
       <span>My contributions</span>
     </a>
     <hr className="border-2" />
     <a>
-      <i className="bi-" />
+      <i className="bi-info-square" />
       <span>About this app</span>
     </a>
   </div>
