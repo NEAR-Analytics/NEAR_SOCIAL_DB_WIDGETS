@@ -167,7 +167,11 @@ const body = (
   </div>
 );
 
-const details = <div className="text-truncate">{profile.description}</div>;
+const details = (
+  <div className="text-truncate" style={{ maxWidth: "70%" }}>
+    {profile.description}
+  </div>
+);
 
 return (
   <div className="card">
