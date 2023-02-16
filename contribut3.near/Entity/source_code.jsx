@@ -45,8 +45,7 @@ const invites = Near.view(
   ownerId,
   "get_entity_invites",
   { account_id: accountId },
-  "final",
-  true
+  "final"
 );
 
 const contributionsList = notStandalone ? null : (
