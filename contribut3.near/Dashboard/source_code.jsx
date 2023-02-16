@@ -9,8 +9,14 @@ return (
           Find projects, contributors or requests
         </p>
       </div>
-      <div>
-        <a className="btn btn-info">Create new...</a>
+      <div className="dropdown">
+        <a
+          className="btn btn-info dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Create new...
+        </a>
       </div>
     </div>
   </div>
