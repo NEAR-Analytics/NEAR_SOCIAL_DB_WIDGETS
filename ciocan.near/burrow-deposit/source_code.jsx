@@ -63,12 +63,34 @@ const listAssets =
 
       const spaces = "".padStart(15 - (metadata.symbol + balance).length, "-");
 
-      return (
-        <option value={token_id}>
-          {metadata.symbol} - {balance} {spaces} APY {toAPY(totalApy)}%
-        </option>
-      );
+      return <option value={token_id}>{metadata.symbol}</option>;
     });
+
+let vailableBalance = 0;
+let apy = 0;
+
+const getBalance = (asset) => {
+  if (!asset) return 0;
+  const { token_id, accountBalance, metadata } = asset;
+  return formatToken(
+    shrinkToken(accountBalance, metadata.decimals).toFixed()
+  ).toString();
+};
+
+const getApy = (asset) => {
+  if (!asset) return 0;
+  const r = rewards.find((a) => a.token_id === asset.token_id);
+  const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+  return toAPY(totalApy);
+};
+
+if (selectedTokenId) {
+  const token = selectedTokenId === "NEAR" ? "wrap.near" : selectedTokenId;
+  const asset = assets.find((a) => a.token_id === token);
+  vailableBalance =
+    selectedTokenId === "NEAR" ? nearBalance : getBalance(asset);
+  apy = getApy(asset);
+}
 
 const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
   account_id: accountId,
@@ -204,23 +226,44 @@ const handleDepositNear = (amount) => {
 };
 
 return (
-  <div class="card" style={{ maxWidth: "300px" }}>
+  <div class="p-2" style={{ maxWidth: "300px" }}>
     {!hasData && (
       <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
     )}
     <div class="card-body d-grid gap-3">
-      <select onChange={handleSelect}>
-        <option value="">Deposit an asset</option>
-        <option value="NEAR">NEAR - {nearBalance}</option>
-        {listAssets}
-      </select>
-      <input type="number" value={amount} onChange={handleAmount} />
+      <div>
+        <div class="mb-2 text-muted">From</div>
+        <select
+          onChange={handleSelect}
+          class="p-2 mb-1"
+          style={{ width: "100%" }}
+        >
+          <option value="">Deposit an asset</option>
+          <option value="NEAR">NEAR Wallet</option>
+          {listAssets}
+        </select>
+        <div>
+          <span class="badge bg-light text-dark">
+            {vailableBalance} available
+          </span>
+          <span class="badge bg-light text-dark">{apy}% APY</span>
+        </div>
+      </div>
+      <div>
+        <div class="mb-2 text-muted">Amount</div>
+        <input type="number" value={amount} onChange={handleAmount} />
+      </div>
       {hasError && (
         <p class="alert alert-danger" role="alert">
           Amount greater than balance
         </p>
       )}
-      <button onClick={handleDeposit}>Deposit</button>
+      <button
+        onClick={handleDeposit}
+        style={{ background: "#4ED58A", borderColor: "white" }}
+      >
+        Deposit
+      </button>
     </div>
   </div>
 );
