@@ -64,6 +64,32 @@ return (
             <i className="bi-boxes" />
             <span>Projects</span>
           </label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="contributors"
+            autocomplete="off"
+            checked
+          />
+          <label className="btn btn-outline-secondary" htmlFor="contributors">
+            <i className="bi-person" />
+            <span>Contributors</span>
+          </label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="requests"
+            autocomplete="off"
+            checked
+          />
+          <label className="btn btn-outline-secondary" htmlFor="requests">
+            <i className="bi-ui-checks-grid" />
+            <span>Requests</span>
+          </label>
         </div>
       </div>
     </div>
