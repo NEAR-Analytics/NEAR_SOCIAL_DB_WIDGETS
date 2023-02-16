@@ -222,7 +222,7 @@ return (
       {tabContent}
       {controls}
       {navbar}
-      <div className="mt-2">{content}</div>
+      {/* <div className="mt-2">{content}</div> */}
     </div>
   </div>
 );
