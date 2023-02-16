@@ -267,8 +267,6 @@ const data = {
   account,
 };
 
-console.log("data", data);
-
 if (typeof props.onLoad === "function") {
   props.onLoad(data);
 }
