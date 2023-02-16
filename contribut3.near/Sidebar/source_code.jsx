@@ -3,10 +3,10 @@ const ownerId = "contribut3.near";
 return (
   <div className="d-flex flex-column">
     <a className="">
-      <h3>
+      <h4>
         <i className="bi-triangle" />
         Web3 Combinator
-      </h3>
+      </h4>
     </a>
     <a className="nav-link">
       <i className="bi-house" />
