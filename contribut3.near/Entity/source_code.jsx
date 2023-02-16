@@ -178,8 +178,7 @@ const details = (
 const [[founder]] = (contributions ?? []).filter((contribution) => {
   const [_, details] = contribution;
   const all = [...details.history, details.current];
-  console.log(all);
-  return true;
+  return all.some((detail) => detail.description === "");
 });
 
 const founderProfile = Social.getr(`${founder}/profile`);
