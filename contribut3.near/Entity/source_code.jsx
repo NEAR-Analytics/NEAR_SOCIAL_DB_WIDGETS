@@ -103,8 +103,6 @@ const needForm =
 
 const profile = Social.getr(`${accountId}/profile`);
 
-console.log({ entity, profile });
-
 const name = entity.name || profile.name;
 const image = profile.image;
 const tags = Object.keys(profile.tags ?? {});
