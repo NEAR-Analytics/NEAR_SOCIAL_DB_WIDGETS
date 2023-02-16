@@ -262,11 +262,11 @@ const newArticleCheck = {
 
 const composeData = () => {
   const data = {
-    wikiTest2: {
+    wikiTest2Article: {
       main: JSON.stringify(newArticleCheck),
     },
     index: {
-      wikiTest2: JSON.stringify({
+      wikiTest2Article: JSON.stringify({
         key: "main",
         value: {
           type: "md",
@@ -274,6 +274,17 @@ const composeData = () => {
       }),
     },
   };
+  return data;
+};
+
+const saveNewDBHandler = (e) => {
+  console.log(composeData());
+  console.log("Save to the New DB Clicked");
+};
+
+const getNewDBHandler = (e) => {
+  const wikiTestData = Social.get(`eugenewolf507.near/**`, "final");
+  console.log("wikiTestData eugenewolf507.near", wikiTestData);
 };
 
 // === SAVE HANDLER ===
@@ -331,9 +342,14 @@ return (
             Save Article
           </button>
           {/* === *** NEW DATA BASE *** === */}
-          <CommitButton className="btn btn-warning" data={composeData}>
+          <CommitButton
+            className="btn btn-warning"
+            data={composeData}
+            onClick={saveNewDBHandler}
+          >
             Post
           </CommitButton>
+          <button onClick={getNewDBHandler}>GET Data</button>
           {/* === *** NEW DATA BASE *** === */}
         </div>
         <div class="d-flex flex-column pt-3">
