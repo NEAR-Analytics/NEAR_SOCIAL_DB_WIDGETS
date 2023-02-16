@@ -89,6 +89,12 @@ return (
             <span>Requests</span>
           </label>
         </div>
+        <input
+          type="text"
+          value={state.search}
+          placeholder="Search"
+          onChange={(e) => State.update({ search: e.target.value })}
+        />
       </div>
     </div>
   </div>
