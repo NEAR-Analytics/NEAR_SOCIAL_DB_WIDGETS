@@ -11,8 +11,6 @@ const entity = isPreview
   ? props.entity
   : Near.view(ownerId, "get_entity", { account_id: accountId }, "final");
 
-console.log(entity);
-
 if (!entity) {
   return isPreview
     ? "You must provide an entity object in preview mode"
@@ -104,6 +102,8 @@ const needForm =
   );
 
 const profile = Social.getr(`${accountId}/profile`);
+
+console.log({ entity, profile });
 
 const name = entity.name || profile.name;
 const image = profile.image;
