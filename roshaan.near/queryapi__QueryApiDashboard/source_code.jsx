@@ -231,10 +231,17 @@ const indexerView = (accountId, indexerName, idx) => {
       </CardBody>
 
       <CardFooter>
-        <ButtonLink href={statusUrl} onClick={() => State.update({})}>
+        <ButtonLink
+          href={statusUrl}
+          onClick={() => State.update({ activeTab: "indexer-status" })}
+        >
           View Status
         </ButtonLink>
-        <ButtonLink primary href={editUrl} onClick={() => State.update({})}>
+        <ButtonLink
+          primary
+          href={editUrl}
+          onClick={() => State.update({ activeTab: "editor-window" })}
+        >
           Edit Indexer
         </ButtonLink>
       </CardFooter>
