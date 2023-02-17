@@ -36,7 +36,7 @@ return (
     {navItem({
       text: "Inbox",
       icon: "bi-envelope",
-      id: "invites",
+      id: "inbox",
     })}
     {navItem({
       text: "My entities",
