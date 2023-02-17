@@ -41,32 +41,10 @@ const circle = (
   </div>
 );
 
-const [[founder]] = (contributions ?? []).filter((contribution) => {
-  const [_, details] = contribution;
-  const all = [...details.history, details.current];
-  return all.some((detail) => detail.description === "");
-});
-
-const founderProfile = Social.getr(`${founder}/profile`);
-const founderImage = profile.image;
-const founderImageUrl =
-  (founderImage.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${founderImage.ipfs_cid}`
-    : founderImage.url) ||
-  "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
-
-const founderCircle = (
-  <div
-    className="profile-circle d-inline-block"
-    title={`${founderProfile.name} @${founder}`}
-    style={{ width: "1.5em", height: "1.5em" }}
-  >
-    <img
-      className="rounded-circle w-100 h-100"
-      style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${founderImageUrl}`}
-      alt="profile image"
-    />
+const contributorType = (
+  <div>
+    <i className="bi-person" />
+    <span>Individual contributor</span>
   </div>
 );
 
