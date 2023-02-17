@@ -214,7 +214,7 @@ const body = (
 
 return (
   <div className="card">
-    <div className="card-body px-3">
+    <div className="card-body px-3 py-0">
       {body}
       {details}
       {needForm}
