@@ -7,7 +7,7 @@ if (!accountId) {
   return "Cannot show contributor without account ID!";
 }
 
-const conrtibutor = isPreview
+const contributor = isPreview
   ? props.contributor
   : Near.view(ownerId, "get_contributor", { account_id: accountId }, "final");
 
