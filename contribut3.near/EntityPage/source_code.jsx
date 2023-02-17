@@ -199,7 +199,7 @@ const content = {
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ accountId, search: state.search, update: props.update }}
     />
   ),
   contributions: (
