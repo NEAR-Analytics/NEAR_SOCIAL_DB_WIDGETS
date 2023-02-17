@@ -21,6 +21,8 @@ if (data.body?.list) {
       limit: 200,
     });
 
+    console.log(nfts, 1);
+
     if (nfts?.length > 0) {
       accountHasNfts = true;
 
