@@ -230,5 +230,4 @@ return (
       {/* {navbar} */}
       {/* <div className="mt-2">{content}</div> */}
     </div>
-  </Widget>
-);
+    );
