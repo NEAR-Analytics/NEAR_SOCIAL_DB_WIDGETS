@@ -1,5 +1,10 @@
 const ownerId = "contribut3.near";
 
+State.init({
+  content: props.content ?? "projects",
+  search: props.search ?? "",
+});
+
 const header = (
   <div>
     <h1 className="fs-2">Inbox</h1>
