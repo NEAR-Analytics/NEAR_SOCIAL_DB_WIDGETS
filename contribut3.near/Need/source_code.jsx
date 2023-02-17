@@ -83,7 +83,7 @@ const body = (
           </div>
         </div>
         <div>
-          <b>{profile.name}</b>
+          <b>{entity.name || profile.name}</b>
           <span className="text-muted">@{accountId}</span>
         </div>
         <div className="text-truncate text-muted">
