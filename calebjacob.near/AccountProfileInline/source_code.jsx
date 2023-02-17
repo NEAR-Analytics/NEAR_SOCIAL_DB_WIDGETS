@@ -26,7 +26,7 @@ const Wrapper = styled.a`
 `;
 
 const Text = styled.span`
-  display: inline-flex;
+  display: block;
   margin: 0;
   font-size: 14px;
   line-height: 20px;
