@@ -63,7 +63,7 @@ const Text = styled.p`
   line-height: 20px;
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  font-size: ${(p) => (p.extraSmall ? "10px" : p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
@@ -150,7 +150,7 @@ return (
           </TextLink>
 
           {props.blockHeight && (
-            <Text small>
+            <Text extraSmall>
               <i className="bi bi-clock"></i>{" "}
               <Widget
                 src="mob.near/widget/TimeAgo"
