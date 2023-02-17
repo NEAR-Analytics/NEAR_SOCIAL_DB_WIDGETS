@@ -34,14 +34,9 @@ return (
     })}
     {navItem({ text: "Profile", link: "#", icon: "bi-person", id: "profile" })}
     {navItem({
-      text: "My projects",
-      icon: "bi-boxes",
-      id: "projects",
-    })}
-    {navItem({
-      text: "My organizations",
+      text: "My entities",
       icon: "bi-diagram-2",
-      id: "orgs",
+      id: "entities",
     })}
     {navItem({
       text: "My invites",
