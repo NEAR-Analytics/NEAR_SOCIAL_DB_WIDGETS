@@ -112,34 +112,34 @@ const body = (
             </div>
           </div>
         </div>
-        <div className="text-truncate my-2">{profile.description}</div>
-        <div className="text-truncate text-muted">
-          {tags.length > 0 ? (
-            <>
-              {tags.map((tag) => (
-                <span
-                  className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                  key={tag}
-                >
-                  {tag}
-                </span>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
       </div>
-    </div>
-    <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
-      <a
-        className="btn me-2 text-light"
-        style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
-        href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-      >
-        <i className="bi-person-up" />
-        <span>Invite to contribute</span>
-      </a>
+      <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+        <a
+          className="btn me-2 text-light"
+          style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
+          href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+        >
+          <i className="bi-person-up" />
+          <span>Invite to contribute</span>
+        </a>
+      </div>
+      <div className="text-truncate my-2">{profile.description}</div>
+      <div className="text-truncate text-muted">
+        {tags.length > 0 ? (
+          <>
+            {tags.map((tag) => (
+              <span
+                className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
+                key={tag}
+              >
+                {tag}
+              </span>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   </div>
 );
