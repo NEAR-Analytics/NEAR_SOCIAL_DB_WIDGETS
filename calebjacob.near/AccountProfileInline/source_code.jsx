@@ -2,7 +2,7 @@ const accountId = props.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -10,7 +10,6 @@ const Wrapper = styled.a`
   color: #11181C !important;
   outline: none;
   text-decoration: none;
-  max-width: 100%;
 
   > * {
     min-width: 0;
