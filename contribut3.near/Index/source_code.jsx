@@ -206,7 +206,12 @@ const content = {
 }[state.content];
 
 const tabContent = {
-  dashboard: <Widget src={`${ownerId}/widget/Dashboard`} />,
+  dashboard: (
+    <Widget
+      src={`${ownerId}/widget/Dashboard`}
+      props={{ content: props.content, search: props.search }}
+    />
+  ),
 }[state.tab];
 
 return (
