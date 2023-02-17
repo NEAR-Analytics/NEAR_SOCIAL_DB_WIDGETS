@@ -25,7 +25,7 @@ return (
 
     <CommitButton
       data={{
-        thing,
+        thing: entry.thing,
       }}
     >
       Create
