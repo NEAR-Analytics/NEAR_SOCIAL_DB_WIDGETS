@@ -91,8 +91,14 @@ const controls = isAuthorized ? (
 
 return (
   <div className="card">
-    {header}
-    {descriptionArea}
-    {controls}
+    <div
+      className="d-flex flex-row justify-content-start"
+      id={accountId}
+      style={{ minHeight: "10em" }}
+    >
+      {header}
+      {descriptionArea}
+      {controls}
+    </div>
   </div>
 );
