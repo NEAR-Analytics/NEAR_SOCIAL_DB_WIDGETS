@@ -16,11 +16,6 @@ const getNewDBHandler = (e) => {
   console.log(JSON.parse(article));
 };
 
-const article = Social.get(
-  `${lastEditor}/${addressForArticles}/main`,
-  blockHeight
-);
-
 State.init({});
 
 // const allArticlesWithOneID = Social.get(
