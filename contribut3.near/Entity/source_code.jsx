@@ -155,11 +155,8 @@ const founderCircle = (
 );
 
 const body = (
-  <div
-    className="row align-items-stretch justify-content-center"
-    id={accountId}
-  >
-    <div className="col-9 py-3">
+  <div className="d-flex flex-row justify-content-start" id={accountId}>
+    <div className="flex-grow-1 py-3">
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
         <div className="m-2 d-flex flex-column justify-content-between align-items-start w-100">
