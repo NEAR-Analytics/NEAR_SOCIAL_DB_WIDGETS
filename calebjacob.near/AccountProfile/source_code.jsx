@@ -77,7 +77,7 @@ const AccountProfile = (
     <div>
       <Name>
         <Text ellipsis bold>
-          {profile.name}
+          {profile.name || accountId}
         </Text>
 
         {props.blockHeight && (
