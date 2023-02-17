@@ -163,10 +163,14 @@ const body = (
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
         <div className="m-2 d-flex flex-column justify-content-between align-items-start">
-          <div>
+          <div className="d-flex flex-row justify-content-between align-items-start">
             <div>
               <b>{name}</b>
               <span className="text-muted">@{accountId}</span>
+            </div>
+            <div className="text-success">
+              <i className="bi-play" />
+              <span className="ms-1">{entity.status}</span>
             </div>
           </div>
           <div className="d-flex flex-row justify-content-start align-items-center">
@@ -209,12 +213,7 @@ const body = (
 );
 
 const footer = (
-  <div className="d-flex flex-row justify-content-start align-items-stretch text-muted">
-    <div className="ms-3">
-      <i className="bi-play" />
-      <span className="ms-1">{entity.status}</span>
-    </div>
-  </div>
+  <div className="d-flex flex-row justify-content-start align-items-stretch text-muted"></div>
 );
 
 return (
