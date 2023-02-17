@@ -63,6 +63,21 @@ const searchBar = (
   </div>
 );
 
+const content = {
+  proposals: (
+    <Widget
+      src={`${ownerId}/widget/AdminList`}
+      props={{ search: state.search, update: props.update }}
+    />
+  ),
+  invitations: (
+    <Widget
+      src={`${ownerId}/widget/InviteList`}
+      props={{ search: state.search, update: props.update }}
+    />
+  ),
+}[state.content];
+
 return (
   <div>
     <div className="mb-3 px-3">
@@ -74,6 +89,6 @@ return (
         {searchBar}
       </div>
     </div>
-    <div className="px-3 pt-3"></div>
+    <div className="px-3 pt-3">{content}</div>
   </div>
 );
