@@ -80,7 +80,7 @@ const controls = (
       <i className="bi-check" />
       <span>Accept</span>
     </a>
-    <a className="btn btn-outline-secondary">
+    <a className="btn btn-outline-cancel">
       <i className="bi-x" />
       <span>Reject</span>
     </a>
