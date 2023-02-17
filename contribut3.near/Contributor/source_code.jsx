@@ -106,9 +106,6 @@ const body = (
 
 return (
   <div className="card">
-    <div className="card-body px-3 py-0">
-      {body}
-      {details}
-    </div>
+    <div className="card-body px-3 py-0">{body}</div>
   </div>
 );
