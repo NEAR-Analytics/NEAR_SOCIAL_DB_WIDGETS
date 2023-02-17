@@ -11,7 +11,7 @@ const conrtibutor = isPreview
   ? props.contributor
   : Near.view(ownerId, "get_contributor", { account_id: accountId }, "final");
 
-if (!entity) {
+if (!contributor) {
   return isPreview
     ? "You must provide a contributor object in preview mode"
     : "Loading...";
