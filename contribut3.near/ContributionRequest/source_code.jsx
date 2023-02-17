@@ -47,10 +47,10 @@ const founderImageUrl =
     : contributorProfile.image.url) ||
   "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
-const founderCircle = (
+const contributorCircle = (
   <div
     className="profile-circle d-inline-block"
-    title={`${founderProfile.name} @${founder}`}
+    title={`${contributorProfile.name} @${contributorId}`}
     style={{ width: "1.5em", height: "1.5em" }}
   >
     <img
