@@ -45,7 +45,7 @@ const Tags = styled.ul`
 
 const Tag = styled.li`
   border: 1px solid #E6E8EB;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: 6px;
   font-size: 12px;
   line-height: 18px;
