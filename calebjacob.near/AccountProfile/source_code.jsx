@@ -77,7 +77,7 @@ const AccountProfile = (
     <div>
       <Name>
         <Text ellipsis bold>
-          {profile.name || accountId}
+          {profile.name || accountId.split(".near")[0]}
         </Text>
 
         {props.blockHeight && (
