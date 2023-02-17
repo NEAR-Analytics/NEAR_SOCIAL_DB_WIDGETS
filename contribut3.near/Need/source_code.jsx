@@ -109,7 +109,7 @@ const body = (
     <div className="vr mx-3" />
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
       <a
-        className="btn btn-outline-secondary me-2 text-semibold"
+        className="btn btn-outline-secondary me-2 fw-semibold"
         href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
         style={{
           backgroundColor: "#F9F5FF",
