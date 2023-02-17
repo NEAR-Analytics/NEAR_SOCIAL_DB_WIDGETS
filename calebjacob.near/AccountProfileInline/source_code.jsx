@@ -39,8 +39,8 @@ const Text = styled.span`
 `;
 
 const Avatar = styled.div`
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   overflow: hidden;
