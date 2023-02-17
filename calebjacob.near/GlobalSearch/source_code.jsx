@@ -153,7 +153,11 @@ return (
             <ul>
               {state.people.map((person, i) => (
                 <li key={i}>
-                  {person.name}, {person.accountId}
+                  <a
+                    href={`/#/calebjacob.near/widget/ProfilePage?accountId=${person.accountId}`}
+                  >
+                    {person.name}, {person.accountId}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -167,9 +171,13 @@ return (
             <ul>
               {state.apps.map((app, i) => (
                 <li key={i}>
-                  {app.widgetName}, {app.accountId}
-                  <br />
-                  {app.tags.join(", ")}
+                  <a
+                    href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${app.accountId}/widget/${app.widgetName}`}
+                  >
+                    {app.widgetName}, {app.accountId}
+                    <br />
+                    {app.tags.join(", ")}
+                  </a>
                 </li>
               ))}
             </ul>
