@@ -155,7 +155,10 @@ const founderCircle = (
 );
 
 const body = (
-  <div className="row align-items-start justify-content-center" id={accountId}>
+  <div
+    className="row align-items-stretch justify-content-center"
+    id={accountId}
+  >
     <div className="col-7">
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
