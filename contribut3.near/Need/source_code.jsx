@@ -83,7 +83,7 @@ const body = (
           <div
             className={contributionNeed.active ? "text-success" : "text-muted"}
           >
-            {contributorNeed.active ? <i className="bi-circle-fill" /> : <></>}
+            {contributionNeed.active ? <i className="bi-circle-fill" /> : <></>}
             <span className="ms-1">
               {contributionNeed.active ? "Open to proposals" : "Closed"}
             </span>
