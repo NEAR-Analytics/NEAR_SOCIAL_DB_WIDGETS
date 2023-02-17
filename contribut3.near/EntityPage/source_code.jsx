@@ -162,14 +162,14 @@ const contentSelectButton = ({ id, text, icon }) => (
 const contentSelector = (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
     {contentSelectButton({
-      id: "proposals",
-      text: "Proposals",
-      icon: "bi-person-plus",
+      id: "requests",
+      text: "Requests",
+      icon: "bi-boxes",
     })}
     {contentSelectButton({
-      id: "invitations",
-      text: "Invitations",
-      icon: "bi-person-up",
+      id: "contributions",
+      text: "Contributions",
+      icon: "bi-people",
     })}
   </div>
 );
@@ -195,6 +195,21 @@ const searchBar = (
   </div>
 );
 
+const content = {
+  requests: (
+    <Widget
+      src={`${ownerId}/widget/NeedList`}
+      props={{ search: state.search, update: props.update }}
+    />
+  ),
+  contributions: (
+    <Widget
+      src={`${ownerId}/widget/ContributionList`}
+      props={{ search: state.search, update: props.update }}
+    />
+  ),
+}[state.content];
+
 return (
   <div className="">
     <div className="mb-5">{body}</div>
@@ -202,5 +217,6 @@ return (
       {contentSelector}
       {searchBar}
     </div>
+    <div className="px-3 pt-3">{content}</div>
   </div>
 );
