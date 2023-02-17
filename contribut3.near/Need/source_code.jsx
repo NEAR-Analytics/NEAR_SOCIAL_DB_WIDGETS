@@ -3,9 +3,30 @@ const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
 const isPreview = props.isPreview ?? false;
 
-if (!accountId) {
-  return "Cannot show contributor without account ID!";
+if (!accountId || !cid) {
+  return "Cannot render contribution need widget without account ID or CID!";
 }
+
+const isContributor = Near.view(
+  ownerId,
+  "check_is_contributor",
+  { account_id: context.accountId },
+  "final",
+  true
+);
+
+const contributionNeed = props.isPreview
+  ? props.contributionNeed
+  : Near.view(
+    ownerId,
+    "get_contribution_need",
+    {
+      account_id: accountId,
+      cid,
+    },
+    "final",
+    true
+  );
 
 const contributor = isPreview
   ? props.contributor
@@ -57,10 +78,7 @@ const body = (
     <div className="flex-grow-1 py-3">
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
-          <div>
-            <b>{profile.name}</b>
-            <span className="text-muted">@{accountId}</span>
-          </div>
+          <div>{contributionNeed.contribution_type}</div>
           <div className="text-success">
             <i className="bi-circle-fill" />
             <span className="ms-1">Available</span>
