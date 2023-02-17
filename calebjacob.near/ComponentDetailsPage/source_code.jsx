@@ -3,6 +3,12 @@ State.init({
   selectedTab: props.tab ?? "about",
 });
 
+if (props.tab && props.tab !== state.selectedTab) {
+  State.update({
+    selectedTab: props.tab,
+  });
+}
+
 const src = props.src;
 const [accountId, widget, widgetName] = src.split("/");
 const existsData = Social.keys(`${accountId}/widget/${widgetName}`);
@@ -11,7 +17,8 @@ const data = Social.get(`${accountId}/widget/${widgetName}/**`);
 const code = data[""];
 const metadata = data.metadata;
 const tags = Object.keys(metadata.tags || {});
-const shareUrl = `https://near.social/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
+const detailsUrl = `/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
+const shareUrl = `https://alpha.near.org${detailsUrl}`;
 
 const dependencyMatch =
   code && code.matchAll(/<Widget[\s\S]*?src="(.+)"[\s\S]*?\/>/g);
@@ -44,28 +51,35 @@ const Tabs = styled.div`
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: 32px;
+  overflow: auto;
+  scroll-behavior: smooth;
 
   @media (max-width: 900px) {
     background: #F8F9FA;
     border-top: 1px solid #ECEEF0;
     margin: 0 -12px 48px;
 
-    button {
+    > * {
       flex: 1;
     }
   }
 `;
 
-const TabsButton = styled.button`
+const TabsButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
   padding: 0 12px;
   position: relative;
   color: ${(p) => (p.selected ? "#11181C" : "#687076")};
   background: none;
   border: none;
   outline: none;
+  text-align: center;
+  text-decoration: none !important;
 
   &:hover {
     color: #11181C;
@@ -186,24 +200,21 @@ return (
 
     <Tabs>
       <TabsButton
-        type="button"
-        onClick={() => State.update({ selectedTab: "about" })}
+        href={`${detailsUrl}&tab=about`}
         selected={state.selectedTab === "about"}
       >
         About
       </TabsButton>
 
       <TabsButton
-        type="button"
-        onClick={() => State.update({ selectedTab: "source" })}
+        href={`${detailsUrl}&tab=source`}
         selected={state.selectedTab === "source"}
       >
         Source
       </TabsButton>
 
       <TabsButton
-        type="button"
-        onClick={() => State.update({ selectedTab: "history" })}
+        href={`${detailsUrl}&tab=history`}
         selected={state.selectedTab === "history"}
       >
         History
