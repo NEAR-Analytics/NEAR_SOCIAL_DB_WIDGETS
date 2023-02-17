@@ -20,7 +20,10 @@ return (
             changes the game for web developers! Below are useful resources for
             anyone building on Near Social.
           </p>
-          <a className="btn btn-success" href="">
+          <a
+            className="btn btn-success"
+            href="https://near.social/#/hack.near/widget/Docs"
+          >
             Docs
           </a>
           <a
