@@ -1,4 +1,4 @@
-const limit = 10;
+const limit = 5;
 let items = [];
 
 const followData = Social.index("graph", "follow", {
