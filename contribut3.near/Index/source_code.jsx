@@ -219,6 +219,12 @@ const tabContent = {
       props={{ content: props.content, search: props.search }}
     />
   ),
+  entities: (
+    <Widget
+      src={`${ownerId}/widget/ManageEntities`}
+      props={{ content: props.content, search: props.search }}
+    />
+  ),
 }[state.tab];
 
 return (
