@@ -1,7 +1,7 @@
-const addressForArticles = "wikiTest";
+const addressForArticles = "wikiTest2Article";
 const authorForWidget = "eugenewolf507.near";
 // ========== GET INDEX ARRAY FOR ARTICLES ==========
-const postsIndex = Social.index("wikiTest2Article", "main", {
+const postsIndex = Social.index(addressForArticles, "main", {
   order: "desc",
   accountId: undefined,
 });
@@ -10,7 +10,7 @@ const resultArticles =
   postsIndex &&
   postsIndex.reduce((acc, { accountId, blockHeight }) => {
     const postData = Social.get(
-      `${accountId}/wikiTest2Article/main`,
+      `${accountId}/${addressForArticles}/main`,
       blockHeight
     );
     return [...acc, JSON.parse(postData)];
