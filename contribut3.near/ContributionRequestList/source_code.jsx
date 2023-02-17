@@ -6,7 +6,7 @@ const needs = accountId
   ? Near.view(
     ownerId,
     "get_entity_contribution_requests",
-    { account_id: accountId },
+    { entity_id: accountId },
     "final",
     true
   )
