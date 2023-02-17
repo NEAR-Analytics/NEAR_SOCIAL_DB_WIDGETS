@@ -7,15 +7,12 @@ if (!accountId) {
   return "Cannot show entity without account ID!";
 }
 
-const entity = isPreview
-  ? props.entity
-  : Near.view(ownerId, "get_entity", { account_id: accountId }, "final");
-
-if (!entity) {
-  return isPreview
-    ? "You must provide an entity object in preview mode"
-    : "Loading...";
-}
+const entity = Near.view(
+  ownerId,
+  "get_entity",
+  { account_id: accountId },
+  "final"
+);
 
 const currentContributor = Near.view(
   ownerId,
@@ -150,13 +147,6 @@ const body = (
 
 return (
   <div className="card">
-    <div className="card-body px-3 py-0">
-      {body}
-      {details}
-      {needForm}
-      {contributionsList}
-      {requestsList}
-      {inviteList}
-    </div>
+    <div className="card-body px-3 py-0">{body}</div>
   </div>
 );
