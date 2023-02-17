@@ -1,5 +1,5 @@
-const accountId = props.accountId ?? context.accountId;
-const profile = Social.get(`${accountId}/profile/**`, "final");
+const accountId = props.accountId;
+const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
   display: grid;
