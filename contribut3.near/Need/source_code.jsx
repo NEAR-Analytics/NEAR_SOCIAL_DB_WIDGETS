@@ -103,7 +103,7 @@ const body = (
             <></>
           )}
         </div>
-        <div className="text-truncate my-2">{profile.description}</div>
+        <div className="text-truncate my-2">{contributionNeed.description}</div>
       </div>
     </div>
     <div className="vr mx-3" />
