@@ -142,7 +142,6 @@ return (
         {searchBar}
       </div>
     </div>
-    <hr className="border-2" />
     <div className="px-3 pt-3">{content}</div>
   </div>
 );
