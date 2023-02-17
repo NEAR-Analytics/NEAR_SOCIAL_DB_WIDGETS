@@ -91,8 +91,8 @@ const body = (
     style={{ minHeight: "10em" }}
   >
     <div className="flex-grow-1 py-3">
-      <div className="d-flex flex-row justify-content-start">
-        <div>
+      <div>
+        <div className="d-flex flex-row justify-content-start">
           <div className="m-2">{circle}</div>
           <div className="d-flex flex-column justify-content-between align-items-start w-100">
             <div className="w-100 d-flex flex-row justify-content-between align-items-start">
