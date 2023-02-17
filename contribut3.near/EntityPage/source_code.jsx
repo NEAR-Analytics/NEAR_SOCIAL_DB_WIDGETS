@@ -140,9 +140,6 @@ const body = (
         <i className="bi-person-up" />
         <span>Invite to contribute</span>
       </a>
-      <a className="btn btn-outline-secondary">
-        <i className="bi-box-arrow-up-right" />
-      </a>
     </div>
   </div>
 );
