@@ -52,7 +52,7 @@ const Item = styled.div`
 
 const ItemRow = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 2fr min-content 2fr;
   gap: 12px;
   align-items: center;
   width: 100%;
@@ -73,6 +73,7 @@ const Text = styled.p`
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
   flex-shrink: 0;
+
 
   .bi-hand-index-thumb {
     display: inline-block;
