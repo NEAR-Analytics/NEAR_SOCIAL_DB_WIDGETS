@@ -26,6 +26,10 @@ const CardBody = styled.div`
   }
 `;
 
+const CardContent = styled.div`
+  width: 100%;
+`;
+
 const CardFooter = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -51,6 +55,24 @@ const TextLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
+  white-space: nowrap;
+`;
+
+const Name = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 `;
 
 const Thumbnail = styled.a`
@@ -117,10 +139,23 @@ return (
         />
       </Thumbnail>
 
-      <div>
-        <TextLink as="a" href={detailsUrl} bold ellipsis>
-          {metadata.name || widgetName}
-        </TextLink>
+      <CardContent>
+        <Name>
+          <TextLink as="a" href={detailsUrl} bold ellipsis>
+            {metadata.name || widgetName}
+          </TextLink>
+
+          {props.blockHeight && (
+            <Text small>
+              Updated{" "}
+              <Widget
+                src="mob.near/widget/TimeAgo"
+                props={{ blockHeight: props.blockHeight }}
+              />{" "}
+              ago
+            </Text>
+          )}
+        </Name>
 
         <TextLink small as="a" href={accountUrl} ellipsis>
           @{accountId}
@@ -137,7 +172,7 @@ return (
             />
           </TagsWrapper>
         )}
-      </div>
+      </CardContent>
     </CardBody>
 
     <CardFooter>
