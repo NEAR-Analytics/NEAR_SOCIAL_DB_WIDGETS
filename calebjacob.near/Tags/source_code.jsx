@@ -1,6 +1,6 @@
 if (!props.tags?.length) return "";
 
-const TagsWrapper = styled.div`
+const Wrapper = styled.div`
   position: relative;
 
   ${(p) =>
@@ -55,11 +55,11 @@ const Tag = styled.li`
 `;
 
 return (
-  <TagsWrapper scroll={props.scroll}>
+  <Wrapper scroll={props.scroll}>
     <Tags>
       {props.tags.map((tag, i) => (
         <Tag key={i}>{tag}</Tag>
       ))}
     </Tags>
-  </TagsWrapper>
+  </Wrapper>
 );
