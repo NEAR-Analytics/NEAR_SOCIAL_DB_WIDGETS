@@ -194,7 +194,7 @@ const body = (
         </div>
       </div>
     </div>
-    <div className="vr mx-2" />
+    <div className="vr mx-3" />
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
       <a
         className="btn btn-outline-secondary me-2"
