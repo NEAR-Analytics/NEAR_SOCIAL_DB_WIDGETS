@@ -43,6 +43,7 @@ const article = Social.get(
   blockHeight
 );
 const jArticle = JSON.parse(article);
+console.log(jArticle);
 State.update({ jArticle });
 
 const getDate = (timestamp) => {
