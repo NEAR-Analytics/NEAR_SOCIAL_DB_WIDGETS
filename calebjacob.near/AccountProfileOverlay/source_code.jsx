@@ -13,6 +13,10 @@ State.init({
   show: false,
 });
 
+const CardWrapper = styled.div`
+  padding: 12px;
+`;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,7 +29,6 @@ const Card = styled.div`
   border: 1px solid #ECEEF0;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   padding: 12px;
-  margin: 12px;
 `;
 
 const FollowButtonWrapper = styled.div`
@@ -37,21 +40,26 @@ const FollowButtonWrapper = styled.div`
 `;
 
 const overlay = (
-  <Card onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
-    <Widget
-      src="calebjacob.near/widget/AccountProfile"
-      props={{ accountId: props.accountId, profile }}
-    />
-
-    <Widget src="calebjacob.near/widget/Tags" props={{ tags, scroll: true }} />
-
-    <FollowButtonWrapper>
+  <CardWrapper>
+    <Card onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
       <Widget
-        src="calebjacob.near/widget/FollowButton"
-        props={{ accountId: props.accountId }}
+        src="calebjacob.near/widget/AccountProfile"
+        props={{ accountId: props.accountId, profile }}
       />
-    </FollowButtonWrapper>
-  </Card>
+
+      <Widget
+        src="calebjacob.near/widget/Tags"
+        props={{ tags, scroll: true }}
+      />
+
+      <FollowButtonWrapper>
+        <Widget
+          src="calebjacob.near/widget/FollowButton"
+          props={{ accountId: props.accountId }}
+        />
+      </FollowButtonWrapper>
+    </Card>
+  </CardWrapper>
 );
 
 return (
