@@ -64,8 +64,8 @@ const body = (
               <span className="text-muted">@{accountId}</span>
             </div>
             <div className="text-success">
-              <i className="bi-play" />
-              <span className="ms-1">{entity.status}</span>
+              <i className="bi-circle-fill" />
+              <span className="ms-1">Available</span>
             </div>
           </div>
           {contributorType}
