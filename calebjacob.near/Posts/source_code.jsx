@@ -148,7 +148,7 @@ return (
       )}
 
       <FeedWrapper>
-        <Widget src="calebjacob.near/widget/PostFeed" props={{ accounts }} />
+        <Widget src="calebjacob.near/widget/Posts.Feed" props={{ accounts }} />
       </FeedWrapper>
     </Content>
   </>
