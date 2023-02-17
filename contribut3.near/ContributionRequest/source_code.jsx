@@ -73,7 +73,7 @@ const header = (
 const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch py-3">
     <a
-      className="btn btn-success me-2"
+      className="btn btn-success"
     // href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
     // onClick={() => props.update("entity")}
     >
