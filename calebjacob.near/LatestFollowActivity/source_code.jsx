@@ -19,7 +19,7 @@ const H2 = styled.h2`
 
 const Item = styled.div`
   display: grid;
-  grid-template-columns: 2fr min-content 2fr;
+  grid-template-columns: 2fr 36px 2fr;
   gap: 12px;
   align-items: center;
   width: 100%;
@@ -39,6 +39,7 @@ const Text = styled.p`
   flex-shrink: 0;
   white-space: nowrap;
   text-align: center;
+  overflow: hidden;
 
   i {
     font-size: 16px;
