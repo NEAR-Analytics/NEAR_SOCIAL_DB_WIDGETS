@@ -96,8 +96,10 @@ return (
       id={accountId}
       style={{ minHeight: "10em" }}
     >
-      {header}
-      {descriptionArea}
+      <div className="flex-grow-1 py-3">
+        {header}
+        {descriptionArea}
+      </div>
       {controls}
     </div>
   </div>
