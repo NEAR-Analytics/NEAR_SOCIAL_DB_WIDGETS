@@ -79,7 +79,7 @@ const Tabs = styled.div`
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: 72px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     background: #F8F9FA;
     border-top: 1px solid #ECEEF0;
     margin: 0 -12px 48px;
