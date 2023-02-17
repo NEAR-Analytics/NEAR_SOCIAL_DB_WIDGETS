@@ -131,7 +131,8 @@ const body = (
     </div>
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
       <a
-        className="btn btn-outline-secondary me-2"
+        className="btn me-2"
+        style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
         href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
       >
         <i className="bi-person-up" />
