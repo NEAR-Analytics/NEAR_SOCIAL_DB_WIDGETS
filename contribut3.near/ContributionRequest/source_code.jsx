@@ -70,10 +70,26 @@ const header = (
   </div>
 );
 
+const controls = (
+  <div className="d-flex flex-column justify-content-start align-items-stretch py-3">
+    <a
+      className="btn btn-success me-2"
+    // href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
+    // onClick={() => props.update("entity")}
+    >
+      <i className="bi-check" />
+      <span>Accept</span>
+    </a>
+    <a className="btn btn-outline-secondary">
+      <i className="bi-box-arrow-up-right" />
+    </a>
+  </div>
+);
+
 return (
   <div className="card">
     {header}
-    {body}
-    {footer}
+    {descriptionArea}
+    {controls}
   </div>
 );
