@@ -82,7 +82,7 @@ const body = (
             </span>
           </div>
         </div>
-        <div>
+        <div className="my-2">
           {circle}
           <b>{entity.name || profile.name}</b>
           <span className="text-muted">@{accountId}</span>
