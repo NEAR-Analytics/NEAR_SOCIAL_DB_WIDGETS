@@ -70,7 +70,7 @@ return (
 
         <Widget
           src="calebjacob.near/widget/AccountProfileInline"
-          props={{ accountId: item.value.accountId }}
+          props={{ accountId: item.value.accountId, avatarSize: "40px" }}
         />
       </Item>
     ))}
