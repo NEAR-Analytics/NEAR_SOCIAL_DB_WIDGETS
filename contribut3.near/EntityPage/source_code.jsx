@@ -90,7 +90,8 @@ const body = (
     id={accountId}
     style={{ minHeight: "10em" }}
   >
-    <div className="flex-grow-1 py-3">
+    <div>
+      <div className="flex-grow-1 py-3">
         <div className="d-flex flex-row justify-content-start">
           <div className="m-2">{circle}</div>
           <div className="d-flex flex-column justify-content-between align-items-start w-100">
@@ -122,25 +123,25 @@ const body = (
           <span>Invite to contribute</span>
         </a>
       </div>
-      </div>
-      <div className="text-truncate my-2">{profile.description}</div>
-      <div className="text-truncate text-muted">
-        {tags.length > 0 ? (
-          <>
-            {tags.map((tag) => (
-              <span
-                className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                key={tag}
-              >
-                {tag}
-              </span>
-            ))}
-          </>
-        ) : (
-          <></>
-        )}
     </div>
-  </div >
+    <div className="text-truncate my-2">{profile.description}</div>
+    <div className="text-truncate text-muted">
+      {tags.length > 0 ? (
+        <>
+          {tags.map((tag) => (
+            <span
+              className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
+              key={tag}
+            >
+              {tag}
+            </span>
+          ))}
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
+  </div>
 );
 
 return (
