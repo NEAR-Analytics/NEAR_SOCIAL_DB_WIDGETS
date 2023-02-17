@@ -194,7 +194,7 @@ const searchBar = (
 return (
   <div className="">
     <div className="mb-5">{body}</div>
-    <div className="d-flex flex-row justify-content-between">
+    <div className="d-flex flex-row justify-content-between ps-3">
       {contentSelector}
       {searchBar}
     </div>
