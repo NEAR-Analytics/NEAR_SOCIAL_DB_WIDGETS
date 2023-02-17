@@ -55,25 +55,29 @@ function test(data) {
       console.warn("receiver window not found!!!!")
   }
   console.log(receiverWindow, "receiverrrr")
-  try {
-      if (event.data.action === "send_indexer_details") {
-        console.log("trying to send the data to react app")
-          receiverWindow.postMessage({
-              action: "subscription_request",
-              data: data
-          }, "*")
-      }
-  } catch (error) {
-      console.log(error, "errored out")
-  }
+  // try {
+  //     if (event.data.action === "send_indexer_details") {
+  //       console.log("trying to send the data to react app")
+  //         receiverWindow.postMessage({
+  //             action: "subscription_request",
+  //             data: data
+  //         }, "*")
+  //     }
+  // } catch (error) {
+  //     console.log(error, "errored out")
+  // }
+  console.log("reached here")
 window.addEventListener("message", function(event) {
-  console.log("message came from :", event.source.name)
-  if (event.action === "register_function") {
+  console.log("received a message")
+  console.log(event)
+  // console.log("message came from :", event.source.name)
+  if (event.data.action === "register_function") {
       window.top.postMessage(event.data, "*");
   }
-  if (event.action === "request_indexer_details") {
+  if (event.data.action === "request_indexer_details") {
       event.source.postMessage({
           action: "subscription_request",
+          from: "iframe", 
           data: data
       }, "*")
   }
@@ -114,20 +118,11 @@ return (
         action: "send_indexer_details",
         value: {
           indexer_name: indexer_function_name,
-          indexer_code: state.code,
+          accountId: accountId,
         },
+        from: "widget",
       }}
       onMessage={(message) => reducer(message)}
-    />
-    <Widget
-      src={"roshaan.near/widget/queryapi__RegisterIndexerFunctionButton"}
-      props={{
-        action: "send_indexer_details",
-        value: {
-          indexer_name: indexer_function_name,
-          indexer_code: state.code,
-        },
-      }}
     />
   </div>
 );
