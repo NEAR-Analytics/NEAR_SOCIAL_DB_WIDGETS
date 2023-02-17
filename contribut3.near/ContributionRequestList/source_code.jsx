@@ -20,9 +20,12 @@ if (!allRequests || allRequests.length === 0) {
 
 return (
   <>
-    {allRequests.map(([accountId, cid]) => (
-      <div key={cid} className="mb-2">
-        <Widget src={`${ownerId}/widget/Need`} props={{ accountId, cid }} />
+    {allRequests.map(([contributorId]) => (
+      <div key={contributorId} className="mb-2">
+        <Widget
+          src={`${ownerId}/widget/ContributionRequest`}
+          props={{ entityId: accountId, contributorId }}
+        />
       </div>
     ))}
   </>
