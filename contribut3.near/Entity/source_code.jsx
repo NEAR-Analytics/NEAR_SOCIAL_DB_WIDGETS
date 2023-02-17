@@ -173,6 +173,7 @@ const body = (
           <div className="d-flex flex-row justify-content-start align-items-center my-1">
             {founderCircle}
             <span className="ms-1">{founderProfile.name}</span>
+            <span className="text-muted">@{founder}</span>
           </div>
           <div className="text-truncate text-muted">
             {tags.length > 0 ? (
