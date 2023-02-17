@@ -301,7 +301,7 @@ return (
     {tags.length > 0 && (
       <Section>
         <Widget
-          src="calebjacob.near/widget/ComponentTags"
+          src="calebjacob.near/widget/Tags"
           props={{
             tags,
           }}
