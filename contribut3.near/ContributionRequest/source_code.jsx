@@ -81,7 +81,8 @@ const controls = (
       <span>Accept</span>
     </a>
     <a className="btn btn-outline-secondary">
-      <i className="bi-box-arrow-up-right" />
+      <i className="bi-x" />
+      <span>Reject</span>
     </a>
   </div>
 );
