@@ -1,6 +1,7 @@
 const addressForArticles = "wikiTest2Article";
 const authorForWidget = "eugenewolf507.near";
 const { articleId, blockHeight, lastEditor } = props;
+console.log(articleId, blockHeight, lastEditor);
 
 // === *** NEW DATA BASE *** ===
 const getNewDBHandler = (e) => {
