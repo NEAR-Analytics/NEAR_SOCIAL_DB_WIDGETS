@@ -197,17 +197,17 @@ return (
           </TabsButton>
 
           <TabsButton
-            href={`${accountUrl}&tab=followers`}
-            selected={state.selectedTab === "followers"}
-          >
-            Followers
-          </TabsButton>
-
-          <TabsButton
             href={`${accountUrl}&tab=following`}
             selected={state.selectedTab === "following"}
           >
             Following
+          </TabsButton>
+
+          <TabsButton
+            href={`${accountUrl}&tab=followers`}
+            selected={state.selectedTab === "followers"}
+          >
+            Followers
           </TabsButton>
         </Tabs>
 
