@@ -33,7 +33,6 @@ const contributions = Near.view(
 
 const profile = Social.getr(`${accountId}/profile`);
 
-const name = entity.name || profile.name;
 const tags = Object.keys(profile.tags ?? {});
 const image = profile.image;
 const url =
@@ -44,7 +43,7 @@ const url =
 const circle = (
   <div
     className="profile-circle d-inline-block"
-    title={`${name} @${accountId}`}
+    title={`${entity.name || profile.name} @${accountId}`}
     style={{ width: "4em", height: "4em" }}
   >
     <img
