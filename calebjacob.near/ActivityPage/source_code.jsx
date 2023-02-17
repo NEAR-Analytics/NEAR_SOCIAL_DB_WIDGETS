@@ -1,6 +1,12 @@
 State.init({
-  selectedTab: "activity",
+  selectedTab: props.tab || "activity",
 });
+
+if (props.tab && props.tab !== state.selectedTab) {
+  State.update({
+    selectedTab: props.tab,
+  });
+}
 
 const Wrapper = styled.div`
   margin-top: calc(var(--body-top-padding) * -1);
@@ -38,28 +44,35 @@ const Tabs = styled.div`
   border-top: 1px solid #ECEEF0;
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: ${(p) => (p.noMargin ? "0" : p.halfMargin ? "24px" : "24px")};
+  overflow: auto;
+  scroll-behavior: smooth;
 
   @media (max-width: 1200px) {
     display: flex;
     margin-left: -12px;
     margin-right: -12px;
 
-    button {
+    > * {
       flex: 1;
     }
   }
 `;
 
-const TabsButton = styled.button`
+const TabsButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
   padding: 0 12px;
   position: relative;
   color: ${(p) => (p.selected ? "#11181C" : "#687076")};
   background: none;
   border: none;
   outline: none;
+  text-align: center;
+  text-decoration: none !important;
 
   &:hover {
     color: #11181C;
