@@ -164,8 +164,10 @@ const body = (
         <div className="m-2">{circle}</div>
         <div className="m-2 d-flex flex-column justify-content-between align-items-start">
           <div>
-            <b>{name}</b>
-            <span className="text-muted">@{accountId}</span>
+            <div>
+              <b>{name}</b>
+              <span className="text-muted">@{accountId}</span>
+            </div>
           </div>
           <div className="d-flex flex-row justify-content-start align-items-center">
             {founderCircle}
