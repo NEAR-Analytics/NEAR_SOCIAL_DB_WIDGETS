@@ -100,16 +100,18 @@ const Tabs = styled.div`
 `;
 
 const TabsButton = styled.a`
+  display: inline-flex;
+  height: 100%
+  align-items: center;
   font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
   padding: 0 12px;
   position: relative;
   color: ${(p) => (p.selected ? "#11181C" : "#687076")};
   background: none;
   border: none;
   outline: none;
-  text-decoration: none;
+  text-decoration: none !important;
 
   &:hover {
     color: #11181C;
