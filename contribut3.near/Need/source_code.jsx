@@ -112,7 +112,7 @@ const body = (
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
       >
-        View details
+        Propose
       </a>
       <a className="btn btn-outline-secondary">
         <i className="bi-box-arrow-up-right" />
