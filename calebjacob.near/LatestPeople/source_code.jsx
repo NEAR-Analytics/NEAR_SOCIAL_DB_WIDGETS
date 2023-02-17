@@ -24,7 +24,7 @@ const H2 = styled.h2`
 `;
 
 const Person = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 `;
 
 const ButtonLink = styled.a`
@@ -41,6 +41,7 @@ const ButtonLink = styled.a`
   text-align: center;
   cursor: pointer;
   color: #11181C !important;
+  margin-top: 24px;
 
   &:hover,
   &:focus {
