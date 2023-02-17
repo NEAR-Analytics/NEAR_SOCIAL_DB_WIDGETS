@@ -8,6 +8,8 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
+const activityUrl = `/#/calebjacob.near/widget/ActivityPage`;
+
 const Wrapper = styled.div`
   margin-top: calc(var(--body-top-padding) * -1);
   padding-bottom: 48px;
@@ -97,24 +99,21 @@ return (
       noMargin={state.selectedTab === "activity"}
     >
       <TabsButton
-        type="button"
-        onClick={() => State.update({ selectedTab: "activity" })}
+        href={`${activityUrl}?tab=activity`}
         selected={state.selectedTab === "activity"}
       >
         Activity
       </TabsButton>
 
       <TabsButton
-        type="button"
-        onClick={() => State.update({ selectedTab: "apps" })}
+        href={`${activityUrl}?tab=apps`}
         selected={state.selectedTab === "apps"}
       >
         Apps
       </TabsButton>
 
       <TabsButton
-        type="button"
-        onClick={() => State.update({ selectedTab: "explore" })}
+        href={`${activityUrl}?tab=explore`}
         selected={state.selectedTab === "explore"}
       >
         Explore
