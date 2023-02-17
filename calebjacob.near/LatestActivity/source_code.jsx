@@ -35,7 +35,7 @@ if (pokeData && followData) {
 
 const Wrapper = styled.div`
   display: grid;
-  gap: 12px;
+  gap: 18px;
 `;
 
 const H2 = styled.h2`
@@ -107,6 +107,7 @@ return (
         </ItemRow>
 
         <ItemRow>
+          <p></p>
           <Text small>
             <Widget
               src="mob.near/widget/TimeAgo"
