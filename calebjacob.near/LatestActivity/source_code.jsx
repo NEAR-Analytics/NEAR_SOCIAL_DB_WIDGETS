@@ -33,6 +33,11 @@ if (pokeData && followData) {
   items = data.slice(0, limit);
 }
 
+const Wrapper = styled.div`
+  display: grid;
+  gap: 24px;
+`;
+
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
@@ -42,10 +47,14 @@ const H2 = styled.h2`
 
 const Item = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr min-content;
+  gap: 6px;
+`;
+
+const ItemRow = styled.div`
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
   gap: 12px;
   align-items: center;
-  margin-bottom: 24px;
   width: 100%;
   overflow: hidden;
 
@@ -81,37 +90,41 @@ const Text = styled.p`
 `;
 
 return (
-  <>
+  <Wrapper>
     <H2>Activity</H2>
 
     {items.map((item, i) => (
       <Item key={i}>
-        <Widget
-          src="calebjacob.near/widget/AccountProfileInline"
-          props={{ accountId: item.accountId }}
-        />
+        <ItemRow>
+          <Widget
+            src="calebjacob.near/widget/AccountProfileInline"
+            props={{ accountId: item.accountId }}
+          />
 
-        {item.type === "follow" && <Text small>followed</Text>}
-        {item.type === "poke" && (
-          <Text small>
-            poked <i className="bi bi-hand-index-thumb"></i>
-          </Text>
-        )}
-
-        <Widget
-          src="calebjacob.near/widget/AccountProfileInline"
-          props={{ accountId: item.value.accountId }}
-        />
-
-        <Text small>
-          <i className="bi bi-clock"></i>
+          {item.type === "follow" && <Text small>followed</Text>}
+          {item.type === "poke" && (
+            <Text small>
+              poked <i className="bi bi-hand-index-thumb"></i>
+            </Text>
+          )}
 
           <Widget
-            src="mob.near/widget/TimeAgo"
-            props={{ blockHeight: item.blockHeight }}
+            src="calebjacob.near/widget/AccountProfileInline"
+            props={{ accountId: item.value.accountId }}
           />
-        </Text>
+        </ItemRow>
+
+        <ItemRow>
+          <Text small>
+            <i className="bi bi-clock"></i>
+
+            <Widget
+              src="mob.near/widget/TimeAgo"
+              props={{ blockHeight: item.blockHeight }}
+            />
+          </Text>
+        </ItemRow>
       </Item>
     ))}
-  </>
+  </Wrapper>
 );
