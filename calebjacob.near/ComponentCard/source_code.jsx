@@ -55,8 +55,8 @@ const TextLink = styled.a`
 
 const Thumbnail = styled.a`
   display: block;
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
@@ -76,7 +76,7 @@ const Thumbnail = styled.a`
   }
 `;
 
-const TagsInlineWrapper = styled.div`
+const TagsWrapper = styled.div`
   position: relative;
   margin-top: 3px;
 `;
@@ -127,7 +127,7 @@ return (
         </TextLink>
 
         {tags.length > 0 && (
-          <TagsInlineWrapper>
+          <TagsWrapper>
             <Widget
               src="calebjacob.near/widget/ComponentTags"
               props={{
@@ -135,7 +135,7 @@ return (
                 scroll: true,
               }}
             />
-          </TagsInlineWrapper>
+          </TagsWrapper>
         )}
       </div>
     </CardBody>
