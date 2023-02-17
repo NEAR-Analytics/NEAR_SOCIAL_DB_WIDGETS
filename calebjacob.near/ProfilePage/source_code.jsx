@@ -2,6 +2,8 @@ State.init({
   selectedTab: props.tab || "overview",
 });
 
+console.log(props.tab);
+
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
