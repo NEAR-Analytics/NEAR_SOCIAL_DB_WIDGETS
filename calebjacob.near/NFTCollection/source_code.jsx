@@ -21,8 +21,6 @@ if (data.body?.list) {
       limit: 200,
     });
 
-    console.log(nfts, 1);
-
     if (nfts?.length > 0) {
       accountHasNfts = true;
 
@@ -32,7 +30,7 @@ if (data.body?.list) {
           contractId,
         });
       });
-    } else if (i + 1 === data.body.list.length) {
+    } else if (i + 1 === data.body.list.length && nfts === undefined) {
       accountHasNfts = accountHasNfts ? true : false;
     }
   });
