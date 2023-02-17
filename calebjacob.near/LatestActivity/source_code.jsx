@@ -52,7 +52,7 @@ const Item = styled.div`
 
 const ItemRow = styled.div`
   display: grid;
-  grid-template-columns: min-content 1fr min-content;
+  grid-template-columns: 2fr 1fr 2fr;
   gap: 12px;
   align-items: center;
   width: 100%;
