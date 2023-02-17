@@ -129,13 +129,13 @@ const body = (
         </div>
       </div>
     </div>
-    <div className="vr mx-3" />
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
       <a
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
       >
-        View details
+        <i className="bi-person-up" />
+        <span>Invite to contribute</span>
       </a>
       <a className="btn btn-outline-secondary">
         <i className="bi-box-arrow-up-right" />
