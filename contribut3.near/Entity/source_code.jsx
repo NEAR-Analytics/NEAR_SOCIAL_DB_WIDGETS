@@ -197,7 +197,7 @@ const body = (
       </div>
       <div className="text-truncate my-2">{profile.description}</div>
     </div>
-    <div className="inline-block" style={{ width: "1px" }}>
+    <div className="d-inline-block p-0" style={{ width: "1px" }}>
       <div className="vr h-100" />
     </div>
     <div className="d-flex flex-row justify-content-end align-items-start col-3">
