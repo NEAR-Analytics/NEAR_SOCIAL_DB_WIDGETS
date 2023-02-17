@@ -32,6 +32,19 @@ const Wrapper = styled.div`
 
 const CardWrapper = styled.div``;
 
+const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+`;
+
+if (data !== null && components.length === 0) {
+  return <Text>This account has not published any components yet.</Text>;
+}
+
 return (
   <Wrapper>
     {components.map((component, i) => (
