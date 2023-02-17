@@ -156,6 +156,9 @@ const body = (
           </div>
         </div>
       </div>
+      <div className="text-truncate my-2" style={{ maxWidth: "70%" }}>
+        {profile.description}
+      </div>
     </div>
     <div className="d-flex flex-row justify-content-end align-items-start">
       <a
@@ -172,9 +175,6 @@ const body = (
 );
 
 const details = (
-  <div className="text-truncate my-2" style={{ maxWidth: "70%" }}>
-    {profile.description}
-  </div>
 );
 
 const [[founder]] = (contributions ?? []).filter((contribution) => {
