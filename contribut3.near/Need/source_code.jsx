@@ -63,13 +63,6 @@ const circle = (
   </div>
 );
 
-const contributorType = (
-  <div className="d-flex flex-row justify-content-start align-items-center my-1 text-body">
-    <i className="bi-person" />
-    <span>Individual contributor</span>
-  </div>
-);
-
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
