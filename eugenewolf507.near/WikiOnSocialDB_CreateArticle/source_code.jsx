@@ -248,22 +248,10 @@ const getArticleData = () => {
   return args;
 };
 
-// === *** NEW DATA BASE *** ===
-const newArticleCheck = {
-  articleId: "FirstNewDBTest",
-  author: accountId,
-  lastEditor: accountId,
-  timeLastEdit: Date.now(),
-  timeCreate: Date.now(),
-  body: "First New Data Base Structure Test",
-  version: 0,
-  navigation_id: null,
-};
-
 const composeData = () => {
   const data = {
     wikiTest2Article: {
-      main: JSON.stringify(newArticleCheck),
+      main: JSON.stringify(getArticleData()),
     },
     index: {
       wikiTest2Article: JSON.stringify({
@@ -277,11 +265,7 @@ const composeData = () => {
   return data;
 };
 
-const saveNewDBHandler = (e) => {
-  console.log(composeData());
-  console.log("Save to the New DB Clicked");
-};
-
+// === *** NEW DATA BASE *** ===
 const getNewDBHandler = (e) => {
   const wikiTestData = Social.get(`eugenewolf507.near/**`, "final");
   console.log("wikiTestData eugenewolf507.near", wikiTestData);
@@ -316,12 +300,8 @@ const saveHandler = (e) => {
     const isArticleIdDublicated = false;
 
     if (!isArticleIdDublicated) {
-      const newArticle = getArticleData();
-      Social.set({
-        [addressForArticles]: {
-          articles: { [newArticle.articleId]: { ...newArticle } },
-        },
-      });
+      const newData = composeData();
+      Social.set(newData, { force: true });
     } else {
       State.update({
         ...state,
@@ -359,14 +339,9 @@ return (
             Save Article
           </button>
           {/* === *** NEW DATA BASE *** === */}
-          <CommitButton
-            className="btn btn-warning"
-            data={composeData}
-            onClick={saveNewDBHandler}
-          >
-            Post
-          </CommitButton>
-          <button onClick={getNewDBHandler}>GET Data</button>
+          <button onClick={getNewDBHandler}>
+            GET Data - delete this button
+          </button>
           {/* === *** NEW DATA BASE *** === */}
         </div>
         <div class="d-flex flex-column pt-3">
