@@ -45,10 +45,10 @@ const Tags = styled.ul`
 
 const Tag = styled.li`
   border: 1px solid #E6E8EB;
-  padding: 2px 7px;
+  padding: 3px 6px;
   border-radius: 6px;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 12px;
   color: #687076;
   font-weight: 500;
 `;
