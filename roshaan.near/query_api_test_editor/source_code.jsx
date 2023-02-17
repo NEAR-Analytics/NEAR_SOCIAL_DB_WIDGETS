@@ -19,15 +19,15 @@ Near.asyncView(registry_contract_id, "read_indexer_function", {
   State.update({ code: data });
 });
 
-let updateIndexerCode = (code) => {
+let updateIndexerCode = (data) => {
   const gas = 200000000000000;
 
   Near.call(
     contractId,
     "register_indexer_function",
     {
-      name: indexer_function_name,
-      code: code,
+      name: data.indexer_name || indexer_function_name,
+      code: data.code,
     },
     gas
   );
