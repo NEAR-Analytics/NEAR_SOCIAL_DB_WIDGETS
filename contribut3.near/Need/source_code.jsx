@@ -112,6 +112,7 @@ const body = (
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
       >
+        <i className="bi-person-plus" />
         Propose
       </a>
       <a className="btn btn-outline-secondary">
