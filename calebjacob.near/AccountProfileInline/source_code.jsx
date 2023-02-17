@@ -34,7 +34,7 @@ const Text = styled.span`
   font-size: 14px;
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
-  white-space: nowrap;
+  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
 `;
 
 const Avatar = styled.div`
@@ -70,7 +70,7 @@ const AccountProfile = (
       />
     </Avatar>
 
-    <Text>{profile.name || accountId}</Text>
+    <Text ellipsis>{profile.name || accountId}</Text>
   </Wrapper>
 );
 
