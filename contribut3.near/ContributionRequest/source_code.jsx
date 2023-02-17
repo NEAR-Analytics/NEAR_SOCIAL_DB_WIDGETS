@@ -40,6 +40,28 @@ const description = isPreview
 
 const descriptionArea = <Markdown text={description} />;
 
+const contributorProfile = Social.getr(`${contributorId}/profile`);
+const founderImageUrl =
+  (contributorProfile.image.ipfs_cid
+    ? `https://ipfs.near.social/ipfs/${contributorProfile.image.ipfs_cid}`
+    : contributorProfile.image.url) ||
+  "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
+
+const founderCircle = (
+  <div
+    className="profile-circle d-inline-block"
+    title={`${founderProfile.name} @${founder}`}
+    style={{ width: "1.5em", height: "1.5em" }}
+  >
+    <img
+      className="rounded-circle w-100 h-100"
+      style={{ objectFit: "cover" }}
+      src={`https://i.near.social/thumbnail/${founderImageUrl}`}
+      alt="profile image"
+    />
+  </div>
+);
+
 const header = (
   <div className="d-flex flex-row justify-content-start align-items-center my-1">
     {founderCircle}
