@@ -12,7 +12,8 @@ if (!accountId || !profile) {
 // Profile Data:
 const tags = Object.keys(profile.tags || {});
 const viewingOwnAccount = accountId === context.accountId;
-const shareUrl = `https://alpha.near.org/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
+const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
+const shareUrl = `https://alpha.near.org${accountUrl}`;
 
 // Follower Count:
 const following = Social.keys(`${accountId}/graph/follow/*`, "final", {
@@ -309,7 +310,7 @@ return (
 
     <Section>
       <Stats>
-        <Text>
+        <Text as="a" href={`${accountUrl}&tab=following`}>
           <b bold as="span">
             {followingCount === null ? "--" : followingCount}
           </b>{" "}
