@@ -90,8 +90,8 @@ const body = (
     id={accountId}
     style={{ minHeight: "10em" }}
   >
-    <div className="w-100">
-      <div className="flex-grow-1 py-3">
+    <div className="flex-grow-1 py-3">
+      <div>
         <div className="d-flex flex-row justify-content-start">
           <div className="m-2">{circle}</div>
           <div className="d-flex flex-column justify-content-between align-items-start w-100">
@@ -113,16 +113,16 @@ const body = (
           </div>
         </div>
       </div>
-      <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
-        <a
-          className="btn me-2 text-light"
-          style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
-          href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-        >
-          <i className="bi-person-up" />
-          <span>Invite to contribute</span>
-        </a>
-      </div>
+    </div>
+    <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+      <a
+        className="btn me-2 text-light"
+        style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
+        href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+      >
+        <i className="bi-person-up" />
+        <span>Invite to contribute</span>
+      </a>
     </div>
     <div className="text-truncate my-2">{profile.description}</div>
     <div className="text-truncate text-muted">
