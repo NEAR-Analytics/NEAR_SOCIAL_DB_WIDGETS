@@ -80,7 +80,7 @@ const controls = isAuthorized ? (
       <i className="bi-check" />
       <span>Accept</span>
     </a>
-    <a className="btn btn-outline-cancel">
+    <a className="btn btn-outline-danger">
       <i className="bi-x" />
       <span>Reject</span>
     </a>
