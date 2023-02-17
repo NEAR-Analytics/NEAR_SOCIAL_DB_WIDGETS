@@ -1,6 +1,5 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
-
 // ========== GET INDEX ARRAY FOR ARTICLES ==========
 const postsIndex = Social.index("wikiTest2Article", "main", {
   order: "desc",
