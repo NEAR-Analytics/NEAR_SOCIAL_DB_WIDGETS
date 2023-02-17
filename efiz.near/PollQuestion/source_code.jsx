@@ -28,7 +28,7 @@ return (
         thing,
       }}
     >
-      Submit
+      Create
     </CommitButton>
   </div>
 );
