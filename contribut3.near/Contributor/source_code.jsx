@@ -42,7 +42,7 @@ const circle = (
 );
 
 const contributorType = (
-  <div>
+  <div className="d-flex flex-row justify-content-start align-items-center my-1 text-body">
     <i className="bi-person" />
     <span>Individual contributor</span>
   </div>
