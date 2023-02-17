@@ -212,10 +212,6 @@ const body = (
   </div>
 );
 
-const footer = (
-  <div className="d-flex flex-row justify-content-start align-items-stretch text-muted"></div>
-);
-
 return (
   <div className="card">
     <div className="card-body p-3">
