@@ -85,6 +85,7 @@ return (
       accountId: props.accountId,
       profile,
       children: AccountProfile,
+      inline: true,
     }}
   />
 );
