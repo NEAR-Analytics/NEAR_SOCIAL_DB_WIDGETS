@@ -67,6 +67,10 @@ const Text = styled.p`
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
+
+  i {
+    margin-right: 3px;
+  }
 `;
 
 const Name = styled.div`
@@ -145,9 +149,9 @@ return (
             {metadata.name || widgetName}
           </TextLink>
 
-          {props.blockHeight && (
+          {!rops.blockHeight && (
             <Text small>
-              Updated{" "}
+              <i className="bi bi-clock"></i>{" "}
               <Widget
                 src="mob.near/widget/TimeAgo"
                 props={{ blockHeight: props.blockHeight }}
