@@ -93,7 +93,7 @@ const Tabs = styled.div`
     border-top: 1px solid #ECEEF0;
     margin: 0 -12px 48px;
 
-    button {
+    > * {
       flex: 1;
     }
   }
