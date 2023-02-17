@@ -8,7 +8,7 @@ if (!accountId) {
 }
 
 State.init({
-  content: props.content ?? "proposals",
+  content: props.content ?? "requests",
 });
 
 const entity = Near.view(
