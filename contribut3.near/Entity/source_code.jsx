@@ -200,7 +200,7 @@ const body = (
     <div className="inline-block" style={{ width: "1px" }}>
       <div className="vr h-100" />
     </div>
-    <div className="d-flex flex-row justify-content-end align-items-start col-4">
+    <div className="d-flex flex-row justify-content-end align-items-start col-3">
       <a
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
