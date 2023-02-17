@@ -134,6 +134,7 @@ const body = (
       <a
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
+        onClick={() => props.update("entity")}
       >
         View details
       </a>
