@@ -71,7 +71,7 @@ return (
     overlay={overlay}
   >
     <div
-      className="d-inline-flex"
+      className={props.inline ? "d-inline-flex" : ""}
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
