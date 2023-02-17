@@ -11,7 +11,7 @@ const defaultWidgets = [
     src: "calebjacob.near/widget/LatestPeople",
   },
   {
-    src: "calebjacob.near/widget/LatestActivity",
+    src: "calebjacob.near/widget/LatestFollowActivity",
   },
   {
     src: "calebjacob.near/widget/RootIconLinks",
