@@ -10,30 +10,9 @@ const requests = Near.view(
   true
 );
 
-const allNeeds = Object.keys(requests)
-  .reduce((list, accountIdOrCid) => {
-    if (props.accountId) {
-      return [
-        ...list,
-        [props.accountId, accountIdOrCid, needs[accountIdOrCid]],
-      ];
-    }
-
-    const entityNeeds = needs[accountIdOrCid];
-    const needsList = Object.keys(entityNeeds).map((cid) => [
-      accountIdOrCid,
-      cid,
-      entityNeeds[cid],
-    ]);
-
-    return [...list, ...needsList];
-  }, [])
-  .filter(
-    ([accountId, _, need]) =>
-      accountId.includes(search) ||
-      need.description.includes(search) ||
-      need.contribution_type.includes(search)
-  );
+const allNeeds = requests.filter(([contributorId]) =>
+  contributorId.includes(search)
+);
 
 if (!allNeeds || allNeeds.length === 0) {
   return "No contribution needs found!";
