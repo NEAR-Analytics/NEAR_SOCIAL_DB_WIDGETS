@@ -21,7 +21,11 @@ return (
     <div>
       <h4>Thing</h4>
     </div>
-    <input className="mb-2" value={state.thing} />
+    <input
+      className="mb-2"
+      value={state.thing}
+      onChange={({ target }) => State.update({ thing: target.value })}
+    />
 
     <CommitButton
       data={{
