@@ -93,7 +93,7 @@ const body = (
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
       <a
         className="btn btn-outline-secondary me-2"
-        href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+        href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
       >
         View details
       </a>
