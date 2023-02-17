@@ -10,19 +10,19 @@ const [accountId, widget, widgetName] = src.split("/");
 const data = Social.get(`${accountId}/widget/${widgetName}/metadata/**`);
 const metadata = data || {};
 const tags = Object.keys(metadata.tags || {});
-const appPath = `/#/${src}`;
-const detailsPath = `/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
-const shareUrl = `https://alpha.near.org/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
+const appUrl = `/#/${src}`;
+const detailsUrl = `/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
+const shareUrl = `https://alpha.near.org${detailsUrl}`;
 const size = props.size || "large";
 
 const primaryActions = {
   open: {
     display: "Open",
-    url: appPath,
+    url: appUrl,
   },
   viewDetails: {
     display: "View Details",
-    url: detailsPath,
+    url: detailsUrl,
   },
 };
 
@@ -218,19 +218,10 @@ return (
         )}
       </ButtonLink>
 
-      {props.onViewSource ? (
-        <Button type="button" onClick={props.onViewSource}>
-          <i className="bi bi-code-square"></i>
-          View Source
-        </Button>
-      ) : (
-        <ButtonLink
-          href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}&tab=source`}
-        >
-          <i className="bi bi-code-square"></i>
-          View Source
-        </ButtonLink>
-      )}
+      <ButtonLink href={`${detailsUrl}&tab=source`}>
+        <i className="bi bi-code-square"></i>
+        View Source
+      </ButtonLink>
 
       <OverlayTrigger
         placement="top"
