@@ -243,6 +243,7 @@ return (
             className="button button--primary"
             href="/#/mob.near/widget/ProfileEditor"
           >
+            <i className="bi bi-pencil"></i>
             Edit Profile
           </a>
         ) : context.accountId ? (
