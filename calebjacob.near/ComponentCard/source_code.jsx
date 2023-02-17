@@ -9,10 +9,12 @@ const appUrl = `/#/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 
 const Card = styled.div`
+  position: relative;
   border-radius: 12px;
   background: #fff;
   border: 1px solid #ECEEF0;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
 `;
 
 const CardBody = styled.div`
@@ -36,6 +38,25 @@ const CardFooter = styled.div`
   gap: 16px;
   padding: 16px;
   border-top: 1px solid #ECEEF0;
+`;
+
+const CardTag = styled.p`
+  margin: 0;
+  font-size: 10px;
+  line-height: 18px;
+  background: #ECEEF0;
+  color: #687076;
+  font-weight: 400;
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 3px;
+  padding: 0 6px;
+
+  i {
+    margin-right: 3px;
+  }
 `;
 
 const TextLink = styled.a`
@@ -63,7 +84,7 @@ const Text = styled.p`
   line-height: 20px;
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.extraSmall ? "10px" : p.small ? "12px" : "14px")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
@@ -130,6 +151,17 @@ const ButtonLink = styled.a`
 
 return (
   <Card>
+    {props.blockHeight && (
+      <CardTag>
+        <i className="bi bi-clock"></i>{" "}
+        <Widget
+          src="mob.near/widget/TimeAgo"
+          props={{ blockHeight: props.blockHeight }}
+        />{" "}
+        ago
+      </CardTag>
+    )}
+
     <CardBody>
       <Thumbnail href={detailsUrl}>
         <Widget
@@ -148,17 +180,6 @@ return (
           <TextLink as="a" href={detailsUrl} bold ellipsis>
             {metadata.name || widgetName}
           </TextLink>
-
-          {props.blockHeight && (
-            <Text extraSmall>
-              <i className="bi bi-clock"></i>{" "}
-              <Widget
-                src="mob.near/widget/TimeAgo"
-                props={{ blockHeight: props.blockHeight }}
-              />{" "}
-              ago
-            </Text>
-          )}
         </Name>
 
         <TextLink small as="a" href={accountUrl} ellipsis>
