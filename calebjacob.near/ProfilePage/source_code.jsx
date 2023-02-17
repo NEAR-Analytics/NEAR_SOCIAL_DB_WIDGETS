@@ -205,7 +205,7 @@ return (
             )}
 
             <Title as="h2" size="19px">
-              Activity
+              Posts
             </Title>
 
             <Widget
