@@ -40,6 +40,14 @@ const description = isPreview
 
 const descriptionArea = <Markdown text={description} />;
 
+const header = (
+  <div className="d-flex flex-row justify-content-start align-items-center my-1">
+    {founderCircle}
+    <span className="mx-1">{founderProfile.name}</span>
+    <span className="text-muted">@{founder}</span>
+  </div>
+);
+
 return (
   <div className="card">
     {header}
