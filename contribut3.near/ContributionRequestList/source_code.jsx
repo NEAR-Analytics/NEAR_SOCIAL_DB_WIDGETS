@@ -2,15 +2,13 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 
-const needs = accountId
-  ? Near.view(
-    ownerId,
-    "get_entity_contribution_requests",
-    { entity_id: accountId },
-    "final",
-    true
-  )
-  : Near.view(ownerId, "get_contribution_needs", {}, "final", true);
+const needs = Near.view(
+  ownerId,
+  "get_entity_contribution_requests",
+  { entity_id: accountId },
+  "final",
+  true
+);
 
 const allNeeds = Object.keys(needs)
   .reduce((list, accountIdOrCid) => {
