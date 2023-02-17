@@ -59,40 +59,49 @@ const Name = styled.div`
 `;
 
 return (
-  <Wrapper
-    href={`/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`}
-  >
-    <Avatar>
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image: profile.image,
-          alt: profile.name,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-        }}
-      />
-    </Avatar>
-
-    <div>
-      <Name>
-        <Text ellipsis bold>
-          {profile.name}
-        </Text>
-
-        {props.blockHeight && (
-          <Text small>
-            Joined{" "}
+  <Widget
+    src="calebjacob.near/widget/AccountProfileOverlay"
+    props={{
+      accountId: props.accountId,
+      profile,
+      children: (
+        <Wrapper
+          href={`/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`}
+        >
+          <Avatar>
             <Widget
-              src="mob.near/widget/TimeAgo"
-              props={{ blockHeight: props.blockHeight }}
-            />{" "}
-            ago
-          </Text>
-        )}
-      </Name>
+              src="mob.near/widget/Image"
+              props={{
+                image: profile.image,
+                alt: profile.name,
+                fallbackUrl:
+                  "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+              }}
+            />
+          </Avatar>
 
-      <Text ellipsis>@{accountId}</Text>
-    </div>
-  </Wrapper>
+          <div>
+            <Name>
+              <Text ellipsis bold>
+                {profile.name}
+              </Text>
+
+              {props.blockHeight && (
+                <Text small>
+                  Joined{" "}
+                  <Widget
+                    src="mob.near/widget/TimeAgo"
+                    props={{ blockHeight: props.blockHeight }}
+                  />{" "}
+                  ago
+                </Text>
+              )}
+            </Name>
+
+            <Text ellipsis>@{accountId}</Text>
+          </div>
+        </Wrapper>
+      ),
+    }}
+  />
 );
