@@ -113,7 +113,7 @@ const content = {
   projects: (
     <Widget
       src={`${ownerId}/widget/EntityList`}
-      props={{ search: state.search }}
+      props={{ search: state.search, update: props.update }}
     />
   ),
   contributors: (
