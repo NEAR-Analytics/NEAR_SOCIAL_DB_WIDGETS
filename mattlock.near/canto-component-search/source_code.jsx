@@ -1,10 +1,12 @@
+const limit = props.limit || 10;
+
 return (
   <div>
     <div className="mb-2">
       <Widget
         src="mob.near/widget/ComponentSearch"
         props={{
-          limit: 10,
+          limit,
           term: "canto",
           filterTag: "canto-test",
           onChange: ({ result: components, term }) =>
