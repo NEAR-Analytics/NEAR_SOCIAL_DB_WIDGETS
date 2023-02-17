@@ -29,13 +29,13 @@ const contributionNeed = props.isPreview
     true
   );
 
-const contributor = isPreview
-  ? props.contributor
-  : Near.view(ownerId, "get_contributor", { account_id: accountId }, "final");
+const entity = isPreview
+  ? props.entity
+  : Near.view(ownerId, "get_entity", { account_id: accountId }, "final");
 
-if (!contributor) {
+if (!entity) {
   return isPreview
-    ? "You must provide a contributor object in preview mode"
+    ? "You must provide a entity object in preview mode"
     : "Loading...";
 }
 
@@ -52,7 +52,7 @@ const circle = (
   <div
     className="profile-circle d-inline-block"
     title={`${profile.name} @${accountId}`}
-    style={{ width: "4em", height: "4em" }}
+    style={{ width: "1.5em", height: "1.5em" }}
   >
     <img
       className="rounded-circle w-100 h-100"
