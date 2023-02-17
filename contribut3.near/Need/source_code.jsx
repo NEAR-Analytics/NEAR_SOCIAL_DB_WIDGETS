@@ -79,9 +79,13 @@ const body = (
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
           <div>{contributionNeed.contribution_type}</div>
-          <div className="text-success">
-            <i className="bi-circle-fill" />
-            <span className="ms-1">Available</span>
+          <div
+            className={contributionNeed.active ? "text-success" : "text-muted"}
+          >
+            {contributorNeed.active ? <i className="bi-circle-fill" /> : <></>}
+            <span className="ms-1">
+              {contributorNeed.active ? "Open to proposals" : "Closed"}
+            </span>
           </div>
         </div>
         {contributorType}
