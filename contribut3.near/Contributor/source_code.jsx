@@ -109,10 +109,6 @@ return (
     <div className="card-body px-3 py-0">
       {body}
       {details}
-      {needForm}
-      {contributionsList}
-      {requestsList}
-      {inviteList}
     </div>
   </div>
 );
