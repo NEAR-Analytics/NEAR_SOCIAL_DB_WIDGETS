@@ -101,8 +101,8 @@ const Tabs = styled.div`
 
 const TabsButton = styled.a`
   display: inline-flex;
-  height: 100%;
   align-items: center;
+  height: 100%;
   font-weight: 600;
   font-size: 12px;
   padding: 0 12px;
@@ -111,6 +111,7 @@ const TabsButton = styled.a`
   background: none;
   border: none;
   outline: none;
+  text-align: center;
   text-decoration: none !important;
 
   &:hover {
