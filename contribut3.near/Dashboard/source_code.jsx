@@ -132,7 +132,7 @@ const content = {
 
 return (
   <div>
-    <div className="mb-5 px-3">
+    <div className="mb-3 px-3">
       <div className="d-flex flex-row justify-content-between mb-3">
         {header}
         {createNewDropdown}
