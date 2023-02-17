@@ -78,7 +78,7 @@ const ButtonLink = styled.a`
 
 return (
   <>
-    <H2>Latest Applications</H2>
+    <H2>Featured Apps</H2>
 
     {apps.map((app, i) => (
       <CardWrapper key={i}>
