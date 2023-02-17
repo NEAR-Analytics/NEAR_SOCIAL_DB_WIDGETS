@@ -2,14 +2,19 @@ State.init({
   selectedTab: props.tab || "overview",
 });
 
-console.log(props.tab);
-
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
 }
 
+if (props.tab && props.tab !== state.selectedTab) {
+  State.update({
+    selectedTab: props.tab,
+  });
+}
+
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
@@ -94,7 +99,7 @@ const Tabs = styled.div`
   }
 `;
 
-const TabsButton = styled.button`
+const TabsButton = styled.a`
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
@@ -104,6 +109,7 @@ const TabsButton = styled.button`
   background: none;
   border: none;
   outline: none;
+  text-decoration: none;
 
   &:hover {
     color: #11181C;
@@ -170,40 +176,35 @@ return (
       <Content>
         <Tabs>
           <TabsButton
-            type="button"
-            onClick={() => State.update({ selectedTab: "overview" })}
+            href={`${accountUrl}&tab=overview`}
             selected={state.selectedTab === "overview"}
           >
             Overview
           </TabsButton>
 
           <TabsButton
-            type="button"
-            onClick={() => State.update({ selectedTab: "apps" })}
+            href={`${accountUrl}&tab=apps`}
             selected={state.selectedTab === "apps"}
           >
             Apps
           </TabsButton>
 
           <TabsButton
-            type="button"
-            onClick={() => State.update({ selectedTab: "nfts" })}
+            href={`${accountUrl}&tab=nfts`}
             selected={state.selectedTab === "nfts"}
           >
             NFTs
           </TabsButton>
 
           <TabsButton
-            type="button"
-            onClick={() => State.update({ selectedTab: "followers" })}
+            href={`${accountUrl}&tab=followers`}
             selected={state.selectedTab === "followers"}
           >
             Followers
           </TabsButton>
 
           <TabsButton
-            type="button"
-            onClick={() => State.update({ selectedTab: "following" })}
+            href={`${accountUrl}&tab=following`}
             selected={state.selectedTab === "following"}
           >
             Following
