@@ -77,8 +77,8 @@ const Name = styled.div`
 
 const Thumbnail = styled.a`
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 62px;
+  height: 62px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
