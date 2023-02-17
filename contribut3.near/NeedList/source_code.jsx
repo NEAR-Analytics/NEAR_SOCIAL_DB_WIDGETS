@@ -13,10 +13,17 @@ const needs = accountId
   : Near.view(ownerId, "get_contribution_needs", {}, "final", true);
 
 const allNeeds = Object.keys(needs)
-  .reduce((list, accountId) => {
-    const entityNeeds = needs[accountId];
+  .reduce((list, accountIdOrCid) => {
+    if (props.accountId) {
+      return [
+        ...list,
+        [props.accountId, accountIdOrCid, needs[accountIdOrCid]],
+      ];
+    }
+
+    const entityNeeds = needs[accountIdOrCid];
     const needsList = Object.keys(entityNeeds).map((cid) => [
-      accountId,
+      accountIdOrCid,
       cid,
       entityNeeds[cid],
     ]);
