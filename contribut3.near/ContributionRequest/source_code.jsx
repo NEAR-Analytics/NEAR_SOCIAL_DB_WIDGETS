@@ -41,7 +41,7 @@ const description = isPreview
 const descriptionArea = <Markdown text={description} />;
 
 const contributorProfile = Social.getr(`${contributorId}/profile`);
-const founderImageUrl =
+const imageUrl =
   (contributorProfile.image.ipfs_cid
     ? `https://ipfs.near.social/ipfs/${contributorProfile.image.ipfs_cid}`
     : contributorProfile.image.url) ||
@@ -56,7 +56,7 @@ const contributorCircle = (
     <img
       className="rounded-circle w-100 h-100"
       style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${founderImageUrl}`}
+      src={`https://i.near.social/thumbnail/${imageUrl}`}
       alt="profile image"
     />
   </div>
@@ -64,8 +64,8 @@ const contributorCircle = (
 
 const header = (
   <div className="d-flex flex-row justify-content-start align-items-center my-1">
-    {founderCircle}
-    <span className="mx-1">{founderProfile.name}</span>
+    {contriubutorCircle}
+    <span className="mx-1">{contributorProfile.name}</span>
     <span className="text-muted">@{founder}</span>
   </div>
 );
