@@ -100,6 +100,7 @@ return (
         {header}
         {descriptionArea}
       </div>
+      <div className="vr" />
       {controls}
     </div>
   </div>
