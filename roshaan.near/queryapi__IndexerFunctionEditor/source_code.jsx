@@ -19,15 +19,15 @@ Near.asyncView(registry_contract_id, "read_indexer_function", {
   State.update({ code: data });
 });
 
-let updateIndexerCode = (code) => {
+let updateIndexerCode = (data) => {
   const gas = 200000000000000;
 
   Near.call(
-    contractId,
+    registry_contract_id,
     "register_indexer_function",
     {
-      name: indexer_function_name,
-      code: code,
+      name: data.indexer_name || indexer_function_name,
+      code: data.code,
     },
     gas
   );
@@ -84,7 +84,7 @@ window.addEventListener("message", function(event) {
 })
 }
 </script>
-<iframe name="react-app" id="react-app-iframe" src="http://localhost:3000/query-api-editor" width="1250px" height="500px"></iframe>
+<iframe name="react-app" id="react-app-iframe" src="https://query-api-react.vercel.app/query-api-editor" width="1250px" height="500px"></iframe>
 
 <script>
 window.addEventListener("message", function(event){
