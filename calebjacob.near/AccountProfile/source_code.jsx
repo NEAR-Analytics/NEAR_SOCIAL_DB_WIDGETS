@@ -31,7 +31,7 @@ const Text = styled.p`
   line-height: 20px;
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  font-size: ${(p) => (p.small ? "10px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
@@ -81,7 +81,7 @@ const AccountProfile = (
           {profile.name || accountId.split(".near")[0]}
         </Text>
 
-        {props.blockHeight && (
+        {!props.blockHeight && (
           <Text small>
             Joined{" "}
             <Widget
