@@ -1,13 +1,16 @@
 //props indexer_name
-let indexer_name = props.indexer_name ?? 'indexer_name';
+const indexer_name = props.indexer_name;
+const accountId = props.accountId || context.accountId;
+
+if (!indexer_name) return "missing indexer_name";
 
 State.init({ logs: [], state: [] });
 function query() {
   let response = fetch(
-    'https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql',
+    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
     {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         query: `
   query IndexerStatus {
@@ -31,9 +34,7 @@ function query() {
     }
   );
   console.log(response);
-  if (!response) {
-    return;
-  }
+  if (!response) return;
   let state = response.body.data.indexer_state;
   let logs = response.body.data.log_entries;
   State.update({ state, logs });
