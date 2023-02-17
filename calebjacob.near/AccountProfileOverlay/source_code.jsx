@@ -25,6 +25,7 @@ const Card = styled.div`
   border: 1px solid #ECEEF0;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   padding: 12px;
+  margin: 12px;
 `;
 
 const FollowButtonWrapper = styled.div`
@@ -66,7 +67,7 @@ return (
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
-      {props.children || "Test"}
+      {props.children || "Hover Me"}
     </div>
   </OverlayTrigger>
 );
