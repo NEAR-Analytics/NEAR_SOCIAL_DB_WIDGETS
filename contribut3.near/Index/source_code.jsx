@@ -212,6 +212,7 @@ const tabContent = {
       props={{ content: props.content, search: props.search }}
     />
   ),
+  profile: (<Widget src={`${ownerId}/widget/Profile`} />)
 }[state.tab];
 
 return (
@@ -229,5 +230,5 @@ return (
       {/* {navbar} */}
       {/* <div className="mt-2">{content}</div> */}
     </div>
-  </div>
+  </Widget>
 );
