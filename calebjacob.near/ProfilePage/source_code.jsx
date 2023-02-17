@@ -19,7 +19,7 @@ const Main = styled.div`
   grid-template-columns: 352px  minmax(0, 1fr);
   align-items: start;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     grid-template-columns: minmax(0, 1fr);
   }
 `;
