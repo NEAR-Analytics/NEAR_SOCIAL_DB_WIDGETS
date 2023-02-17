@@ -100,7 +100,7 @@ return (
         {header}
         {descriptionArea}
       </div>
-      <div className="vr mr-3" />
+      <div className="vr mx-3" />
       {controls}
     </div>
   </div>
