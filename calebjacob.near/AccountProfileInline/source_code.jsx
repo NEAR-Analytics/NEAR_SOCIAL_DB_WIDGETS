@@ -1,5 +1,5 @@
 const accountId = props.accountId;
-const avatarSize = props.avatarSize || "24px";
+const avatarSize = props.avatarSize === "large" ? "40px" : "24px";
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
