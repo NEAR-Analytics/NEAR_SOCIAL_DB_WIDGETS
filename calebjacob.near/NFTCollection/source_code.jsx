@@ -14,7 +14,7 @@ let accountHasNfts = null;
 if (data.body?.list) {
   allNfts = [];
 
-  data.body.list.forEach((contractId) => {
+  data.body.list.forEach((contractId, i) => {
     const nfts = Near.view(contractId, "nft_tokens_for_owner", {
       account_id: accountId,
       from_index: "0",
@@ -23,13 +23,14 @@ if (data.body?.list) {
 
     if (nfts?.length > 0) {
       accountHasNfts = true;
+
       nfts.forEach((nft) => {
         allNfts.push({
           ...nft,
           contractId,
         });
       });
-    } else {
+    } else if (i + 1 === data.body.list.length) {
       accountHasNfts = accountHasNfts ? true : false;
     }
   });
