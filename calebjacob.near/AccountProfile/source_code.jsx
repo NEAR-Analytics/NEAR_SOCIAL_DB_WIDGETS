@@ -3,6 +3,7 @@ const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
   display: grid;
+  width: 100%;
   align-items: center;
   gap: 12px;
   grid-template-columns: auto 1fr;
