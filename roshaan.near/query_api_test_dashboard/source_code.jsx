@@ -231,8 +231,17 @@ const indexerView = (accountId, indexerName, idx) => {
       </CardBody>
 
       <CardFooter>
-        <ButtonLink href={statusUrl}>View Status</ButtonLink>
-        <ButtonLink primary href={editUrl}>
+        <ButtonLink
+          href={statusUrl}
+          onClick={() => State.update({ activeTab: "indexer-status" })}
+        >
+          View Status
+        </ButtonLink>
+        <ButtonLink
+          primary
+          href={editUrl}
+          onClick={() => State.update({ activeTab: "editor-window" })}
+        >
           Edit Indexer
         </ButtonLink>
       </CardFooter>
@@ -241,6 +250,8 @@ const indexerView = (accountId, indexerName, idx) => {
 };
 const allIndexerView = () => {
   const limit = 7;
+  const registry_contract_id =
+    props.registry_contract_id || "registry.queryapi.near";
   console.log(selected_accountId, "selecteed account exists");
   const H2 = styled.h2`
   font-size: 19px;
