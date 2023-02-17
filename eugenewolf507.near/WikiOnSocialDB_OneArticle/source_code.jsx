@@ -1,7 +1,6 @@
 const addressForArticles = "wikiTest2Article";
 const authorForWidget = "eugenewolf507.near";
 const { articleId, blockHeight, lastEditor } = props;
-console.log(articleId, blockHeight, lastEditor);
 
 // === *** NEW DATA BASE *** ===
 const getNewDBHandler = (e) => {
@@ -39,13 +38,11 @@ State.init({});
 
 // const article = resultArticlesWithOneId[0];
 
-const article = Social.get(
-  `${lastEditor}/${addressForArticles}/main`,
-  blockHeight
+const article = JSON.parse(
+  Social.get(`${lastEditor}/${addressForArticles}/main`, blockHeight)
 );
-const jArticle = JSON.parse(article);
-console.log(jArticle);
-State.update({ jArticle });
+
+State.update({ article });
 
 const getDate = (timestamp) => {
   const date = new Date(Number(timestamp));
