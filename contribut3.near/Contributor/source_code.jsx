@@ -60,7 +60,7 @@ const body = (
         <div className="d-flex flex-column justify-content-between align-items-start w-100">
           <div className="w-100 d-flex flex-row justify-content-between align-items-start">
             <div>
-              <b>{name}</b>
+              <b>{profile.name}</b>
               <span className="text-muted">@{accountId}</span>
             </div>
             <div className="text-success">
