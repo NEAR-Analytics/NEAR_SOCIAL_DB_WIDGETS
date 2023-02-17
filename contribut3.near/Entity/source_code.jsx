@@ -163,7 +163,7 @@ const body = (
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
         <div className="m-2 d-flex flex-column justify-content-between align-items-start">
-          <div className="d-flex flex-row justify-content-between align-items-start">
+          <div className="w-100 d-flex flex-row justify-content-between align-items-start">
             <div>
               <b>{name}</b>
               <span className="text-muted">@{accountId}</span>
@@ -217,7 +217,6 @@ return (
     <div className="card-body p-3">
       {body}
       {details}
-      {footer}
       {needForm}
       {contributionsList}
       {requestsList}
