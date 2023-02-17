@@ -55,8 +55,8 @@ const TextLink = styled.a`
 
 const Thumbnail = styled.a`
   display: block;
-  width: 62px;
-  height: 62px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
