@@ -194,7 +194,9 @@ const body = (
       </div>
       <div className="text-truncate my-2">{profile.description}</div>
     </div>
-    <div className="vr" />
+    <div>
+      <div className="vr" />
+    </div>
     <div className="d-flex flex-row justify-content-end align-items-start col-4">
       <a
         className="btn btn-outline-secondary me-2"
