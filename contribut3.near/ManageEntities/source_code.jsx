@@ -112,7 +112,7 @@ const searchBar = (
 const content = {
   projects: (
     <Widget
-      src={`${ownerId}/widget/EntityList`}
+      src={`${ownerId}/widget/AdminList`}
       props={{ search: state.search }}
     />
   ),
