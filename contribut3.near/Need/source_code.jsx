@@ -111,7 +111,11 @@ const body = (
       <a
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
-        style={{ backgroundColor: "#F9F5FF", borderColor: "#F9F5FF" }}
+        style={{
+          backgroundColor: "#F9F5FF",
+          borderColor: "#F9F5FF",
+          color: "#6941C6",
+        }}
       >
         <i className="bi-person-plus" />
         Propose
