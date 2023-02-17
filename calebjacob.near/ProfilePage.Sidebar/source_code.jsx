@@ -64,7 +64,7 @@ const Wrapper = styled.div`
       color: #006ADC !important;
       width: 100%;
 
-      @media (max-width: 900px) {
+      @media (max-width: 1200px) {
         width: auto;
       }
     }
