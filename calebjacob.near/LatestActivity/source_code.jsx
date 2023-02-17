@@ -52,15 +52,18 @@ const Item = styled.div`
   > * {
     min-width: 0
   }
+
+  a > span {
+    font-size: 12px;
+  }
 `;
 
 const Text = styled.p`
   margin: 0;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 18px;
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
