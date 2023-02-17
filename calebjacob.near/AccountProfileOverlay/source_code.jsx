@@ -1,5 +1,5 @@
 const accountId = props.accountId;
-const profile = props.profile || Social.getr(`${accountId}/profile`);
+const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
 
 const handleOnMouseEnter = () => {
