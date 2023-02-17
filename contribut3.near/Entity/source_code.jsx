@@ -155,7 +155,11 @@ const founderCircle = (
 );
 
 const body = (
-  <div className="d-flex flex-row justify-content-start" id={accountId}>
+  <div
+    className="d-flex flex-row justify-content-start"
+    id={accountId}
+    style={{ minHeight: "10em" }}
+  >
     <div className="flex-grow-1 py-3">
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
