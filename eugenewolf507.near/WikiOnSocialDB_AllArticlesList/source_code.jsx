@@ -5,6 +5,7 @@ const postsIndex = Social.index(addressForArticles, "main", {
   order: "desc",
   accountId: undefined,
 });
+console.log(postsIndex);
 // ========== GET ALL ARTICLES ==========
 const resultArticles =
   postsIndex &&
@@ -16,6 +17,7 @@ const resultArticles =
     const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
     return [...acc, postDataWithBlockHeight];
   }, []);
+console.log(resultArticles);
 // ========== FILTER DUBLICATES ==========
 const filteredArticles =
   resultArticles.length &&
@@ -39,7 +41,7 @@ return (
       filteredArticles.map((article) => (
         <li key={article.articleId}>
           <a
-            href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}
+            href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}&lastEditor=${lastEditor}
             `}
           >
             {article.articleId}{" "}
