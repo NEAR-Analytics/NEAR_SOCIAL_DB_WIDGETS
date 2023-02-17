@@ -61,7 +61,12 @@ const Wrapper = styled.div`
     color: #11181C !important;
 
     &.button--primary {
+      width: 100%;
       color: #006ADC !important;
+
+      @media (max-width: 1200px) {
+        width: auto;
+      }
     }
 
     &:hover,
