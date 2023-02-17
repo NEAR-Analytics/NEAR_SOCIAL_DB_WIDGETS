@@ -129,7 +129,7 @@ const Title = styled.h1`
 const Text = styled.p`
   margin: 0;
   line-height: 1.5rem;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
   font-weight: ${(p) => (p.bold ? "600" : "400")};
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
@@ -144,6 +144,7 @@ const Text = styled.p`
   
   &[href] {
     display: inline-flex;
+    gap: 0.25rem;
     
     &:hover,
     &:focus {
@@ -316,7 +317,7 @@ return (
           </b>{" "}
           Following
         </Text>
-        <Text>
+        <Text as="a" href={`${accountUrl}&tab=followers`}>
           <b>{followersCount === null ? "--" : followersCount}</b> Followers
         </Text>
       </Stats>
