@@ -131,7 +131,7 @@ const body = (
         </div>
       </div>
     </div>
-    <div className="d-flex flex-row justify-content-end align-items-start py-3">
+    <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
       <a
         className="btn me-2 text-light"
         style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
