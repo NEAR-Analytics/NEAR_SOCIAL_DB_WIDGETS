@@ -30,9 +30,6 @@ const saveArticle = (args) => {
 
 return (
   <>
-    {/* === *** NEW DATA BASE *** === */}
-    <button onClick={getNewDBHandler}>GET Data - delete this button</button>
-    {/* === *** NEW DATA BASE *** === */}
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
       props={{ currentNavPill: "articles" }}
