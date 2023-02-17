@@ -68,11 +68,7 @@ const body = (
               <span className="ms-1">{entity.status}</span>
             </div>
           </div>
-          <div className="d-flex flex-row justify-content-start align-items-center my-1">
-            {founderCircle}
-            <span className="mx-1">{founderProfile.name}</span>
-            <span className="text-muted">@{founder}</span>
-          </div>
+          {contributorType}
           <div className="text-truncate text-muted">
             {tags.length > 0 ? (
               <>
