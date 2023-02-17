@@ -102,6 +102,7 @@ const Tabs = styled.div`
 const TabsButton = styled.a`
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   font-weight: 600;
   font-size: 12px;
