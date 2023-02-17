@@ -241,8 +241,6 @@ const indexerView = (accountId, indexerName, idx) => {
 };
 const allIndexerView = () => {
   const limit = 7;
-  const registry_contract_id =
-    props.registry_contract_id || "registry.queryapi.near";
   console.log(selected_accountId, "selecteed account exists");
   const H2 = styled.h2`
   font-size: 19px;
@@ -383,7 +381,7 @@ return (
         onClick={() => State.update({ activeTab: "editor-window" })}
         selected={state.activeTab === "editor-window"}
       >
-        Indexer Status
+        Indexer Editor
       </TabsButton>
 
       <TabsButton
@@ -391,7 +389,7 @@ return (
         onClick={() => State.update({ activeTab: "indexer-status" })}
         selected={state.activeTab === "indexer-status"}
       >
-        Explore
+        Indexer Status
       </TabsButton>
     </Tabs>
 
