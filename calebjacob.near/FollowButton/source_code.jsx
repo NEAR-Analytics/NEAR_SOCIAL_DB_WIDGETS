@@ -71,12 +71,21 @@ const Wrapper = styled.div`
       text-decoration: none;
       outline: none;
     }
+
+    i {
+      color: #7E868C;
+    }
+
+    .bi-16 {
+      font-size: 16px;
+    }
   }
 `;
 
 return (
   <Wrapper className={props.className}>
     <CommitButton disabled={loading} className="follow-button" data={data}>
+      {follow && <i className="bi-16 bi bi-check"></i>}
       {follow ? "Following" : inverse ? "Follow Back" : "Follow"}
     </CommitButton>
   </Wrapper>
