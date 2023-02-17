@@ -78,6 +78,8 @@ const Tabs = styled.div`
   height: 48px;
   border-bottom: 1px solid #ECEEF0;
   margin-bottom: 72px;
+  overflow: auto;
+  scroll-behavior: smooth;
 
   @media (max-width: 1200px) {
     background: #F8F9FA;
