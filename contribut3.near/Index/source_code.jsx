@@ -225,6 +225,12 @@ const tabContent = {
       props={{ content: props.content, search: props.search }}
     />
   ),
+  entity: (
+    <Widget
+      src={`${ownerId}/widget/EntityPage`}
+      props={{ accountId: props.accountId }}
+    />
+  ),
 }[state.tab];
 
 return (
