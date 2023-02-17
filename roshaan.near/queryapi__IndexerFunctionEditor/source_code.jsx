@@ -2,7 +2,7 @@ let initialText = "";
 const indexer_function_name = props.indexer_name;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
-let accountId = context.accountId;
+let accountId = props.accountId || context.accountId;
 State.init({
   m: initialText,
 });
