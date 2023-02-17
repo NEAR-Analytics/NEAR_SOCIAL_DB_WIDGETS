@@ -159,7 +159,7 @@ const body = (
     <div className="col-7">
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
-        <div className="m-2 d-flex flex-column justify-content-between align-items-start">
+        <div className="m-2 d-flex flex-column justify-content-between align-items-start w-100">
           <div className="w-100 d-flex flex-row justify-content-between align-items-start">
             <div>
               <b>{name}</b>
@@ -194,7 +194,7 @@ const body = (
       </div>
       <div className="text-truncate my-2">{profile.description}</div>
     </div>
-    <div className="col">
+    <div className="col h-100">
       <div className="vr" />
     </div>
     <div className="d-flex flex-row justify-content-end align-items-start col-4">
