@@ -81,7 +81,7 @@ const AccountProfile = (
           {profile.name || accountId.split(".near")[0]}
         </Text>
 
-        {!props.blockHeight && (
+        {props.blockHeight && (
           <Text small>
             Joined{" "}
             <Widget
