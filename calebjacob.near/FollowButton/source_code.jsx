@@ -23,13 +23,13 @@ const inverseEdge = Social.keys(
 );
 
 const loading = followEdge === null || inverseEdge === null;
-const follow = followEdge && Object.keys(followEdge).length;
-const inverse = inverseEdge && Object.keys(inverseEdge).length;
+const isFollowing = Object.keys(followEdge || {}).length > 0;
+const isInverse = Object.keys(inverseEdge || {}).length > 0;
 
 const type = follow ? "unfollow" : "follow";
 
 const data = {
-  graph: { follow: { [props.accountId]: follow ? null : "" } },
+  graph: { follow: { [props.accountId]: isFollowing ? null : "" } },
   index: {
     graph: JSON.stringify({
       key: "follow",
@@ -85,8 +85,8 @@ const Wrapper = styled.div`
 return (
   <Wrapper className={props.className}>
     <CommitButton disabled={loading} className="follow-button" data={data}>
-      {follow && <i className="bi-16 bi bi-check"></i>}
-      {follow ? "Following" : inverse ? "Follow Back" : "Follow"}
+      {isFollowing && <i className="bi-16 bi bi-check"></i>}
+      {isFollowing ? "Following" : isInverse ? "Follow Back" : "Follow"}
     </CommitButton>
   </Wrapper>
 );
