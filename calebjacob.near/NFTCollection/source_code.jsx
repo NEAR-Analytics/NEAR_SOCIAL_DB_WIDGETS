@@ -10,8 +10,6 @@ const data = fetch(
 
 let allNfts = [];
 let results = [];
-const hasFinishedLoading = data.body?.list?.length === results.length;
-const accountHasNfts = !!results.find((r) => !!r);
 
 if (data.body?.list) {
   allNfts = [];
@@ -38,6 +36,8 @@ if (data.body?.list) {
     }
   });
 }
+
+const hasFinishedLoading = data.body?.list?.length === results.length;
 
 const Wrapper = styled.div`
   display: grid;
@@ -76,7 +76,7 @@ const Text = styled.p`
   font-size: ${(p) => (p.small ? "12px" : "14px")};
 `;
 
-if (hasFinishedLoading && !accountHasNfts) {
+if (hasFinishedLoading && allNfts.length === 0) {
   return <Text>This account doesn&apos;t have any NFTs yet.</Text>;
 }
 
