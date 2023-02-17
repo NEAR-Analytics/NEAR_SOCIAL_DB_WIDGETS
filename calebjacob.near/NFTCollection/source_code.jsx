@@ -9,6 +9,7 @@ const data = fetch(
 );
 
 let allNfts = [];
+let accountHasNfts = null;
 
 if (data.body?.list) {
   allNfts = [];
@@ -20,13 +21,15 @@ if (data.body?.list) {
       limit: 200,
     });
 
-    if (nfts) {
+    if (nfts?.length > 0) {
       nfts.forEach((nft) => {
         allNfts.push({
           ...nft,
           contractId,
         });
       });
+    } else {
+      accountHasNfts = accountHasNfts ? true : false;
     }
   });
 }
@@ -58,6 +61,19 @@ const Card = styled.a`
     height: 100%;
   }
 `;
+
+const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+`;
+
+if (accountHasNfts === false) {
+  return <Text>This account doesn&apos;t have any NFTs yet.</Text>;
+}
 
 return (
   <Wrapper>
