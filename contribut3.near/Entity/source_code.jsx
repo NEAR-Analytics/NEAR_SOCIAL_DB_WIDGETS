@@ -195,7 +195,7 @@ const body = (
       <div className="text-truncate my-2">{profile.description}</div>
     </div>
     <div className="vr mx-2" />
-    <div className="d-flex flex-row justify-content-end align-items-start">
+    <div className="d-flex flex-row justify-content-end align-items-start py-3">
       <a
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
