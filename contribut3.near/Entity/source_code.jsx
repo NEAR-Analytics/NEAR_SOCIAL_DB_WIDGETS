@@ -130,28 +130,30 @@ const body = (
     className="d-flex flex-row justify-content-between align-items-start"
     id={accountId}
   >
-    <div className="d-flex flex-row justify-content-start">
-      <div className="m-2">{circle}</div>
-      <div className="m-2 d-flex flex-column justify-content-between align-items-start">
-        <div>
-          <b>{name}</b>
-          <span className="text-muted">@{accountId}</span>
-        </div>
-        <div className="text-truncate text-muted">
-          {tags.length > 0 ? (
-            <>
-              {tags.map((tag) => (
-                <span
-                  className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                  key={tag}
-                >
-                  {tag}
-                </span>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
+    <div>
+      <div className="d-flex flex-row justify-content-start">
+        <div className="m-2">{circle}</div>
+        <div className="m-2 d-flex flex-column justify-content-between align-items-start">
+          <div>
+            <b>{name}</b>
+            <span className="text-muted">@{accountId}</span>
+          </div>
+          <div className="text-truncate text-muted">
+            {tags.length > 0 ? (
+              <>
+                {tags.map((tag) => (
+                  <span
+                    className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
+                    key={tag}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </div>
