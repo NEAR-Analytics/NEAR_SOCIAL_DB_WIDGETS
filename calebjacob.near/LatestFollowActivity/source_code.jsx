@@ -1,8 +1,9 @@
 const limit = 5;
-const follows = Social.index("graph", "follow", {
-  limit,
-  order: "desc",
-});
+const follows =
+  Social.index("graph", "follow", {
+    limit,
+    order: "desc",
+  }) || [];
 
 const Wrapper = styled.div`
   display: grid;
@@ -27,10 +28,6 @@ const Item = styled.div`
   > * {
     min-width: 0
   }
-`;
-
-const ItemRow = styled.div`
-  
 `;
 
 const Text = styled.p`
