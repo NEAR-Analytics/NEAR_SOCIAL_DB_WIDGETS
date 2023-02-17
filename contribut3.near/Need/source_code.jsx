@@ -29,8 +29,6 @@ const contributionNeed = props.isPreview
     true
   );
 
-console.log(contributionNeed);
-
 const contributor = isPreview
   ? props.contributor
   : Near.view(ownerId, "get_contributor", { account_id: accountId }, "final");
