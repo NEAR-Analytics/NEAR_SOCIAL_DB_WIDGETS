@@ -66,7 +66,7 @@ const header = (
   <div className="d-flex flex-row justify-content-start align-items-center my-1">
     {contriubutorCircle}
     <span className="mx-1">{contributorProfile.name}</span>
-    <span className="text-muted">@{founder}</span>
+    <span className="text-muted">@{contributorId}</span>
   </div>
 );
 
