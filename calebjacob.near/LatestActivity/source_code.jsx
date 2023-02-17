@@ -42,7 +42,7 @@ const H2 = styled.h2`
 
 const Item = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr 2fr min-content;
   gap: 12px;
   align-items: center;
   margin-bottom: 24px;
@@ -69,14 +69,14 @@ const Text = styled.p`
   white-space: nowrap;
   flex-shrink: 0;
 
-  i {
-    margin-left: 4px;
-  }
-
   .bi-hand-index-thumb {
     display: inline-block;
     transform: rotate(90deg);
+    margin-left: 4px;
+  }
 
+  .bi-clock {
+    margin: 0;
   }
 `;
 
@@ -104,11 +104,12 @@ return (
         />
 
         <Text small>
+          <i className="bi bi-clock"></i>
+
           <Widget
             src="mob.near/widget/TimeAgo"
             props={{ blockHeight: item.blockHeight }}
-          />{" "}
-          ago
+          />
         </Text>
       </Item>
     ))}
