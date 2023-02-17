@@ -72,7 +72,7 @@ const AccountProfile = (
       />
     </Avatar>
 
-    <Text ellipsis>{profile.name || accountId}</Text>
+    <Text ellipsis>{profile.name || accountId.split(".near")[0]}</Text>
   </Wrapper>
 );
 
