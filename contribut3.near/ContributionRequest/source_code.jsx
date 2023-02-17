@@ -70,7 +70,7 @@ const header = (
   </div>
 );
 
-const controls = (
+const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch py-3">
     <a
       className="btn btn-success me-2"
@@ -85,6 +85,8 @@ const controls = (
       <span>Reject</span>
     </a>
   </div>
+) : (
+  <></>
 );
 
 return (
