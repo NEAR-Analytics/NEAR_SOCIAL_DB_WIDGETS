@@ -34,10 +34,6 @@ ${code}
 \`\`\`
 `;
 
-function onViewSource() {
-  State.update({ selectedTab: "source" });
-}
-
 const Wrapper = styled.div`
   padding-bottom: 48px;
 `;
@@ -193,7 +189,6 @@ return (
           size: "large",
           showTags: false,
           src,
-          onViewSource,
         }}
       />
     </SummaryWrapper>
