@@ -1,5 +1,5 @@
 State.init({
-  selectedTab: props.tab || "activity",
+  selectedTab: props.tab || "posts",
 });
 
 if (props.tab && props.tab !== state.selectedTab) {
@@ -93,16 +93,16 @@ const TabsButton = styled.a`
 `;
 
 return (
-  <Wrapper negativeMargin={state.selectedTab === "activity"}>
+  <Wrapper negativeMargin={state.selectedTab === "posts"}>
     <Tabs
       halfMargin={state.selectedTab === "apps"}
-      noMargin={state.selectedTab === "activity"}
+      noMargin={state.selectedTab === "posts"}
     >
       <TabsButton
-        href={`${activityUrl}?tab=activity`}
-        selected={state.selectedTab === "activity"}
+        href={`${activityUrl}?tab=posts`}
+        selected={state.selectedTab === "posts"}
       >
-        Activity
+        Posts
       </TabsButton>
 
       <TabsButton
@@ -124,8 +124,8 @@ return (
       <Section active={state.selectedTab === "apps"}>
         <Widget src="calebjacob.near/widget/LatestApps" />
       </Section>
-      <Section negativeMargin primary active={state.selectedTab === "activity"}>
-        <Widget src="calebjacob.near/widget/Activity" />
+      <Section negativeMargin primary active={state.selectedTab === "posts"}>
+        <Widget src="calebjacob.near/widget/Posts" />
       </Section>
       <Section active={state.selectedTab === "explore"}>
         <Widget src="calebjacob.near/widget/ExploreWidgets" />
