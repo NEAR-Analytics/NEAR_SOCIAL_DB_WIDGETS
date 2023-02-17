@@ -94,12 +94,6 @@ const Text = styled.p`
   }
 `;
 
-const Name = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-`;
-
 const Thumbnail = styled.a`
   display: block;
   width: 62px;
@@ -176,11 +170,9 @@ return (
       </Thumbnail>
 
       <CardContent>
-        <Name>
-          <TextLink as="a" href={detailsUrl} bold ellipsis>
-            {metadata.name || widgetName}
-          </TextLink>
-        </Name>
+        <TextLink as="a" href={detailsUrl} bold ellipsis>
+          {metadata.name || widgetName}
+        </TextLink>
 
         <TextLink small as="a" href={accountUrl} ellipsis>
           @{accountId}
