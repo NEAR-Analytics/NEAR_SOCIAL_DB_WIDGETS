@@ -87,7 +87,7 @@ const Text = styled.p`
 
 return (
   <Wrapper>
-    <H2>Activity</H2>
+    <H2>Follow Activity</H2>
 
     {items.map((item, i) => (
       <Item key={i}>
@@ -96,10 +96,9 @@ return (
             src="calebjacob.near/widget/AccountProfileInline"
             props={{ accountId: item.accountId }}
           />
-
-          {item.type === "follow" && <Text small>followed</Text>}
-          {item.type === "poke" && <Text small>poked</Text>}
-
+          <Text small>
+            <i className="bi bi-arrow-right"></i>
+          </Text>
           <Widget
             src="calebjacob.near/widget/AccountProfileInline"
             props={{ accountId: item.value.accountId }}
