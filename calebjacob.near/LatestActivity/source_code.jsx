@@ -61,10 +61,6 @@ const ItemRow = styled.div`
   > * {
     min-width: 0
   }
-
-  a > span {
-    font-size: 12px;
-  }
 `;
 
 const Text = styled.p`
@@ -102,11 +98,7 @@ return (
           />
 
           {item.type === "follow" && <Text small>followed</Text>}
-          {item.type === "poke" && (
-            <Text small>
-              poked <i className="bi bi-hand-index-thumb"></i>
-            </Text>
-          )}
+          {item.type === "poke" && <Text small>poked</Text>}
 
           <Widget
             src="calebjacob.near/widget/AccountProfileInline"
