@@ -47,6 +47,7 @@ const Avatar = styled.div`
   transition: border-color 200ms;
 
   img {
+    display: block;
     object-fit: cover;
     width: 100%;
     height: 100%;
