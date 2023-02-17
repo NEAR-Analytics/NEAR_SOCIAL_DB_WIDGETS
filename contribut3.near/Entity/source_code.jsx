@@ -190,9 +190,9 @@ const body = (
               <></>
             )}
           </div>
+          <div className="text-truncate my-2">{profile.description}</div>
         </div>
       </div>
-      <div className="text-truncate my-2">{profile.description}</div>
     </div>
     <div className="vr mx-2" />
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
