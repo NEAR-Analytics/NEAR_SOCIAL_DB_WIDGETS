@@ -9,10 +9,13 @@ const data = fetch(
 );
 
 let allNfts = [];
-let accountHasNfts = null;
+let results = [];
+const hasFinishedLoading = data.body?.list?.length === results.length;
+const accountHasNfts = !!results.find((r) => !!r);
 
 if (data.body?.list) {
   allNfts = [];
+  results = [];
 
   data.body.list.forEach((contractId, i) => {
     const nfts = Near.view(contractId, "nft_tokens_for_owner", {
@@ -22,16 +25,16 @@ if (data.body?.list) {
     });
 
     if (nfts?.length > 0) {
-      accountHasNfts = true;
-
       nfts.forEach((nft) => {
         allNfts.push({
           ...nft,
           contractId,
         });
       });
-    } else if (i + 1 === data.body.list.length && nfts === undefined) {
-      accountHasNfts = accountHasNfts ? true : false;
+    }
+
+    if (nfts !== null) {
+      results.push(nfts);
     }
   });
 }
@@ -73,7 +76,7 @@ const Text = styled.p`
   font-size: ${(p) => (p.small ? "12px" : "14px")};
 `;
 
-if (accountHasNfts === false) {
+if (hasFinishedLoading && !accountHasNfts) {
   return <Text>This account doesn&apos;t have any NFTs yet.</Text>;
 }
 
