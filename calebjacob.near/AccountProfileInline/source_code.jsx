@@ -4,7 +4,7 @@ const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const Wrapper = styled.a`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
   margin: 0;
   color: #11181C !important;
