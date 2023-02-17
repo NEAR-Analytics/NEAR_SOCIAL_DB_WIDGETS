@@ -16,7 +16,7 @@ const renderItem = (a) =>
   a.value.type === "md" && (
     <Post key={JSON.stringify(a)}>
       <Widget
-        src="calebjacob.near/widget/PostFeed.Post"
+        src="calebjacob.near/widget/Posts.CreatePost"
         props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
       />
     </Post>
