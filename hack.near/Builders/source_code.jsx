@@ -41,7 +41,11 @@ return (
       <div className="mb-3"></div>
       <div>
         <h1>Evolving Guides for Builders</h1>
-        <p></p>
+        <p>
+          Let's collaborate to gather knowledge and improve common resources for
+          open web developers. Choose your own adventure to discover what is
+          possible! #NEAR
+        </p>
         <div className="mb-3"></div>
         <a
           className="btn btn-primary"
@@ -80,7 +84,7 @@ return (
           className="btn btn-outline-primary"
           href="https://devgovgigs.near.social"
         >
-          Ideas
+          Explore Ideas
         </a>
         <a className="btn btn-outline-primary" href="https://t.me/NearSocial">
           Group Chat
@@ -146,6 +150,18 @@ return (
             ),
           }}
         />
+        {state.content && (
+          <div className="mt-3">
+            <Widget
+              src="mob.near/widget/MainPage.Post"
+              props={{
+                accountId: context.accountId,
+                content: state.content,
+                blockHeight: "now",
+              }}
+            />
+          </div>
+        )}
       </div>
       <div className="mb-3"></div>
     </div>
