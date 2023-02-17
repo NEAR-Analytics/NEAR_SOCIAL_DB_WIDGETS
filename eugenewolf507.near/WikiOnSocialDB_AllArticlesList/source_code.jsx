@@ -5,7 +5,6 @@ const postsIndex = Social.index(addressForArticles, "main", {
   order: "desc",
   accountId: undefined,
 });
-console.log(postsIndex);
 // ========== GET ALL ARTICLES ==========
 const resultArticles =
   postsIndex &&
@@ -17,7 +16,6 @@ const resultArticles =
     const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
     return [...acc, postDataWithBlockHeight];
   }, []);
-console.log(resultArticles);
 // ========== FILTER DUBLICATES ==========
 const filteredArticles =
   resultArticles.length &&
