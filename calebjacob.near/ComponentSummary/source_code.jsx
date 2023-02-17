@@ -193,7 +193,7 @@ return (
     {props.showTags && tags.length > 0 && (
       <TagsWrapper>
         <Widget
-          src="calebjacob.near/widget/ComponentTags"
+          src="calebjacob.near/widget/Tags"
           props={{
             tags,
           }}
