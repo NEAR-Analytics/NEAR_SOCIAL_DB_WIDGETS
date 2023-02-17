@@ -213,6 +213,12 @@ const tabContent = {
     />
   ),
   profile: <Widget src={`${ownerId}/widget/Profile`} />,
+  inbox: (
+    <Widget
+      src={`${ownerId}/widget/Inbox`}
+      props={{ content: props.content, search: props.search }}
+    />
+  ),
 }[state.tab];
 
 return (
