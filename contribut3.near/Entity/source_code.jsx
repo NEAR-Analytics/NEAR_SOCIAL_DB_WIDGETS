@@ -170,7 +170,7 @@ const body = (
               <span className="ms-1">{entity.status}</span>
             </div>
           </div>
-          <div className="d-flex flex-row justify-content-start align-items-center">
+          <div className="d-flex flex-row justify-content-start align-items-center my-1">
             {founderCircle}
             <span className="ms-1">{founderProfile.name}</span>
           </div>
