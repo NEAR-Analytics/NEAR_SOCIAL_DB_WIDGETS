@@ -1,5 +1,5 @@
 State.init({
-  selectedTab: "overview",
+  selectedTab: props.tab || "overview",
 });
 
 const accountId = props.accountId ?? context.accountId;
@@ -178,7 +178,7 @@ return (
             onClick={() => State.update({ selectedTab: "apps" })}
             selected={state.selectedTab === "apps"}
           >
-            Applications
+            Apps
           </TabsButton>
 
           <TabsButton
@@ -187,6 +187,22 @@ return (
             selected={state.selectedTab === "nfts"}
           >
             NFTs
+          </TabsButton>
+
+          <TabsButton
+            type="button"
+            onClick={() => State.update({ selectedTab: "followers" })}
+            selected={state.selectedTab === "followers"}
+          >
+            Followers
+          </TabsButton>
+
+          <TabsButton
+            type="button"
+            onClick={() => State.update({ selectedTab: "following" })}
+            selected={state.selectedTab === "following"}
+          >
+            Following
           </TabsButton>
         </Tabs>
 
@@ -216,21 +232,31 @@ return (
         )}
 
         {state.selectedTab === "nfts" && (
-          <>
-            <Widget
-              src="calebjacob.near/widget/NFTCollection"
-              props={{ accountId }}
-            />
-          </>
+          <Widget
+            src="calebjacob.near/widget/NFTCollection"
+            props={{ accountId }}
+          />
         )}
 
         {state.selectedTab === "apps" && (
-          <>
-            <Widget
-              src="calebjacob.near/widget/ComponentCollection"
-              props={{ accountId }}
-            />
-          </>
+          <Widget
+            src="calebjacob.near/widget/ComponentCollection"
+            props={{ accountId }}
+          />
+        )}
+
+        {state.selectedTab === "followers" && (
+          <Widget
+            src="calebjacob.near/widget/FollowersList"
+            props={{ accountId }}
+          />
+        )}
+
+        {state.selectedTab === "following" && (
+          <Widget
+            src="calebjacob.near/widget/FollowingList"
+            props={{ accountId }}
+          />
         )}
       </Content>
     </Main>
