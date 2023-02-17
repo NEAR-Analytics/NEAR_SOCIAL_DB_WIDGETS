@@ -72,7 +72,7 @@ const body = (
     <div className="flex-grow-1 py-3">
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
-          <div>{contributionNeed.contribution_type}</div>
+          <div className="fs-3">{contributionNeed.contribution_type}</div>
           <div
             className={contributionNeed.active ? "text-success" : "text-muted"}
           >
