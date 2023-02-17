@@ -194,19 +194,17 @@ const body = (
       </div>
       <div className="text-truncate my-2">{profile.description}</div>
     </div>
+    <div className="vr h-100 mx-2" />
     <div className="d-flex flex-row justify-content-end align-items-start col-3">
-      <div className="vr h-100 mx-2" />
-      <div className="d-flex flex-row justify-content-end align-items-start pt-3">
-        <a
-          className="btn btn-outline-secondary me-2"
-          href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-        >
-          View details
-        </a>
-        <a className="btn btn-outline-secondary">
-          <i className="bi-box-arrow-up-right" />
-        </a>
-      </div>
+      <a
+        className="btn btn-outline-secondary me-2"
+        href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+      >
+        View details
+      </a>
+      <a className="btn btn-outline-secondary">
+        <i className="bi-box-arrow-up-right" />
+      </a>
     </div>
   </div>
 );
