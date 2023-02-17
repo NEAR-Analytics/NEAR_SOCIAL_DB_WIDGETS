@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 
 const Main = styled.div`
   display: grid;
-  grid-template-columns: 284px minmax(0, 1fr) 284px;
+  grid-template-columns: 300px minmax(0, 1fr) 300px;
   grid-gap: 16px;
 
   @media (max-width: 1200px) {
