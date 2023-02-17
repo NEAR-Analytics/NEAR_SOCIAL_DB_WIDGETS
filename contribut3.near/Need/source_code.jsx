@@ -82,7 +82,10 @@ const body = (
             </span>
           </div>
         </div>
-        {/* {contributorType} */}
+        <div>
+          <b>{profile.name}</b>
+          <span className="text-muted">@{accountId}</span>
+        </div>
         <div className="text-truncate text-muted">
           {tags.length > 0 ? (
             <>
