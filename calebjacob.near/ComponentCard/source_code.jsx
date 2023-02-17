@@ -149,7 +149,7 @@ return (
             {metadata.name || widgetName}
           </TextLink>
 
-          {!rops.blockHeight && (
+          {props.blockHeight && (
             <Text small>
               <i className="bi bi-clock"></i>{" "}
               <Widget
