@@ -3,7 +3,7 @@ const accountId = context.accountId;
 const entityId = props.entityId;
 const contributorId = props.contributorId;
 
-initState({
+State.init({
   description: "",
   startDate: "",
 });
