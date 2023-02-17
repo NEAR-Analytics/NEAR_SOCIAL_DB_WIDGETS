@@ -23,7 +23,7 @@ let updateIndexerCode = (data) => {
   const gas = 200000000000000;
 
   Near.call(
-    contractId,
+    registry_contract_id,
     "register_indexer_function",
     {
       name: data.indexer_name || indexer_function_name,
