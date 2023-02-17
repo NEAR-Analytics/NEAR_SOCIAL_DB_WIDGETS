@@ -91,38 +91,38 @@ const body = (
     style={{ minHeight: "10em" }}
   >
     <div className="flex-grow-1 py-3">
-      <div className="d-flex flex-row justify-content-start">
-        <div className="m-2">{circle}</div>
-        <div className="d-flex flex-column justify-content-between align-items-start w-100">
-          <div className="w-100 d-flex flex-row justify-content-between align-items-start">
-            <div>
-              <b>{profile.name}</b>
-              <span className="text-muted">@{accountId}</span>
+        <div className="d-flex flex-row justify-content-start">
+          <div className="m-2">{circle}</div>
+          <div className="d-flex flex-column justify-content-between align-items-start w-100">
+            <div className="w-100 d-flex flex-row justify-content-between align-items-start">
+              <div>
+                <b>{profile.name}</b>
+                <span className="text-muted">@{accountId}</span>
+              </div>
+              <div className="text-success">
+                <i className="bi-play" />
+                <span className="ms-1">{entity.status}</span>
+              </div>
             </div>
-            <div className="text-success">
-              <i className="bi-play" />
-              <span className="ms-1">{entity.status}</span>
+            <div className="d-flex flex-row justify-content-start align-items-center my-1">
+              {founderCircle}
+              <span className="mx-1">{founderProfile.name}</span>
+              <span className="text-muted">@{founder}</span>
             </div>
-          </div>
-          <div className="d-flex flex-row justify-content-start align-items-center my-1">
-            {founderCircle}
-            <span className="mx-1">{founderProfile.name}</span>
-            <span className="text-muted">@{founder}</span>
           </div>
         </div>
       </div>
-    </div>
-    <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
-      <a
-        className="btn me-2 text-light"
-        style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
-        href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-      >
-        <i className="bi-person-up" />
-        <span>Invite to contribute</span>
-      </a>
-    </div>
-    <div>
+      <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+        <a
+          className="btn me-2 text-light"
+          style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
+          href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+        >
+          <i className="bi-person-up" />
+          <span>Invite to contribute</span>
+        </a>
+      </div>
+      </div>
       <div className="text-truncate my-2">{profile.description}</div>
       <div className="text-truncate text-muted">
         {tags.length > 0 ? (
@@ -139,9 +139,8 @@ const body = (
         ) : (
           <></>
         )}
-      </div>
     </div>
-  </div>
+  </div >
 );
 
 return (
