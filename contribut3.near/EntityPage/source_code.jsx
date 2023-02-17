@@ -90,7 +90,7 @@ const body = (
     id={accountId}
     style={{ minHeight: "10em" }}
   >
-    <div>
+    <div className="w-100">
       <div className="flex-grow-1 py-3">
         <div className="d-flex flex-row justify-content-start">
           <div className="m-2">{circle}</div>
