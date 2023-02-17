@@ -2,7 +2,7 @@ const accountData = Social.keys("*/profile", "final", {
   return_type: "BlockHeight",
 });
 
-const limit = 8;
+const limit = 5;
 const totalAccounts = Object.keys(accountData || {}).length;
 
 let accounts = Object.entries(accountData || {})
