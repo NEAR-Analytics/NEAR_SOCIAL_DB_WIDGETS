@@ -39,6 +39,7 @@ return (
         src="calebjacob.near/widget/ComponentCard"
         props={{
           src: `${component.accountId}/widget/${component.widgetName}`,
+          blockHeight: component.blockHeight,
         }}
       />
     ))}
