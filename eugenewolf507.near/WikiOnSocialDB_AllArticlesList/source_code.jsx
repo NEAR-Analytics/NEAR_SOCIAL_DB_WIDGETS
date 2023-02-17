@@ -1,21 +1,22 @@
 const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
 
-const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
-const wikiTestArr = wikiTestData && Object.values(wikiTestData);
+// ========== GET INDEX ARRAY FOR ARTICLES ==========
+const postsIndex = Social.index("wikiTest2Article", "main", {
+  order: "desc",
+  accountId: undefined,
+});
+// ========== GET ALL ARTICLES ==========
 const resultArticles =
-  wikiTestArr &&
-  wikiTestArr.reduce(
-    (acc, account) =>
-      acc.concat(Object.values(account[addressForArticles].articles)),
-    []
-  );
-
-resultArticles.length &&
-  resultArticles.sort((a, b) => {
-    return Number(b.timeLastEdit) - Number(a.timeLastEdit);
-  });
-
+  postsIndex &&
+  postsIndex.reduce((acc, { accountId, blockHeight }) => {
+    const postData = Social.get(
+      `${accountId}/wikiTest2Article/main`,
+      blockHeight
+    );
+    return [...acc, JSON.parse(postData)];
+  }, []);
+// ========== FILTER DUBLICATES ==========
 const filteredArticles =
   resultArticles.length &&
   resultArticles.reduce((acc, article) => {
