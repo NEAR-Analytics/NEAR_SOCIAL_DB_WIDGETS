@@ -205,11 +205,13 @@ const content = {
   ),
 }[state.content];
 
+const update = (tab) => State.update({ tab });
+
 const tabContent = {
   dashboard: (
     <Widget
       src={`${ownerId}/widget/Dashboard`}
-      props={{ content: props.content, search: props.search }}
+      props={{ content: props.content, search: props.search, update: tab }}
     />
   ),
   profile: <Widget src={`${ownerId}/widget/Profile`} />,
