@@ -22,6 +22,7 @@ if (data.body?.list) {
     });
 
     if (nfts?.length > 0) {
+      accountHasNfts = true;
       nfts.forEach((nft) => {
         allNfts.push({
           ...nft,
