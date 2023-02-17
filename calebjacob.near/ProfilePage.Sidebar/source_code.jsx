@@ -3,7 +3,7 @@ State.init({
 });
 
 const accountId = props.accountId;
-const profile = props.profile || Social.getr(`${accountId}/profile`);
+const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 if (!accountId || !profile) {
   return "";
