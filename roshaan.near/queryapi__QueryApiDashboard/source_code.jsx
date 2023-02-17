@@ -1,6 +1,9 @@
 const [selected_accountId, selected_indexerName] = props.indexer_path
   ? props.indexer_path.split("/")
   : [undefined, undefined];
+
+const accountId = selected_accountId || props.accountId || context.accountId;
+
 console.log(props.view, "this is the passed in view");
 const activeTab = props.view ?? "editor-window";
 const limit = 7;
@@ -240,8 +243,7 @@ const allIndexerView = () => {
   const limit = 7;
   const registry_contract_id =
     props.registry_contract_id || "registry.queryapi.near";
-  let accountId = selected_account_id || props.accountId || context.accountId;
-
+  console.log(selected_accountId, "selecteed account exists");
   const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
@@ -409,6 +411,7 @@ return (
             props={{
               indexer_name:
                 selected_indexerName ?? state.indexers[0].indexerName,
+              accountId: accountId,
             }}
           />
         )}
@@ -418,6 +421,7 @@ return (
             props={{
               indexer_name:
                 selected_indexerName ?? state.indexers[0].indexerName,
+              account_id: accountId,
             }}
           />
         )}
