@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
 const isPreview = props.isPreview ?? false;
+const cid = props.cid;
 
 if (!accountId || !cid) {
   return "Cannot render contribution need widget without account ID or CID!";
