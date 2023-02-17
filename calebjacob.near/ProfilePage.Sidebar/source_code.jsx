@@ -3,7 +3,7 @@ State.init({
 });
 
 const accountId = props.accountId;
-const profile = props.profile;
+const profile = props.profile || Social.getr(`${accountId}/profile`);
 
 if (!accountId || !profile) {
   return "";
@@ -62,11 +62,6 @@ const Wrapper = styled.div`
 
     &.button--primary {
       color: #006ADC !important;
-      width: 100%;
-
-      @media (max-width: 1200px) {
-        width: auto;
-      }
     }
 
     &:hover,
@@ -202,6 +197,19 @@ const SocialLinks = styled.div`
   gap: 9px;
 `;
 
+const FollowButtonWrapper = styled.div`
+  width: 100%;
+  div,button {
+    width: 100%;
+  }
+  @media (max-width: 1200px) {
+    width: auto;
+    div,button {
+      width: auto;
+    }
+  }
+`;
+
 return (
   <Wrapper>
     <Avatar>
@@ -234,13 +242,14 @@ return (
           </a>
         ) : context.accountId ? (
           <>
-            <Widget
-              src="calebjacob.near/widget/FollowButton"
-              props={{
-                accountId,
-                className: "button button--primary",
-              }}
-            />
+            <FollowButtonWrapper>
+              <Widget
+                src="calebjacob.near/widget/FollowButton"
+                props={{
+                  accountId,
+                }}
+              />
+            </FollowButtonWrapper>
 
             <Widget
               src="calebjacob.near/widget/PokeButton"
