@@ -242,11 +242,6 @@ return (
       />
     </div>
     <div className="vr mx-2" />
-    <div className="w-100">
-      {tabContent}
-      {/* {controls} */}
-      {/* {navbar} */}
-      {/* <div className="mt-2">{content}</div> */}
-    </div>
+    <div className="w-100">{tabContent}</div>
   </div>
 );
