@@ -155,11 +155,8 @@ const founderCircle = (
 );
 
 const body = (
-  <div
-    className="d-flex flex-row justify-content-between align-items-start"
-    id={accountId}
-  >
-    <div>
+  <div className="row" id={accountId}>
+    <div className="col-8">
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
         <div className="m-2 d-flex flex-column justify-content-between align-items-start">
@@ -198,7 +195,7 @@ const body = (
       <div className="text-truncate my-2">{profile.description}</div>
     </div>
     <div className="vr" />
-    <div className="d-flex flex-row justify-content-end align-items-start">
+    <div className="d-flex flex-row justify-content-end align-items-start col-4">
       <a
         className="btn btn-outline-secondary me-2"
         href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
