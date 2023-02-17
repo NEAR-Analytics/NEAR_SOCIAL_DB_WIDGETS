@@ -41,7 +41,7 @@ return (
       filteredArticles.map((article) => (
         <li key={article.articleId}>
           <a
-            href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}&lastEditor=${lastEditor}
+            href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}&lastEditor=${article.lastEditor}
             `}
           >
             {article.articleId}{" "}
