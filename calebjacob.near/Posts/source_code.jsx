@@ -122,7 +122,7 @@ return (
       {context.accountId && (
         <>
           <CreatePostWrapper>
-            <Widget src="calebjacob.near/widget/CreatePost" />
+            <Widget src="calebjacob.near/widget/Posts.Create" />
           </CreatePostWrapper>
 
           <FilterWrapper>
