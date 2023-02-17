@@ -54,7 +54,7 @@ return (
       <Item key={i}>
         <Widget
           src="calebjacob.near/widget/AccountProfileInline"
-          props={{ accountId: item.accountId }}
+          props={{ accountId: item.accountId, avatarSize: "large" }}
         />
 
         <Text small bold>
