@@ -44,7 +44,7 @@ const overlay = (
     <Card onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
       <Widget
         src="calebjacob.near/widget/AccountProfile"
-        props={{ accountId: props.accountId, profile }}
+        props={{ accountId: props.accountId, profile, noOverlay: true }}
       />
 
       <Widget
