@@ -2,13 +2,11 @@ const limit = 10;
 let items = [];
 
 const followData = Social.index("graph", "follow", {
-  subscribe: true,
   limit,
   order: "desc",
 });
 
 const pokeData = Social.index("graph", "poke", {
-  subscribe: true,
   limit,
   order: "desc",
 });
@@ -44,11 +42,11 @@ const H2 = styled.h2`
 
 const Item = styled.div`
   display: grid;
-  grid-template-columns: 100px 1fr 100px;
+  grid-template-columns: 2fr 1fr 2fr 1fr;
   gap: 12px;
   align-items: center;
   margin-bottom: 24px;
-  width: 300px;
+  width: 100%;
   overflow: hidden;
 
   > * {
@@ -67,6 +65,16 @@ const Text = styled.p`
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
   flex-shrink: 0;
+
+  i {
+    margin-left: 4px;
+  }
+
+  .bi-hand-index-thumb {
+    display: inline-block;
+    transform: rotate(90deg);
+
+  }
 `;
 
 return (
@@ -80,13 +88,25 @@ return (
           props={{ accountId: item.accountId }}
         />
 
-        {item.type === "follow" && <Text>followed</Text>}
-        {item.type === "poke" && <Text>poked</Text>}
+        {item.type === "follow" && <Text small>followed</Text>}
+        {item.type === "poke" && (
+          <Text small>
+            poked <i className="bi bi-hand-index-thumb"></i>
+          </Text>
+        )}
 
         <Widget
           src="calebjacob.near/widget/AccountProfileInline"
           props={{ accountId: item.value.accountId }}
         />
+
+        <Text small>
+          <Widget
+            src="mob.near/widget/TimeAgo"
+            props={{ blockHeight: item.blockHeight }}
+          />{" "}
+          ago
+        </Text>
       </Item>
     ))}
   </>
