@@ -14,7 +14,7 @@ State.init({
 });
 
 const CardWrapper = styled.div`
-  padding: 12px;
+  padding: 6px;
 `;
 
 const Card = styled.div`
