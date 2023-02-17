@@ -51,6 +51,7 @@ const Tag = styled.li`
   line-height: 12px;
   color: #687076;
   font-weight: 500;
+  white-space: nowrap;
 `;
 
 return (
