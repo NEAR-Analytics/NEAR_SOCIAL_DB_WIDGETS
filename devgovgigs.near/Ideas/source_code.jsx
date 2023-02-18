@@ -21,10 +21,6 @@ if (context.accountId) {
     return "Initializing ...";
   }
   if (grantNotify === false) {
-    // Deposit 0.1NEAR in case the account has not performed any activity on near.social yet.
-    // We don't know if account needs this deposit but we don't want to risk having as a first UX
-    // when a person lands on gigs board a transaction that fails.
-    // This entire code needs to be replaced though. See https://github.com/near/devgigsboard-widgets/issues/15
     Near.call(
       "social.near",
       "grant_write_permission",
@@ -33,7 +29,7 @@ if (context.accountId) {
         keys: [context.accountId + "/index/notify"],
       },
       30_000_000_000_000n,
-      100_000_000_000_000_000_000_000n
+      1n
     );
   }
 }
@@ -136,7 +132,6 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Comment",
           parentId: null,
-          referral: props.referral,
         }}
       />
     </div>
@@ -150,7 +145,6 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Idea",
           parentId: null,
-          referral: props.referral,
         }}
       />
     </div>
@@ -164,7 +158,6 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Submission",
           parentId: null,
-          referral: props.referral,
         }}
       />
     </div>
@@ -178,7 +171,6 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Attestation",
           parentId: null,
-          referral: props.referral,
         }}
       />
     </div>
@@ -192,7 +184,6 @@ const editorsFooter = props.isPreview ? null : (
         props={{
           postType: "Sponsorship",
           parentId: null,
-          referral: props.referral,
         }}
       />
     </div>
@@ -316,18 +307,6 @@ const navbar = (
               Boards
             </a>
           </li>
-       	  <li class="nav-item">
-            <a
-              class="nav-link active"
-              href="https://near.social/#/devgovgigs.near/widget/TeamsList"
-              target="_blank"
-              title="View teams and permissions"
-              role="button"
-            >
-              <i class="bi-people-fill"> </i>
-              Teams
-            </a>
-          </li>
 
           <li class="nav-item active ms-2">
             <Typeahead
@@ -358,18 +337,12 @@ return (
     ) : state.selectedPost ? (
       <Widget
         src={`${ownerId}/widget/Post`}
-        props={{ id: state.selectedPost,
-          referral: props.referral,
-  }}
+        props={{ id: state.selectedPost }}
       />
     ) : (
       <Widget
         src={`${ownerId}/widget/IdeasList`}
-        props={{
-          recency: state.recency,
-          label: state.label,
-          referral: props.referral,
-}}
+        props={{ recency: state.recency, label: state.label }}
       />
     )}
   </div>
