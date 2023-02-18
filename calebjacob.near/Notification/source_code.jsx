@@ -1,4 +1,19 @@
-const { type } = props.value;
+const { value } = props;
+const { type } = value;
+
+const likedPost =
+  type === "like" && value.item.path === `${context.accountId}/post/main`;
+const likedComment =
+  type === "like" && value.item.path === `${context.accountId}/post/comment`;
+const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${context.accountId}&blockHeight=${props.blockHeight}`;
+const supportedTypes = [
+  "poke",
+  "like",
+  "follow",
+  "unfollow",
+  "comment",
+  "mention",
+];
 
 const Wrapper = styled.div`
   display: flex;
@@ -86,6 +101,14 @@ const Button = styled.a`
 
 console.log(props);
 
+if (type && type.startsWith("devgovgigs/")) {
+  return (
+    <Widget src="mob.near/widget/Notification.Item.DevGov" props={props} />
+  );
+}
+
+if (!supportedTypes.includes(type)) return <></>;
+
 return (
   <Wrapper>
     <Widget
@@ -97,7 +120,10 @@ return (
       {type === "follow" && <>Followed you</>}
       {type === "unfollow" && <>Unfollowed you</>}
       {type === "poke" && <>Poked you</>}
-      {type === "like" && <>Liked your post</>}
+      {type === "like" && likedPost && <>Liked your post</>}
+      {type === "like" && likedComment && <>Liked your comment</>}
+      {type === "comment" && <>Commented on your post</>}
+      {type === "mention" && <>Mentioned you</>}
       <Widget
         src="mob.near/widget/TimeAgo"
         props={{ blockHeight: props.blockHeight }}
@@ -119,12 +145,8 @@ return (
       />
     )}
 
-    {type === "like" && (
-      <Button
-        href={`/#/calebjacob.near/widget/PostPage?accountId=${props.acc}&blockHeight=85455129`}
-      >
-        View Post
-      </Button>
+    {(type === "like" || type === "comment" || type === "mention") && (
+      <Button href={postUrl}>View Post</Button>
     )}
   </Wrapper>
 );
