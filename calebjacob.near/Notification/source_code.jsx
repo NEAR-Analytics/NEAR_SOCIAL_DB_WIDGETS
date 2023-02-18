@@ -54,12 +54,7 @@ const Wrapper = styled.div`
     }
 
     > *:last-child {
-      width: 100%;
       margin-left: 0;
-
-      a, button {
-          width: 100%;
-      }
     }
   }
 `;
