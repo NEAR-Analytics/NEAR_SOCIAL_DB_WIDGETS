@@ -19,6 +19,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+  transition: background 200ms;
+  padding: 4px;
+
+  &:hover {
+    background: #f4f5f6;
+  }
 
   > *:first-child {
     width: 200px;
@@ -33,6 +39,12 @@ const Wrapper = styled.div`
   @media (max-width: 500px) {
     flex-wrap: wrap;
     gap: 12px;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover {
+      background: none;
+    }
 
     > *:last-child {
       width: 100%;
