@@ -15,6 +15,8 @@ const index = {
 };
 
 const Wrapper = styled.div`
+  padding-bottom: 48px;
+  
   > div {
     > * {
       margin-bottom: 24px;
