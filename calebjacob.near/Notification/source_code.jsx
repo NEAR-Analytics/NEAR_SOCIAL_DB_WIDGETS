@@ -29,10 +29,6 @@ const Wrapper = styled.div`
   > *:last-child {
     margin-left: auto;
   }
-
-  .poke-button {
-    color: #006ADC !important;
-  }
 `;
 
 const Text = styled.p`
@@ -147,7 +143,7 @@ return (
     {type === "poke" && (
       <Widget
         src="calebjacob.near/widget/PokeButton"
-        props={{ accountId: props.accountId, back: true }}
+        props={{ accountId: props.accountId, back: true, primary: true }}
       />
     )}
 
