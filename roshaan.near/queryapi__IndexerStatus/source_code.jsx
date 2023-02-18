@@ -3,6 +3,12 @@ const indexer_name = props.indexer_name;
 const accountId = props.accountId || context.accountId;
 
 if (!indexer_name) return "missing indexer_name";
+const state_table = "| Function Name | Current Block Height |\n| --- | --- |\n";
+
+const logs_table =
+  "| Function Name | Id | Message | Timestamp |\n| --- | --- | --- | --- |\n";
+const indexer_values_table =
+  "| Function Name | Key Name | Value |\n| --- | --- | --- |\n";
 
 State.init({ logs: [], state: [], indexer_res: [] });
 function fetchGraphQL(operationsDoc, operationName, variables) {
@@ -74,20 +80,19 @@ function query() {
 }
 
 const create_table = () => {
-  let table = "| Function Name | Key Name | Value |\n| --- | --- | --- |\n";
   state.indexer_res.forEach((row) => {
-    table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
+    indexer_values_table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
   });
-  return table;
 };
+create_table();
 return (
   <>
     <h1>Indexer Status</h1>
     <h1> State </h1>
-    {state.state && JSON.stringify(state.state)}
+    {state.state && <Markdown text={state_table} />}
     <h1> Logs </h1>
-    {state.logs && JSON.stringify(state.logs)}
+    {state.logs && <Markdown text={logs_table} />}
     <h1> Indexed Values </h1>
-    {state.indexer_res && <Markdown text={create_table()} />}
+    {state.indexer_res && <Markdown text={indexer_values_table} />}
   </>
 );
