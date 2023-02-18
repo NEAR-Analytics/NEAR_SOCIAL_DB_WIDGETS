@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   gap: 24px;
 
   > *:first-child {
+    width: 200px;
     border-right: 1px solid #ECEEF0;
     padding-right: 24px;
   }
