@@ -4,9 +4,42 @@ const accountId = props.accountId || context.accountId;
 
 if (!indexer_name) return "missing indexer_name";
 
-State.init({ logs: [], state: [] });
+State.init({ logs: [], state: [], indexer_res: [] });
+function fetchGraphQL(operationsDoc, operationName, variables) {
+  return asyncFetch(
+    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        query: operationsDoc,
+        variables: variables,
+        operationName: operationName,
+      }),
+    }
+  );
+}
+
+const operationsDoc = `
+  query MyQuery {
+    indexer_storage(where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+      function_name
+      key_name
+      value
+    }
+  }
+`;
+
+fetchGraphQL(operationsDoc, "MyQuery", {}).then((result) => {
+  console.log(result, "result");
+  if (result.status === 200) {
+    State.update({
+      indexer_res: result.body.data.indexer_storage,
+    });
+  }
+});
+
 function query() {
-  let response = fetch(
+  let response = asyncFetch(
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
     {
       method: "POST",
@@ -15,7 +48,7 @@ function query() {
         query: `
   query IndexerStatus {
   indexer_state(
-    where: {function_name: {_eq: ${indexer_name}}}
+    where: {function_name: {_eq: "${indexer_name}"}}
     order_by: {current_block_height: desc}
   ) {
     current_block_height
@@ -40,9 +73,13 @@ function query() {
   State.update({ state, logs });
 }
 
-if (indexer_name) {
-  query();
-}
+const create_table = () => {
+  let table = "| Function Name | Key Name | Value |\n| --- | --- | --- |\n";
+  state.indexer_res.forEach((row) => {
+    table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
+  });
+  return table;
+};
 return (
   <>
     <h1>Indexer Status</h1>
@@ -50,5 +87,7 @@ return (
     {state.state && JSON.stringify(state.state)}
     <h1> Logs </h1>
     {state.logs && JSON.stringify(state.logs)}
+    <h1> Indexed Values </h1>
+    {state.indexer_res && <Markdown text={create_table()} />}
   </>
 );
