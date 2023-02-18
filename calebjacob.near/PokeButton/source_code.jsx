@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     background: #FBFCFD;
     border: 1px solid #D7DBDF;
-    color: #11181C !important;
+    color: ${props.primary ? "#006ADC" : "#11181C"} !important;
 
     &:hover,
     &:focus {
