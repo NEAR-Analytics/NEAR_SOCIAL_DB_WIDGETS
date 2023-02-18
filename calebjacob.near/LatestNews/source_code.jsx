@@ -1,5 +1,5 @@
 const accountId = "calebjacob.near";
-const limit = 5;
+const limit = 3;
 let posts = [];
 
 const indexedPosts = Social.index("post", "main", {
