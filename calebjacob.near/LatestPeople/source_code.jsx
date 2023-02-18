@@ -16,16 +16,24 @@ let accounts = Object.entries(accountData || {})
 
 accounts.reverse();
 
+const Wrapper = styled.div`
+  display: grid;
+  gap: 24px;
+`;
+
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
-  margin: 0 0 24px;
+  margin: 0;
 `;
 
-const Person = styled.div`
-  margin-bottom: 18px;
+const Items = styled.div`
+  display: grid;
+  gap: 18px;
 `;
+
+const Item = styled.div``;
 
 const ButtonLink = styled.a`
   display: block;
@@ -41,7 +49,7 @@ const ButtonLink = styled.a`
   text-align: center;
   cursor: pointer;
   color: #11181C !important;
-  margin-top: 24px;
+  margin: 0;
 
   &:hover,
   &:focus {
@@ -56,23 +64,25 @@ const ButtonLink = styled.a`
 `;
 
 return (
-  <>
+  <Wrapper>
     <H2>People</H2>
 
-    {accounts.map((account) => (
-      <Person key={account.accountId}>
-        <Widget
-          src="calebjacob.near/widget/AccountProfile"
-          props={{
-            accountId: account.accountId,
-            blockHeight: account.blockHeight,
-          }}
-        />
-      </Person>
-    ))}
+    <Items>
+      {accounts.map((account) => (
+        <Item key={account.accountId}>
+          <Widget
+            src="calebjacob.near/widget/AccountProfile"
+            props={{
+              accountId: account.accountId,
+              blockHeight: account.blockHeight,
+            }}
+          />
+        </Item>
+      ))}
+    </Items>
 
     <ButtonLink href="/#/mob.near/widget/People">
       View All People <span>({totalAccounts})</span>
     </ButtonLink>
-  </>
+  </Wrapper>
 );
