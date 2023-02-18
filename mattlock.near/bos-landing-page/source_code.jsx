@@ -7,10 +7,31 @@
 
 const fontUrl = `https://ipfs.io/ipfs/bafkreicrs3gh7f77yhpw4xiejx35cd56jcczuhvqbwkn77g2ztkrjejopa`;
 
+const imageClassName = "app-image";
+
 const css = `
 @font-face {
     font-family: "Pixter";
     src: url("${fontUrl}");
+}
+
+.apps {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.app-image {
+  width: 100px;
+  margin-right: 16px;
 }
 
 .header {
@@ -75,6 +96,23 @@ const css = `
          color: #ddd;
      }
  }
+
+@media only screen and (max-width: 400px) {
+  .header {
+    flex-direction: column;
+  }
+  .header-left {
+    transform: skew(0);
+  }
+  .header-left, .header-right {
+    width: 100%;
+    margin-left: 0;
+    border: none;
+  }
+  .noise {
+    height: 880px;
+  }
+}
 `;
 
 if (!state.theme) {
@@ -122,10 +160,8 @@ return (
     <div class="main">
       <h3>dApps</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta
-        laoreet augue. Donec et tellus purus. Aenean vitae magna felis. Nunc
-        tincidunt mauris eget pellentesque facilisis. Sed sed fringilla turpis,
-        eget venenatis lectus.
+        Discover a range of fully decentralized frontends that leverage the
+        power of BOS.
       </p>
 
       <div>
@@ -135,26 +171,57 @@ return (
             props={{
               limit: 10,
               term: "",
-              filterTag: "ETHDenver2023",
-              onChange: ({ result: components, term }) =>
-                State.update({ components, term }),
+              filterTag: "",
+              onChange: ({ result: components, term }) => {
+                const componentsWithMeta = components.map((c) => ({
+                  ...c,
+                  ...Social.getr(`${c.widgetSrc}/metadata`),
+                }));
+                State.update({ components: componentsWithMeta, term });
+                console.log(Social.getr(`${components[0].widgetSrc}/metadata`));
+              },
             }}
           />
         </div>
         {state.components && state.components.length > 0 && (
-          <div className="mb-2">
+          <div class="apps">
             {state.components.map((component, i) => (
-              <div key={i}>
-                <Widget
-                  src="mob.near/widget/Editor.ComponentSearch.Item"
-                  props={{
-                    accountId: component.accountId,
-                    widgetName: component.widgetName,
-                    onEmbed: () => State.update({ components: null }),
-                    onHide: () => State.update({ components: null }),
-                    extraButtons: props.extraButtons,
-                  }}
-                />
+              <div key={i} class="widget">
+                <div class="flex">
+                  <div>
+                    <Widget
+                      src="mob.near/widget/Image"
+                      props={{
+                        image: component.image,
+                        alt: component.name,
+                        className: imageClassName,
+                        style: imageStyle,
+                        thumbnail: component.thumbnail,
+                        fallbackUrl:
+                          "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <p>{component.widgetName}</p>
+                  </div>
+                </div>
+                <p>{component.description}</p>
+
+                {
+                  console.log(component)
+
+                  // <Widget
+                  //   src="mob.near/widget/Editor.ComponentSearch.Item"
+                  //   props={{
+                  //     accountId: component.accountId,
+                  //     widgetName: component.widgetName,
+                  //     onEmbed: () => State.update({ components: null }),
+                  //     onHide: () => State.update({ components: null }),
+                  //     extraButtons: props.extraButtons,
+                  //   }}
+                  // />
+                }
               </div>
             ))}
           </div>
