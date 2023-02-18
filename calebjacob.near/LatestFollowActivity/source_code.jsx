@@ -7,14 +7,19 @@ const follows =
 
 const Wrapper = styled.div`
   display: grid;
-  gap: 18px;
+  gap: 24px;
 `;
 
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
-  margin: 0 0 6px;
+  margin: 0;
+`;
+
+const Items = styled.div`
+  display: grid;
+  gap: 18px;
 `;
 
 const Item = styled.div`
@@ -50,27 +55,29 @@ return (
   <Wrapper>
     <H2>Follow Activity</H2>
 
-    {follows.map((item, i) => (
-      <Item key={i}>
-        <Widget
-          src="calebjacob.near/widget/AccountProfileInline"
-          props={{ accountId: item.accountId, avatarSize: "large" }}
-        />
-
-        <Text small bold>
-          <i className="bi bi-arrow-right"></i>
-          <br />
+    <Items>
+      {follows.map((item, i) => (
+        <Item key={i}>
           <Widget
-            src="mob.near/widget/TimeAgo"
-            props={{ blockHeight: item.blockHeight }}
+            src="calebjacob.near/widget/AccountProfileInline"
+            props={{ accountId: item.accountId, avatarSize: "large" }}
           />
-        </Text>
 
-        <Widget
-          src="calebjacob.near/widget/AccountProfileInline"
-          props={{ accountId: item.value.accountId, avatarSize: "large" }}
-        />
-      </Item>
-    ))}
+          <Text small bold>
+            <i className="bi bi-arrow-right"></i>
+            <br />
+            <Widget
+              src="mob.near/widget/TimeAgo"
+              props={{ blockHeight: item.blockHeight }}
+            />
+          </Text>
+
+          <Widget
+            src="calebjacob.near/widget/AccountProfileInline"
+            props={{ accountId: item.value.accountId, avatarSize: "large" }}
+          />
+        </Item>
+      ))}
+    </Items>
   </Wrapper>
 );
