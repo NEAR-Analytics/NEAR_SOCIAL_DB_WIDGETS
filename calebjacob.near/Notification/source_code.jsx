@@ -37,13 +37,19 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 500px) {
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 12px;
     padding-left: 0;
     padding-right: 0;
 
     &:hover {
       background: none;
+    }
+
+    > *:first-child {
+      width: 100%;
+      border-right: none;
+      padding-right: 0;
     }
 
     > *:last-child {
