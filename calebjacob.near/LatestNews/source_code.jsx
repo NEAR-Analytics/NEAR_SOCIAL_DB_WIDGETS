@@ -1,80 +1,136 @@
 const accountId = "calebjacob.near";
 const limit = 5;
+let posts = [];
 
-const posts =
-  Social.index("post", "main", {
-    accountId,
-    limit,
-    order: "desc",
-  }) || [];
+const indexedPosts = Social.index("post", "main", {
+  accountId,
+  limit,
+  order: "desc",
+});
 
-let news = [];
+if (indexedPosts?.length > 0) {
+  posts = [];
 
-if (posts?.length > 0) {
-  news = [];
-
-  posts.forEach((post) => {
+  indexedPosts.forEach((post) => {
     const data = Social.get(`${post.accountId}/post/main`, post.blockHeight);
 
     if (data) {
       const json = JSON.parse(data);
-      console.log(json);
-      // news.push({
-      //     title: data.
-      // });
+      const content = json.text.split("\n");
+      const title = content[0];
+      const url = content[1];
+      const isValid = !!url && url.indexOf("https://") > -1;
+
+      if (isValid) {
+        posts.push({
+          blockHeight: post.blockHeight,
+          title,
+          url,
+        });
+
+        posts.sort((a, b) => b.blockHeight - a.blockHeight);
+      }
     }
   });
 }
 
 const Wrapper = styled.div`
   display: grid;
-  gap: 18px;
+  gap: 24px;
 `;
 
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
-  margin: 0 0 12px;
+  margin: 0;
 `;
 
-const Item = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 36px 2fr;
-  gap: 12px;
-  align-items: center;
+const Items = styled.ul`
+  list-style: disc;
+  padding-left: 16px;
+  margin: 0;
+  color: #687076;
+`;
+
+const Item = styled.li`
   width: 100%;
-  overflow: hidden;
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   > * {
     min-width: 0
   }
 `;
 
-const Text = styled.p`
+const Text = styled.span`
+  display: block;
   margin: 0;
-  font-size: 10px;
-  line-height: 14px;
-  color: #687076;
-  font-weight: 400;
-  flex-shrink: 0;
-  white-space: nowrap;
-  text-align: center;
-  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
 
-  i {
-    font-size: 16px;
+  &[href] {
+    &:hover,
+    &:focus {
+      outline: none;
+      text-decoration: underline;
+    }
   }
 `;
 
-console.log(posts);
+const ButtonLink = styled.a`
+  display: block;
+  width: 100%;
+  padding: 8px;
+  height: 32px;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: #11181C !important;
+  margin: 0;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+`;
 
 return (
   <Wrapper>
     <H2>News</H2>
 
-    {posts.map((item, i) => (
-      <Item key={i} />
-    ))}
+    <Items>
+      {posts.map((item, i) => (
+        <Item key={i}>
+          <Text as="a" href={item.url} target="_blank" bold>
+            {item.title}
+          </Text>
+          <Text small>
+            <Widget
+              src="mob.near/widget/TimeAgo"
+              props={{ blockHeight: item.blockHeight }}
+            />{" "}
+            ago
+          </Text>
+        </Item>
+      ))}
+    </Items>
+
+    <ButtonLink href="https://near.org/blog/" target="_blank">
+      View All News
+    </ButtonLink>
   </Wrapper>
 );
