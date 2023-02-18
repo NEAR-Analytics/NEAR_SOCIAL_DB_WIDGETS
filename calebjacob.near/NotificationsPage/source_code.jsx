@@ -16,7 +16,7 @@ const index = {
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 
   > div {
