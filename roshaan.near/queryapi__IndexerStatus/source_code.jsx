@@ -1,7 +1,12 @@
 //props indexer_name
 const indexer_name = props.indexer_name;
 const accountId = props.accountId || context.accountId;
-
+const H2 = styled.h2`
+  font-size: 19px;
+  line-height: 22px;
+  color: #11181c;
+  margin: 0 0 24px;
+`;
 if (!indexer_name) return "missing indexer_name";
 const state_table = "| Function Name | Current Block Height |\n| --- | --- |\n";
 
@@ -88,11 +93,13 @@ create_table();
 return (
   <>
     <h1>Indexer Status</h1>
-    <h1> State </h1>
-    {state.state && <Markdown text={state_table} />}
-    <h1> Logs </h1>
-    {state.logs && <Markdown text={logs_table} />}
-    <h1> Indexed Values </h1>
+
+    <H2> Indexed Values </H2>
     {state.indexer_res && <Markdown text={indexer_values_table} />}
+
+    <H2> Indexer State </H2>
+    {state.state && <Markdown text={state_table} />}
+    <H2> Indexer Logs </H2>
+    {state.logs && <Markdown text={logs_table} />}
   </>
 );
