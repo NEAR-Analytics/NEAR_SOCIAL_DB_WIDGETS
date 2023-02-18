@@ -16,7 +16,7 @@ const index = {
 
 const Wrapper = styled.div`
   padding-bottom: 48px;
-  
+
   > div {
     > * {
       margin-bottom: 24px;
@@ -26,6 +26,13 @@ const Wrapper = styled.div`
       }
     }
   }
+`;
+
+const H1 = styled.h1`
+  font-size: 24px;
+  line-height: 1.2em;
+  color: #11181C;
+  margin: 0 0 24px;
 `;
 
 const renderItem = (item, i) => {
@@ -39,6 +46,7 @@ const renderItem = (item, i) => {
 
 return (
   <Wrapper>
+    <H1>Your Notifications</H1>
     <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
   </Wrapper>
 );
