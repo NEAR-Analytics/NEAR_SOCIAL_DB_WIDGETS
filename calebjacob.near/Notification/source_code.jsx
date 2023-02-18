@@ -49,7 +49,7 @@ const Text = styled.p`
   margin: 0;
   line-height: 1.5rem;
   color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-weight: 400;
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
@@ -132,7 +132,7 @@ return (
       />
     </div>
 
-    <Text>
+    <Text bold>
       {type === "follow" && <>Followed you</>}
       {type === "unfollow" && <>Unfollowed you</>}
       {type === "poke" && <>Poked you</>}
