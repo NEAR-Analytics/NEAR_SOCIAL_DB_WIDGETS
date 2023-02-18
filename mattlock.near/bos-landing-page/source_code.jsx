@@ -87,7 +87,7 @@ const css = `
  .header-content-left {
      position: absolute;
      z-index: 2;
-     height: 100%;
+     height: 440px;
  }
 
  .main {
