@@ -15,6 +15,7 @@ State.init({
   activeTab: activeTab,
   indexers: [],
   totalIndexers: 0,
+  selected_indexer: "",
 });
 
 const Wrapper = styled.div`
@@ -101,6 +102,12 @@ const TabsButton = styled.button`
     height: 3px;
     background: #0091ff;
   }
+`;
+const H2 = styled.h2`
+  font-size: 19px;
+  line-height: 22px;
+  color: #11181c;
+  margin: 0 0 24px;
 `;
 
 const indexerView = (accountId, indexerName, idx) => {
@@ -233,14 +240,24 @@ const indexerView = (accountId, indexerName, idx) => {
       <CardFooter>
         <ButtonLink
           href={statusUrl}
-          onClick={() => State.update({ activeTab: "indexer-status" })}
+          onClick={() =>
+            State.update({
+              activeTab: "indexer-status",
+              selected_indexer: indexerName,
+            })
+          }
         >
           View Status
         </ButtonLink>
         <ButtonLink
           primary
           href={editUrl}
-          onClick={() => State.update({ activeTab: "editor-window" })}
+          onClick={() =>
+            State.update({
+              activeTab: "editor-window",
+              selected_indexer: indexerName,
+            })
+          }
         >
           Edit Indexer
         </ButtonLink>
@@ -253,12 +270,6 @@ const allIndexerView = () => {
   const registry_contract_id =
     props.registry_contract_id || "registry.queryapi.near";
   console.log(selected_accountId, "selecteed account exists");
-  const H2 = styled.h2`
-  font-size: 19px;
-  line-height: 22px;
-  color: #11181c;
-  margin: 0 0 24px;
-`;
 
   if (!accountId) {
     return <H2>Please sign in to see your widgets.</H2>;
@@ -350,6 +361,7 @@ const allIndexerView = () => {
   white-space: nowrap;
   outline: none;
 `;
+
   return (
     <>
       <ButtonLink
@@ -415,24 +427,40 @@ return (
         active={state.activeTab === "editor-window"}
       >
         {state.activeTab === "indexer-status" && (
-          <Widget
-            src={"roshaan.near/widget/queryapi__IndexerStatus"}
-            props={{
-              indexer_name:
-                selected_indexerName ?? state.indexers[0].indexerName,
-              accountId: accountId,
-            }}
-          />
+          <div>
+            {state.indexers.length > 0 &&
+              (state.selected_indexer != "" ? (
+                <H2>{state.selected_indexer}</H2>
+              ) : (
+                <H2>{state.indexers[0].indexerName}</H2>
+              ))}
+            <Widget
+              src={"roshaan.near/widget/queryapi__IndexerStatus"}
+              props={{
+                indexer_name:
+                  selected_indexerName ?? state.indexers[0].indexerName,
+                accountId: accountId,
+              }}
+            />
+          </div>
         )}
         {state.activeTab === "editor-window" && (
-          <Widget
-            src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
-            props={{
-              indexer_name:
-                selected_indexerName ?? state.indexers[0].indexerName,
-              account_id: accountId,
-            }}
-          />
+          <div>
+            {state.indexers.length > 0 &&
+              (state.selected_indexer != "" ? (
+                <H2>{state.selected_indexer}</H2>
+              ) : (
+                <H2>{state.indexers[0].indexerName}</H2>
+              ))}
+            <Widget
+              src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
+              props={{
+                indexer_name:
+                  selected_indexerName ?? state.indexers[0].indexerName,
+                account_id: accountId,
+              }}
+            />
+          </div>
         )}
       </Section>
     </Main>
