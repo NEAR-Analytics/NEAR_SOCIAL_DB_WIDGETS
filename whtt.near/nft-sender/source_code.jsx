@@ -1,6 +1,6 @@
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
-if (!sender) return "Please login first";
+if (!sender) return "Please connect your Canto Wallet";
 
 const erc721Abi = fetch(
   "https://gist.githubusercontent.com/kcole16/ef017dec9da7c1acb387de643835e840/raw/c4e0bf37092b4fd2832e971e5210bd70ca2345ab/erc721.abi.json"
