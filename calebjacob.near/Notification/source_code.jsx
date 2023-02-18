@@ -5,7 +5,7 @@ const likedPost =
   type === "like" && value.item.path === `${context.accountId}/post/main`;
 const likedComment =
   type === "like" && value.item.path === `${context.accountId}/post/comment`;
-const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${context.accountId}&blockHeight=${props.blockHeight}`;
+const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${context.accountId}&blockHeight=${value?.item?.blockHeight}`;
 const supportedTypes = [
   "poke",
   "like",
