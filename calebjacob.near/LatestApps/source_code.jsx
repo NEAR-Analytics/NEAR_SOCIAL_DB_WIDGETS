@@ -38,7 +38,8 @@ if (data && taggedData) {
 }
 
 const Wrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
 `;
 
