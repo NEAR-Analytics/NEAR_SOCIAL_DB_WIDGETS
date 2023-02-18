@@ -37,16 +37,24 @@ if (data && taggedData) {
   apps = result.slice(0, limit);
 }
 
+const Wrapper = styled.div`
+  display: grid;
+  gap: 24px;
+`;
+
 const H2 = styled.h2`
   font-size: 19px;
   line-height: 22px;
   color: #11181C;
-  margin: 0 0 24px;
+  margin: 0;
 `;
 
-const CardWrapper = styled.div`
-  margin: 0 0 16px;
+const Items = styled.div`
+  display: grid;
+  gap: 18px;
 `;
+
+const Item = styled.div``;
 
 const ButtonLink = styled.a`
   display: block;
@@ -62,7 +70,7 @@ const ButtonLink = styled.a`
   text-align: center;
   cursor: pointer;
   color: #11181C !important;
-  margin-top: 24px;
+  margin: 0;
 
   &:hover,
   &:focus {
@@ -77,20 +85,22 @@ const ButtonLink = styled.a`
 `;
 
 return (
-  <>
+  <Wrapper>
     <H2>Featured Apps</H2>
 
-    {apps.map((app, i) => (
-      <CardWrapper key={i}>
-        <Widget
-          src="calebjacob.near/widget/ComponentCard"
-          props={{ src: `${app.accountId}/widget/${app.widgetName}` }}
-        />
-      </CardWrapper>
-    ))}
+    <Items>
+      {apps.map((app, i) => (
+        <Item key={i}>
+          <Widget
+            src="calebjacob.near/widget/ComponentCard"
+            props={{ src: `${app.accountId}/widget/${app.widgetName}` }}
+          />
+        </Item>
+      ))}
+    </Items>
 
     <ButtonLink href="/#/mob.near/widget/Applications">
       View All Apps <span>({totalApps})</span>
     </ButtonLink>
-  </>
+  </Wrapper>
 );
