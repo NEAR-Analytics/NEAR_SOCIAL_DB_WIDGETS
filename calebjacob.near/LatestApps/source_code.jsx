@@ -51,7 +51,8 @@ const H2 = styled.h2`
 `;
 
 const Items = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 18px;
 `;
 
