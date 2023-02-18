@@ -10,6 +10,7 @@ const accountUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}
 
 const Card = styled.div`
   position: relative;
+  width: 100%;
   border-radius: 12px;
   background: #fff;
   border: 1px solid #ECEEF0;
@@ -24,7 +25,7 @@ const CardBody = styled.div`
   align-items: center;
 
   > * {
-      min-width: 0;
+    min-width: 0;
   }
 `;
 
