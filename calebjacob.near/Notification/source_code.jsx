@@ -19,12 +19,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
-  transition: background 200ms;
-  padding: 4px;
-
-  &:hover {
-    background: #f4f5f6;
-  }
 
   > *:first-child {
     width: 200px;
@@ -40,12 +34,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: start;
     gap: 8px;
-    padding-left: 0;
-    padding-right: 0;
-
-    &:hover {
-      background: none;
-    }
 
     > *:first-child {
       width: 100%;
