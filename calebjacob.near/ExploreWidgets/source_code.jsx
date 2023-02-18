@@ -8,6 +8,9 @@ if (customWidgets === null) {
 
 const defaultWidgets = [
   {
+    src: "calebjacob.near/widget/LatestNews",
+  },
+  {
     src: "calebjacob.near/widget/LatestPeople",
   },
   {
