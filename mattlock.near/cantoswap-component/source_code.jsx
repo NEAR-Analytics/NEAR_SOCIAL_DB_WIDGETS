@@ -26,7 +26,7 @@ if (!state.theme) {
 const Theme = state.theme;
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
-if (!sender) return "Please login first";
+if (!sender) return "Connect Your Wallet";
 
 const PROPS = Object.assign(
   {
