@@ -29,6 +29,20 @@ const Wrapper = styled.div`
   > *:last-child {
     margin-left: auto;
   }
+
+  @media (max-width: 700px) {
+    flex-wrap: wrap;
+    gap: 12px;
+
+    > *:last-child {
+      width: 100%;
+      margin-left: 0;
+
+      a, button {
+          width: 100%;
+      }
+    }
+  }
 `;
 
 const Text = styled.p`
@@ -101,8 +115,6 @@ const Button = styled.a`
   }
 `;
 
-console.log(props);
-
 if (type && type.startsWith("devgovgigs/")) {
   return (
     <Widget src="mob.near/widget/Notification.Item.DevGov" props={props} />
@@ -113,10 +125,12 @@ if (!supportedTypes.includes(type)) return <></>;
 
 return (
   <Wrapper>
-    <Widget
-      src="calebjacob.near/widget/AccountProfile"
-      props={{ accountId: props.accountId }}
-    />
+    <div>
+      <Widget
+        src="calebjacob.near/widget/AccountProfile"
+        props={{ accountId: props.accountId }}
+      />
+    </div>
 
     <Text>
       {type === "follow" && <>Followed you</>}
