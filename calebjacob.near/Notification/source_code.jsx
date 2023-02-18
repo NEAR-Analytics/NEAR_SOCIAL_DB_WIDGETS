@@ -26,7 +26,11 @@ const Wrapper = styled.div`
   }
 
   > *:last-child {
-      margin-left: auto;
+    margin-left: auto;
+  }
+
+  .poke-button {
+    color: #006ADC !important;
   }
 `;
 
@@ -72,7 +76,7 @@ const Button = styled.a`
   cursor: pointer;
   background: #FBFCFD;
   border: 1px solid #D7DBDF;
-  color: #11181C !important;
+  color: #006ADC !important;
   white-space: nowrap;
 
   &.button--primary {
