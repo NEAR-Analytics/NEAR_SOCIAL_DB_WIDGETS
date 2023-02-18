@@ -97,7 +97,7 @@ const css = `
      }
  }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 700px) {
   .header {
     flex-direction: column;
   }
