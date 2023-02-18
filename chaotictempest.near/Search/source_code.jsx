@@ -1,9 +1,8 @@
 const SEARCH_API_KEY = "57ad1944e94432510f067a6e3d13f022";
 const APPLICATION_ID = "B6PI9UKKJT";
+const INDEX = "test_near-social-feed";
 let search_params = "query=";
-const api_url = `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/dev_near-social-feed/query?${search_params}`;
-
-const LIMIT_PER_GROUP = 5;
+const api_url = `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?${search_params}`;
 
 const writeStateTerm = (term) => {
   console.log("writeStateTerm:", term);
@@ -13,20 +12,109 @@ const writeStateTerm = (term) => {
   });
 };
 
+const profileWidgets = (content) => {
+  const profiles = [];
+
+  for (const profile of content || []) {
+    const accountId = profile.author;
+    profiles.push(
+      <div className="mb-2">
+        <Widget src="mob.near/widget/Profile" props={{ accountId }} />
+      </div>
+    );
+  }
+
+  return profiles;
+};
+
+const postWidgets = (content) => {
+  const posts = [];
+
+  for (const post of content || []) {
+    console.log("post", post);
+    const accountId = post.author;
+    if (!post.ref) {
+      console.log(`No ref to post for ${accountId}`);
+    }
+
+    const blockHeight = post.ref.block_height;
+    const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+    const post_content = {
+      type: "md",
+      text: post.content,
+    };
+
+    posts.push(
+      <div className="border rounded-4 p-3 pb-1">
+        <Widget
+          src="mob.near/widget/MainPage.Post.Header"
+          props={{ accountId, blockHeight, link, postType: "post" }}
+        />
+        <div className="mt-3 text-break">
+          <Widget
+            src="mob.near/widget/MainPage.Post.Content"
+            props={{ content: post_content }}
+          />
+        </div>
+      </div>
+    );
+  }
+  return posts;
+};
+
+const commentWidgets = (content) => {
+  const comments = [];
+
+  for (const comment of content || []) {
+    const accountId = comment.author;
+    const blockHeight = comment.ref.block_height;
+    const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+    const comment_content = {
+      type: "md",
+      text: comment.content,
+    };
+
+    if (!comment.ref) {
+      console.log(`No ref to comment for ${accountId}`);
+    }
+
+    // ${
+    //   highlight ? "bg-warning bg-opacity-10" : ""
+    // }
+    comments.push(
+      <div className="pt-3 border-top pb-2">
+        <Widget
+          src="mob.near/widget/MainPage.Post.Header"
+          props={{ accountId, blockHeight, link, postType: "comment" }}
+        />
+        <div className="mt-3 text-break">
+          <Widget
+            src="mob.near/widget/MainPage.Post.Content"
+            props={{ content: comment_content }}
+          />
+        </div>
+      </div>
+    );
+  }
+  return comments;
+};
+
 const computeResults = (term) => {
   console.log("computeResults:", term);
   const raw_content = fetchAlgoliaData(term);
+  const contents = getCategoryResults(raw_content);
+  console.log("contents", contents["comment, post"]);
 
   State.update({
     term,
-    post: getCategoryResults("post", raw_content),
-    comment: getCategoryResults("comment", raw_content),
-    profile: getCategoryResults("profile", raw_content),
+    post: postWidgets(contents["post"]),
+    comment: commentWidgets(contents["comment, post"]),
+    profile: profileWidgets(contents["profile"]),
   });
 };
 
 const fetchAlgoliaData = (queryURI) => {
-  search_params = "query=" + queryURI;
+  search_params = `query=${queryURI}`;
   const res_data = useCache(
     () =>
       asyncFetch(api_url, {
@@ -44,22 +132,35 @@ const fetchAlgoliaData = (queryURI) => {
   return res_data;
 };
 
-const getCategoryResults = (category, raw_result_data) => {
-  const results = [];
+const getCategoryResults = (raw_result_data) => {
+  const results = {};
   for (const result of raw_result_data.hits) {
-    const { author, content, objectID, categories: categories_raw } = result;
-    if (categories_raw.includes(category)) {
-      const categories = categories_raw.join(", ");
-      results.push({
-        author,
-        content,
-        objectID,
-        categories,
-      });
+    const {
+      author,
+      content,
+      objectID,
+      categories: categories_raw,
+      ref,
+      _highlightResult,
+    } = result;
+
+    if (categories_raw.length > 1) {
+      categories_raw.sort();
     }
+
+    const categories = categories_raw.join(", ");
+    results[categories] = results[categories] || [];
+    results[categories].push({
+      author,
+      content,
+      objectID,
+      categories,
+      ref,
+      _highlightResult,
+    });
   }
 
-  return results.slice(0, LIMIT_PER_GROUP);
+  return results;
 };
 
 return (
@@ -72,14 +173,14 @@ return (
         placeholder="Search..."
       />
       {state.term && (
-        <button type="button" onClick={() => writeStateTerm("")}>
-          Clear
-        </button>
-      )}
-      {state.term && (
-        <button type="button" onClick={() => computeResults(state.term)}>
-          Go
-        </button>
+        <div>
+          <button type="button" onClick={() => writeStateTerm("")}>
+            Clear
+          </button>
+          <button type="button" onClick={() => computeResults(state.term)}>
+            Go
+          </button>
+        </div>
       )}
     </div>
 
@@ -88,40 +189,21 @@ return (
         {state.profile?.length > 0 && (
           <div>
             <p>Profiles:</p>
-
-            <ul>
-              {state.profile.map((data, i) => (
-                <li key={i}>{data.author}</li>
-              ))}
-            </ul>
+            <ul>{state.profile}</ul>
           </div>
         )}
 
         {state.post?.length > 0 && (
           <div>
             <p>Posts:</p>
-
-            <ul>
-              {state.post.map((data, i) => (
-                <li key={i}>
-                  {data.author}, {data.content}
-                </li>
-              ))}
-            </ul>
+            <ul>{state.post}</ul>
           </div>
         )}
 
         {state.comment?.length > 0 && (
           <div>
             <p>Comments:</p>
-
-            <ul>
-              {state.comment.map((data, i) => (
-                <li key={i}>
-                  {data.author}: {data.content}
-                </li>
-              ))}
-            </ul>
+            <ul>{state.comment}</ul>
           </div>
         )}
       </>
