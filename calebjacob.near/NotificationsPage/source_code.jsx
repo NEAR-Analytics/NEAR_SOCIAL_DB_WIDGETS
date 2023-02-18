@@ -34,7 +34,7 @@ const H1 = styled.h1`
   font-size: 24px;
   line-height: 1.2em;
   color: #11181C;
-  margin: 0 0 48px;
+  margin: 0 0 24px;
 `;
 
 const renderItem = (item, i) => {
