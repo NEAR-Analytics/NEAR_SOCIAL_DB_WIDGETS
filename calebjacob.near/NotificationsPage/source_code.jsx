@@ -14,6 +14,18 @@ const index = {
   },
 };
 
+const Wrapper = styled.div`
+  > div {
+    > * {
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+`;
+
 const renderItem = (item, i) => {
   if (i === 0) {
     Storage.set("lastBlockHeight", item.blockHeight);
@@ -23,4 +35,8 @@ const renderItem = (item, i) => {
   );
 };
 
-return <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />;
+return (
+  <Wrapper>
+    <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
+  </Wrapper>
+);
