@@ -29,9 +29,14 @@ if (!state.theme) {
 }
 const Theme = state.theme;
 
+const sender = Ethers.send("eth_requestAccounts", [])[0];
+
 return (
   <Theme>
     <h1>Welcome to Cantopia!</h1>
+
+    {!sender && <h2>Please Connect Your Wallet First to Canto Mainnet!</h2>}
+
     <button
       class="btn btn success"
       onClick={() => {
