@@ -26,7 +26,13 @@ if (!state.theme) {
 const Theme = state.theme;
 
 const sender = Ethers.send("eth_requestAccounts", [])[0];
-if (!sender) return "Connect Your Wallet";
+if (!sender)
+  return (
+    <div>
+      <h2>Connect Your Wallet</h2>
+      <p>This app requires you to connect to the Canto Mainnet</p>
+    </div>
+  );
 
 const PROPS = Object.assign(
   {
