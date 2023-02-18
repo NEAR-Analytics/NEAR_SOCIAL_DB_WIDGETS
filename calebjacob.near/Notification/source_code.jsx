@@ -38,7 +38,8 @@ const Wrapper = styled.div`
 
   @media (max-width: 500px) {
     flex-direction: column;
-    gap: 12px;
+    align-items: start;
+    gap: 8px;
     padding-left: 0;
     padding-right: 0;
 
