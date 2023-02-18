@@ -40,6 +40,7 @@ const Wrapper = styled.div`
     background: #FBFCFD;
     border: 1px solid #D7DBDF;
     color: ${props.primary ? "#006ADC" : "#11181C"} !important;
+    white-space: nowrap;
 
     &:hover,
     &:focus {
