@@ -263,7 +263,6 @@ return (
               src="calebjacob.near/widget/PokeButton"
               props={{
                 accountId,
-                className: "button",
               }}
             />
           </>
