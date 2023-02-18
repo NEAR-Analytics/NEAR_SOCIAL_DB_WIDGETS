@@ -73,6 +73,7 @@ const Button = styled.a`
   background: #FBFCFD;
   border: 1px solid #D7DBDF;
   color: #11181C !important;
+  white-space: nowrap;
 
   &.button--primary {
     width: 100%;
