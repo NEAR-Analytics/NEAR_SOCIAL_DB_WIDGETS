@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     margin-left: auto;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 500px) {
     flex-wrap: wrap;
     gap: 12px;
 
