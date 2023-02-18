@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
   > div {
     > * {
-      margin-bottom: 24px;
+      margin-bottom: 16px;
 
       &:last-child {
         margin-bottom: 0;
@@ -32,7 +32,7 @@ const H1 = styled.h1`
   font-size: 24px;
   line-height: 1.2em;
   color: #11181C;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 `;
 
 const renderItem = (item, i) => {
