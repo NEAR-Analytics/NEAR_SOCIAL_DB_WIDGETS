@@ -199,7 +199,6 @@ return (
           style={{ width: "300px", height: "auto" }}
         />
       </div>
-
       <div
         style={{
           backgroundImage:
@@ -247,6 +246,132 @@ return (
           alignItems: "center",
           justifyContent: "center",
         }}
+      ></div>{" "}
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeihpktcha4szt2imr6a2kjvruj2g7bome4ek2faqdb7qvtpyftx5ly)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "81px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "200px",
+            color: "white",
+            fontFamily: '"Press Start 2P", sans-serif',
+            fontSize: "12px",
+            margin: "0px 60px 0px 0px",
+            border: "1px solid #3a0201",
+          }}
+        >
+          <input
+            type="range"
+            min={1.1}
+            max={25}
+            value={value}
+            step={0.1}
+            onBlur={(e) => {
+              state.scale = e.target.value;
+              State.update(state);
+            }}
+            style={{
+              width: "200px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+              margin: "10px 10px 10px 10px",
+              border: "1px solid #3a0201",
+            }}
+          />
+          <input
+            type="range"
+            min={1.1}
+            max={25}
+            value={value}
+            step={0.1}
+            onBlur={(e) => {
+              state.scale = e.target.value;
+              State.update(state);
+            }}
+            style={{
+              width: "200px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+              fontSize: "12px",
+              margin: "10px 10px 10px 10px",
+              border: "1px solid #3a0201",
+            }}
+          />{" "}
+        </div>
+        <div>
+          <a
+            className="btn btn-outline-primary"
+            onClick={(e) => rollImage()}
+            style={{
+              width: "60px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+              fontSize: "24px",
+              margin: "2px 2px 2px 2px",
+              border: "1px solid #3a0201",
+            }}
+          >
+            〜
+          </a>
+          <a
+            className="btn btn-outline-primary"
+            onClick={(e) => rollImage()}
+            style={{
+              width: "60px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+              fontSize: "24px",
+              margin: "2px 2px 2px 2px",
+              border: "1px solid #3a0201",
+            }}
+          >
+            〜
+          </a>
+          <a
+            className="btn btn-outline-primary"
+            onClick={(e) => rollImage()}
+            style={{
+              width: "60px",
+              backgroundColor: "black",
+              color: "white",
+              fontFamily: '"Press Start 2P", sans-serif',
+              fontSize: "24px",
+              margin: "2px 2px 2px 2px",
+              border: "1px solid #3a0201",
+            }}
+          >
+            〜
+          </a>
+        </div>
+      </div>{" "}
+      <div
+        style={{
+          backgroundImage:
+            "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          height: "8px",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       ></div>
       <div
         style={{
@@ -262,6 +387,21 @@ return (
           justifyContent: "center",
         }}
       >
+        {" "}
+        <div
+          style={{
+            backgroundImage:
+              "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+            backgroundSize: "auto",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            height: "8px",
+            color: "#fff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        ></div>
         <div>
           <input
             type="range"
@@ -392,7 +532,37 @@ return (
         alignItems: "center",
         justifyContent: "center",
       }}
-    ></div>
+    >
+      {" "}
+      <a
+        className="btn btn-outline-primary"
+        onClick={(e) => rollImage()}
+        style={{
+          width: "200px",
+          backgroundColor: "black",
+          color: "white",
+          fontFamily: '"Press Start 2P", sans-serif',
+          margin: "20px 20px 20px 20px",
+          border: "1px solid #3a0201",
+        }}
+      >
+        add to gallery
+      </a>{" "}
+      <a
+        className="btn btn-outline-primary"
+        onClick={(e) => rollImage()}
+        style={{
+          width: "200px",
+          backgroundColor: "black",
+          color: "white",
+          fontFamily: '"Press Start 2P", sans-serif',
+          margin: "20px 20px 20px 20px",
+          border: "1px solid #3a0201",
+        }}
+      >
+        DOWNLOAD
+      </a>
+    </div>
     <div
       style={{
         backgroundImage:
@@ -413,7 +583,7 @@ return (
           maxHeight: "524px",
           width: "100%",
           height: "100%",
-          margin: "-180px 0px 40px 0px",
+          margin: "0px 0px 0px 0px",
           position: "relative",
           display: "flex",
           border: "2px solid white",
@@ -436,11 +606,53 @@ return (
           }}
         ></div>
       </div>
-    </div>
+    </div>{" "}
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
     <div style={{ backgroundColor: "red", width: "100%", height: "80px" }}>
       {" "}
       <AnimatedSmoke />
       <AnimatedSmoke2 />
-    </div>
+    </div>{" "}
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>{" "}
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
   </div>
 );
