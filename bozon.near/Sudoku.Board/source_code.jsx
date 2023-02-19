@@ -8,6 +8,10 @@ const Board = styled.div`
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(9, auto);
+
+  @media (max-width: 500px) {
+    gap: 4px;
+  }
 `;
 
 const Cell = styled.input`
@@ -24,6 +28,12 @@ const Cell = styled.input`
   cursor: pointer;
   border: none;
   text-align: center;
+
+  @media (max-width: 500px) {
+    font-size: 12px;
+    height: 24px;
+    width: 24px;
+  }
 
   &:disabled {
     background-color: rgb(143 217 165);
