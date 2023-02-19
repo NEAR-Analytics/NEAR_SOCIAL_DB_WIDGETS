@@ -3,7 +3,7 @@ let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
 
 let B = Big();
-B.DP = 60;
+B.DP = 60; // set precision to 60 decimals
 
 const toAPY = (v) => Math.round(v * 100) / 100;
 
@@ -45,10 +45,10 @@ const account = Near.view(BURROW_CONTRACT, "get_account", {
   account_id: accountId,
 });
 
-console.log("INIT...", state);
-
 if (!account) return <div>loading...</div>;
 
+// sum all assets to get the health factor
+// https://github.com/burrowfdn/burrowland for detailed explanation
 function getAdjustedSum(type) {
   if (!assets) return B(1);
   return account[type]
@@ -89,6 +89,7 @@ function getHealthFactor() {
 
 const healthFactor = getHealthFactor();
 
+// get max ammount can be borrowed
 function getMaxAmount() {
   if (!selectedTokenId) return 0;
   const asset = assets.find((a) => a.token_id === selectedTokenId);
@@ -124,6 +125,7 @@ const storageBurrow = Near.view(BURROW_CONTRACT, "storage_balance_of", {
   account_id: accountId,
 });
 
+// get the storage deposit for a token
 const storageToken = selectedTokenId
   ? Near.view(selectedTokenId, "storage_balance_of", {
       account_id: accountId,
