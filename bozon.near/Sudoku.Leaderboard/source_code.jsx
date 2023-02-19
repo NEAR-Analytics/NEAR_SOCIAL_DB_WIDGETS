@@ -1,4 +1,4 @@
-if (!props.top_by_count) return "";
+if (!props.leaderboard) return "";
 
 State.update({
   top_by_count: Object.keys(props.leaderboard.top_by_count)
