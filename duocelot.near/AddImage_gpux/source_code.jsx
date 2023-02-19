@@ -196,7 +196,7 @@ return (
         <img
           src="https://ipfs.fleek.co/ipfs/bafybeihjvub4e3yqyazxr62dxpbohji45wnx7hp7gadxjbiet2nrgkhapy"
           alt="VG Logo"
-          style={{ width: "300px", height: "auto" }}
+          style={{ width: "180px", height: "auto" }}
         />
       </div>
       <div
