@@ -3,10 +3,18 @@ const STORAGE = "4030000000000000000000";
 
 if (context.accountId === null) return "login";
 
-const player = Near.view(CONTRACT, "get_player", {
-  account_id: context.accountId,
+const player = Near.view(
+  CONTRACT,
+  "get_player",
+  {
+    account_id: context.accountId,
+  },
+  "final",
+  { subscribe: true }
+);
+const leaderboard = Near.view(CONTRACT, "get_leaderboard", {}, "final", {
+  subscribe: true,
 });
-const leaderboard = Near.view(CONTRACT, "get_leaderboard", {});
 
 const savedBoard = Storage.privateGet("board");
 
@@ -185,7 +193,7 @@ return (
                 }}
               />
 
-              <div class="mt-3 d-flex flex-row">
+              <div class="mt-3 d-flex flex-row justify-content-between align-items-center">
                 <Button
                   disabled={state.current_board.find((row) => {
                     return row.find((el) => el === 0) === 0;
