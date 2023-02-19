@@ -6,6 +6,12 @@ if (context.accountId === null) return "login";
 const player = Near.view(CONTRACT, "get_player", {
   account_id: context.accountId,
 });
+console.log(player);
+const slove = Near.view(CONTRACT, "get_solved", {
+  array: player.sudoku,
+});
+console.log(slove);
+
 const savedBoard = Storage.privateGet("board");
 
 function isEqualBoard(savedBoard, boardInContract) {
@@ -82,54 +88,6 @@ const Content = styled.div`
   place-items: center;
 `;
 
-const Board = styled.div`
-  display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(9, auto);
-`;
-
-// const BoardOuter = styled.div`
-//   display: grid;
-//   gap: 15px;
-//   grid-template-columns: repeat(3, auto);
-// `;
-
-// const BoardInner = styled.div`
-//   display: grid;
-//   //gap: var(--gap);
-//   gap: 5px;
-//   grid-template-columns: repeat(3, auto);
-// `;
-
-const Cell = styled.input`
-  height: 36px;
-  width: 36px;
-  border-radius: 10px;
-
-  background-color: rgb(202, 240, 248);
-  color: black;
-    
-  display: grid;
-  place-items: center;
-  font-size: 20px;
-  cursor: pointer;
-  border: none;
-  text-align: center;
-
-  &:disabled {
-    background-color: rgb(143 217 165);
-    cursor: not-allowed;
-  }
-
-  &:hover {
-    border: 2px solid rgb(143 217 165);
-  }
-
-  &:focus {
-    border: 2px solid rgb(143 217 165);
-  }
-`;
-
 const Button = styled.button`
   border: none;
   background-color: rgb(143 217 165);
@@ -148,50 +106,23 @@ return (
     </Header>
     <div>{state.message}</div>
     <Content>
-      {player === null && (
+      {state.player.sudoku === null && (
         <div>
           <div>First transaction may cost {parseInt(STORAGE) / 1e24}</div>
           <Button onClick={startGame}>Play</Button>
         </div>
       )}
-      {player && (
+      {state.player.sudoku == null && <div>{JSON.stringify(state.player)}</div>}
+      {state?.player?.sudoku && (
         <div>
-          <Board>
-            {state.current_board.map((row, x) => {
-              return (
-                //<BoardInner>
-                row.map((el, y) => {
-                  return (
-                    <Cell
-                      style={{
-                        marginRight: (y + 1) % 3 == 0 && y < 8 ? "10px" : "0px",
-                        marginBottom:
-                          (x + 1) % 3 == 0 && y < 8 ? "10px" : "0px",
-                      }}
-                      disabled={state.player.sudoku[x][y] != 0}
-                      onKeyDown={(event) => {
-                        if (state.player.sudoku[x][y] != 0) return;
-
-                        if (event.key.match(/^$|^[1-9]$/)) {
-                          return setValue(x, y, parseInt(event.key));
-                        }
-
-                        if (event.key == "Backspace") {
-                          return setValue(x, y, 0);
-                        }
-                      }}
-                      value={
-                        state.current_board[x][y] == 0
-                          ? ""
-                          : state.current_board[x][y]
-                      }
-                    />
-                  );
-                })
-                //</BoardInner>
-              );
-            })}
-          </Board>
+          <Widget
+            src="bozon.near/widget/Sudoku.Board"
+            props={{
+              current_board: state.current_board,
+              init_board: state.player.sudoku,
+              update: setValue,
+            }}
+          />
 
           <div class="mt-3">
             <Button
@@ -202,7 +133,11 @@ return (
             >
               Send answer
             </Button>
-            <Button onClick={startGame}>Generate game</Button>
+            <Button onClick={startGame}>Generate new game</Button>
+            <Widget
+              src="bozon.near/widget/Sudoku.Timer"
+              props={{ startTime: state.player.start_time }}
+            />
           </div>
         </div>
       )}
