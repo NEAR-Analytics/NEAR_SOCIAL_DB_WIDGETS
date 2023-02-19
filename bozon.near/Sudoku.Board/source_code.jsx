@@ -39,7 +39,7 @@ const Cell = styled.input`
 
 return (
   <Board>
-    {props.board.map((row, x) => {
+    {props.current_board.map((row, x) => {
       return row.map((el, y) => {
         return (
           <Cell
