@@ -27,10 +27,12 @@ const toUsd = (balance, asset) =>
       ) * asset.price.usd
     : 0;
 
+// transform tolen balance from big number decimal to number
 const shrinkToken = (value, decimals, fixed) => {
   return new Big(value).div(new Big(10).pow(decimals)).toFixed(fixed);
 };
 
+// get all assets, metadata and pricing from burrow contracts
 function getAssets() {
   const assets = Near.view(BURROW_CONTRACT, "get_assets_paged");
   if (!assets) return;
@@ -89,6 +91,7 @@ function getAssets() {
   });
 }
 
+// get balance of every asset on account
 const getBalances = (assets) => {
   if (!assets) return;
   const balances = accountId
@@ -100,6 +103,8 @@ const getBalances = (assets) => {
   return balances;
 };
 
+// sum all balances for supplied or borrowed
+// it's used for computing the net liquidity apy
 const getTotalBalance = (assets, source) =>
   assets
     .map((asset) => {
@@ -144,6 +149,7 @@ const getNetLiquidityAPY = (assets, netLiquidityFarm) => {
   return [netLiquidtyAPY, rewardTokens];
 };
 
+// get all farm rewards for each asset
 const getRewards = (assets) => {
   const netLiquidityFarm = Near.view(BURROW_CONTRACT, "get_asset_farm", {
     farm_id: "NetTvl",
@@ -241,6 +247,7 @@ const getRewards = (assets) => {
   return rewards;
 };
 
+// get account portfolio
 const getAccount = () => {
   if (!accountId) return null;
   const account = Near.view(BURROW_CONTRACT, "get_account", {
