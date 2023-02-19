@@ -53,8 +53,6 @@ const suppliedAssets = hasData
       const totalBalance = depositedBalance + collateralBalance;
       const usd = totalBalance * asset.price.usd;
 
-      if (usd < 0.01) return null;
-
       return (
         <tr>
           <td>{asset.metadata.symbol}</td>
@@ -70,7 +68,7 @@ const borrowedAssets = hasData
   ? account.borrowed.map((borrowedAsset) => {
       const asset = assets.find((a) => a.token_id === borrowedAsset.token_id);
       const r = rewards.find((a) => a.token_id === asset.token_id);
-      const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+      const totalApy = r.apyBaseBorrow;
 
       const decimals = asset.metadata.decimals + asset.config.extra_decimals;
       const borrowed = Number(shrinkToken(borrowedAsset.balance, decimals));
