@@ -22,6 +22,7 @@ for (let i = 0; i < poll.value.questions.length; i++) {
 State.init({
   vote: userVote ?? defaultVotes,
   answers: {},
+  showHumanNotVerifyed: false,
   showErrorsInForm: false,
   hoveringElement: "",
   justVoted: false,
@@ -36,28 +37,55 @@ function userIsHuman(reQuery) {
     if (state.HumanityStatus == undefined) return userIsHuman(true);
     else return state.HumanityStatus;
   }
-  const url = "https://tato.ar/near/rt.txt";
-  console.log(url);
 
+  /* // for testing - _intent must be added to State.init({ ... });
+  let url = "";
+  console.log("Intent: " + state._intent);
+  switch (state._intent) {
+    case 0:
+      // ROJO - REINTENTAR
+      url = "https://api.nearsocialwidgets.com/status?id=test2";
+      break;
+    case 1:
+      // EMPEZO y no terminó el proceso
+      url = "https://api.nearsocialwidgets.com/status?id=test22";
+      break;
+    case 4:
+      // ROJO
+      url = "https://api.nearsocialwidgets.com/status?id=test24";
+      break;
+    case 2:
+      // NUNCA EMPEZO
+      url = "https://api.nearsocialwidgets.com/status?id=test26";
+      break;
+    case 3:
+      // VERDE
+      url = "https://api.nearsocialwidgets.com/status?id=silkking.testnet";
+      break;
+  }
+
+  state._intent++;
+*/
+  const url =
+    "https://api.nearsocialwidgets.com/status?id=" + context.accountId;
   const response = fetch(url);
 
-  console.log(response);
   if (response.status != 200) {
-    console.log("Can't connect to verification API");
+    alert("Can't connect to verification API. Please try again");
     return;
   }
-  const obj = JSON.parse(response.body);
-  console.log(obj);
+  const obj = response.body;
+  // console.log(obj);
   var result = 1;
   if (obj.body.code != 404) {
     if (obj.review.reviewResult.reviewAnswer == "GREEN") result = 2;
     else if (obj.review.reviewResult.reviewAnswer == "RED") {
-      if (obj.review.reviewRejectType == "FINAL") result = 4;
-      if (obj.review.reviewRejectType == "RETRY") result = 3;
+      if (obj.review.reviewResult.reviewRejectType == "FINAL") result = 4;
+      if (obj.review.reviewResult.reviewRejectType == "RETRY") result = 3;
     }
   }
 
-  console.log("isHuman: " + result);
+  // console.log("isHuman: " + result);
 
   State.update({ HumanityStatus: result });
 
@@ -69,7 +97,7 @@ const proveYoureHumanButton = () => {
     <div>
       {state.HumanityStatus == 1 ? (
         <p style={{ textAlign: "center" }} className="alert alert-info">
-          Humanity not checked
+          Humanity not verified
         </p>
       ) : state.HumanityStatus == 2 ? (
         ""
@@ -86,21 +114,13 @@ const proveYoureHumanButton = () => {
         <>
           <div style={{ textAlign: "center" }}>
             <a
-              href="https://www.google.com"
+              href={"https://nearsocialwidgets.com?id=" + context.accountId}
               target="_blank"
               onClick={() => showCheckHumanModal()}
             >
               <button>Click here to prove you are human</button>
             </a>
           </div>
-          <button
-            className="w-100"
-            style={PrimaryButtonStyle()}
-            onMouseEnter={() => State.update({ hoveringElement: "voteButton" })}
-            onMouseLeave={() => State.update({ hoveringElement: "" })}
-          >
-            Vote (you must prove you're human)
-          </button>
         </>
       ) : (
         ""
@@ -110,18 +130,15 @@ const proveYoureHumanButton = () => {
 };
 
 const showCheckHumanModal = () => {
-  console.log("show");
   State.update({ HumanityModal: "show" });
 };
 
 const closeCheckHumanModal = () => {
-  console.log("hide");
   State.update({ HumanityModal: "hide" });
   userIsHuman(true);
 };
 
 const renderCheckHumanModal = () => {
-  console.log("state.HumanityModal: " + state.HumanityModal);
   return state.HumanityModal == "show" ? (
     <>
       <div
@@ -755,6 +772,7 @@ function SecondaryButtonStyle() {
 return (
   <>
     {renderCheckHumanModal()}
+    {userIsHuman(false) != 2 ? proveYoureHumanButton() : ""}
     {poll.value.questions.map((question, questionNumber) => {
       return (
         <div
@@ -825,8 +843,23 @@ return (
             Vote
           </CommitButton>
         ) : (
-          // human not verified
-          proveYoureHumanButton()
+          // human is not verified
+          <>
+            <button
+              className="w-100"
+              style={PrimaryButtonStyle()}
+              onMouseEnter={() =>
+                State.update({ hoveringElement: "primaryButton" })
+              }
+              onMouseLeave={() => State.update({ hoveringElement: "" })}
+              onClick={() => State.update({ showHumanNotVerifyed: true })}
+            >
+              Vote
+            </button>
+            {state.showHumanNotVerifyed && (
+              <span className="text-danger">You must verify you're human</span>
+            )}
+          </>
         )
       ) : (
         <>
