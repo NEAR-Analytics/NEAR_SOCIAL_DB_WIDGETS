@@ -227,7 +227,6 @@ const handleBorrow = () => {
     });
   }
 
-  console.log("transactions", transactions);
   Near.call(transactions);
 };
 
