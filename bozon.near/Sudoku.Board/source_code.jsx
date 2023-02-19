@@ -2,7 +2,7 @@
 //props.init_board
 //props.update(x, y, value)
 
-if (!props.current_board || !props.init_board || props.update) return "";
+if (!props.current_board || !props.init_board || !props.update) return "";
 
 const Board = styled.div`
   display: grid;
