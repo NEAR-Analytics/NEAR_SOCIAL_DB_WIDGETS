@@ -388,6 +388,9 @@ return (
         ></div>
         <div
           style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             margin: "0px 0px 0px 0px",
           }}
         >
