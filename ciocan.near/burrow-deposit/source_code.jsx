@@ -23,8 +23,6 @@ if (!accountId) {
   return <div>Please sign in with NEAR wallet</div>;
 }
 
-console.log("INIT...", state);
-
 const account = fetch("https://rpc.mainnet.near.org", {
   method: "POST",
   headers: {
@@ -119,14 +117,6 @@ const handleAmount = (e) => {
 };
 
 const handleDeposit = () => {
-  console.log(
-    "handleDeposit",
-    assets,
-    state,
-    selectedTokenId,
-    amount,
-    hasError
-  );
   if (!selectedTokenId || !amount || hasError) return;
 
   if (selectedTokenId === "NEAR") {
@@ -136,15 +126,10 @@ const handleDeposit = () => {
 
   const asset = assets.find((a) => a.token_id === selectedTokenId);
   const { token_id, accountBalance, metadata, config } = asset;
-  console.log("asset", asset);
-  console.log("metadata", metadata);
-  console.log("config", config);
 
   const balance = formatToken(
     shrinkToken(accountBalance, metadata.decimals).toFixed()
   );
-
-  console.log("balance", balance);
 
   if (amount > balance) {
     State.update({ selectedTokenId, amount, hasError: true });
@@ -194,16 +179,12 @@ const handleDeposit = () => {
 
   transactions.push(depositTransaction);
 
-  console.log("storageBurrow", storageBurrow);
-  console.log("storageToken", storageToken);
-  console.log("transactions", transactions);
-
   Near.call(transactions);
 };
 
 const handleDepositNear = (amount) => {
   const amountDecimal = expandToken(amount, 24).toFixed();
-  console.log("handleDepositNear", amount, amountDecimal);
+
   Near.call([
     {
       contractName: "wrap.near",
