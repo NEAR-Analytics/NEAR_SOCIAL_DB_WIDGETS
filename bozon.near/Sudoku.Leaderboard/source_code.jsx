@@ -1,3 +1,3 @@
-console.log(props.leaderbord);
+console.log(props.leaderboard);
 
-return <div>{props.leaderbord}</div>;
+return <div>{props.leaderboard}</div>;
