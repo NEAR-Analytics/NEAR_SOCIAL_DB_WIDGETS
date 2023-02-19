@@ -1,7 +1,7 @@
-const userChallengesWidget = "tryharder.near/widget/all_user_challenges";
-const wakeupSignupWidget = "/#/tryharder.near/widget/wakeup_challenge";
-const languageSignupWidget = "/#/tryharder.near/widget/language_challenge";
-const friendsWidget = "/#/tryharder.near/widget/friendslist";
+const userChallengesWidget = "betteryou.near/widget/all_user_challenges";
+const wakeupSignupWidget = "/#/betteryou.near/widget/wakeup_challenge";
+const languageSignupWidget = "/#/betteryou.near/widget/language_challenge";
+const friendsWidget = "/#/betteryou.near/widget/friendslist";
 
 const header = {
   background: "#33333D",
@@ -74,16 +74,14 @@ const commitButton = {
 return (
   <div>
     <img src="https://user-images.githubusercontent.com/91919554/207791330-aa5bc143-b51d-49b0-a0be-eae26365f1f2.png" />
-
     <div class="header" style={header}>
-      {" "}
       Ready to get rewarded for achieving your goals?
     </div>
 
     <div class="paragraph" style={paragraph}>
       <div style={paragraphTitle}>Achieve your goals</div>
       <div style={paragraphContent}>
-        TryHarder helps you achieve your goals with support from your friends.
+        BetterYou helps you achieve your goals with support from your friends.
         You commit to a challenge and your friends will bet NEAR tokens on you.
         If you win, your friends will get a better version of you and reward you
         for it. If you lose, your friends will get a little richer and hold you
