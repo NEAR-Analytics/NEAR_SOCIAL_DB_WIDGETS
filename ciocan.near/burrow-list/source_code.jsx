@@ -27,12 +27,14 @@ const onLoad = (data) => {
 const allAssets = hasData
   ? assets.map((asset) => {
       const r = rewards.find((a) => a.token_id === asset.token_id);
-      const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+      const depositApy = r.apyBase + r.apyRewardTvl + r.apyReward;
+      const borrowApy = r.apyBaseBorrow;
       const liquidity = nFormat(asset.availableLiquidity, 2);
       return (
         <tr>
           <td>{asset.metadata.symbol}</td>
-          <td class="text-end">{toAPY(totalApy)}%</td>
+          <td class="text-end">{toAPY(depositApy)}%</td>
+          <td class="text-end">{toAPY(borrowApy)}%</td>
           <td class="text-end">{liquidity}</td>
         </tr>
       );
@@ -54,6 +56,9 @@ return (
           <th scope="col">Asset</th>
           <th scope="col" class="text-end">
             APY
+          </th>
+          <th scope="col" class="text-end">
+            APY (borrow)
           </th>
           <th scope="col" class="text-end">
             Liquidity
