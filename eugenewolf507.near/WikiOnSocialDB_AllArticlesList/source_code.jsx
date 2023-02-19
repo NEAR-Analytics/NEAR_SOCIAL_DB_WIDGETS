@@ -16,6 +16,7 @@ const resultArticles =
     const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
     return [...acc, postDataWithBlockHeight];
   }, []);
+
 // ========== FILTER DUBLICATES ==========
 const filteredArticles =
   resultArticles.length &&
