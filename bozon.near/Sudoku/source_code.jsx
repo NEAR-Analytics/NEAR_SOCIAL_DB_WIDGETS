@@ -1,4 +1,5 @@
 const CONTRACT = "sudoku.bozon.near";
+const STORAGE = "4030000000000000000000";
 
 if (context.accountId === null) return "login";
 
@@ -27,7 +28,7 @@ function startGame() {
     "start_game",
     {},
     "30000000000000",
-    player === null ? "3930000000000000000000" : undefined
+    player === null ? STORAGE : undefined
   );
 
   // State.update({
@@ -149,6 +150,7 @@ return (
     <Content>
       {player === null && (
         <div>
+          <div>First transaction may cost {parseInt(STORAGE) / 1e24}</div>
           <Button onClick={startGame}>Play</Button>
         </div>
       )}
