@@ -29,7 +29,8 @@ const resultArticles =
       `${accountId}/${addressForArticles}/main`,
       blockHeight
     );
-    return [...acc, JSON.parse(postData)];
+    const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
+    return [...acc, postDataWithBlockHeight];
   }, []);
 // ========== FILTER DUBLICATES ==========
 const filteredArticles =
@@ -71,7 +72,8 @@ return (
           filteredArticlesByUser.map((article, index) => (
             <li key={article.articleId}>
               <a
-                href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}`}
+                href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}&lastEditor=${article.lastEditor}
+            `}
               >
                 {article.articleId}{" "}
                 <small>
