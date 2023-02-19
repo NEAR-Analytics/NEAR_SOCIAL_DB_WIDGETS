@@ -409,7 +409,7 @@ return (
               backgroundColor: "black",
               color: "white",
               fontFamily: '"Press Start 2P", sans-serif',
-              margin: "0px 0px 0px 0px",
+              margin: "0px 5px 0px 0px",
               border: "1px solid #3a0201",
             }}
           />
@@ -422,7 +422,7 @@ return (
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
-            margin: "0px 0px 0px 10px",
+            margin: "0px 0px 0px 5px",
             border: "1px solid #3a0201",
           }}
         >
