@@ -96,8 +96,8 @@ function rollImageSINE() {
   State.update(state);
 }
 
-function rollImageSQUARE() {
-  var seed = Math.trunc(Math.random() * 100000000);
+function rollImageCOMPLEX() {
+  var seed = Math.trunc(Math.random() * math.complex("4 - 2i"));
   state.seed = seed;
   state.blur = 3;
   State.update(state);
