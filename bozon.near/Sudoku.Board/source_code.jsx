@@ -33,6 +33,7 @@ const Cell = styled.input`
     font-size: 12px;
     height: 24px;
     width: 24px;
+    border-radius: 6px;
   }
 
   &:disabled {
