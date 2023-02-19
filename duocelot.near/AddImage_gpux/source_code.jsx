@@ -422,7 +422,7 @@ return (
             backgroundColor: "black",
             color: "white",
             fontFamily: '"Press Start 2P", sans-serif',
-            margin: "20px 20px 20px 20px",
+            margin: "0px 0px 0px 10px",
             border: "1px solid #3a0201",
           }}
         >
