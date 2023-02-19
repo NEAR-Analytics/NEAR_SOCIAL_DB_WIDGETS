@@ -341,21 +341,6 @@ return (
           >
             〜
           </a>
-          <a
-            className="btn btn-outline-primary"
-            onClick={(e) => rollImage()}
-            style={{
-              width: "60px",
-              backgroundColor: "black",
-              color: "white",
-              fontFamily: '"Press Start 2P", sans-serif',
-              fontSize: "24px",
-              margin: "2px 2px 2px 2px",
-              border: "1px solid #3a0201",
-            }}
-          >
-            〜
-          </a>
         </div>
       </div>{" "}
       <div
