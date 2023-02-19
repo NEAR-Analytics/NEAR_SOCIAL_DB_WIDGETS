@@ -18,22 +18,49 @@ const onLoad = (data) => {
   State.update(data);
 };
 
+const depositedAssets = hasData
+  ? new Set([
+      ...account.supplied.map((a) => a.token_id),
+      ...account.collateral.map((a) => a.token_id),
+    ])
+  : new Set();
+
 const suppliedAssets = hasData
-  ? account.supplied.map((suppliedAsset) => {
-      const asset = assets.find((a) => a.token_id === suppliedAsset.token_id);
+  ? [...depositedAssets].map((depositedTokenId) => {
+      const asset = assets.find((a) => a.token_id === depositedTokenId);
+
       const r = rewards.find((a) => a.token_id === asset.token_id);
       const totalApy = r.apyBase + r.apyRewardTvl + r.apyReward;
 
       const decimals = asset.metadata.decimals + asset.config.extra_decimals;
-      const deposited = Number(shrinkToken(suppliedAsset.balance, decimals));
-      const usd = (deposited * asset.price.usd).toFixed(2);
+
+      const supplied = account.supplied.find(
+        (s) => s.token_id === depositedTokenId
+      );
+
+      const depositedBalance = supplied
+        ? Number(shrinkToken(supplied.balance, decimals))
+        : 0;
+
+      const collateral = account.collateral.find(
+        (c) => c.token_id === depositedTokenId
+      );
+
+      const collateralBalance = collateral
+        ? Number(shrinkToken(collateral.balance, decimals))
+        : 0;
+
+      const totalBalance = depositedBalance + collateralBalance;
+      const usd = totalBalance * asset.price.usd;
+
+      if (usd < 0.01) return null;
 
       return (
         <tr>
           <td>{asset.metadata.symbol}</td>
           <td class="text-end">{toAPY(totalApy)}%</td>
-          <td class="text-end">{deposited.toFixed(6)}</td>
-          <td class="text-end">${usd}</td>
+          <td class="text-end">{totalBalance.toFixed(4)}</td>
+          <td class="text-end">${usd.toFixed(2)}</td>
         </tr>
       );
     })
@@ -47,14 +74,16 @@ const borrowedAssets = hasData
 
       const decimals = asset.metadata.decimals + asset.config.extra_decimals;
       const borrowed = Number(shrinkToken(borrowedAsset.balance, decimals));
-      const usd = (borrowed * asset.price.usd).toFixed(2);
+      const usd = borrowed * asset.price.usd;
+
+      // if (usd < 0.01) return null;
 
       return (
         <tr>
           <td>{asset.metadata.symbol}</td>
           <td class="text-end">{toAPY(totalApy)}%</td>
-          <td class="text-end">{borrowed.toFixed(6)}</td>
-          <td class="text-end">${usd}</td>
+          <td class="text-end">{borrowed.toFixed(4)}</td>
+          <td class="text-end">${usd.toFixed(2)}</td>
         </tr>
       );
     })
@@ -99,7 +128,7 @@ return (
             APY
           </th>
           <th scope="col" class="text-end">
-            Deposited
+            Borrowed
           </th>
           <th scope="col" class="text-end">
             $
