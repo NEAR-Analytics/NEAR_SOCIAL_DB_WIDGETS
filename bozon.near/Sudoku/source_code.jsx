@@ -6,11 +6,7 @@ if (context.accountId === null) return "login";
 const player = Near.view(CONTRACT, "get_player", {
   account_id: context.accountId,
 });
-console.log(player);
-const slove = Near.view(CONTRACT, "get_solved", {
-  array: player.sudoku,
-});
-console.log(slove);
+const leaderboard = Near.view(CONTRACT, "get_leaderboard", {});
 
 const savedBoard = Storage.privateGet("board");
 
@@ -51,7 +47,12 @@ async function finishGame() {
     return State.update({ message: "sudoku not sloved" });
   }
 
-  Near.call(CONTRACT, "finish_game", {}, "30000000000000");
+  Near.call(
+    CONTRACT,
+    "finish_game",
+    { array: state.current_board },
+    "30000000000000"
+  );
 }
 
 function setValue(x, y, value) {
@@ -59,6 +60,8 @@ function setValue(x, y, value) {
   Storage.privateSet("board", state.current_board);
   State.update();
 }
+
+console.log(player);
 
 if (player !== null) {
   State.init({
@@ -106,13 +109,38 @@ return (
     </Header>
     <div>{state.message}</div>
     <Content>
-      {state.player.sudoku === null && (
+      {state.player === null && (
         <div>
           <div>First transaction may cost {parseInt(STORAGE) / 1e24}</div>
           <Button onClick={startGame}>Play</Button>
         </div>
       )}
-      {state.player.sudoku == null && <div>{JSON.stringify(state.player)}</div>}
+
+      {state.player.sudoku == null && (
+        <div>
+          <div>Sudoku successfully sloved</div>
+          <div>
+            Last time:
+            <Widget
+              src="bozon.near/widget/TimeAgo"
+              props={{
+                diffSec:
+                  state.player.last_sloved_game.time_end -
+                  state.player.last_sloved_game.time_start,
+              }}
+            />
+            Best time:
+            <Widget
+              src="bozon.near/widget/TimeAgo"
+              props={{
+                diffSec: state.player.best_time,
+              }}
+            />
+          </div>
+          <Button onClick={startGame}>Play</Button>
+        </div>
+      )}
+
       {state?.player?.sudoku && (
         <div>
           <Widget
