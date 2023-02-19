@@ -268,7 +268,6 @@ return (
             fontFamily: '"Press Start 2P", sans-serif',
             fontSize: "12px",
             margin: "0px 60px 0px 0px",
-            border: "1px solid #3a0201",
           }}
         >
           <input
