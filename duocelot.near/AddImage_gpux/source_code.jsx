@@ -89,6 +89,20 @@ function rollImage() {
   State.update(state);
 }
 
+function rollImageSINE() {
+  var seed = Math.trunc(Math.sin(radians) * radius);
+  state.seed = seed;
+  state.blur = 3;
+  State.update(state);
+}
+
+function rollImageSQUARE() {
+  var seed = Math.trunc(Math.random() * 100000000);
+  state.seed = seed;
+  state.blur = 3;
+  State.update(state);
+}
+
 var imgSrc =
   "https://ipfs.fleek.co/ipfs/bafybeih7tutznkvbuecy3nfmpwo7q5w7kzyqwdvlipjtcyqevnkpz2jf44";
 if (state.seed) {
