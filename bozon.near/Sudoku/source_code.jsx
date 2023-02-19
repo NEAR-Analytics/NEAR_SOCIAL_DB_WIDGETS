@@ -1,39 +1,13 @@
-const contract = "dev-1676717931120-98138433968368";
+const CONTRACT = "sudoku.bozon.near";
 
-const player = Near.view(contract, "get_player", {
+if (context.accountId === null) return "login";
+
+const player = Near.view(CONTRACT, "get_player", {
   account_id: context.accountId,
 });
 const savedBoard = Storage.privateGet("board");
 
-function startGame() {
-  Near.call(
-    contract,
-    "start_game",
-    {},
-    "30000000000000",
-    player === null ? "1620000000000000000000" : undefined
-  );
-}
-
-async function finishGame() {
-  const isSloved = Near.view(contract, "check_sloved", {
-    array: state.current_board,
-  });
-
-  if (!isSloved) {
-    return State.update({ message: "sudoku not sloved" });
-  }
-
-  Near.call(contract, "finish_game", {}, "30000000000000");
-}
-
-function setValue(x, y, value) {
-  state.current_board[x][y] = value;
-  Storage.privateSet("board", state.current_board);
-  State.update();
-}
-
-function isSavedBoardActual(savedBoard, boardInContract) {
+function isEqualBoard(savedBoard, boardInContract) {
   for (let x = 0; x < 9; x++) {
     for (let y = 0; y < 9; y++) {
       if (
@@ -47,12 +21,44 @@ function isSavedBoardActual(savedBoard, boardInContract) {
   return true;
 }
 
+function startGame() {
+  Near.call(
+    CONTRACT,
+    "start_game",
+    {},
+    "30000000000000",
+    player === null ? "3930000000000000000000" : undefined
+  );
+
+  // State.update({
+  //   player: result,
+  // });
+}
+
+async function finishGame() {
+  const isSloved = Near.view(CONTRACT, "check_sloved", {
+    array: state.current_board,
+  });
+
+  if (!isSloved) {
+    return State.update({ message: "sudoku not sloved" });
+  }
+
+  Near.call(CONTRACT, "finish_game", {}, "30000000000000");
+}
+
+function setValue(x, y, value) {
+  state.current_board[x][y] = value;
+  Storage.privateSet("board", state.current_board);
+  State.update();
+}
+
 if (player !== null) {
   State.init({
-    init_board: player.current_sudoku,
-    current_board: isSavedBoardActual(savedBoard, player.current_sudoku)
+    player,
+    current_board: isEqualBoard(savedBoard, player.sudoku)
       ? savedBoard
-      : player.current_sudoku,
+      : player.sudoku,
 
     message: null,
   });
@@ -160,9 +166,9 @@ return (
                         marginBottom:
                           (x + 1) % 3 == 0 && y < 8 ? "10px" : "0px",
                       }}
-                      disabled={state.init_board[x][y] != 0}
+                      disabled={state.player.sudoku[x][y] != 0}
                       onKeyDown={(event) => {
-                        if (state.init_board[x][y] != 0) return;
+                        if (state.player.sudoku[x][y] != 0) return;
 
                         if (event.key.match(/^$|^[1-9]$/)) {
                           return setValue(x, y, parseInt(event.key));
