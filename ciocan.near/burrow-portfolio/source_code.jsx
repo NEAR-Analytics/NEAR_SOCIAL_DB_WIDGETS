@@ -25,6 +25,7 @@ const depositedAssets = hasData
     ])
   : new Set();
 
+// get portfolio deposited assets
 const suppliedAssets = hasData
   ? [...depositedAssets].map((depositedTokenId) => {
       const asset = assets.find((a) => a.token_id === depositedTokenId);
@@ -64,6 +65,7 @@ const suppliedAssets = hasData
     })
   : undefined;
 
+// get portfolio borrowed assets
 const borrowedAssets = hasData
   ? account.borrowed.map((borrowedAsset) => {
       const asset = assets.find((a) => a.token_id === borrowedAsset.token_id);
