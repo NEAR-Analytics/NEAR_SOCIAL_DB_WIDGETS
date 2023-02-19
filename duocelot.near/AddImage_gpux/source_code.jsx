@@ -386,7 +386,11 @@ return (
             justifyContent: "center",
           }}
         ></div>
-        <div>
+        <div
+          style={{
+            margin: "0px 0px 0px 0px",
+          }}
+        >
           <input
             type="range"
             min={1.1}
