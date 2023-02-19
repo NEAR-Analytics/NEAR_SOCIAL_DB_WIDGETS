@@ -83,14 +83,14 @@ initState({
 });
 
 function rollImage() {
-  var seed = Math.trunc(Math.random() * 100000000);
+  var seed = Math.trunc(Math.random() * state.scale);
   state.seed = seed;
   state.blur = 3;
   State.update(state);
 }
 
 function rollImageSINE() {
-  var seed = Math.trunc(Math.sin(radians) * radius);
+  var seed = Math.trunc(Math.sin(radians) * state.scale);
   state.seed = seed;
   state.blur = 3;
   State.update(state);
