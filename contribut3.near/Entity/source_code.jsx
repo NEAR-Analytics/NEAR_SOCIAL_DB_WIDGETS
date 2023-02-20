@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
 const isPreview = props.isPreview ?? false;
+const inboxView = props.inboxView;
 
 if (!accountId) {
   return "Cannot show entity without account ID!";
@@ -84,6 +85,26 @@ const founderCircle = (
   </div>
 );
 
+const ctas = inboxView ? (
+  <></>
+) : (
+  <>
+    <div className="vr mx-3" />
+    <div className="d-flex flex-row justify-content-end align-items-start py-3">
+      <a
+        className="btn btn-outline-secondary me-2"
+        href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
+        onClick={() => props.update("entity")}
+      >
+        View details
+      </a>
+      <a className="btn btn-outline-secondary">
+        <i className="bi-box-arrow-up-right" />
+      </a>
+    </div>
+  </>
+);
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
@@ -99,10 +120,14 @@ const body = (
               <b>{profile.name}</b>
               <span className="text-muted">@{accountId}</span>
             </div>
-            <div className="text-success">
-              <i className="bi-play" />
-              <span className="ms-1">{entity.status}</span>
-            </div>
+            {inboxView ? (
+              <></>
+            ) : (
+              <div className="text-success">
+                <i className="bi-play" />
+                <span className="ms-1">{entity.status}</span>
+              </div>
+            )}
           </div>
           <div className="d-flex flex-row justify-content-start align-items-center my-1">
             {founderCircle}
@@ -129,19 +154,7 @@ const body = (
         </div>
       </div>
     </div>
-    <div className="vr mx-3" />
-    <div className="d-flex flex-row justify-content-end align-items-start py-3">
-      <a
-        className="btn btn-outline-secondary me-2"
-        href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
-        onClick={() => props.update("entity")}
-      >
-        View details
-      </a>
-      <a className="btn btn-outline-secondary">
-        <i className="bi-box-arrow-up-right" />
-      </a>
-    </div>
+    {ctas}
   </div>
 );
 
