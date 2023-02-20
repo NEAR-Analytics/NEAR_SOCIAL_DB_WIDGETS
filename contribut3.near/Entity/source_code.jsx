@@ -133,7 +133,7 @@ const body = (
               <></>
             ) : (
               <div className="d-flex flex-row justify-content-between align-items-center">
-                <div className="text-success">
+                <div className="text-success me-3">
                   <i className="bi-play" />
                   <span className="ms-1">{entity.status}</span>
                 </div>
