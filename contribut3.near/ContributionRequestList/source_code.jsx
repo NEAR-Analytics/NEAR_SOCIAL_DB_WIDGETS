@@ -1,6 +1,7 @@
 const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
+const cid = props.cid;
 
 const requests = Near.view(
   ownerId,
@@ -18,8 +19,9 @@ if (Array.isArray(requests) && requests.length === 0) {
   return "No contribution requests for this entity found!";
 }
 
-const allRequests = requests.filter(([contributorId]) =>
-  contributorId.includes(search)
+const allRequests = requests.filter(
+  ([contributorId, contribution]) =>
+    contributorId.includes(search) && !(cid && contribution.need !== cid)
 );
 
 if (!allRequests || allRequests.length === 0) {
