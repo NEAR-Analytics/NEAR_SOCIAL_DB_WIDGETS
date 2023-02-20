@@ -11,6 +11,10 @@ const requests = Near.view(
 );
 
 if (!requests) {
+  return "Loading...";
+}
+
+if (Array.isArray(requests) && requests.length === 0) {
   return "No contribution requests for this entity found!";
 }
 
@@ -19,7 +23,7 @@ const allRequests = requests.filter(([contributorId]) =>
 );
 
 if (!allRequests || allRequests.length === 0) {
-  return "No contribution needs found!";
+  return "No requests match search criteria!";
 }
 
 return (
