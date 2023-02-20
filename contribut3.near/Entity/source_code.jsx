@@ -159,7 +159,7 @@ const body = (
 );
 
 return (
-  <div className="border-bottom border-secondary">
+  <div className="border-bottom border-secondary-subtle">
     <div className="px-3 py-0">{body}</div>
     {isAuthorized && !notStandalone ? (
       <div className="card-footer">
