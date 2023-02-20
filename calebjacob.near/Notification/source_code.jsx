@@ -1,17 +1,15 @@
 const { value } = props;
 const { type } = value;
+const path = value.item.path || "";
 
-console.log(props);
-
-const isComment = value.item.path === `${context.accountId}/post/comment`;
-const isPost = value.item.path === `${context.accountId}/post/main`;
+const postOwnerAccountId = path.split("/")[0] || context.accountId;
+const isComment = path.indexOf("/post/comment") > 0;
+const isPost = path.indexOf("/post/main") > 0;
 const likedPost = type === "like" && isPost;
 const likedComment = type === "like" && isComment;
-const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${
-  context.accountId
-}&${isComment ? "commentBlockHeight" : "blockHeight"}=${
-  value.item.blockHeight
-}`;
+const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${postOwnerAccountId}&${
+  isComment ? "commentBlockHeight" : "blockHeight"
+}=${value.item.blockHeight}`;
 
 const supportedTypes = [
   "poke",
