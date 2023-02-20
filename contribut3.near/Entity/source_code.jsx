@@ -139,7 +139,7 @@ const body = (
                 </div>
                 <div
                   className="btn-group dropstart"
-                  style="--$enable-caret = false"
+                  style="--enable-caret = false"
                 >
                   <a
                     className="btn btn-outline-secondary dropdown-toggle"
