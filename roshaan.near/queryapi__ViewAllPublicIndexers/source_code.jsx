@@ -97,12 +97,6 @@ const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiD
 
 return (
   <>
-    <ButtonLink
-      primary
-      href="/#/roshaan.near/widget/queryapi__QueryApiDashboard"
-    >
-      Create New Indexer
-    </ButtonLink>
     <H2>
       Public Indexers <span>({state.indexers.length})</span>
     </H2>
