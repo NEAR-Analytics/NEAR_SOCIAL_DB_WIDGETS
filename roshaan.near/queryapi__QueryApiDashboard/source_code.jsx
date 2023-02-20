@@ -34,6 +34,7 @@ const Main = styled.div`
 `;
 
 const Section = styled.div`
+  padding-left: 10px;
   padding-top: 24px;
   border-left: ${(p) => (p.primary ? "1px solid #ECEEF0" : "none")};
   border-right: ${(p) => (p.primary ? "1px solid #ECEEF0" : "none")};
