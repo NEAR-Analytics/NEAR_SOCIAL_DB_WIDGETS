@@ -3,13 +3,15 @@ const { type } = value;
 
 console.log(props);
 
-const likedPost =
-  type === "like" && value.item.path === `${context.accountId}/post/main`;
-const likedComment =
-  type === "like" && value.item.path === `${context.accountId}/post/comment`;
+const isComment = value.item.path === `${context.accountId}/post/comment`;
+const isPost = value.item.path === `${context.accountId}/post/main`;
+const likedPost = type === "like" && isPost;
+const likedComment = type === "like" && isComment;
 const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${
   context.accountId
-}&blockHeight=${value?.item?.blockHeight || props.blockHeight}`;
+}&${isComment ? "commentBlockHeight" : "blockHeight"}=${
+  value.item.blockHeight
+}`;
 
 const supportedTypes = [
   "poke",
