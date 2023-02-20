@@ -85,6 +85,8 @@ const computeResults = (term) => {
 
 if (!props.term) props.term = "test";
 
+console.log(props, state);
+
 if (props.term && props.term !== state.oldTerm) {
   State.update({
     oldTerm: props.term,
