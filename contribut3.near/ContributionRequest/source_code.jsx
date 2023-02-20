@@ -31,6 +31,16 @@ const contributionRequest = props.isPreview
     contributor_id: contributorId,
   });
 
+const need = contributionRequest.need
+  ? Near.view(
+    ownerId,
+    "get_contribution_need",
+    { account_id: entityId, cid: contributionRequest.need },
+    "final",
+    true
+  )
+  : null;
+
 if (!contributionRequest) {
   return props.isPreview
     ? "You must provide contribution request object in preview mode!"
