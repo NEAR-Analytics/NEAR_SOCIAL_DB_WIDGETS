@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
   > div {
     > * {
-      margin-bottom: 24px;
+      margin-bottom: 12px;
 
       &:last-child {
         margin-bottom: 0;
