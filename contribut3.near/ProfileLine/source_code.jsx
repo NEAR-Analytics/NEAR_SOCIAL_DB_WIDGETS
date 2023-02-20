@@ -3,6 +3,7 @@ const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
 const additionalText = props.additionalText;
 const additionalRow = props.additionalRow;
+const alignment = additionalRow ? "start" : "center";
 const additionalColumn = props.additionalColumn;
 const imageSize = props.imageSize;
 
@@ -47,8 +48,7 @@ const href = `https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "en
 
 return (
   <div
-    className={`d-flex flex-row justify-content-start align-items-${additionalRow ? "start" : "center"
-      }`}
+    className={`d-flex flex-row justify-content-start align-items-${alignment}`}
   >
     <a className="text-dark" href={href}>
       <div className="m-2">
