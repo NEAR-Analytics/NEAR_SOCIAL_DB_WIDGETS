@@ -69,6 +69,8 @@ const Text = styled.p`
   }
   
   &[href] {
+    font-weight: 600;
+    color: #006ADC !important;
     display: inline-flex;
     gap: 0.25rem;
     
