@@ -3,6 +3,7 @@ const accountId = props.accountId;
 const notStandalone = props.notStandalone ?? false;
 const isPreview = props.isPreview ?? false;
 const cid = props.cid;
+const inboxView = props.inboxView;
 
 if (!accountId || !cid) {
   return "Cannot render contribution need widget without account ID or CID!";
@@ -63,6 +64,31 @@ const circle = (
   </div>
 );
 
+const ctas = inboxView ? (
+  <></>
+) : (
+  <>
+    <div className="vr mx-3" />
+    <div className="d-flex flex-row justify-content-end align-items-start py-3">
+      <a
+        className="btn btn-outline-secondary me-2 fw-semibold"
+        href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
+        style={{
+          backgroundColor: "#F9F5FF",
+          borderColor: "#F9F5FF",
+          color: "#6941C6",
+        }}
+      >
+        <i className="bi-person-plus" />
+        Propose
+      </a>
+      <a className="btn btn-outline-secondary">
+        <i className="bi-box-arrow-up-right" />
+      </a>
+    </div>
+  </>
+);
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
@@ -107,24 +133,6 @@ const body = (
         </div>
         <div className="text-truncate my-2">{contributionNeed.description}</div>
       </div>
-    </div>
-    <div className="vr mx-3" />
-    <div className="d-flex flex-row justify-content-end align-items-start py-3">
-      <a
-        className="btn btn-outline-secondary me-2 fw-semibold"
-        href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
-        style={{
-          backgroundColor: "#F9F5FF",
-          borderColor: "#F9F5FF",
-          color: "#6941C6",
-        }}
-      >
-        <i className="bi-person-plus" />
-        Propose
-      </a>
-      <a className="btn btn-outline-secondary">
-        <i className="bi-box-arrow-up-right" />
-      </a>
     </div>
   </div>
 );
