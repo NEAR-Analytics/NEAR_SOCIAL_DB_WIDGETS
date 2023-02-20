@@ -60,10 +60,9 @@ return (
           <div>
             <b>{fullName}</b>
             <span className="text-muted mx-1">@{accountId}</span>
-            {additionalText ? <b>{additionalText}</b> : <></>}
+            {additionalText}
           </div>
         </div>
-
         {additionalRow}
       </div>
     </div>
