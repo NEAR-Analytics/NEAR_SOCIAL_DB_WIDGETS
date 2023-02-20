@@ -53,7 +53,7 @@ const imageUrl =
 const contributorCircle = (
   <div
     className="profile-circle d-inline-block"
-    title={`${contributorProfile.name} @${contributorId}`}
+    title={`${contributorProfile.name || contributorId} @${contributorId}`}
     style={{ width: "1.5em", height: "1.5em" }}
   >
     <img
