@@ -469,7 +469,7 @@ return (
             </H2>
             <div>
               <Widget
-                src={"roshaan.near/widget/queryapi__ViewAllIndexersPublic"}
+                src={"roshaan.near/widget/queryapi__ViewAllPublicIndexers"}
               />
             </div>
           </div>
