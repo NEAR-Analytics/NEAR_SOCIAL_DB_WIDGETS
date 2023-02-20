@@ -39,6 +39,7 @@ const fullName = profile.name || state.data.name || accountId;
 
 return (
   <a
+    className="text-dark"
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
       }`}
   >
