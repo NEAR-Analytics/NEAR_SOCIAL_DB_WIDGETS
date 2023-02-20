@@ -449,9 +449,11 @@ return (
           <div>
             {state.indexers.length > 0 &&
               (state.selected_indexer != "" ? (
-                <H2>{state.selected_indexer}</H2>
+                <H2>
+                  {`${state.selected_accountId}/${state.selected_indexerName}`}
+                </H2>
               ) : (
-                <H2>{state.indexers[0].indexerName}</H2>
+                <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
