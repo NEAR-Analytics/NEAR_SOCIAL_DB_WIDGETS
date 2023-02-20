@@ -25,16 +25,18 @@ if (commentBlockHeight) {
 }
 
 if (parentPost) {
-  <Widget
-    src="calebjacob.near/widget/Posts.Post"
-    props={{
-      ...parentPost,
-      highlightComment: { accountId, blockHeight: commentBlockHeight },
-      commentsLimit: 30,
-      subscribe: true,
-      raw: props.raw,
-    }}
-  />;
+  return (
+    <Widget
+      src="calebjacob.near/widget/Posts.Post"
+      props={{
+        ...parentPost,
+        highlightComment: { accountId, blockHeight: commentBlockHeight },
+        commentsLimit: 30,
+        subscribe: true,
+        raw: props.raw,
+      }}
+    />
+  );
 }
 
 return (
