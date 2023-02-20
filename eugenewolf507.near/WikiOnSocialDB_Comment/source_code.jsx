@@ -1,9 +1,17 @@
+const addressForArticles = "wikiTest2Article";
+const addressForComments = "wikiTest2Comment";
+const authorForWidget = "eugenewolf507.near";
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const content =
   props.content ??
-  JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
+  JSON.parse(
+    Social.get(
+      `${accountId}/${addressForArticles}/${addressForComments}`,
+      blockHeight
+    ) ?? "null"
+  );
 const parentItem = content.item;
 const highlight = !!props.highlight;
 const raw = !!props.raw;
@@ -13,9 +21,13 @@ const extractNotifyAccountId = (item) => {
     return undefined;
   }
   const accountId = item.path.split("/")[0];
-  return `${accountId}/post/main` === item.path ? accountId : undefined;
+  return `${accountId}/${addressForArticles}/${addressForComments}` ===
+    item.path
+    ? accountId
+    : undefined;
 };
 
+//TODO - adress should be changed
 const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 return (
