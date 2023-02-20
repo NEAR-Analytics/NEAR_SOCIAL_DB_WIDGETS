@@ -43,18 +43,14 @@ if (!state.data || !profile) {
 
 const fullName = profile.name || state.data.name || accountId;
 const href = `https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
-  }&accountId=${accountId}`; `
+  }&accountId=${accountId}`;
 
 return (
   <div className="d-flex flex-row justify-content-start align-items-center">
-    <a
-      className="text-dark"
-      href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
-        }`}
-    >
+    <a className="text-dark" href={href}>
       <div className="m-2">
         <Widget
-          src={`${ ownerId } /widget/ProfileCircle`}
+          src={`${ownerId} /widget/ProfileCircle`}
           props={{ accountId, size: imageSize }}
         />
       </div>
@@ -62,11 +58,7 @@ return (
     <div className="d-flex flex-column justify-content-between align-items-start w-100">
       <div className="w-100 d-flex flex-row justify-content-between align-items-start">
         <div>
-          <a
-            className="text-dark"
-            href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
-              }`}
-          >
+          <a className="text-dark" href={href}>
             <b>{fullName}</b>
             <span className="text-muted mx-1">@{accountId}</span>
           </a>
