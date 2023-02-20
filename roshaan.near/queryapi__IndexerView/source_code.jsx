@@ -118,8 +118,10 @@ return (
     </CardBody>
 
     <CardFooter>
-      <ButtonLink href={statusUrl}>View Status</ButtonLink>
-      <ButtonLink primary href={editUrl}>
+      <ButtonLink href={statusUrl} target="_blank">
+        View Status
+      </ButtonLink>
+      <ButtonLink primary href={editUrl} target="_blank">
         View Indexer Code
       </ButtonLink>
     </CardFooter>
