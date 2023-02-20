@@ -26,9 +26,8 @@ if (!state.data || !profile) {
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
           <div>
-            <b>{profile.name}</b>
-            <span className="text-muted mx-1">@{accountId}</span>
-            {additionalText ? <b>{additionalText}</b> : <></>}
+            <b>Loading...</b>
+            <span className="text-muted mx-1">@loading.near</span>
           </div>
         </div>
       </div>
@@ -50,7 +49,7 @@ return (
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
           <div>
-            <b>{profile.name}</b>
+            <b>{fullName}</b>
             <span className="text-muted mx-1">@{accountId}</span>
             {additionalText ? <b>{additionalText}</b> : <></>}
           </div>
