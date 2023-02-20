@@ -3,6 +3,7 @@ const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
 const additionalText = props.additionalText;
 const additionalRow = props.additionalRow;
+const imageSize = props.imageSize;
 
 State.init({
   data: null,
@@ -22,7 +23,10 @@ if (!state.data || !profile) {
   return (
     <div className="d-flex flex-row justify-content-start">
       <div className="m-2">
-        <Widget src={`${ownerId}/widget/ProfileCircle`} props={{ accountId }} />
+        <Widget
+          src={`${ownerId}/widget/ProfileCircle`}
+          props={{ accountId, size: imageSize }}
+        />
       </div>
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
@@ -46,7 +50,10 @@ return (
   >
     <div className="d-flex flex-row justify-content-start align-items-center">
       <div className="m-2">
-        <Widget src={`${ownerId}/widget/ProfileCircle`} props={{ accountId }} />
+        <Widget
+          src={`${ownerId}/widget/ProfileCircle`}
+          props={{ accountId, size: imageSize }}
+        />
       </div>
       <div className="d-flex flex-column justify-content-between align-items-start w-100">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
