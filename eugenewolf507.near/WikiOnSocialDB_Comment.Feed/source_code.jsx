@@ -15,7 +15,7 @@ const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
       <Widget
-        src="mob.near/widget/MainPage.Comment"
+        src={`${authorForWidget}/widget/WikiOnSocialDB_Comment`}
         props={{
           accountId: a.accountId,
           blockHeight: a.blockHeight,
@@ -31,7 +31,7 @@ const renderItem = (a) =>
 return (
   <div>
     <Widget
-      src="mob.near/widget/ManualIndexFeed"
+      src={`${authorForWidget}/widget/WikiOnSocialDB_ManualIndexFeed`}
       props={{
         index,
         reverse: true,
