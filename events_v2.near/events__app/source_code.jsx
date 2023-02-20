@@ -11,7 +11,7 @@ return (
       appName: APP_NAME,
       entryRoute: 'index',
       entryProps: {},
-      DEBUG: DEBUG.match(/true|1|yes/iu),
+      DEBUG: /true|1|yes/iu.test(DEBUG),
     }}
   />
 );
