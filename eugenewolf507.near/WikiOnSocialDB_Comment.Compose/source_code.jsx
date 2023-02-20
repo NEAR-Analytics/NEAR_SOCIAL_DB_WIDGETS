@@ -1,3 +1,6 @@
+const addressForArticles = "wikiTest2Article";
+const addressForComments = "wikiTest2Comment";
+const authorForWidget = "eugenewolf507.near";
 if (!context.accountId) {
   return "";
 }
@@ -10,11 +13,13 @@ if (!context.accountId) {
 
 const composeData = () => {
   const data = {
-    post: {
-      comment: JSON.stringify(Object.assign({ item }, state.content)),
+    [addressForArticles]: {
+      [addressForComments]: JSON.stringify(
+        Object.assign({ item }, state.content)
+      ),
     },
     index: {
-      comment: JSON.stringify({
+      [addressForComments]: JSON.stringify({
         key: item,
         value: {
           type: "md",
@@ -25,7 +30,7 @@ const composeData = () => {
 
   const notifications = state.extractTagNotifications(state.content.text, {
     type: "social",
-    path: `${context.accountId}/post/comment`,
+    path: `${context.accountId}/${addressForArticles}/${addressForComments}`,
   });
 
   if (props.notifyAccountId && props.notifyAccountId !== context.accountId) {
