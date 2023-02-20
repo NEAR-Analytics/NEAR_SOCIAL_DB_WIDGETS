@@ -125,7 +125,11 @@ const content = {
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{ search: state.search, update: props.update }}
+      props={{
+        search: state.search,
+        update: props.update,
+        notStandalone: true,
+      }}
     />
   ),
 }[state.content];
