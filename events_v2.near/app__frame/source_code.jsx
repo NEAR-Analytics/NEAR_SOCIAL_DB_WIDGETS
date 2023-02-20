@@ -551,17 +551,6 @@ const ENV = { appOwner, appName, VERSION };
 const COST_NEAR_PER_BYTE = Math.pow(10, 20);
 const TGAS_300 = '300000000000000';
 
-const SessionState = {
-  _state: {},
-  set: (prop, value) => {
-    SessionState._state[prop] = value;
-    return true;
-  },
-  get: (prop) => {
-    return SessionState._state[prop];
-  },
-};
-
 function orientation2FlexDirection({ orientation }) {
   switch (orientation) {
     case 'horizontal':
@@ -582,15 +571,6 @@ function orientation2FlexWrap({ orientation }) {
     default:
       return 'nowrap';
   }
-}
-
-function sessionGet(env, prop, defaultValue) {
-  return (
-    SessionState.get(`${env.appOwner}.${env.appName}.${prop}`) || defaultValue
-  );
-}
-function sessionSet(env, prop, value) {
-  return SessionState.set(`${env.appOwner}.${env.appName}.${prop}`, value);
 }
 
 function storageGet(env, prop, defaultValue) {
@@ -869,12 +849,6 @@ function mergeEnv(env, newEnv) {
 function renderComponent(name, props, env) {
   const widgetEnv = mergeEnv(ENV, env);
 
-  const _sessionGet = (...args) => {
-    return sessionGet(widgetEnv, ...args);
-  };
-  const _sessionSet = (...args) => {
-    return sessionSet(widgetEnv, ...args);
-  };
   const _storageGet = (...args) => {
     return storageGet(widgetEnv, ...args);
   };
@@ -916,8 +890,6 @@ function renderComponent(name, props, env) {
     push: _push,
     pop: _pop,
     replace: _replace,
-    sessionGet: _sessionGet,
-    sessionSet: _sessionSet,
     storageGet: _storageGet,
     storageSet: _storageSet,
     layoutPathFromName: _layoutPathFromName,
