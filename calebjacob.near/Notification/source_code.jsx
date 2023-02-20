@@ -143,10 +143,12 @@ return (
       {type === "follow" && <>Followed you</>}
       {type === "unfollow" && <>Unfollowed you</>}
       {type === "poke" && <>Poked you</>}
-      {type === "like" && likedPost && <>Liked your post</>}
-      {type === "like" && likedComment && <>Liked your comment</>}
-      {type === "comment" && <>Commented on your post</>}
-      {type === "mention" && <>Mentioned you</>}
+      <Text as="a" href={postUrl}>
+        {type === "like" && likedPost && <>Liked your post</>}
+        {type === "like" && likedComment && <>Liked your comment</>}
+        {type === "comment" && <>Commented on your post</>}
+        {type === "mention" && <>Mentioned you</>}
+      </Text>
       <Widget
         src="mob.near/widget/TimeAgo"
         props={{ blockHeight: props.blockHeight }}
