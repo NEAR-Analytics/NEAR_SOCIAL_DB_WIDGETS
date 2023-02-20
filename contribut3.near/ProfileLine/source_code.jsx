@@ -17,6 +17,9 @@ Near.asyncView(
 
 const profile = Social.getr(`${accountId}/profile`);
 
+if (!state.data || !profile) {
+}
+
 const fullName = profile.name || state.data.name || accountId;
 
 return (
