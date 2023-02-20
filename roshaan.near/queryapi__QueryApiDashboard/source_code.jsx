@@ -464,9 +464,6 @@ return (
         )}
         {state.activeTab === "public-indexers" && (
           <div>
-            <H2>
-              Public Indexers <span>({state.indexers.length})</span>
-            </H2>
             <div>
               <Widget
                 src={"roshaan.near/widget/queryapi__ViewAllPublicIndexers"}
