@@ -87,7 +87,15 @@ const controls = isAuthorized ? (
       <i className="bi-check" />
       <span>Accept</span>
     </a>
-    <a className="btn btn-outline-danger mt-2">
+    <a
+      className="btn btn-outline-danger mt-2"
+      onClick={() =>
+        Near.call(ownerId, "reject_contribution", {
+          entity_id: entityId,
+          contributor_id: contributorId,
+        })
+      }
+    >
       <i className="bi-x" />
       <span>Reject</span>
     </a>
