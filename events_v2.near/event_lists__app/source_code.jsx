@@ -2,6 +2,7 @@ const APP_OWNER = 'events_v2.near';
 const APP_NAME = 'event_lists';
 const DEBUG = 'true';
 
+console.log('skjdfhasdf');
 return (
   <Widget
     src={`${APP_OWNER}/widget/app__frame`}
