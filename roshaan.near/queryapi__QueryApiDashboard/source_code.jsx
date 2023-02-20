@@ -456,9 +456,9 @@ return (
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
-                indexer_name:
+                indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
-                account_id: accountId,
+                accountId: accountId,
               }}
             />
           </div>
