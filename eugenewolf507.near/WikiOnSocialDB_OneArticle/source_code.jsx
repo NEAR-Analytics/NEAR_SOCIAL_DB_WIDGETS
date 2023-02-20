@@ -1,5 +1,9 @@
 const addressForArticles = "wikiTest2Article";
 const authorForWidget = "eugenewolf507.near";
+const accountId = props.accountId ?? context.accountId;
+if (!accountId) {
+  return "No account ID";
+}
 const { articleId, blockHeight, lastEditor } = props;
 State.init({});
 
