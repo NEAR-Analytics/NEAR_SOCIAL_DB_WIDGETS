@@ -127,7 +127,7 @@ const body = (
           accountId,
           isEntity: true,
           imageSize: "3em",
-          additionalText: inboxView ? (
+          additionalColumn: inboxView ? (
             <></>
           ) : (
             <div className="d-flex flex-row justify-content-between align-items-center">
