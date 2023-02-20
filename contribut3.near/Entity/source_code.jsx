@@ -159,8 +159,8 @@ const body = (
 );
 
 return (
-  <div className="card">
-    <div className="card-body px-3 py-0">{body}</div>
+  <div className="border-bottom border-secondary">
+    <div className="px-3 py-0">{body}</div>
     {isAuthorized && !notStandalone ? (
       <div className="card-footer">
         <Widget
