@@ -43,28 +43,28 @@ if (!state.data || !profile) {
 const fullName = profile.name || state.data.name || accountId;
 
 return (
-  <a
-    className="text-dark"
-    href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
-      }`}
-  >
-    <div className="d-flex flex-row justify-content-start align-items-center">
+  <div className="d-flex flex-row justify-content-start align-items-center">
+    <a
+      className="text-dark"
+      href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
+        }`}
+    >
       <div className="m-2">
         <Widget
           src={`${ownerId}/widget/ProfileCircle`}
           props={{ accountId, size: imageSize }}
         />
       </div>
-      <div className="d-flex flex-column justify-content-between align-items-start w-100">
-        <div className="w-100 d-flex flex-row justify-content-between align-items-start">
-          <div>
-            <b>{fullName}</b>
-            <span className="text-muted mx-1">@{accountId}</span>
-            {additionalText}
-          </div>
+    </a>
+    <div className="d-flex flex-column justify-content-between align-items-start w-100">
+      <div className="w-100 d-flex flex-row justify-content-between align-items-start">
+        <div>
+          <b>{fullName}</b>
+          <span className="text-muted mx-1">@{accountId}</span>
+          {additionalText}
         </div>
-        {additionalRow}
       </div>
+      {additionalRow}
     </div>
-  </a>
+  </div>
 );
