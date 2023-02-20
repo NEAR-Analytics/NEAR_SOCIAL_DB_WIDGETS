@@ -64,9 +64,9 @@ return (
           </a>
           {additionalText}
         </div>
-        {additionalColumn}
       </div>
       {additionalRow}
     </div>
+    {additionalColumn}
   </div>
 );
