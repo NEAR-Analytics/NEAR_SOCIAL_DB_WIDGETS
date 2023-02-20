@@ -244,7 +244,7 @@ const indexerView = (accountId, indexerName, idx) => {
           onClick={() =>
             State.update({
               activeTab: "indexer-status",
-              selected_indexer: indexerName,
+              selected_indexer: `${accountId}/${indexerName}`,
             })
           }
         >
@@ -256,7 +256,7 @@ const indexerView = (accountId, indexerName, idx) => {
           onClick={() =>
             State.update({
               activeTab: "editor-window",
-              selected_indexer: indexerName,
+              selected_indexer: `${accountId}/${indexerName}`,
             })
           }
         >
@@ -449,9 +449,7 @@ return (
           <div>
             {state.indexers.length > 0 &&
               (state.selected_indexer != "" ? (
-                <H2>
-                  {`${state.selected_accountId}/${state.selected_indexerName}`}
-                </H2>
+                <H2>{state.selected_indexer}</H2>
               ) : (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
