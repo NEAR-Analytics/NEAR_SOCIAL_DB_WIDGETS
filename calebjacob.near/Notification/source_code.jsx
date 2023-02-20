@@ -27,6 +27,11 @@ const Wrapper = styled.div`
   border: 1px solid #ECEEF0;
   padding: 12px;
   border-radius: 6px;
+  transition: background-clor: 200ms;
+
+  &:hover {
+    background: #eefeef;
+  }
 
   > *:first-child {
     width: 200px;
