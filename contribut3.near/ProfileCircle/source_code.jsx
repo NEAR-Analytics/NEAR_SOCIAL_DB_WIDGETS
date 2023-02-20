@@ -1,6 +1,7 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
+const size = props.size ?? "1.5em";
 
 State.init({
   data: null,
@@ -21,7 +22,7 @@ if (!state.data || !profile) {
     <div
       className="profile-circle d-inline-block"
       title={`loading...`}
-      style={{ width: "1.5em", height: "1.5em" }}
+      style={{ width: size, height: size }}
     >
       <img
         className="rounded-circle w-100 h-100"
@@ -44,7 +45,7 @@ return (
   <div
     className="profile-circle d-inline-block"
     title={`${fullName} @${accountId}`}
-    style={{ width: "1.5em", height: "1.5em" }}
+    style={{ width: size, height: size }}
   >
     <img
       className="rounded-circle w-100 h-100"
