@@ -138,7 +138,7 @@ return (
         {state.showReply && (
           <div className="mb-2">
             <Widget
-              src="mob.near/widget/MainPage.Comment.Compose"
+              src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Compose`}
               props={{
                 notifyAccountId,
                 item,
@@ -148,7 +148,7 @@ return (
           </div>
         )}
         <Widget
-          src="mob.near/widget/MainPage.Comment.Feed"
+          src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Feed`}
           props={{
             item,
             highlightComment: props.highlightComment,
