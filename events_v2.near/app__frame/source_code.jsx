@@ -537,6 +537,8 @@ const rootRoute = {
   props: entryProps,
 };
 
+console.log('rootRoute', rootRoute);
+
 if (!state) {
   State.init({
     renderCycles: state ? state.renderCycles + 1 : 1,
