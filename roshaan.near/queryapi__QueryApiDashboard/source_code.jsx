@@ -21,7 +21,14 @@ State.init({
 const Wrapper = styled.div`
   margin-top: calc(var(--body-top-padding) * -1);
 `;
-
+const NavBarLogo = styled.a`
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+`;
 const Main = styled.div`
   display: grid;
   grid-template-columns: 284px minmax(0, 1fr);
@@ -419,6 +426,23 @@ return (
 
     <Main>
       <Section active={state.activeTab === "indexers"}>
+        <NavBarLogo
+          href="https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard"
+          title="QueryApi"
+        >
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              className: "d-inline-block align-text-top me-2",
+              image: metadata.image,
+              style: { height: "24px" },
+              fallbackUrl:
+                "https://upload.wikimedia.org/wikipedia/commons/8/86/Database-icon.svg",
+              alt: "the queryapi logo",
+            }}
+          />
+          QueryApi
+        </NavBarLogo>
         {allIndexerView()}
       </Section>
 
