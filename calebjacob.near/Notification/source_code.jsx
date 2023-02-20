@@ -3,8 +3,8 @@ const { type } = value;
 const path = value.item.path || "";
 
 const postOwnerAccountId = path.split("/")[0] || context.accountId;
-const isComment = path.indexOf("/post/comment") > 0;
-const isPost = path.indexOf("/post/main") > 0;
+const isComment = path.indexOf("/post/comment") > 0 || type === "comment";
+const isPost = !isComment && path.indexOf("/post/main") > 0;
 const likedPost = type === "like" && isPost;
 const likedComment = type === "like" && isComment;
 const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${postOwnerAccountId}&${
