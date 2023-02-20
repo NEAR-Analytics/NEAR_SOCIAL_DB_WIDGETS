@@ -171,9 +171,9 @@ return (
         props={{ accountId: props.accountId, back: true, primary: true }}
       />
     )}
-
-    {(type === "like" || type === "comment" || type === "mention") && (
-      <Button href={postUrl}>View {isComment ? "Comment" : "Post"}</Button>
-    )}
   </Wrapper>
 );
+
+// {(type === "like" || type === "comment" || type === "mention") && (
+//       <Button href={postUrl}>View {isComment ? "Comment" : "Post"}</Button>
+//     )}
