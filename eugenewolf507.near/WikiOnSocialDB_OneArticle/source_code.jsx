@@ -21,11 +21,23 @@ const saveArticle = (args) => {
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
   };
-  Social.set({
-    [addressForArticles]: {
-      articles: { [state.article.articleId]: { ...newArticleData } },
+
+  const composedData = {
+    data: {
+      wikiTest2Article: {
+        main: JSON.stringify(newArticleData),
+      },
+      index: {
+        wikiTest2Article: JSON.stringify({
+          key: "main",
+          value: {
+            type: "md",
+          },
+        }),
+      },
     },
-  });
+  };
+  Social.set(composedData, { force: true });
 };
 
 return (
