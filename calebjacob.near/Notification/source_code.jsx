@@ -43,7 +43,7 @@ const Wrapper = styled.div`
     margin-left: auto;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     flex-direction: column;
     align-items: start;
     gap: 8px;
