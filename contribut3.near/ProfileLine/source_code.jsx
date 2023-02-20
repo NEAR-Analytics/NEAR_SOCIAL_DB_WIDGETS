@@ -20,7 +20,10 @@ const profile = Social.getr(`${accountId}/profile`);
 const fullName = profile.name || state.data.name || accountId;
 
 return (
-  <a>
+  <a
+    href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
+      }`}
+  >
     <div className="d-flex flex-row justify-content-start">
       <div className="m-2">
         <Widget src={`${ownerId}/widget/ProfileCircle`} props={{ accountId }} />
