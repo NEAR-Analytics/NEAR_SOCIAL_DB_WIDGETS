@@ -53,7 +53,10 @@ return (
   <>
     {allNeeds.map(([accountId, cid]) => (
       <div key={cid} className="mb-2">
-        <Widget src={`${ownerId}/widget/Need`} props={{ accountId, cid }} />
+        <Widget
+          src={`${ownerId}/widget/Need`}
+          props={{ accountId, cid, notStandalone: props.notStandalone }}
+        />
       </div>
     ))}
   </>
