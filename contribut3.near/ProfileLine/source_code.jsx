@@ -43,7 +43,7 @@ return (
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
       }`}
   >
-    <div className="d-flex flex-row justify-content-start">
+    <div className="d-flex flex-row justify-content-start align-items-center">
       <div className="m-2">
         <Widget src={`${ownerId}/widget/ProfileCircle`} props={{ accountId }} />
       </div>
