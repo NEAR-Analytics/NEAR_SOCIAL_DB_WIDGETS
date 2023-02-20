@@ -44,11 +44,11 @@ const description = isPreview
 const descriptionArea = <Markdown text={description} />;
 
 const contributorProfile = Social.getr(`${contributorId}/profile`);
+const image = contributorProfile.image;
 const imageUrl =
-  (contributorProfile.image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${contributorProfile.image.ipfs_cid}`
-    : contributorProfile.image.url) ||
-  "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
+  (image.ipfs_cid
+    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
+    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
 const contributorCircle = (
   <div
