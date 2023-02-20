@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
 const additionalText = props.additionalText;
+const additionalRow = props.additionalRow;
 
 State.init({
   data: null,
@@ -53,6 +54,7 @@ return (
             <b>{fullName}</b>
             <span className="text-muted mx-1">@{accountId}</span>
             {additionalText ? <b>{additionalText}</b> : <></>}
+            {additionalRow}
           </div>
         </div>
       </div>
