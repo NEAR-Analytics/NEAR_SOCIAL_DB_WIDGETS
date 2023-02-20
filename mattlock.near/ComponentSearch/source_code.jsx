@@ -9,6 +9,11 @@ const requiredTag = props.filterTag;
 const boostedTag = props.boostedTag;
 const inputTerm = props.term;
 
+initState({
+  term: "",
+  oldTerm: "",
+});
+
 const computeResults = (term) => {
   const terms = (term || "")
     .toLowerCase()
