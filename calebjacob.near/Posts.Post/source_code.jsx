@@ -14,15 +14,9 @@ const item = {
   blockHeight,
 };
 
-const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+const link = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 
-const Post = styled.div`
-  padding: 24px;
-
-  @media (max-width: 1200px) {
-    padding: 24px 12px;
-  }
-`;
+const Post = styled.div``;
 
 return (
   <Post className="post">
