@@ -24,6 +24,9 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+  border: 1px solid #ECEEF0;
+  padding: 12px;
+  border-radius: 6px;
 
   > *:first-child {
     width: 200px;
