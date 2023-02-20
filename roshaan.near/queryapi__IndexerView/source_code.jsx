@@ -120,7 +120,7 @@ return (
     <CardFooter>
       <ButtonLink href={statusUrl}>View Status</ButtonLink>
       <ButtonLink primary href={editUrl}>
-        Edit Indexer
+        View Indexer Code
       </ButtonLink>
     </CardFooter>
   </Card>
