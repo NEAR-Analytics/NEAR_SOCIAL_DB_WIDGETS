@@ -179,10 +179,29 @@ const body = (
             </div>
           ),
           additionalRow: (
-            <Widget
-              src={`${ownerId}/widget/ProfileLine`}
-              props={{ accountId: founder }}
-            />
+            <>
+              <div className="text-truncate text-muted">
+                {tags.length > 0 ? (
+                  <>
+                    {tags.map((tag) => (
+                      <span
+                        className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
+                        key={tag}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="text-truncate my-2">{profile.description}</div>
+              <Widget
+                src={`${ownerId}/widget/ProfileLine`}
+                props={{ accountId: founder }}
+              />
+            </>
           ),
         }}
       />
@@ -201,23 +220,6 @@ const body = (
             <span className="mx-1">{founderProfile.name}</span>
             <span className="text-muted">@{founder}</span>
           </div>
-          <div className="text-truncate text-muted">
-            {tags.length > 0 ? (
-              <>
-                {tags.map((tag) => (
-                  <span
-                    className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                    key={tag}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="text-truncate my-2">{profile.description}</div>
         </div>
       </div>
     </div>
