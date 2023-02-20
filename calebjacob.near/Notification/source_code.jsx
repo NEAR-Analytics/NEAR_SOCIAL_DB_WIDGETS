@@ -171,7 +171,7 @@ return (
     )}
 
     {(type === "like" || type === "comment" || type === "mention") && (
-      <Button href={postUrl}>View Post</Button>
+      <Button href={postUrl}>View {isComment ? "Comment" : "Post"}</Button>
     )}
   </Wrapper>
 );
