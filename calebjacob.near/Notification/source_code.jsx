@@ -31,10 +31,6 @@ const Wrapper = styled.div`
     padding-right: 24px;
   }
 
-  > *:last-child {
-    margin-left: auto;
-  }
-
   @media (max-width: 500px) {
     flex-direction: column;
     align-items: start;
