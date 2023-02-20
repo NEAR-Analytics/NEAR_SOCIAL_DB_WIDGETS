@@ -5,7 +5,7 @@ const [selected_accountId, selected_indexerName] = props.indexer_path
 const accountId = selected_accountId || props.accountId || context.accountId;
 
 console.log(props.view, "this is the passed in view");
-const activeTab = props.view ?? "editor-window";
+const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
 const registry_contract_id =
@@ -371,7 +371,7 @@ const allIndexerView = () => {
         Create New Indexer
       </ButtonLink>
       <H2>
-        My Indexers <span>({state.indexers.length})</span>
+        {accountId}'s Indexers <span>({state.indexers.length})</span>
       </H2>
       {state.indexers.map((indexer, i) => (
         <CardWrapper key={i}>
@@ -460,6 +460,18 @@ return (
                 account_id: accountId,
               }}
             />
+          </div>
+        )}
+        {state.activeTab === "public-indexers" && (
+          <div>
+            <H2>
+              Public Indexers <span>({state.indexers.length})</span>
+            </H2>
+            <div>
+              <Widget
+                src={"roshaan.near/widget/queryapi__ViewAllIndexersPublic"}
+              />
+            </div>
           </div>
         )}
       </Section>
