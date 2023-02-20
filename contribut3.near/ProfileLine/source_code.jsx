@@ -50,7 +50,7 @@ return (
     <a className="text-dark" href={href}>
       <div className="m-2">
         <Widget
-          src={`${ownerId} /widget/ProfileCircle`}
+          src={`${ownerId}/widget/ProfileCircle`}
           props={{ accountId, size: imageSize }}
         />
       </div>
