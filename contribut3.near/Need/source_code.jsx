@@ -134,6 +134,7 @@ const body = (
         <div className="text-truncate my-2">{contributionNeed.description}</div>
       </div>
     </div>
+    {ctas}
   </div>
 );
 
