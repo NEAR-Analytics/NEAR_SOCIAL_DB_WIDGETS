@@ -1,17 +1,3 @@
-//roshaan.near/NearSocialIndexer
-const [accountId, indexerName] = props.indexer_path.split("/");
-const selected = false || props.selected;
-// const registry_contract_id =
-//   props.registry_contract_id || 'registry.queryapi.near';
-// const indexerDetails = Near.asyncView(
-//   registry_contract_id,
-//   'read_indexer_function',
-//   {
-//     name: indexer_function_name,
-//   }
-// );
-const indexerEditorUrl = `/#/roshaan.near/widget/query_api__QueryApiDashboard?indexer_path=${accountId}/${indexerName}`;
-
 const Card = styled.div`
   border-radius: 12px;
   background: #fff;
@@ -101,11 +87,12 @@ const ButtonLink = styled.a`
     outline: none;
   }
 `;
-
+const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
+const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
 return (
-  <Card selected={selected}>
+  <Card>
     <CardBody>
-      <Thumbnail href={indexerEditorUrl}>
+      <Thumbnail>
         <Widget
           src="mob.near/widget/Image"
           props={{
@@ -118,18 +105,18 @@ return (
       </Thumbnail>
 
       <div>
-        <TextLink as="a" href={indexerEditorUrl} bold ellipsis>
+        <TextLink as="a" bold ellipsis>
           {indexerName}
         </TextLink>
-        <TextLink as="a" href={indexerEditorUrl} ellipsis>
+        <TextLink as="a" ellipsis>
           @{accountId}
         </TextLink>
       </div>
     </CardBody>
 
     <CardFooter>
-      <ButtonLink href={indexerEditorUrl}>View Details</ButtonLink>
-      <ButtonLink href={indexerEditorUrl} primary>
+      <ButtonLink href={statusUrl}>View Status</ButtonLink>
+      <ButtonLink primary href={editUrl}>
         Edit Indexer
       </ButtonLink>
     </CardFooter>
