@@ -22,20 +22,24 @@ const saveArticle = (args) => {
     version: Number(state.article.version) + 1,
   };
 
-  const composedData = {
-    wikiTest2Article: {
-      main: JSON.stringify(newArticleData),
-    },
-    index: {
-      wikiTest2Article: JSON.stringify({
-        key: "main",
-        value: {
-          type: "md",
-        },
-      }),
-    },
+  const composeData = () => {
+    const data = {
+      wikiTest2Article: {
+        main: JSON.stringify(newArticleData),
+      },
+      index: {
+        wikiTest2Article: JSON.stringify({
+          key: "main",
+          value: {
+            type: "md",
+          },
+        }),
+      },
+    };
+    return data;
   };
-  Social.set(composedData, { force: true });
+  const newData = composeData();
+  Social.set(newData, { force: true });
 };
 
 return (
