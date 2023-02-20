@@ -120,6 +120,9 @@ return (
           </div>
         </>
       )}
+      {!state.editArticle && (
+        <Markdown text={state.note || state.article.body} />
+      )}
       {/* === LIKE + CREATE COMMENT BUTTON === */}
       {blockHeight !== "now" && (
         <div className="mt-1 d-flex justify-content-between">
