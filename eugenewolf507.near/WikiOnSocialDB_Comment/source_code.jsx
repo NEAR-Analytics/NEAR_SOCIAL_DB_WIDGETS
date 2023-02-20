@@ -63,7 +63,7 @@ return (
     {state.showReply && (
       <div className="mb-2" key="reply">
         <Widget
-          src="mob.near/widget/MainPage.Comment.Compose"
+          src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Compose`}
           props={{
             initialText: `@${accountId}, `,
             notifyAccountId: extractNotifyAccountId(parentItem),
