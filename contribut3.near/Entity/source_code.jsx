@@ -137,7 +137,10 @@ const body = (
                   <i className="bi-play" />
                   <span className="ms-1">{entity.status}</span>
                 </div>
-                <div className="btn-group dropstart">
+                <div
+                  className="btn-group dropstart"
+                  style="--$enable-caret = false"
+                >
                   <a
                     className="btn btn-outline-secondary dropdown-toggle"
                     data-bs-toggle="dropdown"
