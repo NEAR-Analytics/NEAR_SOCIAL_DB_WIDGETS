@@ -46,7 +46,10 @@ const href = `https://near.social/#/${ownerId}/widget/Index?tab=${isEntity ? "en
   }&accountId=${accountId}`;
 
 return (
-  <div className="d-flex flex-row justify-content-start align-items-start">
+  <div
+    className={`d-flex flex-row justify-content-start align-items-${additionalRow ? "start" : "center"
+      }`}
+  >
     <a className="text-dark" href={href}>
       <div className="m-2">
         <Widget
