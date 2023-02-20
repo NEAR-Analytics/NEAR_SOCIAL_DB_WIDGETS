@@ -265,29 +265,6 @@ const composeData = () => {
   return data;
 };
 
-// === *** NEW DATA BASE *** ===
-const getNewDBHandler = (e) => {
-  const wikiTestData = Social.get(`eugenewolf507.near/**`, "final");
-  console.log("wikiTestData eugenewolf507.near", wikiTestData);
-
-  console.log(" ========== GET INDEX ARRAY FOR POSTS ========== ");
-  const postsIndex = Social.index("wikiTest2Article", "main", {
-    limit: 10,
-    order: "desc",
-    accountId: undefined,
-  });
-  console.log(postsIndex);
-  console.log(" ========== GET 10 POSTS ========== ");
-  postsIndex &&
-    postsIndex.forEach(({ accountId, blockHeight }) => {
-      const postData = Social.get(
-        `${accountId}/wikiTest2Article/main`,
-        blockHeight
-      );
-      console.log(JSON.parse(postData));
-    });
-};
-
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
   State.update({
@@ -338,11 +315,6 @@ return (
           >
             Save Article
           </button>
-          {/* === *** NEW DATA BASE *** === */}
-          <button onClick={getNewDBHandler}>
-            GET Data - delete this button
-          </button>
-          {/* === *** NEW DATA BASE *** === */}
         </div>
         <div class="d-flex flex-column pt-3">
           <label for="inputArticleId">
