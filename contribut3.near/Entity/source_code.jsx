@@ -121,6 +121,71 @@ const body = (
     style={{ minHeight: "10em" }}
   >
     <div className="flex-grow-1 py-3">
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId,
+          isEntity: true,
+          imageSize: "3em",
+          additionalText: inboxView ? (
+            <></>
+          ) : (
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <div className="text-success me-3">
+                <i className="bi-play" />
+                <span className="ms-1">{entity.status}</span>
+              </div>
+              <div className="btn-group dropstart">
+                <a
+                  className="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="bi-three-dots-vertical" />
+                </a>
+
+                <ul className="dropdown-menu">
+                  {buttonAction({
+                    text: "Propose contribution",
+                    icon: "bi-person-up",
+                    id: "contribute",
+                  })}
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  {buttonAction({
+                    text: "Invite to contribute",
+                    icon: "bi-person-plus",
+                    id: "invite",
+                  })}
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  {buttonAction({
+                    text: "View details",
+                    icon: "bi-info-circle",
+                    id: "info",
+                  })}
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  {buttonAction({
+                    text: "Share",
+                    icon: "bi-arrow-up-right",
+                    id: "share",
+                  })}
+                </ul>
+              </div>
+            </div>
+          ),
+          additionalRow: (
+            <Widget
+              src={`${ownerId}/widget/ProfileLine`}
+              props={{ accountId: founder }}
+            />
+          ),
+        }}
+      />
       <div className="d-flex flex-row justify-content-start">
         <div className="m-2">{circle}</div>
         <div className="d-flex flex-column justify-content-between align-items-start w-100">
@@ -129,57 +194,7 @@ const body = (
               <b>{profile.name}</b>
               <span className="text-muted">@{accountId}</span>
             </div>
-            {inboxView ? (
-              <></>
-            ) : (
-              <div className="d-flex flex-row justify-content-between align-items-center">
-                <div className="text-success me-3">
-                  <i className="bi-play" />
-                  <span className="ms-1">{entity.status}</span>
-                </div>
-                <div className="btn-group dropstart">
-                  <a
-                    className="btn btn-outline-secondary dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i className="bi-three-dots-vertical" />
-                  </a>
-
-                  <ul className="dropdown-menu">
-                    {buttonAction({
-                      text: "Propose contribution",
-                      icon: "bi-person-up",
-                      id: "contribute",
-                    })}
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    {buttonAction({
-                      text: "Invite to contribute",
-                      icon: "bi-person-plus",
-                      id: "invite",
-                    })}
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    {buttonAction({
-                      text: "View details",
-                      icon: "bi-info-circle",
-                      id: "info",
-                    })}
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    {buttonAction({
-                      text: "Share",
-                      icon: "bi-arrow-up-right",
-                      id: "share",
-                    })}
-                  </ul>
-                </div>
-              </div>
-            )}
+            {}
           </div>
           <div className="d-flex flex-row justify-content-start align-items-center my-1">
             {founderCircle}
