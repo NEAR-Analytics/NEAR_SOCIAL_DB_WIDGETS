@@ -10,8 +10,6 @@ State.init({});
 const article = JSON.parse(
   Social.get(`${lastEditor}/wikiTest2Article/main`, blockHeight)
 );
-console.log(articleId, blockHeight, lastEditor);
-console.log(article);
 State.update({ article });
 
 const getDate = (timestamp) => {
