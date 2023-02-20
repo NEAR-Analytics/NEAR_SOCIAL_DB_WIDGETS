@@ -12,10 +12,10 @@ if (!accountId) {
 }
 
 Near.asyncView(registry_contract_id, "read_indexer_function", {
-  name: `${accountId}/${indexer_function_name}`,
+  name: `${accountId}/${indexerName}`,
 }).then((data) => {
   if (!data) return;
-  console.log(data, "data loaded", `${accountId}/${indexer_function_name}`);
+  console.log(data, "data loaded", `${accountId}/${indexerName}`);
   State.update({ code: data });
 });
 
@@ -26,7 +26,7 @@ let updateIndexerCode = (data) => {
     registry_contract_id,
     "register_indexer_function",
     {
-      name: data.indexer_name || indexer_function_name,
+      name: data.indexer_name || indexerName,
       code: data.code,
     },
     gas
