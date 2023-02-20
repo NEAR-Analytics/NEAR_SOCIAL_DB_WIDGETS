@@ -1,5 +1,5 @@
 let initialText = "";
-const indexer_function_name = props.indexer_name;
+const indexerName = props.indexerName;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = props.accountId || context.accountId;
@@ -48,63 +48,46 @@ const reducer = (message) => {
   }
 };
 const code = `
-<script>
-function test(data) {
-  let receiverWindow = document.getElementById("react-app-iframe").contentWindow
-  if (!receiverWindow) {
-      console.warn("receiver window not found!!!!")
-  }
-  console.log(receiverWindow, "receiverrrr")
-  // try {
-  //     if (event.data.action === "send_indexer_details") {
-  //       console.log("trying to send the data to react app")
-  //         receiverWindow.postMessage({
-  //             action: "subscription_request",
-  //             data: data
-  //         }, "*")
-  //     }
-  // } catch (error) {
-  //     console.log(error, "errored out")
-  // }
-  console.log("reached here")
-window.addEventListener("message", function(event) {
-  console.log("received a message")
-  console.log(event)
-  // console.log("message came from :", event.source.name)
-  if (event.data.action === "register_function") {
-      window.top.postMessage(event.data, "*");
-  }
-  if (event.data.action === "request_indexer_details") {
-      event.source.postMessage({
-          action: "subscription_request",
-          from: "iframe", 
-          data: data
-      }, "*")
-  }
-})
-}
-</script>
-<iframe name="react-app" id="react-app-iframe" src="https://query-api-react.vercel.app/query-api-editor" width="1250px" height="500px"></iframe>
+    <script>
+   let iframe = null;
 
-<script>
-window.addEventListener("message", function(event){
-    console.log(event, "event detaisl")
-    try {
-      if(event.data.action ==="send_indexer_details") {
-        console.log("sender-indexer details")
-        test(event.data)
+  function createIframe(accountId, indexerName) {
+    console.log(accountId, "account ID")
+    console.log(indexerName, "indexerName ID")
+
+    iframe = document.createElement('iframe');
+    iframe.src = 'http://localhost:3002/query-api-editor';
+    if (accountId != undefined && indexerName != undefined) {
+      console.log("indexer name exists")
+      iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
+    } else {
+      console.log("does not exist")
+    }
+    iframe.name = "react-app"
+    iframe.id = "react-app-iframe"
+    iframe.style.width = '1250px';
+    iframe.style.height = '500px';
+
+    document.body.appendChild(iframe);
+  }
+
+  window.addEventListener('message', function (event) {
+      if (event.data.action === "register_function") {
+        console.log("registering")
+        window.top.postMessage(event.data, "*");
       }
-  
-    // let receiverWindow = document.getElementById("react-app-iframe").contentWindow
-    // console.log(receiverWindow, "receiverWindow")
-    // receiverWindow.postMessage({action: "subscription", data: event.data}, "*");
-    }
-    catch(error){
-        console.log(error, "we errored out")
-    }
+    if (event.data.action === 'createIframe') {
+     
+      // Check if the iframe element already exists
 
-})
-</script>
+      if (iframe) {
+        // The iframe already exists, do nothing
+        return;
+      }
+      createIframe(event.data.value.accountId, event.data.value.indexerName);
+    }
+  });
+    </script>
 `;
 
 return (
@@ -115,9 +98,9 @@ return (
       style={{ height: "500px" }}
       srcDoc={code}
       message={{
-        action: "send_indexer_details",
+        action: "createIframe",
         value: {
-          indexer_name: indexer_function_name,
+          indexerName: indexerName,
           accountId: accountId,
         },
         from: "widget",
