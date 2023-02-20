@@ -17,6 +17,16 @@ const isContributor = Near.view(
   true
 );
 
+const currentContributor = Near.view(
+  ownerId,
+  "get_contribution",
+  { entity_id: accountId, contributor_id: context.accountId },
+  "final"
+);
+
+const isAuthorized =
+  !!currentContributor && currentContributor.permissions.includes("Admin");
+
 const contributionNeed = props.isPreview
   ? props.contributionNeed
   : Near.view(
