@@ -132,7 +132,7 @@ const body = (
             {inboxView ? (
               <></>
             ) : (
-              <div className="d-flex flex-column justify-content-between align-items-center">
+              <div className="d-flex flex-row justify-content-between align-items-center">
                 <div className="text-success">
                   <i className="bi-play" />
                   <span className="ms-1">{entity.status}</span>
