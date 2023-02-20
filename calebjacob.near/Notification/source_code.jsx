@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     padding-right: 24px;
   }
 
-  > a:last-child, button:last-child {
+  > *:last-child {
     margin-left: auto;
   }
 
@@ -158,19 +158,21 @@ return (
       ago
     </Text>
 
-    {(type === "follow" || type === "unfollow") && (
-      <Widget
-        src="calebjacob.near/widget/FollowButton"
-        props={{ accountId: props.accountId }}
-      />
-    )}
+    <div>
+      {(type === "follow" || type === "unfollow") && (
+        <Widget
+          src="calebjacob.near/widget/FollowButton"
+          props={{ accountId: props.accountId }}
+        />
+      )}
 
-    {type === "poke" && (
-      <Widget
-        src="calebjacob.near/widget/PokeButton"
-        props={{ accountId: props.accountId, back: true, primary: true }}
-      />
-    )}
+      {type === "poke" && (
+        <Widget
+          src="calebjacob.near/widget/PokeButton"
+          props={{ accountId: props.accountId, back: true, primary: true }}
+        />
+      )}
+    </div>
   </Wrapper>
 );
 
