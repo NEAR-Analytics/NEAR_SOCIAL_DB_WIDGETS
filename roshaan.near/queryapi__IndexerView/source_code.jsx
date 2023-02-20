@@ -1,6 +1,6 @@
 const indexerName = props.indexerName;
 const accountId = props.accountId;
-if (!indexerName || accountId) return "";
+if (!indexerName || !accountId) return "";
 const Card = styled.div`
   border-radius: 12px;
   background: #fff;
