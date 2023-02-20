@@ -18,6 +18,22 @@ Near.asyncView(
 const profile = Social.getr(`${accountId}/profile`);
 
 if (!state.data || !profile) {
+  return (
+    <div className="d-flex flex-row justify-content-start">
+      <div className="m-2">
+        <Widget src={`${ownerId}/widget/ProfileCircle`} props={{ accountId }} />
+      </div>
+      <div className="d-flex flex-column justify-content-between align-items-start w-100">
+        <div className="w-100 d-flex flex-row justify-content-between align-items-start">
+          <div>
+            <b>{profile.name}</b>
+            <span className="text-muted mx-1">@{accountId}</span>
+            {additionalText ? <b>{additionalText}</b> : <></>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const fullName = profile.name || state.data.name || accountId;
