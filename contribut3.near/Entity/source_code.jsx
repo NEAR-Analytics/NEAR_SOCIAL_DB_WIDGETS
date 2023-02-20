@@ -180,6 +180,10 @@ const body = (
           ),
           additionalRow: (
             <>
+              <Widget
+                src={`${ownerId}/widget/ProfileLine`}
+                props={{ accountId: founder }}
+              />
               <div className="text-truncate text-muted">
                 {tags.length > 0 ? (
                   <>
@@ -197,10 +201,6 @@ const body = (
                 )}
               </div>
               <div className="text-truncate my-2">{profile.description}</div>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder }}
-              />
             </>
           ),
         }}
