@@ -206,7 +206,6 @@ const body = (
         </div>
       </div>
     </div>
-    {ctas}
   </div>
 );
 
