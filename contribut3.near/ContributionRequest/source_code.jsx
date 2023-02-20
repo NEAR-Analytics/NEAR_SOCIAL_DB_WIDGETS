@@ -19,7 +19,10 @@ const contributor = Near.view(
   "final"
 );
 
-const isAuthorized = !!contributor && contributor.permissions.includes("Admin");
+const isAuthorized =
+  !!contributor &&
+  !!contributor.permissions &&
+  contributor.permissions.includes("Admin");
 
 const contributionRequest = props.isPreview
   ? props.contributionRequest
@@ -64,7 +67,7 @@ const contributorCircle = (
 
 const header = (
   <div className="d-flex flex-row justify-content-start align-items-center my-1">
-    {contriubutorCircle}
+    {contributorCircle}
     <span className="mx-1">{contributorProfile.name}</span>
     <span className="text-muted">@{contributorId}</span>
   </div>
@@ -74,8 +77,12 @@ const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch p-3">
     <a
       className="btn btn-success"
-    // href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
-    // onClick={() => props.update("entity")}
+      onClick={() =>
+        Near.call(ownerId, "approve_contribution", {
+          entity_id: entityId,
+          contributor_id: contributorId,
+        })
+      }
     >
       <i className="bi-check" />
       <span>Accept</span>
