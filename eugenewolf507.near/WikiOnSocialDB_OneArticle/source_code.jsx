@@ -5,7 +5,7 @@ if (!accountId) {
   return "No account ID";
 }
 const { articleId, blockHeight, lastEditor } = props;
-State.init({ showReply: false });
+State.init({});
 
 const article = JSON.parse(
   Social.get(`${lastEditor}/wikiTest2Article/main`, blockHeight)
