@@ -3,6 +3,7 @@ const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
 const additionalText = props.additionalText;
 const additionalRow = props.additionalRow;
+const additionalColumn = props.additionalColumn;
 const imageSize = props.imageSize;
 
 State.init({
@@ -69,6 +70,7 @@ return (
           </a>
           {additionalText}
         </div>
+        {additionalColumn}
       </div>
       {additionalRow}
     </div>
