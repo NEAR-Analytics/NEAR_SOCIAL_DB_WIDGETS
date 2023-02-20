@@ -1,6 +1,8 @@
 const { value } = props;
 const { type } = value;
 
+console.log(props);
+
 const likedPost =
   type === "like" && value.item.path === `${context.accountId}/post/main`;
 const likedComment =
@@ -8,6 +10,7 @@ const likedComment =
 const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${
   context.accountId
 }&blockHeight=${value?.item?.blockHeight || props.blockHeight}`;
+
 const supportedTypes = [
   "poke",
   "like",
