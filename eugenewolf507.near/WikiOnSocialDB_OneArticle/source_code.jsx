@@ -5,7 +5,7 @@ if (!accountId) {
   return "No account ID";
 }
 const { articleId, blockHeight, lastEditor } = props;
-State.init({});
+State.init({ showReply: false });
 
 const article = JSON.parse(
   Social.get(`${lastEditor}/${addressForArticles}/main`, blockHeight)
@@ -28,11 +28,11 @@ const saveArticle = (args) => {
 
   const composeData = () => {
     const data = {
-      wikiTest2Article: {
+      [addressForArticles]: {
         main: JSON.stringify(newArticleData),
       },
       index: {
-        wikiTest2Article: JSON.stringify({
+        [addressForArticles]: JSON.stringify({
           key: "main",
           value: {
             type: "md",
@@ -118,9 +118,45 @@ return (
           </div>
         </>
       )}
-      {!state.editArticle && (
-        <Markdown text={state.note || state.article.body} />
+      {/* === LIKE + CREATE COMMENT BUTTON === */}
+      {blockHeight !== "now" && (
+        <div className="mt-1 d-flex justify-content-between">
+          {/* TODO add like widget */}
+          <Widget
+            src="mob.near/widget/CommentButton"
+            props={{
+              onClick: () =>
+                !state.showReply && State.update({ showReply: true }),
+            }}
+          />
+        </div>
       )}
+      {/* === COMMENT COMPOSE COMMENT FEED === */}
+      <div className="mt-3 ps-5">
+        {state.showReply && (
+          <div className="mb-2">
+            <Widget
+              src="mob.near/widget/MainPage.Comment.Compose"
+              props={{
+                notifyAccountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+          </div>
+        )}
+        <Widget
+          src="mob.near/widget/MainPage.Comment.Feed"
+          props={{
+            item,
+            highlightComment: props.highlightComment,
+            limit: props.commentsLimit,
+            subscribe,
+            raw,
+          }}
+        />
+      </div>
+      {/* === FOOTER === */}
       <div className="mt-5 alert alert-secondary">
         <div>
           Created by{" "}
