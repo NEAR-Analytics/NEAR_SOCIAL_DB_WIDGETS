@@ -506,7 +506,7 @@ return (
                 indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
                 accountId: accountId,
-                base: "create-new-indexer/?accountId=${accountId}",
+                base: "create-new-indexer/",
               }}
             />
           </div>
