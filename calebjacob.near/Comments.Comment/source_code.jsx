@@ -77,6 +77,7 @@ return (
         src="calebjacob.near/widget/AccountProfile"
         props={{
           accountId,
+          avatarSize: "32px",
           inlineContent: (
             <>
               <Text as="span">･</Text>
