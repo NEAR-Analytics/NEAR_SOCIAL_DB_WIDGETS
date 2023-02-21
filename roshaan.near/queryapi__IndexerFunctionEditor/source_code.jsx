@@ -69,7 +69,7 @@ const code = `
       iframe.style.height = '500px';
     } else if (accountId != undefined ){
       iframe.src += "?accountId=${accountId}"
-      iframe.style.height = '3750px';
+      iframe.style.height = '370px';
     }
     console.log(iframe.src, "src is")
     iframe.name = "react-app"
