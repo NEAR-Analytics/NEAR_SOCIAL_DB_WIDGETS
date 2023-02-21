@@ -22,7 +22,7 @@ const menuItems = items.reduce(
 
 const menuIcon = styled.a`
   &:before {
-    content: "" !important;
+    content: "\f5d3" !important;
   }
 `;
 
