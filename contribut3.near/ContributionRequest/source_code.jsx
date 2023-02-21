@@ -3,11 +3,6 @@ const accountId = context.accountId;
 const entityId = props.entityId;
 const contributorId = props.contributorId;
 
-State.init({
-  description: "",
-  startDate: "",
-});
-
 if (!entityId || !contributorId) {
   return "Cannot show contribution request without entityId or contributorId!";
 }
@@ -60,29 +55,78 @@ const imageUrl =
     ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
     : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
-const contributorCircle = (
+const body = (
   <div
-    className="profile-circle d-inline-block"
-    title={`${contributorProfile.name || contributorId} @${contributorId}`}
-    style={{ width: "1.5em", height: "1.5em" }}
+    className="d-flex flex-row justify-content-start"
+    id={accountId}
+    style={{ minHeight: "8em" }}
   >
-    <img
-      className="rounded-circle w-100 h-100"
-      style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${imageUrl}`}
-      alt="profile image"
-    />
-  </div>
-);
-
-const header = (
-  <div>
-    <div className="d-flex flex-row justify-content-start align-items-center my-1">
-      {contributorCircle}
-      <span className="mx-1">{contributorProfile.name || contributorId}</span>
-      <span className="text-muted">@{contributorId}</span>
+    <div className="flex-grow-1 py-3">
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId,
+          isEntity: true,
+          imageSize: "3em",
+          update: props.update,
+          additionalColumn: inboxView ? (
+            <></>
+          ) : (
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <Widget
+                src={`${ownerId}/widget/ActiveIndicator`}
+                props={{ active: entity.status }}
+              />
+              <Widget
+                src={`${ownerId}/widget/CardMenu`}
+                props={{
+                  update: props.update,
+                  items: [
+                    {
+                      text: "Propose contribution",
+                      icon: "bi-person-up",
+                    },
+                    {
+                      text: "Invite to contribute",
+                      icon: "bi-person-plus",
+                    },
+                    {
+                      text: "View details",
+                      icon: "bi-info-circle",
+                      href: `https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
+                      onClick: () => props.update && props.update("entity"),
+                    },
+                    {
+                      text: "Share",
+                      icon: "bi-arrow-up-right",
+                      id: "share",
+                    },
+                  ],
+                }}
+              />
+            </div>
+          ),
+          additionalRow: (
+            <>
+              <Widget
+                src={`${ownerId}/widget/ProfileLine`}
+                props={{ accountId: founder, update: props.update }}
+              />
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: profile.tags }}
+              />
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{
+                  description: entity.description || profile.description,
+                }}
+              />
+            </>
+          ),
+        }}
+      />
     </div>
-    <div></div>
   </div>
 );
 
@@ -118,14 +162,7 @@ const controls = isAuthorized ? (
 );
 
 return (
-  <div className="card">
-    <div className="d-flex flex-row justify-content-start" id={accountId}>
-      <div className="flex-grow-1 p-3">
-        {header}
-        {descriptionArea}
-      </div>
-      <div className="vr mx-3" />
-      {controls}
-    </div>
+  <div className="card border-0" style={{ backgroundColor: "#f0f9ff" }}>
+    <div className="px-3 py-0">{body}</div>
   </div>
 );
