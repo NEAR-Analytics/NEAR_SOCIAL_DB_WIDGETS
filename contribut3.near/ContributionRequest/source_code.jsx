@@ -48,88 +48,6 @@ const description = isPreview
 
 const descriptionArea = <Markdown text={description} />;
 
-const contributorProfile = Social.getr(`${contributorId}/profile`);
-const image = contributorProfile.image;
-const imageUrl =
-  (image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
-    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
-
-const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em" }}
-  >
-    <div className="flex-grow-1 py-3">
-      <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{
-          accountId,
-          isEntity: true,
-          imageSize: "3em",
-          update: props.update,
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <Widget
-                src={`${ownerId}/widget/ActiveIndicator`}
-                props={{ active: entity.status }}
-              />
-              <Widget
-                src={`${ownerId}/widget/CardMenu`}
-                props={{
-                  update: props.update,
-                  items: [
-                    {
-                      text: "Propose contribution",
-                      icon: "bi-person-up",
-                    },
-                    {
-                      text: "Invite to contribute",
-                      icon: "bi-person-plus",
-                    },
-                    {
-                      text: "View details",
-                      icon: "bi-info-circle",
-                      href: `https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
-                      onClick: () => props.update && props.update("entity"),
-                    },
-                    {
-                      text: "Share",
-                      icon: "bi-arrow-up-right",
-                      id: "share",
-                    },
-                  ],
-                }}
-              />
-            </div>
-          ),
-          additionalRow: (
-            <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder, update: props.update }}
-              />
-              <Widget
-                src={`${ownerId}/widget/Tags`}
-                props={{ tags: profile.tags }}
-              />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description: entity.description || profile.description,
-                }}
-              />
-            </>
-          ),
-        }}
-      />
-    </div>
-  </div>
-);
-
 const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch p-3">
     <a
@@ -159,6 +77,55 @@ const controls = isAuthorized ? (
   </div>
 ) : (
   <></>
+);
+
+const body = (
+  <div
+    className="d-flex flex-row justify-content-start"
+    id={accountId}
+    style={{ minHeight: "8em" }}
+  >
+    <div className="flex-grow-1 py-3">
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId,
+          isEntity: true,
+          imageSize: "3em",
+          update: props.update,
+          additionalColumn: inboxView ? (
+            <></>
+          ) : (
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <Widget
+                src={`${ownerId}/widget/ActiveIndicator`}
+                props={{ active: entity.status }}
+              />
+              {controls}
+            </div>
+          ),
+          additionalRow: (
+            <>
+              <Widget
+                src={`${ownerId}/widget/ProfileLine`}
+                props={{ accountId: founder, update: props.update }}
+              />
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: profile.tags }}
+              />
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{
+                  description: entity.description || profile.description,
+                }}
+              />
+            </>
+          ),
+        }}
+      />
+    </div>
+  </div>
 );
 
 return (
