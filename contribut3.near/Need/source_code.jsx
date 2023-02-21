@@ -109,71 +109,10 @@ const body = (
         src={`${ownerId}/widget/ProfileLine`}
         props={{
           accountId,
-          isEntity,
-          imageSize: "3em",
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <div
-                className={`text-${active ? "success" : "muted"
-                  } me-3 d-flex flex-row justify-content-start align-items-center`}
-              >
-                {active ? (
-                  <i
-                    className="d-block bg-success rounded-circle"
-                    style={{ width: ".6em", height: ".6em" }}
-                  />
-                ) : (
-                  <></>
-                )}
-                <span
-                  className="d-block ms-1 text-nowrap"
-                  style={{ fontSize: "small" }}
-                >
-                  {active ? "Available" : "Not available"}
-                </span>
-              </div>
-              <Widget
-                src={`${ownerId}/widget/CardMenu`}
-                props={{
-                  items: [
-                    {
-                      text: "Propose contribution",
-                      icon: "bi-person-up",
-                      id: "contribute",
-                    },
-                    {
-                      text: "Invite to contribute",
-                      icon: "bi-person-plus",
-                      id: "invite",
-                    },
-                    {
-                      text: "View details",
-                      icon: "bi-info-circle",
-                      id: "info",
-                    },
-                    {
-                      text: "Share",
-                      icon: "bi-arrow-up-right",
-                      id: "share",
-                    },
-                  ],
-                }}
-              />
-            </div>
-          ),
+          isEntity: true,
+          imageSize: "1.5em",
           additionalRow: (
             <>
-              <div className="d-flex flex-row justify-content-between align-items-center">
-                <i
-                  className={`d-block ${isEntity ? "bi-diagram-2" : "bi-person"
-                    }`}
-                />
-                <span className="ms-2">
-                  {isEntity ? "Organization" : "Individual contributor"}
-                </span>
-              </div>
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
               <Widget
                 src={`${ownerId}/widget/DescriptionArea`}
