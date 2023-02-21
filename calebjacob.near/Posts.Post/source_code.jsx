@@ -17,17 +17,6 @@ const item = {
 
 const Post = styled.div`
   position: relative;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 19px;
-    top: 52px;
-    bottom: 12px;
-    width: 2px;
-    background: #ECEEF0;
-  }
 `;
 
 const Header = styled.div`
@@ -35,10 +24,7 @@ const Header = styled.div`
   display: inline-flex;
 `;
 
-const Body = styled.div`
-  padding-left: 52px;
-  padding-bottom: 1px;
-`;
+const Body = styled.div``;
 
 const Content = styled.div`
   img {
