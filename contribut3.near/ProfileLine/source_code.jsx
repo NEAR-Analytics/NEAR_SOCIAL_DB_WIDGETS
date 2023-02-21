@@ -25,6 +25,7 @@ Near.asyncView(
 const profile = Social.getr(`${accountId}/profile`);
 
 if (!state.data || !profile) {
+  console.log(accountId, state.data);
   return (
     <div className="d-flex flex-row justify-content-start">
       <div className="m-2">
