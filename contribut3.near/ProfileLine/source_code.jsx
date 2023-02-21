@@ -54,7 +54,7 @@ return (
       <div className="m-2">
         <Widget
           src={`${ownerId}/widget/ProfileCircle`}
-          props={{ accountId, size: imageSize }}
+          props={{ accountId, size: imageSize, isEntity }}
         />
       </div>
     </a>
