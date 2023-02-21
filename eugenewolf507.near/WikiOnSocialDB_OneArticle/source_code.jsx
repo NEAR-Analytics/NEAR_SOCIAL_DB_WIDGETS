@@ -134,7 +134,7 @@ return (
           />
         </div>
       )}
-      {/* === COMMENT COMPOSE COMMENT FEED === */}
+      {/* === COMPOSE COMMENT === */}
       <div className="mt-3 ps-5">
         {state.showReply && (
           <div className="mb-2">
@@ -148,6 +148,7 @@ return (
             />
           </div>
         )}
+        {/* === SHOW COMMENT === */}
         <Widget
           src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Feed`}
           props={{
