@@ -35,14 +35,25 @@ if (!state.requests) {
   return "Loading...";
 }
 
-if (Array.isArray(requests) && requests.length === 0) {
+if (Array.isArray(state.requests) && state.requests.length === 0) {
   return "No contribution requests for this entity found!";
 }
 
-const allRequests = requests.filter(
-  ([contributorId, contribution]) =>
-    contributorId.includes(search) && !(cid && contribution.need !== cid)
-);
+const allRequests = Object.keys(state.requests)
+  .reduce((acc, entityId) => {
+    return [
+      ...acc,
+      ...state.requests[entityId].map(([contributorId, contribution]) => [
+        entityId,
+        contributorId,
+        contribution,
+      ]),
+    ];
+  }, [])
+  .filter(
+    ([entityId, contributorId]) =>
+      contributorId.includes(search) || entityId.includes(search)
+  );
 
 if (!allRequests || allRequests.length === 0) {
   return "No requests match search criteria!";
