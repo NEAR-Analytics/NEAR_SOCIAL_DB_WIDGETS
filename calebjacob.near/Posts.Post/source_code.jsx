@@ -18,17 +18,7 @@ const link = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHei
 const Post = styled.div``;
 
 const Header = styled.div`
-  margin-bottom: 24px;
-`;
-
-const Text = styled.p`
-  display: block;
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  color: #687076;
-  white-space: nowrap;
+  margin-bottom: 12px;
 `;
 
 const Body = styled.div`
@@ -56,6 +46,16 @@ const Content = styled.div`
     max-width: 100%;
     max-height: 20em;
   }
+`;
+
+const Text = styled.p`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #687076;
+  white-space: nowrap;
 `;
 
 return (
