@@ -27,7 +27,7 @@ const Post = styled.div`
     content: '';
     display: block;
     position: absolute;
-    left: 10px;
+    left: 15px;
     top: 52px;
     bottom: 12px;
     width: 2px;
