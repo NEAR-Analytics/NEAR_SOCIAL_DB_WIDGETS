@@ -37,7 +37,7 @@ const contentSelectButton = ({ id, text, icon, count }) => (
     {count > 0 ? (
       <div
         className="d-inline-block rounded-circle bg-danger text-center"
-        style={{ width: "1em", height: "1em" }}
+        style={{ width: "1.5em", height: "1.5em" }}
       >
         {count}
       </div>
