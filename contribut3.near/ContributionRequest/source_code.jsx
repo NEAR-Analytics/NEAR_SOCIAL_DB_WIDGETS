@@ -63,7 +63,7 @@ const controls = isAuthorized ? (
       <span>Accept</span>
     </a>
     <a
-      className="btn btn-outline-danger mt-2"
+      className="btn btn-outline-danger mt-2 d-flex flex-row"
       onClick={() =>
         Near.call(ownerId, "reject_contribution", {
           entity_id: entityId,
