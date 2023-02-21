@@ -20,7 +20,7 @@ const header = (
 
 const contentSelectButton = ({ id, text, icon, count }) => (
   <a
-    className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
+    className={`btn d-flex flex-row justify-content-between align-items-center${state.content === id ? "btn-secondary" : "btn-outline-secondary"
       }`}
     href={`https://near.social/#/${ownerId}/widget/Index?tab=inbox&content=${id}${props.search ? "&search=" + props.search : ""
       }`}
