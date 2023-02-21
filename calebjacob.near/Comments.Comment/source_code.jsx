@@ -21,14 +21,14 @@ const commentUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?acc
 const Post = styled.div`
   position: relative;
   background: ${props.highlight ? "#f00" : ""};
-  padding-left: 24px;
+  margin-left: 24px;
 
   &::before {
     content: '';
     display: block;
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 15px;
+    top: 44px;
     bottom: 12px;
     width: 2px;
     background: #ECEEF0;
