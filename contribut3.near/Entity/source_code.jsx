@@ -95,7 +95,7 @@ const body = (
             <>
               <Widget
                 src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder }}
+                props={{ accountId: founder, update: props.update }}
               />
               <Widget
                 src={`${ownerId}/widget/Tags`}
