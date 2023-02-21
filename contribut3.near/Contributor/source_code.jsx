@@ -31,6 +31,8 @@ const entity = Near.view(
   true
 );
 
+console.log({ entity });
+
 const isEntity = !!entity;
 const active = contributor.looking_for_work;
 
