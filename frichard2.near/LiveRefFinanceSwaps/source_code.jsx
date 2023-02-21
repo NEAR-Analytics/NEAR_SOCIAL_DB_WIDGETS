@@ -88,27 +88,24 @@ const findFt = (ftAddress, ftList) => {
 };
 
 // DATA FETCH
-const params = {
-  timestampStart: getDate24h(),
-  filters: "SWAP",
-};
-const fetchSwaps = (params) =>
-  fetch(forgeUrl(apiUrl, params), {
+const fetchSwaps = () => {
+  const params = {
+    timestampStart: getDate24h(),
+    filters: "SWAP",
+  };
+  return fetch(forgeUrl(apiUrl, params), {
     mode: "cors",
     headers: {
       "x-api-key": publicApiKey,
     },
   });
-let swaps = fetchSwaps(params);
+};
+let swaps = fetchSwaps();
 const ftList = fetch(refUrl);
 
-setInterval(() => {
-  let params = {
-    timestampStart: getDate24h(),
-    filters: "SWAP",
-  };
-  swaps = fetchSwaps(params);
-}, 5000);
+const refresh = () => {
+  swaps = fetchSwaps();
+};
 
 let allRows = [];
 for (let i = 0; i < swaps.body.length; i++) {
@@ -163,6 +160,7 @@ return (
         <a style={linkStyle} href="https://pikespeak.ai" target="_blank">
           pikespeak.ai
         </a>
+        <button onClick={refresh}>Refresh</button>
       </p>
       <table style={tableStyle}>
         <thead>
