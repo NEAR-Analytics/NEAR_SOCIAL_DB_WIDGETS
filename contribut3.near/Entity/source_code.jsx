@@ -65,6 +65,7 @@ const body = (
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
                 props={{
+                  update: props.update,
                   items: [
                     {
                       text: "Propose contribution",
