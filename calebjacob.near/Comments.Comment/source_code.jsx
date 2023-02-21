@@ -18,10 +18,10 @@ const extractNotifyAccountId = (parentItem) => {
 
 const commentUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&commentBlockHeight=${blockHeight}`;
 
-const Post = styled.div`
+const Comment = styled.div`
   position: relative;
   background: ${props.highlight ? "#f00" : ""};
-  margin-left: 24px;
+  margin-left: 8px;
 
   &::before {
     content: '';
@@ -72,7 +72,7 @@ const Actions = styled.div`
 `;
 
 return (
-  <Post>
+  <Comment>
     <Header>
       <Widget
         src="calebjacob.near/widget/AccountProfile"
@@ -162,63 +162,5 @@ return (
         </div>
       )}
     </Body>
-  </Post>
+  </Comment>
 );
-
-// return (
-//   <>
-//     <div
-//       className={`pt-3 border-top pb-2 ${
-//         highlight ? "bg-warning bg-opacity-10" : ""
-//       }`}
-//     >
-//       <Widget
-//         src="mob.near/widget/MainPage.Post.Header"
-//         props={{ accountId, blockHeight, link, postType: "comment" }}
-//       />
-//       <div className="mt-2 text-break">
-//         <Widget
-//           src="mob.near/widget/MainPage.Post.Content"
-//           props={{ content, raw }}
-//         />
-//       </div>
-//       {blockHeight !== "now" && (
-//         <div className="mt-1 d-flex justify-content-between">
-//           <Widget
-//             src="mob.near/widget/LikeButton"
-//             props={{
-//               notifyAccountId: accountId,
-//   item: {
-//     type: "social",
-//     path: `${accountId}/post/comment`,
-//     blockHeight,
-//   },
-//             }}
-//           />
-//           {parentItem && (
-//             <Widget
-//               src="mob.near/widget/CommentButton"
-//               props={{
-//                 onClick: () =>
-//                   !state.showReply && State.update({ showReply: true }),
-//               }}
-//             />
-//           )}
-//         </div>
-//       )}
-//     </div>
-//     {state.showReply && (
-//       <div className="mb-2" key="reply">
-//         <Widget
-//           src="mob.near/widget/MainPage.Comment.Compose"
-//           props={{
-// initialText: `@${accountId}, `,
-// notifyAccountId: extractNotifyAccountId(parentItem),
-// item: parentItem,
-// onComment: () => State.update({ showReply: false }),
-//           }}
-//         />
-//       </div>
-//     )}
-//   </>
-// );
