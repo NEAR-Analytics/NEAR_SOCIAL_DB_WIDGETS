@@ -60,7 +60,7 @@ const linkStyle = {
 // CONSTANTS
 const refUrl = "https://api.stats.ref.finance/api/ft";
 const apiUrl = "https://api.pikespeak.ai/event-historic/v2.ref-finance.near";
-const publicApiKey = "bf63f79f-93b9-4613-ad98-396c3f9a5c64";
+const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 //UTILS
 
