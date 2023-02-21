@@ -49,17 +49,11 @@ const body = (
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
-          accountId,
+          accountId: entityId,
           isEntity: true,
           imageSize: "3em",
           update: props.update,
-          additionalText: (
-            <b>
-              {contributionRequest.need
-                ? "sent a proposal to your request"
-                : "wants to contribute to your project"}
-            </b>
-          ),
+          additionalText: <b>invited you to contribute to</b>,
           additionalColumn: controls,
           additionalRow: (
             <>
