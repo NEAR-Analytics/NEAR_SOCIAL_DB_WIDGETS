@@ -24,13 +24,6 @@ const adminEntities = Near.asyncView(
   );
 });
 
-// const requests = Object.keys(adminEntities).reduce((entity_id) => Near.view(ownerId,
-//   "get_entity_contribution_requests",
-//   { entity_id: entityId },
-//   "final",
-//   true
-// );
-
 if (!state.requests) {
   return "Loading...";
 }
