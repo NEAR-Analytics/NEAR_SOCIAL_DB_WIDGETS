@@ -70,17 +70,16 @@ const body = (
                     {
                       text: "Propose contribution",
                       icon: "bi-person-up",
-                      id: "contribute",
                     },
                     {
                       text: "Invite to contribute",
                       icon: "bi-person-plus",
-                      id: "invite",
                     },
                     {
                       text: "View details",
                       icon: "bi-info-circle",
-                      id: "info",
+                      href: `https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
+                      onClick: () => props.update && props.update("entity"),
                     },
                     {
                       text: "Share",
