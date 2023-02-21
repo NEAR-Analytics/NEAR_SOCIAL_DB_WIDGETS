@@ -58,7 +58,7 @@ const body = (
           ) : (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <div
-                className={`text-${entity.status ? "success" : "secondary"
+                className={`text-${entity.status ? "success" : "muted"
                   } me-3 d-flex flex-row`}
               >
                 <i className={entity.status ? "bi-play" : "bi-x"} />
