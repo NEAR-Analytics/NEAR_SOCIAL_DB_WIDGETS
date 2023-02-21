@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 
       &:hover,
       &:focus {
-        color: #006ADC;
+        color: #687076;
         text-decoration: underline;
       }
     }
