@@ -4,7 +4,6 @@ const [selected_accountId, selected_indexerName] = props.indexer_path
 
 const accountId = selected_accountId || props.accountId || context.accountId;
 
-console.log(props.view, "this is the passed in view");
 const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
@@ -375,6 +374,11 @@ const allIndexerView = () => {
       <ButtonLink
         primary
         href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
+        onClick={() =>
+          State.update({
+            activeTab: "create-new-indexer",
+          })
+        }
       >
         Create New Indexer
       </ButtonLink>
