@@ -83,10 +83,7 @@ const computeResults = (term) => {
   matchedWidgets.sort(
     (a, b) => (b.boosted ? 2 : 0) + b.score - (a.boosted ? 2 : 0) - a.score
   );
-  const result = matchedWidgets.slice(0, limit).map((w) => ({
-    ...w,
-    image: Social.get(`${w.widgetSrc}/metadata`).image,
-  }));
+  const result = matchedWidgets.slice(0, limit);
 
   State.update({
     result,
