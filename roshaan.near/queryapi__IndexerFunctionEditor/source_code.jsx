@@ -3,7 +3,7 @@ const indexerName = props.indexerName;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = props.accountId || context.accountId;
-let base = props.base ?? "/query-api-editor";
+let base = props.base ?? "query-api-editor";
 State.init({
   code: initialText,
 });
@@ -65,12 +65,15 @@ const code = `
     }
     if (accountId != undefined && indexerName != undefined) {
       iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
+    iframe.style.height = '500px';
+    } else if (accountId != undefined ){
+      iframe.src += "?accountId=${accountId}"
+      iframe.style.height = '370px';
     }
     console.log(iframe.src, "src is")
     iframe.name = "react-app"
     iframe.id = "react-app-iframe"
     iframe.style.width = '1250px';
-    iframe.style.height = '500px';
 
     document.body.appendChild(iframe);
   }
