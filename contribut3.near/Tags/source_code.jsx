@@ -1,0 +1,1 @@
+const tags = props.tags || [];
