@@ -66,7 +66,13 @@ return (
     <div className="d-flex flex-column justify-content-between align-items-start w-100">
       <div className="w-100 d-flex flex-row justify-content-between align-items-start">
         <div>
-          <a className="text-dark" href={href}>
+          <a
+            className="text-dark"
+            href={href}
+            onClick={() =>
+              props.update && props.update(isEntity ? "entity" : "contributor")
+            }
+          >
             <b>{fullName}</b>
             <span className="text-muted mx-1">@{accountId}</span>
           </a>
