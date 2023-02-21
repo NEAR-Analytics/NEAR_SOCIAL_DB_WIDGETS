@@ -175,7 +175,7 @@ return (
             props={{
               limit: 10,
               term: "#ethdenver2023",
-              filterTag: "",
+              boostedTag: "#ethdenver2023",
               onChange: ({ result: components, term }) => {
                 State.update({ components, term });
               },
