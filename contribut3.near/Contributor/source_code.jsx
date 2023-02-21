@@ -66,7 +66,7 @@ const body = (
                 className={`text-${active ? "success" : "muted"
                   } me-3 d-flex flex-row`}
               >
-                <i className={active ? "bi-circle-fill" : ""} />
+                <i className={active ? "bi-dot" : ""} />
                 <span className="ms-1">
                   {active ? "Available" : "Not available"}
                 </span>
