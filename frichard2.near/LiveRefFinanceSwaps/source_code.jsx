@@ -67,7 +67,6 @@ const publicApiKey = "bf63f79f-93b9-4613-ad98-396c3f9a5c64";
 const getDate24h = () => {
   const d =
     Math.trunc(new Date(Date.now() - 86400 * 1000).getTime() / 10000) * 10000;
-  console.log("D", d);
   return new Date(d).toISOString();
 };
 
