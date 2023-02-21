@@ -2,7 +2,7 @@ const index = {
   action: "comment",
   key: props.item,
   options: {
-    limit: props.limit ?? 3,
+    limit: props.limit ?? 5,
     order: "desc",
     accountId: props.accounts,
     subscribe: props.subscribe,
