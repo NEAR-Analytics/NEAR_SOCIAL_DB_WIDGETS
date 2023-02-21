@@ -31,7 +31,7 @@ const Post = styled.div`
 `;
 
 const Header = styled.div`
-  margin-bottom: 12px;
+  margin-bottom: 0;
   display: inline-flex;
 `;
 
