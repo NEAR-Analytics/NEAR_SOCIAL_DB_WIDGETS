@@ -12,7 +12,6 @@ const adminEntities = Near.asyncView(
   { account_id: context.accountId },
   "final"
 ).then((entities) => {
-  console.log(Map);
   Object.keys(entities).map((entityId) =>
     Near.asyncView(
       ownerId,
@@ -20,7 +19,7 @@ const adminEntities = Near.asyncView(
       { entity_id: entityId },
       "final"
     ).then((requests) => {
-      const map = new Map(state.requests || []);
+      const map = state.requests ?? {};
       map.set(entityId, requests);
       State.update({ requests: map });
     })
