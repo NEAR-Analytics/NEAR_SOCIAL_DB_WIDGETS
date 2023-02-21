@@ -4,7 +4,7 @@ const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const Wrapper = styled.a`
   --avatar-size: 24px;
   position: relative;
-  padding-left: calc(var(--avatar-size) + 6px);
+  padding-left: ${props.hideAvatar ? "0" : "calc(var(--avatar-size) + 6px)}"};
   display: inline-flex;
   gap: 6px;
   align-items: center;
@@ -67,17 +67,19 @@ const AccountProfile = (
   <Wrapper
     href={`/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`}
   >
-    <Avatar>
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image: profile.image,
-          alt: profile.name,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-        }}
-      />
-    </Avatar>
+    {!props.hideAvatar && (
+      <Avatar>
+        <Widget
+          src="mob.near/widget/Image"
+          props={{
+            image: profile.image,
+            alt: profile.name,
+            fallbackUrl:
+              "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+          }}
+        />
+      </Avatar>
+    )}
 
     <Text ellipsis>{profile.name || accountId.split(".near")[0]}</Text>
   </Wrapper>
