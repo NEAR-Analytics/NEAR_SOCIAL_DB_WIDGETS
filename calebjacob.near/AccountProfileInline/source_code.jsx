@@ -12,6 +12,7 @@ const Wrapper = styled.a`
   outline: none;
   text-decoration: none;
   max-width: 100%;
+  white-space: normal;
 
   > * {
     min-width: 0;
