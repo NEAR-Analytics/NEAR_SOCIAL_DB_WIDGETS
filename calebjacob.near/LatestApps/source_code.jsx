@@ -88,7 +88,7 @@ const ButtonLink = styled.a`
 
 return (
   <Wrapper>
-    <H2>Featured Apps</H2>
+    <H2>Featured Components</H2>
 
     <Items>
       {apps.map((app, i) => (
