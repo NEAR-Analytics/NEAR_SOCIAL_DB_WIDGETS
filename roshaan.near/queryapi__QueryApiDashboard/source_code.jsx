@@ -430,6 +430,11 @@ return (
         <NavBarLogo
           href="https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard"
           title="QueryApi"
+          onClick={() => {
+            State.update({
+              activeTab: "public-indexers",
+            });
+          }}
         >
           <Widget
             src="mob.near/widget/Image"
