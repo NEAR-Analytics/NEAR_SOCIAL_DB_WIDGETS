@@ -1,6 +1,6 @@
 const fontUrl = `https://ipfs.io/ipfs/bafkreicrs3gh7f77yhpw4xiejx35cd56jcczuhvqbwkn77g2ztkrjejopa`;
 
-const imageClassName = "app-image";
+const className = "image-container";
 
 const css = `
 @font-face {
@@ -21,15 +21,74 @@ const css = `
 }
 
 .flex-right {
-  padding-left: 8px;
+  padding-left: 16px;
+  > p {
+    margin-bottom: 2px;
+  }
+  > .subtle {
+    font-size: 0.8rem;
+  }
+}
+.gray {
+  color: #888 !important;
 }
 
-.app-image {
+.image-parent {
+  position: relative;
   width: 100px;
   height: 100px;
-  margin-right: 16px;
-  object-fit: contain;
+  > .shadow {
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 0 32px rgba(255, 255, 255, 1) !important;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 1;
+  }
+  > .eth-logo {
+    z-index: 3;
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    > img {
+
+    width: 40px;
+    height: 40px;
+    }
+  }
 }
+
+.image-container {
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+ clip-path: polygon(
+    0 10%,
+    10% 10%,
+    10% 0,
+    90% 0,
+    90% 10%,
+    100% 10%,
+    100% 90%,
+    90% 90%,
+    90% 100%,
+    10% 100%,
+    10% 90%,
+    0% 90%,
+    0% 10%
+  );
+ > img {
+  height: 100%;
+  object-fit: contain;
+  overflow: hidden;
+  background: white;
+ }
+}
+
 
 .header {
     position: relative;
@@ -156,7 +215,7 @@ return (
 
     <div class="main">
       <h3>dApps</h3>
-      <p>
+      <p class="gray">
         Discover a range of fully decentralized frontends that leverage the
         power of BOS.
       </p>
@@ -182,23 +241,32 @@ return (
               <div key={i} class="widget">
                 <div class="flex">
                   <a href={`#/${component.widgetSrc}`} target="_blank">
-                    <div>
+                    <div class="image-parent">
                       <Widget
                         src="mob.near/widget/WidgetImage"
                         props={{
                           accountId: component.accountId,
                           widgetName: component.widgetName,
-                          alt: component.name,
-                          className: imageClassName,
-                          style: imageStyle,
+                          alt: component.widgetName,
+                          className,
+                          style: {},
                           fallbackUrl:
                             "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
                         }}
                       />
+                      <div class="shadow"></div>
+                      <div class="eth-logo">
+                        <img
+                          src={
+                            "https://cloudflare-ipfs.com/ipfs/bafkreibkkypb3zybzlwfotwa6tdmelalfnfucmvgzzeqwge4e75mkpq6dq"
+                          }
+                        />
+                      </div>
                     </div>
                   </a>
                   <div class="flex-right">
                     <p>{component.widgetName}</p>
+                    <p class="subtle gray">Ethereum</p>
                   </div>
                 </div>
                 <p>{component.description}</p>
