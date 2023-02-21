@@ -13,9 +13,9 @@ const raw = !!props.raw;
 
 const Wrapper = styled.div`
   > div:first-child {
-    margin-bottom: 12px;
-    
     a {
+      display: inline-flex;
+      margin-bottom: 12px;
       font-size: 14px;
       line-height: 20px;
       color: #687076;
