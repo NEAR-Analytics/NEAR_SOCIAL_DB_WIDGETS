@@ -2,6 +2,10 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 
+State.init({
+  requests: null,
+});
+
 const adminEntities = Near.asyncView(
   ownerId,
   "get_admin_entities",
@@ -18,6 +22,10 @@ const adminEntities = Near.asyncView(
         "final"
       )
     )
+  ).then((requestsList) =>
+    State.update({
+      requests: requestsList.reduce((acc, rs) => [...acc, ...rs]),
+    })
   );
 });
 
@@ -28,7 +36,7 @@ const adminEntities = Near.asyncView(
 //   true
 // );
 
-if (!requests) {
+if (!state.requests) {
   return "Loading...";
 }
 
