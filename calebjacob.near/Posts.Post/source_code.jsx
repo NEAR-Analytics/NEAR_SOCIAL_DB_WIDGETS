@@ -53,7 +53,7 @@ const Actions = styled.div`
 `;
 
 const Comments = styled.div`
-  > div:first-child {
+  > div > div:first-child {
     padding-top: 12px;
   }
 `;
