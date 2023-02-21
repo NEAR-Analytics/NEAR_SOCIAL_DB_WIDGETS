@@ -40,6 +40,7 @@ const LikeButton = styled.button`
   line-height: 17px;
   cursor: pointer;
   background: none;
+  padding: 6px;
 
   i {
     font-size: 16px;
