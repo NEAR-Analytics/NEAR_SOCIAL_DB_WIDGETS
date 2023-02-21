@@ -75,7 +75,6 @@ const body = (
               <div
                 className={`text-${active ? "success" : "muted"
                   } me-3 d-flex flex-row justify-content-end align-items-center`}
-                style={{ minWidth: "6em", fontSize: "x-small" }}
               >
                 {active ? (
                   <i
@@ -85,7 +84,10 @@ const body = (
                 ) : (
                   <></>
                 )}
-                <span className="ms-1 flex-grow-1">
+                <span
+                  className="ms-1 flex-grow-1"
+                  style={{ minWidth: "6em", fontSize: "x-small" }}
+                >
                   {active ? "Available" : "Not available"}
                 </span>
               </div>
