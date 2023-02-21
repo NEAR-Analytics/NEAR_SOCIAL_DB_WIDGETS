@@ -1,3 +1,5 @@
+const items = props.items ?? [];
+
 const buttonAction = ({ text, icon, id }) => (
   <li>
     <a className="dropdown-item" id={id}>
@@ -6,6 +8,20 @@ const buttonAction = ({ text, icon, id }) => (
     </a>
   </li>
 );
+
+const menuItems = items.reduce((list, itemProps) => {
+  if (list.length > 0) {
+    return [
+      ...list,
+      <li>
+        <hr className="dropdown-divider" />
+      </li>,
+      buttonAction(itemProps),
+    ];
+  }
+
+  return [buttonAction(itemProps)];
+}, []);
 
 return (
   <div className="btn-group dropstart">
