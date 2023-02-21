@@ -67,7 +67,7 @@ const body = (
         src={`${ownerId}/widget/ProfileLine`}
         props={{
           accountId,
-          isEntity: true,
+          isEntity,
           imageSize: "3em",
           additionalColumn: inboxView ? (
             <></>
