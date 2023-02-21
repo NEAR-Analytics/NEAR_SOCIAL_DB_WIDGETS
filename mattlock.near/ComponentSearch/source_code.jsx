@@ -9,7 +9,7 @@ console.log("mount", keys);
 
 const requiredTag = props.filterTag;
 const boostedTag = props.boostedTag;
-if (!props.term) props.term = "app";
+if (!props.term) props.term = "";
 
 initState({
   term: "",
@@ -130,6 +130,6 @@ return (
         </button>
       )}
     </div>
-    {true && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
+    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </>
 );
