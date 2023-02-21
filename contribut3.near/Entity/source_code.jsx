@@ -105,15 +105,6 @@ const ctas = inboxView ? (
   </>
 );
 
-const buttonAction = ({ text, icon, id }) => (
-  <li>
-    <a className="dropdown-item" id={id}>
-      <i className={icon} />
-      <span>{text}</span>
-    </a>
-  </li>
-);
-
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
