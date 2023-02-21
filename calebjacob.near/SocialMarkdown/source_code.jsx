@@ -39,6 +39,7 @@ const renderMention =
       src="calebjacob.near/widget/AccountProfileInline"
       props={{
         accountId,
+        hideAvatar: true,
       }}
     />
   ));
