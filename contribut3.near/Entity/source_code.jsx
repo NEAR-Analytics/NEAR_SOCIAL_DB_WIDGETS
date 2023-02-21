@@ -44,7 +44,7 @@ const body = (
   <div
     className="d-flex flex-row justify-content-start"
     id={accountId}
-    style={{ minHeight: "10em" }}
+    style={{ minHeight: "8em" }}
   >
     <div className="flex-grow-1 py-3">
       <Widget
@@ -100,10 +100,12 @@ const body = (
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
               />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{ description: entity.description }}
-              />
+              <div className="">
+                <Widget
+                  src={`${ownerId}/widget/DescriptionArea`}
+                  props={{ description: entity.description }}
+                />
+              </div>
             </>
           ),
         }}
