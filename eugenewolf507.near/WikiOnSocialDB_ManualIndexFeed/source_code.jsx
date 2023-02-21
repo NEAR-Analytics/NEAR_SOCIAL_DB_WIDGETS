@@ -2,7 +2,6 @@ const addressForArticles = "wikiTest2Article";
 const addressForComments = "wikiTest2Comment";
 const authorForWidget = "eugenewolf507.near";
 const index = props.index;
-console.log("index", index);
 if (!index) {
   return "props.index is not defined";
 }
@@ -37,7 +36,7 @@ index.options.limit = Math.min(
 const reverse = !!props.reverse;
 
 const initialItems = Social.index(index.action, index.key, index.options);
-console.log("initialItems", initialItems);
+
 if (initialItems === null) {
   return "";
 }
