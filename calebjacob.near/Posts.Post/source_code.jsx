@@ -1,19 +1,19 @@
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const subscribe = !!props.subscribe;
+const notifyAccountId = accountId;
+const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+
 const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
-const subscribe = !!props.subscribe;
 
-const notifyAccountId = accountId;
 const item = {
   type: "social",
   path: `${accountId}/post/main`,
   blockHeight,
 };
-
-const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const Post = styled.div``;
 
