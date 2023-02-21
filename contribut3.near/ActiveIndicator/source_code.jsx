@@ -16,7 +16,7 @@ return (
       <></>
     )}
     <span className="d-block ms-1 text-nowrap" style={{ fontSize: "small" }}>
-      {active ? "Open to proposals" : "Closed"}
+      {active ? activeText : inactiveText}
     </span>
   </div>
 );
