@@ -483,7 +483,7 @@ return (
                 indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
                 accountId: accountId,
-                base: "/query-api-editor",
+                base: "query-api-editor/",
               }}
             />
           </div>
@@ -502,7 +502,7 @@ return (
                 indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
                 accountId: accountId,
-                base: "/create-new-indexer/?accountId=${accountId}",
+                base: "create-new-indexer/?accountId=${accountId}",
               }}
             />
           </div>
