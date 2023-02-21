@@ -79,7 +79,7 @@ const body = (
                 {active ? (
                   <i
                     className="d-block bg-success rounded-circle"
-                    style={{ width: "1em", height: "1em" }}
+                    style={{ width: ".6em", height: ".6em" }}
                   />
                 ) : (
                   <></>
