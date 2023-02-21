@@ -87,6 +87,10 @@ function onCommit() {
     image: {},
     text: "",
   });
+
+  if (props.onComment) {
+    props.onComment();
+  }
 }
 
 const Wrapper = styled.div`
