@@ -67,6 +67,12 @@ const Text = styled.p`
   white-space: nowrap;
 `;
 
+const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
 const Comments = styled.div``;
 
 return (
@@ -116,7 +122,7 @@ return (
       </Content>
 
       {blockHeight !== "now" && (
-        <div className="mt-1 d-flex justify-content-between">
+        <Actions>
           <Widget
             src="mob.near/widget/LikeButton"
             props={{
@@ -131,7 +137,7 @@ return (
                 !state.showReply && State.update({ showReply: true }),
             }}
           />
-        </div>
+        </Actions>
       )}
 
       {state.showReply && (
