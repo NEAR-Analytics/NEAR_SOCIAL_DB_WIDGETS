@@ -36,14 +36,6 @@ const active = contributor.looking_for_work;
 
 const profile = Social.getr(`${accountId}/profile`);
 
-const mapType = (contributionType) => {
-  if (typeof contributionType === "object") {
-    return contributionType.Other;
-  }
-
-  return contributionType;
-};
-
 const contributionTypes = contributor.contribution_types;
 
 if ("Other" in contributionTypes) {
@@ -117,12 +109,7 @@ const body = (
                 {isEntity ? "Organization" : "Individual contributor"}
               </span>
             </div>
-            <Widget
-              src={`${ownerId}/widget/Tags`}
-              props={{
-                tags,
-              }}
-            />
+            <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
             <Widget
               src={`${ownerId}/widget/DescriptionArea`}
               props={{
