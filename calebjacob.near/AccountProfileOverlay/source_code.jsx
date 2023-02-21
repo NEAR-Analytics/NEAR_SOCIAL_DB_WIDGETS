@@ -52,12 +52,14 @@ const overlay = (
         props={{ tags, scroll: true }}
       />
 
-      <FollowButtonWrapper>
-        <Widget
-          src="calebjacob.near/widget/FollowButton"
-          props={{ accountId: props.accountId }}
-        />
-      </FollowButtonWrapper>
+      {context.accountId !== props.accountId && (
+        <FollowButtonWrapper>
+          <Widget
+            src="calebjacob.near/widget/FollowButton"
+            props={{ accountId: props.accountId }}
+          />
+        </FollowButtonWrapper>
+      )}
     </Card>
   </CardWrapper>
 );
