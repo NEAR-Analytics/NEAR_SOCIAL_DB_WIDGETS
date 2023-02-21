@@ -35,6 +35,7 @@ const Content = styled.div`
     display: block;
     max-width: 100%;
     max-height: 80vh;
+    margin: 0 0 12px;
   }
 `;
 
