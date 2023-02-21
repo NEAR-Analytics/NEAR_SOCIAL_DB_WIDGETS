@@ -17,11 +17,13 @@ Near.asyncView(
   { account_id: accountId },
   "final",
   true
-).then((data) => State.update({ data }));
+).then((data) => {
+  console.log(data);
+  State.update({ data });
+});
 
 const profile = Social.getr(`${accountId}/profile`);
 
-console.log({ isEntity, accountId });
 if (!state.data || !profile) {
   return (
     <div className="d-flex flex-row justify-content-start">
