@@ -66,7 +66,7 @@ const searchBar = (
 const content = {
   proposals: (
     <Widget
-      src={`${ownerId}/widget/AdminList`}
+      src={`${ownerId}/widget/ContributionRequestList`}
       props={{ search: state.search, update: props.update }}
     />
   ),
