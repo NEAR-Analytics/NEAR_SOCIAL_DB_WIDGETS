@@ -102,7 +102,13 @@ const body = (
             </div>
             <Widget
               src={`${ownerId}/widget/Tags`}
-              props={{ tags: profile.tags }}
+              props={{
+                tags:
+                  {
+                    ...contributor.skills,
+                    ...contributor.contribution_types,
+                  } || profile.tags,
+              }}
             />
             <Widget
               src={`${ownerId}/widget/DescriptionArea`}
