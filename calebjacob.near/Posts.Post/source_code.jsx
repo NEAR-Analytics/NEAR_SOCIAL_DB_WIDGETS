@@ -13,7 +13,7 @@ const item = {
   blockHeight,
 };
 
-const link = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const Post = styled.div``;
 
@@ -118,6 +118,12 @@ return (
               item,
               onClick: () =>
                 !state.showReply && State.update({ showReply: true }),
+            }}
+          />
+          <Widget
+            src="calebjacob.near/widget/CopyUrlButton"
+            props={{
+              url: postUrl,
             }}
           />
         </Actions>
