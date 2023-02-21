@@ -1,21 +1,6 @@
 const items = props.items ?? [];
 
 const menuItems = items.reduce((list, { text, icon, id }) => {
-  if (list.length > 0) {
-    return [
-      ...list,
-      <li>
-        <hr className="dropdown-divider" />
-      </li>,
-      <li>
-        <a className="dropdown-item" id={id}>
-          <i className={icon} />
-          <span>{text}</span>
-        </a>
-      </li>,
-    ];
-  }
-
   return [
     ...list,
     list.length > 0 ? (
