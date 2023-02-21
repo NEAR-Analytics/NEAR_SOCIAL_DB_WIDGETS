@@ -14,7 +14,7 @@ const raw = !!props.raw;
 
 const notifyAccountId = accountId;
 
-State.init({});
+State.init({ showReply: false });
 
 const article = JSON.parse(
   Social.get(`${lastEditor}/wikiTest2Article/main`, blockHeight)
@@ -156,8 +156,7 @@ return (
           <Widget
             src="mob.near/widget/CommentButton"
             props={{
-              onClick: () =>
-                !state.showReply && State.update({ showReply: true }),
+              onClick: () => State.update({ showReply: !state.showReply }),
             }}
           />
         </div>
