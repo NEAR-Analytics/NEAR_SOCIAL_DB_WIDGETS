@@ -609,300 +609,6 @@ return (
             position: "relative",
             margin: "4px 4px 4px 4px",
           }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
-        ></div>{" "}
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "2px solid white",
-            display: "flex",
-            maxWidth: "512px",
-            maxHeight: "512px",
-            overflow: "auto",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            margin: "4px 4px 4px 4px",
-          }}
         ></div>
       </div>
     </div>{" "}
@@ -925,6 +631,972 @@ return (
       <AnimatedSmoke />
       <AnimatedSmoke2 />
     </div>{" "}
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://ipfs.fleek.co/ipfs/bafybeiefpyc2h5b5drmuovzezx2u2gmbapzym3ckow5qmszl5ygudqvbam)",
+        backgroundSize: "auto",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "8px",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    ></div>
     <div
       style={{
         backgroundImage:
