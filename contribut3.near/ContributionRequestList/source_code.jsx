@@ -1,7 +1,14 @@
 const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
-const cid = props.cid;
+
+const adminEntities = Near.view(
+  ownerId,
+  "get_admin_entities",
+  { account_id: context.accountId },
+  "final",
+  true
+);
 
 const requests = Near.view(
   ownerId,
