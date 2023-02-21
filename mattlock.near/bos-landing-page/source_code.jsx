@@ -177,12 +177,7 @@ return (
               term: "#ethdenver2023",
               filterTag: "",
               onChange: ({ result: components, term }) => {
-                const componentsWithMeta = components.map((c) => ({
-                  ...c,
-                  ...Social.getr(`${c.widgetSrc}/metadata`),
-                }));
-                State.update({ components: componentsWithMeta, term });
-                console.log(Social.getr(`${components[0].widgetSrc}/metadata`));
+                State.update({ components, term });
               },
             }}
           />
