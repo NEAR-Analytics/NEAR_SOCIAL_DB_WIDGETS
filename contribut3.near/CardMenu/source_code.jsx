@@ -34,6 +34,7 @@ return (
     </a>
 
     <ul className="dropdown-menu">
+      {menuItems}
       {buttonAction({
         text: "Propose contribution",
         icon: "bi-person-up",
