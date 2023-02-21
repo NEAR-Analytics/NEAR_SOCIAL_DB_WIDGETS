@@ -91,7 +91,7 @@ return (
       <Content>
         {content.text && (
           <Widget
-            src="mob.near/widget/SocialMarkdown"
+            src="calebjacob.near/widget/SocialMarkdown"
             props={{ text: content.text }}
           />
         )}
