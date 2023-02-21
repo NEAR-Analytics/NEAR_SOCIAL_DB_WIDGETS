@@ -169,12 +169,8 @@ return (
               limit: 10,
               term: "#ethdenver2023",
               boostedTag: "#ethdenver2023",
-              onChange: ({ result, term }) => {
-                const components = result.map((w) => ({
-                  ...w,
-                  image: Social.getr(`${w.widgetSrc}/metadata`).image,
-                }));
-
+              onChange: ({ result: components, term }) => {
+                console.log(components);
                 State.update({ components, term });
               },
             }}
@@ -188,13 +184,13 @@ return (
                   <a href={`#/${component.widgetSrc}`} target="_blank">
                     <div>
                       <Widget
-                        src="mob.near/widget/Image"
+                        src="mob.near/widget/WidgetImage"
                         props={{
-                          image: component.image,
+                          accountId: component.accountId,
+                          widgetName: component.widgetName,
                           alt: component.name,
                           className: imageClassName,
                           style: imageStyle,
-                          thumbnail: component.thumbnail,
                           fallbackUrl:
                             "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
                         }}
