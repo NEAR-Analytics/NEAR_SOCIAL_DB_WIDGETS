@@ -5,6 +5,10 @@ State.init({
   search: props.search ?? "",
 });
 
+const invitesCount = (
+  Near.view(ownerId, "get_contributor_invites", {}, "final", true) ?? []
+).length;
+
 const header = (
   <div>
     <h1 className="fs-2">Inbox</h1>
@@ -14,7 +18,7 @@ const header = (
   </div>
 );
 
-const contentSelectButton = ({ id, text, icon }) => (
+const contentSelectButton = ({ id, text, icon, count }) => (
   <a
     className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
       }`}
@@ -24,6 +28,11 @@ const contentSelectButton = ({ id, text, icon }) => (
   >
     <i className={icon} />
     <span>{text}</span>
+    {count !== 0 ? (
+      <div className="rounded-circle bg-danger text-center">{count}</div>
+    ) : (
+      <></>
+    )}
   </a>
 );
 
@@ -38,6 +47,7 @@ const contentSelector = (
       id: "invitations",
       text: "Invitations",
       icon: "bi-person-up",
+      count: invitesCount,
     })}
   </div>
 );
