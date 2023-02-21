@@ -64,6 +64,7 @@ const controls = isAuthorized ? (
     </a>
     <a
       className="btn btn-outline-danger mt-2 d-flex flex-row"
+      style={{ minWidth: "6em" }}
       onClick={() =>
         Near.call(ownerId, "reject_contribution", {
           entity_id: entityId,
