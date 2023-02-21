@@ -54,90 +54,76 @@ const body = (
     id={accountId}
     style={{ minHeight: "8em" }}
   >
-    <div className="flex-grow-1 py-3">
-      <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{
-          accountId,
-          isEntity: true,
-          imageSize: "3em",
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              <div
-                className={`text-${entity.status ? "success" : "muted"
-                  } me-3 d-flex flex-row`}
-              >
-                <i className={entity.status ? "bi-circle-fill" : ""} />
-                <span className="ms-1">
-                  {entity.status ? "Available" : "Not available"}
-                </span>
-              </div>
-              <Widget
-                src={`${ownerId}/widget/CardMenu`}
-                props={{
-                  items: [
-                    {
-                      text: "Propose contribution",
-                      icon: "bi-person-up",
-                      id: "contribute",
-                    },
-                    {
-                      text: "Invite to contribute",
-                      icon: "bi-person-plus",
-                      id: "invite",
-                    },
-                    {
-                      text: "View details",
-                      icon: "bi-info-circle",
-                      id: "info",
-                    },
-                    {
-                      text: "Share",
-                      icon: "bi-arrow-up-right",
-                      id: "share",
-                    },
-                  ],
-                }}
-              />
+    <Widget
+      src={`${ownerId}/widget/ProfileLine`}
+      props={{
+        accountId,
+        isEntity: true,
+        imageSize: "3em",
+        additionalColumn: inboxView ? (
+          <></>
+        ) : (
+          <div className="d-flex flex-row justify-content-between align-items-center">
+            <div
+              className={`text-${entity.status ? "success" : "muted"
+                } me-3 d-flex flex-row`}
+            >
+              <i className={entity.status ? "bi-circle-fill" : ""} />
+              <span className="ms-1">
+                {entity.status ? "Available" : "Not available"}
+              </span>
             </div>
-          ),
-          additionalRow: (
-            <>
-              <div className="d-flex flex-row justify-content-between align-items-center">
-                <i className={isEntity ? "bi-diagram-2" : "bi-person"} />
-                <span>
-                  {isEntity ? "Organization" : "Individual contributor"}
-                </span>
-              </div>
-              <Widget
-                src={`${ownerId}/widget/Tags`}
-                props={{ tags: profile.tags }}
-              />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description: entity.description || profile.description,
-                }}
-              />
-            </>
-          ),
-        }}
-      />
-    </div>
-    <div className="vr mx-3" />
-    <div className="d-flex flex-row justify-content-end align-items-start py-3">
-      <a
-        className="btn btn-outline-secondary me-2"
-        href={`https://near.social/#/${ownerId}/widget/Contributor?accountId=${accountId}`}
-      >
-        View details
-      </a>
-      <a className="btn btn-outline-secondary">
-        <i className="bi-box-arrow-up-right" />
-      </a>
-    </div>
+            <Widget
+              src={`${ownerId}/widget/CardMenu`}
+              props={{
+                items: [
+                  {
+                    text: "Propose contribution",
+                    icon: "bi-person-up",
+                    id: "contribute",
+                  },
+                  {
+                    text: "Invite to contribute",
+                    icon: "bi-person-plus",
+                    id: "invite",
+                  },
+                  {
+                    text: "View details",
+                    icon: "bi-info-circle",
+                    id: "info",
+                  },
+                  {
+                    text: "Share",
+                    icon: "bi-arrow-up-right",
+                    id: "share",
+                  },
+                ],
+              }}
+            />
+          </div>
+        ),
+        additionalRow: (
+          <>
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <i className={isEntity ? "bi-diagram-2" : "bi-person"} />
+              <span>
+                {isEntity ? "Organization" : "Individual contributor"}
+              </span>
+            </div>
+            <Widget
+              src={`${ownerId}/widget/Tags`}
+              props={{ tags: profile.tags }}
+            />
+            <Widget
+              src={`${ownerId}/widget/DescriptionArea`}
+              props={{
+                description: entity.description || profile.description,
+              }}
+            />
+          </>
+        ),
+      }}
+    />
   </div>
 );
 
