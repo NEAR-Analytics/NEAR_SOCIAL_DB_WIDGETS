@@ -67,7 +67,6 @@ function numberWithCommas(x) {
 let allRows = [];
 for (let i = 0; i < contractsRanking.body.length; i++) {
   const cR = contractsRanking.body[i];
-  console.log(cR, i);
   allRows.push(
     <tr>
       <td style={tdStyle}>{i + 1}</td>
