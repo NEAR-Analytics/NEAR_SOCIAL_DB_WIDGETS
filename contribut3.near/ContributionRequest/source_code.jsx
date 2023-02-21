@@ -99,7 +99,11 @@ const body = (
             <>
               <Widget
                 src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder, update: props.update }}
+                props={{
+                  accountId: founder,
+                  update: props.update,
+                  imageSize: contributionRequest.need ? "1.5em" : "2em",
+                }}
               />
               <Widget
                 src={`${ownerId}/widget/Tags`}
