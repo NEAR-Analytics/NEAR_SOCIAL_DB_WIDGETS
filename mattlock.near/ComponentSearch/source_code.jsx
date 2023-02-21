@@ -16,7 +16,7 @@ initState({
 });
 
 const computeResults = (term) => {
-  console.log("computeResults");
+  console.log("computeResults", term);
 
   const terms = (term || "")
     .toLowerCase()
@@ -41,6 +41,8 @@ const computeResults = (term) => {
         .reduce((s, v) => s + v, 0) / terms.length
     );
   };
+
+  console.log(keys);
 
   Object.entries(keys).forEach(([accountId, data]) => {
     Object.keys(data.widget).forEach((componentId) => {
