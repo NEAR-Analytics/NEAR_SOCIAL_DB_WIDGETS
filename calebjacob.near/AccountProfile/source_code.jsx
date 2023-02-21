@@ -94,7 +94,7 @@ const AccountProfile = (
         )}
       </Name>
 
-      <Text ellipsis>@{accountId}</Text>
+      {!props.hideAccountId && <Text ellipsis>@{accountId}</Text>}
     </div>
   </Wrapper>
 );
