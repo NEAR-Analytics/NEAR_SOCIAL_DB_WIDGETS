@@ -212,10 +212,6 @@ const indexerView = (accountId, indexerName, idx) => {
       selected_indexerName === undefined &&
       idx === 0) ||
     (selected_accountId === accountId && selected_indexerName === indexerName);
-  console.log(`${indexerName}, ${isSelected}`);
-  console.log(selected_accountId, "selected account Id");
-  console.log(selected_indexerName, "selected account Id");
-  console.log(idx, "idx");
 
   const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
@@ -377,6 +373,7 @@ const allIndexerView = () => {
         onClick={() =>
           State.update({
             activeTab: "create-new-indexer",
+            selected_indexerName: "",
           })
         }
       >
@@ -476,7 +473,7 @@ return (
         {state.activeTab === "editor-window" && (
           <div>
             {state.indexers.length > 0 &&
-              (state.selected_indexer != "" ? (
+              (state.selected_indexer != undefined ? (
                 <H2>{state.selected_indexer}</H2>
               ) : (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
@@ -495,7 +492,7 @@ return (
         {state.activeTab === "create-new-indexer" && (
           <div>
             {state.indexers.length > 0 &&
-              (state.selected_indexer != "" ? (
+              (state.selected_indexer != undefined ? (
                 <H2>{state.selected_indexer}</H2>
               ) : (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
