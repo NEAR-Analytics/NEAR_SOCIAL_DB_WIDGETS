@@ -84,10 +84,7 @@ const body = (
                 ) : (
                   <></>
                 )}
-                <span
-                  className="d-block ms-1"
-                  style={{ minWidth: "6em", fontSize: "small" }}
-                >
+                <span className="d-block ms-1" style={{ fontSize: "small" }}>
                   {active ? "Available" : "Not available"}
                 </span>
               </div>
