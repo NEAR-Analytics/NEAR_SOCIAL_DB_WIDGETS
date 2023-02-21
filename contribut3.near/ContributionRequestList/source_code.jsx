@@ -19,7 +19,9 @@ const adminEntities = Near.asyncView(
         "get_entity_contribution_requests",
         { entity_id: entityId },
         "final"
-      )
+      ).then((requests) => {
+        State.update({ requests });
+      })
     )
   ).then((requestsList) =>
     State.update({
