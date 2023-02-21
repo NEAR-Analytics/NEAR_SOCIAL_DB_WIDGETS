@@ -28,7 +28,7 @@ const Post = styled.div`
     display: block;
     position: absolute;
     left: 15px;
-    top: 52px;
+    top: 44px;
     bottom: 12px;
     width: 2px;
     background: #ECEEF0;
