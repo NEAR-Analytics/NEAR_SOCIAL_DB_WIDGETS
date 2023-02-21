@@ -51,13 +51,13 @@ const linkStyle = {
   fontWeight: 600,
 };
 
-const apiUrl = "https://api.pikespeak.ai/global/contract-ranking";
-const publicApiKey = "d0400196772a48f99c73151cb738f2ab";
+const apiUrl = "https://api.pikespeak.ai/contract-analysis/contract-ranking";
+const publicApiKey = "bf63f79f-93b9-4613-ad98-396c3f9a5c64";
 
 const contractsRanking = fetch(apiUrl, {
   mode: "cors",
   headers: {
-    "api-key": "d0400196772a48f99c73151cb738f2ab",
+    "x-api-key": publicApiKey,
   },
 });
 function numberWithCommas(x) {
