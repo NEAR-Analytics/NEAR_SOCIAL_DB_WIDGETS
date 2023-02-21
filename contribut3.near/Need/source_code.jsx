@@ -116,12 +116,7 @@ const body = (
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
               <Widget
                 src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description:
-                    contributor.resume ||
-                    entity?.description ||
-                    profile.description,
-                }}
+                props={{ description: contributionNeed.description }}
               />
             </>
           ),
