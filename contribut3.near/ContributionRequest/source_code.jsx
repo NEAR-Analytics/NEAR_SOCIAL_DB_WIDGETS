@@ -49,7 +49,7 @@ const description = isPreview
 const descriptionArea = <Markdown text={description} />;
 
 const controls = isAuthorized ? (
-  <div className="d-flex flex-column justify-content-start align-items-stretch p-3">
+  <div className="d-flex flex-column justify-content-start align-items-stretch">
     <a
       className="btn btn-success"
       onClick={() =>
