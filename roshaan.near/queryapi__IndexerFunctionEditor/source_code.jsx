@@ -32,7 +32,9 @@ let updateIndexerCode = (data) => {
       start_block_height: data.startBlockHeight,
     },
     gas
-  );
+  ).then((result) => {
+    console.log(result);
+  });
 };
 
 const reducer = (message) => {
