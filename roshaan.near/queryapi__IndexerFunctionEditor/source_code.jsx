@@ -3,6 +3,7 @@ const indexerName = props.indexerName;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = props.accountId || context.accountId;
+let base = props.base ?? "/query-api-editor";
 State.init({
   code: initialText,
 });
@@ -21,13 +22,14 @@ Near.asyncView(registry_contract_id, "read_indexer_function", {
 
 let updateIndexerCode = (data) => {
   const gas = 200000000000000;
-
+  console.log(data, "dataaa");
   Near.call(
     registry_contract_id,
     "register_indexer_function",
     {
-      name: data.indexer_name || indexerName,
+      name: data.indexerName || indexerName,
       code: data.code,
+      start_block_height: data.startBlockHeight,
     },
     gas
   );
@@ -51,18 +53,20 @@ const code = `
     <script>
    let iframe = null;
 
-  function createIframe(accountId, indexerName) {
+  function createIframe(base, accountId, indexerName) {
     console.log(accountId, "account ID")
     console.log(indexerName, "indexerName ID")
-
+    console.log(base, "base")
     iframe = document.createElement('iframe');
-    iframe.src = 'http://localhost:3002/query-api-editor';
-    if (accountId != undefined && indexerName != undefined) {
-      console.log("indexer name exists")
-      iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
-    } else {
-      console.log("does not exist")
+    iframe.src = 'http://localhost:3002';
+    if (base) {
+      console.log("added base")
+      iframe.src += base;
     }
+    if (accountId != undefined && indexerName != undefined) {
+      iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
+    }
+    console.log(iframe.src, "src is")
     iframe.name = "react-app"
     iframe.id = "react-app-iframe"
     iframe.style.width = '1250px';
@@ -77,14 +81,12 @@ const code = `
         window.top.postMessage(event.data, "*");
       }
     if (event.data.action === 'createIframe') {
-     
       // Check if the iframe element already exists
-
       if (iframe) {
         // The iframe already exists, do nothing
         return;
       }
-      createIframe(event.data.value.accountId, event.data.value.indexerName);
+      createIframe(event.data.value.base, event.data.value.accountId, event.data.value.indexerName);
     }
   });
     </script>
@@ -102,6 +104,7 @@ return (
         value: {
           indexerName: indexerName,
           accountId: accountId,
+          base,
         },
         from: "widget",
       }}
