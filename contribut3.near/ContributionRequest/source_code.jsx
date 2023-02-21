@@ -96,8 +96,9 @@ const body = (
           update: props.update,
           additionalText: (
             <b>
-              contributionRequest.need ? "sent a proposal to your request" :
-              "wants to contribute to your project"
+              {contributionRequest.need
+                ? "sent a proposal to your request"
+                : "wants to contribute to your project"}
             </b>
           ),
           additionalColumn: controls,
