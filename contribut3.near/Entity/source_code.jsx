@@ -34,8 +34,6 @@ const contributions = Near.view(
 
 const profile = Social.getr(`${accountId}/profile`);
 
-const tags = Object.keys(profile.tags ?? {});
-
 const [[founder]] = (contributions ?? []).filter((contribution) => {
   const [_, details] = contribution;
   const all = [...details.history, details.current];
