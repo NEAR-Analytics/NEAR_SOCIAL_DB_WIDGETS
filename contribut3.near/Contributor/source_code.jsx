@@ -9,13 +9,27 @@ if (!accountId) {
 
 const contributor = isPreview
   ? props.contributor
-  : Near.view(ownerId, "get_contributor", { account_id: accountId }, "final");
+  : Near.view(
+    ownerId,
+    "get_contributor",
+    { account_id: accountId },
+    "final",
+    true
+  );
 
 if (!contributor) {
   return isPreview
     ? "You must provide a contributor object in preview mode"
     : "Loading...";
 }
+
+const entity = Near.view(
+  ownerId,
+  "get_entity",
+  { account_id: accountId },
+  "final",
+  true
+);
 
 const profile = Social.getr(`${accountId}/profile`);
 
