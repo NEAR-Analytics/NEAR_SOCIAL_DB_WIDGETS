@@ -3,7 +3,7 @@ const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
-const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const postUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const content =
   props.content ??
