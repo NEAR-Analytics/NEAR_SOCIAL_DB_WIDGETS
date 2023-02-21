@@ -1,7 +1,7 @@
 const items = props.items ?? [];
 
 const menuItems = items.reduce(
-  (list, { text, icon, id }) => [
+  (list, { text, icon, href, onClick }) => [
     ...list,
     list.length > 0 ? (
       <li>
@@ -11,7 +11,7 @@ const menuItems = items.reduce(
       <></>
     ),
     <li>
-      <a className="dropdown-item" id={id}>
+      <a className="dropdown-item" href={href} onClick={onClick}>
         <i className={icon} />
         <span>{text}</span>
       </a>
