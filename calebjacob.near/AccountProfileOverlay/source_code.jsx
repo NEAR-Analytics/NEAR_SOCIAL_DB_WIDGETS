@@ -74,6 +74,7 @@ return (
   >
     <div
       className={props.inline ? "d-inline-flex" : ""}
+      style={{ verticalAlign: props.inline ? "middle" : "" }}
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
