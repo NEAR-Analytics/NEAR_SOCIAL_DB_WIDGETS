@@ -52,7 +52,7 @@ const linkStyle = {
 };
 
 const apiUrl = "https://api.pikespeak.ai/contract-analysis/contract-ranking";
-const publicApiKey = "bf63f79f-93b9-4613-ad98-396c3f9a5c64";
+const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const contractsRanking = fetch(apiUrl, {
   mode: "cors",
