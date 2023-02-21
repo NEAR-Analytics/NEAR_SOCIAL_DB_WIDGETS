@@ -113,7 +113,7 @@ const body = (
                 <></>
               )}
               <div
-                className="ps-2 border-start border"
+                className="ps-2 border-start border-2"
                 style={{ borderColor: "#b2ddff" }}
               >
                 <Widget
