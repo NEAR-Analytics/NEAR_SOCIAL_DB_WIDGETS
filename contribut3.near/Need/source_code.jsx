@@ -62,25 +62,14 @@ const body = (
       <div className="d-flex flex-row justify-content-between align-items-start">
         <h4>Looking for {contributionNeed.contribution_type}</h4>
         <div className="d-flex flex-row justify-content-end align-items-start">
-          <div
-            className={`text-${contributionNeed.active ? "success" : "muted"
-              } me-3 d-flex flex-row justify-content-start align-items-center`}
-          >
-            {contributionNeed.active ? (
-              <i
-                className="d-block bg-success rounded-circle"
-                style={{ width: ".6em", height: ".6em" }}
-              />
-            ) : (
-              <></>
-            )}
-            <span
-              className="d-block ms-1 text-nowrap"
-              style={{ fontSize: "small" }}
-            >
-              {contributionNeed.active ? "Open to proposals" : "Closed"}
-            </span>
-          </div>
+          <Widget
+            src={`${ownerId}/widget/ActiveIndicator`}
+            props={{
+              active: contributionNeed.active,
+              activeText: "Open to proposals",
+              inactiveText: "Closed",
+            }}
+          />
           <Widget
             src={`${ownerId}/widget/CardMenu`}
             props={{
