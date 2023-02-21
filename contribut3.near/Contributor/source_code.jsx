@@ -69,8 +69,10 @@ const body = (
                 className={`text-${entity.status ? "success" : "muted"
                   } me-3 d-flex flex-row`}
               >
-                <i className={entity.status ? "bi-play" : "bi-x"} />
-                <span className="ms-1">{entity.status}</span>
+                <i className={entity.status ? "bi-circle-fill" : ""} />
+                <span className="ms-1">
+                  {entity.status ? "Available" : "Not available"}
+                </span>
               </div>
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
@@ -103,10 +105,12 @@ const body = (
           ),
           additionalRow: (
             <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder }}
-              />
+              <div>
+                <i className={isEntity ? "bi-diagram-2" : "bi-person"} />
+                <span>
+                  {isEntity ? "Organization" : "Individual contributor"}
+                </span>
+              </div>
               <Widget
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
