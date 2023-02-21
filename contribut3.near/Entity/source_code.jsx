@@ -154,7 +154,11 @@ const body = (
                       icon: "bi-info-circle",
                       id: "info",
                     },
-                    { text: "Share", icon: "bi-arrow-up-right", id: "share" },
+                    {
+                      text: "Share",
+                      icon: "bi-arrow-up-right",
+                      id: "share",
+                    },
                   ],
                 }}
               />
