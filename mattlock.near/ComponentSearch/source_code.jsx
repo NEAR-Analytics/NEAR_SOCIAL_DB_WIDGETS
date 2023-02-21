@@ -42,9 +42,11 @@ const computeResults = (term) => {
     );
   };
 
-  if (!keys || Object.keys(keys).length === 0) {
+  if (!keys || Object.keys(keys || {}).length === 0) {
     keys = Social.keys(["*/widget/*"], "final", { values_only: true });
   }
+
+  console.log("keys", keys);
 
   Object.entries(keys).forEach(([accountId, data]) => {
     Object.keys(data.widget).forEach((componentId) => {
