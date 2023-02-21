@@ -11,7 +11,7 @@ const menuItems = items.reduce(
       <></>
     ),
     <li>
-      <a className="dropdown-item" href={href} onClick={onClick}>
+      <a className="dropdown-item btn" href={href} onClick={onClick}>
         <i className={icon} />
         <span>{text}</span>
       </a>
