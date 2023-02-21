@@ -36,6 +36,23 @@ const active = contributor.looking_for_work;
 
 const profile = Social.getr(`${accountId}/profile`);
 
+const mapType = (contributionType) => {
+  if (typeof contributionType === "object") {
+    return contributionType.Other;
+  }
+
+  return contributionType;
+};
+
+const contributionTypes = contributor.contribution_types;
+
+if ("Other" in contributionTypes) {
+  contributionTypes[contributionTypes.Other] = "";
+  delete contributionTypes.Other;
+}
+
+const tags = { ...contributor.skills, ...contributionTypes } || profile.tags;
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
@@ -103,11 +120,7 @@ const body = (
             <Widget
               src={`${ownerId}/widget/Tags`}
               props={{
-                tags:
-                  {
-                    ...contributor.skills,
-                    ...contributor.contribution_types,
-                  } || profile.tags,
+                tags,
               }}
             />
             <Widget
