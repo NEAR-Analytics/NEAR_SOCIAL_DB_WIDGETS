@@ -112,7 +112,7 @@ const body = (
               ) : (
                 <></>
               )}
-              <div className="ps-2 border-start border-3 border-info">
+              <div className="mt-2 ps-2 border-start border-3 border-info">
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
                   props={{
