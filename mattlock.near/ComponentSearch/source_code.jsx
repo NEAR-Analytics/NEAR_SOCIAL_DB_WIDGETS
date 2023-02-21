@@ -95,7 +95,7 @@ const computeResults = (term) => {
 
 if (!state.mounted) {
   State.update({
-    mounted: !!keys,
+    mounted: Object.keys(keys).length > 0,
   });
   computeResults(props.term);
 }
