@@ -52,6 +52,7 @@ const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  margin: -6px;
 `;
 
 const Comments = styled.div``;
@@ -105,7 +106,7 @@ return (
       {blockHeight !== "now" && (
         <Actions>
           <Widget
-            src="mob.near/widget/LikeButton"
+            src="calebjacob.near/widget/LikeButton"
             props={{
               notifyAccountId,
               item,
