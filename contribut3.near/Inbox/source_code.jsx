@@ -6,7 +6,13 @@ State.init({
 });
 
 const invitesCount = (
-  Near.view(ownerId, "get_contributor_invites", {}, "final", true) ?? []
+  Near.view(
+    ownerId,
+    "get_contributor_invites",
+    { account_id: contributorId },
+    "final",
+    true
+  ) ?? []
 ).length;
 
 const header = (
@@ -47,6 +53,7 @@ const contentSelector = (
       id: "proposals",
       text: "Proposals",
       icon: "bi-person-plus",
+      count: 0,
     })}
     {contentSelectButton({
       id: "invitations",
