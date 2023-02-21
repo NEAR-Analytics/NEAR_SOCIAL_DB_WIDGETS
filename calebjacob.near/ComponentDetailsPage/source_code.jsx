@@ -22,11 +22,12 @@ const shareUrl = `https://alpha.near.org${detailsUrl}`;
 
 const dependencyMatch =
   code && code.matchAll(/<Widget[\s\S]*?src="(.+)"[\s\S]*?\/>/g);
-const dependencySources = [...(dependencyMatch || [])]
+let dependencySources = [...(dependencyMatch || [])]
   .map((r) => r[1])
   .filter((r) => !!r);
-
-console.log(code);
+dependencySources = dependencySources.filter(
+  (r, i) => dependencySources.indexOf(r) !== i
+);
 
 const sourceCode = `
 \`\`\`jsx
