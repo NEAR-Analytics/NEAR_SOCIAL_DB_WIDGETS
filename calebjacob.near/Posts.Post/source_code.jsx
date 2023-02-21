@@ -30,6 +30,7 @@ const Content = styled.div`
   line-height: 20px;
   font-weight: 400;
   color: #687076;
+  white-space: pre-line;
 
   a {
     color: #006ADC !important;
