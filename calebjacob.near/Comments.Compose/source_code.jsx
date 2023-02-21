@@ -97,7 +97,7 @@ const Wrapper = styled.div`
   --padding: 12px;
   position: relative;
   border: 1px solid #ECEEF0;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-left: -12px;
 `;
 
