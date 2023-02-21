@@ -22,7 +22,7 @@ const menuItems = items.reduce(
 
 const menuIcon = styled.a`
   &:before {
-    content: "⋮" !important;
+    display: none !important;
   }
 `;
 
@@ -33,7 +33,7 @@ return (
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
-      {/* <i className="bi-three-dots-vertical" /> */}
+      <i className="bi-three-dots-vertical" />
     </menuIcon>
 
     <ul className="dropdown-menu">{menuItems}</ul>
