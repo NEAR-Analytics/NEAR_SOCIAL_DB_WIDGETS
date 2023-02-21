@@ -12,8 +12,6 @@ const index = {
   },
 };
 
-console.log("index", index);
-
 const raw = !!props.raw;
 
 const renderItem = (a) =>
