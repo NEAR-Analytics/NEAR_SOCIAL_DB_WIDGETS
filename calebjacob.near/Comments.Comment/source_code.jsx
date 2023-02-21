@@ -68,7 +68,7 @@ const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 0 -6px 6px;
+  margin: -6px -6px 6px;
 `;
 
 return (
