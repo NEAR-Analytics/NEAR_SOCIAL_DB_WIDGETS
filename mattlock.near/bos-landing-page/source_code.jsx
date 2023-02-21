@@ -128,6 +128,14 @@ if (!state.theme) {
     ${css}
 `,
   });
+
+  setTimeout(
+    () =>
+      State.update({
+        pumpIt: true,
+      }),
+    1000
+  );
 }
 const Theme = state.theme;
 
