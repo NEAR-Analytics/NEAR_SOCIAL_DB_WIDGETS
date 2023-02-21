@@ -12,17 +12,21 @@ const index = {
 const raw = !!props.raw;
 
 const Wrapper = styled.div`
-  a {
-    font-size: 14px;
-    line-height: 20px;
-    color: #006ADC;
-    outline: none;
-    font-weight: 600;
+  > div:first-child {
+    margin-bottom: 12px;
+    
+    a {
+      font-size: 14px;
+      line-height: 20px;
+      color: #687076;
+      outline: none;
+      font-weight: 600;
 
-    &:hover,
-    &:focus {
-      color: #006ADC;
-      text-decoration: underline;
+      &:hover,
+      &:focus {
+        color: #006ADC;
+        text-decoration: underline;
+      }
     }
   }
 `;
