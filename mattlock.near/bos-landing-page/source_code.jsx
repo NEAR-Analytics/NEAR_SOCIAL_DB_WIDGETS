@@ -18,20 +18,24 @@ const css = `
 .apps {
   margin-top: 32px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-
 
 .flex {
   display: flex;
   align-items: center;
 }
 
+.flex-right {
+  padding-left: 8px;
+}
+
 .app-image {
   width: 100px;
+  height: 100px;
   margin-right: 16px;
+  object-fit: contain;
 }
 
 .header {
@@ -60,7 +64,7 @@ const css = `
 .header-left {
     background: linear-gradient(253.16deg, #4D1CB6 1.53%, #AC3A7F 86.25%);
     width: 55%;
-    height: 440px;
+    height: 260px;
   transform-origin: 100% 0;
   transform: skew(-10deg);
   border-right: 4px solid black;
@@ -70,7 +74,7 @@ const css = `
     margin-left: -100px;
     background: linear-gradient(255.45deg, #7D14AF 12.67%, #00D1FF 87.81%);
     width: calc(45% + 100px);
-    height: 440px;
+    height: 260px;
     text-align: right;
 }
 
@@ -80,14 +84,14 @@ const css = `
     z-index: 1;
     opacity: 0.5;
   width: 100vw;
-  height: 440px;
+  height: 260px;
   background: url('https://s3-alpha-sig.figma.com/img/aa66/ca0f/536910691a243c017d29d4fe29b4da0a?Expires=1677456000&Signature=SCOYHroTrc--MSSaDWtzcsPvcoHQs9~lF2cwUv-4liY-MTa01xehz4dcVFgvyyqrN8oohEeIZ28SjtcVRFVquNupbyqMUe06cB84IN8T-tvZ7pJqsT96NB2rwpfZvTgcBioY0lRVU45~LGxBF6Mq-Cow-WjIwjU3UZUADEdhVQx85g1hK3OIpn4xP2QJmKor1raV4EdvS7dI0PzyzZg1b9h3EUgEACu15Bl~7d6HD6~a1mQVz6WLJOa4GlOpAnOs7fpG6d8vsWjA1BV6jkXHkra4F82EvKGOhXJp-Ti04S37Km5OQBxc6KOTB8MbOS-FOgeVENObE~7l-fuMZvLW1A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4');
  }
 
  .header-content-left {
      position: absolute;
      z-index: 2;
-     height: 440px;
+     height: 260px;
  }
 
  .main {
@@ -110,7 +114,7 @@ const css = `
     border: none;
   }
   .noise {
-    height: 880px;
+    height: 520px;
   }
 }
 `;
@@ -188,40 +192,34 @@ return (
             {state.components.map((component, i) => (
               <div key={i} class="widget">
                 <div class="flex">
-                  <div>
-                    <Widget
-                      src="mob.near/widget/Image"
-                      props={{
-                        image: component.image,
-                        alt: component.name,
-                        className: imageClassName,
-                        style: imageStyle,
-                        thumbnail: component.thumbnail,
-                        fallbackUrl:
-                          "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
-                      }}
-                    />
-                  </div>
-                  <div>
+                  <a href={`#/${component.widgetSrc}`} target="_blank">
+                    <div>
+                      <Widget
+                        src="mob.near/widget/Image"
+                        props={{
+                          image: component.image,
+                          alt: component.name,
+                          className: imageClassName,
+                          style: imageStyle,
+                          thumbnail: component.thumbnail,
+                          fallbackUrl:
+                            "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+                        }}
+                      />
+                    </div>
+                  </a>
+                  <div class="flex-right">
                     <p>{component.widgetName}</p>
                   </div>
                 </div>
                 <p>{component.description}</p>
 
-                {
-                  console.log(component)
-
-                  // <Widget
-                  //   src="mob.near/widget/Editor.ComponentSearch.Item"
-                  //   props={{
-                  //     accountId: component.accountId,
-                  //     widgetName: component.widgetName,
-                  //     onEmbed: () => State.update({ components: null }),
-                  //     onHide: () => State.update({ components: null }),
-                  //     extraButtons: props.extraButtons,
-                  //   }}
-                  // />
-                }
+                <a
+                  href={`#/mob.near/widget/WidgetSource?src=${component.widgetSrc}`}
+                  target="_blank"
+                >
+                  <i className="bi bi-file-earmark-code me-1"></i>Source
+                </a>
               </div>
             ))}
           </div>
