@@ -18,7 +18,7 @@ Near.asyncView(
   "final",
   true
 ).then((data) => {
-  console.log(data);
+  console.log({ accountId, data });
   State.update({ data });
 });
 
