@@ -26,7 +26,7 @@ let dependencySources = [...(dependencyMatch || [])]
   .map((r) => r[1])
   .filter((r) => !!r);
 dependencySources = dependencySources.filter(
-  (r, i) => dependencySources.indexOf(r) !== i
+  (r, i) => dependencySources.indexOf(r) === i
 );
 
 const sourceCode = `
