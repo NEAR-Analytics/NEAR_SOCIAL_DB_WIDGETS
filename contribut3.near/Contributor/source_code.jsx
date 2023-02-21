@@ -86,7 +86,7 @@ const body = (
                 )}
                 <span
                   className="d-block ms-1 flex-grow-1"
-                  style={{ minWidth: "6em", fontSize: "x-small" }}
+                  style={{ minWidth: "6em", fontSize: "small" }}
                 >
                   {active ? "Available" : "Not available"}
                 </span>
