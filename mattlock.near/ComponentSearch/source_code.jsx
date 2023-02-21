@@ -16,6 +16,8 @@ initState({
 });
 
 const computeResults = (term) => {
+  console.log("computeResults");
+
   const terms = (term || "")
     .toLowerCase()
     .split(/[^\w._\/-]/)
@@ -23,7 +25,7 @@ const computeResults = (term) => {
 
   const matchedWidgets = [];
 
-  const limit = props.limit ?? 30;
+  const limit = props.limit ?? 20;
 
   const MaxSingleScore = 1;
   const MaxScore = MaxSingleScore * 4;
@@ -89,11 +91,18 @@ const computeResults = (term) => {
   }
 };
 
+if (!state.mounted) {
+  State.update({
+    mounted: true,
+  });
+  computeResults(props.term);
+}
+
 if (props.term && props.term !== state.oldTerm) {
   State.update({
     oldTerm: props.term,
   });
-  if (!state.mounted || props.term !== state.term) {
+  if (props.term !== state.term) {
     State.update({
       mounted: true,
     });
