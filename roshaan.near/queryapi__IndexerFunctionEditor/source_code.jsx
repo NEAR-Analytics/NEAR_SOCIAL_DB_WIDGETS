@@ -32,9 +32,7 @@ let updateIndexerCode = (data) => {
       start_block_height: data.startBlockHeight,
     },
     gas
-  ).then((result) => {
-    console.log(result);
-  });
+  );
 };
 
 const reducer = (message) => {
@@ -68,14 +66,16 @@ const code = `
    
       if (accountId != undefined && indexerName != undefined) {
       iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
+      iframe.style.height = '500px';
     } else if (accountId != undefined ){
       iframe.src += "?accountId=${accountId}"
+      iframe.style.height = '3750px';
     }
     console.log(iframe.src, "src is")
     iframe.name = "react-app"
     iframe.id = "react-app-iframe"
     iframe.style.width = '1250px';
-    iframe.style.height = '500px';
+    
 
     document.body.appendChild(iframe);
   }
