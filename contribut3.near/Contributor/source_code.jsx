@@ -74,8 +74,8 @@ const body = (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <div
                 className={`text-${active ? "success" : "muted"
-                  } me-3 d-flex flex-row justify-content-end align-items-center fs-6`}
-                style={{ minWidth: "6em" }}
+                  } me-3 d-flex flex-row justify-content-end align-items-center`}
+                style={{ minWidth: "6em", fontSize: "xx-small" }}
               >
                 {active ? (
                   <i
