@@ -44,8 +44,6 @@ const computeResults = (term) => {
     );
   };
 
-  keys = Social.keys(["*/widget/*"], "final", { values_only: true });
-
   Object.entries(keys).forEach(([accountId, data]) => {
     Object.keys(data.widget).forEach((componentId) => {
       const widgetSrc = `${accountId}/widget/${componentId}`;
@@ -97,7 +95,7 @@ const computeResults = (term) => {
 
 if (!state.mounted) {
   State.update({
-    mounted: true,
+    mounted: !!keys,
   });
   computeResults(props.term);
 }
