@@ -79,6 +79,7 @@ return (
         props={{
           accountId,
           avatarSize: "32px",
+          hideAccountId: true,
           inlineContent: (
             <>
               <Text as="span">･</Text>
