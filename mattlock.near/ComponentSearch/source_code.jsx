@@ -93,9 +93,9 @@ const computeResults = (term) => {
   }
 };
 
-if (!state.mounted) {
+if (!state.mounted && Object.keys(keys || {}).length > 0) {
   State.update({
-    mounted: Object.keys(keys).length > 0,
+    mounted: true,
   });
   computeResults(props.term);
 }
@@ -105,9 +105,6 @@ if (props.term && props.term !== state.oldTerm) {
     oldTerm: props.term,
   });
   if (props.term !== state.term) {
-    State.update({
-      mounted: true,
-    });
     computeResults(props.term);
   }
 }
