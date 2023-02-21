@@ -33,37 +33,6 @@ return (
       <i className="bi-three-dots-vertical" />
     </a>
 
-    <ul className="dropdown-menu">
-      {menuItems}
-      {buttonAction({
-        text: "Propose contribution",
-        icon: "bi-person-up",
-        id: "contribute",
-      })}
-      <li>
-        <hr className="dropdown-divider" />
-      </li>
-      {buttonAction({
-        text: "Invite to contribute",
-        icon: "bi-person-plus",
-        id: "invite",
-      })}
-      <li>
-        <hr className="dropdown-divider" />
-      </li>
-      {buttonAction({
-        text: "View details",
-        icon: "bi-info-circle",
-        id: "info",
-      })}
-      <li>
-        <hr className="dropdown-divider" />
-      </li>
-      {buttonAction({
-        text: "Share",
-        icon: "bi-arrow-up-right",
-        id: "share",
-      })}
-    </ul>
+    <ul className="dropdown-menu">{menuItems}</ul>
   </div>
 );
