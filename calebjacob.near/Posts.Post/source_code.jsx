@@ -108,13 +108,14 @@ return (
           <Widget
             src="calebjacob.near/widget/LikeButton"
             props={{
-              notifyAccountId,
               item,
+              notifyAccountId,
             }}
           />
           <Widget
             src="mob.near/widget/CommentButton"
             props={{
+              item,
               onClick: () =>
                 !state.showReply && State.update({ showReply: true }),
             }}
