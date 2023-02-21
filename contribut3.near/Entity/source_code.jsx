@@ -135,7 +135,13 @@ const body = (
                 <i className="bi-play" />
                 <span className="ms-1">{entity.status}</span>
               </div>
-              <Widget src={`${ownerId}/widget/CardMenu`} props={{ items: [{ text: "Propose contribution", icon: "bi-person-up", id: "contribute" }] }} />
+              <Widget src={`${ownerId}/widget/CardMenu`} props={{
+                items: [{ text: "Propose contribution", icon: "bi-person-up", id: "contribute" }, {
+                  text: "Invite to contribute",
+                  icon: "bi-person-plus",
+                  id: "invite",
+                }]
+              }} />
               <div className="btn-group dropstart">
                 <a
                   className="btn btn-outline-secondary dropdown-toggle"
