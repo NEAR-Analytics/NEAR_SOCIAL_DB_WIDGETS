@@ -52,42 +52,75 @@ const body = (
   <div
     className="d-flex flex-row justify-content-start"
     id={accountId}
-    style={{ minHeight: "10em" }}
+    style={{ minHeight: "8em" }}
   >
     <div className="flex-grow-1 py-3">
-      <div className="d-flex flex-row justify-content-start">
-        <div className="m-2">{circle}</div>
-        <div className="d-flex flex-column justify-content-between align-items-start w-100">
-          <div className="w-100 d-flex flex-row justify-content-between align-items-start">
-            <div>
-              <b>{profile.name}</b>
-              <span className="text-muted">@{accountId}</span>
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId,
+          isEntity: true,
+          imageSize: "3em",
+          additionalColumn: inboxView ? (
+            <></>
+          ) : (
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <div
+                className={`text-${entity.status ? "success" : "muted"
+                  } me-3 d-flex flex-row`}
+              >
+                <i className={entity.status ? "bi-play" : "bi-x"} />
+                <span className="ms-1">{entity.status}</span>
+              </div>
+              <Widget
+                src={`${ownerId}/widget/CardMenu`}
+                props={{
+                  items: [
+                    {
+                      text: "Propose contribution",
+                      icon: "bi-person-up",
+                      id: "contribute",
+                    },
+                    {
+                      text: "Invite to contribute",
+                      icon: "bi-person-plus",
+                      id: "invite",
+                    },
+                    {
+                      text: "View details",
+                      icon: "bi-info-circle",
+                      id: "info",
+                    },
+                    {
+                      text: "Share",
+                      icon: "bi-arrow-up-right",
+                      id: "share",
+                    },
+                  ],
+                }}
+              />
             </div>
-            <div className="text-success">
-              <i className="bi-circle-fill" />
-              <span className="ms-1">Available</span>
-            </div>
-          </div>
-          {contributorType}
-          <div className="text-truncate text-muted">
-            {tags.length > 0 ? (
-              <>
-                {tags.map((tag) => (
-                  <span
-                    className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                    key={tag}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="text-truncate my-2">{profile.description}</div>
-        </div>
-      </div>
+          ),
+          additionalRow: (
+            <>
+              <Widget
+                src={`${ownerId}/widget/ProfileLine`}
+                props={{ accountId: founder }}
+              />
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: profile.tags }}
+              />
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{
+                  description: entity.description || profile.description,
+                }}
+              />
+            </>
+          ),
+        }}
+      />
     </div>
     <div className="vr mx-3" />
     <div className="d-flex flex-row justify-content-end align-items-start py-3">
