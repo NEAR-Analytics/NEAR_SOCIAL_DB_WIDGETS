@@ -32,6 +32,7 @@ const entity = Near.view(
 );
 
 const isEntity = !!entity;
+console.log({ isEntity, accountId });
 const active = contributor.looking_for_work;
 
 const profile = Social.getr(`${accountId}/profile`);
