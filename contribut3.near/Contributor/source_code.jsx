@@ -106,8 +106,7 @@ const body = (
           <>
             <div className="d-flex flex-row justify-content-between align-items-center">
               <i
-                className={`d-inline-block ${isEntity ? "bi-diagram-2" : "bi-person"
-                  }`}
+                className={`d-block ${isEntity ? "bi-diagram-2" : "bi-person"}`}
               />
               <span className="ms-2">
                 {isEntity ? "Organization" : "Individual contributor"}
