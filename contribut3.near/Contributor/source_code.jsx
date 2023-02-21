@@ -75,7 +75,7 @@ const body = (
               <div
                 className={`text-${active ? "success" : "muted"
                   } me-3 d-flex flex-row align-items-center`}
-                style={{ minWidth: "10em" }}
+                style={{ minWidth: "6em" }}
               >
                 {active ? (
                   <i
