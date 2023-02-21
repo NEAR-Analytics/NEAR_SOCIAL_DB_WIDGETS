@@ -36,6 +36,7 @@ index.options.limit = Math.min(
 const reverse = !!props.reverse;
 
 const initialItems = Social.index(index.action, index.key, index.options);
+console.log("initialItems", initialItems);
 if (initialItems === null) {
   return "";
 }
