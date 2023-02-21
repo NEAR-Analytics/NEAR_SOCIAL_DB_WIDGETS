@@ -52,7 +52,11 @@ const Actions = styled.div`
   margin: -6px -6px 6px;
 `;
 
-const Comments = styled.div``;
+const Comments = styled.div`
+  > div:first-child {
+    padding-top: 12px;
+  }
+`;
 
 return (
   <Post>
