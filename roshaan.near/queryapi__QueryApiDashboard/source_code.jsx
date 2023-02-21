@@ -374,7 +374,7 @@ const allIndexerView = () => {
     <>
       <ButtonLink
         primary
-        href="/#/roshaan.near/widget/queryapi__QueryApiDashboard"
+        href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
       >
         Create New Indexer
       </ButtonLink>
@@ -483,6 +483,26 @@ return (
                 indexerName:
                   selected_indexerName ?? state.indexers[0].indexerName,
                 accountId: accountId,
+                base: "/query-api-editor",
+              }}
+            />
+          </div>
+        )}
+        {state.activeTab === "create-new-indexer" && (
+          <div>
+            {state.indexers.length > 0 &&
+              (state.selected_indexer != "" ? (
+                <H2>{state.selected_indexer}</H2>
+              ) : (
+                <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
+              ))}
+            <Widget
+              src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
+              props={{
+                indexerName:
+                  selected_indexerName ?? state.indexers[0].indexerName,
+                accountId: accountId,
+                base: "/create-new-indexer/?accountId=${accountId}",
               }}
             />
           </div>
