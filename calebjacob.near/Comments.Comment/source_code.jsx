@@ -41,6 +41,7 @@ const Header = styled.div`
 
 const Body = styled.div`
   padding-left: 52px;
+  padding-bottom: 1px;
 `;
 
 const Content = styled.div`
