@@ -57,8 +57,11 @@ const body = (
             <></>
           ) : (
             <div className="d-flex flex-row justify-content-between align-items-center">
-              <div className="text-success me-3 d-flex flex-row">
-                <i className="bi-play" />
+              <div
+                className={`text-${entity.status ? "success" : "secondary"
+                  } me-3 d-flex flex-row`}
+              >
+                <i className={entity.status ? "bi-play" : "bi-x"} />
                 <span className="ms-1">{entity.status}</span>
               </div>
               <Widget
