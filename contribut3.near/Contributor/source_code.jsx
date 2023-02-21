@@ -32,6 +32,7 @@ const entity = Near.view(
 );
 
 const isEntity = !!entity;
+const active = contributor.looking_for_work;
 
 const profile = Social.getr(`${accountId}/profile`);
 
@@ -52,12 +53,12 @@ const body = (
         ) : (
           <div className="d-flex flex-row justify-content-between align-items-center">
             <div
-              className={`text-${entity.status ? "success" : "muted"
+              className={`text-${active ? "success" : "muted"
                 } me-3 d-flex flex-row`}
             >
-              <i className={entity.status ? "bi-circle-fill" : ""} />
+              <i className={active ? "bi-circle-fill" : ""} />
               <span className="ms-1">
-                {entity.status ? "Available" : "Not available"}
+                {active ? "Available" : "Not available"}
               </span>
             </div>
             <Widget
