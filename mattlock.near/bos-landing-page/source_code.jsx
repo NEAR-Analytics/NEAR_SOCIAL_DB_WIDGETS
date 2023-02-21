@@ -1,10 +1,3 @@
-// const cssFont = fetch(
-//   "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700"
-// ).body;
-// const css = fetch(
-//   "https://pluminite.mypinata.cloud/ipfs/Qmboz8aoSvVXLeP5pZbRtNKtDD3kX5D9DEnfMn2ZGSJWtP"
-// ).body;
-
 const fontUrl = `https://ipfs.io/ipfs/bafkreicrs3gh7f77yhpw4xiejx35cd56jcczuhvqbwkn77g2ztkrjejopa`;
 
 const imageClassName = "app-image";
@@ -176,7 +169,12 @@ return (
               limit: 10,
               term: "#ethdenver2023",
               boostedTag: "#ethdenver2023",
-              onChange: ({ result: components, term }) => {
+              onChange: ({ result, term }) => {
+                const components = result.map((w) => ({
+                  ...w,
+                  image: Social.getr(`${w.widgetSrc}/metadata`).image,
+                }));
+
                 State.update({ components, term });
               },
             }}
