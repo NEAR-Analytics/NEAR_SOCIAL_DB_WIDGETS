@@ -1,7 +1,7 @@
 const items = props.items ?? [];
 
-const menuItems = items.reduce((list, { text, icon, id }) => {
-  return [
+const menuItems = items.reduce(
+  (list, { text, icon, id }) => [
     ...list,
     list.length > 0 ? (
       <li>
@@ -16,8 +16,9 @@ const menuItems = items.reduce((list, { text, icon, id }) => {
         <span>{text}</span>
       </a>
     </li>,
-  ];
-}, []);
+  ],
+  []
+);
 
 return (
   <div className="btn-group dropstart">
