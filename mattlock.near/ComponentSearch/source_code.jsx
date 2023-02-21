@@ -5,8 +5,6 @@ const allMetadata =
   ) || {};
 let keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
-console.log("mount", keys);
-
 const requiredTag = props.filterTag;
 const boostedTag = props.boostedTag;
 if (!props.term) props.term = "";
@@ -18,8 +16,6 @@ initState({
 });
 
 const computeResults = (term) => {
-  console.log("computeResults", term);
-
   const terms = (term || "")
     .toLowerCase()
     .split(/[^\w._\/-]/)
