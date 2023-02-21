@@ -94,16 +94,11 @@ function onCommit() {
 }
 
 const Wrapper = styled.div`
-  --padding: 24px;
+  --padding: 12px;
   position: relative;
   border: 1px solid #ECEEF0;
   border-radius: 12px;
   margin-left: -12px;
-  
-
-  @media (max-width: 1200px) {
-    --padding: 12px;
-  }
 `;
 
 const Textarea = styled.div`
@@ -118,7 +113,7 @@ const Textarea = styled.div`
     width: 100%;
     min-width: 1em;
     height: unset;
-    min-height: 164px;
+    min-height: 124px;
     font: inherit;
     padding: var(--padding) var(--padding) calc(40px + (var(--padding) * 2))  var(--padding);
     margin: 0;
@@ -129,10 +124,6 @@ const Textarea = styled.div`
     grid-area: 1 / 1;
     overflow: hidden;
     outline: none;
-
-    @media (max-width: 1200px) {
-      min-height: 124px;
-    }
   }
   
   &::after {
