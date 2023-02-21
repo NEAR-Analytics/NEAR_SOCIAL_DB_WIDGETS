@@ -72,25 +72,14 @@ const body = (
             <></>
           ) : (
             <div className="d-flex flex-row justify-content-between align-items-center">
-              <div
-                className={`text-${active ? "success" : "muted"
-                  } me-3 d-flex flex-row justify-content-start align-items-center`}
-              >
-                {active ? (
-                  <i
-                    className="d-block bg-success rounded-circle"
-                    style={{ width: ".6em", height: ".6em" }}
-                  />
-                ) : (
-                  <></>
-                )}
-                <span
-                  className="d-block ms-1 text-nowrap"
-                  style={{ fontSize: "small" }}
-                >
-                  {active ? "Available" : "Not available"}
-                </span>
-              </div>
+              <Widget
+                src={`${ownerId}/widget/ActiveIndicator`}
+                props={{
+                  active,
+                  activeText: "Available",
+                  inactiveText: "Not avilable",
+                }}
+              />
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
                 props={{
