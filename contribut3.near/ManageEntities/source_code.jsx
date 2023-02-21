@@ -7,7 +7,7 @@ State.init({
 
 const header = (
   <div>
-    <h1 className="fs-2">Manage entities</h1>
+    <h1 className="fs-2">Manage</h1>
     <p className="fw-semibold fs-5 text-muted">
       Crete or edit projects, organizations and contribution requests
     </p>
