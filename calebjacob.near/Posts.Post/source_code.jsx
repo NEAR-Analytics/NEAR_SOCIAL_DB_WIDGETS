@@ -26,11 +26,6 @@ const Body = styled.div`
 `;
 
 const Content = styled.div`
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  color: #687076;
-
   img {
     display: block;
     max-width: 100%;
