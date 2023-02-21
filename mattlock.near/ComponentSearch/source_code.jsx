@@ -1,11 +1,6 @@
 const allMetadata =
   Social.get(
-    [
-      "*/widget/*/metadata/name",
-      "*/widget/*/metadata/image",
-      "*/widget/*/metadata/description",
-      "*/widget/*/metadata/tags/*",
-    ],
+    ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
     "final"
   ) || {};
 
@@ -22,6 +17,10 @@ initState({
 });
 
 const computeResults = (term) => {
+  State.update({
+    term,
+  });
+
   const terms = (term || "")
     .toLowerCase()
     .split(/[^\w._\/-]/)
@@ -57,8 +56,6 @@ const computeResults = (term) => {
         return;
       }
 
-      const metadata2 = Social.getr(`${widgetSrc}/metadata`);
-
       const boosted =
         boostedTag && metadata.tags && boostedTag in metadata.tags;
       const tags = Object.keys(metadata.tags || {}).slice(0, 10);
@@ -86,10 +83,12 @@ const computeResults = (term) => {
   matchedWidgets.sort(
     (a, b) => (b.boosted ? 2 : 0) + b.score - (a.boosted ? 2 : 0) - a.score
   );
-  const result = matchedWidgets.slice(0, limit);
+  const result = matchedWidgets.slice(0, limit).map((w) => ({
+    ...w,
+    image: Social.get(`${w.widgetSrc}/metadata`).image,
+  }));
 
   State.update({
-    term,
     result,
   });
 
@@ -113,9 +112,6 @@ if (props.term && props.term !== state.oldTerm) {
   State.update({
     oldTerm: props.term,
   });
-  if (props.term !== state.term) {
-    computeResults(props.term);
-  }
 }
 
 return (
