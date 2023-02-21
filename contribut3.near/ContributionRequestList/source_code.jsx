@@ -20,7 +20,7 @@ const adminEntities = Near.asyncView(
       "final"
     ).then((requests) => {
       const map = state.requests ?? {};
-      map.set(entityId, requests);
+      map[entityId] = requests;
       State.update({ requests: map });
     })
   );
