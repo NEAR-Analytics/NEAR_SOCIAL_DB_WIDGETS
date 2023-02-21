@@ -29,7 +29,12 @@ const contentSelectButton = ({ id, text, icon, count }) => (
     <i className={icon} />
     <span>{text}</span>
     {count !== 0 ? (
-      <div className="rounded-circle bg-danger text-center">{count}</div>
+      <div
+        className="rounded-circle bg-danger text-center"
+        style={{ width: "1em", height: "1em" }}
+      >
+        {count}
+      </div>
     ) : (
       <></>
     )}
