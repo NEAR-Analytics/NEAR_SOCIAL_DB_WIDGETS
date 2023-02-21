@@ -93,13 +93,7 @@ const body = (
           isEntity: true,
           imageSize: "3em",
           update: props.update,
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row justify-content-between align-items-center">
-              {controls}
-            </div>
-          ),
+          additionalColumn: { controls },
           additionalRow: (
             <>
               <Widget
