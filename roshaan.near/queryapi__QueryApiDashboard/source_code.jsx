@@ -387,7 +387,7 @@ const allIndexerView = () => {
         Create New Indexer
       </ButtonLink>
       <H2>
-        {context.accountId == accountId ? "My" : { accountId }} Indexers
+        {accountId}'s Indexers
         <span>({state.indexers.length})</span>
       </H2>
       {state.indexers.map((indexer, i) => (
