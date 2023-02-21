@@ -49,7 +49,7 @@ const Content = styled.div`
   }
 `;
 
-const CreatePostWrapper = styled.div`
+const ComposeWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
 `;
 
@@ -121,9 +121,9 @@ return (
     <Content>
       {context.accountId && (
         <>
-          <CreatePostWrapper>
-            <Widget src="calebjacob.near/widget/Posts.Create" />
-          </CreatePostWrapper>
+          <ComposeWrapper>
+            <Widget src="calebjacob.near/widget/Posts.Compose" />
+          </ComposeWrapper>
 
           <FilterWrapper>
             <PillSelect>
