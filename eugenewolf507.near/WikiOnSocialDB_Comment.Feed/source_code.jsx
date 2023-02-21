@@ -2,7 +2,7 @@ const addressForArticles = "wikiTest2Article";
 const addressForComments = "wikiTest2Comment";
 const authorForWidget = "eugenewolf507.near";
 const index = {
-  action: "comment",
+  action: addressForComments,
   key: props.item,
   options: {
     limit: props.limit ?? 3,
