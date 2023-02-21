@@ -14,7 +14,7 @@ const raw = !!props.raw;
 const notifyAccountId = accountId;
 const item = {
   type: "social",
-  path: `${accountId}/post/main`,
+  path: `${accountId}/${addressForArticles}/main`,
   blockHeight,
 };
 
