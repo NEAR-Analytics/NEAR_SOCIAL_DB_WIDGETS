@@ -31,36 +31,9 @@ const entity = Near.view(
   true
 );
 
+const isEntity = !!entity;
+
 const profile = Social.getr(`${accountId}/profile`);
-
-const tags = Object.keys(profile.tags ?? {});
-const image = profile.image;
-const url =
-  (image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
-    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
-
-const circle = (
-  <div
-    className="profile-circle d-inline-block"
-    title={`${profile.name} @${accountId}`}
-    style={{ width: "4em", height: "4em" }}
-  >
-    <img
-      className="rounded-circle w-100 h-100"
-      style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${url}`}
-      alt="profile image"
-    />
-  </div>
-);
-
-const contributorType = (
-  <div className="d-flex flex-row justify-content-start align-items-center my-1 text-body">
-    <i className="bi-person" />
-    <span>Individual contributor</span>
-  </div>
-);
 
 const body = (
   <div
@@ -144,7 +117,7 @@ const body = (
 );
 
 return (
-  <div className="card">
-    <div className="card-body px-3 py-0">{body}</div>
+  <div className="border-bottom border-secondary-subtle">
+    <div className="px-3 py-0">{body}</div>
   </div>
 );
