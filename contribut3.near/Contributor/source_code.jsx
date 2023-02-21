@@ -36,7 +36,13 @@ const active = contributor.looking_for_work;
 
 const profile = Social.getr(`${accountId}/profile`);
 
-const contributionTypes = contributor.contribution_types;
+const contributionTypes = contributor.contribution_types.reduce(
+  (ob, contributionType) =>
+    typeof contributionType === "object"
+      ? { ...ob, [contributionType.Other]: "" }
+      : { ...ob, [contributionType]: "" },
+  {}
+);
 
 if ("Other" in contributionTypes) {
   contributionTypes[contributionTypes.Other] = "";
