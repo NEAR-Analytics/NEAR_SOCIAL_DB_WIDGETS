@@ -37,11 +37,11 @@ const Post = styled.div`
 
 const Header = styled.div`
   display: inline-flex;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 `;
 
 const Body = styled.div`
-  padding-left: 52px;
+  padding-left: 44px;
   padding-bottom: 1px;
 `;
 
