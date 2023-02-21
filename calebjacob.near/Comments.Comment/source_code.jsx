@@ -21,7 +21,7 @@ const commentUrl = `/#/calebjacob.near/widget/PostPage?accountId=${accountId}&co
 const Post = styled.div`
   position: relative;
   background: ${props.highlight ? "#f00" : ""};
-  margin-left: 12px;
+  margin-left: 8px;
 
   &::before {
     content: '';
