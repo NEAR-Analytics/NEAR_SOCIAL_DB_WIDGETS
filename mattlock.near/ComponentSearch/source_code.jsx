@@ -42,7 +42,7 @@ const computeResults = (term) => {
     );
   };
 
-  if (Object.keys(keys).length === 0) {
+  if (!keys || Object.keys(keys).length === 0) {
     keys = Social.keys(["*/widget/*"], "final", { values_only: true });
   }
 
