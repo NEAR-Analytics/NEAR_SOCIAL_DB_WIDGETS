@@ -30,7 +30,7 @@ return (
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
-      <i className="bi-three-dots-vertical" />
+      {/* <i className="bi-three-dots-vertical" /> */}
     </a>
 
     <ul className="dropdown-menu">{menuItems}</ul>
