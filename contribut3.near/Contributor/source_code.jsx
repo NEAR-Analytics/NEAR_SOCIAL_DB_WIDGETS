@@ -107,7 +107,7 @@ const body = (
             <Widget
               src={`${ownerId}/widget/DescriptionArea`}
               props={{
-                description: entity.description || profile.description,
+                description: contributor.resume || profile.description,
               }}
             />
           </>
