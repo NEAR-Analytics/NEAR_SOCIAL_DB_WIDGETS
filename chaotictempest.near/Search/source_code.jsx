@@ -1,8 +1,7 @@
 const SEARCH_API_KEY = "57ad1944e94432510f067a6e3d13f022";
 const APPLICATION_ID = "B6PI9UKKJT";
 const INDEX = "test_near-social-feed";
-let search_params = "query=";
-const api_url = `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?${search_params}`;
+const API_URL = `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
 
 const writeStateTerm = (term) => {
   console.log("writeStateTerm:", term);
@@ -10,6 +9,14 @@ const writeStateTerm = (term) => {
   State.update({
     term,
   });
+
+  if (term === "") {
+    State.update({
+      post: [],
+      comment: [],
+      profile: [],
+    });
+  }
 };
 
 const profileWidgets = (content) => {
@@ -27,28 +34,37 @@ const profileWidgets = (content) => {
   return profiles;
 };
 
-const postWidgets = (content) => {
+const postWidgets = (content, postType) => {
   const posts = [];
 
   for (const post of content || []) {
-    console.log("post", post);
     const accountId = post.author;
     if (!post.ref) {
-      console.log(`No ref to post for ${accountId}`);
+      console.log(`No ref to ${postType} for ${accountId}`);
     }
 
     const blockHeight = post.ref.block_height;
-    const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+    const widgetType =
+      postType === "post" ? "MainPage.Post.Page" : "MainPage.Comment.Page";
+    const link = `#/mob.near/widget/${widgetType}?accountId=${accountId}&blockHeight=${blockHeight}`;
     const post_content = {
       type: "md",
       text: post.content,
     };
 
+    // ${
+    //   highlight ? "bg-warning bg-opacity-10" : ""
+    // }
+    const headerStyling =
+      postType === "post"
+        ? "border rounded-4 p-3 pb-1"
+        : "pt-3 border-top pb-2";
+
     posts.push(
-      <div className="border rounded-4 p-3 pb-1">
+      <div className={headerStyling}>
         <Widget
           src="mob.near/widget/MainPage.Post.Header"
-          props={{ accountId, blockHeight, link, postType: "post" }}
+          props={{ accountId, blockHeight, link, postType }}
         />
         <div className="mt-3 text-break">
           <Widget
@@ -62,74 +78,30 @@ const postWidgets = (content) => {
   return posts;
 };
 
-const commentWidgets = (content) => {
-  const comments = [];
-
-  for (const comment of content || []) {
-    const accountId = comment.author;
-    const blockHeight = comment.ref.block_height;
-    const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
-    const comment_content = {
-      type: "md",
-      text: comment.content,
-    };
-
-    if (!comment.ref) {
-      console.log(`No ref to comment for ${accountId}`);
-    }
-
-    // ${
-    //   highlight ? "bg-warning bg-opacity-10" : ""
-    // }
-    comments.push(
-      <div className="pt-3 border-top pb-2">
-        <Widget
-          src="mob.near/widget/MainPage.Post.Header"
-          props={{ accountId, blockHeight, link, postType: "comment" }}
-        />
-        <div className="mt-3 text-break">
-          <Widget
-            src="mob.near/widget/MainPage.Post.Content"
-            props={{ content: comment_content }}
-          />
-        </div>
-      </div>
-    );
-  }
-  return comments;
-};
-
 const computeResults = (term) => {
   console.log("computeResults:", term);
-  const raw_content = fetchAlgoliaData(term);
-  const contents = getCategoryResults(raw_content);
-  console.log("contents", contents["comment, post"]);
-
-  State.update({
-    term,
-    post: postWidgets(contents["post"]),
-    comment: commentWidgets(contents["comment, post"]),
-    profile: profileWidgets(contents["profile"]),
+  fetchAlgoliaData(term).then((res) => {
+    const data = getCategoryResults(res.body);
+    State.update({
+      term,
+      post: postWidgets(data["post"], "post"),
+      comment: postWidgets(data["comment, post"], "comment"),
+      profile: profileWidgets(data["profile"]),
+    });
   });
 };
 
 const fetchAlgoliaData = (queryURI) => {
-  search_params = `query=${queryURI}`;
-  const res_data = useCache(
-    () =>
-      asyncFetch(api_url, {
-        body: `{ "params": "${search_params}" }`,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "X-Algolia-Api-Key": `${SEARCH_API_KEY}`,
-          "X-Algolia-Application-Id": `${APPLICATION_ID}`,
-        },
-        method: "POST",
-      }).then((res) => res.body),
-    "apiResponse1",
-    { subscribe: true }
-  );
-  return res_data;
+  let search_params = `query=${queryURI}`;
+  return asyncFetch(API_URL, {
+    body: `{ "params": "${search_params}" }`,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-Algolia-Api-Key": `${SEARCH_API_KEY}`,
+      "X-Algolia-Application-Id": `${APPLICATION_ID}`,
+    },
+    method: "POST",
+  });
 };
 
 const getCategoryResults = (raw_result_data) => {
