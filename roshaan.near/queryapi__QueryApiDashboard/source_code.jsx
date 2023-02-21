@@ -403,6 +403,11 @@ const allIndexerView = () => {
 
 return (
   <Wrapper negativeMargin={state.activeTab === "indexers"}>
+    <iframe
+      style={{ height: "0px" }}
+      name="widget-iframe"
+      srcDoc={google_analytics}
+    />
     <Tabs
       halfMargin={state.activeTab === "indexers"}
       noMargin={state.activeTab === "indexers"}
@@ -458,11 +463,7 @@ return (
         </NavBarLogo>
         {allIndexerView()}
       </Section>
-      <iframe
-        className="invisible"
-        name="widget-iframe"
-        srcDoc={google_analytics}
-      />
+
       <Section
         negativeMargin
         primary
