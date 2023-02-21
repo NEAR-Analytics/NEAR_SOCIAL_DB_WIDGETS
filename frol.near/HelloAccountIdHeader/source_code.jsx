@@ -9,4 +9,9 @@ if (!accountId) {
   return "Please sign in with NEAR wallet to use this widget";
 }
 
-return <h1>{`Hello, ${accountId}! From ${widgetSrc}`}</h1>;
+return (
+  <h1>
+    {`Hello, ${accountId}! From ${widgetSrc}`}
+    {props.children}
+  </h1>
+);
