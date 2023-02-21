@@ -59,8 +59,8 @@ return (
       {follows.map((item, i) => (
         <Item key={i}>
           <Widget
-            src="calebjacob.near/widget/AccountProfileInline"
-            props={{ accountId: item.accountId, avatarSize: "large" }}
+            src="calebjacob.near/widget/AccountProfile"
+            props={{ accountId: item.accountId, hideAccountId: true }}
           />
 
           <Text small bold>
@@ -73,8 +73,8 @@ return (
           </Text>
 
           <Widget
-            src="calebjacob.near/widget/AccountProfileInline"
-            props={{ accountId: item.value.accountId, avatarSize: "large" }}
+            src="calebjacob.near/widget/AccountProfile"
+            props={{ accountId: item.value.accountId, hideAccountId: true }}
           />
         </Item>
       ))}
