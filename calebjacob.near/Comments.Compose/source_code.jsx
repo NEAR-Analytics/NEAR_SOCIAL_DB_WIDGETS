@@ -98,6 +98,7 @@ const Wrapper = styled.div`
   position: relative;
   border: 1px solid #ECEEF0;
   border-radius: 12px;
+  margin-left: -12px;
   
 
   @media (max-width: 1200px) {
