@@ -100,7 +100,10 @@ const body = (
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
               />
-              <div className="text-truncate my-2">{profile.description}</div>
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{ description: "s".repeat(101) }}
+              />
             </>
           ),
         }}
