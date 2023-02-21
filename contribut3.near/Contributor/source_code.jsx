@@ -54,7 +54,7 @@ const skills = contributor.skills.reduce(
   {}
 );
 
-const tags = { ...contributor.skills, ...contributionTypes } || profile.tags;
+const tags = { ...skills, ...contributionTypes } || profile.tags;
 
 const body = (
   <div
