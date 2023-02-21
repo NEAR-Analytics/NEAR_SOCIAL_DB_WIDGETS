@@ -112,10 +112,7 @@ const body = (
               ) : (
                 <></>
               )}
-              <div
-                className="ps-2 border-start border-2 border-primary"
-                style={{ borderColor: "#b2ddff" }}
-              >
+              <div className="ps-2 border-start border-2 border-info">
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
                   props={{
