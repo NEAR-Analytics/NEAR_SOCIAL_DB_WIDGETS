@@ -21,7 +21,6 @@ const commentUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?acc
 const Comment = styled.div`
   position: relative;
   background: ${props.highlight ? "#f00" : ""};
-  margin-left: 8px;
 
   &::before {
     content: '';
