@@ -38,8 +38,8 @@ const Text = styled.p`
 `;
 
 const Avatar = styled.div`
-  width: 40px;
-  height: 40px;
+  width: ${props.avatarSize || "40px"};
+  height: ${props.avatarSize || "40px"};
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   overflow: hidden;
