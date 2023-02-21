@@ -18,10 +18,12 @@ const menuItems = items.reduce((list, { text, icon, id }) => {
 
   return [
     ...list,
-    list.length > 0 && (
+    list.length > 0 ? (
       <li>
         <hr className="dropdown-divider" />
       </li>
+    ) : (
+      <></>
     ),
     <li>
       <a className="dropdown-item" id={id}>
