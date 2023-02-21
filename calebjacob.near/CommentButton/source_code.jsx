@@ -5,7 +5,7 @@ if (!props.hideCount && !item) {
 }
 
 const comments = !!props.hideCount && Social.index("comment", item);
-const dataLoading = !props.hideCount || comments === null;
+const dataLoading = props.hideCount ? false : comments === null;
 const totalComments = comments?.length || 0;
 
 const CommentButton = styled.button`
