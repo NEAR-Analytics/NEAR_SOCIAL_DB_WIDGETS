@@ -24,7 +24,7 @@ const Post = styled.div`
     position: absolute;
     left: 19px;
     top: 52px;
-    bottom: 0;
+    bottom: 12px;
     width: 2px;
     background: #ECEEF0;
   }
@@ -61,7 +61,7 @@ const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 0 -6px -6px;
+  margin: 0 -6px 6px;
 `;
 
 const Comments = styled.div``;
@@ -140,7 +140,7 @@ return (
       {state.showReply && (
         <div className="mb-2">
           <Widget
-            src="mob.near/widget/MainPage.Comment.Compose"
+            src="calebjacob.near/widget/Posts.ComposeComment"
             props={{
               notifyAccountId,
               item,
