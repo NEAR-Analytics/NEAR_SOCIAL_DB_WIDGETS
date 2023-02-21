@@ -9,16 +9,24 @@ const adminEntities = Near.asyncView(
   "final",
   true
 ).then((entities) => {
-  Promise.all(Object.keys(entities).map((entityId) => Near.asyncView(ownerId, "get_entity_contribution_requests", { entity_id: entityId }, "final")));
+  Promise.all(
+    Object.keys(entities).map((entityId) =>
+      Near.asyncView(
+        ownerId,
+        "get_entity_contribution_requests",
+        { entity_id: entityId },
+        "final"
+      )
+    )
+  );
 });
 
-const requests = Object.keys(adminEntities).reduce((entity_id) => Near.view(
-  ownerId,
-  "get_entity_contribution_requests",
-  { entity_id: entityId },
-  "final",
-  true
-);
+// const requests = Object.keys(adminEntities).reduce((entity_id) => Near.view(ownerId,
+//   "get_entity_contribution_requests",
+//   { entity_id: entityId },
+//   "final",
+//   true
+// );
 
 if (!requests) {
   return "Loading...";
