@@ -76,10 +76,14 @@ const body = (
                 className={`text-${active ? "success" : "muted"
                   } me-3 d-flex flex-row`}
               >
-                <i
-                  className={active ? "bi-circle-fill" : ""}
-                  style={{ width: "1em", height: "1em" }}
-                />
+                {active ? (
+                  <i
+                    className="d-block bg-success rounded-circle"
+                    style={{ width: "1em", height: "1em" }}
+                  />
+                ) : (
+                  <></>
+                )}
                 <span className="ms-1">
                   {active ? "Available" : "Not available"}
                 </span>
