@@ -9,7 +9,7 @@ const index = {
 };
 
 const Post = styled.div`
-  border-bottom: 1px solid #ECEEF0;
+  border-bottom: 2px solid #ECEEF0;
   padding: 24px 24px 12px;
 
   @media (max-width: 1200px) {
