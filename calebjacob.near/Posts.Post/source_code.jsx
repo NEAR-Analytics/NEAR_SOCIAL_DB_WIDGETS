@@ -34,6 +34,7 @@ const Content = styled.div`
   a {
     color: #006ADC !important;
     outline: none;
+    font-weight: 600;
 
     &:hover,
     &:focus {
