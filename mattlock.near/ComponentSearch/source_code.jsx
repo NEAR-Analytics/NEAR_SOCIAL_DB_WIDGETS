@@ -99,7 +99,7 @@ const computeResults = (term) => {
 };
 
 if (Object.keys(keys || {}).length === 0) {
-  return;
+  return <div></div>;
 }
 
 if (!state.mounted) {
