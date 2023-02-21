@@ -97,10 +97,6 @@ const body = (
             <></>
           ) : (
             <div className="d-flex flex-row justify-content-between align-items-center">
-              <Widget
-                src={`${ownerId}/widget/ActiveIndicator`}
-                props={{ active: entity.status }}
-              />
               {controls}
             </div>
           ),
