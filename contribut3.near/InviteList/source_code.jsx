@@ -25,7 +25,10 @@ return (
   <>
     {allInvites.map((entityId) => (
       <div key={entityId} className="mb-2">
-        <Widget src={`${ownerId}/widget/Invite`} props={{ entityId }} />
+        <Widget
+          src={`${ownerId}/widget/Invite`}
+          props={{ entityId, update: props.update }}
+        />
       </div>
     ))}
   </>
