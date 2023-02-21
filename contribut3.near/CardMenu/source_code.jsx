@@ -20,15 +20,21 @@ const menuItems = items.reduce(
   []
 );
 
+const menuIcon = styled.a`
+  &:before {
+    content: "";
+  }
+`;
+
 return (
   <div className="btn-group dropstart">
-    <a
+    <menuIcon
       className="btn btn-outline-secondary dropdown-toggle"
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
-      {/* <i className="bi-three-dots-vertical" /> */}
-    </a>
+      <i className="bi-three-dots-vertical" />
+    </menuIcon>
 
     <ul className="dropdown-menu">{menuItems}</ul>
   </div>
