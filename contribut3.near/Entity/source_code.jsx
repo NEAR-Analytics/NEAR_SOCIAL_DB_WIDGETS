@@ -35,26 +35,6 @@ const contributions = Near.view(
 const profile = Social.getr(`${accountId}/profile`);
 
 const tags = Object.keys(profile.tags ?? {});
-const image = profile.image;
-const url =
-  (image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
-    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
-
-const circle = (
-  <div
-    className="profile-circle d-inline-block"
-    title={`${entity.name || profile.name} @${accountId}`}
-    style={{ width: "4em", height: "4em" }}
-  >
-    <img
-      className="rounded-circle w-100 h-100"
-      style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${url}`}
-      alt="profile image"
-    />
-  </div>
-);
 
 const [[founder]] = (contributions ?? []).filter((contribution) => {
   const [_, details] = contribution;
