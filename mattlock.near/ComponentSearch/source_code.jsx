@@ -93,7 +93,11 @@ const computeResults = (term) => {
   }
 };
 
-if (!state.mounted && Object.keys(keys || {}).length > 0) {
+if (Object.keys(keys || {}).length === 0) {
+  return null;
+}
+
+if (!state.mounted) {
   State.update({
     mounted: true,
   });
