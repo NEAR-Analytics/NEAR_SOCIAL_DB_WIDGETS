@@ -62,11 +62,11 @@ if (!allRequests || allRequests.length === 0) {
 
 return (
   <>
-    {allRequests.map(([contributorId]) => (
+    {allRequests.map(([entityId, contributorId]) => (
       <div key={contributorId} className="mt-3">
         <Widget
           src={`${ownerId}/widget/ContributionRequest`}
-          props={{ entityId: accountId, contributorId }}
+          props={{ entityId, contributorId }}
         />
       </div>
     ))}
