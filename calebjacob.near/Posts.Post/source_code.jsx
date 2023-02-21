@@ -125,8 +125,7 @@ return (
             src="calebjacob.near/widget/CommentButton"
             props={{
               item,
-              onClick: () =>
-                !state.showReply && State.update({ showReply: true }),
+              onClick: () => State.update({ showReply: !state.showReply }),
             }}
           />
           <Widget
