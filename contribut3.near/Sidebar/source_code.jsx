@@ -39,7 +39,7 @@ return (
       id: "inbox",
     })}
     {navItem({
-      text: "My entities",
+      text: "Manage",
       icon: "bi-diagram-2",
       id: "entities",
     })}
