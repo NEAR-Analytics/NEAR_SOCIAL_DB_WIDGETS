@@ -77,7 +77,7 @@ const body = (
                   } me-3 d-flex flex-row`}
               >
                 <i
-                  className={active ? "bi-dot" : ""}
+                  className={active ? "bi-circle-fill" : ""}
                   style={{ width: "1em", height: "1em" }}
                 />
                 <span className="ms-1">
