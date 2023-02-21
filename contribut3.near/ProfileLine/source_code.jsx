@@ -15,8 +15,7 @@ Near.asyncView(
   ownerId,
   isEntity ? "get_entity" : "get_contributor",
   { account_id: accountId },
-  "final",
-  true
+  "final"
 ).then((data) => State.update({ data }));
 
 const profile = Social.getr(`${accountId}/profile`);
@@ -50,7 +49,13 @@ return (
   <div
     className={`d-flex flex-row justify-content-start align-items-${alignment}`}
   >
-    <a className="text-dark" href={href}>
+    <a
+      className="text-dark"
+      href={href}
+      onClick={() =>
+        props.update && props.update(isEntity ? "entity" : "contributor")
+      }
+    >
       <div className="m-2">
         <Widget
           src={`${ownerId}/widget/ProfileCircle`}
