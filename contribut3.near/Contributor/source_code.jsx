@@ -49,6 +49,11 @@ if ("Other" in contributionTypes) {
   delete contributionTypes.Other;
 }
 
+const skills = contributor.skills.reduce(
+  (ob, skill) => ({ ...ob, [skill]: "" }),
+  {}
+);
+
 const tags = { ...contributor.skills, ...contributionTypes } || profile.tags;
 
 const body = (
