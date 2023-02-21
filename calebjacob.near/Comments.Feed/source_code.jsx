@@ -11,6 +11,22 @@ const index = {
 
 const raw = !!props.raw;
 
+const Wrapper = styled.div`
+  a {
+    font-size: 14px;
+    line-height: 20px;
+    color: #006ADC;
+    outline: none;
+    font-weight: 600;
+
+    &:hover,
+    &:focus {
+      color: #006ADC;
+      text-decoration: underline;
+    }
+  }
+`;
+
 const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
@@ -29,7 +45,7 @@ const renderItem = (a) =>
   );
 
 return (
-  <div>
+  <Wrapper>
     <Widget
       src="mob.near/widget/ManualIndexFeed"
       props={{
@@ -40,5 +56,5 @@ return (
         loadMoreText: "Show earlier comments...",
       }}
     />
-  </div>
+  </Wrapper>
 );
