@@ -4,7 +4,20 @@ const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
 }
-const { articleId, blockHeight, lastEditor } = props;
+const { articleId, lastEditor } = props;
+
+const blockHeight =
+  props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const subscribe = !!props.subscribe;
+const raw = !!props.raw;
+
+const notifyAccountId = accountId;
+const item = {
+  type: "social",
+  path: `${accountId}/post/main`,
+  blockHeight,
+};
+
 State.init({});
 
 const article = JSON.parse(
