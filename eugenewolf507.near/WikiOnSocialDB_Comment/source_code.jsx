@@ -1,6 +1,7 @@
 const addressForArticles = "wikiTest2Article";
 const addressForComments = "wikiTest2Comment";
 const authorForWidget = "eugenewolf507.near";
+State.init({ showReply: false });
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
@@ -64,8 +65,7 @@ return (
             <Widget
               src="mob.near/widget/CommentButton"
               props={{
-                onClick: () =>
-                  !state.showReply && State.update({ showReply: true }),
+                onClick: () => State.update({ showReply: !state.showReply }),
               }}
             />
           )}
