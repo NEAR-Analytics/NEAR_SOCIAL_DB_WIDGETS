@@ -96,22 +96,10 @@ const body = (
                 src={`${ownerId}/widget/ProfileLine`}
                 props={{ accountId: founder }}
               />
-              <div className="text-truncate text-muted">
-                {tags.length > 0 ? (
-                  <>
-                    {tags.map((tag) => (
-                      <span
-                        className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                        key={tag}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: profile.tags }}
+              />
               <div className="text-truncate my-2">{profile.description}</div>
             </>
           ),
