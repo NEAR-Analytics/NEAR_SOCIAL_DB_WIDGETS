@@ -56,7 +56,7 @@ const Avatar = styled.div`
 const Name = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 6px;
 `;
 
 const AccountProfile = (
@@ -81,8 +81,10 @@ const AccountProfile = (
           {profile.name || accountId.split(".near")[0]}
         </Text>
 
+        {props.inlineContent}
+
         {props.blockHeight && (
-          <Text small>
+          <Text small style={{ marginLeft: "auto" }}>
             Joined{" "}
             <Widget
               src="mob.near/widget/TimeAgo"
