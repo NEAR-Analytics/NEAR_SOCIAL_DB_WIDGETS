@@ -7,11 +7,12 @@ const keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const requiredTag = props.filterTag;
 const boostedTag = props.boostedTag;
-const inputTerm = props.term;
+if (!props.term) props.term = "app";
 
 initState({
   term: "",
   oldTerm: "",
+  mounted: false,
 });
 
 const computeResults = (term) => {
@@ -88,15 +89,14 @@ const computeResults = (term) => {
   }
 };
 
-if (!props.term) props.term = "test";
-
-console.log(props, state);
-
 if (props.term && props.term !== state.oldTerm) {
   State.update({
     oldTerm: props.term,
   });
-  if (props.term !== state.term) {
+  if (!state.mounted || props.term !== state.term) {
+    State.update({
+      mounted: true,
+    });
     computeResults(props.term);
   }
 }
