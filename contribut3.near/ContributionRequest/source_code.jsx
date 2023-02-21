@@ -105,7 +105,10 @@ const body = (
                   imageSize: contributionRequest.need ? "1.5em" : "2em",
                 }}
               />
-              <div>
+              <div
+                className="ps-2 border-start border"
+                style={{ borderColor: "#b2ddff" }}
+              >
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
                   props={{
