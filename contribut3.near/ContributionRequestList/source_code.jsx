@@ -40,16 +40,17 @@ if (Array.isArray(state.requests) && state.requests.length === 0) {
 }
 
 const allRequests = Object.keys(state.requests)
-  .reduce((acc, entityId) => {
-    return [
+  .reduce(
+    (acc, entityId) => [
       ...acc,
       ...state.requests[entityId].map(([contributorId, contribution]) => [
         entityId,
         contributorId,
         contribution,
       ]),
-    ];
-  }, [])
+    ],
+    []
+  )
   .filter(
     ([entityId, contributorId]) =>
       contributorId.includes(search) || entityId.includes(search)
