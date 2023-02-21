@@ -94,6 +94,9 @@ const body = (
           isEntity: true,
           imageSize: "3em",
           update: props.update,
+          additionalText: contributionRequest.need
+            ? "sent a proposal to your request"
+            : "wants to contribute to your project",
           additionalColumn: controls,
           additionalRow: (
             <>
