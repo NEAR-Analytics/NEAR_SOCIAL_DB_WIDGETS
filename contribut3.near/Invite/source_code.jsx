@@ -20,9 +20,7 @@ const controls = (
     <a
       className="btn btn-success"
       onClick={() =>
-        Near.call(ownerId, "accept_invite", {
-          account_id: entityId,
-        })
+        Near.call(ownerId, "accept_invite", { account_id: entityId })
       }
     >
       <i className="bi-check" />
@@ -32,10 +30,7 @@ const controls = (
       className="btn btn-outline-danger mt-2 d-flex flex-row justify-content-center"
       style={{ minWidth: "7em" }}
       onClick={() =>
-        Near.call(ownerId, "reject_contribution", {
-          entity_id: entityId,
-          contributor_id: contributorId,
-        })
+        Near.call(ownerId, "reject_invite", { account_id: entityId })
       }
     >
       <i className="bi-x" />
