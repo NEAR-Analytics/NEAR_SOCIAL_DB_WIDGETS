@@ -19,9 +19,7 @@ const adminEntities = Near.asyncView(
       { entity_id: entityId },
       "final"
     ).then((requests) => {
-      const map = state.requests ?? {};
-      map[entityId] = requests;
-      State.update({ requests: map });
+      State.update({ requests: { ...state.requests, [entityId]: requests } });
     })
   );
 });
