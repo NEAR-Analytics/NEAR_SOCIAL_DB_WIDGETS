@@ -100,6 +100,7 @@ const body = (
           accountId,
           isEntity: true,
           imageSize: "1.5em",
+          update: props.update,
           additionalRow: (
             <>
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
