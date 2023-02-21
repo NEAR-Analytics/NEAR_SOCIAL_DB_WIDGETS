@@ -27,8 +27,7 @@ const entity = Near.view(
   ownerId,
   "get_entity",
   { account_id: accountId },
-  "final",
-  true
+  "final"
 );
 
 const isEntity = !!entity;
