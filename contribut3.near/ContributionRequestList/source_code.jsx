@@ -10,9 +10,9 @@ const adminEntities = Near.asyncView(
   ownerId,
   "get_admin_entities",
   { account_id: context.accountId },
-  "final",
-  true
+  "final"
 ).then((entities) => {
+  console.log(Promise);
   Promise.all(
     Object.keys(entities).map((entityId) =>
       Near.asyncView(
