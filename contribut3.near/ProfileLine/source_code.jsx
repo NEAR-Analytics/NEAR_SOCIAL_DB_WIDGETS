@@ -21,6 +21,7 @@ Near.asyncView(
 
 const profile = Social.getr(`${accountId}/profile`);
 
+console.log({ isEntity, accountId });
 if (!state.data || !profile) {
   return (
     <div className="d-flex flex-row justify-content-start">
