@@ -1,6 +1,6 @@
 const item = props.item;
 
-if (!item) {
+if (!props.hideCount && !item) {
   return "";
 }
 
