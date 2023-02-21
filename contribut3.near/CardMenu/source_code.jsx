@@ -1,26 +1,29 @@
 const items = props.items ?? [];
 
-const buttonAction = ({ text, icon, id }) => (
-  <li>
-    <a className="dropdown-item" id={id}>
-      <i className={icon} />
-      <span>{text}</span>
-    </a>
-  </li>
-);
-
-const menuItems = items.reduce((list, itemProps) => {
+const menuItems = items.reduce((list, { text, icon, id }) => {
   if (list.length > 0) {
     return [
       ...list,
       <li>
         <hr className="dropdown-divider" />
       </li>,
-      buttonAction(itemProps),
+      <li>
+        <a className="dropdown-item" id={id}>
+          <i className={icon} />
+          <span>{text}</span>
+        </a>
+      </li>,
     ];
   }
 
-  return [buttonAction(itemProps)];
+  return [
+    <li>
+      <a className="dropdown-item" id={id}>
+        <i className={icon} />
+        <span>{text}</span>
+      </a>
+    </li>,
+  ];
 }, []);
 
 return (
