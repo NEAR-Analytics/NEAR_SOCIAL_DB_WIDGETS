@@ -11,8 +11,6 @@ State.init({
   data: null,
 });
 
-console.log(accountId);
-
 Near.asyncView(
   ownerId,
   isEntity ? "get_entity" : "get_contributor",
