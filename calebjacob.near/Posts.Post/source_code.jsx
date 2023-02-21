@@ -30,7 +30,14 @@ const Content = styled.div`
   line-height: 20px;
   font-weight: 400;
   color: #687076;
-  white-space: pre-line;
+
+  > * {
+    margin-bottom: 12px;
+  }
+
+  p {
+    white-space: pre-line;
+  }
 
   a {
     color: #006ADC !important;
@@ -59,6 +66,8 @@ const Text = styled.p`
   color: #687076;
   white-space: nowrap;
 `;
+
+const Comments = styled.div``;
 
 return (
   <Post>
@@ -125,19 +134,20 @@ return (
         </div>
       )}
 
-      <div className="mt-3 ps-5">
-        {state.showReply && (
-          <div className="mb-2">
-            <Widget
-              src="mob.near/widget/MainPage.Comment.Compose"
-              props={{
-                notifyAccountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-          </div>
-        )}
+      {state.showReply && (
+        <div className="mb-2">
+          <Widget
+            src="mob.near/widget/MainPage.Comment.Compose"
+            props={{
+              notifyAccountId,
+              item,
+              onComment: () => State.update({ showReply: false }),
+            }}
+          />
+        </div>
+      )}
+
+      <Comments>
         <Widget
           src="mob.near/widget/MainPage.Comment.Feed"
           props={{
@@ -148,7 +158,7 @@ return (
             raw,
           }}
         />
-      </div>
+      </Comments>
     </Body>
   </Post>
 );
