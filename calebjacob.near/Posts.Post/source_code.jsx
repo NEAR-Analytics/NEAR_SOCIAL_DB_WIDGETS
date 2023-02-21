@@ -15,7 +15,20 @@ const item = {
   blockHeight,
 };
 
-const Post = styled.div``;
+const Post = styled.div`
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 19px;
+    top: 52px;
+    bottom: 0;
+    width: 2px;
+    background: #ECEEF0;
+  }
+`;
 
 const Header = styled.div`
   margin-bottom: 12px;
