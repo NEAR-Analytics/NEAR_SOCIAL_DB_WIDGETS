@@ -17,10 +17,7 @@ Near.asyncView(
   { account_id: accountId },
   "final",
   true
-).then((data) => {
-  console.log({ accountId, data });
-  State.update({ data });
-});
+).then((data) => State.update({ data }));
 
 const profile = Social.getr(`${accountId}/profile`);
 
