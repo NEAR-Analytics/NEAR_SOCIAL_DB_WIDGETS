@@ -66,13 +66,10 @@ const body = (
                 }}
               />
               <b>Need {invite.contribution_type}</b>
-
               <div className="mt-2 ps-2 border-start border-3 border-info">
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
-                  props={{
-                    description: invite.description,
-                  }}
+                  props={{ description: invite.description }}
                 />
               </div>
             </>
