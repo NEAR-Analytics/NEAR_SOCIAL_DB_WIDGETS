@@ -1,11 +1,13 @@
 const accountId = props.accountId;
-const avatarSize = props.avatarSize === "large" ? "40px" : "24px";
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
+  --avatar-size: 24px;
+  position: relative;
+  padding-left: calc(var(--avatar-size) + 6px);
   display: inline-flex;
-  align-items: center;
   gap: 6px;
+  align-items: center;
   cursor: pointer;
   margin: 0;
   color: #11181C !important;
@@ -41,8 +43,11 @@ const Text = styled.span`
 `;
 
 const Avatar = styled.div`
-  width: ${avatarSize};
-  height: ${avatarSize};
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  position: absolute;
+  left: 0;
+  right: 0;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   overflow: hidden;
@@ -54,6 +59,7 @@ const Avatar = styled.div`
     object-fit: cover;
     width: 100%;
     height: 100%;
+    margin: 0;
   }
 `;
 
