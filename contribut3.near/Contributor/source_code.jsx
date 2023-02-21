@@ -105,7 +105,7 @@ const body = (
         additionalRow: (
           <>
             <div className="d-flex flex-row justify-content-between align-items-center">
-              <i className={isEntity ? "bi-diagram-2" : "bi-person"} />
+              <i className={`${isEntity ? "bi-diagram-2" : "bi-person"}`} />
               <span className="ms-2">
                 {isEntity ? "Organization" : "Individual contributor"}
               </span>
