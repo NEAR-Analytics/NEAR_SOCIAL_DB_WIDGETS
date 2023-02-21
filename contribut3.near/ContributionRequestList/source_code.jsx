@@ -10,6 +10,8 @@ const adminEntities = Near.view(
   true
 );
 
+console.log({ adminEntities });
+
 const requests = Near.view(
   ownerId,
   "get_entity_contribution_requests",
