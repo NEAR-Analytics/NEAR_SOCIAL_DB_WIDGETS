@@ -57,14 +57,14 @@ const body = (
           additionalColumn: controls,
           additionalRow: (
             <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{
-                  accountId: founder,
-                  update: props.update,
-                  imageSize: contributionRequest.need ? "1.5em" : "2em",
-                }}
-              />
+              {/* <Widget */}
+              {/*   src={`${ownerId}/widget/ProfileLine`} */}
+              {/*   props={{ */}
+              {/*     accountId: founder, */}
+              {/*     update: props.update, */}
+              {/*     imageSize: contributionRequest.need ? "1.5em" : "2em", */}
+              {/*   }} */}
+              {/* /> */}
               <b>Need {invite.contribution_type}</b>
               <div className="mt-2 ps-2 border-start border-3 border-info">
                 <Widget
