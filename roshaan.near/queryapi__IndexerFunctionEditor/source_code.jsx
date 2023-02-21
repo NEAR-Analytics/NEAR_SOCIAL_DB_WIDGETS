@@ -3,7 +3,7 @@ const indexerName = props.indexerName;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = props.accountId || context.accountId;
-let base = props.base ?? "/query-api-editor";
+let base = props.base ?? "query-api-editor";
 State.init({
   code: initialText,
 });
@@ -63,8 +63,11 @@ const code = `
       console.log("added base")
       iframe.src += base;
     }
-    if (accountId != undefined && indexerName != undefined) {
+   
+      if (accountId != undefined && indexerName != undefined) {
       iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
+    } else if (accountId != undefined ){
+      iframe.src += "?accountId=${accountId}"
     }
     console.log(iframe.src, "src is")
     iframe.name = "react-app"
