@@ -3,7 +3,14 @@ const [selected_accountId, selected_indexerName] = props.indexer_path
   : [undefined, undefined];
 
 const accountId = selected_accountId || props.accountId || context.accountId;
+const google_analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE2N8N8G93"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-BE2N8N8G93');
+</script>`;
 const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
@@ -451,7 +458,11 @@ return (
         </NavBarLogo>
         {allIndexerView()}
       </Section>
-
+      <iframe
+        className="invisible"
+        name="widget-iframe"
+        srcDoc={google_analytics}
+      />
       <Section
         negativeMargin
         primary
