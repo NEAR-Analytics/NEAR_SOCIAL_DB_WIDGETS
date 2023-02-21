@@ -59,10 +59,22 @@ const body = (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <div
                 className={`text-${entity.status ? "success" : "muted"
-                  } me-3 d-flex flex-row`}
+                  } me-3 d-flex flex-row justify-content-start align-items-center`}
               >
-                <i className={entity.status ? "bi-play" : "bi-x"} />
-                <span className="ms-1">{entity.status}</span>
+                {entity.status ? (
+                  <i
+                    className="d-block bg-success rounded-circle"
+                    style={{ width: ".6em", height: ".6em" }}
+                  />
+                ) : (
+                  <></>
+                )}
+                <span
+                  className="d-block ms-1 text-nowrap"
+                  style={{ fontSize: "small" }}
+                >
+                  {entity.status ? "Active" : "Not active"}
+                </span>
               </div>
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
