@@ -93,7 +93,7 @@ const body = (
           isEntity: true,
           imageSize: "3em",
           update: props.update,
-          additionalColumn: { controls },
+          additionalColumn: controls,
           additionalRow: (
             <>
               <Widget
