@@ -102,7 +102,7 @@ const body = (
               />
               <Widget
                 src={`${ownerId}/widget/DescriptionArea`}
-                props={{ description: "s".repeat(201) }}
+                props={{ description: entity.description }}
               />
             </>
           ),
