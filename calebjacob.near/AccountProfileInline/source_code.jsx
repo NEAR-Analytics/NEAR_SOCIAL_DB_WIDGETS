@@ -3,14 +3,14 @@ const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
   --avatar-size: 24px;
+  display: inline-flex;
   position: relative;
   padding-left: ${props.hideAvatar ? "0" : "calc(var(--avatar-size) + 6px)}"};
-  display: inline-flex;
   gap: 6px;
   align-items: center;
   cursor: pointer;
   margin: 0;
-  color: #11181C !important;
+  color: #006ADC !important;
   outline: none;
   text-decoration: none;
   max-width: 100%;
@@ -31,7 +31,7 @@ const Wrapper = styled.a`
 `;
 
 const Text = styled.span`
-  display: block;
+  display: inline-flex;
   margin: 0;
   font-size: 14px;
   line-height: 20px;
@@ -43,6 +43,7 @@ const Text = styled.span`
 `;
 
 const Avatar = styled.div`
+  display: inline-flex;
   width: var(--avatar-size);
   height: var(--avatar-size);
   position: absolute;
@@ -55,7 +56,7 @@ const Avatar = styled.div`
   transition: border-color 200ms;
 
   img {
-    display: block;
+    display: inline-flex;
     object-fit: cover;
     width: 100%;
     height: 100%;
