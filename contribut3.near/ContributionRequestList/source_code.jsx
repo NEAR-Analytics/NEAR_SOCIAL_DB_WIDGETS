@@ -2,18 +2,20 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 
-const adminEntities = Near.view(
+const adminEntities = Near.asyncView(
   ownerId,
   "get_admin_entities",
   { account_id: context.accountId },
   "final",
   true
-);
+).then((entities) => {
+  Promise.all(Object.keys(entities).map((entityId) => Near.asyncView(ownerId, "get_entity_contribution_requests", { entity_id: entityId }, "final")));
+});
 
-const requests = Near.view(
+const requests = Object.keys(adminEntities).reduce((entity_id) => Near.view(
   ownerId,
   "get_entity_contribution_requests",
-  { entity_id: accountId },
+  { entity_id: entityId },
   "final",
   true
 );
