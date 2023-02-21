@@ -105,16 +105,14 @@ const body = (
                   imageSize: contributionRequest.need ? "1.5em" : "2em",
                 }}
               />
-              <Widget
-                src={`${ownerId}/widget/Tags`}
-                props={{ tags: profile.tags }}
-              />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description: entity.description || profile.description,
-                }}
-              />
+              <div>
+                <Widget
+                  src={`${ownerId}/widget/DescriptionArea`}
+                  props={{
+                    description: contributionRequest.description,
+                  }}
+                />
+              </div>
             </>
           ),
         }}
