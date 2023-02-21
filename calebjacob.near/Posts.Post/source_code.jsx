@@ -61,6 +61,7 @@ return (
         src="calebjacob.near/widget/AccountProfile"
         props={{
           accountId,
+          hideAccountId: true,
           inlineContent: (
             <>
               <Text as="span">･</Text>
