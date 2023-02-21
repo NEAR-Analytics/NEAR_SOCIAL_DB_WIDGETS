@@ -5,6 +5,16 @@ State.init({
   search: props.search ?? "",
 });
 
+const proposalsCount = (
+  Near.view(
+    ownerId,
+    "get_admin_contribution_requests",
+    { account_id: context.accountId },
+    "final",
+    true
+  ) ?? []
+).length;
+
 const invitesCount = Object.keys(
   Near.view(
     ownerId,
@@ -53,7 +63,7 @@ const contentSelector = (
       id: "proposals",
       text: "Proposals",
       icon: "bi-person-plus",
-      count: 0,
+      count: proposalsCount,
     })}
     {contentSelectButton({
       id: "invitations",
