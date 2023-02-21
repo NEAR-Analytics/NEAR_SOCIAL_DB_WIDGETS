@@ -11,10 +11,6 @@ const index = {
 const Post = styled.div`
   border-bottom: 1px solid #ECEEF0;
   padding: 24px 24px 12px;
-
-  @media (max-width: 1200px) {
-    padding: 24px 12px 12px;
-  }
 `;
 
 const renderItem = (a) =>
