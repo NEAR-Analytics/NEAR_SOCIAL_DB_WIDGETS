@@ -5,14 +5,14 @@ State.init({
   search: props.search ?? "",
 });
 
-const invitesCount = (
+const invitesCount = Object.keys(
   Near.view(
     ownerId,
     "get_contributor_invites",
     { account_id: context.accountId },
     "final",
     true
-  ) ?? []
+  ) ?? {}
 ).length;
 
 const header = (
