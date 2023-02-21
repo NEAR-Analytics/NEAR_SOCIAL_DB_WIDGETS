@@ -1,8 +1,14 @@
 const allMetadata =
   Social.get(
-    ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
+    [
+      "*/widget/*/metadata/name",
+      "*/widget/*/metadata/image",
+      "*/widget/*/metadata/description",
+      "*/widget/*/metadata/tags/*",
+    ],
     "final"
   ) || {};
+
 let keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
 const requiredTag = props.filterTag;
@@ -50,6 +56,9 @@ const computeResults = (term) => {
       if (requiredTag && !(metadata.tags && requiredTag in metadata.tags)) {
         return;
       }
+
+      const metadata2 = Social.getr(`${widgetSrc}/metadata`);
+
       const boosted =
         boostedTag && metadata.tags && boostedTag in metadata.tags;
       const tags = Object.keys(metadata.tags || {}).slice(0, 10);
@@ -66,9 +75,9 @@ const computeResults = (term) => {
           accountId,
           widgetName: componentId,
           widgetSrc,
-          name,
-          tags,
+          image: metadata2.image,
           boosted,
+          ...metadata,
         });
       }
     });
