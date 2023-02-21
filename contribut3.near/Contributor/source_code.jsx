@@ -74,7 +74,7 @@ const body = (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <div
                 className={`text-${active ? "success" : "muted"
-                  } me-3 d-flex flex-row justify-content-end align-items-center`}
+                  } me-3 d-flex flex-row justify-content-start align-items-center`}
               >
                 {active ? (
                   <i
