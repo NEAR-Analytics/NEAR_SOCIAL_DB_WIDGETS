@@ -32,6 +32,7 @@ return (
   >
     <Button
       type="button"
+      aria-label="Copy URL to clipboard"
       onMouseLeave={() => {
         State.update({ copiedShareUrl: false });
       }}
