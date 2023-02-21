@@ -105,6 +105,13 @@ const body = (
                   imageSize: contributionRequest.need ? "1.5em" : "2em",
                 }}
               />
+              {contributionRequest.need ? (
+                <b>
+                  Looking for {need.contribution_type}: {need.description}
+                </b>
+              ) : (
+                <></>
+              )}
               <div
                 className="ps-2 border-start border"
                 style={{ borderColor: "#b2ddff" }}
