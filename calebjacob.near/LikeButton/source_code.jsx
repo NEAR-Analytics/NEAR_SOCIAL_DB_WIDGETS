@@ -41,10 +41,11 @@ const LikeButton = styled.button`
   cursor: pointer;
   background: none;
   padding: 6px;
+  transition: color 200ms;
 
   i {
     font-size: 16px;
-    transition: background-color 200ms;
+    transition: color 200ms;
 
     &.bi-heart-fill {
       color: #E5484D !important;
