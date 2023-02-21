@@ -13,7 +13,7 @@ const raw = !!props.raw;
 
 const Wrapper = styled.div`
   > div:first-child {
-    a {
+    > a:first-child {
       display: inline-flex;
       margin-bottom: 12px;
       font-size: 14px;
