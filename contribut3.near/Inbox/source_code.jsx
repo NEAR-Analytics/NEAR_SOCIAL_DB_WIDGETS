@@ -20,7 +20,7 @@ const header = (
 
 const contentSelectButton = ({ id, text, icon, count }) => (
   <a
-    className={`btn d-flex flex-row justify-content-between align-items-center${state.content === id ? "btn-secondary" : "btn-outline-secondary"
+    className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
       }`}
     href={`https://near.social/#/${ownerId}/widget/Index?tab=inbox&content=${id}${props.search ? "&search=" + props.search : ""
       }`}
@@ -30,7 +30,7 @@ const contentSelectButton = ({ id, text, icon, count }) => (
     <span>{text}</span>
     {count !== 0 ? (
       <div
-        className="rounded-circle bg-danger text-center"
+        className="d-inline-block rounded-circle bg-danger text-center"
         style={{ width: "1em", height: "1em" }}
       >
         {count}
