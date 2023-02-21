@@ -1,22 +1,18 @@
 const addressForArticles = "wikiTest2Article";
+const addressForComments = "wikiTest2Comment";
 const authorForWidget = "eugenewolf507.near";
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
   return "No account ID";
 }
-const { articleId, lastEditor } = props;
 
+const lastEditor = props.lastEditor;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const subscribe = !!props.subscribe;
 const raw = !!props.raw;
 
 const notifyAccountId = accountId;
-const item = {
-  type: "social",
-  path: `${accountId}/${addressForArticles}/main`,
-  blockHeight,
-};
 
 State.init({});
 
@@ -59,8 +55,34 @@ const saveArticle = (args) => {
   Social.set(newData, { force: true });
 };
 
+// ======= CHECK INDEX =======
+const item = {
+  type: "social",
+  path: `${lastEditor}/${addressForArticles}/main`,
+  blockHeight: 85632980,
+};
+
+const index = {
+  action: addressForComments,
+  key: props.item,
+};
+
+const clickHandler = () => {
+  const comment = JSON.parse(
+    Social.get(
+      `${accountId}/${addressForArticles}/${addressForComments}`,
+      "final"
+    )
+  );
+  console.log("comment GET", comment);
+  const initialItems = Social.index(index.action, index.key, index.options);
+  console.log("initialItems", initialItems);
+};
+// ======= CHECK INDEX =======
+
 return (
   <>
+    <button onClick={clickHandler}>GET DATA (delete this button!!!)</button>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
       props={{ currentNavPill: "articles" }}
