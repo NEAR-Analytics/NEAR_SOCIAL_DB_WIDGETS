@@ -85,7 +85,7 @@ const body = (
                 ) : (
                   <></>
                 )}
-                <span className="ms-1">
+                <span className="ms-1 flex-grow-1">
                   {active ? "Available" : "Not available"}
                 </span>
               </div>
