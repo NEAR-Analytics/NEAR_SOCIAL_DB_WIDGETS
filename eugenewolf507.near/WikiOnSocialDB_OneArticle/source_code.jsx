@@ -59,30 +59,23 @@ const saveArticle = (args) => {
 const item = {
   type: "social",
   path: `${lastEditor}/${addressForArticles}/main`,
-  blockHeight: 85632980,
+  blockHeight,
 };
 
 const index = {
   action: addressForComments,
   key: props.item,
-};
-
-const clickHandler = () => {
-  const comment = JSON.parse(
-    Social.get(
-      `${accountId}/${addressForArticles}/${addressForComments}`,
-      "final"
-    )
-  );
-  console.log("comment GET", comment);
-  const initialItems = Social.index(index.action, index.key, index.options);
-  console.log("initialItems", initialItems);
+  options: {
+    limit: props.limit ?? 3,
+    order: "desc",
+    accountId: props.accounts,
+    subscribe: props.subscribe,
+  },
 };
 // ======= CHECK INDEX =======
 
 return (
   <>
-    <button onClick={clickHandler}>GET DATA (delete this button!!!)</button>
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
       props={{ currentNavPill: "articles" }}
