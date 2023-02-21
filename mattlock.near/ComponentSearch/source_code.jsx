@@ -5,6 +5,8 @@ const allMetadata =
   ) || {};
 let keys = Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
+console.log("mount", keys);
+
 const requiredTag = props.filterTag;
 const boostedTag = props.boostedTag;
 if (!props.term) props.term = "app";
@@ -42,11 +44,7 @@ const computeResults = (term) => {
     );
   };
 
-  if (!keys || Object.keys(keys || {}).length === 0) {
-    keys = Social.keys(["*/widget/*"], "final", { values_only: true });
-  }
-
-  console.log("keys", keys);
+  keys = Social.keys(["*/widget/*"], "final", { values_only: true });
 
   Object.entries(keys).forEach(([accountId, data]) => {
     Object.keys(data.widget).forEach((componentId) => {
