@@ -1,8 +1,3 @@
-const tos = `
-## Terms of Service
-You agree not to post illicit content.
-`;
-
 const { tosName, targetComponent, targetProps } = props;
 const acceptanceKey = `${context.accountId}/${tosName}`;
 
@@ -14,7 +9,7 @@ return (
     {agreementsForUser.map((a) => (
       <span key={a}>{JSON.stringify(a)}</span>
     ))}
-    <Markdown text={tos} />
+    <Widget src="michaelpeter.near/widget/TosContentDraft" />
     <CommitButton
       data={{
         tosAccept: {
