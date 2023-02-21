@@ -68,6 +68,7 @@ const body = (
           accountId,
           isEntity,
           imageSize: "3em",
+          update: props.update,
           additionalColumn: inboxView ? (
             <></>
           ) : (
