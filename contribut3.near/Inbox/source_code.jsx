@@ -9,7 +9,7 @@ const invitesCount = (
   Near.view(
     ownerId,
     "get_contributor_invites",
-    { account_id: contributorId },
+    { account_id: context.accountId },
     "final",
     true
   ) ?? []
