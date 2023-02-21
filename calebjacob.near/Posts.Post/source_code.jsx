@@ -31,29 +31,10 @@ const Content = styled.div`
   font-weight: 400;
   color: #687076;
 
-  > * {
-    margin-bottom: 12px;
-  }
-
-  p {
-    white-space: pre-line;
-  }
-
-  a {
-    color: #006ADC !important;
-    outline: none;
-    font-weight: 600;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-
   img {
     display: block;
     max-width: 100%;
-    max-height: 20em;
+    max-height: 80vh;
   }
 `;
 
