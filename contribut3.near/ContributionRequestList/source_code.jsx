@@ -12,22 +12,16 @@ const adminEntities = Near.asyncView(
   { account_id: context.accountId },
   "final"
 ).then((entities) => {
-  Promise.all(
-    Object.keys(entities).map((entityId) =>
-      Near.asyncView(
-        ownerId,
-        "get_entity_contribution_requests",
-        { entity_id: entityId },
-        "final"
-      ).then((requests) => {
-        const map = new Map(state.requests || []);
-        map.set(entityId, requests);
-        State.update({ requests: map });
-      })
-    )
-  ).then((requestsList) =>
-    State.update({
-      requests: requestsList.reduce((acc, rs) => [...acc, ...rs]),
+  Object.keys(entities).map((entityId) =>
+    Near.asyncView(
+      ownerId,
+      "get_entity_contribution_requests",
+      { entity_id: entityId },
+      "final"
+    ).then((requests) => {
+      const map = new Map(state.requests || []);
+      map.set(entityId, requests);
+      State.update({ requests: map });
     })
   );
 });
