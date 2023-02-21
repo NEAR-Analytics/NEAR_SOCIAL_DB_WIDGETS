@@ -136,11 +136,12 @@ const body = (
                 <span className="ms-1">{entity.status}</span>
               </div>
               <Widget src={`${ownerId}/widget/CardMenu`} props={{
-                items: [{ text: "Propose contribution", icon: "bi-person-up", id: "contribute" }, {
-                  text: "Invite to contribute",
-                  icon: "bi-person-plus",
-                  id: "invite",
-                }]
+                items: [
+                  { text: "Propose contribution", icon: "bi-person-up", id: "contribute" },
+                  { text: "Invite to contribute", icon: "bi-person-plus", id: "invite" },
+                  { text: "View details", icon: "bi-info-circle", id: "info" },
+                  { text: "Share", icon: "bi-arrow-up-right", id: "share" },
+                ]
               }} />
               <div className="btn-group dropstart">
                 <a
@@ -152,22 +153,6 @@ const body = (
                 </a>
 
                 <ul className="dropdown-menu">
-                  {buttonAction({
-                    text: "Propose contribution",
-                    icon: "bi-person-up",
-                    id: "contribute",
-                  })}
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  {buttonAction({
-                    text: "Invite to contribute",
-                    icon: "bi-person-plus",
-                    id: "invite",
-                  })}
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
                   {buttonAction({
                     text: "View details",
                     icon: "bi-info-circle",
@@ -182,42 +167,41 @@ const body = (
                     id: "share",
                   })}
                 </ul>
-              </Widget>
-            </div>
-          ),
-          additionalRow: (
-            <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder }}
-              />
-              <div className="text-truncate text-muted">
-                {tags.length > 0 ? (
-                  <>
-                    {tags.map((tag) => (
-                      <span
-                        className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
-                        key={tag}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </>
-                ) : (
-                  <></>
-                )}
               </div>
-              <div className="text-truncate my-2">{profile.description}</div>
-            </>
-          ),
+              ),
+              additionalRow: (
+              <>
+                <Widget
+                  src={`${ownerId}/widget/ProfileLine`}
+                  props={{ accountId: founder }}
+                />
+                <div className="text-truncate text-muted">
+                  {tags.length > 0 ? (
+                    <>
+                      {tags.map((tag) => (
+                        <span
+                          className="d-inline-block mx-1 py-1 px-2 badge border border-secondary text-secondary text-muted text-center"
+                          key={tag}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                <div className="text-truncate my-2">{profile.description}</div>
+              </>
+              ),
         }}
       />
-    </div>
+            </div>
   </div>
-);
+    );
 
-return (
-  <div className="border-bottom border-secondary-subtle">
-    <div className="px-3 py-0">{body}</div>
-  </div>
-);
+    return (
+    <div className="border-bottom border-secondary-subtle">
+      <div className="px-3 py-0">{body}</div>
+    </div>
+    );
