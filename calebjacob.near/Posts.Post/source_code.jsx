@@ -32,6 +32,7 @@ const Post = styled.div`
 
 const Header = styled.div`
   margin-bottom: 12px;
+  display: inline-flex;
 `;
 
 const Body = styled.div`
@@ -140,7 +141,7 @@ return (
       {state.showReply && (
         <div className="mb-2">
           <Widget
-            src="calebjacob.near/widget/Posts.ComposeComment"
+            src="calebjacob.near/widget/Comments.Compose"
             props={{
               notifyAccountId,
               item,
@@ -152,7 +153,7 @@ return (
 
       <Comments>
         <Widget
-          src="mob.near/widget/MainPage.Comment.Feed"
+          src="calebjacob.near/widget/Comments.Feed"
           props={{
             item,
             highlightComment: props.highlightComment,
