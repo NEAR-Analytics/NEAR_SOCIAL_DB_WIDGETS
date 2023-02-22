@@ -16,7 +16,7 @@ una primis.
 ## Fuerat sit et fatetur innixamque hoc
 
 Accepisse lascivaque ausa tempora urna non corpore facta aequora nostrae. Par
-lecto solutus geminis tacta: est annum, pudorem nititur teste caput Baccho;
+lecto solutus gaeminis tacta: est annum, pudorem nititur teste caput Baccho;
 vellet inscripta probat ultima. Caicus et tempora aliter quondam lacertis fato
 exit sequentur **illo**; Iovi Phoebus quaea Sabaea verba summo suus. Regia
 invadunt circuiere sequenti remos in geri aliamve, quies quae dixi maanu Musa
