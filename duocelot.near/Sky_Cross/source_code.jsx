@@ -1192,17 +1192,23 @@ class UI {
       this.bottomBarHeight
     );
 
-    const margin = 20;
+    const margin = 60;
     const textY = this.game.height - this.bottomBarHeight + margin + this.fontSize;
 
-    // Draw avatar
-    context.drawImage(
-      this.avatarImage,
-      970 - this.rightColumnWidth + (this.rightColumnWidth - this.avatarWidth) / 2,
-      this.game.height - this.bottomBarHeight - margin + (this.bottomBarHeight - this.avatarHeight) / 2,
-      this.avatarWidth,
-      this.avatarHeight
-    );
+    
+  // Draw avatar
+  const avatarX = this.game.width - (this.rightColumnWidth + 180 );
+  const avatarY = this.game.height - (this.bottomBarHeight + 40 );
+  context.strokeStyle = "black";
+  context.lineWidth = 2;
+  context.strokeRect(avatarX, avatarY, this.avatarWidth, this.avatarHeight);
+  context.drawImage(
+    this.avatarImage,
+    avatarX + (this.avatarWidth - this.avatarHeight) / 2,
+    avatarY + (this.avatarHeight - this.avatarWidth) / 2,
+    this.avatarHeight,
+    this.avatarWidth
+  );
 
     // Set text styles
     context.font = this.fontSize + " " + this.fontFamily;
