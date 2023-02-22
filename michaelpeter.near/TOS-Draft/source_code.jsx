@@ -1,65 +1,76 @@
 const { tosName, targetComponent, targetProps } = props;
 const acceptanceKey = `${context.accountId}/${tosName}`;
 
+State.init({ showTos: true });
+
 // find all instances of the user agreeing to some version of the desired TOS
 const agreementsForUser = Social.index("tosAccept", acceptanceKey);
 
-const modal = styled.div`
-  
+const Backdrop = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
 `;
+
+const Modal = styled.div`
+  height: 80vh;
+  width: 80vw;
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ModalContent = styled.div`
+flex-grow:1
+`;
+
+const ModalFooter = styled.div`
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: aliceblue
+`;
+
 return (
   <div>
     {agreementsForUser.map((a) => (
       <span key={a}>{JSON.stringify(a)}</span>
     ))}
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Launch demo modal
-    </button>
+    <p>hi</p>
 
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+    <Backdrop
+      style={{ display: state.showTos ? "flex" : "none" }}
+      onClick={() => {
+        State.update({ showTos: false });
+      }}
+      className="flex"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Modal title
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <Widget src="michaelpeter.near/widget/TosContentDraft" />
-          </div>
-          <div class="modal-footer">
-            <CommitButton
-              data={{
-                tosAccept: {
-                  genie: JSON.stringify({
-                    key: acceptanceKey,
-                    value: 1, // TODO blockheight of tos version
-                  }),
-                },
-              }}
-            >
-              Agreed
-            </CommitButton>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Modal>
+        <ModalContent>
+          <Widget src="michaelpeter.near/widget/TosContentDraft" />
+        </ModalContent>
+        <ModalFooter>
+          <CommitButton
+            data={{
+              tosAccept: {
+                genie: JSON.stringify({
+                  key: acceptanceKey,
+                  value: 1, // TODO blockheight of tos version
+                }),
+              },
+            }}
+          >
+            Agreed
+          </CommitButton>
+        </ModalFooter>
+      </Modal>
+    </Backdrop>
   </div>
 );
