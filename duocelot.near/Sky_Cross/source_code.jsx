@@ -16,8 +16,8 @@ const scriptSrc = `
   box-sizing: border-box;
 }
 #canvas1 {
-  width:  100vw;
-  height: 100vh;
+  width:  82vw;
+  height: 82vh;
   margin: 0;
   z-index: 100;
   border: none;
