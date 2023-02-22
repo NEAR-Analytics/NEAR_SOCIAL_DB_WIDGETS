@@ -89,8 +89,8 @@ const body = (
           pros={{ tags: { [needString]: "" } }}
         />
       </div>
-      <Markdown text={need.description || "s ".repeat(1000)} />
     </div>
+    <Markdown text={need.description || "s ".repeat(1000)} />
   </div>
 );
 
