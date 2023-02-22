@@ -63,11 +63,10 @@ const showTos =
 
 return (
   <div>
-    {latestTosVersion && <div>latestTosVersion: {latestTosVersion}</div>}
-    {agreementsForUser.map((a) => (
+    {/*latestTosVersion && <div>latestTosVersion: {latestTosVersion}</div>*/}
+    {/*agreementsForUser.map((a) => (
       <span key={a}>{JSON.stringify(a)}</span>
-    ))}
-
+    ))
     <button
       onClick={() => {
         State.update({ showTos: true });
@@ -75,7 +74,7 @@ return (
     >
       show
     </button>
-
+    */}
     <Backdrop
       style={{ display: showTos ? "flex" : "none" }}
       onClick={() => {
