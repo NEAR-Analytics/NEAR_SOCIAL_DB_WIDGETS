@@ -1172,7 +1172,7 @@ class UI {
     this.topBarHeight = 50;
     this.leftColumnWidth = 50;
     this.rightColumnWidth = 50;
-    this.bottomBarHeight = 120;
+    this.bottomBarHeight = 97;
     this.avatarImage = document.getElementById("avatar");
     this.avatarWidth = 140;
     this.avatarHeight = 140;
@@ -1212,12 +1212,7 @@ class UI {
 
     // Draw bottom bar
     context.fillStyle = "transparent";
-    context.fillRect(
-      0,
-      this.game.height - this.bottomBarHeight,
-      this.game.width,
-      this.bottomBarHeight
-    );
+    context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
 
     const margin = 60;
     const textY = this.game.height - this.bottomBarHeight + margin + this.fontSize;
@@ -1245,8 +1240,7 @@ context.fillRect(0, 0, this.game.width, this.topBarHeight);
 // Draw bottom bar background
 const pattern2 = context.createPattern(this.bottomBarBackground, "repeat-x");
 context.fillStyle = pattern2;
-context.fillRect(0, this.game.height - this.bottomBarHeight - this.topBarHeight, this.game.width, this.bottomBarHeight);
-
+context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
     // Draw score
     context.font = this.font;
     context.fillStyle = "white";
