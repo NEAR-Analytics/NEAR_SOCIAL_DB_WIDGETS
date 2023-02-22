@@ -28,27 +28,6 @@ const composeData = () => {
     },
   };
 
-  const notifications = state.extractTagNotifications(state.content.text, {
-    type: "social",
-    path: `${context.accountId}/${addressForArticles}/${addressForComments}`,
-  });
-
-  if (props.notifyAccountId && props.notifyAccountId !== context.accountId) {
-    notifications.push({
-      key: props.notifyAccountId,
-      value: {
-        type: "comment",
-        item,
-      },
-    });
-  }
-
-  if (notifications.length) {
-    data.index.notify = JSON.stringify(
-      notifications.length > 1 ? notifications : notifications[0]
-    );
-  }
-
   return data;
 };
 
