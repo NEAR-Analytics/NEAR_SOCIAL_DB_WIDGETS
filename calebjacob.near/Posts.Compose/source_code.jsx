@@ -160,7 +160,7 @@ const TextareaDescription = styled.p`
   top: calc(var(--padding) + 24px);
   left: calc(41px + (var(--padding) * 2));
   right: var(--padding);
-  font-size: 12px;
+  font-size: 10px;
   line-height: 18px;
   font-weight: 400;
   color: #687076;
