@@ -76,7 +76,7 @@ const body = (
             <span className="me-2">By</span>
             <Widget
               src={`${ownerId}/widget/ProfileLine`}
-              props={{ accountId, isEntity: true }}
+              props={{ accountId, isEntity: true, update: props.update }}
             />
           </div>
           <Widget
