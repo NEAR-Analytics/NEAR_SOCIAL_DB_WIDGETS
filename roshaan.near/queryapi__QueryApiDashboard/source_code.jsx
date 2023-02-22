@@ -253,7 +253,7 @@ const indexerView = (accountId, indexerName, idx) => {
           onClick={() =>
             State.update({
               activeTab: "indexer-status",
-              selected_indexer: `${accountId}/${indexerName}`,
+              selected_indexer: indexerName,
             })
           }
         >
@@ -265,7 +265,7 @@ const indexerView = (accountId, indexerName, idx) => {
           onClick={() =>
             State.update({
               activeTab: "editor-window",
-              selected_indexer: `${accountId}/${indexerName}`,
+              selected_indexer: indexerName,
             })
           }
         >
@@ -279,7 +279,6 @@ const allIndexerView = () => {
   const limit = 7;
   const registry_contract_id =
     props.registry_contract_id || "registry.queryapi.near";
-
   if (!accountId) {
     return <H2>Please sign in to see your widgets.</H2>;
   }
