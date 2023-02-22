@@ -198,6 +198,12 @@ const content = {
       props={{ accountId, search: state.search, update: props.update }}
     />
   ),
+  invitations: (
+    <Widget
+      src={`${ownerId}/widget/InviteList`}
+      props={{ accountId, search: state.search, update: props.update }}
+    />
+  ),
 }[state.content];
 
 return (
