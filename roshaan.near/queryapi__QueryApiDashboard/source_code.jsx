@@ -1,13 +1,6 @@
 const [selected_accountId, selected_indexerName] = props.indexer_path
   ? props.indexer_path.split("/")
   : [undefined, undefined];
-console.log(
-  "selected accountid",
-  selected_accountId,
-  selected_indexerName,
-  "indexer"
-);
-// const selected_indexerName = parts.slice(1).join("/");
 
 const accountId = selected_accountId || props.accountId || context.accountId;
 const google_analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE2N8N8G93"></script>
@@ -286,7 +279,6 @@ const allIndexerView = () => {
   const limit = 7;
   const registry_contract_id =
     props.registry_contract_id || "registry.queryapi.near";
-  console.log(selected_accountId, "selecteed account exists");
 
   if (!accountId) {
     return <H2>Please sign in to see your widgets.</H2>;
