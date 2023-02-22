@@ -59,6 +59,8 @@ const ModalFooter = styled.div`
 
 // TODO check that 0 is correct index and not last
 const showTos =
+  context.accountId &&
+  latestTosVersion &&
   agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion;
 
 return (
