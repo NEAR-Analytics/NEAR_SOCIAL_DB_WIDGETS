@@ -1,4 +1,5 @@
-const { tosName, targetComponent, targetProps } = props;
+const { tosName, targetComponent } = props;
+const targetProps = props?.targetProps || {};
 // const acceptanceKey = `${context.accountId}/${tosName}`;
 const acceptanceKey = tosName; // TODO
 
@@ -102,5 +103,6 @@ return (
         </ModalFooter>
       </Modal>
     </Backdrop>
+    <Widget src={targetComponent} props={targetProps} />
   </div>
 );
