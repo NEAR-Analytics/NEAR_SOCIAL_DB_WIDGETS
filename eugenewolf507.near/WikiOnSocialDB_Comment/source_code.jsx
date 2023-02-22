@@ -55,7 +55,7 @@ return (
         <Widget
           src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Compose`}
           props={{
-            initialText: `@${accountId}, `,
+            initialText: `${accountId}, `,
             // notifyAccountId: extractNotifyAccountId(parentItem),
             item: parentItem,
             onComment: () => State.update({ showReply: false }),
