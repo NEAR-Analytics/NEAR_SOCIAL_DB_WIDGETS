@@ -88,7 +88,7 @@ const body = (
         </div>
         <Widget
           src={`${ownerId}/widget/Tags`}
-          pros={{ tags: { [needStrign]: "" } }}
+          pros={{ tags: { [needString]: "" } }}
         />
       </div>
       <Markdown text={profile.description || "s ".repeat(1000)} />
