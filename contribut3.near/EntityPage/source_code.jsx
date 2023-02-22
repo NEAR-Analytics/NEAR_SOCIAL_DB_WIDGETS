@@ -88,7 +88,7 @@ const body = (
         />
       </div>
     </div>
-    <div className="text-truncate my-2">
+    <div className="text-truncate text-wrap my-2">
       {profile.description || "s ".repeat(1000)}
     </div>
   </div>
