@@ -114,7 +114,7 @@ const proposalsCount = (
   Near.view(
     ownerId,
     "get_entity_contribution_requests",
-    { account_id: context.accountId },
+    { entity_id: accountId },
     "final",
     true
   ) ?? []
@@ -124,7 +124,7 @@ const invitesCount = Object.keys(
   Near.view(
     ownerId,
     "get_entity_invites",
-    { account_id: context.accountId },
+    { entity_id: accountId },
     "final",
     true
   ) ?? {}
