@@ -85,16 +85,6 @@ const body = (
         <Widget src={`${ownerId}/widget/Tags`} pros={{ tags: profile.tags }} />
       </div>
       <Markdown text={profile.description || "s ".repeat(1000)} />
-      <div className="d-flex flex-row justify-content-between align-items-center">
-        <Widget
-          src={`${ownerId}/widget/SocialLinks`}
-          props={{ links: profile.linktree ?? {} }}
-        />
-        <Widget
-          src={`${ownerId}/widget/ProfileLine`}
-          props={{ accountId: founder }}
-        />
-      </div>
     </div>
   </div>
 );
