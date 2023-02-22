@@ -3,7 +3,7 @@ const targetProps = props?.targetProps || {};
 // const acceptanceKey = `${context.accountId}/${tosName}`;
 const acceptanceKey = tosName; // TODO
 
-State.init({ hasCommittedAcceptance: false });
+State.init({ hasCommittedAcceptance: false, agreeIsChecked: false });
 
 // find all instances of the user agreeing to some version of the desired TOS
 const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
@@ -57,10 +57,12 @@ const ModalFooter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
+  column-gap: 2rem;
 `;
 
 const showTos =
-  !hasCommittedAcceptance &&
+  !state.hasCommittedAcceptance &&
   context.accountId &&
   latestTosVersion &&
   (!agreementsForUser.length ||
@@ -80,7 +82,30 @@ return (
           <Widget src="michaelpeter.near/widget/TosContentDraft" />
         </ModalContent>
         <ModalFooter>
+          <div id="checkWrapper" className="d-flex flex-row align-items-center">
+            <button
+              onClick={() => {
+                State.update({ agreeIsChecked: !state.agreeIsChecked });
+              }}
+              className="btn btn-outline-dark"
+              style={{
+                border: "none",
+                "--bs-btn-hover-bg": "transparent",
+                "--bs-btn-active-bg": "transparent",
+                "--bs-btn-hover-color": "var(--bs-blue)",
+              }}
+            >
+              <i
+                className={`bi bi-${
+                  state.agreeIsChecked ? "check-square" : "square"
+                }`}
+                style={{ fontSize: "1.5rem" }}
+              />
+            </button>
+            <span>I agree to the Terms of Service</span>
+          </div>
           <CommitButton
+            disabled={!state.agreeIsChecked}
             data={{
               index: {
                 tosAccept: JSON.stringify({
@@ -93,7 +118,7 @@ return (
               State.update({ hasCommittedAcceptance: true });
             }}
           >
-            I Agree
+            Continue
           </CommitButton>
         </ModalFooter>
       </Modal>
