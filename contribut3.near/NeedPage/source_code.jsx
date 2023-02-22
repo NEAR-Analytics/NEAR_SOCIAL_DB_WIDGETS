@@ -90,7 +90,7 @@ const body = (
         />
       </div>
     </div>
-    <Markdown text={need.description || "s ".repeat(1000)} />
+    <Markdown text={need.description} />
   </div>
 );
 
