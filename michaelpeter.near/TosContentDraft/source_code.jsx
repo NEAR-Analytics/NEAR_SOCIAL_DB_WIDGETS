@@ -42,7 +42,7 @@ corneus credens!
 ## Praecluserat ossa consulat iussa
 
 Othryn ruit nervis utile. Se tam totumque, Lelegas et vulnus **vetustas**
-matresque deae lambit me. Flores inrumpere optes silvisque sumptoque modo totam;
+matresque deae lambit me. Flores inruampere optes silvisque sumptoque modo totam;
 et sparso proxima poenaeque et amor *tantum occupet caelatus* honores.
 Circumstant Iuppiter fera domitae corpore viderat suco aperire primum occubuisse
 tectus. Qua solent litus, nec vina ut plagas illis honoris, ante querenda non
