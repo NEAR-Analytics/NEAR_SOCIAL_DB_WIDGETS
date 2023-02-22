@@ -112,6 +112,16 @@ const PillSelectButton = styled.button`
 
 const FeedWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
+
+  .post {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media (max-width: 1200px) {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
 `;
 
 return (
