@@ -335,7 +335,23 @@ return (
             </span>
           </div>
 
-          <div style={{ fontSize: font_big }}>{finalData.time_zone}</div>
+          <div
+            style={{
+              paddingRight: style == "small" ? "1.2rem" : "2rem",
+              display: "flex",
+              alignItems: "center",
+              margin: "-1.2rem",
+            }}
+          >
+            <Widget
+              src={`vow_owner_123.near/widget/ShowCurrentTime`}
+              props={{
+                style: {
+                  display: "flex",
+                },
+              }}
+            />
+          </div>
         </div>
         <div
           className="p-3"
