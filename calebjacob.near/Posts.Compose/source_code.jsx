@@ -80,6 +80,12 @@ function onCommit() {
   });
 }
 
+const previewContent = {
+  type: "md",
+  image: state.image.cid ? state.image : undefined,
+  text: state.text,
+};
+
 const Wrapper = styled.div`
   --padding: 24px;
   position: relative;
@@ -259,10 +265,7 @@ return (
           props={{
             accountId: context.accountId,
             blockHeight: "now",
-            content: {
-              image: state.image.cid ? state.image : undefined,
-              text: state.text,
-            },
+            content: previewContent,
           }}
         />
       </PreviewWrapper>
