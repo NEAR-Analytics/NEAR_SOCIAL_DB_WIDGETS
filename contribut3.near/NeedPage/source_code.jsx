@@ -75,11 +75,15 @@ const body = (
         </div>
         <div>
           <span className="text-muted me-2">
-            Created {new Date(Number(entity.start_date)).toLocaleDateString()}
+            Created {new Date(Number(need.start_date)).toLocaleDateString()}
           </span>
           <Widget
             src={`${ownerId}/widget/ActiveIndicator`}
-            props={{ active: entity.status === "Active" }}
+            props={{
+              active: need.active,
+              activeText: "Open for proposals",
+              inactiveText: "Closed",
+            }}
           />
         </div>
         <Widget src={`${ownerId}/widget/Tags`} pros={{ tags: profile.tags }} />
