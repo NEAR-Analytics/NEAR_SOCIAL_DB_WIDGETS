@@ -186,6 +186,7 @@ const Actions = styled.div`
   .preview-post-button {
     color: #006ADC;
     background: #F1F3F5;
+    padding: 0 16px;
 
     &:hover,
     &:focus {
