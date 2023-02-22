@@ -158,7 +158,7 @@ const Textarea = styled.div`
 const TextareaDescription = styled.p`
   position: absolute;
   top: calc(var(--padding) + 24px);
-  left: calc(41px + (var(--padding) * 2));
+  left: calc(42px + (var(--padding) * 2));
   right: var(--padding);
   font-size: 10px;
   line-height: 18px;
