@@ -906,8 +906,12 @@ class ParticleEffect {
             
         }
 
-        draw(context) {
-            
+       draw(context) {
+            for (let i = 0; i < this.prevPositions.length; i++) {
+                const pos = this.prevPositions[i];
+                context.fillStyle = "rgba(255,255,255,0.3)";
+                context.fillRect(pos.x, pos.y, this.width, this.height);
+            }
             context.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
 
