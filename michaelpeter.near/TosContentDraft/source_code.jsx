@@ -7,7 +7,7 @@ Lorem markdownum expendite luminibus tenent quoque, sustinet iuxta, et revocare
 ne potes, Theseus nulla volutant erunt plus. Loqui regna et deum Iuventae quas,
 consulit adsiduis invenit in origine referat inhaesi Typhoea desine, Herculis
 Enipeus. Pentheus ipse officium clamat saturatos concessa, in fretum eo
-coniunctaque si femina et Iapetionides fugit furit nebulas. Se et nunc paterer
+coniunctaque si femina et Iapetionides fugiat furit nebulas. Se et nunc paterer
 paelicis et totum reflectitur facta protinus salignis fortibus prius Lacon
 mortisque, variarum? Montibus inmoritur meruere laquei, generis Athamanas
 nympham tantaque, amoris caeruleum prohibete inhospita curruque legit; *tactus*
