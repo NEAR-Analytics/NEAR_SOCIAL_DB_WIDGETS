@@ -73,34 +73,16 @@ const body = (
             />
           </div>
         </div>
-        <Widget
-          src={`${ownerId}/widget/ProfileLine`}
-          props={{
-            accountId,
-            isEntity: true,
-            imageSize: "4em",
-            update: props.update,
-            additionalColumn: controls,
-            additionalRow: (
-              <>
-                <div className="d-flex flex-row justify-content-start align-items-center">
-                  <span className="text-muted me-2">
-                    Created{" "}
-                    {new Date(Number(entity.start_date)).toLocaleDateString()}
-                  </span>
-                  <Widget
-                    src={`${ownerId}/widget/ActiveIndicator`}
-                    props={{ active: entity.status === "Active" }}
-                  />
-                </div>
-                <Widget
-                  src={`${ownerId}/widget/Tags`}
-                  pros={{ tags: profile.tags }}
-                />
-              </>
-            ),
-          }}
-        />
+        <div className="d-flex flex-row justify-content-start align-items-center">
+          <span className="text-muted me-2">
+            Created {new Date(Number(entity.start_date)).toLocaleDateString()}
+          </span>
+          <Widget
+            src={`${ownerId}/widget/ActiveIndicator`}
+            props={{ active: entity.status === "Active" }}
+          />
+        </div>
+        <Widget src={`${ownerId}/widget/Tags`} pros={{ tags: profile.tags }} />
       </div>
     </div>
     <Markdown text={profile.description || "s ".repeat(1000)} />
