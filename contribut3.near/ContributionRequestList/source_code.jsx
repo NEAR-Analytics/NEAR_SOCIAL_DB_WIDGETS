@@ -2,15 +2,16 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 
-const requests = Near.view(
-  ownerId,
-  accountId
-    ? "get_entity_contribution_requests"
-    : "get_admin_contribution_requests",
-  accountId ? { entity_id: accountId } : { account_id: context.accountId },
-  "final",
-  true
-);
+const requests =
+  Near.view(
+    ownerId,
+    accountId
+      ? "get_entity_contribution_requests"
+      : "get_admin_contribution_requests",
+    accountId ? { entity_id: accountId } : { account_id: context.accountId },
+    "final",
+    true
+  ) || [];
 
 if (!requests) {
   return "Loading...";
