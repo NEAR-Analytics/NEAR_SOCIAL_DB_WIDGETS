@@ -31,7 +31,7 @@ flex-grow:1
 `;
 
 const ModalFooter = styled.div`
-  height: 4rem;
+  height: 3rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -67,7 +67,7 @@ return (
               },
             }}
           >
-            Agreed
+            I Agree
           </CommitButton>
         </ModalFooter>
       </Modal>
