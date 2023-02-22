@@ -26,20 +26,7 @@ function onInterval() {
   var utc_hour = today.getUTCHours();
   var utc_minute = today.getUTCMinutes();
 
-  const day_converted = day == 0 ? 6 : new Date().getDay() - 1;
-  const hours = new Date().getHours();
-  const now = hours + minute / 60;
-  var is_on = false;
-  var temp = finalData.value._data[day_converted];
-  if (temp.on_off == "on") {
-    for (var j = 0; j < temp.data.length; j++) {
-      if (now >= temp.data[j]._from && now < temp.data[j]._to) {
-        is_on = true;
-      }
-    }
-  }
   State.update({
-    is_on: is_on,
     current_time:
       month +
       "/" +
