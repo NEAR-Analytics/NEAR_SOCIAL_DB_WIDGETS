@@ -2,52 +2,25 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 
-State.init({
-  requests: null,
-});
-
-const adminEntities = Near.asyncView(
+const requests = Near.view(
   ownerId,
-  "get_admin_entities",
+  "get_admin_contribution_requests",
   { account_id: context.accountId },
   "final"
-).then((entities) => {
-  Object.keys(entities).map((entityId) =>
-    Near.asyncView(
-      ownerId,
-      "get_entity_contribution_requests",
-      { entity_id: entityId },
-      "final"
-    ).then((requests) => {
-      State.update({ requests: { ...state.requests, [entityId]: requests } });
-    })
-  );
-});
+);
 
-if (!state.requests) {
+if (!requests) {
   return "Loading...";
 }
 
 if (Array.isArray(state.requests) && state.requests.length === 0) {
-  return "No contribution requests for this entity found!";
+  return "No contribution requests this account can manage found!";
 }
 
-const allRequests = Object.keys(state.requests)
-  .reduce(
-    (acc, entityId) => [
-      ...acc,
-      ...state.requests[entityId].map(([contributorId, contribution]) => [
-        entityId,
-        contributorId,
-        contribution,
-      ]),
-    ],
-    []
-  )
-  .filter(
-    ([entityId, contributorId]) =>
-      contributorId.includes(search) || entityId.includes(search)
-  );
+const allRequests = requests.filter(
+  ([entityId, contributorId]) =>
+    contributorId.includes(search) || entityId.includes(search)
+);
 
 if (!allRequests || allRequests.length === 0) {
   return "No requests match search criteria!";
