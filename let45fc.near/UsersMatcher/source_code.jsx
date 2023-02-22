@@ -61,7 +61,7 @@ if (!state.room) {
     <div class="container">
       <div class="row mt-3">
         <div class="col-12">
-          <h3>{props.roomName}</h3>
+          <h3>{props.widgetName}</h3>
         </div>
         <div class="col-12">
           <input
