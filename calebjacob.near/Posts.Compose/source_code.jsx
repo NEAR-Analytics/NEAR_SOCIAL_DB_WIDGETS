@@ -157,11 +157,11 @@ const Textarea = styled.div`
 
 const TextareaDescription = styled.p`
   position: absolute;
-  top: calc(var(--padding) * 2 + 16px);
-  left: calc(40px + (var(--padding) * 2));
+  top: calc(var(--padding) + 24px);
+  left: calc(41px + (var(--padding) * 2));
   right: var(--padding);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 18px;
   font-weight: 400;
   color: #687076;
   pointer-events: none;
@@ -319,13 +319,13 @@ return (
           />
 
           <TextareaDescription>
-            You can use plain text or
             <a
               href="https://www.markdownguide.org/basic-syntax/"
               target="_blank"
             >
-              markdown
+              Markdown
             </a>
+            is supported.
           </TextareaDescription>
         </Textarea>
       </>
