@@ -51,3 +51,9 @@ if ("youtube" in links) {
     </li>
   );
 }
+
+return (
+  <ul className="d-flex flex-row justify-content-between align-items-center">
+    {linksList}
+  </ul>
+);
