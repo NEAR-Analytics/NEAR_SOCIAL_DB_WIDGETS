@@ -72,13 +72,13 @@ const body = (
           </div>
         </div>
         <div>
-          <span className="text-muted me-2">
-            Created by{" "}
+          <div className="d-flex flex-row text-muted me-2">
+            <span className="me-2">By</span>
             <Widget
               src={`${ownerId}/widget/ProfileLine`}
               props={{ accountId, isEntity: true }}
             />
-          </span>
+          </div>
           <Widget
             src={`${ownerId}/widget/ActiveIndicator`}
             props={{
