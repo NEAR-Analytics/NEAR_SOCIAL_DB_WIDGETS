@@ -41,7 +41,6 @@ const contentSelector = (
       tab: "inbox",
       update: (content) => {
         State.update({ content });
-        props.update({ content });
       },
       buttons: [
         {
