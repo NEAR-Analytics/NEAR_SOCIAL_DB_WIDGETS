@@ -118,9 +118,9 @@ return (
         <CommitButton
           class="btn btn-primary"
           onClick={() => {
-            State.update({ roomId: newRoomId });
             Storage.set("created", "true");
             Storage.set("roomId", newRoomId);
+            State.update({ roomId: newRoomId });
           }}
           onCommit={() => State.update({ roomCreated: true })}
           data={{
