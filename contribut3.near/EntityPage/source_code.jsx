@@ -123,6 +123,42 @@ const contentSelectButton = ({ id, text, icon }) => (
   </a>
 );
 
+const contentSelector = <Widget src={} props={{
+  tab: "entity",
+  content: state.content,
+  search: state.search,
+  update: (content) => State.update({ content }),
+  buttons: [
+    {
+      id: "requests",
+      text: "Requests",
+      icon: "bi-boxes",
+    },
+    (...(
+      isAuthorized ? [{
+        id: "proposals",
+        text: "Proposals",
+        icon: "bi-person-down",
+      },
+      {
+        id: "invitations",
+        text: "Invitations",
+        icon: "bi-hourglass",
+      }] : []
+    )),
+    {
+      id: "contributions",
+      text: "Contributes to",
+      icon: "bi-person-up",
+    },
+    {
+      id: "contributors",
+      text: "Contributors",
+      icon: "bi-people",
+    }
+  ]
+}} />
+
 const contentSelector = (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
     {contentSelectButton({
