@@ -35,63 +35,20 @@ const contributions = Near.view(
   "final"
 );
 
-const profile = Social.getr(`${accountId}/profile`);
-
-const tags = Object.keys(profile.tags ?? {});
-const image = profile.image;
-const url =
-  (image.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
-    : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
-
-const circle = (
-  <div
-    className="profile-circle d-inline-block"
-    title={`${entity.name || profile.name} @${accountId}`}
-    style={{ width: "4em", height: "4em" }}
-  >
-    <img
-      className="rounded-circle w-100 h-100"
-      style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${url}`}
-      alt="profile image"
-    />
-  </div>
-);
-
 const [[founder]] = (contributions ?? []).filter((contribution) => {
   const [_, details] = contribution;
   const all = [...details.history, details.current];
   return all.some((detail) => detail.description === "");
 });
 
-const founderProfile = Social.getr(`${founder}/profile`);
-const founderImage = profile.image;
-const founderImageUrl =
-  (founderImage.ipfs_cid
-    ? `https://ipfs.near.social/ipfs/${founderImage.ipfs_cid}`
-    : founderImage.url) ||
-  "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
-
-const founderCircle = (
-  <div
-    className="profile-circle d-inline-block"
-    title={`${founderProfile.name} @${founder}`}
-    style={{ width: "1.5em", height: "1.5em" }}
-  >
-    <img
-      className="rounded-circle w-100 h-100"
-      style={{ objectFit: "cover" }}
-      src={`https://i.near.social/thumbnail/${founderImageUrl}`}
-      alt="profile image"
-    />
-  </div>
-);
-
 const body = (
   <div className="px-3">
     <div className="d-flex flex-row justify-content-start" id={accountId}>
       <div className="flex-grow-1 py-3">
+        <Widget
+          src={`${ownerId}/widget/ProfileLine`}
+          props={{ accountId, isEntity: true }}
+        />
         <div>
           <div className="d-flex flex-row justify-content-start">
             <div className="m-2">{circle}</div>
