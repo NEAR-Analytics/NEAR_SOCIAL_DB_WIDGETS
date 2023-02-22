@@ -29,7 +29,7 @@ img {
 }
 </style>
 <canvas id="canvas1"></canvas>
-          <img id="playerImage" src="https://ik.imagekit.io/onyedika/skycross/player_BIG_mq9uKo5ll.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939877107" alt="" />
+    <img id="playerImage" src="https://ik.imagekit.io/onyedika/skycross/player_BIG_mq9uKo5ll.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939877107" alt="" />
     <img id="layer1Image" src="https://ik.imagekit.io/onyedika/skycross/1_JZI4rwmIY9.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858101" alt="" />
     <img id="layer2Image" src="https://ik.imagekit.io/onyedika/skycross/2_nnjLeWkZZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676993058655" alt="" />
     <img id="layer3Image" src="https://ik.imagekit.io/onyedika/skycross/3_bfIr7gkw-1.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939859797" alt="" />
@@ -41,7 +41,7 @@ img {
     <img id="spiderBigImage" src="https://ik.imagekit.io/onyedika/skycross/enemy_spider_big_n3r4HKyjV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939861559" alt=""/>
     <img id="fireTexture" src="https://ik.imagekit.io/onyedika/skycross/fire_bwpPPyGYv.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939863595" alt=""/>
     <img id="boomImage" src="https://ik.imagekit.io/duOCELOT/assets/blast.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677030038390" alt=""/>
-    <img id="liveImage" src="https://ik.imagekit.io/onyedika/skycross/apple_GS0a8l34K.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858074" alt=""/>
+    <img id="liveImage" src="https://ik.imagekit.io/duOCELOT/assets/apple.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677036870013" alt=""/>
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
     <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
     <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
@@ -78,7 +78,7 @@ img {
                 this.ui = new UI(this);
                 this.time = 0;
                 this.maxTime = 100000000;
-                this.lives = 100;
+                this.lives = 20;
                 this.gameOver = false;
                 this.player.currentState = this.player.states[0];
                 this.player.currentState.enter();
@@ -1187,7 +1187,7 @@ if (this.prevPositions.length > 20) {
 
       // Draw lives
       for (let i = 0; i < this.game.lives; i++) {
-          context.drawImage(this.livesImage, this.game.width - 200 + 25 * i, this.game.height - 35, 25, 25);
+          context.drawImage(this.livesImage, this.game.width - 600 + 25 * i, this.game.height - 35, 25, 25);
       }      
             // Draw game over text
             if (this.game.gameOver) {
