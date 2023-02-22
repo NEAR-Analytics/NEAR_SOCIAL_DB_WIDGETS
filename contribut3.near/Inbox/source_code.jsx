@@ -57,22 +57,25 @@ const contentSelectButton = ({ id, text, icon, count }) => (
   </a>
 );
 
-const contentSelector = (
-  <div className="btn-group" role="group" aria-label="Content Tab Selector">
-    {contentSelectButton({
-      id: "proposals",
-      text: "Proposals",
-      icon: "bi-person-plus",
-      count: proposalsCount,
-    })}
-    {contentSelectButton({
-      id: "invitations",
-      text: "Invitations",
-      icon: "bi-person-up",
-      count: invitesCount,
-    })}
-  </div>
-);
+const contentSelector = (<Widget
+  src={`${ownerId}/widget/TabSelector`}
+  props={{
+    buttons: [
+      {
+        id: "proposals",
+        text: "Proposals",
+        icon: "bi-person-plus",
+        count: proposalsCount,
+      },
+      {
+        id: "invitations",
+        text: "Invitations",
+        icon: "bi-person-up",
+        count: invitesCount,
+      },
+    ],
+  }}
+/>)();
 
 const searchBar = (
   <div className="w-25 col-12 col-md-10 col-lg-8">
