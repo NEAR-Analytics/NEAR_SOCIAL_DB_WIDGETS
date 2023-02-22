@@ -10,8 +10,7 @@ if (typeof props.loadRoomCallback != "function") {
 }
 
 State.init({
-  roomId: null,
-  roomData: null,
+  roomId: Storage.get("roomId") || null,
   errorMessage: null,
   roomCreated: false,
 });
@@ -59,14 +58,22 @@ const findRoom = (created) => {
   }
 };
 
-if (state.roomCreated) {
+const roomCreated = Storage.get("created");
+
+if (state.roomCreated || roomCreated == "true") {
+  Storage.set("created", "false");
+  const roomId = Storage.get("roomId");
+  if (!roomId) {
+    return <h1>Something went wrong and "roomId" is not set</h1>;
+  }
+  Storage.set("roomId", "");
   return (
     <div class="container">
       <div class="row">
         <h2>Room created</h2>
       </div>
       <div class="row">
-        <span>Your room id: {newRoomId}</span>
+        <span>Your room id: {roomId}</span>
       </div>
       <button class="btn btn-success" onClick={findRoom(true)}>
         Go to game
@@ -95,6 +102,13 @@ if (!state.room) {
           />
         </div>
       </div>
+      {state.errorMessage && (
+        <div class="row mt-4">
+          <div class="col-12">
+            <p class="text-danger">{state.errorMessage}</p>
+          </div>
+        </div>
+      )}
       <div class="row mt-4">
         <div class="col-6 text-end">
           <button class="btn btn-success" onClick={findRoom}>
@@ -104,7 +118,11 @@ if (!state.room) {
         <div class="col-6">
           <CommitButton
             class="btn btn-primary"
-            onClick={() => State.update({ roomId: newRoomId })}
+            onClick={() => {
+              State.update({ roomId: newRoomId });
+              Storage.set("created", "true");
+              Storage.set("roomId", newRoomId);
+            }}
             onCommit={() => State.update({ roomCreated: true })}
             data={{
               [props.widgetKey]: {
