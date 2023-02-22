@@ -69,7 +69,7 @@ const body = (
                 <div className="d-flex flex-row justify-content-end align-items-start">
                   <a
                     className="btn btn-success me-2 text-light"
-                    style={{ width: "12em" }}
+                    style={{ width: "13em" }}
                   // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
                   >
                     <i className="bi-person-up" />
