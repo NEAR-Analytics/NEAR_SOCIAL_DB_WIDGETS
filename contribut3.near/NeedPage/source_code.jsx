@@ -32,13 +32,46 @@ const body = (
   <div className="px-3">
     <div className="d-flex flex-row justify-content-start" id={accountId}>
       <div className="flex-grow-1 py-3">
-        <div>
-          <h1>
+        <div className="d-flex flex-row justify-content-between align-items-start">
+          <h1 className="flex-grow-1">
             Need for{" "}
             {typeof need.contribution_type === "string"
               ? need.contribution_type
               : need.contribution_type.Other}
           </h1>
+          <div className="d-flex flex-row justify-content-between align-items-center">
+            <a
+              className="btn me-2 mb-2 text-light"
+              style={{
+                backgroundColor: "#6941C6",
+                borderColor: "#6941C6",
+              }}
+            // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+            >
+              <i className="bi-person-plus" />
+              <span className="text-nowrap">Invite contributor</span>
+            </a>
+            <Widget
+              src={`${ownerId}/widget/CardMenu`}
+              props={{
+                update: props.update,
+                items: [
+                  {
+                    text: "Create new request",
+                    icon: "bi-boxes",
+                  },
+                  {
+                    text: "Invite contributors",
+                    icon: "bi-person-plus",
+                  },
+                  {
+                    text: "Delete project",
+                    icon: "bi-trash",
+                  },
+                ],
+              }}
+            />
+          </div>
         </div>
         <Widget
           src={`${ownerId}/widget/ProfileLine`}
