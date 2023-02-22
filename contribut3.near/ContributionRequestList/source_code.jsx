@@ -11,7 +11,7 @@ const requests =
     accountId ? { entity_id: accountId } : { account_id: context.accountId },
     "final",
     true
-  ) || [];
+  ) ?? [];
 
 if (!requests) {
   return "Loading...";
