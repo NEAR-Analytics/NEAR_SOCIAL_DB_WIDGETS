@@ -4,25 +4,13 @@ const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = props.accountId || context.accountId;
 let base = props.base ?? "query-api-editor";
-State.init({
-  code: initialText,
-});
 
 if (!accountId) {
   return "Please sign in to use this widget.";
 }
 
-Near.asyncView(registry_contract_id, "read_indexer_function", {
-  name: `${accountId}/${indexerName}`,
-}).then((data) => {
-  if (!data) return;
-  console.log(data, "data loaded", `${accountId}/${indexerName}`);
-  State.update({ code: data });
-});
-
 let updateIndexerCode = (data) => {
   const gas = 200000000000000;
-  console.log(data, "dataaa");
   Near.call(
     registry_contract_id,
     "register_indexer_function",
