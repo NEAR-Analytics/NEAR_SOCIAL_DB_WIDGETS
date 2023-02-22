@@ -40,6 +40,64 @@ const [[founder]] = (contributions ?? []).filter((contribution) => {
 
 const profile = Social.getr(`${entityId}/profile`);
 
+const controls = isAuthorized ? (
+  <div className="d-flex flex-row justify-content-between align-items-center">
+    <a className="btn btn-outline-secondary">
+      <i className="bi-pencil-square" />
+      <span>Edit project</span>
+    </a>
+    <Widget
+      src={`${ownerId}/widget/CardMenu`}
+      props={{
+        update: props.update,
+        items: [
+          {
+            text: "Propose contribution",
+            icon: "bi-person-up",
+          },
+          {
+            text: "Invite to contribute",
+            icon: "bi-person-plus",
+          },
+          {
+            text: "View details",
+            icon: "bi-info-circle",
+            href: `https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
+            onClick: () => props.update && props.update("entity"),
+          },
+          {
+            text: "Share",
+            icon: "bi-arrow-up-right",
+            id: "share",
+          },
+        ],
+      }}
+    />
+  </div>
+) : (
+  <div className="d-flex flex-column justify-content-start align-items-stretch">
+    <a
+      className="btn me-2 mb-2 text-light"
+      style={{
+        backgroundColor: "#6941C6",
+        borderColor: "#6941C6",
+      }}
+    // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+    >
+      <i className="bi-person-plus" />
+      <span className="text-nowrap">Invite to contribute</span>
+    </a>
+    <a
+      className="btn btn-success me-2 text-light"
+      style={{ width: "13em" }}
+    // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+    >
+      <i className="bi-person-up" />
+      <span className="text-nowrap">Propose contribution</span>
+    </a>
+  </div>
+);
+
 const body = (
   <div className="px-3">
     <div className="d-flex flex-row justify-content-start" id={accountId}>
@@ -51,29 +109,7 @@ const body = (
             isEntity: true,
             imageSize: "4em",
             update: props.update,
-            additionalColumn: (
-              <div className="d-flex flex-column justify-content-start align-items-stretch">
-                <a
-                  className="btn me-2 mb-2 text-light"
-                  style={{
-                    backgroundColor: "#6941C6",
-                    borderColor: "#6941C6",
-                  }}
-                // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-                >
-                  <i className="bi-person-plus" />
-                  <span className="text-nowrap">Invite to contribute</span>
-                </a>
-                <a
-                  className="btn btn-success me-2 text-light"
-                  style={{ width: "13em" }}
-                // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-                >
-                  <i className="bi-person-up" />
-                  <span className="text-nowrap">Propose contribution</span>
-                </a>
-              </div>
-            ),
+            additionalColumn: controls,
             additionalRow: (
               <>
                 <div className="d-flex flex-row justify-content-start align-items-center">
