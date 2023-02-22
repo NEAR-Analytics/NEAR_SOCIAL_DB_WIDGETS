@@ -28,17 +28,17 @@ const isAuthorized = Near.view(
 
 const profile = Social.getr(`${accountId}/profile`);
 
+const needString =
+  typeof need.contribution_type === "string"
+    ? need.contribution_type
+    : need.contribution_type.Other;
+
 const body = (
   <div className="px-3">
     <div className="d-flex flex-row justify-content-start" id={accountId}>
       <div className="flex-grow-1 py-3">
         <div className="d-flex flex-row justify-content-between align-items-start">
-          <h1 className="flex-grow-1">
-            Need for{" "}
-            {typeof need.contribution_type === "string"
-              ? need.contribution_type
-              : need.contribution_type.Other}
-          </h1>
+          <h1 className="flex-grow-1">Need for {needString}</h1>
           <div className="d-flex flex-row justify-content-between align-items-center">
             <a
               className="btn me-2 mb-2 text-light"
@@ -86,7 +86,10 @@ const body = (
             }}
           />
         </div>
-        <Widget src={`${ownerId}/widget/Tags`} pros={{ tags: profile.tags }} />
+        <Widget
+          src={`${ownerId}/widget/Tags`}
+          pros={{ tags: { [needStrign]: "" } }}
+        />
       </div>
       <Markdown text={profile.description || "s ".repeat(1000)} />
     </div>
