@@ -20,11 +20,11 @@ if (!allContributors || allContributors.length === 0) {
 
 return (
   <>
-    {allContributors.map((accountId) => (
-      <div key={accountId} className="mb-2">
+    {allContributors.map((ids) => (
+      <div key={account ? ids[0] : ids} className="mb-2">
         <Widget
           src={`${ownerId}/widget/Contributor`}
-          props={{ accountId, notStandalone: true }}
+          props={{ accountId: accountId ? ids[0] : ids, notStandalone: true }}
         />
       </div>
     ))}
