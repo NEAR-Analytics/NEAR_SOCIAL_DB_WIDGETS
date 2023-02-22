@@ -1142,7 +1142,7 @@ if (this.prevPositions.length > 20) {
     }
 
 class UI {
-  constructor(game) {
+   constructor(game) {
     this.game = game;
     this.fontSize = 30;
     this.fontFamily = "Press Start 2P', cursive";
@@ -1150,16 +1150,41 @@ class UI {
     this.topBarHeight = 50;
     this.leftColumnWidth = 50;
     this.rightColumnWidth = 50;
-        this.bottomBarHeight = 50;
-
+    this.bottomBarHeight = 120;
+    this.avatarImage = document.getElementById("avatar");
+    this.avatarWidth = 140;
+    this.avatarHeight = 140;
   }
+
   draw(context) {
     // Draw top bar
     context.fillStyle = "gray";
     context.fillRect(0, 0, this.game.width, this.topBarHeight);
-    
-        // Draw bottom bar
+
+    context.font = "20px Arial";
+    context.fillStyle = "white";
+    context.fillText("SKY CROSS", 500, 30);
+
+    // Draw right column
     context.fillStyle = "gray";
+    context.fillRect(
+      this.game.width - this.rightColumnWidth,
+      this.topBarHeight,
+      this.rightColumnWidth,
+      this.game.height - this.topBarHeight - this.bottomBarHeight
+    );
+
+    // Draw left column
+    context.fillStyle = "gray";
+    context.fillRect(
+      0,
+      this.topBarHeight,
+      this.leftColumnWidth,
+      this.game.height - this.topBarHeight - this.bottomBarHeight
+    );
+
+    // Draw bottom bar
+    context.fillStyle = "#5f5f5f";
     context.fillRect(
       0,
       this.game.height - this.bottomBarHeight,
@@ -1167,32 +1192,43 @@ class UI {
       this.bottomBarHeight
     );
 
-    // Draw left column
-    context.fillStyle = "gray";
-    context.fillRect(0, this.topBarHeight, this.leftColumnWidth, this.game.height - this.topBarHeight);
+    const margin = 20;
+    const textY = this.game.height - this.bottomBarHeight + margin + this.fontSize;
 
-    // Draw right column
-    context.fillStyle = "gray";
-    context.fillRect(this.game.width - this.rightColumnWidth, this.topBarHeight, this.rightColumnWidth, this.game.height - this.topBarHeight);
+    // Draw avatar
+    context.drawImage(
+      this.avatarImage,
+      970 - this.rightColumnWidth + (this.rightColumnWidth - this.avatarWidth) / 2,
+      this.game.height - this.bottomBarHeight - margin + (this.bottomBarHeight - this.avatarHeight) / 2,
+      this.avatarWidth,
+      this.avatarHeight
+    );
 
     // Set text styles
-    context.font = this.fontSize + this.fontFamily;
+    context.font = this.fontSize + " " + this.fontFamily;
     context.textAlign = "left";
     context.fillStyle = this.game.fontColor;
 
-    context.font = "20px Arial";
-    context.fillStyle = "white";
-    context.fillText("SKY CROSS", 20, 30);
-
-    // Draw game information
-    context.fillText("Score: " + this.game.score, this.leftColumnWidth + 20, this.topBarHeight + 30);
-    context.fillText("Time: " + Math.floor(this.game.time * 0.001), this.leftColumnWidth + 20, this.topBarHeight + 60);
-
-    // Draw lives
+    // Draw score and lives
+    context.fillText(
+      "Score: " + this.game.score,
+      this.leftColumnWidth + 20,
+      this.game.height - this.bottomBarHeight + 40
+    );
+    context.fillText(
+      "Lives: ",
+      this.leftColumnWidth + 20,
+      this.game.height - this.bottomBarHeight + 65
+    );
     for (let i = 0; i < this.game.lives; i++) {
-      context.drawImage(this.livesImage, this.leftColumnWidth + 20 + 30 * i, this.topBarHeight + 80, 25, 25);
-    }
-
+      context.drawImage(
+        this.livesImage,
+        this.leftColumnWidth + 100 + 25 * i,
+        this.game.height - this.bottomBarHeight + 50,
+        25,
+        25
+      );
+}
     // Draw game over text
     if (this.game.gameOver) {
       context.fillStyle = "rgba(34, 3, 44, 0.5)";
