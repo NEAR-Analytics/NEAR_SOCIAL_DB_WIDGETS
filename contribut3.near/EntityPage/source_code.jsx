@@ -148,7 +148,7 @@ const contentSelector = (
           text: "Contributors",
           icon: "bi-people",
         },
-      ].filter(Boolean),
+      ].filter((x) => x !== null),
     }}
   />
 );
