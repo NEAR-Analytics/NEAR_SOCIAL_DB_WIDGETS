@@ -198,8 +198,6 @@ return (
           >
             {state.article.author}
           </a>
-          {/* 
-          TODO: add lastEditor to edit and create widgets
           <br />
           Last edit by{" "}
           <a
@@ -207,7 +205,7 @@ return (
             style={{ textDecoration: "underline" }}
           >
             {state.article.lastEditor}
-          </a>*/}
+          </a>
           <br />
           Edited on {getDate(state.article.timeLastEdit)}
           <br />
