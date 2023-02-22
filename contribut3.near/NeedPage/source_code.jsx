@@ -26,8 +26,6 @@ const isAuthorized = Near.view(
   "final"
 );
 
-const profile = Social.getr(`${accountId}/profile`);
-
 const needString =
   typeof need.contribution_type === "string"
     ? need.contribution_type
@@ -91,7 +89,7 @@ const body = (
           pros={{ tags: { [needString]: "" } }}
         />
       </div>
-      <Markdown text={profile.description || "s ".repeat(1000)} />
+      <Markdown text={need.description || "s ".repeat(1000)} />
     </div>
   </div>
 );
