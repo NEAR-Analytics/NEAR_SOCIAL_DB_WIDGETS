@@ -278,8 +278,12 @@ img {
             this.frameTimer = 0;
             this.markForDeletion = false;
             this.collider = new CircleCollider(this.x + this.width / 2, this.y + this.height / 2, 10);
+             this.type = 'projectile-particle';
+            this.prevPositions = [];
 
+            
         }
+
         update(deltaTime) {
             // movement
             this.x -= this.speedX + this.game.speed;
@@ -293,6 +297,12 @@ img {
             if (this.x + this.width < 0) this.markForDeletion = true;
         }
         draw(context) {
+
+            for (let i = 0; i < this.prevPositions.length; i++) {
+                const pos = this.prevPositions[i];
+                context.fillStyle = "rgba(255,255,255,0.3)";
+                context.fillRect(pos.x, pos.y, this.width, this.height);
+            }
             if (this.game.debug) {
                 context.strokeRect(this.x, this.y, this.width, this.height);
             }
