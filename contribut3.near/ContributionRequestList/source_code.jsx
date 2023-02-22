@@ -21,8 +21,6 @@ if (Array.isArray(requests) && requests.length === 0) {
   return "No contribution requests found!";
 }
 
-console.log(requests);
-
 const allRequests = requests.filter(
   ([entityId, contributorId]) =>
     entityId.includes(search) ||
