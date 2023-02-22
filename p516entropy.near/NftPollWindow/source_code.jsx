@@ -256,7 +256,7 @@ return (
             <strong>{state.topic}</strong>
             {state.pollStatus === 1 && <strong>(CLOSED)</strong>}
           </p>
-          <p>{state.description}</p>
+          <Markdown text={state.description}></Markdown>
         </div>
         <hr />
         {state.viewMode ? (
