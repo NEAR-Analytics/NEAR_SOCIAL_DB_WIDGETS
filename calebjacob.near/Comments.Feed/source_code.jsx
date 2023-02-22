@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   > div:first-child {
     > a:first-child {
       display: inline-flex;
-      margin-bottom: 12px;
+      margin-bottom: 24px;
       font-size: 14px;
       line-height: 20px;
       color: #687076;
