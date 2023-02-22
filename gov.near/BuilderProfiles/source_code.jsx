@@ -1,24 +1,70 @@
 const accountId = props.accountId;
 const tag = props.tag;
 
-let keys = `${accountId ?? "*"}/profile/tags/${tag}`;
+const makeLink = (accountId, tag) => {
+  const args = [];
+  if (accountId) {
+    args.push(`accountId=${accountId}`);
+  }
+  if (tag) {
+    args.push(`tag=${tag}`);
+  }
+  return `#/gov.near/widget/BuilderProfiles${
+    args.length > 0 ? "?" : ""
+  }${args.join("&")}`;
+};
+
+const render = (content) => {
+  return (
+    <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
+      {(accountId || tag) && (
+        <div className="mb-2">
+          Filter:
+          {accountId && (
+            <a
+              href={makeLink(undefined, tag)}
+              className="btn btn-outline-primary"
+            >
+              <Widget
+                src="mob.near/widget/ProfileLine"
+                props={{ accountId, link: false }}
+              />
+              <i className="bi bi-x-square"></i>
+            </a>
+          )}
+          {tag && (
+            <a
+              href={makeLink(accountId, undefined)}
+              className="btn btn-outline-primary"
+            >
+              <span className="badge text-bg-secondary">#{tag}</span>
+              <i className="bi bi-x-square"></i>
+            </a>
+          )}
+        </div>
+      )}
+      {content}
+    </div>
+  );
+};
+
+let keys = `${accountId ?? "*"}/profile/tags/*`;
 
 if (tag) {
   const taggedProfiles = Social.keys(
-    `${accountId ?? "*"}/metadata/tags/${tag}`,
+    `${accountId ?? "*"}/profile/tags/${tag}`,
     "final"
   );
-
   if (taggedProfiles === null) {
-    return "Loading tags";
+    return render("Loading tags");
   }
 
   keys = Object.entries(taggedProfiles)
-    .map((kv) => Object.keys(kv[1].profile).map((w) => `${kv[0]}/profile/${w}`))
+    .map((kv) => Object.keys(kv[1].widget).map((w) => `${kv[0]}/widget/${w}`))
     .flat();
 
   if (!keys.length) {
-    return `No builders found by tag #${tag}`;
+    return render(`No widgets found by tag #${tag}`);
   }
 }
 
@@ -27,7 +73,7 @@ const data = Social.keys(keys, "final", {
 });
 
 if (data === null) {
-  return "Loading profiles";
+  return render("Loading profiles");
 }
 
 const processData = (data) => {
@@ -63,7 +109,10 @@ const renderItem = (a) => {
         src="mob.near/widget/ProfileImage"
         props={{
           accountId: a.accountId,
-          builderProfile: a.builderProfile,
+          name: a.name,
+          blockHeight: a.blockHeight,
+          renderTag,
+          profileLink: makeLink(a.accountId, tag),
         }}
       />
     </a>
@@ -77,7 +126,7 @@ if (JSON.stringify(data) !== JSON.stringify(state.data || {})) {
   });
 }
 
-return (
+return render(
   <div className="d-flex flex-wrap gap-1 my-3">
     {state.allItems
       .slice(0, props.limit ? parseInt(props.limit) : 999)
