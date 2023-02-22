@@ -3,6 +3,8 @@ const targetProps = props?.targetProps || {};
 // const acceptanceKey = `${context.accountId}/${tosName}`;
 const acceptanceKey = tosName; // TODO
 
+State.init({ hasCommittedAcceptance: false });
+
 // find all instances of the user agreeing to some version of the desired TOS
 const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
   accountId: context.accountId, // make sure it was written by the user in question
@@ -85,6 +87,9 @@ return (
                   value: latestTosVersion,
                 }),
               },
+            }}
+            onCommit={() => {
+              State.update({ hasCommittedAcceptance: true });
             }}
           >
             I Agree
