@@ -52,23 +52,16 @@ const controls = isAuthorized ? (
         update: props.update,
         items: [
           {
-            text: "Propose contribution",
-            icon: "bi-person-up",
+            text: "Create new request",
+            icon: "bi-boxes",
           },
           {
-            text: "Invite to contribute",
+            text: "Invite contributors",
             icon: "bi-person-plus",
           },
           {
-            text: "View details",
-            icon: "bi-info-circle",
-            href: `https://near.social/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
-            onClick: () => props.update && props.update("entity"),
-          },
-          {
-            text: "Share",
-            icon: "bi-arrow-up-right",
-            id: "share",
+            text: "Delete project",
+            icon: "bi-trash",
           },
         ],
       }}
