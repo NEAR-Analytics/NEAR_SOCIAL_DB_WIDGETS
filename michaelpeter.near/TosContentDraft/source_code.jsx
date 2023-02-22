@@ -20,7 +20,7 @@ lecto solutus gaeminis tacta: est annum, pudorem nititur teste caput Baccho;
 vellet inscripta probat ualtima. Caicus et atempora aliter quondam lacertis fato
 exit sequentur **illo**; Iovi Phoeabus quaea Sabaea verba summo suus. Regia
 invadunt circuiere sequenti remos in geri aliamve, quies quae dixi maanu Musa
-inpune, huc temptamenta vir. Adhuc in gramen parari columnae et esse, sed tamen
+inpune, huc temptamenta vir. Adahuc in gramen parari columnae et esse, sed tamen
 prima Apolline, ad acuta tantum.
 
     var pageGrepAdd = cmykCompatible;
