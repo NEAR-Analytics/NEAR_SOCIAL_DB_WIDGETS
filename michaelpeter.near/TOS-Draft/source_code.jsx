@@ -61,7 +61,8 @@ const ModalFooter = styled.div`
 const showTos =
   context.accountId &&
   latestTosVersion &&
-  agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion;
+  (!agreementsForUser.length ||
+    agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
 
 return (
   <div>
