@@ -41,9 +41,7 @@ const contentSelector = (
       tab: "inbox",
       content: state.content,
       search: state.search,
-      update: (content) => {
-        State.update({ content });
-      },
+      update: (content) => State.update({ content }),
       buttons: [
         {
           id: "proposals",
