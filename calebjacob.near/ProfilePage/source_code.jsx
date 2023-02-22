@@ -190,7 +190,7 @@ return (
             href={`${accountUrl}&tab=apps`}
             selected={state.selectedTab === "apps"}
           >
-            Apps
+            Components
           </TabsButton>
 
           <TabsButton
