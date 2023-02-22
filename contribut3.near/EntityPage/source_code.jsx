@@ -47,7 +47,12 @@ const body = (
       <div className="flex-grow-1 py-3">
         <Widget
           src={`${ownerId}/widget/ProfileLine`}
-          props={{ accountId, isEntity: true }}
+          props={{
+            accountId,
+            isEntity: true,
+            imageSize: "3em",
+            update: props.update,
+          }}
         />
         <div>
           <div className="d-flex flex-row justify-content-start">
