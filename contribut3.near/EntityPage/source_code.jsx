@@ -130,7 +130,12 @@ const contentSelector = (
     )}
     {contentSelectButton({
       id: "contributions",
-      text: "Contributions",
+      text: "Contributes to",
+      icon: "bi-person-right",
+    })}
+    {contentSelectButton({
+      id: "contributors",
+      text: "Contributors",
       icon: "bi-people",
     })}
   </div>
