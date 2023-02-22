@@ -249,6 +249,26 @@ img {
         }
     }
 
+    class CircleCollider {
+  constructor(x, y, radius) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+  }
+
+  intersects(other) {
+    if (other instanceof CircleCollider) {
+      const dx = other.x - this.x;
+      const dy = other.y - this.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      return distance < this.radius + other.radius;
+    } else {
+      throw new Error("Unsupported collider type");
+    }
+  }
+}
+
+
     class Enemy {
         constructor() {
             this.frameX = 0;
@@ -257,6 +277,8 @@ img {
             this.frameInterval = 1000 / this.fps;
             this.frameTimer = 0;
             this.markForDeletion = false;
+            this.collider = new CircleCollider(this.x + this.width / 2, this.y + this.height / 2, 10);
+
         }
         update(deltaTime) {
             // movement
@@ -402,6 +424,7 @@ img {
             this.weight = 1;
             this.states = [new Sitting(game), new Running(game), new Jumping(game), new Falling(game), new Rolling(game), new Diving(game), new Hit(game), new Shooting(game), ];
             this.currentState = null;
+            this.collider = new CircleCollider(this.position.x, this.position.y, 16);
         }
         update(inputKeys, delta) {
             this.checkCollisions();
