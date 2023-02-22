@@ -120,12 +120,12 @@ return (
         <CommitButton
           class="btn btn-primary"
           onClick={() => {
-            Storage.set("created", "true");
-            Storage.set("roomId", newRoomId);
+            State.update({ roomId: newRoomId });
           }}
           onCommit={() => {
-            State.update({ roomId: newRoomId });
             State.update({ roomCreated: true });
+            Storage.set("created", "true");
+            Storage.set("roomId", newRoomId);
           }}
           data={{
             [props.widgetKey]: {
