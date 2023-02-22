@@ -1,4 +1,4 @@
-const accountId = "calebjacob.near";
+const accountId = "near";
 const limit = 3;
 let posts = [];
 
