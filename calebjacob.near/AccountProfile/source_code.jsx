@@ -61,7 +61,12 @@ const Name = styled.div`
 
 const AccountProfile = (
   <Wrapper
-    href={`/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`}
+    as={props.onClick ? "button" : "a"}
+    href={
+      !props.onClick &&
+      `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`
+    }
+    onClick={props.onClick}
   >
     <Avatar>
       <Widget
