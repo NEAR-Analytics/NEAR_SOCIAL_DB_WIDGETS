@@ -17,17 +17,6 @@ const parentItem = content.item;
 const highlight = !!props.highlight;
 const raw = !!props.raw;
 
-const extractNotifyAccountId = (item) => {
-  if (!item || item.type !== "social" || !item.path) {
-    return undefined;
-  }
-  const accountId = item.path.split("/")[0];
-  return `${accountId}/${addressForArticles}/${addressForComments}` ===
-    item.path
-    ? accountId
-    : undefined;
-};
-
 //TODO - adress should be changed
 const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
@@ -67,7 +56,7 @@ return (
           src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Compose`}
           props={{
             initialText: `@${accountId}, `,
-            notifyAccountId: extractNotifyAccountId(parentItem),
+            // notifyAccountId: extractNotifyAccountId(parentItem),
             item: parentItem,
             onComment: () => State.update({ showReply: false }),
           }}
