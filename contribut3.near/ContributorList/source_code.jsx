@@ -11,7 +11,7 @@ const allContributors = (
     true
   ) ?? []
 )
-  .filter((accountId) => (search ? accountId.includes(search) : true))
+  .filter((ids) => (accountId ? ids[0].includes(search) : ids.includes(search)))
   .sort((a, b) => a.localeCompare(b));
 
 if (!allContributors || allContributors.length === 0) {
