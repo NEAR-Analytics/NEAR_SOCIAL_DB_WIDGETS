@@ -2,13 +2,19 @@ if (!context.accountId) {
   return "";
 }
 
-const profile = Social.getr(`${context.accountId}/profile`);
-
 State.init({
   image: {},
   text: "",
   showPreview: false,
 });
+
+const profile = Social.getr(`${context.accountId}/profile`);
+
+const content = {
+  type: "md",
+  image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
+  text: state.text,
+};
 
 function extractMentions(text) {
   const mentionRegex =
@@ -43,11 +49,7 @@ function extractTagNotifications(text, item) {
 function composeData() {
   const data = {
     post: {
-      main: JSON.stringify({
-        type: "md",
-        text: state.text,
-        image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
-      }),
+      main: JSON.stringify(content),
     },
     index: {
       post: JSON.stringify({
@@ -79,12 +81,6 @@ function onCommit() {
     text: "",
   });
 }
-
-const previewContent = {
-  type: "md",
-  image: state.image.cid ? state.image : undefined,
-  text: state.text,
-};
 
 const Wrapper = styled.div`
   --padding: 24px;
@@ -265,7 +261,7 @@ return (
           props={{
             accountId: context.accountId,
             blockHeight: "now",
-            content: previewContent,
+            content,
           }}
         />
       </PreviewWrapper>
