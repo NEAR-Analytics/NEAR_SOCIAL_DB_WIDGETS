@@ -36,15 +36,15 @@ img {
     <img id="layer4Image" src="https://ik.imagekit.io/onyedika/skycross/4_Gx3192487.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939859766" alt="" />
     <img id="layer5Image" src="https://ik.imagekit.io/onyedika/skycross/7_-0OacUA6m.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676993162515" alt="" />
     <img id="flyImage" src="https://ik.imagekit.io/onyedika/skycross/bomb_iG_K37qGR.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939859611" alt=""/>
-    <img id="plantImage" src="https://ik.imagekit.io/onyedika/skycross/cherry_ADI5AiRot.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939861479" alt=""/>
+    <img id="plantImage" src="https://ik.imagekit.io/duOCELOT/assets/cherry.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029658824" alt=""/>
     <img id="spiderImage" src="https://ik.imagekit.io/onyedika/skycross/enemy_spider_big_n3r4HKyjV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939861559" alt=""/>
     <img id="spiderBigImage" src="https://ik.imagekit.io/onyedika/skycross/enemy_spider_big_n3r4HKyjV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939861559" alt=""/>
     <img id="fireTexture" src="https://ik.imagekit.io/onyedika/skycross/fire_bwpPPyGYv.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939863595" alt=""/>
-    <img id="boomImage" src="https://ik.imagekit.io/onyedika/skycross/bomb_iG_K37qGR.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939859611" alt=""/>
+    <img id="boomImage" src="https://ik.imagekit.io/duOCELOT/assets/blast.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677030038390" alt=""/>
     <img id="liveImage" src="https://ik.imagekit.io/onyedika/skycross/apple_GS0a8l34K.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858074" alt=""/>
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
     <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
-    <img id="fruityImage" src="https://ik.imagekit.io/duOCELOT/assets/cherry.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029658824" alt=""/>
+    <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
     <script type="module">
     window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -1024,8 +1024,8 @@ if (this.prevPositions.length > 20) {
             this.image = boomImage;
             this.x = x;
             this.y = y;
-            this.spriteWidth = 100;
-            this.spriteHeight = 90;
+            this.spriteWidth = 158;
+            this.spriteHeight = 158;
             this.sizeModifier = Math.random() + 0.5;
             this.width = this.spriteWidth * this.sizeModifier;
             this.height = this.spriteHeight * this.sizeModifier;
