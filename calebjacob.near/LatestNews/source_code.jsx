@@ -20,7 +20,7 @@ if (indexedPosts?.length > 0) {
       const title = content[0];
       const url = content[1];
       const lastLine = content.pop() || "";
-      const hasNewsTag = lastLine.indexOf("#news") > 0;
+      const hasNewsTag = lastLine.indexOf("#news") > -1;
       const isValid = hasNewsTag && !!url && url.indexOf("https://") > -1;
 
       if (isValid) {
