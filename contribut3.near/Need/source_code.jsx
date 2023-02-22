@@ -64,7 +64,7 @@ const body = (
   >
     <div className="flex-grow-1 py-3">
       <div className="d-flex flex-row justify-content-between align-items-start">
-        <a>
+        <a href={`https://near.social/#/${ownerId}/widget/Index?tab=need&accountId=${accountId}&cid=${cid}`} onClick={}>
           <h4>Looking for {contributionNeed.contribution_type}</h4>
         </a>
         <div className="d-flex flex-row justify-content-end align-items-start">
