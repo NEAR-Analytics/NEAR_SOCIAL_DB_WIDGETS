@@ -55,19 +55,6 @@ const createNewDropdown = (
   </div>
 );
 
-const contentSelectButton = ({ id, text, icon }) => (
-  <a
-    className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
-      }`}
-    href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard&content=${id}${props.search ? "&search=" + props.search : ""
-      }`}
-    onClick={() => State.update({ content: id })}
-  >
-    <i className={icon} />
-    <span>{text}</span>
-  </a>
-);
-
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
@@ -95,26 +82,6 @@ const contentSelector = (
       ],
     }}
   />
-);
-
-const contentSelector = (
-  <div className="btn-group" role="group" aria-label="Content Tab Selector">
-    {contentSelectButton({
-      id: "projects",
-      text: "Projects",
-      icon: "bi-boxes",
-    })}
-    {contentSelectButton({
-      id: "contributors",
-      text: "Contributors",
-      icon: "bi-person",
-    })}
-    {contentSelectButton({
-      id: "requests",
-      text: "Requests",
-      icon: "bi-ui-checks-grid",
-    })}
-  </div>
 );
 
 const searchBar = (
