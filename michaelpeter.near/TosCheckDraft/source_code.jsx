@@ -60,6 +60,7 @@ const ModalFooter = styled.div`
 `;
 
 const showTos =
+  !hasCommittedAcceptance &&
   context.accountId &&
   latestTosVersion &&
   (!agreementsForUser.length ||
