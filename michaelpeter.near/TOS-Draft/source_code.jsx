@@ -12,6 +12,7 @@ const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
 
 const tosVersions = Social.keys(tosName, "final", {
   return_type: "BlockHeight",
+  subscribe: true,
 });
 
 // TODO check that path is correct format
