@@ -1245,7 +1245,7 @@ context.fillRect(0, 0, this.game.width, this.topBarHeight);
 // Draw bottom bar background
 const pattern2 = context.createPattern(this.bottomBarBackground, "repeat-x");
 context.fillStyle = pattern2;
-context.fillRect(0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight);
+context.fillRect(0, this.game.height - this.bottomBarHeight - this.topBarHeight, this.game.width, this.bottomBarHeight);
 
     // Draw score
     context.font = this.font;
