@@ -52,15 +52,20 @@ const body = (
             imageSize: "4em",
             update: props.update,
             additionalColumn: (
-              <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
-                <a
-                  className="btn me-2 text-light"
-                  style={{ backgroundColor: "#6941C6", borderColor: "#6941C6" }}
-                  href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-                >
-                  <i className="bi-person-up" />
-                  <span className="text-nowrap">Invite to contribute</span>
-                </a>
+              <div>
+                <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+                  <a
+                    className="btn me-2 text-light"
+                    style={{
+                      backgroundColor: "#6941C6",
+                      borderColor: "#6941C6",
+                    }}
+                    href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+                  >
+                    <i className="bi-person-up" />
+                    <span className="text-nowrap">Invite to contribute</span>
+                  </a>
+                </div>
               </div>
             ),
             additionalRow: (
