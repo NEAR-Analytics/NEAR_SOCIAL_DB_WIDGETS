@@ -134,7 +134,7 @@ const contentSelector = <Widget src={} props={{
       text: "Requests",
       icon: "bi-boxes",
     },
-    (...(
+    (
       isAuthorized ? [{
         id: "proposals",
         text: "Proposals",
@@ -145,7 +145,7 @@ const contentSelector = <Widget src={} props={{
         text: "Invitations",
         icon: "bi-hourglass",
       }] : []
-    )),
+    ),
     {
       id: "contributions",
       text: "Contributes to",
