@@ -149,10 +149,9 @@ return (
       {!state.editArticle && (
         <Markdown text={state.note || state.article.body} />
       )}
-      {/* === LIKE + CREATE COMMENT BUTTON === */}
+      {/* === CREATE COMMENT BUTTON === */}
       {blockHeight !== "now" && (
         <div className="mt-1 d-flex justify-content-between">
-          {/* TODO add like widget */}
           <Widget
             src="mob.near/widget/CommentButton"
             props={{
