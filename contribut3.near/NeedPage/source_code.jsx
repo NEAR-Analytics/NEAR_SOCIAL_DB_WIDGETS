@@ -39,7 +39,7 @@ const body = (
           <h1 className="flex-grow-1">Need for {needString}</h1>
           <div className="d-flex flex-row justify-content-between align-items-center">
             <a
-              className="btn me-2 mb-2 text-light"
+              className="btn me-2 text-light"
               style={{
                 backgroundColor: "#6941C6",
                 borderColor: "#6941C6",
