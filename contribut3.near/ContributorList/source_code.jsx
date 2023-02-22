@@ -10,9 +10,7 @@ const allContributors = (
     "final",
     true
   ) ?? []
-)
-  .filter((ids) => (accountId ? ids[0].includes(search) : ids.includes(search)))
-  .sort((a, b) => a.localeCompare(b));
+).filter((ids) => (accountId ? ids[0].includes(search) : ids.includes(search)));
 
 if (!allContributors || allContributors.length === 0) {
   return "No contributors found!";
