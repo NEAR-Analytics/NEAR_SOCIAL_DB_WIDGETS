@@ -66,7 +66,7 @@ const AccountProfile = (
       !props.onClick &&
       `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`
     }
-    onClick={props.onClick}
+    onClick={props.onClick && (() => props.onClick(accountId))}
   >
     <Avatar>
       <Widget
