@@ -308,9 +308,9 @@ return (
           <div style={{ display: "flex" }}>
             <div
               style={{
-                paddingRight: style == "small" ? "1.2rem" : "2rem",
                 display: "flex",
                 alignItems: "center",
+                paddingRight: "1rem",
               }}
             >
               <Widget
