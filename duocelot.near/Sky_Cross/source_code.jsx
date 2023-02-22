@@ -1141,84 +1141,79 @@ if (this.prevPositions.length > 20) {
         }
     }
 
-    class UI {
-        constructor(game) {
-            this.game = game;
-            this.fontSize = 30;
-            this.fontFamily = "Press Start 2P', cursive";
-            this.livesImage = liveImage;
-                this.topBarHeight = 50;
+class UI {
+  constructor(game) {
+    this.game = game;
+    this.fontSize = 30;
+    this.fontFamily = "Press Start 2P', cursive";
+    this.livesImage = liveImage;
+    this.topBarHeight = 100;
+    this.leftColumnWidth = 100;
+    this.rightColumnWidth = 100;
+        this.bottomBarHeight = 50;
 
-        }
-        draw(context) {
-            
-context.fillStyle = "gray";
-    context.fillRect(0, 0, context.canvas.width, this.topBarHeight);
+  }
+  draw(context) {
+    // Draw top bar
+    context.fillStyle = "gray";
+    context.fillRect(0, 0, this.game.width, this.topBarHeight);
     
+        // Draw bottom bar
+    context.fillStyle = "gray";
+    context.fillRect(
+      0,
+      this.game.height - this.bottomBarHeight,
+      this.game.width,
+      this.bottomBarHeight
+    );
+
+    // Draw left column
+    context.fillStyle = "gray";
+    context.fillRect(0, this.topBarHeight, this.leftColumnWidth, this.game.height - this.topBarHeight);
+
+    // Draw right column
+    context.fillStyle = "gray";
+    context.fillRect(this.game.width - this.rightColumnWidth, this.topBarHeight, this.rightColumnWidth, this.game.height - this.topBarHeight);
+
+    // Set text styles
+    context.font = this.fontSize + this.fontFamily;
+    context.textAlign = "left";
+    context.fillStyle = this.game.fontColor;
+
     context.font = "20px Arial";
     context.fillStyle = "white";
-    context.fillText("SKY CROOSS", 20, 30);
- // Draw gray rectangle at bottom of canvas
- context.fillStyle = "#5f5f5f";
- context.fillRect(0, this.game.height - this.game.height / 7, this.game.width, this.game.height / 7);
+    context.fillText("SKY CROSS", 20, 30);
 
-    
-      // Calculate dimensions and positions of black and white boxes
-      const blackBoxHeight = this.game.height / 6;
-      const whiteBoxHeight = this.game.height / 6.5;
-      const whiteBoxWidth = whiteBoxHeight;
-      const blackBoxWidth = blackBoxHeight;
+    // Draw game information
+    context.fillText("Score: " + this.game.score, this.leftColumnWidth + 20, this.topBarHeight + 30);
+    context.fillText("Time: " + Math.floor(this.game.time * 0.001), this.leftColumnWidth + 20, this.topBarHeight + 60);
 
-      const blackBoxX = 70;
-      const blackBoxY = this.game.height - this.game.height / 5 + (this.game.height / 5 - blackBoxHeight) / 2;
+    // Draw lives
+    for (let i = 0; i < this.game.lives; i++) {
+      context.drawImage(this.livesImage, this.leftColumnWidth + 20 + 30 * i, this.topBarHeight + 80, 25, 25);
+    }
 
-      // Draw black box
-      context.fillStyle = "#000";
-      context.fillRect(blackBoxX, blackBoxY, blackBoxWidth, blackBoxHeight);
-
-      // Calculate dimensions and positions of white box
-      const whiteBoxX = blackBoxX + (blackBoxWidth - whiteBoxWidth) / 2;
-      const whiteBoxY = blackBoxY + (blackBoxHeight - whiteBoxHeight) / 2;
-
-      // Draw white box
-      context.fillStyle = "#fff";
-      context.fillRect(whiteBoxX, whiteBoxY, whiteBoxWidth, whiteBoxHeight);
-
-      // Set text styles
+    // Draw game over text
+    if (this.game.gameOver) {
+      context.fillStyle = "rgba(34, 3, 44, 0.5)";
+      context.fillRect(0, 0, this.game.width, this.game.height);
+      context.textAlign = "center";
       context.font = this.fontSize + this.fontFamily;
-      context.textAlign = "left";
-      context.fillStyle = this.game.fontColor;
 
-      // Draw score and time
-      context.fillText("Score: " + this.game.score, this.game.width - 200, this.game.height - 80);
-      context.fillText("Time: " + Math.floor(this.game.time * 0.001), this.game.width - 200, this.game.height - 50);
-
-      // Draw lives
-      for (let i = 0; i < this.game.lives; i++) {
-          context.drawImage(this.livesImage, this.game.width - 600 + 25 * i, this.game.height - 35, 25, 25);
-      }      
-            // Draw game over text
-            if (this.game.gameOver) {
-                context.fillStyle = "rgba(34, 3, 44, 0.5)";
-                context.fillRect(0, 0, this.game.width, this.game.height);
-                context.textAlign = "center";
-                context.font = this.fontSize + this.fontFamily;
-
-
-                if (this.game.score > 500) {
-                    context.fillText("MISSION ACCOMPLISHED", this.game.width * 0.5, this.game.height * 0.5 - 20);
-                    context.font = this.fontSize + this.fontFamily;
-                    context.fillText("YOU ARRIVED SAFETY", this.game.width * 0.5, this.game.height * 0.5 + 20);
-                    context.fillText("PRESS R TO PLAY AGAIN", this.game.width * 0.5, this.game.height * 0.5 + 30);
-                } else {
-                    context.fillText("MISSION FAILED", this.game.width * 0.5, this.game.height * 0.5 - 20);
-                    context.font = this.fontSize + this.fontFamily;
-                    context.fillText("YOU COULDN'T COMPLETE THE JOURNEY", this.game.width * 0.5, this.game.height * 0.5 + 5);
-                    context.fillText("PRESS R TO PLAY AGAIN", this.game.width * 0.5, this.game.height * 0.5 + 30);
-                }
-            }       
-        }
+      if (this.game.score > 500) {
+        context.fillText("MISSION ACCOMPLISHED", this.game.width * 0.5, this.game.height * 0.5 - 20);
+        context.font = this.fontSize + this.fontFamily;
+        context.fillText("YOU ARRIVED SAFETY", this.game.width * 0.5, this.game.height * 0.5 + 20);
+        context.fillText("PRESS R TO PLAY AGAIN", this.game.width * 0.5, this.game.height * 0.5 + 30);
+      } else {
+        context.fillText("MISSION FAILED", this.game.width * 0.5, this.game.height * 0.5 - 20);
+        context.font = this.fontSize + this.fontFamily;
+        context.fillText("YOU COULDN'T COMPLETE THE JOURNEY", this.game.width * 0.5, this.game.height * 0.5 + 5);
+        context.fillText("PRESS R TO PLAY AGAIN", this.game.width * 0.5, this.game.height * 0.5 + 30);
       }
+    }
+  }
+}
     </script>
 `;
 
