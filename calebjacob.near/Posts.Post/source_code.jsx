@@ -83,17 +83,19 @@ return (
           inlineContent: (
             <>
               <Text as="span">･</Text>
-              {blockHeight === "now" ? (
-                "now"
-              ) : (
-                <Text>
-                  <Widget
-                    src="mob.near/widget/TimeAgo"
-                    props={{ blockHeight }}
-                  />{" "}
-                  ago
-                </Text>
-              )}
+              <Text>
+                {blockHeight === "now" ? (
+                  "now"
+                ) : (
+                  <>
+                    <Widget
+                      src="mob.near/widget/TimeAgo"
+                      props={{ blockHeight }}
+                    />{" "}
+                    ago
+                  </>
+                )}
+              </Text>
             </>
           ),
         }}
