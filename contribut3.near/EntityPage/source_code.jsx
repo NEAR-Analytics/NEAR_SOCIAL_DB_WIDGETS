@@ -110,6 +110,26 @@ const body = (
   </div>
 );
 
+const proposalsCount = (
+  Near.view(
+    ownerId,
+    "get_entity_contribution_requests",
+    { account_id: context.accountId },
+    "final",
+    true
+  ) ?? []
+).length;
+
+const invitesCount = Object.keys(
+  Near.view(
+    ownerId,
+    "get_entity_invites",
+    { account_id: context.accountId },
+    "final",
+    true
+  ) ?? {}
+).length;
+
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
@@ -130,6 +150,7 @@ const contentSelector = (
             id: "proposals",
             text: "Proposals",
             icon: "bi-person-down",
+            count: proposalsCount,
           }
           : null,
         isAuthorized
@@ -137,6 +158,7 @@ const contentSelector = (
             id: "invitations",
             text: "Invitations",
             icon: "bi-hourglass",
+            count: invitesCount,
           }
           : null,
         {
