@@ -41,6 +41,8 @@ const [[founder]] = (contributions ?? []).filter((contribution) => {
   return all.some((detail) => detail.description === "");
 });
 
+const profile = Social.getr(`${entityId}/profile`);
+
 const body = (
   <div className="px-3">
     <div className="d-flex flex-row justify-content-start" id={accountId}>
@@ -76,6 +78,10 @@ const body = (
                     props={{ active: entity.status === "Active" }}
                   />
                 </div>
+                <Widget
+                  src={`${ownerId}/widget/Tags`}
+                  pros={{ tags: profile.tags }}
+                />
               </>
             ),
           }}
