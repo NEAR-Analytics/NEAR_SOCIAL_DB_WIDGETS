@@ -59,7 +59,7 @@ const body = (
                   href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
                 >
                   <i className="bi-person-up" />
-                  <span>Invite to contribute</span>
+                  <span className="text-nowrap">Invite to contribute</span>
                 </a>
               </div>
             ),
