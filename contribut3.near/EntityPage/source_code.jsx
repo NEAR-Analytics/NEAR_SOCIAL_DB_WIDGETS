@@ -119,11 +119,15 @@ const contentSelector = (
       text: "Requests",
       icon: "bi-boxes",
     })}
-    {contentSelectButton({
-      id: "proposals",
-      text: "Proposals",
-      icon: "bi-person-left",
-    })}
+    {isAuthorized ? (
+      contentSelectButton({
+        id: "proposals",
+        text: "Proposals",
+        icon: "bi-person-left",
+      })
+    ) : (
+      <></>
+    )}
     {contentSelectButton({
       id: "contributions",
       text: "Contributions",
