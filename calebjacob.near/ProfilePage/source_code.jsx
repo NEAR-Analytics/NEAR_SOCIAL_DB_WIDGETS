@@ -135,7 +135,7 @@ const Bio = styled.div`
   color: #11181C;
   font-size: 14px;
   line-height: 20px;
-  margin-bottom: 72px;
+  margin-bottom: 48px;
 
   > *:last-child {
     margin-bottom: 0 !important;
@@ -228,10 +228,6 @@ return (
                 </Bio>
               </>
             )}
-
-            <Title as="h2" size="19px">
-              Posts
-            </Title>
 
             <Widget
               src="calebjacob.near/widget/Posts.Feed"
