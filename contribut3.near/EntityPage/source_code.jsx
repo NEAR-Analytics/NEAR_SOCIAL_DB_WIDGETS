@@ -181,6 +181,12 @@ const content = {
       props={{ search: state.search, update: props.update }}
     />
   ),
+  contributors: (
+    <Widget
+      src={`${ownerId}/widget/ContributorList`}
+      props={{ accountId, search: state.search, update: props.update }}
+    />
+  ),
 }[state.content];
 
 return (
