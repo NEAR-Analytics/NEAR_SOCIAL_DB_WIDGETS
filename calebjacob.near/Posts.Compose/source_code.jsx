@@ -7,6 +7,7 @@ const profile = Social.getr(`${context.accountId}/profile`);
 State.init({
   image: {},
   text: "",
+  showPreview: false,
 });
 
 function extractMentions(text) {
@@ -155,7 +156,8 @@ const Actions = styled.div`
   bottom: var(--padding);
   right: var(--padding);
 
-  .commit-post-button {
+  .commit-post-button,
+  .preview-post-button {
     background: #0091FF;
     color: #fff;
     border-radius: 6px;
@@ -175,6 +177,23 @@ const Actions = styled.div`
 
     &:disabled {
       opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .preview-post-button {
+    color: #006ADC;
+    background: #F1F3F5;
+
+    &:hover,
+    &:focus {
+      background: #d7dbde;
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 1;
+      color: rgba(0, 106, 220, 0.5);
       pointer-events: none;
     }
   }
@@ -225,33 +244,68 @@ const Actions = styled.div`
   }
 `;
 
+const PreviewWrapper = styled.div`
+  position: relative;
+  padding: var(--padding);
+  padding-bottom: calc(40px + (var(--padding) * 2));
+`;
+
 return (
   <Wrapper>
-    <Avatar>
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image: profile.image,
-          alt: profile.name,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
-        }}
-      />
-    </Avatar>
+    {state.showPreview ? (
+      <PreviewWrapper>
+        <Widget
+          src="calebjacob.near/widget/Posts.Post"
+          props={{
+            accountId: context.accountId,
+            blockHeight: "now",
+            content: {
+              image: state.image.cid ? state.image : undefined,
+              text: state.text,
+            },
+          }}
+        />
+      </PreviewWrapper>
+    ) : (
+      <>
+        <Avatar>
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: profile.image,
+              alt: profile.name,
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreibmiy4ozblcgv3fm3gc6q62s55em33vconbavfd2ekkuliznaq3zm",
+            }}
+          />
+        </Avatar>
 
-    <Textarea data-value={state.text}>
-      <textarea
-        placeholder="What's happening?"
-        onInput={(event) => State.update({ text: event.target.value })}
-        value={state.text}
-      />
-    </Textarea>
+        <Textarea data-value={state.text}>
+          <textarea
+            placeholder="What's happening? Markdown is supported."
+            onInput={(event) => State.update({ text: event.target.value })}
+            value={state.text}
+          />
+        </Textarea>
+      </>
+    )}
 
     <Actions>
-      <IpfsImageUpload
-        image={state.image}
-        className="upload-image-button bi bi-image"
-      />
+      {!state.showPreview && (
+        <IpfsImageUpload
+          image={state.image}
+          className="upload-image-button bi bi-image"
+        />
+      )}
+
+      <button
+        type="button"
+        disabled={!state.text}
+        className="preview-post-button"
+        onClick={() => State.update({ showPreview: !state.showPreview })}
+      >
+        {state.showPreview ? "Edit" : "Preview"}
+      </button>
 
       <CommitButton
         disabled={!state.text}
