@@ -62,8 +62,17 @@ const body = (
                     }}
                     href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
                   >
-                    <i className="bi-person-up" />
+                    <i className="bi-person-plus" />
                     <span className="text-nowrap">Invite to contribute</span>
+                  </a>
+                </div>
+                <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+                  <a
+                    className="btn btn-success me-2 text-light"
+                    href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+                  >
+                    <i className="bi-person-up" />
+                    <span className="text-nowrap">Propose contribution</span>
                   </a>
                 </div>
               </div>
