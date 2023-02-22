@@ -134,7 +134,7 @@ const contentSelector = (
       contentSelectButton({
         id: "proposals",
         text: "Proposals",
-        icon: "bi-person-left",
+        icon: "bi-person-gear",
       })
     ) : (
       <></>
@@ -142,7 +142,7 @@ const contentSelector = (
     {contentSelectButton({
       id: "contributions",
       text: "Contributes to",
-      icon: "bi-person-right",
+      icon: "bi-person-up",
     })}
     {contentSelectButton({
       id: "contributors",
