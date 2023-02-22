@@ -89,21 +89,21 @@ const body = (
   </div>
 );
 
-const proposalsCount = (
+const proposalsCount = Object.keys(
   Near.view(
     ownerId,
-    "get_entity_contribution_requests",
-    { entity_id: accountId },
+    "get_need_contribution_requests",
+    { account_id: accountId, cid },
     "final",
     true
-  ) ?? []
+  ) ?? {}
 ).length;
 
-const invitesCount = Object.keys(
+const contributorsCount = Object.keys(
   Near.view(
     ownerId,
-    "get_entity_invites",
-    { account_id: accountId },
+    "get_need_contributions",
+    { account_id: accountId, cid },
     "final",
     true
   ) ?? {}
@@ -120,37 +120,18 @@ const contentSelector = (
       update: (content) => State.update({ content }),
       buttons: [
         {
-          id: "requests",
-          text: "Requests",
-          icon: "bi-boxes",
-        },
-        isAuthorized
-          ? {
-            id: "proposals",
-            text: "Proposals",
-            icon: "bi-person-down",
-            count: proposalsCount,
-          }
-          : null,
-        isAuthorized
-          ? {
-            id: "invitations",
-            text: "Invitations",
-            icon: "bi-hourglass",
-            count: invitesCount,
-          }
-          : null,
-        {
-          id: "contributions",
-          text: "Contributes to",
-          icon: "bi-person-up",
-        },
-        {
           id: "contributors",
           text: "Contributors",
           icon: "bi-people",
+          count: contributorsCount,
         },
-      ].filter((x) => x !== null),
+        {
+          id: "proposals",
+          text: "Proposals",
+          icon: "bi-person-down",
+          count: proposalsCount,
+        },
+      ],
     }}
   />
 );
