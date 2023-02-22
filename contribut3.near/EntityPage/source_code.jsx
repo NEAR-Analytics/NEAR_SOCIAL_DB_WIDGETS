@@ -117,6 +117,7 @@ const contentSelector = (
       tab: "entity",
       content: state.content,
       search: state.search,
+      accountId: props.accountId,
       update: (content) => State.update({ content }),
       buttons: [
         {
