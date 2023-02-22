@@ -15,29 +15,32 @@ const invite = Near.view(
 
 const descriptionArea = <Markdown text={invite.description} />;
 
-const controls = (
-  <div className="d-flex flex-column justify-content-start align-items-stretch">
-    <a
-      className="btn btn-success"
-      onClick={() =>
-        Near.call(ownerId, "accept_invite", { account_id: entityId })
-      }
-    >
-      <i className="bi-check" />
-      <span>Accept</span>
-    </a>
-    <a
-      className="btn btn-outline-danger mt-2 d-flex flex-row justify-content-center"
-      style={{ minWidth: "7em" }}
-      onClick={() =>
-        Near.call(ownerId, "reject_invite", { account_id: entityId })
-      }
-    >
-      <i className="bi-x" />
-      <span>Reject</span>
-    </a>
-  </div>
-);
+const controls =
+  contributorId === context.accountId ? (
+    <div className="d-flex flex-column justify-content-start align-items-stretch">
+      <a
+        className="btn btn-success"
+        onClick={() =>
+          Near.call(ownerId, "accept_invite", { account_id: entityId })
+        }
+      >
+        <i className="bi-check" />
+        <span>Accept</span>
+      </a>
+      <a
+        className="btn btn-outline-danger mt-2 d-flex flex-row justify-content-center"
+        style={{ minWidth: "7em" }}
+        onClick={() =>
+          Near.call(ownerId, "reject_invite", { account_id: entityId })
+        }
+      >
+        <i className="bi-x" />
+        <span>Reject</span>
+      </a>
+    </div>
+  ) : (
+    <></>
+  );
 
 const body = (
   <div
