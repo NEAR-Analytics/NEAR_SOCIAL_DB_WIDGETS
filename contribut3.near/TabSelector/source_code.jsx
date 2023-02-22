@@ -1,3 +1,4 @@
+const ownerId = "contribut3.near";
 const buttons = props.buttons ?? [];
 const tab = props.tab;
 
