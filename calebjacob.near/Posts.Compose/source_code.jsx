@@ -186,7 +186,8 @@ const Actions = styled.div`
   .preview-post-button {
     color: #006ADC;
     background: #F1F3F5;
-    padding: 0 16px;
+    padding: 0;
+    width: 40px;
 
     &:hover,
     &:focus {
@@ -302,9 +303,14 @@ return (
         type="button"
         disabled={!state.text}
         className="preview-post-button"
+        title={state.showPreview ? "Edit Post" : "Preview Post"}
         onClick={() => State.update({ showPreview: !state.showPreview })}
       >
-        {state.showPreview ? "Edit" : "Preview"}
+        {state.showPreview ? (
+          <i className="bi bi-pencil" />
+        ) : (
+          <i className="bi bi-eye-fill" />
+        )}
       </button>
 
       <CommitButton
