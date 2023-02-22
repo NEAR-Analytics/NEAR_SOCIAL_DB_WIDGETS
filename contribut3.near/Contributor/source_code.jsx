@@ -23,14 +23,14 @@ if (!contributor) {
     : "Loading...";
 }
 
-const entity = Near.view(
+const isEntity = Near.view(
   ownerId,
-  "get_entity",
+  "check_is_entity",
   { account_id: accountId },
-  "final"
+  "final",
+  true
 );
 
-const isEntity = !!entity;
 const active = contributor.looking_for_work;
 
 const profile = Social.getr(`${accountId}/profile`);
