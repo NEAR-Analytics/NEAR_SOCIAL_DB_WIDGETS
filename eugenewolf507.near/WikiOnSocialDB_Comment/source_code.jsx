@@ -50,17 +50,6 @@ return (
       </div>
       {blockHeight !== "now" && (
         <div className="mt-1 d-flex justify-content-between">
-          <Widget
-            src="mob.near/widget/LikeButton"
-            props={{
-              notifyAccountId: accountId,
-              item: {
-                type: "social",
-                path: `${accountId}/post/comment`,
-                blockHeight,
-              },
-            }}
-          />
           {parentItem && (
             <Widget
               src="mob.near/widget/CommentButton"
