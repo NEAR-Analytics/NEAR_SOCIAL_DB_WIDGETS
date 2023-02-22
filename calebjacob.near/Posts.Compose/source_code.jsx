@@ -196,7 +196,7 @@ const Actions = styled.div`
 
   .commit-post-button,
   .preview-post-button {
-    background: #0091FF;
+    background: #006ADC;
     color: #fff;
     border-radius: 6px;
     height: 40px;
@@ -209,7 +209,7 @@ const Actions = styled.div`
 
     &:hover,
     &:focus {
-      background: #0484e5;
+      background: rgb(0 96 199);
       outline: none;
     }
 
