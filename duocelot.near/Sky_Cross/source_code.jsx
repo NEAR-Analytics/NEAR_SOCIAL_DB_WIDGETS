@@ -1110,6 +1110,6 @@ context.fillRect(blackBoxX, blackBoxY, blackBoxWidth, blackBoxHeight);
 
 return (
   <div>
-    <iframe srcDoc={scriptSrc} style={{ height: 500, width: "100%" }} />
+    <iframe srcDoc={scriptSrc} style={{ height: "800px", width: "100%" }} />
   </div>
 );
