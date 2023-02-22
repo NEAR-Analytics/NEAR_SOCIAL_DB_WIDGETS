@@ -16,7 +16,7 @@ if (!requests) {
   return "Loading...";
 }
 
-if (Array.isArray(state.requests) && state.requests.length === 0) {
+if (Array.isArray(requests) && requests.length === 0) {
   return "No contribution requests found!";
 }
 
