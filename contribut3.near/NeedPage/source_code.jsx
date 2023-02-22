@@ -6,8 +6,18 @@ if (!accountId || !cid) {
   return "Cannot show the request page without an account ID and a CID!";
 }
 
+const availableContent = ["contributors", "proposals"];
+
+const getContent = (content) => {
+  if (!content || !availableContent.includes(content)) {
+    return "contributors";
+  }
+
+  return content;
+};
+
 State.init({
-  content: props.content ?? "contributors",
+  content: getContent(props.content),
   search: props.search ?? "",
 });
 
