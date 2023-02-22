@@ -110,19 +110,6 @@ const body = (
   </div>
 );
 
-const contentSelectButton = ({ id, text, icon }) => (
-  <a
-    className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
-      }`}
-    href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&content=${id}${props.search ? "&search=" + props.search : ""
-      }&accountId=${accountId}`}
-    onClick={() => State.update({ content: id })}
-  >
-    <i className={icon} />
-    <span>{text}</span>
-  </a>
-);
-
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
