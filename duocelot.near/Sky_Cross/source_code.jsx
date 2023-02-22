@@ -268,7 +268,6 @@ img {
   }
 }
 
-
     class Enemy {
         constructor() {
             this.frameX = 0;
@@ -424,7 +423,6 @@ img {
             this.weight = 1;
             this.states = [new Sitting(game), new Running(game), new Jumping(game), new Falling(game), new Rolling(game), new Diving(game), new Hit(game), new Shooting(game), ];
             this.currentState = null;
-            this.collider = new CircleCollider(this.position.x, this.position.y, 16);
         }
         update(inputKeys, delta) {
             this.checkCollisions();
