@@ -54,7 +54,7 @@ const body = (
             additionalColumn: (
               <div className="d-flex flex-column justify-content-start align-items-stretch">
                 <a
-                  className="btn me-2 text-light"
+                  className="btn me-2 mb-2 text-light"
                   style={{
                     backgroundColor: "#6941C6",
                     borderColor: "#6941C6",
