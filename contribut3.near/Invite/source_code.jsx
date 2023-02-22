@@ -13,8 +13,6 @@ const invite = Near.view(
   "final"
 );
 
-console.log(invite);
-
 const descriptionArea = <Markdown text={invite.description} />;
 
 const controls = (
