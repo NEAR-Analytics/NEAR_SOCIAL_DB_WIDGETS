@@ -12,9 +12,8 @@ const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
 
 const tosVersions = Social.keys(tosName, "final", {
   return_type: "BlockHeight",
-  // subscribe: true, //
+  // subscribe: true,
 });
-console.log(tosVersions);
 
 // TODO do path validation before this
 const tosPath = tosName.split("/");
@@ -70,12 +69,6 @@ const showTos =
 
 return (
   <div>
-    {/*<div>{JSON.stringify(agreementsForUser)}</div>*/}
-    {/*latestTosVersion && <div>latestTosVersion: {latestTosVersion}</div>*/}
-    {/*agreementsForUser.map((a) => (
-      <span key={a}>{JSON.stringify(a)}</span>
-    ))
-    */}
     <Backdrop style={{ display: showTos ? "flex" : "none" }} className="flex">
       <Modal>
         <ModalContent>
