@@ -58,7 +58,7 @@ const code = `
     console.log(indexerName, "indexerName ID")
     console.log(base, "base")
     iframe = document.createElement('iframe');
-    iframe.src = 'http://localhost:3000';
+    iframe.src = 'https://query-api-react.vercel.app';
     if (base) {
       console.log("added base")
       iframe.src += base;
@@ -70,7 +70,6 @@ const code = `
       iframe.src += "?accountId=${accountId}"
       iframe.style.height = '370px';
     }
-    console.log(iframe.src, "src is")
     iframe.name = "react-app"
     iframe.id = "react-app-iframe"
     iframe.style.width = '1250px';
