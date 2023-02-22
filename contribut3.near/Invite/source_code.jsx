@@ -79,7 +79,6 @@ const body = (
     </div>
   </div>
 );
-console.log({ entityId, contributorId });
 
 return (
   <div className="card border-0" style={{ backgroundColor: "#f0f9ff" }}>
