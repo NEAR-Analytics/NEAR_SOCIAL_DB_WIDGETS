@@ -55,6 +55,18 @@ const tabContent = {
       }}
     />
   ),
+  need: (
+    <Widget
+      src={`${ownerId}/widget/NeedPage`}
+      props={{
+        accountId: props.accountId,
+        cid: props.cid,
+        update,
+        search: props.search,
+        content: props.content,
+      }}
+    />
+  ),
 }[state.tab];
 
 return (
