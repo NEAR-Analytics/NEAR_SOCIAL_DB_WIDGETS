@@ -2,6 +2,12 @@ const links = props.links;
 
 const linksList = [];
 
+const supportedLinks = [
+  { name: "github", url: "https://github.com/", icon: "bi-github" },
+  { name: "discord", url: "https://discord.com/", icon: "bi-discord" },
+  {},
+];
+
 if ("github" in links) {
   linksList.push(
     <li>
