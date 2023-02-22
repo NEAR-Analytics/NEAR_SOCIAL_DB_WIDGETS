@@ -61,9 +61,9 @@ const tabContent = {
       props={{
         accountId: props.accountId,
         cid: props.cid,
-        update,
         search: props.search,
         content: props.content,
+        update,
       }}
     />
   ),
