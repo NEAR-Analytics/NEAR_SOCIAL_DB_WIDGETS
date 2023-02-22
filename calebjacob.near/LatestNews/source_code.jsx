@@ -17,11 +17,11 @@ if (indexedPosts?.length > 0) {
     if (data) {
       const json = JSON.parse(data);
       const content = json.text.split("\n");
-      const title = content[0];
-      const url = content[1];
+      const title = content[0] || "";
+      const url = content[1] || content[2] || "";
       const lastLine = content.pop() || "";
       const hasNewsTag = lastLine.indexOf("#news") > -1;
-      const isValid = hasNewsTag && !!url && url.indexOf("https://") > -1;
+      const isValid = hasNewsTag && url.indexOf("https://") > -1;
 
       if (isValid) {
         posts.push({
