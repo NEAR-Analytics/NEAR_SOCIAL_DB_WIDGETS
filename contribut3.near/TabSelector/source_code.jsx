@@ -1,4 +1,5 @@
 const buttons = props.buttons ?? [];
+const tab = props.tab;
 
 return (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
@@ -6,7 +7,7 @@ return (
       <a
         className={`btn ${state.content === id ? "btn-secondary" : "btn-outline-secondary"
           }`}
-        href={`https://near.social/#/${ownerId}/widget/Index?tab=entity&content=${id}${props.search ? "&search=" + props.search : ""
+        href={`https://near.social/#/${ownerId}/widget/Index?tab=${tab}&content=${id}${props.search ? "&search=" + props.search : ""
           }&accountId=${accountId}`}
         onClick={() => props.update(id)}
         key={id}
