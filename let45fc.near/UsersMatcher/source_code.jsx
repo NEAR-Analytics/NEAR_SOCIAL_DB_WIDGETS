@@ -39,6 +39,8 @@ const findRoom = (created) => {
   if (!created) {
     created = false;
   }
+  Storage.set("created", "false");
+  Storage.set("roomId", "");
   const ownerAccountId = state.roomId.split("-")[0];
   console.log("getting roomData");
   const roomData = Social.getr(
@@ -61,12 +63,10 @@ const findRoom = (created) => {
 const roomCreated = Storage.get("created");
 
 if (state.roomCreated || roomCreated == "true") {
-  Storage.set("created", "false");
   const roomId = Storage.get("roomId");
   if (!roomId) {
     return <h1>Something went wrong and "roomId" is not set</h1>;
   }
-  Storage.set("roomId", "");
   return (
     <div class="container">
       <div class="row">
@@ -82,63 +82,59 @@ if (state.roomCreated || roomCreated == "true") {
   );
 }
 
-if (!state.room) {
-  return (
-    <div class="container">
-      <div class="row mt-3">
-        <div class="col-12">
-          <h3>{props.widgetName}</h3>
-        </div>
-        <div class="col-12">
-          <input
-            type="text"
-            class="form-control"
-            placeHolder={placeHolder}
-            value={state.roomId}
-            onChange={(e) => {
-              const roomId = e.target.value;
-              State.update({ roomId });
-            }}
-          />
-        </div>
+return (
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-12">
+        <h3>{props.widgetName}</h3>
       </div>
-      {state.errorMessage && (
-        <div class="row mt-4">
-          <div class="col-12">
-            <p class="text-danger">{state.errorMessage}</p>
-          </div>
-        </div>
-      )}
-      <div class="row mt-4">
-        <div class="col-6 text-end">
-          <button class="btn btn-success" onClick={findRoom}>
-            Connect to room
-          </button>
-        </div>
-        <div class="col-6">
-          <CommitButton
-            class="btn btn-primary"
-            onClick={() => {
-              State.update({ roomId: newRoomId });
-              Storage.set("created", "true");
-              Storage.set("roomId", newRoomId);
-            }}
-            onCommit={() => State.update({ roomCreated: true })}
-            data={{
-              [props.widgetKey]: {
-                [newRoomId]: {
-                  createdTimestamp: Date.now(),
-                  initial: props.initialValue || null,
-                },
-              },
-            }}
-          >
-            Create new room
-          </CommitButton>
-        </div>
+      <div class="col-12">
+        <input
+          type="text"
+          class="form-control"
+          placeHolder={placeHolder}
+          value={state.roomId}
+          onChange={(e) => {
+            const roomId = e.target.value;
+            State.update({ roomId });
+          }}
+        />
       </div>
     </div>
-  );
-}
-
-return;
+    {state.errorMessage && (
+      <div class="row mt-4">
+        <div class="col-12">
+          <p class="text-danger">{state.errorMessage}</p>
+        </div>
+      </div>
+    )}
+    <div class="row mt-4">
+      <div class="col-6 text-end">
+        <button class="btn btn-success" onClick={findRoom}>
+          Connect to room
+        </button>
+      </div>
+      <div class="col-6">
+        <CommitButton
+          class="btn btn-primary"
+          onClick={() => {
+            State.update({ roomId: newRoomId });
+            Storage.set("created", "true");
+            Storage.set("roomId", newRoomId);
+          }}
+          onCommit={() => State.update({ roomCreated: true })}
+          data={{
+            [props.widgetKey]: {
+              [newRoomId]: {
+                createdTimestamp: Date.now(),
+                initial: props.initialValue || null,
+              },
+            },
+          }}
+        >
+          Create new room
+        </CommitButton>
+      </div>
+    </div>
+  </div>
+);
