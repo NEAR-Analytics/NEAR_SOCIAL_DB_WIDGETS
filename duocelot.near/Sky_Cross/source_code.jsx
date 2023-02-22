@@ -58,7 +58,7 @@ img {
             }
             start() {
                 this.background = new Background(this);
-                this.groundMargin = 20 * this.background.scaleFactor;
+                this.groundMargin = 80 * this.background.scaleFactor;
                 this.player = new Player(this);
                 this.projectile = new Projectile(this);
                 this.input = new InputHandler(this);
