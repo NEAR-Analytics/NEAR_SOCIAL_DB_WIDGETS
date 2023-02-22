@@ -52,7 +52,7 @@ const body = (
             imageSize: "4em",
             update: props.update,
             additionalColumn: (
-              <div>
+              <div className="d-flex flex-column justify-content-start align-items-stretch">
                 <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
                   <a
                     className="btn me-2 text-light"
