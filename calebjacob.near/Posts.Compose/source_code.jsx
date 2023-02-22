@@ -145,8 +145,38 @@ const Textarea = styled.div`
   textarea {
     transition: all 200ms;
 
+    &:empty + p {
+      display: block;
+    }
+
     &:focus {
       box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
+    }
+  }
+`;
+
+const TextareaDescription = styled.p`
+  position: absolute;
+  top: calc(var(--padding) * 2 + 16px);
+  left: calc(40px + (var(--padding) * 2));
+  right: var(--padding);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #687076;
+  pointer-events: none;
+  display: none;
+
+  a {
+    color: #006ADC;
+    outline: none;
+    font-weight: 600;
+    pointer-events: auto;
+
+    &:hover,
+    &:focus {
+      color: #006ADC;
+      text-decoration: underline;
     }
   }
 `;
@@ -283,10 +313,20 @@ return (
 
         <Textarea data-value={state.text}>
           <textarea
-            placeholder="What's happening? Markdown is supported."
+            placeholder="What's happening?"
             onInput={(event) => State.update({ text: event.target.value })}
             value={state.text}
           />
+
+          <TextareaDescription>
+            You can use plain text or
+            <a
+              href="https://www.markdownguide.org/basic-syntax/"
+              target="_blank"
+            >
+              markdown
+            </a>
+          </TextareaDescription>
         </Textarea>
       </>
     )}
