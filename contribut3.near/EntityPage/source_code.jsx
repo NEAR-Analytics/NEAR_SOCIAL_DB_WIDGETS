@@ -134,18 +134,17 @@ const contentSelector = <Widget src={} props={{
       text: "Requests",
       icon: "bi-boxes",
     },
-    (
-      isAuthorized ? [{
-        id: "proposals",
-        text: "Proposals",
-        icon: "bi-person-down",
-      },
-      {
-        id: "invitations",
-        text: "Invitations",
-        icon: "bi-hourglass",
-      }] : []
-    ),
+    isAuthorized ? {
+      id: "proposals",
+      text: "Proposals",
+      icon: "bi-person-down",
+    } : null,
+    isAuthorized ? {
+      id: "invitations",
+      text: "Invitations",
+      icon: "bi-hourglass",
+    } : null
+    ,
     {
       id: "contributions",
       text: "Contributes to",
@@ -156,7 +155,7 @@ const contentSelector = <Widget src={} props={{
       text: "Contributors",
       icon: "bi-people",
     }
-  ]
+  ].filter(Boolean)
 }} />
 
 const contentSelector = (
