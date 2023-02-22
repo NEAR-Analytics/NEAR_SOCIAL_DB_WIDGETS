@@ -72,7 +72,7 @@ const body = (
                     {new Date(Number(entity.start_date)).toLocaleDateString()}
                   </span>
                   <Widget
-                    src={`${ownerId}/widget/ActivityIndicator`}
+                    src={`${ownerId}/widget/ActiveIndicator`}
                     props={{ active: entity.status === "Active" }}
                   />
                 </div>
