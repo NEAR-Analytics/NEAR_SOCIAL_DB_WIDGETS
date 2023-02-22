@@ -7,7 +7,7 @@ if (!accountId || !cid) {
 }
 
 State.init({
-  content: props.content ?? "requests",
+  content: props.content ?? "contributors",
   search: props.search ?? "",
 });
 
