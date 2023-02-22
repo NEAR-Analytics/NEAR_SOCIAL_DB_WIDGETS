@@ -230,7 +230,12 @@ const tabContent = {
   entity: (
     <Widget
       src={`${ownerId}/widget/EntityPage`}
-      props={{ accountId: props.accountId, update }}
+      props={{
+        accountId: props.accountId,
+        update,
+        search: props.search,
+        content: props.content,
+      }}
     />
   ),
 }[state.tab];
