@@ -50,7 +50,10 @@ img {
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
     <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
     <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
-    <img id="avatar" src=https://ik.imagekit.io/duOCELOT/assets/avatar01.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029634808" alt=""/>
+    <img id="avatar" src="https://ik.imagekit.io/duOCELOT/assets/avatar01.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029634808" alt=""/>
+    <img id="topbar" src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431" alt=""/>
+    <img id="bottombar" src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196" alt=""/>
+
     <script type="module">
     window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -1166,14 +1169,19 @@ class UI {
     this.fontSize = 30;
     this.fontFamily = "Press Start 2P', cursive";
     this.livesImage = liveImage;
-    this.topBarHeight = 66;
+    this.topBarHeight = 50;
     this.leftColumnWidth = 50;
     this.rightColumnWidth = 50;
     this.bottomBarHeight = 120;
     this.avatarImage = document.getElementById("avatar");
     this.avatarWidth = 140;
     this.avatarHeight = 140;
-  }
+    this.topBarBackground = new Image();
+    this.topBarBackground.src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431";
+    this.bottomBarBackground = new Image();
+    this.bottomBarBackground.src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196";
+    }
+  
 
   draw(context) {
     // Draw top bar
@@ -1203,7 +1211,7 @@ class UI {
     );
 
     // Draw bottom bar
-    context.fillStyle = "#5f5f5f";
+    context.fillStyle = "transparent";
     context.fillRect(
       0,
       this.game.height - this.bottomBarHeight,
@@ -1229,23 +1237,27 @@ class UI {
     this.avatarWidth
   );
 
-  // Draw top bar background
-    const topbarBg = new Image();
-    topbarBg.src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431";
-    topbarBg.addEventListener("load", () => {
-      const pattern = context.createPattern(topbarBg, "repeat-x");
-      context.fillStyle = pattern;
-      context.fillRect(0, 0, this.game.width, this.topBarHeight);
-    });
+// Draw top bar background
+const pattern = context.createPattern(this.topBarBackground, "repeat-x");
+context.fillStyle = pattern;
+context.fillRect(0, 0, this.game.width, this.topBarHeight);
 
-    // Set text styles
-    context.font = this.fontSize + this.fontFamily;
-    context.textAlign = "left";
+// Draw bottom bar background
+const pattern2 = context.createPattern(this.bottomBarBackground, "repeat-x");
+context.fillStyle = pattern2;
+context.fillRect(0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight);
+
+    // Draw score
+    context.font = this.font;
     context.fillStyle = "white";
 
+    // Set text styles
+    
+    context.font = this.fontSize + this.fontFamily;
+    context.textAlign = "left";
+  context.fillStyle = "white";
     // Draw score and lives
-    context.font = this.font;
-       context.fillText(
+    context.fillText(
       "Score: " + this.game.score,
       this.leftColumnWidth + 20,
       this.game.height - this.bottomBarHeight + 40
