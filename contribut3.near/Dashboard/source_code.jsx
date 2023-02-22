@@ -11,7 +11,7 @@ const getContent = (content) => {
 };
 
 State.init({
-  content: props.content ? "projects" : "",
+  content: getContent(props.content),
   search: props.search ?? "",
 });
 
