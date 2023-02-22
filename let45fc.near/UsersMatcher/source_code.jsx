@@ -61,6 +61,8 @@ const findRoom = (created) => {
 };
 
 const roomCreated = Storage.get("created");
+console.log("created", Storage.get("created"));
+console.log("roomId", Storage.get("roomId"));
 
 if (state.roomCreated || roomCreated == "true") {
   const roomId = Storage.get("roomId");
