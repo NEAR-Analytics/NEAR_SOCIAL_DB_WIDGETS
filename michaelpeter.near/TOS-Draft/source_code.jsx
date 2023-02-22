@@ -24,6 +24,7 @@ const Modal = styled.div`
   margin: auto;
   padding: 3rem;
   display: flex;
+  row-gap: 1rem;
   flex-direction: column;
 `;
 
@@ -40,7 +41,6 @@ const ModalFooter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: aliceblue
 `;
 
 return (
