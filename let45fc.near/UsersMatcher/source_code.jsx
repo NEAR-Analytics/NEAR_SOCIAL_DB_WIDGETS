@@ -1,13 +1,13 @@
 // inspired by https://near.social/#/wendersonpires.near/widget/Chat
 
-if (typeof props.loadRoomCallback != "function") {
-  return (
-    <h2>
-      You have to pass the loadRoomCallback function in props. Found type:{" "}
-      {typeof props.loadRoomCallback}
-    </h2>
-  );
-}
+// if (typeof props.loadRoomCallback != "function") {
+//   return (
+//     <h2>
+//       You have to pass the loadRoomCallback function in props. Found type:{" "}
+//       {typeof props.loadRoomCallback}
+//     </h2>
+//   );
+// }
 
 State.init({
   roomId: Storage.get("roomId") || null,
@@ -123,6 +123,7 @@ return (
             State.update({ roomId: newRoomId });
           }}
           onCommit={() => {
+            console.log("onCommit");
             State.update({ roomCreated: true });
             Storage.set("created", "true");
             Storage.set("roomId", newRoomId);
