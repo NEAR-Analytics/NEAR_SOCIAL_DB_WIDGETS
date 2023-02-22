@@ -126,6 +126,7 @@ const contentSelector = (
       content: state.content,
       search: state.search,
       accountId: props.accountId,
+      cid: props.cid,
       update: (content) => State.update({ content }),
       buttons: [
         {
