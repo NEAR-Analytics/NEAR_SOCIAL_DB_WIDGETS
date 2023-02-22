@@ -39,7 +39,11 @@ return (
       <div key={contributorId} className="mt-3">
         <Widget
           src={`${ownerId}/widget/ContributionRequest`}
-          props={{ entityId, contributorId, update: props.update }}
+          props={{
+            entityId: accountId || entityId,
+            contributorId: accountId ? entityId : contributorId,
+            update: props.update,
+          }}
         />
       </div>
     ))}
