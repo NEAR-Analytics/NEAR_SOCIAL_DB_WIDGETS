@@ -56,12 +56,6 @@ function onInterval() {
 
 return (
   <div>
-    <iframe
-      style={{ height: "0px" }}
-      srcDoc={code}
-      message={{ timeout: 1000 }}
-      onMessage={onInterval}
-    />
     <div style={{ display: "flex", flexDirection: "column" }}>
       {state.current_time && (
         <div
@@ -82,5 +76,11 @@ return (
         >{`Locale Time: ${state.current_time}`}</div>
       )}
     </div>
+    <iframe
+      style={{ height: "0px" }}
+      srcDoc={code}
+      message={{ timeout: 1000 }}
+      onMessage={onInterval}
+    />
   </div>
 );
