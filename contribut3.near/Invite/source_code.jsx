@@ -67,7 +67,12 @@ const body = (
               {/*     imageSize: contributionRequest.need ? "1.5em" : "2em", */}
               {/*   }} */}
               {/* /> */}
-              <b>Need {invite.contribution_type}</b>
+              <b>
+                Need{" "}
+                {typeof invite.contribution_type === "string"
+                  ? invite.contribution_type
+                  : invite.contribution_type.Other}
+              </b>
               <div className="mt-2 ps-2 border-start border-3 border-info">
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
