@@ -124,7 +124,7 @@ const invitesCount = Object.keys(
   Near.view(
     ownerId,
     "get_entity_invites",
-    { entity_id: accountId },
+    { account_id: accountId },
     "final",
     true
   ) ?? {}
