@@ -107,12 +107,10 @@ if (!state.room) {
             onClick={() => State.update({ roomId: newRoomId })}
             onCommit={() => State.update({ roomCreated: true })}
             data={{
-              [context.accountId]: {
-                [props.widgetKey]: {
-                  [newRoomId]: {
-                    createdTimestamp: Date.now(),
-                    initial: props.initialValue || null,
-                  },
+              [props.widgetKey]: {
+                [newRoomId]: {
+                  createdTimestamp: Date.now(),
+                  initial: props.initialValue || null,
                 },
               },
             }}
