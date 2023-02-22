@@ -21,8 +21,10 @@ if (Array.isArray(requests) && requests.length === 0) {
   return "No contribution requests found!";
 }
 
-const allRequests = requests.filter(([entityId, contributorId]) =>
-  entityId.includes(search) || accountId ? contributorId.includes(search) : true
+const allRequests = requests.filter(
+  ([entityId, contributorId]) =>
+    entityId.includes(search) ||
+    (accountId ? contributorId.includes(search) : true)
 );
 
 if (!allRequests || allRequests.length === 0) {
