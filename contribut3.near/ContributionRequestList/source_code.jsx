@@ -4,9 +4,12 @@ const accountId = props.accountId;
 
 const requests = Near.view(
   ownerId,
-  "get_admin_contribution_requests",
+  accountId
+    ? "get_entity_contribution_requests"
+    : "get_admin_contribution_requests",
   { account_id: context.accountId },
-  "final"
+  "final",
+  true
 );
 
 if (!requests) {
