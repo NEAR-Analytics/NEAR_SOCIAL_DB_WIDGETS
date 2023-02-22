@@ -66,12 +66,10 @@ const body = (
                     <span className="text-nowrap">Invite to contribute</span>
                   </a>
                 </div>
-                <div
-                  className="d-flex flex-row justify-content-end align-items-start"
-                  style={{ width: "7em" }}
-                >
+                <div className="d-flex flex-row justify-content-end align-items-start">
                   <a
                     className="btn btn-success me-2 text-light"
+                    style={{ width: "7em" }}
                   // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
                   >
                     <i className="bi-person-up" />
