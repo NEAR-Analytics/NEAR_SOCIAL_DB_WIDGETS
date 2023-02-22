@@ -1241,6 +1241,7 @@ context.fillRect(0, 0, this.game.width, this.topBarHeight);
 const pattern2 = context.createPattern(this.bottomBarBackground, "repeat-x");
 context.fillStyle = pattern2;
 context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
+    
     // Draw score
     context.font = this.font;
     context.fillStyle = "white";
