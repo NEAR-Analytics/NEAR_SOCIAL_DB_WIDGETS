@@ -6,7 +6,7 @@ const invites =
   Near.view(
     ownerId,
     accountId ? "get_entity_invites" : "get_contributor_invites",
-    { account_id: context.accountId },
+    { account_id: props.accountId ?? context.accountId },
     "final",
     true
   ) ?? {};
