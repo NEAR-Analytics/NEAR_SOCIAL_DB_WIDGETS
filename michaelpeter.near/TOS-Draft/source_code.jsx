@@ -14,6 +14,7 @@ const tosVersions = Social.keys(tosName, "final", {
   return_type: "BlockHeight",
   subscribe: true,
 });
+console.log(tosVersions);
 
 // TODO check that path is correct format
 const tosPath = tosName.split("/");
