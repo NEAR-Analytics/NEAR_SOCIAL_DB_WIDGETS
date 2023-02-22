@@ -134,7 +134,7 @@ const contentSelector = (
       contentSelectButton({
         id: "proposals",
         text: "Proposals",
-        icon: "bi-person-gear",
+        icon: "bi-person-down",
       })
     ) : (
       <></>
