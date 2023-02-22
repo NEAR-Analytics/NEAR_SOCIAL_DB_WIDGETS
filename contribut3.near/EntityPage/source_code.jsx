@@ -53,29 +53,25 @@ const body = (
             update: props.update,
             additionalColumn: (
               <div className="d-flex flex-column justify-content-start align-items-stretch">
-                <div className="d-flex flex-row justify-content-end align-items-start mb-2">
-                  <a
-                    className="btn me-2 text-light"
-                    style={{
-                      backgroundColor: "#6941C6",
-                      borderColor: "#6941C6",
-                    }}
-                  // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-                  >
-                    <i className="bi-person-plus" />
-                    <span className="text-nowrap">Invite to contribute</span>
-                  </a>
-                </div>
-                <div className="d-flex flex-row justify-content-end align-items-start">
-                  <a
-                    className="btn btn-success me-2 text-light"
-                    style={{ width: "13em" }}
-                  // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
-                  >
-                    <i className="bi-person-up" />
-                    <span className="text-nowrap">Propose contribution</span>
-                  </a>
-                </div>
+                <a
+                  className="btn me-2 text-light"
+                  style={{
+                    backgroundColor: "#6941C6",
+                    borderColor: "#6941C6",
+                  }}
+                // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+                >
+                  <i className="bi-person-plus" />
+                  <span className="text-nowrap">Invite to contribute</span>
+                </a>
+                <a
+                  className="btn btn-success me-2 text-light"
+                  style={{ width: "13em" }}
+                // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+                >
+                  <i className="bi-person-up" />
+                  <span className="text-nowrap">Propose contribution</span>
+                </a>
               </div>
             ),
             additionalRow: (
