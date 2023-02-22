@@ -52,7 +52,7 @@ const overlay = (
         props={{ tags, scroll: true }}
       />
 
-      {context.accountId !== props.accountId && (
+      {!!context.accountId && context.accountId !== props.accountId && (
         <FollowButtonWrapper>
           <Widget
             src="calebjacob.near/widget/FollowButton"
