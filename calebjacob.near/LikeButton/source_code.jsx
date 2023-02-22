@@ -26,8 +26,9 @@ if (state.hasLike === true) {
 }
 
 const accountsWithLikes = Object.keys(likesByUsers);
-const totalLikes = accountsWithLikes.length;
+const totalLikes = accountsWithLikes.length + (state.hasLikeOptimistic ? 1 : 0);
 const hasLike = context.accountId && !!likesByUsers[context.accountId];
+const hasLikeOptimistic = hasLike || state.hasLikeOptimistic;
 
 const LikeButton = styled.button`
   border: 0;
@@ -62,9 +63,12 @@ const likeClick = () => {
   if (state.loading) {
     return;
   }
+
   State.update({
     loading: true,
+    hasLikeOptimistic: !hasLike,
   });
+
   const data = {
     index: {
       like: JSON.stringify({
@@ -87,7 +91,11 @@ const likeClick = () => {
   }
   Social.set(data, {
     onCommit: () => State.update({ loading: false, hasLike: !hasLike }),
-    onCancel: () => State.update({ loading: false }),
+    onCancel: () =>
+      State.update({
+        loading: false,
+        hasLikeOptimistic: !state.hasLikeOptimistic,
+      }),
   });
 };
 
@@ -99,7 +107,7 @@ return (
     title={title}
     onClick={likeClick}
   >
-    <i className={`${hasLike ? "bi-heart-fill" : "bi-heart"}`} />
+    <i className={`${hasLikeOptimistic ? "bi-heart-fill" : "bi-heart"}`} />
     {totalLikes}
   </LikeButton>
 );
