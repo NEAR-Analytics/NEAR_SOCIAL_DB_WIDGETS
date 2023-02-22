@@ -145,6 +145,12 @@ const Textarea = styled.div`
   textarea {
     transition: all 200ms;
 
+    &::placeholder {
+      opacity: 1;
+      color: #687076;
+      font-weight: 600;
+    }
+
     &:empty + p {
       display: block;
     }
