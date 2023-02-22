@@ -122,7 +122,7 @@ const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
     props={{
-      tab: "entity",
+      tab: "need",
       content: state.content,
       search: state.search,
       accountId: props.accountId,
