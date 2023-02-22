@@ -75,7 +75,7 @@ if (state.roomCreated || roomCreated == "true") {
       <div class="row">
         <span>Your room id: {roomId}</span>
       </div>
-      <button class="btn btn-success" onClick={findRoom(true)}>
+      <button class="btn btn-success" onClick={() => findRoom(true)}>
         Go to game
       </button>
     </div>
