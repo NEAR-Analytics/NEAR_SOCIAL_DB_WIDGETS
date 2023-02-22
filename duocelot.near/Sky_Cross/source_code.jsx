@@ -1046,7 +1046,7 @@ if (this.prevPositions.length > 20) {
 
  // Draw gray rectangle at bottom of canvas
  context.fillStyle = "#5f5f5f";
- context.fillRect(0, this.game.height - this.game.height / 5, this.game.width, this.game.height / 5);
+ context.fillRect(0, this.game.height - this.game.height / 7, this.game.width, this.game.height / 7);
 
     
       // Calculate dimensions and positions of black and white boxes
