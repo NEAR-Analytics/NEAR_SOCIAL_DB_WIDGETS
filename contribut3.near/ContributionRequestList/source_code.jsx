@@ -7,7 +7,7 @@ const requests = Near.view(
   accountId
     ? "get_entity_contribution_requests"
     : "get_admin_contribution_requests",
-  { account_id: context.accountId },
+  accountId ? { entity_id: accountId } : { account_id: context.accountId },
   "final",
   true
 );
