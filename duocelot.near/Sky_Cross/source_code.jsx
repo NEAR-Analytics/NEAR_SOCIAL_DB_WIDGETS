@@ -1147,9 +1147,9 @@ class UI {
     this.fontSize = 30;
     this.fontFamily = "Press Start 2P', cursive";
     this.livesImage = liveImage;
-    this.topBarHeight = 100;
-    this.leftColumnWidth = 100;
-    this.rightColumnWidth = 100;
+    this.topBarHeight = 50;
+    this.leftColumnWidth = 50;
+    this.rightColumnWidth = 50;
         this.bottomBarHeight = 50;
 
   }
