@@ -86,74 +86,78 @@ if (!state.polls) {
 }
 
 return (
-  <div class="container my-5">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-9 d-flex">
-            <div class="align-self-center">
-              <div style={{ height: "100px", width: "100px" }}>
-                <div
-                  style={{
-                    "background-image": 'url("' + state.iconBase64 + '")',
-                    "background-size": "100px",
-                    "background-repeat": "no-repeat",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div class="p-3 align-self-center">
-              <div>
-                Symbol: <strong>{state.nftSymbol}</strong>
-              </div>
-              <div>
-                Name: <strong>{state.name}</strong>
-              </div>
+  <div
+    class="card"
+    style={{
+      "max-width": "600px",
+    }}
+  >
+    <div class="card-header">
+      <div class="row">
+        <div class="col-9 d-flex">
+          <div class="align-self-center">
+            <div style={{ height: "100px", width: "100px" }}>
+              <div
+                style={{
+                  "background-image": 'url("' + state.iconBase64 + '")',
+                  "background-size": "100px",
+                  "background-repeat": "no-repeat",
+                  width: "100%",
+                  height: "100%",
+                  "border-radius": "5px",
+                }}
+              ></div>
             </div>
           </div>
-          <div class="col-3 text-end">
-            <button
-              onClick={updateState}
-              type="button"
-              class="btn btn-outline-secondary"
-            >
-              <i class="bi bi-repeat"></i>
-            </button>
-            <button
-              onClick={() => {
-                console.log("viewMode " + state.viewMode);
-                State.update({ showPollCreator: !state.showPollCreator });
-              }}
-              type="button"
-              style={{ width: "42px" }}
-              class="btn btn-outline-secondary"
-              disabled={!state.canUseCreator}
-            >
-              {state.showPollCreator ? "-" : "+"}
-            </button>
+          <div class="p-3 align-self-center">
+            <div>
+              Symbol: <strong>{state.nftSymbol}</strong>
+            </div>
+            <div>
+              Name: <strong>{state.name}</strong>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card-body">
-        {state.showPollCreator && (
-          <Widget
-            src={`p516entropy.near/widget/NftPollCreator`}
-            props={{
-              nftContract,
+        <div class="col-3 text-end">
+          <button
+            onClick={updateState}
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            <i class="bi bi-repeat"></i>
+          </button>
+          <button
+            onClick={() => {
+              console.log("viewMode " + state.viewMode);
+              State.update({ showPollCreator: !state.showPollCreator });
             }}
-          />
-        )}
-        {state.polls.map((poll, i) => {
-          return (
-            <Widget
-              src={`p516entropy.near/widget/NftPollWindow`}
-              props={{ nftContract, pollId: i }}
-            />
-          );
-        })}
+            type="button"
+            style={{ width: "42px" }}
+            class="btn btn-outline-secondary"
+            disabled={!state.canUseCreator}
+          >
+            {state.showPollCreator ? "-" : "+"}
+          </button>
+        </div>
       </div>
+    </div>
+    <div class="card-body">
+      {state.showPollCreator && (
+        <Widget
+          src={`p516entropy.near/widget/NftPollCreator`}
+          props={{
+            nftContract,
+          }}
+        />
+      )}
+      {state.polls.map((poll, i) => {
+        return (
+          <Widget
+            src={`p516entropy.near/widget/NftPollWindow`}
+            props={{ nftContract, pollId: i }}
+          />
+        );
+      })}
     </div>
   </div>
 );
