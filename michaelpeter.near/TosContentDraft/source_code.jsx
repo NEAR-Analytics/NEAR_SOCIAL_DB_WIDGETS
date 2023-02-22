@@ -17,7 +17,7 @@ una primis.
 
 Accepisse lascivaque ausa tempora urna non corpore facta aequora nostrae. Par
 lecto solutus gaeminis tacta: est annum, pudorem nititur teste caput Baccho;
-vellet inscripta probat ualtima. aCaicus et atempora aliter quondam lacertis fato
+vellet inscripta probat ualtima. aCaiacus et atempora aliter quondam lacertis fato
 exit sequentur **illo**; Iovi Phoeabus quaea Sabaea verba summo suus. Regia
 invadunt circuiere sequenti remos in geri aliamve, quies quae dixi maanu Musa
 inpune, huc temptamenta vir. Adahuc in gramen parari columnae et esse, sed tamen
