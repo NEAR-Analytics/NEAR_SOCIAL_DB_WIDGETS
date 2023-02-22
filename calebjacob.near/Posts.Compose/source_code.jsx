@@ -168,14 +168,14 @@ const TextareaDescription = styled.p`
   display: none;
 
   a {
-    color: #006ADC;
+    color: #000;
     outline: none;
     font-weight: 600;
     pointer-events: auto;
 
     &:hover,
     &:focus {
-      color: #006ADC;
+      color: #000;
       text-decoration: underline;
     }
   }
@@ -325,7 +325,7 @@ return (
             >
               Markdown
             </a>
-            is supported.
+            is supported
           </TextareaDescription>
         </Textarea>
       </>
