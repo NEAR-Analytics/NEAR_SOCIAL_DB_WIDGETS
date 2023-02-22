@@ -17,7 +17,7 @@ if (!requests) {
 }
 
 if (Array.isArray(state.requests) && state.requests.length === 0) {
-  return "No contribution requests this account can manage found!";
+  return "No contribution requests found!";
 }
 
 const allRequests = requests.filter(
