@@ -78,7 +78,7 @@ img {
                 this.ui = new UI(this);
                 this.time = 0;
                 this.maxTime = 100000000;
-                this.lives = 5;
+                this.lives = 100;
                 this.gameOver = false;
                 this.player.currentState = this.player.states[0];
                 this.player.currentState.enter();
@@ -403,7 +403,7 @@ img {
     
 
     class Player {
-        constructor(game) {
+        constructor(game, x, y, speed, sprite) {
             this.game = game;
             this.width = 302;
             this.height = 261;
@@ -423,6 +423,8 @@ img {
             this.weight = 1;
             this.states = [new Sitting(game), new Running(game), new Jumping(game), new Falling(game), new Rolling(game), new Diving(game), new Hit(game), new Shooting(game), ];
             this.currentState = null;
+            this.collider = new CircleCollider(this.x + this.width / 2, this.y + this.height / 2, 10);
+
         }
         update(inputKeys, delta) {
             this.checkCollisions();
