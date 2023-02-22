@@ -14,10 +14,12 @@ const contributor = Near.view(
   "final"
 );
 
-const isAuthorized =
-  !!contributor &&
-  !!contributor.permissions &&
-  contributor.permissions.includes("Admin");
+const isAuthorized = Near.view(
+  ownerId,
+  "check_is_manager_or_higher",
+  { entity_id: accountId, account_id: context.accountId },
+  "final"
+);
 
 const contributionRequest = props.isPreview
   ? props.contributionRequest
