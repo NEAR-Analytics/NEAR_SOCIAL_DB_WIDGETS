@@ -24,8 +24,12 @@ const currentContributor = Near.view(
   "final"
 );
 
-const isAuthorized =
-  !!currentContributor && currentContributor.permissions.includes("Admin");
+const isAuthorized = Near.view(
+  ownerId,
+  "check_is_manager_or_higher",
+  { entity_id: accountId, account_id: context.accountId },
+  "final"
+);
 
 const contributionNeed = props.isPreview
   ? props.contributionNeed
@@ -73,6 +77,7 @@ const body = (
           <Widget
             src={`${ownerId}/widget/CardMenu`}
             props={{
+              update: props.update,
               items: [
                 {
                   text: "Propose contribution",
