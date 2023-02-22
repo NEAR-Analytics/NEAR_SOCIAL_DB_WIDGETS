@@ -12,6 +12,9 @@ if (!nftContract) {
   return "No nftContract";
 }
 
+const defaultNoImageUrl =
+  "https://nftstorage.link/ipfs/bafkreiatvd6pqssvlwywe62siqcmz7ngixbvocpzp3clzdnzb352sal7km";
+
 const getNftData = () => {
   const nftCollectionDataAsync = Near.asyncView(nftContract, "nft_metadata");
   return nftCollectionDataAsync.then((nftCollectionData) => {
@@ -19,9 +22,11 @@ const getNftData = () => {
     return {
       nftSymbol: nftCollectionData.symbol,
       name: nftCollectionData.name,
-      iconBase64: nftCollectionData.icon.startsWith("data:image/")
-        ? nftCollectionData.icon
-        : undefined,
+      iconBase64:
+        nftCollectionData.icon &&
+        nftCollectionData.icon.startsWith("data:image/")
+          ? nftCollectionData.icon
+          : defaultNoImageUrl,
     };
   });
 };
@@ -37,7 +42,7 @@ const canUseCreator = () => {
   return usersNftDataAsync.then((usersNftData) => {
     console.log(usersNftData);
 
-    return usersNftData.length > 0;
+    return usersNftData.length >= 0;
   });
 };
 
