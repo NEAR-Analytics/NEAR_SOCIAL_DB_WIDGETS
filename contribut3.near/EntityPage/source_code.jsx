@@ -20,7 +20,7 @@ const entity = Near.view(
 
 const currentContributor = Near.view(
   ownerId,
-  "get_contribution",
+  "check_is_moderator_or_higher",
   { entity_id: accountId, contributor_id: context.accountId },
   "final"
 );
