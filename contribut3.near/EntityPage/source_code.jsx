@@ -53,7 +53,7 @@ const body = (
             update: props.update,
             additionalColumn: (
               <div className="d-flex flex-column justify-content-start align-items-stretch">
-                <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+                <div className="d-flex flex-row justify-content-end align-items-start">
                   <a
                     className="btn me-2 text-light"
                     style={{
@@ -66,7 +66,7 @@ const body = (
                     <span className="text-nowrap">Invite to contribute</span>
                   </a>
                 </div>
-                <div className="d-flex flex-row justify-content-end align-items-start ps-4 py-3">
+                <div className="d-flex flex-row justify-content-end align-items-start">
                   <a
                     className="btn btn-success me-2 text-light"
                   // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
