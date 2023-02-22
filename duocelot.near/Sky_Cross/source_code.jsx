@@ -44,7 +44,7 @@ img {
     <img id="liveImage" src="https://ik.imagekit.io/onyedika/skycross/apple_GS0a8l34K.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858074" alt=""/>
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
     <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
-    <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
+    <img id="fruityImage" src="https://ik.imagekit.io/duOCELOT/assets/cherry.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029658824" alt=""/>
     <script type="module">
     window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
