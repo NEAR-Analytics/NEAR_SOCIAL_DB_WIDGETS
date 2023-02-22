@@ -26,9 +26,12 @@ if (state.hasLike === true) {
 }
 
 const accountsWithLikes = Object.keys(likesByUsers);
-const totalLikes = accountsWithLikes.length + (state.hasLikeOptimistic ? 1 : 0);
 const hasLike = context.accountId && !!likesByUsers[context.accountId];
-const hasLikeOptimistic = hasLike || state.hasLikeOptimistic;
+const hasLikeOptimistic =
+  state.hasLikeOptimistic === undefined ? hasLike : state.hasLikeOptimistic;
+const totalLikes =
+  accountsWithLikes.length +
+  (hasLike === false && state.hasLikeOptimistic ? 1 : 0);
 
 const LikeButton = styled.button`
   border: 0;
