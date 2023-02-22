@@ -31,7 +31,8 @@ const hasLikeOptimistic =
   state.hasLikeOptimistic === undefined ? hasLike : state.hasLikeOptimistic;
 const totalLikes =
   accountsWithLikes.length +
-  (hasLike === false && state.hasLikeOptimistic ? 1 : 0);
+  (hasLike === false && state.hasLikeOptimistic === true ? 1 : 0) -
+  (hasLike === true && state.hasLikeOptimistic === false ? 1 : 0);
 
 const LikeButton = styled.button`
   border: 0;
