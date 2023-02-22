@@ -27,6 +27,11 @@ const scriptSrc = `
 img {
   display: none;
 }
+
+.ui .topbar {
+  background-image: url('https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431');
+  background-repeat: repeat-x;
+}
 </style>
 <canvas id="canvas1"></canvas>
     <img id="playerImage" src="https://ik.imagekit.io/onyedika/skycross/player_BIG_mq9uKo5ll.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939877107" alt="" />
@@ -63,7 +68,7 @@ img {
                 this.player = new Player(this);
                 this.projectile = new Projectile(this);
                 this.input = new InputHandler(this);
-                this.speed = 0.5;
+                this.speed = 0.9;
                 this.maxSpeed = 3;
                 this.enemies = [];
                 this.particles = [];
@@ -145,7 +150,7 @@ img {
             }
             addEnemy() {
                 if (this.speed >= 1.9 && Math.random() < 0.05) {
-                    if (Math.random() < 0.5) {
+                    if (Math.random() > 0.9) {
                         this.enemies.push(new GroundEnemy(this));
                     } else {
                         this.enemies.push(new ClimbingEnemy(this));
@@ -278,7 +283,7 @@ img {
             this.frameTimer = 0;
             this.markForDeletion = false;
             this.collider = new CircleCollider(this.x + this.width / 2, this.y + this.height / 2, 10);
-             this.type = 'projectile-particle';
+            this.type = 'projectile-particle';
             this.prevPositions = [];
 
             
@@ -1161,7 +1166,7 @@ class UI {
     this.fontSize = 30;
     this.fontFamily = "Press Start 2P', cursive";
     this.livesImage = liveImage;
-    this.topBarHeight = 50;
+    this.topBarHeight = 66;
     this.leftColumnWidth = 50;
     this.rightColumnWidth = 50;
     this.bottomBarHeight = 120;
@@ -1172,7 +1177,7 @@ class UI {
 
   draw(context) {
     // Draw top bar
-    context.fillStyle = "gray";
+    context.fillStyle = "transparent";
     context.fillRect(0, 0, this.game.width, this.topBarHeight);
 
     context.font = "20px Arial";
@@ -1224,13 +1229,23 @@ class UI {
     this.avatarWidth
   );
 
+  // Draw top bar background
+    const topbarBg = new Image();
+    topbarBg.src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431";
+    topbarBg.addEventListener("load", () => {
+      const pattern = context.createPattern(topbarBg, "repeat-x");
+      context.fillStyle = pattern;
+      context.fillRect(0, 0, this.game.width, this.topBarHeight);
+    });
+
     // Set text styles
-    context.font = this.fontSize + " " + this.fontFamily;
+    context.font = this.fontSize + this.fontFamily;
     context.textAlign = "left";
-    context.fillStyle = this.game.fontColor;
+    context.fillStyle = "white";
 
     // Draw score and lives
-    context.fillText(
+    context.font = this.font;
+       context.fillText(
       "Score: " + this.game.score,
       this.leftColumnWidth + 20,
       this.game.height - this.bottomBarHeight + 40
