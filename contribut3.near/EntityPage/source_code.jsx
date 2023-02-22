@@ -53,7 +53,7 @@ const body = (
             update: props.update,
             additionalColumn: (
               <div className="d-flex flex-column justify-content-start align-items-stretch">
-                <div className="d-flex flex-row justify-content-end align-items-start">
+                <div className="d-flex flex-row justify-content-end align-items-start mb-2">
                   <a
                     className="btn me-2 text-light"
                     style={{
