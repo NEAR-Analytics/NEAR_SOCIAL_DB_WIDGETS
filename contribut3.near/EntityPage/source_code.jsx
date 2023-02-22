@@ -88,9 +88,7 @@ const body = (
         />
       </div>
     </div>
-    <div className="text-truncate text-wrap my-2">
-      {profile.description || "s ".repeat(1000)}
-    </div>
+    <Markdown text={profile.description || "s ".repeat(1000)} />
   </div>
 );
 
