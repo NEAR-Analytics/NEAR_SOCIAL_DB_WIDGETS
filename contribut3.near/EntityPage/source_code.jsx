@@ -123,75 +123,47 @@ const contentSelectButton = ({ id, text, icon }) => (
   </a>
 );
 
-const contentSelector = <Widget src={} props={{
-  tab: "entity",
-  content: state.content,
-  search: state.search,
-  update: (content) => State.update({ content }),
-  buttons: [
-    {
-      id: "requests",
-      text: "Requests",
-      icon: "bi-boxes",
-    },
-    isAuthorized ? {
-      id: "proposals",
-      text: "Proposals",
-      icon: "bi-person-down",
-    } : null,
-    isAuthorized ? {
-      id: "invitations",
-      text: "Invitations",
-      icon: "bi-hourglass",
-    } : null
-    ,
-    {
-      id: "contributions",
-      text: "Contributes to",
-      icon: "bi-person-up",
-    },
-    {
-      id: "contributors",
-      text: "Contributors",
-      icon: "bi-people",
-    }
-  ].filter(Boolean)
-}} />
-
 const contentSelector = (
-  <div className="btn-group" role="group" aria-label="Content Tab Selector">
-    {contentSelectButton({
-      id: "requests",
-      text: "Requests",
-      icon: "bi-boxes",
-    })}
-    {isAuthorized ? (
-      <>
-        {contentSelectButton({
-          id: "proposals",
-          text: "Proposals",
-          icon: "bi-person-down",
-        })}
-        {contentSelectButton({
-          id: "invitations",
-          text: "Invitations",
-          icon: "bi-hourglass",
-        })}
-      </>
-    ) : (
-      <></>
-    )}
-    {contentSelectButton({
-      id: "contributions",
-      text: "Contributes to",
-      icon: "bi-person-up",
-    })}
-    {contentSelectButton({
-      id: "contributors",
-      text: "Contributors",
-      icon: "bi-people",
-    })}
-  </div>
+  <Widget
+    src={`${ownerId}/widget/TabSelector`}
+    props={{
+      tab: "entity",
+      content: state.content,
+      search: state.search,
+      update: (content) => State.update({ content }),
+      buttons: [
+        {
+          id: "requests",
+          text: "Requests",
+          icon: "bi-boxes",
+        },
+        isAuthorized
+          ? {
+            id: "proposals",
+            text: "Proposals",
+            icon: "bi-person-down",
+          }
+          : null,
+        isAuthorized
+          ? {
+            id: "invitations",
+            text: "Invitations",
+            icon: "bi-hourglass",
+          }
+          : null,
+        {
+          id: "contributions",
+          text: "Contributes to",
+          icon: "bi-person-up",
+        },
+        {
+          id: "contributors",
+          text: "Contributors",
+          icon: "bi-people",
+        },
+      ].filter(Boolean),
+    }}
+  />
 );
 
 const searchBar = (
