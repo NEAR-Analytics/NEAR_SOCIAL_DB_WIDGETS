@@ -67,7 +67,7 @@ const body = (
             additionalRow: (
               <>
                 <div className="d-flex flex-row justify-content-start align-items-center">
-                  <span className="text-muted">
+                  <span className="text-muted me-2">
                     Created{" "}
                     {new Date(Number(entity.start_date)).toLocaleDateString()}
                   </span>
