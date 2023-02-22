@@ -13,6 +13,7 @@ State.init({
   roomId: null,
   roomData: null,
   errorMessage: null,
+  roomCreated: false,
 });
 
 const uuidv4 = () => {
@@ -27,35 +28,53 @@ const uuidv4 = () => {
   return u;
 };
 
+const generateRoomId = () => {
+  return `${context.accountId}-${props.widgetKey}-room-${uuidv4()}`;
+};
+
+const newRoomId = generateRoomId();
+
 const placeHolder = "Enter room id";
 
 const findRoom = (created) => {
   if (!created) {
     created = false;
   }
+  const ownerAccountId = state.roomId.split("-")[0];
   console.log("getting roomData");
-  const roomData = Social.index(props.widgetKey, state.roomId);
+  const roomData = Social.getr(
+    `${ownerAccountId}/${props.widgetKey}/${state.roomId}`
+  );
   console.log(props.widgetKey, state.roomId);
   console.log(roomData);
-  const roomExists = roomData && roomData.length > 0;
-  if (!roomExists) {
+  if (!roomData) {
     State.update({ errorMessage: "Room not found" });
     return;
   }
-  const parsedRoomData = roomData[0].value;
   State.update({
-    roomData: parsedRoomData,
+    roomData: roomData,
   });
   if (props.loadRoomCallback && roomData) {
-    props.loadRoomCallback(parsedRoomData, state.roomId, created);
+    props.loadRoomCallback(roomData, state.roomId, created);
   }
 };
 
-const generateRoomId = () => {
-  return `${props.widgetKey}-room-${uuidv4()}`;
-};
+if (state.roomCreated) {
+  return (
+    <div class="container">
+      <div class="row">
+        <h2>Room created</h2>
+      </div>
+      <div class="row">
+        <span>Your room id: {newRoomId}</span>
+      </div>
+      <button class="btn btn-success" onClick={findRoom(true)}>
+        Go to game
+      </button>
+    </div>
+  );
+}
 
-let newRoomId = generateRoomId();
 if (!state.room) {
   return (
     <div class="container">
@@ -86,16 +105,15 @@ if (!state.room) {
           <CommitButton
             class="btn btn-primary"
             onClick={() => State.update({ roomId: newRoomId })}
-            onCommit={() => findRoom(true)}
+            onCommit={() => State.update({ roomCreated: true })}
             data={{
-              index: {
-                [props.widgetKey]: JSON.stringify({
-                  key: newRoomId,
-                  value: {
+              [context.accountId]: {
+                [props.widgetKey]: {
+                  [newRoomId]: {
                     createdTimestamp: Date.now(),
                     initial: props.initialValue || null,
                   },
-                }),
+                },
               },
             }}
           >
