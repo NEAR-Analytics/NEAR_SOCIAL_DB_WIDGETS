@@ -53,7 +53,20 @@ const body = (
           isEntity: true,
           imageSize: "3em",
           update: props.update,
-          additionalText: <b>invited you to contribute to</b>,
+          additionalText: (
+            <b>
+              invited{" "}
+              {contributorId === context.accountId ? (
+                "you"
+              ) : (
+                <Widget
+                  src={`${ownerId}/widget/ProfileLine`}
+                  props={{ accountId: contributorId }}
+                />
+              )}{" "}
+              to contribute to
+            </b>
+          ),
           additionalColumn: controls,
           additionalRow: (
             <>
