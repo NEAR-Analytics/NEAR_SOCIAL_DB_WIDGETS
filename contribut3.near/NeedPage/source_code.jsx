@@ -73,7 +73,11 @@ const body = (
         </div>
         <div>
           <span className="text-muted me-2">
-            Created {new Date(Number(need.start_date)).toLocaleDateString()}
+            Created by{" "}
+            <Widget
+              src={`${ownerId}/widget/ProfileLine`}
+              props={{ accountId, isEntity: true }}
+            />
           </span>
           <Widget
             src={`${ownerId}/widget/ActiveIndicator`}
