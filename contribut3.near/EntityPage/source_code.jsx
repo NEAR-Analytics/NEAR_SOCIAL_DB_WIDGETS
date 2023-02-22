@@ -7,8 +7,24 @@ if (!accountId) {
   return "Cannot show entity without account ID!";
 }
 
+const availableContent = [
+  "proposals",
+  "invitations",
+  "requests",
+  "contributions",
+  "contributors",
+];
+
+const getContent = (content) => {
+  if (!content || !availableContent.includes(content)) {
+    return "requests";
+  }
+
+  return content;
+};
+
 State.init({
-  content: props.content ?? "requests",
+  content: getContent(props.content),
   search: props.search ?? "",
 });
 
