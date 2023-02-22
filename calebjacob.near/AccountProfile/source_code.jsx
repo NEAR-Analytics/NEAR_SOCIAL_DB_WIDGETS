@@ -2,7 +2,7 @@ const accountId = props.accountId || context.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 
 const Wrapper = styled.a`
-  display: grid;
+  display: inline-grid;
   width: 100%;
   align-items: center;
   gap: 12px;
@@ -56,6 +56,7 @@ const Avatar = styled.div`
 const Name = styled.div`
   display: flex;
   gap: 6px;
+  align-items: center;
 `;
 
 const AccountProfile = (
