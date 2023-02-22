@@ -62,28 +62,28 @@ const contentSelector = (
       tab: "entities",
       content: state.content,
       search: state.search,
-      update: (content) => {
-        State.update({ content });
-      },
+      update: (content) =>
+        State.update({ content })
+    },
       buttons: [
-        {
-          id: "projects",
-          text: "Projects",
-          icon: "bi-boxes",
-        },
-        {
-          id: "contributors",
-          text: "Contributors",
-          icon: "bi-person",
-        },
-        {
-          id: "requests",
-          text: "Requests",
-          icon: "bi-ui-checks-grid",
-        },
+  {
+    id: "projects",
+    text: "Projects",
+    icon: "bi-boxes",
+  },
+  {
+    id: "contributors",
+    text: "Contributors",
+    icon: "bi-person",
+  },
+  {
+    id: "requests",
+    text: "Requests",
+    icon: "bi-ui-checks-grid",
+  },
       ],
     }}
-  />
+/>
 );
 
 const searchBar = (
