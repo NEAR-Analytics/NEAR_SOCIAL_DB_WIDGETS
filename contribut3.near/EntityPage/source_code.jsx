@@ -64,6 +64,20 @@ const body = (
                 </a>
               </div>
             ),
+            additionalRow: (
+              <>
+                <div className="d-flex flex-row justify-content-start align-items-center">
+                  <span className="text-muted">
+                    Created{" "}
+                    {new Date(Number(entity.start_date)).toLocaleDateString()}
+                  </span>
+                  <Widget
+                    src={`${ownerId}/widget/ActivityIndicator`}
+                    props={{ active: entity.status === "Active" }}
+                  />
+                </div>
+              </>
+            ),
           }}
         />
       </div>
