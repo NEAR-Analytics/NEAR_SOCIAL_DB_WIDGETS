@@ -2,19 +2,16 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 
-let requests = Near.view(
-  ownerId,
-  accountId
-    ? "get_entity_contribution_requests"
-    : "get_admin_contribution_requests",
-  accountId ? { entity_id: accountId } : { account_id: context.accountId },
-  "final",
-  true
-);
-
-if (!!requests && typeof requests === "object") {
-  requests = Object.entries(requests);
-}
+let requests =
+  Near.view(
+    ownerId,
+    accountId
+      ? "get_entity_contribution_requests"
+      : "get_admin_contribution_requests",
+    accountId ? { entity_id: accountId } : { account_id: context.accountId },
+    "final",
+    true
+  ) ?? [];
 
 if (!requests) {
   return "Loading...";
@@ -24,9 +21,8 @@ if (Array.isArray(requests) && requests.length === 0) {
   return "No contribution requests found!";
 }
 
-const allRequests = requests.filter(
-  ([entityId, contributorId]) =>
-    contributorId.includes(search) || entityId.includes(search)
+const allRequests = requests.filter(([entityId, contributorId]) =>
+  entityId.includes(search) || accountId ? contributorId.includes(search) : true
 );
 
 if (!allRequests || allRequests.length === 0) {
