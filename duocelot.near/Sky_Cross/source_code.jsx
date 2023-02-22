@@ -40,10 +40,10 @@ img {
     <img id="spiderImage" src="https://ik.imagekit.io/onyedika/skycross/enemy_spider_big_n3r4HKyjV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939861559" alt=""/>
     <img id="spiderBigImage" src="https://ik.imagekit.io/onyedika/skycross/enemy_spider_big_n3r4HKyjV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939861559" alt=""/>
     <img id="fireTexture" src="https://ik.imagekit.io/onyedika/skycross/fire_bwpPPyGYv.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939863595" alt=""/>
-    <img id="boomImage" src="https://ik.imagekit.io/onyedika/skycross/bomb_iG_K37qGR.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939859611" alt=""/>
+    <img id="boomImage" src="https://ipfs.near.social/ipfs/bafkreif4vvnltevnvmt3mnpffoa36ngew4tr77qnnly6qcckzcg6crpqvi" alt=""/>
     <img id="liveImage" src="https://ik.imagekit.io/onyedika/skycross/apple_GS0a8l34K.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858074" alt=""/>
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
-    <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
+    <img id="blastImage" src="https://ipfs.near.social/ipfs/bafkreif4vvnltevnvmt3mnpffoa36ngew4tr77qnnly6qcckzcg6crpqvi" alt=""/>
     <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
     <script type="module">
     window.addEventListener("load", function () {
@@ -779,7 +779,90 @@ img {
         }
 
     }
+class ParticleEffect {
+  constructor(x, y, img, numParticles) {
+    this.x = x;
+    this.y = y;
+    this.numParticles = numParticles;
+    this.particles = [];
+    this.finished = false;
 
+    // Use the specified image or animation for the particle effect
+    this.img = img;
+    this.frameIndex = 0;
+    this.frameCount = img.frames ? img.frames.length : 1;
+  }
+
+  update() {
+    // Update the position of each particle
+    for (let i = 0; i < this.particles.length; i++) {
+      let p = this.particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life--;
+      if (p.life <= 0) {
+        this.particles.splice(i, 1);
+        i--;
+      }
+    }
+    if (this.particles.length === 0) {
+      this.finished = true;
+    }
+
+    // Update the animation frame for the particle effect
+    if (this.img.frames) {
+      this.frameIndex++;
+      if (this.frameIndex >= this.frameCount) {
+        this.frameIndex = 0;
+      }
+    }
+  }
+
+  draw(ctx) {
+    // Draw each particle
+    for (let i = 0; i < this.particles.length; i++) {
+      let p = this.particles[i];
+      let alpha = p.life / this.maxLife;
+      ctx.fillStyle = "rgba(255,255,255,0.3)";
+      ctx.fillRect(p.x - 1, p.y - 1, 2, 2);
+    }
+
+    // Draw the particle effect using the specified image or animation
+    if (this.img.frames) {
+      let frame = this.img.frames[this.frameIndex];
+      ctx.drawImage(
+        this.img.img,
+        frame.x,
+        frame.y,
+        frame.w,
+        frame.h,
+        this.x,
+        this.y,
+        frame.w,
+        frame.h
+      );
+    } else {
+      ctx.drawImage(this.img.img, this.x, this.y);
+    }
+  }
+
+  createParticle() {
+    // Create a new particle with a random velocity and lifespan
+    let angle = Math.random() * Math.PI * 2;
+    let speed = Math.random() * 3 + 1;
+    let vx = Math.cos(angle) * speed;
+    let vy = Math.sin(angle) * speed;
+    let life = Math.floor(Math.random() * 30) + 30;
+    this.particles.push({ x: this.x, y: this.y, vx, vy, life });
+  }
+
+  explode() {
+    // Create a burst of particles
+    for (let i = 0; i < this.numParticles; i++) {
+      this.createParticle();
+    }
+  }
+}
     class Projectile extends Particle {
         constructor(game, x, y) {
             super(game);
@@ -1059,8 +1142,8 @@ if (this.prevPositions.length > 20) {
       const blackBoxY = this.game.height - this.game.height / 5 + (this.game.height / 5 - blackBoxHeight) / 2;
 
       // Draw black box
-context.fillStyle = "#000";
-context.fillRect(blackBoxX, blackBoxY, blackBoxWidth, blackBoxHeight);
+      context.fillStyle = "#000";
+      context.fillRect(blackBoxX, blackBoxY, blackBoxWidth, blackBoxHeight);
 
       // Calculate dimensions and positions of white box
       const whiteBoxX = blackBoxX + (blackBoxWidth - whiteBoxWidth) / 2;
