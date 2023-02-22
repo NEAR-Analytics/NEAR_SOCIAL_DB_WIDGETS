@@ -234,7 +234,7 @@ return (
             </Title>
 
             <Widget
-              src="calebjacob.near/widget/Feed"
+              src="calebjacob.near/widget/Posts.Feed"
               props={{ accounts: [accountId] }}
             />
           </>
