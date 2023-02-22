@@ -42,7 +42,7 @@ const profile = Social.getr(`${entityId}/profile`);
 
 const controls = isAuthorized ? (
   <div className="d-flex flex-row justify-content-between align-items-center">
-    <a className="btn btn-outline-secondary">
+    <a className="btn btn-outline-secondary me-2">
       <i className="bi-pencil-square" />
       <span>Edit project</span>
     </a>
