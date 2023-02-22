@@ -55,7 +55,13 @@ const ModalFooter = styled.div`
   height: 3rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const AcceptSection = styled.div`
+display: flex;
+  flex-direction: row;
   align-items: center;
   column-gap: 2rem;
 `;
@@ -75,44 +81,50 @@ return (
           <Widget src="michaelpeter.near/widget/TosContentDraft" />
         </ModalContent>
         <ModalFooter>
-          <div id="checkWrapper" className="d-flex flex-row align-items-center">
-            <button
-              onClick={() => {
-                State.update({ agreeIsChecked: !state.agreeIsChecked });
+          <button className="btn btn-danger">Sign Out (WIP)</button>
+          <AcceptSection>
+            <div
+              id="checkWrapper"
+              className="d-flex flex-row align-items-center"
+            >
+              <button
+                onClick={() => {
+                  State.update({ agreeIsChecked: !state.agreeIsChecked });
+                }}
+                className="btn btn-outline-dark"
+                style={{
+                  border: "none",
+                  "--bs-btn-hover-bg": "transparent",
+                  "--bs-btn-active-bg": "transparent",
+                  "--bs-btn-hover-color": "var(--bs-blue)",
+                }}
+              >
+                <i
+                  className={`bi bi-${
+                    state.agreeIsChecked ? "check-square" : "square"
+                  }`}
+                  style={{ fontSize: "1.5rem" }}
+                />
+              </button>
+              <span>I agree to the Terms of Service</span>
+            </div>
+            <CommitButton
+              disabled={!state.agreeIsChecked}
+              data={{
+                index: {
+                  tosAccept: JSON.stringify({
+                    key: acceptanceKey,
+                    value: latestTosVersion,
+                  }),
+                },
               }}
-              className="btn btn-outline-dark"
-              style={{
-                border: "none",
-                "--bs-btn-hover-bg": "transparent",
-                "--bs-btn-active-bg": "transparent",
-                "--bs-btn-hover-color": "var(--bs-blue)",
+              onCommit={() => {
+                State.update({ hasCommittedAcceptance: true });
               }}
             >
-              <i
-                className={`bi bi-${
-                  state.agreeIsChecked ? "check-square" : "square"
-                }`}
-                style={{ fontSize: "1.5rem" }}
-              />
-            </button>
-            <span>I agree to the Terms of Service</span>
-          </div>
-          <CommitButton
-            disabled={!state.agreeIsChecked}
-            data={{
-              index: {
-                tosAccept: JSON.stringify({
-                  key: acceptanceKey,
-                  value: latestTosVersion,
-                }),
-              },
-            }}
-            onCommit={() => {
-              State.update({ hasCommittedAcceptance: true });
-            }}
-          >
-            Continue
-          </CommitButton>
+              Continue
+            </CommitButton>
+          </AcceptSection>
         </ModalFooter>
       </Modal>
     </Backdrop>
