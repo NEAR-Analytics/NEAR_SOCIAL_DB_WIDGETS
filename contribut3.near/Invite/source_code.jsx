@@ -6,6 +6,8 @@ if (!entityId) {
   return "Cannot show invite without entityId or contributorId!";
 }
 
+console.log({ entityId, contributorId });
+
 const invite = Near.view(
   ownerId,
   "get_invite",
