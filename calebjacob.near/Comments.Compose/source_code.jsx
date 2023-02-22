@@ -96,8 +96,6 @@ function onCommit() {
 const Wrapper = styled.div`
   --padding: 12px;
   position: relative;
-  border: 1px solid #ECEEF0;
-  border-radius: 8px;
   margin-left: -12px;
 `;
 
@@ -134,6 +132,8 @@ const Textarea = styled.div`
 
   textarea {
     transition: all 200ms;
+    border: 1px solid #ECEEF0;
+    border-radius: 8px;
 
     &:focus {
       box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
