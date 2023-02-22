@@ -17,7 +17,7 @@ const contributor = Near.view(
 const isAuthorized = Near.view(
   ownerId,
   "check_is_manager_or_higher",
-  { entity_id: accountId, account_id: context.accountId },
+  { entity_id: entityId, account_id: context.accountId },
   "final"
 );
 
