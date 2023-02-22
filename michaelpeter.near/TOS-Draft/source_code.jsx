@@ -66,7 +66,7 @@ const showTos =
 
 return (
   <div>
-    <div>{JSON.stringify(agreementsForUser)}</div>
+    {/*<div>{JSON.stringify(agreementsForUser)}</div>*/}
     {/*latestTosVersion && <div>latestTosVersion: {latestTosVersion}</div>*/}
     {/*agreementsForUser.map((a) => (
       <span key={a}>{JSON.stringify(a)}</span>
