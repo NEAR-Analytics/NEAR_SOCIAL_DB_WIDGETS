@@ -4,7 +4,7 @@ let posts = [];
 
 const indexedPosts = Social.index("post", "main", {
   accountId,
-  limit,
+  limit: 20,
   order: "desc",
 });
 
@@ -19,7 +19,9 @@ if (indexedPosts?.length > 0) {
       const content = json.text.split("\n");
       const title = content[0];
       const url = content[1];
-      const isValid = !!url && url.indexOf("https://") > -1;
+      const lastLine = content.pop() || "";
+      const hasNewsTag = lastLine.indexOf("#news") > 0;
+      const isValid = hasNewsTag && !!url && url.indexOf("https://") > -1;
 
       if (isValid) {
         posts.push({
@@ -32,6 +34,8 @@ if (indexedPosts?.length > 0) {
       }
     }
   });
+
+  posts = posts.slice(0, limit);
 }
 
 const Wrapper = styled.div`
@@ -112,22 +116,26 @@ return (
   <Wrapper>
     <H2>News</H2>
 
-    <Items>
-      {posts.map((item, i) => (
-        <Item key={i}>
-          <Text as="a" href={item.url} target="_blank" bold>
-            {item.title}
-          </Text>
-          <Text small>
-            <Widget
-              src="mob.near/widget/TimeAgo"
-              props={{ blockHeight: item.blockHeight }}
-            />{" "}
-            ago
-          </Text>
-        </Item>
-      ))}
-    </Items>
+    {indexedPosts !== null && posts.length === 0 ? (
+      <Text>No recent news at the moment. Check back soon!</Text>
+    ) : (
+      <Items>
+        {posts.map((item, i) => (
+          <Item key={i}>
+            <Text as="a" href={item.url} target="_blank" bold>
+              {item.title}
+            </Text>
+            <Text small>
+              <Widget
+                src="mob.near/widget/TimeAgo"
+                props={{ blockHeight: item.blockHeight }}
+              />{" "}
+              ago
+            </Text>
+          </Item>
+        ))}
+      </Items>
+    )}
 
     <ButtonLink href="https://near.org/blog/" target="_blank">
       View All News
