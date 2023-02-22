@@ -15,15 +15,8 @@ if (!nftContract) {
   return "No nftContract";
 }
 
-const userNftsData = Near.view(nftContract, "nft_tokens_for_owner", {
-  account_id: accountId,
-});
-const myNft = userNftsData.map((userNftData) => {
-  return userNftData.token_id;
-});
-
-const getPollDetatils = (poll) => {
-  console.log(poll);
+const getPollDetatils = (myNft, poll) => {
+  console.log("poll", poll);
   const getPollOptionVotes = (votes) => {
     return Object.values(votes).reduce((acc, curr) => {
       acc[curr] = acc[curr] ? acc[curr] + 1 : 1;
@@ -41,8 +34,8 @@ const getPollDetatils = (poll) => {
   const pollOptionVotes = getPollOptionVotes(poll.votes);
   const myPollOptionVotes = getPollOptionVotes(myVotes);
 
-  console.log(pollOptionVotes);
-  console.log(myPollOptionVotes);
+  console.log("pollOptionVotes", pollOptionVotes);
+  console.log("myPollOptionVotes", myPollOptionVotes);
   const votedTotal = Object.values(pollOptionVotes).reduce(
     (partialSum, a) => partialSum + a,
     0
@@ -51,7 +44,7 @@ const getPollDetatils = (poll) => {
     (partialSum, a) => partialSum + a,
     0
   );
-  console.log(votedTotal);
+  console.log("votedTotal", votedTotal);
 
   const topic = poll.name;
   const description = poll.description;
@@ -80,24 +73,35 @@ const getPollDetatils = (poll) => {
 };
 
 const updateState = () => {
+  const myNftAsync = Near.asyncView(nftContract, "nft_tokens_for_owner", {
+    account_id: accountId,
+  }).then((userNftsData) => {
+    return userNftsData.map((userNftData) => {
+      return userNftData.token_id;
+    });
+  });
+
   const asyncPolls = Near.asyncView(CONTRACT, "get_votes_by_contract", {
     contract_id: nftContract,
     limit: 1000,
     offset: 0,
   });
-  asyncPolls.then((polls) => {
-    console.log(polls);
 
-    const currentState = getPollDetatils(polls[pollId]);
-    State.update({
-      options: currentState.options,
-      availableToVote: currentState.availableToVote,
-      description: currentState.description,
-      myNftVoted: currentState.myNftVoted,
-      votedTotal: currentState.votedTotal,
-      ownerId: currentState.ownerId,
-      pollStatus: currentState.pollStatus,
-      topic: currentState.topic,
+  myNftAsync.then((myNft) => {
+    console.log("myNft", myNft);
+    asyncPolls.then((polls) => {
+      console.log("polls", polls);
+      const currentState = getPollDetatils(myNft, polls[pollId]);
+      State.update({
+        options: currentState.options,
+        availableToVote: currentState.availableToVote,
+        description: currentState.description,
+        myNftVoted: currentState.myNftVoted,
+        votedTotal: currentState.votedTotal,
+        ownerId: currentState.ownerId,
+        pollStatus: currentState.pollStatus,
+        topic: currentState.topic,
+      });
     });
   });
 };
