@@ -62,7 +62,8 @@ const contentSelector = (
     src={`${ownerId}/widget/TabSelector`}
     props={{
       tab: "inbox",
-      update: (content) => props.update({ content }),
+      update: (content) =>
+        State.update({ content }) && props.update({ content }),
       buttons: [
         {
           id: "proposals",
