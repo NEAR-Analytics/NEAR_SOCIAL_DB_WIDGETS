@@ -3,8 +3,6 @@ const targetProps = props?.targetProps || {};
 // const acceptanceKey = `${context.accountId}/${tosName}`;
 const acceptanceKey = tosName; // TODO
 
-State.init({ showTos: true });
-
 // find all instances of the user agreeing to some version of the desired TOS
 const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
   accountId: context.accountId, // make sure it was written by the user in question
@@ -16,7 +14,7 @@ const tosVersions = Social.keys(tosName, "final", {
 });
 console.log(tosVersions);
 
-// TODO check that path is correct format
+// TODO do path validation before this
 const tosPath = tosName.split("/");
 const latestTosVersion = tosPath.reduce((acc, curr) => {
   return acc[curr];
@@ -59,7 +57,6 @@ const ModalFooter = styled.div`
   justify-content: flex-end;
 `;
 
-// TODO check that 0 is correct index and not last
 const showTos =
   context.accountId &&
   latestTosVersion &&
@@ -73,21 +70,8 @@ return (
     {/*agreementsForUser.map((a) => (
       <span key={a}>{JSON.stringify(a)}</span>
     ))
-    <button
-      onClick={() => {
-        State.update({ showTos: true });
-      }}
-    >
-      show
-    </button>
     */}
-    <Backdrop
-      style={{ display: showTos ? "flex" : "none" }}
-      onClick={() => {
-        State.update({ showTos: false });
-      }}
-      className="flex"
-    >
+    <Backdrop style={{ display: showTos ? "flex" : "none" }} className="flex">
       <Modal>
         <ModalContent>
           <Widget src="michaelpeter.near/widget/TosContentDraft" />
