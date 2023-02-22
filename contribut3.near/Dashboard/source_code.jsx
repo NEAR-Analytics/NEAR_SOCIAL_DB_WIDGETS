@@ -69,6 +69,35 @@ const contentSelectButton = ({ id, text, icon }) => (
 );
 
 const contentSelector = (
+  <Widget
+    src={`${ownerId}/widget/TabSelector`}
+    props={{
+      tab: "dashboard",
+      content: state.content,
+      search: state.search,
+      update: (content) => State.update({ content }),
+      buttons: [
+        {
+          id: "projects",
+          text: "Projects",
+          icon: "bi-boxes",
+        },
+        {
+          id: "contributors",
+          text: "Contributors",
+          icon: "bi-person",
+        },
+        {
+          id: "requests",
+          text: "Requests",
+          icon: "bi-ui-checks-grid",
+        },
+      ],
+    }}
+  />
+);
+
+const contentSelector = (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
     {contentSelectButton({
       id: "projects",
