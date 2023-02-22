@@ -22,8 +22,12 @@ const currentContributor = Near.view(
   "final"
 );
 
-const isAuthorized =
-  !!currentContributor && currentContributor.permissions.includes("Admin");
+const isAuthorized = Near.view(
+  ownerId,
+  "check_is_manager_or_higher",
+  { entity_id: accountId, account_id: context.accountId },
+  "final"
+);
 
 const contributions = Near.view(
   ownerId,
