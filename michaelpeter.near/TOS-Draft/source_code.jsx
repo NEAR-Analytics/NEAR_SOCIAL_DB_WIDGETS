@@ -1,10 +1,23 @@
 const { tosName, targetComponent, targetProps } = props;
-const acceptanceKey = `${context.accountId}/${tosName}`;
+// const acceptanceKey = `${context.accountId}/${tosName}`;
+const acceptanceKey = tosName; // TODO
 
 State.init({ showTos: true });
 
 // find all instances of the user agreeing to some version of the desired TOS
-const agreementsForUser = Social.index("tosAccept", acceptanceKey);
+const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
+  accountId: context.accountId, // make sure it was written by the user in question
+});
+
+const tosVersions = Social.keys(tosName, "final", {
+  return_type: "BlockHeight",
+});
+
+// TODO check that path is correct format
+const tosPath = tosName.split("/");
+const latestTosVersion = tosPath.reduce((acc, curr) => {
+  return acc[curr];
+}, tosVersions);
 
 const Backdrop = styled.div`
   height: 100vh;
@@ -43,12 +56,16 @@ const ModalFooter = styled.div`
   justify-content: flex-end;
 `;
 
+// TODO check that 0 is correct index and not last
+const showTos =
+  agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion;
+
 return (
   <div>
+    {latestTosVersion && <div>latestTosVersion: {latestTosVersion}</div>}
     {agreementsForUser.map((a) => (
       <span key={a}>{JSON.stringify(a)}</span>
     ))}
-    <p>hi</p>
 
     <button
       onClick={() => {
@@ -59,7 +76,7 @@ return (
     </button>
 
     <Backdrop
-      style={{ display: state.showTos ? "flex" : "none" }}
+      style={{ display: showTos ? "flex" : "none" }}
       onClick={() => {
         State.update({ showTos: false });
       }}
@@ -72,10 +89,10 @@ return (
         <ModalFooter>
           <CommitButton
             data={{
-              tosAccept: {
-                genie: JSON.stringify({
+              index: {
+                tosAccept: JSON.stringify({
                   key: acceptanceKey,
-                  value: 1, // TODO blockheight of tos version
+                  value: latestTosVersion,
                 }),
               },
             }}
