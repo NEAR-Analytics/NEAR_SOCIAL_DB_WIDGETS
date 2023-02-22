@@ -28,7 +28,11 @@ const Modal = styled.div`
 `;
 
 const ModalContent = styled.div`
+display: flex;
+flex-direction: column;
 flex-grow:1
+min-height 0;
+overflow-y: scroll;
 `;
 
 const ModalFooter = styled.div`
@@ -45,6 +49,14 @@ return (
       <span key={a}>{JSON.stringify(a)}</span>
     ))}
     <p>hi</p>
+
+    <button
+      onClick={() => {
+        State.update({ showTos: true });
+      }}
+    >
+      show
+    </button>
 
     <Backdrop
       style={{ display: state.showTos ? "flex" : "none" }}
