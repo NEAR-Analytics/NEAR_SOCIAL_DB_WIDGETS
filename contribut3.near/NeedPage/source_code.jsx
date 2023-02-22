@@ -72,7 +72,7 @@ const body = (
           </div>
         </div>
         <div>
-          <div className="d-flex flex-row text-muted me-2">
+          <div className="d-flex flex-row align-items-center text-muted me-2">
             <span className="me-2">By</span>
             <Widget
               src={`${ownerId}/widget/ProfileLine`}
