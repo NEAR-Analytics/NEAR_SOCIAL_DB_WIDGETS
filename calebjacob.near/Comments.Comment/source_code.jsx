@@ -20,7 +20,6 @@ const commentUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?acc
 
 const Comment = styled.div`
   position: relative;
-  background: ${props.highlight ? "#f00" : ""};
 
   &::before {
     content: '';
@@ -30,7 +29,7 @@ const Comment = styled.div`
     top: 44px;
     bottom: 12px;
     width: 2px;
-    background: #ECEEF0;
+    background: ${props.highlight ? "#006ADC" : "#ECEEF0"};
   }
 `;
 
