@@ -120,9 +120,11 @@ return (
           onClick={() => {
             Storage.set("created", "true");
             Storage.set("roomId", newRoomId);
-            State.update({ roomId: newRoomId });
           }}
-          onCommit={() => State.update({ roomCreated: true })}
+          onCommit={() => {
+            State.update({ roomId: newRoomId });
+            State.update({ roomCreated: true });
+          }}
           data={{
             [props.widgetKey]: {
               [newRoomId]: {
