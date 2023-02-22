@@ -127,6 +127,11 @@ const contentSelector = (
       text: "Contributions",
       icon: "bi-people",
     })}
+    {contentSelectButton({
+      id: "proposals",
+      text: "Proposals",
+      icon: "bi-person-left",
+    })}
   </div>
 );
 
