@@ -72,8 +72,6 @@ const Comments = styled.div`
   }
 `;
 
-console.log(content);
-
 return (
   <Post>
     <Header>
