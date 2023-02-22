@@ -123,14 +123,14 @@ const contentSelector = (
       icon: "bi-boxes",
     })}
     {contentSelectButton({
-      id: "contributions",
-      text: "Contributions",
-      icon: "bi-people",
-    })}
-    {contentSelectButton({
       id: "proposals",
       text: "Proposals",
       icon: "bi-person-left",
+    })}
+    {contentSelectButton({
+      id: "contributions",
+      text: "Contributions",
+      icon: "bi-people",
     })}
   </div>
 );
@@ -163,16 +163,16 @@ const content = {
       props={{ accountId, search: state.search, update: props.update }}
     />
   ),
-  contributions: (
-    <Widget
-      src={`${ownerId}/widget/ContributionList`}
-      props={{ search: state.search, update: props.update }}
-    />
-  ),
   proposals: (
     <Widget
       src={`${ownerId}/widget/ContributionRequestList`}
       props={{ accountId, search: state.search, update: props.update }}
+    />
+  ),
+  contributions: (
+    <Widget
+      src={`${ownerId}/widget/ContributionList`}
+      props={{ search: state.search, update: props.update }}
     />
   ),
 }[state.content];
