@@ -10,26 +10,41 @@ const followingData = Social.get(
 if (!profilesData || !followingData) return <></>;
 
 const profiles = Object.entries(profilesData);
-profiles.sort((a, b) => {
-  if (followingData[a[0]] === "" && followingData[b[0]] !== "") return -1;
-  return 0;
-});
 const term = (props.term || "").replace(/\W/g, "").toLowerCase();
 const limit = 5;
 
 for (let i = 0; i < profiles.length; i++) {
-  const search = (profiles[i][0] + profiles[i][1]?.profile?.name)
+  let score = 0;
+  const accountId = profiles[i][0];
+  const accountIdSearch = profiles[i][0].replace(/\W/g, "").toLowerCase();
+  const nameSearch = (profiles[i][1]?.profile?.name || "")
     .replace(/\W/g, "")
     .toLowerCase();
+  const accountIdSearchIndex = accountIdSearch.indexOf(term);
+  const nameSearchIndex = nameSearch.indexOf(term);
 
-  if (search.indexOf(term) > -1) {
+  if (accountIdSearchIndex > -1 || nameSearchIndex > -1) {
+    score += 10;
+
+    if (accountIdSearchIndex === 0) {
+      score += 10;
+    }
+    if (nameSearchIndex === 0) {
+      score += 10;
+    }
+    if (followingData[accountId] === "") {
+      score += 30;
+    }
+
     results.push({
-      accountId: profiles[i][0],
+      accountId,
+      score,
     });
   }
-
-  if (results.length === limit) break;
 }
+
+results.sort((a, b) => b.score - a.score);
+results = results.slice(0, limit);
 
 function onResultClick(id) {
   props.onSelect && props.onSelect(id);
