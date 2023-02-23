@@ -40,6 +40,8 @@ const isAuthorized =
   ) ||
   accountId === contributorId;
 
+const profile = Social.getr(`${entityId}/profile`);
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
