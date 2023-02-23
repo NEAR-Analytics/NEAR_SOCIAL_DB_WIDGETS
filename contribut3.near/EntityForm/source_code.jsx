@@ -99,12 +99,7 @@ const header = <div className="card-header">Create an entity</div>;
 
 const body = (
   <div className="card-body">
-    <div className="row">
-      {nameInput}
-      {accountIdInput}
-      {kindInput}
-      {startDateInput}
-    </div>
+    <div className="row"></div>
   </div>
 );
 
@@ -131,12 +126,13 @@ const footer = (
 
 return (
   <div className="px-3" style={{ maxWidth: "45em" }}>
-    <h1 className="fs-2 mb-3 pb-3">Create new contribution request</h1>
+    <h1 className="fs-2 mb-3 pb-3">Create new project</h1>
     <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
-        {entityIdInput}
-        {contributionTypeInput}
-        {descriptionInput}
+        {nameInput}
+        {accountIdInput}
+        {kindInput}
+        {startDateInput}
       </div>
     </div>
     <div className="d-flex flex-row justify-content-between">
