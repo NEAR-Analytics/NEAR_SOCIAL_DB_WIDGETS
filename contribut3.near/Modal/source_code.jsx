@@ -4,10 +4,11 @@ const confirmText = props.confirmText;
 const onConfirm = props.onConfirm;
 const hidden = props.hidden;
 
-return hidden ? (
-  <></>
-) : (
-  <div className={`modal fade show`} aria-hidden={hidden}>
+return (
+  <div
+    className={`modal fade ${hidden ? "" : "show d-block"}`}
+    aria-hidden={hidden}
+  >
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
