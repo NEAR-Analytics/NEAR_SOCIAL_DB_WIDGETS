@@ -6,8 +6,6 @@ if (!accountId) {
   return "Cannot render contribution list without account ID!";
 }
 
-console.log(accountId);
-
 const contributions = Object.keys(
   Near.view(
     ownerId,
