@@ -1,7 +1,6 @@
 const { tosName, targetComponent } = props;
 const targetProps = props?.targetProps || {};
-// const acceptanceKey = `${context.accountId}/${tosName}`;
-const acceptanceKey = tosName; // TODO
+const acceptanceKey = tosName; // may change
 
 State.init({
   hasCommittedAcceptance: false,
@@ -19,7 +18,7 @@ const tosVersions = Social.keys(tosName, "final", {
   // subscribe: true,
 });
 
-// TODO do path validation before this
+// TODO path validation before this
 const tosPath = tosName.split("/");
 const latestTosVersion = tosPath.reduce((acc, curr) => {
   return acc[curr];
