@@ -151,7 +151,7 @@ return (
         />
       )}
       {state.polls.length === 0 && (
-        <div>Collection currently has no created polls</div>
+        <div>The collection currently has no polls created</div>
       )}
       {state.polls.map((poll, i) => {
         return (
