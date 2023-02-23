@@ -34,27 +34,19 @@ const generateRoomId = () => {
   return `${context.accountId}-${props.widgetKey}-room-${uuidv4()}`;
 };
 
-// const newRoomId = generateRoomId();
-
 const findRoom = (created) => {
   if (created) {
     created = false;
   }
-  console.log("In findRoom");
-  console.log('"Created" arg', created);
-  console.log("state.roomId", state.roomId);
-  console.log('Storage.get("roomId")', Storage.get("roomId"));
   const ownerAccountId = created
     ? Storage.get("roomId").split("-")[0]
     : state.roomId.split("-")[0];
   Storage.set("created", "false");
 
-  console.log("ownerAccountId", ownerAccountId);
-  console.log("getting roomData");
   const roomData = Social.getr(
     `${ownerAccountId}/${props.widgetKey}/${state.roomId}`
   );
-  console.log("roomData", roomData);
+
   if (!roomData) {
     State.update({
       errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
@@ -72,17 +64,13 @@ const findRoom = (created) => {
 };
 
 if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
-  console.log("Redirecting to game");
   const ownerAccountId = Storage.get("roomId").split("-")[0];
   Storage.set("created", "false");
 
-  console.log("ownerAccountId", ownerAccountId);
-  console.log("getting roomData");
   const queryString = `${ownerAccountId}/${props.widgetKey}/${Storage.get(
     "roomId"
   )}`;
   const roomData = Social.getr(queryString);
-  console.log("roomData", roomData);
   if (!roomData) {
     State.update({
       errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
