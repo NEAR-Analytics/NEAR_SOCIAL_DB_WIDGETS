@@ -1,6 +1,7 @@
 const ownerId = "contribut3.near";
 const entityId = props.entityId;
 const contributorId = props.contributorId;
+const id = props.id;
 const createDate = () => {
   const date = new Date();
   const year = date.getFullYear();
