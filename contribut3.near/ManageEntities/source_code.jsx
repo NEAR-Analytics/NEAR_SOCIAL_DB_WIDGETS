@@ -4,7 +4,7 @@ const availableContent = ["projects", "contributions", "requests"];
 
 const getContent = (content) => {
   if (!content || !availableContent.includes(content)) {
-    return "projects";
+    return "contributions";
   }
 
   return content;
