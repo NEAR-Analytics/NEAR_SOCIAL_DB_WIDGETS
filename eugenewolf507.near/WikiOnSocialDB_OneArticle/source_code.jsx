@@ -22,11 +22,11 @@ const article = JSON.parse(
 State.update({ article });
 
 // ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
+// we attach all comments to the first initial article (which version = 0)
 const articlesIndex = Social.index(addressForArticles, "main", {
   order: "asc",
   accountId: state.article.author,
 });
-// console.log("articlesIndex", articlesIndex);
 
 const resultArticles =
   articlesIndex &&
@@ -39,8 +39,6 @@ const resultArticles =
     return [...acc, postDataWithBlockHeight];
   }, []);
 
-// console.log("resultArticles", resultArticles);
-
 const firstArticle =
   resultArticles &&
   resultArticles.find(
@@ -48,18 +46,13 @@ const firstArticle =
   );
 
 const firstArticleBlockHeight = firstArticle.blockHeight;
-// console.log("firstArticle", firstArticle);
-// console.log("DATA TO ATACH", firstArticleBlockHeight);
 
+// ======= Item for comment =======
 const item = {
   type: "social",
   path: `${state.article.author}/${addressForArticles}/main`,
   blockHeight: firstArticleBlockHeight,
 };
-
-// ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
-
-// ======= Item for comment =======
 
 const saveArticle = (args) => {
   const newArticleData = {
@@ -90,16 +83,8 @@ const saveArticle = (args) => {
   Social.set(newData, { force: true });
 };
 
-const getDate = (timestamp) => {
-  const date = new Date(Number(timestamp));
-  return date.toDateString();
-};
-
 return (
   <>
-    {/* ======= CONNECT COMMENTS ======= */}
-    <button onClick={clickHandler}>GET DATA (delete this button)</button>
-    {/* ======= CONNECT COMMENTS ======= */}
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
       props={{ currentNavPill: "articles" }}
@@ -211,30 +196,15 @@ return (
         />
       </div>
       {/* === FOOTER === */}
-      <div className="mt-5 alert alert-secondary">
-        <div>
-          Created by{" "}
-          <a
-            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.author}`}
-            target="_blank"
-            style={{ textDecoration: "underline" }}
-          >
-            {state.article.author}
-          </a>
-          <br />
-          Last edit by{" "}
-          <a
-            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
-            style={{ textDecoration: "underline" }}
-          >
-            {state.article.lastEditor}
-          </a>
-          <br />
-          Edited on {getDate(state.article.timeLastEdit)}
-          <br />
-          Edit versions: {state.article.version}
-        </div>
-      </div>
+      <Widget
+        src={`${authorForWidget}/widget/WikiOnSocialDB_OneArticle.Footer`}
+        props={{
+          author: state.article.author,
+          lastEditor: state.article.lastEditor,
+          timeLastEdit: state.article.timeLastEdit,
+          version: state.article.version,
+        }}
+      />
     </div>
   </>
 );
