@@ -115,6 +115,7 @@ const body = (
               entity: accountId,
               hidden: state.contributionFormHidden,
               need: cid,
+              contributionType: contributionNeed.contribution_type,
               onClose: () => State.update({ contributionFormHidden: true }),
             }}
           />
