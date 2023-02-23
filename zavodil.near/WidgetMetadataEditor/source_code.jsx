@@ -8,6 +8,8 @@ if (metadata === null) {
   return "Loading";
 }
 
+console.log(onChange);
+
 if (forcedTag) {
   const tags = Object.keys(metadata.tags ?? {});
   if (tags.length) {
@@ -15,6 +17,10 @@ if (forcedTag) {
       metadata.tags[[forcedTag]] = "";
     }
   } else metadata.tags = { [forcedTag]: "" };
+
+  if (onChange) {
+    onChange();
+  }
 }
 
 return (
