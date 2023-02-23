@@ -63,10 +63,6 @@ if (tag) {
   keys = Object.entries(taggedProfiles)
     .map((kv) => Object.keys(kv[1].profile).map((b) => `${kv[0]}/profile/${b}`))
     .flat();
-
-  if (!keys.length) {
-    return render(`No profiles found by tag #${tag}`);
-  }
 }
 
 const data = Social.keys(keys, "final", {
