@@ -100,22 +100,10 @@ const body = (
             </div>
           ),
           additionalRow: (
-            <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder, update: props.update }}
-              />
-              <Widget
-                src={`${ownerId}/widget/Tags`}
-                props={{ tags: profile.tags }}
-              />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description: entity.description || profile.description,
-                }}
-              />
-            </>
+            <Widget
+              src={`${ownerId}/widget/Tags`}
+              props={{ tags: profile.tags }}
+            />
           ),
         }}
       />
