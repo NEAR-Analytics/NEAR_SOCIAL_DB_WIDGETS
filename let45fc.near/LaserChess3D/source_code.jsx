@@ -25,7 +25,7 @@ return (
       src="let45fc.near/widget/UsersMatcher"
       props={{
         widgetKey: "laserchess3d",
-        widgeName: "Laser chess",
+        widgetName: "Laser chess",
         loadRoomCallback: callback,
         initialValue: {
           boardNotation:
