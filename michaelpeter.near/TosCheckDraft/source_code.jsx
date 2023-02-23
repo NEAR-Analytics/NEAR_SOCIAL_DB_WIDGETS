@@ -80,7 +80,9 @@ const CheckButton = styled.button`
   --bs-btn-hover-bg: transparent;
   --bs-btn-active-bg: transparent;
   --bs-btn-color: ${state.agreeIsChecked ? "var(--bs-green)" : "black"};
-  --bs-btn-hover-color: var(--bs-blue);
+  --bs-btn-hover-color: ${
+    state.agreeIsChecked ? "var(--bs-green)" : "var(--bs-blue)"
+  };
 `;
 
 const expand = (e) => {
@@ -109,17 +111,19 @@ return (
               }}
               className="btn btn-outline-dark"
             >
-              <i
-                className={`bi bi-${
-                  state.agreeIsChecked ? "check-square" : "square"
-                }`}
-                style={{ fontSize: "1.5rem" }}
-              />
+              <div className="d-flex flex-row align-items-center gap-3">
+                <i
+                  className={`bi bi-${
+                    state.agreeIsChecked ? "check-square" : "square"
+                  }`}
+                  style={{ fontSize: "1.5rem" }}
+                />
+                <span style={{ textAlign: "left" }}>
+                  I agree to the Terms of Service, Privacy Policy, and Community
+                  Guidelines
+                </span>
+              </div>
             </CheckButton>
-            <span>
-              I agree to the Terms of Service, Privacy Policy, and Community
-              Guidelines
-            </span>
           </CheckWrapper>
           <AcceptSection>
             <button
