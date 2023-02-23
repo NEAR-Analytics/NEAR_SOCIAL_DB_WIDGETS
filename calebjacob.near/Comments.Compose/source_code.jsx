@@ -248,6 +248,11 @@ return (
       <textarea
         placeholder="Write your reply..."
         onInput={(event) => textareaInputHandler(event.target.value)}
+        onKeyUp={(event) => {
+          if (event.key === "Escape") {
+            State.update({ showAccountAutocomplete: false });
+          }
+        }}
         value={state.text}
       />
     </Textarea>
