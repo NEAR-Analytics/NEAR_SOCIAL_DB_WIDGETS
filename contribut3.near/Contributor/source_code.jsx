@@ -112,7 +112,11 @@ const body = (
               />
               <Widget
                 src={`${ownerId}/widget/InviteForm`}
-                props={{ id: `${accountId}InviteForm`, accountId }}
+                props={{
+                  id: `${accountId}InviteForm`,
+                  accountId,
+                  hidden: state.inviteFormHidden,
+                }}
               />
             </div>
           ),
