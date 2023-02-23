@@ -56,8 +56,8 @@ const Arrow = styled.i`
 // `;
 
 const DocContent = styled.div`
-  overflow-y: scroll;
 `;
+// overflow-y: scroll;
 
 return (
   <Wrapper className="d-flex flex-column gap-3 justify-content-center">
