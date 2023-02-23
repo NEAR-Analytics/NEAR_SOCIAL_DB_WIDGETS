@@ -1,7 +1,7 @@
 // Pagination built off of https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
 
-const RANGE_ITEM = -1;
-const siblingCount = 1;
+const RANGE_ITEM = "...";
+const siblingCount = props.siblingCount ?? 1;
 const totalCount = props.totalCount;
 const pageSize = props.pageSize;
 const totalPageCount = props.totalPageCount ?? Math.ceil(totalCount / pageSize);
@@ -14,12 +14,16 @@ const onPageChange =
 // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
 const totalPageNumbers = siblingCount + 5;
 
-const PaginationContainer = styled.ul`
+const PaginationContainer =
+  props.paginationContainer ??
+  styled.ul`
     display: flex;
     list-style-type: none;
 `;
 
-const PaginationItem = styled.li`
+const PaginationItem =
+  props.paginationItem ??
+  styled.li`
     padding: 0 12px;
     height: 32px;
     text-align: center;
@@ -138,35 +142,30 @@ const viewRange = (currentPage) => {
   }
 };
 
-initState({
-  pageRanges: viewRange(0),
-});
-
 const onClickPage = (pageNumber) => {
   if (pageNumber == RANGE_ITEM) {
     return;
   }
 
   const pageRanges = viewRange(pageNumber);
-  console.log("NEW RANGES", pageRanges);
   State.update({
     pageRanges,
   });
 
-  console.log("NEW ", state.pageRanges);
-
   return onPageChange(pageNumber);
 };
 
+initState({
+  pageRanges: viewRange(0),
+});
+
 return (
   <PaginationContainer>
-    {state.pageRanges?.length > 0 &&
-      state.pageRanges.map((pageNumber) => {
-        return (
-          <PaginationItem onClick={() => onClickPage(pageNumber)}>
-            {pageNumber !== RANGE_ITEM ? pageNumber : <>&#8230;</>}
-          </PaginationItem>
-        );
-      })}
+    {state.pageRanges &&
+      state.pageRanges.map((pageNumber) => (
+        <PaginationItem onClick={() => onClickPage(pageNumber)}>
+          {pageNumber !== RANGE_ITEM ? pageNumber : <>&#8230;</>}
+        </PaginationItem>
+      ))}
   </PaginationContainer>
 );
