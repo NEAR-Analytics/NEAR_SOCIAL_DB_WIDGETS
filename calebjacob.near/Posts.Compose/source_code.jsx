@@ -308,7 +308,7 @@ const AutoComplete = styled.div`
   left: 0;
   right: 0;
 
-  > div {
+  > div > div {
     padding: calc(var(--padding) / 2);
   }
 `;
