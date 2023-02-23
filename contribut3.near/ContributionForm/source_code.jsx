@@ -31,9 +31,9 @@ const body = (
         src={`${ownerId}/widget/DateInput`}
         props={{
           id: "start-date",
-          text: "Founding date",
-          date: state.startDate,
-          update: (startDate) => State.update({ startDate }),
+          text: "End date *",
+          date: state.endDate,
+          update: (endDate) => State.update({ endDate }),
         }}
       />
     </div>
