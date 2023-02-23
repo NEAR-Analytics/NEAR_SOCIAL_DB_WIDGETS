@@ -36,7 +36,23 @@ const existingEntities = (
   Near.view(ownerId, "get_entities", {}, "final") ?? []
 ).map(([accountId]) => ({ name: accountId }));
 
-const entityEditor = (
+const entityEditor = props.entity ? (
+  <div>
+    <label htmlFor="account-id" className="text-muted fw-semibold">
+      Contribute to:
+    </label>
+    <div
+      className="rounded-3 bg-light"
+      style={{ height: "5em" }}
+      id="account-id"
+    >
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{ accountId: props.entity, imageSize: "4em", isEntity: true }}
+      />
+    </div>
+  </div>
+) : (
   <div className="col-lg-12  mb-2">
     <label htmlFor="enity-id">Entity account ID:</label>
     <Typeahead
