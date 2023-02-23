@@ -42,7 +42,7 @@ const canUseCreator = () => {
   return usersNftDataAsync.then((usersNftData) => {
     console.log(usersNftData);
 
-    return (usersNftData.length = 0);
+    return usersNftData.length > 0;
   });
 };
 
