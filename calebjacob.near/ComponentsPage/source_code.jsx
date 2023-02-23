@@ -29,6 +29,16 @@ if (data) {
   components = result.slice(0, state.currentPage * limitPerPage + limitPerPage);
 }
 
+function onSearchChange({ result, term }) {
+  if (term.trim()) {
+    State.update({ searchResults: result || [] });
+  } else {
+    State.update({ searchResults: null });
+  }
+}
+
+const items = state.searchResults || components;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,6 +50,56 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+const SubHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+`;
+
+const Search = styled.div`
+  width: 246px;
+  height: 40px;
+  position: relative;
+
+  .bi-search {
+      position: absolute;
+      top: 0;
+      left: 18px;
+      z-index: 100;
+      font-size: 14px;
+      line-height: 40px;
+      color: #687076;
+  }
+
+  .input-group {
+      height: 100%;
+  }
+
+  input {
+      padding: 0 14px 0 42px;
+      border: 1px solid #D0D5DD;
+      background: #FFFFFF;
+      border-radius: 100px;
+  }
+
+  button {
+      border-color: #D0D5DD !important;
+      border-radius: 0 100px 100px 0 !important;
+      border-left: none !important;
+      background: #fff !important;
+      color: #687076 !important;
+
+      &:hover, &:focus {
+          color: #000 !important;
+      }
+  }
+
+  .spinner-grow {
+      display: none !important; 
+  }
 `;
 
 const H1 = styled.h1`
@@ -136,27 +196,49 @@ return (
       <H2>Discover the latest components from the NEAR community.</H2>
     </Header>
 
-    <Text>{totalComponents} components</Text>
+    <SubHeader>
+      <Text>{totalComponents} components</Text>
 
-    <Items>
-      {components.map((component, i) => (
-        <Item key={i}>
-          <Widget
-            src="calebjacob.near/widget/ComponentCard"
-            props={{
-              src: `${component.accountId}/widget/${component.widgetName}`,
-              blockHeight: component.blockHeight,
-            }}
-          />
-        </Item>
-      ))}
-    </Items>
+      <Search>
+        <i className="bi bi-search"></i>
+        <Widget
+          src="mob.near/widget/ComponentSearch"
+          props={{
+            placeholder: "Search components",
+            limit: 21,
+            onChange: onSearchChange,
+          }}
+        />
+      </Search>
+    </SubHeader>
 
-    <Button
-      type="button"
-      onClick={() => State.update({ currentPage: state.currentPage + 1 })}
-    >
-      Load More
-    </Button>
+    {state.searchResults?.length === 0 && (
+      <Text>No components matched your search.</Text>
+    )}
+
+    {items.length > 0 && (
+      <Items>
+        {items.map((component, i) => (
+          <Item key={component.accountId + component.widgetName}>
+            <Widget
+              src="calebjacob.near/widget/ComponentCard"
+              props={{
+                src: `${component.accountId}/widget/${component.widgetName}`,
+                blockHeight: component.blockHeight,
+              }}
+            />
+          </Item>
+        ))}
+      </Items>
+    )}
+
+    {!state.searchResults && (
+      <Button
+        type="button"
+        onClick={() => State.update({ currentPage: state.currentPage + 1 })}
+      >
+        Load More
+      </Button>
+    )}
   </Wrapper>
 );
