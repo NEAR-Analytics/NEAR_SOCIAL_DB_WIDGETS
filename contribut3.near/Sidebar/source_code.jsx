@@ -80,8 +80,8 @@ return (
       id: "about",
     })}
     <a className="nav-link mt-2 rounded-3 p-2" href="https://near.social/#/">
-      <i className={icon} />
-      <span>{text}</span>
+      <i className="bi-escape" />
+      <span>Exit application</span>
     </a>
   </div>
 );
