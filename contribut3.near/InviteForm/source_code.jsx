@@ -117,7 +117,7 @@ const permissionsInput = (
 
 const entityIdInput = (
   <Widget
-    src={``}
+    src={`${ownerId}/widget/AdminEntityAccountIdInput`}
     props={{
       update: (entityId) => {
         State.update({ entityId });
