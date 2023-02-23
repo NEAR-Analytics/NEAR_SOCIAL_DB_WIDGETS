@@ -18,7 +18,7 @@ const defaultNoImageUrl =
 const getNftData = () => {
   const nftCollectionDataAsync = Near.asyncView(nftContract, "nft_metadata");
   return nftCollectionDataAsync.then((nftCollectionData) => {
-    console.log(nftCollectionData);
+    console.log("nftCollectionData", nftCollectionData);
     return {
       nftSymbol: nftCollectionData.symbol,
       name: nftCollectionData.name,
@@ -40,7 +40,7 @@ const canUseCreator = () => {
     }
   );
   return usersNftDataAsync.then((usersNftData) => {
-    console.log(usersNftData);
+    console.log("usersNftData", usersNftData);
 
     return usersNftData.length > 0;
   });
