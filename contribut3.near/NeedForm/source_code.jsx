@@ -86,7 +86,7 @@ const onSubmit = () => {
 };
 
 return (
-  <div className="ms-3" style={{ maxWidth: "45em" }}>
+  <div className="px-3" style={{ maxWidth: "45em" }}>
     <h1 className="fs-2">Create new contribution request</h1>
     <div className="bg-light m-2 p-4 rounded-2">
       <div className="row">
