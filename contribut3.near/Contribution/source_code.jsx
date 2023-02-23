@@ -19,24 +19,26 @@ const contribution = Near.view(
   true
 );
 
-const currentAccountContribution = Near.view(
-  ownerId,
-  "get_contribution",
-  { entity_id: entityId, contributor_id: accountId },
-  "final"
-);
-
 if (!contribution) {
   return "Loading...";
 }
 
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { account_id: accountId, entity_id: entityId },
-  "final",
-  true
-);
+const isAuthorized =
+  Near.view(
+    ownerId,
+    "check_is_manager_or_higher",
+    { account_id: accountId, entity_id: entityId },
+    "final",
+    true
+  ) ||
+  Near.view(
+    ownerId,
+    "check_is_manager_or_higher",
+    { account_id: accountId, entity_id: contributorId },
+    "final",
+    true
+  ) ||
+  accountId === contributorId;
 
 const finishButton =
   isAuthorized && !contribution.current.end_date ? (
