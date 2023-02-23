@@ -83,10 +83,27 @@ const Wrapper = styled.div`
   }
 `;
 
+const CloseButton = styled.button`
+    background: none;
+    border: none;
+    display: block;
+    padding: 12px;
+    color #687076;
+    transition: all 200ms;
+
+    &:hover {
+        color: #000;
+    }
+`;
+
 if (results.length === 0) return <></>;
 
 return (
   <Wrapper>
+    <CloseButton type="button" onClick={props.onClose}>
+      <i className="bi bi-x-circle" />
+    </CloseButton>
+
     {results.map((result) => {
       return (
         <Widget
