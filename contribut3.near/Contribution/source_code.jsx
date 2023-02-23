@@ -60,7 +60,7 @@ const body = (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
-                props={{ active: entity.status }}
+                props={{ active: !!contribution.end_date }}
               />
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
