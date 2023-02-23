@@ -109,15 +109,11 @@ const body = (
         />
       </div>
     </div>
-    <Markdown text={profile.description} />
+    <Markdown text={contributor.resume || profile.description} />
     <div className="d-flex flex-row justify-content-between align-items-center">
       <Widget
         src={`${ownerId}/widget/SocialLinks`}
         props={{ links: profile.linktree ?? {} }}
-      />
-      <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId: founder }}
       />
     </div>
   </div>
