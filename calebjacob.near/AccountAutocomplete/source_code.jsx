@@ -67,7 +67,7 @@ const Wrapper = styled.div`
     button {
         border: 1px solid #ECEEF0;
         border-radius: 6px;
-        padding: 6px;
+        padding: 3px 6px;
         transition: all 200ms;
 
         &:focus, &:hover {
@@ -87,6 +87,7 @@ return (
           key={result.accountId}
           src="calebjacob.near/widget/AccountProfile"
           props={{
+            avatarSize: "34px",
             accountId: result.accountId,
             onClick: onResultClick,
             overlayPlacement: "bottom",
