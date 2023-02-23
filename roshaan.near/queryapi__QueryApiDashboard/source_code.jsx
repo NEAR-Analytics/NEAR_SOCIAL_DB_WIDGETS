@@ -145,8 +145,9 @@ const indexerView = (accountId, indexerName, idx) => {
 `;
 
   const CardFooter = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
   border-top: 1px solid #eceef0;
@@ -222,6 +223,8 @@ const indexerView = (accountId, indexerName, idx) => {
 
   const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
+  const viewSchemaUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=schema-window`;
+
   return (
     <Card selected={isSelected}>
       <CardBody>
@@ -247,7 +250,7 @@ const indexerView = (accountId, indexerName, idx) => {
         </div>
       </CardBody>
 
-      <CardFooter>
+      <CardFooter className="flex justify-center items-center">
         <ButtonLink
           href={statusUrl}
           onClick={() =>
@@ -271,6 +274,18 @@ const indexerView = (accountId, indexerName, idx) => {
         >
           Edit Indexer
         </ButtonLink>
+        <TextLink
+          bold
+          href={viewSchemaUrl}
+          onClick={() =>
+            State.update({
+              activeTab: "schema-window",
+              selected_indexer: indexerName,
+            })
+          }
+        >
+          View Schema
+        </TextLink>
       </CardFooter>
     </Card>
   );
