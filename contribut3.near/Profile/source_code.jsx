@@ -161,34 +161,10 @@ const searchBar = (
 );
 
 const content = {
-  requests: (
-    <Widget
-      src={`${ownerId}/widget/NeedList`}
-      props={{ accountId, search: state.search, update: props.update }}
-    />
-  ),
-  proposals: (
-    <Widget
-      src={`${ownerId}/widget/ContributionRequestList`}
-      props={{ accountId, search: state.search, update: props.update }}
-    />
-  ),
   contributions: (
     <Widget
       src={`${ownerId}/widget/ContributionList`}
       props={{ search: state.search, update: props.update }}
-    />
-  ),
-  contributors: (
-    <Widget
-      src={`${ownerId}/widget/ContributorList`}
-      props={{ accountId, search: state.search, update: props.update }}
-    />
-  ),
-  invitations: (
-    <Widget
-      src={`${ownerId}/widget/InviteList`}
-      props={{ accountId, search: state.search, update: props.update }}
     />
   ),
 }[state.content];
