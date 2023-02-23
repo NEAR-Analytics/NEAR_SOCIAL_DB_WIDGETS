@@ -128,8 +128,8 @@ const contentSelector = (
     src={`${ownerId}/widget/TabSelector`}
     props={{
       tab: "need",
-      content: state.content,
-      search: state.search,
+      content: props.content,
+      search: props.search,
       accountId: props.accountId,
       cid: props.cid,
       update: (content) => props.update({ content }),
