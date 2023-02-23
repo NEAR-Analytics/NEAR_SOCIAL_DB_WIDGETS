@@ -42,7 +42,7 @@ const accountIdInput = accountId ? (
       You're inviting:
     </label>
     <div
-      className="rounded-5 bg-secondary"
+      className="rounded-3 bg-secondary"
       style={{ height: "5em", color: "white !important" }}
       id="account-id"
     >
