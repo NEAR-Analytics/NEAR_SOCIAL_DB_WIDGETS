@@ -53,7 +53,6 @@ function onResultClick(id) {
 const Wrapper = styled.div`
   position: relative;
   background: #ECEEF0;
-  padding: 6px;
 
   &::before {
       content: '';
@@ -70,6 +69,7 @@ const Wrapper = styled.div`
 const Scroller = styled.div`
   position: relative;
   display: flex;
+  padding: 6px;
   gap: 6px;
   overflow: auto;
   scroll-behavior: smooth;
