@@ -41,9 +41,11 @@ const resultArticles =
 
 // console.log("resultArticles", resultArticles);
 
-const firstArticle = resultArticles.find(
-  (article) => article.articleId === state.article.articleId
-);
+const firstArticle =
+  resultArticles &&
+  resultArticles.find(
+    (article) => article.articleId === state.article.articleId
+  );
 
 const firstArticleBlockHeight = firstArticle.blockHeight;
 // console.log("firstArticle", firstArticle);
