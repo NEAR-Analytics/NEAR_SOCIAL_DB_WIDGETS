@@ -199,23 +199,13 @@ const onSubmit = () => {
 const header = <div className="card-header">Invite contributor</div>;
 
 const body = (
-  <div className="card-body">
-    <div className="row">
-      {entityIdInput}
-      {accountIdInput}
-      {contributionTypeInput}
-      {startDateInput}
-      {permissionsInput}
-      {descriptionInput}
-    </div>
-
-    <a
-      className={`btn ${!state.accountIdValid ? "btn-secondary" : "btn-primary"
-        } mb-2`}
-      onClick={onSubmit}
-    >
-      Invite
-    </a>
+  <div>
+    {accountIdInput}
+    {entityIdInput}
+    {contributionTypeInput}
+    {startDateInput}
+    {permissionsInput}
+    {descriptionInput}
   </div>
 );
 
