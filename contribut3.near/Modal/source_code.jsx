@@ -5,7 +5,13 @@ const onConfirm = props.onConfirm;
 const id = props.id;
 
 return (
-  <div className="modal fade" tabIndex="-1" id={id}>
+  <div
+    className="modal fade"
+    tabIndex="-1"
+    id={id}
+    data-bs-backdrop="static"
+    aria-hidden="true"
+  >
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
