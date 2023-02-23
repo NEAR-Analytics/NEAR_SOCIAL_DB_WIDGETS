@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const entityId = props.entityId;
 const contributorId = props.contributorId;
 const accountId = context.accountId;
+const isEntity = props.isEntity ?? false;
 
 State.init({
   finishFormHidden: true,
@@ -27,7 +28,7 @@ const isAuthorized = Near.view(
   true
 );
 
-const profile = Social.getr(`${entityId}/profile`);
+const profile = Social.getr(`${isEntity ? contributorId : entityId}/profile`);
 
 const body = (
   <div
@@ -39,8 +40,8 @@ const body = (
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
-          accountId: entityId,
-          isEntity: true,
+          accountId: isEntity ? contributorId : entityId,
+          isEntity,
           imageSize: "3em",
           update: props.update,
           additionalColumn: (
