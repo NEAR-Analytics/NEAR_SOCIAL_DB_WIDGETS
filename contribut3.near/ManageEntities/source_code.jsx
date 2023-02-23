@@ -65,8 +65,8 @@ const contentSelector = (
     src={`${ownerId}/widget/TabSelector`}
     props={{
       tab: "entities",
-      content: state.content,
-      search: state.search,
+      content: props.content,
+      search: props.search,
       update,
       buttons: [
         {
