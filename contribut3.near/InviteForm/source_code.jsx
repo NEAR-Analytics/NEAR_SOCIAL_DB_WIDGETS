@@ -48,7 +48,7 @@ const accountIdInput = accountId ? (
     >
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId, size: "4em" }}
+        props={{ accountId, imageSize: "4em" }}
       />
     </div>
   </div>
