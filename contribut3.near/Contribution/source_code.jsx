@@ -47,9 +47,7 @@ const body = (
           isEntity: true,
           imageSize: "3em",
           update: props.update,
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
+          additionalColumn: (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
