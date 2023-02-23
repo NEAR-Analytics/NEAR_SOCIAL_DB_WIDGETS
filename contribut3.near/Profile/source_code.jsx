@@ -110,7 +110,7 @@ const body = (
       </div>
     </div>
     <Markdown text={contributor.resume || profile.description} />
-    <div className="d-flex flex-row justify-content-between align-items-center">
+    <div className="d-flex flex-row justify-content-start align-items-center">
       <Widget
         src={`${ownerId}/widget/SocialLinks`}
         props={{ links: profile.linktree ?? {} }}
