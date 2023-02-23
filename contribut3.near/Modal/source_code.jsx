@@ -8,6 +8,7 @@ const onClose = props.onClose;
 return (
   <div
     className={`modal fade ${hidden ? "" : "show d-block"}`}
+    data-bs-backdrop="static"
     aria-hidden={hidden}
   >
     <div className="modal-dialog">
