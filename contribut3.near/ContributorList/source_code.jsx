@@ -4,17 +4,17 @@ const accountId = props.accountId;
 const cid = props.cid;
 
 const allContributors = (
-  Near.view(
-    ownerId,
-    accountId
-      ? cid
-        ? "get_need_contributions"
-        : "get_entity_contributions"
-      : "get_contributors",
-    accountId ? { account_id: accountId } : {},
-    "final",
-    true
-  ) ?? []
+  accountId
+    ? Object.keys(
+      Near.view(
+        ownerId,
+        cid ? "get_need_contributions" : "get_entity_contributions",
+        { account_id: accountId },
+        "final",
+        true
+      ) ?? {}
+    )
+    : Near.view(ownerId, "get_contributors", {}, "final", true) ?? []
 ).filter((ids) => (accountId ? ids[0].includes(search) : ids.includes(search)));
 
 if (!allContributors || allContributors.length === 0) {
