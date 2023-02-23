@@ -96,6 +96,13 @@ return (
     </div>
     <div className="card-footer">
       <a
+        className="btn-outline-secondary"
+        href={`https://near.social/#/${ownerId}/widget/Index`}
+        onClick={() => props.update("")}
+      >
+        Cancel
+      </a>
+      <a
         className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
             ? "btn-secondary"
             : "btn-primary"
