@@ -11,6 +11,7 @@ const ownerId = "contribut3.near";
 const accountId = props.accountId ?? "";
 const kind = props.kind ? [{ name: props.kind }] : [];
 const startDate = props.startDate ?? createDate();
+const id = props.id;
 
 const allContributionTypes = (
   Near.view(ownerId, "get_contribution_types", {}, "final", true) ?? []
@@ -216,6 +217,23 @@ const body = (
       Invite
     </a>
   </div>
+);
+
+const form = (
+  <Widget
+    src={`${ownerId}/widget/Modal`}
+    props={{
+      title: "Invite to contribute",
+      confirmText: (
+        <>
+          <i className="bi-send" />
+          <span>Send invitation</span>
+        </>
+      ),
+      body,
+      id,
+    }}
+  />
 );
 
 return (
