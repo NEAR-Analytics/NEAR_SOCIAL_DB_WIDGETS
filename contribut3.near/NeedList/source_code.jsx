@@ -58,7 +58,6 @@ return (
           props={{
             accountId,
             cid,
-            notStandalone: props.notStandalone,
             update: props.update,
           }}
         />
