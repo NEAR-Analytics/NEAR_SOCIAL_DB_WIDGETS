@@ -1,7 +1,5 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
-const notStandalone = props.notStandalone ?? false;
-const isPreview = props.isPreview ?? false;
 
 if (!accountId) {
   return "Cannot show entity without account ID!";
