@@ -40,26 +40,6 @@ const isAuthorized =
   ) ||
   accountId === contributorId;
 
-const finishButton =
-  isAuthorized && !contribution.current.end_date ? (
-    <div className="card-footer">
-      {endDateInput}
-      <a
-        className="btn btn-outline-primary mb-2"
-        onClick={() => {
-          const args = {
-            entity_id: entityId,
-            contributor_id: contributorId,
-            end_date: `${new Date(state.endDate).getTime()}`,
-          };
-          Near.call(ownerId, "finish_contribution", args);
-        }}
-      >
-        Finish
-      </a>
-    </div>
-  ) : null;
-
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
@@ -88,11 +68,10 @@ const body = (
                   update: props.update,
                   items: [
                     {
-                      text: "Stop contributing",
+                      text: "Stop contribution",
                       icon: "bi-person-up",
                       id: "stop",
-                      onClick: () =>
-                        State.update({ contributionFormHidden: false }),
+                      onClick: () => State.update({ finishFormHidden: false }),
                     },
                     {
                       text: "View details",
@@ -109,12 +88,12 @@ const body = (
                 }}
               />
               <Widget
-                src={`${ownerId}/widget/ContributionRequestForm`}
+                src={`${ownerId}/widget/ContributionForm`}
                 props={{
-                  id: `${accountId}ContributionRequestForm`,
+                  id: `${accountId}ContributionForm`,
                   entity: accountId,
-                  hidden: state.contributionFormHidden,
-                  onClose: () => State.update({ contributionFormHidden: true }),
+                  hidden: state.finishFormHidden,
+                  onClose: () => State.update({ finishFormHidden: true }),
                 }}
               />
             </div>
