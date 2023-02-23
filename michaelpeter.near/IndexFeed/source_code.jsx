@@ -11,7 +11,7 @@ const filterUsersRaw = Social.get(
   }
 );
 const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
-console.log(filterUsersRaw);
+console.log("raw", filterUsersRaw);
 console.log(filterUsers);
 
 const renderItem =
