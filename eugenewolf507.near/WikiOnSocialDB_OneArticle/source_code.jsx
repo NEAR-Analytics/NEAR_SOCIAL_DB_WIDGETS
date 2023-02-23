@@ -21,10 +21,43 @@ const article = JSON.parse(
 );
 State.update({ article });
 
-const getDate = (timestamp) => {
-  const date = new Date(Number(timestamp));
-  return date.toDateString();
+// ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
+const articlesIndex = Social.index(addressForArticles, "main", {
+  order: "asc",
+  accountId: state.article.author,
+});
+// console.log("articlesIndex", articlesIndex);
+
+const resultArticles =
+  articlesIndex &&
+  articlesIndex.reduce((acc, { accountId, blockHeight }) => {
+    const postData = Social.get(
+      `${accountId}/${addressForArticles}/main`,
+      blockHeight
+    );
+    const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
+    return [...acc, postDataWithBlockHeight];
+  }, []);
+
+// console.log("resultArticles", resultArticles);
+
+const firstArticle = resultArticles.find(
+  (article) => article.articleId === state.article.articleId
+);
+
+const firstArticleBlockHeight = firstArticle.blockHeight;
+// console.log("firstArticle", firstArticle);
+// console.log("DATA TO ATACH", firstArticleBlockHeight);
+
+const item = {
+  type: "social",
+  path: `${state.article.author}/${addressForArticles}/main`,
+  blockHeight: firstArticleBlockHeight,
 };
+
+// ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
+
+// ======= Item for comment =======
 
 const saveArticle = (args) => {
   const newArticleData = {
@@ -55,15 +88,16 @@ const saveArticle = (args) => {
   Social.set(newData, { force: true });
 };
 
-// ======= Item for comment =======
-const item = {
-  type: "social",
-  path: `${lastEditor}/${addressForArticles}/main`,
-  blockHeight,
+const getDate = (timestamp) => {
+  const date = new Date(Number(timestamp));
+  return date.toDateString();
 };
 
 return (
   <>
+    {/* ======= CONNECT COMMENTS ======= */}
+    <button onClick={clickHandler}>GET DATA (delete this button)</button>
+    {/* ======= CONNECT COMMENTS ======= */}
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_MainNavigation`}
       props={{ currentNavPill: "articles" }}
