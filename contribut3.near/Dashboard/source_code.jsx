@@ -58,7 +58,12 @@ const createNewDropdown = (
       <li>
         <hr className="dropdown-divider" />
       </li>
-      {createNewButton({ id: "project", text: "Project", icon: "bi-boxes" })}
+      {createNewButton({
+        id: "project",
+        text: "Project",
+        icon: "bi-boxes",
+        href: `https://near.social/#/${ownerId}/widget/Index?tab=create&content=project`,
+      })}
       <li>
         <hr className="dropdown-divider" />
       </li>
