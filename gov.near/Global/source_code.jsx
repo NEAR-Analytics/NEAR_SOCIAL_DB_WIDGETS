@@ -31,19 +31,22 @@ return (
       professional development opportunities that involve sharing knowledge and
       best practices with industry experts around the world.
     </p>
-    <div className="mb-3">
+    <div>
+      <Widget src="gov.near/widget/JoinDetails" props={{ ownerId }} />
+    </div>
+    <div>
       <h5>HOW TO JOIN:</h5>
       <p>
         Propose adding members to the
         <a href="https://app.astrodao.com/dao/global.sputnik-dao.near">
           NEAR Global DAO
         </a>
-        and follow us here on Near Social.
       </p>
+      <p>Click "Join" to follow us here on Near Social.</p>
     </div>
     <div>
       <div>
-        <Widget src="gov.near/widget/Join" props={{ ownerId }} />
+        <Widget src="gov.near/widget/Membership" props={{ ownerId }} />
       </div>
     </div>
     <h2>Connect and Collaborate</h2>
