@@ -17,12 +17,32 @@ const convertType = (contributionType) => {
 
 State.init({
   contributionType: [],
+  entityId: accountId ? [{ name: accountId }] : [],
   description: "",
 });
 
-if (!accountId) {
-  return "Cannot render contribution need form widget without account ID!";
-}
+const entityIdInput = (
+  <Widget
+    src={`${ownerId}/widget/AdminEntityAccountIdInput`}
+    props={{
+      update: (entityId) => {
+        State.update({ entityId });
+        Near.asyncView(
+          ownerId,
+          "get_entity_invites",
+          { account_id: entityId[0].name },
+          "final"
+        ).then((invites) =>
+          State.update({
+            forbiddenIds: new Set(Object.keys(invites)),
+          })
+        );
+      },
+      accountId: context.accountId,
+      selected: state.entityId,
+    }}
+  />
+);
 
 const contributionTypeInput = (
   <div className="col-lg-12 mb-2">
@@ -37,16 +57,15 @@ const contributionTypeInput = (
   </div>
 );
 
-const descriptionDiv = (
-  <div className="col-lg-12  mb-2">
-    <label htmlFor="description">Description:</label>
-    <textarea
-      id="description"
-      value={state.description}
-      type="text"
-      rows={6}
-      className="form-control"
-      onChange={(event) => State.update({ description: event.target.value })}
+const descriptionInput = (
+  <div className="col-lg-12 mb-2">
+    <Widget
+      src={`${ownerId}/widget/DescriptionInput`}
+      props={{
+        description: state.description,
+        text: "Details:",
+        update: (description) => State.update({ description }),
+      }}
     />
   </div>
 );
@@ -70,8 +89,9 @@ const header = <div className="card-header">Post need</div>;
 const body = (
   <div className="card-body">
     <div className="row">
-      {descriptionDiv}
+      {entityIdInput}
       {contributionTypeInput}
+      {descriptionInput}
     </div>
 
     <a
