@@ -92,10 +92,12 @@ const body = (
             </div>
           ),
           additionalRow: (
-            <Widget
-              src={`${ownerId}/widget/Tags`}
-              props={{ tags: profile.tags }}
-            />
+            <div className="my-2">
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: profile.tags }}
+              />
+            </div>
           ),
         }}
       />
