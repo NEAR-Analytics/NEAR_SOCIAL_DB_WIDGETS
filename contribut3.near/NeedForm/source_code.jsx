@@ -86,7 +86,7 @@ const onSubmit = () => {
 
 return (
   <div className="card">
-    <div className="card-header">Post need</div>
+    <div className="card-header">Create new contribution request</div>
     <div className="card-body">
       <div className="row">
         {entityIdInput}
@@ -109,7 +109,7 @@ return (
           } mb-2`}
         onClick={onSubmit}
       >
-        Post
+        Create request
       </a>
     </div>
   </div>
