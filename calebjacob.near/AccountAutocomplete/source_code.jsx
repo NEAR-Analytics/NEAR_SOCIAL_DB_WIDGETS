@@ -51,6 +51,22 @@ function onResultClick(id) {
 }
 
 const Wrapper = styled.div`
+  position: relative;
+
+  &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(236, 238, 240, 1), rgba(236, 238, 240, 0));
+      z-index: 10;
+  }
+`;
+
+const Scroller = styled.div`
+  position: relative;
   background: #ECEEF0;
   display: flex;
   gap: 6px;
@@ -100,23 +116,25 @@ if (results.length === 0) return <></>;
 
 return (
   <Wrapper>
-    <CloseButton tabIndex={-1} type="button" onClick={props.onClose}>
-      <i className="bi bi-x-circle" />
-    </CloseButton>
+    <Scroller>
+      <CloseButton tabIndex={-1} type="button" onClick={props.onClose}>
+        <i className="bi bi-x-circle" />
+      </CloseButton>
 
-    {results.map((result) => {
-      return (
-        <Widget
-          key={result.accountId}
-          src="calebjacob.near/widget/AccountProfile"
-          props={{
-            avatarSize: "34px",
-            accountId: result.accountId,
-            onClick: onResultClick,
-            overlayPlacement: "bottom",
-          }}
-        />
-      );
-    })}
+      {results.map((result) => {
+        return (
+          <Widget
+            key={result.accountId}
+            src="calebjacob.near/widget/AccountProfile"
+            props={{
+              avatarSize: "34px",
+              accountId: result.accountId,
+              onClick: onResultClick,
+              overlayPlacement: "bottom",
+            }}
+          />
+        );
+      })}
+    </Scroller>
   </Wrapper>
 );
