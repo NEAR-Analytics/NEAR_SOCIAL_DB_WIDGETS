@@ -4,7 +4,7 @@ const contributorId = props.contributorId;
 const accountId = context.accountId;
 
 State.init({
-  endDate: new Date().toLocaleDateString(),
+  finishFormHidden: true,
 });
 
 if (!entityId || !contributorId) {
