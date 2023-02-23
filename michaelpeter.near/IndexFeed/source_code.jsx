@@ -3,8 +3,10 @@ if (!index) {
   return "props.index is not defined";
 }
 
+const moderatorAccount = props?.moderatorAccount || "michaelpeter.near";
+
 const filterUsersRaw = Social.get(
-  `michaelpeter.near/moderate/users`, //TODO
+  `${moderatorAccount}/moderate/users`, //TODO
   "optimistic",
   {
     subscribe: true,
@@ -55,15 +57,14 @@ const initialFoundItems = !!initialItems.length;
 initialItems = initialItems.filter((i) => !filterUsers.includes(i.accountId));
 
 const computeFetchFrom = (items, limit, previouslyFoundItems) => {
+  // we must get an explicit bool on whether we previously found items
+  // in order to determine whether to do the next fetch since we can't
+  // rely on the previous fetched count being less than the limit with
+  // moderation now in the picture
   if (!previouslyFoundItems) {
     return false;
   }
-  //TODO this next line implies that fetching is completed if the set is not full,
-  // but that is not the case now with moderation
 
-  // if (!items || items.length < limit) {
-  //   return false;
-  // }
   const blockHeight = items[items.length - 1].blockHeight;
   return index.options.order === "desc" ? blockHeight - 1 : blockHeight + 1;
 };
