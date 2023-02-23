@@ -47,7 +47,7 @@ const findRoom = (created) => {
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
   let roomData = Social.getr(queryString);
   if (!state.loading) {
-    setInterval(() => {
+    setTimeout(() => {
       console.log(roomData);
       if (!roomData) {
         State.update({
@@ -80,7 +80,7 @@ if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
   let roomData = Social.getr(queryString);
   if (!state.loading) {
-    setInterval(() => {
+    setTimeout(() => {
       console.log(roomData);
       if (!roomData) {
         State.update({
