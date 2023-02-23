@@ -17,7 +17,7 @@ const searchBar = (
           <input
             className="form-control border-0"
             type="search"
-            value={state.search}
+            value={props.search}
             placeholder="Search"
             onChange={(e) => props.update({ search: e.target.value })}
           />
