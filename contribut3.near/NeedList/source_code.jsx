@@ -36,7 +36,7 @@ const allNeeds = Object.keys(needs)
       entityNeeds[cid],
     ]);
 
-    console.log(list);
+    console.log(accountIdOrCid);
     return [...list, ...needsList];
   }, [])
   .filter(
