@@ -65,7 +65,7 @@ const updateState = () => {
     offset: 0,
   });
   asyncPolls.then((polls) => {
-    console.log(polls);
+    console.log("polls", polls);
     State.update({
       showPollCreator: false,
       polls: polls,
@@ -96,11 +96,18 @@ return (
       <div class="row">
         <div class="col-9 d-flex">
           <div class="align-self-center">
-            <div style={{ height: "100px", width: "100px" }}>
+            <div
+              style={{
+                height: "90px",
+                width: "90px",
+                "margin-top": "5px",
+                "margin-bottom": "5px",
+              }}
+            >
               <div
                 style={{
                   "background-image": 'url("' + state.iconBase64 + '")',
-                  "background-size": "100px",
+                  "background-size": "90px",
                   "background-repeat": "no-repeat",
                   width: "100%",
                   height: "100%",
