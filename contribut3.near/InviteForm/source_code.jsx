@@ -230,6 +230,7 @@ const form = (
           <span>Send invitation</span>
         </>
       ),
+      onConfirm: onSubmit,
       body,
       id,
     }}
