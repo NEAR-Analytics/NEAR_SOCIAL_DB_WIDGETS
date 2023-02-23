@@ -98,7 +98,7 @@ const renderTag = (tag, tagBadge) => (
 const renderItem = (a) => {
   return (
     <a
-      href={`#/mob.near/widget/ProfilePage?accountId=${a.accountId}`}
+      href={`#/bozon.near/widget/Developer?accountId=${a.accountId}`}
       className="text-decoration-none"
       key={JSON.stringify(a)}
     >
