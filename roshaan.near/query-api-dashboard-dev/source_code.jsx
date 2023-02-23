@@ -221,9 +221,9 @@ const indexerView = (accountId, indexerName, idx) => {
       idx === 0) ||
     (selected_accountId === accountId && selected_indexerName === indexerName);
 
-  const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
-  const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
-  const viewSchemaUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=schema-window`;
+  const editUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=editor-window`;
+  const statusUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
+  const viewSchemaUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=schema-window`;
 
   return (
     <Card selected={isSelected}>
@@ -389,7 +389,7 @@ const allIndexerView = () => {
     <>
       <ButtonLink
         primary
-        href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
+        href="/#/roshaan.near/widget/query-api-dashboard-dev/?view=create-new-indexer"
         onClick={() =>
           State.update({
             activeTab: "create-new-indexer",
@@ -454,7 +454,7 @@ return (
     <Main>
       <Section active={state.activeTab === "indexers"}>
         <NavBarLogo
-          href="https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard"
+          href="https://near.social/#/roshaan.near/widget/query-api-dashboard-dev"
           title="QueryApi"
           onClick={() => {
             State.update({
