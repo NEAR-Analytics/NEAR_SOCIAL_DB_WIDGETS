@@ -30,4 +30,19 @@ if (!allContributions || allContributions.length === 0) {
   return "No requests match search criteria!";
 }
 
-return "";
+return (
+  <>
+    {allContributions.map((id) => (
+      <div key={id} className="mt-3">
+        <Widget
+          src={`${ownerId}/widget/Contribution`}
+          props={{
+            entityId: isEntity ? accountId : id,
+            contributorId: isEntity ? id : accountId,
+            update: props.update,
+          }}
+        />
+      </div>
+    ))}
+  </>
+);
