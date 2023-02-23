@@ -16,15 +16,9 @@ State.init({
 });
 
 return {
-  proposals: (
+  request: (
     <Widget
-      src={`${ownerId}/widget/ContributionRequestList`}
-      props={{ search: state.search, update: props.update }}
-    />
-  ),
-  invitations: (
-    <Widget
-      src={`${ownerId}/widget/InviteList`}
+      src={`${ownerId}/widget/ContributionRequestForm`}
       props={{ search: state.search, update: props.update }}
     />
   ),
