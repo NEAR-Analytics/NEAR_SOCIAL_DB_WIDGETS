@@ -10,7 +10,7 @@ const contributions = Object.keys(
   Near.view(
     ownerId,
     isEntity ? "get_entity_contributions" : "get_contributor_contributions",
-    { contributor_id: accountId },
+    { account_id: accountId },
     "final",
     true
   ) ?? {}
