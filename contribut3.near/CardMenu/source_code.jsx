@@ -1,7 +1,7 @@
 const items = props.items ?? [];
 
 const menuItems = items.reduce(
-  (list, { text, icon, href, onClick, toggle, target }) => [
+  (list, { text, icon, href, onClick }) => [
     ...list,
     list.length > 0 ? (
       <li>
