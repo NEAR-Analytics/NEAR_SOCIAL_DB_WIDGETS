@@ -221,6 +221,7 @@ return (
         </>
       ),
       onConfirm: onSubmit,
+      hidden: props.hidden,
       body,
       id,
     }}
