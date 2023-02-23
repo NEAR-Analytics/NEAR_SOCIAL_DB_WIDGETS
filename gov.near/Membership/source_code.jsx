@@ -10,7 +10,7 @@ return (
           className={`btn nav-link ${tab === "followers" ? "active" : ""}`}
           role="tab"
         >
-          Followers
+          Members
         </a>
       </li>
       <li className="nav-item" role="presentation">
@@ -19,7 +19,7 @@ return (
           className={`btn nav-link ${tab === "following" ? "active" : ""}`}
           role="tab"
         >
-          Members
+          Leaders
         </a>
       </li>
     </ul>
