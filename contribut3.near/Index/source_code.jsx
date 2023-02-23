@@ -28,15 +28,15 @@ const tabContent = {
   dashboard: (
     <Widget
       src={`${ownerId}/widget/Dashboard`}
-      props={{ content: props.content, search: props.search, update }}
+      props={{ content: state.content, search: state.search, update }}
     />
   ),
   contributor: (
     <Widget
       src={`${ownerId}/widget/Profile`}
       props={{
-        content: props.content,
-        search: props.search,
+        content: state.content,
+        search: state.search,
         accountId: props.accountId,
         update,
       }}
@@ -45,13 +45,13 @@ const tabContent = {
   inbox: (
     <Widget
       src={`${ownerId}/widget/Inbox`}
-      props={{ content: props.content, search: props.search, update }}
+      props={{ content: state.content, search: state.search, update }}
     />
   ),
   entities: (
     <Widget
       src={`${ownerId}/widget/ManageEntities`}
-      props={{ content: props.content, search: props.search, update }}
+      props={{ content: state.content, search: state.search, update }}
     />
   ),
   entity: (
@@ -59,8 +59,8 @@ const tabContent = {
       src={`${ownerId}/widget/EntityPage`}
       props={{
         accountId: props.accountId,
-        search: props.search,
-        content: props.content,
+        search: state.search,
+        content: state.content,
         update,
       }}
     />
@@ -71,8 +71,8 @@ const tabContent = {
       props={{
         accountId: props.accountId,
         cid: props.cid,
-        search: props.search,
-        content: props.content,
+        search: state.search,
+        content: state.content,
         update,
       }}
     />
@@ -81,8 +81,8 @@ const tabContent = {
     <Widget
       src={`${ownerId}/widget/CreatePage`}
       props={{
-        search: props.search,
-        content: props.content,
+        search: state.search,
+        content: state.content,
         kind: props.kind,
         update,
       }}
@@ -92,8 +92,8 @@ const tabContent = {
     <Widget
       src={`${ownerId}/widget/ContributionsPage`}
       props={{
-        search: props.search,
-        content: props.content,
+        search: state.search,
+        content: state.content,
         update,
       }}
     />
