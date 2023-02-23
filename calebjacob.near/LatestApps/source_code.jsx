@@ -101,7 +101,7 @@ return (
       ))}
     </Items>
 
-    <ButtonLink href="/#/mob.near/widget/Applications">
+    <ButtonLink href="/#/calebjacob.near/widget/ComponentsPage">
       View All Apps <span>({totalApps})</span>
     </ButtonLink>
   </Wrapper>
