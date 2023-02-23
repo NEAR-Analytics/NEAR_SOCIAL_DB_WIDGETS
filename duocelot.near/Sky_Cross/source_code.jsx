@@ -1,11 +1,229 @@
 /* Created by duocelot and kasodon */
 /* Sky Cross Project */
 
+const accountId = context.accountId;
+
+if (!accountId) {
+  return (
+    <div
+      style={{
+        width: "512px",
+        height: "512px",
+        backgroundSize: "100%",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "white",
+        position: "flex",
+        fontFamily: '"Press Start 2P", sans-serif',
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src="https://bafybeiep6yscx365ici64ce2o7ktr3vewuyk7rwj4kxpwrf4ugeloxgfri.ipfs.w3s.link/error-001.jpg"
+        alt="ERROR 001"
+        style={{
+          width: "340px",
+          margin: "50px 40px 10px 80px",
+          position: "flex",
+        }}
+      />
+      <h2
+        style={{
+          fontFamily: "Press Start 2P",
+          fontSize: "14px",
+          color: "black",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        ERROR 001: NO NEAR WALLET CONNECTED.{" "}
+      </h2>{" "}
+      <h3
+        style={{
+          fontFamily: "Press Start 2P",
+          fontSize: "12px",
+          color: "black",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {" "}
+        Please connect with your near wallet or create one for free
+      </h3>
+      <a
+        href="https://shard.dog/go?url=https://app.jumpdefi.xyz"
+        style={{
+          fontFamily: "Press Start 2P",
+          fontSize: "14px",
+          color: "black",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "40px 1opx 10px 10px",
+        }}
+      >
+        HERE
+      </a>
+    </div>
+  );
+}
+
+const fonty = fetch(
+  "https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap"
+).body;
+
+if (!fonty) {
+  return;
+}
+
+const Theme = styled.div`
+* {
+    font-family: 'Gajraj One', cursive;
+}
+  ${fonty}
+`;
+
 const App = styled.div`
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background-color: #1E1E1E;
+  background-image: url('https://ik.imagekit.io/onyedika/skycross/space_background_H1pEe91Gj.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1677148309303');
+background-size: cover;
+background-position: center;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const Nav = styled.ul`
+  height: 6rem;
+  align-items: center !important;
+  width: 100% !important;
+  padding-left: .5rem !important;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(9,5,19,.4);
+  margin-bottom: 3rem !important;
+  margin-top: 3rem !important;
+  --bs-nav-pills-border-radius: 0.375rem;
+  --bs-nav-pills-link-active-color: #f2f2f2;
+  --bs-nav-pills-link-active-bg: #2D2672 !important;
+`;
+
+const NavLink = styled.button`
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  color: #f2f2f2 !important;
+  text-decoration: none !important;
+  padding: 0 3rem !important;
+`;
+
+const Stat = styled.div`
+  width: 100%;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(9,5,19,.5);
+  padding: 2rem;
+  margin-bottom: 3rem;
+`;
+
+const StatRow = styled.div`
+  display: flex !important;
+  justify-content: center !important;
+  height: 100% !important;
+`;
+
+const PlayerIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PlayerIconImg = styled.img`
+  width: 300px;
+  height: 300px;
+  border-radius: 30px;
+`;
+
+const PlayerDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 0;
+`;
+
+const PlayerStatPara = styled.p`
+  font-size: 2rem;
+  `;
+
+const PlayerStatParaSpan = styled.span`
+  color: #FFD852;
+  `;
+
+const PlayerActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+`;
+
+const PlayerActionsFilledButton = styled.button`
+  background: #2a2a2a;
+  color: #FFD852;
+  border: none;
+  font-size: 1.2rem;
+  padding: 1.2rem 3rem;
+  border-radius: 12px;
+`;
+
+const PlayerActionsOutlineButton = styled.button`
+  background: #2a2a2a;
+  color: #FFD852;
+  border: none;
+  font-size: 1.2rem;
+  padding: 1.2rem 3rem;
+  border-radius: 12px;
+`;
+
+const KeysPara = styled.p`
+  font-size: 1.4rem;
+`;
+
+const KeysParaSpan = styled.span`
+  background-color: #FFD852;
+  color: #121212;
+  padding: .5rem 1rem;
+  font-weight: 900;
+  border-radius: 12px;
+  margin-right: .5rem;
+`;
+
+const Leaderboard = styled.div`
+  width: 100%;
+`;
+
+const LeaderboardScore = styled.div`
+  width: 100%;
+  margin-bottom: .7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #121212;
+  font-size: 1.3rem;
+  height: 5rem;
+  padding: 2rem;
+  border-radius: 12px;
+`;
+
+const points = styled.p`
+  color: #FFD852;
 `;
 
 const scriptSrc = `
@@ -1296,7 +1514,145 @@ context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, t
 `;
 
 return (
-  <div>
-    <iframe srcDoc={scriptSrc} style={{ height: "800px", width: "100%" }} />
-  </div>
+  <Theme>
+    <App className="App">
+      <Nav className="nav nav-pills" id="pills-tab" role="tablist">
+        <li className="nav-item" role="presentation">
+          <NavLink
+            className="nav-link active"
+            id="pills-home-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-home"
+            type="button"
+            role="tab"
+            aria-controls="pills-home"
+            aria-selected="true"
+          >
+            Start
+          </NavLink>
+        </li>
+        <li className="nav-item" role="presentation">
+          <NavLink
+            className="nav-link"
+            id="pills-profile-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-profile"
+            type="button"
+            role="tab"
+            aria-controls="pills-profile"
+            aria-selected="false"
+          >
+            Game
+          </NavLink>
+        </li>
+        <li className="nav-item" role="presentation">
+          <NavLink
+            className="nav-link"
+            id="pills-contact-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-contact"
+            type="button"
+            role="tab"
+            aria-controls="pills-contact"
+            aria-selected="false"
+          >
+            Leaderboard
+          </NavLink>
+        </li>
+      </Nav>
+      <div className="tab-content" id="pills-tabContent">
+        <div
+          className="tab-pane fade show active"
+          id="pills-home"
+          role="tabpanel"
+          aria-labelledby="pills-home-tab"
+          tabindex="0"
+        >
+          <Stat className="container-fluid stat">
+            <StatRow className="row">
+              <PlayerIcon className="player-icon col-4">
+                <PlayerIconImg
+                  src="https://ik.imagekit.io/onyedika/skycross/avatar01_zM5ioOG4w.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939856771"
+                  alt=""
+                />
+              </PlayerIcon>
+              <PlayerDetail className="player-detail col-8">
+                <div className="player-stat">
+                  <PlayerStatPara>
+                    <PlayerStatParaSpan>Player:</PlayerStatParaSpan> {accountId}
+                  </PlayerStatPara>
+                  <PlayerStatPara>
+                    <PlayerStatParaSpan>Last Score:</PlayerStatParaSpan> 4221
+                  </PlayerStatPara>
+                </div>
+                <PlayerActions className="player-actions">
+                  <PlayerActionsFilledButton type="button" class="filled">
+                    Launch Game
+                  </PlayerActionsFilledButton>
+                  <PlayerActionsOutlineButton type="button" class="outline">
+                    Leaderboard
+                  </PlayerActionsOutlineButton>
+                </PlayerActions>
+              </PlayerDetail>
+            </StatRow>
+          </Stat>
+          <div className="controls">
+            <h2 className="text-uppercase mb-4">Control Keys</h2>
+            <div className="keys">
+              <KeysPara className="mb-5">
+                <KeysParaSpan>S</KeysParaSpan> Press and hold to shoot
+              </KeysPara>
+              <KeysPara className="">
+                <KeysParaSpan>⬆</KeysParaSpan> <KeysParaSpan>⬇</KeysParaSpan>{" "}
+                <KeysParaSpan>⬅</KeysParaSpan> <KeysParaSpan>➡</KeysParaSpan> To
+                move your ship around
+              </KeysPara>
+            </div>
+          </div>
+        </div>
+        <div
+          className="tab-pane fade"
+          id="pills-profile"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab"
+          tabindex="0"
+        >
+          <iframe
+            srcDoc={scriptSrc}
+            style={{ height: "800px", width: "100%" }}
+          />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="pills-contact"
+          role="tabpanel"
+          aria-labelledby="pills-contact-tab"
+          tabindex="0"
+        >
+          <Leaderboard className="leaderboard">
+            <LeaderboardScore className="score">
+              <p className="num">1</p>
+              <p className="name">Kasodon.near</p>
+              <p className="points">1234</p>
+            </LeaderboardScore>
+            <LeaderboardScore className="score">
+              <p className="num">1</p>
+              <p className="name">Kasodon.near</p>
+              <p className="points">1234</p>
+            </LeaderboardScore>
+            <LeaderboardScore className="score">
+              <p className="num">1</p>
+              <p className="name">{accountId}</p>
+              <p className="points">1234</p>
+            </LeaderboardScore>
+            <LeaderboardScore className="score">
+              <p className="num">1</p>
+              <p className="name">Kasodon.near</p>
+              <p className="points">1234</p>
+            </LeaderboardScore>
+          </Leaderboard>
+        </div>
+      </div>
+    </App>
+  </Theme>
 );
