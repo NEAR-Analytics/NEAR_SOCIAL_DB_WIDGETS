@@ -9,12 +9,7 @@ return (
           props={{ ownerId, tooltip: true }}
         />
       </div>
-      <div
-        className="text-truncate text-muted"
-        style={{ paddingLeft: "1.8em" }}
-      >
-        {props.L}
-      </div>
+      <div>{props.L}</div>
     </div>
     <div className="text-nowrap">{props.R}</div>
   </div>
