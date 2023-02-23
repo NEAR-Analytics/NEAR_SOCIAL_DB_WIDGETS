@@ -40,7 +40,7 @@ index.options.limit = Math.min(
 );
 const reverse = !!props.reverse;
 
-const initialItems = Social.index(index.action, index.key, index.options);
+let initialItems = Social.index(index.action, index.key, index.options);
 if (initialItems === null) {
   return "";
 }
