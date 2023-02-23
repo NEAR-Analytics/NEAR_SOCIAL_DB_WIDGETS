@@ -94,7 +94,7 @@ const body = (
                     {
                       text: (
                         <>
-                          "Invite to contribute"
+                          Invite to contribute
                           <Widget
                             src={`${ownerId}/widget/InviteForm`}
                             props={{ id: `${accountId}InviteForm`, accountId }}
