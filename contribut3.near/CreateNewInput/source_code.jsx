@@ -1,3 +1,5 @@
+const ownerId = "contribut3.near";
+
 const createNewButton = ({ id, text, icon, kind }) => (
   <li>
     <a
