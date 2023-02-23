@@ -148,40 +148,6 @@ const entityIdInput = (
     }}
   />
 );
-//   (
-//   <div className="col-lg-12 mb-2">
-//     <label htmlFor="entity-id-input">Invite to:</label>
-//     <Typeahead
-//       id="entity-id-input"
-//       labelKey="name"
-//       onChange={(entityId) => {
-//         State.update({ entityId });
-//         Near.asyncView(
-//           ownerId,
-//           "get_entity_invites",
-//           { account_id: entityId[0].name },
-//           "final"
-//         ).then((invites) =>
-//           State.update({
-//             forbiddenIds: new Set(Object.keys(invites)),
-//           })
-//         );
-//       }}
-//       options={(
-//         Near.view(
-//           ownerId,
-//           "get_contributor_admin_entities",
-//           { account_id: context.accountId },
-//           "final",
-//           true
-//         ) ?? []
-//       ).map((name) => ({ name }))}
-//       placeholder="contribut3.near, social.near..."
-//       selected={state.entityId}
-//       positionFixed
-//     />
-//   </div>
-// );
 
 const onSubmit = () => {
   if (!state.accountIdValid) {
@@ -203,7 +169,7 @@ const onSubmit = () => {
 const header = <div className="card-header">Invite contributor</div>;
 
 const body = (
-  <div>
+  <div className="row">
     {accountIdInput}
     {entityIdInput}
     {contributionTypeInput}
