@@ -47,7 +47,7 @@ const contributionTypes = contributor.contribution_types.reduce(
   {}
 );
 
-if ("Other" in contributionTypes) {
+if (contributionTypes && "Other" in contributionTypes) {
   contributionTypes[contributionTypes.Other] = "";
   delete contributionTypes.Other;
 }
