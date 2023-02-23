@@ -57,6 +57,11 @@ const SubHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+
+  @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: start;
+  }
 `;
 
 const Search = styled.div`
