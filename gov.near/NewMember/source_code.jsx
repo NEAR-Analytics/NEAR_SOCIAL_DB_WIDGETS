@@ -10,16 +10,20 @@ if (profile === null) {
   return "Loading...";
 }
 
+State.init({
+  member_id: accountId,
+});
+
 const handleProposal = () => {
-  if (!(state.description && state.kind && state.member_id && state.role)) {
+  if (!state.member_id) {
     return;
   }
   const proposal = {
-    description: state.description,
+    description: "proposal to add member",
     kind: {
       AddMemberToRole: {
         member_id: state.member_id,
-        role: state.role,
+        role: "community",
       },
     },
   };
@@ -36,7 +40,7 @@ const handleProposal = () => {
             description: "proposal to add member",
             kind: {
               AddMemberToRole: {
-                member_id: "infinity.near",
+                member_id: state.member_id,
                 role: "community",
               },
             },
@@ -49,29 +53,6 @@ const handleProposal = () => {
   });
 };
 
-initState({
-  description: "",
-  kind: "",
-});
-
-const onChangeKind = (kind) => {
-  State.update({
-    kind,
-  });
-};
-
-const onChangeDesc = (description) => {
-  State.update({
-    description,
-  });
-};
-
-const onChangeRole = (role) => {
-  State.update({
-    role,
-  });
-};
-
 const onChangeMember = (member_id) => {
   State.update({
     member_id,
@@ -81,31 +62,6 @@ const onChangeMember = (member_id) => {
 return (
   <div>
     <Widget src="mob.near/widget/ProfileOnboarding" />
-    <div className="mb-3"></div>
-    <div className="flex-grow-1 d-none">
-      <h3>Proposal Kind</h3>
-      <p>Available Options:</p>
-      <ul>
-        <li>ChangeConfig</li>
-        <li>ChangePolicy</li>
-        <li>AddMemberToRole</li>
-        <li>RemoveMemberFromRole</li>
-        <li>FunctionCall</li>
-        <li>UpgradeSelf</li>
-        <li>UpgradeRemote</li>
-        <li>Transfer</li>
-        <li>SetStakingContract</li>
-        <li>AddBounty</li>
-        <li>BountyDone</li>
-        <li>Vote</li>
-        <li>FactoryInfoUpdate</li>
-        <li>ChangePolicyAddOrUpdateRole</li>
-        <li>ChangePolicyRemoveRole</li>
-        <li>ChangePolicyUpdateDefaultVotePolicy</li>
-        <li>ChangePolicyUpdateParameters</li>
-      </ul>
-      <input type="text" onChange={(e) => onChangeKind(e.target.value)} />
-    </div>
     <div className="mb-3"></div>
     <div>
       <h2>Group Membership</h2>
