@@ -22,8 +22,7 @@ const isContributor = Near.view(
   true
 );
 
-const update = ({ tab, content, search }) =>
-  State.update({ tab, content, search });
+const update = (state) => State.update(state);
 
 const tabContent = {
   dashboard: (
