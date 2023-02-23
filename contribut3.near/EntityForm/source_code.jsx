@@ -17,7 +17,7 @@ const forbiddenIds = new Set(
   )
 );
 
-initState({
+State.init({
   accountId,
   name: props.name ?? "",
   accountIdValid: true,
