@@ -38,7 +38,7 @@ const Backdrop = styled.div`
 const Modal = styled.div`
   width: 30rem;
   max-width: 95vw;
-  max-height: 95vh;
+  max-height: 80vh;
   background-color: white;
   border-radius: 10px;
   margin: auto;
