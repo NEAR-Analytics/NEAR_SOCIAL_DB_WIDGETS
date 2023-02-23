@@ -52,19 +52,20 @@ let keys = `${accountId ?? "*"}/profile/tags/*`;
 
 if (tag) {
   const taggedProfiles = Social.keys(
-    `${accountId ?? "*"}/profile/tags/${tag}`,
+    `${accountId ?? "*"}/profile/*/metadata/tags/${tag}`,
     "final"
   );
+
   if (taggedProfiles === null) {
     return render("Loading tags");
   }
 
   keys = Object.entries(taggedProfiles)
-    .map((kv) => Object.keys(kv[1].widget).map((w) => `${kv[0]}/widget/${w}`))
+    .map((kv) => Object.keys(kv[1].profile).map((w) => `${kv[0]}/widget/${w}`))
     .flat();
 
   if (!keys.length) {
-    return render(`No widgets found by tag #${tag}`);
+    return render(`No profiles found by tag #${tag}`);
   }
 }
 
@@ -84,7 +85,7 @@ const processData = (data) => {
       const accountId = account[0];
       return Object.entries(account[1].profile).map((kv) => ({
         accountId,
-        builderProfile: kv[0],
+        name: kv[0],
         blockHeight: kv[1],
       }));
     })
@@ -112,7 +113,7 @@ const renderItem = (a) => {
           name: a.name,
           blockHeight: a.blockHeight,
           renderTag,
-          profileLink: makeLink(a.accountId, tag),
+          filterLink: makeLink(a.accountId, tag),
         }}
       />
     </a>
