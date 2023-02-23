@@ -69,7 +69,11 @@ const body = (
                       icon: "bi-info-circle",
                       href: `https://near.social/#/${ownerId}/widget/Index?tab=contribution&entityId=${entityId}&contributorId=${contributorId}`,
                       onClick: () =>
-                        props.update && props.update({ tab: "contribution" }),
+                        props.update({
+                          tab: "contribution",
+                          content: "",
+                          search: "",
+                        }),
                     },
                     {
                       text: "Share",
