@@ -12,7 +12,7 @@ const supportedLinks = [
 const linksList = supportedLinks
   .filter(({ name }) => name in links)
   .map(({ name, url, icon }) => (
-    <li className="list-group-item">
+    <li className="list-group-item border-0">
       <a href={`${url}${links[name]}`} target="_blank">
         <i className={`${icon} text-secondary`} />
       </a>
