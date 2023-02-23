@@ -50,7 +50,7 @@ const findRoom = (created) => {
       console.log(roomData);
       if (!roomData) {
         State.update({
-          errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
+          errorMessage: `Room not found. If you are sure the room with specified ID exists, this might be a delay on blockchain, 
     so don't hesitate enter your room ID and try again connecting!`,
         });
         State.update({ loading: false });
