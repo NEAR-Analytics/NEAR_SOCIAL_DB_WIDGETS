@@ -1,7 +1,7 @@
 const ownerId = "contribut3.near";
 
 State.init({
-  search: "",
+  search: props.search ?? "",
   content: props.content,
   tab: props.tab ?? "dashboard",
 });
