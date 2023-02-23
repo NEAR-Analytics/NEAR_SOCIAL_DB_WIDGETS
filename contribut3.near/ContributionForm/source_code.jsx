@@ -44,11 +44,11 @@ return (
   <Widget
     src={`${ownerId}/widget/Modal`}
     props={{
-      title: "Propose contribution",
+      title: "Finish contribution",
       confirmText: (
         <>
           <i className="bi-send" />
-          <span>Send proposal</span>
+          <span>Finish contribution</span>
         </>
       ),
       onConfirm: onSubmit,
