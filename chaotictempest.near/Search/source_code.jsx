@@ -15,6 +15,7 @@ const writeStateTerm = (term) => {
       post: [],
       comment: [],
       profile: [],
+      widget: [],
     });
   }
 };
@@ -78,15 +79,58 @@ const postWidgets = (content, postType) => {
   return posts;
 };
 
+const componentWidgets = (content) => {
+  const widgets = [];
+  console.log("Content", content);
+  for (const component of content || []) {
+    const id = component.objectID;
+    const idParts = id.split("/");
+    const widgetRawName = idParts[idParts.length - 1];
+    const accountId = component.author;
+    console.log("author", accountId);
+
+    // objectId is already in the form of widget src: <accountId>/widget/<WidgetName>
+    const widgetSrc = id;
+
+    // onHide: () => State.update({ apps: null }),
+    widgets.push(
+      <div>
+        <Widget
+          src="mob.near/widget/ComponentSearch.Item"
+          props={{
+            link: `#/${widgetSrc}`,
+            accountId,
+            widgetName: widgetRawName,
+            extraButtons: ({ widgetPath }) => (
+              <a
+                target="_blank"
+                className="btn btn-outline-secondary"
+                href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
+              >
+                Source
+              </a>
+            ),
+          }}
+        />
+      </div>
+    );
+  }
+
+  console.log("widgets", widgets);
+  return widgets;
+};
+
 const computeResults = (term) => {
   console.log("computeResults:", term);
   fetchAlgoliaData(term).then((res) => {
     const data = getCategoryResults(res.body);
+    console.log("data", data);
     State.update({
       term,
       post: postWidgets(data["post"], "post"),
       comment: postWidgets(data["comment, post"], "comment"),
       profile: profileWidgets(data["profile"]),
+      widget: componentWidgets(data["widget"]),
     });
   });
 };
@@ -105,12 +149,14 @@ const fetchAlgoliaData = (queryURI) => {
 };
 
 const getCategoryResults = (raw_result_data) => {
+  console.log("RAW", raw_result_data);
   const results = {};
   for (const result of raw_result_data.hits) {
     const {
       author,
       content,
       objectID,
+      tags,
       categories: categories_raw,
       ref,
       _highlightResult,
@@ -126,6 +172,7 @@ const getCategoryResults = (raw_result_data) => {
       author,
       content,
       objectID,
+      tags,
       categories,
       ref,
       _highlightResult,
@@ -162,6 +209,13 @@ return (
           <div>
             <p>Profiles:</p>
             <ul>{state.profile}</ul>
+          </div>
+        )}
+
+        {state.widget?.length > 0 && (
+          <div className="mb-2">
+            <p>Widgets:</p>
+            {state.widget}
           </div>
         )}
 
