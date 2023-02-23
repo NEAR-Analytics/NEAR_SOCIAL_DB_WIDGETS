@@ -10,11 +10,6 @@ const getContent = (content) => {
   return content;
 };
 
-State.init({
-  content: getContent(props.content),
-  search: props.search ?? "",
-});
-
 const header = (
   <div>
     <h1 className="fs-2">Manage</h1>
@@ -65,8 +60,6 @@ const createNewDropdown = (
   </div>
 );
 
-const update = (content) => State.update({ content });
-
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
@@ -107,9 +100,9 @@ const searchBar = (
           <input
             className="form-control border-0"
             type="search"
-            value={state.search}
+            value={props.search}
             placeholder="Search"
-            onChange={(e) => State.update({ search: e.target.value })}
+            onChange={(e) => props.update({ search: e.target.value })}
           />
         </div>
       </div>
@@ -121,22 +114,22 @@ const content = {
   projects: (
     <Widget
       src={`${ownerId}/widget/AdminList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
   contributors: (
     <Widget
       src={`${ownerId}/widget/ContributorList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
-}[state.content];
+}[getContent(props.content)];
 
 return (
   <div>
