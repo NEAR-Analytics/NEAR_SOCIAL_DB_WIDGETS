@@ -20,31 +20,26 @@ if (Object.keys(needs).length === 0) {
   return "Couldn't find any contribution needs!";
 }
 
-const allNeeds = Object.keys(needs)
-  .reduce((list, accountIdOrCid) => {
-    if (props.accountId) {
-      return [
-        ...list,
-        [props.accountId, accountIdOrCid, needs[accountIdOrCid]],
-      ];
-    }
+const allNeeds = Object.keys(needs).reduce((list, accountIdOrCid) => {
+  if (props.accountId) {
+    return [...list, [props.accountId, accountIdOrCid, needs[accountIdOrCid]]];
+  }
 
-    const entityNeeds = needs[accountIdOrCid];
-    const needsList = Object.keys(entityNeeds).map((cid) => [
-      accountIdOrCid,
-      cid,
-      entityNeeds[cid],
-    ]);
+  const entityNeeds = needs[accountIdOrCid];
+  const needsList = Object.keys(entityNeeds).map((cid) => [
+    accountIdOrCid,
+    cid,
+    entityNeeds[cid],
+  ]);
 
-    console.log([...list, ...needsList]);
-    return [...list, ...needsList];
-  }, [])
-  .filter(
-    ([accountId, _, need]) =>
-      accountId.includes(search) ||
-      need.description.includes(search) ||
-      need.contribution_type.includes(search)
-  );
+  return [...list, ...needsList];
+}, []);
+// .filter(
+//   ([accountId, _, need]) =>
+//     accountId.includes(search) ||
+//     need.description.includes(search) ||
+//     need.contribution_type.includes(search)
+// );
 
 if (!allNeeds || allNeeds.length === 0) {
   return "No contribution needs found!";
