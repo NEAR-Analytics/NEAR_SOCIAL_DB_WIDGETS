@@ -4,7 +4,7 @@ if (!index) {
 }
 
 const filterUsersRaw = Social.get(
-  `michaelpeter.near/moderate/users`,
+  `michaelpeter.near/moderate/users`, //TODO
   "optimistic",
   {
     subscribe: true,
