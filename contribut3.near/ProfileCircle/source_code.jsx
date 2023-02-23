@@ -23,7 +23,7 @@ const url =
     ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
     : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
-if (state.data && profile) {
+if (state.data || profile) {
   return (
     <div
       className="profile-circle d-inline-block"
