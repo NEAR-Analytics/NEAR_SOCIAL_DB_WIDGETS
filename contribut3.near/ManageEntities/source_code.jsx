@@ -121,19 +121,19 @@ const content = {
   projects: (
     <Widget
       src={`${ownerId}/widget/AdminList`}
-      props={{ search: state.search, update }}
+      props={{ search: state.search, update: props.update }}
     />
   ),
   contributors: (
     <Widget
       src={`${ownerId}/widget/ContributorList`}
-      props={{ search: state.search, update }}
+      props={{ search: state.search, update: props.update }}
     />
   ),
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{ search: state.search, update }}
+      props={{ search: state.search, update: props.update }}
     />
   ),
 }[state.content];
