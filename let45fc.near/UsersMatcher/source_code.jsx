@@ -1,14 +1,14 @@
 // inspired by https://near.social/#/wendersonpires.near/widget/Chat
 
-if (typeof props.loadRoomCallback != "function") {
-  return (
-    <h2>
-      It's reusable widget and cannot work alone. You have to pass the
-      loadRoomCallback function in props. Found type:{" "}
-      {typeof props.loadRoomCallback}
-    </h2>
-  );
-}
+// if (typeof props.loadRoomCallback != "function") {
+//   return (
+//     <h2>
+//       It's reusable widget and cannot work alone. You have to pass the
+//       loadRoomCallback function in props. Found type:{" "}
+//       {typeof props.loadRoomCallback}
+//     </h2>
+//   );
+// }
 console.log("props", props);
 console.log("roomId", Storage.get("roomId"));
 
@@ -37,7 +37,7 @@ const generateRoomId = () => {
 // const newRoomId = generateRoomId();
 
 const findRoom = (created) => {
-  if (!created) {
+  if (created) {
     created = false;
   }
   console.log("In findRoom");
@@ -70,7 +70,27 @@ const findRoom = (created) => {
 
 if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
   console.log("Redirecting to game");
-  findRoom(true);
+  const ownerAccountId = Storage.get("roomId").split("-")[0];
+  Storage.set("created", "false");
+
+  console.log("ownerAccountId", ownerAccountId);
+  console.log("getting roomData");
+  const queryString = `${ownerAccountId}/${props.widgetKey}/${Storage.get(
+    "roomId"
+  )}`;
+  const roomData = Social.getr(queryString);
+  console.log("roomData", roomData);
+  if (!roomData) {
+    State.update({ errorMessage: "Room not found" });
+    return;
+  }
+  State.update({
+    roomData: roomData,
+  });
+
+  if (props.loadRoomCallback && roomData) {
+    props.loadRoomCallback(roomData, state.roomId, created);
+  }
 }
 
 if (state.roomCreatedScreen) {
@@ -130,7 +150,7 @@ return (
     )}
     <div class="row mt-4">
       <div class="col-6 text-end">
-        <button class="btn btn-success" onClick={findRoom}>
+        <button class="btn btn-success" onClick={() => findRoom(false)}>
           Connect to room
         </button>
       </div>
