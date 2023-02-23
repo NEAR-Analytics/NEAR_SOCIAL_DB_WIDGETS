@@ -73,6 +73,7 @@ const tabContent = {
       props={{
         search: props.search,
         content: props.content,
+        kind: props.kind,
         update,
       }}
     />
