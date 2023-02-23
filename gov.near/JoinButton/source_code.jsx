@@ -50,8 +50,5 @@ return (
     >
       {loading ? "Loading" : follow ? "Joined" : inverse ? "Lead" : "Join"}
     </CommitButton>
-    <div className="mt-3">
-      <Widget src="gov.near/widget/JoinStats" />
-    </div>
   </div>
 );
