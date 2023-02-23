@@ -19,6 +19,10 @@ if (filterUsers === null) {
 const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
 console.log("raw", filterUsersRaw);
 console.log(filterUsers);
+const jFilterUsers = JSON.stringify(filterUsers);
+if (state.filterUsers !== jFilterUsers) {
+  State.update({ filterUsers: jFilterUsers, cachedItems: {} });
+}
 
 const renderItem =
   props.renderItem ??
