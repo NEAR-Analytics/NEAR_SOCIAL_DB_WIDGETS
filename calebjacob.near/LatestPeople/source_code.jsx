@@ -81,7 +81,7 @@ return (
       ))}
     </Items>
 
-    <ButtonLink href="/#/mob.near/widget/People">
+    <ButtonLink href="/#/calebjacob.near/widget/PeoplePage">
       View All People <span>({totalAccounts})</span>
     </ButtonLink>
   </Wrapper>
