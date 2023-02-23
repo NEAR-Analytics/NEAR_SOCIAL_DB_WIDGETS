@@ -37,17 +37,6 @@ const isAuthorized = Near.view(
   true
 );
 
-const endDateInput = (
-  <div className="col-lg-6 mb-2">
-    End date of contribution:
-    <input
-      type="date"
-      value={state.endDate}
-      onChange={(e) => State.update({ endDate: e.target.value })}
-    />
-  </div>
-);
-
 const finishButton =
   isAuthorized && !contribution.current.end_date ? (
     <div className="card-footer">
@@ -68,82 +57,95 @@ const finishButton =
     </div>
   ) : null;
 
-const shareButton = props.isPreview ? null : (
-  <a
-    className="card-link"
-    href={`https://near.social/#/${ownerId}/widget/Contribution?entityId=${entityId}&contributorId=${contributorId}`}
-    role="button"
-    target="_blank"
-    title="Open in new tab"
-  >
-    <div className="bi bi-share" />
-  </a>
-);
-
-const header = (
-  <div className="card-header">
-    <small className="text-muted">
-      <div className="row justify-content-between">
-        <div className="col-4">
-          <Widget
-            src={`mob.near/widget/ProfileLine`}
-            props={{ accountId: contributorId }}
-          />
-        </div>
-        <div className="col-5">
-          <div className="d-flex justify-content-end">{shareButton}</div>
-        </div>
-      </div>
-    </small>
-  </div>
-);
-
-const detail = ({ description, start_date, end_date }) => (
-  <div className="card">
-    <div className="card-header">Details</div>
-    <div className="card-body">
-      Description:
-      <br />
-      <p>{description || "Founded entity"}</p>
-      Start date:
-      <br />
-      <p>{new Date(Number(start_date)).toLocaleDateString()}</p>
-      {end_date ? (
-        <>
-          End date: <br /> <p>{end_date}</p>
-        </>
-      ) : null}
-    </div>
-    {finishButton}
-  </div>
-);
-
-const pastWork =
-  !contribution.history || contribution.history.length === 0 ? null : (
-    <>
-      Past work:
-      {contribution.history.map(detail)}
-    </>
-  );
-
 const body = (
-  <div className="card-body">
-    <div>
-      Contribution to:
+  <div
+    className="d-flex flex-row justify-content-start"
+    id={accountId}
+    style={{ minHeight: "8em" }}
+  >
+    <div className="flex-grow-1 py-3">
       <Widget
-        src={`mob.near/widget/ProfileLine`}
-        props={{ accountId: entityId }}
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId,
+          isEntity: true,
+          imageSize: "3em",
+          update: props.update,
+          additionalColumn: inboxView ? (
+            <></>
+          ) : (
+            <div className="d-flex flex-row justify-content-between align-items-center">
+              <Widget
+                src={`${ownerId}/widget/ActiveIndicator`}
+                props={{ active: entity.status }}
+              />
+              <Widget
+                src={`${ownerId}/widget/CardMenu`}
+                props={{
+                  update: props.update,
+                  items: [
+                    {
+                      text: "Stop contributing",
+                      icon: "bi-person-up",
+                      id: "stop",
+                      onClick: () =>
+                        State.update({ contributionFormHidden: false }),
+                    },
+                    // {
+                    //   text: "Invite to contribute",
+                    //   icon: "bi-person-plus",
+                    // },
+                    {
+                      text: "View details",
+                      icon: "bi-info-circle",
+                      href: `https://near.social/#/${ownerId}/widget/Index?tab=contribution&entityId=${accountId}&contributorId=${contributorId}`,
+                      onClick: () => props.update && props.update("entity"),
+                    },
+                    {
+                      text: "Share",
+                      icon: "bi-arrow-up-right",
+                      id: "share",
+                    },
+                  ],
+                }}
+              />
+              <Widget
+                src={`${ownerId}/widget/ContributionRequestForm`}
+                props={{
+                  id: `${accountId}ContributionRequestForm`,
+                  entity: accountId,
+                  hidden: state.contributionFormHidden,
+                  onClose: () => State.update({ contributionFormHidden: true }),
+                }}
+              />
+            </div>
+          ),
+          additionalRow: (
+            <>
+              <Widget
+                src={`${ownerId}/widget/ProfileLine`}
+                props={{ accountId: founder, update: props.update }}
+              />
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: profile.tags }}
+              />
+              <Widget
+                src={`${ownerId}/widget/DescriptionArea`}
+                props={{
+                  description: entity.description || profile.description,
+                }}
+              />
+            </>
+          ),
+        }}
       />
     </div>
-    Current work:
-    {detail(contribution.current)}
-    {pastWork}
   </div>
 );
 
 return (
-  <div className="card">
-    {header}
-    {body}
+  <div className="border-bottom border-secondary-subtle">
+    <div className="px-3 py-0">{body}</div>
   </div>
 );
