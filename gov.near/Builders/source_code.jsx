@@ -68,6 +68,6 @@ return (
     <h3>#Template</h3>
     <Widget src="mob.near/widget/WidgetIcons" props={{ tag: "template" }} />
     <h3>All Builder Profiles</h3>
-    <Widget src="gov.near/widget/BuilderProfiles" />
+    <Widget src="gov.near/widget/BuilderProfiles" props={{ tag: "near" }} />
   </div>
 );
