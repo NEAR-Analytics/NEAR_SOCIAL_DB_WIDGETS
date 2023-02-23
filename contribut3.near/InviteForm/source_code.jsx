@@ -68,6 +68,7 @@ const descriptionInput = (
       src={`${ownerId}/widget/DescriptionInput`}
       props={{
         description: state.description,
+        text: "Details:",
         update: (description) => State.update({ description }),
       }}
     />
