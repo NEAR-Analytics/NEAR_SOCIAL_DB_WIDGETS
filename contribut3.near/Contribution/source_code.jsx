@@ -52,7 +52,7 @@ const body = (
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
-          accountId,
+          accountId: entityId,
           isEntity: true,
           imageSize: "3em",
           update: props.update,
