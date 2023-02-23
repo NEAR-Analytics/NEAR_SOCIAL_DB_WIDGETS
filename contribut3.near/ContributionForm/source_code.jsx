@@ -30,7 +30,7 @@ const body = (
       <Widget
         src={`${ownerId}/widget/DateInput`}
         props={{
-          id: "start-date",
+          id: "end-date",
           text: "End date *",
           date: state.endDate,
           update: (endDate) => State.update({ endDate }),
