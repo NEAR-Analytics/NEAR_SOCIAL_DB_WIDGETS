@@ -21,7 +21,10 @@ const tags = Object.keys(profile.tags ?? {});
 
 return (
   <div>
-    <h1>NEAR Global</h1>
+    <Widget src="mob.near/widget/ProfileOnboarding" props={{ accountId }} />
+    <h1>
+      <b>NEAR Global</b>
+    </h1>
     <h2>
       <i>Uniting the Open Web</i>
     </h2>
@@ -31,23 +34,27 @@ return (
       professional development opportunities that involve sharing knowledge and
       best practices with industry experts around the world.
     </p>
-    <div>
-      <Widget src="gov.near/widget/JoinDetails" props={{ ownerId }} />
+    <div className="mb-3">
+      <h5>Our Social Profile:</h5>
+      <Widget src="gov.near/widget/Profile" props={{ ownerId }} />
     </div>
-    <div>
-      <h5>HOW TO JOIN:</h5>
+    <div className="mb-3">
+      <h4>HOW TO JOIN:</h4>
       <p>
-        Propose adding members to the
+        Click the "Join Here" button below to engage with us on Near Social.
+      </p>
+      <Widget src="gov.near/widget/JoinButton" props={{ ownerId }} />
+    </div>
+    <div className="mb-3">
+      <p>
+        Propose adding members to the{" "}
         <a href="https://app.astrodao.com/dao/global.sputnik-dao.near">
           NEAR Global DAO
         </a>
       </p>
-      <p>Click "Join" to follow us here on Near Social.</p>
     </div>
     <div>
-      <div>
-        <Widget src="gov.near/widget/Membership" props={{ ownerId }} />
-      </div>
+      <Widget src="gov.near/widget/Membership" props={{ ownerId }} />
     </div>
     <h2>Connect and Collaborate</h2>
     <div className="mb-2">
