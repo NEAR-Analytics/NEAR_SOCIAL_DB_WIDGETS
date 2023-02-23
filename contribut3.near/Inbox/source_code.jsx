@@ -90,16 +90,16 @@ const content = {
   proposals: (
     <Widget
       src={`${ownerId}/widget/ContributionRequestList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
   invitations: (
     <Widget
       src={`${ownerId}/widget/InviteList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
-}[state.content];
+}[getContent(state.content)];
 
 return (
   <div>
