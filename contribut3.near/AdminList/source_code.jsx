@@ -9,9 +9,7 @@ const allEntities = (
     "final",
     true
   ) ?? []
-)
-  .filter((accountId) => (search ? accountId.includes(search) : true))
-  .sort((a, b) => a.localeCompare(b));
+).filter((accountId) => (search ? accountId.includes(search) : true));
 
 if (!allEntities || allEntities.length === 0) {
   return "No entities with Admin access for your account!";
