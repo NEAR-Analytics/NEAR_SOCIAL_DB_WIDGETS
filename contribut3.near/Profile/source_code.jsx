@@ -119,26 +119,6 @@ const body = (
   </div>
 );
 
-const proposalsCount = (
-  Near.view(
-    ownerId,
-    "get_entity_contribution_requests",
-    { entity_id: accountId },
-    "final",
-    true
-  ) ?? []
-).length;
-
-const invitesCount = Object.keys(
-  Near.view(
-    ownerId,
-    "get_entity_invites",
-    { account_id: accountId },
-    "final",
-    true
-  ) ?? {}
-).length;
-
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
@@ -150,37 +130,11 @@ const contentSelector = (
       update: (content) => State.update({ content }),
       buttons: [
         {
-          id: "requests",
-          text: "Requests",
-          icon: "bi-boxes",
-        },
-        isAuthorized
-          ? {
-            id: "proposals",
-            text: "Proposals",
-            icon: "bi-person-down",
-            count: contributorsCount,
-          }
-          : null,
-        isAuthorized
-          ? {
-            id: "invitations",
-            text: "Invitations",
-            icon: "bi-hourglass",
-            count: contributorsCount,
-          }
-          : null,
-        {
           id: "contributions",
           text: "Contributes to",
           icon: "bi-person-up",
         },
-        {
-          id: "contributors",
-          text: "Contributors",
-          icon: "bi-people",
-        },
-      ].filter((x) => x !== null),
+      ],
     }}
   />
 );
