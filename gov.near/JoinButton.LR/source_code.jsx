@@ -8,8 +8,8 @@ return (
           src="gov.near/widget/Profile"
           props={{ ownerId, tooltip: true }}
         />
+        {props.L}
       </div>
-      <div>{props.L}</div>
     </div>
     <div className="text-nowrap">{props.R}</div>
   </div>
