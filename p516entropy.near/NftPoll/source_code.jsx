@@ -150,7 +150,7 @@ return (
           }}
         />
       )}
-      {state.polls.length === 0 && (
+      {!state.showPollCreator && state.polls.length === 0 && (
         <div>The collection currently has no polls created</div>
       )}
       {state.polls.map((poll, i) => {
