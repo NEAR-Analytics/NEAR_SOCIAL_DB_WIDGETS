@@ -16,8 +16,6 @@ const getContent = (content) => {
 };
 
 State.init({
-  content: getContent(props.content),
-  search: props.search ?? "",
   inviteFormHidden: true,
 });
 
@@ -84,12 +82,6 @@ const body = (
             additionalRow: (
               <>
                 <div className="d-flex flex-row justify-content-start align-items-center">
-                  {/* <span className="text-muted me-2"> */}
-                  {/*   Created{" "} */}
-                  {/*   {new Date( */}
-                  {/*     Number(contributor.start_date) */}
-                  {/*   ).toLocaleDateString()} */}
-                  {/* </span> */}
                   <Widget
                     src={`${ownerId}/widget/ActiveIndicator`}
                     props={{
@@ -124,10 +116,10 @@ const contentSelector = (
     src={`${ownerId}/widget/TabSelector`}
     props={{
       tab: "entity",
-      content: state.content,
-      search: state.search,
+      content: props.content,
+      search: props.search,
       accountId: props.accountId,
-      update: (content) => State.update({ content }),
+      update: (content) => props.update({ content }),
       buttons: [
         {
           id: "contributions",
@@ -150,9 +142,9 @@ const searchBar = (
           <input
             className="form-control border-0"
             type="search"
-            value={state.search}
+            value={props.search}
             placeholder="Search"
-            onChange={(e) => State.update({ search: e.target.value })}
+            onChange={(e) => props.update({ search: e.target.value })}
           />
         </div>
       </div>
@@ -164,10 +156,10 @@ const content = {
   contributions: (
     <Widget
       src={`${ownerId}/widget/ContributionList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
-}[state.content];
+}[getContent(props.content)];
 
 return (
   <div>
