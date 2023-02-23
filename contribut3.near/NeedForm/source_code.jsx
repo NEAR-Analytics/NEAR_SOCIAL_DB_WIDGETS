@@ -95,7 +95,7 @@ return (
         {descriptionInput}
       </div>
     </div>
-    <div className="d-flex flex-row justify-content-between">
+    <div className="d-flex flex-row justify-content-between w-50">
       <a
         className="btn-outline-secondary"
         href={`https://near.social/#/${ownerId}/widget/Index`}
