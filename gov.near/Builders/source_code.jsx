@@ -44,7 +44,7 @@ return (
     )}
     <Widget
       src="gov.near/widget/BuilderProfiles"
-      props={{ tag: "near", limit: 39 }}
+      props={{ tag: "builder", limit: 39 }}
     />
     <div className="mb-3"></div>
     <h2>Near Social Dev Tools</h2>
