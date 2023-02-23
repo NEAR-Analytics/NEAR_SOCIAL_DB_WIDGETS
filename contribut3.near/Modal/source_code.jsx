@@ -7,7 +7,7 @@ const hidden = props.hidden;
 return hidden ? (
   <></>
 ) : (
-  <div className="modal fade" tabIndex="-1">
+  <div className="modal fade" aria-hidden={hidden}>
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
