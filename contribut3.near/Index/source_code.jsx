@@ -1,8 +1,8 @@
 const ownerId = "contribut3.near";
 
-initState({
+State.init({
   search: "",
-  content: props.content ?? "entities",
+  content: props.content,
   tab: props.tab ?? "dashboard",
 });
 
@@ -22,7 +22,8 @@ const isContributor = Near.view(
   true
 );
 
-const update = (tab) => State.update({ tab });
+const update = ({ tab, content, search }) =>
+  State.update({ tab, content, search });
 
 const tabContent = {
   dashboard: (
