@@ -35,7 +35,7 @@ const contentSelector = (
         },
         {
           id: "contributions",
-          text: "Contributions",
+          text: "My Contributions",
           icon: "bi-person-up",
         },
         {
