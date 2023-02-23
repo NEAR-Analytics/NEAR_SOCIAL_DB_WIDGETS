@@ -12,7 +12,7 @@ return (
     tabIndex="-1"
     aria-hidden={hidden}
   >
-    <div className="modal-dialog">
+    <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title">{title}</h5>
