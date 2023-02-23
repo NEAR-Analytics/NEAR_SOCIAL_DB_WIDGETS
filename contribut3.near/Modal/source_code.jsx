@@ -2,10 +2,11 @@ const title = props.title;
 const body = props.body;
 const confirmText = props.confirmText;
 const onConfirm = props.onConfirm;
-const id = props.id;
 const hidden = props.hidden;
 
-return (
+return hidden ? (
+  <></>
+) : (
   <div className="modal fade" tabIndex="-1">
     <div className="modal-dialog">
       <div className="modal-content">
