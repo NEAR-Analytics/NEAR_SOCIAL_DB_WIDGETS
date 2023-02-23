@@ -46,6 +46,7 @@ return (
           accountId: context.accountId,
           isEntity: false,
           search: state.search,
+          update: props.update,
         }}
       />
     </div>
