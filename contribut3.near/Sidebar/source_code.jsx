@@ -79,5 +79,9 @@ return (
       icon: "bi-info-square",
       id: "about",
     })}
+    <a className="nav-link mt-2 rounded-3 p-2" href="https://near.social/#/">
+      <i className={icon} />
+      <span>{text}</span>
+    </a>
   </div>
 );
