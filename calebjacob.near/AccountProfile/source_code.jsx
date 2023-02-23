@@ -12,6 +12,8 @@ const Wrapper = styled.a`
   color: #687076 !important;
   outline: none;
   text-decoration: none !important;
+  background: none !important;
+  border: none;
 
   > * {
     min-width: 0;
