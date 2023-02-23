@@ -25,6 +25,7 @@ const entityIdInput = (
   <Widget
     src={`${ownerId}/widget/AdminEntityAccountIdInput`}
     props={{
+      label: "Request as:",
       update: (entityId) => {
         State.update({ entityId });
         Near.asyncView(
@@ -85,16 +86,16 @@ const onSubmit = () => {
 };
 
 return (
-  <div className="card">
-    <div className="card-header">Create new contribution request</div>
-    <div className="card-body">
+  <div>
+    <h1 className="">Create new contribution request</h1>
+    <div className="bg-light">
       <div className="row">
         {entityIdInput}
         {contributionTypeInput}
         {descriptionInput}
       </div>
     </div>
-    <div className="card-footer justify-content-between">
+    <div className="d-flex flex-row justify-content-between">
       <a
         className="btn-outline-secondary"
         href={`https://near.social/#/${ownerId}/widget/Index`}
