@@ -1,7 +1,7 @@
 const items = props.items ?? [];
 
 const menuItems = items.reduce(
-  (list, { text, icon, href, onClick }) => [
+  (list, { text, icon, href, onClick, toggle, target }) => [
     ...list,
     list.length > 0 ? (
       <li>
@@ -11,7 +11,13 @@ const menuItems = items.reduce(
       <></>
     ),
     <li>
-      <a className="dropdown-item btn" href={href} onClick={onClick}>
+      <a
+        className="dropdown-item btn"
+        href={href}
+        onClick={onClick}
+        data-bs-toggle={toggle ? "modal" : ""}
+        data-bs-target={target}
+      >
         <i className={icon} />
         <span>{text}</span>
       </a>
