@@ -24,6 +24,8 @@ if (Array.isArray(contributions) && contributions.length === 0) {
   return "No contribution requests found!";
 }
 
+console.log(contributions);
+
 const allContributions = contributions.filter((id) =>
   id.includes(props.search)
 );
