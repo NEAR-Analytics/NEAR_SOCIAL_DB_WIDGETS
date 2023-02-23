@@ -1,14 +1,14 @@
 // inspired by https://near.social/#/wendersonpires.near/widget/Chat
 
-if (typeof props.loadRoomCallback != "function") {
-  return (
-    <h2>
-      It's reusable widget and cannot work alone. You have to pass the
-      loadRoomCallback function in props. Found type:{" "}
-      {typeof props.loadRoomCallback}
-    </h2>
-  );
-}
+// if (typeof props.loadRoomCallback != "function") {
+//   return (
+//     <h2>
+//       It's reusable widget and cannot work alone. You have to pass the
+//       loadRoomCallback function in props. Found type:{" "}
+//       {typeof props.loadRoomCallback}
+//     </h2>
+//   );
+// }
 
 State.init({
   roomId: Storage.get("roomId") || null,
@@ -43,15 +43,16 @@ const findRoom = (created) => {
     : state.roomId.split("-")[0];
   Storage.set("created", "false");
 
-  const roomData = Social.getr(
-    `${ownerAccountId}/${props.widgetKey}/${state.roomId}`
-  );
-
+  const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
+  let roomData = Social.getr(queryString);
+  // roomData = Social.getr(queryString);
+  console.log(roomData);
   if (!roomData) {
     State.update({
       errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
     so don't hesitate enter your room ID and try again connecting!`,
     });
+
     return;
   }
   State.update({
@@ -70,7 +71,9 @@ if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
   const queryString = `${ownerAccountId}/${props.widgetKey}/${Storage.get(
     "roomId"
   )}`;
-  const roomData = Social.getr(queryString);
+  let roomData = Social.getr(queryString);
+  roomData = Social.getr(queryString);
+  console.log(roomData);
   if (!roomData) {
     State.update({
       errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
