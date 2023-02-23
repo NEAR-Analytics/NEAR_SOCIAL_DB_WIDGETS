@@ -51,10 +51,10 @@ function onResultClick(id) {
 }
 
 const Wrapper = styled.div`
-  background: #fff;
+  background: #ECEEF0;
   display: flex;
-  gap: 12px;
-  padding: 0 12px 12px 12px;
+  gap: 6px;
+  padding: 6px;
   overflow: auto;
   scroll-behavior: smooth;
   align-items: center;
@@ -66,6 +66,7 @@ const Wrapper = styled.div`
     
     button {
         border: 1px solid #ECEEF0;
+        background: #fff !important;
         border-radius: 6px;
         padding: 3px 6px;
         transition: all 200ms;
