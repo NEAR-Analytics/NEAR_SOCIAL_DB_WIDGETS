@@ -31,7 +31,17 @@ const tabContent = {
       props={{ content: props.content, search: props.search, update }}
     />
   ),
-  profile: <Widget src={`${ownerId}/widget/Profile`} />,
+  profile: (
+    <Widget
+      src={`${ownerId}/widget/Profile`}
+      props={{
+        content: props.content,
+        search: props.search,
+        accountId: props.accountId,
+        update,
+      }}
+    />
+  ),
   inbox: (
     <Widget
       src={`${ownerId}/widget/Inbox`}
