@@ -48,7 +48,13 @@ return (
       }`}
       data={data}
     >
-      {loading ? "Loading" : follow ? "Joined" : inverse ? "Lead" : "Join"}
+      {loading
+        ? "Loading"
+        : follow
+        ? "Connected"
+        : inverse
+        ? "Lead"
+        : "Connect"}
     </CommitButton>
   </div>
 );
