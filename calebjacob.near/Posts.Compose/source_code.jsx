@@ -367,6 +367,7 @@ return (
           props={{
             term: state.text.split("@").pop(),
             onSelect: autoCompleteAccountId,
+            onClose: () => State.update({ showAccountAutocomplete: false }),
           }}
         />
       </AutoComplete>
