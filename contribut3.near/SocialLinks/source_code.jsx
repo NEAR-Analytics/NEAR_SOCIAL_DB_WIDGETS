@@ -19,8 +19,4 @@ const linksList = supportedLinks
     </li>
   ));
 
-return (
-  <ul className="d-flex flex-row justify-content-between align-items-center">
-    {linksList}
-  </ul>
-);
+return <ul className="list-group list-group-horizontal">{linksList}</ul>;
