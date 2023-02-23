@@ -14,7 +14,7 @@ const linksList = supportedLinks
   .map(({ name, url, icon }) => (
     <li className="list-group-item border-0 p-2">
       <a href={`${url}${links[name]}`} target="_blank">
-        <i className={`${icon} text-secondary`} />
+        <i className={`${icon} text-secondary fs-4`} />
       </a>
     </li>
   ));
