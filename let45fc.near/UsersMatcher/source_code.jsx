@@ -45,7 +45,7 @@ const findRoom = (created) => {
 
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
   let roomData = Social.getr(queryString);
-  // roomData = Social.getr(queryString);
+  roomData = Social.getr(queryString);
   console.log(roomData);
   if (!roomData) {
     State.update({
