@@ -11,7 +11,7 @@ if (!context.accountId) {
   return "";
 }
 
-const composeData = () => {
+const composeCommentData = () => {
   const data = {
     [addressForArticles]: {
       [addressForComments]: JSON.stringify(
@@ -53,7 +53,7 @@ return (
             disabled={!state.content}
             force
             className="btn btn-dark rounded-3"
-            data={composeData}
+            data={composeCommentData}
             onCommit={() => {
               onCompose();
               props.onComment && props.onComment(state.content);
