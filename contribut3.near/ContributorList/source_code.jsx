@@ -11,7 +11,7 @@ const allContributors = (
         ? "get_need_contributions"
         : "get_entity_contributions"
       : "get_contributors",
-    accountId ? { entity_id: accountId } : {},
+    accountId ? { account_id: accountId } : {},
     "final",
     true
   ) ?? []
