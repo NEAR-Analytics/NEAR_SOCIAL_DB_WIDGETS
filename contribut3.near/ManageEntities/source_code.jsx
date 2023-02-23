@@ -34,6 +34,11 @@ const contentSelector = (
           icon: "bi-boxes",
         },
         {
+          id: "contributions",
+          text: "Contributions",
+          icon: "bi-person-up",
+        },
+        {
           id: "requests",
           text: "Requests",
           icon: "bi-ui-checks-grid",
@@ -50,10 +55,15 @@ const content = {
       props={{ search: props.search, update: props.update }}
     />
   ),
-  contributors: (
+  contributions: (
     <Widget
-      src={`${ownerId}/widget/ContributorList`}
-      props={{ search: props.search, update: props.update }}
+      src={`${ownerId}/widget/ContributionList`}
+      props={{
+        search: props.search,
+        update: props.update,
+        accountId: context.accountId,
+        isEntity: false,
+      }}
     />
   ),
   requests: (
