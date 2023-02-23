@@ -20,63 +20,23 @@ State.init({
   search: props.search ?? "",
 });
 
-const entity = Near.view(
+const contributor = Near.view(
   ownerId,
-  "get_entity",
+  "get_contributor",
   { account_id: accountId },
-  "final"
-);
-
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { entity_id: accountId, account_id: context.accountId },
   "final"
 );
 
 const contributions = Near.view(
   ownerId,
-  "get_entity_contributions",
-  { entity_id: accountId },
+  "get_contributor_contributions",
+  { account_id: accountId },
   "final"
 );
 
-const [[founder]] = (contributions ?? []).filter((contribution) => {
-  const [_, details] = contribution;
-  const all = [...details.history, details.current];
-  return all.some((detail) => detail.description === "");
-});
-
 const profile = Social.getr(`${accountId}/profile`);
 
-const controls = isAuthorized ? (
-  <div className="d-flex flex-row justify-content-between align-items-center">
-    <a className="btn btn-outline-secondary me-2" style={{ width: "8em" }}>
-      <i className="bi-pencil-square" />
-      <span>Edit project</span>
-    </a>
-    <Widget
-      src={`${ownerId}/widget/CardMenu`}
-      props={{
-        update: props.update,
-        items: [
-          {
-            text: "Create new request",
-            icon: "bi-boxes",
-          },
-          {
-            text: "Invite contributors",
-            icon: "bi-person-plus",
-          },
-          {
-            text: "Delete project",
-            icon: "bi-trash",
-          },
-        ],
-      }}
-    />
-  </div>
-) : (
+const controls = (
   <div className="d-flex flex-column justify-content-start align-items-stretch">
     <a
       className="btn me-2 mb-2 text-light"
@@ -92,10 +52,10 @@ const controls = isAuthorized ? (
     <a
       className="btn btn-success me-2 text-light"
       style={{ width: "13em" }}
-    // href={`https://near.social/#/${ownerId}/widget/Entity?accountId=${accountId}`}
+      href={`https://${accountId}.near.social/`}
     >
       <i className="bi-person-up" />
-      <span className="text-nowrap">Propose contribution</span>
+      <span className="text-nowrap">View Social profile</span>
     </a>
   </div>
 );
@@ -117,11 +77,13 @@ const body = (
                 <div className="d-flex flex-row justify-content-start align-items-center">
                   <span className="text-muted me-2">
                     Created{" "}
-                    {new Date(Number(entity.start_date)).toLocaleDateString()}
+                    {new Date(
+                      Number(contributor.start_date)
+                    ).toLocaleDateString()}
                   </span>
                   <Widget
                     src={`${ownerId}/widget/ActiveIndicator`}
-                    props={{ active: entity.status === "Active" }}
+                    props={{ active: contributor.status === "Active" }}
                   />
                 </div>
                 <Widget
