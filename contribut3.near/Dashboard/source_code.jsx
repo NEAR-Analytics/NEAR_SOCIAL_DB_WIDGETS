@@ -24,12 +24,13 @@ const header = (
   </div>
 );
 
-const createNewButton = ({ id, text, icon }) => (
+const createNewButton = ({ id, text, icon, kind }) => (
   <li>
     <a
       className="dropdown-item"
       id={id}
-      href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard&content=${id}`}
+      href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard&content=${id}${kind ? "&kind=" + kind : ""
+        }`}
       onClick={() => props.update("create")}
     >
       <i className={icon} />
