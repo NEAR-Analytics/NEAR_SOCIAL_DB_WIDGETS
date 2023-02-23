@@ -34,14 +34,14 @@ const contentSelector = (
           icon: "bi-boxes",
         },
         {
-          id: "contributions",
-          text: "My Contributions",
-          icon: "bi-person-up",
-        },
-        {
           id: "requests",
           text: "Requests",
           icon: "bi-ui-checks-grid",
+        },
+        {
+          id: "contributions",
+          text: "My Contributions",
+          icon: "bi-person-up",
         },
       ],
     }}
