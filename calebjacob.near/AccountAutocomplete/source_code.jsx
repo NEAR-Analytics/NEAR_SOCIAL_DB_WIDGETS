@@ -53,8 +53,9 @@ function onResultClick(id) {
 const Wrapper = styled.div`
   background: #ECEEF0;
   display: flex;
-  gap: 8px;
-  padding: 8px;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 6px;
   overflow: auto;
   scroll-behavior: smooth;
   align-items: center;
