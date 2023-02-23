@@ -1,9 +1,5 @@
 const ownerId = "contribut3.near";
 
-State.init({
-  search: props.search ?? "",
-});
-
 const header = (
   <div>
     <h1 className="fs-2">My contributions</h1>
@@ -23,7 +19,7 @@ const searchBar = (
             type="search"
             value={state.search}
             placeholder="Search"
-            onChange={(e) => State.update({ search: e.target.value })}
+            onChange={(e) => props.update({ search: e.target.value })}
           />
         </div>
       </div>
