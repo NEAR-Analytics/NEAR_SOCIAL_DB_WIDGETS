@@ -2,6 +2,7 @@ const SEARCH_API_KEY = "57ad1944e94432510f067a6e3d13f022";
 const APPLICATION_ID = "B6PI9UKKJT";
 const INDEX = "test_near-social-feed";
 const API_URL = `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
+const INITIAL_PAGE = 0;
 
 const writeStateTerm = (term) => {
   console.log("writeStateTerm:", term);
@@ -12,10 +13,12 @@ const writeStateTerm = (term) => {
 
   if (term === "") {
     State.update({
+      currentPage: 0,
       post: [],
       comment: [],
       profile: [],
       widget: [],
+      paginate: null,
     });
   }
 };
@@ -81,13 +84,11 @@ const postWidgets = (content, postType) => {
 
 const componentWidgets = (content) => {
   const widgets = [];
-  console.log("Content", content);
   for (const component of content || []) {
     const id = component.objectID;
     const idParts = id.split("/");
     const widgetRawName = idParts[idParts.length - 1];
     const accountId = component.author;
-    console.log("author", accountId);
 
     // objectId is already in the form of widget src: <accountId>/widget/<WidgetName>
     const widgetSrc = id;
@@ -116,27 +117,47 @@ const componentWidgets = (content) => {
     );
   }
 
-  console.log("widgets", widgets);
   return widgets;
 };
 
-const computeResults = (term) => {
+const onPageChange = (pageNumber) => {
+  if (pageNumber === state.currentPage) {
+    console.log(`Selected the same page number as before: ${pageNumber}`);
+    return;
+  }
+
+  // Need to clear out old search data otherwise we'll get multiple entries
+  // from the previous pages as well. Seems to be cache issue on near.social.
+  State.update({
+    post: [],
+    comment: [],
+    profile: [],
+    widget: [],
+    currentPage: pageNumber,
+  });
+  computeResults(state.term, pageNumber);
+};
+
+const computeResults = (term, pageNumber) => {
   console.log("computeResults:", term);
-  fetchAlgoliaData(term).then((res) => {
-    const data = getCategoryResults(res.body);
-    console.log("data", data);
+  fetchAlgoliaData(term, pageNumber).then((res) => {
+    const { results, hitsTotal, hitsPerPage } = getCategoryResults(res.body);
     State.update({
       term,
-      post: postWidgets(data["post"], "post"),
-      comment: postWidgets(data["comment, post"], "comment"),
-      profile: profileWidgets(data["profile"]),
-      widget: componentWidgets(data["widget"]),
+      post: postWidgets(results["post"], "post"),
+      comment: postWidgets(results["comment, post"], "comment"),
+      profile: profileWidgets(results["profile"]),
+      widget: componentWidgets(results["widget"]),
+      paginate: {
+        hitsTotal,
+        hitsPerPage,
+      },
     });
   });
 };
 
-const fetchAlgoliaData = (queryURI) => {
-  let search_params = `query=${queryURI}`;
+const fetchAlgoliaData = (queryURI, pageNumber) => {
+  let search_params = `query=${queryURI}&page=${pageNumber}`;
   return asyncFetch(API_URL, {
     body: `{ "params": "${search_params}" }`,
     headers: {
@@ -149,7 +170,6 @@ const fetchAlgoliaData = (queryURI) => {
 };
 
 const getCategoryResults = (raw_result_data) => {
-  console.log("RAW", raw_result_data);
   const results = {};
   for (const result of raw_result_data.hits) {
     const {
@@ -179,7 +199,11 @@ const getCategoryResults = (raw_result_data) => {
     });
   }
 
-  return results;
+  return {
+    results,
+    hitsTotal: raw_result_data.nbHits,
+    hitsPerPage: raw_result_data.hitsPerPage,
+  };
 };
 
 return (
@@ -196,7 +220,10 @@ return (
           <button type="button" onClick={() => writeStateTerm("")}>
             Clear
           </button>
-          <button type="button" onClick={() => computeResults(state.term)}>
+          <button
+            type="button"
+            onClick={() => computeResults(state.term, INITIAL_PAGE)}
+          >
             Go
           </button>
         </div>
@@ -204,35 +231,42 @@ return (
     </div>
 
     {state.term && (
-      <>
+      <div>
         {state.profile?.length > 0 && (
           <div>
             <p>Profiles:</p>
             <ul>{state.profile}</ul>
           </div>
         )}
-
         {state.widget?.length > 0 && (
           <div className="mb-2">
             <p>Widgets:</p>
             {state.widget}
           </div>
         )}
-
         {state.post?.length > 0 && (
           <div>
             <p>Posts:</p>
             <ul>{state.post}</ul>
           </div>
         )}
-
         {state.comment?.length > 0 && (
           <div>
             <p>Comments:</p>
             <ul>{state.comment}</ul>
           </div>
         )}
-      </>
+        {state.paginate && (
+          <Widget
+            src="chaotictempest.near/widget/Paginate"
+            props={{
+              totalCount: state.paginate.hitsTotal,
+              pageSize: state.paginate.hitsPerPage,
+              onPageChange,
+            }}
+          />
+        )}
+      </div>
     )}
 
     {state.term && state.apps?.length === 0 && state.people?.length === 0 && (
