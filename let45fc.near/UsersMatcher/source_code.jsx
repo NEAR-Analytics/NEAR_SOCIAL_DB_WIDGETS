@@ -46,25 +46,27 @@ const findRoom = (created) => {
 
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
   let roomData = Social.getr(queryString);
-  setInterval(() => {
-    console.log(roomData);
-    if (!roomData) {
-      State.update({
-        errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
+  if (!state.loading) {
+    setInterval(() => {
+      console.log(roomData);
+      if (!roomData) {
+        State.update({
+          errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
     so don't hesitate enter your room ID and try again connecting!`,
+        });
+
+        return;
+      }
+      State.update({
+        roomData: roomData,
       });
 
-      return;
-    }
-    State.update({
-      roomData: roomData,
-    });
-
-    if (props.loadRoomCallback && roomData) {
-      props.loadRoomCallback(roomData, state.roomId, created);
-    }
-  }, 1000);
-  State.update({ loading: true });
+      if (props.loadRoomCallback && roomData) {
+        props.loadRoomCallback(roomData, state.roomId, created);
+      }
+    }, 1000);
+    State.update({ loading: true });
+  }
 };
 
 if (state.loading) {
@@ -77,25 +79,27 @@ if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
 
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
   let roomData = Social.getr(queryString);
-  setInterval(() => {
-    console.log(roomData);
-    if (!roomData) {
-      State.update({
-        errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
+  if (!state.loading) {
+    setInterval(() => {
+      console.log(roomData);
+      if (!roomData) {
+        State.update({
+          errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain, 
     so don't hesitate enter your room ID and try again connecting!`,
+        });
+
+        return;
+      }
+      State.update({
+        roomData: roomData,
       });
 
-      return;
-    }
-    State.update({
-      roomData: roomData,
-    });
-
-    if (props.loadRoomCallback && roomData) {
-      props.loadRoomCallback(roomData, state.roomId, created);
-    }
-  }, 1000);
-  State.update({ loading: true });
+      if (props.loadRoomCallback && roomData) {
+        props.loadRoomCallback(roomData, state.roomId, created);
+      }
+    }, 1000);
+    State.update({ loading: true });
+  }
 }
 
 if (state.roomCreatedScreen) {
