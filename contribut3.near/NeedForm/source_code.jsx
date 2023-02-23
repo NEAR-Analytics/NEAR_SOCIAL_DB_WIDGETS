@@ -86,16 +86,16 @@ const onSubmit = () => {
 };
 
 return (
-  <div>
+  <div className="ms-3 mt-4" style={{ maxWidth: "40em" }}>
     <h1 className="">Create new contribution request</h1>
-    <div className="bg-light m-2 p-4 w-50 rounded-2">
+    <div className="bg-light m-2 p-4 rounded-2">
       <div className="row">
         {entityIdInput}
         {contributionTypeInput}
         {descriptionInput}
       </div>
     </div>
-    <div className="d-flex flex-row justify-content-between w-50">
+    <div className="d-flex flex-row justify-content-between">
       <a
         className="btn-outline-secondary"
         href={`https://near.social/#/${ownerId}/widget/Index`}
