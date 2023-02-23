@@ -1,7 +1,7 @@
 const [selected_accountId, selected_indexerName] = props.indexer_path
   ? props.indexer_path.split("/")
   : [undefined, undefined];
-
+console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const google_analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE2N8N8G93"></script>
 <script>
