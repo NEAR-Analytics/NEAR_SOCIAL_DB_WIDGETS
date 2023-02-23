@@ -1,6 +1,10 @@
-// const limit = 5;
+const limitPerPage = 21;
 let components = [];
 let totalComponents = 0;
+
+State.init({
+  currentPage: 0,
+});
 
 const data = Social.keys("*/widget/*", "final", {
   return_type: "BlockHeight",
@@ -22,7 +26,8 @@ if (data) {
   });
 
   result.sort((a, b) => b.blockHeight - a.blockHeight);
-  components = result.slice(0, 21);
+  const pageOffset = state.currentPage * limitPerPage;
+  components = result.slice(pageOffset, pageOffset + limitPerPage);
 }
 
 const Wrapper = styled.div`
@@ -148,6 +153,11 @@ return (
       ))}
     </Items>
 
-    <Button type="button">Load More</Button>
+    <Button
+      type="button"
+      onClick={() => State.update({ currentPage: state.currentPage + 1 })}
+    >
+      Load More
+    </Button>
   </Wrapper>
 );
