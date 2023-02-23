@@ -304,9 +304,9 @@ const PreviewWrapper = styled.div`
 const AutoComplete = styled.div`
   position: absolute;
   z-index: 5;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
 `;
 
 return (
