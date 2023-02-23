@@ -61,9 +61,9 @@ const computeFetchFrom = (items, limit, previouslyFoundItems) => {
   //TODO this next line implies that fetching is completed if the set is not full,
   // but that is not the case now with moderation
 
-  if (!items || items.length < limit) {
-    return false;
-  }
+  // if (!items || items.length < limit) {
+  //   return false;
+  // }
   const blockHeight = items[items.length - 1].blockHeight;
   return index.options.order === "desc" ? blockHeight - 1 : blockHeight + 1;
 };
