@@ -24,7 +24,7 @@ const inboxCount = proposalsCount + invitesCount;
 
 const navItem = ({ text, icon, id, count }) => (
   <a
-    className={`nav-link mt-2 rounded-3 p-2 ${id === state.selected ? "bg-secondary" : ""
+    className={`nav-link mt-2 rounded-3 p-2 ${id === props.tab ? "bg-secondary" : ""
       }`}
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${id}`}
     onClick={() => props.update({ tab: id, content: "", search: "" })}
