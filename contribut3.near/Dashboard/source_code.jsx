@@ -20,7 +20,7 @@ const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
     props={{
-      tab: "dashboard",
+      tab: "home",
       content: getContent(props.content),
       search: props.search,
       update: (content) => props.update({ content }),
