@@ -105,23 +105,6 @@ const body = (
       {kindInput}
       {startDateInput}
     </div>
-
-    <div>
-      <a
-        className="btn btn-outline-secondary"
-        href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard`}
-        onClick={() => props.update("dashboard")}
-      >
-        Cancel
-      </a>
-      <a
-        className={`btn ${!state.accountIdValid ? "btn-secondary" : "btn-primary"
-          }`}
-        onClick={onSubmit}
-      >
-        Create project
-      </a>
-    </div>
   </div>
 );
 
@@ -165,13 +148,11 @@ return (
         Cancel
       </a>
       <a
-        className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
-            ? "btn-secondary"
-            : "btn-primary"
+        className={`btn ${!state.accountIdValid ? "btn-secondary" : "btn-primary"
           }`}
         onClick={onSubmit}
       >
-        Create request
+        Create project
       </a>
     </div>
   </div>
