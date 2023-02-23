@@ -11,7 +11,7 @@ if (profile === null) {
 }
 
 State.init({
-  member_id: accountId,
+  member_id: state.member_id,
 });
 
 const handleProposal = () => {
