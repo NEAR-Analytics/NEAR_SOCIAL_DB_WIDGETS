@@ -1,12 +1,14 @@
 State.init({
   roomData: null,
   roomId: null,
+  created: null,
 });
 
 const callback = (roomData, roomId, created) => {
   State.update({
     roomData,
     roomId,
+    created,
   });
 };
 
@@ -15,6 +17,8 @@ if (state.roomData) {
     <>
       <h1>Got game data!</h1>
       <p>{JSON.stringify(state.roomData)}</p>
+      <p>{state.roomId}</p>
+      <p>{state.created}</p>
     </>
   );
 }
