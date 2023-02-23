@@ -42,7 +42,7 @@ const body = (
         props={{
           accountId: isEntity ? contributorId : entityId,
           isEntity: !isEntity,
-          imageSize: "3em",
+          imageSize: "4em",
           update: props.update,
           additionalColumn: (
             <div className="d-flex flex-row justify-content-between align-items-center">
