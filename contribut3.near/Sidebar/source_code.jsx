@@ -53,7 +53,7 @@ return (
       </h4>
     </a>
     {navItem({
-      text: "Dashboard",
+      text: "Home",
       icon: "bi-house",
       id: "dashboard",
     })}
