@@ -3,7 +3,7 @@ const ownerId = "contribut3.near";
 State.init({
   search: props.search ?? "",
   content: props.content,
-  tab: props.tab ?? "dashboard",
+  tab: props.tab ?? "home",
 });
 
 const isModerator = Near.view(
@@ -25,7 +25,7 @@ const isContributor = Near.view(
 const update = (state) => State.update(state);
 
 const tabContent = {
-  dashboard: (
+  home: (
     <Widget
       src={`${ownerId}/widget/Dashboard`}
       props={{ content: state.content, search: state.search, update }}
