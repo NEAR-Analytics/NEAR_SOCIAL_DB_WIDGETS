@@ -61,7 +61,7 @@ if (tag) {
   }
 
   keys = Object.entries(taggedProfiles)
-    .map((kv) => Object.keys(kv[1].profile).map((w) => `${kv[0]}/widget/${w}`))
+    .map((kv) => Object.keys(kv[1].profile).map((b) => `${kv[0]}/profile/${b}`))
     .flat();
 
   if (!keys.length) {
