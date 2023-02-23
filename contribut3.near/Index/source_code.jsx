@@ -88,6 +88,16 @@ const tabContent = {
       }}
     />
   ),
+  contributions: (
+    <Widget
+      src={`${ownerId}/widget/ContributionsPage`}
+      props={{
+        search: props.search,
+        content: props.content,
+        update,
+      }}
+    />
+  ),
 }[state.tab];
 
 return (
