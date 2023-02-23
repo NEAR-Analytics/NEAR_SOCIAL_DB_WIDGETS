@@ -59,6 +59,11 @@ const Wrapper = styled.div`
   scroll-behavior: smooth;
   align-items: center;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   > * {
     max-width: 175px;
