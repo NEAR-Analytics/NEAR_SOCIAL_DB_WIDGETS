@@ -54,7 +54,7 @@ const controls = (
       style={{ width: "13em" }}
       href={`https://${accountId}.near.social/`}
     >
-      <i className="bi-person-up" />
+      <i className="bi-code" />
       <span className="text-nowrap">View Social profile</span>
     </a>
   </div>
