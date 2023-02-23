@@ -11,7 +11,7 @@ const convertType = (contributionType) => {
   return { Other: contributionType.name };
 };
 
-initState({
+State.init({
   // The entity to which to request a contribution.
   entity: props.entity ? [{ name: props.entity }] : [],
   // The description of the contribution request.
