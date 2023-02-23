@@ -276,7 +276,7 @@ const content = {
       props={{ accountId, search: props.search, update: props.update }}
     />
   ),
-}[state.content];
+}[getContent(props.content)];
 
 return (
   <div>
