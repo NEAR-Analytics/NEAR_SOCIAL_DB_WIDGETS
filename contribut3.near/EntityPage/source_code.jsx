@@ -22,8 +22,6 @@ const getContent = (content) => {
 };
 
 State.init({
-  content: getContent(props.content),
-  search: props.search ?? "",
   contributionFormHidden: false,
 });
 
@@ -183,7 +181,7 @@ const contentSelector = (
       content: state.content,
       search: state.search,
       accountId: props.accountId,
-      update: (content) => State.update({ content }),
+      update: (content) => props.update({ content }),
       buttons: [
         {
           id: "requests",
@@ -232,9 +230,9 @@ const searchBar = (
           <input
             className="form-control border-0"
             type="search"
-            value={state.search}
+            value={props.search}
             placeholder="Search"
-            onChange={(e) => State.update({ search: e.target.value })}
+            onChange={(e) => props.update({ search: e.target.value })}
           />
         </div>
       </div>
@@ -246,13 +244,13 @@ const content = {
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{ accountId, search: state.search, update: props.update }}
+      props={{ accountId, search: props.search, update: props.update }}
     />
   ),
   proposals: (
     <Widget
       src={`${ownerId}/widget/ContributionRequestList`}
-      props={{ accountId, search: state.search, update: props.update }}
+      props={{ accountId, search: props.search, update: props.update }}
     />
   ),
   contributions: (
