@@ -1,5 +1,5 @@
 if (!context.accountId) {
-  return "";
+  return <></>;
 }
 
 State.init({
@@ -9,6 +9,7 @@ State.init({
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
+const autocompleteEnabled = true;
 
 const content = {
   type: "md",
@@ -80,6 +81,16 @@ function onCommit() {
     image: {},
     text: "",
   });
+}
+
+function textareaInputHandler(value) {
+  const showAccountAutocomplete = /@[\w][^\s]*$/.test(value);
+  State.update({ text: value, showAccountAutocomplete });
+}
+
+function autoCompleteAccountId(id) {
+  const text = state.text.replace(/@[^\s]*$/, "");
+  State.update({ text: `${text}@${id} `, showAccountAutocomplete: false });
 }
 
 const Wrapper = styled.div`
@@ -290,6 +301,14 @@ const PreviewWrapper = styled.div`
   padding-bottom: calc(40px + (var(--padding) * 2));
 `;
 
+const AutoComplete = styled.div`
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
 return (
   <Wrapper>
     {state.showPreview ? (
@@ -320,7 +339,7 @@ return (
         <Textarea data-value={state.text}>
           <textarea
             placeholder="What's happening?"
-            onInput={(event) => State.update({ text: event.target.value })}
+            onInput={(event) => textareaInputHandler(event.target.value)}
             value={state.text}
           />
 
@@ -335,6 +354,18 @@ return (
           </TextareaDescription>
         </Textarea>
       </>
+    )}
+
+    {autocompleteEnabled && state.showAccountAutocomplete && (
+      <AutoComplete>
+        <Widget
+          src="calebjacob.near/widget/AccountAutocomplete"
+          props={{
+            term: state.text.split("@").pop(),
+            onSelect: autoCompleteAccountId,
+          }}
+        />
+      </AutoComplete>
     )}
 
     <Actions>
