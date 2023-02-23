@@ -93,7 +93,8 @@ return (
         {contributionTypeInput}
         {descriptionInput}
       </div>
-
+    </div>
+    <div className="card-footer">
       <a
         className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
             ? "btn-secondary"
