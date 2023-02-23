@@ -30,7 +30,7 @@ return (
         </div>
       </a>
     </div>
-    <div className="profile-tags text-muted mb-5">
+    <div className="profile-tags text-muted ">
       <Widget src="gov.near/widget/JoinStats" props={{ ownerId }} />
     </div>
   </div>
