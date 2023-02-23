@@ -48,6 +48,7 @@ const findRoom = (created) => {
   let roomData = Social.getr(queryString);
   if (!state.loading) {
     setTimeout(() => {
+      roomData = Social.getr(queryString);
       console.log(roomData);
       if (!roomData) {
         State.update({
@@ -81,6 +82,7 @@ if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
   let roomData = Social.getr(queryString);
   if (!state.loading) {
     setTimeout(() => {
+      roomData = Social.getr(queryString);
       console.log(roomData);
       if (!roomData) {
         State.update({
