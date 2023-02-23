@@ -55,24 +55,12 @@ const saveArticle = (args) => {
   Social.set(newData, { force: true });
 };
 
-// ======= CHECK =======
+// ======= Item for comment =======
 const item = {
   type: "social",
   path: `${lastEditor}/${addressForArticles}/main`,
   blockHeight,
 };
-
-// const index = {
-//   action: addressForComments,
-//   key: props.item,
-//   options: {
-//     limit: props.limit ?? 3,
-//     order: "desc",
-//     accountId: props.accounts,
-//     subscribe: props.subscribe,
-//   },
-// };
-// ======= CHECK  =======
 
 return (
   <>
