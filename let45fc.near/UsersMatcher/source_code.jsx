@@ -10,6 +10,7 @@ if (typeof props.loadRoomCallback != "function") {
   );
 }
 console.log("props", props);
+console.log("roomId", Storage.get("roomId"));
 
 State.init({
   roomId: Storage.get("roomId") || null,
@@ -40,7 +41,12 @@ const findRoom = (created) => {
     created = false;
   }
   console.log("In findRoom");
-  const ownerAccountId = state.roomId.split("-")[0];
+  const ownerAccountId = created
+    ? Storage.get("roomId").split("-")[0]
+    : state.roomId.split("-")[0];
+  Storage.set("created", "false");
+  Storage.set("roomId", "");
+  console.log("After getting ownerAccountId", ownerAccountId);
   console.log("getting roomData");
   const roomData = Social.getr(
     `${ownerAccountId}/${props.widgetKey}/${state.roomId}`,
@@ -56,8 +62,6 @@ const findRoom = (created) => {
     roomData: roomData,
   });
 
-  Storage.set("created", "false");
-  Storage.set("roomId", "");
   if (props.loadRoomCallback && roomData) {
     props.loadRoomCallback(roomData, state.roomId, created);
   }
