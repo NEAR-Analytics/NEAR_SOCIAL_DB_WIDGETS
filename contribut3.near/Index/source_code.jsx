@@ -49,9 +49,9 @@ const tabContent = {
       src={`${ownerId}/widget/EntityPage`}
       props={{
         accountId: props.accountId,
-        update,
         search: props.search,
         content: props.content,
+        update,
       }}
     />
   ),
@@ -61,6 +61,16 @@ const tabContent = {
       props={{
         accountId: props.accountId,
         cid: props.cid,
+        search: props.search,
+        content: props.content,
+        update,
+      }}
+    />
+  ),
+  create: (
+    <Widget
+      src={`${ownerId}/widget/CreatePage`}
+      props={{
         search: props.search,
         content: props.content,
         update,
