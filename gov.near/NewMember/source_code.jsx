@@ -4,16 +4,12 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
-State.init({
-  member_id: state.member_id,
-});
-
 const handleProposal = () => {
   const proposal = {
     description: "proposal to add member",
     kind: {
       AddMemberToRole: {
-        member_id: state.member_id,
+        member_id: accountId,
         role: "community",
       },
     },
@@ -31,12 +27,6 @@ const handleProposal = () => {
   ]);
 };
 
-const onChangeMember = (member_id) => {
-  State.update({
-    member_id,
-  });
-};
-
 return (
   <div>
     <Widget src="mob.near/widget/ProfileOnboarding" />
@@ -44,7 +34,7 @@ return (
     <div>
       <h2>Group Membership</h2>
       <h3>NEAR Account ID</h3>
-      <input type="text" onChange={(e) => onChangeMember(e.target.value)} />
+      <input type="text" />
     </div>
     <div className="mb-3"></div>
     <div>
