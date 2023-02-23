@@ -12,7 +12,7 @@ const getContent = (content) => {
 
 const header = (
   <div>
-    <h1 className="fs-2">Find projects, contributors or requests</h1>
+    <h1 className="fs-3">Find projects, contributors or requests</h1>
   </div>
 );
 
