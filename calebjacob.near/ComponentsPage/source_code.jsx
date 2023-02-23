@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
+  padding-bottom: 48px;
 `;
 
 const Header = styled.div`
