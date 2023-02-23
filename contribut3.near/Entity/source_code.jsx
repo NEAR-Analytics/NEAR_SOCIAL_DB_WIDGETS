@@ -36,7 +36,7 @@ const isAuthorized = Near.view(
 const contributions = Near.view(
   ownerId,
   "get_entity_contributions",
-  { entity_id: accountId },
+  { account_id: accountId },
   "final"
 );
 
