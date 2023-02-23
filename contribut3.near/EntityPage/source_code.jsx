@@ -139,7 +139,10 @@ const body = (
         />
       </div>
     </div>
-    <Markdown text={profile.description} />
+    <Widget
+      src={`${ownerId}/widget/DescriptionArea`}
+      props={{ description: profile.description }}
+    />
     <div className="d-flex flex-row justify-content-between align-items-center">
       <Widget
         src={`${ownerId}/widget/SocialLinks`}
