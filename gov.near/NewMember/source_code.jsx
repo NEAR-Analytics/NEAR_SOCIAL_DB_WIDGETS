@@ -4,20 +4,11 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
-const profile = socialGetr(`${accountId}/profile`);
-
-if (profile === null) {
-  return "Loading...";
-}
-
 State.init({
   member_id: state.member_id,
 });
 
 const handleProposal = () => {
-  if (!state.member_id) {
-    return;
-  }
   const proposal = {
     description: "proposal to add member",
     kind: {
@@ -27,30 +18,17 @@ const handleProposal = () => {
       },
     },
   };
-  console.log("check", proposal);
-  asyncFetch().then(() => {
-    const gas = 200000000000000;
-    const deposit = 100000000000000000000000;
-    Near.call([
-      {
-        contractName: "global.sputnik-dao.near",
-        methodName: "add_proposal",
-        args: {
-          proposal: {
-            description: "proposal to add member",
-            kind: {
-              AddMemberToRole: {
-                member_id: state.member_id,
-                role: "community",
-              },
-            },
-          },
-        },
-        gas: gas,
-        deposit: deposit,
-      },
-    ]);
-  });
+  const gas = 200000000000000;
+  const deposit = 100000000000000000000000;
+  Near.call([
+    {
+      contractName: "global.sputnik-dao.near",
+      methodName: "add_proposal",
+      args: proposal,
+      gas: gas,
+      deposit: deposit,
+    },
+  ]);
 };
 
 const onChangeMember = (member_id) => {
