@@ -23,7 +23,7 @@ return (
   <div className="row">
     <div className="col-lg-6">
       <div>
-        <h4>Explore Skill Badges</h4>
+        <h4>Claim Skill Badges</h4>
       </div>
       <div className="mb-2">
         NEAR Wallet ID:
@@ -47,7 +47,7 @@ return (
               },
               options: {
                 tags: {
-                  label: "Topics of Expertise:",
+                  label: "Domains of Expertise:",
                   pattern,
                   placeholder: "dev, art, social, edu, mod",
                 },
