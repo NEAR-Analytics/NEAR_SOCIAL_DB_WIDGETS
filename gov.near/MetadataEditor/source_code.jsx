@@ -14,9 +14,6 @@ State.init({
 
 const metadata = {
   name: options.name ? state.metadata.name : undefined,
-  featuredWidget: options.featuredWidget
-    ? state.metadata.featuredWidget
-    : undefined,
   description: options.name ? state.metadata.description : undefined,
   linktree:
     options.linktree && Object.keys(state.linktree).length > 0
@@ -54,17 +51,11 @@ return (
         <input type="text" value={state.metadata.name} />
       </div>
     )}
-    {options.featuredWidget && (
-      <div className="mb-2">
-        {options.featuredWidget.label ?? "Featured Widget"}
-        <input type="text" value={state.metadata.featuredWidget} />
-      </div>
-    )}
     {options.image && (
       <div className="mb-2">
         {options.image.label ?? "Image"}
         <Widget
-          src="gov.near/widget/ImageEditorTabs"
+          src="mob.near/widget/ImageEditorTabs"
           props={{
             image: state.image,
             onChange: (image) => State.update({ image }),
@@ -76,7 +67,7 @@ return (
       <div className="mb-2">
         {options.backgroundImage.label ?? "Background image"}
         <Widget
-          src="gov.near/widget/ImageEditorTabs"
+          src="mob.near/widget/ImageEditorTabs"
           props={{
             image: state.backgroundImage,
             onChange: (backgroundImage) => State.update({ backgroundImage }),
@@ -101,15 +92,14 @@ return (
     )}
     {options.tags && (
       <div className="mb-2">
-        {options.tags.label ?? "Tags"}
         <Widget
-          src="gov.near/widget/TagsEditor"
+          src="mob.near/widget/TagsEditor"
           props={{
             initialTagsObject: metadata.tags,
             tagsPattern: options.tags.pattern,
             placeholder:
               options.tags.placeholder ??
-              "near, dev, art, edu, nft, defi, gov, dao",
+              "rust, engineer, artist, humanguild, nft, learner, founder",
             setTagsObject: (tags) => {
               state.metadata.tags = tags;
               State.update();
