@@ -14,6 +14,7 @@ State.init({
 });
 
 const CardWrapper = styled.div`
+  z-index: 1000;
   padding: 6px;
 `;
 
