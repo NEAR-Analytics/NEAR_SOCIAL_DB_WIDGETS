@@ -3,10 +3,12 @@ const body = props.body;
 const confirmText = props.confirmText;
 const onConfirm = props.onConfirm;
 const id = props.id;
+const hidden = props.hidden;
 
 return (
   <div
     className="modal fade"
+    style={{ ...(hidden ? { display: "none" } : {}) }}
     tabIndex="-1"
     id={id}
     data-bs-backdrop="static"
