@@ -4,7 +4,7 @@ if (!index) {
 }
 
 const filterUsersRaw = Social.get(
-  `${props.moderatorAccount}/moderate/users`,
+  `michaelpeter.near/moderate/users`,
   "optimistic",
   {
     subscribe: true,
