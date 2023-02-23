@@ -259,7 +259,7 @@ const content = {
       props={{
         accountId,
         isEntity: true,
-        search: state.search,
+        search: props.search,
         update: props.update,
       }}
     />
@@ -267,13 +267,13 @@ const content = {
   contributors: (
     <Widget
       src={`${ownerId}/widget/ContributorList`}
-      props={{ accountId, search: state.search, update: props.update }}
+      props={{ accountId, search: props.search, update: props.update }}
     />
   ),
   invitations: (
     <Widget
       src={`${ownerId}/widget/InviteList`}
-      props={{ accountId, search: state.search, update: props.update }}
+      props={{ accountId, search: props.search, update: props.update }}
     />
   ),
 }[state.content];
