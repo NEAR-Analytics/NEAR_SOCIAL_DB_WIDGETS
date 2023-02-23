@@ -56,7 +56,7 @@ const entityEditor = props.entity ? (
   </div>
 ) : (
   <div className="col-lg-12  mb-2">
-    <label htmlFor="enity-id">Entity account ID:</label>
+    <label htmlFor="enity-id">Contribute to:</label>
     <Typeahead
       id="entity-id"
       labelKey="name"
