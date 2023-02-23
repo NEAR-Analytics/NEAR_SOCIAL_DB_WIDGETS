@@ -7,6 +7,10 @@ if (!accountId) {
   return "Cannot show contributor without account ID!";
 }
 
+State.init({
+  inviteFormHidden: true,
+});
+
 const contributor = isPreview
   ? props.contributor
   : Near.view(
