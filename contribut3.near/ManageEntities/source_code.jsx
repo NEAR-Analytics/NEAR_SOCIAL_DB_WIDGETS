@@ -35,7 +35,7 @@ const contentSelector = (
         },
         {
           id: "projects",
-          text: "Projects",
+          text: "My Projects",
           icon: "bi-boxes",
         },
         {
