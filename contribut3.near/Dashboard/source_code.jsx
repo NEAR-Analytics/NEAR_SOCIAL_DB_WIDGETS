@@ -28,7 +28,6 @@ const createNewButton = ({ id, text, icon, kind }) => (
   <li>
     <a
       className="dropdown-item"
-      id={id}
       href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard&content=${id}${kind ? "&kind=" + kind : ""
         }`}
       onClick={() => props.update("create")}
@@ -59,17 +58,19 @@ const createNewDropdown = (
         <hr className="dropdown-divider" />
       </li>
       {createNewButton({
-        id: "project",
+        id: "entity",
         text: "Project",
         icon: "bi-boxes",
+        kind: "Project",
       })}
       <li>
         <hr className="dropdown-divider" />
       </li>
       {createNewButton({
-        id: "organization",
+        id: "entity",
         text: "Organization",
         icon: "bi-diagram-2",
+        kind: "Organization",
       })}
     </ul>
   </div>
