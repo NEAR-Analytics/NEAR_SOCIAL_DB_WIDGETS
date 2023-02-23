@@ -53,8 +53,9 @@ const Wrapper = styled.div`
         border: 1px solid #ECEEF0;
         border-radius: 6px;
         padding: 6px;
+        transition: all 200ms;
 
-        &:focus {
+        &:focus, &:hover {
             border-color: #687076;
         }
     }
