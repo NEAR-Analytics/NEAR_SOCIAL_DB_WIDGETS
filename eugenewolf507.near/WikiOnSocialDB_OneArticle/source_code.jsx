@@ -35,7 +35,7 @@ const saveArticle = (args) => {
     version: Number(state.article.version) + 1,
   };
 
-  const composeData = () => {
+  const composeArticleData = () => {
     const data = {
       [addressForArticles]: {
         main: JSON.stringify(newArticleData),
@@ -51,28 +51,28 @@ const saveArticle = (args) => {
     };
     return data;
   };
-  const newData = composeData();
+  const newData = composeArticleData();
   Social.set(newData, { force: true });
 };
 
-// ======= CHECK INDEX =======
+// ======= CHECK =======
 const item = {
   type: "social",
   path: `${lastEditor}/${addressForArticles}/main`,
   blockHeight,
 };
 
-const index = {
-  action: addressForComments,
-  key: props.item,
-  options: {
-    limit: props.limit ?? 3,
-    order: "desc",
-    accountId: props.accounts,
-    subscribe: props.subscribe,
-  },
-};
-// ======= CHECK INDEX =======
+// const index = {
+//   action: addressForComments,
+//   key: props.item,
+//   options: {
+//     limit: props.limit ?? 3,
+//     order: "desc",
+//     accountId: props.accounts,
+//     subscribe: props.subscribe,
+//   },
+// };
+// ======= CHECK  =======
 
 return (
   <>
