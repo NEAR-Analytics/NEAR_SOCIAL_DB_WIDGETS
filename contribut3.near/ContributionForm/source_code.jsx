@@ -16,13 +16,12 @@ State.init({
 
 const onSubmit = () => {
   const args = {
-    entity_id: state.entity[0].name,
-    description: state.description,
-    contribution_type: convertType(state.contributionType[0]),
-    need,
+    entity_id: entityId,
+    contributor_id: contributorId,
+    end_date: `${new Date(state.endDate).getTime()}`,
   };
 
-  Near.call(ownerId, "request_contribution", args);
+  Near.call(ownerId, "finish_contribution", args);
 };
 
 const existingEntities = (
