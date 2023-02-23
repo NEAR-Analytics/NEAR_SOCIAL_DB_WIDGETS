@@ -123,11 +123,13 @@ const body = (
                 <div className="d-flex flex-row justify-content-start align-items-center">
                   <span className="text-muted me-2">
                     Created{" "}
-                    {new Date(Number(entity.start_date)).toLocaleDateString()}
+                    {new Date(
+                      Number(contributor.start_date)
+                    ).toLocaleDateString()}
                   </span>
                   <Widget
                     src={`${ownerId}/widget/ActiveIndicator`}
-                    props={{ active: entity.status === "Active" }}
+                    props={{ active: contributor.status === "Active" }}
                   />
                 </div>
                 <Widget
