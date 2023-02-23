@@ -8,13 +8,13 @@ return (
     <div className="mx-auto">
       <Widget
         src="gov.near/widget/Join"
-        props={{ accountId, profile, link: true }}
+        props={{ ownerId, profile, link: true }}
       />
 
       <div className="mt-3">
         <Widget
-          src="gov.near/widget/JoinTabs"
-          props={{ accountId, tab: props.tab }}
+          src="gov.near/widget/Membership"
+          props={{ ownerId, tab: props.tab }}
         />
       </div>
     </div>
