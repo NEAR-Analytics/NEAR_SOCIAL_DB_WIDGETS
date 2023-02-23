@@ -99,7 +99,7 @@ return (
       <a
         className="btn btn-outline-secondary"
         href={`https://near.social/#/${ownerId}/widget/Index`}
-        onClick={() => props.update("")}
+        onClick={() => props.update("dashboard")}
       >
         Cancel
       </a>
