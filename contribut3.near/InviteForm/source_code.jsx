@@ -24,7 +24,7 @@ const convertType = (contributionType) => {
   return { Other: contributionType.name };
 };
 
-initState({
+State.init({
   entityId: [],
   accountId,
   permissions: [],
@@ -35,7 +35,14 @@ initState({
   forbiddenIds: new Set(),
 });
 
-const accountIdInput = (
+const accountIdInput = accountId ? (
+  <div className="rounded-5 bg-secondary">
+    <Widget
+      src={`${ownerId}/widget/ProfileLine`}
+      props={{ accountId, size: "4em" }}
+    />
+  </div>
+) : (
   <div className="col-lg-12 mb-2">
     <Widget
       src={`${ownerId}/widget/ValidatedAccountIdInput`}
@@ -44,7 +51,7 @@ const accountIdInput = (
         value: state.accountId,
         update: (accountId, accountIdValid) =>
           State.update({ accountId, accountIdValid }),
-        forbiddenIds,
+        forbiddenIds: state.forbiddenIds,
       }}
     />
   </div>
@@ -109,12 +116,10 @@ const permissionsInput = (
 );
 
 const entityIdInput = (
-  <div className="col-lg-12 mb-2">
-    <label htmlFor="entity-id-input">Account ID of entity:</label>
-    <Typeahead
-      id="entity-id-input"
-      labelKey="name"
-      onChange={(entityId) => {
+  <Widget
+    src={``}
+    props={{
+      update: (entityId) => {
         State.update({ entityId });
         Near.asyncView(
           ownerId,
@@ -126,22 +131,46 @@ const entityIdInput = (
             forbiddenIds: new Set(Object.keys(invites)),
           })
         );
-      }}
-      options={(
-        Near.view(
-          ownerId,
-          "get_contributor_admin_entities",
-          { account_id: context.accountId },
-          "final",
-          true
-        ) ?? []
-      ).map((name) => ({ name }))}
-      placeholder="contribut3.near, social.near..."
-      selected={state.entityId}
-      positionFixed
-    />
-  </div>
+      },
+      accountId: context.accountId,
+      selected: state.entityId,
+    }}
+  />
 );
+//   (
+//   <div className="col-lg-12 mb-2">
+//     <label htmlFor="entity-id-input">Invite to:</label>
+//     <Typeahead
+//       id="entity-id-input"
+//       labelKey="name"
+//       onChange={(entityId) => {
+//         State.update({ entityId });
+//         Near.asyncView(
+//           ownerId,
+//           "get_entity_invites",
+//           { account_id: entityId[0].name },
+//           "final"
+//         ).then((invites) =>
+//           State.update({
+//             forbiddenIds: new Set(Object.keys(invites)),
+//           })
+//         );
+//       }}
+//       options={(
+//         Near.view(
+//           ownerId,
+//           "get_contributor_admin_entities",
+//           { account_id: context.accountId },
+//           "final",
+//           true
+//         ) ?? []
+//       ).map((name) => ({ name }))}
+//       placeholder="contribut3.near, social.near..."
+//       selected={state.entityId}
+//       positionFixed
+//     />
+//   </div>
+// );
 
 const onSubmit = () => {
   if (!state.accountIdValid) {
@@ -174,9 +203,8 @@ const body = (
     </div>
 
     <a
-      className={`btn ${
-        !state.accountIdValid ? "btn-secondary" : "btn-primary"
-      } mb-2`}
+      className={`btn ${!state.accountIdValid ? "btn-secondary" : "btn-primary"
+        } mb-2`}
       onClick={onSubmit}
     >
       Invite
