@@ -99,6 +99,7 @@ const updateState = () => {
         myNftVoted: currentState.myNftVoted,
         votedTotal: currentState.votedTotal,
         ownerId: currentState.ownerId,
+        myNft: myNft,
         pollStatus: currentState.pollStatus,
         topic: currentState.topic,
       });
@@ -120,7 +121,9 @@ if (!state.options) {
 
 const vote = (answerId) => {
   const myNftVoted = state.myNftVoted;
-  const myNftNotVoted = myNft.filter((myNft) => !myNftVoted.includes(myNft));
+  const myNftNotVoted = state.myNft.filter(
+    (myNft) => !myNftVoted.includes(myNft)
+  );
   const pollData = {
     contract_id: nftContract,
     index: pollId,
