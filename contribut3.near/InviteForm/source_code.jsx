@@ -43,7 +43,7 @@ const accountIdInput = accountId ? (
     </label>
     <div
       className="rounded-3 bg-light"
-      style={{ height: "5em", color: "white !important" }}
+      style={{ height: "5em" }}
       id="account-id"
     >
       <Widget
