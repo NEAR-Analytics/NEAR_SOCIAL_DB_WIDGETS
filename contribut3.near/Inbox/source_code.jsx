@@ -44,7 +44,7 @@ const contentSelector = (
     src={`${ownerId}/widget/TabSelector`}
     props={{
       tab: "inbox",
-      content: props.content,
+      content: getContent(props.content),
       search: props.search,
       update: (content) => props.update({ content }),
       buttons: [
