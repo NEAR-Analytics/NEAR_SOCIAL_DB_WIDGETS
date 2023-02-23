@@ -100,7 +100,7 @@ if (results.length === 0) return <></>;
 
 return (
   <Wrapper>
-    <CloseButton type="button" onClick={props.onClose}>
+    <CloseButton tabIndex={-1} type="button" onClick={props.onClose}>
       <i className="bi bi-x-circle" />
     </CloseButton>
 
