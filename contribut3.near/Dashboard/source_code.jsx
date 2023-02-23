@@ -140,7 +140,6 @@ const content = {
       props={{
         search: props.search,
         update: props.update,
-        notStandalone: true,
       }}
     />
   ),
