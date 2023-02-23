@@ -1,4 +1,4 @@
-const { moderatorAccount } = props;
+const moderatorAccount = props?.moderatorAccount || "michaelpeter.near";
 State.init({ inputContent: "" });
 
 const filterUserList = Social.get(
