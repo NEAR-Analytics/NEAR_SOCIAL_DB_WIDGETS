@@ -12,10 +12,8 @@ const getContent = (content) => {
 
 const header = (
   <div>
-    <h1 className="fs-2">Home</h1>
-    <p className="fw-semibold fs-5 text-muted">
-      Find projects, contributors or requests
-    </p>
+    <h1 className="fs-2">Find projects, contributors or requests</h1>
+    <p className="fw-semibold fs-5 text-muted"></p>
   </div>
 );
 
