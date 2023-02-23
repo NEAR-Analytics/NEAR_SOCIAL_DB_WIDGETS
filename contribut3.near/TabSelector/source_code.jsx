@@ -5,8 +5,6 @@ const accountId = props.accountId;
 const content = props.content;
 const cid = props.cid;
 
-console.log(tab, content, props.update);
-
 return (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
     {buttons.map(({ id, text, icon, count }) => (
