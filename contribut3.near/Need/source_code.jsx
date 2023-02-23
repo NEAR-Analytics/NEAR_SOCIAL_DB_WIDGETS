@@ -9,6 +9,10 @@ if (!accountId || !cid) {
   return "Cannot render contribution need widget without account ID or CID!";
 }
 
+State.init({
+  contributionFormHidden: true,
+});
+
 const isContributor = Near.view(
   ownerId,
   "check_is_contributor",
@@ -88,6 +92,8 @@ const body = (
                   text: "Propose contribution",
                   icon: "bi-person-up",
                   id: "contribute",
+                  onClick: () =>
+                    State.update({ contributionFormHidden: false }),
                 },
                 {
                   text: "View details",
@@ -100,6 +106,16 @@ const body = (
                   id: "share",
                 },
               ],
+            }}
+          />
+          <Widget
+            src={`${ownerId}/widget/ContributionRequestForm`}
+            props={{
+              id: `${accountId}ContributionRequestForm`,
+              entity: accountId,
+              hidden: state.contributionFormHidden,
+              need: cid,
+              onClose: () => State.update({ contributionFormHidden: true }),
             }}
           />
         </div>
