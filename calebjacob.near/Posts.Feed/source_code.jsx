@@ -27,4 +27,9 @@ const renderItem = (a) =>
     </Post>
   );
 
-return <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />;
+return (
+  <Widget
+    src="michaelpeter.near/widget/IndexFeed"
+    props={{ index, renderItem, moderatorAccount: "michaelpeter.near" }}
+  />
+);
