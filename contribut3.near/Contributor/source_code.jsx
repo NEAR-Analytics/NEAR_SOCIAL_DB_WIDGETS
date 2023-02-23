@@ -7,6 +7,10 @@ if (!accountId) {
   return "Cannot show contributor without account ID!";
 }
 
+State.init({
+  inviteFormHidden: true,
+});
+
 const contributor = isPreview
   ? props.contributor
   : Near.view(
@@ -97,6 +101,7 @@ const body = (
                       id: "invite",
                       toggle: true,
                       target: `#${accountId}InviteForm`,
+                      onClick: () => State.update({ inviteFormHidden: false }),
                     },
                     {
                       text: "View details",
@@ -113,7 +118,11 @@ const body = (
               />
               <Widget
                 src={`${ownerId}/widget/InviteForm`}
-                props={{ id: `${accountId}InviteForm`, accountId }}
+                props={{
+                  id: `${accountId}InviteForm`,
+                  accountId,
+                  hidden: state.inviteFormHidden,
+                }}
               />
             </div>
           ),
