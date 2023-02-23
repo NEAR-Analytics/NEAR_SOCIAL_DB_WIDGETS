@@ -55,7 +55,6 @@ const Wrapper = styled.div`
   display: flex;
   gap: 6px;
   padding: 6px;
-  border-radius: 6px;
   overflow: auto;
   scroll-behavior: smooth;
   align-items: center;
