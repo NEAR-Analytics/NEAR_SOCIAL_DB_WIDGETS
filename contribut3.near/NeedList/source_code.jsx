@@ -20,8 +20,6 @@ if (Object.keys(needs).length === 0) {
   return "Couldn't find any contribution needs!";
 }
 
-console.log(search);
-
 const allNeeds = Object.keys(needs)
   .reduce((list, accountIdOrCid) => {
     if (props.accountId) {
