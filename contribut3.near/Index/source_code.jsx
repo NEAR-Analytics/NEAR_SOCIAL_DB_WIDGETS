@@ -31,7 +31,7 @@ const tabContent = {
       props={{ content: props.content, search: props.search, update }}
     />
   ),
-  profile: (
+  contributor: (
     <Widget
       src={`${ownerId}/widget/Profile`}
       props={{
