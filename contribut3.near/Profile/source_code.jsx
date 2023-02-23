@@ -109,7 +109,7 @@ const body = (
         />
       </div>
     </div>
-    <Markdown text={profile.description || "s ".repeat(1000)} />
+    <Markdown text={profile.description} />
     <div className="d-flex flex-row justify-content-between align-items-center">
       <Widget
         src={`${ownerId}/widget/SocialLinks`}
