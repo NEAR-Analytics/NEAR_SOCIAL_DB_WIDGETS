@@ -41,18 +41,20 @@ const findRoom = (created) => {
     created = false;
   }
   console.log("In findRoom");
+  console.log('"Created" arg', created);
+  console.log("state.roomId", state.roomId);
+  console.log('Storage.get("roomId")', Storage.get("roomId"));
   const ownerAccountId = created
     ? Storage.get("roomId").split("-")[0]
     : state.roomId.split("-")[0];
   Storage.set("created", "false");
-  Storage.set("roomId", "");
-  console.log("After getting ownerAccountId", ownerAccountId);
+
+  console.log("ownerAccountId", ownerAccountId);
   console.log("getting roomData");
   const roomData = Social.getr(
     `${ownerAccountId}/${props.widgetKey}/${state.roomId}`
   );
-  console.log(props.widgetKey, state.roomId);
-  console.log(roomData);
+  console.log("roomData", roomData);
   if (!roomData) {
     State.update({ errorMessage: "Room not found" });
     return;
