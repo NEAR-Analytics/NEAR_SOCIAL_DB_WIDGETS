@@ -1,14 +1,14 @@
 // inspired by https://near.social/#/wendersonpires.near/widget/Chat
 
-// if (typeof props.loadRoomCallback != "function") {
-//   return (
-//     <h2>
-//       It's reusable widget and cannot work alone. You have to pass the
-//       loadRoomCallback function in props. Found type:{" "}
-//       {typeof props.loadRoomCallback}
-//     </h2>
-//   );
-// }
+if (typeof props.loadRoomCallback != "function") {
+  return (
+    <h2>
+      It's reusable widget and cannot work alone. You have to pass the
+      loadRoomCallback function in props. Found type:{" "}
+      {typeof props.loadRoomCallback}
+    </h2>
+  );
+}
 
 State.init({
   roomId: Storage.get("roomId") || null,
