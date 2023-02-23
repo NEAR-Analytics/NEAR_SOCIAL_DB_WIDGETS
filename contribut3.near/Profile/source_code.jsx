@@ -78,8 +78,7 @@ const body = (
           src={`${ownerId}/widget/ProfileLine`}
           props={{
             accountId,
-            isEntity: true,
-            imageSize: "4em",
+            imageSize: "5em",
             update: props.update,
             additionalColumn: controls,
             additionalRow: (
