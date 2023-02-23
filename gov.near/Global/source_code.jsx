@@ -1,8 +1,23 @@
+const ownerId = "gov.near";
 const accountId = props.accountId ?? context.accountId;
+const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 if (!accountId) {
   return "No account ID";
 }
+
+if (profile === null) {
+  return "Loading";
+}
+
+const showEditButton =
+  profile !== undefined &&
+  (!props.profile || props.showEditButton) &&
+  accountId &&
+  accountId === context.accountId;
+
+const name = "NEAR Global";
+const tags = Object.keys(profile.tags ?? {});
 
 return (
   <div>
@@ -25,9 +40,34 @@ return (
         </a>
         and follow us here on Near Social.
       </p>
-      <Widget src="mob.near/widget/FollowButton" props={accountId} />
     </div>
-    <h2>Connect | Collaborate | Coordinate</h2>
+    <div className="bg-light px-4 pb-4">
+      <div className="d-md-flex justify-content-between pt-3 mb-2">
+        <div style={{ paddingTop: "3rem" }}>
+          <div className="me-2 d-sm-flex gap-1 flex-row align-items-center">
+            <div className="me-2 position-relative">
+              <b>{name}</b>
+              <div className="small text-truncate">
+                <i className="bi bi-person-fill text-secondary"></i>
+                {ownerId}
+                <Widget
+                  src="mob.near/widget/FollowsYouBadge"
+                  props={{ ownerId }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Widget src="mob.near/widget/FollowButton" props={{ ownerId }} />
+            </div>
+          </div>
+          <div>
+            <Widget src="gov.near/widget/JoinStats" props={{ ownerId }} />
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2>Connect and Collaborate</h2>
     <div className="mb-2">
       <Widget
         src="mob.near/widget/ProfileSearch"
