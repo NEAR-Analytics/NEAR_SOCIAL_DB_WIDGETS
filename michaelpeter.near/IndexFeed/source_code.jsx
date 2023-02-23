@@ -3,6 +3,15 @@ if (!index) {
   return "props.index is not defined";
 }
 
+const filterUsersRaw = Social.get(
+  `${moderatorAccount}/moderate/users`,
+  "optimistic",
+  {
+    subscribe: true,
+  }
+);
+const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
+
 const renderItem =
   props.renderItem ??
   ((item, i) => (
@@ -35,6 +44,7 @@ const initialItems = Social.index(index.action, index.key, index.options);
 if (initialItems === null) {
   return "";
 }
+initialItems = initialItems.filter((i) => !filterUsers.includes(i.accountId));
 
 const computeFetchFrom = (items, limit) => {
   if (!items || items.length < limit) {
@@ -78,7 +88,7 @@ if (state.jInitialItems !== jInitialItems) {
 
 if (state.fetchFrom) {
   const limit = addDisplayCount;
-  const newItems = Social.index(
+  let newItems = Social.index(
     index.action,
     index.key,
     Object.assign({}, index.options, {
@@ -88,6 +98,7 @@ if (state.fetchFrom) {
     })
   );
   if (newItems !== null) {
+    newItems = newItems.filter((i) => !filterUsers.includes(i.accountId));
     State.update({
       items: mergeItems(newItems),
       fetchFrom: false,
