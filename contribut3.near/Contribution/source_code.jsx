@@ -3,7 +3,7 @@ const entityId = props.entityId;
 const contributorId = props.contributorId;
 const accountId = context.accountId;
 
-initState({
+State.init({
   endDate: new Date().toLocaleDateString(),
 });
 
