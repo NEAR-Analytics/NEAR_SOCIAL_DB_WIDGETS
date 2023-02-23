@@ -82,10 +82,6 @@ const body = (
                       onClick: () =>
                         State.update({ contributionFormHidden: false }),
                     },
-                    // {
-                    //   text: "Invite to contribute",
-                    //   icon: "bi-person-plus",
-                    // },
                     {
                       text: "View details",
                       icon: "bi-info-circle",
