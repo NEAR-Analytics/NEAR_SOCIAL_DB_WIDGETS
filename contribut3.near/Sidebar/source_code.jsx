@@ -1,9 +1,5 @@
 const ownerId = "contribut3.near";
 
-State.init({
-  selected: props.tab ?? "dashboard",
-});
-
 const proposalsCount = (
   Near.view(
     ownerId,
@@ -31,10 +27,7 @@ const navItem = ({ text, icon, id, count }) => (
     className={`nav-link mt-2 rounded-3 p-2 ${id === state.selected ? "bg-secondary" : ""
       }`}
     href={`https://near.social/#/${ownerId}/widget/Index?tab=${id}`}
-    onClick={() => {
-      State.update({ selected: id });
-      props.update && props.update(id);
-    }}
+    onClick={() => props.update({ tab: id, content: "", search: "" })}
   >
     <i className={icon} />
     <span>{text}</span>
