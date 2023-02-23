@@ -90,11 +90,6 @@ const body = (
                 props={{
                   update: props.update,
                   items: [
-                    // {
-                    //   text: "Propose contribution",
-                    //   icon: "bi-person-up",
-                    //   id: "contribute",
-                    // },
                     {
                       text: "Invite to contribute",
                       icon: "bi-person-plus",
@@ -104,7 +99,9 @@ const body = (
                     {
                       text: "View details",
                       icon: "bi-info-circle",
-                      id: "info",
+                      href: `https://near.social/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`,
+                      onClick: () =>
+                        props.update && props.update("contributor"),
                     },
                     {
                       text: "Share",
