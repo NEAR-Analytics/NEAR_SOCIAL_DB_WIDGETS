@@ -77,7 +77,7 @@ const onSubmit = () => {
   }
 
   const args = {
-    entity_id: accountId,
+    entity_id: state.entityId[0].name,
     description: state.description,
     contribution_type: convertType(state.contributionType[0]),
   };
