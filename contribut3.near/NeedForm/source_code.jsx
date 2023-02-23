@@ -87,8 +87,8 @@ const onSubmit = () => {
 
 return (
   <div className="px-3" style={{ maxWidth: "45em" }}>
-    <h1 className="fs-2 mb-3">Create new contribution request</h1>
-    <div className="bg-light my-3 p-4 rounded-2">
+    <h1 className="fs-2 mb-3 pb-3">Create new contribution request</h1>
+    <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
         {entityIdInput}
         {contributionTypeInput}
