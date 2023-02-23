@@ -24,12 +24,12 @@ const header = (
   </div>
 );
 
-const createNewButton = ({ id, text, icon, href }) => (
+const createNewButton = ({ id, text, icon }) => (
   <li>
     <a
       className="dropdown-item"
       id={id}
-      href={href}
+      href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard&content=${id}`}
       onClick={() => props.update("create")}
     >
       <i className={icon} />
@@ -53,7 +53,6 @@ const createNewDropdown = (
         id: "request",
         text: "Contribution request",
         icon: "bi-ui-checks-grid",
-        href: `https://near.social/#/${ownerId}/widget/Index?tab=create&content=request`,
       })}
       <li>
         <hr className="dropdown-divider" />
@@ -62,7 +61,6 @@ const createNewDropdown = (
         id: "project",
         text: "Project",
         icon: "bi-boxes",
-        href: `https://near.social/#/${ownerId}/widget/Index?tab=create&content=project`,
       })}
       <li>
         <hr className="dropdown-divider" />
