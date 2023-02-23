@@ -2,6 +2,7 @@ if (!context.accountId) {
   return "";
 }
 
+const autocompleteEnabled = true;
 const item = props.item;
 
 State.init({
@@ -93,10 +94,31 @@ function onCommit() {
   }
 }
 
+function textareaInputHandler(value) {
+  const showAccountAutocomplete = /@[\w][^\s]*$/.test(value);
+  State.update({ text: value, showAccountAutocomplete });
+}
+
+function autoCompleteAccountId(id) {
+  let text = state.text.replace(/[\s]{0,1}@[^\s]*$/, "");
+  text = `${text} @${id}`.trim() + " ";
+  State.update({ text, showAccountAutocomplete: false });
+}
+
 const Wrapper = styled.div`
   --padding: 12px;
   position: relative;
   margin-left: -12px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 200ms;
+  border: 1px solid #ECEEF0;
+  border-radius: 8px;
+
+  &:focus-within {
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
+    border-color: #687076;
+  }
 `;
 
 const Textarea = styled.div`
@@ -128,17 +150,6 @@ const Textarea = styled.div`
     content: attr(data-value) ' ';
     visibility: hidden;
     white-space: pre-wrap;
-  }
-
-  textarea {
-    transition: all 200ms;
-    border: 1px solid #ECEEF0;
-    border-radius: 8px;
-
-    &:focus {
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
-      border-color: #687076;
-    }
   }
 `;
 
@@ -219,15 +230,39 @@ const Actions = styled.div`
   }
 `;
 
+const AutoComplete = styled.div`
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  > div {
+    padding: calc(var(--padding) / 2);
+  }
+`;
+
 return (
   <Wrapper>
     <Textarea data-value={state.text}>
       <textarea
         placeholder="Write your reply..."
-        onInput={(event) => State.update({ text: event.target.value })}
+        onInput={(event) => textareaInputHandler(event.target.value)}
         value={state.text}
       />
     </Textarea>
+
+    {autocompleteEnabled && state.showAccountAutocomplete && (
+      <AutoComplete>
+        <Widget
+          src="calebjacob.near/widget/AccountAutocomplete"
+          props={{
+            term: state.text.split("@").pop(),
+            onSelect: autoCompleteAccountId,
+          }}
+        />
+      </AutoComplete>
+    )}
 
     <Actions>
       <IpfsImageUpload
