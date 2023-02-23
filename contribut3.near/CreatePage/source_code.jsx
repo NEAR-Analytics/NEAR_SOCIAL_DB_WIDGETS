@@ -15,10 +15,6 @@ State.init({
   search: props.search ?? "",
 });
 
-State.update({
-  content: getContent(props.content),
-});
-
 const content = {
   request: (
     <Widget
