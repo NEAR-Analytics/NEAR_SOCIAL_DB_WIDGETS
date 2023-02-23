@@ -17,8 +17,6 @@ State.init({
   loading: false,
 });
 
-Storage.set("roomId", "");
-
 const uuidv4 = () => {
   var u = "",
     i = 0;
@@ -39,11 +37,11 @@ const findRoom = (created) => {
   if (created) {
     created = false;
   }
-  const ownerAccountId = created
-    ? Storage.get("roomId").split("-")[0]
-    : state.roomId.split("-")[0];
-  Storage.set("created", "false");
 
+  const roomId = Storage.get("roomId") || state.roomId;
+  const ownerAccountId = roomId.split("-")[0];
+  Storage.set("created", "false");
+  Storage.set("roomId", "");
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
   let roomData = Social.getr(queryString);
   if (!state.loading) {
@@ -75,34 +73,7 @@ if (state.loading) {
 }
 
 if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
-  const ownerAccountId = Storage.get("roomId").split("-")[0];
-  Storage.set("created", "false");
-
-  const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
-  let roomData = Social.getr(queryString);
-  if (!state.loading) {
-    setTimeout(() => {
-      roomData = Social.getr(queryString);
-      console.log(roomData);
-      if (!roomData) {
-        State.update({
-          errorMessage: `Room not found. If you are sure the room is created, this might be a delay on blockchain,
-    so don't hesitate enter your room ID and try again connecting!`,
-        });
-
-        State.update({ loading: false });
-        return;
-      }
-      State.update({
-        roomData: roomData,
-      });
-
-      if (props.loadRoomCallback && roomData) {
-        props.loadRoomCallback(roomData, state.roomId, created);
-      }
-    }, 1000);
-    State.update({ loading: true });
-  }
+  findRoom(true);
 }
 
 if (state.roomCreatedScreen) {
