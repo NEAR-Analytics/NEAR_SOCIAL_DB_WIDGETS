@@ -84,52 +84,25 @@ const onSubmit = () => {
   Near.call(ownerId, "post_contribution_need", args);
 };
 
-const header = <div className="card-header">Post need</div>;
-
-const body = (
-  <div className="card-body">
-    <div className="row">
-      {entityIdInput}
-      {contributionTypeInput}
-      {descriptionInput}
-    </div>
-
-    <a
-      className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
-          ? "btn-secondary"
-          : "btn-primary"
-        } mb-2`}
-      onClick={onSubmit}
-    >
-      Post
-    </a>
-  </div>
-);
-
-const footer = (
-  <div className="card-footer">
-    Preview:
-    {state.accountIdValid ? (
-      <Widget
-        src={`${ownerId}/widget/Need`}
-        props={{
-          isPreview: true,
-          accountId: state.accountId,
-          contributionNeed: {
-            description: state.description,
-            contribution_type: convertType(state.contributionType[0]),
-            active: true,
-          },
-        }}
-      />
-    ) : null}
-  </div>
-);
-
 return (
   <div className="card">
-    {header}
-    {body}
-    {footer}
+    <div className="card-header">Post need</div>
+    <div className="card-body">
+      <div className="row">
+        {entityIdInput}
+        {contributionTypeInput}
+        {descriptionInput}
+      </div>
+
+      <a
+        className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
+            ? "btn-secondary"
+            : "btn-primary"
+          } mb-2`}
+        onClick={onSubmit}
+      >
+        Post
+      </a>
+    </div>
   </div>
 );
