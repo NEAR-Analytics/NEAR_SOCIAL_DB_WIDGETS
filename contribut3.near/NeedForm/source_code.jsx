@@ -107,7 +107,7 @@ return (
         className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
             ? "btn-secondary"
             : "btn-primary"
-          } mb-2`}
+          }`}
         onClick={onSubmit}
       >
         Create request
