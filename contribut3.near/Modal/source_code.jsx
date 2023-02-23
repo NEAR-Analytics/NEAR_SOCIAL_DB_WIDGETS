@@ -10,7 +10,7 @@ return (
     tabIndex="-1"
     id={id}
     data-bs-backdrop="static"
-    aria-hidden="true"
+  // aria-hidden="true"
   >
     <div className="modal-dialog">
       <div className="modal-content">
