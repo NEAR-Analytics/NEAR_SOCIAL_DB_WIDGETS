@@ -95,6 +95,8 @@ const body = (
                       text: "Invite to contribute",
                       icon: "bi-person-plus",
                       id: "invite",
+                      toggle: true,
+                      target: `#${accountId}InviteForm`,
                     },
                     {
                       text: "View details",
@@ -108,6 +110,10 @@ const body = (
                     },
                   ],
                 }}
+              />
+              <Widget
+                src={`${ownerId}/widget/InviteForm`}
+                props={{ id: `${accountId}InviteForm`, accountId }}
               />
             </div>
           ),
