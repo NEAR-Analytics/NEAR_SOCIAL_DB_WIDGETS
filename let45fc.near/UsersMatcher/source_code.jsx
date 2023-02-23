@@ -39,6 +39,7 @@ const findRoom = (created) => {
   if (!created) {
     created = false;
   }
+  console.log("In findRoom");
   Storage.set("created", "false");
   Storage.set("roomId", "");
   const ownerAccountId = state.roomId.split("-")[0];
@@ -62,6 +63,7 @@ const findRoom = (created) => {
 };
 
 if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
+  console.log("Redirecting to game");
   findRoom(true);
 }
 
