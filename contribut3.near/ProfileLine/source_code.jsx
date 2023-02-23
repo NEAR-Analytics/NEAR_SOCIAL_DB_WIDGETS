@@ -33,7 +33,11 @@ if (state.data || profile) {
         className="text-dark"
         href={href}
         onClick={() =>
-          props.update && props.update(isEntity ? "entity" : "contributor")
+          props.update({
+            tab: isEntity ? "entity" : "contributor",
+            content: "",
+            search: "",
+          })
         }
       >
         <div className="m-2">
@@ -50,8 +54,11 @@ if (state.data || profile) {
               className="text-dark"
               href={href}
               onClick={() =>
-                props.update &&
-                props.update(isEntity ? "entity" : "contributor")
+                props.update({
+                  tab: isEntity ? "entity" : "contributor",
+                  content: "",
+                  search: "",
+                })
               }
             >
               <b>{fullName}</b>
