@@ -9,6 +9,7 @@ if (typeof props.loadRoomCallback != "function") {
     </h2>
   );
 }
+console.log("props", props);
 
 State.init({
   roomId: Storage.get("roomId") || null,
