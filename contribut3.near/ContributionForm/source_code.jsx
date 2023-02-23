@@ -48,7 +48,7 @@ return (
       title: "Finish contribution",
       confirmText: (
         <>
-          <i className="bi-send" />
+          <i className="bi-slash-circle-fill" />
           <span>Finish contribution</span>
         </>
       ),
