@@ -2,9 +2,10 @@ const title = props.title;
 const body = props.body;
 const confirmText = props.confirmText;
 const onConfirm = props.onConfirm;
+const id = props.id;
 
 return (
-  <div className="modal" tabIndex="-1">
+  <div className="modal" tabIndex="-1" id={id}>
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
