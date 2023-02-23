@@ -23,6 +23,6 @@ const content = {
       props={{ search: state.search, update: props.update, kind: props.kind }}
     />
   ),
-}[props.content];
+}[getContent(props.content)];
 
 return content;
