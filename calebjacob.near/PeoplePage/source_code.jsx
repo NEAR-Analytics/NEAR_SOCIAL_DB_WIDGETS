@@ -165,7 +165,7 @@ return (
 
     <Search>
       <Widget
-        src="mob.near/widget/ProfileSearch"
+        src="calebjacob.near/widget/ProfileSearch"
         props={{
           limit: 21,
           onChange: onSearchChange,
