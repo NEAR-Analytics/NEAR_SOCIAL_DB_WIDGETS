@@ -50,9 +50,17 @@ let initialItems = Social.index(index.action, index.key, index.options);
 if (initialItems === null) {
   return "";
 }
+const initialFoundItems = !!initialItems.length;
+// moderate
 initialItems = initialItems.filter((i) => !filterUsers.includes(i.accountId));
 
-const computeFetchFrom = (items, limit) => {
+const computeFetchFrom = (items, limit, previouslyFoundItems) => {
+  if (!previouslyFoundItems) {
+    return false;
+  }
+  //TODO this next line implies that fetching is completed if the set is not full,
+  // but that is not the case now with moderation
+
   if (!items || items.length < limit) {
     return false;
   }
@@ -80,7 +88,11 @@ if (state.jInitialItems !== jInitialItems) {
       jInitialItems,
       items: initialItems,
       fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
+      nextFetchFrom: computeFetchFrom(
+        initialItems,
+        index.options.limit,
+        initialFoundItems
+      ),
       displayCount: initialRenderLimit,
       cachedItems: {},
     });
@@ -104,11 +116,13 @@ if (state.fetchFrom) {
     })
   );
   if (newItems !== null) {
+    const newFoundItems = !!newItems.length;
+    // moderate
     newItems = newItems.filter((i) => !filterUsers.includes(i.accountId));
     State.update({
       items: mergeItems(newItems),
       fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(newItems, limit),
+      nextFetchFrom: computeFetchFrom(newItems, limit, newFoundItems),
     });
   }
 }
