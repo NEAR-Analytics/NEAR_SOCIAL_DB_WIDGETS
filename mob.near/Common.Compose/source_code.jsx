@@ -46,6 +46,10 @@ const content = (state.text || state.image.cid) && {
   image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
 };
 
+if (content && props.extraContent) {
+  Object.assign(content, props.extraContent);
+}
+
 const onChange = (text) => {
   State.update({
     text,
