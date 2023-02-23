@@ -3,6 +3,7 @@ const ownerId = "contribut3.near";
 const availableContent = ["request", "entity"];
 
 const getContent = (content) => {
+  console.log(content);
   if (!content || !availableContent.includes(content)) {
     return "request";
   }
