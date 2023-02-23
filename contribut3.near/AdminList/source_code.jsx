@@ -23,7 +23,12 @@ return (
       <div key={accountId} className="mb-2">
         <Widget
           src={`${ownerId}/widget/Entity`}
-          props={{ accountId, notStandalone: false, inboxView: true }}
+          props={{
+            accountId,
+            notStandalone: false,
+            inboxView: true,
+            update: props.update,
+          }}
         />
       </div>
     ))}
