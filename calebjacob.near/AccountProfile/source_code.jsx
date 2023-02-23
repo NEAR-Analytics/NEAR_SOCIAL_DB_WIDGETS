@@ -118,6 +118,7 @@ return (
       accountId: props.accountId,
       profile,
       children: AccountProfile,
+      placement: props.overlayPlacement,
     }}
   />
 );
