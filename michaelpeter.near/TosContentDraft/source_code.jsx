@@ -17,6 +17,9 @@ asyncFetch(`https://ipfs.near.social/ipfs/${privacyCidPath}`).then((res) => {
 //   State.update({ terms: res.body });
 // });
 
+const Wrapper = styled.div`
+`;
+
 const DocBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,7 +60,7 @@ const DocContent = styled.div`
 `;
 
 return (
-  <div className="d-flex flex-column gap-3 justify-content-center">
+  <Wrapper className="d-flex flex-column gap-3 justify-content-center">
     {state.show === "default" && (
       <>
         <h3>Terms, Privacy, and Community Guidelines</h3>
@@ -68,6 +71,7 @@ return (
         <DocBox
           onClick={() => {
             State.update({ show: "terms" });
+            props.expand(true);
           }}
         >
           <DocTitle>
@@ -97,6 +101,7 @@ return (
         <button
           onClick={() => {
             State.update({ show: "default" });
+            props.expand(false);
           }}
           className="btn btn-outline-success"
           style={{ width: "6rem" }}
@@ -109,5 +114,5 @@ return (
         </DocContent>
       </>
     )}
-  </div>
+  </Wrapper>
 );
