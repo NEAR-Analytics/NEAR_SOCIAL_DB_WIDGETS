@@ -76,7 +76,7 @@ const body = (
                     {
                       text: "View details",
                       icon: "bi-info-circle",
-                      href: `https://near.social/#/${ownerId}/widget/Index?tab=contribution&entityId=${accountId}&contributorId=${contributorId}`,
+                      href: `https://near.social/#/${ownerId}/widget/Index?tab=contribution&entityId=${entityId}&contributorId=${contributorId}`,
                       onClick: () => props.update && props.update("entity"),
                     },
                     {
@@ -90,8 +90,9 @@ const body = (
               <Widget
                 src={`${ownerId}/widget/ContributionForm`}
                 props={{
-                  id: `${accountId}ContributionForm`,
-                  entity: accountId,
+                  id: `${entityId}${contributorId}ContributionForm`,
+                  entityId: entityId,
+                  contributorId: contributorId,
                   hidden: state.finishFormHidden,
                   onClose: () => State.update({ finishFormHidden: true }),
                 }}
