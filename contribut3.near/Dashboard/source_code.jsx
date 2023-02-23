@@ -76,8 +76,8 @@ const contentSelector = (
     src={`${ownerId}/widget/TabSelector`}
     props={{
       tab: "dashboard",
-      content: state.content,
-      search: state.search,
+      content: props.content,
+      search: props.search,
       update: (content) => props.update({ content }),
       buttons: [
         {
@@ -137,10 +137,7 @@ const content = {
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{
-        search: props.search,
-        update: props.update,
-      }}
+      props={{ search: props.search, update: props.update }}
     />
   ),
 }[getContent(props.content)];
