@@ -94,7 +94,7 @@ return (
         {descriptionInput}
       </div>
     </div>
-    <div className="card-footer">
+    <div className="card-footer justify-content-between">
       <a
         className="btn-outline-secondary"
         href={`https://near.social/#/${ownerId}/widget/Index`}
