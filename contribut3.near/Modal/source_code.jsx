@@ -12,7 +12,7 @@ return (
           <a className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div className="modal-body">{body}</div>
-        <div className="modal-footer">
+        <div className="modal-footer justify-content-between">
           <a className="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </a>
