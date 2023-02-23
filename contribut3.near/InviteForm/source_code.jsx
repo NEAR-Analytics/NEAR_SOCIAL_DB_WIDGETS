@@ -36,11 +36,16 @@ State.init({
 });
 
 const accountIdInput = accountId ? (
-  <div className="rounded-5 bg-secondary">
-    <Widget
-      src={`${ownerId}/widget/ProfileLine`}
-      props={{ accountId, size: "4em" }}
-    />
+  <div>
+    <label htmlFor="account-id" className="text-muted fw-semibold">
+      You're inviting:
+    </label>
+    <div className="rounded-5 bg-secondary" id="account-id">
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{ accountId, size: "4em" }}
+      />
+    </div>
   </div>
 ) : (
   <div className="col-lg-12 mb-2">
