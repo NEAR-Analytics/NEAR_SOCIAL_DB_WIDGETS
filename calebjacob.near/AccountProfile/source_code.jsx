@@ -15,6 +15,7 @@ const Wrapper = styled.a`
   background: none !important;
   border: none;
   text-align: left;
+  padding: 0;
 
   > * {
     min-width: 0;
