@@ -1,54 +1,48 @@
-const accountId = props.accountId;
+const accountId = "gov.near";
 
-if (!accountId) {
-  return "";
-}
-
-const members = Social.keys(`${accountId}/graph/follow/*`, "final", {
+const following = Social.keys(`${accountId}/graph/follow/*`, "final", {
   return_type: "BlockHeight",
   values_only: true,
 });
 
-const subscribers = Social.keys(`*/graph/follow/${accountId}`, "final", {
+const followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
   return_type: "BlockHeight",
   values_only: true,
 });
 
-const numMembers = members
-  ? Object.keys(members[accountId].graph.follow || {}).length
+const numFollowing = following
+  ? Object.keys(following[accountId].graph.follow || {}).length
   : null;
-const numSubscribers = subscribers
-  ? Object.keys(subscribers || {}).length
-  : null;
+const numFollowers = followers ? Object.keys(followers || {}).length : null;
 
 return (
   <div>
     <div className="d-flex flex-row">
       <div className="me-4">
         <a
-          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=following`}
+          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=following`}
           className="text-dark"
         >
-          {numMembers !== null ? (
-            <span className="fw-bolder">{numMembers}</span>
+          {numFollowing !== null ? (
+            <span className="fw-bolder">{numFollowing}</span>
           ) : (
             "?"
           )}{" "}
-          <span className="text-muted">Members</span>
+          <span className="text-muted">Following</span>
         </a>
       </div>
       <div>
         <a
-          href={`#/gov.near/widget/FollowPage?accountId=${accountId}&tab=subscribers`}
+          href={`#/mob.near/widget/FollowPage?accountId=${accountId}&tab=followers`}
           className="text-dark"
         >
-          {numSubscribers !== null ? (
-            <span className="fw-bolder">{numSubscribers}</span>
+          {numFollowers !== null ? (
+            <span className="fw-bolder">{numFollowers}</span>
           ) : (
             "?"
           )}{" "}
           <span className="text-muted">
-            Subscriber{numSubscribers !== 1 && "s"}
+            Follower{numFollowers !== 1 && "s"}
           </span>
         </a>
       </div>
