@@ -40,8 +40,6 @@ const findRoom = (created) => {
     created = false;
   }
   console.log("In findRoom");
-  Storage.set("created", "false");
-  Storage.set("roomId", "");
   const ownerAccountId = state.roomId.split("-")[0];
   console.log("getting roomData");
   const roomData = Social.getr(
@@ -57,6 +55,9 @@ const findRoom = (created) => {
   State.update({
     roomData: roomData,
   });
+
+  Storage.set("created", "false");
+  Storage.set("roomId", "");
   if (props.loadRoomCallback && roomData) {
     props.loadRoomCallback(roomData, state.roomId, created);
   }
