@@ -6,14 +6,7 @@ const id = props.id;
 const hidden = props.hidden;
 
 return (
-  <div
-    className="modal fade"
-    style={{ ...(hidden ? { display: "none" } : {}) }}
-    tabIndex="-1"
-    id={id}
-    data-bs-backdrop="static"
-  // aria-hidden="true"
-  >
+  <div className="modal fade" tabIndex="-1">
     <div className="modal-dialog">
       <div className="modal-content">
         <div className="modal-header">
