@@ -11,6 +11,7 @@ const getContent = (content) => {
 };
 
 State.init({
+  content: getContent(props.content),
   search: props.search ?? "",
 });
 
