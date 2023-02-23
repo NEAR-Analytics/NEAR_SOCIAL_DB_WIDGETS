@@ -26,7 +26,9 @@ if (Array.isArray(contributions) && contributions.length === 0) {
   return "No contribution requests found!";
 }
 
-const allContributions = contributions.filter((id) => id.includes(search));
+const allContributions = contributions.filter((id) =>
+  id.includes(props.search)
+);
 
 if (!allContributions || allContributions.length === 0) {
   return "No requests match search criteria!";
