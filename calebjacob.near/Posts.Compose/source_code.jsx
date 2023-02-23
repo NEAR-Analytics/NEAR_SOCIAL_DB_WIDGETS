@@ -89,8 +89,9 @@ function textareaInputHandler(value) {
 }
 
 function autoCompleteAccountId(id) {
-  const text = state.text.replace(/@[^\s]*$/, "");
-  State.update({ text: `${text}@${id} `, showAccountAutocomplete: false });
+  let text = state.text.replace(/[\s]{0,1}@[^\s]*$/, "");
+  text = `${text} @${id}`.trim() + " ";
+  State.update({ text, showAccountAutocomplete: false });
 }
 
 const Wrapper = styled.div`
