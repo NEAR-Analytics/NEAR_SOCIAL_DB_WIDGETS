@@ -95,8 +95,6 @@ const body = (
                       text: <>Invite to contribute</>,
                       icon: "bi-person-plus",
                       id: "invite",
-                      toggle: true,
-                      target: `#${accountId}InviteForm`,
                       onClick: () => State.update({ inviteFormHidden: false }),
                     },
                     {
