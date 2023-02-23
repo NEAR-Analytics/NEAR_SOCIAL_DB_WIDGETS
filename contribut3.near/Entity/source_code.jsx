@@ -105,8 +105,8 @@ const body = (
                 props={{
                   id: `${accountId}ContributionRequestForm`,
                   entity: accountId,
-                  hidden: state.inviteFormHidden,
-                  onClose: () => State.update({ inviteFormHidden: true }),
+                  hidden: state.contributionFormHidden,
+                  onClose: () => State.update({ contributionFormHidden: true }),
                 }}
               />
             </div>
