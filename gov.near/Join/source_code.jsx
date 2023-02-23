@@ -4,7 +4,7 @@ return (
   <Widget
     src="gov.near/widget/JoinButton.LR"
     props={{
-      L: "",
+      L: <Widget src="gov.near/widget/Membership" props={{ ownerId }} />,
       R: <Widget src="gov.near/widget/JoinButton" props={{ ownerId }} />,
       ...props,
     }}
