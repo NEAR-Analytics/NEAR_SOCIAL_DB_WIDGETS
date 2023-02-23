@@ -8,6 +8,10 @@ if (!accountId) {
   return "Cannot show entity without account ID!";
 }
 
+State.init({
+  contributionFormHidden: true,
+});
+
 const entity = Near.view(
   ownerId,
   "get_entity",
@@ -74,11 +78,14 @@ const body = (
                     {
                       text: "Propose contribution",
                       icon: "bi-person-up",
+                      id: "contribute",
+                      onClick: () =>
+                        State.update({ contributionFormHidden: false }),
                     },
-                    {
-                      text: "Invite to contribute",
-                      icon: "bi-person-plus",
-                    },
+                    // {
+                    //   text: "Invite to contribute",
+                    //   icon: "bi-person-plus",
+                    // },
                     {
                       text: "View details",
                       icon: "bi-info-circle",
@@ -91,6 +98,15 @@ const body = (
                       id: "share",
                     },
                   ],
+                }}
+              />
+              <Widget
+                src={`${ownerId}/widget/ContributionRequestForm`}
+                props={{
+                  id: `${accountId}ContributionRequestForm`,
+                  entity: accountId,
+                  hidden: state.inviteFormHidden,
+                  onClose: () => State.update({ inviteFormHidden: true }),
                 }}
               />
             </div>
