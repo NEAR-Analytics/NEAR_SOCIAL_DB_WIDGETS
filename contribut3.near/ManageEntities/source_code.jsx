@@ -29,6 +29,11 @@ const contentSelector = (
       update: (content) => props.update({ content }),
       buttons: [
         {
+          id: "contributions",
+          text: "My Contributions",
+          icon: "bi-person-up",
+        },
+        {
           id: "projects",
           text: "Projects",
           icon: "bi-boxes",
@@ -37,11 +42,6 @@ const contentSelector = (
           id: "requests",
           text: "Requests",
           icon: "bi-ui-checks-grid",
-        },
-        {
-          id: "contributions",
-          text: "My Contributions",
-          icon: "bi-person-up",
         },
       ],
     }}
