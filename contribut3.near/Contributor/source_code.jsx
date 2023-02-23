@@ -92,15 +92,7 @@ const body = (
                       id: "contribute",
                     },
                     {
-                      text: (
-                        <>
-                          Invite to contribute
-                          <Widget
-                            src={`${ownerId}/widget/InviteForm`}
-                            props={{ id: `${accountId}InviteForm`, accountId }}
-                          />
-                        </>
-                      ),
+                      text: <>Invite to contribute</>,
                       icon: "bi-person-plus",
                       id: "invite",
                       toggle: true,
@@ -119,6 +111,10 @@ const body = (
                     },
                   ],
                 }}
+              />
+              <Widget
+                src={`${ownerId}/widget/InviteForm`}
+                props={{ id: `${accountId}InviteForm`, accountId }}
               />
             </div>
           ),
