@@ -58,7 +58,7 @@ const Wrapper = styled.div`
   overflow: auto;
   scroll-behavior: smooth;
   align-items: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 
   > * {
     max-width: 175px;
