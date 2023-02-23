@@ -41,7 +41,11 @@ const accountIdInput = accountId ? (
     <label htmlFor="account-id" className="text-muted fw-semibold">
       You're inviting:
     </label>
-    <div className="rounded-5 bg-secondary" id="account-id">
+    <div
+      className="rounded-5 bg-secondary"
+      style={{ height: "5em", color: "white !important" }}
+      id="account-id"
+    >
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{ accountId, size: "4em" }}
