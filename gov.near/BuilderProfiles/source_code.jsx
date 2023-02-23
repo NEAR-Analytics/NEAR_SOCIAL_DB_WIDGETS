@@ -16,7 +16,7 @@ const makeLink = (accountId, tag) => {
 
 const render = (content) => {
   return (
-    <div className="px-2 mx-auto" style={{ maxWidth: "42em" }}>
+    <div className="px-2 mx-auto">
       {(accountId || tag) && (
         <div className="mb-2">
           Filter:
@@ -26,7 +26,7 @@ const render = (content) => {
               className="btn btn-outline-primary"
             >
               <Widget
-                src="mob.near/widget/ProfileLine"
+                src="bozon.near/widget/Developer"
                 props={{ accountId, link: false }}
               />
               <i className="bi bi-x-square"></i>
@@ -52,7 +52,7 @@ let keys = `${accountId ?? "*"}/profile/tags/*`;
 
 if (tag) {
   const taggedProfiles = Social.keys(
-    `${accountId ?? "*"}/profile/*/metadata/tags/${tag}`,
+    `${accountId ?? "*"}/profile/tags/${tag}`,
     "final"
   );
 
