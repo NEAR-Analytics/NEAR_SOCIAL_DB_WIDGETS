@@ -86,7 +86,11 @@ return (
         <Widget
           key={result.accountId}
           src="calebjacob.near/widget/AccountProfile"
-          props={{ accountId: result.accountId, onClick: onResultClick }}
+          props={{
+            accountId: result.accountId,
+            onClick: onResultClick,
+            overlayPlacement: "bottom",
+          }}
         />
       );
     })}
