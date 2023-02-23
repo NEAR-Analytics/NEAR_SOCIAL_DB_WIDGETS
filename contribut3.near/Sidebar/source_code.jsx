@@ -68,11 +68,11 @@ return (
       icon: "bi-diagram-2",
       id: "entities",
     })}
-    {/* {navItem({ */}
-    {/*   text: "My contributions", */}
-    {/*   icon: "bi-ui-checks-grid", */}
-    {/*   id: "contributions", */}
-    {/* })} */}
+    {navItem({
+      text: "My graph",
+      icon: "bi-ui-checks-grid",
+      id: "contributions",
+    })}
     <hr className="border-2" />
     {navItem({
       text: "About this app",
