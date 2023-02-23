@@ -95,35 +95,6 @@ const onSubmit = () => {
   Near.call(ownerId, "add_entity", args);
 };
 
-const header = <div className="card-header">Create an entity</div>;
-
-const body = (
-  <div className="card-body">
-    <div className="row"></div>
-  </div>
-);
-
-const footer = (
-  <div className="card-footer">
-    Preview:
-    {state.accountIdValid ? (
-      <Widget
-        src={`${ownerId}/widget/Entity`}
-        props={{
-          isPreview: true,
-          accountId: state.accountId,
-          notStandalone: true,
-          entity: {
-            entity: state.entity,
-            kind: state.kind[0].name,
-            start_date: `${new Date(state.startDate).getTime()}`,
-          },
-        }}
-      />
-    ) : null}
-  </div>
-);
-
 return (
   <div className="px-3" style={{ maxWidth: "45em" }}>
     <h1 className="fs-2 mb-3 pb-3">Create new project</h1>
