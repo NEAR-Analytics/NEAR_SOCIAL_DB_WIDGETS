@@ -1,3 +1,4 @@
+const ownerId = "gov.near";
 const accountId = props.accountId ?? context.accountId;
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
@@ -30,18 +31,7 @@ return (
       </a>
     </div>
     <div className="profile-tags text-muted mb-5">
-      {tags.length > 0 && (
-        <>
-          {tags.map((tag, i) => (
-            <span
-              key={i}
-              className="m-1 fw-light badge border border-secondary text-bg-light"
-            >
-              #{tag}
-            </span>
-          ))}
-        </>
-      )}
+      <Widget src="gov.near/widget/JoinStats" props={{ ownerId }} />
     </div>
   </div>
 );
