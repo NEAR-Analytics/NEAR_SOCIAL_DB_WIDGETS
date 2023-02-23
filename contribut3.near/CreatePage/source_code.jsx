@@ -15,7 +15,7 @@ State.init({
   search: props.search ?? "",
 });
 
-return {
+const content = {
   request: (
     <Widget
       src={`${ownerId}/widget/NeedForm`}
@@ -29,3 +29,5 @@ return {
     />
   ),
 }[state.content];
+
+return content;
