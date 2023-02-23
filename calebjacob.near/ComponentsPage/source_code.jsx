@@ -56,7 +56,7 @@ const SubHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 12px;
 
   @media (max-width: 500px) {
       flex-direction: column;
@@ -104,6 +104,10 @@ const Search = styled.div`
 
   .spinner-grow {
       display: none !important; 
+  }
+
+  @media (max-width: 500px) {
+      width: 100%;
   }
 `;
 
