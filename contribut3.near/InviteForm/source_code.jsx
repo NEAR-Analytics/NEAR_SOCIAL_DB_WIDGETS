@@ -209,7 +209,7 @@ const body = (
   </div>
 );
 
-const form = (
+return (
   <Widget
     src={`${ownerId}/widget/Modal`}
     props={{
@@ -225,11 +225,4 @@ const form = (
       id,
     }}
   />
-);
-
-return (
-  <div className="card">
-    {header}
-    {body}
-  </div>
 );
