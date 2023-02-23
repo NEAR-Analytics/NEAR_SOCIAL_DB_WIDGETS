@@ -15,7 +15,7 @@ const convertType = (contributionType) => {
   return { Other: contributionType.name };
 };
 
-initState({
+State.init({
   contributionType: [],
   description: "",
 });
@@ -75,11 +75,10 @@ const body = (
     </div>
 
     <a
-      className={`btn ${
-        state.contributionType.length !== 1 || state.description.length === 0
+      className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
           ? "btn-secondary"
           : "btn-primary"
-      } mb-2`}
+        } mb-2`}
       onClick={onSubmit}
     >
       Post
