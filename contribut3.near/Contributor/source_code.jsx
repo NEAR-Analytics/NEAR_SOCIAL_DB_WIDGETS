@@ -90,13 +90,13 @@ const body = (
                 props={{
                   update: props.update,
                   items: [
+                    // {
+                    //   text: "Propose contribution",
+                    //   icon: "bi-person-up",
+                    //   id: "contribute",
+                    // },
                     {
-                      text: "Propose contribution",
-                      icon: "bi-person-up",
-                      id: "contribute",
-                    },
-                    {
-                      text: <>Invite to contribute</>,
+                      text: "Invite to contribute",
                       icon: "bi-person-plus",
                       id: "invite",
                       onClick: () => State.update({ inviteFormHidden: false }),
