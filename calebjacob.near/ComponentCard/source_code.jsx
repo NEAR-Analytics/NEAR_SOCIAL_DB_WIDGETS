@@ -127,7 +127,7 @@ const ButtonLink = styled.a`
   padding: 8px;
   height: 32px;
   border: 1px solid #D7DBDF;
-  border-radius: 6px;
+  border-radius: 100px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
