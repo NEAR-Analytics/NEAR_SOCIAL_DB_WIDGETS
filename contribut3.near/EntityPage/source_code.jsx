@@ -141,7 +141,7 @@ const body = (
         />
       </div>
     </div>
-    <Markdown text={profile.description || "s ".repeat(1000)} />
+    <Markdown text={profile.description} />
     <div className="d-flex flex-row justify-content-between align-items-center">
       <Widget
         src={`${ownerId}/widget/SocialLinks`}
@@ -258,7 +258,12 @@ const content = {
   contributions: (
     <Widget
       src={`${ownerId}/widget/ContributionList`}
-      props={{ search: state.search, update: props.update }}
+      props={{
+        accountId,
+        isEntity: true,
+        search: state.search,
+        update: props.update,
+      }}
     />
   ),
   contributors: (
