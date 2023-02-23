@@ -26,8 +26,7 @@ if (data) {
   });
 
   result.sort((a, b) => b.blockHeight - a.blockHeight);
-  const pageOffset = state.currentPage * limitPerPage;
-  components = result.slice(pageOffset, pageOffset + limitPerPage);
+  components = result.slice(0, state.currentPage * limitPerPage + limitPerPage);
 }
 
 const Wrapper = styled.div`
