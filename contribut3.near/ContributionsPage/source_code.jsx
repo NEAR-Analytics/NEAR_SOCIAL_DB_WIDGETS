@@ -41,7 +41,7 @@ return (
         props={{
           accountId: context.accountId,
           isEntity: false,
-          search: state.search,
+          search: props.search,
           update: props.update,
         }}
       />
