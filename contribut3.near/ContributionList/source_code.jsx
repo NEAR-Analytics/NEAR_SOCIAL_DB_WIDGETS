@@ -43,6 +43,7 @@ return (
           props={{
             entityId: isEntity ? accountId : id,
             contributorId: isEntity ? id : accountId,
+            isEntity,
             update: props.update,
           }}
         />
