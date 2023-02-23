@@ -18,19 +18,6 @@ const numFollowers = followers ? Object.keys(followers || {}).length : null;
 return (
   <div>
     <div className="d-flex flex-row">
-      <div className="me-4">
-        <a
-          href={`#/mob.near/widget/FollowPage?ownerId=${ownerId}&tab=following`}
-          className="text-dark"
-        >
-          {numFollowing !== null ? (
-            <span className="fw-bolder">{numFollowing}</span>
-          ) : (
-            "?"
-          )}{" "}
-          <span className="text-muted">Following</span>
-        </a>
-      </div>
       <div>
         <a
           href={`#/mob.near/widget/FollowPage?ownerId=${ownerId}&tab=followers`}
@@ -41,9 +28,7 @@ return (
           ) : (
             "?"
           )}{" "}
-          <span className="text-muted">
-            Follower{numFollowers !== 1 && "s"}
-          </span>
+          <span className="text-muted">Member{numFollowers !== 1 && "s"}</span>
         </a>
       </div>
     </div>
