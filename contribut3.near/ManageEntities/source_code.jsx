@@ -65,6 +65,8 @@ const createNewDropdown = (
   </div>
 );
 
+const update = (content) => State.update({ content });
+
 const contentSelector = (
   <Widget
     src={`${ownerId}/widget/TabSelector`}
@@ -72,7 +74,7 @@ const contentSelector = (
       tab: "entities",
       content: state.content,
       search: state.search,
-      update: (content) => State.update({ content }),
+      update,
       buttons: [
         {
           id: "projects",
@@ -114,8 +116,6 @@ const searchBar = (
     </div>
   </div>
 );
-
-const update = (content) => State.update({ content });
 
 const content = {
   projects: (
