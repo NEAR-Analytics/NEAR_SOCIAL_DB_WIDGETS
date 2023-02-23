@@ -115,23 +115,25 @@ const searchBar = (
   </div>
 );
 
+const update = (content) => State.update({ content });
+
 const content = {
   projects: (
     <Widget
       src={`${ownerId}/widget/AdminList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: state.search, update }}
     />
   ),
   contributors: (
     <Widget
       src={`${ownerId}/widget/ContributorList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: state.search, update }}
     />
   ),
   requests: (
     <Widget
       src={`${ownerId}/widget/NeedList`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: state.search, update }}
     />
   ),
 }[state.content];
