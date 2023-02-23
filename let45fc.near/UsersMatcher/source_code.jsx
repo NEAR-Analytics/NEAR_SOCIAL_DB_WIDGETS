@@ -49,8 +49,7 @@ const findRoom = (created) => {
   console.log("After getting ownerAccountId", ownerAccountId);
   console.log("getting roomData");
   const roomData = Social.getr(
-    `${ownerAccountId}/${props.widgetKey}/${state.roomId}`,
-    "final"
+    `${ownerAccountId}/${props.widgetKey}/${state.roomId}`
   );
   console.log(props.widgetKey, state.roomId);
   console.log(roomData);
