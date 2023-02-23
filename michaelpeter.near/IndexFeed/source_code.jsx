@@ -10,6 +10,10 @@ const filterUsersRaw = Social.get(
     subscribe: true,
   }
 );
+if (filterUsers === null) {
+  // haven't loaded filter list yet, return early
+  return "";
+}
 const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
 console.log("raw", filterUsersRaw);
 console.log(filterUsers);
