@@ -25,7 +25,7 @@ return {
   entity: (
     <Widget
       src={`${ownerId}/widget/EntityForm`}
-      props={{ search: state.search, update: props.update }}
+      props={{ search: state.search, update: props.update, kind: props.kind }}
     />
   ),
 }[state.content];
