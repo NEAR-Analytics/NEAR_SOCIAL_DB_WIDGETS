@@ -60,7 +60,7 @@ return (
   <div className="d-flex flex-column gap-3 justify-content-center">
     {state.show === "default" && (
       <>
-        <h1>Terms, Privacy, and Community Guidelines</h1>
+        <h3>Terms, Privacy, and Community Guidelines</h3>
         <p>
           To continue using alpha.near.org, please read and agree to the
           following terms and policies:
