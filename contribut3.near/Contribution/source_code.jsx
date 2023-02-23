@@ -58,12 +58,15 @@ const body = (
                 props={{
                   update: props.update,
                   items: [
-                    {
-                      text: "Stop contribution",
-                      icon: "bi-person-up",
-                      id: "stop",
-                      onClick: () => State.update({ finishFormHidden: false }),
-                    },
+                    isAuthorized
+                      ? {
+                        text: "Stop contribution",
+                        icon: "bi-person-up",
+                        id: "stop",
+                        onClick: () =>
+                          State.update({ finishFormHidden: false }),
+                      }
+                      : null,
                     {
                       text: "View details",
                       icon: "bi-info-circle",
@@ -75,7 +78,7 @@ const body = (
                       icon: "bi-arrow-up-right",
                       id: "share",
                     },
-                  ],
+                  ].filter((item) => item !== null),
                 }}
               />
               <Widget
