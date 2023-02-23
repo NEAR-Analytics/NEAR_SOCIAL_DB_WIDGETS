@@ -170,7 +170,7 @@ const content = {
 }[state.content];
 
 return (
-  <div className="">
+  <div>
     <div className="mb-5">{body}</div>
     <div className="d-flex flex-row justify-content-between ps-3">
       {contentSelector}
