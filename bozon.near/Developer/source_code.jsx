@@ -19,16 +19,20 @@ const notDeleted = Social.keys(`${accountId}/widget/*`, "final", {
 if (notDeleted === null) return "Loading...";
 
 const countAllWidgets = Object.keys(
-  allWidgetsHistoryChangesBlocks[accountId]["widget"]
+  allWidgetsHistoryChangesBlocks[accountId]["widget"] || {}
 ).length;
-const countNotDeleted = Object.keys(notDeleted[accountId]["widget"]).length;
+
+const countNotDeleted = Object.keys(
+  notDeleted[accountId]["widget"] || {}
+).length;
+
 const countDeletedWidgets = countAllWidgets - countNotDeleted;
 const countCommits = Object.values(
-  allWidgetsHistoryChangesBlocks[accountId]["widget"]
+  allWidgetsHistoryChangesBlocks[accountId]["widget"] || {}
 ).reduce((cur, prev) => cur + prev.length, 0);
 
 const allWidgetsHistoryChangesBlocksComputedAdjusted = Object.keys(
-  allWidgetsHistoryChangesBlocks[accountId]["widget"]
+  allWidgetsHistoryChangesBlocks[accountId]["widget"] || {}
 )
   .map((key) => {
     return {
