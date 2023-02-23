@@ -159,7 +159,6 @@ const Textarea = styled.div`
     &::placeholder {
       opacity: 1;
       color: #687076;
-      font-weight: 600;
     }
 
     &:empty + p {
