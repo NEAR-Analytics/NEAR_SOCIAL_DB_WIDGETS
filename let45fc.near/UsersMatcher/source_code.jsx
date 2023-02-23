@@ -1,18 +1,19 @@
 // inspired by https://near.social/#/wendersonpires.near/widget/Chat
 
-if (typeof props.loadRoomCallback != "function") {
-  return (
-    <h2>
-      You have to pass the loadRoomCallback function in props. Found type:{" "}
-      {typeof props.loadRoomCallback}
-    </h2>
-  );
-}
+// if (typeof props.loadRoomCallback != "function") {
+//   return (
+//     <h2>
+//       It's reusable widget and cannot work alone. You have to pass the
+//       loadRoomCallback function in props. Found type:{" "}
+//       {typeof props.loadRoomCallback}
+//     </h2>
+//   );
+// }
 
 State.init({
   roomId: Storage.get("roomId") || null,
   errorMessage: null,
-  roomCreated: false,
+  roomCreatedScreen: false,
 });
 
 const uuidv4 = () => {
@@ -31,9 +32,7 @@ const generateRoomId = () => {
   return `${context.accountId}-${props.widgetKey}-room-${uuidv4()}`;
 };
 
-const newRoomId = generateRoomId();
-
-const placeHolder = "Enter room id";
+// const newRoomId = generateRoomId();
 
 const findRoom = (created) => {
   if (!created) {
@@ -44,7 +43,8 @@ const findRoom = (created) => {
   const ownerAccountId = state.roomId.split("-")[0];
   console.log("getting roomData");
   const roomData = Social.getr(
-    `${ownerAccountId}/${props.widgetKey}/${state.roomId}`
+    `${ownerAccountId}/${props.widgetKey}/${state.roomId}`,
+    "final"
   );
   console.log(props.widgetKey, state.roomId);
   console.log(roomData);
@@ -60,26 +60,35 @@ const findRoom = (created) => {
   }
 };
 
-const roomCreated = Storage.get("created");
-console.log("created", Storage.get("created"));
-console.log("roomId", Storage.get("roomId"));
+if (Storage.get("created") == "true" && !state.roomCreatedScreen) {
+  findRoom(true);
+}
 
-if (state.roomCreated || roomCreated == "true") {
-  const roomId = Storage.get("roomId");
-  if (!roomId) {
-    return <h1>Something went wrong and "roomId" is not set</h1>;
-  }
+if (state.roomCreatedScreen) {
   return (
     <div class="container">
       <div class="row">
-        <h2>Room created</h2>
+        <h2>Room creation</h2>
+        <p>Your room ID will be:</p>
+        <pre>{state.roomId}</pre>
+        <p>Please copy it and send to your friend(s) :-)</p>
       </div>
-      <div class="row">
-        <span>Your room id: {roomId}</span>
-      </div>
-      <button class="btn btn-success" onClick={() => findRoom(true)}>
-        Go to game
-      </button>
+      <CommitButton
+        class="btn btn-success"
+        onCommit={() => {
+          findRoom(true);
+        }}
+        data={{
+          [props.widgetKey]: {
+            [state.roomId]: {
+              createdTimestamp: Date.now(),
+              ...(props.initialValue || {}),
+            },
+          },
+        }}
+      >
+        Create Room & Go
+      </CommitButton>
     </div>
   );
 }
@@ -94,7 +103,7 @@ return (
         <input
           type="text"
           class="form-control"
-          placeHolder={placeHolder}
+          placeHolder="Enter room id"
           value={state.roomId}
           onChange={(e) => {
             const roomId = e.target.value;
@@ -117,28 +126,17 @@ return (
         </button>
       </div>
       <div class="col-6">
-        <CommitButton
+        <button
           class="btn btn-primary"
           onClick={() => {
-            State.update({ roomId: newRoomId });
-          }}
-          onCommit={() => {
-            console.log("onCommit");
-            State.update({ roomCreated: true });
+            const newRoomId = generateRoomId();
             Storage.set("created", "true");
             Storage.set("roomId", newRoomId);
-          }}
-          data={{
-            [props.widgetKey]: {
-              [newRoomId]: {
-                createdTimestamp: Date.now(),
-                initial: props.initialValue || null,
-              },
-            },
+            State.update({ roomId: newRoomId, roomCreatedScreen: true });
           }}
         >
           Create new room
-        </CommitButton>
+        </button>
       </div>
     </div>
   </div>
