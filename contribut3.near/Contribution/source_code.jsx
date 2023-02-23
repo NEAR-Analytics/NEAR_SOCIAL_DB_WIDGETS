@@ -57,7 +57,7 @@ const body = (
                     isAuthorized
                       ? {
                         text: "Stop contribution",
-                        icon: "bi-person-up",
+                        icon: "bi-slash-circle",
                         id: "stop",
                         onClick: () =>
                           State.update({ finishFormHidden: false }),
