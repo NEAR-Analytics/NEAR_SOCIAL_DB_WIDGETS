@@ -3,7 +3,11 @@ const targetProps = props?.targetProps || {};
 // const acceptanceKey = `${context.accountId}/${tosName}`;
 const acceptanceKey = tosName; // TODO
 
-State.init({ hasCommittedAcceptance: false, agreeIsChecked: false });
+State.init({
+  hasCommittedAcceptance: false,
+  agreeIsChecked: false,
+  expand: false,
+});
 
 // find all instances of the user agreeing to some version of the desired TOS
 const agreementsForUser = Social.index("tosAccept", acceptanceKey, {
@@ -32,12 +36,12 @@ const Backdrop = styled.div`
 `;
 
 const Modal = styled.div`
-  height: 80vh;
-  width: 80vw;
+  max-width: 30rem;
+  max-height: 80%;
   background-color: white;
   border-radius: 10px;
   margin: auto;
-  padding: 3rem;
+  padding: 1.5rem;
   display: flex;
   row-gap: 1rem;
   flex-direction: column;
@@ -48,23 +52,39 @@ display: flex;
 flex-direction: column;
 flex-grow:1
 min-height 0;
-overflow-y: scroll;
+overflow-y: auto;
 `;
 
 const ModalFooter = styled.div`
-  height: 3rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  row-gap: 2rem;
 `;
 
 const AcceptSection = styled.div`
-display: flex;
+  display: flex;
   flex-direction: row;
-  align-items: center;
-  column-gap: 2rem;
+  column-gap: 1rem;
 `;
+
+const CheckWrapper = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+color: ${state.agreeIsChecked ? "var(--bs-green)" : "inherit"}
+`;
+
+const CheckButton = styled.button`
+  border: none;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-color: ${state.agreeIsChecked ? "var(--bs-green)" : "black"};
+  --bs-btn-hover-color: var(--bs-blue);
+`;
+
+const expand = (e) => {
+  State.update({ expand: e });
+};
 
 const showTos =
   !state.hasCommittedAcceptance &&
@@ -78,37 +98,45 @@ return (
     <Backdrop style={{ display: showTos ? "flex" : "none" }} className="flex">
       <Modal>
         <ModalContent>
-          <Widget src="michaelpeter.near/widget/TosContentDraft" />
+          <Widget src={tosName} props={expand} />
         </ModalContent>
         <ModalFooter>
-          <button className="btn btn-danger">Sign Out (WIP)</button>
-          <AcceptSection>
-            <div
-              id="checkWrapper"
-              className="d-flex flex-row align-items-center"
+          <CheckWrapper>
+            <CheckButton
+              onClick={() => {
+                State.update({ agreeIsChecked: !state.agreeIsChecked });
+              }}
+              className="btn btn-outline-dark"
             >
-              <button
-                onClick={() => {
-                  State.update({ agreeIsChecked: !state.agreeIsChecked });
-                }}
-                className="btn btn-outline-dark"
-                style={{
-                  border: "none",
-                  "--bs-btn-hover-bg": "transparent",
-                  "--bs-btn-active-bg": "transparent",
-                  "--bs-btn-hover-color": "var(--bs-blue)",
-                }}
-              >
-                <i
-                  className={`bi bi-${
-                    state.agreeIsChecked ? "check-square" : "square"
-                  }`}
-                  style={{ fontSize: "1.5rem" }}
-                />
-              </button>
-              <span>I agree to the Terms of Service</span>
-            </div>
+              <i
+                className={`bi bi-${
+                  state.agreeIsChecked ? "check-square" : "square"
+                }`}
+                style={{ fontSize: "1.5rem" }}
+              />
+            </CheckButton>
+            <span>
+              I agree to the Terms of Service, Privacy Policy, and Community
+              Guidelines
+            </span>
+          </CheckWrapper>
+          <AcceptSection>
+            <button
+              className="btn btn-outline-secondary"
+              style={{
+                flexGrow: 1,
+                flexBasis: "10rem",
+                borderRadius: "1.25rem",
+              }}
+            >
+              Sign Out (WIP)
+            </button>
             <CommitButton
+              style={{
+                flexGrow: 1,
+                flexBasis: "10rem",
+                borderRadius: "1.25rem",
+              }}
               disabled={!state.agreeIsChecked}
               data={{
                 index: {
