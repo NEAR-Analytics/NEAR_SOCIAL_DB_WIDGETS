@@ -51,13 +51,15 @@ const renderItem = (a) =>
 return (
   <Wrapper>
     <Widget
-      src="mob.near/widget/ManualIndexFeed"
+      src="michaelpeter.near/widget/IndexFeed"
       props={{
         index,
+        manual: true,
         reverse: true,
         renderItem,
         nextLimit: 10,
         loadMoreText: "Show earlier comments...",
+        moderatorAccount: "michaelpeter.near",
       }}
     />
   </Wrapper>
