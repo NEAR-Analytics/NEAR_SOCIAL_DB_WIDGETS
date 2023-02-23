@@ -11,6 +11,7 @@ const filterUsersRaw = Social.get(
   }
 );
 const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
+console.log(filterUsers);
 
 const renderItem =
   props.renderItem ??
