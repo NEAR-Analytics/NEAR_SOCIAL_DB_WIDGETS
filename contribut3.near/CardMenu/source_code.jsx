@@ -16,8 +16,9 @@ const menuItems = items.reduce(
         href={href}
         onClick={onClick}
         role="button"
-        {...(toggle ? { "data-bs-toggle": "modal" })}
-        data-bs-target={target}
+        {...(toggle
+          ? { "data-bs-toggle": "modal", "data-bs-target": target }
+          : {})}
       >
         <i className={icon} />
         <span>{text}</span>
