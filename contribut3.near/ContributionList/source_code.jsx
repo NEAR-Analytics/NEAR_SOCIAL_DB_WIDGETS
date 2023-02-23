@@ -16,7 +16,7 @@ const contributions = Object.keys(
   ) ?? {}
 );
 
-console.log(contributions);)
+console.log(contributions);
 
 if (!contributions) {
   return "Loading...";
