@@ -90,7 +90,7 @@ const Items = styled.div`
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 800px) {
     grid-template-columns: minmax(0, 1fr);
   }
 `;
