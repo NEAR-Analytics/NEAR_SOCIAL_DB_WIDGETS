@@ -147,11 +147,17 @@ return (
     <div className="mb-3 px-3">
       <div className="d-flex flex-row justify-content-between mb-3">
         {header}
-        {createNewDropdown}
+        <Widget
+          src={`${ownerId}/widget/CreateNewInput`}
+          props={{ update: props.update }}
+        />
       </div>
       <div className="d-flex flex-row justify-content-between">
         {contentSelector}
-        {searchBar}
+        <Widget
+          src={`${ownerId}/widget/SearchInput`}
+          props={{ search: props.search, update: props.update }}
+        />
       </div>
     </div>
     <div className="px-3 pt-3">{content}</div>
