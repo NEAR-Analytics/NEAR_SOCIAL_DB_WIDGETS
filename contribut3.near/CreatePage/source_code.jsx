@@ -1,6 +1,6 @@
 const ownerId = "contribut3.near";
 
-const availableContent = ["request", "project"];
+const availableContent = ["request", "entity"];
 
 const getContent = (content) => {
   if (!content || !availableContent.includes(content)) {
@@ -22,7 +22,7 @@ return {
       props={{ search: state.search, update: props.update }}
     />
   ),
-  project: (
+  entity: (
     <Widget
       src={`${ownerId}/widget/EntityForm`}
       props={{ search: state.search, update: props.update }}
