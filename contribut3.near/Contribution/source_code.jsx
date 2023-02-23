@@ -23,22 +23,13 @@ if (!contribution) {
   return "Loading...";
 }
 
-const isAuthorized =
-  Near.view(
-    ownerId,
-    "check_is_manager_or_higher",
-    { account_id: accountId, entity_id: entityId },
-    "final",
-    true
-  ) ||
-  Near.view(
-    ownerId,
-    "check_is_manager_or_higher",
-    { account_id: accountId, entity_id: contributorId },
-    "final",
-    true
-  ) ||
-  accountId === contributorId;
+const isAuthorized = Near.view(
+  ownerId,
+  "check_is_manager_or_higher",
+  { account_id: accountId, entity_id: entityId },
+  "final",
+  true
+);
 
 const profile = Social.getr(`${entityId}/profile`);
 
