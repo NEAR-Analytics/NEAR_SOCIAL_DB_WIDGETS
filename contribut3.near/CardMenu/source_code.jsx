@@ -15,6 +15,7 @@ const menuItems = items.reduce(
         className="dropdown-item btn"
         href={href}
         onClick={onClick}
+        role="button"
         data-bs-toggle={toggle ? "modal" : ""}
         data-bs-target={target}
       >
