@@ -6,11 +6,11 @@ if (metadata === null) {
   return "Loading";
 }
 if (metadata !== undefined) {
-  metadata["tags"] = { "#ethdenver2023": "" };
+  metadata["tags"] = { ethdenver2023: "" };
 }
 if (metadata === undefined) {
   metadata = {};
-  metadata["tags"] = { "#ethdenver2023": "" };
+  metadata["tags"] = { ethdenver2023: "" };
 }
 
 return (
