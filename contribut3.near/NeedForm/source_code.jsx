@@ -97,7 +97,7 @@ return (
     </div>
     <div className="d-flex flex-row justify-content-between">
       <a
-        className="btn-outline-secondary"
+        className="btn btn-outline-secondary"
         href={`https://near.social/#/${ownerId}/widget/Index`}
         onClick={() => props.update("")}
       >
