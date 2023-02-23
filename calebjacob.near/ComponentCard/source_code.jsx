@@ -135,6 +135,7 @@ const ButtonLink = styled.a`
   cursor: pointer;
   color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
   background: #FBFCFD;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
