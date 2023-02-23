@@ -70,7 +70,7 @@ return (
     show={state.show}
     trigger={["hover", "focus"]}
     delay={{ show: 250, hide: 300 }}
-    placement="auto"
+    placement={props.placement || "auto"}
     overlay={overlay}
   >
     <div
