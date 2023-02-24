@@ -43,11 +43,9 @@ const postWidgets = (content, postType) => {
 
   for (const post of content || []) {
     const accountId = post.author;
-    if (!post.ref) {
-      console.log(`No ref to ${postType} for ${accountId}`);
-    }
+    const blockHeight =
+      post.ref?.block_height ?? post.objectID.split("/").slice(-1)[0];
 
-    const blockHeight = post.ref.block_height;
     const widgetType =
       postType === "post" ? "MainPage.Post.Page" : "MainPage.Comment.Page";
     const link = `#/mob.near/widget/${widgetType}?accountId=${accountId}&blockHeight=${blockHeight}`;
