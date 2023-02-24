@@ -1,10 +1,10 @@
 const ownerId = "contribut3.near";
 
-const availableContent = ["projects", "contributions", "requests"];
+const availableContent = ["projects", "proposals", "requests"];
 
 const getContent = (content) => {
   if (!content || !availableContent.includes(content)) {
-    return "contributions";
+    return "proposals";
   }
 
   return content;
@@ -29,8 +29,8 @@ const contentSelector = (
       update: (content) => props.update({ content }),
       buttons: [
         {
-          id: "contributions",
-          text: "My Contributions",
+          id: "proposals",
+          text: "My Proposals",
           icon: "bi-person-up",
         },
         {
