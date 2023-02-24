@@ -98,7 +98,7 @@ const TextLink = styled.a`
   color: #006ADC;
   outline: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
 
   &:hover,
