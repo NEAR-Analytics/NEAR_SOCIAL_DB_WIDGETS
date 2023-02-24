@@ -151,7 +151,7 @@ const body = (
       />
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId: founder }}
+        props={{ accountId: founder, isEntity: false }}
       />
     </div>
   </div>
