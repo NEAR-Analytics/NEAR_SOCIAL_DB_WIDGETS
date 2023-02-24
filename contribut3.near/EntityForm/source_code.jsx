@@ -1,6 +1,5 @@
-const createDate = (d) => {
-  const date = d || new Date();
-  console.log(date, d);
+const createDate = () => {
+  const date = new Date();
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const day = date.getDate().toString().padStart(2, "0");
@@ -33,15 +32,15 @@ if (accountId) {
     { account_id: accountId },
     "final"
   ).then((entity) => {
-    console.log({
-      name: entity.name,
-      kind: [{ name: entity.kind }],
-      startDate: createDate(new Date(Number(entity.start_date))),
-    });
+    const startDate = new Date(Number(entity.start_date));
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+
     State.update({
       name: entity.name,
       kind: [{ name: entity.kind }],
-      startDate: createDate(new Date(Number(entity.start_date))),
+      startDate: `${year}-${month}-${day}`,
     });
   });
 }
