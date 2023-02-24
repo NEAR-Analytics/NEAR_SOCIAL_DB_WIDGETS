@@ -170,6 +170,7 @@ const fetchAlgoliaData = (queryURI, pageNumber) => {
 };
 
 const getCategoryResults = (raw_result_data) => {
+  console.log("RAW", raw_result_data);
   const results = {};
   for (const result of raw_result_data.hits) {
     const {
