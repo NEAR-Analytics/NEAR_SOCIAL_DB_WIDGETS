@@ -110,6 +110,7 @@ const body = (
                 props={{
                   accountId: entityId,
                   update: props.update,
+                  isEntity: true,
                   imageSize: contributionRequest.need ? "1.5em" : "2em",
                 }}
               />
