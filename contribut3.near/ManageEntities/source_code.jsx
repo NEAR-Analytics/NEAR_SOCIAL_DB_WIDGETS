@@ -96,6 +96,6 @@ return (
         />
       </div>
     </div>
-    <div className="px-3 pt-3">{content}</div>
+    <div className="px-3 pt-3">{context.accountId ? content : <></>}</div>
   </div>
 );
