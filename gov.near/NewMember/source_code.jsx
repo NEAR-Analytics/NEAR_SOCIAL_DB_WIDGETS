@@ -4,6 +4,10 @@ if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
+State.init({
+  member_id: accountId,
+});
+
 const handleProposal = () => {
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
