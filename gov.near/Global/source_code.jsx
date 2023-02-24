@@ -23,7 +23,7 @@ return (
   <div>
     <Widget src="mob.near/widget/ProfileOnboarding" props={{ accountId }} />
     <h2>
-      <b>NEAR Global:</b> Uniting the Open Web
+      <b>NEAR Global:</b> Unite the Open Web
     </h2>
     <p>
       We build generative community programs to activate contributors in order
