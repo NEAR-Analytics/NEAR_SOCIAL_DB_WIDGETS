@@ -88,10 +88,15 @@ const expand = (e) => {
   State.update({ expand: e });
 };
 
+// we check for existence of Index results because if no results are found
+// we get an empty array. This means that when the existence check fails
+// we are still loading and we do not want to potentially flash the modal
+// until we know for sure that it should be displayed
 const showTos =
   !state.hasCommittedAcceptance &&
   context.accountId &&
   latestTosVersion &&
+  agreementsForUser &&
   (!agreementsForUser.length ||
     agreementsForUser[agreementsForUser.length - 1].value < latestTosVersion);
 
