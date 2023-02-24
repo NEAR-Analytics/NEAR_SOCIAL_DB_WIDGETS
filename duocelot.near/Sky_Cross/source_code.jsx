@@ -1,75 +1,8 @@
 /* Created by duocelot and kasodon */
 /* Sky Cross Project */
 
-const accountId = context.accountId;
-
-if (!accountId) {
-  return (
-    <div
-      style={{
-        width: "512px",
-        height: "512px",
-        backgroundSize: "100%",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "white",
-        position: "flex",
-        fontFamily: '"Press Start 2P", sans-serif',
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <img
-        src="https://bafybeiep6yscx365ici64ce2o7ktr3vewuyk7rwj4kxpwrf4ugeloxgfri.ipfs.w3s.link/error-001.jpg"
-        alt="ERROR 001"
-        style={{
-          width: "340px",
-          margin: "50px 40px 10px 80px",
-          position: "flex",
-        }}
-      />
-      <h2
-        style={{
-          fontFamily: "Press Start 2P",
-          fontSize: "14px",
-          color: "black",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        ERROR 001: NO NEAR WALLET CONNECTED.{" "}
-      </h2>{" "}
-      <h3
-        style={{
-          fontFamily: "Press Start 2P",
-          fontSize: "12px",
-          color: "black",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {" "}
-        Please connect with your near wallet or create one for free
-      </h3>
-      <a
-        href="https://shard.dog/go?url=https://near.social/#/duocelot.near/widget/Sky_Cross"
-        style={{
-          fontFamily: "Press Start 2P",
-          fontSize: "14px",
-          color: "black",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "40px 1opx 10px 10px",
-        }}
-      >
-        HERE
-      </a>
-    </div>
-  );
-}
+const accountId = props.accountId ?? context.accountId;
+const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 const fonty = fetch(
   "https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap"
@@ -226,6 +159,23 @@ const points = styled.p`
   color: #FFD852;
 `;
 
+const NoAuth = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  background-color: #1E1E1E;
+  color: #FFD852;
+`;
+
+const NoAuthPara = styled.p`
+font-size: 1.7rem;
+color: #FFD852;
+font-weight: 600;
+text-transform: capitalize
+`;
+
 const scriptSrc = `
 <style>
 * {
@@ -245,7 +195,6 @@ const scriptSrc = `
 img {
   display: none;
 }
-
 .ui .topbar {
   background-image: url('https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431');
   background-repeat: repeat-x;
@@ -271,7 +220,6 @@ img {
     <img id="avatar" src="https://ik.imagekit.io/duOCELOT/assets/avatar01.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029634808" alt=""/>
     <img id="topbar" src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431" alt=""/>
     <img id="bottombar" src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196" alt=""/>
-
     <script type="module">
     window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -379,7 +327,6 @@ img {
                 } else if (this.speed > 0.6) {
                     this.enemies.push(new FlyingEnemy(this));
                 }
-
                 const random = Math.random();
                 const flyingEnemyProbability = 0.1 + 0.05 * (this.time / 1000);
                 const groundEnemyProbability = 0.03 + 0.02 * (this.time / 1000);
@@ -398,14 +345,11 @@ img {
         }
         const game = new Game(canvas.width, canvas.height);
         game.start();
-
         function restartGame() {
             game.start();
             animate(0);
         }
-
         let lastTime = 0;
-
         function animate(timestamp) {
             const delta = timestamp - lastTime;
             lastTime = timestamp;
@@ -417,7 +361,6 @@ img {
             }
         }
         animate(0);
-
         window.addEventListener("keydown", (e) => {
             if (e.key === "r" && game.gameOver) {
                 restartGame();
@@ -443,7 +386,6 @@ img {
             context.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
         }
     }
-
     class Background {
         constructor(game) {
             this.game = game;
@@ -475,14 +417,12 @@ img {
             });
         }
     }
-
     class CircleCollider {
   constructor(x, y, radius) {
     this.x = x;
     this.y = y;
     this.radius = radius;
   }
-
   intersects(other) {
     if (other instanceof CircleCollider) {
       const dx = other.x - this.x;
@@ -494,7 +434,6 @@ img {
     }
   }
 }
-
     class Enemy {
         constructor() {
             this.frameX = 0;
@@ -506,10 +445,8 @@ img {
             this.collider = new CircleCollider(this.x + this.width / 2, this.y + this.height / 2, 10);
             this.type = 'projectile-particle';
             this.prevPositions = [];
-
             
         }
-
         update(deltaTime) {
             // movement
             this.x -= this.speedX + this.game.speed;
@@ -523,7 +460,6 @@ img {
             if (this.x + this.width < 0) this.markForDeletion = true;
         }
         draw(context) {
-
             for (let i = 0; i < this.prevPositions.length; i++) {
                 const pos = this.prevPositions[i];
                 context.fillStyle = "rgba(255,255,255,0.3)";
@@ -535,7 +471,6 @@ img {
             context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
         }
     }
-
     class FlyingEnemy extends Enemy {
         constructor(game) {
             super();
@@ -558,7 +493,6 @@ img {
             this.y += Math.sin(this.angle);
         }
     }
-
     class GroundEnemy extends Enemy {
         constructor(game) {
             super();
@@ -593,9 +527,7 @@ img {
             if (this.y > this.game.height - this.height - this.game.groundMargin) this.speedY *= -1;
             if (this.y < -this.height) this.markForDeletion = true;
         }
-
     }
-
     class InputHandler {
         constructor(game) {
             this.keys = [];
@@ -626,7 +558,6 @@ img {
                     if (this.keys.includes("s") || this.keys.includes("S")) {
                         game.player.setState(states.SHOOTING, 2);
                         game.player.setState(states.RUNNING, 2);
-
                     }
                 }, 290 + Math.floor(Math.random() * 20)); // Adjust the delay between shots here (in milliseconds)
             }
@@ -638,7 +569,6 @@ img {
         }
     }
     
-
     class Player {
         constructor(game, x, y, speed, sprite) {
             this.game = game;
@@ -661,13 +591,10 @@ img {
             this.states = [new Sitting(game), new Running(game), new Jumping(game), new Falling(game), new Rolling(game), new Diving(game), new Hit(game), new Shooting(game), ];
             this.currentState = null;
             this.collider = new CircleCollider(this.x + this.width / 2, this.y + this.height / 2, 10);
-
         }
         update(inputKeys, delta) {
             this.checkCollisions();
             this.currentState.handleInput(inputKeys);
-
-
             // horizontal movement
             if (inputKeys.includes("ArrowRight") && this.currentState !== this.states[6]) {
                 this.x += this.maxSpeed + 0.001;
@@ -683,11 +610,9 @@ img {
             //   );	
             // } 
             else this.speed = 0;
-
             // horizontal boundaries
             if (this.x < 0) this.x = 0;
             if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
-
             // vertical movement
             if (inputKeys.includes("ArrowUp") && this.currentState !== this.states[6]) {
                 this.y -= this.maxSpeed + 0.001;
@@ -696,13 +621,11 @@ img {
             }
          
             else this.speed = 0;
-
             // vertical boundaries
             if (this.y < 0) this.y = 0;
             if (this.y > this.game.height - this.height - this.game.groundMargin) {
                 this.y = this.game.height - this.height - this.game.groundMargin;
             }
-
             // sprite animation
             if (this.frameTimer > this.frameInterval) {
                 this.frameTimer = 0;
@@ -712,7 +635,6 @@ img {
                 this.frameTimer += delta;
             }
         }
-
         draw(context) {
             if (this.game.debug) {
                 context.strokeRect(this.x, this.y, this.width, this.height);
@@ -785,7 +707,6 @@ img {
             });
         }
     }
-
     const states = {
         SITTING: 0,
         RUNNING: 1,
@@ -796,14 +717,12 @@ img {
         HIT: 6,
         SHOOTING: 7,
     };
-
     class State {
         constructor(state, game) {
             this.state = state;
             this.game = game;
         }
     }
-
     class Sitting extends State {
         constructor(game) {
             super("SITTING", game);
@@ -816,7 +735,6 @@ img {
         handleInput(inputKeys) {
             this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.17, this.game.player.y + this.game.player.height));
             this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
-
             if (inputKeys.includes("ArrowLeft")) {
                 this.game.player.setState(states.RUNNING, 2);
             } else if (inputKeys.includes("ArrowRight")) {
@@ -832,7 +750,6 @@ img {
             }
         }
     }
-
     class Running extends State {
         constructor(game) {
             super("RUNNING", game);
@@ -845,7 +762,6 @@ img {
         handleInput(inputKeys) {
             this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.05, this.game.player.y + this.game.player.height));
             this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
-
             if (inputKeys.includes("ArrowDown")) this.game.player.setState(states.RUNNING, 2);
             else if (inputKeys.includes("ArrowLeft")) {
                 this.game.player.setState(states.RUNNING, 2);
@@ -860,7 +776,6 @@ img {
             }
         }
     }
-
     class Jumping extends State {
         constructor(game) {
             super("JUMPING", game);
@@ -874,7 +789,6 @@ img {
         handleInput(inputKeys) {
             this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.17, this.game.player.y + this.game.player.height));
             this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
-
             if (inputKeys.includes("Enter")) {
                 this.game.player.setState(states.ROLLING, 2);
             } else if (inputKeys.includes("ArrowLeft")) {
@@ -890,7 +804,6 @@ img {
             }
         }
     }
-
     class Falling extends State {
         constructor(game) {
             super("FALLING", game);
@@ -903,7 +816,6 @@ img {
         handleInput(inputKeys) {
             this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.17, this.game.player.y + this.game.player.height));
             this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
-
          if (inputKeys.includes("ArrowLeft")) {
                 this.game.player.setState(states.RUNNING, 2);
             } else if (inputKeys.includes("ArrowRight")) {
@@ -917,7 +829,6 @@ img {
             }
         }
     }
-
     class Rolling extends State {
         constructor(game) {
             super("ROLLING", game);
@@ -947,7 +858,6 @@ img {
             }
         }
     }
-
     class Diving extends State {
         constructor(game) {
             super("DIVING", game);
@@ -977,7 +887,6 @@ img {
             }
         }
     }
-
     class Hit extends State {
         constructor(game) {
             super("HIT", game);
@@ -997,7 +906,6 @@ img {
             }
         }
     }
-
     class Shooting extends State {
         constructor(game) {
             super("SHOOTING", game);
@@ -1025,7 +933,6 @@ img {
             }
         }
     }
-
     class Particle {
         constructor(game) {
             this.game = game;
@@ -1037,7 +944,6 @@ img {
             this.size *= 0.97;
             if (this.size < 0.5) this.markForDeletion = true;
         }
-
     }
 class ParticleEffect {
   constructor(x, y, img, numParticles) {
@@ -1046,13 +952,11 @@ class ParticleEffect {
     this.numParticles = numParticles;
     this.particles = [];
     this.finished = false;
-
     // Use the specified image or animation for the particle effect
     this.img = img;
     this.frameIndex = 0;
     this.frameCount = img.frames ? img.frames.length : 1;
   }
-
   update() {
     // Update the position of each particle
     for (let i = 0; i < this.particles.length; i++) {
@@ -1068,7 +972,6 @@ class ParticleEffect {
     if (this.particles.length === 0) {
       this.finished = true;
     }
-
     // Update the animation frame for the particle effect
     if (this.img.frames) {
       this.frameIndex++;
@@ -1077,7 +980,6 @@ class ParticleEffect {
       }
     }
   }
-
   draw(ctx) {
     // Draw each particle
     for (let i = 0; i < this.particles.length; i++) {
@@ -1086,7 +988,6 @@ class ParticleEffect {
       ctx.fillStyle = "rgba(255,255,255,0.3)";
       ctx.fillRect(p.x - 1, p.y - 1, 2, 2);
     }
-
     // Draw the particle effect using the specified image or animation
     if (this.img.frames) {
       let frame = this.img.frames[this.frameIndex];
@@ -1105,7 +1006,6 @@ class ParticleEffect {
       ctx.drawImage(this.img.img, this.x, this.y);
     }
   }
-
   createParticle() {
     // Create a new particle with a random velocity and lifespan
     let angle = Math.random() * Math.PI * 2;
@@ -1115,7 +1015,6 @@ class ParticleEffect {
     let life = Math.floor(Math.random() * 30) + 30;
     this.particles.push({ x: this.x, y: this.y, vx, vy, life });
   }
-
   explode() {
     // Create a burst of particles
     for (let i = 0; i < this.numParticles; i++) {
@@ -1138,10 +1037,8 @@ class ParticleEffect {
             this.currentState = this.game.player.currentState;
             this.type = 'projectile-particle';
             this.prevPositions = [];
-
             
         }
-
        draw(context) {
             for (let i = 0; i < this.prevPositions.length; i++) {
                 const pos = this.prevPositions[i];
@@ -1150,7 +1047,6 @@ class ParticleEffect {
             }
             context.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
-
         update() {
             this.prevPositions.push({ x: this.x, y: this.y });
 if (this.prevPositions.length > 20) {
@@ -1161,7 +1057,6 @@ if (this.prevPositions.length > 20) {
             this.x += this.speed;
             // if (this.x > this.game.width * 0.8) this.markedForDeletion = true;
         }
-
         checkCollisions() {
             this.game.enemies.forEach((enemy) => {
                 if (enemy.x < this.x + this.width && enemy.x + enemy.width > this.x && enemy.y < this.y + this.height && enemy.y + enemy.height > this.y) {
@@ -1186,7 +1081,6 @@ if (this.prevPositions.length > 20) {
             });
         }
     }
-
     class Dust extends Particle {
         constructor(game, x, y) {
             super(game);
@@ -1205,7 +1099,6 @@ if (this.prevPositions.length > 20) {
             context.fill();
         }
     }
-
     class Splash extends Particle {
         constructor(game, x, y) {
             super(game);
@@ -1227,7 +1120,6 @@ if (this.prevPositions.length > 20) {
             this.y += this.gravity;
         }
     }
-
     class Fire extends Particle {
         constructor(game, x, y) {
             super(game);
@@ -1254,7 +1146,6 @@ if (this.prevPositions.length > 20) {
             this.x += Math.sin(this.angle);
         }
     }
-
     class FloatingMessage {
         constructor(value, x, y, targetX, targetY) {
             this.value = value;
@@ -1281,7 +1172,6 @@ if (this.prevPositions.length > 20) {
             context.fillText(this.value, this.x - 2, this.y - 2);
         }
     }
-
     class CollisionAnimation {
         constructor(game, x, y) {
             this.game = game;
@@ -1314,7 +1204,6 @@ if (this.prevPositions.length > 20) {
             } else this.frameTimer += delta;
         }
     }
-
     class CollisionBlastAnimation {
         constructor(game, x, y) {
             this.game = game;
@@ -1347,7 +1236,6 @@ if (this.prevPositions.length > 20) {
             } else this.frameTimer += delta;
         }
     }
-
     class CollisionFruityAnimation {
         constructor(game, x, y) {
             this.game = game;
@@ -1380,7 +1268,6 @@ if (this.prevPositions.length > 20) {
             } else this.frameTimer += delta;
         }
     }
-
 class UI {
    constructor(game) {
     this.game = game;
@@ -1400,16 +1287,13 @@ class UI {
     this.bottomBarBackground.src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196";
     }
   
-
   draw(context) {
     // Draw top bar
     context.fillStyle = "transparent";
     context.fillRect(0, 0, this.game.width, this.topBarHeight);
-
     context.font = "20px Arial";
     context.fillStyle = "white";
     context.fillText("SKY CROSS", 500, 30);
-
     // Draw right column
     context.fillStyle = "gray";
     context.fillRect(
@@ -1418,7 +1302,6 @@ class UI {
       this.rightColumnWidth,
       this.game.height - this.topBarHeight - this.bottomBarHeight
     );
-
     // Draw left column
     context.fillStyle = "gray";
     context.fillRect(
@@ -1427,14 +1310,11 @@ class UI {
       this.leftColumnWidth,
       this.game.height - this.topBarHeight - this.bottomBarHeight
     );
-
     // Draw bottom bar
     context.fillStyle = "transparent";
     context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
-
     const margin = 60;
     const textY = this.game.height - this.bottomBarHeight + margin + this.fontSize;
-
     
   // Draw avatar
   const avatarX = this.game.width - (this.rightColumnWidth + 180 );
@@ -1449,12 +1329,10 @@ class UI {
     this.avatarHeight,
     this.avatarWidth
   );
-
 // Draw top bar background
 const pattern = context.createPattern(this.topBarBackground, "repeat-x");
 context.fillStyle = pattern;
 context.fillRect(0, 0, this.game.width, this.topBarHeight);
-
 // Draw bottom bar background
 const pattern2 = context.createPattern(this.bottomBarBackground, "repeat-x");
 context.fillStyle = pattern2;
@@ -1463,7 +1341,6 @@ context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, t
     // Draw score
     context.font = this.font;
     context.fillStyle = "white";
-
     // Set text styles
     
     context.font = this.fontSize + this.fontFamily;
@@ -1495,7 +1372,6 @@ context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, t
       context.fillRect(0, 0, this.game.width, this.game.height);
       context.textAlign = "center";
       context.font = this.fontSize + this.fontFamily;
-
       if (this.game.score > 500) {
         context.fillText("MISSION ACCOMPLISHED", this.game.width * 0.5, this.game.height * 0.5 - 20);
         context.font = this.fontSize + this.fontFamily;
@@ -1515,144 +1391,153 @@ context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, t
 
 return (
   <Theme>
-    <App className="App">
-      <Nav className="nav nav-pills" id="pills-tab" role="tablist">
-        <li className="nav-item" role="presentation">
-          <NavLink
-            className="nav-link active"
-            id="pills-home-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#pills-home"
-            type="button"
-            role="tab"
-            aria-controls="pills-home"
-            aria-selected="true"
+    {accountId ? (
+      <App className="App">
+        <Nav className="nav nav-pills" id="pills-tab" role="tablist">
+          <li className="nav-item" role="presentation">
+            <NavLink
+              className="nav-link active"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="true"
+            >
+              Start
+            </NavLink>
+          </li>
+          <li className="nav-item" role="presentation">
+            <NavLink
+              className="nav-link"
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="false"
+            >
+              Game
+            </NavLink>
+          </li>
+          <li className="nav-item" role="presentation">
+            <NavLink
+              className="nav-link"
+              id="pills-contact-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-contact"
+              type="button"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+            >
+              Leaderboard
+            </NavLink>
+          </li>
+        </Nav>
+        <div className="tab-content" id="pills-tabContent">
+          <div
+            className="tab-pane fade show active"
+            id="pills-home"
+            role="tabpanel"
+            aria-labelledby="pills-home-tab"
+            tabindex="0"
           >
-            Start
-          </NavLink>
-        </li>
-        <li className="nav-item" role="presentation">
-          <NavLink
-            className="nav-link"
-            id="pills-profile-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#pills-profile"
-            type="button"
-            role="tab"
-            aria-controls="pills-profile"
-            aria-selected="false"
-          >
-            Game
-          </NavLink>
-        </li>
-        <li className="nav-item" role="presentation">
-          <NavLink
-            className="nav-link"
-            id="pills-contact-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#pills-contact"
-            type="button"
-            role="tab"
-            aria-controls="pills-contact"
-            aria-selected="false"
-          >
-            Leaderboard
-          </NavLink>
-        </li>
-      </Nav>
-      <div className="tab-content" id="pills-tabContent">
-        <div
-          className="tab-pane fade show active"
-          id="pills-home"
-          role="tabpanel"
-          aria-labelledby="pills-home-tab"
-          tabindex="0"
-        >
-          <Stat className="container-fluid stat">
-            <StatRow className="row">
-              <PlayerIcon className="player-icon col-4">
-                <PlayerIconImg
-                  src="https://ik.imagekit.io/onyedika/skycross/avatar01_zM5ioOG4w.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939856771"
-                  alt=""
-                />
-              </PlayerIcon>
-              <PlayerDetail className="player-detail col-8">
-                <div className="player-stat">
-                  <PlayerStatPara>
-                    <PlayerStatParaSpan>Player:</PlayerStatParaSpan> {accountId}
-                  </PlayerStatPara>
-                  <PlayerStatPara>
-                    <PlayerStatParaSpan>Last Score:</PlayerStatParaSpan> 4221
-                  </PlayerStatPara>
-                </div>
-                <PlayerActions className="player-actions">
-                  <PlayerActionsFilledButton type="button" class="filled">
-                    Launch Game
-                  </PlayerActionsFilledButton>
-                  <PlayerActionsOutlineButton type="button" class="outline">
-                    Leaderboard
-                  </PlayerActionsOutlineButton>
-                </PlayerActions>
-              </PlayerDetail>
-            </StatRow>
-          </Stat>
-          <div className="controls">
-            <h2 className="text-uppercase mb-4">Control Keys</h2>
-            <div className="keys">
-              <KeysPara className="mb-5">
-                <KeysParaSpan>S</KeysParaSpan> Press and hold to shoot
-              </KeysPara>
-              <KeysPara className="">
-                <KeysParaSpan>⬆</KeysParaSpan> <KeysParaSpan>⬇</KeysParaSpan>{" "}
-                <KeysParaSpan>⬅</KeysParaSpan> <KeysParaSpan>➡</KeysParaSpan> To
-                move your ship around
-              </KeysPara>
+            <Stat className="container-fluid stat">
+              <StatRow className="row">
+                <PlayerIcon className="player-icon col-4">
+                  <PlayerIconImg
+                    src="https://ik.imagekit.io/onyedika/skycross/avatar01_zM5ioOG4w.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939856771"
+                    alt=""
+                  />
+                </PlayerIcon>
+                <PlayerDetail className="player-detail col-8">
+                  <div className="player-stat">
+                    <PlayerStatPara>
+                      <PlayerStatParaSpan>Player:</PlayerStatParaSpan>
+                      {accountId}
+                    </PlayerStatPara>
+                    <PlayerStatPara>
+                      <PlayerStatParaSpan>Last Score:</PlayerStatParaSpan> 4221
+                    </PlayerStatPara>
+                  </div>
+                  <PlayerActions className="player-actions">
+                    <PlayerActionsFilledButton type="button" class="filled">
+                      Launch Game
+                    </PlayerActionsFilledButton>
+                    <PlayerActionsOutlineButton type="button" class="outline">
+                      Leaderboard
+                    </PlayerActionsOutlineButton>
+                  </PlayerActions>
+                </PlayerDetail>
+              </StatRow>
+            </Stat>
+            <div className="controls">
+              <h2 className="text-uppercase mb-4">Control Keys</h2>
+              <div className="keys">
+                <KeysPara className="mb-5">
+                  <KeysParaSpan>S</KeysParaSpan> Press and hold to shoot
+                </KeysPara>
+                <KeysPara className="">
+                  <KeysParaSpan>⬆</KeysParaSpan> <KeysParaSpan>⬇</KeysParaSpan>{" "}
+                  <KeysParaSpan>⬅</KeysParaSpan> <KeysParaSpan>➡</KeysParaSpan>{" "}
+                  To move your ship around
+                </KeysPara>
+              </div>
             </div>
           </div>
+          <div
+            className="tab-pane fade"
+            id="pills-profile"
+            role="tabpanel"
+            aria-labelledby="pills-profile-tab"
+            tabindex="0"
+          >
+            <iframe
+              srcDoc={scriptSrc}
+              style={{ height: "800px", width: "100%" }}
+            />
+          </div>
+          <div
+            className="tab-pane fade"
+            id="pills-contact"
+            role="tabpanel"
+            aria-labelledby="pills-contact-tab"
+            tabindex="0"
+          >
+            <Leaderboard className="leaderboard">
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">Kasodon.near</p>
+                <p className="points">1234</p>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">Kasodon.near</p>
+                <p className="points">1234</p>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">Kasodon.near</p>
+                <p className="points">1234</p>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">Kasodon.near</p>
+                <p className="points">1234</p>
+              </LeaderboardScore>
+            </Leaderboard>
+          </div>
         </div>
-        <div
-          className="tab-pane fade"
-          id="pills-profile"
-          role="tabpanel"
-          aria-labelledby="pills-profile-tab"
-          tabindex="0"
-        >
-          <iframe
-            srcDoc={scriptSrc}
-            style={{ height: "800px", width: "100%" }}
-          />
-        </div>
-        <div
-          className="tab-pane fade"
-          id="pills-contact"
-          role="tabpanel"
-          aria-labelledby="pills-contact-tab"
-          tabindex="0"
-        >
-          <Leaderboard className="leaderboard">
-            <LeaderboardScore className="score">
-              <p className="num">1</p>
-              <p className="name">Kasodon.near</p>
-              <p className="points">1234</p>
-            </LeaderboardScore>
-            <LeaderboardScore className="score">
-              <p className="num">1</p>
-              <p className="name">Kasodon.near</p>
-              <p className="points">1234</p>
-            </LeaderboardScore>
-            <LeaderboardScore className="score">
-              <p className="num">1</p>
-              <p className="name">{accountId}</p>
-              <p className="points">1234</p>
-            </LeaderboardScore>
-            <LeaderboardScore className="score">
-              <p className="num">1</p>
-              <p className="name">Kasodon.near</p>
-              <p className="points">1234</p>
-            </LeaderboardScore>
-          </Leaderboard>
-        </div>
-      </div>
-    </App>
+      </App>
+    ) : (
+      <NoAuth>
+        <NoAuthPara>
+          Not LoggedIn to near social, please connect your wallet to play game.
+        </NoAuthPara>
+      </NoAuth>
+    )}
   </Theme>
 );
