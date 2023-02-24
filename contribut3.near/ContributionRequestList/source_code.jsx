@@ -4,17 +4,18 @@ const accountId = props.accountId;
 const cid = props.cid;
 
 const requests =
-  Near.view(
-    ownerId,
-    accountId
-      ? cid
-        ? "get_need_contribution_requests"
-        : "get_entity_contribution_requests"
-      : "get_admin_contribution_requests",
-    { account_id: accountId || context.accountId, ...(cid ? { cid } : {}) },
-    "final",
-    true
-  ) ?? [];
+  // Near.view(
+  //   ownerId,
+  //   accountId
+  //     ? cid
+  //       ? "get_need_contribution_requests"
+  //       : "get_entity_contribution_requests"
+  //     : "get_admin_contribution_requests",
+  //   { account_id: accountId || context.accountId, ...(cid ? { cid } : {}) },
+  //   "final",
+  //   true
+  // ) ?? [];
+const requests = Near.view(ownerId, "get_entity_contribution_requests", { account_id: accountId }, "final", true)
 
 console.log({ request, accountId });
 
