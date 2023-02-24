@@ -29,7 +29,7 @@ const renderItem = (a) =>
 
 return (
   <Widget
-    src="michaelpeter.near/widget/IndexFeed"
-    props={{ index, renderItem, moderatorAccount: "michaelpeter.near" }}
+    src="adminalpha.near/widget/IndexFeed"
+    props={{ index, renderItem, moderatorAccount: "adminalpha.near" }}
   />
 );
