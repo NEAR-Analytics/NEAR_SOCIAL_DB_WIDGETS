@@ -18,7 +18,7 @@ const renderItem = (a) =>
   a.value.type === "md" && (
     <Post key={JSON.stringify(a)}>
       <Widget
-        src="calebjacob.near/widget/Feed.Post"
+        src="flatirons.near/widget/Feed.Post"
         props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
       />
     </Post>
@@ -26,6 +26,9 @@ const renderItem = (a) =>
 
 return (
   <div>
-    <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
+    <Widget
+      src="flatirons.near/widget/FilteredIndexFeed"
+      props={{ index, renderItem }}
+    />
   </div>
 );
