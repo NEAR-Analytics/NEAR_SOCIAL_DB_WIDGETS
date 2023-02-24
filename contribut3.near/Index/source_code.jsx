@@ -106,7 +106,7 @@ return (
       className="d-flex flex-row position-fixed"
       style={{ width: "20vw", top: "100px" }}
     >
-      <div className="px-1">
+      <div className="px-1 flex-grow-1">
         <Widget
           src={`${ownerId}/widget/Sidebar`}
           props={{ tab: state.tab, update }}
