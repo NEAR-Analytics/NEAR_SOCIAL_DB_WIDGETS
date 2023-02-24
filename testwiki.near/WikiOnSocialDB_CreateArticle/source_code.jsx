@@ -248,6 +248,23 @@ const getArticleData = () => {
   return args;
 };
 
+const composeData = () => {
+  const data = {
+    wikiTest2Article: {
+      main: JSON.stringify(getArticleData()),
+    },
+    index: {
+      wikiTest2Article: JSON.stringify({
+        key: "main",
+        value: {
+          type: "md",
+        },
+      }),
+    },
+  };
+  return data;
+};
+
 // === SAVE HANDLER ===
 const saveHandler = (e) => {
   State.update({
@@ -260,12 +277,8 @@ const saveHandler = (e) => {
     const isArticleIdDublicated = false;
 
     if (!isArticleIdDublicated) {
-      const newArticle = getArticleData();
-      Social.set({
-        [addressForArticles]: {
-          articles: { [newArticle.articleId]: { ...newArticle } },
-        },
-      });
+      const newData = composeData();
+      Social.set(newData, { force: true });
     } else {
       State.update({
         ...state,
