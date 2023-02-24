@@ -14,7 +14,11 @@ const content = {
   request: (
     <Widget
       src={`${ownerId}/widget/NeedForm`}
-      props={{ search: state.search, update: props.update }}
+      props={{
+        search: state.search,
+        update: props.update,
+        accountId: props.acocuntId,
+      }}
     />
   ),
   entity: (
