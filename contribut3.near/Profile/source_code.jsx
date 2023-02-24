@@ -105,7 +105,7 @@ return (
   <div>
     <div className="mb-5">{body}</div>
     <div className="d-flex flex-row justify-content-between ps-3">
-      <span className="fw-bold">Conrtibutes to</span>
+      <span className="fw-bold fs-4">Conrtibutes to</span>
       <Widget
         src={`${ownerId}/widget/SearchInput`}
         props={{ search: props.search, update: props.update }}
