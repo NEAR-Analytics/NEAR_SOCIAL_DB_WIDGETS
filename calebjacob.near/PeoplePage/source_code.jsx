@@ -1,10 +1,18 @@
 const limitPerPage = 21;
 let people = [];
 let totalPeople = 0;
+const peopleUrl = "/#/calebjacob.near/widget/PeoplePage";
 
 State.init({
   currentPage: 0,
+  selectedTab: props.tab || "everyone",
 });
+
+if (props.tab && props.tab !== state.selectedTab) {
+  State.update({
+    selectedTab: props.tab,
+  });
+}
 
 const data = Social.keys("*/profile", "final", {
   return_type: "BlockHeight",
@@ -27,6 +35,10 @@ if (data) {
 }
 
 function onSearchChange({ result, term }) {
+  State.update({
+    selectedTab: "everyone",
+  });
+
   if (term.trim()) {
     State.update({ searchResults: result || [] });
   } else {
@@ -156,7 +168,56 @@ const Button = styled.button`
   }
 `;
 
-console.log(items);
+const Tabs = styled.div`
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid #ECEEF0;
+  margin-bottom: -24px;
+  overflow: auto;
+  scroll-behavior: smooth;
+
+  @media (max-width: 1200px) {
+    background: #F8F9FA;
+    border-top: 1px solid #ECEEF0;
+    margin: 0 -12px 48px;
+
+    > * {
+      flex: 1;
+    }
+  }
+`;
+
+const TabsButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0 12px;
+  position: relative;
+  color: ${(p) => (p.selected ? "#11181C" : "#687076")};
+  background: none;
+  border: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none !important;
+
+  &:hover {
+    color: #11181C;
+  }
+
+  &::after {
+    content: '';
+    display: ${(p) => (p.selected ? "block" : "none")};
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0091FF;
+  }
+`;
 
 return (
   <Wrapper>
@@ -174,6 +235,24 @@ return (
         }}
       />
     </Search>
+
+    <Tabs>
+      <TabsButton
+        href={`${peopleUrl}?tab=everyone`}
+        selected={state.selectedTab === "everyone"}
+      >
+        Everyone
+      </TabsButton>
+
+      {context.accountId && (
+        <TabsButton
+          href={`${peopleUrl}?tab=following`}
+          selected={state.selectedTab === "following"}
+        >
+          Following
+        </TabsButton>
+      )}
+    </Tabs>
 
     {state.searchResults?.length === 0 && (
       <Text>No people matched your search.</Text>
