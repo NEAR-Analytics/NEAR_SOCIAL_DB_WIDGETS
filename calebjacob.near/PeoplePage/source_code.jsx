@@ -60,6 +60,7 @@ function onSearchChange({ result, term }) {
 }
 
 const items = state.searchResults || people;
+const showLoadMoreButton = !state.searchResults && people.length % limit === 0;
 
 const Wrapper = styled.div`
   display: flex;
@@ -287,7 +288,7 @@ return (
       </Items>
     )}
 
-    {!state.searchResults && (
+    {showLoadMoreButton && (
       <Button
         type="button"
         onClick={() => State.update({ currentPage: state.currentPage + 1 })}
