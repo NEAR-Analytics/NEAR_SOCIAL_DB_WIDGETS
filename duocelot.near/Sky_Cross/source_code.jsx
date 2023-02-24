@@ -1299,39 +1299,10 @@ class UI {
     this.avatarImage = document.getElementById("avatar");
     this.avatarWidth = 140;
     this.avatarHeight = 140;
-    this.topBarBackground = new Image();
-    this.topBarBackground.src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431";
-    this.bottomBarBackground = new Image();
-    this.bottomBarBackground.src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196";
+
     }
   
-  draw(context) {  
-    
-    // Draw top bar
-    context.fillStyle = "transparent";
-    context.fillRect(0, 0, this.game.width, this.topBarHeight);
-    context.font = "20px Press Start 2P";
-    context.fillStyle = "white";
-    context.fillText("SKY CROSS", 500, 30);
-
-
-
-  // Draw avatar
-  const avatarX = this.game.width - (this.rightColumnWidth + 180 );
-  const avatarY = this.game.height - (this.bottomBarHeight + 40 );
-  context.strokeStyle = "black";
-  context.lineWidth = 2;
-  context.strokeRect(avatarX, avatarY, this.avatarWidth, this.avatarHeight);
-  context.drawImage(
-    this.avatarImage,
-    avatarX + (this.avatarWidth - this.avatarHeight) / 2,
-    avatarY + (this.avatarHeight - this.avatarWidth) / 2,
-    this.avatarHeight,
-    this.avatarWidth
-  );
-
-
-    
+  draw(context) {     
     // Draw score
     context.font = this.font;
     context.fillStyle = "white";
