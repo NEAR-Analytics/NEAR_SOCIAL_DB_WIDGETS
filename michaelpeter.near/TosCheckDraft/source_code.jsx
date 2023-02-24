@@ -1,4 +1,4 @@
-const { tosName, targetComponent } = props;
+const { tosName, targetComponent, logOut } = props;
 const targetProps = props?.targetProps || {};
 const acceptanceKey = tosName; // may change
 
@@ -137,6 +137,7 @@ return (
                 flexBasis: "10rem",
                 borderRadius: "1.25rem",
               }}
+              onClick={logOut}
             >
               Sign Out (WIP)
             </button>
