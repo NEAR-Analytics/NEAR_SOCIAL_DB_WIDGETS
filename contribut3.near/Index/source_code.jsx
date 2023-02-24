@@ -108,7 +108,7 @@ return (
         props={{ tab: state.tab, update }}
       />
     </div>
-    <div className="vr mx-2 vh-100" />
+    <div className="vr mx-2" style={{ height: "90vh" }} />
     <div className="w-100">{tabContent}</div>
   </div>
 );
