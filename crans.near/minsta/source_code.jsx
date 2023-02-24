@@ -1,7 +1,7 @@
 const accountId = context?.accountId;
 
 const proxyMinter = "proxy2.minsta.near";
-const nftContractId = "paulcrans.mintbase1.near";
+const nftContractId = props?.contractId || "minsta.mintbase1.near";
 const mbGraphEndpoint = "https://graph.mintbase.xyz";
 
 const ipfsUrl = (cid) => `https://ipfs.near.social/ipfs/${cid}`;
@@ -18,7 +18,7 @@ const data = fetch(mbGraphEndpoint, {
   body: JSON.stringify({
     query: `
   query FetchFeedMintedThings {
-  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "paulcrans.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
+  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "minsta.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
       nft_contract_id
       action_receiver
       token_id
