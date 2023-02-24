@@ -209,8 +209,7 @@ const scriptSrc = `
   border: 4px solid white;
   border-radius: 20px;
   background: black;
-  margin-top: 150px; /* adjust as needed */
-}
+ }
 img {
   display: none;
 }
@@ -1511,7 +1510,7 @@ return (
           >
             <iframe
               srcDoc={scriptSrc}
-              style={{ height: "600px", width: "100%" }}
+              style={{ height: "700px", width: "100%" }}
             />
           </div>
           <div
