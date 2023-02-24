@@ -114,7 +114,7 @@ return (
       </div>
       <div className="vr mx-2" style={{ height: "90vh" }} />
     </div>
-    <div className="w-100" style={{ height: "200vh", marginLeft: "15vw" }}>
+    <div className="w-100" style={{ height: "200vh", paddingLeft: "15vw" }}>
       {tabContent}
     </div>
   </div>
