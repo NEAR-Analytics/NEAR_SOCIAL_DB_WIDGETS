@@ -149,7 +149,7 @@ const KeysParaSpan = styled.span`
   color: #121212;
   padding: .5rem 1rem;
   font-weight: 900;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-right: .2rem;
 `;
 
@@ -199,17 +199,17 @@ const scriptSrc = `
   box-sizing: border-box;
 }
 #canvas1 {
-      position: absolute;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width:  82vw;
   height: 82vh;
-  margin: 0;
   z-index: 100;
-  border: none;
+  border: 4px solid white;
   border-radius: 20px;
   background: black;
+  margin-top: 150px; /* adjust as needed */
 }
 img {
   display: none;
@@ -1480,7 +1480,7 @@ return (
                 <PlayerDetail className="player-detail col-8">
                   <div className="player-stat">
                     <PlayerStatPara>
-                      <PlayerStatParaSpan>Player:</PlayerStatParaSpan>
+                      <PlayerStatParaSpan>CAPTAIN:</PlayerStatParaSpan>
                       {accountId}
                     </PlayerStatPara>
                     <PlayerStatPara>
@@ -1493,7 +1493,7 @@ return (
             <div className="controls">
               <div className="keys">
                 <KeysPara className="mb-5">
-                  <KeysParaSpan>S</KeysParaSpan> Press and hold to shoot
+                  <KeysParaSpan>S</KeysParaSpan> hold to shoot
                 </KeysPara>
                 <KeysPara className="">
                   <KeysParaSpan>⬆</KeysParaSpan> <KeysParaSpan>⬇</KeysParaSpan>{" "}
