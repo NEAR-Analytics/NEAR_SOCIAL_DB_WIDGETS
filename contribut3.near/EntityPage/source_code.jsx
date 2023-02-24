@@ -209,8 +209,13 @@ const contentSelector = (
           : null,
         {
           id: "contributions",
-          text: "Contributes to",
+          text: "In-Graph",
           icon: "bi-person-up",
+        },
+        {
+          id: "graph",
+          text: "Out-Graph",
+          icon: "bi-ui-checks-grid",
         },
         {
           id: "contributors",
@@ -241,6 +246,16 @@ const content = {
       props={{
         accountId,
         isEntity: true,
+        search: props.search,
+        update: props.update,
+      }}
+    />
+  ),
+  graph: (
+    <Widget
+      src={`${ownerId}/widget/ContributionList`}
+      props={{
+        accountId,
         search: props.search,
         update: props.update,
       }}
