@@ -4,6 +4,11 @@ State.init({
   search: props.search ?? "",
   content: props.content,
   tab: props.tab ?? "home",
+  accountId: props.accountId,
+  entityId: props.entityId,
+  contributorId: props.contributorId,
+  kind: props.kind,
+  cid: props.cid,
 });
 
 const isModerator = Near.view(
@@ -37,7 +42,7 @@ const tabContent = {
       props={{
         content: state.content,
         search: state.search,
-        accountId: props.accountId,
+        accountId: state.accountId,
         update,
       }}
     />
@@ -58,7 +63,7 @@ const tabContent = {
     <Widget
       src={`${ownerId}/widget/EntityPage`}
       props={{
-        accountId: props.accountId,
+        accountId: state.accountId,
         search: state.search,
         content: state.content,
         update,
@@ -69,8 +74,8 @@ const tabContent = {
     <Widget
       src={`${ownerId}/widget/NeedPage`}
       props={{
-        accountId: props.accountId,
-        cid: props.cid,
+        accountId: state.accountId,
+        cid: state.cid,
         search: state.search,
         content: state.content,
         update,
@@ -83,7 +88,7 @@ const tabContent = {
       props={{
         search: state.search,
         content: state.content,
-        kind: props.kind,
+        kind: state.kind,
         update,
       }}
     />
