@@ -45,7 +45,8 @@ return (
             item,
           }}
         />
-        <button>block</button>
+        <button>Hide Post</button>
+        <button>Hide User</button>
         <Widget
           src="mob.near/widget/CommentButton"
           props={{
