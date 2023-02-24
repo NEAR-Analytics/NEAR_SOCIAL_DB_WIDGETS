@@ -97,8 +97,8 @@ const Text = styled.p`
 
 const Thumbnail = styled.a`
   display: block;
-  width: 62px;
-  height: 62px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
