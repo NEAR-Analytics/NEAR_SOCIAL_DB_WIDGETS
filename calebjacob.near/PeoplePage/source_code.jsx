@@ -3,6 +3,7 @@ let people = [];
 let totalPeople = 0;
 const peopleUrl = "/#/calebjacob.near/widget/PeoplePage";
 let followingData = null;
+let followersData = null;
 
 State.init({
   currentPage: 0,
@@ -17,6 +18,7 @@ if (props.tab && props.tab !== state.selectedTab) {
 
 if (context.accountId) {
   followingData = Social.keys(`${context.accountId}/graph/follow/*`, "final");
+  followersData = Social.keys(`*/graph/follow/${context.accountId}`, "final");
 }
 
 const data = Social.keys("*/profile", "final", {
@@ -31,10 +33,14 @@ if (data) {
     const isFollowing =
       followingData &&
       followingData[context.accountId].graph.follow[accountId] === true;
+    const isFollower =
+      followersData &&
+      followersData[accountId].graph.follow[context.accountId] === true;
 
     if (
       state.selectedTab === "everyone" ||
-      (state.selectedTab === "following" && isFollowing)
+      (state.selectedTab === "following" && isFollowing) ||
+      (state.selectedTab === "followers" && isFollower) ||
     ) {
       result.push({
         accountId,
@@ -263,6 +269,15 @@ return (
             selected={state.selectedTab === "following"}
           >
             Following
+          </TabsButton>
+        )}
+
+        {context.accountId && (
+          <TabsButton
+            href={`${peopleUrl}?tab=followers`}
+            selected={state.selectedTab === "followers"}
+          >
+            Followers
           </TabsButton>
         )}
       </Tabs>
