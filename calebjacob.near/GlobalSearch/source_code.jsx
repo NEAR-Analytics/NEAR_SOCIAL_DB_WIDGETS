@@ -139,9 +139,10 @@ const computePeople = (terms) => {
   return results.slice(0, limitPerGroup);
 };
 
-if (props.term && props.term !== state.term) {
+if (!state.hasSyncedTermProp && props.term && props.term !== state.term) {
   State.update({
     term: props.term,
+    hasSyncedTermProp: true,
   });
   computeResults(props.term);
 }
