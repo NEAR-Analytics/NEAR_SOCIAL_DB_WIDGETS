@@ -27,7 +27,7 @@ const App = styled.div`
   width: 100%;
   height: 80vh;
   background-color: #1E1E1E;
-  background-image: url('https://ik.imagekit.io/duOCELOT/assets/bgtheme2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677222370973');
+  background-image: url('https://ik.imagekit.io/duOCELOT/assets/bgthemev3?ik-sdk-version=javascript-1.4.3&updatedAt=1677258431670');
   background-size: cover;
   background-position: center;
   color: #ffffff;
