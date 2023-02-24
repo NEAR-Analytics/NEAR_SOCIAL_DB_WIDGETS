@@ -34,9 +34,7 @@ return (
       />
     </div>
     <div className="mb-2">
-      <CommitButton data={{ profile: state.profile }}>
-        Update Profile
-      </CommitButton>
+      <CommitButton data={{ profile: state.profile }}>Save Tags</CommitButton>
       <a
         className="btn btn-outline-primary ms-2"
         href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
