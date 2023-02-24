@@ -1,5 +1,4 @@
 function onSearchChange({ result, term }) {
-  console.log(result);
   if (term.trim()) {
     State.update({ searchResults: result || [] });
   } else {
@@ -50,7 +49,7 @@ const H3 = styled.h3`
 const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 `;
 
 const Text = styled.p`
@@ -83,8 +82,8 @@ const Text = styled.p`
 const Items = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
-  gap: 18px;
+  align-items: stretch;
+  gap: 12px;
 `;
 
 const Item = styled.div``;
@@ -100,6 +99,7 @@ return (
       <Widget
         src="calebjacob.near/widget/GlobalSearch"
         props={{
+          limitPerGroup: 3,
           onChange: onSearchChange,
         }}
       />
@@ -117,7 +117,7 @@ return (
           {state.searchResults.people.map((person, i) => (
             <Item key={person.accountId}>
               <Widget
-                src="calebjacob.near/widget/AccountProfile"
+                src="calebjacob.near/widget/AccountProfileCard"
                 props={{
                   accountId: person.accountId,
                 }}
@@ -135,7 +135,7 @@ return (
           {state.searchResults.components.map((component, i) => (
             <Item key={component.accountId + component.widgetName}>
               <Widget
-                src="calebjacob.near/widget/ComponentProfile"
+                src="calebjacob.near/widget/ComponentCard"
                 props={{
                   src: `${component.accountId}/widget/${component.widgetName}`,
                 }}
