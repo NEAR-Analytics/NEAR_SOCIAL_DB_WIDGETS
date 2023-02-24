@@ -1,6 +1,10 @@
+const size = props.size;
+const ratio = 128 / 111;
+const height = size * ratio;
+
 return (
   <svg
-    width="128"
+    width={size}
     height="111"
     viewBox="0 0 128 111"
     fill="none"
