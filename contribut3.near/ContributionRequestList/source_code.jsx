@@ -11,7 +11,7 @@ const requests =
         ? "get_need_contribution_requests"
         : "get_entity_contribution_requests"
       : "get_admin_contribution_requests",
-    { account_id: context.accountId },
+    { account_id: context.accountId, ...(cid ? { cid } : {}) },
     "final",
     true
   ) ?? [];
