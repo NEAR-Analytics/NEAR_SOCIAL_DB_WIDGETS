@@ -102,13 +102,15 @@ const tabContent = {
 
 return (
   <div className="d-flex flex-row">
-    <div className="px-1">
-      <Widget
-        src={`${ownerId}/widget/Sidebar`}
-        props={{ tab: state.tab, update }}
-      />
+    <div className="d-flex flex-row position-sticky">
+      <div className="px-1">
+        <Widget
+          src={`${ownerId}/widget/Sidebar`}
+          props={{ tab: state.tab, update }}
+        />
+      </div>
+      <div className="vr mx-2" style={{ height: "90vh" }} />
     </div>
-    <div className="vr mx-2" style={{ height: "90vh" }} />
     <div className="w-100">{tabContent}</div>
   </div>
 );
