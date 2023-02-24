@@ -157,13 +157,13 @@ const computeResults = (term, pageNumber) => {
 };
 
 const fetchAlgoliaData = (queryURI, pageNumber) => {
-  let search_params = `query=${queryURI}&page=${pageNumber}`;
+  let searchParams = `query=${queryURI}&page=${pageNumber}`;
   return asyncFetch(API_URL, {
-    body: `{ "params": "${search_params}" }`,
+    body: `{ "params": "${searchParams}" }`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "X-Algolia-Api-Key": `${SEARCH_API_KEY}`,
-      "X-Algolia-Application-Id": `${APPLICATION_ID}`,
+      "X-Algolia-Api-Key": SEARCH_API_KEY,
+      "X-Algolia-Application-Id": APPLICATION_ID,
     },
     method: "POST",
   });
@@ -257,16 +257,17 @@ return (
             <ul>{state.comment}</ul>
           </div>
         )}
-        {state.paginate && (
-          <Widget
-            src="chaotictempest.near/widget/Paginate"
-            props={{
-              totalCount: state.paginate.hitsTotal,
-              pageSize: state.paginate.hitsPerPage,
-              onPageChange,
-            }}
-          />
-        )}
+        {state.paginate &&
+          state.paginate.hitsTotal > state.paginate.hitsPerPage && (
+            <Widget
+              src="chaotictempest.near/widget/Paginate"
+              props={{
+                totalCount: state.paginate.hitsTotal,
+                pageSize: state.paginate.hitsPerPage,
+                onPageChange,
+              }}
+            />
+          )}
       </div>
     )}
 
