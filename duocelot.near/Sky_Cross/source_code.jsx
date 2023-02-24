@@ -6,7 +6,7 @@ const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 const image = profile.image;
 
 const fonty = fetch(
-  "https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap"
+  "https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Press+Start+2P&display=swap"
 ).body;
 
 if (!fonty) {
@@ -15,7 +15,8 @@ if (!fonty) {
 
 const Theme = styled.div`
 * {
-    font-family: 'Gajraj One', cursive;
+   font-family: 'Orbitron', sans-serif;
+font-family: 'Press Start 2P', cursive;
 }
   ${fonty}
 `;
@@ -26,7 +27,7 @@ const App = styled.div`
   width: 100%;
   height: 100vh;
   background-color: #1E1E1E;
-  background-image: url('https://ik.imagekit.io/onyedika/skycross/space_background_H1pEe91Gj.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1677148309303');
+  background-image: url('https://ik.imagekit.io/duOCELOT/assets/bgtheme?ik-sdk-version=javascript-1.4.3&updatedAt=1677218679875');
 background-size: cover;
 background-position: center;
   color: #ffffff;
@@ -1297,7 +1298,7 @@ class UI {
     // Draw top bar
     context.fillStyle = "transparent";
     context.fillRect(0, 0, this.game.width, this.topBarHeight);
-    context.font = "20px Arial";
+    context.font = "20px "Press Start 2P";
     context.fillStyle = "white";
     context.fillText("SKY CROSS", 500, 30);
     // Draw right column
