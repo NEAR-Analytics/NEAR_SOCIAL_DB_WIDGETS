@@ -113,7 +113,7 @@ const Wrapper = styled.div`
 
   input {
       padding: 0 14px 0 42px;
-      border: 1px solid #D0D5DD;
+      border: 1px solid #D0D5DD !important;
       background: #FFFFFF;
       border-radius: 100px;
   }
@@ -157,6 +157,7 @@ return (
         </button>
       )}
     </div>
+
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </Wrapper>
 );
