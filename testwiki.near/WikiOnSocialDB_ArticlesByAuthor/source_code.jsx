@@ -1,4 +1,4 @@
-const addressForArticles = "wikiTest";
+const addressForArticles = "wikiTest2Article";
 const authorForWidget = "testwiki.near";
 const authorId = props.author;
 const accountId = props.accountId ?? context.accountId;
@@ -16,28 +16,30 @@ const getDateLastEdit = (timestamp) => {
   return dateString;
 };
 
-const wikiTestData = Social.get(`*/${addressForArticles}/articles/**`, "final");
-const wikiTestArr = wikiTestData && Object.values(wikiTestData);
+// ========== GET INDEX ARRAY FOR ARTICLES ==========
+const postsIndex = Social.index(addressForArticles, "main", {
+  order: "desc",
+  accountId: undefined,
+});
+// ========== GET ALL ARTICLES ==========
 const resultArticles =
-  wikiTestArr &&
-  wikiTestArr.reduce(
-    (acc, account) =>
-      acc.concat(Object.values(account[addressForArticles].articles)),
-    []
-  );
-
-resultArticles.length &&
-  resultArticles.sort((a, b) => {
-    return Number(b.timeLastEdit) - Number(a.timeLastEdit);
-  });
-
+  postsIndex &&
+  postsIndex.reduce((acc, { accountId, blockHeight }) => {
+    const postData = Social.get(
+      `${accountId}/${addressForArticles}/main`,
+      blockHeight
+    );
+    const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
+    return [...acc, postDataWithBlockHeight];
+  }, []);
+// ========== FILTER DUBLICATES ==========
 const filteredArticles =
   resultArticles.length &&
   resultArticles.reduce((acc, article) => {
-    if (acc.some(({ articleId }) => articleId === article.articleId)) {
-      return acc;
-    } else {
+    if (!acc.some(({ articleId }) => articleId === article.articleId)) {
       return [...acc, article];
+    } else {
+      return acc;
     }
   }, []);
 
@@ -70,7 +72,8 @@ return (
           filteredArticlesByUser.map((article, index) => (
             <li key={article.articleId}>
               <a
-                href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}`}
+                href={`#/${authorForWidget}/widget/WikiOnSocialDB_OneArticle?articleId=${article.articleId}&blockHeight=${article.blockHeight}&lastEditor=${article.lastEditor}
+            `}
               >
                 {article.articleId}{" "}
                 <small>
