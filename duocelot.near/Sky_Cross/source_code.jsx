@@ -99,7 +99,7 @@ const PlayerDetail = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 2rem 0;
+  padding: 12rem 4rem;
 `;
 
 const PlayerStatPara = styled.p`
@@ -1305,10 +1305,14 @@ class UI {
     this.bottomBarBackground.src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196";
     }
   
-  draw(context) {
+  draw(context) {  
+    
     // Draw top bar
     context.fillStyle = "transparent";
     context.fillRect(0, 0, this.game.width, this.topBarHeight);
+    context.font = "20px Press Start 2P";
+    context.fillStyle = "white";
+    context.fillText("SKY CROSS", 500, 30);
 
 
 
@@ -1497,7 +1501,7 @@ return (
             <Leaderboard className="leaderboard">
               <LeaderboardScore className="score">
                 <p className="num">1</p>
-                <p className="name">Kasodon.near</p>
+                <p className="name">duocelot.near</p>
                 <Points className="points">1234</Points>
               </LeaderboardScore>
               <LeaderboardScore className="score">
@@ -1507,7 +1511,27 @@ return (
               </LeaderboardScore>
               <LeaderboardScore className="score">
                 <p className="num">1</p>
+                <p className="name">duocelot.near</p>
+                <Points className="points">1234</Points>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
                 <p className="name">Kasodon.near</p>
+                <Points className="points">1234</Points>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">duocelot.near</p>
+                <Points className="points">1234</Points>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">Kasodon.near</p>
+                <Points className="points">1234</Points>
+              </LeaderboardScore>
+              <LeaderboardScore className="score">
+                <p className="num">1</p>
+                <p className="name">duocelot.near</p>
                 <Points className="points">1234</Points>
               </LeaderboardScore>
               <LeaderboardScore className="score">
