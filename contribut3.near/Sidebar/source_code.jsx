@@ -47,12 +47,12 @@ const navItem = ({ text, icon, id, count }) => (
 return (
   <div className="d-flex flex-column">
     <a
-      className="mb-4"
+      className="mb-4 text-dark"
       href={`https://near.social/#/${ownerId}/widget/Index`}
       onClick={() => props.update({ tab: "home", content: "", search: "" })}
     >
       <h4>
-        <Widget src={`${ownerId}/widget/Logo`} props={{ size: "64" }} />
+        <Widget src={`${ownerId}/widget/Logo`} props={{ size: 32 }} />
         Web3 Combinator
       </h4>
     </a>
