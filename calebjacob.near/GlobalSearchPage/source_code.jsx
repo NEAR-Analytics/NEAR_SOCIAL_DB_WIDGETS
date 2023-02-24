@@ -11,6 +11,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 48px;
   padding-bottom: 48px;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const Header = styled.div`
