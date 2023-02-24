@@ -134,8 +134,8 @@ return (
     </h1>
     <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
-        {nameInput}
         {accountIdInput}
+        {nameInput}
         {kindInput}
         {startDateInput}
       </div>
