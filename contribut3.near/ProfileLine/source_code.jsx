@@ -37,6 +37,7 @@ if (state.data || profile) {
             tab: isEntity ? "entity" : "contributor",
             content: "",
             search: "",
+            accountId,
           })
         }
       >
