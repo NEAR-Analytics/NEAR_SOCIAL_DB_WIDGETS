@@ -50,7 +50,7 @@ const H3 = styled.h3`
 const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
 `;
 
 const Text = styled.p`
@@ -83,7 +83,8 @@ const Text = styled.p`
 const Items = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: start;
+  gap: 18px;
 `;
 
 const Item = styled.div``;
