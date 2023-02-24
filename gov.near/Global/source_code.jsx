@@ -29,7 +29,8 @@ return (
       We build generative community programs to activate contributors in order
       to solve problems for members of the NEAR ecosystem. Join to discover
       professional development opportunities that involve sharing knowledge and
-      best practices with industry experts around the world.
+      best practices with ecosystem leaders and industry experts around the
+      world.
     </p>
     <div className="mb-3">
       <Widget src="gov.near/widget/Profile" props={{ ownerId }} />
