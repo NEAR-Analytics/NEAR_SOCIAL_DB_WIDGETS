@@ -10,7 +10,7 @@ const requests = Near.view(
       ? "get_need_contribution_requests"
       : "get_entity_contribution_requests"
     : "get_admin_contribution_requests",
-  { account_id: context.accountId, ...(cid ? { cid } : {}) },
+  { account_id: accountId, ...(cid ? { cid } : {}) },
   "final",
   true
 );
