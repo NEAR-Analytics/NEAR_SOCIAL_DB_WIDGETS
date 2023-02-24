@@ -9,8 +9,8 @@ State.init({
 
 const Card = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: stretch;
+  justify-content: space-between;
+  align-items: center;
   gap: 12px;
   width: 100%;
   border-radius: 12px;
@@ -22,7 +22,7 @@ const Card = styled.div`
   padding: 12px;
 `;
 
-const CardTop = styled.div`
+const CardLeft = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
@@ -32,23 +32,14 @@ const CardTop = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    gap: 6px;
     width: 100%;
     min-width: 0;
   }
 `;
 
-const Name = styled.div`
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-`;
-
 const Avatar = styled.a`
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
   overflow: hidden;
@@ -79,7 +70,6 @@ const TextLink = styled.a`
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
   white-space: nowrap;
   outline: none;
-  max-width: ${(p) => (p.max ? "10rem" : "")};
 
   &:focus,
   &:hover {
@@ -87,17 +77,13 @@ const TextLink = styled.a`
   }
 `;
 
-const FollowButtonWrapper = styled.div`
-  width: 100%;
-  
-  div, button {
-    width: 100%;
-  }
+const TagsWrapper = styled.div`
+  padding-top: 4px;
 `;
 
 return (
   <Card>
-    <CardTop>
+    <CardLeft>
       <Avatar href={profileUrl}>
         <Widget
           src="mob.near/widget/Image"
@@ -111,29 +97,29 @@ return (
       </Avatar>
 
       <div>
-        <Name>
-          <TextLink href={profileUrl} ellipsis bold>
-            {profile.name || accountId.split(".near")[0]}
-          </TextLink>
-          <TextLink href={profileUrl} ellipsis max>
-            @{accountId}
-          </TextLink>
-        </Name>
+        <TextLink href={profileUrl} ellipsis bold>
+          {profile.name || accountId.split(".near")[0]}
+        </TextLink>
+        <TextLink href={profileUrl} ellipsis>
+          @{accountId}
+        </TextLink>
 
-        <Widget
-          src="calebjacob.near/widget/Tags"
-          props={{ tags, scroll: true }}
-        />
+        {tags.length > 0 && (
+          <TagsWrapper>
+            <Widget
+              src="calebjacob.near/widget/Tags"
+              props={{ tags, scroll: true }}
+            />
+          </TagsWrapper>
+        )}
       </div>
-    </CardTop>
+    </CardLeft>
 
     {!!context.accountId && context.accountId !== props.accountId && (
-      <FollowButtonWrapper>
-        <Widget
-          src="calebjacob.near/widget/FollowButton"
-          props={{ accountId: props.accountId }}
-        />
-      </FollowButtonWrapper>
+      <Widget
+        src="calebjacob.near/widget/FollowButton"
+        props={{ accountId: props.accountId }}
+      />
     )}
   </Card>
 );
