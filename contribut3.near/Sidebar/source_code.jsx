@@ -46,6 +46,7 @@ const navItem = ({ text, icon, id, count }) => (
 
 const HomeLink = styled.a`
   color: #000;
+  margin-bottom: 1.5rem;
 
   &:hover {
     text-decoration: none;
@@ -54,8 +55,7 @@ const HomeLink = styled.a`
 
 return (
   <div className="d-flex flex-column">
-    <a
-      className="mb-4 text-dark"
+    <HomeLink
       href={`https://near.social/#/${ownerId}/widget/Index`}
       onClick={() => props.update({ tab: "home", content: "", search: "" })}
     >
@@ -63,7 +63,7 @@ return (
         <Widget src={`${ownerId}/widget/Logo`} props={{ size: 32 }} />
         Web3 Combinator
       </h4>
-    </a>
+    </HomeLink>
     {navItem({
       text: "Inbox",
       icon: "bi-envelope",
