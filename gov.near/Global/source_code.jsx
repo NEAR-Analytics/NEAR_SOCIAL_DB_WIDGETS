@@ -1,5 +1,5 @@
 const ownerId = "gov.near";
-const accountId = props.accountId ?? context.accountId;
+const accountId = context.accountId;
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
 if (!accountId) {
