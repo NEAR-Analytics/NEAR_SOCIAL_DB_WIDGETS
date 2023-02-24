@@ -4,6 +4,7 @@ if (!index) {
 }
 
 let userReputationHides = [];
+let graphqlError = null;
 const userReputationResponse = fetch(
   "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
   {
@@ -27,6 +28,8 @@ if (
 ) {
   userReputationHides =
     userReputationResponse.body.data.user_centric_post_reputation;
+} else {
+  graphqlError = userReputationResponse.body.errors;
 }
 
 const renderItem =
@@ -178,7 +181,7 @@ return props.manual ? (
   </>
 ) : (
   <>
-    <p>{JSON.stringify(userReputationHides)}</p>
+    <p>{JSON.stringify(graphqlError)}</p>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
