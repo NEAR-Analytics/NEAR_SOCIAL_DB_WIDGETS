@@ -8,6 +8,10 @@ const css = `
     src: url("${fontUrl}");
 }
 
+a, a:focus, a:visited, a:hover {
+  color: white !important;
+}
+
 .apps {
   margin-top: 32px;
   display: grid;
@@ -89,7 +93,6 @@ const css = `
  }
 }
 
-
 .header {
     position: relative;
     display: flex;
@@ -127,7 +130,6 @@ const css = `
     background: linear-gradient(255.45deg, #7D14AF 12.67%, #00D1FF 87.81%);
     width: calc(45% + 100px);
     height: 260px;
-    text-align: right;
 }
 
 .noise {
@@ -144,6 +146,13 @@ const css = `
      position: absolute;
      z-index: 2;
      height: 260px;
+ }
+ .header-content-right {
+    text-align: right;
+     position: absolute;
+     height: 260px;
+     right: 0;
+     z-index: 2;
  }
 
  .main {
@@ -164,6 +173,9 @@ const css = `
     width: 100%;
     margin-left: 0;
     border: none;
+  }
+  .header-content-right {
+    top: 260px;
   }
   .noise {
     height: 520px;
@@ -194,18 +206,23 @@ return (
             <h2>&#60;Blockchain OS&#62;</h2>
           </div>
           <div>
-            <h3>Read Docs -&#62;</h3>
+            <a href="https://docs.bos.gg/" target="_blank">
+              <h3>Read Docs -&#62;</h3>
+            </a>
           </div>
         </div>
       </div>
-      <div class="header-right">
+      <div class="header-right"></div>
+      <div class="header-content-right">
         <div>
           <div>
             <h1>$20k Bounty</h1>
             <h2>&#60;Hackathon&#62;</h2>
           </div>
           <div>
-            <h3>Sign Up For Hackathon -&#62;</h3>
+            <a href="https://app.buidlbox.io/guidl/near" target="_blank">
+              <h3>Sign Up For Hackathon -&#62;</h3>
+            </a>
           </div>
         </div>
       </div>
@@ -226,8 +243,8 @@ return (
             src="mattlock.near/widget/ComponentSearch"
             props={{
               limit: 10,
-              term: "#ethdenver2023",
-              boostedTag: "#ethdenver2023",
+              term: "ethdenver2023",
+              boostedTag: "ethdenver2023",
               onChange: ({ result: components, term }) => {
                 console.log(components);
                 State.update({ components, term });
