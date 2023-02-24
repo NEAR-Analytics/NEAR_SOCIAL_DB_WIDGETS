@@ -129,7 +129,9 @@ const onSubmit = () => {
 
 return (
   <div className="px-3" style={{ maxWidth: "45em" }}>
-    <h1 className="fs-2 mb-3 pb-3">Create new project</h1>
+    <h1 className="fs-2 mb-3 pb-3">
+      {accountId ? "Create new" : "Edit"} project
+    </h1>
     <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
         {nameInput}
