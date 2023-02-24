@@ -51,10 +51,10 @@ return (
       {loading
         ? "Loading"
         : follow
-        ? "Connected"
+        ? "Following"
         : inverse
-        ? "Lead"
-        : "Connect"}
+        ? "Join "
+        : "Follow"}
     </CommitButton>
   </div>
 );
