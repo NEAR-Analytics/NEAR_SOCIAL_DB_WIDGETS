@@ -20,7 +20,17 @@ const handleProposal = () => {
     {
       contractName: "global.sputnik-dao.near",
       methodName: "add_proposal",
-      args: proposal,
+      args: {
+        proposal: {
+          description: "potential member",
+          kind: {
+            AddMemberToRole: {
+              member_id: state.member_id,
+              role: "community",
+            },
+          },
+        },
+      },
       gas: gas,
       deposit: deposit,
     },
