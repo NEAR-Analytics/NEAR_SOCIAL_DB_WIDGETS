@@ -15,6 +15,7 @@ const cid = props.cid;
 //   "final",
 //   true
 // ) ?? [];
+console.log({ accountId });
 const requests = Near.view(
   ownerId,
   "get_entity_contribution_requests",
