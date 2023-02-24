@@ -103,6 +103,7 @@ return (
         props={{
           limitPerGroup: 3,
           onChange: onSearchChange,
+          term: props.term,
         }}
       />
     </Search>
