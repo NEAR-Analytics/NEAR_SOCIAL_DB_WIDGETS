@@ -101,6 +101,9 @@ return (
     <div className="mb-3"></div>
     <h2>Edit Your Profile</h2>
     <div className="row">
+      <Widget src="gov.near/widget/Profile" props={{ accountId }} />
+    </div>
+    <div className="row">
       <Widget src="gov.near/widget/PublicTagEditor" props={{ accountId }} />
     </div>
     <div className="mb-3"></div>
