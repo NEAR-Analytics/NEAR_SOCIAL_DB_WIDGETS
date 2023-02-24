@@ -66,45 +66,6 @@ const SubHeader = styled.div`
 
 const Search = styled.div`
   width: 246px;
-  height: 40px;
-  position: relative;
-
-  .bi-search {
-      position: absolute;
-      top: 0;
-      left: 18px;
-      z-index: 100;
-      font-size: 14px;
-      line-height: 40px;
-      color: #687076;
-  }
-
-  .input-group {
-      height: 100%;
-  }
-
-  input {
-      padding: 0 14px 0 42px;
-      border: 1px solid #D0D5DD;
-      background: #FFFFFF;
-      border-radius: 100px;
-  }
-
-  button {
-      border-color: #D0D5DD !important;
-      border-radius: 0 100px 100px 0 !important;
-      border-left: none !important;
-      background: #fff !important;
-      color: #687076 !important;
-
-      &:hover, &:focus {
-          color: #000 !important;
-      }
-  }
-
-  .spinner-grow {
-      display: none !important; 
-  }
 
   @media (max-width: 500px) {
       width: 100%;
@@ -209,11 +170,9 @@ return (
       <Text>{totalComponents} components</Text>
 
       <Search>
-        <i className="bi bi-search"></i>
         <Widget
-          src="mob.near/widget/ComponentSearch"
+          src="calebjacob.near/widget/ComponentSearch"
           props={{
-            placeholder: "Search components",
             limit: 21,
             onChange: onSearchChange,
           }}
