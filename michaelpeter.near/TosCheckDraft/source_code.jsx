@@ -139,7 +139,7 @@ return (
               }}
               onClick={logOut}
             >
-              Sign Out (WIP)
+              Decline
             </button>
             <CommitButton
               style={{
