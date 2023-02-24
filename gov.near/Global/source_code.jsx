@@ -50,9 +50,6 @@ return (
       <Widget src="gov.near/widget/NewMember" props={{ ownerId }} />
     </div>
     <h2>Connect and Collaborate</h2>
-    <div>
-      <Widget src="gov.near/widget/Membership" props={{ ownerId }} />
-    </div>
     <div className="mb-2">
       <Widget
         src="mob.near/widget/ProfileSearch"
@@ -95,6 +92,9 @@ return (
       src="gov.near/widget/BuilderProfiles"
       props={{ tag: "near", limit: 24 }}
     />
+    <div>
+      <Widget src="gov.near/widget/Membership" props={{ ownerId }} />
+    </div>
     <div className="mb-3"></div>
     <h2>Edit Your Profile</h2>
     <div className="mb-3">
