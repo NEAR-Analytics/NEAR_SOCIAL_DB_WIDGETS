@@ -1,18 +1,18 @@
 const profiles =
   Social.get(["*/profile/name", "*/profile/tags/*"], "final") || {};
 
-const appMetadata =
+const componentMetadata =
   Social.get(
     ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
     "final"
   ) || {};
 
-const appKeys =
+const componentKeys =
   Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
 
-const boostedAppTag = "app";
-const requiredAppTag = null;
-const limitPerGroup = 5;
+const boostedComponentTag = props.boostedComponentTag || "app";
+const requiredComponentTag = props.requiredComponentTag || null;
+const limitPerGroup = props.limitPerGroup || 5;
 
 const computeResults = (term) => {
   const terms = (term || "")
@@ -21,8 +21,8 @@ const computeResults = (term) => {
     .filter((s) => !!s.trim());
 
   const result = {
+    components: computeComponents(terms),
     people: computePeople(terms),
-    apps: computeApps(terms),
   };
 
   State.update({
@@ -35,7 +35,7 @@ const computeResults = (term) => {
   }
 };
 
-const computeApps = (terms) => {
+const computeComponents = (terms) => {
   const results = [];
   const MaxSingleScore = 1;
   const MaxScore = MaxSingleScore * 4;
@@ -52,23 +52,26 @@ const computeApps = (terms) => {
     );
   };
 
-  Object.entries(appKeys).forEach(([accountId, data]) => {
+  Object.entries(componentKeys).forEach(([accountId, data]) => {
     Object.keys(data.widget).forEach((componentId) => {
       const widgetSrc = `${accountId}/widget/${componentId}`;
       const widgetSrcScore = computeScore(widgetSrc);
       const componentIdScore = computeScore(componentId);
-      const metadata = appMetadata[accountId].widget[componentId].metadata;
+      const metadata =
+        componentMetadata[accountId].widget[componentId].metadata;
       const name = metadata.name || componentId;
 
       if (
-        requiredAppTag &&
-        !(metadata.tags && requiredAppTag in metadata.tags)
+        requiredComponentTag &&
+        !(metadata.tags && requiredComponentTag in metadata.tags)
       ) {
         return;
       }
 
       const boosted =
-        boostedAppTag && metadata.tags && boostedAppTag in metadata.tags;
+        boostedComponentTag &&
+        metadata.tags &&
+        boostedComponentTag in metadata.tags;
       const tags = Object.keys(metadata.tags || {}).slice(0, 10);
       const nameScore = computeScore(name);
       const tagsScore = Math.min(
