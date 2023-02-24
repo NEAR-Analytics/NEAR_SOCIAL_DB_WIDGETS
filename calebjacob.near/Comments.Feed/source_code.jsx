@@ -51,7 +51,7 @@ const renderItem = (a) =>
 return (
   <Wrapper>
     <Widget
-      src="michaelpeter.near/widget/IndexFeed"
+      src="adminalpha.near/widget/IndexFeed"
       props={{
         index,
         manual: true,
@@ -59,7 +59,7 @@ return (
         renderItem,
         nextLimit: 10,
         loadMoreText: "Show earlier comments...",
-        moderatorAccount: "michaelpeter.near",
+        moderatorAccount: "adminalpha.near",
       }}
     />
   </Wrapper>
