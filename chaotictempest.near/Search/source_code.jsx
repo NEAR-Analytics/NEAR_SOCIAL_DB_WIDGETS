@@ -121,7 +121,8 @@ const componentWidgets = (content) => {
 };
 
 const onPageChange = (pageNumber) => {
-  if (pageNumber === state.currentPage) {
+  const algoliaPageNumber = pageNumber - 1;
+  if (algoliaPageNumber === state.currentPage) {
     console.log(`Selected the same page number as before: ${pageNumber}`);
     return;
   }
@@ -133,9 +134,9 @@ const onPageChange = (pageNumber) => {
     comment: [],
     profile: [],
     widget: [],
-    currentPage: pageNumber,
+    currentPage: algoliaPageNumber,
   });
-  computeResults(state.term, pageNumber);
+  computeResults(state.term, algoliaPageNumber);
 };
 
 const computeResults = (term, pageNumber) => {
@@ -234,26 +235,26 @@ return (
     {state.term && (
       <div>
         {state.profile?.length > 0 && (
-          <div>
-            <p>Profiles:</p>
+          <div className="row p-0">
+            <p>Profiles</p>
             <ul>{state.profile}</ul>
           </div>
         )}
         {state.widget?.length > 0 && (
           <div className="mb-2">
-            <p>Widgets:</p>
+            <p>Components</p>
             {state.widget}
           </div>
         )}
         {state.post?.length > 0 && (
-          <div>
-            <p>Posts:</p>
+          <div className="row p-0">
+            <p>Posts</p>
             <ul>{state.post}</ul>
           </div>
         )}
         {state.comment?.length > 0 && (
-          <div>
-            <p>Comments:</p>
+          <div className="row p-0">
+            <p>Comments</p>
             <ul>{state.comment}</ul>
           </div>
         )}
