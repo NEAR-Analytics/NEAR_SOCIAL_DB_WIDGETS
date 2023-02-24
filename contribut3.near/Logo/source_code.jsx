@@ -1,4 +1,4 @@
-const size = props.size;
+const size = props.size ?? 128;
 const ratio = 128 / 111;
 const height = size * ratio;
 
