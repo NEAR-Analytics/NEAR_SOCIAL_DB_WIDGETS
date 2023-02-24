@@ -60,7 +60,7 @@ return (
       href={`https://near.social/#/${ownerId}/widget/Index`}
       onClick={() => props.update({ tab: "home", content: "", search: "" })}
     >
-      <h4 className="fs-5 text-nowrap d-flex flex-row align-items-center">
+      <h4 className="fs-4 text-nowrap d-flex flex-row align-items-center">
         <Widget src={`${ownerId}/widget/Logo`} props={{ size: 32 }} />
         <span className="ms-2">Web3 Combinator</span>
       </h4>
