@@ -101,7 +101,7 @@ const tabContent = {
 }[state.tab];
 
 return (
-  <div className="d-flex flex-row position-relative">
+  <div className="d-flex flex-row">
     <div className="d-flex flex-row position-sticky top-0">
       <div className="px-1">
         <Widget
