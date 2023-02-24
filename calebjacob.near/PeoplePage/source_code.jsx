@@ -48,11 +48,6 @@ if (data) {
 }
 
 function onSearchChange({ result, term }) {
-  props.tab = "everyone";
-  State.update({
-    selectedTab: "everyone",
-  });
-
   if (term.trim()) {
     State.update({ searchResults: result || [] });
   } else {
@@ -252,23 +247,25 @@ return (
       />
     </Search>
 
-    <Tabs>
-      <TabsButton
-        href={`${peopleUrl}?tab=everyone`}
-        selected={state.selectedTab === "everyone"}
-      >
-        Everyone
-      </TabsButton>
-
-      {context.accountId && (
+    {!state.searchResults && (
+      <Tabs>
         <TabsButton
-          href={`${peopleUrl}?tab=following`}
-          selected={state.selectedTab === "following"}
+          href={`${peopleUrl}?tab=everyone`}
+          selected={state.selectedTab === "everyone"}
         >
-          Following
+          Everyone
         </TabsButton>
-      )}
-    </Tabs>
+
+        {context.accountId && (
+          <TabsButton
+            href={`${peopleUrl}?tab=following`}
+            selected={state.selectedTab === "following"}
+          >
+            Following
+          </TabsButton>
+        )}
+      </Tabs>
+    )}
 
     {state.searchResults?.length === 0 && (
       <Text>No people matched your search.</Text>
