@@ -1,7 +1,7 @@
 const requiredTag = "app";
 const limit = 5;
 let apps = [];
-let totalApps = 0;
+let totalComponents = 0;
 
 const taggedData = Social.keys(
   `*/widget/*/metadata/tags/${requiredTag}`,
@@ -20,9 +20,9 @@ if (data && taggedData) {
       const hasRequiredTag =
         taggedData[accountId]?.widget[widgetName]?.metadata?.tags?.app;
 
-      if (hasRequiredTag) {
-        totalApps++;
+      totalComponents++;
 
+      if (hasRequiredTag) {
         result.push({
           accountId,
           widgetName,
@@ -102,7 +102,7 @@ return (
     </Items>
 
     <ButtonLink href="/#/calebjacob.near/widget/ComponentsPage">
-      View All Apps <span>({totalApps})</span>
+      View All Components <span>({totalComponents})</span>
     </ButtonLink>
   </Wrapper>
 );
