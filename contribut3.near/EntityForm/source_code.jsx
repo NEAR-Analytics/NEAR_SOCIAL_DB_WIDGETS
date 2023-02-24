@@ -42,7 +42,7 @@ if (accountId) {
 const accountIdInput = accountId ? (
   <div>
     <label htmlFor="account-id" className="text-muted fw-semibold">
-      Project account ID *
+      Project account ID
     </label>
     <div
       className="rounded-3 bg-light"
