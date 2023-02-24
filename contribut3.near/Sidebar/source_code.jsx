@@ -52,7 +52,7 @@ return (
       onClick={() => props.update({ tab: "home", content: "", search: "" })}
     >
       <h4>
-        <i className="bi-triangle" />
+        <Widget src={`${ownerId}/widget/Logo`} props={{ size: "1em" }} />
         Web3 Combinator
       </h4>
     </a>
