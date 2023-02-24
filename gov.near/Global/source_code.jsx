@@ -33,7 +33,7 @@ return (
       world.
     </p>
     <div className="mb-3">
-      <Widget src="gov.near/widget/Profile" props={{ ownerId }} />
+      <Widget src="gov.near/widget/Profile" props={{ accountId }} />
     </div>
     <div className="mb-3">
       <h4>HOW TO JOIN:</h4>
