@@ -102,10 +102,7 @@ const tabContent = {
 
 return (
   <div className="d-flex flex-row">
-    <div
-      className="d-flex flex-row position-fixed"
-      style={{ width: "16vw", top: "100px" }}
-    >
+    <div className="d-flex flex-row position-sticky top-0">
       <div className="px-1 flex-grow-1">
         <Widget
           src={`${ownerId}/widget/Sidebar`}
