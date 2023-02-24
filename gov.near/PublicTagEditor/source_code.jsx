@@ -76,9 +76,10 @@ return (
     <div className="col-lg-6">
       <div>
         <h4>Preview</h4>
+        Add Labels:
         <br />
       </div>
-      <div className="mb-2 card">
+      <div className="card">
         <div className="card-body">
           <div className="text-truncate">
             <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
