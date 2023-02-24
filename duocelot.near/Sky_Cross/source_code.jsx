@@ -1298,7 +1298,7 @@ class UI {
     // Draw top bar
     context.fillStyle = "transparent";
     context.fillRect(0, 0, this.game.width, this.topBarHeight);
-    context.font = "20px "Press Start 2P";
+    context.font = "20px Press Start 2P";
     context.fillStyle = "white";
     context.fillText("SKY CROSS", 500, 30);
     // Draw right column
