@@ -33,7 +33,12 @@ return (
   <Card>
     <Widget
       src="calebjacob.near/widget/AccountProfile"
-      props={{ accountId: props.accountId, profile, noOverlay: true }}
+      props={{
+        accountId: props.accountId,
+        blockHeight: props.blockHeight,
+        profile,
+        noOverlay: true,
+      }}
     />
 
     <Widget src="calebjacob.near/widget/Tags" props={{ tags, scroll: true }} />
