@@ -3,27 +3,18 @@ const search = props.search ?? "";
 const accountId = props.accountId;
 const cid = props.cid;
 
-// const requests =
-// Near.view(
-//   ownerId,
-//   accountId
-//     ? cid
-//       ? "get_need_contribution_requests"
-//       : "get_entity_contribution_requests"
-//     : "get_admin_contribution_requests",
-//   { account_id: accountId || context.accountId, ...(cid ? { cid } : {}) },
-//   "final",
-//   true
-// ) ?? [];
-console.log({ accountId });
-const requests = Near.view(
-  ownerId,
-  "get_entity_contribution_requests",
-  { account_id: accountId },
-  "final"
-);
-
-console.log({ request, accountId });
+const requests =
+  Near.view(
+    ownerId,
+    accountId
+      ? cid
+        ? "get_need_contribution_requests"
+        : "get_entity_contribution_requests"
+      : "get_admin_contribution_requests",
+    { account_id: accountId || context.accountId, ...(cid ? { cid } : {}) },
+    "final",
+    true
+  ) ?? [];
 
 if (!requests) {
   return "Loading...";
