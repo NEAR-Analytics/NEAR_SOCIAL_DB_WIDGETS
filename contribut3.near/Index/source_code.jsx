@@ -88,6 +88,7 @@ const tabContent = {
       props={{
         search: state.search,
         content: state.content,
+        accountId: props.accountId,
         kind: state.kind,
         update,
       }}
