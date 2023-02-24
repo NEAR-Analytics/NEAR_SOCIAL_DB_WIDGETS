@@ -39,7 +39,23 @@ if (accountId) {
   );
 }
 
-const accountIdInput = (
+const accountIdInput = accountId ? (
+  <div>
+    <label htmlFor="account-id" className="text-muted fw-semibold">
+      Project account ID *
+    </label>
+    <div
+      className="rounded-3 bg-light"
+      style={{ height: "5em" }}
+      id="account-id"
+    >
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{ accountId, imageSize: "4em", isEntity: true }}
+      />
+    </div>
+  </div>
+) : (
   <div className="col-lg-12 mb-2">
     <Widget
       src={`${ownerId}/widget/ValidatedAccountIdInput`}
