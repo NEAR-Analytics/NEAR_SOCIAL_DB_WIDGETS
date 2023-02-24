@@ -41,7 +41,7 @@ const existingEntities = (
 const entityEditor = props.accountId ? (
   <div>
     <label htmlFor="account-id" className="text-muted fw-semibold">
-      Request as:
+      Request for:
     </label>
     <div
       className="rounded-3 bg-light"
