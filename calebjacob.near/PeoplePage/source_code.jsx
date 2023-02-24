@@ -190,7 +190,8 @@ const Tabs = styled.div`
   @media (max-width: 1200px) {
     background: #F8F9FA;
     border-top: 1px solid #ECEEF0;
-    margin: 0 -12px 48px;
+    margin-left: -12px;
+    margin-right: -12px;
 
     > * {
       flex: 1;
