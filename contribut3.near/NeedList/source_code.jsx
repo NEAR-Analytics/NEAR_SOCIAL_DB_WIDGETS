@@ -12,6 +12,8 @@ const needs = accountId
   )
   : Near.view(ownerId, "get_contribution_needs", {}, "final", true);
 
+console.log(needs);
+
 if (!needs) {
   return "Loading...";
 }
