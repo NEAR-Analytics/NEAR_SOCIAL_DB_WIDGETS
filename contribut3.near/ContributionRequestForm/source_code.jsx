@@ -15,7 +15,7 @@ const convertType = (contributionType) => {
 
 State.init({
   // The entity to which to request a contribution.
-  entity: props.entity ? [{ name: props.entity }] : [],
+  entity: props.accountId ? [{ name: props.accountId }] : [],
   // The description of the contribution request.
   description: props.description ?? "",
   contributionType: props.contributionType
@@ -38,10 +38,10 @@ const existingEntities = (
   Near.view(ownerId, "get_entities", {}, "final") ?? []
 ).map(([accountId]) => ({ name: accountId }));
 
-const entityEditor = props.entity ? (
+const entityEditor = props.accountId ? (
   <div>
     <label htmlFor="account-id" className="text-muted fw-semibold">
-      Contribute to:
+      Request as:
     </label>
     <div
       className="rounded-3 bg-light"
