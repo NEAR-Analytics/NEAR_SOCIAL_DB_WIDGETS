@@ -1,33 +1,57 @@
-const addressForArticles = "wikiTest";
+const addressForArticles = "wikiTest2Article";
+const addressForComments = "wikiTest2Comment";
 const authorForWidget = "testwiki.near";
-const { articleId } = props;
-State.init({});
+const accountId = props.accountId ?? context.accountId;
+if (!accountId) {
+  return "No account ID";
+}
 
-const allArticlesWithOneID = Social.get(
-  `*/${addressForArticles}/articles/${articleId}/*`,
-  "final"
+const lastEditor = props.lastEditor;
+const blockHeight =
+  props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const subscribe = !!props.subscribe;
+const raw = !!props.raw;
+
+const notifyAccountId = accountId;
+
+State.init({ showReply: false });
+
+const article = JSON.parse(
+  Social.get(`${lastEditor}/wikiTest2Article/main`, blockHeight)
 );
-const articlesArr = allArticlesWithOneID && Object.values(allArticlesWithOneID);
-const resultArticlesWithOneId =
-  articlesArr &&
-  articlesArr.reduce(
-    (acc, account) =>
-      acc.concat(Object.values(account[addressForArticles].articles)),
-    []
-  );
-
-resultArticlesWithOneId.length &&
-  resultArticlesWithOneId.sort((a, b) => {
-    return Number(b.timeLastEdit) - Number(a.timeLastEdit);
-  });
-
-const article = resultArticlesWithOneId[0];
-
 State.update({ article });
 
-const getDate = (timestamp) => {
-  const date = new Date(Number(timestamp));
-  return date.toDateString();
+// ======= GET DATA TO ATACH COMMENTS TO THE ARTICLE =======
+// we attach all comments to the first initial article (which version = 0)
+const articlesIndex = Social.index(addressForArticles, "main", {
+  order: "asc",
+  accountId: state.article.author,
+});
+
+const resultArticles =
+  articlesIndex &&
+  articlesIndex.reduce((acc, { accountId, blockHeight }) => {
+    const postData = Social.get(
+      `${accountId}/${addressForArticles}/main`,
+      blockHeight
+    );
+    const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
+    return [...acc, postDataWithBlockHeight];
+  }, []);
+
+const firstArticle =
+  resultArticles &&
+  resultArticles.find(
+    (article) => article.articleId === state.article.articleId
+  );
+
+const firstArticleBlockHeight = firstArticle.blockHeight;
+
+// ======= Item for comment =======
+const item = {
+  type: "social",
+  path: `${state.article.author}/${addressForArticles}/main`,
+  blockHeight: firstArticleBlockHeight,
 };
 
 const saveArticle = (args) => {
@@ -38,11 +62,25 @@ const saveArticle = (args) => {
     timeLastEdit: Date.now(),
     version: Number(state.article.version) + 1,
   };
-  Social.set({
-    [addressForArticles]: {
-      articles: { [state.article.articleId]: { ...newArticleData } },
-    },
-  });
+
+  const composeArticleData = () => {
+    const data = {
+      [addressForArticles]: {
+        main: JSON.stringify(newArticleData),
+      },
+      index: {
+        [addressForArticles]: JSON.stringify({
+          key: "main",
+          value: {
+            type: "md",
+          },
+        }),
+      },
+    };
+    return data;
+  };
+  const newData = composeArticleData();
+  Social.set(newData, { force: true });
 };
 
 return (
@@ -120,32 +158,53 @@ return (
       {!state.editArticle && (
         <Markdown text={state.note || state.article.body} />
       )}
-      <div className="mt-5 alert alert-secondary">
-        <div>
-          Created by{" "}
-          <a
-            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.author}`}
-            target="_blank"
-            style={{ textDecoration: "underline" }}
-          >
-            {state.article.author}
-          </a>
-          {/* 
-          TODO: add lastEditor to edit and create widgets
-          <br />
-          Last edit by{" "}
-          <a
-            href={`https://near.social/#/mob.near/widget/ProfilePage?accountId=${state.article.lastEditor}`}
-            style={{ textDecoration: "underline" }}
-          >
-            {state.article.lastEditor}
-          </a>*/}
-          <br />
-          Edited on {getDate(state.article.timeLastEdit)}
-          <br />
-          Edit versions: {state.article.version}
+      {/* === CREATE COMMENT BUTTON === */}
+      {blockHeight !== "now" && (
+        <div className="mt-1 d-flex justify-content-between">
+          <Widget
+            src="mob.near/widget/CommentButton"
+            props={{
+              onClick: () => State.update({ showReply: !state.showReply }),
+            }}
+          />
         </div>
+      )}
+      {/* === COMPOSE COMMENT === */}
+      <div className="mt-3 ps-5">
+        {state.showReply && (
+          <div className="mb-2">
+            <Widget
+              src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Compose`}
+              props={{
+                notifyAccountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+          </div>
+        )}
+        {/* === SHOW COMMENT === */}
+        <Widget
+          src={`${authorForWidget}/widget/WikiOnSocialDB_Comment.Feed`}
+          props={{
+            item,
+            highlightComment: props.highlightComment,
+            limit: props.commentsLimit,
+            subscribe,
+            raw,
+          }}
+        />
       </div>
+      {/* === FOOTER === */}
+      <Widget
+        src={`${authorForWidget}/widget/WikiOnSocialDB_OneArticle.Footer`}
+        props={{
+          author: state.article.author,
+          lastEditor: state.article.lastEditor,
+          timeLastEdit: state.article.timeLastEdit,
+          version: state.article.version,
+        }}
+      />
     </div>
   </>
 );
