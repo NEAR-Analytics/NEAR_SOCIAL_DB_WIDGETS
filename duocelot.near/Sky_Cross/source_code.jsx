@@ -3,6 +3,7 @@
 
 const accountId = props.accountId ?? context.accountId;
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const image = profile.image;
 
 const fonty = fetch(
   "https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap"
@@ -76,6 +77,11 @@ const PlayerIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  .player-image {
+   width: 300px;
+   height: 300px;
+   border-radius: 30px;
+  }
 `;
 
 const PlayerIconImg = styled.img`
@@ -155,7 +161,7 @@ const LeaderboardScore = styled.div`
   border-radius: 12px;
 `;
 
-const points = styled.p`
+const Points = styled.p`
   color: #FFD852;
 `;
 
@@ -1448,9 +1454,14 @@ return (
             <Stat className="container-fluid stat">
               <StatRow className="row">
                 <PlayerIcon className="player-icon col-4">
-                  <PlayerIconImg
-                    src="https://ik.imagekit.io/onyedika/skycross/avatar01_zM5ioOG4w.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939856771"
-                    alt=""
+                  <Widget
+                    src="kasodon.near/widget/ProfileImageDarkMode"
+                    props={{
+                      profile,
+                      accountId,
+                      imageClassName: "player-image",
+                      thumbnail: false,
+                    }}
                   />
                 </PlayerIcon>
                 <PlayerDetail className="player-detail col-8">
@@ -1497,7 +1508,7 @@ return (
           >
             <iframe
               srcDoc={scriptSrc}
-              style={{ height: "800px", width: "100%" }}
+              style={{ height: "600px", width: "100%" }}
             />
           </div>
           <div
@@ -1511,22 +1522,22 @@ return (
               <LeaderboardScore className="score">
                 <p className="num">1</p>
                 <p className="name">Kasodon.near</p>
-                <p className="points">1234</p>
+                <Points className="points">1234</Points>
               </LeaderboardScore>
               <LeaderboardScore className="score">
                 <p className="num">1</p>
                 <p className="name">Kasodon.near</p>
-                <p className="points">1234</p>
+                <Points className="points">1234</Points>
               </LeaderboardScore>
               <LeaderboardScore className="score">
                 <p className="num">1</p>
                 <p className="name">Kasodon.near</p>
-                <p className="points">1234</p>
+                <Points className="points">1234</Points>
               </LeaderboardScore>
               <LeaderboardScore className="score">
                 <p className="num">1</p>
                 <p className="name">Kasodon.near</p>
-                <p className="points">1234</p>
+                <Points className="points">1234</Points>
               </LeaderboardScore>
             </Leaderboard>
           </div>
