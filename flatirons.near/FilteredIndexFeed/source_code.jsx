@@ -151,21 +151,24 @@ return props.manual ? (
     {!reverse && fetchMore}
   </>
 ) : (
-  <InfiniteScroll
-    pageStart={0}
-    loadMore={makeMoreItems}
-    hasMore={state.displayCount < state.items.length}
-    loader={
-      <div className="loader">
-        <span
-          className="spinner-grow spinner-grow-sm me-1"
-          role="status"
-          aria-hidden="true"
-        />
-        Loading ...
-      </div>
-    }
-  >
-    {renderedItems}
-  </InfiniteScroll>
+  <>
+    {props.index}
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={makeMoreItems}
+      hasMore={state.displayCount < state.items.length}
+      loader={
+        <div className="loader">
+          <span
+            className="spinner-grow spinner-grow-sm me-1"
+            role="status"
+            aria-hidden="true"
+          />
+          Loading ...
+        </div>
+      }
+    >
+      {renderedItems}
+    </InfiniteScroll>
+  </>
 );
