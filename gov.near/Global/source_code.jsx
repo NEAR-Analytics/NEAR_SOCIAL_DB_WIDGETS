@@ -37,12 +37,12 @@ return (
     </div>
     <div className="mb-3">
       <h4>HOW TO JOIN:</h4>
-      <p>1. Engage with us on Near Social:</p>
+      <p>1. Engage with us on Near Social</p>
       <Widget src="gov.near/widget/JoinButton" props={{ ownerId }} />
     </div>
     <div className="mb-3">
       <p>
-        2. Propose adding members to the{" "}
+        2. Submit proposal to
         <a href="https://app.astrodao.com/dao/global.sputnik-dao.near">
           NEAR Global DAO
         </a>
