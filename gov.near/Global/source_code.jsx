@@ -99,12 +99,12 @@ return (
       props={{ tag: "near", limit: 24 }}
     />
     <div className="mb-3"></div>
-    <div>
-      <Widget src="gov.near/widget/ProfileTagsEditor" props={{ accountId }} />
-    </div>
-    <div className="mb-3"></div>
     <div className="row">
       <Widget src="gov.near/widget/PublicTagEditor" props={{ accountId }} />
+    </div>
+    <div className="mb-3"></div>
+    <div>
+      <Widget src="gov.near/widget/ProfileTagsEditor" props={{ accountId }} />
     </div>
   </div>
 );
