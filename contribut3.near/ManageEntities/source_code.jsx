@@ -26,7 +26,7 @@ const contentSelector = (
       tab: "entities",
       content: getContent(props.content),
       search: props.search,
-      update: (content) => props.update({ content }),
+      update: props.update,
       buttons: [
         {
           id: "proposals",
