@@ -30,17 +30,19 @@ if (data) {
 
   Object.keys(data).forEach((accountId) => {
     totalPeople++;
+
     const isFollowing =
       followingData &&
-      followingData[context.accountId].graph.follow[accountId] === true;
+      followingData[context.accountId]?.graph?.follow[accountId] === true;
+
     const isFollower =
       followersData &&
-      followersData[accountId].graph.follow[context.accountId] === true;
+      followersData[accountId]?.graph?.follow[context.accountId] === true;
 
     if (
       state.selectedTab === "everyone" ||
       (state.selectedTab === "following" && isFollowing) ||
-      (state.selectedTab === "followers" && isFollower) ||
+      (state.selectedTab === "followers" && isFollower)
     ) {
       result.push({
         accountId,
