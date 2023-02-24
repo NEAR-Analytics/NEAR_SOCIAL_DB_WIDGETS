@@ -67,7 +67,7 @@ return (
         </CommitButton>
         <a
           className="btn btn-outline-primary ms-2"
-          href={`#/zavodil.near/widget/AllLabels`}
+          href={`#/zavodil.near/widget/AllLabels?accountId=${accountId}`}
         >
           View Labels
         </a>
