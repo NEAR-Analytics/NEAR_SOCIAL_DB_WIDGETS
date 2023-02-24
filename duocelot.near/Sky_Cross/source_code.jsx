@@ -1299,7 +1299,6 @@ class UI {
     this.avatarImage = document.getElementById("avatar");
     this.avatarWidth = 140;
     this.avatarHeight = 140;
-
     }
   
   draw(context) {     
