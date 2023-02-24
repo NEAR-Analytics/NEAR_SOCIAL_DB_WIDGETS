@@ -1606,7 +1606,6 @@ return (
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: "40px 1opx 10px 10px",
               }}
             >
               HERE
