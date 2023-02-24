@@ -32,7 +32,11 @@ if (accountId) {
     { account_id: accountId },
     "final"
   ).then((entity) => {
-    console.log(entity);
+    console.log({
+      name: entity.name,
+      kind: [{ name: entity.kind }],
+      startDate: createDate(new Date(Number(entity.start_date))),
+    });
     State.update({
       name: entity.name,
       kind: [{ name: entity.kind }],
