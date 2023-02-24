@@ -78,7 +78,7 @@ const content = {
       props={{ search: props.search, update: props.update }}
     />
   ),
-}[getContent(state.content)];
+}[getContent(props.content)];
 
 return (
   <div>
