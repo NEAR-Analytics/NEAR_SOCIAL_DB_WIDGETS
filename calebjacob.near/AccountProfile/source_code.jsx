@@ -1,5 +1,6 @@
 const accountId = props.accountId || context.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
+const profileUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 
 const Wrapper = styled.a`
   display: inline-grid;
@@ -66,10 +67,7 @@ const Name = styled.div`
 const AccountProfile = (
   <Wrapper
     as={props.onClick ? "button" : "a"}
-    href={
-      !props.onClick &&
-      `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`
-    }
+    href={!props.onClick && profileUrl}
     onClick={props.onClick && (() => props.onClick(accountId))}
   >
     <Avatar>
