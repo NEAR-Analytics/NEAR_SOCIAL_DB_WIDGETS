@@ -2,19 +2,15 @@
 const ownerId = "gov.near";
 const appName = "profile";
 const accountId = context.accountId;
-const contractId = props.contractId ?? ownerId;
-const debug = props.debug ?? false;
+const contractId = props.contractId ?? accountId;
 
 if (!accountId) {
-  return "Please connect your NEAR wallet";
+  return "Please connect your NEAR wallet.";
 }
 
 State.init({ contractId });
 
-const metadata = Social.getr(
-  `${accountId}/${appName}/${state.contractId}`,
-  "final"
-);
+const metadata = Social.getr(`${accountId}/${appName}/tags/*`, "final");
 
 // current user tags only
 const pattern = `*/${appName}/*/tags/*`;
@@ -23,7 +19,7 @@ return (
   <div className="row">
     <div className="col-lg-6">
       <div>
-        <h4>Claim Skill Badges</h4>
+        <h4>Open Labels</h4>
       </div>
       <div className="mb-2">
         NEAR Wallet ID:
@@ -67,7 +63,7 @@ return (
             },
           }}
         >
-          Save Profile
+          Save
         </CommitButton>
       </div>
     </div>
@@ -79,15 +75,12 @@ return (
       <div className="mb-2 card">
         <div className="card-body">
           <div className="text-truncate">
-            <Widget
-              src={`mob.near/widget/ProfileLine`}
-              props={{ accountId: state.contractId }}
-            />
+            <Widget src={`mob.near/widget/ProfileLine`} props={{ accountId }} />
           </div>
           <Widget
             src={`mob.near/widget/PublicTags`}
             props={{
-              accountId: state.contractId,
+              accountId,
               extraTags: state.metadata.tags,
             }}
           />
