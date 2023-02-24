@@ -44,7 +44,7 @@ return (
     <CommitButton
       disabled={loading}
       className={`btn ${
-        loading || follow ? "btn-outline-dark" : "btn-success"
+        loading || follow ? "btn-outline-dark" : "btn-secondary"
       }`}
       data={data}
     >
