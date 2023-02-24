@@ -148,7 +148,7 @@ return (
   <div>
     <div className="mb-5">{body}</div>
     <div className="d-flex flex-row justify-content-between ps-3">
-      {contentSelector}
+      <span className="fw-bold">Conrtibutes to</span>
       <Widget
         src={`${ownerId}/widget/SearchInput`}
         props={{ search: props.search, update: props.update }}
