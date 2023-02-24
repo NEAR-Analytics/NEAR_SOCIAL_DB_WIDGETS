@@ -67,6 +67,7 @@ const body = (
           props={{
             accountId,
             imageSize: "5em",
+            isEntity: false,
             update: props.update,
             additionalColumn: controls,
             additionalRow: (
