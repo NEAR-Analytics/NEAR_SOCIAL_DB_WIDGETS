@@ -103,8 +103,8 @@ const tabContent = {
 return (
   <div>
     <div
-      className="d-flex flex-row position-fixed top-0"
-      style={{ width: "20vw" }}
+      className="d-flex flex-row position-fixed"
+      style={{ width: "20vw", top: "100px" }}
     >
       <div className="px-1">
         <Widget
