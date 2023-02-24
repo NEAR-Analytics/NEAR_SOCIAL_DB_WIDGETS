@@ -19,7 +19,7 @@ return (
   <div className="row">
     <div className="col-lg-6">
       <div>
-        <h4>Public Tags</h4>
+        <h4>Skill Badges</h4>
       </div>
       <div className="mb-2">
         NEAR Wallet ID:
@@ -63,7 +63,7 @@ return (
             },
           }}
         >
-          Save
+          Update Profile
         </CommitButton>
       </div>
     </div>
