@@ -20,11 +20,19 @@ const computeResults = (term) => {
     .split(/[^\w._-]/)
     .filter((s) => !!s.trim());
 
-  State.update({
-    term,
+  const result = {
     people: computePeople(terms),
     apps: computeApps(terms),
+  };
+
+  State.update({
+    term,
+    result,
   });
+
+  if (props.onChange) {
+    props.onChange({ term, result });
+  }
 };
 
 const computeApps = (terms) => {
@@ -128,73 +136,72 @@ const computePeople = (terms) => {
   return results.slice(0, limitPerGroup);
 };
 
+const Wrapper = styled.div`
+  width: 100%;
+  height: 40px;
+  position: relative;
+
+  .bi-search {
+      position: absolute;
+      top: 0;
+      left: 18px;
+      z-index: 100;
+      font-size: 14px;
+      line-height: 40px;
+      color: #687076;
+  }
+
+  .input-group {
+      height: 100%;
+  }
+
+  input {
+      padding: 0 14px 0 42px;
+      border: 1px solid #D0D5DD !important;
+      background: #FFFFFF;
+      border-radius: 100px;
+  }
+
+  button {
+      border-color: #D0D5DD !important;
+      border-radius: 0 100px 100px 0 !important;
+      border-left: none !important;
+      background: #fff !important;
+      color: #687076 !important;
+
+      &:hover, &:focus {
+          color: #000 !important;
+      }
+  }
+
+  @media (max-width: 500px) {
+      width: 100%;
+  }
+`;
+
 return (
-  <div>
-    <div>
+  <Wrapper>
+    <i className="bi bi-search"></i>
+    <div className="input-group">
       <input
         type="text"
+        className={`form-control ${state.term ? "border-end-0" : ""}`}
         value={state.term ?? ""}
         onChange={(e) => computeResults(e.target.value)}
-        placeholder="Search..."
+        placeholder={props.placeholder ?? `Search`}
       />
+
       {state.term && (
-        <button type="button" onClick={() => computeResults("")}>
-          Clear
+        <button
+          className="btn btn-outline-secondary border border-start-0"
+          type="button"
+          onClick={() => computeResults("")}
+        >
+          <i className="bi bi-x"></i>
         </button>
       )}
     </div>
 
-    {state.term && (
-      <>
-        {state.people?.length > 0 && (
-          <div>
-            <p>People:</p>
-
-            <ul>
-              {state.people.map((person, i) => (
-                <li key={i}>
-                  <a
-                    href={`/#/calebjacob.near/widget/ProfilePage?accountId=${person.accountId}`}
-                  >
-                    {person.name}, {person.accountId}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {state.apps?.length > 0 && (
-          <div>
-            <p>Applications:</p>
-
-            <ul>
-              {state.apps.map((app, i) => (
-                <li key={i}>
-                  <a
-                    href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${app.accountId}/widget/${app.widgetName}`}
-                  >
-                    {app.widgetName}, {app.accountId}
-                    <br />
-                    {app.tags.join(", ")}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </>
-    )}
-
-    {state.term && state.apps?.length === 0 && state.people?.length === 0 && (
-      <p>No people or applications match your search.</p>
-    )}
-
-    {props.debug && (
-      <div>
-        <p>Debug Data:</p>
-        <pre>{JSON.stringify(state, undefined, 2)}</pre>
-      </div>
-    )}
-  </div>
+    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
+  </Wrapper>
 );
