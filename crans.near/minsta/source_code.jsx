@@ -101,7 +101,7 @@ const size = "4em";
 return (
   <div class="text-black p-2 container-fluid d-flex flex-column w-100 text-center justify-content-center align-items-center">
     <h4>Paul Crans</h4>
-    <p style={{ fontSize: 12 }}>peculiar testimonies of the journey</p>
+    <p style={{ fontSize: 12 }}>Capture, mint and share moments with me.</p>
     <div class="container-fluid text-center d-flex flex-column justify-content-center align-items-center">
       <Files
         multiple={false}
