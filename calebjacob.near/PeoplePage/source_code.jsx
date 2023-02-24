@@ -48,6 +48,7 @@ if (data) {
 }
 
 function onSearchChange({ result, term }) {
+  props.tab = "everyone";
   State.update({
     selectedTab: "everyone",
   });
