@@ -15,7 +15,7 @@ const convertType = (contributionType) => {
 
 State.init({
   // The entity to which to request a contribution.
-  entity: props.accountId ? [{ name: props.accountId }] : [],
+  entity: props.entity ? [{ name: props.entity }] : [],
   // The description of the contribution request.
   description: props.description ?? "",
   contributionType: props.contributionType
@@ -38,10 +38,10 @@ const existingEntities = (
   Near.view(ownerId, "get_entities", {}, "final") ?? []
 ).map(([accountId]) => ({ name: accountId }));
 
-const entityEditor = props.accountId ? (
+const entityEditor = props.entity ? (
   <div>
     <label htmlFor="account-id" className="text-muted fw-semibold">
-      Request for:
+      Contribute to:
     </label>
     <div
       className="rounded-3 bg-light"
@@ -50,13 +50,13 @@ const entityEditor = props.accountId ? (
     >
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId: props.accountId, imageSize: "4em", isEntity: true }}
+        props={{ accountId: props.entity, imageSize: "4em", isEntity: true }}
       />
     </div>
   </div>
 ) : (
   <div className="col-lg-12  mb-2">
-    <label htmlFor="enity-id">Request for:</label>
+    <label htmlFor="enity-id">Contribute to:</label>
     <Typeahead
       id="entity-id"
       labelKey="name"
