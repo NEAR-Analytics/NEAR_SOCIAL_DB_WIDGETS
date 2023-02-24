@@ -22,18 +22,18 @@ if (Array.isArray(requests) && requests.length === 0) {
 const allRequests = requests.filter(([entityId]) => entityId.includes(search));
 
 if (!allRequests || allRequests.length === 0) {
-  return "No requests match search criteria!";
+  return "No proposals match search criteria!";
 }
 
 return (
   <>
-    {allRequests.map(([entityId, contributorId]) => (
+    {allRequests.map(([entityId]) => (
       <div key={contributorId} className="mt-3">
         <Widget
           src={`${ownerId}/widget/ContributionRequest`}
           props={{
-            entityId: accountId || entityId,
-            contributorId: accountId ? entityId : contributorId,
+            entityId: entityId,
+            contributorId: accountId,
             update: props.update,
           }}
         />
