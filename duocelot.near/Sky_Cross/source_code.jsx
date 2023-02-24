@@ -1306,6 +1306,11 @@ class UI {
     }
   
   draw(context) {
+    // Draw top bar
+    context.fillStyle = "transparent";
+    context.fillRect(0, 0, this.game.width, this.topBarHeight);
+
+
 
   // Draw avatar
   const avatarX = this.game.width - (this.rightColumnWidth + 180 );
