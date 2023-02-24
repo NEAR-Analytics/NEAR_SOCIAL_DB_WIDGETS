@@ -35,7 +35,7 @@ return (
       best practices with industry experts around the world.
     </p>
     <div className="mb-3">
-      <h5>Our Social Profile:</h5>
+      <h5>Social Profile:</h5>
       <Widget src="gov.near/widget/Profile" props={{ ownerId }} />
     </div>
     <div className="mb-3">
