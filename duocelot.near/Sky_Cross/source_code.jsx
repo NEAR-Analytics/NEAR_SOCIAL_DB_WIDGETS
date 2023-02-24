@@ -1598,7 +1598,7 @@ return (
               Please connect with your near wallet or create one for free
             </h3>
             <a
-              href="https://shard.dog/go?url=https://app.jumpdefi.xyz"
+              href="https://shard.dog/go?url=https://near.social/#/duocelot.near/widget/Sky_Cross"
               style={{
                 fontFamily: "Press Start 2P",
                 fontSize: "14px",
