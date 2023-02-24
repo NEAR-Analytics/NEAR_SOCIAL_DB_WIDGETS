@@ -1,7 +1,8 @@
 /*
 ---props---
 
-props.widgetPath: string,
+widgetPath: string,
+count(count: number)?: function,
 
 */
 
@@ -24,7 +25,7 @@ const [widgetAccountId, _, widgetName] = props.widgetPath.split("/");
 let blocksChanges =
   historyBlocksRequest[widgetAccountId]?.["widget"]?.[widgetName];
 
-console.log(blocksChanges);
+if (props.count) props.count(blocksChanges.length);
 
 if (blocksChanges) blocksChanges = blocksChanges?.sort((a, b) => b - a);
 
