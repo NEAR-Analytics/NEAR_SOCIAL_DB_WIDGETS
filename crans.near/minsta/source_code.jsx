@@ -190,7 +190,7 @@ return (
     </div>
 
     <a href="https://linktr.ee/paul_crans" target="_blank" class="my-4">
-      Paul Crans{" "}
+      MUSIC{" "}
     </a>
   </div>
 );
