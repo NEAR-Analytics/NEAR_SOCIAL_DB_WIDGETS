@@ -55,14 +55,13 @@ const content = {
       props={{ search: props.search, update: props.update }}
     />
   ),
-  contributions: (
+  proposals: (
     <Widget
-      src={`${ownerId}/widget/ContributionList`}
+      src={`${ownerId}/widget/ProposalsList`}
       props={{
         search: props.search,
         update: props.update,
         accountId: context.accountId,
-        isEntity: false,
       }}
     />
   ),
