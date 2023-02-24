@@ -2,6 +2,7 @@ const requiredTag = "app";
 const limit = 5;
 let apps = [];
 let totalComponents = 0;
+const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 
 const taggedData = Social.keys(
   `*/widget/*/metadata/tags/${requiredTag}`,
@@ -86,9 +87,33 @@ const ButtonLink = styled.a`
   }
 `;
 
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+`;
+
+const TextLink = styled.a`
+  color: #006ADC;
+  outline: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  &:hover,
+  &:focus {
+    color: #006ADC;
+    text-decoration: underline;
+  }
+`;
+
 return (
   <Wrapper>
-    <H2>Featured Components</H2>
+    <Header>
+      <H2>Recent Components</H2>
+      <TextLink href={componentsUrl}>View All</TextLink>
+    </Header>
 
     <Items>
       {apps.map((app, i) => (
@@ -101,7 +126,7 @@ return (
       ))}
     </Items>
 
-    <ButtonLink href="/#/calebjacob.near/widget/ComponentsPage">
+    <ButtonLink href={componentsUrl}>
       View All Components <span>({totalComponents})</span>
     </ButtonLink>
   </Wrapper>
