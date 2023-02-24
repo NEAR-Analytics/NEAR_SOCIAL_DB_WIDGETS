@@ -76,7 +76,7 @@ return (
     <div className="col-lg-6">
       <div>
         <h4>Preview</h4>
-        Add Labels:
+        See Labels:
         <br />
       </div>
       <div className="card">
