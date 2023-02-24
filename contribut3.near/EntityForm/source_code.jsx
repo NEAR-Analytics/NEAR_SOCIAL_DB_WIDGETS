@@ -32,7 +32,7 @@ if (accountId) {
     { account_id: accountId },
     "final"
   ).then((entity) => {
-    const startDate = new Date(Number(entity.start_date));
+    const date = new Date(Number(entity.start_date));
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
