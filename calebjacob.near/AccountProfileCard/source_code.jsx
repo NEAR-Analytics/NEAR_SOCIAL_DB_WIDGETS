@@ -79,6 +79,7 @@ const TextLink = styled.a`
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
   white-space: nowrap;
   outline: none;
+  max-width: ${(p) => (p.max ? "10rem" : "")};
 
   &:focus,
   &:hover {
@@ -114,7 +115,7 @@ return (
           <TextLink href={profileUrl} ellipsis bold>
             {profile.name || accountId.split(".near")[0]}
           </TextLink>
-          <TextLink href={profileUrl} ellipsis>
+          <TextLink href={profileUrl} ellipsis max>
             @{accountId}
           </TextLink>
         </Name>
