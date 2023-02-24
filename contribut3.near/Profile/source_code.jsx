@@ -101,26 +101,6 @@ const body = (
   </div>
 );
 
-const contentSelector = (
-  <Widget
-    src={`${ownerId}/widget/TabSelector`}
-    props={{
-      tab: "entity",
-      content: getContent(props.content),
-      search: props.search,
-      accountId: props.accountId,
-      update: (content) => props.update({ content }),
-      buttons: [
-        {
-          id: "contributions",
-          text: "Contributes to",
-          icon: "bi-person-up",
-        },
-      ],
-    }}
-  />
-);
-
 return (
   <div>
     <div className="mb-5">{body}</div>
