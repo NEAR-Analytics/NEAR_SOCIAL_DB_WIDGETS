@@ -5,7 +5,7 @@ const height = size * ratio;
 return (
   <svg
     width={size}
-    height="111"
+    height={height}
     viewBox="0 0 128 111"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
