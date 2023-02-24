@@ -12,7 +12,7 @@ const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)} className="mb-3">
       <Widget
-        src="mob.near/widget/MainPage.Post"
+        src="flatirons.near/widget/Feed.Post"
         props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
       />
     </div>
