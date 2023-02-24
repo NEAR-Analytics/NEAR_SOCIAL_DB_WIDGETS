@@ -18,10 +18,6 @@ return (
     <div>
       <Widget
         src={`${authorForWidget}/widget/WikiOnSocialDB_AllArticlesList`}
-        props={{
-          filteredArticles,
-          getDateLastEdit,
-        }}
       />
     </div>
   </>
