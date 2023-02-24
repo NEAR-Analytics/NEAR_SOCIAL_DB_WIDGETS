@@ -1,9 +1,9 @@
 const ownerId = "gov.near";
 const accountId = props.accountId ?? context.accountId;
 
-const profile = props.profile ?? Social.getr(`${accountId}/profile`);
+const profile = props.profile ?? Social.getr(`${ownerId}/profile`);
 
-const name = profile.name;
+const name = "NEAR Global";
 const image = profile.image;
 const tags = Object.keys(profile.tags ?? {});
 
@@ -25,7 +25,7 @@ return (
         <div className="profile-name">
           <span className="fw-bold">{name || "< Profile Name >"}</span>
           <small>
-            <span className="font-monospace m-1">@{accountId}</span>
+            <span className="font-monospace m-1">@{ownerId}</span>
           </small>
         </div>
       </a>
