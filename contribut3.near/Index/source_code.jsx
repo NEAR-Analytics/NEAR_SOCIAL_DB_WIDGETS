@@ -104,7 +104,7 @@ return (
   <div>
     <div
       className="d-flex flex-row position-fixed"
-      style={{ width: "20vw", top: "100px" }}
+      style={{ width: "15vw", top: "100px" }}
     >
       <div className="px-1 flex-grow-1">
         <Widget
@@ -114,7 +114,7 @@ return (
       </div>
       <div className="vr mx-2" style={{ height: "90vh" }} />
     </div>
-    <div className="w-100" style={{ height: "200vh", marginLeft: "20vw" }}>
+    <div className="w-100" style={{ height: "200vh", marginLeft: "15vw" }}>
       {tabContent}
     </div>
   </div>
