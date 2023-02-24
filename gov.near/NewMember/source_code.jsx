@@ -1,4 +1,4 @@
-let accountId = context.accountId;
+const accountId = context.accountId;
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
@@ -16,7 +16,7 @@ const handleProposal = () => {
           description: "potential member",
           kind: {
             AddMemberToRole: {
-              member_id: "${accountId}",
+              member_id: accountId,
               role: "community",
             },
           },
