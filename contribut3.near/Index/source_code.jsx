@@ -101,7 +101,7 @@ const tabContent = {
 }[state.tab];
 
 return (
-  <div>
+  <div className="d-flex flex-row">
     <div
       className="d-flex flex-row position-fixed"
       style={{ width: "16vw", top: "100px" }}
@@ -114,8 +114,6 @@ return (
       </div>
       <div className="vr mx-2" style={{ height: "90vh" }} />
     </div>
-    <div className="w-100" style={{ paddingLeft: "16vw" }}>
-      {tabContent}
-    </div>
+    <div className="flex-grow-1">{tabContent}</div>
   </div>
 );
