@@ -73,14 +73,14 @@ const controls = isAuthorized ? (
             onClick: () =>
               props.update({ tab: "create", content: "request", accountId }),
           },
-          {
-            text: "Invite contributors",
-            icon: "bi-person-plus",
-          },
-          {
-            text: "Delete project",
-            icon: "bi-trash",
-          },
+          // {
+          //   text: "Invite contributors",
+          //   icon: "bi-person-plus",
+          // },
+          // {
+          //   text: "Delete project",
+          //   icon: "bi-trash",
+          // },
         ],
       }}
     />
