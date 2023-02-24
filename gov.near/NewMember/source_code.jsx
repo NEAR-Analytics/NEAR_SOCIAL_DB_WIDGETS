@@ -16,7 +16,7 @@ const handleProposal = () => {
           description: "potential member",
           kind: {
             AddMemberToRole: {
-              member_id: accountId,
+              member_id: "${accountId}",
               role: "community",
             },
           },
