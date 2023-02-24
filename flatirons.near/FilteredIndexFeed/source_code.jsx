@@ -152,7 +152,7 @@ return props.manual ? (
   </>
 ) : (
   <>
-    {props.index}
+    <p>{props.index}</p>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
