@@ -34,6 +34,8 @@ const handleProposal = () => {
 
 return (
   <div>
-    <button onClick={handleProposal}>Apply for Membership</button>
+    <button className="btn btn-success" onClick={handleProposal}>
+      Apply for Membership
+    </button>
   </div>
 );
