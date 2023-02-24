@@ -1312,6 +1312,7 @@ class UI {
     context.font = "20px Press Start 2P";
     context.fillStyle = "white";
     context.fillText("SKY CROSS", 500, 30);
+
     // Draw right column
     context.fillStyle = "gray";
     context.fillRect(
@@ -1329,10 +1330,10 @@ class UI {
       this.game.height - this.topBarHeight - this.bottomBarHeight
     );
     // Draw bottom bar
-    context.fillStyle = "transparent";
+    context.fillStyle = "gray";
     context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
     const margin = 60;
-    const textY = this.game.height - this.bottomBarHeight + margin + this.fontSize;
+    const textY = this.game.height = this.bottomBarHeight + margin + this.fontSize;
     
   // Draw avatar
   const avatarX = this.game.width - (this.rightColumnWidth + 180 );
@@ -1488,16 +1489,18 @@ return (
                   </div>
                 </PlayerDetail>
               </StatRow>
-            </Stat>
-            <div className="controls">
-              <div className="keys">
-                <KeysPara className="mb-5">
-                  <KeysParaSpan>S</KeysParaSpan> hold to shoot
-                </KeysPara>
-                <KeysPara className="">
-                  <KeysParaSpan>⬆</KeysParaSpan> <KeysParaSpan>⬇</KeysParaSpan>{" "}
-                  <KeysParaSpan>⬅</KeysParaSpan> <KeysParaSpan>➡</KeysParaSpan>{" "}
-                </KeysPara>
+            </Stat>{" "}
+            <div>
+              <div className="controls">
+                <div className="keys">
+                  <KeysPara className="mb-3">
+                    <KeysParaSpan>S</KeysParaSpan> hold to shoot
+                    <KeysParaSpan>⬆</KeysParaSpan>{" "}
+                    <KeysParaSpan>⬇</KeysParaSpan>{" "}
+                    <KeysParaSpan>⬅</KeysParaSpan>{" "}
+                    <KeysParaSpan>➡</KeysParaSpan>{" "}
+                  </KeysPara>
+                </div>
               </div>
             </div>
           </div>
