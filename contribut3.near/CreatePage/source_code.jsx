@@ -24,7 +24,12 @@ const content = {
   entity: (
     <Widget
       src={`${ownerId}/widget/EntityForm`}
-      props={{ search: state.search, update: props.update, kind: props.kind }}
+      props={{
+        search: state.search,
+        update: props.update,
+        kind: props.kind,
+        accountId: props.accountId,
+      }}
     />
   ),
 }[getContent(props.content)];
