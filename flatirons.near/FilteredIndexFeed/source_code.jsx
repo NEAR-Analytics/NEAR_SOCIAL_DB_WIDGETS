@@ -140,7 +140,9 @@ if (reverse) {
   items.reverse();
 }
 
-const renderedItems = items.map(cachedRenderItem).filter((item, index) => index % 2 === 0));
+const renderedItems = items
+  .map(cachedRenderItem)
+  .filter((item, index) => index % 2 === 0);
 
 return props.manual ? (
   <>
