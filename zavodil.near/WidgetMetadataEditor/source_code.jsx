@@ -11,7 +11,7 @@ if (metadata === null) {
 if (forcedTag) {
   const tags = Object.keys(metadata.tags ?? {});
   if (tags.length) {
-    if (tags.includes(forcedTag)) {
+    if (!tags.includes(forcedTag)) {
       metadata.tags[[forcedTag]] = "";
     }
   } else metadata.tags = { [forcedTag]: "" };
