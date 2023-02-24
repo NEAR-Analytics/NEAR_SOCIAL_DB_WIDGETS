@@ -101,8 +101,11 @@ const tabContent = {
 }[state.tab];
 
 return (
-  <div className="d-flex flex-row">
-    <div className="d-flex flex-row position-sticky top-0">
+  <div>
+    <div
+      className="d-flex flex-row position-fixed top-0"
+      style={{ width: "20vw" }}
+    >
       <div className="px-1">
         <Widget
           src={`${ownerId}/widget/Sidebar`}
@@ -111,7 +114,7 @@ return (
       </div>
       <div className="vr mx-2" style={{ height: "90vh" }} />
     </div>
-    <div className="w-100" style={{ height: "200vh" }}>
+    <div className="w-100" style={{ height: "200vh", marginLeft: "20vw" }}>
       {tabContent}
     </div>
   </div>
