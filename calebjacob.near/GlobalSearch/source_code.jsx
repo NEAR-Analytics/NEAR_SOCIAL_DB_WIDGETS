@@ -139,6 +139,13 @@ const computePeople = (terms) => {
   return results.slice(0, limitPerGroup);
 };
 
+if (props.term && props.term !== state.term) {
+  State.update({
+    term: props.term,
+  });
+  computeResults(props.term);
+}
+
 const Wrapper = styled.div`
   width: 100%;
   height: 40px;
