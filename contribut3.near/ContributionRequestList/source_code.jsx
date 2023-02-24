@@ -20,8 +20,7 @@ const requests = Near.view(
   ownerId,
   "get_entity_contribution_requests",
   { account_id: accountId },
-  "final",
-  true
+  "final"
 );
 
 console.log({ request, accountId });
