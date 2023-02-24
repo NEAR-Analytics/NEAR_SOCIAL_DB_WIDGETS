@@ -27,7 +27,7 @@ const Post = styled.div`
 return (
   <Post className="post">
     <Widget
-      src="mob.near/widget/MainPage.Post.Header"
+      src="flatirons.near/widget/MainPage.Post.Header"
       props={{ accountId, blockHeight, link, postType: "post" }}
     />
     <div className="mt-3 text-break">
@@ -45,8 +45,6 @@ return (
             item,
           }}
         />
-        <button>Hide Post</button>
-        <button>Hide User</button>
         <Widget
           src="mob.near/widget/CommentButton"
           props={{
