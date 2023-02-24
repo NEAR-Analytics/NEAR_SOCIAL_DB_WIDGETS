@@ -62,7 +62,7 @@ return (
     >
       <h4 className="fs-5 text-nowrap d-flex flex-row align-items-center">
         <Widget src={`${ownerId}/widget/Logo`} props={{ size: 32 }} />
-        <span>Web3 Combinator</span>
+        <span className="ms-2">Web3 Combinator</span>
       </h4>
     </HomeLink>
     {navItem({
