@@ -1306,8 +1306,6 @@ class UI {
     }
   
   draw(context) {
-   
-
 
   // Draw avatar
   const avatarX = this.game.width - (this.rightColumnWidth + 180 );
