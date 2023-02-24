@@ -4,7 +4,6 @@ const accountId = props.accountId;
 if (!accountId) {
   return "Cannot show contributor without account ID!";
 }
-
 State.init({
   inviteFormHidden: true,
 });
@@ -111,6 +110,15 @@ return (
         props={{ search: props.search, update: props.update }}
       />
     </div>
-    <div className="px-3 pt-3">{content}</div>
+    <div className="px-3 pt-3">
+    <Widget
+      src={`${ownerId}/widget/ContributionList`}
+      props={{
+        accountId: props.accountId,
+        search: props.search,
+        update: props.update,
+      }}
+    />
   </div>
+  </div >
 );
