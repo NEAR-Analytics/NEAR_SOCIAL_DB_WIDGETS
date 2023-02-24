@@ -114,8 +114,8 @@ return (
     <div className="d-flex flex-row justify-content-between">
       <a
         className="btn btn-outline-secondary"
-        href={`https://near.social/#/${ownerId}/widget/Index?tab=dashboard`}
-        onClick={() => props.update("dashboard")}
+        href={`https://near.social/#/${ownerId}/widget/Index?tab=home`}
+        onClick={() => props.update({ tab: "home" })}
       >
         Cancel
       </a>
