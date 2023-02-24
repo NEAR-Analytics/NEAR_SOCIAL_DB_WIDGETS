@@ -29,16 +29,6 @@ const handleProposal = () => {
 
 return (
   <div>
-    <Widget src="mob.near/widget/ProfileOnboarding" />
-    <div className="mb-3"></div>
-    <div>
-      <h2>Group Membership</h2>
-      <h3>NEAR Account ID</h3>
-      <input type="text" />
-    </div>
-    <div className="mb-3"></div>
-    <div>
-      <button onClick={handleProposal}>Submit</button>
-    </div>
+    <button onClick={handleProposal}>Submit</button>
   </div>
 );
