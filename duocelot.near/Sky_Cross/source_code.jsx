@@ -251,7 +251,7 @@ img {
             }
             start() {
                 this.background = new Background(this);
-                this.groundMargin = 80 * this.background.scaleFactor;
+                this.groundMargin = 10 * this.background.scaleFactor;
                 this.player = new Player(this);
                 this.projectile = new Projectile(this);
                 this.input = new InputHandler(this);
@@ -1510,7 +1510,7 @@ return (
           >
             <iframe
               srcDoc={scriptSrc}
-              style={{ height: "700px", width: "100%" }}
+              style={{ height: "740px", width: "100%" }}
             />
           </div>
           <div
