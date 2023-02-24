@@ -2,6 +2,7 @@ const limitPerPage = 21;
 let people = [];
 let totalPeople = 0;
 const peopleUrl = "/#/calebjacob.near/widget/PeoplePage";
+let followingData = null;
 
 State.init({
   currentPage: 0,
@@ -14,6 +15,10 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
+if (context.accountId) {
+  followingData = Social.keys(`${context.accountId}/graph/follow/*`, "final");
+}
+
 const data = Social.keys("*/profile", "final", {
   return_type: "BlockHeight",
 });
@@ -23,11 +28,19 @@ if (data) {
 
   Object.keys(data).forEach((accountId) => {
     totalPeople++;
+    const isFollowing =
+      followingData &&
+      followingData[context.accountId].graph.follow[accountId] === true;
 
-    result.push({
-      accountId,
-      blockHeight: data[accountId].profile,
-    });
+    if (
+      state.selectedTab === "everyone" ||
+      (state.selectedTab === "following" && isFollowing)
+    ) {
+      result.push({
+        accountId,
+        blockHeight: data[accountId].profile,
+      });
+    }
   });
 
   result.sort((a, b) => b.blockHeight - a.blockHeight);
