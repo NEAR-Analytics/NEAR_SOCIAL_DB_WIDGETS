@@ -16,7 +16,7 @@ const requests =
     true
   ) ?? [];
 
-console.log(request);
+console.log({ request, accountId });
 
 if (!requests) {
   return "Loading...";
