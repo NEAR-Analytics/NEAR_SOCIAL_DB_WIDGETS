@@ -19,7 +19,7 @@ return (
   <div className="row">
     <div className="col-lg-6">
       <div>
-        <h4>Skill Badges</h4>
+        <h4>C Badges</h4>
       </div>
       <div className="mb-2">
         NEAR Wallet ID:
@@ -63,13 +63,13 @@ return (
             },
           }}
         >
-          Update Profile
+          Update Skills
         </CommitButton>
         <a
           className="btn btn-outline-primary ms-2"
           href={`#/zavodil.near/widget/AllLabels?accountId=${accountId}`}
         >
-          View Labels
+          View All
         </a>
       </div>
     </div>
