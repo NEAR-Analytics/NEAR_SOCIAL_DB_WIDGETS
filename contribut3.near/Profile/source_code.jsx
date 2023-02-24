@@ -135,7 +135,7 @@ const content = {
   contributions: (
     <Widget
       src={`${ownerId}/widget/ContributionList`}
-      props={{ search: props.search, update: props.update }}
+      props={{ accountId, search: props.search, update: props.update }}
     />
   ),
 }[getContent(props.content)];
