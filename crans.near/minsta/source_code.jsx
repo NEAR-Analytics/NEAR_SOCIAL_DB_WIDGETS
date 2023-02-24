@@ -1,7 +1,7 @@
 const accountId = context?.accountId;
 
 const proxyMinter = "proxy2.minsta.near";
-const nftContractId = props?.contractId || "minsta.mintbase1.near";
+const nftContractId = "paulcrans.mintbase1.near";
 const mbGraphEndpoint = "https://graph.mintbase.xyz";
 
 const ipfsUrl = (cid) => `https://ipfs.near.social/ipfs/${cid}`;
@@ -18,7 +18,7 @@ const data = fetch(mbGraphEndpoint, {
   body: JSON.stringify({
     query: `
   query FetchFeedMintedThings {
-  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "minsta.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
+  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "ethdenver2023.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
       nft_contract_id
       action_receiver
       token_id
@@ -96,15 +96,11 @@ if (data?.body?.data?.nft_activities) {
   posts = data?.body?.data?.nft_activities;
 }
 
-if (posts.length === 0) {
-  return "Loading...";
-}
-
-const size = "3em";
+const size = "4em";
 
 return (
   <div class="text-black p-2 container-fluid d-flex flex-column w-100 text-center justify-content-center align-items-center">
-    <h4>Minsta</h4>
+    <h4>ETHDenver 2023</h4>
     <p style={{ fontSize: 12 }}>Capture, mint and share moments with others.</p>
     <div class="container-fluid text-center d-flex flex-column justify-content-center align-items-center">
       <Files
@@ -148,29 +144,33 @@ return (
               <span role="img" aria-label="poked" title="poked">
                 📸
               </span>
-              <Widget
-                src="mob.near/widget/NftImage"
-                props={{
-                  nft: {
-                    tokenId: post.token_id,
-                    contractId: post.nft_contract_id,
-                  },
-                  style: {
-                    width: size,
-                    height: size,
-                    objectFit: "cover",
-                    minWidth: size,
-                    minHeight: size,
-                    maxWidth: size,
-                    maxHeight: size,
-                    overflowWrap: "break-word",
-                  },
-                  thumbnail: "thumbnail",
-                  className: "",
-                  fallbackUrl:
-                    "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-                }}
-              />
+              <a
+                href={`https://mintbase.xyz/contract/${post.nft_contract_id}/token/${post.token_id}`}
+              >
+                <Widget
+                  src="mob.near/widget/NftImage"
+                  props={{
+                    nft: {
+                      tokenId: post.token_id,
+                      contractId: post.nft_contract_id,
+                    },
+                    style: {
+                      width: size,
+                      height: size,
+                      objectFit: "cover",
+                      minWidth: size,
+                      minHeight: size,
+                      maxWidth: size,
+                      maxHeight: size,
+                      overflowWrap: "break-word",
+                    },
+                    thumbnail: "thumbnail",
+                    className: "",
+                    fallbackUrl:
+                      "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+                  }}
+                />
+              </a>
               <span role="img" aria-label="poked" title="poked">
                 ➡️
               </span>
