@@ -35,7 +35,7 @@ if (accountId) {
     console.log({
       name: entity.name,
       kind: [{ name: entity.kind }],
-      startDate: createDate(new Date(Number(entity.start_date))),
+      startDate: new Date(Number(entity.start_date)),
     });
     State.update({
       name: entity.name,
