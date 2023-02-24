@@ -38,7 +38,7 @@ const App = styled.div`
 
 const Nav = styled.ul`
 position: absolute;
-  bottom: 80px;
+  bottom: 3rem;
   height: 6rem;
   align-items: center !important;
   width: 47% !important;
@@ -60,12 +60,15 @@ const NavLink = styled.button`
   `;
 
 const Stat = styled.div`
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44vw;
+  height: 44vh;
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  background-color: rgba(9,5,19,.5);
-  padding: 2rem;
-  margin-bottom: 3rem;
+  background-color: rgba(9, 5, 19, 0.5);
 `;
 
 const StatRow = styled.div`
@@ -115,6 +118,7 @@ const PlayerActions = styled.div`
 `;
 
 const PlayerActionsFilledButton = styled.button`
+
   background: #2a2a2a;
   color: #FFD852;
   border: none;
@@ -133,6 +137,10 @@ const PlayerActionsOutlineButton = styled.button`
 `;
 
 const KeysPara = styled.p`
+position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  height: 6rem;
   font-size: 1.4rem;
 `;
 
@@ -142,7 +150,7 @@ const KeysParaSpan = styled.span`
   padding: .5rem 1rem;
   font-weight: 900;
   border-radius: 12px;
-  margin-right: .5rem;
+  margin-right: .2rem;
 `;
 
 const Leaderboard = styled.div`
@@ -411,7 +419,7 @@ img {
             this.layer2Image = layer2Image;
             this.layer1Image = layer1Image;
             this.layer1 = new Layer(this.game, this.width, this.height, 0, this.layer1Image);
-            this.layer2 = new Layer(this.game, this.width, this.height, 0.007, this.layer2Image);
+            this.layer2 = new Layer(this.game, this.width, this.height, 0.0087, this.layer2Image);
             this.layer3 = new Layer(this.game, this.width, this.height, 0.02, this.layer3Image);
             this.layer4 = new Layer(this.game, this.width, this.height, 0.063, this.layer4Image);
             this.layer5 = new Layer(this.game, this.width, this.height, 0.2, this.layer5Image);
