@@ -18,7 +18,7 @@ return (
           src="mob.near/widget/ProfileImage"
           props={{
             profile,
-            accountId,
+            ownerId,
             className: "float-start me-2",
           }}
         />
