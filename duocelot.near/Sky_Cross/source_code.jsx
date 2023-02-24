@@ -25,7 +25,7 @@ const App = styled.div`
   margin: 0;
   padding: 1rem;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-color: #1E1E1E;
   background-image: url('https://ik.imagekit.io/duOCELOT/assets/bgtheme?ik-sdk-version=javascript-1.4.3&updatedAt=1677218679875');
 background-size: cover;
@@ -37,11 +37,11 @@ background-position: center;
 `;
 
 const Nav = styled.ul`
+ position: absolute;
+  bottom: 0;
   height: 6rem;
   align-items: center !important;
   width: 100% !important;
-  padding-left: .5rem !important;
-  border-radius: 12px;
   backdrop-filter: blur(10px);
   background-color: rgba(9,5,19,.4);
   margin-bottom: 3rem !important;
@@ -191,13 +191,17 @@ const scriptSrc = `
   box-sizing: border-box;
 }
 #canvas1 {
+      position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width:  82vw;
-  height: 82vh;
+  height: 92vh;
   margin: 0;
   z-index: 100;
   border: none;
   border-radius: 20px;
-  background: grey;
+  background: black;
 }
 img {
   display: none;
@@ -1352,7 +1356,7 @@ context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, t
     
     context.font = this.fontSize + this.fontFamily;
     context.textAlign = "left";
-  context.fillStyle = "white";
+    context.fillStyle = "white";
     // Draw score and lives
     context.fillText(
       "Score: " + this.game.score,
@@ -1475,14 +1479,6 @@ return (
                       <PlayerStatParaSpan>Last Score:</PlayerStatParaSpan> 4221
                     </PlayerStatPara>
                   </div>
-                  <PlayerActions className="player-actions">
-                    <PlayerActionsFilledButton type="button" class="filled">
-                      Launch Game
-                    </PlayerActionsFilledButton>
-                    <PlayerActionsOutlineButton type="button" class="outline">
-                      Leaderboard
-                    </PlayerActionsOutlineButton>
-                  </PlayerActions>
                 </PlayerDetail>
               </StatRow>
             </Stat>
