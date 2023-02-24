@@ -50,7 +50,7 @@ const entityEditor = props.accountId ? (
     >
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId: props.entity, imageSize: "4em", isEntity: true }}
+        props={{ accountId: props.accountId, imageSize: "4em", isEntity: true }}
       />
     </div>
   </div>
