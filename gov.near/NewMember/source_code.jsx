@@ -29,6 +29,6 @@ const handleProposal = () => {
 
 return (
   <div>
-    <button onClick={handleProposal}>Submit</button>
+    <button onClick={handleProposal}>Apply for Membership</button>
   </div>
 );
