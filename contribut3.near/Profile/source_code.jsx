@@ -5,16 +5,6 @@ if (!accountId) {
   return "Cannot show contributor without account ID!";
 }
 
-const availableContent = ["contributions"];
-
-const getContent = (content) => {
-  if (!content || !availableContent.includes(content)) {
-    return "contributions";
-  }
-
-  return content;
-};
-
 State.init({
   inviteFormHidden: true,
 });
@@ -130,19 +120,6 @@ const contentSelector = (
     }}
   />
 );
-
-const content = {
-  contributions: (
-    <Widget
-      src={`${ownerId}/widget/ContributionList`}
-      props={{
-        accountId: props.accountId,
-        search: props.search,
-        update: props.update,
-      }}
-    />
-  ),
-}[getContent(props.content)];
 
 return (
   <div>
