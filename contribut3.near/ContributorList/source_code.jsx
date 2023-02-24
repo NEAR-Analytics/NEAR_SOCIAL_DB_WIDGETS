@@ -15,9 +15,7 @@ const allContributors = (
       ) ?? {}
     )
     : Near.view(ownerId, "get_contributors", {}, "final", true) ?? []
-).filter((ids) => (accountId ? ids[0].includes(search) : ids.includes(search)));
-
-console.log(allContributors);
+).filter((id) => id.includes(search));
 
 if (!allContributors || allContributors.length === 0) {
   return "No contributors found!";
