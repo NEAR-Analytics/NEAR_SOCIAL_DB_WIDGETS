@@ -18,7 +18,7 @@ const data = fetch(mbGraphEndpoint, {
   body: JSON.stringify({
     query: `
   query FetchFeedMintedThings {
-  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "ethdenver2023.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
+  nft_activities(where: {kind: {_eq: "mint"}, nft_contract_id: {_eq: "paulcrans.mintbase1.near"}}, limit: 5, order_by: {timestamp: desc}) {
       nft_contract_id
       action_receiver
       token_id
@@ -100,8 +100,8 @@ const size = "4em";
 
 return (
   <div class="text-black p-2 container-fluid d-flex flex-column w-100 text-center justify-content-center align-items-center">
-    <h4>ETHDenver 2023</h4>
-    <p style={{ fontSize: 12 }}>Capture, mint and share moments with others.</p>
+    <h4>Paul Crans</h4>
+    <p style={{ fontSize: 12 }}>peculiar testimonies of the journey</p>
     <div class="container-fluid text-center d-flex flex-column justify-content-center align-items-center">
       <Files
         multiple={false}
@@ -189,12 +189,8 @@ return (
       </div>
     </div>
 
-    <a
-      href="https://twitter.com/microchipgnu/status/1542215896063672320"
-      target="_blank"
-      class="my-4"
-    >
-      What is this?{" "}
+    <a href="https://linktr.ee/paul_crans" target="_blank" class="my-4">
+      Paul Crans{" "}
     </a>
   </div>
 );
