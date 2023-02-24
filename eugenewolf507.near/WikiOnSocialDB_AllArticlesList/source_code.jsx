@@ -17,7 +17,7 @@ const resultArticles =
     return [...acc, postDataWithBlockHeight];
   }, []);
 
-// ========== FILTER DUBLICATES ==========
+// ========== FILTER DUPLICATES ==========
 const filteredArticles =
   resultArticles.length &&
   resultArticles.reduce((acc, article) => {
