@@ -26,10 +26,10 @@ if (!allContributors || allContributors.length === 0) {
 return (
   <>
     {allContributors.map((ids) => (
-      <div key={account ? ids[0] : ids} className="mb-2">
+      <div key={account ? ids : ids[0]} className="mb-2">
         <Widget
           src={`${ownerId}/widget/Contributor`}
-          props={{ accountId: accountId ? ids[0] : ids, update: props.update }}
+          props={{ accountId: accountId ? ids : ids[0], update: props.update }}
         />
       </div>
     ))}
