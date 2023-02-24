@@ -1564,7 +1564,7 @@ return (
             }}
           >
             <img
-              src="https://bafybeiep6yscx365ici64ce2o7ktr3vewuyk7rwj4kxpwrf4ugeloxgfri.ipfs.w3s.link/error-001.jpg"
+              src="https://ik.imagekit.io/duOCELOT/assets/noship?ik-sdk-version=javascript-1.4.3&updatedAt=1677226846709"
               alt="ERROR 001"
               style={{
                 width: "340px",
