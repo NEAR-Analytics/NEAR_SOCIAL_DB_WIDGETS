@@ -22,11 +22,8 @@ const tags = Object.keys(profile.tags ?? {});
 return (
   <div>
     <Widget src="mob.near/widget/ProfileOnboarding" props={{ accountId }} />
-    <h1>
-      <b>NEAR Global</b>
-    </h1>
     <h2>
-      <i>Uniting the Open Web</i>
+      <b>NEAR Global:</b> Uniting the Open Web
     </h2>
     <p>
       We build generative community programs to activate contributors in order
