@@ -57,8 +57,6 @@ if (!allNeeds || allNeeds.length === 0) {
   return "No contribution needs found!";
 }
 
-console.log("allNeeds", allNeeds);
-
 return (
   <>
     {allNeeds.map(([accountId, cid]) => (
