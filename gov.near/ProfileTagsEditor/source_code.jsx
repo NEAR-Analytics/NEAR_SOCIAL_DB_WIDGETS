@@ -17,11 +17,7 @@ State.init({
 return (
   <>
     <div className="row">
-      <h3>Your Profile</h3>
-      <Widget src="gov.near/widget/Profile" />
-    </div>
-    <div className="row">
-      <h5>Edit Your Profile Tags</h5>
+      <h5>Private Tags</h5>
       <Widget
         src="gov.near/widget/MetadataEditor"
         props={{
