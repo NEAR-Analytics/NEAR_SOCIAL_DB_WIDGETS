@@ -79,7 +79,7 @@ return (
                 href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
                 className="text-decoration-none link-dark text-truncate"
               >
-                <Widget src="gov.near/widget/Profile" props={{ accountId }} />
+                <Widget src="gov.near/widget/Profile" props={{ ownerId }} />
               </a>
             </div>
             <div className="d-none text-nowrap d-md-block">
