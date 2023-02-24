@@ -147,6 +147,10 @@ if (!state.hasSyncedTermProp && props.term && props.term !== state.term) {
   computeResults(props.term);
 }
 
+if (profiles && componentMetadata && componentKeys) {
+  computeResults(state.term);
+}
+
 const Wrapper = styled.div`
   width: 100%;
   height: 40px;
