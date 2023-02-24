@@ -156,6 +156,8 @@ const Button = styled.button`
   }
 `;
 
+console.log(items);
+
 return (
   <Wrapper>
     <Header>
@@ -182,7 +184,7 @@ return (
         {items.map((person, i) => (
           <Item key={person.accountId}>
             <Widget
-              src="calebjacob.near/widget/AccountProfile"
+              src="calebjacob.near/widget/AccountProfileCard"
               props={{
                 accountId: person.accountId,
                 blockHeight: person.blockHeight,
