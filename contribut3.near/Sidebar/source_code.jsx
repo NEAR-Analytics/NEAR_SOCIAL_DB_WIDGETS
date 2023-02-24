@@ -44,6 +44,12 @@ const navItem = ({ text, icon, id, count }) => (
   </a>
 );
 
+const HomeLink = styled.a`
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
 return (
   <div className="d-flex flex-column">
     <a
