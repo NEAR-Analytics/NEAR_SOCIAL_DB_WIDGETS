@@ -16,8 +16,6 @@ const requests =
     true
   ) ?? [];
 
-console.log(requests);
-
 if (!requests) {
   return "Loading...";
 }
