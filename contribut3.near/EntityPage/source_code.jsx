@@ -161,7 +161,7 @@ const proposalsCount = (
   Near.view(
     ownerId,
     "get_entity_contribution_requests",
-    { entity_id: accountId },
+    { account_id: accountId },
     "final",
     true
   ) ?? []
