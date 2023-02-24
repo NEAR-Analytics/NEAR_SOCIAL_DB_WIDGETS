@@ -152,7 +152,7 @@ return props.manual ? (
   </>
 ) : (
   <>
-    <p>{props.index}</p>
+    <p>{JSON.stringify(props.index)}</p>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
