@@ -11,6 +11,7 @@ const availableContent = [
   "requests",
   "contributions",
   "contributors",
+  "graph",
 ];
 
 const getContent = (content) => {
