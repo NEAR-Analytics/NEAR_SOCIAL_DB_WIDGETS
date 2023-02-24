@@ -38,7 +38,7 @@ const showLoadMoreButton = components.length % limitPerPage === 0;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 48px;
 `;
 
 const Items = styled.div`
