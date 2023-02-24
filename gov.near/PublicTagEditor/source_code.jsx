@@ -65,6 +65,12 @@ return (
         >
           Update Profile
         </CommitButton>
+        <a
+          className="btn btn-outline-primary ms-2"
+          href={`#/zavodil.near/widget/AllLabels`}
+        >
+          View Labels
+        </a>
       </div>
     </div>
     <div className="col-lg-6">
