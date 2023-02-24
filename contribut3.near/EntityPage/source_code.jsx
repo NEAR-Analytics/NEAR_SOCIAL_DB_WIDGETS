@@ -185,7 +185,7 @@ const contentSelector = (
       content: getContent(props.content),
       search: props.search,
       accountId: props.accountId,
-      update: (content) => props.update({ content }),
+      update: props.update,
       buttons: [
         {
           id: "requests",
