@@ -27,9 +27,9 @@ const App = styled.div`
   width: 100%;
   height: 80vh;
   background-color: #1E1E1E;
-  background-image: url('https://ik.imagekit.io/duOCELOT/assets/bgtheme?ik-sdk-version=javascript-1.4.3&updatedAt=1677218679875');
-background-size: cover;
-background-position: center;
+  background-image: url('https://ik.imagekit.io/duOCELOT/assets/bgtheme2.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677222370973');
+  background-size: cover;
+  background-position: center;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -37,11 +37,12 @@ background-position: center;
 `;
 
 const Nav = styled.ul`
- position: absolute;
-  bottom: 0;
+position: absolute;
+  bottom: 80px;
   height: 6rem;
   align-items: center !important;
-  width: 100% !important;
+  width: 47% !important;
+  border-radius: 0px;
   backdrop-filter: blur(10px);
   background-color: rgba(9,5,19,.4);
   margin-bottom: 3rem !important;
@@ -52,12 +53,11 @@ const Nav = styled.ul`
 `;
 
 const NavLink = styled.button`
-  font-size: 3rem !important;
+  font-size: 1.7rem !important;
   font-weight: 900 !important;
   color: #f2f2f2 !important;
   text-decoration: none !important;
-  padding: 0 3rem !important;
-`;
+  `;
 
 const Stat = styled.div`
   width: 100%;
@@ -196,7 +196,7 @@ const scriptSrc = `
   left: 50%;
   transform: translate(-50%, -50%);
   width:  82vw;
-  height: 92vh;
+  height: 82vh;
   margin: 0;
   z-index: 100;
   border: none;
@@ -1444,7 +1444,7 @@ return (
               aria-controls="pills-contact"
               aria-selected="false"
             >
-              Leaderboard
+              Score
             </NavLink>
           </li>
         </Nav>
@@ -1483,7 +1483,6 @@ return (
               </StatRow>
             </Stat>
             <div className="controls">
-              <h2 className="text-uppercase mb-4">Control Keys</h2>
               <div className="keys">
                 <KeysPara className="mb-5">
                   <KeysParaSpan>S</KeysParaSpan> Press and hold to shoot
@@ -1491,7 +1490,6 @@ return (
                 <KeysPara className="">
                   <KeysParaSpan>⬆</KeysParaSpan> <KeysParaSpan>⬇</KeysParaSpan>{" "}
                   <KeysParaSpan>⬅</KeysParaSpan> <KeysParaSpan>➡</KeysParaSpan>{" "}
-                  To move your ship around
                 </KeysPara>
               </div>
             </div>
