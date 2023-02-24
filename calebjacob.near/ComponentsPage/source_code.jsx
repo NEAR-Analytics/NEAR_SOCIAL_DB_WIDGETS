@@ -138,7 +138,7 @@ const Button = styled.button`
   height: 32px;
   background: #FBFCFD;
   border: 1px solid #D7DBDF;
-  border-radius: 6px;
+  border-radius: 50px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
