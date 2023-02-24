@@ -25,6 +25,17 @@ State.init({
   startDate,
 });
 
+if (accountId) {
+  Near.asyncView(
+    ownerId,
+    "get_entity",
+    { account_id: accountId },
+    "final"
+  ).then((entity) =>
+    State.update({ name: entity.name, kind: [{ name: entity.kind }] })
+  );
+}
+
 const accountIdInput = (
   <div className="col-lg-12 mb-2">
     <Widget
