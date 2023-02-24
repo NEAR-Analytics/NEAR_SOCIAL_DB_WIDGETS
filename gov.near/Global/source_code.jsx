@@ -32,7 +32,7 @@ return (
       best practices with ecosystem leaders and industry experts around the
       world.
     </p>
-    <div className="mb-3">
+    <div className="mb-1">
       <Widget src="gov.near/widget/Profile" props={{ accountId }} />
     </div>
     <div className="mb-3">
