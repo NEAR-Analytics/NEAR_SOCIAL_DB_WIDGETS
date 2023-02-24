@@ -21,11 +21,27 @@ State.init({
   description: "",
 });
 
-const entityIdInput = (
+const entityIdInput = props.accountId ? (
+  <div>
+    <label htmlFor="account-id" className="text-muted fw-semibold">
+      Request for:
+    </label>
+    <div
+      className="rounded-3 bg-light"
+      style={{ height: "5em" }}
+      id="account-id"
+    >
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{ accountId: props.entity, imageSize: "4em", isEntity: true }}
+      />
+    </div>
+  </div>
+) : (
   <Widget
     src={`${ownerId}/widget/AdminEntityAccountIdInput`}
     props={{
-      label: "Request as:",
+      label: "Request for:",
       update: (entityId) => {
         State.update({ entityId });
         Near.asyncView(
