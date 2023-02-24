@@ -69,6 +69,9 @@ const controls = isAuthorized ? (
           {
             text: "Create new request",
             icon: "bi-boxes",
+            href: `https://near.social/#/${ownerId}/widget/Index?tab=create&content=request&accountId=${accountId}`,
+            onClick: () =>
+              props.update({ tab: "create", content: "request", accountId }),
           },
           {
             text: "Invite contributors",
