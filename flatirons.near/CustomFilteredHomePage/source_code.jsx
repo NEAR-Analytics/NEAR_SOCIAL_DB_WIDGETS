@@ -43,7 +43,7 @@ return (
         role="tabpanel"
         aria-labelledby="pills-feed-tab"
       >
-        <Widget src="mob.near/widget/MainPage.Content" />
+        <Widget src="flatirons.near/widget/MainPage.Content" />
       </div>
       <div
         className="tab-pane d-lg-block col-lg-4"
