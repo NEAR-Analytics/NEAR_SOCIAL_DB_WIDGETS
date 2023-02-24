@@ -31,13 +31,14 @@ if (accountId) {
     "get_entity",
     { account_id: accountId },
     "final"
-  ).then((entity) =>
+  ).then((entity) => {
+    console.log(entity);
     State.update({
       name: entity.name,
       kind: [{ name: entity.kind }],
       startDate: createDate(new Date(Number(entity.start_date))),
-    })
-  );
+    });
+  });
 }
 
 const accountIdInput = accountId ? (
