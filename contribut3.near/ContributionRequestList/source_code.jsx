@@ -44,7 +44,7 @@ return (
           src={`${ownerId}/widget/ContributionRequest`}
           props={{
             entityId: accountId || entityId,
-            contributorId: accountId ? entityId : contributorId,
+            contributorId: accountId ? contributorId : entityId,
             update: props.update,
           }}
         />
