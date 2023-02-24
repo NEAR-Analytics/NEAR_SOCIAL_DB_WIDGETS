@@ -45,6 +45,8 @@ const navItem = ({ text, icon, id, count }) => (
 );
 
 const HomeLink = styled.a`
+  color: #000;
+
   &:hover {
     text-decoration: none;
   }
