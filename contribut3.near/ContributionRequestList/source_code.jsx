@@ -2,6 +2,7 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 const accountId = props.accountId;
 const cid = props.cid;
+console.log(accountId);
 
 const requests =
   Near.view(
