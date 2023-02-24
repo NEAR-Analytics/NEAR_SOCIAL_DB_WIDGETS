@@ -60,7 +60,8 @@ function onSearchChange({ result, term }) {
 }
 
 const items = state.searchResults || people;
-const showLoadMoreButton = !state.searchResults && people.length % limit === 0;
+const showLoadMoreButton =
+  !state.searchResults && people.length % limitPerPage === 0;
 
 const Wrapper = styled.div`
   display: flex;
