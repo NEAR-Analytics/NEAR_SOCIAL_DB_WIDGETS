@@ -17,7 +17,7 @@ State.init({
 return (
   <>
     <div className="row">
-      <h5>Private Tags</h5>
+      <h4>Private Tags</h4>
       <Widget
         src="gov.near/widget/MetadataEditor"
         props={{
