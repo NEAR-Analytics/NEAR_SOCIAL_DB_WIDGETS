@@ -55,7 +55,7 @@ return (
                 View raw markdown source
               </a>
             </li>
-            <li className="dropdown-item">Hide Post</li>
+            <li className="dropdown-item">Hide ${postType}</li>
             <li className="dropdown-item">Hide User</li>
           </ul>
         </span>
