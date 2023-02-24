@@ -4,12 +4,17 @@ if (!accountId) {
   return "";
 }
 
+const limitPerPage = 20;
+let allNfts = [];
+let results = [];
+
+State.init({
+  currentPage: 0,
+});
+
 const data = fetch(
   `https://api.kitwallet.app/account/${accountId}/likelyNFTsFromBlock`
 );
-
-let allNfts = [];
-let results = [];
 
 if (data.body?.list) {
   allNfts = [];
@@ -28,6 +33,11 @@ if (data.body?.list) {
           ...nft,
           contractId,
         });
+
+        allNfts = allNfts.slice(
+          0,
+          state.currentPage * limitPerPage + limitPerPage
+        );
       });
     }
 
@@ -38,8 +48,15 @@ if (data.body?.list) {
 }
 
 const hasFinishedLoading = data.body?.list?.length === results.length;
+const showLoadMoreButton = allNfts.length % limitPerPage === 0;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const Items = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
@@ -76,28 +93,67 @@ const Text = styled.p`
   font-size: ${(p) => (p.small ? "12px" : "14px")};
 `;
 
+const Button = styled.button`
+  display: block;
+  width: 100%;
+  padding: 8px;
+  height: 32px;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: #11181C !important;
+  margin: 0;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+
+  span {
+    color: #687076 !important;
+  }
+`;
+
 if (hasFinishedLoading && allNfts.length === 0) {
   return <Text>This account doesn&apos;t have any NFTs yet.</Text>;
 }
 
 return (
   <Wrapper>
-    {allNfts.map((nft, i) => (
-      <Card
-        key={i}
-        href={`/#/mob.near/widget/NftImage?tokenId=${nft.token_id}&contractId=${nft.contractId}`}
+    <Items>
+      {allNfts.map((nft, i) => (
+        <Card
+          key={i}
+          href={`/#/mob.near/widget/NftImage?tokenId=${nft.token_id}&contractId=${nft.contractId}`}
+        >
+          <Widget
+            src="mob.near/widget/NftImage"
+            props={{
+              nft: { tokenId: nft.token_id, contractId: nft.contractId },
+              className: "nft-thumbnail",
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+              alt: `NFT ${nft.contractId} ${nft.token_id}`,
+            }}
+          />
+        </Card>
+      ))}
+    </Items>
+
+    {showLoadMoreButton && (
+      <Button
+        type="button"
+        onClick={() => State.update({ currentPage: state.currentPage + 1 })}
       >
-        <Widget
-          src="mob.near/widget/NftImage"
-          props={{
-            nft: { tokenId: nft.token_id, contractId: nft.contractId },
-            className: "nft-thumbnail",
-            fallbackUrl:
-              "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-            alt: `NFT ${nft.contractId} ${nft.token_id}`,
-          }}
-        />
-      </Card>
-    ))}
+        Load More
+      </Button>
+    )}
   </Wrapper>
 );
