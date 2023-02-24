@@ -25,4 +25,4 @@ const content = {
   ),
 }[getContent(props.content)];
 
-return content;
+return <div>{content}</div>;
