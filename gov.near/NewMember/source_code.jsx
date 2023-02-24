@@ -5,15 +5,6 @@ if (!accountId) {
 }
 
 const handleProposal = () => {
-  const proposal = {
-    description: "proposal to add member",
-    kind: {
-      AddMemberToRole: {
-        member_id: accountId,
-        role: "community",
-      },
-    },
-  };
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
@@ -25,7 +16,7 @@ const handleProposal = () => {
           description: "potential member",
           kind: {
             AddMemberToRole: {
-              member_id: state.member_id,
+              member_id: member_id,
               role: "community",
             },
           },
