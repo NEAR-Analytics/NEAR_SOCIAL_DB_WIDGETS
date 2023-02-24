@@ -96,7 +96,7 @@ return (
       <Widget src="gov.near/widget/Membership" props={{ ownerId }} />
     </div>
     <div className="mb-3"></div>
-    <h2>Edit Your Profile</h2>
+    <h2>Level Up Your Profile</h2>
     <div className="mb-3">
       <Widget src="mob.near/widget/Profile" props={{ accountId }} />
     </div>
