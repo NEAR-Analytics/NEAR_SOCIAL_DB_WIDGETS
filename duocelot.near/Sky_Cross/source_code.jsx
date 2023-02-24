@@ -1306,35 +1306,9 @@ class UI {
     }
   
   draw(context) {
-    // Draw top bar
-    context.fillStyle = "transparent";
-    context.fillRect(0, 0, this.game.width, this.topBarHeight);
-    context.font = "20px Press Start 2P";
-    context.fillStyle = "white";
-    context.fillText("SKY CROSS", 500, 30);
+   
 
-    // Draw right column
-    context.fillStyle = "gray";
-    context.fillRect(
-      this.game.width - this.rightColumnWidth,
-      this.topBarHeight,
-      this.rightColumnWidth,
-      this.game.height - this.topBarHeight - this.bottomBarHeight
-    );
-    // Draw left column
-    context.fillStyle = "gray";
-    context.fillRect(
-      0,
-      this.topBarHeight,
-      this.leftColumnWidth,
-      this.game.height - this.topBarHeight - this.bottomBarHeight
-    );
-    // Draw bottom bar
-    context.fillStyle = "gray";
-    context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
-    const margin = 60;
-    const textY = this.game.height = this.bottomBarHeight + margin + this.fontSize;
-    
+
   // Draw avatar
   const avatarX = this.game.width - (this.rightColumnWidth + 180 );
   const avatarY = this.game.height - (this.bottomBarHeight + 40 );
@@ -1348,14 +1322,8 @@ class UI {
     this.avatarHeight,
     this.avatarWidth
   );
-// Draw top bar background
-const pattern = context.createPattern(this.topBarBackground, "repeat-x");
-context.fillStyle = pattern;
-context.fillRect(0, 0, this.game.width, this.topBarHeight);
-// Draw bottom bar background
-const pattern2 = context.createPattern(this.bottomBarBackground, "repeat-x");
-context.fillStyle = pattern2;
-context.fillRect( 0, this.game.height - this.bottomBarHeight, this.game.width, this.bottomBarHeight );
+
+
     
     // Draw score
     context.font = this.font;
