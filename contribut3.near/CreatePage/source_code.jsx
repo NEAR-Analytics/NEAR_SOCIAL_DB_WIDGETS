@@ -17,7 +17,7 @@ const content = {
       props={{
         search: state.search,
         update: props.update,
-        accountId: props.acocuntId,
+        accountId: props.accountId,
       }}
     />
   ),
