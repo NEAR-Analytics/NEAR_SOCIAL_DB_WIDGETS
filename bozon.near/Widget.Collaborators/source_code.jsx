@@ -1,6 +1,7 @@
 /*props
 
 widgetPath: string
+count(number)?: function
 
 */
 
@@ -28,19 +29,17 @@ const nodeIds = [
   widgetwithNodeId[widgetAccountId]["widget"][":node"],
   widgetwithNodeId[widgetAccountId]["widget"][widget][":node"],
 ];
-const map_filtered_accounts_granted_permissions =
-  accountsGrantedPermissions.map((filter) => {
-    return filter[0].AccountId;
-  });
+
+const filtered = accountsGrantedPermissions.filter((el) => {
+  return el[1].Granted.find((el) => nodeIds.includes(el));
+});
+
+if (props.count) props.count(filtered.length);
 
 return (
   <div>
-    {accountsGrantedPermissions.map((el) => {
-      return (
-        el[1].Granted.find((el) => nodeIds.includes(el)) && (
-          <div>{el[0].AccountId || el[0].SignerPublicKey}</div>
-        )
-      );
-    })}
+    {filtered.map((el) => (
+      <div>{el[0].AccountId || el[0].SignerPublicKey}</div>
+    ))}
   </div>
 );
