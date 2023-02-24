@@ -50,6 +50,7 @@ const HomeLink = styled.a`
 
   &:hover {
     text-decoration: none;
+    color: #000;
   }
 `;
 
