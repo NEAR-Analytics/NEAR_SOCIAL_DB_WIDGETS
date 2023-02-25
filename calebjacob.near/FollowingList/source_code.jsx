@@ -28,6 +28,19 @@ const Item = styled.div`
   gap: 12px;
 `;
 
+const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+`;
+
+if (following !== null && following.length === 0) {
+  return <Text>This account isn&apos;t following anyone yet.</Text>;
+}
+
 return (
   <Wrapper>
     {following.map(([accountId], i) => (
