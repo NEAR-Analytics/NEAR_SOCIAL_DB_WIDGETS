@@ -3,6 +3,9 @@
 const [accountId, _, widget] = props.widgetPath.split("/");
 
 const code = Social.get(props.widgetPath);
+
+if (code === null) return "Widget not found";
+
 const text = `
 \`\`\`jsx
 ${code}
