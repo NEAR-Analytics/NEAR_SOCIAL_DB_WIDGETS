@@ -126,8 +126,6 @@ return (
       ))}
     </Items>
 
-    <ButtonLink href={componentsUrl}>
-      View All Components <span>({totalComponents})</span>
-    </ButtonLink>
+    <ButtonLink href={componentsUrl}>View All Components</ButtonLink>
   </Wrapper>
 );
