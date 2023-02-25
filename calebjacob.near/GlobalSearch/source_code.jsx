@@ -1,20 +1,21 @@
-const profiles =
-  Social.get(["*/profile/name", "*/profile/tags/*"], "final") || {};
+const profiles = Social.get(["*/profile/name", "*/profile/tags/*"], "final");
 
-const componentMetadata =
-  Social.get(
-    ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
-    "final"
-  ) || {};
+const componentMetadata = Social.get(
+  ["*/widget/*/metadata/name", "*/widget/*/metadata/tags/*"],
+  "final"
+);
 
-const componentKeys =
-  Social.keys(["*/widget/*"], "final", { values_only: true }) || {};
+const componentKeys = Social.keys(["*/widget/*"], "final", {
+  values_only: true,
+});
 
 const boostedComponentTag = props.boostedComponentTag || "app";
 const requiredComponentTag = props.requiredComponentTag || null;
 const limitPerGroup = props.limitPerGroup || 5;
 
 const computeResults = (term) => {
+  if (!profile || !componentMetadata || !componentKeys) return;
+
   const terms = (term || "")
     .toLowerCase()
     .split(/[^\w._-]/)
