@@ -161,9 +161,9 @@ const Actions = styled.div`
   right: var(--padding);
 
   .commit-post-button {
-    background: #0091FF;
-    color: #fff;
-    border-radius: 6px;
+    background: #59E692;
+    color: #11181C;
+    border-radius: 40px;
     height: 40px;
     padding: 0 35px;
     font-weight: 600;
@@ -174,7 +174,7 @@ const Actions = styled.div`
 
     &:hover,
     &:focus {
-      background: #0484e5;
+      background: rgb(112 242 164);
       outline: none;
     }
 
@@ -189,8 +189,8 @@ const Actions = styled.div`
     align-items: center;
     justify-content: center;
     background: #F1F3F5;
-    color: #006ADC;
-    border-radius: 6px;
+    color: #11181C;
+    border-radius: 40px;
     height: 40px;
     min-width: 40px;
     font-size: 0;
