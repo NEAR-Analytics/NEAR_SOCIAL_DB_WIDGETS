@@ -28,6 +28,10 @@ const Tabs = styled.div`
   border-bottom: 1px solid #ECEEF0;
 `;
 
+const TabView = styled.div`
+  padding: 10px;
+`;
+
 const TabsButton = styled.button`
   font-weight: 400;
   font-size: 14px;
@@ -89,45 +93,48 @@ return (
         onClick={() => State.update({ tab: "collaborators" })}
         selected={state.tab == "collaborators"}
       >
-        Collaborators {state.collaboratorsCount}
+        Developers {state.collaboratorsCount}
       </TabsButton>
     </Tabs>
-    {state.tab == "code" && <Markdown text={text} />}
 
-    <div
-      style={{
-        display: state.tab == "pullRequests" ? "block" : "none",
-      }}
-    >
-      <Widget src="bozon.near/widget/Widget.PullRequests" />
-    </div>
+    <TabView>
+      {state.tab == "code" && <Markdown text={text} />}
 
-    <div
-      style={{
-        display: state.tab == "history" ? "block" : "none",
-      }}
-    >
-      <Widget
-        src="bozon.near/widget/WidgetHistory.History"
-        props={{
-          widgetPath: props.widgetPath,
-          count: (count) => State.update({ historyCount: count }),
+      <div
+        style={{
+          display: state.tab == "pullRequests" ? "block" : "none",
         }}
-      />
-    </div>
+      >
+        <Widget src="bozon.near/widget/Widget.PullRequests" />
+      </div>
 
-    <div
-      style={{
-        display: state.tab == "collaborators" ? "block" : "none",
-      }}
-    >
-      <Widget
-        src="bozon.near/widget/Widget.Collaborators"
-        props={{
-          widgetPath: props.widgetPath,
-          count: (count) => State.update({ collaboratorsCount: count }),
+      <div
+        style={{
+          display: state.tab == "history" ? "block" : "none",
         }}
-      />
-    </div>
+      >
+        <Widget
+          src="bozon.near/widget/WidgetHistory.History"
+          props={{
+            widgetPath: props.widgetPath,
+            count: (count) => State.update({ historyCount: count }),
+          }}
+        />
+      </div>
+
+      <div
+        style={{
+          display: state.tab == "collaborators" ? "block" : "none",
+        }}
+      >
+        <Widget
+          src="bozon.near/widget/Widget.Developers"
+          props={{
+            widgetPath: props.widgetPath,
+            count: (count) => State.update({ collaboratorsCount: count }),
+          }}
+        />
+      </div>
+    </TabView>
   </div>
 );
