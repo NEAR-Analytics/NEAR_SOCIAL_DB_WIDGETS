@@ -134,16 +134,13 @@ const exit = () => {
   });
 };
 
-console.log(Object.values(boardSetups));
-console.log(Math.floor(Math.random() * Object.values(boardSetups).length));
-
 const menuCallback = (isPve, sn) => {
   State.update({
     currentPage: isPve ? pages.aiGame : pages.usersMatcher,
     gameType: isPve ? gameTypes.ai : gameTypes.online,
     sn:
       sn.toLowerCase() == "random"
-        ? Object.values(boardSetups)[
+        ? Object.values(boardSetups).slice(0, -1)[
             Math.floor(Math.random() * Object.values(boardSetups).length)
           ]
         : boardSetups[sn.toLowerCase()],
