@@ -235,7 +235,7 @@ const TabsButton = styled.a`
     left: 0;
     right: 0;
     height: 3px;
-    background: #30A46C;
+    background: #59E692;
   }
 `;
 
