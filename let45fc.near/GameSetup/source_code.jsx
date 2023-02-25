@@ -95,6 +95,7 @@ if (state.currentPage === pages.menu) {
 
 if (state.currentPage === pages.game) {
   if (typeof props.callback === "function") {
+    console.log(props.callback);
     props.callback(state.isPvE, state.selectedSetup);
   }
 }
