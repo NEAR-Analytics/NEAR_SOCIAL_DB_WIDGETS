@@ -9,7 +9,7 @@ return (
     </h4>
     <a
       className="nav-link mt-2"
-      href={`https://test.near.social/#/${ownerId}/widget/CommonComponentsLibrary?tab=home`}
+      href={`https://near.social/#/${ownerId}/widget/CommonComponentsLibrary?tab=home`}
       onClick={() => props.onSelect({ tab: "home", id: "" })}
     >
       <i className="bi-house" />
@@ -17,7 +17,7 @@ return (
     </a>
     <a
       className="nav-link mt-2"
-      href={`https://test.near.social/#/${ownerId}/widget/CommonComponentsLibrary?tab=searchComponents`}
+      href={`https://near.social/#/${ownerId}/widget/CommonComponentsLibrary?tab=searchComponents`}
       onClick={() => props.onSelect({ tab: "searchComponents", id: "" })}
     >
       <i className="bi-search" />
@@ -31,7 +31,7 @@ return (
           className={`nav-link mt-2 rounded-3${
             item.id === props.tab ? "bg-secondary" : ""
           }`}
-          href={`https://test.near.social/#/${ownerId}/widget/CommonComponentsLibrary?tab=category&id=${item.id}`}
+          href={`https://near.social/#/${ownerId}/widget/CommonComponentsLibrary?tab=category&id=${item.id}`}
           onClick={() => props.onSelect({ tab: "category", id: item.id })}
         >
           {" "}
