@@ -1,4 +1,4 @@
-const ownerId = "mmanzanal.near";
+const ownerId = "manzanal.near";
 const curatedComps = [
   {
     category: "Buttons",
