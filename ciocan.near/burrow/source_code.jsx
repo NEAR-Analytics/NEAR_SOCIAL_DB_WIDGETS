@@ -133,6 +133,9 @@ return (
         ) : (
           <Widget src="ciocan.near/widget/burrow-deposit" />
         )}
+        <div class="mt-4">
+          <Widget src="ciocan.near/widget/burrow-rewards" />
+        </div>
       </RightPanel>
     </Main>
   </Container>
