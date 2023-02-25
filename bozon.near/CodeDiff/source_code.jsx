@@ -1,10 +1,10 @@
 /*
 ---props---
 
-props.currentCode: string,
-props.prevCode?: string,
+currentCode: string,
+prevCode?: string,
 
-props.findUniqueResult(
+findUniqueResult(
   lineCountDeleted: number, 
   lineCountInserted: inserted,
   lineCountCurrentCode: number,
@@ -12,9 +12,13 @@ props.findUniqueResult(
   allLineCount: number
 )?: function
 
-props.showLineNumber?: bool
+addStyle?: Object,
+deleteStyle?: Object
+
+showLineNumber?: bool
 
 */
+
 if (!props.currentCode) return "send currentCode in props";
 
 //code from this - https://github.com/jonTrent/PatienceDiff
@@ -299,84 +303,48 @@ if (props.findUniqueResult)
     diffResult.lines.length
   );
 
-let Line = styled.div`
-& > .col.md {
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-bottom: 0px;
-}
+const lineProps = (lineNumber) => {
+  const line = diffResult.lines[lineNumber];
 
-& > .col.md > pre {
-    margin: 0px;
-}
+  let style = {
+    display: "block",
+    width: "auto",
+  };
 
-& > .col.md > pre > div {
-    margin: 0px !important;
+  if (line.aIndex === -1 || line.bIndex === -1) {
+    style = {
+      ...style,
+      marginRight: "-1em",
+      marginLeft: "-1em",
+      paddingLeft: "1em",
+    };
+  }
 
-    padding-top: ${(props) =>
-      !props.top ? "0px !important;" : "1em !important;"}
-    padding-bottom: ${(props) =>
-      !props.bottom ? "0px !important;" : "1em !important;"}
+  if (line.aIndex === -1) {
+    style = { ...style, background: "rgb(0 95 67)", ...props.addStyle };
+  }
+  if (line.bIndex === -1) {
+    style = { ...style, background: "rgb(156 73 41)", ...props.deleteStyle };
+  }
 
-    background: ${(props) =>
-      props.deleted
-        ? "rgb(156 73 41) !important;"
-        : (props) => (props.added ? "rgb(0 95 67) !important;" : "")};
-}
+  return { style };
+};
 
-`;
+const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
 return (
   <div>
-    <table class="table table-borderless">
-      <tbody>
-        {diffResult.lines.map((el, index) => {
-          return (
-            <tr key={index}>
-              {props.showLineNumber && (
-                <td class="p-0" style={{ "user-select": "none" }}>
-                  <Line
-                    className="no-gutter d-flex flex-row"
-                    added={el.aIndex === -1}
-                    deleted={el.bIndex === -1}
-                    deleted={el.bIndex === -1}
-                    top={index == 0}
-                    bottom={index == diffResult.lines.length - 1}
-                  >
-                    <div class="col md">
-                      <Markdown
-                        text={`
+    <Markdown
+      text={`
 \`\`\`jsx
-${index + 1}
+${codeText}
 `}
-                      />
-                    </div>
-                  </Line>
-                </td>
-              )}
-              <td class="p-0">
-                <Line
-                  className="no-gutter d-flex flex-row"
-                  added={el.aIndex === -1}
-                  deleted={el.bIndex === -1}
-                  deleted={el.bIndex === -1}
-                  top={index == 0}
-                  bottom={index == diffResult.lines.length - 1}
-                >
-                  <div class="col md">
-                    <Markdown
-                      text={`
-\`\`\`jsx
-${el.line == "" ? "\n" : el.line}
-`}
-                    />
-                  </div>
-                </Line>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+      syntaxHighlighterProps={{
+        wrapLines: true,
+        lineProps,
+        showLineNumbers: true,
+        lineNumberStyle: { display: !props.showLineNumber && "none" },
+      }}
+    />
   </div>
 );
