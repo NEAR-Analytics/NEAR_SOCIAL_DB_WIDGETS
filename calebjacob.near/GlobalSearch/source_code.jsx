@@ -142,13 +142,14 @@ const computePeople = (terms) => {
 if (props.term && props.term !== state.lastSyncedTermProp) {
   State.update({
     term: props.term,
-    lastSyncedTermProp: props.term,
   });
-  computeResults(props.term);
-}
 
-if (profiles && componentMetadata && componentKeys) {
-  computeResults(state.term);
+  if (profiles && componentMetadata && componentKeys) {
+    State.update({
+      lastSyncedTermProp: props.term,
+    });
+    computeResults(props.term);
+  }
 }
 
 const Wrapper = styled.div`
