@@ -31,7 +31,7 @@ const renderItem = (a) =>
 return (
   <div>
     <Widget
-      src="mob.near/widget/ManualIndexFeed" // todo change and filter
+      src="flatirons.near/widget/FilteredManualIndexFeed"
       props={{
         index,
         reverse: true,
