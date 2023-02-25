@@ -42,6 +42,13 @@ const unclaimedRewards = Object.keys(unclaimedRewardsMap).map((id) => {
   };
 });
 
+const handleClaimAll = () => {
+  Near.call({
+    contractName: "contract.main.burrow.near",
+    methodName: "account_farm_claim_all",
+  });
+};
+
 return (
   <div>
     {!hasData && (
@@ -58,7 +65,7 @@ return (
         </li>
       ))}
     </ul>
-    <button type="button" class="btn btn-light">
+    <button type="button" class="btn btn-light" onClick={handleClaimAll}>
       Claim all rewards
     </button>
   </div>
