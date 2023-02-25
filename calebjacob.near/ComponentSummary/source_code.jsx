@@ -131,25 +131,25 @@ const sharedButtonStyles = `
 
 const Button = styled.button`
   ${sharedButtonStyles}
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  color: ${(p) => (p.primary ? "#09342E" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#59E692" : "#FBFCFD")};
   border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
 
   &:hover,
   &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+    background: ${(p) => (p.primary ? "rgb(112 242 164)" : "#ECEDEE")};
   }
 `;
 
 const ButtonLink = styled.a`
   ${sharedButtonStyles}
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  color: ${(p) => (p.primary ? "#09342E" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#59E692" : "#FBFCFD")};
   border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
 
   &:hover,
   &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+    background: ${(p) => (p.primary ? "rgb(112 242 164)" : "#ECEDEE")};
   }
 `;
 
