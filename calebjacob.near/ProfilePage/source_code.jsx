@@ -224,7 +224,10 @@ return (
                 </Title>
 
                 <Bio>
-                  <Markdown text={profile.description} />
+                  <Widget
+                    src="calebjacob.near/widget/SocialMarkdown"
+                    props={{ text: profile.description }}
+                  />
                 </Bio>
               </>
             )}
