@@ -178,7 +178,7 @@ return (
           props={{
             image: metadata.image,
             fallbackUrl:
-              "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
+              "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
             alt: metadata.name,
           }}
         />
