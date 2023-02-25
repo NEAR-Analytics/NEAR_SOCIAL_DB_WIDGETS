@@ -8,6 +8,20 @@ const Wrapper = styled.div`
     margin-bottom: 12px;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4em;
+    color: #11181C;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+
   p {
     white-space: pre-line;
   }
