@@ -106,9 +106,6 @@ const curatedComps = [
       { accountId: "mob.near", widgetName: "WidgetSource" },
     ],
   },
-  {
-    category: "Font",
-  },
 ];
 const filterTag = props.commonComponentTag ?? "dev";
 const debug = props.debug ?? false;
