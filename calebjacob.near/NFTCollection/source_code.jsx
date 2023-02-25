@@ -48,7 +48,8 @@ if (data.body?.list) {
 }
 
 const hasFinishedLoading = data.body?.list?.length === results.length;
-const showLoadMoreButton = allNfts.length % limitPerPage === 0;
+const showLoadMoreButton =
+  allNfts.length > 0 && allNfts.length % limitPerPage === 0;
 
 const Wrapper = styled.div`
   display: flex;
@@ -120,6 +121,8 @@ const Button = styled.button`
     color: #687076 !important;
   }
 `;
+
+if (!hasFinishedLoading) return "Loading";
 
 if (hasFinishedLoading && allNfts.length === 0) {
   return <Text>This account doesn&apos;t have any NFTs yet.</Text>;
