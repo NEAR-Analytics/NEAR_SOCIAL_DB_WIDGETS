@@ -1,11 +1,10 @@
-const [accountId, widget, widgetName] = props.src.split("/");
-const metadata = Social.get(
-  `${accountId}/widget/${widgetName}/metadata/**`,
-  "final"
-);
+const accountId = props.accountId || context.accountId;
+const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
+const profileUrl = `/#/calebjacob.near/widget/ProfilePage?accountId=${accountId}`;
 
 const Wrapper = styled.a`
-  display: grid;
+  display: inline-grid;
+  width: 100%;
   align-items: center;
   gap: 12px;
   grid-template-columns: auto 1fr;
@@ -14,6 +13,10 @@ const Wrapper = styled.a`
   color: #687076 !important;
   outline: none;
   text-decoration: none !important;
+  background: none !important;
+  border: none;
+  text-align: left;
+  padding: 0;
 
   > * {
     min-width: 0;
@@ -21,9 +24,9 @@ const Wrapper = styled.a`
 
   &:hover,
   &:focus {
-      div:first-child {
-          border-color: #D0D5DD;
-      }
+    div:first-child {
+      border-color: #D0D5DD;
+    }
   }
 `;
 
@@ -33,19 +36,19 @@ const Text = styled.p`
   line-height: 20px;
   color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  font-size: ${(p) => (p.small ? "10px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
-  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
+  white-space: nowrap;
 `;
 
-const Thumbnail = styled.div`
-  width: 48px;
-  height: 48px;
+const Avatar = styled.div`
+  width: ${props.avatarSize || "40px"};
+  height: ${props.avatarSize || "40px"};
   flex-shrink: 0;
   border: 1px solid #ECEEF0;
-  border-radius: 8px;
   overflow: hidden;
+  border-radius: 40px;
   transition: border-color 200ms;
 
   img {
@@ -55,30 +58,65 @@ const Thumbnail = styled.div`
   }
 `;
 
-return (
+const Name = styled.div`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+`;
+
+const AccountProfile = (
   <Wrapper
-    href={`/#/calebjacob.near/widget/ComponentDetailsPage?src=${props.src}`}
+    as={props.onClick ? "button" : "a"}
+    href={!props.onClick && profileUrl}
+    onClick={props.onClick && (() => props.onClick(accountId))}
   >
-    <Thumbnail>
+    <Avatar>
       <Widget
         src="mob.near/widget/Image"
         props={{
-          image: metadata.image,
+          image: profile.image,
+          alt: profile.name,
           fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
-          alt: metadata.name,
+            "https://ipfs.near.social/ipfs/bafkreibiyqabm3kl24gcb2oegb7pmwdi6wwrpui62iwb44l7uomnn3lhbi",
         }}
       />
-    </Thumbnail>
+    </Avatar>
 
     <div>
-      <Text ellipsis bold>
-        {metadata.name || widgetName}
-      </Text>
+      <Name>
+        <Text ellipsis bold>
+          {profile.name || accountId.split(".near")[0]}
+        </Text>
 
-      <Text ellipsis small>
-        {props.src}
-      </Text>
+        {props.inlineContent}
+
+        {props.blockHeight && (
+          <Text small style={{ marginLeft: "auto" }}>
+            Joined{" "}
+            <Widget
+              src="mob.near/widget/TimeAgo"
+              props={{ blockHeight: props.blockHeight }}
+            />{" "}
+            ago
+          </Text>
+        )}
+      </Name>
+
+      {!props.hideAccountId && <Text ellipsis>@{accountId}</Text>}
     </div>
   </Wrapper>
+);
+
+if (props.noOverlay) return AccountProfile;
+
+return (
+  <Widget
+    src="calebjacob.near/widget/AccountProfileOverlay"
+    props={{
+      accountId: props.accountId,
+      profile,
+      children: AccountProfile,
+      placement: props.overlayPlacement,
+    }}
+  />
 );
