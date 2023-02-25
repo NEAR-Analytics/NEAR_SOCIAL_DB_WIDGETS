@@ -1,12 +1,12 @@
 function onSearchChange({ result, term }) {
-  if (term && term.trim()) {
+  if (term.trim()) {
     State.update({ searchResults: result || [] });
   } else {
     State.update({ searchResults: null });
   }
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div` 
   display: flex;
   flex-direction: column;
   gap: 48px;
