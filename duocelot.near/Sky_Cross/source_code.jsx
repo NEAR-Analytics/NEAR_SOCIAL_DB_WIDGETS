@@ -213,10 +213,6 @@ const scriptSrc = `
 img {
   display: none;
 }
-.ui .topbar {
-  background-image: url('https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431');
-  background-repeat: repeat-x;
-}
 </style>
 <canvas id="canvas1"></canvas>
     <img id="playerImage" src="https://ik.imagekit.io/onyedika/skycross/player_BIG_mq9uKo5ll.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939877107" alt="" />
@@ -235,9 +231,6 @@ img {
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
     <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
     <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
-    <img id="avatar" src="https://ik.imagekit.io/duOCELOT/assets/avatar01.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677029634808" alt=""/>
-    <img id="topbar" src = "https://ik.imagekit.io/duOCELOT/assets/topbar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677056690431" alt=""/>
-    <img id="bottombar" src = "https://ik.imagekit.io/duOCELOT/assets/bottombar.png?ik-sdk-version=javascript-1.4.3&updatedAt=1677058956196" alt=""/>
     <script type="module">
     window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
@@ -1296,9 +1289,6 @@ class UI {
     this.leftColumnWidth = 50;
     this.rightColumnWidth = 50;
     this.bottomBarHeight = 97;
-    this.avatarImage = document.getElementById("avatar");
-    this.avatarWidth = 140;
-    this.avatarHeight = 140;
     }
   
   draw(context) {     
