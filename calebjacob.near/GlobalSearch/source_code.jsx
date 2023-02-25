@@ -14,7 +14,7 @@ const requiredComponentTag = props.requiredComponentTag || null;
 const limitPerGroup = props.limitPerGroup || 5;
 
 const computeResults = (term) => {
-  if (!profile || !componentMetadata || !componentKeys) return;
+  if (!profiles || !componentMetadata || !componentKeys) return;
 
   const terms = (term || "")
     .toLowerCase()
