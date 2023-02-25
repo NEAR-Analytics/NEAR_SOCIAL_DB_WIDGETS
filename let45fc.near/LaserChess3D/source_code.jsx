@@ -134,11 +134,8 @@ const exit = () => {
   });
 };
 
-console.log(
-  Object.values(boardSetups)[
-    Math.floor(Math.random() * Object.values(boardSetups).length)
-  ]
-);
+console.log(Object.values(boardSetups));
+console.log(Math.floor(Math.random() * Object.values(boardSetups).length));
 
 const menuCallback = (isPve, sn) => {
   State.update({
