@@ -15,7 +15,7 @@ const userReputationResponse = fetch(
     },
     body: JSON.stringify({
       query:
-        'query MyQuery { user_centric_post_reputation(where: {base_account_id: {_eq: "' +
+        'query MyQuery { user_centric_user_reputation(where: {base_account_id: {_eq: "' +
         context.accountId +
         '"}}) { target_account_id } }',
     }),
