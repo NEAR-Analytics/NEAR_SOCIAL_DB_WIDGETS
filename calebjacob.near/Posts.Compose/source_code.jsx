@@ -207,9 +207,9 @@ const Actions = styled.div`
 
   .commit-post-button,
   .preview-post-button {
-    background: #006ADC;
-    color: #fff;
-    border-radius: 6px;
+    background: #59E692;
+    color: #09342E;
+    border-radius: 40px;
     height: 40px;
     padding: 0 35px;
     font-weight: 600;
@@ -231,7 +231,7 @@ const Actions = styled.div`
   }
 
   .preview-post-button {
-    color: #006ADC;
+    color: #11181C;
     background: #F1F3F5;
     padding: 0;
     width: 40px;
@@ -241,12 +241,6 @@ const Actions = styled.div`
       background: #d7dbde;
       outline: none;
     }
-
-    &:disabled {
-      opacity: 1;
-      color: rgba(0, 106, 220, 0.5);
-      pointer-events: none;
-    }
   }
 
   .upload-image-button {
@@ -254,8 +248,8 @@ const Actions = styled.div`
     align-items: center;
     justify-content: center;
     background: #F1F3F5;
-    color: #006ADC;
-    border-radius: 6px;
+    color: #11181C;
+    border-radius: 40px;
     height: 40px;
     min-width: 40px;
     font-size: 0;
