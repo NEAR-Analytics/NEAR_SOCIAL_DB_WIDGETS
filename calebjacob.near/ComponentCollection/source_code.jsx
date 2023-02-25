@@ -91,7 +91,7 @@ const Button = styled.button`
 `;
 
 if (data !== null && components.length === 0) {
-  return <Text>This account has not published any components yet.</Text>;
+  return <Text>This account hasn&apos;t published any components yet.</Text>;
 }
 
 return (
