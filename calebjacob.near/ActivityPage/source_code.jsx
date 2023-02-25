@@ -30,6 +30,18 @@ const Section = styled.div`
   border-left: ${(p) => (p.primary ? "1px solid #ECEEF0" : "none")};
   border-right: ${(p) => (p.primary ? "1px solid #ECEEF0" : "none")};
 
+  > div {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #ECEEF0;
+
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
   @media (max-width: 1200px) {
     padding-top: 0px;
     border-left: none;
@@ -121,6 +133,7 @@ return (
 
     <Main>
       <Section active={state.selectedTab === "apps"}>
+        <Widget src="calebjacob.near/widget/FeaturedComponents" />
         <Widget src="calebjacob.near/widget/LatestComponents" />
       </Section>
       <Section negativeMargin primary active={state.selectedTab === "posts"}>
