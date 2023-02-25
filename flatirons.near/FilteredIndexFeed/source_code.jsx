@@ -4,6 +4,10 @@ if (!index) {
 }
 
 let userReputationHides = [];
+const query =
+  'query MyQuery { user_centric_user_reputation(where: {base_account_id: {_eq: "' +
+  context.accountId +
+  '"}}) { target_account_id } }';
 let graphqlError = null;
 const userReputationResponse = fetch(
   "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
@@ -13,12 +17,7 @@ const userReputationResponse = fetch(
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      query:
-        'query MyQuery { user_centric_user_reputation(where: {base_account_id: {_eq: "' +
-        context.accountId +
-        '"}}) { target_account_id } }',
-    }),
+    body: JSON.stringify({ query: query }),
   }
 );
 
@@ -27,7 +26,9 @@ if (
   !userReputationResponse.body.errors
 ) {
   userReputationHides =
-    userReputationResponse.body.data.user_centric_post_reputation;
+    userReputationResponse.body.data.user_centric_user_reputation.map(
+      (a) => a.target_account_id
+    );
 } else {
   graphqlError = userReputationResponse.body.errors;
 }
@@ -181,7 +182,7 @@ return props.manual ? (
   </>
 ) : (
   <>
-    <p>{JSON.stringify(graphqlError)}</p>
+    <p>{JSON.stringify(userReputationHides)}</p>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
