@@ -121,15 +121,15 @@ const iframeHtml = `
                 <div class="container">
                   <div class="row winner-message-buttons" style="width: 100%;">
                     <div class="col-md-6">
-                      <button type="button" class="btn btn-primary"><a href="https://wallet.near.org/send-money/hockeyclubmanager.near" style="color: #fff;">Support developers</a></button>
+                      <button type="button" class="btn btn-primary"><a href="https://wallet.near.org/send-money/hockeyclubmanager.near" target="_blank" style="color: #fff;">Support developers</a></button>
                     </div>
                     <div class="col-md-6">
-                      <button type="button" class="btn btn-warning"><a href="https://unchain.fund/#donate">Support Ukraine</a></button>
+                      <button type="button" class="btn btn-warning"><a href="https://unchain.fund/#donate" target="_blank">Support Ukraine</a></button>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12" style="padding-top: 50px;">
-                      <button type="button" id="go-home-button"><a href="https://near.social/#/let45fc.near/widget/LaserChess3D" style="color: #fff; text-decoration: none;">Go to main menu</a></button>
+                      <button type="button" id="go-home-button"><a href="https://near.social/#/let45fc.near/widget/LaserChess3D" target="_blank" style="color: #fff; text-decoration: none;">Go to main menu</a></button>
                     </div>
                   </div>
                 </div>
