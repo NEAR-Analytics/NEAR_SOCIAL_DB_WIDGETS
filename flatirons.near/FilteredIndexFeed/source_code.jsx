@@ -3,36 +3,6 @@ if (!index) {
   return "props.index is not defined";
 }
 
-let userReputationHides = [];
-const query =
-  'query MyQuery { user_centric_user_reputation(where: {base_account_id: {_eq: "' +
-  context.accountId +
-  '"}}) { target_account_id } }';
-let graphqlError = null;
-const userReputationResponse = fetch(
-  "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-  {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query: query }),
-  }
-);
-
-if (
-  userReputationResponse.status == 200 &&
-  !userReputationResponse.body.errors
-) {
-  userReputationHides =
-    userReputationResponse.body.data.user_centric_user_reputation.map(
-      (a) => a.target_account_id
-    );
-} else {
-  graphqlError = userReputationResponse.body.errors;
-}
-
 const renderItem =
   props.renderItem ??
   ((item, i) => (
@@ -170,8 +140,39 @@ if (reverse) {
   items.reverse();
 }
 
+// filter
+let userReputationHides = [];
+const query =
+  'query MyQuery { user_centric_user_reputation(where: {base_account_id: {_eq: "' +
+  context.accountId +
+  '"}}) { target_account_id } }';
+let graphqlError = null;
+const userReputationResponse = fetch(
+  "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query: query }),
+  }
+);
+
+if (
+  userReputationResponse.status == 200 &&
+  !userReputationResponse.body.errors
+) {
+  userReputationHides =
+    userReputationResponse.body.data.user_centric_user_reputation.map(
+      (a) => a.target_account_id
+    );
+} else {
+  graphqlError = userReputationResponse.body.errors;
+}
+
 const renderedItems = items
-  .filter((item, index) => !userReputationHides.includes(item.accountId))
+  .filter((item) => !userReputationHides.includes(item.accountId))
   .map(cachedRenderItem);
 
 return props.manual ? (
@@ -182,7 +183,7 @@ return props.manual ? (
   </>
 ) : (
   <>
-    <p>{JSON.stringify(userReputationHides)}</p>
+    <p>Hiding Users: {JSON.stringify(userReputationHides)}</p>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
