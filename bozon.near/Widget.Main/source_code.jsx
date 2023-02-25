@@ -4,7 +4,8 @@ const [accountId, _, widget] = props.widgetPath.split("/");
 
 const code = Social.get(props.widgetPath);
 
-if (code === null) return "Widget not found";
+if (code === null) return "Loading";
+if (code === undefined) return "Widget not found";
 
 const text = `
 \`\`\`jsx
@@ -59,10 +60,6 @@ const TabsButton = styled.button`
     background: #0091FF;
   }
 `;
-
-console.log({
-  display: state.tab == "collaborators" ? "block" : "none",
-});
 
 //using "display: none" to make functions work on initialization
 return (
