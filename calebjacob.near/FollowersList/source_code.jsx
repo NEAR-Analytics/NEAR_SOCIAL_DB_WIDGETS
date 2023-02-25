@@ -30,6 +30,19 @@ const Item = styled.div`
   gap: 12px;
 `;
 
+const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+`;
+
+if (followers !== null && followers.length === 0) {
+  return <Text>This account doesn&apos;t have any followers yet.</Text>;
+}
+
 return (
   <Wrapper>
     {followers.map(([accountId], i) => (
