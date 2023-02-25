@@ -41,7 +41,7 @@ const ButtonLink = styled.a`
   gap: 8px;
   padding: 8px;
   height: 32px;
-  border-radius: 6px;
+  border-radius: 50px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
