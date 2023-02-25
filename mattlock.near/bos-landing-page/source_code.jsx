@@ -162,6 +162,16 @@ a, a:focus, a:visited, a:hover {
      }
  }
 
+ footer {
+  padding-top: 2rem;
+  height: 2rem;
+}
+
+footer a, span {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+
 @media only screen and (max-width: 700px) {
   .header {
     flex-direction: column;
@@ -298,6 +308,13 @@ return (
             ))}
           </div>
         )}
+      </div>
+    </div>
+
+    <div class="footer">
+      <div className="text-center">
+        <a href="/#/thebos.near/widget/Terms">Terms of Use</a> <span>|</span>{" "}
+        <a href="/#/thebos.near/widget/Privacy">Privacy Policy</a>
       </div>
     </div>
   </Theme>
