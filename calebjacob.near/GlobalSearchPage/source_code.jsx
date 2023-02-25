@@ -1,5 +1,5 @@
 function onSearchChange({ result, term }) {
-  if (term.trim()) {
+  if (term && term.trim()) {
     State.update({ searchResults: result || [] });
   } else {
     State.update({ searchResults: null });
