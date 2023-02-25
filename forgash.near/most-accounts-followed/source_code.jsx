@@ -57,6 +57,7 @@ let pageHeader = (
       Flipside
     </p>
     <p class="blockquote-footer">
+      data set to refresh once every 24h,
       <a href="https://flipsidecrypto.xyz/edit/queries/e3075086-9a43-4923-96c5-aa64d8d6b7d6">
         view and fork the source query
       </a>
