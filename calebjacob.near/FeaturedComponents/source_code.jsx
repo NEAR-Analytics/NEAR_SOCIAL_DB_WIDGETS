@@ -1,5 +1,3 @@
-const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,34 +18,6 @@ const Items = styled.div`
 `;
 
 const Item = styled.div``;
-
-const ButtonLink = styled.a`
-  display: block;
-  width: 100%;
-  padding: 8px;
-  height: 32px;
-  background: #FBFCFD;
-  border: 1px solid #D7DBDF;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  color: #11181C !important;
-  margin: 0;
-
-  &:hover,
-  &:focus {
-    background: #ECEDEE;
-    text-decoration: none;
-    outline: none;
-  }
-
-  span {
-    color: #687076 !important;
-  }
-`;
 
 const Header = styled.div`
   display: flex;
@@ -106,7 +76,5 @@ return (
         />
       </Item>
     </Items>
-
-    <ButtonLink href={componentsUrl}>View All Components</ButtonLink>
   </Wrapper>
 );
