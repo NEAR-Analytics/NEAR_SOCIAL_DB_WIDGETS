@@ -1350,7 +1350,7 @@ return (
         <Nav className="nav nav-pills" id="pills-tab" role="tablist">
           <li className="nav-item" role="presentation">
             <NavLink
-              className="nav-link active"
+              className="nav-link"
               id="pills-home-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-home"
@@ -1364,7 +1364,7 @@ return (
           </li>
           <li className="nav-item" role="presentation">
             <NavLink
-              className="nav-link"
+              className="nav-link active"
               id="pills-profile-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-profile"
@@ -1393,7 +1393,7 @@ return (
         </Nav>
         <div className="tab-content" id="pills-tabContent">
           <div
-            className="tab-pane fade show active"
+            className="tab-pane fade"
             id="pills-home"
             role="tabpanel"
             aria-labelledby="pills-home-tab"
@@ -1440,7 +1440,7 @@ return (
             </div>
           </div>
           <div
-            className="tab-pane fade"
+            className="tab-pane fade show active"
             id="pills-profile"
             role="tabpanel"
             aria-labelledby="pills-profile-tab"
