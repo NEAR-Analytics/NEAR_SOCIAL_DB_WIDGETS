@@ -45,7 +45,7 @@ To access or use the Site, you must be able to form a legally binding contract w
 
 4. Modification of this Agreement
 
-We reserve the right, in our sole discretion, to modify this Agreement from time to time. If we make any modifications, we will notify you by updating the date at the top of the Agreement and by maintaining a current version of the Agreement at http://cantopia.pages.dev/terms. All modifications will be effective when they are posted, and your continued use of the Site will serve as confirmation of your acceptance of those modifications. If you do not agree with any modifications to this Agreement, you must immediately stop accessing and using the Site.
+We reserve the right, in our sole discretion, to modify this Agreement from time to time. If we make any modifications, we will notify you by updating the date at the top of the Agreement and by maintaining a current version of the Agreement at https://cantopia.pages.dev/#/thebos.near/widget/CantopiaTerms. All modifications will be effective when they are posted, and your continued use of the Site will serve as confirmation of your acceptance of those modifications. If you do not agree with any modifications to this Agreement, you must immediately stop accessing and using the Site.
 
 5. Proprietary Rights
 
