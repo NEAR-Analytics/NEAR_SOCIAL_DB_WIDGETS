@@ -304,7 +304,7 @@ if (props.findUniqueResult)
   );
 
 const lineProps = (lineNumber) => {
-  const line = diffResult.lines[lineNumber];
+  const line = diffResult.lines[lineNumber - 1];
 
   let style = {
     display: "block",
