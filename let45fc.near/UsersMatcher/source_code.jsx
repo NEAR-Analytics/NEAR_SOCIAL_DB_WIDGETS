@@ -11,7 +11,7 @@ if (typeof props.loadRoomCallback != "function") {
 }
 
 State.init({
-  roomId: Storage.get("roomId") || null,
+  roomId: Storage.get("roomId") || props.roomId || null,
   errorMessage: null,
   roomCreatedScreen: false,
   loading: false,
@@ -30,7 +30,7 @@ const uuidv4 = () => {
 };
 
 const generateRoomId = () => {
-  return `${context.accountId}-${props.widgetKey}-room-${uuidv4()}`;
+  return `${context.accountId}---${props.widgetKey}-room-${uuidv4()}`;
 };
 
 const findRoom = (created) => {
@@ -39,7 +39,7 @@ const findRoom = (created) => {
   }
 
   const roomId = Storage.get("roomId") || state.roomId;
-  const ownerAccountId = roomId.split("-")[0];
+  const ownerAccountId = roomId.split("---")[0];
   Storage.set("created", "false");
   Storage.set("roomId", "");
   const queryString = `${ownerAccountId}/${props.widgetKey}/${state.roomId}`;
@@ -81,9 +81,11 @@ if (state.roomCreatedScreen) {
     <div class="container">
       <div class="row">
         <h2>Room creation</h2>
-        <p>Your room ID will be:</p>
-        <pre>{state.roomId}</pre>
-        <p>Please copy it and send to your friend(s) :-)</p>
+        <p>Your room {props.urlPrefix ? "link" : "ID"} will be:</p>
+        <pre class="text-danger">{`${props.urlPrefix ? props.urlPrefix : ""}${
+          state.roomId
+        }`}</pre>
+        <p>Please copy it and send to your friend(s) after creating :-)</p>
       </div>
       <CommitButton
         class="btn btn-success"
