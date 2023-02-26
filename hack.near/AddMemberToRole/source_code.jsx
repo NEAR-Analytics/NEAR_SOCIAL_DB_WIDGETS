@@ -6,8 +6,8 @@ if (!accountId) {
 }
 
 State.init({
-  member_id: accountId ?? state.member_id,
-  role: state.role ?? "council",
+  member_id: state.member_id,
+  role: state.role,
 });
 
 const handleProposal = () => {
@@ -22,8 +22,8 @@ const handleProposal = () => {
           description: "potential member",
           kind: {
             AddMemberToRole: {
-              member_id: accountId,
-              role: state.role,
+              member_id: state.member_id ?? accountId,
+              role: state.role ?? "council",
             },
           },
         },
