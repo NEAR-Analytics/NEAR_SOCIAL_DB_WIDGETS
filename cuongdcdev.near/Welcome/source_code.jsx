@@ -10,6 +10,8 @@ if (!accountId) {
 
 const WidgetBlockList = (props) => {
   const accountId = context.accountId;
+  if (!accountId) return;
+
   const profile = Social.getr(`${accountId}/profile`);
   console.log("Profile ", profile);
 
