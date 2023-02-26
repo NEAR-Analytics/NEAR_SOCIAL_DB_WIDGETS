@@ -194,7 +194,7 @@ text-transform: capitalize
 const scriptSrc = `
 <head>
   <meta charset="utf-8">
-  <script src="https://cdn.jsdelivr.net/gh/kasodon/Sky-cross@duocelot/src/components/end.js">
+  <script src="https://cdn.jsdelivr.net/gh/kasodon/Sky-cross@onyedika/src/components/end.js">
 </script>
 </head>
 <style>
