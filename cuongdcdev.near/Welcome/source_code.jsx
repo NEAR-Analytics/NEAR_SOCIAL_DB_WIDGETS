@@ -28,20 +28,45 @@ const WidgetBlockList = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row mb-3">
-        <div className="mb-2">
-          <small>
-            Enter user id (NEAR wallet), seperated by <strong>,</strong>
-          </small>
-          <input type="text" value={state.profile.cdcBlockList} />
-        </div>
+    <>
+      <div class="accordion mb-3" id="blocklist">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Block list
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div className="container">
+              <div className="row mb-3">
+                <div className="mb-2">
+                  <small>
+                    Enter user id (NEAR wallet), seperated by <strong>,</strong>
+                  </small>
+                  <input type="text" value={state.profile.cdcBlockList} />
+                </div>
 
-        <div className="mt-2">
-          <CommitButton data={{ profile }}>Block 🛑</CommitButton>
+                <div className="mt-2">
+                  <CommitButton data={{ profile }}>Block 🛑</CommitButton>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -97,32 +122,8 @@ return (
         role="tabpanel"
         aria-labelledby="pills-explore-tab"
       >
-        <div class="accordion mb-3" id="blocklist">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button
-                class="accordion-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                Block list
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              class="accordion-collapse collapse show"
-              aria-labelledby="headingOne"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="container">{WidgetBlockList()}</div>
-            </div>
-          </div>
-        </div>
-
         <Widget src="mob.near/widget/Welcome.RHS" />
+        {WidgetBlockList()}
       </div>
     </div>
   </>
