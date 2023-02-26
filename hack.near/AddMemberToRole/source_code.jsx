@@ -6,7 +6,7 @@ if (!accountId) {
 }
 
 State.init({
-  member_id: state.member_id ?? accountId,
+  member_id: accountId ?? state.member_id,
   role: state.role ?? "council",
 });
 
