@@ -18,7 +18,7 @@ const handleProposal = () => {
       args: {
         proposal: {
           description: "yes / no",
-          kind: Vote,
+          kind: "Vote",
         },
       },
       gas: gas,
