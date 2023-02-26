@@ -6,10 +6,12 @@
 //get blocked list
 const userProfile = Social.getr(`${context.accountId}/profile`);
 console.log("Profile User ", userProfile);
-const blockedListArr = userProfile?.cdcBlockList
-  ? userProfile?.cdcBlockList.split(",")
-  : [];
-blockedListArr = blockedListArr.map((e) => e.trim());
+const blockedListArr = [];
+
+if (userProfile && userProfile.cdcBlockList) {
+  blockedListArr = userProfile.cdcBlockList.split(",");
+  blockedListArr = blockedListArr.map((e) => e.trim());
+}
 
 let isInBlockedList = (walletId) => {
   if (!context.accountId) return false;
