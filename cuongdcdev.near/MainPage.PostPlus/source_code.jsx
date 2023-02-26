@@ -1,5 +1,6 @@
 const accountId = props.accountId;
-if (props.isPostBlocked) return <>post content is blocked</>;
+if (props.isPostBlocked) return <></>;
+
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const content =
@@ -7,7 +8,14 @@ const content =
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
 const subscribe = !!props.subscribe;
 const raw = !!props.raw;
-
+const blockedListArr = props.blockedListArr ? props.blockedListArr : [];
+let isInBlockedList = (walletId) => {
+  if (!context.accountId) return false;
+  if (blockedListArr.length > 0 && blockedListArr.indexOf(walletId) >= 0) {
+    return true;
+  }
+  return false;
+};
 const notifyAccountId = accountId;
 const item = {
   type: "social",
@@ -16,6 +24,61 @@ const item = {
 };
 
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+
+/**
+ * WidgetCommentFeed
+ * Source: mob.near/widget/MainPage.Comment.Feed
+ */
+
+let WidgetCommentFeed = (props) => {
+  // console.log("props ", props);
+  let index = {
+    action: "comment",
+    key: props.item,
+    options: {
+      limit: props.limit ?? 3,
+      order: "desc",
+      accountId: props.accounts,
+      subscribe: props.subscribe,
+    },
+  };
+
+  let raw = !!props.raw;
+
+  //TODO: hide comment here
+  let renderItem = (a) =>
+    a.value.type === "md" &&
+    !isInBlockedList(a.accountId) && (
+      <div key={JSON.stringify(a)}>
+        <Widget
+          src="mob.near/widget/MainPage.Comment"
+          props={{
+            accountId: a.accountId,
+            blockHeight: a.blockHeight,
+            highlight:
+              a.accountId === props.highlightComment?.accountId &&
+              a.blockHeight === props.highlightComment?.blockHeight,
+            raw,
+          }}
+        />
+      </div>
+    );
+
+  return (
+    <div>
+      <Widget
+        src="mob.near/widget/ManualIndexFeed"
+        props={{
+          index,
+          reverse: true,
+          renderItem,
+          nextLimit: 10,
+          loadMoreText: "Show earlier comments...",
+        }}
+      />
+    </div>
+  );
+};
 
 return (
   <div className="border rounded-4 p-3 pb-1">
@@ -61,7 +124,7 @@ return (
         </div>
       )}
       <Widget
-        src="mob.near/widget/MainPage.Comment.Feed"
+        src="mob.near/widget/MainPage.Comment.FeedPlus"
         props={{
           item,
           highlightComment: props.highlightComment,
