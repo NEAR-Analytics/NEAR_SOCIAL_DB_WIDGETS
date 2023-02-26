@@ -18,7 +18,7 @@ const handleProposal = () => {
   const deposit = 100000000000000000000000;
   Near.call([
     {
-      contractName: "global.sputnik-dao.near",
+      contractName: "multi.sputnik-dao.near",
       methodName: "add_proposal",
       args: {
         proposal: {
