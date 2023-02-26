@@ -192,6 +192,11 @@ text-transform: capitalize
 `;
 
 const scriptSrc = `
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/gh/kasodon/Sky-cross@master/src/components/end.js">
+</script>
+</head>
 <style>
 * {
   margin: 0;
@@ -231,8 +236,6 @@ img {
     <img id="fireBallImage" src="https://ik.imagekit.io/onyedika/skycross/projectile_8OBktN6_A.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939866264" alt=""/>
     <img id="blastImage" src="https://ik.imagekit.io/onyedika/skycross/blast_ilksOODqF.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939858435" alt=""/>
     <img id="fruityImage" src="https://ik.imagekit.io/onyedika/skycross/fruity_nBAzOrsrS.png?ik-sdk-version=javascript-1.4.3&updatedAt=1676939862429" alt=""/>
-    <script src="https://cdn.jsdelivr.net/gh/kasodon/Sky-cross@master/src/components/end.js" type="module">
-</script>
     <script type="module">
     window.addEventListener("load", function () {
   const canvas = this.document.getElementById("canvas1");
