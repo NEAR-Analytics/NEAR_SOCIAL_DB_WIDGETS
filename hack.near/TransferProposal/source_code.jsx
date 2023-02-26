@@ -19,12 +19,12 @@ const handleProposal = () => {
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: "proposing a transfer",
+          description: "transfer proposal",
           kind: {
             Transfer: {
-              token_id: "",
-              receiver_id: state,
-              amount: "1000000000000000000000000",
+              token_id: token_id,
+              receiver_id: receiver_id,
+              amount: amount,
             },
           },
         },
