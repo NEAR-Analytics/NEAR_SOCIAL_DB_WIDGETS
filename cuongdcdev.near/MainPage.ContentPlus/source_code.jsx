@@ -1,3 +1,17 @@
+/**
+ * MainPage.ContentPlus
+ * Source: mob.near/widget/MainPage.Content
+ */
+
+//get blocked list
+const userProfile = Social.getr(`${context.accountId}/profile`);
+console.log("Profile User ", userProfile);
+const blockedListArr = userProfile?.cdcBlockList
+  ? userProfile?.cdcBlockList.split(",")
+  : [];
+blockedListArr = blockedListArr.map((e) => e.trim());
+
+//init State
 State.init({
   feedIndex: context.accountId ? 0 : 1,
 });
@@ -31,14 +45,6 @@ if (state.feedIndex === 0) {
  */
 
 let WidgetCommentFeed = (props) => {
-  const userProfile = Social.getr(`${context.accountId}/profile`);
-  console.log("Profile User ", userProfile);
-
-  const blockedListArr = userProfile?.cdcBlockList
-    ? userProfile?.cdcBlockList.split(",")
-    : [];
-  blockedListArr = blockedListArr.map((e) => e.trim());
-
   console.log("blockedListArr", blockedListArr);
 
   console.log("props ", props);
@@ -178,6 +184,8 @@ let WidgetPost = (props) => {
  * Source: mob.near/widget/Mainpage.Feed
  * */
 let WidgetFeed = (props) => {
+  console.log("Following accounts: ", props.accounts);
+
   const index = {
     action: "post",
     key: "main",
@@ -189,7 +197,9 @@ let WidgetFeed = (props) => {
   };
 
   const renderItem = (a) =>
-    a.value.type === "md" && (
+    a.value.type === "md" &&
+    blockedListArr.length > 0 &&
+    blockedListArr.indexOf(a.accountId) < 0 && (
       <div key={JSON.stringify(a)} className="mb-3">
         {WidgetPost({ accountId: a.accountId, blockHeight: a.blockHeight })}
       </div>
