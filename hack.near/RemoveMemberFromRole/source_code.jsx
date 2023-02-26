@@ -56,7 +56,7 @@ return (
       Role:
       <input type="text" onChange={(e) => onChangeRole(e.target.value)} />
     </div>
-    <button className="btn btn-primary mt-3" onClick={handleProposal}>
+    <button className="btn btn-secondary mt-3" onClick={handleProposal}>
       Propose to Remove Member
     </button>
   </div>
