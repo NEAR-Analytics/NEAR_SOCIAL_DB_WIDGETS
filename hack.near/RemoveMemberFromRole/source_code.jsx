@@ -34,7 +34,7 @@ const handleProposal = () => {
 
 return (
   <div className="mb-3">
-    <button className="btn btn-success" onClick={handleProposal}>
+    <button className="btn btn-primary" onClick={handleProposal}>
       Propose to Remove Member
     </button>
   </div>
