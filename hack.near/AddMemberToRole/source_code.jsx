@@ -7,7 +7,7 @@ if (!accountId) {
 
 State.init({
   member_id: state.member_id ?? accountId,
-  role: state.role,
+  role: state.role ?? "council",
 });
 
 const handleProposal = () => {
