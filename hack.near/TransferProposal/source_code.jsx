@@ -5,12 +5,15 @@ if (!accountId) {
 }
 
 State.init({
-  token_id: state.token_id,
-  receiver_id: state.receiver_id,
-  amount: state.amount,
+  token_id: "",
+  receiver_id: "infinity.near",
+  amount: "1",
 });
 
 const handleProposal = () => {
+  if (!(state.token_id && state.receiver_id && state.amount)) {
+    return;
+  }
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
@@ -22,9 +25,9 @@ const handleProposal = () => {
           description: "transfer proposal",
           kind: {
             Transfer: {
-              token_id: token_id,
-              receiver_id: receiver_id,
-              amount: amount,
+              token_id: state.token_id,
+              receiver_id: state.receiver_id,
+              amount: state.amount,
             },
           },
         },
