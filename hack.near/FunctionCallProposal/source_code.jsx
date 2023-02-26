@@ -30,7 +30,7 @@ const handleProposal = () => {
                 {
                   method_name: state.method_name,
                   args: state.args,
-                  deposit: "0",
+                  deposit: "1",
                   gas: "150000000000000",
                 },
               ],
