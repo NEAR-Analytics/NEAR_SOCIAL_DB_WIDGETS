@@ -1,6 +1,5 @@
-if (props.isPostBlocked) return <>post content is blocked</>;
-
 const accountId = props.accountId;
+if (props.isPostBlocked) return <>post content is blocked</>;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const content =
