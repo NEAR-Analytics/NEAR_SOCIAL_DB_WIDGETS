@@ -1,4 +1,4 @@
-const accountId = context.accountId;
+const accountId = props.accountId ?? context.accountId;
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
