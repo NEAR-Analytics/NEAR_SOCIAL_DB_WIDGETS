@@ -5,7 +5,6 @@ if (!accountId) {
 }
 
 State.init({
-  token_id: "",
   receiver_id: "infinity.near",
   amount: "1",
 });
@@ -35,12 +34,6 @@ const handleProposal = () => {
   ]);
 };
 
-const onChangeToken = (token_id) => {
-  State.update({
-    token_id,
-  });
-};
-
 const onChangeRecipient = (receiver_id) => {
   State.update({
     receiver_id,
@@ -55,10 +48,6 @@ const onChangeAmount = (amount) => {
 
 return (
   <div className="mb-3">
-    <div className="mb-2">
-      Token ID:
-      <input type="text" onChange={(e) => onChangeToken(e.target.value)} />
-    </div>
     <div className="mb-2">
       Recipient:
       <input type="text" onChange={(e) => onChangeRecipient(e.target.value)} />
