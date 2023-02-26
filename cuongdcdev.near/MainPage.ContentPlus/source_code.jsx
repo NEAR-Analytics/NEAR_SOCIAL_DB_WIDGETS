@@ -11,6 +11,14 @@ const blockedListArr = userProfile?.cdcBlockList
   : [];
 blockedListArr = blockedListArr.map((e) => e.trim());
 
+let isInBlockedList = (walletId) => {
+  if (!context.accountId) return false;
+  if (blockedListArr.length > 0 && blockedListArr.indexOf(walletId) >= 0) {
+    return true;
+  }
+  return false;
+};
+
 //init State
 State.init({
   feedIndex: context.accountId ? 0 : 1,
@@ -64,8 +72,7 @@ let WidgetCommentFeed = (props) => {
   //TODO: hide comment here
   const renderItem = (a) =>
     a.value.type === "md" &&
-    blockedListArr.length > 0 &&
-    blockedListArr.indexOf(a.accountId) < 0 && (
+    !isInBlockedList(a.accountId) && (
       <div key={JSON.stringify(a)}>
         <Widget
           src="mob.near/widget/MainPage.Comment"
@@ -195,11 +202,10 @@ let WidgetFeed = (props) => {
       accountId: props.accounts,
     },
   };
-
+  //TODO: hide post from blocked list here
   const renderItem = (a) =>
     a.value.type === "md" &&
-    blockedListArr.length > 0 &&
-    blockedListArr.indexOf(a.accountId) < 0 && (
+    !isInBlockedList(a.accountId) && (
       <div key={JSON.stringify(a)} className="mb-3">
         {WidgetPost({ accountId: a.accountId, blockHeight: a.blockHeight })}
       </div>
