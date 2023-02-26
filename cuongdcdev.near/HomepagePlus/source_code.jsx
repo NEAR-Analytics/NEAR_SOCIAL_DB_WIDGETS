@@ -8,4 +8,4 @@ if (homepage === null) {
   return "Loading";
 }
 
-return <Widget src={homepage ?? "cuongdcdev.near/widget/Welcome"} />;
+return <Widget src={homepage ?? "cuongdcdev.near/widget/WelcomePlus"} />;
