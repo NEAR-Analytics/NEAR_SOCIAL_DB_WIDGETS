@@ -6,7 +6,8 @@ if (!accountId) {
 }
 
 State.init({
-  member_id: accountId,
+  member_id: state.member_id,
+  role: state.role,
 });
 
 const handleProposal = () => {
@@ -21,8 +22,8 @@ const handleProposal = () => {
           description: "potential member",
           kind: {
             RemoveMemberFromRole: {
-              member_id: accountId,
-              role: "community",
+              member_id: state.member_id ?? accountId,
+              role: state.role ?? "council",
             },
           },
         },
@@ -33,8 +34,30 @@ const handleProposal = () => {
   ]);
 };
 
+const onChangeMember = (member_id) => {
+  State.update({
+    member_id,
+  });
+};
+
+const onChangeRole = (role) => {
+  State.update({
+    role,
+  });
+};
+
 return (
-  <button className="btn btn-primary" onClick={handleProposal}>
-    Propose to Remove Member
-  </button>
+  <div>
+    <div className="mb-2">
+      Account ID:
+      <input type="text" onChange={(e) => onChangeMember(e.target.value)} />
+    </div>
+    <div className="mb-2">
+      Role:
+      <input type="text" onChange={(e) => onChangeRole(e.target.value)} />
+    </div>
+    <button className="btn btn-primary mt-3" onClick={handleProposal}>
+      Propose to Remove Member
+    </button>
+  </div>
 );
