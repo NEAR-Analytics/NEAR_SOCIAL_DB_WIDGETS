@@ -31,6 +31,16 @@ if (state.feedIndex === 0) {
  */
 
 let WidgetCommentFeed = (props) => {
+  const userProfile = Social.getr(`${context.accountId}/profile`);
+  console.log("Profile User ", userProfile);
+
+  const blockedListArr = userProfile?.cdcBlockList
+    ? userProfile?.cdcBlockList.split(",")
+    : [];
+  blockedListArr = blockedListArr.map((e) => e.trim());
+
+  console.log("blockedListArr", blockedListArr);
+
   console.log("props ", props);
   const index = {
     action: "comment",
@@ -48,7 +58,8 @@ let WidgetCommentFeed = (props) => {
   //TODO: hide comment here
   const renderItem = (a) =>
     a.value.type === "md" &&
-    a.accountId.indexOf("hypefairy.near") == -1 && (
+    blockedListArr.length > 0 &&
+    blockedListArr.indexOf(a.accountId) < 0 && (
       <div key={JSON.stringify(a)}>
         <Widget
           src="mob.near/widget/MainPage.Comment"
