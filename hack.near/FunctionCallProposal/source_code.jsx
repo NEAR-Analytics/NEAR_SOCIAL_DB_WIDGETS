@@ -70,7 +70,7 @@ return (
     </div>
     <div className="mb-3">
       Method:
-      <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
     <div className="mb-3">
       Arguments (JSON):
