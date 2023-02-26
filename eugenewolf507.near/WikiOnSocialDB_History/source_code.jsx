@@ -11,17 +11,35 @@ State.init({
 
 // === START ===
 const handler = () => {
-  const articlePath = "devgovgigs.near/widget/Ideas";
-  const historyBlocksRequest = Social.keys(`${articlePath}`, "final", {
-    return_type: "History",
-  });
-  console.log("historyBlocksRequest", historyBlocksRequest);
+  // ============ WIDGETS
+  const widgetPath = "devgovgigs.near/widget/Ideas";
 
-  const articlePath2 = "eugenewolf507.near/wikiTest2Article/main";
-  const historyBlocksRequest2 = Social.keys(`${articlePath2}`, "final", {
-    return_type: "History",
-  });
-  console.log("historyBlocksRequest2", historyBlocksRequest2);
+  const historyBlocksRequestKeysWidgets = Social.keys(
+    `${widgetPath}`,
+    "final",
+    {
+      return_type: "History",
+    }
+  );
+  const historyBlocksRequestGetWidgets = Social.get(`${widgetPath}`, "final");
+
+  console.log(
+    "historyBlocksRequestKeysWidgets",
+    historyBlocksRequestKeysWidgets
+  );
+  console.log("historyBlocksRequestGetWidgets", historyBlocksRequestGetWidgets);
+
+  // ============ ARTICLES
+  const articlePath = "eugenewolf507.near/wikiTest2Article/main";
+
+  const historyBlocksRequestKeysArticles = Social.keys(
+    `${articlePath}`,
+    "final",
+    {
+      return_type: "History",
+    }
+  );
+  // console.log("historyBlocksRequestKeysArticles", historyBlocksRequestKeysArticles);
 };
 // === END ===
 
