@@ -5,10 +5,9 @@
 
 //get blocked list
 const userProfile = Social.getr(`${context.accountId}/profile`);
-console.log("Profile User ", userProfile);
-const blockedListArr = [];
+let blockedListArr = [];
 
-if (userProfile && userProfile.cdcBlockList) {
+if (context.accountId && userProfile.cdcBlockList) {
   blockedListArr = userProfile.cdcBlockList.split(",");
   blockedListArr = blockedListArr.map((e) => e.trim());
 }
@@ -42,7 +41,7 @@ if (state.feedIndex === 0) {
   const graph = Social.keys(`${context.accountId}/graph/follow/*`, "final");
   if (graph !== null) {
     accounts = Object.keys(graph[context.accountId].graph.follow || {});
-    console.log("Following Accounts: ", accounts, "Socials: ", Social);
+    // console.log("Following Accounts: ", accounts, "Socials: ", Social);
     accounts.push(context.accountId);
   } else {
     accounts = [];
@@ -55,10 +54,8 @@ if (state.feedIndex === 0) {
  */
 
 let WidgetCommentFeed = (props) => {
-  console.log("blockedListArr", blockedListArr);
-
-  console.log("props ", props);
-  const index = {
+  // console.log("props ", props);
+  let index = {
     action: "comment",
     key: props.item,
     options: {
@@ -69,10 +66,10 @@ let WidgetCommentFeed = (props) => {
     },
   };
 
-  const raw = !!props.raw;
+  let raw = !!props.raw;
 
   //TODO: hide comment here
-  const renderItem = (a) =>
+  let renderItem = (a) =>
     a.value.type === "md" &&
     !isInBlockedList(a.accountId) && (
       <div key={JSON.stringify(a)}>
@@ -111,8 +108,11 @@ let WidgetCommentFeed = (props) => {
  * WidgetPost
  * Source: mob.near/widget/MainPage.Post
  * */
+// TODO: single post bi loi
 let WidgetPost = (props) => {
   const accountId = props.accountId;
+  if (isInBlockedList(accountId)) return <h1>content is blocked</h1>;
+
   const blockHeight =
     props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
   const content =
@@ -120,13 +120,14 @@ let WidgetPost = (props) => {
     JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
   const subscribe = !!props.subscribe;
   const raw = !!props.raw;
-
   const notifyAccountId = accountId;
   const item = {
     type: "social",
     path: `${accountId}/post/main`,
     blockHeight,
   };
+
+  console.log("Post content : ", props);
 
   const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
@@ -195,7 +196,7 @@ let WidgetPost = (props) => {
 let WidgetFeed = (props) => {
   console.log("Following accounts: ", props.accounts);
 
-  const index = {
+  let index = {
     action: "post",
     key: "main",
     options: {
@@ -205,13 +206,29 @@ let WidgetFeed = (props) => {
     },
   };
   //TODO: hide post from blocked list here
-  const renderItem = (a) =>
-    a.value.type === "md" &&
-    !isInBlockedList(a.accountId) && (
-      <div key={JSON.stringify(a)} className="mb-3">
-        {WidgetPost({ accountId: a.accountId, blockHeight: a.blockHeight })}
-      </div>
+  let renderItem = (a) => {
+    console.log(" a la: ", a);
+    if (isInBlockedList(a.accountId)) {
+      console.log(a.accountId + " is BLOCKED");
+      return;
+    }
+
+    return (
+      a.value.type === "md" && (
+        <div key={JSON.stringify(a)} className="mb-3">
+          <Widget
+            src="cuongdcdev.near/widget/MainPage.PostPlus"
+            props={{
+              accountId: a.accountId,
+              isPostBlocked: isInBlockedList(a.accountId),
+              blockHeight: a.blockHeight,
+              blockedListArr: blockedListArr,
+            }}
+          />
+        </div>
+      )
     );
+  };
 
   return (
     <div>
