@@ -19,7 +19,7 @@ const handleProposal = () => {
         proposal: {
           description: "potential member",
           kind: {
-            AddMemberToRole: {
+            RemoveMemberFromRole: {
               member_id: accountId,
               role: "community",
             },
