@@ -26,18 +26,13 @@ const item = {
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 let tipNEAR = (accId) => {
-  let amount = prompt("Tip amount in NEAR");
-  if (!amount) return;
-  let oneNEAR = 1000000000000000000000000;
-  amount = parseFloat(amount) > 0 ? parseFloat(amount) : 1;
-  console.log("Donated amount: ", amount * oneNEAR);
-
+  let oneNEAR = "1000000000000000000000000";
   Near.call(
     "passthrough.near",
     "transfer",
     { receiver_id: accId },
     gas,
-    "1000000000000000000000000"
+    oneNEAR
   );
 };
 /**
@@ -120,7 +115,7 @@ return (
           class="d-inline-flex align-items-center"
           onClick={(accountId) => tipNEAR(accountId)}
         >
-          <button class="btn btn-active me-1" title="Tip NEAR 💰">
+          <button class="btn btn-active me-1" title="Tip 1 NEAR">
             <i class="bi fs-4 bi-coin"></i>
           </button>
         </div>
