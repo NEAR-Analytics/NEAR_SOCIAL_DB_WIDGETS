@@ -40,7 +40,7 @@ return (
   <div className="mb-3">
     Poll Question (yes / no):
     <input type="text" onChange={(e) => onChangeDescription(e.target.value)} />
-    <button className="btn btn-success mt-3" onClick={handleProposal}>
+    <button className="btn btn-outline-primary mt-3" onClick={handleProposal}>
       Create Poll
     </button>
   </div>
