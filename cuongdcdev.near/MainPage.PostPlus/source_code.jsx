@@ -116,7 +116,7 @@ return (
           onClick={() => tipNEAR(notifyAccountId)}
         >
           <button class="btn btn-active me-1" title="Tip 1 NEAR">
-            <i class="bi fs-4 bi-coin"></i>
+            <i class="bi bi-send fs-4"></i>
           </button>
         </div>
         <Widget
