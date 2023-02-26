@@ -11,9 +11,6 @@ State.init({
 });
 
 const handleProposal = () => {
-  if (!(state.token_id && state.receiver_id && state.amount)) {
-    return;
-  }
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
@@ -25,7 +22,7 @@ const handleProposal = () => {
           description: "transfer proposal",
           kind: {
             Transfer: {
-              token_id: state.token_id,
+              token_id: "",
               receiver_id: state.receiver_id,
               amount: state.amount,
             },
