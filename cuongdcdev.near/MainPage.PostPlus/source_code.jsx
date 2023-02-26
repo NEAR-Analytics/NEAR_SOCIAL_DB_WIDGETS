@@ -123,16 +123,13 @@ return (
           />
         </div>
       )}
-      <Widget
-        src="mob.near/widget/MainPage.Comment.FeedPlus"
-        props={{
-          item,
-          highlightComment: props.highlightComment,
-          limit: props.commentsLimit,
-          subscribe,
-          raw,
-        }}
-      />
+      {WidgetCommentFeed({
+        item,
+        highlightComment: props.highlightComment,
+        limit: props.commentsLimit,
+        subscribe,
+        raw,
+      })}
     </div>
   </div>
 );
