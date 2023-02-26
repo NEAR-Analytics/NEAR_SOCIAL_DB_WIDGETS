@@ -47,7 +47,7 @@ const onChangeRole = (role) => {
 };
 
 return (
-  <div>
+  <div className="mb-3">
     <div className="mb-2">
       Account ID:
       <input type="text" onChange={(e) => onChangeMember(e.target.value)} />
