@@ -5,8 +5,8 @@ if (!accountId) {
 }
 
 State.init({
-  receiver_id: "infinity.near",
-  amount: "1",
+  receiver_id: accountId,
+  amount: state.amount,
 });
 
 const handleProposal = () => {
