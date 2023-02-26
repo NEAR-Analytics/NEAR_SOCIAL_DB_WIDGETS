@@ -75,7 +75,7 @@ return (
     <div className="mb-3">
       Arguments (JSON):
       <input type="json" onChange={(e) => onChangeArgs(e.target.value)} />
-      <button className="btn btn-success mt-3" onClick={handleProposal}>
+      <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
         Propose Action
       </button>
     </div>
