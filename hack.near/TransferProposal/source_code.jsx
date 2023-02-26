@@ -5,7 +5,9 @@ if (!accountId) {
 }
 
 State.init({
-  member_id: accountId,
+  token_id: state.token_id,
+  receiver_id: state.receiver_id,
+  amount: state.amount,
 });
 
 const handleProposal = () => {
@@ -17,11 +19,12 @@ const handleProposal = () => {
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: "potential member",
+          description: "proposing a transfer",
           kind: {
-            AddMemberToRole: {
-              member_id: accountId,
-              role: "community",
+            Transfer: {
+              token_id: "",
+              receiver_id: state,
+              amount: "1000000000000000000000000",
             },
           },
         },
@@ -32,10 +35,40 @@ const handleProposal = () => {
   ]);
 };
 
+const onChangeToken = (token_id) => {
+  State.update({
+    token_id,
+  });
+};
+
+const onChangeRecipient = (receiver_id) => {
+  State.update({
+    receiver_id,
+  });
+};
+
+const onChangeAmount = (amount) => {
+  State.update({
+    amount,
+  });
+};
+
 return (
   <div className="mb-3">
+    <div className="mb-2">
+      Token ID:
+      <input type="text" onChange={(e) => onChangeToken(e.target.value)} />
+    </div>
+    <div className="mb-2">
+      Recipient:
+      <input type="text" onChange={(e) => onChangeRecipient(e.target.value)} />
+    </div>
+    <div className="mb-3">
+      Amount:
+      <input type="number" onChange={(e) => onChangeAmount(e.target.value)} />
+    </div>
     <button className="btn btn-success" onClick={handleProposal}>
-      Transfer
+      Propose Transfer
     </button>
   </div>
 );
