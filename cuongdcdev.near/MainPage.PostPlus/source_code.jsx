@@ -113,7 +113,7 @@ return (
         />
         <div
           class="d-inline-flex align-items-center"
-          onClick={() => tipNEAR(a.accountId)}
+          onClick={() => tipNEAR(notifyAccountId)}
         >
           <button class="btn btn-active me-1" title="Tip 1 NEAR">
             <i class="bi fs-4 bi-coin"></i>
