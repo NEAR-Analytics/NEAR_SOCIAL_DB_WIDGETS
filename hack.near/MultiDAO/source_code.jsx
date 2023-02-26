@@ -8,8 +8,6 @@ return (
   <div>
     <div className="mb-3">
       <Widget src="hack.near/widget/AddMemberToRole" props={{ accountId }} />
-    </div>
-    <div className="mb-3">
       <Widget
         src="hack.near/widget/RemoveMemberFromRole"
         props={{ accountId }}
