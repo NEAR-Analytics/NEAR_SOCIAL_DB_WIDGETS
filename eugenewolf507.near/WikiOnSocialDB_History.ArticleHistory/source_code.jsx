@@ -23,9 +23,8 @@ const authorForWidget = "eugenewolf507.near";
 if (!props.pathToWidget || !props.currentBlockHeight)
   return "send pathToWidget and currentBlockHeight in props";
 
-const currentArticle = Social.get(
-  `${props.pathToWidget}`,
-  props.currentBlockHeight
+const currentArticle = JSON.parse(
+  Social.get(`${props.pathToWidget}`, props.currentBlockHeight)
 );
 
 console.log("currentArticle", currentArticle);
