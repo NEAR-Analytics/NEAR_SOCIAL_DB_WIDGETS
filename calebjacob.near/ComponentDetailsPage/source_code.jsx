@@ -263,7 +263,7 @@ return (
             </div>
           )}
 
-          {tags.includes("Coming Soon") && (
+          {(tags.includes("Coming Soon") || tags.includes("coming-soon")) && (
             <div>
               <Widget src="calebjacob.near/widget/waitList" />
             </div>
