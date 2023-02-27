@@ -73,15 +73,17 @@ function setValue(x, y, value) {
   State.update();
 }
 
-State.init({
-  player,
-  current_board: isEqualBoard(savedBoard, player.sudoku)
-    ? savedBoard
-    : player.sudoku,
+if (player !== null) {
+  State.init({
+    player,
+    current_board: isEqualBoard(savedBoard, player.sudoku)
+      ? savedBoard
+      : player.sudoku,
 
-  message: null,
-  leaderboard: false,
-});
+    message: null,
+    leaderboard: false,
+  });
+}
 
 const Header = styled.div`
   color: rgb(143 217 165);
@@ -148,7 +150,7 @@ return (
         />
       ) : (
         <div>
-          {state.player === null && (
+          {player === null && (
             <div>
               <div>First transaction may cost {parseInt(STORAGE) / 1e24}</div>
               <Button onClick={startGame}>Play</Button>
