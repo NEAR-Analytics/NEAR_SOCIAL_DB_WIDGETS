@@ -117,6 +117,10 @@ const Avatar = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 
 const Textarea = styled.div`
@@ -145,6 +149,10 @@ const Textarea = styled.div`
 
     @media (max-width: 1200px) {
       min-height: 124px;
+    }
+
+    @media (max-width: 992px) {
+      padding-left: var(--padding);
     }
   }
   
@@ -195,6 +203,10 @@ const TextareaDescription = styled.p`
       color: #000;
       text-decoration: underline;
     }
+  }
+
+  @media (max-width: 992px) {
+    left: var(--padding);
   }
 `;
 
