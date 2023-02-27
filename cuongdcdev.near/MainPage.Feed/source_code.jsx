@@ -4,7 +4,7 @@ const index = {
   options: {
     limit: 10,
     order: "desc",
-    accountId: ["cuongdcdev.near"],
+    accountId: props.accounts,
   },
 };
 
