@@ -2,6 +2,7 @@
 ---props---
 props.widgetPath?: string,
 */
+const authorForWidget = "eugenewolf507.near";
 const initWidgetPath = props.widgetPath || "devgovgigs.near/widget/Ideas";
 
 State.init({
