@@ -26,12 +26,12 @@ if (!props.pathToWidget || !props.currentBlockHeight)
 const currentCode = Social.get(
   `${props.pathToWidget}`,
   props.currentBlockHeight
-).body;
+);
 
 if (currentCode === null) return "Loading";
 
 const prevCode = props.prevBlockHeight
-  ? Social.get(`${props.pathToWidget}`, props.prevBlockHeight).body
+  ? Social.get(`${props.pathToWidget}`, props.prevBlockHeight)
   : undefined;
 
 if (prevCode === null) return "Loading";
