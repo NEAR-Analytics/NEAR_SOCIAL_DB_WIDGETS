@@ -1,3 +1,6 @@
+const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
+const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
+
 function onSearchChange({ result, term }) {
   if (term.trim()) {
     State.update({ searchResults: result || [] });
@@ -54,10 +57,17 @@ const Group = styled.div`
   gap: 12px;
 `;
 
+const GroupHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+`;
+
 const Text = styled.p`
   margin: 0;
   line-height: 1.5rem;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")} !important;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
   font-weight: ${(p) => (p.bold ? "600" : "400")};
   font-size: ${(p) => (p.small ? "12px" : "14px")};
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
@@ -71,11 +81,13 @@ const Text = styled.p`
   }
   
   &[href] {
-    display: inline-flex;
-    gap: 0.25rem;
-    
+    color: #006ADC;
+    outline: none;
+    font-weight: 600;
+
     &:hover,
     &:focus {
+      color: #006ADC;
       text-decoration: underline;
     }
   }
@@ -115,7 +127,13 @@ return (
 
     {state.searchResults?.people.length > 0 && (
       <Group>
-        <H3>People</H3>
+        <GroupHeader>
+          <H3>People</H3>
+          <Text as="a" href={peopleUrl} small>
+            View All
+          </Text>
+        </GroupHeader>
+
         <Items>
           {state.searchResults.people.map((person, i) => (
             <Item key={person.accountId}>
@@ -133,7 +151,13 @@ return (
 
     {state.searchResults?.components.length > 0 && (
       <Group>
-        <H3>Components</H3>
+        <GroupHeader>
+          <H3>Components</H3>
+          <Text as="a" href={componentsUrl} small>
+            View All
+          </Text>
+        </GroupHeader>
+
         <Items>
           {state.searchResults.components.map((component, i) => (
             <Item key={component.accountId + component.widgetName}>
