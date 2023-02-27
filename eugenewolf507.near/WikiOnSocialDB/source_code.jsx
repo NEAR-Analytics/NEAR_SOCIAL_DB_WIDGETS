@@ -1,4 +1,3 @@
-const addressForArticles = "wikiTest";
 const authorForWidget = "eugenewolf507.near";
 const accountId = props.accountId ?? context.accountId;
 if (!accountId) {
