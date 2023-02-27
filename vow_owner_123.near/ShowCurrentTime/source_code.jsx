@@ -27,18 +27,7 @@ function onInterval() {
   var utc_minute = today.getUTCMinutes();
 
   State.update({
-    current_time:
-      month +
-      "/" +
-      day +
-      "/" +
-      year +
-      " - " +
-      hour +
-      ":" +
-      minute +
-      ":" +
-      seconds,
+    current_time: month + "/" + day + "/" + year + " - " + hour + ":" + minute,
     world_time:
       utc_month +
       "/" +
@@ -48,9 +37,7 @@ function onInterval() {
       " - " +
       utc_hour +
       ":" +
-      utc_minute +
-      ":" +
-      seconds,
+      utc_minute,
   });
 }
 
