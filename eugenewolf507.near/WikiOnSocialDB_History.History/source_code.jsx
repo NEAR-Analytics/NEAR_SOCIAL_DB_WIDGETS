@@ -5,6 +5,59 @@ widgetPath: string,
 count(count: number)?: function,
 */
 const authorForWidget = "eugenewolf507.near";
+const addressForArticles = "wikiTest2Article";
+
+// === START ===
+const handler = () => {
+  // ============ WIDGETS
+  const widgetPath = "devgovgigs.near/widget/Ideas";
+
+  const historyBlocksRequestKeysWidgets = Social.keys(
+    `${widgetPath}`,
+    "final",
+    {
+      return_type: "History",
+    }
+  );
+  //   const historyBlocksRequestGetWidget = Social.get(`${widgetPath}`, "final");
+
+  console.log(
+    "historyBlocksRequestKeysWidgets",
+    historyBlocksRequestKeysWidgets
+  );
+  //   console.log("historyBlocksRequestGetWidget", historyBlocksRequestGetWidget);
+
+  // ============ ARTICLES
+  // ========== GET INDEX ARRAY FOR ARTICLES ==========
+  const postsIndex = Social.index(addressForArticles, "main", {
+    order: "desc",
+    accountId: undefined,
+  });
+  // ========== GET ALL ARTICLES ==========
+  const resultArticles =
+    postsIndex &&
+    postsIndex.reduce((acc, { accountId, blockHeight }) => {
+      const postData = Social.get(
+        `${accountId}/${addressForArticles}/main`,
+        blockHeight
+      );
+      const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
+      return [...acc, postDataWithBlockHeight];
+    }, []);
+  // ========== FIND ALL VERSIONS OF ONE ARTICLE ==========
+  const filteredArticles =
+    resultArticles.length &&
+    resultArticles.reduce((acc, article) => {
+      if (article.articleId === "FirstNewDBTest") {
+        return [...acc, article];
+      } else {
+        return acc;
+      }
+    }, []);
+  console.log("filteredArticles", filteredArticles);
+};
+
+// === END ===
 
 if (typeof props.widgetPath !== "string")
   return "send {widgetPath} as string in props";
@@ -123,6 +176,10 @@ const TabsButton = styled.button`
 
 return (
   <div>
+    {/* === START === */}
+    <button onClick={handler}>GET DATA (delete thos button)</button>
+    {/* === END === */}
+
     {!blocksChanges ? (
       <div>incorrent widget path</div>
     ) : (
