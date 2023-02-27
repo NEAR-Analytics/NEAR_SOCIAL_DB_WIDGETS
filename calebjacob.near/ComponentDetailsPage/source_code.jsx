@@ -242,7 +242,7 @@ return (
             <div>
               <SmallTitle>Tags</SmallTitle>
               <Widget
-                src="calebjacob.near/widget/ComponentTags"
+                src="calebjacob.near/widget/Tags"
                 props={{
                   tags,
                 }}
