@@ -45,7 +45,7 @@ return (
       </small>
     </div>
     <Widget
-      src={`${authorForWidget}/widget/WidgetHistory.CodeHistory`}
+      src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistory`}
       props={{
         pathToWidget: props.pathToWidget,
         currentBlockHeight: props.currentBlockHeight,
