@@ -27,15 +27,12 @@ const currentArticle = JSON.parse(
   Social.get(`${props.pathToWidget}`, props.currentBlockHeight)
 );
 
-console.log("currentArticle", currentArticle);
-
 const currentCode = currentArticle.body;
-console.log("currentCode", currentCode);
 
 if (currentCode === null) return "Loading";
 
 const prevCode = props.prevBlockHeight
-  ? Social.get(`${props.pathToWidget}`, props.prevBlockHeight)
+  ? JSON.parse(Social.get(`${props.pathToWidget}`, props.prevBlockHeight)).body
   : undefined;
 
 if (prevCode === null) return "Loading";
