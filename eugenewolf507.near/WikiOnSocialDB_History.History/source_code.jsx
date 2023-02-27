@@ -3,8 +3,8 @@
 
 widgetPath: string,
 count(count: number)?: function,
-
 */
+const authorForWidget = "eugenewolf507.near";
 
 if (typeof props.widgetPath !== "string")
   return "send {widgetPath} as string in props";
@@ -60,7 +60,7 @@ function blockHeightToWidgetCode(blockHeight) {
     <Widget
       style={{ minHeight: "200px" }}
       key={blockHeight}
-      src={`bozon.near/widget/WidgetHistory.CodeHistoryCard`}
+      src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
       props={{
         pathToWidget: props.widgetPath,
         currentBlockHeight: blockHeight,
