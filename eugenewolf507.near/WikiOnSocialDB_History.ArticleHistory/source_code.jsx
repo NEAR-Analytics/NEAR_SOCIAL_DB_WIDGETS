@@ -29,6 +29,7 @@ const currentArticle = Social.get(
 );
 
 const currentCode = currentArticle.body;
+console.log("currentCode", currentCode);
 
 if (currentCode === null) return "Loading";
 
