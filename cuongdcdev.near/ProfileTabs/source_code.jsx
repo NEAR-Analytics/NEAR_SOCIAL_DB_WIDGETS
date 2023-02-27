@@ -5,8 +5,9 @@ if (!accountId) {
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 let blockedListArr = [];
-if (context.accountId && userProfile.cdcBlockList) {
-  blockedListArr = userProfile.cdcBlockList.split(",");
+
+if (context.accountId && profile.cdcBlockList) {
+  blockedListArr = profile.cdcBlockList.split(",");
   blockedListArr = blockedListArr.map((e) => e.trim());
 }
 
