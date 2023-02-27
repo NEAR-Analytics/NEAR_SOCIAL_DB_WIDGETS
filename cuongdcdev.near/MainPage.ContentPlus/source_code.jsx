@@ -127,8 +127,6 @@ let WidgetPost = (props) => {
     blockHeight,
   };
 
-  console.log("Post content : ", props);
-
   const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
   return (
