@@ -2,7 +2,7 @@
 ---props---
 props.widgetPath?: string,
 */
-
+const authorForWidget = "eugenewolf507.near";
 const initWidgetPath = props.widgetPath || "devgovgigs.near/widget/Ideas";
 
 State.init({
@@ -64,7 +64,7 @@ return (
     </div>
 
     <Widget
-      src={`bozon.near/widget/WidgetHistory.History`}
+      src={`${authorForWidget}/widget/WikiOnSocialDB_History.History`}
       props={{
         widgetPath: state.widgetPath,
       }}
