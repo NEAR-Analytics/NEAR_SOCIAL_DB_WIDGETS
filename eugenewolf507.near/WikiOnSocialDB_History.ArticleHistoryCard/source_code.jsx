@@ -2,6 +2,7 @@
 //props.pathToWidget: string ("bozon.near/widget/PrivateMailBox")
 //props.currentBlockHeight: number
 //props.prevBlockHeight?: number
+const authorForWidget = "eugenewolf507.near";
 
 State.init({});
 
@@ -44,7 +45,7 @@ return (
       </small>
     </div>
     <Widget
-      src={`bozon.near/widget/WidgetHistory.CodeHistory`}
+      src={`${authorForWidget}/widget/WidgetHistory.CodeHistory`}
       props={{
         pathToWidget: props.pathToWidget,
         currentBlockHeight: props.currentBlockHeight,
