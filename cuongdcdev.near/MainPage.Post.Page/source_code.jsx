@@ -1,9 +1,9 @@
 const userProfile = Social.getr(`${context.accountId}/profile`);
-let blockedListArr = [];
+let blockedarr = [];
 
 if (context.accountId && userProfile.cdcBlockList) {
-  blockedListArr = userProfile.cdcBlockList.split(",");
-  blockedListArr = blockedListArr.map((e) => e.trim());
+  blockedarr = userProfile.cdcBlockList.split(",");
+  blockedarr = blockedarr.map((e) => e.trim());
 }
 
 return (
