@@ -37,7 +37,7 @@ const NavBarLogo = styled.a`
 `;
 const Main = styled.div`
   display: grid;
-  grid-template-columns: 284px minmax(0, 1fr);
+  grid-template-columns: 290px minmax(0, 1fr) 290px;
   grid-gap: 16px;
   padding-bottom: 24px;
 
