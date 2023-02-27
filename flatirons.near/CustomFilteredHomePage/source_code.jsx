@@ -1,6 +1,8 @@
 return (
   <>
-    <h1>All your Widget are belong to Us</h1>
+    {
+      //<h5>All your Widget are belong to Catz</h5>
+    }
     <Widget src="mob.near/widget/ProfileOnboarding" />
     <ul
       className="nav nav-pills nav-fill mb-3 d-lg-none"
