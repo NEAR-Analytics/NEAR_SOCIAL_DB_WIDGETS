@@ -44,12 +44,13 @@ const Tags = styled.ul`
 `;
 
 const Tag = styled.li`
-  border: 1px solid #E6E8EB;
   padding: 3px 6px;
   border-radius: 6px;
   font-size: 12px;
   line-height: 12px;
-  color: #687076;
+  border: 1px solid currentcolor;
+  border-color: ${(p) => (p.primary ? "currentcolor" : "#E6E8EB")};
+  color: ${(p) => (p.primary ? "#26A65A" : "#687076")};
   font-weight: 500;
   white-space: nowrap;
 `;
@@ -58,7 +59,9 @@ return (
   <Wrapper scroll={props.scroll}>
     <Tags>
       {props.tags.map((tag, i) => (
-        <Tag key={i}>{tag}</Tag>
+        <Tag key={i} primary={tag === "Coming Soon"}>
+          {tag}
+        </Tag>
       ))}
     </Tags>
   </Wrapper>
