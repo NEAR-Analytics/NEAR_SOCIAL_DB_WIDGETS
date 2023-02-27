@@ -36,8 +36,8 @@ let Style = styled.div`
 
         `;
 
-const values = [10, 20, 50, 40];
-const labels = ["a", "b", "c", "d"];
+const values = props.values || [100];
+const labels = props.labels || ["NA"];
 
 const total = values.reduce((acc, value) => acc + value, 0);
 let startAngle = 0;
