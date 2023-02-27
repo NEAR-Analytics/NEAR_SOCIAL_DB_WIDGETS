@@ -59,7 +59,7 @@ return (
   <Wrapper scroll={props.scroll}>
     <Tags>
       {props.tags.map((tag, i) => (
-        <Tag key={i} primary={tag === "Coming Soon"}>
+        <Tag key={i} primary={tag === "Coming Soon" || tag === "coming-soon"}>
           {tag}
         </Tag>
       ))}
