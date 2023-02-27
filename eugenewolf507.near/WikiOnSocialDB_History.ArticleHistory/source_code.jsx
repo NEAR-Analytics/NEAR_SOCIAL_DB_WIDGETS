@@ -18,6 +18,8 @@ props.findUniqueResult(
 props.showLineNumber?: bool
 
 */
+const authorForWidget = "eugenewolf507.near";
+
 if (!props.pathToWidget || !props.currentBlockHeight)
   return "send pathToWidget and currentBlockHeight in props";
 
