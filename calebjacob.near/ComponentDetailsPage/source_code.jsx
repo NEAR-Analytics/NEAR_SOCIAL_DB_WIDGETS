@@ -263,6 +263,12 @@ return (
             </div>
           )}
 
+          {tags.includes("Coming Soon") && (
+            <div>
+              <Widget src="calebjacob.near/widget/waitList" />
+            </div>
+          )}
+
           <div>
             <Text small>
               <i className="bi bi-clock"></i>
