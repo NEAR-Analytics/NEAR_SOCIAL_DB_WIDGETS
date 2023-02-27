@@ -38,6 +38,30 @@ const reducer = (message) => {
   }
 };
 const code = `
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.container {
+ max-width: 800px;
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
     <script>
    let iframe = null;
 
@@ -53,17 +77,31 @@ const code = `
       console.log("added base")
       iframe.src += base;
     }
+    if(base.includes("create-new-indexer")) {
+       iframe.style.height = '1000px';
+    } else if(base.includes("query-api-editor")) {
+      iframe.style.height = '500px';
+    }
+
     if (accountId != undefined && indexerName != undefined) {
       iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
-    iframe.style.height = '500px';
     } else if (accountId != undefined ){
       iframe.src += "?accountId=${accountId}"
-      iframe.style.height = '370px';
+
     }
     iframe.name = "react-app"
     iframe.id = "react-app-iframe"
-    iframe.style.width = '1250px';
+    // iframe.style.width = '750px';
+    // iframe.class = "responsive-iframe";
+    // iframe.allowFullScreen="true";
+    // iframe_wrapper = document.createElement("div");
 
+    // iframe_wrapper.class = "iframe-wrapper";
+    // container_div = document.createElement("div");
+    // container_div.class = "container";
+
+    // iframe_wrapper.appendChild(iframe);
+    // container_div.appendChild(iframe_wrapper)
     document.body.appendChild(iframe);
   }
 
@@ -89,7 +127,7 @@ return (
     <iframe
       name="widget-iframe"
       className="w-100"
-      style={{ height: "500px" }}
+      style={{ height: "500px", width: "500px" }}
       srcDoc={code}
       message={{
         action: "createIframe",
