@@ -28,6 +28,8 @@ const currentArticle = Social.get(
   props.currentBlockHeight
 );
 
+console.log("currentArticle", currentArticle);
+
 const currentCode = currentArticle.body;
 console.log("currentCode", currentCode);
 
