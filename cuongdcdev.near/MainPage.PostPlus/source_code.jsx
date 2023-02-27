@@ -23,7 +23,7 @@ const item = {
   blockHeight,
 };
 
-const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+const link = `#/cuongdcdev.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 let tipNEAR = (accId) => {
   let oneNEAR = "1000000000000000000000000";
