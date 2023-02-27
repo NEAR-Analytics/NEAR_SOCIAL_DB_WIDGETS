@@ -6,6 +6,7 @@ let B = Big();
 B.DP = 60; // set precision to 60 decimals
 
 const toAPY = (v) => Math.round(v * 100) / 100;
+const clone = (o) => JSON.parse(JSON.stringify(o));
 
 const { selectedTokenId, amount, hasError, assets, rewards } = state;
 
@@ -49,7 +50,7 @@ if (!account) return <div>loading...</div>;
 
 // sum all assets to get the health factor
 // https://github.com/burrowfdn/burrowland for detailed explanation
-function getAdjustedSum(type) {
+function getAdjustedSum(type, account) {
   if (!assets) return B(1);
   return account[type]
     .map((assetInAccount) => {
@@ -76,8 +77,8 @@ function getAdjustedSum(type) {
     .reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
 }
 
-const adjustedCollateralSum = getAdjustedSum("collateral");
-const adjustedBorrowedSum = getAdjustedSum("borrowed");
+const adjustedCollateralSum = getAdjustedSum("collateral", account);
+const adjustedBorrowedSum = getAdjustedSum("borrowed", account);
 
 function getHealthFactor() {
   const healthFactor = B(adjustedCollateralSum)
@@ -88,6 +89,52 @@ function getHealthFactor() {
 }
 
 const healthFactor = getHealthFactor();
+
+const recomputeHealthFactor = (tokenId, amount) => {
+  if (!tokenId || !amount) return null;
+  const asset = assets.find((a) => a.token_id === tokenId);
+  const decimals = asset.metadata.decimals + asset.config.extra_decimals;
+  const accountBorrowedAsset = account.borrowed.find(
+    (a) => a.token_id === tokenId
+  );
+
+  const newBalance = expandToken(amount, decimals)
+    .plus(B(accountBorrowedAsset?.balance || 0))
+    .toFixed();
+
+  const clonedAccount = clone(account);
+
+  const updatedToken = {
+    token_id: tokenId,
+    balance: newBalance,
+    shares: newBalance,
+    apr: "0",
+  };
+
+  if (clonedAccount?.borrowed.length === 0) {
+    clonedAccount.borrowed = updatedToken;
+  } else if (!accountBorrowedAsset) {
+    clonedAccount.borrowed.push(updatedToken);
+  } else {
+    clonedAccount.borrowed = [
+      ...clonedAccount.borrowed.filter((a) => a.token_id !== tokenId),
+      updatedToken,
+    ];
+  }
+  console.log(clonedAccount);
+  const adjustedCollateralSum = getAdjustedSum("collateral", account);
+  const adjustedBorrowedSum = getAdjustedSum(
+    "borrowed",
+    amount === 0 ? account : clonedAccount
+  );
+
+  const newHealthFactor = B(adjustedCollateralSum)
+    .div(B(adjustedBorrowedSum))
+    .mul(100)
+    .toNumber();
+
+  return newHealthFactor;
+};
 
 // get max ammount can be borrowed
 function getMaxAmount() {
@@ -145,6 +192,12 @@ const handleAmount = (e) => {
     amount: Number(e.target.value),
     selectedTokenId,
     hasError: false,
+  });
+};
+
+const handleBlur = (e) => {
+  State.update({
+    newHealthFactor: recomputeHealthFactor(selectedTokenId, amount),
   });
 };
 
@@ -232,6 +285,10 @@ const handleBorrow = () => {
 
 const reward = rewards && rewards.find((a) => a.token_id === selectedTokenId);
 
+const newHealthFactor = state.newHealthFactor
+  ? state.newHealthFactor?.toFixed()
+  : undefined;
+
 return (
   <div style={{ maxWidth: "300px" }}>
     {!hasData && (
@@ -261,7 +318,12 @@ return (
       </div>
       <div>
         <div class="mb-2 text-muted">Amount</div>
-        <input type="number" value={amount} onChange={handleAmount} />
+        <input
+          type="number"
+          value={amount}
+          onChange={handleAmount}
+          onBlur={handleBlur}
+        />
         {hasError && (
           <p class="alert alert-danger" role="alert">
             Amount greater than available
@@ -269,7 +331,10 @@ return (
         )}
       </div>
       <div>
-        <span class="badge bg-light text-dark">{healthFactor}% health</span>
+        <span class="badge bg-light text-dark">
+          {healthFactor}% health{" "}
+          {newHealthFactor && <span>(after borrow: {newHealthFactor}%)</span>}
+        </span>
       </div>
       <button
         onClick={handleBorrow}
