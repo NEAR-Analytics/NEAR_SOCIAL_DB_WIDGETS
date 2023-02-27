@@ -183,9 +183,7 @@ return props.manual ? (
   </>
 ) : (
   <>
-    {
-      //<p>Hiding Users: {JSON.stringify(userReputationHides)}</p>--%
-    }
+    <p>Hiding Users: {JSON.stringify(userReputationHides)}</p>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
