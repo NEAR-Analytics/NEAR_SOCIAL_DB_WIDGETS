@@ -4,8 +4,6 @@
 //props.prevBlockHeight?: number
 const authorForWidget = "eugenewolf507.near";
 
-console.log(props.currentBlockHeight, "     ", props.prevBlockHeight);
-
 State.init({});
 
 function getDatastringFromBlockHeight(blockHeight) {
