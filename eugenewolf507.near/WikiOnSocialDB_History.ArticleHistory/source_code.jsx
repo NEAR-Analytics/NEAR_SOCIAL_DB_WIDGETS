@@ -23,10 +23,12 @@ const authorForWidget = "eugenewolf507.near";
 if (!props.pathToWidget || !props.currentBlockHeight)
   return "send pathToWidget and currentBlockHeight in props";
 
-const currentCode = Social.get(
+const currentArticle = Social.get(
   `${props.pathToWidget}`,
   props.currentBlockHeight
 );
+
+const currentCode = currentArticle.body;
 
 if (currentCode === null) return "Loading";
 
