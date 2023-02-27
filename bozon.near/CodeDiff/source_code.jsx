@@ -19,7 +19,8 @@ showLineNumber?: bool
 
 */
 
-if (!props.currentCode) return "send currentCode in props";
+if (typeof props?.currentCode !== "string")
+  return "send {currentCode: string} in props";
 
 //code from this - https://github.com/jonTrent/PatienceDiff
 function patienceDiff(aLines, bLines, diffPlusFlag) {
