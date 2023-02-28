@@ -9,7 +9,20 @@ return content ? (
       ) : (
         <Widget
           src="mob.near/widget/SocialMarkdown"
-          props={{ text: content.text }}
+          props={{
+            text: content.text,
+            onHashtag: (hashtag) => (
+              <span
+                key={hashtag}
+                className="d-inline-flex"
+                style={{ fontWeight: 500 }}
+              >
+                <a href={`#/mob.near/widget/Hashtag.Feed?hashtag=${hashtag}`}>
+                  #{hashtag}
+                </a>
+              </span>
+            ),
+          }}
         />
       ))}
     {content.image &&
