@@ -19,6 +19,8 @@ showLineNumber?: bool
 
 */
 
+props.currentCode = Social.get("bozon.near/widget/WidgetHistory.CodeHistory");
+
 if (typeof props?.currentCode !== "string")
   return "send {currentCode: string} in props";
 
@@ -333,8 +335,14 @@ const lineProps = (lineNumber) => {
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
+let MarginNone = styled.div`
+& > pre > div {
+    margin: 0px !important;
+}
+`;
+
 return (
-  <div>
+  <MarginNone>
     <Markdown
       text={`
 \`\`\`jsx
@@ -347,5 +355,5 @@ ${codeText}
         lineNumberStyle: { display: !props.showLineNumber && "none" },
       }}
     />
-  </div>
+  </MarginNone>
 );
