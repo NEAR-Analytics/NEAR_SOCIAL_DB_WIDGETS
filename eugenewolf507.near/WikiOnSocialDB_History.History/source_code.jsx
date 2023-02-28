@@ -88,8 +88,6 @@ function blockHeightToWidgetCode(blockHeightObject) {
   const index = blocksChanges.findIndex(
     (el) => el.blockHeight == blockHeightObject.blockHeight
   );
-  console.log("blockHeightToWidgetRender");
-  console.log(blockHeightObject.blockHeight);
   return (
     <Widget
       style={{ minHeight: "200px" }}
