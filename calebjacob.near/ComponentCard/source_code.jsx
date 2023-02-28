@@ -43,8 +43,8 @@ const CardFooter = styled.div`
 
 const CardTag = styled.p`
   margin: 0;
-  font-size: 10px;
-  line-height: 18px;
+  font-size: 9px;
+  line-height: 14px;
   background: #ECEEF0;
   color: #687076;
   font-weight: 400;
@@ -53,7 +53,7 @@ const CardTag = styled.p`
   top: 0;
   right: 0;
   border-bottom-left-radius: 3px;
-  padding: 0 6px;
+  padding: 0 4px;
 
   i {
     margin-right: 3px;
