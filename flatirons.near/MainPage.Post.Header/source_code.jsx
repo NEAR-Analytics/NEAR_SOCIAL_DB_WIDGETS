@@ -28,7 +28,7 @@ State.init({
   graphqlMessage: "",
 });
 
-function hideUser() {
+async function hideUser() {
   const query =
     `mutation HideUser { insert_user_centric_user_reputation(
     objects: {base_account_id: "` +
