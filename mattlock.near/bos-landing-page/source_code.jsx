@@ -139,7 +139,7 @@ a, a:focus, a:visited, a:hover {
     opacity: 0.5;
   width: 100vw;
   height: 260px;
-  background: url('https://s3-alpha-sig.figma.com/img/aa66/ca0f/536910691a243c017d29d4fe29b4da0a?Expires=1677456000&Signature=SCOYHroTrc--MSSaDWtzcsPvcoHQs9~lF2cwUv-4liY-MTa01xehz4dcVFgvyyqrN8oohEeIZ28SjtcVRFVquNupbyqMUe06cB84IN8T-tvZ7pJqsT96NB2rwpfZvTgcBioY0lRVU45~LGxBF6Mq-Cow-WjIwjU3UZUADEdhVQx85g1hK3OIpn4xP2QJmKor1raV4EdvS7dI0PzyzZg1b9h3EUgEACu15Bl~7d6HD6~a1mQVz6WLJOa4GlOpAnOs7fpG6d8vsWjA1BV6jkXHkra4F82EvKGOhXJp-Ti04S37Km5OQBxc6KOTB8MbOS-FOgeVENObE~7l-fuMZvLW1A__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4');
+  background: url('https://cloudflare-ipfs.com/ipfs/bafybeib7kr66dgccanis5n3q5fhmwg2ff42n2csy6peoge4buylwzkj3qa');
  }
 
  .header-content-left {
