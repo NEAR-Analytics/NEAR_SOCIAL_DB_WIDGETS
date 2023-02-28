@@ -46,7 +46,7 @@ function hideUser() {
 }`;
   let userReputationResponse;
   try {
-    userReputationResponse = fetch(
+    userReputationResponse = await fetch(
       "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
       {
         method: "POST",
