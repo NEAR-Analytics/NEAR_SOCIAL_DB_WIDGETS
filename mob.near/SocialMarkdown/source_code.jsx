@@ -1,5 +1,6 @@
 const renderMention =
   props.renderMention ??
+  props.onMention ??
   ((accountId) => (
     <span key={accountId} className="d-inline-flex" style={{ fontWeight: 500 }}>
       <Widget
@@ -13,4 +14,8 @@ const renderMention =
     </span>
   ));
 
-return <Markdown text={props.text} onMention={renderMention} />;
+const onHashtag = props.onHashtag;
+
+return (
+  <Markdown text={props.text} onMention={renderMention} onHashtag={onHashtag} />
+);
