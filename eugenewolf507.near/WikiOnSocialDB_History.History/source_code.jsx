@@ -1,14 +1,12 @@
 /*
 ---props---
-
-widgetPath: string,
 count(count: number)?: function,
 */
 const authorForWidget = "eugenewolf507.near";
 const addressForArticles = "wikiTest2Article";
 
-if (typeof props.widgetPath !== "string")
-  return "send {widgetPath} as string in props";
+// if (typeof props.widgetPath !== "string")
+//   return "send {widgetPath} as string in props";
 
 State.init({
   selectedTab: "code",
@@ -94,7 +92,7 @@ function blockHeightToWidgetCode(blockHeightObject) {
       key={blockHeightObject.blockHeight}
       src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
       props={{
-        pathToWidget: props.widgetPath,
+        pathToWidget: `${blockHeightObject.lastEditor}/${addressForArticles}/main`,
         currentBlockHeight: blockHeightObject.blockHeight,
         prevBlockHeight: blocksChanges[index + 1].blockHeight,
       }}
@@ -110,7 +108,9 @@ function blockHeightToWidgetRender(blockHeight) {
       key={blockHeight}
       src={`bozon.near/widget/WidgetHistory.RenderCode`}
       props={{
-        pathToWidget: props.widgetPath,
+        pathToWidget: `${
+          blocksChanges[index + 1].lastEditor
+        }/${addressForArticles}/main`,
         currentBlockHeight: blockHeight,
         prevBlockHeight: blocksChanges[index + 1].blockHeight,
       }}
