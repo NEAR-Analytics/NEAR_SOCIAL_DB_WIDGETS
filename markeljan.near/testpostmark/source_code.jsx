@@ -61,9 +61,29 @@ if (!post) {
 }
 const referral = props.referral;
 
-//if props.timestamp
+const timestampFromProps = props.timestamp;
+const compareWithTimestamp = props.compareWith;
+let snapshot = post.snapshot;
+const snapshot_history = post.snapshot_history;
 
-const snapshot = post.snapshot;
+if (timestampFromProps) {
+  const foundSnapshot = snapshot_history.find(
+    (s) => s.timestamp === timestampFromProps
+  );
+  if (foundSnapshot) {
+    snapshot = foundSnapshot;
+  }
+}
+
+if (compareWithTimestamp) {
+  const foundSnapshot = snapshot_history.find(
+    (s) => s.value === compareWithTimestamp
+  );
+  if (foundSnapshot) {
+    snapshot = foundSnapshot;
+  }
+}
+
 console.log("snap", post.snapshot);
 console.log("post", post);
 // If this post is displayed under another post. Used to limit the size.
