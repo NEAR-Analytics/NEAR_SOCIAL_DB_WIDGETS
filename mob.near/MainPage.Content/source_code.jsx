@@ -1,7 +1,7 @@
 const hashtag = props.hashtag;
 
 State.init({
-  feedIndex: props.hashtag ? 2 : context.accountId ? 0 : 1,
+  feedIndex: hashtag ? 2 : context.accountId ? 0 : 1,
   hashtag,
 });
 
