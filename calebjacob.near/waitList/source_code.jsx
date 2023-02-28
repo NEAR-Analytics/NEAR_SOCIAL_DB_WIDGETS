@@ -9,6 +9,14 @@ const StyledMainContent = styled.div`
   text-align: center;
   text-align: left;
 
+  > h3 {
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 130%;
+    color: #11181C;
+    margin: 0;
+  }
+
   > p {
     font-weight: 400;
     font-size: 14px;
@@ -40,6 +48,7 @@ const StyledMainContent = styled.div`
 
 return (
   <StyledMainContent>
+    <h3>Coming Soon</h3>
     <p>Want to start using the fastest way to onboard in Web3?</p>
     <a href="http://eepurl.com/hXyUnf" target="_blank">
       Register for Early Access
