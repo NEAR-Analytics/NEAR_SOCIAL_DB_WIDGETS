@@ -53,6 +53,13 @@ return (
       <Item>
         <Widget
           src="calebjacob.near/widget/ComponentCard"
+          props={{ src: "adminalpha.near/widget/FastAuth" }}
+        />
+      </Item>
+
+      <Item>
+        <Widget
+          src="calebjacob.near/widget/ComponentCard"
           props={{ src: "calebjacob.near/widget/ActivityPage" }}
         />
       </Item>
