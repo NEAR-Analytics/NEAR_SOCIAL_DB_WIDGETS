@@ -1,5 +1,6 @@
 //props
-//props.pathToArticle: string ("bozon.near/widget/PrivateMailBox")
+//props.pathToCurrentArticle: string
+//props.pathToPrevArticle: string
 //props.currentBlockHeight: number
 //props.prevBlockHeight?: number
 const authorForWidget = "eugenewolf507.near";
@@ -47,7 +48,8 @@ return (
     <Widget
       src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistory`}
       props={{
-        pathToArticle: props.pathToArticle,
+        pathToCurrentArticle: props.pathToCurrentArticle,
+        pathToPrevArticle: props.pathToPrevArticle,
         currentBlockHeight: props.currentBlockHeight,
         prevBlockHeight: props.prevBlockHeight,
         findUniqueResult: (
