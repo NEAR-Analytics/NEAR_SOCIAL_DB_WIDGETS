@@ -5,6 +5,9 @@ if (!data) {
 var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 var finalData = {};
 
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   const flag1 = data.indexOf(0);
@@ -206,7 +209,7 @@ return (
         </div>
         <div>
           <a
-            href="https://near.social/#/vow_owner_123.near/widget/Instance_time"
+            href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
             onMouseEnter={() => {
               State.update({ hoveringElement: "create" });
             }}
@@ -243,7 +246,7 @@ return (
     </div>
     <div className="align-items-center pt-3">
       <Widget
-        src={`vow_owner_123.near/widget/Instance_time_setting`}
+        src={`${widgetOwner}/widget/Instance_time_setting`}
         props={{
           data: {
             schedule: finalData.schedule,
