@@ -4,7 +4,7 @@ props.pathToWidget: string ("bozon.near/widget/PrivateMailBox")
 props.currentBlockHeight: number
 props.prevBlockHeight?: number
 */
-/* INCLUDE: "common.jsx" */
+
 const nearDevGovGigsContractAccountId =
   props.nearDevGovGigsContractAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
@@ -12,9 +12,10 @@ const nearDevGovGigsWidgetsAccountId =
   props.nearDevGovGigsWidgetsAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
+console.log(nearDevGovGigsContractAccountId);
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 console.log("postId: ", postId);
-const post = Near.view(nearDevGovGigsContractAccountId, "get_post", {
+const post = Near.view("devgovgigs.near", "get_post", {
   post_id: postId,
 });
 console.log("post: ", post);
