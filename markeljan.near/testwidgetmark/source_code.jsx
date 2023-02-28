@@ -1,6 +1,8 @@
 /*
 ---props---
-props.post || props.id
+props.post: {};
+props.id: number;
+props.referral: any;
 */
 
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
