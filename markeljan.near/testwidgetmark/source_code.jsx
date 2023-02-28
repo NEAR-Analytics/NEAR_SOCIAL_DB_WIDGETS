@@ -27,7 +27,7 @@ function historyHref(widgetName, linkProps) {
   const linkPropsQuery = Object.entries(linkProps)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
-  return `#/markeljan.near/${widgetName}${
+  return `#/markeljan.near/widget/${widgetName}${
     linkPropsQuery ? "?" : ""
   }${linkPropsQuery}`;
 }
