@@ -42,11 +42,12 @@ const filteredArticles =
 
 if (filteredArticles === null) return "loading...";
 
-let blocksChanges = filteredArticles.map((item) => ({
-  blockHeight: item.blockHeight,
-  lastEditor: item.lastEditor,
-}));
-// console.log("blocksChanges", blocksChanges);
+let blocksChanges =
+  filteredArticles &&
+  filteredArticles.map((item) => ({
+    blockHeight: item.blockHeight,
+    lastEditor: item.lastEditor,
+  }));
 
 // === END ===
 
@@ -86,7 +87,6 @@ function blockHeightToWidgetCode(blockHeightObject) {
   const index = blocksChanges.findIndex(
     (el) => el.blockHeight == blockHeightObject.blockHeight
   );
-  console.log("blockHeightToWidgetCode");
   return (
     <Widget
       style={{ minHeight: "200px" }}
@@ -103,7 +103,6 @@ function blockHeightToWidgetCode(blockHeightObject) {
 
 function blockHeightToWidgetRender(blockHeight) {
   const index = blocksChanges.findIndex((el) => el.blockHeight == blockHeight);
-  console.log("blockHeightToWidgetRender");
   return (
     <Widget
       style={{ minHeight: "200px" }}
