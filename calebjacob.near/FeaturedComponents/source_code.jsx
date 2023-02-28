@@ -1,3 +1,5 @@
+const componentsUrl = "/#/calebjacob.near/widget/ComponentsPage";
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
