@@ -9,8 +9,7 @@ const post =
   Near.view("devgovgigs.near", "get_post", {
     post_id: postId,
   });
-
-if (!post) {
+if (!post || post.snapshot_history.length === 0) {
   return <div class="bi bi-clock-history px-2"></div>;
 }
 const referral = props.referral;
@@ -61,6 +60,21 @@ const history = (
               })}
             >
               {readableDate(item.timestamp / 1000000)}
+
+              <Widget
+                src="mob.near/widget/ProfileImage"
+                props={{
+                  accountId: item.editor_id,
+                  style: {
+                    width: "1.25em",
+                    height: "1.25em",
+                  },
+                  imageStyle: {
+                    transform: "translateY(-10%)",
+                  },
+                }}
+              />
+              {post.author_id.substring(0, 4)}
             </a>
             <a
               class="dropdown-item"
@@ -80,4 +94,4 @@ const history = (
   </div>
 );
 
-return history;
+return <div style={{ height: "400px" }}>{history}</div>;
