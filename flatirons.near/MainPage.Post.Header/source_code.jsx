@@ -83,7 +83,7 @@ return (
           props={{ accountId, tooltip: true }}
         />
       </a>
-      {state.graphqlMessage}
+      <span>{state.graphqlMessage}</span>
     </div>
     <span className="text-nowrap text-muted">
       <small>
