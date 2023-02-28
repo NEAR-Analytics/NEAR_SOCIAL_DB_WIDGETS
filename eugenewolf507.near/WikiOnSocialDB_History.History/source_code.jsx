@@ -42,12 +42,15 @@ const filteredArticles =
 
 if (filteredArticles === null) return "loading...";
 
+// ========== GET ARRAY OF BLOCK HEIGHT AND LAST EDITOR ==========
 let blocksChanges =
   filteredArticles &&
   filteredArticles.map((item) => ({
     blockHeight: item.blockHeight,
     lastEditor: item.lastEditor,
   }));
+
+console.log("blocksChanges", blocksChanges);
 
 // === END ===
 
@@ -87,15 +90,17 @@ function blockHeightToWidgetCode(blockHeightObject) {
   const index = blocksChanges.findIndex(
     (el) => el.blockHeight == blockHeightObject.blockHeight
   );
+  const prevBlockHeightObject = blocksChanges[index + 1];
   return (
     <Widget
       style={{ minHeight: "200px" }}
       key={blockHeightObject.blockHeight}
       src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
       props={{
-        pathToWidget: `${blockHeightObject.lastEditor}/${addressForArticles}/main`,
+        pathToCurrentArticle: `${blockHeightObject.lastEditor}/${addressForArticles}/main`,
         currentBlockHeight: blockHeightObject.blockHeight,
-        prevBlockHeight: blocksChanges[index + 1].blockHeight,
+        pathToPrevArticle: `${prevBlockHeightObject.lastEditor}/${addressForArticles}/main`,
+        prevBlockHeight: prevBlockHeightObject.blockHeight,
       }}
     />
   );
