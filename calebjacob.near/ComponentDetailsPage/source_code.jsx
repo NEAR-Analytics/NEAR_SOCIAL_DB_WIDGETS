@@ -21,12 +21,12 @@ const detailsUrl = `/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
 const shareUrl = `https://alpha.near.org${detailsUrl}`;
 
 const dependencyMatch =
-  code && code.matchAll(/<Widget[\s\S]*?src="(.+)"[\s\S]*?\/>/g);
+  code && code.matchAll(/<Widget[\s\S]*?src=.*?"(.+)"[\s\S]*?\/>/g);
 let dependencySources = [...(dependencyMatch || [])]
   .map((r) => r[1])
   .filter((r) => !!r);
 dependencySources = dependencySources.filter(
-  (r, i) => dependencySources.indexOf(r) === i
+  (r, i) => dependencySources.indexOf(r) === i && r !== "(.+)"
 );
 
 const sourceCode = `
