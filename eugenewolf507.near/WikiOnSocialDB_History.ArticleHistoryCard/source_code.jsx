@@ -6,7 +6,7 @@ const authorForWidget = "eugenewolf507.near";
 
 console.log("========================");
 console.log("Article History Card");
-console.log(currentBlockHeight, "   ", props.prevBlockHeight);
+console.log(props.currentBlockHeight, "   ", props.prevBlockHeight);
 
 State.init({});
 
