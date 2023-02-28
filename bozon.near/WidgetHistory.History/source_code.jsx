@@ -57,16 +57,17 @@ const renderBlockChangesLink = (blockHeight) => {
 function blockHeightToWidgetCode(blockHeight) {
   const index = blocksChanges.findIndex((el) => el == blockHeight);
   return (
-    <Widget
-      style={{ minHeight: "200px" }}
-      key={blockHeight}
-      src={`bozon.near/widget/WidgetHistory.CodeHistoryCard`}
-      props={{
-        pathToWidget: props.widgetPath,
-        currentBlockHeight: blockHeight,
-        prevBlockHeight: blocksChanges[index + 1],
-      }}
-    />
+    <div class="mb-3">
+      <Widget
+        key={blockHeight}
+        src={`bozon.near/widget/WidgetHistory.CodeHistoryCard`}
+        props={{
+          pathToWidget: props.widgetPath,
+          currentBlockHeight: blockHeight,
+          prevBlockHeight: blocksChanges[index + 1],
+        }}
+      />
+    </div>
   );
 }
 
