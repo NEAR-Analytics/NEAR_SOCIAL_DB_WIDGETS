@@ -65,7 +65,6 @@ function getDatastringFromBlockHeight(blockHeight) {
 }
 
 const renderBlockChangesLink = (blockHeight) => {
-  console.log("+++ renderBlockChangesLink = ", blockHeight);
   return (
     <div>
       <button
@@ -75,7 +74,7 @@ const renderBlockChangesLink = (blockHeight) => {
             : "list-group-item-info"
         }`}
         onClick={() => {
-          State.update({ selectedBlockHeight: blockHeight.blockHeight });
+          State.update({ selectedBlockHeight: blockHeight });
         }}
       >
         #{blockHeight.blockHeight} *{" "}
@@ -85,20 +84,20 @@ const renderBlockChangesLink = (blockHeight) => {
   );
 };
 
-function blockHeightToWidgetCode(blockHeight) {
+function blockHeightToWidgetCode(blockHeightObject) {
   const index = blocksChanges.findIndex(
-    (el) => el.blockHeight == blockHeight.blockHeight
+    (el) => el.blockHeight == blockHeightObject.blockHeight
   );
   console.log("blockHeightToWidgetRender");
-  console.log(blockHeight);
+  console.log(blockHeightObject.blockHeight);
   return (
     <Widget
       style={{ minHeight: "200px" }}
-      key={blockHeight.blockHeight}
+      key={blockHeightObject.blockHeight}
       src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
       props={{
         pathToWidget: props.widgetPath,
-        currentBlockHeight: blockHeight.blockHeight,
+        currentBlockHeight: blockHeightObject.blockHeight,
         prevBlockHeight: blocksChanges[index + 1].blockHeight,
       }}
     />
