@@ -3,11 +3,11 @@ if (!props.leaderboard) return "";
 State.init({
   top_by_count: Object.keys(props.leaderboard.top_by_count)
     .map((el) => [el, props.leaderboard.top_by_count[el]])
-    .sort((a, b) => a[1] - b[1]),
+    .sort((a, b) => b[1] - a[1]),
 
   top_by_time: Object.keys(props.leaderboard.top_by_time)
     .map((el) => [el, props.leaderboard.top_by_time[el]])
-    .sort((a, b) => b[1] - a[1]),
+    .sort((a, b) => a[1] - b[1]),
 
   tab: "top_by_count",
 });
