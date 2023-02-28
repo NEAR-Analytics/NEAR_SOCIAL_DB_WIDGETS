@@ -17,6 +17,7 @@ console.log("postId: ", postId);
 const post = Near.view(nearDevGovGigsContractAccountId, "get_post", {
   post_id: postId,
 });
+console.log("post: ", post);
 if (!post) {
   return <div>Loading post</div>;
 }
