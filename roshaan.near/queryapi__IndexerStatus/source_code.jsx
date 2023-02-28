@@ -7,7 +7,64 @@ const H2 = styled.h2`
   color: #11181c;
   margin: 0 0 24px;
 `;
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: black;
+`;
+const SmallTitle = styled.h3`
+  color: black;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+
+  @media (max-width: 770px) {
+    margin-bottom: 16px;
+  }
+`;
 const Subheading = styled.h2`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 10px;
+  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
+  outline: none;
+`;
+const Card = styled.div`
+  border-radius: 12px;
+  background: #fff;
+  border: ${(div) => (div.selected ? "1px solid black" : "1px solid #eceef0")};
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
+`;
+
+const CardBody = styled.div`
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-direction: column;
+  > * {
+    min-width: 0;
+  }
+`;
+
+const CardFooter = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid #eceef0;
+`;
+
+const TextLink = styled.a`
   display: block;
   margin: 0;
   font-size: 14px;
@@ -19,8 +76,12 @@ const Subheading = styled.h2`
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
   white-space: nowrap;
   outline: none;
-`;
 
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 if (!indexer_name) return "missing indexer_name";
 const state_table = "| Function Name | Current Block Height |\n| --- | --- |\n";
 
@@ -43,6 +104,13 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
     }
   );
 }
+
+const createGraphQLLink = () => {
+  const queryLink =
+    "https://cloud.hasura.io/public/graphiql?endpoint=https%3A%2F%2Fquery-api-hasura-vcqilefdcq-uc.a.run.app%2Fv1%2Fgraphql&query=query+IndexerQuery+%7B%0A++indexer_state%28where%3A+%7Bfunction_name%3A+%7B_eq%3A+%22function_placeholder%22%7D%7D%29+%7B%0A++++function_name%0A++++current_block_height%0A++%7D%0A++indexer_storage%28where%3A+%7Bfunction_name%3A+%7B_eq%3A+%22function_placeholder%22%7D%7D%29+%7B%0A++++function_name%0A++++key_name%0A++++value%0A++%7D%0A++log_entries%28where%3A+%7Bfunction_name%3A+%7B_eq%3A+%22function_placeholder%22%7D%7D%29+%7B%0A++++function_name%0A++++id%0A++++message%0A++++timestamp%0A++%7D%0A%7D%0A";
+
+  return queryLink.replace("function_placeholder", indexer_name);
+};
 
 const operationsDoc = `
   query MyQuery {
@@ -106,26 +174,39 @@ const create_table = () => {
 create_table();
 return (
   <>
-    <h1>Indexer Status</h1>
+    <Card>
+      <Title className="p-3">
+        Indexer Status
+        <TextLink href={createGraphQLLink()} target="_blank">
+          GraphQL Playground
+          <i className="bi bi-box-arrow-up-right"></i>
+        </TextLink>
+      </Title>
 
-    {state.indexer_res.length > 0 ? (
-      <Markdown text={indexer_values_table} />
-    ) : (
-      <Subheading> No data to show... </Subheading>
-    )}
+      <CardBody>
+        <SmallTitle>Indexed Values</SmallTitle>
 
-    <H2> Indexer State </H2>
-    {state.state.length > 0 ? (
-      <Markdown text={state_table} />
-    ) : (
-      <Subheading> No data to show... </Subheading>
-    )}
+        {state.indexer_res.length > 0 ? (
+          <Markdown text={indexer_values_table} />
+        ) : (
+          <Subheading> No data to show... </Subheading>
+        )}
 
-    <H2> Indexer Logs </H2>
-    {state.logs.length > 0 ? (
-      <Markdown text={logs_table} />
-    ) : (
-      <Subheading> No data to show... </Subheading>
-    )}
+        <SmallTitle>Indexer State</SmallTitle>
+
+        {state.state.length > 0 ? (
+          <Markdown text={state_table} />
+        ) : (
+          <Subheading> No data to show... </Subheading>
+        )}
+        <SmallTitle> Indexer Logs</SmallTitle>
+        {state.logs.length > 0 ? (
+          <Markdown text={logs_table} />
+        ) : (
+          <Subheading> No data to show... </Subheading>
+        )}
+      </CardBody>
+      <CardFooter></CardFooter>
+    </Card>
   </>
 );
