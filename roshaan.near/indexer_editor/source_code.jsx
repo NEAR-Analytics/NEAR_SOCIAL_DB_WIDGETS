@@ -91,7 +91,7 @@ const code = `
     }
     iframe.name = "react-app"
     iframe.id = "react-app-iframe"
-    // iframe.style.width = '750px';
+    iframe.style.width = '1250px';
     // iframe.class = "responsive-iframe";
     // iframe.allowFullScreen="true";
     // iframe_wrapper = document.createElement("div");
