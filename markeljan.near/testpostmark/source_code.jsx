@@ -9,14 +9,10 @@ props.referral?: any;
 
 /* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId ||
-  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
+  props.nearDevGovGigsContractAccountId || "devgovgigs.near".split("/", 1)[0];
 const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId ||
-  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
+  props.nearDevGovGigsWidgetsAccountId || "devgovgigs.near".split("/", 1)[0];
 
-//temporary hardcode
-nearDevGovGigsContractAccountId = "devgovgigs.near";
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
     ...widgetProps,
