@@ -38,7 +38,7 @@ if (state.image === undefined) {
       return [...hashtags];
     };
 
-    const extractTagNotifications = (text, item) =>
+    const extractMentionNotifications = (text, item) =>
       extractMentions(text || "")
         .filter((accountId) => accountId !== context.accountId)
         .map((accountId) => ({
@@ -52,7 +52,8 @@ if (state.image === undefined) {
     props.onHelper({
       extractHashtags,
       extractMentions,
-      extractTagNotifications,
+      extractTagNotifications: extractMentionNotifications,
+      extractMentionNotifications,
     });
   }
 }
