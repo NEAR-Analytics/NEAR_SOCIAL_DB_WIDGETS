@@ -4,7 +4,7 @@ count(count: number)?: function,
 */
 const authorForWidget = "eugenewolf507.near";
 const addressForArticles = "wikiTest2Article";
-const { articleId, resultArticles } = props;
+const { articleId } = props;
 
 // if (typeof props.widgetPath !== "string")
 //   return "send {widgetPath} as string in props";
@@ -20,16 +20,16 @@ const postsIndex = Social.index(addressForArticles, "main", {
   accountId: undefined,
 });
 // ========== GET ALL ARTICLES ==========
-// const resultArticles =
-//   postsIndex &&
-//   postsIndex.reduce((acc, { accountId, blockHeight }) => {
-//     const postData = Social.get(
-//       `${accountId}/${addressForArticles}/main`,
-//       blockHeight
-//     );
-//     const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
-//     return [...acc, postDataWithBlockHeight];
-//   }, []);
+const resultArticles =
+  postsIndex &&
+  postsIndex.reduce((acc, { accountId, blockHeight }) => {
+    const postData = Social.get(
+      `${accountId}/${addressForArticles}/main`,
+      blockHeight
+    );
+    const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
+    return [...acc, postDataWithBlockHeight];
+  }, []);
 if (resultArticles === null) return "loading...";
 // ========== FIND ALL VERSIONS OF ONE ARTICLE ==========
 const filteredArticles =
