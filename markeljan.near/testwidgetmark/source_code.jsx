@@ -27,7 +27,7 @@ function historyHref(widgetName, linkProps) {
   const linkPropsQuery = Object.entries(linkProps)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
-  return `#/bozon.near/widget/${widgetName}${
+  return `#/markeljan.near/${widgetName}${
     linkPropsQuery ? "?" : ""
   }${linkPropsQuery}`;
 }
@@ -50,11 +50,9 @@ const history = (
           <li>
             <a
               class="dropdown-item"
-              href={historyHref("WidgetHistory.CodeHistoryCard", {
+              href={historyHref("testpostmark", {
                 id: postId,
                 referral,
-                pathToWidget: "bozon.near/widget/CodeDiff",
-                currentBlockHeight: 86198186,
               })}
             >
               {readableDate(readableDate(item.timestamp / 1000000))}
