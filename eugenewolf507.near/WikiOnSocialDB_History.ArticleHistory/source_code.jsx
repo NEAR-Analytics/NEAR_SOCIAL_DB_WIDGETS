@@ -19,6 +19,7 @@ props.showLineNumber?: bool
 
 */
 const authorForWidget = "eugenewolf507.near";
+console.log(props.pathToWidget, "  -  ", props.currentBlockHeight);
 
 if (!props.pathToWidget || !props.currentBlockHeight)
   return "send pathToWidget and currentBlockHeight in props";
