@@ -3,6 +3,7 @@ const Wrapper = styled.div`
   line-height: 20px;
   font-weight: 400;
   color: #687076;
+  word-break: break-word;
 
   > * {
     margin-bottom: 12px;
