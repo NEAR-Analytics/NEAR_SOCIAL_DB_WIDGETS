@@ -81,6 +81,9 @@ if (compareWithTimestamp) {
   }
 }
 
+console.log("snapshot_history", snapshot_history);
+console.log("snapshot", snapshot);
+
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 const parentId = Near.view(nearDevGovGigsContractAccountId, "get_parent_id", {
