@@ -128,16 +128,7 @@ return (
             </li>
 
             <li className="dropdown-item">
-              <ButtonLink
-                onClick={() =>
-                  State.update({
-                    activeTab: "indexer-status",
-                    selected_indexer: indexerName,
-                  })
-                }
-              >
-                Hide User
-              </ButtonLink>
+              <ButtonLink onClick={hideUser}>Hide User</ButtonLink>
             </li>
           </ul>
         </span>
