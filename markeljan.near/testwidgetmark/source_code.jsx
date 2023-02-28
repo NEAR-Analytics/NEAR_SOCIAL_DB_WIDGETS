@@ -5,20 +5,14 @@ props.currentBlockHeight: number
 props.prevBlockHeight?: number
 */
 
-const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId ||
-  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
-const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId ||
-  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
-
-console.log(nearDevGovGigsContractAccountId);
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
-console.log("postId: ", postId);
-const post = Near.view("devgovgigs.near", "get_post", {
-  post_id: postId,
-});
-console.log("post: ", post);
+
+const post =
+  props.post ??
+  Near.view("devgovgigs.near", "get_post", {
+    post_id: postId,
+  });
+
 if (!post) {
   return <div>Loading post</div>;
 }
@@ -39,7 +33,6 @@ function historyHref(widgetName, linkProps) {
   }${linkPropsQuery}`;
 }
 const snapshot_history = post.snapshot_history;
-console.log("snapshot", snapshot_history);
 const history = (
   <div class="btn-group" role="group">
     <a
