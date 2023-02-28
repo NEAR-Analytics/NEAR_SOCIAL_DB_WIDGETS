@@ -3,6 +3,73 @@ const blockHeight = props.blockHeight;
 const postType = props.postType ?? "post";
 const link = props.link;
 
+const ButtonLink = styled.a`
+  padding: 8px;
+  height: 32px;
+  border: 1px solid #d7dbdf;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+  background: #fbfcfd;
+
+  &:hover,
+  &:focus {
+    background: #ecedee;
+    text-decoration: none;
+    outline: none;
+  }
+`;
+
+let graphqlMessage = "";
+
+function hideUser() {
+  const query =
+    `mutation HideUser { insert_user_centric_user_reputation(
+    objects: {base_account_id: "` +
+    context.accountId +
+    `", target_account_id: "` +
+    accountId +
+    `", hide: "true"}
+  ) {
+    returning {
+      base_account_id
+      hide
+      target_account_id
+    }
+  }
+}`;
+  let graphqlMessage = null;
+  let userReputationResponse;
+  try {
+    userReputationResponse = fetch(
+      "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: query }),
+      }
+    );
+  } catch (e) {
+    graphqlMessage = "Unable to hide user";
+  }
+
+  if (
+    userReputationResponse?.status == 200 &&
+    !userReputationResponse.body.errors
+  ) {
+    graphqlMessage = "User Hidden, reload.";
+  } else {
+    graphqlMessage = userReputationResponse.body.errors;
+  }
+}
+
 return (
   <div className="d-flex flex-row align-items-center">
     <div className="flex-grow-1 text-truncate">
@@ -15,6 +82,7 @@ return (
           props={{ accountId, tooltip: true }}
         />
       </a>
+      {graphqlMessage}
     </div>
     <span className="text-nowrap text-muted">
       <small>
@@ -55,8 +123,22 @@ return (
                 View raw markdown source
               </a>
             </li>
-            <li className="dropdown-item">Hide {postType}</li>
-            <li className="dropdown-item">Hide User</li>
+            <li className="dropdown-item" disabled>
+              Hide {postType}
+            </li>
+
+            <li className="dropdown-item">
+              <ButtonLink
+                onClick={() =>
+                  State.update({
+                    activeTab: "indexer-status",
+                    selected_indexer: indexerName,
+                  })
+                }
+              >
+                Hide User
+              </ButtonLink>
+            </li>
           </ul>
         </span>
       )}
