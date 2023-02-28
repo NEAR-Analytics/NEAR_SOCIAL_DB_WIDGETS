@@ -51,7 +51,6 @@ const history = (
     </a>
     <ul class="dropdown-menu">
       {snapshot_history.map((item) => {
-        console.log(item);
         return (
           <li style={{ display: "flex" }}>
             <a
@@ -83,4 +82,4 @@ const history = (
   </div>
 );
 
-return <div style={{ height: "400px" }}>{history}</div>;
+return history;
