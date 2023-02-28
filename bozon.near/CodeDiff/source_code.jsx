@@ -335,29 +335,17 @@ const lineProps = (lineNumber) => {
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
-let MarginNone = styled.div`
-& > pre > div {
-    margin: 0px !important;
-}
-
-& > pre {
-    margin: 0px !important;
-}
-`;
-
 return (
-  <MarginNone>
-    <Markdown
-      text={`
+  <Markdown
+    text={`
 \`\`\`jsx
 ${codeText}
 `}
-      syntaxHighlighterProps={{
-        wrapLines: true,
-        lineProps,
-        showLineNumbers: true,
-        lineNumberStyle: { display: !props.showLineNumber && "none" },
-      }}
-    />
-  </MarginNone>
+    syntaxHighlighterProps={{
+      wrapLines: true,
+      lineProps,
+      showLineNumbers: true,
+      lineNumberStyle: { display: !props.showLineNumber && "none" },
+    }}
+  />
 );
