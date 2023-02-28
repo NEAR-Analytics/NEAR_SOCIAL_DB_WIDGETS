@@ -2,6 +2,10 @@ const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
 }
+
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var accountIds = ["All"];
 var finalData = undefined;
@@ -97,7 +101,7 @@ return (
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            href="https://near.social/#/vow_owner_123.near/widget/Instance_time_edit"
+            href={`https://near.social/#/${widgetOwner}/widget/Instance_time_edit`}
             style={
               state.hoveringElement == "create"
                 ? {
@@ -128,7 +132,7 @@ return (
     </div>
     <div className="align-items-center pt-3">
       <Widget
-        src={`vow_owner_123.near/widget/Instance_time_review`}
+        src={`${widgetOwner}/widget/Instance_time_review`}
         props={{
           accountId: state._account,
           className: "d-inline-block",
