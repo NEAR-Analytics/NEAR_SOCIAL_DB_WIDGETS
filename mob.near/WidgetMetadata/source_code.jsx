@@ -115,6 +115,13 @@ return (
             <i className="bi bi-file-earmark-code me-1"></i>Source
           </a>
           <a
+            href={`#/bozon.near/widget/WidgetHistory?widgetPath=${widgetPath}`}
+            className="btn btn-sm btn-outline-secondary border-0"
+            target="_blank"
+          >
+            <i className="bi bi-clock-history me-1"></i>History
+          </a>
+          <a
             href={`#/edit/${widgetPath}`}
             className="btn btn-sm btn-outline-secondary border-0"
           >
