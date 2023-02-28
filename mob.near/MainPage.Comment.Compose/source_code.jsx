@@ -23,10 +23,15 @@ const composeData = () => {
     },
   };
 
-  const notifications = state.extractTagNotifications(state.content.text, {
+  const thisItem = {
     type: "social",
     path: `${context.accountId}/post/comment`,
-  });
+  };
+
+  const notifications = state.extractMentionNotifications(
+    state.content.text,
+    thisItem
+  );
 
   if (props.notifyAccountId && props.notifyAccountId !== context.accountId) {
     notifications.push({
@@ -41,6 +46,17 @@ const composeData = () => {
   if (notifications.length) {
     data.index.notify = JSON.stringify(
       notifications.length > 1 ? notifications : notifications[0]
+    );
+  }
+
+  const hashtags = state.extractHashtags(state.content.text);
+
+  if (hashtags.length) {
+    data.index.hashtag = JSON.stringify(
+      hashtags.map((hashtag) => ({
+        key: hashtag,
+        value: thisItem,
+      }))
     );
   }
 
@@ -61,8 +77,8 @@ return (
         placeholder: "Reply",
         initialText: props.initialText,
         onChange: state.onChange,
-        onHelper: ({ extractTagNotifications }) => {
-          State.update({ extractTagNotifications });
+        onHelper: ({ extractMentionNotifications, extractHashtags }) => {
+          State.update({ extractMentionNotifications, extractHashtags });
         },
         composeButton: (onCompose) => (
           <CommitButton
