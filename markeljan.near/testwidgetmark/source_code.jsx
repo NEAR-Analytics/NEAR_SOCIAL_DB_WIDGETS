@@ -56,7 +56,7 @@ const history = (
               class="dropdown-item"
               href={historyHref("testpostmark", {
                 id: postId,
-                timestamp: snapshot.timestamp,
+                timestamp: item.timestamp,
                 compareWith: null,
                 referral,
               })}
