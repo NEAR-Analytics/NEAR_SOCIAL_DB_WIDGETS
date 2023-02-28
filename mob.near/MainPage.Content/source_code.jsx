@@ -1,9 +1,11 @@
 const hashtag = props.hashtag;
 
-State.init({
-  feedIndex: hashtag ? 2 : context.accountId ? 0 : 1,
-  hashtag,
-});
+if (!state || state.hashtag !== hashtag) {
+  State.update({
+    feedIndex: hashtag ? 2 : context.accountId ? 0 : 1,
+    hashtag,
+  });
+}
 
 const options = [
   {
@@ -19,12 +21,6 @@ if (hashtag) {
   options.push({
     title: `#${hashtag}`,
   });
-  if (state.hashtag !== hashtag) {
-    State.update({
-      feedIndex: 2,
-      hashtag,
-    });
-  }
 }
 
 let accounts = undefined;
