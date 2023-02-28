@@ -10,7 +10,7 @@ function extractAccountIdAndIndexerName(str) {
       slashCount++;
       continue;
     }
-
+    console.log("running");
     if (slashCount === 0) {
       accountId += char;
     } else if (slashCount === 1) {
@@ -19,7 +19,6 @@ function extractAccountIdAndIndexerName(str) {
       break;
     }
   }
-
   return [accountId, indexerName];
 }
 
