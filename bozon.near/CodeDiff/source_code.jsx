@@ -339,6 +339,10 @@ let MarginNone = styled.div`
 & > pre > div {
     margin: 0px !important;
 }
+
+& > pre {
+    margin: 0px !important;
+}
 `;
 
 return (
