@@ -95,11 +95,11 @@ return (
     <h1>Indexer Status</h1>
 
     <H2> Indexed Values </H2>
-    {state.indexer_res && <Markdown text={indexer_values_table} />}
+    {state.indexer_res.length > 0 && <Markdown text={indexer_values_table} />}
 
     <H2> Indexer State </H2>
-    {state.state && <Markdown text={state_table} />}
+    {state.state.length > 0 && <Markdown text={state_table} />}
     <H2> Indexer Logs </H2>
-    {state.logs && <Markdown text={logs_table} />}
+    {state.logs.length > 0 && <Markdown text={logs_table} />}
   </>
 );
