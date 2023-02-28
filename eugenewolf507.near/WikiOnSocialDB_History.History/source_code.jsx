@@ -65,32 +65,40 @@ function getDatastringFromBlockHeight(blockHeight) {
 }
 
 const renderBlockChangesLink = (blockHeight) => {
+  console.log("+++ renderBlockChangesLink = ", blockHeight);
   return (
     <div>
       <button
         className={`list-group-item list-group-item-action ${
-          state.selectedBlockHeight != blockHeight ? "" : "list-group-item-info"
+          state.selectedBlockHeight.blockHeight != blockHeight
+            ? ""
+            : "list-group-item-info"
         }`}
         onClick={() => {
-          State.update({ selectedBlockHeight: blockHeight });
+          State.update({ selectedBlockHeight: blockHeight.blockHeight });
         }}
       >
-        #{blockHeight} * {getDatastringFromBlockHeight(blockHeight)}
+        #{blockHeight.blockHeight} *{" "}
+        {getDatastringFromBlockHeight(blockHeight.blockHeight)}
       </button>
     </div>
   );
 };
 
 function blockHeightToWidgetCode(blockHeight) {
-  const index = blocksChanges.findIndex((el) => el.blockHeight == blockHeight);
+  const index = blocksChanges.findIndex(
+    (el) => el.blockHeight == blockHeight.blockHeight
+  );
+  console.log("blockHeightToWidgetRender");
+  console.log(blockHeight);
   return (
     <Widget
       style={{ minHeight: "200px" }}
-      key={blockHeight}
+      key={blockHeight.blockHeight}
       src={`${authorForWidget}/widget/WikiOnSocialDB_History.ArticleHistoryCard`}
       props={{
         pathToWidget: props.widgetPath,
-        currentBlockHeight: blockHeight,
+        currentBlockHeight: blockHeight.blockHeight,
         prevBlockHeight: blocksChanges[index + 1].blockHeight,
       }}
     />
@@ -163,11 +171,11 @@ return (
           <div class="list-group">
             {blocksChanges
               .slice(0, 5)
-              .map((height) => renderBlockChangesLink(height.blockHeight))}
+              .map((height) => renderBlockChangesLink(height))}
             <div class="collapse" id="collapseExample">
               {blocksChanges
                 .slice(5)
-                .map((height) => renderBlockChangesLink(height.blockHeight))}
+                .map((height) => renderBlockChangesLink(height))}
             </div>
             {blocksChanges.length > 5 && (
               <button
@@ -211,15 +219,11 @@ return (
         </Tabs>
 
         {state.selectedTab == "code" && (
-          <div>
-            {blockHeightToWidgetCode(state.selectedBlockHeight.blockHeight)}
-          </div>
+          <div>{blockHeightToWidgetCode(state.selectedBlockHeight)}</div>
         )}
 
         {state.selectedTab == "render" && (
-          <div>
-            {blockHeightToWidgetRender(state.selectedBlockHeight.blockHeight)}
-          </div>
+          <div>{blockHeightToWidgetRender(state.selectedBlockHeight)}</div>
         )}
       </div>
     )}
