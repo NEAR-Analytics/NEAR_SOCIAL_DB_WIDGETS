@@ -147,20 +147,25 @@ const query =
   context.accountId +
   '"}}) { target_account_id } }';
 let graphqlError = null;
-const userReputationResponse = fetch(
-  "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-  {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query: query }),
-  }
-);
+let userReputationResponse;
+try {
+  userReputationResponse = fetch(
+    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query: query }),
+    }
+  );
+} catch (e) {
+  graphqlError = "Unable to fetch hidden users";
+}
 
 if (
-  userReputationResponse.status == 200 &&
+  userReputationResponse?.status == 200 &&
   !userReputationResponse.body.errors
 ) {
   userReputationHides =
