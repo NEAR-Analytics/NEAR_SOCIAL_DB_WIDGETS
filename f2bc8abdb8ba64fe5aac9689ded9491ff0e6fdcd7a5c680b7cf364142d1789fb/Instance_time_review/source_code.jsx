@@ -1,6 +1,9 @@
 const _account = props.accountId ?? "All";
 const owner = context.accountId;
 
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 State.init({
   is_on: [],
   accounts: [],
@@ -184,7 +187,7 @@ return (
                     disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
-                  href={`https://near.social/#/vow_owner_123.near/widget/Instance_time_card?accountId=${d.accountId}`}
+                  href={`https://near.social/#/${widgetOwner}/widget/Instance_time_card?accountId=${d.accountId}`}
                 >
                   <div
                     style={{
