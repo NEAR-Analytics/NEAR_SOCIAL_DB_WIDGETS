@@ -44,7 +44,12 @@ const math_PI = 3.14159;
 
 const total = values.reduce((acc, value) => acc + value, 0);
 let startAngle = 0;
-const [tooltip, setTooltip] = initState({ show: false, value: "", x: 0, y: 0 });
+const [tooltip, setTooltip] = State.init({
+  show: false,
+  value: "",
+  x: 0,
+  y: 0,
+});
 
 const handleMouseEnter = (value, event) => {
   setTooltip({
