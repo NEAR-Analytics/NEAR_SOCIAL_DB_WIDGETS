@@ -127,7 +127,7 @@ return (
     <iframe
       name="widget-iframe"
       className="w-100"
-      style={{ height: "500px", width: "500px" }}
+      style={{ height: "500px" }}
       srcDoc={code}
       message={{
         action: "createIframe",
