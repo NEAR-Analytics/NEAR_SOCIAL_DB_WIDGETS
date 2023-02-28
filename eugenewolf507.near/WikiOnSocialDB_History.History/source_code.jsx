@@ -102,20 +102,7 @@ function blockHeightToWidgetCode(blockHeightObject) {
 
 function blockHeightToWidgetRender(blockHeight) {
   const index = blocksChanges.findIndex((el) => el.blockHeight == blockHeight);
-  return (
-    <Widget
-      style={{ minHeight: "200px" }}
-      key={blockHeight}
-      src={`bozon.near/widget/WidgetHistory.RenderCode`}
-      props={{
-        pathToWidget: `${
-          blocksChanges[index + 1].lastEditor
-        }/${addressForArticles}/main`,
-        currentBlockHeight: blockHeight,
-        prevBlockHeight: blocksChanges[index + 1].blockHeight,
-      }}
-    />
-  );
+  return <>Put markdown for current article here</>;
 }
 
 //styles forked from calebjacob.near/widget/Activity
