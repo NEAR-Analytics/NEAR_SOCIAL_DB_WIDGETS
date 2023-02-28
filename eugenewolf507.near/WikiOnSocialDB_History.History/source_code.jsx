@@ -154,6 +154,7 @@ const TabsButton = styled.button`
 
 return (
   <div>
+    <h1 class="text-center">Widget History</h1>
     {!blocksChanges ? (
       <div>incorrent widget path</div>
     ) : (
