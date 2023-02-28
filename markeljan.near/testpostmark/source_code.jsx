@@ -64,6 +64,7 @@ const referral = props.referral;
 const timestampFromProps = props.timestamp;
 const compareWithTimestamp = props.compareWith;
 let snapshot = post.snapshot;
+let compareSnapshot;
 const snapshot_history = post.snapshot_history;
 
 if (timestampFromProps) {
@@ -80,12 +81,10 @@ if (compareWithTimestamp) {
     (s) => s.value === compareWithTimestamp
   );
   if (foundSnapshot) {
-    snapshot = foundSnapshot;
+    compareSnapshot = foundSnapshot;
   }
 }
 
-console.log("snap", post.snapshot);
-console.log("post", post);
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 const parentId = Near.view(nearDevGovGigsContractAccountId, "get_parent_id", {
