@@ -65,6 +65,7 @@ function hideUser() {
     userReputationResponse?.status == 200 &&
     !userReputationResponse.body.errors
   ) {
+    console.log("Hid user");
     State.update({ graphqlMessage: "User Hidden, reload page." });
   } else {
     State.update({ graphqlMessage: userReputationResponse.body.errors });
