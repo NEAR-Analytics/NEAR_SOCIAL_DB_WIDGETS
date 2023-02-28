@@ -74,7 +74,7 @@ const history = (
                   },
                 }}
               />
-              {post.author_id.substring(0, 4)}
+              {post.author_id.substring(0, 8)}
             </a>
             <a
               class="dropdown-item"
@@ -94,4 +94,4 @@ const history = (
   </div>
 );
 
-return <div style={{ height: "400px" }}>{history}</div>;
+return history;
