@@ -1,3 +1,12 @@
+/*
+---props---
+props.post: {};
+props.id: number;
+props.timestamp: number;
+props.compareWith?: number;
+props.referral?: any;
+*/
+
 /* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
   props.nearDevGovGigsContractAccountId ||
@@ -6,6 +15,7 @@ const nearDevGovGigsWidgetsAccountId =
   props.nearDevGovGigsWidgetsAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
+//temporary hardcode
 nearDevGovGigsContractAccountId = "devgovgigs.near";
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
@@ -13,6 +23,7 @@ function widget(widgetName, widgetProps, key) {
     nearDevGovGigsContractAccountId: props.nearDevGovGigsContractAccountId,
     nearDevGovGigsWidgetsAccountId: props.nearDevGovGigsWidgetsAccountId,
   };
+
   return (
     <Widget
       src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.${widgetName}`}
@@ -50,7 +61,11 @@ if (!post) {
 }
 const referral = props.referral;
 
+//if props.timestamp
+
 const snapshot = post.snapshot;
+console.log("snap", post.snapshot);
+console.log("post", post);
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
 const parentId = Near.view(nearDevGovGigsContractAccountId, "get_parent_id", {
