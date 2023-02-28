@@ -5,8 +5,6 @@ props.currentBlockHeight: number
 props.prevBlockHeight?: number
 */
 
-console.log("props", props);
-
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
   props.post ??
@@ -21,7 +19,11 @@ const referral = props.referral;
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
-  return a.toDateString() + " " + a.toLocaleTimeString();
+  return (
+    a.toDateString() +
+    " " +
+    a.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+  ).substring(4);
 }
 
 function historyHref(widgetName, linkProps) {
@@ -33,6 +35,7 @@ function historyHref(widgetName, linkProps) {
     linkPropsQuery ? "?" : ""
   }${linkPropsQuery}`;
 }
+const snapshot = post.snapshot;
 const snapshot_history = post.snapshot_history;
 const history = (
   <div class="btn-group" role="group">
@@ -48,16 +51,30 @@ const history = (
     </a>
     <ul class="dropdown-menu">
       {snapshot_history.map((item) => {
+        console.log(item);
         return (
-          <li>
+          <li style={{ display: "flex" }}>
             <a
               class="dropdown-item"
               href={historyHref("testpostmark", {
                 id: postId,
+                timestamp: snapshot.timestamp,
+                compareWith: null,
                 referral,
               })}
             >
-              {readableDate(readableDate(item.timestamp / 1000000))}
+              {readableDate(item.timestamp / 1000000)}
+            </a>
+            <a
+              class="dropdown-item"
+              href={historyHref("testpostmark", {
+                id: postId,
+                timestamp: item.timestamp,
+                compareWith: post.timestamp,
+                referral,
+              })}
+            >
+              <i class="bi bi-file-earmark-diff"></i>
             </a>
           </li>
         );
@@ -66,4 +83,4 @@ const history = (
   </div>
 );
 
-return history;
+return <div style={{ height: "400px" }}>{history}</div>;
