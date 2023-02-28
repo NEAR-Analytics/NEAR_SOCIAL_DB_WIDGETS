@@ -14,19 +14,26 @@ const index = {
 };
 
 const renderItem = (a) =>
-  a.value.type === "social" &&
-  `${a.accountId}/post/main` === a.value.path && (
+  (a.value.type === "social" && `${a.accountId}/post/main` === a.value.path && (
     <div key={JSON.stringify(a)} className="mb-3">
       <Widget
         src="mob.near/widget/MainPage.Post"
         props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
       />
     </div>
-  );
+  )) ||
+  (a.value.type === "social" &&
+    `${a.accountId}/post/comment` === a.value.path && (
+      <div key={JSON.stringify(a)} className="mb-3">
+        <Widget
+          src="mob.near/widget/MainPage.Comment.Post"
+          props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+        />
+      </div>
+    ));
 
 return (
   <div>
-    <h2>#{hashtag}</h2>
     <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
   </div>
 );
