@@ -28,7 +28,7 @@ State.init({
   graphqlMessage: "",
 });
 
-async function hideUser() {
+function hideUser() {
   const query =
     `mutation HideUser { insert_user_centric_user_reputation(
     objects: {base_account_id: "` +
@@ -46,7 +46,7 @@ async function hideUser() {
 }`;
   let userReputationResponse;
   try {
-    userReputationResponse = await fetch(
+    userReputationResponse = fetch(
       "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
       {
         method: "POST",
@@ -60,21 +60,22 @@ async function hideUser() {
   } catch (e) {
     State.update({ graphqlMessage: "Unable to hide user" });
   }
-
-  if (
-    userReputationResponse?.status == 200 &&
-    !userReputationResponse.body.errors
-  ) {
-    console.log("Hid user");
-    State.update({ graphqlMessage: "User Hidden, reload page." });
-  } else {
-    console.log(
-      "error",
-      userReputationResponse?.status,
-      userReputationResponse.body.errors
-    );
-    State.update({ graphqlMessage: userReputationResponse.body.errors });
-  }
+  userReputationResponse.then(() => {
+    if (
+      userReputationResponse?.status == 200 &&
+      !userReputationResponse.body.errors
+    ) {
+      console.log("Hid user");
+      State.update({ graphqlMessage: "User Hidden, reload page." });
+    } else {
+      console.log(
+        "error",
+        userReputationResponse?.status,
+        userReputationResponse.body.errors
+      );
+      State.update({ graphqlMessage: userReputationResponse.body.errors });
+    }
+  });
 }
 
 return (
