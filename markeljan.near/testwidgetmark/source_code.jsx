@@ -5,6 +5,8 @@ props.currentBlockHeight: number
 props.prevBlockHeight?: number
 */
 
+console.log("props", props);
+
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
   props.post ??
