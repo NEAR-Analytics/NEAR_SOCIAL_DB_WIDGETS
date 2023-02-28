@@ -1,29 +1,7 @@
-function extractAccountIdAndIndexerName(str) {
-  let accountId = "";
-  let indexerName = "";
-  let slashCount = 0;
-
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-
-    if (char === "/") {
-      slashCount++;
-      continue;
-    }
-    console.log("running");
-    if (slashCount === 0) {
-      accountId += char;
-    } else if (slashCount === 1) {
-      indexerName += char;
-    } else {
-      break;
-    }
-  }
-  return [accountId, indexerName];
-}
-
-const [selected_accountId, selected_indexerName] =
-  extractAccountIdAndIndexerName(props.indexer_path);
+const indexerPath = props.indexerPath;
+const [selected_accountId, selected_indexerName] = indexerPath
+  ? indexerPath.split("/")
+  : [undefined, undefined];
 
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
