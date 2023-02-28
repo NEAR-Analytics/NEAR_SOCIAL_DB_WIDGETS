@@ -4,7 +4,7 @@ props.pathToWidget: string ("bozon.near/widget/PrivateMailBox")
 props.currentBlockHeight: number
 props.prevBlockHeight?: number
 */
-
+/* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
   props.nearDevGovGigsContractAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
