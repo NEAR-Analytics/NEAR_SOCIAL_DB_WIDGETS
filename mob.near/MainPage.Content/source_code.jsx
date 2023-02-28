@@ -1,5 +1,8 @@
+const hashtag = props.hashtag;
+
 State.init({
-  feedIndex: context.accountId ? 0 : 1,
+  feedIndex: props.hashtag ? 2 : context.accountId ? 0 : 1,
+  hashtag,
 });
 
 const options = [
@@ -11,6 +14,18 @@ const options = [
     title: "All Posts",
   },
 ];
+
+if (hashtag) {
+  options.push({
+    title: `#${hashtag}`,
+  });
+  if (state.hashtag !== hashtag) {
+    State.update({
+      feedIndex: 2,
+      hashtag,
+    });
+  }
+}
 
 let accounts = undefined;
 
@@ -46,6 +61,10 @@ return (
         </li>
       ))}
     </ul>
-    <Widget src="mob.near/widget/MainPage.Feed" props={{ accounts }} />
+    {state.feedIndex === 2 ? (
+      <Widget src="mob.near/widget/Hashtag.Feed" props={{ hashtag }} />
+    ) : (
+      <Widget src="mob.near/widget/MainPage.Feed" props={{ accounts }} />
+    )}
   </>
 );
