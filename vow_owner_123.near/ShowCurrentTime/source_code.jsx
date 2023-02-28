@@ -24,7 +24,6 @@ function onInterval() {
   var year = today.getFullYear();
   var hour = today.getHours();
   var minute = today.getMinutes();
-  console.log(offset, today.getTimezoneOffset());
   var local_time = new Date(
     today.getTime() + today.getTimezoneOffset() * 60000 + offset * 3600000
   );
