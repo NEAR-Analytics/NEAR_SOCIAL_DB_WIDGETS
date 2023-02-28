@@ -6,7 +6,6 @@ props.prevBlockHeight?: number
 */
 
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
-
 const post =
   props.post ??
   Near.view("devgovgigs.near", "get_post", {
@@ -14,7 +13,7 @@ const post =
   });
 
 if (!post) {
-  return <div>Loading post</div>;
+  return <div class="bi bi-clock-history px-2"></div>;
 }
 const referral = props.referral;
 
@@ -66,19 +65,5 @@ const history = (
     </ul>
   </div>
 );
-
-// if (!props.pathToWidget || !props.currentBlockHeight)
-//   return "send pathToWidget and currentBlockHeight in props";
-
-// const currentCode = Social.get(
-//   `${props.pathToWidget}`,
-//   props.currentBlockHeight
-// );
-
-// if (currentCode === null) return "Loading";
-
-// const prevCode = props.prevBlockHeight
-//   ? Social.get(`${props.pathToWidget}`, props.prevBlockHeight)
-//   : undefined;
 
 return history;
