@@ -11,6 +11,17 @@ function getDatastringFromBlockHeight(blockHeight) {
   return date.toDateString() + " " + date.toLocaleTimeString();
 }
 
+let CodeWrapper = styled.div`
+& > pre > div {
+  margin: 0px !important;
+}
+
+& > pre {
+  margin: 0px !important;
+  border-radius: 0px 0px 5px 5px;
+}
+`;
+
 return (
   <div className="card border-primary">
     <div className="card-header">
@@ -43,26 +54,28 @@ return (
         </div>
       </small>
     </div>
-    <Widget
-      src={`bozon.near/widget/WidgetHistory.CodeHistory`}
-      props={{
-        pathToWidget: props.pathToWidget,
-        currentBlockHeight: props.currentBlockHeight,
-        prevBlockHeight: props.prevBlockHeight,
-        findUniqueResult: (
-          lineCountDeleted,
-          lineCountInserted,
-          lineCountCurrentCode,
-          lineCountPrevCode,
-          allLineCount
-        ) => {
-          if (
-            state.lineCountDeleted === undefined ||
-            state.lineCountInserted === undefined
-          )
-            State.update({ lineCountDeleted, lineCountInserted });
-        },
-      }}
-    />
+    <CodeWrapper>
+      <Widget
+        src={`bozon.near/widget/WidgetHistory.CodeHistory`}
+        props={{
+          pathToWidget: props.pathToWidget,
+          currentBlockHeight: props.currentBlockHeight,
+          prevBlockHeight: props.prevBlockHeight,
+          findUniqueResult: (
+            lineCountDeleted,
+            lineCountInserted,
+            lineCountCurrentCode,
+            lineCountPrevCode,
+            allLineCount
+          ) => {
+            if (
+              state.lineCountDeleted === undefined ||
+              state.lineCountInserted === undefined
+            )
+              State.update({ lineCountDeleted, lineCountInserted });
+          },
+        }}
+      />
+    </CodeWrapper>
   </div>
 );
