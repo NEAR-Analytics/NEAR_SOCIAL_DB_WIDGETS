@@ -13,6 +13,7 @@ const nearDevGovGigsWidgetsAccountId =
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
+console.log("postId: ", postId);
 const post = Near.view(nearDevGovGigsContractAccountId, "get_post", {
   post_id: postId,
 });
