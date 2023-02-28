@@ -29,6 +29,7 @@ const resultArticles =
     const postDataWithBlockHeight = { ...JSON.parse(postData), blockHeight };
     return [...acc, postDataWithBlockHeight];
   }, []);
+if (resultArticles === null) return "loading...";
 // ========== FIND ALL VERSIONS OF ONE ARTICLE ==========
 const filteredArticles =
   resultArticles.length &&
@@ -39,9 +40,6 @@ const filteredArticles =
       return acc;
     }
   }, []);
-
-if (filteredArticles === null) return "loading...";
-
 // ========== GET ARRAY OF BLOCK HEIGHT AND LAST EDITOR ==========
 let blocksChanges =
   filteredArticles &&
@@ -49,8 +47,6 @@ let blocksChanges =
     blockHeight: item.blockHeight,
     lastEditor: item.lastEditor,
   }));
-
-console.log("blocksChanges", blocksChanges);
 
 // === END ===
 
