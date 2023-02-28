@@ -7,6 +7,20 @@ const H2 = styled.h2`
   color: #11181c;
   margin: 0 0 24px;
 `;
+const Subheading = styled.h2`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
+  outline: none;
+`;
+
 if (!indexer_name) return "missing indexer_name";
 const state_table = "| Function Name | Current Block Height |\n| --- | --- |\n";
 
@@ -94,12 +108,24 @@ return (
   <>
     <h1>Indexer Status</h1>
 
-    <H2> Indexed Values </H2>
-    {state.indexer_res.length > 0 && <Markdown text={indexer_values_table} />}
+    {state.indexer_res.length > 0 ? (
+      <Markdown text={indexer_values_table} />
+    ) : (
+      <Subheading> No data to show... </Subheading>
+    )}
 
     <H2> Indexer State </H2>
-    {state.state.length > 0 && <Markdown text={state_table} />}
+    {state.state.length > 0 ? (
+      <Markdown text={state_table} />
+    ) : (
+      <Subheading> No data to show... </Subheading>
+    )}
+
     <H2> Indexer Logs </H2>
-    {state.logs.length > 0 && <Markdown text={logs_table} />}
+    {state.logs.length > 0 ? (
+      <Markdown text={logs_table} />
+    ) : (
+      <Subheading> No data to show... </Subheading>
+    )}
   </>
 );
