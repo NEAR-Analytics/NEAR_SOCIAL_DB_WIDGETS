@@ -1,6 +1,7 @@
+const time_zone = props.time_zone ?? "(UTC+00:00) UTC";
 State.init({
-  current_time: null,
-  world_time: null,
+  user_time: null,
+  local_time: null,
 });
 
 const code = `
@@ -18,49 +19,54 @@ function onInterval() {
   var year = today.getFullYear();
   var hour = today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
   var minute = today.getMinutes();
-  var seconds = today.getSeconds();
 
-  var utc_year = today.getUTCFullYear();
-  var utc_day = today.getUTCDate();
-  var utc_month = today.getUTCMonth() + 1;
-  var utc_hour = today.getUTCHours();
-  var utc_minute = today.getUTCMinutes();
+  var zone = time_zone.split(" ")[0].split("UTC")[1].split(":");
+  var offset = parseInt(zone[0]);
 
+  var local_time = new Date(today.getTime() + offset * 3600000);
+  var local_month = local_time.getMonth() + 1;
+  var local_day = local_time.getDate();
+  var local_year = local_time.getFullYear();
+  var local_hour =
+    local_time.getHours() > 12
+      ? local_time.getHours() - 12
+      : local_time.getHours();
+  var local_minute = local_time.getMinutes();
   State.update({
-    current_time: month + "/" + day + "/" + year + " - " + hour + ":" + minute,
-    world_time:
-      utc_month +
+    user_time: month + "/" + day + "/" + year + " - " + hour + ":" + minute,
+    local_time:
+      local_month +
       "/" +
-      utc_day +
+      local_day +
       "/" +
-      utc_year +
+      local_year +
       " - " +
-      utc_hour +
+      local_hour +
       ":" +
-      utc_minute,
+      local_minute,
   });
 }
 
 return (
   <div>
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {state.current_time && (
+      {state.local_time && (
         <div
           style={{
             fontSize: font_big,
             display: "flex",
             justifyContent: "flex-end",
           }}
-        >{`UTC Time: ${state.world_time}`}</div>
+        >{`Local Time: ${state.local_time}`}</div>
       )}
-      {state.world_time && (
+      {state.user_time && (
         <div
           style={{
             fontSize: font_big,
             display: "flex",
             justifyContent: "flex-end",
           }}
-        >{`Locale Time: ${state.current_time}`}</div>
+        >{`Your Time: ${state.user_time}`}</div>
       )}
     </div>
     <iframe
