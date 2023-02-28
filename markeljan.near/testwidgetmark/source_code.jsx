@@ -17,7 +17,7 @@ const post =
   props.post ??
   Near.view(nearDevGovGigsContractAccountId, "get_post", { post_id: postId });
 if (!post) {
-  return <div>Loading ...</div>;
+  return <div>Loading post</div>;
 }
 const referral = props.referral;
 
@@ -71,18 +71,18 @@ const history = (
   </div>
 );
 
-if (!props.pathToWidget || !props.currentBlockHeight)
-  return "send pathToWidget and currentBlockHeight in props";
+// if (!props.pathToWidget || !props.currentBlockHeight)
+//   return "send pathToWidget and currentBlockHeight in props";
 
-const currentCode = Social.get(
-  `${props.pathToWidget}`,
-  props.currentBlockHeight
-);
+// const currentCode = Social.get(
+//   `${props.pathToWidget}`,
+//   props.currentBlockHeight
+// );
 
-if (currentCode === null) return "Loading";
+// if (currentCode === null) return "Loading";
 
-const prevCode = props.prevBlockHeight
-  ? Social.get(`${props.pathToWidget}`, props.prevBlockHeight)
-  : undefined;
+// const prevCode = props.prevBlockHeight
+//   ? Social.get(`${props.pathToWidget}`, props.prevBlockHeight)
+//   : undefined;
 
 return history;
