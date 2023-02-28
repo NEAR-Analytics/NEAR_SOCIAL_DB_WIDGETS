@@ -48,10 +48,7 @@ let blocksChanges =
     lastEditor: item.lastEditor,
   }));
 
-// === END ===
-
 if (props.count) props.count(blocksChanges.length);
-
 // if (blocksChanges) blocksChanges = blocksChanges?.sort((a, b) => b - a);
 
 if (!state.selectedBlockHeight) state.selectedBlockHeight = blocksChanges[0];
@@ -157,10 +154,6 @@ const TabsButton = styled.button`
 
 return (
   <div>
-    {/* === START === */}
-    <button onClick={handler}>GET DATA (delete thos button)</button>
-    {/* === END === */}
-
     {!blocksChanges ? (
       <div>incorrent widget path</div>
     ) : (
