@@ -4,6 +4,9 @@ const font_small = style == "small" ? "0.8rem" : "0.9rem";
 const font_big = style == "small" ? "0.8rem" : "1rem";
 const data = Social.index("Instance_time", "schedule");
 
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 State.init({
   is_on: false,
 });
@@ -188,7 +191,7 @@ return (
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <a
-              href="https://near.social/#/vow_owner_123.near/widget/Instance_time"
+              href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
               onMouseEnter={() => {
                 State.update({ hoveringElement: "view" });
               }}
@@ -225,7 +228,7 @@ return (
             </a>
             {accountId == context.accountId && (
               <a
-                href="https://near.social/#/vow_owner_123.near/widget/Instance_time_edit"
+                href={`https://near.social/#/${widgetOwner}/widget/Instance_time_edit`}
                 onMouseEnter={() => {
                   State.update({ hoveringElement: "edit" });
                 }}
@@ -305,7 +308,7 @@ return (
               }}
             >
               <Widget
-                src={`vow_owner_123.near/widget/Instance_time_share`}
+                src={`${widgetOwner}/widget/Instance_time_share`}
                 props={{ accountId: "vow_owner_123.near" }}
               />
             </div>
@@ -335,7 +338,7 @@ return (
             }}
           >
             <Widget
-              src={`vow_owner_123.near/widget/ShowCurrentTime`}
+              src={`${widgetOwner}/widget/ShowCurrentTime`}
               props={{
                 time_zone: finalData.time_zone,
                 style: {
@@ -346,7 +349,7 @@ return (
           </div>
         </div>
         <Widget
-          src={`vow_owner_123.near/widget/Instance_time_schedule_card`}
+          src={`${widgetOwner}/widget/Instance_time_schedule_card`}
           props={{
             schedule_data: finalData,
             style: {
