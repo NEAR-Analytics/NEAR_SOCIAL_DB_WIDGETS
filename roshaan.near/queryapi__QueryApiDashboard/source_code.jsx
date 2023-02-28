@@ -1,16 +1,12 @@
-const [selected_accountId, selected_indexerName] = props.indexer_path
-  ? props.indexer_path.split("/")
+const indexerPath = props.indexerPath;
+const [selected_accountId, selected_indexerName] = indexerPath
+  ? indexerPath.split("/")
   : [undefined, undefined];
 
+console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
-const google_analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE2N8N8G93"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+const indexerName = selected_indexerName || props.indexerName;
 
-  gtag('config', 'G-BE2N8N8G93');
-</script>`;
 const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
@@ -223,7 +219,6 @@ const indexerView = (accountId, indexerName, idx) => {
 
   const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
-  const viewSchemaUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=schema-window`;
 
   return (
     <Card selected={isSelected}>
@@ -274,18 +269,6 @@ const indexerView = (accountId, indexerName, idx) => {
         >
           Edit Indexer
         </ButtonLink>
-        <TextLink
-          bold
-          href={viewSchemaUrl}
-          onClick={() =>
-            State.update({
-              activeTab: "schema-window",
-              selected_indexer: indexerName,
-            })
-          }
-        >
-          View Schema
-        </TextLink>
       </CardFooter>
     </Card>
   );
@@ -417,11 +400,6 @@ const allIndexerView = () => {
 
 return (
   <Wrapper negativeMargin={state.activeTab === "indexers"}>
-    <iframe
-      style={{ height: "0px" }}
-      name="widget-iframe"
-      srcDoc={google_analytics}
-    />
     <Tabs
       halfMargin={state.activeTab === "indexers"}
       noMargin={state.activeTab === "indexers"}
