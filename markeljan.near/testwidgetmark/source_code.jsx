@@ -1,8 +1,6 @@
 /*
 ---props---
-props.pathToWidget: string ("bozon.near/widget/PrivateMailBox")
-props.currentBlockHeight: number
-props.prevBlockHeight?: number
+props.post || props.id
 */
 
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
