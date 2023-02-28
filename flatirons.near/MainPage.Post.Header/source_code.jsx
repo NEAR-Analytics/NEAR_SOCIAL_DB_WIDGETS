@@ -24,7 +24,9 @@ const ButtonLink = styled.a`
   }
 `;
 
-let graphqlMessage = "";
+State.init({
+  graphqlMessage: "",
+});
 
 function hideUser() {
   const query =
@@ -42,7 +44,6 @@ function hideUser() {
     }
   }
 }`;
-  let graphqlMessage = null;
   let userReputationResponse;
   try {
     userReputationResponse = fetch(
@@ -57,16 +58,16 @@ function hideUser() {
       }
     );
   } catch (e) {
-    graphqlMessage = "Unable to hide user";
+    State.update({ graphqlMessage: "Unable to hide user" });
   }
 
   if (
     userReputationResponse?.status == 200 &&
     !userReputationResponse.body.errors
   ) {
-    graphqlMessage = "User Hidden, reload.";
+    State.update({ graphqlMessage: "User Hidden, reload page." });
   } else {
-    graphqlMessage = userReputationResponse.body.errors;
+    State.update({ graphqlMessage: userReputationResponse.body.errors });
   }
 }
 
