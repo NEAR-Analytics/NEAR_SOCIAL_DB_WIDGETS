@@ -41,14 +41,14 @@ const filteredArticles =
       return acc;
     }
   }, []);
-console.log("filteredArticles", filteredArticles);
+
 if (filteredArticles === null) return "loading...";
 
 let blocksChanges = filteredArticles.map((item) => ({
   blockHeight: item.blockHeight,
   lastEditor: item.lastEditor,
 }));
-console.log("blocksChanges", blocksChanges);
+// console.log("blocksChanges", blocksChanges);
 
 // === END ===
 
