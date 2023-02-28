@@ -15,6 +15,10 @@ const sortAndRemoveRepeated = (flag, data) => {
   }
   return final;
 };
+
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
   const mins = (time - hours) * 60;
@@ -358,9 +362,7 @@ return (
             </CommitButton>
           ) : (
             <a
-              href={
-                "https://near.social/#/vow_owner_123.near/widget/Instance_time"
-              }
+              href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
               style={{
                 margin: "2rem",
                 border: "2px solid transparent",
