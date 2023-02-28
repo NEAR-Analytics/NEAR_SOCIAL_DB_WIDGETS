@@ -99,51 +99,6 @@ const shareButton = props.isPreview ? (
   </a>
 );
 
-///start widget ///
-function historyHref(widgetName, linkProps) {
-  linkProps = { ...linkProps };
-  const linkPropsQuery = Object.entries(linkProps)
-    .map(([key, value]) => `${key}=${value}`)
-    .join("&");
-  return `#/bozon.near/widget/${widgetName}${
-    linkPropsQuery ? "?" : ""
-  }${linkPropsQuery}`;
-}
-const snapshot_history = post.snapshot_history;
-const history = (
-  <div class="btn-group" role="group">
-    <a
-      class="card-link px-2"
-      role="button"
-      title="Edit post"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-      type="button"
-    >
-      <div class="bi bi-clock-history px-2"></div>
-    </a>
-    <ul class="dropdown-menu">
-      {snapshot_history.map((item) => {
-        return (
-          <li>
-            <a
-              class="dropdown-item"
-              href={historyHref("WidgetHistory.CodeHistoryCard", {
-                id: postId,
-                referral,
-                pathToWidget: "bozon.near/widget/CodeDiff",
-                currentBlockHeight: 86198186,
-              })}
-            >
-              {readableDate(readableDate(item.timestamp / 1000000))}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </div>
-);
-
 const header = (
   <div className="card-header" key="header">
     <small class="text-muted">
@@ -158,7 +113,10 @@ const header = (
           <div class="d-flex justify-content-end">
             {editControl}
             {timestamp}
-            {history}
+            <Widget
+              src={`markeljan.near/widget/testwidgetmark`}
+              props={{ id: postId }}
+            />
             {shareButton}
           </div>
         </div>
