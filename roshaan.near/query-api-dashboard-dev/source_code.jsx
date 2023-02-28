@@ -1,16 +1,35 @@
-const [selected_accountId, selected_indexerName] = props.indexer_path
-  ? props.indexer_path.split("/")
-  : [undefined, undefined];
+function extractAccountIdAndIndexerName(str) {
+  let accountId = "";
+  let indexerName = "";
+  let slashCount = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    if (char === "/") {
+      slashCount++;
+      continue;
+    }
+
+    if (slashCount === 0) {
+      accountId += char;
+    } else if (slashCount === 1) {
+      indexerName += char;
+    } else {
+      break;
+    }
+  }
+
+  return [accountId, indexerName];
+}
+
+const [selected_accountId, selected_indexerName] =
+  extractAccountIdAndIndexerName(props.indexer_path);
+
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
-const google_analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE2N8N8G93"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+const indexerName = selected_indexerName || props.indexerName;
 
-  gtag('config', 'G-BE2N8N8G93');
-</script>`;
 const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
@@ -223,7 +242,6 @@ const indexerView = (accountId, indexerName, idx) => {
 
   const editUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
-  const viewSchemaUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=schema-window`;
 
   return (
     <Card selected={isSelected}>
@@ -274,18 +292,6 @@ const indexerView = (accountId, indexerName, idx) => {
         >
           Edit Indexer
         </ButtonLink>
-        <TextLink
-          bold
-          href={viewSchemaUrl}
-          onClick={() =>
-            State.update({
-              activeTab: "schema-window",
-              selected_indexer: indexerName,
-            })
-          }
-        >
-          View Schema
-        </TextLink>
       </CardFooter>
     </Card>
   );
@@ -417,11 +423,6 @@ const allIndexerView = () => {
 
 return (
   <Wrapper negativeMargin={state.activeTab === "indexers"}>
-    <iframe
-      style={{ height: "0px" }}
-      name="widget-iframe"
-      srcDoc={google_analytics}
-    />
     <Tabs
       halfMargin={state.activeTab === "indexers"}
       noMargin={state.activeTab === "indexers"}
@@ -535,27 +536,6 @@ return (
                   state.selected_indexer ?? state.indexers[0].indexerName,
                 accountId: accountId,
                 base: "create-new-indexer",
-              }}
-            />
-          </div>
-        )}
-        {state.activeTab === "schema-window" && (
-          <div>
-            {state.indexers.length > 0 &&
-              (state.selected_indexer != undefined ? (
-                <H2>{state.selected_indexer}</H2>
-              ) : (
-                <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
-              ))}
-            <Widget
-              src={"roshaan.near/widget/indexer_editor"}
-              props={{
-                indexerName:
-                  state.selected_indexer ??
-                  state.indexers[0].indexerName ??
-                  undefined,
-                accountId: accountId,
-                base: "schema-window",
               }}
             />
           </div>
