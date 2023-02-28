@@ -107,15 +107,6 @@ for (let i = 0; i < sortedData.length; i++) {
     };
   }
 }
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
@@ -346,6 +337,7 @@ return (
             <Widget
               src={`vow_owner_123.near/widget/ShowCurrentTime`}
               props={{
+                time_zone: finalData.time_zone,
                 style: {
                   display: "flex",
                 },
@@ -353,66 +345,15 @@ return (
             />
           </div>
         </div>
-        <div
-          className="p-3"
-          style={{
-            position: "relative",
-            border: "1.5px solid rgb(206, 212, 218)",
-            borderRadius: "24px",
-            wordWrap: "anywhere",
-            width: "100%",
+        <Widget
+          src={`vow_owner_123.near/widget/Instance_time_schedule_card`}
+          props={{
+            schedule_data: finalData,
+            style: {
+              display: "flex",
+            },
           }}
-        >
-          <h3
-            style={{
-              fontWeight: "700",
-              fontSize: "1.2rem",
-              marginBottom: "1.2rem",
-            }}
-          >
-            Schedule
-          </h3>
-          {finalData.value._data.map((week, index) => {
-            return (
-              <div
-                style={{
-                  paddingTop: font_small,
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ fontSize: font_small }}>{`${days[index]}`}</div>
-                <div style={{ display: "flex" }}>
-                  {week.on_off == "on" ? (
-                    week.data.map((y) => (
-                      <p
-                        style={{ paddingRight: "0.7rem", fontSize: font_small }}
-                      >
-                        {getFormatedTime(y._from)}~{getFormatedTime(y._to)}
-                      </p>
-                    ))
-                  ) : (
-                    <span
-                      style={{
-                        backgroundColor: "#FFE5E5",
-                        textAlign: "center",
-                        borderRadius: "16px",
-                        marginRight: font_small,
-                        fontSize: font_small,
-                        letterSpacing: "-0.025rem",
-                        color: "#FF4747",
-                        fontWeight: "500",
-                        padding: "0.5rem 2rem",
-                      }}
-                    >
-                      Off
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        />
       </div>
     </div>
   </div>
