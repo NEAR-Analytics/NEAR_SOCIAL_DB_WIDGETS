@@ -120,7 +120,10 @@ return (
         <Item key={i}>
           <Widget
             src="calebjacob.near/widget/ComponentCard"
-            props={{ src: `${app.accountId}/widget/${app.widgetName}` }}
+            props={{
+              src: `${app.accountId}/widget/${app.widgetName}`,
+              blockHeight: app.blockHeight,
+            }}
           />
         </Item>
       ))}
