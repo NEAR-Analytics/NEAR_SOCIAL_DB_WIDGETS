@@ -19,8 +19,6 @@ showLineNumber?: bool
 
 */
 
-props.currentCode = Social.get("bozon.near/widget/WidgetHistory.CodeHistory");
-
 if (typeof props?.currentCode !== "string")
   return "send {currentCode: string} in props";
 
