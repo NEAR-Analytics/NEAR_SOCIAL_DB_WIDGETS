@@ -3,7 +3,7 @@
 props.post: {};
 props.id: number;
 props.timestamp: number;
-props.compareWith?: number;
+props.compareTimestamp?: number;
 props.referral?: any;
 */
 
@@ -48,6 +48,28 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
+function compareDescription(desc1, desc2) {
+  let desc1Arr = desc1.split(/\b/);
+  let desc2Arr = desc2.split(/\b/);
+
+  let desc1Set = new Set(desc1Arr);
+  let desc2Set = new Set(desc2Arr);
+
+  let addedWords = new Set([...desc2Set].filter((x) => !desc1Set.has(x)));
+  let removedWords = new Set([...desc1Set].filter((x) => !desc2Set.has(x)));
+
+  let newDesc = desc1Arr.map((word) => {
+    if (addedWords.has(word)) {
+      return `+${word}`;
+    } else if (removedWords.has(word)) {
+      return `~~${word}~~`;
+    } else {
+      return word;
+    }
+  });
+  return newDesc.join(" ");
+}
+
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
   props.post ??
@@ -58,31 +80,32 @@ if (!post) {
 const referral = props.referral;
 
 const timestampFromProps = props.timestamp;
-const compareWithTimestamp = props.compareWith;
+const compareTimestamp = props.compareTimestamp;
 let snapshot = post.snapshot;
 let compareSnapshot;
-const snapshot_history = post.snapshot_history;
-
+const snapshotHistory = post.snapshot_history;
+snapshotHistory.push(snapshot);
+console.log(snapshot.description);
 if (timestampFromProps) {
-  const foundSnapshot = snapshot_history.find(
-    (s) => s.timestamp === timestampFromProps
+  const foundSnapshot = snapshotHistory.find(
+    (s) => Number(s.timestamp) === timestampFromProps
   );
+  console.log(foundSnapshot, "yoo", s);
   if (foundSnapshot) {
     snapshot = foundSnapshot;
   }
 }
 
-if (compareWithTimestamp) {
-  const foundSnapshot = snapshot_history.find(
-    (s) => s.value === compareWithTimestamp
+if (compareTimestamp) {
+  const foundSnapshot = snapshotHistory.find(
+    (s) => Number(s.timestamp) === compareTimestamp
   );
   if (foundSnapshot) {
     compareSnapshot = foundSnapshot;
   }
 }
-
-console.log("snapshot_history", snapshot_history);
 console.log("snapshot", snapshot);
+console.log("snapshotHistory", snapshotHistory);
 
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
@@ -363,12 +386,18 @@ const limitedMarkdown = styled.div`
 // Should make sure the posts under the currently top viewed post are limited in size.
 const descriptionArea = isUnderPost ? (
   <limitedMarkdown className="overflow-auto" key="description-area">
-    <Markdown class="card-text" text={snapshot.description}></Markdown>
+    <Markdown
+      class="card-text"
+      text={compareDescription(
+        snapshot.description,
+        compareSnapshot.description
+      )}
+    ></Markdown>
   </limitedMarkdown>
 ) : (
   <Markdown
     class="card-text"
-    text={snapshot.description}
+    text={compareDescription(snapshot.description, compareSnapshot.description)}
     key="description-area"
   ></Markdown>
 );
