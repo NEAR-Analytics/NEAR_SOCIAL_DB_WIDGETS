@@ -8,6 +8,9 @@ console.log("indexerName from indexer eidtor", indexerName);
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 let accountId = indexerPath?.accountId || props.accountId || context.accountId;
+console.log("new indexername, ", indexerName);
+console.log("new accountId, ", accountId);
+
 let base = props.base ?? "query-api-editor";
 
 if (!accountId) {
@@ -43,8 +46,7 @@ const reducer = (message) => {
       console.log("default case");
   }
 };
-const code = `
-<meta name="viewport" content="width=device-width, initial-scale=1">
+const code = `<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .container {
  max-width: 800px;
@@ -76,8 +78,8 @@ const code = `
     console.log(indexerName, "indexerName ID")
     console.log(base, "base")
     iframe = document.createElement('iframe');
-    // iframe.src = 'https://query-api-react.vercel.app';
-        iframe.src = 'http://localhost:3000';
+    iframe.src = 'https://query-api-react.vercel.app';
+        // iframe.src = 'http://localhost:3000';
 
     if (base) {
       console.log("added base")
@@ -125,8 +127,7 @@ const code = `
       createIframe(event.data.value.base, event.data.value.accountId, event.data.value.indexerName);
     }
   });
-    </script>
-`;
+    </script>`;
 
 return (
   <div>
