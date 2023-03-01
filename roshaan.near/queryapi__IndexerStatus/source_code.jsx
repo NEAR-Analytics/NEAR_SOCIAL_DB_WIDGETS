@@ -1,5 +1,6 @@
 //props indexer_name
 const indexer_name = props.indexer_name;
+console.log("from index status", indexer_name);
 const accountId = props.accountId || context.accountId;
 const H2 = styled.h2`
   font-size: 19px;
