@@ -29,6 +29,7 @@ const greetingForm = (
 
 const notLoggedInWarning = <p> Login to change the greeting </p>;
 
+// Render
 return (
   <>
     <div class="container border border-info p-3">
