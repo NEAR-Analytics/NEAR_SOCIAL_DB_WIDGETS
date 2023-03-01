@@ -168,6 +168,7 @@ setInterval(() => {
 
 return (
   <div
+    className="px-4"
     style={{
       borderRadius: "3px",
       backgroundColor: "rgb(230, 230, 230)",
