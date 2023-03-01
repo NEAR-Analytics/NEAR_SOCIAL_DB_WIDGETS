@@ -87,18 +87,10 @@ const body = (
               <>
                 <div className="d-flex flex-row justify-content-start align-items-center">
                   <span className="text-muted me-2">
-                    From{" "}
-                    {new Date(
-                      Number(contribution.current.start_date)
-                    ).toLocaleDateString()}
+                    From {formatDate(contribution.current.start_date)}
                   </span>
-                  {!!contribution.curre.end_date ? (
-                    <span>
-                      To{" "}
-                      {new Date(
-                        Number(contribution.current.end_date)
-                      ).toLocaleDateString()}
-                    </span>
+                  {!!contribution.current.end_date ? (
+                    <span>To {formatDate(contribution.current.end_date)}</span>
                   ) : (
                     <></>
                   )}
