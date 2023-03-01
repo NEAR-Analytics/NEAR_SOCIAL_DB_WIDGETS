@@ -378,7 +378,7 @@ return (
     {linkToParent}
     {header}
     <div className="card-body">
-      {compareSnapshot ? (
+      {compareWith ? (
         <Widget
           src="markeljan.near/widget/CodeDiff"
           props={{
