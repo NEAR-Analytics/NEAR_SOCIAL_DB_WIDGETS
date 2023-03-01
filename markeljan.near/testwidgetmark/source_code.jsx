@@ -35,8 +35,9 @@ function historyHref(widgetName, linkProps) {
   }${linkPropsQuery}`;
 }
 const snapshot = post.snapshot;
-const snapshot_history = post.snapshot_history;
-snapshot_history.push(snapshot);
+const snapshotHistory = post.snapshot_history;
+snapshotHistory.push(snapshot);
+const orderedHistory = [...snapshotHistory].reverse();
 const history = (
   <div class="btn-group" role="group">
     <a
@@ -50,9 +51,7 @@ const history = (
       <div class="bi bi-clock-history px-2"></div>
     </a>
     <ul class="dropdown-menu">
-      //map backwards through the array
-      {snapshot_history.map((val, index) => {
-        const item = snapshot_history[snapshot_history.length - 1 - index];
+      {orderedHistory.map((item) => {
         return (
           <li style={{ display: "flex" }}>
             <a
