@@ -7,8 +7,10 @@ const activeView = indexerPath?.indexerName;
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
+console.log("activeView", activeView);
 
 const activeTab = activeView ?? props.view ?? "public-indexers";
+console.log("activeTabsss", activeTab);
 const limit = 7;
 let totalIndexers = 0;
 const registry_contract_id =
