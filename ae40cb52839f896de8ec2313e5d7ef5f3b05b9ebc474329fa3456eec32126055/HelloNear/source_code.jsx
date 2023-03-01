@@ -1,6 +1,10 @@
 const contract = "hello.near-examples.near";
 const greeting = Near.view(contract, "get_greeting", {});
 
+if (context.loading) {
+  return "Loading";
+}
+
 State.init({ greeting: greeting });
 
 const onInputChange = ({ target }) => {
