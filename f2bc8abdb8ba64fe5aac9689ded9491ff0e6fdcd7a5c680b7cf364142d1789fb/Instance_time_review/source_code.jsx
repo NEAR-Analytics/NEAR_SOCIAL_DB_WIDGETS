@@ -1,5 +1,6 @@
 const _account = props.accountId ?? "All";
 const owner = context.accountId;
+const text = props.text;
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
@@ -165,6 +166,7 @@ return (
       padding: "0.5rem",
     }}
   >
+    <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>{text}</h2>
     <div
       style={{
         display: "grid",
