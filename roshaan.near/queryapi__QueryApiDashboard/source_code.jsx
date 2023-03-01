@@ -389,10 +389,6 @@ const renderIndexers = (indexers) => {
 
   return (
     <>
-      <H2>
-        {accountId}'s Indexers
-        <span>({indexers.length})</span>
-      </H2>
       {indexers.map((indexer, i) => (
         <CardWrapper key={i}>
           {indexerView(indexer.accountId, indexer.indexerName, i)}
@@ -460,7 +456,7 @@ return (
           />
           QueryApi
         </NavBarLogo>
-        {state.my_indexers ? (
+        {state.my_indexers.length > 0 ? (
           <div>
             <ButtonLink
               href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
@@ -473,6 +469,10 @@ return (
             >
               Create New Indexer
             </ButtonLink>
+            <H2>
+              {accountId}'s Indexers
+              <span>({state.my_indexers.length})</span>
+            </H2>
             {renderIndexers(state.my_indexers)}
           </div>
         ) : (
