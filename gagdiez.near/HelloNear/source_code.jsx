@@ -9,6 +9,10 @@ const onInputChange = ({ target }) => {
 };
 
 const onBtnClick = () => {
+  if (!state.new_greeting) {
+    return;
+  }
+
   Near.call(contract, "set_greeting", {
     greeting: state.new_greeting,
   });
