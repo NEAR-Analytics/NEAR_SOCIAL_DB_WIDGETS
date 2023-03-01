@@ -58,12 +58,11 @@ if (!post) {
 const referral = props.referral;
 
 const timestampFromProps = props.timestamp;
-const compareWithTimestamp = props.compareWith;
+const compareTimestamp = props.compareTimestamp;
 let snapshot = post.snapshot;
 let compareSnapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
-
 if (timestampFromProps) {
   const foundSnapshot = snapshotHistory.find(
     (s) => Number(s.timestamp) === timestampFromProps
@@ -75,15 +74,14 @@ if (timestampFromProps) {
 
 if (compareWithTimestamp) {
   const foundSnapshot = snapshotHistory.find(
-    (s) => Number(s.value) === compareWithTimestamp
+    (s) => Number(s.timestamp) === compareTimestamp
   );
   if (foundSnapshot) {
     compareSnapshot = foundSnapshot;
   }
 }
-
-console.log(snapshotHistory);
-console.log("props", props);
+console.log("snapshot", snapshot);
+console.log("snapshotHistory", snapshotHistory);
 
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
