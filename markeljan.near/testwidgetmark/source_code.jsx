@@ -57,7 +57,7 @@ const history = (
     <ul class="dropdown-menu">
       {orderedHistory.map((item) => {
         return (
-          <li style={{ display: "flex", justifyContent: "space-between" }}>
+          <li style={{ display: "flex" }}>
             <a
               class="dropdown-item"
               href={historyHref("testpostmark", {
