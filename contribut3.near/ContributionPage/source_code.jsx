@@ -4,10 +4,10 @@ const contributorId = props.contributorId;
 
 const formatDate = (date) => {
   if (date.length > 13) {
-    return new Date(Number(date.substring(0, 13)));
+    return new Date(Number(date.substring(0, 13))).toLocaleDateString();
   }
 
-  return new Date(Number(date));
+  return new Date(Number(date)).toLocaleDateString();
 };
 
 if (!entityId || !contributorId) {
