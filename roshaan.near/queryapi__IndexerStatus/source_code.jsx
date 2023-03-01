@@ -15,7 +15,7 @@ const Title = styled.h1`
 const SmallTitle = styled.h3`
   color: black;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 15px;
   text-transform: uppercase;
 
