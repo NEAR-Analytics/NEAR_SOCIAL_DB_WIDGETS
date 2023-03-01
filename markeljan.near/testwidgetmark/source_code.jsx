@@ -50,7 +50,9 @@ const history = (
       <div class="bi bi-clock-history px-2"></div>
     </a>
     <ul class="dropdown-menu">
-      {snapshot_history.map((item) => {
+      //map backwards through the array
+      {snapshot_history.map((val, index) => {
+        const item = snapshot_history[snapshot_history.length - 1 - index];
         return (
           <li style={{ display: "flex" }}>
             <a
