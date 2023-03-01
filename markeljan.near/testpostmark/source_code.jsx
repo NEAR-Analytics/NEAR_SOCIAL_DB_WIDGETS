@@ -62,6 +62,7 @@ const compareWithTimestamp = props.compareWith;
 let snapshot = post.snapshot;
 let compareSnapshot;
 const snapshotHistory = post.snapshot_history;
+snapshotHistory.push(snapshot);
 
 if (timestampFromProps) {
   const foundSnapshot = snapshotHistory.find(
