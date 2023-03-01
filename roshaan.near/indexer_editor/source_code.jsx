@@ -1,14 +1,13 @@
 let initialText = "";
 const indexerPath = Storage.get("indexerPath");
 
-const accountId = indexerPath?.accountId;
-const indexerName = indexerPath?.indexerName;
+const indexerName = indexerPath?.indexerName || props.accountId;
 console.log("accountid from indexer eidtor", accountId);
 console.log("indexerName from indexer eidtor", indexerName);
 
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
-let accountId = accountId || props.accountId || context.accountId;
+let accountId = indexerPath?.accountId || props.accountId || context.accountId;
 let base = props.base ?? "query-api-editor";
 
 if (!accountId) {
