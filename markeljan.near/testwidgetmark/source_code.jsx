@@ -36,6 +36,7 @@ function historyHref(widgetName, linkProps) {
 }
 const snapshot = post.snapshot;
 const snapshot_history = post.snapshot_history;
+snapshot_history.push(snapshot);
 const history = (
   <div class="btn-group" role="group">
     <a
