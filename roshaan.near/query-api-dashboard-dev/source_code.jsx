@@ -1,8 +1,8 @@
 const indexerPath = Storage.get("indexerPath");
-// const { accountId, indexerName, view } = indexerPath;
-console.log(indexerPath, "indexerPATH");
-const selected_accountId = accountId;
-const selected_indexerName = indexerName;
+
+const selected_accountId = indexerPath?.accountId;
+const selected_indexerName = indexerPath?.indexerName;
+
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
