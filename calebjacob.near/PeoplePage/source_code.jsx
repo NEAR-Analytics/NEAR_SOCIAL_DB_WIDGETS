@@ -80,18 +80,6 @@ const Header = styled.div`
   gap: 12px;
 `;
 
-const SubHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  @media (max-width: 500px) {
-      flex-direction: column;
-      align-items: start;
-  }
-`;
-
 const Search = styled.div`
   width: 246px;
   
