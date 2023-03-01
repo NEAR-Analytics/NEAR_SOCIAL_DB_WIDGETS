@@ -121,6 +121,15 @@ for (let i = 0; i < sortedData.length; i++) {
     });
   }
 }
+
+// function getFormatedTime(time) {
+//   const hours = parseInt(time);
+//   const mins = (time - hours) * 60;
+//   let formated = `${hours}:${mins == 0 ? "00" : mins}`;
+
+//   return formated;
+// }
+
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
   const mins = (time - hours) * 60;
@@ -166,7 +175,19 @@ return (
       padding: "0.5rem",
     }}
   >
-    <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>{text}</h2>
+    <div className="d-flex justify-content-between">
+      <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>{text}</h2>
+      <p className="m-0" style={{ margin: "0px", fontSize: "0.8rem" }}>
+        {`Your time is UTC ${getFormatedTime(
+          new Date().getTimezoneOffset() / 60
+        )} ${new Date()
+          .toLocaleDateString(undefined, {
+            day: "2-digit",
+            timeZoneName: "long",
+          })
+          .substring(4)}`}
+      </p>
+    </div>
     <div
       style={{
         display: "grid",
