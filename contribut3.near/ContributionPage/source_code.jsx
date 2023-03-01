@@ -32,14 +32,6 @@ const contributions = Near.view(
   "final"
 );
 
-const [founder] = Object.keys(contributions ?? {}).filter((contribution) => {
-  const details = contributions[contribution];
-  const all = [...details.history, details.current];
-  return all.some((detail) => detail.description === "");
-});
-
-const profile = Social.getr(`${entityId}/profile`);
-
 const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch">
     <a
