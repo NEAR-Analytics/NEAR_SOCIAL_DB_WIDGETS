@@ -496,7 +496,7 @@ const sortSearchResult = (searchResult) => {
   );
 };
 
-const search = (processedQueryArray) => {
+const search = (processedQueryArray, index) => {
   return sortSearchResult(
     processedQueryArray.flatMap((queryWord) => index[queryWord])
   );
@@ -504,25 +504,30 @@ const search = (processedQueryArray) => {
 
 //////////////////////////////////////////////////////////////////////
 ///UI&UX//////////////////////////////////////////////////////////////
+setTimeout(() => {
+  if (!state.index) {
+    Near.asyncView("devgovgigs.near", "get_posts").then((posts) => {
+      const index = buildIndex(posts);
+      State.update({
+        index,
+      });
+      console.log(index);
+    });
+  }
+  if (state.index) {
+    // Sample text document with misspelled words
+    const query = "I love scan, bananazkkk, and eterium 2023 evnt";
+    const processedQuery = spellcheckQueryProcessing(query, state.index);
 
-const posts = Near.view("devgovgigs.near", "get_posts");
+    const searchResult = search(processedQuery, state.index);
 
-let index = buildIndex(posts);
+    // Output/
+    console.log(processedQuery);
+    console.log(searchResult);
+    if (props.onChange) {
+      props.onChange({ searchResult });
+    }
+  }
+});
 
-console.log(index);
-
-// Sample text document with misspelled words
-const query = "I love scan, bananazkkk, and eterium 2023 evnt";
-
-const start = new Date().getTime();
-const processedQuery = spellcheckQueryProcessing(query, index);
-const end = new Date().getTime();
-console.log("processedQuery", end - start);
-
-const searchResult = search(processedQuery);
-
-// Output/
-console.log(processedQuery);
-console.log(searchResult);
-
-return <div>Hello Wordaa</div>;
+return <div></div>;
