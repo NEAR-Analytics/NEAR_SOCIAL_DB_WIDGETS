@@ -149,7 +149,7 @@ const header = (
             {timestamp}
             <Widget
               src={`markeljan.near/widget/testwidgetmark`}
-              props={{ id: postId }}
+              props={{ id: postId, timestamp: snapshot.timestamp }}
             />
             {shareButton}
           </div>
