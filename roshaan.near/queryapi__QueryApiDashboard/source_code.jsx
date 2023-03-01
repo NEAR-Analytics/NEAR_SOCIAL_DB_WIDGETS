@@ -479,7 +479,9 @@ return (
               src={"roshaan.near/widget/queryapi__IndexerStatus"}
               props={{
                 indexer_name:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  state.selected_indexer ??
+                  selected_indexerName ??
+                  state.indexers[0].indexerName,
                 accountId: accountId,
               }}
             />
