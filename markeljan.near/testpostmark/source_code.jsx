@@ -56,7 +56,7 @@ if (!post) {
 const referral = props.referral;
 
 const timestampFromProps = props.timestamp;
-const compareTimestamp = props.compareTimestamp;
+const compareWith = props.compareWith;
 
 let snapshot = post.snapshot;
 let compareSnapshot;
@@ -72,9 +72,9 @@ if (timestampFromProps) {
   }
 }
 
-if (compareWithTimestamp) {
+if (compareWith) {
   const foundSnapshot = snapshotHistory.find(
-    (s) => s.timestamp === compareTimestamp
+    (s) => s.timestamp === compareWith
   );
   if (foundSnapshot) {
     compareSnapshot = foundSnapshot;
