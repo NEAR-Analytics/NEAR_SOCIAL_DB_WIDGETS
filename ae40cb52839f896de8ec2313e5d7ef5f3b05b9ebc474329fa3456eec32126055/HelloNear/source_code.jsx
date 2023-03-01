@@ -1,5 +1,4 @@
 State.init({ new_greeting: "" });
-
 const contract = "hello.near-examples.near";
 const greeting = Near.view(contract, "get_greeting", {});
 
@@ -13,6 +12,20 @@ const onBtnClick = () => {
   });
 };
 
+const greetingForm = (
+  <>
+    <div class="border border-black p-3">
+      <label>Update greeting</label>
+      <input placeholder="Howdy" onChange={onInputChange} />
+      <button class="btn btn-primary mt-2" onClick={onBtnClick}>
+        Save
+      </button>
+    </div>
+  </>
+);
+
+const notLoggedInWarning = <p> Login to use change the greeting </p>;
+
 return (
   <>
     <div class="container border border-info p-3">
@@ -22,17 +35,10 @@ return (
       </h3>
 
       <p class="text-center py-2">
-        Look at that! A Hello World app! With its greeting stored on the NEAR
-        blockchain.{" "}
+        Look at that! A greeting stored on the NEAR blockchain.
       </p>
 
-      <div class="border border-black p-3">
-        <label>Update greeting</label>
-        <input placeholder="Howdy" onChange={onInputChange} />
-        <button class="btn btn-primary mt-2" onClick={onBtnClick}>
-          Save
-        </button>
-      </div>
+      {context.accountId ? greetingForm : notLoggedInWarning}
     </div>
   </>
 );
