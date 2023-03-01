@@ -1,7 +1,7 @@
 let initialText = "";
 const indexerPath = Storage.get("indexerPath");
 
-const indexerName = indexerPath?.indexerName || props.accountId;
+const indexerName = indexerPath?.indexerName || props.indexerName;
 console.log("accountid from indexer eidtor", accountId);
 console.log("indexerName from indexer eidtor", indexerName);
 
