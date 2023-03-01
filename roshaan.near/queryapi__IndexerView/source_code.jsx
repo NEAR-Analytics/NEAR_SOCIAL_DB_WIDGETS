@@ -90,15 +90,15 @@ const ButtonLink = styled.a`
     outline: none;
   }
 `;
-const editUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=editor-window`;
-const statusUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
+const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
+const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
 
 return (
   <Card>
     <CardBody>
       <Thumbnail>
         <Widget
-          src="mob.near/widget/Imaged"
+          src="mob.near/widget/Image"
           props={{
             image: metadata.image,
             fallbackUrl:
