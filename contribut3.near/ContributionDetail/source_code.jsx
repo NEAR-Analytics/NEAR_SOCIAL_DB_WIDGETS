@@ -1,10 +1,19 @@
 const ownerId = "contribut3.near";
 const entityId = props.entityId;
 const contributionType = props.contributionType;
-const startDate = new Date(Number(props.startDate)).toLocaleDateString();
-const endDate = new Date(Number(props.endDate)).toLocaleDateString();
 const description = props.description;
 const need = props.need;
+
+const formatDate = (date) => {
+  if (date.length > 13) {
+    return new Date(Number(date.substring(0, 13))).toLocaleDateString();
+  }
+
+  return new Date(Number(date)).toLocaleDateString();
+};
+
+const startDate = formatDate(props.startDate);
+const endDate = formatDate(props.endDate);
 
 return (
   <div className="border-bottom border-secondary-subtle">
