@@ -31,7 +31,9 @@ const greetingForm = (
   </>
 );
 
-const notLoggedInWarning = <p> Login to change the greeting </p>;
+const notLoggedInWarning = (
+  <p class="text-center py-2"> Login to change the greeting </p>
+);
 
 // Render
 return (
