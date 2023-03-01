@@ -65,7 +65,7 @@ const snapshot_history = post.snapshot_history;
 
 if (timestampFromProps) {
   const foundSnapshot = snapshot_history.find(
-    (s) => s.timestamp === timestampFromProps
+    (s) => Number(s.timestamp) == timestampFromProps
   );
   if (foundSnapshot) {
     snapshot = foundSnapshot;
@@ -74,7 +74,7 @@ if (timestampFromProps) {
 
 if (compareWithTimestamp) {
   const foundSnapshot = snapshot_history.find(
-    (s) => s.value === compareWithTimestamp
+    (s) => Number(s.value) == compareWithTimestamp
   );
   if (foundSnapshot) {
     compareSnapshot = foundSnapshot;
