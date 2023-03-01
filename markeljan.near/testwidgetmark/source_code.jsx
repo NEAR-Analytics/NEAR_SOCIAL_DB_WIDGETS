@@ -2,6 +2,7 @@
 ---props---
 props.post: {};
 props.id: number;
+props.timestamp: number;
 props.referral: any;
 */
 
@@ -34,6 +35,9 @@ function historyHref(widgetName, linkProps) {
     linkPropsQuery ? "?" : ""
   }${linkPropsQuery}`;
 }
+
+const currentTimestamp = props.timestamp ?? post.snapshot.timestamp;
+
 const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
@@ -85,7 +89,7 @@ const history = (
               href={historyHref("testpostmark", {
                 id: postId,
                 timestamp: item.timestamp,
-                compareWith: snapshot.timestamp,
+                compareWith: currentTimestamp,
                 referral,
               })}
             >
