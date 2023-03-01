@@ -522,7 +522,7 @@ return (
           <div>
             <div>
               <Widget
-                src={"roshaan.near/widget/queryapi__ViewAllPublicIndexers"}
+                src={"roshaan.near/widget/queryapi-dev-viewAllPublicIndexers"}
               />
             </div>
           </div>
