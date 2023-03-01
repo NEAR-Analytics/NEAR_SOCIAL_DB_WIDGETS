@@ -2,12 +2,13 @@ const indexerPath = Storage.get("indexerPath");
 
 const selected_accountId = indexerPath?.accountId;
 const selected_indexerName = indexerPath?.indexerName;
+const activeView = indexerPath?.indexerName;
 
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
 
-const activeTab = props.view ?? "public-indexers";
+const activeTab = activeView || props.view || "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
 const registry_contract_id =
