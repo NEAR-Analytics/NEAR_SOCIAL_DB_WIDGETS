@@ -213,7 +213,7 @@ return (
       </div>
       <div className="w-100 d-flex flex-row justify-content-between align-items-center"></div>
     </div>
-    <div className="align-items-center pt-3">
+    <div className="align-items-center">
       {state.tab != tabs.NEW_SCHEDULE.id ? (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_review`}
