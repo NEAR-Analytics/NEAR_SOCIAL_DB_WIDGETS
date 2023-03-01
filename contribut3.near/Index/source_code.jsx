@@ -104,6 +104,15 @@ const tabContent = {
       }}
     />
   ),
+  contribution: (
+    <Widget
+      src={`${ownerId}/widget/ContributionPage`}
+      props={{
+        entityId: state.entityId,
+        contributorId: state.contributorId,
+      }}
+    />
+  ),
 }[state.tab];
 
 return (
