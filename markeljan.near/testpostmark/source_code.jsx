@@ -3,7 +3,7 @@
 props.post: {};
 props.id: number;
 props.timestamp: string;
-props.compareWith?: number;
+props.compareWith?: string;
 props.referral?: any;
 */
 
@@ -55,12 +55,10 @@ if (!post) {
 }
 const referral = props.referral;
 
-console.log("post", post);
 const timestampFromProps = props.timestamp;
-console.log("timestampFromProps", timestampFromProps);
 const compareTimestamp = props.compareTimestamp;
+
 let snapshot = post.snapshot;
-console.log("BEFORE snapshot.timestamp", snapshot.timestamp);
 let compareSnapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
@@ -76,7 +74,7 @@ if (timestampFromProps) {
 
 if (compareWithTimestamp) {
   const foundSnapshot = snapshotHistory.find(
-    (s) => Number(s.timestamp) === compareTimestamp
+    (s) => s.timestamp === compareTimestamp
   );
   if (foundSnapshot) {
     compareSnapshot = foundSnapshot;
@@ -384,6 +382,13 @@ return (
       {postTitle}
       {postExtra}
       {descriptionArea}
+      <Widget
+        src="markeljan.near/widget/CodeDiff"
+        props={{
+          currentCode: snapshot.description,
+          prevCode: compareSnapshot.description,
+        }}
+      />
       {buttonsFooter}
       {postsList}
     </div>
