@@ -378,18 +378,23 @@ return (
     {linkToParent}
     {header}
     <div className="card-body">
-      {postLabels}
-      {postTitle}
-      {postExtra}
-      {descriptionArea}
-      <Widget
-        src="markeljan.near/widget/CodeDiff"
-        props={{
-          currentCode: snapshot.description,
-          prevCode: compareSnapshot.description,
-        }}
-      />
-      {buttonsFooter}
+      {compareSnapshot ? (
+        <Widget
+          src="markeljan.near/widget/CodeDiff"
+          props={{
+            currentCode: snapshot.description,
+            prevCode: compareSnapshot.description,
+          }}
+        />
+      ) : (
+        <>
+          {postLabels}
+          {postTitle}
+          {postExtra}
+          {descriptionArea}
+          {buttonsFooter}
+        </>
+      )}
       {postsList}
     </div>
   </Card>
