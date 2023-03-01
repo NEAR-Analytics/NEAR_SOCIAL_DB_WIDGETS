@@ -61,11 +61,11 @@ const timestampFromProps = props.timestamp;
 const compareWithTimestamp = props.compareWith;
 let snapshot = post.snapshot;
 let compareSnapshot;
-const snapshot_history = post.snapshot_history;
+const snapshotHistory = post.snapshot_history;
 
 if (timestampFromProps) {
-  const foundSnapshot = snapshot_history.find(
-    (s) => Number(s.timestamp) == timestampFromProps
+  const foundSnapshot = snapshotHistory.find(
+    (s) => Number(s.timestamp) === timestampFromProps
   );
   if (foundSnapshot) {
     snapshot = foundSnapshot;
@@ -73,16 +73,15 @@ if (timestampFromProps) {
 }
 
 if (compareWithTimestamp) {
-  const foundSnapshot = snapshot_history.find(
-    (s) => Number(s.value) == compareWithTimestamp
+  const foundSnapshot = snapshotHistory.find(
+    (s) => Number(s.value) === compareWithTimestamp
   );
   if (foundSnapshot) {
     compareSnapshot = foundSnapshot;
   }
 }
 
-console.log("snapshot_history", snapshot_history);
-console.log("snapshot", snapshot);
+console.log(snapshotHistory);
 
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
