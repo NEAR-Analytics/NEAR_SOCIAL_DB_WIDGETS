@@ -323,6 +323,9 @@ function levenshteinDistance(s, t, threshold) {
   }
   let n = s.length;
   let m = t.length;
+  if (Math.abs(n - m) >= threshold) {
+    return BIG_NUMBER;
+  }
 
   // if one string is empty, the edit distance is necessarily the length of the other
   if (n == 0) {
@@ -504,30 +507,70 @@ const search = (processedQueryArray, index) => {
 
 //////////////////////////////////////////////////////////////////////
 ///UI&UX//////////////////////////////////////////////////////////////
-setTimeout(() => {
-  if (!state.index) {
-    Near.asyncView("devgovgigs.near", "get_posts").then((posts) => {
-      const index = buildIndex(posts);
-      State.update({
-        index,
-      });
-      console.log(index);
-    });
-  }
-  if (state.index) {
-    // Sample text document with misspelled words
-    const query = "I love scan, bananazkkk, and eterium 2023 evnt";
-    const processedQuery = spellcheckQueryProcessing(query, state.index);
-
-    const searchResult = search(processedQuery, state.index);
-
-    // Output/
-    console.log(processedQuery);
-    console.log(searchResult);
-    if (props.onChange) {
-      props.onChange({ searchResult });
+if (!state.interval) {
+  let termStorage;
+  Storage.privateSet("term", "");
+  setInterval(() => {
+    const currentInput = Storage.privateGet("term");
+    if (currentInput && currentInput !== termStorage) {
+      console.log("run computation");
+      termStorage = currentInput;
+      computeResults(termStorage);
     }
-  }
-});
+  }, 1500);
+  State.update({
+    interval: true,
+  });
+}
+const computeResults = (term) => {
+  const start = new Date().getTime();
+  const indexCached = useCache(
+    () =>
+      Near.asyncView("devgovgigs.near", "get_posts").then((posts) =>
+        buildIndex(posts)
+      ),
+    "indexCached"
+  );
+  const query = term;
+  const processedQuery = spellcheckQueryProcessing(query, indexCached);
 
-return <div></div>;
+  const searchResult = search(processedQuery, indexCached);
+  // Output/
+  console.log(processedQuery);
+  console.log(searchResult);
+  // Sample text document with misspelled words
+
+  const end = new Date().getTime();
+
+  console.log(end - start);
+};
+
+const updateInput = (term) => {
+  Storage.privateSet("term", term);
+  State.update({
+    term,
+  });
+};
+return (
+  <>
+    <div className="input-group">
+      <input
+        type="text"
+        className={`form-control ${state.term ? "border-end-0" : ""}`}
+        value={state.term ?? ""}
+        onChange={(e) => updateInput(e.target.value)}
+        placeholder={props.placeholder ?? `🔍 Search Posts`}
+      />
+
+      {state.term && (
+        <button
+          className="btn btn-outline-secondary border border-start-0"
+          type="button"
+          onClick={() => computeResults("")}
+        >
+          <i className="bi bi-x"></i>
+        </button>
+      )}
+    </div>
+  </>
+);
