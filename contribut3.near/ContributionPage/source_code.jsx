@@ -2,6 +2,14 @@ const ownerId = "contribut3.near";
 const entityId = props.entityId;
 const contributorId = props.contributorId;
 
+const formatDate = (date) => {
+  if (date.length > 13) {
+    return new Date(Number(date.substring(0, 13)));
+  }
+
+  return new Date(Number(date));
+};
+
 if (!entityId || !contributorId) {
   return "Cannot show contribution without entity and contributor ID!";
 }
