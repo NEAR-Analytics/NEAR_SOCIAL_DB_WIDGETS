@@ -98,7 +98,7 @@ return (
     <CardBody>
       <Thumbnail>
         <Widget
-          src="mob.near/widget/Image"
+          src="mob.near/widget/Imaged"
           props={{
             image: metadata.image,
             fallbackUrl:
