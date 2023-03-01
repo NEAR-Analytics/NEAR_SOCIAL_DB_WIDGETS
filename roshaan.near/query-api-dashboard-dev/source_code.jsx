@@ -2,14 +2,13 @@ const indexerPath = Storage.get("indexerPath");
 
 const selected_accountId = indexerPath?.accountId;
 const selected_indexerName = indexerPath?.indexerName;
-const activeView = indexerPath?.view;
 
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
 console.log("activeView", activeView);
 
-const activeTab = activeView ?? props.view ?? "public-indexers";
+const activeTab = props.view ?? "public-indexers";
 console.log("activeTabsss", activeTab);
 const limit = 7;
 let totalIndexers = 0;
@@ -499,7 +498,7 @@ return (
                   selected_indexerName ||
                   state.selected_indexer ||
                   state.indexers[0].indexerName,
-                accountId: accountId,
+                accountId: selected_accountId || accountId,
                 base: "query-api-editor",
               }}
             />
