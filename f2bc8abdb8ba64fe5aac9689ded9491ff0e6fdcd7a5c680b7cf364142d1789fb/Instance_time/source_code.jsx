@@ -17,25 +17,37 @@ for (let i = 0; i < sortedData.length; i++) {
     }
   }
 }
+
+const tabs = {
+  MY_SCHEDULE: { id: 1, text: "My Schedule" },
+  ALL_SCHEDULE: { id: 2, text: "All Schedules" },
+  NEW_SCHEDULE: {
+    id: 3,
+    text: finalData ? "Edit Schedule" : "Create Schedule",
+  },
+};
+
 State.init({
   tab: tabs.ALL_SCHEDULE.id,
   hoveringElement: "",
-  _account: "All",
+  showAbortScheduleCreation: false,
+  abortThroughAllExistingSchedule: false,
 });
 
-const getFormatedTime = (time) => {
-  const hours = parseInt(time);
-  const mins = (time - hours) * 60;
-  let formated = `${hours}:${mins == 0 ? "00" : mins}`;
-
-  return formated;
-};
+function makeStringShorter(string, length) {
+  if (string.length > length) {
+    return string.slice(0, length) + "...";
+  }
+  return string;
+}
 
 const profile = Social.getr(`${context.accountId}/profile`);
+
 const flex_column = {
   display: "flex",
   flexDirection: "column",
 };
+
 const comboBox = {
   background: "rgb(230, 230, 230)",
   color: "black",
@@ -48,97 +60,164 @@ const comboBox = {
 return (
   <div>
     <div className="d-flex flex-column">
-      <div className="d-flex justify-content-between">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "1rem",
-            color: "black",
-            borderRadius: "2rem",
-            fontWeight: 600,
-            fontSize: "xx-large",
-          }}
-        >
-          Weekly Schedule
-        </div>
-        <div class="d-flex flex-column">
-          <div>{profile.name}</div>
-          <div>@{context.accountId}</div>
-          <div>
-            {`(UTC ${getFormatedTime(
-              new Date().getTimezoneOffset() / 60
-            )}) ${new Date()
-              .toLocaleDateString(undefined, {
-                day: "2-digit",
-                timeZoneName: "long",
-              })
-              .substring(4)}`}
-          </div>
-        </div>
-      </div>
-      <div className="w-100 d-flex flex-row justify-content-between align-items-center">
-        <div>
-          <select
-            style={comboBox}
-            name="accounts"
-            id="accounts"
-            value={state._account}
-            onChange={(e) => {
-              State.update({ _account: e.target.value });
+      <div className="d-flex justify-content-between align-items-center px-4 py-3">
+        <div className="d-flex align-items-center">
+          <i className="bi bi-calendar-week-fill"></i>
+          <h3
+            style={{
+              margin: "0px 0.5rem",
+              color: "rgb(1, 10, 45)",
+              fontWeight: "700",
+              fontSize: "1.3rem",
+              letterSpacing: "0.1px",
             }}
           >
-            {accountIds.map((account) => (
-              <option value={account}>{account}</option>
-            ))}
-          </select>
+            WeeklySchedule
+          </h3>
         </div>
-        <div>
-          <a
+        <div
+          className="w-100 d-flex justify-content-between"
+          style={{ margin: "0px 4rem" }}
+        >
+          <div style={{ marginTop: "0.6rem" }}>
+            <div className="d-flex">
+              {Object.keys(tabs).map((tabKey) => {
+                const tab = tabs[tabKey];
+                if (tabKey != "NEW_SCHEDULE") {
+                  return (
+                    <div
+                      style={{
+                        marginRight: "1.5rem",
+                        position: "relative",
+                        cursor: "pointer",
+                        userSelect: "none",
+                      }}
+                    >
+                      <p
+                        ariaCurrent="page"
+                        onMouseEnter={() => {
+                          State.update({ hoveringElement: tab.id });
+                        }}
+                        onMouseLeave={() => {
+                          State.update({ hoveringElement: "" });
+                        }}
+                        onClick={() => {
+                          state.tab != tabs.NEW_SCHEDULE.id
+                            ? State.update({ tab: tab.id })
+                            : tab.id == tabs.ALL_SCHEDULE.id
+                            ? State.update({
+                                showAbortScheduleCreation: true,
+                                abortThroughAllExistingSchedule: true,
+                              })
+                            : State.update({ showAbortScheduleCreation: true });
+                        }}
+                        style={{
+                          fontWeight: "500",
+                          fontSize: "1rem",
+                          margin: "0",
+                        }}
+                      >
+                        {tab.text}
+                      </p>
+                      {(state.hoveringElement == tab.id ||
+                        state.tab == tab.id) && (
+                        <div
+                          style={{
+                            height: "0.2rem",
+                            width: "50%",
+                            position: "absolute",
+                            bottom: "-55%",
+                            left: "25%",
+                            backgroundColor: "#010A2D",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          {/*Decorative Div, do not delete*/}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          </div>
+          <button
             onMouseEnter={() => {
-              State.update({ hoveringElement: "create" });
+              State.update({ hoveringElement: tabs.NEW_SCHEDULE.id });
             }}
             onMouseLeave={() => {
               State.update({ hoveringElement: "" });
             }}
-            href={`https://near.social/#/${widgetOwner}/widget/Instance_time_edit`}
+            onClick={() => {
+              State.update({ tab: tabs.NEW_SCHEDULE.id });
+            }}
             style={
-              state.hoveringElement == "create"
+              state.hoveringElement == tabs.NEW_SCHEDULE.id ||
+              state.tab == tabs.NEW_SCHEDULE.id
                 ? {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
-                    textDecoration: "none",
-                  }
-                : {
                     border: "2px solid black",
                     color: "black",
                     backgroundColor: "white",
                     fontWeight: "500",
                     fontSize: "1rem",
+                    margin: "0",
                     padding: "0.3rem 1.5rem",
                     borderRadius: "12px",
                   }
+                : {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
             }
           >
-            {finalData ? "Edit Schedule" : "Create Schedule"}
-          </a>
+            <i
+              className="bi bi-plus-lg"
+              style={
+                state.hoveringElement == tabs.NEW_SCHEDULE.id ||
+                state.tab == tabs.NEW_SCHEDULE.id
+                  ? { color: "black" }
+                  : { color: "white" }
+              }
+            ></i>
+            {tabs.NEW_SCHEDULE.text}
+          </button>
+        </div>
+        <div className="d-flex flex-column">
+          <p className="m-0" style={{ margin: "0px", fontSize: "0.8rem" }}>
+            {makeStringShorter(profile.name, 12)}
+          </p>
+          <p className="m-0" style={{ margin: "0px", fontSize: "0.8rem" }}>
+            @{makeStringShorter(context.accountId, 12)}
+          </p>
         </div>
       </div>
+      <div className="w-100 d-flex flex-row justify-content-between align-items-center"></div>
     </div>
     <div className="align-items-center pt-3">
-      <Widget
-        src={`${widgetOwner}/widget/Instance_time_review`}
-        props={{
-          accountId: state._account,
-          className: "d-inline-block",
-          style: { width: "100%", height: "1.5em" },
-        }}
-      />
+      {state.tab != tabs.NEW_SCHEDULE.id ? (
+        <Widget
+          src={`${widgetOwner}/widget/Instance_time_review`}
+          props={{
+            accountId:
+              state.tab == tabs.ALL_SCHEDULE.id ? "All" : context.accountId,
+            text:
+              state.tab == tabs.ALL_SCHEDULE.id
+                ? tabs.ALL_SCHEDULE.text
+                : tabs.MY_SCHEDULE.text,
+            className: "d-inline-block",
+            style: { width: "100%", height: "1.5em" },
+          }}
+        />
+      ) : (
+        <Widget src={`${widgetOwner}/widget/Instance_time_edit`} />
+      )}
     </div>
   </div>
 );
+a;
