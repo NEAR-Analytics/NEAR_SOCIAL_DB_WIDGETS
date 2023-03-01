@@ -1,19 +1,15 @@
+State.init({ new_greeting: "" });
+
 const contract = "hello.near-examples.near";
 const greeting = Near.view(contract, "get_greeting", {});
 
-if (!greeting) {
-  return "Loading";
-}
-
-State.init({ greeting: greeting });
-
 const onInputChange = ({ target }) => {
-  State.update({ greeting: target.value });
+  State.update({ new_greeting: target.value });
 };
 
 const onBtnClick = () => {
   Near.call(contract, "set_greeting", {
-    greeting: state.greeting,
+    greeting: state.new_greeting,
   });
 };
 
@@ -22,7 +18,7 @@ return (
     <div class="container border border-info p-3">
       <h3 class="text-center">
         The contract says:
-        <span class="text-decoration-underline">{state.greeting} </span>
+        <span class="text-decoration-underline"> {greeting} </span>
       </h3>
 
       <p class="text-center py-2">
