@@ -18,7 +18,7 @@ return (
     <div class="container border border-info p-3">
       <h3 class="text-center">
         The contract says:
-        <span class="text-decoration-underline">{state.greeting} </span>
+        <span class="text-decoration-underline">{greeting} </span>
       </h3>
 
       <p class="text-center py-2">
