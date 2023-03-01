@@ -110,6 +110,7 @@ const tabContent = {
       props={{
         entityId: state.entityId,
         contributorId: state.contributorId,
+        search: state.search,
         update,
       }}
     />
