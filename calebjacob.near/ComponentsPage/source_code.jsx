@@ -1,6 +1,7 @@
 const limitPerPage = 21;
 let components = [];
 let totalComponents = 0;
+const componentsUrl = "/#/calebjacob.near/widget/ComponentsPage";
 
 State.init({
   currentPage: 0,
@@ -234,14 +235,14 @@ return (
     {!state.searchResults && (
       <Tabs>
         <TabsButton
-          href={`${peopleUrl}?tab=all`}
+          href={`${componentsUrl}?tab=all`}
           selected={state.selectedTab === "all"}
         >
           All
         </TabsButton>
 
         <TabsButton
-          href={`${peopleUrl}?tab=apps`}
+          href={`${componentsUrl}?tab=apps`}
           selected={state.selectedTab === "apps"}
         >
           Apps
