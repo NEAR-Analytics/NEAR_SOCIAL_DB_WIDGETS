@@ -4,7 +4,16 @@ let totalComponents = 0;
 
 State.init({
   currentPage: 0,
+  selectedTab: props.tab || "all",
 });
+
+if (props.tab && props.tab !== state.selectedTab) {
+  State.update({
+    selectedTab: props.tab,
+  });
+}
+
+const tagsData = Social.get("*/widget/*/metadata/tags/*", "final");
 
 const data = Social.keys("*/widget/*", "final", {
   return_type: "BlockHeight",
@@ -16,6 +25,12 @@ if (data) {
   Object.keys(data).forEach((accountId) => {
     return Object.keys(data[accountId].widget).forEach((widgetName) => {
       totalComponents++;
+
+      if (state.selectedTab === "apps") {
+        const hasAppTag =
+          tagsData[accountId].widget[widgetName]?.metadata?.tags["app"] === "";
+        if (!hasAppTag) return;
+      }
 
       result.push({
         accountId,
@@ -52,21 +67,9 @@ const Header = styled.div`
   gap: 12px;
 `;
 
-const SubHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  @media (max-width: 500px) {
-      flex-direction: column;
-      align-items: start;
-  }
-`;
-
 const Search = styled.div`
   width: 246px;
-
+  
   @media (max-width: 500px) {
       width: 100%;
   }
@@ -159,26 +162,92 @@ const Button = styled.button`
   }
 `;
 
+const Tabs = styled.div`
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid #ECEEF0;
+  margin-bottom: -24px;
+  overflow: auto;
+  scroll-behavior: smooth;
+
+  @media (max-width: 1200px) {
+    background: #F8F9FA;
+    border-top: 1px solid #ECEEF0;
+    margin-left: -12px;
+    margin-right: -12px;
+
+    > * {
+      flex: 1;
+    }
+  }
+`;
+
+const TabsButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0 12px;
+  position: relative;
+  color: ${(p) => (p.selected ? "#11181C" : "#687076")};
+  background: none;
+  border: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none !important;
+
+  &:hover {
+    color: #11181C;
+  }
+
+  &::after {
+    content: '';
+    display: ${(p) => (p.selected ? "block" : "none")};
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #59E692;
+  }
+`;
+
 return (
   <Wrapper>
     <Header>
-      <H1>Components</H1>
+      <H1>{totalComponents} Components</H1>
       <H2>Discover the latest components from the NEAR community.</H2>
     </Header>
 
-    <SubHeader>
-      <Text>{totalComponents} components</Text>
+    <Search>
+      <Widget
+        src="calebjacob.near/widget/ComponentSearch"
+        props={{
+          limit: 21,
+          onChange: onSearchChange,
+        }}
+      />
+    </Search>
 
-      <Search>
-        <Widget
-          src="calebjacob.near/widget/ComponentSearch"
-          props={{
-            limit: 21,
-            onChange: onSearchChange,
-          }}
-        />
-      </Search>
-    </SubHeader>
+    {!state.searchResults && (
+      <Tabs>
+        <TabsButton
+          href={`${peopleUrl}?tab=all`}
+          selected={state.selectedTab === "all"}
+        >
+          All
+        </TabsButton>
+
+        <TabsButton
+          href={`${peopleUrl}?tab=apps`}
+          selected={state.selectedTab === "apps"}
+        >
+          Apps
+        </TabsButton>
+      </Tabs>
+    )}
 
     {state.searchResults?.length === 0 && (
       <Text>No components matched your search.</Text>
