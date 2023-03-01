@@ -2,7 +2,7 @@
 ---props---
 props.post: {};
 props.id: number;
-props.timestamp: number;
+props.timestamp: string;
 props.compareWith?: number;
 props.referral?: any;
 */
@@ -60,24 +60,19 @@ const timestampFromProps = props.timestamp;
 console.log("timestampFromProps", timestampFromProps);
 const compareTimestamp = props.compareTimestamp;
 let snapshot = post.snapshot;
-console.log("snapshot.timestamp", snapshot.timestamp);
+console.log("BEFORE snapshot.timestamp", snapshot.timestamp);
 let compareSnapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
 
 if (timestampFromProps) {
-  console.log("tsprops", timestampFromProps);
-  console.log("snaphist", snapshotHistory);
   const foundSnapshot = snapshotHistory.find(
-    (s) => Number(s.timestamp) === timestampFromProps
+    (s) => s.timestamp === timestampFromProps
   );
   if (foundSnapshot) {
     snapshot = foundSnapshot;
-    console.log("PASS");
   }
 }
-
-console.log("snapshot.timestamp", snapshot.timestamp);
 
 if (compareWithTimestamp) {
   const foundSnapshot = snapshotHistory.find(
