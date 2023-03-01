@@ -58,9 +58,23 @@ const comboBox = {
 };
 
 return (
-  <div>
+  <div
+    className="pb-5"
+    style={{
+      backgroundColor: "rgb(230, 230, 230)",
+      fontFamily: "Onest",
+      fontStyle: "normal",
+      borderRadius: "20px",
+    }}
+  >
     <div className="d-flex flex-column">
-      <div className="d-flex justify-content-between align-items-center px-4 py-3">
+      <div
+        className="d-flex justify-content-between align-items-center px-4 py-3"
+        style={{
+          backgroundColor: "white",
+          boxShadow: "rgba(43, 68, 106, 0.04) 0px 4px 28px",
+        }}
+      >
         <div className="d-flex align-items-center">
           <i className="bi bi-calendar-week-fill"></i>
           <h3
