@@ -3,6 +3,11 @@ const [selected_accountId, selected_indexerName] = indexerPath
   ? indexerPath.split("/")
   : [undefined, undefined];
 
+Storage.set(indexerPath, {
+  accountId: selected_accountId,
+  indexerName: selected_indexerName,
+});
+
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
@@ -13,6 +18,7 @@ let totalIndexers = 0;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 
+Storage;
 State.init({
   activeTab: activeTab,
   indexers: [],
@@ -376,7 +382,7 @@ const allIndexerView = () => {
         onClick={() =>
           State.update({
             activeTab: "create-new-indexer",
-            selected_indexerName: "",
+            selected_indexer: "",
           })
         }
       >
@@ -491,7 +497,9 @@ return (
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
                 indexerName:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  state.selected_indexer ??
+                  selected_indexerName ??
+                  state.indexers[0].indexerName,
                 accountId: accountId,
                 base: "query-api-editor",
               }}
@@ -510,7 +518,9 @@ return (
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
                 indexerName:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  state.selected_indexer ??
+                  selected_indexerName ??
+                  state.indexers[0].indexerName,
                 accountId: accountId,
                 base: "create-new-indexer",
               }}
