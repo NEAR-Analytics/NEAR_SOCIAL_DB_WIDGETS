@@ -34,7 +34,7 @@ if (Array.isArray(requests) && requests.length === 0) {
 }
 
 const allRequests = requests.filter((ids) =>
-  accountId ? ids.includes(accountId) : ids[0].includes(search)
+  accountId ? ids.includes(search) : ids[0].includes(search)
 );
 
 if (!allRequests || allRequests.length === 0) {
