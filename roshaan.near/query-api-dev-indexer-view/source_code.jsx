@@ -128,7 +128,6 @@ return (
             view: "indexer-status",
           })
         }
-        target="_blank"
       >
         View Status
       </ButtonLink>
@@ -142,7 +141,6 @@ return (
             view: "indexer-status",
           })
         }
-        target="_blank"
       >
         View Indexer Code
       </ButtonLink>
