@@ -492,6 +492,14 @@ return (
               ) : (
                 <H2>{state.indexers[0].indexerName}</H2>
               ))}
+            {indexerView(
+              state.selected_account ??
+                selected_accountId ??
+                state.indexers[0].accountId,
+              state.selected_indexer ??
+                selected_indexerName ??
+                state.indexers[0].indexerName
+            )}
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerStatus"}
               props={{
@@ -499,7 +507,10 @@ return (
                   state.selected_indexer ??
                   selected_indexerName ??
                   state.indexers[0].indexerName,
-                accountId: accountId,
+                accountId:
+                  state.selected_account ??
+                  selected_accountId ??
+                  state.indexers[0].accountId,
               }}
             />
           </div>
