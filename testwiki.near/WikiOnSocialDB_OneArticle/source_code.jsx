@@ -102,7 +102,7 @@ return (
       >
         Edit Article
       </button>
-      {/* === EDIT ARTICLE === */}
+      {/* === BUTTON - EDIT ARTICLE === */}
       {state.editArticle && (
         <>
           <button
@@ -136,6 +136,25 @@ return (
           >
             Cancel{" "}
           </button>
+        </>
+      )}
+
+      {/* === BUTTON - VIEW HISTORY === */}
+      <span className="ps-4">
+        <button
+          onClick={() => {
+            State.update({
+              ...state,
+              viewHistory: !state.viewHistory,
+            });
+          }}
+        >
+          View History
+        </button>
+      </span>
+      {/* === EDIT ARTICLE === */}
+      {state.editArticle && (
+        <>
           <div className="d-flex gap-2" style={{ minHeight: "300px" }}>
             <div className="w-50">
               <Widget
@@ -157,6 +176,18 @@ return (
       )}
       {!state.editArticle && (
         <Markdown text={state.note || state.article.body} />
+      )}
+      {/* === VIEW HISTORY === */}
+      {state.viewHistory && (
+        <div className="mt-3 ps-5">
+          <Widget
+            src={`${authorForWidget}/widget/WikiOnSocialDB_History.History`}
+            props={{
+              articleId: state.article.articleId,
+              resultArticles,
+            }}
+          />
+        </div>
       )}
       {/* === CREATE COMMENT BUTTON === */}
       {blockHeight !== "now" && (
