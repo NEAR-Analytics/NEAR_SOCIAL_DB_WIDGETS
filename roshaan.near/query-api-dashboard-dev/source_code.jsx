@@ -494,6 +494,7 @@ return (
             <Widget
               src={"roshaan.near/widget/indexer_editor"}
               props={{
+                indexerPath: Storage.get("indexerPath"),
                 indexerName:
                   selected_indexerName ||
                   state.selected_indexer ||
