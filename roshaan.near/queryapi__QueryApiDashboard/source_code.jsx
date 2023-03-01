@@ -456,30 +456,27 @@ return (
           />
           QueryApi
         </NavBarLogo>
-        {state.my_indexers.length > 0 ? (
-          <div>
-            <ButtonLink
-              href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
-              onClick={() =>
-                State.update({
-                  activeTab: "create-new-indexer",
-                  selected_indexer: "",
-                })
-              }
-            >
-              Create New Indexer
-            </ButtonLink>
+
+        <div>
+          <ButtonLink
+            href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
+            onClick={() =>
+              State.update({
+                activeTab: "create-new-indexer",
+                selected_indexer: "",
+              })
+            }
+          >
+            Create New Indexer
+          </ButtonLink>
+          {state.my_indexers.length > 0 && (
             <H2>
               {accountId}'s Indexers
               <span>({state.my_indexers.length})</span>
             </H2>
-            {renderIndexers(state.my_indexers)}
-          </div>
-        ) : (
-          <Subheading>
-            Please Sign In to view and manage your indexers
-          </Subheading>
-        )}
+          )}
+          {renderIndexers(state.my_indexers)}
+        </div>
       </Section>
 
       <Section
