@@ -7,7 +7,6 @@ props.compareWith?: number;
 props.referral?: any;
 */
 
-/* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
   props.nearDevGovGigsContractAccountId || "devgovgigs.near".split("/", 1)[0];
 const nearDevGovGigsWidgetsAccountId =
@@ -46,7 +45,6 @@ function href(widgetName, linkProps) {
     linkPropsQuery ? "?" : ""
   }${linkPropsQuery}`;
 }
-/* END_INCLUDE: "common.jsx" */
 
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
@@ -57,21 +55,29 @@ if (!post) {
 }
 const referral = props.referral;
 
+console.log("post", post);
 const timestampFromProps = props.timestamp;
+console.log("timestampFromProps", timestampFromProps);
 const compareTimestamp = props.compareTimestamp;
 let snapshot = post.snapshot;
+console.log("snapshot.timestamp", snapshot.timestamp);
 let compareSnapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
 
 if (timestampFromProps) {
+  console.log("tsprops", timestampFromProps);
+  console.log("snaphist", snapshotHistory);
   const foundSnapshot = snapshotHistory.find(
     (s) => Number(s.timestamp) === timestampFromProps
   );
   if (foundSnapshot) {
     snapshot = foundSnapshot;
+    console.log("PASS");
   }
 }
+
+console.log("snapshot.timestamp", snapshot.timestamp);
 
 if (compareWithTimestamp) {
   const foundSnapshot = snapshotHistory.find(
@@ -81,6 +87,7 @@ if (compareWithTimestamp) {
     compareSnapshot = foundSnapshot;
   }
 }
+
 console.log("snapshot", snapshot);
 console.log("snapshotHistory", snapshotHistory);
 
