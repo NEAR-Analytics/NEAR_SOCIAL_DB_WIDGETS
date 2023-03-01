@@ -103,7 +103,7 @@ return (
     {state.indexers.map((indexer, i) => (
       <CardWrapper key={i}>
         <Widget
-          src="roshaan.near/widget/query-api-dev-indexerview"
+          src="roshaan.near/widget/query-api-dev-indexer-view"
           props={{
             accountId: indexer.accountId,
             indexerName: indexer.indexerName,
