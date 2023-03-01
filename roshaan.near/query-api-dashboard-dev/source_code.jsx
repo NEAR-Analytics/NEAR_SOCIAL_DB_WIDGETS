@@ -493,7 +493,9 @@ return (
               src={"roshaan.near/widget/indexer_editor"}
               props={{
                 indexerName:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  selected_indexerName ||
+                  state.selected_indexer ||
+                  state.indexers[0].indexerName,
                 accountId: accountId,
                 base: "query-api-editor",
               }}
@@ -512,7 +514,10 @@ return (
               src={"roshaan.near/widget/indexer_editor"}
               props={{
                 indexerName:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  selected_indexerName ||
+                  state.selected_indexer ||
+                  state.indexers[0].indexerName,
+
                 accountId: accountId,
                 base: "create-new-indexer",
               }}
