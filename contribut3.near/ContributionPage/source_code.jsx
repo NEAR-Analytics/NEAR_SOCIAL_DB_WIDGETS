@@ -18,6 +18,10 @@ const contribution = Near.view(
   true
 );
 
+if (!contribution) {
+  return "Loading...";
+}
+
 const isAuthorized = Near.view(
   ownerId,
   "check_is_manager_or_higher",
