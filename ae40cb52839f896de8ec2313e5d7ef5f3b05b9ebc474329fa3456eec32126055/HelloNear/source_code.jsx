@@ -1,6 +1,8 @@
-State.init({ new_greeting: "" });
 const contract = "hello.near-examples.near";
 const greeting = Near.view(contract, "get_greeting", {});
+
+// Use and manipulate state
+State.init({ new_greeting: "" });
 
 const onInputChange = ({ target }) => {
   State.update({ new_greeting: target.value });
@@ -12,6 +14,7 @@ const onBtnClick = () => {
   });
 };
 
+// Define components
 const greetingForm = (
   <>
     <div class="border border-black p-3">
