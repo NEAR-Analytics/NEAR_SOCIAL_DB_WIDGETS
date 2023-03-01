@@ -48,28 +48,6 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-function compareDescription(desc1, desc2) {
-  let desc1Arr = desc1.split(/\b/);
-  let desc2Arr = desc2.split(/\b/);
-
-  let desc1Set = new Set(desc1Arr);
-  let desc2Set = new Set(desc2Arr);
-
-  let addedWords = new Set([...desc2Set].filter((x) => !desc1Set.has(x)));
-  let removedWords = new Set([...desc1Set].filter((x) => !desc2Set.has(x)));
-
-  let newDesc = desc1Arr.map((word) => {
-    if (addedWords.has(word)) {
-      return `+${word}`;
-    } else if (removedWords.has(word)) {
-      return `~~${word}~~`;
-    } else {
-      return word;
-    }
-  });
-  return newDesc.join(" ");
-}
-
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
   props.post ??
@@ -386,18 +364,12 @@ const limitedMarkdown = styled.div`
 // Should make sure the posts under the currently top viewed post are limited in size.
 const descriptionArea = isUnderPost ? (
   <limitedMarkdown className="overflow-auto" key="description-area">
-    <Markdown
-      class="card-text"
-      text={compareDescription(
-        snapshot.description,
-        compareSnapshot.description
-      )}
-    ></Markdown>
+    <Markdown class="card-text" text={snapshot.description}></Markdown>
   </limitedMarkdown>
 ) : (
   <Markdown
     class="card-text"
-    text={compareDescription(snapshot.description, compareSnapshot.description)}
+    text={snapshot.description}
     key="description-area"
   ></Markdown>
 );
