@@ -1,7 +1,7 @@
 const contract = "hello.near-examples.near";
 const greeting = Near.view(contract, "get_greeting", {});
 
-if (context.loading) {
+if (!greeting) {
   return "Loading";
 }
 
