@@ -181,7 +181,7 @@ return (
       {state.viewHistory && (
         <div className="mt-3 ps-5">
           <Widget
-            src={`${authorForWidget}/widget/WikiOnSocialDB_History.History`}
+            src={`${authorForWidget}/widget/WikiOnSocialDB_History`}
             props={{
               articleId: state.article.articleId,
               resultArticles,
