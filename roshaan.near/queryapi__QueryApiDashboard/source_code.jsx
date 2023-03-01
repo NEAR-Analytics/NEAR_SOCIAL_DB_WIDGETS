@@ -3,11 +3,6 @@ const [selected_accountId, selected_indexerName] = indexerPath
   ? indexerPath.split("/")
   : [undefined, undefined];
 
-Storage.set(indexerPath, {
-  accountId: selected_accountId,
-  indexerName: selected_indexerName,
-});
-
 console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
@@ -18,7 +13,6 @@ let totalIndexers = 0;
 const registry_contract_id =
   props.registry_contract_id || "registry.queryapi.near";
 
-Storage;
 State.init({
   activeTab: activeTab,
   indexers: [],
