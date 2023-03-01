@@ -178,7 +178,7 @@ return (
   >
     <div className="d-flex justify-content-between">
       <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>{text}</h2>
-      <p className="m-0" style={{ margin: "0px", fontSize: "0.8rem" }}>
+      <p className="m-0 pt-3" style={{ margin: "0px", fontSize: "0.8rem" }}>
         {`Your time is UTC ${getFormatedTime(
           new Date().getTimezoneOffset() / 60
         )} ${new Date()
