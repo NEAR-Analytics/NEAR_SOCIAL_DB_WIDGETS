@@ -119,10 +119,31 @@ return (
     </CardBody>
 
     <CardFooter>
-      <ButtonLink href={statusUrl} target="_blank">
+      <ButtonLink
+        href={statusUrl}
+        onClick={() =>
+          Storage.set("indexerPath", {
+            indexerName: indexerName,
+            accountId: accountId,
+            view: "indexer-status",
+          })
+        }
+        target="_blank"
+      >
         View Status
       </ButtonLink>
-      <ButtonLink primary href={editUrl} target="_blank">
+      <ButtonLink
+        primary
+        href={editUrl}
+        onClick={() =>
+          Storage.set("indexerPath", {
+            indexerName: indexerName,
+            accountId: accountId,
+            view: "indexer-status",
+          })
+        }
+        target="_blank"
+      >
         View Indexer Code
       </ButtonLink>
     </CardFooter>
