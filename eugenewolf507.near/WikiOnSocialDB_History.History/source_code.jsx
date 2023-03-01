@@ -100,9 +100,11 @@ function blockHeightToWidgetCode(blockHeightObject) {
   );
 }
 
-function blockHeightToWidgetRender(blockHeight) {
-  const index = blocksChanges.findIndex((el) => el.blockHeight == blockHeight);
-  return <>Put markdown for current article here</>;
+function blockHeightToWidgetRender(blockHeightObject, allArticles) {
+  const index = blocksChanges.findIndex(
+    (el) => el.blockHeight == blockHeightObject.blockHeight
+  );
+  return <Markdown text={allArticles[index].body} />;
 }
 
 //styles forked from calebjacob.near/widget/Activity
@@ -204,7 +206,12 @@ return (
         )}
 
         {state.selectedTab == "render" && (
-          <div>{blockHeightToWidgetRender(state.selectedBlockHeight)}</div>
+          <div>
+            {blockHeightToWidgetRender(
+              state.selectedBlockHeight,
+              filteredArticles
+            )}
+          </div>
         )}
       </div>
     )}
