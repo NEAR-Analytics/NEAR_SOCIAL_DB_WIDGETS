@@ -6,8 +6,6 @@ return (
       <h1>Hello {props.name}</h1>
 
       <p> {greeting} </p>
-
-      <button class="btn btn-primary"> Bootstrap Button </button>
     </div>
   </>
 );
