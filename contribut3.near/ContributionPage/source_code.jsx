@@ -139,25 +139,34 @@ const body = (
   </div>
 );
 
-const content = contribution.history.map(
-  ({ description, contribution_type, need, start_date, end_date }, index) => (
-    <Widget
-      src={`${ownerId}/widget/ContributionDetail`}
-      props={{
-        need,
-        entityId,
-        description,
-        contributionType:
-          typeof contribution_type === "string"
-            ? contribution_type
-            : contribution_type.Other,
-        startDate: start_date,
-        endDate: end_date,
-      }}
-      key={index}
-    />
+const content = contribution.history
+  .filter(
+    ({ description, contribution_type }) =>
+      description.includes(props.search) ||
+      (typeof contribution_type === "string"
+        ? contribution_type
+        : contribution_type.Other
+      ).includes(props.search)
   )
-);
+  .map(
+    ({ description, contribution_type, need, start_date, end_date }, index) => (
+      <Widget
+        src={`${ownerId}/widget/ContributionDetail`}
+        props={{
+          need,
+          entityId,
+          description,
+          contributionType:
+            typeof contribution_type === "string"
+              ? contribution_type
+              : contribution_type.Other,
+          startDate: start_date,
+          endDate: end_date,
+        }}
+        key={index}
+      />
+    )
+  );
 
 return (
   <div>
