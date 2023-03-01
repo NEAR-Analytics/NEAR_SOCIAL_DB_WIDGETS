@@ -1,9 +1,8 @@
-const indexerPath = props.indexerPath;
-const [selected_accountId, selected_indexerName] = indexerPath
+const indexerPath = Storage.get("indexerPath");
+const [selected_accountId, selected_indexerName] = Storage.get("indexerPath")
   ? indexerPath.split("/")
   : [undefined, undefined];
 
-console.log(selected_accountId, selected_indexerName, "the selections");
 const accountId = selected_accountId || props.accountId || context.accountId;
 const indexerName = selected_indexerName || props.indexerName;
 
@@ -217,8 +216,8 @@ const indexerView = (accountId, indexerName, idx) => {
       idx === 0) ||
     (selected_accountId === accountId && selected_indexerName === indexerName);
 
-  const editUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=editor-window`;
-  const statusUrl = `https://near.social/#/roshaan.near/widget/query-api-dashboard-dev?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
+  const editUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=editor-window`;
+  const statusUrl = `https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard?indexer_path=${accountId}/${indexerName}&view=indexer-status`;
 
   return (
     <Card selected={isSelected}>
@@ -248,11 +247,18 @@ const indexerView = (accountId, indexerName, idx) => {
       <CardFooter className="flex justify-center items-center">
         <ButtonLink
           href={statusUrl}
-          onClick={() =>
-            State.update({
-              activeTab: "indexer-status",
-              selected_indexer: indexerName,
-            })
+          onClick={
+            () => {
+              Storage.set("indexerPath", {
+                indexerName: indexerName,
+                accountId: accountId,
+                view: "indexer-status",
+              });
+            }
+            // State.update({
+            //   activeTab: "indexer-status",
+            //   selected_indexer: indexerName,
+            // })
           }
         >
           View Status
@@ -260,11 +266,18 @@ const indexerView = (accountId, indexerName, idx) => {
         <ButtonLink
           primary
           href={editUrl}
-          onClick={() =>
-            State.update({
-              activeTab: "editor-window",
-              selected_indexer: indexerName,
-            })
+          onClick={
+            () => {
+              Storage.set("indexerPath", {
+                indexerName: indexerName,
+                accountId: accountId,
+                view: "editor-window",
+              });
+            }
+            // State.update({
+            //   activeTab: "editor-window",
+            //   selected_indexer: indexerName,
+            // })
           }
         >
           Edit Indexer
@@ -372,11 +385,11 @@ const allIndexerView = () => {
     <>
       <ButtonLink
         primary
-        href="/#/roshaan.near/widget/query-api-dashboard-dev/?view=create-new-indexer"
+        href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
         onClick={() =>
           State.update({
             activeTab: "create-new-indexer",
-            selected_indexerName: "",
+            selected_indexer: "",
           })
         }
       >
@@ -432,7 +445,7 @@ return (
     <Main>
       <Section active={state.activeTab === "indexers"}>
         <NavBarLogo
-          href="https://near.social/#/roshaan.near/widget/query-api-dashboard-dev"
+          href="https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard"
           title="QueryApi"
           onClick={() => {
             State.update({
@@ -473,7 +486,9 @@ return (
               src={"roshaan.near/widget/queryapi__IndexerStatus"}
               props={{
                 indexer_name:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  state.selected_indexer ??
+                  selected_indexerName ??
+                  state.indexers[0].indexerName,
                 accountId: accountId,
               }}
             />
@@ -488,10 +503,12 @@ return (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
             <Widget
-              src={"roshaan.near/widget/indexer_editor"}
+              src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
                 indexerName:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  state.selected_indexer ??
+                  selected_indexerName ??
+                  state.indexers[0].indexerName,
                 accountId: accountId,
                 base: "query-api-editor",
               }}
@@ -507,10 +524,12 @@ return (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
             <Widget
-              src={"roshaan.near/widget/indexer_editor"}
+              src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
                 indexerName:
-                  state.selected_indexer ?? state.indexers[0].indexerName,
+                  state.selected_indexer ??
+                  selected_indexerName ??
+                  state.indexers[0].indexerName,
                 accountId: accountId,
                 base: "create-new-indexer",
               }}
