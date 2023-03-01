@@ -18,6 +18,8 @@ const contribution = Near.view(
   true
 );
 
+console.log(contribution);
+
 if (!contribution) {
   return "Loading...";
 }
