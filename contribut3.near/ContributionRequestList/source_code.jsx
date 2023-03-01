@@ -23,8 +23,6 @@ const requests = accountId
     true
   ) ?? [];
 
-console.log(requests);
-
 if (!requests) {
   return "Loading...";
 }
