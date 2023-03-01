@@ -69,6 +69,7 @@ if (timestampFromProps) {
   );
   if (foundSnapshot) {
     snapshot = foundSnapshot;
+    console.log("snapshotFound", snapshot);
   }
 }
 
