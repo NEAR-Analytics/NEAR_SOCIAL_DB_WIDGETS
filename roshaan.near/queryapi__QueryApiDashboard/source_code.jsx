@@ -38,6 +38,19 @@ Near.asyncView(registry_contract_id, "list_indexer_functions").then((data) => {
     totalIndexers: indexer_paths.length,
   });
 });
+const Subheading = styled.h2`
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
+  white-space: nowrap;
+  outline: none;
+`;
 
 const Wrapper = styled.div`
   margin-top: calc(var(--body-top-padding) * -1);
@@ -373,19 +386,6 @@ const renderIndexers = (indexers) => {
     background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
   }
 `;
-  const Subheading = styled.h2`
-  display: block;
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
-  white-space: nowrap;
-  outline: none;
-`;
 
   return (
     <>
@@ -439,7 +439,7 @@ return (
     <Main>
       <Section active={state.activeTab === "indexers"}>
         <NavBarLogo
-          href="https://near.social/#/roshaan.near/widget/queryapi__QueryApiDashboard"
+          href="https://alpha.near.org/#/roshaan.near/widget/queryapi__QueryApiDashboard"
           title="QueryApi"
           onClick={() => {
             State.update({
@@ -460,18 +460,26 @@ return (
           />
           QueryApi
         </NavBarLogo>
-        <ButtonLink
-          href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
-          onClick={() =>
-            State.update({
-              activeTab: "create-new-indexer",
-              selected_indexer: "",
-            })
-          }
-        >
-          Create New Indexer
-        </ButtonLink>
-        {state.my_indexers && renderIndexers(state.my_indexers)}
+        {state.my_indexers ? (
+          <div>
+            <ButtonLink
+              href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
+              onClick={() =>
+                State.update({
+                  activeTab: "create-new-indexer",
+                  selected_indexer: "",
+                })
+              }
+            >
+              Create New Indexer
+            </ButtonLink>
+            {renderIndexers(state.my_indexers)}
+          </div>
+        ) : (
+          <Subheading>
+            Please Sign In to view and manage your indexers
+          </Subheading>
+        )}
       </Section>
 
       <Section
