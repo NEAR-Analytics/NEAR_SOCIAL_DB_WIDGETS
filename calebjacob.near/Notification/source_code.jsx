@@ -11,7 +11,14 @@ const likedPost = type === "like" && isPost;
 const likedComment = type === "like" && isComment;
 const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${postOwnerAccountId}&${
   isComment ? "commentBlockHeight" : "blockHeight"
-}=${value.item.blockHeight || props.blockHeight}`;
+}=${props.blockHeight}`;
+// const postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${postOwnerAccountId}&${
+//   isComment ? "commentBlockHeight" : "blockHeight"
+// }=${
+//   type === "comment"
+//     ? props.blockHeight
+//     : value.item.blockHeight || props.blockHeight
+// }`;
 
 const supportedTypes = [
   "poke",
