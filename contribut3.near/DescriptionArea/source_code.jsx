@@ -1,5 +1,5 @@
 const description = props.description || "";
-const lengthCutoff = 90;
+const lengthCutoff = 80;
 
 State.init({
   showAll: description.length <= lengthCutoff,
