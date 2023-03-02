@@ -29,5 +29,11 @@ return (
     <button onClick={donate}>
       Donate {yoctoConvert} NEAR to Blunt Treausrey
     </button>
+    <a
+      className="btn btn-outline-secondary"
+      href="https://app.astrodao.com/dao/blunt.sputnik-dao.near/"
+    >
+      Check the Treasurey
+    </a>
   </div>
 );
