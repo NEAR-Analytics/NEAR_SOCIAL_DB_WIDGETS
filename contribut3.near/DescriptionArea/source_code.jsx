@@ -2,22 +2,30 @@ const description = props.description || "";
 const lengthCutoff = 100;
 
 State.init({
-  showAll: description <= lengthCutoff,
+  showAll: description.length <= lengthCutoff,
 });
 
 return (
-  <div className="d-flex flex-row justify-content-start align-items-center">
+  <div className="d-flex flex-row justify-content-start align-items-start">
     <Markdown
-      // className="text-truncate my-2 w-100"
-      // style={{ textOverflow: "ellipsis" }}
       text={
         state.showAll ? description : description.substring(0, lengthCutoff)
       }
     />
-    {state.showAll ? (
-      <></>
+    {state.showAll && description.length > lengthCutoff ? (
+      <a
+        className="btn fw-bold text-primary ms-2"
+        onClick={() => State.update({ showAll: false })}
+      >
+        Show less
+      </a>
     ) : (
-      <a onClick={() => State.update({ showAll: true })}>Read more</a>
+      <a
+        className="btn fw-bold text-primary ms-2"
+        onClick={() => State.update({ showAll: true })}
+      >
+        Read more
+      </a>
     )}
   </div>
 );
