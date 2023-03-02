@@ -139,19 +139,19 @@ const body = (
                 </span>
               </div>
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description:
-                    contributor.resume ||
-                    entity?.description ||
-                    profile.description,
-                }}
-              />
             </>
           ),
         }}
       />
+      <div style={{ maxWidth: "85%" }}>
+        <Widget
+          src={`${ownerId}/widget/DescriptionArea`}
+          props={{
+            description:
+              contributor.resume || entity?.description || profile.description,
+          }}
+        />
+      </div>
     </div>
   </div>
 );
