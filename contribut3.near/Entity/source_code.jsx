@@ -127,12 +127,14 @@ const body = (
           ),
         }}
       />
-      <Widget
-        src={`${ownerId}/widget/DescriptionArea`}
-        props={{
-          description: entity.description || profile.description,
-        }}
-      />
+      <div>
+        <Widget
+          src={`${ownerId}/widget/DescriptionArea`}
+          props={{
+            description: entity.description || profile.description,
+          }}
+        />
+      </div>
     </div>
   </div>
 );
