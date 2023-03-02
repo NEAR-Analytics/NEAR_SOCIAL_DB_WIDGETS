@@ -118,7 +118,7 @@ const tabContent = {
 }[state.tab];
 
 return (
-  <div className="d-flex flex-row relative">
+  <div className="d-flex flex-row position-relative">
     <div className="d-flex flex-row position-fixed">
       <div className="flex-grow-1">
         <Widget
@@ -128,7 +128,10 @@ return (
       </div>
       <div className="vr mx-3" style={{ height: "90vh" }} />
     </div>
-    <div className="flex-grow-1" style={{ left: "20%", maxWidth: "80%" }}>
+    <div
+      className="flex-grow-1 position-relative"
+      style={{ left: "20%", maxWidth: "80%" }}
+    >
       {tabContent}
     </div>
   </div>
