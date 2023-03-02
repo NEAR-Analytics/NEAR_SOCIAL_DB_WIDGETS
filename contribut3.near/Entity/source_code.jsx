@@ -114,7 +114,7 @@ const body = (
             </div>
           ),
           additionalRow: (
-            <div className="w-100">
+            <>
               <Widget
                 src={`${ownerId}/widget/ProfileLine`}
                 props={{ accountId: founder, update: props.update }}
@@ -123,7 +123,7 @@ const body = (
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
               />
-            </div>
+            </>
           ),
         }}
       />
