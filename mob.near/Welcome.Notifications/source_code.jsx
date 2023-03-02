@@ -13,11 +13,6 @@ const index = {
   },
 };
 
-const items = Social.index(index.action, index.key, index.options);
-if (items === null) {
-  return "";
-}
-
 const renderItem = (item, i) => {
   return (
     <Widget src="mob.near/widget/Notification.Item" key={i} props={item} />
@@ -27,7 +22,15 @@ const renderItem = (item, i) => {
 return (
   <>
     <h5>Notifications</h5>
-    {items.map(renderItem)}
+    <Widget
+      src="mob.near/widget/FilteredIndexFeed"
+      props={{
+        index,
+        manual: true,
+        hideFetchMore: true,
+        renderItem,
+      }}
+    />
     <div>
       <a href="#/mob.near/widget/NotificationFeed">View other notifications</a>
     </div>
