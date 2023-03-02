@@ -184,6 +184,12 @@ const header = (
             props={{ accountId: post.author_id }}
           />
         </div>
+        {compareSnapshot.timestamp && (
+          <div class="col-3">
+            {readableDate(compareSnapshot.timestamp / 1000000).substring(4)}
+            <i class="bi bi-file-earmark-diff"></i>
+          </div>
+        )}
         <div class="col-5">
           <div class="d-flex justify-content-end">
             {editControl}
