@@ -48,7 +48,7 @@ if (state.data || profile) {
           />
         </div>
       </a>
-      <div className="d-flex flex-column justify-content-between align-items-start">
+      <div className="d-flex flex-column justify-content-between align-items-start flex-grow-1">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
           <div>
             <a
