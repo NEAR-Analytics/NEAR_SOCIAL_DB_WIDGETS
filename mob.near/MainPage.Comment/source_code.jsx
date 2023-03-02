@@ -18,6 +18,12 @@ const extractNotifyAccountId = (item) => {
 
 const link = `#/mob.near/widget/MainPage.Comment.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
+const item = {
+  type: "social",
+  path: `${accountId}/post/comment`,
+  blockHeight,
+};
+
 return (
   <>
     <div
@@ -27,7 +33,13 @@ return (
     >
       <Widget
         src="mob.near/widget/MainPage.Post.Header"
-        props={{ accountId, blockHeight, link, postType: "comment" }}
+        props={{
+          accountId,
+          blockHeight,
+          link,
+          postType: "comment",
+          flagItem: item,
+        }}
       />
       <div className="mt-2 text-break">
         <Widget
@@ -41,11 +53,7 @@ return (
             src="mob.near/widget/LikeButton"
             props={{
               notifyAccountId: accountId,
-              item: {
-                type: "social",
-                path: `${accountId}/post/comment`,
-                blockHeight,
-              },
+              item,
             }}
           />
           {parentItem && (
