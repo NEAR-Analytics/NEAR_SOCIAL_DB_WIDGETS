@@ -63,9 +63,9 @@ const body = (
   <div
     className="d-flex flex-row justify-content-start"
     id={accountId}
-    style={{ minHeight: "8em" }}
+    style={{ minHeight: "8em", maxWidth: "100%" }}
   >
-    <div className="flex-grow-1 py-3">
+    <div className="flex-grow-1 py-3" style={{ maxWidth: "100%" }}>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
