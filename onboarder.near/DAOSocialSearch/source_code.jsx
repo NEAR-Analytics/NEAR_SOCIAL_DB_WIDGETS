@@ -3,7 +3,7 @@ return (
     <h1>DAOs on NEAR Social</h1>
     <div className="mb-2">
       <Widget
-        src="brad123.near/widget/AdvancedProfileSearch"
+        src="onboarder.near/widget/SputnikDAOProfileSearchStringMatch"
         props={{
           limit: 20,
           onChange: ({ result }) => State.update({ profiles: result }),
@@ -40,7 +40,5 @@ return (
         <hr />
       </div>
     )}
-
-    <Widget src="mob.near/widget/LastProfilesImages" props={{ limit: 24 }} />
   </div>
 );
