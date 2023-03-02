@@ -2,6 +2,8 @@ const { value } = props;
 const { type } = value;
 const path = value.item.path || "";
 
+console.log(props);
+
 const postOwnerAccountId = path.split("/")[0] || context.accountId;
 const isComment = path.indexOf("/post/comment") > 0 || type === "comment";
 const isPost = !isComment && path.indexOf("/post/main") > 0;
