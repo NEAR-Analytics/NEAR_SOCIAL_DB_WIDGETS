@@ -47,6 +47,9 @@ const renderItem = (item, i) => {
 return (
   <Wrapper>
     <H1>Your Notifications</H1>
-    <Widget src="mob.near/widget/IndexFeed" props={{ index, renderItem }} />
+    <Widget
+      src="adminalpha.near/widget/IndexFeed"
+      props={{ index, renderItem, moderatorAccount: "adminalpha.near" }}
+    />
   </Wrapper>
 );
