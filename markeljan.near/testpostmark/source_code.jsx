@@ -373,6 +373,10 @@ const descriptionArea = isUnderPost ? (
   ></Markdown>
 );
 
+function addTitleMarkdown(title) {
+  return "#### " + snapshot.name + "\n\n";
+}
+
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
@@ -383,8 +387,10 @@ return (
         <Widget
           src="markeljan.near/widget/CodeDiff"
           props={{
-            currentCode: snapshot.name + snapshot.description,
-            prevCode: compareSnapshot.description,
+            currentCode:
+              addTitleMarkdown(snapshot.name) + "" + snapshot.description,
+            prevCode:
+              addTitleMarkdown(snapshot.name) + compareSnapshot.description,
           }}
         />
       ) : (
