@@ -174,7 +174,7 @@ const indexerStateDoc = `
 `;
 
 fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
-  offset: state.indexer_resOffset,
+  offset: state.indexer_resOffset * LIMIT,
 }).then((result) => {
   console.log("result", result);
   if (result.status === 200) {
@@ -186,21 +186,20 @@ fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
   }
 });
 
-fetchGraphQL(logsDoc, "QueryLogs", { offset: state.logsOffset }).then(
-  (result) => {
-    console.log("resultquerylogs", result);
-    if (result.status === 200) {
-      State.update({
-        logs: result.body.data.indexer_log_entries,
-        logsCount:
-          result.body.data.indexer_log_entries_aggregate.aggregate.count,
-      });
-    }
+fetchGraphQL(logsDoc, "QueryLogs", {
+  offset: state.logsOffset * LIMIT,
+}).then((result) => {
+  console.log("resultquerylogs", result);
+  if (result.status === 200) {
+    State.update({
+      logs: result.body.data.indexer_log_entries,
+      logsCount: result.body.data.indexer_log_entries_aggregate.aggregate.count,
+    });
   }
-);
+});
 
 fetchGraphQL(indexerStateDoc, "IndexerState", {
-  offset: state.stateOffset,
+  offset: state.stateOffset * LIMIT,
 }).then((result) => {
   console.log("indexerstatelogs", result);
   if (result.status === 200) {
@@ -224,6 +223,7 @@ const create_table = () => {
   });
 };
 const onLogsPageChange = (page) => {
+  page = page - 1;
   State.update({ logsOffset: page });
   fetchGraphQL(logsDoc, "QueryLogs", { offset: page * LIMIT }).then(
     (result) => {
@@ -237,6 +237,7 @@ const onLogsPageChange = (page) => {
   console.log("page clicked logs", page);
 };
 const onIndexerResPageChange = (page) => {
+  page = page - 1;
   State.update({ indexer_resOffset: page });
 
   fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
