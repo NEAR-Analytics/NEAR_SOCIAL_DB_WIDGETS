@@ -1,5 +1,5 @@
 if (!context.accountId) {
-  return false;
+  return <></>;
 }
 const accountId = props.accountId;
 if (!accountId) {
