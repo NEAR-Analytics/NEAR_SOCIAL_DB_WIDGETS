@@ -130,7 +130,7 @@ return (
     </div>
     <div
       className="flex-grow-1 position-relative"
-      style={{ left: "20%", maxWidth: "80%" }}
+    // style={{ left: "20%", maxWidth: "80%" }}
     >
       {tabContent}
     </div>
