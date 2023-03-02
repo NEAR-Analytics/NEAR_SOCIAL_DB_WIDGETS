@@ -310,6 +310,8 @@ diffResult.lines.forEach((line) => {
     longestLineLength = line.line.length;
 });
 
+console.log(longestLineLength);
+
 const lineProps = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
   let conditionalTopMargin = "0";
@@ -318,12 +320,11 @@ const lineProps = (lineNumber) => {
     conditionalTopMargin = "-1em";
   } else if (lineNumber === diffResult.lines.length)
     conditionalBottomMargin = "-1em";
-  console.log(line);
   let style = {
     display: "block",
     width: "auto",
     background: "#fff",
-    marginRight: `-${parseInt(longestLineLength * 0.12)}em`,
+    marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
     marginBottom: conditionalBottomMargin,
