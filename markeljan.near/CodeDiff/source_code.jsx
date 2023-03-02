@@ -322,6 +322,8 @@ const lineProps = (lineNumber) => {
     conditionalBottomMargin = "-1em";
   let style = {
     display: "block",
+    fontFamily:
+      "system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
     width: "auto",
     background: "#fff",
     marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
