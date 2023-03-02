@@ -119,7 +119,7 @@ const tabContent = {
 
 return (
   <div className="d-flex flex-row relative">
-    <div className="d-flex flex-row position-fixed top-2">
+    <div className="d-flex flex-row position-fixed">
       <div className="flex-grow-1">
         <Widget
           src={`${ownerId}/widget/Sidebar`}
