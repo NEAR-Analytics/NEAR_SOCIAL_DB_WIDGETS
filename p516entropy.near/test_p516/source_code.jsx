@@ -619,8 +619,16 @@ return (
       )}
 
     {state.searchResult &&
-      state.searchResult.map((postId) => {
-        return <div key={postId}>{postId}</div>;
+      state.searchResult.slice(0, 10).map((postId) => {
+        return (
+          <div key={postId}>
+            <Widget
+              src={`devgovgigs.near/widget/gigs-board.components.posts.Post`}
+              props={{ id: postId }}
+              key={key}
+            />
+          </div>
+        );
       })}
   </div>
 );
