@@ -111,10 +111,29 @@ const body = (
           ),
           additionalRow: (
             <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{ accountId: founder, update: props.update }}
-              />
+              <div>
+                {founders.map((founder) =>
+                  founders.length === 1 ? (
+                    <Widget
+                      src={`${ownerId}/widget/ProfileLine`}
+                      props={{
+                        accountId: founder,
+                        isEntity: false,
+                        update: props.update,
+                      }}
+                    />
+                  ) : (
+                    <Widget
+                      src={`${ownerId}/widget/ProfileCircle`}
+                      props={{
+                        accountId: founder,
+                        isEntity: false,
+                        update: props.update,
+                      }}
+                    />
+                  )
+                )}
+              </div>
               <Widget
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
