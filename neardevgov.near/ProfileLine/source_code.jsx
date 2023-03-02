@@ -1,13 +1,9 @@
-const accountId = props.accountId ?? context.accountId;
-const profile = props.profile;
-
 return (
   <span>
     <Widget
       src="mob.near/widget/ProfileLine"
       props={{
-        accountId,
-        profile,
+        ...props,
         link: `#/neardevgov.near/widget/ProfilePage?accountId=${accountId}`,
       }}
     />
