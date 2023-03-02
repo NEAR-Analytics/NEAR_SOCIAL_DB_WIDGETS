@@ -47,12 +47,6 @@ const contributions = Near.view(
   "final"
 );
 
-const [founder] = Object.keys(contributions ?? {}).filter((contribution) => {
-  const details = contributions[contribution];
-  const all = [...details.history, details.current];
-  return all.some((detail) => detail.description === "");
-});
-
 const founders =
   Near.view(
     ownerId,
