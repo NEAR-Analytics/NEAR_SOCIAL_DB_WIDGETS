@@ -119,8 +119,9 @@ const Sidebar = styled.div`
   }
   
   @media (max-width: 995px) {
-    padding-top: 32px;
-    border-top: 1px solid #ECEEF0;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #ECEEF0;
+    grid-row: 1;
   }
 `;
 
@@ -228,6 +229,12 @@ return (
         </div>
 
         <Sidebar>
+          {(tags.includes("Coming Soon") || tags.includes("coming-soon")) && (
+            <div>
+              <Widget src="calebjacob.near/widget/waitList" />
+            </div>
+          )}
+
           <div>
             <SmallTitle>Developer</SmallTitle>
             <Widget
@@ -260,12 +267,6 @@ return (
                 {metadata.linktree.website}
                 <i className="bi bi-box-arrow-up-right"></i>
               </TextLink>
-            </div>
-          )}
-
-          {(tags.includes("Coming Soon") || tags.includes("coming-soon")) && (
-            <div>
-              <Widget src="calebjacob.near/widget/waitList" />
             </div>
           )}
 
