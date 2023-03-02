@@ -9,7 +9,9 @@ return (
   <div className="d-flex flex-row justify-content-start align-items-start">
     <Markdown
       text={
-        state.showAll ? description : description.substring(0, lengthCutoff)
+        state.showAll
+          ? description
+          : description.substring(0, lengthCutoff) + "..."
       }
     />
     {state.showAll && description.length > lengthCutoff ? (
