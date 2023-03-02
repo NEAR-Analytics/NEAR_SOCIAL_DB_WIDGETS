@@ -54,14 +54,15 @@ const code = `  <script>
     }
     if (accountId != undefined && indexerName != undefined) {
       iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
-      iframe.style.height = '500px';
+      iframe.style.height = '750px';
       } else if (accountId != undefined ){
       iframe.src += "?accountId=${accountId}"
-      iframe.style.height = '500px';
+      iframe.style.height = '750px';
       }
+      iframe.style.border = "none"
       iframe.name = "react-app"
     iframe.id = "react-app-iframe"
-    iframe.style.width = '1250px';
+    iframe.style.width = '800px';
     document.body.appendChild(iframe);
   }
 
@@ -87,7 +88,7 @@ return (
     <iframe
       name="widget-iframe"
       className="w-100"
-      style={{ height: "500px" }}
+      style={{ height: "750px" }}
       srcDoc={code}
       message={{
         action: "createIframe",
