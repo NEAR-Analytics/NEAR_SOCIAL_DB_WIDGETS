@@ -48,6 +48,15 @@ const [founder] = Object.keys(contributions ?? {}).filter((contribution) => {
   return all.some((detail) => detail.description === "");
 });
 
+const founders =
+  Near.view(
+    ownerId,
+    "get_founders",
+    { account_id: accountId },
+    "final",
+    true
+  ) || [];
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
