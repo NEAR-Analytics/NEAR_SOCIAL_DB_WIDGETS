@@ -3,10 +3,12 @@ if (!index) {
   return "props.index is not defined";
 }
 
+const filter = props.filter;
+
 const renderItem =
   props.renderItem ??
   ((item, i) => (
-    <div key={i}>
+    <div key={JSON.stringify(item)}>
       #{item.blockHeight}: {JSON.stringify(item)}
     </div>
   ));
@@ -96,12 +98,21 @@ if (state.fetchFrom) {
   }
 }
 
+const filteredItems = state.items;
+if (filter) {
+  if (filter.ignore) {
+    filteredItems = filteredItems.filter(
+      (item) => !(item.accountId in filter.ignore)
+    );
+  }
+}
+
 const makeMoreItems = () => {
   State.update({
     displayCount: state.displayCount + addDisplayCount,
   });
   if (
-    state.items.length - state.displayCount < addDisplayCount * 2 &&
+    filteredItems.length - state.displayCount < addDisplayCount * 2 &&
     !state.fetchFrom &&
     state.nextFetchFrom &&
     state.nextFetchFrom !== state.fetchFrom
@@ -125,9 +136,9 @@ const loader = (
 
 const fetchMore =
   props.manual &&
-  (state.fetchFrom && state.items.length < state.displayCount
+  (state.fetchFrom && filteredItems.length < state.displayCount
     ? loader
-    : state.displayCount < state.items.length && (
+    : state.displayCount < filteredItems.length && (
         <div key={"loader more"}>
           <a href="javascript:void" onClick={(e) => makeMoreItems()}>
             {props.loadMoreText ?? "Load more..."}
@@ -135,7 +146,7 @@ const fetchMore =
         </div>
       ));
 
-const items = state.items ? state.items.slice(0, state.displayCount) : [];
+const items = filteredItems ? filteredItems.slice(0, state.displayCount) : [];
 if (reverse) {
   items.reverse();
 }
@@ -152,7 +163,7 @@ return props.manual ? (
   <InfiniteScroll
     pageStart={0}
     loadMore={makeMoreItems}
-    hasMore={state.displayCount < state.items.length}
+    hasMore={state.displayCount < filteredItems.length}
     loader={
       <div className="loader">
         <span
