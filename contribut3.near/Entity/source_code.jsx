@@ -33,20 +33,7 @@ const isAuthorized = Near.view(
   "final"
 );
 
-const contributions = Near.view(
-  ownerId,
-  "get_entity_contributions",
-  { account_id: accountId },
-  "final"
-);
-
 const profile = Social.getr(`${accountId}/profile`);
-
-const [founder] = Object.keys(contributions ?? {}).filter((contribution) => {
-  const details = contributions[contribution];
-  const all = [...details.history, details.current];
-  return all.some((detail) => detail.description === "");
-});
 
 const founders =
   Near.view(
