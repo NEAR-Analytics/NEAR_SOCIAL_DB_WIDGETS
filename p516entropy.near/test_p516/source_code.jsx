@@ -123,6 +123,7 @@ function isStopWord(word) {
 const synonyms = {
   ether: "ethereum",
   eth: "ethereum",
+  either: "ethereum",
   app: "application",
   cryptocyrrency: "crypto",
   developerdao: "devdao",
@@ -463,7 +464,10 @@ const buildIndex = (posts) => {
   let index = {};
 
   posts.forEach((post) => {
-    const postText = post.snapshot.description;
+    const title = post.snapshot.name;
+    const labels = post.snapshot.labels.join(" ");
+    const text = post.snapshot.description;
+    const postText = `${title} ${labels} ${text}`;
     index = fillDictionaryWith(index, postText, post.id);
   });
 
@@ -507,12 +511,14 @@ const search = (processedQueryArray, index) => {
 
 //////////////////////////////////////////////////////////////////////
 ///UI&UX//////////////////////////////////////////////////////////////
+//Run search and spelling computation every time the search bar modified
+//but no more frequent than 1 time per 1.5 seconds
 if (!state.interval) {
-  let termStorage;
+  let termStorage = "";
   Storage.privateSet("term", "");
   setInterval(() => {
     const currentInput = Storage.privateGet("term");
-    if (currentInput && currentInput !== termStorage) {
+    if (currentInput !== termStorage) {
       console.log("run computation");
       termStorage = currentInput;
       computeResults(termStorage);
@@ -522,24 +528,34 @@ if (!state.interval) {
     interval: true,
   });
 }
+
 const computeResults = (term) => {
   const start = new Date().getTime();
   const indexCached = useCache(
     () =>
-      Near.asyncView("devgovgigs.near", "get_posts").then((posts) =>
-        buildIndex(posts)
-      ),
+      Near.asyncView("devgovgigs.near", "get_posts").then((posts) => {
+        const index = buildIndex(posts);
+        // Run query first time posts retrieved
+        const query = term;
+        const processedQuery = spellcheckQueryProcessing(query, index);
+        const searchResult = search(processedQuery, index);
+        console.log(processedQuery);
+        console.log(searchResult);
+        State.update({ searchResult, loading: false });
+        return index;
+      }),
     "indexCached"
   );
-  const query = term;
-  const processedQuery = spellcheckQueryProcessing(query, indexCached);
+  if (indexCached) {
+    // Run query every other time after data retrieved and cached
+    const query = term;
+    const processedQuery = spellcheckQueryProcessing(query, indexCached);
 
-  const searchResult = search(processedQuery, indexCached);
-  // Output/
-  console.log(processedQuery);
-  console.log(searchResult);
-  // Sample text document with misspelled words
-
+    const searchResult = search(processedQuery, indexCached);
+    console.log(processedQuery);
+    console.log(searchResult);
+    State.update({ searchResult, loading: false });
+  }
   const end = new Date().getTime();
 
   console.log(end - start);
@@ -549,28 +565,25 @@ const updateInput = (term) => {
   Storage.privateSet("term", term);
   State.update({
     term,
+    loading: true,
   });
 };
+
 return (
   <>
     <div className="input-group">
       <input
-        type="text"
-        className={`form-control ${state.term ? "border-end-0" : ""}`}
+        type="search"
+        className="form-control"
         value={state.term ?? ""}
         onChange={(e) => updateInput(e.target.value)}
         placeholder={props.placeholder ?? `🔍 Search Posts`}
       />
-
-      {state.term && (
-        <button
-          className="btn btn-outline-secondary border border-start-0"
-          type="button"
-          onClick={() => computeResults("")}
-        >
-          <i className="bi bi-x"></i>
-        </button>
-      )}
     </div>
+    {state.loading && <div>Loading</div>}
+    {state.searchResult &&
+      state.searchResult.map((postId) => {
+        return <div key={postId}>{postId}</div>;
+      })}
   </>
 );
