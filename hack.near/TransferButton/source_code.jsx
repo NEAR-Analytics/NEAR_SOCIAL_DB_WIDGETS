@@ -20,7 +20,7 @@ const handleProposal = () => {
   Near.call([
     {
       contractName: contractId,
-      methodName: "ft_transfer",
+      methodName: "transfer",
       args: {
         receiver_id: state.receiver_id,
         amount: state.amount,
