@@ -1,5 +1,5 @@
 const description = props.description || "";
-const lengthCutoff = 100;
+const lengthCutoff = 90;
 
 return (
   <div className="text-truncate my-2">
