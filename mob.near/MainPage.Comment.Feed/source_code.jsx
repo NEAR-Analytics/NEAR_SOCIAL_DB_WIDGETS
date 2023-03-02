@@ -31,10 +31,11 @@ const renderItem = (a) =>
 return (
   <div>
     <Widget
-      src="mob.near/widget/ManualIndexFeed"
+      src="mob.near/widget/FilteredIndexFeed"
       props={{
         index,
         reverse: true,
+        manual: true,
         renderItem,
         nextLimit: 10,
         loadMoreText: "Show earlier comments...",
