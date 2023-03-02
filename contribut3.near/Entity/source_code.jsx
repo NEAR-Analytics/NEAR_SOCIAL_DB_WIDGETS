@@ -54,7 +54,7 @@ const body = (
     id={accountId}
     style={{ minHeight: "8em", maxWidth: "100%" }}
   >
-    <div className="flex-grow-1 py-3">
+    <div className="flex-grow-1 py-3" style={{ maxWidth: "100%" }}>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
