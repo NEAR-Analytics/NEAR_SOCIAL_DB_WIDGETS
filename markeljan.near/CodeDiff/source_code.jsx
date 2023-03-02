@@ -341,16 +341,14 @@ const lineProps = (lineNumber) => {
   if (line.aIndex === -1) {
     style = {
       ...style,
-      background: "rgb(0 95 67)",
-      color: "white",
+      background: "#E0FFEC",
       ...props.addStyle,
     };
   }
   if (line.bIndex === -1) {
     style = {
       ...style,
-      background: "rgb(156 73 41)",
-      color: "white",
+      background: "#FFEDF0",
       ...props.deleteStyle,
     };
   }
@@ -361,7 +359,7 @@ const lineProps = (lineNumber) => {
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
 return (
-  <div style={{ background: "#fff" }}>
+  <div>
     <Markdown
       text={`
 \`\`\`\text
