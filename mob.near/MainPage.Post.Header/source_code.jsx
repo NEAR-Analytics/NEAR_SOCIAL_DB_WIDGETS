@@ -55,6 +55,12 @@ return (
                 View raw markdown source
               </a>
             </li>
+            <li>
+              <Widget
+                src="mob.near/widget/MainPage.Common.HideAccount"
+                props={{ accountId }}
+              />
+            </li>
           </ul>
         </span>
       )}
