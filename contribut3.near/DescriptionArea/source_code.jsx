@@ -2,7 +2,10 @@ const description = props.description || "";
 const lengthCutoff = 90;
 
 return (
-  <div className="text-truncate my-2" style={{ textOverflow: "Read more" }}>
+  <div
+    className="text-truncate my-2 w-100"
+    style={{ textOverflow: "Read more" }}
+  >
     {description.length > lengthCutoff
       ? description.substring(0, lengthCutoff - 10)
       : description}
