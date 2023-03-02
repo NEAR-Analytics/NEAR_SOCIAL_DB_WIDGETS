@@ -127,7 +127,7 @@ const body = (
           ),
         }}
       />
-      <div style={{ maxWidth: "75%" }}>
+      <div style={{ maxWidth: "85%" }}>
         <Widget
           src={`${ownerId}/widget/DescriptionArea`}
           props={{
