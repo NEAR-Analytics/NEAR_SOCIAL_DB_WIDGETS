@@ -378,17 +378,17 @@ return (
     {linkToParent}
     {header}
     <div className="card-body">
+      {postLabels}
       {compareWith ? (
         <Widget
           src="markeljan.near/widget/CodeDiff"
           props={{
-            currentCode: snapshot.description,
+            currentCode: snapshot.name + snapshot.description,
             prevCode: compareSnapshot.description,
           }}
         />
       ) : (
         <>
-          {postLabels}
           {postTitle}
           {postExtra}
           {descriptionArea}
