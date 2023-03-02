@@ -334,10 +334,10 @@ const lineProps = (lineNumber) => {
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
 return (
-  <div>
+  <div style={{ background: "#fff" }}>
     <Markdown
       text={`
-\`\`\`jsx
+\`\`\`\text
 ${codeText}
 `}
       syntaxHighlighterProps={{
@@ -346,6 +346,7 @@ ${codeText}
         showLineNumbers: true,
         lineNumberStyle: { display: !props.showLineNumber && "none" },
       }}
+      style={{ background: "#fff" }}
     />
   </div>
 );
