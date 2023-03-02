@@ -166,10 +166,6 @@ const body = (
             }}
           />
         ))}
-        {/* <Widget */}
-        {/*   src={`${ownerId}/widget/ProfileLine`} */}
-        {/*   props={{ accountId: founder, isEntity: false, update: props.update }} */}
-        {/* /> */}
       </div>
     </div>
   </div>
