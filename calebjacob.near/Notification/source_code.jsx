@@ -1,6 +1,7 @@
 const { value } = props;
 const { type } = value;
-const path = value.item.path || "";
+const item = value?.item || {};
+const path = item.path || "";
 
 const isComment = path.indexOf("/post/comment") > 0 || type === "comment";
 const isPost = !isComment && path.indexOf("/post/main") > 0;
@@ -12,7 +13,7 @@ let postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${
 
 if (type === "like") {
   const parentAccountId = path.split("/")[0];
-  const parentBlockHeight = value.item.blockHeight;
+  const parentBlockHeight = item.blockHeight;
   postUrl = `/#/calebjacob.near/widget/PostPage?accountId=${parentAccountId}&${
     isComment ? "commentBlockHeight" : "blockHeight"
   }=${parentBlockHeight}`;
