@@ -41,9 +41,6 @@ const code = `  <script>
    let iframe = null;
 
   function createIframe(base, accountId, indexerName) {
-    console.log(accountId, "account ID")
-    console.log(indexerName, "indexerName ID")
-    console.log(base, "base")
     iframe = document.createElement('iframe');
     iframe.src = 'https://query-api-react.vercel.app';
     // iframe.src = 'http://localhost:3000';
@@ -54,15 +51,16 @@ const code = `  <script>
     }
     if (accountId != undefined && indexerName != undefined) {
       iframe.src += "?accountId=${accountId}&indexerName=${indexerName}"
-      iframe.style.height = '750px';
+      
       } else if (accountId != undefined ){
       iframe.src += "?accountId=${accountId}"
-      iframe.style.height = '750px';
       }
+       iframe.style.height = '750px';
       iframe.style.border = "none"
+      iframe.style.overflow = "hidden"
       iframe.name = "react-app"
     iframe.id = "react-app-iframe"
-    iframe.style.width = '1000px';
+    iframe.style.width = '100%';
     document.body.appendChild(iframe);
   }
 
@@ -88,7 +86,7 @@ return (
     <iframe
       name="widget-iframe"
       className="w-100"
-      style={{ height: "750px" }}
+      style={{ height: "750px", width: "100%" }}
       srcDoc={code}
       message={{
         action: "createIframe",
