@@ -1,6 +1,6 @@
 const donate = () => {
   Near.call(
-    "bluntdao.near",
+    "blunt.sputnik-dao.near",
     "donate",
     {},
     "30000000000000",
@@ -18,6 +18,6 @@ return (
         alt="BluntDAO Donate"
       />
     </div>
-    <button onClick={donate}>Donate 0.5 NEAR to bluntdao.near</button>
+    <button onClick={donate}>Donate 0.5 NEAR to Blunt Treausrey</button>
   </div>
 );
