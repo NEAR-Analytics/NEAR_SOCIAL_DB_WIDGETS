@@ -58,32 +58,39 @@ const history = (
       {orderedHistory.map((item) => {
         return (
           <li style={{ display: "flex" }}>
-            <a
-              class="dropdown-item"
-              href={historyHref("testpostmark", {
-                id: postId,
-                timestamp: item.timestamp,
-                compareWith: null,
-                referral,
-              })}
+            <div
+              style={{
+                minWidth: "300px",
+                maxWidth: "300px",
+              }}
             >
-              {readableDate(item.timestamp / 1000000)}
+              <a
+                class="dropdown-item"
+                href={historyHref("testpostmark", {
+                  id: postId,
+                  timestamp: item.timestamp,
+                  compareWith: null,
+                  referral,
+                })}
+              >
+                {readableDate(item.timestamp / 1000000)}
 
-              <Widget
-                src="mob.near/widget/ProfileImage"
-                props={{
-                  accountId: item.editor_id,
-                  style: {
-                    width: "1.25em",
-                    height: "1.25em",
-                  },
-                  imageStyle: {
-                    transform: "translateY(-10%)",
-                  },
-                }}
-              />
-              {post.author_id.substring(0, 8)}
-            </a>
+                <Widget
+                  src="mob.near/widget/ProfileImage"
+                  props={{
+                    accountId: item.editor_id,
+                    style: {
+                      width: "1.25em",
+                      height: "1.25em",
+                    },
+                    imageStyle: {
+                      transform: "translateY(-10%)",
+                    },
+                  }}
+                />
+                {post.author_id.substring(0, 8)}
+              </a>
+            </div>
             <a
               class="dropdown-item"
               href={historyHref("testpostmark", {
@@ -102,4 +109,4 @@ const history = (
   </div>
 );
 
-return history;
+return <div style={{ height: "400px" }}>{history}</div>;
