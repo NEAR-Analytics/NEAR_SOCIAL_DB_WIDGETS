@@ -4,7 +4,7 @@ const postType = props.postType ?? "post";
 const link = props.link;
 
 return (
-  <div className="d-flex flex-row align-items-center">
+  <div className="d-flex flex-row align-items-center vh-100">
     <div className="flex-grow-1 text-truncate">
       <a
         className="text-dark text-decoration-none text-truncate"
@@ -61,6 +61,17 @@ return (
                 props={{ accountId }}
               />
             </li>
+            {props.flagItem && (
+              <li>
+                <Widget
+                  src="mob.near/widget/MainPage.Common.FlagContent"
+                  props={{
+                    item: props.flagItem,
+                    label: `Flag ${postType} for moderation`,
+                  }}
+                />
+              </li>
+            )}
           </ul>
         </span>
       )}
