@@ -53,6 +53,15 @@ const [founder] = Object.keys(contributions ?? {}).filter((contribution) => {
   return all.some((detail) => detail.description === "");
 });
 
+const founders =
+  Near.view(
+    ownerId,
+    "get_founders",
+    { account_id: accountId },
+    "final",
+    true
+  ) || [];
+
 const profile = Social.getr(`${accountId}/profile`);
 
 const controls = isAuthorized ? (
@@ -159,15 +168,27 @@ const body = (
         src={`${ownerId}/widget/SocialLinks`}
         props={{ links: profile.linktree ?? {} }}
       />
-      <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId: founder, isEntity: false, update: props.update }}
-      />
+      <div>
+        {founders.map((founder) => (
+          <Widget
+            src={`${ownerId}/widget/ProfileLine`}
+            props={{
+              accountId: founder,
+              isEntity: false,
+              update: props.update,
+            }}
+          />
+        ))}
+        <Widget
+          src={`${ownerId}/widget/ProfileLine`}
+          props={{ accountId: founder, isEntity: false, update: props.update }}
+        />
+      </div>
     </div>
   </div>
 );
 
-const proposalsCount = (
+const proposalsCount = Object.keys(
   Near.view(
     ownerId,
     "get_entity_contribution_requests",
