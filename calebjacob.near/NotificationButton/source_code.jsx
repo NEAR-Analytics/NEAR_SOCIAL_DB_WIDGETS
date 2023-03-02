@@ -19,11 +19,12 @@ if (filterUsers === null) {
 const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
 const notificationFeedSrc = "calebjacob.near/widget/NotificationsPage";
 const lastBlockHeight = Storage.get("lastBlockHeight", notificationFeedSrc);
-let notifications = Social.index("notify", accountId, {
-  order: "asc",
-  from: (lastBlockHeight ?? 0) + 1,
-  subscribe: true,
-});
+let notifications =
+  Social.index("notify", accountId, {
+    order: "asc",
+    from: (lastBlockHeight ?? 0) + 1,
+    subscribe: true,
+  }) || [];
 notifications = notifications.filter((i) => !filterUsers.includes(i.accountId));
 const notificationsCount = notifications.length || 0;
 
