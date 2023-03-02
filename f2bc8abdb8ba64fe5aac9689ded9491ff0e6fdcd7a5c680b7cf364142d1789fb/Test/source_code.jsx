@@ -72,8 +72,21 @@ mapped.reduce(
   [0, 0]
 );
 
+State.init({
+  a: "palabra",
+});
+
+const updateState = (string) => {
+  State.update({ a: string });
+};
+
 return (
   <div>
+    <p>{state.a}</p>
+    <Widget
+      src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Test2`}
+      props={{ fx: updateState }}
+    />
     <div className="d-lg-none">Dani es jurío</div>
     <div className="d-none d-lg-block">Dani usa lentes</div>
   </div>
