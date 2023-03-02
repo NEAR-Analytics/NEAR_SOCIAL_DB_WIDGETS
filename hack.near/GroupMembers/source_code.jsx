@@ -12,7 +12,6 @@ if (!data) {
 
 const accounts = Object.entries(data);
 const allMembers = [];
-const allGroups = [];
 
 for (let i = 0; i < accounts.length; ++i) {
   const memberId = accounts[i][0];
@@ -32,24 +31,16 @@ const members = policy.roles
     return members;
   });
 
-const groups = policy.roles.map((role) => {
-  const groups = role.name;
-
-  return groups;
-});
-
 return (
-  <div>
-    <h3>Groups:</h3>
-    <h4>{groupId}</h4>
-    <Widget
-      src="mob.near/widget/Profile"
-      props={{
-        tooltip: true,
-        accountId: members,
-      }}
-    />
-    <div className="mb-2">{members}</div>
-    <div className="mb-2">{groups}</div>
-  </div>
+  <>
+    <div>
+      <h3>Group Members:</h3>
+      <div>
+        {members.map((memberId, i) => (
+          <h4>{memberId}</h4>
+        ))}
+      </div>
+      <div>{allMembers}</div>
+    </div>
+  </>
 );
