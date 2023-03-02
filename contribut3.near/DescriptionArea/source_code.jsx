@@ -1,5 +1,5 @@
 const description = props.description || "";
-const lengthCutoff = 100;
+const lengthCutoff = 90;
 
 State.init({
   showAll: description.length <= lengthCutoff,
@@ -7,13 +7,15 @@ State.init({
 
 return (
   <div className="d-flex flex-row justify-content-start align-items-start">
-    <Markdown
-      text={
-        state.showAll
-          ? description
-          : description.substring(0, lengthCutoff) + "..."
-      }
-    />
+    <div>
+      <Markdown
+        text={
+          state.showAll
+            ? description
+            : description.substring(0, lengthCutoff) + "..."
+        }
+      />
+    </div>
     {state.showAll && description.length > lengthCutoff ? (
       <a
         className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
