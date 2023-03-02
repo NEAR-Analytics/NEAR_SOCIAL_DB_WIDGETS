@@ -2,8 +2,6 @@ const { value } = props;
 const { type } = value;
 const path = value.item.path || "";
 
-console.log(props);
-
 const isComment = path.indexOf("/post/comment") > 0 || type === "comment";
 const isPost = !isComment && path.indexOf("/post/main") > 0;
 const likedPost = type === "like" && isPost;
