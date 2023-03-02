@@ -71,28 +71,8 @@ const computeResults = (term) => {
 };
 
 let hardCodeSearch = "sputnik-dao.near";
+computeResults(hardCodeSearch);
 
 return (
-  <>
-    <div className="input-group">
-      <input
-        type="text"
-        className={`form-control ${state.term ? "border-end-0" : ""}`}
-        value={state.term ?? ""}
-        onChange={(e) => computeResults(hardCodeSearch)}
-        // computeResults("sputnik-dao.near")
-        placeholder="sputnik-dao.near"
-      />
-      {state.term && (
-        <button
-          className="btn btn-outline-secondary border border-start-0"
-          type="button"
-          onClick={() => computeResults("")}
-        >
-          <i className="bi bi-x"></i>
-        </button>
-      )}
-    </div>
-    {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
-  </>
+  <>{props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}</>
 );
