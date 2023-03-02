@@ -1,10 +1,11 @@
 const accountId = props.accountId ?? context.accountId;
 const daoId = props.accountId ?? "multi.sputnik-dao.near";
+const groupId = props.groupId ?? "council";
 
 return (
   <div className="group d-inline-block">
     <a
-      href={`#/mob.near/widget/Group?daoId=${daoId}`}
+      href={`#/hack.near/widget/Group?groupId=${groupId}`}
       className="text-decoration-none link-dark"
     >
       <Widget
@@ -15,11 +16,11 @@ return (
           className: "float-start d-inline-block me-2",
         }}
       />
-      <div className="profile-info d-inline-block" style={{ maxWidth: "16em" }}>
-        <div className="profile-name text-truncate">{groupId}</div>
-        <div className="profile-links d-flex">
-          <div className="d-inline-block profile-account text-secondary text-truncate">
-            @{groupId}
+      <div className="group-info d-inline-block" style={{ maxWidth: "16em" }}>
+        <div className="group-name text-truncate">DAO Group: {groupId}</div>
+        <div className="group-links d-flex">
+          <div className="d-inline-block text-secondary text-truncate">
+            {daoId}
           </div>
         </div>
       </div>
