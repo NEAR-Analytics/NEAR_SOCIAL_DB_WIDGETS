@@ -1,7 +1,7 @@
 const accountId = context.accountId;
 
 if (!accountId) {
-  return "Sign in with NEAR Wallet";
+  return <></>;
 }
 
 const index = {
