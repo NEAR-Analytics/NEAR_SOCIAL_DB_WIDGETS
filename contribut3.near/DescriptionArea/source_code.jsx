@@ -23,7 +23,7 @@ return (
       <></>
     ) : (
       <a
-        className="btn fw-bold text-primary ms-2 p-0"
+        className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
         onClick={() => State.update({ showAll: true })}
       >
         Read more
