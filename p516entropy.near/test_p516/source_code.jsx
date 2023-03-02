@@ -412,7 +412,7 @@ const spellcheckQueryProcessing = (query, dictionary) => {
 
     // If the word is not in the dictionary, find the closest match
     if (!dictionary.hasOwnProperty(word)) {
-      let closestMatch = word;
+      let closestMatch = undefined;
       let closestDistance = word.length;
       let allowedDistance = Math.min(word.length - 1, 3);
       // Iterate over each word in the dictionary
@@ -432,7 +432,7 @@ const spellcheckQueryProcessing = (query, dictionary) => {
       words[i] = closestMatch;
     }
   }
-  return words;
+  return words.filter((word) => !!word);
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -541,7 +541,7 @@ const computeResults = (term) => {
         const searchResult = search(processedQuery, index);
         console.log(processedQuery);
         console.log(searchResult);
-        State.update({ searchResult, loading: false });
+        State.update({ searchResult, processedQuery, loading: false });
         return index;
       }),
     "indexCached"
@@ -554,7 +554,7 @@ const computeResults = (term) => {
     const searchResult = search(processedQuery, indexCached);
     console.log(processedQuery);
     console.log(searchResult);
-    State.update({ searchResult, loading: false });
+    State.update({ searchResult, processedQuery, loading: false });
   }
   const end = new Date().getTime();
 
@@ -570,20 +570,57 @@ const updateInput = (term) => {
 };
 
 return (
-  <>
-    <div className="input-group">
+  <div>
+    <div
+      className="d-flex"
+      style={{
+        height: "38px",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: "15px",
+          display: "flex",
+          height: "38px",
+          "align-items": "center",
+        }}
+      >
+        {state.loading ? (
+          <div>
+            <span
+              className="spinner-grow spinner-grow-sm me-1"
+              role="status"
+              aria-hidden="true"
+            />
+          </div>
+        ) : (
+          <div>🔍</div>
+        )}
+      </div>
       <input
         type="search"
+        style={{
+          "padding-left": "40px",
+        }}
         className="form-control"
         value={state.term ?? ""}
         onChange={(e) => updateInput(e.target.value)}
-        placeholder={props.placeholder ?? `🔍 Search Posts`}
+        placeholder={props.placeholder ?? `Search Posts`}
       />
     </div>
-    {state.loading && <div>Loading</div>}
+    {state.processedQuery &&
+      state.processedQuery.length > 0 &&
+      state.term.toLowerCase().trim() !== state.processedQuery.join(" ") && (
+        <div class="mb-2" style={{ "font-family": "cursive" }}>
+          Technical stuff: Looking for
+          <strong>{state.processedQuery.join(" ")}</strong>
+        </div>
+      )}
+
     {state.searchResult &&
       state.searchResult.map((postId) => {
         return <div key={postId}>{postId}</div>;
       })}
-  </>
+  </div>
 );
