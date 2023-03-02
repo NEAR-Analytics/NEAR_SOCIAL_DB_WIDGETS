@@ -4,7 +4,7 @@ const lengthCutoff = 90;
 return (
   <div
     className="text-truncate my-2 w-100"
-    style={{ textOverflow: "Read more" }}
+    style={{ textOverflow: 'string("Read more")' }}
   >
     {description}
     {/* {description.length > lengthCutoff */}
