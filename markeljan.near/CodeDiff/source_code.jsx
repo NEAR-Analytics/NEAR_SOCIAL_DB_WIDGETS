@@ -310,22 +310,34 @@ const lineProps = (lineNumber) => {
   let style = {
     display: "block",
     width: "auto",
+    background: "rgb(255 255 255)",
+    marginRight: "-1em",
+    marginLeft: "-1em",
+    paddingLeft: "1em",
+    color: "black",
   };
 
   if (line.aIndex === -1 || line.bIndex === -1) {
     style = {
       ...style,
-      marginRight: "-1em",
-      marginLeft: "-1em",
-      paddingLeft: "1em",
     };
   }
 
   if (line.aIndex === -1) {
-    style = { ...style, background: "rgb(0 95 67)", ...props.addStyle };
+    style = {
+      ...style,
+      background: "rgb(0 95 67)",
+      color: "white",
+      ...props.addStyle,
+    };
   }
   if (line.bIndex === -1) {
-    style = { ...style, background: "rgb(156 73 41)", ...props.deleteStyle };
+    style = {
+      ...style,
+      background: "rgb(156 73 41)",
+      color: "white",
+      ...props.deleteStyle,
+    };
   }
 
   return { style };
