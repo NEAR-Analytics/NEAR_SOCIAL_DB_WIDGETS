@@ -20,7 +20,7 @@ return (
   <div className="border rounded-4 p-3 pb-1">
     <Widget
       src="mob.near/widget/MainPage.Post.Header"
-      props={{ accountId, blockHeight, link, postType: "post" }}
+      props={{ accountId, blockHeight, link, postType: "post", flagItem: item }}
     />
     <div className="mt-3 text-break">
       <Widget
