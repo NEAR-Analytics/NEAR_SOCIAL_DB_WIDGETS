@@ -8,9 +8,9 @@ props.referral?: any;
 */
 
 const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId || "devgovgigs.near".split("/", 1)[0];
+  props.nearDevGovGigsContractAccountId || "devgovgigs.near";
 const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId || "devgovgigs.near".split("/", 1)[0];
+  props.nearDevGovGigsWidgetsAccountId || "devgovgigs.near";
 
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
@@ -18,7 +18,6 @@ function widget(widgetName, widgetProps, key) {
     nearDevGovGigsContractAccountId: props.nearDevGovGigsContractAccountId,
     nearDevGovGigsWidgetsAccountId: props.nearDevGovGigsWidgetsAccountId,
   };
-
   return (
     <Widget
       src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.${widgetName}`}
@@ -57,12 +56,10 @@ const referral = props.referral;
 
 const timestampFromProps = props.timestamp;
 const compareWith = props.compareWith;
-
 let snapshot = post.snapshot;
 let compareSnapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
-
 if (timestampFromProps) {
   const foundSnapshot = snapshotHistory.find(
     (s) => s.timestamp === timestampFromProps
@@ -71,7 +68,6 @@ if (timestampFromProps) {
     snapshot = foundSnapshot;
   }
 }
-
 if (compareWith) {
   const foundSnapshot = snapshotHistory.find(
     (s) => s.timestamp === compareWith
@@ -80,9 +76,6 @@ if (compareWith) {
     compareSnapshot = foundSnapshot;
   }
 }
-
-console.log("snapshot", snapshot);
-console.log("snapshotHistory", snapshotHistory);
 
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
@@ -118,6 +111,54 @@ const linkToParent =
       </a>
     </div>
   );
+
+const allowedToEdit =
+  !props.isPreview &&
+  Near.view(nearDevGovGigsContractAccountId, "is_allowed_to_edit", {
+    post_id: postId,
+    editor: context.accountId,
+  });
+
+const btnEditorWidget = (postType, name) => {
+  return (
+    <li>
+      <a
+        class="dropdown-item"
+        data-bs-toggle="collapse"
+        href={`#collapse${postType}Editor${postId}`}
+        role="button"
+        aria-expanded="false"
+        aria-controls={`collapse${postType}Editor${postId}`}
+      >
+        {name}
+      </a>
+    </li>
+  );
+};
+
+const editControl = allowedToEdit ? (
+  <div class="btn-group" role="group">
+    <a
+      class="card-link px-2"
+      role="button"
+      title="Edit post"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      type="button"
+    >
+      <div class="bi bi-pencil-square"></div>
+    </a>
+    <ul class="dropdown-menu">
+      {btnEditorWidget("Idea", "Edit as an idea")}
+      {btnEditorWidget("Submission", "Edit as a solution")}
+      {btnEditorWidget("Attestation", "Edit as an attestation")}
+      {btnEditorWidget("Sponsorship", "Edit as a sponsorship")}
+      {btnEditorWidget("Comment", "Edit as a comment")}
+    </ul>
+  </div>
+) : (
+  <div></div>
+);
 
 const shareButton = props.isPreview ? (
   <div></div>
@@ -284,6 +325,68 @@ const buttonsFooter = props.isPreview ? null : (
   </div>
 );
 
+const CreatorWidget = (postType) => {
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Creator${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      {widget("components.posts.PostEditor", {
+        postType,
+        parentId: postId,
+        mode: "Create",
+        referral: props.referral,
+      })}
+    </div>
+  );
+};
+
+const EditorWidget = (postType) => {
+  return (
+    <div
+      class="collapse"
+      id={`collapse${postType}Editor${postId}`}
+      data-bs-parent={`#accordion${postId}`}
+    >
+      {widget("components.posts.PostEditor", {
+        postType,
+        postId,
+        mode: "Edit",
+        author_id: post.author_id,
+        labels: post.snapshot.labels,
+        name: post.snapshot.name,
+        description: post.snapshot.description,
+        amount: post.snapshot.amount,
+        token: post.snapshot.sponsorship_token,
+        supervisor: post.snapshot.supervisor,
+        githubLink: post.snapshot.github_link,
+        referral: props.referral,
+      })}
+    </div>
+  );
+};
+
+const editorsFooter = props.isPreview ? null : (
+  <div class="row" id={`accordion${postId}`} key="editors-footer">
+    {CreatorWidget("Comment")}
+    {EditorWidget("Comment")}
+    {CreatorWidget("Idea")}
+    {EditorWidget("Idea")}
+    {CreatorWidget("Submission")}
+    {EditorWidget("Submission")}
+    {CreatorWidget("Attestation")}
+    {EditorWidget("Attestation")}
+    {CreatorWidget("Sponsorship")}
+    {EditorWidget("Sponsorship")}
+    {CreatorWidget("Github")}
+    {EditorWidget("Github")}
+  </div>
+);
+
+const renamedPostType =
+  snapshot.post_type == "Submission" ? "Solution" : snapshot.post_type;
+
 const postLabels = post.snapshot.labels ? (
   <div class="card-title" key="post-labels">
     {post.snapshot.labels.map((label) => {
@@ -374,7 +477,7 @@ const descriptionArea = isUnderPost ? (
 );
 
 function addTitleMarkdown(title) {
-  return "#### " + snapshot.name + "\n\n";
+  return "#### " + title + "\n";
 }
 
 return (
@@ -401,6 +504,7 @@ return (
         </>
       )}
       {buttonsFooter}
+      {editorsFooter}
       {postsList}
     </div>
   </Card>
