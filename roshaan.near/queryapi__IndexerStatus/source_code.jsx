@@ -2,6 +2,9 @@
 const indexer_name = props.indexer_name;
 console.log("from index status", indexer_name);
 console.log("from index status", indexer_name);
+
+const LIMIT = 5;
+
 const accountId = props.accountId || context.accountId;
 const H2 = styled.h2`
   font-size: 19px;
@@ -92,7 +95,17 @@ const logs_table =
 const indexer_values_table =
   "| Function Name | Key Name | Value |\n| --- | --- | --- |\n";
 
-State.init({ logs: [], state: [], indexer_res: [] });
+State.init({
+  logs: [],
+  state: [],
+  indexer_res: [],
+  indexer_resCount: 0,
+  logsCount: 0,
+  stateCount: 0,
+  indexer_resOffset: 0,
+  logsOffset: 0,
+  stateOffset: 0,
+});
 function fetchGraphQL(operationsDoc, operationName, variables) {
   return asyncFetch(
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
@@ -115,95 +128,91 @@ const createGraphQLLink = () => {
 };
 
 const IndexerStorageDoc = `
-  query IndexerStorage {
-    indexer_storage(limit: 20,where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+  query IndexerStorage($offset: Int) {
+    indexer_storage(limit: ${LIMIT},  offset: $offset, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
       function_name
       key_name
       value
+    }
+    indexer_storage_aggregate(where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+      aggregate {
+        count
+      }
     }
   }
 `;
 
 const logsDoc = `
-  query QueryLogs {
-    indexer_log_entries(limit: 20, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+  query QueryLogs($offset: Int) {
+    indexer_log_entries(order_by: {block_height: desc}, limit: ${LIMIT}, offset: $offset, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
       block_height
       id
       function_name
       message
       timestamp
     }
+    indexer_log_entries_aggregate(where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+    aggregate {
+      count
+    }
+  }
   }
 `;
 
 const indexerStateDoc = `
-  query IndexerState {
-    indexer_state(limit: 20, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+  query IndexerState($offset: Int) {
+    indexer_state(limit: ${LIMIT}, offset: $offset, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
       function_name
       current_block_height
     }
+    indexer_state_aggregate(where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+    aggregate {
+      count
+    }
+    }
   }
 `;
-fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {}).then((result) => {
+
+fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
+  offset: state.indexer_resOffset,
+}).then((result) => {
+  console.log("result", result);
   if (result.status === 200) {
     State.update({
       indexer_res: result.body.data.indexer_storage,
+      indexer_resCount:
+        result.body.data.indexer_storage_aggregate.aggregate.count,
     });
   }
 });
 
-fetchGraphQL(logsDoc, "QueryLogs", {}).then((result) => {
-  if (result.status === 200) {
-    State.update({
-      logs: result.body.data.indexer_log_entries,
-    });
+fetchGraphQL(logsDoc, "QueryLogs", { offset: state.logsOffset }).then(
+  (result) => {
+    console.log("resultquerylogs", result);
+    if (result.status === 200) {
+      State.update({
+        logs: result.body.data.indexer_log_entries,
+        logsCount:
+          result.body.data.indexer_log_entries_aggregate.aggregate.count,
+      });
+    }
   }
-});
+);
 
-fetchGraphQL(indexerStateDoc, "IndexerState", {}).then((result) => {
+fetchGraphQL(indexerStateDoc, "IndexerState", {
+  offset: state.stateOffset,
+}).then((result) => {
+  console.log("indexerstatelogs", result);
   if (result.status === 200) {
     State.update({
       state: result.body.data.indexer_state,
+      stateCount: result.body.data.indexer_state_aggregate.aggregate.count,
     });
   }
 });
-// function query() {
-//   let response = asyncFetch(
-//     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-//     {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         query: `
-//   query IndexerStatus {
-//   indexer_state(
-//     where: {function_name: {_eq: "${indexer_name}"}}
-//     order_by: {current_block_height: desc}
-//   ) {
-//     current_block_height
-//   }
-//   log_entries(
-//     where: {function_name: {_eq: ${indexer_name}}}
-//     order_by: {timestamp: desc}
-//   ) {
-//     id
-//     message
-//     timestamp
-//   }
-// }
-//     `,
-//       }),
-//     }
-//   );
-//   console.log(response);
-//   if (!response) return;
-//   let state = response.body.data.indexer_state;
-//   let logs = response.body.data.log_entries;
-
-//   State.update({ state, logs });
-// }
 
 const create_table = () => {
+  console.log(state.indexer_res, "RESSS");
   state.indexer_res.forEach((row) => {
     indexer_values_table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
   });
@@ -214,7 +223,34 @@ const create_table = () => {
     state_table += `| ${row.function_name} | ${row.current_block_height} |\n`;
   });
 };
+const onLogsPageChange = (page) => {
+  State.update({ logsOffset: page });
+  fetchGraphQL(logsDoc, "QueryLogs", { offset: page * LIMIT }).then(
+    (result) => {
+      if (result.status === 200) {
+        State.update({
+          logs: result.body.data.indexer_log_entries,
+        });
+      }
+    }
+  );
+  console.log("page clicked logs", page);
+};
+const onIndexerResPageChange = (page) => {
+  State.update({ indexer_resOffset: page });
 
+  fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
+    offset: page * LIMIT,
+  }).then((result) => {
+    if (result.status === 200) {
+      State.update({
+        indexer_res: result.body.data.indexer_storage,
+      });
+    }
+  });
+
+  console.log("page clicked indexer res", page);
+};
 create_table();
 return (
   <>
@@ -231,7 +267,18 @@ return (
         <SmallTitle>Indexed Values</SmallTitle>
 
         {state.indexer_res.length > 0 ? (
-          <Markdown text={indexer_values_table} />
+          <div>
+            <Markdown text={indexer_values_table} />
+            <Widget
+              src="chaotictempest.near/widget/Paginate"
+              props={{
+                siblingCount: 1,
+                totalCount: state.indexer_resCount,
+                pageSize: 20,
+                onPageChange: onIndexerResPageChange,
+              }}
+            />
+          </div>
         ) : (
           <Subheading> No data to show... </Subheading>
         )}
@@ -245,7 +292,18 @@ return (
         )}
         <SmallTitle> Indexer Logs</SmallTitle>
         {state.logs.length > 0 ? (
-          <Markdown text={logs_table} />
+          <div>
+            <Markdown text={logs_table} />
+            <Widget
+              src="chaotictempest.near/widget/Paginate"
+              props={{
+                siblingCount: 1,
+                totalCount: state.logsCount,
+                pageSize: 20,
+                onPageChange: onLogsPageChange,
+              }}
+            />
+          </div>
         ) : (
           <Subheading> No data to show... </Subheading>
         )}
