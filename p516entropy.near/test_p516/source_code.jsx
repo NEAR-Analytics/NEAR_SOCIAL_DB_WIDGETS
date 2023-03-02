@@ -529,29 +529,48 @@ if (!state.interval) {
   });
 }
 
+const buildPostsIndex = () => {
+  return Near.asyncView("devgovgigs.near", "get_posts").then((posts) => {
+    const index = buildIndex(posts);
+    const data = posts.reduce((acc, post) => {
+      acc[post.id] = post;
+      return acc;
+    }, {});
+    return { index, data };
+  });
+};
+
+const getProcessedPostsCached = () => {
+  return useCache(() => buildPostsIndex(), "processedPostsCached");
+};
+
 const computeResults = (term) => {
   const start = new Date().getTime();
-  const indexCached = useCache(
+  const processedPostsCached = useCache(
     () =>
-      Near.asyncView("devgovgigs.near", "get_posts").then((posts) => {
-        const index = buildIndex(posts);
+      buildPostsIndex().then((processedPosts) => {
         // Run query first time posts retrieved
         const query = term;
-        const processedQuery = spellcheckQueryProcessing(query, index);
-        const searchResult = search(processedQuery, index);
+        const processedQuery = spellcheckQueryProcessing(
+          query,
+          processedPosts.index
+        );
+        const searchResult = search(processedQuery, processedPosts.index);
         console.log(processedQuery);
         console.log(searchResult);
         State.update({ searchResult, processedQuery, loading: false });
-        return index;
+        return processedPosts;
       }),
-    "indexCached"
+    "processedPostsCached"
   );
-  if (indexCached) {
+  if (processedPostsCached) {
     // Run query every other time after data retrieved and cached
     const query = term;
-    const processedQuery = spellcheckQueryProcessing(query, indexCached);
-
-    const searchResult = search(processedQuery, indexCached);
+    const processedQuery = spellcheckQueryProcessing(
+      query,
+      processedPostsCached.index
+    );
+    const searchResult = search(processedQuery, processedPostsCached.index);
     console.log(processedQuery);
     console.log(searchResult);
     State.update({ searchResult, processedQuery, loading: false });
@@ -624,7 +643,7 @@ return (
           <div key={postId}>
             <Widget
               src={`devgovgigs.near/widget/gigs-board.components.posts.Post`}
-              props={{ id: postId }}
+              props={{ post: getProcessedPostsCached().data[postId] }}
               key={key}
             />
           </div>
