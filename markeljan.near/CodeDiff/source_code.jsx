@@ -306,13 +306,21 @@ if (props.findUniqueResult)
 
 const lineProps = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
-
+  let conditionalTopMargin = "0";
+  let conditionalBottomMargin = "0";
+  if (lineNumber === 1) {
+    conditionalTopMargin = "-1em";
+  } else if (lineNumber === diffResult.lines.length)
+    conditionalBottomMargin = "-1em";
+  console.log(line);
   let style = {
     display: "block",
     width: "auto",
     background: "#fff",
     marginRight: "-10em",
     marginLeft: "-1em",
+    marginTop: conditionalTopMargin,
+    marginBottom: conditionalBottomMargin,
     paddingLeft: "1em",
     color: "black",
   };
