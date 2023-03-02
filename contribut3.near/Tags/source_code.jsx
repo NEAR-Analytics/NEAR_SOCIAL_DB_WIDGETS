@@ -1,7 +1,7 @@
 const tags = Object.keys(props.tags || {});
 
 return (
-  <div className="text-truncate text-muted" style={{ maxWidth: "100px" }}>
+  <div className="text-truncate text-muted" style={{ maxWidth: "200px" }}>
     {tags.length > 0 ? (
       <>
         {tags.map((tag) => (
