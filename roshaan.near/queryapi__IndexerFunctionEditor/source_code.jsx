@@ -62,7 +62,7 @@ const code = `  <script>
       iframe.style.border = "none"
       iframe.name = "react-app"
     iframe.id = "react-app-iframe"
-    iframe.style.width = '800px';
+    iframe.style.width = '1000px';
     document.body.appendChild(iframe);
   }
 
