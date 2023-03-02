@@ -486,12 +486,6 @@ return (
       >
         {state.activeTab === "indexer-status" && (
           <div>
-            {state.indexers.length > 0 &&
-              (state.selected_indexer != "" ? (
-                <H2>{state.selected_indexer}</H2>
-              ) : (
-                <H2>{state.indexers[0].indexerName}</H2>
-              ))}
             {indexerView(
               state.selected_account ??
                 selected_accountId ??
@@ -517,12 +511,6 @@ return (
         )}
         {state.activeTab === "editor-window" && (
           <div>
-            {state.indexers.length > 0 &&
-              (state.selected_indexer != undefined ? (
-                <H2>{state.selected_indexer}</H2>
-              ) : (
-                <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
-              ))}
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
@@ -541,12 +529,6 @@ return (
         )}
         {state.activeTab === "create-new-indexer" && (
           <div>
-            {state.indexers.length > 0 &&
-              (state.selected_indexer != undefined ? (
-                <H2>{state.selected_indexer}</H2>
-              ) : (
-                <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
-              ))}
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
