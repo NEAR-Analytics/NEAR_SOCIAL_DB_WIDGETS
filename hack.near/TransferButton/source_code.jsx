@@ -7,7 +7,7 @@ if (!accountId) {
 }
 
 State.init({
-  receiver_id: accountId,
+  receiver_id: recipientId,
   amount: state.amount,
 });
 
