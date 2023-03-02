@@ -107,10 +107,7 @@ if (filter) {
   }
 }
 
-const makeMoreItems = () => {
-  State.update({
-    displayCount: state.displayCount + addDisplayCount,
-  });
+const maybeFetchMore = () => {
   if (
     filteredItems.length - state.displayCount < addDisplayCount * 2 &&
     !state.fetchFrom &&
@@ -121,6 +118,15 @@ const makeMoreItems = () => {
       fetchFrom: state.nextFetchFrom,
     });
   }
+};
+
+maybeFetchMore();
+
+const makeMoreItems = () => {
+  State.update({
+    displayCount: state.displayCount + addDisplayCount,
+  });
+  maybeFetchMore();
 };
 
 const loader = (
