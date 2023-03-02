@@ -2,6 +2,7 @@ const accountId = props.accountId;
 const link = props.link ?? true;
 const hideAccountId = props.hideAccountId;
 const hideName = props.hideName;
+const hideImage = props.hideImage;
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
@@ -12,18 +13,25 @@ const tooltip =
 
 let inner = (
   <>
-    <Widget
-      src="mob.near/widget/ProfileImage"
-      props={{
-        style: { width: "1.5em", height: "1.5em", marginRight: "0.1em" },
-        profile,
-        accountId,
-        className: "d-inline-block",
-        imageClassName: "rounded w-100 h-100 align-top",
-      }}
-    />
-    {!hideName && name}
-    {!hideAccountId && <span className="text-muted ms-1">@{accountId}</span>}
+    {!hideImage && (
+      <Widget
+        key="image"
+        src="mob.near/widget/ProfileImage"
+        props={{
+          style: { width: "1.5em", height: "1.5em", marginRight: "0.1em" },
+          profile,
+          accountId,
+          className: "d-inline-block",
+          imageClassName: "rounded w-100 h-100 align-top",
+        }}
+      />
+    )}
+    {!hideName && <span key="name">{name}</span>}
+    {!hideAccountId && (
+      <span key="accountId" className="text-muted ms-1">
+        @{accountId}
+      </span>
+    )}
   </>
 );
 
