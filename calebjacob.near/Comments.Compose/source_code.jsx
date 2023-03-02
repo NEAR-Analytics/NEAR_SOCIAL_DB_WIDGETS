@@ -47,6 +47,7 @@ function composeData() {
         type: "md",
         text: state.text,
         image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
+        item,
       }),
     },
     index: {
