@@ -311,7 +311,7 @@ const lineProps = (lineNumber) => {
     display: "block",
     width: "auto",
     background: "rgb(255 255 255)",
-    marginRight: "-100em",
+    marginRight: "-10em",
     marginLeft: "-1em",
     paddingLeft: "1em",
     color: "black",
