@@ -105,9 +105,9 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
     {
       method: "POST",
-      headers: {
-        "x-hasura-admin-secret": "FgG6BmTJqgbVMRnL63zv",
-      },
+      // headers: {
+      //   "x-hasura-admin-secret": "FgG6BmTJqgbVMRnL63zv",
+      // },
       body: JSON.stringify({
         query: operationsDoc,
         variables: variables,
@@ -175,6 +175,9 @@ fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
 }).then((result) => {
   console.log("result", result);
   if (result.status === 200) {
+    if (result.body?.errors?.length > 0) {
+      return;
+    }
     try {
       State.update({
         indexer_res: result.body.data.indexer_storage,
@@ -192,6 +195,9 @@ fetchGraphQL(logsDoc, "QueryLogs", {
 }).then((result) => {
   console.log("resultquerylogs", result);
   if (result.status === 200) {
+    if (result.body?.errors?.length > 0) {
+      return;
+    }
     try {
       State.update({
         logs: result.body.data.indexer_log_entries,
@@ -209,6 +215,9 @@ fetchGraphQL(indexerStateDoc, "IndexerState", {
 }).then((result) => {
   console.log("indexerstatelogs", result);
   if (result.status === 200) {
+    if (result.body?.errors?.length > 0) {
+      return;
+    }
     try {
       State.update({
         state: result.body.data.indexer_state,
@@ -221,15 +230,14 @@ fetchGraphQL(indexerStateDoc, "IndexerState", {
 });
 
 const create_table = () => {
-  console.log(state.indexer_res, "RESSS");
   state.indexer_res.forEach((row) => {
-    indexer_values_table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
+    indexer_values_table += `| ${row?.function_name} | ${row?.key_name} | ${row?.value} |\n`;
   });
   state.logs.forEach((row) => {
-    logs_table += `| ${row.block_height} | ${row.function_name} | ${row.message} | ${row.timestamp} |\n`;
+    logs_table += `| ${row?.block_height} | ${row?.function_name} | ${row?.message} | ${row?.timestamp} |\n`;
   });
   state.state.forEach((row) => {
-    state_table += `| ${row.function_name} | ${row.current_block_height} |\n`;
+    state_table += `| ${row?.function_name} | ${row?.current_block_height} |\n`;
   });
 };
 const onLogsPageChange = (page) => {
@@ -239,6 +247,9 @@ const onLogsPageChange = (page) => {
     fetchGraphQL(logsDoc, "QueryLogs", { offset: page * LIMIT }).then(
       (result) => {
         if (result.status === 200) {
+          if (result.body?.errors?.length > 0) {
+            return;
+          }
           try {
             State.update({
               logs: result.body.data.indexer_log_entries,
@@ -256,23 +267,22 @@ const onLogsPageChange = (page) => {
 const onIndexerResPageChange = (page) => {
   page = page - 1;
   State.update({ indexer_resOffset: page });
-  try {
-    fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
-      offset: page * LIMIT,
-    }).then((result) => {
-      if (result.status === 200) {
-        try {
-          State.update({
-            indexer_res: result.body.data.indexer_storage,
-          });
-        } catch (e) {
-          console.log("error", e);
-        }
+  fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
+    offset: page * LIMIT,
+  }).then((result) => {
+    if (result.status === 200) {
+      if (result.body?.errors?.length > 0) {
+        return;
       }
-    });
-  } catch (e) {
-    console.log("error:", e);
-  }
+      try {
+        State.update({
+          indexer_res: result.body.data.indexer_storage,
+        });
+      } catch (e) {
+        console.log("error", e);
+      }
+    }
+  });
 
   console.log("page clicked indexer res", page);
 };
