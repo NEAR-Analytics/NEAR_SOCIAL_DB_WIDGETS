@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const recipientId = props.recipientId ?? "global.sputnik-dao.near";
+const receiver_id = props.receiver_id ?? "global.sputnik-dao.near";
 const contractId = props.contractId ?? "";
 
 if (!accountId) {
@@ -7,7 +7,7 @@ if (!accountId) {
 }
 
 State.init({
-  receiver_id: recipientId,
+  receiver_id: state.receiver_id,
   amount: state.amount,
 });
 
@@ -22,7 +22,7 @@ const handleProposal = () => {
       contractName: contractId,
       methodName: "ft_transfer",
       args: {
-        receiver_id: recipientId,
+        receiver_id: state.receiver_id,
         amount: state.amount,
       },
       gas: gas,
