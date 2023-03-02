@@ -5,7 +5,7 @@ return (
   <Markdown
     // className="text-truncate my-2 w-100"
     // style={{ textOverflow: "ellipsis" }}
-    props={{ text: description }}
+    text={description}
   />
 );
 //     {/* {description.length > lengthCutoff */ }
