@@ -123,14 +123,14 @@ const body = (
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
               />
-              <Widget
-                src={`${ownerId}/widget/DescriptionArea`}
-                props={{
-                  description: entity.description || profile.description,
-                }}
-              />
             </>
           ),
+        }}
+      />
+      <Widget
+        src={`${ownerId}/widget/DescriptionArea`}
+        props={{
+          description: entity.description || profile.description,
         }}
       />
     </div>
