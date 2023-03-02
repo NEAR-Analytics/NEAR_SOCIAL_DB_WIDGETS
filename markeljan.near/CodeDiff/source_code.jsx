@@ -310,7 +310,7 @@ const lineProps = (lineNumber) => {
   let style = {
     display: "block",
     width: "auto",
-    background: "rgb(255 255 255)",
+    background: "#fff",
     marginRight: "-10em",
     marginLeft: "-1em",
     paddingLeft: "1em",
