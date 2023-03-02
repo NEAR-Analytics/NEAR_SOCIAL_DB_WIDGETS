@@ -44,7 +44,6 @@ const Card = styled.div`
   background: #fff;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
-  height: 80vh;
 `;
 
 const CardBody = styled.div`
