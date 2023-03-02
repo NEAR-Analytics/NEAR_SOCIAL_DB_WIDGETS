@@ -16,7 +16,7 @@ const handleProposal = () => {
     return;
   }
   const gas = 200000000000000;
-  const deposit = 100000000000000000000000;
+  const deposit = 1;
   Near.call([
     {
       contractName: contractId,
