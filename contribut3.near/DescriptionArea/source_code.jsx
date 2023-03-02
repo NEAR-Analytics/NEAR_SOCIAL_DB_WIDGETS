@@ -19,6 +19,8 @@ return (
       >
         Show less
       </a>
+    ) : description.length < lengthCutoff ? (
+      <></>
     ) : (
       <a
         className="btn fw-bold text-primary ms-2 p-0"
