@@ -128,11 +128,6 @@ return (
       </div>
       <div className="vr mx-3" style={{ height: "90vh" }} />
     </div>
-    <div
-      className="flex-grow-1 position-relative"
-    // style={{ left: "20%", maxWidth: "80%" }}
-    >
-      {tabContent}
-    </div>
+    <div className="flex-grow-1 position-relative">{tabContent}</div>
   </div>
 );
