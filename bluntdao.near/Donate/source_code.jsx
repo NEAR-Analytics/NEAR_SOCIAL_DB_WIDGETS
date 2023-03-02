@@ -1,11 +1,12 @@
+// let amount;
+// amount = props.amount;
+// let yoctoConvert = amount / 1e24;
+let hardcode = 420000000000000000000000; // .6
+// let yoctoConvert = props.amount * 1e24;
+let yoctoConvert = hardcode / 1e24;
+
 const donate = () => {
-  Near.call(
-    "blunt.sputnik-dao.near",
-    "donate",
-    {},
-    "30000000000000",
-    "500000000000000000000000"
-  );
+  Near.call("blunt.sputnik-dao.near", "donate", {}, "30000000000000", hardcode);
 };
 
 return (
@@ -18,6 +19,15 @@ return (
         alt="BluntDAO Donate"
       />
     </div>
-    <button onClick={donate}>Donate 0.5 NEAR to Blunt Treausrey</button>
+    <input
+      className="form-control border-0"
+      type="number"
+      value={props.amount}
+      placeholder="NEAR"
+      onChange={(e) => props.update({ amount: e.target.value })}
+    />
+    <button onClick={donate}>
+      Donate {yoctoConvert} NEAR to Blunt Treausrey
+    </button>
   </div>
 );
