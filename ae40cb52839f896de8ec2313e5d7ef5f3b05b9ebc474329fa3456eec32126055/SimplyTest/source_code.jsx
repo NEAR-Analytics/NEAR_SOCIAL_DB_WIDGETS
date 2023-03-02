@@ -1,1 +1,1 @@
-return <div>Howdy {props.name}</div>;
+return <div>Hello {props.name}</div>;
