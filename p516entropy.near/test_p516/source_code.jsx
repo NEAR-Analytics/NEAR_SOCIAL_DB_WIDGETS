@@ -570,7 +570,7 @@ const updateInput = (term) => {
 };
 
 return (
-  <div>
+  <div class="p-2">
     <div
       className="d-flex"
       style={{
@@ -580,7 +580,7 @@ return (
       <div
         style={{
           position: "absolute",
-          left: "15px",
+          left: "30px",
           display: "flex",
           height: "38px",
           "align-items": "center",
