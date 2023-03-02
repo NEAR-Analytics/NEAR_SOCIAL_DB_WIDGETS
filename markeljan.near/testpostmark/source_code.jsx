@@ -392,9 +392,9 @@ return (
           {postTitle}
           {postExtra}
           {descriptionArea}
-          {buttonsFooter}
         </>
       )}
+      {buttonsFooter}
       {postsList}
     </div>
   </Card>
