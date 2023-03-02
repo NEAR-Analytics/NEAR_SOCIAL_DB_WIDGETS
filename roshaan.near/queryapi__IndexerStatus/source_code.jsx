@@ -1,7 +1,5 @@
 //props indexer_name
 const indexer_name = props.indexer_name;
-console.log("from index status", indexer_name);
-console.log("from index status", indexer_name);
 
 const LIMIT = 5;
 
@@ -106,18 +104,23 @@ State.init({
   logsOffset: 0,
   stateOffset: 0,
 });
-function fetchGraphQL(operationsDoc, operationName, variables) {
-  return asyncFetch(
-    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-    {
-      method: "POST",
-      body: JSON.stringify({
-        query: operationsDoc,
-        variables: variables,
-        operationName: operationName,
-      }),
-    }
-  );
+async function fetchGraphQL(operationsDoc, operationName, variables) {
+  try {
+    const result = await asyncFetch(
+      "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          query: operationsDoc,
+          variables: variables,
+          operationName: operationName,
+        }),
+      }
+    );
+  } catch (e) {
+    console.log("error:", e);
+  }
+  return result.body.data;
 }
 
 const createGraphQLLink = () => {
@@ -173,42 +176,42 @@ const indexerStateDoc = `
   }
 `;
 
-fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
-  offset: state.indexer_resOffset * LIMIT,
-}).then((result) => {
-  console.log("result", result);
-  if (result.status === 200) {
-    State.update({
-      indexer_res: result.body.data.indexer_storage,
-      indexer_resCount:
-        result.body.data.indexer_storage_aggregate.aggregate.count,
-    });
-  }
-});
+// fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
+//   offset: state.indexer_resOffset * LIMIT,
+// }).then((result) => {
+//   console.log("result", result);
+//   if (result.status === 200) {
+//     State.update({
+//       indexer_res: result.body.data.indexer_storage,
+//       indexer_resCount:
+//         result.body.data.indexer_storage_aggregate.aggregate.count,
+//     });
+//   }
+// });
 
-fetchGraphQL(logsDoc, "QueryLogs", {
-  offset: state.logsOffset * LIMIT,
-}).then((result) => {
-  console.log("resultquerylogs", result);
-  if (result.status === 200) {
-    State.update({
-      logs: result.body.data.indexer_log_entries,
-      logsCount: result.body.data.indexer_log_entries_aggregate.aggregate.count,
-    });
-  }
-});
+// fetchGraphQL(logsDoc, "QueryLogs", {
+//   offset: state.logsOffset * LIMIT,
+// }).then((result) => {
+//   console.log("resultquerylogs", result);
+//   if (result.status === 200) {
+//     State.update({
+//       logs: result.body.data.indexer_log_entries,
+//       logsCount: result.body.data.indexer_log_entries_aggregate.aggregate.count,
+//     });
+//   }
+// });
 
-fetchGraphQL(indexerStateDoc, "IndexerState", {
-  offset: state.stateOffset * LIMIT,
-}).then((result) => {
-  console.log("indexerstatelogs", result);
-  if (result.status === 200) {
-    State.update({
-      state: result.body.data.indexer_state,
-      stateCount: result.body.data.indexer_state_aggregate.aggregate.count,
-    });
-  }
-});
+// fetchGraphQL(indexerStateDoc, "IndexerState", {
+//   offset: state.stateOffset * LIMIT,
+// }).then((result) => {
+//   console.log("indexerstatelogs", result);
+//   if (result.status === 200) {
+//     State.update({
+//       state: result.body.data.indexer_state,
+//       stateCount: result.body.data.indexer_state_aggregate.aggregate.count,
+//     });
+//   }
+// });
 
 const create_table = () => {
   console.log(state.indexer_res, "RESSS");
@@ -225,33 +228,39 @@ const create_table = () => {
 const onLogsPageChange = (page) => {
   page = page - 1;
   State.update({ logsOffset: page });
-  fetchGraphQL(logsDoc, "QueryLogs", { offset: page * LIMIT }).then(
-    (result) => {
-      if (result.status === 200) {
-        State.update({
-          logs: result.body.data.indexer_log_entries,
-        });
+  try {
+    fetchGraphQL(logsDoc, "QueryLogs", { offset: page * LIMIT }).then(
+      (result) => {
+        if (result.status === 200) {
+          State.update({
+            logs: result.body.data.indexer_log_entries,
+          });
+        }
       }
-    }
-  );
-  console.log("page clicked logs", page);
+    );
+  } catch (e) {
+    console.log("error:", e);
+  }
 };
 const onIndexerResPageChange = (page) => {
   page = page - 1;
   State.update({ indexer_resOffset: page });
-
-  fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
-    offset: page * LIMIT,
-  }).then((result) => {
-    if (result.status === 200) {
-      State.update({
-        indexer_res: result.body.data.indexer_storage,
-      });
-    }
-  });
-
-  console.log("page clicked indexer res", page);
+  try {
+    fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
+      offset: page * LIMIT,
+    }).then((result) => {
+      if (result.status === 200) {
+        State.update({
+          indexer_res: result.body.data.indexer_storage,
+        });
+      }
+    });
+  } catch (e) {
+    console.log("error:", e);
+  }
 };
+onLogsPageChange(0);
+onIndexerResPageChange(0);
 create_table();
 return (
   <>
