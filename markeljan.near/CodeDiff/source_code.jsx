@@ -332,8 +332,7 @@ const lineProps = (lineNumber) => {
 };
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
-console.log(codeText);
-console.log(lineProps(20));
+
 return (
   <div style={{ background: "#fff" }}>
     <Markdown
@@ -347,7 +346,6 @@ ${codeText}
         showLineNumbers: true,
         lineNumberStyle: { display: !props.showLineNumber && "none" },
       }}
-      style={{ background: "#fgh" }}
     />
   </div>
 );
