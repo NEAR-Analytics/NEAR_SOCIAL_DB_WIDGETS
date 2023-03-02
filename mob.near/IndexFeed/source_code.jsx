@@ -142,6 +142,7 @@ const loader = (
 
 const fetchMore =
   props.manual &&
+  !props.hideFetchMore &&
   (state.fetchFrom && filteredItems.length < state.displayCount
     ? loader
     : state.displayCount < filteredItems.length && (
