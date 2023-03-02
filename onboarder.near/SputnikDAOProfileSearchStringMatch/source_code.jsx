@@ -36,18 +36,20 @@ const computeResults = (term) => {
   };
 
   Object.entries(profiles).forEach(([accountId, data]) => {
+    // const accountIdScore = computeScore(accountId);
     const accountIdScore = computeScore(accountId);
+    // console.log(type(accountID));
+
     const name = data.profile.name || "";
     const tags = Object.keys(data.profile.tags || {}).slice(0, 10);
-    const nameScore = computeScore(name);
+    // const nameScore = computeScore(name);
     const tagsScore = Math.min(
       20,
       tags.map(computeScore).reduce((s, v) => s + v, 0)
     );
     let score;
-    // score = tagsScore;
+    // score = tagsScore;     // score = nameScore;
     score = accountIdScore;
-    // score = nameScore;
 
     const finalScore = score / MaxScore;
     if (finalScore > 0) {
@@ -68,6 +70,8 @@ const computeResults = (term) => {
   }
 };
 
+let hardCodeSearch = "sputnik-dao.near";
+
 return (
   <>
     <div className="input-group">
@@ -75,7 +79,7 @@ return (
         type="text"
         className={`form-control ${state.term ? "border-end-0" : ""}`}
         value={state.term ?? ""}
-        onChange={(e) => computeResults(e.target.value)}
+        onChange={(e) => computeResults(hardCodeSearch)}
         // computeResults("sputnik-dao.near")
         placeholder="sputnik-dao.near"
       />
