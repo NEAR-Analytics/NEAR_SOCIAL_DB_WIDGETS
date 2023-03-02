@@ -1,6 +1,7 @@
 //props indexer_name
 const indexer_name = props.indexer_name;
 console.log("from index status", indexer_name);
+console.log("from index status", indexer_name);
 const accountId = props.accountId || context.accountId;
 const H2 = styled.h2`
   font-size: 19px;
@@ -87,7 +88,7 @@ if (!indexer_name) return "missing indexer_name";
 const state_table = "| Function Name | Current Block Height |\n| --- | --- |\n";
 
 const logs_table =
-  "| Function Name | Id | Message | Timestamp |\n| --- | --- | --- | --- |\n";
+  "| Block Height | Function Name | Id | Message | Timestamp |\n| --- | --- | --- | --- | --- |\n";
 const indexer_values_table =
   "| Function Name | Key Name | Value |\n| --- | --- | --- |\n";
 
@@ -113,9 +114,9 @@ const createGraphQLLink = () => {
   return queryLink.replaceAll("function_placeholder", indexer_name);
 };
 
-const operationsDoc = `
-  query MyQuery {
-    indexer_storage(where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+const IndexerStorageDoc = `
+  query IndexerStorage {
+    indexer_storage(limit: 20,where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
       function_name
       key_name
       value
@@ -123,8 +124,27 @@ const operationsDoc = `
   }
 `;
 
-fetchGraphQL(operationsDoc, "MyQuery", {}).then((result) => {
-  console.log(result, "result");
+const logsDoc = `
+  query QueryLogs {
+    indexer_log_entries(limit: 20, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+      block_height
+      id
+      function_name
+      message
+      timestamp
+    }
+  }
+`;
+
+const indexerStateDoc = `
+  query IndexerState {
+    indexer_state(limit: 20, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+      function_name
+      current_block_height
+    }
+  }
+`;
+fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {}).then((result) => {
   if (result.status === 200) {
     State.update({
       indexer_res: result.body.data.indexer_storage,
@@ -132,46 +152,69 @@ fetchGraphQL(operationsDoc, "MyQuery", {}).then((result) => {
   }
 });
 
-function query() {
-  let response = asyncFetch(
-    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `
-  query IndexerStatus {
-  indexer_state(
-    where: {function_name: {_eq: "${indexer_name}"}}
-    order_by: {current_block_height: desc}
-  ) {
-    current_block_height
+fetchGraphQL(logsDoc, "QueryLogs", {}).then((result) => {
+  if (result.status === 200) {
+    State.update({
+      logs: result.body.data.indexer_log_entries,
+    });
   }
-  log_entries(
-    where: {function_name: {_eq: ${indexer_name}}}
-    order_by: {timestamp: desc}
-  ) {
-    id
-    message
-    timestamp
+});
+
+fetchGraphQL(indexerStateDoc, "IndexerState", {}).then((result) => {
+  if (result.status === 200) {
+    State.update({
+      state: result.body.data.indexer_state,
+    });
   }
-}
-    `,
-      }),
-    }
-  );
-  console.log(response);
-  if (!response) return;
-  let state = response.body.data.indexer_state;
-  let logs = response.body.data.log_entries;
-  State.update({ state, logs });
-}
+});
+// function query() {
+//   let response = asyncFetch(
+//     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+//     {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         query: `
+//   query IndexerStatus {
+//   indexer_state(
+//     where: {function_name: {_eq: "${indexer_name}"}}
+//     order_by: {current_block_height: desc}
+//   ) {
+//     current_block_height
+//   }
+//   log_entries(
+//     where: {function_name: {_eq: ${indexer_name}}}
+//     order_by: {timestamp: desc}
+//   ) {
+//     id
+//     message
+//     timestamp
+//   }
+// }
+//     `,
+//       }),
+//     }
+//   );
+//   console.log(response);
+//   if (!response) return;
+//   let state = response.body.data.indexer_state;
+//   let logs = response.body.data.log_entries;
+
+//   State.update({ state, logs });
+// }
 
 const create_table = () => {
   state.indexer_res.forEach((row) => {
     indexer_values_table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
   });
+  state.logs.forEach((row) => {
+    logs_table += `| ${row.block_height} | ${row.function_name} | ${row.id} | ${row.message} | ${row.timestamp} |\n`;
+  });
+  state.state.forEach((row) => {
+    state_table += `| ${row.function_name} | ${row.current_block_height} |\n`;
+  });
 };
+
 create_table();
 return (
   <>
