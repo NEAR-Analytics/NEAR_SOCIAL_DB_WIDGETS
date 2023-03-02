@@ -1,14 +1,30 @@
 const accountId = context.accountId;
+const moderatorAccount = props?.moderatorAccount || "adminalpha.near";
 
 if (context.loading || !accountId) return <></>;
 
+const filterUsersRaw = Social.get(
+  `${moderatorAccount}/moderate/users`, //TODO
+  "optimistic",
+  {
+    subscribe: true,
+  }
+);
+
+if (filterUsers === null) {
+  // haven't loaded filter list yet, return early
+  return <></>;
+}
+
+const filterUsers = filterUsersRaw ? JSON.parse(filterUsersRaw) : [];
 const notificationFeedSrc = "calebjacob.near/widget/NotificationsPage";
 const lastBlockHeight = Storage.get("lastBlockHeight", notificationFeedSrc);
-const notifications = Social.index("notify", accountId, {
+let notifications = Social.index("notify", accountId, {
   order: "asc",
   from: (lastBlockHeight ?? 0) + 1,
   subscribe: true,
 });
+notifications = notifications.filter((i) => !filterUsers.includes(i.accountId));
 const notificationsCount = notifications.length || 0;
 
 const Button = styled.a`
