@@ -185,24 +185,22 @@ const header = (
           />
         </div>
 
-        <div class="col d-flex justify-content-end">
-          {compareSnapshot.timestamp && (
-            <>
-              <div class="d-flex">
-                {readableDate(compareSnapshot.timestamp / 1000000)}
-              </div>
-              <div class="d-flex mx-2">
-                <i class="bi bi-file-earmark-diff" />
-              </div>
-            </>
-          )}
-          {editControl}
-          {timestamp}
-          <Widget
-            src={`markeljan.near/widget/testwidgetmark`}
-            props={{ id: postId, timestamp: snapshot.timestamp }}
-          />
-          {shareButton}
+        <div class="col-5">
+          <div class="d-flex justify-content-end">
+            {editControl}
+            {timestamp}
+            <div>
+              <Widget
+                src={`markeljan.near/widget/testwidgetmark`}
+                props={{
+                  id: postId,
+                  timestamp: snapshot.timestamp,
+                  post: post,
+                }}
+              />
+            </div>
+            {shareButton}
+          </div>
         </div>
       </div>
     </small>
@@ -493,7 +491,6 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
     {header}
-
     <div className="card-body">
       {postLabels}
       {compareWith ? (
