@@ -212,10 +212,39 @@ return (
           </select>
         </div>
         <div>
-          <i
-            className="bi bi-x-lg"
-            style="position: absolute; right: 2rem; top: 2rem; cursor: pointer;"
-          ></i>
+          <a
+            href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "create" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            style={
+              state.hoveringElement == "create"
+                ? {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                    textDecoration: "none",
+                  }
+                : {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+            }
+          >
+            View Schedules
+          </a>
         </div>
       </div>
     </div>
