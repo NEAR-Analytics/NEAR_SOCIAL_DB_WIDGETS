@@ -34,17 +34,22 @@ const ShowToggle = styled.a`
   }
 `;
 
+const TextArea = styled.div`
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  white-space: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
+`;
+
 return (
   <div className="d-flex flex-row justify-content-start align-items-start">
-    <div
-      className={`position-relative text-truncate flex-grow-1 ${state.showAll ? "text-wrap" : ""
-        }`}
-    >
+    <TextArea wrap={state.showAll}>
       <Markdown text={description} />
       <Elipsiss hidden={state.showAll || description.length < 100}>
         ...
       </Elipsiss>
-    </div>
+    </TextArea>
     <ShowToggle
       hidden={description.length < 100}
       onClick={() => State.update({ showAll: !state.showAll })}
