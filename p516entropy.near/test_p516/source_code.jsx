@@ -592,6 +592,13 @@ const updateInput = (term) => {
   });
 };
 
+const getSearchResultsKeywordsFor = (postId) => {
+  const index = getProcessedPostsCached().index;
+  return state.processedQuery.filter((queryWord) => {
+    return index[queryWord].includes(postId);
+  });
+};
+
 return (
   <div class="p-2">
     <div
@@ -649,6 +656,7 @@ return (
               src={`p516entropy.near/widget/SearchResultPost`}
               props={{
                 post: getProcessedPostsCached().data[postId],
+                seachKeywords: getSearchResultsKeywordsFor(postId),
               }}
               key={key}
             />
