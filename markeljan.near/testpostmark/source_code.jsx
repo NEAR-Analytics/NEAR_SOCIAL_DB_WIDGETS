@@ -184,7 +184,7 @@ const header = (
             props={{ accountId: post.author_id }}
           />
         </div>
-        <div class="col d-flex text-right">
+        <div class="col d-flex align-self-end">
           {compareSnapshot.timestamp && (
             <div class="col border">
               {readableDate(compareSnapshot.timestamp / 1000000).substring(4)}
