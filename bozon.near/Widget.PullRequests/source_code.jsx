@@ -17,7 +17,7 @@ return (
           src="bozon.near/widget/Widget.CreatePullRequest"
           props={{
             onClose: () => State.update({ creation: false }),
-            props.widgetPath
+            widgetPath: props.widgetPath,
           }}
         />
       </div>
