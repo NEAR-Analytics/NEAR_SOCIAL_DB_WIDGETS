@@ -646,12 +646,9 @@ return (
         return (
           <div key={postId}>
             <Widget
-              src={`devgovgigs.near/widget/gigs-board.components.posts.Post`}
+              src={`p516entropy.near/widget/SearchResultPost`}
               props={{
                 post: getProcessedPostsCached().data[postId],
-                defaultExpanded: false,
-                expandable: false,
-                isPreview: true,
               }}
               key={key}
             />
