@@ -187,10 +187,10 @@ const header = (
 
         <div class="d-flex justify-content-end  border col-8">
           {compareSnapshot.timestamp && (
-            <>
+            <div>
               {readableDate(compareSnapshot.timestamp / 1000000).substring(4)}
               <i class="bi bi-file-earmark-diff" />
-            </>
+            </div>
           )}
           {editControl}
           {timestamp}
