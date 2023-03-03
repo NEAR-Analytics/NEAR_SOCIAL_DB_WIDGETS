@@ -675,7 +675,7 @@ return (
       >
         {state.shownSearchResults.map((postId) => {
           return (
-            <div key={postId}>
+            <div key={postId} style={{ "min-height": "10em" }}>
               <Widget
                 src={`p516entropy.near/widget/SearchResultPost`}
                 props={{
