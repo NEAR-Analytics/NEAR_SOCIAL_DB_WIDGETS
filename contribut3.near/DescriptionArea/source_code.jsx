@@ -14,6 +14,7 @@ const Elipsiss = styled.b`
 
 const ShowToggle = styled.a`
   --blue: RGBA(13, 110, 253, 1);
+  display: ${({ hidden }) => (hidden ? "none" : "inline-block")};
   cursor: pointer;
   font-weight: bold;
   color: var(--blue);
@@ -42,7 +43,10 @@ return (
       <Markdown text={description} />
       <Elipsiss hidden={state.showAll}>...</Elipsiss>
     </div>
-    <ShowToggle onClick={() => State.update({ showAll: !state.showAll })}>
+    <ShowToggle
+      hidden={description.length < 100}
+      onClick={() => State.update({ showAll: !state.showAll })}
+    >
       {state.showAll ? "Show less" : "Read more"}
     </ShowToggle>
   </div>
