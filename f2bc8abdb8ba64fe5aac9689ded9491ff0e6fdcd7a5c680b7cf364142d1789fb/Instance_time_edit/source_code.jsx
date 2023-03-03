@@ -267,7 +267,7 @@ return (
             width: "50%",
             display: "block",
           }}
-          className="mb-2"
+          className="mb-4"
           name="zones"
           id="zones"
           value={state._time_zone}
