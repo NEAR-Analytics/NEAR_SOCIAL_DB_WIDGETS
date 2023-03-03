@@ -244,7 +244,7 @@ return (
       </span>
     </div>
     {state.sectionShown == "timeZoneSelector" ? (
-      <div className="mb-3">
+      <div className="pb-4">
         <label
           for="pollTitle"
           style={{
@@ -352,7 +352,7 @@ return (
         </div>
       </div>
     ) : (
-      <div className="align-items-center pt-3 mb-3">
+      <div className="align-items-center pt-3 pb-4">
         <Widget
           src={`${widgetOwner}/widget/Instance_time_setting`}
           props={{
