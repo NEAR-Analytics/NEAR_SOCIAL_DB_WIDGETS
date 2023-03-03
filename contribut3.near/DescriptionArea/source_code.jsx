@@ -42,8 +42,15 @@ const TextArea = styled.div`
   white-space: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
 `;
 
+const Description = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
 return (
-  <div className="d-flex flex-row justify-content-start align-items-start">
+  <Description>
     <TextArea wrap={state.showAll}>
       <Markdown text={description} />
       <Elipsiss hidden={state.showAll || description.length < 100}>
@@ -56,5 +63,5 @@ return (
     >
       {state.showAll ? "Show less" : "Read more"}
     </ShowToggle>
-  </div>
+  </Description>
 );
