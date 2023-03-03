@@ -190,16 +190,14 @@ const header = (
             <i class="bi bi-file-earmark-diff"></i>
           </div>
         )}
-        <div class="col-5">
-          <div class="d-flex justify-content-end">
-            {editControl}
-            {timestamp}
-            <Widget
-              src={`markeljan.near/widget/testwidgetmark`}
-              props={{ id: postId, timestamp: snapshot.timestamp }}
-            />
-            {shareButton}
-          </div>
+        <div class="d-flex justify-content-end col-5">
+          {editControl}
+          {timestamp}
+          <Widget
+            src={`markeljan.near/widget/testwidgetmark`}
+            props={{ id: postId, timestamp: snapshot.timestamp }}
+          />
+          {shareButton}
         </div>
       </div>
     </small>
