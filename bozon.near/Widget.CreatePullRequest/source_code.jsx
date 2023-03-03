@@ -9,8 +9,6 @@ const widgetCode = Social.get(props.widgetPath);
 
 if (widgetCode === null) return "loading...";
 
-console.log(Storage.get("props"));
-
 State.init({
   code: widgetCode,
   memo: "",
@@ -78,7 +76,7 @@ return (
         defaultValue={widgetCode}
         onBlur={(e) => {
           State.update({
-            widgetCode: e.target.value,
+            code: e.target.value,
           });
         }}
       />
@@ -108,7 +106,7 @@ return (
 
     <div>
       <div className="border rounded-4 p-3 pb-1">
-        <div className="mb-3 d-flex flex-row justify-content-between">
+        <div className="d-flex flex-row justify-content-between">
           <div className="flex-grow-1 text-truncate">
             <a
               className="text-dark text-decoration-none text-truncate"
@@ -123,7 +121,7 @@ return (
           <div className="text-muted">{getDatastringFromBlockHeight()}</div>
         </div>
 
-        <div className="mb-3">{state.memo}</div>
+        {state.memo && <div className="m-3">{state.memo}</div>}
 
         <Tabs>
           <TabsButton
