@@ -13,21 +13,22 @@ const Elipsiss = styled.b`
 `;
 
 const ShowToggle = styled.a`
+  --blue: RGBA(13, 110, 253, 1);
   cursor: pointer;
   font-weight: bold;
-  color: RGBA(13, 110, 253, 1);
+  color: var(--blue);
   text-decoration: none;
   margin-left: 0.5em;
   padding: 0;
   white-space: nowrap;
 
   &:hover {
-    color: RGBA(13, 110, 253, 1);
+    color: var(--blue);
     text-decoration: none;
   }
 
   &:visited {
-    color: RGBA(13, 110, 253, 1);
+    color: var(--blue);
     text-decoration: none;
   }
 `;
