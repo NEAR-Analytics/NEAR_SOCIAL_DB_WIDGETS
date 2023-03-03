@@ -1,6 +1,7 @@
 /*
 
-props.isOwner: bool
+isOwner: bool,
+widgetPath: string,
 
 */
 
@@ -16,6 +17,7 @@ return (
           src="bozon.near/widget/Widget.CreatePullRequest"
           props={{
             onClose: () => State.update({ creation: false }),
+            props.widgetPath
           }}
         />
       </div>
