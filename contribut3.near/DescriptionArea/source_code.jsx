@@ -8,7 +8,7 @@ State.init({
 return (
   <div className="d-flex flex-row justify-content-start align-items-start">
     <div
-      className={`text-truncate flex-grow-1 ${state.showAll ? "text-wrap" : ""
+      className={`position-relative text-truncate flex-grow-1 ${state.showAll ? "text-wrap" : ""
         }`}
     >
       <Markdown
