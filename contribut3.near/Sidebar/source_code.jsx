@@ -87,7 +87,7 @@ return (
       icon: "bi-info-square",
       id: "about",
     })}
-    <a className="nav-link mt-2 rounded-3 p-2" href="https://near.social/#/">
+    <a className="nav-link mt-2 rounded-3 p-2" href="/#/">
       <i className="bi-escape" />
       <span>Exit application</span>
     </a>
