@@ -3,7 +3,6 @@ const accountId = context.accountId || "self.social.near";
 const isKnownUser = !!context.accountId;
 const fileName = `${accountId}.svg`;
 const NFT_CONTRACT = "social-qr-nft.near";
-const NS_PROFILE_PAGE_URL = "https://near.social/#/mob.near/widget/ProfilePage";
 const SVG_CONTENT_TYPE = "image/svg+xml";
 
 const NEAR_LOGO = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="62" fill="none" viewBox="0 0 50 62" >
@@ -34,7 +33,7 @@ const bgPatterns = {
   "Future is NEAR": FUTURE_IS_NEAR,
 };
 
-const qrPayload = `${NS_PROFILE_PAGE_URL}?accountId=${accountId}`;
+const qrPayload = `https://${accountId.split("near")[0]}near.social/`;
 
 const getNftUrl = (cid) => `https://${cid}.ipfs.nftstorage.link`;
 
