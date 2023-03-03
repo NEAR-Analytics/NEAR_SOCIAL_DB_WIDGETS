@@ -12,9 +12,7 @@ const accountId = props.accountId ?? "";
 const kind = props.kind ? [{ name: props.kind }] : [];
 const startDate = props.startDate ?? createDate();
 const forbiddenIds = new Set(
-  (Near.view(ownerId, "get_entities", {}, "final", true) ?? []).map(
-    ([accountId]) => accountId
-  )
+  Object.keys(Near.view(ownerId, "get_entities", {}, "final", true) ?? {})
 );
 
 State.init({
@@ -147,7 +145,7 @@ return (
     <div className="d-flex flex-row justify-content-between">
       <a
         className="btn btn-outline-secondary"
-        href={`https://near.social/#/${ownerId}/widget/Index?tab=home`}
+        href={`/#/${ownerId}/widget/Index?tab=home`}
         onClick={() => props.update({ tab: "home" })}
       >
         Cancel
