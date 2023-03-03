@@ -193,8 +193,6 @@ const header = (
               <Widget
                 src={`markeljan.near/widget/testwidgetmark`}
                 props={{
-                  id: postId,
-                  timestamp: snapshot.timestamp,
                   post: post,
                 }}
               />
