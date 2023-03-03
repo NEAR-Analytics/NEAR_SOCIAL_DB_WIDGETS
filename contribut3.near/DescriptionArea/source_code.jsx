@@ -18,6 +18,16 @@ return (
           // : description.substring(0, lengthCutoff) + "..."
         }
       />
+      {state.showAll ? (
+        <></>
+      ) : (
+        <span
+          className="position-absolute right-0"
+          style={{ backgroundColor: "white" }}
+        >
+          ...
+        </span>
+      )}
     </div>
     {state.showAll && description.length > lengthCutoff ? (
       <a
