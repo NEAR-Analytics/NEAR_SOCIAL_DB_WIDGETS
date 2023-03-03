@@ -5,6 +5,14 @@ State.init({
   showAll: description.length <= lengthCutoff,
 });
 
+const elipsiss = styled.b`
+  display: ${({ hidden }) => (hidden ? "none" : "inline-block")};
+  background-color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
 return (
   <div className="d-flex flex-row justify-content-start align-items-start">
     <div
