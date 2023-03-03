@@ -1,4 +1,4 @@
-let greeting = "Have a great day";
+State.init({ SwapMessage: "", SwapAmount: "" });
 const Button = styled.button`
 	/* Adapt the colors based on primary prop */
 	background: ${(props) => (props.primary ? "purple" : "white")};
@@ -105,6 +105,19 @@ const Input = styled.input`
 	border: none;
 `;
 
+function onButtonClick() {
+  if (state.SwapAmount == "") {
+    State.update({
+      SwapMessage: "Please enter an amount",
+    });
+    return;
+  }
+
+  State.update({
+    SwapMessage: "Swap Successful!",
+  });
+}
+
 return (
   <>
     <Div>
@@ -130,12 +143,19 @@ return (
         <Input
           type="number"
           placeholder="Amount"
-          onChange={(e) => setAmount(+e.target.value)}
+          onChange={(target) => {
+            State.update({
+              SwapAmount: target.value,
+            });
+          }}
           class="bg-white/10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-hover"
         />
-
-        <Button primary>Swap</Button>
+        <Button primary onClick={onButtonClick}>
+          Swap
+        </Button>
+        {state.SwapMessage}
       </GlassPanel>
+      Demo
     </Div>
   </>
 );
