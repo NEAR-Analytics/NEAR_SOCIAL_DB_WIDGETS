@@ -41,7 +41,9 @@ return (
         }`}
     >
       <Markdown text={description} />
-      <Elipsiss hidden={state.showAll}>...</Elipsiss>
+      <Elipsiss hidden={state.showAll || description.length < 100}>
+        ...
+      </Elipsiss>
     </div>
     <ShowToggle
       hidden={description.length < 100}
