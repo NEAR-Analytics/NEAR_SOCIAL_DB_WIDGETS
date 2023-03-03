@@ -107,17 +107,6 @@ const fillIcons = {
   Reply: "bi-reply-fill",
 };
 
-// Trigger saving this widget.
-
-const borders = {
-  Idea: "border-secondary",
-  Comment: "border-secondary",
-  Submission: "border-secondary",
-  Attestation: "border-secondary",
-  Sponsorship: "border-secondary",
-  Github: "border-secondary",
-};
-
 const containsLike = post.likes.find((l) => l.author_id == context.accountId);
 const likeBtnClass = containsLike ? fillIcons.Like : emptyIcons.Like;
 const onLike = () => {
@@ -273,7 +262,7 @@ const descriptionArea = (
 );
 
 return (
-  <div className={`card my-2 ${borders[snapshot.post_type]}`}>
+  <div className={`card my-2`}>
     {header}
     <div className="card-body">
       {postLabels}
