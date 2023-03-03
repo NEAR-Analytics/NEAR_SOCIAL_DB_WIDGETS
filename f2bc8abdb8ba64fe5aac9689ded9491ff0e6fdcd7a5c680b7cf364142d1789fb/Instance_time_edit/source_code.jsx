@@ -175,32 +175,35 @@ return (
   >
     <div className="w-100 d-flex flex-row justify-content-between align-items-center">
       <div>
-        <select
-          style={comboBox}
-          name="zones"
-          id="zones"
-          value={state._time_zone}
-          onChange={(e) => {
-            State.update({ _time_zone: e.target.value });
+        <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
+          {tabs.NEW_SCHEDULE.text}
+        </h2>
+        <i
+          className="bi bi-x-lg"
+          style={{
+            right: "2rem",
+            top: "2rem",
+            cursor: "pointer",
           }}
-        >
-          {time_zones.map((zone) => (
-            <option value={zone}>{zone}</option>
-          ))}
-        </select>
+          onClick={() => {
+            updateHandlerState({ showAbortScheduleCreation: true });
+          }}
+        ></i>
       </div>
-      <i
-        className="bi bi-x-lg"
-        style={{
-          right: "2rem",
-          top: "2rem",
-          cursor: "pointer",
-        }}
-        onClick={() => {
-          updateHandlerState({ showAbortScheduleCreation: true });
-        }}
-      ></i>
     </div>
+    <select
+      style={comboBox}
+      name="zones"
+      id="zones"
+      value={state._time_zone}
+      onChange={(e) => {
+        State.update({ _time_zone: e.target.value });
+      }}
+    >
+      {time_zones.map((zone) => (
+        <option value={zone}>{zone}</option>
+      ))}
+    </select>
     <div className="align-items-center pt-3">
       <Widget
         src={`${widgetOwner}/widget/Instance_time_setting`}
