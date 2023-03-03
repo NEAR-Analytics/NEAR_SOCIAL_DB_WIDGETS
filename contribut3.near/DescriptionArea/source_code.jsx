@@ -21,12 +21,12 @@ return (
       {state.showAll ? (
         <></>
       ) : (
-        <span
-          className="position-absolute right-0"
+        <b
+          className="d-inline-block position-absolute end-0 top-0 px-1"
           style={{ backgroundColor: "white" }}
         >
           ...
-        </span>
+        </b>
       )}
     </div>
     {state.showAll && description.length > lengthCutoff ? (
