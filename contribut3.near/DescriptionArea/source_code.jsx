@@ -22,12 +22,12 @@ const ShowToggle = styled.a`
   white-space: nowrap;
 
   &:hover {
-    color: unset;
+    color: RGBA(13, 110, 253, 1);
     text-decoration: none;
   }
 
   &:visited {
-    color: unset;
+    color: RGBA(13, 110, 253, 1);
     text-decoration: none;
   }
 `;
