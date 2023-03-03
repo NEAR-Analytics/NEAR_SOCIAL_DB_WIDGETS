@@ -178,27 +178,28 @@ const header = (
   <div className="card-header" key="header">
     <small class="text-muted">
       <div class="row justify-content-between">
-        <div class="col-4">
+        <div class="col-4 border">
           <Widget
             src={`neardevgov.near/widget/ProfileLine`}
             props={{ accountId: post.author_id }}
           />
         </div>
-
-        <div class="d-flex justify-content-end  border col-8">
+        <div class="col d-flex justify-content-end">
           {compareSnapshot.timestamp && (
-            <div>
+            <div class="col border">
               {readableDate(compareSnapshot.timestamp / 1000000).substring(4)}
-              <i class="bi bi-file-earmark-diff" />
+              <i class="bi bi-file-earmark-diff"></i>
             </div>
           )}
-          {editControl}
-          {timestamp}
-          <Widget
-            src={`markeljan.near/widget/testwidgetmark`}
-            props={{ id: postId, timestamp: snapshot.timestamp }}
-          />
-          {shareButton}
+          <div class="d-flex justify-content-end border">
+            {editControl}
+            {timestamp}
+            <Widget
+              src={`markeljan.near/widget/testwidgetmark`}
+              props={{ id: postId, timestamp: snapshot.timestamp }}
+            />
+            {shareButton}
+          </div>
         </div>
       </div>
     </small>
