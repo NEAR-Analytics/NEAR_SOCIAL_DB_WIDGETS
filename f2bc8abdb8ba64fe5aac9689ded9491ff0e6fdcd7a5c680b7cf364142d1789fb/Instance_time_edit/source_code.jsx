@@ -164,7 +164,15 @@ const set_schedule = () => {
   State.update({ _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC" });
 };
 return (
-  <div>
+  <div
+    className="px-4"
+    style={{
+      backgroundColor: "white",
+      borderRadius: "28px",
+      margin: "2rem auto 0px",
+      width: "60%",
+    }}
+  >
     <div className="w-100 d-flex flex-row justify-content-between align-items-center">
       <div>
         <select
@@ -184,7 +192,6 @@ return (
       <i
         className="bi bi-x-lg"
         style={{
-          position: "absolute",
           right: "2rem",
           top: "2rem",
           cursor: "pointer",
