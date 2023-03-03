@@ -441,7 +441,8 @@ const fillDictionaryWith = (dict, text, id) => {
   let word = "";
   for (let i = 0; i < text.length; i++) {
     const char = text.charAt(i);
-    if (/\w/.test(char)) {
+    const nextChar = text.charAt(i + 1);
+    if (/\w/.test(char) || (char === "." && /\w/.test(nextChar))) {
       word += char.toLowerCase();
     } else if (word.length > 0) {
       const processedWord = applySynonym(stemmer(word));
@@ -492,7 +493,7 @@ const sortSearchResult = (searchResult) => {
     if (freqDiff !== 0) {
       return freqDiff; // if they have different frequency, sort by frequency
     } else {
-      return b - a; // if they have the same frequency, sort by value
+      return 0; // if they have the same frequency, leave as it is. Will be sorted by search term, by date
     }
   }
 
@@ -505,7 +506,11 @@ const sortSearchResult = (searchResult) => {
 
 const search = (processedQueryArray, index) => {
   return sortSearchResult(
-    processedQueryArray.flatMap((queryWord) => index[queryWord])
+    processedQueryArray.flatMap((queryWord) => {
+      const termSearchRes = index[queryWord].reverse();
+      const termSortedSearchRes = sortSearchResult(termSearchRes);
+      return termSortedSearchRes;
+    })
   );
 };
 
@@ -519,7 +524,6 @@ if (!state.interval) {
   setInterval(() => {
     const currentInput = Storage.privateGet("term");
     if (currentInput !== termStorage) {
-      console.log("run computation");
       termStorage = currentInput;
       computeResults(termStorage);
     }
@@ -643,7 +647,12 @@ return (
           <div key={postId}>
             <Widget
               src={`devgovgigs.near/widget/gigs-board.components.posts.Post`}
-              props={{ post: getProcessedPostsCached().data[postId] }}
+              props={{
+                post: getProcessedPostsCached().data[postId],
+                defaultExpanded: false,
+                expandable: false,
+                isPreview: true,
+              }}
               key={key}
             />
           </div>
