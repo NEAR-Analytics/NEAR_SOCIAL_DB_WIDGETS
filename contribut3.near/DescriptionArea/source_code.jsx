@@ -16,6 +16,10 @@ const ShowToggle = styled.a`
   cursor: pointer;
   font-weight: bold;
   color: RGBA(13, 110, 253, 1);
+  underline: none;
+  margin-left: 0.5em;
+  padding: 0;
+  white-space: nowrap;
 `;
 
 return (
