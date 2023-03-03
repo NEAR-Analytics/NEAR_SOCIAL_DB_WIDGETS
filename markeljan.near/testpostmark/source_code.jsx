@@ -495,8 +495,7 @@ return (
         <Widget
           src="markeljan.near/widget/CodeDiff"
           props={{
-            currentCode:
-              addTitleMarkdown(snapshot.name) + "" + snapshot.description,
+            currentCode: addTitleMarkdown(snapshot.name) + snapshot.description,
             prevCode:
               addTitleMarkdown(snapshot.name) + compareSnapshot.description,
           }}
