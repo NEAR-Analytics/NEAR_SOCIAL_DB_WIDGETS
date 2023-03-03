@@ -8,6 +8,7 @@ const Elipsiss = styled.b`
   display: ${({ hidden }) => (hidden ? "none" : "inline-block")};
   background-color: white;
   position: absolute;
+  padding: 0 0.5em;
   right: 0;
   top: 0;
 `;
