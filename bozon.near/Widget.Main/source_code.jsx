@@ -105,7 +105,10 @@ return (
           display: state.tab == "pullRequests" ? "block" : "none",
         }}
       >
-        <Widget src="bozon.near/widget/Widget.PullRequests" />
+        <Widget
+          src="bozon.near/widget/Widget.PullRequests"
+          props={{ widgetPath: props.widgetPath }}
+        />
       </div>
 
       <div
