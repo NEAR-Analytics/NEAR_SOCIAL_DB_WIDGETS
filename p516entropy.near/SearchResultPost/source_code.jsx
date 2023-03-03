@@ -98,12 +98,12 @@ const header = (
   </div>
 );
 
-const headerSearch = props.seachKeywords ? (
-  <div className="card-header" key="header-search">
+const footerSearch = props.seachKeywords ? (
+  <div className="card-footer" key="footer-search">
     <small class="text-muted">{postSearchKeywords}</small>
   </div>
 ) : (
-  <div key="header-search"></div>
+  <div key="footer-search"></div>
 );
 
 const emptyIcons = {
@@ -285,7 +285,6 @@ const descriptionArea = (
 return (
   <div className={`card my-2`}>
     {header}
-    {headerSearch}
     <div className="card-body">
       {postLabels}
       {postTitle}
@@ -293,5 +292,6 @@ return (
       {descriptionArea}
       {buttonsFooter}
     </div>
+    {footerSearch}
   </div>
 );
