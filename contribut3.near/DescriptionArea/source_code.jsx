@@ -31,22 +31,8 @@ return (
       <Markdown text={description} />
       <Elipsiss hidden={state.showAll}>...</Elipsiss>
     </div>
-    {state.showAll && description.length > lengthCutoff ? (
-      <a
-        className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
-        onClick={() => State.update({ showAll: false })}
-      >
-        Show less
-      </a>
-    ) : description.length < lengthCutoff ? (
-      <></>
-    ) : (
-      <a
-        className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
-        onClick={() => State.update({ showAll: true })}
-      >
-        Read more
-      </a>
-    )}
+    <ShowToggle onClick={() => State.update({ showAll: !state.showAll })}>
+      {state.showAll ? "Show less" : "Read more"}
+    </ShowToggle>
   </div>
 );
