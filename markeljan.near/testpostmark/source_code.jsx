@@ -493,6 +493,7 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
     {header}
+
     <div className="card-body">
       {postLabels}
       {compareWith ? (
