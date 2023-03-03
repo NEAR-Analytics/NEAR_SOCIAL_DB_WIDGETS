@@ -10,9 +10,9 @@ return (
     <div className="text-truncate flex-grow-1">
       <Markdown
         text={
-          state.showAll
-            ? description
-            : description.substring(0, lengthCutoff) + "..."
+          // state.showAll
+          /* ? */ description
+          // : description.substring(0, lengthCutoff) + "..."
         }
       />
     </div>
