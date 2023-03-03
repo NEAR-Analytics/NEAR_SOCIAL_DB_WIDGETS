@@ -1,7 +1,13 @@
+const updateInstanceTimeState = props.updateInstanceTimeState;
+const tabs = props.tabs;
+
+updateInstanceTimeState({ tab: tabs.MY_SCHEDULE.id });
+
 const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
 }
+
 var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 var finalData = {};
 
