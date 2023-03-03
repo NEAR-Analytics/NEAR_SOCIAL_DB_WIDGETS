@@ -162,12 +162,18 @@ return (
     style={{
       backgroundColor: "white",
       borderRadius: "28px",
-      margin: "2rem auto 0px",
+      margin: "2rem auto 1rem auto",
       width: "60%",
     }}
   >
     <div className="w-100 d-flex flex-row justify-content-between align-items-center">
-      <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
+      <h2
+        style={{
+          padding: "2rem",
+          margin: "2rem 0 0.5rem 0",
+          fontWeight: "700",
+        }}
+      >
         {tabs.NEW_SCHEDULE.text}
       </h2>
       <i
@@ -183,7 +189,7 @@ return (
       ></i>
     </div>
 
-    <div style={{ margin: "0 auto" }}>
+    <div className="pt-4" style={{ margin: "0 auto" }}>
       <span
         style={
           state.sectionShown == "timeZoneSelector"
@@ -238,7 +244,7 @@ return (
       </span>
     </div>
     {state.sectionShown == "timeZoneSelector" ? (
-      <>
+      <div className="mb-3">
         <label
           for="pollTitle"
           style={{
@@ -344,9 +350,9 @@ return (
             Cancel
           </button>
         </div>
-      </>
+      </div>
     ) : (
-      <div className="align-items-center pt-3">
+      <div className="align-items-center pt-3 mb-3">
         <Widget
           src={`${widgetOwner}/widget/Instance_time_setting`}
           props={{
