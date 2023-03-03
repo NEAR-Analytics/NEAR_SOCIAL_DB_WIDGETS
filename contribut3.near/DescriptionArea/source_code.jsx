@@ -1,11 +1,10 @@
 const description = props.description || "";
-const lengthCutoff = 80;
 
 State.init({
-  showAll: description.length <= lengthCutoff,
+  showAll: false,
 });
 
-const elipsiss = styled.b`
+const Elipsiss = styled.b`
   display: ${({ hidden }) => (hidden ? "none" : "inline-block")};
   background-color: white;
   position: absolute;
@@ -19,14 +18,8 @@ return (
       className={`position-relative text-truncate flex-grow-1 ${state.showAll ? "text-wrap" : ""
         }`}
     >
-      <Markdown
-        text={
-          // state.showAll
-          /* ? */ description
-          // : description.substring(0, lengthCutoff) + "..."
-        }
-      />
-      <elipsiss hidden={state.showAll}>...</elipsiss>
+      <Markdown text={description} />
+      <Elipsiss hidden={state.showAll}>...</Elipsiss>
     </div>
     {state.showAll && description.length > lengthCutoff ? (
       <a
