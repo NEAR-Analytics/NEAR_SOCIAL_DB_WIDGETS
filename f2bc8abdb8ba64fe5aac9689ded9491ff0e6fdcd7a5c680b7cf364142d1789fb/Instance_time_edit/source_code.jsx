@@ -165,88 +165,34 @@ const set_schedule = () => {
 };
 return (
   <div>
-    <div className="d-flex flex-column">
-      <div className="d-flex justify-content-between">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "1rem",
-            color: "black",
-            borderRadius: "2rem",
-            fontWeight: 600,
-            fontSize: "x-large",
+    <div className="w-100 d-flex flex-row justify-content-between align-items-center">
+      <div>
+        <select
+          style={comboBox}
+          name="zones"
+          id="zones"
+          value={state._time_zone}
+          onChange={(e) => {
+            State.update({ _time_zone: e.target.value });
           }}
         >
-          Weekly Schedule
-        </div>
-        <div class="d-flex flex-column">
-          <div>{profile.name}</div>
-          <div>@{context.accountId}</div>
-          <div>
-            {`(UTC ${getFormatedTime(
-              new Date().getTimezoneOffset() / 60
-            )}) ${new Date()
-              .toLocaleDateString(undefined, {
-                day: "2-digit",
-                timeZoneName: "long",
-              })
-              .substring(4)}`}
-          </div>
-        </div>
+          {time_zones.map((zone) => (
+            <option value={zone}>{zone}</option>
+          ))}
+        </select>
       </div>
-      <div className="w-100 d-flex flex-row justify-content-between align-items-center">
-        <div>
-          <select
-            style={comboBox}
-            name="zones"
-            id="zones"
-            value={state._time_zone}
-            onChange={(e) => {
-              State.update({ _time_zone: e.target.value });
-            }}
-          >
-            {time_zones.map((zone) => (
-              <option value={zone}>{zone}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <a
-            href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
-            onMouseEnter={() => {
-              State.update({ hoveringElement: "create" });
-            }}
-            onMouseLeave={() => {
-              State.update({ hoveringElement: "" });
-            }}
-            style={
-              state.hoveringElement == "create"
-                ? {
-                    border: "2px solid transparent",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    backgroundColor: "#010A2D",
-                    borderRadius: "12px",
-                    color: "white",
-                    textDecoration: "none",
-                  }
-                : {
-                    border: "2px solid black",
-                    color: "black",
-                    backgroundColor: "white",
-                    fontWeight: "500",
-                    fontSize: "1rem",
-                    padding: "0.3rem 1.5rem",
-                    borderRadius: "12px",
-                  }
-            }
-          >
-            View Schedules
-          </a>
-        </div>
-      </div>
+      <i
+        className="bi bi-x-lg"
+        style={{
+          position: "absolute",
+          right: "2rem",
+          top: "2rem",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          updateHandlerState({ showAbortScheduleCreation: true });
+        }}
+      ></i>
     </div>
     <div className="align-items-center pt-3">
       <Widget
