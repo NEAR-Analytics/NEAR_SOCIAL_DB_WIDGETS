@@ -562,7 +562,12 @@ const computeResults = (term) => {
         const searchResult = search(processedQuery, processedPosts.index);
         console.log(processedQuery);
         console.log(searchResult);
-        State.update({ searchResult, processedQuery, loading: false });
+        State.update({
+          searchResult,
+          shownSearchResults: searchResult.slice(0, 10),
+          processedQuery,
+          loading: false,
+        });
         return processedPosts;
       }),
     "processedPostsCached"
@@ -577,7 +582,12 @@ const computeResults = (term) => {
     const searchResult = search(processedQuery, processedPostsCached.index);
     console.log(processedQuery);
     console.log(searchResult);
-    State.update({ searchResult, processedQuery, loading: false });
+    State.update({
+      searchResult,
+      shownSearchResults: searchResult.slice(0, 10),
+      processedQuery,
+      loading: false,
+    });
   }
   const end = new Date().getTime();
 
@@ -597,6 +607,15 @@ const getSearchResultsKeywordsFor = (postId) => {
   return state.processedQuery.filter((queryWord) => {
     return index[queryWord].includes(postId);
   });
+};
+
+const showMoreSearchResults = () => {
+  const shownSearchResults = state.shownSearchResults || [];
+  const newShownSearchResults = state.searchResult.slice(
+    0,
+    shownSearchResults.length + 10
+  );
+  State.update({ shownSearchResults: newShownSearchResults });
 };
 
 return (
@@ -647,21 +666,28 @@ return (
           <strong>{state.processedQuery.join(" ")}</strong>
         </div>
       )}
-
-    {state.searchResult &&
-      state.searchResult.slice(0, 10).map((postId) => {
-        return (
-          <div key={postId}>
-            <Widget
-              src={`p516entropy.near/widget/SearchResultPost`}
-              props={{
-                post: getProcessedPostsCached().data[postId],
-                seachKeywords: getSearchResultsKeywordsFor(postId),
-              }}
-              key={key}
-            />
-          </div>
-        );
-      })}
+    {state.shownSearchResults && (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={showMoreSearchResults}
+        hasMore={state.shownSearchResults.length < state.searchResult.length}
+        loader={<div className="loader">Loading ...</div>}
+      >
+        {state.shownSearchResults.map((postId) => {
+          return (
+            <div key={postId}>
+              <Widget
+                src={`p516entropy.near/widget/SearchResultPost`}
+                props={{
+                  post: getProcessedPostsCached().data[postId],
+                  seachKeywords: getSearchResultsKeywordsFor(postId),
+                }}
+                key={key}
+              />
+            </div>
+          );
+        })}
+      </InfiniteScroll>
+    )}
   </div>
 );
