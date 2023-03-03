@@ -27,35 +27,23 @@ return (
         }
       />
       <elipsiss hidden={state.showAll}>...</elipsiss>
-      // {state.showAll ? (
-      //   <></>
-      // ) : (
-      //   <b
-      //     className="d-inline-block position-absolute end-0 top-0 px-1"
-      //     style={{ backgroundColor: "white" }}
-      //   >
-      //     ...
-      //   </b>
-      // )}
     </div>
-    {
-  state.showAll && description.length > lengthCutoff ? (
-    <a
-      className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
-      onClick={() => State.update({ showAll: false })}
-    >
-      Show less
-    </a>
-  ) : description.length < lengthCutoff ? (
-    <></>
-  ) : (
-  <a
-    className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
-    onClick={() => State.update({ showAll: true })}
-  >
-    Read more
-  </a>
-)
-}
-  </div >
+    {state.showAll && description.length > lengthCutoff ? (
+      <a
+        className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
+        onClick={() => State.update({ showAll: false })}
+      >
+        Show less
+      </a>
+    ) : description.length < lengthCutoff ? (
+      <></>
+    ) : (
+      <a
+        className="btn fw-bold text-primary ms-2 p-0 text-nowrap"
+        onClick={() => State.update({ showAll: true })}
+      >
+        Read more
+      </a>
+    )}
+  </div>
 );
