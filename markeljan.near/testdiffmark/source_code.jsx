@@ -359,7 +359,7 @@ const lineProps = (lineNumber) => {
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
 return (
-  <div>
+  <div class="border rounded">
     <Markdown
       text={`
 \`\`\`\text
