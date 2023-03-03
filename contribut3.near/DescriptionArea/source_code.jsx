@@ -16,13 +16,19 @@ const ShowToggle = styled.a`
   cursor: pointer;
   font-weight: bold;
   color: RGBA(13, 110, 253, 1);
-  underline: none;
+  text-decoration: none;
   margin-left: 0.5em;
   padding: 0;
   white-space: nowrap;
 
   &:hover {
-    underline: none;
+    color: unset;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: unset;
+    text-decoration: none;
   }
 `;
 
