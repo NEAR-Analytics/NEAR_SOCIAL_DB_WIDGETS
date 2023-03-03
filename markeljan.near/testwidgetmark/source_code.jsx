@@ -45,7 +45,7 @@ const orderedHistory = [...snapshotHistory].reverse();
 const history = (
   <div class="btn-group" role="group">
     <a
-      class="card-link px-2"
+      class="card-link"
       role="button"
       title="Edit post"
       data-bs-toggle="dropdown"
