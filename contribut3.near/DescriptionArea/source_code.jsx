@@ -12,6 +12,12 @@ const Elipsiss = styled.b`
   top: 0;
 `;
 
+const ShowToggle = styled.a`
+  cursor: pointer;
+  font-weight: bold;
+  color: RGBA(13, 110, 253, 1);
+`;
+
 return (
   <div className="d-flex flex-row justify-content-start align-items-start">
     <div
