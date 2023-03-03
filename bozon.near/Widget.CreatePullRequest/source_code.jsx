@@ -10,6 +10,7 @@ const widgetCode = Social.get(props.widgetPath);
 if (widgetCode === null) return "loading...";
 
 State.init({
+  title: "",
   code: widgetCode,
   memo: "",
   tab: "code",
@@ -65,8 +66,16 @@ return (
         <button onClick={() => props.onClose()}>X</button>
       </div>
     </div>
-
     <div className="col-lg-12  mb-2">
+      Title
+      <input
+        type="text"
+        onBlur={(e) => {
+          State.update({
+            title: e.target.value,
+          });
+        }}
+      />
       Code:
       <textarea
         type="text"
@@ -93,17 +102,28 @@ return (
         }}
       />
     </div>
-
-    <button
-      onClick={onClick}
-      class={`btn btn-primary`}
-      disabled={widgetCode === undefined}
+    <CommitButton
+      data={{
+        index: {
+          pull_request: JSON.stringify([
+            {
+              key: props.widgetAccountId,
+              value: {
+                title: state.title,
+              },
+            },
+          ]),
+        },
+        pull_request: {
+          title: state.title,
+          code: state.code,
+          memo: state.memo,
+        },
+      }}
     >
       {widgetCode ? "Submit" : "Widget not found"}
-    </button>
-
+    </CommitButton>
     <hr />
-
     <div>
       <div className="border rounded-4 p-3 pb-1">
         <div className="d-flex flex-row justify-content-between">
@@ -121,7 +141,9 @@ return (
           <div className="text-muted">{getDatastringFromBlockHeight()}</div>
         </div>
 
-        {state.memo && <div className="m-3">{state.memo}</div>}
+        {state.title && <h3 className="m-3">{state.title}</h3>}
+
+        {state.memo && <Markdown className="m-3" text={state.memo} />}
 
         <Tabs>
           <TabsButton
