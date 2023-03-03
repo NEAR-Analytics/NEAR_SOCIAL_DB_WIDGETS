@@ -1,7 +1,5 @@
-const updateInstanceTimeState = props.updateInstanceTimeState;
+const updateHandlerState = props.updateHandlerState;
 const tabs = props.tabs;
-
-updateInstanceTimeState({ tab: tabs.MY_SCHEDULE.id });
 
 const data = Social.index("Instance_time", "schedule");
 if (!data) {
