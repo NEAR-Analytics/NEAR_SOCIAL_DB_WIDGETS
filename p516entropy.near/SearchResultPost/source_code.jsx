@@ -227,31 +227,29 @@ const postExtra =
     <div></div>
   );
 
-const Card = styled.div`
-  &:hover {
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-  }
-`;
-
 const limitedMarkdown = styled.div`
   max-height: 10em;
   
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+    border-radius: 10px;
+    
   ::-webkit-scrollbar {
     width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-      background: #f1f1f1; 
+      background: rgba(0,0,0,0.03); 
       border-radius: 10px;
+      
   }
 
   ::-webkit-scrollbar-thumb {
-      background: #888; 
+      background: rgba(0,0,0,0.175); 
       border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-      background: #555; 
+      background: #888; 
   }
 `;
 
@@ -269,10 +267,7 @@ const onMention = (accountId) => (
 );
 
 const descriptionArea = (
-  <limitedMarkdown
-    className="overflow-auto card card-body"
-    key="description-area"
-  >
+  <limitedMarkdown className="overflow-auto" key="description-area">
     <Markdown
       class="card-text"
       text={snapshot.description}
@@ -282,7 +277,7 @@ const descriptionArea = (
 );
 
 return (
-  <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
+  <div className={`card my-2 ${borders[snapshot.post_type]}`}>
     {header}
     <div className="card-body">
       {postLabels}
@@ -291,5 +286,5 @@ return (
       {descriptionArea}
       {buttonsFooter}
     </div>
-  </Card>
+  </div>
 );
