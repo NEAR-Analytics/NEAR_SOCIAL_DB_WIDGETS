@@ -3,10 +3,28 @@
 // let yoctoConvert = amount / 1e24;
 let hardcode = 420000000000000000000000; // .6
 // let yoctoConvert = props.amount * 1e24;
-let yoctoConvert = hardcode / 1e24;
+// let yoctoConvert = hardcode / 1e24;
+let yoctoConvert = hardcode * 10;
+let reciever = props.reciever || "blunt.sputnik-dao.near";
+
+initState({ amount: 1, reciever });
+
+// yoctoConvert = state.amount;
 
 const donate = () => {
-  Near.call("blunt.sputnik-dao.near", "donate", {}, "30000000000000", hardcode);
+  let yoctoConvert1 = state.amount * 1e24;
+  Near.call(
+    state.reciever,
+    "donate",
+    {},
+    "30000000000000",
+    state.amount * 1e24
+  );
+};
+const onChangeAmount = (amount) => {
+  State.update({
+    amount,
+  });
 };
 
 return (
@@ -19,15 +37,13 @@ return (
         alt="BluntDAO Donate"
       />
     </div>
-    <input
-      className="form-control border-0"
-      type="number"
-      value={props.amount}
-      placeholder="NEAR"
-      onChange={(e) => props.update({ amount: e.target.value })}
-    />
-    <button onClick={donate}>
-      Donate {yoctoConvert} NEAR to Blunt Treausrey
+    <input type="number" onChange={(e) => onChangeAmount(e.target.value)} />
+    <button
+      disabled={context.loading}
+      onClick={donate}
+      className={`btn ${context.loading ? "btn-outline-dark" : "btn-primary"}`}
+    >
+      Donate {state.amount} NEAR to Blunt Treausrey
     </button>
     <a
       className="btn btn-outline-secondary"
