@@ -20,6 +20,10 @@ const ShowToggle = styled.a`
   margin-left: 0.5em;
   padding: 0;
   white-space: nowrap;
+
+  &:hover {
+    underline: none;
+  }
 `;
 
 return (
