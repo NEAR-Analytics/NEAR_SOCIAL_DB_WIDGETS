@@ -48,6 +48,8 @@ if (!post) {
   return <div>Loading ...</div>;
 }
 
+console.log(post);
+
 const snapshot = post.snapshot;
 
 const childPostIds =
@@ -62,6 +64,17 @@ function readableDate(timestamp) {
 
 const timestamp = readableDate(
   snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
+);
+
+const postSearchKeywords = props.seachKeywords ? (
+  <div style={{ "font-family": "cursive" }} key="post-search-keywords">
+    <span>Found keywords: </span>
+    {props.seachKeywords.map((label) => {
+      return <span class="badge text-bg-info me-1">{label}</span>;
+    })}
+  </div>
+) : (
+  <div key="post-search-keywords"></div>
 );
 
 const header = (
@@ -83,6 +96,14 @@ const header = (
       </div>
     </small>
   </div>
+);
+
+const headerSearch = props.seachKeywords ? (
+  <div className="card-header" key="header-search">
+    <small class="text-muted">{postSearchKeywords}</small>
+  </div>
+) : (
+  <div key="header-search"></div>
 );
 
 const emptyIcons = {
@@ -264,6 +285,7 @@ const descriptionArea = (
 return (
   <div className={`card my-2`}>
     {header}
+    {headerSearch}
     <div className="card-body">
       {postLabels}
       {postTitle}
