@@ -144,6 +144,7 @@ State.init({
   hoveringElement: "",
   _account: "All",
   _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC",
+  sectionShown: "timeZoneSelector",
 });
 
 const profile = Social.getr(`${context.accountId}/profile`);
@@ -229,47 +230,135 @@ return (
               }
         }
         onClick={() => {
-          isValidInput(false) && State.update({ sectionShown: "makeSchedule" });
+          State.update({ sectionShown: "makeSchedule" });
         }}
       >
         <i className="bi bi-square-fill"></i>
         Shedule
       </span>
     </div>
-    <select
-      style={{
-        backgroundColor: "white",
-        padding: "0.5rem 1.5rem",
-        borderRadius: "0.8rem",
-        border: "1.5px solid #E1E9F0",
-        color: "#474D55",
-        letterSpacing: "-0.01em",
-        width: "100%",
-      }}
-      className="mb-2"
-      name="zones"
-      id="zones"
-      value={state._time_zone}
-      onChange={(e) => {
-        State.update({ _time_zone: e.target.value });
-      }}
-    >
-      {time_zones.map((zone) => (
-        <option value={zone}>{zone}</option>
-      ))}
-    </select>
-    <div className="align-items-center pt-3">
-      <Widget
-        src={`${widgetOwner}/widget/Instance_time_setting`}
-        props={{
-          data: {
-            schedule: finalData.schedule,
-            time_zone: state._time_zone,
-          },
-          style: { width: "100%", height: "1.5em" },
-        }}
-        rawCode={show}
-      />
-    </div>
+    {state.sectionShown == "timeZoneSelector" ? (
+      <>
+        <label
+          for="pollTitle"
+          style={{
+            fontSize: "0.8rem",
+            letterSpacing: "-0.01em",
+            color: "#474D55",
+            marginBottom: "0.3rem",
+          }}
+        >
+          Select time zone:
+        </label>
+        <select
+          style={{
+            backgroundColor: "white",
+            padding: "0.5rem 1.5rem",
+            borderRadius: "0.8rem",
+            border: "1.5px solid #E1E9F0",
+            color: "#474D55",
+            letterSpacing: "-0.01em",
+            width: "50%",
+            display: "block",
+          }}
+          className="mb-2"
+          name="zones"
+          id="zones"
+          value={state._time_zone}
+          onChange={(e) => {
+            State.update({ _time_zone: e.target.value });
+          }}
+        >
+          {time_zones.map((zone) => (
+            <option value={zone}>{zone}</option>
+          ))}
+        </select>
+        <div className="d-flex flex-row-reverse justify-content-between">
+          <button
+            style={
+              state.hoveringElement == "continueButton"
+                ? {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+                : {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    margin: "0",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+            }
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "continueButton" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => State.update({ sectionShown: "makeSchedule" })}
+          >
+            Continue
+          </button>
+
+          <button
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "cancelNewSchedule" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => {
+              updateHandlerState({ showAbortScheduleCreation: true });
+            }}
+            style={
+              state.hoveringElement == "cancelNewSchedule"
+                ? {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+                : {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+            }
+          >
+            Cancel
+          </button>
+        </div>
+      </>
+    ) : (
+      <div className="align-items-center pt-3">
+        <Widget
+          src={`${widgetOwner}/widget/Instance_time_setting`}
+          props={{
+            data: {
+              schedule: finalData.schedule,
+              time_zone: state._time_zone,
+            },
+            style: { width: "100%", height: "1.5em" },
+          }}
+          rawCode={show}
+        />
+      </div>
+    )}
   </div>
 );
