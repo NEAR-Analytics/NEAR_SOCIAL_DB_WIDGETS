@@ -7,7 +7,7 @@ State.init({
 
 return (
   <div className="d-flex flex-row justify-content-start align-items-start">
-    <div>
+    <div className="text-truncate">
       <Markdown
         text={
           state.showAll
