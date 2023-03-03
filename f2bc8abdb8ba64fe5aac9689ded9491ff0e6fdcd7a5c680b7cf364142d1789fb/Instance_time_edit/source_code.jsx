@@ -94,7 +94,6 @@ for (let i = 0; i < sortedData.length; i++) {
     };
   }
 }
-console.log("finalData: ", finalData);
 
 const time_zones = [
   "(UTC-11:00) Samoa",
@@ -152,14 +151,7 @@ const flex_column = {
   display: "flex",
   flexDirection: "column",
 };
-const comboBox = {
-  background: "rgb(230, 230, 230)",
-  color: "black",
-  borderRadius: "1rem",
-  padding: "1rem",
-  fontWeight: "500",
-  fontSize: "1rem",
-};
+
 const set_schedule = () => {
   State.update({ _time_zone: finalData.time_zone ?? "(UTC+00:00) UTC" });
 };
@@ -189,8 +181,72 @@ return (
         }}
       ></i>
     </div>
+
+    <div style={{ margin: "0 auto" }}>
+      <span
+        style={
+          state.sectionShown == "timeZoneSelector"
+            ? {
+                ...styleUnderline,
+                color: "#353A40",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }
+            : {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }
+        }
+        onClick={() => {
+          State.update({ sectionShown: "timeZoneSelector" });
+        }}
+      >
+        <i className="bi bi-square-fill"></i> Time zone
+      </span>
+
+      <span
+        style={
+          state.sectionShown == "makeSchedule"
+            ? {
+                ...styleUnderline,
+                color: "#353A40",
+                fontSize: "0.8rem",
+                userSelect: "none",
+                position: "relative",
+                cursor: "pointer",
+              }
+            : {
+                color: "#767B8E",
+                fontSize: "0.8rem",
+                position: "relative",
+                userSelect: "none",
+                cursor: "pointer",
+              }
+        }
+        onClick={() => {
+          isValidInput(false) && State.update({ sectionShown: "makeSchedule" });
+        }}
+      >
+        <i className="bi bi-square-fill"></i>
+        Shedule
+      </span>
+    </div>
     <select
-      style={comboBox}
+      style={{
+        backgroundColor: "white",
+        padding: "0.5rem 1.5rem",
+        borderRadius: "0.8rem",
+        border: "1.5px solid #E1E9F0",
+        color: "#474D55",
+        letterSpacing: "-0.01em",
+        width: "100%",
+      }}
+      className="mb-2"
       name="zones"
       id="zones"
       value={state._time_zone}
