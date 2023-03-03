@@ -174,22 +174,20 @@ return (
     }}
   >
     <div className="w-100 d-flex flex-row justify-content-between align-items-center">
-      <div>
-        <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
-          {tabs.NEW_SCHEDULE.text}
-        </h2>
-        <i
-          className="bi bi-x-lg"
-          style={{
-            right: "2rem",
-            top: "2rem",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            updateHandlerState({ showAbortScheduleCreation: true });
-          }}
-        ></i>
-      </div>
+      <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>
+        {tabs.NEW_SCHEDULE.text}
+      </h2>
+      <i
+        className="bi bi-x-lg"
+        style={{
+          right: "2rem",
+          top: "2rem",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          updateHandlerState({ showAbortScheduleCreation: true });
+        }}
+      ></i>
     </div>
     <select
       style={comboBox}
