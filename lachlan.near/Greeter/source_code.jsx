@@ -1,10 +1,11 @@
-let greeting = "Have a great day";
+const user = "lachlan.near";
 
 return (
   <>
-    <div class="container border border-info p-3 text-center">
-      <h1>Hello {props.name}</h1>
-      <p> {greeting} </p>
-    </div>
+    <h3> Composition </h3>
+    <p> Components can be composed </p>
+    <hr />
+
+    <Widget src={`${user}/widget/Greetings`} props={props} />
   </>
 );
