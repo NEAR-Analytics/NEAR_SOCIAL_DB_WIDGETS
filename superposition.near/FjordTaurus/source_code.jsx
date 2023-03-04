@@ -23,7 +23,6 @@ body, html { height:100%; }
 </script>
 
 <script type="module">
-    import * as THREE from 'three';
 
     function countdown( elementName, minutes, seconds )
 {
