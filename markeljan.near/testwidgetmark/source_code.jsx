@@ -41,6 +41,13 @@ console.log("current", currentTimestamp);
 const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
+
+State.init({
+  snapshotHistory,
+});
+console.log("fromState: ", state.snapshotHistory);
+console.log("fromComponent: ", snapshotHistory);
+
 const orderedHistory = [...snapshotHistory].reverse();
 const history = (
   <div class="btn-group" role="group">
