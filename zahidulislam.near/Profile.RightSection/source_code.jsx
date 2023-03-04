@@ -15,7 +15,7 @@ return (
         <div className="widgetsContainer">
           {Object.keys(widgets)?.map((item, index) => (
             <Widget
-              src="storyboard.testnet/widget/Profile.WidgetItem"
+              src="zahidulislam.near/widget/Profile.WidgetItem"
               props={{ name: item, accountId }}
             />
           ))}
@@ -33,7 +33,7 @@ return (
       <h2>104 contributions in 2023</h2>
       <div style={{ marginTop: 20 }} />
       <Widget
-        src="storyboard.testnet/widget/Profile.Contributions"
+        src="zahidulislam.near/widget/Profile.Contributions"
         props={{ theme: props.theme }}
       />
     </div>
