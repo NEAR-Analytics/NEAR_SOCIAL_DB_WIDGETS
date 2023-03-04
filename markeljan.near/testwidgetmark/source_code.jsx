@@ -69,7 +69,7 @@ const history = (
                 href={historyHref("testpostmark", {
                   id: postId,
                   timestamp: item.timestamp,
-                  compareWith: null,
+                  compareTimestamp: null,
                   referral,
                 })}
               >
@@ -96,7 +96,7 @@ const history = (
               href={historyHref("testpostmark", {
                 id: postId,
                 timestamp: currentTimestamp,
-                compareWith: item.timestamp,
+                compareTimestamp: item.timestamp,
                 referral,
               })}
             >
