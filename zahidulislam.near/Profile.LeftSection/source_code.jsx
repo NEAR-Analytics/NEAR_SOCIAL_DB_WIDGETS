@@ -37,7 +37,6 @@ return (
       <div>
         <div>
           <img className="profileImage" src={url} alt="profile" />
-          {console.log("======", url)}
           <div style={{ paddingBlock: 10 }}>
             <h2>{name}</h2>
             <p>@{accountId}</p>
@@ -50,7 +49,7 @@ return (
       {state.showEditProfile ? (
         <>
           <Widget
-            src="storyboard.testnet/widget/Profile.Editor"
+            src="zahidulislam.near/widget/Profile.Editor"
             props={{ showEditProfile }}
           />
 
@@ -68,7 +67,7 @@ return (
       ) : (
         <>
           <Widget
-            src="storyboard.testnet/widget/Profile.SocialLinks"
+            src="zahidulislam.near/widget/Profile.SocialLinks"
             props={{ profile }}
           />
           <button
@@ -83,7 +82,7 @@ return (
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <Widget
-              src="storyboard.testnet/widget/Profile.IconButton"
+              src="zahidulislam.near/widget/Profile.IconButton"
               props={{
                 icon: "https://cdn-icons-png.flaticon.com/512/681/681494.png",
                 label: `${profile.followers.length ?? 0} followers · ${
@@ -93,7 +92,7 @@ return (
             />
 
             <Widget
-              src="storyboard.testnet/widget/Profile.IconButton"
+              src="zahidulislam.near/widget/Profile.IconButton"
               props={{
                 icon: "https://cdn-icons-png.flaticon.com/512/3179/3179068.png",
                 label: profile?.location ?? "Add Location",
