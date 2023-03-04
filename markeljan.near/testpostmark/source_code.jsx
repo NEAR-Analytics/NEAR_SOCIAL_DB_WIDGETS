@@ -63,6 +63,9 @@ const snapshot =
   snapshotHistory.find((s) => s.timestamp === currentTimestamp) ??
   post.snapshot;
 
+console.log("currentTimestamp", currentTimestamp);
+console.log("compareTimestamp", compareTimestamp);
+
 const compareSnapshot =
   currentTimestamp === compareTimestamp
     ? snapshot
