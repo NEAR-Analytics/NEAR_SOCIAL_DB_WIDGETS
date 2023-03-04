@@ -49,6 +49,7 @@ console.log("fromState: ", state.snapshotHistory);
 console.log("fromComponent: ", snapshotHistory);
 
 const orderedHistory = [...snapshotHistory].reverse();
+console.log("ordred: ", orderedHistory);
 const history = (
   <div class="btn-group" role="group">
     <a
