@@ -24,9 +24,12 @@ const gateways = [
 return (
   <div
     className="d-flex flex-column gap-2 w-100"
-    style={{ height: "100rem", maxHeight: "100%" }}
+    style={{ height: "100%", maxHeight: "100%" }}
   >
-    <div className="d-flex flex-row justify-content-center gap-2">
+    <div
+      className="d-flex flex-row justify-content-center gap-2"
+      style={{ flexGrow: 0 }}
+    >
       {gateways.map((g, i) => {
         return (
           <button
@@ -42,7 +45,7 @@ return (
       })}
     </div>
 
-    <div className="d-flex flex-row">
+    <div className="d-flex flex-row" style={{ flexGrow: 0 }}>
       <input
         placeholder="CID"
         value={state.cid}
@@ -57,19 +60,17 @@ return (
       </button>
     </div>
     {state.cid && (
-      <>
-        <div style={{ display: "flex", flexGrow: 1 }}>
-          <iframe
-            style={{ width: "100%", height: "100%" }}
-            src={gateways[state.gateway].path.replace("<cid>", state.cid)}
-          />
-        </div>
+      <div className="d-flex flex-column gap-1" style={{ flexGrow: 1 }}>
+        <iframe
+          style={{ width: "100%", height: "100%" }}
+          src={gateways[state.gateway].path.replace("<cid>", state.cid)}
+        />
         <div className="d-flex flex-row justify-content-end">
           <a href={gateways[state.gateway].path.replace("<cid>", state.cid)}>
             Open <i className="bi bi-box-arrow-up-right" />
           </a>
         </div>
-      </>
+      </div>
     )}
   </div>
 );
