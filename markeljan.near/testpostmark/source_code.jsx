@@ -488,8 +488,10 @@ return (
           src="markeljan.near/widget/MarkdownDiff"
           props={{
             post: post,
-            currentCode: combineText(swap ? compareSnapshot : snapshot),
-            prevCode: combineText(swap ? snapshot : compareSnapshot),
+            currentCode: combineText(
+              swapTimestamps ? compareSnapshot : snapshot
+            ),
+            prevCode: combineText(swapTimestamps ? snapshot : compareSnapshot),
           }}
         />
       ) : (
