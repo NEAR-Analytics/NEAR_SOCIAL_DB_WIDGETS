@@ -57,12 +57,17 @@ const referral = props.referral;
 const currentTimestamp = props.timestamp;
 const compareTimestamp = props.compareTimestamp;
 
+if (compareTimestamp && compareTimestamp < currentTimestamp) {
+  const temp = compareTimestamp;
+  compareTimestamp = currentTimestamp;
+  currentTimestamp = temp;
+}
+
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(post.snapshot);
 
 const snapshot =
   snapshotHistory.find((s) => s.timestamp === currentTimestamp) ?? null;
-
 const compareSnapshot =
   snapshotHistory.find((s) => s.timestamp === compareTimestamp) ?? null;
 
