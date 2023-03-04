@@ -12,7 +12,6 @@ const post =
   Near.view("devgovgigs.near", "get_post", {
     post_id: postId,
   });
-console.log("from_post", post.snapshot_history);
 if (!post || post.snapshot_history.length === 0) {
   return <div class="bi bi-clock-history px-2"></div>;
 }
@@ -69,7 +68,7 @@ const history = (
               <a
                 class="dropdown-item"
                 href={historyHref("testpostmark", {
-                  id: postId,
+                  post: post,
                   timestamp: item.timestamp,
                   compareTimestamp: null,
                   referral,
@@ -96,7 +95,7 @@ const history = (
             <a
               class="dropdown-item"
               href={historyHref("testpostmark", {
-                id: postId,
+                post: post,
                 timestamp: currentTimestamp,
                 compareTimestamp: item.timestamp,
                 referral,
