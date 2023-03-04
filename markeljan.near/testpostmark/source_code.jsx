@@ -57,7 +57,7 @@ const referral = props.referral;
 const currentTimestamp = props.timestamp;
 const compareTimestamp = props.compareTimestamp;
 
-if (compareTimestamp && compareTimestamp < currentTimestamp) {
+if (currentTimestamp < compareTimestamp) {
   const temp = compareTimestamp;
   compareTimestamp = currentTimestamp;
   currentTimestamp = temp;
