@@ -12,6 +12,7 @@ const post =
   Near.view("devgovgigs.near", "get_post", {
     post_id: postId,
   });
+console.log("from_post", post.snapshot_history);
 if (!post || post.snapshot_history.length === 0) {
   return <div class="bi bi-clock-history px-2"></div>;
 }
