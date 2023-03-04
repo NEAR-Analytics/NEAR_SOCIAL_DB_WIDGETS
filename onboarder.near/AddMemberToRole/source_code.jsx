@@ -3,6 +3,8 @@ let accountId = context.accountId;
 const member_id = "onboarder.near";
 // error check for DAO ends with .sputnik-dao.near
 
+const default_dao = "onboarddao.sputnik-dao.near";
+
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
@@ -10,11 +12,12 @@ if (!accountId) {
 State.init({
   member_id: member_id,
   role: state.role,
+  dao: default_dao,
 });
 
-const onChangeReciever = (reciever) => {
+const onChangeDAO = (dao) => {
   State.update({
-    reciever,
+    dao,
   });
 };
 
@@ -76,39 +79,41 @@ return (
     DAO Address
     <input
       placeholder="onboarddao.sputnik-dao.near"
-      onChange={(e) => onChangeReciever(e.target.value)}
+      onChange={(e) => onChangeDAO(e.target.value)}
     />
-    <div className="mb-2">
-      Account ID:
-      <input
-        type="text"
-        placeholder="onboarder.near"
-        onChange={(e) => onChangeMember(e.target.value)}
-      />
-    </div>
-    <div className="mb-2">
-      Role:
-      <input
-        type="text"
-        placeholder="council"
-        onChange={(e) => onChangeRole(e.target.value)}
-      />
-    </div>
-    <div className="mb-2">
-      tGas
-      <input
-        type="text"
-        placeholder="200"
-        onChange={(e) => onChangeGas(e.target.value * 1e12)}
-      />
-    </div>
-    <div className="mb-2">
-      Deposit
-      <input
-        type="text"
-        placeholder="0.01"
-        onChange={(e) => onChangeDeposit(e.target.value * 1e24)}
-      />
+    <div className="row">
+      <div className=" col-lg-6 mb-2">
+        Account ID:
+        <input
+          type="text"
+          placeholder="onboarder.near"
+          onChange={(e) => onChangeMember(e.target.value)}
+        />
+      </div>
+      <div className="col-lg-6 mb-2">
+        Role:
+        <input
+          type="text"
+          placeholder="council"
+          onChange={(e) => onChangeRole(e.target.value)}
+        />
+      </div>
+      <div className="col-lg-6 mb-2">
+        tGas
+        <input
+          type="text"
+          placeholder="200"
+          onChange={(e) => onChangeGas(e.target.value * 1e12)}
+        />
+      </div>
+      <div className="col-lg-6 mb-2">
+        Deposit
+        <input
+          type="text"
+          placeholder="0.01"
+          onChange={(e) => onChangeDeposit(e.target.value * 1e24)}
+        />
+      </div>
     </div>
     <div className="mb-2">
       Description
@@ -119,7 +124,7 @@ return (
       />
     </div>
     <button className="btn btn-primary mt-3" onClick={handleProposal}>
-      Propose to Add Member to {state.reciever}
+      Propose to Add Member to {state.dao}
     </button>
   </div>
 );
