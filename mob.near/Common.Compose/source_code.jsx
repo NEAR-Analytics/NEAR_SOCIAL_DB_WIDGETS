@@ -1,3 +1,5 @@
+const autocompleteEnabled = props.autocompleteEnabled ?? true;
+
 if (state.image === undefined) {
   State.init({
     image: {},
@@ -68,10 +70,15 @@ if (content && props.extraContent) {
   Object.assign(content, props.extraContent);
 }
 
+function autoCompleteAccountId(id) {
+  let text = state.text.replace(/[\s]{0,1}@[^\s]*$/, "");
+  text = `${text} @${id}`.trim() + " ";
+  State.update({ text, showAccountAutocomplete: false });
+}
+
 const onChange = (text) => {
-  State.update({
-    text,
-  });
+  const showAccountAutocomplete = /@[\w][^\s]*$/.test(text);
+  State.update({ text, showAccountAutocomplete });
 };
 
 const jContent = JSON.stringify(content);
@@ -89,16 +96,64 @@ const onCompose = () => {
   });
 };
 
+const TextareaWrapper = styled.div`
+  display: grid;
+  vertical-align: top;
+  align-items: center;
+  position: relative;
+  align-items: stretch;
+
+  &::after,
+  textarea {
+    width: 100%;
+    min-width: 1em;
+    height: unset;
+    min-height: 5em;
+    font: inherit;
+    padding: var(--padding) var(--padding) calc(40px + (var(--padding) * 2)) calc(40px + (var(--padding) * 2));
+    margin: 0;
+    resize: none;
+    background: none;
+    appearance: none;
+    border: none;
+    grid-area: 1 / 1;
+    overflow: hidden;
+    outline: none;
+  }
+
+  &::after {
+    content: attr(data-value) ' ';
+    visibility: hidden;
+    white-space: pre-wrap;
+  }
+`;
+
 return (
   <div className="text-bg-light rounded-4">
-    <div className="p-2">
+    <TextareaWrapper className="p-3" data-value={state.text || ""}>
       <textarea
-        className="form-control border-0 text-bg-light w-100"
         value={state.text || ""}
-        onChange={(e) => onChange(e.target.value)}
+        onInput={(event) => onChange(event.target.value)}
+        onKeyUp={(event) => {
+          if (event.key === "Escape") {
+            State.update({ showAccountAutocomplete: false });
+          }
+        }}
         placeholder={props.placeholder ?? "What's happening?"}
       />
-    </div>
+      {autocompleteEnabled && state.showAccountAutocomplete && (
+        <div className="pt-1 w-100 overflow-hidden">
+          <Widget
+            src="mob.near/widget/AccountAutocomplete"
+            props={{
+              term: state.text.split("@").pop(),
+              onSelect: autoCompleteAccountId,
+              onClose: () => State.update({ showAccountAutocomplete: false }),
+            }}
+          />
+        </div>
+      )}
+    </TextareaWrapper>
     <div className="d-flex flex-row p-2 border-top">
       <div className="flex-grow-1">
         <IpfsImageUpload
