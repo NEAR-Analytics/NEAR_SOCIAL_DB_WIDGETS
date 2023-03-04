@@ -501,7 +501,6 @@ return (
         </div>
       ) : (
         <>
-          {postLabels}
           {postTitle}
           {postExtra}
           {descriptionArea}
