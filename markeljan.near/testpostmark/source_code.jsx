@@ -3,8 +3,8 @@
 props.post: {};
 props.id: number;
 props.timestamp: string;
-props.compareWith?: string;
-props.referral?: any;
+props.compareTimestamp: string;
+props.referral: any;
 */
 
 const nearDevGovGigsContractAccountId =
@@ -54,28 +54,18 @@ if (!post) {
 }
 const referral = props.referral;
 
-const timestampFromProps = props.timestamp;
-const compareWith = props.compareWith;
-let snapshot = post.snapshot;
-let compareSnapshot;
+const currentTimestamp = props.timestamp;
+const compareTimestamp = props.compareTimestamp;
+
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
-if (timestampFromProps) {
-  const foundSnapshot = snapshotHistory.find(
-    (s) => s.timestamp === timestampFromProps
-  );
-  if (foundSnapshot) {
-    snapshot = foundSnapshot;
-  }
-}
-if (compareWith) {
-  const foundSnapshot = snapshotHistory.find(
-    (s) => s.timestamp === compareWith
-  );
-  if (foundSnapshot) {
-    compareSnapshot = foundSnapshot;
-  }
-}
+
+const snapshot =
+  snapshotHistory.find((s) => s.timestamp === currentTimestamp) ??
+  post.snapshot;
+
+const compareSnapshot =
+  snapshotHistory.find((s) => s.timestamp === compareTimestamp) ?? null;
 
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
@@ -491,13 +481,15 @@ return (
     {header}
     <div className="card-body">
       {postLabels}
-      {compareWith ? (
+      {compareSnapshot.timestamp ? (
         <Widget
-          src="markeljan.near/widget/CodeDiff"
+          src="markeljan.near/widget/MarkdownDiff"
           props={{
-            currentCode: addTitleMarkdown(snapshot.name) + snapshot.description,
-            prevCode:
-              addTitleMarkdown(snapshot.name) + compareSnapshot.description,
+            post: post,
+            currentCode: props.currentCode,
+            prevCode: props.prevCode,
+            currentTimestamp: snapshot.timestamp,
+            compareTimestamp: compareTimestamp,
           }}
         />
       ) : (
