@@ -81,7 +81,8 @@ const Scroller = styled.div`
   }
 
   > * {
-    max-width: 175px;
+    max-width: 200px;
+    text-align: left;
     flex-grow: 0;
     flex-shrink: 0;
     
@@ -123,16 +124,19 @@ return (
 
       {results.map((result) => {
         return (
-          <Widget
+          <button
+            className="border-0 btn btn-light"
             key={result.accountId}
-            src="calebjacob.near/widget/AccountProfile"
-            props={{
-              avatarSize: "34px",
-              accountId: result.accountId,
-              onClick: onResultClick,
-              overlayPlacement: "bottom",
-            }}
-          />
+            onClick={onResultClick}
+          >
+            <Widget
+              key={result.accountId}
+              src="mob.near/widget/Profile.ShortInlineBlock"
+              props={{
+                accountId: result.accountId,
+              }}
+            />
+          </button>
         );
       })}
     </Scroller>
