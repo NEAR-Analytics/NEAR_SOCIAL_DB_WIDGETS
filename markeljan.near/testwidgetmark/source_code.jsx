@@ -40,11 +40,8 @@ function historyHref(widgetName, linkProps) {
 const currentTimestamp = props.timestamp ?? post.snapshot.timestamp;
 const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
-
-console.log("post_snap_hist", post.snapshot_history);
 snapshotHistory.push(snapshot);
 snapshotHistory.reverse();
-console.log("post_snap_hist_rev", post.snapshot_history);
 
 const history = (
   <div class="btn-group" role="group">
