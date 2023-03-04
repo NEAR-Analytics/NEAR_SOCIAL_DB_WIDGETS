@@ -534,11 +534,10 @@ return (
           class="border rounded"
           style={{ marginTop: "16px", marginBottom: "16px" }}
         >
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end flex-wrap">
             <div
               class="d-flex"
               style={{
-                flexWrap: wrap,
                 fontSize: "12px",
               }}
             >
