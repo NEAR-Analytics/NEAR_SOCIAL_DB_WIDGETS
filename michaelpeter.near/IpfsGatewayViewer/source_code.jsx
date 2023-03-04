@@ -24,7 +24,7 @@ const gateways = [
 return (
   <div
     className="d-flex flex-column gap-2 w-100"
-    style={{ height: "100%", maxHeight: "100%" }}
+    style={{ height: "30rem", maxHeight: "100%" }}
   >
     <div
       className="d-flex flex-row justify-content-center gap-2"
@@ -62,7 +62,7 @@ return (
     {state.cid && (
       <div className="d-flex flex-column gap-1" style={{ flexGrow: 1 }}>
         <iframe
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", borderRadius: "5px" }}
           src={gateways[state.gateway].path.replace("<cid>", state.cid)}
         />
         <div className="d-flex flex-row justify-content-end">
