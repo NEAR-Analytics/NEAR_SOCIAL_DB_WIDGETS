@@ -23,33 +23,47 @@ showLineNumber?: bool
 if (typeof props?.currentCode !== "string")
   return "send {currentCode: string} in props";
 
-function addNewLines(str) {
-  const MAX_CHARS_PER_LINE = 100;
-  let charCount = 0;
-  let lastNewLineIndex = -1;
-  let result = "";
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === "\n") {
-      result += str.slice(lastNewLineIndex + 1, i + 1);
-      lastNewLineIndex = i;
-      charCount = 0;
-    } else if (charCount === MAX_CHARS_PER_LINE) {
-      if (lastNewLineIndex === -1) {
-        result += str.slice(0, i) + "\n";
-      } else {
-        result += str.slice(lastNewLineIndex + 1, i) + "\n";
-      }
-      lastNewLineIndex = i;
-      charCount = 0;
-    } else {
-      charCount++;
+const MAX_CHARS_PER_LINE = 100;
+
+function formatText(markdownString) {
+  const lines = markdownString.split("\n");
+  const formattedLines = [];
+  for (let line of lines) {
+    if (line.length <= MAX_CHARS_PER_LINE) {
+      formattedLines.push(line);
+      continue;
     }
+    let splitIndex = MAX_CHARS_PER_LINE;
+    while (splitIndex > 0 && line.charAt(splitIndex) !== " ") {
+      splitIndex--;
+    }
+    if (splitIndex === 0) {
+      formattedLines.push(line.substring(0, MAX_CHARS_PER_LINE));
+      line = line.substring(MAX_CHARS_PER_LINE);
+    } else {
+      formattedLines.push(line.substring(0, splitIndex));
+      line = line.substring(splitIndex + 1);
+    }
+    while (line.length > MAX_CHARS_PER_LINE) {
+      splitIndex = MAX_CHARS_PER_LINE;
+      while (splitIndex > 0 && line.charAt(splitIndex) !== " ") {
+        splitIndex--;
+      }
+      if (splitIndex === 0) {
+        formattedLines.push(line.substring(0, MAX_CHARS_PER_LINE));
+        line = line.substring(MAX_CHARS_PER_LINE);
+      } else {
+        formattedLines.push(line.substring(0, splitIndex));
+        line = line.substring(splitIndex + 1);
+      }
+    }
+    formattedLines.push(line);
   }
-  result += str.slice(lastNewLineIndex + 1);
-  return result;
+  return formattedLines.join("\n");
 }
-const modifiedCurrentCode = addNewLines(props.currentCode);
-const modifiedPrevCode = addNewLines(props.prevCode);
+
+const modifiedCurrentCode = formatText(props.currentCode);
+const modifiedPrevCode = formatText(props.prevCode);
 //code from this - https://github.com/jonTrent/PatienceDiff
 function patienceDiff(aLines, bLines, diffPlusFlag) {
   function findUnique(arr, lo, hi) {
