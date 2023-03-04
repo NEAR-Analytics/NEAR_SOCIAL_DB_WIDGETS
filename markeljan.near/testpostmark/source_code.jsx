@@ -45,6 +45,16 @@ function href(widgetName, linkProps) {
   }${linkPropsQuery}`;
 }
 
+function markeljanHref(widgetName, linkProps) {
+  linkProps = { ...linkProps };
+  const linkPropsQuery = Object.entries(linkProps)
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&");
+  return `#/markeljan.near/widget/${widgetName}${
+    linkPropsQuery ? "?" : ""
+  }${linkPropsQuery}`;
+}
+
 const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
   props.post ??
@@ -54,8 +64,8 @@ if (!post) {
 }
 const referral = props.referral;
 
-const currentTimestamp = props.timestamp;
-const compareTimestamp = props.compareTimestamp;
+const currentTimestamp = props.timestamp ?? post.snapshot.timestamp;
+const compareTimestamp = props.compareTimestamp ?? "";
 const swapTimestamps = currentTimestamp < compareTimestamp;
 
 const snapshotHistory = post.snapshot_history;
@@ -89,8 +99,12 @@ function readableDate(timestamp) {
   return a.toDateString() + " " + a.toLocaleTimeString();
 }
 
-const timestamp = readableDate(
-  snapshot.timestamp ? snapshot.timestamp / 1000000 : Date.now()
+const currentTimestampReadable = readableDate(
+  Number(currentTimestamp) / 1000000
+);
+
+const compareTimestampReadable = readableDate(
+  Number(compareTimestamp) / 1000000
 );
 
 const linkToParent =
@@ -180,7 +194,7 @@ const header = (
         <div class="col-5">
           <div class="d-flex justify-content-end">
             {editControl}
-            {timestamp}
+            {currentTimestampReadable}
             <div>
               <Widget
                 src={`markeljan.near/widget/testwidgetmark`}
@@ -474,6 +488,46 @@ const descriptionArea = isUnderPost ? (
   ></Markdown>
 );
 
+const timestampElement = (_snapshot) => {
+  return (
+    <>
+      <div
+        style={{
+          minWidth: "290",
+          maxWidth: "290",
+        }}
+      >
+        <a
+          class="dropdown-item"
+          href={markeljanHref("testpostmark", {
+            id: postId,
+            timestamp: _snapshot.timestamp,
+            compareTimestamp: null,
+            referral,
+          })}
+        >
+          {readableDate(_snapshot.timestamp / 1000000).substring(4)}
+
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              accountId: _snapshot.editor_id,
+              style: {
+                width: "1.25em",
+                height: "1.25em",
+              },
+              imageStyle: {
+                transform: "translateY(-12.5%)",
+              },
+            }}
+          />
+          {_snapshot.editor_id.substring(0, 8)}
+        </a>
+      </div>
+    </>
+  );
+};
+
 function combineText(_snapshot) {
   return "#### " + _snapshot.name + "\n" + _snapshot.description;
 }
@@ -481,7 +535,20 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
     {header}
-
+    {compareSnapshot && (
+      <div class="d-flex justify-content-end me-2">
+        <div
+          class="d-flex w-50 justify-content-end"
+          style={{
+            fontSize: "12px",
+          }}
+        >
+          {timestampElement(snapshot)}
+          <div class="px-2">v.s.</div>
+          {timestampElement(compareSnapshot)}
+        </div>
+      </div>
+    )}
     <div className="card-body">
       {postLabels}
       {compareSnapshot ? (
