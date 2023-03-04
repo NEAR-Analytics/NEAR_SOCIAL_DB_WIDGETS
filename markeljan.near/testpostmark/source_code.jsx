@@ -490,34 +490,32 @@ const descriptionArea = isUnderPost ? (
 
 const timestampElement = (_snapshot) => {
   return (
-    <>
-      <a
-        class="dropdown-item"
-        href={markeljanHref("testpostmark", {
-          id: postId,
-          timestamp: _snapshot.timestamp,
-          compareTimestamp: null,
-          referral,
-        })}
-      >
-        {readableDate(_snapshot.timestamp / 1000000).substring(4)}
+    <a
+      class="dropdown-item"
+      href={markeljanHref("testpostmark", {
+        id: postId,
+        timestamp: _snapshot.timestamp,
+        compareTimestamp: null,
+        referral,
+      })}
+    >
+      {readableDate(_snapshot.timestamp / 1000000).substring(4)}
 
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{
-            accountId: _snapshot.editor_id,
-            style: {
-              width: "1.25em",
-              height: "1.25em",
-            },
-            imageStyle: {
-              transform: "translateY(-12.5%)",
-            },
-          }}
-        />
-        {_snapshot.editor_id.substring(0, 8)}
-      </a>
-    </>
+      <Widget
+        src="mob.near/widget/ProfileImage"
+        props={{
+          accountId: _snapshot.editor_id,
+          style: {
+            width: "1.25em",
+            height: "1.25em",
+          },
+          imageStyle: {
+            transform: "translateY(-12.5%)",
+          },
+        }}
+      />
+      {_snapshot.editor_id.substring(0, 8)}
+    </a>
   );
 };
 
@@ -538,7 +536,7 @@ return (
         >
           <div class="d-flex justify-content-end me-2">
             <div
-              class="d-flex w-50 justify-content-end"
+              class="d-flex justify-content-end"
               style={{
                 fontSize: "12px",
               }}
