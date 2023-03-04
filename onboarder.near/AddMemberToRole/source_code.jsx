@@ -1,3 +1,5 @@
+let accountId = context.accountId;
+
 const member_id = "onboarder.near";
 // error check for DAO ends with .sputnik-dao.near
 
