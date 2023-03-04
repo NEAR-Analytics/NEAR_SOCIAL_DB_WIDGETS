@@ -474,7 +474,8 @@ const descriptionArea = isUnderPost ? (
 function combineText(_snapshot) {
   return "#### " + _snapshot.name + "\n" + _snapshot.description;
 }
-
+console.log("govAcc", nearDevGovGigsContractAccountId);
+console.log("govWidget", nearDevGovGigsWidgetsAccountId);
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
