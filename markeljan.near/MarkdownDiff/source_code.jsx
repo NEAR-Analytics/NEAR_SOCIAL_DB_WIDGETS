@@ -325,7 +325,9 @@ const linePropsMobile = (lineNumber) => {
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
-console.log(props.currentCode);
+console.log(props.currentCode.toString());
+
+console.log({ hey: props.currentCode });
 
 const ShowOnDesktop = styled.div`
   display: none;
