@@ -534,11 +534,8 @@ return (
           class="border rounded"
           style={{ marginTop: "16px", marginBottom: "16px" }}
         >
-          <div
-            class="d-flex justify-content-end me-2"
-            style={{ fontSize: "12px" }}
-          >
-            <div class="d-flex w-50 justify-content-end mt-1 me-2">
+          <div class="d-flex justify-content-end" style={{ fontSize: "12px" }}>
+            <div class="d-flex w-50 justify-content-end mt-1 me-1">
               {timestampElement(snapshot)}
               {snapshot !== compareSnapshot && (
                 <>
