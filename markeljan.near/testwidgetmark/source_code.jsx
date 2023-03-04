@@ -41,8 +41,7 @@ console.log("current", currentTimestamp);
 const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
-
-const orderedHistory = [...snapshotHistory].reverse();
+snapshotHistory.reverse();
 
 const history = (
   <div class="btn-group" role="group">
@@ -57,9 +56,9 @@ const history = (
       <div class="bi bi-clock-history px-2"></div>
     </a>
     <ul class="dropdown-menu">
-      {orderedHistory.map((item) => {
+      {snapshotHistory.map((item) => {
         console.log("item", item);
-        console.log("orderedHistory:", orderedHistory);
+        console.log("snapshotHistory:", snapshotHistory);
         if (item === undefined) return;
         return (
           <li style={{ display: "flex" }}>
