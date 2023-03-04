@@ -42,14 +42,8 @@ const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
 snapshotHistory.push(snapshot);
 
-State.init({
-  snapshotHistory,
-});
-console.log("fromState: ", state.snapshotHistory);
-console.log("fromComponent: ", snapshotHistory);
-
 const orderedHistory = [...snapshotHistory].reverse();
-console.log("ordred: ", orderedHistory);
+
 const history = (
   <div class="btn-group" role="group">
     <a
@@ -64,6 +58,8 @@ const history = (
     </a>
     <ul class="dropdown-menu">
       {orderedHistory.map((item) => {
+        console.log("item", item);
+        console.log("orderedHistory:", orderedHistory);
         if (item === undefined) return;
         return (
           <li style={{ display: "flex" }}>
