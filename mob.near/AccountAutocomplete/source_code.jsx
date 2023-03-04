@@ -126,7 +126,7 @@ return (
           <button
             className="border-0 btn btn-light"
             key={result.accountId}
-            onClick={onResultClick}
+            onClick={() => onResultClick(result.accountId)}
           >
             <Widget
               key={result.accountId}
