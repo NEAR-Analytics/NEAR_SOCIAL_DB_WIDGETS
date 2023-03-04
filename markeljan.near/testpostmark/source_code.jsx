@@ -66,7 +66,9 @@ const snapshot =
 const compareSnapshot = compareTimestamp
   ? snapshotHistory.find((s) => s.timestamp === compareTimestamp) ??
     currentTimestamp === post.snapshot.timestamp
-  : post.snapshot;
+    ? post.snapshot
+    : null
+  : null;
 
 // If this post is displayed under another post. Used to limit the size.
 const isUnderPost = props.isUnderPost ? true : false;
