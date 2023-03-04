@@ -311,9 +311,7 @@ diffResult.lines.forEach((line) => {
     longestLineLength = line.line.length;
 });
 
-const forMobile = false;
-
-const lineProps = (lineNumber) => {
+const linePropsDesktop = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
   let conditionalTopMargin = "0";
   let conditionalBottomMargin = "0";
@@ -326,9 +324,7 @@ const lineProps = (lineNumber) => {
     display: "block",
     width: "auto",
     background: "#fff",
-    marginRight: forMobile
-      ? `-${parseInt(longestLineLength * 0.36)}em`
-      : `-1em`,
+    marginRight: `-1em`,
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
     marginBottom: conditionalBottomMargin,
@@ -356,15 +352,57 @@ const lineProps = (lineNumber) => {
       ...props.deleteStyle,
     };
   }
-  //set for mobile true so next run does mobile styling.
-  forMobile = true;
+  return { style };
+};
+
+const linePropsMobile = (lineNumber) => {
+  const line = diffResult.lines[lineNumber - 1];
+  let conditionalTopMargin = "0";
+  let conditionalBottomMargin = "0";
+  if (lineNumber === 1) {
+    conditionalTopMargin = "-1em";
+  } else if (lineNumber === diffResult.lines.length)
+    conditionalBottomMargin = "-1em";
+
+  let style = {
+    display: "block",
+    width: "auto",
+    background: "#fff",
+    marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
+    marginLeft: "-1em",
+    marginTop: conditionalTopMargin,
+    marginBottom: conditionalBottomMargin,
+    paddingLeft: "1em",
+    color: "black",
+  };
+
+  if (line.aIndex === -1 || line.bIndex === -1) {
+    style = {
+      ...style,
+    };
+  }
+
+  if (line.aIndex === -1) {
+    style = {
+      ...style,
+      background: "#E0FFEC",
+      ...props.addStyle,
+    };
+  }
+  if (line.bIndex === -1) {
+    style = {
+      ...style,
+      background: "#FFEDF0",
+      ...props.deleteStyle,
+    };
+  }
   return { style };
 };
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
 const ShowOnDesktop = styled.div`
-  display: block;
+  display: none;
 
   @media (min-width: 1200px) {
     display: block;
@@ -376,7 +414,7 @@ const ShowOnMobile = styled.div`
   display: none;
 
   @media (max-width: 1200px) {
-    display: none;
+    display: block;
 
   }
 `;
@@ -391,7 +429,7 @@ ${codeText}
 `}
         syntaxHighlighterProps={{
           wrapLines: true,
-          lineProps,
+          lineProps: linePropsDesktop,
           showLineNumbers: true,
           lineNumberStyle: { display: !props.showLineNumber && "none" },
         }}
@@ -405,7 +443,7 @@ ${codeText}
 `}
         syntaxHighlighterProps={{
           wrapLines: true,
-          lineProps,
+          lineProps: linePropsMobile,
           showLineNumbers: true,
           lineNumberStyle: { display: !props.showLineNumber && "none" },
         }}
