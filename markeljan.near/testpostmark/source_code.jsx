@@ -58,12 +58,10 @@ const currentTimestamp = props.timestamp;
 const compareTimestamp = props.compareTimestamp;
 
 const snapshotHistory = post.snapshot_history;
+snapshotHistory.push(post.snapshot);
 
 const snapshot =
-  snapshotHistory.find((s) => s.timestamp === currentTimestamp) ??
-  post.snapshot;
-
-snapshotHistory.push(snapshot);
+  snapshotHistory.find((s) => s.timestamp === currentTimestamp) ?? null;
 
 const compareSnapshot =
   snapshotHistory.find((s) => s.timestamp === compareTimestamp) ?? null;
