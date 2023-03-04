@@ -1,5 +1,5 @@
 /*
-Credit goes to bozon.near/widget/CodeDiff
+//fork from bozon.near/widget/CodeDiff
 Changes made to styles and to support markdown.
 ---props---
 currentCode: string,
@@ -25,16 +25,6 @@ if (typeof props?.currentCode !== "string")
 
 //code from this - https://github.com/jonTrent/PatienceDiff
 function patienceDiff(aLines, bLines, diffPlusFlag) {
-  //
-  // findUnique finds all unique values in arr[lo..hi], inclusive.  This
-  // function is used in preparation for determining the longest common
-  // subsequence.  Specifically, it first reduces the array range in question
-  // to unique values.
-  //
-  // Returns an ordered Map, with the arr[i] value as the Map key and the
-  // array index i as the Map value.
-  //
-
   function findUnique(arr, lo, hi) {
     const lineMap = new Map();
 
@@ -63,17 +53,6 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
     return lineMap;
   }
 
-  //
-  // uniqueCommon finds all the unique common entries between aArray[aLo..aHi]
-  // and bArray[bLo..bHi], inclusive.  This function uses findUnique to pare
-  // down the aArray and bArray ranges first, before then walking the comparison
-  // between the two arrays.
-  //
-  // Returns an ordered Map, with the Map key as the common line between aArray
-  // and bArray, with the Map value as an object containing the array indexes of
-  // the matching unique lines.
-  //
-
   function uniqueCommon(aArray, aLo, aHi, bArray, bLo, bHi) {
     const ma = findUnique(aArray, aLo, aHi);
     const mb = findUnique(bArray, bLo, bHi);
@@ -92,18 +71,8 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
     return ma;
   }
 
-  //
-  // longestCommonSubsequence takes an ordered Map from the function uniqueCommon
-  // and determines the Longest Common Subsequence (LCS).
-  //
-  // Returns an ordered array of objects containing the array indexes of the
-  // matching lines for a LCS.
-  //
-
   function longestCommonSubsequence(abMap) {
     const ja = [];
-
-    // First, walk the list creating the jagged array.
 
     abMap.forEach((val, key, map) => {
       let i = 0;
@@ -123,8 +92,6 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
       ja[i].push(val);
     });
 
-    // Now, pull out the longest common subsequence.
-
     let lcs = [];
 
     if (0 < ja.length) {
@@ -139,27 +106,14 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
     return lcs.reverse();
   }
 
-  // "result" is the array used to accumulate the aLines that are deleted, the
-  // lines that are shared between aLines and bLines, and the bLines that were
-  // inserted.
-
   const result = [];
   let deleted = 0;
   let inserted = 0;
-
-  // aMove and bMove will contain the lines that don't match, and will be returned
-  // for possible searching of lines that moved.
 
   const aMove = [];
   const aMoveIndex = [];
   const bMove = [];
   const bMoveIndex = [];
-
-  //
-  // addToResult simply pushes the latest value onto the "result" array.  This
-  // array captures the diff of the line, aIndex, and bIndex from the aLines
-  // and bLines array.
-  //
 
   function addToResult(aIndex, bIndex) {
     if (bIndex < 0) {
@@ -179,22 +133,10 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
     });
   }
 
-  //
-  // addSubMatch handles the lines between a pair of entries in the LCS.  Thus,
-  // this function might recursively call recurseLCS to further match the lines
-  // between aLines and bLines.
-  //
-
   function addSubMatch(aLo, aHi, bLo, bHi) {
-    // Match any lines at the beginning of aLines and bLines.
-
     while (aLo <= aHi && bLo <= bHi && aLines[aLo] === bLines[bLo]) {
       addToResult(aLo++, bLo++);
     }
-
-    // Match any lines at the end of aLines and bLines, but don't place them
-    // in the "result" array just yet, as the lines between these matches at
-    // the beginning and the end need to be analyzed first.
 
     let aHiTemp = aHi;
 
@@ -202,15 +144,6 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
       aHi--;
       bHi--;
     }
-
-    // Now, check to determine with the remaining lines in the subsequence
-    // whether there are any unique common lines between aLines and bLines.
-    //
-    // If not, add the subsequence to the result (all aLines having been
-    // deleted, and all bLines having been inserted).
-    //
-    // If there are unique common lines between aLines and bLines, then let's
-    // recursively perform the patience diff on the subsequence.
 
     const uniqueCommonMap = uniqueCommon(aLines, aLo, aHi, bLines, bLo, bHi);
 
@@ -226,19 +159,10 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
       recurseLCS(aLo, aHi, bLo, bHi, uniqueCommonMap);
     }
 
-    // Finally, let's add the matches at the end to the result.
-
     while (aHi < aHiTemp) {
       addToResult(++aHi, ++bHi);
     }
   }
-
-  //
-  // recurseLCS finds the longest common subsequence (LCS) between the arrays
-  // aLines[aLo..aHi] and bLines[bLo..bHi] inclusive.  Then for each subsequence
-  // recursively performs another LCS search (via addSubMatch), until there are
-  // none found, at which point the subsequence is dumped to the result.
-  //
 
   function recurseLCS(aLo, aHi, bLo, bHi, uniqueCommonMap) {
     const x = longestCommonSubsequence(
