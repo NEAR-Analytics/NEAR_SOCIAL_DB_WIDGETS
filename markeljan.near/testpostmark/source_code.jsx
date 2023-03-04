@@ -56,12 +56,7 @@ const referral = props.referral;
 
 const currentTimestamp = props.timestamp;
 const compareTimestamp = props.compareTimestamp;
-
-if (currentTimestamp < compareTimestamp) {
-  const temp = compareTimestamp;
-  compareTimestamp = currentTimestamp;
-  currentTimestamp = temp;
-}
+const swapTimestamps = currentTimestamp < compareTimestamp;
 
 const snapshotHistory = post.snapshot_history;
 
@@ -493,10 +488,8 @@ return (
           src="markeljan.near/widget/MarkdownDiff"
           props={{
             post: post,
-            currentCode: combineText(snapshot),
-            prevCode: combineText(compareSnapshot),
-            currentTimestamp: currentTimestamp,
-            compareTimestamp: compareTimestamp,
+            currentCode: combineText(swap ? compareSnapshot : snapshot),
+            prevCode: combineText(swap ? snapshot : compareSnapshot),
           }}
         />
       ) : (
