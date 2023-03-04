@@ -548,11 +548,14 @@ return (
               }}
             >
               {timestampElement(snapshot)}
-              <div class="px-2">
-                {" "}
-                <i class="bi bi-file-earmark-diff" />
-              </div>
-              {timestampElement(compareSnapshot)}
+              {snapshot !== compareSnapshot && (
+                <>
+                  <div class="px-2">
+                    <i class="bi bi-file-earmark-diff" />
+                  </div>
+                  {timestampElement(compareSnapshot)}
+                </>
+              )}
             </div>
           </div>
 
@@ -566,6 +569,7 @@ return (
               prevCode: combineText(
                 swapTimestamps ? snapshot : compareSnapshot
               ),
+              showLineNumber: true,
             }}
           />
         </div>
