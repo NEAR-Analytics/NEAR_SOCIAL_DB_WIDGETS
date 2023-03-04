@@ -1,6 +1,6 @@
 /*
 Credit goes to bozon.near/widget/CodeDiff
-Changes made to support markdown.
+Changes made to styles and to support markdown.
 ---props---
 currentCode: string,
 prevCode?: string,
@@ -310,8 +310,6 @@ diffResult.lines.forEach((line) => {
   if (line.line.length > longestLineLength)
     longestLineLength = line.line.length;
 });
-
-console.log(longestLineLength);
 
 const lineProps = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
