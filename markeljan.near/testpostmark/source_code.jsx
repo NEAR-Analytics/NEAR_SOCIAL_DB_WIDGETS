@@ -491,7 +491,6 @@ const descriptionArea = isUnderPost ? (
 const timestampElement = (_snapshot) => {
   return (
     <a
-      class="dropdown-item"
       href={markeljanHref("testpostmark", {
         id: postId,
         timestamp: _snapshot.timestamp,
@@ -536,24 +535,17 @@ return (
         >
           <div
             class="d-flex align-items-start justify-content-end"
-            style={{ height: "50px" }}
+            style={{ maxheight: "50px", fontSize: "12px" }}
           >
-            <div
-              class="d-flex"
-              style={{
-                fontSize: "12px",
-              }}
-            >
-              {timestampElement(snapshot)}
-              {snapshot !== compareSnapshot && (
-                <>
-                  <div class="px-2">
-                    <i class="bi bi-file-earmark-diff" />
-                  </div>
-                  {timestampElement(compareSnapshot)}
-                </>
-              )}
-            </div>
+            {timestampElement(snapshot)}
+            {snapshot !== compareSnapshot && (
+              <>
+                <div class="px-2">
+                  <i class="bi bi-file-earmark-diff" />
+                </div>
+                {timestampElement(compareSnapshot)}
+              </>
+            )}
           </div>
 
           <Widget
