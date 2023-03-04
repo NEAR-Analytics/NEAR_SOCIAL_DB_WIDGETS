@@ -311,6 +311,8 @@ diffResult.lines.forEach((line) => {
     longestLineLength = line.line.length;
 });
 
+const forMobile = false;
+
 const lineProps = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
   let conditionalTopMargin = "0";
@@ -320,21 +322,13 @@ const lineProps = (lineNumber) => {
   } else if (lineNumber === diffResult.lines.length)
     conditionalBottomMargin = "-1em";
 
-  const styledItem = styled.div`
-  marginRight: 0
-
-  @media (max-width: 1200px) {
-    marginRight: -${parseInt(longestLineLength * 0.36)}em;
-  }
-`;
   let style = {
     display: "block",
     width: "auto",
     background: "#fff",
-    marginRight: `0`,
-    "@media (max-width: 1200px)": {
-      marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
-    },
+    marginRight: forMobile
+      ? `-${parseInt(longestLineLength * 0.36)}em`
+      : `-1em`,
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
     marginBottom: conditionalBottomMargin,
@@ -362,24 +356,60 @@ const lineProps = (lineNumber) => {
       ...props.deleteStyle,
     };
   }
+  //set for mobile true so next run does mobile styling.
+  forMobile = true;
   return { style };
 };
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
+const ShowOnDesktop = styled.div`
+  display: none;
+
+  @media (max-width: 1200px) {
+    display: block;
+
+  }
+`;
+
+const ShowOnMobile = styled.div`
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+
+  }
+`;
+
 return (
-  <div>
-    <Markdown
-      text={`
+  <>
+    <ShowOnDesktop>
+      <Markdown
+        text={`
 \`\`\`\text
 ${codeText}
 `}
-      syntaxHighlighterProps={{
-        wrapLines: true,
-        lineProps,
-        showLineNumbers: true,
-        lineNumberStyle: { display: !props.showLineNumber && "none" },
-      }}
-    />
-  </div>
+        syntaxHighlighterProps={{
+          wrapLines: true,
+          lineProps,
+          showLineNumbers: true,
+          lineNumberStyle: { display: !props.showLineNumber && "none" },
+        }}
+      />
+    </ShowOnDesktop>
+    <ShowOnMobile>
+      <Markdown
+        text={`
+\`\`\`\text
+${codeText}
+`}
+        syntaxHighlighterProps={{
+          wrapLines: true,
+          lineProps,
+          showLineNumbers: true,
+          lineNumberStyle: { display: !props.showLineNumber && "none" },
+        }}
+      />
+    </ShowOnMobile>
+  </>
 );
