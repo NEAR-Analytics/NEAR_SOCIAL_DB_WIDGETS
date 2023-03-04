@@ -1,9 +1,10 @@
-let defaultQuery = props.query || "select 'Hello World from Flipside's API!'";
+let defaultQuery =
+  props.query || `select 'Please Enter a Query in Props' as Error`;
 
 const returnValue = "test";
 const options = {
   method: "POST",
-  body: `{ "query": ${defaultQuery} }`,
+  body: `{ "query": "${defaultQuery}" }`,
   headers: {
     "Content-Type": "application/json",
     "X-Algolia-Api-Key": `${SEARCH_API_KEY}`,
