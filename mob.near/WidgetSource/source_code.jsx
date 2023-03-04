@@ -16,5 +16,7 @@ return (
       props={{ accountId, widgetName, expanded: true }}
     />
     <Markdown text={text} />
+    <h3>Dependencies</h3>
+    <Widget src="mob.near/widget/WidgetDependencies" props={{ src, code }} />
   </>
 );
