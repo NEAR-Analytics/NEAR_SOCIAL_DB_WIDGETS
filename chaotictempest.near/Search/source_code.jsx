@@ -1,12 +1,108 @@
-const SEARCH_API_KEY = "57ad1944e94432510f067a6e3d13f022";
-const APPLICATION_ID = "B6PI9UKKJT";
-const INDEX = "test_near-social-feed";
-const API_URL = `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
-const INITIAL_PAGE = 0;
+const SEARCH_API_KEY = props.searchApiKey ?? "57ad1944e94432510f067a6e3d13f022";
+const APPLICATION_ID = props.appId ?? "B6PI9UKKJT";
+const INDEX = props.index ?? "test_near-social-feed";
+const API_URL =
+  props.apiUrl ??
+  `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
+const INITIAL_PAGE = props.initialPage ?? 0;
+
+const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
+const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
+
+const Wrapper = styled.div` 
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-bottom: 48px;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const Search = styled.div``;
+
+const H1 = styled.h1`
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  color: #11181C;
+  margin: 0;
+`;
+
+const H2 = styled.h2`
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #687076;
+  margin: 0;
+`;
+
+const H3 = styled.h3`
+  color: #687076;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const Group = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const GroupHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+`;
+
+const Text = styled.p`
+  margin: 0;
+  line-height: 1.5rem;
+  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
+  font-weight: ${(p) => (p.bold ? "600" : "400")};
+  font-size: ${(p) => (p.small ? "12px" : "14px")};
+  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
+  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
+  white-space: ${(p) => (p.ellipsis ? "nowrap" : "")};
+  overflow-wrap: anywhere;
+
+  b {
+    font-weight: 600;
+    color: #11181C;
+  }
+  
+  &[href] {
+    color: #006ADC;
+    outline: none;
+    font-weight: 600;
+
+    &:hover,
+    &:focus {
+      color: #006ADC;
+      text-decoration: underline;
+    }
+  }
+`;
+
+const Items = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+`;
+
+const Item = styled.div``;
 
 const writeStateTerm = (term) => {
-  console.log("writeStateTerm:", term);
-
   State.update({
     term,
   });
@@ -14,139 +110,116 @@ const writeStateTerm = (term) => {
   if (term === "") {
     State.update({
       currentPage: 0,
-      post: [],
-      comment: [],
-      profile: [],
-      widget: [],
-      paginate: null,
+      search: undefined,
+      paginate: undefined,
     });
   }
 };
 
-const profileWidgets = (content) => {
+const profiles = (records) => {
   const profiles = [];
-
-  for (const profile of content || []) {
-    const accountId = profile.author;
-    profiles.push(
-      <div className="mb-2">
-        <Widget src="mob.near/widget/Profile" props={{ accountId }} />
-      </div>
-    );
+  for (const record of records ?? []) {
+    profiles.push({
+      accountId: record.author,
+    });
   }
-
   return profiles;
 };
 
-const postWidgets = (content, postType) => {
+const posts = (content, postType) => {
   const posts = [];
-
   for (const post of content || []) {
     const accountId = post.author;
-    const blockHeight =
-      post.ref?.block_height ?? post.objectID.split("/").slice(-1)[0];
-
-    const widgetType =
-      postType === "post" ? "MainPage.Post.Page" : "MainPage.Comment.Page";
-    const link = `#/mob.near/widget/${widgetType}?accountId=${accountId}&blockHeight=${blockHeight}`;
-    const post_content = {
+    const blockHeight = post.objectID.split("/").slice(-1)[0];
+    const postContent = {
       type: "md",
       text: post.content,
     };
-
-    // ${
-    //   highlight ? "bg-warning bg-opacity-10" : ""
-    // }
     const headerStyling =
       postType === "post"
         ? "border rounded-4 p-3 pb-1"
         : "pt-3 border-top pb-2";
 
-    posts.push(
-      <div className={headerStyling}>
-        <Widget
-          src="mob.near/widget/MainPage.Post.Header"
-          props={{ accountId, blockHeight, link, postType }}
-        />
-        <div className="mt-3 text-break">
-          <Widget
-            src="mob.near/widget/MainPage.Post.Content"
-            props={{ content: post_content }}
-          />
-        </div>
-      </div>
-    );
+    posts.push({
+      accountId,
+      blockHeight,
+      postContent,
+      postType,
+      headerStyling,
+    });
   }
   return posts;
 };
 
-const componentWidgets = (content) => {
-  const widgets = [];
-  for (const component of content || []) {
-    const id = component.objectID;
-    const idParts = id.split("/");
-    const widgetRawName = idParts[idParts.length - 1];
+const components = (records) => {
+  const components = [];
+  for (const component of records || []) {
+    const idParts = component.objectID.split("/");
+    const widgetName = idParts[idParts.length - 1];
     const accountId = component.author;
-
-    // objectId is already in the form of widget src: <accountId>/widget/<WidgetName>
-    const widgetSrc = id;
-
-    // onHide: () => State.update({ apps: null }),
-    widgets.push(
-      <div>
-        <Widget
-          src="mob.near/widget/ComponentSearch.Item"
-          props={{
-            link: `#/${widgetSrc}`,
-            accountId,
-            widgetName: widgetRawName,
-            extraButtons: ({ widgetPath }) => (
-              <a
-                target="_blank"
-                className="btn btn-outline-secondary"
-                href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
-              >
-                Source
-              </a>
-            ),
-          }}
-        />
-      </div>
-    );
+    components.push({
+      accountId,
+      widgetName,
+    });
   }
-
-  return widgets;
+  return components;
 };
 
-const onPageChange = (pageNumber) => {
-  const algoliaPageNumber = pageNumber - 1;
-  if (algoliaPageNumber === state.currentPage) {
-    console.log(`Selected the same page number as before: ${pageNumber}`);
-    return;
+const categorizeSearchHits = (rawResp) => {
+  const results = {};
+  for (const result of rawResp.hits) {
+    const { categories: categories_raw } = result;
+    if (categories_raw.length > 1) {
+      categories_raw.sort();
+    }
+
+    const categories = categories_raw.join(", ");
+    results[categories] = results[categories] || [];
+    results[categories].push(result);
   }
 
-  // Need to clear out old search data otherwise we'll get multiple entries
-  // from the previous pages as well. Seems to be cache issue on near.social.
-  State.update({
-    post: [],
-    comment: [],
-    profile: [],
-    widget: [],
-    currentPage: algoliaPageNumber,
+  return {
+    results,
+    hitsTotal: rawResp.nbHits,
+    hitsPerPage: rawResp.hitsPerPage,
+  };
+};
+
+const fetchSearchHits = (query, { pageNumber, optionalFilters }) => {
+  console.log("FETCHING", query);
+  let body = {
+    query,
+    page: pageNumber ?? 0,
+    optionalFilters: optionalFilters ?? [
+      "categories:profile<score=3>",
+      "categories:widget<score=2>",
+      "categories:post<score=1>",
+      "categories:comment<score=0>",
+    ],
+  };
+
+  return asyncFetch(API_URL, {
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "X-Algolia-Api-Key": SEARCH_API_KEY,
+      "X-Algolia-Application-Id": APPLICATION_ID,
+    },
+    method: "POST",
   });
-  computeResults(state.term, algoliaPageNumber);
 };
 
 const computeResults = (term, pageNumber) => {
-  console.log("computeResults:", term);
-  fetchAlgoliaData(term, pageNumber).then((res) => {
-    const { results, hitsTotal, hitsPerPage } = getCategoryResults(res.body);
+  fetchSearchHits(term, { pageNumber }).then((resp) => {
+    const { results, hitsTotal, hitsPerPage } = categorizeSearchHits(resp.body);
     State.update({
-      term,
-      post: postWidgets(results["post"], "post"),
-      comment: postWidgets(results["comment, post"], "comment"),
-      profile: profileWidgets(results["profile"]),
-      widget: componentWidgets(results["widget"]),
+      search: {
+        profiles: profiles(results["profile"]),
+        components: components(results["widget"]),
+        postsAndComments: posts(results["post"], "post").concat(
+          posts(results["comment, post"], "comment")
+        ),
+      },
       paginate: {
         hitsTotal,
         hitsPerPage,
@@ -155,124 +228,127 @@ const computeResults = (term, pageNumber) => {
   });
 };
 
-const fetchAlgoliaData = (queryURI, pageNumber) => {
-  let searchParams = `query=${queryURI}&page=${pageNumber}`;
-  return asyncFetch(API_URL, {
-    body: `{ "params": "${searchParams}" }`,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "X-Algolia-Api-Key": SEARCH_API_KEY,
-      "X-Algolia-Application-Id": APPLICATION_ID,
-    },
-    method: "POST",
-  });
+const onSearchChange = ({ term }) => {
+  writeStateTerm(term);
+  computeResults(term, INITIAL_PAGE);
 };
 
-const getCategoryResults = (raw_result_data) => {
-  console.log("RAW", raw_result_data);
-  const results = {};
-  for (const result of raw_result_data.hits) {
-    const {
-      author,
-      content,
-      objectID,
-      tags,
-      categories: categories_raw,
-      ref,
-      _highlightResult,
-    } = result;
-
-    if (categories_raw.length > 1) {
-      categories_raw.sort();
-    }
-
-    const categories = categories_raw.join(", ");
-    results[categories] = results[categories] || [];
-    results[categories].push({
-      author,
-      content,
-      objectID,
-      tags,
-      categories,
-      ref,
-      _highlightResult,
-    });
+const onPageChange = (pageNumber) => {
+  const algoliaPageNumber = pageNumber - 1;
+  if (algoliaPageNumber === state.currentPage) {
+    console.log(`Selected the same page number as before: ${pageNumber}`);
+    return;
   }
-
-  return {
-    results,
-    hitsTotal: raw_result_data.nbHits,
-    hitsPerPage: raw_result_data.hitsPerPage,
-  };
+  // Need to clear out old search data otherwise we'll get multiple entries
+  // from the previous pages as well. Seems to be cache issue on near.social.
+  State.update({
+    search: undefined,
+    currentPage: algoliaPageNumber,
+  });
+  computeResults(state.term, algoliaPageNumber);
 };
 
 return (
-  <div>
-    <div>
-      <input
-        type="text"
-        value={state.term ?? ""}
-        onChange={(e) => writeStateTerm(e.target.value)}
-        placeholder="Search..."
+  <Wrapper>
+    <Header>
+      <H1>Search</H1>
+      <H2>Explore and find everything on the Blockchain Operating System</H2>
+    </Header>
+
+    <Search>
+      <Widget
+        src="chaotictempest.near/widget/SearchPill"
+        props={{
+          onChange: onSearchChange,
+          term: props.term,
+        }}
       />
-      {state.term && (
-        <div>
-          <button type="button" onClick={() => writeStateTerm("")}>
-            Clear
-          </button>
-          <button
-            type="button"
-            onClick={() => computeResults(state.term, INITIAL_PAGE)}
-          >
-            Go
-          </button>
-        </div>
+    </Search>
+
+    {state.search?.profiles.length > 0 && (
+      <Group>
+        <GroupHeader>
+          <H3>People</H3>
+          <Text as="a" href={peopleUrl} small>
+            View All
+          </Text>
+        </GroupHeader>
+
+        <Items>
+          {state.search.profiles.map((profile, i) => (
+            <Item key={profile.accountId}>
+              <Widget
+                src="calebjacob.near/widget/AccountProfileCard"
+                props={{
+                  accountId: profile.accountId,
+                }}
+              />
+            </Item>
+          ))}
+        </Items>
+      </Group>
+    )}
+
+    {state.search?.components.length > 0 && (
+      <Group>
+        <GroupHeader>
+          <H3>Components</H3>
+          <Text as="a" href={componentsUrl} small>
+            View All
+          </Text>
+        </GroupHeader>
+
+        <Items>
+          {state.search.components.map((component, i) => (
+            <Item key={component.accountId + component.widgetName}>
+              <Widget
+                src="calebjacob.near/widget/ComponentCard"
+                props={{
+                  src: `${component.accountId}/widget/${component.widgetName}`,
+                }}
+              />
+            </Item>
+          ))}
+        </Items>
+      </Group>
+    )}
+
+    {state.search?.postsAndComments.length > 0 && (
+      <Group>
+        <GroupHeader>
+          <H3>Posts and Comments</H3>
+        </GroupHeader>
+
+        <Items>
+          {state.search.postsAndComments.map((post, i) => (
+            <Item
+              key={`${post.accountId}/${post.postType}/${post.blockHeight}`}
+            >
+              <Widget
+                src="chaotictempest.near/widget/Search.Post"
+                props={{
+                  accountId: post.accountId,
+                  blockHeight: post.blockHeight,
+                  content: post.postContent,
+                }}
+              />
+            </Item>
+          ))}
+        </Items>
+      </Group>
+    )}
+
+    {state.paginate &&
+      state.paginate.hitsTotal > state.paginate.hitsPerPage && (
+        <Widget
+          src="chaotictempest.near/widget/Paginate"
+          props={{
+            totalCount: state.paginate.hitsTotal,
+            pageSize: state.paginate.hitsPerPage,
+            onPageChange,
+          }}
+        />
       )}
-    </div>
-
-    {state.term && (
-      <div>
-        {state.profile?.length > 0 && (
-          <div className="row p-0">
-            <p>Profiles</p>
-            <ul>{state.profile}</ul>
-          </div>
-        )}
-        {state.widget?.length > 0 && (
-          <div className="mb-2">
-            <p>Components</p>
-            {state.widget}
-          </div>
-        )}
-        {state.post?.length > 0 && (
-          <div className="row p-0">
-            <p>Posts</p>
-            <ul>{state.post}</ul>
-          </div>
-        )}
-        {state.comment?.length > 0 && (
-          <div className="row p-0">
-            <p>Comments</p>
-            <ul>{state.comment}</ul>
-          </div>
-        )}
-        {state.paginate &&
-          state.paginate.hitsTotal > state.paginate.hitsPerPage && (
-            <Widget
-              src="chaotictempest.near/widget/Paginate"
-              props={{
-                totalCount: state.paginate.hitsTotal,
-                pageSize: state.paginate.hitsPerPage,
-                onPageChange,
-              }}
-            />
-          )}
-      </div>
-    )}
-
-    {state.term && state.apps?.length === 0 && state.people?.length === 0 && (
-      <p>No people or applications match your search.</p>
-    )}
 
     {props.debug && (
       <div>
@@ -280,5 +356,5 @@ return (
         <pre>{JSON.stringify(state, undefined, 2)}</pre>
       </div>
     )}
-  </div>
+  </Wrapper>
 );
