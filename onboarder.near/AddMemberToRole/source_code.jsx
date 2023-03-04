@@ -1,4 +1,4 @@
-const accountId = props.accountId ?? context.accountId;
+const member_id = "onboarder.near";
 // error check for DAO ends with .sputnik-dao.near
 
 if (!accountId) {
@@ -6,7 +6,7 @@ if (!accountId) {
 }
 
 State.init({
-  member_id: state.member_id,
+  member_id: member_id,
   role: state.role,
 });
 
@@ -41,7 +41,7 @@ const handleProposal = () => {
       methodName: "add_proposal",
       args: {
         proposal: {
-          description: "potential member",
+          description: state.description ?? "potential member",
           kind: {
             AddMemberToRole: {
               member_id: state.member_id ?? accountId,
