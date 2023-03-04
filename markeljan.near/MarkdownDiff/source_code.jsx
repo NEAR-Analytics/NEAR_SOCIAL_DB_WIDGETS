@@ -364,7 +364,7 @@ const lineProps = (lineNumber) => {
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
 
 const ShowOnDesktop = styled.div`
-  display: none;
+  display: block;
 
   @media (min-width: 1200px) {
     display: block;
@@ -376,7 +376,7 @@ const ShowOnMobile = styled.div`
   display: none;
 
   @media (max-width: 1200px) {
-    display: block;
+    display: none;
 
   }
 `;
