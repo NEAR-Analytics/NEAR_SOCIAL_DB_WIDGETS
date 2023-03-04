@@ -125,4 +125,4 @@ const history = (
   </div>
 );
 
-return <div style={{ height: "400px" }}>{history}</div>;
+return history;
