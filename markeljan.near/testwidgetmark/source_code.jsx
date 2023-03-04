@@ -37,11 +37,13 @@ function historyHref(widgetName, linkProps) {
 }
 
 const currentTimestamp = props.timestamp ?? post.snapshot.timestamp;
-console.log("current", currentTimestamp);
 const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
+
+console.log("post_snap_hist", post.snapshot_history);
 snapshotHistory.push(snapshot);
 snapshotHistory.reverse();
+console.log("post_snap_hist_rev", post.snapshot_history);
 
 const history = (
   <div class="btn-group" role="group">
@@ -57,8 +59,6 @@ const history = (
     </a>
     <ul class="dropdown-menu">
       {snapshotHistory.map((item) => {
-        console.log("item", item);
-        console.log("snapshotHistory:", snapshotHistory);
         if (item === undefined) return;
         return (
           <li style={{ display: "flex" }}>
