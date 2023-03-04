@@ -75,7 +75,7 @@ return (
 
           return (
             <Widget
-              src="saidulbadhon.testnet/widget/Profile.Contributions.Item"
+              src="zahidulislam.near/widget/Profile.Contributions.Item"
               props={{
                 color: color,
                 date: formattedDate,
