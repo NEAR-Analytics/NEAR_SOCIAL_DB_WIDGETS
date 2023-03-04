@@ -535,7 +535,7 @@ return (
           style={{ marginTop: "16px", marginBottom: "16px" }}
         >
           <div
-            class="d-flex justify-content-end me-2"
+            class="d-flex justify-content-end me-1"
             style={{ fontSize: "12px" }}
           >
             <div class="d-flex w-50">
