@@ -52,7 +52,6 @@ function onResultClick(id) {
 
 const Wrapper = styled.div`
   position: relative;
-  background: #ECEEF0;
 
   &::before {
       content: '';
