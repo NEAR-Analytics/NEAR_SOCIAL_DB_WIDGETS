@@ -148,7 +148,7 @@ const Theme = state.theme;
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Stake Ether</div>
+      <div class="Header">Stake My Ass</div>
       <div class="SubHeader">Stake ETH and receive stETH while staking.</div>
 
       <div class="LidoForm">
