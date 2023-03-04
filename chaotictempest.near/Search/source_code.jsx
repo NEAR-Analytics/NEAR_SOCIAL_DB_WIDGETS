@@ -325,7 +325,7 @@ return (
               key={`${post.accountId}/${post.postType}/${post.blockHeight}`}
             >
               <Widget
-                src="chaotictempest.near/widget/Search.Post"
+                src="chaotictempest.near/widget/SearchPost"
                 props={{
                   accountId: post.accountId,
                   blockHeight: post.blockHeight,
