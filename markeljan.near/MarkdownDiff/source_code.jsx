@@ -23,7 +23,7 @@ showLineNumber?: bool
 if (typeof props?.currentCode !== "string")
   return "send {currentCode: string} in props";
 
-const MAX_CHARS_PER_LINE = 100;
+const MAX_CHARS_PER_LINE = 120;
 
 function formatText(markdownString) {
   const lines = markdownString.split("\n");
