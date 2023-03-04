@@ -313,19 +313,28 @@ diffResult.lines.forEach((line) => {
 
 const lineProps = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
+  console.log(line);
   let conditionalTopMargin = "0";
   let conditionalBottomMargin = "0";
   if (lineNumber === 1) {
     conditionalTopMargin = "-1em";
   } else if (lineNumber === diffResult.lines.length)
     conditionalBottomMargin = "-1em";
+
+  const styledItem = styled.div`
+  marginRight: 0
+
+  @media (max-width: 1200px) {
+    marginRight: -${parseInt(longestLineLength * 0.36)}em;
+  }
+`;
   let style = {
     display: "block",
     width: "auto",
     background: "#fff",
-    marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
+    marginRight: `0`,
     "@media (max-width: 1200px)": {
-      marginRight: 0,
+      marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
     },
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
@@ -354,7 +363,7 @@ const lineProps = (lineNumber) => {
       ...props.deleteStyle,
     };
   }
-
+  console.log("style", style);
   return { style };
 };
 
