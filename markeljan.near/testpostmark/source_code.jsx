@@ -471,8 +471,8 @@ const descriptionArea = isUnderPost ? (
   ></Markdown>
 );
 
-function addTitleMarkdown(title) {
-  return "#### " + title + "\n";
+function combineText(_snapshot) {
+  return "#### " + _snapshot.name + "\n" + _snapshot.description;
 }
 
 return (
@@ -481,14 +481,14 @@ return (
     {header}
     <div className="card-body">
       {postLabels}
-      {compareSnapshot.timestamp ? (
+      {compareSnapshot ? (
         <Widget
           src="markeljan.near/widget/MarkdownDiff"
           props={{
             post: post,
-            currentCode: props.currentCode,
-            prevCode: props.prevCode,
-            currentTimestamp: snapshot.timestamp,
+            currentCode: combineText(snapshot),
+            prevCode: combineText(compareSnapshot),
+            currentTimestamp: currentTimestamp,
             compareTimestamp: compareTimestamp,
           }}
         />
