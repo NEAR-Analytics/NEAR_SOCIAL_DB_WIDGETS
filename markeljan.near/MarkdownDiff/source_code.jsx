@@ -270,6 +270,12 @@ if (props.findUniqueResult)
     diffResult.lines.length
   );
 
+let longestLineLength = 0;
+diffResult.lines.forEach((line) => {
+  if (line.line.length > longestLineLength)
+    longestLineLength = line.line.length;
+});
+
 const linePropsDesktop = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
   let conditionalTopMargin = "0";
@@ -327,7 +333,7 @@ const linePropsMobile = (lineNumber) => {
     display: "block",
     width: "auto",
     background: "#fff",
-    marginRight: `-1200px`,
+    marginRight: `-${parseInt(longestLineLength * 0.5)}em`,
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
     marginBottom: conditionalBottomMargin,
