@@ -535,7 +535,7 @@ return (
           style={{ marginTop: "16px", marginBottom: "16px" }}
         >
           <div class="d-flex justify-content-end" style={{ fontSize: "12px" }}>
-            <div class="d-flex w-50 justify-content-end mt-1 me-1">
+            <div class="d-flex w-50 justify-content-end mt-1 me-2">
               {timestampElement(snapshot)}
               {snapshot !== compareSnapshot && (
                 <>
