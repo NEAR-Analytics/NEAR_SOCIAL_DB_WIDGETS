@@ -538,6 +538,7 @@ return (
             <div
               class="d-flex"
               style={{
+                flexWrap: wrap,
                 fontSize: "12px",
               }}
             >
