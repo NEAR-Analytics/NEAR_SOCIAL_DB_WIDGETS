@@ -85,7 +85,7 @@ const history = (
                       height: "1.25em",
                     },
                     imageStyle: {
-                      transform: "translateY(-10%)",
+                      transform: "translateY(-12.5%)",
                     },
                   }}
                 />
