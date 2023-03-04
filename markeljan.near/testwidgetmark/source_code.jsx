@@ -56,7 +56,7 @@ const history = (
     </a>
     <ul class="dropdown-menu">
       {orderedHistory.map((item) => {
-        console.log("item: ", item);
+        if (item === undefined) return;
         return (
           <li style={{ display: "flex" }}>
             <div
