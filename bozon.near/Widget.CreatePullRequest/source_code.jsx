@@ -63,7 +63,7 @@ return (
       <div class="col"></div>
       <h4 class="col">Create Pull Request</h4>
       <div class="col d-flex justify-content-end">
-        <button onClick={() => props.onClose()}>X</button>
+        <button className="btn-close" onClick={() => props.onClose()} />
       </div>
     </div>
     <div className="col-lg-12  mb-2">
