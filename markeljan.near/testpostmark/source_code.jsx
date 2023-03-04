@@ -184,6 +184,7 @@ const header = (
                 src={`markeljan.near/widget/testwidgetmark`}
                 props={{
                   post: post,
+                  timestamp: currentTimestamp,
                 }}
               />
             </div>
