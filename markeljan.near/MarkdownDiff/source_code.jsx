@@ -292,7 +292,7 @@ const linePropsMobile = (lineNumber) => {
     display: "block",
     width: "auto",
     background: "#fff",
-    marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
+    marginRight: `-${parseInt(longestLineLength * 0.39)}em`,
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
     marginBottom: conditionalBottomMargin,
