@@ -24,12 +24,11 @@ body, html { height:100%; }
 
 <script type="module">
 
-    function countdown( elementName, minutes, seconds )
-{
+    function countdown( elementName, minutes, seconds ){
+
     var element, endTime, hours, mins, msLeft, time;
 
-    function twoDigits( n )
-    {
+    function twoDigits( n ) {
         return (n <= 9 ? "0" + n : n);
     }
 
@@ -62,8 +61,8 @@ countdown( "countdown2", 100, 0 );
 
 return (
   <div class="w-100">
-    <div id="countdown"></div>
-    <div id="countdown2"></div>
+    <div id="countdown">wow</div>
+    <div id="countdown2">202</div>
     <iframe
       srcDoc={scriptSrc}
       height="100%"
