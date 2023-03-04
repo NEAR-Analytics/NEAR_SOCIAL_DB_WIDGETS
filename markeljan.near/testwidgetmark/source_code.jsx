@@ -54,7 +54,19 @@ const history = (
     >
       <div class="bi bi-clock-history px-2"></div>
     </a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" sx={{}}>
+      <div class="dropdown-header d-flex">
+        <a
+          style={{
+            textAlign: "center",
+            minWidth: "270px",
+            maxWidth: "270px",
+          }}
+        >
+          Edit History
+        </a>
+        <a>Compare</a>
+      </div>
       {snapshotHistory.map((item) => {
         if (item === undefined) return;
         return (
@@ -101,7 +113,7 @@ const history = (
                 referral,
               })}
             >
-              <i class="bi bi-file-earmark-diff"></i>
+              <i class="bi bi-file-earmark-diff" />
             </a>
           </li>
         );
