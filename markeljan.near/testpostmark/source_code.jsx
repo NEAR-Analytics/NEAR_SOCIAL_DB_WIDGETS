@@ -65,7 +65,7 @@ const snapshot =
 
 const compareSnapshot =
   snapshot === post.snapshot
-    ? snapshot
+    ? null
     : snapshotHistory.find((s) => s.timestamp === compareTimestamp) ?? null;
 
 // If this post is displayed under another post. Used to limit the size.
