@@ -313,7 +313,6 @@ diffResult.lines.forEach((line) => {
 
 const lineProps = (lineNumber) => {
   const line = diffResult.lines[lineNumber - 1];
-  console.log(line);
   let conditionalTopMargin = "0";
   let conditionalBottomMargin = "0";
   if (lineNumber === 1) {
@@ -363,7 +362,6 @@ const lineProps = (lineNumber) => {
       ...props.deleteStyle,
     };
   }
-  console.log("style", style);
   return { style };
 };
 
