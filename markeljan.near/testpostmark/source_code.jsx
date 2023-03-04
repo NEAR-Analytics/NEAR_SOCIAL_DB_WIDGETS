@@ -538,7 +538,7 @@ return (
             class="d-flex justify-content-end me-2"
             style={{ fontSize: "12px" }}
           >
-            <div class="d-flex w-50 justify-content-end me-2">
+            <div class="d-flex w-50 justify-content-end mt-1 me-2">
               {timestampElement(snapshot)}
               {snapshot !== compareSnapshot && (
                 <>
