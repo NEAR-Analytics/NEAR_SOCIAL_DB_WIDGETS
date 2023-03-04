@@ -70,7 +70,7 @@ const compareSnapshot =
   currentTimestamp === compareTimestamp
     ? snapshot
     : snapshotHistory.find((s) => s.timestamp === compareTimestamp) ??
-      currentTimestamp
+      compareTimestamp
     ? post.snapshot
     : null;
 
