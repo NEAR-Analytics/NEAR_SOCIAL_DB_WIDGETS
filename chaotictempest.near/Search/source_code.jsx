@@ -185,8 +185,16 @@ const categorizeSearchHits = (rawResp) => {
   };
 };
 
+const debounce = (callable, timeout) => {
+  return (args) => {
+    clearTimeout(state.timer);
+    State.update({
+      timer: setTimeout(() => callable(args), timeout ?? 50),
+    });
+  };
+};
+
 const fetchSearchHits = (query, { pageNumber, optionalFilters }) => {
-  console.log("FETCHING", query);
   let body = {
     query,
     page: pageNumber ?? 0,
@@ -209,7 +217,7 @@ const fetchSearchHits = (query, { pageNumber, optionalFilters }) => {
   });
 };
 
-const computeResults = (term, pageNumber) => {
+const computeResults = debounce(({ term, pageNumber }) => {
   fetchSearchHits(term, { pageNumber }).then((resp) => {
     const { results, hitsTotal, hitsPerPage } = categorizeSearchHits(resp.body);
     State.update({
@@ -226,11 +234,11 @@ const computeResults = (term, pageNumber) => {
       },
     });
   });
-};
+});
 
 const onSearchChange = ({ term }) => {
   writeStateTerm(term);
-  computeResults(term, INITIAL_PAGE);
+  computeResults({ term, pageNumber: INITIAL_PAGE });
 };
 
 const onPageChange = (pageNumber) => {
@@ -245,7 +253,7 @@ const onPageChange = (pageNumber) => {
     search: undefined,
     currentPage: algoliaPageNumber,
   });
-  computeResults(state.term, algoliaPageNumber);
+  computeResults({ term: state.term, pageNumber: algoliaPageNumber });
 };
 
 return (
