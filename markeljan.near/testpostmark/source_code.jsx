@@ -482,20 +482,24 @@ return (
     {linkToParent}
     {header}
     <div className="card-body">
-      {postLabels}
       {compareSnapshot ? (
-        <Widget
-          src="markeljan.near/widget/MarkdownDiff"
-          props={{
-            post: post,
-            currentCode: combineText(
-              swapTimestamps ? compareSnapshot : snapshot
-            ),
-            prevCode: combineText(swapTimestamps ? snapshot : compareSnapshot),
-          }}
-        />
+        <div class="border rounded">
+          <Widget
+            src="markeljan.near/widget/MarkdownDiff"
+            props={{
+              post: post,
+              currentCode: combineText(
+                swapTimestamps ? compareSnapshot : snapshot
+              ),
+              prevCode: combineText(
+                swapTimestamps ? snapshot : compareSnapshot
+              ),
+            }}
+          />
+        </div>
       ) : (
         <>
+          {postLabels}
           {postTitle}
           {postExtra}
           {descriptionArea}
