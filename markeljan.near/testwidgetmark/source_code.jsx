@@ -36,7 +36,7 @@ function historyHref(widgetName, linkProps) {
   }${linkPropsQuery}`;
 }
 
-const currentTimestamp = props.timestamp ?? post.snapshot.timestamp;
+const currentTimestamp = props.timestamp; //?? post.snapshot.timestamp;
 console.log("current", currentTimestamp);
 const snapshot = post.snapshot;
 const snapshotHistory = post.snapshot_history;
