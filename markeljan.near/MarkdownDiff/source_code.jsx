@@ -1,6 +1,4 @@
 /*
-//fork from bozon.near/widget/CodeDiff
-Changes made to styles and to support markdown.
 ---props---
 currentCode: string,
 prevCode?: string,
