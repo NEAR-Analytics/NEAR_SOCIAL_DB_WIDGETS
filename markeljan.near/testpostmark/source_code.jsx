@@ -535,24 +535,27 @@ return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
     {header}
-    {compareSnapshot && (
-      <div class="d-flex justify-content-end me-2">
-        <div
-          class="d-flex w-50 justify-content-end"
-          style={{
-            fontSize: "12px",
-          }}
-        >
-          {timestampElement(snapshot)}
-          <div class="px-2">v.s.</div>
-          {timestampElement(compareSnapshot)}
-        </div>
-      </div>
-    )}
+
     <div className="card-body">
       {postLabels}
       {compareSnapshot ? (
         <div class="border rounded">
+          <div class="d-flex justify-content-end me-2">
+            <div
+              class="d-flex w-50 justify-content-end"
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              {timestampElement(snapshot)}
+              <div class="px-2">
+                {" "}
+                <i class="bi bi-file-earmark-diff" />
+              </div>
+              {timestampElement(compareSnapshot)}
+            </div>
+          </div>
+
           <Widget
             src="markeljan.near/widget/MarkdownDiff"
             props={{
