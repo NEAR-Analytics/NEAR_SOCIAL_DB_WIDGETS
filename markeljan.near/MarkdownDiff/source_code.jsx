@@ -23,6 +23,33 @@ showLineNumber?: bool
 if (typeof props?.currentCode !== "string")
   return "send {currentCode: string} in props";
 
+function addNewLines(str) {
+  const MAX_CHARS_PER_LINE = 100;
+  let charCount = 0;
+  let lastNewLineIndex = -1;
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "\n") {
+      result += str.slice(lastNewLineIndex + 1, i + 1);
+      lastNewLineIndex = i;
+      charCount = 0;
+    } else if (charCount === MAX_CHARS_PER_LINE) {
+      if (lastNewLineIndex === -1) {
+        result += str.slice(0, i) + "\n";
+      } else {
+        result += str.slice(lastNewLineIndex + 1, i) + "\n";
+      }
+      lastNewLineIndex = i;
+      charCount = 0;
+    } else {
+      charCount++;
+    }
+  }
+  result += str.slice(lastNewLineIndex + 1);
+  return result;
+}
+const modifiedCurrentCode = addNewLines(props.currentCode);
+const modifiedPrevCode = addNewLines(props.prevCode);
 //code from this - https://github.com/jonTrent/PatienceDiff
 function patienceDiff(aLines, bLines, diffPlusFlag) {
   function findUnique(arr, lo, hi) {
@@ -216,16 +243,16 @@ function patienceDiff(aLines, bLines, diffPlusFlag) {
 }
 
 const diffResult = patienceDiff(
-  props.prevCode ? props.prevCode.split(/\r\n|\n/) : [],
-  props.currentCode.split(/\r\n|\n/)
+  modifiedPrevCode ? modifiedPrevCode.split(/\r\n|\n/) : [],
+  modifiedCurrentCode.split(/\r\n|\n/)
 );
 
 if (props.findUniqueResult)
   props.findUniqueResult(
     diffResult.lineCountDeleted,
     diffResult.lineCountInserted,
-    props.currentCode.split(/\r\n|\n/).length,
-    props.prevCode ? props.prevCode.split(/\r\n|\n/).length : 0,
+    modifiedCurrentCode.split(/\r\n|\n/).length,
+    modifiedPrevCode ? modifiedPrevCode.split(/\r\n|\n/).length : 0,
     diffResult.lines.length
   );
 
@@ -324,10 +351,6 @@ const linePropsMobile = (lineNumber) => {
 };
 
 const codeText = diffResult.lines.map((el) => el.line).join("\n");
-
-console.log(props.currentCode.toString());
-
-console.log({ hey: props.currentCode });
 
 const ShowOnDesktop = styled.div`
   display: none;
