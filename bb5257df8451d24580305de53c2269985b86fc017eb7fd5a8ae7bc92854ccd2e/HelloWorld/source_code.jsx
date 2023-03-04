@@ -1,1 +1,1 @@
-return "Hello, world!";
+return "I love Carol BB <3";
