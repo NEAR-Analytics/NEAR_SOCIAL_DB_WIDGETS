@@ -48,8 +48,6 @@ if (!post) {
   return <div>Loading ...</div>;
 }
 
-console.log(post);
-
 const snapshot = post.snapshot;
 
 const childPostIds =
