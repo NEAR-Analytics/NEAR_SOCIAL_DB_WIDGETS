@@ -482,7 +482,7 @@ return (
       {postLabels}
       {compareSnapshot ? (
         <Widget
-          src="markeljan.near/widget/testdiffmark"
+          src="markeljan.near/widget/MarkdownDiff"
           props={{
             post: post,
             currentCode: combineText(snapshot),
