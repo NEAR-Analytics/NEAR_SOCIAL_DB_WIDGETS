@@ -539,7 +539,10 @@ return (
     <div className="card-body">
       {postLabels}
       {compareSnapshot ? (
-        <div class="border rounded">
+        <div
+          class="border rounded"
+          style={{ marginTop: "16px", marginBottom: "16px" }}
+        >
           <div class="d-flex justify-content-end me-2">
             <div
               class="d-flex w-50 justify-content-end"
