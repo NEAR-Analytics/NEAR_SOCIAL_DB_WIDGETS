@@ -24,7 +24,7 @@ const gateways = [
 return (
   <div
     className="d-flex flex-column gap-2 w-100"
-    style={{ height: "50rem", maxHeight: "100%" }}
+    style={{ height: "100rem", maxHeight: "100%" }}
   >
     <div className="d-flex flex-row justify-content-center gap-2">
       {gateways.map((g, i) => {
