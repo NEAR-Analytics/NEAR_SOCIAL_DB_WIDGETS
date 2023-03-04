@@ -20,12 +20,12 @@ return (
     <div className="container">
       <div className="content">
         <Widget
-          src="storyboard.testnet/widget/Profile.LeftSection"
+          src="zahidulislam.near/widget/Profile.LeftSection"
           props={{ accountId, profile, theme }}
         />
 
         <Widget
-          src="storyboard.testnet/widget/Profile.RightSection"
+          src="zahidulislam.near/widget/Profile.RightSection"
           props={{ accountId, profile, theme }}
         />
       </div>
