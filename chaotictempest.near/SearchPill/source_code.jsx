@@ -1,49 +1,11 @@
-const SEARCH_API_KEY = props.searchApiKey ?? "57ad1944e94432510f067a6e3d13f022";
-const APPLICATION_ID = props.appId ?? "B6PI9UKKJT";
-const INDEX = props.index ?? "test_near-social-feed";
-const API_URL =
-  props.apiUrl ??
-  `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
-
-const fetchSearchHits =
-  props.fetchSearchHits ??
-  ((query, { pageNumber, optionalFilters }) => {
-    let body = {
-      query,
-      page: pageNumber ?? 0,
-      optionalFilters: optionalFilters ?? [
-        "categories:profile<score=3>",
-        "categories:widget<score=2>",
-        "categories:post<score=1>",
-        "categories:comment<score=0>",
-      ],
-    };
-
-    return asyncFetch(API_URL, {
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        "X-Algolia-Api-Key": SEARCH_API_KEY,
-        "X-Algolia-Application-Id": APPLICATION_ID,
-      },
-      method: "POST",
-    });
-  });
-
-const computeResults = (term) => {
+const updateSearch = (term) => {
   State.update({
     term,
   });
 
-  fetchSearchHits(term, 0).then((result) => {
-    State.update({
-      result,
-    });
-
-    if (props.onChange) {
-      props.onChange({ term, result });
-    }
-  });
+  if (props.onChange) {
+    props.onChange({ term });
+  }
 };
 
 const Wrapper = styled.div`
@@ -97,7 +59,7 @@ return (
         type="text"
         className={`form-control ${state.term ? "border-end-0" : ""}`}
         value={state.term ?? ""}
-        onChange={(e) => computeResults(e.target.value)}
+        onChange={(e) => updateSearch(e.target.value)}
         placeholder={props.placeholder ?? `Search`}
       />
 
@@ -105,7 +67,7 @@ return (
         <button
           className="btn btn-outline-secondary border border-start-0"
           type="button"
-          onClick={() => computeResults("")}
+          onClick={() => updateSearch("")}
         >
           <i className="bi bi-x"></i>
         </button>
