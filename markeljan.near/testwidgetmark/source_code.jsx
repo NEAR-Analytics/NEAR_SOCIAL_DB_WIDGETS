@@ -61,8 +61,8 @@ const history = (
           <li style={{ display: "flex" }}>
             <div
               style={{
-                minWidth: "300px",
-                maxWidth: "300px",
+                minWidth: "290px",
+                maxWidth: "290px",
               }}
             >
               <a
