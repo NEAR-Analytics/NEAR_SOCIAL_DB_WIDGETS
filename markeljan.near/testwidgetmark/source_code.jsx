@@ -54,19 +54,22 @@ const history = (
     >
       <div class="bi bi-clock-history px-2"></div>
     </a>
-    <ul class="dropdown-menu" sx={{}}>
-      <div class="dropdown-header d-flex">
+    <ul class="dropdown-menu">
+      <a
+        class="d-flex text-muted"
+        style={{ fontSize: "12px", textDecoration: "none", cursor: "default" }}
+      >
         <a
           style={{
             textAlign: "center",
-            minWidth: "270px",
-            maxWidth: "270px",
+            minWidth: "290px",
+            maxWidth: "290px",
           }}
         >
           Edit History
         </a>
-        <a>Compare</a>
-      </div>
+        <a style={{ marginRight: "8px" }}>Compare</a>
+      </a>
       {snapshotHistory.map((item) => {
         if (item === undefined) return;
         return (
@@ -122,4 +125,4 @@ const history = (
   </div>
 );
 
-return history;
+return <div style={{ height: "400px" }}>{history}</div>;
