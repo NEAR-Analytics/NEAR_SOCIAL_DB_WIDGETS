@@ -324,6 +324,9 @@ const lineProps = (lineNumber) => {
     width: "auto",
     background: "#fff",
     marginRight: `-${parseInt(longestLineLength * 0.36)}em`,
+    "@media (max-width: 1200px)": {
+      marginRight: 0,
+    },
     marginLeft: "-1em",
     marginTop: conditionalTopMargin,
     marginBottom: conditionalBottomMargin,
