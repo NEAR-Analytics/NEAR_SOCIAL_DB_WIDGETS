@@ -520,8 +520,16 @@ const timestampElement = (_snapshot) => {
 };
 
 function combineText(_snapshot) {
-  return "#### " + _snapshot.name + "\n" + _snapshot.description;
+  return (
+    "## " +
+    _snapshot.post_type +
+    ": " +
+    _snapshot.name +
+    "\n" +
+    _snapshot.description
+  );
 }
+
 return (
   <Card className={`card my-2 ${borders[snapshot.post_type]}`}>
     {linkToParent}
