@@ -182,6 +182,8 @@ return props.manual ? (
       </div>
     }
   >
+    {props.headerElement}
     {renderedItems}
+    {props.footerElement}
   </InfiniteScroll>
 );
