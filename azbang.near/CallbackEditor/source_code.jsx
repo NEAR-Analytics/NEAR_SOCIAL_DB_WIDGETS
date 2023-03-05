@@ -126,7 +126,10 @@ const openScript = (script) => {
     script: {
       ...script,
       conditions: JSON.parse(script.conditions),
-      code: Storage.get(`${script.sid}:code`) || script.code || exampleScript,
+      code:
+        script.sid === "new"
+          ? Storage.get(`${script.sid}:code`) || exampleScript
+          : script.code,
     },
   });
 };
