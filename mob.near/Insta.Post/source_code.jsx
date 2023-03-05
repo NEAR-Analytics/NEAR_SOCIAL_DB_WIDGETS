@@ -6,6 +6,7 @@ const content =
   JSON.parse(Social.get(`${accountId}/post/insta`, blockHeight) ?? "null");
 const subscribe = !!props.subscribe;
 const raw = !!props.raw;
+const hideLink = !!props.hideLink;
 
 const Wrapper = styled.div`
   @media (min-width: 576px) {
@@ -14,11 +15,13 @@ const Wrapper = styled.div`
 
   .info {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: space-between;
     opacity: 0;
     padding: 0.5em;
     box-shadow: inset 0 0 5em 4em #fff;
+    transition: opacity 0.5s;
   }
 
   &:hover {
@@ -44,36 +47,48 @@ return (
       }}
     />
     <div className="info">
-      <div>
-        <Widget
-          src="mob.near/widget/LikeButton"
-          props={{
-            item: {
-              type: "social",
-              path: `${accountId}/post/insta`,
-              blockHeight,
-            },
-            notifyAccountId: accountId,
-          }}
-        />
+      <div className="text-end position-relative flex-grow-1">
+        {hideLink && (
+          <a
+            href={`#/mob.near/widget/Insta.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+            className="link-dark stretched-link"
+          >
+            <i className="fs-3 bi bi-link-45deg" />
+          </a>
+        )}
       </div>
-      <div>
-        <a
-          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
-          target="_blank"
-        >
+      <div className="d-flex justify-content-between">
+        <div>
           <Widget
-            src="mob.near/widget/ProfileImage"
+            src="mob.near/widget/LikeButton"
             props={{
-              accountId,
-              tooltip: true,
-              imageStyle: {
-                objectFit: "cover",
-                boxShadow: "0 0 0.5em #333",
+              item: {
+                type: "social",
+                path: `${accountId}/post/insta`,
+                blockHeight,
               },
+              notifyAccountId: accountId,
             }}
           />
-        </a>
+        </div>
+        <div>
+          <a
+            href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+            target="_blank"
+          >
+            <Widget
+              src="mob.near/widget/ProfileImage"
+              props={{
+                accountId,
+                tooltip: true,
+                imageStyle: {
+                  objectFit: "cover",
+                  boxShadow: "0 0 0.5em #333",
+                },
+              }}
+            />
+          </a>
+        </div>
       </div>
     </div>
   </Wrapper>
