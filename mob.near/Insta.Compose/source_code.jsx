@@ -31,7 +31,7 @@ const filesOnChange = (files) => {
               {
                 key: "insta",
                 value: {
-                  type: "insta",
+                  type: "md",
                 },
               },
               {
