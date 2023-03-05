@@ -416,7 +416,7 @@ const render = () => (
     <iframe
       srcDoc={code}
       style={{ width: "100%", height: "calc(100% - 260px)" }}
-      message={state.script.code ?? ""}
+      message={JSON.stringify({ code: state.script.code ?? "" })}
       onMessage={(e) => {
         Storage.set(`${state.script.sid}:code`, e);
       }}
@@ -632,9 +632,14 @@ require(["vs/editor/editor.main"], async function () {
       parent.postMessage(editor.getModel().getValue(), "*")
     })
 
+    let isUsed = false
     window.addEventListener("message", (e) => {
-      editor.getModel().setValue(e.data)
-    }, { once: true })
+        if (isUsed) return;
+        try {
+      editor.getModel().setValue(JSON.parse(e.data).code)
+      isUsed = true
+      } catch {}
+    })
 });
 </script>
 `;
