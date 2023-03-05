@@ -88,20 +88,24 @@ const DivContainer = styled.div`
 const DivChild1 = styled.div`
   width: 75%;
     float: left;
-    padding: 20px;
+    padding: 10px;
 ;`;
 
 const DivChild2 = styled.div`
   width: 25%;
     float: left;
-    padding: 20px;
+    padding: 10px;
 ;`;
 
 return (
   <div>
+    <h1>Fuzzy Search on Gov Gigs Boards Posts by Thalasith and TealWarlock</h1>
     <DivContainer>
       <DivChild1>
-        <input onChange={(e) => State.update({ searchTerm: e.target.value })} />
+        <input
+          onChange={(e) => State.update({ searchTerm: e.target.value })}
+          placeholder="Search for keywords like funding or comments in a post's description or name. "
+        />
       </DivChild1>
       <DivChild2>
         <button
