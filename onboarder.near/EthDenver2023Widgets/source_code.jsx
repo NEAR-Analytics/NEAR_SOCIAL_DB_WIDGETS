@@ -5,6 +5,15 @@ return (
     <ul>
       <li>
         <a
+          href="https://near.social/#/onboarder.near/widget/OldestPosts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Most OG Posters
+        </a>
+      </li>
+      <li>
+        <a
           href="https://near.social/#/onboarder.near/widget/DAOSocialSearch"
           target="_blank"
           rel="noopener noreferrer"
@@ -43,12 +52,20 @@ return (
     <h2>🌈 EVM widgets</h2>
     <ul>
       <li>
-        <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://bos.gg/#/onboarder.near/widget/polygon-erc20-sender"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Polygon Token Sender
         </a>
       </li>
       <li>
-        <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://bos.gg/#/onboarder.near/widget/PolygonTokenList"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Polygon Token List
         </a>
       </li>
