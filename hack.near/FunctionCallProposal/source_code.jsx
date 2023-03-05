@@ -12,9 +12,6 @@ State.init({
 });
 
 const handleProposal = () => {
-  if (!(state.receiver_id && state.method_name && state.args)) {
-    return;
-  }
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
