@@ -14,11 +14,11 @@ const Wrapper = styled.div`
 
   .info {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-end;
     opacity: 0;
     padding: 0.5em;
-    box-shadow: inset 0 0 3em 2em #ddd;
+    box-shadow: inset 0 0 5em 4em #fff;
   }
 
   &:hover {
@@ -44,22 +44,36 @@ return (
       }}
     />
     <div className="info">
-      <a
-        href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
-        target="_blank"
-      >
+      <div>
         <Widget
-          src="mob.near/widget/ProfileImage"
+          src="mob.near/widget/LikeButton"
           props={{
-            accountId,
-            tooltip: true,
-            imageStyle: {
-              objectFit: "cover",
-              boxShadow: "0 0 0.5em #333",
+            item: {
+              type: "social",
+              path: `${accountId}/post/insta`,
+              blockHeight,
             },
           }}
         />
-      </a>
+      </div>
+      <div>
+        <a
+          href={`#/mob.near/widget/ProfilePage?accountId=${accountId}`}
+          target="_blank"
+        >
+          <Widget
+            src="mob.near/widget/ProfileImage"
+            props={{
+              accountId,
+              tooltip: true,
+              imageStyle: {
+                objectFit: "cover",
+                boxShadow: "0 0 0.5em #333",
+              },
+            }}
+          />
+        </a>
+      </div>
     </div>
   </Wrapper>
 );
