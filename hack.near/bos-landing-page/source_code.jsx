@@ -193,6 +193,14 @@ footer a, span {
 }
 `;
 
+const editProfileButton = (
+  <div>
+    <a className="btn btn-success" href="#/hack.near/widget/ProfileEditor">
+      Edit Profile
+    </a>
+  </div>
+);
+
 if (!state.theme) {
   State.update({
     theme: styled.div`
@@ -212,7 +220,7 @@ return (
       <div class="header-content-left">
         <div>
           <div>
-            <h1>What is BOS?</h1>
+            <h1>NEAR is a bOS</h1>
             <h2>&#60;Blockchain OS&#62;</h2>
           </div>
           <div>
@@ -226,12 +234,12 @@ return (
       <div class="header-content-right">
         <div>
           <div>
-            <h1>Open Web</h1>
-            <h2>&#60;CREATE&#62;</h2>
+            <h1>Together</h1>
+            <h2>&#60;LEARN HOW&#62;</h2>
           </div>
           <div>
-            <a href="https://bos.gg/#/" target="_blank">
-              <h3>Join Group -&#62;</h3>
+            <a href="https://neardevgov.org" target="_blank">
+              <h3>Join Groups -&#62;</h3>
             </a>
           </div>
         </div>
@@ -241,10 +249,18 @@ return (
     </div>
 
     <div class="main">
-      <h3>bOS People</h3>
-      <p class="gray">Connect. Collab. Create.</p>
-
+      <h3>bOS Profile</h3>
+      <p class="gray">Connect. Collab. Coordinate.</p>
       <div>
+        <Widget src="hack.near/widget/Profile" />
+        <div className="m-2">{editProfileButton}</div>
+      </div>
+      <br />
+      <div className="mt-2">
+        <h3>Explore</h3>
+        <div className="m-2">
+          <Widget src="p516entropy.near/widget/PostsFuzzySearch" />
+        </div>
         <div className="mb-2">
           <Widget
             src="mob.near/widget/People"
