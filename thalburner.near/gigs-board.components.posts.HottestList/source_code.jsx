@@ -4,6 +4,10 @@
 // [IndexFeed]: https://near.social/#/mob.near/widget/WidgetSource?src=mob.near/widget/IndexFeed
 
 /* INCLUDE: "common.jsx" */
+
+// NOTE: THERE IS INCONSISTENCY WITH THE PROPS ON NEAR SOCIAL VS ALPHA NEAR:
+// IN NEAR SOCIAL - IT DOESNT TAKE THE PROPS PER THE BELOW AND DEFAULTS TO "DEVGOVGIGS.NEAR"
+// IN ALPHA - IT DOES TAKE THE PROPS AND ASSUMES THAT IT IS THE DEVELOPER "THALBURNER.NEAR"
 const nearDevGovGigsContractAccountId =
   props.nearDevGovGigsContractAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
@@ -214,12 +218,15 @@ const items = state.items ? state.items.slice(0, state.displayCount) : [];
 const renderedItems = items.map(cachedRenderItem);
 
 return (
-  <InfiniteScroll
-    pageStart={0}
-    loadMore={makeMoreItems}
-    hasMore={state.displayCount < state.items.length}
-    loader={loader}
-  >
-    {renderedItems}
-  </InfiniteScroll>
+  <div>
+    <h1>Hottest comments by likes - built by Thalasith and TealWarlock</h1>
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={makeMoreItems}
+      hasMore={state.displayCount < state.items.length}
+      loader={loader}
+    >
+      {renderedItems}
+    </InfiniteScroll>
+  </div>
 );
