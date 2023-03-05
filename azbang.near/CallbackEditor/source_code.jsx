@@ -111,8 +111,8 @@ const openScript = (script) => {
       ...script,
       conditions: JSON.parse(script.conditions),
       code:
-        Storage.get(`${script.sid}:code`, e.data) ??
-        script.code ??
+        Storage.get(`${script.sid}:code`, e.data) ||
+        script.code ||
         exampleScript,
     },
   });
@@ -509,12 +509,12 @@ const render = () => (
 
 const exampleScript = `const data = get_Input();
 
-function_Call({ 
-    receiver: data.user,
-    deposit: 10, 
-    methodName: "test", 
-    args: "" 
-})`;
+const followers = get_SignerFollowers()
+const balance = get_SignerBalance()
+
+call_Transfer("account.near", "1000")
+function_Call("near.social", "method")
+`;
 
 const code = `
 <style>
@@ -536,12 +536,79 @@ require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' 
 window.MonacoEnvironment = { getWorkerUrl: () => proxy };
 let proxy = URL.createObjectURL(new Blob(['self.MonacoEnvironment = {baseUrl: "https://unpkg.com/monaco-editor@latest/min/" };importScripts("https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js")'], { type: 'text/javascript' }));
 
-require(["vs/editor/editor.main"], function () {
+require(["vs/editor/editor.main"], async function () {
+    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+        noSemanticValidation: false,
+        noSyntaxValidation: false,
+        noSuggestionDiagnostics: false,
+        diagnosticCodesToIgnore: [1108],
+    });
+
+    const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions();
+    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+        target: monaco.languages.typescript.ScriptTarget.ES6,
+        allowNonTsExtensions: true,
+        noLib: true,
+    });
+
+    const libSource = \`
+        /** 
+         * Synchronous contract method call function. 
+         * Paid calls are paid from the script deposit. 
+         * 
+         * account_id - Required
+         * 
+         * method - Required
+         * 
+         * args = ''
+         * 
+         * deposit = '0'
+         * 
+         * gas = '2500000000000
+         * */
+        declare function function_Call(account_id: string, method: string, args?: string, deposit?: string, gas?: string)
+        
+        /** 
+         * Synchronous method for get trigger data in JSON format
+         * Example: "{ "key": "follow", "value": { "type": "unfollow", "accountId": "mob.near" }}"
+        */
+        declare function get_Input(): string
+
+        /** 
+         * Synchronous method for get signer followers in NEAR Social
+        */
+        declare function get_SignerFollowers(): number
+
+        /** 
+         * Synchronous method for get signer balance in yocto NEAR
+        */
+        declare function get_SignerBalance(): string
+
+        /** 
+         * Synchronous method for transfer yocto NEAR 
+        */
+        declare function call_Transfer(account_id: string, deposit: string)
+    \`
+    
+    const libUri = 'ts:filename/index.d.ts';
+    monaco.languages.typescript.javascriptDefaults.addExtraLib(libSource, libUri);
+    monaco.editor.createModel(libSource, 'typescript', monaco.Uri.parse(libUri));
+
+    try {
+        const coreDefsResp = await fetch("https://raw.githubusercontent.com/microsoft/TypeScript/main/lib/lib.es5.d.ts")
+        const coreDefs = await coreDefsResp.text();
+        monaco.languages.typescript.javascriptDefaults.addExtraLib(
+            coreDefs,
+            "lib.es5.d.ts"
+        );
+    } catch {}
+
 	let editor = monaco.editor.create(document.getElementById('container'), {
 		value: '',
+        fixedOverflowWidgets: true,
 		language: 'javascript',
-    width: '100%',
-    fontSize: 16,
+        width: '100%',
+        fontSize: 16,
 		theme: 'vs-dark'
 	});
 
