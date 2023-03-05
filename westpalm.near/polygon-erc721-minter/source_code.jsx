@@ -1,6 +1,7 @@
+//WORK IN PROGRESS UNFINISHED
 // const [tokenId, setTokenId] = useState(null);
 const erc721Abi = fetch(
-  "https://raw.githubusercontent.com/codingshot/bluntdao-app/main/abi.json?token=GHSAT0AAAAAABZHZUKMD57MZSSRML3DBHRUZAEUA2Q"
+  "https://raw.githubusercontent.com/codingshot/TokenFactory/master/abi/erc721bluntdao.abi.json"
 );
 initState({
   value: 0.01,
