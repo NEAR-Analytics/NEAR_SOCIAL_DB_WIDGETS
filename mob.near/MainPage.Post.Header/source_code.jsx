@@ -41,7 +41,7 @@ ChatGPT.
 );
 
 return (
-  <div className="d-flex flex-row align-items-center vh-100">
+  <div className="d-flex flex-row align-items-center">
     <div className="flex-grow-1 text-truncate">
       <a
         className="text-dark text-decoration-none text-truncate"
