@@ -6,7 +6,6 @@ if (!accountId) {
 }
 
 State.init({
-  dao_id: "" ?? daoId,
   receiver_id: "",
   method_name: "",
   args: "",
@@ -40,15 +39,9 @@ const handleProposal = () => {
         },
       },
       deposit: state.deposit ?? "100000000000000000000000",
-      gas: state.gas ?? "280000000000000",
+      gas: state.gas ?? "200000000000000",
     },
   ]);
-};
-
-const onChangeDAO = (dao_id) => {
-  State.update({
-    dao_id,
-  });
 };
 
 const onChangeContract = (receiver_id) => {
@@ -71,10 +64,6 @@ const onChangeArgs = (args) => {
 
 return (
   <div className="mb-3">
-    <div className="mb-3">
-      DAO:
-      <input type="text" onChange={(e) => onChangeDAO(e.target.value)} />
-    </div>
     <div className="mb-3">
       Contract:
       <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
