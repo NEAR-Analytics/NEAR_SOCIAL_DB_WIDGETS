@@ -208,7 +208,7 @@ return (
                   </Card>
                   <div className="row">
                     <div className="col">
-                      <h3>Send ERC-20 tokens</h3>
+                      <h3>Send Donation</h3>
                       <div class="mb-3">
                         <label for="selectToken">Select token</label>
                         <select
