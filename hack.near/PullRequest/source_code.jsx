@@ -11,9 +11,9 @@ State.init({
 
 const function_call_args = JSON.stringify({
   data: {
-    daoId: {
+    "multi.sputnik-dao.near": {
       widget: {
-        widget_name: {
+        MultiDAO: {
           "": 'return "hi bOS";\n',
         },
       },
