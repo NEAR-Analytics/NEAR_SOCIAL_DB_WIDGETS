@@ -47,7 +47,7 @@ const res = fetch("https://flipside-api.antonyip.com/getCachedQuery", options); 
 }
 //);
 
-if (props.debug === "true") {
+if (props.debug) {
   return (
     <>
       <div>query: {props.query}</div>
