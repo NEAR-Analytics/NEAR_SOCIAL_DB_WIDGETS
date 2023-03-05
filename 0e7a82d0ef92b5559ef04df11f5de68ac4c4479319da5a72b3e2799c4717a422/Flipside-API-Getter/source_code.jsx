@@ -12,9 +12,6 @@ const options = {
 
 const res = fetch("https://flipside-api.antonyip.com/getCachedQuery", options); //.then((res) =>
 {
-  State.update({
-    results: "What is results?",
-  });
   if (!res.ok) {
     if (props.onComplete) {
       props.onComplete(
@@ -38,12 +35,12 @@ const res = fetch("https://flipside-api.antonyip.com/getCachedQuery", options); 
     return;
   }
 
-  State.update({
-    results: `${JSON.stringify(res.body)}`,
-  });
   if (props.onComplete) {
     props.onComplete(true, res.body);
   }
+  State.update({
+    results: `${JSON.stringify(res.body)}`,
+  });
 }
 //);
 
