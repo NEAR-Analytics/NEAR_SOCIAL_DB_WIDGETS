@@ -68,7 +68,7 @@ State.update({ hottestsPosts });
 return (
   <div>
     <div class="row">
-      <div class="col-6 align-self-center">
+      <div class="fs-5 col-6 align-self-center">
         <i class="bi-fire"></i>
         <span>Hottest Posts</span>
       </div>
