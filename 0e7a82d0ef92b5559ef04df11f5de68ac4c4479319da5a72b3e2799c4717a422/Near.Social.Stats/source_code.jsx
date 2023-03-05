@@ -45,6 +45,7 @@ const WidgetDiv = styled.div`
 
 return (
   <div>
+    <h2>Widgets Created by Anton using Flipside's Database.</h2>
     <Widget
       src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
       props={chart1Props}
