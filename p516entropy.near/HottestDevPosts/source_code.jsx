@@ -11,9 +11,9 @@ const ONE_MONTH = 60 * 60 * 24 * 1000 * 30;
 function getHotnessScore(post) {
   //post.id - shows the age of the post, should grow exponentially, since newer posts are more important
   //post.likes.length - linear value
-  const age = Math.pow(post.id, 3);
+  const age = Math.pow(post.id, 5);
   const comments = post.comments;
-  const commentAge = comments.reduce((sum, age) => sum + Math.pow(age, 3), 0);
+  const commentAge = comments.reduce((sum, age) => sum + Math.pow(age, 5), 0);
   const totalAge = age + commentAge;
   //use log functions to make likes score and exponentially big age score close to each other
   return Math.log10(post.likes.length) + Math.log(Math.log10(totalAge));
