@@ -5,6 +5,9 @@ const postType = props.postType || "insta";
 const path = `${accountId}/post/${postType}`;
 const content =
   props.content ?? JSON.parse(Social.get(path, blockHeight) ?? "null");
+if (!content.image) {
+  return <></>;
+}
 const subscribe = !!props.subscribe;
 const raw = !!props.raw;
 const hideLink = !!props.hideLink;
