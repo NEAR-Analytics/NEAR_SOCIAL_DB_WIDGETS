@@ -30,9 +30,7 @@ const handleProposal = () => {
               actions: [
                 {
                   method_name: state.method_name,
-                  args: Buffer.from(JSON.stringify(args), "utf-8").toString(
-                    "base64"
-                  ),
+                  args: Buffer.from(args, "utf-8").toString("base64"),
                   deposit: "1",
                   gas: "150000000000000",
                 },
