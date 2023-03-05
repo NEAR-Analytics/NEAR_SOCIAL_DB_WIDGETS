@@ -22,7 +22,7 @@ function updateQuery(value) {
 function sendQueryToBackend() {
   const options = {
     method: "POST",
-    body: `{ "query": "${query}" }`,
+    body: `{ "query": "${state.query}" }`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -49,8 +49,7 @@ function sendQueryToBackend() {
   }
 
   State.update({
-    //result: JSON.parse(res.body.records),
-    result: res.body,
+    result: JSON.stringify(res.body.records),
   });
 }
 
@@ -64,7 +63,6 @@ return (
       // onChange={(e) => computeResults(e.target.value)}
       // placeholder={props.placeholder ?? `Enter your query here!`}
     />
-    <div>{state.query}</div>
     <MyButton onClick={() => sendQueryToBackend()}>Submit Query</MyButton>
     <div>{state.result}</div>
   </div>
