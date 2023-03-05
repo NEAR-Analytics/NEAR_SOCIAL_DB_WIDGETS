@@ -61,15 +61,11 @@ function sendQueryToBackend() {
 
 return (
   <div>
-    <div>
-      {" "}
+    <h2>
       Simple API endpoint that uses GODMODE to query the flipside database{" "}
-    </div>
-    <div>
-      {" "}
-      Try it out! ...or check the sources if you're interested in how I made
-      this.{" "}
-    </div>
+    </h2>
+    <h5>Try it out!</h5>
+    <h5>...or check the sources if you're interested in how I made this.</h5>
     <input
       type="text"
       onChange={(e) => updateQuery(e.target.value)}
