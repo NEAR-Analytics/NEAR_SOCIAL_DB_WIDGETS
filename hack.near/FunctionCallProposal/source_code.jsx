@@ -8,8 +8,16 @@ if (!accountId) {
 State.init({
   receiver_id: state.receiver_id,
   method_name: state.method_name,
-  args: state.args,
 });
+
+const function_call_args = JSON.stringify({
+  token_id: "2498",
+  receiver_id: "0xedward.near",
+});
+
+const proposal_args = Buffer.from(function_call_args, "utf-8").toString(
+  "base64"
+);
 
 const handleProposal = () => {
   const gas = 200000000000000;
@@ -27,7 +35,7 @@ const handleProposal = () => {
               actions: [
                 {
                   method_name: state.method_name,
-                  args: Buffer.from(args, "utf-8").toString("base64"),
+                  args: proposal_args,
                   deposit: "1",
                   gas: "150000000000000",
                 },
@@ -71,8 +79,6 @@ return (
       <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
     <div className="mb-3">
-      Arguments (JSON):
-      <input type="text" onChange={(e) => onChangeArgs(e.target.value)} />
       <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
         Propose Action
       </button>
