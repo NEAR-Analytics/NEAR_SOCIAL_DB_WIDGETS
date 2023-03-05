@@ -1,28 +1,7 @@
 State.init({
-  query: `select 'Please Enter a Query in Props' as Error`,
+  query: `select 1`,
+  result: `await results...`,
 });
-
-const options = {
-  method: "POST",
-  body: `{ "query": "${query}" }`,
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-
-const res = fetch("https://flipside-api.antonyip.com/getCachedQuery", options);
-
-if (!res.ok) {
-  return <div>near.social issue with fetch</div>;
-}
-
-if (res.body.error) {
-  return (
-    <div>
-      anton's api issue with website or query {JSON.stringify(res.body)}{" "}
-    </div>
-  );
-}
 
 const MyButton = styled.button`
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
@@ -40,18 +19,52 @@ function updateQuery(value) {
   });
 }
 
+function sendQueryToBackend() {
+  const options = {
+    method: "POST",
+    body: `{ "query": "${query}" }`,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const res = fetch(
+    "https://flipside-api.antonyip.com/getCachedQuery",
+    options
+  );
+
+  if (!res.ok) {
+    State.update({
+      result: "near.social issue with fetch",
+    });
+    return;
+  }
+
+  if (res.body.error) {
+    State.update({
+      result:
+        "anton's api issue with website or query {JSON.stringify(res.body)}",
+    });
+    return;
+  }
+
+  State.update({
+    result: JSON.parse(res.body.records),
+  });
+}
+
 return (
   <div>
     <input
       type="text"
       onChange={(e) => updateQuery(e.target.value)}
       // className={`form-control ${state.term ? "border-end-0" : ""}`}
-      // value={state.term ?? ""}
+      value={state.query ?? ""}
       // onChange={(e) => computeResults(e.target.value)}
       // placeholder={props.placeholder ?? `Enter your query here!`}
     />
-    <div>${query}</div>
-    <MyButton>Submit Query</MyButton>
-    {JSON.stringify(res.body.records)}
+    <div>{state.query}</div>
+    <MyButton onClick={() => sendQueryToBackend()}>Submit Query</MyButton>
+    <div>{state.result}</div>
   </div>
 );
