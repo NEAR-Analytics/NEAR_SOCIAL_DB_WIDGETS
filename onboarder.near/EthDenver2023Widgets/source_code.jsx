@@ -5,11 +5,11 @@ return (
     <ul>
       <li>
         <a
-          href="https://near.social/#/onboarder.near/widget/OldestPosts"
+          href="https://alpha.near.org/#/calebjacob.near/widget/ComponentDetailsPage?src=onboarder.near/widget/BattlesOfTheBOS"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Most OG Posters
+          Battle of the BOS (OG POST FEED)
         </a>
       </li>
       <li>
@@ -88,7 +88,11 @@ return (
         </a>
       </li>
       <li>
-        <a href="https://bos.gg/#/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://bos.gg/#/westpalm.near/widget/polygon-erc721-minter"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Polygon NFT Minter
         </a>
       </li>
