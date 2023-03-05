@@ -149,7 +149,8 @@ const deployScript = (script) => {
   );
 
   Storage.set(`${script.sid}:code`, "");
-  if (isNew) State.update({ modal: null, script: { ...script, sid: newSid } });
+  if (isNew) State.update({ script: { ...script, sid: newSid } });
+  State.update({ modal: null });
 };
 
 const testTrigger = (script) => {
