@@ -9,7 +9,7 @@ Props = {
 
 let contract = "promotepost.near";
 
-const deposits = Near.view(contract, "get_all_deposits", `{}`);
+const deposits = Near.view(contract, "get_all_deposits") || [];
 
 initState({
   postId: props.postId ?? 0,
