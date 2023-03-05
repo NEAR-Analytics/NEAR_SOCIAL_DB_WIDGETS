@@ -29,9 +29,7 @@ const overlay = (
   >
     {!item.empty && (
       <span>
-        <span>Date:</span> {props.date}
-        <br />
-        <span>Value:</span> {props.item.value}
+        {props.item.value} commits in {props.date}
       </span>
     )}
   </div>
