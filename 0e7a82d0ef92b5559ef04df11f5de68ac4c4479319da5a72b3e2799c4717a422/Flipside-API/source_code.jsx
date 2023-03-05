@@ -39,11 +39,10 @@ function sendQueryToBackend() {
     });
     return;
   }
-
+  // select date_trunc('day', block_timestamp), count(1) from ethereum.core.blocks where block_timestamp > '2023-03-01' group by 1
   if (res.body.error) {
     State.update({
-      result:
-        "anton's api issue with website or query {JSON.stringify(res.body)}",
+      result: `anton's api issue: ${JSON.stringify(res.body)}`,
     });
     return;
   }
