@@ -96,9 +96,17 @@ return (
         })}
       </div>
       <div class="card card-body pb-4">
-        <div class="fs-5">
-          <i class="bi-cash-coin"></i>
-          <span>Promoted Posts</span>
+        <div class="d-flex justify-content-between align-items-end">
+          <div class="fs-5">
+            <i class="bi-cash-coin"></i>
+            <span>Promoted Posts</span>
+          </div>
+          <a
+            href="https://near.social/#/p516entropy.near/widget/PromotedPosts"
+            target="_blank"
+          >
+            All promoted posts
+          </a>
         </div>
         {!state.promotedPosts.length && (
           <div class="py-2">Not posts have been promoted recently</div>
