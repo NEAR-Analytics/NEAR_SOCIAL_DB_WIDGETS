@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
