@@ -16,7 +16,7 @@ const renderItem = (a) =>
       props={{
         accountId: a.accountId,
         blockHeight: a.blockHeight,
-        postType: a.value.type,
+        postType: a.value.type === "md" ? "main" : "insta",
       }}
     />
   );
