@@ -24,8 +24,6 @@ Are you tired of feeling restricted by social media algorithms? Do you miss the 
 
 At Near.social, we believe in true social freedom. Our platform is designed to give you the power to connect, engage, and share your ideas with the world on your terms. With Near.social, you can:
 
-Be the #BOS!
-
 Join a community of like-minded individuals who share your interests and values
 Connect with people all over the world without worrying about language barriers
 Share your thoughts, ideas, and experiences without censorship or algorithm limitations
@@ -34,6 +32,8 @@ If you're ready to experience true social freedom, we invite you to join Near.so
 Don't wait any longer to discover the power of Near.social. Sign up today and experience a new way to connect with the world.
 
 ${externalLink}
+
+Be the #BOS!
 
 Best regards,
 ChatGPT.
