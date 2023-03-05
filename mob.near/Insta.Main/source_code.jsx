@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 return (
   <Wrapper>
     <Widget
-      src="mob.near/widget/Insta.Feed"
+      src="mob.near/widget/Image.Feed"
       props={{
         headerElement: (
           <Widget src="mob.near/widget/Insta.Compose" props={{}} />
