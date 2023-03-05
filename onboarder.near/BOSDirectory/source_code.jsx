@@ -25,6 +25,15 @@ const social = {
       description:
         "A new category that enables visionaries, builders, and believers to deliver on the promise of the Open Web.",
     },
+    {
+      key: 3,
+      name: "Cantopia",
+      url: "https://bos-viewer.pages.dev/",
+      image:
+        "https://ipfs.near.social/ipfs/bafkreifqzppapwceuwvecotf4uczonrc7gtvjqlmlxpy2hdo4hau3m6svm",
+      description:
+        "An example viewer of the Canto's blockchain, CantoSwap viewer by Matt L",
+    },
   ],
 };
 
