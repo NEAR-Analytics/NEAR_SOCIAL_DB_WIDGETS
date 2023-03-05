@@ -636,9 +636,9 @@ require(["vs/editor/editor.main"], async function () {
     window.addEventListener("message", (e) => {
         if (isUsed) return;
         try {
-      editor.getModel().setValue(JSON.parse(e.data).code)
-      isUsed = true
-      } catch {}
+            editor.getModel().setValue(JSON.parse(e.data).code)
+            isUsed = true
+        } catch {}
     })
 });
 </script>
