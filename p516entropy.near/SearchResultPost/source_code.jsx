@@ -1,6 +1,6 @@
+// Was forked from devgovgigs.near/widget/gigs-board.components.posts.Post
 /* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId = "devgovgigs.near";
-const nearDevGovGigsWidgetsAccountId = "devgovgigs.near";
 
 function href(widgetName, linkProps) {
   linkProps = { ...linkProps };
@@ -173,7 +173,7 @@ const postLabels = post.snapshot.labels ? (
       return (
         <a
           href={href(
-            `${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.pages.Feed`,
+            `${nearDevGovGigsContractAccountId}/widget/gigs-board.pages.Feed`,
             { label }
           )}
         >
