@@ -81,15 +81,7 @@ return (
           </button>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <Widget
-              src="zahidulislam.near/widget/Profile.IconButton"
-              props={{
-                icon: "https://cdn-icons-png.flaticon.com/512/681/681494.png",
-                label: `${profile.followers.length ?? 0} followers · ${
-                  profile.followings.length ?? 0
-                } following`,
-              }}
-            />
+            <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
 
             <Widget
               src="zahidulislam.near/widget/Profile.IconButton"
