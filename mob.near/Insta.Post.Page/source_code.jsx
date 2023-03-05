@@ -1,6 +1,6 @@
 return (
   <Widget
     src="mob.near/widget/Insta.Post"
-    props={{ ...props, subscribe: true }}
+    props={{ subscribe: true, hideLink: true, ...props }}
   />
 );
