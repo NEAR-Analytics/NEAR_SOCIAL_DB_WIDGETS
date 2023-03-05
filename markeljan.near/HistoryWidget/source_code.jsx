@@ -89,7 +89,7 @@ const history = (
                   compareTimestamp: null,
                   referral,
                 })}
-                target="_blank"
+                target={props.newTab ?? "_blank"}
               >
                 {readableDate(item.timestamp / 1000000)}
 
