@@ -16,6 +16,19 @@ const renderMention =
 
 const onHashtag = props.onHashtag;
 
+const Wrapper = styled.div`
+  word-break: break-word;
+  p {
+    white-space: pre-line;
+  }
+`;
+
 return (
-  <Markdown text={props.text} onMention={renderMention} onHashtag={onHashtag} />
+  <Wrapper>
+    <Markdown
+      text={props.text}
+      onMention={renderMention}
+      onHashtag={onHashtag}
+    />
+  </Wrapper>
 );
