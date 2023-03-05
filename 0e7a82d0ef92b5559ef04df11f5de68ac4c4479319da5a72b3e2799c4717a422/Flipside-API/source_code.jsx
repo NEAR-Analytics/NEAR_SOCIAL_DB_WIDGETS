@@ -26,7 +26,7 @@ if (res.body.error) {
   );
 }
 
-const Button = styled.button`
+const MyButton = styled.button`
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
   color: ${(props) => (props.primary ? "white" : "palevioletred")};
   font-size: 1em;
@@ -36,20 +36,20 @@ const Button = styled.button`
   border-radius: 3px;
 `;
 
-const TextArea = styled.input`
-  background: ${(props) => (props.primary ? "palevioletred" : "white")};
+const MyTextArea = styled.div`
+  padding: 0.5em;
+  margin: 0.5em;
   color: ${(props) => (props.primary ? "white" : "palevioletred")};
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
+  background: ${(props) => (props.primary ? "palevioletred" : "white")};
   border: 2px solid palevioletred;
   border-radius: 3px;
+  contentEditable: true;
 `;
 
 return (
   <div>
-    <TextArea> Query Things </TextArea>
-    <Button>Submit Query</Button>
+    <MyTextArea>asd</MyTextArea>
+    <MyButton>Submit Query</MyButton>
     {JSON.stringify(res.body.records)}
   </div>
 );
