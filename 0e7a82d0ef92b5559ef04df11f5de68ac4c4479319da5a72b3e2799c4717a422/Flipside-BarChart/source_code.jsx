@@ -1,183 +1,151 @@
-// Monthly Active Accounts Example
-let data = fetch(
-  "https://api.flipsidecrypto.com/api/v2/queries/da1fb143-e325-43ea-a07d-8fcf750eea16/data/latest",
-  {
-    subscribe: true,
-    method: "GET",
-    headers: {
-      Accept: "*/*",
-    },
-  }
-);
-
+// Query API
 State.init({
-  queryResults: "nothing",
+  queryResults: "",
 });
 
-data.body = data.body.sort((a, b) => new Date(a.MONTH) - new Date(b.MONTH));
-const METRIC_NAME = "Monthly Active Accounts";
-
-function formatNumberWithCommas(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+function queryComplete(success, results) {
+  State.update({
+    queryResults: results,
+  });
+  console.log("results: " + JSON.stringify(state.queryResults.records));
 }
 
-function formatDate(dateStr) {
-  const date = new Date(dateStr);
-  const year = date.getFullYear().toString().slice(-2);
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const month = months[date.getMonth()];
-  return `${year} - ${month}`;
-}
+const myProps = {
+  query: `select substr(date_trunc('day', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2023-03-01' and block_timestamp < '2023-03-07' group by 1 order by 1`,
+  debug: "true",
+  onComplete: queryComplete,
+};
 
+// Chart Query
 let Style = styled.div`
+.barTextH{
+  transition: fill 0.2s;
 
-      .barTextH{
-        transition: fill 0.2s;
+}
+.barTextH:hover{
+  fill: #ad610a;
 
-      }
-    .barTextH:hover{
-        fill: #ad610a;
+}
+.bar {
+  transition: fill 0.2s;
+}
 
-      }
-      .bar {
-        transition: fill 0.2s;
-      }
+.bar:hover {
+  fill: #ffa726;
+}
 
-      .bar:hover {
-        fill: #ffa726;
-      }
+.bar-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-      .bar-chart {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+svg {
+  width: 80%;
+}
 
-        svg {
-          width: 80%;
-        }
-
-        rect {
-          shape-rendering: crispEdges;
-          fill: #61dafb;
-          stroke: #333;
-          stroke-width: 1;
-        }
-
-
-        `;
+rect {
+  shape-rendering: crispEdges;
+  fill: #61dafb;
+  stroke: #333;
+  stroke-width: 1;
+}
+`;
 
 const width = 800;
 const height = 500;
-const maxValue = Math.max(...data.body.map((d) => d.ACTIVE_WALLETS)) * 1.1;
-
-function queryComplete(results) {
-  state.queryResults = results;
-  console.log(state.queryResults);
+let maxValue = 0;
+if (state.queryResults !== "") {
+  state.queryResults.rows.map((d) => {
+    if (d[1] > maxValue) {
+      maxValue = d[1];
+    }
+  });
 }
+/*
+if (state.queryResults !== "") {
+  maxValue = Math.max(state.queryResults.rows.map((d) => d[0])) * 1.1;
+}
+*/
 
 return (
   <>
     <Widget
-      src={`0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-API-Getter`}
-      query="select 1"
-      debug="true"
-      onComplete={(results) => queryComplete(results)}
+      src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-API-Getter"
+      props={myProps}
     ></Widget>
-    <div> hi</div>
     <Style>
       <div className="text-bg-light rounded-4 p-3 mb-4">
-        {data !== null ? (
+        {state.queryResults !== "" ? (
           <p>
             <div class="d-flex clearfix flex-wrap flex-column flex-sm-row">
               <div class="p-2">
                 <div>
-                  <h2>Metric: {METRIC_NAME}</h2>
+                  <h2>Metric: Near Blocks Per Day</h2>
                 </div>
               </div>
             </div>
-
-            <div>
-              <hr />
-              <div className="bar-chart">
-                <svg
-                  width={width}
-                  height={height}
-                  viewBox={`0 0 ${width} ${height + 200} `}
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  {data.body.map((d, i) => (
+            <div className="bar-chart">
+              <svg
+                width={width}
+                height={height}
+                viewBox={`0 0 ${width} ${height + 200} `}
+                preserveAspectRatio="xMidYMid meet"
+              >
+                {state.queryResults.rows.map((d, i) => {
+                  console.log("d0", d[1]);
+                  console.log("mv", maxValue);
+                  const yPos = height - (d[1] / maxValue) * height;
+                  //const yPos = height;
+                  const yHeight = (d[1] / maxValue) * height;
+                  //const yHeight = height;
+                  return (
                     <g key={i} className="barTextH">
                       <rect
                         className="bar"
-                        x={i * (width / data.body.length)}
-                        y={height - (d.ACTIVE_WALLETS / maxValue) * height}
-                        width={width / data.body.length - 2}
-                        height={(d.ACTIVE_WALLETS / maxValue) * height}
+                        x={i * (width / state.queryResults.records.length)}
+                        y={yPos}
+                        width={width / state.queryResults.records.length - 2}
+                        height={yHeight}
                         fill="#61dafb"
                       />
                       <text
                         className="text-primary-emphasis"
                         x={
-                          i * (width / data.body.length) +
-                          width / data.body.length / 2
+                          i * (width / state.queryResults.records.length) +
+                          width / state.queryResults.records.length / 2.5
                         }
                         y={height + 40}
                         transform={`rotate(-75 ${
-                          i * (width / data.body.length) +
-                          width / data.body.length / 2
+                          i * (width / state.queryResults.records.length) +
+                          width / state.queryResults.records.length / 2
                         } ${height + 40})`}
                         textAnchor="middle"
                       >
-                        / {formatDate(d.MONTH)}
+                        {d[0]}
                       </text>
                       <text
                         className="text-primary-emphasis"
                         x={
-                          i * (width / data.body.length) +
-                          width / data.body.length / 2
+                          i * (width / state.queryResults.records.length) +
+                          width / state.queryResults.records.length / 2
                         }
                         y={height + 90}
                         transform={`rotate(-75 ${
-                          i * (width / data.body.length) +
-                          width / data.body.length / 2
+                          i * (width / state.queryResults.records.length) +
+                          width / state.queryResults.records.length / 2
                         } ${height + 110})`}
                         textAnchor="middle"
                       >
-                        {formatNumberWithCommas(d.ACTIVE_WALLETS)}
+                        {d[1]}
                       </text>
                     </g>
-                  ))}
-                </svg>
-              </div>
+                  );
+                })}
+              </svg>
             </div>
             <div>
               <hr />
-              <small className="fw-bold">
-                Data is provided by{" "}
-                <a
-                  target="_blank"
-                  style={{ color: "inherit" }}
-                  variant="caption"
-                  rel="nofollow"
-                  href="https://www.flipsidecrypto.com/"
-                >
-                  Flipside Crypto
-                </a>
-              </small>
             </div>
           </p>
         ) : (
