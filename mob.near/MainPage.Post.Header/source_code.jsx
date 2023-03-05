@@ -6,7 +6,7 @@ const externalLink = `https://near.social/${link}`;
 
 const clickbaitPrompt =
   props.clickbaitPrompt ??
-  `Are you tired of social media algorithms limiting your reach?\nSay goodbye to restrictions and hello to true social freedom with ${externalLink}\n#NearSocial #NEAR #BOS`;
+  `Are you tired of social media algorithms limiting your reach?\nSay goodbye to restrictions and hello to true social freedom with @NearSocial_\n#NearSocial #NEAR #BOS\n${externalLink}`;
 
 const twitterUrl = new URL("https://twitter.com/intent/tweet");
 twitterUrl.searchParams.set("text", clickbaitPrompt);
