@@ -2,41 +2,15 @@
 const nearDevGovGigsContractAccountId = "devgovgigs.near";
 const nearDevGovGigsWidgetsAccountId = "devgovgigs.near";
 
-function widget(widgetName, widgetProps, key) {
-  widgetProps = {
-    ...widgetProps,
-    nearDevGovGigsContractAccountId: props.nearDevGovGigsContractAccountId,
-    nearDevGovGigsWidgetsAccountId: props.nearDevGovGigsWidgetsAccountId,
-    referral: props.referral,
-  };
-  return (
-    <Widget
-      src={`${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.${widgetName}`}
-      props={widgetProps}
-      key={key}
-    />
-  );
-}
-
 function href(widgetName, linkProps) {
   linkProps = { ...linkProps };
-  if (props.nearDevGovGigsContractAccountId) {
-    linkProps.nearDevGovGigsContractAccountId =
-      props.nearDevGovGigsContractAccountId;
-  }
-  if (props.nearDevGovGigsWidgetsAccountId) {
-    linkProps.nearDevGovGigsWidgetsAccountId =
-      props.nearDevGovGigsWidgetsAccountId;
-  }
   if (props.referral) {
     linkProps.referral = props.referral;
   }
   const linkPropsQuery = Object.entries(linkProps)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
-  return `#/${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.pages.${widgetName}${
-    linkPropsQuery ? "?" : ""
-  }${linkPropsQuery}`;
+  return `#/${widgetName}${linkPropsQuery ? "?" : ""}${linkPropsQuery}`;
 }
 /* END_INCLUDE: "common.jsx" */
 
@@ -164,7 +138,7 @@ const buttonsFooter = props.isPreview ? null : (
         <div class="btn-group" role="group">
           <a
             class="card-link"
-            href={href("Post", { id: postId })}
+            href={href("markeljan.near/widget/PostWithHistory", { id: postId })}
             role="button"
             class="btn btn-outline-primary"
             style={{ border: "0px" }}
@@ -176,7 +150,7 @@ const buttonsFooter = props.isPreview ? null : (
         </div>
         <a
           class="card-link"
-          href={href("Post", { id: postId })}
+          href={href("markeljan.near/widget/PostWithHistory", { id: postId })}
           role="button"
           class="btn btn-outline-primary"
           style={{ border: "0px" }}
@@ -197,7 +171,12 @@ const postLabels = post.snapshot.labels ? (
   <div class="card-title" key="post-labels">
     {post.snapshot.labels.map((label) => {
       return (
-        <a href={href("Feed", { label }, label)}>
+        <a
+          href={href(
+            `${nearDevGovGigsWidgetsAccountId}/widget/gigs-board.pages.Feed`,
+            { label }
+          )}
+        >
           <span class="badge text-bg-primary me-1">{label}</span>
         </a>
       );
