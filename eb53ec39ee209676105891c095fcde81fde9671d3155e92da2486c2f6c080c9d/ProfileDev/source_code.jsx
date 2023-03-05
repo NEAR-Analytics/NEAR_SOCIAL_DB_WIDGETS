@@ -5,17 +5,20 @@ const styleStat = {
   "font-size": "16px",
   "line-height": "24px",
   "padding-right": "20px",
+  "padding-bottom": "10px",
 };
 
 return (
   <div
-    class="container"
+    class="container-fluid"
     style={{
       color: " #fff",
       background: "#272727",
       padding: "20px",
       border: "2px solid #282828",
       "border-radius": "13px",
+      width: "100vw",
+      width: "100vh",
     }}
   >
     <div
@@ -50,7 +53,7 @@ return (
       <span>Pull Requests</span>
       <span>{props.pullRequests}</span>
     </div>
-    <h4>Near</h4>
+    <h3>Near</h3>
     <div style={{ display: "flex" }}>
       <div style={styleStat}>
         <span>Likes</span>
