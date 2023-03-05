@@ -74,7 +74,7 @@ const Wrapper = styled.div`
   }
 
   &:hover {
-    background: RGBA(235, 235, 235);
+    background: RGBA(230, 230, 230);
   }
 
   transition: background 0.5s;
