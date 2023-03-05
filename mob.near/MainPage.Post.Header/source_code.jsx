@@ -3,6 +3,38 @@ const blockHeight = props.blockHeight;
 const postType = props.postType ?? "post";
 const link = props.link;
 
+const clickbaitPrompt =
+  props.clickbaitPrompt ??
+  `Are you tired of social media algorithms limiting your reach?\nSay goodbye to restrictions and hello to true social freedom with ${link}\n#NearSocial #NEAR #BOS`;
+
+const twitterUrl = new URL("https://twitter.com/intent/tweet");
+twitterUrl.searchParams.set("text", clickbaitPrompt);
+
+const mailtoUrl = new URL("mailto:");
+mailtoUrl.searchParams.set(
+  "subject",
+  "Discover True Social Freedom with Near.social"
+);
+mailtoUrl.searchParams.set(
+  "body",
+  `Fellow human,
+
+Are you tired of feeling restricted by social media algorithms? Do you miss the days when you could connect with like-minded individuals without worrying about censorship or limitations?
+
+At Near.social, we believe in true social freedom. Our platform is designed to give you the power to connect, engage, and share your ideas with the world on your terms. With Near.social, you can:
+
+Join a community of like-minded individuals who share your interests and values
+Connect with people all over the world without worrying about language barriers
+Share your thoughts, ideas, and experiences without censorship or algorithm limitations
+If you're ready to experience true social freedom, we invite you to join Near.social today. Our platform is easy to use, secure, and designed with your needs in mind. Plus, our community is filled with passionate and creative individuals who are ready to welcome you with open arms.
+
+Don't wait any longer to discover the power of Near.social. Sign up today and experience a new way to connect with the world.
+
+Best regards,
+ChatGPT.
+`
+);
+
 return (
   <div className="d-flex flex-row align-items-center">
     <div className="flex-grow-1 text-truncate">
@@ -72,6 +104,24 @@ return (
                 />
               </li>
             )}
+            <li className="dropdown-item">
+              <a
+                className="link-dark text-decoration-none"
+                href={mailtoUrl.toString()}
+                target="_blank"
+              >
+                Share by email
+              </a>
+            </li>
+            <li className="dropdown-item">
+              <a
+                className="link-dark text-decoration-none"
+                href={twitterUrl.toString()}
+                target="_blank"
+              >
+                Share on Twitter
+              </a>
+            </li>
           </ul>
         </span>
       )}
