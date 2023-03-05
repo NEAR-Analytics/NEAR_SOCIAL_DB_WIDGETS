@@ -61,7 +61,7 @@ const hottestsPosts = findHottestsPosts(posts, state.period);
 State.update({ hottestsPosts });
 
 return (
-  <div>
+  <div class="card card-body">
     <div class="row">
       <div class="fs-5 col-6 align-self-center">
         <i class="bi-fire"></i>
@@ -130,7 +130,7 @@ return (
         })}
       </div>
     ) : (
-      <div class="py-2" style={{ "min-height": "10em" }}>
+      <div class="py-2" style={{ "min-height": "7em" }}>
         Not posts created for given period
       </div>
     )}
