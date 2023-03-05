@@ -19,15 +19,17 @@ const Post = styled.div`
   }
 `;
 
-const renderItem = (a) => console.log(typeof a.accountId + " " + a.accountId);
-a.value.type === "md" && (
-  <Post className="post" key={JSON.stringify(a)}>
-    <Widget
-      src="calebjacob.near/widget/Posts.Post"
-      props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-    />
-  </Post>
-);
+// a.value.type === "md" ;
+const renderItem = (a) =>
+  a.value.type === "md" &&
+  (a.accountId.includes("root.near") || a.accountId.includes("mob.near")) && (
+    <Post className="post" key={JSON.stringify(a)}>
+      <Widget
+        src="calebjacob.near/widget/Posts.Post"
+        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+      />
+    </Post>
+  );
 
 return (
   <Widget
