@@ -1,6 +1,7 @@
 const sender = Ethers.send("eth_requestAccounts", [])[0];
 
-if (!sender) return <Web3Connect connectLabel="Connect with Web3" />;
+if (!sender)
+  return <Web3Connect connectLabel="Connect with Web3 to Polygon Mainnet" />;
 
 const erc20Abi = fetch(
   "https://gist.githubusercontent.com/veox/8800debbf56e24718f9f483e1e40c35c/raw/f853187315486225002ba56e5283c1dba0556e6f/erc20.abi.json"
@@ -39,6 +40,15 @@ const tokens = {
   LINK: "0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39",
   WETH: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
   WMATIC: "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+  WBTC: "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+  UNI: "0xb33eaad8d922b1083446dc23f610c2567fb5180f",
+  SUSHI: "0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a",
+  GHST: "0x385eeac5cb85a38a9a07a70c73e0a3271cfb54a7",
+  TEL: "0xdf7837de1f2fa4631d716cf2502f8b230f1dcc32",
+  BAL: "0x9a71012b13ca4d3d0cdc72a177df3ef03b0e76a3",
+  BUSD: "0xdab529f40e671a1d4bf91361c21bf9f0c9712ab7",
+  DG: "0xef938b6da8576a896f6E0321ef80996F4890f9c4",
+  MANA: "0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4",
 };
 
 const tokensMenuItems = Object.keys(tokens).map((token) => (
@@ -117,18 +127,32 @@ const sendTokens = () => {
 
 return (
   <>
-    <h3>Send ERC-20 tokens</h3>
-    <div class="mb-3">
-      <label for="selectToken">Select token</label>
-      <select
-        class="form-select"
-        id="selectToken"
-        onChange={(e) => {
-          setToken(e.target.value);
-        }}
-      >
-        {tokensMenuItems}
-      </select>
+    <h3>💸 Send ERC-20 tokens</h3>
+    <div class="row">
+      <div class="mb-3 col-lg-6">
+        <label for="selectToken">Select token</label>
+        <select
+          class="form-select"
+          id="selectToken"
+          onChange={(e) => {
+            setToken(e.target.value);
+          }}
+        >
+          {tokensMenuItems}
+        </select>
+      </div>
+      <div class="mb-3 col-lg-6">
+        <label for="amount" class="form-label">
+          Enter the amount
+        </label>
+        <input
+          value={state.amount}
+          class="form-control"
+          id="amount"
+          placeholder=""
+          onChange={(e) => State.update({ amount: e.target.value })}
+        />
+      </div>
     </div>
 
     <div class="mb-3">
@@ -158,18 +182,6 @@ return (
       )}
     </div>
 
-    <div class="mb-3">
-      <label for="amount" class="form-label">
-        Enter the amount
-      </label>
-      <input
-        value={state.amount}
-        class="form-control"
-        id="amount"
-        placeholder=""
-        onChange={(e) => State.update({ amount: e.target.value })}
-      />
-    </div>
     <div class="mb-3">
       <button onClick={sendTokens}>Send</button>
     </div>
