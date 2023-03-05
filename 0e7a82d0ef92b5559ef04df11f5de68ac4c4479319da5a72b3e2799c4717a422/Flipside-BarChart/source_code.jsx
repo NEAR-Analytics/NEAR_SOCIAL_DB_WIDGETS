@@ -21,7 +21,7 @@ const myProps = {
 
 const chartType = `"bar"`;
 let chartBottomAxisLabels = "[";
-let chartValues = "["; // {label:'DAY_DATE', data:[50,60,70,180,190]} ]";
+let chartValues = "[";
 let chartValuesOrig = "[ {label:'DAY_DATE', data:[50,60,70,180,190]} ]";
 // parsing of data from flipside
 if (state.queryResults !== "") {
@@ -46,11 +46,11 @@ if (state.queryResults !== "") {
   });
 
   chartValues += "]}]";
-  console.log("chartValues", chartValues);
+  //console.log("chartValues", chartValues);
   //chartValues = chartValuesOrig;
   chartBottomAxisLabels += "]";
   //console.log("chartBottomAxisLabels", chartBottomAxisLabels);
-  console.log("chartValuesOrig", chartValues);
+  //console.log("chartValuesOrig", chartValues);
 }
 
 /*
