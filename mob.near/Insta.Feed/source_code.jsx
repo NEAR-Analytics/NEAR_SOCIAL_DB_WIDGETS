@@ -36,10 +36,13 @@ return (
     props={{
       index,
       renderItem,
-      manual: true,
       loadMoreText: (
         <LoadMore className="text-bg-light ratio ratio-1x1">Load More</LoadMore>
       ),
+      ...{
+        headerElement: props.headerElement,
+        footerElement: props.footerElement,
+      },
     }}
   />
 );
