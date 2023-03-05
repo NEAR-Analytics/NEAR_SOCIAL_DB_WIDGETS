@@ -8,18 +8,17 @@ const subscribe = !!props.subscribe;
 const raw = !!props.raw;
 
 const Wrapper = styled.div`
-  position: relative;
-
   @media (min-width: 576px) {
     max-width: 288px;
   }
 
   .info {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     opacity: 0;
     padding: 0.5em;
+    box-shadow: inset 0 0 3em 2em #ddd;
   }
 
   &:hover {
@@ -29,11 +28,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const imageStyle = props.imageStyle ?? { objectFit: "cover" };
+const imageStyle = props.imageStyle ?? {
+  objectFit: "cover",
+};
 const imageClassName = props.imageClassName ?? "w-100 h-100";
 
 return (
-  <Wrapper>
+  <Wrapper className="ratio ratio-1x1">
     <Widget
       src="mob.near/widget/Image"
       props={{
@@ -49,7 +50,14 @@ return (
       >
         <Widget
           src="mob.near/widget/ProfileImage"
-          props={{ accountId, tooltip: true }}
+          props={{
+            accountId,
+            tooltip: true,
+            imageStyle: {
+              objectFit: "cover",
+              boxShadow: "0 0 0.5em #333",
+            },
+          }}
         />
       </a>
     </div>
