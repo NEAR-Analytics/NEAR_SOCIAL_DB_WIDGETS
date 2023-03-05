@@ -49,7 +49,8 @@ function sendQueryToBackend() {
   }
 
   State.update({
-    result: JSON.parse(res.body.records),
+    //result: JSON.parse(res.body.records),
+    result: res.body,
   });
 }
 
