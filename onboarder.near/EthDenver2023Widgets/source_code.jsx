@@ -70,6 +70,11 @@ return (
           Aurora All Supported Token Sender
         </a>
       </li>
+      <li>
+        <a href="https://bos.gg/#/" target="_blank" rel="noopener noreferrer">
+          Polygon NFT Minter
+        </a>
+      </li>
     </ul>
     <h2>🚀 Improvements to the Blockchain Operating System</h2>
     <ul>
