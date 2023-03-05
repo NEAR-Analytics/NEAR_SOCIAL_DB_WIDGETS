@@ -1,4 +1,4 @@
-const gateway = "https://test.near.social/#/";
+const gateway = "https://near.social/#/";
 
 return (
   <a
@@ -25,7 +25,7 @@ return (
           alt="commit icon"
         />
 
-        <p style={{ fontWeight: 600 }}>96</p>
+        <p style={{ fontWeight: 600 }}>{props.commits.length || 0}</p>
       </div>
 
       <img
@@ -42,8 +42,12 @@ return (
           src="https://cdn-icons-png.flaticon.com/512/37/37663.png"
           alt="date icon"
         />
-
-        <p style={{ fontWeight: 600 }}>5 days ago</p>
+        <Widget
+          src={`mob.near/widget/TimeAgo`}
+          props={{
+            blockHeight: props.commits[props.commits.length - 1],
+          }}
+        />
       </div>
     </div>
   </a>
