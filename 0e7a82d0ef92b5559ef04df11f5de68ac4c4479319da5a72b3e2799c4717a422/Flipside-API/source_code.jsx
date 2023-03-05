@@ -31,9 +31,11 @@ function sendQueryToBackend() {
   State.update({
     result: "Querying the backend...",
   });
+  console.log("1");
 
   fetch("https://flipside-api.antonyip.com/getCachedQuery", options).then(
     (res) => {
+      console.log("2");
       State.update({
         result: "Results are here",
       });
