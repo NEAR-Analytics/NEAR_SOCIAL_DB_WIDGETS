@@ -551,8 +551,22 @@ html, body, #container {
 require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
 window.MonacoEnvironment = { getWorkerUrl: () => proxy };
 let proxy = URL.createObjectURL(new Blob(['self.MonacoEnvironment = {baseUrl: "https://unpkg.com/monaco-editor@latest/min/" };importScripts("https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js")'], { type: 'text/javascript' }));
+document.body.style.opacity = 0;
 
-require(["vs/editor/editor.main"], async function () {
+let code;
+let editor;
+window.addEventListener("message", (e) => {
+    if (code) return;
+    try { 
+      code = JSON.parse(e.data).code 
+      if (editor) {
+        editor.getModel().setValue(code)
+        document.body.style.opacity = 1;
+      }
+    } catch {}
+})
+
+require(["vs/editor/editor.main"], function () {
     monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
         noSemanticValidation: false,
         noSyntaxValidation: false,
@@ -610,37 +624,32 @@ require(["vs/editor/editor.main"], async function () {
     monaco.languages.typescript.javascriptDefaults.addExtraLib(libSource, libUri);
     monaco.editor.createModel(libSource, 'typescript', monaco.Uri.parse(libUri));
 
-    try {
-        const coreDefsResp = await fetch("https://raw.githubusercontent.com/microsoft/TypeScript/main/lib/lib.es5.d.ts")
-        const coreDefs = await coreDefsResp.text();
-        monaco.languages.typescript.javascriptDefaults.addExtraLib(
-            coreDefs,
-            "lib.es5.d.ts"
-        );
-    } catch {}
+    const loadDefs = async () => {
+      try {
+          const coreDefsResp = await fetch("https://raw.githubusercontent.com/microsoft/TypeScript/main/lib/lib.es5.d.ts")
+          const coreDefs = await coreDefsResp.text();
+          monaco.languages.typescript.javascriptDefaults.addExtraLib(coreDefs, "lib.es5.d.ts");
+      } catch {}
+    }
+    loadDefs();
 
-	let editor = monaco.editor.create(document.getElementById('container'), {
-		value: '',
-        fixedOverflowWidgets: true,
-		language: 'javascript',
-        width: '100%',
-        fontSize: 16,
-		theme: 'vs-dark'
-	});
+    editor = monaco.editor.create(document.getElementById('container'), {
+      value: '',
+          fixedOverflowWidgets: true,
+      language: 'javascript',
+          width: '100%',
+          fontSize: 16,
+      theme: 'vs-dark'
+    });
 
     editor.getModel().onDidChangeContent(e => {
       parent.postMessage(editor.getModel().getValue(), "*")
     })
 
-    let isUsed = false
-    window.addEventListener("message", (e) => {
-        if (isUsed) return;
-        try {
-            console.log(e.data)
-            editor.getModel().setValue(JSON.parse(e.data).code)
-            isUsed = true
-        } catch {}
-    })
+    if (code) {
+      document.body.style.opacity = 1;
+      editor.getModel().setValue(code)
+    }
 });
 </script>
 `;
