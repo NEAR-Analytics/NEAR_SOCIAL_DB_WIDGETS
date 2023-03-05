@@ -18,10 +18,8 @@ const renderItem = (a) =>
   );
 
 return (
-  <div>
-    <Widget
-      src="mob.near/widget/FilteredIndexFeed"
-      props={{ index, renderItem }}
-    />
-  </div>
+  <Widget
+    src="mob.near/widget/FilteredIndexFeed"
+    props={{ index, renderItem }}
+  />
 );
