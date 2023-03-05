@@ -19,10 +19,6 @@ function getHotnessScore(post) {
   return Math.log10(post.likes.length) + Math.log(Math.log10(totalAge));
 }
 
-const calculatePostScore = (likesAmount, commentsAmount) => {
-  return likesAmount + commentsAmount;
-};
-
 const getPeriodText = (period) => {
   let text = "Last 24 hours";
   if (period === "week") {
