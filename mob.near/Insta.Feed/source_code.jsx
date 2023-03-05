@@ -20,6 +20,6 @@ const renderItem = (a) =>
 return (
   <Widget
     src="mob.near/widget/FilteredIndexFeed"
-    props={{ index, renderItem }}
+    props={{ index, renderItem, manual: true }}
   />
 );
