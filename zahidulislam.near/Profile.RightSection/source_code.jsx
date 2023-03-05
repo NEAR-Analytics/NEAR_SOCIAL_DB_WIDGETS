@@ -24,21 +24,14 @@ return (
       {Object.keys(widgets)?.length > 0 ? (
         <div className="widgetsContainer">
           {Object.keys(widgets)?.map((item, index) => (
-            <>
-              {console.log(
-                "====> ",
-                allWidgetsHistoryChangesBlocks[accountId].widget[item]
-              )}
-              <Widget
-                src="zahidulislam.near/widget/Profile.WidgetItem"
-                props={{
-                  name: item,
-                  accountId,
-                  commits:
-                    allWidgetsHistoryChangesBlocks[accountId].widget[item],
-                }}
-              />
-            </>
+            <Widget
+              src="zahidulislam.near/widget/Profile.WidgetItem"
+              props={{
+                name: item,
+                accountId,
+                commits: allWidgetsHistoryChangesBlocks[accountId].widget[item],
+              }}
+            />
           ))}
         </div>
       ) : (
