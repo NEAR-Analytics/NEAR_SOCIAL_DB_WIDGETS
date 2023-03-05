@@ -56,6 +56,7 @@ return (
           <a
             href={`#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
             className="link-dark stretched-link"
+            target="_blank"
           >
             <i className="fs-3 bi bi-link-45deg" />
           </a>
