@@ -41,7 +41,7 @@ ChatGPT.
 );
 
 return (
-  <div className="d-flex flex-row align-items-center">
+  <div className="d-flex flex-row align-items-center vh-100">
     <div className="flex-grow-1 text-truncate">
       <a
         className="text-dark text-decoration-none text-truncate"
@@ -89,7 +89,7 @@ return (
                 className="link-dark text-decoration-none"
                 href={`${link}&raw=true`}
               >
-                View raw markdown source
+                <i className="bi bi-filetype-raw" /> View raw markdown source
               </a>
             </li>
             <li>
@@ -115,7 +115,7 @@ return (
                 href={mailtoUrl.toString()}
                 target="_blank"
               >
-                Share by email
+                <i className="bi bi-envelope-at" /> Share by email
               </a>
             </li>
             <li className="dropdown-item">
@@ -124,6 +124,7 @@ return (
                 href={twitterUrl.toString()}
                 target="_blank"
               >
+                <i className="bi bi-twitter" />
                 Share on Twitter
               </a>
             </li>
