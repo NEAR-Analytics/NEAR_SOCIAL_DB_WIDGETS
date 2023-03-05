@@ -2,6 +2,7 @@
 ---props---
 props.post: {};
 props.id: number;
+props.newTab: boolean;
 props.timestamp: number;
 props.referral: any;
 */
@@ -88,6 +89,7 @@ const history = (
                   compareTimestamp: null,
                   referral,
                 })}
+                target="_blank"
               >
                 {readableDate(item.timestamp / 1000000)}
 
