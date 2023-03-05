@@ -31,33 +31,32 @@ function sendQueryToBackend() {
   State.update({
     result: "Querying the backend...",
   });
-  console.log("1");
 
-  fetch("https://flipside-api.antonyip.com/getCachedQuery", options).then(
-    (res) => {
-      console.log("2");
+  const res = asyncFetch(
+    "https://flipside-api.antonyip.com/getCachedQuery",
+    options
+  ).then((res) => {
+    State.update({
+      result: "Results are here",
+    });
+    if (!res.ok) {
       State.update({
-        result: "Results are here",
+        result: `near.social issue with fetch: ${JSON.stringify(res)}`,
       });
-      if (!res.ok) {
-        State.update({
-          result: `near.social issue with fetch: ${JSON.stringify(res)}`,
-        });
-        return;
-      }
-      // select date_trunc('day', block_timestamp), count(1) from ethereum.core.blocks where block_timestamp > '2023-03-01' group by 1
-      if (res.body.error) {
-        State.update({
-          result: `anton's api issue: ${JSON.stringify(res.body)}`,
-        });
-        return;
-      }
-
-      State.update({
-        result: JSON.stringify(res.body.records),
-      });
+      return;
     }
-  );
+    // select date_trunc('day', block_timestamp), count(1) from ethereum.core.blocks where block_timestamp > '2023-03-01' group by 1
+    if (res.body.error) {
+      State.update({
+        result: `anton's api issue: ${JSON.stringify(res.body)}`,
+      });
+      return;
+    }
+
+    State.update({
+      result: JSON.stringify(res.body.records),
+    });
+  });
 }
 
 return (
