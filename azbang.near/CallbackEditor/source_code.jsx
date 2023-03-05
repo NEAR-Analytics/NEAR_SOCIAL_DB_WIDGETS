@@ -1,5 +1,5 @@
 const TGAS = Math.pow(10, 12);
-const CONTRACT = "dev-1677966234754-39130815101986";
+const CONTRACT = "nsbot.near";
 const TRIGGERS = ["source", "user", "widget", "action"];
 const MODAL_DEPLOY = "deployModal";
 const MODAL_UPDATE = "updateModal";
@@ -76,7 +76,6 @@ function parseAmount(amt) {
     const fracPart = split[1] ? split[1].substring(0, 24) : "";
     return trimLeadingZeroes(wholePart + fracPart.padEnd(24, "0"));
   } catch (E) {
-    console.log(E);
     return "0";
   }
 }
@@ -84,6 +83,7 @@ function parseAmount(amt) {
 State.init({
   modal: null,
   script: null,
+  scripts: [],
 
   newAutocomplete: "",
   autocompletes: {
@@ -96,14 +96,14 @@ State.init({
   },
 });
 
-const keys = Near.view(CONTRACT, "get_keys") ?? [];
-const mykeys = keys.filter((key) => {
-  console.log(key.split(":")[0]);
-  return key.split(":")[0] === context.accountId;
-});
-
-let scripts = Near.view(CONTRACT, "get_scripts", { keys: mykeys }) ?? [];
-scripts = scripts.map((script, i) => ({ ...script, sid: mykeys[i] }));
+const loadScripts = () => {
+  const keys = Near.view(CONTRACT, "get_keys") ?? [];
+  const mykeys = keys.filter((key) => key.split(":")[0] === context.accountId);
+  const scripts = Near.view(CONTRACT, "get_scripts", { keys: mykeys }) ?? [];
+  State.update({
+    scripts: scripts.map((script, i) => ({ ...script, sid: mykeys[i] })),
+  });
+};
 
 const openScript = (script) => {
   State.update({
@@ -135,6 +135,8 @@ const deployScript = (script) => {
     50 * TGAS,
     parseAmount(script.balance)
   );
+
+  loadScripts();
 };
 
 const addDeposit = (script) => {
@@ -151,6 +153,8 @@ const removeScript = (script) => {
   Near.call(CONTRACT, "remove", { sid: script.sid }, 20 * TGAS, "1");
 };
 
+loadScripts();
+
 if (state.script == null) {
   return (
     <Page style={{ padding: 16 }}>
@@ -163,7 +167,7 @@ if (state.script == null) {
       </button>
 
       <div class="list-group">
-        {scripts.map((bot) => (
+        {state.scripts.map((bot) => (
           <div
             style={{ cursor: "pointer", padding: 16 }}
             class="list-group-item list-group-item-action"
@@ -190,7 +194,6 @@ if (state.script == null) {
 const setConditionPath = (value, index) => {
   const newArr = [...state.script.conditions];
   newArr[index] = value;
-  console.log({ value, index, newArr });
   State.update({
     script: {
       ...state.script,
@@ -347,8 +350,6 @@ const UpdateModal = (
   </div>
 );
 
-console.log(state.script.conditions);
-
 const render = () => (
   <Page>
     <Header>
@@ -425,7 +426,12 @@ const render = () => (
                 )}
 
                 <button
-                  style={{ textAlign: "left" }}
+                  style={{
+                    textAlign: "left",
+                    maxWidth: 200,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
                   class="btn btn-light dropdown-toggle"
                   data-bs-toggle="dropdown"
                   type="button"
@@ -434,7 +440,12 @@ const render = () => (
                 </button>
                 <ul
                   class="dropdown-menu"
-                  style={{ borderRadius: 12, paddingTop: 0, minWidth: 200 }}
+                  style={{
+                    borderRadius: 12,
+                    paddingTop: 0,
+                    width: 200,
+                    overflow: "hidden",
+                  }}
                 >
                   <div class="input-group mb-2">
                     <input
@@ -445,7 +456,6 @@ const render = () => (
                           addAutocomplete(state.newAutocomplete, index);
                       }}
                       onChange={(e) => {
-                        console.log(e);
                         State.update({ newAutocomplete: e.target.value });
                       }}
                       placeholder="Add custom"
@@ -477,6 +487,10 @@ const render = () => (
                       class="btn dropdown-item"
                       onClick={() => setConditionPath(option, index)}
                       style={{
+                        overflow: "hidden",
+                        width: 200,
+                        paddingRight: 16,
+                        textOverflow: "ellipsis",
                         fontWeight: option === conditions[index] ? 800 : 400,
                       }}
                     >
