@@ -73,7 +73,7 @@ return (
   <div className="mb-3">
     <div className="mb-3">
       DAO:
-      <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
+      <input type="text" onChange={(e) => onChangeDAO(e.target.value)} />
     </div>
     <div className="mb-3">
       Contract:
