@@ -31,34 +31,34 @@ return (
     <div style={{ display: "flex" }}>
       <div style={styleStat}>
         <span>Followers</span>
-        <span>{props.followers.totalCount}</span>
+        <span>{props.followers}</span>
       </div>
       <div style={styleStat}>
         <span>Following</span>
-        <span>{props.followers.totalCount}</span>
+        <span>{props.following}</span>
       </div>
     </div>
     <div style={styleStat}>
       <span>Repositories</span>
-      <span>{props.repositories.totalCount}</span>
+      <span>{props.repositories}</span>
     </div>
     <div style={styleStat}>
       <span>Contributions</span>
-      <span>{props.contributionsCollection.totalCommitContributions}</span>
+      <span>{props.contributions}</span>
     </div>
     <div style={styleStat}>
       <span>Pull Requests</span>
-      <span>{props.pullRequests.totalCount}</span>
+      <span>{props.pullRequests}</span>
     </div>
     <h4>Near</h4>
     <div style={{ display: "flex" }}>
       <div style={styleStat}>
         <span>Likes</span>
-        <span>{props.pullRequests.totalCount}</span>
+        <span>{props.pullRequests}</span>
       </div>
       <div style={styleStat}>
         <span>Posts</span>
-        <span>{props.pullRequests.totalCount}</span>
+        <span>{props.pullRequests}</span>
       </div>
     </div>
   </div>
