@@ -21,9 +21,14 @@ let isInBlockedList = (walletId) => {
 };
 
 //init State
-State.init({
-  feedIndex: context.accountId ? 0 : 1,
-});
+const hashtag = props.hashtag;
+
+if (!state || state.hashtag !== hashtag) {
+  State.update({
+    feedIndex: hashtag ? 2 : context.accountId ? 0 : 1,
+    hashtag,
+  });
+}
 
 const options = [
   {
@@ -34,6 +39,12 @@ const options = [
     title: "All Posts",
   },
 ];
+
+if (hashtag) {
+  options.push({
+    title: `#${hashtag}`,
+  });
+}
 
 let accounts = undefined;
 
@@ -105,95 +116,11 @@ let WidgetCommentFeed = (props) => {
 //end WidgetCommentFeed
 
 /**
- * WidgetPost
- * Source: mob.near/widget/MainPage.Post
- * */
-// TODO: single post bi loi
-let WidgetPost = (props) => {
-  const accountId = props.accountId;
-  if (isInBlockedList(accountId)) return <h1>content is blocked</h1>;
-
-  const blockHeight =
-    props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
-  const content =
-    props.content ??
-    JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
-  const subscribe = !!props.subscribe;
-  const raw = !!props.raw;
-  const notifyAccountId = accountId;
-  const item = {
-    type: "social",
-    path: `${accountId}/post/main`,
-    blockHeight,
-  };
-
-  const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
-
-  return (
-    <div className="border rounded-4 p-3 pb-1">
-      <Widget
-        src="mob.near/widget/MainPage.Post.Header"
-        props={{ accountId, blockHeight, link, postType: "post" }}
-      />
-      <div className="mt-3 text-break">
-        <Widget
-          src="mob.near/widget/MainPage.Post.Content"
-          props={{ content, raw }}
-        />
-      </div>
-      {blockHeight !== "now" && (
-        <div className="mt-1 d-flex justify-content-between">
-          <Widget
-            src="mob.near/widget/LikeButton"
-            props={{
-              notifyAccountId,
-              item,
-            }}
-          />
-          <Widget
-            src="mob.near/widget/CommentButton"
-            props={{
-              onClick: () =>
-                !state.showReply && State.update({ showReply: true }),
-            }}
-          />
-        </div>
-      )}
-      <div className="mt-3 ps-5">
-        {state.showReply && (
-          <div className="mb-2">
-            <Widget
-              src="mob.near/widget/MainPage.Comment.Compose"
-              props={{
-                notifyAccountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-          </div>
-        )}
-        {WidgetCommentFeed({
-          item,
-          highlightComment: props.highlightComment,
-          limit: props.commentsLimit,
-          subscribe,
-          raw,
-        })}
-      </div>
-    </div>
-  );
-};
-/**
- *
- */
-
-/**
  * Widget Feed
  * Source: mob.near/widget/Mainpage.Feed
  * */
 let WidgetFeed = (props) => {
   console.log("Following accounts: ", props.accounts);
-
   let index = {
     action: "post",
     key: "main",
@@ -205,7 +132,6 @@ let WidgetFeed = (props) => {
   };
   //TODO: hide post from blocked list here
   let renderItem = (a) => {
-    console.log(" a la: ", a);
     if (isInBlockedList(a.accountId)) {
       console.log(a.accountId + " is BLOCKED");
       return;
@@ -258,6 +184,10 @@ return (
         </li>
       ))}
     </ul>
-    {WidgetFeed({ accounts })}
+    {state.feedIndex === 2 ? (
+      <Widget src="mob.near/widget/Hashtag.Feed" props={{ hashtag }} />
+    ) : (
+      WidgetFeed({ accounts })
+    )}
   </>
 );
