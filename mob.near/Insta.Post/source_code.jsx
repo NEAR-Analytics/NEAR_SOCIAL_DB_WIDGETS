@@ -53,6 +53,7 @@ return (
               path: `${accountId}/post/insta`,
               blockHeight,
             },
+            notifyAccountId: accountId,
           }}
         />
       </div>
