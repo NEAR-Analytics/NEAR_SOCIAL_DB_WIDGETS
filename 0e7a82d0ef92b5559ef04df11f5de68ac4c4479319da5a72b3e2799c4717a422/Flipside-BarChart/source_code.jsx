@@ -31,7 +31,7 @@ if (state.queryResults !== "") {
       chartBottomAxisLabels += ",";
       chartValues += ",";
     } else {
-      chartValues += "{label: 'DAY_DATE', data:[";
+      chartValues += "{label: 'Number of Blocks', data:[";
     }
     chartBottomAxisLabels += "'";
     chartBottomAxisLabels += d[0];
