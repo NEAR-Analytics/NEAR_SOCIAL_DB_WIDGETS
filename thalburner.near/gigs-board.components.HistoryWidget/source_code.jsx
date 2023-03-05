@@ -23,10 +23,6 @@ const loader = (
   </div>
 );
 
-// if (props.post_id === null) {
-//   return loader;
-// }
-
 const post = Near.view("devgovgigs.near", "get_post", {
   post_id: 0,
 });
@@ -97,6 +93,7 @@ const summaryOfChanges = () => {
 
 return (
   <div>
+    <h1>History Comparison Widget by Thalasith and TealWarlock</h1>
     <div className="row">
       <div className="col-sm row">
         <h5>Select a timestamp! </h5>
