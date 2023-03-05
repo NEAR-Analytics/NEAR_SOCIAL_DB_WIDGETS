@@ -2,7 +2,7 @@ const index = {
   action: "post",
   key: "insta",
   options: {
-    limit: 3,
+    limit: 30,
     order: "desc",
     accountId: props.accounts,
   },
