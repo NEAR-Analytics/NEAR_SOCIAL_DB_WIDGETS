@@ -46,12 +46,13 @@ const generate = () => {
     // Create a new date object for the current day
     const date = new Date(2023, 0, i + 1);
 
-    const ys = checkOccurrence(totalCommits, date.toLocaleDateString());
+    const value = checkOccurrence(totalCommits, date.toLocaleDateString());
 
     // Create a new object with the date and value and add it to the array
-    dataArray.push({ date: date.toLocaleDateString(), ys });
+    dataArray.push({ date: date.toLocaleDateString(), value });
   }
 
+  console.log("====", dataArray);
   return dataArray;
 };
 
