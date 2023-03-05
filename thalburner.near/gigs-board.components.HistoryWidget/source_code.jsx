@@ -23,12 +23,12 @@ const loader = (
   </div>
 );
 
-if (props.post_id === null) {
-  return loader;
-}
+// if (props.post_id === null) {
+//   return loader;
+// }
 
 const post = Near.view("devgovgigs.near", "get_post", {
-  post_id: props.post_id,
+  post_id: 0,
 });
 
 if (post === null) {
