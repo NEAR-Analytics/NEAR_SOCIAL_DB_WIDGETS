@@ -1,13 +1,10 @@
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const postType = props.postType || "insta";
+const path = `${accountId}/post/${postType}`;
 const content =
-  props.content ??
-  JSON.parse(
-    Social.get(`${accountId}/post/main`, blockHeight) ??
-      Social.get(`${accountId}/post/insta`, blockHeight) ??
-      "null"
-  );
+  props.content ?? JSON.parse(Social.get(path, blockHeight) ?? "null");
 const subscribe = !!props.subscribe;
 const raw = !!props.raw;
 const hideLink = !!props.hideLink;
@@ -54,7 +51,7 @@ return (
       <div className="text-end position-relative flex-grow-1">
         {!hideLink && (
           <a
-            href={`#/mob.near/widget/Insta.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
+            href={`#/mob.near/widget/Insta.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}&postType=${postType}`}
             className="link-dark stretched-link"
           >
             <i className="fs-3 bi bi-link-45deg" />
@@ -68,7 +65,7 @@ return (
             props={{
               item: {
                 type: "social",
-                path: `${accountId}/post/main`,
+                path,
                 blockHeight,
               },
               notifyAccountId: accountId,
