@@ -57,7 +57,13 @@ const childPostIds =
 
 function readableDate(timestamp) {
   var a = new Date(timestamp);
-  return a.toDateString() + " " + a.toLocaleTimeString();
+  return a.toLocaleDateString("en-us", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
 }
 
 const timestamp = readableDate(
@@ -79,16 +85,16 @@ const header = (
   <div className="card-header" key="header">
     <small class="text-muted">
       <div class="row justify-content-between">
-        <div class="col-4">
+        <div class="col-7">
           <Widget
             src={`neardevgov.near/widget/ProfileLine`}
             props={{ accountId: post.author_id }}
           />
         </div>
-        <div class="col-5">
-          <div class="d-flex justify-content-end">
-            {timestamp}
-            <div class="bi bi-clock-history px-2"></div>
+        <div class="col-5" style={{ "background-color": "#F7F7F7" }}>
+          <div class="d-flex justify-content-end text-nowrap">
+            <div class="ps-1">{timestamp}</div>
+            <div class="bi bi-clock-history ps-2"></div>
           </div>
         </div>
       </div>
@@ -142,7 +148,7 @@ const onLike = () => {
 
 const buttonsFooter = props.isPreview ? null : (
   <div class="row mt-2" key="buttons-footer">
-    <div class="col-8">
+    <div>
       <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button
           type="button"
@@ -283,7 +289,7 @@ const descriptionArea = (
 return (
   <div className={`card my-2`}>
     {header}
-    <div className="card-body">
+    <div className="card-body pb-2">
       {searchKeywords}
       {postLabels}
       {postTitle}
