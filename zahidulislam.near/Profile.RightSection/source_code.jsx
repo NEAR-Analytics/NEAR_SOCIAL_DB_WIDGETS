@@ -14,6 +14,12 @@ const allWidgetsHistoryChangesBlocks = Social.keys(
 
 if (allWidgetsHistoryChangesBlocks === null) return "Loading...";
 
+const widget = allWidgetsHistoryChangesBlocks[accountId].widget;
+
+const totalCommits = Object.keys(widget)
+  .map((key) => widget[key])
+  .flat();
+
 const widgets = Social.getr(`${accountId}/widget`) ?? {};
 
 return (
@@ -44,7 +50,7 @@ return (
     </div>
 
     <div>
-      <h2>104 contributions in 2023</h2>
+      <h2>{totalCommits.length} contributions</h2>
       <div style={{ marginTop: 20 }} />
       <Widget
         src="zahidulislam.near/widget/Profile.Contributions"
