@@ -2,7 +2,7 @@ const index = {
   action: "post",
   key: "main",
   options: {
-    limit: 5,
+    limit: 10,
     order: "asc",
     accountId: props.accounts,
   },
@@ -22,7 +22,10 @@ const Post = styled.div`
 // a.value.type === "md" ;
 const renderItem = (a) =>
   a.value.type === "md" &&
-  (a.accountId.includes("root.near") || a.accountId.includes("mob.near")) && (
+  (a.accountId.includes("root.near") ||
+    a.accountId.includes("mob.near") ||
+    a.accountId.includes("nearmax.near") ||
+    a.accountId.includes("marieke.near")) && (
     <Post className="post" key={JSON.stringify(a)}>
       <Widget
         src="calebjacob.near/widget/Posts.Post"
@@ -32,8 +35,12 @@ const renderItem = (a) =>
   );
 
 return (
-  <Widget
-    src="adminalpha.near/widget/IndexFeed"
-    props={{ index, renderItem, moderatorAccount: "onboarder.near" }}
-  />
+  <div>
+    <h1>See the History of the BOSS on BOS 👀</h1>
+    <h4>Who will be the BOS? You decide</h4>
+    <Widget
+      src="adminalpha.near/widget/IndexFeed"
+      props={{ index, renderItem, moderatorAccount: "onboarder.near" }}
+    />
+  </div>
 );
