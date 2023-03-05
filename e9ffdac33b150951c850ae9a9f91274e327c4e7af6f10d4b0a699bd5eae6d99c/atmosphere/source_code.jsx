@@ -45,6 +45,18 @@ const Card = styled.div`
 
 const imageEndpoint = "https://astro-prod-ui.s3.us-east-1.amazonaws.com/";
 
+const tokens = {
+  "Select Token": "",
+  USDT: "0xdac17f958d2ee523a2206206994597c13d831ec7",
+  DAI: "0x6b175474e89094c44da98b954eedeac495271d0f",
+  USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  MKR: "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+};
+
+const tokensMenuItems = Object.keys(tokens).map((token) => (
+  <option value={tokens[token]}>{token}</option>
+));
+
 /* Input Code */
 const computeResults = (term) => {
   const searchTerm = term.toLowerCase();
@@ -208,7 +220,7 @@ return (
                   </Card>
                   <div className="row">
                     <div className="col">
-                      <h3>Send Donation</h3>
+                      <h3>Send ERC-20 tokens</h3>
                       <div class="mb-3">
                         <label for="selectToken">Select token</label>
                         <select
