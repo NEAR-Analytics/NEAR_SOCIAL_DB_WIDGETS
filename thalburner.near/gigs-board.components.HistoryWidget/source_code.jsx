@@ -16,6 +16,11 @@ const post = Near.view("devgovgigs.near", "get_post", {
   post_id: props.post_id,
 });
 
+if (post === null) {
+  return;
+  ("");
+}
+
 const history = post.snapshot_history;
 
 history.unshift(post.snapshot);
