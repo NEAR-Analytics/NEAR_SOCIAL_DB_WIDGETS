@@ -58,9 +58,9 @@ const contributors = rankContributors.map((c) => {
 
 return (
   <div class="container">
-    <h2 class="mb-5">Widget Leaderboard</h2>
+    <h2 class="mb-4">Widget Leaderboard</h2>
     {contributors.map((contributor) => (
-      <div className="d-flex flex-row mb-4">
+      <div className="d-flex flex-row pt-4 pb-4 border-bottom">
         <Widget
           src="mob.near/widget/ProfileImage"
           props={{
