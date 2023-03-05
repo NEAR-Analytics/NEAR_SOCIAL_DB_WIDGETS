@@ -11,8 +11,6 @@ let contract = "promotepost.near";
 
 const deposits = Near.view(contract, "get_all_deposits", `{}`);
 
-console.log(deposits);
-
 initState({
   postId: props.postId ?? 0,
   amount: props.bidAmount ?? 0,
@@ -23,7 +21,8 @@ initState({
 const calculateExpireTimestamp = (days) => {
   const date = new Date();
   const timestamp = date.getTime();
-  const expireTimestamp = timestamp + days * 86400000;
+  const ONE_DAY_MILLISECONDS = 86400000;
+  const expireTimestamp = timestamp + days * ONE_DAY_MILLISECONDS;
   return expireTimestamp;
 };
 
