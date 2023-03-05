@@ -48,7 +48,7 @@ return (
     />
     <div className="info">
       <div className="text-end position-relative flex-grow-1">
-        {hideLink && (
+        {!hideLink && (
           <a
             href={`#/mob.near/widget/Insta.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`}
             className="link-dark stretched-link"
