@@ -219,7 +219,7 @@ const renderedItems = items.map(cachedRenderItem);
 
 return (
   <div>
-    <h1>Hottest comments by likes - built by Thalasith and TealWarlock</h1>
+    <h1>Hottest Posts by likes - built by Thalasith and TealWarlock</h1>
     <InfiniteScroll
       pageStart={0}
       loadMore={makeMoreItems}
