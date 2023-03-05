@@ -27,7 +27,11 @@ return (
         "padding-bottom": "10px",
       }}
     >
-      <img src={props.avatarUrl} style={{ width: "60px" }} alt="avatar" />
+      <img
+        src={props.avatarUrl}
+        style={{ width: "60px", "border-radius": "50px" }}
+        alt="avatar"
+      />
       <h2>{props.login}</h2>
       <div style={{ color: "#6761E9" }}>Performace</div>
     </div>
