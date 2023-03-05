@@ -65,11 +65,19 @@ const Wrapper = styled.div`
   @media (min-width: 576px) {
     max-width: 288px;
   }
+  background: RGBA(248,249,250);
+  
   > div {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  &:hover {
+    background: RGBA(235, 235, 235);
+  }
+
+  transition: background 0.5s;
 `;
 
 const loader = (
@@ -81,7 +89,7 @@ const loader = (
 );
 
 return (
-  <Wrapper className="text-bg-light ratio ratio-1x1">
+  <Wrapper className="ratio ratio-1x1">
     <Files
       multiple={false}
       accepts={["image/*"]}
