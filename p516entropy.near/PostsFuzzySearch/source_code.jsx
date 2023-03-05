@@ -663,7 +663,7 @@ return (
     {state.processedQuery &&
       state.processedQuery.length > 0 &&
       state.term.toLowerCase().trim() !== state.processedQuery.join(" ") && (
-        <div class="mb-2" style={{ "font-family": "cursive" }}>
+        <div class="mb-2" style={{ "font-family": "monospace" }}>
           Technical stuff: Looking for
           <strong>{state.processedQuery.join(" ")}</strong>
         </div>
