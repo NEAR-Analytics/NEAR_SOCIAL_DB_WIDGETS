@@ -77,9 +77,6 @@ State.init({
   postIds: fuzzySearch(posts, ""),
   searchTerm: "",
 });
-console.log(state);
-
-console.log(state.searchTerm);
 
 return (
   <div>
