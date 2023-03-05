@@ -21,6 +21,13 @@ return (
             >
               comment
             </a>
+          ) : value.item.path === `${context.accountId}/post/insta` ? (
+            <a
+              className="fw-bold text-muted"
+              href={`#/mob.near/widget/Insta.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+            >
+              insta
+            </a>
           ) : (
             "item???"
           )}
@@ -40,6 +47,13 @@ return (
             href={`#/mob.near/widget/MainPage.Comment.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
           >
             View comment
+          </a>
+        ) : value.item.path === `${context.accountId}/post/insta` ? (
+          <a
+            className="btn btn-outline-dark"
+            href={`#/mob.near/widget/Insta.Post.Page?accountId=${context.accountId}&blockHeight=${value.item.blockHeight}`}
+          >
+            View insta
           </a>
         ) : (
           ""
