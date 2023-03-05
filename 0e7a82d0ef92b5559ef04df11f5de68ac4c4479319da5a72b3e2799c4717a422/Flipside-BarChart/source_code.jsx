@@ -12,7 +12,7 @@ function queryComplete(success, results) {
 
 const myProps = {
   query: `select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2022-01-01' group by 1 order by 1`,
-  debug: "false",
+  debug: "true",
   onComplete: queryComplete,
 };
 
@@ -31,7 +31,7 @@ if (state.queryResults !== "") {
       chartBottomAxisLabels += ",";
       chartValues += ",";
     } else {
-      chartValues += "{label: 'Number of Blocks', data:[";
+      chartValues += "{label: 'DAY_DATE', data:[";
     }
     chartBottomAxisLabels += "'";
     chartBottomAxisLabels += d[0];
