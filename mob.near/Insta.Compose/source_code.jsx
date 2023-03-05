@@ -109,10 +109,7 @@ return (
       ) : state.loading ? (
         <div>{loader} Uploading</div>
       ) : (
-        <div>
-          <i className="bi bi-cloud-arrow-up" />
-          Upload a photo
-        </div>
+        <div>Upload a photo</div>
       )}
     </Files>
   </Wrapper>
