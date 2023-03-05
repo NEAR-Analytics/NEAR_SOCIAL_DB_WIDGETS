@@ -61,6 +61,15 @@ return (
           Lido on Testnet
         </a>
       </li>
+      <li>
+        <a
+          href="https://bos.gg/#/onboarder.near/widget/Aurora-Token-Sender"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Aurora All Supported Token Sender
+        </a>
+      </li>
     </ul>
     <h2>🚀 Improvements to the Blockchain Operating System</h2>
     <ul>
