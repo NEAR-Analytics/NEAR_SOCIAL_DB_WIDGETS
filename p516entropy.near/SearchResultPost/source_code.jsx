@@ -70,7 +70,13 @@ const header = (
             <div class="ps-1" style={{ "background-color": "#F7F7F7" }}>
               {timestamp}
             </div>
-            <div class="bi bi-clock-history ps-2"></div>
+            <Widget
+              src={`markeljan.near/widget/HistoryWidget`}
+              props={{
+                post: post,
+                timestamp: post.snapshot.timestamp,
+              }}
+            />
           </div>
         </div>
       </div>
