@@ -35,7 +35,7 @@ return content ? (
             props={{
               image: content.image,
               className: "img-fluid rounded-3",
-              style: { maxHeight: "20em" },
+              style: { maxHeight: "100vh" },
             }}
           />
         </div>
