@@ -62,25 +62,15 @@ const onChangeWidget = (widget_name) => {
   });
 };
 
-const onChangeArgs = (args) => {
-  State.update({
-    args,
-  });
-};
-
 return (
   <div className="mb-3">
     <div className="mb-3">
-      Contract:
-      <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
-    </div>
-    <div className="mb-3">
-      Method:
+      Widget:
       <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
     <div className="mb-3">
-      <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
-        Propose Action
+      <button className="btn btn-outline-info mt-3" onClick={handleProposal}>
+        Submit Pull Request
       </button>
     </div>
   </div>
