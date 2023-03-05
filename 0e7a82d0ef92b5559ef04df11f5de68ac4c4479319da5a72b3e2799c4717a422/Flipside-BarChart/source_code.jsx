@@ -12,7 +12,7 @@ function queryComplete(success, results) {
 
 const myProps = {
   query: `select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2022-01-01' group by 1 order by 1`,
-  debug: "true",
+  debug: "false",
   onComplete: queryComplete,
 };
 
