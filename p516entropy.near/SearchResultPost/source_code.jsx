@@ -91,9 +91,11 @@ const header = (
             props={{ accountId: post.author_id }}
           />
         </div>
-        <div class="col-5" style={{ "background-color": "#F7F7F7" }}>
+        <div class="col-5">
           <div class="d-flex justify-content-end text-nowrap">
-            <div class="ps-1">{timestamp}</div>
+            <div class="ps-1" style={{ "background-color": "#F7F7F7" }}>
+              {timestamp}
+            </div>
             <div class="bi bi-clock-history ps-2"></div>
           </div>
         </div>
