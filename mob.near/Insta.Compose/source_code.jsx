@@ -72,6 +72,14 @@ const Wrapper = styled.div`
   }
 `;
 
+const loader = (
+  <span
+    className="spinner-grow spinner-grow-sm me-1"
+    role="status"
+    aria-hidden="true"
+  />
+);
+
 return (
   <Wrapper className="text-bg-light ratio ratio-1x1">
     <Files
@@ -84,18 +92,11 @@ return (
     >
       {state.uploaded ? (
         <div>
-          <i className="bi bi-cloud-check" />
-          Uploaded
+          {loader}
+          Posting
         </div>
       ) : state.loading ? (
-        <>
-          <span
-            className="spinner-grow spinner-grow-sm me-1"
-            role="status"
-            aria-hidden="true"
-          />{" "}
-          Uploading
-        </>
+        <div>{loader} Uploading</div>
       ) : (
         <div>
           <i className="bi bi-cloud-arrow-up" />
