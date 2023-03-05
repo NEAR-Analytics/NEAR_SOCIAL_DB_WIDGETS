@@ -10,16 +10,17 @@ if (!erc20Abi.ok) {
 }
 const erc20FactoryAbi = fetch(
   "https://raw.githubusercontent.com/codingshot/TokenFactory/master/abi/Factory.abi.json"
-);
+); // doesnt actually mint just deploys
 if (!erc20FactoryAbi.ok) {
   return "factory scam";
 }
 
 const erc20Factory = "0x5ad70c187e448b9ca6104cc55619bf9a3a271efd"; // polygon
 const iface = new ethers.utils.Interface(erc20Abi.body);
-const interface = new ethers.utils.Interface(erc20Abi.body);
+const interface = new ethers.utils.Interface(erc20FactoryAbi.body); // added this
 
 initState({
+  // this was included in the reference example
   token: "",
   tokenDecimals: "",
   sendTo: "",
@@ -111,11 +112,12 @@ const refreshBalances = () => {
   });
 };
 /**TO DO: MUST CHANGE COPIED FROM SEND TOKEN */
-const mintToken = () => {
+const deployToken = () => {
   const erc20 = new ethers.Contract(
-    state.token,
-    erc20Abi.body,
-    Ethers.provider().getSigner()
+    erc20Factory,
+    erc20FactoryAbi // trying without body
+    // erc20FactoryAbi.body, // changed this to abi
+    // Ethers.provider().getSigner()
   );
 
   let amount = ethers.utils.parseUnits(state.amount, state.tokenDecimals);
@@ -142,17 +144,17 @@ const sendTokens = () => {
 
 return (
   <>
-    <h3>📩 Mint ERC-20 token (WIP)</h3>
+    <h3>📩 Deploy ERC-20 token (WIP)</h3>
     <div class="mb-3">
       <label for="sender" class="form-label">
         📫 message sender
       </label>
       <input
-        value={state.initialSupply}
+        value={sender}
         class="form-control"
         id="sender"
         placeholder={state.sender}
-        onChange={(e) => State.update({ initialSupply: e.target.value })}
+        // onChange={(e) => State.update({ sender: e.target.value })}
       />
     </div>
     <div class="mb-3">
@@ -184,16 +186,16 @@ return (
         Enter New ERC20 Token Symbol
       </label>
       <input
-        value={state.decimals}
+        value={state.symbol}
         class="form-control"
-        id="symbol"
+        id="symbol" // only allow for numbers
         placeholder="TKN"
         onChange={(e) => State.update({ symbol: e.target.value })}
       />
     </div>
 
     <div class="mb-3">
-      <button onClick={mintToken}>Mint Token (WIP)</button>
+      <button onClick={deployToken}>Deploy Token (WIP)</button>
     </div>
     <h3>📩 Send ERC-20 tokens (old reference widget)</h3>
 
