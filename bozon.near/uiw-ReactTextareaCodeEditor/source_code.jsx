@@ -1,9 +1,3 @@
-/*
-
-editorProps?: Object,
-
-*/
-
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -43,6 +37,6 @@ window.addEventListener("message", (event) => {
 
 return (
   <div>
-    <iframe className="w-100" srcDoc={code} message={props.editorProps || {}} />
+    <iframe className="w-100" srcDoc={code} message={props} />
   </div>
 );
