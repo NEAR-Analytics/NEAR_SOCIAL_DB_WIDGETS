@@ -4,6 +4,16 @@ if (!accountId) return "Login or send accountId in the props";
 
 const profile = Social.getr(`${accountId}/profile`);
 
+const allWidgetsHistoryChangesBlocks = Social.keys(
+  `${accountId}/widget/*`,
+  "final",
+  {
+    return_type: "History",
+  }
+);
+
+if (allWidgetsHistoryChangesBlocks === null) return "Loading...";
+
 const widgets = Social.getr(`${accountId}/widget`) ?? {};
 
 return (
@@ -14,10 +24,21 @@ return (
       {Object.keys(widgets)?.length > 0 ? (
         <div className="widgetsContainer">
           {Object.keys(widgets)?.map((item, index) => (
-            <Widget
-              src="zahidulislam.near/widget/Profile.WidgetItem"
-              props={{ name: item, accountId }}
-            />
+            <>
+              {console.log(
+                "====> ",
+                allWidgetsHistoryChangesBlocks[accountId].widget[item]
+              )}
+              <Widget
+                src="zahidulislam.near/widget/Profile.WidgetItem"
+                props={{
+                  name: item,
+                  accountId,
+                  commits:
+                    allWidgetsHistoryChangesBlocks[accountId].widget[item],
+                }}
+              />
+            </>
           ))}
         </div>
       ) : (
