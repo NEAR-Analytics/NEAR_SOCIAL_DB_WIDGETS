@@ -28,14 +28,14 @@ function sendQueryToBackend() {
     },
   };
 
-  const res = fetch(
+  const res = await fetch(
     "https://flipside-api.antonyip.com/getCachedQuery",
     options
   );
 
   if (!res.ok) {
     State.update({
-      result: "near.social issue with fetch",
+      result: `near.social issue with fetch: ${JSON.stringify(res)}`,
     });
     return;
   }
