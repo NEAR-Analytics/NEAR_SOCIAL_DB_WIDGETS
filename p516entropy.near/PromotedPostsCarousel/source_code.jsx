@@ -58,6 +58,28 @@ const posts = Near.view("devgovgigs.near", "get_posts") || [];
 const promotedPosts = findPromotedPosts(posts, deposits);
 State.update({ promotedPosts });
 
+const randomizeInitialIndex = () => {
+  const amountOfPromotedPosts = state.promotedPosts.length;
+  let initialCarouselIndex = 0;
+  const randomNum = Math.random();
+
+  if (randomNum < 0.5) {
+    initialCarouselIndex = 0;
+  } else if (randomNum < 0.8) {
+    initialCarouselIndex = 1;
+  } else {
+    initialCarouselIndex = 2;
+  }
+
+  if (initialCarouselIndex >= amountOfPromotedPosts) {
+    initialCarouselIndex = amountOfPromotedPosts - 1;
+  }
+
+  return initialCarouselIndex;
+};
+
+const initialCarouselIndex = randomizeInitialIndex();
+
 return (
   <div>
     <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
@@ -68,7 +90,7 @@ return (
               type="button"
               data-bs-target="#carouselExampleIndicators"
               data-bs-slide-to={i}
-              class={i === 0 ? "active" : undefined}
+              class={i === initialCarouselIndex ? "active" : undefined}
             ></button>
           );
         })}
@@ -86,8 +108,11 @@ return (
             return (
               <div key={post.id}>
                 <div
-                  class={i === 0 ? "carousel-item active" : "carousel-item"}
-                  data-interval="1000"
+                  class={
+                    i === initialCarouselIndex
+                      ? "carousel-item active"
+                      : "carousel-item"
+                  }
                 >
                   <div alt="First slide">
                     <Widget
