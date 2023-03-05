@@ -18,7 +18,7 @@ return (
       border: "2px solid #282828",
       "border-radius": "13px",
       width: "100vw",
-      width: "100vh",
+      heigth: "100vh",
     }}
   >
     <div
