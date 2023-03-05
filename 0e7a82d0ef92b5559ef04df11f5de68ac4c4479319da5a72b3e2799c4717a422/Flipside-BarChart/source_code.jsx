@@ -35,7 +35,7 @@ asyncFetch("https://flipside-api.antonyip.com/getCachedQuery", options).then(
           chartBottomAxisLabels += ",";
           chartValues += ",";
         } else {
-          chartValues += "{label: 'DAY_DATE', data:[";
+          chartValues += "{label: 'Number of Blocks', data:[";
         }
         chartBottomAxisLabels += "'";
         chartBottomAxisLabels += d[0];
@@ -56,8 +56,9 @@ asyncFetch("https://flipside-api.antonyip.com/getCachedQuery", options).then(
   }
 );
 
-return state.imgSrc === "" ? (
-  <div>Loading ...</div>
-) : (
-  <img src={state.imgSrc} />
+return (
+  <>
+    <h2>Near Monthly Number of Blocks</h2>
+    {state.imgSrc === "" ? <div>Loading ...</div> : <img src={state.imgSrc} />}
+  </>
 );
