@@ -74,61 +74,65 @@ const summaryOfChanges = () => {
 
 return (
   <div>
-    <div className="row">
-      <div className="col-sm row">
-        <h5>Select a timestamp </h5>
-        <div>
-          <select
-            className="form-select col-sm"
-            name="history_data1"
-            id="history_data1"
-            form="history_data1"
-            onChange={(e) => changeFirstShownHistory(e.target.value)}
-          >
-            <option>Select a time stamp!</option>
-            {history ? (
-              history.map((item) => {
-                return (
-                  <option value={item.timestamp}>
-                    {`Lasted edited by ${item.editor_id} at ${formatDate(
-                      parseInt(item.timestamp) / 1000000
-                    )}`}
-                  </option>
-                );
-              })
-            ) : (
-              <option>No option available</option>
-            )}
-          </select>
+    {history ? (
+      <div className="row">
+        <div className="col-sm row">
+          <h5>Select a timestamp </h5>
+          <div>
+            <select
+              className="form-select col-sm"
+              name="history_data1"
+              id="history_data1"
+              form="history_data1"
+              onChange={(e) => changeFirstShownHistory(e.target.value)}
+            >
+              <option>Select a time stamp!</option>
+              {history ? (
+                history.map((item) => {
+                  return (
+                    <option value={item.timestamp}>
+                      {`Lasted edited by ${item.editor_id} at ${formatDate(
+                        parseInt(item.timestamp) / 1000000
+                      )}`}
+                    </option>
+                  );
+                })
+              ) : (
+                <option>No option available</option>
+              )}
+            </select>
+          </div>
+        </div>
+        <div className="col-sm row">
+          <h5>Select a second timestamp </h5>
+          <div>
+            <select
+              className="form-select col-sm"
+              name="history_data2"
+              id="history_data2"
+              form="history_data2"
+              onChange={(e) => changeSecondShownHistory(e.target.value)}
+            >
+              <option value="">Select a time stamp!</option>
+              {history ? (
+                history.map((item) => {
+                  return (
+                    <option value={item.timestamp}>
+                      {`Lasted edited by ${item.editor_id} at ${formatDate(
+                        parseInt(item.timestamp) / 1000000
+                      )}`}
+                    </option>
+                  );
+                })
+              ) : (
+                <option>No option available</option>
+              )}
+            </select>
+          </div>
         </div>
       </div>
-      <div className="col-sm row">
-        <h5>Select a second timestamp </h5>
-        <div>
-          <select
-            className="form-select col-sm"
-            name="history_data2"
-            id="history_data2"
-            form="history_data2"
-            onChange={(e) => changeSecondShownHistory(e.target.value)}
-          >
-            <option value="">Select a time stamp!</option>
-            {history ? (
-              history.map((item) => {
-                return (
-                  <option value={item.timestamp}>
-                    {`Lasted edited by ${item.editor_id} at ${formatDate(
-                      parseInt(item.timestamp) / 1000000
-                    )}`}
-                  </option>
-                );
-              })
-            ) : (
-              <option>No option available</option>
-            )}
-          </select>
-        </div>
-      </div>
-    </div>
+    ) : (
+      <div>loading...</div>
+    )}
   </div>
 );
