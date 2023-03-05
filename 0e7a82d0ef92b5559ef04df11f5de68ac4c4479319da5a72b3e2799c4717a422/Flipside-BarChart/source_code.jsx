@@ -10,6 +10,10 @@ let data = fetch(
   }
 );
 
+State.init({
+  queryResults: "nothing",
+});
+
 data.body = data.body.sort((a, b) => new Date(a.MONTH) - new Date(b.MONTH));
 const METRIC_NAME = "Monthly Active Accounts";
 
@@ -80,13 +84,20 @@ const width = 800;
 const height = 500;
 const maxValue = Math.max(...data.body.map((d) => d.ACTIVE_WALLETS)) * 1.1;
 
+function queryComplete(results) {
+  state.queryResults = results;
+  console.log(state.queryResults);
+}
+
 return (
   <>
     <Widget
       src={`0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-API-Getter`}
       query="select 1"
       debug="true"
-    />
+      onComplete={(results) => queryComplete(results)}
+    ></Widget>
+    <div> hi</div>
     <Style>
       <div className="text-bg-light rounded-4 p-3 mb-4">
         {data !== null ? (
