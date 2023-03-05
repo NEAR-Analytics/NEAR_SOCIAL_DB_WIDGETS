@@ -78,19 +78,42 @@ State.init({
   searchTerm: "",
 });
 
+const DivContainer = styled.div`
+  border: 3px solid #fff;
+    padding: 20px;
+    float: left;
+    width:100%;
+`;
+
+const DivChild1 = styled.div`
+  width: 75%;
+    float: left;
+    padding: 20px;
+;`;
+
+const DivChild2 = styled.div`
+  width: 25%;
+    float: left;
+    padding: 20px;
+;`;
+
 return (
   <div>
-    <div>
-      <input onChange={(e) => State.update({ searchTerm: e.target.value })} />
-      <button
-        onClick={(e) =>
-          State.update({ postIds: fuzzySearch(posts, state.searchTerm) })
-        }
-      >
-        {" "}
-        Search
-      </button>
-    </div>
+    <DivContainer>
+      <DivChild1>
+        <input onChange={(e) => State.update({ searchTerm: e.target.value })} />
+      </DivChild1>
+      <DivChild2>
+        <button
+          onClick={(e) =>
+            State.update({ postIds: fuzzySearch(posts, state.searchTerm) })
+          }
+        >
+          {" "}
+          Search
+        </button>
+      </DivChild2>
+    </DivContainer>
     {state.postIds
       ? state.postIds.map((item) => {
           return widget(
