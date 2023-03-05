@@ -10,6 +10,15 @@ const NEW_SCRIPT = {
   balance: "0",
 };
 
+const exampleScript = `const data = get_Input();
+
+const followers = get_SignerFollowers()
+const balance = get_SignerBalance()
+
+call_Transfer("account.near", "1000")
+function_Call("near.social", "method")
+`;
+
 const Header = styled.div`
     width: 100%;
     padding: 16px;
@@ -110,10 +119,7 @@ const openScript = (script) => {
     script: {
       ...script,
       conditions: JSON.parse(script.conditions),
-      code:
-        Storage.get(`${script.sid}:code`, e.data) ||
-        script.code ||
-        exampleScript,
+      code: Storage.get(`${script.sid}:code`) || script.code || exampleScript,
     },
   });
 };
@@ -122,6 +128,7 @@ const deployScript = (script) => {
   const isNew = script.sid === "new";
   const newSid = context.accountId + ":" + Math.floor(Date.now() / 1000);
 
+  Storage.set("new:code", "");
   State.update({ modal: null });
   Near.call(
     CONTRACT,
@@ -506,15 +513,6 @@ const render = () => (
     </div>
   </Page>
 );
-
-const exampleScript = `const data = get_Input();
-
-const followers = get_SignerFollowers()
-const balance = get_SignerBalance()
-
-call_Transfer("account.near", "1000")
-function_Call("near.social", "method")
-`;
 
 const code = `
 <style>
