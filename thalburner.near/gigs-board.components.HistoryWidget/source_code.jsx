@@ -16,12 +16,26 @@ const post = Near.view("devgovgigs.near", "get_post", {
   post_id: props.post_id,
 });
 
+const loader = (
+  <div className="loader" key={"loader"}>
+    <span
+      className="spinner-grow spinner-grow-sm me-1"
+      role="status"
+      aria-hidden="true"
+    />
+    Loading ...
+  </div>
+);
+
 if (post === null) {
-  return;
-  ("");
+  return loader;
 }
 
 const history = post.snapshot_history;
+
+if (history === null) {
+  return loader;
+}
 
 history.unshift(post.snapshot);
 
