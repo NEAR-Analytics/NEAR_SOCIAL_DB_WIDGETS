@@ -71,7 +71,7 @@ const timestamp = readableDate(
 );
 
 const postSearchKeywords = props.seachKeywords ? (
-  <div style={{ "font-family": "cursive" }} key="post-search-keywords">
+  <div style={{ "font-family": "monospace" }} key="post-search-keywords">
     <span>Found keywords: </span>
     {props.seachKeywords.map((label) => {
       return <span class="badge text-bg-info me-1">{label}</span>;
