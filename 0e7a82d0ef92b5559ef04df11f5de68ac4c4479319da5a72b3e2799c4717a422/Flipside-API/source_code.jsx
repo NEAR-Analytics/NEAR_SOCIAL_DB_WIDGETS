@@ -66,6 +66,16 @@ return (
     </h2>
     <h5>Try it out!</h5>
     <h5>...or check the sources if you're interested in how I made this.</h5>
+    <div>
+      I've also made graphical Widgets.. here's an{" "}
+      <a
+        href="https://near.social/#/0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Near.Social.Stats"
+        target="_blank"
+      >
+        example
+      </a>
+      !
+    </div>
     <input
       type="text"
       onChange={(e) => updateQuery(e.target.value)}
