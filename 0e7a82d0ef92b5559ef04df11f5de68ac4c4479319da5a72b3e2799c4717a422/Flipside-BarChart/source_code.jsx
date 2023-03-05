@@ -84,6 +84,8 @@ return (
   <>
     <Widget
       src={`0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-API-Getter`}
+      query="select 1"
+      debug="true"
     />
     <Style>
       <div className="text-bg-light rounded-4 p-3 mb-4">
