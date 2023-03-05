@@ -238,8 +238,6 @@ const removeConditionPath = (index) => {
   });
 };
 
-console.log(state.autocompletes);
-
 const ModalDeploy = (
   <div
     class={`modal fade ${state.modal !== MODAL_DEPLOY ? "" : "show d-block"}`}
@@ -362,8 +360,6 @@ const UpdateModal = (
     </div>
   </div>
 );
-
-console.log(TRIGGERS.slice(0, state.script.conditions.length + 1));
 
 const render = () => (
   <Page>
