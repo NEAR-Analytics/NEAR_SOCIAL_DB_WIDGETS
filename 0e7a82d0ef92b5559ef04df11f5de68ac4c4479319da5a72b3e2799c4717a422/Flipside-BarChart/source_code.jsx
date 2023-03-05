@@ -1,89 +1,63 @@
-// Query API
 State.init({
-  queryResults: "",
+  imgSrc: "",
 });
 
-function queryComplete(success, results) {
-  State.update({
-    queryResults: results,
-  });
-  //console.log("results: " + JSON.stringify(state.queryResults));
-}
-
-const myProps = {
-  query: `select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2022-01-01' group by 1 order by 1`,
-  debug: "false",
-  onComplete: queryComplete,
+// Query API
+const options = {
+  method: "POST",
+  body: `{ "query": "select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2022-01-01' group by 1 order by 1" }`,
+  headers: {
+    "Content-Type": "application/json",
+  },
 };
 
-// Sample Charts
-// <img src="https://quickchart.io/chart?width=300&height=200&chart={type:'bar',data:{labels:['January','February', 'March','April', 'May'], datasets:[{label:'Dogs',data:[50,60,70,180,190]},{label:'Cats',data:[100,200,300,400,500]}]}}" />
-
-const chartType = `"bar"`;
-let chartBottomAxisLabels = "[";
-let chartValues = "[";
-let chartValuesOrig = "[ {label:'DAY_DATE', data:[50,60,70,180,190]} ]";
-// parsing of data from flipside
-if (state.queryResults !== "") {
-  // parsing of labels
-  state.queryResults.rows.map((d, i) => {
-    if (i !== 0) {
-      chartBottomAxisLabels += ",";
-      chartValues += ",";
-    } else {
-      chartValues += "{label: 'DAY_DATE', data:[";
+asyncFetch("https://flipside-api.antonyip.com/getCachedQuery", options).then(
+  (res) => {
+    if (!res.ok) {
+      return;
     }
-    chartBottomAxisLabels += "'";
-    chartBottomAxisLabels += d[0];
-    chartBottomAxisLabels += "'";
 
-    chartValues += "'";
-    chartValues += d[1];
-    chartValues += "'";
+    if (res.body.error) {
+      return;
+    }
 
-    // parsing of columns
-    // chartValues += `{label:'${d}', data:[50,60]}`;
-  });
+    let queryResults = res.body;
 
-  chartValues += "]}]";
-  //console.log("chartValues", chartValues);
-  //chartValues = chartValuesOrig;
-  chartBottomAxisLabels += "]";
-  //console.log("chartBottomAxisLabels", chartBottomAxisLabels);
-  //console.log("chartValuesOrig", chartValues);
-}
+    console.log("queryResults", queryResults);
+    const chartType = `"bar"`;
+    let chartBottomAxisLabels = "[";
+    let chartValues = "[";
+    // parsing of data from flipside
+    if (queryResults !== "") {
+      // parsing of labels
+      queryResults.rows.map((d, i) => {
+        if (i !== 0) {
+          chartBottomAxisLabels += ",";
+          chartValues += ",";
+        } else {
+          chartValues += "{label: 'DAY_DATE', data:[";
+        }
+        chartBottomAxisLabels += "'";
+        chartBottomAxisLabels += d[0];
+        chartBottomAxisLabels += "'";
 
-/*
-const imgSrc =
-  "https://quickchart.io/chart?width=300&height=200&chart={type:'bar',data:{labels:['January','February', 'March','April', 'May'], datasets:[{label:'Dogs',data:[50,60,70,180,190]}]}}";
-*/
+        chartValues += "'";
+        chartValues += d[1];
+        chartValues += "'";
+      });
 
-const imgTemplate = `https://quickchart.io/chart?width=300&height=200&chart={type:${chartType},data:{labels:${chartBottomAxisLabels}, datasets:${chartValues}}}`;
+      chartValues += "]}]";
+      chartBottomAxisLabels += "]";
+      const imgTemplate = `https://quickchart.io/chart?width=300&height=200&chart={type:${chartType},data:{labels:${chartBottomAxisLabels}, datasets:${chartValues}}}`;
+      State.update({
+        imgSrc: imgTemplate,
+      });
+    }
+  }
+);
 
-//console.log(imgTemplate);
-return (
-  <>
-    <Widget
-      src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-API-Getter"
-      props={myProps}
-    ></Widget>
-    <div className="text-bg-light rounded-4 p-3 mb-4">
-      {state.queryResults !== "" ? (
-        <p>
-          <div class="d-flex clearfix flex-wrap flex-column flex-sm-row">
-            <div class="p-2">
-              <div>
-                <h2>Metric: Near Blocks Per Month</h2>
-              </div>
-            </div>
-          </div>
-          <div>
-            <img src={imgTemplate} />
-          </div>
-        </p>
-      ) : (
-        <div>Loading ...</div>
-      )}
-    </div>
-  </>
+return state.imgSrc === "" ? (
+  <div>Loading ...</div>
+) : (
+  <img src={state.imgSrc} />
 );
