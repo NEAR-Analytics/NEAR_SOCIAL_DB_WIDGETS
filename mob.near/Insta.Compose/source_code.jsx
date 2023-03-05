@@ -19,20 +19,28 @@ const filesOnChange = (files) => {
     })
       .then((res) => {
         const content = {
-          type: "insta",
+          type: "md",
           image: { ipfs_cid: res.body.cid },
         };
         const data = {
           post: {
-            insta: JSON.stringify(content),
+            main: JSON.stringify(content),
           },
           index: {
-            post: JSON.stringify({
-              key: "insta",
-              value: {
-                type: "insta",
+            post: JSON.stringify([
+              {
+                key: "insta",
+                value: {
+                  type: "insta",
+                },
               },
-            }),
+              {
+                key: "main",
+                value: {
+                  type: "md",
+                },
+              },
+            ]),
           },
         };
         State.update({
