@@ -70,6 +70,10 @@ return (
       <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
     </div>
     <div className="mb-3">
+      Contract:
+      <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
+    </div>
+    <div className="mb-3">
       Method:
       <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
