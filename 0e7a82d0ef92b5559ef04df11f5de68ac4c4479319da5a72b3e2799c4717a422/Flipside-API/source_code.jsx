@@ -1,11 +1,10 @@
-const [currentQuery, setCurrentQuery] = useState("select 1");
-
-let defaultQuery;
-props.query || `select 'Please Enter a Query in Props' as Error`;
+State.init({
+  query: `select 'Please Enter a Query in Props' as Error`,
+});
 
 const options = {
   method: "POST",
-  body: `{ "query": "${defaultQuery}" }`,
+  body: `{ "query": "${query}" }`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -36,7 +35,9 @@ const MyButton = styled.button`
 `;
 
 function updateQuery(value) {
-  setCurrentQuery(value);
+  State.update({
+    query: value,
+  });
 }
 
 return (
@@ -49,7 +50,7 @@ return (
       // onChange={(e) => computeResults(e.target.value)}
       // placeholder={props.placeholder ?? `Enter your query here!`}
     />
-    <div>${currentQuery}</div>
+    <div>${query}</div>
     <MyButton>Submit Query</MyButton>
     {JSON.stringify(res.body.records)}
   </div>
