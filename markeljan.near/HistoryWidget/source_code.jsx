@@ -47,7 +47,7 @@ const history = (
     <a
       class="card-link"
       role="button"
-      title="Edit post"
+      title="Post History"
       data-bs-toggle="dropdown"
       aria-expanded="false"
       type="button"
