@@ -1,6 +1,5 @@
 State.init({
   hottestsPosts: [],
-  interval: false,
   period: "week", // 'day', 'week', 'month'
 });
 
