@@ -621,7 +621,7 @@ const showMoreSearchResults = () => {
 };
 
 return (
-  <div class="py-2">
+  <div class="py-1">
     <div
       className="d-flex"
       style={{
