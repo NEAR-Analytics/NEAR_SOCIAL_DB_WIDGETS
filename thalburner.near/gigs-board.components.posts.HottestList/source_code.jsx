@@ -9,17 +9,17 @@
 // IN NEAR SOCIAL - IT DOESNT TAKE THE PROPS PER THE BELOW AND DEFAULTS TO "DEVGOVGIGS.NEAR"
 // IN ALPHA - IT DOES TAKE THE PROPS AND ASSUMES THAT IT IS THE DEVELOPER "THALBURNER.NEAR"
 const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId ||
+  "devgovgigs.near" ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId ||
+  "devgovgigs.near" ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
     ...widgetProps,
-    nearDevGovGigsContractAccountId: props.nearDevGovGigsContractAccountId,
-    nearDevGovGigsWidgetsAccountId: props.nearDevGovGigsWidgetsAccountId,
+    nearDevGovGigsContractAccountId: "devgovgigs.near",
+    nearDevGovGigsWidgetsAccountId: "devgovgigs.near",
     referral: props.referral,
   };
   return (
