@@ -11,8 +11,8 @@ function queryComplete(success, results) {
 }
 
 const myProps = {
-  query: `select substr(date_trunc('day', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2023-03-01' and block_timestamp < '2023-03-07' group by 1 order by 1`,
-  debug: "true",
+  query: `select substr(date_trunc('day', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2023-02-01' and block_timestamp < '2023-03-07' group by 1 order by 1`,
+  debug: "false",
   onComplete: queryComplete,
 };
 
@@ -130,11 +130,11 @@ return (
                           i * (width / state.queryResults.records.length) +
                           width / state.queryResults.records.length / 2
                         }
-                        y={height + 90}
-                        transform={`rotate(-75 ${
+                        y={height - 50}
+                        transform={`rotate(-1 ${
                           i * (width / state.queryResults.records.length) +
                           width / state.queryResults.records.length / 2
-                        } ${height + 110})`}
+                        } ${height - 400})`}
                         textAnchor="middle"
                       >
                         {d[1]}
