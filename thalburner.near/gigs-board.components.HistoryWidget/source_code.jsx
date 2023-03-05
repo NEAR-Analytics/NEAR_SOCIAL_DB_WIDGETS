@@ -12,10 +12,6 @@ function formatDate(timestamp) {
   return formatted;
 }
 
-const post = Near.view("devgovgigs.near", "get_post", {
-  post_id: props.post_id,
-});
-
 const loader = (
   <div className="loader" key={"loader"}>
     <span
@@ -26,6 +22,14 @@ const loader = (
     Loading ...
   </div>
 );
+
+if (props.post_id === null) {
+  return loader;
+}
+
+const post = Near.view("devgovgigs.near", "get_post", {
+  post_id: props.post_id,
+});
 
 if (post === null) {
   return loader;
