@@ -1,6 +1,6 @@
 const TGAS = Math.pow(10, 12);
 const CONTRACT = "nsbot.near";
-const TRIGGERS = ["source", "user", "widget", "action"];
+const TRIGGERS = ["source", "user", "widget", "action", "actionUser"];
 const MODAL_DEPLOY = "deployModal";
 const MODAL_UPDATE = "updateModal";
 const NEW_SCRIPT = {
@@ -96,12 +96,16 @@ State.init({
 
   newAutocomplete: "",
   autocompletes: {
-    source: JSON.parse(Storage.get("autocomplete:source") ?? '["data"]'),
-    user: JSON.parse(Storage.get("autocomplete:user") ?? '["any"]'),
-    widget: JSON.parse(Storage.get("autocomplete:widget") ?? '["index"]'),
-    action: JSON.parse(
-      Storage.get("autocomplete:action") ?? '["like", "subscribe", "comment"]'
+    source: JSON.parse(Storage.get("autocomplete:source") || '["data", "any"]'),
+    user: JSON.parse(Storage.get("autocomplete:user") || '["any"]'),
+    widget: JSON.parse(
+      Storage.get("autocomplete:widget") || '["index", "graph", "any"]'
     ),
+    action: JSON.parse(
+      Storage.get("autocomplete:action") ||
+        '["any", "follow", "like", "notify", "comment"]'
+    ),
+    actionUser: JSON.parse(Storage.get("autocomplete:actionUser") || '["any"]'),
   },
 });
 
@@ -234,6 +238,8 @@ const removeConditionPath = (index) => {
   });
 };
 
+console.log(state.autocompletes);
+
 const ModalDeploy = (
   <div
     class={`modal fade ${state.modal !== MODAL_DEPLOY ? "" : "show d-block"}`}
@@ -357,6 +363,8 @@ const UpdateModal = (
   </div>
 );
 
+console.log(TRIGGERS.slice(0, state.script.conditions.length + 1));
+
 const render = () => (
   <Page>
     <Header>
@@ -368,7 +376,7 @@ const render = () => (
       </button>
 
       <p class="font-monospace" style={{ color: "#fff", margin: 0 }}>
-        {bot?.name ?? "New script"}
+        {state.script.name}
       </p>
 
       {state.script.sid === "new" && (
@@ -411,14 +419,11 @@ const render = () => (
         height: 200,
       }}
     >
-      <p
-        class="font-monospace"
-        style={{ color: "#fff", margin: 0, marginBottom: 16 }}
-      >
+      <p class="font-monospace mb-4" style={{ color: "#fff", margin: 0 }}>
         Setup trigger:
       </p>
 
-      <div style={{ display: "flex", gap: 8 }}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {TRIGGERS.slice(0, state.script.conditions.length + 1).map(
           (trigger, index) => (
             <div>
@@ -489,7 +494,7 @@ const render = () => (
                     </button>
                   </div>
 
-                  {state.autocompletes[trigger].map((option) => (
+                  {state.autocompletes[trigger]?.map((option) => (
                     <li
                       class="btn dropdown-item"
                       onClick={() => setConditionPath(option, index)}
@@ -498,7 +503,8 @@ const render = () => (
                         width: 200,
                         paddingRight: 16,
                         textOverflow: "ellipsis",
-                        fontWeight: option === conditions[index] ? 800 : 400,
+                        fontWeight:
+                          option === state.script.conditions[index] ? 800 : 400,
                       }}
                     >
                       {option}
