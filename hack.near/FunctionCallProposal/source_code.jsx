@@ -45,6 +45,12 @@ const handleProposal = () => {
   ]);
 };
 
+const onChangeDAO = (dao_id) => {
+  State.update({
+    dao_id,
+  });
+};
+
 const onChangeContract = (receiver_id) => {
   State.update({
     receiver_id,
@@ -66,7 +72,7 @@ const onChangeArgs = (args) => {
 return (
   <div className="mb-3">
     <div className="mb-3">
-      Contract:
+      DAO:
       <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
     </div>
     <div className="mb-3">
