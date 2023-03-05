@@ -78,11 +78,17 @@ if (!state.promotedPosts.length) {
 
 return (
   <div>
-    <div class="row">
+    <div class="d-flex justify-content-between align-items-end">
       <div class="fs-5">
         <i class="bi-cash-coin"></i>
         <span>Promoted Posts</span>
       </div>
+      <a
+        href="https://near.social/#/markeljan.near/widget/PromotePost"
+        target="_blank"
+      >
+        Promote your post
+      </a>
     </div>
     {!!state.shownPromotedPosts.length ? (
       <div>
