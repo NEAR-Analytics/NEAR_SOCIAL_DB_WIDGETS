@@ -53,15 +53,13 @@ window.addEventListener("message", (event) => {
 `;
 
 return (
-  <div>
-    <iframe
-      className="w-100"
-      srcDoc={code}
-      message={{
-        editorProps: props.editorProps,
-        defaultValue: props.defaultValue,
-      }}
-      onMessage={(m) => props.onChange(m)}
-    />
-  </div>
+  <iframe
+    className="w-100"
+    srcDoc={code}
+    message={{
+      editorProps: props.editorProps,
+      defaultValue: props.defaultValue,
+    }}
+    onMessage={(m) => props.onChange(m)}
+  />
 );
