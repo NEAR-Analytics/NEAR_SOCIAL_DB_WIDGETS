@@ -39,7 +39,7 @@ const handleProposal = () => {
           },
         },
       },
-      deposit: state.gas ?? "100000000000000000000000",
+      deposit: state.deposit ?? "100000000000000000000000",
       gas: state.gas ?? "200000000000000",
     },
   ]);
