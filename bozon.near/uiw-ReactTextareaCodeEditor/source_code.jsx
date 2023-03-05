@@ -29,6 +29,7 @@ function App(props) {
       setValue(e.target.value);
       window.top.postMessage(e.target.value, "*");
     },
+    "minHeight": 130,
     "padding": 15,
     "data-color-mode": "light", 
     "language": "js",
