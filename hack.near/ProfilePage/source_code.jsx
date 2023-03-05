@@ -11,6 +11,7 @@ return (
           sender,
           profile,
           link: true,
+          showEditButton: !props.profile,
         }}
       />
     </div>
