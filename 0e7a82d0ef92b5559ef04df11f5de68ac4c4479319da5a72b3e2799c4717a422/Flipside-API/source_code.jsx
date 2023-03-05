@@ -1,14 +1,13 @@
-let defaultQuery =
-  props.query || `select 'Please Enter a Query in Props' as Error`;
+const [currentQuery, setCurrentQuery] = useState("select 1");
 
-const returnValue = "test";
+let defaultQuery;
+props.query || `select 'Please Enter a Query in Props' as Error`;
+
 const options = {
   method: "POST",
   body: `{ "query": "${defaultQuery}" }`,
   headers: {
     "Content-Type": "application/json",
-    "X-Algolia-Api-Key": `${SEARCH_API_KEY}`,
-    "X-Algolia-Application-Id": `${APPLICATION_ID}`,
   },
 };
 
@@ -36,19 +35,21 @@ const MyButton = styled.button`
   border-radius: 3px;
 `;
 
-const MyTextArea = styled.div`
-  padding: 0.5em;
-  margin: 0.5em;
-  color: ${(props) => (props.primary ? "white" : "palevioletred")};
-  background: ${(props) => (props.primary ? "palevioletred" : "white")};
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-  contentEditable: true;
-`;
+function updateQuery(value) {
+  setCurrentQuery(value);
+}
 
 return (
   <div>
-    <MyTextArea>asd</MyTextArea>
+    <input
+      type="text"
+      onChange={(e) => updateQuery(e.target.value)}
+      // className={`form-control ${state.term ? "border-end-0" : ""}`}
+      // value={state.term ?? ""}
+      // onChange={(e) => computeResults(e.target.value)}
+      // placeholder={props.placeholder ?? `Enter your query here!`}
+    />
+    <div>${currentQuery}</div>
     <MyButton>Submit Query</MyButton>
     {JSON.stringify(res.body.records)}
   </div>
