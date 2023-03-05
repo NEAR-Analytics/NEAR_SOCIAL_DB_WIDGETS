@@ -7,11 +7,11 @@ function queryComplete(success, results) {
   State.update({
     queryResults: results,
   });
-  console.log("results: " + JSON.stringify(state.queryResults.records));
+  //console.log("results: " + JSON.stringify(state.queryResults.records));
 }
 
 const myProps = {
-  query: `select substr(date_trunc('day', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2023-02-01' and block_timestamp < '2023-03-07' group by 1 order by 1`,
+  query: `select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2022-01-01' group by 1 order by 1`,
   debug: "false",
   onComplete: queryComplete,
 };
@@ -81,7 +81,7 @@ return (
             <div class="d-flex clearfix flex-wrap flex-column flex-sm-row">
               <div class="p-2">
                 <div>
-                  <h2>Metric: Near Blocks Per Day</h2>
+                  <h2>Metric: Near Blocks Per Month</h2>
                 </div>
               </div>
             </div>
@@ -93,12 +93,8 @@ return (
                 preserveAspectRatio="xMidYMid meet"
               >
                 {state.queryResults.rows.map((d, i) => {
-                  console.log("d0", d[1]);
-                  console.log("mv", maxValue);
                   const yPos = height - (d[1] / maxValue) * height;
-                  //const yPos = height;
                   const yHeight = (d[1] / maxValue) * height;
-                  //const yHeight = height;
                   return (
                     <g key={i} className="barTextH">
                       <rect
@@ -131,10 +127,10 @@ return (
                           width / state.queryResults.records.length / 2
                         }
                         y={height - 50}
-                        transform={`rotate(-1 ${
+                        transform={`rotate(-90 ${
                           i * (width / state.queryResults.records.length) +
                           width / state.queryResults.records.length / 2
-                        } ${height - 400})`}
+                        } ${height - 50})`}
                         textAnchor="middle"
                       >
                         {d[1]}
