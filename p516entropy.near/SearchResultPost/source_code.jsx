@@ -74,7 +74,7 @@ const header = (
               src={`markeljan.near/widget/HistoryWidget`}
               props={{
                 post: post,
-                timestamp: post.snapshot.timestamp,
+                newTab: true,
               }}
             />
           </div>
