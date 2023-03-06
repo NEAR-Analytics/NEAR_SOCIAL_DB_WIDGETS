@@ -25,18 +25,48 @@ const icon = (
   </svg>
 );
 
+const DropdownDivider = styled.hr`
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  margin: 0;
+`;
+
+const DropdownItem = styled.button`
+  display: block;
+  width: 100%;
+  clear: both;
+  padding: 1em;
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none;
+  color: black;
+  border: 0;
+  text-align: left;
+  transition: background-color 0.2s ease-in-out;
+  background-color: white;
+
+  &:hover {
+    color: black;
+    text-decoration: none;
+    background-color: #e9ecef;
+  }
+`;
+
+const DropdownLi = styled.li`
+  cursor: pointer;
+`;
+
 const createNewButton = ({ id, text, icon, kind }) => (
-  <li>
-    <a
-      className="dropdown-item"
+  <DropdownLi>
+    <DropdownItem
       href={`/#/${ownerId}/widget/Index?tab=create&content=${id}${kind ? "&kind=" + kind : ""
         }`}
       onClick={() => props.update({ tab: "create", content: id, kind })}
     >
       <i className={icon} />
       <span>{text}</span>
-    </a>
-  </li>
+    </DropdownItem>
+  </DropdownLi>
 );
 
 return (
@@ -56,7 +86,7 @@ return (
         icon: "bi-ui-checks-grid",
       })}
       <li>
-        <hr className="dropdown-divider" />
+        <DropdownDivider />
       </li>
       {createNewButton({
         id: "entity",
