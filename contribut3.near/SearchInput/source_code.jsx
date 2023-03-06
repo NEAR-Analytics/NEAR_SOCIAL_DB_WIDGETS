@@ -44,6 +44,6 @@ return (
     placeholder="Search"
     onChange={(e) => props.update({ search: e.target.value })}
   >
-    <Icon>{icon}</Icon>
+    {/* <Icon>{icon}</Icon> */}
   </SearchInput>
 );
