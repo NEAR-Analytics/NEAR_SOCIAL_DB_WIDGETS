@@ -3,13 +3,15 @@ State.init({ link: null });
 const Page = styled.div`
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0px;
+    left: 0;
     bottom: 0px;
-    background: #f4ebea8f;
+    background: rgba(244, 235, 234, 0.56);
     justify-content: center;
     align-items: center;
     display: flex;
+    padding: 80px 0;
 `;
 
 const BlurScreen = styled.div`
