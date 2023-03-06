@@ -22,6 +22,10 @@ const TabItem = styled.a`
     text-decoration: none;
     background-color: #f9fafb;
   }
+
+  &:nth-child(n + 2) {
+    border-left: 1px solid #d0d5dd;
+  }
 `;
 
 const CountIndicator = styled.div`
@@ -44,10 +48,6 @@ const Container = styled.div`
   border: 1px solid #d0d5dd;
   overflow: hidden;
   border-radius: 5px;
-
-  :nth-child(n + 2) {
-    border-left: 1px solid #d0d5dd;
-  }
 `;
 
 return (
