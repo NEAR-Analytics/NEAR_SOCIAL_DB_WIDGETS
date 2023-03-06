@@ -75,8 +75,8 @@ const DropdownList = styled.ul`
 
 const Dot = styled.i`
   display: inline-block;
-  width: 0.3em;
-  height: 0.3em;
+  width: 0.2em;
+  height: 0.2em;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 100%;
   margin: 0.1em;
