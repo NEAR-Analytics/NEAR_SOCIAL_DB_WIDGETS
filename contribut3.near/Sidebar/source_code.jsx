@@ -138,7 +138,7 @@ const navItem = ({ text, icon, id, count }) => (
   >
     {icon}
     <span>{text}</span>
-    {!!count && count > 0 ? <CountIndicator>{count}</CountIndicator> : <></>}
+    <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
   </NavItem>
 );
 
