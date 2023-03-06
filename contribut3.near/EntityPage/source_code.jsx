@@ -206,8 +206,8 @@ const contentSelector = (
           text: "Requests",
           icon: (
             <svg
-              width="10"
-              height="10"
+              width="15"
+              height="15"
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +231,8 @@ const contentSelector = (
             text: "Proposals",
             icon: (
               <svg
-                width="10"
-                height="10"
+                width="15"
+                height="15"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -256,8 +256,8 @@ const contentSelector = (
             text: "Invitations",
             icon: (
               <svg
-                width="10"
-                height="10"
+                width="15"
+                height="15"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -280,8 +280,8 @@ const contentSelector = (
           text: "In-Graph",
           icon: (
             <svg
-              width="10"
-              height="10"
+              width="15"
+              height="15"
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -301,8 +301,8 @@ const contentSelector = (
           text: "Out-Graph",
           icon: (
             <svg
-              width="10"
-              height="10"
+              width="15"
+              height="15"
               viewBox="0 0 20 20"
               fill="none"
               xmln
@@ -323,8 +323,8 @@ const contentSelector = (
           text: "Contributors",
           icon: (
             <svg
-              width="10"
-              height="10"
+              width="15"
+              height="15"
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
