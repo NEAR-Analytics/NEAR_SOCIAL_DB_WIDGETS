@@ -149,6 +149,14 @@ const HomeLink = styled.a`
     text-decoration: none;
     color: #000;
   }
+
+  h4 {
+    font-weight: 600;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 return (
