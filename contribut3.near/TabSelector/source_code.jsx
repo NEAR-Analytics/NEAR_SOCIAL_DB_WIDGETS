@@ -13,7 +13,6 @@ const TabItem = styled.a`
   font-size: 1em;
   padding: 0.5em;
   margin: 0;
-  border: 1px solid #d0d5dd;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
