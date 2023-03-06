@@ -33,7 +33,7 @@ const TabItem = styled.a`
 
   span {
     margin-left: 0.25em;
-    margin-right: ${({ hasCount }) => (hasCount ? "1.5em" : "0")};
+    margin-right: ${({ hasCount }) => (hasCount ? "1.75em" : "0")};
   }
 `;
 
