@@ -50,6 +50,7 @@ const menuItems = items.reduce(
 );
 
 const DropdownList = styled.ul`
+  list-style-type: none;
   position: absolute;
   inset: 0px 0px auto auto;
   margin: 0px;
