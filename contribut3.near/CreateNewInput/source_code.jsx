@@ -148,9 +148,7 @@ const MenuText = styled.span`
 return (
   <DropdownContainer>
     <MenuIcon
-      onClick={() => {
-        State.update({ show: !state.show });
-      }}
+      onClick={() => State.update({ show: !state.show })}
       onBlur={() => State.update({ show: false })}
     >
       {icon}
