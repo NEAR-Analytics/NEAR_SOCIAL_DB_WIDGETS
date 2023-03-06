@@ -132,7 +132,7 @@ const MenuIcon = styled.button`
   padding: 0.4em 1em;
 
   &:hover {
-    background-color: #e9ecef;
+    background-color: #7050c0;
   }
 `;
 
