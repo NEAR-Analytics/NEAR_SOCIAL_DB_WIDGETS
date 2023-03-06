@@ -12,7 +12,8 @@ const TabItem = styled.a`
   font-weight: 500;
   font-size: 1em;
   padding: 0.5em;
-  margin: 0.25em 0;
+  margin: 0;
+  border: 1px solid #d0d5dd;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
@@ -58,7 +59,6 @@ return (
       >
         <i className={icon} />
         <span>{text}</span>
-
         <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
       </TabItem>
     ))}
