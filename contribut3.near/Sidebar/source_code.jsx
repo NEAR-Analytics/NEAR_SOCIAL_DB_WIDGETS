@@ -102,6 +102,11 @@ const about = (
   </svg>
 );
 
+const NavItem = styled.a`
+  color: #667085;
+  cursor: pointer;
+`;
+
 const navItem = ({ text, icon, id, count }) => (
   <a
     className={`nav-link mt-2 rounded-3 p-2 ${id === props.tab ? "bg-secondary" : ""
