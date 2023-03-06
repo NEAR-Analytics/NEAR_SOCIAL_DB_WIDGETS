@@ -19,22 +19,14 @@ const icon = (
 const SearchInput = styled.input`
   display: block;
   padding: 0.5em;
-  padding-left: 2em;
+  padding-left: 3em;
   border: 1px solid #d0d5dd;
   border-radius: 8px;
-
-  /* &:hover { */
-  /*   border: 2px solid #d0d5dd; */
-  /* } */
-  /**/
-  /* &:focus { */
-  /*   border: 2px solid #d0d5dd; */
-  /* } */
 `;
 
 const Icon = styled.div`
   position: absolute;
-  inset: 0.45em auto auto 4px;
+  inset: 0.45em auto auto 0.5em;
 `;
 
 const Container = styled.div`
