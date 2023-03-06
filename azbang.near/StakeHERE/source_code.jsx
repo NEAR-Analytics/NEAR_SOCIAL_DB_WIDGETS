@@ -11,7 +11,7 @@ const Page = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
-    padding: 80px 0;
+    padding: 68px 0;
 `;
 
 const BlurScreen = styled.div`
