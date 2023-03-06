@@ -4,7 +4,7 @@ const TagItem = styled.span`
   display: inline-block;
   border: 1px solid #e6e8eb;
   font-size: 0.8em;
-  font-weight: 400px;
+  font-weight: 500;
   border-radius: 6px;
   padding: 0.25em 0.5em;
   color: #687076;
