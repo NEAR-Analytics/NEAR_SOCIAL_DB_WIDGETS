@@ -103,6 +103,7 @@ const about = (
 );
 
 const NavItem = styled.a`
+  position: relative;
   color: #344054;
   cursor: pointer;
   font-weight: 500;
