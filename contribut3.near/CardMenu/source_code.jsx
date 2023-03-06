@@ -68,9 +68,9 @@ const DropdownList = styled.ul`
   transition: transform 0.2s ease-in-out;
   transform-origin: top right;
 
-  &.show {
-    transform: translate(-44px, 0px) scale(1);
-  }
+  /* &.show { */
+  /*   transform: translate(-44px, 0px) scale(1); */
+  /* } */
 `;
 
 const Dot = styled.i`
@@ -101,13 +101,20 @@ const MenuIcon = styled.a`
 
 const DropdownContainer = styled.div`
   position: relative;
+
+  &:focus-within ul + && {
+    transform: translate(-44px, 0px) scale(1);
+  }
 `;
 
 return (
   <DropdownContainer>
     <MenuIcon
       onClick={() => State.update({ show: !state.show })}
-      onBlur={() => { console.log("blur!")State.update({ show: false }) }}
+      onBlur={() => {
+        console.log("blur!");
+        State.update({ show: false });
+      }}
     >
       <Dot />
       <Dot />
