@@ -26,26 +26,23 @@ const Input = styled.input`
     border: 2px solid #d0d5dd;
   }
 
-  &:active {
+  &:focus {
     border: 2px solid #d0d5dd;
   }
 `;
 
+const Icon = styled.div`
+  position: absolute;
+  inset: auto auto auto 2px;
+`;
+
 return (
-  <div className="w-25 col-12 col-md-10 col-lg-8">
-    <div className="card card-sm">
-      <div className="card-body row p-0 ps-2 align-items-center">
-        <div className="col-auto pe-0 me-0">{icon}</div>
-        <div className="col ms-0">
-          <input
-            className="form-control border-0"
-            type="search"
-            value={props.search}
-            placeholder="Search"
-            onChange={(e) => props.update({ search: e.target.value })}
-          />
-        </div>
-      </div>
-    </div>
-  </div>
+  <Input
+    type="search"
+    value={props.search}
+    placeholder="Search"
+    onChange={(e) => props.update({ search: e.target.value })}
+  >
+    <Icon>{icon}</Icon>
+  </Input>
 );
