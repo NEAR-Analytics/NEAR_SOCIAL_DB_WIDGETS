@@ -80,12 +80,12 @@ const DropdownList = styled.ul`
   inset: 0px 0px auto auto;
   padding: 0px;
   margin: 0px;
-  transform: translate(-44px, 0px) scale(0);
+  transform: translate(0px, 20px) scale(0);
   transition: transform 0.2s ease-in-out;
   transform-origin: top right;
 
   &.show {
-    transform: translate(-44px, 0px) scale(1);
+    transform: translate(0px, 20px) scale(1);
   }
 `;
 
@@ -107,8 +107,12 @@ const MenuIcon = styled.button`
   }
 `;
 
+const DropdownContainer = styled.div`
+  position: relative;
+`;
+
 return (
-  <div className="dropdown">
+  <DropdownContainer>
     <MenuIcon>
       {icon}
       <span>Create new...</span>
@@ -139,5 +143,5 @@ return (
         kind: "Organization",
       })}
     </DropdownList>
-  </div>
+  </DropdownContainer>
 );
