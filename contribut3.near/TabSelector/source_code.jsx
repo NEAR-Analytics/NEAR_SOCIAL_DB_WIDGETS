@@ -45,7 +45,7 @@ const Container = styled.div`
   overflow: hidden;
   border-radius: 5px;
 
-  :nth-child(n + 1) {
+  :nth-child(n + 2) {
     border-left: 1px solid #d0d5dd;
   }
 `;
