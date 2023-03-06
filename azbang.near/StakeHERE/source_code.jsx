@@ -9,13 +9,13 @@ return (
     style={{
       width: "100%",
       position: "relative",
-      display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      display: "flex",
     }}
   >
     <iframe
-      style={{ maxWidth: 460, width: "100%", height: 640 }}
+      style={{ width: "100%", height: 800 }}
       src="https://my.herewallet.app?stake"
       message={{
         accountId: context.accountId,
