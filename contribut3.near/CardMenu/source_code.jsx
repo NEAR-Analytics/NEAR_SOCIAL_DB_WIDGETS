@@ -16,6 +16,7 @@ const DropdownItem = styled.a`
   text-decoration: none;
   border-radius: 5px;
   color: black;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     color: black;
