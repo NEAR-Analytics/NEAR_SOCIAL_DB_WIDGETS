@@ -31,10 +31,10 @@ const TabItem = styled.a`
 const CountIndicator = styled.div`
   display: ${({ show }) => (show ? "inline-block" : "none")};
   border-radius: 100%;
-  background-color: #f04438;
+  background-color: ${({ grey }) => (grey ? "#f2f4f7" : "#f04438")};
   min-width: 1.5em;
   min-height: 1.5em;
-  color: white;
+  color: ${({ grey }) => (grey ? "#344054" : "white")};
   text-align: center;
   position: absolute;
   inset: auto 0.5em auto auto;
@@ -52,7 +52,7 @@ const Container = styled.div`
 
 return (
   <Container>
-    {buttons.map(({ id, text, icon, count }) => (
+    {buttons.map(({ id, text, icon, count, grey }) => (
       <TabItem
         selected={props.content === id}
         href={`/#/${ownerId}/widget/Index?tab=${tab}&content=${id}${props.search ? "&search=" + props.search : ""
@@ -69,7 +69,7 @@ return (
         }
         key={id}
       >
-        <i className={icon} />
+        {icon}
         <span>{text}</span>
         <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
       </TabItem>
