@@ -1,39 +1,53 @@
 const badgeName = props.badge_name;
+const showFull = props.full_card || false;
 const size = props.size || "10rem";
-const fontSize = props.fontSize || "0.8em";
 if (!badgeName) return "Provide a badge_name";
 
 const badgesQuery = Social.getr(`*/badge/${badgeName}/*`, "final");
-console.log(badgesQuery);
 if (!badgesQuery) return "Loading...";
 if (Object.keys(badgesQuery).length == 0) return "Badge does not exist";
 let badgeInfo = Object.values(badgesQuery)[0].badge[badgeName].info;
 const BadgeCard = styled.div`
-  width: ${size}
+  width: ${size};
 `;
 
 const BadgeImg = styled.img`
-  objectFit: "cover",
-  objectPosition: "center",
-  height: ${size},
-  width: ${size},
-  max-height: ${size},
-  float: left;
+  objectFit: "cover";
+  objectPosition: "center";
+  height: ${size};
+  width: ${size};
 `;
-const BadgeCardOverlay = styled.div`
+const BadgeCardBody = styled.div`
  word-break: break-all !important;
- font-size: ${fontSize};
+ font-size: calc(.1*${size})
 `;
+
+if (!showFull)
+  return (
+    <BadgeCard>
+      <div class="ratio ratio-1x1 rounded-circle overflow-hidden">
+        <BadgeImg
+          src={badgeInfo.image.url}
+          alt="badge"
+          title={badgeInfo.description}
+        />
+      </div>
+    </BadgeCard>
+  );
 return (
-  <BadgeCard className="card bg-dark text-white text-center overflow-hidden rounded-circle border-dark">
-    <BadgeImg
-      class="card-img-top img-thumbnail img-responsive"
-      src={badgeInfo.image.url}
-      alt="badge"
-      title={badgeInfo.description}
-    />
-    <BadgeCardOverlay class="card-img-overlay">
-      <p className="text-uppercase p-2">{badgeInfo.name}</p>
-    </BadgeCardOverlay>
+  <BadgeCard className="card text-center">
+    <div class="ratio ratio-1x1 rounded-circle overflow-hidden">
+      <BadgeImg
+        class="card-img-top img-thumbnail img-responsive"
+        src={badgeInfo.image.url}
+        alt="badge"
+        title={badgeInfo.description}
+      />
+    </div>
+
+    <BadgeCardBody class="card-body">
+      <p className="text-uppercase card-title">{badgeInfo.name}</p>
+      <p className="card-text text-muted">{badgeInfo.description}</p>
+    </BadgeCardBody>
   </BadgeCard>
 );
