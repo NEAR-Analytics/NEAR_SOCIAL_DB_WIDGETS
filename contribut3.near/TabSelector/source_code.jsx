@@ -71,7 +71,9 @@ return (
       >
         {icon}
         <span>{text}</span>
-        <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
+        <CountIndicator show={!!count && count > 0} grey={grey}>
+          {count}
+        </CountIndicator>
       </TabItem>
     ))}
   </Container>
