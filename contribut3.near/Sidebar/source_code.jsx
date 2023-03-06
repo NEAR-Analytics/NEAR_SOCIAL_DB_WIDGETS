@@ -113,6 +113,7 @@ const NavItem = styled.a`
   background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
 
   &:hover {
+    color: #667085;
     text-decoration: none;
     background-color: #f9fafb;
   }
