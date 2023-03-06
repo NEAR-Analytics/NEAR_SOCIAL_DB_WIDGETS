@@ -5,6 +5,12 @@ const accountId = props.accountId;
 const content = props.content;
 const cid = props.cid;
 
+const TabItem = styled.a`
+  display: block;
+  text-align: center;
+  padding: 0.5em;
+`;
+
 return (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
     {buttons.map(({ id, text, icon, count }) => (
