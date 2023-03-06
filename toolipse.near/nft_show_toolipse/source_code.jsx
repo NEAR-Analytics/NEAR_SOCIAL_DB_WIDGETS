@@ -34,7 +34,7 @@ const data_show = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_nft_tokens(limit: 30, order_by: {last_transfer_timestamp: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}}}) {
+        mb_views_nft_tokens(limit: 30, order_by: {last_transfer_timestamp: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}, copies: {_eq: "1"}}}) {
             
             token_id
             metadata_id
@@ -81,7 +81,7 @@ const size_show = "5em";
 
 return data_sell !== null && data_show !== null ? (
   <>
-    <h1>Artworks available on @mintbase</h1>
+    <h1>Artworks listed on @mintbase</h1>
     <p>Nice to see that my artworks can be buyable from here.</p>
     <div className="d-flex gap-4 flex-wrap">
       {data_sell.body.data?.mb_views_active_listings.map((listing, i) => {
