@@ -1,24 +1,43 @@
 const items = props.items ?? [];
 
+const DropdownDivider = styled.hr`
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.176);
+  margin: 0.5em 0;
+`;
+
+const DropdownItem = styled.a`
+  display: block;
+  width: 100%;
+  clear: both;
+  padding: 0.25em 1.5em;
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: 5px;
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #e9ecef;
+  }
+`;
+
 const menuItems = items.reduce(
   (list, { text, icon, href, onClick }) => [
     ...list,
     list.length > 0 ? (
       <li>
-        <hr className="dropdown-divider" />
+        <DropdownDivider />
       </li>
     ) : (
       <></>
     ),
     <li>
-      <a
-        className="dropdown-item btn"
-        onClick={onClick}
-        {...(href ? { href } : {})}
-      >
+      <DropdownItem onClick={onClick} {...(href ? { href } : {})}>
         <i className={icon} />
         <span>{text}</span>
-      </a>
+      </DropdownItem>
     </li>,
   ],
   []
