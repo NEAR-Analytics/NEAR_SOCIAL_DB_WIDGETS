@@ -102,13 +102,10 @@ return (
     className="btn-group dropstart"
     onBlur={() => State.update({ show: false })}
   >
-    <MenuIcon
-      // className="btn btn-outline-secondary dropdown-toggle"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-      onClick={() => State.update({ show: !state.show })}
-    >
-      <i className="bi-three-dots-vertical" />
+    <MenuIcon onClick={() => State.update({ show: !state.show })}>
+      <Dot />
+      <Dot />
+      <Dot />
     </MenuIcon>
 
     <DropdownList className={state.show ? "show" : ""}>
