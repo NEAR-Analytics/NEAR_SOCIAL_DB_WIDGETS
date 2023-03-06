@@ -120,8 +120,7 @@ const NavItem = styled.a`
 
 const navItem = ({ text, icon, id, count }) => (
   <NavItem
-    className={`nav-link mt-2 rounded-3 p-2 ${id === props.tab ? "bg-secondary" : ""
-      }`}
+    selected={id === props.tab}
     href={`/#/${ownerId}/widget/Index?tab=${id}`}
     onClick={() => props.update({ tab: id, content: "", search: "" })}
   >
