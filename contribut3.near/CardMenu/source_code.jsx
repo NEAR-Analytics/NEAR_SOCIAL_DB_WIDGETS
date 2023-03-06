@@ -77,8 +77,8 @@ const MenuIcon = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3.5em;
-  height: 3.5em;
+  width: 2.5em;
+  height: 2.5em;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
 `;
