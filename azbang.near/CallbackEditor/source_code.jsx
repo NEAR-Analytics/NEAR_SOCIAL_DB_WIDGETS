@@ -650,8 +650,8 @@ return (
       style={{
         width: "100%",
         position: "absolute",
-        top: "60px",
-        height: "calc(100% - 260px)",
+        top: "80px",
+        height: "calc(100% - 268px)",
         visibility: state.script ? "" : "hidden",
         zIndex: 1,
       }}
