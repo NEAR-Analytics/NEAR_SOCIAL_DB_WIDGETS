@@ -1,13 +1,21 @@
 State.init({ link: null });
 
 if (context.accountId == null) {
-  return null;
+  return <h2 style={{ width: "100%", textAlign: "center" }}>Sign in please</h2>;
 }
 
 return (
-  <div style={{ width: 480, height: 700, position: "relative" }}>
+  <div
+    style={{
+      width: "100%",
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
     <iframe
-      style={{ width: 480, height: 700 }}
+      style={{ maxWidth: 400, width: "100%", height: 640 }}
       src="https://my.herewallet.app?stake"
       message={{
         accountId: context.accountId,
