@@ -1,28 +1,42 @@
-State.init({ link: null, width: 0, height: 0 });
+State.init({ link: null });
+
+const Page = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    background: #f4ebea8f;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+`;
+
+const BlurScreen = styled.div`
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 if (context.accountId == null) {
-  return <h2 style={{ width: "100%", textAlign: "center" }}>Sign in please</h2>;
+  return (
+    <Page>
+      <h2 style={{ width: "100%", textAlign: "center" }}>Sign in please</h2>
+    </Page>
+  );
 }
 
 console.log(state);
 return (
-  <div
-    style={{
-      width: "100%",
-      position: "relative",
-      justifyContent: "center",
-      alignItems: "center",
-      display: "flex",
-    }}
-  >
+  <Page>
     <iframe
-      style={{ display: "none" }}
-      onMessage={(e) => State.update(e)}
-      srcDoc={`<script>parent.postMessage({ width: window.screen.width, height: window.screen.height }, "*")</script>`}
-    />
-
-    <iframe
-      style={{ width: "100%", height: state.height - 150 }}
+      style={{ width: "100%", maxWidth: 460, height: "100%" }}
       src="https://my.herewallet.app?stake"
       message={{
         accountId: context.accountId,
@@ -53,19 +67,7 @@ return (
     />
 
     {state.link && (
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          width: "100%",
-          height: "100%",
-          background: "rgba(255, 255, 255, 0.3",
-          backdropFilter: "blur(10px)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <BlurScreen>
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -75,7 +77,7 @@ return (
         >
           Open link
         </a>
-      </div>
+      </BlurScreen>
     )}
-  </div>
+  </Page>
 );
