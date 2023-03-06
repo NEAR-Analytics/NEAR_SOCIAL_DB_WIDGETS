@@ -85,6 +85,7 @@ const Dot = styled.i`
 const MenuIcon = styled.button`
   display: flex;
   flex-direction: column;
+  background-color: white;
   justify-content: center;
   align-items: center;
   width: 2.5em;
