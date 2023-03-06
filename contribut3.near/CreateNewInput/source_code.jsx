@@ -100,6 +100,7 @@ const createNewButton = ({ id, text, icon, kind }) => (
 );
 
 const DropdownList = styled.ul`
+  --y-pos: 100%;
   z-index: 3;
   dislpay: block;
   background-color: white;
@@ -110,12 +111,12 @@ const DropdownList = styled.ul`
   inset: 0px 0px auto auto;
   padding: 0px;
   margin: 0px;
-  transform: translate(0px, 20px) scale(0);
+  transform: translate(0px, var(--y-pos)) scale(0);
   transition: transform 0.2s ease-in-out;
   transform-origin: top right;
 
   &.show {
-    transform: translate(0px, 20px) scale(1);
+    transform: translate(0px, var(--y-pos)) scale(1);
   }
 `;
 
