@@ -107,7 +107,7 @@ const NavItem = styled.a`
   cursor: pointer;
   font-weight: 500;
   padding: 0.5em;
-  margin: 0.5em 0;
+  margin: 0.25em 0;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
