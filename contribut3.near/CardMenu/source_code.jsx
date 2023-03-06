@@ -100,10 +100,7 @@ const MenuIcon = styled.a`
 `;
 
 return (
-  <div
-    className="btn-group dropstart"
-    onBlur={() => State.update({ show: false })}
-  >
+  <div onBlur={() => State.update({ show: false })}>
     <MenuIcon onClick={() => State.update({ show: !state.show })}>
       <Dot />
       <Dot />
