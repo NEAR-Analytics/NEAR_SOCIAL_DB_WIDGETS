@@ -81,6 +81,11 @@ const MenuIcon = styled.a`
   height: 2.5em;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
+  color: black;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
 `;
 
 return (
