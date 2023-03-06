@@ -5,6 +5,14 @@ const API_URL =
   props.apiUrl ??
   `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
 const INITIAL_PAGE = props.initialPage ?? 0;
+const facets = props.facets ?? [
+  "All",
+  "Users",
+  "Apps",
+  "Components",
+  "Posts",
+  "Comments",
+];
 
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
@@ -102,17 +110,21 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
+const resetSearches = () => {
+  State.update({
+    currentPage: 0,
+    search: undefined,
+    paginate: undefined,
+  });
+};
+
 const writeStateTerm = (term) => {
   State.update({
     term,
   });
 
   if (term === "") {
-    State.update({
-      currentPage: 0,
-      search: undefined,
-      paginate: undefined,
-    });
+    resetSearches();
   }
 };
 
@@ -194,10 +206,11 @@ const debounce = (callable, timeout) => {
   };
 };
 
-const fetchSearchHits = (query, { pageNumber, optionalFilters }) => {
+const fetchSearchHits = (query, { pageNumber, filters, optionalFilters }) => {
   let body = {
     query,
     page: pageNumber ?? 0,
+    filters,
     optionalFilters: optionalFilters ?? [
       "categories:profile<score=3>",
       "categories:widget<score=2>",
@@ -217,8 +230,8 @@ const fetchSearchHits = (query, { pageNumber, optionalFilters }) => {
   });
 };
 
-const computeResults = debounce(({ term, pageNumber }) => {
-  fetchSearchHits(term, { pageNumber }).then((resp) => {
+const computeResults = debounce(({ term, pageNumber, filters }) => {
+  fetchSearchHits(term, { pageNumber, filters }).then((resp) => {
     const { results, hitsTotal, hitsPerPage } = categorizeSearchHits(resp.body);
     State.update({
       search: {
@@ -256,6 +269,40 @@ const onPageChange = (pageNumber) => {
   computeResults({ term: state.term, pageNumber: algoliaPageNumber });
 };
 
+const onFacetClick = (facet) => {
+  if (facet === state.facet) {
+    console.log("Clicked the same facet");
+    return;
+  }
+
+  resetSearches();
+  State.update({
+    facet,
+  });
+
+  let filters = undefined;
+  if (facet === "Users") {
+    filters = "categories:profile";
+  }
+  if (facet === "Components") {
+    filters = "categories:widget";
+  }
+  if (facet === "Apps") {
+    filters = "categories:app";
+  }
+  if (facet === "Posts") {
+    filters = "categories:post";
+  }
+  if (facet === "Comments") {
+    filters = "categories:comment";
+  }
+
+  computeResults({
+    term: state.term,
+    filters,
+  });
+};
+
 return (
   <Wrapper>
     <Header>
@@ -272,6 +319,16 @@ return (
         }}
       />
     </Search>
+
+    {state.search && (
+      <Widget
+        src="chaotictempest.near/widget/Facets"
+        props={{
+          facets,
+          onFacetClick,
+        }}
+      />
+    )}
 
     {state.search?.profiles.length > 0 && (
       <Group>
