@@ -24,7 +24,7 @@ function toTwoDecimals(x) {
 }
 
 return (
-  <div>
+  <>
     <h2 class="text-lg mt-5">Stakes</h2>
     <div class="row">
       <div class="col-6 row">
@@ -105,5 +105,5 @@ return (
         </tbody>
       </table>
     </div>
-  </div>
+  </>
 );
