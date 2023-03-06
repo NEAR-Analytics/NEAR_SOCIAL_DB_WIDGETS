@@ -127,6 +127,7 @@ const CountIndicator = styled.div`
   min-width: 1.5em;
   min-height: 1.5em;
   color: white;
+  text-align: center;
 `;
 
 const navItem = ({ text, icon, id, count }) => (
@@ -137,16 +138,7 @@ const navItem = ({ text, icon, id, count }) => (
   >
     {icon}
     <span>{text}</span>
-    {!!count && count > 0 ? (
-      <div
-        className="d-inline-block rounded-circle bg-danger text-center"
-        style={{ minWidth: "1.5em", height: "1.5em", color: "#FFF" }}
-      >
-        {count}
-      </div>
-    ) : (
-      <></>
-    )}
+    {!!count && count > 0 ? <CountIndicator>{count}</CountIndicator> : <></>}
   </NavItem>
 );
 
