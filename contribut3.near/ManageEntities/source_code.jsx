@@ -54,18 +54,12 @@ const contentSelector = (
           text: "My Projects",
           icon: (
             <svg
-              width="24"
-              height="25"
+              width="21"
+              height="22"
               viewBox="0 0 24 25"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect
-                width="24"
-                height="24"
-                transform="translate(0 0.161133)"
-                fill="white"
-              />
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
