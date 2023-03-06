@@ -69,6 +69,26 @@ const createNewButton = ({ id, text, icon, kind }) => (
   </DropdownLi>
 );
 
+const DropdownList = styled.ul`
+  z-index: 3;
+  dislpay: block;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  list-style-type: none;
+  position: absolute;
+  inset: 0px 0px auto auto;
+  padding: 0px;
+  margin: 0px;
+  transform: translate(-44px, 0px) scale(0);
+  transition: transform 0.2s ease-in-out;
+  transform-origin: top right;
+
+  &.show {
+    transform: translate(-44px, 0px) scale(1);
+  }
+`;
+
 return (
   <div className="dropdown">
     <a
@@ -79,7 +99,7 @@ return (
     >
       Create new...
     </a>
-    <ul className="dropdown-menu">
+    <DropdownList>
       {createNewButton({
         id: "request",
         text: "Contribution request",
@@ -103,6 +123,6 @@ return (
         icon: "bi-diagram-2",
         kind: "Organization",
       })}
-    </ul>
+    </DropdownList>
   </div>
 );
