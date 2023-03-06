@@ -182,7 +182,7 @@ return (
       icon: about,
       id: "about",
     })}
-    <a className="nav-link mt-2 rounded-3 p-2" href="/#/">
+    <NavItem href="/#/">
       <svg
         width="24"
         height="25"
@@ -199,6 +199,6 @@ return (
         />
       </svg>
       <span>Exit application</span>
-    </a>
+    </NavItem>
   </div>
 );
