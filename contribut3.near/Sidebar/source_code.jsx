@@ -109,15 +109,17 @@ const NavItem = styled.a`
   padding: 0.5em;
   border-radius: 20%;
   text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
 
   &:hover {
     text-decoration: none;
-    background-color: #f2f4f7;
+    background-color: #f9fafb;
   }
 `;
 
 const navItem = ({ text, icon, id, count }) => (
-  <a
+  <NavItem
     className={`nav-link mt-2 rounded-3 p-2 ${id === props.tab ? "bg-secondary" : ""
       }`}
     href={`/#/${ownerId}/widget/Index?tab=${id}`}
@@ -135,7 +137,7 @@ const navItem = ({ text, icon, id, count }) => (
     ) : (
       <></>
     )}
-  </a>
+  </NavItem>
 );
 
 const HomeLink = styled.a`
