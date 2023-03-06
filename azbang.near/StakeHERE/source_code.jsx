@@ -15,7 +15,7 @@ return (
     }}
   >
     <iframe
-      style={{ maxWidth: 400, width: "100%", height: 640 }}
+      style={{ maxWidth: 460, width: "100%", height: 640 }}
       src="https://my.herewallet.app?stake"
       message={{
         accountId: context.accountId,
