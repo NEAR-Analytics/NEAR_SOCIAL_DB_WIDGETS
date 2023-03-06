@@ -34,13 +34,13 @@ const data_show = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_active_listings(limit: 700, order_by: {price: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}}}) {
-            listed_by
+        mb_views_nft_tokens(limit: 30, order_by: {last_transfer_timestamp: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}}}) {
             created_at
-            price
-            nft_contract_id
             token_id
             metadata_id
+            title
+            description
+            media
         }   
       }
 `,
@@ -71,9 +71,13 @@ if (!data_sell.ok) {
   return "Loading";
 }
 
+if (!data_show.ok) {
+  return "Loading";
+}
+
 const size = "10em";
 
-return data_sell !== null ? (
+return data_sell !== null && data_show !== null ? (
   <>
     <h1>Artworks available on @mintbase</h1>
     <p>Nice to see that my artworks can be buyable from here.</p>
@@ -121,6 +125,42 @@ return data_sell !== null ? (
             >
               Buy for {priceNear} N
             </button>
+          </div>
+        );
+      })}
+    </div>
+    <div className="d-flex gap-4 flex-wrap">
+      {data_show.body.data?.mb_views_nft_tokens.map((listing2, i) => {
+        return (
+          <div className="d-flex flex-column gap-1">
+            <a
+              href={`https://mintbase.xyz/meta/${listing2.metadata_id}/`}
+              target="_blank"
+            >
+              <Widget
+                src="toolipse.near/widget/NftImage_toolipse"
+                props={{
+                  nft: {
+                    tokenId: listing2.token_id,
+                    contractId: listing2.nft_contract_id,
+                  },
+                  style: {
+                    width: size,
+                    height: size,
+                    objectFit: "cover",
+                    minWidth: size,
+                    minHeight: size,
+                    maxWidth: size,
+                    maxHeight: size,
+                    overflowWrap: "break-word",
+                  },
+                  thumbnail: "thumbnail",
+                  className: "",
+                  fallbackUrl:
+                    "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+                }}
+              />
+            </a>
           </div>
         );
       })}
