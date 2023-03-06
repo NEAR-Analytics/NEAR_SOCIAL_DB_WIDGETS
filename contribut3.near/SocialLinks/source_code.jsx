@@ -106,7 +106,11 @@ const supportedLinks = [
       </svg>
     ),
   },
-  { name: "website", url: "https://", icon: "bi-globe2" },
+  {
+    name: "website",
+    url: "https://",
+    icon: <i className="bi-globe2 text-muted" />,
+  },
 ];
 
 const SocialItem = styled.li`
