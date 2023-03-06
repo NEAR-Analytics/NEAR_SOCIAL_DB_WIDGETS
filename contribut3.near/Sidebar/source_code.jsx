@@ -107,7 +107,7 @@ const NavItem = styled.a`
   color: #344054;
   cursor: pointer;
   font-weight: 500;
-  font-size: 2em;
+  font-size: 1em;
   padding: 0.5em;
   margin: 0.25em 0;
   border-radius: 5px;
