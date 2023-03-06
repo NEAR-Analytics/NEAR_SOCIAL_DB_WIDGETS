@@ -99,6 +99,10 @@ const MenuIcon = styled.a`
   }
 `;
 
+const DropdownContainer = styled.div`
+  position: relative;
+`;
+
 return (
   <div onBlur={() => State.update({ show: false })}>
     <MenuIcon onClick={() => State.update({ show: !state.show })}>
