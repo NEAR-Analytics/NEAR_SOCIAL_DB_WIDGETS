@@ -231,6 +231,7 @@ const contentSelector = (
             text: "Proposals",
             icon: "bi-person-down",
             count: contributorsCount,
+            grey: true,
           }
           : null,
         isAuthorized
@@ -239,6 +240,7 @@ const contentSelector = (
             text: "Invitations",
             icon: "bi-hourglass",
             count: contributorsCount,
+            grey: true,
           }
           : null,
         {
