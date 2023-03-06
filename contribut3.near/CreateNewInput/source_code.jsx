@@ -155,7 +155,7 @@ return (
       onBlur={() => State.update({ show: false })}
     >
       {icon}
-      <span>Create new...</span>
+      <MenuText>Create new...</MenuText>
       <Arrow className={state.show ? "show" : ""}>{arrowIcon}</Arrow>
     </MenuIcon>
 
