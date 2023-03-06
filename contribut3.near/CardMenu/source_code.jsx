@@ -1,5 +1,9 @@
 const items = props.items ?? [];
 
+State.init({
+  show: false,
+});
+
 const DropdownDivider = styled.hr`
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.4);
@@ -65,10 +69,11 @@ return (
       className="btn btn-outline-secondary dropdown-toggle"
       data-bs-toggle="dropdown"
       aria-expanded="false"
+      onClick={() => State.update({ show: !state.show })}
     >
       <i className="bi-three-dots-vertical" />
     </MenuIcon>
 
-    <ul className="dropdown-menu">{menuItems}</ul>
+    <DropdownList show={state.show}>{menuItems}</DropdownList>
   </div>
 );
