@@ -150,7 +150,6 @@ return (
     <MenuIcon
       onClick={() => {
         State.update({ show: !state.show });
-        console.log("here");
       }}
       onBlur={() => State.update({ show: false })}
     >
