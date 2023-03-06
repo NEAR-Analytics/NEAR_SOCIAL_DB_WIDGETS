@@ -10,7 +10,7 @@ const DropdownItem = styled.a`
   display: block;
   width: 100%;
   clear: both;
-  padding: 0.25em 1.5em;
+  padding: 0.35em 1em;
   font-weight: 400;
   white-space: nowrap;
   text-decoration: none;
