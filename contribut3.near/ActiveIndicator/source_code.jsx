@@ -2,7 +2,7 @@ const active = props.active ?? false;
 const activeText = props.activeText ?? "Active";
 const inactiveText = props.inactiveText ?? "Not active";
 
-const TextSpan = styled.a`
+const TextSpan = styled.span`
   font-size: 0.95em;
   display: block;
   margin-left: 0.25em;
