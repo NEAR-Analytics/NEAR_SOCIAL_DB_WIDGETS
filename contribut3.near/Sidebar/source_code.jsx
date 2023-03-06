@@ -173,7 +173,7 @@ const NavContainer = styled.div`
 `;
 
 return (
-  <div className="d-flex flex-column">
+  <NavContainer>
     <HomeLink
       href={`/#/${ownerId}/widget/Index`}
       onClick={() => props.update({ tab: "home", content: "", search: "" })}
@@ -223,5 +223,5 @@ return (
       </svg>
       <span>Exit application</span>
     </NavItem>
-  </div>
+  </NavContainer>
 );
