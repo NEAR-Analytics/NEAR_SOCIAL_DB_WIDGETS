@@ -141,6 +141,10 @@ const DropdownContainer = styled.div`
   position: relative;
 `;
 
+const MenuText = styled.span`
+  margin: 0 0.2em;
+`;
+
 return (
   <DropdownContainer>
     <MenuIcon
