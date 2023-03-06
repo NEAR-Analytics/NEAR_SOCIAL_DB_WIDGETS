@@ -14,7 +14,6 @@ const TabItem = styled.a`
   padding: 0.5em;
   margin: 0;
   border: 1px solid #d0d5dd;
-  border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
@@ -36,6 +35,16 @@ const CountIndicator = styled.div`
   text-align: center;
   position: absolute;
   inset: auto 0.5em auto auto;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #d0d5dd;
+  overflow: hidden;
+  border-radius: 5px;
 `;
 
 return (
