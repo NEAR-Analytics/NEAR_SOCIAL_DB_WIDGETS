@@ -34,7 +34,7 @@ const SearchInput = styled.input`
 
 const Icon = styled.div`
   position: absolute;
-  inset: auto auto auto 2px;
+  inset: 4px auto auto 3px;
 `;
 
 const Container = styled.div`
