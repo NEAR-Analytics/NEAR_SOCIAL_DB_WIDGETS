@@ -143,7 +143,10 @@ const DropdownContainer = styled.div`
 return (
   <DropdownContainer>
     <MenuIcon
-      onClick={() => State.update({ show: !state.show })}
+      onClick={() => {
+        State.update({ show: !state.show });
+        console.log("here");
+      }}
       onBlur={() => State.update({ show: false })}
     >
       {icon}
@@ -178,5 +181,3 @@ return (
     </DropdownList>
   </DropdownContainer>
 );
- 
-  
