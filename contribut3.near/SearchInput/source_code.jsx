@@ -42,12 +42,12 @@ const Container = styled.div`
 
 return (
   <Container>
+    <Icon>{icon}</Icon>
     <SearchInput
       type="search"
       value={props.search}
       placeholder="Search"
       onChange={(e) => props.update({ search: e.target.value })}
     />
-    <Icon>{icon}</Icon>
   </Container>
 );
