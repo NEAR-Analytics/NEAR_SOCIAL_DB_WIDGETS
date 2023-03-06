@@ -151,10 +151,10 @@ return (
     >
       {icon}
       <span>Create new...</span>
-      <Arrow open={state.show ? "show" : ""}>{arrowIcon}</Arrow>
+      <Arrow className={state.show ? "show" : ""}>{arrowIcon}</Arrow>
     </MenuIcon>
 
-    <DropdownList show={state.show ? "show" : ""}>
+    <DropdownList className={state.show ? "show" : ""}>
       {createNewButton({
         id: "request",
         text: "Contribution request",
