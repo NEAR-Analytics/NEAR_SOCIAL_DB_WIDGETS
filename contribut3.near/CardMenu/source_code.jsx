@@ -14,11 +14,11 @@ const DropdownItem = styled.a`
   display: block;
   width: 100%;
   clear: both;
-  padding: 0.5em 1em;
+  padding: 1em;
   font-weight: 400;
   white-space: nowrap;
   text-decoration: none;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   color: black;
   transition: background-color 0.2s ease-in-out;
 
