@@ -21,18 +21,18 @@ const WidgetContainer = styled.div`
 
 return (
   <>
-    allEntities.map((accountId) => (
-    <WidgetContainer key={accountId}>
-      <Widget
-        src={`${ownerId}/widget/Entity`}
-        props={{
-          accountId,
-          notStandalone: false,
-          inboxView: true,
-          update: props.update,
-        }}
-      />
-    </WidgetContainer>
-    ))
+    {allEntities.map((accountId) => (
+      <WidgetContainer key={accountId}>
+        <Widget
+          src={`${ownerId}/widget/Entity`}
+          props={{
+            accountId,
+            notStandalone: false,
+            inboxView: true,
+            update: props.update,
+          }}
+        />
+      </WidgetContainer>
+    ))}
   </>
 );
