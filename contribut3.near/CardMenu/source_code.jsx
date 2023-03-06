@@ -106,19 +106,12 @@ const DropdownContainer = styled.div`
 
 return (
   <DropdownContainer
-    tabindex="1"
-    onFocus={() => console.log("hi")}
-    onBlur={() => {
-      console.log("blur! div");
-      State.update({ show: false });
-    }}
   >
     <MenuIcon
       onClick={() => State.update({ show: !state.show })}
-      onBlur={() => {
-        console.log("blur!");
+      onBlur={() => 
         State.update({ show: false });
-      }}
+      }
     >
       <Dot />
       <Dot />
@@ -128,5 +121,5 @@ return (
     <DropdownList className={state.show ? "show" : ""}>
       {menuItems}
     </DropdownList>
-  </DropdownContainer>
+  </DropdownContainer >
 );
