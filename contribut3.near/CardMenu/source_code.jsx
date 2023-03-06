@@ -105,10 +105,10 @@ const DropdownContainer = styled.div`
 
 return (
   <DropdownContainer
-    tabindex="0"
+    tabindex="1"
     onFocus={() => console.log("hi")}
     onBlur={() => {
-      console.log("blur!");
+      console.log("blur! div");
       State.update({ show: false });
     }}
   >
