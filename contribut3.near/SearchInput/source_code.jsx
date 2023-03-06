@@ -17,6 +17,7 @@ const icon = (
 );
 
 const SearchInput = styled.input`
+  display: block;
   position: relative;
   padding: 0.5em;
   padding-left: 2em;
