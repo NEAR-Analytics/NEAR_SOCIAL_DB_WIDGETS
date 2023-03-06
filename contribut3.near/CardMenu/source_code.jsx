@@ -74,8 +74,9 @@ const DropdownList = styled.ul`
 `;
 
 const MenuIcon = styled.a`
-  display: block;
-  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
 `;
