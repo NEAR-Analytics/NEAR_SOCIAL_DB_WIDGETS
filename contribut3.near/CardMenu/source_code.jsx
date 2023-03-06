@@ -50,6 +50,8 @@ const menuItems = items.reduce(
 );
 
 const DropdownList = styled.ul`
+  dislpay: block;
+  background-color: white;
   list-style-type: none;
   position: absolute;
   inset: 0px 0px auto auto;
