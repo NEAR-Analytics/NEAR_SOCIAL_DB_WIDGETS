@@ -2,7 +2,7 @@ const items = props.items ?? [];
 
 const DropdownDivider = styled.hr`
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.176);
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
   margin: 0.5em 0;
 `;
 
