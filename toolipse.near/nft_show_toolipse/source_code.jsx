@@ -2,7 +2,29 @@ const accountId = props.accountId || context.accountId;
 const marketId = "simple.market.mintbase1.near";
 const AFFILIATE_ACCOUNT = props.affiliateAccount || "toolipse.near";
 
-const data = fetch("https://graph.mintbase.xyz", {
+const data_sell = fetch("https://graph.mintbase.xyz", {
+  method: "POST",
+  headers: {
+    "mb-api-key": "anon",
+    "Content-Type": "application/json",
+    "x-hasura-role": "anonymous",
+  },
+  body: JSON.stringify({
+    query: `
+      query MyQuery {
+        mb_views_active_listings(limit: 700, order_by: {price: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}}}) {
+            listed_by
+            created_at
+            price
+            nft_contract_id
+            token_id
+            metadata_id
+        }   
+      }
+`,
+  }),
+});
+const data_show = fetch("https://graph.mintbase.xyz", {
   method: "POST",
   headers: {
     "mb-api-key": "anon",
@@ -45,18 +67,18 @@ let buy = (price, token_id, nft_contract_id) => {
   );
 };
 
-if (!data.ok) {
+if (!data_sell.ok) {
   return "Loading";
 }
 
 const size = "10em";
 
-return data !== null ? (
+return data_sell !== null ? (
   <>
     <h1>Artworks available on @mintbase</h1>
     <p>Nice to see that my artworks can be buyable from here.</p>
     <div className="d-flex gap-4 flex-wrap">
-      {data.body.data?.mb_views_active_listings.map((listing, i) => {
+      {data_sell.body.data?.mb_views_active_listings.map((listing, i) => {
         const priceYocto = listing.price.toLocaleString().replace(/,/g, "");
         const priceNear = YoctoToNear(priceYocto);
 
@@ -67,7 +89,7 @@ return data !== null ? (
               target="_blank"
             >
               <Widget
-                src="mob.near/widget/NftImage"
+                src="toolipse.near/widget/NftImage_toolipse"
                 props={{
                   nft: {
                     tokenId: listing.token_id,
