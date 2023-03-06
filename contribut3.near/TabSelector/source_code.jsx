@@ -7,6 +7,10 @@ const cid = props.cid;
 
 const TabItem = styled.a`
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   color: #344054;
   cursor: pointer;
   font-weight: 500;
@@ -26,10 +30,6 @@ const TabItem = styled.a`
   &:nth-child(n + 2) {
     border-left: 1px solid #d0d5dd;
   }
-
-  /* span { */
-  /*   font-size: 0.8em; */
-  /* } */
 `;
 
 const CountIndicator = styled.div`
