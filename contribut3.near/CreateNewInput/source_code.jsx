@@ -95,8 +95,6 @@ const MenuIcon = styled.button`
   background-color: #7f56d9;
   justify-content: center;
   align-items: center;
-  width: 2.5em;
-  height: 2.5em;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   color: white;
