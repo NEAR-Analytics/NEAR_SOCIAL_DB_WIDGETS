@@ -16,6 +16,21 @@ const icon = (
   </svg>
 );
 
+const Input = styled.input`
+  position: relative;
+  padding: 0.5em;
+  padding-left: 2em;
+  border: 1px solid #d0d5dd;
+
+  &:hover {
+    border: 2px solid #d0d5dd;
+  }
+
+  &:active {
+    border: 2px solid #d0d5dd;
+  }
+`;
+
 return (
   <div className="w-25 col-12 col-md-10 col-lg-8">
     <div className="card card-sm">
