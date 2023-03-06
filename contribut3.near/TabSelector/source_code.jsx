@@ -26,6 +26,10 @@ const TabItem = styled.a`
   &:nth-child(n + 2) {
     border-left: 1px solid #d0d5dd;
   }
+
+  span {
+    font-size: 0.8em;
+  }
 `;
 
 const CountIndicator = styled.div`
