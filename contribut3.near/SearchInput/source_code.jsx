@@ -21,6 +21,7 @@ const SearchInput = styled.input`
   padding: 0.5em;
   padding-left: 2em;
   border: 1px solid #d0d5dd;
+  border-radius: 8px;
 
   /* &:hover { */
   /*   border: 2px solid #d0d5dd; */
