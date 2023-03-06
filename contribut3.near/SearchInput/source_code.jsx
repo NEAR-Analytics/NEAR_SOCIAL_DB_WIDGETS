@@ -26,7 +26,7 @@ const SearchInput = styled.input`
 
 const Icon = styled.div`
   position: absolute;
-  inset: 0.45em auto auto 0.5em;
+  inset: 0.45em auto auto 0.75em;
 `;
 
 const Container = styled.div`
