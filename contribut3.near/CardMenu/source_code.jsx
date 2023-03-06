@@ -79,7 +79,7 @@ return (
     onBlur={() => State.update({ show: false })}
   >
     <MenuIcon
-      className="btn btn-outline-secondary dropdown-toggle"
+      // className="btn btn-outline-secondary dropdown-toggle"
       data-bs-toggle="dropdown"
       aria-expanded="false"
       onClick={() => State.update({ show: !state.show })}
