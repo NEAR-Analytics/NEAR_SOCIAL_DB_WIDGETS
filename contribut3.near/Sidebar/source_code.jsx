@@ -157,6 +157,10 @@ const HomeLink = styled.a`
     flex-direction: row;
     align-items: center;
   }
+
+  span {
+    margin-left: 0.5rem;
+  }
 `;
 
 return (
@@ -165,9 +169,9 @@ return (
       href={`/#/${ownerId}/widget/Index`}
       onClick={() => props.update({ tab: "home", content: "", search: "" })}
     >
-      <h4 className="fs-4 text-nowrap d-flex flex-row align-items-center">
+      <h4>
         <Widget src={`${ownerId}/widget/Logo`} props={{ size: 32 }} />
-        <span className="ms-2">Web3 Combinator</span>
+        <span>Web3 Combinator</span>
       </h4>
     </HomeLink>
     {navItem({
