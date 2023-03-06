@@ -64,8 +64,12 @@ const DropdownList = styled.ul`
   inset: 0px 0px auto auto;
   padding: 0px;
   margin: 0px;
-  transform: translate(-44px, 0px) scale(${({ show }) => (show ? "1" : "0")});
+  transform: translate(-44px, 0px) scale(0);
   transition: transform 0.2s ease-in-out;
+
+  &.show {
+    transform: scale(1);
+  }
 `;
 
 const MenuIcon = styled.a`
@@ -89,6 +93,8 @@ return (
       <i className="bi-three-dots-vertical" />
     </MenuIcon>
 
-    <DropdownList show={state.show}>{menuItems}</DropdownList>
+    <DropdownList className={state.show ? "show" : ""}>
+      {menuItems}
+    </DropdownList>
   </div>
 );
