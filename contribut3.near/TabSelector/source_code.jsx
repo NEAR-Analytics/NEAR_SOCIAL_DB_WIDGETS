@@ -48,7 +48,7 @@ const Container = styled.div`
 `;
 
 return (
-  <div className="btn-group" role="group" aria-label="Content Tab Selector">
+  <Container>
     {buttons.map(({ id, text, icon, count }) => (
       <TabItem
         selected={props.content === id}
@@ -71,5 +71,5 @@ return (
         <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
       </TabItem>
     ))}
-  </div>
+  </Container>
 );
