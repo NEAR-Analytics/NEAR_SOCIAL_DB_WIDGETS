@@ -167,6 +167,11 @@ const HomeLink = styled.a`
   }
 `;
 
+const NavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 return (
   <div className="d-flex flex-column">
     <HomeLink
