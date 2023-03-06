@@ -69,7 +69,7 @@ const DropdownList = styled.ul`
 
 const MenuIcon = styled.a`
   display: block;
-  padding: 1em;
+  padding: 0.5em;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
 `;
