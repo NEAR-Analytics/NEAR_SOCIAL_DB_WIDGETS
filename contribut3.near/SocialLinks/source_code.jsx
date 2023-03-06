@@ -109,7 +109,12 @@ const supportedLinks = [
   {
     name: "website",
     url: "https://",
-    icon: <i className="bi-globe2 text-muted" />,
+    icon: (
+      <i
+        className="bi-globe2 text-muted"
+        style={{ width: "24px", height: "24px" }}
+      />
+    ),
   },
 ];
 
