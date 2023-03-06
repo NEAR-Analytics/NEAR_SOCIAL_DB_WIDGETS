@@ -40,9 +40,8 @@ const CountIndicator = styled.div`
 return (
   <div className="btn-group" role="group" aria-label="Content Tab Selector">
     {buttons.map(({ id, text, icon, count }) => (
-      <a
-        className={`btn ${props.content === id ? "btn-secondary" : "btn-outline-secondary"
-          }`}
+      <TabItem
+        selected={props.content === id}
         href={`/#/${ownerId}/widget/Index?tab=${tab}&content=${id}${props.search ? "&search=" + props.search : ""
           }${accountId ? "&accountId=" + accountId : ""}${cid ? "&cid=" + cid : ""
           }`}
@@ -61,7 +60,7 @@ return (
         <span>{text}</span>
 
         <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
-      </a>
+      </TabItem>
     ))}
   </div>
 );
