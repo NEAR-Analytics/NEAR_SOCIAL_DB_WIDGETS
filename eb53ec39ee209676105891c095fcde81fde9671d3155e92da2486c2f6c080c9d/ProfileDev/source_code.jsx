@@ -8,16 +8,25 @@ const styleStat = {
   "padding-bottom": "10px",
 };
 
+const renderStat = (title, value) => (
+  <div style={styleStat}>
+    <span>{title}</span>
+    <span style={{ "font-weight": 600 }}>{value}</span>
+  </div>
+);
+
+const { followers, following, repositories, contributions, pullRequests } =
+  props;
+
 return (
   <div
-    class="container-fluid"
+    class="container"
     style={{
       color: " #fff",
       background: "#272727",
       padding: "20px",
       border: "2px solid #282828",
       "border-radius": "13px",
-      width: "100vw",
       heigth: "100vh",
     }}
   >
@@ -36,37 +45,16 @@ return (
       <div style={{ color: "#6761E9" }}>Performace</div>
     </div>
     <div style={{ display: "flex" }}>
-      <div style={styleStat}>
-        <span>Followers</span>
-        <span>{props.followers}</span>
-      </div>
-      <div style={styleStat}>
-        <span>Following</span>
-        <span>{props.following}</span>
-      </div>
+      {renderStat("Followers", followers)}
+      {renderStat("Following", following)}
     </div>
-    <div style={styleStat}>
-      <span>Repositories</span>
-      <span>{props.repositories}</span>
-    </div>
-    <div style={styleStat}>
-      <span>Contributions</span>
-      <span>{props.contributions}</span>
-    </div>
-    <div style={styleStat}>
-      <span>Pull Requests</span>
-      <span>{props.pullRequests}</span>
-    </div>
-    <h3>Near</h3>
+    <div style={styleStat}>{renderStat("Repositories", repositories)}</div>
+    <div style={styleStat}>{renderStat("Contributions", contributions)}</div>
+    <div style={styleStat}>{renderStat("Pull Requests", pullRequests)}</div>
+    <h3 style={{ "font-weight": "500" }}>NEAR.social</h3>
     <div style={{ display: "flex" }}>
-      <div style={styleStat}>
-        <span>Likes</span>
-        <span>{props.pullRequests}</span>
-      </div>
-      <div style={styleStat}>
-        <span>Posts</span>
-        <span>{props.pullRequests}</span>
-      </div>
+      <div style={styleStat}>{renderStat("Likes", "n/a")}</div>
+      <div style={styleStat}>{renderStat("Posts", "n/a")}</div>
     </div>
   </div>
 );
