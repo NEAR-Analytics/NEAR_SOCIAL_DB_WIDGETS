@@ -107,7 +107,7 @@ const NavItem = styled.a`
   cursor: pointer;
   font-weight: 500;
   padding: 0.5em;
-  border-radius: 20%;
+  border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
   background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
