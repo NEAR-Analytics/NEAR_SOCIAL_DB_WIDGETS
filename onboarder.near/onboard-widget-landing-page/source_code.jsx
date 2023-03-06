@@ -282,13 +282,12 @@ return (
                         }}
                       />
                       <div class="shadow"></div>
-                      <div class="eth-logo">
-                        <img
-                          src={
-                            "https://cloudflare-ipfs.com/ipfs/bafkreibkkypb3zybzlwfotwa6tdmelalfnfucmvgzzeqwge4e75mkpq6dq"
-                          }
-                        />
-                      </div>
+
+                      <img
+                        src={
+                          "https://cloudflare-ipfs.com/ipfs/bafkreibkkypb3zybzlwfotwa6tdmelalfnfucmvgzzeqwge4e75mkpq6dq"
+                        }
+                      />
                     </div>
                   </a>
                   <div class="flex-right">
