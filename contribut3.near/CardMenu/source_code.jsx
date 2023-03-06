@@ -83,6 +83,7 @@ const Dot = styled.i`
 
 const MenuIcon = styled.a`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 2.5em;
