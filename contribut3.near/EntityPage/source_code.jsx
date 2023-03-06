@@ -230,7 +230,7 @@ const contentSelector = (
             id: "proposals",
             text: "Proposals",
             icon: "bi-person-down",
-            count: contributorsCount,
+            count: proposalsCount,
             grey: true,
           }
           : null,
@@ -239,7 +239,7 @@ const contentSelector = (
             id: "invitations",
             text: "Invitations",
             icon: "bi-hourglass",
-            count: contributorsCount,
+            count: invitesCount,
             grey: true,
           }
           : null,
