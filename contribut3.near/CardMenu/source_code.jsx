@@ -104,14 +104,14 @@ const DropdownContainer = styled.div`
 `;
 
 return (
-  <DropdownContainer tabindex="0">
-    <MenuIcon
-      onClick={() => State.update({ show: !state.show })}
-      onBlur={() => {
-        console.log("blur!");
-        State.update({ show: false });
-      }}
-    >
+  <DropdownContainer
+    tabindex="0"
+    onBlur={() => {
+      console.log("blur!");
+      State.update({ show: false });
+    }}
+  >
+    <MenuIcon onClick={() => State.update({ show: !state.show })}>
       <Dot />
       <Dot />
       <Dot />
