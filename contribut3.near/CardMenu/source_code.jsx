@@ -30,7 +30,7 @@ const DropdownItem = styled.a`
 `;
 
 const DropdownLi = styled.li`
-  mouse: pointer;
+  cursor: pointer;
 `;
 
 const menuItems = items.reduce(
@@ -92,7 +92,7 @@ const MenuIcon = styled.a`
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   color: black;
-  mouse: pointer;
+  cursor: pointer;
 
   &:hover {
     background-color: #e9ecef;
