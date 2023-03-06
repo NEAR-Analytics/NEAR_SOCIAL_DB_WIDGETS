@@ -28,7 +28,7 @@ const contentSelector = (
         {
           id: "projects",
           text: "Projects",
-          icon: <Widget src={`${ownerId}/widget/Icons/Org`} />,
+          icon: <Widget src={`${ownerId}/widget/Icons.Org`} />,
         },
         {
           id: "contributors",
