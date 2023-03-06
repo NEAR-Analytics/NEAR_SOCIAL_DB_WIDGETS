@@ -82,7 +82,7 @@ const Dot = styled.i`
   margin: 0.1em;
 `;
 
-const MenuIcon = styled.a`
+const MenuIcon = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +112,13 @@ return (
       State.update({ show: false });
     }}
   >
-    <MenuIcon onClick={() => State.update({ show: !state.show })}>
+    <MenuIcon
+      onClick={() => State.update({ show: !state.show })}
+      onBlur={() => {
+        console.log("blur!");
+        State.update({ show: false });
+      }}
+    >
       <Dot />
       <Dot />
       <Dot />
