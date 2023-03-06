@@ -52,6 +52,8 @@ const menuItems = items.reduce(
 const DropdownList = styled.ul`
   dislpay: block;
   background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
   list-style-type: none;
   position: absolute;
   inset: 0px 0px auto auto;
