@@ -39,11 +39,11 @@ const Icon = styled.div`
 
 return (
   <SearchInput
-    // type="text"
+    type="search"
     value={props.search}
     placeholder="Search"
     onChange={(e) => props.update({ search: e.target.value })}
-  >
-    {/* <Icon>{icon}</Icon> */}
-  </SearchInput>
+  />
+  // {/* <Icon>{icon}</Icon> */}
+  // </SearchInput>
 );
