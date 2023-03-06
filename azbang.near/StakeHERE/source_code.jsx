@@ -1,6 +1,6 @@
-State.init({ link: null });
+State.init({ link: null, parent: "" });
 
-console.log(context);
+console.log(state);
 
 const Page = styled.div`
     width: 100%;
@@ -13,7 +13,6 @@ const Page = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
-    padding: 68px 0;
 `;
 
 const BlurScreen = styled.div`
@@ -38,7 +37,12 @@ if (context.accountId == null) {
 
 console.log(state);
 return (
-  <Page>
+  <Page
+    style={{
+      paddingTop: 68,
+      paddingBottom: state.parent.includes("alpha.near.org") ? 68 : 0,
+    }}
+  >
     <iframe
       style={{ width: "100%", maxWidth: 460, height: "100%" }}
       src="https://my.herewallet.app?stake"
@@ -54,6 +58,10 @@ return (
 
           case "openLink":
             State.update({ link: e.data.link });
+            return;
+
+          case "parentDomain":
+            State.update({ parent: e.data });
             return;
 
           case "signAndSendTransaction":
