@@ -45,6 +45,13 @@ const menuItems = items.reduce(
   []
 );
 
+const DropdownList = styled.ul`
+  position: absolute;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate(-44px, 0px) scale(${({ show }) => (show ? "1" : "0")});
+`;
+
 const MenuIcon = styled.a`
   &:before {
     display: none !important;
