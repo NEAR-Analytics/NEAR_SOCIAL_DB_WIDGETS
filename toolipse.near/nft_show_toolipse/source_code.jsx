@@ -35,7 +35,7 @@ const data_show = fetch("https://graph.mintbase.xyz", {
     query: `
       query MyQuery {
         mb_views_nft_tokens(limit: 30, order_by: {last_transfer_timestamp: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}}}) {
-            created_at
+            
             token_id
             metadata_id
             title
@@ -76,7 +76,8 @@ if (!data_show.ok) {
   return "Loading";
 }
 
-const size = "30em";
+const size_sell = "10em";
+const size_show = "5em";
 
 return data_sell !== null && data_show !== null ? (
   <>
@@ -101,13 +102,13 @@ return data_sell !== null && data_show !== null ? (
                     contractId: listing.nft_contract_id,
                   },
                   style: {
-                    width: size,
-                    height: size,
+                    width: size_sell,
+                    height: size_sell,
                     objectFit: "contain",
-                    minWidth: size,
-                    minHeight: size,
-                    maxWidth: size,
-                    maxHeight: size,
+                    minWidth: size_sell,
+                    minHeight: size_sell,
+                    maxWidth: size_sell,
+                    maxHeight: size_sell,
                     overflowWrap: "break-word",
                   },
                   thumbnail: "thumbnail",
@@ -131,31 +132,28 @@ return data_sell !== null && data_show !== null ? (
       })}
     </div>
     <div className="d-flex gap-4 flex-wrap">
-      {data_sell.body.data?.mb_views_active_listings.map((listing, i) => {
-        const priceYocto = listing.price.toLocaleString().replace(/,/g, "");
-        const priceNear = YoctoToNear(priceYocto);
-
+      {data_show.body.data?.mb_views_nft_tokens.map((tokens, i) => {
         return (
           <div className="d-flex flex-column gap-1">
             <a
-              href={`https://mintbase.xyz/meta/${listing.metadata_id}/`}
+              href={`https://mintbase.xyz/meta/${tokens.metadata_id}/`}
               target="_blank"
             >
               <Widget
                 src="toolipse.near/widget/NftImage_toolipse"
                 props={{
                   nft: {
-                    tokenId: listing.token_id,
-                    contractId: listing.nft_contract_id,
+                    tokenId: tokens.token_id,
+                    contractId: tokens.nft_contract_id,
                   },
                   style: {
-                    width: size,
-                    height: size,
+                    width: size_sell,
+                    height: size_sell,
                     objectFit: "contain",
-                    minWidth: size,
-                    minHeight: size,
-                    maxWidth: size,
-                    maxHeight: size,
+                    minWidth: size_sell,
+                    minHeight: size_sell,
+                    maxWidth: size_sell,
+                    maxHeight: size_sell,
                     overflowWrap: "break-word",
                   },
                   thumbnail: "thumbnail",
@@ -165,15 +163,6 @@ return data_sell !== null && data_show !== null ? (
                 }}
               />
             </a>
-            <button
-              disabled={!accountId}
-              onClick={() => {
-                if (!accountId) return;
-                buy(priceYocto, listing.token_id, listing.nft_contract_id);
-              }}
-            >
-              Buy for {priceNear} N
-            </button>
           </div>
         );
       })}
