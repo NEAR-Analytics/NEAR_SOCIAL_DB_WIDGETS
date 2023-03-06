@@ -288,7 +288,7 @@ const contentSelector = (
               width="20"
               height="20"
               viewBox="0 0 20 2 0 "
-              fill=" n one"
+              fill="none"
               xmln
               s="http://www.w3.org/2000/svg"
             >
