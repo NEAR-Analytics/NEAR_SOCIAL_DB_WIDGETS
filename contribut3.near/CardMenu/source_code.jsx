@@ -18,7 +18,6 @@ const DropdownItem = styled.a`
   font-weight: 400;
   white-space: nowrap;
   text-decoration: none;
-  /* border-radius: 5px; */
   color: black;
   transition: background-color 0.2s ease-in-out;
 
