@@ -91,7 +91,7 @@ const DropdownList = styled.ul`
 
 const MenuIcon = styled.button`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #7f56d9;
   justify-content: center;
   align-items: center;
