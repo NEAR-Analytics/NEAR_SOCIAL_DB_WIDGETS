@@ -64,7 +64,10 @@ const MenuIcon = styled.a`
 `;
 
 return (
-  <div className="btn-group dropstart">
+  <div
+    className="btn-group dropstart"
+    onBlur={() => State.update({ show: false })}
+  >
     <MenuIcon
       className="btn btn-outline-secondary dropdown-toggle"
       data-bs-toggle="dropdown"
