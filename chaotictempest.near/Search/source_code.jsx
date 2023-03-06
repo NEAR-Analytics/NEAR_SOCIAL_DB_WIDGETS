@@ -269,6 +269,14 @@ const onPageChange = (pageNumber) => {
   computeResults({ term: state.term, pageNumber: algoliaPageNumber });
 };
 
+const FACET_TO_CATEGORY = {
+  Users: "profile",
+  Apps: "app",
+  Components: "widget",
+  Posts: "post",
+  Comments: "comment",
+};
+
 const onFacetClick = (facet) => {
   if (facet === state.facet) {
     console.log("Clicked the same facet");
@@ -280,22 +288,8 @@ const onFacetClick = (facet) => {
     facet,
   });
 
-  let filters = undefined;
-  if (facet === "Users") {
-    filters = "categories:profile";
-  }
-  if (facet === "Components") {
-    filters = "categories:widget";
-  }
-  if (facet === "Apps") {
-    filters = "categories:app";
-  }
-  if (facet === "Posts") {
-    filters = "categories:post";
-  }
-  if (facet === "Comments") {
-    filters = "categories:comment";
-  }
+  let category = FACET_TO_CATEGORY[facet];
+  let filters = category ? `categories:${category}` : undefined;
 
   computeResults({
     term: state.term,
