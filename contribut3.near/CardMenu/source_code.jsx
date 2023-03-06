@@ -79,6 +79,7 @@ const Dot = styled.i`
   height: 0.3em;
   background-color: rgba(0, 0, 0.4);
   border-radius: 100%;
+  margin: 0.1em;
 `;
 
 const MenuIcon = styled.a`
