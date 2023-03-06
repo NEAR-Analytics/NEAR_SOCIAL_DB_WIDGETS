@@ -1,9 +1,10 @@
-State.init({ link: null });
+State.init({ link: null, width: 0, height: 0 });
 
 if (context.accountId == null) {
   return <h2 style={{ width: "100%", textAlign: "center" }}>Sign in please</h2>;
 }
 
+console.log(state);
 return (
   <div
     style={{
@@ -15,7 +16,13 @@ return (
     }}
   >
     <iframe
-      style={{ width: "100%", height: 800 }}
+      style={{ display: "none" }}
+      onMessage={(e) => State.update(e)}
+      srcDoc={`<script>parent.postMessage({ width: window.screen.width, height: window.screen.height }, "*")</script>`}
+    />
+
+    <iframe
+      style={{ width: "100%", height: state.height - 200 }}
       src="https://my.herewallet.app?stake"
       message={{
         accountId: context.accountId,
