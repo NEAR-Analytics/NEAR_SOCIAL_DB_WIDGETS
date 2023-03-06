@@ -3,18 +3,27 @@ const profiles =
 
 const accounts = Object.keys(profiles);
 
+const getWidgetHistory = (accountId) => {
+  const allWidgetsHistoryChangesBlocks = Social.keys(
+    `${accountId}/widget/*`,
+    "final",
+    {
+      return_type: "History",
+    }
+  );
+
+  return allWidgetsHistoryChangesBlocks;
+};
+
 const users = accounts
   .map((accountId) => {
-    const allWidgetsHistoryChangesBlocks = Social.keys(
-      `${accountId}/widget/*`,
-      "final",
-      {
-        return_type: "History",
-      }
-    );
+    const widgetHistory = getWidgetHistory(accountId);
 
-    if (Object.keys(allWidgetsHistoryChangesBlocks).length !== 0) {
-      return allWidgetsHistoryChangesBlocks;
+    console.log(widgetHistory);
+    if (Object.keys(widgetHistory).length !== 0) {
+      return widgetHistory;
+    } else {
+      return undefined;
     }
   })
   .filter((x) => x);
