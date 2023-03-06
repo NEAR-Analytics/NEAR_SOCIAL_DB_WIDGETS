@@ -252,7 +252,7 @@ return (
           <Widget
             src="mattlock.near/widget/ComponentSearch"
             props={{
-              limit: 10,
+              limit: 15,
               term: "onboarddao",
               boostedTag: "onboarddao",
               onChange: ({ result: components, term }) => {
