@@ -70,35 +70,43 @@ const onChangeDesc = (description) => {
     description,
   });
 };
-
+// in the future add mint to an address
 return (
   <div>
-    <div>Mint NFT on genadrop</div>
-    <div>
-      Title:
-      <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
-    </div>
-    <div>
-      Description:
-      <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
-    </div>
-    <div className="flex-grow-1">
-      <IpfsImageUpload
-        image={state.image}
-        className="btn btn-outline-secondary border-0 rounded-3"
-      />
-    </div>
-    <div>Preview</div>
-    <div>
-      <img
-        src={`https://ipfs.io/ipfs/` + state.image.cid}
-        alt="uploaded image"
-        width="800"
-        height="600"
-      />
-    </div>
-    <div>
-      <button onClick={handleMint}>Mint</button>
+    <h1>💧Mint NFT on GenaDrop</h1>
+    <div className="row">
+      <div className="col-lg-6">
+        <div>
+          Title:
+          <input type="text" onChange={(e) => onChangeTitle(e.target.value)} />
+        </div>
+        <div>
+          Description:
+          <input type="text" onChange={(e) => onChangeDesc(e.target.value)} />
+        </div>
+      </div>
+      <div className="flex-grow-1">
+        <IpfsImageUpload
+          image={state.image}
+          className="btn btn-outline-secondary border-0 rounded-3"
+        />
+      </div>
+      <div className="col-lg-6">
+        <div>
+          <h2>👀 Preview</h2>
+        </div>
+        <div>
+          <img
+            src={`https://ipfs.io/ipfs/` + state.image.cid}
+            alt="uploaded image"
+            width="800"
+            height="600"
+          />
+        </div>
+        <div>
+          <button onClick={handleMint}>Mint</button>
+        </div>
+      </div>
     </div>
   </div>
 );
