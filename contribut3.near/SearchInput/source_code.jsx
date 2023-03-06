@@ -23,13 +23,13 @@ const SearchInput = styled.input`
   padding-left: 2em;
   border: 1px solid #d0d5dd;
 
-  &:hover {
-    border: 2px solid #d0d5dd;
-  }
-
-  &:focus {
-    border: 2px solid #d0d5dd;
-  }
+  /* &:hover { */
+  /*   border: 2px solid #d0d5dd; */
+  /* } */
+  /**/
+  /* &:focus { */
+  /*   border: 2px solid #d0d5dd; */
+  /* } */
 `;
 
 const Icon = styled.div`
