@@ -100,7 +100,7 @@ const createNewButton = ({ id, text, icon, kind }) => (
 );
 
 const DropdownList = styled.ul`
-  --y-pos: 100%;
+  --y-pos: 40px;
   z-index: 3;
   dislpay: block;
   background-color: white;
