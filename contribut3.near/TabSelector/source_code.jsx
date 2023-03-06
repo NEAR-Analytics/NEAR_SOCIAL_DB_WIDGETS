@@ -47,7 +47,7 @@ const Container = styled.div`
   align-items: center;
   border: 1px solid #d0d5dd;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 return (
