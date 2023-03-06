@@ -73,6 +73,14 @@ const DropdownList = styled.ul`
   }
 `;
 
+const Dot = styled.i`
+  display: inline-block;
+  width: 0.3em;
+  height: 0.3em;
+  background-color: #e9ecef;
+  border-radius: 100%;
+`;
+
 const MenuIcon = styled.a`
   display: flex;
   justify-content: center;
