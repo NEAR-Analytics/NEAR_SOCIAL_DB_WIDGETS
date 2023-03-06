@@ -105,6 +105,9 @@ const about = (
 const NavItem = styled.a`
   color: #667085;
   cursor: pointer;
+  font-weight: 500;
+  padding: 0.5em;
+  border-radius: 20%;
 `;
 
 const navItem = ({ text, icon, id, count }) => (
