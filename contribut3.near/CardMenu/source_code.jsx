@@ -29,6 +29,10 @@ const DropdownItem = styled.a`
   }
 `;
 
+const DropdownLi = styled.li`
+  mouse: pointer;
+`;
+
 const menuItems = items.reduce(
   (list, { text, icon, href, onClick }) => [
     ...list,
@@ -39,12 +43,12 @@ const menuItems = items.reduce(
     ) : (
       <></>
     ),
-    <li>
+    <DropdownLi>
       <DropdownItem onClick={onClick} {...(href ? { href } : {})}>
         <i className={icon} />
         <span>{text}</span>
       </DropdownItem>
-    </li>,
+    </DropdownLi>,
   ],
   []
 );
