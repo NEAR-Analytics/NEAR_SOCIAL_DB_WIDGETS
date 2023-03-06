@@ -89,16 +89,31 @@ const DropdownList = styled.ul`
   }
 `;
 
+const MenuIcon = styled.button`
+  display: flex;
+  flex-direction: column;
+  background-color: #7f56d9;
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+`;
+
 return (
   <div className="dropdown">
-    <a
-      className="btn btn-info dropdown-toggle"
-      style={{ backgroundColor: "#7f56d9", borderColor: "#7f56d9" }}
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Create new...
-    </a>
+    <MenuIcon>
+      {icon}
+      <span>Create new...</span>
+    </MenuIcon>
+
     <DropdownList>
       {createNewButton({
         id: "request",
