@@ -121,7 +121,7 @@ const NavItem = styled.a`
 `;
 
 const CountIndicator = styled.div`
-  display: inline-block;
+  display: ${({ show }) => (show ? "inline-block" : "none")};
   border-radius: 100%;
   background-color: #f04438;
   min-width: 1.5em;
