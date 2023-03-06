@@ -168,11 +168,22 @@ return (
       id: "about",
     })}
     <a className="nav-link mt-2 rounded-3 p-2" href="/#/">
-      <i className="bi-escape" />
+      <svg
+        width="24"
+        height="25"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20.6622 17.1611C18.9331 20.1501 15.7014 22.1611 12 22.1611C6.47715 22.1611 2 17.684 2 12.1611C2 6.63829 6.47715 2.16113 12 2.16113C15.7014 2.16113 18.9331 4.17213 20.6622 7.16113M12.0001 8.16113L8.00007 12.1611M8.00007 12.1611L12.0001 16.1611M8.00007 12.1611H22.0001"
+          stroke="#667085"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
       <span>Exit application</span>
     </a>
   </div>
 );
-<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M20.6622 17.1611C18.9331 20.1501 15.7014 22.1611 12 22.1611C6.47715 22.1611 2 17.684 2 12.1611C2 6.63829 6.47715 2.16113 12 2.16113C15.7014 2.16113 18.9331 4.17213 20.6622 7.16113M12.0001 8.16113L8.00007 12.1611M8.00007 12.1611L12.0001 16.1611M8.00007 12.1611H22.0001" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
