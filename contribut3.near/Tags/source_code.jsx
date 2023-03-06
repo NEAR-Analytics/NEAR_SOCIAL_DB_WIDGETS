@@ -12,7 +12,7 @@ const TagItem = styled.span`
 `;
 
 const Container = styled.div`
-  max-width: 50%;
+  max-width: 400px;
   overflow: hidden;
 `;
 
