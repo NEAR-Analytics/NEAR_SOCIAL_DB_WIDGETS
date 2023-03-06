@@ -124,6 +124,9 @@ const CountIndicator = styled.div`
   display: inline-block;
   border-radius: 100%;
   background-color: #f04438;
+  min-width: 1.5em;
+  min-height: 1.5em;
+  color: white;
 `;
 
 const navItem = ({ text, icon, id, count }) => (
