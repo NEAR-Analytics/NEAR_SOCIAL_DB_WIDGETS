@@ -120,6 +120,12 @@ const NavItem = styled.a`
   }
 `;
 
+const CountIndicator = styled.div`
+  display: inline-block;
+  border-radius: 100%;
+  background-color: #f04438;
+`;
+
 const navItem = ({ text, icon, id, count }) => (
   <NavItem
     selected={id === props.tab}
