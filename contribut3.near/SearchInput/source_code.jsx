@@ -16,7 +16,7 @@ const icon = (
   </svg>
 );
 
-const Input = styled.input`
+const SearchInput = styled.input`
   position: relative;
   padding: 0.5em;
   padding-left: 2em;
@@ -37,12 +37,12 @@ const Icon = styled.div`
 `;
 
 return (
-  <Input
+  <SearchInput
     type="search"
     value={props.search}
     placeholder="Search"
     onChange={(e) => props.update({ search: e.target.value })}
   >
     <Icon>{icon}</Icon>
-  </Input>
+  </SearchInput>
 );
