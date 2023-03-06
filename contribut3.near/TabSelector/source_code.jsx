@@ -27,9 +27,9 @@ const TabItem = styled.a`
     border-left: 1px solid #d0d5dd;
   }
 
-  span {
-    font-size: 0.8em;
-  }
+  /* span { */
+  /*   font-size: 0.8em; */
+  /* } */
 `;
 
 const CountIndicator = styled.div`
