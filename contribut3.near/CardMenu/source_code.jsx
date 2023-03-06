@@ -77,7 +77,7 @@ const Dot = styled.i`
   display: inline-block;
   width: 0.3em;
   height: 0.3em;
-  background-color: #e9ecef;
+  background-color: rgba(0, 0, 0.4);
   border-radius: 100%;
 `;
 
