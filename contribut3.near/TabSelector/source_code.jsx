@@ -30,6 +30,10 @@ const TabItem = styled.a`
   &:nth-child(n + 2) {
     border-left: 1px solid #d0d5dd;
   }
+
+  span {
+    margin-left: 0.25em;
+  }
 `;
 
 const CountIndicator = styled.div`
