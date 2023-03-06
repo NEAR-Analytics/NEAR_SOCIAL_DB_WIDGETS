@@ -69,7 +69,7 @@ const DropdownList = styled.ul`
   transform-origin: top right;
 
   &.show {
-    transform: scale(1);
+    transform: translate(-44px, 0px) scale(1);
   }
 `;
 
