@@ -241,7 +241,7 @@ return (
     </div>
 
     <div class="main">
-      <h3>Unstoppable Web</h3>
+      <h3>👋 Unstoppable Web</h3>
       <p class="gray">
         Discover tooling that OnboardDAO is building to further decentralize the
         NEAR Ecosystem.
@@ -293,7 +293,7 @@ return (
                   </a>
                   <div class="flex-right">
                     <p>{component.widgetName}</p>
-                    <p class="subtle gray">Ethereum</p>
+                    <p class="subtle gray">OnboardDAO</p>
                   </div>
                 </div>
                 <p>{component.description}</p>
