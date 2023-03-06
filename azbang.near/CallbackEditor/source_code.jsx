@@ -19,6 +19,126 @@ call_Transfer("account.near", "1000")
 function_Call("near.social", "method")
 `;
 
+const code = `
+<style>
+html, body, #container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+</style>
+<div id="container"></div>
+<script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+<script>
+require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+let proxy = URL.createObjectURL(new Blob(['self.MonacoEnvironment = {baseUrl: "https://unpkg.com/monaco-editor@latest/min/" };importScripts("https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js")'], { type: 'text/javascript' }));
+
+let code;
+let editor;
+window.addEventListener("message", (e) => {
+    try { 
+      code = JSON.parse(e.data).code 
+      if (editor) {
+        editor.getModel().setValue(code)
+        document.body.style.opacity = 1;
+      }
+    } catch {}
+})
+
+require(["vs/editor/editor.main"], function () {
+    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+        noSemanticValidation: false,
+        noSyntaxValidation: false,
+        noSuggestionDiagnostics: false,
+        diagnosticCodesToIgnore: [1108],
+    });
+
+    const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions();
+    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+        target: monaco.languages.typescript.ScriptTarget.ES6,
+        allowNonTsExtensions: true,
+        noLib: true,
+    });
+
+    const libSource = \`
+        /** 
+         * Synchronous contract method call function. 
+         * Paid calls are paid from the script deposit. 
+         * 
+         * account_id - Required
+         * 
+         * method - Required
+         * 
+         * args = ''
+         * 
+         * deposit = '0'
+         * 
+         * gas = '2500000000000
+         * */
+        declare function function_Call(account_id: string, method: string, args?: string, deposit?: string, gas?: string)
+        
+        /** 
+         * Synchronous method for get trigger data in JSON format
+         * Example: "{ "key": "follow", "value": { "type": "unfollow", "accountId": "mob.near" }}"
+        */
+        declare function get_Input(): string
+
+        /** 
+         * Synchronous method for get signer followers in NEAR Social
+        */
+        declare function get_SignerFollowers(): number
+
+        /** 
+         * Synchronous method for get signer balance in yocto NEAR
+        */
+        declare function get_SignerBalance(): string
+
+        /** 
+         * Synchronous method for transfer yocto NEAR 
+        */
+        declare function call_Transfer(account_id: string, deposit: string)
+    \`
+    
+    const libUri = 'ts:filename/index.d.ts';
+    monaco.languages.typescript.javascriptDefaults.addExtraLib(libSource, libUri);
+    monaco.editor.createModel(libSource, 'typescript', monaco.Uri.parse(libUri));
+
+    const loadDefs = async () => {
+      try {
+          const coreDefsResp = await fetch("https://raw.githubusercontent.com/microsoft/TypeScript/main/lib/lib.es5.d.ts")
+          const coreDefs = await coreDefsResp.text();
+          monaco.languages.typescript.javascriptDefaults.addExtraLib(coreDefs, "lib.es5.d.ts");
+      } catch {}
+    }
+    loadDefs();
+
+    editor = monaco.editor.create(document.getElementById('container'), {
+      value: '',
+      fixedOverflowWidgets: true,
+      language: 'javascript',
+      width: '100%',
+      fontSize: 16,
+      theme: 'vs-dark'
+    });
+
+    editor.getModel().onDidChangeContent(e => {
+      parent.postMessage(editor.getModel().getValue(), "*")
+    })
+
+    if (code) {
+      document.body.style.opacity = 1;
+      editor.getModel().setValue(code)
+    }
+});
+</script>
+`;
+
 const Header = styled.div`
     width: 100%;
     padding: 16px;
@@ -36,6 +156,7 @@ const Page = styled.div`
     margin: auto;
     min-height: 600px;
     background-color: #1e1e1e;
+    position: relative;
 `;
 
 const ROUNDING_OFFSETS = [];
@@ -174,41 +295,37 @@ const removeScript = (script) => {
   Near.call(CONTRACT, "remove", { sid: script.sid }, 20 * TGAS, "1");
 };
 
-if (state.script == null) {
-  return (
-    <Page style={{ padding: 16 }}>
-      <button
-        class="btn btn-outline-light font-monospace"
-        onClick={() => openScript(NEW_SCRIPT)}
-        style={{ width: "100%", height: 48, marginBottom: 16 }}
-      >
-        <i class="bi bi-plus-lg" /> Create new
-      </button>
+const renderList = () => (
+  <Page style={{ padding: 16 }}>
+    <button
+      class="btn btn-outline-light font-monospace"
+      onClick={() => openScript(NEW_SCRIPT)}
+      style={{ width: "100%", height: 48, marginBottom: 16 }}
+    >
+      <i class="bi bi-plus-lg" /> Create new
+    </button>
 
-      <div class="list-group">
-        {state.scripts.map((bot) => (
-          <div
-            style={{ cursor: "pointer", padding: 16 }}
-            class="list-group-item list-group-item-action"
-            onClick={() => openScript(bot)}
-          >
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="font-monospace mb-2">
-                {bot.name ?? "Script"}
-                <span class="badge text-bg-success">
-                  {bot.calls_count} Calls
-                </span>
-              </h5>
-            </div>
-            <p class="font-monospace mb-1">
-              Remaining balance: {formatAmount(bot.balance)} NEAR
-            </p>
+    <div class="list-group">
+      {state.scripts.map((bot) => (
+        <div
+          style={{ cursor: "pointer", padding: 16 }}
+          class="list-group-item list-group-item-action"
+          onClick={() => openScript(bot)}
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="font-monospace mb-2">
+              {bot.name ?? "Script"}
+              <span class="badge text-bg-success">{bot.calls_count} Calls</span>
+            </h5>
           </div>
-        ))}
-      </div>
-    </Page>
-  );
-}
+          <p class="font-monospace mb-1">
+            Remaining balance: {formatAmount(bot.balance)} NEAR
+          </p>
+        </div>
+      ))}
+    </div>
+  </Page>
+);
 
 const setConditionPath = (value, index) => {
   const newArr = [...state.script.conditions];
@@ -369,7 +486,7 @@ const UpdateModal = (
   </div>
 );
 
-const render = () => (
+const renderScript = () => (
   <Page>
     <Header>
       <button
@@ -413,14 +530,7 @@ const render = () => (
     {ModalDeploy}
     {UpdateModal}
 
-    <iframe
-      srcDoc={code}
-      style={{ width: "100%", height: "calc(100% - 260px)" }}
-      message={JSON.stringify({ code: state.script.code ?? "" })}
-      onMessage={(e) => {
-        Storage.set(`${state.script.sid}:code`, e);
-      }}
-    />
+    <div style={{ width: "100%", height: "calc(100% - 260px)" }}></div>
 
     <div
       style={{
@@ -532,126 +642,22 @@ const render = () => (
   </Page>
 );
 
-const code = `
-<style>
-html, body, #container {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-</style>
-<div id="container"></div>
-<script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
-<script>
-require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
-window.MonacoEnvironment = { getWorkerUrl: () => proxy };
-let proxy = URL.createObjectURL(new Blob(['self.MonacoEnvironment = {baseUrl: "https://unpkg.com/monaco-editor@latest/min/" };importScripts("https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js")'], { type: 'text/javascript' }));
-document.body.style.opacity = 0;
-
-let code;
-let editor;
-window.addEventListener("message", (e) => {
-    if (code) return;
-    try { 
-      code = JSON.parse(e.data).code 
-      if (editor) {
-        editor.getModel().setValue(code)
-        document.body.style.opacity = 1;
-      }
-    } catch {}
-})
-
-require(["vs/editor/editor.main"], function () {
-    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-        noSemanticValidation: false,
-        noSyntaxValidation: false,
-        noSuggestionDiagnostics: false,
-        diagnosticCodesToIgnore: [1108],
-    });
-
-    const compilerOptions = monaco.languages.typescript.javascriptDefaults.getCompilerOptions();
-    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
-        target: monaco.languages.typescript.ScriptTarget.ES6,
-        allowNonTsExtensions: true,
-        noLib: true,
-    });
-
-    const libSource = \`
-        /** 
-         * Synchronous contract method call function. 
-         * Paid calls are paid from the script deposit. 
-         * 
-         * account_id - Required
-         * 
-         * method - Required
-         * 
-         * args = ''
-         * 
-         * deposit = '0'
-         * 
-         * gas = '2500000000000
-         * */
-        declare function function_Call(account_id: string, method: string, args?: string, deposit?: string, gas?: string)
-        
-        /** 
-         * Synchronous method for get trigger data in JSON format
-         * Example: "{ "key": "follow", "value": { "type": "unfollow", "accountId": "mob.near" }}"
-        */
-        declare function get_Input(): string
-
-        /** 
-         * Synchronous method for get signer followers in NEAR Social
-        */
-        declare function get_SignerFollowers(): number
-
-        /** 
-         * Synchronous method for get signer balance in yocto NEAR
-        */
-        declare function get_SignerBalance(): string
-
-        /** 
-         * Synchronous method for transfer yocto NEAR 
-        */
-        declare function call_Transfer(account_id: string, deposit: string)
-    \`
-    
-    const libUri = 'ts:filename/index.d.ts';
-    monaco.languages.typescript.javascriptDefaults.addExtraLib(libSource, libUri);
-    monaco.editor.createModel(libSource, 'typescript', monaco.Uri.parse(libUri));
-
-    const loadDefs = async () => {
-      try {
-          const coreDefsResp = await fetch("https://raw.githubusercontent.com/microsoft/TypeScript/main/lib/lib.es5.d.ts")
-          const coreDefs = await coreDefsResp.text();
-          monaco.languages.typescript.javascriptDefaults.addExtraLib(coreDefs, "lib.es5.d.ts");
-      } catch {}
-    }
-    loadDefs();
-
-    editor = monaco.editor.create(document.getElementById('container'), {
-      value: '',
-          fixedOverflowWidgets: true,
-      language: 'javascript',
-          width: '100%',
-          fontSize: 16,
-      theme: 'vs-dark'
-    });
-
-    editor.getModel().onDidChangeContent(e => {
-      parent.postMessage(editor.getModel().getValue(), "*")
-    })
-
-    if (code) {
-      document.body.style.opacity = 1;
-      editor.getModel().setValue(code)
-    }
-});
-</script>
-`;
-
-return render();
+console.log(state.script.code);
+return (
+  <Page>
+    <iframe
+      srcDoc={code}
+      style={{
+        width: "100%",
+        position: "absolute",
+        top: "60px",
+        height: "calc(100% - 260px)",
+        visibility: state.script ? "" : "hidden",
+        zIndex: 1,
+      }}
+      message={JSON.stringify({ code: state.script.code ?? "" })}
+      onMessage={(e) => Storage.set(`${state.script.sid}:code`, e)}
+    />
+    {state.script == null ? renderList() : renderScript()}
+  </Page>
+);
