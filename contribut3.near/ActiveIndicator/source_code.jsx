@@ -28,7 +28,7 @@ const Container = styled.div`
 `;
 
 return (
-  <Container>
+  <Container active={active}>
     <Icon active={active} />
     <TextSpan>{active ? activeText : inactiveText}</TextSpan>
   </Container>
