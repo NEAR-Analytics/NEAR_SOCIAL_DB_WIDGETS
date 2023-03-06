@@ -28,6 +28,7 @@ return (
       border: "2px solid #282828",
       "border-radius": "13px",
       heigth: "100vh",
+      "min-width": "300px",
     }}
   >
     <div
