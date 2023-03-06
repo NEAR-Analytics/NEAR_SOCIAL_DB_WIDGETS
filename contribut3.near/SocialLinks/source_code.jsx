@@ -9,14 +9,26 @@ const supportedLinks = [
   { name: "website", url: "https://", icon: "bi-globe2" },
 ];
 
+const SocialItem = styled.li`
+  padding: 0.5em;
+`;
+
 const linksList = supportedLinks
   .filter(({ name }) => name in links)
   .map(({ name, url, icon }) => (
-    <li className="list-group-item border-0 p-2">
+    <SocialItem>
       <a href={`${url}${links[name]}`} target="_blank">
-        <i className={`${icon} text-secondary fs-5`} />
+        {icon}
       </a>
-    </li>
+    </SocialItem>
   ));
 
-return <ul className="list-group list-group-horizontal">{linksList}</ul>;
+const List = styled.ul`
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: between;
+  align-items: center;
+`;
+
+return <List>{linksList}</List>;
