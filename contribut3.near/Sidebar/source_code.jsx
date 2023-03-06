@@ -129,6 +129,8 @@ const CountIndicator = styled.div`
   min-height: 1.5em;
   color: white;
   text-align: center;
+  position: absolute;
+  inset: 0px 0px auto auto;
 `;
 
 const navItem = ({ text, icon, id, count }) => (
