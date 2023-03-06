@@ -18,7 +18,6 @@ const icon = (
 
 const SearchInput = styled.input`
   display: block;
-  position: relative;
   padding: 0.5em;
   padding-left: 2em;
   border: 1px solid #d0d5dd;
@@ -37,13 +36,18 @@ const Icon = styled.div`
   inset: auto auto auto 2px;
 `;
 
+const Container = styled.div`
+  position: relative;
+`;
+
 return (
-  <SearchInput
-    type="search"
-    value={props.search}
-    placeholder="Search"
-    onChange={(e) => props.update({ search: e.target.value })}
-  />
-  // {/* <Icon>{icon}</Icon> */}
-  // </SearchInput>
+  <Container>
+    <SearchInput
+      type="search"
+      value={props.search}
+      placeholder="Search"
+      onChange={(e) => props.update({ search: e.target.value })}
+    />
+    <Icon>{icon}</Icon>
+  </Container>
 );
