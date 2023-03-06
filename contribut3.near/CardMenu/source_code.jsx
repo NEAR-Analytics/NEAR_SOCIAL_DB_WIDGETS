@@ -104,8 +104,11 @@ const DropdownContainer = styled.div`
 `;
 
 return (
-  <DropdownContainer onBlur={() => State.update({ show: false })}>
-    <MenuIcon onClick={() => State.update({ show: !state.show })}>
+  <DropdownContainer>
+    <MenuIcon
+      onClick={() => State.update({ show: !state.show })}
+      onBlur={() => State.update({ show: false })}
+    >
       <Dot />
       <Dot />
       <Dot />
