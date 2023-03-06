@@ -51,7 +51,7 @@ const Arrow = styled.div`
   transition: transform 0.2s ease-in-out;
 
   &.show {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
   }
 `;
 
