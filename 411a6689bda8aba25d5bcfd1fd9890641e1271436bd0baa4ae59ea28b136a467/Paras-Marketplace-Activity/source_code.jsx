@@ -12,8 +12,8 @@ const bgStyle = {
 
 const wStyle = {
   maxHeight: "800px",
-  overflow: "spAoll",
-  background: "black",
+  overflow: "scroll",
+  background: "blue",
   color: "white",
   padding: "0 25px 25px 25px",
 };
@@ -73,8 +73,7 @@ for (let i = 0; i < parasActivity.body.length; i++) {
   const txDate = pA.EVENT_TIMESTAMP;
   allRows.push(
     <tr>
-      <td style={tdStyle}>{i + 1}</td>
-      <td style={tdStyle}>{txDate}</td>
+      <td style={tdStyle}>{pA.NFT_NAME}</td>
       <td style={tdStyle}>
         <a
           style={linkStyle}
@@ -84,11 +83,10 @@ for (let i = 0; i < parasActivity.body.length; i++) {
           {pA.ACTION}
         </a>
       </td>
-
+      <td style={tdStyle}>{txDate}</td>
       <td style={tdStyle}>{numberWithCommas(parseInt(pA.AMOUNT))}</td>
       <td style={tdStyle}>{pA.CREATED_BY}</td>
       <td style={tdStyle}>{pA.SOLD_TO}</td>
-      <td style={tdStyle}>{pA.NFT_NAME}</td>
     </tr>
   );
 }
@@ -98,7 +96,7 @@ return (
     <div style={bgStyle}></div>
     <div style={wStyle}>
       <h2 style={{ paddingTop: "25px", paddingBottom: "25px" }}>
-        Paras Marketplace Activity - last 7 days
+        Paras Marketplace Activity - Last 7 days
       </h2>
       <p>
         Powered By:{""}
@@ -107,19 +105,18 @@ return (
           href="https://flipsidecrypto.xyz/edit/queries/fe213752-a832-4f0b-a08a-52e85ae53798"
           target="_blank"
         >
-          flipsidecrypto
+          Flipsidecrypto
         </a>
       </p>
       <table style={tableStyle}>
         <thead>
           <tr>
-            <th style={theadStyle}>#</th>
-            <th style={theadStyle}>ACTIVITY TIMESTAMP</th>
+            <th style={theadStyle}>NFT</th>
             <th style={theadStyle}>ACTION</th>
+            <th style={theadStyle}>ACTION TIMESTAMP</th>
             <th style={theadStyle}>AMOUNT</th>
             <th style={theadStyle}>CREATED BY</th>
             <th style={theadStyle}>SOLD TO</th>
-            <th style={theadStyle}>NFT NAME</th>
           </tr>
         </thead>
         <tbody>{allRows}</tbody>
