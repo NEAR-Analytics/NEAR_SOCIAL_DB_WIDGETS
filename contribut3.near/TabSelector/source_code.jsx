@@ -6,9 +6,35 @@ const content = props.content;
 const cid = props.cid;
 
 const TabItem = styled.a`
-  display: block;
-  text-align: center;
+  position: relative;
+  color: #344054;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1em;
   padding: 0.5em;
+  margin: 0.25em 0;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  background-color: ${({ selected }) => (selected ? "#f2f4f7" : "white")};
+
+  &:hover {
+    color: #667085;
+    text-decoration: none;
+    background-color: #f9fafb;
+  }
+`;
+
+const CountIndicator = styled.div`
+  display: ${({ show }) => (show ? "inline-block" : "none")};
+  border-radius: 100%;
+  background-color: #f04438;
+  min-width: 1.5em;
+  min-height: 1.5em;
+  color: white;
+  text-align: center;
+  position: absolute;
+  inset: auto 0.5em auto auto;
 `;
 
 return (
@@ -33,16 +59,8 @@ return (
       >
         <i className={icon} />
         <span>{text}</span>
-        {!!count && count > 0 ? (
-          <div
-            className="d-inline-block rounded-circle bg-danger text-center"
-            style={{ minWidth: "1.5em", height: "1.5em", color: "#FFF" }}
-          >
-            {count}
-          </div>
-        ) : (
-          <></>
-        )}
+
+        <CountIndicator show={!!count && count > 0}>{count}</CountIndicator>
       </a>
     ))}
   </div>
