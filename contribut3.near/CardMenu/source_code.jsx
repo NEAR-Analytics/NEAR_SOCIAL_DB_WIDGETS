@@ -50,6 +50,7 @@ const DropdownList = styled.ul`
   inset: 0px 0px auto auto;
   margin: 0px;
   transform: translate(-44px, 0px) scale(${({ show }) => (show ? "1" : "0")});
+  transition: transform 0.2s ease-in-out;
 `;
 
 const MenuIcon = styled.a`
