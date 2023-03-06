@@ -88,12 +88,14 @@ return (
           props={{ update: props.update }}
         />
       </div>
-      <div className="d-flex flex-row justify-content-between">
-        {contentSelector}
+      <div className="d-flex flex-row justify-content-end">
         <Widget
           src={`${ownerId}/widget/SearchInput`}
           props={{ search: props.search, update: props.update }}
         />
+      </div>
+      <div className="d-flex flex-row justify-content-between">
+        {contentSelector}
       </div>
     </div>
     <div className="px-3 pt-3">
