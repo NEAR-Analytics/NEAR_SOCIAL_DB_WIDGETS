@@ -99,6 +99,7 @@ const MenuIcon = styled.button`
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  padding: 0.4em 1em;
 
   &:hover {
     background-color: #e9ecef;
