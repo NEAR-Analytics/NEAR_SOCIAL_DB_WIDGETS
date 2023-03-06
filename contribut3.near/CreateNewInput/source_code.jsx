@@ -78,7 +78,6 @@ const DropdownItem = styled.button`
   &:hover {
     color: black;
     text-decoration: none;
-    background-color: #e9ecef;
   }
 `;
 
