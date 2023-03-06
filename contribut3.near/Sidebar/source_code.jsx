@@ -108,6 +108,12 @@ const NavItem = styled.a`
   font-weight: 500;
   padding: 0.5em;
   border-radius: 20%;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #f2f4f7;
+  }
 `;
 
 const navItem = ({ text, icon, id, count }) => (
