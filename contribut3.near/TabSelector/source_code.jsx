@@ -33,6 +33,7 @@ const TabItem = styled.a`
 
   span {
     margin-left: 0.25em;
+    margin-right: ${({ hasCount }) => (hasCount ? "1em" : "0")};
   }
 `;
 
@@ -63,6 +64,7 @@ return (
     {buttons.map(({ id, text, icon, count, grey }) => (
       <TabItem
         selected={props.content === id}
+        hasCount={!!count && count > 0}
         href={`/#/${ownerId}/widget/Index?tab=${tab}&content=${id}${props.search ? "&search=" + props.search : ""
           }${accountId ? "&accountId=" + accountId : ""}${cid ? "&cid=" + cid : ""
           }`}
