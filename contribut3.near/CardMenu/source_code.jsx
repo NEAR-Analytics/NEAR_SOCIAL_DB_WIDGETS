@@ -54,6 +54,7 @@ const menuItems = items.reduce(
 );
 
 const DropdownList = styled.ul`
+  z-index: 100;
   dislpay: block;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.15);
