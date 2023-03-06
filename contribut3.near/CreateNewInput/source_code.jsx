@@ -95,7 +95,7 @@ return (
         kind: "Project",
       })}
       <li>
-        <hr className="dropdown-divider" />
+        <DropdownDivider />
       </li>
       {createNewButton({
         id: "entity",
