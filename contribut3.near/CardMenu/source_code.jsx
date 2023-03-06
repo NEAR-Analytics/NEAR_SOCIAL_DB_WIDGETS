@@ -18,6 +18,7 @@ const DropdownItem = styled.a`
   color: black;
 
   &:hover {
+    color: black;
     text-decoration: none;
     background-color: #e9ecef;
   }
