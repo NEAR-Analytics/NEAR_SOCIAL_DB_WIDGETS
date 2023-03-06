@@ -1,5 +1,9 @@
 const ownerId = "contribut3.near";
 
+State.init({
+  show: false,
+});
+
 const icon = (
   <svg
     width="20"
@@ -42,6 +46,14 @@ const arrowIcon = (
     />
   </svg>
 );
+
+const Arrow = styled.div`
+  transition: transform 0.2s ease-in-out;
+
+  &.show {
+    transform: rotate(180deg);
+  }
+`;
 
 const DropdownDivider = styled.hr`
   border: 0;
@@ -133,9 +145,10 @@ return (
     <MenuIcon>
       {icon}
       <span>Create new...</span>
+      <Arrow open={state.show ? "show" : ""}>{arrowIcon}</Arrow>
     </MenuIcon>
 
-    <DropdownList>
+    <DropdownList show={state.show ? "show" : ""}>
       {createNewButton({
         id: "request",
         text: "Contribution request",
