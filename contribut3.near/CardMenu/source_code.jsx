@@ -19,6 +19,7 @@ const DropdownItem = styled.button`
   white-space: nowrap;
   text-decoration: none;
   color: black;
+  border: 0;
   transition: background-color 0.2s ease-in-out;
   background-color: white;
 
