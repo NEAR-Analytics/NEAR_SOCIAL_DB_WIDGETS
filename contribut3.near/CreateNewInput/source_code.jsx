@@ -142,7 +142,10 @@ const DropdownContainer = styled.div`
 
 return (
   <DropdownContainer>
-    <MenuIcon>
+    <MenuIcon
+      onClick={() => State.update({ show: !state.show })}
+      onBlur={() => State.update({ show: false })}
+    >
       {icon}
       <span>Create new...</span>
       <Arrow open={state.show ? "show" : ""}>{arrowIcon}</Arrow>
