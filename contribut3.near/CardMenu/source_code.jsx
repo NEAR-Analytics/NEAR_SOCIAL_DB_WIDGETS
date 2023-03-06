@@ -66,6 +66,7 @@ const DropdownList = styled.ul`
   margin: 0px;
   transform: translate(-44px, 0px) scale(0);
   transition: transform 0.2s ease-in-out;
+  transform-origin: top right;
 
   &.show {
     transform: scale(1);
