@@ -38,7 +38,7 @@ const WidgetContainer = styled.div`
   margin: 0.5em 0;
 `;
 
-console.log(state.items);
+console.log(state);
 
 return (
   <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
