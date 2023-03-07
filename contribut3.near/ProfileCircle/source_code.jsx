@@ -34,9 +34,9 @@ const ImageCircle = styled.img`
 
 const ImageContainer = styled.div`
   display: inline-block;
-  --size: ${({ size = "1.5em" }) => size};
-  width: var(--size);
-  height: var(--size);
+  --size: ${({ size }) => size};
+  width: var(--size, 1.5em);
+  height: var(--size, 1.5em);
 `;
 
 if (state.data || profile) {
