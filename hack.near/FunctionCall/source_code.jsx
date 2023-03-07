@@ -45,12 +45,6 @@ const onChangeArgs = (args) => {
   });
 };
 
-const onChangeDeposit = (deposit) => {
-  State.update({
-    deposit,
-  });
-};
-
 const onChangeGas = (gas) => {
   State.update({
     gas,
@@ -67,19 +61,20 @@ return (
       Method:
       <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
-    <div className="m-2 p-2 d-flex s">
-      <p className="m-2">Deposit:</p>
-      <input type="text" onChange={(e) => onChangeDeposit(e.target.value)} />
-      <p className="m-2">Gas:</p>
+    <div className="mb-3">
+      Gas:
       <input type="text" onChange={(e) => onChangeGas(e.target.value)} />
     </div>
-    <div className="mb-3 flex flex-row">
+    <div className="mb-3">
       Arguments (JSON):
       <div>
         <textarea type="text" onChange={(e) => onChangeArgs(e.target.value)} />
       </div>
     </div>
-    <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
+    <button
+      className="btn btn-outline-danger mt-3"
+      onClick={handleFunctionCall}
+    >
       Submit
     </button>
   </div>
