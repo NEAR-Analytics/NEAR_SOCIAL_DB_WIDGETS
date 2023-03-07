@@ -9,7 +9,7 @@ State.init({
   hasMore: true,
 });
 
-if (state.entities.length === 0) {
+if (state.items.length === 0) {
   Near.asyncView(
     ownerId,
     "get_admin_entities",
