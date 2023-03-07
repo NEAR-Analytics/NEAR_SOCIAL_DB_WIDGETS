@@ -30,7 +30,7 @@ const WidgetContainer = styled.div`
 
 return (
   <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
-    {state.entities
+    {state.shown
       .filter((accountId) => accountId.includes(search))
       .map((accountId) => (
         <WidgetContainer key={accountId}>
