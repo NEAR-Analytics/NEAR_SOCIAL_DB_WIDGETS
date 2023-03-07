@@ -46,6 +46,13 @@ const Faces = styled.span`
         height: 100%;
     }
   }
+  
+  .others {
+    color: #6c757d !important;
+  }
+  .others:hover {
+    color: auto;
+  }
 `;
 
 const numLikes = likes.length - limit;
@@ -106,7 +113,7 @@ return (
           </Tooltip>
         }
       >
-        <span className="ms-1">
+        <span className="ms-1 others">
           and {numLikes} other{numLikes === 1 ? "" : "s"}
         </span>
       </OverlayTrigger>
