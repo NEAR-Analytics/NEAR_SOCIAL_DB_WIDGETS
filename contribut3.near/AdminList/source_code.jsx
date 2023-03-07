@@ -19,10 +19,7 @@ Near.asyncView(
 
 const loadMore = () =>
   State.update({
-    shown: [
-      ...state.shown,
-      state.entities.slice(state.from, state.from + limit),
-    ],
+    shown: state.entities.slice(0, state.from + limit),
     from: state.from + limit,
     hasMore: state.from + limit < state.entities.length,
   });
