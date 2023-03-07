@@ -9,11 +9,12 @@ State.init({
   hasMore: true,
 });
 
-Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
+Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) => {
+  entities.sort();
   State.update({
-    entities: entities.sort(),
-  })
-);
+    entities: entities,
+  });
+});
 
 const loadMore = () => {
   console.log(state);
