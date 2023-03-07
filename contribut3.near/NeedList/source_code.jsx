@@ -41,13 +41,11 @@ if (state.needs.length === 0) {
   });
 }
 
-needs.filter(([entityId]) => entityId.includes(search));
-
 const loadMore = () => {
   State.update({
-    shown: state.contributors.slice(0, state.from + limit),
+    shown: state.needs.slice(0, state.from + limit),
     from: state.from + limit,
-    hasMore: state.from + limit < state.contributors.length,
+    hasMore: state.from + limit < state.needs.length,
   });
 };
 
