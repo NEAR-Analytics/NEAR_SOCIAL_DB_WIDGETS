@@ -1,41 +1,86 @@
 const accountId = props.accountId ?? context.accountId;
+const contractId = props.contractId;
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
 State.init({
-  member_id: accountId,
+  receiver_id: "",
+  method_name: "",
+  args: "",
+  deposit: "",
+  gas: "",
 });
 
-const handleProposal = () => {
-  const gas = 200000000000000;
-  const deposit = 100000000000000000000000;
+const fc_args = Buffer.from(state.args, "utf-8").toString("base64");
+
+const handleFunctionCall = () => {
   Near.call([
     {
-      contractName: "global.sputnik-dao.near",
-      methodName: "add_proposal",
-      args: {
-        proposal: {
-          description: "potential member",
-          kind: {
-            AddMemberToRole: {
-              member_id: accountId,
-              role: "community",
-            },
-          },
-        },
-      },
-      gas: gas,
-      deposit: deposit,
+      contractName: contractId,
+      methodName: state.method_name,
+      args: fc_args,
+      deposit: state.deposit ?? "1",
+      gas: state.gas ?? "200000000000000",
     },
   ]);
 };
 
+const onChangeContract = (contractId) => {
+  State.update({
+    contractId,
+  });
+};
+
+const onChangeMethod = (method_name) => {
+  State.update({
+    method_name,
+  });
+};
+
+const onChangeArgs = (args) => {
+  State.update({
+    args,
+  });
+};
+
+const onChangeDeposit = (deposit) => {
+  State.update({
+    deposit,
+  });
+};
+
+const onChangeGas = (gas) => {
+  State.update({
+    gas,
+  });
+};
+
 return (
   <div className="mb-3">
-    <button className="btn btn-success" onClick={handleProposal}>
-      Propose Action
+    <div className="mb-3">
+      Contract:
+      <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
+    </div>
+    <div className="mb-3">
+      Method:
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+    </div>
+    <div className="m-2 p-2 d-flex s">
+      <p className="m-2">Deposit:</p>
+      <input type="text" onChange={(e) => onChangeDeposit(e.target.value)} />
+      <p className="m-2">Gas:</p>
+      <input type="text" onChange={(e) => onChangeGas(e.target.value)} />
+    </div>
+    <div className="mb-3 flex flex-row">
+      Arguments (JSON):
+      <div>
+        <textarea type="text" onChange={(e) => onChangeArgs(e.target.value)} />
+      </div>
+    </div>
+    <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
+      Submit
     </button>
   </div>
 );
