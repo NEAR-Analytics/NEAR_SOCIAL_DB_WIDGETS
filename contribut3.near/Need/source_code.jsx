@@ -60,7 +60,7 @@ if (!entity) {
     : "Loading...";
 }
 
-const profile = Social.getr(`${accountId}/profile`, "final", {
+const profile = Social.get(`${accountId}/profile/**`, "final", {
   subscribe: true,
 });
 
