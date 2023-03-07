@@ -67,28 +67,26 @@ const Column = styled.div`
   flex-grow: 1;
 `;
 
-if (state.data || profile) {
-  return (
-    <Container alignment={alignment}>
-      <ImageLink href={href} onClick={linkNavigate}>
-        <ImageContainer>
-          <Widget
-            src={`${ownerId}/widget/ProfileCircle`}
-            props={{ accountId, size: imageSize, isEntity }}
-          />
-        </ImageContainer>
-      </ImageLink>
-      <Column>
-        <div>
-          <ImageLink href={href} onClick={linkNavigate}>
-            <b>{fullName}</b>
-            <span>@{accountId}</span>
-          </ImageLink>
-          {additionalText}
-        </div>
-        {additionalRow}
-      </Column>
-      {additionalColumn}
-    </Container>
-  );
-}
+return (
+  <Container alignment={alignment}>
+    <ImageLink href={href} onClick={linkNavigate}>
+      <ImageContainer>
+        <Widget
+          src={`${ownerId}/widget/ProfileCircle`}
+          props={{ accountId, size: imageSize, isEntity }}
+        />
+      </ImageContainer>
+    </ImageLink>
+    <Column>
+      <div>
+        <ImageLink href={href} onClick={linkNavigate}>
+          <b>{fullName}</b>
+          <span>@{accountId}</span>
+        </ImageLink>
+        {additionalText}
+      </div>
+      {additionalRow}
+    </Column>
+    {additionalColumn}
+  </Container>
+);
