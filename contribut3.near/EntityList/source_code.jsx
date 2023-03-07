@@ -8,18 +8,20 @@ State.init({
 });
 
 const loadMore = () => {
-  Near.asyncView(ownerId, "get_entities", { from: state.from, limit: 10 }).then(
-    (entities) =>
-      State.update({
-        from_index: state.from + 10,
-        entities: [
-          ...state.entities,
-          ...Object.keys(entities).filter(
-            (entity) => !state.entities.includes(entity)
-          ),
-        ],
-        hasMore: Object.keys(entities).length > 0,
-      })
+  Near.asyncView(ownerId, "get_entities", {
+    from_index: state.from,
+    limit: 10,
+  }).then((entities) =>
+    State.update({
+      from: state.from + 10,
+      entities: [
+        ...state.entities,
+        ...Object.keys(entities).filter(
+          (entity) => !state.entities.includes(entity)
+        ),
+      ],
+      hasMore: Object.keys(entities).length > 0,
+    })
   );
 };
 
