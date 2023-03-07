@@ -166,6 +166,13 @@ setInterval(() => {
   State.update({ is_on: is_on_all, accounts: accounts });
 }, 1000);
 
+function makeStringShorter(string, length) {
+  if (string.length > length) {
+    return string.slice(0, length) + "...";
+  }
+  return string;
+}
+
 return (
   <div
     className="px-4"
@@ -261,7 +268,7 @@ return (
                             fontWeight: "800",
                           }}
                         >
-                          {d.accountId}
+                          {makeStringShorter(d.accountId, 12)}
                         </div>
                         <div
                           style={{
