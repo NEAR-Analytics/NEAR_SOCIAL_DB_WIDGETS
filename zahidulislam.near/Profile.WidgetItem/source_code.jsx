@@ -46,6 +46,7 @@ return (
           src={`mob.near/widget/TimeAgo`}
           props={{
             blockHeight: props.commits[props.commits.length - 1],
+            className: "description",
           }}
         />
       </div>
