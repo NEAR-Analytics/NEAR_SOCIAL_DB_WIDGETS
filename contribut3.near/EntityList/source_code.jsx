@@ -11,9 +11,7 @@ State.init({
 
 Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) => {
   entities.sort();
-  State.update({
-    entities: entities,
-  });
+  State.update({ entities });
 });
 
 const loadMore = () => {
