@@ -43,6 +43,10 @@ const TextArea = styled.div`
   flex-grow: 1;
   text-overflow: ellipsis;
   white-space: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
+
+  p {
+    font-weight: 400;
+  }
 `;
 
 const Description = styled.div`
