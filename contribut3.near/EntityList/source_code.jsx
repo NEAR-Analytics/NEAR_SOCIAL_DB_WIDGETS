@@ -16,7 +16,7 @@ Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
 );
 
 const loadMore = () => {
-  console.log(state.entities);
+  console.log(state);
   State.update({
     shown: state.entities.slice(0, state.from + limit),
     from: state.from + limit,
