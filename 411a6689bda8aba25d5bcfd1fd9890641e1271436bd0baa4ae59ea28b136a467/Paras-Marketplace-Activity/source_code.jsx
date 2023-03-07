@@ -84,7 +84,14 @@ for (let i = 0; i < parasActivity.body.length; i++) {
         </a>
       </td>
       <td style={tdStyle}>{txDate}</td>
-      <td style={tdStyle}>{numberWithCommas(parseInt(pA.AMOUNT))}</td>
+      <td style={tdStyle}>
+        {numberWithCommas(parseInt(pA.AMOUNT))}
+        <img
+          src="https://s2.coinmarketcap.com/static/img/coins/64x64/6535.png"
+          height="20px"
+          width="20px"
+        ></img>
+      </td>
       <td style={tdStyle}>{pA.CREATED_BY}</td>
       <td style={tdStyle}>{pA.SOLD_TO}</td>
     </tr>
@@ -92,35 +99,67 @@ for (let i = 0; i < parasActivity.body.length; i++) {
 }
 
 return (
-  <div>
-    <div style={bgStyle}></div>
-    <div style={wStyle}>
-      <h2 style={{ paddingTop: "25px", paddingBottom: "25px" }}>
-        Paras Marketplace Activity - Last 7 days
-      </h2>
-      <p>
-        Powered By:{""}
-        <a
-          style={linkStyle}
-          href="https://flipsidecrypto.xyz/edit/queries/fe213752-a832-4f0b-a08a-52e85ae53798"
-          target="_blank"
+  <div class="d-grid gap-5" style={{ fontFamily: "Arial" }}>
+    <div>
+      <div style={bgStyle}></div>
+      <div style={wStyle}>
+        <h2 style={{ paddingTop: "25px", paddingBottom: "25px" }}>
+          Paras Marketplace Activity <span class="fs-6"> Last 7 days</span>
+        </h2>
+        <p>
+          Powered By:{""}
+          <img
+            src="https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=2,format=auto/https%3A%2F%2F1048384174-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LdEnDLYh6Su5z7LbnEZ%252Favatar.png%3Fgeneration%3D1575431493257333%26alt%3Dmedia"
+            height="20px"
+            width="20px"
+          ></img>
+          <a
+            style={linkStyle}
+            href="https://flipsidecrypto.xyz/edit/queries/fe213752-a832-4f0b-a08a-52e85ae53798"
+            target="_blank"
+          >
+            Flipsidecrypto
+          </a>
+        </p>
+        <table style={tableStyle}>
+          <thead>
+            <tr>
+              <th style={theadStyle}>NFT</th>
+              <th style={theadStyle}>ACTION</th>
+              <th style={theadStyle}>ACTION TIMESTAMP</th>
+              <th style={theadStyle}>AMOUNT</th>
+              <th style={theadStyle}>CREATED BY</th>
+              <th style={theadStyle}>SOLD TO</th>
+            </tr>
+          </thead>
+          <tbody>{allRows}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div
+          class="card text-white bg-success mb-3"
+          style={{ maxWidth: "15rem" }}
         >
-          Flipsidecrypto
-        </a>
-      </p>
-      <table style={tableStyle}>
-        <thead>
-          <tr>
-            <th style={theadStyle}>NFT</th>
-            <th style={theadStyle}>ACTION</th>
-            <th style={theadStyle}>ACTION TIMESTAMP</th>
-            <th style={theadStyle}>AMOUNT</th>
-            <th style={theadStyle}>CREATED BY</th>
-            <th style={theadStyle}>SOLD TO</th>
-          </tr>
-        </thead>
-        <tbody>{allRows}</tbody>
-      </table>
+          <div class="card-body">
+            <h6 class="card-title">Average Cost of Mat</h6>
+            <p class="card-text fs-4">$1,336</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div
+          class="card text-white bg-danger mb-3"
+          style={{ maxWidth: "15rem" }}
+        >
+          <div class="card-body">
+            <h6 class="card-title">Total Cost of Mat</h6>
+            <p class="card-text fs-4">$400,000 </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 );
