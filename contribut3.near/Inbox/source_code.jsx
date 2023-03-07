@@ -16,18 +16,18 @@ const proposalsCount = (
     "get_admin_contribution_requests",
     { account_id: context.accountId },
     "final",
-    true
+    false
   ) ?? []
 ).length;
 
-const invitesCount = Object.keys(
+const invitesCount = (
   Near.view(
     ownerId,
     "get_contributor_invites",
     { account_id: context.accountId },
     "final",
-    true
-  ) ?? {}
+    false
+  ) ?? []
 ).length;
 
 const header = (
