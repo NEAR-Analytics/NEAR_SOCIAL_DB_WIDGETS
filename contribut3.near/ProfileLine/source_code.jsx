@@ -74,15 +74,13 @@ if (state.data || profile) {
         </ImageContainer>
       </ImageLink>
       <Column>
-        <Row>
-          <div>
-            <ImageLink href={href} onClick={linkNavigate}>
-              <b>{fullName}</b>
-              <span>@{accountId}</span>
-            </ImageLink>
-            {additionalText}
-          </div>
-        </Row>
+        <div>
+          <ImageLink href={href} onClick={linkNavigate}>
+            <b>{fullName}</b>
+            <span>@{accountId}</span>
+          </ImageLink>
+          {additionalText}
+        </div>
         {additionalRow}
       </Column>
       {additionalColumn}
