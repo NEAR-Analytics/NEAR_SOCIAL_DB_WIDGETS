@@ -1,4 +1,4 @@
-const updateHandlerState = props.updateHandlerState;
+const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
 
 const data = Social.index("Instance_time", "schedule");
@@ -184,7 +184,7 @@ return (
           cursor: "pointer",
         }}
         onClick={() => {
-          updateHandlerState({ showAbortScheduleCreation: true });
+          updateInstanceTimeState({ showAbortScheduleCreation: true });
         }}
       ></i>
     </div>
@@ -323,7 +323,7 @@ return (
               State.update({ hoveringElement: "" });
             }}
             onClick={() => {
-              updateHandlerState({ showAbortScheduleCreation: true });
+              updateInstanceTimeState({ showAbortScheduleCreation: true });
             }}
             style={
               state.hoveringElement == "cancelNewSchedule"
@@ -361,7 +361,7 @@ return (
               time_zone: state._time_zone,
             },
             style: { width: "100%", height: "1.5em" },
-            updateHandlerState,
+            updateInstanceTimeState,
             tabs,
           }}
           rawCode={show}
