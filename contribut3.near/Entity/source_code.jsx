@@ -10,15 +10,16 @@ if (!accountId) {
 
 State.init({
   contributionFormHidden: true,
+  entity: null,
 });
 
-const entity = Near.view(
+Near.asyncView(
   ownerId,
   "get_entity",
   { account_id: accountId },
   "final",
   false
-);
+).then((entity) => State.update({ entity }));
 
 const currentContributor = Near.view(
   ownerId,
@@ -69,7 +70,7 @@ const body = (
             <div className="d-flex flex-row justify-content-between align-items-center">
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
-                props={{ active: entity.status }}
+                props={{ active: state.entity.status }}
               />
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
@@ -151,7 +152,7 @@ const body = (
         <Widget
           src={`${ownerId}/widget/DescriptionArea`}
           props={{
-            description: entity.description || profile.description,
+            description: state.entity.description || profile.description,
           }}
         />
       </div>
