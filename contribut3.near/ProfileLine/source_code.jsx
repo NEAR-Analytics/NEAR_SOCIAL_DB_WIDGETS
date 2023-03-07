@@ -62,9 +62,7 @@ const Column = styled.div`
 
 if (state.data || profile) {
   return (
-    <div
-      className={`d-flex flex-row justify-content-start align-items-${alignment}`}
-    >
+    <Container alignment={alignment}>
       <ImageLink href={href} onClick={linkNavigate}>
         <ImageContainer>
           <Widget
@@ -84,6 +82,6 @@ if (state.data || profile) {
         {additionalRow}
       </Column>
       {additionalColumn}
-    </div>
+    </Container>
   );
 }
