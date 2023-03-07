@@ -17,8 +17,8 @@ const groups = policy.roles
   });
 
 const check = groups.map((group) => {
-  return group
-    ? false
+  return !group
+    ? true
     : group.filter((address) => address === accountId).length > 0;
 });
 
@@ -79,7 +79,7 @@ return (
     </div>
     {!check && (
       <button className="btn btn-success" onClick={handleProposal}>
-        Propose Transfer
+        Submit
       </button>
     )}
   </div>
