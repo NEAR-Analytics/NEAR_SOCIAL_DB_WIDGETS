@@ -1,11 +1,39 @@
+State.init({
+  selected: props.selected ?? {},
+});
+
 const facets = props.facets ?? ["facet0", "facet1", "facet2", "facet3"];
-const onFacetClick =
-  props.onFacetClick ??
-  ((facet) => {
-    if (props.debug) {
-      console.log(`Clicked ${facet}`);
-    }
+const multiSelect = props.multiSelect ?? true;
+const onFacetClick = (i, facet) => {
+  let selected = {};
+  if (multiSelect) {
+    selected = { ...state.selected };
+  }
+  if (i in selected) {
+    delete selected[i];
+  } else {
+    selected[i] = facet;
+  }
+
+  if (props.debug) {
+    console.log(`Clicked ${facet}`);
+  }
+
+  State.update({
+    selected,
   });
+
+  if (props.onFacetClick) {
+    props.onFacetClick(facet);
+  }
+
+  if (multiSelect && props.onMultiFacetClick) {
+    props.onMultiFacetClick({
+      recentFacetClick: facet,
+      selectedFacets: Object.values(selected),
+    });
+  }
+};
 
 const FacetContainer =
   props.facetContainerStyle ??
@@ -34,10 +62,6 @@ const FacetItem =
     font-size: 13px;
     min-width: 32px;
 
-    &.dots:hover {
-        background-color: transparent;
-        cursor: default;
-    }
     &:hover {
         background-color: rgba(0, 0, 0, 0.04);
         cursor: pointer;
@@ -46,48 +70,17 @@ const FacetItem =
     &.selected {
         background-color: rgba(0, 0, 0, 0.08);
     }
-
-    .arrow {
-        &::before {
-        position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
-        content: '';
-        /* By using an em scale, the arrows will size with the font */
-        display: inline-block;
-        width: 0.4em;
-        height: 0.4em;
-        border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.87);
-        }
-
-        &.left {
-        transform: rotate(-135deg) translate(-50%);
-        }
-
-        &.right {
-        transform: rotate(45deg);
-        }
-    }
-
-    &.disabled {
-        pointer-events: none;
-
-        .arrow::before {
-        border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-        }
-
-        &:hover {
-        background-color: transparent;
-        cursor: default;
-        }
-    }
 `;
 
 return (
   <FacetContainer>
-    {facets?.map((facet) => (
-      <FacetItem onClick={() => onFacetClick(facet)}>{facet}</FacetItem>
+    {facets?.map((facet, index) => (
+      <FacetItem
+        className={index in (state.selected ?? {}) ? "selected" : ""}
+        onClick={() => onFacetClick(index, facet)}
+      >
+        {facet}
+      </FacetItem>
     ))}
   </FacetContainer>
 );
