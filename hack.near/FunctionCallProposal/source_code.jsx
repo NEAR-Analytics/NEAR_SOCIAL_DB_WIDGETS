@@ -100,21 +100,21 @@ return (
     </div>
     <div className="m-2 p-2 d-flex s">
       <p className="m-2">Deposit:</p>
-      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+      <input type="text" onChange={(e) => onChangeDeposit(e.target.value)} />
       <p className="m-2">Gas:</p>
-      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+      <input type="text" onChange={(e) => onChangeGas(e.target.value)} />
+    </div>
+    <div className="m-2 p-2 d-flex s">
+      <p className="m-2">FC Deposit:</p>
+      <input type="text" onChange={(e) => onChangeFCDeposit(e.target.value)} />
+      <p className="m-2">FC Gas:</p>
+      <input type="text" onChange={(e) => onChangeFCGas(e.target.value)} />
     </div>
     <div className="mb-3 flex flex-row">
       Arguments (JSON):
       <div>
         <textarea type="text" onChange={(e) => onChangeArgs(e.target.value)} />
       </div>
-    </div>
-    <div className="m-2 p-2 d-flex s">
-      <p className="m-2">FC Deposit:</p>
-      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
-      <p className="m-2">FC Gas:</p>
-      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
     <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
       Submit
