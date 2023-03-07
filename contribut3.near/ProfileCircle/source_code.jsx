@@ -25,7 +25,7 @@ const url =
 
 const imageSrc = `https://i.near.social/thumbnail/${url}`;
 
-const Image = styled.img`
+const ImageCircle = styled.img`
   border-radius: 100%;
   object-fit: cover;
   width: 100%;
@@ -43,7 +43,7 @@ if (state.data || profile) {
       title={`${fullName} @${accountId}`}
       style={{ width: size, height: size }}
     >
-      <Image src={imageSrc} alt="profile image" />
+      <ImageCircle src={imageSrc} alt="profile image" />
     </div>
   );
 }
