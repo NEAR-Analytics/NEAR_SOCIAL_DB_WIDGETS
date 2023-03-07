@@ -17,7 +17,14 @@ if (state.invites.length === 0) {
     { account_id: props.accountId ?? context.accountId },
     "final",
     false
-  ).then((invites) => State.update({ invites: invites.sort() }));
+  ).then((invites) =>
+    State.update({
+      invites: invites.sort(),
+      shown: invites.slice(0, limit),
+      from: limit,
+      hasMore: invites.length > limit,
+    })
+  );
 }
 
 const loadMore = () =>
