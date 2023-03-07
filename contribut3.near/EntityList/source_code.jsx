@@ -9,19 +9,20 @@ State.init({
   hasMore: true,
 });
 
-Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) => {
-  console.log(entities);
+Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
   State.update({
     entities: entities.sort(),
-  });
-});
+  })
+);
 
-const loadMore = () =>
+const loadMore = () => {
+  console.log(state.entities);
   State.update({
     shown: state.entities.slice(0, state.from + limit),
     from: state.from + limit,
     hasMore: state.from + limit < state.entities.length,
   });
+};
 
 const WidgetContainer = styled.div`
   margin: 0.5em 0;
