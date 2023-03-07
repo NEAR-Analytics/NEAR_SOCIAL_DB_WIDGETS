@@ -62,7 +62,7 @@ if (state.data || profile) {
           <div>
             <ImageLink href={href} onClick={linkNavigate}>
               <b>{fullName}</b>
-              <span className="text-muted mx-1">@{accountId}</span>
+              <span>@{accountId}</span>
             </ImageLink>
             {additionalText}
           </div>
