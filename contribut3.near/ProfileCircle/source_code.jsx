@@ -39,10 +39,8 @@ const ImageContainer = styled.div`
   height: var(--size, 1.5em);
 `;
 
-if (state.data || profile) {
-  return (
-    <ImageContainer title={`${fullName} @${accountId}`} size={size}>
-      <ImageCircle src={imageSrc} alt="profile image" />
-    </ImageContainer>
-  );
-}
+return (
+  <ImageContainer title={`${fullName} @${accountId}`} size={size}>
+    <ImageCircle src={imageSrc} alt="profile image" />
+  </ImageContainer>
+);
