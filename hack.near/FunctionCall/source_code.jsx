@@ -20,7 +20,9 @@ const handleFunctionCall = () => {
     {
       contractName: state.contractId,
       methodName: state.method_name,
-      args: fc_args,
+      args: {
+        fc_args,
+      },
       deposit: state.deposit ?? "1",
       gas: state.gas ?? "200000000000000",
     },
