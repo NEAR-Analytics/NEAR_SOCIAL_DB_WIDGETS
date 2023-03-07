@@ -3,7 +3,7 @@ const accountId = props.accountId || context.accountId;
 const isEntity = props.isEntity ?? false;
 const additionalText = props.additionalText;
 const additionalRow = props.additionalRow;
-const alignment = additionalRow ? "start" : "center";
+const alignment = additionalRow ? "flex-start" : "center";
 const additionalColumn = props.additionalColumn;
 const imageSize = props.imageSize;
 const linkNavigate = () =>
@@ -44,12 +44,12 @@ const ImageLink = styled.a`
   }
 `;
 
-const Row = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: between;
-  align-items: flex-start;
+  justify-content: flex-start;
   width: 100%;
+  align-items: ${({ alignment }) => alignment};
 `;
 
 const Column = styled.div`
