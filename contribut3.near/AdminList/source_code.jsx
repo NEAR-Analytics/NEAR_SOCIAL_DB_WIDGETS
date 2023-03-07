@@ -17,16 +17,6 @@ Near.asyncView(
   false
 ).then((entities) => State.update({ entities: entities.sort() }));
 
-const allEntities = (
-  Near.view(
-    ownerId,
-    "get_admin_entities",
-    { account_id: context.accountId },
-    "final",
-    false
-  ) ?? []
-).filter((accountId) => accountId.includes(search));
-
 const loadMore = () =>
   State.update({
     shown: [
@@ -37,28 +27,26 @@ const loadMore = () =>
     hasMore: state.from + limit < state.entities.length,
   });
 
-if (!allEntities || allEntities.length === 0) {
-  return "No entities with Admin access for your account!";
-}
-
 const WidgetContainer = styled.div`
   margin-bottom: 0.5em;
 `;
 
 return (
-  <>
-    {allEntities.map((accountId) => (
-      <WidgetContainer key={accountId}>
-        <Widget
-          src={`${ownerId}/widget/Entity`}
-          props={{
-            accountId,
-            notStandalone: false,
-            inboxView: true,
-            update: props.update,
-          }}
-        />
-      </WidgetContainer>
-    ))}
-  </>
+  <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
+    {state.entities
+      .filter((accountId) => accountId.includes(search))
+      .map((accountId) => (
+        <WidgetContainer key={accountId}>
+          <Widget
+            src={`${ownerId}/widget/Entity`}
+            props={{
+              accountId,
+              notStandalone: false,
+              inboxView: true,
+              update: props.update,
+            }}
+          />
+        </WidgetContainer>
+      ))}
+  </InfiniteScroll>
 );
