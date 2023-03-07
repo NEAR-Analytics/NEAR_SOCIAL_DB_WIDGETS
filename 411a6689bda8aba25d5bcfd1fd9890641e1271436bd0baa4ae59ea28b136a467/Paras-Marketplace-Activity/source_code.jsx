@@ -41,7 +41,7 @@ const theadStyle = {
   background: "rgb(13, 15, 36)",
   padding: "16px",
   textAlign: "left",
-  lineHeight: "14px",
+  lineHeight: "12px",
 };
 
 const linkStyle = {
@@ -51,16 +51,29 @@ const linkStyle = {
   fontWeight: 600,
 };
 
-const apiUrl =
+const apiUrl1 =
   "https://api.flipsidecrypto.com/api/v2/queries/fe213752-a832-4f0b-a08a-52e85ae53798/data/latest";
 
-let parasActivity = fetch(apiUrl, {
+const apiUrl2 =
+  "https://api.flipsidecrypto.com/api/v2/queries/a371f03d-ccdf-4e58-81cb-1c1aaff87b27/data/latest";
+
+let parasActivity = fetch(apiUrl1, {
   subscribe: true,
   method: "GET",
   headers: {
     Accept: "*/*",
   },
 });
+
+let parasMetrics = fetch(apiUrl2, {
+  subscribe: true,
+  method: "GET",
+  headers: {
+    Accept: "*/*",
+  },
+});
+
+const pM = parasMetrics.body[0];
 
 function numberWithCommas(x) {
   return JSON.stringify(x).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -73,7 +86,15 @@ for (let i = 0; i < parasActivity.body.length; i++) {
   const txDate = pA.EVENT_TIMESTAMP;
   allRows.push(
     <tr>
-      <td style={tdStyle}>{pA.NFT_NAME}</td>
+      <td style={tdStyle}>
+        <a
+          style={linkStyle}
+          href={`https://paras.id${pA.CONTRACT_SUFFIX}`}
+          target="_blank"
+        >
+          {pA.NFT_NAME}
+        </a>
+      </td>
       <td style={tdStyle}>
         <a
           style={linkStyle}
@@ -141,22 +162,63 @@ return (
       <div class="col-sm-3">
         <div
           class="card text-white bg-success mb-3"
-          style={{ maxWidth: "15rem" }}
+          style={{ maxWidth: "14rem" }}
         >
           <div class="card-body">
-            <h6 class="card-title">Average Cost of Mat</h6>
-            <p class="card-text fs-4">$1,336</p>
+            <p class="card-title" style={{ fontSize: "12px" }}>
+              Total NFTs Sold in 30 Days
+            </p>
+            <p class="card-text fs-4">
+              {numberWithCommas(parseInt(pM.TOTAL_NFT_SOLD))}
+            </p>
           </div>
         </div>
       </div>
       <div class="col-sm-3">
         <div
-          class="card text-white bg-danger mb-3"
-          style={{ maxWidth: "15rem" }}
+          class="card text-white bg-success mb-3"
+          style={{ maxWidth: "14rem" }}
         >
           <div class="card-body">
-            <h6 class="card-title">Total Cost of Mat</h6>
-            <p class="card-text fs-4">$400,000 </p>
+            <p class="card-title" style={{ fontSize: "12px" }}>
+              Total Gross Sales in 30 Days
+            </p>
+            <p class="card-text fs-4">
+              $
+              {JSON.parse(
+                numberWithCommas(parseFloat(pM.TOTAL_GROSS_SALES).toFixed(2))
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div
+          class="card text-white bg-success mb-3"
+          style={{ maxWidth: "14rem" }}
+        >
+          <div class="card-body">
+            <p class="card-title" style={{ fontSize: "12px" }}>
+              Total Sold Collections in 30 Days
+            </p>
+            <p class="card-text fs-4">
+              {numberWithCommas(parseInt(pM.TOTAL_SOLD_COLLECTIONS))}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div
+          class="card text-white bg-success mb-3"
+          style={{ maxWidth: "14rem" }}
+        >
+          <div class="card-body">
+            <p class="card-title" style={{ fontSize: "12px" }}>
+              Total NFT Listings in 30 Days
+            </p>
+            <p class="card-text fs-4">
+              {numberWithCommas(parseInt(pM.TOTAL_LISTINGS))}
+            </p>
           </div>
         </div>
       </div>
