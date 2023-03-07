@@ -1,4 +1,4 @@
-const updateHandlerState = props.updateHandlerState;
+const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
 
 const sortAndRemoveRepeated = (flag, data) => {
@@ -428,7 +428,7 @@ return (
           ) : (
             <button
               onClick={() => {
-                updateHandlerState({ tab: tabs.ALL_SCHEDULE.id });
+                updateInstanceTimeState({ tab: tabs.ALL_SCHEDULE.id });
               }}
               style={
                 state.hoveringElement == "viewScheduels"
@@ -472,7 +472,7 @@ return (
               State.update({ hoveringElement: "" });
             }}
             onClick={() => {
-              updateHandlerState({ showAbortScheduleCreation: true });
+              updateInstanceTimeState({ showAbortScheduleCreation: true });
             }}
             style={
               state.hoveringElement == "cancelNewSchedule"
