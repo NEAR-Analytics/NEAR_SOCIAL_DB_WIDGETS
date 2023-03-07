@@ -7,14 +7,6 @@ if (!entityId || !contributorId) {
   return "Cannot show contribution request without entityId or contributorId!";
 }
 
-const contributor = Near.view(
-  ownerId,
-  "get_contribution",
-  { entity_id: entityId, contributor_id: accountId },
-  "final",
-  false
-);
-
 const isAuthorized = Near.view(
   ownerId,
   "check_is_manager_or_higher",
