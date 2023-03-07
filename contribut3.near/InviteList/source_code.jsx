@@ -24,8 +24,6 @@ const loadMore = () =>
     hasMore: state.from + limit < state.invites.length,
   });
 
-const allInvites = invites.filter((entityId) => entityId.includes(search));
-
 const WidgetContainer = styled.div`
   margin-bottom: 0.5em;
 `;
