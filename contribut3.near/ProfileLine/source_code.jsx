@@ -26,7 +26,7 @@ Near.asyncView(
   false
 ).then((data) => State.update({ data }));
 
-const profile = Social.getr(`${accountId}/profile`, "final", {
+const profile = Social.get(`${accountId}/profile/**`, "final", {
   subscribe: false,
 });
 
