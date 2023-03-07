@@ -11,6 +11,7 @@ if (!accountId) {
 State.init({
   contributionFormHidden: true,
   entity: null,
+  founders: [],
 });
 
 Near.asyncView(
@@ -21,34 +22,17 @@ Near.asyncView(
   false
 ).then((entity) => State.update({ entity }));
 
-const currentContributor = Near.view(
-  ownerId,
-  "get_contribution",
-  { entity_id: accountId, contributor_id: context.accountId },
-  "final",
-  false
-);
-
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { entity_id: accountId, account_id: context.accountId },
-  "final",
-  false
-);
-
 const profile = Social.getr(`${accountId}/profile`, "final", {
   subscribe: false,
 });
 
-const founders =
-  Near.view(
-    ownerId,
-    "get_founders",
-    { account_id: accountId },
-    "final",
-    false
-  ) || [];
+Near.asyncView(
+  ownerId,
+  "get_founders",
+  { account_id: accountId },
+  "final",
+  false
+).then((founders) => State.update({ founders }));
 
 const body = (
   <div
@@ -118,8 +102,8 @@ const body = (
           additionalRow: (
             <>
               <div>
-                {founders.map((founder) =>
-                  founders.length === 1 ? (
+                {state.founders.map((founder) =>
+                  state.founders.length === 1 ? (
                     <Widget
                       src={`${ownerId}/widget/ProfileLine`}
                       props={{
