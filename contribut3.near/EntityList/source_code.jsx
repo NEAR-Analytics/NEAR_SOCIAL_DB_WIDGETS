@@ -12,9 +12,8 @@ State.init({
 if (state.entities.length === 0) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then(
     (entities) => {
-      entities.sort();
       State.update({
-        entities,
+        entities: entities.sort(),
         shown: entities.slice(0, limit),
         from: limit,
         hasMore: entities.length > limit,
