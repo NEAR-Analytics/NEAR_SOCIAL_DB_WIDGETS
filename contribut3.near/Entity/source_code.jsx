@@ -16,27 +16,36 @@ const entity = Near.view(
   ownerId,
   "get_entity",
   { account_id: accountId },
-  "final"
+  "final",
+  false
 );
 
 const currentContributor = Near.view(
   ownerId,
   "get_contribution",
   { entity_id: accountId, contributor_id: context.accountId },
-  "final"
+  "final",
+  false
 );
 
 const isAuthorized = Near.view(
   ownerId,
   "check_is_manager_or_higher",
   { entity_id: accountId, account_id: context.accountId },
-  "final"
+  "final",
+  false
 );
 
 const profile = Social.getr(`${accountId}/profile`);
 
 const founders =
-  Near.view(ownerId, "get_founders", { account_id: accountId }, "final") || [];
+  Near.view(
+    ownerId,
+    "get_founders",
+    { account_id: accountId },
+    "final",
+    false
+  ) || [];
 
 const body = (
   <div
