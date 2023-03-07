@@ -9,14 +9,9 @@ const invites =
     { account_id: props.accountId ?? context.accountId },
     "final",
     true
-  ) ?? {};
+  ) ?? [];
 
-const allInvites = Object.keys(invites).filter(
-  (entityId) =>
-    entityId.includes(search) ||
-    invites[entityId].description.includes(search) ||
-    invites[entityId].contribution_type.includes(search)
-);
+const allInvites = invites.filter((entityId) => entityId.includes(search));
 
 if (!allInvites || allInvites.length === 0) {
   return "No invites for your account!";
