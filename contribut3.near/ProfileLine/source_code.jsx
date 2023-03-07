@@ -45,12 +45,12 @@ if (state.data || profile) {
           })
         }
       >
-        <div className="m-2">
+        <ImageContainer>
           <Widget
             src={`${ownerId}/widget/ProfileCircle`}
             props={{ accountId, size: imageSize, isEntity }}
           />
-        </div>
+        </ImageContainer>
       </a>
       <div className="d-flex flex-column justify-content-between align-items-start flex-grow-1">
         <div className="w-100 d-flex flex-row justify-content-between align-items-start">
