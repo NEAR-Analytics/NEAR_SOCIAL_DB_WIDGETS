@@ -45,7 +45,7 @@ const TextArea = styled.div`
   white-space: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
 
   p {
-    font-weight: 450;
+    font-weight: 500;
   }
 `;
 
