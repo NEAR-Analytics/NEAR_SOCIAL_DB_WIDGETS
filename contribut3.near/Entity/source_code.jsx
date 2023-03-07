@@ -36,13 +36,7 @@ const isAuthorized = Near.view(
 const profile = Social.getr(`${accountId}/profile`);
 
 const founders =
-  Near.view(
-    ownerId,
-    "get_founders",
-    { account_id: accountId },
-    "final",
-    true
-  ) || [];
+  Near.view(ownerId, "get_founders", { account_id: accountId }, "final") || [];
 
 const body = (
   <div
