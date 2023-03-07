@@ -2,34 +2,49 @@ const ownerId = "contribut3.near";
 const search = props.search;
 const accountId = props.accountId;
 
-const invites =
-  Near.view(
-    ownerId,
-    accountId ? "get_entity_invites" : "get_contributor_invites",
-    { account_id: props.accountId ?? context.accountId },
-    "final",
-    true
-  ) ?? [];
+State.init({
+  invites: [],
+  shown: [],
+  from: 0,
+  hasMore: true,
+});
+
+Near.asyncView(
+  ownerId,
+  accountId ? "get_entity_invites" : "get_contributor_invites",
+  { account_id: props.accountId ?? context.accountId },
+  "final",
+  false
+).then((invites) => State.update({ invites: invites.sort() }));
+
+const loadMore = () =>
+  State.update({
+    shown: state.invites.slice(0, state.from + limit),
+    from: state.from + limit,
+    hasMore: state.from + limit < state.invites.length,
+  });
 
 const allInvites = invites.filter((entityId) => entityId.includes(search));
 
-if (!allInvites || allInvites.length === 0) {
-  return "No invites for your account!";
-}
+const WidgetContainer = styled.div`
+  margin-bottom: 0.5em;
+`;
 
 return (
-  <>
-    {allInvites.map((entityId) => (
-      <div key={entityId} className="mb-2">
-        <Widget
-          src={`${ownerId}/widget/Invite`}
-          props={{
-            entityId: accountId ?? entityId,
-            accountId: accountId ? entityId : null,
-            update: props.update,
-          }}
-        />
-      </div>
-    ))}
-  </>
+  <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
+    {state.entities
+      .filter((accountId) => accountId.includes(search))
+      .map((entityId) => (
+        <WidgetContainer key={entityId}>
+          <Widget
+            src={`${ownerId}/widget/Invite`}
+            props={{
+              entityId: accountId ?? entityId,
+              accountId: accountId ? entityId : null,
+              update: props.update,
+            }}
+          />
+        </WidgetContainer>
+      ))}
+  </InfiniteScroll>
 );
