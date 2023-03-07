@@ -11,20 +11,6 @@ State.init({
   hasMore: true,
 });
 
-const allContributors = (
-  accountId
-    ? Object.keys(
-      Near.view(
-        ownerId,
-        cid ? "get_need_contributions" : "get_entity_contributions",
-        { account_id: accountId, ...(cid ? { cid } : {}) },
-        "final",
-        false
-      ) ?? {}
-    )
-    : Near.view(ownerId, "get_contributors", {}, "final", false) ?? []
-).filter((id) => id.includes(search));
-
 if (state.contributors.length === 0) {
   Near.asyncView(
     ownerId,
