@@ -44,12 +44,6 @@ if (!contributionRequest) {
     : "Loading...";
 }
 
-const description = isPreview
-  ? props.contributionRequest.description
-  : contributionRequest.description;
-
-const descriptionArea = <Markdown text={description} />;
-
 const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch">
     <a
