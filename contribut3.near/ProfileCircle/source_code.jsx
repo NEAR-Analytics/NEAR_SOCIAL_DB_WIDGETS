@@ -34,16 +34,15 @@ const ImageCircle = styled.img`
 
 const ImageContainer = styled.div`
   display: inline-block;
+  --size: ${({ size = "1.5em" }) => size};
+  width: var(--size);
+  height: var(--size);
 `;
 
 if (state.data || profile) {
   return (
-    <div
-      className="profile-circle d-inline-block"
-      title={`${fullName} @${accountId}`}
-      style={{ width: size, height: size }}
-    >
+    <ImageContainer title={`${fullName} @${accountId}`} size={size}>
       <ImageCircle src={imageSrc} alt="profile image" />
-    </div>
+    </ImageContainer>
   );
 }
