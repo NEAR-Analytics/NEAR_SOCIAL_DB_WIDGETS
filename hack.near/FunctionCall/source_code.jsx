@@ -6,7 +6,7 @@ if (!accountId) {
 }
 
 State.init({
-  receiver_id: "",
+  contractId: "",
   method_name: "",
   args: "",
   deposit: "",
@@ -18,7 +18,7 @@ const fc_args = Buffer.from(state.args, "utf-8").toString("base64");
 const handleFunctionCall = () => {
   Near.call([
     {
-      contractName: contractId,
+      contractName: state.contractId,
       methodName: state.method_name,
       args: fc_args,
       deposit: state.deposit ?? "1",
