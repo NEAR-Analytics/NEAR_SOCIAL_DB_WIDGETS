@@ -24,7 +24,7 @@ asyncFetch("https://flipside-api.antonyip.com/getCachedQuery", options).then(
     let queryResults = res.body;
 
     console.log("queryResults", queryResults);
-    const chartType = `"bar"`;
+    const chartType = `"pie"`;
     let chartBottomAxisLabels = "[";
     let chartValues = "[";
     // parsing of data from flipside
