@@ -41,7 +41,7 @@ const TextArea = styled.div`
   color: #667085;
   overflow: hidden;
   flex-grow: 1;
-  height: ${({ wrap }) => (wrap ? "unset" : "1em")};
+  height: ${({ wrap }) => (wrap ? "unset" : "2em")};
 
   p {
     font-weight: 500;
