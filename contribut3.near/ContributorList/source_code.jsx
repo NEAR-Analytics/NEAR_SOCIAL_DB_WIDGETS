@@ -11,7 +11,7 @@ State.init({
   hasMore: true,
 });
 
-if (state.contributors.length === 0) {
+if (state.items.length === 0) {
   Near.asyncView(
     ownerId,
     accountId
