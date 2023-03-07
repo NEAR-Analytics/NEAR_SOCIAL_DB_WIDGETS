@@ -3,43 +3,39 @@ const search = props.search ?? "";
 
 State.init({
   entities: [],
+  shown: [],
   from: 0,
   hasMore: true,
 });
 
-const loadMore = () => {
-  Near.asyncView(ownerId, "get_entities", {
-    from_index: state.from,
-    limit: 10,
-  }).then((entities) =>
-    State.update({
-      from: state.from + 10,
-      entities: [
-        ...state.entities,
-        ...Object.keys(entities).filter(
-          (entity) => !state.entities.includes(entity)
-        ),
-      ],
-      hasMore: Object.keys(entities).length > 0,
-    })
-  );
-};
+Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
+  State.update({
+    entities: entities.sort(),
+  })
+);
 
-const Container = styled.div`
+const loadMore = () =>
+  State.update({
+    shown: state.entities.slice(0, state.from + limit),
+    from: state.from + limit,
+    hasMore: state.from + limit < state.entities.length,
+  });
+
+const WidgetContainer = styled.div`
   margin: 0.5em 0;
 `;
 
 return (
   <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
-    {state.entities
-      .filter((accountId) => (search ? accountId.includes(search) : true))
+    {state.shown
+      .filter((accountId) => accountId.includes(search))
       .map((accountId) => (
-        <Container key={accountId}>
+        <WidgetContainer key={accountId}>
           <Widget
             src={`${ownerId}/widget/Entity`}
             props={{ accountId, update: props.update }}
           />
-        </Container>
+        </WidgetContainer>
       ))}
   </InfiniteScroll>
 );
