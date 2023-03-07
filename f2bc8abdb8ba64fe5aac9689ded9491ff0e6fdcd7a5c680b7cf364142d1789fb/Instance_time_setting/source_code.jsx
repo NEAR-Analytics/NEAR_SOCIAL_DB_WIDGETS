@@ -385,7 +385,7 @@ return (
           })}
           {!state._validate_result && "time set wrong"}
         </div>
-        <div className="d-flex flex-row-reverse justify-content-between">
+        <div className="mt-3 w-100 d-flex flex-row-reverse justify-content-between">
           {!state._sent ? (
             <CommitButton
               style={
