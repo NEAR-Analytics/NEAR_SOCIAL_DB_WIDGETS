@@ -6,7 +6,7 @@ const proposalsCount = (
     "get_admin_contribution_requests",
     { account_id: context.accountId },
     "final",
-    true
+    false
   ) ?? []
 ).length;
 
@@ -16,7 +16,7 @@ const invitesCount = Object.keys(
     "get_contributor_invites",
     { account_id: context.accountId },
     "final",
-    true
+    false
   ) ?? {}
 ).length;
 
