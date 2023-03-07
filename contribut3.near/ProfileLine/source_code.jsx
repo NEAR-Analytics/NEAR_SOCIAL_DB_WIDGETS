@@ -22,10 +22,13 @@ Near.asyncView(
   ownerId,
   isEntity ? "get_entity" : "get_contributor",
   { account_id: accountId },
-  "final"
+  "final",
+  false
 ).then((data) => State.update({ data }));
 
-const profile = Social.getr(`${accountId}/profile`);
+const profile = Social.getr(`${accountId}/profile`, "final", {
+  subscribe: false,
+});
 
 const fullName = profile.name || state.data.name || accountId;
 const href = `/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
