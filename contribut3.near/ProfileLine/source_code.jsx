@@ -38,6 +38,12 @@ const ImageContainer = styled.div`
 const ImageLink = styled.a`
   color: #667085;
 
+  &:hover {
+    text-decoration: none;
+    color: #667085;
+    font-weight: 500;
+  }
+
   span {
     color: #687076;
     margin: 0 0.25em;
