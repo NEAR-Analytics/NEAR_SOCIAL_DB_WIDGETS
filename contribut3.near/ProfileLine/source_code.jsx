@@ -37,6 +37,7 @@ const ImageContainer = styled.div`
 
 const ImageLink = styled.a`
   color: #667085;
+  transition: font-weight 0.2s ease-in-out;
 
   &:hover {
     text-decoration: none;
