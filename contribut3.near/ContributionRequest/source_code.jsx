@@ -51,6 +51,11 @@ const Controls = styled.div`
   display: ${({ isAuthorized }) => (isAuthorized ? "flex" : "none")};
 `;
 
+const AcceptButton = styled.button`
+  background-color: #12b76a;
+  /* border-ra */
+`;
+
 const controls = (
   <Controls isAuthorized={isAuthorized}>
     <a
