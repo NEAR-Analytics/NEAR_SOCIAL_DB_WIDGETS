@@ -3,23 +3,24 @@
 
 const chart1Props = {
   query:
-    "select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) as num_blocks from near.core.fact_blocks where block_timestamp > '2022-01-01' group by 1 order by 1",
-  title: "Near Monthly Number of Blocks",
-  chartWidth: 300,
+    "select date_trunc(week,block_timestamp)::date as date,count(DISTINCT SIGNER_ID) as Active_user from near.social.fact_profile_changes group by 1 order by 1",
+  title: "The number of weekly active users of Near on near.social",
+  chartWidth: 500,
   chartHeight: 200,
 };
 
 const chart2Props = {
   query:
-    "select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) from near.social.fact_addkey_events group by 1 order by 1",
-  title: "Monthly fact_addkey_events",
-  chartWidth: 300,
+    "select date_trunc(week, first_d) as date,count(DISTINCT SIGNER_ID) as users from (select SIGNER_ID ,min(BLOCK_TIMESTAMP)::date as first_d from  near.social.fact_addkey_events  group by 1) group by 1",
+  title: "The number of weekly new users of Near on near.social",
+  chartWidth: 500,
   chartHeight: 200,
 };
 
 const chart3Props = {
   query:
-    "select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) from near.social.fact_decoded_actions group by 1 order by 1",
+    "select substr(date_trunc('month', block_timestamp),0,10) as day_date, " +
+    "count(1) from near.social.fact_decoded_actions group by 1 order by 1",
   title: "Monthly fact_decoded_actions",
   chartWidth: 300,
   chartHeight: 200,
@@ -27,7 +28,10 @@ const chart3Props = {
 
 const chart4Props = {
   query:
-    "select substr(date_trunc('month', block_timestamp),0,10) as day_date, count(1) from near.social.fact_profile_changes group by 1 order by 1",
+    "select profile_section as Section, count(distinct tx_hash) as Total_Number_Edit " +
+    " from (select * from (select *,rank() over (partition by signer_id order by block_timestamp) as rank " +
+    " from (select tx_hash,signer_id,	block_timestamp, profile_section  		from near.social.fact_profile_changes " +
+    " join near.core.fact_transactions using(tx_hash)    where tx_status = 'Success')) where rank > 1)	group by Section",
   title: "Monthly fact_profile_changes",
   chartWidth: 300,
   chartHeight: 300,
