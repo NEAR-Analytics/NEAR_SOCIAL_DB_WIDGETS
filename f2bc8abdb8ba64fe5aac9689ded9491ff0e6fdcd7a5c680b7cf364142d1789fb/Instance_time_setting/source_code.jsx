@@ -1,3 +1,6 @@
+const updateHandlerState = props.updateHandlerState;
+const tabs = props.tabs;
+
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   if (flag) temp.push(0, 168);
@@ -67,6 +70,8 @@ State.init({
   _to: _to,
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
+  _sent: false,
+  hoveringElement: "",
 });
 
 const comboBox = (isActive) => {
@@ -379,6 +384,120 @@ return (
             return !state._validate_error[index] && `${day} `;
           })}
           {!state._validate_result && "time set wrong"}
+        </div>
+        <div className="d-flex flex-row-reverse justify-content-between">
+          {!state._sent ? (
+            <CommitButton
+              style={
+                state.hoveringElement == "saveButton"
+                  ? {
+                      border: "2px solid black",
+                      color: "black",
+                      backgroundColor: "white",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      padding: "0.3rem 1.5rem",
+                      borderRadius: "12px",
+                    }
+                  : {
+                      border: "2px solid transparent",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      padding: "0.3rem 1.5rem",
+                      backgroundColor: "#010A2D",
+                      borderRadius: "12px",
+                      color: "white",
+                    }
+              }
+              onMouseEnter={() => {
+                State.update({ hoveringElement: "saveButton" });
+              }}
+              onMouseLeave={() => {
+                State.update({ hoveringElement: "" });
+              }}
+              onCommit={() => {
+                State.update({ _sent: true });
+              }}
+              disabled={!state._validate_result}
+              data={getData()}
+            >
+              Save
+            </CommitButton>
+          ) : (
+            <button
+              onClick={() => {
+                updateHandlerState({ tab: tabs.ALL_SCHEDULE.id });
+              }}
+              style={
+                state.hoveringElement == "viewScheduels"
+                  ? {
+                      border: "2px solid black",
+                      color: "black",
+                      backgroundColor: "white",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      padding: "0.3rem 1.5rem",
+                      borderRadius: "12px",
+                    }
+                  : {
+                      border: "2px solid transparent",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                      margin: "0",
+                      padding: "0.3rem 1.5rem",
+                      backgroundColor: "#010A2D",
+                      borderRadius: "12px",
+                      color: "white",
+                    }
+              }
+              onMouseEnter={() => {
+                State.update({ hoveringElement: "viewScheduels" });
+              }}
+              onMouseLeave={() => {
+                State.update({ hoveringElement: "" });
+              }}
+            >
+              View Scheduels
+            </button>
+          )}
+
+          <button
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "cancelNewSchedule" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
+            onClick={() => {
+              updateHandlerState({ showAbortScheduleCreation: true });
+            }}
+            style={
+              state.hoveringElement == "cancelNewSchedule"
+                ? {
+                    border: "2px solid transparent",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    backgroundColor: "#010A2D",
+                    borderRadius: "12px",
+                    color: "white",
+                  }
+                : {
+                    border: "2px solid black",
+                    color: "black",
+                    backgroundColor: "white",
+                    fontWeight: "500",
+                    fontSize: "1rem",
+                    padding: "0.3rem 1.5rem",
+                    borderRadius: "12px",
+                  }
+            }
+          >
+            Cancel
+          </button>
         </div>
       </div>
     ) : (
