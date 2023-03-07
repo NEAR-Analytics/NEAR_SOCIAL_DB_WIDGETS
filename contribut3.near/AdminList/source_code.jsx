@@ -16,7 +16,14 @@ if (state.entities.length === 0) {
     { account_id: context.accountId },
     "final",
     false
-  ).then((entities) => State.update({ entities: entities.sort() }));
+  ).then((entities) =>
+    State.update({
+      entities: entities.sort(),
+      shown: entities.slice(0, limit),
+      from: limit,
+      hasMore: entities.length > limit,
+    })
+  );
 }
 
 const loadMore = () =>
