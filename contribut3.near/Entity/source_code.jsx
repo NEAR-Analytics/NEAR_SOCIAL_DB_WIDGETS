@@ -36,7 +36,9 @@ const isAuthorized = Near.view(
   false
 );
 
-const profile = Social.getr(`${accountId}/profile`);
+const profile = Social.getr(`${accountId}/profile`, "final", {
+  subscribe: false,
+});
 
 const founders =
   Near.view(
