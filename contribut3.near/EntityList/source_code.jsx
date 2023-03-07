@@ -10,13 +10,15 @@ State.init({
 });
 
 Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) => {
-  entities.sort();
-  State.update({
-    entities,
-    shown: entities.slice(0, limit),
-    from: limit,
-    hasMore: entities.length > limit,
-  });
+  if (state.entities.length === 0) {
+    entities.sort();
+    State.update({
+      entities,
+      shown: entities.slice(0, limit),
+      from: limit,
+      hasMore: entities.length > limit,
+    });
+  }
 });
 
 const loadMore = () => {
