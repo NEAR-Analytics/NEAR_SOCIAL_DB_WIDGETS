@@ -24,6 +24,7 @@ if (state.proposalsCount === null) {
     false
   ).then((proposals) => State.update({ proposalsCount: proposals.length }));
 }
+
 if (state.invitesCount === null) {
   Near.asyncView(
     ownerId,
