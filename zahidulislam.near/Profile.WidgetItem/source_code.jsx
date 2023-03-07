@@ -17,7 +17,7 @@ return (
         marginTop: 15,
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 2.5 }}>
         <img
           className="invertColor"
           style={{ height: 16, opacity: 0.5 }}
