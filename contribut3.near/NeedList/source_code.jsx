@@ -11,9 +11,9 @@ const needs = accountId
       : "get_entity_contribution_needs",
     { account_id: accountId },
     "final",
-    true
+    false
   )
-  : Near.view(ownerId, "get_contribution_needs", {}, "final", true);
+  : Near.view(ownerId, "get_contribution_needs", {}, "final", false);
 
 if (!needs) {
   return "Loading...";
