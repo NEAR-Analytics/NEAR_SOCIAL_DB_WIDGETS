@@ -24,6 +24,10 @@ const fullName = profile.name || state.data.name || accountId;
 const href = `/#/${ownerId}/widget/Index?tab=${isEntity ? "entity" : "contributor"
   }&accountId=${accountId}`;
 
+const ImageContainer = styled.div`
+  margin: 0.5em;
+`;
+
 if (state.data || profile) {
   return (
     <div
