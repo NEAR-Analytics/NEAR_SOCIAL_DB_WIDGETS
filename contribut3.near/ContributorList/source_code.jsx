@@ -14,7 +14,7 @@ const allContributors = (
         false
       ) ?? {}
     )
-    : Near.view(ownerId, "get_contributors", {}, "final", true) ?? []
+    : Near.view(ownerId, "get_contributors", {}, "final", false) ?? []
 ).filter((id) => id.includes(search));
 
 if (!allContributors || allContributors.length === 0) {
