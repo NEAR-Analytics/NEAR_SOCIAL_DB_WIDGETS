@@ -17,52 +17,60 @@ if (state.items.length === 0) {
     { account_id: accountId },
     "final",
     false
-  ).then((accountIds) => State.update({ items: accountIds.sort(), shown: accountIds.slice(0, limit), from: limit, hasMore: accountIds.length > limit }));
-
-  if (!accountId) {
-    return "Cannot render contribution list without account ID!";
-  }
-
-  const contributions = Object.keys(
-    Near.view(
-      ownerId,
-      isEntity ? "get_entity_contributions" : "get_contributor_contributions",
-      { account_id: accountId },
-      "final",
-      true
-    ) ?? {}
+  ).then((accountIds) =>
+    State.update({
+      items: accountIds.sort(),
+      shown: accountIds.slice(0, limit),
+      from: limit,
+      hasMore: accountIds.length > limit,
+    })
   );
+}
 
-  if (!contributions) {
-    return "Loading...";
-  }
+if (!accountId) {
+  return "Cannot render contribution list without account ID!";
+}
 
-  if (Array.isArray(contributions) && contributions.length === 0) {
-    return "No contributions found!";
-  }
+const contributions = Object.keys(
+  Near.view(
+    ownerId,
+    isEntity ? "get_entity_contributions" : "get_contributor_contributions",
+    { account_id: accountId },
+    "final",
+    true
+  ) ?? {}
+);
 
-  const allContributions = contributions.filter((id) =>
-    id.includes(props.search)
-  );
+if (!contributions) {
+  return "Loading...";
+}
 
-  if (!allContributions || allContributions.length === 0) {
-    return "No contributions match search criteria!";
-  }
+if (Array.isArray(contributions) && contributions.length === 0) {
+  return "No contributions found!";
+}
 
-  return (
-    <>
-      {allContributions.map((id) => (
-        <div key={id} className="mt-3">
-          <Widget
-            src={`${ownerId}/widget/Contribution`}
-            props={{
-              entityId: isEntity ? accountId : id,
-              contributorId: isEntity ? id : accountId,
-              isEntity,
-              update: props.update,
-            }}
-          />
-        </div>
-      ))}
-    </>
-  );
+const allContributions = contributions.filter((id) =>
+  id.includes(props.search)
+);
+
+if (!allContributions || allContributions.length === 0) {
+  return "No contributions match search criteria!";
+}
+
+return (
+  <>
+    {allContributions.map((id) => (
+      <div key={id} className="mt-3">
+        <Widget
+          src={`${ownerId}/widget/Contribution`}
+          props={{
+            entityId: isEntity ? accountId : id,
+            contributorId: isEntity ? id : accountId,
+            isEntity,
+            update: props.update,
+          }}
+        />
+      </div>
+    ))}
+  </>
+);
