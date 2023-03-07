@@ -44,6 +44,13 @@ if (!contributionRequest) {
     : "Loading...";
 }
 
+const Controls = styled.div`
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  display: ${({ isAuthorized }) => (isAuthorized ? "flex" : "none")};
+`;
+
 const controls = isAuthorized ? (
   <div className="d-flex flex-column justify-content-start align-items-stretch">
     <a
