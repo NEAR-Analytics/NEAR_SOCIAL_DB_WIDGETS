@@ -32,6 +32,10 @@ const Image = styled.img`
   height: 100%;
 `;
 
+const ImageContainer = styled.div`
+  display: inline-block;
+`;
+
 if (state.data || profile) {
   return (
     <div
