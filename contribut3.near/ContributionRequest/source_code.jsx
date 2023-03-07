@@ -11,22 +11,30 @@ const contributor = Near.view(
   ownerId,
   "get_contribution",
   { entity_id: entityId, contributor_id: accountId },
-  "final"
+  "final",
+  false
 );
 
 const isAuthorized = Near.view(
   ownerId,
   "check_is_manager_or_higher",
   { entity_id: entityId, account_id: context.accountId },
-  "final"
+  "final",
+  false
 );
 
 const contributionRequest = props.isPreview
   ? props.contributionRequest
-  : Near.view(ownerId, "get_contribution_request", {
-    entity_id: entityId,
-    contributor_id: contributorId,
-  });
+  : Near.view(
+    ownerId,
+    "get_contribution_request",
+    {
+      entity_id: entityId,
+      contributor_id: contributorId,
+    },
+    "final",
+    false
+  );
 
 const need = contributionRequest.need
   ? Near.view(
@@ -34,7 +42,7 @@ const need = contributionRequest.need
     "get_contribution_need",
     { account_id: entityId, cid: contributionRequest.need },
     "final",
-    true
+    false
   )
   : null;
 
