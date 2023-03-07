@@ -31,7 +31,7 @@ const getFormatedTime = (time) => {
   return formated;
 };
 const time_zone = props.data.time_zone ?? "(UTC+00:00) UTC";
-var is_on = ["off", "off", "off", "off", "off", "off", "off"];
+var is_on = [false, false, false, false, false, false, false];
 var _from = [
   "10:00 AM",
   "10:00 AM",
@@ -67,13 +67,22 @@ State.init({
   _to: _to,
   _validate_result: true,
   _validate_error: [true, true, true, true, true, true, true],
-  _sent: false,
 });
 
-const comboBox = {
-  borderRadius: "1rem",
-  padding: "1rem",
+const comboBox = (isActive) => {
+  let colors = isActive ? "rgb(53, 58, 64)" : "rgb(225, 233, 240)";
+  return {
+    backgroundColor: "white",
+    padding: "0.5rem 1.5rem",
+    borderRadius: "0.8rem",
+    border: `1.5px solid ${colors}`,
+    color: colors,
+    letterSpacing: "-0.01em",
+    borderRadius: "1rem",
+    padding: "1rem",
+  };
 };
+
 const table = {
   display: "flex",
   flex: "1",
@@ -97,7 +106,7 @@ const days = [
   "Saturday",
   "Sunday",
 ];
-const tbl_headers = ["Day", "On", "From", "To"];
+const tbl_headers = ["Day", "Off/On", "From", "To"];
 const initialize = () => {
   hours = [];
   for (var i = 0; i < 2; i++)
@@ -149,7 +158,7 @@ const getData = () => {
   var temp = [];
   var flag = false;
   for (var i = 0; i < 7; i++) {
-    if (state._is_on[i] == "on") {
+    if (state._is_on[i]) {
       for (var j = 0; j < 2; j++) {
         const time =
           j == 0
@@ -187,9 +196,9 @@ const timeSelector = (f, index) => {
     <div style={table}>
       <div className="d-flex">
         <select
-          style={comboBox}
+          style={comboBox(state._is_on[index])}
           value={f ? state._from[index] : state._to[index]}
-          disabled={state._is_on[index] == "off"}
+          disabled={!state._is_on[index]}
           onChange={(e) => {
             onTimeChanged(e.target.value, index, f, 0);
           }}
@@ -207,19 +216,37 @@ const timeSelector = (f, index) => {
       >
         <div
           onClick={() => {
-            const value = f ? state._from[index] : state._to[index];
-            onTimeChanged(value, index, f, 1);
+            if (state._is_on[index]) {
+              const value = f ? state._from[index] : state._to[index];
+              onTimeChanged(value, index, f, 1);
+            }
           }}
         >
-          <i class="bi-caret-up"></i>
+          <i
+            className="bi-caret-up"
+            style={
+              state._is_on[index]
+                ? { color: "rgb(53, 58, 64)" }
+                : { color: "rgb(225, 233, 240)" }
+            }
+          ></i>
         </div>
         <div
           onClick={() => {
-            const value = f ? state._from[index] : state._to[index];
-            onTimeChanged(value, index, f, -1);
+            if (state._is_on[index]) {
+              const value = f ? state._from[index] : state._to[index];
+              onTimeChanged(value, index, f, -1);
+            }
           }}
         >
-          <i class="bi-caret-down"></i>
+          <i
+            className="bi-caret-down"
+            style={
+              state._is_on[index]
+                ? { color: "rgb(53, 58, 64)" }
+                : { color: "rgb(225, 233, 240)" }
+            }
+          ></i>
         </div>
       </div>
     </div>
@@ -267,7 +294,6 @@ return (
                 style={{
                   display: "flex",
                   background: "white",
-                  border: "2px solid grey",
                   padding: "6px",
                 }}
               >
@@ -279,39 +305,58 @@ return (
               </div>
               {days.map((day, index) => (
                 <div
+                  className="mb-2"
                   style={{
                     display: "flex",
                     background: "white",
-                    borderBottom: "2px solid grey",
-                    borderLeft: "2px solid grey",
-                    borderRight: "2px solid grey",
                     padding: "6px",
+                    backgroundColor: "white",
+                    padding: "0.5rem 1.5rem",
+                    borderRadius: "0.8rem",
+                    border: "1.5px solid rgb(225, 233, 240)",
+                    color: "rgb(71, 77, 85)",
+                    letterSpacing: "-0.01em",
+                    width: "100%",
                   }}
                 >
                   <div style={flex_row}>
                     <div style={table}>{day}</div>
                     <div style={table}>
-                      <select
-                        style={comboBox}
-                        value={state._is_on[index]}
-                        onChange={(e) => {
-                          let temp = state._is_on;
-                          temp[index] = e.target.value;
-                          State.update({ _is_on: temp });
-                          if (e.target.value == "off") {
-                            state._from[index] = "0";
-                            state._to[index] = "0";
-                            let error_temp = state._validate_error;
-                            State.update({
-                              _error_msg: `${(error_temp[index] = true)}`,
-                            });
-                            validate();
+                      <div className="form-check form-switch">
+                        <input
+                          style={
+                            state._is_on[index]
+                              ? {
+                                  backgroundColor: "rgb(53, 58, 64)",
+                                  borderColor: "rgb(71, 77, 85)",
+                                }
+                              : {
+                                  backgroundColor: "white",
+                                  borderColor: "rgb(118, 123, 142)",
+                                }
                           }
-                        }}
-                      >
-                        <option value="on">on</option>
-                        <option value="off">off</option>
-                      </select>
+                          className="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          checked={state._is_on[index]}
+                          id={day + index}
+                          key={day + index + state._is_on[index]}
+                          onChange={(e) => {
+                            let temp = state._is_on;
+                            temp[index] = !temp[index];
+                            State.update({ _is_on: temp });
+                            if (!e.target.value) {
+                              state._from[index] = "0";
+                              state._to[index] = "0";
+                              let error_temp = state._validate_error;
+                              State.update({
+                                _error_msg: `${(error_temp[index] = true)}`,
+                              });
+                              validate();
+                            }
+                          }}
+                        />
+                      </div>
                     </div>
                     {timeSelector(true, index)}
                     {timeSelector(false, index)}
@@ -334,52 +379,6 @@ return (
             return !state._validate_error[index] && `${day} `;
           })}
           {!state._validate_result && "time set wrong"}
-        </div>
-        <div style={flex_row}>
-          {!state._sent ? (
-            <CommitButton
-              className="m-2"
-              onClick={() => {
-                console.log("window: ", document);
-              }}
-              onCommit={() => {
-                State.update({ _sent: true });
-              }}
-              style={{
-                border: "2px solid transparent",
-                fontWeight: "500",
-                fontSize: "1rem",
-                padding: "1rem",
-                borderRadius: "12px",
-                background: "rgb(230, 230, 230)",
-                border: "1px solid",
-                color: "black",
-              }}
-              disabled={!state._validate_result}
-              data={getData()}
-            >
-              Save
-            </CommitButton>
-          ) : (
-            <a
-              href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
-              style={{
-                margin: "2rem",
-                border: "2px solid transparent",
-                fontWeight: "500",
-                fontSize: "1rem",
-                padding: "1rem",
-                borderRadius: "12px",
-                background: "rgb(230, 230, 230)",
-                border: "1px solid",
-                color: "black",
-                cursor: "pointer",
-                textDecoration: "none",
-              }}
-            >
-              View Scheduels
-            </a>
-          )}
         </div>
       </div>
     ) : (
