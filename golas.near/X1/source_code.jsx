@@ -4,7 +4,7 @@ return (
     <br />
     {props.x2}
     <br />
-    {props.modules.calc(1, 2)}
+    {calc(1, 12)}
     <br />
     {props.modules.c1}
   </div>
