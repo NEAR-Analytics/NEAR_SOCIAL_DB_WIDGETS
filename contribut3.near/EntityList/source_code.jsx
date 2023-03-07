@@ -29,12 +29,12 @@ return (
     {state.entities
       .filter((accountId) => (search ? accountId.includes(search) : true))
       .map((accountId) => (
-        <div key={accountId} className="mb-4">
+        <Container key={accountId}>
           <Widget
             src={`${ownerId}/widget/Entity`}
             props={{ accountId, update: props.update }}
           />
-        </div>
+        </Container>
       ))}
   </InfiniteScroll>
 );
