@@ -44,6 +44,22 @@ const ImageLink = styled.a`
   }
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: between;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: between;
+  align-items: flex-start;
+  flex-grow: 1;
+`;
+
 if (state.data || profile) {
   return (
     <div
@@ -57,8 +73,8 @@ if (state.data || profile) {
           />
         </ImageContainer>
       </ImageLink>
-      <div className="d-flex flex-column justify-content-between align-items-start flex-grow-1">
-        <div className="w-100 d-flex flex-row justify-content-between align-items-start">
+      <Column>
+        <Row>
           <div>
             <ImageLink href={href} onClick={linkNavigate}>
               <b>{fullName}</b>
@@ -66,9 +82,9 @@ if (state.data || profile) {
             </ImageLink>
             {additionalText}
           </div>
-        </div>
+        </Row>
         {additionalRow}
-      </div>
+      </Column>
       {additionalColumn}
     </div>
   );
