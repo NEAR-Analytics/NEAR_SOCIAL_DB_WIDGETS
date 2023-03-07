@@ -34,9 +34,10 @@ const Faces = styled.span`
   .face {
     display: inline-block;
     position:relative;
-    height: 1.4em;
-    width: 1.4em;
-    min-width: 1.4em;
+    margin: -0.1em;
+    height: 1.5em;
+    width: 1.5em;
+    min-width: 1.5em;
     vertical-align: top;
     img {
         object-fit: cover;
