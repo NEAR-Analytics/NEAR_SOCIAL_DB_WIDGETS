@@ -13,12 +13,14 @@ State.init({
   gas: "",
 });
 
+const fc_args = Buffer.from(state.args, "utf-8").toString("base64");
+
 const handleFunctionCall = () => {
   Near.call([
     {
       contractName: contractId,
       methodName: state.method_name,
-      args: state.args,
+      args: fc_args,
       deposit: state.deposit ?? "1",
       gas: state.gas ?? "200000000000000",
     },
