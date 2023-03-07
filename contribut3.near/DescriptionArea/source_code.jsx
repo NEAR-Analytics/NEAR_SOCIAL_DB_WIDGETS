@@ -37,6 +37,7 @@ const ShowToggle = styled.a`
 
 const TextArea = styled.div`
   position: relative;
+  font-weight: 400;
   overflow: hidden;
   flex-grow: 1;
   text-overflow: ellipsis;
