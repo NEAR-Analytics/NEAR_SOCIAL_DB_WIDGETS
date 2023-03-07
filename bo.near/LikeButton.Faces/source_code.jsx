@@ -46,12 +46,11 @@ const Faces = styled.span`
         height: 100%;
     }
   }
-  
-  .others {
-    color: #6c757d !important;
-  }
-  .others:hover {
-    color: auto;
+`;
+
+const Others = styled.span`
+  &:hover {
+    color: auto !important;
   }
 `;
 
@@ -113,9 +112,9 @@ return (
           </Tooltip>
         }
       >
-        <span className="ms-1 others">
+        <Others className="ms-1 text-muted">
           and {numLikes} other{numLikes === 1 ? "" : "s"}
-        </span>
+        </Others>
       </OverlayTrigger>
     ) : (
       ""
