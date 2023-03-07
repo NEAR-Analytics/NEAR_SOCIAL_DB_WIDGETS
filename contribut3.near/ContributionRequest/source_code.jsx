@@ -51,8 +51,8 @@ const Controls = styled.div`
   display: ${({ isAuthorized }) => (isAuthorized ? "flex" : "none")};
 `;
 
-const controls = isAuthorized ? (
-  <div className="d-flex flex-column justify-content-start align-items-stretch">
+const controls = (
+  <Controls isAuthorized={isAuthorized}>
     <a
       className="btn btn-success"
       onClick={() =>
@@ -78,9 +78,7 @@ const controls = isAuthorized ? (
       <i className="bi-x" />
       <span>Reject</span>
     </a>
-  </div>
-) : (
-  <></>
+  </Controls>
 );
 
 const body = (
