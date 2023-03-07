@@ -50,7 +50,7 @@ const Faces = styled.span`
 
 const Others = styled.span`
   &:hover {
-    color: auto !important;
+    color: white !important;
   }
 `;
 
