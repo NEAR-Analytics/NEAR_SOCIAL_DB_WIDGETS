@@ -3,7 +3,7 @@ const search = props.search ?? "";
 const limit = 10;
 
 State.init({
-  entities: [],
+  items: [],
   shown: [],
   from: 0,
   hasMore: true,
@@ -13,7 +13,7 @@ if (state.entities.length === 0) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then(
     (entities) => {
       State.update({
-        entities: entities.sort(),
+        items: entities.sort(),
         shown: entities.slice(0, limit),
         from: limit,
         hasMore: entities.length > limit,
@@ -24,9 +24,9 @@ if (state.entities.length === 0) {
 
 const loadMore = () => {
   State.update({
-    shown: state.entities.slice(0, state.from + limit),
+    shown: state.items.slice(0, state.from + limit),
     from: state.from + limit,
-    hasMore: state.from + limit < state.entities.length,
+    hasMore: state.from + limit < state.items.length,
   });
 };
 
