@@ -11,6 +11,8 @@ State.init({
   args: "",
   deposit: "",
   gas: "",
+  fc_deposit: "",
+  fc_gas: "",
 });
 
 const proposal_args = Buffer.from(state.args, "utf-8").toString("base64");
@@ -30,8 +32,8 @@ const handleProposal = () => {
                 {
                   method_name: state.method_name,
                   args: proposal_args,
-                  deposit: "1",
-                  gas: "150000000000000",
+                  deposit: state.fc_deposit ?? "1",
+                  gas: state.fc_gas ?? "200000000000000",
                 },
               ],
             },
@@ -62,6 +64,30 @@ const onChangeArgs = (args) => {
   });
 };
 
+const onChangeDeposit = (deposit) => {
+  State.update({
+    deposit,
+  });
+};
+
+const onChangeGas = (gas) => {
+  State.update({
+    gas,
+  });
+};
+
+const onChangeFCDeposit = (fc_deposit) => {
+  State.update({
+    fc_deposit,
+  });
+};
+
+const onChangeFCGas = (fc_gas) => {
+  State.update({
+    fc_gas,
+  });
+};
+
 return (
   <div className="mb-3">
     <div className="mb-3">
@@ -72,11 +98,23 @@ return (
       Method:
       <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
+    <div className="m-2 p-2 d-flex s">
+      <p className="m-2">Deposit:</p>
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+      <p className="m-2">Gas:</p>
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+    </div>
     <div className="mb-3 flex flex-row">
       Arguments (JSON):
       <div>
         <textarea type="text" onChange={(e) => onChangeArgs(e.target.value)} />
       </div>
+    </div>
+    <div className="m-2 p-2 d-flex s">
+      <p className="m-2">FC Deposit:</p>
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+      <p className="m-2">FC Gas:</p>
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
     </div>
     <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
       Submit
