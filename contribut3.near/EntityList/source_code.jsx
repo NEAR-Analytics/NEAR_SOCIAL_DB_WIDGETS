@@ -20,6 +20,10 @@ const loadMore = () => {
   );
 };
 
+const Container = styled.div`
+  margin: 0.5em 0;
+`;
+
 return (
   <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
     {state.entities
