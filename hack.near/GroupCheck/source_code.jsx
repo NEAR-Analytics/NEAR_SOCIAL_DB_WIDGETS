@@ -18,7 +18,7 @@ const groups = policy.roles
 
 const check = groups.map((group) => {
   return !group
-    ? true
+    ? false
     : group.filter((address) => address === accountId).length > 0;
 });
 
