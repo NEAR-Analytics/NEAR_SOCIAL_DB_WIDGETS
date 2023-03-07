@@ -5,7 +5,7 @@ const cid = props.cid;
 const limit = 10;
 
 State.init({
-  contributors: [],
+  items: [],
   shown: [],
   from: 0,
   hasMore: true,
@@ -27,7 +27,7 @@ if (state.contributors.length === 0) {
     false
   ).then((contributors) => {
     State.update({
-      contributors: contributors.sort(),
+      items: contributors.sort(),
       shown: contributors.slice(0, limit),
       from: limit,
       hasMore: contributors.length > limit,
@@ -37,9 +37,9 @@ if (state.contributors.length === 0) {
 
 const loadMore = () => {
   State.update({
-    shown: state.contributors.slice(0, state.from + limit),
+    shown: state.items.slice(0, state.from + limit),
     from: state.from + limit,
-    hasMore: state.from + limit < state.contributors.length,
+    hasMore: state.from + limit < state.items.length,
   });
 };
 
