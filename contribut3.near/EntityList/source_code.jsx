@@ -1,5 +1,6 @@
 const ownerId = "contribut3.near";
 const search = props.search ?? "";
+const limit = 10;
 
 State.init({
   entities: [],
