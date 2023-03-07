@@ -23,6 +23,15 @@ const url =
     ? `https://ipfs.near.social/ipfs/${image.ipfs_cid}`
     : image.url) || "https://thewiki.io/static/media/sasha_anon.6ba19561.png";
 
+const imageSrc = `https://i.near.social/thumbnail/${url}`;
+
+const Image = styled.img`
+  border-radius: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+`;
+
 if (state.data || profile) {
   return (
     <div
@@ -30,12 +39,7 @@ if (state.data || profile) {
       title={`${fullName} @${accountId}`}
       style={{ width: size, height: size }}
     >
-      <img
-        className="rounded-circle w-100 h-100"
-        style={{ objectFit: "cover" }}
-        src={`https://i.near.social/thumbnail/${url}`}
-        alt="profile image"
-      />
+      <Image src={imageSrc} alt="profile image" />
     </div>
   );
 }
