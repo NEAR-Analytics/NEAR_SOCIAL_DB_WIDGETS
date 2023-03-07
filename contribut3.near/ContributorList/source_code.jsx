@@ -11,7 +11,7 @@ const allContributors = (
         cid ? "get_need_contributions" : "get_entity_contributions",
         { account_id: accountId, ...(cid ? { cid } : {}) },
         "final",
-        true
+        false
       ) ?? {}
     )
     : Near.view(ownerId, "get_contributors", {}, "final", true) ?? []
