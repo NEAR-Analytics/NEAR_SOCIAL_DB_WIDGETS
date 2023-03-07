@@ -10,13 +10,11 @@ State.init({
 const loadMore = () => {
   Near.asyncView(ownerId, "get_entities", { from: state.from, limit: 10 }).then(
     (entities) => {
-      const newState = {
+      State.update({
         from: state.from + 10,
         entities: [...state.entities, ...Object.keys(entities)],
-        hasMore: Objet.keys(entities).length > 0,
-      };
-      console.log(newState);
-      State.update(newState);
+        hasMore: Object.keys(entities).length > 0,
+      });
     }
   );
 };
