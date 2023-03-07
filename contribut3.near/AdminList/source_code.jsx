@@ -9,13 +9,15 @@ State.init({
   hasMore: true,
 });
 
-Near.asyncView(
-  ownerId,
-  "get_admin_entities",
-  { account_id: context.accountId },
-  "final",
-  false
-).then((entities) => State.update({ entities: entities.sort() }));
+if (state.entities.length === 0) {
+  Near.asyncView(
+    ownerId,
+    "get_admin_entities",
+    { account_id: context.accountId },
+    "final",
+    false
+  ).then((entities) => State.update({ entities: entities.sort() }));
+}
 
 const loadMore = () =>
   State.update({
