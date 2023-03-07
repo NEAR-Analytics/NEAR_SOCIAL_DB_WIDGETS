@@ -5,7 +5,7 @@ const isAdmin = props.isAdmin;
 const limit = 10;
 
 State.init({
-  needs: [],
+  items: [],
   shown: [],
   from: 0,
   hasMore: true,
@@ -25,14 +25,14 @@ if (state.needs.length === 0) {
   ).then((needs) => {
     if (accountId && isAdmin) {
       State.update({
-        needs: needs.map((cid) => [accountId, cid]),
+        items: needs.map((cid) => [accountId, cid]),
         shown: needs.map((cid) => [accountId, cid]).slice(0, limit),
         from: limit,
         hasMore: needs.length > limit,
       });
     } else {
       State.update({
-        needs: needs.sort(([a], [b]) => a.localeCompare(b)),
+        items: needs.sort(([a], [b]) => a.localeCompare(b)),
         shown: needs.slice(0, limit),
         from: limit,
         hasMore: needs.length > limit,
@@ -43,9 +43,9 @@ if (state.needs.length === 0) {
 
 const loadMore = () => {
   State.update({
-    shown: state.needs.slice(0, state.from + limit),
+    shown: state.items.slice(0, state.from + limit),
     from: state.from + limit,
-    hasMore: state.from + limit < state.needs.length,
+    hasMore: state.from + limit < state.items.length,
   });
 };
 
