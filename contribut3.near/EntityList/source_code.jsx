@@ -15,7 +15,7 @@ const loadMore = () => {
         entities: [
           ...state.entities,
           ...Object.keys(entities).filter(
-            (entity) => !state.entities.contains(entity)
+            (entity) => !state.entities.includes(entity)
           ),
         ],
         hasMore: Object.keys(entities).length > 0,
