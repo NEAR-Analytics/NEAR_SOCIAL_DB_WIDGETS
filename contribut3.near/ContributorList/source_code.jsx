@@ -49,19 +49,29 @@ if (state.contributors.length === 0) {
   });
 }
 
-if (!allContributors || allContributors.length === 0) {
-  return "No contributors found!";
-}
+const loadMore = () => {
+  State.update({
+    shown: state.entities.slice(0, state.from + limit),
+    from: state.from + limit,
+    hasMore: state.from + limit < state.entities.length,
+  });
+};
+
+const WidgetContainer = styled.div`
+  margin: 0.5em 0;
+`;
 
 return (
-  <>
-    {allContributors.map((id) => (
-      <div key={id} className="mb-2">
-        <Widget
-          src={`${ownerId}/widget/Contributor`}
-          props={{ accountId: id, update: props.update }}
-        />
-      </div>
-    ))}
-  </>
+  <InfiniteScroll loadMore={loadMore} hasMore={state.hasMore}>
+    {state.shown
+      .filter((accountId) => accountId.includes(search))
+      .map((accountId) => (
+        <WidgetContainer key={accountId}>
+          <Widget
+            src={`${ownerId}/widget/Contributor`}
+            props={{ accountId, update: props.update }}
+          />
+        </WidgetContainer>
+      ))}
+  </InfiniteScroll>
 );
