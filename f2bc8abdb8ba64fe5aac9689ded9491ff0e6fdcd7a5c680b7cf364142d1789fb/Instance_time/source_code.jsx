@@ -383,7 +383,7 @@ return (
       ) : (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_edit`}
-          props={{ updateHandlerState, tabs }}
+          props={{ updateInstanceTimeState, tabs }}
         />
       )}
     </div>
