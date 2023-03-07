@@ -2,7 +2,7 @@ const ownerId = "contribut3.near";
 const search = props.search ?? "";
 
 const allEntities = Object.keys(
-  Near.view(ownerId, "get_entities", {}, "final") ?? {}
+  Near.view(ownerId, "get_entities", {}, "final", false) ?? {}
 ).filter((accountId) => (search ? accountId.includes(search) : true));
 
 if (!allEntities || allEntities.length === 0) {
