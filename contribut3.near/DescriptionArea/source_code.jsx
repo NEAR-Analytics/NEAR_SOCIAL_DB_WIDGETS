@@ -41,8 +41,7 @@ const TextArea = styled.div`
   color: #667085;
   overflow: hidden;
   flex-grow: 1;
-  text-overflow: ellipsis;
-  white-space: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
+  height: ${({ wrap }) => (wrap ? "unset" : "1em")};
 
   p {
     font-weight: 500;
