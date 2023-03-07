@@ -22,11 +22,10 @@ Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) => {
 });
 
 const loadMore = () => {
-  console.log(state);
   State.update({
     shown: state.entities.slice(0, state.from + limit),
     from: state.from + limit,
-    hasMore: state.from + limit < state.entities.length,
+    hasMore: state.from < state.entities.length,
   });
 };
 
