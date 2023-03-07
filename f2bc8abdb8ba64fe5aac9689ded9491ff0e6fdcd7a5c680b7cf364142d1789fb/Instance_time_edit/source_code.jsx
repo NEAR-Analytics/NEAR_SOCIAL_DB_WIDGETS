@@ -361,6 +361,8 @@ return (
               time_zone: state._time_zone,
             },
             style: { width: "100%", height: "1.5em" },
+            updateHandlerState,
+            tabs,
           }}
           rawCode={show}
         />
