@@ -85,7 +85,7 @@ const accountIdInput = (
   </InputWrapper>
 );
 const nameInput = (
-  <div>
+  <InputWrapper>
     <Widget
       src={`${ownerId}/widget/NameInput`}
       props={{
@@ -94,11 +94,11 @@ const nameInput = (
         update: (name) => State.update({ name }),
       }}
     />
-  </div>
+  </InputWrapper>
 );
 
 const kindInput = (
-  <div>
+  <InputWrapper>
     <Widget
       src={`${ownerId}/widget/EntityTypeInput`}
       props={{
@@ -107,11 +107,11 @@ const kindInput = (
         text: "Type of project *",
       }}
     />
-  </div>
+  </InputWrapper>
 );
 
 const startDateInput = (
-  <div>
+  <InputWrapper>
     <Widget
       src={`${ownerId}/widget/DateInput`}
       props={{
@@ -121,7 +121,7 @@ const startDateInput = (
         update: (startDate) => State.update({ startDate }),
       }}
     />
-  </div>
+  </InputWrapper>
 );
 
 const onSubmit = () => {
