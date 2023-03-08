@@ -45,11 +45,14 @@ if (accountId && !state.entityFetched) {
   });
 }
 
+const Label = styled.label`
+  font-weight: 600;
+  color: #344054;
+`;
+
 const accountIdInput = accountId ? (
   <div>
-    <label htmlFor="account-id" className="text-muted fw-semibold">
-      Project account ID
-    </label>
+    <Label htmlFor="account-id">Project account ID</Label>
     <div
       className="rounded-3 bg-light"
       style={{ height: "5em" }}
