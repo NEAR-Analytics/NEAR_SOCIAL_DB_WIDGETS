@@ -28,7 +28,7 @@ const handleCreate = () => {
         name: "hacky",
         args: dao_args,
       },
-      amount: "7000000000000000000000000",
+      deposit: "7000000000000000000000000",
       gas: "200000000000000",
     },
   ]);
