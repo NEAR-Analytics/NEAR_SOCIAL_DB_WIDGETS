@@ -31,7 +31,7 @@ return (
       id="entity-id-input"
       labelKey="name"
       onChange={update}
-      options={options}
+      options={state.options}
       placeholder="contribut3.near, social.near..."
       selected={selected}
       positionFixed
