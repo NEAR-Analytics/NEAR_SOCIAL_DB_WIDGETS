@@ -74,21 +74,7 @@ const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const contributionTypeInput = <div className="col-lg-12 mb-2"></div>;
-
-const startDateInput = (
-  <div className="col-lg-6 mb-2">
-    <Widget
-      src={`${ownerId}/widget/DateInput`}
-      props={{
-        id: "start-date",
-        text: " Start date of contribution:",
-        date: state.startDate,
-        update: (startDate) => State.update({ startDate }),
-      }}
-    />
-  </div>
-);
+const startDateInput = <div className="col-lg-6 mb-2"></div>;
 
 const permissionsInput = (
   <div className="col-lg-6 mb-2">
@@ -169,7 +155,17 @@ const body = (
         }}
       />
     </InputWrapper>
-    {startDateInput}
+    <InputWrapper>
+      <Widget
+        src={`${ownerId}/widget/DateInput`}
+        props={{
+          id: "start-date",
+          text: " Start date of contribution:",
+          date: state.startDate,
+          update: (startDate) => State.update({ startDate }),
+        }}
+      />
+    </InputWrapper>
     {permissionsInput}
     <InputWrapper>
       <Widget
