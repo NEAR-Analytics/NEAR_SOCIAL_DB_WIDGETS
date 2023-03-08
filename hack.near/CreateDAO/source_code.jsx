@@ -5,7 +5,7 @@ const defaultConfig = {
 };
 
 const defaultPolicy = {
-  "infinity.near": "",
+  "infinity.near": {},
 };
 
 State.init({
