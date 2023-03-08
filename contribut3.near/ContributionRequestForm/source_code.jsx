@@ -66,7 +66,7 @@ const entityEditor = (
         <div
           className="rounded-3 bg-light"
           style={{ height: "5em" }}
-          id="account-id"
+          id="entity-id"
         >
           <Widget
             src={`${ownerId}/widget/ProfileLine`}
