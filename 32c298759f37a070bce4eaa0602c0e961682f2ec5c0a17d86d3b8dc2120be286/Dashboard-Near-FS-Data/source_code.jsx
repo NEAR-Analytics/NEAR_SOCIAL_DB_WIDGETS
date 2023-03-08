@@ -66,5 +66,12 @@ return (
       src="32c298759f37a070bce4eaa0602c0e961682f2ec5c0a17d86d3b8dc2120be286/widget/FS-pie-chart"
       props={chart3Props}
     />
+    <div>
+      <p></p>
+      <p class="blockquote-footer">
+        data set to refresh once every 24h,
+        <a href="https://flipsidecrypto.xyz">Flipsidecrypto</a>
+      </p>
+    </div>
   </div>
 );
