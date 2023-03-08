@@ -6,7 +6,6 @@ if (!accountId) {
 }
 
 const policy = Near.view(daoId, "get_policy");
-console.log(policy.roles);
 
 const groups = policy.roles
   .filter((role) => role.name === "council")
@@ -15,7 +14,6 @@ const groups = policy.roles
 
     return group;
   });
-console.log(groups);
 
 const check = groups.map((group) => {
   return group
