@@ -61,6 +61,7 @@ const EntityInput = styled.div`
 const SelectedEntity = styled.div`
   border-radius: 4px;
   background-color: #f2f4f7;
+  height: 5em;
 `;
 
 const entityEditor = (
