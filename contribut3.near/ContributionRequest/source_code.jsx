@@ -59,6 +59,10 @@ const AcceptButton = styled.button`
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   color: white;
   transition: background-color 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-color: #0e9f5d;
@@ -75,6 +79,10 @@ const RejectButton = styled.button`
   transition-property: background-color, color;
   transition-timing-function: ease-in-out;
   transition-duration: 0.2s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-color: #f04438;
