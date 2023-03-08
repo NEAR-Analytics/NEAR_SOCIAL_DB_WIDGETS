@@ -5,6 +5,7 @@ const need = props.need ?? null;
 State.init({
   // The entity to which to request a contribution.
   entity: props.entity ? [{ name: props.entity }] : [],
+  entityFetched: !!props.entity,
   // The description of the contribution request.
   description: props.description ?? "",
   contributionType: props.contributionType
@@ -14,9 +15,12 @@ State.init({
   types: [],
 });
 
-if (!props.entity && state.existingEntities.length === 0) {
+if (!state.entityFetched) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
-    State.update({ existingEntities: entities.map((name) => ({ name })) })
+    State.update({
+      entityFetched: true,
+      existingEntities: entities.map((name) => ({ name })),
+    })
   );
 }
 
