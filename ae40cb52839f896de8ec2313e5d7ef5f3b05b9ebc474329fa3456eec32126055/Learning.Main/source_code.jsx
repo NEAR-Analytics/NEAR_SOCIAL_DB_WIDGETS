@@ -1,15 +1,12 @@
-const srcWidget = (name) =>
+const currentPage =
+  props.currentPage ||
+  `ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/SimplyTest`;
+
+const nameToUri = (name) =>
   `ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/${name}`;
 
-State.init({
-  widgetSrc: srcWidget("SimplyTest"),
-  onclick: (src) => {
-    State.update({ widgetSrc: src });
-  },
-});
-
 const labels = ["Hello World", "SimplyTest"];
-const widgets = [srcWidget("HelloWorld"), srcWidget("SimplyTest")];
+const widgets = [nameToUri("HelloWorld"), nameToUri("SimplyTest")];
 
 if (labels.length != widgets.length) {
   throw Error("Make sure the labels and widgets have the same length");
@@ -17,11 +14,13 @@ if (labels.length != widgets.length) {
 
 return (
   <>
+    {state.widgetSrc}
     <div class="container">
       <div class="row">
         <div class="col-3">
+          <b>Start</b>
           <Widget
-            src={srcWidget("Learning.Menu")}
+            src={nameToUri("Learning.Menu")}
             props={{
               labels,
               widgets,
@@ -29,8 +28,8 @@ return (
             }}
           />
         </div>
-        <div class="col-9">
-          <Widget src={state.widgetSrc} />
+        <div class="col-9" id="widget">
+          <Widget src={currentPage} />
         </div>
       </div>
     </div>
