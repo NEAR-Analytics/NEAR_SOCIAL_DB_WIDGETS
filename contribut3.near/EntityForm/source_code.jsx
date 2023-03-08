@@ -65,7 +65,7 @@ const accountIdInput = accountId ? (
     </div>
   </div>
 ) : (
-  <div className="col-lg-12 mb-2">
+  <div>
     <Widget
       src={`${ownerId}/widget/ValidatedAccountIdInput`}
       props={{
@@ -80,7 +80,7 @@ const accountIdInput = accountId ? (
 );
 
 const nameInput = (
-  <div className="col-lg-12 mb-2">
+  <div>
     <Widget
       src={`${ownerId}/widget/NameInput`}
       props={{
@@ -93,7 +93,7 @@ const nameInput = (
 );
 
 const kindInput = (
-  <div className="col-lg-6  mb-2">
+  <div>
     <Widget
       src={`${ownerId}/widget/EntityTypeInput`}
       props={{
@@ -106,7 +106,7 @@ const kindInput = (
 );
 
 const startDateInput = (
-  <div className="col-lg-6 mb-2">
+  <div>
     <Widget
       src={`${ownerId}/widget/DateInput`}
       props={{
