@@ -21,6 +21,7 @@ State.init({
   contributionType: props.contributionType
     ? [{ name: props.contributionType }]
     : [],
+  existingEntities: [],
 });
 
 const onSubmit = () => {
@@ -34,9 +35,9 @@ const onSubmit = () => {
   Near.call(ownerId, "request_contribution", args);
 };
 
-const existingEntities = (
-  Near.view(ownerId, "get_entities", {}, "final") ?? []
-).map(([accountId]) => ({ name: accountId }));
+Near.asyncView(ownerId, "get_entities", {}, "final").then((entities) =>
+  State.update({ existingEntities: entities.map((name) => ({ name })) })
+);
 
 const entityEditor = props.entity ? (
   <div>
@@ -61,7 +62,7 @@ const entityEditor = props.entity ? (
       id="entity-id"
       labelKey="name"
       onChange={(entity) => State.update({ entity })}
-      options={existingEntities}
+      options={state.existingEntities}
       placeholder="social.near, contribut3.near"
       selected={state.entity}
       positionFixed
