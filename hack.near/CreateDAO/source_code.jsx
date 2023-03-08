@@ -35,7 +35,7 @@ const handleCreate = () => {
 return (
   <div className="mb-3">
     <button className="btn btn-outline-danger mt-3" onClick={handleCreate}>
-      Create
+      Create DAO
     </button>
   </div>
 );
