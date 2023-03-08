@@ -44,12 +44,8 @@ const Container = styled.div`
   border-botom: 1px solid #eaecf0;
 `;
 
-const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em", maxWidth: "100%" }}
-  >
+return (
+  <Container id={accountId}>
     <div className="flex-grow-1 py-3" style={{ maxWidth: "100%" }}>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
@@ -151,11 +147,5 @@ const body = (
         />
       </div>
     </div>
-  </div>
-);
-
-return (
-  <div className="border-bottom border-secondary-subtle">
-    <div className="px-3 py-0">{body}</div>
-  </div>
+  </Container>
 );
