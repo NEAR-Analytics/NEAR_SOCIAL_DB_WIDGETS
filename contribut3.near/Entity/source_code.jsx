@@ -19,7 +19,6 @@ State.init({
 });
 
 if (!state.entityFetched) {
-  console.log("here");
   Near.asyncView(
     ownerId,
     "get_entity",
