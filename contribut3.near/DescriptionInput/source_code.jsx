@@ -6,9 +6,15 @@ if (!update) {
   return "Cannot render description input widget without update function!";
 }
 
+const Label = styled.label`
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #344054;
+`;
+
 return (
   <>
-    <label htmlFor="description">{text}</label>
+    <Label htmlFor="description">{text}</Label>
     <textarea
       id="description"
       value={description}
