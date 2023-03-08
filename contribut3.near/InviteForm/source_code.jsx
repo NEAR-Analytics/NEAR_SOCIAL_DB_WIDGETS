@@ -74,44 +74,7 @@ const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const accountIdInput = (
-  <InputWrapper>
-    {accountId ? (
-      <>
-        <Label htmlFor="account-id">You're inviting:</Label>
-        <SelectedEntity id="account-id">
-          <Widget
-            src={`${ownerId}/widget/ProfileLine`}
-            props={{ accountId, imageSize: "4em" }}
-          />
-        </SelectedEntity>
-      </>
-    ) : (
-      <Widget
-        src={`${ownerId}/widget/ValidatedAccountIdInput`}
-        props={{
-          label: "Account ID of contributor:",
-          value: state.accountId,
-          update: (accountId, accountIdValid) =>
-            State.update({ accountId, accountIdValid }),
-          forbiddenIds: state.forbiddenIds,
-        }}
-      />
-    )}
-  </InputWrapper>
-);
-const descriptionInput = (
-  <div className="col-lg-12 mb-2">
-    <Widget
-      src={`${ownerId}/widget/DescriptionInput`}
-      props={{
-        description: state.description,
-        text: "Details:",
-        update: (description) => State.update({ description }),
-      }}
-    />
-  </div>
-);
+const descriptionInput = <div className="col-lg-12 mb-2"></div>;
 
 const contributionTypeInput = (
   <div className="col-lg-12 mb-2">
@@ -184,12 +147,44 @@ const entityIdInput = (
 
 const body = (
   <div className="row">
-    {accountIdInput}
+    <InputWrapper>
+      {accountId ? (
+        <>
+          <Label htmlFor="account-id">You're inviting:</Label>
+          <SelectedEntity id="account-id">
+            <Widget
+              src={`${ownerId}/widget/ProfileLine`}
+              props={{ accountId, imageSize: "4em" }}
+            />
+          </SelectedEntity>
+        </>
+      ) : (
+        <Widget
+          src={`${ownerId}/widget/ValidatedAccountIdInput`}
+          props={{
+            label: "Account ID of contributor:",
+            value: state.accountId,
+            update: (accountId, accountIdValid) =>
+              State.update({ accountId, accountIdValid }),
+            forbiddenIds: state.forbiddenIds,
+          }}
+        />
+      )}
+    </InputWrapper>
     {entityIdInput}
     {contributionTypeInput}
     {startDateInput}
     {permissionsInput}
-    {descriptionInput}
+    <InputWrapper>
+      <Widget
+        src={`${ownerId}/widget/DescriptionInput`}
+        props={{
+          description: state.description,
+          text: "Details:",
+          update: (description) => State.update({ description }),
+        }}
+      />
+    </InputWrapper>
   </div>
 );
 
