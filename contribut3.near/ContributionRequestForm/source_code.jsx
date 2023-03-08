@@ -56,9 +56,7 @@ const Label = styled.label`
 
 const entityEditor = props.entity ? (
   <div>
-    <label htmlFor="account-id" className="text-muted fw-semibold">
-      Contribute to:
-    </label>
+    <Label htmlFor="account-id">Contribute to:</Label>
     <div
       className="rounded-3 bg-light"
       style={{ height: "5em" }}
