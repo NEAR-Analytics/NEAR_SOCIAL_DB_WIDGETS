@@ -23,6 +23,7 @@ const check = groups.map((group) => {
 });
 
 console.log(group);
+console.log(check);
 
 State.init({
   receiver_id: accountId,
