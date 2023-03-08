@@ -135,13 +135,17 @@ const body = (
       )}
     </EntityInput>
     <InputWrapper>
-      <Widget
-        src={`${ownerId}/widget/ContributionTypeInput`}
-        props={{
-          contributionType: state.contributionType,
-          update: (contributionType) => State.update({ contributionType }),
-        }}
-      />
+      {state.needFetched ? (
+        <b>{}</b>
+      ) : (
+        <Widget
+          src={`${ownerId}/widget/ContributionTypeInput`}
+          props={{
+            contributionType: state.contributionType,
+            update: (contributionType) => State.update({ contributionType }),
+          }}
+        />
+      )}
     </InputWrapper>
     <InputWrapper>
       <Widget
