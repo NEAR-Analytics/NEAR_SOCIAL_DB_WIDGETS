@@ -3,23 +3,24 @@ const accountId = props.accountId;
 const contributionType = props.contributionType
   ? [{ name: props.contributionType }]
   : [];
-const allContributionTypes = (
-  Near.view(ownerId, "get_contribution_types", {}, "final", true) ?? []
-).map((name) => ({ name }));
-
-const convertType = (contributionType) => {
-  if (allContributionTypes.some(({ name }) => name === contributionType.name)) {
-    return contributionType.name;
-  }
-
-  return { Other: contributionType.name };
-};
 
 State.init({
   contributionType: [],
   entityId: accountId ? [{ name: accountId }] : [],
   description: "",
+  options: [],
+  fetched: false,
 });
+
+if (!state.fetched) {
+  Near.asyncView(ownerId, "get_contribution_types", {}, "final", false).then(
+    (types) =>
+      State.update({
+        fetched: true,
+        options: types.map((name) => ({ name })),
+      })
+  );
+}
 
 const Label = styled.label`
   font-weight: 600;
@@ -86,7 +87,6 @@ const contributionTypeInput = (
       props={{
         contributionType: state.contributionType,
         update: (contributionType) => State.update({ contributionType }),
-        allContributionTypes,
       }}
     />
   </InputWrapper>
@@ -104,6 +104,14 @@ const descriptionInput = (
     />
   </InputWrapper>
 );
+
+const convertType = (contributionType) => {
+  if (state.options.some(({ name }) => name === contributionType.name)) {
+    return contributionType.name;
+  }
+
+  return { Other: contributionType.name };
+};
 
 const onSubmit = () => {
   if (state.contributionType.length !== 1 || state.description.length === 0) {
