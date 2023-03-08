@@ -132,11 +132,17 @@ const Page = styled.div`
 
 const Form = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 0.75em;
   padding: 1em;
   border-radius: 4px;
   background-color: #f9fafb;
+`;
+
+const Controls = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 return (
@@ -147,7 +153,7 @@ return (
       {contributionTypeInput}
       {descriptionInput}
     </Form>
-    <div className="d-flex flex-row justify-content-between">
+    <Controls>
       <a
         className="btn btn-outline-secondary"
         href={`/#/${ownerId}/widget/Index?tab=home`}
@@ -164,6 +170,6 @@ return (
       >
         Create request
       </a>
-    </div>
+    </Controls>
   </Page>
 );
