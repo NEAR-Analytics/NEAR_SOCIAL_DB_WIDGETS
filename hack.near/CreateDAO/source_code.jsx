@@ -1,23 +1,25 @@
+const defaultConfig = {
+  name: "hacky",
+  purpose: "build",
+  metadata: "",
+};
+
+const defaultPolicy = {
+  "infinity.near": "",
+};
+
 State.init({
-  args: "",
+  args: {
+    config: defaultConfig,
+    policy: defaultPolicy,
+  },
 });
 
+const dao_args = Buffer.from(JSON.stringify(state.args), "utf-8").toString(
+  "base64"
+);
+
 const handleCreate = () => {
-  const args = {
-    config: {
-      name: "hacky",
-      purpose: "build",
-      metadata: "",
-    },
-    policy: "infinity.near",
-  };
-
-  State.update({
-    policy: args.policy,
-  });
-
-  const dao_args = Buffer.from(State.args, "utf-8").toString("base64");
-
   Near.call([
     {
       contractName: "sputnik-dao.near",
@@ -29,16 +31,8 @@ const handleCreate = () => {
   ]);
 };
 
-const onChangePolicy = (policy) => {
-  args.policy = policy;
-};
-
 return (
   <div className="mb-3">
-    <div className="mb-3">
-      Council:
-      <input type="text" onChange={(e) => onChangePolicy(e.target.value)} />
-    </div>
     <button className="btn btn-outline-danger mt-3" onClick={handleCreate}>
       Create
     </button>
