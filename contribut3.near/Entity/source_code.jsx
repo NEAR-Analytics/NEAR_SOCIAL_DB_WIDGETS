@@ -34,6 +34,16 @@ Near.asyncView(
   false
 ).then((founders) => State.update({ founders }));
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-height: 8em;
+  max-width: 100%;
+  padding: 0 0.75em;
+  border-botom: 1px solid #eaecf0;
+`;
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
