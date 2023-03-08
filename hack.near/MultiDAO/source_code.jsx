@@ -1,5 +1,5 @@
 const accountId = props.accountId ?? context.accountId;
-const daoId = props.daoId ?? "onboarddao.sputnik-dao.near";
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
@@ -8,6 +8,11 @@ if (!accountId) {
 return (
   <div>
     <div className="mb-3">
+      <h2>DAO</h2>
+      <Widget src="hack.near/widget/DAO" props={{ daoId }} />
+    </div>
+    <div className="mb-3">
+      <h2>Proposals</h2>
       <h3>Membership</h3>
       <Widget
         src="hack.near/widget/AddMemberToRole"
