@@ -21,44 +21,58 @@ State.init({
   description: "",
 });
 
-const entityIdInput = props.accountId ? (
-  <div>
-    <label htmlFor="account-id" className="text-muted fw-semibold">
-      Request for:
-    </label>
-    <div
-      className="rounded-3 bg-light"
-      style={{ height: "5em" }}
-      id="account-id"
-    >
+const Label = styled.label`
+  font-weight: 600;
+  color: #344054;
+`;
+
+const EntityInput = styled.div`
+  margin-bottom: 0.5em;
+`;
+
+const SelectedEntity = styled.div`
+  border-radius: 4px;
+  background-color: #f2f4f7;
+  height: 5em;
+`;
+
+const entityEditor = (
+  <EntityInput>
+    <Label htmlFor="enity-id">Request for:</Label>
+    {props.entity ? (
+      <SelectedEntity id="entity-id">
+        <Widget
+          src={`${ownerId}/widget/ProfileLine`}
+          props={{
+            accountId: props.entity,
+            imageSize: "4em",
+            isEntity: true,
+          }}
+        />
+      </SelectedEntity>
+    ) : (
       <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId, imageSize: "4em", isEntity: true }}
+        src={`${ownerId}/widget/AdminEntityAccountIdInput`}
+        props={{
+          update: (entityId) => {
+            State.update({ entityId });
+            Near.asyncView(
+              ownerId,
+              "get_entity_invites",
+              { account_id: entityId[0].name },
+              "final"
+            ).then((invites) =>
+              State.update({
+                forbiddenIds: new Set(Object.keys(invites)),
+              })
+            );
+          },
+          accountId: context.accountId,
+          selected: state.entityId,
+        }}
       />
-    </div>
-  </div>
-) : (
-  <Widget
-    src={`${ownerId}/widget/AdminEntityAccountIdInput`}
-    props={{
-      label: "Request for:",
-      update: (entityId) => {
-        State.update({ entityId });
-        Near.asyncView(
-          ownerId,
-          "get_entity_invites",
-          { account_id: entityId[0].name },
-          "final"
-        ).then((invites) =>
-          State.update({
-            forbiddenIds: new Set(Object.keys(invites)),
-          })
-        );
-      },
-      accountId: context.accountId,
-      selected: state.entityId,
-    }}
-  />
+    )}
+  </EntityInput>
 );
 
 const contributionTypeInput = (
@@ -106,7 +120,7 @@ return (
     <h1 className="fs-2 mb-3 pb-3">Create new contribution request</h1>
     <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
-        {entityIdInput}
+        {entityEditor}
         {contributionTypeInput}
         {descriptionInput}
       </div>
