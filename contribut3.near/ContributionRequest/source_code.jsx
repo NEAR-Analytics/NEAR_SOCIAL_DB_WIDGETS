@@ -67,6 +67,7 @@ const AcceptButton = styled.button`
 
 const RejectButton = styled.button`
   background-color: white;
+  border: 1px solid #d0d5dd;
   border-radius: 4px;
   padding: 0.8em 1em;
   color: #f04438;
