@@ -26,8 +26,7 @@ const handleCreate = () => {
       methodName: "create",
       args: {
         name: "hacky",
-        config: state.args.config,
-        policy: state.args.policy,
+        dao_args,
       },
       amount: "7000000000000000000000000",
       gas: "200000000000000",
