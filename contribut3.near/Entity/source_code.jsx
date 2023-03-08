@@ -41,7 +41,7 @@ const Container = styled.div`
   min-height: 8em;
   max-width: 100%;
   padding: 0 0.75em;
-  border-botom: 1px solid #eaecf0;
+  border-bottom: 1px solid #eaecf0;
 `;
 
 return (
