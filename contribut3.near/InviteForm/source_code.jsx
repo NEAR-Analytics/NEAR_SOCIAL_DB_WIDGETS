@@ -74,8 +74,6 @@ const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const descriptionInput = <div className="col-lg-12 mb-2"></div>;
-
 const contributionTypeInput = (
   <div className="col-lg-12 mb-2">
     <Widget
