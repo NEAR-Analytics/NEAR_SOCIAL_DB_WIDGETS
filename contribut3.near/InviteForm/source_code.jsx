@@ -79,26 +79,6 @@ const startDateInput = <div className="col-lg-6 mb-2"></div>;
 const permissionsInput = <div className="col-lg-6 mb-2"></div>;
 
 const entityIdInput = (
-  <Widget
-    src={`${ownerId}/widget/AdminEntityAccountIdInput`}
-    props={{
-      update: (entityId) => {
-        State.update({ entityId });
-        Near.asyncView(
-          ownerId,
-          "get_entity_invites",
-          { account_id: entityId[0].name },
-          "final"
-        ).then((invites) =>
-          State.update({
-            forbiddenIds: new Set(Object.keys(invites)),
-          })
-        );
-      },
-      accountId: context.accountId,
-      selected: state.entityId,
-    }}
-  />
 );
 
 const body = (
@@ -127,7 +107,27 @@ const body = (
         />
       )}
     </InputWrapper>
-    {entityIdInput}
+    <InputWrapper>
+      <Widget
+        src={`${ownerId}/widget/AdminEntityAccountIdInput`}
+        props={{
+          update: (entityId) => {
+            State.update({ entityId });
+            Near.asyncView(
+              ownerId,
+              "get_entity_invites",
+              { account_id: entityId[0].name },
+              "final"
+            ).then((invites) =>
+              State.update({
+                forbiddenIds: new Set(Object.keys(invites)),
+              })
+            );
+          },
+          accountId: context.accountId,
+          selected: state.entityId,
+        }}
+      /></InputWrapper>
     <InputWrapper>
       <Widget
         src={`${ownerId}/widget/ContributionTypeInput`}
