@@ -230,7 +230,6 @@ const sharedButtonStyles = `
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  margin-top: 12px;
   margin-bottom: 12px;
   height: 32px;
   border-radius: 6px;
@@ -269,17 +268,28 @@ const Button = styled.button`
 
 const ButtonLink = styled.a`
   ${sharedButtonStyles}
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  color: ${(p) => {
+    if (p.primary) return "#fff";
+    else if (p.danger) return "#fff";
+    else return "#11181C";
+  }} !important;
+  background: ${(p) => {
+    if (p.primary) return "#0091FF";
+    else if (p.danger) return "#dc3545";
+    else return "#FBFCFD";
+  }};
   border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
 
   &:hover,
   &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
-  }
+    background: ${(p) => {
+      if (p.primary) return "#0484e5";
+      else if (p.danger) return "#b22b38";
+      else return "#ECEDEE";
+    }}
 `;
 
-const indexerView = (accountId, indexerName, idx) => {
+const indexerView = (accountId, indexerName, idx, view) => {
   const isSelected =
     (selected_accountId === undefined &&
       selected_indexerName === undefined &&
@@ -288,7 +298,17 @@ const indexerView = (accountId, indexerName, idx) => {
 
   const editUrl = `https://alpha.near.org/#/roshaan.near/widget/queryapi__QueryApiDashboard?selectedIndexerPath=${accountId}/${indexerName}&view=editor-window`;
   const statusUrl = `https://alpha.near.org/#/roshaan.near/widget/queryapi__QueryApiDashboard?selectedIndexerPath=${accountId}/${indexerName}&view=indexer-status`;
-
+  let removeIndexer = (name) => {
+    const gas = 200000000000000;
+    Near.call(
+      registry_contract_id,
+      "remove_indexer_function",
+      {
+        function_name: name,
+      },
+      gas
+    );
+  };
   return (
     <Card selected={isSelected}>
       <CardBody>
@@ -336,17 +356,22 @@ const indexerView = (accountId, indexerName, idx) => {
         >
           Edit Indexer
         </ButtonLink>
+        {view === "user" && (
+          <ButtonLink danger onClick={() => removeIndexer(indexerName)}>
+            Delete Indexer
+          </ButtonLink>
+        )}
       </CardFooter>
     </Card>
   );
 };
 
-const renderIndexers = (indexers) => {
+const renderIndexers = (indexers, view) => {
   return (
     <>
       {indexers.map((indexer, i) => (
         <CardWrapper key={i}>
-          {indexerView(indexer.accountId, indexer.indexerName, i)}
+          {indexerView(indexer.accountId, indexer.indexerName, i, view)}
         </CardWrapper>
       ))}
       {indexers.length === 0 && (
@@ -430,7 +455,7 @@ return (
               <span>({state.my_indexers.length})</span>
             </H2>
           )}
-          {renderIndexers(state.my_indexers)}
+          {renderIndexers(state.my_indexers, "user")}
         </div>
       </Section>
 
@@ -502,7 +527,7 @@ return (
         {state.activeTab === "public-indexers" && (
           <div>
             {state.all_indexers && (
-              <div>{renderIndexers(state.all_indexers)}</div>
+              <div>{renderIndexers(state.all_indexers, "public")}</div>
             )}
           </div>
         )}
