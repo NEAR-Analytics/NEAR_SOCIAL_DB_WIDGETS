@@ -70,6 +70,11 @@ scene("game", () => {
 		play("wooosh")
 	})
 
+	onTouchStart(() => {
+		bean.jump(JUMP_FORCE)
+		play("wooosh")
+	})
+
 	function spawnPipe() {
 		const h1 = rand(PIPE_MIN, height() - PIPE_MIN - PIPE_OPEN)
 		const h2 = height() - h1 - PIPE_OPEN
@@ -162,6 +167,7 @@ scene("lose", (score) => {
 
 	onKeyPress("space", () => go("game"))
 	onClick(() => go("game"))
+	onTouchStart(() => go("game"))
 
 	window.top.postMessage({ score: score }, "*")
 })
