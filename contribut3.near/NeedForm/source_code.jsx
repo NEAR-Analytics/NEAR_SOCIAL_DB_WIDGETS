@@ -150,12 +150,13 @@ const CloseButton = styled.a`
   padding: 0.7em;
   border-radius: 4px;
   border: 0;
-  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   color: #344054;
+  transition: box-shadow 0.2s ease-in-out;
 
   &:hover {
     text-decoration: none;
     color: unset;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   }
 `;
 
