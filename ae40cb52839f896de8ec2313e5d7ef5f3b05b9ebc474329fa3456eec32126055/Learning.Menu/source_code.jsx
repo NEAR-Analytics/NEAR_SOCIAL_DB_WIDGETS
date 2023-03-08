@@ -1,7 +1,5 @@
 const { labels, widgets, onclick } = props;
 
-console.log("W", onclick);
-
 let elems = [];
 for (const i = 0; i < labels.length; i++) {
   const wsrc = widgets[i];
@@ -11,9 +9,8 @@ for (const i = 0; i < labels.length; i++) {
       <a
         href="#"
         onClick={(e) => {
-          e.preventDefault();
           console.log(`clicked ${wsrc}`);
-          onclick(wsrc);
+          onclick(wrsc);
         }}
       >
         <li class="list-group-item"> {labels[i]} </li>{" "}
