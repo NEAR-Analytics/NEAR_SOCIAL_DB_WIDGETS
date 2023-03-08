@@ -20,7 +20,7 @@ return (
           <a
             key={i}
             className="text-decoration-none"
-            href={`#hack.near/widget/GroupMembers?groupId=${groupId}&daoId=${daoId}`}
+            href={`#/hack.near/widget/GroupMembers?groupId=${groupId}&daoId=${daoId}`}
           >
             <h4>{group}</h4>
           </a>
