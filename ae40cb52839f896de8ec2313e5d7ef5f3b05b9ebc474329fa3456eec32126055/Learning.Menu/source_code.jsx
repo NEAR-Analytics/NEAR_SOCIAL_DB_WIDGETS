@@ -1,5 +1,7 @@
 const { labels, widgets, onclick } = props;
 
+console.log("W", onclick);
+
 let elems = [];
 for (const i = 0; i < labels.length; i++) {
   const wsrc = widgets[i];
