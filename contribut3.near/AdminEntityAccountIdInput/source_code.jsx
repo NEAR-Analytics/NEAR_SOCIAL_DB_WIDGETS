@@ -10,13 +10,18 @@ const options = (
     "get_admin_entities",
     { account_id: accountId },
     "final",
-    true
+    false
   ) ?? []
 ).map((name) => ({ name }));
 
+const Label = styled.label`
+  font-weight: 600;
+  color: #344054;
+`;
+
 return (
   <div className="col-lg-12 mb-2">
-    <label htmlFor="entity-id-input">{label}</label>
+    <Label htmlFor="entity-id-input">{label}</Label>
     <Typeahead
       id="entity-id-input"
       labelKey="name"
