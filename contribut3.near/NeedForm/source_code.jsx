@@ -152,6 +152,11 @@ const CloseButton = styled.a`
   border: 0;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   color: #344054;
+
+  &:hover {
+    text-decoration: none;
+    color: unset;
+  }
 `;
 
 const ConfirmButton = styled.button`
