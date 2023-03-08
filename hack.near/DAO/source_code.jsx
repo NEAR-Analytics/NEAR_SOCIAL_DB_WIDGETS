@@ -8,15 +8,15 @@ State.init({
   group_id: groupId,
 });
 
-const onChangeDAO = (dao_id) => {
+const onChangeDAO = (daoId) => {
   State.update({
-    dao_id,
+    daoId,
   });
 };
 
-const onChangeGroup = (group_id) => {
+const onChangeGroup = (groupId) => {
   State.update({
-    group_id,
+    groupId,
   });
 };
 
