@@ -165,12 +165,12 @@ const ConfirmButton = styled.button`
   border-radius: 4px;
   border: 0;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-  background-color: ${({ valid }) => (valid ? "#7F56D9" : "#344054")};
+  background-color: ${({ valid }) => (valid ? "#7f56d9" : "#344054")};
   color: white;
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    ${({ valid }) => (valid ? "background-color: #0e9f5d;" : "")}
+    ${({ valid }) => (valid ? "background-color: #7f56d9;" : "")}
   }
 `;
 
