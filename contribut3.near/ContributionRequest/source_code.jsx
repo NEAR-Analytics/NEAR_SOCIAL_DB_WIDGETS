@@ -43,24 +43,22 @@ if (!state.contributionRequestFetched) {
   );
 }
 
-if (!state.needFetched && (state.contributionRequestFetched && !!state.contributionRequest.need)) {
+if (
+  !state.needFetched &&
+  state.contributionRequestFetched &&
+  !!state.contributionRequest.need
+) {
   Near.asyncView(
     ownerId,
     "get_contribution_need",
     { account_id: entityId, cid: contributionRequest.need },
     "final",
     false
-  ).then((need) => State.update({ need, needFetched: true }))
+  ).then((need) => State.update({ need, needFetched: true }));
 }
 
-const need = contributionRequest.need
-  ? 
-  : null;
-
-if (!contributionRequest) {
-  return props.isPreview
-    ? "You must provide contribution request object in preview mode!"
-    : "Loading...";
+if (!state.contributionRequest) {
+  return "Loading...";
 }
 
 const Controls = styled.div`
@@ -115,7 +113,7 @@ const IconContainer = styled.i`
 `;
 
 const controls = (
-  <Controls isAuthorized={isAuthorized}>
+  <Controls isAuthorized={state.isAuthorized}>
     <AcceptButton
       onClick={() =>
         Near.call(ownerId, "approve_contribution", {
@@ -206,7 +204,7 @@ return (
           update: props.update,
           additionalText: (
             <b>
-              {contributionRequest.need
+              {state.contributionRequest.need
                 ? "sent a proposal to your request"
                 : "wants to contribute to your project"}
             </b>
@@ -223,9 +221,10 @@ return (
                   imageSize: contributionRequest.need ? "1.5em" : "2em",
                 }}
               />
-              {contributionRequest.need ? (
+              {state.contributionRequest.need ? (
                 <b>
-                  Looking for {need.contribution_type}: {need.description}
+                  Looking for {state.need.contribution_type}:{" "}
+                  {state.need.description}
                 </b>
               ) : (
                 <></>
@@ -234,7 +233,7 @@ return (
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
                   props={{
-                    description: contributionRequest.description,
+                    description: state.contributionRequest.description,
                   }}
                 />
               </DescriptionWrapper>
