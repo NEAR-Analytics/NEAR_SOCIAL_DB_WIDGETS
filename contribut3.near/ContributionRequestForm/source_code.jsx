@@ -123,11 +123,6 @@ const contributionTypeInput = (
 );
 
 const body = (
-  <div>
-    {entityEditor}
-    {contributionTypeInput}
-    {descriptionDiv}
-  </div>
 );
 
 return (
@@ -171,7 +166,13 @@ return (
       onConfirm: onSubmit,
       hidden: props.hidden,
       onClose: props.onClose,
-      body,
+      body:
+        <div>
+          {entityEditor}
+          {contributionTypeInput}
+          {descriptionDiv}
+        </div>
+      ,
       id,
     }}
   />
