@@ -19,11 +19,10 @@ const chart2Props = {
 
 const chart3Props = {
   query:
-    "select substr(date_trunc('month', block_timestamp),0,10) as day_date, " +
-    "count(1) from near.social.fact_decoded_actions group by 1 order by 1",
-  title: "Monthly fact_decoded_actions",
-  chartWidth: 300,
-  chartHeight: 200,
+    "select top 5 case when node_data:follow is not null then 'follow' when node_data:post is not null then 'post' when node_data:main is not null then 'main'  when node_data:like is not null then 'like' when node_data:graph is not null then 'graph' else NODE  end as task ,count(DISTINCT tx_hash) as task_count from near.social.fact_decoded_actions group by 1 order by task_count desc",
+  title: "5 popular actions of users in near.social",
+  chartWidth: 400,
+  chartHeight: 400,
 };
 
 const chart4Props = {
@@ -60,6 +59,12 @@ return (
     <Widget
       src="32c298759f37a070bce4eaa0602c0e961682f2ec5c0a17d86d3b8dc2120be286/widget/FS-bar-chart"
       props={chart2Props}
+    />
+    <h1></h1>
+    <h4>5 popular actions of users in near.social</h4>
+    <Widget
+      src="32c298759f37a070bce4eaa0602c0e961682f2ec5c0a17d86d3b8dc2120be286/widget/FS-pie-chart"
+      props={chart3Props}
     />
   </div>
 );
