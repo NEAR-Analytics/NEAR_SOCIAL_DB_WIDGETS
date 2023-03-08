@@ -51,7 +51,7 @@ if (
   Near.asyncView(
     ownerId,
     "get_contribution_need",
-    { account_id: entityId, cid: contributionRequest.need },
+    { account_id: entityId, cid: state.contributionRequest.need },
     "final",
     false
   ).then((need) => State.update({ need, needFetched: true }));
@@ -218,7 +218,7 @@ return (
                   accountId: entityId,
                   update: props.update,
                   isEntity: true,
-                  imageSize: contributionRequest.need ? "1.5em" : "2em",
+                  imageSize: state.contributionRequest.need ? "1.5em" : "2em",
                 }}
               />
               {state.contributionRequest.need ? (
