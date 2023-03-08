@@ -119,6 +119,11 @@ const onSubmit = () => {
   Near.call(ownerId, "post_contribution_need", args);
 };
 
+const Form = styled.div`
+  padding: 0.75em;
+  max-width: 100%;
+`;
+
 return (
   <div className="px-3" style={{ maxWidth: "45em" }}>
     <h1 className="fs-2 mb-3 pb-3">Create new contribution request</h1>
