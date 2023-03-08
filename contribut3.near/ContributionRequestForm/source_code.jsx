@@ -107,6 +107,8 @@ const confirmText = (
   </>
 );
 
+console.log(state.contributionType);
+
 const body = (
   <>
     <EntityInput>
