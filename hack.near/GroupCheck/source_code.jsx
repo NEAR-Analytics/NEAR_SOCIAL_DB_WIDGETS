@@ -17,10 +17,12 @@ const groups = policy.roles
   });
 
 const check = groups.map((group) => {
-  return !group
+  return group
     ? false
     : group.filter((address) => address === accountId).length > 0;
 });
+
+console.log(group);
 
 State.init({
   receiver_id: accountId,
