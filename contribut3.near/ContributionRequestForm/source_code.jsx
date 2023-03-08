@@ -138,11 +138,14 @@ const body = (
     </EntityInput>
     <InputWrapper>
       {state.needFetched ? (
-        <b>
-          {typeof state.contributionType[0].name === "string"
-            ? state.contributionType[0].name
-            : state.contributionType[0].name.Other}
-        </b>
+        <>
+          <Label htmlFor="contribution-type">Contribution type:</Label>
+          <b>
+            {typeof state.contributionType[0].name === "string"
+              ? state.contributionType[0].name
+              : state.contributionType[0].name.Other}
+          </b>
+        </>
       ) : (
         <Widget
           src={`${ownerId}/widget/ContributionTypeInput`}
