@@ -57,6 +57,11 @@ const ActionColumn = styled.div`
   align-items: center;
 `;
 
+const DescriptionWrapper = styled.div`
+  max-width: 100%;
+  margin-top: 0.5em;
+`;
+
 return (
   <Container id={accountId}>
     <Wrapper>
@@ -149,14 +154,14 @@ return (
           ),
         }}
       />
-      <div style={{ maxWidth: "100%", marginTop: "0.5em" }}>
+      <DescriptionWrapper>
         <Widget
           src={`${ownerId}/widget/DescriptionArea`}
           props={{
             description: state.entity.description || profile.description,
           }}
         />
-      </div>
+      </DescriptionWrapper>
     </Wrapper>
   </Container>
 );
