@@ -218,7 +218,7 @@ const ConfirmButton = styled.button`
 
 return (
   <Page>
-    <h1>Create new contribution request</h1>
+    <h1>{accountId ? "Create new" : "Edit"} project</h1>
     <Form>
       {accountIdInput}
       {nameInput}
@@ -238,7 +238,7 @@ return (
         }
         onClick={onSubmit}
       >
-        Create request
+        {accountId ? "Create" : "Edit"} project
       </ConfirmButton>
     </Controls>
   </Page>
