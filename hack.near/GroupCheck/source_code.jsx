@@ -6,6 +6,7 @@ if (!accountId) {
 }
 
 const policy = Near.view(daoId, "get_policy");
+console.log(accountId);
 
 const groups = policy.roles
   .filter((role) => role.name === "council")
@@ -17,6 +18,7 @@ const groups = policy.roles
 console.log(groups);
 
 const check = groups.map((group) => {
+  console.log(group);
   return group
     ? false
     : group.filter((address) => address === accountId).length > 0;
@@ -24,14 +26,11 @@ const check = groups.map((group) => {
 console.log(check);
 
 State.init({
-  receiver_id: accountId,
-  amount: state.amount,
+  receiver_id: "",
+  amount: "",
 });
 
 const handleProposal = () => {
-  if (!(state.receiver_id && state.amount)) {
-    return;
-  }
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
