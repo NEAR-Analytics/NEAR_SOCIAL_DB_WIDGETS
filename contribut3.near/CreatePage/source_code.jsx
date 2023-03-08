@@ -33,7 +33,7 @@ const content = {
     />
   ),
   proposal: (
-    <WidgetContainer
+    <Widget
       src={`${ownerId}/widget/ContributionRequestForm`}
       props={{
         search: state.search,
@@ -41,6 +41,17 @@ const content = {
         kind: props.kind,
         accountId: props.accountId,
         cid: props.cid,
+      }}
+    />
+  ),
+  invite: (
+    <Widget
+      src={`${ownerId}/widget/InviteForm`}
+      props={{
+        search: state.search,
+        update: props.update,
+        kind: props.kind,
+        accountId: props.accountId,
       }}
     />
   ),
