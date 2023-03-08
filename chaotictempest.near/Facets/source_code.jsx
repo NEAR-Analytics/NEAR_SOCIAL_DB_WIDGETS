@@ -1,18 +1,36 @@
-State.init({
-  selected: props.selected ?? {},
-});
-
+// List of facets to show
 const facets = props.facets ?? ["facet0", "facet1", "facet2", "facet3"];
-const multiSelect = props.multiSelect ?? true;
-const onFacetClick = (i, facet) => {
+// Whether to allow multiselecting or not.
+const multiSelect = props.multiSelect ?? false;
+// If no facet is selected, this will be the facet to be selected automatically.
+const defaultFacet = props.defaultFacet;
+// Options to modify the interactions behind the default facet.
+const defaultFacetOptions = props.defaultFacetOptions ?? {
+  // Default facet will be disabled when selecting on other facets.
+  disableOnSelectOthers: true,
+  // Selecting default facet will disable other facets.
+  disableOthersOnSelect: true,
+};
+
+const onFacetClick = (facet) => {
   let selected = {};
   if (multiSelect) {
     selected = { ...state.selected };
   }
-  if (i in selected) {
-    delete selected[i];
+  if (facet in selected) {
+    delete selected[facet];
   } else {
-    selected[i] = facet;
+    selected[facet] = true;
+  }
+
+  if (defaultFacet) {
+    if (facet !== defaultFacet && defaultFacetOptions.disableOnSelectOthers) {
+      delete selected[defaultFacet];
+    }
+    if (facet === defaultFacet && defaultFacetOptions.disableOthersOnSelect) {
+      selected = {};
+    }
+    if (Object.keys(selected).length === 0) selected[defaultFacet] = true;
   }
 
   if (props.debug) {
@@ -30,24 +48,37 @@ const onFacetClick = (i, facet) => {
   if (multiSelect && props.onMultiFacetClick) {
     props.onMultiFacetClick({
       recentFacetClick: facet,
-      selectedFacets: Object.values(selected),
+      selectedFacets: Object.keys(selected),
     });
   }
 };
+
+const initState = () => {
+  const selected = {};
+  if (defaultFacet && facets.includes(defaultFacet)) {
+    selected[defaultFacet] = true;
+  }
+
+  return {
+    selected,
+  };
+};
+
+State.init(initState());
 
 const FacetContainer =
   props.facetContainerStyle ??
   styled.ul`
     display: flex;
     list-style-type: none;
-`;
+  `;
 
 const FacetItem =
   props.facetItemStyle ??
   styled.li`
     padding: 0 14px 0 14px;
-    border: 1px solid #D0D5DD !important;
-    background: #FFFFFF;
+    border: 1px solid #d0d5dd !important;
+    background: #ffffff;
     border-radius: 100px;
 
     height: 32px;
@@ -63,21 +94,21 @@ const FacetItem =
     min-width: 32px;
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
-        cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.04);
+      cursor: pointer;
     }
 
     &.selected {
-        background-color: rgba(0, 0, 0, 0.08);
+      background-color: rgba(0, 0, 0, 0.08);
     }
-`;
+  `;
 
 return (
   <FacetContainer>
-    {facets?.map((facet, index) => (
+    {facets?.map((facet) => (
       <FacetItem
-        className={index in (state.selected ?? {}) ? "selected" : ""}
-        onClick={() => onFacetClick(index, facet)}
+        className={facet in (state.selected ?? {}) ? "selected" : ""}
+        onClick={() => onFacetClick(facet)}
       >
         {facet}
       </FacetItem>
