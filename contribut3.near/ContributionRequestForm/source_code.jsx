@@ -51,7 +51,7 @@ if (!state.needFetched && !!state.need) {
     false
   ).then((need) =>
     State.update({
-      contributionType: convertType({ name: need.conibtribution_type }),
+      contributionType: [{ name: need.conibtribution_type }],
       needFetched: true,
     })
   );
@@ -139,9 +139,9 @@ const body = (
     <InputWrapper>
       {state.needFetched ? (
         <b>
-          {typeof state.contributionType.name === "string"
-            ? state.contributionType.name
-            : state.contributionType.name.Other}
+          {typeof state.contributionType[0].name === "string"
+            ? state.contributionType[0].name
+            : state.contributionType[0].name.Other}
         </b>
       ) : (
         <Widget
