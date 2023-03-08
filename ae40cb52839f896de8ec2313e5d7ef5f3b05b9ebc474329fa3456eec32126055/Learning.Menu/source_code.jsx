@@ -4,7 +4,7 @@ let elems = [];
 for (const i = 0; i < labels.length; i++) {
   elems.push(
     <>
-      <a href={`https://near.social/#/${mainApp}?currentPage=${widgets[i]}`}>
+      <a href={`https://near.social/#/${mainApp}?currentWidget=${widgets[i]}`}>
         <li
           class="list-group-item"
           onClick={() => {
