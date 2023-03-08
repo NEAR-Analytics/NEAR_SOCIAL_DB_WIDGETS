@@ -134,33 +134,6 @@ const onSubmit = () => {
   Near.call(ownerId, "add_entity", args);
 };
 
-return (
-  <div className="px-3" style={{ maxWidth: "45em" }}>
-    <h1 className="fs-2 mb-3 pb-3">
-      {accountId ? "Create new" : "Edit"} project
-    </h1>
-    <div className="bg-light mb-3 p-4 rounded-2">
-      <div className="row"></div>
-    </div>
-    <div className="d-flex flex-row justify-content-between">
-      <a
-        className="btn btn-outline-secondary"
-        href={`/#/${ownerId}/widget/Index?tab=home`}
-        onClick={() => props.update({ tab: "home" })}
-      >
-        Cancel
-      </a>
-      <a
-        className={`btn ${!state.accountIdValid ? "btn-secondary" : "btn-primary"
-          }`}
-        onClick={onSubmit}
-      >
-        Create project
-      </a>
-    </div>
-  </div>
-);
-
 const Page = styled.div`
   padding: 0 0.75em;
   max-width: 100%;
@@ -234,7 +207,9 @@ return (
       </CloseButton>
       <ConfirmButton
         valid={
-          state.contributionType.length === 1 && state.description.length > 0
+          state.name.length > 1 &&
+          state.accountIdValid &&
+          state.kind.length === 1
         }
         onClick={onSubmit}
       >
