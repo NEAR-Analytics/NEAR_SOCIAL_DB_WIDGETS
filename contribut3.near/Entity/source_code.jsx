@@ -22,7 +22,7 @@ if (!state.entityFetched) {
     { account_id: accountId },
     "final",
     false
-  ).then((entity) => State.update({ entity }));
+  ).then((entity) => State.update({ entity, entityFetched: true }));
 }
 
 const profile = Social.getr(`${accountId}/profile`, "final", {
