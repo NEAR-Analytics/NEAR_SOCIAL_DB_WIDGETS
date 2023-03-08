@@ -70,6 +70,7 @@ const RejectButton = styled.button`
   border: 1px solid #d0d5dd;
   border-radius: 4px;
   padding: 0.5em 1em;
+  margin-top: 0.5em;
   color: #f04438;
   transition: background-color color 0.2s ease-in-out;
 
