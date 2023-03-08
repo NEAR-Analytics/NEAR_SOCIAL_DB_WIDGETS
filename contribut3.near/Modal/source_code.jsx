@@ -14,6 +14,8 @@ const Modal = styled.div`
 const ModalBackgrop = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0.4;
+  width: 100%;
+  height: 100%;
 `;
 
 return (
