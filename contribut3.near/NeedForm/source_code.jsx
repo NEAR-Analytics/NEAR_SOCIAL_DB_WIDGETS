@@ -124,7 +124,7 @@ const Page = styled.div`
   max-width: 100%;
 
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     margin-bottom: 0.75em;
     padding-bottom: 0.75em;
   }
