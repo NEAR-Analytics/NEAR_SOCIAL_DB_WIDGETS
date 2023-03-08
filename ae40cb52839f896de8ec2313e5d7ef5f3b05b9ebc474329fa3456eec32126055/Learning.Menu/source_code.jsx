@@ -9,6 +9,7 @@ for (let i = 0; i < labels.length; i++) {
         onClick={(e) => {
           e.preventDefault();
           onClick(widgets[i]);
+          console.log("clicked");
         }}
       >
         <li class="list-group-item"> {labels[i]} </li>{" "}
