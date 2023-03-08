@@ -3,6 +3,7 @@ const id = props.id;
 
 State.init({
   need: props.cid ?? null,
+  needFetched: false,
   entity: props.accountId ? [{ name: props.accountId }] : [],
   entitiesFetched: !!props.accountId,
   description: props.description ?? "",
@@ -30,6 +31,21 @@ if (!state.typesFetched) {
         typesFetched: true,
         types: types.map((name) => ({ name })),
       })
+  );
+}
+
+if (!state.needFetched && !!state.need) {
+  Near.asyncView(
+    ownerId,
+    "get_contribution_need",
+    { account_id: props.accountId, cid: props.cid },
+    "final",
+    false
+  ).then((need) =>
+    State.update({
+      contributionType: convertType({ name: need.conibtribution_type }),
+      needFetched: true,
+    })
   );
 }
 
