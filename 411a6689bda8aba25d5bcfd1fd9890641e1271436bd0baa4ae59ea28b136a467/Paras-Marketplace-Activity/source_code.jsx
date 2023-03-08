@@ -48,7 +48,7 @@ const linkStyle = {
   margin: "0px",
   textDecoration: "underline rgba(1, 199, 251, 0.4)",
   color: "rgb(1, 199, 251)",
-  fontWeight: 600,
+  fontWeight: 500,
 };
 
 const apiUrl1 =
@@ -81,7 +81,6 @@ function numberWithCommas(x) {
 
 let allRows = [];
 for (let i = 0; i < parasActivity.body.length; i++) {
-  console.log(parasActivity.body.length);
   const pA = parasActivity.body[i];
   const txDate = pA.EVENT_TIMESTAMP;
   allRows.push(
@@ -139,7 +138,7 @@ return (
             href="https://flipsidecrypto.xyz/edit/queries/fe213752-a832-4f0b-a08a-52e85ae53798"
             target="_blank"
           >
-            Flipsidecrypto
+            Flipside
           </a>
         </p>
         <table style={tableStyle}>
@@ -158,68 +157,106 @@ return (
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-3">
-        <div
-          class="card text-white bg-success mb-3"
-          style={{ maxWidth: "14rem" }}
-        >
-          <div class="card-body">
-            <p class="card-title" style={{ fontSize: "12px" }}>
+    <div class="row" style={{ marginTop: "50px" }}>
+      <div
+        class="card text-white bg-success mb-3"
+        style={{ maxWidth: "14rem", marginRight: "10px" }}
+      >
+        <div class="card-body">
+          <p class="card-title" style={{ fontSize: "11px" }}>
+            <a
+              style={linkStyle}
+              href="https://flipsidecrypto.xyz/edit/queries/a371f03d-ccdf-4e58-81cb-1c1aaff87b27"
+              target="_blank"
+            >
               Total NFTs Sold in 30 Days
-            </p>
-            <p class="card-text fs-4">
-              {numberWithCommas(parseInt(pM.TOTAL_NFT_SOLD))}
-            </p>
-          </div>
+            </a>
+          </p>
+          <p class="card-text fs-4">
+            {numberWithCommas(parseInt(pM.TOTAL_NFT_SOLD))}
+          </p>
         </div>
       </div>
-      <div class="col-sm-3">
-        <div
-          class="card text-white bg-success mb-3"
-          style={{ maxWidth: "14rem" }}
-        >
-          <div class="card-body">
-            <p class="card-title" style={{ fontSize: "12px" }}>
+
+      <div
+        class="card text-white bg-success mb-3"
+        style={{ maxWidth: "13rem", marginRight: "10px" }}
+      >
+        <div class="card-body">
+          <p class="card-title" style={{ fontSize: "11px" }}>
+            <a
+              style={linkStyle}
+              href="https://flipsidecrypto.xyz/edit/queries/a371f03d-ccdf-4e58-81cb-1c1aaff87b27"
+              target="_blank"
+            >
               Total Gross Sales in 30 Days
-            </p>
-            <p class="card-text fs-4">
-              $
-              {JSON.parse(
-                numberWithCommas(parseFloat(pM.TOTAL_GROSS_SALES).toFixed(2))
-              )}
-            </p>
-          </div>
+            </a>
+          </p>
+          <p class="card-text fs-4">
+            {JSON.parse(
+              numberWithCommas(parseFloat(pM.TOTAL_GROSS_SALES).toFixed(2))
+            )}
+          </p>
         </div>
       </div>
-      <div class="col-sm-3">
-        <div
-          class="card text-white bg-success mb-3"
-          style={{ maxWidth: "14rem" }}
-        >
-          <div class="card-body">
-            <p class="card-title" style={{ fontSize: "12px" }}>
+      <div
+        class="card text-white bg-success mb-3"
+        style={{ maxWidth: "14rem", marginRight: "10px" }}
+      >
+        <div class="card-body">
+          <p class="card-title" style={{ fontSize: "11px" }}>
+            <a
+              style={linkStyle}
+              href="https://flipsidecrypto.xyz/edit/queries/a371f03d-ccdf-4e58-81cb-1c1aaff87b27"
+              target="_blank"
+            >
               Total Sold Collections in 30 Days
-            </p>
-            <p class="card-text fs-4">
-              {numberWithCommas(parseInt(pM.TOTAL_SOLD_COLLECTIONS))}
-            </p>
-          </div>
+            </a>
+          </p>
+          <p class="card-text fs-4">
+            {numberWithCommas(parseInt(pM.TOTAL_SOLD_COLLECTIONS))}
+          </p>
         </div>
       </div>
-      <div class="col-sm-3">
-        <div
-          class="card text-white bg-success mb-3"
-          style={{ maxWidth: "14rem" }}
-        >
-          <div class="card-body">
-            <p class="card-title" style={{ fontSize: "12px" }}>
+      <div
+        class="card text-white bg-success mb-3"
+        style={{ maxWidth: "13rem", marginRight: "10px" }}
+      >
+        <div class="card-body">
+          <p class="card-title" style={{ fontSize: "11px" }}>
+            <a
+              style={linkStyle}
+              href="https://flipsidecrypto.xyz/edit/queries/a371f03d-ccdf-4e58-81cb-1c1aaff87b27"
+              target="_blank"
+            >
               Total NFT Listings in 30 Days
-            </p>
-            <p class="card-text fs-4">
-              {numberWithCommas(parseInt(pM.TOTAL_LISTINGS))}
-            </p>
-          </div>
+            </a>
+          </p>
+          <p class="card-text fs-4">
+            {numberWithCommas(parseInt(pM.TOTAL_LISTINGS))}
+          </p>
+        </div>
+      </div>
+      <div
+        class="card text-white bg-success mb-3"
+        style={{ maxWidth: "14rem", marginRight: "10px" }}
+      >
+        <div class="card-body">
+          <p class="card-title" style={{ fontSize: "11px" }}>
+            <a
+              style={linkStyle}
+              href="https://flipsidecrypto.xyz/edit/queries/a371f03d-ccdf-4e58-81cb-1c1aaff87b27"
+              target="_blank"
+            >
+              Month-on-Month Sales Growth
+            </a>
+          </p>
+          <p class="card-text fs-4">
+            {JSON.parse(
+              numberWithCommas(parseFloat(pM.MONTH_ON_MONTH_SALES).toFixed(2))
+            )}
+            %
+          </p>
         </div>
       </div>
     </div>
