@@ -2,7 +2,7 @@ const indexerPath = props.indexerPath;
 
 const accountId = context.accountId;
 const [selected_accountId, selected_indexerName] = props.selectedIndexerPath
-  ? selectedIndexerPath.split("/")
+  ? props.selectedIndexerPath.split("/")
   : [undefined, undefined];
 console.log(
   selected_accountId,
