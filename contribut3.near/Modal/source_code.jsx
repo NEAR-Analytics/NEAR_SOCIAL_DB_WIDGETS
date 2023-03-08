@@ -50,6 +50,20 @@ const CloseButton = styled.button`
   color: #344054;
 `;
 
+const ConfirmButton = styled.button`
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  background-color: #12b76a;
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #0e9f5d;
+  }
+`;
+
 return (
   <Modal hidden={hidden}>
     <ModalBackdrop />
