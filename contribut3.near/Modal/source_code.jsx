@@ -91,9 +91,7 @@ return (
       <ModalBody>{body}</ModalBody>
       <ModalFooter>
         <CloseButton onClick={onClose}>Cancel</CloseButton>
-        <a className="btn btn-primary" onClick={onConfirm}>
-          {confirmText}
-        </a>
+        <ConfirmButton onClick={onConfirm}>{confirmText}</ConfirmButton>
       </ModalFooter>
     </ModalDialog>
   </Modal>
