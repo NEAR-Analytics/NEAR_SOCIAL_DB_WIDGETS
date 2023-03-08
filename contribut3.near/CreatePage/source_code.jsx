@@ -50,7 +50,6 @@ const content = {
       props={{
         search: state.search,
         update: props.update,
-        kind: props.kind,
         accountId: props.accountId,
       }}
     />
