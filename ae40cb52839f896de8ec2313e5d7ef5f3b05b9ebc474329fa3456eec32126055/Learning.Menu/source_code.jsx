@@ -1,8 +1,4 @@
-const { labels, widgets } = props;
-
-const onclick = (src) => {
-  console.log(src);
-};
+const { labels, widgets, onclick } = props;
 
 let elems = [];
 for (const i = 0; i < labels.length; i++) {
@@ -10,14 +6,15 @@ for (const i = 0; i < labels.length; i++) {
 
   elems.push(
     <>
-      <a
-        href="javascript:void(0);"
+      <li
+        role="button"
+        class="list-group-item"
         onClick={() => {
           onclick(wsrc);
         }}
       >
-        <li class="list-group-item">{labels[i]}</li>
-      </a>
+        {labels[i]}
+      </li>
     </>
   );
 }
