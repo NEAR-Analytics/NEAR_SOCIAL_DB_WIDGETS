@@ -7,7 +7,7 @@ const mainApp = `${drAccount}/widget/Learning.Main`;
 const currentWidget = nameToUrl(props.currentWidget || `SimplyTest`);
 
 const labels = ["Hello World", "SimplyTest"];
-const widgets = [nameToUrl("HelloWorld"), nameToUrl("SimplyTest")];
+const widgets = ["HelloNear", "SimplyTest"];
 
 if (labels.length != widgets.length) {
   return "Make sure the labels and widgets have the same length";
@@ -30,7 +30,7 @@ return (
           />
         </div>
         <div class="col-9" id="widget">
-          <Widget src={currentPage} />
+          <Widget src={currentWidget} />
         </div>
       </div>
     </div>
