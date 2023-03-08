@@ -193,6 +193,7 @@ return (
             </a>
           </p>
           <p class="card-text fs-4">
+            $
             {JSON.parse(
               numberWithCommas(parseFloat(pM.TOTAL_GROSS_SALES).toFixed(2))
             )}
