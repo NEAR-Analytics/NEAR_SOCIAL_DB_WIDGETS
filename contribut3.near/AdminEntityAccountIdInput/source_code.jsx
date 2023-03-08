@@ -7,7 +7,7 @@ const label = props.label || "Invite to:";
 const options = (
   Near.view(
     ownerId,
-    "get_contributor_admin_entities",
+    "get_admin_entities",
     { account_id: accountId },
     "final",
     true
