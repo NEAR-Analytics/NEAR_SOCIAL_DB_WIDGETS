@@ -23,7 +23,7 @@ if (state.items.length === 0) {
     "final",
     false
   ).then((needs) => {
-    if (accountId && isAdmin) {
+    if (accountId && !isAdmin) {
       State.update({
         items: needs.map((cid) => [accountId, cid]),
         shown: needs.map((cid) => [accountId, cid]).slice(0, limit),
@@ -32,7 +32,7 @@ if (state.items.length === 0) {
       });
     } else {
       State.update({
-        items: needs.sort((a, b) => a.localeCompare(b)),
+        items: needs.sort(([a], [b]) => a.localeCompare(b)),
         shown: needs.slice(0, limit),
         from: limit,
         hasMore: needs.length > limit,
