@@ -3,11 +3,7 @@ const id = props.id;
 const need = props.need ?? null;
 
 const convertType = (contributionType) => {
-  if (
-    state.allContributionTypes.some(
-      ({ name }) => name === contributionType.name
-    )
-  ) {
+  if (state.types.some(({ name }) => name === contributionType.name)) {
     return contributionType.name;
   }
 
