@@ -12,6 +12,7 @@ const Modal = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 1;
+  z-index: 100;
 `;
 
 const ModalBackdrop = styled.div`
