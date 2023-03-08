@@ -1,6 +1,8 @@
 const drAccount =
   "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
 
+const mainApp = `${drAccount}/widget/Learning.Main`;
+
 const currentPage = props.currentPage || `${drAccount}/widget/SimplyTest`;
 
 const nameToUri = (name) => `${drAccount}/widget/${name}`;
@@ -9,7 +11,7 @@ const labels = ["Hello World", "SimplyTest"];
 const widgets = [nameToUri("HelloWorld"), nameToUri("SimplyTest")];
 
 if (labels.length != widgets.length) {
-  throw Error("Make sure the labels and widgets have the same length");
+  return "Make sure the labels and widgets have the same length";
 }
 
 return (
@@ -24,7 +26,7 @@ return (
             props={{
               labels,
               widgets,
-              onclick: state.onclick,
+              mainApp,
             }}
           />
         </div>
