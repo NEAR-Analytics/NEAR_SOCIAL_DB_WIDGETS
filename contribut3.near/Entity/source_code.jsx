@@ -97,7 +97,6 @@ return (
                     {
                       text: "Propose contribution",
                       icon: "bi-person-up",
-                      id: "contribute",
                       onClick: () =>
                         State.update({ contributionFormHidden: false }),
                     },
