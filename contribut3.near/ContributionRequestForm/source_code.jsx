@@ -1,12 +1,13 @@
 const ownerId = "contribut3.near";
 const id = props.id;
 const need = props.need ?? null;
-const allContributionTypes = (
-  Near.view(ownerId, "get_contribution_types", {}, "final", true) ?? []
-).map((name) => ({ name }));
 
 const convertType = (contributionType) => {
-  if (allContributionTypes.some(({ name }) => name === contributionType.name)) {
+  if (
+    state.allContributionTypes.some(
+      ({ name }) => name === contributionType.name
+    )
+  ) {
     return contributionType.name;
   }
 
@@ -22,6 +23,7 @@ State.init({
     ? [{ name: props.contributionType }]
     : [],
   existingEntities: [],
+  types: [],
 });
 
 const onSubmit = () => {
@@ -35,8 +37,12 @@ const onSubmit = () => {
   Near.call(ownerId, "request_contribution", args);
 };
 
-Near.asyncView(ownerId, "get_entities", {}, "final").then((entities) =>
+Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
   State.update({ existingEntities: entities.map((name) => ({ name })) })
+);
+
+Near.asyncView(ownerId, "get_contribution_types", {}, "final", false).then(
+  (types) => State.update({ types: types.map((name) => ({ name })) })
 );
 
 const entityEditor = props.entity ? (
@@ -90,7 +96,7 @@ const contributionTypeInput = (
       props={{
         contributionType: state.contributionType,
         update: (contributionType) => State.update({ contributionType }),
-        allContributionTypes,
+        allContributionTypes: state.types,
       }}
     />
   </div>
