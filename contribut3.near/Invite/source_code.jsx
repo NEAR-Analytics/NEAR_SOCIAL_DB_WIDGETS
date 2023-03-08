@@ -14,12 +14,6 @@ const invite = Near.view(
   false
 );
 
-const descriptionArea = (
-  <Widget
-    src={`${ownerId}/widget/DescriptionArea`}
-    props={{ description: invite.description }}
-  />
-);
 const Controls = styled.div`
   flex-direction: column;
   justify-content: start;
@@ -125,13 +119,30 @@ const controls = (
   </Controls>
 );
 
-const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em" }}
-  >
-    <div className="flex-grow-1 py-3">
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-height: 8em;
+  padding: 0 0.75em;
+  border-radius: 4px;
+  background-color: #f0f9ff;
+`;
+
+const Wrapper = styled.div`
+  flex-grow: 1;
+  padding: 0.75em 0;
+`;
+
+const DescriptionWrapper = styled.div`
+  margin-top: 0.5em;
+  padding-left: 0.5em;
+  border-left: 3px solid #b2ddff;
+`;
+
+return (
+  <Container id={accountId}>
+    <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
@@ -156,36 +167,22 @@ const body = (
           additionalColumn: controls,
           additionalRow: (
             <>
-              {/* <Widget */}
-              {/*   src={`${ownerId}/widget/ProfileLine`} */}
-              {/*   props={{ */}
-              {/*     accountId: founder, */}
-              {/*     update: props.update, */}
-              {/*     imageSize: contributionRequest.need ? "1.5em" : "2em", */}
-              {/*   }} */}
-              {/* /> */}
               <b>
                 Need{" "}
                 {typeof invite.contribution_type === "string"
                   ? invite.contribution_type
                   : invite.contribution_type.Other}
               </b>
-              <div className="mt-2 ps-2 border-start border-3 border-info">
+              <DescriptionWrapper>
                 <Widget
                   src={`${ownerId}/widget/DescriptionArea`}
                   props={{ description: invite.description }}
                 />
-              </div>
+              </DescriptionWrapper>
             </>
           ),
         }}
       />
-    </div>
-  </div>
-);
-
-return (
-  <div className="card border-0" style={{ backgroundColor: "#f0f9ff" }}>
-    <div className="px-3 py-0">{body}</div>
-  </div>
+    </Wrapper>
+  </Container>
 );
