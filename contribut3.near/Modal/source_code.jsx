@@ -7,15 +7,30 @@ const onClose = props.onClose;
 
 const Modal = styled.div`
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
-  position: fixed;
+  position: relative;
   inset: 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ModalBackgrop = styled.div`
+  position: absolute;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0.4;
-  width: 100%;
-  height: 100%;
+`;
+
+const ModalDialog = styled.div`
+  background-color: white;
+  border-radius: 4px;
+  width: 40%;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 `;
 
 return (
