@@ -170,6 +170,12 @@ const Wrapper = styled.div`
   padding: 0.75em 0;
 `;
 
+const DescriptionWrapper = styled.div`
+  margin-top: 0.5em;
+  padding-left: 0.5em;
+  border-left: 3px solid #b2ddff;
+`;
+
 return (
   <Container id={`${entityId}-${contributorId}`}>
     <Wrapper>
