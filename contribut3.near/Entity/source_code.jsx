@@ -76,113 +76,101 @@ const DescriptionWrapper = styled.div`
 `;
 
 return (
-  <>
-    <Widget
-      src={`${ownerId}/widget/ContributionRequestForm`}
-      props={{
-        id: `${accountId}ContributionRequestForm`,
-        entity: accountId,
-        hidden: state.contributionFormHidden,
-        onClose: () => State.update({ contributionFormHidden: true }),
-      }}
-    />
-    <Container id={accountId}>
-      <Wrapper>
-        <Widget
-          src={`${ownerId}/widget/ProfileLine`}
-          props={{
-            accountId,
-            isEntity: true,
-            imageSize: "3em",
-            update: props.update,
-            additionalColumn: (
-              <ActionColumn show={!inboxView}>
-                <Widget
-                  src={`${ownerId}/widget/ActiveIndicator`}
-                  props={{ active: state.entity.status }}
-                />
-                <Widget
-                  src={`${ownerId}/widget/CardMenu`}
-                  props={{
-                    update: props.update,
-                    items: [
-                      {
-                        text: "Propose contribution",
-                        icon: "bi-person-up",
-                        href: `/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`,
-                        onClick: () =>
-                          props.update({
-                            tab: "create",
-                            content: "proposal",
-                            search: "",
-                            accountId,
-                          }),
-                      },
-                      {
-                        text: "View details",
-                        icon: "bi-info-circle",
-                        href: `/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
-                        onClick: () =>
-                          props.update({
-                            tab: "entity",
-                            content: "",
-                            search: "",
-                            accountId,
-                          }),
-                      },
-                      {
-                        text: "Share",
-                        icon: "bi-arrow-up-right",
-                        id: "share",
-                      },
-                    ],
-                  }}
-                />
-              </ActionColumn>
-            ),
-            additionalRow: (
+  <Container id={accountId}>
+    <Wrapper>
+      <Widget
+        src={`${ownerId}/widget/ProfileLine`}
+        props={{
+          accountId,
+          isEntity: true,
+          imageSize: "3em",
+          update: props.update,
+          additionalColumn: (
+            <ActionColumn show={!inboxView}>
+              <Widget
+                src={`${ownerId}/widget/ActiveIndicator`}
+                props={{ active: state.entity.status }}
+              />
+              <Widget
+                src={`${ownerId}/widget/CardMenu`}
+                props={{
+                  update: props.update,
+                  items: [
+                    {
+                      text: "Propose contribution",
+                      icon: "bi-person-up",
+                      href: `/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`,
+                      onClick: () =>
+                        props.update({
+                          tab: "create",
+                          content: "proposal",
+                          search: "",
+                          accountId,
+                        }),
+                    },
+                    {
+                      text: "View details",
+                      icon: "bi-info-circle",
+                      href: `/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`,
+                      onClick: () =>
+                        props.update({
+                          tab: "entity",
+                          content: "",
+                          search: "",
+                          accountId,
+                        }),
+                    },
+                    {
+                      text: "Share",
+                      icon: "bi-arrow-up-right",
+                      id: "share",
+                    },
+                  ],
+                }}
+              />
+            </ActionColumn>
+          ),
+          additionalRow: (
+            <div>
               <div>
-                <div>
-                  {state.founders.map((founder) =>
-                    state.founders.length === 1 ? (
-                      <Widget
-                        src={`${ownerId}/widget/ProfileLine`}
-                        props={{
-                          accountId: founder,
-                          isEntity: false,
-                          update: props.update,
-                        }}
-                      />
-                    ) : (
-                      <Widget
-                        src={`${ownerId}/widget/ProfileCircle`}
-                        props={{
-                          accountId: founder,
-                          isEntity: false,
-                          update: props.update,
-                        }}
-                      />
-                    )
-                  )}
-                </div>
-                <Widget
-                  src={`${ownerId}/widget/Tags`}
-                  props={{ tags: state.profile.tags }}
-                />
+                {state.founders.map((founder) =>
+                  state.founders.length === 1 ? (
+                    <Widget
+                      src={`${ownerId}/widget/ProfileLine`}
+                      props={{
+                        accountId: founder,
+                        isEntity: false,
+                        update: props.update,
+                      }}
+                    />
+                  ) : (
+                    <Widget
+                      src={`${ownerId}/widget/ProfileCircle`}
+                      props={{
+                        accountId: founder,
+                        isEntity: false,
+                        update: props.update,
+                      }}
+                    />
+                  )
+                )}
               </div>
-            ),
+              <Widget
+                src={`${ownerId}/widget/Tags`}
+                props={{ tags: state.profile.tags }}
+              />
+            </div>
+          ),
+        }}
+      />
+      <DescriptionWrapper>
+        <Widget
+          src={`${ownerId}/widget/DescriptionArea`}
+          props={{
+            description: state.entity.description || state.profile.description,
           }}
         />
-        <DescriptionWrapper>
-          <Widget
-            src={`${ownerId}/widget/DescriptionArea`}
-            props={{
-              description:
-                state.entity.description || state.profile.description,
-            }}
-          />
-        </DescriptionWrapper>
-      </Wrapper>
-    </Container>
-  </>
+      </DescriptionWrapper>
+    </Wrapper>
+  </Container>
 );
