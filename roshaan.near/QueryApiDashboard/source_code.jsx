@@ -4,12 +4,7 @@ const accountId = context.accountId;
 const [selected_accountId, selected_indexerName] = props.selectedIndexerPath
   ? props.selectedIndexerPath.split("/")
   : [undefined, undefined];
-console.log(
-  selected_accountId,
-  "accountId",
-  selected_indexerName,
-  "indexerName"
-);
+
 const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
@@ -271,6 +266,64 @@ const indexerView = (accountId, indexerName, idx) => {
     outline: none;
   }
 `;
+
+  const CardWrapper = styled.div`
+  margin: 0 0 16px;
+`;
+
+  const sharedButtonStyles = `
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  height: 32px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+
+  i {
+    color: #7E868C;
+  }
+
+  .bi-16 {
+    font-size: 16px;
+  }
+`;
+
+  const Button = styled.button`
+  ${sharedButtonStyles}
+  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
+
+  &:hover,
+  &:focus {
+    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+  }
+`;
+
+  const ButtonLink = styled.a`
+  ${sharedButtonStyles}
+  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
+  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
+  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
+
+  &:hover,
+  &:focus {
+    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
+  }
+`;
   const isSelected =
     (selected_accountId === undefined &&
       selected_indexerName === undefined &&
@@ -337,64 +390,6 @@ const indexerView = (accountId, indexerName, idx) => {
 };
 
 const renderIndexers = (indexers) => {
-  const CardWrapper = styled.div`
-  margin: 0 0 16px;
-`;
-
-  const sharedButtonStyles = `
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  height: 32px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    outline: none;
-  }
-
-  i {
-    color: #7E868C;
-  }
-
-  .bi-16 {
-    font-size: 16px;
-  }
-`;
-
-  const Button = styled.button`
-  ${sharedButtonStyles}
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
-  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
-
-  &:hover,
-  &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
-  }
-`;
-
-  const ButtonLink = styled.a`
-  ${sharedButtonStyles}
-  color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
-  background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
-  border: ${(p) => (p.primary ? "none" : "1px solid #D7DBDF")};
-
-  &:hover,
-  &:focus {
-    background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
-  }
-`;
-
   return (
     <>
       {indexers.map((indexer, i) => (
@@ -501,20 +496,15 @@ return (
                 <H2>{state.indexers[0].indexerName}</H2>
               ))}
             {indexerView(
-              // state.selected_account ??
               selected_accountId ?? state.indexers[0].accountId,
-              // state.selected_indexer ??
               selected_indexerName ?? state.indexers[0].indexerName
             )}
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerStatus"}
               props={{
                 indexer_name:
-                  // state.selected_indexer ??
                   selected_indexerName ?? state.indexers[0].indexerName,
-                accountId:
-                  // state.selected_account ??
-                  selected_accountId ?? state.indexers[0].accountId,
+                accountId: selected_accountId ?? state.indexers[0].accountId,
               }}
             />
           </div>
@@ -531,11 +521,8 @@ return (
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
                 indexerName:
-                  // state.selected_indexer ??
                   selected_indexerName ?? state.indexers[0].indexerName,
-                accountId:
-                  // state.selected_account ??
-                  selected_accountId ?? state.indexers[0].accountId,
+                accountId: selected_accountId ?? state.indexers[0].accountId,
                 base: "query-api-editor",
               }}
             />
@@ -553,11 +540,8 @@ return (
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
                 indexerName:
-                  // state.selected_indexer ??
                   selected_indexerName ?? state.indexers[0].indexerName,
-                accountId:
-                  // state.selected_account ??
-                  selected_accountId ?? state.indexers[0].accountId,
+                accountId: selected_accountId ?? state.indexers[0].accountId,
                 base: "create-new-indexer",
               }}
             />
