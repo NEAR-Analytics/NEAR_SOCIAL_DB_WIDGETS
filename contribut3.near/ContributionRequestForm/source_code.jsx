@@ -58,38 +58,39 @@ const EntityInput = styled.div`
   margin-bottom: 0.5em;
 `;
 
+const SelectedEntity = styled.div`
+  border-radius: 4px;
+  background-color: #f2f4f7;
+`;
+
 const entityEditor = (
   <EntityInput>
     <Label htmlFor="enity-id">Contribute to:</Label>
     {props.entity ? (
-      <div>
-        <div
-          className="rounded-3 bg-light"
-          style={{ height: "5em" }}
-          id="entity-id"
-        >
-          <Widget
-            src={`${ownerId}/widget/ProfileLine`}
-            props={{
-              accountId: props.entity,
-              imageSize: "4em",
-              isEntity: true,
-            }}
-          />
-        </div>
-      </div>
-    ) : (
-      <div className="col-lg-12  mb-2">
-        <Typeahead
-          id="entity-id"
-          labelKey="name"
-          onChange={(entity) => State.update({ entity })}
-          options={state.existingEntities}
-          placeholder="social.near, contribut3.near"
-          selected={state.entity}
-          positionFixed
+      <div
+        className="rounded-3 bg-light"
+        style={{ height: "5em" }}
+        id="entity-id"
+      >
+        <Widget
+          src={`${ownerId}/widget/ProfileLine`}
+          props={{
+            accountId: props.entity,
+            imageSize: "4em",
+            isEntity: true,
+          }}
         />
       </div>
+    ) : (
+      <Typeahead
+        id="entity-id"
+        labelKey="name"
+        onChange={(entity) => State.update({ entity })}
+        options={state.existingEntities}
+        placeholder="social.near, contribut3.near"
+        selected={state.entity}
+        positionFixed
+      />
     )}
   </EntityInput>
 );
