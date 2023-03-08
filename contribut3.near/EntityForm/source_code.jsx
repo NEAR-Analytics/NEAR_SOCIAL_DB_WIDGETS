@@ -12,7 +12,7 @@ const accountId = props.accountId ?? "";
 const kind = props.kind ? [{ name: props.kind }] : [];
 const startDate = props.startDate ?? createDate();
 const forbiddenIds = new Set(
-  Object.keys(Near.view(ownerId, "get_entities", {}, "final", true) ?? {})
+  Near.view(ownerId, "get_entities", {}, "final", true) ?? []
 );
 
 State.init({
