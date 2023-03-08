@@ -90,6 +90,10 @@ const RejectButton = styled.button`
   }
 `;
 
+const IconContainer = styled.i`
+  transform: translate(0, -2px);
+`;
+
 const controls = (
   <Controls isAuthorized={isAuthorized}>
     <AcceptButton
@@ -100,7 +104,7 @@ const controls = (
         })
       }
     >
-      <i>
+      <IconContainer>
         <svg
           width="20"
           height="20"
@@ -116,7 +120,7 @@ const controls = (
             stroke-linejoin="round"
           />
         </svg>
-      </i>
+      </IconContainer>
       <span>Accept</span>
     </AcceptButton>
     <RejectButton
@@ -128,7 +132,7 @@ const controls = (
         })
       }
     >
-      <i>
+      <IconContainer>
         <svg
           width="20"
           height="20"
@@ -144,7 +148,7 @@ const controls = (
             stroke-linejoin="round"
           />
         </svg>
-      </i>
+      </IconContainer>
       <span>Reject</span>
     </RejectButton>
   </Controls>
