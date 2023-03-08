@@ -37,13 +37,17 @@ const onSubmit = () => {
   Near.call(ownerId, "request_contribution", args);
 };
 
-Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
-  State.update({ existingEntities: entities.map((name) => ({ name })) })
-);
+if (state.existingEntities.length === 0) {
+  Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
+    State.update({ existingEntities: entities.map((name) => ({ name })) })
+  );
+}
 
-Near.asyncView(ownerId, "get_contribution_types", {}, "final", false).then(
-  (types) => State.update({ types: types.map((name) => ({ name })) })
-);
+if (state.types.length === 0) {
+  Near.asyncView(ownerId, "get_contribution_types", {}, "final", false).then(
+    (types) => State.update({ types: types.map((name) => ({ name })) })
+  );
+}
 
 const entityEditor = props.entity ? (
   <div>
