@@ -104,7 +104,7 @@ const body = (
                   text: "Propose contribution",
                   icon: "bi-person-up",
                   id: "contribute",
-                  href: `/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`,
+                  href: `/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}&cid=${cid}`,
                   onClick: () =>
                     props.update({
                       tab: "create",
