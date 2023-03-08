@@ -36,6 +36,44 @@ State.init({
   forbiddenIds: new Set(),
 });
 
+const onSubmit = () => {
+  if (!state.accountIdValid) {
+    return;
+  }
+
+  const args = {
+    entity_id: state.entityId[0].name,
+    contributor_id: state.accountId,
+    description: state.description,
+    start_date: `${new Date(state.startDate).getTime()}`,
+    contribution_type: convertType(state.contributionType[0]),
+    permissions: state.permissions.map(({ name }) => name),
+  };
+
+  Near.call(ownerId, "invite_contributor", args);
+};
+
+const header = <div className="card-header">Invite contributor</div>;
+
+const Label = styled.label`
+  font-weight: 600;
+  color: #344054;
+`;
+
+const EntityInput = styled.div`
+  margin-bottom: 0.5em;
+`;
+
+const SelectedEntity = styled.div`
+  border-radius: 4px;
+  background-color: #f2f4f7;
+  height: 5em;
+`;
+
+const InputWrapper = styled.div`
+  margin-bottom: 0.5em;
+`;
+
 const accountIdInput = accountId ? (
   <div>
     <label htmlFor="account-id" className="text-muted fw-semibold">
@@ -149,25 +187,6 @@ const entityIdInput = (
   />
 );
 
-const onSubmit = () => {
-  if (!state.accountIdValid) {
-    return;
-  }
-
-  const args = {
-    entity_id: state.entityId[0].name,
-    contributor_id: state.accountId,
-    description: state.description,
-    start_date: `${new Date(state.startDate).getTime()}`,
-    contribution_type: convertType(state.contributionType[0]),
-    permissions: state.permissions.map(({ name }) => name),
-  };
-
-  Near.call(ownerId, "invite_contributor", args);
-};
-
-const header = <div className="card-header">Invite contributor</div>;
-
 const body = (
   <div className="row">
     {accountIdInput}
@@ -197,4 +216,82 @@ return (
       id,
     }}
   />
+);
+
+const Page = styled.div`
+  padding: 0 0.75em;
+  max-width: 100%;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0.75em;
+  }
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75em;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #f9fafb;
+`;
+
+const Controls = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const CloseButton = styled.a`
+  background-color: white;
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  color: #344054;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    text-decoration: none;
+    color: unset;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  }
+`;
+
+const ConfirmButton = styled.button`
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  background-color: ${({ valid }) => (valid ? "#7f56d9" : "#344054")};
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    ${({ valid }) => (valid ? "background-color: #4f56d9;" : "")}
+  }
+`;
+
+return (
+  <Page>
+    <h1>Propose contribution</h1>
+    <Form>{body}</Form>
+    <Controls>
+      <CloseButton
+        href={`/#/${ownerId}/widget/Index?tab=home`}
+        onClick={() => props.update({ tab: "home" })}
+      >
+        Cancel
+      </CloseButton>
+      <ConfirmButton
+        valid={
+          state.contributionType.length === 1 && state.description.length > 0
+        }
+        onClick={onConfirm}
+      >
+        {confirmText}
+      </ConfirmButton>
+    </Controls>
+  </Page>
 );
