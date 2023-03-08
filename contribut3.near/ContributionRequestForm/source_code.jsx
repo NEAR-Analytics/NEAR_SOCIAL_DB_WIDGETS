@@ -74,7 +74,7 @@ const onConfirm = () => {
 };
 
 const body = (
-  <div>
+  <>
     <EntityInput>
       <Label htmlFor="enity-id">Contribute to:</Label>
       {props.entity ? (
@@ -119,7 +119,7 @@ const body = (
         }}
       />
     </InputWrapper>
-  </div>
+  </>
 );
 
 return (
