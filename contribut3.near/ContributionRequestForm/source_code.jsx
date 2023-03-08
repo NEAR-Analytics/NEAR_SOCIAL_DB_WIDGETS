@@ -2,14 +2,6 @@ const ownerId = "contribut3.near";
 const id = props.id;
 const need = props.need ?? null;
 
-const convertType = (contributionType) => {
-  if (state.types.some(({ name }) => name === contributionType.name)) {
-    return contributionType.name;
-  }
-
-  return { Other: contributionType.name };
-};
-
 State.init({
   // The entity to which to request a contribution.
   entity: props.entity ? [{ name: props.entity }] : [],
@@ -21,6 +13,14 @@ State.init({
   existingEntities: [],
   types: [],
 });
+
+const convertType = (contributionType) => {
+  if (state.types.some(({ name }) => name === contributionType.name)) {
+    return contributionType.name;
+  }
+
+  return { Other: contributionType.name };
+};
 
 const onSubmit = () => {
   const args = {
