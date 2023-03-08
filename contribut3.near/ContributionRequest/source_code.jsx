@@ -162,6 +162,11 @@ const Container = styled.div`
   min-height: 8em;
 `;
 
+const Wrapper = styled.div`
+  flex-grow: 1;
+  padding: 0.75em 0;
+`;
+
 const body = (
   <Container id={accountId}>
     <div className="flex-grow-1 py-3">
