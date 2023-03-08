@@ -196,7 +196,7 @@ const ConfirmButton = styled.button`
 
 return (
   <Page>
-    <h1>{props.accountId ? "Create new" : "Edit"} project</h1>
+    <h1>{!props.accountId ? "Create new" : "Edit"} project</h1>
     <Form>
       {accountIdInput}
       {nameInput}
@@ -218,7 +218,7 @@ return (
         }
         onClick={onSubmit}
       >
-        {props.accountId ? "Create" : "Edit"} project
+        {!props.accountId ? "Create" : "Edit"} project
       </ConfirmButton>
     </Controls>
   </Page>
