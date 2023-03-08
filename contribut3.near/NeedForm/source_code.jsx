@@ -122,11 +122,17 @@ const onSubmit = () => {
 const Form = styled.div`
   padding: 0.75em;
   max-width: 100%;
+
+  h1 {
+    font-size: 3em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0.75em;
+  }
 `;
 
 return (
-  <div className="px-3" style={{ maxWidth: "45em" }}>
-    <h1 className="fs-2 mb-3 pb-3">Create new contribution request</h1>
+  <Form>
+    <h1>Create new contribution request</h1>
     <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
         {entityEditor}
@@ -152,5 +158,5 @@ return (
         Create request
       </a>
     </div>
-  </div>
+  </Form>
 );
