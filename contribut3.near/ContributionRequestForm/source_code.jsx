@@ -3,10 +3,8 @@ const id = props.id;
 const need = props.need ?? null;
 
 State.init({
-  // The entity to which to request a contribution.
   entity: props.entity ? [{ name: props.entity }] : [],
   entitiesFetched: !!props.entity,
-  // The description of the contribution request.
   description: props.description ?? "",
   contributionType: props.contributionType
     ? [{ name: props.contributionType }]
