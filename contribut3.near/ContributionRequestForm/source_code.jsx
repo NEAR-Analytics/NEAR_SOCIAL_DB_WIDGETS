@@ -16,7 +16,7 @@ State.init({
   typesFetched: false,
 });
 
-console.log("render");
+console.log("rendered");
 
 if (!state.entitiesFetched) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
