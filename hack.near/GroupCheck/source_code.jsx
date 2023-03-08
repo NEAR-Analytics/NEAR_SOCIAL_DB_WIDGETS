@@ -22,8 +22,6 @@ const check = groups.map((group) => {
     ? false
     : group.filter((address) => address === accountId).length > 0;
 });
-
-console.log(group);
 console.log(check);
 
 State.init({
