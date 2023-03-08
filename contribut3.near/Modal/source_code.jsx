@@ -5,6 +5,17 @@ const onConfirm = props.onConfirm;
 const hidden = props.hidden;
 const onClose = props.onClose;
 
+const Modal = styled.div`
+  display: ${({ hidden }) => (hidden ? "none" : "flex")};
+  position: fixed;
+  inset: 0;
+`;
+
+const ModalBackgrop = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.4;
+`;
+
 return (
   <div
     className={`modal fade ${hidden ? "" : "show d-block"}`}
