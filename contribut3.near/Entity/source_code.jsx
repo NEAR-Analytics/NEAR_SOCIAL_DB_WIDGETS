@@ -13,6 +13,7 @@ State.init({
   entity: null,
   entityFetched: false,
   founders: [],
+  foundersFetched: false,
 });
 
 if (!state.entityFetched) {
@@ -29,13 +30,15 @@ const profile = Social.getr(`${accountId}/profile`, "final", {
   subscribe: false,
 });
 
-Near.asyncView(
-  ownerId,
-  "get_founders",
-  { account_id: accountId },
-  "final",
-  false
-).then((founders) => State.update({ founders }));
+if (!state.foundersFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_founders",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((founders) => State.update({ founders, foundersFetched: true }));
+}
 
 const Container = styled.div`
   display: flex;
