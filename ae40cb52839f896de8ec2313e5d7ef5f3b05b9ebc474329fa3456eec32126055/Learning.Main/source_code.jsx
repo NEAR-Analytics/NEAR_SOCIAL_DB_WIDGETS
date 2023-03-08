@@ -4,7 +4,7 @@ const nameToUrl = (name) => `${drAccount}/widget/${name}`;
 
 const mainApp = `${drAccount}/widget/Learning.Main`;
 
-const currentWidget = nameToUrl(props.currentPage || `SimplyTest`);
+const currentWidget = nameToUrl(props.currentWidget || `SimplyTest`);
 
 const labels = ["Hello World", "SimplyTest"];
 const widgets = [nameToUrl("HelloWorld"), nameToUrl("SimplyTest")];
