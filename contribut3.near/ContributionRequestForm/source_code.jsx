@@ -122,9 +122,6 @@ const contributionTypeInput = (
   </InputWrapper>
 );
 
-const body = (
-);
-
 return (
   <Widget
     src={`${ownerId}/widget/Modal`}
@@ -166,13 +163,13 @@ return (
       onConfirm: onSubmit,
       hidden: props.hidden,
       onClose: props.onClose,
-      body:
+      body: (
         <div>
           {entityEditor}
           {contributionTypeInput}
           {descriptionDiv}
         </div>
-      ,
+      ),
       id,
     }}
   />
