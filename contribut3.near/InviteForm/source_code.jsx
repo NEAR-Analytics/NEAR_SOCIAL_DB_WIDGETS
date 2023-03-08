@@ -75,10 +75,8 @@ const InputWrapper = styled.div`
 `;
 
 const accountIdInput = accountId ? (
-  <div>
-    <label htmlFor="account-id" className="text-muted fw-semibold">
-      You're inviting:
-    </label>
+  <InputWrapper>
+    <Label htmlFor="account-id">You're inviting:</Label>
     <div
       className="rounded-3 bg-light"
       style={{ height: "5em" }}
@@ -89,7 +87,7 @@ const accountIdInput = accountId ? (
         props={{ accountId, imageSize: "4em" }}
       />
     </div>
-  </div>
+  </InputWrapper>
 ) : (
   <div className="col-lg-12 mb-2">
     <Widget
