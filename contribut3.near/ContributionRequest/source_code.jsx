@@ -72,7 +72,9 @@ const RejectButton = styled.button`
   padding: 0.5em 1em;
   margin-top: 0.5em;
   color: #f04438;
-  transition: background-color color 0.2s ease-in-out;
+  transition-property: background-color, color;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
 
   &:hover {
     background-color: #f04438;
