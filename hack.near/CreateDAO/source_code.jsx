@@ -25,6 +25,7 @@ const handleCreate = () => {
       contractName: "sputnik-dao.near",
       methodName: "create",
       args: {
+        name: "hacky",
         config: state.args.config,
         policy: state.args.policy,
       },
