@@ -52,6 +52,7 @@ if (state.types.length === 0) {
 const Label = styled.label`
   font-weight: 600;
   font-size: 0.9em;
+  color: #344054;
 `;
 
 const entityEditor = props.entity ? (
@@ -70,7 +71,7 @@ const entityEditor = props.entity ? (
   </div>
 ) : (
   <div className="col-lg-12  mb-2">
-    <label htmlFor="enity-id">Contribute to:</label>
+    <Label htmlFor="enity-id">Contribute to:</Label>
     <Typeahead
       id="entity-id"
       labelKey="name"
