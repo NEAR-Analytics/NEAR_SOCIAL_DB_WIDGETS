@@ -54,6 +54,10 @@ const Label = styled.label`
   color: #344054;
 `;
 
+const EntityInput = styled.div`
+  margin-bottom: 0.5em;
+`;
+
 const entityEditor = props.entity ? (
   <div>
     <Label htmlFor="account-id">Contribute to:</Label>
