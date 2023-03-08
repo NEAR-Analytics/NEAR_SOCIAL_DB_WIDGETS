@@ -76,24 +76,7 @@ const InputWrapper = styled.div`
 
 const startDateInput = <div className="col-lg-6 mb-2"></div>;
 
-const permissionsInput = (
-  <div className="col-lg-6 mb-2">
-    <label htmlFor="permissions-input">Permissions for contributor:</label>
-    <Typeahead
-      id="permissions-input"
-      labelKey="name"
-      onChange={(permissions) =>
-        State.update({
-          permissions,
-        })
-      }
-      options={[{ name: "Admin" }]}
-      placeholder="Admin or leave blank"
-      selected={state.permissions}
-      positionFixed
-    />
-  </div>
-);
+const permissionsInput = <div className="col-lg-6 mb-2"></div>;
 
 const entityIdInput = (
   <Widget
@@ -166,7 +149,22 @@ const body = (
         }}
       />
     </InputWrapper>
-    {permissionsInput}
+    <InputWrapper>
+      <Label htmlFor="permissions-input">Permissions for contributor:</Label>
+      <Typeahead
+        id="permissions-input"
+        labelKey="name"
+        onChange={(permissions) =>
+          State.update({
+            permissions,
+          })
+        }
+        options={[{ name: "Admin" }]}
+        placeholder="Admin or leave blank"
+        selected={state.permissions}
+        positionFixed
+      />
+    </InputWrapper>
     <InputWrapper>
       <Widget
         src={`${ownerId}/widget/DescriptionInput`}
