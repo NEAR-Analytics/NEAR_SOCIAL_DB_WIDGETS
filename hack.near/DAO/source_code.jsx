@@ -4,8 +4,8 @@ const groupId = props.groupId ?? "council";
 const policy = Near.view(daoId, "get_policy");
 
 State.init({
-  dao_id: daoId,
-  group_id: groupId,
+  dao_id: "",
+  group_id: "",
 });
 
 const onChangeDAO = (daoId) => {
@@ -32,10 +32,16 @@ return (
     </div>
     <h2 className="mt-3">{daoId}</h2>
     <div className="mt-3">
-      <Widget src="hack.near/widget/Groups" props={{ accountId }} />
+      <Widget
+        src="hack.near/widget/Groups"
+        props={{ accountId, daoId, groupId }}
+      />
     </div>
     <div>
-      <Widget src="hack.near/widget/GroupMembers" props={{ accountId }} />
+      <Widget
+        src="hack.near/widget/GroupMembers"
+        props={{ accountId, daoId, groupId }}
+      />
     </div>
   </div>
 );
