@@ -113,31 +113,31 @@ return (
       onClose: props.onClose,
       body: (
         <>
-          <EntityInput>
-            <Label htmlFor="enity-id">Contribute to:</Label>
-            {props.entity ? (
-              <SelectedEntity id="entity-id">
-                <Widget
-                  src={`${ownerId}/widget/ProfileLine`}
-                  props={{
-                    accountId: props.entity,
-                    imageSize: "4em",
-                    isEntity: true,
-                  }}
-                />
-              </SelectedEntity>
-            ) : (
-              <Typeahead
-                id="entity-id"
-                labelKey="name"
-                onChange={(entity) => State.update({ entity })}
-                options={state.existingEntities}
-                placeholder="social.near, contribut3.near"
-                selected={state.entity}
-                positionFixed
-              />
-            )}
-          </EntityInput>
+          {/* <EntityInput> */}
+          {/*   <Label htmlFor="enity-id">Contribute to:</Label> */}
+          {/*   {props.entity ? ( */}
+          {/*     <SelectedEntity id="entity-id"> */}
+          {/*       <Widget */}
+          {/*         src={`${ownerId}/widget/ProfileLine`} */}
+          {/*         props={{ */}
+          {/*           accountId: props.entity, */}
+          {/*           imageSize: "4em", */}
+          {/*           isEntity: true, */}
+          {/*         }} */}
+          {/*       /> */}
+          {/*     </SelectedEntity> */}
+          {/*   ) : ( */}
+          {/*     <Typeahead */}
+          {/*       id="entity-id" */}
+          {/*       labelKey="name" */}
+          {/*       onChange={(entity) => State.update({ entity })} */}
+          {/*       options={state.existingEntities} */}
+          {/*       placeholder="social.near, contribut3.near" */}
+          {/*       selected={state.entity} */}
+          {/*       positionFixed */}
+          {/*     /> */}
+          {/*   )} */}
+          {/* </EntityInput> */}
           <InputWrapper>
             <Widget
               src={`${ownerId}/widget/ContributionTypeInput`}
@@ -149,16 +149,16 @@ return (
               }}
             />
           </InputWrapper>
-          {/* <InputWrapper> */}
-          {/*   <Widget */}
-          {/*     src={`${ownerId}/widget/DescriptionInput`} */}
-          {/*     props={{ */}
-          {/*       description: state.description, */}
-          {/*       text: "Details:", */}
-          {/*       update: (description) => State.update({ description }), */}
-          {/*     }} */}
-          {/*   /> */}
-          {/* </InputWrapper> */}
+          <InputWrapper>
+            <Widget
+              src={`${ownerId}/widget/DescriptionInput`}
+              props={{
+                description: state.description,
+                text: "Details:",
+                update: (description) => State.update({ description }),
+              }}
+            />
+          </InputWrapper>
         </>
       ),
       id,
