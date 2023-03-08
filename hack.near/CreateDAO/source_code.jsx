@@ -4,9 +4,7 @@ const defaultConfig = {
   metadata: "",
 };
 
-const defaultPolicy = {
-  "infinity.near": {},
-};
+const defaultPolicy = ["infinity.near", "council.near"];
 
 State.init({
   args: {
