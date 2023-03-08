@@ -14,7 +14,7 @@ State.init({
   types: [],
 });
 
-if (state.existingEntities.length === 0) {
+if (!props.entity && state.existingEntities.length === 0) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
     State.update({ existingEntities: entities.map((name) => ({ name })) })
   );
