@@ -4,15 +4,20 @@ const accountId = props.accountId;
 const selected = props.selected;
 const label = props.label || "Invite to:";
 
-const options = (
-  Near.view(
-    ownerId,
-    "get_admin_entities",
-    { account_id: accountId },
-    "final",
-    false
-  ) ?? []
-).map((name) => ({ name }));
+State.init({
+  options: [],
+  fetched: false,
+});
+
+if (!state.fetched) {
+  Near.asyncView(ownerId, "get_admin_entities", {}, "final", false).then(
+    (entities) =>
+      State.update({
+        fetched: true,
+        options: entities.map((name) => ({ name })),
+      })
+  );
+}
 
 const Label = styled.label`
   font-weight: 600;
