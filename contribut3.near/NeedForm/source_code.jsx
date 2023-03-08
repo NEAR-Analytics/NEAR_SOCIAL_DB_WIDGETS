@@ -12,6 +12,8 @@ State.init({
   fetched: false,
 });
 
+console.log("rendered this");
+
 if (!state.fetched) {
   Near.asyncView(ownerId, "get_contribution_types", {}, "final", false).then(
     (types) =>
