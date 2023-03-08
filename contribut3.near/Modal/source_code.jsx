@@ -11,6 +11,7 @@ const Modal = styled.div`
   inset: 0;
   justify-content: center;
   align-items: center;
+  opacity: 1;
 `;
 
 const ModalBackdrop = styled.div`
