@@ -74,35 +74,34 @@ const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const accountIdInput = accountId ? (
+const accountIdInput = (
   <InputWrapper>
     <Label htmlFor="account-id">You're inviting:</Label>
-    <div
-      className="rounded-3 bg-light"
-      style={{ height: "5em" }}
-      id="account-id"
-    >
+    {accountId ? (
+      <div
+        className="rounded-3 bg-light"
+        style={{ height: "5em" }}
+        id="account-id"
+      >
+        <Widget
+          src={`${ownerId}/widget/ProfileLine`}
+          props={{ accountId, imageSize: "4em" }}
+        />
+      </div>
+    ) : (
       <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId, imageSize: "4em" }}
+        src={`${ownerId}/widget/ValidatedAccountIdInput`}
+        props={{
+          label: "Account ID of contributor:",
+          value: state.accountId,
+          update: (accountId, accountIdValid) =>
+            State.update({ accountId, accountIdValid }),
+          forbiddenIds: state.forbiddenIds,
+        }}
       />
-    </div>
+    )}
   </InputWrapper>
-) : (
-  <div className="col-lg-12 mb-2">
-    <Widget
-      src={`${ownerId}/widget/ValidatedAccountIdInput`}
-      props={{
-        label: "Account ID of contributor:",
-        value: state.accountId,
-        update: (accountId, accountIdValid) =>
-          State.update({ accountId, accountIdValid }),
-        forbiddenIds: state.forbiddenIds,
-      }}
-    />
-  </div>
 );
-
 const descriptionInput = (
   <div className="col-lg-12 mb-2">
     <Widget
