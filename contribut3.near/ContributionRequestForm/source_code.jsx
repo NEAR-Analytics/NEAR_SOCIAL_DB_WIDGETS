@@ -79,7 +79,7 @@ return (
     props={{
       title: "Propose contribution",
       confirmText: (
-        <>
+        <span>
           <i>
             <svg
               width="20"
@@ -106,7 +106,7 @@ return (
             </svg>
           </i>
           <span>Send proposal</span>
-        </>
+        </span>
       ),
       onConfirm,
       hidden: props.hidden,
