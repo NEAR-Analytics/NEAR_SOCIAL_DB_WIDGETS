@@ -46,7 +46,7 @@ const founders =
     "get_founders",
     { account_id: accountId },
     "final",
-    true
+    false
   ) || [];
 
 const profile = Social.getr(`${accountId}/profile`);
