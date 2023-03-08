@@ -75,28 +75,50 @@ const Main = styled.div`
     display: block;
   }
 `;
-const ButtonLink = styled.a`
-  display: block;
-  margin: 10px;
-  padding: 8px;
-  height: 32px;
-  border: 1px solid #d7dbdf;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
-  background: #fbfcfd;
 
-  &:hover,
-  &:focus {
-    background: #ecedee;
-    text-decoration: none;
-    outline: none;
-  }
-`;
+// const ButtonLink = styled.a`
+//   padding: 8px;
+//   height: 32px;
+//   border: 1px solid #d7dbdf;
+//   border-radius: 6px;
+//   font-weight: 600;
+//   font-size: 12px;
+//   line-height: 15px;
+//   text-align: center;
+//   cursor: pointer;
+//   color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+//   background: #fbfcfd;
+
+//   &:hover,
+//   &:focus {
+//     background: #ecedee;
+//     text-decoration: none;
+//     outline: none;
+//   }
+// `;
+
+// const ButtonLink = styled.a`
+//   display: block;
+//   margin: 10px;
+//   padding: 8px;
+//   height: 32px;
+//   border: 1px solid #d7dbdf;
+//   border-radius: 6px;
+//   font-weight: 600;
+//   font-size: 12px;
+//   line-height: 15px;
+//   text-align: center;
+//   cursor: pointer;
+//   color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
+//   background: #fbfcfd;
+
+//   &:hover,
+//   &:focus {
+//     background: #ecedee;
+//     text-decoration: none;
+//     outline: none;
+//   }
+// `;
 const Section = styled.div`
   padding-left: 10px;
   padding-top: 24px;
@@ -174,9 +196,7 @@ const H2 = styled.h2`
   color: #11181c;
   margin: 0 0 24px;
 `;
-
-const indexerView = (accountId, indexerName, idx) => {
-  const Card = styled.div`
+const Card = styled.div`
   border-radius: 12px;
   background: #fff;
   border: ${(div) => (div.selected ? "1px solid black" : "1px solid #eceef0")};
@@ -184,7 +204,7 @@ const indexerView = (accountId, indexerName, idx) => {
     0px 1px 2px rgba(16, 24, 40, 0.06);
 `;
 
-  const CardBody = styled.div`
+const CardBody = styled.div`
   padding: 16px;
   display: flex;
   gap: 16px;
@@ -195,7 +215,7 @@ const indexerView = (accountId, indexerName, idx) => {
   }
 `;
 
-  const CardFooter = styled.div`
+const CardFooter = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -204,7 +224,7 @@ const indexerView = (accountId, indexerName, idx) => {
   border-top: 1px solid #eceef0;
 `;
 
-  const TextLink = styled.a`
+const TextLink = styled.a`
   display: block;
   margin: 0;
   font-size: 14px;
@@ -223,7 +243,7 @@ const indexerView = (accountId, indexerName, idx) => {
   }
 `;
 
-  const Thumbnail = styled.a`
+const Thumbnail = styled.a`
   display: block;
   width: 48px;
   height: 48px;
@@ -246,32 +266,11 @@ const indexerView = (accountId, indexerName, idx) => {
   }
 `;
 
-  const ButtonLink = styled.a`
-  padding: 8px;
-  height: 32px;
-  border: 1px solid #d7dbdf;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
-  background: #fbfcfd;
-
-  &:hover,
-  &:focus {
-    background: #ecedee;
-    text-decoration: none;
-    outline: none;
-  }
-`;
-
-  const CardWrapper = styled.div`
+const CardWrapper = styled.div`
   margin: 0 0 16px;
 `;
 
-  const sharedButtonStyles = `
+const sharedButtonStyles = `
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -301,7 +300,7 @@ const indexerView = (accountId, indexerName, idx) => {
   }
 `;
 
-  const Button = styled.button`
+const Button = styled.button`
   ${sharedButtonStyles}
   color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
   background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
@@ -313,7 +312,7 @@ const indexerView = (accountId, indexerName, idx) => {
   }
 `;
 
-  const ButtonLink = styled.a`
+const ButtonLink = styled.a`
   ${sharedButtonStyles}
   color: ${(p) => (p.primary ? "#fff" : "#11181C")} !important;
   background: ${(p) => (p.primary ? "#0091FF" : "#FBFCFD")};
@@ -324,6 +323,7 @@ const indexerView = (accountId, indexerName, idx) => {
     background: ${(p) => (p.primary ? "#0484e5" : "#ECEDEE")};
   }
 `;
+const indexerView = (accountId, indexerName, idx) => {
   const isSelected =
     (selected_accountId === undefined &&
       selected_indexerName === undefined &&
@@ -364,8 +364,6 @@ const indexerView = (accountId, indexerName, idx) => {
           onClick={() =>
             State.update({
               activeTab: "indexer-status",
-              // selected_indexer: indexerName,
-              // selected_account: accountId,
             })
           }
         >
@@ -377,8 +375,6 @@ const indexerView = (accountId, indexerName, idx) => {
           onClick={() =>
             State.update({
               activeTab: "editor-window",
-              // selected_indexer: indexerName,
-              // selected_account: accountId,
             })
           }
         >
