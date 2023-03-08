@@ -37,8 +37,6 @@ const ModalHeader = styled.div`
   align-items: flex-start;
 `;
 
-const ModalBody = styled.div``;
-
 const ModalFooter = styled.div`
   display: flex;
   flex-direction: row;
@@ -93,7 +91,7 @@ return (
           </svg>
         </CloseButton>
       </ModalHeader>
-      <ModalBody>{body}</ModalBody>
+      <div>{body}</div>
       <ModalFooter>
         <CloseButton onClick={onClose}>Cancel</CloseButton>
         <ConfirmButton onClick={onConfirm}>{confirmText}</ConfirmButton>
