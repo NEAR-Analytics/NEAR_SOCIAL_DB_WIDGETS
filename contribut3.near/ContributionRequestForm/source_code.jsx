@@ -98,20 +98,29 @@ const InputWrapper = styled.div`
 
 const descriptionDiv = (
   <InputWrapper>
-    <Widget
-      src={`${ownerId}/widget/DescriptionInput`}
-      props={{
-        description: state.description,
-        text: "Details:",
-        update: (description) => State.update({ description }),
-      }}
+    <Label htmlFor="description">Details:</Label>
+    <textarea
+      id="description"
+      value={state.description}
+      type="text"
+      rows={6}
+      className="form-control"
+      onChange={(event) => State.update({ description: event.target.value })}
     />
+    {/* <Widget */}
+    {/*   src={`${ownerId}/widget/DescriptionInput`} */}
+    {/*   props={{ */}
+    {/*     description: state.description, */}
+    {/*     text: "Details:", */}
+    {/*     update: (description) => State.update({ description }), */}
+    {/*   }} */}
+    {/* /> */}
   </InputWrapper>
 );
 
 const contributionTypeInput = (
   <InputWrapper>
-    <Label htmlFor="contribution-type">{text}</Label>
+    <Label htmlFor="contribution-type">Contribution type:</Label>
     <Typeahead
       id="contribution-type"
       labelKey="name"
