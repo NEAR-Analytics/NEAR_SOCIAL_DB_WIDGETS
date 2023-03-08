@@ -140,12 +140,7 @@ return (
       {accountId ? "Create new" : "Edit"} project
     </h1>
     <div className="bg-light mb-3 p-4 rounded-2">
-      <div className="row">
-        {accountIdInput}
-        {nameInput}
-        {kindInput}
-        {startDateInput}
-      </div>
+      <div className="row"></div>
     </div>
     <div className="d-flex flex-row justify-content-between">
       <a
@@ -164,4 +159,87 @@ return (
       </a>
     </div>
   </div>
+);
+
+const Page = styled.div`
+  padding: 0 0.75em;
+  max-width: 100%;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0.75em;
+  }
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75em;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #f9fafb;
+`;
+
+const Controls = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const CloseButton = styled.a`
+  background-color: white;
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  color: #344054;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    text-decoration: none;
+    color: unset;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  }
+`;
+
+const ConfirmButton = styled.button`
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  background-color: ${({ valid }) => (valid ? "#7f56d9" : "#344054")};
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    ${({ valid }) => (valid ? "background-color: #4f56d9;" : "")}
+  }
+`;
+
+return (
+  <Page>
+    <h1>Create new contribution request</h1>
+    <Form>
+      {accountIdInput}
+      {nameInput}
+      {kindInput}
+      {startDateInput}
+    </Form>
+    <Controls>
+      <CloseButton
+        href={`/#/${ownerId}/widget/Index?tab=home`}
+        onClick={() => props.update({ tab: "home" })}
+      >
+        Cancel
+      </CloseButton>
+      <ConfirmButton
+        valid={
+          state.contributionType.length === 1 && state.description.length > 0
+        }
+        onClick={onSubmit}
+      >
+        Create request
+      </ConfirmButton>
+    </Controls>
+  </Page>
 );
