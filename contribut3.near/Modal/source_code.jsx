@@ -7,7 +7,7 @@ const onClose = props.onClose;
 
 const Modal = styled.div`
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
-  position: relative;
+  position: fixed;
   inset: 0;
   justify-content: center;
   align-items: center;
