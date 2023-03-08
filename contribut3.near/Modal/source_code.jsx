@@ -5,10 +5,6 @@ const onConfirm = props.onConfirm;
 const hidden = props.hidden;
 const onClose = props.onClose;
 
-State.init({
-  body,
-});
-
 const Modal = styled.div`
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
   position: fixed;
@@ -95,7 +91,7 @@ return (
           </svg>
         </CloseButton>
       </ModalHeader>
-      <div>{state.body}</div>
+      <div>{body}</div>
       <ModalFooter>
         <CloseButton onClick={onClose}>Cancel</CloseButton>
         <ConfirmButton onClick={onConfirm}>{confirmText}</ConfirmButton>
