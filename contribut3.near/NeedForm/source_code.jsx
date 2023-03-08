@@ -38,7 +38,6 @@ const SelectedEntity = styled.div`
   background-color: #f2f4f7;
   height: 5em;
 `;
-console.log(state);
 
 const entityEditor = (
   <EntityInput>
