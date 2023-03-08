@@ -167,59 +167,57 @@ const Wrapper = styled.div`
   padding: 0.75em 0;
 `;
 
-const body = (
-  <Container id={accountId}>
-    <Wrapper>
-      <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{
-          accountId: contributorId,
-          imageSize: "3em",
-          update: props.update,
-          additionalText: (
-            <b>
-              {contributionRequest.need
-                ? "sent a proposal to your request"
-                : "wants to contribute to your project"}
-            </b>
-          ),
-          additionalColumn: controls,
-          additionalRow: (
-            <>
-              <Widget
-                src={`${ownerId}/widget/ProfileLine`}
-                props={{
-                  accountId: entityId,
-                  update: props.update,
-                  isEntity: true,
-                  imageSize: contributionRequest.need ? "1.5em" : "2em",
-                }}
-              />
-              {contributionRequest.need ? (
-                <b>
-                  Looking for {need.contribution_type}: {need.description}
-                </b>
-              ) : (
-                <></>
-              )}
-              <div className="mt-2 ps-2 border-start border-3 border-info">
-                <Widget
-                  src={`${ownerId}/widget/DescriptionArea`}
-                  props={{
-                    description: contributionRequest.description,
-                  }}
-                />
-              </div>
-            </>
-          ),
-        }}
-      />
-    </Wrapper>
-  </Container>
-);
-
 return (
   <div className="card border-0" style={{ backgroundColor: "#f0f9ff" }}>
-    <div className="px-3 py-0">{body}</div>
+    <div className="px-3 py-0">
+      <Container id={accountId}>
+        <Wrapper>
+          <Widget
+            src={`${ownerId}/widget/ProfileLine`}
+            props={{
+              accountId: contributorId,
+              imageSize: "3em",
+              update: props.update,
+              additionalText: (
+                <b>
+                  {contributionRequest.need
+                    ? "sent a proposal to your request"
+                    : "wants to contribute to your project"}
+                </b>
+              ),
+              additionalColumn: controls,
+              additionalRow: (
+                <>
+                  <Widget
+                    src={`${ownerId}/widget/ProfileLine`}
+                    props={{
+                      accountId: entityId,
+                      update: props.update,
+                      isEntity: true,
+                      imageSize: contributionRequest.need ? "1.5em" : "2em",
+                    }}
+                  />
+                  {contributionRequest.need ? (
+                    <b>
+                      Looking for {need.contribution_type}: {need.description}
+                    </b>
+                  ) : (
+                    <></>
+                  )}
+                  <div className="mt-2 ps-2 border-start border-3 border-info">
+                    <Widget
+                      src={`${ownerId}/widget/DescriptionArea`}
+                      props={{
+                        description: contributionRequest.description,
+                      }}
+                    />
+                  </div>
+                </>
+              ),
+            }}
+          />
+        </Wrapper>
+      </Container>
+    </div>
   </div>
 );
