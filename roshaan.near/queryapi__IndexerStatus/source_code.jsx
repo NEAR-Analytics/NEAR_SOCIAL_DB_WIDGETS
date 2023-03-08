@@ -104,31 +104,28 @@ State.init({
   logsOffset: 0,
   stateOffset: 0,
 });
-async function fetchGraphQL(operationsDoc, operationName, variables) {
-  try {
-    const result = await asyncFetch(
-      "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          query: operationsDoc,
-          variables: variables,
-          operationName: operationName,
-        }),
-      }
-    );
-    return result.body.data;
-  } catch (e) {
-    console.log("error:", e);
-  }
-  return result.body.data;
+function fetchGraphQL(operationsDoc, operationName, variables) {
+  return asyncFetch(
+    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        query: operationsDoc,
+        variables: variables,
+        operationName: operationName,
+      }),
+    }
+  );
 }
 
 const createGraphQLLink = () => {
   const queryLink =
     "https://cloud.hasura.io/public/graphiql?endpoint=https%3A%2F%2Fquery-api-hasura-vcqilefdcq-uc.a.run.app%2Fv1%2Fgraphql&query=query+IndexerQuery+%7B%0A++indexer_state%28where%3A+%7Bfunction_name%3A+%7B_eq%3A+%22function_placeholder%22%7D%7D%29+%7B%0A++++function_name%0A++++current_block_height%0A++%7D%0A++indexer_storage%28where%3A+%7Bfunction_name%3A+%7B_eq%3A+%22function_placeholder%22%7D%7D%29+%7B%0A++++function_name%0A++++key_name%0A++++value%0A++%7D%0A++log_entries%28where%3A+%7Bfunction_name%3A+%7B_eq%3A+%22function_placeholder%22%7D%7D%29+%7B%0A++++function_name%0A++++id%0A++++message%0A++++timestamp%0A++%7D%0A%7D%0A";
 
-  return queryLink.replaceAll("function_placeholder", indexer_name);
+  return queryLink.replaceAll(
+    "function_placeholder",
+    `${accountId}/${indexer_name}`
+  );
 };
 
 const IndexerStorageDoc = `
@@ -180,6 +177,7 @@ const indexerStateDoc = `
 fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
   offset: state.indexer_resOffset * LIMIT,
 }).then((result) => {
+  console.log(result, "tesult");
   if (result.status === 200) {
     State.update({
       indexer_res: result.body.data.indexer_storage,
