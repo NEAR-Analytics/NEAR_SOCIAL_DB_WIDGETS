@@ -14,6 +14,8 @@ State.init({
   entityFetched: false,
   founders: [],
   foundersFetched: false,
+  profile: null,
+  profileFetched: false,
 });
 
 if (!state.entityFetched) {
@@ -26,9 +28,12 @@ if (!state.entityFetched) {
   ).then((entity) => State.update({ entity, entityFetched: true }));
 }
 
-const profile = Social.getr(`${accountId}/profile`, "final", {
-  subscribe: false,
-});
+if (!state.profileFetched) {
+  const profile = Social.getr(`${accountId}/profile`, "final", {
+    subscribe: false,
+  });
+  State.update({ profile, profileFetched: true });
+}
 
 if (!state.foundersFetched) {
   Near.asyncView(
@@ -154,7 +159,7 @@ return (
               </div>
               <Widget
                 src={`${ownerId}/widget/Tags`}
-                props={{ tags: profile.tags }}
+                props={{ tags: state.profile.tags }}
               />
             </>
           ),
@@ -164,7 +169,7 @@ return (
         <Widget
           src={`${ownerId}/widget/DescriptionArea`}
           props={{
-            description: state.entity.description || profile.description,
+            description: state.entity.description || state.profile.description,
           }}
         />
       </DescriptionWrapper>
