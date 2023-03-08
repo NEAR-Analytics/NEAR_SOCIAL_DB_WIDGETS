@@ -64,7 +64,18 @@ const AcceptButton = styled.button`
   }
 `;
 
-const RejectButton = styled.button``;
+const RejectButton = styled.button`
+  background-color: white;
+  border-radius: 4px;
+  padding: 0.8em 1em;
+  color: #f04438;
+  transition: background-color color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f04438;
+    color: white;
+  }
+`;
 
 const controls = (
   <Controls isAuthorized={isAuthorized}>
@@ -86,7 +97,7 @@ const controls = (
         >
           <path
             d="M17.1666 5L7.99992 14.1667L3.83325 10"
-            stroke="white"
+            stroke="currentColor"
             stroke-width="1.66667"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -115,7 +126,7 @@ const controls = (
         >
           <path
             d="M15.5 5L5.5 15M5.5 5L15.5 15"
-            stroke="#F04438"
+            stroke="currentColor"
             stroke-width="1.66667"
             stroke-linecap="round"
             stroke-linejoin="round"
