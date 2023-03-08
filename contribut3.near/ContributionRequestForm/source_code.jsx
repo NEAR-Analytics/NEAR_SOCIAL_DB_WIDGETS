@@ -111,14 +111,26 @@ const descriptionDiv = (
 
 const contributionTypeInput = (
   <InputWrapper>
-    <Widget
-      src={`${ownerId}/widget/ContributionTypeInput`}
-      props={{
-        contributionType: state.contributionType,
-        update: (contributionType) => State.update({ contributionType }),
-        allContributionTypes: state.types,
-      }}
+    <Label htmlFor="contribution-type">{text}</Label>
+    <Typeahead
+      id="contribution-type"
+      labelKey="name"
+      onChange={(contributionType) => State.update({ contributionType })}
+      options={state.types}
+      placeholder="Development, Investment, Legal..."
+      selected={state.contributionType}
+      positionFixed
+      multiple={false}
+      allowNew
     />
+    {/* <Widget */}
+    {/*   src={`${ownerId}/widget/ContributionTypeInput`} */}
+    {/*   props={{ */}
+    {/*     contributionType: state.contributionType, */}
+    {/*     update: (contributionType) => State.update({ contributionType }), */}
+    {/*     allContributionTypes: state.types, */}
+    {/*   }} */}
+    {/* /> */}
   </InputWrapper>
 );
 
