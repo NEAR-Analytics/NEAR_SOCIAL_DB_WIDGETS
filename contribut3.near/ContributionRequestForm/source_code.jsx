@@ -41,72 +41,9 @@ const SelectedEntity = styled.div`
   height: 5em;
 `;
 
-const entityEditor = (
-  <EntityInput>
-    <Label htmlFor="enity-id">Contribute to:</Label>
-    {props.entity ? (
-      <SelectedEntity id="entity-id">
-        <Widget
-          src={`${ownerId}/widget/ProfileLine`}
-          props={{
-            accountId: props.entity,
-            imageSize: "4em",
-            isEntity: true,
-          }}
-        />
-      </SelectedEntity>
-    ) : (
-      <Typeahead
-        id="entity-id"
-        labelKey="name"
-        onChange={(entity) => State.update({ entity })}
-        options={state.existingEntities}
-        placeholder="social.near, contribut3.near"
-        selected={state.entity}
-        positionFixed
-      />
-    )}
-  </EntityInput>
-);
-
 const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
-
-const descriptionDiv = (
-  <InputWrapper>
-    {/* <Label htmlFor="description">Details:</Label> */}
-    {/* <textarea */}
-    {/*   id="description" */}
-    {/*   value={state.description} */}
-    {/*   type="text" */}
-    {/*   rows={6} */}
-    {/*   // className="form-control" */}
-    {/*   onChange={(event) => State.update({ description: event.target.value })} */}
-    {/* /> */}
-    <Widget
-      src={`${ownerId}/widget/DescriptionInput`}
-      props={{
-        description: state.description,
-        text: "Details:",
-        update: (description) => State.update({ description }),
-      }}
-    />
-  </InputWrapper>
-);
-
-const contributionTypeInput = (
-  <InputWrapper>
-    <Widget
-      src={`${ownerId}/widget/ContributionTypeInput`}
-      props={{
-        contributionType: state.contributionType,
-        update: (contributionType) => State.update({ contributionType }),
-        allContributionTypes: state.types,
-      }}
-    />
-  </InputWrapper>
-);
 
 const convertType = (contributionType) => {
   if (state.types.some(({ name }) => name === contributionType.name)) {
@@ -167,9 +104,52 @@ return (
       onClose: props.onClose,
       body: (
         <>
-          {entityEditor}
-          {contributionTypeInput}
-          {descriptionDiv}
+          <EntityInput>
+            <Label htmlFor="enity-id">Contribute to:</Label>
+            {props.entity ? (
+              <SelectedEntity id="entity-id">
+                <Widget
+                  src={`${ownerId}/widget/ProfileLine`}
+                  props={{
+                    accountId: props.entity,
+                    imageSize: "4em",
+                    isEntity: true,
+                  }}
+                />
+              </SelectedEntity>
+            ) : (
+              <Typeahead
+                id="entity-id"
+                labelKey="name"
+                onChange={(entity) => State.update({ entity })}
+                options={state.existingEntities}
+                placeholder="social.near, contribut3.near"
+                selected={state.entity}
+                positionFixed
+              />
+            )}
+          </EntityInput>
+          <InputWrapper>
+            <Widget
+              src={`${ownerId}/widget/ContributionTypeInput`}
+              props={{
+                contributionType: state.contributionType,
+                update: (contributionType) =>
+                  State.update({ contributionType }),
+                allContributionTypes: state.types,
+              }}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <Widget
+              src={`${ownerId}/widget/DescriptionInput`}
+              props={{
+                description: state.description,
+                text: "Details:",
+                update: (description) => State.update({ description }),
+              }}
+            />
+          </InputWrapper>
         </>
       ),
       id,
