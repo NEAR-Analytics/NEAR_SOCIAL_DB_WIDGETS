@@ -184,10 +184,9 @@ return (
         Cancel
       </CloseButton>
       <ConfirmButton
-        className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
-            ? "btn-secondary"
-            : "btn-primary"
-          }`}
+        valid={
+          state.contributionType.length === 1 && state.description.length > 0
+        }
         onClick={onSubmit}
       >
         Create request
