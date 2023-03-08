@@ -1,8 +1,8 @@
 const ownerId = "contribut3.near";
 const id = props.id;
-const need = props.need ?? null;
 
 State.init({
+  need: props.need ?? null,
   entity: props.entity ? [{ name: props.entity }] : [],
   entitiesFetched: !!props.entity,
   description: props.description ?? "",
@@ -67,7 +67,7 @@ const onSubmit = () => {
     entity_id: state.entity[0].name,
     description: state.description,
     contribution_type: convertType(state.contributionType[0]),
-    need,
+    need: state.need,
   };
 
   Near.call(ownerId, "request_contribution", args);
