@@ -89,7 +89,7 @@ const body = (
   <>
     <EntityInput>
       <Label htmlFor="enity-id">Contribute to:</Label>
-      {props.entity ? (
+      {props.accountId ? (
         <SelectedEntity id="entity-id">
           <Widget
             src={`${ownerId}/widget/ProfileLine`}
