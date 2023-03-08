@@ -2,9 +2,9 @@ const ownerId = "contribut3.near";
 const id = props.id;
 
 State.init({
-  need: props.need ?? null,
-  entity: props.entity ? [{ name: props.entity }] : [],
-  entitiesFetched: !!props.entity,
+  need: props.cid ?? null,
+  entity: props.accountId ? [{ name: props.accountId }] : [],
+  entitiesFetched: !!props.accountId,
   description: props.description ?? "",
   contributionType: props.contributionType
     ? [{ name: props.contributionType }]
