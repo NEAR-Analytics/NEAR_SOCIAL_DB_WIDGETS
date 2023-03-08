@@ -66,8 +66,7 @@ const AcceptButton = styled.button`
 
 const controls = (
   <Controls isAuthorized={isAuthorized}>
-    <a
-      className="btn btn-success"
+    <AcceptButton
       onClick={() =>
         Near.call(ownerId, "approve_contribution", {
           entity_id: entityId,
@@ -75,9 +74,25 @@ const controls = (
         })
       }
     >
-      <i className="bi-check" />
+      <i>
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 21 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.1666 5L7.99992 14.1667L3.83325 10"
+            stroke="white"
+            stroke-width="1.66667"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </i>
       <span>Accept</span>
-    </a>
+    </AcceptButton>
     <a
       className="btn btn-outline-danger mt-2 d-flex flex-row justify-content-center"
       style={{ minWidth: "7em" }}
