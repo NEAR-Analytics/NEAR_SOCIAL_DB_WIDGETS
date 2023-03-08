@@ -22,11 +22,14 @@ const check = groups.map((group) => {
 });
 
 State.init({
-  receiver_id: "",
-  amount: "",
+  receiver_id: accountId,
+  amount: state.amount,
 });
 
 const handleProposal = () => {
+  if (!(state.receiver_id && state.amount)) {
+    return;
+  }
   const gas = 200000000000000;
   const deposit = 100000000000000000000000;
   Near.call([
@@ -74,7 +77,7 @@ return (
       Amount:
       <input type="number" onChange={(e) => onChangeAmount(e.target.value)} />
     </div>
-    {!check && (
+    {check && (
       <button className="btn btn-success" onClick={handleProposal}>
         Submit
       </button>
