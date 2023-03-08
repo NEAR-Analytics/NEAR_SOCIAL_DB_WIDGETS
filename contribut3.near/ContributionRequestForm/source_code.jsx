@@ -145,7 +145,6 @@ return (
                 contributionType: state.contributionType,
                 update: (contributionType) =>
                   State.update({ contributionType }),
-                allContributionTypes: state.types,
               }}
             />
           </InputWrapper>
