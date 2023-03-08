@@ -53,8 +53,15 @@ const Controls = styled.div`
 
 const AcceptButton = styled.button`
   background-color: #12b76a;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 0.8em 1em;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #0e9f5d;
+  }
 `;
 
 const controls = (
