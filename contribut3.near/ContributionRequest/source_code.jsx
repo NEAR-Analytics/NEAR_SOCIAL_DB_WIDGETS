@@ -91,7 +91,7 @@ const RejectButton = styled.button`
 `;
 
 const IconContainer = styled.i`
-  transform: translate(0, -2px);
+  transform: translate(0, -1px);
 `;
 
 const controls = (
