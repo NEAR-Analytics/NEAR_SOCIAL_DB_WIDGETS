@@ -27,6 +27,7 @@ State.init({
 });
 
 const onSubmit = () => {
+  console.log("here");
   const args = {
     entity_id: state.entity[0].name,
     description: state.description,
