@@ -38,6 +38,7 @@ const SelectedEntity = styled.div`
   background-color: #f2f4f7;
   height: 5em;
 `;
+console.log(state);
 
 const entityEditor = (
   <EntityInput>
@@ -47,7 +48,7 @@ const entityEditor = (
         <Widget
           src={`${ownerId}/widget/ProfileLine`}
           props={{
-            accountId: props.entity,
+            accountId: props.accountId,
             imageSize: "4em",
             isEntity: true,
           }}
