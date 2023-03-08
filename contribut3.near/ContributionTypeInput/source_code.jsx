@@ -8,9 +8,15 @@ if (!update) {
   return "Cannot render contribution type input without update function!";
 }
 
+const Label = styled.label`
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #344054;
+`;
+
 return (
   <>
-    <label htmlFor="contribution-type">{text}</label>
+    <Label htmlFor="contribution-type">{text}</Label>
     <Typeahead
       id="contribution-type"
       labelKey="name"
