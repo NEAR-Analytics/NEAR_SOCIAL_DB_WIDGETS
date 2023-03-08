@@ -440,6 +440,7 @@ return (
         <div>
           <ButtonLink
             href="/#/roshaan.near/widget/queryapi__QueryApiDashboard/?view=create-new-indexer"
+            style={{ "margin-top": "10px" }}
             onClick={() =>
               State.update({
                 activeTab: "create-new-indexer",
