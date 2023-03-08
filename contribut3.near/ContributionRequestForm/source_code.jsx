@@ -104,7 +104,7 @@ const descriptionDiv = (
       value={state.description}
       type="text"
       rows={6}
-      className="form-control"
+      // className="form-control"
       onChange={(event) => State.update({ description: event.target.value })}
     />
     {/* <Widget */}
