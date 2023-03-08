@@ -4,7 +4,12 @@ const accountId = context.accountId;
 const [selected_accountId, selected_indexerName] = selectedIndexerPath
   ? selectedIndexerPath.split("/")
   : [undefined, undefined];
-
+console.log(
+  selected_accountId,
+  "accountId",
+  selected_indexerName,
+  "indexerName"
+);
 const activeTab = props.view ?? "public-indexers";
 const limit = 7;
 let totalIndexers = 0;
