@@ -1,9 +1,9 @@
-const currentPage =
-  props.currentPage ||
-  `ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/SimplyTest`;
+const drAccount =
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
 
-const nameToUri = (name) =>
-  `ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/${name}`;
+const currentPage = props.currentPage || `${drAccount}/widget/SimplyTest`;
+
+const nameToUri = (name) => `${drAccount}/widget/${name}`;
 
 const labels = ["Hello World", "SimplyTest"];
 const widgets = [nameToUri("HelloWorld"), nameToUri("SimplyTest")];
