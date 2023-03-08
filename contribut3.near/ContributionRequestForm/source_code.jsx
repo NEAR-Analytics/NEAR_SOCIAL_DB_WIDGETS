@@ -123,7 +123,7 @@ const contributionTypeInput = (
 );
 
 const body = (
-  <div className="row">
+  <div>
     {entityEditor}
     {contributionTypeInput}
     {descriptionDiv}
