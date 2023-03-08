@@ -54,25 +54,6 @@ const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const convertType = (contributionType) => {
-  if (state.types.some(({ name }) => name === contributionType.name)) {
-    return contributionType.name;
-  }
-
-  return { Other: contributionType.name };
-};
-
-const onConfirm = () => {
-  const args = {
-    entity_id: state.entity[0].name,
-    description: state.description,
-    contribution_type: convertType(state.contributionType[0]),
-    need: state.need,
-  };
-
-  Near.call(ownerId, "request_contribution", args);
-};
-
 const confirmText = (
   <>
     <i>
@@ -152,6 +133,25 @@ const body = (
     </InputWrapper>
   </>
 );
+
+const convertType = (contributionType) => {
+  if (state.types.some(({ name }) => name === contributionType.name)) {
+    return contributionType.name;
+  }
+
+  return { Other: contributionType.name };
+};
+
+const onConfirm = () => {
+  const args = {
+    entity_id: state.entity[0].name,
+    description: state.description,
+    contribution_type: convertType(state.contributionType[0]),
+    need: state.need,
+  };
+
+  Near.call(ownerId, "request_contribution", args);
+};
 
 return (
   <Widget
