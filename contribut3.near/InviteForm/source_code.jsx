@@ -77,17 +77,15 @@ const InputWrapper = styled.div`
 const accountIdInput = (
   <InputWrapper>
     {accountId ? (
-      <div
-        className="rounded-3 bg-light"
-        style={{ height: "5em" }}
-        id="account-id"
-      >
+      <>
         <Label htmlFor="account-id">You're inviting:</Label>
-        <Widget
-          src={`${ownerId}/widget/ProfileLine`}
-          props={{ accountId, imageSize: "4em" }}
-        />
-      </div>
+        <SelectedEntity id="account-id">
+          <Widget
+            src={`${ownerId}/widget/ProfileLine`}
+            props={{ accountId, imageSize: "4em" }}
+          />
+        </SelectedEntity>
+      </>
     ) : (
       <Widget
         src={`${ownerId}/widget/ValidatedAccountIdInput`}
