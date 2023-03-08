@@ -44,9 +44,22 @@ const Container = styled.div`
   border-bottom: 1px solid #eaecf0;
 `;
 
+const Wrapper = styled.div`
+  flex-grow: 1;
+  padding: 0.75em 0;
+  max-width: 100%;
+`;
+
+const ActionColumn = styled.div`
+  display: ${({ show }) => (show ? "flex" : "none")};
+  flex-direction: row;
+  justify-content: between;
+  align-items: center;
+`;
+
 return (
   <Container id={accountId}>
-    <div className="flex-grow-1 py-3" style={{ maxWidth: "100%" }}>
+    <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
@@ -54,10 +67,8 @@ return (
           isEntity: true,
           imageSize: "3em",
           update: props.update,
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row justify-content-between align-items-center">
+          additionalColumn: (
+            <ActionColumn show={!inboxView}>
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
                 props={{ active: state.entity.status }}
@@ -103,7 +114,7 @@ return (
                   onClose: () => State.update({ contributionFormHidden: true }),
                 }}
               />
-            </div>
+            </ActionColumn>
           ),
           additionalRow: (
             <>
@@ -146,6 +157,6 @@ return (
           }}
         />
       </div>
-    </div>
+    </Wrapper>
   </Container>
 );
