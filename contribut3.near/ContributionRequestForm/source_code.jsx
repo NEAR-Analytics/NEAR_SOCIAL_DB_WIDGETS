@@ -14,25 +14,6 @@ State.init({
   types: [],
 });
 
-const convertType = (contributionType) => {
-  if (state.types.some(({ name }) => name === contributionType.name)) {
-    return contributionType.name;
-  }
-
-  return { Other: contributionType.name };
-};
-
-const onSubmit = () => {
-  const args = {
-    entity_id: state.entity[0].name,
-    description: state.description,
-    contribution_type: convertType(state.contributionType[0]),
-    need,
-  };
-
-  Near.call(ownerId, "request_contribution", args);
-};
-
 if (state.existingEntities.length === 0) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
     State.update({ existingEntities: entities.map((name) => ({ name })) })
@@ -138,6 +119,25 @@ const contributionTypeInput = (
     {/* /> */}
   </InputWrapper>
 );
+
+const convertType = (contributionType) => {
+  if (state.types.some(({ name }) => name === contributionType.name)) {
+    return contributionType.name;
+  }
+
+  return { Other: contributionType.name };
+};
+
+const onSubmit = () => {
+  const args = {
+    entity_id: state.entity[0].name,
+    description: state.description,
+    contribution_type: convertType(state.contributionType[0]),
+    need,
+  };
+
+  Near.call(ownerId, "request_contribution", args);
+};
 
 return (
   <Widget
