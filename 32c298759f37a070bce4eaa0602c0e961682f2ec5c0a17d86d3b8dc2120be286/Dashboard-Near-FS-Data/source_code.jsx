@@ -61,13 +61,5 @@ return (
       src="32c298759f37a070bce4eaa0602c0e961682f2ec5c0a17d86d3b8dc2120be286/widget/FS-bar-chart"
       props={chart2Props}
     />
-    <Widget
-      src="32c298759f37a070bce4eaa0602c0e961682f2ec5c0a17d86d3b8dc2120be286/widget/FS-bar-chart"
-      props={chart3Props}
-    />
-    <Widget
-      src="32c298759f37a070bce4eaa0602c0e961682f2ec5c0a17d86d3b8dc2120be286/widget/FS-pie-chart"
-      props={chart4Props}
-    />
   </div>
 );
