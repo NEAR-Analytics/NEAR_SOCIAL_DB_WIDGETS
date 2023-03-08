@@ -125,7 +125,7 @@ return (
             </ActionColumn>
           ),
           additionalRow: (
-            <>
+            <div>
               <div>
                 {state.founders.map((founder) =>
                   state.founders.length === 1 ? (
@@ -153,7 +153,7 @@ return (
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: state.profile.tags }}
               />
-            </>
+            </div>
           ),
         }}
       />
