@@ -23,14 +23,12 @@ State.init({
 });
 
 const onSubmit = () => {
-  console.log("here");
   const args = {
     entity_id: state.entity[0].name,
     description: state.description,
     contribution_type: convertType(state.contributionType[0]),
     need,
   };
-  console.log("then here " + args);
 
   Near.call(ownerId, "request_contribution", args);
 };
