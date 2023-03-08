@@ -33,7 +33,7 @@ return (
       </div>
     </div>
     <div>
-      <a href={`#hack.near/widget/Groups?daoId=${daoId}`}>
+      <a href={`#hack.near/widget/Groups?groupId=${groupId}&daoId=${daoId}`}>
         <button className="btn btn-primary mt-2">See All Groups</button>
       </a>
     </div>
