@@ -74,13 +74,6 @@ const InputWrapper = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const startDateInput = <div className="col-lg-6 mb-2"></div>;
-
-const permissionsInput = <div className="col-lg-6 mb-2"></div>;
-
-const entityIdInput = (
-);
-
 const body = (
   <div className="row">
     <InputWrapper>
@@ -127,7 +120,8 @@ const body = (
           accountId: context.accountId,
           selected: state.entityId,
         }}
-      /></InputWrapper>
+      />
+    </InputWrapper>
     <InputWrapper>
       <Widget
         src={`${ownerId}/widget/ContributionTypeInput`}
