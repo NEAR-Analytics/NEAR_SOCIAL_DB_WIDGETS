@@ -47,6 +47,7 @@ const CloseButton = styled.button`
   border-radius: 4px;
   border: 0;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  color: #344054;
 `;
 
 return (
@@ -61,6 +62,23 @@ return (
           aria-label="Close"
           onClick={onClose}
         />
+        <CloseButton>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.5 5L5.5 15M5.5 5L15.5 15"
+              stroke="currentColor"
+              stroke-width="1.66667"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </CloseButton>
       </ModalHeader>
       <ModalBody>{body}</ModalBody>
       <ModalFooter>
