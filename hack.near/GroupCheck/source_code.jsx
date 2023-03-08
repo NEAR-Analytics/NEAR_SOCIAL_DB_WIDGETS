@@ -19,7 +19,7 @@ const check = groups.map((group) => {
   return !group
     ? false
     : group.filter((address) => address === accountId).length > 0;
-});
+})?.[0];
 
 State.init({
   receiver_id: accountId,
