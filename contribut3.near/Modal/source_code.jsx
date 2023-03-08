@@ -44,6 +44,7 @@ const ModalFooter = styled.div`
 `;
 
 const CloseButton = styled.button`
+  background-color: white;
   padding: 0.7em;
   border-radius: 4px;
   border: 0;
