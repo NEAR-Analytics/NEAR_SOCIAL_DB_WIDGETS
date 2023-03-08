@@ -92,8 +92,12 @@ const entityEditor = (
   </EntityInput>
 );
 
+const DescriptionWrapper = styled.div`
+  margin-bottom: 0.5em;
+`;
+
 const descriptionDiv = (
-  <div className="col-lg-12 mb-2">
+  <DescriptionWrapper>
     <Widget
       src={`${ownerId}/widget/DescriptionInput`}
       props={{
@@ -102,7 +106,7 @@ const descriptionDiv = (
         update: (description) => State.update({ description }),
       }}
     />
-  </div>
+  </DescriptionWrapper>
 );
 
 const contributionTypeInput = (
