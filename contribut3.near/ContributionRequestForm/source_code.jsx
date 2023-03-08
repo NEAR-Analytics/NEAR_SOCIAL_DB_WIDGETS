@@ -51,7 +51,7 @@ if (!state.needFetched && !!state.need) {
     false
   ).then((need) =>
     State.update({
-      contributionType: [{ name: need.conibtribution_type }],
+      contributionType: [{ name: need.contribution_type }],
       needFetched: true,
     })
   );
