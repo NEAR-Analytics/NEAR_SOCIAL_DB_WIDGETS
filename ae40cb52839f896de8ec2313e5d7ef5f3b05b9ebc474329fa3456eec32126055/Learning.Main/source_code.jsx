@@ -21,7 +21,7 @@ return (
         <div class="col-3">
           <b>Start</b>
           <Widget
-            src={nameToUri("Learning.Menu")}
+            src={nameToUrl("Learning.Menu")}
             props={{
               labels,
               widgets,
