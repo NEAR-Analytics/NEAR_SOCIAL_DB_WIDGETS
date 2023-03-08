@@ -21,6 +21,7 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalDialog = styled.div`
+  z-index: 3;
   background-color: white;
   border-radius: 4px;
   width: 40%;
