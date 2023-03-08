@@ -5,7 +5,7 @@ State.init({
 const handleCreate = () => {
   Near.call([
     {
-      contractName: contractId,
+      contractName: "sputnik-dao.near",
       methodName: "create",
       args: {
         config: {
