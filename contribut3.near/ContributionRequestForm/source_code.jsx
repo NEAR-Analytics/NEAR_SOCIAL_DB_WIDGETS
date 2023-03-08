@@ -51,7 +51,6 @@ if (state.types.length === 0) {
 
 const Label = styled.label`
   font-weight: 600;
-  font-size: 0.9em;
   color: #344054;
 `;
 
