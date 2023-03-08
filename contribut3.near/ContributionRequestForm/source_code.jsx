@@ -153,17 +153,80 @@ const onConfirm = () => {
   Near.call(ownerId, "request_contribution", args);
 };
 
+const Page = styled.div`
+  padding: 0 0.75em;
+  max-width: 100%;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0.75em;
+  }
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75em;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #f9fafb;
+`;
+
+const Controls = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const CloseButton = styled.a`
+  background-color: white;
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  color: #344054;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    text-decoration: none;
+    color: unset;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  }
+`;
+
+const ConfirmButton = styled.button`
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  background-color: ${({ valid }) => (valid ? "#7f56d9" : "#344054")};
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    ${({ valid }) => (valid ? "background-color: #4f56d9;" : "")}
+  }
+`;
+
 return (
-  <Widget
-    src={`${ownerId}/widget/Modal`}
-    props={{
-      title: "Propose contribution",
-      confirmText,
-      onConfirm,
-      hidden: props.hidden,
-      onClose: props.onClose,
-      body,
-      id,
-    }}
-  />
+  <Page>
+    <h1>Propose contribution</h1>
+    <Form>{body}</Form>
+    <Controls>
+      <CloseButton
+        href={`/#/${ownerId}/widget/Index?tab=home`}
+        onClick={() => props.update({ tab: "home" })}
+      >
+        Cancel
+      </CloseButton>
+      <ConfirmButton
+        valid={
+          state.contributionType.length === 1 && state.description.length > 0
+        }
+        onClick={onConfirm}
+      >
+        {confirmText}
+      </ConfirmButton>
+    </Controls>
+  </Page>
 );
