@@ -1,6 +1,9 @@
 State.init({
   council: "",
+  args: "",
 });
+
+const dao_args = Buffer.from(state.args, "utf-8").toString("base64");
 
 const handleCreate = () => {
   Near.call([
