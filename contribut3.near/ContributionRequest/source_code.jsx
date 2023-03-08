@@ -7,13 +7,26 @@ if (!entityId || !contributorId) {
   return "Cannot show contribution request without entityId or contributorId!";
 }
 
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { entity_id: entityId, account_id: context.accountId },
-  "final",
-  false
-);
+State.init({
+  isAuthorized: false,
+  isAuthorizedFetched: false,
+  contributionRequest: null,
+  contributionRequestFetched: false,
+  need: null,
+  needFetched: false,
+});
+
+if (!state.isAuthorizedFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_manager_or_higher",
+    { entity_id: entityId, account_id: context.accountId },
+    "final",
+    false
+  ).then((isAuthorized) =>
+    State.update({ isAuthorized, isAuthorizedFetched: false })
+  );
+}
 
 const contributionRequest = props.isPreview
   ? props.contributionRequest
