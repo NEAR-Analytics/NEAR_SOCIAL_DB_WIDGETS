@@ -172,26 +172,6 @@ const body = (
   </div>
 );
 
-return (
-  <Widget
-    src={`${ownerId}/widget/Modal`}
-    props={{
-      title: "Invite to contribute",
-      confirmText: (
-        <>
-          <i className="bi-send" />
-          <span>Send invitation</span>
-        </>
-      ),
-      onConfirm: onSubmit,
-      hidden: props.hidden,
-      onClose: props.onClose,
-      body,
-      id,
-    }}
-  />
-);
-
 const Page = styled.div`
   padding: 0 0.75em;
   max-width: 100%;
