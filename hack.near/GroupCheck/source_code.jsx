@@ -14,6 +14,7 @@ const groups = policy.roles
 
     return group;
   });
+console.log(groups);
 
 const check = groups.map((group) => {
   return group
