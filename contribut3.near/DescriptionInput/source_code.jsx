@@ -48,22 +48,28 @@ const Label = styled.label`
   color: #344054;
 `;
 
-const Iframe = styled.iframe`
-  width: 100%;
-  height: 150px;
-`;
+// const Iframe = styled.iframe`
+//   width: 100%;
+//   height: 150px;
+// `;
 
 return (
   <>
     <Label htmlFor="description">{text}</Label>
-    {/* <textarea */}
-    {/*   id="description" */}
-    {/*   value={description} */}
-    {/*   type="text" */}
-    {/*   rows={6} */}
-    {/*   className="form-control" */}
-    {/*   onChange={(event) => update(event.target.value)} */}
-    {/* /> */}
-    <Iframe srcDoc={code} message={description} onMessage={update} />
+    <textarea
+      id="description"
+      value={description}
+      type="text"
+      rows={6}
+      className="form-control"
+      onChange={(event) => update(event.target.value)}
+    />
+    <iframe
+      className="w-100"
+      style={{ height: "300px" }}
+      srcDoc={code}
+      message={initialText}
+      onMessage={(m) => State.update({ m })}
+    />
   </>
 );
