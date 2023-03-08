@@ -17,7 +17,7 @@ const facets = props.facets ?? [
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
 
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -38,7 +38,7 @@ const H1 = styled.h1`
   font-weight: 600;
   font-size: 32px;
   line-height: 39px;
-  color: #11181C;
+  color: #11181c;
   margin: 0;
 `;
 
@@ -85,17 +85,17 @@ const Text = styled.p`
 
   b {
     font-weight: 600;
-    color: #11181C;
+    color: #11181c;
   }
-  
+
   &[href] {
-    color: #006ADC;
+    color: #006adc;
     outline: none;
     font-weight: 600;
 
     &:hover,
     &:focus {
-      color: #006ADC;
+      color: #006adc;
       text-decoration: underline;
     }
   }
@@ -110,11 +110,12 @@ const Items = styled.div`
 
 const Item = styled.div``;
 
-const resetSearches = () => {
+const resetSearcheHits = () => {
   State.update({
     currentPage: 0,
     search: undefined,
     paginate: undefined,
+    facet: undefined,
   });
 };
 
@@ -124,7 +125,7 @@ const writeStateTerm = (term) => {
   });
 
   if (term === "") {
-    resetSearches();
+    resetSearcheHits();
   }
 };
 
@@ -210,7 +211,7 @@ const fetchSearchHits = (query, { pageNumber, filters, optionalFilters }) => {
   let body = {
     query,
     page: pageNumber ?? 0,
-    filters,
+    filters: filters ?? searchFilters(state.facet),
     optionalFilters: optionalFilters ?? [
       "categories:profile<score=3>",
       "categories:widget<score=2>",
@@ -230,7 +231,7 @@ const fetchSearchHits = (query, { pageNumber, filters, optionalFilters }) => {
   });
 };
 
-const computeResults = debounce(({ term, pageNumber, filters }) => {
+const updateSearchHits = debounce(({ term, pageNumber, filters }) => {
   fetchSearchHits(term, { pageNumber, filters }).then((resp) => {
     const { results, hitsTotal, hitsPerPage } = categorizeSearchHits(resp.body);
     State.update({
@@ -251,7 +252,7 @@ const computeResults = debounce(({ term, pageNumber, filters }) => {
 
 const onSearchChange = ({ term }) => {
   writeStateTerm(term);
-  computeResults({ term, pageNumber: INITIAL_PAGE });
+  updateSearchHits({ term, pageNumber: INITIAL_PAGE });
 };
 
 const onPageChange = (pageNumber) => {
@@ -266,7 +267,7 @@ const onPageChange = (pageNumber) => {
     search: undefined,
     currentPage: algoliaPageNumber,
   });
-  computeResults({ term: state.term, pageNumber: algoliaPageNumber });
+  updateSearchHits({ term: state.term, pageNumber: algoliaPageNumber });
 };
 
 const FACET_TO_CATEGORY = {
@@ -277,23 +278,25 @@ const FACET_TO_CATEGORY = {
   Comments: "comment",
 };
 
+const searchFilters = (facet) => {
+  const category = FACET_TO_CATEGORY[facet];
+  let filters = category ? `categories:${category}` : undefined;
+  return filters;
+};
+
 const onFacetClick = (facet) => {
   if (facet === state.facet) {
     console.log("Clicked the same facet");
     return;
   }
 
-  resetSearches();
   State.update({
     facet,
   });
 
-  let category = FACET_TO_CATEGORY[facet];
-  let filters = category ? `categories:${category}` : undefined;
-
-  computeResults({
+  updateSearchHits({
     term: state.term,
-    filters,
+    filters: searchFilters(facet),
   });
 };
 
@@ -320,6 +323,7 @@ return (
         props={{
           facets,
           onFacetClick,
+          defaultFacet: facets[0],
         }}
       />
     )}
