@@ -56,13 +56,7 @@ return (
     <ModalDialog>
       <ModalHeader>
         <h5>{title}</h5>
-        <a
-          className="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          onClick={onClose}
-        />
-        <CloseButton>
+        <CloseButton onClick={onClose}>
           <svg
             width="20"
             height="20"
