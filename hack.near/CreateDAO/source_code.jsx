@@ -11,9 +11,13 @@ const args = {
   policy: "infinity.near",
 };
 
-const dao_args = Buffer.from(state.args, "utf-8").toString("base64");
-
 const handleCreate = () => {
+  State.update({
+    policy: args.policy,
+  });
+
+  const dao_args = Buffer.from(State.args, "utf-8").toString("base64");
+
   Near.call([
     {
       contractName: "sputnik-dao.near",
@@ -26,9 +30,7 @@ const handleCreate = () => {
 };
 
 const onChangePolicy = (policy) => {
-  State.update({
-    policy,
-  });
+  args.policy = policy;
 };
 
 return (
