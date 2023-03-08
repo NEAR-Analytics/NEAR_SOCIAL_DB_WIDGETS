@@ -1,3 +1,4 @@
+const ownerId = "contribut3.near";
 const contributionType = props.contributionType ?? [];
 const text = props.text ?? "Type of contribution:";
 const multiple = props.multiple ?? false;
