@@ -23,9 +23,9 @@ const handleCreate = () => {
   ]);
 };
 
-const onChangeCouncil = (council) => {
+const onChangePolicy = (policy) => {
   State.update({
-    council,
+    policy,
   });
 };
 
@@ -33,7 +33,7 @@ return (
   <div className="mb-3">
     <div className="mb-3">
       Council:
-      <input type="text" onChange={(e) => onChangeCouncil(e.target.value)} />
+      <input type="text" onChange={(e) => onChangePolicy(e.target.value)} />
     </div>
     <button className="btn btn-outline-danger mt-3" onClick={handleCreate}>
       Create
