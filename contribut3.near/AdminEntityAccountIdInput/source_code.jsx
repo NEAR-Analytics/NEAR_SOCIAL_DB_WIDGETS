@@ -24,14 +24,8 @@ if (!state.fetched) {
   );
 }
 
-const Label = styled.label`
-  font-weight: 600;
-  color: #344054;
-`;
-
 return (
   <>
-    <Label htmlFor="entity-id-input">{label}</Label>
     <Typeahead
       id="entity-id-input"
       labelKey="name"
