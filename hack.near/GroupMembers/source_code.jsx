@@ -1,15 +1,15 @@
-const accountId = props.accountId || context.accountId;
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "global.sputnik-dao.near";
 
 const groupId = props.groupId ?? "community";
 const policy = Near.view(daoId, "get_policy");
 
-const members = policy.roles
+const group = policy.roles
   .filter((role) => role.name === groupId)
   .map((role) => {
-    const members = role.kind.Group;
+    const group = role.kind.Group;
 
-    return members;
+    return group;
   });
 
 return (
@@ -17,14 +17,18 @@ return (
     <div>
       <h3>{groupId}</h3>
       <div>
-        {members.map((member, i) => (
-          <a
-            key={i}
-            className="text-decoration-none"
-            href={`#mob.near/widget/ProfilePage?accountId=${member}`}
-          >
-            <h4>{member}</h4>
-          </a>
+        {group.map((members, i) => (
+          <div key={i}>
+            {members.map((member, j) => (
+              <a
+                key={j}
+                className="text-decoration-none"
+                href={`#mob.near/widget/ProfilePage?accountId=${member}`}
+              >
+                <h4>{member}</h4>
+              </a>
+            ))}
+          </div>
         ))}
       </div>
     </div>
