@@ -142,13 +142,11 @@ const Form = styled.div`
 return (
   <Page>
     <h1>Create new contribution request</h1>
-    <div className="bg-light mb-3 p-4 rounded-2">
-      <div className="row">
-        {entityEditor}
-        {contributionTypeInput}
-        {descriptionInput}
-      </div>
-    </div>
+    <Form>
+      {entityEditor}
+      {contributionTypeInput}
+      {descriptionInput}
+    </Form>
     <div className="d-flex flex-row justify-content-between">
       <a
         className="btn btn-outline-secondary"
