@@ -17,7 +17,7 @@ const contribution = Near.view(
   "get_contribution",
   { entity_id: entityId, contributor_id: contributorId },
   "final",
-  true
+  false
 );
 
 const isAuthorized = Near.view(
@@ -25,7 +25,7 @@ const isAuthorized = Near.view(
   "check_is_manager_or_higher",
   { account_id: accountId, entity_id: entityId },
   "final",
-  true
+  false
 );
 
 const profile = Social.getr(`${isEntity ? contributorId : entityId}/profile`);
