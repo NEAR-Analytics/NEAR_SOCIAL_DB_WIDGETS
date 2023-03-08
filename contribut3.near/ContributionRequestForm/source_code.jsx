@@ -141,6 +141,7 @@ const convertType = (contributionType) => {
 };
 
 const onConfirm = () => {
+  console.log(props);
   const args = {
     entity_id: state.entity[0].name,
     description: state.description,
