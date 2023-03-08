@@ -92,6 +92,7 @@ const RejectButton = styled.button`
 
 const IconContainer = styled.i`
   transform: translate(0, -1px);
+  margin-right: 0.25em;
 `;
 
 const controls = (
