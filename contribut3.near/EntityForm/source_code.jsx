@@ -50,35 +50,40 @@ const Label = styled.label`
   color: #344054;
 `;
 
-const accountIdInput = accountId ? (
-  <div>
-    <Label htmlFor="account-id">Project account ID</Label>
-    <div
-      className="rounded-3 bg-light"
-      style={{ height: "5em" }}
-      id="account-id"
-    >
-      <Widget
-        src={`${ownerId}/widget/ProfileLine`}
-        props={{ accountId, imageSize: "4em", isEntity: true }}
-      />
-    </div>
-  </div>
-) : (
-  <div>
-    <Widget
-      src={`${ownerId}/widget/ValidatedAccountIdInput`}
-      props={{
-        label: "Project account ID *",
-        value: state.accountId,
-        update: (accountId, accountIdValid) =>
-          State.update({ accountId, accountIdValid }),
-        forbiddenIds,
-      }}
-    />
-  </div>
-);
+const InputWrapper = styled.div`
+  margin-bottom: 0.5em;
+`;
 
+const accountIdInput = (
+  <InputWrapper>
+    {accountId ? (
+      <>
+        <Label htmlFor="account-id">Project account ID</Label>
+        <div
+          className="rounded-3 bg-light"
+          style={{ height: "5em" }}
+          id="account-id"
+        >
+          <Widget
+            src={`${ownerId}/widget/ProfileLine`}
+            props={{ accountId, imageSize: "4em", isEntity: true }}
+          />
+        </div>
+      </>
+    ) : (
+      <Widget
+        src={`${ownerId}/widget/ValidatedAccountIdInput`}
+        props={{
+          label: "Project account ID *",
+          value: state.accountId,
+          update: (accountId, accountIdValid) =>
+            State.update({ accountId, accountIdValid }),
+          forbiddenIds,
+        }}
+      />
+    )}
+  </InputWrapper>
+);
 const nameInput = (
   <div>
     <Widget
