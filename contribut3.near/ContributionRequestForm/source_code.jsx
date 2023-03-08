@@ -49,6 +49,11 @@ if (state.types.length === 0) {
   );
 }
 
+const Label = styled.label`
+  font-weight: 600;
+  font-size: 0.9em;
+`;
+
 const entityEditor = props.entity ? (
   <div>
     <label htmlFor="account-id" className="text-muted fw-semibold">
