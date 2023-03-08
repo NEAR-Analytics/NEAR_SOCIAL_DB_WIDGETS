@@ -1,12 +1,11 @@
-const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
+const accountId = context.accountId;
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
 const policy = Near.view(daoId, "get_policy");
-console.log(accountId);
 
 const groups = policy.roles
   .filter((role) => role.name === "council")
@@ -15,15 +14,12 @@ const groups = policy.roles
 
     return group;
   });
-console.log(groups);
 
 const check = groups.map((group) => {
-  console.log(group);
-  return group
+  return !group
     ? false
     : group.filter((address) => address === accountId).length > 0;
 });
-console.log(check);
 
 State.init({
   receiver_id: "",
@@ -70,6 +66,7 @@ const onChangeAmount = (amount) => {
 return (
   <div className="mb-3">
     <div className="mb-2">
+      <p>{council}</p>
       Recipient:
       <input type="text" onChange={(e) => onChangeRecipient(e.target.value)} />
     </div>
