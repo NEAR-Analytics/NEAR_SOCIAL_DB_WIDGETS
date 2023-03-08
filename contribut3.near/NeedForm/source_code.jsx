@@ -185,28 +185,42 @@ const ConfirmButton = styled.button`
 `;
 
 return (
-  <Page>
-    <h1>Create new contribution request</h1>
-    <Form>
-      {entityEditor}
-      {contributionTypeInput}
-      {descriptionInput}
-    </Form>
-    <Controls>
-      <CloseButton
-        href={`/#/${ownerId}/widget/Index?tab=home`}
-        onClick={() => props.update({ tab: "home" })}
-      >
-        Cancel
-      </CloseButton>
-      <ConfirmButton
-        valid={
-          state.contributionType.length === 1 && state.description.length > 0
-        }
-        onClick={onSubmit}
-      >
-        Create request
-      </ConfirmButton>
-    </Controls>
-  </Page>
+  <Widget
+    src={`${ownerId}/widget/Modal`}
+    props={{
+      title: "",
+      confirmText: "",
+      onConfirm: () => { },
+      hidden: false,
+      onClose: () => { },
+      body: (
+        <Page>
+          <h1>Create new contribution request</h1>
+          <Form>
+            {entityEditor}
+            {contributionTypeInput}
+            {descriptionInput}
+          </Form>
+          <Controls>
+            <CloseButton
+              href={`/#/${ownerId}/widget/Index?tab=home`}
+              onClick={() => props.update({ tab: "home" })}
+            >
+              Cancel
+            </CloseButton>
+            <ConfirmButton
+              valid={
+                state.contributionType.length === 1 &&
+                state.description.length > 0
+              }
+              onClick={onSubmit}
+            >
+              Create request
+            </ConfirmButton>
+          </Controls>
+        </Page>
+      ),
+      id: "a",
+    }}
+  />
 );
