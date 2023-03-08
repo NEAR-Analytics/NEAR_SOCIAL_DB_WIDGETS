@@ -149,16 +149,16 @@ return (
               }}
             />
           </InputWrapper>
-          <InputWrapper>
-            <Widget
-              src={`${ownerId}/widget/DescriptionInput`}
-              props={{
-                description: state.description,
-                text: "Details:",
-                update: (description) => State.update({ description }),
-              }}
-            />
-          </InputWrapper>
+          {/* <InputWrapper> */}
+          {/*   <Widget */}
+          {/*     src={`${ownerId}/widget/DescriptionInput`} */}
+          {/*     props={{ */}
+          {/*       description: state.description, */}
+          {/*       text: "Details:", */}
+          {/*       update: (description) => State.update({ description }), */}
+          {/*     }} */}
+          {/*   /> */}
+          {/* </InputWrapper> */}
         </>
       ),
       id,
