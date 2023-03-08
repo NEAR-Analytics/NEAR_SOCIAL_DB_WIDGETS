@@ -145,6 +145,29 @@ const Controls = styled.div`
   justify-content: space-between;
 `;
 
+const CloseButton = styled.a`
+  background-color: white;
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  color: #344054;
+`;
+
+const ConfirmButton = styled.button`
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  background-color: ${({ valid }) => (valid ? "#12b76a" : "#344054")};
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    ${({ valid }) => (valid ? "background-color: #0e9f5d;" : "")}
+  }
+`;
+
 return (
   <Page>
     <h1>Create new contribution request</h1>
@@ -154,14 +177,13 @@ return (
       {descriptionInput}
     </Form>
     <Controls>
-      <a
-        className="btn btn-outline-secondary"
+      <CloseButton
         href={`/#/${ownerId}/widget/Index?tab=home`}
         onClick={() => props.update({ tab: "home" })}
       >
         Cancel
-      </a>
-      <a
+      </CloseButton>
+      <ConfirmButton
         className={`btn ${state.contributionType.length !== 1 || state.description.length === 0
             ? "btn-secondary"
             : "btn-primary"
@@ -169,7 +191,7 @@ return (
         onClick={onSubmit}
       >
         Create request
-      </a>
+      </ConfirmButton>
     </Controls>
   </Page>
 );
