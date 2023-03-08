@@ -3,7 +3,7 @@ const forbiddenIds = props.forbiddenIds ?? new Set();
 const update = props.update;
 const value = props.value;
 
-initState({
+State.init({
   valid: props.valid ?? true,
   errorMessage: <></>,
 });
