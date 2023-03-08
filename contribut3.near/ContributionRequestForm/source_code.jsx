@@ -13,6 +13,7 @@ State.init({
     : [],
   existingEntities: [],
   types: [],
+  typesFetched: false,
 });
 
 if (!state.entityFetched) {
@@ -24,9 +25,13 @@ if (!state.entityFetched) {
   );
 }
 
-if (state.types.length === 0) {
+if (!state.typesFetched) {
   Near.asyncView(ownerId, "get_contribution_types", {}, "final", false).then(
-    (types) => State.update({ types: types.map((name) => ({ name })) })
+    (types) =>
+      State.update({
+        typesFetched: true,
+        types: types.map((name) => ({ name })),
+      })
   );
 }
 
