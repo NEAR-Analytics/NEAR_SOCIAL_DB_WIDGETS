@@ -42,12 +42,19 @@ const ModalFooter = styled.div`
   align-items: flex-start;
 `;
 
+const CloseButton = styled.button`
+  padding: 0.7em;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+`;
+
 return (
   <Modal hidden={hidden}>
     <ModalBackdrop />
     <ModalDialog>
       <ModalHeader>
-        <h5 className="modal-title">{title}</h5>
+        <h5>{title}</h5>
         <a
           className="btn-close"
           data-bs-dismiss="modal"
@@ -62,7 +69,7 @@ return (
           data-bs-dismiss="modal"
           onClick={onClose}
         >
-          Close
+          Cancel
         </a>
         <a className="btn btn-primary" onClick={onConfirm}>
           {confirmText}
