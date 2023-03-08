@@ -32,6 +32,18 @@ const content = {
       }}
     />
   ),
+  proposal: (
+    <WidgetContainer
+      src={`${ownerId}/widget/ContributionRequestForm`}
+      props={{
+        search: state.search,
+        update: props.update,
+        kind: props.kind,
+        accountId: props.accountId,
+        cid: props.cid,
+      }}
+    />
+  ),
 }[getContent(props.content)];
 
 return <div>{content}</div>;
