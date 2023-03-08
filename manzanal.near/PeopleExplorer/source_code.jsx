@@ -1,18 +1,25 @@
 const queries = props.predefinedQueries;
 const defaultPath = props.defaultPath;
-const resultState = props.resultState;
+const onUpdateSearchResult = props.onUpdateSearchResult;
 const debug = props.debug || false;
+if (!onUpdateSearchResult)
+  return "Must provide a callback function over props.onUpdateSearchResult";
 State.init({
   path: defaultPath,
+  accounts: [],
 });
 
-const value = Social.get(state.path, "final");
-State.update({ [resultState]: value ? Object.keys(value) : [] });
+const onChangePath = (path) => {
+  const value = Social.get(path, "final");
+  const accounts = Object.keys(value);
+  onUpdateSearchResult(accounts);
+  State.update({ path: path, accounts: accounts });
+};
 
 const allPeople = [];
 
-for (let i = 0; i < state[resultState].length; ++i) {
-  const accountId = state[resultState][i];
+for (let i = 0; i < state.accounts.length; ++i) {
+  const accountId = state.accounts[i];
 
   allPeople.push(
     <a
@@ -38,6 +45,7 @@ return (
       <input
         type="text"
         value={state.path}
+        onChange={(e) => onChangePath(e.target.value)}
         placeholder={"*/widget/*/metadata/tags/app"}
       />
     </div>
@@ -52,7 +60,7 @@ return (
                 key={`query_${i}`}
                 class="btn btn-primary btn-sm mr-2"
                 onClick={() => {
-                  State.update({ path: q.query });
+                  onChangePath(q.query);
                 }}
               >
                 {q.name}
