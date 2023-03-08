@@ -106,8 +106,7 @@ const controls = (
       </i>
       <span>Accept</span>
     </AcceptButton>
-    <a
-      className="btn btn-outline-danger mt-2 d-flex flex-row justify-content-center"
+    <RejectButton
       style={{ minWidth: "7em" }}
       onClick={() =>
         Near.call(ownerId, "reject_contribution", {
@@ -134,7 +133,7 @@ const controls = (
         </svg>
       </i>
       <span>Reject</span>
-    </a>
+    </RejectButton>
   </Controls>
 );
 
