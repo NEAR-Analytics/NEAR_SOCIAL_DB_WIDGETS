@@ -18,6 +18,8 @@ State.init({
   profileFetched: false,
 });
 
+console.log("this also");
+
 if (!state.entityFetched) {
   Near.asyncView(
     ownerId,
