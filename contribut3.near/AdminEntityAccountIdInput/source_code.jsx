@@ -10,12 +10,17 @@ State.init({
 });
 
 if (!state.fetched) {
-  Near.asyncView(ownerId, "get_admin_entities", {}, "final", false).then(
-    (entities) =>
-      State.update({
-        fetched: true,
-        options: entities.map((name) => ({ name })),
-      })
+  Near.asyncView(
+    ownerId,
+    "get_admin_entities",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((entities) =>
+    State.update({
+      fetched: true,
+      options: entities.map((name) => ({ name })),
+    })
   );
 }
 
