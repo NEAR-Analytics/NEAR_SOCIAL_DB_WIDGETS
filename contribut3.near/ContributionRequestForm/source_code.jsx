@@ -19,8 +19,8 @@ State.init({
 if (!state.entitiesFetched) {
   Near.asyncView(ownerId, "get_entities", {}, "final", false).then((entities) =>
     State.update({
-      entitiesFetched: true,
       existingEntities: entities.map((name) => ({ name })),
+      entitiesFetched: true,
     })
   );
 }
