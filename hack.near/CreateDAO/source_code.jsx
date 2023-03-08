@@ -2,16 +2,16 @@ State.init({
   args: "",
 });
 
-const args = {
-  config: {
-    name: "hacky",
-    purpose: "build",
-    metadata: "",
-  },
-  policy: "infinity.near",
-};
-
 const handleCreate = () => {
+  const args = {
+    config: {
+      name: "hacky",
+      purpose: "build",
+      metadata: "",
+    },
+    policy: "infinity.near",
+  };
+
   State.update({
     policy: args.policy,
   });
