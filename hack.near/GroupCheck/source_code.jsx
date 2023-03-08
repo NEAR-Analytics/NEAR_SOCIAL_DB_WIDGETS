@@ -77,7 +77,7 @@ return (
       Amount:
       <input type="number" onChange={(e) => onChangeAmount(e.target.value)} />
     </div>
-    {!check && (
+    {check && (
       <button className="btn btn-success" onClick={handleProposal}>
         Submit
       </button>
