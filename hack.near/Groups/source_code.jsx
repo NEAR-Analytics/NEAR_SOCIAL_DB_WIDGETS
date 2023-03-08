@@ -1,6 +1,5 @@
-const accountId = props.accountId || context.accountId;
+const accountId = props.accountId ?? context.accountId;
 const daoId = props.daoId ?? "multi.sputnik-dao.near";
-const groupId = props.groupId ?? "council";
 const policy = Near.view(daoId, "get_policy");
 
 const groups = policy.roles
@@ -20,7 +19,7 @@ return (
           <a
             key={i}
             className="text-decoration-none"
-            href={`#/hack.near/widget/GroupMembers?groupId=${groupId}&daoId=${daoId}`}
+            href={`#/hack.near/widget/GroupMembers?groupId=${group}&daoId=${daoId}`}
           >
             <h4>{group}</h4>
           </a>
