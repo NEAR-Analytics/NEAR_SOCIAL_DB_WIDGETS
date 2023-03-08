@@ -68,11 +68,7 @@ const entityEditor = (
   <EntityInput>
     <Label htmlFor="enity-id">Contribute to:</Label>
     {props.entity ? (
-      <div
-        className="rounded-3 bg-light"
-        style={{ height: "5em" }}
-        id="entity-id"
-      >
+      <SelectedEntity id="entity-id">
         <Widget
           src={`${ownerId}/widget/ProfileLine`}
           props={{
@@ -81,7 +77,7 @@ const entityEditor = (
             isEntity: true,
           }}
         />
-      </div>
+      </SelectedEntity>
     ) : (
       <Typeahead
         id="entity-id"
