@@ -20,7 +20,7 @@ const Label = styled.label`
 `;
 
 return (
-  <div className="col-lg-12 mb-2">
+  <>
     <Label htmlFor="entity-id-input">{label}</Label>
     <Typeahead
       id="entity-id-input"
@@ -31,5 +31,5 @@ return (
       selected={selected}
       positionFixed
     />
-  </div>
+  </>
 );
