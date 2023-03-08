@@ -164,11 +164,11 @@ return (
       hidden: props.hidden,
       onClose: props.onClose,
       body: (
-        <div>
+        <>
           {entityEditor}
           {contributionTypeInput}
           {descriptionDiv}
-        </div>
+        </>
       ),
       id,
     }}
