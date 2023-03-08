@@ -112,7 +112,7 @@ return (
       hidden: props.hidden,
       onClose: props.onClose,
       body: (
-        <>
+        <div>
           <EntityInput>
             <Label htmlFor="enity-id">Contribute to:</Label>
             {props.entity ? (
@@ -159,7 +159,7 @@ return (
               }}
             />
           </InputWrapper>
-        </>
+        </div>
       ),
       id,
     }}
