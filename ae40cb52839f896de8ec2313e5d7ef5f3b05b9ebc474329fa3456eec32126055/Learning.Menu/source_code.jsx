@@ -1,4 +1,4 @@
-const { labels, widgets, onClick } = props;
+const { labels, widgets, onclick } = props;
 
 let elems = [];
 for (let i = 0; i < labels.length; i++) {
@@ -8,7 +8,7 @@ for (let i = 0; i < labels.length; i++) {
         href="#"
         onClick={(e) => {
           e.preventDefault();
-          onClick(widgets[i]);
+          onclick(widgets[i]);
           console.log("clicked");
         }}
       >
