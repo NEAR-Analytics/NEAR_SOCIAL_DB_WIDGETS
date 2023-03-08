@@ -62,7 +62,7 @@ const convertType = (contributionType) => {
   return { Other: contributionType.name };
 };
 
-const onSubmit = () => {
+const onConfirm = () => {
   const args = {
     entity_id: state.entity[0].name,
     description: state.description,
@@ -108,7 +108,7 @@ return (
           <span>Send proposal</span>
         </>
       ),
-      onConfirm: onSubmit,
+      onConfirm,
       hidden: props.hidden,
       onClose: props.onClose,
       body: (
