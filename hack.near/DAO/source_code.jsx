@@ -32,16 +32,10 @@ return (
     </div>
     <h2 className="mt-3">{daoId}</h2>
     <div className="mt-3">
-      <Widget
-        src="hack.near/widget/Groups"
-        props={{ accountId, daoId, groupId }}
-      />
+      <Widget src="hack.near/widget/Groups" props={{ accountId }} />
     </div>
     <div>
-      <Widget
-        src="hack.near/widget/GroupMembers"
-        props={{ accountId, daoId, groupId }}
-      />
+      <Widget src="hack.near/widget/GroupMembers" props={{ accountId }} />
     </div>
   </div>
 );
