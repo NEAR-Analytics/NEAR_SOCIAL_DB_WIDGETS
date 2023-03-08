@@ -169,7 +169,7 @@ const Wrapper = styled.div`
 
 const body = (
   <Container id={accountId}>
-    <div className="flex-grow-1 py-3">
+    <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
@@ -214,7 +214,7 @@ const body = (
           ),
         }}
       />
-    </div>
+    </Wrapper>
   </Container>
 );
 
