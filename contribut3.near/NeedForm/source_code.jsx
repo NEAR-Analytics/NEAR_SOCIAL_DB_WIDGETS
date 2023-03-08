@@ -170,7 +170,7 @@ const ConfirmButton = styled.button`
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    ${({ valid }) => (valid ? "background-color: #7f56d9;" : "")}
+    ${({ valid }) => (valid ? "background-color: #4f56d9;" : "")}
   }
 `;
 
