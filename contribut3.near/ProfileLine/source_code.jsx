@@ -16,15 +16,18 @@ const linkNavigate = () =>
 
 State.init({
   data: null,
+  fetched: false,
 });
 
-Near.asyncView(
-  ownerId,
-  isEntity ? "get_entity" : "get_contributor",
-  { account_id: accountId },
-  "final",
-  false
-).then((data) => State.update({ data }));
+if (!state.fetched) {
+  Near.asyncView(
+    ownerId,
+    isEntity ? "get_entity" : "get_contributor",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((data) => State.update({ data, fetched: true }));
+}
 
 const profile = Social.get(`${accountId}/profile/**`, "final", {
   subscribe: false,
