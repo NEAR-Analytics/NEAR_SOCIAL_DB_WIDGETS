@@ -68,7 +68,7 @@ const ConfirmButton = styled.button`
 `;
 
 return (
-  <Modal hidden={hidden} tabIndex={1}>
+  <Modal hidden={hidden}>
     <ModalBackdrop />
     <ModalDialog>
       <ModalHeader>
