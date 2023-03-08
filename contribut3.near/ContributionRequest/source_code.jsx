@@ -43,14 +43,18 @@ if (!state.contributionRequestFetched) {
   );
 }
 
-const need = contributionRequest.need
-  ? Near.view(
+if (!state.needFetched && (state.contributionRequestFetched && !!state.contributionRequest.need)) {
+  Near.asyncView(
     ownerId,
     "get_contribution_need",
     { account_id: entityId, cid: contributionRequest.need },
     "final",
     false
-  )
+  ).then((need) => State.update({ need, needFetched: true }))
+}
+
+const need = contributionRequest.need
+  ? 
   : null;
 
 if (!contributionRequest) {
