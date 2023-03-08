@@ -119,7 +119,7 @@ const onSubmit = () => {
   Near.call(ownerId, "post_contribution_need", args);
 };
 
-const Form = styled.div`
+const Page = styled.div`
   padding: 0.75em;
   max-width: 100%;
 
@@ -130,8 +130,17 @@ const Form = styled.div`
   }
 `;
 
+const Form = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.75em;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #f9fafb;
+`;
+
 return (
-  <Form>
+  <Page>
     <h1>Create new contribution request</h1>
     <div className="bg-light mb-3 p-4 rounded-2">
       <div className="row">
@@ -158,5 +167,5 @@ return (
         Create request
       </a>
     </div>
-  </Form>
+  </Page>
 );
