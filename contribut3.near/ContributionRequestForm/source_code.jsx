@@ -34,6 +34,7 @@ const onSubmit = () => {
     contribution_type: convertType(state.contributionType[0]),
     need,
   };
+  console.log("then here " + args);
 
   Near.call(ownerId, "request_contribution", args);
 };
