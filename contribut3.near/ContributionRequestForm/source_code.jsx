@@ -73,6 +73,55 @@ const onConfirm = () => {
   Near.call(ownerId, "request_contribution", args);
 };
 
+const body = (
+  <div>
+    <EntityInput>
+      <Label htmlFor="enity-id">Contribute to:</Label>
+      {props.entity ? (
+        <SelectedEntity id="entity-id">
+          <Widget
+            src={`${ownerId}/widget/ProfileLine`}
+            props={{
+              accountId: props.entity,
+              imageSize: "4em",
+              isEntity: true,
+            }}
+          />
+        </SelectedEntity>
+      ) : (
+        <Typeahead
+          id="entity-id"
+          labelKey="name"
+          onChange={(entity) => State.update({ entity })}
+          options={state.existingEntities}
+          placeholder="social.near, contribut3.near"
+          selected={state.entity}
+          positionFixed
+        />
+      )}
+    </EntityInput>
+    <InputWrapper>
+      <Widget
+        src={`${ownerId}/widget/ContributionTypeInput`}
+        props={{
+          contributionType: state.contributionType,
+          update: (contributionType) => State.update({ contributionType }),
+        }}
+      />
+    </InputWrapper>
+    <InputWrapper>
+      <Widget
+        src={`${ownerId}/widget/DescriptionInput`}
+        props={{
+          description: state.description,
+          text: "Details:",
+          update: (description) => State.update({ description }),
+        }}
+      />
+    </InputWrapper>
+  </div>
+);
+
 return (
   <Widget
     src={`${ownerId}/widget/Modal`}
@@ -111,55 +160,7 @@ return (
       onConfirm,
       hidden: props.hidden,
       onClose: props.onClose,
-      body: (
-        <div>
-          <EntityInput>
-            <Label htmlFor="enity-id">Contribute to:</Label>
-            {props.entity ? (
-              <SelectedEntity id="entity-id">
-                <Widget
-                  src={`${ownerId}/widget/ProfileLine`}
-                  props={{
-                    accountId: props.entity,
-                    imageSize: "4em",
-                    isEntity: true,
-                  }}
-                />
-              </SelectedEntity>
-            ) : (
-              <Typeahead
-                id="entity-id"
-                labelKey="name"
-                onChange={(entity) => State.update({ entity })}
-                options={state.existingEntities}
-                placeholder="social.near, contribut3.near"
-                selected={state.entity}
-                positionFixed
-              />
-            )}
-          </EntityInput>
-          <InputWrapper>
-            <Widget
-              src={`${ownerId}/widget/ContributionTypeInput`}
-              props={{
-                contributionType: state.contributionType,
-                update: (contributionType) =>
-                  State.update({ contributionType }),
-              }}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Widget
-              src={`${ownerId}/widget/DescriptionInput`}
-              props={{
-                description: state.description,
-                text: "Details:",
-                update: (description) => State.update({ description }),
-              }}
-            />
-          </InputWrapper>
-        </div>
-      ),
+      body,
       id,
     }}
   />
