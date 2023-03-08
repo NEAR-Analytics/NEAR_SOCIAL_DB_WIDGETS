@@ -273,7 +273,7 @@ return (
         valid={
           state.contributionType.length === 1 && state.description.length > 0
         }
-        onClick={onConfirm}
+        onClick={onSubmit}
       >
         {confirmText}
       </ConfirmButton>
