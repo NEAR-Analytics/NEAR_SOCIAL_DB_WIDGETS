@@ -10,14 +10,7 @@ const handleCreate = () => {
     {
       contractName: "sputnik-dao.near",
       methodName: "create",
-      args: {
-        config: {
-          name: "hacky",
-          purpose: "build",
-          metadata: "",
-        },
-        policy: state.council,
-      },
+      args: dao_args,
       amount: "7000000000000000000000000",
       gas: "200000000000000",
     },
