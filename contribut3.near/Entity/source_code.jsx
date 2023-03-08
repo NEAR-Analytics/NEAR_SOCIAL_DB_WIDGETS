@@ -109,8 +109,14 @@ return (
                       {
                         text: "Propose contribution",
                         icon: "bi-person-up",
+                        href: `/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`,
                         onClick: () =>
-                          State.update({ contributionFormHidden: false }),
+                          props.update({
+                            tab: "create",
+                            content: "proposal",
+                            search: "",
+                            accountId,
+                          }),
                       },
                       {
                         text: "View details",
