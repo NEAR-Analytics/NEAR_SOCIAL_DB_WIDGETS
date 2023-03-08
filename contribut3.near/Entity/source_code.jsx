@@ -77,6 +77,15 @@ const DescriptionWrapper = styled.div`
 
 return (
   <Container id={accountId}>
+    <Widget
+      src={`${ownerId}/widget/ContributionRequestForm`}
+      props={{
+        id: `${accountId}ContributionRequestForm`,
+        entity: accountId,
+        hidden: state.contributionFormHidden,
+        onClose: () => State.update({ contributionFormHidden: true }),
+      }}
+    />
     <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
@@ -166,14 +175,5 @@ return (
         />
       </DescriptionWrapper>
     </Wrapper>
-    <Widget
-      src={`${ownerId}/widget/ContributionRequestForm`}
-      props={{
-        id: `${accountId}ContributionRequestForm`,
-        entity: accountId,
-        hidden: state.contributionFormHidden,
-        onClose: () => State.update({ contributionFormHidden: true }),
-      }}
-    />
   </Container>
 );
