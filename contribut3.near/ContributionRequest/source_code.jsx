@@ -24,13 +24,12 @@ if (!state.isAuthorizedFetched) {
     "final",
     false
   ).then((isAuthorized) =>
-    State.update({ isAuthorized, isAuthorizedFetched: false })
+    State.update({ isAuthorized, isAuthorizedFetched: true })
   );
 }
 
-const contributionRequest = props.isPreview
-  ? props.contributionRequest
-  : Near.view(
+if (!state.contributionRequestFetched) {
+  Near.asyncView(
     ownerId,
     "get_contribution_request",
     {
@@ -39,7 +38,10 @@ const contributionRequest = props.isPreview
     },
     "final",
     false
+  ).then((contributionRequest) =>
+    State.update({ contributionRequest, contributionRequestFetched: true })
   );
+}
 
 const need = contributionRequest.need
   ? Near.view(
