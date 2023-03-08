@@ -1,22 +1,24 @@
 State.init({
-  policy: "",
+  args: "",
 });
 
-const dao_policy = Buffer.from(state.policy, "utf-8").toString("base64");
+const args = {
+  config: {
+    name: "hacky",
+    purpose: "build",
+    metadata: "",
+  },
+  policy: "infinity.near",
+};
+
+const dao_args = Buffer.from(state.args, "utf-8").toString("base64");
 
 const handleCreate = () => {
   Near.call([
     {
       contractName: "sputnik-dao.near",
       methodName: "create",
-      args: {
-        config: {
-          name: "hacky",
-          purpose: "build",
-          metadata: "",
-        },
-        policy: dao_policy,
-      },
+      args: dao_args,
       amount: "7000000000000000000000000",
       gas: "200000000000000",
     },
