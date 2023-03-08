@@ -21,9 +21,10 @@ State.init({
   accountIdValid: true,
   kind,
   startDate,
+  entityFetched: false,
 });
 
-if (accountId) {
+if (accountId && !state.entityFetched) {
   Near.asyncView(
     ownerId,
     "get_entity",
@@ -37,6 +38,7 @@ if (accountId) {
 
     State.update({
       name: entity.name,
+      entityFetched: true,
       kind: [{ name: entity.kind }],
       startDate: `${year}-${month}-${day}`,
     });
