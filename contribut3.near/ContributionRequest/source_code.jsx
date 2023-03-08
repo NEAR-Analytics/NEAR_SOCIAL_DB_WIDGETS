@@ -171,7 +171,7 @@ const Wrapper = styled.div`
 `;
 
 return (
-  <Container id={accountId}>
+  <Container id={`${entityId}-${contributorId}`}>
     <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
