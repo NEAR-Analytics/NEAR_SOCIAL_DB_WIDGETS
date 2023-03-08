@@ -64,6 +64,8 @@ const AcceptButton = styled.button`
   }
 `;
 
+const RejectButton = styled.button``;
+
 const controls = (
   <Controls isAuthorized={isAuthorized}>
     <AcceptButton
