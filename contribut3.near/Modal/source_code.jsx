@@ -76,13 +76,7 @@ return (
       </ModalHeader>
       <ModalBody>{body}</ModalBody>
       <ModalFooter>
-        <a
-          className="btn btn-secondary"
-          data-bs-dismiss="modal"
-          onClick={onClose}
-        >
-          Cancel
-        </a>
+        <CloseButton onClick={onClose}>Cancel</CloseButton>
         <a className="btn btn-primary" onClick={onConfirm}>
           {confirmText}
         </a>
