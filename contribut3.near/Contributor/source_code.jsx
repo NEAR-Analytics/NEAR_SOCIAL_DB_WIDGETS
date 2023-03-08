@@ -95,8 +95,14 @@ const body = (
                     {
                       text: "Invite to contribute",
                       icon: "bi-person-plus",
-                      id: "invite",
-                      onClick: () => State.update({ inviteFormHidden: false }),
+                      href: `/#/${ownerId}/widget/Index?tab=create&content=invite&accountId=${accountId}`,
+                      onClick: () =>
+                        props.update({
+                          tab: "create",
+                          content: "invite",
+                          search: "",
+                          accountId,
+                        }),
                     },
                     {
                       text: "View details",
