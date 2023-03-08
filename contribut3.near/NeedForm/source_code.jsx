@@ -120,7 +120,7 @@ const onSubmit = () => {
 };
 
 const Page = styled.div`
-  padding: 0.75em;
+  padding: 0 0.75em;
   max-width: 100%;
 
   h1 {
