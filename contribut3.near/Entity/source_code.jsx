@@ -11,16 +11,19 @@ if (!accountId) {
 State.init({
   contributionFormHidden: true,
   entity: null,
+  entityFetched: false,
   founders: [],
 });
 
-Near.asyncView(
-  ownerId,
-  "get_entity",
-  { account_id: accountId },
-  "final",
-  false
-).then((entity) => State.update({ entity }));
+if (!state.entityFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_entity",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((entity) => State.update({ entity }));
+}
 
 const profile = Social.getr(`${accountId}/profile`, "final", {
   subscribe: false,
