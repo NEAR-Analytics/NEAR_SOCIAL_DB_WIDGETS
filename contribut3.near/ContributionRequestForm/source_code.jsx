@@ -1,6 +1,14 @@
 const ownerId = "contribut3.near";
 const id = props.id;
 
+const convertType = (contributionType) => {
+  if (state.types.some(({ name }) => name === contributionType.name)) {
+    return contributionType.name;
+  }
+
+  return { Other: contributionType.name };
+};
+
 State.init({
   need: props.cid ?? null,
   needFetched: false,
@@ -147,14 +155,6 @@ const body = (
     </InputWrapper>
   </>
 );
-
-const convertType = (contributionType) => {
-  if (state.types.some(({ name }) => name === contributionType.name)) {
-    return contributionType.name;
-  }
-
-  return { Other: contributionType.name };
-};
 
 const onConfirm = () => {
   const args = {
