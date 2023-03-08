@@ -120,15 +120,6 @@ return (
                   ],
                 }}
               />
-              <Widget
-                src={`${ownerId}/widget/ContributionRequestForm`}
-                props={{
-                  id: `${accountId}ContributionRequestForm`,
-                  entity: accountId,
-                  hidden: state.contributionFormHidden,
-                  onClose: () => State.update({ contributionFormHidden: true }),
-                }}
-              />
             </ActionColumn>
           ),
           additionalRow: (
@@ -173,5 +164,14 @@ return (
         />
       </DescriptionWrapper>
     </Wrapper>
+    <Widget
+      src={`${ownerId}/widget/ContributionRequestForm`}
+      props={{
+        id: `${accountId}ContributionRequestForm`,
+        entity: accountId,
+        hidden: state.contributionFormHidden,
+        onClose: () => State.update({ contributionFormHidden: true }),
+      }}
+    />
   </Container>
 );
