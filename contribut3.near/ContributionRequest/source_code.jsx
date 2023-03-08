@@ -155,12 +155,15 @@ const controls = (
   </Controls>
 );
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-height: 8em;
+`;
+
 const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em" }}
-  >
+  <Container id={accountId}>
     <div className="flex-grow-1 py-3">
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
@@ -207,7 +210,7 @@ const body = (
         }}
       />
     </div>
-  </div>
+  </Container>
 );
 
 return (
