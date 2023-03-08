@@ -53,7 +53,8 @@ const Controls = styled.div`
 
 const AcceptButton = styled.button`
   background-color: #12b76a;
-  /* border-ra */
+  border-radius: 8px;
+  padding: 0.8em 1em;
 `;
 
 const controls = (
