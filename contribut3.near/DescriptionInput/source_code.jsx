@@ -56,20 +56,14 @@ const Iframe = styled.iframe`
 return (
   <>
     <Label htmlFor="description">{text}</Label>
-    <textarea
-      id="description"
-      value={description}
-      type="text"
-      rows={6}
-      className="form-control"
-      onChange={(event) => update(event.target.value)}
-    />
-    <iframe
-      className="w-100"
-      style={{ height: "300px" }}
-      srcDoc={code}
-      message={initialText}
-      onMessage={(m) => State.update({ m })}
-    />
+    {/* <textarea */}
+    {/*   id="description" */}
+    {/*   value={description} */}
+    {/*   type="text" */}
+    {/*   rows={6} */}
+    {/*   className="form-control" */}
+    {/*   onChange={(event) => update(event.target.value)} */}
+    {/* /> */}
+    <Iframe srcDoc={code} message={description} onMessage={update} />
   </>
 );
