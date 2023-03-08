@@ -1,12 +1,11 @@
-const { labels, widgets, onclick } = props;
+const { labels, widgets, mainApp } = props;
 
 let elems = [];
 for (const i = 0; i < labels.length; i++) {
   elems.push(
     <>
-      <a href={`#/${widgets[i]}`}>
+      <a href={`#/${mainApp}?currentPage=${widgets[i]}`}>
         <li
-          role="button"
           class="list-group-item"
           onClick={() => {
             onclick(wsrc);
