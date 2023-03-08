@@ -76,13 +76,13 @@ const InputWrapper = styled.div`
 
 const accountIdInput = (
   <InputWrapper>
-    <Label htmlFor="account-id">You're inviting:</Label>
     {accountId ? (
       <div
         className="rounded-3 bg-light"
         style={{ height: "5em" }}
         id="account-id"
       >
+        <Label htmlFor="account-id">You're inviting:</Label>
         <Widget
           src={`${ownerId}/widget/ProfileLine`}
           props={{ accountId, imageSize: "4em" }}
