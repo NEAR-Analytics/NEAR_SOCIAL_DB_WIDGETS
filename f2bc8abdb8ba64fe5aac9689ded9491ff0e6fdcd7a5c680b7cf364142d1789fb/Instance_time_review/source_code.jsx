@@ -1,4 +1,5 @@
 const _account = props.accountId ?? "All";
+const tabs = props.tabs;
 const owner = context.accountId;
 const text = props.text;
 const updateInstanceTimeState = props.updateInstanceTimeState;
@@ -140,7 +141,6 @@ const getFormatedTime = (time) => {
       : `${hours}:${mins == 0 ? "00" : mins} AM`;
   return formated;
 };
-console.log(finalData);
 
 setInterval(() => {
   const day = new Date().getDay() == 0 ? 6 : new Date().getDay() - 1;
@@ -220,7 +220,10 @@ return (
                     textDecoration: "none",
                   }}
                   onClick={() => {
-                    updateInstanceTimeState({ accountId: d.accountId });
+                    updateInstanceTimeState({
+                      accountId: d.accountId,
+                      tab: tabs.OPEN_SCHEDULE.id,
+                    });
                   }}
                 >
                   <div
