@@ -182,7 +182,7 @@ const body = (
                     </svg>
                   )}
                 </i>
-                <span className="ms-2">
+                <span>
                   {state.isEntity ? "Organization" : "Individual contributor"}
                 </span>
               </TypeContainer>
