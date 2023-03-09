@@ -1,6 +1,6 @@
 const GoogleDocsEmbed = ({ docId }) => {
   if (!docId) {
-    return <div>No document ID provided.</div>;
+    return <div className="">No document ID provided.</div>;
   }
 
   const url = `https://docs.google.com/document/d/${docId}/preview`;
@@ -13,13 +13,5 @@ const GoogleDocsEmbed = ({ docId }) => {
       marginHeight="0"
       marginWidth="0"
     />
-  );
-};
-
-const App = () => {
-  return (
-    <div>
-      <GoogleDocsEmbed docId="YOUR_DOC_ID_HERE" />
-    </div>
   );
 };
