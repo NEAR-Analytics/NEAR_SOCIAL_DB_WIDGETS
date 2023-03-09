@@ -221,7 +221,7 @@ return (
                   }}
                   onClick={() => {
                     updateInstanceTimeState({
-                      accountId: d.accountId,
+                      userScheduleShown: d.accountId,
                       tab: tabs.OPEN_SCHEDULE.id,
                     });
                   }}
