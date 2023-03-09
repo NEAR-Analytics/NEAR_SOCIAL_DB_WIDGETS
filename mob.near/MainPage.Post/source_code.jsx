@@ -30,20 +30,30 @@ return (
     </div>
     {blockHeight !== "now" && (
       <div className="mt-1 d-flex justify-content-between">
-        <Widget
-          src="mob.near/widget/LikeButton"
-          props={{
-            notifyAccountId,
-            item,
-          }}
-        />
-        <Widget
-          src="mob.near/widget/CommentButton"
-          props={{
-            onClick: () =>
-              !state.showReply && State.update({ showReply: true }),
-          }}
-        />
+        <div>
+          <span className="me-4">
+            <Widget
+              src="mob.near/widget/LikeButton"
+              props={{
+                notifyAccountId,
+                item,
+              }}
+            />
+          </span>
+          <Widget
+            src="mob.near/widget/CommentButton"
+            props={{
+              onClick: () =>
+                !state.showReply && State.update({ showReply: true }),
+            }}
+          />
+        </div>
+        <div>
+          <Widget
+            src="mob.near/widget/MainPage.Post.ShareButton"
+            props={{ accountId, blockHeight, postType: "post" }}
+          />
+        </div>
       </div>
     )}
     <div className="mt-3 ps-5">
