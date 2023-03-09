@@ -149,19 +149,19 @@ function onInterval() {
 
 return (
   <div>
-    {
-      //   <iframe
-      //   style={{ height: "0px" }}
-      //   srcDoc={code}
-      //   message={{ timeout: 1000 }}
-      //   onMessage={onInterval}
-      // />
-    }
+    <iframe
+      style={{ height: "0px" }}
+      srcDoc={code}
+      message={{ timeout: 1000 }}
+      onMessage={onInterval}
+    />
+
     <div className="d-flex content-align-start justify-content-between">
       <div
         style={{
           width: "100%",
-          margin: style == "small" ? "0rem" : "2rem 0.5rem 2rem 2rem",
+          margin: style == "small" ? "0rem" : "2rem",
+          padding: "0 2rem 1rem 2rem",
           borderRadius: "18px",
           background: "white",
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
@@ -199,8 +199,7 @@ return (
             <Widget
               src="mob.near/widget/ProfileImage"
               props={{
-                profile,
-                question: state.poll.accountId,
+                accountId,
                 className: "float-start d-inline-block me-2",
                 style: {
                   width: style == "small" ? "2.5rem" : "3.5rem",
