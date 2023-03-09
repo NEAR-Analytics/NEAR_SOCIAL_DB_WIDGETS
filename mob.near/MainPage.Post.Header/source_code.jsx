@@ -2,7 +2,9 @@ const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 const postType = props.postType ?? "post";
 const link = props.link;
-const externalLink = `https://near.social/${link}`;
+const externalLink = `https://social.near.page/${
+  postType === "post" ? "p" : "c"
+}/${accountId}/${blockHeight}`;
 
 const clickbaitPrompt =
   props.clickbaitPrompt ??
@@ -29,7 +31,7 @@ Connect with people all over the world without worrying about language barriers
 Share your thoughts, ideas, and experiences without censorship or algorithm limitations
 If you're ready to experience true social freedom, we invite you to join Near.social today. Our platform is easy to use, secure, and designed with your needs in mind. Plus, our community is filled with passionate and creative individuals who are ready to welcome you with open arms.
 
-Don't wait any longer to discover the power of Near.social. Sign up today and experience a new way to connect with the world.
+Don't wait any longer to discover the power of Near Social. Sign up today and experience a new way to connect with the world.
 
 ${externalLink}
 
@@ -78,7 +80,7 @@ return (
               <Widget
                 src="mob.near/widget/CopyButton"
                 props={{
-                  text: `https://near.social/${link}`,
+                  text: externalLink,
                   className: "btn btn-outline-dark dropdown-item",
                   label: `Copy link to ${postType}`,
                 }}
