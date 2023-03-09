@@ -32,8 +32,8 @@ return (
       </div>
       <div class="col">
         <div class="container border border-info p-3 text-center">
-          <h6>Total Projects</h6>
-          <h2> {numberWithCommas(parseInt(data.body[0].PROJECTS))} </h2>
+          <h6>Total Issues</h6>
+          <h2> {numberWithCommas(parseInt(data.body[0].ISSUES))} </h2>
         </div>
       </div>
       <div class="col">
