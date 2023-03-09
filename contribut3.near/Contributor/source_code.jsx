@@ -69,6 +69,22 @@ const skills = state.contributor.skills.reduce(
 
 const tags = { ...skills, ...contributionTypes } || state.profile.tags;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-height: 8em;
+  max-width: 100%;
+  padding: 0 0.75em;
+  border-bottom: 1px solid #eaecf0;
+`;
+
+const Wrapper = styled.div`
+  flex-grow: 1;
+  padding: 0.75em 0;
+  max-width: 100%;
+`;
+
 const ActionColumn = styled.div`
   display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: row;
@@ -92,13 +108,9 @@ const DescriptionWrapper = styled.div`
   margin-top: 0.5em;
 `;
 
-const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em", maxWidth: "100%" }}
-  >
-    <div className="flex-grow-1 py-3" style={{ maxWidth: "100%" }}>
+return (
+  <Container id={accountId}>
+    <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
@@ -209,12 +221,6 @@ const body = (
           }}
         />
       </DescriptionWrapper>
-    </div>
-  </div>
-);
-
-return (
-  <div className="border-bottom border-secondary-subtle">
-    <div className="px-3 py-0">{body}</div>
-  </div>
+    </Wrapper>
+  </Container>
 );
