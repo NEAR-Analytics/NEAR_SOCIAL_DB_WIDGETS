@@ -27,10 +27,6 @@ if (!state.needFetched) {
   ).then((need) => State.update({ need, needFetched: true }));
 }
 
-const profile = Social.get(`${accountId}/profile/**`, "final", {
-  subscribe: false,
-});
-
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
