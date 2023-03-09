@@ -2,28 +2,6 @@ const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 const postType = props.postType ?? "post";
 const link = props.link;
-const externalLink = `https://social.near.page/${
-  postType === "post" ? "p" : "c"
-}/${accountId}/${blockHeight}`;
-
-const clickbaitPrompt =
-  props.clickbaitPrompt ??
-  `Check out this ${postType} on @NearSocial_\n#NearSocial #NEAR #BOS\n${externalLink}`;
-
-const twitterUrl = new URL("https://twitter.com/intent/tweet");
-twitterUrl.searchParams.set("text", clickbaitPrompt);
-
-const mailtoUrl = new URL("mailto:");
-mailtoUrl.searchParams.set(
-  "subject",
-  `Check out this ${postType} on Near Social`
-);
-mailtoUrl.searchParams.set(
-  "body",
-  `Take a look this ${postType}.
-${externalLink}
-`
-);
 
 return (
   <div className="d-flex flex-row align-items-center">
@@ -59,16 +37,6 @@ return (
             <i className="fs-6 bi bi-three-dots" />
           </a>
           <ul className="dropdown-menu">
-            <li>
-              <Widget
-                src="mob.near/widget/CopyButton"
-                props={{
-                  text: externalLink,
-                  className: "btn btn-outline-dark dropdown-item",
-                  label: `Copy link to ${postType}`,
-                }}
-              />
-            </li>
             <li className="dropdown-item">
               <a
                 className="link-dark text-decoration-none"
@@ -94,25 +62,6 @@ return (
                 />
               </li>
             )}
-            <li className="dropdown-item">
-              <a
-                className="link-dark text-decoration-none"
-                href={mailtoUrl.toString()}
-                target="_blank"
-              >
-                <i className="bi bi-envelope-at" /> Share by email
-              </a>
-            </li>
-            <li className="dropdown-item">
-              <a
-                className="link-dark text-decoration-none"
-                href={twitterUrl.toString()}
-                target="_blank"
-              >
-                <i className="bi bi-twitter" />
-                Share on Twitter
-              </a>
-            </li>
           </ul>
         </span>
       )}
