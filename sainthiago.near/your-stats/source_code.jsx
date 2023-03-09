@@ -1,4 +1,8 @@
-const accountId = props.accountId;
+const accountId = props.accountId || context.accountId;
+
+if (!accountId) {
+  return <></>;
+}
 
 const stats = Social.index("notify", accountId, { order: "desc" });
 
@@ -35,58 +39,141 @@ if (!nfts.ok || stats === null) {
 }
 
 return (
-  <div class="d-flex flex-column">
-    <h5>your-stats:</h5>{" "}
-    <p class="mb-0">
-      - you own
-      {numNfts}
-      nfts.
-    </p>
-    <p class="mb-0">
-      - you created
-      {numWidgets}
-      widgets so far.
-    </p>
-    <p class="mb-0">
-      - you follow
-      {numFollowing}
-      humans.
-    </p>
-    <p class="mb-0">
-      - {numFollowers}
-      humans followed you.
-    </p>
-    <p class="mb-0">
-      -{" "}
-      {
-        stats.filter((notification) => notification.value.type === "unfollow")
-          .length
-      }{" "}
-      humans unfollowed you.
-    </p>
-    <p class="mb-0">
-      -{" "}
-      {
-        stats.filter((notification) => notification.value.type === "mention")
-          .length
-      }{" "}
-      mentions.
-    </p>
-    <p class="mb-0">
-      -{" "}
-      {
-        stats.filter((notification) => notification.value.type === "like")
-          .length
-      }{" "}
-      likes on your content so far.
-    </p>
-    <p class="mb-0">
-      -{" "}
-      {
-        stats.filter((notification) => notification.value.type === "comment")
-          .length
-      }{" "}
-      comments on something you wrote.
-    </p>
+  <div class="d-flex flex-wrap gap-2 justify-content-center">
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="text-uppercase text-muted mb-0">Owned Nfts</h6>
+              <span class="h3 font-weight-bold mb-0">{numNfts}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Created Widgets
+              </h6>
+              <span class="h3 font-weight-bold mb-0">{numWidgets}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Following
+              </h6>
+              <span class="h3 font-weight-bold mb-0">{numFollowing}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Followers
+              </h6>
+              <span class="h3 font-weight-bold mb-0">{numFollowers}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Unfollowers
+              </h6>
+              <span class="h3 font-weight-bold mb-0">
+                {" "}
+                {
+                  stats.filter(
+                    (notification) => notification.value.type === "unfollow"
+                  ).length
+                }
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Mentions
+              </h6>
+              <span class="h3 font-weight-bold mb-0">
+                {
+                  stats.filter(
+                    (notification) => notification.value.type === "mention"
+                  ).length
+                }
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Likes given to you
+              </h6>
+              <span class="h3 font-weight-bold mb-0">
+                {
+                  stats.filter(
+                    (notification) => notification.value.type === "like"
+                  ).length
+                }
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-2">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Comments to you
+              </h6>
+              <span class="h3 font-weight-bold mb-0">
+                {
+                  stats.filter(
+                    (notification) => notification.value.type === "comment"
+                  ).length
+                }
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 );
