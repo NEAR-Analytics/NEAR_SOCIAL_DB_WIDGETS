@@ -1,10 +1,10 @@
 const accountId = props.accountId ?? context.accountId;
+const updateInstanceTimeState = props.updateInstanceTimeState;
+const tabs = props.tabs;
 const style = props.style ?? "large";
 const font_small = style == "small" ? "0.8rem" : "0.9rem";
 const font_big = style == "small" ? "0.8rem" : "1rem";
 const data = Social.index("Instance_time", "schedule");
-
-console.log("accountId: ", accountId);
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
@@ -164,6 +164,28 @@ return (
           boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
         }}
       >
+        <div className="w-100 d-flex flex-row justify-content-between align-items-center">
+          <h2
+            style={{
+              padding: "2rem",
+              margin: "2rem 0 0.5rem 0",
+              fontWeight: "700",
+            }}
+          >
+            {tabs.OPEN_SCHEDULE.text}
+          </h2>
+          <i
+            className="bi bi-x-lg"
+            style={{
+              right: "2rem",
+              top: "2rem",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              updateInstanceTimeState({ tab: props.prevTab });
+            }}
+          ></i>
+        </div>
         <div className="d-flex justify-content-between">
           <div
             className="d-flex"
@@ -193,45 +215,11 @@ return (
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <a
-              href={`https://near.social/#/${widgetOwner}/widget/Instance_time`}
-              onMouseEnter={() => {
-                State.update({ hoveringElement: "view" });
-              }}
-              onMouseLeave={() => {
-                State.update({ hoveringElement: "" });
-              }}
-              style={
-                state.hoveringElement == "view"
-                  ? {
-                      border: "2px solid transparent",
-                      fontWeight: "500",
-                      fontSize: font_big,
-                      padding: "0.3rem 1.5rem",
-                      backgroundColor: "#010A2D",
-                      borderRadius: "12px",
-                      color: "white",
-                      textDecoration: "none",
-                      marginBottom: "0.5rem",
-                    }
-                  : {
-                      border: "2px solid black",
-                      color: "black",
-                      backgroundColor: "white",
-                      fontWeight: "500",
-                      fontSize: font_big,
-                      padding: "0.3rem 1.5rem",
-                      borderRadius: "12px",
-                      textDecoration: "none",
-                      marginBottom: "0.5rem",
-                    }
-              }
-            >
-              View Schedules
-            </a>
             {accountId == context.accountId && (
-              <a
-                href={`https://near.social/#/${widgetOwner}/widget/Instance_time_edit`}
+              <button
+                onClick={updateInstanceTimeState({
+                  tab: tabs.EDIT_SCHEDULE.id,
+                })}
                 onMouseEnter={() => {
                   State.update({ hoveringElement: "edit" });
                 }}
@@ -263,7 +251,7 @@ return (
                 }
               >
                 Edit Schedules
-              </a>
+              </button>
             )}
           </div>
         </div>
