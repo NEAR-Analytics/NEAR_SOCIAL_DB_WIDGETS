@@ -49,22 +49,32 @@ return (
       </div>
       {blockHeight !== "now" && (
         <div className="mt-1 d-flex justify-content-between">
-          <Widget
-            src="mob.near/widget/LikeButton"
-            props={{
-              notifyAccountId: accountId,
-              item,
-            }}
-          />
-          {parentItem && (
+          <div>
+            <span className="me-4">
+              <Widget
+                src="mob.near/widget/LikeButton"
+                props={{
+                  notifyAccountId,
+                  item,
+                }}
+              />
+            </span>
+            {parentItem && (
+              <Widget
+                src="mob.near/widget/CommentButton"
+                props={{
+                  onClick: () =>
+                    !state.showReply && State.update({ showReply: true }),
+                }}
+              />
+            )}
+          </div>
+          <div>
             <Widget
-              src="mob.near/widget/CommentButton"
-              props={{
-                onClick: () =>
-                  !state.showReply && State.update({ showReply: true }),
-              }}
+              src="mob.near/widget/MainPage.Post.ShareButton"
+              props={{ accountId, blockHeight, postType: "comment" }}
             />
-          )}
+          </div>
         </div>
       )}
     </div>
