@@ -264,23 +264,15 @@ return (
       <div style={bgStyle}></div>
       <div style={wStyle}>
         <h2 style={{ paddingTop: "25px", paddingBottom: "25px" }}>
-          Paras Marketplace Activity <span class="fs-6"> Last 7 days</span>
-        </h2>
-        <p>
-          Powered By:{""}
-          <img
-            src="https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=2,format=auto/https%3A%2F%2F1048384174-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LdEnDLYh6Su5z7LbnEZ%252Favatar.png%3Fgeneration%3D1575431493257333%26alt%3Dmedia"
-            height="20px"
-            width="20px"
-          ></img>
           <a
-            style={linkStyle}
             href="https://flipsidecrypto.xyz/edit/queries/fe213752-a832-4f0b-a08a-52e85ae53798"
             target="_blank"
           >
-            Flipside
+            Paras Marketplace Activity
           </a>
-        </p>
+          <span class="fs-6"> Last 7 days</span>
+        </h2>
+
         <table style={tableStyle}>
           <thead>
             <tr>
@@ -428,6 +420,21 @@ return (
         </a>
         <img src={state.imgSrc4} />
       </div>
+    </div>
+    <div
+      class="text-center p-4"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+    >
+      <p>
+        Powered by:{""}
+        <img
+          src="https://www.gitbook.com/cdn-cgi/image/width=30,height=30,fit=contain,dpr=2,format=auto/https%3A%2F%2F1048384174-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-LdEnDLYh6Su5z7LbnEZ%252Favatar.png%3Fgeneration%3D1575431493257333%26alt%3Dmedia"
+          height="20px"
+          width="20px"
+        ></img>
+        Flipside
+        <span class="blockquote-footer">Data refreshes once every 24h</span>
+      </p>
     </div>
   </div>
 );
