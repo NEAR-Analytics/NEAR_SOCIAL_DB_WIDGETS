@@ -48,6 +48,7 @@ return (
                 paddingTop: font_small,
                 display: "flex",
                 justifyContent: "space-between",
+                marginTop: "0.5rem",
               }}
             >
               <div style={{ fontSize: font_small }}>{`${days[index]}`}</div>
