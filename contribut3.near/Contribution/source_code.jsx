@@ -100,7 +100,7 @@ return (
                 props={{
                   update: props.update,
                   items: [
-                    isAuthorized
+                    state.isAuthorized
                       ? {
                         text: "Stop contribution",
                         icon: "bi-slash-circle",
@@ -146,7 +146,7 @@ return (
             <TagWrapper>
               <Widget
                 src={`${ownerId}/widget/Tags`}
-                props={{ tags: profile.tags }}
+                props={{ tags: state.profile.tags }}
               />
             </TagWrapper>
           ),
