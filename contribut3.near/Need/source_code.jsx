@@ -27,14 +27,45 @@ if (!state.needFetched) {
   ).then((need) => State.update({ need, needFetched: true }));
 }
 
-const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em" }}
-  >
-    <div className="flex-grow-1 py-3">
-      <div className="d-flex flex-row justify-content-between align-items-start">
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-height: 8em;
+  max-width: 100%;
+  padding: 0 0.75em;
+  border-bottom: 1px solid #eaecf0;
+`;
+
+const Wrapper = styled.div`
+  flex-grow: 1;
+  padding: 0.75em 0;
+  max-width: 100%;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+`;
+
+const ActionColumn = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: start;
+`;
+
+const DescriptionWrapper = styled.div`
+  max-width: 100%;
+  margin-top: 0.5em;
+`;
+
+return (
+  <Container id={`${accountId}-${cid}`}>
+    <Wrapper>
+      <Header>
         <a
           href={`/#/${ownerId}/widget/Index?tab=need&accountId=${accountId}&cid=${cid}`}
           onClick={() =>
@@ -49,7 +80,7 @@ const body = (
         >
           <h4>Looking for {state.need.contribution_type}</h4>
         </a>
-        <div className="d-flex flex-row justify-content-end align-items-start">
+        <ActionColumn>
           <Widget
             src={`${ownerId}/widget/ActiveIndicator`}
             props={{
@@ -90,8 +121,8 @@ const body = (
               ],
             }}
           />
-        </div>
-      </div>
+        </ActionColumn>
+      </Header>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
@@ -110,12 +141,6 @@ const body = (
           ),
         }}
       />
-    </div>
-  </div>
-);
-
-return (
-  <div className="border-bottom border-secondary-subtle">
-    <div className="px-3 py-0">{body}</div>
-  </div>
+    </Wrapper>
+  </Container>
 );
