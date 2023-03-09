@@ -219,6 +219,11 @@ return (
           <div className="d-flex">
             <span
               style={{
+                height: "2.1rem",
+                width: "5rem",
+                marginRight: "1rem",
+                lineHeight: "1.9rem",
+                letterSpacing: "-0.025rem",
                 backgroundColor: state.is_on
                   ? "rgb(217, 252, 239)"
                   : "rgb(255, 229, 229)",
