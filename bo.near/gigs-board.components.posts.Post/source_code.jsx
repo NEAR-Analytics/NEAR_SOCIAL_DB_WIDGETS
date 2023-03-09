@@ -1,9 +1,10 @@
 /* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId || "devgovgigs.near";
-
+  props.nearDevGovGigsContractAccountId ||
+  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId || "devgovgigs.near";
+  props.nearDevGovGigsWidgetsAccountId ||
+  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
@@ -43,7 +44,7 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-const postId = props.post.id ?? (props.id ? parseInt(props.id) : 293);
+const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
 const post =
   props.post ??
   Near.view(nearDevGovGigsContractAccountId, "get_post", { post_id: postId });
@@ -215,7 +216,6 @@ let grantNotify = Near.view("social.near", "is_write_permission_granted", {
   predecessor_id: nearDevGovGigsContractAccountId,
   key: context.accountId + "/index/notify",
 });
-console.log('grantNotify', grantNotify)
 if (grantNotify === null) {
   return;
 }
