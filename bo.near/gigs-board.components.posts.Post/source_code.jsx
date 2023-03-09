@@ -43,7 +43,7 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-const postId = props.post.id ?? (props.id ? parseInt(props.id) : 0);
+const postId = props.post.id ?? (props.id ? parseInt(props.id) : 293);
 const post =
   props.post ??
   Near.view(nearDevGovGigsContractAccountId, "get_post", { post_id: postId });
@@ -209,47 +209,43 @@ const containsLike = props.isPreview
   ? false
   : post.likes.find((l) => l.author_id == context.accountId);
 const likeBtnClass = containsLike ? fillIcons.Like : emptyIcons.Like;
+// This must be outside onLike, because Near.view returns null at first, and when the view call finished, it returns true/false.
+// If checking this inside onLike, it will give `null` and we cannot tell the result is true or false.
+let grantNotify = Near.view("social.near", "is_write_permission_granted", {
+  predecessor_id: nearDevGovGigsContractAccountId,
+  key: context.accountId + "/index/notify",
+});
+if (grantNotify === null) {
+  return;
+}
 const onLike = () => {
   if (!context.accountId) {
     return;
   }
-  let grantNotify = Near.view("social.near", "is_write_permission_granted", {
-    predecessor_id: nearDevGovGigsContractAccountId,
-    key: context.accountId + "/index/notify",
-  });
-  if (!grantNotify) {
-    Near.call([
-      {
-        contractName: "social.near",
-        methodName: "grant_write_permission",
-        args: {
-          predecessor_id: nearDevGovGigsContractAccountId,
-          keys: [context.accountId + "/index/notify"],
-        },
-        deposit: Big(10).pow(23),
-        gas: Big(10).pow(12).mul(30),
-      },
-      {
-        contractName: nearDevGovGigsContractAccountId,
-        methodName: "add_like",
-        args: {
-          post_id: postId,
-        },
-        deposit: Big(10).pow(21).mul(2),
-        gas: Big(10).pow(12).mul(100),
-      },
-    ]);
-  } else {
-    Near.call(
-      nearDevGovGigsContractAccountId,
-      "add_like",
-      {
+  let likeTxn = [
+    {
+      contractName: nearDevGovGigsContractAccountId,
+      methodName: "add_like",
+      args: {
         post_id: postId,
       },
-      100_000_000_000_000n,
-      2_000_000_000_000_000_000_000n
-    );
+      deposit: Big(10).pow(21).mul(2),
+      gas: Big(10).pow(12).mul(100),
+    },
+  ];
+  if (grantNotify === false) {
+    likeTxn.unshift({
+      contractName: "social.near",
+      methodName: "grant_write_permission",
+      args: {
+        predecessor_id: nearDevGovGigsContractAccountId,
+        keys: [context.accountId + "/index/notify"],
+      },
+      deposit: Big(10).pow(23),
+      gas: Big(10).pow(12).mul(30),
+    });
   }
+  Near.call(likeTxn);
 };
 
 const btnCreatorWidget = (postType, icon, name) => {
