@@ -4,6 +4,8 @@ const font_small = style == "small" ? "0.8rem" : "0.9rem";
 const font_big = style == "small" ? "0.8rem" : "1rem";
 const data = Social.index("Instance_time", "schedule");
 
+console.log("accountId: ", accountId);
+
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
