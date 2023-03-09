@@ -36,7 +36,7 @@ const data_show = fetch("https://graph.mintbase.xyz", {
   body: JSON.stringify({
     query: `
       query MyQuery {
-        mb_views_nft_tokens(limit: 30, order_by: {last_transfer_timestamp: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}, copies: {_eq: "1"}}}) {
+        mb_views_nft_tokens(limit: 30, order_by: {last_transfer_timestamp: desc},where: {minter: {_eq: "toolipse.near"}, _and: {nft_contract_id: {_eq: "toolipse.mintbase1.near"}}}) {
             
             token_id
             metadata_id
@@ -44,6 +44,7 @@ const data_show = fetch("https://graph.mintbase.xyz", {
             description
             media
             nft_contract_id
+            copies
         }   
       }
 `,
@@ -113,13 +114,15 @@ return data_sell !== null && data_show !== null ? (
                     maxHeight: size_sell,
                     overflowWrap: "break-word",
                   },
-                  thumbnail: "thumbnail",
+                  thumbnail: "",
                   className: "",
                   fallbackUrl:
                     "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
                 }}
               />
             </a>
+            <h6>{listing.title}</h6>
+            <p> {listing.description}</p>
             <button
               disabled={!accountId}
               onClick={() => {
@@ -133,11 +136,8 @@ return data_sell !== null && data_show !== null ? (
         );
       })}
     </div>
-    <div class="container" background-color="blue" width="50px" height="50em">
-      test
-    </div>
+    <h1 className="align-text">Card presentation test</h1>
     <div className="row">
-      <h1 className="align-text">Card presentation test</h1>
       {data_show.body.data?.mb_views_nft_tokens.map((tokens, i) => (
         <div
           key={tokens.token_id}
@@ -166,7 +166,7 @@ return data_sell !== null && data_show !== null ? (
                     maxHeight: size_show,
                     overflowWrap: "break-word",
                   },
-                  thumbnail: "thumbnail",
+                  thumbnail: "",
                   className: "card-img-top",
                   fallbackUrl:
                     "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
