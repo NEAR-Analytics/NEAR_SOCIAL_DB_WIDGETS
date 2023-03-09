@@ -1,6 +1,7 @@
 const _account = props.accountId ?? "All";
 const owner = context.accountId;
 const text = props.text;
+const updateInstanceTimeState = props.updateInstanceTimeState;
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
@@ -206,7 +207,7 @@ return (
         ? finalData.map((d) => {
             if (_account == "All" || _account == d.accountId) {
               return (
-                <a
+                <div
                   style={{
                     boxSizing: "border-box",
                     boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
@@ -218,7 +219,9 @@ return (
                     disable: context.accountId != d.accountId,
                     textDecoration: "none",
                   }}
-                  href={`https://near.social/#/${widgetOwner}/widget/Instance_time_card?accountId=${d.accountId}`}
+                  onClick={() => {
+                    updateInstanceTimeState({ accountId: d.accountId });
+                  }}
                 >
                   <div
                     style={{
@@ -370,7 +373,7 @@ return (
                       );
                     })}
                   </div>
-                </a>
+                </div>
               );
             }
           })
