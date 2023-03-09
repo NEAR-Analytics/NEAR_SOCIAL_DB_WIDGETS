@@ -69,6 +69,13 @@ const skills = state.contributor.skills.reduce(
 
 const tags = { ...skills, ...contributionTypes } || state.profile.tags;
 
+const ActionColumn = styled.div`
+  display: ${({ show }) => (show ? "flex" : "none")};
+  flex-direction: row;
+  justify-content: between;
+  align-items: center;
+`;
+
 const TypeContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -94,10 +101,8 @@ const body = (
           isEntity,
           imageSize: "3em",
           update: props.update,
-          additionalColumn: inboxView ? (
-            <></>
-          ) : (
-            <div className="d-flex flex-row justify-content-between align-items-center">
+          additionalColumn: (
+            <ActionColumn show={!inboxView}>
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
                 props={{
@@ -143,7 +148,7 @@ const body = (
                   ],
                 }}
               />
-            </div>
+            </ActionColumn>
           ),
           additionalRow: (
             <>
