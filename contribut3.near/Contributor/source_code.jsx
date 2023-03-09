@@ -171,7 +171,7 @@ return (
             <>
               <TypeContainer>
                 <i>
-                  {state.isEntity ? (
+                  {!state.isEntity ? (
                     <svg
                       width="20"
                       height="21"
