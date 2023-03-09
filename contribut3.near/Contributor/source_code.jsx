@@ -26,7 +26,7 @@ if (!state.contributorFetched) {
   );
 }
 
-if (!contributor) {
+if (!state.contributor) {
   return "Loading...";
 }
 
