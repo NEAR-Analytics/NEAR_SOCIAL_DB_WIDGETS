@@ -212,11 +212,26 @@ return (
               }}
             />
             <div>
-              <p style={{ margin: "0", fontWeight: "300" }}>Created by</p>
+              <p style={{ margin: "0", fontWeight: "300" }}>Schedule of</p>
               <p style={{ fontWeight: "500" }}>{sliceString(accountId, 18)}</p>
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className="d-flex">
+            <span
+              style={{
+                backgroundColor: state.is_on
+                  ? "rgb(217, 252, 239)"
+                  : "rgb(255, 229, 229)",
+                textAlign: "center",
+                borderRadius: "16px",
+                fontSize: font_small,
+                color: state.is_on ? "rgb(0, 179, 125)" : "rgb(255, 71, 71)",
+                fontWeight: "500",
+                padding: "0.5rem 1rem",
+              }}
+            >
+              {state.is_on ? "on" : "off"}
+            </span>
             {accountId == context.accountId && (
               <button
                 onClick={updateInstanceTimeState({
@@ -302,24 +317,9 @@ return (
             >
               <Widget
                 src={`${widgetOwner}/widget/Instance_time_share`}
-                props={{ accountId: "vow_owner_123.near" }}
+                props={{ accountId }}
               />
             </div>
-            <span
-              style={{
-                backgroundColor: state.is_on
-                  ? "rgb(217, 252, 239)"
-                  : "rgb(255, 229, 229)",
-                textAlign: "center",
-                borderRadius: "16px",
-                fontSize: font_small,
-                color: state.is_on ? "rgb(0, 179, 125)" : "rgb(255, 71, 71)",
-                fontWeight: "500",
-                padding: "0.5rem 1rem",
-              }}
-            >
-              {state.is_on ? "on" : "off"}
-            </span>
           </div>
 
           <div
