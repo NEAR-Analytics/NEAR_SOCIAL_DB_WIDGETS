@@ -8,7 +8,7 @@ const externalLink = `https://social.near.page/${
 
 const clickbaitPrompt =
   props.clickbaitPrompt ??
-  `Are you tired of social media algorithms limiting your reach?\nSay goodbye to restrictions and hello to true social freedom with @NearSocial_\n#NearSocial #NEAR #BOS\n${externalLink}`;
+  `Check out this ${postType} on @NearSocial_\n#NearSocial #NEAR #BOS\n${externalLink}`;
 
 const twitterUrl = new URL("https://twitter.com/intent/tweet");
 twitterUrl.searchParams.set("text", clickbaitPrompt);
@@ -16,29 +16,12 @@ twitterUrl.searchParams.set("text", clickbaitPrompt);
 const mailtoUrl = new URL("mailto:");
 mailtoUrl.searchParams.set(
   "subject",
-  "Discover True Social Freedom with Near Social"
+  `Check out this ${postType} on Near Social`
 );
 mailtoUrl.searchParams.set(
   "body",
-  `Fellow human,
-
-Are you tired of feeling restricted by social media algorithms? Do you miss the days when you could connect with like-minded individuals without worrying about censorship or limitations?
-
-At Near.social, we believe in true social freedom. Our platform is designed to give you the power to connect, engage, and share your ideas with the world on your terms. With Near.social, you can:
-
-Join a community of like-minded individuals who share your interests and values
-Connect with people all over the world without worrying about language barriers
-Share your thoughts, ideas, and experiences without censorship or algorithm limitations
-If you're ready to experience true social freedom, we invite you to join Near.social today. Our platform is easy to use, secure, and designed with your needs in mind. Plus, our community is filled with passionate and creative individuals who are ready to welcome you with open arms.
-
-Don't wait any longer to discover the power of Near Social. Sign up today and experience a new way to connect with the world.
-
+  `Take a look this ${postType}.
 ${externalLink}
-
-Be the #BOS!
-
-Best regards,
-ChatGPT.
 `
 );
 
