@@ -9,46 +9,18 @@ if (!accountId || !cid) {
   return "Cannot render contribution need widget without account ID or CID!";
 }
 
-State.init({
-  contributionFormHidden: true,
-});
+State.init({});
 
-const isContributor = Near.view(
+const contributionNeed = Near.view(
   ownerId,
-  "check_is_contributor",
-  { account_id: context.accountId },
+  "get_contribution_need",
+  {
+    account_id: accountId,
+    cid,
+  },
   "final",
   false
 );
-
-const currentContributor = Near.view(
-  ownerId,
-  "get_contribution",
-  { entity_id: accountId, contributor_id: context.accountId },
-  "final",
-  false
-);
-
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { entity_id: accountId, account_id: context.accountId },
-  "final",
-  false
-);
-
-const contributionNeed = props.isPreview
-  ? props.contributionNeed
-  : Near.view(
-    ownerId,
-    "get_contribution_need",
-    {
-      account_id: accountId,
-      cid,
-    },
-    "final",
-    true
-  );
 
 const entity = isPreview
   ? props.entity
@@ -61,7 +33,7 @@ if (!entity) {
 }
 
 const profile = Social.get(`${accountId}/profile/**`, "final", {
-  subscribe: true,
+  subscribe: false,
 });
 
 const body = (
