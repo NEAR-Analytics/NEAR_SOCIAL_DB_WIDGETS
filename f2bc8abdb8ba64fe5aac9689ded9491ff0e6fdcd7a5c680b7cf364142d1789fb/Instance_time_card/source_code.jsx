@@ -189,7 +189,7 @@ return (
             }}
           ></i>
         </div>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between mt-1">
           <div
             className="d-flex"
             style={{
