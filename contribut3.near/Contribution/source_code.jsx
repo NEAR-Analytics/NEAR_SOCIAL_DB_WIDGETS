@@ -6,29 +6,50 @@ const isEntity = props.isEntity ?? false;
 
 State.init({
   finishFormHidden: true,
+  contribution: null,
+  contributionFetched: false,
+  isAuthorized: false,
+  isAuthorizedFetched: false,
+  profile: null,
+  profileFetched: false,
 });
 
 if (!entityId || !contributorId) {
   return "Cannot show contribution without entity ID or contributor ID!";
 }
 
-const contribution = Near.view(
-  ownerId,
-  "get_contribution",
-  { entity_id: entityId, contributor_id: contributorId },
-  "final",
-  false
-);
+if (!state.contributionFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_contribution",
+    { entity_id: entityId, contributor_id: contributorId },
+    "final",
+    false
+  ).then((contribution) =>
+    State.update({ contribution, contributionFetched: true })
+  );
+}
 
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { account_id: accountId, entity_id: entityId },
-  "final",
-  false
-);
+if (!state.isAuthorizedFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_manager_or_higher",
+    { account_id: accountId, entity_id: entityId },
+    "final",
+    false
+  ).then((isAuthorized) =>
+    State.update({ isAuthorized, isAuthorizedFetched: true })
+  );
+}
 
-const profile = Social.getr(`${isEntity ? contributorId : entityId}/profile`);
+if (!state.profileFetched) {
+  const profile = Social.getr(
+    `${isEntity ? contributorId : entityId}/profile`,
+    "final",
+    { subscribe: false }
+  );
+  State.update({ profile, profileFetched: true });
+}
 
 const Container = styled.div`
   display: flex;
@@ -72,7 +93,7 @@ return (
             <ActionColumn>
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
-                props={{ active: !contribution.end_date }}
+                props={{ active: !state.contribution.end_date }}
               />
               <Widget
                 src={`${ownerId}/widget/CardMenu`}
