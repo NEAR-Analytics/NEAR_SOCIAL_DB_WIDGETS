@@ -92,6 +92,15 @@ return (
               </div>
             </div>
           </div>
+          <p class="blockquote-footer">
+            Data set to refresh once every 24h,
+            <a
+              href="https://flipsidecrypto.xyz/edit/queries/3328e097-8469-4179-a82a-91156168b6e4"
+              target="_blank"
+            >
+              view and fork the source query
+            </a>
+          </p>
 
           <div>
             <hr />
