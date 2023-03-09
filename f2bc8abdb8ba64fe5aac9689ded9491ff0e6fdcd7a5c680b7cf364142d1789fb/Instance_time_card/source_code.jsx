@@ -1,10 +1,15 @@
+const data = Social.index("Instance_time", "schedule");
+
+if (!data) {
+  return "Loading datas";
+}
+
 const accountId = props.accountId ?? context.accountId;
 const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
 const style = props.style ?? "large";
 const font_small = style == "small" ? "0.8rem" : "0.9rem";
 const font_big = style == "small" ? "0.8rem" : "1rem";
-const data = Social.index("Instance_time", "schedule");
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
@@ -12,10 +17,6 @@ const widgetOwner =
 State.init({
   is_on: false,
 });
-
-if (!data) {
-  return "Loading datas";
-}
 
 var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 var finalData = {};
