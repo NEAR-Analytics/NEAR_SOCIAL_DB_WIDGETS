@@ -19,6 +19,8 @@ const data_sell = fetch("https://graph.mintbase.xyz", {
             nft_contract_id
             token_id
             metadata_id
+            title
+            description
         }   
       }
 `,
@@ -77,12 +79,12 @@ if (!data_show.ok) {
 }
 
 const size_sell = "10em";
-const size_show = "5em";
+const size_show = "10em";
 
 return data_sell !== null && data_show !== null ? (
   <>
     <h1>Artworks listed on @mintbase</h1>
-    <p>Nice to see that my artworks can be buyable from here.</p>
+
     <div className="d-flex gap-4 flex-wrap">
       {data_sell.body.data?.mb_views_active_listings.map((listing, i) => {
         const priceYocto = listing.price.toLocaleString().replace(/,/g, "");
@@ -131,13 +133,21 @@ return data_sell !== null && data_show !== null ? (
         );
       })}
     </div>
-    <div className="d-flex gap-4 flex-wrap">
-      {data_show.body.data?.mb_views_nft_tokens.map((tokens, i) => {
-        return (
-          <div className="d-flex flex-column gap-1">
+    <div class="container" background-color="blue" width="50px" height="50em">
+      test
+    </div>
+    <div className="row">
+      <h1 className="align-text">Card presentation test</h1>
+      {data_show.body.data?.mb_views_nft_tokens.map((tokens, i) => (
+        <div
+          key={tokens.token_id}
+          className="card rounded-5 col-lg-3 margin-1 border-light mb-3"
+        >
+          <div align="center">
             <a
               href={`https://mintbase.xyz/meta/${tokens.metadata_id}/`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Widget
                 src="toolipse.near/widget/NftImage_toolipse"
@@ -147,25 +157,29 @@ return data_sell !== null && data_show !== null ? (
                     contractId: tokens.nft_contract_id,
                   },
                   style: {
-                    width: size_sell,
-                    height: size_sell,
+                    width: size_show,
+                    height: size_show,
                     objectFit: "contain",
-                    minWidth: size_sell,
-                    minHeight: size_sell,
-                    maxWidth: size_sell,
-                    maxHeight: size_sell,
+                    minWidth: size_show,
+                    minHeight: size_show,
+                    maxWidth: size_show,
+                    maxHeight: size_show,
                     overflowWrap: "break-word",
                   },
                   thumbnail: "thumbnail",
-                  className: "",
+                  className: "card-img-top",
                   fallbackUrl:
                     "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
                 }}
               />
             </a>
           </div>
-        );
-      })}
+          <div class="card-body">
+            <h6 class="card-title">{tokens.title}</h6>
+            <p class="card-text">{tokens.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
   </>
 ) : (
