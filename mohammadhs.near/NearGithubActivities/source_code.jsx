@@ -9,13 +9,13 @@ return (
           props={{}}
         />{" "}
       </div>
-      <div class="col-lg-12 mb-3">
+      <div class="col-lg-6 mb-3">
         <Widget
           src="mohammadhs.near/widget/NearGithubActivityPullReqs"
           props={{}}
         />
       </div>
-      <div class="col-lg-12 mb-3">
+      <div class="col-lg-6 mb-3">
         <Widget
           src="mohammadhs.near/widget/NearGithubActivityActiveDevelopers"
           props={{}}
