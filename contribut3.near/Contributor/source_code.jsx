@@ -87,6 +87,11 @@ const TypeContainer = styled.div`
   }
 `;
 
+const DescriptionWrapper = styled.div`
+  max-width: 100%;
+  margin-top: 0.5em;
+`;
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
@@ -196,14 +201,14 @@ const body = (
           ),
         }}
       />
-      <div style={{ maxWidth: "100%", marginTop: "0.5em" }}>
+      <DescriptionWrapper>
         <Widget
           src={`${ownerId}/widget/DescriptionArea`}
           props={{
             description: state.contributor.resume || state.profile.description,
           }}
         />
-      </div>
+      </DescriptionWrapper>
     </div>
   </div>
 );
