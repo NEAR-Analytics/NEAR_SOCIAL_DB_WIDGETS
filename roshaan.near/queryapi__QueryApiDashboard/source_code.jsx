@@ -495,6 +495,10 @@ return (
               ) : (
                 <H2>{`${state.indexers[0].accountId}/${state.indexers[0].indexerName}`}</H2>
               ))}
+            {indexerView(
+              selected_accountId ?? state.indexers[0].accountId,
+              selected_indexerName ?? state.indexers[0].indexerName
+            )}
             <Widget
               src={"roshaan.near/widget/queryapi__IndexerFunctionEditor"}
               props={{
