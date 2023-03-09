@@ -25,13 +25,23 @@ const tabs = {
     id: 3,
     text: finalData ? "Edit Schedule" : "Create Schedule",
   },
+  EDIT_SCHEDULE: {
+    id: 4,
+    text: "Edit Shedule",
+  },
+  OPEN_SCHEDULE: {
+    id: 5,
+    text: "",
+  },
 };
 
 State.init({
   tab: tabs.ALL_SCHEDULE.id,
+  prevTab: tabs.ALL_SCHEDULE.id,
   hoveringElement: "",
   showAbortScheduleCreation: false,
   abortThroughAllExistingSchedule: false,
+  userScheduleShown: "",
 });
 
 function makeStringShorter(string, length) {
@@ -249,7 +259,7 @@ return (
             <div className="d-flex">
               {Object.keys(tabs).map((tabKey) => {
                 const tab = tabs[tabKey];
-                if (tabKey != "NEW_SCHEDULE") {
+                if (tabKey == "ALL_SCHEDULE" || tabKey == "MY_SCHEDULE") {
                   return (
                     <div
                       style={{
@@ -366,7 +376,17 @@ return (
       <div className="w-100 d-flex flex-row justify-content-between align-items-center"></div>
     </div>
     <div className="align-items-center">
-      {state.tab != tabs.NEW_SCHEDULE.id ? (
+      {state.tab == tabs.OPEN_SCHEDULE.id ? (
+        <Widget
+          src={`${widgetOwner}/widget/Instance_time_card`}
+          props={{
+            accountId: state.userScheduleShown,
+            tabs,
+            prevTab: state.prevTab,
+            updateInstanceTimeState,
+          }}
+        />
+      ) : state.tab != tabs.NEW_SCHEDULE.id ? (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_review`}
           props={{
@@ -378,6 +398,8 @@ return (
                 : tabs.MY_SCHEDULE.text,
             className: "d-inline-block",
             style: { width: "100%", height: "1.5em" },
+            updateInstanceTimeState,
+            tabs,
           }}
         />
       ) : (
