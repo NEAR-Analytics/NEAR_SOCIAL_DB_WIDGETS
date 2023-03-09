@@ -35,7 +35,7 @@ function formatDate(dateStr) {
     "Dec",
   ];
   const month = months[date.getMonth()];
-  return `${year} - ${month}`;
+  return `${month} ${year}`;
 }
 
 let Style = styled.div`
