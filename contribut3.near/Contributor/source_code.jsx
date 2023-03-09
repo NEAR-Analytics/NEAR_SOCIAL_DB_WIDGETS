@@ -1,25 +1,30 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
-const notStandalone = props.notStandalone ?? false;
-const isPreview = props.isPreview ?? false;
 
 if (!accountId) {
   return "Cannot show contributor without account ID!";
 }
 
 State.init({
-  inviteFormHidden: true,
+  contributor: null,
+  contributorFetched: false,
+  isEntity: false,
+  isEntityFetched: false,
+  profile: null,
+  profileFetched: false,
 });
 
-const contributor = isPreview
-  ? props.contributor
-  : Near.view(
+if (!state.contributorFetched) {
+  Near.asyncView(
     ownerId,
     "get_contributor",
     { account_id: accountId },
     "final",
     false
+  ).then((contributor) =>
+    State.update({ contributor, contributorFetched: true })
   );
+}
 
 if (!contributor) {
   return isPreview
