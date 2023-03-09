@@ -30,13 +30,37 @@ const isAuthorized = Near.view(
 
 const profile = Social.getr(`${isEntity ? contributorId : entityId}/profile`);
 
-const body = (
-  <div
-    className="d-flex flex-row justify-content-start"
-    id={accountId}
-    style={{ minHeight: "8em" }}
-  >
-    <div className="flex-grow-1 py-3">
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-height: 8em;
+  max-width: 100%;
+  padding: 0 0.75em;
+  border-bottom: 1px solid #eaecf0;
+`;
+
+const Wrapper = styled.div`
+  flex-grow: 1;
+  padding: 0.75em 0;
+  max-width: 100%;
+`;
+
+const ActionColumn = styled.div`
+  display: "flex";
+  flex-direction: row;
+  justify-content: between;
+  align-items: center;
+`;
+
+const TagWrapper = styled.div`
+  max-width: 100%;
+  margin: 0.5em 0;
+`;
+
+return (
+  <Container id={accountId}>
+    <Wrapper>
       <Widget
         src={`${ownerId}/widget/ProfileLine`}
         props={{
@@ -45,7 +69,7 @@ const body = (
           imageSize: "4em",
           update: props.update,
           additionalColumn: (
-            <div className="d-flex flex-row justify-content-between align-items-center">
+            <ActionColumn>
               <Widget
                 src={`${ownerId}/widget/ActiveIndicator`}
                 props={{ active: !contribution.end_date }}
@@ -95,24 +119,18 @@ const body = (
                   onClose: () => State.update({ finishFormHidden: true }),
                 }}
               />
-            </div>
+            </ActionColumn>
           ),
           additionalRow: (
-            <div className="my-2">
+            <TagWrapper>
               <Widget
                 src={`${ownerId}/widget/Tags`}
                 props={{ tags: profile.tags }}
               />
-            </div>
+            </TagWrapper>
           ),
         }}
       />
-    </div>
-  </div>
-);
-
-return (
-  <div className="border-bottom border-secondary-subtle">
-    <div className="px-3 py-0">{body}</div>
-  </div>
+    </Wrapper>
+  </Container>
 );
