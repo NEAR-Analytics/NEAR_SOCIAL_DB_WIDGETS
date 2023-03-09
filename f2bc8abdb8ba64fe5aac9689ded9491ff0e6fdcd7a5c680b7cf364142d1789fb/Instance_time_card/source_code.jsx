@@ -149,12 +149,14 @@ function onInterval() {
 
 return (
   <div>
-    <iframe
-      style={{ height: "0px" }}
-      srcDoc={code}
-      message={{ timeout: 1000 }}
-      onMessage={onInterval}
-    />
+    {
+      //   <iframe
+      //   style={{ height: "0px" }}
+      //   srcDoc={code}
+      //   message={{ timeout: 1000 }}
+      //   onMessage={onInterval}
+      // />
+    }
     <div className="d-flex content-align-start justify-content-between">
       <div
         style={{
