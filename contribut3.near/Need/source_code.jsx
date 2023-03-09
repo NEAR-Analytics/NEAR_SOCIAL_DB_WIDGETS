@@ -27,16 +27,6 @@ if (!state.needFetched) {
   ).then((need) => State.update({ need, needFetched: true }));
 }
 
-const entity = isPreview
-  ? props.entity
-  : Near.view(ownerId, "get_entity", { account_id: accountId }, "final", false);
-
-if (!entity) {
-  return isPreview
-    ? "You must provide a entity object in preview mode"
-    : "Loading...";
-}
-
 const profile = Social.get(`${accountId}/profile/**`, "final", {
   subscribe: false,
 });
