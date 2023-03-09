@@ -124,9 +124,9 @@ function chartMaker(response, imgsrc, type) {
       } else if (type === "donut") {
         chartValues += `{label: '${chartTitle}', data:[`;
       } else if (type === "bar") {
-        chartValues += `{label: '${chartTitle}',backgroundColor:'rgba(54, 162, 235, 0.5)',borderColor:'rgb(54, 162, 235)',borderWidth:1,data:[`;
+        chartValues += `{label: '${chartTitle}',backgroundColor:'rgb(54, 162, 235, 0.5)',borderColor:'rgb(54, 162, 235)',borderWidth:1,data:[`;
       } else if (type === "line") {
-        chartValues += `{label: '${chartTitle}', pointRadius: 0, fill: false, backgroundColor:'rgba(54, 162, 235, 0.5)',borderColor:'rgb(54, 162, 235)',borderWidth:1,data:[`;
+        chartValues += `{label: '${chartTitle}',borderColor: getGradientFillHelper('vertical', ['rgb(235, 54, 57)', 'rgb(163, 54, 235)', 'rgb(54, 162, 235)']),borderWidth: 5, pointRadius: 0, fill: false, backgroundColor:'rgba(54, 162, 235, 0.5)',borderWidth:1,data:[`;
       }
 
       chartBottomAxisLabels += "'";
