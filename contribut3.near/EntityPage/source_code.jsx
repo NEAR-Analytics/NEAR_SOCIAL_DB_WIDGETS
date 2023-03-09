@@ -49,6 +49,34 @@ const founders =
     false
   ) || [];
 
+const proposalsCount = Object.keys(
+  Near.view(
+    ownerId,
+    "get_entity_contribution_requests",
+    { account_id: accountId },
+    "final",
+    false
+  ) ?? []
+).length;
+
+const invitesCount = Object.keys(
+  Near.view(
+    ownerId,
+    "get_entity_invites",
+    { account_id: accountId },
+    "final",
+    false
+  ) ?? {}
+).length;
+
+const isContributor = Near.view(
+  ownerId,
+  "check_is_contributor",
+  { account_id: accountId },
+  "final",
+  false
+);
+
 const profile = Social.getr(`${accountId}/profile`);
 
 const controls = isAuthorized ? (
@@ -169,34 +197,6 @@ const body = (
       </div>
     </div>
   </div>
-);
-
-const proposalsCount = Object.keys(
-  Near.view(
-    ownerId,
-    "get_entity_contribution_requests",
-    { account_id: accountId },
-    "final",
-    false
-  ) ?? []
-).length;
-
-const invitesCount = Object.keys(
-  Near.view(
-    ownerId,
-    "get_entity_invites",
-    { account_id: accountId },
-    "final",
-    false
-  ) ?? {}
-).length;
-
-const isContributor = Near.view(
-  ownerId,
-  "check_is_contributor",
-  { account_id: accountId },
-  "final",
-  false
 );
 
 const contentSelector = (
