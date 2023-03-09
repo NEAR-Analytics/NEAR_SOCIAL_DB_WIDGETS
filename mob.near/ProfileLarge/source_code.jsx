@@ -5,9 +5,7 @@ if (!accountId) {
 
 const link =
   props.link &&
-  (props.link === true
-    ? `#/mob.near/widget/ProfilePage?accountId=${accountId}`
-    : props.link);
+  (props.link === true ? `https://social.near.page/u/{accountId}` : props.link);
 
 const profile = props.profile ?? Social.getr(`${accountId}/profile`);
 
@@ -133,6 +131,16 @@ return (
       )}
 
       <div>
+        <div className="float-end">
+          <Widget
+            src="mob.near/widget/CopyButton"
+            props={{
+              text: link,
+              label: "Share",
+              clipboardIcon: <i className="bi bi-share" />,
+            }}
+          />
+        </div>
         <div className="public-tags collapse show">
           <button
             className="btn btn-sm btn-outline-secondary border-0"
