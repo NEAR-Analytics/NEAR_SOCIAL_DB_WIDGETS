@@ -4,8 +4,6 @@ State.init({
   local_time: null,
 });
 
-console.log("time_zone: ", time_zone);
-
 const code = `
 <script>
     window.addEventListener("message", (event) => {
