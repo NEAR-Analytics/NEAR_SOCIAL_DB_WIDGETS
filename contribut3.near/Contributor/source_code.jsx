@@ -27,26 +27,29 @@ if (!state.contributorFetched) {
 }
 
 if (!contributor) {
-  return isPreview
-    ? "You must provide a contributor object in preview mode"
-    : "Loading...";
+  return "Loading...";
 }
 
-const isEntity = Near.view(
-  ownerId,
-  "check_is_entity",
-  { account_id: accountId },
-  "final",
-  false
-);
+if (!state.isEntityFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_entity",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((isEntity) => State.update({ isEntity, isEntityFetched: true }));
+}
 
-const active = contributor.looking_for_work;
+const active = state.contributor.looking_for_work;
 
-const profile = Social.get(`${accountId}/profile/**`, "final", {
-  subscribe: false,
-});
+if (!state.profileFetched) {
+  const profile = Social.get(`${accountId}/profile/**`, "final", {
+    subscribe: false,
+  });
+  State.update({ profile, profileFetched: true });
+}
 
-const contributionTypes = contributor.contribution_types.reduce(
+const contributionTypes = state.contributor.contribution_types.reduce(
   (ob, contributionType) =>
     typeof contributionType === "object"
       ? { ...ob, [contributionType.Other]: "" }
@@ -59,12 +62,12 @@ if (contributionTypes && "Other" in contributionTypes) {
   delete contributionTypes.Other;
 }
 
-const skills = contributor.skills.reduce(
+const skills = state.contributor.skills.reduce(
   (ob, skill) => ({ ...ob, [skill]: "" }),
   {}
 );
 
-const tags = { ...skills, ...contributionTypes } || profile.tags;
+const tags = { ...skills, ...contributionTypes } || state.profile.tags;
 
 const body = (
   <div
@@ -135,11 +138,11 @@ const body = (
             <>
               <div className="d-flex flex-row justify-content-between align-items-center">
                 <i
-                  className={`d-block ${isEntity ? "bi-diagram-2" : "bi-person"
+                  className={`d-block ${state.isEntity ? "bi-diagram-2" : "bi-person"
                     }`}
                 />
                 <span className="ms-2">
-                  {isEntity ? "Organization" : "Individual contributor"}
+                  {state.isEntity ? "Organization" : "Individual contributor"}
                 </span>
               </div>
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
@@ -152,7 +155,9 @@ const body = (
           src={`${ownerId}/widget/DescriptionArea`}
           props={{
             description:
-              contributor.resume || entity?.description || profile.description,
+              state.contributor.resume ||
+              entity?.description ||
+              state.profile.description,
           }}
         />
       </div>
