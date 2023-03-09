@@ -24,7 +24,7 @@ const data = {
 };
 
 return (
-  <CommitButton force className={`btn btn btn-dark`} data={data}>
+  <CommitButton force className={`btn btn btn-dark text-nowrap`} data={data}>
     <Widget
       src="mob.near/widget/ProfileImage"
       props={{
