@@ -1,6 +1,6 @@
 const SEARCH_API_KEY = props.searchApiKey ?? "57ad1944e94432510f067a6e3d13f022";
 const APPLICATION_ID = props.appId ?? "B6PI9UKKJT";
-const INDEX = props.index ?? "test_near-social-feed";
+const INDEX = props.index ?? "prod_near-social-feed";
 const API_URL =
   props.apiUrl ??
   `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
