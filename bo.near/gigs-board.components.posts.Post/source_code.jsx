@@ -1,9 +1,9 @@
 /* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId ||"devgovgigs.near";
+  props.nearDevGovGigsContractAccountId || "devgovgigs.near";
 
 const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId ||"devgovgigs.near";
+  props.nearDevGovGigsWidgetsAccountId || "devgovgigs.near";
 
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
@@ -221,7 +221,7 @@ const onLike = () => {
     Near.call([
       {
         contractName: "social.near",
-        methodName: grant_write_permission,
+        methodName: "grant_write_permission",
         args: {
           predecessor_id: nearDevGovGigsContractAccountId,
           keys: [context.accountId + "/index/notify"],
