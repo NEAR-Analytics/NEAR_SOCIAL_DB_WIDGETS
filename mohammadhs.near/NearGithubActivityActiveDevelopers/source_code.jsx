@@ -68,7 +68,7 @@ let Style = styled.div`
 
         rect {
           shape-rendering: crispEdges;
-          fill: #b2aabb;
+          fill: #fbdb61;
           stroke: #333;
           stroke-width: 1;
         }
