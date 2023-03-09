@@ -151,7 +151,7 @@ const contentSelector = (
         {
           id: "contributors",
           text: "Contributors",
-          count: contributorsCount,
+          count: state.contributorsCount,
           icon: (
             <svg
               width="20"
