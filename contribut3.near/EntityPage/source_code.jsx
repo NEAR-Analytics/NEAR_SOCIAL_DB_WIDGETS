@@ -132,15 +132,6 @@ const controls = isAuthorized ? (
       <i className="bi-person-up" />
       <span className="text-nowrap">Propose contribution</span>
     </a>
-    <Widget
-      src={`${ownerId}/widget/ContributionRequestForm`}
-      props={{
-        id: `${accountId}ContributionRequestForm`,
-        entity: accountId,
-        hidden: state.contributionFormHidden,
-        onClose: () => State.update({ contributionFormHidden: true }),
-      }}
-    />
   </div>
 );
 
