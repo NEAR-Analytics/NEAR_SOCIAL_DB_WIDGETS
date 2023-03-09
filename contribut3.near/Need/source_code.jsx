@@ -9,18 +9,23 @@ if (!accountId || !cid) {
   return "Cannot render contribution need widget without account ID or CID!";
 }
 
-State.init({});
+State.init({
+  need: null,
+  needFetched: false,
+});
 
-const contributionNeed = Near.view(
-  ownerId,
-  "get_contribution_need",
-  {
-    account_id: accountId,
-    cid,
-  },
-  "final",
-  false
-);
+if (!state.needFetched) {
+  Near.asyncView(
+    ownerId,
+    "get_contribution_need",
+    {
+      account_id: accountId,
+      cid,
+    },
+    "final",
+    false
+  ).then((need) => State.update({ need, needFetched: true }));
+}
 
 const entity = isPreview
   ? props.entity
@@ -56,13 +61,13 @@ const body = (
             })
           }
         >
-          <h4>Looking for {contributionNeed.contribution_type}</h4>
+          <h4>Looking for {state.need.contribution_type}</h4>
         </a>
         <div className="d-flex flex-row justify-content-end align-items-start">
           <Widget
             src={`${ownerId}/widget/ActiveIndicator`}
             props={{
-              active: contributionNeed.active,
+              active: state.need.active,
               activeText: "Open to proposals",
               inactiveText: "Closed",
             }}
@@ -113,7 +118,7 @@ const body = (
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
               <Widget
                 src={`${ownerId}/widget/DescriptionArea`}
-                props={{ description: contributionNeed.description }}
+                props={{ description: state.need.description }}
               />
             </>
           ),
