@@ -17,11 +17,16 @@ return (
       }}
     >
       {state.copied ? (
-        <i className="bi bi-check-lg" />
+        <>
+          {props.copiedIcon ?? <i className="bi bi-check-lg" />}{" "}
+          {props.copiedLabel ?? props.label}
+        </>
       ) : (
-        <i className="bi bi-clipboard" />
+        <>
+          {props.clipboardIcon ?? <i className="bi bi-clipboard" />}{" "}
+          {props.label}
+        </>
       )}
-      {props.label}
     </button>
   </OverlayTrigger>
 );
