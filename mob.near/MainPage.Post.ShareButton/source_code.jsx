@@ -41,7 +41,7 @@ const Button = styled.button`
 
 return (
   blockHeight !== "now" && (
-    <div className="vh-100">
+    <span>
       <Button
         className="btn me-1"
         data-bs-toggle="dropdown"
@@ -81,6 +81,6 @@ return (
           </a>
         </li>
       </ul>
-    </div>
+    </span>
   )
 );
