@@ -69,6 +69,17 @@ const skills = state.contributor.skills.reduce(
 
 const tags = { ...skills, ...contributionTypes } || state.profile.tags;
 
+const TypeContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    margin-left: 0.5em;
+  }
+`;
+
 const body = (
   <div
     className="d-flex flex-row justify-content-start"
@@ -136,7 +147,7 @@ const body = (
           ),
           additionalRow: (
             <>
-              <div className="d-flex flex-row justify-content-between align-items-center">
+              <TypeContainer>
                 <i>
                   {state.isEntity ? (
                     <svg
@@ -174,7 +185,7 @@ const body = (
                 <span className="ms-2">
                   {state.isEntity ? "Organization" : "Individual contributor"}
                 </span>
-              </div>
+              </TypeContainer>
               <Widget src={`${ownerId}/widget/Tags`} props={{ tags }} />
             </>
           ),
