@@ -416,7 +416,7 @@ return (
       </div>
       <div class="col">
         <a href="https://flipsidecrypto.xyz/edit/queries/c0fcca8f-f9bb-4eeb-b888-44363de1fc4e">
-          <h6>Cumulative Number of Sales (Last 30 Days)</h6>
+          <h6>Daily Cumulative Number of Sales (Last 30 Days)</h6>
         </a>
         <img src={state.imgSrc4} />
       </div>
