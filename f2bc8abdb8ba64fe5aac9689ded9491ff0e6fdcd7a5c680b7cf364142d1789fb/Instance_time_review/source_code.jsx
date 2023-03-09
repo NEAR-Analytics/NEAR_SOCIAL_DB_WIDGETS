@@ -222,6 +222,10 @@ return (
                   onClick={() => {
                     updateInstanceTimeState({
                       userScheduleShown: d.accountId,
+                      prevTab:
+                        _account == "All"
+                          ? tabs.ALL_SCHEDULE.id
+                          : tabs.MY_SCHEDULE.id,
                       tab: tabs.OPEN_SCHEDULE.id,
                     });
                   }}
