@@ -22,9 +22,7 @@ const getContent = (content) => {
   return content;
 };
 
-State.init({
-  contributionFormHidden: true,
-});
+State.init({});
 
 const entity = Near.view(
   ownerId,
@@ -121,7 +119,15 @@ const controls = isAuthorized ? (
     <a
       className="btn btn-success me-2 text-light"
       style={{ width: "13em" }}
-      onClick={() => State.update({ contributionFormHidden: false })}
+      href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`}
+      onClick={() =>
+        props.update({
+          tab: "create",
+          content: "proposal",
+          search: "",
+          accountId,
+        })
+      }
     >
       <i className="bi-person-up" />
       <span className="text-nowrap">Propose contribution</span>
