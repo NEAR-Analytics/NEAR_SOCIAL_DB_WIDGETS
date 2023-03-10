@@ -67,6 +67,7 @@ var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
 console.log("0002");
 for (let i = 0; i < sortedData.length; i++) {
+  console.log("0002", i);
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
 
@@ -136,7 +137,6 @@ const getFormatedTime = (time) => {
 };
 
 setInterval(() => {
-  console.log("0000 setInterval");
   const day = new Date().getDay() == 0 ? 6 : new Date().getDay() - 1;
   const hours = new Date().getHours();
   const mins = new Date().getMinutes();
@@ -157,7 +157,6 @@ setInterval(() => {
     accounts.push(finalData[i].accountId);
     is_on_all.push(is_on);
   }
-  console.log("0001 setInterval");
   State.update({ is_on: is_on_all, accounts: accounts });
 }, 1000);
 
