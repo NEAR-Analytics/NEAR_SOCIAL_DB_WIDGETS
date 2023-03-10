@@ -159,8 +159,9 @@ const onClickPage = (pageNumber) => {
   return onPageChange(pageNumber);
 };
 
-initState({
-  pageRanges: viewRange(0),
+State.init({
+  pageRanges: viewRange(props.currentPage ?? 0),
+  currentPage: props.currentPage,
 });
 
 return (
