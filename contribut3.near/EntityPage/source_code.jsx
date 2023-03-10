@@ -31,6 +31,8 @@ State.init({
   proposalsCountFetched: false,
   invitesCount: 0,
   invitesCountFetched: false,
+  isContributor: false,
+  isContributorFetched: false,
   profile: null,
   profileFetched: false,
 });
@@ -57,35 +59,51 @@ if (!state.foundersFetched) {
   ).then((founders) => State.update({ founders, foundersFetched: true }));
 }
 
-const proposalsCount = (
-  Near.view(
+if (!state.proposalsCountFetched) {
+  Near.asyncView(
     ownerId,
     "get_entity_contribution_requests",
     { account_id: accountId },
     "final",
     false
-  ) ?? []
-).length;
+  ).then((proposals) =>
+    State.update({
+      proposalsCount: proposals.length,
+      proposalsCountFetched: true,
+    })
+  );
+}
 
-const invitesCount = (
-  Near.view(
+if (!state.invitesCountFetched) {
+  Near.asyncView(
     ownerId,
     "get_entity_invites",
     { account_id: accountId },
     "final",
     false
-  ) ?? []
-).length;
+  ).then((invites) =>
+    State.update({ invitesCount: invites.length, invitesCountFetched: true })
+  );
+}
 
-const isContributor = Near.view(
-  ownerId,
-  "check_is_contributor",
-  { account_id: accountId },
-  "final",
-  false
-);
+if (!state.isContributorFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_contributor",
+    { account_id: accountId },
+    "final",
+    false
+  ).then((isContributor) =>
+    State.update({ isContributor, isContributorFetched: true })
+  );
+}
 
-const profile = Social.getr(`${accountId}/profile`);
+if (!state.profileFetched) {
+  const profile = Social.getr(`${accountId}/profile`, "final", {
+    subscribe: false,
+  });
+  State.update({ profile, profileFetched: true });
+}
 
 const controls = state.isAuthorized ? (
   <div className="d-flex flex-row justify-content-between align-items-center">
@@ -261,7 +279,7 @@ const contentSelector = (
                 />
               </svg>
             ),
-            count: proposalsCount,
+            count: state.proposalsCount,
             grey: true,
           }
           : null,
@@ -286,7 +304,7 @@ const contentSelector = (
                 />
               </svg>
             ),
-            count: invitesCount,
+            count: state.invitesCount,
             grey: true,
           }
           : null,
