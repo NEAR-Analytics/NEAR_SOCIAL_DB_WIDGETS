@@ -34,6 +34,7 @@ const days = [
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
 var accountIds = ["All"];
+console.log("0000", sortedData);
 
 const sortAndRemoveRepeated = (flag, data) => {
   console.log("0000 sortAndRemoveRepeated");
@@ -67,7 +68,7 @@ var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
 console.log("0002");
 for (let i = 0; i < sortedData.length; i++) {
-  console.log("0002", i);
+  console.log("0002", i, accountIds.indexOf(sortedData[i].accountId) < 0);
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
 
