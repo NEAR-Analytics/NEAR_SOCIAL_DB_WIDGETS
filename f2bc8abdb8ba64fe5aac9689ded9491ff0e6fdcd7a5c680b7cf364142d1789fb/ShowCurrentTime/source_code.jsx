@@ -67,11 +67,13 @@ return (
         >{`Your Time: ${state.user_time}`}</div>
       )}
     </div>
-    <iframe
-      style={{ height: "0px" }}
-      srcDoc={code}
-      message={{ timeout: 1000 }}
-      onMessage={onInterval}
-    />
+    {
+      // <iframe
+      //   style={{ height: "0px" }}
+      //   srcDoc={code}
+      //   message={{ timeout: 1000 }}
+      //   onMessage={onInterval}
+      // />
+    }
   </div>
 );
