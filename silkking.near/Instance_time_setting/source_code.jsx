@@ -19,8 +19,7 @@ const sortAndRemoveRepeated = (flag, data) => {
   return final;
 };
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+const widgetOwner = "silkking.near";
 
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
