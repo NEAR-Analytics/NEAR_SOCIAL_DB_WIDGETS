@@ -47,7 +47,7 @@ const founders =
     false
   ) || [];
 
-const proposalsCount = Object.keys(
+const proposalsCount = (
   Near.view(
     ownerId,
     "get_entity_contribution_requests",
@@ -57,14 +57,14 @@ const proposalsCount = Object.keys(
   ) ?? []
 ).length;
 
-const invitesCount = Object.keys(
+const invitesCount = (
   Near.view(
     ownerId,
     "get_entity_invites",
     { account_id: accountId },
     "final",
     false
-  ) ?? {}
+  ) ?? []
 ).length;
 
 const isContributor = Near.view(
