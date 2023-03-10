@@ -1,10 +1,15 @@
-const updateInstanceTimeState = props.updateInstanceTimeState;
-const tabs = props.tabs;
-
 const data = Social.index("Instance_time", "schedule");
 if (!data) {
   return "Loading datas";
 }
+
+const profile = Social.getr(`${context.accountId}/profile`);
+if (!profile) {
+  return "Loading profile";
+}
+
+const updateInstanceTimeState = props.updateInstanceTimeState;
+const tabs = props.tabs;
 
 var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
 var finalData = {};
@@ -147,7 +152,6 @@ State.init({
   sectionShown: "timeZoneSelector",
 });
 
-const profile = Social.getr(`${context.accountId}/profile`);
 const flex_column = {
   display: "flex",
   flexDirection: "column",
