@@ -321,60 +321,62 @@ return (
                         </div>
                       </div>
                     </div>
-                    {d.value._data.map((week, index) => {
-                      return (
-                        <div
-                          style={{
-                            paddingTop: "1rem",
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontSize: "1rem",
-                              fontWeight: "600",
-                            }}
-                          >{`${days[index]}`}</div>
-                          <div
-                            style={{
-                              display: "flex",
-                            }}
-                          >
-                            {week.on_off == "on" ? (
-                              week.data.map((y) => (
-                                <p
-                                  style={{
-                                    display: "flex",
-                                    fontSize: "0.9rem",
-                                    paddingRight: "0.9rem",
-                                  }}
-                                >
-                                  {getFormatedTime(y._from)}~
-                                  {getFormatedTime(y._to)}
-                                </p>
-                              ))
-                            ) : (
-                              <span
-                                style={{
-                                  backgroundColor: "#FFE5E5",
-                                  textAlign: "center",
-                                  borderRadius: "16px",
-                                  marginRight: "1rem",
-                                  fontSize: "0.8rem",
-                                  letterSpacing: "-0.025rem",
-                                  color: "#FF4747",
-                                  fontWeight: "500",
-                                  padding: "0.5rem 2rem",
-                                }}
-                              >
-                                Off
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
+                    {
+                      // {d.value._data.map((week, index) => {
+                      //   return (
+                      //     <div
+                      //       style={{
+                      //         paddingTop: "1rem",
+                      //         display: "flex",
+                      //         justifyContent: "space-between",
+                      //       }}
+                      //     >
+                      //       <div
+                      //         style={{
+                      //           fontSize: "1rem",
+                      //           fontWeight: "600",
+                      //         }}
+                      //       >{`${days[index]}`}</div>
+                      //       <div
+                      //         style={{
+                      //           display: "flex",
+                      //         }}
+                      //       >
+                      //         {week.on_off == "on" ? (
+                      //           week.data.map((y) => (
+                      //             <p
+                      //               style={{
+                      //                 display: "flex",
+                      //                 fontSize: "0.9rem",
+                      //                 paddingRight: "0.9rem",
+                      //               }}
+                      //             >
+                      //               {getFormatedTime(y._from)}~
+                      //               {getFormatedTime(y._to)}
+                      //             </p>
+                      //           ))
+                      //         ) : (
+                      //           <span
+                      //             style={{
+                      //               backgroundColor: "#FFE5E5",
+                      //               textAlign: "center",
+                      //               borderRadius: "16px",
+                      //               marginRight: "1rem",
+                      //               fontSize: "0.8rem",
+                      //               letterSpacing: "-0.025rem",
+                      //               color: "#FF4747",
+                      //               fontWeight: "500",
+                      //               padding: "0.5rem 2rem",
+                      //             }}
+                      //           >
+                      //             Off
+                      //           </span>
+                      //         )}
+                      //       </div>
+                      //     </div>
+                      //   );
+                      // })}
+                    }
                   </div>
                 </div>
               );
