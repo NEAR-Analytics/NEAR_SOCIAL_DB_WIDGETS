@@ -105,6 +105,13 @@ if (!state.profileFetched) {
   State.update({ profile, profileFetched: true });
 }
 
+const Controls = styled.div`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: "flex";
+`;
+
 const controls = state.isAuthorized ? (
   <div className="d-flex flex-row justify-content-between align-items-center">
     <a
