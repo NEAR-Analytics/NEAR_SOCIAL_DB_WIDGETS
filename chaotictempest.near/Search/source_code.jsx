@@ -5,14 +5,7 @@ const API_URL =
   props.apiUrl ??
   `https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/${INDEX}/query?`;
 const INITIAL_PAGE = props.initialPage ?? 0;
-const facets = props.facets ?? [
-  "All",
-  "Users",
-  "Apps",
-  "Components",
-  "Posts",
-  "Comments",
-];
+const facets = props.facets ?? ["All", "Users", "Apps", "Components", "Posts"];
 
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
@@ -275,12 +268,14 @@ const FACET_TO_CATEGORY = {
   Apps: "app",
   Components: "widget",
   Posts: "post",
-  Comments: "comment",
 };
 
 const searchFilters = (facet) => {
   const category = FACET_TO_CATEGORY[facet];
   let filters = category ? `categories:${category}` : undefined;
+  if (category === "post") {
+    filters = `${filters} AND categories:comment`;
+  }
   if (filters) {
     filters = `${filters} AND `;
   }
