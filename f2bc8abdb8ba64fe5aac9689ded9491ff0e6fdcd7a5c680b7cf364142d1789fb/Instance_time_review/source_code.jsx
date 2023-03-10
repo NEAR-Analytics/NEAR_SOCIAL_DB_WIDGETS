@@ -1,4 +1,9 @@
 const data = props.data;
+const profileName = Social.getr(`${d.accountId}/profile`).name;
+
+if (!profileName) {
+  return "Loading";
+}
 
 const _account = props.accountId ?? "All";
 const tabs = props.tabs;
@@ -252,7 +257,7 @@ return (
                             },
                           }}
                         />
-                        <div>{Social.getr(`${d.accountId}/profile`).name}</div>
+                        <div>{profileName}</div>
                       </div>
                       <div
                         style={{
