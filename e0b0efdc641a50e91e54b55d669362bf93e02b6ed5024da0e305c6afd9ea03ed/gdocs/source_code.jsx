@@ -1,17 +1,17 @@
-const GoogleDocsEmbed = ({ docId }) => {
-  if (!docId) {
-    return <div className="">No document ID provided.</div>;
-  }
+if (!props.docId) {
+  return <div className="">No document ID provided.</div>;
+}
 
-  const url = `https://docs.google.com/document/d/${docId}/preview`;
-  return (
+const url = `https://docs.google.com/document/d/${props.docId}/preview`;
+return (
+  <div className="container">
     <iframe
       src={url}
-      width="100%"
-      height="600"
+      width="98.5vw"
+      height="98.5vh"
       frameBorder="0"
       marginHeight="0"
       marginWidth="0"
     />
-  );
-};
+  </div>
+);
