@@ -1,5 +1,7 @@
 const data = props.data ?? Social.index("Instance_time", "schedule");
-
+{
+  console.log("000");
+}
 if (!data) {
   return "Loading datas";
 }
@@ -353,5 +355,6 @@ return (
         />
       </div>
     </div>
+    {console.log("001")}
   </div>
 );
