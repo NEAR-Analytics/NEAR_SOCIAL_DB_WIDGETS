@@ -4,6 +4,14 @@ State.init({
   local_time: null,
 });
 
+if (!state.local_time) {
+  return "Loading local time";
+}
+
+if (!state.user_time) {
+  return "Loading local time";
+}
+
 const code = `
 <script>
     window.addEventListener("message", (event) => {
