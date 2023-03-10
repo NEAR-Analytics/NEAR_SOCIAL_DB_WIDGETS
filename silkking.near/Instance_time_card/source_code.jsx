@@ -11,8 +11,7 @@ const style = props.style ?? "large";
 const font_small = style == "small" ? "0.8rem" : "0.9rem";
 const font_big = style == "small" ? "0.8rem" : "1rem";
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+const widgetOwner = "silkking.near";
 
 State.init({
   is_on: false,
