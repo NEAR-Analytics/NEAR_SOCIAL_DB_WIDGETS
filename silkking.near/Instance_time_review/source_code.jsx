@@ -97,7 +97,7 @@ for (let i = 0; i < sortedData.length; i++) {
         }
       }
     }
-    console.log("0008");
+    console.log("0008", final);
 
     var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
     var weeklyData = [];
