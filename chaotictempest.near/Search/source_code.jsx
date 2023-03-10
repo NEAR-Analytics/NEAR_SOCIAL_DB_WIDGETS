@@ -281,6 +281,11 @@ const FACET_TO_CATEGORY = {
 const searchFilters = (facet) => {
   const category = FACET_TO_CATEGORY[facet];
   let filters = category ? `categories:${category}` : undefined;
+  if (filters) {
+    filters = `${filters} AND `;
+  }
+  filters = `${filters}NOT author:hypefairy.near AND NOT _tags:hidden`;
+
   return filters;
 };
 
