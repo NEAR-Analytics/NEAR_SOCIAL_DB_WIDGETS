@@ -145,8 +145,8 @@ return (
     <div className="text-bg-light rounded-4 p-3 mb-4">
       {data !== null ? (
         <p>
-          <div class="d-flex clearfix flex-wrap flex-column flex-sm-row">
-            <div class="p-2">
+          <div class="">
+            <div class="">
               <div>
                 <h2>Metric: {METRIC_NAME}</h2>
                 <BarEl options={v_bar_options} data={v_bar_data} />
