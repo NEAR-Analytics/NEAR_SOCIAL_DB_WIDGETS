@@ -129,7 +129,7 @@ const viewRange = (currentPage) => {
     let rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount);
     return [firstPageIndex, RANGE_ITEM, ...rightRange];
   }
-  console.log("done calculating");
+
   // Case 4: Both left and right dots to be shown
   if (shouldShowLeftDots && shouldShowRightDots) {
     let middleRange = range(leftSiblingIndex, rightSiblingIndex);
@@ -141,6 +141,8 @@ const viewRange = (currentPage) => {
       lastPageIndex,
     ];
   }
+  console.log("done calculating");
+  console.log(state.pageRanges, "page ranges");
 };
 
 const onClickPage = (pageNumber) => {
