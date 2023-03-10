@@ -99,8 +99,6 @@ const range = (start, end) => {
 const viewRange = (currentPage) => {
   console.log("current page", currentPage);
   if (totalPageNumbers >= totalPageCount) {
-    console.log("done calculating");
-    console.log(state.pageRanges, "page ranges");
     return range(1, totalPageCount);
   }
 
@@ -122,8 +120,7 @@ const viewRange = (currentPage) => {
   if (!shouldShowLeftDots && shouldShowRightDots) {
     let leftItemCount = 3 + 2 * siblingCount;
     let leftRange = range(1, leftItemCount);
-    console.log("done calculating");
-    console.log(state.pageRanges, "page ranges");
+
     return [...leftRange, RANGE_ITEM, totalPageCount];
   }
   console.log("done calculating");
@@ -132,12 +129,9 @@ const viewRange = (currentPage) => {
   if (shouldShowLeftDots && !shouldShowRightDots) {
     let rightItemCount = 3 + 2 * siblingCount;
     let rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount);
-    console.log("done calculating");
-    console.log(state.pageRanges, "page ranges");
     return [firstPageIndex, RANGE_ITEM, ...rightRange];
   }
-  console.log("done calculating");
-  console.log(state.pageRanges, "page ranges");
+
   // Case 4: Both left and right dots to be shown
   if (shouldShowLeftDots && shouldShowRightDots) {
     let middleRange = range(leftSiblingIndex, rightSiblingIndex);
@@ -149,8 +143,6 @@ const viewRange = (currentPage) => {
       lastPageIndex,
     ];
   }
-  console.log("done calculating");
-  console.log(state.pageRanges, "page ranges");
 };
 
 const onClickPage = (pageNumber) => {
@@ -159,6 +151,7 @@ const onClickPage = (pageNumber) => {
   }
   console.log("updating range", pageNumber);
   const pageRanges = viewRange(pageNumber);
+  console.log("after calcuating", pageRanges);
   State.update({
     pageRanges,
   });
