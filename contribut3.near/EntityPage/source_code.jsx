@@ -47,14 +47,15 @@ if (!state.isAuthorizedFetched) {
   );
 }
 
-const founders =
-  Near.view(
+if (!state.foundersFetched) {
+  Near.asyncView(
     ownerId,
     "get_founders",
     { account_id: accountId },
     "final",
     false
-  ) || [];
+  ).then((founders) => State.update({ founders, foundersFetched: true }));
+}
 
 const proposalsCount = (
   Near.view(
@@ -86,7 +87,7 @@ const isContributor = Near.view(
 
 const profile = Social.getr(`${accountId}/profile`);
 
-const controls = isAuthorized ? (
+const controls = state.isAuthorized ? (
   <div className="d-flex flex-row justify-content-between align-items-center">
     <a
       className="btn btn-outline-secondary me-2"
@@ -190,7 +191,7 @@ const body = (
         props={{ links: profile.linktree ?? {} }}
       />
       <div>
-        {founders.map((founder) => (
+        {state.founders.map((founder) => (
           <Widget
             src={`${ownerId}/widget/ProfileLine`}
             props={{
@@ -239,7 +240,7 @@ const contentSelector = (
             </svg>
           ),
         },
-        isAuthorized
+        state.isAuthorized
           ? {
             id: "proposals",
             text: "Proposals",
@@ -264,7 +265,7 @@ const contentSelector = (
             grey: true,
           }
           : null,
-        isAuthorized
+        state.isAuthorized
           ? {
             id: "invitations",
             text: "Invitations",
