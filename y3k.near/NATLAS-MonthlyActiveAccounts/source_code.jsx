@@ -119,12 +119,35 @@ const formatData = (rawData) => {
   return result;
 };
 
-const formattedData = formatData(rawData.body);
-console.log(formattedData);
+const formattedDataYears = formatData(rawData.body);
+
+function convertData(formattedDataYears) {
+  let formattedDataMonth = [];
+  let months = Object.keys(formattedDataYears[0].data);
+
+  for (let i = 0; i < months.length; i++) {
+    let monthData = {
+      label: months[i],
+      data: {},
+      backgroundColor: formattedDataYears[i % 2].backgroundColor,
+    };
+
+    for (let j = 0; j < formattedDataYears.length; j++) {
+      monthData.data[formattedDataYears[j].label] =
+        formattedDataYears[j].data[months[i]];
+    }
+
+    formattedDataMonth.push(monthData);
+  }
+
+  return formattedDataMonth;
+}
+
+const formattedDataMonth = convertData(formattedDataYears);
 
 const v_bar_data = {
   v_bar_labels,
-  datasets: formattedData,
+  datasets: formattedDataMonth,
 };
 
 const v_bar_options = {
