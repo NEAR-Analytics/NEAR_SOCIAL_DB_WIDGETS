@@ -1,3 +1,8 @@
+const data = Social.index("Instance_time", "schedule");
+if (!data) {
+  return "Loading datas";
+}
+
 const _account = props.accountId ?? "All";
 const tabs = props.tabs;
 const owner = context.accountId;
@@ -29,10 +34,6 @@ const days = [
   "Saturday",
   "Sunday",
 ];
-const data = Social.index("Instance_time", "schedule");
-if (!data) {
-  return "Loading datas";
-}
 
 var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
 var finalData = [];
