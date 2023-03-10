@@ -2,10 +2,10 @@ if (!props.docId) {
   return <div className="">No document ID provided.</div>;
 }
 
-const url = `https://docs.google.com/document/d/e/${props.docId}/pub?embedded=true"`;
+const url = `https://docs.google.com/document/d/e/${props.docId}/pub?embedded=true`;
 return (
   <>
-    <div className="container min-vw-100">
+    <div className="container">
       <iframe
         src={url}
         width="100%"
