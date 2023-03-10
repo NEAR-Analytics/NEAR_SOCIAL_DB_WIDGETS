@@ -1,4 +1,12 @@
-const facets = props.facets;
+const facets = props.facets ?? [
+  "All",
+  "Users",
+  "Apps",
+  "Components",
+  "Posts",
+  "Comments",
+  "Other",
+];
 
 const Wrapper = styled.div`
   display: flex;
