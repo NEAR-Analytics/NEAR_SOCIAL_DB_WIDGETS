@@ -1,4 +1,4 @@
-const data = propr.data;
+const data = props.data;
 
 const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
