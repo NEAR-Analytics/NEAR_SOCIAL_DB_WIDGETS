@@ -97,6 +97,7 @@ const range = (start, end) => {
 };
 
 const viewRange = (currentPage) => {
+  console.log("current page", currentPage);
   if (totalPageNumbers >= totalPageCount) {
     console.log("done calculating");
     console.log(state.pageRanges, "page ranges");
