@@ -2,7 +2,6 @@
 const indexer_name = props.indexer_name;
 
 const LIMIT = 5;
-
 const accountId = props.accountId || context.accountId;
 const H2 = styled.h2`
   font-size: 19px;
@@ -25,6 +24,9 @@ const SmallTitle = styled.h3`
   @media (max-width: 770px) {
     margin-bottom: 16px;
   }
+`;
+const TableElement = styled.td`
+  word-wrap: break-word;
 `;
 const Subheading = styled.h2`
   display: block;
@@ -86,12 +88,6 @@ const TextLink = styled.a`
   }
 `;
 if (!indexer_name) return "missing indexer_name";
-const state_table = "| Function Name | Current Block Height |\n| --- | --- |\n";
-
-const logs_table =
-  "| Block Height | Function Name | Id | Message | Timestamp |\n| --- | --- | --- | --- | --- |\n";
-const indexer_values_table =
-  "| Function Name | Key Name | Value |\n| --- | --- | --- |\n";
 
 State.init({
   logs: [],
@@ -100,10 +96,11 @@ State.init({
   indexer_resCount: 0,
   logsCount: 0,
   stateCount: 0,
-  indexer_resOffset: 0,
-  logsOffset: 0,
-  stateOffset: 0,
+  indexer_resPage: 0,
+  logsPage: 0,
+  statePage: 0,
 });
+
 function fetchGraphQL(operationsDoc, operationName, variables) {
   return asyncFetch(
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
@@ -175,9 +172,8 @@ const indexerStateDoc = `
 `;
 
 fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
-  offset: state.indexer_resOffset * LIMIT,
+  offset: state.indexer_resPage * LIMIT,
 }).then((result) => {
-  console.log(result, "tesult");
   if (result.status === 200) {
     State.update({
       indexer_res: result.body.data.indexer_storage,
@@ -188,7 +184,7 @@ fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
 });
 
 fetchGraphQL(logsDoc, "QueryLogs", {
-  offset: state.logsOffset * LIMIT,
+  offset: state.logsPage * LIMIT,
 }).then((result) => {
   if (result.status === 200) {
     State.update({
@@ -199,7 +195,7 @@ fetchGraphQL(logsDoc, "QueryLogs", {
 });
 
 fetchGraphQL(indexerStateDoc, "IndexerState", {
-  offset: state.stateOffset * LIMIT,
+  offset: state.statePage * LIMIT,
 }).then((result) => {
   if (result.status === 200) {
     State.update({
@@ -209,26 +205,20 @@ fetchGraphQL(indexerStateDoc, "IndexerState", {
   }
 });
 
-const create_table = () => {
-  state.indexer_res.forEach((row) => {
-    indexer_values_table += `| ${row.function_name} | ${row.key_name} | ${row.value} |\n`;
-  });
-  state.logs.forEach((row) => {
-    logs_table += `| ${row.block_height} | ${row.function_name} | ${row.id} | ${row.message} | ${row.timestamp} |\n`;
-  });
-  state.state.forEach((row) => {
-    state_table += `| ${row.function_name} | ${row.current_block_height} |\n`;
-  });
-};
 const onLogsPageChange = (page) => {
   page = page - 1;
-  State.update({ logsOffset: page });
+  if (page === state.logsPage) {
+    console.log(`Selected the same page number as before: ${pageNumber}`);
+    return;
+  }
   try {
     fetchGraphQL(logsDoc, "QueryLogs", { offset: page * LIMIT }).then(
       (result) => {
         if (result.status === 200) {
           State.update({
             logs: result.body.data.indexer_log_entries,
+            logsCount:
+              result.body.data.indexer_log_entries_aggregate.aggregate.count,
           });
         }
       }
@@ -236,10 +226,16 @@ const onLogsPageChange = (page) => {
   } catch (e) {
     console.log("error:", e);
   }
+  State.update({ logsPage: page, currentPage: page });
 };
+
 const onIndexerResPageChange = (page) => {
   page = page - 1;
-  State.update({ indexer_resOffset: page });
+  if (page === state.indexer_resPage) {
+    console.log(`Selected the same page number as before: ${pageNumber}`);
+    return;
+  }
+
   try {
     fetchGraphQL(IndexerStorageDoc, "IndexerStorage", {
       offset: page * LIMIT,
@@ -247,14 +243,17 @@ const onIndexerResPageChange = (page) => {
       if (result.status === 200) {
         State.update({
           indexer_res: result.body.data.indexer_storage,
+          indexer_resCount:
+            result.body.data.indexer_storage_aggregate.aggregate.count,
         });
       }
     });
   } catch (e) {
     console.log("error:", e);
   }
+  State.update({ indexer_resPage: page, currentPage: page });
 };
-create_table();
+
 return (
   <>
     <Card>
@@ -271,14 +270,40 @@ return (
 
         {state.indexer_res.length > 0 ? (
           <div>
-            <Markdown text={indexer_values_table} />
+            <div class="table-responsive mt-3">
+              <table
+                class="table-striped table"
+                style={{
+                  padding: "30px",
+                  "table-layout": "fixed",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>Function Name</th>
+                    <th>Key Name</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {state.indexer_res.map((x) => (
+                    <tr>
+                      <td>{x.function_name}</td>
+                      <td>{x.key_name}</td>
+                      <TableElement>{x.value}</TableElement>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <Widget
-              src="chaotictempest.near/widget/Paginate"
+              src="roshaan.near/widget/Paginate-fork"
               props={{
                 siblingCount: 1,
                 totalCount: state.indexer_resCount,
-                pageSize: 20,
+                pageSize: LIMIT,
                 onPageChange: onIndexerResPageChange,
+                currentPage: state.indexer_resPage,
               }}
             />
           </div>
@@ -287,23 +312,70 @@ return (
         )}
 
         <SmallTitle>Indexer State</SmallTitle>
-
         {state.state.length > 0 ? (
-          <Markdown text={state_table} />
+          <div class="table-responsive mt-3">
+            <table
+              class="table-striped table"
+              style={{
+                padding: "30px",
+                "table-layout": "fixed",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th>Function Name</th>
+                  <th>Current Block Height</th>
+                </tr>
+              </thead>
+              <tbody>
+                {state.state.map((x) => (
+                  <tr>
+                    <TableElement>{x.function_name}</TableElement>
+                    <td>{x.current_block_height}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <Subheading> No data to show... </Subheading>
         )}
         <SmallTitle> Indexer Logs</SmallTitle>
         {state.logs.length > 0 ? (
           <div>
-            <Markdown text={logs_table} />
+            <div class="table-responsive mt-3">
+              <table class="table-striped table" style={{ minHeight: 100 }}>
+                <thead>
+                  <tr>
+                    <th>Block Height</th>
+                    <th>Function Name</th>
+                    <th>ID</th>
+                    <th>Message</th>
+
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {state.logs.map((x) => (
+                    <tr>
+                      <TableElement>{x.block_height}</TableElement>
+                      <TableElement>{x.function_name}</TableElement>
+                      <TableElement>{x.id}</TableElement>
+                      <TableElement>{x.message}</TableElement>
+                      <TableElement>{x.timestamp}</TableElement>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <Widget
-              src="chaotictempest.near/widget/Paginate"
+              src="roshaan.near/widget/Paginate-fork"
               props={{
                 siblingCount: 1,
                 totalCount: state.logsCount,
-                pageSize: 20,
+                pageSize: LIMIT,
                 onPageChange: onLogsPageChange,
+                currentPage: state.logsPage,
               }}
             />
           </div>
