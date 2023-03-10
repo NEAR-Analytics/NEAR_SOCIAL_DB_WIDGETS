@@ -278,7 +278,10 @@ const searchFilters = (facet) => {
   const category = FACET_TO_CATEGORY[facet];
   let filters = category ? `categories:${category}` : undefined;
   if (category === "post") {
-    filters = `${filters} AND categories:comment`;
+    filters = `(${filters} OR categories:comment)`;
+  }
+  if (category === "app") {
+    filters = `(${filters} OR tags:app)`;
   }
   if (filters) {
     filters = `${filters} AND `;
