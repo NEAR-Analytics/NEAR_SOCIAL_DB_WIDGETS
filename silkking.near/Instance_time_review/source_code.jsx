@@ -70,7 +70,6 @@ console.log("0002");
 for (let i = 0; i < sortedData.length; i++) {
   console.log("0002", i, accountIds.indexOf(sortedData[i].accountId) < 0);
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
-    console.log("0005");
     accountIds.push(sortedData[i].accountId);
 
     var times = sortedData[i].value._data;
@@ -86,7 +85,7 @@ for (let i = 0; i < sortedData.length; i++) {
         flag = true;
       } else temp.push(time);
     }
-    console.log("0006");
+
     const final = sortAndRemoveRepeated(flag, temp);
     for (var m = 0; m < final.length - 1; m += 2) {
       const _from = final[m];
@@ -97,10 +96,11 @@ for (let i = 0; i < sortedData.length; i++) {
         }
       }
     }
-    console.log("0007");
+
     var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
     var weeklyData = [];
     for (var t = 0; t < 7; t++) {
+      console.log("0005", t);
       var dailyData = [];
       var exist = false;
       for (var p = 0; p < sortedTimeDataNew.length - 1; p += 2) {
