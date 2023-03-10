@@ -99,6 +99,7 @@ for (let i = 0; i < sortedData.length; i++) {
 
     var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
     var weeklyData = [];
+    console.log("0006");
     for (var t = 0; t < 7; t++) {
       console.log("0005", t);
       var dailyData = [];
