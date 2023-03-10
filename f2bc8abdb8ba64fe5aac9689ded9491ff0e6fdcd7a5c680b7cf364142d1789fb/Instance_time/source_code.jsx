@@ -391,6 +391,7 @@ return (
             tabs,
             prevTab: state.prevTab,
             updateInstanceTimeState,
+            data,
           }}
         />
       ) : state.tab != tabs.NEW_SCHEDULE.id ? (
@@ -407,12 +408,13 @@ return (
             style: { width: "100%", height: "1.5em" },
             updateInstanceTimeState,
             tabs,
+            data,
           }}
         />
       ) : (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_edit`}
-          props={{ updateInstanceTimeState, tabs }}
+          props={{ updateInstanceTimeState, tabs, data }}
         />
       )}
     </div>
