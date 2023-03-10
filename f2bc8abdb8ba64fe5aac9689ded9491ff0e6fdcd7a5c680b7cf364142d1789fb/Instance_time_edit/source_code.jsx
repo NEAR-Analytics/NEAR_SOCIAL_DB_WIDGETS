@@ -1,12 +1,4 @@
-const data = Social.index("Instance_time", "schedule");
-if (!data) {
-  return "Loading datas";
-}
-
-const profile = Social.getr(`${context.accountId}/profile`);
-if (!profile) {
-  return "Loading profile";
-}
+const data = propr.data;
 
 const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
