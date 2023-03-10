@@ -167,20 +167,22 @@ const descriptionDiv = (
 const mode = "Indexer Metadata";
 return (
   <div>
-    <div className="card">
-      <div className="card-header">{mode}</div>
-      <div class="card-body">
-        <div className="row">
-          {labelEditor}
-          {nameDiv}
-          {descriptionDiv}
-        </div>
+    {props.base === "create-new-indexer" && (
+      <div className="card">
+        <div className="card-header">{mode}</div>
+        <div class="card-body">
+          <div className="row">
+            {labelEditor}
+            {nameDiv}
+            {descriptionDiv}
+          </div>
 
-        <a className="btn btn-outline-primary mb-2" onClick={onClick}>
-          Submit
-        </a>
+          <a className="btn btn-outline-primary mb-2" onClick={onClick}>
+            Submit
+          </a>
+        </div>
       </div>
-    </div>
+    )}
     <iframe
       name="widget-iframe"
       className="w-100"
