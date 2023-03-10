@@ -1,9 +1,4 @@
 const data = props.data;
-const profileName = Social.getr(`${d.accountId}/profile`).name;
-
-if (!profileName) {
-  return "Loading";
-}
 
 const _account = props.accountId ?? "All";
 const tabs = props.tabs;
@@ -201,6 +196,11 @@ return (
       {finalData
         ? finalData.map((d) => {
             if (_account == "All" || _account == d.accountId) {
+              const profileName = Social.getr(`${d.accountId}/profile`).name;
+
+              if (!profileName) {
+                return "Loading";
+              }
               return (
                 <div
                   style={{
