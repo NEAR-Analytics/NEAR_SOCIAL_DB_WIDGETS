@@ -4,11 +4,12 @@ if (!props.docId) {
 
 const url = `https://docs.google.com/document/d/${props.docId}/preview`;
 return (
-  <div className="container">
+  <div className="container min-vw-100">
     <iframe
       src={url}
-      width="98.5vw"
-      height="98.5vh"
+      width="100%"
+      height="100%"
+      style={{ position: "absolute", top: 0, left: 0 }}
       frameBorder="0"
       marginHeight="0"
       marginWidth="0"
