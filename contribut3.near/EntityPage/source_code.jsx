@@ -22,14 +22,18 @@ const getContent = (content) => {
   return content;
 };
 
-State.init({});
-
-const entity = Near.view(
-  ownerId,
-  "get_entity",
-  { account_id: accountId },
-  "final"
-);
+State.init({
+  isAuthorized: false,
+  isAuthorizedFetched: false,
+  founders: [],
+  foundersFetched: false,
+  proposalsCount: 0,
+  proposalsCountFetched: false,
+  invitesCount: 0,
+  invitesCountFetched: false,
+  profile: null,
+  profileFetched: false,
+});
 
 const isAuthorized = Near.view(
   ownerId,
