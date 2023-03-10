@@ -1,4 +1,4 @@
-const data = Social.index("Instance_time", "schedule");
+const data = props.data ?? Social.index("Instance_time", "schedule");
 
 if (!data) {
   return "Loading datas";
