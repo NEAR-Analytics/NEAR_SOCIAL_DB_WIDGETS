@@ -224,6 +224,7 @@ return (
                           : tabs.MY_SCHEDULE.id,
                       tab: tabs.OPEN_SCHEDULE.id,
                     });
+                    console.log("fin");
                   }}
                 >
                   <div
