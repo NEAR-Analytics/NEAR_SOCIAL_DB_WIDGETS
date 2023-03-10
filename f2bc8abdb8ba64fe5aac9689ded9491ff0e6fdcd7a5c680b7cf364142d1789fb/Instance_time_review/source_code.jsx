@@ -1,7 +1,4 @@
-const data = Social.index("Instance_time", "schedule");
-if (!data) {
-  return "Loading datas";
-}
+const data = props.data;
 
 const _account = props.accountId ?? "All";
 const tabs = props.tabs;
@@ -124,14 +121,6 @@ for (let i = 0; i < sortedData.length; i++) {
     });
   }
 }
-
-// function getFormatedTime(time) {
-//   const hours = parseInt(time);
-//   const mins = (time - hours) * 60;
-//   let formated = `${hours}:${mins == 0 ? "00" : mins}`;
-
-//   return formated;
-// }
 
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
