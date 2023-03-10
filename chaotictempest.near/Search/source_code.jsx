@@ -1,4 +1,4 @@
-const SEARCH_API_KEY = props.searchApiKey ?? "57ad1944e94432510f067a6e3d13f022";
+const SEARCH_API_KEY = props.searchApiKey ?? "0e42c01107b8f555a41bcc0fa7f2a4df";
 const APPLICATION_ID = props.appId ?? "B6PI9UKKJT";
 const INDEX = props.index ?? "prod_near-social-feed";
 const API_URL =
