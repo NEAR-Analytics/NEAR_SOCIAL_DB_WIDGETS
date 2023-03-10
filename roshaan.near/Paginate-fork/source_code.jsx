@@ -97,7 +97,6 @@ const range = (start, end) => {
 };
 
 const viewRange = (currentPage) => {
-  console.log("current page", currentPage);
   if (totalPageNumbers >= totalPageCount) {
     return range(1, totalPageCount);
   }
@@ -123,8 +122,7 @@ const viewRange = (currentPage) => {
 
     return [...leftRange, RANGE_ITEM, totalPageCount];
   }
-  console.log("done calculating");
-  console.log(state.pageRanges, "page ranges");
+
   // Case 3: No right dots to show, but left dots to be shown
   if (shouldShowLeftDots && !shouldShowRightDots) {
     let rightItemCount = 3 + 2 * siblingCount;
@@ -149,9 +147,7 @@ const onClickPage = (pageNumber) => {
   if (pageNumber == RANGE_ITEM) {
     return;
   }
-  console.log("updating range", pageNumber);
   const pageRanges = viewRange(pageNumber);
-  console.log("after calcuating", pageRanges);
   State.update({
     pageRanges,
   });
