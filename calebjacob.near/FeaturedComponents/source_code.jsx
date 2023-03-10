@@ -56,34 +56,38 @@ return (
           props={{ src: "adminalpha.near/widget/FastAuth" }}
         />
       </Item>
-
+      <Item>
+        <Widget
+          src="calebjacob.near/widget/ComponentCard"
+          props={{ src: "dataplatform.near/widget/NearQueryApi" }}
+        />
+      </Item>
       <Item>
         <Widget
           src="calebjacob.near/widget/ComponentCard"
           props={{ src: "calebjacob.near/widget/ActivityPage" }}
         />
       </Item>
-
       <Item>
         <Widget
           src="calebjacob.near/widget/ComponentCard"
           props={{ src: "devgovgigs.near/widget/Ideas" }}
         />
       </Item>
-
       <Item>
         <Widget
           src="calebjacob.near/widget/ComponentCard"
           props={{ src: "frichard2.near/widget/most-active-contracts" }}
         />
       </Item>
-
+      /*
       <Item>
         <Widget
           src="calebjacob.near/widget/ComponentCard"
           props={{ src: "bozon.near/widget/WidgetHistory" }}
         />
       </Item>
+      */
     </Items>
   </Wrapper>
 );
