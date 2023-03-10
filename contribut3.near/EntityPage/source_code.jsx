@@ -106,70 +106,76 @@ if (!state.profileFetched) {
 }
 
 const Controls = styled.div`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  display: "flex";
+  display: flex;
+  flex-direction: ${({ isAuthorized }) => (isAuthorized ? "row" : "column")};
+  justify-content: ${({ isAuthorized }) =>
+    isAuthorized ? "space-between" : "flex-start"};
+  align-items: ${({ isAuthorized }) => (isAuthorized ? "center" : "stretch")};
 `;
 
-const controls = state.isAuthorized ? (
-  <div className="d-flex flex-row justify-content-between align-items-center">
-    <a
-      className="btn btn-outline-secondary me-2"
-      style={{ width: "8em" }}
-      href={`/#/${ownerId}/widget/Index?tab=create&content=entity&accountId=${accountId}`}
-      onClick={() =>
-        props.update({ tab: "create", content: "entity", accountId })
-      }
-    >
-      <i className="bi-pencil-square" />
-      <span>Edit project</span>
-    </a>
-    <Widget
-      src={`${ownerId}/widget/CardMenu`}
-      props={{
-        update: props.update,
-        items: [
-          {
-            text: "Create new request",
-            icon: "bi-boxes",
-            href: `/#/${ownerId}/widget/Index?tab=create&content=request&accountId=${accountId}`,
-            onClick: () =>
-              props.update({ tab: "create", content: "request", accountId }),
-          },
-          // {
-          //   text: "Invite contributors",
-          //   icon: "bi-person-plus",
-          // },
-          // {
-          //   text: "Delete project",
-          //   icon: "bi-trash",
-          // },
-        ],
-      }}
-    />
-  </div>
-) : (
-  <div className="d-flex flex-column justify-content-start align-items-stretch">
-    <a
-      className="btn btn-success me-2 text-light"
-      style={{ width: "13em" }}
-      href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`}
-      onClick={() =>
-        props.update({
-          tab: "create",
-          content: "proposal",
-          search: "",
-          accountId,
-        })
-      }
-    >
-      <i className="bi-person-up" />
-      <span className="text-nowrap">Propose contribution</span>
-    </a>
-  </div>
+const controls = (
+  <Controls isAuthorized={state.isAuthorized}>
+    {state.isAuthorized ? (
+      <>
+        <a
+          className="btn btn-outline-secondary me-2"
+          style={{ width: "8em" }}
+          href={`/#/${ownerId}/widget/Index?tab=create&content=entity&accountId=${accountId}`}
+          onClick={() =>
+            props.update({ tab: "create", content: "entity", accountId })
+          }
+        >
+          <i className="bi-pencil-square" />
+          <span>Edit project</span>
+        </a>
+        <Widget
+          src={`${ownerId}/widget/CardMenu`}
+          props={{
+            update: props.update,
+            items: [
+              {
+                text: "Create new request",
+                icon: "bi-boxes",
+                href: `/#/${ownerId}/widget/Index?tab=create&content=request&accountId=${accountId}`,
+                onClick: () =>
+                  props.update({
+                    tab: "create",
+                    content: "request",
+                    accountId,
+                  }),
+              },
+              // {
+              //   text: "Invite contributors",
+              //   icon: "bi-person-plus",
+              // },
+              // {
+              //   text: "Delete project",
+              //   icon: "bi-trash",
+              // },
+            ],
+          }}
+        />
+      </>
+    ) : (
+      <a
+        className="btn btn-success me-2 text-light"
+        style={{ width: "13em" }}
+        href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&accountId=${accountId}`}
+        onClick={() =>
+          props.update({
+            tab: "create",
+            content: "proposal",
+            search: "",
+            accountId,
+          })
+        }
+      >
+        <i className="bi-person-up" />
+        <span className="text-nowrap">Propose contribution</span>
+      </a>
+    )}
+  </Controls>
 );
-
 const body = (
   <div className="px-3">
     <div className="d-flex flex-row justify-content-start" id={accountId}>
