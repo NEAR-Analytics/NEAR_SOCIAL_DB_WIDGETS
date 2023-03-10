@@ -245,17 +245,21 @@ order by block_timestamp desc limit 1 `;
 const getBornDateDatas = () => {
   let sql = `
 select 
-count(distinct TX_HASH) as trx ,
-monthname(date_trunc('month',BLOCK_TIMESTAMP) ) as date 
+count(distinct TX_HASH) as trxs ,
+split((date_trunc('day',BLOCK_TIMESTAMP) ),' 00:00:00.000')[0] as date ,
+month(date_trunc('month',BLOCK_TIMESTAMP) ) as month ,
+year(date_trunc('year',BLOCK_TIMESTAMP) ) as year 
+
 from near.social.fact_decoded_actions 
-where SIGNER_ID = {{address}}
-group by 2 order by date desc  `;
+where SIGNER_ID = '{{address}}'
+group by 2,3,4 order by year,month,date asc  `;
   fetchData(sql, "born_datas", "is_born_date_loadings");
 };
+
 let date = born_datas.map((items) => items.date);
-let trx = born_datas.map((items) => items.trx);
+let trx = born_datas.map((items) => items.trxs);
 let srcc = `
-https://quickchart.io/chart?width=400&height=180&chart={type:'bar',data:{labels:${JSON.stringify(
+https://quickchart.io/chart?width=400&height=200&chart={type:'bar',data:{labels:${JSON.stringify(
   date
 )}, datasets:[{label:'',data:${JSON.stringify(trx)}}]}}`;
 
@@ -303,7 +307,7 @@ when parse_json(node_data:graph):value:type::string ='unfollow'  then null
 when parse_json(node_data:follow)::string is not null then null 
 when parse_json(node_data:graph):value:type::string ='follow'  then null 
 when NODE ='profile' then NODE_DATA
-when NODE ='widget' then null
+when NODE ='widget' then '⚙️'
 when parse_json(node_data:comment):item:type::string ='social'  then parse_json(node_data:comment):text::string
 when parse_json(node_data:comment):key::string is not null  then null
 when parse_json(node_data:post):key::string is not null  then null
@@ -314,6 +318,7 @@ when parse_json(node_data:sent)::string is not null then  split(split(split(pars
 when parse_json(node_data:boo)::string is not null then  parse_json(node_data:boo):value::string
 when parse_json(node_data:blunt)::string is not null then  parse_json(node_data:blunt):value::string
 when parse_json(node_data:answer_poll)::string is not null then parse_json(node_data:answer_poll):key::string || parse_json(node_data:answer_poll):value:user_vote::string || parse_json(node_data:answer_poll):value:user_answer::string 
+when parse_json(node_data:like):key:type::string ='social' then '💗'
 
 else NODE_DATA end as node_datas 
 
@@ -351,7 +356,7 @@ when parse_json(node_data:follow)::string is not null then null
  when NODE ='widget' then 'widget create'
  when NODE ='profile' then 'profile'
  when parse_json(node_data:main):type::string ='md' then 'post'
- else 'widget related' end as action 
+ else 'widget Usage' end as action 
 
 
 from 
@@ -393,15 +398,13 @@ const onSearch = () => {
 
 return (
   <div>
-    <strong style={bb}>
-      Put your near address in the box and click on the search button
-    </strong>
-    <i>
-      {" "}
-      credit : antonyip bar chart widget , mob.near widgets and reallyveryy.near
-      widget
-    </i>
-    <div class="d-flex flex-row align-items-center mt-4">
+    <h3 class="d-flex flex-row align-items-center mt-5 mb-5">
+      <p style={bb}>
+        Put your near address in the box and click on the search button
+      </p>
+    </h3>
+
+    <div class="d-flex flex-row align-items-center mt-5">
       <div class="w-100">
         <input
           onChange={onAddressChange}
@@ -456,7 +459,30 @@ return (
             <h3 class="mb-5 mt-2" style={bb}>
               Near Social Transactions
             </h3>
-
+            <div>
+              Here you can see how many <i style={bb}>transactions</i> you have
+              done so far .
+            </div>
+            <div>
+              <span style={bb}>1 - </span>follow transactions is not equall to
+              number of followings , some transactions can be used to follow
+              more than 1 accounts.
+            </div>
+            <div>
+              <span style={bb}>2 - </span>notice that we have 2 different widget
+              transactions , widget create transactions and widget usage
+              transactions. some users create widget and other can use those
+              widget.
+            </div>
+            <div>
+              <span style={bb}>3 - </span>
+              <span style={bb}>credit :</span> antonyip bar chart widget ,
+              mob.near widgets and reallyveryy.near widget
+            </div>
+            <div>
+              <span style={bb}>4 - </span>buy me a coffee ,near wallet :
+              <span style={bb}> lord1.near</span>
+            </div>
             <div class="row">
               <div class="col-md-6 mt-3">
                 <div>
@@ -498,7 +524,7 @@ return (
                         <i> Widget Create </i> :<i style={nn}>{xx.widget}</i>
                       </div>
                       <div style={dd}>
-                        <i>Widget Related </i> :
+                        <i>Widget Usage </i> :
                         <i style={nn}> {xx.total_widget_trx}</i>
                       </div>
                     </span>
@@ -508,6 +534,7 @@ return (
             </div>
             <div class="row">
               <div class="col-md-12 "></div>
+              <img src={srcc} />
             </div>
           </div>
 
