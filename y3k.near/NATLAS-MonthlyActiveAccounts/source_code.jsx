@@ -119,50 +119,73 @@ const formatData = (rawData) => {
   return result;
 };
 
-const formattedDataYears = formatData(rawData.body);
+// const formattedDataYears = formatData(rawData.body);
 
-function convertData(formattedDataYears) {
-  let formattedDataMonth = [];
-  let months = Object.keys(formattedDataYears[0].data);
+// function convertData(formattedDataYears) {
+//   let formattedDataMonth = [];
+//   let months = Object.keys(formattedDataYears[0].data);
 
-  // sort the months in the desired order
-  months.sort((a, b) => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return months.indexOf(a) - months.indexOf(b);
-  });
+//   // sort the months in the desired order
+//   months.sort((a, b) => {
+//     const allMonths = [
+//       "January",
+//       "February",
+//       "March",
+//       "April",
+//       "May",
+//       "June",
+//       "July",
+//       "August",
+//       "September",
+//       "October",
+//       "November",
+//       "December",
+//     ];
+//     return allMonths.indexOf(a) - allMonths.indexOf(b);
+//   });
 
-  for (let i = 0; i < months.length; i++) {
-    let monthData = {
-      label: months[i],
+//   for (let i = 0; i < months.length; i++) {
+//     let monthData = {
+//       label: months[i],
+//       data: {},
+//       backgroundColor: formattedDataYears[i % 2].backgroundColor,
+//     };
+
+//     for (let j = 0; j < formattedDataYears.length; j++) {
+//       monthData.data[formattedDataYears[j].label] =
+//         formattedDataYears[j].data[months[i]];
+//     }
+
+//     formattedDataMonth.push(monthData);
+//   }
+
+//   return formattedDataMonth;
+// }
+
+// const formattedDataMonth = convertData(formattedDataYears);
+
+const formattedDataMonth = [];
+
+rawData.body.forEach((entry) => {
+  if (entry.MONTH === null) return;
+  const year = new Date(entry.MONTH).getFullYear();
+  const month = new Date(entry.MONTH).getMonth();
+  const monthName = monthNames[month];
+  let monthData = formattedDataMonth.find((data) => data.label === monthName);
+  if (!monthData) {
+    monthData = {
+      label: monthName,
       data: {},
-      backgroundColor: formattedDataYears[i % 2].backgroundColor,
+      backgroundColor: getBackgroundColor(),
     };
-
-    for (let j = 0; j < formattedDataYears.length; j++) {
-      monthData.data[formattedDataYears[j].label] =
-        formattedDataYears[j].data[months[i]];
-    }
-
     formattedDataMonth.push(monthData);
   }
+  monthData.data[year] = entry.ACTIVE_WALLETS;
+});
 
-  return formattedDataMonth;
-}
-
-const formattedDataMonth = convertData(formattedDataYears);
+formattedDataMonth.forEach((monthData) => {
+  monthData.data = Object.entries(monthData.data).sort((a, b) => a[0] - b[0]);
+});
 
 const v_bar_data = {
   v_bar_labels,
