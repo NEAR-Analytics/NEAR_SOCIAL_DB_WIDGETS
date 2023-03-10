@@ -5,6 +5,7 @@ if (!data) {
 }
 
 const accountId = props.accountId ?? context.accountId;
+console.log(0);
 const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
 const style = props.style ?? "large";
