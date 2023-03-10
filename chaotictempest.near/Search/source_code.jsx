@@ -27,6 +27,10 @@ const Header = styled.div`
 
 const Search = styled.div``;
 
+const Facets = styled.div`
+  overflow: scroll;
+`;
+
 const H1 = styled.h1`
   font-weight: 600;
   font-size: 32px;
@@ -318,14 +322,16 @@ return (
     </Search>
 
     {state.search && (
-      <Widget
-        src="chaotictempest.near/widget/Facets"
-        props={{
-          facets,
-          onFacetClick,
-          defaultFacet: facets[0],
-        }}
-      />
+      <Facets>
+        <Widget
+          src="chaotictempest.near/widget/Facets"
+          props={{
+            facets,
+            onFacetClick,
+            defaultFacet: facets[0],
+          }}
+        />
+      </Facets>
     )}
 
     {state.search?.profiles.length > 0 && (
