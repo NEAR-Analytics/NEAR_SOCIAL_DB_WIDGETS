@@ -69,8 +69,9 @@ State.init(initState());
 const FacetContainer =
   props.facetContainerStyle ??
   styled.ul`
-    display: flex;
+    display: inline-flex;
     list-style-type: none;
+    overflow: scroll;
   `;
 
 const FacetItem =
