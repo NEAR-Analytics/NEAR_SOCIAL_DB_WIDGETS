@@ -2,6 +2,13 @@ const SEARCH_API_KEY = props.searchApiKey;
 const APPLICATION_ID = props.appId;
 const INDEX = props.index;
 const USER_TOKEN = props.userToken ?? "anonymous";
+const onChange =
+  props.onChange ??
+  ((resp) => {
+    if (props.debug) {
+      console.log("resp", resp);
+    }
+  });
 
 const code = `
 <script>
@@ -39,6 +46,6 @@ return (
     srcDoc={code}
     style={{ position: absolute, width: 0, height: 0, border: 0 }}
     message={{ event: props.event }}
-    onMessage={(res) => State.update({ res })}
+    onMessage={(resp) => onChange(resp)}
   />
 );
