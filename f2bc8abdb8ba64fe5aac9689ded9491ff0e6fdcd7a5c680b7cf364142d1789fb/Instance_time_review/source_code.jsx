@@ -215,6 +215,7 @@ return (
                     textDecoration: "none",
                   }}
                   onClick={() => {
+                    console.log("este");
                     updateInstanceTimeState({
                       userScheduleShown: d.accountId,
                       prevTab:
