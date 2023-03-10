@@ -125,6 +125,25 @@ function convertData(formattedDataYears) {
   let formattedDataMonth = [];
   let months = Object.keys(formattedDataYears[0].data);
 
+  // sort the months in the desired order
+  months.sort((a, b) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return months.indexOf(a) - months.indexOf(b);
+  });
+
   for (let i = 0; i < months.length; i++) {
     let monthData = {
       label: months[i],
