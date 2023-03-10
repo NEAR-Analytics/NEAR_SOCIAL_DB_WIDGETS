@@ -205,196 +205,194 @@ return (
         gridTemplateColumns: " repeat(3, 1fr)",
       }}
     >
-      {
-        // finalData
-        // ? finalData.map((d) => {
-        //     if (_account == "All" || _account == d.accountId) {
-        //       const profileName = Social.getr(`${d.accountId}/profile`).name;
-        //       if (!profileName) {
-        //         return "Loading";
-        //       }
-        //       return (
-        //         <div
-        //           style={{
-        //             boxSizing: "border-box",
-        //             boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
-        //             backgroundColor: "white",
-        //             color: "black",
-        //             borderRadius: "1rem",
-        //             margin: "8px",
-        //             cursor: "pointer",
-        //             disable: context.accountId != d.accountId,
-        //             textDecoration: "none",
-        //           }}
-        //           onClick={() => {
-        //             console.log("este");
-        //             updateInstanceTimeState({
-        //               userScheduleShown: d.accountId,
-        //               prevTab:
-        //                 _account == "All"
-        //                   ? tabs.ALL_SCHEDULE.id
-        //                   : tabs.MY_SCHEDULE.id,
-        //               tab: tabs.OPEN_SCHEDULE.id,
-        //             });
-        //             console.log("fin");
-        //           }}
-        //         >
-        //           <div
-        //             style={{
-        //               padding: "1rem",
-        //             }}
-        //           >
-        //             <div
-        //               style={{
-        //                 paddingBottom: "0.5rem",
-        //                 borderBottom: "2px solid grey",
-        //                 display: "flex",
-        //                 flexDirection: "row",
-        //               }}
-        //             >
-        //               <div
-        //                 style={{
-        //                   display: "flex",
-        //                   flexDirection: "column",
-        //                   alignItems: "center",
-        //                 }}
-        //               >
-        //                 <Widget
-        //                   src="mob.near/widget/ProfileImage"
-        //                   props={{
-        //                     accountId: d.accountId,
-        //                     className: "d-inline-block",
-        //                     style: {
-        //                       width: "2em",
-        //                       height: "2em",
-        //                       fontSize: "xx-large",
-        //                     },
-        //                   }}
-        //                 />
-        //                 <div>{profileName}</div>
-        //               </div>
-        //               <div
-        //                 style={{
-        //                   paddingLeft: "0.5rem",
-        //                   display: "flex",
-        //                   flexDirection: "column",
-        //                   width: "100%",
-        //                 }}
-        //               >
-        //                 <div
-        //                   style={{
-        //                     fontSize: "1.5rem",
-        //                     fontWeight: "800",
-        //                   }}
-        //                 >
-        //                   {makeStringShorter(d.accountId, 12)}
-        //                 </div>
-        //                 <div
-        //                   style={{
-        //                     display: "flex",
-        //                     flexDirection: "row",
-        //                     alignItems: "center",
-        //                     justifyContent: "space-between",
-        //                   }}
-        //                 >
-        //                   <div>
-        //                     <div
-        //                       style={{
-        //                         margin: "0.5rem 0rem",
-        //                       }}
-        //                     >
-        //                       <span
-        //                         style={{
-        //                           backgroundColor: state.is_on[
-        //                             state.accounts.indexOf(d.accountId)
-        //                           ]
-        //                             ? "rgb(217, 252, 239)"
-        //                             : "rgb(255, 229, 229)",
-        //                           textAlign: "center",
-        //                           borderRadius: "16px",
-        //                           fontSize: "0.8rem",
-        //                           color: state.is_on[
-        //                             state.accounts.indexOf(d.accountId)
-        //                           ]
-        //                             ? "rgb(0, 179, 125)"
-        //                             : "rgb(255, 71, 71)",
-        //                           fontWeight: "500",
-        //                           padding: "0.5rem 1rem",
-        //                         }}
-        //                       >
-        //                         {state.is_on[
-        //                           state.accounts.indexOf(d.accountId)
-        //                         ]
-        //                           ? "on"
-        //                           : "off"}
-        //                       </span>
-        //                     </div>
-        //                   </div>
-        //                   <div>{d.time_zone}</div>
-        //                 </div>
-        //               </div>
-        //             </div>
-        //             {d.value._data.map((week, index) => {
-        //               return (
-        //                 <div
-        //                   style={{
-        //                     paddingTop: "1rem",
-        //                     display: "flex",
-        //                     justifyContent: "space-between",
-        //                   }}
-        //                 >
-        //                   <div
-        //                     style={{
-        //                       fontSize: "1rem",
-        //                       fontWeight: "600",
-        //                     }}
-        //                   >{`${days[index]}`}</div>
-        //                   <div
-        //                     style={{
-        //                       display: "flex",
-        //                     }}
-        //                   >
-        //                     {week.on_off == "on" ? (
-        //                       week.data.map((y) => (
-        //                         <p
-        //                           style={{
-        //                             display: "flex",
-        //                             fontSize: "0.9rem",
-        //                             paddingRight: "0.9rem",
-        //                           }}
-        //                         >
-        //                           {getFormatedTime(y._from)}~
-        //                           {getFormatedTime(y._to)}
-        //                         </p>
-        //                       ))
-        //                     ) : (
-        //                       <span
-        //                         style={{
-        //                           backgroundColor: "#FFE5E5",
-        //                           textAlign: "center",
-        //                           borderRadius: "16px",
-        //                           marginRight: "1rem",
-        //                           fontSize: "0.8rem",
-        //                           letterSpacing: "-0.025rem",
-        //                           color: "#FF4747",
-        //                           fontWeight: "500",
-        //                           padding: "0.5rem 2rem",
-        //                         }}
-        //                       >
-        //                         Off
-        //                       </span>
-        //                     )}
-        //                   </div>
-        //                 </div>
-        //               );
-        //             })}
-        //           </div>
-        //         </div>
-        //       );
-        //     }
-        //   })
-        // : "Loading..."}
-      }
+      {finalData
+        ? finalData.map((d) => {
+            if (_account == "All" || _account == d.accountId) {
+              const profileName = Social.getr(`${d.accountId}/profile`).name;
+              if (!profileName) {
+                return "Loading";
+              }
+              return (
+                <div
+                  style={{
+                    boxSizing: "border-box",
+                    boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+                    backgroundColor: "white",
+                    color: "black",
+                    borderRadius: "1rem",
+                    margin: "8px",
+                    cursor: "pointer",
+                    disable: context.accountId != d.accountId,
+                    textDecoration: "none",
+                  }}
+                  onClick={() => {
+                    console.log("este");
+                    updateInstanceTimeState({
+                      userScheduleShown: d.accountId,
+                      prevTab:
+                        _account == "All"
+                          ? tabs.ALL_SCHEDULE.id
+                          : tabs.MY_SCHEDULE.id,
+                      tab: tabs.OPEN_SCHEDULE.id,
+                    });
+                    console.log("fin");
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: "1rem",
+                    }}
+                  >
+                    <div
+                      style={{
+                        paddingBottom: "0.5rem",
+                        borderBottom: "2px solid grey",
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Widget
+                          src="mob.near/widget/ProfileImage"
+                          props={{
+                            accountId: d.accountId,
+                            className: "d-inline-block",
+                            style: {
+                              width: "2em",
+                              height: "2em",
+                              fontSize: "xx-large",
+                            },
+                          }}
+                        />
+                        <div>{profileName}</div>
+                      </div>
+                      <div
+                        style={{
+                          paddingLeft: "0.5rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100%",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontSize: "1.5rem",
+                            fontWeight: "800",
+                          }}
+                        >
+                          {makeStringShorter(d.accountId, 12)}
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div>
+                            <div
+                              style={{
+                                margin: "0.5rem 0rem",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  backgroundColor: state.is_on[
+                                    state.accounts.indexOf(d.accountId)
+                                  ]
+                                    ? "rgb(217, 252, 239)"
+                                    : "rgb(255, 229, 229)",
+                                  textAlign: "center",
+                                  borderRadius: "16px",
+                                  fontSize: "0.8rem",
+                                  color: state.is_on[
+                                    state.accounts.indexOf(d.accountId)
+                                  ]
+                                    ? "rgb(0, 179, 125)"
+                                    : "rgb(255, 71, 71)",
+                                  fontWeight: "500",
+                                  padding: "0.5rem 1rem",
+                                }}
+                              >
+                                {state.is_on[
+                                  state.accounts.indexOf(d.accountId)
+                                ]
+                                  ? "on"
+                                  : "off"}
+                              </span>
+                            </div>
+                          </div>
+                          <div>{d.time_zone}</div>
+                        </div>
+                      </div>
+                    </div>
+                    {d.value._data.map((week, index) => {
+                      return (
+                        <div
+                          style={{
+                            paddingTop: "1rem",
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                            }}
+                          >{`${days[index]}`}</div>
+                          <div
+                            style={{
+                              display: "flex",
+                            }}
+                          >
+                            {week.on_off == "on" ? (
+                              week.data.map((y) => (
+                                <p
+                                  style={{
+                                    display: "flex",
+                                    fontSize: "0.9rem",
+                                    paddingRight: "0.9rem",
+                                  }}
+                                >
+                                  {getFormatedTime(y._from)}~
+                                  {getFormatedTime(y._to)}
+                                </p>
+                              ))
+                            ) : (
+                              <span
+                                style={{
+                                  backgroundColor: "#FFE5E5",
+                                  textAlign: "center",
+                                  borderRadius: "16px",
+                                  marginRight: "1rem",
+                                  fontSize: "0.8rem",
+                                  letterSpacing: "-0.025rem",
+                                  color: "#FF4747",
+                                  fontWeight: "500",
+                                  padding: "0.5rem 2rem",
+                                }}
+                              >
+                                Off
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            }
+          })
+        : "Loading..."}
     </div>
     {console.log("0001")}
   </div>
