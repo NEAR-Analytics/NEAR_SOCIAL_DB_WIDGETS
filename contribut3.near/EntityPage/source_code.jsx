@@ -191,7 +191,7 @@ const body = (
                 </div>
                 <Widget
                   src={`${ownerId}/widget/Tags`}
-                  pros={{ tags: profile.tags }}
+                  pros={{ tags: state.profile.tags }}
                 />
               </>
             ),
@@ -201,12 +201,12 @@ const body = (
     </div>
     <Widget
       src={`${ownerId}/widget/DescriptionArea`}
-      props={{ description: profile.description }}
+      props={{ description: state.profile.description }}
     />
     <div className="d-flex flex-row justify-content-between align-items-center">
       <Widget
         src={`${ownerId}/widget/SocialLinks`}
-        props={{ links: profile.linktree ?? {} }}
+        props={{ links: state.profile.linktree ?? {} }}
       />
       <div>
         {state.founders.map((founder) => (
