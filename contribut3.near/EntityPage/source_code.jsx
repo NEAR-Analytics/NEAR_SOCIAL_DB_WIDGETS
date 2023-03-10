@@ -35,12 +35,17 @@ State.init({
   profileFetched: false,
 });
 
-const isAuthorized = Near.view(
-  ownerId,
-  "check_is_manager_or_higher",
-  { entity_id: accountId, account_id: context.accountId },
-  "final"
-);
+if (!state.isAuthorizedFetched) {
+  Near.asyncView(
+    ownerId,
+    "check_is_manager_or_higher",
+    { entity_id: accountId, account_id: context.accountId },
+    "final",
+    false
+  ).then((isAuthorized) =>
+    State.update({ isAuthorized, isAuthorizedFetched: true })
+  );
+}
 
 const founders =
   Near.view(
