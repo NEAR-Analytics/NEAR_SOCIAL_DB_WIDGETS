@@ -24,7 +24,7 @@ var sortedData =
     : [];
 var finalData = {};
 
-const sortAndRemoveRepeated = (flag, data) => {  
+const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
@@ -49,7 +49,7 @@ const sortAndRemoveRepeated = (flag, data) => {
         final.push(sortedTimeData[k]);
     }
   }
-  
+
   return final;
 };
 
@@ -118,19 +118,8 @@ for (let i = 0; i < sortedData.length; i++) {
         _data: weeklyData,
       },
     };
-  } else {
-    finalData = {
-      accountId: "",
-      is_on: "",
-      time_zone: 0,
-      value: {
-        _data: weeklyData,
-      },
   }
 }
-
-console.log("finalData.time_zone: ", finalData.time_zone)
-console.log("weeklyData: ", weeklyData)
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
@@ -154,6 +143,7 @@ function onInterval() {
   const now = hours + mins / 60;
   var is_on = false;
   var temp = finalData.value._data[day];
+  console.log(temp);
   if (temp.on_off == "on") {
     for (var j = 0; j < temp.data.length; j++) {
       if (now >= temp.data[j]._from && now < temp.data[j]._to) {
