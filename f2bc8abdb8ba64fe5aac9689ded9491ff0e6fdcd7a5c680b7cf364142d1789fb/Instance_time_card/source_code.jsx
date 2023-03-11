@@ -18,14 +18,18 @@ State.init({
   is_on: false,
 });
 
-var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+var sortedData =
+  data && data.length
+    ? data.sort((d1, d2) => d1.blockHeight - d2.blockHeight)
+    : [];
 var finalData = {};
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
-  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+  var sortedTimeData =
+    temp && temp.length ? temp.sort((d2, d1) => d2 - d1) : [];
 
   var final = [];
   for (var k = 0; k < sortedTimeData.length; k++) {
