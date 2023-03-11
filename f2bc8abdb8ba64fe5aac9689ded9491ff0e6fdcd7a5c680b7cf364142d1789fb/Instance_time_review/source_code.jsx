@@ -176,7 +176,6 @@ return (
       padding: "0.5rem",
     }}
   >
-    {console.log("1")}
     <div className="d-flex justify-content-between">
       <h2 style={{ margin: "2rem 0 0.5rem 0", fontWeight: "700" }}>{text}</h2>
       <p className="m-0 pt-3" style={{ margin: "0px", fontSize: "0.8rem" }}>
@@ -384,6 +383,5 @@ return (
           })
         : "Loading..."}
     </div>
-    {console.log("2")}
   </div>
 );
