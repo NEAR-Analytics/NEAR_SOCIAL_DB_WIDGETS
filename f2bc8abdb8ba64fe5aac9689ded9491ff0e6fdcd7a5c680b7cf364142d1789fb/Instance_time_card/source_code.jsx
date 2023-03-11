@@ -22,7 +22,42 @@ var sortedData =
   data && data.length
     ? data.sort((d1, d2) => d1.blockHeight - d2.blockHeight)
     : [];
-var finalData = {};
+var finalData = {
+  accountId: "",
+  time_zone: "(UTC-04:00) Atlantic Time",
+  value: {
+    _data: [
+      {
+        on_off: "off",
+        data: [],
+      },
+      {
+        on_off: "off",
+        data: [],
+      },
+      {
+        on_off: "off",
+        data: [],
+      },
+      {
+        on_off: "off",
+        data: [],
+      },
+      {
+        on_off: "off",
+        data: [],
+      },
+      {
+        on_off: "off",
+        data: [],
+      },
+      {
+        on_off: "off",
+        data: [],
+      },
+    ],
+  },
+};
 
 const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
@@ -142,10 +177,7 @@ function onInterval() {
   const mins = new Date().getMinutes();
   const now = hours + mins / 60;
   var is_on = false;
-  var temp = finalData.value._data[day] ?? {
-    on_off: "off",
-    data: [],
-  };
+  var temp = finalData.value._data[day];
   if (temp.on_off == "on") {
     for (var j = 0; j < temp.data.length; j++) {
       if (now >= temp.data[j]._from && now < temp.data[j]._to) {
@@ -155,8 +187,6 @@ function onInterval() {
   }
   State.update({ is_on: is_on });
 }
-
-console.log("finalData: ", finalData);
 
 return (
   <div>
