@@ -3,7 +3,10 @@ const data = props.data;
 const updateInstanceTimeState = props.updateInstanceTimeState;
 const tabs = props.tabs;
 
-var sortedData = data.sort((d1, d2) => d1.blockHeight - d2.blockHeight);
+var sortedData =
+  data && data.length
+    ? data.sort((d1, d2) => d1.blockHeight - d2.blockHeight)
+    : [];
 var finalData = {};
 
 const widgetOwner =
@@ -13,7 +16,8 @@ const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
-  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+  var sortedTimeData =
+    temp && temp.length ? temp.sort((d2, d1) => d2 - d1) : [];
 
   var final = [];
   for (var k = 0; k < sortedTimeData.length; k++) {
@@ -65,7 +69,8 @@ for (let i = 0; i < sortedData.length; i++) {
         }
       }
     }
-    var sortedTimeDataNew = final.sort((d2, d1) => d2 - d1);
+    var sortedTimeDataNew =
+      final && final.length ? final.sort((d2, d1) => d2 - d1) : [];
     var weeklyData = [];
     for (var t = 0; t < 7; t++) {
       var dailyData = [];
