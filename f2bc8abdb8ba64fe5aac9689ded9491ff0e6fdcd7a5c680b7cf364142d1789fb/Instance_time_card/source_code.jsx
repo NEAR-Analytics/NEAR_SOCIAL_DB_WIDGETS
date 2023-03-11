@@ -60,7 +60,6 @@ const getFormatedTime = (time) => {
 
 var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
-console.log("1");
 for (let i = 0; i < sortedData.length; i++) {
   if (sortedData[i].accountId == accountId) {
     var times = sortedData[i].value._data;
@@ -115,7 +114,6 @@ for (let i = 0; i < sortedData.length; i++) {
     };
   }
 }
-console.log("2");
 
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
