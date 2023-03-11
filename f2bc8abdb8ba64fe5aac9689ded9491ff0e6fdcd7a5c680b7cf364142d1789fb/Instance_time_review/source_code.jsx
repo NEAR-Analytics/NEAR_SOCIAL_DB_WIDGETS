@@ -32,7 +32,10 @@ const days = [
   "Sunday",
 ];
 
-var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+var sortedData =
+  data && data.length
+    ? data.sort((d1, d2) => d2.blockHeight - d1.blockHeight)
+    : [];
 var finalData = [];
 var accountIds = ["All"];
 
@@ -40,7 +43,8 @@ const sortAndRemoveRepeated = (flag, data) => {
   var temp = data;
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
-  var sortedTimeData = temp.sort((d2, d1) => d2 - d1);
+  var sortedTimeData =
+    temp && temp.length ? temp.sort((d2, d1) => d2 - d1) : [];
 
   var final = [];
   for (var k = 0; k < sortedTimeData.length; k++) {
