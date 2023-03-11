@@ -189,7 +189,12 @@ return (
               cursor: "pointer",
             }}
             onClick={() => {
-              updateInstanceTimeState({ tab: props.prevTab });
+              updateInstanceTimeState({
+                tab:
+                  props.prevTab == tabs.NEW_SCHEDULE.id
+                    ? tabs.ALL_SCHEDULE.id
+                    : props.prevTab,
+              });
             }}
           ></i>
         </div>
@@ -238,7 +243,8 @@ return (
             {accountId == context.accountId && (
               <button
                 onClick={updateInstanceTimeState({
-                  tab: tabs.EDIT_SCHEDULE.id,
+                  tab: tabs.NEW_SCHEDULE.id,
+                  prevTab: tabs.OPEN_SCHEDULE.id,
                 })}
                 onMouseEnter={() => {
                   State.update({ hoveringElement: "edit" });
