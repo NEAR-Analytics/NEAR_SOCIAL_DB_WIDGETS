@@ -191,10 +191,7 @@ return (
             }}
             onClick={() => {
               updateInstanceTimeState({
-                tab:
-                  props.prevTab == tabs.NEW_SCHEDULE.id
-                    ? tabs.ALL_SCHEDULE.id
-                    : props.prevTab,
+                tab: props.prevTab,
               });
             }}
           ></i>
