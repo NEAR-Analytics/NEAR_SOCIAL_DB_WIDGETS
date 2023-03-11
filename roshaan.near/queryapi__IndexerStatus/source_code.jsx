@@ -344,7 +344,13 @@ return (
         {state.logs.length > 0 ? (
           <div>
             <div class="table-responsive mt-3">
-              <table class="table-striped table" style={{ minHeight: 100 }}>
+              <table
+                class="table-striped table"
+                style={{
+                  padding: "30px",
+                  "table-layout": "fixed",
+                }}
+              >
                 <thead>
                   <tr>
                     <th>Block Height</th>
