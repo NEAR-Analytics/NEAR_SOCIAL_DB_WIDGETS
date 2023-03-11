@@ -1,6 +1,6 @@
 const image = JSON.parse(props.image);
 const className = props.className;
-const style = props.style;
+const style = JSON.parse(props.style);
 const alt = props.alt;
 const fallbackUrl = props.fallbackUrl;
 const thumbnail = props.thumbnail;
