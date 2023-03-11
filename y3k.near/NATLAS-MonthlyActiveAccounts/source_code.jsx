@@ -69,6 +69,12 @@ const colorGenerator = () => {
     "rgb(255, 159, 64)",
     "rgb(54, 162, 235)",
     "rgb(201, 203, 207)",
+    "rgb(255, 205, 86)",
+    "rgb(255, 99, 71)",
+    "rgb(147, 112, 219)",
+    "rgb(0, 128, 128)",
+    "rgb(100, 149, 237)",
+    "rgb(127, 255, 0)",
   ];
 
   let index = 0;
@@ -86,13 +92,12 @@ const getBackgroundColor = colorGenerator();
 
 const formatData = (rawData) => {
   let result = [];
-  let backgroundColor = "rgb(255, 99, 132)";
 
   rawData.forEach((item) => {
     let year = item.MONTH ? item.MONTH.split("-")[0] : "";
     let month = item.MONTH ? item.MONTH.split("-")[1] : "";
 
-    if (!year) return;
+    if (!year || !month) return;
 
     if (!result.find((x) => x.label === year)) {
       result.push({
@@ -104,6 +109,15 @@ const formatData = (rawData) => {
 
     let yearData = result.find((x) => x.label === year);
     yearData.data[monthNames[month - 1]] = item.ACTIVE_WALLETS;
+  });
+
+  result.forEach((year) => {
+    const yearData = year.data;
+    monthNames.forEach((month) => {
+      if (!yearData[month]) {
+        yearData[month] = 0;
+      }
+    });
   });
 
   result.sort((a, b) => {
@@ -118,51 +132,6 @@ const formatData = (rawData) => {
 
   return result;
 };
-
-// const formattedDataYears = formatData(rawData.body);
-
-// function convertData(formattedDataYears) {
-//   let formattedDataMonth = [];
-//   let months = Object.keys(formattedDataYears[0].data);
-
-//   // sort the months in the desired order
-//   months.sort((a, b) => {
-//     const allMonths = [
-//       "January",
-//       "February",
-//       "March",
-//       "April",
-//       "May",
-//       "June",
-//       "July",
-//       "August",
-//       "September",
-//       "October",
-//       "November",
-//       "December",
-//     ];
-//     return allMonths.indexOf(a) - allMonths.indexOf(b);
-//   });
-
-//   for (let i = 0; i < months.length; i++) {
-//     let monthData = {
-//       label: months[i],
-//       data: {},
-//       backgroundColor: formattedDataYears[i % 2].backgroundColor,
-//     };
-
-//     for (let j = 0; j < formattedDataYears.length; j++) {
-//       monthData.data[formattedDataYears[j].label] =
-//         formattedDataYears[j].data[months[i]];
-//     }
-
-//     formattedDataMonth.push(monthData);
-//   }
-
-//   return formattedDataMonth;
-// }
-
-// const formattedDataMonth = convertData(formattedDataYears);
 
 const formattedDataMonth = [];
 
@@ -183,9 +152,41 @@ rawData.body.forEach((entry) => {
   monthData.data[year] = entry.ACTIVE_WALLETS;
 });
 
-formattedDataMonth.forEach((monthData) => {
-  monthData.data = Object.entries(monthData.data).sort((a, b) => a[0] - b[0]);
+// const sortedArray = formattedDataMonth
+//   .sort((a, b) => {
+//     const yearsA = Object.keys(a.data);
+//     const yearsB = Object.keys(b.data);
+//     return parseInt(yearsB[0]) - parseInt(yearsA[0]);
+//   })
+//   .sort((a, b) => {
+//     const monthAIndex = monthNames.indexOf(a.label);
+//     const monthBIndex = monthNames.indexOf(b.label);
+//     return monthAIndex - monthBIndex;
+//   });
+
+const sortedArray = formattedDataMonth.sort((a, b) => {
+  const yearsA = Object.keys(a.data);
+  const yearsB = Object.keys(b.data);
+  return parseInt(yearsB[0]) - parseInt(yearsA[0]);
 });
+
+const allYears = [...new Set(sortedArray.map((x) => Object.keys(x.data)[0]))];
+
+sortedArray.forEach((item) => {
+  allYears.forEach((y) => {
+    if (!item.data[y]) {
+      item.data[y] = 0;
+    }
+  });
+});
+
+sortedArray.sort((a, b) => {
+  const monthAIndex = monthNames.indexOf(a.label);
+  const monthBIndex = monthNames.indexOf(b.label);
+  return monthAIndex - monthBIndex;
+});
+
+console.log(sortedArray);
 
 const v_bar_data = {
   v_bar_labels,
