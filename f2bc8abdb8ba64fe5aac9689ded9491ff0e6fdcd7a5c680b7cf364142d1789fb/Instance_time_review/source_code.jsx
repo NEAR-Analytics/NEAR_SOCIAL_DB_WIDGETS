@@ -6,9 +6,6 @@ const owner = context.accountId;
 const text = props.text;
 const updateInstanceTimeState = props.updateInstanceTimeState;
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-
 State.init({
   is_on: [],
   accounts: [],
@@ -66,6 +63,7 @@ const sortAndRemoveRepeated = (flag, data) => {
   }
   return final;
 };
+console.log("1");
 var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
 for (let i = 0; i < sortedData.length; i++) {
@@ -126,6 +124,7 @@ for (let i = 0; i < sortedData.length; i++) {
     });
   }
 }
+console.log("2");
 
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
