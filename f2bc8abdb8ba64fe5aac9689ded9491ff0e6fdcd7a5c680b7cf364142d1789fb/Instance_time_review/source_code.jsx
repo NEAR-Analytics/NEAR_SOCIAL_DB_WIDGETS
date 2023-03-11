@@ -146,7 +146,6 @@ setInterval(() => {
     if (temp.on_off == "on") {
       for (var j = 0; j < temp.data.length; j++) {
         if (now >= temp.data[j]._from && now < temp.data[j]._to) {
-          // console.log(now, temp.data[j]._from, temp.data[j]._to, is_on);
           is_on = true;
         }
       }
@@ -216,7 +215,6 @@ return (
                     textDecoration: "none",
                   }}
                   onClick={() => {
-                    console.log("este");
                     updateInstanceTimeState({
                       userScheduleShown: d.accountId,
                       prevTab:
@@ -225,7 +223,6 @@ return (
                           : tabs.MY_SCHEDULE.id,
                       tab: tabs.OPEN_SCHEDULE.id,
                     });
-                    console.log("fin");
                   }}
                 >
                   <div
