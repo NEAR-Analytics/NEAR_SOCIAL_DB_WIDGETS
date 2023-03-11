@@ -29,14 +29,17 @@ const days = [
   "Sunday",
 ];
 
+console.log("1");
 var sortedData =
   data && data.length
     ? data.sort((d1, d2) => d2.blockHeight - d1.blockHeight)
     : [];
 var finalData = [];
 var accountIds = ["All"];
+console.log("2");
 
 const sortAndRemoveRepeated = (flag, data) => {
+  console.log("4");
   var temp = data;
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
@@ -61,13 +64,13 @@ const sortAndRemoveRepeated = (flag, data) => {
         final.push(sortedTimeData[k]);
     }
   }
+  console.log("5");
   return final;
 };
 
-console.log("sortedData: ", sortedData);
-
 var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
+console.log("3");
 for (let i = 0; i < sortedData.length; i++) {
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
@@ -126,6 +129,7 @@ for (let i = 0; i < sortedData.length; i++) {
     });
   }
 }
+console.log("6");
 
 const getFormatedTime = (time) => {
   const hours = parseInt(time);
@@ -137,6 +141,7 @@ const getFormatedTime = (time) => {
   return formated;
 };
 
+console.log("7");
 setInterval(() => {
   const day = new Date().getDay() == 0 ? 6 : new Date().getDay() - 1;
   const hours = new Date().getHours();
@@ -160,6 +165,7 @@ setInterval(() => {
 
   State.update({ is_on: is_on_all, accounts: accounts });
 }, 1000);
+console.log("8");
 
 function makeStringShorter(string, length) {
   if (string.length > length) {
