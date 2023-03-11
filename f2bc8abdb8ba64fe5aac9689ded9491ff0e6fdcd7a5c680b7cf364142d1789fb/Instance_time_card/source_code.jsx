@@ -17,15 +17,15 @@ const widgetOwner =
 State.init({
   is_on: false,
 });
-console.log("1");
+
 var sortedData =
   data && data.length
     ? data.sort((d1, d2) => d1.blockHeight - d2.blockHeight)
     : [];
 var finalData = {};
-console.log("2");
+
 const sortAndRemoveRepeated = (flag, data) => {
-  console.log("4");
+  console.log("1");
   var temp = data;
   const flag1 = data.indexOf(0);
   if (flag) temp.push(0, 168);
@@ -50,7 +50,7 @@ const sortAndRemoveRepeated = (flag, data) => {
         final.push(sortedTimeData[k]);
     }
   }
-  console.log("5");
+  console.log("2");
   return final;
 };
 
@@ -64,7 +64,6 @@ const getFormatedTime = (time) => {
   return formated;
 };
 
-console.log("3");
 var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
 for (let i = 0; i < sortedData.length; i++) {
@@ -122,7 +121,7 @@ for (let i = 0; i < sortedData.length; i++) {
     };
   }
 }
-console.log("4");
+console.log("??");
 function sliceString(string, newStringLength) {
   if (string.length > newStringLength) {
     return string.slice(0, newStringLength) + "...";
