@@ -64,10 +64,11 @@ const sortAndRemoveRepeated = (flag, data) => {
   return final;
 };
 
+console.log("sortedData: ", sortedData);
+
 var date = new Date();
 var utc_offset = -date.getTimezoneOffset() / 60;
 for (let i = 0; i < sortedData.length; i++) {
-  console.log(accountIds.indexOf(sortedData[i].accountId) < 0);
   if (accountIds.indexOf(sortedData[i].accountId) < 0) {
     accountIds.push(sortedData[i].accountId);
 
