@@ -11,7 +11,11 @@ if (!profile) {
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
-var sortedData = data.sort((d1, d2) => d2.blockHeight - d1.blockHeight);
+var sortedData =
+  data && data.length
+    ? data.sort((d1, d2) => d2.blockHeight - d1.blockHeight)
+    : [];
+
 var accountIds = ["All"];
 var finalData = undefined;
 for (let i = 0; i < sortedData.length; i++) {
@@ -30,12 +34,8 @@ const tabs = {
     id: 3,
     text: finalData ? "Edit Schedule" : "Create Schedule",
   },
-  EDIT_SCHEDULE: {
-    id: 4,
-    text: "Edit Shedule",
-  },
   OPEN_SCHEDULE: {
-    id: 5,
+    id: 4,
     text: "",
   },
 };
@@ -48,6 +48,8 @@ State.init({
   abortThroughAllExistingSchedule: false,
   userScheduleShown: "",
 });
+
+let prevTab = state.prevTab;
 
 function makeStringShorter(string, length) {
   if (string.length > length) {
@@ -282,7 +284,8 @@ return (
                             State.update({ hoveringElement: "" });
                           }}
                           onClick={() => {
-                            state.tab != tabs.NEW_SCHEDULE.id
+                            state.tab == tabs.ALL_SCHEDULE.id ||
+                            state.tab == tabs.MY_SCHEDULE.id
                               ? State.update({ tab: tab.id })
                               : tab.id == tabs.ALL_SCHEDULE.id
                               ? State.update({
@@ -389,7 +392,7 @@ return (
           props={{
             accountId: state.userScheduleShown,
             tabs,
-            prevTab: state.prevTab,
+            prevTab,
             updateInstanceTimeState,
             data,
           }}
@@ -414,7 +417,7 @@ return (
       ) : (
         <Widget
           src={`${widgetOwner}/widget/Instance_time_edit`}
-          props={{ updateInstanceTimeState, tabs, data }}
+          props={{ updateInstanceTimeState, tabs, data, prevTab }}
         />
       )}
     </div>
