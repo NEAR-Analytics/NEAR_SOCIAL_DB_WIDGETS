@@ -142,8 +142,10 @@ function onInterval() {
   const mins = new Date().getMinutes();
   const now = hours + mins / 60;
   var is_on = false;
-  var temp = finalData.value._data[day];
-  console.log(temp);
+  var temp = finalData.value._data[day] ?? {
+    on_off: "off",
+    data: [],
+  };
   if (temp.on_off == "on") {
     for (var j = 0; j < temp.data.length; j++) {
       if (now >= temp.data[j]._from && now < temp.data[j]._to) {
@@ -153,6 +155,8 @@ function onInterval() {
   }
   State.update({ is_on: is_on });
 }
+
+console.log("finalData: ", finalData);
 
 return (
   <div>
