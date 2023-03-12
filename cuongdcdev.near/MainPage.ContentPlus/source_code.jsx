@@ -2,6 +2,7 @@
  * MainPage.ContentPlus
  * Source: mob.near/widget/MainPage.Content
  */
+const hashtag = props.hashtag;
 
 //get blocked list
 const userProfile = Social.getr(`${context.accountId}/profile`);
@@ -19,9 +20,6 @@ let isInBlockedList = (walletId) => {
   }
   return false;
 };
-
-//init State
-const hashtag = props.hashtag;
 
 if (!state || state.hashtag !== hashtag) {
   State.update({
@@ -65,7 +63,6 @@ if (state.feedIndex === 0) {
  */
 
 let WidgetCommentFeed = (props) => {
-  // console.log("props ", props);
   let index = {
     action: "comment",
     key: props.item,
@@ -120,7 +117,7 @@ let WidgetCommentFeed = (props) => {
  * Source: mob.near/widget/Mainpage.Feed
  * */
 let WidgetFeed = (props) => {
-  console.log("Following accounts: ", props.accounts);
+  //console.log("Following accounts: ", props.accounts);
   let index = {
     action: "post",
     key: "main",
