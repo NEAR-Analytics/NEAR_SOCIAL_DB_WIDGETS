@@ -1,6 +1,5 @@
 const accountId = props.accountId;
 if (props.isPostBlocked) return <></>;
-
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const content =
@@ -119,13 +118,21 @@ return (
             <i class="bi bi-send fs-4"></i>
           </button>
         </div>
-        <Widget
-          src="mob.near/widget/CommentButton"
-          props={{
-            onClick: () =>
-              !state.showReply && State.update({ showReply: true }),
-          }}
-        />
+        <div>
+          <Widget
+            src="mob.near/widget/CommentButton"
+            props={{
+              onClick: () =>
+                !state.showReply && State.update({ showReply: true }),
+            }}
+          />
+        </div>
+        <div>
+          <Widget
+            src="mob.near/widget/MainPage.Post.ShareButton"
+            props={{ accountId, blockHeight, postType: "post" }}
+          />
+        </div>
       </div>
     )}
     <div className="mt-3 ps-5">
