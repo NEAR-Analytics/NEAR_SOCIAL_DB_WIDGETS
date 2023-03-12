@@ -33,7 +33,7 @@ const bgPatterns = {
   "Future is NEAR": FUTURE_IS_NEAR,
 };
 
-const qrPayload = `https://${accountId.split(".near")[0]}.near.social/`;
+const qrPayload = `https://social.near.page/u/${accountId}`;
 
 const getNftUrl = (cid) => `https://${cid}.ipfs.nftstorage.link`;
 
