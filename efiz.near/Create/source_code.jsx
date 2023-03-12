@@ -14,6 +14,7 @@ State.init({
   brand: "",
   size: "",
   material: "",
+  img: null,
 });
 
 // START GET THE WIDGET COMMIT
@@ -40,7 +41,8 @@ const composeData = () => {
         brand: state.brand,
         size: state.size,
         material: state.material,
-        commit: blocksChanges[0]
+        commit: blocksChanges[0],
+        img: state.img ? `https://ipfs.near.social/ipfs/${state.img.cid}` : null
       }),
     },
     index: {
@@ -56,10 +58,74 @@ const composeData = () => {
   return data;
 };
 
+const handleImageUpload = (files) => {
+  if (files?.length > 0) {
+    State.update({
+      img: {
+        uploading: true,
+        cid: null,
+      },
+    });
+    const body = files[0];
+    State.update({
+      img: body,
+    });
+    asyncFetch("https://ipfs.near.social/add", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body,
+    }).then((res) => {
+      const cid = res.body.cid;
+
+      State.update({
+        img: {
+          cid,
+        },
+      });
+    });
+  } else {
+    State.update({
+      img: null,
+    });
+  }
+};
+
 return (
   <div>
     <h1 class="text-center">Thing</h1>
-
+    {state.img ? (
+      <img
+        class="rounded w-100 h-100"
+        style={{ objectFit: "cover" }}
+        src={`https://ipfs.near.social/ipfs/${state.img.cid}`}
+        alt="upload preview"
+      />
+    ) : (
+      null
+    )}
+    <Files
+      multiple={false}
+      accepts={["image/*"]}
+      minFileSize={1}
+      clickable
+      onChange={handleImageUpload}
+      style={{
+        cursor: "pointer",
+      }}
+      class="text-center d-flex justify-content-center align-items-center"
+    >
+      <div class="d-flex m-4 px-2 py-1 rounded bg-black text-white justify-content-center align-items-center">
+        {state.img?.uploading ? (
+          <>...</>
+        ) : state.img?.cid ? (
+          "Replace"
+        ) : (
+          "Take photo"
+        )}
+      </div>
+    </Files>
     <div class="input-group mb-3">
       <input
         class="form-control"
