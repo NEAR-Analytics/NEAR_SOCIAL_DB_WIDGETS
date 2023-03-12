@@ -8,4 +8,4 @@ if (homepage === null) {
   return "Loading";
 }
 
-return <Widget src="cuongdcdev.near/widget/WelcomePlus" />;
+return <Widget src="cuongdcdev.near/widget/WelcomePlus" props={props} />;
