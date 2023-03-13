@@ -118,7 +118,7 @@ const handleRepay = () => {
   };
 
   const repayTransaction = {
-    contractName: token_id,
+    contractName: selectedTokenId,
     methodName: "ft_transfer_call",
     deposit: new Big("1").toFixed(),
     gas: expandToken(300, 12),
@@ -131,7 +131,7 @@ const handleRepay = () => {
 
   if (storageToken?.available === "0" || !storageToken?.available) {
     transactions.push({
-      contractName: token_id,
+      contractName: selectedTokenId,
       methodName: "storage_deposit",
       deposit: expandToken(0.25, 24).toFixed(),
     });
