@@ -1,4 +1,5 @@
 const componentsUrl = "/#/calebjacob.near/widget/ComponentsPage";
+//bozon.near/widget/WidgetHistory
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,14 +81,6 @@ return (
           props={{ src: "frichard2.near/widget/most-active-contracts" }}
         />
       </Item>
-      /*
-      <Item>
-        <Widget
-          src="calebjacob.near/widget/ComponentCard"
-          props={{ src: "bozon.near/widget/WidgetHistory" }}
-        />
-      </Item>
-      */
     </Items>
   </Wrapper>
 );
