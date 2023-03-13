@@ -1,7 +1,8 @@
 State.init({
   input: "",
   url: "",
-  commentMap: "",
+  commentMap: [],
+  commentTextMap: [],
   onChange: ({ content }) => {
     State.update({ content });
   },
@@ -115,34 +116,66 @@ const composeData = () => {
 
 /* BEGIN CommentButton  */
 
-function startCommentTo(blockHeight) {
-  console.log(1);
-  let cm = JSON.parse(state.commentMap);
-  console.log(2);
-  if (!cm) cm = [];
-  console.log(3);
-  cm[blockHeight] = 1;
-  console.log(4);
-  State.update({ commentMap: JSON.stringify(cm) });
-  console.log(5);
-}
+const startCommentTo = (blockHeight) => {
+  console.log("startCommentTo");
+  // let cm = state.commentMap;
+  // if (!state.cm) [blockHeight]
+  state.commentMap[blockHeight] = 1;
+  State.update();
+  console.log(123);
+};
 
 const RenderCommentInput = (blockHeight) => {
-  console.log(21);
-  let cm = JSON.parse(state.commentMap);
-  return cm[blockHeight] == 1 ? (
-    <div>
-      <p>Comment</p>
+  console.log("RenderCommentInput");
+  let cm = state.commentMap;
+  return cm && cm[blockHeight] == 1 ? (
+    <div
+      style={{
+        margin: "10px 0px",
+      }}
+    >
       <textarea
         style={{
           backgroundColor: "rgb(230, 230, 230)",
           border: "1px solid #ced4da",
           borderRadius: "0.375rem",
+          width: "50%",
+          verticalAlign: "middle",
         }}
-        rows="1"
-        value={state.url}
+        rows="2"
+        value={state.commentTextMap[blockHeight]}
+        onChange={(e) => {
+          state.commentTextMap[blockHeight] = e.target.value;
+        }}
       />
-      <CommitButton style={button}>Comment</CommitButton>
+      <CommitButton
+        style={button}
+        data={{
+          index: {
+            kudo: JSON.stringify(
+              {
+                key: "commentAnswers",
+                value: {
+                  commentAnswer: state.commentTextMap[blockHeight],
+                  blockHeight: blockHeight,
+                },
+              },
+              undefined,
+              0
+            ),
+          },
+        }}
+        onCommit={() => {
+          let ctm = state.commentTextMap[blockHeight];
+          ctm[blockHeight] = null;
+          State.update({
+            commentTextMap: ctm,
+            reloadData: true,
+          });
+        }}
+      >
+        Comment 1
+      </CommitButton>
     </div>
   ) : (
     ""
@@ -285,15 +318,16 @@ return (
               <Widget
                 src="mob.near/widget/CommentButton"
                 props={{
-                  accountId: d.accountId,
-                  onClick: () => startCommentTo(d.blockHeight),
+                  onClick: () => {
+                    state.commentMap[Number(d.blockHeight)] = 1;
+                  },
                 }}
               />
               <Widget
                 src="mob.near/widget/FollowButton"
                 props={{ accountId: d.accountId }}
               />
-              {RenderCommentInput(d.blockHeight)}
+              {RenderCommentInput(Number(d.blockHeight))}
               <div>
                 <CommitButton
                   data={{
