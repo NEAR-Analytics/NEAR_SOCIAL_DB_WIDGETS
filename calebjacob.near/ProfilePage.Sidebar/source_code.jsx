@@ -244,7 +244,7 @@ return (
         {viewingOwnAccount ? (
           <a
             className="button button--primary"
-            href="/#/mob.near/widget/ProfileEditor"
+            href="/#/calebjacob.near/widget/ProfileEditor"
           >
             <i className="bi bi-pencil"></i>
             Edit Profile
