@@ -15,6 +15,7 @@ State.init({
   size: "",
   material: "",
   img: null,
+  message: "",
 });
 
 // START GET THE WIDGET COMMIT
@@ -42,7 +43,9 @@ const composeData = () => {
         size: state.size,
         material: state.material,
         commit: blocksChanges[0],
-        img: state.img ? `https://ipfs.near.social/ipfs/${state.img.cid}` : null
+        img: state.img
+          ? `https://ipfs.near.social/ipfs/${state.img.cid}`
+          : null,
       }),
     },
     index: {
@@ -92,6 +95,32 @@ const handleImageUpload = (files) => {
   }
 };
 
+const createThing = () => {
+  asyncFetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+      mutation {
+        things {
+          create(type: { name: { is: "Idea"} }) {
+            message
+          }
+        }
+      }
+  `,
+    }),
+  }).then((res) => {
+    const message = res.body?.message || res.body?.errors[0]?.message;
+
+    State.update({
+      message,
+    });
+  });
+};
+
 return (
   <div>
     <h1 class="text-center">Thing</h1>
@@ -102,9 +131,7 @@ return (
         src={`https://ipfs.near.social/ipfs/${state.img.cid}`}
         alt="upload preview"
       />
-    ) : (
-      null
-    )}
+    ) : null}
     <Files
       multiple={false}
       accepts={["image/*"]}
@@ -165,13 +192,15 @@ return (
         {state.material}
       </div>
     </div>
-    <CommitButton
+    {state.message}
+    <button onClick={createThing}>Create</button>
+    {/* <CommitButton
       disabled={false}
       force
       className="btn btn-dark rounded-3"
       data={composeData}
     >
       Create
-    </CommitButton>
+    </CommitButton> */}
   </div>
 );
