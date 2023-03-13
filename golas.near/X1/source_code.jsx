@@ -1,11 +1,3 @@
-return (
-  <div>
-    {props.x1}
-    <br />
-    {props.x2}
-    <br />
-    {calc(1, 12)}
-    <br />
-    {props.modules.c1}
-  </div>
-);
+const { calc } = require("golas.near/widget/Module-1");
+
+return <div>123321</div>;
