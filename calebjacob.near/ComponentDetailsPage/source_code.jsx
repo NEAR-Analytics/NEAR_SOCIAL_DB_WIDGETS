@@ -1,6 +1,6 @@
 State.init({
   copiedShareUrl: false,
-  selectedTab: props.tab ?? "about",
+  selectedTab: props.tab ?? "source",
 });
 
 if (props.tab && props.tab !== state.selectedTab) {
@@ -13,8 +13,8 @@ const src = props.src;
 const [accountId, widget, widgetName] = src.split("/");
 const existsData = Social.keys(`${accountId}/widget/${widgetName}`);
 const exists = !existsData || Object.keys(existsData).length > 0;
+const code = Social.get(`${accountId}/widget/${widgetName}`);
 const data = Social.get(`${accountId}/widget/${widgetName}/**`);
-const code = data[""];
 const metadata = data.metadata;
 const tags = Object.keys(metadata.tags || {});
 const detailsUrl = `/#/calebjacob.near/widget/ComponentDetailsPage?src=${src}`;
@@ -175,7 +175,7 @@ const HistoryContainer = styled.div`
 if (!exists) {
   return (
     <>
-      <Title>Error</Title>
+      <Text bold>Error</Text>
       <Text>Could not find: {src}</Text>
     </>
   );
