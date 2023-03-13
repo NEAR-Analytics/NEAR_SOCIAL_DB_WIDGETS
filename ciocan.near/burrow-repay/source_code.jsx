@@ -45,9 +45,7 @@ let apy = 0;
 const getBalance = (asset) => {
   if (!asset) return 0;
   const { token_id, accountBalance, metadata } = asset;
-  return formatToken(
-    shrinkToken(accountBalance, metadata.decimals).toFixed()
-  ).toString();
+  return formatToken(shrinkToken(accountBalance, metadata.decimals).toFixed());
 };
 
 const getApy = (asset) => {
@@ -91,8 +89,66 @@ const handleAmount = (e) => {
 };
 
 const handleRepay = () => {
-  console.log("handleRepay", account);
+  const asset = assets.find((a) => a.token_id === selectedTokenId);
+
   if (!selectedTokenId || !amount || hasError) return;
+
+  if (amount > availableBalance) {
+    State.update({ selectedTokenId, amount, hasError: true });
+    return;
+  }
+  const transactions = [];
+
+  const expandedAmount = expandToken(
+    amount,
+    asset.metadata.decimals + asset.config.extra_decimals
+  );
+
+  const repayTemplate = {
+    Execute: {
+      actions: [
+        {
+          Repay: {
+            max_amount: expandedAmount.toFixed(0),
+            token_id: selectedTokenId,
+          },
+        },
+      ],
+    },
+  };
+
+  const repayTransaction = {
+    contractName: token_id,
+    methodName: "ft_transfer_call",
+    deposit: new Big("1").toFixed(),
+    gas: expandToken(300, 12),
+    args: {
+      receiver_id: BURROW_CONTRACT,
+      amount: expandedAmount.toFixed(0),
+      msg: JSON.stringify(repayTemplate),
+    },
+  };
+
+  if (storageToken?.available === "0" || !storageToken?.available) {
+    transactions.push({
+      contractName: token_id,
+      methodName: "storage_deposit",
+      deposit: expandToken(0.25, 24).toFixed(),
+    });
+  }
+
+  if (storageBurrow?.available === "0" || !storageBurrow?.available) {
+    transactions.push({
+      contractName: BURROW_CONTRACT,
+      methodName: "storage_deposit",
+      deposit: expandToken(0.25, 24).toFixed(),
+      gas: expandToken(140, 12),
+    });
+  }
+
+  transactions.push(repayTransaction);
+
+  Near.call(transactions);
 };
 
 return (
