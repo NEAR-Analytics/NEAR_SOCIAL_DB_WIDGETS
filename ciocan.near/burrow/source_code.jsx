@@ -62,6 +62,17 @@ if (!state.actionList) {
   State.update({ actionList: "assets" });
 }
 
+const tabContents = () => {
+  switch (state.actionTabs) {
+    case "borrow":
+      return <Widget src="ciocan.near/widget/burrow-borrow" />;
+    case "deposit":
+      return <Widget src="ciocan.near/widget/burrow-deposit" />;
+    case "repay":
+      return <Widget src="ciocan.near/widget/burrow-repay" />;
+  }
+};
+
 return (
   <Container>
     <Nav>
@@ -127,12 +138,20 @@ return (
           <label class="btn btn-outline-primary" for="borrow">
             Borrow
           </label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradioaction"
+            id="repay"
+            autocomplete="off"
+            checked={state.actionTabs === "repay"}
+            onClick={() => State.update({ actionTabs: "repay" })}
+          />
+          <label class="btn btn-outline-primary" for="repay">
+            Repay
+          </label>
         </div>
-        {state.actionTabs === "borrow" ? (
-          <Widget src="ciocan.near/widget/burrow-borrow" />
-        ) : (
-          <Widget src="ciocan.near/widget/burrow-deposit" />
-        )}
+        {tabContents()}
         <div class="mt-4">
           <Widget src="ciocan.near/widget/burrow-rewards" />
         </div>
