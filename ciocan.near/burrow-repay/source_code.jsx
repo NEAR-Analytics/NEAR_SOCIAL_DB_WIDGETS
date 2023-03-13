@@ -44,7 +44,7 @@ let apy = 0;
 
 const getBalance = (asset) => {
   if (!asset) return 0;
-  const { token_id, accountBalance, metadata } = asset;
+  const { accountBalance, metadata } = asset;
   return formatToken(shrinkToken(accountBalance, metadata.decimals).toFixed());
 };
 
