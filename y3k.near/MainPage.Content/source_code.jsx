@@ -15,6 +15,10 @@ const options = [
   {
     title: "Latest",
   },
+  {
+    title: "NEAR Atlas",
+    hashtag: "nearatlas",
+  },
 ];
 
 if (hashtag) {
