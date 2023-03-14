@@ -61,9 +61,9 @@ return (
       ))}
     </ul>
     {state.feedIndex === 2 ? (
-      <Widget src="mob.near/widget/Hashtag.Feed" props={{ hashtag }} />
+      <Widget src="y3k.near/widget/Hashtag.Feed" props={{ hashtag }} />
     ) : (
-      <Widget src="mob.near/widget/MainPage.Feed" props={{ accounts }} />
+      <Widget src="y3k.near/widget/MainPage.Feed" props={{ accounts }} />
     )}
   </>
 );
