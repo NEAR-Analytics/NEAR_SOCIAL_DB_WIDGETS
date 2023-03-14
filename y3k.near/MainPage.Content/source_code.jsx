@@ -1,4 +1,8 @@
-const hashtag = props.hashtag;
+let hashtag = props.hashtag;
+
+if (!hashtag) {
+  hashtag = "nearatlas";
+}
 
 if (!state || state.hashtag !== hashtag) {
   State.update({
@@ -9,7 +13,7 @@ if (!state || state.hashtag !== hashtag) {
 
 const options = [
   {
-    title: "Exploring",
+    title: "Following",
     disabled: !context.accountId,
   },
   {
