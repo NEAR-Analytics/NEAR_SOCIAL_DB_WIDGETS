@@ -15,14 +15,17 @@ const options = [
   {
     title: "Latest",
   },
-  {
-    title: "NEAR Atlas",
-  },
 ];
 
-if (hashtag) {
+if (hashtag != "nearatlas") {
   options.push({
     title: `#${hashtag}`,
+  });
+}
+
+if (hashtag == "nearatlas") {
+  options.push({
+    title: `NEAR Atlas`,
   });
 }
 
