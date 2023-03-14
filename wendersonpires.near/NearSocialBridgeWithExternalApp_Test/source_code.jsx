@@ -10,7 +10,9 @@ const code = `
 <div>Results: <pre id="res" /></div>
 
 <script>
+    console.log(window.history);
     window.top.postMessage({type: "history-push-state", payload: { path: "?r=/home" }}, "*");
+    localStorage.set("Test:", "meu valor teste")
     // window.history.pushState({}, "", "?r=/home");
     // window.top.postMessage("loaded", "*");
     // window.addEventListener("message", (event) => {
@@ -27,9 +29,7 @@ const code = `
 </script>
 `;
 
-console.log("Props", props);
-
-window.history.pushState({}, "Page 2", "/page3.html");
+// window.history.pushState({}, "Page 2", "/page3.html");
 
 const historyPushState = (newUrlState) => {
   //   console.log(window.parent);
