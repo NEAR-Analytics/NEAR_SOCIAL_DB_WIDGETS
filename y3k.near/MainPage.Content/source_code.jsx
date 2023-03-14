@@ -17,15 +17,9 @@ const options = [
   },
 ];
 
-if (hashtag != "nearatlas") {
+if (hashtag) {
   options.push({
     title: `#${hashtag}`,
-  });
-}
-
-if (hashtag == "nearatlas") {
-  options.push({
-    title: `NEAR Atlas`,
   });
 }
 
