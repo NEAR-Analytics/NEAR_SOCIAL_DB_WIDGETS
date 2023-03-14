@@ -27,10 +27,12 @@ const code = `
 </script>
 `;
 
-console.log(props);
+console.log("Props", props);
+
+window.history.pushState({}, "Page 2", "/page3.html");
 
 const historyPushState = (newUrlState) => {
-  console.log(window.parent);
+  //   console.log(window.parent);
 };
 
 const processMessage = (message) => {
