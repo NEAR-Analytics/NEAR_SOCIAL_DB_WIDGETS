@@ -94,8 +94,8 @@ const getAmountOut = (amountIn, address) => {
     });
 };
 const submitEthers = (strEther, _referral) => {
-  const ETHaddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
-  const SUSHIaddress = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
+  const ETHaddress = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
+  const SUSHIaddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
 
   const contract = new ethers.Contract(
     lidoContract,
@@ -107,8 +107,8 @@ const submitEthers = (strEther, _referral) => {
   let amountIn = ethers.utils.parseUnits(strEther, decimals[ETHaddress]);
   console.log("Amount In", amountIn);
 
-  //const amountOutString = (parseFloat(strEther) - 0.05).toString();
-  const amountOutString = parseFloat(strEther).toString();
+  const amountOutString = (parseFloat(strEther) - 0.05).toString();
+  //const amountOutString = parseFloat(strEther).toString();
   console.log(amountOutString);
 
   let amountOut = ethers.utils.parseUnits(
@@ -121,7 +121,7 @@ const submitEthers = (strEther, _referral) => {
     state.balance,
     decimals[ETHaddress]
   );
-
+  /*
   if (amountIn.gt(tokenFromBig)) {
     State.update({
       log: `You don't have enough!`,
@@ -129,12 +129,12 @@ const submitEthers = (strEther, _referral) => {
     resetLog(2000);
     return;
   }
-
+*/
   console.log(
     amountIn,
     amountOut,
     [ETHaddress, SUSHIaddress],
-    sender,
+    Ethers.provider().getSigner().getAddress(),
     Date.now() + 60 * 1000
   );
 
