@@ -121,7 +121,7 @@ return (
               disabled={!props.state.sender}
               class="LidoStakeFormInputContainerSpan2Input"
               value={props.state.tokenAmount}
-              onChange={(e) => props.updator({ tokenAmount: e.target.value })}
+              onChange={(e) => props.updator(e.target.value)}
               placeholder="Amount"
             />
           </span>
