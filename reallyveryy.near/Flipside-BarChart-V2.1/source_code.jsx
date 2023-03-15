@@ -27,9 +27,9 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
   let chartValues = "[";
 
   // parsing of data from flipside
-  if (queryResults !== "") {
+  if (queryResults !== 0) {
     // parsing of labels
-    queryResults.rows.map((d, i) => {
+    queryResults.map((d, i) => {
       if (i !== 0) {
         chartBottomAxisLabels += ",";
         chartValues += ",";
