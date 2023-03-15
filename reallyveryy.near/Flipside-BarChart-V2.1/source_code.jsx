@@ -19,6 +19,10 @@ const options = {
 };
 
 if (state.currentQuery != props.query) {
+  State.update({
+    currentQuery: props.query,
+  });
+
   asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
     let queryResults = res.body;
 
