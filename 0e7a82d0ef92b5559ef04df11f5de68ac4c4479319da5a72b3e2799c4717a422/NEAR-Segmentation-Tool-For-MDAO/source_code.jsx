@@ -201,7 +201,7 @@ let stakeChartProps = {
     from
       de_dupe_resigners
     WHERE
-      block_timestamp BETWEEN '2023-01-01' and '2023-02-01'
+      block_timestamp BETWEEN '$$(dateStart)' and '$$(dateEnd)'
   ),
   data_table as (
     select
@@ -238,6 +238,84 @@ order by
   chartHeight: 200,
 };
 
+let nearSocialChartProps = {
+  queryTemplate: `with
+  social_inits as (
+    select
+      *
+    from
+      near.core.fact_actions_events_addkey
+    where
+      receiver_id = 'social.near'
+  ),
+  add_signer as (
+    select
+      k.tx_hash,
+      k.block_id,
+      k.block_timestamp,
+      t.tx_signer,
+      k.allowance,
+      t.tx_signer = t.tx_receiver
+    from
+      social_inits k
+      left join near.core.fact_transactions t using (tx_hash)
+  ),
+  de_dupe_resigners as (
+    select
+      block_timestamp,
+      tx_signer
+    from
+      add_signer
+    qualify
+      ROW_NUMBER() over (
+        PARTITION BY
+          tx_signer
+        ORDER BY
+          block_timestamp ASC
+      ) = 1
+  ),
+  interested_addresses as (
+    select
+      tx_signer
+    from
+      de_dupe_resigners
+    WHERE
+      block_timestamp BETWEEN '$$(dateStart)' and '$$(dateEnd)'
+  ),
+  data_table as (
+    select
+      substr(date_trunc('month', t.block_timestamp), 0, 10) as day_date,
+      ia.tx_signer,
+      count(1) as num_actions
+    from
+      interested_addresses ia
+      left join near.social.fact_decoded_actions t on ia.tx_signer = t.signer_id
+    group by
+      1,
+      2
+  ),
+  final as (
+    select
+      day_date,
+      sum(num_actions) as net_actions
+    from
+      data_table
+    WHERE
+      len(day_date) > 0
+    group by
+      1
+  )
+select
+  *
+from
+  final
+order by
+  1`,
+  title: "Near Social Activity",
+  chartWidth: 640,
+  chartHeight: 200,
+};
+
 // bypass because server cannot handle newline..
 mainChartProps.query = mainChartProps.query.replaceAll("\n", " ");
 ageChartProps.query = ageChartProps.queryTemplate
@@ -250,6 +328,10 @@ stakeChartProps.query = stakeChartProps.queryTemplate
   .replace("$$(dateEnd)", state.dateEnd)
   .replaceAll("\n", " ");
 
+nearSocialChartProps.query = nearSocialChartProps.queryTemplate
+  .replace("$$(dateStart)", state.dateStart)
+  .replace("$$(dateEnd)", state.dateEnd)
+  .replaceAll("\n", " ");
 //console.log("new", stakeChartProps.query);
 
 const Button = styled.button`
@@ -289,6 +371,10 @@ function goButtonPressed() {
     .replace("$$(dateEnd)", state.tmpEnd)
     .replaceAll("\n", " ");
   stakeChartProps.query = stakeChartProps.queryTemplate
+    .replace("$$(dateStart)", state.dateStart)
+    .replace("$$(dateEnd)", state.dateEnd)
+    .replaceAll("\n", " ");
+  nearSocialChartProps.query = nearSocialChartProps.queryTemplate
     .replace("$$(dateStart)", state.dateStart)
     .replace("$$(dateEnd)", state.dateEnd)
     .replaceAll("\n", " ");
@@ -336,13 +422,13 @@ return (
         props={stakeChartProps}
       />
     </div>
-    <div>Average Amount Staked</div>
-    <div>Average Number of Times Staked</div>
     <div>
-      What % of users bridged assets into NEAR vs using a centralized exchange,
-      which bridges & centralized exchanges are most popular.
+      {" "}
+      <Widget
+        src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
+        props={nearSocialChartProps}
+      />
     </div>
-    <div>NEAR Social Activity</div>
     <div>DEX Swaps</div>
   </div>
 );
