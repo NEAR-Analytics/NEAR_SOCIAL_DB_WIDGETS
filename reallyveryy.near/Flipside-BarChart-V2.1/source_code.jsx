@@ -63,7 +63,7 @@ if (state.currentQuery != props.query) {
     }
   });
 }
-console.log(state.currentQuery, props.query);
+console.log(state.currentQuery != props.query);
 return (
   <>
     {state.currentQuery != props.query ? (
