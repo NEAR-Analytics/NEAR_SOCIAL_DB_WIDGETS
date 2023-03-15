@@ -66,7 +66,7 @@ from
 };
 
 let ageChartProps = {
-  query: `with
+  queryTemplate: `with
   social_inits as (
     select
       *
@@ -107,7 +107,7 @@ let ageChartProps = {
     from
       de_dupe_resigners
     WHERE
-      block_timestamp BETWEEN '2022-01-01' and '2022-06-01'
+      block_timestamp BETWEEN '$$(dateStart)' and '$$(dateEnd)'
   ),
   first_tx_table as (
     select
@@ -159,9 +159,12 @@ from
 
 // bypass because server cannot handle newline..
 mainChartProps.query = mainChartProps.query.replaceAll("\n", " ");
-ageChartProps.query = ageChartProps.query.replaceAll("\n", " ");
+ageChartProps.query = ageChartProps.queryTemplate
+  .replace("$$(dateStart)", state.dateStart)
+  .replace("$$(dateEnd)", state.dateEnd)
+  .replaceAll("\n", " ");
 
-// console.log(ageChartProps.query);
+console.log("new", ageChartProps.query);
 /*
 - age of wallets
 - Staking history, average amount staked, average number of times staking
@@ -196,6 +199,13 @@ function updateEnd(value) {
   });
 }
 
+function goButtonPressed() {
+  ageChartProps.query = ageChartProps.queryTemplate
+    .replace("$$(dateStart)", state.dateStart)
+    .replace("$$(dateEnd)", state.dateEnd)
+    .replaceAll("\n", " ");
+}
+
 return (
   <div>
     <h2>NEAR - Segmentation Tool</h2>
@@ -208,24 +218,24 @@ return (
       props={mainChartProps}
     />
     <div>
-      Date Start
+      <hr />
+      <h4>Select the Period that you're interested in</h4>
+      <b>Date Start</b>
       <input
         id="1"
         type="date"
-        value={dateStart}
+        value={state.dateStart}
         onChange={({ target: { value } }) => updateStart(value)}
       />
-      Date End
+      <b>Date End</b>
       <input
         id="1"
         type="date"
-        value={dateEnd}
+        value={state.dateEnd}
         onChange={({ target: { value } }) => updateEnd(value)}
       />
     </div>
-    <a href="https://www.google.com" target="_blank">
-      Go
-    </a>
+    <Button>Go</Button>
     <div>
       <h4>Age of Wallets</h4>
       <Widget
