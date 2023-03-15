@@ -48,8 +48,6 @@ const chartProps = {
   columnValue,
 };
 
-console.log({ sql });
-
 return (
   <div style={{ height: 800, width: 1000 }}>
     <Widget
