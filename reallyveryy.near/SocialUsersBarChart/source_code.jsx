@@ -48,11 +48,15 @@ const chartProps = {
   columnValue,
 };
 
+if (state.sql != sql) {
+  State.update({ sql, chartProps });
+}
+
 return (
   <div style={{ height: 800, width: 1000 }}>
     <Widget
       src="reallyveryy.near/widget/Flipside-BarChart-V2.1"
-      props={chartProps}
+      props={state.chartProps}
     />
   </div>
 );
