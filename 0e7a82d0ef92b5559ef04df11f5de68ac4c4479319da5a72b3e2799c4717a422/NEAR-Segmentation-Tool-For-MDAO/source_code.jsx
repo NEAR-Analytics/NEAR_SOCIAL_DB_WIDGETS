@@ -1,13 +1,15 @@
 State.init({
   retriggerQuery: false,
+  mainQuery: "",
   tmpStart: "2023-01-01",
   tmpEnd: "2023-02-01",
   dateStart: "2023-01-01",
   dateEnd: "2023-02-01",
+  dexSwapChartProps: { dateStart: "2023-01-01", dateEnd: "2023-02-01" },
 });
+
 let mainChartProps = {
-  query: `
-    with
+  query: `with
   social_inits as (
     select
       *
@@ -60,8 +62,7 @@ let mainChartProps = {
 select
   *
 from
-  final
-`,
+  final`,
   title: "New Wallets Over Time",
   chartWidth: 640,
   chartHeight: 200,
@@ -332,6 +333,7 @@ nearSocialChartProps.query = nearSocialChartProps.queryTemplate
   .replace("$$(dateStart)", state.dateStart)
   .replace("$$(dateEnd)", state.dateEnd)
   .replaceAll("\n", " ");
+
 //console.log("new", stakeChartProps.query);
 
 const Button = styled.button`
@@ -365,6 +367,10 @@ function goButtonPressed() {
   State.update({
     dateStart: state.tmpStart,
     dateEnd: state.tmpEnd,
+    dexSwapChartProps: {
+      dateStart: state.tmpStart,
+      dateEnd: state.tmpEnd,
+    },
   });
   ageChartProps.query = ageChartProps.queryTemplate
     .replace("$$(dateStart)", state.tmpStart)
@@ -423,12 +429,16 @@ return (
       />
     </div>
     <div>
-      {" "}
       <Widget
         src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
         props={nearSocialChartProps}
       />
     </div>
-    <div>DEX Swaps</div>
+    <div>
+      <Widget
+        src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/NEAR-Segment-DEXSWAP"
+        props={state.dexSwapChartProps}
+      />
+    </div>
   </div>
 );
