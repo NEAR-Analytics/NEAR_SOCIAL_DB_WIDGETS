@@ -56,8 +56,8 @@ from
   final
 `,
   title: "Monthly fact_profile_changes",
-  chartHeight: 800,
-  chartWidth: 600,
+  chartWidth: 800,
+  chartHeight: 600,
 };
 
 // bypass because server cannot handle newline..
