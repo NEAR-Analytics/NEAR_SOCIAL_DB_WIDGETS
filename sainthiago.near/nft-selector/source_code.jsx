@@ -67,7 +67,7 @@ return (
         <div
           key={`${nft.contractId}-${nft.tokenId}-${index}`}
           role="button"
-          style={{ width: "15%" }}
+          style={{ width: "15%", aspectRatio: "1/1" }}
           onClick={() => {
             State.update({ contractId: nft.contractId, tokenId: nft.tokenId });
           }}
