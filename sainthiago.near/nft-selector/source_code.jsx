@@ -25,7 +25,7 @@ const data = fetch("https://graph.mintbase.xyz", {
       tokenId: token_id
       contractId: nft_contract_id
       media
-    }
+    }}
 `,
   }),
 });
