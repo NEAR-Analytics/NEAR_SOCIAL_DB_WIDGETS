@@ -4,7 +4,7 @@ State.init({
 
 let { query } = props;
 var formBody = [];
-formBody.push(`statement=${sql}`);
+formBody.push(`statement=${query}`);
 formBody = formBody.join("&");
 
 // Query API
