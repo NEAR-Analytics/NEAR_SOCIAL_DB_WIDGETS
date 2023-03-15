@@ -1,3 +1,5 @@
+// DO NOT USE IT. IT'S NOT WORKING
+
 const requestHandlers = props.requestHandlers || []; // [["get-updated-user-info", sendUpdatedUserInfo]]
 const externalAppURL = props.externalAppURL; // string
 const initialPayload = props.initialPayload || {}; // object (optional)
@@ -10,17 +12,12 @@ const sendMessage = (message) => {
 // ON MESSAGE HANDLER: On get message handler (from the External App)
 const onMessageHandler = (message) => {
   console.log("debug:", message);
+  // NOTE: Doesn't work because it's not possible to send function as prop
   const handler = requestHandlers.find((handler) => handle[0] === message.type);
   if (handler) {
     // Call method handler
     handler[1](message.type, message.payload);
   }
-
-  //   switch (message.type) {
-  //     case "get-updated-user-info":
-  //       sendUpdatedUserInfo(message.type, message.payload);
-  //       break;
-  //   }
 };
 
 // CONNECTION: connection request
