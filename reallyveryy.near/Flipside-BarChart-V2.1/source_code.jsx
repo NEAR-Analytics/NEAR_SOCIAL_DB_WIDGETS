@@ -30,15 +30,15 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
     // parsing of labels
     let currentRows = [];
     queryResults.map((d, i) => {
+      if (currentRows.includes(d[rowValue])) {
+        return; // no duplicates
+      }
+
       if (i !== 0) {
         chartBottomAxisLabels += ",";
         chartValues += ",";
       } else {
         chartValues += `{label: '${props.title}', data:[`;
-      }
-
-      if (currentRows.includes(d[rowValue])) {
-        return; // no duplicates
       }
 
       currentRows.push(d[rowValue]);
