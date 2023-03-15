@@ -1,4 +1,9 @@
-let chart4Props = {
+State.init({
+  retriggerQuery: false,
+  dateStart: "2023-01-01",
+  dateEnd: "2023-02-01",
+});
+let mainChartProps = {
   query: `
     with
   social_inits as (
@@ -153,10 +158,10 @@ from
 };
 
 // bypass because server cannot handle newline..
-chart4Props.query = chart4Props.query.replaceAll("\n", " ");
+mainChartProps.query = mainChartProps.query.replaceAll("\n", " ");
 ageChartProps.query = ageChartProps.query.replaceAll("\n", " ");
 
-console.log(ageChartProps.query);
+// console.log(ageChartProps.query);
 /*
 - age of wallets
 - Staking history, average amount staked, average number of times staking
@@ -165,22 +170,62 @@ console.log(ageChartProps.query);
 - NEAR Social Activity
 */
 
+const Button = styled.button`
+  /* Adapt the colors based on primary prop */
+  background: ${(props) => (props.primary ? "palevioletred" : "white")};
+  color: ${(props) => (props.primary ? "white" : "palevioletred")};
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 10px;
+`;
+
+function updateStart(value) {
+  console.log("start", value);
+  State.update({
+    dateStart: value,
+  });
+}
+
+function updateEnd(value) {
+  console.log("end", value);
+  State.update({
+    dateEnd: value,
+  });
+}
+
 return (
   <div>
     <h2>NEAR - Segmentation Tool</h2>
     <div>
       Bounty Question: Create a segmentation tool to help us understand the NEAR
-      profiles of new users on Near.social. The intention is to allow users to
-      select a new group of Near users based on when they joined then look at
-      that group of users wallet behavior
+      profiles of new users on Near.social.
     </div>
     <Widget
       src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
-      props={chart4Props}
+      props={mainChartProps}
     />
-    <div>Date Start</div>
-    <div>Date End</div>
-    <div>Go</div>
+    <div>
+      Date Start
+      <input
+        id="1"
+        type="date"
+        value={dateStart}
+        onChange={({ target: { value } }) => updateStart(value)}
+      />
+      Date End
+      <input
+        id="1"
+        type="date"
+        value={dateEnd}
+        onChange={({ target: { value } }) => updateEnd(value)}
+      />
+    </div>
+    <a href="https://www.google.com" target="_blank">
+      Go
+    </a>
     <div>
       <h4>Age of Wallets</h4>
       <Widget
