@@ -2,7 +2,7 @@ State.init({
   imgSrc: "",
 });
 
-let { sql } = props;
+let { query } = props;
 var formBody = [];
 formBody.push(`statement=${sql}`);
 formBody = formBody.join("&");
@@ -13,7 +13,7 @@ const options = {
   body: formBody,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    "Content-Type": "application/x-www-form-furlencoded;charset=UTF-8",
   },
 };
 
