@@ -269,7 +269,7 @@ const swapTokens = () => {
     .swapExactTokensForTokens(
       amountIn,
       amountOut,
-      routes,
+      [state.tokenFrom, state.tokenTo],
       sender,
       Date.now() + 60 * 1000
     )
