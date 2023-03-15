@@ -28,7 +28,7 @@ return (
       </div>
 
       <div class="LidoForm">
-        {props.sender && (
+        {props.state.sender && (
           <>
             <div class="LidoFormTopContainer">
               <div class="LidoFormTopContainerLeft">
