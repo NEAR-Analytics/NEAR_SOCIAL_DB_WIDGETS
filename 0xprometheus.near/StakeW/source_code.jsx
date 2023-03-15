@@ -128,9 +128,7 @@ return (
           <span
             class="LidoStakeFormInputContainerSpan3"
             onClick={() =>
-              props.updator({
-                tokenAmount: parseFloat(props.state.balance).toFixed(2),
-              })
+              props.updator(parseFloat(props.state.balance).toFixed(2))
             }
           >
             <button
