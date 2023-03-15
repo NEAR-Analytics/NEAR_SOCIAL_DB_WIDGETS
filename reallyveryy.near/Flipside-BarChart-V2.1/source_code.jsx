@@ -1,5 +1,6 @@
 State.init({
   imgSrc: "",
+  currentQuery: "",
 });
 
 let { query, rowValue, columnValue } = props;
@@ -56,12 +57,17 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
     const imgTemplate = `https://quickchart.io/chart?width=${props.chartWidth}&height=${props.chartHeight}&chart={type:${chartType},data:{labels:${chartBottomAxisLabels}, datasets:${chartValues}}}`;
     State.update({
       imgSrc: imgTemplate,
+      query: props.query,
     });
   }
 });
 
 return (
   <>
-    {state.imgSrc === "" ? <div>Loading ...</div> : <img src={state.imgSrc} />}
+    {state.currentQuery != props.query ? (
+      <div>Loading ...</div>
+    ) : (
+      <img src={state.imgSrc} />
+    )}
   </>
 );
