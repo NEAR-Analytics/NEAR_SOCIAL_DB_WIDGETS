@@ -1,5 +1,7 @@
 State.init({
   retriggerQuery: false,
+  tmpStart: "2023-01-01",
+  tmpEnd: "2023-02-01",
   dateStart: "2023-01-01",
   dateEnd: "2023-02-01",
 });
@@ -60,7 +62,7 @@ select
 from
   final
 `,
-  title: "Near Social - New Authorizers Over Time",
+  title: "New Wallets Over Time",
   chartWidth: 640,
   chartHeight: 200,
 };
@@ -164,14 +166,7 @@ ageChartProps.query = ageChartProps.queryTemplate
   .replace("$$(dateEnd)", state.dateEnd)
   .replaceAll("\n", " ");
 
-console.log("new", ageChartProps.query);
-/*
-- age of wallets
-- Staking history, average amount staked, average number of times staking
-- DEX swaps
-- What % of users bridged assets into NEAR vs using a centralized exchange, which bridges & centralized exchanges are most popular.
-- NEAR Social Activity
-*/
+//console.log("new", ageChartProps.query);
 
 const Button = styled.button`
   /* Adapt the colors based on primary prop */
@@ -188,21 +183,26 @@ const Button = styled.button`
 function updateStart(value) {
   console.log("start", value);
   State.update({
-    dateStart: value,
+    tmpStart: value,
   });
 }
 
 function updateEnd(value) {
   console.log("end", value);
   State.update({
-    dateEnd: value,
+    tmpEnd: value,
   });
 }
 
 function goButtonPressed() {
+  console.log("hit");
+  State.update({
+    dateStart: state.tmpStart,
+    dateEnd: state.tmpEnd,
+  });
   ageChartProps.query = ageChartProps.queryTemplate
-    .replace("$$(dateStart)", state.dateStart)
-    .replace("$$(dateEnd)", state.dateEnd)
+    .replace("$$(dateStart)", state.tmpStart)
+    .replace("$$(dateEnd)", state.tmpEnd)
     .replaceAll("\n", " ");
 }
 
@@ -219,25 +219,24 @@ return (
     />
     <div>
       <hr />
-      <h4>Select the Period that you're interested in</h4>
+      <h4>Select the Interval in which users joined near.social...</h4>
       <b>Date Start</b>
       <input
         id="1"
         type="date"
-        value={state.dateStart}
+        value={state.tmpStart}
         onChange={({ target: { value } }) => updateStart(value)}
       />
       <b>Date End</b>
       <input
         id="1"
         type="date"
-        value={state.dateEnd}
+        value={state.tmpEnd}
         onChange={({ target: { value } }) => updateEnd(value)}
       />
     </div>
-    <Button>Go</Button>
+    <Button onClick={() => goButtonPressed()}>Go</Button>
     <div>
-      <h4>Age of Wallets</h4>
       <Widget
         src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
         props={ageChartProps}
