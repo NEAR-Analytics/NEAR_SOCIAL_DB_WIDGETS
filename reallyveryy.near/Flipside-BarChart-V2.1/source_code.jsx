@@ -3,6 +3,7 @@ State.init({
 });
 
 let { query, rowValue, columnValue } = props;
+console.log({ rowValue, columnValue });
 var formBody = [];
 formBody.push(`statement=${query}`);
 formBody = formBody.join("&");
@@ -24,7 +25,7 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
   const chartType = `"bar"`;
   let chartBottomAxisLabels = "[";
   let chartValues = "[";
-  2;
+
   // parsing of data from flipside
   if (queryResults !== "") {
     // parsing of labels
