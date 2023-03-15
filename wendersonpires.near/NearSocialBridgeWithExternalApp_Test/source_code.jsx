@@ -1,78 +1,68 @@
-State.init({
-  externalAppMessage: "",
-});
+// SETUP: [Navigation] Get URL params
+const urlParams = props.r;
 
-const accountId = props.accountId ?? context.accountId ?? "*";
-const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
-
-const code = `
-<div>Expression: <pre id="exp" /></div>
-<div>Results: <pre id="res" /></div>
-
-<script>
-    console.log(window.history);
-    window.top.postMessage({type: "history-push-state", payload: { path: "?r=/home" }}, "*");
-    localStorage.set("Test:", "meu valor teste")
-    // window.history.pushState({}, "", "?r=/home");
-    // window.top.postMessage("loaded", "*");
-    // window.addEventListener("message", (event) => {
-    //     const data = event.data
-    //     document.getElementById("exp").innerHTML = JSON.stringify(data);
-    //     try {
-    //         const result = eval(data.exp);
-    //         document.getElementById("res").innerHTML = result;
-    //         event.source.postMessage(result, "*");
-    //     } catch (e) {
-    //         // ignore
-    //     }
-    // }, false);
-</script>
-`;
-
-// window.history.pushState({}, "Page 2", "/page3.html");
-
-const historyPushState = (newUrlState) => {
-  //   console.log(window.parent);
+// SETUP: message sender (it will re-send the message to the iframe source)
+const sendMessage = (message) => {
+  State.update({ currentMessage: message });
 };
 
-const processMessage = (message) => {
-  if (message.type === "history-push-state") {
-    historyPushState(message.payload.path);
+// SETUP: Answer Factory
+const buildAnswer = (requestType, payload) => {
+  return {
+    type: "answer",
+    requestType,
+    payload,
+  };
+};
+
+// SETUP: Connect Payload data sent once the connection is established
+const accountId = props.accountId ?? context.accountId ?? "*";
+const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
+const welcomePayload = {
+  type: "connect",
+  // optional
+  payload: {
+    urlParams,
+    accountId,
+    ipfsCidAvatar: profileInfo.image?.ipfs_cid,
+    msg: "Hello from Near Social View :D" + Math.random() * 1000,
+  },
+};
+
+// SETUP: Set initial state
+State.init({ currentMessage: welcomePayload });
+
+// SETUP: On message handler. On get message handler (from the External App)
+const onMessageHandler = (message) => {
+  console.log(message);
+  switch (message.type) {
+    case "get-updated-user-info":
+      sendUpdatedUserInfo(message.type, message.payload);
+      break;
   }
 };
 
-return (
-  <div>
-    <iframe
-      className="w-50 border"
-      srcDoc={code}
-      message={{ exp: state.text || "" }}
-      onMessage={(res1) => processMessage(res1)}
-    />
-  </div>
-);
+// SETUP: Custom Handlers Below
+
+// Request: get updated user info
+const sendUpdatedUserInfo = (requestType, payload) => {
+  const updatedUserInfo = buildAnswer(requestType, {
+    accountId,
+    profileInfo,
+  });
+  sendMessage(updatedUserInfo);
+};
 
 return (
-  <div>
-    <iframe
-      className="w-100"
-      style={{ height: "600px" }}
-      // My external app
-      src="https://satori-hq.github.io/near-social-bridge-temp/"
-      // Data the Near Social View is going to send to my External App
-      message={{
-        accountId,
-        ipfsCidAvatar: profileInfo.image?.ipfs_cid,
-        msg: "Hello from Near Social View :D",
-      }}
-      // When my external app send a message back to the NS View
-      onMessage={(m) => {
-        State.update({ externalAppMessage: m });
-      }}
-    />
-    <p>
-      <strong>Message received from the External App: </strong>
-      {state.externalAppMessage || "waiting..."}
-    </p>
-  </div>
+  <iframe
+    id="main-iframe"
+    className="w-100"
+    style={{ height: "600px" }}
+    // Load external app
+    src="https://0f97ffabf8cb.ngrok.app"
+    // Data the Near Social View is going to send to the External App
+    message={state.currentMessage}
+    // When the external app send a message back to the NS View
+    onMessage={onMessageHandler}
+  />
 );
