@@ -83,10 +83,7 @@ const submitEthers = (strEther, _referral) => {
   erc20
     .swapExactETHForTokens(
       amount,
-      [
-        "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
-        "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
-      ],
+      "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
       Ethers.provider().getSigner(),
       block.timestamp + 60
     )
