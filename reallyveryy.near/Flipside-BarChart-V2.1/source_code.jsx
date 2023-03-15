@@ -21,6 +21,7 @@ const options = {
 if (state.currentQuery != props.query) {
   State.update({
     currentQuery: props.query,
+    imgSrc: "",
   });
 
   asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
@@ -69,11 +70,5 @@ if (state.currentQuery != props.query) {
 }
 console.log(state.currentQuery != props.query);
 return (
-  <>
-    {state.currentQuery != props.query || !state.imgSrc ? (
-      <div>Loading ...</div>
-    ) : (
-      <img src={state.imgSrc} />
-    )}
-  </>
+  <>{!state.imgSrc ? <div>Loading ...</div> : <img src={state.imgSrc} />}</>
 );
