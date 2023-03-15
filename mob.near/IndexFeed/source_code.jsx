@@ -60,13 +60,15 @@ const mergeItems = (newItems) => {
 const jInitialItems = JSON.stringify(initialItems);
 if (state.jInitialItems !== jInitialItems) {
   const jIndex = JSON.stringify(index);
-  if (jIndex !== state.jIndex) {
+  const nextFetchFrom = computeFetchFrom(initialItems, index.options.limit);
+  if (jIndex !== state.jIndex || nextFetchFrom !== state.initialNextFetchFrom) {
     State.update({
       jIndex,
       jInitialItems,
       items: initialItems,
       fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
+      initialNextFetchFrom: nextFetchFrom,
+      nextFetchFrom,
       displayCount: initialRenderLimit,
       cachedItems: {},
     });
