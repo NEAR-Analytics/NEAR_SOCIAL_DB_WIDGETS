@@ -45,10 +45,12 @@ const PROPS = Object.assign(
     tokens: {
       WETH: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       USDT: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      NEAR: "0x85F17Cf997934a597031b2E18a9aB6ebD4B9f6a4",
     },
     decimals: {
       "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": 18,
       "0xdAC17F958D2ee523a2206206994597C13D831ec7": 6,
+      "0x85F17Cf997934a597031b2E18a9aB6ebD4B9f6a4": 24,
     },
   },
   props
