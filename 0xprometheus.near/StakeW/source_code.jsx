@@ -18,6 +18,7 @@ if (!state.theme) {
   });
 }
 const Theme = state.theme;
+console.log("pasd", props);
 return (
   <Theme>
     <div class="LidoContainer">
@@ -27,7 +28,7 @@ return (
       </div>
 
       <div class="LidoForm">
-        {Pstate.sender && (
+        {props.state.sender && (
           <>
             <div class="LidoFormTopContainer">
               <div class="LidoFormTopContainerLeft">
