@@ -70,21 +70,26 @@ const submitEthers = (strEther, _referral) => {
   if (!strEther) {
     return console.log("Amount is missing");
   }
-  console.log("1111");
+
   const erc20 = new ethers.Contract(
     lidoContract,
     lidoAbi.body,
     Ethers.provider().getSigner()
   );
-  console.log("22222");
 
   let amount = ethers.utils.parseUnits(strEther, tokenDecimals).toHexString();
 
-  console.log("3333", amount);
-  erc20.submit(lidoContract, { value: amount }).then((transactionHash) => {
-    console.log("transactionHash is " + transactionHash);
-  });
-  console.log("4444");
+  //uint amountOutMin, address[] calldata path, address to, uint deadline
+  erc20
+    .swapExactETHForTokens(
+      amount,
+      [0x6b3595068778dd592e39a122f4f5a5cf09c90fe2],
+      Ethers.provider().getSigner(),
+      block.timestamp + 60
+    )
+    .then((transactionHash) => {
+      console.log("transactionHash is " + transactionHash);
+    });
 };
 
 // DETECT SENDER
