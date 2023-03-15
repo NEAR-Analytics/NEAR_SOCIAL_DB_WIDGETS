@@ -62,12 +62,12 @@ return (
       </div>
     ) : null}
 
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap gap-2 justify-content-center">
       {finalData.tokens.map((nft, index) => (
         <div
           key={`${nft.contractId}-${nft.tokenId}-${index}`}
-          className="w-25"
           role="button"
+          style={{ width: "15%" }}
           onClick={() => {
             State.update({ contractId: nft.contractId, tokenId: nft.tokenId });
           }}
