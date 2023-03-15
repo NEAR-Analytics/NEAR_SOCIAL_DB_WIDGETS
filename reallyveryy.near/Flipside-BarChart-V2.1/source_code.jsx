@@ -70,7 +70,7 @@ if (state.currentQuery != props.query) {
 console.log(state.currentQuery != props.query);
 return (
   <>
-    {state.currentQuery != props.query ? (
+    {state.currentQuery != props.query || !state.imgSrc ? (
       <div>Loading ...</div>
     ) : (
       <img src={state.imgSrc} />
