@@ -3,7 +3,6 @@ State.init({
 });
 
 let { query, rowValue, columnValue } = props;
-console.log({ rowValue, columnValue });
 var formBody = [];
 formBody.push(`statement=${query}`);
 formBody = formBody.join("&");
