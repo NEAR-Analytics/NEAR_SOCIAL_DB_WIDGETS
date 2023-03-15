@@ -1,0 +1,184 @@
+// FETCH CSS
+
+const cssFont = fetch(
+  "https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800"
+).body;
+const css = fetch(
+  "https://pluminite.mypinata.cloud/ipfs/Qmboz8aoSvVXLeP5pZbRtNKtDD3kX5D9DEnfMn2ZGSJWtP"
+).body;
+
+if (!cssFont || !css) return "";
+if (!state.theme) {
+  State.update({
+    theme: styled.div`
+    font-family: Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    ${cssFont}
+    ${css}
+`,
+  });
+}
+const Theme = state.theme;
+return (
+  <Theme>
+    <div class="LidoContainer">
+      <div class="Header">Gains Network Staking Pool</div>
+      <div class="SubHeader">
+        Stake GNS and receive DAI rewards while staking.
+      </div>
+
+      <div class="LidoForm">
+        {Pstate.sender && (
+          <>
+            <div class="LidoFormTopContainer">
+              <div class="LidoFormTopContainerLeft">
+                <div class="LidoFormTopContainerLeftContent1">
+                  <div class="LidoFormTopContainerLeftContent1Container">
+                    <span>GNS balance to stake</span>
+                    <div class="LidoFormTopContainerLeftContent1Circle" />
+                  </div>
+                </div>
+                <div class="LidoFormTopContainerLeftContent2">
+                  <span>
+                    {state.balance ?? (!state.sender ? "0" : "...")}&nbsp;GNS
+                  </span>
+                </div>
+              </div>
+              <div class="LidoFormTopContainerRight">
+                <div class="LidoFormTopContainerRightContent1">
+                  <div class="LidoFormTopContainerRightContent1Text">
+                    <span>{getSender()}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="LidoSplitter" />
+          </>
+        )}
+        <div
+          class={
+            state.sender ? "LidoFormBottomContainer" : "LidoFormTopContainer"
+          }
+        >
+          <div class="LidoFormTopContainerLeft">
+            <div class="LidoFormTopContainerLeftContent1">
+              <div class="LidoFormTopContainerLeftContent1Container">
+                <span>Your Staked amount</span>
+              </div>
+            </div>
+            <div class="LidoFormTopContainerLeftContent2">
+              <span>
+                {state.stakedBalance ?? (!state.sender ? "0" : "0")}
+                &nbsp;GNS
+              </span>
+            </div>
+            <button
+              class="LidoStakeFormInputContainerSpan3Content"
+              onClick={() => unStakeTokens(state.tokenAmount)}
+            >
+              <span class="LidoStakeFormInputContainerSpan3Max">Unstake</span>
+            </button>
+          </div>
+          <div class="LidoFormTopContainerRight">
+            <div class="LidoAprContainer">
+              <div class="LidoAprTitle">Total Dai rewards distributed</div>
+              <div class="LidoAprValue">{state.totalRewards ?? "0"} Dai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="LidoStakeForm">
+        <div class="LidoStakeFormInputContainer">
+          <span class="LidoStakeFormInputContainerSpan1">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                opacity="0.6"
+                d="M11.999 3.75v6.098l5.248 2.303-5.248-8.401z"
+              ></path>
+              <path d="M11.999 3.75L6.75 12.151l5.249-2.303V3.75z"></path>
+              <path
+                opacity="0.6"
+                d="M11.999 16.103v4.143l5.251-7.135L12 16.103z"
+              ></path>
+              <path d="M11.999 20.246v-4.144L6.75 13.111l5.249 7.135z"></path>
+              <path
+                opacity="0.2"
+                d="M11.999 15.144l5.248-2.993-5.248-2.301v5.294z"
+              ></path>
+              <path
+                opacity="0.6"
+                d="M6.75 12.151l5.249 2.993V9.85l-5.249 2.3z"
+              ></path>
+            </svg>
+          </span>
+          <span class="LidoStakeFormInputContainerSpan2">
+            <input
+              disabled={!state.sender}
+              class="LidoStakeFormInputContainerSpan2Input"
+              value={state.tokenAmount}
+              onChange={(e) => State.update({ tokenAmount: e.target.value })}
+              placeholder="Amount"
+            />
+          </span>
+          <span
+            class="LidoStakeFormInputContainerSpan3"
+            onClick={() => {
+              State.update({
+                tokenAmount: parseFloat(state.balance).toFixed(2),
+              });
+            }}
+          >
+            <button
+              class="LidoStakeFormInputContainerSpan3Content"
+              disabled={!state.sender}
+            >
+              <span class="LidoStakeFormInputContainerSpan3Max">MAX</span>
+            </button>
+          </span>
+        </div>
+        {!!state.sender ? (
+          state.allowance > 0 ? (
+            <button
+              class="LidoStakeFormSubmitContainer"
+              onClick={() => stakeTokens(state.tokenAmount)}
+            >
+              <span>Stake</span>
+            </button>
+          ) : (
+            <button
+              class="LidoStakeFormSubmitContainer"
+              onClick={() => approveToken()}
+            >
+              <span>Approve</span>
+            </button>
+          )
+        ) : (
+          <Web3Connect
+            className="LidoStakeFormSubmitContainer"
+            connectLabel="Connect with Wallet"
+          />
+        )}
+
+        <div class="LidoFooterContainer">
+          {state.sender && (
+            <div class="LidoFooterRaw">
+              <div class="LidoFooterRawLeft">Pending Dai Rewards</div>
+              <div class="LidoFooterRawRight">{state.rewards ?? 0} DAI</div>
+            </div>
+          )}
+          <div class="LidoFooterRaw">
+            <button
+              class="LidoWithdrawFormSubmitContainer"
+              onClick={() => withdrawReward()}
+            >
+              <span>Withdraw Rewards</span>
+            </button>
+          </div>
+          <div class="LidoFooterRaw">
+            <div class="LidoFooterRawLeft">Your APR</div>
+            <div class="LidoFooterRawRight">{apr}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Theme>
+);
