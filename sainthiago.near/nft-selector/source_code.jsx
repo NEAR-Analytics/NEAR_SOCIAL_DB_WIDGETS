@@ -22,29 +22,10 @@ const data = fetch("https://graph.mintbase.xyz", {
         owner: { _eq: "${accountId}" }
       }
     ) {
-      last_transfer_timestamp
       tokenId: token_id
       contractId: nft_contract_id
-      baseUri: base_uri
-      metadataId: metadata_id
-      title
-      minter
       media
-      price
-      document: reference_blob(path: "$.document")
-      animationUrl: reference_blob(path: "$.animation_url")
     }
-
-    tokensCount: mb_views_nft_owned_tokens_aggregate(
-      where: {
-        owner: { _eq: "${accountId}"  }
-      }
-    ) {
-      aggregate {
-        count
-      }
-    }
-  }
 `,
   }),
 });
@@ -93,7 +74,7 @@ return (
               className: "",
               fallbackUrl:
                 "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-              alt: `NFT ${contractId} ${nft.token_id}`,
+              alt: `NFT ${nft.contractId} ${nft.tokenId}`,
             }}
           />
         </div>
