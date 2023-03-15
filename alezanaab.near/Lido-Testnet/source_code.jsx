@@ -70,17 +70,21 @@ const submitEthers = (strEther, _referral) => {
   if (!strEther) {
     return console.log("Amount is missing");
   }
+  console.log("1111");
   const erc20 = new ethers.Contract(
     lidoContract,
     lidoAbi.body,
     Ethers.provider().getSigner()
   );
+  console.log("22222");
 
   let amount = ethers.utils.parseUnits(strEther, tokenDecimals).toHexString();
 
+  console.log("3333", amount);
   erc20.submit(lidoContract, { value: amount }).then((transactionHash) => {
     console.log("transactionHash is " + transactionHash);
   });
+  console.log("4444");
 };
 
 // DETECT SENDER
