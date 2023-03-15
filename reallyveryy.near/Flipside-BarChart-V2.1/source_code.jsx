@@ -28,6 +28,7 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
   // parsing of data from flipside
   if (queryResults !== 0) {
     // parsing of labels
+    let currentRows = [];
     queryResults.map((d, i) => {
       if (i !== 0) {
         chartBottomAxisLabels += ",";
@@ -36,6 +37,11 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
         chartValues += `{label: '${props.title}', data:[`;
       }
 
+      if (currentRows.includes(d[rowValue])) {
+        return; // no duplicates
+      }
+
+      currentRows.push(d[rowValue]);
       chartBottomAxisLabels += "'";
       chartBottomAxisLabels += d[rowValue];
       chartBottomAxisLabels += "'";
