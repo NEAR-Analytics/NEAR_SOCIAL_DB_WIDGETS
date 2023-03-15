@@ -48,10 +48,6 @@ const chartProps = {
   columnValue,
 };
 
-if (state.sql != sql) {
-  State.update({ sql, chartProps });
-}
-
 return (
   <div style={{ height: 800, width: 1000 }}>
     <Widget
