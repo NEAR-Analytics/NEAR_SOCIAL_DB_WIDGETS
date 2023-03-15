@@ -2,8 +2,14 @@ const requestHandlers = props.requestHandlers || []; // [["get-updated-user-info
 const externalAppURL = props.externalAppURL; // string
 const initialPayload = props.initialPayload || {}; // object (optional)
 
+// SETUP: message sender (it will re-send the message to the iframe source)
+const sendMessage = (message) => {
+  State.update({ currentMessage: message });
+};
+
 // ON MESSAGE HANDLER: On get message handler (from the External App)
 const onMessageHandler = (message) => {
+  console.log("debug:", message);
   const handler = requestHandlers.find((handler) => handle[0] === message.type);
   if (handler) {
     // Call method handler
