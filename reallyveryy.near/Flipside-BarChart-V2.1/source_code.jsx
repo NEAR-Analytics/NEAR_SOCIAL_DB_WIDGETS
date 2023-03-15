@@ -2,7 +2,7 @@ State.init({
   imgSrc: "",
 });
 
-let { query } = props;
+let { query, rowValue, columnValue } = props;
 var formBody = [];
 formBody.push(`statement=${query}`);
 formBody = formBody.join("&");
