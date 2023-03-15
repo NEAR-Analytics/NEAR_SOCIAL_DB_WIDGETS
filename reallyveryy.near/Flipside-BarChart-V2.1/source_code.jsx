@@ -36,6 +36,7 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
       } else {
         chartValues += `{label: '${props.title}', data:[`;
       }
+      console.log(d);
       chartBottomAxisLabels += "'";
       chartBottomAxisLabels += d[rowValue];
       chartBottomAxisLabels += "'";
