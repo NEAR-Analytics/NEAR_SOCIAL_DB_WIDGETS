@@ -121,17 +121,17 @@ return (
               disabled={!props.state.sender}
               class="LidoStakeFormInputContainerSpan2Input"
               value={props.state.tokenAmount}
-              onChange={(e) => State.update({ tokenAmount: e.target.value })}
+              onChange={(e) => props.updator({ tokenAmount: e.target.value })}
               placeholder="Amount"
             />
           </span>
           <span
             class="LidoStakeFormInputContainerSpan3"
-            onClick={() => {
-              State.update({
-                tokenAmount: parseFloat(state.balance).toFixed(2),
-              });
-            }}
+            onClick={() =>
+              props.updator({
+                tokenAmount: parseFloat(props.state.balance).toFixed(2),
+              })
+            }
           >
             <button
               class="LidoStakeFormInputContainerSpan3Content"
