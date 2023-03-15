@@ -2,7 +2,7 @@ State.init({
   input: "",
   url: "",
   displayedCommentBoxes: [],
-  commentTextMap: [],
+  commentTextMap: {},
   onChange: ({ content }) => {
     State.update({ content });
   },
@@ -47,11 +47,24 @@ const upvotes = Social.index("kudo", "upvote");
 if (!upvotes) {
   return "Loading upvotes";
 }
+
+const commentAnswers = Social.index("kudo", "commentAnswers");
+if (!upvotes) {
+  return "Loading commentAnswers";
+}
+
 const blackList = ["webuidl.near"];
 const whiteListData = data.filter((d) => !blackList.includes(d.accountId));
-const sortedData = whiteListData.sort(
+const whiteListComments = commentAnswers.filter(
+  (d) => !blackList.includes(d.accountId)
+);
+let sortedData = whiteListData.sort(
   (d1, d2) => d2.blockHeight - d1.blockHeight
 );
+
+sortedData.forEach((_, i) => {
+  sortedData[i].value.comments = [];
+});
 
 let upvotesMap = {};
 for (let i = 0; i < upvotes.length; i++) {
@@ -62,9 +75,17 @@ for (let i = 0; i < upvotes.length; i++) {
   }
   upvotesMap[upvoteBlockHeight] += 1;
 }
-console.log(upvotesMap);
+
+whiteListComments.forEach((c) => {
+  const dataIndex = sortedData.findIndex(
+    (d) => d.blockHeight == c.value.blockHeight
+  );
+  if (dataIndex === -1) return;
+  sortedData[dataIndex].value.comments.push(c);
+});
 
 const finalData = sortedData;
+console.log(3, finalData);
 
 /* BEGIN Common.componse  */
 const composeData = () => {
@@ -120,9 +141,8 @@ const startCommentTo = (blockHeight) => {
   console.log("startCommentTo");
   let cm = state.displayedCommentBoxes;
   cm.push(blockHeight);
-  console.log("cm", cm);
+  cm.remove;
   State.update({ displayedCommentBoxes: cm });
-  console.log(123);
 };
 
 const RenderCommentInput = (blockHeight) => {
@@ -146,7 +166,11 @@ const RenderCommentInput = (blockHeight) => {
         rows="2"
         value={state.commentTextMap[blockHeight]}
         onChange={(e) => {
-          state.commentTextMap[blockHeight] = e.target.value;
+          const cm = state.commentTextMap;
+          console.log(cm[blockHeight]);
+          cm[blockHeight] = e.target.value;
+          State.update({ commentTextMap: cm });
+          //   state.commentTextMap[blockHeight] = e.target.value;
         }}
       />
       <CommitButton
@@ -167,8 +191,8 @@ const RenderCommentInput = (blockHeight) => {
           },
         }}
         onCommit={() => {
-          let ctm = state.commentTextMap[blockHeight];
-          ctm[blockHeight] = null;
+          let ctm = state.commentTextMap;
+          ctm[blockHeight] = "";
           State.update({
             commentTextMap: ctm,
             reloadData: true,
@@ -184,6 +208,98 @@ const RenderCommentInput = (blockHeight) => {
 };
 
 /* END CommentButton  */
+
+/* START CommentBox */
+const RenderAllCommentAnswerBox = (d) => {
+  return d.value.comments.map((c) => {
+    return (
+      <div style={{ ...card, marginLeft: "30px" }}>
+        <Widget
+          src="mob.near/widget/ProfileImage"
+          props={{
+            accountId: c.accountId,
+            className: "d-inline-block",
+            style: { width: "1.5em", height: "1.5em" },
+          }}
+        />
+        <a href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}>
+          {c.accountId}
+        </a>
+        I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
+        <Widget
+          src="mob.near/widget/FollowButton"
+          props={{ accountId: c.accountId }}
+        />
+      </div>
+    );
+  });
+};
+
+/* END CommentBox  */
+
+/* START KudoBox */
+const RenderKudoBox = (d) => {
+  return (
+    <>
+      <div style={card}>
+        <Widget
+          src="mob.near/widget/ProfileImage"
+          props={{
+            accountId: d.accountId,
+            className: "d-inline-block",
+            style: { width: "1.5em", height: "1.5em" },
+          }}
+        />
+        <a href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}>
+          {d.accountId}
+        </a>
+        I BuiDL... <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
+        <b>
+          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
+            {d.value.url}
+          </a>
+          &nbsp;&nbsp;&nbsp;
+        </b>
+        <Widget
+          src="mob.near/widget/CommentButton"
+          props={{
+            onClick: () => startCommentTo(d.blockHeight),
+          }}
+        />
+        <Widget
+          src="mob.near/widget/FollowButton"
+          props={{ accountId: d.accountId }}
+        />
+        {RenderCommentInput(Number(d.blockHeight))}
+        <div>
+          <CommitButton
+            data={{
+              index: {
+                kudo: JSON.stringify(
+                  {
+                    key: "upvote",
+                    value: {
+                      blockHeight: d.blockHeight,
+                    },
+                  },
+                  undefined,
+                  0
+                ),
+              },
+            }}
+          >
+            Upvote
+          </CommitButton>
+          <span>
+            {upvotesMap[d.blockHeight] ? upvotesMap[d.blockHeight] : 0}
+          </span>
+        </div>
+      </div>
+      {RenderAllCommentAnswerBox(d)}
+    </>
+  );
+};
+/* END KudoBox  */
 
 return (
   <div>
@@ -293,66 +409,7 @@ return (
     <br />
     <br />
     <div>
-      {sortedData
-        ? sortedData.map((d) => (
-            <div style={card}>
-              <Widget
-                src="mob.near/widget/ProfileImage"
-                props={{
-                  accountId: d.accountId,
-                  className: "d-inline-block",
-                  style: { width: "1.5em", height: "1.5em" },
-                }}
-              />
-              <a
-                href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}
-              >
-                {d.accountId}
-              </a>
-              I BuiDL... <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
-              <b>
-                <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-                  {d.value.url}
-                </a>
-                &nbsp;&nbsp;&nbsp;
-              </b>
-              <Widget
-                src="mob.near/widget/CommentButton"
-                props={{
-                  onClick: () => startCommentTo(d.blockHeight),
-                }}
-              />
-              <Widget
-                src="mob.near/widget/FollowButton"
-                props={{ accountId: d.accountId }}
-              />
-              {RenderCommentInput(Number(d.blockHeight))}
-              <div>
-                <CommitButton
-                  data={{
-                    index: {
-                      kudo: JSON.stringify(
-                        {
-                          key: "upvote",
-                          value: {
-                            blockHeight: d.blockHeight,
-                          },
-                        },
-                        undefined,
-                        0
-                      ),
-                    },
-                  }}
-                >
-                  Upvote
-                </CommitButton>
-                <span>
-                  {upvotesMap[d.blockHeight] ? upvotesMap[d.blockHeight] : 0}
-                </span>
-              </div>
-            </div>
-          ))
-        : "Loading..."}
+      {sortedData ? sortedData.map((d) => RenderKudoBox(d)) : "Loading..."}
     </div>
   </div>
 );
