@@ -390,8 +390,18 @@ return (
   <div>
     <h2>NEAR - Segmentation Tool</h2>
     <div>
-      Bounty Question: Create a segmentation tool to help us understand the NEAR
-      profiles of new users on Near.social.
+      <b>Bounty Question:</b> Create a segmentation tool to help us understand
+      the NEAR profiles of new users on Near.social.
+    </div>
+    <div>
+      <b>Methodology:</b> Powered by flipside GODMODE... Check the queries in
+      the SourceCode
+    </div>
+    <div>
+      <b>SourceCode:</b>
+      <a href="https://near.social/#/mob.near/widget/WidgetSource?src=0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/NEAR-Segmentation-Tool-For-MDAO">
+        NEAR-Segmentation-Tool-For-MDAO
+      </a>
     </div>
     <Widget
       src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
@@ -416,6 +426,11 @@ return (
       />
     </div>
     <Button onClick={() => goButtonPressed()}>Go</Button>
+    <h6>
+      {" "}
+      The following charts shows the activities of the users who has signed up
+      between {state.dateStart} and {state.dateEnd}
+    </h6>
     <div>
       <Widget
         src="0e7a82d0ef92b5559ef04df11f5de68ac4c4479319da5a72b3e2799c4717a422/widget/Flipside-BarChart-V2"
