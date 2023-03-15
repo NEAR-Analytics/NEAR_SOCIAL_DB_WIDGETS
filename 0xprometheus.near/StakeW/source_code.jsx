@@ -54,7 +54,7 @@ console.log("pasd", props);
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Gains Network Staking Pool</div>
+      <div class="Header">Gains Network Staking Pool(ARBITRUM)</div>
       <div class="SubHeader">
         Stake GNS and receive DAI rewards while staking.
       </div>
