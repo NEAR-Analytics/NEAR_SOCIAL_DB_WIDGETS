@@ -36,11 +36,11 @@ asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
         chartValues += `{label: '${props.title}', data:[`;
       }
       chartBottomAxisLabels += "'";
-      chartBottomAxisLabels += d[0];
+      chartBottomAxisLabels += d[rowValue];
       chartBottomAxisLabels += "'";
 
       chartValues += "'";
-      chartValues += d[1];
+      chartValues += d[columnValue];
       chartValues += "'";
     });
 
