@@ -17,7 +17,7 @@ const options = {
   },
   body: formBody,
 };
-
+console.log(props.query);
 if (state.currentQuery != props.query) {
   State.update({
     currentQuery: props.query,
