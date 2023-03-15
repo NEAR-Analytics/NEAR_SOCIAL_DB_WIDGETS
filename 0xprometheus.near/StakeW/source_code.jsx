@@ -58,7 +58,9 @@ return (
         )}
         <div
           class={
-            state.sender ? "LidoFormBottomContainer" : "LidoFormTopContainer"
+            props.state.sender
+              ? "LidoFormBottomContainer"
+              : "LidoFormTopContainer"
           }
         >
           <div class="LidoFormTopContainerLeft">
@@ -133,7 +135,7 @@ return (
           >
             <button
               class="LidoStakeFormInputContainerSpan3Content"
-              disabled={!state.sender}
+              disabled={!props.state.sender}
             >
               <span class="LidoStakeFormInputContainerSpan3Max">MAX</span>
             </button>
@@ -174,7 +176,7 @@ return (
           <div class="LidoFooterRaw">
             <button
               class="LidoWithdrawFormSubmitContainer"
-              onClick={() => withdrawReward()}
+              onClick={() => props.withdrawReward()}
             >
               <span>Withdraw Rewards</span>
             </button>
