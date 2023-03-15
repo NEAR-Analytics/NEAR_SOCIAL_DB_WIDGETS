@@ -223,6 +223,7 @@ let stakeChartProps = {
       sum(nvl(amount_staked, 0) + nvl(amount_unstaked, 0)) as net_stake
     from
       data_table
+    WHERE len(day_date) > 0
     group by
       1
   )
