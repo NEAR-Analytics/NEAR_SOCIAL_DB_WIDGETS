@@ -40,7 +40,7 @@ return (
                 </div>
                 <div class="LidoFormTopContainerLeftContent2">
                   <span>
-                    {props.balance ?? (!props.sender ? "0" : "...")}
+                    {props.state.balance ?? (!props.state.sender ? "0" : "...")}
                     &nbsp;GNS
                   </span>
                 </div>
