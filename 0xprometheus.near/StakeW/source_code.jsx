@@ -28,7 +28,7 @@ return (
       </div>
 
       <div class="LidoForm">
-        {props.state.sender && (
+        {props.sender && (
           <>
             <div class="LidoFormTopContainer">
               <div class="LidoFormTopContainerLeft">
@@ -40,14 +40,15 @@ return (
                 </div>
                 <div class="LidoFormTopContainerLeftContent2">
                   <span>
-                    {state.balance ?? (!state.sender ? "0" : "...")}&nbsp;GNS
+                    {props.balance ?? (!props.sender ? "0" : "...")}
+                    &nbsp;GNS
                   </span>
                 </div>
               </div>
               <div class="LidoFormTopContainerRight">
                 <div class="LidoFormTopContainerRightContent1">
                   <div class="LidoFormTopContainerRightContent1Text">
-                    <span>{getSender()}</span>
+                    <span>{props.getSender()}</span>
                   </div>
                 </div>
               </div>
@@ -68,13 +69,13 @@ return (
             </div>
             <div class="LidoFormTopContainerLeftContent2">
               <span>
-                {state.stakedBalance ?? (!state.sender ? "0" : "0")}
+                {props.state.stakedBalance ?? (!props.state.sender ? "0" : "0")}
                 &nbsp;GNS
               </span>
             </div>
             <button
               class="LidoStakeFormInputContainerSpan3Content"
-              onClick={() => unStakeTokens(state.tokenAmount)}
+              onClick={() => props.unStakeTokens(state.tokenAmount)}
             >
               <span class="LidoStakeFormInputContainerSpan3Max">Unstake</span>
             </button>
@@ -82,7 +83,9 @@ return (
           <div class="LidoFormTopContainerRight">
             <div class="LidoAprContainer">
               <div class="LidoAprTitle">Total Dai rewards distributed</div>
-              <div class="LidoAprValue">{state.totalRewards ?? "0"} Dai</div>
+              <div class="LidoAprValue">
+                {props.state.totalRewards ?? "0"} Dai
+              </div>
             </div>
           </div>
         </div>
@@ -113,9 +116,9 @@ return (
           </span>
           <span class="LidoStakeFormInputContainerSpan2">
             <input
-              disabled={!state.sender}
+              disabled={!props.state.sender}
               class="LidoStakeFormInputContainerSpan2Input"
-              value={state.tokenAmount}
+              value={props.state.tokenAmount}
               onChange={(e) => State.update({ tokenAmount: e.target.value })}
               placeholder="Amount"
             />
@@ -136,18 +139,18 @@ return (
             </button>
           </span>
         </div>
-        {!!state.sender ? (
-          state.allowance > 0 ? (
+        {!!props.state.sender ? (
+          props.state.allowance > 0 ? (
             <button
               class="LidoStakeFormSubmitContainer"
-              onClick={() => stakeTokens(state.tokenAmount)}
+              onClick={() => props.stakeTokens(props.state.tokenAmount)}
             >
               <span>Stake</span>
             </button>
           ) : (
             <button
               class="LidoStakeFormSubmitContainer"
-              onClick={() => approveToken()}
+              onClick={() => props.approveToken()}
             >
               <span>Approve</span>
             </button>
@@ -160,10 +163,12 @@ return (
         )}
 
         <div class="LidoFooterContainer">
-          {state.sender && (
+          {props.state.sender && (
             <div class="LidoFooterRaw">
               <div class="LidoFooterRawLeft">Pending Dai Rewards</div>
-              <div class="LidoFooterRawRight">{state.rewards ?? 0} DAI</div>
+              <div class="LidoFooterRawRight">
+                {props.state.rewards ?? 0} DAI
+              </div>
             </div>
           )}
           <div class="LidoFooterRaw">
@@ -176,7 +181,7 @@ return (
           </div>
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">Your APR</div>
-            <div class="LidoFooterRawRight">{apr}%</div>
+            <div class="LidoFooterRawRight">{props.apr}%</div>
           </div>
         </div>
       </div>
