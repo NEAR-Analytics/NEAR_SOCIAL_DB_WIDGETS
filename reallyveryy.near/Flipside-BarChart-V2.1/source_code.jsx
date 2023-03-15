@@ -10,11 +10,11 @@ formBody = formBody.join("&");
 // Query API
 const options = {
   method: "POST",
-  body: formBody,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/x-www-form-furlencoded;charset=UTF-8",
+    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
   },
+  body: formBody,
 };
 
 asyncFetch("https://flipside.leslug.com/execute", options).then((res) => {
