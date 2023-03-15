@@ -54,7 +54,7 @@ return (
   <div style={{ height: 800, width: 1000 }}>
     <Widget
       src="reallyveryy.near/widget/Flipside-BarChart-V2.1"
-      props={state.chartProps}
+      props={chartProps}
     />
   </div>
 );
