@@ -316,47 +316,6 @@ if (!cssFont || !css) return "";
 
 // CUSTOM CSS
 
-const cds = `.LidoWithdrawFormSubmitContainer{
-    color: #7a8aa0;
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-}
-.LidoForm{
-    background: linear-gradient(65.21deg, rgb(0 0 0) 19.1%, rgb(70, 131, 154) 100%);
-    margin-bottom: -20px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    padding-bottom: 52px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.6em;
-    border-radius: 20px;
-    margin: 0px;
-    padding: 32px;
-    box-shadow: none;
-    color: #fff;    
-}
-.LidoFormTopContainerLeftContent1Circle{
-    background-color: rgb(5 240 34);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-left: 8px;
-}
-`;
-
-if (!state.theme) {
-  State.update({
-    theme: styled.div`
-    font-family: Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    ${cssFont}
-    ${css}
-    ${cds}
-`,
-  });
-}
-const Theme = state.theme;
-
 // OUTPUT UI
 
 const getSender = () => {
