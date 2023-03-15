@@ -1,19 +1,23 @@
 // FETCH LIDO ABI
 
-const lidoContract = "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f";
+const lidoContract = "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F";
+
 const mainnetLidoContract = "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f";
-const gorliLidoContract = "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f";
+const gorliLidoContract = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506";
 const tokenDecimals = 18;
 //const sushiTokenContract = "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f";
 
 //const network = "gorli"; // "gorli" // "rinkeby" // "mainnet"
 
-const network = "gorli";
+const network = "mainnet";
 switch (network) {
   case "gorli":
     lidoContract = gorliLidoContract;
     break;
   case "mainnet":
+    lidoContract = mainnetLidoContract;
+    break;
+  case "ropsten":
     lidoContract = mainnetLidoContract;
     break;
   default:
@@ -76,16 +80,33 @@ const submitEthers = (strEther, _referral) => {
     lidoAbi.body,
     Ethers.provider().getSigner()
   );
-
+  console.log("11111", erc20);
   let amount = ethers.utils.parseUnits(strEther, tokenDecimals).toHexString();
 
   //uint amountOutMin, address[] calldata path, address to, uint deadline
+  //const ETHaddress = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
+  //const SUSHIaddress = "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2";
+
+  let ARR = [
+    "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+  ];
+
+  console.log("amountlol", amount);
+  console.log("ARRlol", ARR);
+  console.log(
+    "Ethers.provider().getSigner()l",
+    Ethers.provider().getSigner().getAddress()
+  );
+  console.log("block.timestamp + 60 1678849571");
+
   erc20
     .swapExactETHForTokens(
       amount,
-      "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
-      Ethers.provider().getSigner(),
-      block.timestamp + 60
+      ARR,
+      //Ethers.provider().getSigner(),
+      Ethers.provider().getSigner().getAddress(),
+      Date.now() + 180
     )
     .then((transactionHash) => {
       console.log("transactionHash is " + transactionHash);
@@ -260,7 +281,8 @@ return (
             class="LidoStakeFormInputContainerSpan3"
             onClick={() => {
               State.update({
-                strEther: (parseFloat(state.balance) - 0.05).toFixed(2),
+                //strEther: (parseFloat(state.balance) - 0.05).toFixed(2),
+                strEther: parseFloat(state.balance).toFixed(2),
               });
             }}
           >
