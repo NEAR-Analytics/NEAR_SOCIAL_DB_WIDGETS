@@ -255,7 +255,7 @@ const swapTokens = () => {
   );
 
   let routes = [state.tokenFrom, state.tokenTo];
-  if (PROPS.contractAddress === "0xa252eEE9BDe830Ca4793F054B506587027825a8e") {
+  if (PROPS.contractAddress === "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F") {
     routes = [
       {
         from: state.tokenFrom,
