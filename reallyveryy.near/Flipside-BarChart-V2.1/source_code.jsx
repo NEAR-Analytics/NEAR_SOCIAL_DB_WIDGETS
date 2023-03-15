@@ -58,7 +58,7 @@ if (state.currentQuery != props.query) {
       const imgTemplate = `https://quickchart.io/chart?width=${props.chartWidth}&height=${props.chartHeight}&chart={type:${chartType},data:{labels:${chartBottomAxisLabels}, datasets:${chartValues}}}`;
       State.update({
         imgSrc: imgTemplate,
-        query: props.query,
+        currentQuery: props.query,
       });
     }
   });
