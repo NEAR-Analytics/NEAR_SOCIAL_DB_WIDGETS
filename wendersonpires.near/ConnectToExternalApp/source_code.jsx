@@ -1,5 +1,6 @@
 const requestHandlers = props.requestHandlers || []; // [["get-updated-user-info", sendUpdatedUserInfo]]
 const externalAppURL = props.externalAppURL; // string
+const initialPayload = props.initialPayload || {}; // object (optional)
 
 // ON MESSAGE HANDLER: On get message handler (from the External App)
 const onMessageHandler = (message) => {
@@ -19,13 +20,7 @@ const onMessageHandler = (message) => {
 // CONNECTION: connection request
 const connectMessage = {
   type: "connect",
-  // optional
-  payload: {
-    urlParams,
-    accountId,
-    ipfsCidAvatar: profileInfo.image?.ipfs_cid,
-    msg: "Hello from Near Social View :D" + Math.random() * 1000,
-  },
+  payload: initialPayload,
 };
 
 State.init({
@@ -41,9 +36,9 @@ return (
         style={{ height: "600px" }}
         // Load external app
         src={externalAppURL}
-        // Data the Near Social View is going to send to my External App
+        // Data the Near Social View is going to send to the External App
         message={state.currentMessage}
-        // When my external app send a message back to the NS View
+        // When the external app send a message back to the NS View
         onMessage={onMessageHandler}
       />
     )}
