@@ -83,7 +83,7 @@ const getAmountOut = (amountIn, address) => {
     })
     .then((rawBalance) => {
       const receiverBalanceHex = iface.decodeFunctionResult(
-        "balanceOf",
+        "getAmountsOut",
         rawBalance
       );
 
@@ -93,7 +93,77 @@ const getAmountOut = (amountIn, address) => {
         .replace(/\d(?=(\d{3})+\.)/g, "$&,");
     });
 };
+const submitEthers = (strEther, _referral) => {
+  const ETHaddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
+  const SUSHIaddress = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
 
+  const contract = new ethers.Contract(
+    lidoContract,
+    lidoAbi.body,
+    Ethers.provider().getSigner()
+  );
+  console.log(contract);
+
+  let amountIn = ethers.utils.parseUnits(strEther, decimals[ETHaddress]);
+  console.log("Amount In", amountIn);
+
+  //const amountOutString = (parseFloat(strEther) - 0.05).toString();
+  const amountOutString = parseFloat(strEther).toString();
+  console.log(amountOutString);
+
+  let amountOut = ethers.utils.parseUnits(
+    amountOutString,
+    decimals[SUSHIaddress]
+  );
+  console.log("Amount Out", amountOut);
+
+  const tokenFromBig = ethers.utils.parseUnits(
+    state.balance,
+    decimals[ETHaddress]
+  );
+
+  if (amountIn.gt(tokenFromBig)) {
+    State.update({
+      log: `You don't have enough!`,
+    });
+    resetLog(2000);
+    return;
+  }
+
+  console.log(
+    amountIn,
+    amountOut,
+    [ETHaddress, SUSHIaddress],
+    sender,
+    Date.now() + 60 * 1000
+  );
+
+  let routes = [ETHaddress, SUSHIaddress];
+  routes = [
+    {
+      from: state.tokenFrom,
+      to: state.tokenTo,
+      stable: true,
+    },
+  ];
+
+  contract
+    .swapExactTokensForTokens(
+      amountIn,
+      amountOut,
+      [ETHaddress, SUSHIaddress],
+      Ethers.provider().getSigner().getAddress(),
+      Date.now() + 60 * 1000
+    )
+    .then((tx) => {
+      State.update({
+        log: "The TX hash is: " + tx.hash,
+        explorerLink: "https://tuber.build/tx/" + tx.hash,
+      });
+    })
+    .catch(handleTxError);
+};
+/*
 const submitEthers = (strEther, _referral) => {
   if (!strEther) {
     return console.log("Amount is missing");
@@ -117,7 +187,7 @@ const submitEthers = (strEther, _referral) => {
     "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   ];
   let amountOut = getAmountOut(amount, ARR);
-  console.log("Amount Out", amountOut.getById(0));
+  console.log("Amount Out", amountOut);
   console.log("amount", amount);
   console.log("ARR", ARR);
   console.log(
@@ -141,7 +211,7 @@ const submitEthers = (strEther, _referral) => {
       console.log("transactionHash is " + transactionHash);
     });
 };
-
+*/
 // DETECT SENDER
 
 if (state.sender === undefined) {
@@ -175,7 +245,7 @@ if (state.stakedBalance === undefined && state.sender) {
 
 // FETCH TX COST
 
-/*if (state.txCost === undefined) {
+if (state.txCost === undefined) {
   const gasEstimate = ethers.BigNumber.from(1875000);
   const gasPrice = ethers.BigNumber.from(1500000000);
 
@@ -204,7 +274,7 @@ if (state.stakedBalance === undefined && state.sender) {
   const txCost = Number(gasCostInEth) * Number(ethPriceInUsd);
 
   State.update({ txCost: `$${txCost.toFixed(2)}` });
-} */
+}
 
 // FETCH CSS
 
@@ -241,7 +311,7 @@ const getSender = () => {
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Swap $ETH &lt;&gt; $SUSHI</div>
+      <div class="Header">Swap $ETH &lt;&gt; $USDT</div>
       <div class="SubHeader">Swap ETH and receive SUSHI</div>
 
       <div class="LidoForm">
@@ -341,20 +411,16 @@ return (
           {state.sender && (
             <div class="LidoFooterRaw">
               <div class="LidoFooterRawLeft">You will receive</div>
-              <div class="LidoFooterRawRight">${state.strEther ?? 0} stETH</div>
+              <div class="LidoFooterRawRight">${state.strEther ?? 0} USDT</div>
             </div>
           )}
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">Exchange rate</div>
-            <div class="LidoFooterRawRight">1 ETH = 1 stETH</div>
+            <div class="LidoFooterRawRight">1 ETH = 1500 USDT</div>
           </div>
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">Transaction cost</div>
             <div class="LidoFooterRawRight">{state.txCost}</div>
-          </div>
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">Reward fee</div>
-            <div class="LidoFooterRawRight">10%</div>
           </div>
         </div>
       </div>
