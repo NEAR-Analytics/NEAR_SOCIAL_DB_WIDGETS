@@ -66,7 +66,7 @@ const iface = new ethers.utils.Interface(lidoAbi.body);
     });
 };*/
 
-/*const submitEthers = (strEther, _referral) => {
+const submitEthers = (strEther, _referral) => {
   if (!strEther) {
     return console.log("Amount is missing");
   }
@@ -81,7 +81,7 @@ const iface = new ethers.utils.Interface(lidoAbi.body);
   erc20.submit(lidoContract, { value: amount }).then((transactionHash) => {
     console.log("transactionHash is " + transactionHash);
   });
-};*/
+};
 
 // DETECT SENDER
 
@@ -182,8 +182,8 @@ const getSender = () => {
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Stake Ether</div>
-      <div class="SubHeader">Stake ETH and receive stETH while staking.</div>
+      <div class="Header">Swap $ETH &lt;&gt; $SUSHI</div>
+      <div class="SubHeader">Swap ETH and receive SUSHI</div>
 
       <div class="LidoForm">
         {state.sender && (
@@ -192,7 +192,7 @@ return (
               <div class="LidoFormTopContainerLeft">
                 <div class="LidoFormTopContainerLeftContent1">
                   <div class="LidoFormTopContainerLeftContent1Container">
-                    <span>Available to stake</span>
+                    <span>Available to swap</span>
                     <div class="LidoFormTopContainerLeftContent1Circle" />
                   </div>
                 </div>
@@ -213,25 +213,6 @@ return (
             <div class="LidoSplitter" />
           </>
         )}
-        <div
-          class={
-            state.sender ? "LidoFormBottomContainer" : "LidoFormTopContainer"
-          }
-        >
-          <div class="LidoFormTopContainerLeft">
-            <div class="LidoFormTopContainerLeftContent1">
-              <div class="LidoFormTopContainerLeftContent1Container">
-                <span>Staked amount</span>
-              </div>
-            </div>
-            <div class="LidoFormTopContainerLeftContent2">
-              <span>
-                {state.stakedBalance ?? (!state.sender ? "0" : "...")}
-                &nbsp;stETH
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="LidoStakeForm">
         <div class="LidoStakeFormInputContainer">
@@ -287,7 +268,7 @@ return (
             class="LidoStakeFormSubmitContainer"
             onClick={() => submitEthers(state.strEther, state.sender)}
           >
-            <span>Submit</span>
+            <span>Swap</span>
           </button>
         ) : (
           <Web3Connect
