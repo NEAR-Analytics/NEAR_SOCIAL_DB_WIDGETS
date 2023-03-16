@@ -13,35 +13,35 @@ let rawData = fetch(
 const METRIC_NAME = "Weekly Active Accounts";
 
 let Style = styled.div`
-    
-    
-          .bar {
-            transition: fill 0.2s;
-          }
-    
-          .bar:hover {
-            fill: #ffa726;
-          }
-    
-          .bar-chart {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-    
-            svg {
-              width: 80%;
-            }
-    
-            rect {
-              shape-rendering: crispEdges;
-              fill: #61dafb;
-              stroke: #333;
-              stroke-width: 1;
-            }
-    
-    
-            `;
+        
+        
+              .bar {
+                transition: fill 0.2s;
+              }
+        
+              .bar:hover {
+                fill: #ffa726;
+              }
+        
+              .bar-chart {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+        
+                svg {
+                  width: 80%;
+                }
+        
+                rect {
+                  shape-rendering: crispEdges;
+                  fill: #61dafb;
+                  stroke: #333;
+                  stroke-width: 1;
+                }
+        
+        
+                `;
 
 const colorGenerator = () => {
   const colors = [
@@ -91,7 +91,7 @@ function parseUTCDate(dateString) {
     .split("-")
     .map((str) => parseInt(str, 10));
   // Subtract 1 from the month, as JavaScript months are zero-based
-  const utcTimestamp = Date.UTC(year, month - 1, day + 1);
+  const utcTimestamp = Date.UTC(year, month - 1, day);
   return new Date(utcTimestamp);
 }
 
@@ -107,8 +107,10 @@ try {
 
     const activity_date = parseUTCDate(datum.activity_date);
 
-    const month = months[activity_date.getMonth()];
-    const day = activity_date.getDate();
+    const month =
+      months[
+        parseInt(activity_date.toISOString().slice(0, 10).split("-")[1]) - 1
+      ];
 
     let monthData = processedData.find((data) => data.label === month);
 
@@ -121,13 +123,12 @@ try {
       processedData.push(monthData);
     }
 
-    monthData.data[day] = datum.wau;
+    monthData.data[activity_date.toISOString().slice(0, 10)] = datum.wau;
   });
 } catch (err) {
   console.log(err);
 }
 
-console.log(processedData);
 // logic end
 
 const v_bar_labels = months;
