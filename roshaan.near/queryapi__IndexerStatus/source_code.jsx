@@ -127,7 +127,7 @@ const createGraphQLLink = () => {
 
 const IndexerStorageDoc = `
   query IndexerStorage($offset: Int) {
-    indexer_storage(limit: ${LIMIT},  offset: $offset, where: {function_name: {_eq: "${accountId}/${indexer_name}"}}) {
+    indexer_storage(limit: ${LIMIT},  offset: $offset, where: {function_name: {_eq: "${accountId}/${indexer_name}"}, order_by: {key_name: desc}}) {
       function_name
       key_name
       value
