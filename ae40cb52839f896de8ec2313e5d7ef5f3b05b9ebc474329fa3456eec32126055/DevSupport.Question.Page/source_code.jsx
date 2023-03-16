@@ -107,7 +107,7 @@ return (
 
     {footer}
 
-    <hr class="mt-3 mb-5" />
+    <div class="mt-3 mb-5" />
 
     <h4 class="mb-3"> Community Answers </h4>
 
