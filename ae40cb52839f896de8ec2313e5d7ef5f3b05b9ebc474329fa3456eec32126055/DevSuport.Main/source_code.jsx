@@ -15,9 +15,9 @@ return (
   <div class="container">
     <div class="row">
       <div class="col-8">
-        <h1>Questions</h1>
+        <h1>Developer Support</h1>
       </div>
-      <div class="col-4 justify-content-end">
+      <div class="col-4 justify-content-end mt-2">
         <button
           class="btn btn-primary float-end"
           disabled={!context.accountId}
