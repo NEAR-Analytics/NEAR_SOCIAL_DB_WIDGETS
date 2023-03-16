@@ -26,8 +26,6 @@ const item = {
 
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
-const likeBtnClass = "bi-arrow-up-square";
-
 const footer = (
   <div className="card-header">
     <small class="text-muted">
@@ -92,6 +90,13 @@ return (
       <Widget
         src="mob.near/widget/MainPage.Post.Content"
         props={{ content: { text: question.content.text } }}
+      />
+    </div>
+
+    <div class="text-center my-0 mx-auto">
+      <img
+        src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
+        alt='uploaded'
       />
     </div>
 
