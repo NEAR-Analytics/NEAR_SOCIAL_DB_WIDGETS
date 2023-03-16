@@ -13,7 +13,7 @@ const index = {
 
 const renderItem = (a) =>
   a.value.type === "md" && (
-    <div key={JSON.stringify(a)} className="mb-3">
+    <div key={JSON.stringify(a)} className="my-4">
       <Widget
         src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Preview"
         props={{
