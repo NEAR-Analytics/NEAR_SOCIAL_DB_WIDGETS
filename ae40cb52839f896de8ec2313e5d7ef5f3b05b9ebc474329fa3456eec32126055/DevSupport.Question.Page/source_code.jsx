@@ -27,7 +27,7 @@ const item = {
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const footer = (
-  <div className="card-header p-2" style={{border: "1px solid #ccc"}}>
+  <div className="card-header p-2" style={{ border: "1px solid #ccc" }}>
     <small class="text-muted">
       <div class="row justify-content-between">
         <div class="col-8">
@@ -118,17 +118,19 @@ return (
 
     {context.accountId && (
       <>
-        <hr class="mt-4 mb-5" />
-        <h4 class="mb-2"> Your Answer </h4>
+        <div class="mt-4 mb-5" />
+        <div class="p-2" style={{border: "1px solid #ccc"}}>
+          <h4 class="mb-2"> Your Answer </h4>
 
-        <Widget
-          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
-          props={{
-            notifyAccountId: accountId,
-            item,
-            onComment: () => State.update({ showReply: false }),
-          }}
-        />
+          <Widget
+            src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
+            props={{
+              notifyAccountId: accountId,
+              item,
+              onComment: () => State.update({ showReply: false }),
+            }}
+          />
+        </div>
       </>
     )}
   </div>
