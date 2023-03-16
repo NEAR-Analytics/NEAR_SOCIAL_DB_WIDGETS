@@ -57,9 +57,9 @@ return (
   <iframe
     id="main-iframe"
     className="w-100"
-    style={{ height: "600px" }}
+    style={{ height: "800px" }}
     // Load external app
-    src="https://0f97ffabf8cb.ngrok.app"
+    src="https://6fa4294326de.ngrok.app"
     // Data the Near Social View is going to send to the External App
     message={state.currentMessage}
     // When the external app send a message back to the NS View
