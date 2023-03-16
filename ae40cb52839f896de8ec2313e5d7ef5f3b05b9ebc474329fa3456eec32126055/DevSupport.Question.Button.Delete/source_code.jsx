@@ -1,7 +1,7 @@
 const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 const adminContract = props.adminContract;
-const admins = props.admins;
+const admins = props.admins || {};
 
 if (accountId === undefined || blockHeight === undefined) {
   return;
