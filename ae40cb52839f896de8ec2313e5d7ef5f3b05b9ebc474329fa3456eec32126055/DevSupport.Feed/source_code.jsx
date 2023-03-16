@@ -22,7 +22,7 @@ const renderItem = (a) => {
   if(is_hidden){return}
 
   return (
-    <div key={JSON.stringify(a)} className="my-4">
+    <div key={JSON.stringify(a)} className="my-5">
       <Widget
         src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Preview"
         props={{
