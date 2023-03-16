@@ -1,6 +1,10 @@
 const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 
+if (accountId === undefined || blockHeight === undefined) {
+  return;
+}
+
 const item = {
   type: "social",
   path: `${accountId}/question/main`,
