@@ -153,6 +153,6 @@ return (
     {reverse && fetchMore}
     {items.map(cachedRenderItem)}
     {!reverse && fetchMore}
-    {(!context.accountId || !items) && displayMessage}
+    {(!context.accountId || items.length == 0) && displayMessage}
   </>
 );
