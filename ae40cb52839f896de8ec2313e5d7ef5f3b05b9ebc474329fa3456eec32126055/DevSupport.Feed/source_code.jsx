@@ -11,8 +11,17 @@ const index = {
   },
 };
 
-const renderItem = (a) =>
-  a.value.type === "md" && (
+const renderItem = (a) => {
+
+  if(a.value.type !== "md"){return}
+
+  const is_hidden = Near.view(adminContract, "is_hidden", {
+    id: { account_id: a.accountId, block_height: a.blockHeight },
+  });
+  
+  if(is_hidden){return}
+
+  return (
     <div key={JSON.stringify(a)} className="my-4">
       <Widget
         src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Preview"
@@ -25,6 +34,7 @@ const renderItem = (a) =>
       />
     </div>
   );
+}
 
 return (
   <div>
