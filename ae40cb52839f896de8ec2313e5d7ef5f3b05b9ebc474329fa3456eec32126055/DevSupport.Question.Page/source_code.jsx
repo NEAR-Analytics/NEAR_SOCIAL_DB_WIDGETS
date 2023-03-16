@@ -99,7 +99,7 @@ return (
 
     <hr class="mt-4 mb-5" />
 
-    <h4 class="mb-3"> Answers </h4>
+    <h4 class="mb-3"> Community Answers </h4>
 
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
@@ -109,7 +109,7 @@ return (
     {context.accountId && (
       <>
         <hr class="mt-4 mb-5" />
-        <h4 class="mb-3"> Reply </h4>
+        <h4 class="mb-2"> Your Answer </h4>
 
         <Widget
           src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
