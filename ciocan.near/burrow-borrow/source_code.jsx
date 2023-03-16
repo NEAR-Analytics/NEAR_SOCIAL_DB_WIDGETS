@@ -37,7 +37,7 @@ const power = (x, y) => {
 };
 
 if (!accountId) {
-  return <div>Please sign in with NEAR wallet</div>;
+  return <Widget src="ciocan.near/widget/account-signin" />;
 }
 
 const config = Near.view(BURROW_CONTRACT, "get_config");
