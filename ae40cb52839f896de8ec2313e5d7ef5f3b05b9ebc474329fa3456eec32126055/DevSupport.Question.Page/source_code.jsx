@@ -27,7 +27,7 @@ const item = {
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const footer = (
-  <div className="card-header">
+  <div className="card-header p-2" style={{border: "1px solid #ccc"}}>
     <small class="text-muted">
       <div class="row justify-content-between">
         <div class="col-8">
@@ -86,7 +86,7 @@ return (
       props={{ labels: question.labels }}
     />
 
-    <div className="pt-2 text-break">
+    <div className="py-2 text-break">
       <Widget
         src="mob.near/widget/MainPage.Post.Content"
         props={{ content: { text: question.content.text } }}
@@ -95,7 +95,7 @@ return (
 
     {question.content.image.ipfs_cid &&
       <>
-        <div class="text-center mt-2 mb-3 mx-auto"
+        <div class="text-center mt-1 mb-3 mx-auto"
           style={{ borderBottom: "1px solid #eee", maxHeight: "220px", maxWidth: "78vw", overflow: "scroll", borderTop: "1px solid #eee" }}>
           <img
             src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
