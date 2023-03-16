@@ -7,7 +7,7 @@ if (block === null) {
 }
 
 if (!block) {
-  return "unknown";
+  return "unknsown";
 }
 console.log(block.header.height);
 const timeMs = parseFloat(block.header.timestamp_nanosec) / 1e6;
