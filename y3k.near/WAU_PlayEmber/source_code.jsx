@@ -10,7 +10,7 @@ let rawData = fetch(
   }
 );
 
-const METRIC_NAME = "Weekly Active Accounts";
+const METRIC_NAME = "playEmber Weekly Active Accounts";
 
 let Style = styled.div`
         
