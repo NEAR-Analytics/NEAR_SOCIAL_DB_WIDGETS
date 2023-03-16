@@ -6,14 +6,25 @@ initState({
 
 // Predefined Labels
 const predefinedLabels = [
-  "NFT",
-  "FT",
-  "Smart Contract",
-  "Cross-Contract Call",
-  "Rust",
-  "Javascript",
-  "Frontend",
+  "Aurora",
+  "Account",
   "CLI",
+  "Cross-Contract Call",
+  "Discovery",
+  "Indexer",
+  "Javascript API",
+  "Javascript SDK",
+  "Keys",
+  "Frontend",
+  "Fungible Token (FT)",
+  "Gas",
+  "Non Fungible Token (NFT)",
+  "Protocol",
+  "RPC",
+  "Rust",
+  "Smart Contract",
+  "Storage",
+  "Wallet",
 ];
 
 const labelOptions = predefinedLabels.map((s) => {
