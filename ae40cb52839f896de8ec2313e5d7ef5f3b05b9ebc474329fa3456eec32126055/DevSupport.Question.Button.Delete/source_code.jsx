@@ -7,6 +7,10 @@ if (accountId === undefined || blockHeight === undefined) {
   return;
 }
 
+if (context.loading) {
+  return "Loading";
+}
+
 if (!admins.includes(context.accountId)) {
   return "";
 }
