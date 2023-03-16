@@ -68,7 +68,7 @@ const handleProposal = () => {
           kind: {
             Transfer: {
               token_id: "",
-              receiver_id: state.recipient.trim(),
+              receiver_id: state.recipient.trim().toLowerCase(),
               amount: convertAmount(state.amount.toString(), 24) ?? 0,
             },
           },
