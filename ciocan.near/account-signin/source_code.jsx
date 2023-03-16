@@ -1,5 +1,8 @@
 let accountId = context.accountId;
 
+const url = document.referrer;
+console.log("url", url, window.top.location.href, document.location.href);
+
 if (accountId) return <div />;
 
 return (
