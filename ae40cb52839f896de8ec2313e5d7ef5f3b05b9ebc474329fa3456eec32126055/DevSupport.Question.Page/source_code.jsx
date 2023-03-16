@@ -4,6 +4,11 @@ if (context.loading) {
 
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
+
+if (accountId === undefined || blockHeight === undefined) {
+  return;
+}
+
 const adminContract = props.adminContract;
 
 const admins = Near.view(adminContract, "get_admins", {});
