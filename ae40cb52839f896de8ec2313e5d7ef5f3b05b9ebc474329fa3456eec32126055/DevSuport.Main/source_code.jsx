@@ -36,7 +36,7 @@ return (
     {/* Widget to display Feed of Questions */}
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Feed"
-      props={{ admins, adminContract }}
+      props={{ admins, adminContract: adminContract }}
     />
   </div>
 );
