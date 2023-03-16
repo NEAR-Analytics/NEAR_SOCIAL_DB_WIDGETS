@@ -90,7 +90,7 @@ const submitEthers = (strEther, _referral) => {
   //const sushiMainContract = "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2"
 
   let ARR = [
-    "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
     "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2",
   ];
 
