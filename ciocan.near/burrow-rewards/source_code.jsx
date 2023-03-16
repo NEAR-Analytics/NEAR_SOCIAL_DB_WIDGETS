@@ -1,7 +1,7 @@
 let accountId = context.accountId;
 
 if (!accountId) {
-  return "Please sign in with NEAR wallet";
+  return <div />;
 }
 
 const shrinkToken = (value, decimals, fixed) => {
