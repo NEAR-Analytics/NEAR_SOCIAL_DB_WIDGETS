@@ -1,6 +1,10 @@
 let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
 
+if (!accountId) {
+  return <Widget src="ciocan.near/widget/account-signin" />;
+}
+
 const { selectedTokenId, amount, hasError, assets, rewards } = state;
 
 const hasData = assets.length > 0 && rewards.length > 0;
@@ -18,10 +22,6 @@ const expandToken = (value, decimals) => {
 };
 
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
-
-if (!accountId) {
-  return <div>Please sign in with NEAR wallet</div>;
-}
 
 const account = fetch("https://rpc.mainnet.near.org", {
   method: "POST",
