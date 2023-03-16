@@ -139,8 +139,8 @@ if (reverse) {
 }
 
 const message = context.accountId
-  ? "There are no answers yet"
-  : "Please login to add your answer question";
+  ? "There are no answers yet, please contribute with one"
+  : "Please login to add your answer";
 
 const displayMessage = (
   <>
@@ -151,7 +151,8 @@ const displayMessage = (
 return (
   <>
     {reverse && fetchMore}
-    {items ? items.map(cachedRenderItem) : addAnswers}
+    {items.map(cachedRenderItem)}
     {!reverse && fetchMore}
+    {(!context.accountId || !items) && displayMessage}
   </>
 );
