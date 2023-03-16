@@ -93,16 +93,21 @@ return (
       />
     </div>
 
-    <div class="text-center my-0 mx-auto">
-      <img
-        src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
-        alt='uploaded'
-      />
-    </div>
+    {question.content.image.ipfs_cid &&
+      <>
+        <div class="text-center mt-2 mb-3 mx-auto"
+          style={{ borderBottom: "1px solid #eee", maxHeight: "220px", maxWidth: "78vw", overflow: "scroll", borderTop: "1px solid #eee" }}>
+          <img
+            src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
+            alt='uploaded'
+          />
+        </div>
+      </>
+    }
 
     {footer}
 
-    <hr class="mt-4 mb-5" />
+    <hr class="mt-3 mb-5" />
 
     <h4 class="mb-3"> Community Answers </h4>
 
