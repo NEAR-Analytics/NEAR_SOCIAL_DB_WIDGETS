@@ -70,7 +70,7 @@ const footer = (
 );
 
 return (
-  <div className="container">
+  <div className="container pt-2 pb-5">
     <a href="https://near.social/#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSuport.Main">
       Go Back
     </a>
@@ -119,7 +119,7 @@ return (
     {context.accountId && (
       <>
         <div class="mt-4 mb-5" />
-        <div class="p-2" style={{border: "1px solid #ccc"}}>
+        <div class="p-4" style={{border: "1px solid rgb(118, 203, 238)"}}>
           <h4 class="mb-2"> Your Answer </h4>
 
           <Widget
