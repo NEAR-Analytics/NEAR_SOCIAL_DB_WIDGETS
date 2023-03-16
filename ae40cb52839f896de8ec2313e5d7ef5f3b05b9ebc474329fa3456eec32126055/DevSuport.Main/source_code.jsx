@@ -12,7 +12,7 @@ const adminContract = "admin.dev-support.near";
 const admins = Near.view(adminContract, "get_admins", {});
 
 return (
-  <div class="container py-3">
+  <div class="container py-3 mb-5">
     <div class="row">
       <div class="col-8">
         <h1>Developer Support</h1>
@@ -38,5 +38,6 @@ return (
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Feed"
       props={{ admins, adminContract }}
     />
+    
   </div>
 );
