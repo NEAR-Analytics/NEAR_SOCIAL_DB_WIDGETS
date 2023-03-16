@@ -21,7 +21,7 @@ const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 const toAPY = (v) => Math.round(v * 100) / 100;
 
 if (!accountId) {
-  return <div>Please sign in with NEAR wallet</div>;
+  return <Widget src="ciocan.near/widget/account-signin" />;
 }
 
 const listAssets =
