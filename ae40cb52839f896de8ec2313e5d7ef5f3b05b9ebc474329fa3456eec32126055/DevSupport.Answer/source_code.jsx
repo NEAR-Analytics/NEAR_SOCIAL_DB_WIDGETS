@@ -3,6 +3,10 @@ const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 
+if (accountId === undefined || blockHeight === undefined) {
+  return;
+}
+
 const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
