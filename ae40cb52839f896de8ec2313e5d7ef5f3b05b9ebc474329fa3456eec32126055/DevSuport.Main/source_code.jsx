@@ -1,5 +1,12 @@
+if (context.loading) {
+  return "Loading";
+}
+
 // By default the form to ask a question is hidden
 initState({ askQuestion: false });
+const toggleQuestion = () => {
+  State.update({ askQuestion: !state.askQuestion });
+};
 
 const adminContract = "admin.dev-support.near";
 const admins = Near.view(adminContract, "get_admins", {});
@@ -14,9 +21,7 @@ return (
         <button
           class="btn btn-primary float-end"
           disabled={!context.accountId}
-          onClick={() => {
-            State.update({ askQuestion: !state.askQuestion });
-          }}
+          onClick={toggleQuestion}
         >
           <i class="bi bi-chat-dots"></i> Ask a Question
         </button>
