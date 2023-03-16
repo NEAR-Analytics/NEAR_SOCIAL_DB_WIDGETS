@@ -1,3 +1,7 @@
+if (context.loading) {
+  return "Loading";
+}
+
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
 const adminContract = props.adminContract;
