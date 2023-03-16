@@ -10,54 +10,38 @@ let rawData = fetch(
   }
 );
 
-// data.body = data.body.sort((a, b) => new Date(a.MONTH) - new Date(b.MONTH));
 const METRIC_NAME = "Weekly Active Accounts";
 
 let Style = styled.div`
-
-
-      .bar {
-        transition: fill 0.2s;
-      }
-
-      .bar:hover {
-        fill: #ffa726;
-      }
-
-      .bar-chart {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-        svg {
-          width: 80%;
-        }
-
-        rect {
-          shape-rendering: crispEdges;
-          fill: #61dafb;
-          stroke: #333;
-          stroke-width: 1;
-        }
-
-
-        `;
-
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+    
+    
+          .bar {
+            transition: fill 0.2s;
+          }
+    
+          .bar:hover {
+            fill: #ffa726;
+          }
+    
+          .bar-chart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+    
+            svg {
+              width: 80%;
+            }
+    
+            rect {
+              shape-rendering: crispEdges;
+              fill: #61dafb;
+              stroke: #333;
+              stroke-width: 1;
+            }
+    
+    
+            `;
 
 const colorGenerator = () => {
   const colors = [
@@ -86,10 +70,6 @@ const colorGenerator = () => {
   };
 };
 
-const getBackgroundColor = colorGenerator();
-
-const formattedDataWeek = [];
-
 const months = [
   "January",
   "February",
@@ -105,44 +85,52 @@ const months = [
   "December",
 ];
 
-const getMonth = (date) => {
-  const monthIndex = new Date(date).getMonth();
-  return months[monthIndex];
-};
+// logic start
+function parseUTCDate(dateString) {
+  const [year, month, day] = dateString
+    .split("-")
+    .map((str) => parseInt(str, 10));
+  // Subtract 1 from the month, as JavaScript months are zero-based
+  const utcTimestamp = Date.UTC(year, month - 1, day + 1);
+  return new Date(utcTimestamp);
+}
 
-const processedData = [];
+const getBackgroundColor = colorGenerator();
 
-rawData.body.forEach((datum) => {
-  const month = getMonth(datum.activity_date);
-  const day = new Date(datum.activity_date).getDate();
-  const dayLabel = `${day}st`;
+let processedData = [];
 
-  let monthData = processedData.find((data) => data.label === month);
-  if (!monthData) {
-    monthData = {
-      label: month,
-      data: {},
-      backgroundColor: getBackgroundColor(),
-    };
-    processedData.push(monthData);
-  }
+try {
+  rawData.body.forEach((datum) => {
+    if (!datum.activity_date) {
+      return;
+    }
 
-  monthData.data[dayLabel] = datum.wau;
-});
+    const activity_date = parseUTCDate(datum.activity_date);
 
-processedData.forEach((monthData) => {
-  const sortedData = {};
-  Object.keys(monthData.data)
-    .sort(
-      (a, b) => parseInt(a.replace("st", "")) - parseInt(b.replace("st", ""))
-    )
-    .forEach((day) => {
-      sortedData[day] = monthData.data[day];
-    });
-  monthData.data = sortedData;
-});
+    const month = months[activity_date.getMonth()];
+    const day = activity_date.getDate();
 
-const v_bar_labels = monthNames;
+    let monthData = processedData.find((data) => data.label === month);
+
+    if (!monthData) {
+      monthData = {
+        label: month,
+        data: {},
+        backgroundColor: getBackgroundColor(),
+      };
+      processedData.push(monthData);
+    }
+
+    monthData.data[day] = datum.wau;
+  });
+} catch (err) {
+  console.log(err);
+}
+
+console.log(processedData);
+// logic end
+
+const v_bar_labels = months;
 
 const v_bar_data = {
   v_bar_labels,
