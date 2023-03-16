@@ -3,12 +3,6 @@ const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 
-const is_hidden = Near.view(adminContract, "is_hidden", {
-  id: { account_id: accountId, block_height: blockHeight },
-});
-const display = is_hidden ? "d-none" : "";
-const border = is_hidden ? "border-red" : "";
-
 const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
