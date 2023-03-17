@@ -93,23 +93,33 @@ return (
       />
     </div>
 
-    {question.content.image.ipfs_cid &&
+    {question.content.image.ipfs_cid && (
       <>
-        <div class="text-center mt-1 mb-3 mx-auto"
-          style={{ borderBottom: "1px solid #eee", maxHeight: "220px", maxWidth: "78vw", overflow: "scroll", borderTop: "1px solid #eee" }}>
+        <div
+          class="text-center mt-1 mb-3 mx-auto"
+          style={{
+            borderBottom: "1px solid #eee",
+            maxHeight: "220px",
+            maxWidth: "78vw",
+            overflow: "scroll",
+            borderTop: "1px solid #eee",
+          }}
+        >
           <img
             src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
-            alt='uploaded'
+            alt="uploaded"
           />
         </div>
       </>
-    }
+    )}
 
     {footer}
 
     <div class="mt-3 mb-5" />
 
     <h4 class="mb-3"> Community Answers </h4>
+
+    {JSON.stringify(item)}
 
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
@@ -118,8 +128,9 @@ return (
 
     {context.accountId && (
       <>
-        <div class="mt-4 mb-5" />
-        <div class="p-4" style={{border: "1px solid rgb(118, 203, 238)"}}>
+        <hr class="w-75 mx-auto my-4" />
+        <div class="mb-5" />
+        <div class="p-4" style={{ border: "1px solid rgb(118, 203, 238)" }}>
           <h4 class="mb-2"> Your Answer </h4>
 
           <Widget
