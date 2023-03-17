@@ -1,3 +1,7 @@
+// INITIAL PROPS [EDIT]:
+const externalAppUrl = "https://6fa4294326de.ngrok.app/";
+const env = "development"; // Possible values: 'development' | 'production'
+
 // SETUP: [Navigation] Get URL params
 const urlParams = props.r;
 
@@ -24,12 +28,9 @@ State.init({
   // SETUP:  message sender (it will re-send the message to the iframe source)
   currentMessage: {},
   connectMessageSent: false,
-  env: "development", // Possible values: 'development' | 'production'
+  env, // Possible values: 'development' | 'production'
   // SETUP: [Session Storage] It'll always have the same data provided inside the external app
   sessionStorageClone: {},
-  // SETUP: [Bridge Service]: status. This is used to avoid issues during the development process
-  // when the app reloads after user changes any file
-  bridgeServiceStatus: "pending", // Possible values: 'pending' | 'connected'
 });
 
 // SETUP: Connect Payload data sent once the connection is established
@@ -41,7 +42,6 @@ const createConnectionPayload = () => ({
   payload: {
     // must have data
     urlParams,
-    bridgeServiceStatus: state.bridgeServiceStatus,
     // additional data below (optional)
     accountId,
     ipfsCidAvatar: profileInfo.image?.ipfs_cid,
@@ -68,7 +68,14 @@ setTimeout(() => {
 
 // SETUP: On message handler. On get message handler (from the External App)
 const onMessageHandler = (message) => {
-  console.log("Viewer onMessageHandler:", message);
+  // Internal Request Handler
+  internalRequestHandler(message);
+
+  // Custom Request Handler
+  customRequestHandler(message);
+};
+
+const internalRequestHandler = (message) => {
   switch (message.type) {
     case "nsb:session-storage:hydrate-viewer":
       sessionStorageHydrateViewer(message.type, message.payload);
@@ -117,9 +124,15 @@ const sendBridgeServiceStatusToExternalApp = (requestType, payload) => {
   sendMessage(responseBody);
 };
 
-// SETUP: Custom Handlers Below
+// SETUP: Custom Request Handlers Below
+const customRequestHandler = (message) => {
+  switch (message.type) {
+    case "get-updated-user-info":
+      sendUpdatedUserInfo(message.type, message.payload);
+      break;
+  }
+};
 
-// Request: get updated user info
 const sendUpdatedUserInfo = (requestType, payload) => {
   const updatedUserInfo = buildAnswer(requestType, {
     accountId,
@@ -134,7 +147,7 @@ return (
     className="w-100"
     style={{ height: "800px" }}
     // Load external app
-    src="https://6fa4294326de.ngrok.app/"
+    src={externalAppUrl}
     // Data the Near Social View is going to send to the External App
     message={state.currentMessage}
     // When the external app send a message back to the NS View
