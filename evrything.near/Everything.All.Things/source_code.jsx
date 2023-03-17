@@ -5,7 +5,7 @@ const NUM_COLUMNS_LG = 3;
 
 const type = props.type;
 
-if (!type) {
+if (type === null) {
   return (
     <Widget
       src={ERROR_WIDGET}
@@ -43,7 +43,7 @@ const loadThings = async () =>
               src={"evrything.near/widget/Everything.View.Thing"}
               props={{
                 thingId: thing.id,
-                type: thing.type,
+                type: Type.get(thing.type),
                 widget: type.widgets?.view,
               }}
             />
