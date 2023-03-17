@@ -12,7 +12,7 @@ let rawData = fetch(
   }
 );
 
-const METRIC_NAME = "NEAR Social Monthly Active Accounts";
+const METRIC_NAME = "NEAR TWITTER FOLLOWERS";
 
 let Style = styled.div`
 
@@ -237,7 +237,7 @@ const v_bar_options = {
     },
     title: {
       display: true,
-      text: "Chart.js Bar Chart",
+      text: "NEAR TWITTER FOLLOWERS",
     },
   },
 };
