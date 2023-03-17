@@ -153,13 +153,11 @@ return (
           ) : (
             <>
               <Input
-                value={state.title}
                 placeholder={"title"}
                 onChange={({ target }) => State.update({ title: target.value })}
               />
 
               <TextArea
-                value={state.description}
                 onInput={({ target }) =>
                   State.update({ description: target.value })
                 }
