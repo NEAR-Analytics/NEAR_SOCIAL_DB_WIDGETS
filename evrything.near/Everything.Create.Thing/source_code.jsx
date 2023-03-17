@@ -122,6 +122,7 @@ const resetThing = () => {
   State.update({
     title: "",
     description: "",
+    res: null,
   });
 };
 
@@ -142,7 +143,7 @@ return (
                 <Widget
                   src={ERROR_WIDGET}
                   props={{
-                    message: JSON.stringify(data.body.errors[0].message),
+                    message: JSON.stringify(state.res.body.errors[0].message),
                   }}
                 />
               ) : (
