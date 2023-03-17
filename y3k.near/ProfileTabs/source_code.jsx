@@ -10,6 +10,7 @@ if (profile === null) {
 }
 
 const description = profile.description;
+const theme = "light";
 
 const pills = [
   { id: "posts", title: "Posts" },
@@ -63,6 +64,19 @@ return (
             props={{ accounts: [accountId] }}
           />
         </div>
+      </div>
+      <div
+        className="tab-pane fade"
+        id="pills-overview"
+        role="tabpanel"
+        aria-labelledby="pills-overview-tab"
+      >
+        {state.loadoverview && (
+          <Widget
+            src="y3k.near/widget/Profile.RightSection"
+            props={{ accountId, profile, theme }}
+          />
+        )}
       </div>
       <div
         className="tab-pane fade"
