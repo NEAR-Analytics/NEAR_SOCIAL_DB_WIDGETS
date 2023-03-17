@@ -46,7 +46,7 @@ return (
           State.update({ showAnswer: !state.showAnswer });
         }}
       >
-        Answer
+        Comment
       </button>
 
       <Widget
