@@ -5,6 +5,24 @@ if (!accountId) {
 
 const profile = props.profile;
 
+const allWidgetsHistoryChangesBlocks = Social.keys(
+  `${accountId}/widget/*`,
+  "final",
+  {
+    return_type: "History",
+  }
+);
+
+if (allWidgetsHistoryChangesBlocks === null) return "Loading...";
+
+const widget = allWidgetsHistoryChangesBlocks[accountId].widget;
+
+const totalCommits = Object.keys(widget)
+  .map((key) => widget[key])
+  .flat();
+
+const widgets = Social.getr(`${accountId}/widget`) ?? {};
+
 const project = props.project ?? Social.getr(`${accountId}/project`);
 
 if (project === null) {
@@ -76,12 +94,46 @@ return (
         role="tabpanel"
         aria-labelledby="pills-widget-tab"
       >
-        <Theme>
-          <Widget
-            src="zahidulislam.near/widget/Profile.RightSection"
-            props={{ accountId, profile, theme }}
-          />
-        </Theme>
+        <div className="rightSection">
+          <div>
+            <h2>Widgets</h2>
+
+            {Object.keys(widgets)?.length > 0 ? (
+              <div className="widgetsContainer">
+                {Object.keys(widgets)?.map((item, index) => (
+                  <Widget
+                    src="zahidulislam.near/widget/Profile.WidgetItem"
+                    props={{
+                      name: item,
+                      accountId,
+                      commits:
+                        allWidgetsHistoryChangesBlocks[accountId].widget[item],
+                    }}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p
+                style={{
+                  padding: 20,
+                  textAlign: "center",
+                  color: "rgba(0,0,0,.75)",
+                }}
+              >
+                {profile?.name} does not have any widget.
+              </p>
+            )}
+          </div>
+
+          <div>
+            <h2>{totalCommits.length} contributions</h2>
+            <div style={{ marginTop: 20 }} />
+            <Widget
+              src="zahidulislam.near/widget/Profile.Contributions"
+              props={{ theme: props.theme }}
+            />
+          </div>
+        </div>
       </div>
       <div
         className="tab-pane fade groups"
