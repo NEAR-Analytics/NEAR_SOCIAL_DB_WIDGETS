@@ -60,10 +60,10 @@ if (state.image === undefined) {
   }
 }
 
-const content = (state.text || state.image.cid) && {
+const content = (state.text || state.url) && {
   type: "md",
   text: state.text,
-  image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
+  url: state.url,
 };
 
 if (content && props.extraContent) {
@@ -80,7 +80,7 @@ const onChange = (key, text) => {
   const showAccountAutocomplete = /@[\w][^\s]*$/.test(text);
   const update = {};
   update[key] = text;
-  props.onChange({ ...update, showAccountAutocomplete });
+  State.update({ ...update, showAccountAutocomplete });
 };
 
 const jContent = JSON.stringify(content);
