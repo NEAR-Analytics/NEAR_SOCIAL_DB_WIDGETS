@@ -41,6 +41,10 @@ if (!accountId) {
               <div class="d-inline-flex align-items-center">
                 <div></div>
                 <div>
+                  <Widget
+                    src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
+                    props={{}}
+                  />{" "}
                   <p class="lead" editable="inline">
                     <strong>Projects</strong>Done
                   </p>
