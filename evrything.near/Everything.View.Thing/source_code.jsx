@@ -17,7 +17,7 @@ if (!thingId) {
   );
 }
 
-const type = props.type;
+const type = Type.get(props.type);
 
 if (!type) {
   return (
