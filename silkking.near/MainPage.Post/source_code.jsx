@@ -2,6 +2,8 @@ const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
 
+console.log(5, content, accountId, blockHeight);
+
 State.init({
   displayCommentBox: false,
 });
