@@ -179,7 +179,7 @@ return (
           <div class="">
             <div class="">
               <div>
-                <h2>Metric: {METRIC_NAME}</h2>
+                <h3>{METRIC_NAME}</h3>
                 <BarEl options={config} data={data} />
               </div>
             </div>
