@@ -40,11 +40,6 @@ return (
         />
       </div>
 
-      <Widget
-        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Button.Valid"
-        props={{ accountId, blockHeight, admins, adminContract }}
-      />
-
       <button
         class="btn btn-success"
         onClick={() => {
@@ -53,6 +48,11 @@ return (
       >
         Answer
       </button>
+
+      <Widget
+        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Button.Valid"
+        props={{ accountId, blockHeight, admins, adminContract }}
+      />
 
       {state.showAnswer && (
         <Widget
