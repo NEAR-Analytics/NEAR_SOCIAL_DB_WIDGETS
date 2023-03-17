@@ -80,7 +80,7 @@ const onChange = (key, text) => {
   const showAccountAutocomplete = /@[\w][^\s]*$/.test(text);
   const update = {};
   update[key] = text;
-  State.update({ ...update, showAccountAutocomplete });
+  props.onChange({ ...update, showAccountAutocomplete });
 };
 
 const jContent = JSON.stringify(content);
@@ -95,6 +95,7 @@ const onCompose = () => {
   State.update({
     image: {},
     text: "",
+    url: "",
   });
 };
 
@@ -156,7 +157,7 @@ return (
         </div>
       )}
     </TextareaWrapper>
-    <TextareaWrapper className="p-3" data-value={state.text || ""}>
+    <TextareaWrapper className="p-3" data-value={state.url || ""}>
       <textarea
         value={state.url || ""}
         onInput={(event) => onChange("url", event.target.value)}
