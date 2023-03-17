@@ -62,6 +62,7 @@ if (state.image === undefined) {
 }
 
 const content = (state.text || state.image.cid) && {
+  id: state.id,
   type: "md",
   text: state.text,
   image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
