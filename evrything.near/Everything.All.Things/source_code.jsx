@@ -43,7 +43,7 @@ const loadThings = async () =>
               src={"evrything.near/widget/Everything.View.Thing"}
               props={{
                 thingId: thing.id,
-                type: thing.type.name,
+                type: thing.type,
                 widget: type.widgets?.view,
               }}
             />
