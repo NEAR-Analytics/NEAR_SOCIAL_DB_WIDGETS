@@ -1,15 +1,77 @@
-const index = props.index;
+const index = {
+  action: "post",
+  key: "main",
+  options: {
+    limit: 10,
+    order: "desc",
+    accountId: props.accounts,
+  },
+};
 if (!index) {
   return "props.index is not defined";
 }
 
 const filter = props.filter;
 
+const postsQuery = `
+  query IndexerQuery {
+    indexer_storage(
+      where: {function_name: {_eq: "roshaan.near/near-social-posts"}}
+      order_by: {key_name: desc}
+      limit: 10
+    ) {
+      key_name
+      value
+    }
+  }
+`;
+
+function fetchGraphQL(operationsDoc, operationName, variables) {
+  return asyncFetch(
+    "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        query: operationsDoc,
+        variables: variables,
+        operationName: operationName,
+      }),
+    }
+  );
+}
+fetchGraphQL(postsQuery, "IndexerQuery").then((result) => {
+  console.log("got result");
+  if (result.status === 200) {
+    console.log(result, "storage");
+    if (result.body.data) {
+      const initial_items = [];
+      result.body.data.indexer_storage.forEach((posts) => {
+        if (posts.value !== `\"[]\"`) {
+          const parsedOuterString = JSON.parse(posts.value);
+          const parsedInnerString = JSON.parse(parsedOuterString);
+          const post_parsed = JSON.parse(parsedInnerString[0].post);
+          parsedInnerString[0].post = post_parsed;
+          parsedInnerString[0].blockHeight = parsedInnerString[0].block_height;
+          delete parsedInnerString[0].block_height;
+          if (parsedInnerString[0].post !== null) {
+            initial_items.push(parsedInnerString[0]);
+          }
+        }
+      });
+      State.update({ initialItems: initial_items });
+    }
+
+    // State.update({
+    //   state: result.body.data.indexer_state,
+    //   stateCount: result.body.data.indexer_state_aggregate.aggregate.count,
+    // });
+  }
+});
 const renderItem =
   props.renderItem ??
   ((item, i) => (
     <div key={JSON.stringify(item)}>
-      #{item.blockHeight}: {JSON.stringify(item)}
+      #{item.block_height}: {JSON.stringify(item)}
     </div>
   ));
 const cachedRenderItem = (item, i) => {
@@ -33,8 +95,8 @@ index.options.limit = Math.min(
 );
 const reverse = !!props.reverse;
 
-const initialItems = Social.index(index.action, index.key, index.options);
-if (initialItems === null) {
+// const initialItems = Social.index(index.action, index.key, index.options);
+if (state.initialItems === null) {
   return "";
 }
 
@@ -57,46 +119,38 @@ const mergeItems = (newItems) => {
   return items;
 };
 
-const jInitialItems = JSON.stringify(initialItems);
+const jInitialItems = JSON.stringify(state.initialItems);
 if (state.jInitialItems !== jInitialItems) {
   const jIndex = JSON.stringify(index);
   if (jIndex !== state.jIndex) {
     State.update({
       jIndex,
       jInitialItems,
-      items: initialItems,
+      items: state.initialItems,
       fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(initialItems, index.options.limit),
+      nextFetchFrom: computeFetchFrom(state.initialItems, index.options.limit),
       displayCount: initialRenderLimit,
       cachedItems: {},
     });
   } else {
     State.update({
       jInitialItems,
-      items: mergeItems(initialItems),
+      items: mergeItems(state.initialItems),
     });
   }
 }
 
-if (state.fetchFrom) {
-  const limit = addDisplayCount;
-  const newItems = Social.index(
-    index.action,
-    index.key,
-    Object.assign({}, index.options, {
-      from: state.fetchFrom,
-      subscribe: undefined,
-      limit,
-    })
-  );
-  if (newItems !== null) {
-    State.update({
-      items: mergeItems(newItems),
-      fetchFrom: false,
-      nextFetchFrom: computeFetchFrom(newItems, limit),
-    });
-  }
-}
+// if (state.fetchFrom) {
+//   const limit = addDisplayCount;
+//   const newItems = [];
+//   if (newItems !== null) {
+//     State.update({
+//       items: mergeItems(newItems),
+//       fetchFrom: false,
+//       nextFetchFrom: computeFetchFrom(newItems, limit),
+//     });
+//   }
+// }
 
 const filteredItems = state.items;
 if (filter) {
