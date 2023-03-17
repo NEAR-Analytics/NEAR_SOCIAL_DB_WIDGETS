@@ -3,90 +3,144 @@ const accountId = props.debugAccountId ?? context.accountId;
 // change this back to !accountId
 if (!accountId) {
   return (
-    <div class="container py-6">
-      <div class="row align-items-center">
-        <div class="col-xl-6">
-          <div class="lc-block mb-3">
-            <div editable="rich">
-              <h2 class="fw-bold display-5">NEAR ATLAS</h2>
-            </div>
-          </div>
-          <div class="lc-block mb-3">
-            <div editable="rich">
-              <p class="fw-light rfs-11">
-                Your Very Own Atlas To Find Everything About NEAR.
-                <br />
-                Map Your Journey With Us.
-                <br />
-              </p>
-            </div>
-          </div>
-          <div class="lc-block">
-            <div editable="rich">
-              <p>
-                {" "}
-                Discover a decentralized world with our all-in-one on-chain
-                atlas. Our atlas brings together explorers, creators, and
-                communities in one accessible location. <br />
-                Experience seamless transactions, secure listings, and a
-                user-friendly interface that makes exploring the NEAR blockchain
-                ecosystem easier than ever before.
-              </p>
-            </div>
+    <div>
+      <div class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">NEAR ATLAS</h1>
+            <p class="lead text-muted">
+              Your Very Own Atlas To Find Everything About NEAR.
+              <b />
+              Map Your Journey With Us.
+            </p>
+            <p>
+              <Widget
+                src="mob.near/widget/ProfileImage"
+                props={{ accountId: "" }}
+              />
+            </p>
           </div>
         </div>
-        <div class="col-xl-6 row row-cols-1 row-cols-md-2 g-3 counter-1">
-          <div class="col">
-            <div class="card card-body shadow border-0">
-              <div class="d-inline-flex align-items-center">
-                <div></div>
-                <div>
-                  <Widget
-                    src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
-                    props={{}}
-                  />{" "}
-                  <p class="lead" editable="inline">
-                    <strong>Projects</strong>Done
-                  </p>
+      </div>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <Widget
+                  src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
+                  props={{}}
+                />
+
+                <div class="card-body">
+                  <p class="card-text">MonthlyActiveAcounts</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <small class="text-muted">time: 00s</small>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="card card-body shadow border-0">
-              <div class="d-inline-flex align-items-center">
-                <div></div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <Widget
+                  src="y3k.near/widget/NEAR.ATLAS.NewMonthlyActiveAcounts"
+                  props={{}}
+                />
 
-                <div>
-                  <p editable="inline" class="lead">
-                    <strong>Customers</strong>Satisfied
-                  </p>
+                <div class="card-body">
+                  <p class="card-text">NewMonthlyActiveAcounts</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <small class="text-muted">time: 00s</small>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="card card-body shadow border-0">
-              <div class="d-inline-flex align-items-center">
-                <div></div>
 
-                <div>
-                  <p editable="inline" class="lead">
-                    <strong>Employees</strong>in the World
-                  </p>
+            <div class="col">
+              <div class="card shadow-sm">
+                <Widget
+                  src="y3k.near/widget/NEAR.ATLAS.NEAR_SOCIAL_DATA"
+                  props={{}}
+                />
+
+                <div class="card-body">
+                  <p class="card-text">NEAR_SOCIAL_DATA</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <small class="text-muted">time: 00s</small>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="card card-body shadow border-0">
-              <div class="d-inline-flex align-items-center">
-                <div></div>
 
-                <div>
-                  <p editable="inline" class="lead">
-                    <strong>Branches</strong>In EU
-                  </p>
+            <div class="col">
+              <div class="card shadow-sm">
+                <Widget
+                  src="y3k.near/widget/NEAR.ATLAS.DATA.CHAINS_TWITTER"
+                  props={{}}
+                />
+
+                <div class="card-body">
+                  <p class="card-text">NEAR.ATLAS.DATA.CHAINS_TWITTER</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <small class="text-muted">time: 00s</small>
+                  </div>
                 </div>
               </div>
             </div>
