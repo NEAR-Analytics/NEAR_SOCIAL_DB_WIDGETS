@@ -165,7 +165,7 @@ return (
             State.update({ showAccountAutocomplete: false });
           }
         }}
-        placeholder={props.placeholder ?? "Url"}
+        placeholder={props.placeholder2 ?? "Url"}
       />
     </TextareaWrapper>
   </div>
