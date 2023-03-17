@@ -80,7 +80,7 @@ return (
           <div className="container">
             <div className="content">
               <Widget
-                src="zahidulislam.near/widget/Profile.RightSection"
+                src="y3k.near/widget/Profile.RightSection"
                 props={{ accountId, profile, theme }}
               />
             </div>
