@@ -9,7 +9,6 @@ const index = {
 };
 
 const nested = props.nested || false;
-
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -38,6 +37,7 @@ return (
         renderItem,
         nextLimit: 10,
         loadMoreText: "See more answers",
+        nested,
       }}
     />
   </div>
