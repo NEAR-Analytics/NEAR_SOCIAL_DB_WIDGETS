@@ -6,7 +6,7 @@ const ThingContainer = styled.div`
 
 const thingId = props.thingId;
 
-if (!thingId) {
+if (thingId === null) {
   return (
     <Widget
       src={ERROR_WIDGET}
