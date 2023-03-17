@@ -18,14 +18,12 @@ if (context.loading) {
 }
 
 return (
-  <div>
-    <Markdown
-      text={body}
-      transformImageUri={(uri) =>
-        uri.startsWith("http")
-          ? uri
-          : `https://cryptobootcampassets.s3.amazonaws.com/${uri.slice(26)}`
-      }
-    />
-  </div>
+  <Markdown
+    text={body}
+    transformImageUri={(uri) =>
+      uri.startsWith("http")
+        ? uri
+        : `https://cryptobootcampassets.s3.amazonaws.com/${uri.slice(26)}`
+    }
+  />
 );
