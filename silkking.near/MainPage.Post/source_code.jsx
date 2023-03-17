@@ -1,3 +1,5 @@
+console.log(6, props);
+
 const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
