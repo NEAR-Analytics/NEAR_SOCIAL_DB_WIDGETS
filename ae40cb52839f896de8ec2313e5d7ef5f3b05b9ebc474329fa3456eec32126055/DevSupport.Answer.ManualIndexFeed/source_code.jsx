@@ -3,6 +3,8 @@ if (!index) {
   return "props.index is not defined";
 }
 
+const nested = props.nested || false;
+
 const renderItem =
   props.renderItem ??
   ((item, i) => (
@@ -153,6 +155,6 @@ return (
     {reverse && fetchMore}
     {items.map(cachedRenderItem)}
     {!reverse && fetchMore}
-    {(!context.accountId || items.length == 0) && displayMessage}
+    {(!context.accountId || items.length == 0) && !nested && displayMessage}
   </>
 );
