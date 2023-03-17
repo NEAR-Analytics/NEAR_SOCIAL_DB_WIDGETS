@@ -67,13 +67,37 @@ fetchGraphQL(postsQuery, "IndexerQuery").then((result) => {
     // });
   }
 });
+
+const Post = styled.div`
+  border-bottom: 1px solid #ECEEF0;
+  padding: 24px 0 12px;
+
+  @media (max-width: 1200px) {
+    padding: 12px 0 0;
+  }
+`;
+
 const renderItem =
   props.renderItem ??
-  ((item, i) => (
-    <div key={JSON.stringify(item)}>
-      #{item.block_height}: {JSON.stringify(item)}
-    </div>
-  ));
+  ((item, i) => {
+    console.log(item, "ITEM");
+    return (
+      <Post className="post" key={JSON.stringify(a)}>
+        <Widget
+          src="calebjacob.near/widget/Posts.Post"
+          props={{
+            accountId: item.account_id,
+            blockHeight: item.blockHeight,
+            content: item.post,
+          }}
+        />
+      </Post>
+    );
+  });
+
+// <div key={JSON.stringify(item)}>
+//   #{item.block_height}: {JSON.stringify(item)}
+// </div>
 const cachedRenderItem = (item, i) => {
   const key = JSON.stringify(item);
 
