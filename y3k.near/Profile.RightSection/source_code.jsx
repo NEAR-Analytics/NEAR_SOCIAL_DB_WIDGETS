@@ -77,14 +77,10 @@ return (
         aria-labelledby="pills-widget-tab"
       >
         <Theme>
-          <div className="container">
-            <div className="content">
-              <Widget
-                src="zahidulislam.near/widget/Profile.RightSection"
-                props={{ accountId, profile, theme }}
-              />
-            </div>
-          </div>
+          <Widget
+            src="zahidulislam.near/widget/Profile.RightSection"
+            props={{ accountId, profile, theme }}
+          />
         </Theme>
       </div>
       <div
