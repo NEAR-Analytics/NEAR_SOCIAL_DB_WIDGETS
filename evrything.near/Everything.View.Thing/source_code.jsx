@@ -19,7 +19,7 @@ if (thingId === null) {
 
 const type = Type.get(props.type);
 
-if (!type) {
+if (type === null) {
   return (
     <Widget
       src={ERROR_WIDGET}
