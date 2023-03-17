@@ -1,6 +1,7 @@
 const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
+console.log(content);
 
 State.init({
   displayCommentBox: false,
@@ -147,9 +148,7 @@ const RenderKudoBox = (d) => {
           >
             Upvote
           </CommitButton>
-          <span>
-            {upvotesMap[d.blockHeight] ? upvotesMap[d.blockHeight] : 0} upvotes
-          </span>
+          <span>{d.value.upvotes} upvotes</span>
         </div>
         {RenderCommentInput(Number(d.blockHeight))}
       </div>
