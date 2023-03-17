@@ -1,67 +1,71 @@
 const autocompleteEnabled = props.autocompleteEnabled ?? true;
 
-State.init({
-  text: props.initialText || "",
-  url: props.url || "",
-});
-
-if (props.onHelper) {
-  const extractMentions = (text) => {
-    const mentionRegex =
-      /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
-    mentionRegex.lastIndex = 0;
-    const accountIds = new Set();
-    for (const match of text.matchAll(mentionRegex)) {
-      if (
-        !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
-        !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
-        match[1].length >= 2 &&
-        match[1].length <= 64
-      ) {
-        accountIds.add(match[1].toLowerCase());
-      }
-    }
-    return [...accountIds];
-  };
-
-  const extractHashtags = (text) => {
-    const hashtagRegex = /#(\w+)/gi;
-    hashtagRegex.lastIndex = 0;
-    const hashtags = new Set();
-    for (const match of text.matchAll(hashtagRegex)) {
-      if (
-        !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
-        !/[/\w`]/.test(match.input.charAt(match.index + match[0].length))
-      ) {
-        hashtags.add(match[1].toLowerCase());
-      }
-    }
-    return [...hashtags];
-  };
-
-  const extractMentionNotifications = (text, item) =>
-    extractMentions(text || "")
-      .filter((accountId) => accountId !== context.accountId)
-      .map((accountId) => ({
-        key: accountId,
-        value: {
-          type: "mention",
-          item,
-        },
-      }));
-
-  props.onHelper({
-    extractHashtags,
-    extractMentions,
-    extractTagNotifications: extractMentionNotifications,
-    extractMentionNotifications,
+if (state.image === undefined) {
+  State.init({
+    image: {},
+    text: props.initialText || "",
+    id: props.id,
   });
+
+  if (props.onHelper) {
+    const extractMentions = (text) => {
+      const mentionRegex =
+        /@((?:(?:[a-z\d]+[-_])*[a-z\d]+\.)*(?:[a-z\d]+[-_])*[a-z\d]+)/gi;
+      mentionRegex.lastIndex = 0;
+      const accountIds = new Set();
+      for (const match of text.matchAll(mentionRegex)) {
+        if (
+          !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
+          !/[/\w`]/.test(match.input.charAt(match.index + match[0].length)) &&
+          match[1].length >= 2 &&
+          match[1].length <= 64
+        ) {
+          accountIds.add(match[1].toLowerCase());
+        }
+      }
+      return [...accountIds];
+    };
+
+    const extractHashtags = (text) => {
+      const hashtagRegex = /#(\w+)/gi;
+      hashtagRegex.lastIndex = 0;
+      const hashtags = new Set();
+      for (const match of text.matchAll(hashtagRegex)) {
+        if (
+          !/[\w`]/.test(match.input.charAt(match.index - 1)) &&
+          !/[/\w`]/.test(match.input.charAt(match.index + match[0].length))
+        ) {
+          hashtags.add(match[1].toLowerCase());
+        }
+      }
+      return [...hashtags];
+    };
+
+    const extractMentionNotifications = (text, item) =>
+      extractMentions(text || "")
+        .filter((accountId) => accountId !== context.accountId)
+        .map((accountId) => ({
+          key: accountId,
+          value: {
+            type: "mention",
+            item,
+          },
+        }));
+
+    props.onHelper({
+      extractHashtags,
+      extractMentions,
+      extractTagNotifications: extractMentionNotifications,
+      extractMentionNotifications,
+    });
+  }
 }
 
-const content = (state.text || state.url) && {
+const content = (state.text || state.image.cid) && {
+  id: state.id,
   type: "md",
   text: state.text,
-  url: state.url,
+  image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
 };
 
 if (content && props.extraContent) {
@@ -74,11 +78,9 @@ function autoCompleteAccountId(id) {
   State.update({ text, showAccountAutocomplete: false });
 }
 
-const onChange = (key, text) => {
+const onChange = (text) => {
   const showAccountAutocomplete = /@[\w][^\s]*$/.test(text);
-  const update = {};
-  update[key] = text;
-  State.update({ ...update, showAccountAutocomplete });
+  State.update({ text, showAccountAutocomplete });
 };
 
 const jContent = JSON.stringify(content);
@@ -91,8 +93,8 @@ if (props.onChange && jContent !== state.jContent) {
 
 const onCompose = () => {
   State.update({
+    image: {},
     text: "",
-    url: "",
   });
 };
 
@@ -133,7 +135,7 @@ return (
     <TextareaWrapper className="p-3" data-value={state.text || ""}>
       <textarea
         value={state.text || ""}
-        onInput={(event) => onChange("text", event.target.value)}
+        onInput={(event) => onChange(event.target.value)}
         onKeyUp={(event) => {
           if (event.key === "Escape") {
             State.update({ showAccountAutocomplete: false });
@@ -154,17 +156,18 @@ return (
         </div>
       )}
     </TextareaWrapper>
-    <TextareaWrapper className="p-3" data-value={state.url || ""}>
-      <textarea
-        value={state.url || ""}
-        onInput={(event) => onChange("url", event.target.value)}
-        onKeyUp={(event) => {
-          if (event.key === "Escape") {
-            State.update({ showAccountAutocomplete: false });
-          }
-        }}
-        placeholder={props.placeholder2 ?? "Url"}
-      />
-    </TextareaWrapper>
+    {!props.textAreaOnly ? (
+      <div className="d-flex flex-row p-2 border-top">
+        <div className="flex-grow-1">
+          <IpfsImageUpload
+            image={state.image}
+            className="btn btn-outline-secondary border-0 rounded-3"
+          />
+        </div>
+        <div>{props.composeButton && props.composeButton(onCompose)}</div>
+      </div>
+    ) : (
+      ""
+    )}
   </div>
 );
