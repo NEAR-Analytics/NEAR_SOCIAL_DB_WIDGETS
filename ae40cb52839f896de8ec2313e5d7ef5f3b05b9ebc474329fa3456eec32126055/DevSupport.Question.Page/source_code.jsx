@@ -119,17 +119,16 @@ return (
 
     <h4 class="mb-3"> Community Answers </h4>
 
-    {JSON.stringify(item)}
-
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
       props={{ item, admins, adminContract }}
     />
 
+    <div class="mb-5" />
+
     {context.accountId && (
       <>
         <hr class="w-75 mx-auto my-4" />
-        <div class="mb-5" />
         <div class="p-4" style={{ border: "1px solid rgb(118, 203, 238)" }}>
           <h4 class="mb-2"> Your Answer </h4>
 
@@ -142,6 +141,7 @@ return (
             }}
           />
         </div>
+        <div class="mb-5" />
       </>
     )}
   </div>
