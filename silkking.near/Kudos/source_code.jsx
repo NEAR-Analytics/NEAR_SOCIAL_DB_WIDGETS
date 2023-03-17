@@ -1,15 +1,10 @@
 State.init({
-  text: "",
+  input: "",
   url: "",
-  displayedCommentBoxes: [],
-  commentTextMap: {},
   onChange: ({ content }) => {
-    console.log(2, content);
-    State.update({ ...content });
+    State.update({ content });
   },
 });
-
-console.log(1, state.text, state.url);
 const widgetOwner = "silkking.near";
 const widgetName = "Kudos";
 const widgetPath = `webuidl.near/widget/${widgetName}`;
@@ -52,7 +47,7 @@ if (!upvotes) {
 }
 
 const commentAnswers = Social.index("kudo", "commentAnswers");
-if (!upvotes) {
+if (!commentAnswers) {
   return "Loading commentAnswers";
 }
 
@@ -67,6 +62,7 @@ let sortedData = whiteListData.sort(
 
 sortedData.forEach((_, i) => {
   sortedData[i].value.comments = [];
+  sortedData[i].value.upvotes = 0;
 });
 
 let upvotesMap = {};
@@ -85,6 +81,14 @@ whiteListComments.forEach((c) => {
   );
   if (dataIndex === -1) return;
   sortedData[dataIndex].value.comments.push(c);
+});
+
+upvotes.forEach((upvote) => {
+  const dataIndex = sortedData.findIndex(
+    (d) => d.blockHeight == upvote.value.blockHeight
+  );
+  if (dataIndex === -1) return;
+  sortedData[dataIndex].value.upvotes += 1;
 });
 
 const finalData = sortedData;
@@ -139,74 +143,6 @@ const composeData = () => {
 
 /* BEGIN CommentButton  */
 
-const startCommentTo = (blockHeight) => {
-  console.log("startCommentTo");
-  let cm = state.displayedCommentBoxes;
-  cm.push(blockHeight);
-  cm.remove;
-  State.update({ displayedCommentBoxes: cm });
-};
-
-const RenderCommentInput = (blockHeight) => {
-  let cm = state.displayedCommentBoxes;
-  return cm && cm.includes(blockHeight) ? (
-    <div
-      style={{
-        margin: "10px 0px",
-      }}
-    >
-      <textarea
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-          width: "50%",
-          verticalAlign: "middle",
-        }}
-        rows="2"
-        value={state.commentTextMap[blockHeight]}
-        onChange={(e) => {
-          const cm = state.commentTextMap;
-          console.log(cm[blockHeight]);
-          cm[blockHeight] = e.target.value;
-          State.update({ commentTextMap: cm });
-          //   state.commentTextMap[blockHeight] = e.target.value;
-        }}
-      />
-      <CommitButton
-        style={button}
-        data={{
-          index: {
-            kudo: JSON.stringify(
-              {
-                key: "commentAnswers",
-                value: {
-                  commentAnswer: state.commentTextMap[blockHeight],
-                  blockHeight: blockHeight,
-                },
-              },
-              undefined,
-              0
-            ),
-          },
-        }}
-        onCommit={() => {
-          let ctm = state.commentTextMap;
-          ctm[blockHeight] = "";
-          State.update({
-            commentTextMap: ctm,
-            reloadData: true,
-          });
-        }}
-      >
-        Comment 1
-      </CommitButton>
-    </div>
-  ) : (
-    ""
-  );
-};
-
 /* END CommentButton  */
 
 /* START CommentBox */
@@ -241,60 +177,11 @@ const RenderAllCommentAnswerBox = (d) => {
 const RenderKudoBox = (d) => {
   return (
     <>
-      <div style={card}>
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{
-            accountId: d.accountId,
-            className: "d-inline-block",
-            style: { width: "1.5em", height: "1.5em" },
-          }}
-        />
-        <a href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}>
-          {d.accountId}
-        </a>
-        I BuiDL... <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
-        <b>
-          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-            {d.value.url}
-          </a>
-          &nbsp;&nbsp;&nbsp;
-        </b>
-        <Widget
-          src="mob.near/widget/CommentButton"
-          props={{
-            onClick: () => startCommentTo(d.blockHeight),
-          }}
-        />
-        <Widget
-          src="mob.near/widget/FollowButton"
-          props={{ accountId: d.accountId }}
-        />
-        {RenderCommentInput(Number(d.blockHeight))}
-        <div>
-          <CommitButton
-            data={{
-              index: {
-                kudo: JSON.stringify(
-                  {
-                    key: "upvote",
-                    value: {
-                      blockHeight: d.blockHeight,
-                    },
-                  },
-                  undefined,
-                  0
-                ),
-              },
-            }}
-          >
-            Upvote
-          </CommitButton>
-          <span>
-            {upvotesMap[d.blockHeight] ? upvotesMap[d.blockHeight] : 0}
-          </span>
-        </div>
-      </div>
+      <Widget
+        src={`${widgetOwner}/widget/MainPage.Post`}
+        props={{ content: d, upvotes }}
+      />
+
       {RenderAllCommentAnswerBox(d)}
     </>
   );
@@ -323,24 +210,12 @@ return (
     <Widget
       src={`${widgetOwner}/widget/Common.Compose`}
       props={{
-        widgetOwner,
+        id: "main",
+        textAreaOnly: true,
         onChange: state.onChange,
         onHelper: ({ extractMentionNotifications, extractHashtags }) => {
           State.update({ extractMentionNotifications, extractHashtags });
         },
-        composeButton: (onCompose) => (
-          <CommitButton
-            disabled={!state.content}
-            force
-            className="btn btn-dark rounded-3"
-            data={composeData}
-            onCommit={() => {
-              onCompose();
-            }}
-          >
-            Kudos!
-          </CommitButton>
-        ),
       }}
     />
     {state.content && (
@@ -351,10 +226,26 @@ return (
             accountId: context.accountId,
             content: state.content,
             blockHeight: "now",
+            onChange: state.onChange,
           }}
         />
       </div>
     )}
+    <div className="d-flex flex-column w-75 my-3 justify-content-around">
+      <p>Url:</p>
+      <textarea
+        style={{
+          backgroundColor: "#fafafa",
+          border: "1px solid #fafafa",
+          borderRadius: "0.375rem",
+        }}
+        rows="1"
+        value={state.url}
+        onChange={(e) => {
+          State.update({ url: e.target.value });
+        }}
+      />
+    </div>
     <CommitButton
       style={button}
       data={{
@@ -363,7 +254,7 @@ return (
             {
               key: "answer",
               value: {
-                answer: state.text,
+                answer: state.content.text,
                 url: state.url,
               },
             },
