@@ -1,33 +1,43 @@
-const accountId = props.accountId || context.accountId;
+const accountId = props.accountId || "evrything.near";
 
-const index = {
-  action: "thing",
-  key: "main",
-  options: {
-    limit: 10,
-    order: "desc",
-    accountId: accountId,
-  },
-};
+const types = Social.keys(`${accountId}/type/*`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
 
-const renderItem = (a) => {
-  return (
-    a.value.type === "thing" && (
-      <div key={JSON.stringify(a)} className="mb-3">
-        <Widget
-          src="efiz.near/widget/Thing"
-          props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-        />
-      </div>
-    )
-  );
+// All types from every account
+// const data = Social.keys("*/type/*");
+
+types = Object.entries(types[accountId].type ?? {});
+
+State.init({
+  selected: `${accountId}/type/Everything`,
+  type: Type.get(`${accountId}/type/Everything`),
+});
+
+const setSelected = (selection) => {
+  State.update({
+    selected: selection,
+    type: Type.get(props.type),
+  });
 };
 
 return (
-  <div>
+  <>
     <Widget
-      src="mob.near/widget/FilteredIndexFeed"
-      props={{ index, renderItem }}
+      src={"evrything.near/widget/Everything.Search"}
+      props={{
+        accountId: accountId,
+        selected: state.selected,
+        setSelected: setSelected,
+        options: types,
+      }}
     />
-  </div>
+    <Widget
+      src={"evrything.near/widget/Everything.All.Things"}
+      props={{
+        type: state.type,
+      }}
+    />
+  </>
 );
