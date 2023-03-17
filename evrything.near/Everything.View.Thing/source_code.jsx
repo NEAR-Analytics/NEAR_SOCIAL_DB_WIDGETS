@@ -17,18 +17,18 @@ if (thingId === null) {
   );
 }
 
-const type = props.type;
+const type = Type.get(props.type);
 
-if (type === null) {
-  return (
-    <Widget
-      src={ERROR_WIDGET}
-      props={{
-        message: `provided type: "${props.type}" is not valid.`,
-      }}
-    />
-  );
-}
+// if (type === null) {
+//   return (
+//     <Widget
+//       src={ERROR_WIDGET}
+//       props={{
+//         message: `provided type: "${props.type}" is not valid.`,
+//       }}
+//     />
+//   );
+// }
 
 const data = fetch(type.queries?.getById.url, {
   method: "POST",
@@ -57,7 +57,7 @@ if (data.body.errors) {
 return (
   <ThingContainer>
     <Widget
-      src={props.widget}
+      src={type.widgets?.view}
       props={{
         data: data.body.data,
       }}
