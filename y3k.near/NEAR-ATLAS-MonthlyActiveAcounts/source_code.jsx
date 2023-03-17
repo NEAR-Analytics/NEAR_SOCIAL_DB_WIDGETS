@@ -12,7 +12,7 @@ let rawData = fetch(
   }
 );
 
-const METRIC_NAME = "NEAR Weekly Active Accounts";
+const METRIC_NAME = "NEAR Monthly Active Accounts";
 
 let Style = styled.div`
         
@@ -88,6 +88,7 @@ const months = [
 ];
 
 // logic start
+
 function parseUTCDate(dateString) {
   const [month, day, year] = dateString
     .split("/")
@@ -100,68 +101,72 @@ function parseUTCDate(dateString) {
 const getBackgroundColor = colorGenerator();
 
 let processedData = [];
+let labels_of_weeks = [];
+let weeklyData = [];
 
 try {
   rawData.body.forEach((datum) => {
-    if (!datum["Daily_Date"]) {
+    if (!datum["Weekly_Date"]) {
       return;
     }
-    // console.log(datum["Daily-Date"]);
 
-    const activity_date = parseUTCDate(datum["Daily_Date"]);
+    const activity_date = parseUTCDate(datum["Weekly_Date"]);
 
-    const month =
-      months[
-        parseInt(activity_date.toISOString().slice(0, 10).split("-")[1]) - 1
-      ];
-    let monthData = processedData.find((data) => data.label === month);
+    const weeklyString = datum.Weekly.replace(",", "").replace(",", "") || "0"; // default to "0" if Weekly is empty or not defined
+    const weeklyValue = parseFloat(weeklyString);
 
-    if (!monthData) {
-      monthData = {
-        label: month,
-        data: {},
-        backgroundColor: getBackgroundColor(),
-      };
-      processedData.push(monthData);
+    // append to labels_of_weeks
+    if (!labels_of_weeks.includes(datum["Weekly_Date"])) {
+      labels_of_weeks.push(datum["Weekly_Date"]);
+      weeklyData.push(weeklyValue);
     }
-
-    monthData.data[activity_date.toISOString().slice(0, 10)] = parseInt(
-      datum["Daily"]
-    );
   });
 } catch (err) {
   console.log(err);
 }
-// console.log("processedData");
-console.log(processedData);
 
-function getMinYear(data) {
-  const years = Object.keys(data).map((dateString) =>
-    parseInt(dateString.split("-")[0])
-  );
-  return Math.min(...years);
-}
+// console.log(processedData);
 
-processedData.sort((a, b) => getMinYear(a.data) - getMinYear(b.data));
+// logic part-2
 
-// logic end
-
-const v_bar_labels = months;
-
-const v_bar_data = {
-  v_bar_labels,
-  datasets: processedData,
+const data = {
+  labels: labels_of_weeks,
+  datasets: [
+    {
+      label: "MAAs - Trailing 30 Day",
+      data: weeklyData,
+      backgroundColor: [
+        "rgba(255, 26, 104, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+        "rgba(0, 0, 0, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 26, 104, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+        "rgba(0, 0, 0, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ],
 };
 
-const v_bar_options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Weekly Active Accounts",
+// config
+const config = {
+  type: "bar",
+  data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
     },
   },
 };
@@ -175,7 +180,7 @@ return (
             <div class="">
               <div>
                 <h2>Metric: {METRIC_NAME}</h2>
-                <BarEl options={v_bar_options} data={v_bar_data} />
+                <BarEl options={config} data={data} />
               </div>
             </div>
           </div>
