@@ -147,7 +147,9 @@ const RenderKudoBox = (d) => {
           >
             Upvote
           </CommitButton>
-          <span>{d.value.upvotes} upvotes</span>
+          <span>
+            {d.value.upvotes} {d.value.upvotes == 1 ? "upvote" : "upvotes"}
+          </span>
         </div>
         {RenderCommentInput(Number(d.blockHeight))}
       </div>
