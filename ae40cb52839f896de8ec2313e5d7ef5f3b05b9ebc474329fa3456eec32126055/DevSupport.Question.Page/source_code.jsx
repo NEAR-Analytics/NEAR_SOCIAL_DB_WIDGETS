@@ -128,7 +128,7 @@ return (
 
     {context.accountId && (
       <>
-        <hr class="w-75 mx-auto my-4" />
+        <hr class="w-75 mx-auto mb-5" />
         <div class="p-4" style={{ border: "1px solid rgb(118, 203, 238)" }}>
           <h4 class="mb-2"> Your Answer </h4>
 
