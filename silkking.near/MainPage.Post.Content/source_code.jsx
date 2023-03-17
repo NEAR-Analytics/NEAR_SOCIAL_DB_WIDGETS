@@ -1,4 +1,4 @@
-const content = props.content;
+const content = props.children;
 const raw = !!props.raw;
 
 return content ? (
