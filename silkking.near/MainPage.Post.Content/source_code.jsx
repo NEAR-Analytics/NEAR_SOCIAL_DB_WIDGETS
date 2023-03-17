@@ -1,16 +1,16 @@
-const content = props.children;
+const content = props.content;
 const raw = !!props.raw;
 
 return content ? (
   <>
-    {content.children &&
+    {content.text &&
       (raw ? (
-        <pre style={{ whiteSpace: "pre-wrap" }}>{content.children}</pre>
+        <pre style={{ whiteSpace: "pre-wrap" }}>{content.text}</pre>
       ) : (
         <Widget
           src="mob.near/widget/SocialMarkdown"
           props={{
-            text: content.children,
+            text: content.text,
             onHashtag: (hashtag) => (
               <span
                 key={hashtag}
