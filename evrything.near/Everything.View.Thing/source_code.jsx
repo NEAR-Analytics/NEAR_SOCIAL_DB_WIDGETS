@@ -17,7 +17,7 @@ if (thingId === null) {
   );
 }
 
-const type = Type.get(props.type);
+const type = props.type;
 
 if (type === null) {
   return (
