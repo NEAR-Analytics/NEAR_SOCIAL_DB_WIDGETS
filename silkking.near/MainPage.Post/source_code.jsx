@@ -1,6 +1,6 @@
-const accountId = props.accountId;
-const blockHeight = parseInt(props.blockHeight);
 const content = props.content;
+const accountId = content.accountId;
+const blockHeight = parseInt(content.blockHeight);
 
 State.init({
   displayCommentBox: false,
