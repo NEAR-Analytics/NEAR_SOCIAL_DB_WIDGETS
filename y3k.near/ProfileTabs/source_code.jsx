@@ -12,8 +12,8 @@ if (profile === null) {
 const description = profile.description;
 
 const pills = [
-  { id: "posts", title: "Posts" },
   { id: "overview", title: "Overview" },
+  { id: "posts", title: "Posts" },
   { id: "nfts", title: "NFTs" },
   { id: "widget", title: "Widgets" },
 ];
@@ -60,7 +60,7 @@ return (
     </ul>
     <div className="tab-content" id="pills-tabContent">
       <div
-        className="tab-pane fade show active"
+        className="tab-pane fade "
         id="pills-posts"
         role="tabpanel"
         aria-labelledby="pills-posts-tab"
@@ -81,19 +81,17 @@ return (
         </div>
       </div>
       <div
-        className="tab-pane fade"
+        className="tab-pane fade show active"
         id="pills-overview"
         role="tabpanel"
         aria-labelledby="pills-overview-tab"
       >
-        {state.loadoverview && (
-          <Theme>
-            <Widget
-              src="y3k.near/widget/Profile.RightSection"
-              props={{ accountId, profile, theme }}
-            />
-          </Theme>
-        )}
+        <Theme>
+          <Widget
+            src="y3k.near/widget/Profile.RightSection"
+            props={{ accountId, profile, theme }}
+          />
+        </Theme>
       </div>
       <div
         className="tab-pane fade"
