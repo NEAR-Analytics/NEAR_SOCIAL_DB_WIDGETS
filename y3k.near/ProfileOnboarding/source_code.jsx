@@ -1,7 +1,7 @@
 const accountId = props.debugAccountId ?? context.accountId;
 
 // change this back to !accountId
-if (accountId) {
+if (!accountId) {
   return (
     <div class="container py-6">
       <div class="row align-items-center">
