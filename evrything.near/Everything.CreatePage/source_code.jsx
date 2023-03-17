@@ -3,6 +3,9 @@
 
 return (
   <>
-    <Widget src={"evrything.near/widget/Everything.Create.Thing"} props={{ type="efiz.near/type/Idea"}} />
+    <Widget
+      src={"evrything.near/widget/Everything.Create.Thing"}
+      props={{ type: "efiz.near/type/Idea" }}
+    />
   </>
 );
