@@ -145,7 +145,7 @@ return (
   <iframe
     id="main-iframe"
     className="w-100"
-    style={{ height: "800px" }}
+    style={{ height: "1010px" }}
     // Load external app
     src={externalAppUrl}
     // Data the Near Social View is going to send to the External App
