@@ -8,6 +8,8 @@ const index = {
   },
 };
 
+const nested = props.nested || false;
+
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -21,6 +23,7 @@ const renderItem = (a) =>
           blockHeight: a.blockHeight,
           admins,
           adminContract,
+          nested,
         }}
       />
     </div>
