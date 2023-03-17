@@ -4,7 +4,6 @@ if (state.image === undefined) {
   State.init({
     image: {},
     text: props.initialText || "",
-    hideURLField: false,
   });
 
   if (props.onHelper) {
