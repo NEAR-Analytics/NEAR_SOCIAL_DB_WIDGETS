@@ -4,6 +4,7 @@ if (state.image === undefined) {
   State.init({
     image: {},
     text: props.initialText || "",
+    id: props.id,
   });
 
   if (props.onHelper) {
