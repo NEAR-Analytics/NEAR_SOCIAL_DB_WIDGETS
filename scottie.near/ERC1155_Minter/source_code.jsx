@@ -1,10 +1,10 @@
 const provider = Ethers.provider();
 const sender = Ethers.listAccounts()[0];
 
-if (!sender) {
-  return <Web3Connect />;
-}
-return sender;
+// if (!sender) {
+//   return <Web3Connect />;
+// }
+// return sender;
 
 const contractAddress = "0xA024b318069c932263940def479A915f96E4e882";
 
@@ -28,13 +28,27 @@ const getUri = (tokenId) => {
     })
     .then((cid) => {
       const res = iface.decodeFunctionResult("uri", cid);
-      return res.toString();
+      State.update({ cid: res.toString() });
+    });
+};
+
+const getOwner = () => {
+  const encodedData = iface.encodeFunctionData("owner", []);
+
+  return Ethers.provider()
+    .call({
+      to: contractAddress,
+      data: encodedData,
+    })
+    .then((address) => {
+      const res = iface.decodeFunctionResult("owner", address);
+      State.update({ owner: res });
     });
 };
 
 return (
   <div>
-    <button onClick={() => getUri(1)}>Get CID</button>
-    <div>stuff</div>
+    <button onClick={() => getOwner()}>Get Owner</button>
+    <div>{state.owner ?? "..."}</div>
   </div>
 );
