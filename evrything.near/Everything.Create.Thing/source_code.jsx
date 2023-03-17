@@ -61,9 +61,13 @@ State.init({
   title: "",
   description: "",
   res: null,
+  loading: false,
 });
 
 const createThing = () => {
+  State.update({
+    loading: true,
+  });
   asyncFetch(type.mutations?.create.url, {
     method: "POST",
     headers: {
@@ -77,6 +81,10 @@ const createThing = () => {
       },
     }),
   }).then((res) => {
+    State.update({
+      res: res,
+      loading: false,
+    });
     // Catch if there is an error
     // const ideaId = res.body.data?.things?.addIdea.entities[0].id;
     // appendDescription(ideaId);
@@ -105,9 +113,7 @@ const createThing = () => {
 //       },
 //     }),
 //   }).then((res) => {
-//     State.update({
-//       res: res,
-//     });
+
 //   });
 // };
 
@@ -121,27 +127,44 @@ const resetThing = () => {
 return (
   <>
     <Header>
-      <Title>props.type.split("/")[2]</Title>
+      <Title>{props.type.split("/")[2]}</Title>
     </Header>
 
     <Form>
-      {state.res?.ok ? (
-        <>Successfully uploaded!</>
+      {state.loading ? (
+        <>Loading...</>
       ) : (
         <>
-          <Input
-            value={state.title}
-            placeholder={"title"}
-            onChange={({ target }) => State.update({ title: target.value })}
-          />
+          {state.res?.ok ? (
+            <>
+              {state.res.body.errors ? (
+                <Widget
+                  src={ERROR_WIDGET}
+                  props={{
+                    message: JSON.stringify(data.body.errors[0].message),
+                  }}
+                />
+              ) : (
+                <>Successfully uploaded!</>
+              )}
+            </>
+          ) : (
+            <>
+              <Input
+                value={state.title}
+                placeholder={"title"}
+                onChange={({ target }) => State.update({ title: target.value })}
+              />
 
-          <TextArea
-            value={state.description}
-            onInput={({ target }) =>
-              State.update({ description: target.value })
-            }
-            placeholder={"description, markdown supported"}
-          />
+              <TextArea
+                value={state.description}
+                onInput={({ target }) =>
+                  State.update({ description: target.value })
+                }
+                placeholder={"description, markdown supported"}
+              />
+            </>
+          )}
         </>
       )}
 
