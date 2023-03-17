@@ -187,7 +187,6 @@ const categorizeSearchHits = (rawResp) => {
     results[categories] = results[categories] || [];
     results[categories].push(result);
   }
-
   return {
     results,
     hitsTotal: rawResp.nbHits,
