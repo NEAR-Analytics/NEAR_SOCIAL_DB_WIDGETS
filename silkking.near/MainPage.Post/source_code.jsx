@@ -1,13 +1,10 @@
-console.log(6, props);
-
 const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
 
-console.log(5, content, accountId, blockHeight);
-
 State.init({
   displayCommentBox: false,
+  answer: "",
 });
 
 const notifyAccountId = accountId;
@@ -38,7 +35,6 @@ const startCommentTo = () => {
 };
 
 const RenderCommentInput = (blockHeight) => {
-  console.log(1, blockHeight);
   return state.displayCommentBox ? (
     <div
       style={{
@@ -56,11 +52,7 @@ const RenderCommentInput = (blockHeight) => {
         rows="2"
         value={state.commentTextMap[blockHeight]}
         onChange={(e) => {
-          const cm = state.commentTextMap;
-          // console.log(cm[blockHeight]);
-          cm[blockHeight] = e.target.value;
-          State.update({ commentTextMap: cm });
-          //   state.commentTextMap[blockHeight] = e.target.value;
+          State.update({ answer: e.target.value });
         }}
       />
       <CommitButton
@@ -71,8 +63,8 @@ const RenderCommentInput = (blockHeight) => {
               {
                 key: "commentAnswers",
                 value: {
-                  commentAnswer: state.commentTextMap[blockHeight],
-                  blockHeight: blockHeight,
+                  commentAnswer: state.answer,
+                  blockHeight,
                 },
               },
               undefined,
@@ -89,7 +81,7 @@ const RenderCommentInput = (blockHeight) => {
           });
         }}
       >
-        Comment 1
+        Comment
       </CommitButton>
     </div>
   ) : (
@@ -119,18 +111,6 @@ const RenderKudoBox = (d) => {
             src="mob.near/widget/MainPage.Post.Content"
             props={{ content, raw }}
           />
-          {
-            // <a href={`#/mob.near/widget/ProfilePage?accountId=${d.accountId}`}>
-            //   {d.accountId}
-            // </a>
-            // I BuiDL... <b>{d.value.answer}&nbsp;&nbsp;&nbsp;</b>
-            // <b>
-            //   <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-            //     {d.value.url}
-            //   </a>
-            //   &nbsp;&nbsp;&nbsp;
-            // </b>
-          }
           <a href={`${urlPrefix}${d.value.url}`} target="_blank">
             {d.value.url}
           </a>
@@ -165,7 +145,7 @@ const RenderKudoBox = (d) => {
               },
             }}
           >
-            Upvote 1
+            Upvote
           </CommitButton>
           <span>
             {upvotesMap[d.blockHeight] ? upvotesMap[d.blockHeight] : 0} upvotes
