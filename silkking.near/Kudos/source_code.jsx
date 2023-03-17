@@ -1,13 +1,16 @@
 State.init({
-  input: "",
+  text: "",
   url: "",
   displayedCommentBoxes: [],
   commentTextMap: {},
   onChange: ({ content }) => {
-    State.update({ content });
+    console.log(2, content);
+    State.update({ ...content });
   },
 });
-const widgetOwner = "mob.near";
+
+console.log(1, state.text, state.url);
+const widgetOwner = "silkking.near";
 const widgetName = "Kudos";
 const widgetPath = `webuidl.near/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
@@ -85,7 +88,6 @@ whiteListComments.forEach((c) => {
 });
 
 const finalData = sortedData;
-console.log(3, finalData);
 
 /* BEGIN Common.componse  */
 const composeData = () => {
@@ -146,9 +148,7 @@ const startCommentTo = (blockHeight) => {
 };
 
 const RenderCommentInput = (blockHeight) => {
-  console.log("RenderCommentInput");
   let cm = state.displayedCommentBoxes;
-  console.log(cm, blockHeight);
   return cm && cm.includes(blockHeight) ? (
     <div
       style={{
@@ -323,6 +323,7 @@ return (
     <Widget
       src={`${widgetOwner}/widget/Common.Compose`}
       props={{
+        widgetOwner,
         onChange: state.onChange,
         onHelper: ({ extractMentionNotifications, extractHashtags }) => {
           State.update({ extractMentionNotifications, extractHashtags });
@@ -354,33 +355,6 @@ return (
         />
       </div>
     )}
-    <div className="d-flex flex-column w-75 justify-content-around">
-      <textarea
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        rows="2"
-        value={state.input}
-        onChange={(e) => {
-          State.update({ input: e.target.value });
-        }}
-      />
-      <p>Url:</p>
-      <textarea
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-        }}
-        rows="1"
-        value={state.url}
-        onChange={(e) => {
-          State.update({ url: e.target.value });
-        }}
-      />
-    </div>
     <CommitButton
       style={button}
       data={{
@@ -389,7 +363,7 @@ return (
             {
               key: "answer",
               value: {
-                answer: state.input,
+                answer: state.text,
                 url: state.url,
               },
             },
