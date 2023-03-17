@@ -5,7 +5,7 @@ const NUM_COLUMNS_LG = 3;
 
 const type = props.type;
 
-if (type === null) {
+if (!type) {
   return (
     <Widget
       src={ERROR_WIDGET}
