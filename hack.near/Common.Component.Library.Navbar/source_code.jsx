@@ -4,9 +4,9 @@ const ownerId = "hack.near";
 
 return (
   <div className="d-flex flex-column">
-    <h3 className="fs-4 text-nowrap d-flex flex-row align-items-center">
+    <h2 className="fs-4 text-nowrap d-flex flex-row align-items-center">
       <span>Discover</span>
-    </h3>
+    </h2>
     <a
       className="nav-link mt-2"
       href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=home`}
