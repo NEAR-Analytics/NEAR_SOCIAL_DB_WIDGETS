@@ -30,36 +30,12 @@ const type = Type.get(props.type);
 //   );
 // }
 
-const data = fetch(type.queries?.getById.url, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    query: type.queries?.getById.query,
-    variables: {
-      thingId: thingId,
-    },
-  }),
-});
-
-if (data.body.errors) {
-  return (
-    <Widget
-      src={ERROR_WIDGET}
-      props={{
-        message: JSON.stringify(data.body.errors[0].message),
-      }}
-    />
-  );
-}
-
 return (
   <ThingContainer>
     <Widget
       src={type.widgets?.view}
       props={{
-        data: data.body.data,
+        thingId: thingId,
       }}
     />
   </ThingContainer>
