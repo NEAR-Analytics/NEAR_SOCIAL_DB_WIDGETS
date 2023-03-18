@@ -74,6 +74,14 @@ const curatedComps = [
         accountId: "nearweekapp.near",
         widgetName: "Easy-DAO-Payout-Proposal",
       },
+      {
+        accountId: "onboarder.near",
+        widgetName: "DonateNEARtoAddress",
+      },
+      {
+        accountId: "bluntdao.near",
+        widgetName: "Donate",
+      },
     ],
   },
   {
@@ -200,7 +208,7 @@ const renderHome = () => {
       <div class="mt-2">
         <h4></h4>
         <p class="text text-muted ">
-          A curated list of common components grouped by categories.
+          A curated list of common DAO components grouped by categories.
         </p>
         <div className="mb-3">
           {curatedComps && (
