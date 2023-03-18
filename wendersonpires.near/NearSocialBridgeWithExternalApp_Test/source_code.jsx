@@ -126,7 +126,6 @@ const sendBridgeServiceStatusToExternalApp = (requestType, payload) => {
 };
 
 const syncContentHeight = (requestType, payload) => {
-  console.log("CHECK:", payload.height);
   if (payload.height) {
     State.update({ iframeHeight: payload.height });
   }
