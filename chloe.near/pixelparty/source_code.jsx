@@ -26,7 +26,7 @@ for (let index = start; index <= end; index++) {
 
     // Set undefined values to 255
     for (let i = 0; i < byteData.length; i++) {
-      if (byteData[i] === undefined) {
+      if (byteData[i] === undefined || byteData[i] === null) {
         byteData[i] = 255;
       }
     }
