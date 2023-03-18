@@ -29,7 +29,9 @@ State.init({
   // SETUP:  message sender (it will re-send the message to the iframe source)
   currentMessage: {},
   connectMessageSent: false,
-  env, // Possible values: 'development' | 'production'
+  // Possible values: 'development' | 'production'
+  env,
+  renderIframe: true,
   // SETUP: Iframe height
   iframeHeight: 720,
   // SETUP: [Session Storage] It'll always have the same data provided inside the external app
@@ -39,17 +41,20 @@ State.init({
 // SETUP: Connect Payload data sent once the connection is established
 const accountId = props.accountId ?? context.accountId ?? "*";
 const profileInfo = props.profile ?? Social.getr(`${accountId}/profile`);
-const createConnectionPayload = () => ({
-  type: "connect",
-  created_at: Date.now(),
-  payload: {
-    // SETUP: initial path (tell the external app witch route should be rendered first)
-    initialPath,
-    // additional data below (optional)
-    accountId,
-    ipfsCidAvatar: profileInfo.image?.ipfs_cid,
-  },
-});
+const createConnectionPayload = () => {
+  // Return the connect payload
+  return {
+    type: "connect",
+    created_at: Date.now(),
+    payload: {
+      // SETUP: initial path (tell the external app witch route should be rendered first)
+      initialPath,
+      // additional data below (optional)
+      accountId,
+      ipfsCidAvatar: profileInfo.image?.ipfs_cid,
+    },
+  };
+};
 const welcomePayload = createConnectionPayload();
 
 // Wait a bit to send the "connect" payload only after all the scripts are loaded
@@ -86,14 +91,9 @@ const internalRequestHandler = (message) => {
     case "nsb:session-storage:hydrate-app":
       sessionStorageHydrateApp(message.type, message.payload);
       break;
-    case "nsb:bridge-service:update-status":
-      updateBridgeServiceStatus(message.type, message.payload);
-      break;
-    case "nsb:bridge-service:get-status":
-      sendBridgeServiceStatusToExternalApp(message.type, message.payload);
-      break;
     case "nsb:navigation:sync-content-height":
       syncContentHeight(message.type, message.payload);
+      break;
   }
 };
 
@@ -108,20 +108,6 @@ const sessionStorageHydrateViewer = (requestType, payload) => {
 
 const sessionStorageHydrateApp = (requestType, payload) => {
   const responseBody = buildAnswer(requestType, state.sessionStorageClone);
-  sendMessage(responseBody);
-};
-
-const updateBridgeServiceStatus = (requestType, payload) => {
-  if (payload) {
-    State.update({ bridgeServiceStatus: payload });
-  }
-
-  const responseBody = buildAnswer(requestType);
-  sendMessage(responseBody);
-};
-
-const sendBridgeServiceStatusToExternalApp = (requestType, payload) => {
-  const responseBody = buildAnswer(requestType, state.bridgeServiceStatus);
   sendMessage(responseBody);
 };
 
