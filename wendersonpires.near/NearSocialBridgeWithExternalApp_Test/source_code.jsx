@@ -78,7 +78,6 @@ const onMessageHandler = (message) => {
 };
 
 const internalRequestHandler = (message) => {
-  console.log("OBS:", message);
   switch (message.type) {
     case "nsb:session-storage:hydrate-viewer":
       sessionStorageHydrateViewer(message.type, message.payload);
