@@ -1,6 +1,6 @@
 const navItems = props.navItems;
 if (!navItems) return "Must define nav items";
-const ownerId = "manzanal.near";
+const ownerId = "hack.near";
 
 return (
   <div className="d-flex flex-column">
