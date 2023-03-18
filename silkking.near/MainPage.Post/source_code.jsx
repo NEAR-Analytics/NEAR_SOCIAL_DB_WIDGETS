@@ -30,6 +30,11 @@ const cardContent = {
   gridTemplateColumns: "3fr 1fr 1fr",
 };
 
+const headerStyles = {
+  display: "flex",
+  justifyContent: "center",
+};
+
 const startCommentTo = () => {
   State.update({ displayCommentBox: true });
 };
@@ -91,21 +96,27 @@ const RenderCommentInput = (blockHeight) => {
 
 /* START KudoBox */
 const RenderKudoBox = (d) => {
-  const text = `@${d.accountId} I BuiDL... ${d.value.answer} `;
+  const text = `From @${d.accountId} Kudos ${d.value.answer} `;
   const content = { text };
   return (
     <>
       <div style={card}>
-        <Widget
-          src="mob.near/widget/MainPage.Post.Header"
-          props={{
-            accountId,
-            blockHeight,
-            link,
-            postType: "post",
-            flagItem: item,
-          }}
-        />
+        <div style={headerStyles}>
+          <Widget
+            src="mob.near/widget/MainPage.Post.Header"
+            props={{
+              accountId,
+              blockHeight,
+              link,
+              postType: "post",
+              flagItem: item,
+            }}
+          />
+          <Widget
+            src="mob.near/widget/FollowButton"
+            props={{ accountId: d.accountId }}
+          />
+        </div>
         <div className="mt-3 text-break" style={cardContent}>
           <Widget
             src="mob.near/widget/MainPage.Post.Content"
@@ -124,11 +135,6 @@ const RenderKudoBox = (d) => {
           </div>
         </div>
         <div>
-          <Widget
-            src="mob.near/widget/FollowButton"
-            props={{ accountId: d.accountId }}
-          />
-
           <CommitButton
             data={{
               index: {
