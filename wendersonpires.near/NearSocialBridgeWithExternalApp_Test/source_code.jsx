@@ -2,8 +2,9 @@
 const externalAppUrl = "https://6fa4294326de.ngrok.app/";
 const env = "development"; // Possible values: 'development' | 'production'
 
-// SETUP: [Navigation] Get URL params
-const urlParams = props.r;
+// SETUP: [Navigation] Get the initial route / path (optional)
+// path: e.g "https://near.social/#/wendersonpires.near/widget/MyWidget?path=/"
+const initialPath = props.path;
 
 let sessionStorageClone = {};
 
@@ -42,8 +43,8 @@ const createConnectionPayload = () => ({
   type: "connect",
   created_at: Date.now(),
   payload: {
-    // must have data
-    urlParams,
+    // SETUP: initial path (tell the external app witch route should be rendered first)
+    initialPath,
     // additional data below (optional)
     accountId,
     ipfsCidAvatar: profileInfo.image?.ipfs_cid,
