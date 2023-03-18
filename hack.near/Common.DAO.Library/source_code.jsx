@@ -70,6 +70,10 @@ const curatedComps = [
         accountId: "hack.near",
         widgetName: "TransferProposal",
       },
+      {
+        accountId: "nearweekapp.near",
+        widgetName: "Easy-DAO-Payout-Proposal",
+      },
     ],
   },
   {
