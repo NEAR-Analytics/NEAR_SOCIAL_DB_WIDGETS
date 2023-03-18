@@ -1,82 +1,31 @@
-const accountId = context.accountId;
-
-if (context.loading) {
-  return "Loading";
-}
+const accountId = props.accountId;
 
 if (!accountId) {
   return "Sign in with NEAR Wallet";
 }
 
-const notifications = Social.index("notify", accountId, {
-  order: "desc",
-  limit: 100,
-  subscribe: true,
-});
+const index = {
+  action: "notify",
+  key: accountId,
+  options: {
+    limit: 10,
+    order: "desc",
+    subscribe: true,
+  },
+};
 
-if (notifications === null) {
-  return "Loading";
-}
-
-if (notifications.length === 0) {
-  return "No notifications";
-}
-
-Storage.set("lastBlockHeight", notifications[0].blockHeight);
+const renderItem = (item, i) => {
+  if (i === 0) {
+    Storage.set("lastBlockHeight", item.blockHeight);
+  }
+  return (
+    <Widget src="mob.near/widget/Notification.Item" key={i} props={item} />
+  );
+};
 
 return (
-  <>
-    {notifications.map(({ accountId, blockHeight, value }, i) => (
-      <div key={i} className="d-flex justify-content-between mb-3">
-        <div className="me-4 text-truncate">
-          <div className="text-truncate">
-            <Widget src="mob.near/widget/ProfileLine" props={{ accountId }} />
-          </div>
-          <div
-            className="text-truncate text-muted"
-            style={{ paddingLeft: "1.8em" }}
-          >
-            {value.type === "follow" ? (
-              "followed you"
-            ) : value.type === "unfollow" ? (
-              "unfollowed you"
-            ) : value.type === "purchase" ? (
-              <span>
-                NFT sale of
-                <a
-                  href={`/#/zavodil.near/widget/all-social-avatars?id=${value.token_id.replace(
-                    "Avatar #",
-                    ""
-                  )}`}
-                  class="text-dark"
-                >
-                  {value.token_id}
-                </a>
-                {`for ${new Big(value.amount ?? 0).div(
-                  new Big(10).pow(24).toFixed(2)
-                )} NEAR`}
-              </span>
-            ) : value.type === "poke" ? (
-              "poked you"
-            ) : (
-              "???"
-            )}
-            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
-          </div>
-        </div>
-        <div className="text-nowrap">
-          {value.type === "follow" || value.type === "unfollow" ? (
-            <Widget src="mob.near/widget/FollowButton" props={{ accountId }} />
-          ) : value.type != "purchase" ? (
-            <Widget
-              src="mob.near/widget/PokeButton"
-              props={{ accountId, back: true }}
-            />
-          ) : (
-            ""
-          )}
-        </div>
-      </div>
-    ))}
-  </>
+  <Widget
+    src="mob.near/widget/FilteredIndexFeed"
+    props={{ index, renderItem }}
+  />
 );
