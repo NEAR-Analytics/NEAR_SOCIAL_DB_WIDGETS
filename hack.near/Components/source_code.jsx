@@ -102,7 +102,7 @@ return (
         <Widget
           src="mob.near/widget/ComponentSearch"
           props={{
-            boostedTag: "common",
+            boostedTag: "dev",
             placeholder: "🔍 Search Components",
             limit: 10,
             onChange: ({ result }) => {
@@ -140,7 +140,7 @@ return (
     </div>
     <Widget
       src="mob.near/widget/WidgetIcons"
-      props={{ tag: "common", limit: 39 }}
+      props={{ tag: "dev", limit: 39 }}
     />
     <Items>
       {components.map((component, i) => (
