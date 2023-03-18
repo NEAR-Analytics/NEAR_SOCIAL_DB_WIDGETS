@@ -1,6 +1,6 @@
 const contract = "pixelparty.near";
-const start = 1;
-const end = 600;
+const start = 0;
+const end = 599;
 const frameData = [];
 
 for (let index = start; index <= end; index++) {
@@ -14,7 +14,7 @@ return (
     {frameData.map((data, index) => (
       <div key={index}>
         <p>Frame {index + 1}:</p>
-        <p>{data}</p>
+        <p>{data !== undefined ? data : "Data not available."}</p>
       </div>
     ))}
   </div>
