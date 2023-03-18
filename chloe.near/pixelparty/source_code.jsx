@@ -9,43 +9,37 @@ for (let index = start; index <= end; index++) {
     end: index,
   })[0];
 
-  if (base64Data) {
-    const buffer = new Buffer(base64Data, "base64");
-    const byteData = [];
+  const buffer = new Buffer(base64Data || "AQEBAQ==", "base64");
+  const byteData = [];
 
-    // Convert buffer to array of bytes, including 0 values
-    for (let i = 0; i < buffer.length; i++) {
-      const byte = buffer[i];
-      byteData.push(byte);
-      if (byte === 0) {
-        // check for 0 value and add it to array
-        byteData.push(0);
-        byteData.push(0);
-      }
+  // Convert buffer to array of bytes, including 0 values
+  for (let i = 0; i < buffer.length; i++) {
+    const byte = buffer[i];
+    byteData.push(byte);
+    if (byte === 0) {
+      // check for 0 value and add it to array
+      byteData.push(0);
+      byteData.push(0);
     }
-
-    // Set undefined values to 255
-    for (let i = 0; i < byteData.length; i++) {
-      if (byteData[i] === undefined || byteData[i] === null) {
-        byteData[i] = 255;
-      }
-    }
-
-    // Convert byte array to array of color objects
-    const colors = [];
-    for (let i = 0; i < byteData.length; i += 3) {
-      const r = byteData[i];
-      const g = byteData[i + 1];
-      const b = byteData[i + 2];
-      colors.push({ r, g, b });
-    }
-
-    frames.push(colors);
-  } else {
-    // handle empty or null data
-    const colors = Array(400).fill({ r: 255, g: 255, b: 255 });
-    frames.push(colors);
   }
+
+  // Set undefined and null values to 255 (white)
+  for (let i = 0; i < byteData.length; i++) {
+    if (byteData[i] === undefined || byteData[i] === null) {
+      byteData[i] = 255;
+    }
+  }
+
+  // Convert byte array to array of color objects
+  const colors = [];
+  for (let i = 0; i < byteData.length; i += 3) {
+    const r = byteData[i];
+    const g = byteData[i + 1];
+    const b = byteData[i + 2];
+    colors.push({ r, g, b });
+  }
+
+  frames.push(colors);
 }
 
 const grid = frames.map((frame, frameIndex) => {
@@ -54,7 +48,7 @@ const grid = frames.map((frame, frameIndex) => {
     const row = [];
     for (let j = 0; j < 20; j++) {
       const index = i * 20 + j;
-      const color = frame[index];
+      const color = frame[index] ?? { r: 255, g: 255, b: 255 }; // set default to white
       row.push(
         <div
           key={index}
