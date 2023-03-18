@@ -21,7 +21,7 @@ return (
       onClick={() => props.onSelect({ tab: "searchComponents", id: "" })}
     >
       <i className="bi-search" />
-      <span>Search components</span>
+      <span>Search</span>
     </a>
     <hr className="border-2" />
     {navItems.map((item) => {
