@@ -29,6 +29,8 @@ State.init({
   currentMessage: {},
   connectMessageSent: false,
   env, // Possible values: 'development' | 'production'
+  // SETUP: Iframe height
+  iframeHeight: 720,
   // SETUP: [Session Storage] It'll always have the same data provided inside the external app
   sessionStorageClone: {},
 });
@@ -76,6 +78,7 @@ const onMessageHandler = (message) => {
 };
 
 const internalRequestHandler = (message) => {
+  console.log("OBS:", message);
   switch (message.type) {
     case "nsb:session-storage:hydrate-viewer":
       sessionStorageHydrateViewer(message.type, message.payload);
@@ -89,10 +92,8 @@ const internalRequestHandler = (message) => {
     case "nsb:bridge-service:get-status":
       sendBridgeServiceStatusToExternalApp(message.type, message.payload);
       break;
-    // Custom handlers below
-    case "get-updated-user-info":
-      sendUpdatedUserInfo(message.type, message.payload);
-      break;
+    case "nsb:navigation:sync-content-height":
+      syncContentHeight(message.type, message.payload);
   }
 };
 
@@ -124,6 +125,16 @@ const sendBridgeServiceStatusToExternalApp = (requestType, payload) => {
   sendMessage(responseBody);
 };
 
+const syncContentHeight = (requestType, payload) => {
+  console.log("CHECK:", payload.height);
+  if (payload.height) {
+    State.update({ iframeHeight: payload.height });
+  }
+
+  const responseBody = buildAnswer(requestType);
+  sendMessage(responseBody);
+};
+
 // SETUP: Custom Request Handlers Below
 const customRequestHandler = (message) => {
   switch (message.type) {
@@ -145,7 +156,9 @@ return (
   <iframe
     id="main-iframe"
     className="w-100"
-    style={{ height: "1010px" }}
+    style={{
+      height: `${state.iframeHeight}px`,
+    }}
     // Load external app
     src={externalAppUrl}
     // Data the Near Social View is going to send to the External App
