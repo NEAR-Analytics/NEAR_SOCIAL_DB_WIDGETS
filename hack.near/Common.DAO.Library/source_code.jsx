@@ -231,7 +231,7 @@ return (
       </div>
       <div class="col-md-9">
         {" "}
-        <h2>Libraries</h2>
+        <h2>DAO Component Library</h2>
         <p class="text text-muted">
           Collections of building blocks for on-chain user interfaces.
         </p>
