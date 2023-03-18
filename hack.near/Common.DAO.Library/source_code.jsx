@@ -74,14 +74,6 @@ const curatedComps = [
         accountId: "nearweekapp.near",
         widgetName: "Easy-DAO-Payout-Proposal",
       },
-      {
-        accountId: "onboarder.near",
-        widgetName: "DonateNEARtoAddress",
-      },
-      {
-        accountId: "bluntdao.near",
-        widgetName: "Donate",
-      },
     ],
   },
   {
@@ -105,10 +97,6 @@ const curatedComps = [
     icon: "bi-arrows-move",
     components: [
       { accountId: "hack.near", widgetName: "FunctionCallProposal" },
-      {
-        accountId: "azbang.near",
-        widgetName: "CallbackEditor",
-      },
     ],
   },
   {
@@ -212,7 +200,7 @@ const renderHome = () => {
       <div class="mt-2">
         <h4></h4>
         <p class="text text-muted ">
-          A curated list of common DAO components grouped by categories.
+          A curated list of reusable widgets grouped by categories.
         </p>
         <div className="mb-3">
           {curatedComps && (
@@ -262,7 +250,7 @@ return (
         {" "}
         <h2>DAO Components Library</h2>
         <p class="text text-muted">
-          Building blocks for on-chain DAO user interfaces.
+          Building blocks for on-chain user interfaces.
         </p>
         {renderContent}
       </div>
