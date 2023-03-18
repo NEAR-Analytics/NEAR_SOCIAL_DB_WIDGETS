@@ -229,7 +229,7 @@ return (
     <div class="row">
       <div class="col-md-3">
         <Widget
-          src={`${ownerId}/widget/CommonComponentsLibrary.Navbar`}
+          src={`${ownerId}/widget/Common.DAO.Library.Navbar`}
           props={{
             tab: state.tab,
             onSelect,
