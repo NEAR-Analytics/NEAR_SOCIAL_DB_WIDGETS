@@ -7,6 +7,26 @@ const receiver_id = "aurora";
 const contract_name = "wrap.near";
 const auroraAddress = "0x97B882530830a10f07A9f9A733cB7d0491F808Dc"; // minority programmersEth address
 
+// function toChecksumAddress(address) {
+//   // Remove "0x" prefix if it exists
+//   const addressWithoutPrefix = address.toLowerCase().replace(/^0x/, "");
+
+//   // Compute the hash of the lowercase address
+//   const hash = web3.utils.sha3(addressWithoutPrefix); // not sure if uspported
+
+//   // Convert the hash to a hex string and compare characters of the address and the hash
+//   let checksumAddress = "0x";
+//   for (let i = 0; i < addressWithoutPrefix.length; i++) {
+//     if (parseInt(hash[i], 16) >= 8) {
+//       checksumAddress += addressWithoutPrefix[i].toUpperCase();
+//     } else {
+//       checksumAddress += addressWithoutPrefix[i];
+//     }
+//   }
+
+//   return checksumAddress;
+// }
+
 function isEthereumAddress(address) {
   // Check if the address is a hexadecimal string of 40 characters
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
@@ -14,29 +34,11 @@ function isEthereumAddress(address) {
   }
 
   // Check if the address has a valid checksum
-  const checksumAddress = toChecksumAddress(address);
-  return address === checksumAddress;
+  // const checksumAddress = toChecksumAddress(address);
+  // return address === checksumAddress;
+  return true;
 }
 
-function toChecksumAddress(address) {
-  // Remove "0x" prefix if it exists
-  const addressWithoutPrefix = address.toLowerCase().replace(/^0x/, "");
-
-  // Compute the hash of the lowercase address
-  const hash = web3.utils.sha3(addressWithoutPrefix);
-
-  // Convert the hash to a hex string and compare characters of the address and the hash
-  let checksumAddress = "0x";
-  for (let i = 0; i < addressWithoutPrefix.length; i++) {
-    if (parseInt(hash[i], 16) >= 8) {
-      checksumAddress += addressWithoutPrefix[i].toUpperCase();
-    } else {
-      checksumAddress += addressWithoutPrefix[i];
-    }
-  }
-
-  return checksumAddress;
-}
 initState({
   amount: amount,
   ethereum_receiver: auroraAddress,
@@ -81,7 +83,6 @@ const bridge = () => {
         amount: state.amount,
         memo: null,
         msg: state.ethereum_receiver,
-        //   msg: "0x97B882530830a10f07A9f9A733cB7d0491F808Dc",
       },
       gas: gas,
       deposit: 1, // may take this out
@@ -99,11 +100,7 @@ return (
         onChange={(e) => onChangeAddress(e.target.value)}
       />
     </div>{" "}
-    {(state.valid_address && (
-      <div className="alert alert-success">
-        <i className="bi bi-x"></i> Aurora (ETH) Address is valid
-      </div> // this conditional isnt working to check valid adress on the front end
-    )) || (
+    {!state.valid_address && (
       <div className="alert alert-danger">
         <i className="bi bi-x"></i> Not an Aurora (ETH) Address
       </div>
