@@ -3,19 +3,14 @@ const amount = "10000000000000000000000"; // 0.01 NEAR // maybe off
 // Define the Aurora address to receive the bridged NEAR
 const accountId = context.accountId; // add check for context it
 
-const method_name = "ft_transfer_call";
 const receiver_id = "aurora";
-
 const contract_name = "wrap.near";
-
 const auroraAddress = "0x97B882530830a10f07A9f9A733cB7d0491F808Dc"; // minority programmersEth address
 
 initState({
   amount: amount,
   ethereum_receiver: auroraAddress,
 });
-// Define the Rainbow Bridge API endpoint
-const bridgeEndpoint = "https://bridge-api.mainnet.near.org";
 
 const onChangeAddress = (ethereum_receiver) => {
   State.update({
@@ -30,12 +25,10 @@ const onChangeAmount = (amount) => {
 };
 
 // improve this so it shows in same transaction
-
 const bridge = () => {
   if (!(accountId && state.amount && state.ethereum_receiver)) {
     return;
   }
-
   const gas = 200000000000000;
   const deposit = 1; // exactly 1 yocto
   Near.call([
@@ -62,9 +55,6 @@ const bridge = () => {
     },
   ]);
 };
-
-// add function call hear
-
 return (
   <div>
     <h1>🌈 Send NEAR to Aurora Address </h1>
