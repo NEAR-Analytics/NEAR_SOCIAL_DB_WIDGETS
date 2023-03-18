@@ -182,24 +182,7 @@ State.init({
 });
 
 const renderHome = () => {
-  return (
-    <>
-      {searchComponents()}
-      <div class="mt-2">
-        <h4>Gallery</h4>
-        <p class="text text-muted ">
-          A curated list of common components grouped by categories.
-        </p>
-        <div className="mb-3">
-          {curatedComps && (
-            <div className="mb-6">
-              {curatedComps.map((cat, i) => renderCategory(cat.id))}
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
+  return <Widget src="hack.near/widget/Components" />;
 };
 
 const onSelect = (selection) => {
