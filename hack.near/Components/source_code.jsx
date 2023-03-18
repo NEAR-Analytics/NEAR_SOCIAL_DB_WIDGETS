@@ -96,6 +96,52 @@ if (data !== null && components.length === 0) {
 
 return (
   <Wrapper>
+    <div>
+      <h5>Explore</h5>
+      <div>
+        <Widget
+          src="mob.near/widget/ComponentSearch"
+          props={{
+            boostedTag: "dao",
+            placeholder: "🔍 Search Components",
+            limit: 10,
+            onChange: ({ result }) => {
+              State.update({ apps: result });
+            },
+          }}
+        />
+      </div>
+      {state.apps && (
+        <div>
+          {state.apps.map((app, i) => (
+            <div key={i}>
+              <Widget
+                src="mob.near/widget/ComponentSearch.Item"
+                props={{
+                  link: `#/${app.widgetSrc}`,
+                  accountId: app.accountId,
+                  widgetName: app.widgetName,
+                  onHide: () => State.update({ apps: null }),
+                  extraButtons: ({ widgetPath }) => (
+                    <a
+                      target="_blank"
+                      className="btn btn-outline-secondary"
+                      href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
+                    >
+                      Source
+                    </a>
+                  ),
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    <Widget
+      src="mob.near/widget/WidgetIcons"
+      props={{ tag: "dao", limit: 39 }}
+    />
     <Items>
       {components.map((component, i) => (
         <Widget
