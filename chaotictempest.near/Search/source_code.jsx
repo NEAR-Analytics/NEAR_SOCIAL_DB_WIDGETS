@@ -7,6 +7,10 @@ const API_URL =
 const INITIAL_PAGE = props.initialPage ?? 0;
 const facets = props.facets ?? ["All", "Users", "Apps", "Components", "Posts"];
 
+const showHeader = props.showHeader ?? true;
+const showSearchBar = props.showSearchBar ?? true;
+const showPagination = props.showPagination ?? true;
+
 const componentsUrl = `/#/calebjacob.near/widget/ComponentsPage`;
 const peopleUrl = `/#/calebjacob.near/widget/PeoplePage`;
 
@@ -308,20 +312,24 @@ const onFacetClick = (facet) => {
 
 return (
   <Wrapper>
-    <Header>
-      <H1>Search</H1>
-      <H2>Explore and find everything on the Blockchain Operating System</H2>
-    </Header>
+    {showHeader && (
+      <Header>
+        <H1>Search</H1>
+        <H2>Explore and find everything on the Blockchain Operating System</H2>
+      </Header>
+    )}
 
-    <Search>
-      <Widget
-        src="chaotictempest.near/widget/SearchPill"
-        props={{
-          onChange: onSearchChange,
-          term: props.term,
-        }}
-      />
-    </Search>
+    {showSearchBar && (
+      <Search>
+        <Widget
+          src="chaotictempest.near/widget/SearchPill"
+          props={{
+            onChange: onSearchChange,
+            term: props.term,
+          }}
+        />
+      </Search>
+    )}
 
     {state.search && (
       <Facets>
@@ -409,7 +417,8 @@ return (
       </Group>
     )}
 
-    {state.paginate &&
+    {showPagination &&
+      state.paginate &&
       state.paginate.hitsTotal > state.paginate.hitsPerPage && (
         <Widget
           src="chaotictempest.near/widget/Paginate"
