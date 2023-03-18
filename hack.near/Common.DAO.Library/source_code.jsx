@@ -105,6 +105,10 @@ const curatedComps = [
     icon: "bi-arrows-move",
     components: [
       { accountId: "hack.near", widgetName: "FunctionCallProposal" },
+      {
+        accountId: "azbang.near",
+        widgetName: "CallbackEditor",
+      },
     ],
   },
   {
