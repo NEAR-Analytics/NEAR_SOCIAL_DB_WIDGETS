@@ -5,7 +5,7 @@ const ownerId = "hack.near";
 return (
   <div className="d-flex flex-column">
     <h4 className="fs-4 text-nowrap d-flex flex-row align-items-center">
-      <span>Discovery</span>
+      <span>Discover</span>
     </h4>
     <a
       className="nav-link mt-2"
