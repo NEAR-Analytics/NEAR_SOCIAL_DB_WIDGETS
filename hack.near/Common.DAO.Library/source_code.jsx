@@ -194,24 +194,7 @@ State.init({
 });
 
 const renderHome = () => {
-  return (
-    <>
-      {searchComponents()}
-      <div class="mt-2">
-        <h4></h4>
-        <p class="text text-muted ">
-          A curated list of reusable widgets grouped by categories.
-        </p>
-        <div className="mb-3">
-          {curatedComps && (
-            <div className="mb-6">
-              {curatedComps.map((cat, i) => renderCategory(cat.id))}
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
+  return <Widget src={`${ownerId}/widget/Components`} />;
 };
 
 const onSelect = (selection) => {
@@ -248,9 +231,9 @@ return (
       </div>
       <div class="col-md-9">
         {" "}
-        <h2>DAO Components Library</h2>
+        <h2>Libraries</h2>
         <p class="text text-muted">
-          Building blocks for on-chain user interfaces.
+          Collections of building blocks for on-chain user interfaces.
         </p>
         {renderContent}
       </div>
