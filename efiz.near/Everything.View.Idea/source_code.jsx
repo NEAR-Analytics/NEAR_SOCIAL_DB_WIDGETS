@@ -1,5 +1,3 @@
-const data = props.data?.findIdeas[0];
-
 const Card = styled.div`
     height: 125px;
     background-color: white;
@@ -59,6 +57,33 @@ const Caption = styled.div`
     line-height: 15.6px;
     color: #A6A6A6;
 `;
+
+const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    query:
+      "query findIdeaByThingId($thingId: ID) { findIdeas(thing: {id: {is: $thingId}}) { name, description { md }, creationDate } }",
+    variables: {
+      thingId: thingId,
+    },
+  }),
+});
+
+if (data.body.errors) {
+  return (
+    <Widget
+      src={ERROR_WIDGET}
+      props={{
+        message: JSON.stringify(data.body.errors[0].message),
+      }}
+    />
+  );
+}
+
+data = data.findIdeas[0];
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
