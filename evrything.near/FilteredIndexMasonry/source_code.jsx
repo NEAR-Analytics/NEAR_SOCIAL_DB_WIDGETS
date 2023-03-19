@@ -1,7 +1,8 @@
 // Widget based on mob.near/widget/FilteredIndexFeed
 
-const filter = context.accountId && {
-  ignore: Social.getr(`${context.accountId}/graph/hide`),
+const filter = {
+  ignore: context.accountId && Social.getr(`${context.accountId}/graph/hide`),
+  matchesType: props.type,
 };
 
 return (
