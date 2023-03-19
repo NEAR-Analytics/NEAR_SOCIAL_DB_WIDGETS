@@ -128,7 +128,7 @@ return (
         onInput={({ target }) => State.update({ description: target.value })}
         placeholder={"description, markdown supported"}
       />
-      {JSON.stringify(state)}
+      {state.thingId}
       <ButtonRow>
         <Button onClick={createThing}>create</Button>
         <CommitButton
