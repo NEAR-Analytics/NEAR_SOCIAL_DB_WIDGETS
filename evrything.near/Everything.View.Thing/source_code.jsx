@@ -13,18 +13,15 @@ const content = JSON.parse(
 const type = Type.get(props.type);
 
 if (type === null) {
-  console.log(`type: "${a.value.type}" is not valid.`);
-  return null;
+  return (
+    <Widget
+      src={ERROR_WIDGET}
+      props={{
+        message: `type: "${a.value.type}" is not valid.`,
+      }}
+    />
+  );
 }
-
-// (
-//     <Widget
-//       src={ERROR_WIDGET}
-//       props={{
-//         message: `type: "${a.value.type}" is not valid.`,
-//       }}
-//     />
-//   );
 
 return (
   <ThingContainer>
