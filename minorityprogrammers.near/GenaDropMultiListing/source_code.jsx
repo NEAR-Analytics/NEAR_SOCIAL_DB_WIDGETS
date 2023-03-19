@@ -1,3 +1,4 @@
+// add nft transfers here
 // NEED TO FIX SCIENTIFIC NOTION ON PRICE //  ADD ERROR CHECKING for nft contract but preview is enough
 const image = props.image;
 const onChange = props.onChange;
@@ -18,6 +19,7 @@ const tradeportLink =
 // maybe utilize the helper funciton here
 // const fewfarlink =
 const defaultCustomMarket = "apollo42.near";
+const default_reciever = "minorityprogrammers.near"; // default reciver nft for transfers
 const msg =
   '{"price":' +
   '"' +
@@ -44,7 +46,10 @@ initState({
   validMarketLink: true,
   nftMetadata: nftMetadata,
   tokenInfo: tokenInfo,
+  recieverId: default_reciever,
+  validReciever: true,
   ownsNFT: false, // change this and check intially
+  transfer: false, // add checkbox for transfer that shows
   url: image.url,
   nft: image.nft ?? {}, // from santiago
 });
@@ -108,9 +113,18 @@ const onChangeAmount = (amount) => {
   });
 };
 
-const onChangeMsg = () => {
+const onChangeMsg = (msg) => {
+  // currently done in the amount
   State.update({
     msg: msg,
+  });
+};
+
+const onChangeReciever = (recieverId) => {
+  const validRecieverLink = isNearAddress(recieverId); // add error message or change button based on this
+  State.update({
+    receiverId,
+    validReciever: validRecieverLink,
   });
 };
 
@@ -257,6 +271,27 @@ const list = () => {
         : null,
     ].filter((entry) => entry !== null)
   );
+};
+const transfer = () => {
+  if (!accountId) {
+    return;
+  }
+  // need to buffer serialize arguments, add helper functions with state arguments
+  const gas = 100000000000000; // 100 tGas
+  //   const deposit = 1; // exactly 1 yocto
+  const deposit = 10000000000000000000000; // 0.01 near // maybe less
+  Near.call([
+    {
+      contractName: state.contractId,
+      methodName: "nft_transfer",
+      args: {
+        reciever_id: state.recieverId,
+        token_id: state.tokenId,
+      },
+      gas: gas ?? 200000000000000,
+      deposit: deposit ?? 10000000000000000000000,
+    },
+  ]);
 };
 const selectFewFar = () => {
   State.update({
@@ -405,26 +440,57 @@ return (
         list your NFT
       </p>
     </div>
-    {state.ownsNFT && (
-      <button className="btn btn-primary mt-3" onClick={list}>
-        List
-      </button>
-    )}
-    {!state.ownsNFT && (
-      <button className="btn btn-secondary mt-3">
-        You Can Only List An NFT You Own
-      </button>
-    )}
+    <div className="row text-center">
+      {state.ownsNFT && (
+        <button className="btn btn-primary mt-3" onClick={list}>
+          List
+        </button>
+      )}
 
-    <a
-      href={state.tradeportLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn btn-dark mt-3"
-    >
-      View on Tradeport
-    </a>
+      {!state.ownsNFT && (
+        <button className="btn btn-secondary mt-3">
+          You Can Only List An NFT You Own
+        </button>
+      )}
+
+      <a
+        href={state.tradeportLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-dark mt-3"
+      >
+        View on Tradeport
+      </a>
+    </div>
     <br></br>
+    <h1 className="text-center">OR</h1>
+    <h2 className="text-center">Transfer</h2>
+    <div className=" mb-2">
+      Reciever Address
+      <input
+        type="text"
+        placeholder={state.recieverId}
+        onChange={(e) => onChangeReciever(e.target.value)}
+      />
+    </div>
+    <div className="row">
+      {state.ownsNFT && state.validReciever && (
+        <button className="btn btn-primary mt-3" onClick={transfer}>
+          Transfer
+        </button>
+      )}
+      <div className="col-lg-6"></div>
+      {state.ownsNFT && !state.validReciever && (
+        <button className="btn btn-warning mt-3">
+          Can't Transfer (Invalid Reciever)
+        </button>
+      )}
+      {!state.ownsNFT && state.validReciever && (
+        <button className="btn btn-danger mt-3">
+          Can't Transfer (Don't Own)
+        </button>
+      )}
+    </div>
     <div className="row">
       <div className="col-lg-6 border border-secondary rounded">
         <h1>🖼️ NFT Details</h1>
@@ -432,8 +498,8 @@ return (
         <h3 className="">{state.nftMetadata.name}</h3>
         {!state.ownsNFT && (
           <div className="alert alert-danger">
-            <i className="bi bi-x"></i> You do not own this NFT & cannot list it
-            Marketplace
+            <i className="bi bi-x"></i> You do not own this NFT & cannot list or
+            transfer it
           </div>
         )}
         {state.ownsNFT && (
