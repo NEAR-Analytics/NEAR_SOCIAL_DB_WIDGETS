@@ -15,7 +15,12 @@ const index = {
 };
 
 const renderThing = (a) => {
-  return <div>{JSON.stringify(a.value)}</div>;
+  return (
+    <>
+      <p>Hello</p>
+      <div>{JSON.stringify(a.value)}</div>
+    </>
+  );
 };
 
 // <div key={JSON.stringify(a)} className="mb-3">
