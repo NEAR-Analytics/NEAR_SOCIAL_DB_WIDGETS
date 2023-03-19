@@ -85,7 +85,7 @@ const createThing = () => {
     }
   );
   State.update({
-    thingId: data.things.addIdea.entities[0],
+    thingId: data.things.addIdea.entities[0].id,
   });
 };
 
