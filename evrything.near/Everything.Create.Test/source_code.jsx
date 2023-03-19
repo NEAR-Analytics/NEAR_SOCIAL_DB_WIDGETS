@@ -26,15 +26,15 @@ return (
     <Form>
       <Input
         placeholder="test1"
-        onChange={({ target }) => State.update({ [test1]: target.value })}
+        onChange={({ target }) => State.update({ test1: target.value })}
       />
       <Input
         placeholder="test2"
-        onChange={({ target }) => State.update({ [test2]: target.value })}
+        onChange={({ target }) => State.update({ test2: target.value })}
       />
       <TextArea
         placeholder="test3"
-        onInput={({ target }) => State.update({ [test3]: target.value })}
+        onInput={({ target }) => State.update({ test3: target.value })}
       />
       <ButtonRow>
         {" "}
