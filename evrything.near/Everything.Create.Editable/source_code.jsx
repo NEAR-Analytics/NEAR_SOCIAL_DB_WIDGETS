@@ -83,9 +83,12 @@ const createThing = () => {
         },
       }),
     }
-  );
-  State.update({
-    thingId: data.things.addIdea.entities[0].id,
+  ).then((res) => {
+    if (res.body.data) {
+      State.update({
+        thingId: res.body.data.things.addIdea.entities[0].id,
+      });
+    }
   });
 };
 
