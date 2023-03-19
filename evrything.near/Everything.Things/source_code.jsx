@@ -15,17 +15,25 @@ const index = {
 };
 
 const renderThing = (a) => {
-  if (a.value.type === props.type || props.type === "everything") {
+  if (
+    a.value.type === props.type ||
+    props.type === "evrything.near/type/Everything"
+  ) {
     return (
-      <Widget
-        src={"evrything.near/widget/Everything.View.Thing"}
-        props={{
-          accountId: a.accountId,
-          blockHeight: a.blockHeight,
-          type: a.value.type,
-        }}
-      />
+      <div>
+        Render:
+        <Widget
+          src={"evrything.near/widget/Everything.View.Thing"}
+          props={{
+            accountId: a.accountId,
+            blockHeight: a.blockHeight,
+            type: a.value.type,
+          }}
+        />
+      </div>
     );
+  } else {
+    return <p>{props.type}</p>;
   }
 };
 
