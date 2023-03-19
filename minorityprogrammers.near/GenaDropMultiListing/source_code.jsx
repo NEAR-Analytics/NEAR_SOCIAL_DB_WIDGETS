@@ -1,7 +1,4 @@
-// CHECK NFTs and add a selector // add state // also selected nft should show highlight, need to edit child widget
 // NEED TO FIX SCIENTIFIC NOTION ON PRICE //  ADD ERROR CHECKING for nft contract but preview is enough
-// approved_account_id for token info to see which marketplaces
-// ERROR check if nft contracts or token exists by seeing if it becomes null with conditional error message
 const image = props.image;
 const onChange = props.onChange;
 const amount = "10000000000000000000000"; // 0.01 NEAR // amount to list at, by default its for other marketplaces
@@ -33,10 +30,7 @@ const nftMetadata = Near.view(contractId, "nft_metadata"); // get the contract n
 const tokenInfo = Near.view(contractId, "nft_token", {
   token_id: tokenId,
 });
-console.log(tokenInfo.approved + account_ids);
-// console.log(tokenInfo); // see whats inside
-// console.log(nftMetadata.name); // see whats inside // make an update method
-// console.log(response);
+console.log(tokenInfo.approved_account_ids);
 initState({
   contractId: contractId,
   tokenId: tokenId,
@@ -54,10 +48,8 @@ initState({
   url: image.url,
   nft: image.nft ?? {}, // from santiago
 });
-/**FINISH THIS - CHECK OWNERSHIP FUNCTION */
 function ownsNFT() {
   const ownsNFT = context.accountId === state.tokenInfo.owner_id;
-  // console.log(state.tokenInfo.owner_id);
   State.update({
     ownsNFT: ownsNFT,
   });
@@ -73,17 +65,43 @@ function updateTradeportLink() {
   State.update({
     tradeportLink: updatedLink,
   });
-  console.log(state.tradeportLink);
 }
-/*ON CHANGE FUNCTIONS*/
+/*ON CHANGE FUNCTIONS - NEED TO FINISH NOT CONCATENATING*/
 const onChangeAmount = (amount) => {
+  const scientificNotationNumber = "1.23e+7";
+
+  const [mantissa, exponent] = scientificNotationNumber.split("e+");
+  const [integerPart, fractionalPart] = mantissa.split(".");
+
+  let result = parseInt(integerPart);
+  console.log(result); // Output: "12300000"
+
+  if (fractionalPart) {
+    let fractionalValue = parseInt(fractionalPart);
+    for (let i = 0; i < exponent; i++) {
+      fractionalValue *= 10;
+    }
+    for (let i = 0; i < exponent; i++) {
+      result *= 10;
+    }
+    result += fractionalValue;
+  } else {
+    for (let i = 0; i < exponent; i++) {
+      result *= 10;
+    }
+  }
+
+  const bigIntNumberString = result.toString();
+  console.log(bigIntNumberString); // Output: "12300000"
+
   const msgConcat =
     '{"price":' +
     '"' +
     amount +
     '"' +
     ',"market_type":"sale","ft_token_id":"near"}';
-  console.log(msgConcat);
+  // console.log(bigIntNumber);
+  console.log(amount);
   State.update({
     amount,
     msg: msgConcat,
@@ -254,9 +272,7 @@ const selectCustom = () => {
   State.update({
     custom: !state.custom,
   });
-}; // need helper function for checking whether valid NEAR address
-
-// nneed to add checkbox for which marketplaces
+}; // need better helper function for checking whether valid NEAR address
 return (
   <div>
     <h1> 🛍️ List NFT to Multiple Marketplaces </h1>
@@ -288,12 +304,10 @@ return (
               src={`sainthiago.near/widget/nft-selector`}
               props={{
                 onChange: ({ contractId, tokenId }) => {
-                  console.log(contractId);
                   State.update({
                     contractId: contractId,
                     tokenId: tokenId,
                   });
-                  console.log(state.nft.contractId);
                 },
               }}
             />
@@ -384,7 +398,7 @@ return (
       <input
         type="number"
         placeholder={state.amount / 1e24}
-        onChange={(e) => onChangeAmount(e.target.value * 1e24)} // maybe 1e24 degen match
+        onChange={(e) => onChangeAmount(e.target.value * 1e24)}
       />
       <p>
         * You will pay some gas in Ⓝ to deposit NEAR to marketplace address then
@@ -410,39 +424,51 @@ return (
     >
       View on Tradeport
     </a>
-    <div className="border border-secondary rounded col-lg-6 p-1 m-1">
-      <h1>🖼️ NFT Details</h1>
-      <p>Collection Name: </p>
-      <h3 className="">{state.nftMetadata.name}</h3>
-      {!state.ownsNFT && (
-        <div className="alert alert-danger">
-          <i className="bi bi-x"></i> You do not own this NFT & cannot list it
-          Marketplace
+    <br></br>
+    <div className="row">
+      <div className="col-lg-6 border border-secondary rounded">
+        <h1>🖼️ NFT Details</h1>
+        <p>Collection Name: </p>
+        <h3 className="">{state.nftMetadata.name}</h3>
+        {!state.ownsNFT && (
+          <div className="alert alert-danger">
+            <i className="bi bi-x"></i> You do not own this NFT & cannot list it
+            Marketplace
+          </div>
+        )}
+        {state.ownsNFT && (
+          <div className="alert alert-success">
+            <i className="bi bi-x"></i> You own this NFT
+          </div>
+        )}
+        <p>NFT Name: </p>
+        <h4 className="">{state.tokenInfo.metadata.title}</h4>
+        <p className="">Description: {state.tokenInfo.metadata.description}</p>
+        <p>
+          <a href={state.tokenInfo.media} target="_blank">
+            {state.tokenInfo.media}
+          </a>
+        </p>
+        <Widget
+          src="mob.near/widget/NftImage"
+          props={{
+            nft: { tokenId: state.tokenId, contractId: state.contractId },
+            className: "col-lg-12",
+          }}
+        />
+      </div>
+      <div className="col-lg-6">
+        <h1> Listed Markets (not updating)</h1>
+        <div>
+          {Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
+            <p>
+              {key}: {state.tokenInfo.approved_account_ids[key]}
+            </p>
+          ))}
         </div>
-      )}
-      {state.ownsNFT && (
-        <div className="alert alert-success">
-          <i className="bi bi-x"></i> You own this NFT
-        </div>
-      )}
-      <p>NFT Name: </p>
-      <h4 className="">{state.tokenInfo.metadata.title}</h4>
-      <p className="">Description: {state.tokenInfo.metadata.description}</p>
-      <p>
-        <a href={state.tokenInfo.media} target="_blank">
-          {state.tokenInfo.media}
-        </a>
-      </p>
-      <Widget
-        src="mob.near/widget/NftImage"
-        props={{
-          nft: { tokenId: state.tokenId, contractId: state.contractId },
-          className: "col-lg-12",
-        }}
-      />
+      </div>
     </div>
-    <h1>Marketplaces this NFT is Already Listed On (Not Ready)</h1>
-    <p>Need to check which marketplaces have been approved on this nft</p>
+
     <br></br>
     <Widget
       src="minorityprogrammers.near/widget/genadropMinter"
@@ -453,6 +479,5 @@ return (
 
 // TODO: Only listing to marketplaces (already listed) to marketplaces that this nft hasnt been listed on
 // add buttons to links in the marketplaces if they have been listed
-// add mint to genadrop
-// add ability to list on different marketplaces to different pirces
+// add ability to list on different marketplaces at different price
 // add conditional for not being able to list if their is invalid custom maretkpalce trying to list to or invalid anything
