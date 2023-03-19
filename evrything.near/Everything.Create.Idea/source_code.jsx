@@ -71,7 +71,7 @@ function composeData() {
       main: JSON.stringify(state),
     },
     index: {
-      "everything-v0": JSON.stringify({
+      everythingv0: JSON.stringify({
         key: "main",
         value: {
           type: typeStr,
