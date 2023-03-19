@@ -1,4 +1,6 @@
+// NEED TO CHECK OWNERSHIP OF NFT AGAINST context.accountID, and the only then allows to list or featue is disabled and cant list it
 // NEED TO FIX SCIENTIFIC NOTION ON PRICE //  ADD ERROR CHECKING for nft contract but preview is enough
+// ERROR check if nft contracts or token exists by seeing if it becomes null with conditional error message
 const amount = "10000000000000000000000"; // 0.01 NEAR // amount to list at, by default its for other marketplaces
 const accountId = context.accountId; // add check for context it
 const ownerId = "minorityprogrammers.near"; // attribution
@@ -23,6 +25,15 @@ const msg =
   '"' +
   ',"market_type":"sale","ft_token_id":"near"}';
 // need to find custom market link to work with
+
+const nftMetadata = Near.view(contractId, "nft_metadata"); // get the contract name
+const tokenMetadata = Near.view(contractId, "nft_token", {
+  token_id: tokenId,
+}).metadata;
+// console.log(tokenMetadata); // see whats inside
+console.log(nftMetadata.name); // see whats inside // make an update method
+// console.log(response);
+console.log(tokenMetadata.title);
 initState({
   contractId: contractId,
   tokenId: tokenId,
@@ -34,7 +45,24 @@ initState({
   custom: false,
   customMarketLink: defaultCustomMarket,
   validMarketLink: true,
+  nftMetadata: nftMetadata,
+  tokenMetadata: tokenMetadata,
+  ownsNFT: false, // change this and check intially
 });
+/**FINISH THIS - CHECK OWNERSHIP FUNCTION */
+function ownsNFT() {
+  const ownsNFT = accountId === "minorityprogrammers.near";
+
+  // change this so it checks owner in metadata of nft in state
+  if (ownsNFT) {
+    console.log("You own this nft, remove the hard code");
+    State.update({
+      ownsNFT: ownsNFT,
+    });
+  }
+}
+ownsNFT();
+
 function updateTradeportLink() {
   // Function body goes here
   const updatedLink =
@@ -69,15 +97,21 @@ const onChangeMsg = () => {
 };
 
 const onChangeContract = (contractId) => {
+  const nftMetadata = Near.view(contractId, "nft_metadata"); // get the contract name
   State.update({
     contractId,
+    nftMetadata,
   });
   updateTradeportLink();
 };
 
 const onChangeToken = (tokenId) => {
+  const tokenMetadata = Near.view(state.contractId, "nft_token", {
+    token_id: tokenId,
+  }).metadata;
   State.update({
     tokenId,
+    tokenMetadata,
   });
   updateTradeportLink();
 };
@@ -115,7 +149,6 @@ function isNearAddress(address) {
   return true;
 }
 
-// improve this so it shows in same transaction
 const list = () => {
   if (!accountId) {
     return;
@@ -225,10 +258,14 @@ return (
   <div>
     <h1> 🛍️ List NFT to Multiple Marketplaces </h1>
     <h3>
-      💧 by{" "}
+      💧
       <a href="https://genadrop.io" target="_blank" rel="noopener noreferrer">
         GenaDrop
       </a>
+      <Widget
+        src="miraclx.near/widget/Attribution"
+        props={{ authors: [ownerId], dep: true }}
+      />
     </h3>
     <div className="row">
       <div className="col-lg-6 mb-2">
@@ -331,9 +368,26 @@ return (
     >
       View on Tradeport
     </a>
-    <h1>Marketplaces this NFT is Already Listed On (Not Ready)</h1>
-    <h3>Here are marketplaces they already listed on</h3>
-
+    <h1>🖼️ NFT Details</h1>
+    <h3>Collection Name: {state.nftMetadata.name}</h3>
+    {!state.ownsNFT && (
+      <div className="alert alert-danger">
+        <i className="bi bi-x"></i> You do not own this NFT & cannot list it
+        Marketplace
+      </div>
+    )}
+    {state.ownsNFT && (
+      <div className="alert alert-success">
+        <i className="bi bi-x"></i> You own this NFT (hardcoded rn)
+      </div>
+    )}
+    <h4>NFT Name: {state.tokenMetadata.title}</h4>
+    <p>Description: {state.tokenMetadata.description}</p>
+    <p>
+      <a href={state.tokenMetadata.media} target="_blank">
+        {state.tokenMetadata.media}
+      </a>
+    </p>
     <Widget
       src="mob.near/widget/NftImage"
       props={{
@@ -341,14 +395,17 @@ return (
         className: "img-fluid",
       }}
     />
+    <h1>Marketplaces this NFT is Already Listed On (Not Ready)</h1>
+    <p>Need to check which marketplaces have been approved on this nft</p>
+    <br></br>
     <Widget
-      src="miraclx.near/widget/Attribution"
+      src="minorityprogrammers.near/widget/genadropMinter"
       props={{ authors: [ownerId], dep: true }}
     />
   </div>
 );
 
-// TODO: future limit where you can list to based on where they are already listed
+// TODO: Only listing to marketplaces (already listed) to marketplaces that this nft hasnt been listed on
 // add buttons to links in the marketplaces if they have been listed
 // add mint to genadrop
 // add ability to list on different marketplaces to different pirces
