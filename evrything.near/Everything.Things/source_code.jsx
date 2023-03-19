@@ -15,12 +15,21 @@ const index = {
 };
 
 const renderThing = (a) => {
-  return (
-    <>
-      <p>Hello</p>
-      <div>{JSON.stringify(a.value)}</div>
-    </>
-  );
+  if (a.value.type === props.type || a.value.type === "everything") {
+    const type = Type.get(a.value.type);
+    if (type === null) {
+      return (
+        <Widget
+          src={ERROR_WIDGET}
+          props={{
+            message: `type: "${a.value.type}" is not valid.`,
+          }}
+        />
+      );
+    } else {
+      return <Widget src={type.widgets?.view} />;
+    }
+  }
 };
 
 // <div key={JSON.stringify(a)} className="mb-3">
