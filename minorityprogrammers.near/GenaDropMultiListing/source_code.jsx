@@ -287,7 +287,7 @@ return (
             id="custombox"
           />
           <label className="form-check-label" htmlFor="myCheckbox">
-            Enter Custom Marketplace Address (WIP)
+            Enter Custom Marketplace Address
           </label>
         </div>
       </div>
@@ -309,7 +309,7 @@ return (
       </div>
     )}
     <div className=" mb-2">
-      Enter Price Your Want to List (In NEAR)
+      Enter Price You Want to List (In NEAR) (WIP-Buggy)
       <input
         type="number"
         placeholder={state.amount / 1e24}
