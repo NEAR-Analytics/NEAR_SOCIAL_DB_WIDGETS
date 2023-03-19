@@ -1,7 +1,7 @@
 const data = props.data;
 
 const Card = styled.div`
-    height: 125px;
+    height: 200px;
     background-color: white;
     padding: 12px;
     margin: 8px;
