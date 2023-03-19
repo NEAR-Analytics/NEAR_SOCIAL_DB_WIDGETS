@@ -1,6 +1,9 @@
+// CHECK NFTs and add a selector // add state // also selected nft should show highlight, need to edit child widget
 // NEED TO FIX SCIENTIFIC NOTION ON PRICE //  ADD ERROR CHECKING for nft contract but preview is enough
+// approved_account_id for token info to see which marketplaces
 // ERROR check if nft contracts or token exists by seeing if it becomes null with conditional error message
-// name isnt updating correctly when contract changes and need to change
+const image = props.image;
+const onChange = props.onChange;
 const amount = "10000000000000000000000"; // 0.01 NEAR // amount to list at, by default its for other marketplaces
 const accountId = context.accountId; // add check for context it
 const ownerId = "minorityprogrammers.near"; // attribution
@@ -12,7 +15,7 @@ const contractId = "genadrop-contract.nftgen.near"; // default nft contract
 const tokenId = "1679119560198"; // maybe condtional check if props is eempty // default nft
 const fewfarmarket = "market.fewandfar.near";
 const tradeportmarket = "market.tradeport.near";
-// fewfar link // display button if listed // asking them for format // https://fewfar.com/genadrop-single-nft-near/1675689302938/
+// fewfar link // display button if listed // asking them for format and they are working on a fix // https://fewfar.com/genadrop-single-nft-near/1675689302938/
 const tradeportLink =
   "https://www.tradeport.xyz/near/collection/" + contractId + "/" + tokenId;
 // maybe utilize the helper funciton here
@@ -30,9 +33,9 @@ const nftMetadata = Near.view(contractId, "nft_metadata"); // get the contract n
 const tokenInfo = Near.view(contractId, "nft_token", {
   token_id: tokenId,
 });
-console.log(tokenInfo);
+console.log(tokenInfo.approved + account_ids);
 // console.log(tokenInfo); // see whats inside
-console.log(nftMetadata.name); // see whats inside // make an update method
+// console.log(nftMetadata.name); // see whats inside // make an update method
 // console.log(response);
 initState({
   contractId: contractId,
@@ -48,19 +51,18 @@ initState({
   nftMetadata: nftMetadata,
   tokenInfo: tokenInfo,
   ownsNFT: false, // change this and check intially
+  url: image.url,
+  nft: image.nft ?? {}, // from santiago
 });
 /**FINISH THIS - CHECK OWNERSHIP FUNCTION */
 function ownsNFT() {
   const ownsNFT = context.accountId === state.tokenInfo.owner_id;
-
-  // change this so it checks owner in metadata of nft in state
-  console.log(state.tokenInfo.owner_id);
+  // console.log(state.tokenInfo.owner_id);
   State.update({
     ownsNFT: ownsNFT,
   });
 }
 ownsNFT();
-
 function updateTradeportLink() {
   // Function body goes here
   const updatedLink =
@@ -268,6 +270,37 @@ return (
         props={{ authors: [ownerId], dep: true }}
       />
     </h3>
+    <div>
+      <div
+        className="p-2"
+        style={{
+          background: "#fdfdfd",
+          border: "solid 1px #dee2e6",
+          borderTop: 0,
+          borderBottomLeftRadius: ".375rem",
+          borderBottomRightRadius: ".375rem",
+          minHeight: "9em",
+        }}
+      >
+        <div>
+          <div className="mt-2">
+            <Widget
+              src={`sainthiago.near/widget/nft-selector`}
+              props={{
+                onChange: ({ contractId, tokenId }) => {
+                  console.log(contractId);
+                  State.update({
+                    contractId: contractId,
+                    tokenId: tokenId,
+                  });
+                  console.log(state.nft.contractId);
+                },
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     <div className="row">
       <div className="col-lg-6 mb-2">
         ContractID
@@ -373,7 +406,7 @@ return (
       href={state.tradeportLink}
       target="_blank"
       rel="noopener noreferrer"
-      class="btn btn-secondary mt-3"
+      class="btn btn-dark mt-3"
     >
       View on Tradeport
     </a>
