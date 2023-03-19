@@ -1,5 +1,3 @@
-const data = props;
-
 const Card = styled.div`
     height: 125px;
     background-color: white;
@@ -91,9 +89,14 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{JSON.stringify(props)}</Title>
+          <Title>{data.title}</Title>
+          <Preview>
+            <Markdown text={data.description} />
+          </Preview>
         </Content>
       </Body>
     </div>
   </Card>
 );
+
+// <Caption>{formatDate(data.creationDate)}</Caption>
