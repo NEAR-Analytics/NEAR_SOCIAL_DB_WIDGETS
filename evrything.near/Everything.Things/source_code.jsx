@@ -34,7 +34,7 @@ return (
   <div>
     <Widget
       src="evrything.near/widget/FilteredIndexMasonry"
-      props={{ index, renderThing }}
+      props={{ index, renderItem: renderThing }}
     />
   </div>
 );
