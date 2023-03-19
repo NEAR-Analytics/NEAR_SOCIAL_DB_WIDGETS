@@ -24,14 +24,15 @@ const cachedRenderItem = (item, i) => {
   if (!(key in state.cachedItems)) {
     state.cachedItems[key] = renderItem(item, i);
     State.update();
-  } else {
-    // Exists in cache, if type filter true then rerender
-    // This could definitely be improved...
-    if (props.typeFilter) {
-      state.cachedItems[key] = renderItem(item, i);
-      State.update;
-    }
   }
+  // else {
+  //   // Exists in cache, if type filter true then rerender
+  //   // This could definitely be improved...
+  //   if (props.typeFilter) {
+  //     state.cachedItems[key] = renderItem(item, i);
+  //     State.update;
+  //   }
+  // }
   return state.cachedItems[key];
 };
 
