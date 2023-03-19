@@ -21,7 +21,8 @@ const renderThing = (a) => {
   ) {
     return (
       <div>
-        Render:
+        Props: {props.type}
+        Type: {a.value.type}
         <Widget
           src={"evrything.near/widget/Everything.View.Thing"}
           props={{
@@ -32,8 +33,6 @@ const renderThing = (a) => {
         />
       </div>
     );
-  } else {
-    return <p>{props.type}</p>;
   }
 };
 
