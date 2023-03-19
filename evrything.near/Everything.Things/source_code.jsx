@@ -15,31 +15,23 @@ const index = {
 };
 
 const renderThing = (a) => {
+  // TODO: This doesn't work because the renderItem gets cached
   if (
     a.value.type === props.type ||
     props.type === "evrything.near/type/Everything"
   ) {
     return (
-      <div>
-        <Widget
-          src={"evrything.near/widget/Everything.View.Thing"}
-          props={{
-            accountId: a.accountId,
-            blockHeight: a.blockHeight,
-            type: a.value.type,
-          }}
-        />
-      </div>
+      <Widget
+        src={"evrything.near/widget/Everything.View.Thing"}
+        props={{
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+          type: a.value.type,
+        }}
+      />
     );
   }
 };
-
-// <div key={JSON.stringify(a)} className="mb-3">
-//   <Widget
-//     src={type.widgets?.view}
-//     props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
-//   />
-// </div>
 
 return (
   <div>
@@ -47,6 +39,5 @@ return (
       src="evrything.near/widget/FilteredIndexMasonry"
       props={{ index, renderItem: renderThing }}
     />
-    {props.type}
   </div>
 );
