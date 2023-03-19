@@ -1,3 +1,5 @@
+const data = props.data;
+
 const Card = styled.div`
     height: 125px;
     background-color: white;
