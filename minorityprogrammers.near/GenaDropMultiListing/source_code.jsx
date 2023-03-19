@@ -1,6 +1,6 @@
-// NEED TO CHECK OWNERSHIP OF NFT AGAINST context.accountID, and the only then allows to list or featue is disabled and cant list it
 // NEED TO FIX SCIENTIFIC NOTION ON PRICE //  ADD ERROR CHECKING for nft contract but preview is enough
 // ERROR check if nft contracts or token exists by seeing if it becomes null with conditional error message
+// name isnt updating correctly when contract changes and need to change
 const amount = "10000000000000000000000"; // 0.01 NEAR // amount to list at, by default its for other marketplaces
 const accountId = context.accountId; // add check for context it
 const ownerId = "minorityprogrammers.near"; // attribution
@@ -27,13 +27,13 @@ const msg =
 // need to find custom market link to work with
 
 const nftMetadata = Near.view(contractId, "nft_metadata"); // get the contract name
-const tokenMetadata = Near.view(contractId, "nft_token", {
+const tokenInfo = Near.view(contractId, "nft_token", {
   token_id: tokenId,
-}).metadata;
-// console.log(tokenMetadata); // see whats inside
+});
+console.log(tokenInfo);
+// console.log(tokenInfo); // see whats inside
 console.log(nftMetadata.name); // see whats inside // make an update method
 // console.log(response);
-console.log(tokenMetadata.title);
 initState({
   contractId: contractId,
   tokenId: tokenId,
@@ -46,20 +46,18 @@ initState({
   customMarketLink: defaultCustomMarket,
   validMarketLink: true,
   nftMetadata: nftMetadata,
-  tokenMetadata: tokenMetadata,
+  tokenInfo: tokenInfo,
   ownsNFT: false, // change this and check intially
 });
 /**FINISH THIS - CHECK OWNERSHIP FUNCTION */
 function ownsNFT() {
-  const ownsNFT = accountId === "minorityprogrammers.near";
+  const ownsNFT = context.accountId === state.tokenInfo.owner_id;
 
   // change this so it checks owner in metadata of nft in state
-  if (ownsNFT) {
-    console.log("You own this nft, remove the hard code");
-    State.update({
-      ownsNFT: ownsNFT,
-    });
-  }
+  console.log(state.tokenInfo.owner_id);
+  State.update({
+    ownsNFT: ownsNFT,
+  });
 }
 ownsNFT();
 
@@ -102,17 +100,20 @@ const onChangeContract = (contractId) => {
     contractId,
     nftMetadata,
   });
+  onChangeToken(state.tokenId);
+  ownsNFT();
   updateTradeportLink();
 };
 
 const onChangeToken = (tokenId) => {
-  const tokenMetadata = Near.view(state.contractId, "nft_token", {
+  const tokenInfo = Near.view(state.contractId, "nft_token", {
     token_id: tokenId,
-  }).metadata;
+  });
   State.update({
     tokenId,
-    tokenMetadata,
+    tokenInfo,
   });
+  ownsNFT();
   updateTradeportLink();
 };
 
@@ -357,9 +358,17 @@ return (
         list your NFT
       </p>
     </div>
-    <button className="btn btn-primary mt-3" onClick={list}>
-      List
-    </button>
+    {state.ownsNFT && (
+      <button className="btn btn-primary mt-3" onClick={list}>
+        List
+      </button>
+    )}
+    {!state.ownsNFT && (
+      <button className="btn btn-secondary mt-3">
+        You Can Only List An NFT You Own
+      </button>
+    )}
+
     <a
       href={state.tradeportLink}
       target="_blank"
@@ -368,33 +377,37 @@ return (
     >
       View on Tradeport
     </a>
-    <h1>🖼️ NFT Details</h1>
-    <h3>Collection Name: {state.nftMetadata.name}</h3>
-    {!state.ownsNFT && (
-      <div className="alert alert-danger">
-        <i className="bi bi-x"></i> You do not own this NFT & cannot list it
-        Marketplace
-      </div>
-    )}
-    {state.ownsNFT && (
-      <div className="alert alert-success">
-        <i className="bi bi-x"></i> You own this NFT (hardcoded rn)
-      </div>
-    )}
-    <h4>NFT Name: {state.tokenMetadata.title}</h4>
-    <p>Description: {state.tokenMetadata.description}</p>
-    <p>
-      <a href={state.tokenMetadata.media} target="_blank">
-        {state.tokenMetadata.media}
-      </a>
-    </p>
-    <Widget
-      src="mob.near/widget/NftImage"
-      props={{
-        nft: { tokenId: state.tokenId, contractId: state.contractId },
-        className: "img-fluid",
-      }}
-    />
+    <div className="border border-secondary rounded col-lg-6 p-1 m-1">
+      <h1>🖼️ NFT Details</h1>
+      <p>Collection Name: </p>
+      <h3 className="">{state.nftMetadata.name}</h3>
+      {!state.ownsNFT && (
+        <div className="alert alert-danger">
+          <i className="bi bi-x"></i> You do not own this NFT & cannot list it
+          Marketplace
+        </div>
+      )}
+      {state.ownsNFT && (
+        <div className="alert alert-success">
+          <i className="bi bi-x"></i> You own this NFT
+        </div>
+      )}
+      <p>NFT Name: </p>
+      <h4 className="">{state.tokenInfo.metadata.title}</h4>
+      <p className="">Description: {state.tokenInfo.metadata.description}</p>
+      <p>
+        <a href={state.tokenInfo.media} target="_blank">
+          {state.tokenInfo.media}
+        </a>
+      </p>
+      <Widget
+        src="mob.near/widget/NftImage"
+        props={{
+          nft: { tokenId: state.tokenId, contractId: state.contractId },
+          className: "col-lg-12",
+        }}
+      />
+    </div>
     <h1>Marketplaces this NFT is Already Listed On (Not Ready)</h1>
     <p>Need to check which marketplaces have been approved on this nft</p>
     <br></br>
