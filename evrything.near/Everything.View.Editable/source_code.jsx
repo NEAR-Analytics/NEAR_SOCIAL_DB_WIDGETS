@@ -80,7 +80,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   },
   body: JSON.stringify({
     query:
-      "query findIdeaByThingId($thingId: ID) { findIdeas(thing: {id: {is: $thingId}}) { name, description { md }, creationDate } }",
+      "query findIdeaByThingId($thingId: ID) { findIdeas(id: {is: $thingId}) { name, description { md }, creationDate } }",
     variables: {
       thingId: thingId,
     },
