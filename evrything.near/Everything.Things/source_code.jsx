@@ -15,7 +15,7 @@ const index = {
 };
 
 const renderThing = (a) => {
-  return <div>{JSON.stringify(a)}</div>;
+  return a.value.type === props.type && <div>{JSON.stringify(a)}</div>;
 };
 
 // <div key={JSON.stringify(a)} className="mb-3">
