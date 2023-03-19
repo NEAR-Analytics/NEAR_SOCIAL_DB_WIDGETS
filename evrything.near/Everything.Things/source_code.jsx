@@ -32,8 +32,7 @@ const renderThing = (a) => {
   }
 };
 
-const typeFilter =
-  props.type === "evrything.near/type/Everything" ? null : props.type;
+const typeFilter = props.type !== "evrything.near/type/Everything";
 
 return (
   <div>
