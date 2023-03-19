@@ -15,20 +15,17 @@ const index = {
 };
 
 const renderThing = (a) => {
-  if (a.value.type === props.type || a.value.type === "everything") {
-    const type = Type.get(a.value.type);
-    if (type === null) {
-      return (
-        <Widget
-          src={ERROR_WIDGET}
-          props={{
-            message: `type: "${a.value.type}" is not valid.`,
-          }}
-        />
-      );
-    } else {
-      return <Widget src={type.widgets?.view} />;
-    }
+  if (a.value.type === props.type || props.type === "everything") {
+    return (
+      <Widget
+        src={"evrything.near/widget/Everything.View.Thing"}
+        props={{
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+          type: a.value.type,
+        }}
+      />
+    );
   }
 };
 
