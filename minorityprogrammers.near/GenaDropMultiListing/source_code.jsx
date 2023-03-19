@@ -12,6 +12,13 @@ const contractId = "genadrop-contract.nftgen.near"; // pass as
 const tokenId = "1679119560198"; // maybe condtional check if props is eempty
 const fewfarmarket = "market.fewandfar.near";
 const tradeportmarket = "market.tradeport.near";
+// tradeport link https://www.tradeport.xyz/near/collection/genadrop-contract.nftgen.near/1679119560198
+// fewfar link // display button if listed
+// add marketplaces listed state
+const tradeportLink =
+  "https://www.tradeport.xyz/near/collection/" + contractId + "/" + tokenId;
+// maybe utilize the helper funciton here
+
 const msg =
   '{"price":' +
   '"' +
@@ -26,7 +33,20 @@ initState({
   tradeport: true,
   amount: amount,
   msg: msg,
+  tradeportLink: tradeportLink,
 });
+function updateTradeportLink() {
+  // Function body goes here
+  const updatedLink =
+    "https://www.tradeport.xyz/near/collection/" +
+    state.contractId +
+    "/" +
+    state.tokenId;
+  State.update({
+    tradeportLink: updatedLink,
+  });
+  console.log(state.tradeportLink);
+}
 
 const onChangeAmount = (amount) => {
   const msgConcat =
@@ -52,15 +72,21 @@ const onChangeContract = (contractId) => {
   State.update({
     contractId,
   });
+  updateTradeportLink();
 };
 
 const onChangeToken = (tokenId) => {
   State.update({
     tokenId,
   });
+  updateTradeportLink();
 };
 
-// add conditions based on marketplace booleans
+const updateLink = () => {
+  if (state.contractId && state.tokenId) {
+  }
+};
+
 // improve this so it shows in same transaction
 const list = () => {
   if (!accountId) {
@@ -70,29 +96,60 @@ const list = () => {
   const gas = 100000000000000; // 100 tGas
   //   const deposit = 1; // exactly 1 yocto
   const deposit = 10000000000000000000000; // 0.01 near
-  Near.call([
-    {
-      contractName: tradeportmarket,
-      methodName: "storage_deposit",
-      args: {
-        receiver_id: context.accountId,
-      },
-      gas,
-      deposit: deposit,
-    },
-    {
-      contractName: state.contractId,
-      // need to wrap first with near_deposit
-      methodName: "nft_approve",
-      args: {
-        token_id: state.tokenId,
-        account_id: tradeportmarket,
-        msg: state.msg, // need to add the variables and buffer seerailize
-      },
-      gas: gas,
-      deposit: deposit, // may take this out
-    },
-  ]);
+  Near.call(
+    [
+      state.tradeport
+        ? {
+            contractName: tradeportmarket,
+            methodName: "storage_deposit",
+            args: {
+              receiver_id: context.accountId,
+            },
+            gas,
+            deposit: deposit,
+          }
+        : null,
+      state.tradeport
+        ? {
+            contractName: state.contractId,
+            // need to wrap first with near_deposit
+            methodName: "nft_approve",
+            args: {
+              token_id: state.tokenId,
+              account_id: tradeportmarket,
+              msg: state.msg, // need to add the variables and buffer seerailize
+            },
+            gas: gas,
+            deposit: deposit, // may take this out
+          }
+        : null,
+      state.fewfar
+        ? {
+            contractName: fewfarmarket,
+            methodName: "storage_deposit",
+            args: {
+              receiver_id: context.accountId,
+            },
+            gas,
+            deposit: deposit,
+          }
+        : null,
+      state.fewfar
+        ? {
+            contractName: state.contractId,
+            // need to wrap first with near_deposit
+            methodName: "nft_approve",
+            args: {
+              token_id: state.tokenId,
+              account_id: fewfarmarket,
+              msg: state.msg, // need to add the variables and buffer seerailize
+            },
+            gas: gas,
+            deposit: deposit, // may take this out
+          }
+        : null,
+    ].filter((entry) => entry !== null)
+  );
 };
 const selectFewFar = () => {
   State.update({
@@ -173,6 +230,17 @@ return (
     <button className="btn btn-primary mt-3" onClick={list}>
       List
     </button>
+    <a
+      href={state.tradeportLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-secondary mt-3"
+    >
+      View on Tradeport
+    </a>
+    <h1>Marketplaces this NFT is Already Listed On (Not Ready)</h1>
+    <h3>Here are marketplaces they already listed on</h3>
+
     <Widget
       src="mob.near/widget/NftImage"
       props={{
@@ -182,3 +250,8 @@ return (
     />
   </div>
 );
+
+// future limit where you can list to based on where they are already listed
+// add buttons to links in the marketplaces
+// add mint to genadrop
+// add ability to list on different marketplaces to different pirces
