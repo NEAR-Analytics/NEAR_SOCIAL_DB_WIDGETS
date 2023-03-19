@@ -34,9 +34,9 @@ return (
       }}
     />
     <Widget
-      src={state.type?.widgets.all}
+      src={"evrything.near/widget/Everything.Things"}
       props={{
-        type: state.type,
+        type: state.selected,
       }}
     />
   </>
