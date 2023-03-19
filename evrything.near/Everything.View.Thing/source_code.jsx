@@ -28,7 +28,7 @@ return (
     <Widget
       src={type.widgets?.view}
       props={{
-        data: JSON.parse(content),
+        data: content,
       }}
     />
   </ThingContainer>
