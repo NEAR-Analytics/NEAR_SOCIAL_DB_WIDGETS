@@ -12,13 +12,11 @@ types = Object.entries(types[accountId].type ?? {});
 
 State.init({
   selected: `${accountId}/type/Everything`,
-  type: Type.get(`${accountId}/type/Everything`),
 });
 
 const setSelected = (selection) => {
   State.update({
     selected: selection,
-    type: Type.get(props.type),
   });
 };
 
