@@ -14,12 +14,13 @@ const index = {
   },
 };
 
-const renderThing = (a, t) => {
-  if (a.value.type === t || t === "evrything.near/type/Everything") {
+const renderThing = (a) => {
+  if (
+    a.value.type === props.type ||
+    props.type === "evrything.near/type/Everything"
+  ) {
     return (
       <div>
-        Props: {t}
-        Type: {a.value.type}
         <Widget
           src={"evrything.near/widget/Everything.View.Thing"}
           props={{
