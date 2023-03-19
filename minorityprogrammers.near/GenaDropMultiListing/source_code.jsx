@@ -460,11 +460,12 @@ return (
       <div className="col-lg-6">
         <h1> Listed Markets (not updating)</h1>
         <div>
-          {Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
-            <p>
-              {key}: {state.tokenInfo.approved_account_ids[key]}
-            </p>
-          ))}
+          {typeof state.tokenInfo.approved_account_id === "object" &&
+            Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
+              <p>
+                {key}: {state.tokenInfo.approved_account_ids[key]}
+              </p>
+            ))}
         </div>
       </div>
     </div>
