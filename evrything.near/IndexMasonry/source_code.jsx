@@ -9,6 +9,8 @@ if (!index) {
   return "props.index is not defined";
 }
 
+const type = props.type;
+
 const filter = props.filter;
 
 const renderItem =
@@ -112,6 +114,9 @@ if (filter) {
     filteredItems = filteredItems.filter(
       (item) => !(item.accountId in filter.ignore)
     );
+  }
+  if (filter.type) {
+    filteredItems = filteredItems.filter((item) => !(item.value.type === type));
   }
 }
 
