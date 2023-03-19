@@ -49,5 +49,6 @@ return (
       src="evrything.near/widget/FilteredIndexMasonry"
       props={{ index, renderItem: renderThing }}
     />
+    {props.type}
   </div>
 );
