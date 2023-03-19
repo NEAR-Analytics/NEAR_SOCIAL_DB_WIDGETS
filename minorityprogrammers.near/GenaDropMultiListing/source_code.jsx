@@ -19,7 +19,7 @@ const tradeportLink =
 // maybe utilize the helper funciton here
 // const fewfarlink =
 const defaultCustomMarket = "apollo42.near";
-const default_reciever = "minorityprogrammers.near"; // default reciver nft for transfers
+const default_receiver = "minorityprogrammers.near"; // default reciver nft for transfers
 const msg =
   '{"price":' +
   '"' +
@@ -46,8 +46,8 @@ initState({
   validMarketLink: true,
   nftMetadata: nftMetadata,
   tokenInfo: tokenInfo,
-  recieverId: default_reciever,
-  validReciever: true,
+  receiverId: default_receiver,
+  validReceiver: true,
   ownsNFT: false, // change this and check intially
   transfer: false, // add checkbox for transfer that shows
   url: image.url,
@@ -120,11 +120,11 @@ const onChangeMsg = (msg) => {
   });
 };
 
-const onChangeReciever = (recieverId) => {
-  const validRecieverLink = isNearAddress(recieverId); // add error message or change button based on this
+const onChangeReceiver = (receiverId) => {
+  const validReceiverLink = isNearAddress(receiverId); // add error message or change button based on this
   State.update({
     receiverId,
-    validReciever: validRecieverLink,
+    validReceiver: validReceiverLink,
   });
 };
 
@@ -279,13 +279,13 @@ const transfer = () => {
   // need to buffer serialize arguments, add helper functions with state arguments
   const gas = 100000000000000; // 100 tGas
   //   const deposit = 1; // exactly 1 yocto
-  const deposit = 10000000000000000000000; // 0.01 near // maybe less
+  const deposit = 1; // 0.01 near // maybe less
   Near.call([
     {
       contractName: state.contractId,
       methodName: "nft_transfer",
       args: {
-        reciever_id: state.recieverId,
+        receiver_id: state.receiverId,
         token_id: state.tokenId,
       },
       gas: gas ?? 200000000000000,
@@ -466,26 +466,26 @@ return (
     <h1 className="text-center">OR</h1>
     <h2 className="text-center">Transfer</h2>
     <div className=" mb-2">
-      Reciever Address
+      Receiver Address
       <input
         type="text"
-        placeholder={state.recieverId}
-        onChange={(e) => onChangeReciever(e.target.value)}
+        placeholder={state.receiverId}
+        onChange={(e) => onChangeReceiver(e.target.value)}
       />
     </div>
     <div className="row">
-      {state.ownsNFT && state.validReciever && (
+      {state.ownsNFT && state.validReceiver && (
         <button className="btn btn-primary mt-3" onClick={transfer}>
           Transfer
         </button>
       )}
       <div className="col-lg-6"></div>
-      {state.ownsNFT && !state.validReciever && (
+      {state.ownsNFT && !state.validReceiver && (
         <button className="btn btn-warning mt-3">
-          Can't Transfer (Invalid Reciever)
+          Can't Transfer (Invalid Receiver)
         </button>
       )}
-      {!state.ownsNFT && state.validReciever && (
+      {!state.ownsNFT && state.validReceiver && (
         <button className="btn btn-danger mt-3">
           Can't Transfer (Don't Own)
         </button>
