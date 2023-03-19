@@ -41,11 +41,14 @@ const renderThing = (a) => {
 //   />
 // </div>
 
+const typeFilter =
+  props.type === "evrything.near/type/Everything" ? null : props.type;
+
 return (
   <div>
     <Widget
       src="evrything.near/widget/FilteredIndexMasonry"
-      props={{ index, renderItem: renderThing, type: props.type }}
+      props={{ index, renderItem: renderThing, type: typeFilter }}
     />
     {props.type}
   </div>
