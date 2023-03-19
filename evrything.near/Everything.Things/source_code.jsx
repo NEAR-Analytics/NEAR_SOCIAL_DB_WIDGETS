@@ -5,7 +5,7 @@ if (!type) {
 }
 
 const index = {
-  action: "thing",
+  action: "everything-v0", // this could work as a sort of "domain" if we want...
   key: "main",
   options: {
     limit: 10,
