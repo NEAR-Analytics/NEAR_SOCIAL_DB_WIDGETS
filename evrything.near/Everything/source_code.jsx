@@ -11,7 +11,7 @@ const types = Social.keys(`${accountId}/type/*`, "final", {
 types = Object.entries(types[accountId].type ?? {});
 
 State.init({
-  selected: "everything",
+  selected: `${accountId}/type/Everything`,
 });
 
 const setSelected = (selection) => {
