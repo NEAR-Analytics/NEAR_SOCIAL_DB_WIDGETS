@@ -1,7 +1,7 @@
 const ERROR_WIDGET = "efiz.testnet/widget/Everything.Error";
 
 const Card = styled.div`
-    height: 125px;
+    height: 180px;
     background-color: white;
     padding: 12px;
     margin: 8px;
@@ -60,7 +60,7 @@ const Caption = styled.div`
     color: #A6A6A6;
 `;
 
-const thingId = props.thingId;
+const thingId = props.data.thingId;
 
 if (thingId === null) {
   return (
