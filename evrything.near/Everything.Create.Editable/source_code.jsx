@@ -128,16 +128,16 @@ return (
         onInput={({ target }) => State.update({ description: target.value })}
         placeholder={"description, markdown supported"}
       />
-      {state.thingId}
+      {JSON.stringify(state)}
       <ButtonRow>
-        <Button onClick={createThing}>reset</Button>
+        <Button onClick={createThing}>create</Button>
         <CommitButton
           disabled={!state.title}
           force
           data={composeData}
           onCommit={resetThing}
         >
-          create
+          commit
         </CommitButton>
         <Button onClick={resetThing}>reset</Button>
       </ButtonRow>
