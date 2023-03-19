@@ -15,7 +15,6 @@ const index = {
 };
 
 const renderThing = (a) => {
-  // TODO: This doesn't work because the renderItem gets cached
   if (
     a.value.type === props.type ||
     props.type === "evrything.near/type/Everything"
@@ -33,11 +32,14 @@ const renderThing = (a) => {
   }
 };
 
+const typeFilter =
+  props.type === "evrything.near/type/Everything" ? null : props.type;
+
 return (
   <div>
     <Widget
       src="evrything.near/widget/FilteredIndexMasonry"
-      props={{ index, renderItem: renderThing }}
+      props={{ index, renderItem: renderThing, type: typeFilter }}
     />
   </div>
 );
