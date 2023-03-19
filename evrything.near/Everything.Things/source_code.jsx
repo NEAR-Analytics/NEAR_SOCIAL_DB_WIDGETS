@@ -14,14 +14,11 @@ const index = {
   },
 };
 
-const renderThing = (a) => {
-  if (
-    a.value.type === props.type ||
-    props.type === "evrything.near/type/Everything"
-  ) {
+const renderThing = (a, t) => {
+  if (a.value.type === t || t === "evrything.near/type/Everything") {
     return (
       <div>
-        Props: {props.type}
+        Props: {t}
         Type: {a.value.type}
         <Widget
           src={"evrything.near/widget/Everything.View.Thing"}
@@ -47,7 +44,7 @@ return (
   <div>
     <Widget
       src="evrything.near/widget/FilteredIndexMasonry"
-      props={{ index, renderItem: renderThing }}
+      props={{ index, renderItem: renderThing, type: props.type }}
     />
     {props.type}
   </div>
