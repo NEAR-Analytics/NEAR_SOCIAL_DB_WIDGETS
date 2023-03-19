@@ -113,6 +113,11 @@ if (filter) {
       (item) => !(item.accountId in filter.ignore)
     );
   }
+  if (filter.matchesType) {
+    filteredItems = filteredItems.filter(
+      (item) => item.type === filter.matchesType
+    );
+  }
 }
 
 const maybeFetchMore = () => {
