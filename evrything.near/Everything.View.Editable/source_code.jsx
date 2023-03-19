@@ -98,7 +98,7 @@ if (data.body.errors) {
   );
 }
 
-data = data.body.findIdeas[0];
+data = data.body.data.findIdeas[0];
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
