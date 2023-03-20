@@ -43,27 +43,11 @@ if (
   onChange(metadata);
 }
 
-const debounce = (func) => {
-  let timer;
-  return (...args) => {
-    if (!timer) {
-      func.apply(args);
-    }
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      timer = undefined;
-    }, 300);
-  };
-};
-
-// const debounceSave = (params) => {
+// const debounce = (func) => {
 //   let timer;
-//   // console.log("some thing");
-//   console.log(state);
-//   return () => {
+//   return (...args) => {
 //     if (!timer) {
-//       State.update(params);
-//       console.log("updatedState: ", state);
+//       func.apply(args);
 //     }
 //     clearTimeout(timer);
 //     timer = setTimeout(() => {
@@ -71,6 +55,24 @@ const debounce = (func) => {
 //     }, 300);
 //   };
 // };
+
+const debounce = (func, wait, immediate) => {
+  let timeout;
+
+  return (...args) => {
+    const later = () => {
+      timeout = null;
+      if (!immediate) func.apply(args);
+    };
+
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(args);
+  };
+};
+
+let tempDescription = state.metadata.description;
 
 console.log("state: ", state);
 
@@ -113,10 +115,13 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          value={state.metadata.description}
+          value={tempDescription}
           onChange={(e) => {
-            state.metadata.description = e.target.value;
-            // debounce(State.update());
+            tempDescription = e.target.value;
+            debounce(
+              State.update((state.metadata.description = tempDescription)),
+              250
+            );
             // debounceSave((state.metadata.description = metadataDescription));
             // State.update();
           }}
