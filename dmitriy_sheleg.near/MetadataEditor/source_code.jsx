@@ -110,7 +110,7 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          value={state.metadata.description}
+          value={metadata.description}
           onChange={(e) => {
             state.metadata.description = e.target.value;
             // debounceSave();
