@@ -132,8 +132,7 @@ const debug = props.debug ?? false;
 
 const renderCategory = (categoryId) => {
   if (!categoryId || categoryId === "") return <></>;
-  const itemType = curatedComps.find((i) => i.type == categoryId);
-  const item = curatedComps.find((i) => i.id == sectionId);
+  const item = curatedComps.find((i) => i.id == categoryId);
   return (
     <div class="mt-3">
       <div class="text fs-5 text-muted mb-1" id={item.id}>
