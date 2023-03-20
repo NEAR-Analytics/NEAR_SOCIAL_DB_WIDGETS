@@ -45,35 +45,6 @@ if (
 
 let tempDescription = state.metadata.description;
 
-// const debounce = (func) => {
-//   let timer;
-//   return (...args) => {
-//     if (!timer) {
-//       func.apply(args);
-//     }
-//     clearTimeout(timer);
-//     timer = setTimeout(() => {
-//       timer = undefined;
-//     }, 300);
-//   };
-// };
-
-// const debounce = (func, wait, immediate) => {
-//   let timeout;
-
-//   return (...args) => {
-//     const later = () => {
-//       timeout = null;
-//       if (!immediate) func.apply(args);
-//     };
-
-//     const callNow = immediate && !timeout;
-//     clearTimeout(timeout);
-//     timeout = setTimeout(later, wait);
-//     if (callNow) func.apply(args);
-//   };
-// };
-
 const debounce = (func, wait) => {
   let timeout;
 
@@ -139,13 +110,12 @@ return (
           className="form-control"
           rows={5}
           value={tempDescription}
-          onChange={saveDescription}
-          // onChange={(e) => {
-          //   tempDescription = e.target.value;
-          //   debounce(saveDescription(), 250);
-          //   // debounceSave((state.metadata.description = metadataDescription));
-          //   // State.update();
-          // }}
+          onChange={(e) => {
+            tempDescription = e.target.value;
+            // debounce(saveDescription(), 250);
+            // debounceSave((state.metadata.description = metadataDescription));
+            State.update();
+          }}
         />
       </div>
     )}
