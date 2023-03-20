@@ -17,8 +17,8 @@ return (
     </a>
     <a
       className="nav-link mt-2"
-      href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=searchComponents`}
-      onClick={() => props.onSelect({ tab: "searchComponents", id: "" })}
+      href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=search`}
+      onClick={() => props.onSelect({ tab: "search", id: "" })}
     >
       <i className="bi-search" />
       <span>Search</span>
