@@ -72,6 +72,8 @@ const debounce = (func) => {
 //   };
 // };
 
+console.log("state: ", state);
+
 return (
   <>
     {options.name && (
