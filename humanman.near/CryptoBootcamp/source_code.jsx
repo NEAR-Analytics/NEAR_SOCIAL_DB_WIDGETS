@@ -101,7 +101,6 @@ const handleModuleSelect = (val) => {
   const newPath = lessonPaths[val];
   const url = `https://raw.githubusercontent.com/near/wiki/master/wiki/support/understanding-web3/${newPath}.md`;
   const fecthed = fetch(url);
-  console.log(val, newPath, url);
   const m = fecthed.body.split(delimiter).slice(start).join("\n");
   State.update({ path: lessonPaths[val], content: m });
 };
