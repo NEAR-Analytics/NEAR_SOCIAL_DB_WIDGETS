@@ -118,6 +118,7 @@ return (
       placeholder="Select a lecture..."
       autoFocus
       clearButton
+      emptyLabel
     />
     <br />
     <br />
