@@ -36,10 +36,7 @@ State.init({ title: "", description: "" });
 
 function createThing() {
   const resp = Evrything.create(state, typeStr);
-  console.log(resp);
-  State.update({
-    publish: resp,
-  });
+  State.update(resp);
 }
 
 return (
@@ -58,11 +55,11 @@ return (
       />
       <ButtonRow>
         <Button onClick={createThing}>create</Button>
-        <CommitButton force data={state.publish ?? null} onCommit={resetThing}>
+        <CommitButton force data={state ?? null} onCommit={resetThing}>
           publish
         </CommitButton>
       </ButtonRow>
     </Form>
-    {JSON.stringify(state.publish)}
+    {JSON.stringify(state)}
   </>
 );
