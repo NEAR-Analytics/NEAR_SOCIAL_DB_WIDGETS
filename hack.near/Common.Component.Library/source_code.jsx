@@ -188,6 +188,7 @@ return (
             onSelect,
             navItems: curatedComps.map((i) => ({
               type: i.type,
+              name: i.name,
               icon: i.icon,
               id: i.id,
             })),
