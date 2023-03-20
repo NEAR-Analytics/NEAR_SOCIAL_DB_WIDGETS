@@ -101,6 +101,7 @@ const handleModuleSelect = (val) => {
   console.log(val, newPath, url);
   const m = fecthed.body.split(delimiter).slice(start).join("\n");
   State.update({ path: lessonPaths[val], content: m });
+  console.log(State);
 };
 
 if (context.loading) {
@@ -116,6 +117,7 @@ return (
         return handleModuleSelect(selected);
       }}
       placeholder="Select a lecture..."
+      autoFocus
     />
     <br />
     <br />
