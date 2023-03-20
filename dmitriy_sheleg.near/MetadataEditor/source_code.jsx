@@ -59,6 +59,7 @@ if (
 const debounceSave = (params) => {
   let timer;
   console.log("some thing");
+  console.log(state);
   return () => {
     if (!timer) {
       State.update(params);
