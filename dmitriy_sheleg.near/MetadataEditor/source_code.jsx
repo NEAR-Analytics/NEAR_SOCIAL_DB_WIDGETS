@@ -58,7 +58,7 @@ if (
 
 const debounceSave = (params) => {
   let timer;
-  console.log("some thing");
+  // console.log("some thing");
   console.log(state);
   return () => {
     if (!timer) {
@@ -72,6 +72,12 @@ const debounceSave = (params) => {
 };
 
 let metadataDescription = metadata.description;
+
+const handleDescriptionChange = (value) => {
+  metadataDescription = value;
+  console.log("metadataDescription: ", metadataDescription);
+  debounceSave(metadataDescription);
+};
 
 return (
   <>
@@ -114,8 +120,9 @@ return (
           rows={5}
           value={metadataDescription}
           onChange={(e) => {
-            metadataDescription = e.target.value;
-            debounceSave((state.metadata.description = metadataDescription));
+            handleDescriptionChange(e.target.value);
+            // metadataDescription = e.target.value;
+            // debounceSave((state.metadata.description = metadataDescription));
             // State.update();
           }}
         />
