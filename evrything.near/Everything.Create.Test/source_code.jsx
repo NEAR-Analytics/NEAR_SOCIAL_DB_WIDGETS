@@ -32,17 +32,17 @@ const Button = styled.button`
 
 const typeStr = "evrything.near/type/Test";
 
-const properties = { title: "", description: "" }
+const properties = { title: "", description: "" };
 
-State.init(properties);
+State.init({ values: properties, data: null });
 
 function createThing() {
-  const resp = Evrything.create(state, typeStr, true);
-  State.update(resp);
+  const data = Evrything.create(state, typeStr, true);
+  State.update({ data });
 }
 
 function resetThing() {
-  State.update(properties);
+  State.update({ values: properties });
 }
 
 return (
@@ -53,14 +53,19 @@ return (
     <Form>
       <Input
         placeholder="title"
-        onChange={({ target }) => State.update({ title: target.value })}
+        onChange={({ target }) => State.update({ values: { title: target.value }})}
       />
       <TextArea
         placeholder="description"
-        onInput={({ target }) => State.update({ description: target.value })}
+        onInput={({ target }) => State.update({ values: { description: target.value } })}
       />
       <ButtonRow>
-        <CommitButton force data={state} onClick={createThing} onCommit={resetThing}>
+        <CommitButton
+          force
+          data={state.data}
+          onClick={createThing}
+          onCommit={resetThing}
+        >
           create
         </CommitButton>
       </ButtonRow>
