@@ -29,8 +29,8 @@ return (
     </h4>
     <a
       className="nav-link mt-2"
-      href={`https://near.social/#/${ownerId}/widget/Common.DAO.Library?tab=home`}
-      onClick={() => props.onSelect({ tab: "home", id: "" })}
+      href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=dao`}
+      onClick={() => props.onSelect({ tab: "dao", id: "" })}
     >
       <i className="bi-rocket-takeoff-fill" />
       <span>DAO</span>
