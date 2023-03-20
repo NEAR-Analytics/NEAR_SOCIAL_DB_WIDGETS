@@ -1,7 +1,8 @@
 const ownerId = "hack.near";
 const curatedComps = [
   {
-    category: "General",
+    type: "dao",
+    name: "General",
     id: "general",
     icon: "bi-menu-button-wide-fill",
     components: [
@@ -20,7 +21,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "DAO Search",
+    type: "dao",
+    name: "DAO Search",
     icon: "bi-search",
     id: "search",
     components: [
@@ -31,7 +33,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "Membership",
+    type: "dao",
+    name: "Membership",
     id: "buttons",
     icon: "bi-person-badge",
     components: [
@@ -62,7 +65,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "Transfers",
+    type: "dao",
+    name: "Transfers",
     id: "transfer",
     icon: "bi-safe",
     components: [
@@ -77,7 +81,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "Polls",
+    type: "dao",
+    name: "Polls",
     id: "poll",
     icon: "bi-check2-square",
     components: [
@@ -92,7 +97,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "Functions",
+    type: "dao",
+    name: "Functions",
     id: "functions",
     icon: "bi-arrows-move",
     components: [
@@ -100,7 +106,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "Metadata",
+    type: "dao",
+    name: "Metadata",
     id: "metadata",
     icon: "bi-box-seam",
     components: [
@@ -109,7 +116,8 @@ const curatedComps = [
     ],
   },
   {
-    category: "DAO Tools",
+    type: "dao",
+    name: "DAO Tools",
     id: "tools",
     icon: "bi-tools",
     components: [
@@ -165,24 +173,26 @@ const renderCategory = (categoryId) => {
   return (
     <div class="mt-3">
       <div class="text fs-5 text-muted mb-1" id={item.id}>
-        {item.category}
+        {item.type}
       </div>
       <div class="border border-2 mb-4 rounded"></div>
       <div class="container">
         <div className="row ">
-          {item.components.map((comp, i) => (
-            <div class="col-6 mb-2">
-              <Widget
-                key={i}
-                src="mob.near/widget/WidgetMetadata"
-                props={{
-                  accountId: comp.accountId,
-                  widgetName: comp.widgetName,
-                  expanded: false,
-                }}
-              />
-            </div>
-          ))}
+          {items.length > 0 && (
+            <Items>
+              {items.map((component, i) => (
+                <Item key={component.accountId + component.widgetName}>
+                  <Widget
+                    src="adminalpha.near/widget/ComponentCard"
+                    props={{
+                      src: `${component.accountId}/widget/${component.widgetName}`,
+                      blockHeight: component.blockHeight,
+                    }}
+                  />
+                </Item>
+              ))}
+            </Items>
+          )}
         </div>
       </div>
     </div>
@@ -194,7 +204,11 @@ State.init({
 });
 
 const renderHome = () => {
-  return <Widget src={`${ownerId}/widget/Components`} />;
+  return (
+    <div>
+      <Widget src={`${ownerId}/widget/Common.DAO`} />;
+    </div>
+  );
 };
 
 const onSelect = (selection) => {
@@ -203,8 +217,8 @@ const onSelect = (selection) => {
 
 const renderContent = {
   home: renderHome(),
-  searchComponents: searchComponents(),
-  category: renderCategory(state.id),
+  search: searchComponents(),
+  type: renderCategory(state.id),
 }[state.tab];
 
 return (
@@ -217,7 +231,8 @@ return (
             tab: state.tab,
             onSelect,
             navItems: curatedComps.map((i) => ({
-              category: i.category,
+              type: i.type,
+              name: i.name,
               icon: i.icon,
               id: i.id,
             })),
