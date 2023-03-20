@@ -83,6 +83,7 @@ const lessonPaths = {
 };
 
 // slice out frontmatter from fetched .md files
+// for Markdown comp: replace docusaurus-specific paths to assets with CDN paths
 const res = fetch(initialUrl);
 const delimiter = "\n";
 const start = 4;
@@ -126,7 +127,6 @@ return (
     />
     <br />
     <br />
-    // replace docusaurus-specific paths with CDN
     <Markdown
       text={state.content}
       transformImageUri={(uri) =>
