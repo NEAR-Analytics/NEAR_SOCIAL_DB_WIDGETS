@@ -37,6 +37,7 @@ if (
   onChange &&
   JSON.stringify(state.reportedMetadata) !== JSON.stringify(metadata)
 ) {
+  console.log("updated");
   State.update({
     reportedMetadata: metadata,
   });
