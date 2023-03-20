@@ -19,6 +19,7 @@ const tradeportLink =
 // maybe utilize the helper funciton here
 // const fewfarlink =
 const defaultCustomMarket = "apollo42.near";
+const mintbasemarket = "simple.market.mintbase1.near";
 const default_receiver = "minorityprogrammers.near"; // default reciver nft for transfers
 const msg =
   '{"price":' +
@@ -37,7 +38,8 @@ initState({
   contractId: contractId,
   tokenId: tokenId,
   fewfar: false,
-  tradeport: true,
+  tradeport: false,
+  mintbase: false,
   amount: amount,
   msg: msg,
   tradeportLink: tradeportLink,
@@ -158,11 +160,6 @@ const onChangeCustomMarket = (customMarketLink) => {
     validMarketLink,
   });
 };
-
-const updateLink = () => {
-  if (state.contractId && state.tokenId) {
-  }
-};
 /* HELPER FUNCTION */
 function isNearAddress(address) {
   if (typeof address !== "string") {
@@ -186,6 +183,7 @@ function isNearAddress(address) {
 
 const list = () => {
   if (!accountId) {
+    console.log("Sign in to list");
     return;
   }
   // need to buffer serialize arguments, add helper functions with state arguments
@@ -213,10 +211,10 @@ const list = () => {
             args: {
               token_id: state.tokenId,
               account_id: tradeportmarket,
-              msg: state.msg, // need to add the variables and buffer seerailize
+              msg: state.msg,
             },
             gas: gas,
-            deposit: deposit, // may take this out
+            deposit: deposit,
           }
         : null,
       state.fewfar
@@ -238,7 +236,32 @@ const list = () => {
             args: {
               token_id: state.tokenId,
               account_id: fewfarmarket,
-              msg: state.msg, // need to add the variables and buffer seerailize
+              msg: state.msg,
+            },
+            gas: gas,
+            deposit: deposit,
+          }
+        : null,
+      state.mintbase
+        ? {
+            contractName: mintbasemarket,
+            methodName: "storage_deposit",
+            args: {
+              receiver_id: context.accountId,
+            },
+            gas,
+            deposit: deposit,
+          }
+        : null,
+      state.mintbase
+        ? {
+            contractName: state.contractId,
+            // need to wrap first with near_deposit
+            methodName: "nft_approve",
+            args: {
+              token_id: state.tokenId,
+              account_id: mintbasemarket,
+              msg: state.msg, // need to change mesg to conform with mitnbase market // "{\"price\":\"3900000000000000000000000\",\"autotransfer\":true}"
             },
             gas: gas,
             deposit: deposit, // may take this out
@@ -301,6 +324,11 @@ const selectFewFar = () => {
 const selectTradeport = () => {
   State.update({
     tradeport: !state.tradeport,
+  });
+};
+const selectMintbase = () => {
+  State.update({
+    mintbase: !state.mintbase,
   });
 };
 const selectCustom = () => {
@@ -385,6 +413,22 @@ return (
           </label>
         </div>
       </div>
+      {false && (
+        <div className="col-lg-6 mb-2">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              checked={state.mintbase}
+              onChange={selectMintbase}
+              id="mintbasebox"
+            />
+            <label className="form-check-label" htmlFor="myCheckbox">
+              List to Mintbase
+            </label>
+          </div>
+        </div>
+      )}
       <div className="col-lg-6 mb-2">
         <div className="form-check">
           <input
@@ -495,9 +539,19 @@ return (
     </div>
     <div className="row">
       <div className="col-lg-6 border border-secondary rounded">
-        <h1>🖼️ NFT Details</h1>
-        <p>Collection Name: </p>
-        <h3 className="">{state.nftMetadata.name}</h3>
+        <p>
+          Collection Name:{" "}
+          <span className="font-weight-bold">{state.nftMetadata.name}</span>
+        </p>
+        <p>
+          NFT Name: <span className="">{state.tokenInfo.metadata.title}</span>
+        </p>
+        <p className="">Description: {state.tokenInfo.metadata.description}</p>
+        <p>
+          <a href={state.tokenInfo.media} target="_blank">
+            {state.tokenInfo.media}
+          </a>
+        </p>
         {!state.ownsNFT && (
           <div className="alert alert-danger">
             <i className="bi bi-x"></i> You do not own this NFT & cannot list or
@@ -509,14 +563,6 @@ return (
             <i className="bi bi-x"></i> You own this NFT
           </div>
         )}
-        <p>NFT Name: </p>
-        <h4 className="">{state.tokenInfo.metadata.title}</h4>
-        <p className="">Description: {state.tokenInfo.metadata.description}</p>
-        <p>
-          <a href={state.tokenInfo.media} target="_blank">
-            {state.tokenInfo.media}
-          </a>
-        </p>
         <Widget
           src="mob.near/widget/NftImage"
           props={{
@@ -524,25 +570,31 @@ return (
             className: "col-lg-12",
           }}
         />
-      </div>
-      <div className="col-lg-6">
-        <h1> Listed Markets (not updating)</h1>
-        <div>
-          {typeof state.tokenInfo.approved_account_id === "object" &&
-            Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
-              <p>
-                {key}: {state.tokenInfo.approved_account_ids[key]}
-              </p>
-            ))}
+        <div className="col-lg-12">
+          <h3> Listed Markets</h3>
+          <div>
+            {typeof state.tokenInfo.approved_account_ids === "object" &&
+              Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
+                <p>
+                  <a
+                    href={"https://explorer.near.org/accounts/" + key}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {key}: {state.tokenInfo.approved_account_ids[key]}
+                  </a>
+                </p>
+              ))}
+          </div>
         </div>
       </div>
+      <div className="col-lg-6">
+        <Widget
+          src="minorityprogrammers.near/widget/genadropMinter"
+          props={{ authors: [ownerId], dep: true }}
+        />
+      </div>
     </div>
-
-    <br></br>
-    <Widget
-      src="minorityprogrammers.near/widget/genadropMinter"
-      props={{ authors: [ownerId], dep: true }}
-    />
   </div>
 );
 
