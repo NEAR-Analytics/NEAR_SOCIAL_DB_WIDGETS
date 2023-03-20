@@ -130,43 +130,6 @@ const curatedComps = [
 const filterTag = props.commonComponentTag ?? "dao";
 const debug = props.debug ?? false;
 
-const searchComponents = () => {
-  return (
-    <div class="mb-4">
-      <div className="mb-2">
-        <Widget
-          src="mob.near/widget/ComponentSearch"
-          props={{
-            debug: debug,
-            filterTag: filterTag,
-            placeholder: "🔍 Search for common DAO components",
-            limit: 24,
-            onChange: ({ result }) => {
-              State.update({ components: result });
-            },
-          }}
-        />
-      </div>
-      {state.components && (
-        <div className="mb-2">
-          {state.components.map((comp, i) => (
-            <div class="mb-2" key={i}>
-              <Widget
-                src="mob.near/widget/WidgetMetadata"
-                props={{
-                  accountId: comp.accountId,
-                  widgetName: comp.widgetName,
-                  expanded: false,
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
 const renderCategory = (categoryId) => {
   if (!categoryId || categoryId === "") return <></>;
   const item = curatedComps.find((i) => i.id == categoryId);
@@ -211,13 +174,21 @@ const renderHome = () => {
   );
 };
 
+const renderSearch = () => {
+  return (
+    <div>
+      <Widget src={`${ownerId}/widget/Applications`} />;
+    </div>
+  );
+};
+
 const onSelect = (selection) => {
   State.update({ tab: selection.tab, id: selection.id ? selection.id : "" });
 };
 
 const renderContent = {
   home: renderHome(),
-  search: searchComponents(),
+  search: renderSearch(),
   type: renderCategory(state.id),
 }[state.tab];
 
