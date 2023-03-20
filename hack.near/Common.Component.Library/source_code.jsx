@@ -14,7 +14,7 @@ State.init({
 
 const curatedComps = [
   {
-    category: "Buttons",
+    type: "Buttons",
     id: "buttons",
     icon: "bi-egg",
     components: [
@@ -57,7 +57,7 @@ const curatedComps = [
     ],
   },
   {
-    category: "Search",
+    type: "Search",
     icon: "bi-search",
     id: "search",
     components: [
@@ -76,7 +76,7 @@ const curatedComps = [
     ],
   },
   {
-    category: "Time and Date",
+    type: "Time and Date",
     id: "time",
     icon: "bi-calendar",
     components: [
@@ -87,7 +87,7 @@ const curatedComps = [
     ],
   },
   {
-    category: "Compose",
+    type: "Compose",
     id: "compose",
     icon: "bi-envelope-paper",
     components: [
@@ -98,19 +98,19 @@ const curatedComps = [
     ],
   },
   {
-    category: "Markdown",
+    type: "Markdown",
     id: "markdown",
     icon: "bi-markdown",
     components: [{ accountId: "mob.near", widgetName: "MarkdownEditorDemo" }],
   },
   {
-    category: "Metadata",
+    type: "Metadata",
     id: "metadata",
     icon: "bi-box-seam",
     components: [{ accountId: "mob.near", widgetName: "MetadataEditor" }],
   },
   {
-    category: "Widget Tools",
+    type: "Widget Tools",
     id: "tools",
     icon: "bi-tools",
     components: [
@@ -129,7 +129,7 @@ const renderCategory = (categoryId) => {
   return (
     <div class="mt-3">
       <div class="text fs-5 text-muted mb-1" id={item.id}>
-        {item.category}
+        {item.type}
       </div>
       <div class="border border-2 mb-4 rounded"></div>
       <div class="container">
@@ -157,7 +157,7 @@ const renderHome = () => {
   return <Widget src="hack.near/widget/ComponentsPage" />;
 };
 
-const renderTags = () => {
+const renderSearch = () => {
   return <Widget src="hack.near/widget/Applications" />;
 };
 
@@ -167,8 +167,8 @@ const onSelect = (selection) => {
 
 const renderContent = {
   home: renderHome(),
-  tags: renderTags(),
-  category: renderCategory(state.id),
+  search: renderSearch(),
+  type: renderCategory(state.id),
 }[state.tab];
 
 return (
@@ -181,7 +181,7 @@ return (
             tab: state.tab,
             onSelect,
             navItems: curatedComps.map((i) => ({
-              category: i.category,
+              type: i.type,
               icon: i.icon,
               id: i.id,
             })),
