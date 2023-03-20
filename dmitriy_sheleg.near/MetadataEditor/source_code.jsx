@@ -91,6 +91,7 @@ const debounce = (func, wait) => {
 const saveDescription = (e) => {
   tempDescription = e.target.value;
   console.log(tempDescription);
+  return tempDescription;
   // state.metadata.description = tempDescription;
   // State.update();
 };
