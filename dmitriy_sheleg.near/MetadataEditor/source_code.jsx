@@ -88,9 +88,10 @@ const debounce = (func, wait) => {
   };
 };
 
-const saveDescription = () => {
-  state.metadata.description = tempDescription;
-  State.update();
+const saveDescription = (e) => {
+  tempDescription = e.target.value;
+  // state.metadata.description = tempDescription;
+  // State.update();
 };
 
 console.log("state: ", state);
@@ -136,12 +137,13 @@ return (
           className="form-control"
           rows={5}
           value={tempDescription}
-          onChange={(e) => {
-            tempDescription = e.target.value;
-            debounce(saveDescription(), 250);
-            // debounceSave((state.metadata.description = metadataDescription));
-            // State.update();
-          }}
+          onChange={saveDescription}
+          // onChange={(e) => {
+          //   tempDescription = e.target.value;
+          //   debounce(saveDescription(), 250);
+          //   // debounceSave((state.metadata.description = metadataDescription));
+          //   // State.update();
+          // }}
         />
       </div>
     )}
