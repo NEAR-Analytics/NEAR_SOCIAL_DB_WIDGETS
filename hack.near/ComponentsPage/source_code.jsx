@@ -241,8 +241,8 @@ return (
         </TabsButton>
 
         <TabsButton
-          href={`${componentsUrl}?tab=dev`}
-          selected={state.selectedTab === "dev"}
+          href={`${componentsUrl}?tab=category`}
+          selected={state.selectedTab === "category"}
         >
           Dev
         </TabsButton>
