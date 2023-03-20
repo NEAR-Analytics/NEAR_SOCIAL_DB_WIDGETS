@@ -43,6 +43,8 @@ if (
   onChange(metadata);
 }
 
+let tempDescription = state.metadata.description;
+
 // const debounce = (func) => {
 //   let timer;
 //   return (...args) => {
@@ -56,23 +58,40 @@ if (
 //   };
 // };
 
-const debounce = (func, wait, immediate) => {
+// const debounce = (func, wait, immediate) => {
+//   let timeout;
+
+//   return (...args) => {
+//     const later = () => {
+//       timeout = null;
+//       if (!immediate) func.apply(args);
+//     };
+
+//     const callNow = immediate && !timeout;
+//     clearTimeout(timeout);
+//     timeout = setTimeout(later, wait);
+//     if (callNow) func.apply(args);
+//   };
+// };
+
+const debounce = (func, wait) => {
   let timeout;
 
-  return (...args) => {
+  return function executedFunction(...args) {
     const later = () => {
-      timeout = null;
-      if (!immediate) func.apply(args);
+      clearTimeout(timeout);
+      func(...args);
     };
 
-    const callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
-    if (callNow) func.apply(args);
   };
 };
 
-let tempDescription = state.metadata.description;
+const saveDescription = () => {
+  state.metadata.description = tempDescription;
+  State.update();
+};
 
 console.log("state: ", state);
 console.log("tempDescription: ", tempDescription);
@@ -119,10 +138,7 @@ return (
           value={tempDescription}
           onChange={(e) => {
             tempDescription = e.target.value;
-            debounce(
-              State.update((state.metadata.description = tempDescription)),
-              250
-            );
+            debounce(saveDescription, 250);
             // debounceSave((state.metadata.description = metadataDescription));
             // State.update();
           }}
