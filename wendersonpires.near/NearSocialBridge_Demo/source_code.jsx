@@ -3,18 +3,18 @@ const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <div id="bridge-root"></div>
-<script src="https://unpkg.com/near-social-bridge@1.0.0-beta/bridge.min.js" crossorigin></script>
+<script src="https://unpkg.com/near-social-bridge@1.0.0-beta2/bridge.min.js" crossorigin></script>
 `;
 
 // External App Url
-const externalAppUrl = "https://near-test-app.web.app/";
+const externalAppUrl = "https://near-test-app.firebaseapp.com/";
 
 // Initial Path
 const initialPath = props.path;
 
 // Initial State
 State.init({
-  iframeHeight: 780,
+  iframeHeight: 785,
   currentMessage: { type: "connect-view", externalAppUrl, initialPath },
 });
 
