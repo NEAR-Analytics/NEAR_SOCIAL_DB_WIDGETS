@@ -135,8 +135,9 @@ return (
       </Icon>
       <Body>
         <Content>
-          <iframe src="https://www.akaer.studio/" height="120" width="240" />
-        </Content>
+          <Title>{data["title"]}</Title>
+          <Markdown text={data["description"]} />
+        </Content>{" "}
         <Caption>{formatDate(data.creationDate)}</Caption>
       </Body>
     </div>
