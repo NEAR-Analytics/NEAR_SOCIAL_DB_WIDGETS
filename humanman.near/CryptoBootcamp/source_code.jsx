@@ -1,6 +1,8 @@
 const accountId = context.accountId;
-const initalPath = `01_history/1.1_history-of-the-internet`;
-const initialUrl = `https://raw.githubusercontent.com/near/wiki/master/wiki/support/understanding-web3/01_history/1.1_history-of-the-internet.md`;
+const initalPath = "01_history/1.1_history-of-the-internet";
+const initialSelected = "1.1 The History of the Internet";
+const initialUrl =
+  "https://raw.githubusercontent.com/near/wiki/master/wiki/support/understanding-web3/01_history/1.1_history-of-the-internet.md";
 
 if (!accountId) {
   return "Please sign in with NEAR wallet to use this widget";
@@ -87,16 +89,18 @@ const body = res.body.split(delimiter).slice(start).join("\n");
 
 State.init({
   content: body,
-  selected: lessons[0],
-  path: lessonPaths[0][lessons[0]],
+  selected: initialSelected,
+  path: initalPath,
 });
 
 const handleModuleSelect = (val) => {
+  if (!val || lessonPaths[val] == undefined) return;
   const newPath = lessonPaths[val];
   const url = `https://raw.githubusercontent.com/near/wiki/master/wiki/support/understanding-web3/${newPath}.md`;
   const fecthed = fetch(url);
+  console.log(val, newPath, url);
   const m = fecthed.body.split(delimiter).slice(start).join("\n");
-  State.update({ selected: val, path: lessonPaths[val], content: m });
+  State.update({ path: lessonPaths[val], content: m });
 };
 
 if (context.loading) {
@@ -107,10 +111,10 @@ return (
   <div>
     <Typeahead
       options={lessons}
-      onChange={(val) => {
-        handleModuleSelect(val);
+      onChange={(selected) => {
+        state.selected = selected;
+        return handleModuleSelect(selected);
       }}
-      selected={state.selected}
       placeholder="Select a lecture..."
     />
     <br />
