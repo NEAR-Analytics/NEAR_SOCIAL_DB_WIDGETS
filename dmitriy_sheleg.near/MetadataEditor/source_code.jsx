@@ -56,13 +56,13 @@ if (
 //   };
 // };
 
-const debounceSave = () => {
+const debounceSave = (params) => {
   let timer;
   console.log("some thing");
   console.log(state);
   return () => {
     if (!timer) {
-      State.update();
+      State.update(params);
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -70,6 +70,8 @@ const debounceSave = () => {
     }, 3000);
   };
 };
+
+let metadataDescription = metadata.description;
 
 return (
   <>
@@ -110,11 +112,11 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          value={metadata.description}
+          value={metadataDescription}
           onChange={(e) => {
-            state.metadata.description = e.target.value;
-            // debounceSave();
-            State.update();
+            metadataDescription = e.target.value;
+            debounceSave((state.metadata.description = metadataDescription));
+            // State.update();
           }}
         />
       </div>
