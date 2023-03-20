@@ -82,6 +82,7 @@ const lessonPaths = {
   "6.3 Metaverse on NEAR": "06_metaverse/6.3_metaverse-on-near",
 };
 
+// slice out frontmatter from fetched .md files
 const res = fetch(initialUrl);
 const delimiter = "\n";
 const start = 4;
@@ -93,6 +94,7 @@ State.init({
   path: initalPath,
 });
 
+// update state and fetch selected file from wiki repo
 const handleModuleSelect = (val) => {
   if (!val || lessonPaths[val] == undefined) return;
   const newPath = lessonPaths[val];
@@ -124,6 +126,7 @@ return (
     />
     <br />
     <br />
+    // replace docusaurus-specific paths with CDN
     <Markdown
       text={state.content}
       transformImageUri={(uri) =>
