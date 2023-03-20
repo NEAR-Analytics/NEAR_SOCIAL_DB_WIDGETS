@@ -343,6 +343,8 @@ return (
                     contractId: contractId,
                     tokenId: tokenId,
                   });
+                  onChangeToken(tokenId);
+                  onChangeContract(contractId);
                 },
               }}
             />
