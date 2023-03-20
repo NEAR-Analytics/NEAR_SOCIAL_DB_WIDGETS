@@ -34,14 +34,7 @@ const typeStr = "evrything.near/type/Test";
 
 State.init({ title: "", description: "" });
 
-const resetThing = () => {
-  State.update({
-    title: "",
-    description: "",
-  });
-};
-
-function createThing() {
+function composeData() {
   const resp = Evrything.create(state, typeStr);
   State.update({
     publish: resp,
@@ -64,10 +57,11 @@ return (
       />
       <ButtonRow>
         <Button onClick={createThing}>create</Button>
-        <CommitButton force data={state.publish} onCommit={resetThing}>
+        <CommitButton force data={state.publish ?? null} onCommit={resetThing}>
           publish
         </CommitButton>
       </ButtonRow>
     </Form>
+    {JSON.stringify(state.publish)}
   </>
 );
