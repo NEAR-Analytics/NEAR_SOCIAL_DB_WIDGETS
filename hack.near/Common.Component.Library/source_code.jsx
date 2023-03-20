@@ -423,7 +423,7 @@ const renderCategory = (categoryId) => {
 };
 
 const renderHome = () => {
-  return <Widget src="adminalpha.near/widget/ComponentsPage" />;
+  return <Widget src="hack.near/widget/ComponentsPage" />;
 };
 
 const onSelect = (selection) => {
