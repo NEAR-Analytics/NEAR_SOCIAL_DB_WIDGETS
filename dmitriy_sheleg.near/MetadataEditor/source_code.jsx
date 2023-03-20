@@ -72,14 +72,6 @@ const debounce = (func) => {
 //   };
 // };
 
-let metadataDescription = metadata.description;
-
-const handleDescriptionChange = (value) => {
-  metadataDescription = value;
-  console.log("metadataDescription: ", metadataDescription);
-  debounceSave(metadataDescription);
-};
-
 return (
   <>
     {options.name && (
@@ -121,9 +113,8 @@ return (
           rows={5}
           value={state.metadata.description}
           onChange={(e) => {
-            // handleDescriptionChange(e.target.value);
             state.metadata.description = e.target.value;
-            debounce(State.update());
+            // debounce(State.update());
             // debounceSave((state.metadata.description = metadataDescription));
             // State.update();
           }}
