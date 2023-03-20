@@ -1,7 +1,7 @@
 const limitPerPage = 21;
 let components = [];
 let totalComponents = 0;
-const componentsUrl = "/#/hack.near/widget/ComponentsPage";
+const componentsUrl = "/#/hack.near/widget/Common.Component.Library";
 
 State.init({
   currentPage: 0,
@@ -241,10 +241,17 @@ return (
         </TabsButton>
 
         <TabsButton
-          href={`${componentsUrl}?tab=apps`}
-          selected={state.selectedTab === "apps"}
+          href={`${componentsUrl}?tab=dev`}
+          selected={state.selectedTab === "dev"}
         >
-          Apps
+          Dev
+        </TabsButton>
+
+        <TabsButton
+          href={`${componentsUrl}?tab=dao`}
+          selected={state.selectedTab === "dao"}
+        >
+          DAO
         </TabsButton>
       </Tabs>
     )}
