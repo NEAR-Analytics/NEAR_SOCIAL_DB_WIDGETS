@@ -1,7 +1,7 @@
 const limitPerPage = 21;
 let components = [];
 let totalComponents = 0;
-const componentsUrl = "/#/hack.near/widget/Common.Component.Library";
+const componentsUrl = "/#/hack.near/widget/ComponentsPage";
 
 State.init({
   currentPage: 0,
