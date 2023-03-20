@@ -116,16 +116,16 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          value={tempDescription}
-          onChange={(e) => {
-            tempDescription = e.target.value;
-            // debounce(
-            //   State.update((state.metadata.description = tempDescription)),
-            //   250
-            // );
-            // debounceSave((state.metadata.description = metadataDescription));
-            // State.update();
-          }}
+          value={state.metadata.description}
+          // onChange={(e) => {
+          // state.metadata.description = e.target.value;
+          // debounce(
+          //   State.update((state.metadata.description = tempDescription)),
+          //   250
+          // );
+          // debounceSave((state.metadata.description = metadataDescription));
+          // State.update();
+          // }}
         />
       </div>
     )}
