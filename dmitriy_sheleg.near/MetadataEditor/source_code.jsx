@@ -43,10 +43,6 @@ if (
   onChange(metadata);
 }
 
-if (tempDescription !== state.metadata.description) {
-  debounce(State.update((state.metadata.description = tempDescription)), 250);
-}
-
 // const debounce = (func) => {
 //   let timer;
 //   return (...args) => {
@@ -123,10 +119,10 @@ return (
           value={tempDescription}
           onChange={(e) => {
             tempDescription = e.target.value;
-            // debounce(
-            //   State.update((state.metadata.description = tempDescription)),
-            //   250
-            // );
+            debounce(
+              State.update((state.metadata.description = tempDescription)),
+              250
+            );
             // debounceSave((state.metadata.description = metadataDescription));
             // State.update();
           }}
