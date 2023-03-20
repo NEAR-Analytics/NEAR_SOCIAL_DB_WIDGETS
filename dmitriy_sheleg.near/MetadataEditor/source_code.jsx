@@ -67,7 +67,7 @@ const debounceSave = (params) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       timer = undefined;
-    }, 3000);
+    }, 300);
   };
 };
 
