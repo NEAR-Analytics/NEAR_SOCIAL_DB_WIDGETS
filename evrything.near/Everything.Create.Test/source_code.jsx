@@ -30,15 +30,16 @@ const Button = styled.button`
   max-width: 90px;
 `;
 
-const typeStr = "evrything.near/type/Test";x
+const typeStr = "evrything.near/type/Test";
 
 const properties = { title: "", description: "" };
 
 State.init({ values: properties, data: {} });
 
 function createThing() {
-  Evrything.create(state, typeStr, true).then((res) => {
-    State.update({ data: res });
+  const resp = Evrything.create(state, typeStr);
+  State.update({
+    data: resp,
   });
 }
 
@@ -68,16 +69,11 @@ return (
       />
       <ButtonRow>
         <Button onClick={createThing}>create</Button>
-        <CommitButton
-          force
-          data={state.data}
-          onCommit={resetThing}
-        >
+        <CommitButton force data={state.data} onCommit={resetThing}>
           publish
         </CommitButton>
         <Button onClick={resetThing}>reset</Button>
       </ButtonRow>
     </Form>
-    {JSON.stringify(state.data)}
   </>
 );
