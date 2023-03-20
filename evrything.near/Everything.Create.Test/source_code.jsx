@@ -34,8 +34,9 @@ const typeStr = "evrything.near/type/Test";
 
 State.init({ title: "", description: "" });
 
-function composeData() {
+function createThing() {
   const resp = Evrything.create(state, typeStr);
+  console.log(resp);
   State.update({
     publish: resp,
   });
