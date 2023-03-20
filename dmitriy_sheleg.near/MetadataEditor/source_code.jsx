@@ -63,6 +63,7 @@ const debounceSave = (params) => {
   return () => {
     if (!timer) {
       State.update(params);
+      console.log("updatedState: ", state);
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
