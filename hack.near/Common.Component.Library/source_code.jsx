@@ -14,7 +14,8 @@ State.init({
 
 const curatedComps = [
   {
-    type: "Buttons",
+    type: "common",
+    name: "Buttons",
     id: "buttons",
     icon: "bi-egg",
     components: [
@@ -57,7 +58,8 @@ const curatedComps = [
     ],
   },
   {
-    type: "Search",
+    type: "common",
+    name: "Search",
     icon: "bi-search",
     id: "search",
     components: [
@@ -76,7 +78,8 @@ const curatedComps = [
     ],
   },
   {
-    type: "Time and Date",
+    type: "common",
+    name: "Time and Date",
     id: "time",
     icon: "bi-calendar",
     components: [
@@ -87,7 +90,8 @@ const curatedComps = [
     ],
   },
   {
-    type: "Compose",
+    type: "common",
+    name: "Compose",
     id: "compose",
     icon: "bi-envelope-paper",
     components: [
@@ -98,19 +102,22 @@ const curatedComps = [
     ],
   },
   {
-    type: "Markdown",
+    type: "common",
+    name: "Markdown",
     id: "markdown",
     icon: "bi-markdown",
     components: [{ accountId: "mob.near", widgetName: "MarkdownEditorDemo" }],
   },
   {
-    type: "Metadata",
+    type: "common",
+    name: "Metadata",
     id: "metadata",
     icon: "bi-box-seam",
     components: [{ accountId: "mob.near", widgetName: "MetadataEditor" }],
   },
   {
-    type: "Widget Tools",
+    type: "common",
+    name: "Dev Tools",
     id: "tools",
     icon: "bi-tools",
     components: [
@@ -138,11 +145,10 @@ const renderCategory = (categoryId) => {
             <div class="col-6 mb-2">
               <Widget
                 key={i}
-                src="mob.near/widget/WidgetMetadata"
+                src="adminalpha.near/widget/ComponentCard"
                 props={{
-                  accountId: comp.accountId,
-                  widgetName: comp.widgetName,
-                  expanded: false,
+                  src: `${component.accountId}/widget/${component.widgetName}`,
+                  blockHeight: component.blockHeight,
                 }}
               />
             </div>
