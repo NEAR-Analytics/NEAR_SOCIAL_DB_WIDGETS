@@ -43,16 +43,30 @@ if (
   onChange(metadata);
 }
 
-const debounce = (func, timeout = 300) => {
+// const debounce = (func, timeout = 300) => {
+//   let timer;
+//   return (...args) => {
+//     if (!timer) {
+//       func.apply(this, args);
+//     }
+//     clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       timer = undefined;
+//     }, timeout);
+//   };
+// };
+
+const debounceSave = (params) => {
   let timer;
-  return (...args) => {
+  console.log("some thing");
+  return () => {
     if (!timer) {
-      func.apply(this, args);
+      State.update(params);
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
       timer = undefined;
-    }, timeout);
+    }, 3000);
   };
 };
 
@@ -98,7 +112,8 @@ return (
           value={state.metadata.description}
           onChange={(e) => {
             state.metadata.description = e.target.value;
-            debounce(State.update(), 3000);
+            debounceSave();
+            // State.update();
           }}
         />
       </div>
