@@ -141,7 +141,7 @@ const renderCategory = (categoryId) => {
       <div class="border border-2 mb-4 rounded"></div>
       <div class="container">
         <div className="row ">
-          {itemType.components.map((comp, i) => (
+          {item.components.map((comp, i) => (
             <div class="col-6 mb-2">
               <Widget
                 key={i}
