@@ -30,15 +30,16 @@ const Button = styled.button`
   max-width: 90px;
 `;
 
-const typeStr = "evrything.near/type/Test";
+const typeStr = "evrything.near/type/Test";x
 
 const properties = { title: "", description: "" };
 
 State.init({ values: properties, data: {} });
 
 function createThing() {
-  const data = Evrything.create(state, typeStr, true);
-  State.update({ data });
+  Evrything.create(state, typeStr, true).then((res) => {
+    State.update({ data: res });
+  });
 }
 
 function resetThing() {
@@ -53,14 +54,12 @@ return (
     <Form>
       <Input
         placeholder="title"
-        value={state.values.title}
         onChange={({ target }) =>
           State.update({ values: { ...state.values, title: target.value } })
         }
       />
       <TextArea
         placeholder="description"
-        value={state.values.description}
         onInput={({ target }) =>
           State.update({
             values: { ...state.values, description: target.value },
