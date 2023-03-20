@@ -53,12 +53,14 @@ return (
     <Form>
       <Input
         placeholder="title"
+        value={state.values.title}
         onChange={({ target }) =>
           State.update({ values: { ...state.values, title: target.value } })
         }
       />
       <TextArea
         placeholder="description"
+        value={state.values.description}
         onInput={({ target }) =>
           State.update({
             values: { ...state.values, description: target.value },
@@ -77,5 +79,6 @@ return (
         <Button onClick={resetThing}>reset</Button>
       </ButtonRow>
     </Form>
+    {JSON.stringify(state.data)}
   </>
 );
