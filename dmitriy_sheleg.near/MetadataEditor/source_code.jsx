@@ -56,13 +56,13 @@ if (
 //   };
 // };
 
-const debounceSave = (params) => {
+const debounceSave = () => {
   let timer;
   console.log("some thing");
   console.log(state);
   return () => {
     if (!timer) {
-      State.update(params);
+      State.update();
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -113,7 +113,7 @@ return (
           value={state.metadata.description}
           onChange={(e) => {
             state.metadata.description = e.target.value;
-            debounceSave(state);
+            debounceSave();
             // State.update();
           }}
         />
