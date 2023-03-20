@@ -138,7 +138,7 @@ return (
           value={tempDescription}
           onChange={(e) => {
             tempDescription = e.target.value;
-            debounce(saveDescription, 250);
+            debounce(saveDescription(), 250);
             // debounceSave((state.metadata.description = metadataDescription));
             // State.update();
           }}
