@@ -110,6 +110,8 @@ if (context.loading) {
 
 return (
   <div>
+    <h5 style={{ color: "green" }}>(Beta)</h5>
+    <br />
     <Typeahead
       options={lessons}
       onChange={(selected) => {
