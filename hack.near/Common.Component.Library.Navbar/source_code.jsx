@@ -50,7 +50,7 @@ return (
           onClick={() => props.onSelect({ tab: item.type, id: item.id })}
         >
           {" "}
-          <i className={item.icon} /> <span>{item.type}</span>{" "}
+          <i className={item.icon} /> <span>{item.name}</span>{" "}
         </a>
       );
     })}
