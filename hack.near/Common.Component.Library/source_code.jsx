@@ -3,7 +3,7 @@ const ownerId = "manzanal.near";
 const limitPerPage = 21;
 let components = [];
 let totalComponents = 0;
-const componentsUrl = "/#/adminalpha.near/widget/ComponentsPage";
+const componentsUrl = "/#/hack.near/widget/Common.Component.Library";
 
 State.init({
   tab: "home",
