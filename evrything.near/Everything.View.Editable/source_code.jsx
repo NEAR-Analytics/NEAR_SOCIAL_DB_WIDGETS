@@ -2,7 +2,7 @@ const ERROR_WIDGET = "efiz.testnet/widget/Everything.Error";
 
 const Card = styled.div`
     height: 180px;
-    background-color: red;
+    background-color: white;
     padding: 12px;
     margin: 8px;
     border-radius: 22px;
@@ -135,10 +135,7 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data.name}</Title>
-          <Preview>
-            <Markdown text={data.description.md} />
-          </Preview>
+          <iframe src="https://www.akaer.studio/" height="120" width="240" />
         </Content>
         <Caption>{formatDate(data.creationDate)}</Caption>
       </Body>
