@@ -195,7 +195,7 @@ const RenderKudoBox = (d) => {
 /* END KudoBox  */
 
 return (
-  <div>
+  <div className={thisWidgetClassNames.generalContainer}>
     <div
       className={thisWidgetClassNames.imageWidgetContainer}
       style={thisWidgetInlineStyles.imageWidgetContainer}
