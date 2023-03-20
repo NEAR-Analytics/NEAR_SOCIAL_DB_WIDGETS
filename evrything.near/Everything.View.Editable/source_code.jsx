@@ -2,7 +2,7 @@ const ERROR_WIDGET = "efiz.testnet/widget/Everything.Error";
 
 const Card = styled.div`
     height: 180px;
-    background-color: white;
+    background-color: red;
     padding: 12px;
     margin: 8px;
     border-radius: 22px;
