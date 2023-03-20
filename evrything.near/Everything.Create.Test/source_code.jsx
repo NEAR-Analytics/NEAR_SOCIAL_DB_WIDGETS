@@ -60,19 +60,21 @@ return (
       <TextArea
         placeholder="description"
         onInput={({ target }) =>
-          State.update({ values: { ...state.values,
-            description: target.value } })
+          State.update({
+            values: { ...state.values, description: target.value },
+          })
         }
       />
       <ButtonRow>
+        <Button onClick={createThing}>create</Button>
         <CommitButton
           force
           data={state.data}
-          onClick={createThing}
           onCommit={resetThing}
         >
-          create
+          publish
         </CommitButton>
+        <Button onClick={resetThing}>reset</Button>
       </ButtonRow>
     </Form>
   </>
