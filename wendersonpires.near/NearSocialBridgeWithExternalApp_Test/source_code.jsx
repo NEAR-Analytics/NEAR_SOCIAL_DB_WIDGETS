@@ -14,7 +14,7 @@ const initialPath = props.path;
 
 // Initial State
 State.init({
-  iframeHeight: 800,
+  iframeHeight: 780,
   currentMessage: { type: "connect-view", externalAppUrl, initialPath },
 });
 
