@@ -132,7 +132,8 @@ const debug = props.debug ?? false;
 
 const renderCategory = (categoryId) => {
   if (!categoryId || categoryId === "") return <></>;
-  const item = curatedComps.find((i) => i.id == categoryId);
+  const itemType = curatedComps.find((i) => i.type == categoryId);
+  const item = curatedComps.find((i) => i.id == sectionId);
   return (
     <div class="mt-3">
       <div class="text fs-5 text-muted mb-1" id={item.id}>
@@ -141,7 +142,7 @@ const renderCategory = (categoryId) => {
       <div class="border border-2 mb-4 rounded"></div>
       <div class="container">
         <div className="row ">
-          {item.components.map((comp, i) => (
+          {itemType.components.map((comp, i) => (
             <div class="col-6 mb-2">
               <Widget
                 key={i}
