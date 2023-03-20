@@ -34,7 +34,7 @@ const typeStr = "evrything.near/type/Test";
 
 const properties = { title: "", description: "" };
 
-State.init({ values: properties, data: null });
+State.init({ values: properties, data: {} });
 
 function createThing() {
   const data = Evrything.create(state, typeStr, true);
