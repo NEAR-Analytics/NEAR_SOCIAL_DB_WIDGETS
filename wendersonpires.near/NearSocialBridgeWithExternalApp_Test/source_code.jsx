@@ -11,6 +11,7 @@ const externalAppUrl = "https://6fa4294326de.ngrok.app/";
 
 // Initial Path
 const initialPath = props.path;
+console.log(initialPath);
 
 // Initial State
 State.init({
@@ -78,6 +79,5 @@ return (
       message={state.currentMessage}
       onMessage={onMessageHandler}
     />
-    <Markdown text={state.m} />
   </div>
 );
