@@ -37,7 +37,6 @@ if (
   onChange &&
   JSON.stringify(state.reportedMetadata) !== JSON.stringify(metadata)
 ) {
-  console.log("updated");
   State.update({
     reportedMetadata: metadata,
   });
@@ -76,6 +75,7 @@ const debounce = (func, wait, immediate) => {
 let tempDescription = state.metadata.description;
 
 console.log("state: ", state);
+console.log("tempDescription: ", tempDescription);
 
 return (
   <>
@@ -116,16 +116,16 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          value={state.metadata.description}
-          // onChange={(e) => {
-          // state.metadata.description = e.target.value;
-          // debounce(
-          //   State.update((state.metadata.description = tempDescription)),
-          //   250
-          // );
-          // debounceSave((state.metadata.description = metadataDescription));
-          // State.update();
-          // }}
+          value={tempDescription}
+          onChange={(e) => {
+            tempDescription = e.target.value;
+            // debounce(
+            //   State.update((state.metadata.description = tempDescription)),
+            //   250
+            // );
+            // debounceSave((state.metadata.description = metadataDescription));
+            // State.update();
+          }}
         />
       </div>
     )}
