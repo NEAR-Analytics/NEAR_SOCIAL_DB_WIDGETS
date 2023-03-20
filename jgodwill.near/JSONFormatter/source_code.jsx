@@ -1,6 +1,12 @@
+State.init({
+  jsonStr: "",
+  prettifiedJson: "",
+  fiexedJsonErrors: "",
+});
 async function formatClickHandler() {
   let formattedJsonStr = "";
   let fixedErrors = "";
+
   try {
     // Validate input as JSON according to RFC 8259
     const jsonObj = JSON.parse(jsonStr);
@@ -47,8 +53,8 @@ async function formatClickHandler() {
       formattedJsonStr = `Error: ${error.message}`;
     }
   }
-  setPrettifiedJson(formattedJsonStr);
-  setFixedErrors(fixedErrors);
+  State.update({ prettifiedJson: formattedJsonStr });
+  State.update({ fiexedJsonErrors: fixedErrors });
 }
 
 async function dragAndDropHandler(event) {
@@ -57,9 +63,9 @@ async function dragAndDropHandler(event) {
   const fileReader = new FileReader();
   fileReader.onload = function () {
     const fileData = fileReader.result;
-    setJsonStr(fileData);
-    setPrettifiedJson("");
-    setFixedErrors("");
+    State.update({ jsonStr: fileData });
+    State.update({ prettifiedJson: "" });
+    State.update({ fiexedJsonErrors: "" });
   };
   fileReader.readAsText(file);
 }
@@ -69,9 +75,9 @@ async function fileUploadHandler(event) {
   const fileReader = new FileReader();
   fileReader.onload = function () {
     const fileData = fileReader.result;
-    setJsonStr(fileData);
-    setPrettifiedJson("");
-    setFixedErrors("");
+    State.update({ jsonStr: fileData });
+    State.update({ prettifiedJson: "" });
+    State.update({ fiexedJsonErrors: "" });
   };
   fileReader.readAsText(file);
 }
@@ -81,15 +87,17 @@ async function urlInputHandler(event) {
   try {
     const response = await fetch(url);
     const jsonData = await response.json();
-    const jsonStr = JSON.stringify(jsonData, null, 4);
-    setJsonStr(jsonStr);
-    setPrettifiedJson("");
-    setFixedErrors("");
+    const newJsonStr = JSON.stringify(jsonData, null, 4);
+    State.update({ jsonStr: newJsonStr });
+    State.update({ prettifiedJson: "" });
+    State.update({ fiexedJsonErrors: "" });
   } catch (error) {
     console.error(error);
-    setJsonStr("");
-    setPrettifiedJson("Error: Failed to fetch JSON data from URL");
-    setFixedErrors("");
+    State.update({ jsonStr: "" });
+    State.update({
+      prettifiedJson: "Error: Failed to fetch JSON data from URL",
+    });
+    State.update({ fiexedJsonErrors: "" });
   }
 }
 
