@@ -37,7 +37,7 @@ const properties = { title: "", description: "" }
 State.init(properties);
 
 function createThing() {
-  const resp = Evrything.create(state, typeStr);
+  const resp = Evrything.create(state, typeStr, true);
   State.update(resp);
 }
 
