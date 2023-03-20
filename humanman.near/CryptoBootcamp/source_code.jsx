@@ -100,8 +100,7 @@ const handleModuleSelect = (val) => {
   const fecthed = fetch(url);
   console.log(val, newPath, url);
   const m = fecthed.body.split(delimiter).slice(start).join("\n");
-  State.update({ selected: val, path: lessonPaths[val], content: m });
-  console.log(State);
+  State.update({ path: lessonPaths[val], content: m });
 };
 
 if (context.loading) {
@@ -115,6 +114,7 @@ return (
     <Typeahead
       options={lessons}
       onChange={(selected) => {
+        State.update({ selected: selected });
         return handleModuleSelect(selected);
       }}
       placeholder="Select a lecture..."
