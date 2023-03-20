@@ -29,7 +29,7 @@ return (
     </h4>
     <a
       className="nav-link mt-2"
-      href={`https://near.social/#/${ownerId}/widget/Common.DAO.Library?tab=dao`}
+      href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=dao`}
       onClick={() => props.onSelect({ tab: "dao", id: "" })}
     >
       <i className="bi-rocket-takeoff-fill" />
@@ -46,7 +46,7 @@ return (
           className={`nav-link mt-2 rounded-3${
             item.id === props.tab ? "bg-secondary" : ""
           }`}
-          href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=${item.id}&id=${item.id}`}
+          href={`https://near.social/#/${ownerId}/widget/Common.Component.Library?tab=${item.type}&id=${item.id}`}
           onClick={() => props.onSelect({ tab: item.type, id: item.id })}
         >
           {" "}
