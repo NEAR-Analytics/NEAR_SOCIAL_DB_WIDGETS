@@ -53,11 +53,16 @@ return (
     <Form>
       <Input
         placeholder="title"
-        onChange={({ target }) => State.update({ values: { title: target.value }})}
+        onChange={({ target }) =>
+          State.update({ values: { ...state.values, title: target.value } })
+        }
       />
       <TextArea
         placeholder="description"
-        onInput={({ target }) => State.update({ values: { description: target.value } })}
+        onInput={({ target }) =>
+          State.update({ values: { ...state.values,
+            description: target.value } })
+        }
       />
       <ButtonRow>
         <CommitButton
