@@ -4,7 +4,7 @@ const render = (counter, disabled) => {
   const className = "btn p-0 btn-sm border-0 link-dark";
   const inner = (
     <>
-      <i className="fs-4 bi bi-bell"></i>
+      <i className="fs-4 bi bi-bullseye"></i>
       {counter !== undefined && counter > 0 && (
         <span
           className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
