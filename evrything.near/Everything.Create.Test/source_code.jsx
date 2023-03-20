@@ -32,10 +32,17 @@ const Button = styled.button`
 
 const typeStr = "evrything.near/type/Test";
 
-State.init({ title: "", description: "" });
+const properties = { title: "", description: "" }
+
+State.init(properties);
 
 function createThing() {
-  return Evrything.create(state, typeStr);
+  const resp = Evrything.create(state, typeStr);
+  State.update(resp);
+}
+
+function resetThing() {
+  State.update(properties);
 }
 
 return (
@@ -53,7 +60,7 @@ return (
         onInput={({ target }) => State.update({ description: target.value })}
       />
       <ButtonRow>
-        <CommitButton force data={createThing} onCommit={resetThing}>
+        <CommitButton force data={state} onClick={createThing} onCommit={resetThing}>
           create
         </CommitButton>
       </ButtonRow>
