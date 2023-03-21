@@ -1,6 +1,5 @@
 const Card = styled.div`
   height: 420px;
-  width: 600px;
   background-color: white;
   padding: 12px;
   margin: 8px;
