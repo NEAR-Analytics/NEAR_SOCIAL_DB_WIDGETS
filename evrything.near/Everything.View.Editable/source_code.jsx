@@ -1,7 +1,7 @@
 const ERROR_WIDGET = "efiz.testnet/widget/Everything.Error";
 
 const Card = styled.div`
-    height: 180px;
+    height: 420px;
     background-color: white;
     padding: 12px;
     margin: 8px;
@@ -135,7 +135,7 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data["title"]}</Title>
+          <Title>{data["name"]}</Title>
           <Markdown text={data["description"]} />
         </Content>{" "}
         <Caption>{formatDate(data.creationDate)}</Caption>
