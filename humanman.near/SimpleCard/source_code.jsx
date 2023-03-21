@@ -19,7 +19,11 @@ const Card = styled.button`
 
 return (
   <Card>
-    <img style={{ maxWidth: "80%", margin: "auto" }} src={props.img} />
+    {props.img ? (
+      <img style={{ maxWidth: "80%", margin: "auto" }} src={props.img} />
+    ) : (
+      <br />
+    )}
     <a href={props.link}>
       <h4>{props.title}</h4>
       <hr />
