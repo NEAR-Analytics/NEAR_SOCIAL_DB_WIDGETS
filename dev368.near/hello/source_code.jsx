@@ -11,7 +11,9 @@ return (
       <img src={linkAvt} width="200" height="200"></img>
     </div>
 
-    <a href={linkProfile}>I am Dev368</a>
+    <a href={linkProfile} style={{ color: "red" }}>
+      I am Dev368
+    </a>
     <div></div>
     <a href={linkTwitter}>My Twitter</a>
   </div>
