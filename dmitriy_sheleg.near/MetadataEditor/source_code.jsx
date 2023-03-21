@@ -59,8 +59,13 @@ const debounce = (func, wait) => {
 
 const onDescriptionChange = (e) => {
   console.log(e);
-  state.metadata.description = e.target.value;
-  State.update();
+  //   state.metadata.description = e.target.value;
+  State.update({
+    metadata: {
+      ...state.metadata,
+      description: e.target.value,
+    },
+  });
 };
 
 const onDescriptionChangeDebounced = debounce(onDescriptionChange, 1000);
