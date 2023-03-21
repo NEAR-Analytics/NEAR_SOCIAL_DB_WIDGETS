@@ -244,10 +244,10 @@ return (
         },
       }}
       onMouseEnter={() => {
-        updateInstanceTimeState({ hoveringElement: "commitButton" });
+        updateGeneralState({ hoveringElement: "commitButton" });
       }}
       onMouseLeave={() => {
-        updateInstanceTimeState({ hoveringElement: "" });
+        updateGeneralState({ hoveringElement: "" });
       }}
       onCommit={() => {
         State.update({
