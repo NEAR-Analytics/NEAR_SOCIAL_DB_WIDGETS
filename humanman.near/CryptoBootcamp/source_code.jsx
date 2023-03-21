@@ -132,7 +132,7 @@ const handleModuleSelect = (val) => {
   const url = `${ghPath}${newPath}`;
   const fecthed = fetch(url);
   const m = fecthed.body.split(delimiter).slice(start).join("\n");
-  State.update({ path: lessonPaths[val], content: m });
+  State.update({ path: newPath, content: m });
 };
 
 if (context.loading) {
