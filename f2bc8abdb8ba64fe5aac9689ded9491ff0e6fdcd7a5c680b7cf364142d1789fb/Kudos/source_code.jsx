@@ -177,7 +177,13 @@ const RenderKudoBox = (d) => {
     <>
       <Widget
         src={`${widgetOwner}/widget/MainPage.Post`}
-        props={{ content: d, upvotes }}
+        props={{
+          content: d,
+          upvotes,
+          updateGeneralState,
+          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+          allWidgetsClassNames: props.allWidgetsClassNames,
+        }}
       />
 
       {RenderAllCommentAnswerBox(d)}
@@ -257,8 +263,6 @@ return (
     >
       Kudos!
     </CommitButton>
-    <br />
-    <br />
     <div>
       {sortedData ? sortedData.map((d) => RenderKudoBox(d)) : "Loading..."}
     </div>
