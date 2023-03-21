@@ -121,7 +121,7 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data.title}</Title>
+          <Title>{data.name}</Title>
           <Preview>
             <Markdown text={data.description.md} />
           </Preview>
