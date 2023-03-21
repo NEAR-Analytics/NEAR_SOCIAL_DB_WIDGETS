@@ -7,7 +7,6 @@ const Card = styled.div`
   margin: 8px;
   border-radius: 22px;
   box-shadow: 5px 5px 5px gray;
-  border: solid gray;
 `;
 const Header = styled.div`
     width: 100%;
