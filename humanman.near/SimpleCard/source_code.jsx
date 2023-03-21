@@ -10,6 +10,7 @@ const Card = styled.button`
   border-radius: 8px;
   color: black;
   cursor: pointer;
+  margin: 2px;
 
   &:hover {
     background-color: #e9ecef;
