@@ -1,4 +1,4 @@
-const notificationFeedSrc = "mob.near/widget/NotificationFeed";
+const notificationFeedSrc = "mob.near/widget/NotificationFeed@86343407";
 
 const render = (counter, disabled) => {
   const className = "btn p-0 btn-sm border-0 link-dark";
