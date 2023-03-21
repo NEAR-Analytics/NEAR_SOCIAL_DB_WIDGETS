@@ -7,8 +7,7 @@ const code = `
 `;
 
 // External App Url
-// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
-const externalAppUrl = "https://petite-shoes-move-179-189-40-212.loca.lt/";
+const externalAppUrl = "https://near-test-app.firebaseapp.com/";
 
 // Initial Path
 const initialPath = props.path;
