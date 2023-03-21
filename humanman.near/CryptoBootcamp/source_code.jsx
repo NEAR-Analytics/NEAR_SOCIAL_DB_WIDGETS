@@ -145,7 +145,7 @@ return (
     <br />
     <Typeahead
       labelKey="label"
-      options={lessons}
+      options={lessonPaths}
       onChange={(selected) => {
         State.update({ selected: selected });
         return handleModuleSelect(selected);
