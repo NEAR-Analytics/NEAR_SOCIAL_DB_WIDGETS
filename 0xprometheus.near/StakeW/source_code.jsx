@@ -1,6 +1,29 @@
 // CUSTOM CSS
 
-const cds = `.LidoWithdrawFormSubmitContainer{
+const cds = `
+.LidoFormTopContainer{
+    margin-top: 0px;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.toast-message {
+  position: absolute;
+  margin-top: -30px;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0;
+}
+.toast-message.show {
+  opacity: 1;
+}
+
+.LidoWithdrawFormSubmitContainer{
     color: #7a8aa0;
     -webkit-box-flex: 1;
     flex-grow: 1;
@@ -62,6 +85,15 @@ return (
       <div class="LidoForm">
         <>
           <div class="LidoFormTopContainer">
+            {props.state.errorMessage && (
+              <div
+                class={`toast-message ${
+                  props.state.errorMessage ? "show" : ""
+                }`}
+              >
+                {props.state.errorMessage}
+              </div>
+            )}
             <div class="LidoFormTopContainerLeft">
               <div class="LidoFormTopContainerLeftContent1">
                 <div class="LidoFormTopContainerLeftContent1Container">
