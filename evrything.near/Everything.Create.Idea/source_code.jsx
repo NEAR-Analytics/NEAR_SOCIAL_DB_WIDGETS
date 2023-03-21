@@ -44,7 +44,7 @@ const Caption = styled.div`
     color: #A6A6A6;
 `;
 
-const typeStr = "evrything.near/type/Editable";
+const typeStr = "evrything.near/type/Idea";
 
 const type = Type.get(typeStr);
 // const type = props.type;
