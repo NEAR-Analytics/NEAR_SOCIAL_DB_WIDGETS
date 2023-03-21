@@ -3,7 +3,9 @@ const cssFont = fetch(
 ).body;
 const css = `.toast-notification {
   position: absolute;
-  top: 50%;
+  top: 0%;
+  left: 30%;
+  right: 30%;
   transform: translate(-50%, -50%);
   padding: 10px 20px;
   border-radius: 5px;
