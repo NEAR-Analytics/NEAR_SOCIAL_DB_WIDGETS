@@ -22,7 +22,7 @@ const Anchor = styled.a`
   color: #222;
   &:hover {
     text-decoration: none;
-    color: #333;
+    color: #444;
   }
 `;
 
