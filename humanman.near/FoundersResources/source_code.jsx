@@ -415,6 +415,6 @@ return (
       props={{ cardData: props.technical }}
     />
     <hr />
-    // <br />
+    <br />
   </div>
 );
