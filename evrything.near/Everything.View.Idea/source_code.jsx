@@ -53,9 +53,7 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Header>
-            <Title>{data["title"]}</Title>
-          </Header>
+          <Title>{data["title"]}</Title>
           <Markdown text={data["description"]} />
         </Content>
         <Caption>{formatDate(data.creationDate)}</Caption>
