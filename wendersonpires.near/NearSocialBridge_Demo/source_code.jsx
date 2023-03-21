@@ -7,7 +7,8 @@ const code = `
 `;
 
 // External App Url
-const externalAppUrl = "https://near-test-app.firebaseapp.com/";
+// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
+const externalAppUrl = "https://petite-shoes-move-179-189-40-212.loca.lt/";
 
 // Initial Path
 const initialPath = props.path;
@@ -57,6 +58,9 @@ const requestsHandler = (message) => {
     case "get-user-info":
       sendUserInfo(message.type, message.payload);
       break;
+    case "get-room-data":
+      getRoomDataHandler(message.type, message.payload);
+      break;
   }
 };
 
@@ -74,6 +78,32 @@ const sendUserInfo = (requestType, payload) => {
     profileInfo,
   });
   sendMessage(responseBody);
+};
+
+// Get room data handler
+const getRoomDataHandler = (requestType, payload) => {
+  const roomData = Social.index(payload.roomId, "data", {
+    limit: 100,
+    order: "desc",
+  });
+
+  // Wait data to come
+  setTimeout(() => {
+    const roomExists = roomData && roomData.length > 0;
+
+    if (!roomExists) {
+      const responseBody = buildAnswer(requestType, {
+        error: "room not found",
+      });
+      sendMessage(responseBody);
+      return;
+    }
+
+    const responseBody = buildAnswer(requestType, {
+      messages: roomData,
+    });
+    sendMessage(responseBody);
+  }, payload.wait || 1000);
 };
 // REQUEST HANDLERS ABOVE
 
