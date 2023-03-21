@@ -1,7 +1,7 @@
 const data = props.data;
 
 const Card = styled.div`
-  height: px;
+  height: 220px;
   background-color: white;
   padding: 12px;
   margin: 8px;
@@ -75,15 +75,15 @@ return (
         </svg>
       </Icon>
       <Body>
-        <Header>
-          <Title>{data["title"]}</Title>
-        </Header>
         <Content>
+          <Header>
+            <Title>{data["title"]}</Title>
+          </Header>
           <Preview>
             <Markdown text={data["description"]} />
           </Preview>
-          <Caption>{data["date"]}</Caption>
         </Content>
+        <Caption>{data["date"]}</Caption>
       </Body>
     </div>
   </Card>
