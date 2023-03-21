@@ -1,4 +1,3 @@
-const data = props.data;
 const Card = styled.div`
   background-color: white;
   padding: 12px;
