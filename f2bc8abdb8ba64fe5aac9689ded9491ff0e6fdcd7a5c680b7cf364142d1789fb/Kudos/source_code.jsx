@@ -196,12 +196,8 @@ const RenderKudoBox = (d) => {
 
 return (
   <div className={thisWidgetClassNames.generalContainer}>
-    <div
-      className={thisWidgetClassNames.imageWidgetContainer}
-      style={thisWidgetInlineStyles.imageWidgetContainer}
-    >
-      <h2 style={thisWidgetInlineStyles.selectedTab}>All Kudos</h2>
-    </div>
+    <h2 style={thisWidgetInlineStyles.selectedTab}>All Kudos</h2>
+
     <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
     <Widget
       src={`${widgetOwner}/widget/Common.Compose`}
