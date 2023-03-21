@@ -26,7 +26,7 @@ if (type === null) {
 return (
   <ThingContainer>
     <a
-      href={`/#/evrything.near/widget/Everything.View.Thing?src=${type.widgets?.view}`}
+      href={`/#/evrything.near/widget/Everything.View.Thing?src=${type.widgets?.view}&accountId=${accountId}&blockHeight=${blockHeight}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Widget
