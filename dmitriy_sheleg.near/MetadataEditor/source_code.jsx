@@ -105,7 +105,7 @@ return (
           className="form-control"
           rows={5}
           value={state.metadata.description}
-          onChange={onDescriptionChange}
+          onChange={onDescriptionChangeDebounced}
         />
       </div>
     )}
