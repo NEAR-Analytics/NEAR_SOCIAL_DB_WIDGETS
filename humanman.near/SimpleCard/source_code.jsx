@@ -18,6 +18,14 @@ const Card = styled.button`
   }
 `;
 
+const Anchor = styled.a`
+  color: #222;
+  &:hover {
+    text-decoration: none;
+    color: #333;
+  }
+`;
+
 return (
   <Card>
     {props.img ? (
@@ -25,10 +33,10 @@ return (
     ) : (
       <br />
     )}
-    <a href={props.link}>
+    <Anchor href={props.link}>
       <h4>{props.title}</h4>
       <hr />
       <p style={{ textAlign: "left" }}>{props.description}</p>
-    </a>
+    </Anchor>
   </Card>
 );
