@@ -15,6 +15,7 @@ const Card = styled.button`
 
   &:hover {
     background-color: #e9ecef;
+    box-shadow: #444 1px 1px 5px;
   }
 `;
 
