@@ -10,7 +10,6 @@ const index = {
   options: {
     limit: 10,
     order: "desc",
-    accountId: [],
   },
 };
 
