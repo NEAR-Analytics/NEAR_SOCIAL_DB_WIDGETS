@@ -41,7 +41,7 @@ const Preview = styled.div`
     text-overflow: ellipsis;
     white-space: normal;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;
 `;
 const Caption = styled.div`
