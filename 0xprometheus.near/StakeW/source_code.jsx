@@ -109,7 +109,7 @@ return (
             </div>
             <button
               class="LidoStakeFormInputContainerSpan3Content"
-              onClick={() => props.unStakeTokens(state.tokenAmount)}
+              onClick={() => props.unStakeTokens()}
             >
               <span class="LidoStakeFormInputContainerSpan3Max">Unstake</span>
             </button>
