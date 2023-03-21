@@ -384,17 +384,17 @@ return (
   <div>
     <h1>Resources for Founders</h1>
     <br />
-    <h2>Growth & Marketing</h2>
-    <Widget
-      src={`${user}/widget/CardGallery`}
-      props={{ cardData: props.growth }}
-    />
-    <hr />
-    <br />
     <h2>Business Fundamentals</h2>
     <Widget
       src={`${user}/widget/CardGallery`}
       props={{ cardData: props.bdBasics }}
+    />
+    <hr />
+    <br />
+    <h2>Growth & Marketing</h2>
+    <Widget
+      src={`${user}/widget/CardGallery`}
+      props={{ cardData: props.growth }}
     />
     <hr />
     <br />
