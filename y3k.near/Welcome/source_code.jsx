@@ -1,6 +1,8 @@
 return (
   <>
     <Widget src="y3k.near/widget/ProfileOnboarding" />
+    <Widget src="y3k.near/widget/NEAR.ATLAS.MainPage.Charts" props={{}} />
+
     <ul
       className="nav nav-pills nav-fill mb-3 d-lg-none"
       id="pills-tab"
