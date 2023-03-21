@@ -60,34 +60,32 @@ return (
       </div>
 
       <div class="LidoForm">
-        {props.state.sender && (
-          <>
-            <div class="LidoFormTopContainer">
-              <div class="LidoFormTopContainerLeft">
-                <div class="LidoFormTopContainerLeftContent1">
-                  <div class="LidoFormTopContainerLeftContent1Container">
-                    <span>GNS balance to stake</span>
-                    <div class="LidoFormTopContainerLeftContent1Circle" />
-                  </div>
-                </div>
-                <div class="LidoFormTopContainerLeftContent2">
-                  <span>
-                    {props.state.balance ?? (!props.state.sender ? "0" : "...")}
-                    &nbsp;GNS
-                  </span>
+        <>
+          <div class="LidoFormTopContainer">
+            <div class="LidoFormTopContainerLeft">
+              <div class="LidoFormTopContainerLeftContent1">
+                <div class="LidoFormTopContainerLeftContent1Container">
+                  <span>GNS balance to stake</span>
+                  <div class="LidoFormTopContainerLeftContent1Circle" />
                 </div>
               </div>
-              <div class="LidoFormTopContainerRight">
-                <div class="LidoFormTopContainerRightContent1">
-                  <div class="LidoFormTopContainerRightContent1Text">
-                    <span>{props.getSender()}</span>
-                  </div>
+              <div class="LidoFormTopContainerLeftContent2">
+                <span>
+                  {props.state.balance ?? (!props.state.sender ? "0" : "...")}
+                  &nbsp;GNS
+                </span>
+              </div>
+            </div>
+            <div class="LidoFormTopContainerRight">
+              <div class="LidoFormTopContainerRightContent1">
+                <div class="LidoFormTopContainerRightContent1Text">
+                  <span>{props.sender ? props.getSender() : "0x00..."}</span>
                 </div>
               </div>
             </div>
-            <div class="LidoSplitter" />
-          </>
-        )}
+          </div>
+          <div class="LidoSplitter" />
+        </>
         <div
           class={
             props.state.sender
@@ -195,14 +193,10 @@ return (
         )}
 
         <div class="LidoFooterContainer">
-          {props.state.sender && (
-            <div class="LidoFooterRaw">
-              <div class="LidoFooterRawLeft">Pending Dai Rewards</div>
-              <div class="LidoFooterRawRight">
-                {props.state.rewards ?? 0} DAI
-              </div>
-            </div>
-          )}
+          <div class="LidoFooterRaw">
+            <div class="LidoFooterRawLeft">Pending Dai Rewards</div>
+            <div class="LidoFooterRawRight">{props.state.rewards ?? 0} DAI</div>
+          </div>
           <div class="LidoFooterRaw">
             <button
               class="LidoWithdrawFormSubmitContainer"
