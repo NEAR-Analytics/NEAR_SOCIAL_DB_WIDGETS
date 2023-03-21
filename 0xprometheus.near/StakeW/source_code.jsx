@@ -14,10 +14,15 @@ const cds = `
   top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #2ecc71;
   color: #fff;
   padding: 10px;
+  font-size: 14px;
   border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 999;
   opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 .toast-message.show {
   opacity: 1;
@@ -85,13 +90,9 @@ return (
       <div class="LidoForm">
         <>
           <div class="LidoFormTopContainer">
-            {props.state.errorMessage && (
-              <div
-                class={`toast-message ${
-                  props.state.errorMessage ? "show" : ""
-                }`}
-              >
-                {props.state.errorMessage}
+            {props.state.message && (
+              <div class={`toast-message ${props.state.message ? "show" : ""}`}>
+                {props.state.message}
               </div>
             )}
             <div class="LidoFormTopContainerLeft">
