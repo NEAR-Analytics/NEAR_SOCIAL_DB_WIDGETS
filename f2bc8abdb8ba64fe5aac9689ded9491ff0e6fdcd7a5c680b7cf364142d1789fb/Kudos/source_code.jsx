@@ -263,7 +263,7 @@ return (
     >
       Kudos!
     </CommitButton>
-    <div>
+    <div className={allWidgetsClassNames.allCardsContainer}>
       {sortedData ? sortedData.map((d) => RenderKudoBox(d)) : "Loading..."}
     </div>
   </div>
