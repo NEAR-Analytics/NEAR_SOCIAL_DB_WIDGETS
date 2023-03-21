@@ -6,7 +6,17 @@ const Card = styled.div`
   margin: 8px;
   border-radius: 22px;
   box-shadow: 5px 5px 5px gray;
-  border: solid gray;
+`;
+const Header = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`;
+const Title = styled.div`
+    font-size: 24px;
+    line-height: 33.6px;
 `;
 const Icon = styled.div`
   height: 24px;
@@ -22,6 +32,23 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+const Preview = styled.div`
+    font-size: 16px;
+    line-height: 20.8px;
+    color: #A6A6A6;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+`;
+const Caption = styled.div`
+    font-size: 12px;
+    line-height: 15.6px;
+    color: #A6A6A6;
 `;
 
 data = data.body.data.findIdeas[0];
@@ -57,9 +84,7 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Header>
-            <Title>{data["title"]}</Title>
-          </Header>
+          <Title>{data["title"]}</Title>
           <Preview>
             <Markdown text={data["description"]} />
           </Preview>
