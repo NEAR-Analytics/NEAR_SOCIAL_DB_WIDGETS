@@ -3,20 +3,13 @@ const cssFont = fetch(
 ).body;
 const css = `.toast-notification {
   position: absolute;
-  width: 50%;
+  margin-top: -30px;
   top: 0%;
   left: 50%;
-  right: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px 20px;
-  border-radius: 5px;
   color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  z-index: 9999; /* make sure the toast is on top of other elements */
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .toast-notification.success {
