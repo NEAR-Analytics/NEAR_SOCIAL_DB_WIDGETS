@@ -87,7 +87,7 @@ const data = fetch("https://monkfish-app-ginhc.ondigitalocean.app/graphql", {
   }),
 });
 
-if (data.body.errors) {
+if (data.errors) {
   return (
     <Widget
       src={ERROR_WIDGET}
@@ -98,7 +98,7 @@ if (data.body.errors) {
   );
 }
 
-data = data.body.data.findIdeas[0];
+data = data.data.findIdeas[0];
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
