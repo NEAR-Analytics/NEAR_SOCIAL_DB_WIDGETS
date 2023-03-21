@@ -1,12 +1,8 @@
 const data = props.data;
 const Card = styled.div`
-  height: 125px;
   background-color: white;
   padding: 12px;
   margin: 8px;
-  border-radius: 22px;
-  box-shadow: 5px 5px 5px gray;
-  border: solid gray;
 `;
 const Icon = styled.div`
   height: 24px;
@@ -60,9 +56,7 @@ return (
           <Header>
             <Title>{data["title"]}</Title>
           </Header>
-          <Preview>
-            <Markdown text={data["description"]} />
-          </Preview>
+          <Markdown text={data["description"]} />
         </Content>
         <Caption>{formatDate(data.creationDate)}</Caption>
       </Body>
