@@ -1,3 +1,7 @@
+const updateGeneralState = props.updateGeneralState;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles;
+const thisWidgetClassNames = props.allWidgetsClassNames;
+
 const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
