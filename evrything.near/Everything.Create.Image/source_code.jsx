@@ -1,5 +1,11 @@
 const ERROR_WIDGET = "evrything.near/widget/Everything.Error";
 
+const ButtonRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+`;
+
 const typeStr = "evrything.near/type/Image";
 
 const type = Type.get(typeStr);
