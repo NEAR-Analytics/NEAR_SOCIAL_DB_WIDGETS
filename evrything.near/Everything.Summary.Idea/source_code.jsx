@@ -1,5 +1,5 @@
 const Card = styled.div`
-  height: 125px;
+  height: 420px;
   background-color: white;
   padding: 12px;
   margin: 8px;
@@ -121,9 +121,9 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data["title"]}</Title>
+          <Title>{data.title}</Title>
           <Preview>
-            <Markdown text={data["description"]} />
+            <Markdown text={data.description.md} />
           </Preview>
         </Content>
         <Caption>{formatDate(data.creationDate)}</Caption>
