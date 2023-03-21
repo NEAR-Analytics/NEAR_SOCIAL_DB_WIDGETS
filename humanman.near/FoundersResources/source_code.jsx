@@ -159,7 +159,7 @@ const props = {
       tags: ["growth&marketing", "ecosystem"],
     },
     {
-      title: "NEAR Medium publication Guidelines",
+      title: "NEAR Medium Guidelines",
       description: "Top stories & project launches",
       link: "https://docs.google.com/document/d/1MNy9PikQWHLiXQyDs-E7ijeA79rsBZ2TY3wzh6GGG08/edit?usp=sharing",
       img: "",
