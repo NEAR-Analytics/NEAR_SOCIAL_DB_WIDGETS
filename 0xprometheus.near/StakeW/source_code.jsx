@@ -112,7 +112,7 @@ return (
               <div class="LidoFormTopContainerRightContent1">
                 <div class="LidoFormTopContainerRightContent1Text">
                   <span>
-                    {props.state.sender ? props.state.getSender() : "0x00..."}
+                    {props.state.sender ? props.getSender() : "0x00..."}
                   </span>
                 </div>
               </div>
