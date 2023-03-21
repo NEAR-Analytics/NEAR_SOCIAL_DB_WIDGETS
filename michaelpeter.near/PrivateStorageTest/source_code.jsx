@@ -7,6 +7,7 @@ return (
     </span>
     <input type="text" placeholder="message" value={state.message} />
     <button
+      className="btn btn-outline-secondary"
       onClick={() => {
         Storage.privateSet("message", state.message);
       }}
