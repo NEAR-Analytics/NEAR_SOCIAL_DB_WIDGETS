@@ -6,6 +6,8 @@ State.init({
   },
 });
 
+const updateGeneralState = props.updateGeneralState;
+
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
@@ -22,16 +24,6 @@ const card = {
   textAlign: "center",
   color: "white",
   padding: "10px",
-};
-
-const button = {
-  borderRadius: "5px",
-  margin: "5px 0",
-  padding: "8px",
-  textAlign: "center",
-  background: "linear-gradient(to left, #FFD50D, #4498E0)",
-  border: "2px solid black",
-  fontWeight: "bold",
 };
 
 const imgWH = {
@@ -223,14 +215,10 @@ return (
         />
       </div>
     )}
-    <div className="d-flex flex-column w-75 my-3 justify-content-around">
+    <div className={thisWidgetClassNames.urlTextareaContainer}>
       <p>Url:</p>
       <textarea
-        style={{
-          backgroundColor: "#fafafa",
-          border: "1px solid #fafafa",
-          borderRadius: "0.375rem",
-        }}
+        style={thisWidgetInlineStyles.urlTextarea}
         rows="1"
         value={state.url}
         onChange={(e) => {
@@ -239,7 +227,7 @@ return (
       />
     </div>
     <CommitButton
-      style={button}
+      style={thisWidgetInlineStyles.commitButton}
       data={{
         index: {
           kudo: JSON.stringify(
@@ -254,6 +242,12 @@ return (
             0
           ),
         },
+      }}
+      onMouseEnter={() => {
+        updateInstanceTimeState({ hoveringElement: "commitButton" });
+      }}
+      onMouseLeave={() => {
+        updateInstanceTimeState({ hoveringElement: "" });
       }}
       onCommit={() => {
         State.update({
