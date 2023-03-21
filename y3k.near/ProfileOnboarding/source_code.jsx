@@ -1,7 +1,7 @@
 const accountId = props.debugAccountId ?? context.accountId;
 
 // change this back to !accountId
-if (accountId) {
+if (!accountId) {
   return (
     <div
       className="alert alert-success rounded-4 mb-3"
