@@ -200,18 +200,7 @@ return (
       className={thisWidgetClassNames.imageWidgetContainer}
       style={thisWidgetInlineStyles.imageWidgetContainer}
     >
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image: metadata.image,
-          className: "w-100 h-100 shadow",
-          style: thisWidgetInlineStyles.imageWidget,
-          thumbnail: false,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreido7gsk4dlb63z3s5yirkkgrjs2nmyar5bxyet66chakt2h5jve6e",
-          alt: widgetName,
-        }}
-      />
+      <h2 style={thisWidgetInlineStyles.selectedTab}>All Kudos</h2>
     </div>
     <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
     <Widget
