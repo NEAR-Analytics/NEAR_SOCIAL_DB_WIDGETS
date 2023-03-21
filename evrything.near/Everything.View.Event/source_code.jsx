@@ -1,46 +1,40 @@
 const data = props.data;
 
 const Card = styled.div`
-    height: 200px;
-    background-color: white;
-    padding: 12px;
-    margin: 8px;
-    border-radius: 22px;
-    box-shadow: 5px 5px 5px gray;
-    border: solid gray;
+  height: 220px;
+  background-color: white;
+  padding: 12px;
+  margin: 8px;
+  border-radius: 22px;
+  box-shadow: 5px 5px 5px gray;
+  border: solid gray;
 `;
-
-const Icon = styled.div`
-    height: 24px;
-    width: 24px;
-`;
-
-const Body = styled.div`
-    margin-left: 12px;
+const Header = styled.div`
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 `;
-
-const Content = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-`;
-
 const Title = styled.div`
-    max-height: 56px;
-    font-size: 20px;
-    line-height: 28px;
-    overflow: hidden;
-    position: relative;
-    text-overflow: ellipsis;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    font-size: 24px;
+    line-height: 33.6px;
 `;
-
+const Icon = styled.div`
+  height: 24px;
+  width: 24px;
+`;
+const Body = styled.div`
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
 const Preview = styled.div`
     font-size: 16px;
     line-height: 20.8px;
@@ -50,23 +44,14 @@ const Preview = styled.div`
     text-overflow: ellipsis;
     white-space: normal;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 `;
-
 const Caption = styled.div`
     font-size: 12px;
     line-height: 15.6px;
     color: #A6A6A6;
 `;
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const year = date.getFullYear().toString();
-  return `${day}.${month}.${year}`;
-};
 
 return (
   <Card>
@@ -91,14 +76,15 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data.title}</Title>
+          <Header>
+            <Title>{data["title"]}</Title>
+          </Header>
           <Preview>
-            <Markdown text={data.description} />
+            <Markdown text={data["description"]} />
           </Preview>
         </Content>
+        <Caption>{data["date"]}</Caption>
       </Body>
     </div>
   </Card>
 );
-
-// <Caption>{formatDate(data.creationDate)}</Caption>
