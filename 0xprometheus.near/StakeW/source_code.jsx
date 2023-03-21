@@ -8,13 +8,13 @@ const cds = `
     margin-bottom: 20px;
     position: relative;
 }
+
 .toast-message {
   position: absolute;
   margin-top: -30px;
   top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #2ecc71;
   color: #fff;
   padding: 10px;
   font-size: 14px;
@@ -22,10 +22,15 @@ const cds = `
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 999;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
-.toast-message.show {
+.toast-message.success {
   opacity: 1;
+  background-color: #2ecc71;
+}
+.toast-message.error {
+  opacity: 1;
+  background-color: red;
 }
 
 .LidoWithdrawFormSubmitContainer{
@@ -91,7 +96,7 @@ return (
         <>
           <div class="LidoFormTopContainer">
             {props.state.message && (
-              <div class={`toast-message ${props.state.message ? "show" : ""}`}>
+              <div class={`toast-message ${props.state.type}`}>
                 {props.state.message}
               </div>
             )}
