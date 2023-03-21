@@ -1,1 +1,70 @@
-const Header = styled.div` width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center; `; const Title = styled.div` font-size: 24px; line-height: 33.6px; `; const Form = styled.div` display: flex; flex-direction: column; gap: 4px; `; const Input = styled.input` width: 100%; `; const TextArea = styled.textarea` width: 100%; `; const ButtonRow = styled.div` display: flex; flex-direction: row; gap: 4px; `; const typeStr = "evrything.near/type/Image"; const type = Type.get(typeStr); State.init({}); function composeData() { const data = { thing: { main: JSON.stringify(state), }, index: { everythingv0: JSON.stringify({ key: "main", value: { type: typeStr, }, }), }, }; return data; } return ( <> <Header> <Title>{typeStr.split("/")[2]}</Title> </Header> <Form><ButtonRow> <CommitButton force data={composeData} onCommit={resetThing} > create </CommitButton> </ButtonRow> </Form> </> );
+const ERROR_WIDGET = "evrything.near/widget/Everything.Error";
+
+const ButtonRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+`;
+
+const typeStr = "evrything.near/type/Image";
+
+const type = Type.get(typeStr);
+// const type = props.type;
+
+if (!type) {
+  return (
+    <Widget
+      src={ERROR_WIDGET}
+      props={{
+        message: `provided type: "${props.type}" is not valid.`,
+      }}
+    />
+  );
+}
+
+State.init({
+  img: null,
+});
+
+function composeData() {
+  const data = {
+    thing: {
+      main: JSON.stringify({ img: state.img }),
+    },
+    index: {
+      tempeverything: JSON.stringify({
+        key: "main",
+        value: {
+          type: typeStr,
+        },
+      }),
+    },
+  };
+  return data;
+}
+
+return (
+  <div className="container row">
+    <div>
+      Image upload: <br />
+      <IpfsImageUpload image={state.img} />
+    </div>
+    <div>
+      Raw State:
+      <pre>{JSON.stringify(state)}</pre>
+    </div>
+    <div className="mt-2">
+      {state.img.cid && (
+        <img
+          src={`https://ipfs.near.social/ipfs/${state.img.cid}`}
+          alt="uploaded"
+        />
+      )}
+    </div>
+    <ButtonRow>
+      <CommitButton disabled={!state.img} force data={composeData}>
+        create
+      </CommitButton>
+    </ButtonRow>
+  </div>
+);
