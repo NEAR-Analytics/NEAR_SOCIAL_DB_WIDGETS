@@ -14,11 +14,12 @@ if (!index) {
 const filter = props.filter;
 
 const postsQuery = `
-  query IndexerQuery {
+  query IndexerQuery($offset: Int)  {
     indexer_storage(
+      offset: $offset,
       where: {function_name: {_eq: "roshaan.near/near-social-posts"}}
       order_by: {key_name: desc}
-      limit: 10
+      limit: ${index.options.limit}
     ) {
       key_name
       value
@@ -39,10 +40,9 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
     }
   );
 }
+
 fetchGraphQL(postsQuery, "IndexerQuery").then((result) => {
-  console.log("got result");
   if (result.status === 200) {
-    console.log(result, "storage");
     if (result.body.data) {
       const initial_items = [];
       result.body.data.indexer_storage.forEach((posts) => {
@@ -53,6 +53,8 @@ fetchGraphQL(postsQuery, "IndexerQuery").then((result) => {
           parsedInnerString[0].post = post_parsed;
           parsedInnerString[0].blockHeight = parsedInnerString[0].block_height;
           delete parsedInnerString[0].block_height;
+          parsedInnerString[0].accountId = parsedInnerString[0].account_id;
+          delete parsedInnerString[0].account_id;
           if (parsedInnerString[0].post !== null) {
             initial_items.push(parsedInnerString[0]);
           }
@@ -60,11 +62,6 @@ fetchGraphQL(postsQuery, "IndexerQuery").then((result) => {
       });
       State.update({ initialItems: initial_items });
     }
-
-    // State.update({
-    //   state: result.body.data.indexer_state,
-    //   stateCount: result.body.data.indexer_state_aggregate.aggregate.count,
-    // });
   }
 });
 
@@ -84,9 +81,9 @@ const renderItem =
     return (
       <Post className="post" key={JSON.stringify(a)}>
         <Widget
-          src="calebjacob.near/widget/Posts.Post"
+          src="roshaan.near/widget/Posts.Post"
           props={{
-            accountId: item.account_id,
+            accountId: item.accountId,
             blockHeight: item.blockHeight,
             content: item.post,
           }}
@@ -164,17 +161,44 @@ if (state.jInitialItems !== jInitialItems) {
   }
 }
 
-// if (state.fetchFrom) {
-//   const limit = addDisplayCount;
-//   const newItems = [];
-//   if (newItems !== null) {
-//     State.update({
-//       items: mergeItems(newItems),
-//       fetchFrom: false,
-//       nextFetchFrom: computeFetchFrom(newItems, limit),
-//     });
-//   }
-// }
+if (state.fetchFrom) {
+  const limit = addDisplayCount;
+  console.log(state.fetchFrom, "fetch from");
+  fetchGraphQL(postsQuery, "IndexerQuery", {
+    offset: state.fetchFrom,
+  }).then((result) => {
+    if (result.status === 200) {
+      if (result.body.data) {
+        const posts = [];
+        result.body.data.indexer_storage.forEach((posts) => {
+          if (posts.value !== `\"[]\"`) {
+            const parsedOuterString = JSON.parse(posts.value);
+            const parsedInnerString = JSON.parse(parsedOuterString);
+            const post_parsed = JSON.parse(parsedInnerString[0].post);
+            parsedInnerString[0].post = post_parsed;
+            parsedInnerString[0].blockHeight =
+              parsedInnerString[0].block_height;
+            delete parsedInnerString[0].block_height;
+            parsedInnerString[0].accountId = parsedInnerString[0].account_id;
+            delete parsedInnerString[0].account_id;
+
+            if (parsedInnerString[0].post !== null) {
+              posts.push(parsedInnerString[0]);
+            }
+          }
+        });
+        if (posts.length > 0) {
+          const newFoundItems = !!posts.length;
+          State.update({
+            items: mergeItems(posts),
+            fetchFrom: false,
+            nextFetchFrom: computeFetchFrom(posts, limit, newFoundItems),
+          });
+        }
+      }
+    }
+  });
+}
 
 const filteredItems = state.items;
 if (filter) {
