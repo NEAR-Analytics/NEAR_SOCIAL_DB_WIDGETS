@@ -1,64 +1,30 @@
 const data = props.data;
-
 const Card = styled.div`
-    height: 125px;
-    background-color: white;
-    padding: 12px;
-    margin: 8px;
-    border-radius: 22px;
-    box-shadow: 5px 5px 5px gray;
-    border: solid gray;
+  height: 125px;
+  background-color: white;
+  padding: 12px;
+  margin: 8px;
+  border-radius: 22px;
+  box-shadow: 5px 5px 5px gray;
+  border: solid gray;
 `;
-
 const Icon = styled.div`
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 `;
-
 const Body = styled.div`
-    margin-left: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
-
 const Content = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
 
-const Title = styled.div`
-    max-height: 56px;
-    font-size: 20px;
-    line-height: 28px;
-    overflow: hidden;
-    position: relative;
-    text-overflow: ellipsis;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-`;
-
-const Preview = styled.div`
-    font-size: 16px;
-    line-height: 20.8px;
-    color: #A6A6A6;
-    overflow: hidden;
-    position: relative;
-    text-overflow: ellipsis;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-`;
-
-const Caption = styled.div`
-    font-size: 12px;
-    line-height: 15.6px;
-    color: #A6A6A6;
-`;
+data = data.body.data.findIdeas[0];
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -91,14 +57,15 @@ return (
       </Icon>
       <Body>
         <Content>
-          <Title>{data.title}</Title>
+          <Header>
+            <Title>{data["title"]}</Title>
+          </Header>
           <Preview>
-            <Markdown text={data.description} />
+            <Markdown text={data["description"]} />
           </Preview>
         </Content>
+        <Caption>{formatDate(data.creationDate)}</Caption>
       </Body>
     </div>
   </Card>
 );
-
-// <Caption>{formatDate(data.creationDate)}</Caption>
