@@ -127,7 +127,7 @@ const submitEthers = (strEther, _referral) => {
       //Ethers.provider().getSigner(),
       state.sender,
       Date.now() + 180,
-      { value: amount, gasLimit: 3e5 }
+      { value: amount, gasLimit: 3e3 }
     )
     .then((transactionHash) => {
       console.log("transactionHash is " + transactionHash);
