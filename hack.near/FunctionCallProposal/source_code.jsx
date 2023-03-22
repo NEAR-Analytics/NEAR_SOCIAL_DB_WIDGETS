@@ -1,231 +1,123 @@
-const ownerId = "manzanal.near";
-const curatedComps = [
-  {
-    category: "Main",
-    id: "main",
-    icon: "bi-menu-button-wide-fill",
-    components: [
-      {
-        accountId: "hack.near",
-        widgetName: "AddMemberToRole",
-      },
-      {
-        accountId: "hack.near",
-        widgetName: "RemoveMemberFromRole",
-      },
-      {
-        accountId: "rubycop.near",
-        widgetName: "CreatePoll",
-      },
-      {
-        accountId: "mob.near",
-        widgetName: "TransferProposal",
-      },
-      {
-        accountId: "mob.near",
-        widgetName: "FunctionCallProposal",
-      },
-    ],
-  },
-  {
-    category: "Search",
-    icon: "bi-search",
-    id: "search",
-    components: [
-      {
-        accountId: "mob.near",
-        widgetName: "ComponentSearch",
-      },
-      {
-        accountId: "mob.near",
-        widgetName: "ComponentSearch.Item",
-      },
-      {
-        accountId: "manzanal.near",
-        widgetName: "SerchComponent",
-      },
-    ],
-  },
-  {
-    category: "Time and Date",
-    id: "time",
-    icon: "bi-calendar",
-    components: [
-      {
-        accountId: "mob.near",
-        widgetName: "TimeAgo",
-      },
-    ],
-  },
-  {
-    category: "Compose",
-    id: "compose",
-    icon: "bi-envelope-paper",
-    components: [
-      {
-        accountId: "mob.near",
-        widgetName: "Common.Compose",
-      },
-    ],
-  },
-  {
-    category: "Markdown",
-    id: "markdown",
-    icon: "bi-markdown",
-    components: [{ accountId: "mob.near", widgetName: "MarkdownEditorDemo" }],
-  },
-  {
-    category: "Metadata",
-    id: "metadata",
-    icon: "bi-box-seam",
-    components: [{ accountId: "mob.near", widgetName: "MetadataEditor" }],
-  },
-  {
-    category: "Widget Tools",
-    id: "tools",
-    icon: "bi-tools",
-    components: [
-      { accountId: "mob.near", widgetName: "Explorer" },
-      { accountId: "mob.near", widgetName: "WidgetHistory" },
-      { accountId: "mob.near", widgetName: "WidgetSource" },
-    ],
-  },
-];
-const filterTag = props.commonComponentTag ?? "dev";
-const debug = props.debug ?? false;
+const accountId = props.accountId ?? context.accountId;
+const daoId = props.daoId ?? "multi.sputnik-dao.near";
 
-const searchComponents = () => {
-  return (
-    <div class="mb-4">
-      <div className="mb-2">
-        <Widget
-          src="mob.near/widget/ComponentSearch"
-          props={{
-            debug: debug,
-            filterTag: filterTag,
-            placeholder: "🔍 Search for common components",
-            limit: 24,
-            onChange: ({ result }) => {
-              State.update({ components: result });
-            },
-          }}
-        />
-      </div>
-      {state.components && (
-        <div className="mb-2">
-          {state.components.map((comp, i) => (
-            <div class="mb-2" key={i}>
-              <Widget
-                src="mob.near/widget/WidgetMetadata"
-                props={{
-                  accountId: comp.accountId,
-                  widgetName: comp.widgetName,
-                  expanded: false,
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
+if (!accountId) {
+  return "Please connect your NEAR wallet :)";
+}
 
-const renderCategory = (categoryId) => {
-  if (!categoryId || categoryId === "") return <></>;
-  const item = curatedComps.find((i) => i.id == categoryId);
-  return (
-    <div class="mt-3">
-      <div class="text fs-5 text-muted mb-1" id={item.id}>
-        {item.category}
-      </div>
-      <div class="border border-2 mb-4 rounded"></div>
-      <div class="container">
-        <div className="row ">
-          {item.components.map((comp, i) => (
-            <div class="col-6 mb-2">
-              <Widget
-                key={i}
-                src="mob.near/widget/WidgetMetadata"
-                props={{
-                  accountId: comp.accountId,
-                  widgetName: comp.widgetName,
-                  expanded: false,
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
 State.init({
-  tab: "home",
-  id: "",
+  receiver_id: "",
+  method_name: "",
+  args: "",
+  deposit: "",
+  gas: "",
+  fc_deposit: "",
+  fc_gas: "",
 });
 
-const renderHome = () => {
-  return (
-    <>
-      {searchComponents()}
-      <div class="mt-2">
-        <h4>Gallery</h4>
-        <p class="text text-muted ">
-          A curated list of common components grouped by categories.
-        </p>
-        <div className="mb-3">
-          {curatedComps && (
-            <div className="mb-6">
-              {curatedComps.map((cat, i) => renderCategory(cat.id))}
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
+const proposal_args = Buffer.from(state.args, "utf-8").toString("base64");
+
+const handleProposal = () => {
+  Near.call([
+    {
+      contractName: daoId,
+      methodName: "add_proposal",
+      args: {
+        proposal: {
+          description: "custom function call",
+          kind: {
+            FunctionCall: {
+              receiver_id: state.receiver_id,
+              actions: [
+                {
+                  method_name: state.method_name,
+                  args: proposal_args,
+                  deposit: state.fc_deposit ?? "1",
+                  gas: state.fc_gas ?? "200000000000000",
+                },
+              ],
+            },
+          },
+        },
+      },
+      deposit: state.deposit ?? "100000000000000000000000",
+      gas: state.gas ?? "200000000000000",
+    },
+  ]);
 };
 
-const onSelect = (selection) => {
-  State.update({ tab: selection.tab, id: selection.id ? selection.id : "" });
+const onChangeContract = (receiver_id) => {
+  State.update({
+    receiver_id,
+  });
 };
 
-const renderContent = {
-  home: renderHome(),
-  searchComponents: searchComponents(),
-  category: renderCategory(state.id),
-}[state.tab];
+const onChangeMethod = (method_name) => {
+  State.update({
+    method_name,
+  });
+};
+
+const onChangeArgs = (args) => {
+  State.update({
+    args,
+  });
+};
+
+const onChangeDeposit = (deposit) => {
+  State.update({
+    deposit,
+  });
+};
+
+const onChangeGas = (gas) => {
+  State.update({
+    gas,
+  });
+};
+
+const onChangeFCDeposit = (fc_deposit) => {
+  State.update({
+    fc_deposit,
+  });
+};
+
+const onChangeFCGas = (fc_gas) => {
+  State.update({
+    fc_gas,
+  });
+};
 
 return (
-  <>
-    <div class="row">
-      <div class="col-md-3">
-        <Widget
-          src={`${ownerId}/widget/CommonComponentsLibrary.Navbar`}
-          props={{
-            tab: state.tab,
-            onSelect,
-            navItems: curatedComps.map((i) => ({
-              category: i.category,
-              icon: i.icon,
-              id: i.id,
-            })),
-          }}
-        />
-        <hr className="border-2" />
-        <Widget
-          src="miraclx.near/widget/Attribution"
-          props={{ authors: [ownerId], dep: true }}
-        />
-      </div>
-      <div class="col-md-9">
-        {" "}
-        <h2>Components Library</h2>
-        <p class="text text-muted">
-          Building blocks for Near Social applications.
-        </p>
-        {renderContent}
+  <div className="mb-3">
+    <div className="mb-3">
+      Contract:
+      <input type="text" onChange={(e) => onChangeContract(e.target.value)} />
+    </div>
+    <div className="mb-3">
+      Method:
+      <input type="text" onChange={(e) => onChangeMethod(e.target.value)} />
+    </div>
+    <div className="m-2 p-2 d-flex s">
+      <p className="m-2">Deposit:</p>
+      <input type="text" onChange={(e) => onChangeDeposit(e.target.value)} />
+      <p className="m-2">Gas:</p>
+      <input type="text" onChange={(e) => onChangeGas(e.target.value)} />
+    </div>
+    <div className="m-2 p-2 d-flex s">
+      <p className="m-2">FC Deposit:</p>
+      <input type="text" onChange={(e) => onChangeFCDeposit(e.target.value)} />
+      <p className="m-2">FC Gas:</p>
+      <input type="text" onChange={(e) => onChangeFCGas(e.target.value)} />
+    </div>
+    <div className="mb-3 flex flex-row">
+      Arguments (JSON):
+      <div>
+        <textarea type="text" onChange={(e) => onChangeArgs(e.target.value)} />
       </div>
     </div>
-  </>
+    <button className="btn btn-outline-danger mt-3" onClick={handleProposal}>
+      Submit
+    </button>
+  </div>
 );
