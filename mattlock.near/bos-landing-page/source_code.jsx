@@ -139,7 +139,7 @@ a, a:focus, a:visited, a:hover {
     opacity: 0.5;
   width: 100vw;
   height: 260px;
-  background: url('https://cloudflare-ipfs.com/ipfs/bafybeib7kr66dgccanis5n3q5fhmwg2ff42n2csy6peoge4buylwzkj3qa');
+  background: url('https://ipfs.near.social/ipfs/bafybeib7kr66dgccanis5n3q5fhmwg2ff42n2csy6peoge4buylwzkj3qa');
  }
 
  .header-content-left {
@@ -285,7 +285,7 @@ return (
                       <div class="eth-logo">
                         <img
                           src={
-                            "https://cloudflare-ipfs.com/ipfs/bafkreibkkypb3zybzlwfotwa6tdmelalfnfucmvgzzeqwge4e75mkpq6dq"
+                            "https://ipfs.near.social/ipfs/bafkreibkkypb3zybzlwfotwa6tdmelalfnfucmvgzzeqwge4e75mkpq6dq"
                           }
                         />
                       </div>
