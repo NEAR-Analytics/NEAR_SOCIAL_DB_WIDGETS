@@ -141,21 +141,19 @@ const renderCategory = (categoryId) => {
       <div class="border border-2 mb-4 rounded"></div>
       <div class="container">
         <div className="row ">
-          {items.length > 0 && (
-            <Items>
-              {items.map((component, i) => (
-                <Item key={component.accountId + component.widgetName}>
-                  <Widget
-                    src="adminalpha.near/widget/ComponentCard"
-                    props={{
-                      src: `${component.accountId}/widget/${component.widgetName}`,
-                      blockHeight: component.blockHeight,
-                    }}
-                  />
-                </Item>
-              ))}
-            </Items>
-          )}
+          {items.components.map((component, i) => (
+            <div class="col-6 mb-2">
+              <Widget
+                key={i}
+                src="adminalpha.near/widget/ComponentCard"
+                props={{
+                  accountId: component.accountId,
+                  widgetName: component.widgetName,
+                  expanded: false,
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
