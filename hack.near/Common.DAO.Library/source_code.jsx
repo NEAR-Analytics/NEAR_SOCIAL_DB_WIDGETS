@@ -35,7 +35,7 @@ const curatedComps = [
   {
     type: "dao",
     name: "Membership",
-    id: "buttons",
+    id: "membership",
     icon: "bi-person-badge",
     components: [
       {
@@ -67,7 +67,7 @@ const curatedComps = [
   {
     type: "dao",
     name: "Transfers",
-    id: "transfer",
+    id: "transfers",
     icon: "bi-safe",
     components: [
       {
@@ -83,7 +83,7 @@ const curatedComps = [
   {
     type: "dao",
     name: "Polls",
-    id: "poll",
+    id: "polls",
     icon: "bi-check2-square",
     components: [
       {
