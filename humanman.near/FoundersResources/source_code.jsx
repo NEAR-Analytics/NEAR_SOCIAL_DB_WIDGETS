@@ -3,7 +3,7 @@ const user = "humanman.near";
 const props = {
   bdBasics: [
     {
-      title: "How to Achieve Product Market Fit",
+      title: "Product Market Fit",
       link: "https://forwardpartners.com/growth-playbooks/how-to-achieve-product-market-fit",
       description:
         "No-nonsense guide to the product-market fit meaning, why it’s critical, and how to get it.",
@@ -19,7 +19,7 @@ const props = {
       tags: ["business fundamentals", "essentials"],
     },
     {
-      title: "Perfecting Your One Sentence Pitch",
+      title: "Perfecting Your Pitch",
       link: "https://fi.co/one-sentence-pitch",
       description:
         "Founder Institute's simple one-sentence pitch format to grab the listener's attention",
@@ -35,7 +35,7 @@ const props = {
       tags: ["business fundamentals", "essentials"],
     },
     {
-      title: "66 Biggest Mistakes First Time Founders Make",
+      title: "Mistakes Founders Make",
       link: "https://www.ycombinator.com/library/66-biggest-mistakes-first-time-founders-make",
       description:
         "Y Combinator Managing Director and Group Partner Michael Seibel on the biggest mistakes first-time founders make.",
@@ -43,7 +43,7 @@ const props = {
       tags: ["business fundamentals", "general advice"],
     },
     {
-      title: "How to Generate and Validate Startup Ideas",
+      title: "Validate Your Startup Ideas",
       link: "https://fi.co/startup-idea-validation",
       description:
         "Get the tools and resources that will help you develop great startup ideas.",
@@ -75,7 +75,7 @@ const props = {
       tags: ["business fundamentals", "mvp"],
     },
     {
-      title: "How to Design a Better Pitch Deck",
+      title: "Designing a Better Pitch Deck",
       link: "https://www.ycombinator.com/library/4T-how-to-design-a-better-pitch-deck",
       description: "Here’s how to make a solid Demo Day slide deck.",
       img: "",
@@ -109,7 +109,7 @@ const props = {
   ],
   growth: [
     {
-      title: "Project Growth & Marketing Toolkit",
+      title: "Growth & Marketing Toolkit",
       link: "https://docs.google.com/presentation/d/1Abjnbw6qNSC7hu3vAqWqo9hn5pOArakIfU9ZRR0SQTI/edit?usp=sharing",
       description:
         "In-depth overview of best practices and proven strategies for growth & marketing your project in the Web3/crypto space",
@@ -117,7 +117,7 @@ const props = {
       tags: ["growth&marketing", "ecosystem"],
     },
     {
-      title: "NEAR Ecosystem Marketing Activation Workflow",
+      title: "Marketing Activation Workflow",
       link: "https://drive.google.com/file/d/1NsMDzKxFHoKopgEOpf2JGVXI8NzvDrsc/view",
       description:
         "Enables new projects entering the NEAR Ecosystem to request marketing support",
@@ -125,9 +125,9 @@ const props = {
       tags: ["growth&marketing", "ecosystem"],
     },
     {
-      title: "NEAR Medium publication Guidelines",
+      title: "Medium Publication Guidelines",
       link: "https://docs.google.com/document/d/1MNy9PikQWHLiXQyDs-E7ijeA79rsBZ2TY3wzh6GGG08/edit?usp=sharing",
-      description: "Top stories & project launches",
+      description: "Guidelines for publishing on NEAR Medium",
       img: "",
       tags: ["growth&marketing", "ecosystem"],
     },
@@ -308,9 +308,13 @@ const props = {
 };
 return (
   <div>
-    <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
-      Resources for Founders
-    </h1>
+    <div style={{ textAlign: "center", marginBottom: "50px" }}>
+      <h1>Resources for Founders</h1>
+      <h4>
+        Welcome! Below you will find a curated list of resources to best help
+        you where you need it most
+      </h4>
+    </div>
     <br />
     <br />
     <h2 style={{ marginBottom: "20px" }}>Business Fundamentals</h2>
