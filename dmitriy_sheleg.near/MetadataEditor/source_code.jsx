@@ -1,6 +1,7 @@
 const initialMetadata = props.initialMetadata ?? {};
 const onChange = props.onChange;
 const options = props.options;
+const debounce = props.debounce;
 
 State.init({
   initialMetadata,
@@ -42,20 +43,6 @@ if (
   });
   onChange(metadata);
 }
-
-const debounce = (func, wait) => {
-  let timeout;
-
-  return (args) => {
-    const later = () => {
-      clearTimeout(timeout);
-      func(args);
-    };
-
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
 
 const onNameChange = debounce((e) => {
   State.update({
