@@ -1,5 +1,3 @@
-// This widget is a full copy of mob.near/widget/ProfileEditor
-
 const accountId = context.accountId;
 
 if (!accountId) {
