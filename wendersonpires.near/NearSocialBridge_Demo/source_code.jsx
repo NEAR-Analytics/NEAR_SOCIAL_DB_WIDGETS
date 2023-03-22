@@ -162,7 +162,8 @@ function NearSocialBridgeCore(props) {
     // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
     setTimeout(() => {
       console.log('Send B', welcomePayload)
-      sendMessage(welcomePayload)
+      const welcomePayload2 = createConnectionPayload()
+      sendMessage(welcomePayload2)
     }, 2000)
   }
 
