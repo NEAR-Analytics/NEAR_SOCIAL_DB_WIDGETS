@@ -74,7 +74,14 @@ const onDescriptionChange = (e) => {
   });
 };
 
-const onNameChangeDebounced = debounce(onNameChange, 350);
+const onNameChangeDebounced = debounce((e) => {
+  State.update({
+    metadata: {
+      ...state.metadata,
+      name: e.target.value,
+    },
+  });
+}, 350);
 const onDescriptionChangeDebounced = debounce(onDescriptionChange, 350);
 
 return (
