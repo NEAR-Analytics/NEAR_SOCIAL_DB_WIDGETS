@@ -24,6 +24,7 @@ function NearSocialBridgeCore(props) {
   const [connectMessageSent, setConnectMessageSent] = React.useState(state.connectMessageSent)
   const [iframeHeight, setIframeHeight] = React.useState(state.iframeHeight)
   const [sessionStorageClone, setSessionStorageClone] = React.useState(state.sessionStorageClone)
+  const [userInfo, setUserInfo] = React.useState(state.userInfo)
 
   React.useEffect(() => {
     const handler = (e) => {
@@ -35,7 +36,6 @@ function NearSocialBridgeCore(props) {
         state.externalAppUrl = e.data.externalAppUrl
         state.initialPath = e.data.initialPath
         state.userInfo = e.data.userInfo
-        console.log('I', e.data.userInfo)
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
 
@@ -156,10 +156,12 @@ function NearSocialBridgeCore(props) {
 
     // Send the welcome message (connects with the external app)
     const welcomePayload = createConnectionPayload()
+    console.log('Send A', welcomePayload)
     sendMessage(welcomePayload)
 
     // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
     setTimeout(() => {
+      console.log('Send B', welcomePayload)
       sendMessage(welcomePayload)
     }, 2000)
   }
@@ -191,10 +193,6 @@ const externalAppUrl = "https://12236538a88c.ngrok.app";
 const accountId = context.accountId ?? "*";
 const profileInfo = Social.getr(`${accountId}/profile`);
 const userInfo = { accountId, profileInfo };
-console.log("V", userInfo);
-
-// const foo = useCache();
-// console.log("Cache", foo);
 
 // Initial Path
 const initialPath = props.path;
