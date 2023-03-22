@@ -57,8 +57,8 @@ return (
       <Body>
         {" "}
         <Content>
-            <h1>{data["brand"]}</h1> 
-          <h>{data["color"]}</p> <p>{data["material"]}</p>{" "}
+          <h1>{data["brand"]}</h1>
+          <p>{data["color"]}</p> <p>{data["material"]}</p>{" "}
           <p>{data["width"]}</p> <p>{data["length"]}</p>
         </Content>{" "}
       </Body>{" "}
