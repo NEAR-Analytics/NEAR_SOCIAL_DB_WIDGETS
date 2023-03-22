@@ -57,24 +57,7 @@ const debounce = (func, wait) => {
   };
 };
 
-const onNameChange = (e) => {
-  State.update({
-    metadata: {
-      ...state.metadata,
-      name: e.target.value,
-    },
-  });
-};
-const onDescriptionChange = (e) => {
-  State.update({
-    metadata: {
-      ...state.metadata,
-      description: e.target.value,
-    },
-  });
-};
-
-const onNameChangeDebounced = debounce((e) => {
+const onNameChange = debounce((e) => {
   State.update({
     metadata: {
       ...state.metadata,
@@ -82,7 +65,13 @@ const onNameChangeDebounced = debounce((e) => {
     },
   });
 }, 350);
-const onDescriptionChangeDebounced = debounce(onDescriptionChange, 350);
+const onDescriptionChange = debounce((e) => {
+    State.update({
+    metadata: {
+      ...state.metadata,
+      description: e.target.value,
+    },
+}, 350);
 
 return (
   <>
@@ -92,7 +81,7 @@ return (
         <input
           type="text"
           defaultValue={state.metadata.name}
-          onChange={onNameChangeDebounced}
+          onChange={onNameChange}
         />
       </div>
     )}
@@ -128,7 +117,7 @@ return (
           className="form-control"
           rows={5}
           defaultValue={state.metadata.description}
-          onChange={onDescriptionChangeDebounced}
+          onChange={onDescriptionChange}
         />
       </div>
     )}
