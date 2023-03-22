@@ -70,8 +70,8 @@ async function dragAndDropHandler(event) {
   fileReader.readAsText(file);
 }
 
-async function fileUploadHandler(event) {
-  const file = event.target.files[0];
+async function fileUploadHandler({ target }) {
+  const file = target.files[0];
   const fileReader = new FileReader();
   fileReader.onload = function () {
     const fileData = fileReader.result;
