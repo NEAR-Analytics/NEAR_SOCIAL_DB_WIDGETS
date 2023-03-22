@@ -57,6 +57,14 @@ const debounce = (func, wait) => {
   };
 };
 
+const onNameChange = (e) => {
+  State.update({
+    metadata: {
+      ...state.metadata,
+      name: e.target.value,
+    },
+  });
+};
 const onDescriptionChange = (e) => {
   State.update({
     metadata: {
@@ -66,6 +74,7 @@ const onDescriptionChange = (e) => {
   });
 };
 
+const onNameChangeDebounced = debounce(onNameChange, 350);
 const onDescriptionChangeDebounced = debounce(onDescriptionChange, 350);
 
 return (
@@ -73,7 +82,11 @@ return (
     {options.name && (
       <div className="mb-2">
         {options.name.label ?? "Name"}
-        <input type="text" value={state.metadata.name} />
+        <input
+          type="text"
+          defaultValue={state.metadata.name}
+          onChange={onNameChangeDebounced}
+        />
       </div>
     )}
     {options.image && (
