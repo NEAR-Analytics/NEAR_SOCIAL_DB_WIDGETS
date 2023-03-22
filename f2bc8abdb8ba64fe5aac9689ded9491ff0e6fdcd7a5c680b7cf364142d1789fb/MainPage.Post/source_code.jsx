@@ -96,10 +96,12 @@ const RenderKudoBox = (d) => {
               flagItem: item,
             }}
           />
-          <Widget
-            src={`${widgetOwner}/widget/FollowButton`}
-            props={{ accountId: d.accountId }}
-          />
+          <div className={thisWidgetClassNames.followButtonContainer}>
+            <Widget
+              src={`${widgetOwner}/widget/FollowButton`}
+              props={{ accountId: d.accountId }}
+            />
+          </div>
         </div>
         <div
           className={thisWidgetClassNames.cardContent}
