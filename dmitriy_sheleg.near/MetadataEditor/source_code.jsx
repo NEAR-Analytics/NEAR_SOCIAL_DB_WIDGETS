@@ -61,7 +61,9 @@ const onDescriptionChange = debounce((e) => {
   });
 });
 const onLinkTreeChange = debounce((e) => {
-  console.log("name: ", e);
+  console.log("e: ", e);
+  console.log("name: ", e.target.name);
+  console.log("id: ", e.target.id);
   console.log("value: ", e.target.value);
   // State.update({
   //   linktree: {
@@ -145,6 +147,7 @@ return (
             <span className="input-group-text">{link.prefix}</span>
             <input
               type="text"
+              id={link.name}
               name={link.name}
               defaultValue={state.linktree[link.name]}
               onChange={onLinkTreeChange}
