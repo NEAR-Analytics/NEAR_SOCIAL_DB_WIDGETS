@@ -183,8 +183,8 @@ root.render(React.createElement(NearSocialBridgeCore, {}))
 `;
 
 // External App Url
-const externalAppUrl = "https://near-test-app.firebaseapp.com/";
-// const externalAppUrl = "https://b07a5a5a8b0d.ngrok.app";
+// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
+const externalAppUrl = "https://12236538a88c.ngrok.app";
 
 // User Info
 const accountId = context.accountId ?? "*";
@@ -240,8 +240,27 @@ const requestsHandler = (message) => {
     case "get-room-data":
       getRoomDataHandler(message.type, message.payload);
       break;
+    case "subscribe-get-room-data":
+      getRoomDataHandler(message.type, message.payload, true);
+      break;
+    case "send-message":
+      sendMessageHandler(message.type, message.payload);
+      break;
   }
 };
+
+console.log(
+  "sua"
+  // Social.getr(payload.roomId, "data", {
+  //   subscribe: subscribe || false,
+  //   limit: 100,
+  //   order: "desc",
+  // }),
+
+  // Near.view("social.near", "get", {
+  //   keys: ["wendersonpires.near/index/2feb2f51-dfa3-4f9d-86a7-8f20377da539"],
+  // })
+);
 
 // [DON'T REMOVE]: Set thew new iFrame height based on the new screen/route
 const setIframeHeight = (requestType, payload) => {
@@ -249,8 +268,11 @@ const setIframeHeight = (requestType, payload) => {
 };
 
 // Get room data handler
-const getRoomDataHandler = (requestType, payload) => {
+const getRoomDataHandler = (requestType, payload, subscribe) => {
+  // TODO: as vezes demora para pegar os dados
+  console.log(subscribe || false);
   const roomData = Social.index(payload.roomId, "data", {
+    subscribe: subscribe || false,
     limit: 100,
     order: "desc",
   });
@@ -272,6 +294,48 @@ const getRoomDataHandler = (requestType, payload) => {
     });
     sendMessage(responseBody);
   }, payload.wait || 3000);
+};
+
+// Send message handler
+const sendMessageHandler = (requestType, payload) => {
+  console.log(payload);
+  if (payload.roomId && payload.message) {
+    // Store message
+    Social.set(
+      {
+        index: {
+          [payload.roomId]: JSON.stringify(
+            {
+              key: "data",
+              value: payload.message,
+            },
+            undefined,
+            0
+          ),
+        },
+      },
+      {
+        force: true,
+        onCommit: () => {
+          const responseBody = buildAnswer(requestType);
+          sendMessage(responseBody);
+        },
+        onCancel: () => {
+          const responseBody = buildAnswer(requestType, {
+            error: "the action was canceled",
+          });
+          sendMessage(responseBody);
+        },
+      }
+    );
+    return;
+  }
+
+  // Error
+  const responseBody = buildAnswer(requestType, {
+    error: "you must provide the roomId and a message prop",
+  });
+  sendMessage(responseBody);
 };
 // REQUEST HANDLERS ABOVE
 
