@@ -32,7 +32,7 @@ return (
             item.id === props.tab ? "general" : ""
           }`}
           href={`https://near.social/#/${ownerId}/widget/Common.DAO.Library?tab=${item.id}`}
-          onClick={() => props.onSelect({ tab: item.id })}
+          onClick={() => props.onSelect({ tab: "dao", id: item.id })}
         >
           {" "}
           <i className={item.icon} /> <span>{item.name}</span>{" "}
