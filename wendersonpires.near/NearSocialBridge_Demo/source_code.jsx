@@ -191,6 +191,10 @@ const externalAppUrl = "https://12236538a88c.ngrok.app";
 const accountId = context.accountId ?? "*";
 const profileInfo = Social.getr(`${accountId}/profile`);
 const userInfo = { accountId, profileInfo };
+console.log("V", userInfo);
+
+// const foo = useCache();
+// console.log("Cache", foo);
 
 // Initial Path
 const initialPath = props.path;
