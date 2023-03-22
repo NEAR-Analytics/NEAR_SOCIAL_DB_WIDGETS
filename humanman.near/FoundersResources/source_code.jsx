@@ -306,6 +306,9 @@ const props = {
     },
   ],
 };
+
+// TODO: Add sorting functionality
+
 return (
   <div>
     <div style={{ textAlign: "center", marginBottom: "50px" }}>
