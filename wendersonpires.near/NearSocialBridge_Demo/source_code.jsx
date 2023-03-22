@@ -36,8 +36,13 @@ function NearSocialBridgeCore(props) {
         state.externalAppUrl = e.data.externalAppUrl
         state.initialPath = e.data.initialPath
         state.userInfo = e.data.userInfo
+        setUserInfo(e.data.userInfo)
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
+
+      // if (e.data.type === 'update-connect-payload') {
+
+      // }
 
       // When get a message from the View
       if (viewerPort && e.data.from === 'view') {
