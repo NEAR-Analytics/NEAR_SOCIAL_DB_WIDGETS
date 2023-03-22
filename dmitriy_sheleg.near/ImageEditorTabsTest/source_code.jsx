@@ -65,6 +65,12 @@ if (onChange && JSON.stringify(image) !== JSON.stringify(localImage)) {
   onChange(localImage);
 }
 
+const onImageChange = debounce((e) => {
+  console.log("e: ", e);
+  console.log("name: ", e.target.name);
+  console.log("id: ", e.target.id);
+});
+
 console.log("state: ", state);
 
 return (
@@ -114,13 +120,31 @@ return (
       </div>
       <div className={`${state.tab === Tab.NFT ? "" : "visually-hidden"}`}>
         NFT contract
-        <input type="text" defaultValue={state.nft.contractId} />
+        <input
+          type="text"
+          id="contractId"
+          name="contractId"
+          defaultValue={state.nft.contractId}
+          onChange={onImageChange}
+        />
         NFT token id
-        <input type="text" defaultValue={state.nft.tokenId} />
+        <input
+          type="text"
+          id="tokenId"
+          name="tokenId"
+          defaultValue={state.nft.tokenId}
+          onChange={onImageChange}
+        />
       </div>
       <div className={`${state.tab === Tab.URL ? "" : "visually-hidden"}`}>
         Image URL
-        <input type="text" defaultValue={state.url} />
+        <input
+          type="text"
+          id="url"
+          name="url"
+          defaultValue={state.url}
+          onChange={onImageChange}
+        />
       </div>
     </div>
   </div>
