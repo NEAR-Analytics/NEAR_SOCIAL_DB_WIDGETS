@@ -148,7 +148,7 @@ return (
           type="text"
           id="url"
           defaultValue={state.url}
-          //   onChange={onImageChange}
+          onChange={onImageChange}
         />
       </div>
     </div>
