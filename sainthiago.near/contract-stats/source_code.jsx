@@ -32,8 +32,10 @@ const statsQuery = JSON.stringify({
 `,
 });
 
-const getContractStats = () => {
-  const stats = fetch("https://graph.mintbase.xyz", {
+function getContractStats() {
+  State.update({ loading: true });
+
+  asyncFetch("https://graph.mintbase.xyz", {
     method: "POST",
     headers: {
       "mb-api-key": "omni-site",
@@ -41,14 +43,10 @@ const getContractStats = () => {
       "x-hasura-role": "anonymous",
     },
     body: statsQuery,
+  }).then((res) => {
+    State.update({ stats: res?.body?.data, loading: false });
   });
-
-  if (!stats.ok) {
-    State.update({ loading: true });
-  } else {
-    State.update({ stats: stats?.body?.data || null, loading: false });
-  }
-};
+}
 
 return (
   <>
@@ -68,7 +66,7 @@ return (
         <button
           className="btn btn-outline-secondary border mt-4"
           type="button"
-          onClick={() => getContractStats()}
+          onClick={getContractStats}
         >
           Check Stats
         </button>
@@ -76,10 +74,10 @@ return (
     </div>
     {state?.loading ? (
       <p className="text-center mt-5">Loading...</p>
-    ) : state?.contract && state?.stats && Object.keys(state?.stats).length ? (
+    ) : state?.contract && state?.stats && Object.keys(state?.stats)?.length ? (
       <div className="container mt-5">
         <div className="row flex-wrap justify-content-center">
-          {Object.keys(state.stats || {}).map((key, index) => (
+          {Object.keys(state.stats).map((key, index) => (
             <div className="col col-6 col-md-4 mb-4">
               <div className="card card-stats mb-4 mb-xl-0">
                 <div className="card-body">
@@ -108,14 +106,6 @@ return (
           ))}
         </div>
       </div>
-    ) : (
-      state?.contract && (
-        <p className="text-center mt-5">
-          No stats for this contract. Please check if it&apos;s a valid near nft
-          contract
-        </p>
-      )
-    )}
-    <div></div>
+    ) : null}
   </>
 );
