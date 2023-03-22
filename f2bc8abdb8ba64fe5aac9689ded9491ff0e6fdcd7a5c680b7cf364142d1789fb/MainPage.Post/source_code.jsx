@@ -94,7 +94,7 @@ const RenderKudoBox = (d) => {
             }}
           />
           <Widget
-            src="mob.near/widget/FollowButton"
+            src={`${widgetOwner}/widget/FollowButton`}
             props={{ accountId: d.accountId }}
           />
         </div>
