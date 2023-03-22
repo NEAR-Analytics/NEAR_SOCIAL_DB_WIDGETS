@@ -2,8 +2,8 @@ const Card = styled.button`
   display: flex;
   flex-direction: column;
   background-color: white;
-  justify-content: center;
-  align-items: center;
+  justify-content: top;
+  align-items: top;
   width: 300px;
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.15);
