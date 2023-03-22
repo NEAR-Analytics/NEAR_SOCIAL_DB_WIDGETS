@@ -54,7 +54,7 @@ function composeData() {
     },
     index: {
       c_discussion: JSON.stringify({
-        key: "main",
+        key: props.src,
         value: {
           type: "md",
         },
