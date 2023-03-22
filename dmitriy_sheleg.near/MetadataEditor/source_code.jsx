@@ -61,7 +61,7 @@ const onDescriptionChange = debounce((e) => {
   });
 });
 const onLinkTreeChange = debounce((e) => {
-  console.log("name: ", e.target.name);
+  console.log("name: ", e);
   console.log("value: ", e.target.value);
   // State.update({
   //   linktree: {
