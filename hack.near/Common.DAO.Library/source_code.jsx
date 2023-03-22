@@ -24,7 +24,7 @@ const curatedComps = [
     type: "dao",
     name: "DAO Search",
     icon: "bi-search",
-    id: "search",
+    id: "explore",
     components: [
       {
         accountId: "onboarder.near",
