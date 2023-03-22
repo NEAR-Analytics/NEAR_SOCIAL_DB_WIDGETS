@@ -66,11 +66,12 @@ const onNameChange = debounce((e) => {
   });
 }, 350);
 const onDescriptionChange = debounce((e) => {
-    State.update({
+  State.update({
     metadata: {
       ...state.metadata,
       description: e.target.value,
     },
+  });
 }, 350);
 
 return (
