@@ -49,11 +49,11 @@ function extractTagNotifications(text, item) {
 
 function composeData() {
   const data = {
-    post: {
+    component_discuss: {
       main: JSON.stringify(content),
     },
     index: {
-      post: JSON.stringify({
+      component_discuss: JSON.stringify({
         key: "main",
         value: {
           type: "md",
@@ -64,7 +64,7 @@ function composeData() {
 
   const notifications = extractTagNotifications(state.text, {
     type: "social",
-    path: `${context.accountId}/post/main`,
+    path: `${context.accountId}/component_discuss/main`,
   });
 
   if (notifications.length) {
