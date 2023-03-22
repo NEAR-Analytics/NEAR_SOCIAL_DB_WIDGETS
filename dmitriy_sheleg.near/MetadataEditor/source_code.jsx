@@ -109,7 +109,8 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          value={state.metadata.description}
+          defaultValue={metadata.description}
+          //   value={state.metadata.description}
           onChange={onDescriptionChangeDebounced}
         />
       </div>
