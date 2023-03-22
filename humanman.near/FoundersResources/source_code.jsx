@@ -4,139 +4,105 @@ const props = {
   bdBasics: [
     {
       title: "How to Achieve Product Market Fit",
+      link: "https://forwardpartners.com/growth-playbooks/how-to-achieve-product-market-fit",
       description:
         "No-nonsense guide to the product-market fit meaning, why it’s critical, and how to get it.",
-      link: "https://forwardpartners.com/growth-playbooks/how-to-achieve-product-market-fit",
       img: "",
       tags: ["business fundamentals", "essentials"],
     },
     {
       title: "Essential Startup Advice",
+      link: "https://www.ycombinator.com/library/4D-yc-s-essential-startup-advice",
       description:
         "Y Combinator's collection of tips they consider the most important, most transformative advice for startups",
-      link: "https://www.ycombinator.com/library/4D-yc-s-essential-startup-advice",
       img: "",
       tags: ["business fundamentals", "essentials"],
     },
     {
       title: "Perfecting Your One Sentence Pitch",
+      link: "https://fi.co/one-sentence-pitch",
       description:
         "Founder Institute's simple one-sentence pitch format to grab the listener's attention",
-      link: "https://fi.co/one-sentence-pitch",
       img: "",
       tags: ["business fundamentals", "essentials"],
     },
     {
       title: "Benchmarks Guide",
+      link: "https://fi.co/benchmarks",
       description:
         "Metrics providing a solid baseline for entrepreneurs planning out their fundraising and growth strategy.",
-      link: "https://fi.co/benchmarks",
       img: "",
       tags: ["business fundamentals", "essentials"],
     },
     {
       title: "66 Biggest Mistakes First Time Founders Make",
+      link: "https://www.ycombinator.com/library/66-biggest-mistakes-first-time-founders-make",
       description:
         "Y Combinator Managing Director and Group Partner Michael Seibel on the biggest mistakes first-time founders make.",
-      link: "https://www.ycombinator.com/library/66-biggest-mistakes-first-time-founders-make",
       img: "",
       tags: ["business fundamentals", "general advice"],
     },
     {
       title: "How to Generate and Validate Startup Ideas",
+      link: "https://fi.co/startup-idea-validation",
       description:
         "Get the tools and resources that will help you develop great startup ideas.",
-      link: "https://fi.co/startup-idea-validation",
       img: "",
       tags: ["business fundamentals", "general advice"],
     },
     {
       title: "Entrepreneur DNA Assessment",
+      link: "https://fi.co/dna",
       description:
         "Founder Institute's self-assessment for becoming a successful founder of a fast-growth company",
-      link: "https://fi.co/dna",
       img: "",
       tags: ["business fundamentals", "general advice"],
     },
     {
       title: "How to Plan an MVP",
+      link: "https://www.ycombinator.com/library/6f-how-to-plan-an-mvp",
       description:
         "Y Combinator Managing Director Michael Seibel shares his approach to building an MVP and getting your first users",
-      link: "https://www.ycombinator.com/library/6f-how-to-plan-an-mvp",
       img: "",
       tags: ["business fundamentals", "mvp"],
     },
     {
       title: "Startup Ecosystem Canvas",
+      link: "https://fi.co/canvas_template",
       description:
         "Template for plotting our your local ecosystem to help newcomers",
-      link: "https://fi.co/canvas_template",
       img: "",
       tags: ["business fundamentals", "mvp"],
     },
     {
       title: "How to Design a Better Pitch Deck",
-      description: "Here’s how to make a solid Demo Day slide deck.",
       link: "https://www.ycombinator.com/library/4T-how-to-design-a-better-pitch-deck",
+      description: "Here’s how to make a solid Demo Day slide deck.",
       img: "",
       tags: ["business fundamentals", "pitching"],
     },
     {
       title: "SAFE Template",
+      link: "https://www.ycombinator.com/library/6z-fundraising-templates-safe-financing-documents",
       description:
         "SAFE (simple agreement for future equity) for early-stage fundraising",
-      link: "https://www.ycombinator.com/library/6z-fundraising-templates-safe-financing-documents",
       img: "",
       tags: ["business fundamentals", "fundraising"],
     },
   ],
-  legal: [
+  legalHR: [
     {
-      title: "CavenwellDAO",
-      description: "The bridge between Web 3.0 and traditional legal services",
-      link: "https://cavenwell.io/",
-      img: "",
-      tags: ["legal", "services", "DAO"],
-    },
-    {
-      title: "Legal Nodes",
-      description:
-        "Connecting founders with multiple legal professionals, all in one place.",
+      title: "Dapp Legal Structure",
       link: "https://legalnodes.com/article/legal-structure-decentralized-apps",
+      description: "Article about the legal structure of decentralized apps",
       img: "",
-      tags: ["legal", "services"],
+      tags: ["legal"],
     },
-    {
-      title: "DAObox",
-      description:
-        "Provides a legal framework for DAOs including establishment, accounting, and payments",
-      link: "https://www.google.com/url?q=https%3A%2F%2Fdaobox.org%2F&sa=D&sntz=1&usg=AOvVaw30NfKF0u-wJIce2Kn_SvB3",
-      img: "",
-      tags: ["legal", "DAO", "services"],
-    },
-  ],
-  hr: [
     {
       title: "NEAR Careers Portal",
+      link: "https://careers.near.org/jobs",
       description:
         "Discover open roles available within the NEAR Ecosystem, and you can also post open roles within your team as well",
-      link: "https://careers.near.org/jobs",
-      img: "",
-      tags: ["hr", "recruitment"],
-    },
-    {
-      title: "BEExperience",
-      description:
-        "The HUB of education and recruitment within Web3 providing services to hiring entities, as well as individuals",
-      link: "https://beexperience.io/",
-      img: "",
-      tags: ["hr", "recruitment"],
-    },
-    {
-      title: "Black Freelancer",
-      description:
-        "BlackFreelancer is a hub for black creatives across the globe to showcase their work and get hired",
-      link: "https://www.blackfreelancer.com/",
       img: "",
       tags: ["hr", "recruitment"],
     },
@@ -144,65 +110,34 @@ const props = {
   growth: [
     {
       title: "Project Growth & Marketing Toolkit",
-      description:
-        "In-depth overview of best practices and proven strategies for growth & marketing your project in the web3/crypto space",
       link: "https://docs.google.com/presentation/d/1Abjnbw6qNSC7hu3vAqWqo9hn5pOArakIfU9ZRR0SQTI/edit?usp=sharing",
+      description:
+        "In-depth overview of best practices and proven strategies for growth & marketing your project in the Web3/crypto space",
       img: "",
       tags: ["growth&marketing", "ecosystem"],
     },
     {
       title: "NEAR Ecosystem Marketing Activation Workflow",
+      link: "https://drive.google.com/file/d/1NsMDzKxFHoKopgEOpf2JGVXI8NzvDrsc/view",
       description:
         "Enables new projects entering the NEAR Ecosystem to request marketing support",
-      link: "https://drive.google.com/file/d/1NsMDzKxFHoKopgEOpf2JGVXI8NzvDrsc/view",
       img: "",
       tags: ["growth&marketing", "ecosystem"],
     },
     {
-      title: "NEAR Medium Guidelines",
-      description: "Top stories & project launches",
+      title: "NEAR Medium publication Guidelines",
       link: "https://docs.google.com/document/d/1MNy9PikQWHLiXQyDs-E7ijeA79rsBZ2TY3wzh6GGG08/edit?usp=sharing",
+      description: "Top stories & project launches",
       img: "",
       tags: ["growth&marketing", "ecosystem"],
     },
     {
       title: "NEAR Week",
+      link: "https://nearweek.com/",
       description:
         "The largest marketing & news platform in the NEAR ecosystem",
-      link: "https://nearweek.com/",
       img: "",
       tags: ["growth&marketing", "ecosystem"],
-    },
-    {
-      title: "NearStarter",
-      description:
-        "Incubating, accelerating, and funding state-of-the-art projects deploying on the NEAR Protocol",
-      link: "https://nearstarter.fi/",
-      img: "",
-      tags: ["growth&marketing", "ecosystem", "accelerator"],
-    },
-    {
-      title: "NEAR Insider",
-      description:
-        "NEAR ecosystem focused digital marketing and social media agency",
-      link: "https://drive.google.com/file/d/1MboTFLzp-8ydMgyVcww0H_BgjUpPnWOR/view",
-      img: "",
-      tags: ["growth&marketing", "ecosystem"],
-    },
-    {
-      title: "NEAR Stars",
-      description: "Promotion of NEAR ecosystem projects",
-      link: "https://t.me/nearstarsguild",
-      img: "",
-      tags: ["growth&marketing", "ecosystem", "guild", "promotion"],
-    },
-    {
-      title: "Flying Rhino",
-      link: "https://flyingrhinoweb3.com/",
-      description:
-        "Collaborate with all the developed and ongoing developing NFT dapps on NEAR. Join the discord to interact",
-      img: "",
-      tags: ["growth&marketing", "ecosystem", "nft"],
     },
     {
       title: "NEAR News Twitter Accounts",
@@ -237,13 +172,6 @@ const props = {
       tags: ["growth&marketing", "community"],
     },
     {
-      title: "Launchpad Guide",
-      link: "https://medium.com/nearweek/a-guide-to-launchpads-on-near-ido-edition-b3afe6659cb9",
-      description: "Guide to IDO Platforma on NEAR",
-      img: "",
-      tags: ["growth&marketing", "ido"],
-    },
-    {
       title: "Ecosystem Calendar",
       link: "https://nearweek.com/calendar",
       description:
@@ -263,9 +191,9 @@ const props = {
   technical: [
     {
       title: "Blockchain Operating System (BOS)",
+      link: "https://alpha.near.org",
       description:
         "The gateway to Web3. Build and use Web3 components for any chain or protocol",
-      link: "https://alpha.near.org",
       img: "",
       tags: ["technical", "dev-tools", "bos"],
     },
@@ -339,14 +267,6 @@ const props = {
       tags: ["technical", "oracles"],
     },
     {
-      title: "BlockSec",
-      link: "https://blocksec.com/",
-      description:
-        "Building BlockChain Security Infrastructure | Smart Contract Audits",
-      img: "",
-      tags: ["technical", "security"],
-    },
-    {
       title: "MetaBUILD",
       link: "https://near.org/metabuild/",
       description:
@@ -373,43 +293,48 @@ const props = {
       title: "Octopus Network",
       link: "https://oct.network/",
       description:
-        "A NEAR-based multichain interoperable crypto-network for launching and running Web3 substrate-based, EVM compatible Appchains",
+        "Multichain interoperable crypto-network for launching and running Web3 substrate-based, EVM compatible Appchains",
       img: "",
       tags: ["technical", "interoperability"],
     },
+    {
+      title: "Keypom",
+      link: "hhttps://keypom.xyz/",
+      description: "Onboarding toolkit for builders and dApp creators",
+      img: "",
+      tags: ["technical", "onboarding"],
+    },
   ],
 };
-
 return (
   <div>
-    <h1>Resources for Founders</h1>
+    <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
+      Resources for Founders
+    </h1>
     <br />
-    <h2>Business Fundamentals</h2>
+    <br />
+    <h2 style={{ marginBottom: "20px" }}>Business Fundamentals</h2>
     <Widget
       src={`${user}/widget/CardGallery`}
       props={{ cardData: props.bdBasics }}
     />
     <hr />
     <br />
-    <h2>Growth & Marketing</h2>
+    <h2 style={{ marginBottom: "20px" }}>Growth & Marketing</h2>
     <Widget
       src={`${user}/widget/CardGallery`}
       props={{ cardData: props.growth }}
     />
     <hr />
     <br />
-    <h2>Human Resources & Recruiting</h2>
-    <Widget src={`${user}/widget/CardGallery`} props={{ cardData: props.hr }} />
-    <hr />
-    <br />
-    <h2>Legal Resources</h2>
+    <h2 style={{ marginBottom: "20px" }}>Recruiting & Legal</h2>
     <Widget
       src={`${user}/widget/CardGallery`}
-      props={{ cardData: props.legal }}
+      props={{ cardData: props.legalHR }}
     />
     <hr />
     <br />
-    <h2>Technical Resources</h2>
+    <h2 style={{ marginBottom: "20px" }}>Technical</h2>
     <Widget
       src={`${user}/widget/CardGallery`}
       props={{ cardData: props.technical }}
