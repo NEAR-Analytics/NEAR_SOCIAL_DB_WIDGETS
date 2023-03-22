@@ -67,8 +67,10 @@ if (onChange && JSON.stringify(image) !== JSON.stringify(localImage)) {
 
 const onNFTChange = debounce((e) => {
   State.update({
-    ...state.nft,
-    [e.target.id]: e.target.value,
+    nft: {
+      ...state.nft,
+      [e.target.id]: e.target.value,
+    },
   });
 });
 const onImageChange = debounce((e) => {
