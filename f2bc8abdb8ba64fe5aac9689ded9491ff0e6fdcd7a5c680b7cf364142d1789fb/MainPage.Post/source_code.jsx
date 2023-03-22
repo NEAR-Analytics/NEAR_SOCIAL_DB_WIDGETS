@@ -1,6 +1,6 @@
 const updateGeneralState = props.updateGeneralState;
-const thisWidgetInlineStyles = props.allWidgetsInlineStyles;
-const thisWidgetClassNames = props.allWidgetsClassNames;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles.mainPage_post;
+const thisWidgetClassNames = props.allWidgetsClassNames.mainPage_post;
 
 const content = props.content;
 const accountId = content.accountId;
@@ -20,44 +20,15 @@ const item = {
 
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
-const card = {
-  background: "linear-gradient(to right, #4deeea, #f000ff)",
-  border: "1px solid black",
-  borderRadius: "5px",
-  textAlign: "center",
-  color: "white",
-  padding: "10px",
-};
-
-const cardContent = {
-  display: "grid",
-  gridTemplateColumns: "3fr 1fr 1fr",
-};
-
-const headerStyles = {
-  display: "flex",
-  justifyContent: "center",
-};
-
 const startCommentTo = () => {
   State.update({ displayCommentBox: true });
 };
 
 const RenderCommentInput = (blockHeight) => {
   return state.displayCommentBox ? (
-    <div
-      style={{
-        margin: "10px 0px",
-      }}
-    >
+    <div style={thisWidgetInlineStyles.commentInput.container}>
       <textarea
-        style={{
-          backgroundColor: "rgb(230, 230, 230)",
-          border: "1px solid #ced4da",
-          borderRadius: "0.375rem",
-          width: "50%",
-          verticalAlign: "middle",
-        }}
+        style={thisWidgetInlineStyles.commentInput.textArea}
         rows="2"
         value={state.commentTextMap[blockHeight]}
         onChange={(e) => {
@@ -65,7 +36,7 @@ const RenderCommentInput = (blockHeight) => {
         }}
       />
       <CommitButton
-        style={button}
+        style={thisWidgetInlineStyles.commentInput.commitButton}
         data={{
           index: {
             kudo: JSON.stringify(
@@ -89,6 +60,12 @@ const RenderCommentInput = (blockHeight) => {
             reloadData: true,
           });
         }}
+        onMouseEnter={() => {
+          updateGeneralState({ hoveringElement: "commitCommentButton" });
+        }}
+        onMouseLeave={() => {
+          updateGeneralState({ hoveringElement: "" });
+        }}
       >
         Comment
       </CommitButton>
@@ -104,8 +81,8 @@ const RenderKudoBox = (d) => {
   const content = { text };
   return (
     <>
-      <div style={card}>
-        <div style={headerStyles}>
+      <div style={thisWidgetInlineStyles.cardContainer}>
+        <div style={thisWidgetInlineStyles.headerStyles}>
           <Widget
             src="mob.near/widget/MainPage.Post.Header"
             props={{
@@ -121,7 +98,10 @@ const RenderKudoBox = (d) => {
             props={{ accountId: d.accountId }}
           />
         </div>
-        <div className="mt-3 text-break" style={cardContent}>
+        <div
+          className={thisWidgetClassNames.cardContent}
+          style={thisWidgetInlineStyles.cardContent}
+        >
           <Widget
             src="mob.near/widget/MainPage.Post.Content"
             props={{ content, raw }}
