@@ -61,7 +61,7 @@ const onDescriptionChange = debounce((e) => {
   });
 }, 350);
 
-console.log(debounce);
+console.log("debounce", debounce);
 
 return (
   <>
