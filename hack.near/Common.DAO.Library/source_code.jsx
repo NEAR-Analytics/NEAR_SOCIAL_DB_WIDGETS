@@ -135,8 +135,8 @@ const renderCategory = (categoryId) => {
   const item = curatedComps.find((i) => i.id == categoryId);
   return (
     <div class="mt-3">
-      <div class="text fs-5 text-muted mb-1" id={item.id}>
-        {item.type}
+      <div class="text fs-5 text-muted mb-1" id={i.id}>
+        {i.type}
       </div>
       <div class="border border-2 mb-4 rounded"></div>
       <div class="container">
