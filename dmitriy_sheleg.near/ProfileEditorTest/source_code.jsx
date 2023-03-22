@@ -17,6 +17,7 @@ State.init({
 });
 
 const debounce = (func, wait) => {
+  const pause = wait || 350;
   let timeout;
 
   return (args) => {
@@ -26,7 +27,7 @@ const debounce = (func, wait) => {
     };
 
     clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
+    timeout = setTimeout(later, pause);
   };
 };
 
