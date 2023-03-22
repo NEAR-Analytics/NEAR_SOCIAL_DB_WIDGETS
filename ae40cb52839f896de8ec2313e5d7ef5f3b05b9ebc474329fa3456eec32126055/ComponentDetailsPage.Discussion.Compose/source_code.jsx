@@ -54,7 +54,7 @@ function composeData() {
     },
     index: {
       c_discussion: JSON.stringify({
-        key: props.src,
+        key: props.componentSrc,
         value: {
           type: "md",
         },
