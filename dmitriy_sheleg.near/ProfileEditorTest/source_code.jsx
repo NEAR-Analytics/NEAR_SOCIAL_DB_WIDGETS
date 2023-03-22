@@ -42,7 +42,7 @@ return (
           props={{
             initialMetadata: profile,
             onChange: (profile) => State.update({ profile }),
-            debounce={debounce},
+            debounce,
             options: {
               name: { label: "Name" },
               image: { label: "Profile picture" },
