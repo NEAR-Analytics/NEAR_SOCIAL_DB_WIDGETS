@@ -51,7 +51,7 @@ return (
       <input
         type="text"
         onChange={(e) => State.update({ contract: e.target.value })}
-        placeholder="📃 Contract Name"
+        placeholder="📃 Contract Name2"
       />
       <div>
         <button
@@ -83,7 +83,7 @@ return (
                             ).toFixed(2)} N`
                           : key === "floor"
                           ? `${(
-                              (state.stats[key].aggregate?.count || 0) / 1e24
+                              (state.stats[key][0]?.price || 0) / 1e24
                             ).toFixed(2)} N`
                           : state.stats[key].aggregate?.count || 0}
                       </span>
