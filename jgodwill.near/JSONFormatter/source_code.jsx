@@ -102,12 +102,12 @@ async function urlInputHandler(event) {
 }
 
 const clickCopyHandler = () => {
-  navigator.clipboard.writeText(prettifiedJson);
+  navigator.clipboard.writeText(state.prettifiedJson);
 };
 
 const fileDownloadHandler = () => {
   const element = document.createElement("a");
-  const file = new Blob([prettifiedJson], { type: "text/plain" });
+  const file = new Blob([state.prettifiedJson], { type: "text/plain" });
   element.href = URL.createObjectURL(file);
   element.download = "formatted.json";
   document.body.appendChild(element);
