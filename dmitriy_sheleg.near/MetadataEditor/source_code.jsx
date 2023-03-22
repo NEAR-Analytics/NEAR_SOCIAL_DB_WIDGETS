@@ -66,9 +66,10 @@ const onDescriptionChange = (e) => {
       description: e.target.value,
     },
   });
+  console.log("state: ", state);
 };
 
-const onDescriptionChangeDebounced = debounce(onDescriptionChange, 1000);
+const onDescriptionChangeDebounced = debounce(onDescriptionChange, 250);
 
 return (
   <>
