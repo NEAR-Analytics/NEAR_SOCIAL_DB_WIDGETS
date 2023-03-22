@@ -1,5 +1,5 @@
 const data = props.data;
-const Card = styled.div` height: 300px; background-color: white; padding: 12px; margin: 8px; box-shadow: 5px 5px 5px blue; `;
+const Card = styled.div` height: 300px; background-color: red; padding: 12px; margin: 8px; box-shadow: 5px 5px 5px blue; `;
 const Icon = styled.div` height: 24px; width: 24px; `;
 const Body = styled.div` margin-left: 12px; display: flex; flex-direction: row; gap: 8px; justify-content: space-between; `;
 const Content = styled.div` display: flex; flex-direction: column; gap: 4px; `;
