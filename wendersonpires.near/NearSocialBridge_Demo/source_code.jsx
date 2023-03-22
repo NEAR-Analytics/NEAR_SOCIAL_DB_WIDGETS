@@ -183,8 +183,8 @@ root.render(React.createElement(NearSocialBridgeCore, {}))
 `;
 
 // External App Url
-// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
-const externalAppUrl = "https://b07a5a5a8b0d.ngrok.app";
+const externalAppUrl = "https://near-test-app.firebaseapp.com/";
+// const externalAppUrl = "https://b07a5a5a8b0d.ngrok.app";
 
 // User Info
 const accountId = context.accountId ?? "*";
