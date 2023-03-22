@@ -51,7 +51,7 @@ return (
       <input
         type="text"
         onChange={(e) => State.update({ contract: e.target.value })}
-        placeholder="📃 Contract Name2"
+        placeholder="📃 Contract Name"
       />
       <div>
         <button
