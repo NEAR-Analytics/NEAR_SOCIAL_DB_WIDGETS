@@ -120,7 +120,7 @@ return (
         <textarea
           className="form-control"
           rows={5}
-          defaultValue={metadata.description}
+          defaultValue={state.metadata.description}
           onChange={onDescriptionChangeDebounced}
         />
       </div>
