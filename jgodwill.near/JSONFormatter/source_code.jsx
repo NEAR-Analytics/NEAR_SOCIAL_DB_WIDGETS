@@ -70,11 +70,16 @@ async function dragAndDropHandler(event) {
   fileReader.readAsText(file);
 }
 
-async function fileUploadHandler({ target }) {
+function fileUploadHandler({ target }) {
   const file = target.files[0];
+
+  if (!file) {
+    return;
+  }
+
   const fileReader = new FileReader();
-  fileReader.onload = function () {
-    const fileData = fileReader.result;
+  fileReader.onload = () => {
+    const fileData = JSON.parse(fileReader.result);
     State.update({ jsonStr: fileData });
     State.update({ prettifiedJson: "" });
     State.update({ fiexedJsonErrors: "" });
