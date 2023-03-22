@@ -205,6 +205,14 @@ const props = {
       tags: ["technical", "dev-tools"],
     },
     {
+      title: "NEAR GPT-3 Docs Chat",
+      link: "https://neardocs.online/",
+      description:
+        "Leverage the power of GPT-3 to get answers to your technical questions about NEAR",
+      img: "",
+      tags: ["technical", "dev-tools", "chat-gpt"],
+    },
+    {
       title: "Pagoda",
       link: "https://www.pagoda.co/",
       description:
