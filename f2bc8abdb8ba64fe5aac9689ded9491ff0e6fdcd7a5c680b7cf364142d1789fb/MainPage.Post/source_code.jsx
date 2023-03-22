@@ -96,7 +96,7 @@ const RenderKudoBox = (d) => {
               flagItem: item,
             }}
           />
-          <div className={thisWidgetClassNames.followButtonContainer}>
+          <div style={thisWidgetInlineStyles.followButtonContainer}>
             <Widget
               src={`${widgetOwner}/widget/FollowButton`}
               props={{ accountId: d.accountId }}
