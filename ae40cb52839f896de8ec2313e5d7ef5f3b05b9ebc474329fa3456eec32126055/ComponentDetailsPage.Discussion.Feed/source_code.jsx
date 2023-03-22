@@ -1,5 +1,5 @@
 const index = {
-  action: "c_discussion",
+  action: "c_discussionTT",
   key: props.componentSrc,
   options: {
     limit: 10,
