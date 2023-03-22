@@ -9,7 +9,7 @@ async function formatClickHandler() {
 
   try {
     // Validate input as JSON according to RFC 8259
-    const jsonObj = JSON.parse(jsonStr);
+    const jsonObj = JSON.parse(state.jsonStr);
     // Stringify the JSON object with indentation and sorting keys
     formattedJsonStr = JSON.stringify(jsonObj, null, 4);
   } catch (error) {
