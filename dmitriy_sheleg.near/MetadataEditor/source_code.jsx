@@ -51,7 +51,7 @@ const onNameChange = debounce((e) => {
       name: e.target.value,
     },
   });
-}, 350);
+});
 const onDescriptionChange = debounce((e) => {
   State.update({
     metadata: {
@@ -59,7 +59,16 @@ const onDescriptionChange = debounce((e) => {
       description: e.target.value,
     },
   });
-}, 350);
+});
+const onLinkTreeChange = debounce((e) => {
+  console.log("name: ", e.target.name);
+  console.log("value: ", e.target.value);
+  // State.update({
+  //   linktree: {
+  //     ...state.linktree,
+  //   },
+  // });
+});
 
 return (
   <>
@@ -134,7 +143,12 @@ return (
           {link.label}
           <div className="input-group">
             <span className="input-group-text">{link.prefix}</span>
-            <input type="text" value={state.linktree[link.name]} />
+            <input
+              type="text"
+              name={link.name}
+              defaultValue={state.linktree[link.name]}
+              onChange={onLinkTreeChange}
+            />
           </div>
         </div>
       ))}
