@@ -61,8 +61,6 @@ const onDescriptionChange = debounce((e) => {
   });
 }, 350);
 
-console.log("debounce", debounce);
-
 return (
   <>
     {options.name && (
