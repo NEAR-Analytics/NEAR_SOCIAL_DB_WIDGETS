@@ -35,6 +35,7 @@ function NearSocialBridgeCore(props) {
         state.externalAppUrl = e.data.externalAppUrl
         state.initialPath = e.data.initialPath
         state.userInfo = e.data.userInfo
+        console.log('I', e.data.userInfo)
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
 
