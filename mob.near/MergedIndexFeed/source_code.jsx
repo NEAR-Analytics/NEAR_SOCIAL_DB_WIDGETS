@@ -154,10 +154,11 @@ while (filteredItems.length < state.displayCount) {
 for (let iIndex = 0; iIndex < indices.length; ++iIndex) {
   const index = indices[iIndex];
   const feed = state.feeds[iIndex];
+  const desc = index.options.order === "desc";
   let feedChanged = false;
 
   if (
-    feed.usedCount - (feed.items.length || 0) < addDisplayCount * 2 &&
+    (feed.items.length || 0) - feed.usedCount < addDisplayCount * 2 &&
     !feed.fetchFrom &&
     feed.nextFetchFrom &&
     feed.nextFetchFrom !== feed.fetchFrom
@@ -242,7 +243,7 @@ return props.manual ? (
   <InfiniteScroll
     pageStart={0}
     loadMore={makeMoreItems}
-    hasMore={state.displayCount < filteredItems.length}
+    hasMore={state.displayCount <= filteredItems.length}
     loader={loader}
   >
     {renderedItems}
