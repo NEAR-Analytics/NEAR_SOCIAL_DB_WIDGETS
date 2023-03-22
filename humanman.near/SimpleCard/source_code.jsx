@@ -35,7 +35,7 @@ return (
       <br />
     )}
     <Anchor href={props.link}>
-      <h4>{props.title}</h4>
+      <h4 style={{ textAlign: "left" }}>{props.title}</h4>
       <hr />
       <p style={{ textAlign: "left" }}>{props.description}</p>
     </Anchor>
