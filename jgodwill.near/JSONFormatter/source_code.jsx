@@ -114,6 +114,10 @@ const fileDownloadHandler = () => {
   element.click();
 };
 
+const changeHandler = ({ target }) => {
+  State.update({ jsonStr: target.value });
+};
+
 return (
   <div>
     <div class="container-fluid">
@@ -121,8 +125,8 @@ return (
       <textarea
         class="container-fluid"
         rows="10"
-        value={jsonStr}
-        onChange={(e) => setJsonStr(e.target.value)}
+        value={state.jsonStr}
+        onChange={changeHandler}
         onDrop={dragAndDropHandler}
         onDragOver={(e) => e.preventDefault()}
         placeholder="Enter or drag and drop JSON data here..."
@@ -137,20 +141,20 @@ return (
       </div>
     </div>
     <button onClick={formatClickHandler}>Format JSON</button>
-    {prettifiedJson && (
+    {state.prettifiedJson && (
       <>
         <div class="output-container">
           <h3>Formatted JSON data</h3>
-          {fixedErrors && (
+          {state.fiexedJsonErrors && (
             <div class="border">
               <h3>Fixed errors</h3>
-              <pre>{fixedErrors}</pre>
+              <pre>{state.fiexedJsonErrors}</pre>
             </div>
           )}
           <textarea
             class="container-fluid"
             rows="10"
-            value={prettifiedJson}
+            value={state.prettifiedJson}
             readOnly
           />
         </div>
