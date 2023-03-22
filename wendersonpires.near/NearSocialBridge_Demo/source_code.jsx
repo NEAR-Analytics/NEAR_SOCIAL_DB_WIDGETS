@@ -40,9 +40,10 @@ function NearSocialBridgeCore(props) {
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
 
-      // if (e.data.type === 'update-connect-payload') {
-
-      // }
+      if (e.data.type === 'update-connect-payload') {
+        // state.initialPath = e.data.initialPath
+        // state.userInfo = e.data.userInfo
+      }
 
       // When get a message from the View
       if (viewerPort && e.data.from === 'view') {
@@ -208,6 +209,7 @@ const initialIframeHeight = 500;
 
 // Initial State
 State.init({
+  profileInfoReSent: false,
   iframeHeight: initialIframeHeight,
   currentMessage: {
     type: "connect-view",
@@ -217,6 +219,19 @@ State.init({
     initialIframeHeight,
   },
 });
+
+// NEW
+// Resend the profile info (wait data to come)
+const foo = () => {
+  setTimeout(() => {
+    if (!state.profileInfoReSent && context.accountId) {
+      console.log("ABCD Foo:", profileInfo);
+      State.update({ profileInfoReSent: true });
+    }
+  }, 3000);
+};
+
+foo();
 
 // Message sender
 const sendMessage = (message) => {
