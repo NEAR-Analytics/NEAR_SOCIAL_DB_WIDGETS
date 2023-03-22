@@ -9,6 +9,10 @@ if (props.tab && props.tab !== state.selectedTab) {
   });
 }
 
+if (!props.src) {
+  return "Please define a component as `src`";
+}
+
 const src = props.src;
 const [accountId, widget, widgetName] = src.split("/");
 const existsData = Social.keys(`${accountId}/widget/${widgetName}`);
@@ -184,6 +188,18 @@ const ComposeWrapper = styled.div`
   border-top: 1px solid #ECEEF0;
 `;
 
+const FeedWrapper = styled.div`
+  .post {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media (max-width: 1200px) {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+`;
+
 if (!exists) {
   return (
     <>
@@ -341,11 +357,20 @@ return (
       <DiscussionContainer>
         {context.accountId ? (
           <ComposeWrapper>
-            <Widget src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/ComponentDetailsPage.Discussion.Compose" />
+            <Widget
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/ComponentDetailsPage.Discussion.Compose"
+              props={{ src }}
+            />
           </ComposeWrapper>
         ) : (
           <p>Please login to join the discussion</p>
         )}
+        <FeedWrapper>
+          <Widget
+            src="calebjacob.near/widget/Posts.Feed"
+            props={{ accounts }}
+          />
+        </FeedWrapper>
       </DiscussionContainer>
     )}
   </Wrapper>
