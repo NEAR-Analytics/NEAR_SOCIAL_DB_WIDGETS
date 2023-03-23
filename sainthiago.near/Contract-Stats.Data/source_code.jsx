@@ -44,10 +44,6 @@ const statsQuery = JSON.stringify({
 });
 
 function getContractStats() {
-  State.update({
-    loading: true,
-  });
-
   asyncFetch("https://graph.mintbase.xyz", {
     method: "POST",
     headers: {
@@ -73,8 +69,18 @@ function getContractStats() {
 return (
   <div
     onClick={() => {
+      State.update({
+        loading: true,
+      });
       getContractStats();
-      getContractData({ state });
+      getContractData({
+        floor: state.floor,
+        loading: state.loading,
+        minters: state.minters,
+        nfts: state.nfts,
+        owners: state.owners,
+        volume: state.volume,
+      });
     }}
   >
     {button}
