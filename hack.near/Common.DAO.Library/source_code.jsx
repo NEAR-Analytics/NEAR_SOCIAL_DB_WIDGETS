@@ -197,7 +197,7 @@ return (
         <Widget
           src={`${ownerId}/widget/Common.DAO.Library.Navbar`}
           props={{
-            tab: state.type,
+            tab: state.tab,
             onSelect,
             navItems: curatedComps.map((i) => ({
               type: i.type,
