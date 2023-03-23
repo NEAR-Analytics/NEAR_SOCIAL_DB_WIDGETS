@@ -187,7 +187,7 @@ const onSelect = (selection) => {
 const renderContent = {
   home: renderHome(),
   search: renderSearch(),
-  type: renderCategory(state.tab),
+  type: renderCategory(state.id),
 }[state.tab];
 
 return (
