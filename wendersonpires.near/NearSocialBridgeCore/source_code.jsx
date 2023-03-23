@@ -9,6 +9,8 @@
  * Visit https://github.com/wpdas/near-social-bridge to get to know how to use it
  */
 
+console.log(props);
+
 // (i) Discovery API uses cached data structure
 const Utils = {
   /**
