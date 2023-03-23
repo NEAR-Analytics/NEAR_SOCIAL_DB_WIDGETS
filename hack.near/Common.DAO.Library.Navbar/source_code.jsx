@@ -27,7 +27,7 @@ return (
       return (
         <a
           className={`nav-link mt-2 rounded-3${
-            item.type === props.tab ? "general" : ""
+            item.id === props.tab ? "general" : ""
           }`}
           href={`https://near.social/#/${ownerId}/widget/Common.DAO.Library?tab=${item.type}&id=${item.id}`}
           onClick={() => props.onSelect({ tab: item.type, id: item.id })}
