@@ -1,10 +1,6 @@
 const contractId = props.contractId;
-var loadingData = props.loadingData || false;
-var floor = props.floor;
-var owners = props.owners;
-var nfts = props.nfts;
-var minters = props.minters;
-var volume = props.volume;
+const button = props.button || <button>Check Stats</button>;
+const getContractData = props.getContractData;
 
 if (!contractId) {
   return <></>;
@@ -48,7 +44,14 @@ const statsQuery = JSON.stringify({
 });
 
 function getContractStats() {
-  loadingData = true;
+  getContractData({
+    floor: 0,
+    owners: 0,
+    volume: 0,
+    nfts: 0,
+    minters: 0,
+    loading: true,
+  });
 
   asyncFetch("https://graph.mintbase.xyz", {
     method: "POST",
@@ -59,15 +62,17 @@ function getContractStats() {
     },
     body: statsQuery,
   }).then((res) => {
-    loadingData = false;
-    floor = ((res?.body?.data["floor"]?.price[0] || 0) / 1e24).toFixed(2);
-    owners = res?.body?.data["owners"]?.aggregate?.count || 0;
-    volume = (
-      (res?.body?.data["volume"]?.aggregate?.sum?.amount || 0) / 1e24
-    ).toFixed(2);
-    nfts = res?.body?.data["nfts"]?.aggregate?.count || 0;
-    minters = res?.body?.data["minters"]?.aggregate?.count || 0;
+    getContractData({
+      loadingData: false,
+      floor: ((res?.body?.data["floor"]?.price[0] || 0) / 1e24).toFixed(2),
+      owners: res?.body?.data["owners"]?.aggregate?.count || 0,
+      volume: (
+        (res?.body?.data["volume"]?.aggregate?.sum?.amount || 0) / 1e24
+      ).toFixed(2),
+      nfts: res?.body?.data["nfts"]?.aggregate?.count || 0,
+      minters: res?.body?.data["minters"]?.aggregate?.count || 0,
+    });
   });
 }
 
-return <></>;
+return <div onClick={getContractStats}>{button}</div>;
