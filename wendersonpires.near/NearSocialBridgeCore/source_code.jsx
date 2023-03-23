@@ -127,7 +127,7 @@ setTimeout(() => {
     Utils.sendMessage(buildConnectionPayload());
     // checkConnection();
   }
-}, 2000);
+}, 5000);
 
 // setTimeout(() => {
 //   if (!state.connectedToExternalApp) {
@@ -206,7 +206,7 @@ const requestsHandler = (message) => {
       getUserInfo(message.type, message.payload);
       break;
     case "nsb:bridge-service:connection-established":
-      setConnectionStatus(message.type, message.payload);
+      // setConnectionStatus(message.type, message.payload);
       break;
   }
 };
@@ -214,8 +214,8 @@ const requestsHandler = (message) => {
 // [DON'T REMOVE]: Set thew new iFrame height based on the new screen/route
 const setIframeHeight = (requestType, payload) => {
   State.update({ iframeHeight: payload.height + 20 });
-  const responseBody = buildAnswer(requestType);
-  Utils.sendMessage(responseBody);
+  // const responseBody = buildAnswer(requestType);
+  // Utils.sendMessage(responseBody);
 };
 
 // [DON'T REMOVE]: Hydrate View session data with data provided by the External App
