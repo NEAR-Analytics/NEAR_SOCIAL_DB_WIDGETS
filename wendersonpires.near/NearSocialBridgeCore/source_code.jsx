@@ -93,12 +93,11 @@ State.init({
   currentMessage: buildConnectionPayload(),
 });
 
-// Wait a bit and send the "connect" msg again to ensure the External App is ready
+// Send connect message every 2 seconds - DEV
+// TODO: This should work on for "development" env
 setTimeout(() => {
-  console.log("MINNNNN");
   Utils.sendMessage(buildConnectionPayload());
 }, 2000);
-console.log("CHECK", state);
 // TODO: Create a "connected" state to check the connection
 // External App should send a status = "connected: true"
 // Try to send the connection payload till the conection is established
