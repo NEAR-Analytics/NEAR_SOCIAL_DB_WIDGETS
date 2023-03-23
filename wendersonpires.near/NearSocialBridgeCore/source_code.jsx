@@ -102,23 +102,23 @@ const buildAnswer = (requestType, payload) => {
   };
 };
 
-// Widget response factory - closure //TODO: testar isso aqui bro kkk
+/**
+ * Widget response factory - closure
+ *
+ * E.g:
+ * const response = responseFactory.build()
+ * response({type: 'request-type'}).send({myPayloadHere: 123})
+ */
 const responseFactory = {
   build: () => {
     return (request) => {
       return {
         send: (payload) => {
-          console.log("Response Factory", request.type, payload);
-          const responseBody = buildAnswer(request.requestType, payload);
+          const responseBody = buildAnswer(request.type, payload);
           Utils.sendMessage(responseBody);
         },
       };
     };
-    // return (payload) => {
-    //   console.log("Response Factory", requestType, payload);
-    //   const responseBody = buildAnswer(requestType, payload);
-    //   Utils.sendMessage(responseBody);
-    // };
   },
 };
 
@@ -143,7 +143,7 @@ const onMessageHandler = (message) => {
   const utils = {
     promisify: Utils.promisify,
   };
-  props.requestHandler(request, responseFactory.build(requestType), utils);
+  props.requestHandler(request, responseFactory.build(), utils);
 };
 
 // CORE - REQUEST HANDLERS BELOW
