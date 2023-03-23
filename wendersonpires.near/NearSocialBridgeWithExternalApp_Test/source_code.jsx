@@ -7,7 +7,7 @@ const code = `
 `;
 
 // External App Url
-const externalAppUrl = "https://d571d173bbb5.ngrok.app";
+const externalAppUrl = "https://d897d0b288e7.ngrok.app";
 
 // Initial Path
 const initialPath = props.path;
