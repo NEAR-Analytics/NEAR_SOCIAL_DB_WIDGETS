@@ -29,6 +29,7 @@ function NearSocialBridgeCore(props) {
   React.useEffect(() => {
     const handler = (e) => {
       // Set the Viewer port
+      console.log('PONTE', e.data.type, e.data.userInfo)
       if (!viewerPort && e.data.type === 'connect-view') {
         viewerPort = e.source
         setExternalAppUrl(e.data.externalAppUrl)
@@ -40,9 +41,9 @@ function NearSocialBridgeCore(props) {
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
 
-      if (e.data.type === 'update-connect-payload') {
-        // state.initialPath = e.data.initialPath
+      if (e.data.type === 'update-initial-payload') {
         // state.userInfo = e.data.userInfo
+        console.log('Mandou atualizar o user info:', e.data.userInfo)
       }
 
       // When get a message from the View
@@ -192,6 +193,49 @@ root.render(React.createElement(NearSocialBridgeCore, {}))
 </script>
 `;
 
+// NEW - Utils
+// (i) Discovery API uses cached data structure
+const Utils = {
+  /**
+   * Send message
+   */
+  sendMessage: (message) => {
+    State.update({
+      currentMessage: message,
+    });
+  },
+  /**
+   * Call resolve or reject for a given caller
+   * E.g:
+   * Utils.promisify(() => getCachedObject(), (res) => console.log(res), (err) => console.log(err))
+   */
+  promisify: (caller, resolve, reject) => {
+    const timer = 1000;
+    const timeout = timer * 10;
+    let timeoutCheck = 0;
+
+    const find = () => {
+      const response = caller();
+      if (response) {
+        resolve(response);
+      } else {
+        if (timeoutCheck < timeout) {
+          // try again
+          console.log(timeoutCheck);
+          setTimeout(find, 1000);
+          timeoutCheck += timer;
+        } else {
+          reject(null);
+        }
+      }
+    };
+
+    // Fist attempt
+    find();
+  },
+};
+// NEW
+
 // External App Url
 // const externalAppUrl = "https://near-test-app.firebaseapp.com/";
 const externalAppUrl = "https://12236538a88c.ngrok.app";
@@ -209,36 +253,56 @@ const initialIframeHeight = 500;
 
 // Initial State
 State.init({
-  profileInfoReSent: false,
+  // profileInfoReSent: false,
   iframeHeight: initialIframeHeight,
   currentMessage: {
     type: "connect-view",
     externalAppUrl,
     userInfo,
-    initialPayload,
+    initialPath,
     initialIframeHeight,
   },
 });
 
 // NEW
 // Resend the profile info (wait data to come)
-const foo = () => {
-  setTimeout(() => {
-    if (!state.profileInfoReSent && context.accountId) {
-      console.log("ABCD Foo:", profileInfo);
-      State.update({ profileInfoReSent: true });
-    }
-  }, 3000);
-};
+// const foo = () => {
+//   setTimeout(() => {
+//     if (!state.profileInfoReSent && context.accountId) {
+//       console.log("ABCD Foo:", profileInfo);
+//       State.update({ profileInfoReSent: true });
+//     }
+//   }, 3000);
+// };
 
-foo();
+// foo();
 
 // Message sender
-const sendMessage = (message) => {
-  State.update({
-    currentMessage: message,
-  });
-};
+// const sendMessage = (message) => {
+//   State.update({
+//     currentMessage: message,
+//   });
+// };
+
+// Force fetch all the user info
+if (!profileInfo) {
+  console.log("USANDO PROMISIFY");
+  Utils.promisify(
+    () => Social.getr(`${accountId}/profile`), // profile info
+    (res) => {
+      console.log("RES:", res);
+      const updatedUserInfo = { accountId, res };
+      const updatedInitialPayload = {
+        type: "update-initial-payload",
+        userInfo: updatedUserInfo,
+      };
+      Utils.sendMessage(updatedInitialPayload);
+    },
+    (err) => {
+      console.log("ERR:", err);
+    }
+  );
+}
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
@@ -309,14 +373,14 @@ const getRoomDataHandler = (requestType, payload, subscribe) => {
       const responseBody = buildAnswer(requestType, {
         error: "room not found",
       });
-      sendMessage(responseBody);
+      Utils.sendMessage(responseBody);
       return;
     }
 
     const responseBody = buildAnswer(requestType, {
       messages: roomData,
     });
-    sendMessage(responseBody);
+    Utils.sendMessage(responseBody);
   }, payload.wait || 3000);
 };
 
@@ -342,13 +406,13 @@ const sendMessageHandler = (requestType, payload) => {
         force: true,
         onCommit: () => {
           const responseBody = buildAnswer(requestType);
-          sendMessage(responseBody);
+          Utils.sendMessage(responseBody);
         },
         onCancel: () => {
           const responseBody = buildAnswer(requestType, {
             error: "the action was canceled",
           });
-          sendMessage(responseBody);
+          Utils.sendMessage(responseBody);
         },
       }
     );
@@ -359,7 +423,7 @@ const sendMessageHandler = (requestType, payload) => {
   const responseBody = buildAnswer(requestType, {
     error: "you must provide the roomId and a message prop",
   });
-  sendMessage(responseBody);
+  Utils.sendMessage(responseBody);
 };
 // REQUEST HANDLERS ABOVE
 
