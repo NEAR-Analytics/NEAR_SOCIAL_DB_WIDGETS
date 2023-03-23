@@ -17,6 +17,6 @@ return (
     </div>
     <div>{calc222(100, 112)}</div>
     <div>{calc333(100, 112)}</div>
-    <div>{calc(100, 1123)}</div>
+    <div>{calc(2, 3)}</div>
   </div>
 );
