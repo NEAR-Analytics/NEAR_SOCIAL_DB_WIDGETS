@@ -108,7 +108,7 @@ const responseFactory = {
     return {
       requestType,
       send: (payload) => {
-        console.log("Response Factory", self);
+        console.log("Response Factory 2", this.requestType, payload);
         // const responseBody = buildAnswer(self.requestType, payload);
       },
     };
