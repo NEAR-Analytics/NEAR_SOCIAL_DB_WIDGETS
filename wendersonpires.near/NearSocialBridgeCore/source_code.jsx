@@ -106,6 +106,7 @@ const buildAnswer = (requestType, payload) => {
 const responseFactory = {
   build: (requestType) => {
     return (payload) => {
+      console.log("Response Factory", requestType, payload);
       const responseBody = buildAnswer(requestType, payload);
       Utils.sendMessage(responseBody);
     };
