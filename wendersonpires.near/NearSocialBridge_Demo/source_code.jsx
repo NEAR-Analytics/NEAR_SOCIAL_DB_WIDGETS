@@ -29,7 +29,6 @@ function NearSocialBridgeCore(props) {
   React.useEffect(() => {
     const handler = (e) => {
       // Set the Viewer port
-      console.log('PONTE', e.data.type, e.data.userInfo)
       if (!viewerPort && e.data.type === 'connect-view') {
         viewerPort = e.source
         setExternalAppUrl(e.data.externalAppUrl)
@@ -165,14 +164,11 @@ function NearSocialBridgeCore(props) {
 
     // Send the welcome message (connects with the external app)
     const welcomePayload = createConnectionPayload()
-    console.log('Send A', welcomePayload)
     sendMessage(welcomePayload)
 
     // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
     setTimeout(() => {
-      console.log('Send B', welcomePayload)
-      const welcomePayload2 = createConnectionPayload()
-      sendMessage(welcomePayload2)
+      sendMessage(createConnectionPayload())
     }, 2000)
   }
 
@@ -191,11 +187,9 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
-
 </script>
 `;
 
-// NEW - Utils
 // (i) Discovery API uses cached data structure
 const Utils = {
   /**
@@ -236,7 +230,6 @@ const Utils = {
     find();
   },
 };
-// NEW
 
 // External App Url
 // const externalAppUrl = "https://near-test-app.firebaseapp.com/";
@@ -255,7 +248,6 @@ const initialIframeHeight = 500;
 
 // Initial State
 State.init({
-  // profileInfoReSent: false,
   iframeHeight: initialIframeHeight,
   currentMessage: {
     type: "connect-view",
@@ -266,33 +258,11 @@ State.init({
   },
 });
 
-// NEW
-// Resend the profile info (wait data to come)
-// const foo = () => {
-//   setTimeout(() => {
-//     if (!state.profileInfoReSent && context.accountId) {
-//       console.log("ABCD Foo:", profileInfo);
-//       State.update({ profileInfoReSent: true });
-//     }
-//   }, 3000);
-// };
-
-// foo();
-
-// Message sender
-// const sendMessage = (message) => {
-//   State.update({
-//     currentMessage: message,
-//   });
-// };
-
 // Force fetch all the user info
 if (!profileInfo) {
-  console.log("USANDO PROMISIFY");
   Utils.promisify(
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
-      console.log("RES:", res);
       const updatedUserInfo = { accountId, profileInfo: res };
       const updatedInitialPayload = {
         type: "update-initial-payload",
@@ -303,7 +273,7 @@ if (!profileInfo) {
       Utils.sendMessage(updatedInitialPayload);
     },
     (err) => {
-      console.log("ERR:", err);
+      console.error("error fetching data", err);
     }
   );
 }
