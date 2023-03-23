@@ -102,7 +102,7 @@ const buildAnswer = (requestType, payload) => {
   };
 };
 
-// Widget response factory - closure.
+// Widget response factory - closure //TODO: testar isso aqui bro kkk
 const responseFactory = {
   build: (requestType) => {
     return (request) => {
@@ -121,8 +121,6 @@ const responseFactory = {
     // };
   },
 };
-
-response(request).send({ meuDado: 123 });
 
 console.log("CHECKING STATE:", state.currentMessage);
 
