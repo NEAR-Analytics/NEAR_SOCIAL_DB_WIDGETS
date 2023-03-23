@@ -32,7 +32,10 @@ const startCommentTo = () => {
 
 const RenderCommentInput = (blockHeight) => {
   return state.displayCommentBox ? (
-    <div style={thisWidgetInlineStyles.commentInput.container}>
+    <div
+      style={thisWidgetInlineStyles.commentInput.container}
+      className={thisWidgetClassNames.commentInput.container}
+    >
       <textarea
         style={thisWidgetInlineStyles.commentInput.textArea}
         rows="2"
