@@ -166,7 +166,7 @@ const RenderKudoBox = (d) => {
           >
             Upvote
           </CommitButton>
-          <span>
+          <span style={thisWidgetInlineStyles.upVoteCounter}>
             {d.value.upvotes} {d.value.upvotes == 1 ? "upvote" : "upvotes"}
           </span>
         </div>
