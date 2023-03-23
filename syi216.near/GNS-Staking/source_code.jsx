@@ -213,15 +213,29 @@ if (state.balance === undefined && state.sender) {
 // FETCH SENDER STETH BALANCE
 
 if (state.stakedBalance === undefined && state.sender) {
-  const contractGNSTOK = new ethers.Contract(
-    gnsToken,
-    gnsTokenAbi.body,
+  // const contractGNSTOK = new ethers.Contract(
+  //   gnsToken,
+  //   gnsTokenAbi.body,
+  //   Ethers.provider().getSigner()
+  // );
+  // contractGNSTOK.balanceOf(state.sender).then((res) => {
+  //   console.log("balance GNS", Big(res).div(Big(10).pow(18)).toFixed(2));
+  //   State.update({ stakedBalance: Big(res).div(Big(10).pow(18)).toFixed(2) });
+  // });
+  const contractGNSStaking = new ethers.Contract(
+    gnsStaking,
+    gnsStakingAbi.body,
     Ethers.provider().getSigner()
   );
-  contractGNSTOK.balanceOf(state.sender).then((res) => {
-    console.log("balance GNS", Big(res).div(Big(10).pow(18)).toFixed(2));
-    State.update({ stakedBalance: Big(res).div(Big(10).pow(18)).toFixed(2) });
-  });
+  contractGNSStaking
+    .users(Ethers.provider().getSigner().getAddress())
+    .then((res) => {
+      console.log(res[0]);
+      State.update({
+        stakedBalance: Big(res[0]).div(Big(10).pow(18)).toFixed(2),
+      });
+      //Big(res[0]).div(Big(10).pow(18)).toFixed(2);
+    });
 }
 
 // FETCH TX COST
