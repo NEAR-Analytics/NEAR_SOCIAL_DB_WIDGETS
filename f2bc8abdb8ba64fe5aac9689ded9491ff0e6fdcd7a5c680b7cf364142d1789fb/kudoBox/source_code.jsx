@@ -19,6 +19,8 @@ function getShowCommentsButtonContainerStyles() {
   hoveringStyles["color"] = "rgba(0,191,255,255)";
   hoveringStyles["background-color"] = "rgba(229, 248, 255, 255)";
 
+  console.log(hoveringStyles);
+
   return state.hoveringElement == "showCommentsButtonContainer"
     ? hoveringStyles
     : standardStyles;
@@ -49,8 +51,6 @@ const RenderAllCommentAnswerBox = (d) => {
     );
   });
 };
-
-console.log(state.hoveringElement);
 
 return (
   <div
