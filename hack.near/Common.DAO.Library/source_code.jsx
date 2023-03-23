@@ -160,7 +160,7 @@ const renderCategory = (categoryId) => {
   );
 };
 State.init({
-  tab: "dao",
+  type: "dao",
   id: "",
 });
 
@@ -197,7 +197,7 @@ return (
         <Widget
           src={`${ownerId}/widget/Common.DAO.Library.Navbar`}
           props={{
-            tab: type,
+            tab: state.tab,
             onSelect,
             navItems: curatedComps.map((i) => ({
               type: i.type,
