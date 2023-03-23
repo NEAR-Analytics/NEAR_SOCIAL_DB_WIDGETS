@@ -116,8 +116,8 @@ return (
       <button
         onClick={() => {
           onChange({
-            text: context.text,
-            image: context.image,
+            text: content.text,
+            image: content.image,
           });
         }}
       >
