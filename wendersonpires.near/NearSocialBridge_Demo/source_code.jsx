@@ -40,13 +40,6 @@ function NearSocialBridgeCore(props) {
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
 
-      if (e.data.type === 'update-initial-payload') {
-        state.userInfo = e.data.userInfo
-        setUserInfo(e.data.userInfo)
-        // Send to External App
-        sendMessage(e.data)
-      }
-
       // When get a message from the View
       if (viewerPort && e.data.from === 'view') {
         // Is it message to the core?
@@ -112,7 +105,11 @@ function NearSocialBridgeCore(props) {
     }
   }
 
-  // Internal Request handlers
+  /**
+   * Core - Internal Request handlers
+   * All core data "nsb" will pass here first
+   * @param {*} message
+   */
   const internalRequestHandler = (message) => {
     switch (message.type) {
       case 'nsb:session-storage:hydrate-viewer':
@@ -123,6 +120,9 @@ function NearSocialBridgeCore(props) {
         break
       case 'nsb:navigation:sync-content-height':
         syncContentHeight(message.type, message.payload)
+        sendMessageToView(message)
+        break
+      case 'nsb:auth:get-user-info':
         sendMessageToView(message)
         break
     }
@@ -187,6 +187,7 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
+
 </script>
 `;
 
@@ -235,9 +236,8 @@ const Utils = {
 const externalAppUrl = "https://12236538a88c.ngrok.app";
 
 // User Info
-const accountId = context.accountId ?? "*";
-const profileInfo = Social.getr(`${accountId}/profile`);
-const userInfo = { accountId, profileInfo };
+const accountId = context.accountId;
+const userInfo = { accountId };
 
 // Initial Path
 const initialPath = props.path;
@@ -248,6 +248,8 @@ const initialIframeHeight = 500;
 // Initial State
 State.init({
   iframeHeight: initialIframeHeight,
+  // (i) DON'T send async data, it's going to randonly fail
+  // If you need to get new info, use "request" for that
   currentMessage: {
     type: "connect-view",
     externalAppUrl,
@@ -256,26 +258,6 @@ State.init({
     initialIframeHeight,
   },
 });
-
-// Force fetch all the user info
-if (!profileInfo) {
-  Utils.promisify(
-    () => Social.getr(`${accountId}/profile`), // profile info
-    (res) => {
-      const updatedUserInfo = { accountId, profileInfo: res };
-      const updatedInitialPayload = {
-        type: "update-initial-payload",
-        payload: {
-          userInfo: updatedUserInfo,
-        },
-      };
-      Utils.sendMessage(updatedInitialPayload);
-    },
-    (err) => {
-      console.error("error fetching data", err);
-    }
-  );
-}
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
@@ -293,11 +275,17 @@ const onMessageHandler = (message) => {
 };
 
 // REQUEST HANDLERS BELOW
+// Todos os tipos "nsb" passam pelo core.js primeiro
 const requestsHandler = (message) => {
   switch (message.type) {
     case "nsb:navigation:sync-content-height":
       setIframeHeight(message.type, message.payload);
       break;
+    // NEW
+    case "nsb:auth:get-user-info":
+      getUserInfo(message.type, message.payload);
+      break;
+    // NEW
     case "get-room-data":
       getRoomDataHandler(message.type, message.payload);
       break;
@@ -324,10 +312,28 @@ const setIframeHeight = (requestType, payload) => {
   State.update({ iframeHeight: payload.height + 20 });
 };
 
-console.log("Just checking");
+// NEW
+// [DON'T REMOVE]
+// Get user info
+const getUserInfo = (requestType, payload) => {
+  Utils.promisify(
+    () => Social.getr(`${accountId}/profile`), // profile info
+    (res) => {
+      const responseBody = buildAnswer(requestType, {
+        ccountId,
+        profileInfo: res,
+      });
+      Utils.sendMessage(responseBody);
+    },
+    (err) => {
+      console.error("error fetching profile data", err);
+    }
+  );
+};
+// NEW
 
 // Get room data handler
-const getRoomDataHandler = (requestType, payload, subscribe) => {
+const getRoomDataHandler = (requestType, payload) => {
   Utils.promisify(
     () =>
       Social.index(payload.roomId, "data", {
