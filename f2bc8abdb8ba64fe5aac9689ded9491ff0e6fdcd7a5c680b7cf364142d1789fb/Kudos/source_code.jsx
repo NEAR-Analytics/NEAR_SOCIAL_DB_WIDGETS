@@ -168,6 +168,8 @@ const RenderKudoBox = (d) => {
       src={`${widgetOwner}/widget/kudoBox`}
       props={{
         d,
+        upvotes,
+        updateGeneralState,
         thisWidgetInlineStyles,
         thisWidgetClassNames,
       }}
