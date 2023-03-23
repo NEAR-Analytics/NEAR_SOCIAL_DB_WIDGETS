@@ -97,6 +97,7 @@ State.init({
 
 // Send the "connect" msg again until the External App is connected
 const checkConnection = () => {
+  console.log("FIUUUUU DESAFINADO");
   if (!state.connectedToExternalApp) {
     // Try to connect to the external app again
     Utils.sendMessage(buildConnectionPayload());
