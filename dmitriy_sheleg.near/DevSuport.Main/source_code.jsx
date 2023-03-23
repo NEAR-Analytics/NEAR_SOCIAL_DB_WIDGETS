@@ -11,27 +11,6 @@ const toggleQuestion = () => {
 const adminContract = "admin.dev-support.near";
 const admins = Near.view(adminContract, "get_admins", {});
 
-const H1 = styled.h1`
-  color: #11181C;
-  font-size: 32px;
-  font-weight: 600;
-`;
-const H6 = styled.h6`
-  color: #687076;
-  font-size: 20px;
-  font-weight: 400
-`;
-const Button = styled.button`
-  display: block;
-  color: #09342E;
-  background-color: #30A46C;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 8px 24px;
-  border: none;
-  border-radius: 50px;
-`;
-
 return (
   <div class="container py-3 mb-5">
     {/* Title */}
