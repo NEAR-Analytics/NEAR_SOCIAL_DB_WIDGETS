@@ -105,11 +105,18 @@ const buildAnswer = (requestType, payload) => {
 // Widget response factory - closure
 const responseFactory = {
   build: (requestType) => {
-    return (payload) => {
-      console.log("Response Factory", requestType, payload);
-      const responseBody = buildAnswer(requestType, payload);
-      Utils.sendMessage(responseBody);
+    return {
+      requestType,
+      send: (payload) => {
+        console.log("Response Factory", self);
+        // const responseBody = buildAnswer(self.requestType, payload);
+      },
     };
+    // return (payload) => {
+    //   console.log("Response Factory", requestType, payload);
+    //   const responseBody = buildAnswer(requestType, payload);
+    //   Utils.sendMessage(responseBody);
+    // };
   },
 };
 
