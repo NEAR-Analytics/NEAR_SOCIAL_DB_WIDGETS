@@ -87,6 +87,7 @@ const buildConnectionPayload = () => ({
 
 // Initial State
 State.init({
+  foo: false,
   connectedToExternalApp: false,
   iframeHeight: initialIframeHeight,
   sessionStorageClone: {},
@@ -96,17 +97,26 @@ State.init({
 });
 
 // Send the "connect" msg again until the External App is connected
-const checkConnection = () => {
-  console.log("FIUUUUU DESAFINADO");
-  if (!state.connectedToExternalApp) {
-    // Try to connect to the external app again
-    setTimeout(() => {
-      Utils.sendMessage(buildConnectionPayload());
-      checkConnection();
-    }, 2000);
+// const checkConnection = () => {
+//   console.log("FIUUUUU DESAFINADO");
+//   if (!state.connectedToExternalApp) {
+//     // Try to connect to the external app again
+//     setTimeout(() => {
+//       Utils.sendMessage(buildConnectionPayload());
+//       checkConnection();
+//     }, 2000);
+//   }
+// };
+// checkConnection();
+
+setTimeout(() => {
+  if (!state.foo) {
+    State.update({ foo: true });
+    Utils.sendMessage(buildConnectionPayload());
+    // checkConnection();
   }
-};
-checkConnection();
+}, 2000);
+
 // setTimeout(() => {
 //   if (!state.connectedToExternalApp) {
 //     checkConnection();
