@@ -75,8 +75,6 @@ function getContractStats() {
   });
 }
 
-console.log(state);
-
 return (
   <div
     onClick={() => {
