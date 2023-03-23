@@ -1,8 +1,6 @@
 const d = props.d;
-const allWidgetsInlineStyles = props.allWidgetsInlineStyles;
-const allWidgetsClassNames = props.allWidgetsClassNames;
-const thisWidgetInlineStyles = allWidgetsInlineStyles.kudos;
-const thisWidgetClassNames = allWidgetsClassNames.kudos;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
+const thisWidgetClassNames = props.allWidgetsClassNameskudos;
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
 
@@ -63,8 +61,8 @@ return (
         content: d,
         upvotes,
         updateGeneralState,
-        allWidgetsInlineStyles,
-        allWidgetsClassNames,
+        allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+        allWidgetsClassNames: props.allWidgetsClassNames,
       }}
     />
 
