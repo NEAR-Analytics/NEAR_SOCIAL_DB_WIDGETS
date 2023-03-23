@@ -1,6 +1,6 @@
 const d = props.d;
-const thisWidgetInlineStyles = props.allWidgetsInlineStyles;
-const thisWidgetClassNames = props.allWidgetsClassNames;
+const thisWidgetInlineStyles = props.thisWidgetInlineStyles;
+const thisWidgetClassNames = props.thisWidgetClassNames;
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
 
