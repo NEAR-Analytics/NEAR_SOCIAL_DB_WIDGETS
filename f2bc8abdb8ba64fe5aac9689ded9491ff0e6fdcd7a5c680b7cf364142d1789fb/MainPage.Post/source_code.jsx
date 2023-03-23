@@ -94,84 +94,82 @@ const RenderKudoBox = (d) => {
   const content = { text };
   return (
     <>
-      <div style={thisWidgetInlineStyles.cardContainer}>
-        <div style={thisWidgetInlineStyles.headerStyles}>
+      <div style={thisWidgetInlineStyles.headerStyles}>
+        <Widget
+          src="mob.near/widget/MainPage.Post.Header"
+          props={{
+            accountId,
+            blockHeight,
+            link,
+            postType: "post",
+            flagItem: item,
+          }}
+        />
+        <div style={thisWidgetInlineStyles.followButtonContainer}>
           <Widget
-            src="mob.near/widget/MainPage.Post.Header"
-            props={{
-              accountId,
-              blockHeight,
-              link,
-              postType: "post",
-              flagItem: item,
-            }}
+            src={`${widgetOwner}/widget/FollowButton`}
+            props={{ accountId: d.accountId }}
           />
-          <div style={thisWidgetInlineStyles.followButtonContainer}>
-            <Widget
-              src={`${widgetOwner}/widget/FollowButton`}
-              props={{ accountId: d.accountId }}
-            />
-          </div>
         </div>
-        <div
-          className={thisWidgetClassNames.cardContent}
-          style={thisWidgetInlineStyles.cardContent}
-        >
-          <Widget
-            src="mob.near/widget/MainPage.Post.Content"
-            props={{ content, raw }}
-          />
-          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-            {d.value.url}
-          </a>
-          <div>
-            <Widget
-              src="mob.near/widget/CommentButton"
-              props={{
-                onClick: startCommentTo,
-              }}
-            />
-          </div>
-        </div>
-        <div
-          style={thisWidgetInlineStyles.upVoteContainer}
-          className={thisWidgetClassNames.upVoteContainer}
-        >
-          <CommitButton
-            style={
-              state.hoveringElement == "upVoteButton"
-                ? hoveringButtonStyles
-                : standardButtonStyles
-            }
-            onMouseEnter={() => {
-              State.update({ hoveringElement: "upVoteButton" });
-            }}
-            onMouseLeave={() => {
-              State.update({ hoveringElement: "" });
-            }}
-            data={{
-              index: {
-                kudo: JSON.stringify(
-                  {
-                    key: "upvote",
-                    value: {
-                      blockHeight: d.blockHeight,
-                    },
-                  },
-                  undefined,
-                  0
-                ),
-              },
-            }}
-          >
-            Upvote
-          </CommitButton>
-          <span style={thisWidgetInlineStyles.upVoteCounter}>
-            {d.value.upvotes} {d.value.upvotes == 1 ? "upvote" : "upvotes"}
-          </span>
-        </div>
-        {RenderCommentInput(Number(d.blockHeight))}
       </div>
+      <div
+        className={thisWidgetClassNames.cardContent}
+        style={thisWidgetInlineStyles.cardContent}
+      >
+        <Widget
+          src="mob.near/widget/MainPage.Post.Content"
+          props={{ content, raw }}
+        />
+        <a href={`${urlPrefix}${d.value.url}`} target="_blank">
+          {d.value.url}
+        </a>
+        <div>
+          <Widget
+            src="mob.near/widget/CommentButton"
+            props={{
+              onClick: startCommentTo,
+            }}
+          />
+        </div>
+      </div>
+      <div
+        style={thisWidgetInlineStyles.upVoteContainer}
+        className={thisWidgetClassNames.upVoteContainer}
+      >
+        <CommitButton
+          style={
+            state.hoveringElement == "upVoteButton"
+              ? hoveringButtonStyles
+              : standardButtonStyles
+          }
+          onMouseEnter={() => {
+            State.update({ hoveringElement: "upVoteButton" });
+          }}
+          onMouseLeave={() => {
+            State.update({ hoveringElement: "" });
+          }}
+          data={{
+            index: {
+              kudo: JSON.stringify(
+                {
+                  key: "upvote",
+                  value: {
+                    blockHeight: d.blockHeight,
+                  },
+                },
+                undefined,
+                0
+              ),
+            },
+          }}
+        >
+          Upvote
+        </CommitButton>
+        <span style={thisWidgetInlineStyles.upVoteCounter}>
+          {d.value.upvotes} {d.value.upvotes == 1 ? "upvote" : "upvotes"}
+        </span>
+      </div>
+      {RenderCommentInput(Number(d.blockHeight))}
 
       {
         //RenderAllCommentAnswerBox(d)
