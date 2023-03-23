@@ -127,7 +127,11 @@ const onMessageHandler = (message) => {
   const utils = {
     promisify: Utils.promisify,
   };
-  props.requestHandler(message, responseFactory.build(requestType), utils);
+  props.requestHandler(
+    message.payload,
+    responseFactory.build(requestType),
+    utils
+  );
 };
 
 // CORE - REQUEST HANDLERS BELOW
