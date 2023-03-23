@@ -1,13 +1,20 @@
 const Content = styled("Accordion.Content")`
-    background: #f00;
+    background: #eee;
+    padding: 16px;
+    margin: 0 0 16px;
 `;
 
 const Header = styled("Accordion.Header")`
-    background: blue;
+    background: #fff;
+    margin: 0 0 16px;
 `;
 
 const Trigger = styled("Accordion.Trigger")`
-    background: green;
+    display: block;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 0;
 `;
 
 return (
