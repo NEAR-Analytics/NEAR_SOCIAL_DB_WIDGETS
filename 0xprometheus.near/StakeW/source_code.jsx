@@ -11,15 +11,15 @@ const cds = `
 
 .roast{
   position: absolute;
-  margin-top: -30px;
+  margin-top: -50px;
   top: 0%;
-  left: 51%;
+  left: 49%;
   right: -3%;
   color: #fff;
   padding: 10px;
   font-size: 14px;
   border-radius: 6px;
-  background: #fff;
+  background: white;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   opacity: 0;
@@ -27,7 +27,7 @@ const cds = `
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.25, 1.35);
 }
 .roast.active{
-  opacity: 1;
+  opacity: 0.2;
   transform: translateX(-35%);
 }
 .roast.error{
@@ -89,21 +89,19 @@ a:link {
 a:visited {
   color: #a5c300;
 }
-
+a:hover {
+  text-decoration: none;
+  background: #cdfeaa;
+}
+a:active {
+  background: #6900ff;
+  color: #cdfeaa;
+}
 a:focus {
   text-decoration: none;
   background: #bae498;
 }
 
-a:hover {
-  text-decoration: none;
-  background: #cdfeaa;
-}
-
-a:active {
-  background: #6900ff;
-  color: #cdfeaa;
-}
 .LidoWithdrawFormSubmitContainer{
     color: #7a8aa0;
     -webkit-box-flex: 1;
@@ -153,6 +151,17 @@ if (!state.theme) {
 `,
   });
 }
+
+const getSender = () => {
+  return !props.state.sender
+    ? ""
+    : props.state.sender.substring(0, 6) +
+        "..." +
+        props.state.sender.substring(
+          props.state.sender.length - 4,
+          props.state.sender.length
+        );
+};
 const Theme = state.theme;
 console.log("pasd", props);
 return (
@@ -217,9 +226,7 @@ return (
             <div class="LidoFormTopContainerRight">
               <div class="LidoFormTopContainerRightContent1">
                 <div class="LidoFormTopContainerRightContent1Text">
-                  <span>
-                    {props.state.sender ? props.getSender() : "0x00..."}
-                  </span>
+                  <span>{props.state.sender ? getSender() : "0x00..."}</span>
                 </div>
               </div>
             </div>
