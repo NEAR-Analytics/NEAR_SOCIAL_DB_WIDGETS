@@ -10,10 +10,12 @@
  */
 
 // Error handlers
-console.log("Core Initialized!");
 if (!props.externalAppUrl) {
-  console.error("externalAppUrl prop must be provided");
-  return;
+  return (
+    <p style={{ fontWeight: 600, color: "#AB2E28", fontFamily: "Courier new" }}>
+      Error: "externalAppUrl" prop must be provided
+    </p>
+  );
 }
 
 // (i) Discovery API uses cached data structure
