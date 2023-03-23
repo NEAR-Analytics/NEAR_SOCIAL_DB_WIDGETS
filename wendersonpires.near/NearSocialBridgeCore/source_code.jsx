@@ -102,7 +102,7 @@ const buildAnswer = (requestType, payload) => {
   };
 };
 
-// Widget response factory - closure
+// Widget response factory - closure.
 const responseFactory = {
   build: (requestType) => {
     return (request) => {
