@@ -181,6 +181,7 @@ const RenderKudoBox = (d) => {
         className={
           thisWidgetClassNames.renderKudoBox.showCommentsButtonContainer
         }
+        style={thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer}
       >
         <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
           Show comments
