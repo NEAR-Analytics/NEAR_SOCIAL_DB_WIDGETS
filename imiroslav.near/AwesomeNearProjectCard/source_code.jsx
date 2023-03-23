@@ -84,7 +84,7 @@ return (
   <Theme>
     <Widget src={`${widgetAuthor}/widget/AwesomeNearIcons`} />
     <div className="near-item">
-      <div className="near-item-test">
+      <div className="near-item-header">
         <div className="tile">
           <div className="tile-icon">
             <img src={project.logo} alt={project.title} loading="lazy" />
@@ -111,7 +111,7 @@ return (
         </div>
       </div>
       <div className="near-item-footer">
-        <div className="tile-social">
+        <div className="tile-social" style={{ gap: "2px" }}>
           {project.website && (
             <svg className="icon" height="20" width="20">
               <use xlinkHref="#icon-website"></use>
