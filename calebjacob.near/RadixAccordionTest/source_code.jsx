@@ -1,3 +1,15 @@
+const Content = styled("Accordion.Content")`
+    background: #f00;
+`;
+
+const Header = styled("Accordion.Header")`
+    background: blue;
+`;
+
+const Trigger = styled("Accordion.Trigger")`
+    background: green;
+`;
+
 return (
   <Accordion.Root
     className="AccordionRoot"
@@ -6,15 +18,13 @@ return (
     collapsible
   >
     <Accordion.Item className="AccordionItem" value="item-1">
-      <Accordion.Header className="AccordionHeader">
-        <Accordion.Trigger className="AccordionTrigger">
-          Tab 1
-        </Accordion.Trigger>
-      </Accordion.Header>
+      <Header className="AccordionHeader">
+        <Trigger className="AccordionTrigger">Tab 1</Trigger>
+      </Header>
 
-      <Accordion.Content className="AccordionContent">
+      <Content className="AccordionContent">
         <div>Tab 1 content</div>
-      </Accordion.Content>
+      </Content>
     </Accordion.Item>
 
     <Accordion.Item className="AccordionItem" value="item-2">
