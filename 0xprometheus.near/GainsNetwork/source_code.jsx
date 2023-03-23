@@ -367,7 +367,6 @@ return (
     src="0xprometheus.near/widget/StakeW"
     props={{
       state,
-      getSender,
       unStakeTokens,
       stakeTokens,
       withdrawReward,
@@ -377,4 +376,3 @@ return (
     }}
   />
 );
-a;
