@@ -11,6 +11,7 @@ function widget(widgetName, widgetProps, key) {
     ...widgetProps,
     nearDevGovGigsContractAccountId: props.nearDevGovGigsContractAccountId,
     nearDevGovGigsWidgetsAccountId: props.nearDevGovGigsWidgetsAccountId,
+    referral: props.referral,
   };
   return (
     <Widget
@@ -31,6 +32,9 @@ function href(widgetName, linkProps) {
     linkProps.nearDevGovGigsWidgetsAccountId =
       props.nearDevGovGigsWidgetsAccountId;
   }
+  if (props.referral) {
+    linkProps.referral = props.referral;
+  }
   const linkPropsQuery = Object.entries(linkProps)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
@@ -42,10 +46,10 @@ function href(widgetName, linkProps) {
 
 const requiredLabels = props.requiredLabels ?? ["near-social"];
 const excludedLabels = props.excludedLabels ?? ["nft"];
-const columnLabels = props.columnLabels ?? [
-  "widget",
-  "integration",
-  "feature-request",
+const columns = props.columns ?? [
+  { label: "widget", title: "Widget" },
+  { label: "integration", title: "Integration" },
+  { label: "feature-request", title: "Feature Request" },
 ];
 
 const labelsToIdSet = (labels) => {
@@ -62,22 +66,22 @@ const labelsToIdSet = (labels) => {
 const requiredPostsSet = labelsToIdSet(requiredLabels);
 const excludedPostsSet = labelsToIdSet(excludedLabels);
 
-const postsPerLabel = columnLabels.map((cl) => {
+const postsPerLabel = columns.map((column) => {
   let allIds = (
     Near.view(nearDevGovGigsContractAccountId, "get_posts_by_label", {
-      label: cl,
+      label: column.label,
     }) ?? []
   ).reverse();
   if (requiredLabels.length > 0) {
     return {
-      label: cl,
+      ...column,
       posts: allIds.filter(
         (i) => requiredPostsSet.has(i) && !excludedPostsSet.has(i)
       ),
     };
   } else {
     // No extra filtering is required.
-    return { label: cl, posts: allIds };
+    return { ...column, posts: allIds };
   }
 });
 
@@ -129,14 +133,14 @@ return (
       ) : null}
     </div>
     <div class="row">
-      {postsPerLabel.map((col) => (
-        <div class="col-4" key={col.label}>
+      {postsPerLabel.map((column) => (
+        <div class="col-3" key={column.label}>
           <div class="card">
             <div class="card-body border-secondary">
               <h6 class="card-title">
-                {col.label.toUpperCase()}({col.posts.length})
+                {column.title}({column.posts.length})
               </h6>
-              {col.posts.map((postId) =>
+              {column.posts.map((postId) =>
                 widget("components.posts.CompactPost", { id: postId }, postId)
               )}
             </div>
