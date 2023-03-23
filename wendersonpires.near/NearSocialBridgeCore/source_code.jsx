@@ -95,9 +95,21 @@ const buildAnswer = (requestType, payload) => {
   };
 };
 
+// Widget response factory
+const responseFactory = {
+  send: buildAnswer,
+};
+
 // Message handler
 const onMessageHandler = (message) => {
-  requestsHandler(message);
+  // Handles core calls
+  if (message.type.includes("nsb:")) {
+    requestsHandler(message);
+    return;
+  }
+
+  // Handles Widget request calls
+  props.requestHandler(message, responseFactory);
 };
 
 // CORE - REQUEST HANDLERS BELOW
