@@ -114,7 +114,6 @@ const responseFactory = {
 
 // Message handler
 const onMessageHandler = (message) => {
-  console.log("onMessageHandler", message);
   // Handles core calls
   if (message.type.includes("nsb:")) {
     requestsHandler(message);
