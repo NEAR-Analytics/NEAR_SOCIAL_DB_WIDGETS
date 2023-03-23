@@ -75,4 +75,4 @@ function getContractStats() {
   });
 }
 
-return <div onClick={getContractStats}>{button}</div>;
+return <div onClick={() => getContractStats()}>{button}</div>;
