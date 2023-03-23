@@ -1,5 +1,3 @@
-// FETCH ABI
-
 const gainsStakingContract = "0x6B8D3C08072a020aC065c467ce922e3A36D3F9d6";
 const gainsTokenContract = "0x18c11FD286C5EC11c3b683Caa813B77f5163A122";
 const tokenDecimals = 18;
@@ -17,10 +15,6 @@ if (!tokenAbi.ok) {
 let apr = 0;
 const arbitrumApr = fetch("https://backend-arbitrum.gains.trade/apr");
 
-// if (tokenAbi.ok) {
-//   return "Loading";
-// }
-
 if (arbitrumApr.ok) {
   apr = arbitrumApr.body.sssBaseApr.toFixed(2);
 }
@@ -34,7 +28,7 @@ const goOut = () => {
   setTimeout(() => {
     State.update({ message: undefined });
     State.update({ type: undefined });
-  }, 3000);
+  }, 5000);
 };
 
 const getStakedBalance = (receiver) => {
@@ -163,11 +157,16 @@ const stakeTokens = (tokenAmount) => {
       });
       State.update({ tokenAmount: 0 });
       State.update({ message: "Success" });
+      State.update({
+        reason: `You staked ${state.tokenAmount} GNC, let the rewards start rolling in. 🤑`,
+      });
+      State.update({ link: `https://arbiscan.io/tx/${ricit.transactionHash}` });
       State.update({ type: "success" });
       goOut();
     })
     .catch((err) => {
-      State.update({ message: err.reason });
+      State.update({ message: "Error!" });
+      State.update({ reason: `${err.reason} 😞` });
       State.update({ type: "error" });
       goOut();
     });
@@ -196,12 +195,20 @@ const unStakeTokens = () => {
       getStakedBalance(state.sender).then((stakedBalance) => {
         State.update({ stakedBalance });
       });
+      getRewardBalance().then((rewards) => {
+        State.update({ rewards });
+      });
       State.update({ message: "Success" });
+      State.update({
+        reason: `You unstaked your GNC. Why would anyone do that? 🤔 come back soon!`,
+      });
+      State.update({ link: `https://arbiscan.io/tx/${ricit.transactionHash}` });
       State.update({ type: "success" });
       goOut();
     })
     .catch((err) => {
-      State.update({ message: err.reason });
+      State.update({ message: "Error!" });
+      State.update({ reason: `${err.reason} 😞` });
       State.update({ type: "error" });
       goOut();
     });
@@ -230,11 +237,16 @@ const withdrawReward = () => {
         State.update({ rewards });
       });
       State.update({ message: "Success" });
+      State.update({
+        reason: `Rewards withdrawn, Enjoy!`,
+      });
+      State.update({ link: `https://arbiscan.io/tx/${ricit.transactionHash}` });
       State.update({ type: "success" });
       goOut();
     })
     .catch((err) => {
-      State.update({ message: err.reason });
+      State.update({ message: "Error!" });
+      State.update({ reason: `${err.reason} 😞` });
       State.update({ type: "error" });
       goOut();
     });
@@ -264,12 +276,16 @@ const approveToken = () => {
         allowance: Big(maxAllowance).div(Big(10).pow(tokenDecimals)).toFixed(2),
       });
       State.update({ message: "approval successful" });
-      State.update({ message: "Success" });
+      State.update({
+        reason: `Approval complete, Go on now, stake your token!`,
+      });
+      State.update({ link: `https://arbiscan.io/tx/${ricit.transactionHash}` });
       State.update({ type: "success" });
       goOut();
     })
     .catch((err) => {
-      State.update({ message: err.reason });
+      State.update({ message: "Error!" });
+      State.update({ reason: `${err.reason} 😞` });
       State.update({ type: "error" });
       goOut();
     });
@@ -295,9 +311,6 @@ const getTotalRewardDistributed = () => {
         .replace(/\d(?=(\d{3})+\.)/g, "$&,");
     });
 };
-
-// DETECT User
-
 if (state.sender === undefined) {
   console.log("of course it's undefined", ethers);
   const accounts = Ethers.send("eth_requestAccounts", []);
@@ -307,10 +320,6 @@ if (state.sender === undefined) {
     console.log("set sender", accounts[0]);
   }
 }
-
-//if (!state.sender)  return "Please login first";
-// FETCH Gains Network Total rewards distributed
-
 if (!state.totalRewards && state.sender) {
   getTotalRewardDistributed().then((totalRewards) => {
     State.update({ totalRewards });
@@ -318,13 +327,10 @@ if (!state.totalRewards && state.sender) {
 }
 
 if (state.balance === undefined && state.sender) {
-  // FETCH SENDER BALANCE
   getTokenBalance(state.sender).then((balance) => {
     State.update({ balance });
   });
 }
-
-// FETCH SENDER STETH BALANCE
 
 if (state.stakedBalance === undefined && state.sender) {
   console.log("i think state uodates all");
@@ -347,8 +353,6 @@ if (state.sender && state.rewards == undefined) {
   });
 }
 
-// FETCH CSS
-
 const cssFont = fetch(
   "https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800"
 ).body;
@@ -357,10 +361,6 @@ const css = fetch(
 ).body;
 
 if (!cssFont || !css) return "";
-
-// CUSTOM CSS
-
-// OUTPUT UI
 
 const getSender = () => {
   return !state.sender
@@ -385,3 +385,4 @@ return (
     }}
   />
 );
+a;
