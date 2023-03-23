@@ -324,12 +324,14 @@ const setIframeHeight = (requestType, payload) => {
   State.update({ iframeHeight: payload.height + 20 });
 };
 
+console.log("Just checking");
+
 // Get room data handler
 const getRoomDataHandler = (requestType, payload, subscribe) => {
   Utils.promisify(
     () =>
       Social.index(payload.roomId, "data", {
-        subscribe: subscribe || false,
+        subscribe: true,
         limit: 100,
         order: "desc",
       }),
