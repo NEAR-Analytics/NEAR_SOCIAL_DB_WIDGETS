@@ -1,6 +1,6 @@
 const accountId = props.accountId || context.accountId;
 const onChange = props.onChange;
-const compressImages = props.compressImages || true; // TODO: default to false
+const compressImages = props.compressImages || false; // TODO: default to false
 const size = "100%";
 
 if (!accountId) {
