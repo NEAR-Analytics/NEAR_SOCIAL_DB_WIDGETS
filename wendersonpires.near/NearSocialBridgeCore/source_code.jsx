@@ -100,17 +100,18 @@ const checkConnection = () => {
   console.log("FIUUUUU DESAFINADO");
   if (!state.connectedToExternalApp) {
     // Try to connect to the external app again
-    Utils.sendMessage(buildConnectionPayload());
     setTimeout(() => {
+      Utils.sendMessage(buildConnectionPayload());
       checkConnection();
     }, 2000);
   }
 };
-setTimeout(() => {
-  if (!state.connectedToExternalApp) {
-    checkConnection();
-  }
-}, 2000);
+checkConnection();
+// setTimeout(() => {
+//   if (!state.connectedToExternalApp) {
+//     checkConnection();
+//   }
+// }, 2000);
 // checkConnection();
 console.log("CHECKKKKKKK", state);
 
