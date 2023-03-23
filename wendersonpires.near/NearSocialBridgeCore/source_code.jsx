@@ -11,7 +11,8 @@
 
 // Error handlers
 if (!props.externalAppUrl) {
-  throw new Error("externalAppUrl prop must be provided");
+  console.error("externalAppUrl prop must be provided");
+  return;
 }
 
 // (i) Discovery API uses cached data structure
