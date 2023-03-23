@@ -11,22 +11,34 @@ const toggleQuestion = () => {
 const adminContract = "admin.dev-support.near";
 const admins = Near.view(adminContract, "get_admins", {});
 
+const H1 = styled.h1`
+  color: #11181C;
+  font-size: 32px;
+  font-weight: 600;
+`;
+const H6 = styled.h6`
+  color: #687076;
+  font-size: 20px;
+  font-weight: 400
+`;
+const Button = styled.button`
+  display: block;
+  color: #09342E;
+  background-color: #30A46C;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 50px;
+`;
+
 return (
   <div class="container py-3 mb-5">
-    <div class="row">
-      <div class="col-8">
-        <h1>Developer Support</h1>
-      </div>
-      <div class="col-4 justify-content-end mt-2">
-        <button
-          class="btn btn-primary float-end"
-          disabled={!context.accountId}
-          onClick={toggleQuestion}
-        >
-          <i class="bi bi-chat-dots"></i> Ask a Question
-        </button>
-      </div>
-    </div>
+    {/* Title */}
+    <Widget
+      src="dmitriy_sheleg.near/widget/DevSupport.Discussion.Title"
+      props={{ disabled: !context.accountId, onClick: toggleQuestion }}
+    />
     {/* Widget to create the question */}
     <div class="my-3">
       {state.askQuestion && (
