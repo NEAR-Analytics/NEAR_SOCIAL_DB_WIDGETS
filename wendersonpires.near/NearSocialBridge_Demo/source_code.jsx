@@ -296,7 +296,9 @@ if (!profileInfo) {
       const updatedUserInfo = { accountId, res };
       const updatedInitialPayload = {
         type: "update-initial-payload",
-        userInfo: updatedUserInfo,
+        payload: {
+          userInfo: updatedUserInfo,
+        },
       };
       Utils.sendMessage(updatedInitialPayload);
     },
