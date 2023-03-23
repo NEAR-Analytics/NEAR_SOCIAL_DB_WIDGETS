@@ -50,8 +50,7 @@ const Utils = {
 };
 
 // External App Url
-// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
-const externalAppUrl = "https://ce00f45c553c.ngrok.app";
+const externalAppUrl = props.externalAppUrl;
 
 // User Info
 const accountId = context.accountId;
@@ -61,7 +60,10 @@ const userInfo = { accountId };
 const initialPath = props.path;
 
 // Initial iframe height
-const initialIframeHeight = 500;
+const initialIframeHeight = props.initialViewHeight || 500;
+
+// Initial Payload (optional)
+const initialPayload = props.initialPayload;
 
 // Initial State
 State.init({
@@ -74,8 +76,7 @@ State.init({
     payload: {
       userInfo,
       initialPath,
-      // NEW TODO - add other new propertie to send as initial Payload
-      // Let then now that async data may fail
+      initialPayload,
     },
     created_at: Date.now(),
   },
