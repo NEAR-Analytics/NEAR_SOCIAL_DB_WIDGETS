@@ -111,7 +111,7 @@ setTimeout(() => {
   }
 }, 2000);
 // checkConnection();
-console.log("CHECKKKKKKK", state.connectedToExternalApp);
+console.log("CHECKKKKKKK", state);
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
