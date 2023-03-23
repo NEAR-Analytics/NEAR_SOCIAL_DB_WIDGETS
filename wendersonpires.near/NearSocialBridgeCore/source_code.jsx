@@ -18,26 +18,16 @@ if (!props.externalAppUrl) {
   );
 }
 
-// Send message - Concurrency Control
-const pendingMessages = [];
-
 // (i) Discovery API uses cached data structure
 const Utils = {
   /**
-   * Send message - concurrency control
+   * Send message
    */
   sendMessage: (message) => {
-    pendingMessages.push(message);
     State.update({
       currentMessage: message,
     });
   },
-
-  // sendMessage: (message) => {
-  //   State.update({
-  //     currentMessage: message,
-  //   });
-  // },
   /**
    * Call resolve or reject for a given caller
    * E.g:
@@ -73,7 +63,6 @@ const externalAppUrl = props.externalAppUrl;
 
 // User Info
 const accountId = context.accountId;
-console.log("INITIAL ACCOUNT ID:", accountId);
 const userInfo = { accountId };
 
 // Initial Path
@@ -97,8 +86,6 @@ const buildConnectionPayload = () => ({
 
 // Initial State
 State.init({
-  foo: false,
-  connectedToExternalApp: false,
   iframeHeight: initialIframeHeight,
   sessionStorageClone: {},
   // (i) DON'T send async data, it's going to randonly fail
@@ -106,36 +93,13 @@ State.init({
   currentMessage: buildConnectionPayload(),
 });
 
-// Send the "connect" msg again until the External App is connected
-// const checkConnection = () => {
-//   console.log("FIUUUUU DESAFINADO");
-//   if (!state.connectedToExternalApp) {
-//     // Try to connect to the external app again
-//     setTimeout(() => {
-//       Utils.sendMessage(buildConnectionPayload());
-//       checkConnection();
-//     }, 2000);
-//   }
-// };
-// checkConnection();
-
+// Wait a bit and send the "connect" msg again to ensure the External App is ready
 setTimeout(() => {
-  console.log("BATAS", state.foo);
-  if (!state.foo) {
-    console.log("BATA 222222S", state.foo);
-    State.update({ foo: true });
-    Utils.sendMessage(buildConnectionPayload());
-    // checkConnection();
-  }
-}, 5000);
-
-// setTimeout(() => {
-//   if (!state.connectedToExternalApp) {
-//     checkConnection();
-//   }
-// }, 2000);
-// checkConnection();
-console.log("CHECKKKKKKK", state);
+  Utils.sendMessage(buildConnectionPayload());
+}, 2000);
+// TODO: Create a "connected" state to check the connection
+// External App should send a status = "connected: true"
+// Try to send the connection payload till the conection is established
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
@@ -205,17 +169,12 @@ const requestsHandler = (message) => {
     case "nsb:auth:get-user-info":
       getUserInfo(message.type, message.payload);
       break;
-    case "nsb:bridge-service:connection-established":
-      // setConnectionStatus(message.type, message.payload);
-      break;
   }
 };
 
 // [DON'T REMOVE]: Set thew new iFrame height based on the new screen/route
 const setIframeHeight = (requestType, payload) => {
   State.update({ iframeHeight: payload.height + 20 });
-  // const responseBody = buildAnswer(requestType);
-  // Utils.sendMessage(responseBody);
 };
 
 // [DON'T REMOVE]: Hydrate View session data with data provided by the External App
@@ -236,7 +195,6 @@ const sessionStorageHydrateApp = (requestType, payload) => {
 
 // [DON'T REMOVE]: Get user info
 const getUserInfo = (requestType, payload) => {
-  console.log("ACCOUNT ID getUserInfo:", accountId, context.accountId);
   Utils.promisify(
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
@@ -244,31 +202,19 @@ const getUserInfo = (requestType, payload) => {
         accountId,
         profileInfo: res,
       });
-      console.log("ACCOUNT AAAAA", responseBody);
-      // Utils.sendMessage(responseBody);
-      State.update({ currentMessage: responseBody });
+      Utils.sendMessage(responseBody);
     },
     (err) => {
-      console.log("ACCOUNT BBBB");
-      console.log("error fetching profile data", err);
+      console.error("error fetching profile data", err);
     }
   );
-};
-
-// [DON'T REMOVE]: Set the connection status (external app saying it's connected)
-const setConnectionStatus = (requestType) => {
-  State.update({ connectedToExternalApp: true });
-  const responseBody = buildAnswer(requestType);
-
-  setTimeout(() => {
-    Utils.sendMessage(responseBody);
-  }, 5000);
 };
 // CORE - REQUEST HANDLERS ABOVE
 
 return (
   <div>
     <iframe
+      onLoad={(e) => console.log("CARREGOU")}
       className="w-100"
       style={{ height: `${state.iframeHeight}px` }}
       src={externalAppUrl}
