@@ -58,56 +58,58 @@ if (state.tokens.length === 0) {
   return <>Loading...</>;
 }
 
-console.log(state.tokens.length, state.totalTokens);
-console.log(state);
-
-let scrollParentRef = undefined;
-
 return (
-  <InfiniteScroll
-    className="d-flex flex-wrap gap-2 justify-content-center"
-    pageStart={0}
-    initialLoad={false}
-    hasMore={state.tokens.length < state.totalTokens}
-    loadMore={() => {
-      fetchData(state.offset + state.limit);
+  <div
+    style={{
+      height: "300px",
+      overflow: "auto",
     }}
-    getScrollParent={() => scrollParentRef}
   >
-    {state.tokens.map((nft, index) => (
-      <div
-        key={`${nft.contractId}-${nft.tokenId}-${index}`}
-        role="button"
-        style={{ width: "15%", aspectRatio: "1/1" }}
-        onClick={() => {
-          onChange({
-            contractId: nft.contractId,
-            tokenId: nft.tokenId,
-          });
-        }}
-      >
-        <Widget
-          src="mob.near/widget/NftImage"
-          props={{
-            nft: { tokenId: nft.tokenId, contractId: nft.contractId },
-            style: {
-              width: size,
-              height: size,
-              objectFit: "cover",
-              minWidth: size,
-              minHeight: size,
-              maxWidth: size,
-              maxHeight: size,
-              overflowWrap: "break-word",
-            },
-            thumbnail: compressImages ? "thumbnail" : "",
-            className: "",
-            fallbackUrl:
-              "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-            alt: `NFT ${nft.contractId} ${nft.tokenId}`,
+    <InfiniteScroll
+      className="d-flex flex-wrap gap-2 justify-content-center"
+      pageStart={0}
+      initialLoad={false}
+      hasMore={state.tokens.length < state.totalTokens}
+      loadMore={() => {
+        fetchData(state.offset + state.limit);
+      }}
+      useWindow={false}
+    >
+      {state.tokens.map((nft, index) => (
+        <div
+          key={`${nft.contractId}-${nft.tokenId}-${index}`}
+          role="button"
+          style={{ width: "15%", aspectRatio: "1/1" }}
+          onClick={() => {
+            onChange({
+              contractId: nft.contractId,
+              tokenId: nft.tokenId,
+            });
           }}
-        />
-      </div>
-    ))}
-  </InfiniteScroll>
+        >
+          <Widget
+            src="mob.near/widget/NftImage"
+            props={{
+              nft: { tokenId: nft.tokenId, contractId: nft.contractId },
+              style: {
+                width: size,
+                height: size,
+                objectFit: "cover",
+                minWidth: size,
+                minHeight: size,
+                maxWidth: size,
+                maxHeight: size,
+                overflowWrap: "break-word",
+              },
+              thumbnail: compressImages ? "thumbnail" : "",
+              className: "",
+              fallbackUrl:
+                "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+              alt: `NFT ${nft.contractId} ${nft.tokenId}`,
+            }}
+          />
+        </div>
+      ))}
+    </InfiniteScroll>
+  </div>
 );
