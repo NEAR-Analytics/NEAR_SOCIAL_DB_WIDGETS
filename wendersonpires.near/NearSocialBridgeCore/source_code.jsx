@@ -105,12 +105,14 @@ const buildAnswer = (requestType, payload) => {
 // Widget response factory - closure
 const responseFactory = {
   build: (requestType) => {
-    return {
-      requestType,
-      send: (payload) => {
-        console.log("Response Factory 2", this.requestType, payload);
-        // const responseBody = buildAnswer(self.requestType, payload);
-      },
+    return (request) => {
+      return {
+        send: (payload) => {
+          console.log("Response Factory", request.requestType, payload);
+          // const responseBody = buildAnswer(request.requestType, payload);
+          // Utils.sendMessage(responseBody);
+        },
+      };
     };
     // return (payload) => {
     //   console.log("Response Factory", requestType, payload);
@@ -119,6 +121,8 @@ const responseFactory = {
     // };
   },
 };
+
+response(request).send({ meuDado: 123 });
 
 console.log("CHECKING STATE:", state.currentMessage);
 
