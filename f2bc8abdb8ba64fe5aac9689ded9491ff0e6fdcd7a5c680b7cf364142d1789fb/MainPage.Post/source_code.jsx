@@ -135,6 +135,17 @@ const RenderKudoBox = (d) => {
         </div>
         <div>
           <CommitButton
+            style={
+              state.hoveringElement == "upVoteButton"
+                ? hoveringButtonStyles
+                : standardButtonStyles
+            }
+            onMouseEnter={() => {
+              State.update({ hoveringElement: "upVoteButton" });
+            }}
+            onMouseLeave={() => {
+              State.update({ hoveringElement: "" });
+            }}
             data={{
               index: {
                 kudo: JSON.stringify(
