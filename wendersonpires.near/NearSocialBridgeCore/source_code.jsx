@@ -124,14 +124,14 @@ const onMessageHandler = (message) => {
   // - request: payload sent by External App
   // - response: method to send the answer back to the External App
   // - utils: Utils features like: promisify, ...
+  const request = {
+    type: message.type,
+    payload: message.payload,
+  };
   const utils = {
     promisify: Utils.promisify,
   };
-  props.requestHandler(
-    message.payload,
-    responseFactory.build(requestType),
-    utils
-  );
+  props.requestHandler(request, responseFactory.build(requestType), utils);
 };
 
 // CORE - REQUEST HANDLERS BELOW
