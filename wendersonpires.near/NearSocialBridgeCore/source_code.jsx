@@ -58,15 +58,6 @@ const Utils = {
   },
 };
 
-// Provides Utils
-if (props.utilsProvider && typeof props.utilsProvider === "function") {
-  // Send only specific Utils features
-  const updatedUtils = {
-    promisify: Utils.promisify,
-  };
-  props.utilsProvider(updatedUtils);
-}
-
 // External App Url
 const externalAppUrl = props.externalAppUrl;
 
@@ -129,8 +120,14 @@ const onMessageHandler = (message) => {
     return;
   }
 
-  // Handles Widget request calls
-  props.requestHandler(message, responseFactory.build(requestType));
+  // Handles Widget request calls:
+  // - request: payload sent by External App
+  // - response: method to send the answer back to the External App
+  // - utils: Utils features like: promisify, ...
+  const utils = {
+    promisify: Utils.promisify,
+  };
+  props.requestHandler(message, responseFactory.build(requestType), utils);
 };
 
 // CORE - REQUEST HANDLERS BELOW
