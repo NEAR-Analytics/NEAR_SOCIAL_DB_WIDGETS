@@ -122,8 +122,6 @@ const responseFactory = {
   },
 };
 
-console.log("CHECKING STATE:", state.currentMessage);
-
 // Message handler
 const onMessageHandler = (message) => {
   // Handles core calls
