@@ -79,7 +79,31 @@ const cds = `
   font-weight: 400;
   font-size: 16px;
 }
+a {
+  outline: none;
+}
 
+a:link {
+  color: #6900ff;
+}
+a:visited {
+  color: #a5c300;
+}
+
+a:focus {
+  text-decoration: none;
+  background: #bae498;
+}
+
+a:hover {
+  text-decoration: none;
+  background: #cdfeaa;
+}
+
+a:active {
+  background: #6900ff;
+  color: #cdfeaa;
+}
 .LidoWithdrawFormSubmitContainer{
     color: #7a8aa0;
     -webkit-box-flex: 1;
@@ -163,7 +187,16 @@ return (
                 </div>
                 <div class="message">
                   <span class="message-text text-1">{props.state.message}</span>
-                  <span class="message-text text-2">{props.state.reason}</span>
+                  <span class="message-text text-2">
+                    {props.state.reason}{" "}
+                    {props.state.link ? (
+                      <a href={`${props.state.link}`} target="_blank">
+                        View Transaction
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
