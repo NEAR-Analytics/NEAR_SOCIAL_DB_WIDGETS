@@ -293,7 +293,7 @@ if (!profileInfo) {
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
       console.log("RES:", res);
-      const updatedUserInfo = { accountId, res };
+      const updatedUserInfo = { accountId, profileInfo: res };
       const updatedInitialPayload = {
         type: "update-initial-payload",
         payload: {
