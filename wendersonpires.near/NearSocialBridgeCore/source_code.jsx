@@ -24,6 +24,8 @@ const Utils = {
    * Send message
    */
   sendMessage: (message) => {
+    // concurrencyControl.push(message)
+
     State.update({
       currentMessage: message,
     });
@@ -86,6 +88,7 @@ const buildConnectionPayload = () => ({
 
 // Initial State
 State.init({
+  concurrencyInitialized: false,
   iframeHeight: initialIframeHeight,
   sessionStorageClone: {},
   // (i) DON'T send async data, it's going to randonly fail
@@ -101,6 +104,12 @@ setTimeout(() => {
 // TODO: Create a "connected" state to check the connection
 // External App should send a status = "connected: true"
 // Try to send the connection payload till the conection is established
+
+const concurrencyControl = [];
+if (!state.concurrencyInitialized) {
+  console.log("CONCURRENCY SYSTEM");
+  State.update({ concurrencyInitialized: true });
+}
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
