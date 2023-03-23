@@ -42,8 +42,10 @@ function NearSocialBridgeCore(props) {
       }
 
       if (e.data.type === 'update-initial-payload') {
-        // state.userInfo = e.data.userInfo
-        console.log('Mandou atualizar o user info:', e.data.userInfo)
+        state.userInfo = e.data.userInfo
+        setUserInfo(e.data.userInfo)
+        // Send to External App
+        sendMessage(e.data)
       }
 
       // When get a message from the View
