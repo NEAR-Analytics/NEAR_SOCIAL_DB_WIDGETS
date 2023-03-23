@@ -142,8 +142,9 @@ const stakeTokens = (tokenAmount) => {
     stakingAbi.body,
     Ethers.provider().getSigner()
   );
+  let normalAmount = state.tokenAmount;
 
-  let amount = ethers.utils.parseEther(state.tokenAmount);
+  let amount = ethers.utils.parseEther(normalAmount);
 
   erc20
     .stakeTokens(amount)
@@ -158,7 +159,7 @@ const stakeTokens = (tokenAmount) => {
       State.update({ tokenAmount: 0 });
       State.update({ message: "Success" });
       State.update({
-        reason: `You staked ${state.tokenAmount} GNC, let the rewards start rolling in. 🤑`,
+        reason: `You staked ${normalAmount} GNC, let the rewards start rolling in. 🤑`,
       });
       State.update({ link: `https://arbiscan.io/tx/${ricit.transactionHash}` });
       State.update({ type: "success" });
