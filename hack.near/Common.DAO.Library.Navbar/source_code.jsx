@@ -29,11 +29,11 @@ return (
           className={`nav-link mt-2 rounded-3${
             item.id === props.tab ? "general" : ""
           }`}
-          href={`https://near.social/#/${ownerId}/widget/Common.DAO.Library?tab=${item.type}&id=${item.id}`}
-          onClick={() => props.onSelect({ tab: item.type, id: item.id })}
+          href={`https://near.social/#/${ownerId}/widget/Common.DAO.Library?tab=${type}&id=${item.id}`}
+          onClick={() => props.onSelect({ tab: "dao", id: item.id })}
         >
           {" "}
-          <i className={item.icon} /> <span>{item.type}</span>{" "}
+          <i className={item.icon} /> <span>{item.name}</span>{" "}
         </a>
       );
     })}
