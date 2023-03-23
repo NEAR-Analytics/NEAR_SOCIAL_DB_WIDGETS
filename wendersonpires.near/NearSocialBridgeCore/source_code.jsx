@@ -18,16 +18,26 @@ if (!props.externalAppUrl) {
   );
 }
 
+// Send message - Concurrency Control
+const pendingMessages = [];
+
 // (i) Discovery API uses cached data structure
 const Utils = {
   /**
-   * Send message
+   * Send message - concurrency control
    */
   sendMessage: (message) => {
+    pendingMessages.push(message);
     State.update({
       currentMessage: message,
     });
   },
+
+  // sendMessage: (message) => {
+  //   State.update({
+  //     currentMessage: message,
+  //   });
+  // },
   /**
    * Call resolve or reject for a given caller
    * E.g:
@@ -249,7 +259,10 @@ const getUserInfo = (requestType, payload) => {
 const setConnectionStatus = (requestType) => {
   State.update({ connectedToExternalApp: true });
   const responseBody = buildAnswer(requestType);
-  Utils.sendMessage(responseBody);
+
+  setTimeout(() => {
+    Utils.sendMessage(responseBody);
+  }, 5000);
 };
 // CORE - REQUEST HANDLERS ABOVE
 
