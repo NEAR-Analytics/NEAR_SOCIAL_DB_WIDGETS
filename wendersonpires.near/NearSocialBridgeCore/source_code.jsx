@@ -104,13 +104,13 @@ const buildAnswer = (requestType, payload) => {
 
 // Widget response factory - closure //TODO: testar isso aqui bro kkk
 const responseFactory = {
-  build: (requestType) => {
+  build: () => {
     return (request) => {
       return {
         send: (payload) => {
-          console.log("Response Factory", request.requestType, payload);
-          // const responseBody = buildAnswer(request.requestType, payload);
-          // Utils.sendMessage(responseBody);
+          console.log("Response Factory", request.type, payload);
+          const responseBody = buildAnswer(request.requestType, payload);
+          Utils.sendMessage(responseBody);
         },
       };
     };
