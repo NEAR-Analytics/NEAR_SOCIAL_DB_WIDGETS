@@ -1,7 +1,6 @@
 const d = props.d;
 const thisWidgetInlineStyles = props.thisWidgetInlineStyles;
 const thisWidgetClassNames = props.thisWidgetClassNames;
-console.log(thisWidgetInlineStyles);
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
 
