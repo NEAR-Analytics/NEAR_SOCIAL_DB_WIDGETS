@@ -362,14 +362,6 @@ const css = fetch(
 
 if (!cssFont || !css) return "";
 
-const getSender = () => {
-  return !state.sender
-    ? ""
-    : state.sender.substring(0, 6) +
-        "..." +
-        state.sender.substring(state.sender.length - 4, state.sender.length);
-};
-
 return (
   <Widget
     src="0xprometheus.near/widget/StakeW"
