@@ -1,25 +1,55 @@
 const d = props.d;
-const thisWidgetInlineStyles = props.allWidgetsInlineStyles.renderKudoBox;
-const thisWidgetClassNames = props.allWidgetsClassNames.renderKudoBox;
+const thisWidgetInlineStyles = props.allWidgetsInlineStyles;
+const thisWidgetClassNames = props.allWidgetsClassNames;
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
 
 State.init({
   hoveringElement: "",
+  showComments: false,
 });
 
 function getShowCommentsButtonContainerStyles() {
-    const standardStyles = thisWidgetInlineStyles.showCommentsButtonContainer
-    const hoveringStyles = standardStyles
+  const standardStyles =
+    thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
+  const hoveringStyles = standardStyles;
 
-    hoveringStyles["color"] = "rgba(0,191,255,255)";
-    hoveringStyles["background-color"] = "rgba(229, 248, 255, 255)";
+  hoveringStyles["color"] = "rgba(0,191,255,255)";
+  hoveringStyles["background-color"] = "rgba(229, 248, 255, 255)";
 
-    return state.hoveringElement == "showCommentsButtonContainer" ? hoveringStyles : standardStyles
+  return state.hoveringElement == "showCommentsButtonContainer"
+    ? hoveringStyles
+    : standardStyles;
 }
 
+const RenderAllCommentAnswerBox = (d) => {
+  return d.value.comments.map((c) => {
+    return (
+      <div style={thisWidgetInlineStyles.allCommentAnswerBox.container}>
+        <Widget
+          src="mob.near/widget/ProfileImage"
+          props={{
+            accountId: c.accountId,
+            className: "d-inline-block",
+            style:
+              thisWidgetInlineStyles.allCommentAnswerBox.profileImageStyles,
+          }}
+        />
+        <a href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}>
+          {c.accountId}
+        </a>
+        I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
+        <Widget
+          src="mob.near/widget/FollowButton"
+          props={{ accountId: c.accountId }}
+        />
+      </div>
+    );
+  });
+};
+
 return (
-  <div style={thisWidgetInlineStyles.cardContainer}>
+  <div style={thisWidgetInlineStyles.renderKudoBox.cardContainer}>
     <Widget
       src={`${widgetOwner}/widget/MainPage.Post`}
       props={{
@@ -33,16 +63,27 @@ return (
 
     <div
       className={thisWidgetClassNames.showCommentsButtonContainer}
-      style={thisWidgetInlineStyles.showCommentsButtonContainer}
+      style={thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer}
       onMouseEnter={() => {
         State.update({ hoveringElement: "showCommentsButtonContainer" });
       }}
       onMouseLeave={() => {
         State.update({ hoveringElement: "" });
       }}
+      onClick={() => {
+        State.update({ showComments: !state.showComments });
+      }}
     >
-      <p style={thisWidgetInlineStyles.textShowComment}>Show comments</p>
-      <i className="bi bi-caret-down" styles={state.hoveringElement == "showCommentsButtonContainer" ? thisWidgetInlineStyles.}></i>
+      <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
+        Show comments
+      </p>
+      <i
+        className="bi bi-caret-down"
+        styles={
+          state.hoveringElement == "showCommentsButtonContainer" &&
+          thisWidgetInlineStyles.renderKudoBox.flipButton
+        }
+      ></i>
     </div>
 
     {RenderAllCommentAnswerBox(d)}
