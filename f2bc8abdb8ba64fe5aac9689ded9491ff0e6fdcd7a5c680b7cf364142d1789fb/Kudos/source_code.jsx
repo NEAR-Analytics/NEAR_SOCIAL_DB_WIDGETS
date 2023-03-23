@@ -17,11 +17,6 @@ const widgetName = "Kudos";
 const widgetPath = `webuidl.near/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
-const imgWH = {
-  width: "25px",
-  height: "25px",
-};
-
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
@@ -171,8 +166,8 @@ const RenderKudoBox = (d) => {
         d,
         upvotes,
         updateGeneralState,
-        thisWidgetInlineStyles,
-        thisWidgetClassNames,
+        allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+        allWidgetsClassNames: props.allWidgetsClassNames,
       }}
     />
   );
