@@ -162,38 +162,18 @@ const RenderAllCommentAnswerBox = (d) => {
 
 /* END CommentBox  */
 
-/* START KudoBox */
 const RenderKudoBox = (d) => {
   return (
-    <div style={thisWidgetInlineStyles.renderKudoBox.cardContainer}>
-      <Widget
-        src={`${widgetOwner}/widget/MainPage.Post`}
-        props={{
-          content: d,
-          upvotes,
-          updateGeneralState,
-          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-          allWidgetsClassNames: props.allWidgetsClassNames,
-        }}
-      />
-
-      <div
-        className={
-          thisWidgetClassNames.renderKudoBox.showCommentsButtonContainer
-        }
-        style={thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer}
-      >
-        <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
-          Show comments
-        </p>
-        <i className="bi bi-caret-down"></i>
-      </div>
-
-      {RenderAllCommentAnswerBox(d)}
-    </div>
+    <Widget
+      src={`${widgetOwner}/widget/kudoBox`}
+      props={{
+        d,
+        thisWidgetInlineStyles,
+        thisWidgetClassNames,
+      }}
+    />
   );
 };
-/* END KudoBox  */
 
 return (
   <div className={thisWidgetClassNames.generalContainer}>
