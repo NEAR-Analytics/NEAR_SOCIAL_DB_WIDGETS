@@ -6,6 +6,10 @@ var nfts = props.nfts;
 var minters = props.minters;
 var volume = props.volume;
 
+if (!contractId) {
+  return <></>;
+}
+
 const statsQuery = JSON.stringify({
   query: `
   query getContractStats($contractId: String!){
