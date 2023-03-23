@@ -160,7 +160,7 @@ const renderCategory = (categoryId) => {
   );
 };
 State.init({
-  tab: type,
+  tab: "dao",
   id: "",
 });
 
