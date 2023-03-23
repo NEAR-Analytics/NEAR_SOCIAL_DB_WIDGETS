@@ -188,7 +188,7 @@ const renderContent = {
   home: renderHome(),
   search: renderSearch(),
   type: renderCategory(state.id),
-}[state.tab];
+}[state.type];
 
 return (
   <>
@@ -197,7 +197,7 @@ return (
         <Widget
           src={`${ownerId}/widget/Common.DAO.Library.Navbar`}
           props={{
-            tab: state.tab,
+            tab: state.type,
             onSelect,
             navItems: curatedComps.map((i) => ({
               type: i.type,
