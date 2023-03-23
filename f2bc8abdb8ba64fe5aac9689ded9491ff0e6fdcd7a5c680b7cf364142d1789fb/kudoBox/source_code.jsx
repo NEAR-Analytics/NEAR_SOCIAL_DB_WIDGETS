@@ -12,16 +12,15 @@ State.init({
 const widgetOwner = props.widgetOwner;
 
 function getShowCommentsButtonContainerStyles() {
-  const standardStyles =
+  const hoveringStyles =
     thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
-  const hoveringStyles = standardStyles;
 
   hoveringStyles["color"] = "rgba(0,191,255,255)";
   hoveringStyles["background-color"] = "rgba(229, 248, 255, 255)";
 
   return state.hoveringElement == "showCommentsButtonContainer"
     ? hoveringStyles
-    : standardStyles;
+    : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
 }
 
 console.log("state: ", state.hoveringElement);
