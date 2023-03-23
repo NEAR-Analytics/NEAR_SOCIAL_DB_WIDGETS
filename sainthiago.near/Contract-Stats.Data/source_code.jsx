@@ -1,4 +1,4 @@
-const contractId = props.contractId;
+const contractId = props.contractId || "rui";
 const button = props.button || <button>Check Stats</button>;
 const getContractData = props.getContractData;
 
@@ -63,8 +63,19 @@ function getContractStats() {
       nfts: res?.body?.data["nfts"]?.aggregate?.count || 0,
       minters: res?.body?.data["minters"]?.aggregate?.count || 0,
     });
+
+    getContractData({
+      floor: state.floor,
+      loading: state.loading,
+      minters: state.minters,
+      nfts: state.nfts,
+      owners: state.owners,
+      volume: state.volume,
+    });
   });
 }
+
+console.log(state);
 
 return (
   <div
@@ -73,14 +84,6 @@ return (
         loading: true,
       });
       getContractStats();
-      getContractData({
-        floor: state.floor,
-        loading: state.loading,
-        minters: state.minters,
-        nfts: state.nfts,
-        owners: state.owners,
-        volume: state.volume,
-      });
     }}
   >
     {button}
