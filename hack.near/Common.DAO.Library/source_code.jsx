@@ -181,7 +181,7 @@ const renderSearch = () => {
 };
 
 const onSelect = (selection) => {
-  State.update({ tab: selection.type, id: selection.id ? selection.id : "" });
+  State.update({ tab: selection.tab, id: selection.id ? selection.id : "" });
 };
 
 const renderContent = {
