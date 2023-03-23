@@ -1,17 +1,17 @@
 const updateGeneralState = props.updateGeneralState;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.mainPage_post;
 const thisWidgetClassNames = props.allWidgetsClassNames.mainPage_post;
+const standardButtonStyles = props.allWidgetsInlineStyles.standardButtonStyles;
+const hoveringButtonStyles = props.allWidgetsInlineStyles.hoveringButtonStyles;
 
 const content = props.content;
 const accountId = content.accountId;
 const blockHeight = parseInt(content.blockHeight);
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
-
 State.init({
   displayCommentBox: false,
   answer: "",
+  hoveringElement: "",
 });
 
 const notifyAccountId = accountId;
@@ -39,7 +39,11 @@ const RenderCommentInput = (blockHeight) => {
         }}
       />
       <CommitButton
-        style={thisWidgetInlineStyles.commentInput.commitButton}
+        style={
+          state.hoveringElement == "commitCommentButton"
+            ? hoveringButtonStyles
+            : standardButtonStyles
+        }
         data={{
           index: {
             kudo: JSON.stringify(
@@ -64,10 +68,10 @@ const RenderCommentInput = (blockHeight) => {
           });
         }}
         onMouseEnter={() => {
-          updateGeneralState({ hoveringElement: "commitCommentButton" });
+          State.update({ hoveringElement: "commitCommentButton" });
         }}
         onMouseLeave={() => {
-          updateGeneralState({ hoveringElement: "" });
+          State.update({ hoveringElement: "" });
         }}
       >
         Comment
@@ -96,12 +100,10 @@ const RenderKudoBox = (d) => {
               flagItem: item,
             }}
           />
-          <div style={thisWidgetInlineStyles.followButtonContainer}>
-            <Widget
-              src={`${widgetOwner}/widget/FollowButton`}
-              props={{ accountId: d.accountId }}
-            />
-          </div>
+          <Widget
+            src={`${widgetOwner}/widget/FollowButton`}
+            props={{ accountId: d.accountId }}
+          />
         </div>
         <div
           className={thisWidgetClassNames.cardContent}
