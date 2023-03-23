@@ -110,7 +110,9 @@ State.init({
 // checkConnection();
 
 setTimeout(() => {
+  console.log("BATAS", state.foo);
   if (!state.foo) {
+    console.log("BATA 222222S", state.foo);
     State.update({ foo: true });
     Utils.sendMessage(buildConnectionPayload());
     // checkConnection();
