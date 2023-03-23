@@ -30,6 +30,7 @@ const standardButtonStyles = {
   borderRadius: "12px",
   color: "white",
   textDecoration: "none",
+  margin: "0 1rem",
 };
 
 const hoveringButtonStyles = {
@@ -41,9 +42,12 @@ const hoveringButtonStyles = {
   padding: "0.3rem 1.5rem",
   borderRadius: "12px",
   textDecoration: "none",
+  margin: "0 1rem",
 };
 
 const allWidgetsInlineStyles = {
+  standardButtonStyles: standardButtonStyles,
+  hoveringButtonStyles: hoveringButtonStyles,
   styles: {
     container: {
       backgroundColor: "rgb(230, 230, 230)",
@@ -85,7 +89,10 @@ const allWidgetsInlineStyles = {
   //======================================================================================================================================================================================================
 
   kudos: {
-    selectedTab: { margin: "2rem 0 0.5rem 0", fontWeight: "700" },
+    selectedTab: {
+      margin: "2rem 0 0.5rem 0",
+      fontWeight: "700",
+    },
     allCommentAnswerBox: {
       container: {
         background: "linear-gradient(to right, #4deeea, #f000ff)",
@@ -110,6 +117,65 @@ const allWidgetsInlineStyles = {
       state.hoveringElement == "commitButton"
         ? hoveringButtonStyles
         : standardButtonStyles,
+    renderKudoBox: {
+      cardContainer: {
+        boxSizing: "border-box",
+        boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
+        backgroundColor: "white",
+        borderRadius: "1rem",
+        maxWidth: "40vw",
+        textAlign: "center",
+        padding: "10px",
+        margin: "1rem 0",
+      },
+      showCommentsButtonContainer: {
+        cursor: "pointer",
+      },
+      textShowComment: {
+        margin: "0",
+      },
+      flipButton: {
+        transform: "rotate(180deg)",
+      },
+    },
+  },
+
+  //======================================================================================================================================================================================================
+
+  mainPage_post: {
+    headerStyles: {
+      padding: "0 1rem",
+      display: "flex",
+      justifyContent: "start",
+      alignContent: "center",
+    },
+    followButtonContainer: {
+      marginLeft: "0.5rem",
+    },
+    cardContent: {
+      display: "grid",
+      gridTemplateColumns: "3fr 1fr 1fr",
+    },
+    upVoteCounter: {
+      marginLeft: "1rem",
+    },
+    commentInput: {
+      container: {
+        margin: "10px 0px",
+      },
+      textArea: {
+        backgroundColor: "rgb(230, 230, 230)",
+        border: "1px solid #ced4da",
+        borderRadius: "0.375rem",
+        width: "100%",
+        verticalAlign: "middle",
+        marginBottom: "0.5rem",
+      },
+      commitButton:
+        state.hoveringElement == "commitCommentButton"
+          ? hoveringButtonStyles
+          : standardButtonStyles,
+    },
   },
 };
 
@@ -134,6 +200,18 @@ const allWidgetsClassNames = {
     generalContainer: "px-4 pt-2",
     urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
     allCardsContainer: "",
+    renderKudoBox: {
+      showCommentsButtonContainer: "d-flex flex-column align-items-center ",
+    },
+  },
+
+  mainPage_post: {
+    cardContent: "mt-3 text-break",
+    upVoteContainer:
+      "d-flex flex-row-reverse align-items-center justify-content-between",
+    commentInput: {
+      container: "d-flex align-items-end flex-column",
+    },
   },
 };
 
