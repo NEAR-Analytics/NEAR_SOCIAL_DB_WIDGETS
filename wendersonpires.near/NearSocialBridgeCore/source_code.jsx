@@ -9,7 +9,10 @@
  * Visit https://github.com/wpdas/near-social-bridge to get to know how to use it
  */
 
-console.log(props);
+// Error handlers
+if (!props.externalAppUrl) {
+  throw new Error("externalAppUrl prop must be provided");
+}
 
 // (i) Discovery API uses cached data structure
 const Utils = {
