@@ -196,7 +196,7 @@ return (
     {state.content && (
       <div>
         <Widget
-          src="mob.near/widget/MainPage.Post"
+          src={`${widgetOwner}/widget/MainPage.Post`}
           props={{
             accountId: context.accountId,
             content: state.content,
