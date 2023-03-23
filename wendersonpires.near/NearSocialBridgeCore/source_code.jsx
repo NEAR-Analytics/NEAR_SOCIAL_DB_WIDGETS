@@ -209,11 +209,11 @@ const getUserInfo = (requestType, payload) => {
   Utils.promisify(
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
-      console.log("ACCOUNT AAAAA");
       const responseBody = buildAnswer(requestType, {
         accountId,
         profileInfo: res,
       });
+      console.log("ACCOUNT AAAAA", responseBody);
       Utils.sendMessage(responseBody);
     },
     (err) => {
@@ -234,7 +234,6 @@ const setConnectionStatus = (requestType) => {
 return (
   <div>
     <iframe
-      onLoad={(e) => console.log("CARREGOU")}
       className="w-100"
       style={{ height: `${state.iframeHeight}px` }}
       src={externalAppUrl}
