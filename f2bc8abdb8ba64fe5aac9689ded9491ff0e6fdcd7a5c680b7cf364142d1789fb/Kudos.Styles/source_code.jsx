@@ -1,6 +1,8 @@
 const profile = Social.getr(`${context.accountId}/profile`);
 const metadata = Social.getr(`webuidl.near/widget/Kudos/metadata`);
 
+a;
+
 State.init({
   metadata: {},
   profile: {},
@@ -95,11 +97,10 @@ const allWidgetsInlineStyles = {
     },
     allCommentAnswerBox: {
       container: {
-        background: "linear-gradient(to right, #4deeea, #f000ff)",
+        backgroundColor: "white",
         border: "1px solid black",
         borderRadius: "5px",
-        textAlign: "center",
-        color: "white",
+        textAlign: "start",
         padding: "10px",
         marginLeft: "30px",
       },
@@ -201,6 +202,7 @@ const allWidgetsClassNames = {
     urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
     allCardsContainer: "",
     renderKudoBox: {
+      cardContainer: "d-flex flex-column align-items-start",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
     },
   },
@@ -266,6 +268,7 @@ return (
     <Widget
       src={`${widgetOwner}/widget/Kudos`}
       props={{
+        widgetOwner,
         allWidgetsInlineStyles,
         allWidgetsClassNames,
         updateGeneralState,
