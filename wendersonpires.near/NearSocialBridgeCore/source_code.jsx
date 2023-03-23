@@ -58,6 +58,12 @@ const Utils = {
   },
 };
 
+// Provides Utils
+console.log(typeof props.utilsProvider)
+if (props.utilsProvider && typeof props.utilsProvider === 'function') => {
+  props.utilsProvider(Utils)
+}
+
 // External App Url
 const externalAppUrl = props.externalAppUrl;
 
