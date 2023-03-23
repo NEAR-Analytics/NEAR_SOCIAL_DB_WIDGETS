@@ -9,6 +9,8 @@ State.init({
   showComments: false,
 });
 
+const widgetOwner = props.widgetOwner;
+
 function getShowCommentsButtonContainerStyles() {
   const standardStyles =
     thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
