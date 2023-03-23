@@ -61,7 +61,11 @@ const Utils = {
 // Provides Utils
 console.log(typeof props.utilsProvider);
 if (props.utilsProvider && typeof props.utilsProvider === "function") {
-  props.utilsProvider(Utils);
+  // Send only specific Utils features
+  const updatedUtils = {
+    promisify: Utils.promisify,
+  };
+  props.utilsProvider(updatedUtils);
 }
 
 // External App Url
