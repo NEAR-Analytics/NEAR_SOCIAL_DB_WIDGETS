@@ -100,9 +100,16 @@ const checkConnection = () => {
   if (!state.connectedToExternalApp) {
     // Try to connect to the external app again
     Utils.sendMessage(buildConnectionPayload());
-    setTimeout(checkConnection, 2000);
+    setTimeout(() => {
+      checkConnection();
+    }, 2000);
   }
 };
+setTimeout(() => {
+  if (!state.connectedToExternalApp) {
+    checkConnection();
+  }
+}, 2000);
 // checkConnection();
 console.log("CHECKKKKKKK", state.connectedToExternalApp);
 
@@ -214,7 +221,8 @@ const getUserInfo = (requestType, payload) => {
         profileInfo: res,
       });
       console.log("ACCOUNT AAAAA", responseBody);
-      Utils.sendMessage(responseBody);
+      // Utils.sendMessage(responseBody);
+      State.update({ currentMessage: responseBody });
     },
     (err) => {
       console.log("ACCOUNT BBBB");
