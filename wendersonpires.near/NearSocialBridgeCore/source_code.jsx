@@ -95,13 +95,19 @@ const buildAnswer = (requestType, payload) => {
   };
 };
 
-// Widget response factory
+// Widget response factory - closure
 const responseFactory = {
-  send: buildAnswer,
+  build: (requestType) => {
+    return (payload) => {
+      const responseBody = buildAnswer(requestType, payload);
+      Utils.sendMessage(responseBody);
+    };
+  },
 };
 
 // Message handler
 const onMessageHandler = (message) => {
+  console.log("onMessageHandler", message);
   // Handles core calls
   if (message.type.includes("nsb:")) {
     requestsHandler(message);
@@ -109,7 +115,7 @@ const onMessageHandler = (message) => {
   }
 
   // Handles Widget request calls
-  props.requestHandler(message, responseFactory);
+  props.requestHandler(message, responseFactory(requestType));
 };
 
 // CORE - REQUEST HANDLERS BELOW
