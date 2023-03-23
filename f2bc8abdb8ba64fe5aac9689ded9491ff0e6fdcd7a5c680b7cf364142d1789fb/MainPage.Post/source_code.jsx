@@ -133,7 +133,10 @@ const RenderKudoBox = (d) => {
             />
           </div>
         </div>
-        <div className={thisWidgetClassNames.upVoteContainer}>
+        <div
+          style={thisWidgetInlineStyles.upVoteContainer}
+          className={thisWidgetClassNames.upVoteContainer}
+        >
           <CommitButton
             style={
               state.hoveringElement == "upVoteButton"
