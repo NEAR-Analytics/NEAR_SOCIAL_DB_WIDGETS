@@ -10,6 +10,7 @@
  */
 
 // Error handlers
+console.log("Core Initialized!");
 if (!props.externalAppUrl) {
   console.error("externalAppUrl prop must be provided");
   return;
