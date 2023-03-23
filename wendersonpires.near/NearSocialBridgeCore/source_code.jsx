@@ -104,7 +104,7 @@ const checkConnection = () => {
   }
 };
 checkConnection();
-console.log("CHECKKKKKKK", state).connectedToExternalApp;
+console.log("CHECKKKKKKK", state.connectedToExternalApp);
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
