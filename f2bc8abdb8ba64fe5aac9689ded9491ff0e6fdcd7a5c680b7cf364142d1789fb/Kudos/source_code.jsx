@@ -11,8 +11,8 @@ const updateGeneralState = props.updateGeneralState;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+const widgetOwner = props.widgetOwner;
+
 const widgetName = "Kudos";
 const widgetPath = `webuidl.near/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
@@ -167,6 +167,7 @@ const RenderKudoBox = (d) => {
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
       props={{
+        widgetOwner,
         d,
         upvotes,
         updateGeneralState,
@@ -198,6 +199,7 @@ return (
         <Widget
           src={`${widgetOwner}/widget/MainPage.Post`}
           props={{
+            widgetOwner,
             accountId: context.accountId,
             content: state.content,
             blockHeight: "now",
