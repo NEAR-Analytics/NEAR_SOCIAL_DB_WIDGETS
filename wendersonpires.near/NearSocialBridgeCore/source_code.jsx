@@ -59,7 +59,6 @@ const Utils = {
 };
 
 // Provides Utils
-console.log(typeof props.utilsProvider);
 if (props.utilsProvider && typeof props.utilsProvider === "function") {
   // Send only specific Utils features
   const updatedUtils = {
