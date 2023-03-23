@@ -17,7 +17,6 @@ const standardButtonStyles = {
   borderRadius: "12px",
   color: "white",
   textDecoration: "none",
-  marginBottom: "1rem",
 };
 
 const hoveringButtonStyles = {
@@ -29,7 +28,6 @@ const hoveringButtonStyles = {
   padding: "0.3rem 1.5rem",
   borderRadius: "12px",
   textDecoration: "none",
-  marginBottom: "1rem",
 };
 
 const followEdge = Social.keys(
