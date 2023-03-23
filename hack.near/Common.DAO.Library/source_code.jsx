@@ -160,7 +160,7 @@ const renderCategory = (categoryId) => {
   );
 };
 State.init({
-  type: "dao",
+  tab: type,
   id: "",
 });
 
@@ -187,8 +187,8 @@ const onSelect = (selection) => {
 const renderContent = {
   home: renderHome(),
   search: renderSearch(),
-  type: renderCategory(state.id),
-}[state.type];
+  type: renderCategory(state.tab),
+}[state.tab];
 
 return (
   <>
