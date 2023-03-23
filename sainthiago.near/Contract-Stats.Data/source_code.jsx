@@ -44,12 +44,7 @@ const statsQuery = JSON.stringify({
 });
 
 function getContractStats() {
-  getContractData({
-    floor: 0,
-    owners: 0,
-    volume: 0,
-    nfts: 0,
-    minters: 0,
+  State.update({
     loading: true,
   });
 
@@ -62,8 +57,8 @@ function getContractStats() {
     },
     body: statsQuery,
   }).then((res) => {
-    getContractData({
-      loadingData: false,
+    State.update({
+      loading: false,
       floor: ((res?.body?.data["floor"]?.price[0] || 0) / 1e24).toFixed(2),
       owners: res?.body?.data["owners"]?.aggregate?.count || 0,
       volume: (
@@ -75,4 +70,13 @@ function getContractStats() {
   });
 }
 
-return <div onClick={() => getContractStats()}>{button}</div>;
+return (
+  <div
+    onClick={() => {
+      getContractStats();
+      getContractData({ state });
+    }}
+  >
+    {button}
+  </div>
+);
