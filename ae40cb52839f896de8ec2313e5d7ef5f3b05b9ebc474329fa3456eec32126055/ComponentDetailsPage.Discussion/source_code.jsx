@@ -8,8 +8,9 @@ const postUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accoun
 const content =
   props.content ??
   JSON.parse(
-    Social.get(`${accountId}/c_discussionTT/main`, blockHeight) ?? "null"
-  );
+    Social.get(`${accountId}/c_discussionTT/main`, blockHeight) ??
+      '{"content": null}'
+  ).content;
 
 const item = {
   type: "social",
