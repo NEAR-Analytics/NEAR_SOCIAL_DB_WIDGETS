@@ -51,7 +51,10 @@ const RenderAllCommentAnswerBox = (d) => {
 };
 
 return (
-  <div style={thisWidgetInlineStyles.renderKudoBox.cardContainer}>
+  <div
+    style={thisWidgetInlineStyles.renderKudoBox.cardContainer}
+    className={thisWidgetClassNames.renderKudoBox.cardContainer}
+  >
     <Widget
       src={`${widgetOwner}/widget/MainPage.Post`}
       props={{
