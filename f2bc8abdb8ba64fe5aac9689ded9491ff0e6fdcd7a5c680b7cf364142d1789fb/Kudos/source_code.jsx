@@ -165,7 +165,7 @@ const RenderAllCommentAnswerBox = (d) => {
 /* START KudoBox */
 const RenderKudoBox = (d) => {
   return (
-    <div style={thisWidgetInlineStyles.cardContainer}>
+    <div style={thisWidgetInlineStyles.renderKudoBox.cardContainer}>
       <Widget
         src={`${widgetOwner}/widget/MainPage.Post`}
         props={{
@@ -177,8 +177,14 @@ const RenderKudoBox = (d) => {
         }}
       />
 
-      <div className={thisWidgetClassNames.showCommentsButtonContainer}>
-        <p>Show comments</p>
+      <div
+        className={
+          thisWidgetClassNames.renderKudoBox.showCommentsButtonContainer
+        }
+      >
+        <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
+          Show comments
+        </p>
         <i className="bi bi-caret-down"></i>
       </div>
 
