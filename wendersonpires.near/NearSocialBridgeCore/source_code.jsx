@@ -122,7 +122,7 @@ const onMessageHandler = (message) => {
   }
 
   // Handles Widget request calls
-  props.requestHandler(message, responseFactory(requestType));
+  props.requestHandler(message, responseFactory.build(requestType));
 };
 
 // CORE - REQUEST HANDLERS BELOW
