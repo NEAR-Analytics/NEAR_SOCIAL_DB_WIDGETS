@@ -18,5 +18,9 @@ return (
     <div>{calc222(100, 112)}</div>
     <div>{calc333(100, 112)}</div>
     <div>{calc(2, 3)}</div>
+     <Widget
+        src="golas.near/widget/X2"
+        props={}
+    />
   </div>
 );
