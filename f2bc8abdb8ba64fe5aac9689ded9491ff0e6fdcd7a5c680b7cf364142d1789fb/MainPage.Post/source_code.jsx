@@ -27,7 +27,7 @@ const item = {
 const link = `#/mob.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const startCommentTo = () => {
-  State.update({ displayCommentBox: true });
+  State.update({ displayCommentBox: !state.displayCommentBox });
 };
 
 const RenderCommentInput = (blockHeight) => {
