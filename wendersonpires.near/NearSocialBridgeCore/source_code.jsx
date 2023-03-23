@@ -74,22 +74,35 @@ const initialIframeHeight = props.initialViewHeight || 500;
 // Initial Payload (optional)
 const initialPayload = props.initialPayload;
 
+const buildConnectionPayload = () => ({
+  type: "connect",
+  payload: {
+    userInfo,
+    initialPath,
+    initialPayload,
+  },
+  created_at: Date.now(),
+});
+
 // Initial State
 State.init({
+  connectedToExternalApp: false,
   iframeHeight: initialIframeHeight,
   sessionStorageClone: {},
   // (i) DON'T send async data, it's going to randonly fail
   // If you need to get new info, use "request" for that
-  currentMessage: {
-    type: "connect",
-    payload: {
-      userInfo,
-      initialPath,
-      initialPayload,
-    },
-    created_at: Date.now(),
-  },
+  currentMessage: buildConnectionPayload(),
 });
+
+// Send the "connect" msg again until the External App is connected
+const checkConnection = () => {
+  if (!state.connectedToExternalApp) {
+    // Try to connect to the external app again
+    Utils.sendMessage(buildConnectionPayload());
+    setTimeout(checkConnection, 2000);
+  }
+};
+setTimeout(checkConnection, 2000);
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
@@ -159,12 +172,17 @@ const requestsHandler = (message) => {
     case "nsb:auth:get-user-info":
       getUserInfo(message.type, message.payload);
       break;
+    case "nsb:bridge-service:connection-established":
+      setConnectionStatus(message.type, message.payload);
+      brea;
   }
 };
 
 // [DON'T REMOVE]: Set thew new iFrame height based on the new screen/route
 const setIframeHeight = (requestType, payload) => {
   State.update({ iframeHeight: payload.height + 20 });
+  const responseBody = buildAnswer(requestType);
+  Utils.sendMessage(responseBody);
 };
 
 // [DON'T REMOVE]: Hydrate View session data with data provided by the External App
@@ -199,11 +217,19 @@ const getUserInfo = (requestType, payload) => {
     }
   );
 };
+
+// [DON'T REMOVE]: Set the connection status (external app saying it's connected)
+const setConnectionStatus = (requestType) => {
+  State.update({ connectedToExternalApp: true });
+  const responseBody = buildAnswer(requestType);
+  Utils.sendMessage(responseBody);
+};
 // CORE - REQUEST HANDLERS ABOVE
 
 return (
   <div>
     <iframe
+      onLoad={(e) => console.log("CARREGOU")}
       className="w-100"
       style={{ height: `${state.iframeHeight}px` }}
       src={externalAppUrl}
