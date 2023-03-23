@@ -320,7 +320,7 @@ const getUserInfo = (requestType, payload) => {
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
       const responseBody = buildAnswer(requestType, {
-        ccountId,
+        accountId,
         profileInfo: res,
       });
       Utils.sendMessage(responseBody);
