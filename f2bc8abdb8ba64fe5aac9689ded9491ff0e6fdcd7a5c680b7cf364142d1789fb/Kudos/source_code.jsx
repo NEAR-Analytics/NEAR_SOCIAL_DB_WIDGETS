@@ -165,7 +165,7 @@ const RenderAllCommentAnswerBox = (d) => {
 /* START KudoBox */
 const RenderKudoBox = (d) => {
   return (
-    <>
+    <div style={thisWidgetInlineStyles.cardContainer}>
       <Widget
         src={`${widgetOwner}/widget/MainPage.Post`}
         props={{
@@ -183,7 +183,7 @@ const RenderKudoBox = (d) => {
       </div>
 
       {RenderAllCommentAnswerBox(d)}
-    </>
+    </div>
   );
 };
 /* END KudoBox  */
