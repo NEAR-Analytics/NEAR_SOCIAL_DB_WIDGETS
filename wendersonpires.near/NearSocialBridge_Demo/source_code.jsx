@@ -217,7 +217,6 @@ const Utils = {
       } else {
         if (timeoutCheck < timeout) {
           // try again
-          console.log(timeoutCheck);
           setTimeout(find, 1000);
           timeoutCheck += timer;
         } else {
@@ -302,27 +301,23 @@ const requestsHandler = (message) => {
     case "get-room-data":
       getRoomDataHandler(message.type, message.payload);
       break;
-    case "subscribe-get-room-data":
-      getRoomDataHandler(message.type, message.payload, true);
-      break;
     case "send-message":
       sendMessageHandler(message.type, message.payload);
       break;
   }
 };
 
-console.log(
-  "sua"
-  // Social.getr(payload.roomId, "data", {
-  //   subscribe: subscribe || false,
-  //   limit: 100,
-  //   order: "desc",
-  // }),
+// console.log(
+// Social.getr(payload.roomId, "data", {
+//   subscribe: subscribe || false,
+//   limit: 100,
+//   order: "desc",
+// }),
 
-  // Near.view("social.near", "get", {
-  //   keys: ["wendersonpires.near/index/2feb2f51-dfa3-4f9d-86a7-8f20377da539"],
-  // })
-);
+// Near.view("social.near", "get", {
+//   keys: ["wendersonpires.near/index/2feb2f51-dfa3-4f9d-86a7-8f20377da539"],
+// })
+// );
 
 // [DON'T REMOVE]: Set thew new iFrame height based on the new screen/route
 const setIframeHeight = (requestType, payload) => {
@@ -331,36 +326,39 @@ const setIframeHeight = (requestType, payload) => {
 
 // Get room data handler
 const getRoomDataHandler = (requestType, payload, subscribe) => {
-  // TODO: as vezes demora para pegar os dados
-  console.log(subscribe || false);
-  const roomData = Social.index(payload.roomId, "data", {
-    subscribe: subscribe || false,
-    limit: 100,
-    order: "desc",
-  });
+  Utils.promisify(
+    () =>
+      Social.index(payload.roomId, "data", {
+        subscribe: subscribe || false,
+        limit: 100,
+        order: "desc",
+      }),
+    (roomData) => {
+      const roomExists = roomData && roomData.length > 0;
 
-  // Wait data to come
-  setTimeout(() => {
-    const roomExists = roomData && roomData.length > 0;
+      if (!roomExists) {
+        const responseBody = buildAnswer(requestType, {
+          error: "room not found",
+        });
+        Utils.sendMessage(responseBody);
+        return;
+      }
 
-    if (!roomExists) {
       const responseBody = buildAnswer(requestType, {
-        error: "room not found",
+        messages: roomData,
       });
       Utils.sendMessage(responseBody);
-      return;
+    },
+    (err) => {
+      Utils.sendMessage({
+        error: "internal error",
+      });
     }
-
-    const responseBody = buildAnswer(requestType, {
-      messages: roomData,
-    });
-    Utils.sendMessage(responseBody);
-  }, payload.wait || 3000);
+  );
 };
 
 // Send message handler
 const sendMessageHandler = (requestType, payload) => {
-  console.log(payload);
   if (payload.roomId && payload.message) {
     // Store message
     Social.set(
