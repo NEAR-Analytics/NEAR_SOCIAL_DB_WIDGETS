@@ -103,7 +103,8 @@ const checkConnection = () => {
     setTimeout(checkConnection, 2000);
   }
 };
-setTimeout(checkConnection, 2000);
+checkConnection();
+console.log("CHECKKKKKKK", state).connectedToExternalApp;
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
