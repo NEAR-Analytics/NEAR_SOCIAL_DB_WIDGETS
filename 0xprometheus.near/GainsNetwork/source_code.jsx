@@ -57,7 +57,6 @@ const getStakedBalance = (receiver) => {
         .replace(/\d(?=(\d{3})+\.)/g, "$&,");
     });
 };
-
 const getRewardBalance = () => {
   const encodedData = iface.encodeFunctionData("accDaiPerToken");
   return Ethers.provider()
@@ -156,6 +155,9 @@ const stakeTokens = (tokenAmount) => {
       getStakedBalance(state.sender).then((stakedBalance) => {
         State.update({ stakedBalance });
       });
+      getRewardBalance().then((rewards) => {
+        State.update({ rewards });
+      });
       State.update({ tokenAmount: 0 });
       State.update({ message: "Success" });
       State.update({
@@ -166,8 +168,9 @@ const stakeTokens = (tokenAmount) => {
       goOut();
     })
     .catch((err) => {
+      console.log("GRAN DINALE", err);
       State.update({ message: "Error!" });
-      State.update({ reason: `${err.reason} 😞` });
+      State.update({ reason: `${err.reason || err.message.substr(100)} 😞` });
       State.update({ type: "error" });
       goOut();
     });
@@ -320,6 +323,7 @@ if (state.sender === undefined) {
     State.update({ sender: accounts[0] });
     console.log("set sender", accounts[0]);
   }
+  console.log("elsefs", Ethers.provider());
 }
 if (!state.totalRewards && state.sender) {
   getTotalRewardDistributed().then((totalRewards) => {
