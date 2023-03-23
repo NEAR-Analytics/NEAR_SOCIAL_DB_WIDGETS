@@ -70,7 +70,7 @@ return (
 
     <div
       className={thisWidgetClassNames.showCommentsButtonContainer}
-      style={thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer}
+      style={getShowCommentsButtonContainerStyles()}
       onMouseEnter={() => {
         State.update({ hoveringElement: "showCommentsButtonContainer" });
       }}
