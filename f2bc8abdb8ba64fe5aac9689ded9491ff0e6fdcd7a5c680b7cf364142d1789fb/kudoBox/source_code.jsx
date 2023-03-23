@@ -50,6 +50,8 @@ const RenderAllCommentAnswerBox = (d) => {
   });
 };
 
+console.log(state.hoveringElement);
+
 return (
   <div
     style={thisWidgetInlineStyles.renderKudoBox.cardContainer}
