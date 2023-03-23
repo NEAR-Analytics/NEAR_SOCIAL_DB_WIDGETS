@@ -63,6 +63,7 @@ const externalAppUrl = props.externalAppUrl;
 
 // User Info
 const accountId = context.accountId;
+console.log("INITIAL ACCOUNT ID:", accountId);
 const userInfo = { accountId };
 
 // Initial Path
@@ -174,7 +175,7 @@ const requestsHandler = (message) => {
       break;
     case "nsb:bridge-service:connection-established":
       setConnectionStatus(message.type, message.payload);
-      brea;
+      break;
   }
 };
 
@@ -203,9 +204,11 @@ const sessionStorageHydrateApp = (requestType, payload) => {
 
 // [DON'T REMOVE]: Get user info
 const getUserInfo = (requestType, payload) => {
+  console.log("ACCOUNT ID getUserInfo:", accountId, context.accountId);
   Utils.promisify(
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
+      console.log("ACCOUNT AAAAA");
       const responseBody = buildAnswer(requestType, {
         accountId,
         profileInfo: res,
@@ -213,7 +216,8 @@ const getUserInfo = (requestType, payload) => {
       Utils.sendMessage(responseBody);
     },
     (err) => {
-      console.error("error fetching profile data", err);
+      console.log("ACCOUNT BBBB");
+      console.log("error fetching profile data", err);
     }
   );
 };
