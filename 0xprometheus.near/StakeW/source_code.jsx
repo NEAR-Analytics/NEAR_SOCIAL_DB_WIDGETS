@@ -9,28 +9,75 @@ const cds = `
     position: relative;
 }
 
-.toast-message {
+.roast{
   position: absolute;
   margin-top: -30px;
   top: 0%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 51%;
+  right: -3%;
   color: #fff;
   padding: 10px;
   font-size: 14px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 999;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.25, 1.35);
 }
-.toast-message.success {
+.roast.active{
   opacity: 1;
-  background-color: #2ecc71;
+  transform: translateX(-35%);
 }
-.toast-message.error {
+.roast.error{
   opacity: 1;
+  border-left: 8px solid red;
+  transform: translateX(-35%);
+}
+.roast.success{
+  opacity: 1;
+  border-left: 8px solid #40f467;
+  transform: translateX(-35%);
+}
+.roast-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.roast-check{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+}
+
+.roast-check.error{
   background-color: red;
+}
+.roast-check.success{
+  background-color: #40f467;
+}
+.message{
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+.message-text{
+  font-size: 20px;
+  font-weight: 600;
+}
+.text-1{
+  color: #333;
+}
+.text-2{
+  color: #666;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .LidoWithdrawFormSubmitContainer{
@@ -95,11 +142,31 @@ return (
       <div class="LidoForm">
         <>
           <div class="LidoFormTopContainer">
-            {props.state.message && (
-              <div class={`toast-message ${props.state.type}`}>
-                {props.state.message}
+            <div class={`roast ${props.state.type}`}>
+              <div class="roast-content">
+                <div class={`roast-check ${props.state.type}`}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="checkmark"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="white"
+                  >
+                    <g data-name="Layer 2">
+                      <g data-name="checkmark">
+                        <rect width="24" height="24" opacity="0"></rect>
+                        <path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"></path>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <div class="message">
+                  <span class="message-text text-1">{props.state.message}</span>
+                  <span class="message-text text-2">{props.state.reason}</span>
+                </div>
               </div>
-            )}
+            </div>
             <div class="LidoFormTopContainerLeft">
               <div class="LidoFormTopContainerLeftContent1">
                 <div class="LidoFormTopContainerLeftContent1Container">
