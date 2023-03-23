@@ -17,15 +17,6 @@ const widgetName = "Kudos";
 const widgetPath = `webuidl.near/widget/${widgetName}`;
 const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 
-const card = {
-  background: "linear-gradient(to right, #4deeea, #f000ff)",
-  border: "1px solid black",
-  borderRadius: "5px",
-  textAlign: "center",
-  color: "white",
-  padding: "10px",
-};
-
 const imgWH = {
   width: "25px",
   height: "25px",
@@ -185,6 +176,11 @@ const RenderKudoBox = (d) => {
           allWidgetsClassNames: props.allWidgetsClassNames,
         }}
       />
+
+      <div className={thisWidgetClassNames.showCommentsButtonContainer}>
+        <p>Show comments</p>
+        <i className="bi bi-caret-down"></i>
+      </div>
 
       {RenderAllCommentAnswerBox(d)}
     </>
