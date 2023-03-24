@@ -17,7 +17,8 @@ return (
 
         <AlertDialog.Action asChild>
           <Widget
-            src="calebjacob.near/widget/TestButton"
+            foobar="fart"
+            src="calebjacob.near/widget/TestButtonSimple"
             props={{ label: "Okay" }}
           />
         </AlertDialog.Action>
