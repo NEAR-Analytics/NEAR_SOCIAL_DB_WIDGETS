@@ -74,7 +74,7 @@ const Logo = styled.div`
 const Scroll = styled.div`
 {
   z-index: -1;
-  margin-top: calc(-24px + 100px + 35px);
+  margin-top: calc(-24px + 100px + 25px);
 }`;
 
 const Gradient = styled.div`
