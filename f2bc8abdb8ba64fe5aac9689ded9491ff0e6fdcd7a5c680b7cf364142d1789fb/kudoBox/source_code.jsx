@@ -12,19 +12,10 @@ State.init({
 const widgetOwner = props.widgetOwner;
 
 function getShowCommentsButtonContainerStyles() {
-  const hoveringStyles =
-    thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
-
-  hoveringStyles["color"] = "rgba(0,191,255,255)";
-  hoveringStyles["background-color"] = "rgba(229, 248, 255, 255)";
-
   return state.hoveringElement == "showCommentsButtonContainer"
-    ? hoveringStyles
-    : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
+    ? thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer
+    : thisWidgetInlineStyles.renderKudoBox.hoveringShowCommentsButtonContainer;
 }
-
-console.log("state: ", state.hoveringElement);
-console.log("style: ", getShowCommentsButtonContainerStyles());
 
 const RenderAllCommentAnswerBox = (d) => {
   return d.value.comments.map((c) => {
