@@ -1,7 +1,7 @@
 /**
  * External App URL (must)
  */
-const externalAppUrl = "https://45644fd0f83b.ngrok.app";
+const externalAppUrl = "https://near-test-app.web.app/";
 /**
  * Initial Path (optional but recommended)
  */
