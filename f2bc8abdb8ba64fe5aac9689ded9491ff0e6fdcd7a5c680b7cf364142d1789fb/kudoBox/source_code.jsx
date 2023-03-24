@@ -20,7 +20,7 @@ function getShowCommentsButtonContainerStyles() {
 function getCaretDirection() {
   return state.showComments
     ? thisWidgetInlineStyles.renderKudoBox.flipButton
-    : { transition: "transform 2s" };
+    : { transition: "transform 1s" };
 }
 
 const RenderAllCommentAnswerBox = (d) => {
@@ -69,21 +69,25 @@ return (
       className={thisWidgetClassNames.showCommentsButtonContainer}
       style={getShowCommentsButtonContainerStyles()}
       onMouseEnter={() => {
-        State.update({ hoveringElement: "showCommentsButtonContainer" });
+        d.value.comments.length > 0 &&
+          State.update({ hoveringElement: "showCommentsButtonContainer" });
       }}
       onMouseLeave={() => {
-        State.update({ hoveringElement: "" });
+        d.value.comments.length > 0 && State.update({ hoveringElement: "" });
       }}
       onClick={() => {
-        State.update({ showComments: !state.showComments });
+        d.value.comments.length > 0 &&
+          State.update({ showComments: !state.showComments });
       }}
     >
       <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
-        Show comments
+        {d.value.comments.length > 0 ? "Show comments" : "No comments"}
       </p>
-      <div style={getCaretDirection()}>
-        <i className="bi bi-caret-down"></i>
-      </div>
+      {d.value.comments.length > 0 && (
+        <div style={getCaretDirection()}>
+          <i className="bi bi-caret-down"></i>
+        </div>
+      )}
     </div>
 
     {RenderAllCommentAnswerBox(d)}
