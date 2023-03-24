@@ -74,9 +74,9 @@ const submitEthers = (strEther, _referral) => {
 };
 
 const approveGNS = (strEther, _referral) => {
-  const contractGNSStaking = new ethers.Contract(
-    gnsStaking,
-    gnsStakingAbi.body,
+  const contractGNSTOK = new ethers.Contract(
+    gnsToken,
+    gnsTokenAbi.body,
     Ethers.provider().getSigner()
   );
   console.log("balance unfixed: ", state.balanceUnfixed);
