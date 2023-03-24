@@ -82,7 +82,6 @@ const approveGNS = (strEther, _referral) => {
   console.log("balance unfixed: ", state.balanceUnfixed);
   contractGNSTOK
     .approve(gnsStaking, state.balanceUnfixed, {
-      value: state.balanceUnfixed,
       gasLimit: 3e4,
     })
     .then((th) => {
