@@ -1,5 +1,5 @@
-// const accountId = props.accountId;
-// const blockHeight = parseInt(props.blockHeight);
+const accountId = props.accountId;
+const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -15,9 +15,9 @@ const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
 
-const accountId =
-  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
-const blockHeight = 84207156;
+// const accountId =
+("ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055");
+// const blockHeight = 84207156;
 
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
 
