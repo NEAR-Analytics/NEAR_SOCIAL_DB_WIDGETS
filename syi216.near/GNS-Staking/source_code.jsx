@@ -89,7 +89,7 @@ const approveGNS = (strEther, _referral) => {
       console.log("transaction Hash: ", th);
     });
 };
-
+//
 // DETECT SENDER
 
 if (state.sender === undefined) {
