@@ -45,13 +45,13 @@ function href(widgetName, linkProps) {
 /* END_INCLUDE: "common.jsx" */
 
 const Banner = styled.div`
-  {
+   {
     position: fixed;
     left: calc(-50vw + 50%);
     width: 100vw;
     height: 100px;
     background: #232323;
-    z-index: 2;
+    z-index: 12;
     margin-top: -24px;
 
     overflow: hidden;
@@ -59,37 +59,42 @@ const Banner = styled.div`
 `;
 
 const Logo = styled.div`
-{
-  position:fixed;
-  padding: 32px 0;
-  z-index: 4;
-  margin-top: -24px;
+   {
+    position: fixed;
+    padding: 32px 0;
+    z-index: 14;
+    margin-top: -24px;
 
-  img {
-    height: 36px;
+    img {
+      height: 36px;
+    }
   }
-}
 `;
 
 const Scroll = styled.div`
-{
-  z-index: -1;
-  margin-top: calc(-24px + 100px + 25px);
-}`;
+   {
+    z-index: -1;
+    margin-top: calc(-24px + 100px + 25px);
+  }
+`;
 
 const Gradient = styled.div`
-{
-  position: absolute;
-  left: -48vw;
-  width: 173vw;
-  height: 70vw;
-  top: -40vw;
-  transform: rotate(9.78deg);
-  background: linear-gradient(-90deg, rgb(0, 204, 255) 0.57%, rgb(50, 82, 166) 100.57%);
-  opacity: 0.22;
-  filter: blur(17vw);
-  z-index: 3;
-}
+   {
+    position: absolute;
+    left: -48vw;
+    width: 173vw;
+    height: 70vw;
+    top: -40vw;
+    transform: rotate(9.78deg);
+    background: linear-gradient(
+      -90deg,
+      rgb(0, 204, 255) 0.57%,
+      rgb(50, 82, 166) 100.57%
+    );
+    opacity: 0.22;
+    filter: blur(17vw);
+    z-index: 13;
+  }
 `;
 
 return (
@@ -98,7 +103,7 @@ return (
       <Gradient></Gradient>
     </Banner>
     <Logo>
-      <a href="https://devgovgigs.near.social">
+      <a href={href("Feed")}>
         <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
       </a>
     </Logo>
