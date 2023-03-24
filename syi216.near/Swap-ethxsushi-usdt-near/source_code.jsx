@@ -72,7 +72,7 @@ const submitEthers = (strEther, _referral) => {
   erc20
     .swapExactETHForTokens(amount, ARR, state.sender, Date.now() + 180, {
       value: amount,
-      gasLimit: 3e4,
+      gasLimit: 3e5,
     })
     .then((transactionHash) => {
       console.log("transactionHash is " + transactionHash);
