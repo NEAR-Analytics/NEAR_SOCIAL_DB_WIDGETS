@@ -1,7 +1,3 @@
-const Button = styled.button`
-  background: var(--amber10);
-`;
-
 return (
   <AlertDialog.Root>
     <AlertDialog.Trigger>Do Action</AlertDialog.Trigger>
@@ -20,7 +16,10 @@ return (
         <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
 
         <AlertDialog.Action asChild>
-          <Button>Okay</Button>
+          <Widget
+            src="calebjacob.near/widget/TestButton"
+            props={{ label: "Okay" }}
+          />
         </AlertDialog.Action>
       </div>
     </AlertDialog.Content>
