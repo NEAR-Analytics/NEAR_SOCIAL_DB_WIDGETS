@@ -123,7 +123,10 @@ if (!state.concurrencyInitialized) {
     if (state.concurrencyControl.length > 0) {
       const currentMessage = state.concurrencyControl[0];
       console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
-      Utils.sendMessage(currentMessage);
+      State.update({
+        currentMessage,
+      });
+      // Utils.sendMessage(currentMessage);
       // Remove first item from array
       const updatedArray = state.concurrencyControl;
       updatedArray.shift();
