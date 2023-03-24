@@ -1,3 +1,9 @@
+props = props || {
+  title: props.title,
+  link: props.link,
+  description: props.description,
+  img: props.img,
+};
 const Card = styled.button`
   display: flex;
   flex-direction: column;
