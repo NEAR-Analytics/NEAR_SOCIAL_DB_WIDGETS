@@ -1,8 +1,8 @@
-const accountId = props.accountId;
-const blockHeight = parseInt(props.blockHeight);
-// const accountId =
-// "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
-// const blockHeight = 84207156;
+// const accountId = props.accountId;
+// const blockHeight = parseInt(props.blockHeight);
+const accountId =
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
+const blockHeight = 84207156;
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -57,28 +57,39 @@ return (
       <div class="col-2">
         {/* Upvote Widget */}
         <Widget
-          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
+          // src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
+          src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
           props={{ accountId, blockHeight }}
         />
       </div>
       <div class="col-8">
-        <H2>
-          <a href={link}>{question.title}</a>
-        </H2>
-        <H6>
-          <div class="d-flex">
-            <Trancate>{accountId}</Trancate>
-            &nbsp;in&nbsp;
-            <TopicName>
-              <Widget
-                src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
-                props={{ labels: question.labels }}
-              />
-            </TopicName>
-            &nbsp;&#8226;&nbsp;
-            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+        <div class="row">
+          <H2>
+            <a href={link}>{question.title}</a>
+          </H2>
+          <H6>
+            <div class="d-flex">
+              <Trancate>{accountId}</Trancate>
+              &nbsp;in&nbsp;
+              <TopicName>
+                <Widget
+                  src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
+                  props={{ labels: question.labels }}
+                />
+              </TopicName>
+              &nbsp;&#8226;&nbsp;
+              <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+            </div>
+          </H6>
+        </div>
+        <div class="row">
+          <div class="col">
+            <Widget
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Answers"
+              props={{ accountId, blockHeight }}
+            />
           </div>
-        </H6>
+        </div>
       </div>
     </div>
 
