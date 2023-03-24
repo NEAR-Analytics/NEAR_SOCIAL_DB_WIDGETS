@@ -62,7 +62,7 @@ const Logo = styled.div`
 {
   position:fixed;
   padding: 32px 0;
-  z-index: 3;
+  z-index: 4;
   margin-top: -24px;
 
   img {
@@ -88,6 +88,7 @@ const Gradient = styled.div`
   background: linear-gradient(-90deg, rgb(0, 204, 255) 0.57%, rgb(50, 82, 166) 100.57%);
   opacity: 0.22;
   filter: blur(17vw);
+  z-index: 3;
 }
 `;
 
@@ -97,10 +98,9 @@ return (
       <Gradient></Gradient>
     </Banner>
     <Logo>
-      <img
-        src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"
-        href="https://devgovgigs.near.social"
-      ></img>
+      <a href="https://devgovgigs.near.social">
+        <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
+      </a>
     </Logo>
     <Scroll>
       {widget("components.layout.Controls")}
