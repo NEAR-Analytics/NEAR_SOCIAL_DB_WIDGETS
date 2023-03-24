@@ -72,7 +72,7 @@ const Logo = styled.div`
 const Scroll = styled.div`
 {
   z-index: -1;
-  margin-top: 135px;
+  margin-top: calc(-24px + 100px + 35px);
 }`;
 
 return (
