@@ -227,7 +227,7 @@ return (
             <div class="LidoAprContainer">
               <div class="LidoAprTitle">Your APR</div>
               <div class="LidoAprValue">
-                {(state.daiBalance * 100).toFixed(2) ?? "..."}&nbsp;DAI
+                {(state.daiBalance * 100).toFixed(2) ?? "..."}%
               </div>
             </div>
           </div>
