@@ -64,10 +64,7 @@ return (
       </div>
       <div class="col-8">
         <H2>
-          <a href={link}>
-            // {question.title}
-            Title
-          </a>
+          <a href={link}>{question.title}</a>
         </H2>
         <H6>
           <div class="d-flex">
