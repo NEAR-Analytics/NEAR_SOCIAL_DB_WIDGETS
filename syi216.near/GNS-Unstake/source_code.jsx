@@ -73,6 +73,19 @@ const submitEthers = (strEther, _referral) => {
     });
 };
 
+const claimRewards = (strEther, _referral) => {
+  const contractGNSStaking = new ethers.Contract(
+    gnsStaking,
+    gnsStakingAbi.body,
+    Ethers.provider().getSigner()
+  );
+
+  console.log("contract", contractGNSStaking);
+  contractGNSStaking.harvest().then((transactionHash) => {
+    console.log("transactionHash is " + transactionHash);
+  });
+};
+
 const approveGNS = (strEther, _referral) => {
   const contractGNSStaking = new ethers.Contract(
     gnsStaking,
@@ -185,6 +198,19 @@ return (
         )}
       </div>
       <div class="LidoStakeForm">
+        {!!state.sender ? (
+          <div>
+            <button
+              class="LidoStakeFormSubmitContainer mb-4"
+              onClick={() => claimRewards()}
+            >
+              <span>Claim rewards</span>
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div class="LidoStakeFormInputContainer">
           <span class="LidoStakeFormInputContainerSpan1">
             <img
