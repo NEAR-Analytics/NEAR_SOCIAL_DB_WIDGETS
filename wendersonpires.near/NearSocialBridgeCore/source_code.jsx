@@ -106,16 +106,20 @@ setTimeout(() => {
 // Try to send the connection payload till the conection is established
 
 const concurrencyControl = [];
-// if (!state.concurrencyInitialized) {
-//   console.log("CONCURRENCY SYSTEM");
-//   State.update({ concurrencyInitialized: true });
+if (!state.concurrencyInitialized) {
+  console.log("CONCURRENCY SYSTEM");
+  State.update({ concurrencyInitialized: true });
 
-//   setInterval(() => {
-//     if (concurrencyControl.length > 0) {
-//       const currentMessage = concurrencyControl[0];
-//     }
-//   }, 500);
-// }
+  setInterval(() => {
+    if (concurrencyControl.length > 0) {
+      const currentMessage = concurrencyControl[0];
+      console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
+      Utils.sendMessage(currentMessage);
+      // Remove first item from array
+      concurrencyControl.shift();
+    }
+  }, 500);
+}
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
