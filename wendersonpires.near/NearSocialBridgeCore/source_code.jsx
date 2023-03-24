@@ -18,14 +18,53 @@ if (!props.externalAppUrl) {
   );
 }
 
+// External App Url
+const externalAppUrl = props.externalAppUrl;
+
+// User Info
+const accountId = context.accountId;
+const userInfo = { accountId };
+
+// Initial Path
+const initialPath = props.path;
+
+// Initial iframe height
+const initialIframeHeight = props.initialViewHeight || 500;
+
+// Initial Payload (optional)
+const initialPayload = props.initialPayload;
+
+const buildConnectionPayload = () => ({
+  type: "connect",
+  payload: {
+    userInfo,
+    initialPath,
+    initialPayload,
+  },
+  created_at: Date.now(),
+});
+
+// Initial State
+State.init({
+  concurrencyInitialized: false,
+  concurrencyControl: [buildConnectionPayload()],
+  iframeHeight: initialIframeHeight,
+  sessionStorageClone: {},
+  // (i) DON'T send async data, it's going to randonly fail
+  // If you need to get new info, use "request" for that
+  currentMessage: buildConnectionPayload(),
+});
+
 // (i) Discovery API uses cached data structure
 const Utils = {
   /**
    * Send message
    */
   sendMessage: (message) => {
+    const foo = [...state.concurrencyControl, message];
+    console.log("ARRay State:", foo);
     State.update({
-      concurrencyControl: [...state.concurrencyControl, message],
+      concurrencyControl: foo,
     });
     // State.update({
     //   currentMessage: message,
@@ -65,43 +104,6 @@ const Utils = {
     find();
   },
 };
-
-// External App Url
-const externalAppUrl = props.externalAppUrl;
-
-// User Info
-const accountId = context.accountId;
-const userInfo = { accountId };
-
-// Initial Path
-const initialPath = props.path;
-
-// Initial iframe height
-const initialIframeHeight = props.initialViewHeight || 500;
-
-// Initial Payload (optional)
-const initialPayload = props.initialPayload;
-
-const buildConnectionPayload = () => ({
-  type: "connect",
-  payload: {
-    userInfo,
-    initialPath,
-    initialPayload,
-  },
-  created_at: Date.now(),
-});
-
-// Initial State
-State.init({
-  concurrencyInitialized: false,
-  concurrencyControl: [buildConnectionPayload()],
-  iframeHeight: initialIframeHeight,
-  sessionStorageClone: {},
-  // (i) DON'T send async data, it's going to randonly fail
-  // If you need to get new info, use "request" for that
-  currentMessage: buildConnectionPayload(),
-});
 
 // Send connect message every 2 seconds - DEV
 // TODO: This should work on for "development" env
