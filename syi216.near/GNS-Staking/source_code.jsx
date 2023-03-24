@@ -13,6 +13,9 @@ const gorliLidoContract = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506";
 const tokenDecimals = 18;
 const contract = "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2";
 
+const polygonApr = fetch("https://backend-polygon.gains.trade/apr");
+console.log("APR", polygonApr);
+
 const lidoAbi = fetch(
   "https://nativonft.mypinata.cloud/ipfs/QmawuBDkx1w56AFpZ2hiph1gaVrnq3gyAMRnSH2c9S54TY"
 );
@@ -20,7 +23,7 @@ const lidoAbi = fetch(
 const gnsLZEndAbi = fetch(
   "https://nativonft.mypinata.cloud/ipfs/Qmd3xkYoDxS7ATdvoDzTgF1ojLog7kTqoTeWBhJQfUZ4F9"
 );
-
+//
 const gnsTokenAbi = fetch(
   "https://nativonft.mypinata.cloud/ipfs/QmRNckfDbxxjHBhHqMWewKg2dxfUXpoCumxS6YGRW4uAhq"
 );
@@ -288,6 +291,13 @@ return (
             connectLabel="Connect with Web3"
           />
         )}
+        <div class="LidoFooterContainer">
+          <div class="LidoFooterRaw">
+            <div class="LidoFooterRawLeft">
+              GNS Polygon APR: {polygonApr.body.sssApr ?? "...."}%
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </Theme>
