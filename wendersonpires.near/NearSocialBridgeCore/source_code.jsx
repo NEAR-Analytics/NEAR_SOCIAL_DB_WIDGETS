@@ -116,17 +116,19 @@ setTimeout(() => {
 
 // Start message concurrency controll with "connect" payload
 // const concurrencyControl = [buildConnectionPayload()];
+const f = () => {
+  console.log(
+    "CHECK LENGHT",
+    state.concurrencyControl.length,
+    state.concurrencyControl,
+    state.currentMessage
+  );
+};
 if (!state.concurrencyInitialized) {
   console.log("CONCURRENCY SYSTEM");
   State.update({ concurrencyInitialized: true });
 
-  setInterval(function () {
-    console.log(
-      "CHECK LENGHT",
-      state.concurrencyControl.length,
-      state.concurrencyControl,
-      state.currentMessage
-    );
+  setInterval(() => {
     if (state.concurrencyControl.length > 0) {
       const currentMessage = state.concurrencyControl[0];
       console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
