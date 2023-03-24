@@ -248,7 +248,7 @@ return (
     </CommitButton>
     <div className={allWidgetsClassNames.allCardsContainer}>
       {sortedData
-        ? sortedData.map((d) => RenderKudoBox(d, index))
+        ? sortedData.map((d, index) => RenderKudoBox(d, index))
         : "Loading..."}
     </div>
   </div>
