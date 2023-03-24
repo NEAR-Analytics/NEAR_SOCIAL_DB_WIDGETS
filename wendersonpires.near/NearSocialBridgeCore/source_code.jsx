@@ -1,59 +1,196 @@
-/**
- * Near Social Bridge - Core
- *
- * This is part of a library that allows you to inject an external React App in a Widget created inside
- * Near Social as well as send and receive data from it.
- *
- * Basically, The View works as a Backend source.
- *
- * Visit https://github.com/wpdas/near-social-bridge to get to know how to use it
- */
+// Load React, React Dom and the Core Bridge library
+const code = `
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<div id="bridge-root"></div>
 
-// Error handlers
-if (!props.externalAppUrl) {
-  return (
-    <p style={{ fontWeight: 600, color: "#AB2E28", fontFamily: "Courier new" }}>
-      Error: "externalAppUrl" prop must be provided
-    </p>
-  );
+<script>
+// Viewer port
+let viewerPort
+
+// Outside of the component state controller
+let state = {
+  externalAppUrl: '',
+  initialPath: null,
+  iframeHeight: 480,
+  userInfo: null,
+  initialPayload: {},
+  sessionStorageClone: {},
+  connectMessageSent: false,
 }
 
-// External App Url
-const externalAppUrl = props.externalAppUrl;
+// Core Component
+function NearSocialBridgeCore(props) {
+  const [externalAppUrl, setExternalAppUrl] = React.useState(state.externalAppUrl)
+  const [connectMessageSent, setConnectMessageSent] = React.useState(state.connectMessageSent)
+  const [iframeHeight, setIframeHeight] = React.useState(state.iframeHeight)
+  const [sessionStorageClone, setSessionStorageClone] = React.useState(state.sessionStorageClone)
+  const [userInfo, setUserInfo] = React.useState(state.userInfo)
 
-// User Info
-const accountId = context.accountId;
-const userInfo = { accountId };
+  React.useEffect(() => {
+    const handler = (e) => {
+      // Set the Viewer port
+      if (!viewerPort && e.data.type === 'connect-view') {
+        viewerPort = e.source
+        setExternalAppUrl(e.data.externalAppUrl)
+        setIframeHeight(e.data.initialIframeHeight || 480)
+        state.externalAppUrl = e.data.externalAppUrl
+        state.initialPath = e.data.initialPath
+        state.userInfo = e.data.userInfo
+        setUserInfo(e.data.userInfo)
+        state.initialPayload = e.data.initialPayload
+        state.iframeHeight = e.data.initialIframeHeight || 480
+      }
 
-// Initial Path
-const initialPath = props.path;
+      // When get a message from the View
+      if (viewerPort && e.data.from === 'view') {
+        // Is it message to the core?
+        if (e.data.type.includes('core:')) {
+          // process eventual message to core here
+          return
+        }
 
-// Initial iframe height
-const initialIframeHeight = props.initialViewHeight || 500;
+        // Send to external app
+        sendMessage(e.data)
+      }
+    }
 
-// Initial Payload (optional)
-const initialPayload = props.initialPayload;
+    window.addEventListener('message', handler)
 
-const buildConnectionPayload = () => ({
-  type: "connect",
-  payload: {
-    userInfo,
-    initialPath,
-    initialPayload,
-  },
-  created_at: Date.now(),
-});
+    return () => {
+      window.removeEventListener('message', handler)
+    }
+  }, [])
 
-// Initial State
-State.init({
-  concurrencyInitialized: false,
-  concurrencyControl: [buildConnectionPayload()],
-  iframeHeight: initialIframeHeight,
-  sessionStorageClone: {},
-  // (i) DON'T send async data, it's going to randonly fail
-  // If you need to get new info, use "request" for that
-  currentMessage: buildConnectionPayload(),
-});
+  const sendMessage = (message) => {
+    var iframe = document.getElementById('myIframe')
+    iframe.contentWindow.postMessage(message, '*')
+  }
+
+  const sendMessageToView = (message) => {
+    viewerPort.postMessage(message, '*')
+  }
+
+  // Answer Factory
+  const buildAnswer = (requestType, payload) => {
+    return {
+      from: 'core',
+      type: 'answer',
+      requestType,
+      payload,
+    }
+  }
+
+// Build connection payload
+  const buildConnectionPayload = () => ({
+    type: "connect",
+    payload: {
+      userInfo: state.userInfo,
+      initialPath: state.initialPath,
+      initialPayload: state.initialPayload,
+    },
+    created_at: Date.now(),
+  });
+
+  const onMessageHandler = (message) => {
+    // Internal Request Handler
+    if (message.data.from === 'external-app') {
+      // Is to the Core
+      if (message.data.type.includes('nsb:')) {
+        internalRequestHandler(message.data)
+      } else {
+        // Is to the View
+        // Send it straight to the View
+        sendMessageToView(message.data)
+      }
+    }
+  }
+
+  /**
+   * Core - Internal Request handlers
+   * All core data "nsb" will pass here first
+   * @param {*} message
+   */
+  const internalRequestHandler = (message) => {
+    switch (message.type) {
+      case 'nsb:session-storage:hydrate-viewer':
+        sessionStorageHydrateViewer(message.type, message.payload)
+        break
+      case 'nsb:session-storage:hydrate-app':
+        sessionStorageHydrateApp(message.type, message.payload)
+        break
+      case 'nsb:navigation:sync-content-height':
+        syncContentHeight(message.type, message.payload)
+        sendMessageToView(message)
+        break
+      case 'nsb:auth:get-user-info':
+        sendMessageToView(message)
+        break
+    }
+  }
+
+  const sessionStorageHydrateViewer = (requestType, payload) => {
+    if (payload) {
+      setSessionStorageClone(payload)
+      state.sessionStorageClone = payload
+    }
+
+    const responseBody = buildAnswer(requestType, payload)
+    sendMessage(responseBody)
+  }
+
+  const sessionStorageHydrateApp = (requestType, payload) => {
+    const responseBody = buildAnswer(requestType, state.sessionStorageClone)
+    sendMessage(responseBody)
+  }
+
+  const syncContentHeight = (requestType, payload) => {
+    if (payload.height) {
+      setIframeHeight(payload.height)
+      state.iframeHeight = payload.height
+    }
+
+    const responseBody = buildAnswer(requestType)
+    sendMessage(responseBody)
+  }
+
+  function onLoadHandler(e) {
+    // On load iframe
+    // On get msg from External App
+    if (!connectMessageSent) {
+      setConnectMessageSent(true)
+      state.connectMessageSent = true
+      window.addEventListener('message', onMessageHandler, false)
+    }
+
+    // Send the welcome message (connects with the external app)
+    const welcomePayload = buildConnectionPayload()
+    sendMessage(welcomePayload)
+
+    // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
+    setTimeout(() => {
+      sendMessage(buildConnectionPayload())
+    }, 2000)
+  }
+
+  // Wait for the external app url to render the iframe
+  if (!state.externalAppUrl) return null
+
+  return React.createElement('iframe', {
+    sandbox: 'allow-scripts',
+    id: 'myIframe',
+    src: externalAppUrl,
+    style: { border: 'none', width: '100%', height: iframeHeight + 'px', margin: 0, padding: 0 },
+    onLoad: onLoadHandler,
+  })
+}
+
+const domContainer = document.querySelector('#bridge-root')
+const root = ReactDOM.createRoot(domContainer)
+root.render(React.createElement(NearSocialBridgeCore, {}))
+
+</script>
+`;
 
 // (i) Discovery API uses cached data structure
 const Utils = {
@@ -61,20 +198,10 @@ const Utils = {
    * Send message
    */
   sendMessage: (message) => {
-    const foo = [...state.concurrencyControl, message];
-    console.log("ARRay State:", foo);
     State.update({
-      concurrencyControl: foo,
+      currentMessage: message,
     });
-    // State.update({
-    //   currentMessage: message,
-    // });
   },
-  // sendMessage: (message) => {
-  //   State.update({
-  //     currentMessage: message,
-  //   });
-  // },
   /**
    * Call resolve or reject for a given caller
    * E.g:
@@ -105,53 +232,42 @@ const Utils = {
   },
 };
 
-// Send connect message every 2 seconds - DEV
-// TODO: This should work on for "development" env
-setTimeout(() => {
-  Utils.sendMessage(buildConnectionPayload());
-}, 2000);
-// TODO: Create a "connected" state to check the connection
-// External App should send a status = "connected: true"
-// Try to send the connection payload till the conection is established
+// External App Url
+// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
+const externalAppUrl = "https://45644fd0f83b.ngrok.app";
 
-// Start message concurrency controll with "connect" payload
-// const concurrencyControl = [buildConnectionPayload()];
-const stateCloneConcurrencyControl = state.concurrencyControl;
-const f = () => {
-  console.log(
-    "CHECK LENGHT",
-    stateCloneConcurrencyControl.length,
-    stateCloneConcurrencyControl,
-    state.currentMessage
-  );
-};
+// User Info
+const accountId = context.accountId;
+const userInfo = { accountId };
 
-if (!state.concurrencyInitialized) {
-  console.log("CONCURRENCY SYSTEM");
-  State.update({ concurrencyInitialized: true });
+// Initial Path
+const initialPath = props.path;
 
-  setInterval(() => {
-    f();
+// Initial iframe height
+const initialIframeHeight = 500;
 
-    if (state.concurrencyControl.length > 0) {
-      const currentMessage = state.concurrencyControl[0];
-      console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
-      State.update({
-        currentMessage,
-      });
-      // Utils.sendMessage(currentMessage);
-      // Remove first item from array
-      const updatedArray = state.concurrencyControl;
-      updatedArray.shift();
-      State.update({ concurrencyControl: updatedArray });
-    }
-  }, 500);
-}
+// Initial Payload (optional)
+const initialPayload = props.initialPayload || {};
+
+// Initial State
+State.init({
+  iframeHeight: initialIframeHeight,
+  // (i) DON'T send async data, it's going to randonly fail
+  // If you need to get new info, use "request" for that
+  currentMessage: {
+    type: "connect-view",
+    externalAppUrl,
+    userInfo,
+    initialPath,
+    initialPayload,
+    initialIframeHeight,
+  },
+});
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
   return {
-    from: "core",
+    from: "view",
     type: "answer",
     requestType,
     payload,
@@ -179,11 +295,10 @@ const responseFactory = {
   },
 };
 
-// Message handler
 const onMessageHandler = (message) => {
   // Handles core calls
   if (message.type.includes("nsb:")) {
-    requestsHandler(message);
+    handlerCoreRequests(message);
     return;
   }
 
@@ -201,21 +316,18 @@ const onMessageHandler = (message) => {
   props.requestHandler(request, responseFactory.build(), utils);
 };
 
-// CORE - REQUEST HANDLERS BELOW
-const requestsHandler = (message) => {
+// REQUEST HANDLERS BELOW
+// Todos os tipos "nsb" passam pelo core.js primeiro
+const handlerCoreRequests = (message) => {
   switch (message.type) {
     case "nsb:navigation:sync-content-height":
       setIframeHeight(message.type, message.payload);
       break;
-    case "nsb:session-storage:hydrate-viewer":
-      sessionStorageHydrateViewer(message.type, message.payload);
-      break;
-    case "nsb:session-storage:hydrate-app":
-      sessionStorageHydrateApp(message.type, message.payload);
-      break;
+    // NEW
     case "nsb:auth:get-user-info":
       getUserInfo(message.type, message.payload);
       break;
+    // NEW
   }
 };
 
@@ -224,23 +336,9 @@ const setIframeHeight = (requestType, payload) => {
   State.update({ iframeHeight: payload.height + 20 });
 };
 
-// [DON'T REMOVE]: Hydrate View session data with data provided by the External App
-const sessionStorageHydrateViewer = (requestType, payload) => {
-  if (payload) {
-    State.update({ sessionStorageClone: payload });
-  }
-
-  const responseBody = buildAnswer(requestType, payload);
-  Utils.sendMessage(responseBody);
-};
-
-// [DON'T REMOVE]: Hydrate External App with data provided by the View
-const sessionStorageHydrateApp = (requestType, payload) => {
-  const responseBody = buildAnswer(requestType, state.sessionStorageClone);
-  Utils.sendMessage(responseBody);
-};
-
-// [DON'T REMOVE]: Get user info
+// NEW
+// [DON'T REMOVE]
+// Get user info
 const getUserInfo = (requestType, payload) => {
   Utils.promisify(
     () => Social.getr(`${accountId}/profile`), // profile info
@@ -256,15 +354,15 @@ const getUserInfo = (requestType, payload) => {
     }
   );
 };
-// CORE - REQUEST HANDLERS ABOVE
+// NEW
+// REQUEST HANDLERS ABOVE
 
 return (
   <div>
     <iframe
-      onLoad={(e) => console.log("CARREGOU")}
       className="w-100"
       style={{ height: `${state.iframeHeight}px` }}
-      src={externalAppUrl}
+      srcDoc={code}
       message={state.currentMessage}
       onMessage={onMessageHandler}
     />
