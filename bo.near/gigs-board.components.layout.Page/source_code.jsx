@@ -79,16 +79,15 @@ const Scroll = styled.div`
 
 const Gradient = styled.div`
 {
-  position: relative;
-  width: 55vw;
-  height: 248vw;
-  left: -50vw;
+  position: absolute;
+  left: -48vw;
+  width: 173vw;
+  height: 70vw;
   top: -40vw;
-
-  background: linear-gradient(180deg, #00CCFF 0.57%, #3252A6 100.57%);
+  transform: rotate(9.78deg);
+  background: linear-gradient(90deg, rgb(0, 204, 255) 0.57%, rgb(50, 82, 166) 100.57%);
   opacity: 0.22;
-  filter: blur(250px);
-  transform: rotate(99.78deg);
+  filter: blur(17vw);
 }
 `;
 
