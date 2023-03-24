@@ -78,8 +78,7 @@ return (
       <i
         className="bi bi-caret-down"
         styles={
-          state.hoveringElement == "showCommentsButtonContainer" &&
-          thisWidgetInlineStyles.renderKudoBox.flipButton
+          state.showComments && thisWidgetInlineStyles.renderKudoBox.flipButton
         }
       ></i>
     </div>
