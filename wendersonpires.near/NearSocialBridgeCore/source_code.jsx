@@ -105,9 +105,9 @@ State.init({
 
 // Send connect message every 2 seconds - DEV
 // TODO: This should work on for "development" env
-// setTimeout(() => {
-//   Utils.sendMessage(buildConnectionPayload());
-// }, 2000);
+setTimeout(() => {
+  Utils.sendMessage(buildConnectionPayload());
+}, 2000);
 // TODO: Create a "connected" state to check the connection
 // External App should send a status = "connected: true"
 // Try to send the connection payload till the conection is established
@@ -119,7 +119,11 @@ if (!state.concurrencyInitialized) {
   State.update({ concurrencyInitialized: true });
 
   setInterval(() => {
-    console.log("CHECK LENGHT", state.concurrencyControl.length);
+    console.log(
+      "CHECK LENGHT",
+      state.concurrencyControl.length,
+      state.currentMessage
+    );
     if (state.concurrencyControl.length > 0) {
       const currentMessage = state.concurrencyControl[0];
       console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
