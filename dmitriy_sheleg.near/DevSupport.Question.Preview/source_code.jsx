@@ -1,5 +1,5 @@
-const accountId = props.accountId;
-const blockHeight = parseInt(props.blockHeight);
+// const accountId = props.accountId;
+// const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -7,21 +7,52 @@ const is_hidden = Near.view(adminContract, "is_hidden", {
   id: { account_id: accountId, block_height: blockHeight },
 });
 
-if(is_hidden){return ""}
+if (is_hidden) {
+  return "";
+}
 
 const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
 
+const accountId =
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
+const blockHeight = 84207156;
+
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
+
+const H2 = styled.h2`
+  font-size: 20px;
+  font-weight: 600;
+  color: #11181C;
+`;
+const H6 = styled.h6`
+  font-size: 14px;
+  font-weight: 500;
+  color: #687076;
+`;
 
 return (
   <div className={`border ${display} p-3`}>
-    <h2>
-      <a className="text-black" href={link}>
-        {question.title}
-      </a>
-    </h2>
+    <div class="row">
+      <div class="col-2">avatar</div>
+      <div class="col-2">
+        {/* Upvote Widget */}
+        <Widget
+          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
+          props={{ accountId, blockHeight }}
+        />
+      </div>
+      <div class="col-8">
+        <H2>
+          <a className="text-black" href={link}>
+            // {question.title}
+            Title
+          </a>
+        </H2>
+        <H6>{accountId}&nbsp;in</H6>
+      </div>
+    </div>
 
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
