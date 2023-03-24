@@ -352,6 +352,15 @@ const setIframeHeight = (requestType, payload) => {
 // [DON'T REMOVE]
 // Get user info
 const getUserInfo = (requestType, payload) => {
+  // check if user is signed in
+  if (!accountId) {
+    const responseBody = buildAnswer(requestType, {
+      error: "user is not signed in",
+    });
+    Utils.sendMessage(responseBody);
+    return;
+  }
+
   Utils.promisify(
     () => Social.getr(`${accountId}/profile`), // profile info
     (res) => {
@@ -362,7 +371,7 @@ const getUserInfo = (requestType, payload) => {
       Utils.sendMessage(responseBody);
     },
     (err) => {
-      console.error("error fetching profile data", err);
+      console.log("error fetching profile data", err);
     }
   );
 };
