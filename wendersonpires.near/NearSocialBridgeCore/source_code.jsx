@@ -116,7 +116,7 @@ setTimeout(() => {
 
 // Start message concurrency controll with "connect" payload
 // const concurrencyControl = [buildConnectionPayload()];
-const f = () => {
+const f = function () {
   console.log(
     "CHECK LENGHT",
     state.concurrencyControl.length,
@@ -129,8 +129,9 @@ if (!state.concurrencyInitialized) {
   State.update({ concurrencyInitialized: true });
 
   setInterval(() => {
+    f();
+
     if (state.concurrencyControl.length > 0) {
-      f();
       const currentMessage = state.concurrencyControl[0];
       console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
       State.update({
