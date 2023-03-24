@@ -102,9 +102,9 @@ State.init({
 
 // Send connect message every 2 seconds - DEV
 // TODO: This should work on for "development" env
-setTimeout(() => {
-  Utils.sendMessage(buildConnectionPayload());
-}, 2000);
+// setTimeout(() => {
+//   Utils.sendMessage(buildConnectionPayload());
+// }, 2000);
 // TODO: Create a "connected" state to check the connection
 // External App should send a status = "connected: true"
 // Try to send the connection payload till the conection is established
