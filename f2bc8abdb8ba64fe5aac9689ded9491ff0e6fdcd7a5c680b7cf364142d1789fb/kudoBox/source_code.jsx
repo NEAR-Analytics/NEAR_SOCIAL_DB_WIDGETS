@@ -17,6 +17,12 @@ function getShowCommentsButtonContainerStyles() {
     : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
 }
 
+function getCaretDirection() {
+  return state.showComments
+    ? thisWidgetInlineStyles.renderKudoBox.flipButton
+    : {};
+}
+
 const RenderAllCommentAnswerBox = (d) => {
   return d.value.comments.map((c) => {
     return (
@@ -75,12 +81,7 @@ return (
       <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
         Show comments
       </p>
-      <i
-        className="bi bi-caret-down"
-        style={
-          state.showComments && thisWidgetInlineStyles.renderKudoBox.flipButton
-        }
-      ></i>
+      <i className="bi bi-caret-down" style={getCaretDirection()}></i>
     </div>
 
     {RenderAllCommentAnswerBox(d)}
