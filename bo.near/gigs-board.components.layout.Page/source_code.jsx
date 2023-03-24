@@ -97,7 +97,10 @@ return (
       <Gradient></Gradient>
     </Banner>
     <Logo>
-      <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
+      <img
+        src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"
+        href="https://devgovgigs.near.social"
+      ></img>
     </Logo>
     <Scroll>
       {widget("components.layout.Controls")}
