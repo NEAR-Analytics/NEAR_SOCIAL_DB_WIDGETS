@@ -27,7 +27,7 @@ function getCaretDirection() {
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.container;
 
-  styles["zIndex"] = index;
+  styles["zIndex"] = `${index}`;
   return styles;
 }
 
@@ -59,9 +59,8 @@ const RenderAllCommentAnswerBox = (d) => {
 
 function getKudoBoxContainerStyles() {
   let styles = thisWidgetInlineStyles.renderKudoBox.cardContainer;
-  console.log("styles: ", styles);
 
-  styles["zIndex"] = index;
+  styles["zIndex"] = `${index}`;
   return styles;
 }
 
