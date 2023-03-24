@@ -7,7 +7,9 @@ if (!props.externalAppUrl) {
   );
 }
 
-// Load React, React Dom and the Core Bridge library
+/**
+ * Load React, React Dom and the Core Bridge library
+ */
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -33,8 +35,8 @@ function NearSocialBridgeCore(props) {
   const [externalAppUrl, setExternalAppUrl] = React.useState(state.externalAppUrl)
   const [connectMessageSent, setConnectMessageSent] = React.useState(state.connectMessageSent)
   const [iframeHeight, setIframeHeight] = React.useState(state.iframeHeight)
-  const [sessionStorageClone, setSessionStorageClone] = React.useState(state.sessionStorageClone)
-  const [userInfo, setUserInfo] = React.useState(state.userInfo)
+  const [, setSessionStorageClone] = React.useState(state.sessionStorageClone)
+  const [, setUserInfo] = React.useState(state.userInfo)
 
   React.useEffect(() => {
     const handler = (e) => {
@@ -43,10 +45,10 @@ function NearSocialBridgeCore(props) {
         viewerPort = e.source
         setExternalAppUrl(e.data.externalAppUrl)
         setIframeHeight(e.data.initialIframeHeight || 480)
+        setUserInfo(e.data.userInfo)
         state.externalAppUrl = e.data.externalAppUrl
         state.initialPath = e.data.initialPath
         state.userInfo = e.data.userInfo
-        setUserInfo(e.data.userInfo)
         state.initialPayload = e.data.initialPayload
         state.iframeHeight = e.data.initialIframeHeight || 480
       }
@@ -90,16 +92,16 @@ function NearSocialBridgeCore(props) {
     }
   }
 
-// Build connection payload
+  // Build connection payload
   const buildConnectionPayload = () => ({
-    type: "connect",
+    type: 'connect',
     payload: {
       userInfo: state.userInfo,
       initialPath: state.initialPath,
       initialPayload: state.initialPayload,
     },
     created_at: Date.now(),
-  });
+  })
 
   const onMessageHandler = (message) => {
     // Internal Request Handler
@@ -130,10 +132,10 @@ function NearSocialBridgeCore(props) {
         break
       case 'nsb:navigation:sync-content-height':
         syncContentHeight(message.type, message.payload)
-        sendMessageToView(message)
+        sendMessageToView(message) // The view need to handle it
         break
       case 'nsb:auth:get-user-info':
-        sendMessageToView(message)
+        sendMessageToView(message) // The view need to handle it
         break
     }
   }
@@ -148,7 +150,7 @@ function NearSocialBridgeCore(props) {
     sendMessage(responseBody)
   }
 
-  const sessionStorageHydrateApp = (requestType, payload) => {
+  const sessionStorageHydrateApp = (requestType) => {
     const responseBody = buildAnswer(requestType, state.sessionStorageClone)
     sendMessage(responseBody)
   }
@@ -197,7 +199,6 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
-
 </script>
 `;
 
