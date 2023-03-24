@@ -46,9 +46,12 @@ function href(widgetName, linkProps) {
 
 const Banner = styled.div`
   {
-    width: 100%;
-    height: 100px;
     padding: 32px 0;
+    width: 100vw;
+    height: 100px;
+
+  position: relative;
+  left: calc(-50vw + 50%);
 
     background: #232323;
   }
