@@ -1,0 +1,1 @@
+return `Bye ${props.name}`;
