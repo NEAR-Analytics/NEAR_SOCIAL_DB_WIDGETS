@@ -129,6 +129,17 @@ if (state.balance === undefined && state.sender) {
         balance: Big(res[0]).div(Big(10).pow(18)).toFixed(2),
       });
     });
+  contractGNSStaking
+    .users(Ethers.provider().getSigner().getAddress())
+    .then((res) => {
+      console.log(res[0]);
+      State.update({
+        stakedBalance: Big(res[0]).div(Big(10).pow(18)).toFixed(2),
+      });
+      State.update({
+        daiBalance: Big(res[1]).div(Big(10).pow(18)).toFixed(10),
+      });
+    });
 }
 
 // FETCH CSS
@@ -194,8 +205,28 @@ return (
                 </div>
               </div>
             </div>
+            <div class="LidoSplitter" />
           </>
         )}
+        <div
+          class={
+            state.sender ? "LidoFormBottomContainer" : "LidoFormTopContainer"
+          }
+        >
+          <div class="LidoFormTopContainerLeft">
+            <div class="LidoFormTopContainerLeftContent1">
+              <div class="LidoFormTopContainerLeftContent1Container">
+                <span>Available rewards to claim</span>
+              </div>
+            </div>
+            <div class="LidoFormTopContainerLeftContent2">
+              <span>
+                {state.daiBalance ?? (!state.sender ? "0" : "...")}
+                &nbsp;DAI
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="LidoStakeForm">
         {!!state.sender ? (
