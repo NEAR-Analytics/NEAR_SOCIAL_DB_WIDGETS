@@ -1,4 +1,5 @@
 const d = props.d;
+const index = props.index;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNameskudos;
 const updateGeneralState = props.updateGeneralState;
@@ -23,10 +24,17 @@ function getCaretDirection() {
     : { transition: "transform 1s" };
 }
 
+function getAnswersContainerStyles() {
+  let styles = thisWidgetInlineStyles.allCommentAnswerBox.container;
+
+  styles["z-index"] = index;
+  return styles;
+}
+
 const RenderAllCommentAnswerBox = (d) => {
   return d.value.comments.map((c) => {
     return (
-      <div style={thisWidgetInlineStyles.allCommentAnswerBox.container}>
+      <div style={getAnswersContainerStyles()}>
         <Widget
           src="mob.near/widget/ProfileImage"
           props={{
@@ -49,9 +57,16 @@ const RenderAllCommentAnswerBox = (d) => {
   });
 };
 
+function getKudoBoxContainerStyles() {
+  let styles = thisWidgetInlineStyles.renderKudoBox.cardContainer;
+
+  styles["z-index"] = index;
+  return styles;
+}
+
 return (
   <div
-    style={thisWidgetInlineStyles.renderKudoBox.cardContainer}
+    style={getKudoBoxContainerStyles()}
     className={thisWidgetClassNames.renderKudoBox.cardContainer}
   >
     <Widget
