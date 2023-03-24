@@ -79,11 +79,11 @@ const Scroll = styled.div`
 
 const Gradient = styled.div`
 {
-  position: absolute;
-  width: 1057.31px;
-  height: 2620.61px;
-  left: 1986.1px;
-  top: -332.99px;
+  position: relative;
+  width: 55vw;
+  height: 248vw;
+  left: -50vw;
+  top: -40vw;
 
   background: linear-gradient(180deg, #00CCFF 0.57%, #3252A6 100.57%);
   opacity: 0.22;
