@@ -116,11 +116,12 @@ setTimeout(() => {
 
 // Start message concurrency controll with "connect" payload
 // const concurrencyControl = [buildConnectionPayload()];
+const stateCloneConcurrencyControl = state.concurrencyControl;
 const f = () => {
   console.log(
     "CHECK LENGHT",
-    state.concurrencyControl.length,
-    state.concurrencyControl,
+    stateCloneConcurrencyControl.length,
+    stateCloneConcurrencyControl,
     state.currentMessage
   );
 };
