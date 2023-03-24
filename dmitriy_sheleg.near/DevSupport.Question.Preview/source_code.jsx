@@ -25,6 +25,15 @@ const H2 = styled.h2`
   font-size: 20px;
   font-weight: 600;
   color: #11181C;
+
+  a {
+    color: inherit;
+    transition: color .15s ease;
+    &:hover {
+      color: #30A46C;
+      text-decoration: none;
+    }
+  }
 `;
 const H6 = styled.h6`
   font-size: 14px;
@@ -55,7 +64,7 @@ return (
       </div>
       <div class="col-8">
         <H2>
-          <a className="text-black" href={link}>
+          <a href={link}>
             // {question.title}
             Title
           </a>
