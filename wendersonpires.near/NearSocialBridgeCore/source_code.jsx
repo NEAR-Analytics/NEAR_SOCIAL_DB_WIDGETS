@@ -130,6 +130,7 @@ if (!state.concurrencyInitialized) {
 
   setInterval(() => {
     if (state.concurrencyControl.length > 0) {
+      f();
       const currentMessage = state.concurrencyControl[0];
       console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
       State.update({
