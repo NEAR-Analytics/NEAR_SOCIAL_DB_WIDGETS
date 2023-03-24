@@ -1,5 +1,8 @@
-const accountId = props.accountId;
-const blockHeight = parseInt(props.blockHeight);
+// const accountId = props.accountId;
+// const blockHeight = parseInt(props.blockHeight);
+const accountId =
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
+const blockHeight = 84207156;
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -14,10 +17,6 @@ if (is_hidden) {
 const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
-
-// const accountId =
-("ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055");
-// const blockHeight = 84207156;
 
 const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
 
@@ -70,7 +69,12 @@ return (
           <div class="d-flex">
             <Trancate>{accountId}</Trancate>
             &nbsp;in&nbsp;
-            <TopicName>Some Topic Name</TopicName>
+            <TopicName>
+              <Widget
+                src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
+                props={{ labels: question.labels }}
+              />
+            </TopicName>
             &nbsp;&#8226;&nbsp;
             <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
           </div>
@@ -78,41 +82,42 @@ return (
       </div>
     </div>
 
+    {/*
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
       props={{ labels: question.labels }}
     />
-
     <div className="pt-2">
       <Widget
         src="mob.near/widget/MainPage.Post.Content"
         props={{ content: { text: question.content.text } }}
       />
     </div>
-
+  */}
+    {/*
     <div>
       <small class="text-muted">
         <div class="row justify-content-between">
           <div class="col-8">
-            {/* Upvote Widget */}
+            // Upvote Widget
             <Widget
               src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
               props={{ accountId, blockHeight }}
             />
 
-            {/* Flag question widget */}
+            // Flag question widget
             <Widget
               src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Flag"
               props={{ accountId, blockHeight }}
             />
 
-            {/* Answers widget */}
+            // Answers widget
             <Widget
               src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Answers"
               props={{ accountId, blockHeight }}
             />
 
-            {/* Delete widget */}
+            // Delete widget
             <Widget
               src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Delete"
               props={{ accountId, blockHeight, admins, adminContract }}
@@ -130,5 +135,6 @@ return (
         </div>
       </small>
     </div>
+    */}
   </div>
 );
