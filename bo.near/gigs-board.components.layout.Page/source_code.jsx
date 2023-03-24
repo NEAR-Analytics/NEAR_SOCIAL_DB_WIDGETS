@@ -53,6 +53,8 @@ const Banner = styled.div`
     background: #232323;
     z-index: 2;
     margin-top: -24px;
+
+    overflow: hidden;
   }
 `;
 
@@ -93,9 +95,8 @@ const Gradient = styled.div`
 return (
   <>
     <Banner>
-      <div class="row"></div>
+      <Gradient></Gradient>
     </Banner>
-    <Gradient></Gradient>
     <Logo>
       <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
     </Logo>
