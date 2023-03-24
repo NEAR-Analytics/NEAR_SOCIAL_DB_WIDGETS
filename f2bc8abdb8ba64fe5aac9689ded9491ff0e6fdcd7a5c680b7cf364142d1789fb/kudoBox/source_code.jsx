@@ -59,6 +59,7 @@ const RenderAllCommentAnswerBox = (d) => {
 
 function getKudoBoxContainerStyles() {
   let styles = thisWidgetInlineStyles.renderKudoBox.cardContainer;
+  console.log("styles: ", styles);
 
   styles["zIndex"] = index;
   return styles;
