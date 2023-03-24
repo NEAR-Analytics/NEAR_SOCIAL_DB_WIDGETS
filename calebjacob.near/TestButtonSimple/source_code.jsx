@@ -1,5 +1,5 @@
 return (
-  <button type="button" ref={ref}>
+  <button type="button" ref={forwardedRef}>
     {props.label}
   </button>
 );
