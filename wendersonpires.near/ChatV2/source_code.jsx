@@ -13,10 +13,10 @@ const initialViewHeight = 500;
 /**
  * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
  * If you want to get some data, make a "request"
+ *
+ * Use "useInitialPayload()" hook inside the external app to get this data
  */
-const initialPayload = {
-  mamilos: "polemicos",
-};
+const initialPayload = {};
 
 /**
  * Request Handlers - Backend.
@@ -63,7 +63,6 @@ const getRoomDataHandler = (request, response, Utils) => {
       response(request).send({ messages: roomData });
     },
     (err) => {
-      console.log("B");
       response(request).send({ error: "internal error" });
     }
   );
