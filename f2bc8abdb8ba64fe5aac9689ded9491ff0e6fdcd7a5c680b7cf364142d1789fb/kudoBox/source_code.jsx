@@ -34,25 +34,29 @@ function getAnswersContainerStyles() {
 const RenderAllCommentAnswerBox = (d) => {
   return d.value.comments.map((c) => {
     return (
-      <div style={getAnswersContainerStyles()}>
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{
-            accountId: c.accountId,
-            className: "d-inline-block",
-            style:
-              thisWidgetInlineStyles.allCommentAnswerBox.profileImageStyles,
-          }}
-        />
-        <a href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}>
-          {c.accountId}
-        </a>
-        I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
-        <Widget
-          src="mob.near/widget/FollowButton"
-          props={{ accountId: c.accountId }}
-        />
-      </div>
+      <>
+        {state.showComments && (
+          <div style={getAnswersContainerStyles()}>
+            <Widget
+              src="mob.near/widget/ProfileImage"
+              props={{
+                accountId: c.accountId,
+                className: "d-inline-block",
+                style:
+                  thisWidgetInlineStyles.allCommentAnswerBox.profileImageStyles,
+              }}
+            />
+            <a href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}>
+              {c.accountId}
+            </a>
+            I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
+            <Widget
+              src="mob.near/widget/FollowButton"
+              props={{ accountId: c.accountId }}
+            />
+          </div>
+        )}
+      </>
     );
   });
 };
