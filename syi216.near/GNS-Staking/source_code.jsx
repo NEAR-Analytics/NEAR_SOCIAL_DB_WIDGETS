@@ -131,7 +131,7 @@ if (state.stakedBalance === undefined && state.sender) {
         stakedBalance: Big(res[0]).div(Big(10).pow(18)).toFixed(2),
       });
       State.update({
-        daiBalance: Big(res[1]).div(Big(10).pow(18)).toFixed(4),
+        daiBalance: Big(res[1]).div(Big(10).pow(18)).toFixed(10),
       });
     });
 }
@@ -225,9 +225,9 @@ return (
           </div>
           <div class="LidoFormTopContainerRight">
             <div class="LidoAprContainer">
-              <div class="LidoAprTitle">Your APR</div>
+              <div class="LidoAprTitle">Pending DAI rewards</div>
               <div class="LidoAprValue">
-                {(state.daiBalance * 100).toFixed(2) ?? "..."}%
+                {state.daiBalance ?? "..."}&nbsp;DAI
               </div>
             </div>
           </div>
