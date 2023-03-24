@@ -26,13 +26,11 @@ function getCaretDirection() {
 
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.container;
-  console.log("index: ", index);
 
-  styles["zIndex"] = `${index}`;
+  //I use 1070 because it's the z-index the current popus have. Might be good idea to review this in a future.
+  styles["zIndex"] = `${1070 - index}`;
   return styles;
 }
-
-console.log("styles: ", getAnswersContainerStyles());
 
 const RenderAllCommentAnswerBox = (d) => {
   return d.value.comments.map((c) => {
@@ -67,7 +65,8 @@ const RenderAllCommentAnswerBox = (d) => {
 function getKudoBoxContainerStyles() {
   let styles = thisWidgetInlineStyles.renderKudoBox.cardContainer;
 
-  styles["zIndex"] = `${index}`;
+  //I use 1070 because it's the z-index the current popus have. Might be good idea to review this in a future.
+  styles["zIndex"] = `${1070 - index}`;
   return styles;
 }
 
