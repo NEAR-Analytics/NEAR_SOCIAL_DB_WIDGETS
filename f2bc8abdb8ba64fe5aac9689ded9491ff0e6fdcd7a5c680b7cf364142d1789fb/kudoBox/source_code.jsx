@@ -81,7 +81,9 @@ return (
       <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
         Show comments
       </p>
-      <i className="bi bi-caret-down" style={getCaretDirection()}></i>
+      <div style={getCaretDirection()}>
+        <i className="bi bi-caret-down"></i>
+      </div>
     </div>
 
     {RenderAllCommentAnswerBox(d)}
