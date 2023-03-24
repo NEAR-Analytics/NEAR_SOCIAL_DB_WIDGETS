@@ -157,13 +157,14 @@ const RenderAllCommentAnswerBox = (d) => {
 
 /* END CommentBox  */
 
-const RenderKudoBox = (d) => {
+const RenderKudoBox = (d, index) => {
   return (
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
       props={{
         widgetOwner,
         d,
+        index,
         upvotes,
         updateGeneralState,
         allWidgetsInlineStyles: props.allWidgetsInlineStyles,
@@ -246,7 +247,9 @@ return (
       Kudos!
     </CommitButton>
     <div className={allWidgetsClassNames.allCardsContainer}>
-      {sortedData ? sortedData.map((d) => RenderKudoBox(d)) : "Loading..."}
+      {sortedData
+        ? sortedData.map((d) => RenderKudoBox(d, index))
+        : "Loading..."}
     </div>
   </div>
 );
