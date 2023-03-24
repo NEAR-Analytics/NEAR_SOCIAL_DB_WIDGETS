@@ -46,30 +46,47 @@ function href(widgetName, linkProps) {
 
 const Banner = styled.div`
   {
-    padding: 32px 0;
+    position: fixed;
+    left: calc(-50vw + 50%);
     width: 100vw;
     height: 100px;
-
-  position: relative;
-  left: calc(-50vw + 50%);
-
     background: #232323;
+    z-index: 2;
   }
+`;
+
+const Logo = styled.div`
+{
+  position:fixed;
+  padding: 32px 0;
+  z-index: 3;
 
   img {
     height: 36px;
   }
+}
 `;
+
+const Scroll = styled.div`
+{
+  z-index: -1;
+  margin-top: 135px;
+}`;
 
 return (
   <>
     <Banner>
-      <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
+      <div class="row"></div>
     </Banner>
-    {widget("components.layout.Controls")}
-    {widget("components.layout.Navbar", {
-      children: props.navbarChildren,
-    })}
-    {props.children}
+    <Logo>
+      <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
+    </Logo>
+    <Scroll>
+      {widget("components.layout.Controls")}
+      {widget("components.layout.Navbar", {
+        children: props.navbarChildren,
+      })}
+      {props.children}
+    </Scroll>
   </>
 );
