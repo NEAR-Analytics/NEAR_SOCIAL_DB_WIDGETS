@@ -26,6 +26,7 @@ function getCaretDirection() {
 
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.container;
+  console.log("index: ", index);
 
   styles["zIndex"] = `${index}`;
   return styles;
