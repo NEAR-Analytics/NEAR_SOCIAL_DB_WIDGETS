@@ -225,7 +225,7 @@ return (
               class="LidoStakeFormSubmitContainer"
               onClick={() => submitEthers(state.strEther, state.sender)}
             >
-              <span>Stake</span>
+              <span>Unstake</span>
             </button>
           </div>
         ) : (
