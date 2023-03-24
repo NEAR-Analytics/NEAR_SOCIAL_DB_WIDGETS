@@ -138,7 +138,9 @@ return (
   <Theme>
     <div class="LidoContainer">
       <div class="Header">Swap $ETH &lt;&gt; $SUSHI/$USDT/$NEAR</div>
-      <div class="SubHeader">Swap ETH and receive SUSHI</div>
+      <div class="SubHeader">
+        Swap ETH and receive SUSHI/USDT/NEAR - Available on Ethereum Mainnet
+      </div>
 
       <div class="LidoForm">
         {state.sender && (
