@@ -24,7 +24,9 @@ const Utils = {
    * Send message
    */
   sendMessage: (message) => {
-    concurrencyControl.push(message);
+    State.update({
+      concurrencyControl: [...state.concurrencyControl, message],
+    });
     // State.update({
     //   currentMessage: message,
     // });
