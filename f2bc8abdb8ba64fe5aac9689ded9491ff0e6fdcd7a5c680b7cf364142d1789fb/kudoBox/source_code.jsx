@@ -20,7 +20,7 @@ function getShowCommentsButtonContainerStyles() {
 function getCaretDirection() {
   return state.showComments
     ? thisWidgetInlineStyles.renderKudoBox.flipButton
-    : { transition: "all 2s" };
+    : { transition: "transform 2s" };
 }
 
 const RenderAllCommentAnswerBox = (d) => {
