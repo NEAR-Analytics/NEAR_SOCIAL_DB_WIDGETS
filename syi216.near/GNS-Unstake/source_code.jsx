@@ -130,14 +130,11 @@ if (state.balance === undefined && state.sender) {
       });
     });
   contractGNSStaking
-    .users(Ethers.provider().getSigner().getAddress())
+    .pendingRewardDai(Ethers.provider().getSigner().getAddress())
     .then((res) => {
-      console.log(res[0]);
+      console.log("Reward Dai: ", res);
       State.update({
-        stakedBalance: Big(res[0]).div(Big(10).pow(18)).toFixed(2),
-      });
-      State.update({
-        daiBalance: Big(res[1]).div(Big(10).pow(18)).toFixed(10),
+        daiBalance: Big(res).div(Big(10).pow(18)).toFixed(10),
       });
     });
 }
@@ -177,8 +174,8 @@ const getSender = () => {
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Unstake GNS</div>
-      <div class="SubHeader">Unstake GNS token on Polygon </div>
+      <div class="Header">Manage stake GNS</div>
+      <div class="SubHeader">Manage stake GNS token on Polygon </div>
       <div class="LidoForm">
         {state.sender && (
           <>
