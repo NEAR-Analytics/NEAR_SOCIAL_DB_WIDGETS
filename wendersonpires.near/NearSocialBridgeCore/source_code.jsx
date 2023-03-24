@@ -93,6 +93,7 @@ const buildConnectionPayload = () => ({
 // Initial State
 State.init({
   concurrencyInitialized: false,
+  concurrencyControl: [buildConnectionPayload()],
   iframeHeight: initialIframeHeight,
   sessionStorageClone: {},
   // (i) DON'T send async data, it's going to randonly fail
@@ -110,18 +111,20 @@ State.init({
 // Try to send the connection payload till the conection is established
 
 // Start message concurrency controll with "connect" payload
-const concurrencyControl = [buildConnectionPayload()];
+// const concurrencyControl = [buildConnectionPayload()];
 if (!state.concurrencyInitialized) {
   console.log("CONCURRENCY SYSTEM");
   State.update({ concurrencyInitialized: true });
 
   setInterval(() => {
-    if (concurrencyControl.length > 0) {
-      const currentMessage = concurrencyControl[0];
+    if (state.concurrencyControl.length > 0) {
+      const currentMessage = state.concurrencyControl[0];
       console.log("PROCESS CONCURRENCY, current msg:", currentMessage);
       Utils.sendMessage(currentMessage);
       // Remove first item from array
-      concurrencyControl.shift();
+      const updatedArray = state.concurrencyControl;
+      updatedArray.shift();
+      State.update({ concurrencyControl: updatedArray });
     }
   }, 500);
 }
