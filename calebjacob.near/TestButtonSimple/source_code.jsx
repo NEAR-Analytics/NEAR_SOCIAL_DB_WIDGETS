@@ -1,5 +1,1 @@
-return (
-  <button type="button" ref={forwardedRef}>
-    {props.label}
-  </button>
-);
+return <button type="button">{props.label}</button>;
