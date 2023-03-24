@@ -120,7 +120,7 @@ if (!state.concurrencyInitialized) {
   console.log("CONCURRENCY SYSTEM");
   State.update({ concurrencyInitialized: true });
 
-  setInterval(() => {
+  setInterval(function () {
     console.log(
       "CHECK LENGHT",
       state.concurrencyControl.length,
