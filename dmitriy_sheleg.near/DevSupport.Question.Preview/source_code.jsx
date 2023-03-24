@@ -31,6 +31,16 @@ const H6 = styled.h6`
   font-weight: 500;
   color: #687076;
 `;
+const Trancate = styled.span`
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+const TopicName = styled.span`
+  color: #006ADC;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+`;
 
 return (
   <div className={`border ${display} p-3`}>
@@ -50,7 +60,15 @@ return (
             Title
           </a>
         </H2>
-        <H6>{accountId}&nbsp;in</H6>
+        <H6>
+          <div class="d-flex">
+            <Trancate>{accountId}</Trancate>
+            &nbsp;in&nbsp;
+            <TopicName>Some Topic Name</TopicName>
+            &nbsp;&#8226;&nbsp;
+            <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+          </div>
+        </H6>
       </div>
     </div>
 
