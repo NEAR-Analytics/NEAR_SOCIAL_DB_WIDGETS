@@ -294,7 +294,9 @@ return (
         <div class="LidoFooterContainer">
           <div class="LidoFooterRaw">
             <div class="LidoFooterRawLeft">
-              GNS Polygon APR: {polygonApr.body.sssApr.toFixed(4) ?? "...."}%
+              <strong>
+                GNS Polygon APR: {polygonApr.body.sssApr.toFixed(4) ?? "...."}%
+              </strong>
             </div>
           </div>
         </div>
