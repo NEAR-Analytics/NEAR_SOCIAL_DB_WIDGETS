@@ -227,9 +227,9 @@ return (
           </div>
           <div class="LidoFormTopContainerRight">
             <div class="LidoAprContainer">
-              <div class="LidoAprTitle">Pending DAI rewards</div>
+              <div class="LidoAprTitle">GNS APR</div>
               <div class="LidoAprValue">
-                {state.daiBalance ?? "..."}&nbsp;DAI
+                {polygonApr.body.sssBaseApr.toFixed(4) ?? "...."}%
               </div>
             </div>
           </div>
@@ -291,15 +291,6 @@ return (
             connectLabel="Connect with Web3"
           />
         )}
-        <div class="LidoFooterContainer">
-          <div class="LidoFooterRaw">
-            <div class="LidoFooterRawLeft">
-              <strong>
-                GNS Polygon APR: {polygonApr.body.sssApr.toFixed(4) ?? "...."}%
-              </strong>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </Theme>
