@@ -234,12 +234,7 @@ const withdrawReward = () => {
     .then((transactionHash) => transactionHash.wait())
     .then((ricit) => {
       console.log("receipt", ricit);
-      getStakedBalance(state.sender).then((stakedBalance) => {
-        State.update({ stakedBalance });
-      });
-      getRewardBalance().then((rewards) => {
-        State.update({ rewards });
-      });
+      State.update({ rewards: 0 });
       State.update({ message: "Success" });
       State.update({
         reason: `Rewards withdrawn, Enjoy!`,
