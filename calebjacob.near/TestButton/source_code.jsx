@@ -2,4 +2,4 @@ const Button = styled.button`
     background: #f00;
 `;
 
-return <Button>{props.label}</Button>;
+return <Button type="button">{props.label}</Button>;
