@@ -4,3 +4,5 @@ function calc(a, b) {
   const mmm = Module2(a, b);
   return a + b + mmm;
 }
+
+return calc;
