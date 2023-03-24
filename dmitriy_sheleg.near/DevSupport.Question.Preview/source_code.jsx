@@ -57,8 +57,8 @@ return (
       <div class="col-2">
         {/* Upvote Widget */}
         <Widget
-          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
-          // src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
+          // src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
+          src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
           props={{ accountId, blockHeight }}
         />
       </div>
