@@ -124,6 +124,7 @@ if (!state.concurrencyInitialized) {
     console.log(
       "CHECK LENGHT",
       state.concurrencyControl.length,
+      state.concurrencyControl,
       state.currentMessage
     );
     if (state.concurrencyControl.length > 0) {
