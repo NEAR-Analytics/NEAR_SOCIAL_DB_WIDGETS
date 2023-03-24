@@ -52,6 +52,7 @@ const Banner = styled.div`
     height: 100px;
     background: #232323;
     z-index: 2;
+    margin-top: -24px;
   }
 `;
 
@@ -60,6 +61,7 @@ const Logo = styled.div`
   position:fixed;
   padding: 32px 0;
   z-index: 3;
+  margin-top: -24px;
 
   img {
     height: 36px;
