@@ -77,7 +77,7 @@ return (
       </p>
       <i
         className="bi bi-caret-down"
-        styles={
+        style={
           state.showComments && thisWidgetInlineStyles.renderKudoBox.flipButton
         }
       ></i>
