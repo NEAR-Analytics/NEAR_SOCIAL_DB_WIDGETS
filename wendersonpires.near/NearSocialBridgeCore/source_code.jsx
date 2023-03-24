@@ -9,6 +9,9 @@ if (!props.externalAppUrl) {
 
 /**
  * Load React, React Dom and the Core Bridge library
+ *
+ * It's recommended to use VSCode to edit this code.
+ * Save this code in the core.js file as well.
  */
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
@@ -241,10 +244,6 @@ const Utils = {
     find();
   },
 };
-
-// External App Url
-// const externalAppUrl = "https://near-test-app.firebaseapp.com/";
-// const externalAppUrl = "https://45644fd0f83b.ngrok.app";
 
 // External App Url
 const externalAppUrl = props.externalAppUrl;
