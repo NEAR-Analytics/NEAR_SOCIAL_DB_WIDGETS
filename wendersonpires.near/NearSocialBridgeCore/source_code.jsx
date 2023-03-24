@@ -1,3 +1,12 @@
+// Crucial checks
+if (!props.externalAppUrl) {
+  return (
+    <p style={{ fontWeight: 600, color: "#AB2E28", fontFamily: "Courier new" }}>
+      Error: "externalAppUrl" prop must be provided
+    </p>
+  );
+}
+
 // Load React, React Dom and the Core Bridge library
 const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
@@ -234,7 +243,10 @@ const Utils = {
 
 // External App Url
 // const externalAppUrl = "https://near-test-app.firebaseapp.com/";
-const externalAppUrl = "https://45644fd0f83b.ngrok.app";
+// const externalAppUrl = "https://45644fd0f83b.ngrok.app";
+
+// External App Url
+const externalAppUrl = props.externalAppUrl;
 
 // User Info
 const accountId = context.accountId;
@@ -244,7 +256,7 @@ const userInfo = { accountId };
 const initialPath = props.path;
 
 // Initial iframe height
-const initialIframeHeight = 500;
+const initialIframeHeight = props.initialViewHeight || 500;
 
 // Initial Payload (optional)
 const initialPayload = props.initialPayload || {};
