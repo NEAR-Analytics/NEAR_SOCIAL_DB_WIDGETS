@@ -31,6 +31,8 @@ function getAnswersContainerStyles() {
   return styles;
 }
 
+console.lo("styles: ", getAnswersContainerStyles());
+
 const RenderAllCommentAnswerBox = (d) => {
   return d.value.comments.map((c) => {
     return (
