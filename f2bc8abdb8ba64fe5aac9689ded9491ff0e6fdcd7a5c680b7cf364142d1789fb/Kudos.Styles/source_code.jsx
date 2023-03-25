@@ -19,6 +19,22 @@ if (!state.metadata) {
   return "Loading metadata";
 }
 
+//=============================================================================Start components styles==================================================================================================
+
+const allStyledComponentsStyles = {
+  kudos: {
+    cardContainer: `
+        width: 45%;
+
+        @media (hover: none) {
+          width: 100%;
+        }
+    `,
+  },
+};
+
+//=============================================================================End components styles=====================================================================================================
+
 //=============================================================================Start inline styles=======================================================================================================
 
 const standardButtonStyles = {
@@ -56,6 +72,7 @@ const allWidgetsInlineStyles = {
       fontFamily: "Onest",
       fontStyle: "normal",
       borderRadius: "20px",
+      overflowY: "scroll",
     },
     headerContainer: {
       backgroundColor: "white",
@@ -97,6 +114,7 @@ const allWidgetsInlineStyles = {
     },
     allCommentAnswerBox: {
       cardsContainer: {
+        boxShadow: "1px 0px 8px -3px rgba(0,0,0,0.44) inset",
         maxHeight: "75vh",
         overflowY: "scroll",
         transform: "translateY(calc(100% - 12px))",
@@ -143,20 +161,25 @@ const allWidgetsInlineStyles = {
         boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
         backgroundColor: "white",
         borderRadius: "1rem",
-        maxWidth: "40vw",
         textAlign: "center",
         padding: "10px",
         margin: "1rem 0",
       },
+      showCommentsButtonContainerNoComments: {
+        margin: "0.5rem auto",
+        padding: "0.3rem 0.5rem",
+        borderRadius: "12px",
+        width: "max-content",
+      },
       showCommentsButtonContainer: {
-        margin: "0 auto",
+        margin: "0.5rem auto",
         padding: "0.3rem 0.5rem",
         cursor: "pointer",
         borderRadius: "12px",
         width: "max-content",
       },
       hoveringShowCommentsButtonContainer: {
-        margin: "0 auto",
+        margin: "0.5rem auto",
         padding: "0.3rem 0.5rem",
         cursor: "pointer",
         borderRadius: "12px",
@@ -166,6 +189,7 @@ const allWidgetsInlineStyles = {
       },
       textShowComment: {
         margin: "0",
+        userSelect: "none",
       },
       flipButton: {
         transform: "rotate(180deg)",
@@ -180,6 +204,10 @@ const allWidgetsInlineStyles = {
     cardContent: {
       width: "100%",
     },
+    postContentContainer: {
+      textAlign: "start",
+      marginLeft: "1rem",
+    },
     headerStyles: {
       padding: "0 1rem",
       display: "flex",
@@ -188,10 +216,6 @@ const allWidgetsInlineStyles = {
     },
     followButtonContainer: {
       marginLeft: "0.5rem",
-    },
-    cardContent: {
-      display: "grid",
-      gridTemplateColumns: "3fr 1fr 1fr",
     },
     upVoteContainer: {
       width: "100%",
@@ -223,7 +247,7 @@ const allWidgetsInlineStyles = {
 //===============================================================================End inline styles=======================================================================================================
 
 //==============================================================================Start class styles=======================================================================================================
-
+a;
 const allWidgetsClassNames = {
   styles: {
     container: "pb-5",
@@ -240,7 +264,7 @@ const allWidgetsClassNames = {
   kudos: {
     generalContainer: "px-4 pt-2",
     urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
-    allCardsContainer: "",
+    allCardsContainer: "d-flex flex-wrap justify-content-around",
     allCommentAnswerBox: {
       cardContainer: "d-flex justify-content-between",
       userAnswerHeader: "d-flex",
@@ -252,7 +276,7 @@ const allWidgetsClassNames = {
   },
 
   mainPage_post: {
-    cardContent: "mt-3 text-break",
+    cardContent: "mt-3 text-break w-100 d-flex justify-content-between",
     upVoteContainer:
       "d-flex flex-row-reverse align-items-center justify-content-end",
     commentInput: {
@@ -312,6 +336,7 @@ return (
     <Widget
       src={`${widgetOwner}/widget/Kudos`}
       props={{
+        allStyledComponentsStyles,
         widgetOwner,
         allWidgetsInlineStyles,
         allWidgetsClassNames,
