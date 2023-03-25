@@ -246,13 +246,13 @@ return (
     >
       Kudos!
     </CommitButton>
-    <div className={allWidgetsClassNames.kudos.allCardsContainerLargerScreens}>
+    <div className={thisWidgetClassNames.allCardsContainerLargerScreens}>
       {sortedData
         ? sortedData.map((d, index) => RenderKudoBox(d, index))
         : "Loading..."}
     </div>
     <div
-      className={allWidgetsClassNames.kudos.allCardsContainerSmallerScreens}
+      className={thisWidgetClassNames.allCardsContainerSmallerScreens}
       style={{ backgroundColor: "yellow" }}
     >
       {sortedData
