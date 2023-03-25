@@ -29,7 +29,7 @@ function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
   //I use 1000 because it's the z-index the current popus have. Might be good idea to review this in a future.
-  styles["zIndex"] = `${1000 - index}`;
+  styles["zIndex"] = `${2000 - index}`;
   return styles;
 }
 
