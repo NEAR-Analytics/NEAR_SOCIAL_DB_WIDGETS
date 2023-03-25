@@ -246,16 +246,16 @@ return (
     >
       Kudos!
     </CommitButton>
-    <div
-      className={thisWidgetClassNames.allCardsContainerLargerScreens}      
-    >
+    <div className={thisWidgetClassNames.allCardsContainerLargerScreens}>
       {sortedData
-        ? sortedData.map((d, index) => <div style={thisWidgetInlineStyles.}>RenderKudoBox(d, index)</div>)
+        ? sortedData.map((d, index) => (
+            <div style={thisWidgetInlineStyles.flexStylesForCardContainer}>
+              RenderKudoBox(d, index)
+            </div>
+          ))
         : "Loading..."}
     </div>
-    <div
-      className={thisWidgetClassNames.allCardsContainerSmallerScreens}
-    >
+    <div className={thisWidgetClassNames.allCardsContainerSmallerScreens}>
       {sortedData
         ? sortedData.map((d, index) => <div>RenderKudoBox(d, index)</div>)
         : "Loading..."}
