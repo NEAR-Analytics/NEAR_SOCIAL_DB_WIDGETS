@@ -8,6 +8,7 @@ State.init({
 
 const updateGeneralState = props.updateGeneralState;
 
+const thisWidgetStyledComponentsStyles = props.allStyledComponentsStyles.kudos;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
@@ -174,13 +175,7 @@ const RenderKudoBox = (d, index) => {
   );
 };
 
-const CardContainer = styled.div`
-  width: 45%;
-
-  @media (hover: none) {
-    width: 100%;
-  }
-`;
+const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
   <div className={thisWidgetClassNames.generalContainer}>
