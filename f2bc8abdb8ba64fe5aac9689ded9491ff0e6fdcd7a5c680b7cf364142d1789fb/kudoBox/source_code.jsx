@@ -40,7 +40,6 @@ const RenderAllCommentAnswerBox = (d) => {
           {d.value.comments.map((c) => {
             return (
               <>
-                (
                 <div
                   style={
                     thisWidgetInlineStyles.allCommentAnswerBox.cardContainer
@@ -67,7 +66,6 @@ const RenderAllCommentAnswerBox = (d) => {
                     props={{ accountId: c.accountId }}
                   />
                 </div>
-                )
               </>
             );
           })}
