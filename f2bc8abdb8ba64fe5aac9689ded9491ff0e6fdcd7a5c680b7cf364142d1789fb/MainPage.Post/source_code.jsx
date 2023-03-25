@@ -116,10 +116,12 @@ const RenderKudoBox = (d) => {
         className={thisWidgetClassNames.cardContent}
         style={thisWidgetInlineStyles.cardContent}
       >
-        <Widget
-          src="mob.near/widget/MainPage.Post.Content"
-          props={{ content, raw }}
-        />
+        <div style={thisWidgetInlineStyles.postContentContainer}>
+          <Widget
+            src="mob.near/widget/MainPage.Post.Content"
+            props={{ content, raw }}
+          />
+        </div>
         <a href={`${urlPrefix}${d.value.url}`} target="_blank">
           {d.value.url}
         </a>
