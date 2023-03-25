@@ -118,7 +118,11 @@ return (
       }}
     >
       <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
-        {d.value.comments.length > 0 ? "Show comments" : "No comments"}
+        {d.value.comments.length < 0
+          ? "No comments"
+          : state.showComments
+          ? "Hide comments"
+          : "Show comments"}
       </p>
       {d.value.comments.length > 0 && (
         <div style={getCaretDirection()}>
