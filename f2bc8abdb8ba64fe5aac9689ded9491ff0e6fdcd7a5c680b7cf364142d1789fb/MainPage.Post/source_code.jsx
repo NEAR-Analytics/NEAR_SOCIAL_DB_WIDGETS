@@ -122,9 +122,11 @@ const RenderKudoBox = (d) => {
             props={{ content, raw }}
           />
         </div>
-        <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-          {d.value.url}
-        </a>
+        {d.value.url != "" && d.value.url && (
+          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
+            {d.value.url}
+          </a>
+        )}
         <div>
           <Widget
             src="mob.near/widget/CommentButton"
