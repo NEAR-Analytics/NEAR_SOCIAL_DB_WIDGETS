@@ -13,7 +13,8 @@ State.init({
 const widgetOwner = props.widgetOwner;
 
 function getShowCommentsButtonContainerStyles() {
-  return state.hoveringElement == "showCommentsButtonContainer"
+  return state.hoveringElement == "showCommentsButtonContainer" ||
+    state.showComments
     ? thisWidgetInlineStyles.renderKudoBox.hoveringShowCommentsButtonContainer
     : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
 }
