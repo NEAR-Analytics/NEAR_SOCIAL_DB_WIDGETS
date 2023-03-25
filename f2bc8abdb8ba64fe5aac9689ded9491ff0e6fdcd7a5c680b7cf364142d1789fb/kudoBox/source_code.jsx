@@ -1,7 +1,7 @@
 const d = props.d;
 const index = props.index;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
-const thisWidgetClassNames = props.allWidgetsClassNameskudos;
+const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
 
