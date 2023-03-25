@@ -106,7 +106,7 @@ const sendMessageHandler = (request, response) => {
 
 return (
   <Widget
-    src={"efiz.near/widget/NearSocialBridgeCore"}
+    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
     props={{
       externalAppUrl,
       path,
