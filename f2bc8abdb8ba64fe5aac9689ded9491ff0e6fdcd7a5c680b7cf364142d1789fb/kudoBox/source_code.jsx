@@ -34,40 +34,46 @@ function getAnswersContainerStyles() {
 
 const RenderAllCommentAnswerBox = (d) => {
   return (
-    <div style={getAnswersContainerStyles()}>
-      {d.value.comments.map((c) => {
-        return (
-          <>
-            {state.showComments && (
-              <div
-                style={thisWidgetInlineStyles.allCommentAnswerBox.cardContainer}
-              >
-                <Widget
-                  src="mob.near/widget/ProfileImage"
-                  props={{
-                    accountId: c.accountId,
-                    className: "d-inline-block",
-                    style:
-                      thisWidgetInlineStyles.allCommentAnswerBox
-                        .profileImageStyles,
-                  }}
-                />
-                <a
-                  href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}
+    <>
+      {state.showComments && (
+        <div style={getAnswersContainerStyles()}>
+          {d.value.comments.map((c) => {
+            return (
+              <>
+                (
+                <div
+                  style={
+                    thisWidgetInlineStyles.allCommentAnswerBox.cardContainer
+                  }
                 >
-                  {c.accountId}
-                </a>
-                I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
-                <Widget
-                  src="mob.near/widget/FollowButton"
-                  props={{ accountId: c.accountId }}
-                />
-              </div>
-            )}
-          </>
-        );
-      })}
-    </div>
+                  <Widget
+                    src="mob.near/widget/ProfileImage"
+                    props={{
+                      accountId: c.accountId,
+                      className: "d-inline-block",
+                      style:
+                        thisWidgetInlineStyles.allCommentAnswerBox
+                          .profileImageStyles,
+                    }}
+                  />
+                  <a
+                    href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}
+                  >
+                    {c.accountId}
+                  </a>
+                  I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
+                  <Widget
+                    src="mob.near/widget/FollowButton"
+                    props={{ accountId: c.accountId }}
+                  />
+                </div>
+                )
+              </>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 
