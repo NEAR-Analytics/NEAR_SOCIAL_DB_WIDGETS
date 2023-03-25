@@ -62,68 +62,66 @@ return (
   <DropdownMenu.Root>
     <DropdownMenu.Trigger>My Menu</DropdownMenu.Trigger>
 
-    <DropdownMenu.Portal>
-      <Content sideOffset={5}>
-        <Item onSelect={() => {}}>New Tab</Item>
-        <Item>New Window</Item>
-        <Item disabled>New Private Window</Item>
+    <Content sideOffset={5}>
+      <Item onSelect={() => {}}>New Tab</Item>
+      <Item>New Window</Item>
+      <Item disabled>New Private Window</Item>
 
-        <DropdownMenu.Sub>
-          <SubTrigger>More Tools</SubTrigger>
+      <DropdownMenu.Sub>
+        <SubTrigger>More Tools</SubTrigger>
 
-          <SubContent sideOffset={16} alignOffset={-8}>
-            <Item>Save Page As…</Item>
-            <Item>Create Shortcut…</Item>
-            <Item>Name Window…</Item>
-            <Separator />
-            <Item>Developer Tools</Item>
-          </SubContent>
-        </DropdownMenu.Sub>
+        <SubContent sideOffset={16} alignOffset={-8}>
+          <Item>Save Page As…</Item>
+          <Item>Create Shortcut…</Item>
+          <Item>Name Window…</Item>
+          <Separator />
+          <Item>Developer Tools</Item>
+        </SubContent>
+      </DropdownMenu.Sub>
 
-        <Separator />
+      <Separator />
 
-        <Label>Checkbox</Label>
+      <Label>Checkbox</Label>
 
-        <CheckboxItem
-          checked={state.bookmarksChecked}
-          onCheckedChange={setBookmarksChecked}
-        >
+      <CheckboxItem
+        checked={state.bookmarksChecked}
+        onCheckedChange={setBookmarksChecked}
+      >
+        <DropdownMenu.ItemIndicator>
+          <i className="bi bi-check-circle-fill"></i>
+        </DropdownMenu.ItemIndicator>
+        Show Bookmarks
+      </CheckboxItem>
+      <CheckboxItem
+        checked={state.urlsChecked}
+        onCheckedChange={setUrlsChecked}
+      >
+        <DropdownMenu.ItemIndicator>
+          <i className="bi bi-check-circle-fill"></i>
+        </DropdownMenu.ItemIndicator>
+        Show Full URLs
+      </CheckboxItem>
+
+      <Separator />
+
+      <Label>Radio</Label>
+
+      <DropdownMenu.RadioGroup value={state.person} onValueChange={setPerson}>
+        <RadioItem value="pedro">
           <DropdownMenu.ItemIndicator>
             <i className="bi bi-check-circle-fill"></i>
           </DropdownMenu.ItemIndicator>
-          Show Bookmarks
-        </CheckboxItem>
-        <CheckboxItem
-          checked={state.urlsChecked}
-          onCheckedChange={setUrlsChecked}
-        >
+          Pedro Duarte
+        </RadioItem>
+        <RadioItem value="colm">
           <DropdownMenu.ItemIndicator>
             <i className="bi bi-check-circle-fill"></i>
           </DropdownMenu.ItemIndicator>
-          Show Full URLs
-        </CheckboxItem>
+          Colm Tuite
+        </RadioItem>
+      </DropdownMenu.RadioGroup>
 
-        <Separator />
-
-        <Label>Radio</Label>
-
-        <DropdownMenu.RadioGroup value={state.person} onValueChange={setPerson}>
-          <RadioItem value="pedro">
-            <DropdownMenu.ItemIndicator>
-              <i className="bi bi-check-circle-fill"></i>
-            </DropdownMenu.ItemIndicator>
-            Pedro Duarte
-          </RadioItem>
-          <RadioItem value="colm">
-            <DropdownMenu.ItemIndicator>
-              <i className="bi bi-check-circle-fill"></i>
-            </DropdownMenu.ItemIndicator>
-            Colm Tuite
-          </RadioItem>
-        </DropdownMenu.RadioGroup>
-
-        <DropdownMenu.Arrow />
-      </Content>
-    </DropdownMenu.Portal>
+      <DropdownMenu.Arrow />
+    </Content>
   </DropdownMenu.Root>
 );
