@@ -48,7 +48,11 @@ const RenderAllCommentAnswerBox = (d) => {
                     thisWidgetClassNames.allCommentAnswerBox.cardContainer
                   }
                 >
-                  <div>
+                  <div
+                    className={
+                      thisWidgetClassNames.allCommentAnswerBox.userAnswerHeader
+                    }
+                  >
                     <Widget
                       src="mob.near/widget/ProfileImage"
                       props={{
@@ -60,6 +64,10 @@ const RenderAllCommentAnswerBox = (d) => {
                       }}
                     />
                     <a
+                      style={
+                        thisWidgetInlineStyles.allCommentAnswerBox
+                          .commentUserNick
+                      }
                       href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}
                     >
                       {c.accountId}
