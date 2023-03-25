@@ -44,6 +44,9 @@ const RenderAllCommentAnswerBox = (d) => {
                   style={
                     thisWidgetInlineStyles.allCommentAnswerBox.cardContainer
                   }
+                  className={
+                    thisWidgetClassNames.allCommentAnswerBox.cardContainer
+                  }
                 >
                   <Widget
                     src="mob.near/widget/ProfileImage"
