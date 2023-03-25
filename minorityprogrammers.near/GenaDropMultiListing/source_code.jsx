@@ -381,110 +381,164 @@ return (
       </div>
     </div>
     <div className="row">
-      <div className="col-lg-6 mb-2">
-        ContractID
-        <input
-          type="text"
-          placeholder={state.contractId}
-          onChange={(e) => onChangeContract(e.target.value)}
-        />
-      </div>
-      <div className="col-lg-6 mb-2">
-        Token ID
-        <input
-          type="text"
-          placeholder={state.tokenId}
-          onChange={(e) => onChangeToken(e.target.value)}
-        />
-      </div>
-    </div>
-    <div className="row">
-      <div className="col-lg-6 mb-2">
-        <div className="form-check">
+      <div className="mb-2 col-lg-6">
+        <div className="">
+          ContractID
           <input
-            className="form-check-input"
-            type="checkbox"
-            checked={state.fewfar}
-            onChange={selectFewFar}
-            id="fewfarbox"
+            type="text"
+            placeholder={state.contractId}
+            onChange={(e) => onChangeContract(e.target.value)}
           />
-          <label className="form-check-label" htmlFor="myCheckbox">
-            List to Few and Far
-          </label>
         </div>
-      </div>
-      {false && (
-        <div className="col-lg-6 mb-2">
+        <div className="">
+          Token ID
+          <input
+            type="text"
+            placeholder={state.tokenId}
+            onChange={(e) => onChangeToken(e.target.value)}
+          />
+        </div>
+
+        <div className="">
           <div className="form-check">
             <input
               className="form-check-input"
               type="checkbox"
-              checked={state.mintbase}
-              onChange={selectMintbase}
-              id="mintbasebox"
+              checked={state.fewfar}
+              onChange={selectFewFar}
+              id="fewfarbox"
             />
             <label className="form-check-label" htmlFor="myCheckbox">
-              List to Mintbase
+              List to Few and Far
             </label>
           </div>
         </div>
-      )}
-      <div className="col-lg-6 mb-2">
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            checked={state.tradeport}
-            onChange={selectTradeport}
-            id="tradeportbox"
-          />
-          <label className="form-check-label" htmlFor="myCheckbox">
-            List to Tradeport
-          </label>
+        {false && (
+          <div className="">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={state.mintbase}
+                onChange={selectMintbase}
+                id="mintbasebox"
+              />
+              <label className="form-check-label" htmlFor="myCheckbox">
+                List to Mintbase
+              </label>
+            </div>
+          </div>
+        )}
+        <div className="">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              checked={state.tradeport}
+              onChange={selectTradeport}
+              id="tradeportbox"
+            />
+            <label className="form-check-label" htmlFor="myCheckbox">
+              List to Tradeport
+            </label>
+          </div>
+        </div>
+        <div className="">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              checked={state.custom}
+              onChange={selectCustom}
+              id="custombox"
+            />
+            <label className="form-check-label" htmlFor="myCheckbox">
+              Enter Custom Marketplace Address
+            </label>
+          </div>
+          {state.custom && (
+            <div className="">
+              Custom Marketplace
+              <input
+                type="text"
+                placeholder={state.customMarketLink}
+                onChange={(e) => onChangeCustomMarket(e.target.value)}
+              />
+            </div>
+          )}
+          {state.custom && !state.validMarketLink && (
+            <div className="alert alert-danger">
+              <i className="bi bi-x"></i> Not a Valid NEAR Contract for your
+              custom Marketplace
+            </div>
+          )}
+          <div className=" mb-2">
+            Enter Price You Want to List (In NEAR) (WIP-Buggy)
+            <input
+              type="number"
+              placeholder={state.amount / 1e24}
+              onChange={(e) => onChangeAmount(e.target.value * 1e24)}
+            />
+            <p>
+              * You will pay some gas in Ⓝ to deposit NEAR to marketplace
+              address then list your NFT
+            </p>
+          </div>
         </div>
       </div>
-      <div className="col-lg-6 mb-2">
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            checked={state.custom}
-            onChange={selectCustom}
-            id="custombox"
-          />
-          <label className="form-check-label" htmlFor="myCheckbox">
-            Enter Custom Marketplace Address
-          </label>
+
+      <div className="col-lg-6 border border-secondary rounded">
+        <p>
+          Collection Name:{" "}
+          <span className="font-weight-bold">{state.nftMetadata.name}</span>
+        </p>
+        <p>
+          NFT Name: <span className="">{state.tokenInfo.metadata.title}</span>
+        </p>
+        <p className="">Description: {state.tokenInfo.metadata.description}</p>
+        <p>
+          <a href={state.tokenInfo.media} target="_blank">
+            {state.tokenInfo.media}
+          </a>
+        </p>
+        {!state.ownsNFT && (
+          <div className="alert alert-danger">
+            <i className="bi bi-x"></i> You do not own this NFT & cannot list or
+            transfer it
+          </div>
+        )}
+        {state.ownsNFT && (
+          <div className="alert alert-success">
+            <i className="bi bi-x"></i> You own this NFT
+          </div>
+        )}
+        <Widget
+          src="mob.near/widget/NftImage"
+          props={{
+            nft: { tokenId: state.tokenId, contractId: state.contractId },
+            className: "col-lg-12",
+          }}
+        />
+        <div className="col-lg-12">
+          <h3> Listed Markets</h3>
+          <div>
+            <ul>
+              {typeof state.tokenInfo.approved_account_ids === "object" &&
+                Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
+                  <li>
+                    <a
+                      href={"https://explorer.near.org/accounts/" + key}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {key}: {state.tokenInfo.approved_account_ids[key]}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
       </div>
-      {state.custom && (
-        <div className="col-lg-6 mb-2">
-          Custom Marketplace
-          <input
-            type="text"
-            placeholder={state.customMarketLink}
-            onChange={(e) => onChangeCustomMarket(e.target.value)}
-          />
-        </div>
-      )}
-    </div>
-    {state.custom && !state.validMarketLink && (
-      <div className="alert alert-danger">
-        <i className="bi bi-x"></i> Not a Valid NEAR Contract for your custom
-        Marketplace
-      </div>
-    )}
-    <div className=" mb-2">
-      Enter Price You Want to List (In NEAR) (WIP-Buggy)
-      <input
-        type="number"
-        placeholder={state.amount / 1e24}
-        onChange={(e) => onChangeAmount(e.target.value * 1e24)}
-      />
-      <p>
-        * You will pay some gas in Ⓝ to deposit NEAR to marketplace address then
-        list your NFT
-      </p>
     </div>
     <div className="row text-center">
       {state.ownsNFT && (
@@ -536,64 +590,6 @@ return (
           Can't Transfer (Don't Own)
         </button>
       )}
-    </div>
-    <div className="row">
-      <div className="col-lg-6 border border-secondary rounded">
-        <p>
-          Collection Name:{" "}
-          <span className="font-weight-bold">{state.nftMetadata.name}</span>
-        </p>
-        <p>
-          NFT Name: <span className="">{state.tokenInfo.metadata.title}</span>
-        </p>
-        <p className="">Description: {state.tokenInfo.metadata.description}</p>
-        <p>
-          <a href={state.tokenInfo.media} target="_blank">
-            {state.tokenInfo.media}
-          </a>
-        </p>
-        {!state.ownsNFT && (
-          <div className="alert alert-danger">
-            <i className="bi bi-x"></i> You do not own this NFT & cannot list or
-            transfer it
-          </div>
-        )}
-        {state.ownsNFT && (
-          <div className="alert alert-success">
-            <i className="bi bi-x"></i> You own this NFT
-          </div>
-        )}
-        <Widget
-          src="mob.near/widget/NftImage"
-          props={{
-            nft: { tokenId: state.tokenId, contractId: state.contractId },
-            className: "col-lg-12",
-          }}
-        />
-        <div className="col-lg-12">
-          <h3> Listed Markets</h3>
-          <div>
-            {typeof state.tokenInfo.approved_account_ids === "object" &&
-              Object.keys(state.tokenInfo.approved_account_ids).map((key) => (
-                <p>
-                  <a
-                    href={"https://explorer.near.org/accounts/" + key}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {key}: {state.tokenInfo.approved_account_ids[key]}
-                  </a>
-                </p>
-              ))}
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-6">
-        <Widget
-          src="minorityprogrammers.near/widget/genadropMinter"
-          props={{ authors: [ownerId], dep: true }}
-        />
-      </div>
     </div>
   </div>
 );
