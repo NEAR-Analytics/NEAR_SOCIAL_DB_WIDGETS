@@ -14,4 +14,14 @@ const Theme = styled.div`
     ${font}
     ${css}
 `;
-return <Theme>{props.children}</Theme>;
+return (
+  <Theme>
+    <div class="LidoContainer">
+      <div class="Header">Gains Network Staking on Arbitrum</div>
+      <div class="SubHeader">
+        Stake GNS and receive DAI rewards while staking.
+      </div>
+      {props.children}
+    </div>
+  </Theme>
+);
