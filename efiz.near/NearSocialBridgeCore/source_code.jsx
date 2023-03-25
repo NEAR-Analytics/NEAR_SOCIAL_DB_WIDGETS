@@ -201,7 +201,7 @@ return (
       srcDoc={code}
       message={state.currentMessage}
       onMessage={onMessageHandler}
-      allow={"autoplay; camera; microphone"}
+      sandbox="allow-scripts allow-same-origin allow-modals"
     />
   </div>
 );
