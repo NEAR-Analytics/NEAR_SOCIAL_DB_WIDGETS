@@ -12,7 +12,11 @@ State.init({
 
 const widgetOwner = props.widgetOwner;
 
-function getShowCommentsButtonContainerStyles() {
+function getShowCommentsButtonContainerStyles(d) {
+  if (d.value.comments.length < 0) {
+    return thisWidgetInlineStyles.renderKudoBox
+      .showCommentsButtonContainerNoComments;
+  }
   return state.hoveringElement == "showCommentsButtonContainer" ||
     state.showComments
     ? thisWidgetInlineStyles.renderKudoBox.hoveringShowCommentsButtonContainer
@@ -125,7 +129,7 @@ return (
 
     <div
       className={thisWidgetClassNames.showCommentsButtonContainer}
-      style={getShowCommentsButtonContainerStyles()}
+      style={getShowCommentsButtonContainerStyles(d)}
       onMouseEnter={() => {
         d.value.comments.length > 0 &&
           State.update({ hoveringElement: "showCommentsButtonContainer" });
