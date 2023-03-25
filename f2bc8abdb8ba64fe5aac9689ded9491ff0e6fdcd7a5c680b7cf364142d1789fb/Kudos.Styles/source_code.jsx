@@ -1,8 +1,6 @@
 const profile = Social.getr(`${context.accountId}/profile`);
 const metadata = Social.getr(`webuidl.near/widget/Kudos/metadata`);
 
-a;
-
 State.init({
   metadata: {},
   profile: {},
@@ -96,13 +94,15 @@ const allWidgetsInlineStyles = {
       fontWeight: "700",
     },
     allCommentAnswerBox: {
-      container: {
+      cardsContainer: {
+        position: "absolute",
         backgroundColor: "white",
         border: "1px solid black",
         borderRadius: "5px",
-        textAlign: "start",
         padding: "10px",
-        marginLeft: "30px",
+      },
+      cardContainer: {
+        textAlign: "start",
       },
       profileImageStyles: {
         width: "1.5em",
@@ -120,6 +120,7 @@ const allWidgetsInlineStyles = {
         : standardButtonStyles,
     renderKudoBox: {
       cardContainer: {
+        position: "relative",
         boxSizing: "border-box",
         boxShadow: "0px 8px 28px rgba(43, 68, 106, 0.05)",
         backgroundColor: "white",
@@ -130,13 +131,27 @@ const allWidgetsInlineStyles = {
         margin: "1rem 0",
       },
       showCommentsButtonContainer: {
+        margin: "0 auto",
+        padding: "0.3rem 0.5rem",
         cursor: "pointer",
+        borderRadius: "12px",
+        width: "max-content",
+      },
+      hoveringShowCommentsButtonContainer: {
+        margin: "0 auto",
+        padding: "0.3rem 0.5rem",
+        cursor: "pointer",
+        borderRadius: "12px",
+        width: "max-content",
+        color: "rgba(0,191,255,255)",
+        backgroundColor: "rgba(229, 248, 255, 255)",
       },
       textShowComment: {
         margin: "0",
       },
       flipButton: {
         transform: "rotate(180deg)",
+        transition: "transform 1s",
       },
     },
   },
