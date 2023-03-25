@@ -50,6 +50,8 @@ const allWidgetsInlineStyles = {
   hoveringButtonStyles: hoveringButtonStyles,
   styles: {
     container: {
+      position: "relative",
+      zIndex: "1",
       backgroundColor: "rgb(230, 230, 230)",
       fontFamily: "Onest",
       fontStyle: "normal",
@@ -95,18 +97,34 @@ const allWidgetsInlineStyles = {
     },
     allCommentAnswerBox: {
       cardsContainer: {
+        maxHeight: "75vh",
+        overflowY: "scroll",
+        transform: "translateY(calc(100% - 12px))",
         position: "absolute",
+        width: "calc(100% + 2px)",
+        bottom: "0",
+        left: "-1px",
         backgroundColor: "white",
-        border: "1px solid black",
-        borderRadius: "5px",
+        borderWidth: "0 1px 1px 1px",
+        borderStyle: "solid",
+        borderColor: "lightGray",
+        borderBottomRightRadius: "5px",
+        borderBottomLeftRadius: "5px",
         padding: "10px",
       },
       cardContainer: {
         textAlign: "start",
+        width: "100%",
       },
       profileImageStyles: {
         width: "1.5em",
         height: "1.5em",
+      },
+      commentUserNick: {
+        maxWidth: "10rem",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        margin: "0 0.5rem",
       },
     },
     urlTextarea: {
@@ -159,6 +177,9 @@ const allWidgetsInlineStyles = {
   //======================================================================================================================================================================================================
 
   mainPage_post: {
+    cardContent: {
+      width: "100%",
+    },
     headerStyles: {
       padding: "0 1rem",
       display: "flex",
@@ -172,12 +193,16 @@ const allWidgetsInlineStyles = {
       display: "grid",
       gridTemplateColumns: "3fr 1fr 1fr",
     },
+    upVoteContainer: {
+      width: "100%",
+    },
     upVoteCounter: {
       marginLeft: "1rem",
     },
     commentInput: {
       container: {
         margin: "10px 0px",
+        width: "100%",
       },
       textArea: {
         backgroundColor: "rgb(230, 230, 230)",
@@ -216,6 +241,10 @@ const allWidgetsClassNames = {
     generalContainer: "px-4 pt-2",
     urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
     allCardsContainer: "",
+    allCommentAnswerBox: {
+      cardContainer: "d-flex justify-content-between",
+      userAnswerHeader: "d-flex",
+    },
     renderKudoBox: {
       cardContainer: "d-flex flex-column align-items-start",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
@@ -225,7 +254,7 @@ const allWidgetsClassNames = {
   mainPage_post: {
     cardContent: "mt-3 text-break",
     upVoteContainer:
-      "d-flex flex-row-reverse align-items-center justify-content-between",
+      "d-flex flex-row-reverse align-items-center justify-content-end",
     commentInput: {
       container: "d-flex align-items-end flex-column",
     },
