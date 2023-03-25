@@ -174,6 +174,14 @@ const RenderKudoBox = (d, index) => {
   );
 };
 
+const CardContainer = styled.div`
+  width: 45%;
+
+  @media (hover: none) {
+    width: 100%;
+  }
+`;
+
 return (
   <div className={thisWidgetClassNames.generalContainer}>
     <h2 style={thisWidgetInlineStyles.selectedTab}>All Kudos</h2>
@@ -246,18 +254,12 @@ return (
     >
       Kudos!
     </CommitButton>
-    <div className={thisWidgetClassNames.allCardsContainerLargerScreens}>
+
+    <div className={thisWidgetClassNames.allCardsContainer}>
       {sortedData
         ? sortedData.map((d, index) => (
-            <div style={thisWidgetInlineStyles.flexStylesForCardContainer}>
-              {RenderKudoBox(d, index)}
-            </div>
+            <CardContainer>{RenderKudoBox(d, index)}</CardContainer>
           ))
-        : "Loading..."}
-    </div>
-    <div className={thisWidgetClassNames.allCardsContainerSmallerScreens}>
-      {sortedData
-        ? sortedData.map((d, index) => <div>{RenderKudoBox(d, index)}</div>)
         : "Loading..."}
     </div>
   </div>
