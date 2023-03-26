@@ -160,6 +160,7 @@ const RenderAllCommentAnswerBox = (d) => {
 /* END CommentBox  */
 
 const RenderKudoBox = (d, index) => {
+  console.log("pido que entre");
   return (
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
