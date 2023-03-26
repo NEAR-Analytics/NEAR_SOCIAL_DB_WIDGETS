@@ -160,6 +160,7 @@ const RenderAllCommentAnswerBox = (d) => {
 /* END CommentBox  */
 
 const RenderKudoBox = (d, index) => {
+  console.log(d);
   return (
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
@@ -255,7 +256,11 @@ return (
     </CommitButton>
 
     <div className={thisWidgetClassNames.allCardsContainer}>
-      {sortedData && <p>testttt</p>}
+      {sortedData
+        ? sortedData.map((d, index) => {
+            RenderKudoBox(d, index);
+          })
+        : "Loading..."}
     </div>
   </div>
 );
