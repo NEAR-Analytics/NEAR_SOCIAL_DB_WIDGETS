@@ -63,20 +63,19 @@ const RenderAllCommentAnswerBox = (d) => {
                     >
                       {c.accountId}
                     </a>
-                    <p>I BuiDL...</p>
+                    <div
+                      style={
+                        props.allWidgetsInlineStyles.mainPage_post
+                          .followButtonContainer
+                      }
+                    >
+                      <Widget
+                        src={`${widgetOwner}/widget/FollowButton`}
+                        props={{ accountId: c.accountId }}
+                      />
+                    </div>
                   </div>
                   <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
-                  <div
-                    style={
-                      props.allWidgetsInlineStyles.mainPage_post
-                        .followButtonContainer
-                    }
-                  >
-                    <Widget
-                      src={`${widgetOwner}/widget/FollowButton`}
-                      props={{ accountId: c.accountId }}
-                    />
-                  </div>
                 </div>
               </>
             );
