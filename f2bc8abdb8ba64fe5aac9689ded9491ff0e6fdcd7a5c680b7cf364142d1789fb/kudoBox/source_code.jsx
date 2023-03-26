@@ -1,8 +1,6 @@
 const d = props.d;
 const index = props.index;
 
-const thisWidgetStyledComponentsStyles =
-  props.allStyledComponentsStyles.kudoBox;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
@@ -99,8 +97,6 @@ function getKudoBoxContainerStyles() {
 function updateStateFunction(objetc) {
   State.update(objetc);
 }
-
-// const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
   <>
