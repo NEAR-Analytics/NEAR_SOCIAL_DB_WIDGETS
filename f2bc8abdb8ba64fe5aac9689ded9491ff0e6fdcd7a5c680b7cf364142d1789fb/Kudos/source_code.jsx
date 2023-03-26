@@ -177,6 +177,8 @@ const RenderKudoBox = (d, index) => {
   );
 };
 
+console.log("sortedData: ", sortedData);
+
 return (
   <div className={thisWidgetClassNames.generalContainer}>
     <h2 style={thisWidgetInlineStyles.selectedTab}>All Kudos</h2>
