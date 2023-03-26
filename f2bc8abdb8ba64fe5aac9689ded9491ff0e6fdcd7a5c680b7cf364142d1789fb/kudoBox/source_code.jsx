@@ -75,7 +75,7 @@ const RenderAllCommentAnswerBox = (d) => {
                       />
                     </div>
                   </div>
-                  <b style={thisWidgetClassNames.allCommentAnswerBox.comment}>
+                  <b style={thisWidgetInlineStyles.allCommentAnswerBox.comment}>
                     {c.value.commentAnswer}&nbsp;&nbsp;&nbsp;
                   </b>
                 </div>
