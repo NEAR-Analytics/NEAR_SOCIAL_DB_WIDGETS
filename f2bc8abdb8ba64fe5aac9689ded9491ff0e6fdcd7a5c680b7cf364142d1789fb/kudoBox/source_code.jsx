@@ -23,12 +23,6 @@ function getShowCommentsButtonContainerStyles() {
     : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
 }
 
-function getCaretDirection() {
-  return state.showComments
-    ? thisWidgetInlineStyles.renderKudoBox.flipButton
-    : { transition: "transform 1s" };
-}
-
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
@@ -111,6 +105,10 @@ function getKudoBoxContainerStyles() {
   return styles;
 }
 
+function updateStateFunction(objetc) {
+  State.update(objetc);
+}
+
 const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
@@ -130,34 +128,16 @@ return (
         }}
       />
 
-      <div
-        className={thisWidgetClassNames.showCommentsButtonContainer}
-        style={getShowCommentsButtonContainerStyles()}
-        onMouseEnter={() => {
-          d.value.comments.length > 0 &&
-            State.update({ hoveringElement: "showCommentsButtonContainer" });
+      <Widget
+        src={`${widgetOwner}/widget/Kudos.showCommentsButton`}
+        props={{
+          thisWidgetInlineStyles,
+          thisWidgetClassNames,
+          fatherStateUpdate: updateStateFunction,
+          showComments: state.showComments,
+          d,
         }}
-        onMouseLeave={() => {
-          d.value.comments.length > 0 && State.update({ hoveringElement: "" });
-        }}
-        onClick={() => {
-          d.value.comments.length > 0 &&
-            State.update({ showComments: !state.showComments });
-        }}
-      >
-        <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
-          {state.showComments
-            ? "Hide comments"
-            : d.value.comments.length > 0
-            ? "Show comments"
-            : "No comments"}
-        </p>
-        {d.value.comments.length > 0 && (
-          <div style={getCaretDirection()}>
-            <i className="bi bi-caret-down"></i>
-          </div>
-        )}
-      </div>
+      />
 
       {RenderAllCommentAnswerBox(d)}
     </CardContainer>
