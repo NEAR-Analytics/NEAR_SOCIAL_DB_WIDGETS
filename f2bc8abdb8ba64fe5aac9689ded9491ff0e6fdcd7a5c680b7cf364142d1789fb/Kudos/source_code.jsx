@@ -160,8 +160,26 @@ const RenderAllCommentAnswerBox = (d) => {
 /* END CommentBox  */
 
 const RenderKudoBox = (d, index) => {
-  console.log("pido que entre");
-  return <p>testinggggggg</p>;
+  return (
+    <>
+      {console.log("entro1")}
+      <p>test2</p>
+      <Widget
+        src={`${widgetOwner}/widget/kudoBox`}
+        props={{
+          allStyledComponentsStyles: props.allStyledComponentsStyles,
+          widgetOwner,
+          d,
+          index,
+          upvotes,
+          updateGeneralState,
+          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+          allWidgetsClassNames: props.allWidgetsClassNames,
+        }}
+      />
+      {console.log("salgo1")};
+    </>
+  );
 };
 
 return (
@@ -244,7 +262,7 @@ return (
     <div className={thisWidgetClassNames.allCardsContainer}>
       {sortedData
         ? sortedData.map((d, index) => {
-            RenderKudoBox(d, index);
+            return RenderKudoBox(d, index);
           })
         : "Loading..."}
     </div>
