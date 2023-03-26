@@ -193,20 +193,7 @@ return (
         },
       }}
     />
-    {state.content && (
-      <div>
-        <Widget
-          src={`${widgetOwner}/widget/MainPage.Post`}
-          props={{
-            widgetOwner,
-            accountId: context.accountId,
-            content: state.content,
-            blockHeight: "now",
-            onChange: state.onChange,
-          }}
-        />
-      </div>
-    )}
+
     <div className={thisWidgetClassNames.urlTextareaContainer}>
       <p>Url:</p>
       <textarea
