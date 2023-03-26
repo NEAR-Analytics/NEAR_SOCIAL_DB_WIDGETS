@@ -9,7 +9,7 @@ State.init({
 
 const updateGeneralState = props.updateGeneralState;
 
-const thisWidgetStyledComponentsStyles = props.allStyledComponentsStyles.kudos;
+const thisWidgetStyledComponentsStyles = props.allStyledComponentsStyles;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
@@ -164,6 +164,7 @@ const RenderKudoBox = (d, index) => {
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
       props={{
+        allStyledComponentsStyles: props.allStyledComponentsStyles,
         widgetOwner,
         d,
         index,
@@ -175,8 +176,6 @@ const RenderKudoBox = (d, index) => {
     />
   );
 };
-
-const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
   <div className={thisWidgetClassNames.generalContainer}>
@@ -257,7 +256,9 @@ return (
 
     <div className={thisWidgetClassNames.allCardsContainer}>
       {sortedData
-        ? sortedData.map((d, index) => <div>{RenderKudoBox(d, index)}</div>)
+        ? sortedData.map((d, index) => {
+            RenderKudoBox(d, index);
+          })
         : "Loading..."}
     </div>
   </div>
