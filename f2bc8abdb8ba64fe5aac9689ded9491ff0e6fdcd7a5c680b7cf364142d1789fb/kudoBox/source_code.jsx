@@ -116,6 +116,7 @@ function getKudoBoxContainerStyles() {
 
 return (
   <>
+    <p>test</p>
     <div
       style={getKudoBoxContainerStyles()}
       className={thisWidgetClassNames.renderKudoBox.cardContainer}
