@@ -110,18 +110,25 @@ const RenderKudoBox = (d) => {
         className={thisWidgetClassNames.cardContent}
         style={thisWidgetInlineStyles.cardContent}
       >
-        <div style={thisWidgetInlineStyles.postContentContainer}>
+        <div
+          style={thisWidgetInlineStyles.postContentContainer}
+          className={thisWidgetClassNames.postContent}
+        >
           <Widget
             src="mob.near/widget/MainPage.Post.Content"
             props={{ content, raw }}
           />
         </div>
         {d.value.url != "" && d.value.url && (
-          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
+          <a
+            href={`${urlPrefix}${d.value.url}`}
+            target="_blank"
+            className={thisWidgetClassNames.postUrl}
+          >
             {d.value.url}
           </a>
         )}
-        <div>
+        <div className={thisWidgetClassNames.postCommentButton}>
           <Widget
             src="mob.near/widget/CommentButton"
             props={{
