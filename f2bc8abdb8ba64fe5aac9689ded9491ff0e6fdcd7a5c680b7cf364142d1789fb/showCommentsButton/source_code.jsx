@@ -9,7 +9,7 @@ State.init({
 });
 
 function getCaretDirection() {
-  return state.showComments
+  return showComments
     ? thisWidgetInlineStyles.renderKudoBox.flipButton
     : { transition: "transform 1s" };
 }
