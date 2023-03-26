@@ -255,12 +255,7 @@ return (
     </CommitButton>
 
     <div className={thisWidgetClassNames.allCardsContainer}>
-      <p>test</p>
-      {sortedData
-        ? sortedData.map((d, index) => {
-            RenderKudoBox(d, index);
-          })
-        : "Loading..."}
+      {sortedData && <p>test</p>}
     </div>
   </div>
 );
