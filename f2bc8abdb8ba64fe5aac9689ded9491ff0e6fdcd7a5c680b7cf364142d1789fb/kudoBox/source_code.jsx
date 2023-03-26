@@ -129,7 +129,7 @@ return (
       />
 
       <Widget
-        src={`${widgetOwner}/widget/Kudos.showCommentsButton`}
+        src={`${widgetOwner}/widget/showCommentsButton`}
         props={{
           thisWidgetInlineStyles,
           thisWidgetClassNames,
