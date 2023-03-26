@@ -161,26 +161,7 @@ const RenderAllCommentAnswerBox = (d) => {
 
 const RenderKudoBox = (d, index) => {
   console.log("pido que entre");
-  return (
-    <>
-      {console.log("entro1")}
-      <p>test2</p>
-      <Widget
-        src={`${widgetOwner}/widget/kudoBox`}
-        props={{
-          allStyledComponentsStyles: props.allStyledComponentsStyles,
-          widgetOwner,
-          d,
-          index,
-          upvotes,
-          updateGeneralState,
-          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-          allWidgetsClassNames: props.allWidgetsClassNames,
-        }}
-      />
-      {console.log("salgo1")}
-    </>
-  );
+  return <p>testinggggggg</p>;
 };
 
 return (
