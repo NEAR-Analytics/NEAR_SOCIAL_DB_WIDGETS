@@ -20,8 +20,10 @@ function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
   styles["zIndex"] = `${
-    99999999999999999999999999999999999999999999999 - index
+    9999999999999999999999999999999999999999999999 - index
   }`;
+
+  console.log("styles: ", styles);
   return styles;
 }
 
