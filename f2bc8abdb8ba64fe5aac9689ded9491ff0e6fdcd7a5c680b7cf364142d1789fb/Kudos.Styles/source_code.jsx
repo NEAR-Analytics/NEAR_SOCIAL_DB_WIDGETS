@@ -161,7 +161,7 @@ const allWidgetsInlineStyles = {
         borderRadius: "1rem",
         textAlign: "center",
         padding: "10px",
-        margin: "1rem 0",
+        margin: "1rem 0.5rem",
       },
       showCommentsButtonContainerNoComments: {
         margin: "0.5rem auto",
@@ -258,7 +258,7 @@ const allWidgetsClassNames = {
       userAnswerHeader: "d-flex",
     },
     renderKudoBox: {
-      cardContainer: "w-50 d-flex flex-column align-items-start",
+      cardContainer: "d-flex flex-column align-items-start",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
     },
   },
