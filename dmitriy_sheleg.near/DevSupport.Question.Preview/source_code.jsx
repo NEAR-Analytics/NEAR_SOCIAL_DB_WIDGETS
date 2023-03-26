@@ -51,7 +51,7 @@ const TopicName = styled.span`
 `;
 
 return (
-  <div className={`border ${display} p-3`}>
+  <div className={`${display} p-3`}>
     <div class="row">
       <div class="col-2">avatar</div>
       <div class="col-2">
