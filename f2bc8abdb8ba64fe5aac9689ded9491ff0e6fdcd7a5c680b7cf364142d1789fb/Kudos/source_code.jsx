@@ -162,19 +162,22 @@ const RenderAllCommentAnswerBox = (d) => {
 const RenderKudoBox = (d, index) => {
   console.log("pido que entre");
   return (
-    <Widget
-      src={`${widgetOwner}/widget/kudoBox`}
-      props={{
-        allStyledComponentsStyles: props.allStyledComponentsStyles,
-        widgetOwner,
-        d,
-        index,
-        upvotes,
-        updateGeneralState,
-        allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-        allWidgetsClassNames: props.allWidgetsClassNames,
-      }}
-    />
+    <>
+      {console.log("entro1")}
+      <Widget
+        src={`${widgetOwner}/widget/kudoBox`}
+        props={{
+          allStyledComponentsStyles: props.allStyledComponentsStyles,
+          widgetOwner,
+          d,
+          index,
+          upvotes,
+          updateGeneralState,
+          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+          allWidgetsClassNames: props.allWidgetsClassNames,
+        }}
+      />
+    </>
   );
 };
 
