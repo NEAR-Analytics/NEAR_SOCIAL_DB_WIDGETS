@@ -31,18 +31,6 @@ const allStyledComponentsStyles = {
         }
     `,
   },
-  mainPage_post: {
-    headerStyles: `
-      padding: 0 1rem:
-      justify-content: start;
-      align-content: center;
-      flex-direction: row;
-
-      @media (hover: none) {
-        flex-direction: column;
-      }
-    `,
-  },
 };
 
 //=============================================================================End components styles=====================================================================================================
@@ -283,7 +271,6 @@ const allWidgetsClassNames = {
 
   mainPage_post: {
     cardContent: "mt-3 text-break w-100 d-flex justify-content-between",
-    headerStyles: "d-flex",
     upVoteContainer:
       "d-flex flex-row-reverse align-items-center justify-content-end",
     commentInput: {
