@@ -177,6 +177,7 @@ const RenderKudoBox = (d, index) => {
           allWidgetsClassNames: props.allWidgetsClassNames,
         }}
       />
+      {console.log("salgo1")}
     </>
   );
 };
