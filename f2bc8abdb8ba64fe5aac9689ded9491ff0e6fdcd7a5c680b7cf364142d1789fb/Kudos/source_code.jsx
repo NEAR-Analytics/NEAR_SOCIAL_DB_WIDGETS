@@ -192,23 +192,6 @@ return (
       }}
     />
 
-    {
-      // {state.content && (
-      // <div>
-      // <Widget
-      // src={`${widgetOwner}/widget/MainPage.Post`}
-      // props={{
-      // content: state.content,
-      // upvotes,
-      // updateGeneralState,
-      // allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-      // allWidgetsClassNames: props.allWidgetsClassNames,
-      // }}
-      // />
-      // </div>
-      // )}
-    }
-
     <div className={thisWidgetClassNames.urlTextareaContainer}>
       <p>Url:</p>
       <textarea
