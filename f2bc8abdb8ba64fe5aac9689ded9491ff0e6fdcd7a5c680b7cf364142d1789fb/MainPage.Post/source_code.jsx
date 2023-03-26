@@ -1,6 +1,4 @@
 const updateGeneralState = props.updateGeneralState;
-const thisWidgetStyledComponentsStyles =
-  props.allStyledComponentsStyles.mainPage_post;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.mainPage_post;
 const thisWidgetClassNames = props.allWidgetsClassNames.mainPage_post;
 const standardButtonStyles = props.allWidgetsInlineStyles.standardButtonStyles;
@@ -91,14 +89,12 @@ const RenderCommentInput = (blockHeight) => {
 };
 
 /* START KudoBox */
-const CardHeader = styled.div`${thisWidgetStyledComponentsStyles.headerStyles}`;
-
 const RenderKudoBox = (d) => {
   const text = `From @${d.accountId} Kudos ${d.value.answer} `;
   const content = { text };
   return (
     <>
-      <CardHeader>
+      <div>
         <Widget
           src="mob.near/widget/MainPage.Post.Header"
           props={{
@@ -109,13 +105,7 @@ const RenderKudoBox = (d) => {
             flagItem: item,
           }}
         />
-        <div style={thisWidgetInlineStyles.followButtonContainer}>
-          <Widget
-            src={`${widgetOwner}/widget/FollowButton`}
-            props={{ accountId: d.accountId }}
-          />
-        </div>
-      </CardHeader>
+      </div>
       <div
         className={thisWidgetClassNames.cardContent}
         style={thisWidgetInlineStyles.cardContent}
