@@ -257,9 +257,7 @@ return (
 
     <div className={thisWidgetClassNames.allCardsContainer}>
       {sortedData
-        ? sortedData.map((d, index) => (
-            <CardContainer>{RenderKudoBox(d, index)}</CardContainer>
-          ))
+        ? sortedData.map((d, index) => <div>{RenderKudoBox(d, index)}</div>)
         : "Loading..."}
     </div>
   </div>
