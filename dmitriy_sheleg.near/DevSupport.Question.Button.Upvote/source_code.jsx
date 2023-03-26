@@ -76,10 +76,10 @@ const Button = styled.button`
   border-radius: 50px;
   color: #687076;
   padding: 8px 12px 12px;
-  transition: color .15s ease;
+  transition: border-color .15s ease;
 
   &:hover {
-    color: #30A46C;
+    border-color: #30A46C;
   }
 `;
 
