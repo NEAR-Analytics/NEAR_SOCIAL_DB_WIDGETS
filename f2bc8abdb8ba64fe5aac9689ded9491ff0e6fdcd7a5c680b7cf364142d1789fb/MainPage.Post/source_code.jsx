@@ -128,10 +128,10 @@ const RenderKudoBox = (d) => {
       </div>
       {d.value.url != "" && d.value.url && (
         <div
-          style={thisWidgetInlineStyles.postUrl}
+          styles={thisWidgetInlineStyles.postUrl}
           className={thisWidgetClassNames.postUrl}
         >
-          <span>Url:</span>
+          <span style={thisWidgetInlineStyles.postUrlSpan}>Url:</span>
           <a href={`${urlPrefix}${d.value.url}`} target="_blank">
             {d.value.url}
           </a>
