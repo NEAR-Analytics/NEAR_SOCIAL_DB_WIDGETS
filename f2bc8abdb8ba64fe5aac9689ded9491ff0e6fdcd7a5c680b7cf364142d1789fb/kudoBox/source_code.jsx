@@ -33,7 +33,6 @@ function getCaretDirection() {
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
-  //I use 1000 because it's the z-index the current popus have. Might be good idea to review this in a future.
   styles["zIndex"] = `${
     9999999999999999999999999999999999999999999999 - index
   }`;
