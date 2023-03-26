@@ -161,6 +161,7 @@ const RenderAllCommentAnswerBox = (d) => {
 
 const RenderKudoBox = (d, index) => {
   console.log("pido que entre");
+  console.log(`${widgetOwner}/widget/kudoBox`);
   return (
     <>
       {console.log("entro1")}
