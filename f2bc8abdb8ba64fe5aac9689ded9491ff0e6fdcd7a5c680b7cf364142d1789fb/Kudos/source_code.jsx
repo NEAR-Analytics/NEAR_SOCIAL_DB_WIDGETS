@@ -183,7 +183,7 @@ return (
 
     <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
     <Widget
-      src={`mob.near/widget/Common.Compose`}
+      src={`${widgetOwner}/widget/Common.Compose`}
       props={{
         id: "main",
         textAreaOnly: true,
@@ -193,6 +193,21 @@ return (
         },
       }}
     />
+
+    {state.content && (
+      <div>
+        <Widget
+          src={`${widgetOwner}/widget/MainPage.Post`}
+          props={{
+            content: state.content,
+            upvotes,
+            updateGeneralState,
+            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+            allWidgetsClassNames: props.allWidgetsClassNames,
+          }}
+        />
+      </div>
+    )}
 
     <div className={thisWidgetClassNames.urlTextareaContainer}>
       <p>Url:</p>
