@@ -93,7 +93,7 @@ const RenderKudoBox = (d) => {
   const content = { text };
   return (
     <>
-      <div>
+      <div className={thisWidgetClassNames.headerContainer}>
         <Widget
           src="mob.near/widget/MainPage.Post.Header"
           props={{
@@ -104,6 +104,7 @@ const RenderKudoBox = (d) => {
             flagItem: item,
           }}
         />
+        <div>{/*Decorative div, do not delete*/}</div>
       </div>
       <div
         className={thisWidgetClassNames.cardContent}
