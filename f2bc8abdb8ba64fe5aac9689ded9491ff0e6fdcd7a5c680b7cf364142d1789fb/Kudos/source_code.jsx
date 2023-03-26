@@ -167,7 +167,6 @@ const RenderKudoBox = (d, index) => {
       <Widget
         src={`${widgetOwner}/widget/kudoBox`}
         props={{
-          allStyledComponentsStyles: props.allStyledComponentsStyles,
           widgetOwner,
           d,
           index,
