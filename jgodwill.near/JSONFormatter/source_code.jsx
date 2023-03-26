@@ -138,7 +138,7 @@ return (
         class="container-fluid"
         rows="10"
         value={state.jsonStr}
-        // defaultValue={JSON.stringify(props.jsonCode)}
+        defaultValue={JSON.stringify(props.jsonCode)}
         onChange={changeHandler}
         onDrop={dragAndDropHandler}
         onDragOver={(e) => e.preventDefault()}
