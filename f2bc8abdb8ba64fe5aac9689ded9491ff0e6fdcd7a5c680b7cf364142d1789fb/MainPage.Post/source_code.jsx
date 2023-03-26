@@ -98,7 +98,7 @@ const RenderKudoBox = (d) => {
   const content = { text };
   return (
     <>
-      <CardHeader className={thisWidgetClassNames.headerStyles}>
+      <CardHeader>
         <Widget
           src="mob.near/widget/MainPage.Post.Header"
           props={{
