@@ -106,58 +106,62 @@ const RenderAllCommentAnswerBox = (d) => {
 function getKudoBoxContainerStyles() {
   let styles = thisWidgetInlineStyles.renderKudoBox.cardContainer;
 
-  //I use 1000 because it's the z-index the current popus have. Might be good idea to review this in a future.
-  styles["zIndex"] = `${1000 - index}`;
+  styles["zIndex"] = `${
+    9999999999999999999999999999999999999999999999 - index
+  }`;
   return styles;
 }
 
-const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
+// const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
-  <div
-    style={getKudoBoxContainerStyles()}
-    className={thisWidgetClassNames.renderKudoBox.cardContainer}
-  >
-    <Widget
-      src={`${widgetOwner}/widget/MainPage.Post`}
-      props={{
-        content: d,
-        upvotes,
-        updateGeneralState,
-        allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-        allWidgetsClassNames: props.allWidgetsClassNames,
-      }}
-    />
-
+  <>
+    <p>test</p>
     <div
-      className={thisWidgetClassNames.showCommentsButtonContainer}
-      style={getShowCommentsButtonContainerStyles()}
-      onMouseEnter={() => {
-        d.value.comments.length > 0 &&
-          State.update({ hoveringElement: "showCommentsButtonContainer" });
-      }}
-      onMouseLeave={() => {
-        d.value.comments.length > 0 && State.update({ hoveringElement: "" });
-      }}
-      onClick={() => {
-        d.value.comments.length > 0 &&
-          State.update({ showComments: !state.showComments });
-      }}
+      style={getKudoBoxContainerStyles()}
+      className={thisWidgetClassNames.renderKudoBox.cardContainer}
     >
-      <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
-        {state.showComments
-          ? "Hide comments"
-          : d.value.comments.length > 0
-          ? "Show comments"
-          : "No comments"}
-      </p>
-      {d.value.comments.length > 0 && (
-        <div style={getCaretDirection()}>
-          <i className="bi bi-caret-down"></i>
-        </div>
-      )}
-    </div>
+      <Widget
+        src={`${widgetOwner}/widget/MainPage.Post`}
+        props={{
+          content: d,
+          upvotes,
+          updateGeneralState,
+          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+          allWidgetsClassNames: props.allWidgetsClassNames,
+        }}
+      />
 
-    {RenderAllCommentAnswerBox(d)}
-  </div>
+      <div
+        className={thisWidgetClassNames.showCommentsButtonContainer}
+        style={getShowCommentsButtonContainerStyles()}
+        onMouseEnter={() => {
+          d.value.comments.length > 0 &&
+            State.update({ hoveringElement: "showCommentsButtonContainer" });
+        }}
+        onMouseLeave={() => {
+          d.value.comments.length > 0 && State.update({ hoveringElement: "" });
+        }}
+        onClick={() => {
+          d.value.comments.length > 0 &&
+            State.update({ showComments: !state.showComments });
+        }}
+      >
+        <p style={thisWidgetInlineStyles.renderKudoBox.textShowComment}>
+          {state.showComments
+            ? "Hide comments"
+            : d.value.comments.length > 0
+            ? "Show comments"
+            : "No comments"}
+        </p>
+        {d.value.comments.length > 0 && (
+          <div style={getCaretDirection()}>
+            <i className="bi bi-caret-down"></i>
+          </div>
+        )}
+      </div>
+
+      {RenderAllCommentAnswerBox(d)}
+    </div>
+  </>
 );
