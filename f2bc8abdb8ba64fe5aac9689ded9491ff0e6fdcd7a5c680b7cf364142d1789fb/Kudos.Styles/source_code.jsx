@@ -117,8 +117,10 @@ const allWidgetsInlineStyles = {
         padding: "10px",
       },
       cardContainer: {
+        marginTop: "0.5rem",
         textAlign: "start",
         width: "100%",
+        borderBottom: "1px solid black",
       },
       profileImageStyles: {
         width: "1.5em",
@@ -129,6 +131,9 @@ const allWidgetsInlineStyles = {
         overflow: "hidden",
         textOverflow: "ellipsis",
         margin: "0 0.5rem",
+      },
+      comment: {
+        margin: "1rem",
       },
     },
     urlTextarea: {
@@ -245,11 +250,12 @@ const allWidgetsClassNames = {
     urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
     allCardsContainer: "d-flex flex-wrap justify-content-around",
     allCommentAnswerBox: {
-      cardContainer: "d-flex justify-content-between",
-      userAnswerHeader: "d-flex",
+      cardContainer: "",
+      userAnswerHeader: "d-flex flex-wrap align-items-center",
     },
     renderKudoBox: {
-      cardContainer: "col-lg-5 col-md-12",
+      cardContainer:
+        "col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
     },
   },
