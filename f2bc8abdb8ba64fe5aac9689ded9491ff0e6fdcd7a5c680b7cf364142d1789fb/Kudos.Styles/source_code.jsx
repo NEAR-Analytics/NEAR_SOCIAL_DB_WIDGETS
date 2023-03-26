@@ -4,7 +4,6 @@ const metadata = Social.getr(`webuidl.near/widget/Kudos/metadata`);
 State.init({
   metadata: {},
   profile: {},
-  hoveringElement: "",
 });
 
 if (JSON.stringify(profile) != JSON.stringify(state.profile)) {
@@ -150,10 +149,6 @@ const allWidgetsInlineStyles = {
       border: "1px solid #fafafa",
       borderRadius: "0.375rem",
     },
-    commitButton:
-      state.hoveringElement == "commitButton"
-        ? hoveringButtonStyles
-        : standardButtonStyles,
     renderKudoBox: {
       cardContainer: {
         position: "relative",
@@ -230,10 +225,6 @@ const allWidgetsInlineStyles = {
         verticalAlign: "middle",
         marginBottom: "0.5rem",
       },
-      commitButton:
-        state.hoveringElement == "commitCommentButton"
-          ? hoveringButtonStyles
-          : standardButtonStyles,
     },
   },
 };
