@@ -1,3 +1,4 @@
+console.log("entro");
 const d = props.d;
 const index = props.index;
 
@@ -113,7 +114,6 @@ function getKudoBoxContainerStyles() {
 }
 
 // const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
-console.log("test");
 
 return (
   <>
