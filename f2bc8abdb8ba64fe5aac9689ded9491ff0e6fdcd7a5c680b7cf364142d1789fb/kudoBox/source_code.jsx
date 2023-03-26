@@ -113,6 +113,7 @@ function getKudoBoxContainerStyles() {
 }
 
 // const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
+console.log("test");
 
 return (
   <>
