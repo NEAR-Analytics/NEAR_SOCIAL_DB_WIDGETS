@@ -100,11 +100,11 @@ function updateStateFunction(objetc) {
   State.update(objetc);
 }
 
-const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
+// const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
   <>
-    <CardContainer
+    <div
       style={getKudoBoxContainerStyles()}
       className={thisWidgetClassNames.renderKudoBox.cardContainer}
     >
@@ -131,6 +131,6 @@ return (
       />
 
       {RenderAllCommentAnswerBox(d)}
-    </CardContainer>
+    </div>
   </>
 );
