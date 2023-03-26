@@ -127,9 +127,12 @@ const RenderKudoBox = (d) => {
         </div>
       </div>
       {d.value.url != "" && d.value.url && (
-        <a href={`${urlPrefix}${d.value.url}`} target="_blank">
-          {d.value.url}
-        </a>
+        <div className={thisWidgetClassNames.postUrl}>
+          <span>URL:</span>
+          <a href={`${urlPrefix}${d.value.url}`} target="_blank">
+            {d.value.url}
+          </a>
+        </div>
       )}
       <div
         style={thisWidgetInlineStyles.upVoteContainer}
