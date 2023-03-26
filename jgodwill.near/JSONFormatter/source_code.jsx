@@ -1,8 +1,15 @@
 State.init({
-  jsonStr: "",
+  jsonStr: JSON.stringify(props.jsonCode),
   prettifiedJson: "",
   fiexedJsonErrors: "",
 });
+
+if (!props.jsonCode) {
+  State.update({
+    jsonStr: JSON.stringify(props.jsonCode),
+  });
+}
+
 async function formatClickHandler() {
   let formattedJsonStr = "";
   let fixedErrors = "";
@@ -131,6 +138,7 @@ return (
         class="container-fluid"
         rows="10"
         value={state.jsonStr}
+        // defaultValue={JSON.stringify(props.jsonCode)}
         onChange={changeHandler}
         onDrop={dragAndDropHandler}
         onDragOver={(e) => e.preventDefault()}
