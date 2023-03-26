@@ -9,7 +9,6 @@ State.init({
 
 const updateGeneralState = props.updateGeneralState;
 
-const thisWidgetStyledComponentsStyles = props.allStyledComponentsStyles;
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
@@ -164,7 +163,6 @@ const RenderKudoBox = (d, index) => {
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
       props={{
-        allStyledComponentsStyles: props.allStyledComponentsStyles,
         widgetOwner,
         d,
         index,
@@ -266,7 +264,3 @@ return (
         : "Loading..."}
     </div>
   </div>
-);
-// allCardsContainer: "d-flex flex-wrap justify-content-around",
-// renderKudoBox: {
-//       cardContainer: "d-flex flex-column align-items-start",
