@@ -72,21 +72,20 @@ const data = {
 };
 
 function getButtonStyles() {
-  let style = state.hoveringElement == "followButton"
-        ? hoveringButtonStyles
-        : standardButtonStyles
-  
-  style["padding"] = "0.3rem"
+  let style =
+    state.hoveringElement == "followButton"
+      ? hoveringButtonStyles
+      : standardButtonStyles;
 
-  return style
+  style["padding"] = "0.3rem";
+
+  return style;
 }
 
 return (
   <CommitButton
     disabled={loading}
-    style={
-      
-    }
+    style={getButtonStyles()}
     disabled={loading || follow}
     data={data}
     onMouseEnter={() => {
