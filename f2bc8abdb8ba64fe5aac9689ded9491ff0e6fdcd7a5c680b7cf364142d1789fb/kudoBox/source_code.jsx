@@ -19,9 +19,7 @@ const widgetOwner = props.widgetOwner;
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
-  styles["zIndex"] = `${
-    9999999999999999999999999999999999999999999999 - index
-  }`;
+  styles["zIndex"] = `${999999999 - index}`;
 
   console.log("styles: ", styles);
   return styles;
@@ -94,9 +92,7 @@ const RenderAllCommentAnswerBox = (d) => {
 function getKudoBoxContainerStyles() {
   let styles = thisWidgetInlineStyles.renderKudoBox.cardContainer;
 
-  styles["zIndex"] = `${
-    9999999999999999999999999999999999999999999999 - index
-  }`;
+  styles["zIndex"] = `${999999999 - index}`;
   return styles;
 }
 
