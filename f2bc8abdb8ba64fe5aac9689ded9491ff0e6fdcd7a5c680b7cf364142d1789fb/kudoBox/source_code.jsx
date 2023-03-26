@@ -111,11 +111,11 @@ function getKudoBoxContainerStyles() {
   return styles;
 }
 
-// const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
+const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
   <>
-    <div
+    <CardContainer
       style={getKudoBoxContainerStyles()}
       className={thisWidgetClassNames.renderKudoBox.cardContainer}
     >
@@ -160,6 +160,6 @@ return (
       </div>
 
       {RenderAllCommentAnswerBox(d)}
-    </div>
+    </CardContainer>
   </>
 );
