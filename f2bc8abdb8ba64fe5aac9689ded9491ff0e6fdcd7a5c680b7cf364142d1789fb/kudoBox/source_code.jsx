@@ -1,11 +1,3 @@
-console.log("entro");
-
-return (
-  <>
-    <p>in</p>
-  </>
-);
-
 const d = props.d;
 const index = props.index;
 
