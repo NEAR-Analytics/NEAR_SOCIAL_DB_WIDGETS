@@ -196,6 +196,13 @@ return (
 
     {state.content && (
       <div>
+        {console.log(
+          state.content,
+          upvotes,
+          updateGeneralState,
+          props.allWidgetsInlineStyles,
+          props.allWidgetsClassNames
+        )}
         <Widget
           src={`${widgetOwner}/widget/MainPage.Post`}
           props={{
