@@ -164,19 +164,7 @@ const RenderKudoBox = (d, index) => {
   return (
     <>
       {console.log("entro1")}
-      <Widget
-        src={`f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/kudoBox`}
-        props={{
-          allStyledComponentsStyles: props.allStyledComponentsStyles,
-          widgetOwner,
-          d,
-          index,
-          upvotes,
-          updateGeneralState,
-          allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-          allWidgetsClassNames: props.allWidgetsClassNames,
-        }}
-      />
+      <Widget src={`${widgetOwner}/widget/kudoBox`} props={{}} />
       {console.log("salgo1")}
     </>
   );
