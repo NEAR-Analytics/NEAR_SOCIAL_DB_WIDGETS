@@ -21,22 +21,6 @@ if (!state.metadata) {
   return "Loading metadata";
 }
 
-//=============================================================================Start components styles==================================================================================================
-
-const allStyledComponentsStyles = {
-  kudoBox: {
-    cardContainer: `
-        width: 45%;
-
-        @media (hover: none) {
-          width: 100%;
-        }
-    `,
-  },
-};
-
-//=============================================================================End components styles=====================================================================================================
-
 //=============================================================================Start inline styles=======================================================================================================
 
 const standardButtonStyles = {
@@ -162,6 +146,7 @@ const allWidgetsInlineStyles = {
         textAlign: "center",
         padding: "10px",
         margin: "1rem 0.5rem",
+        height: "max-content",
       },
       showCommentsButtonContainerNoComments: {
         margin: "0.5rem auto",
@@ -201,6 +186,9 @@ const allWidgetsInlineStyles = {
   mainPage_post: {
     cardContent: {
       width: "100%",
+    },
+    postUrl: {
+      margin: "1rem",
     },
     postContentContainer: {
       textAlign: "start",
@@ -258,13 +246,15 @@ const allWidgetsClassNames = {
       userAnswerHeader: "d-flex",
     },
     renderKudoBox: {
-      cardContainer: "d-flex flex-column align-items-start",
+      cardContainer: "col-lg-5 col-md-12",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
     },
   },
 
   mainPage_post: {
+    headerContainer: "d-flex justify-content-between",
     cardContent: "mt-3 text-break w-100 d-flex justify-content-between",
+    postUrl: "d-flex",
     upVoteContainer:
       "d-flex flex-row-reverse align-items-center justify-content-end",
     commentInput: {
@@ -321,7 +311,6 @@ return (
     <Widget
       src={`${widgetOwner}/widget/Kudos`}
       props={{
-        allStyledComponentsStyles,
         widgetOwner,
         allWidgetsInlineStyles,
         allWidgetsClassNames,
