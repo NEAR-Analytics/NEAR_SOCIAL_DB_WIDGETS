@@ -190,6 +190,9 @@ const allWidgetsInlineStyles = {
     postUrl: {
       margin: "1rem",
     },
+    postUrlSpan: {
+      marginRigth: "0.5rem",
+    },
     postContentContainer: {
       textAlign: "start",
       marginLeft: "1rem",
