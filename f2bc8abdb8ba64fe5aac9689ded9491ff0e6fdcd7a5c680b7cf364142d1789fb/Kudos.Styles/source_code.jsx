@@ -1,6 +1,9 @@
 const profile = Social.getr(`${context.accountId}/profile`);
 const metadata = Social.getr(`webuidl.near/widget/Kudos/metadata`);
 
+const widgetOwner =
+  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
+
 State.init({
   metadata: {},
   profile: {},
@@ -21,7 +24,7 @@ if (!state.metadata) {
 //=============================================================================Start components styles==================================================================================================
 
 const allStyledComponentsStyles = {
-  kudos: {
+  kudoBox: {
     cardContainer: `
         width: 45%;
 
@@ -255,7 +258,7 @@ const allWidgetsClassNames = {
       userAnswerHeader: "d-flex",
     },
     renderKudoBox: {
-      cardContainer: "d-flex flex-column align-items-start",
+      cardContainer: "w-50 d-flex flex-column align-items-start",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
     },
   },
@@ -271,9 +274,6 @@ const allWidgetsClassNames = {
 };
 
 //================================================================================End class styles=======================================================================================================
-
-const widgetOwner =
-  "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
 const updateGeneralState = (object) => {
   State.update(object);
