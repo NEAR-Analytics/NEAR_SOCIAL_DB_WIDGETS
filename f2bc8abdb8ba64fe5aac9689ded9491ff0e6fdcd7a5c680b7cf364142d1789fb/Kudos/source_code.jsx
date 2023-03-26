@@ -160,6 +160,7 @@ const RenderAllCommentAnswerBox = (d) => {
 /* END CommentBox  */
 
 const RenderKudoBox = (d, index) => {
+  console.log("entro");
   return (
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
