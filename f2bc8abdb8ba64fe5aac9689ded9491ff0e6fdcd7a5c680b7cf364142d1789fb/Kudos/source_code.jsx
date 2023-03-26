@@ -194,27 +194,22 @@ return (
       }}
     />
 
-    {state.content && (
-      <div>
-        {console.log(
-          state.content,
-          upvotes,
-          updateGeneralState,
-          props.allWidgetsInlineStyles,
-          props.allWidgetsClassNames
-        )}
-        <Widget
-          src={`${widgetOwner}/widget/MainPage.Post`}
-          props={{
-            content: state.content,
-            upvotes,
-            updateGeneralState,
-            allWidgetsInlineStyles: props.allWidgetsInlineStyles,
-            allWidgetsClassNames: props.allWidgetsClassNames,
-          }}
-        />
-      </div>
-    )}
+    {
+      // {state.content && (
+      // <div>
+      // <Widget
+      // src={`${widgetOwner}/widget/MainPage.Post`}
+      // props={{
+      // content: state.content,
+      // upvotes,
+      // updateGeneralState,
+      // allWidgetsInlineStyles: props.allWidgetsInlineStyles,
+      // allWidgetsClassNames: props.allWidgetsClassNames,
+      // }}
+      // />
+      // </div>
+      // )}
+    }
 
     <div className={thisWidgetClassNames.urlTextareaContainer}>
       <p>Url:</p>
