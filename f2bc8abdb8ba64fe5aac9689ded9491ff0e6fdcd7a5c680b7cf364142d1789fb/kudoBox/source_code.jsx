@@ -1,5 +1,3 @@
-const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
-
 const d = props.d;
 const index = props.index;
 
@@ -112,6 +110,8 @@ function getKudoBoxContainerStyles() {
   }`;
   return styles;
 }
+
+const CardContainer = styled.div`${thisWidgetStyledComponentsStyles.cardContainer}`;
 
 return (
   <>
