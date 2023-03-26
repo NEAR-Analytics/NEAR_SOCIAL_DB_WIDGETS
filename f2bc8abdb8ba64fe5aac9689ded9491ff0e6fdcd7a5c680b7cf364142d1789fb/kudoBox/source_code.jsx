@@ -16,18 +16,11 @@ State.init({
 
 const widgetOwner = props.widgetOwner;
 
-function getShowCommentsButtonContainerStyles() {
-  return state.hoveringElement == "showCommentsButtonContainer" ||
-    state.showComments
-    ? thisWidgetInlineStyles.renderKudoBox.hoveringShowCommentsButtonContainer
-    : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
-}
-
 function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
   styles["zIndex"] = `${
-    9999999999999999999999999999999999999999999999 - index
+    99999999999999999999999999999999999999999999999 - index
   }`;
   return styles;
 }
