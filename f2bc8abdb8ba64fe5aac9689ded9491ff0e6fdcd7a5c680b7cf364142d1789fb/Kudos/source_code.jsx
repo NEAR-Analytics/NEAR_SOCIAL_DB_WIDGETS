@@ -267,3 +267,6 @@ return (
     </div>
   </div>
 );
+// allCardsContainer: "d-flex flex-wrap justify-content-around",
+// renderKudoBox: {
+//       cardContainer: "d-flex flex-column align-items-start",
