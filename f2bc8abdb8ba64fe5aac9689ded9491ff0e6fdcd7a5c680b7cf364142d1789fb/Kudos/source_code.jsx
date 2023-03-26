@@ -1,4 +1,5 @@
 State.init({
+  hoveringElement: "",
   input: "",
   url: "",
   onChange: ({ content }) => {
@@ -219,7 +220,11 @@ return (
       />
     </div>
     <CommitButton
-      style={thisWidgetInlineStyles.commitButton}
+      style={
+        state.hoveringElement == "commitButton"
+          ? props.allWidgetsInlineStyles.hoveringButtonStyles
+          : props.allWidgetsInlineStyles.standardButtonStyles
+      }
       data={{
         index: {
           kudo: JSON.stringify(
@@ -236,10 +241,10 @@ return (
         },
       }}
       onMouseEnter={() => {
-        updateGeneralState({ hoveringElement: "commitButton" });
+        State.update({ hoveringElement: "commitButton" });
       }}
       onMouseLeave={() => {
-        updateGeneralState({ hoveringElement: "" });
+        State.update({ hoveringElement: "" });
       }}
       onCommit={() => {
         State.update({
