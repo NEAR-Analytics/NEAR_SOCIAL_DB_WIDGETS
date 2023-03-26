@@ -14,6 +14,13 @@ function getCaretDirection() {
     : { transition: "transform 1s" };
 }
 
+function getShowCommentsButtonContainerStyles() {
+  return state.hoveringElement == "showCommentsButtonContainer" ||
+    state.showComments
+    ? thisWidgetInlineStyles.renderKudoBox.hoveringShowCommentsButtonContainer
+    : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
+}
+
 return (
   <div
     className={thisWidgetClassNames.showCommentsButtonContainer}
