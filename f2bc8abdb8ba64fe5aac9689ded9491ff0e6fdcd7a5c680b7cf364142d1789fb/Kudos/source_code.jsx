@@ -198,7 +198,6 @@ return (
         <Widget
           src={`${widgetOwner}/widget/MainPage.Post`}
           props={{
-            allStyledComponentsStyles: props.allStyledComponentsStyles,
             widgetOwner,
             accountId: context.accountId,
             content: state.content,
