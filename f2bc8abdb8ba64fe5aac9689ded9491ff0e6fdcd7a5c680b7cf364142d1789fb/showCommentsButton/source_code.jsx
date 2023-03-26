@@ -15,8 +15,7 @@ function getCaretDirection() {
 }
 
 function getShowCommentsButtonContainerStyles() {
-  return state.hoveringElement == "showCommentsButtonContainer" ||
-    state.showComments
+  return state.hoveringElement == "showCommentsButtonContainer" || showComments
     ? thisWidgetInlineStyles.renderKudoBox.hoveringShowCommentsButtonContainer
     : thisWidgetInlineStyles.renderKudoBox.showCommentsButtonContainer;
 }
