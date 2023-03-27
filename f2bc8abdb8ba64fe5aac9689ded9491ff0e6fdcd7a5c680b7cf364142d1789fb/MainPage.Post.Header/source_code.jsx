@@ -42,7 +42,6 @@ return (
               <i
                 className="bi bi-clipboard"
                 onClick={(event) => {
-                  event.preventDefault();
                   clipboard.writeText(
                     `https://near.social/#/${widgetOwner}/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
                   );
