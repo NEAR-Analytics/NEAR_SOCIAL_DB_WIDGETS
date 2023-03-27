@@ -43,17 +43,13 @@ return (
         id="pills-feed"
         role="tabpanel"
         aria-labelledby="pills-feed-tab"
-      >
-        <Widget src="y3k.near/widget/MainPage.Content" props={props} />
-      </div>
+      ></div>
       <div
         className="tab-pane d-lg-block col-lg-4"
         id="pills-explore"
         role="tabpanel"
         aria-labelledby="pills-explore-tab"
-      >
-        <Widget src="y3k.near/widget/Welcome.RHS" props={props} />
-      </div>
+      ></div>
     </div>
   </>
 );
