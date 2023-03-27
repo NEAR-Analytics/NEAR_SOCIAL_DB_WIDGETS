@@ -20,6 +20,6 @@ const content = JSON.parse(
 return (
   <Widget
     src={previewWidget}
-    props={{ identifier: items, commentsLimit: 30, subscribe: true }}
+    props={{ identifier: item, commentsLimit: 30, subscribe: true }}
   />
 );
