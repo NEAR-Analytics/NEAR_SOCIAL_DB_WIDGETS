@@ -1,10 +1,12 @@
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
-// const accountId =
-// "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
-// const blockHeight = 84207156;
 const admins = props.admins;
 const adminContract = props.adminContract;
+
+// {
+//   "accountId": "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055",
+//   "blockHeight": "84207156"
+// }
 
 const is_hidden = Near.view(adminContract, "is_hidden", {
   id: { account_id: accountId, block_height: blockHeight },
@@ -63,7 +65,9 @@ const TopicName = styled.span`
 return (
   <div className={`${display} p-3`}>
     <div class="row">
-      <div class="col-2">avatar</div>
+      <div class="col-2">
+        <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+      </div>
       <div class="col-2">
         {/* Upvote Widget */}
         <Widget
