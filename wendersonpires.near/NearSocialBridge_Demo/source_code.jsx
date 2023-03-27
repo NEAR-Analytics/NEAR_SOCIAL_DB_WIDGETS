@@ -5,8 +5,8 @@
 /**
  * External App URL (must)
  */
-const externalAppUrl = "https://near-test-app.web.app/";
-// const externalAppUrl = "https://0af717709fb2.ngrok.app";
+// const externalAppUrl = "https://near-test-app.web.app/";
+const externalAppUrl = "https://d43af01531fe.ngrok.app";
 /**
  * Initial Path (optional but recommended)
  */
@@ -74,6 +74,12 @@ const requestHandler = (request, response, Utils) => {
 
 const getRoomDataHandler = (request, response, Utils) => {
   const { payload } = request;
+
+  if (!payload.roomId) {
+    response(request).send({ error: "roomId prop must be provided" });
+    return;
+  }
+
   Utils.promisify(
     () =>
       Social.index(payload.roomId, "data", {
@@ -157,14 +163,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 const getRoomsListHandler = (request, response, Utils) => {
   // Error: IDK why but this is working only when rendering the preview. Final app is not working :/
   Utils.promisify(
-    () =>
-      Storage.privateGet("app:rooms-list") || [
-        "near-social-community",
-        "bos",
-        "satori",
-        "dragon-ball-z",
-        "sala-teste-1",
-      ],
+    () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms });
