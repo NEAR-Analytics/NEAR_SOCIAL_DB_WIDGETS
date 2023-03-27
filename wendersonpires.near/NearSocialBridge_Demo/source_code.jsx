@@ -147,9 +147,11 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   console.log("CHEGOU AQUI 2");
-  const rooms = Storage.privateGet("app:rooms-list") || ["teste"];
+  const rooms = Storage.privateGet("app:rooms-list");
   console.log("CHEGOU AQUI ROOMS:", rooms);
-  response(request).send({ roomsList: rooms });
+  if (rooms) {
+    response(request).send({ roomsList: rooms });
+  }
   // Utils.promisify(
   //   () => Storage.privateGet("app:rooms-list"),
   //   (rooms) => {
