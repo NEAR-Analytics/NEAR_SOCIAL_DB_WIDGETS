@@ -1,12 +1,13 @@
 const { game_id } = props;
+const contractId = "app.chess-game.near";
 if (!game_id) return <div>"game_id" missing in props</div>;
 
-const board = Near.view("app.chess-game.near", "get_board", {
+const board = Near.view(contractId, "get_board", {
   game_id,
 });
 if (!board) return <div />;
 
-const gameInfo = Near.view("app.chess-game.near", "game_info", {
+const gameInfo = Near.view(contractId, "game_info", {
   game_id,
 });
 if (!gameInfo) return <div />;
@@ -220,7 +221,7 @@ const updateMove = (event) => {
 const playMove = () => {
   if (!state.move) return;
   Near.call(
-    "app.chess-game.near",
+    contractId,
     "play_move",
     {
       game_id,
