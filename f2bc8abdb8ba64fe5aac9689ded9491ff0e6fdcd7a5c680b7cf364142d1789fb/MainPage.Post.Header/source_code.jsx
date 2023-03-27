@@ -41,11 +41,12 @@ return (
             <li className="dropdown-item" style={{ cursor: "pointer" }}>
               <i
                 className="bi bi-clipboard"
-                onClick={() =>
+                onClick={(event) => {
+                  event.preventDefault();
                   clipboard.writeText(
                     `https://near.social/#/${widgetOwner}/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
-                  )
-                }
+                  );
+                }}
               ></i>
               <span>Copy kudo link</span>
             </li>
