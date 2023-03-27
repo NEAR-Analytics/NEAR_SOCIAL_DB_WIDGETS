@@ -115,6 +115,7 @@ function NearSocialBridgeCore(props) {
       } else {
         // Is to the View
         // Send it straight to the View
+        console.log('Chegou do EA', message.data)
         sendMessageToView(message.data)
       }
     }
@@ -191,7 +192,7 @@ function NearSocialBridgeCore(props) {
   if (!state.externalAppUrl) return null
 
   return React.createElement('iframe', {
-    sandbox: 'allow-scripts allow-popups-to-escape-sandbox allow-popups',
+    sandbox: 'allow-scripts',
     id: 'myIframe',
     src: externalAppUrl,
     style: { border: 'none', width: '100%', height: iframeHeight + 'px', margin: 0, padding: 0 },
@@ -200,7 +201,6 @@ function NearSocialBridgeCore(props) {
 }
 
 const domContainer = document.querySelector('#bridge-root')
-console.log(domContainer)
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
 
@@ -311,6 +311,7 @@ const responseFactory = {
 };
 
 const onMessageHandler = (message) => {
+  console.log("View Recebe", message);
   // Handles core calls
   if (message.type.includes("nsb:")) {
     handlerCoreRequests(message);
