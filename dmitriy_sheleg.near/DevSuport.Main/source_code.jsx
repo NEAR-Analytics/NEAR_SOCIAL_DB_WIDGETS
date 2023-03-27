@@ -15,26 +15,25 @@ const sortByCategories = ["Newest", "Popular"];
 const filterByTopic = ["one", "two", "three"];
 
 const Divider = styled.div`
-    width: 1px;
-    height: 100%;
-    background-color: #ECEEF0;
+  width: 1px;
+  height: 100%;
+  background-color: #ECEEF0;
+`;
+const SidebarWrapper = styled.div`
+  border-right: 1px solid #ECEEF0;;
 `;
 
 return (
   <div class="container py-3 mb-5">
     <div class="row">
-      <div class="col-3">
+      <SidebarWrapper className="col-4 pe-5">
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Main.Sidebar"
           props={{ categories: sortByCategories, topics: filterByTopic }}
         />
-      </div>
+      </SidebarWrapper>
 
-      <div class="col-1">
-        <Divider />
-      </div>
-
-      <div class="col-8">
+      <div class="col-8 ps-5">
         {/* Title */}
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Discussion.Title"
