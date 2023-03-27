@@ -85,10 +85,12 @@ function NearSocialBridgeCore(props) {
     }
 
     // Message concurrency controll
-    if (Math.abs(lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
+    if (Math.abs(state.lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
+        state.lastMsgSentAt = new Date()
         state.externalAppIframe.contentWindow.postMessage(message, '*')
         console.log('Core enviou para EA', message)
     } else {
+        state.lastMsgSentAt = new Date()
         setTimeout(() => {
             state.externalAppIframe.contentWindow.postMessage(message, '*')
             console.log('Core enviou para EA (DELAYED)', message)
