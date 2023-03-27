@@ -1,7 +1,10 @@
 const profile = Social.getr(`${context.accountId}/profile`);
 const metadata = Social.getr(`webuidl.near/widget/Kudos/metadata`);
 
-const blockHeight = Number(props.sharedBlockHeight) ?? undefined;
+const sharedBlockHeight = Number(props.sharedBlockHeight);
+const blockHeight = Number.isNaN(sharedBlockHeight)
+  ? undefined
+  : Number(sharedBlockHeight);
 
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
@@ -329,6 +332,7 @@ return (
         </p>
       </div>
     </div>
+
     <Widget
       src={`${widgetOwner}/widget/Kudos`}
       props={{
