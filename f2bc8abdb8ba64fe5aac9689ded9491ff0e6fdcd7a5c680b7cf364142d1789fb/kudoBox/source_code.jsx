@@ -1,6 +1,8 @@
 const d = props.d;
 const index = props.index;
 
+console.log(props);
+
 const tabs = props.tabs;
 const oppenedTab = props.oppenedTab;
 
