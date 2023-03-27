@@ -19,11 +19,15 @@ const Button = styled.button`
     border-radius: 4px;
     font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
 `;
+const Disclaimer = styled.div`
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: 1.2rem;
+`;
 
 const isRegistered = Near.view(contractId, "storage_balance_of", {
   account_id: accountId,
 });
-console.log("isRegistered", isRegistered);
 
 const registerAccount = () => {
   Near.call(
@@ -38,7 +42,14 @@ const registerAccount = () => {
 if (!isRegistered) {
   return (
     <LobbyView>
-      <Button onClick={registerAccount}>Register Account</Button>
+      <h1>Chess On Chain</h1>
+      <Disclaimer>
+        You need to pay storage deposit of 0.05N first before being allowed to
+        play Chess On Chain
+      </Disclaimer>
+      <Button onClick={registerAccount} fontSize="1.2rem">
+        Register Account
+      </Button>
     </LobbyView>
   );
 }
@@ -74,11 +85,6 @@ const GameCreator = styled.div`
     h2 {
         margin-bottom: 1.2rem;
     }
-`;
-const Disclaimer = styled.div`
-    margin-top: 1rem;
-    font-style: italic;
-    font-size: 1.2rem;
 `;
 
 const selectGame = (gameId) => () => {
@@ -122,6 +128,7 @@ const renderGameIds = () =>
 
 return (
   <LobbyView>
+    <h1>Chess On Chain</h1>
     {state.game_id ? (
       <>
         <Button onClick={returnToLobby}>Return To Lobby</Button>
