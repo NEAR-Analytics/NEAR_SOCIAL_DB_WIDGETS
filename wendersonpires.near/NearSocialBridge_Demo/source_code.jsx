@@ -30,6 +30,12 @@ const initialPayload = {};
 //   "sala-teste-1",
 // ]);
 
+Social.set("wendersonpires.near/experimental/chatv2/rooms-list", [
+  "near-social-community",
+]);
+
+console.log(Social.get("wendersonpires.near/experimental/chatv2/rooms-list"));
+
 /**
  * Request Handlers - Backend.
  *
