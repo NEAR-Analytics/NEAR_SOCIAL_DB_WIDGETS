@@ -9,18 +9,7 @@ const tabs = {
   },
 };
 
-const openKudo = props.openKudo ?? {};
-
-State.init({
-  hoveringElement: "",
-  input: "",
-  url: "",
-  onChange: ({ content }) => {
-    State.update({ content });
-  },
-  display: tabs.ALL_kUDOS.id,
-  kudo: openKudo,
-});
+const blockHeight = props.blockHeight;
 
 const updateGeneralState = props.updateGeneralState;
 
@@ -92,7 +81,18 @@ upvotes.forEach((upvote) => {
 
 const finalData = sortedData;
 
-console.log("finalData: ", finalData);
+const openKudo = finalData.filter((d) => d.blockHeight == blockHeight)[0] ?? {};
+
+State.init({
+  hoveringElement: "",
+  input: "",
+  url: "",
+  onChange: ({ content }) => {
+    State.update({ content });
+  },
+  display: tabs.ALL_kUDOS.id,
+  kudo: openKudo,
+});
 
 /* BEGIN Common.componse  */
 const composeData = () => {
@@ -147,11 +147,12 @@ const composeData = () => {
 /* END CommentButton  */
 
 const RenderKudoBox = (d, index) => {
-  console.log("d: ", d);
   return (
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
       props={{
+        tabs,
+        oppenedTab: state.display,
         widgetOwner,
         d,
         index,
@@ -170,7 +171,7 @@ return (
       <h2 style={thisWidgetInlineStyles.selectedTab}>
         {state.display == tabs.ALL_kUDOS.id
           ? tabs.ALL_kUDOS.text
-          : tabs.KUDO.text}
+          : `${tabs.KUDO.text}`}
       </h2>
       {state.display == tabs.KUDO.id && (
         <i
