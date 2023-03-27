@@ -11,7 +11,7 @@ const singlePageView =
   props.singlePageView ||
   "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/NestedDiscussions.SinglePageView";
 
-const postUrl = `https://alpha.near.org/#/${singlePageView}?accountId=${accountId}&blockHeight=${blockHeight}`;
+const postUrl = `https://alpha.near.org/#/${singlePageView}?accountId=${accountId}&blockHeight=${blockHeight}&dbAction=${dbAction}`;
 
 const content = JSON.parse(
   Social.get(`${accountId}/${dbAction}/main`, blockHeight) ??
