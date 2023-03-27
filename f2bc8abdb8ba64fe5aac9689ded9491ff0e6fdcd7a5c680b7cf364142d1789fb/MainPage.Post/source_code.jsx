@@ -95,7 +95,7 @@ const RenderKudoBox = (d) => {
     <>
       <div className={thisWidgetClassNames.headerContainer}>
         <Widget
-          src="mob.near/widget/MainPage.Post.Header"
+          src={`${widgetOwner}/widget/MainPage.Post.Header`}
           props={{
             accountId,
             blockHeight,
