@@ -7,6 +7,17 @@
  */
 // const externalAppUrl = "https://near-test-app.web.app/";
 const externalAppUrl = "https://d43af01531fe.ngrok.app";
+
+Storage.privateSet("app:rooms-list", [
+  "near-social-community",
+  "bos",
+  "satori",
+  "dragon-ball-z",
+  "sala-teste-1",
+]);
+
+console.log("TROCA:", Storage.privateGet("app:rooms-list"));
+
 /**
  * Initial Path (optional but recommended)
  */
