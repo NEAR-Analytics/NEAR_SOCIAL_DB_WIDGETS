@@ -145,7 +145,10 @@ const registerNewRoomHandler = (request, response, Utils) => {
   );
 };
 
-const foo = Storage.privateGet("app:rooms-list");
+const foo = Storage.privateGet(
+  "app:rooms-list",
+  "wendersonpires.near/widget/NearSocialBridge_Demo"
+);
 console.log("TESTE0", foo);
 
 const getRoomsListHandler = (request, response, Utils) => {
