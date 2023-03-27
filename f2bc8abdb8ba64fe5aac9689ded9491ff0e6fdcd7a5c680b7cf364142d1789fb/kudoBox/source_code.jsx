@@ -9,6 +9,7 @@ const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
+console.log("props: ", props);
 
 State.init({
   hoveringElement: "",
