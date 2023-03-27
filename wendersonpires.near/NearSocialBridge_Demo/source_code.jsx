@@ -1,7 +1,12 @@
+// This is a DEV env Widget
+if (!context.accountId || context.accountId !== "wendersonpires.near")
+  return null;
+
 /**
  * External App URL (must)
  */
 const externalAppUrl = "https://near-test-app.web.app/";
+// const externalAppUrl = "https://0af717709fb2.ngrok.app";
 /**
  * Initial Path (optional but recommended)
  */
@@ -13,10 +18,17 @@ const initialViewHeight = 500;
 /**
  * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
  * If you want to get some data, make a "request"
- *
- * Use "useInitialPayload()" hook inside the external app to get this data
  */
 const initialPayload = {};
+
+// Migration
+// Storage.privateSet("app:rooms-list", [
+//   "near-social-community",
+//   "bos",
+//   "satori",
+//   "dragon-ball-z",
+//   "sala-teste-1",
+// ]);
 
 /**
  * Request Handlers - Backend.
@@ -145,7 +157,7 @@ const getRoomsListHandler = (request, response, Utils) => {
 
 return (
   <Widget
-    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
+    src={"wendersonpires.near/widget/NearSocialBridgeWithExternalApp_Test"}
     props={{
       externalAppUrl,
       path,
