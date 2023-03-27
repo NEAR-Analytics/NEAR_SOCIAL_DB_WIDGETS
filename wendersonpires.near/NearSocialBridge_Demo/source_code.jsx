@@ -30,11 +30,14 @@ const initialPayload = {};
 //   "sala-teste-1",
 // ]);
 
-Social.set("wendersonpires.near/experimental/chatv2/rooms-list", [
-  "near-social-community",
-]);
+// Social.set("wendersonpires.near/experimental/chatv2/rooms-list", [
+//   "near-social-community",
+// ]);
 
-console.log(Social.get("wendersonpires.near/experimental/chatv2/rooms-list"));
+// console.log(
+//   "BATATA",
+//   Social.get("wendersonpires.near/experimental/chatv2/rooms-list")
+// );
 
 /**
  * Request Handlers - Backend.
@@ -151,37 +154,28 @@ const registerNewRoomHandler = (request, response, Utils) => {
   );
 };
 
-const foo = Storage.get(
-  "app:rooms-list",
-  "wendersonpires.near/widget/NearSocialBridge_Demo"
-);
-console.log("TESTE0", foo);
-
 const getRoomsListHandler = (request, response, Utils) => {
-  // console.log("CHEGOU AQUI 2");
-  const rooms = Storage.privateGet("app:rooms-list") || [
-    "near-social-community",
-  ];
-  // console.log("CHEGOU AQUI ROOMS:", rooms);
-  if (rooms) {
-    response(request).send({ roomsList: rooms });
-  }
-  // Utils.promisify(
-  //   () => Storage.privateGet("app:rooms-list"),
-  //   (rooms) => {
-  //     // Send the rooms list
-  //     setTimeout(() => {
-  //       console.log("CHEGOU AQUI ROOMS:");
-  //       console.log(rooms);
-  //       response(request).send({ roomsList: rooms });
-  //     }, 1000);
-  //   }
-  // );
+  // Error: IDK why but this is working only when rendering the preview. Final app is not working :/
+  Utils.promisify(
+    () =>
+      Storage.privateGet("app:rooms-list") || [
+        "near-social-community",
+        "bos",
+        "satori",
+        "dragon-ball-z",
+        "sala-teste-1",
+      ],
+    (rooms) => {
+      // Send the rooms list
+      response(request).send({ roomsList: rooms });
+    }
+  );
 };
 
 return (
   <Widget
-    src={"wendersonpires.near/widget/NearSocialBridgeWithExternalApp_Test"}
+    // src={"wendersonpires.near/widget/NearSocialBridgeWithExternalApp_Test"}
+    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
     props={{
       externalAppUrl,
       path,
