@@ -38,7 +38,7 @@ return (
             <i className="fs-6 bi bi-three-dots" />
           </a>
           <ul className="dropdown-menu">
-            <li className="dropdown-item" style={{ cursor: "pointer" }}>
+            <li style={{ cursor: "pointer" }}>
               <i
                 className="bi bi-clipboard"
                 onClick={() => {
