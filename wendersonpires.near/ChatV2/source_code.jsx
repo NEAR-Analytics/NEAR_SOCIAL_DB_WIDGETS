@@ -18,6 +18,8 @@ const initialViewHeight = 740;
  */
 const initialPayload = {};
 
+Storage.privateSet("app:rooms-list", ["near-social-community", "bos"]);
+
 /**
  * Request Handlers - Backend.
  *
@@ -135,6 +137,11 @@ const registerNewRoomHandler = (request, response, Utils) => {
       const updatedRoomsList = [...rooms, roomId];
       Storage.privateSet("app:rooms-list", updatedRoomsList);
       response(request).send({ roomsList: updatedRoomsList });
+    },
+    // If error: because there's no room yet
+    () => {
+      Storage.privateSet("app:rooms-list", [roomId]);
+      response(request).send({ roomsList: [roomId] });
     }
   );
 };
@@ -145,7 +152,7 @@ const getRoomsListHandler = (request, response, Utils) => {
     () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
-      response(request).send({ roomsList: rooms || [] });
+      response(request).send({ roomsList: rooms });
     }
   );
 };
