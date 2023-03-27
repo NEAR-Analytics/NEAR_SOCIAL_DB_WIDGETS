@@ -116,6 +116,7 @@ return (
       <Widget
         src={`${widgetOwner}/widget/MainPage.Post`}
         props={{
+          widgetOwner,
           content: d,
           upvotes,
           updateGeneralState,
