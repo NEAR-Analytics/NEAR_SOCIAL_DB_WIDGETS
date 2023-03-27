@@ -38,15 +38,16 @@ return (
             <i className="fs-6 bi bi-three-dots" />
           </a>
           <ul className="dropdown-menu">
-            <li style={{ cursor: "pointer" }}>
-              <i
-                className="bi bi-clipboard"
-                onClick={() => {
-                  clipboard.writeText(
-                    `https://near.social/#/${widgetOwner}/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
-                  );
-                }}
-              ></i>
+            <li
+              className="dropdown-item"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                clipboard.writeText(
+                  `https://near.social/#/${widgetOwner}/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
+                );
+              }}
+            >
+              <i className="bi bi-clipboard"></i>
               <span>Copy kudo link</span>
             </li>
             <li className="dropdown-item">
