@@ -19,22 +19,26 @@ State.init({
 });
 
 const BoardView = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 const GameInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 1rem;
 `;
 const Board = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+const BoardRow = styled.div`
+  display: flex;
+  width: 100%;
 `;
 
 const renderPlayer = (color, player) => {
@@ -152,56 +156,51 @@ const renderPiece = (piece) => {
 
 const fieldSize = "3rem";
 const Legend = styled.div`
-        min-width: ${fieldSize};
-        min-height: ${fieldSize};
-        max-width: ${fieldSize};
-        max-height: ${fieldSize};
-        font-size: 1.6rem;
-        font-weight: 600;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  flex: 1 1 0;
+  max-width: ${fieldSize};
+  aspect-ratio: 1 / 1;
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const renderBoard = (board) => {
-  return board.reverse().flatMap((row, rowIndex) => {
-    let res = row.split("").map((c, colIndex) => {
+  const boardRes = board.reverse().map((row, rowIndex) => {
+    const res = row.split("").map((c, colIndex) => {
       const background = (rowIndex + colIndex) % 2 === 0 ? "#ddd" : "#555";
       const Field = styled.span`
-        min-width: ${fieldSize};
-        min-height: ${fieldSize};
+        flex: 1 1 auto;
         max-width: ${fieldSize};
-        max-height: ${fieldSize};
+        aspect-ratio: 1 / 1;
         background: ${background};
 
         img {
-            min-width: 100%;
-            min-height: 100%;
-            max-width: 100%;
-            max-height: 100%;
+          min-width: 100%;
+          min-height: 100%;
+          max-width: 100%;
+          max-height: 100%;
         }
         `;
       return <Field>{renderPiece(c)}</Field>;
     });
     res.unshift(<Legend>{8 - rowIndex}</Legend>);
-    const LineBreak = styled.div`
-        flex: 1 0 100%;
-    `;
-    res.push(<LineBreak />);
-    if (rowIndex === board.length - 1) {
-      res = res.concat([
-        <Legend></Legend>,
-        <Legend>A</Legend>,
-        <Legend>B</Legend>,
-        <Legend>C</Legend>,
-        <Legend>D</Legend>,
-        <Legend>E</Legend>,
-        <Legend>F</Legend>,
-        <Legend>G</Legend>,
-        <Legend>H</Legend>,
-      ]);
-    }
-    return res;
+    return <BoardRow>{res}</BoardRow>;
   });
+  boardRes.push(
+    <BoardRow>
+      <Legend></Legend>
+      <Legend>A</Legend>
+      <Legend>B</Legend>
+      <Legend>C</Legend>
+      <Legend>D</Legend>
+      <Legend>E</Legend>
+      <Legend>F</Legend>
+      <Legend>G</Legend>
+      <Legend>H</Legend>
+    </BoardRow>
+  );
+  return boardRes;
 };
 
 const TurnInput = styled.input`
@@ -232,19 +231,19 @@ const playMove = () => {
 };
 
 const Footer = styled.div`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 const text = `
-    A valid move will be parsed from a string.
-    
-    Possible valid formats include:
-    - \"e2e4\"
-    - \"e2 e4\"
-    - \"e2 to e4\"
-    - \"castle queenside\"
-    - \"castle kingside\"'
+  A valid move will be parsed from a string.
+  
+  Possible valid formats include:
+  - \"e2e4\"
+  - \"e2 e4\"
+  - \"e2 to e4\"
+  - \"castle queenside\"
+  - \"castle kingside\"'
 `;
 
 return (
