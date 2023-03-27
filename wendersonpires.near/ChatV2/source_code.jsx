@@ -118,7 +118,15 @@ const registerNewRoomHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
+    // Use static values to avoid error (fix erro in progress)
+    () =>
+      Storage.privateGet("app:rooms-list") || [
+        "near-social-community",
+        "bos",
+        "satori",
+        "sala-teste-1",
+        "dragon-ball-z",
+      ],
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
