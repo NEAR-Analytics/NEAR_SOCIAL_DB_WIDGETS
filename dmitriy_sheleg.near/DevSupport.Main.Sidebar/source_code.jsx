@@ -1,3 +1,6 @@
+const categories = props.categories;
+const topics = props.topics;
+
 const H6 = styled.h6`
     font-size: 12px;
     font-weight: 600;
@@ -25,7 +28,7 @@ return (
   <div class="d-flex flex-column">
     <H6>sort by</H6>
     <div>
-      {props.categories.map((i) => (
+      {categories.map((i) => (
         <Category>{i}</Category>
       ))}
     </div>
@@ -34,7 +37,7 @@ return (
 
     <H6>topics</H6>
     <div>
-      {props.topics.map((i) => (
+      {topics.map((i) => (
         <Category>{i}</Category>
       ))}
     </div>
