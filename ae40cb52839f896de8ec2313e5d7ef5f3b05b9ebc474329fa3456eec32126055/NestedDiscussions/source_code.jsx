@@ -11,7 +11,7 @@ const dbAction = props.dbAction || "discussTEST";
 const identifier = props.identifier;
 
 if (!identifier) {
-  return "Please select an identifier for this discussion";
+  return "[NestedDiscussions]: Please setup props.identifier";
 }
 
 const DiscussionContainer = styled.div`
