@@ -25,7 +25,6 @@ let viewerPort
 // Outside of the component state controller
 let state = {
   externalAppUrl: '',
-  externalAppIframe: null,
   initialPath: null,
   iframeHeight: 480,
   userInfo: null,
@@ -79,14 +78,9 @@ function NearSocialBridgeCore(props) {
 
   /** Send message to External App */
   const sendMessage = (message) => {
-    if (!state.externalAppIframe) {
-        state.externalAppIframe = document.getElementById('myIframe')
-        state.externalAppIframe.contentWindow.postMessage(message, '*')
+        var iframe = document.getElementById('myIframe')
+        iframe.contentWindow.postMessage(message, '*')
         console.log('Core enviou para EA', message)
-    } else {
-        state.externalAppIframe.contentWindow.postMessage(message, '*')
-        console.log('Core enviou para EA', message)
-    }
   }
 
   const sendMessageToView = (message) => {
