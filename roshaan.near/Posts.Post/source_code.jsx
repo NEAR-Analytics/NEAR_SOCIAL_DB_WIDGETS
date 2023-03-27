@@ -70,6 +70,7 @@ const Comments = styled.div`
 const renderItem = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
+      console.log(a, "item")
       <Widget
         src="roshaan.near/widget/Comments.Comment"
         props={{
@@ -78,7 +79,6 @@ const renderItem = (a) =>
           highlight:
             a.accountId === props.highlightComment?.accountId &&
             a.blockHeight === props.highlightComment?.blockHeight,
-          raw,
           content: JSON.parse(a.content),
         }}
       />
