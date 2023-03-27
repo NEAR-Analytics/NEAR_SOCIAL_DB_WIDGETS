@@ -26,7 +26,6 @@ let viewerPort
 let state = {
   externalAppUrl: '',
   externalAppIframe: null,
-  lastMsgSentAt: new Date(), // Message concurrency controll
   initialPath: null,
   iframeHeight: 480,
   userInfo: null,
@@ -83,19 +82,8 @@ function NearSocialBridgeCore(props) {
     if (!state.externalAppIframe) {
         state.externalAppIframe = document.getElementById('myIframe')
     }
-
-    // Message concurrency controll
-    if (Math.abs(state.lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
-        state.lastMsgSentAt = new Date()
-        state.externalAppIframe.contentWindow.postMessage(message, '*')
-        console.log('Core enviou para EA', message)
-    } else {
-        state.lastMsgSentAt = new Date()
-        setTimeout(() => {
-            state.externalAppIframe.contentWindow.postMessage(message, '*')
-            console.log('Core enviou para EA (DELAYED)', message)
-        }, 500)
-    }
+    state.externalAppIframe.contentWindow.postMessage(message, '*')
+    console.log('Core enviou para EA', message)
   }
 
   const sendMessageToView = (message) => {
@@ -230,9 +218,24 @@ const Utils = {
    * Send message
    */
   sendMessage: (message) => {
-    State.update({
-      currentMessage: message,
-    });
+    // Message concurrency controll
+    if (Math.abs(state.lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
+      State.update({
+        lastMsgSentAt: new Date(),
+        currentMessage: message,
+      });
+    } else {
+      setTimeout(() => {
+        State.update({
+          lastMsgSentAt: new Date(),
+          currentMessage: message,
+        });
+      }, 500);
+    }
+
+    // State.update({
+    //   currentMessage: message,
+    // });
   },
   /**
    * Call resolve or reject for a given caller
@@ -283,6 +286,7 @@ const initialPayload = props.initialPayload || {};
 // Initial State
 State.init({
   iframeHeight: initialIframeHeight,
+  lastMsgSentAt: new Date(),
   // (i) DON'T send async data, it's going to randonly fail
   // If you need to get new info, use "request" for that
   currentMessage: {
