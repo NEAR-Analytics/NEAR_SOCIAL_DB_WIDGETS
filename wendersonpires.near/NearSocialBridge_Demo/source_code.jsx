@@ -14,7 +14,7 @@ const path = props.path;
 /**
  * Initial view height (optional but recommended)
  */
-const initialViewHeight = 500;
+const initialViewHeight = 740;
 /**
  * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
  * If you want to get some data, make a "request"
