@@ -150,7 +150,9 @@ const getRoomsListHandler = (request, response, Utils) => {
     () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
-      response(request).send({ roomsList: rooms || [] });
+      setTimeout(() => {
+        response(request).send({ roomsList: rooms || [] });
+      }, 1000);
     }
   );
 };
