@@ -11,12 +11,12 @@ const item = {
   blockHeight,
 };
 
-let parentPost = null;
-
 const content = JSON.parse(
   Social.get(`${accountId}/${dbAction}/main`, blockHeight) ??
     '{"content": null}'
 ).content;
+
+return content;
 
 return (
   <Widget
