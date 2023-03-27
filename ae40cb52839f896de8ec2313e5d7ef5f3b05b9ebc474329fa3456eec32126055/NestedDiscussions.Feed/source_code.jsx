@@ -37,6 +37,7 @@ const renderItem = (a) =>
           accountId: a.accountId,
           blockHeight: a.blockHeight,
           dbAction,
+          previewWidget,
         }}
       />
     </Post>
