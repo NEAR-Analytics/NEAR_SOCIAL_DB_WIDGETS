@@ -65,6 +65,7 @@ function NearSocialBridgeCore(props) {
         }
 
         // Send to external app
+        console.log('Envia para o EA - EVENT', e.data)
         sendMessage(e.data)
       }
     }
