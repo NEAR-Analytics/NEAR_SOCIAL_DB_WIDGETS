@@ -3,7 +3,7 @@ const identifier = props.identifier;
 const placeholder = props.placeholder || "Join the discussion";
 
 if (!identifier) {
-  return "Please select an identifier for this discussion";
+  return "[NestedDiscussions]: Please setup props.identifier";
 }
 
 if (!context.accountId) {
