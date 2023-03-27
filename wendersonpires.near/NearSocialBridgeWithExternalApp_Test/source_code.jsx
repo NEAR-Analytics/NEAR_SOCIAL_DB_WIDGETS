@@ -190,6 +190,7 @@ function NearSocialBridgeCore(props) {
     // setTimeout(() => {
     //   sendMessage(buildConnectionPayload())
     // }, 2000)
+    console.log('carregou iframe');
   }
 
   // When the external app is loaded and the ViewerPort is set, send the "connect"
