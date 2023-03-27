@@ -244,7 +244,7 @@ const v_bar_options = {
 
 return (
   <Style>
-    <div className="text-bg-light rounded-4 p-3 mb-4">
+    <div className="text-bg-dark rounded-4 p-3 mb-4">
       {data !== null ? (
         <p>
           <div class="">
