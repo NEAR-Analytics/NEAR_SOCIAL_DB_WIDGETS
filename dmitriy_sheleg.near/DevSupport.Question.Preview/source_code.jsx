@@ -1,8 +1,8 @@
-// const accountId = props.accountId;
-// const blockHeight = parseInt(props.blockHeight);
-const accountId =
-  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
-const blockHeight = 84207156;
+const accountId = props.accountId;
+const blockHeight = parseInt(props.blockHeight);
+// const accountId =
+// "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
+// const blockHeight = 84207156;
 const admins = props.admins;
 const adminContract = props.adminContract;
 
