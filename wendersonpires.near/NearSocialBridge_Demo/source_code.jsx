@@ -1,7 +1,12 @@
+// This is a DEV env Widget
+if (!context.accountId || context.accountId !== "wendersonpires.near")
+  return null;
+
 /**
  * External App URL (must)
  */
 const externalAppUrl = "https://near-test-app.web.app/";
+// const externalAppUrl = "https://0af717709fb2.ngrok.app";
 /**
  * Initial Path (optional but recommended)
  */
@@ -14,9 +19,16 @@ const initialViewHeight = 500;
  * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
  * If you want to get some data, make a "request"
  */
-const initialPayload = {
-  mamilos: "polemicos",
-};
+const initialPayload = {};
+
+// Migration
+// Storage.privateSet("app:rooms-list", [
+//   "near-social-community",
+//   "bos",
+//   "satori",
+//   "dragon-ball-z",
+//   "sala-teste-1",
+// ]);
 
 /**
  * Request Handlers - Backend.
@@ -42,6 +54,12 @@ const requestHandler = (request, response, Utils) => {
     case "send-message":
       sendMessageHandler(request, response);
       break;
+    case "register-new-room":
+      registerNewRoomHandler(request, response, Utils);
+      break;
+    case "get-rooms-list":
+      getRoomsListHandler(request, response, Utils);
+      break;
   }
 };
 
@@ -63,7 +81,6 @@ const getRoomDataHandler = (request, response, Utils) => {
       response(request).send({ messages: roomData });
     },
     (err) => {
-      console.log("B");
       response(request).send({ error: "internal error" });
     }
   );
@@ -105,9 +122,42 @@ const sendMessageHandler = (request, response) => {
   });
 };
 
+const registerNewRoomHandler = (request, response, Utils) => {
+  const { roomId } = request.payload;
+  if (!roomId) {
+    response(request).send({ error: "you must provide the roomId prop" });
+    return;
+  }
+
+  Utils.promisify(
+    () => Storage.privateGet("app:rooms-list"),
+    (rooms) => {
+      if (rooms.includes(roomId)) {
+        response(request).send({ roomsList: rooms });
+        return;
+      }
+
+      // Update the rooms list
+      const updatedRoomsList = [...rooms, roomId];
+      Storage.privateSet("app:rooms-list", updatedRoomsList);
+      response(request).send({ roomsList: updatedRoomsList });
+    }
+  );
+};
+
+const getRoomsListHandler = (request, response, Utils) => {
+  Utils.promisify(
+    () => Storage.privateGet("app:rooms-list"),
+    (rooms) => {
+      // Send the rooms list
+      response(request).send({ roomsList: rooms || [] });
+    }
+  );
+};
+
 return (
   <Widget
-    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
+    src={"wendersonpires.near/widget/NearSocialBridgeWithExternalApp_Test"}
     props={{
       externalAppUrl,
       path,
