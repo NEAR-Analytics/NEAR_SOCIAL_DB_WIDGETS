@@ -78,7 +78,9 @@ function NearSocialBridgeCore(props) {
 
   const sendMessage = (message) => {
     var iframe = document.getElementById('myIframe')
+    console.log('Core enviar para EA', message)
     iframe.contentWindow.postMessage(message, '*')
+    console.log('======')
   }
 
   const sendMessageToView = (message) => {
