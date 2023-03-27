@@ -1,20 +1,26 @@
+const dbAction = props.dbAction || "discuss";
 const accountId = props.accountId;
-const blockHeight =
-  props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
+const blockHeight = parseInt(props.blockHeight);
 const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
-const postUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const composeWidget =
+  props.composeWidget ||
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/NestedDiscussions.Compose";
 
-const content =
-  props.content ??
-  JSON.parse(
-    Social.get(`${accountId}/c_discussionTT/main`, blockHeight) ??
-      '{"content": null}'
-  ).content;
+const singlePageView =
+  props.singlePageView ||
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/NestedDiscussions.SinglePageView";
+
+const postUrl = `https://alpha.near.org/#/${singlePageView}?accountId=${accountId}&blockHeight=${blockHeight}`;
+
+const content = JSON.parse(
+  Social.get(`${accountId}/${dbAction}/main`, blockHeight) ??
+    '{"content": null}'
+).content;
 
 const item = {
   type: "social",
-  path: `${accountId}/c_discussionTT/main`,
+  path: `${accountId}/${dbAction}/main`,
   blockHeight,
 };
 
@@ -87,17 +93,8 @@ return (
             <>
               <Text as="span">･</Text>
               <Text>
-                {blockHeight === "now" ? (
-                  "now"
-                ) : (
-                  <>
-                    <Widget
-                      src="mob.near/widget/TimeAgo"
-                      props={{ blockHeight }}
-                    />{" "}
-                    ago
-                  </>
-                )}
+                <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />{" "}
+                ago
               </Text>
             </>
           ),
@@ -152,10 +149,10 @@ return (
       {state.showReply && (
         <div className="mb-2">
           <Widget
-            src="calebjacob.near/widget/Comments.Compose"
+            src={composeWidget}
             props={{
               notifyAccountId,
-              item,
+              identifier: item,
               onComment: () => State.update({ showReply: false }),
             }}
           />
@@ -164,7 +161,7 @@ return (
 
       <Comments>
         <Widget
-          src="calebjacob.near/widget/Comments.Feed"
+          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/NestedDiscussions.Feed"
           props={{
             item,
             highlightComment: props.highlightComment,
