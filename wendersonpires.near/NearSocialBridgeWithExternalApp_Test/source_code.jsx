@@ -191,12 +191,12 @@ function NearSocialBridgeCore(props) {
     //   sendMessage(buildConnectionPayload())
     // }, 2000)
     console.log('carregou iframe', connectMessageSent);
-    if (connectMessageSent) {
-      // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
-      setTimeout(() => {
-        sendMessage(buildConnectionPayload())
-      }, 2000)
-    }
+    
+    // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
+    setTimeout(() => {
+      sendMessage(buildConnectionPayload())
+    }, 2000)
+    
   }
 
   // When the external app is loaded and the ViewerPort is set, send the "connect"
