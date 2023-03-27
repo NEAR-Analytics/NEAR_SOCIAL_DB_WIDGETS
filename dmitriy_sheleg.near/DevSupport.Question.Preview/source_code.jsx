@@ -1,8 +1,8 @@
-const accountId = props.accountId;
-const blockHeight = parseInt(props.blockHeight);
-// const accountId =
-// "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
-// const blockHeight = 84207156;
+// const accountId = props.accountId;
+// const blockHeight = parseInt(props.blockHeight);
+const accountId =
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055";
+const blockHeight = 84207156;
 const admins = props.admins;
 const adminContract = props.adminContract;
 
@@ -31,6 +31,16 @@ const H2 = styled.h2`
     &:hover {
       color: #30A46C;
       text-decoration: none;
+
+      & + i {
+        visibility: visible;
+      }
+    }
+
+    & + i {
+      transition: visibility .1s ease-out;
+      visibility: hidden;
+      color: #30A46C;
     }
   }
 `;
@@ -66,6 +76,7 @@ return (
         <div class="row">
           <H2>
             <a href={link}>{question.title}</a>
+            <i class="bi bi-arrow-right" />
           </H2>
           <H6>
             <div class="d-flex">
