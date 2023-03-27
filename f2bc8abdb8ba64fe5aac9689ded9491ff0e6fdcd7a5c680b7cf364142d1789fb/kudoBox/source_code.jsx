@@ -1,6 +1,9 @@
 const d = props.d;
 const index = props.index;
 
+const tabs = props.tabs;
+const oppenedTab = props.oppenedTab;
+
 const thisWidgetInlineStyles = props.allWidgetsInlineStyles.kudos;
 const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
@@ -36,7 +39,10 @@ const RenderAllCommentAnswerBox = (d) => {
                     thisWidgetInlineStyles.allCommentAnswerBox.cardContainer
                   }
                   className={
-                    thisWidgetClassNames.allCommentAnswerBox.cardContainer
+                    oppenedTab == tabs.KUDO.id
+                      ? thisWidgetClassNames.allCommentAnswerBox
+                          .cardContainerSingleCard
+                      : thisWidgetClassNames.allCommentAnswerBox.cardContainer
                   }
                 >
                   <div
