@@ -26,7 +26,7 @@ let viewerPort
 let state = {
   externalAppUrl: '',
   externalAppIframe: null,
-  lastMsgSentAt = new Date(), // Message concurrency controll
+  lastMsgSentAt: new Date(), // Message concurrency controll
   initialPath: null,
   iframeHeight: 480,
   userInfo: null,
