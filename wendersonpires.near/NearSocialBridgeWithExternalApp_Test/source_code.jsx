@@ -215,6 +215,46 @@ root.render(React.createElement(NearSocialBridgeCore, {}))
 </script>
 `;
 
+// (i) Discovery API uses cached data structure.
+const Utils = {
+  /**
+   * Send message
+   */
+  sendMessage: (message) => {
+    State.update({
+      currentMessage: message,
+    });
+  },
+  /**
+   * Call resolve or reject for a given caller
+   * E.g:
+   * Utils.promisify(() => getCachedObject(), (res) => console.log(res), (err) => console.log(err))
+   */
+  promisify: (caller, resolve, reject) => {
+    const timer = 1000;
+    const timeout = timer * 10;
+    let timeoutCheck = 0;
+
+    const find = () => {
+      const response = caller();
+      if (response) {
+        resolve(response);
+      } else {
+        if (timeoutCheck < timeout) {
+          // try again
+          setTimeout(find, 1000);
+          timeoutCheck += timer;
+        } else {
+          reject(null);
+        }
+      }
+    };
+
+    // Fist attempt
+    find();
+  },
+};
+
 // External App Url
 const externalAppUrl = props.externalAppUrl;
 
@@ -246,62 +286,6 @@ State.init({
     initialIframeHeight,
   },
 });
-
-// (i) Discovery API uses cached data structure.
-const Utils = {
-  /**
-   * Send message
-   */
-  sendMessage: (message) => {
-    // Message concurrency controll
-    console.log("TURU:", state.lastMsgSentAt.getTime() - Date.now());
-    if (state.lastMsgSentAt.getTime() - Date.now() / 1000 >= 0.5) {
-      State.update({
-        lastMsgSentAt: new Date(),
-        currentMessage: message,
-      });
-    } else {
-      setTimeout(() => {
-        State.update({
-          lastMsgSentAt: new Date(),
-          currentMessage: message,
-        });
-      }, 500);
-    }
-
-    // State.update({
-    //   currentMessage: message,
-    // });
-  },
-  /**
-   * Call resolve or reject for a given caller
-   * E.g:
-   * Utils.promisify(() => getCachedObject(), (res) => console.log(res), (err) => console.log(err))
-   */
-  promisify: (caller, resolve, reject) => {
-    const timer = 1000;
-    const timeout = timer * 10;
-    let timeoutCheck = 0;
-
-    const find = () => {
-      const response = caller();
-      if (response) {
-        resolve(response);
-      } else {
-        if (timeoutCheck < timeout) {
-          // try again
-          setTimeout(find, 1000);
-          timeoutCheck += timer;
-        } else {
-          reject(null);
-        }
-      }
-    };
-
-    // Fist attempt
-    find();
-  },
-};
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
