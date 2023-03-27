@@ -1,47 +1,26 @@
 const accountId = props.accountId;
-const commentBlockHeight = parseInt(props.commentBlockHeight);
-let parentPost = null;
+const blockHeight = parseInt(props.commentBlockHeight);
+const dbAction = props.dbAction || "discussTEST";
+const previewWidget =
+  props.previewWidget ||
+  "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/NestedDiscussions.Preview";
 
-const extractParentPost = (item) => {
-  if (!item || item.type !== "social" || !item.path || !item.blockHeight) {
-    return undefined;
-  }
-  const accountId = item.path.split("/")[0];
-  return `${accountId}/discuss/main` === item.path
-    ? { accountId, blockHeight: item.blockHeight }
-    : undefined;
+const item = {
+  type: "social",
+  path: `${accountId}/${dbAction}/main`,
+  blockHeight,
 };
 
-if (commentBlockHeight) {
-  const content = JSON.parse(
-    Social.get(`${accountId}/discuss/comment`, commentBlockHeight) ?? "null"
-  );
 
-  if (content === null) {
-    return "Loading";
-  }
+let parentPost = null;
 
-  parentPost = extractParentPost(content.item);
-}
-
-if (parentPost) {
-  return (
-    <Widget
-      src="calebjacob.near/widget/Posts.Post"
-      props={{
-        ...parentPost,
-        highlightComment: { accountId, blockHeight: commentBlockHeight },
-        commentsLimit: 30,
-        subscribe: true,
-        raw: props.raw,
-      }}
-    />
-  );
-}
+const content = JSON.parse(
+  Social.get(`${accountId}/${dbAction}/main`, blockHeight) ?? "null"
+);
 
 return (
   <Widget
-    src="calebjacob.near/widget/Posts.Post"
-    props={{ ...props, commentsLimit: 30, subscribe: true }}
+    src={previewWidget}
+    props={{ identifier=items, commentsLimit: 30, subscribe: true }}
   />
 );
