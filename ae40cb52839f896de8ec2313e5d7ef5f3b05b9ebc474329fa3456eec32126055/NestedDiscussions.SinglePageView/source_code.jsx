@@ -1,5 +1,5 @@
 const accountId = props.accountId;
-const blockHeight = parseInt(props.commentBlockHeight);
+const blockHeight = parseInt(props.blockHeight);
 const dbAction = props.dbAction || "discussTEST";
 const previewWidget =
   props.previewWidget ||
@@ -14,8 +14,9 @@ const item = {
 let parentPost = null;
 
 const content = JSON.parse(
-  Social.get(`${accountId}/${dbAction}/main`, blockHeight) ?? "null"
-);
+  Social.get(`${accountId}/${dbAction}/main`, blockHeight) ??
+    '{"content": null}'
+).content;
 
 return (
   <Widget
