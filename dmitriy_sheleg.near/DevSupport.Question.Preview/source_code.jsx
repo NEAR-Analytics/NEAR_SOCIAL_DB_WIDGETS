@@ -71,7 +71,6 @@ return (
       <div class="col-2">
         {/* Upvote Widget */}
         <Widget
-          // src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
           src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
           props={{ accountId, blockHeight }}
         />
@@ -100,11 +99,19 @@ return (
         <div class="row">
           <div class="col">
             <Widget
-              // src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Answers"
               src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Answers"
               props={{ accountId, blockHeight }}
             />
           </div>
+          {/*
+          // Flag question widget
+          <div class="col">
+            <Widget
+              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Flag"
+              props={{ accountId, blockHeight }}
+            />
+          </div>
+          */}
         </div>
       </div>
     </div>
@@ -114,50 +121,17 @@ return (
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
       props={{ labels: question.labels }}
     />
-    <div className="pt-2">
-      <Widget
-        src="mob.near/widget/MainPage.Post.Content"
-        props={{ content: { text: question.content.text } }}
-      />
-    </div>
   */}
     {/*
     <div>
       <small class="text-muted">
         <div class="row justify-content-between">
           <div class="col-8">
-            // Upvote Widget
-            <Widget
-              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Upvote"
-              props={{ accountId, blockHeight }}
-            />
-
-            // Flag question widget
-            <Widget
-              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Flag"
-              props={{ accountId, blockHeight }}
-            />
-
-            // Answers widget
-            <Widget
-              src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Answers"
-              props={{ accountId, blockHeight }}
-            />
-
             // Delete widget
             <Widget
               src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Delete"
               props={{ accountId, blockHeight, admins, adminContract }}
             />
-          </div>
-
-          <div class="col-4">
-            <div class="d-flex justify-content-end">
-              <Widget
-                src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/BlockToDate"
-                props={{ blockHeight }}
-              />
-            </div>
           </div>
         </div>
       </small>
