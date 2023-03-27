@@ -9,12 +9,7 @@ return (
             <b />
             Map Your Journey With Us.
           </p>
-          <p>
-            <Widget
-              src="mob.near/widget/ProfileImage"
-              props={{ accountId: "" }}
-            />
-          </p>
+          <p></p>
         </div>
       </div>
     </div>
