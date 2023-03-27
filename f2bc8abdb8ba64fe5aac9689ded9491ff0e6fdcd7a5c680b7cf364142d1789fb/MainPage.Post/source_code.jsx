@@ -98,7 +98,7 @@ const RenderKudoBox = (d) => {
           src={`${widgetOwner}/widget/MainPage.Post.Header`}
           props={{
             accountId,
-            blockHeight,
+            blockHeight: d.blockHeight,
             link,
             postType: "post",
             flagItem: item,
