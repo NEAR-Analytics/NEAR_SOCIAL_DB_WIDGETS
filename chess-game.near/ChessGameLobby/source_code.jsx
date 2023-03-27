@@ -1,5 +1,6 @@
 const { accountId } = context;
 const contractId = "app.chess-game.near";
+const chessGameWidget = "chess-game.near/widget/ChessGame";
 
 const LobbyView = styled.div`
     display: flex;
@@ -98,12 +99,12 @@ const returnToLobby = () => {
   });
 };
 const resign = () => {
-  Near.call("app.chess-game.testnet", "resign", {
+  Near.call(contractId, "resign", {
     game_id: state.game_id,
   });
 };
 const createAiGame = () => {
-  Near.call("app.chess-game.testnet", "create_ai_game", {
+  Near.call(contractId, "create_ai_game", {
     difficulty: state.difficulty,
   });
 };
@@ -115,7 +116,7 @@ const selectDifficulty = (event) => {
 
 const renderGameIds = () =>
   gameIds.map((gameId) => {
-    const gameInfo = Near.view("app.chess-game.testnet", "game_info", {
+    const gameInfo = Near.view(contractId, "game_info", {
       game_id: gameId,
     });
     return (
@@ -134,7 +135,7 @@ return (
         <Button onClick={returnToLobby}>Return To Lobby</Button>
         <Button onClick={resign}>Resign</Button>
         <Widget
-          src="shrm.testnet/widget/ChessGame"
+          src={chessGameWidget}
           props={Object.assign({}, { game_id: state.game_id })}
         />
       </>
