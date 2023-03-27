@@ -1,6 +1,6 @@
 // This is a DEV env Widget
-if (!context.accountId || context.accountId !== "wendersonpires.near")
-  return null;
+// if (!context.accountId || context.accountId !== "wendersonpires.near")
+//   return null;
 
 /**
  * External App URL (must)
