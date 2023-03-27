@@ -222,7 +222,8 @@ const Utils = {
    */
   sendMessage: (message) => {
     // Message concurrency controll
-    if (Math.abs(state.lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
+    console.log("TURU:", state.lastMsgSentAt.getTime() - Date.now());
+    if (state.lastMsgSentAt.getTime() - Date.now() / 1000 >= 0.5) {
       State.update({
         lastMsgSentAt: new Date(),
         currentMessage: message,
