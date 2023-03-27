@@ -192,65 +192,69 @@ return (
       )}
     </div>
 
-    <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
-    <Widget
-      src={`${widgetOwner}/widget/Common.Compose`}
-      props={{
-        id: "main",
-        textAreaOnly: true,
-        onChange: state.onChange,
-        onHelper: ({ extractMentionNotifications, extractHashtags }) => {
-          State.update({ extractMentionNotifications, extractHashtags });
-        },
-      }}
-    />
-
-    <div className={thisWidgetClassNames.urlTextareaContainer}>
-      <p>Url:</p>
-      <textarea
-        style={thisWidgetInlineStyles.urlTextarea}
-        rows="1"
-        value={state.url}
-        onChange={(e) => {
-          State.update({ url: e.target.value });
-        }}
-      />
-    </div>
-    <CommitButton
-      style={
-        state.hoveringElement == "commitButton"
-          ? props.allWidgetsInlineStyles.hoveringButtonStyles
-          : props.allWidgetsInlineStyles.standardButtonStyles
-      }
-      data={{
-        index: {
-          kudo: JSON.stringify(
-            {
-              key: "answer",
-              value: {
-                answer: state.content.text,
-                url: state.url,
-              },
+    {state.display == tabs.ALL_kUDOS.id && (
+      <>
+        <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
+        <Widget
+          src={`${widgetOwner}/widget/Common.Compose`}
+          props={{
+            id: "main",
+            textAreaOnly: true,
+            onChange: state.onChange,
+            onHelper: ({ extractMentionNotifications, extractHashtags }) => {
+              State.update({ extractMentionNotifications, extractHashtags });
             },
-            undefined,
-            0
-          ),
-        },
-      }}
-      onMouseEnter={() => {
-        State.update({ hoveringElement: "commitButton" });
-      }}
-      onMouseLeave={() => {
-        State.update({ hoveringElement: "" });
-      }}
-      onCommit={() => {
-        State.update({
-          reloadData: true,
-        });
-      }}
-    >
-      Kudos!
-    </CommitButton>
+          }}
+        />
+
+        <div className={thisWidgetClassNames.urlTextareaContainer}>
+          <p>Url:</p>
+          <textarea
+            style={thisWidgetInlineStyles.urlTextarea}
+            rows="1"
+            value={state.url}
+            onChange={(e) => {
+              State.update({ url: e.target.value });
+            }}
+          />
+        </div>
+        <CommitButton
+          style={
+            state.hoveringElement == "commitButton"
+              ? props.allWidgetsInlineStyles.hoveringButtonStyles
+              : props.allWidgetsInlineStyles.standardButtonStyles
+          }
+          data={{
+            index: {
+              kudo: JSON.stringify(
+                {
+                  key: "answer",
+                  value: {
+                    answer: state.content.text,
+                    url: state.url,
+                  },
+                },
+                undefined,
+                0
+              ),
+            },
+          }}
+          onMouseEnter={() => {
+            State.update({ hoveringElement: "commitButton" });
+          }}
+          onMouseLeave={() => {
+            State.update({ hoveringElement: "" });
+          }}
+          onCommit={() => {
+            State.update({
+              reloadData: true,
+            });
+          }}
+        >
+          Kudos!
+        </CommitButton>
+      </>
+    )}
 
     {state.display == tabs.ALL_kUDOS.id && (
       <div className={thisWidgetClassNames.allCardsContainer}>
