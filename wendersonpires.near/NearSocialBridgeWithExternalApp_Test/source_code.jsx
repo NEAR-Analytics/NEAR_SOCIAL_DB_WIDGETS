@@ -215,6 +215,38 @@ root.render(React.createElement(NearSocialBridgeCore, {}))
 </script>
 `;
 
+// External App Url
+const externalAppUrl = props.externalAppUrl;
+
+// User Info
+const accountId = context.accountId;
+const userInfo = { accountId };
+
+// Initial Path
+const initialPath = props.path;
+
+// Initial iframe height
+const initialIframeHeight = props.initialViewHeight || 500;
+
+// Initial Payload (optional)
+const initialPayload = props.initialPayload || {};
+
+// Initial State
+State.init({
+  iframeHeight: initialIframeHeight,
+  lastMsgSentAt: new Date(),
+  // (i) DON'T send async data, it's going to randonly fail
+  // If you need to get new info, use "request" for that
+  currentMessage: {
+    type: "connect-view",
+    externalAppUrl,
+    userInfo,
+    initialPath,
+    initialPayload,
+    initialIframeHeight,
+  },
+});
+
 // (i) Discovery API uses cached data structure.
 const Utils = {
   /**
@@ -270,38 +302,6 @@ const Utils = {
     find();
   },
 };
-
-// External App Url
-const externalAppUrl = props.externalAppUrl;
-
-// User Info
-const accountId = context.accountId;
-const userInfo = { accountId };
-
-// Initial Path
-const initialPath = props.path;
-
-// Initial iframe height
-const initialIframeHeight = props.initialViewHeight || 500;
-
-// Initial Payload (optional)
-const initialPayload = props.initialPayload || {};
-
-// Initial State
-State.init({
-  iframeHeight: initialIframeHeight,
-  lastMsgSentAt: new Date(),
-  // (i) DON'T send async data, it's going to randonly fail
-  // If you need to get new info, use "request" for that
-  currentMessage: {
-    type: "connect-view",
-    externalAppUrl,
-    userInfo,
-    initialPath,
-    initialPayload,
-    initialIframeHeight,
-  },
-});
 
 // Answer Factory
 const buildAnswer = (requestType, payload) => {
