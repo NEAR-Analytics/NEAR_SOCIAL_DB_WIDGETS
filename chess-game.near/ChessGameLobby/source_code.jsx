@@ -20,7 +20,9 @@ const Button = styled.button`
     font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
 `;
 
-const isRegistered = Near.view(contractId, "storage_balance_of") != null;
+const isRegistered = Near.view(contractId, "storage_balance_of", {
+  account_id: accountId,
+});
 console.log("isRegistered", isRegistered);
 
 const registerAccount = () => {
