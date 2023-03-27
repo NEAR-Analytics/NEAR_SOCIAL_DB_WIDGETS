@@ -219,23 +219,23 @@ const Utils = {
    */
   sendMessage: (message) => {
     // Message concurrency controll
-    if (Math.abs(state.lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
-      State.update({
-        lastMsgSentAt: new Date(),
-        currentMessage: message,
-      });
-    } else {
-      setTimeout(() => {
-        State.update({
-          lastMsgSentAt: new Date(),
-          currentMessage: message,
-        });
-      }, 500);
-    }
+    // if (Math.abs(state.lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
+    //   State.update({
+    //     lastMsgSentAt: new Date(),
+    //     currentMessage: message,
+    //   });
+    // } else {
+    //   setTimeout(() => {
+    //     State.update({
+    //       lastMsgSentAt: new Date(),
+    //       currentMessage: message,
+    //     });
+    //   }, 500);
+    // }
 
-    // State.update({
-    //   currentMessage: message,
-    // });
+    State.update({
+      currentMessage: message,
+    });
   },
   /**
    * Call resolve or reject for a given caller
