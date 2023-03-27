@@ -4,17 +4,12 @@ const blockHeight =
 const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const postUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const comments = props.comments ?? [];
+const content = props.content;
 
-const content =
-  props.content ??
-  JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
-
-const item = {
-  type: "social",
-  path: `${accountId}/post/main`,
-  blockHeight,
-};
-
+if (!content) {
+  return "no content provided";
+}
 const Post = styled.div`
   position: relative;
 
@@ -71,6 +66,25 @@ const Comments = styled.div`
     padding-top: 12px;
   }
 `;
+
+const renderComment = (item, i) => {
+  return (
+    <Comment
+      className="comment"
+      key={item.block_height + "_" + item.account_id}
+    >
+      <Widget
+        src="roshaan.near/widget/Comments.Comment"
+        props={{
+          accountId: item.account_id,
+          blockHeight: item.block_height,
+          content: JSON.parse(item.content),
+        }}
+      />
+    </Comment>
+  );
+};
+const renderedComments = state.posts.map(renderComment);
 
 return (
   <Post>
@@ -159,18 +173,7 @@ return (
         </div>
       )}
 
-      <Comments>
-        <Widget
-          src="roshaan.near/widget/Comments.Feed"
-          props={{
-            item,
-            highlightComment: props.highlightComment,
-            limit: props.commentsLimit,
-            subscribe,
-            raw,
-          }}
-        />
-      </Comments>
+      <Comments>{comments.length > 0 && renderedComments}</Comments>
     </Body>
   </Post>
 );
