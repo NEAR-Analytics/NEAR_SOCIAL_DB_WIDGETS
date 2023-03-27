@@ -67,7 +67,7 @@ const Comments = styled.div`
   }
 `;
 
-const renderItem = (a) =>
+const renderComment = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
       console.log(a, "item")
