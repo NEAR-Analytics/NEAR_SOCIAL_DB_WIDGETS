@@ -153,7 +153,7 @@ const getRoomsListHandler = (request, response, Utils) => {
       // Send the rooms list
       setTimeout(() => {
         console.log(rooms);
-        response(request).send({ roomsList: rooms || [] });
+        response(request).send({ roomsList: rooms });
       }, 1000);
     }
   );
