@@ -10,7 +10,6 @@ const content = props.content;
 if (!content) {
   return "no content provided";
 }
-
 const Post = styled.div`
   position: relative;
 
