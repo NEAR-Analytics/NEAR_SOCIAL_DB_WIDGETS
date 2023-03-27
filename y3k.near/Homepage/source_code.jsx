@@ -147,7 +147,7 @@ if (accountId) {
         </div>
 
         <div class="row py-lg-5">
-          <div class="col-lg-8 col-md-8">
+          <div class="col-lg-10 col-md-10 mx-auto">
             <h1 class="fw-light">NEAR Dapps Overview</h1>
             <p>
               <Widget
