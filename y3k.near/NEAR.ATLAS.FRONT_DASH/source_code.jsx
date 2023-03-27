@@ -23,11 +23,11 @@ if (accountId) {
         </div>
       </div>
 
-      <div class="album py-5 bg-light">
+      <div class="album py-5 bg-dark">
         <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
             <div class="col">
-              <div class="card shadow-sm">
+              <div class="card shadow-sm bg-dark">
                 <Widget
                   src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
                   props={{}}
@@ -56,7 +56,7 @@ if (accountId) {
               </div>
             </div>
             <div class="col">
-              <div class="card shadow-sm">
+              <div class="card shadow-sm bg-dark">
                 <Widget
                   src="y3k.near/widget/NEAR.ATLAS.NewMonthlyActiveAcounts"
                   props={{}}
@@ -86,7 +86,7 @@ if (accountId) {
             </div>
 
             <div class="col">
-              <div class="card shadow-sm">
+              <div class="card shadow-sm bg-dark">
                 <Widget
                   src="y3k.near/widget/NEAR.ATLAS.NEAR_SOCIAL_DATA"
                   props={{}}
@@ -116,7 +116,7 @@ if (accountId) {
             </div>
 
             <div class="col">
-              <div class="card shadow-sm">
+              <div class="card shadow-sm bg-dark">
                 <Widget
                   src="y3k.near/widget/NEAR.ATLAS.DATA.CHAINS_TWITTER"
                   props={{}}
