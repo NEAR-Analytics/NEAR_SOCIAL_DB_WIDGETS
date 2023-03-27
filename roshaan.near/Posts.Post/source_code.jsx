@@ -84,7 +84,7 @@ const renderComment = (item, i) => {
     </Comment>
   );
 };
-const renderedComments = state.posts.map(renderComment);
+const renderedComments = comments.map(renderComment);
 
 return (
   <Post>
