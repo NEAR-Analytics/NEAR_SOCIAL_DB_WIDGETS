@@ -129,35 +129,6 @@ const composeData = () => {
 
 /* END CommentButton  */
 
-/* START CommentBox */
-const RenderAllCommentAnswerBox = (d) => {
-  return d.value.comments.map((c) => {
-    return (
-      <div style={thisWidgetInlineStyles.allCommentAnswerBox.container}>
-        <Widget
-          src="mob.near/widget/ProfileImage"
-          props={{
-            accountId: c.accountId,
-            className: "d-inline-block",
-            style:
-              thisWidgetInlineStyles.allCommentAnswerBox.profileImageStyles,
-          }}
-        />
-        <a href={`#/mob.near/widget/ProfilePage?accountId=${c.accountId}`}>
-          {c.accountId}
-        </a>
-        I BuiDL... <b>{c.value.commentAnswer}&nbsp;&nbsp;&nbsp;</b>
-        <Widget
-          src="mob.near/widget/FollowButton"
-          props={{ accountId: c.accountId }}
-        />
-      </div>
-    );
-  });
-};
-
-/* END CommentBox  */
-
 const RenderKudoBox = (d, index) => {
   return (
     <Widget
