@@ -7,14 +7,14 @@ const extractParentPost = (item) => {
     return undefined;
   }
   const accountId = item.path.split("/")[0];
-  return `${accountId}/post/main` === item.path
+  return `${accountId}/discuss/main` === item.path
     ? { accountId, blockHeight: item.blockHeight }
     : undefined;
 };
 
 if (commentBlockHeight) {
   const content = JSON.parse(
-    Social.get(`${accountId}/post/comment`, commentBlockHeight) ?? "null"
+    Social.get(`${accountId}/discuss/comment`, commentBlockHeight) ?? "null"
   );
 
   if (content === null) {
