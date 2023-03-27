@@ -8,7 +8,6 @@ const tabs = {
     text: "Kudo",
   },
 };
-console.log(props);
 
 const blockHeight = props.blockHeight ?? undefined;
 
