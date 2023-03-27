@@ -10,6 +10,7 @@ const content = props.content;
 if (!content) {
   return "no content provided";
 }
+
 const Post = styled.div`
   position: relative;
 
@@ -79,7 +80,6 @@ const renderItem = (a) =>
           highlight:
             a.accountId === props.highlightComment?.accountId &&
             a.blockHeight === props.highlightComment?.blockHeight,
-          content: JSON.parse(a.content),
         }}
       />
     </div>
