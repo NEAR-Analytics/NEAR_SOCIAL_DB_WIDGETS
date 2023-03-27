@@ -97,6 +97,7 @@ const RenderKudoBox = (d) => {
         <Widget
           src={`${widgetOwner}/widget/MainPage.Post.Header`}
           props={{
+            widgetOwner,
             accountId,
             blockHeight: d.blockHeight,
             link,
@@ -184,4 +185,4 @@ const RenderKudoBox = (d) => {
 };
 /* END KudoBox  */
 
-return <>{RenderKudoBox(props.content)}</>;
+return <>{RenderKudoBox(content)}</>;
