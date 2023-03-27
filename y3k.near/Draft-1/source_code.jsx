@@ -11,7 +11,6 @@ let rawData = fetch(
 );
 
 // data.body = data.body.sort((a, b) => new Date(a.MONTH) - new Date(b.MONTH));
-const METRIC_NAME = "NEAR Dapps Overview";
 
 let Style = styled.div`
 
@@ -25,8 +24,6 @@ return (
         <div class="bg-dark">
           <div>
             <div>
-              <h2>Metric: {METRIC_NAME}</h2>
-
               <table className="table table-dark table-hover">
                 <thead>
                   <tr>
