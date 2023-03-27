@@ -8,15 +8,15 @@
 // const externalAppUrl = "https://near-test-app.web.app/";
 const externalAppUrl = "https://d43af01531fe.ngrok.app";
 
-Storage.privateSet("app:rooms-list", [
-  "near-social-community",
-  "bos",
-  "satori",
-  "dragon-ball-z",
-  "sala-teste-1",
-]);
+// Storage.privateSet("app:rooms-list", [
+//   "near-social-community",
+//   "bos",
+//   "satori",
+//   "dragon-ball-z",
+//   "sala-teste-1",
+// ]);
 
-console.log("TROCA:", Storage.privateGet("app:rooms-list"));
+// console.log("TROCA:", Storage.privateGet("app:rooms-list"));
 
 /**
  * Initial Path (optional but recommended)
@@ -167,6 +167,11 @@ const registerNewRoomHandler = (request, response, Utils) => {
       const updatedRoomsList = [...rooms, roomId];
       Storage.privateSet("app:rooms-list", updatedRoomsList);
       response(request).send({ roomsList: updatedRoomsList });
+    },
+    // If error: because there's no room yet
+    () => {
+      Storage.privateSet("app:rooms-list", [roomId]);
+      response(request).send({ roomsList: [roomId] });
     }
   );
 };
