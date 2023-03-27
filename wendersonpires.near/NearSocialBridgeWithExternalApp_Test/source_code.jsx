@@ -76,11 +76,9 @@ function NearSocialBridgeCore(props) {
     }
   }, [])
 
-  /** Send message to External App */
   const sendMessage = (message) => {
-        var iframe = document.getElementById('myIframe')
-        iframe.contentWindow.postMessage(message, '*')
-        console.log('Core enviou para EA', message)
+    var iframe = document.getElementById('myIframe')
+    iframe.contentWindow.postMessage(message, '*')
   }
 
   const sendMessageToView = (message) => {
@@ -204,7 +202,6 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
-
 
 </script>
 `;
