@@ -145,10 +145,15 @@ const registerNewRoomHandler = (request, response, Utils) => {
   );
 };
 
+const foo = Storage.privateGet("app:rooms-list");
+console.log("TESTE0", foo);
+
 const getRoomsListHandler = (request, response, Utils) => {
-  console.log("CHEGOU AQUI 2");
-  const rooms = Storage.privateGet("app:rooms-list");
-  console.log("CHEGOU AQUI ROOMS:", rooms);
+  // console.log("CHEGOU AQUI 2");
+  const rooms = Storage.privateGet("app:rooms-list") || [
+    "near-social-community",
+  ];
+  // console.log("CHEGOU AQUI ROOMS:", rooms);
   if (rooms) {
     response(request).send({ roomsList: rooms });
   }
