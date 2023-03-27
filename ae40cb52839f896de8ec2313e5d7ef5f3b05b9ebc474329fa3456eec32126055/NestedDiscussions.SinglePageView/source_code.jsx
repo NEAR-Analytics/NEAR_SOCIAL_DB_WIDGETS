@@ -11,7 +11,6 @@ const item = {
   blockHeight,
 };
 
-
 let parentPost = null;
 
 const content = JSON.parse(
@@ -21,6 +20,6 @@ const content = JSON.parse(
 return (
   <Widget
     src={previewWidget}
-    props={{ identifier=items, commentsLimit: 30, subscribe: true }}
+    props={{ identifier: items, commentsLimit: 30, subscribe: true }}
   />
 );
