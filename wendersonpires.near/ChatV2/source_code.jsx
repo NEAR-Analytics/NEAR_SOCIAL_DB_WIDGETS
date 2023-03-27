@@ -118,7 +118,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    () => Storage.get("app:rooms-list"),
+    () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
@@ -127,7 +127,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
       // Update the rooms list
       const updatedRoomsList = [...rooms, roomId];
-      Storage.set("app:rooms-list", updatedRoomsList);
+      Storage.privateSet("app:rooms-list", updatedRoomsList);
       response(request).send({ roomsList: updatedRoomsList });
     }
   );
@@ -135,7 +135,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
-    () => Storage.get("app:rooms-list"),
+    () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms || [] });
