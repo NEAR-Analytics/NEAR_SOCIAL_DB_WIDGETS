@@ -9,7 +9,7 @@ const path = props.path;
 /**
  * Initial view height (optional but recommended)
  */
-const initialViewHeight = 500;
+const initialViewHeight = 740;
 /**
  * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
  * If you want to get some data, make a "request"
@@ -53,6 +53,12 @@ const requestHandler = (request, response, Utils) => {
 
 const getRoomDataHandler = (request, response, Utils) => {
   const { payload } = request;
+
+  if (!payload.roomId) {
+    response(request).send({ error: "roomId prop must be provided" });
+    return;
+  }
+
   Utils.promisify(
     () =>
       Social.index(payload.roomId, "data", {
@@ -136,14 +142,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
     // Serve static rooms till fix the issue (in progress)
-    () =>
-      Storage.privateGet("app:rooms-list") || [
-        "near-social-community",
-        "bos",
-        "satori",
-        "dragon-ball-z",
-        "sala-teste-1",
-      ],
+    () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms || [] });
