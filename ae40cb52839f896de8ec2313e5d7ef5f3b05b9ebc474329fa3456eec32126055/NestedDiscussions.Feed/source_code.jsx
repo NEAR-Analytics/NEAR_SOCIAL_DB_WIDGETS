@@ -6,7 +6,7 @@ const identifier = props.identifier;
 const moderatorAccount = props.moderatorAccount || "adminalpha.near";
 
 if (!identifier) {
-  return "Please select an identifier for this discussion";
+  return "[NestedDiscussions.Feed] Please select an identifier for this discussion";
 }
 
 const index = {
