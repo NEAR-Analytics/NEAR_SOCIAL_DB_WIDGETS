@@ -18,6 +18,7 @@ const code = `
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <div id="bridge-root"></div>
 
+<script>
 // Viewer port
 let viewerPort
 
@@ -201,7 +202,7 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
-
+<script/>
 `;
 
 // (i) Discovery API uses cached data structure
