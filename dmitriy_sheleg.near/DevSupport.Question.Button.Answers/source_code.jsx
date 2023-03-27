@@ -20,7 +20,8 @@ const Replies = styled.a`
   align-items: center;
   color: #687076;
   padding: .25rem .5rem;
-  
+  transition: color .15s ease;
+
   &:hover {
     text-decoration: none;
     color: #30A46C;
