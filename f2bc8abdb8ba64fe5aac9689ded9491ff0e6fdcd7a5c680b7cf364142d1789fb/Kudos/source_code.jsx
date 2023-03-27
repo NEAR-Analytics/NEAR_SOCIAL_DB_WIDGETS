@@ -1,3 +1,16 @@
+const tabs = {
+  ALL_kUDOS: {
+    id: 0,
+    text: "All Kudos",
+  },
+  KUDO: {
+    id: 1,
+    text: "kudo",
+  },
+};
+
+const openKudo = props.openKudo ?? {};
+
 State.init({
   hoveringElement: "",
   input: "",
@@ -5,6 +18,8 @@ State.init({
   onChange: ({ content }) => {
     State.update({ content });
   },
+  display: tabs.ALL_kUDOS.id,
+  kudo: openKudo,
 });
 
 const updateGeneralState = props.updateGeneralState;
@@ -77,6 +92,8 @@ upvotes.forEach((upvote) => {
 
 const finalData = sortedData;
 
+console.log("finalData: ", finalData);
+
 /* BEGIN Common.componse  */
 const composeData = () => {
   const data = {
@@ -130,6 +147,7 @@ const composeData = () => {
 /* END CommentButton  */
 
 const RenderKudoBox = (d, index) => {
+  console.log("d: ", d);
   return (
     <Widget
       src={`${widgetOwner}/widget/kudoBox`}
@@ -148,7 +166,22 @@ const RenderKudoBox = (d, index) => {
 
 return (
   <div className={thisWidgetClassNames.generalContainer}>
-    <h2 style={thisWidgetInlineStyles.selectedTab}>All Kudos</h2>
+    <div className={thisWidgetClassNames.selectedTabContainer}>
+      <h2 style={thisWidgetInlineStyles.selectedTab}>
+        {state.display == tabs.ALL_kUDOS.id
+          ? tabs.ALL_kUDOS.text
+          : tabs.KUDO.text}
+      </h2>
+      {state.display == tabs.KUDO.id && (
+        <i
+          className="bi bi-x-lg"
+          style={thisWidgetInlineStyles.closeKudoButton}
+          onClick={() => {
+            State.update({ display: tabs.ALL_kUDOS.id, kudo: {} });
+          }}
+        ></i>
+      )}
+    </div>
 
     <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
     <Widget
@@ -210,12 +243,15 @@ return (
       Kudos!
     </CommitButton>
 
-    <div className={thisWidgetClassNames.allCardsContainer}>
-      {sortedData
-        ? sortedData.map((d, index) => {
-            return RenderKudoBox(d, index);
-          })
-        : "Loading..."}
-    </div>
+    {state.display == tabs.ALL_kUDOS.id && (
+      <div className={thisWidgetClassNames.allCardsContainer}>
+        {sortedData
+          ? sortedData.map((d, index) => {
+              return RenderKudoBox(d, index);
+            })
+          : "Loading..."}
+      </div>
+    )}
+    {state.display == tabs.KUDO.id && RenderKudoBox(state.kudo, 0)}
   </div>
 );
