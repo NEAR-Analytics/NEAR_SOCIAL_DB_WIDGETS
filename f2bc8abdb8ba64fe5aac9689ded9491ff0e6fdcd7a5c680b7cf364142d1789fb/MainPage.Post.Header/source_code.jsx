@@ -2,6 +2,7 @@ const accountId = props.accountId;
 const blockHeight = props.blockHeight;
 const postType = props.postType ?? "post";
 const link = props.link;
+const widgetOwner = props.widgetOwner;
 
 return (
   <div className="d-flex flex-row align-items-center">
