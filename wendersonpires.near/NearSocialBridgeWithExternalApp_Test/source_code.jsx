@@ -26,6 +26,7 @@ let viewerPort
 let state = {
   externalAppUrl: '',
   externalAppIframe: null,
+  lastMsgSentAt = new Date(), // Message concurrency controll
   initialPath: null,
   iframeHeight: 480,
   userInfo: null,
@@ -77,14 +78,22 @@ function NearSocialBridgeCore(props) {
     }
   }, [])
 
+  /** Send message to External App */
   const sendMessage = (message) => {
     if (!state.externalAppIframe) {
         state.externalAppIframe = document.getElementById('myIframe')
     }
-    state.externalAppIframe.contentWindow.postMessage(message, '*')
-    // var iframe = document.getElementById('myIframe')
-    // iframe.contentWindow.postMessage(message, '*')
-    console.log('Core enviou para EA', message)
+
+    // Message concurrency controll
+    if (Math.abs(lastMsgSentAt.getTime() - Date.now()) / 1000 >= 0.5) {
+        state.externalAppIframe.contentWindow.postMessage(message, '*')
+        console.log('Core enviou para EA', message)
+    } else {
+        setTimeout(() => {
+            state.externalAppIframe.contentWindow.postMessage(message, '*')
+            console.log('Core enviou para EA (DELAYED)', message)
+        }, 500)
+    }
   }
 
   const sendMessageToView = (message) => {
