@@ -174,7 +174,10 @@ const RenderKudoBox = (d, index) => {
 };
 
 return (
-  <div className={thisWidgetClassNames.generalContainer}>
+  <div
+    style={thisWidgetInlineStyles.generalContainer}
+    className={thisWidgetClassNames.generalContainer}
+  >
     <div className={thisWidgetClassNames.selectedTabContainer}>
       <h2 style={thisWidgetInlineStyles.selectedTab}>
         {state.display == tabs.ALL_kUDOS.id
