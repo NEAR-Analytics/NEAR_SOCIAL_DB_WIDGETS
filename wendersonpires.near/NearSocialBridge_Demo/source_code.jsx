@@ -147,17 +147,20 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   console.log("CHEGOU AQUI 2");
-  Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
-    (rooms) => {
-      // Send the rooms list
-      setTimeout(() => {
-        console.log("CHEGOU AQUI ROOMS:");
-        console.log(rooms);
-        response(request).send({ roomsList: rooms });
-      }, 1000);
-    }
-  );
+  const rooms = Storage.privateGet("app:rooms-list");
+  console.log("CHEGOU AQUI ROOMS:", rooms);
+  response(request).send({ roomsList: rooms });
+  // Utils.promisify(
+  //   () => Storage.privateGet("app:rooms-list"),
+  //   (rooms) => {
+  //     // Send the rooms list
+  //     setTimeout(() => {
+  //       console.log("CHEGOU AQUI ROOMS:");
+  //       console.log(rooms);
+  //       response(request).send({ roomsList: rooms });
+  //     }, 1000);
+  //   }
+  // );
 };
 
 return (
