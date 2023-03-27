@@ -85,6 +85,7 @@ const finalData = sortedData;
 const kudoBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
+
 console.log("finalData: ", finalData);
 console.log("kudoBlockHeightFiltered: ", kudoBlockHeightFiltered);
 
@@ -97,7 +98,7 @@ State.init({
   onChange: ({ content }) => {
     State.update({ content });
   },
-  display: tabs.ALL_kUDOS.id,
+  display: blockHeight ? tabs.KUDO.id : tabs.ALL_kUDOS.id,
   kudo: openKudo,
 });
 
