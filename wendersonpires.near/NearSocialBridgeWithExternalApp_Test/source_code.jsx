@@ -40,12 +40,15 @@ function NearSocialBridgeCore(props) {
   const [iframeHeight, setIframeHeight] = React.useState(state.iframeHeight)
   const [, setSessionStorageClone] = React.useState(state.sessionStorageClone)
   const [, setUserInfo] = React.useState(state.userInfo)
+  const [viewerPortSet, setViewerPortSet] = React.useState(false)
+  const [externalAppLoaded, setExternalAppLoaded] = React.useState(false)
 
   React.useEffect(() => {
     const handler = (e) => {
       // Set the Viewer port
       if (!viewerPort && e.data.type === 'connect-view') {
         viewerPort = e.source
+        setViewerPortSet(true)
         setExternalAppUrl(e.data.externalAppUrl)
         setIframeHeight(e.data.initialIframeHeight || 480)
         setUserInfo(e.data.userInfo)
@@ -171,21 +174,46 @@ function NearSocialBridgeCore(props) {
   function onLoadHandler(e) {
     // On load iframe
     // On get msg from External App
-    if (!connectMessageSent) {
-      setConnectMessageSent(true)
-      state.connectMessageSent = true
-      window.addEventListener('message', onMessageHandler, false)
-    }
+    // if (!connectMessageSent) {
+    //   setConnectMessageSent(true)
+    //   state.connectMessageSent = true
+    //   window.addEventListener('message', onMessageHandler, false)
+    // }
+
+    setExternalAppLoaded(true)
 
     // Send the welcome message (connects with the external app)
-    const welcomePayload = buildConnectionPayload()
-    sendMessage(welcomePayload)
+    // const welcomePayload = buildConnectionPayload()
+    // sendMessage(welcomePayload)
 
     // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
-    setTimeout(() => {
-      sendMessage(buildConnectionPayload())
-    }, 2000)
+    // setTimeout(() => {
+    //   sendMessage(buildConnectionPayload())
+    // }, 2000)
   }
+
+  // When the external app is loaded and the ViewerPort is set, send the "connect"
+  // message to the external app
+  React.useEffect(() => {
+    // On load iframe
+    // On get msg from External App
+    if (externalAppLoaded && viewerPortSet) {
+      if (!connectMessageSent) {
+        setConnectMessageSent(true)
+        state.connectMessageSent = true
+        window.addEventListener('message', onMessageHandler, false)
+
+        // Send the welcome message (connects with the external app)
+        const welcomePayload = buildConnectionPayload()
+        sendMessage(welcomePayload)
+
+        // Wait a bit and send the message again to ensure the app and scripts are loaded and ready
+        setTimeout(() => {
+          sendMessage(buildConnectionPayload())
+        }, 2000)
+      }
+    }
+  }, [externalAppLoaded, viewerPortSet, connectMessageSent, onMessageHandler])
 
   // Wait for the external app url to render the iframe
   if (!state.externalAppUrl) return null
@@ -202,6 +230,7 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
+
 </script>
 `;
 
