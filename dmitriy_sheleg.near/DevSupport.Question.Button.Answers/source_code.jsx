@@ -20,9 +20,10 @@ const Replies = styled.a`
   align-items: center;
   color: #687076;
   padding: .25rem .5rem;
+  
   &:hover {
     text-decoration: none;
-    color: inherit;
+    color: #30A46C;
   }
 
   i {
