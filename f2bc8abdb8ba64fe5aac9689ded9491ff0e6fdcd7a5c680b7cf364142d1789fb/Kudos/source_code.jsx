@@ -10,7 +10,7 @@ const tabs = {
 };
 console.log(props);
 
-const blockHeight = props.blockHeight;
+const blockHeight = props.blockHeight ?? undefined;
 
 const updateGeneralState = props.updateGeneralState;
 
@@ -98,8 +98,6 @@ State.init({
   display: blockHeight ? tabs.KUDO.id : tabs.ALL_kUDOS.id,
   kudo: openKudo,
 });
-
-console.log("state.kudo: ", state.kudo);
 
 /* BEGIN Common.componse  */
 const composeData = () => {
