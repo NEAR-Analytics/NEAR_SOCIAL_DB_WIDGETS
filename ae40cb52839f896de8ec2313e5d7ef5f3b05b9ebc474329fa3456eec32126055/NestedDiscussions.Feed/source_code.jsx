@@ -32,7 +32,11 @@ const renderItem = (a) =>
     <Post className="post" key={JSON.stringify(a)}>
       <Widget
         src={previewWidget}
-        props={{ accountId: a.accountId, blockHeight: a.blockHeight }}
+        props={{
+          identifier,
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+        }}
       />
     </Post>
   );
