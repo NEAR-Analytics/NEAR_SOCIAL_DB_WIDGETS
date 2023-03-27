@@ -1,8 +1,6 @@
 const d = props.d;
 const index = props.index;
 
-console.log(props);
-
 const tabs = props.tabs;
 const oppenedTab = props.oppenedTab;
 
@@ -11,7 +9,6 @@ const thisWidgetClassNames = props.allWidgetsClassNames.kudos;
 
 const updateGeneralState = props.updateGeneralState;
 const upvotes = props.upvotes;
-console.log("props: ", props);
 
 State.init({
   hoveringElement: "",
