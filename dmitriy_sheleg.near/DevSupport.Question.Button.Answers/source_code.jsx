@@ -19,7 +19,6 @@ const Replies = styled.a`
   display: inline-flex;
   align-items: center;
   color: #687076;
-  padding: .25rem .5rem;
   transition: color .15s ease;
 
   &:hover {
