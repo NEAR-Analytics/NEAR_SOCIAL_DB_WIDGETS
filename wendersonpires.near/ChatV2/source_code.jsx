@@ -18,8 +18,6 @@ const initialViewHeight = 740;
  */
 const initialPayload = {};
 
-Storage.privateSet("app:rooms-list", ["near-social-community", "bos"]);
-
 /**
  * Request Handlers - Backend.
  *
