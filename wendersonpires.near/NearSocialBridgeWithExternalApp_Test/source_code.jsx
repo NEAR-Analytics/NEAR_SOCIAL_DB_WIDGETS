@@ -202,7 +202,7 @@ function NearSocialBridgeCore(props) {
 const domContainer = document.querySelector('#bridge-root')
 const root = ReactDOM.createRoot(domContainer)
 root.render(React.createElement(NearSocialBridgeCore, {}))
-<script/>
+</script>
 `;
 
 // (i) Discovery API uses cached data structure
