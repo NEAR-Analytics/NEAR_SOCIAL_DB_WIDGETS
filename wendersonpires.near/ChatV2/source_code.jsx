@@ -118,15 +118,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    // Use static values to avoid error (fix erro in progress)
-    () =>
-      Storage.privateGet("app:rooms-list") || [
-        "near-social-community",
-        "bos",
-        "satori",
-        "sala-teste-1",
-        "dragon-ball-z",
-      ],
+    () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
@@ -143,7 +135,15 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
+    // Serve static rooms till fix the issue (in progress)
+    () =>
+      Storage.privateGet("app:rooms-list") || [
+        "near-social-community",
+        "bos",
+        "satori",
+        "dragon-ball-z",
+        "sala-teste-1",
+      ],
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms || [] });
