@@ -36,6 +36,7 @@ const renderItem = (a) =>
           identifier,
           accountId: a.accountId,
           blockHeight: a.blockHeight,
+          dbAction,
         }}
       />
     </Post>
