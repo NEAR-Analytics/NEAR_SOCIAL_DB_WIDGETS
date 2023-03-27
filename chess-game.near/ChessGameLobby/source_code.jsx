@@ -1,13 +1,5 @@
 const { accountId } = context;
-
-State.init({
-  game_id: null,
-  difficulty: "Easy",
-});
-
-const gameIds = Near.view("app.chess-game.near", "get_game_ids", {
-  account_id: accountId,
-});
+const contractId = "app.chess-game.near";
 
 const LobbyView = styled.div`
     display: flex;
@@ -20,6 +12,44 @@ const LobbyView = styled.div`
         margin: 0.4rem 0;
     }
 `;
+const Button = styled.button`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
+`;
+
+const isRegistered = Near.view(contractId, "storage_balance_of") != null;
+console.log("isRegistered", isRegistered);
+
+const registerAccount = () => {
+  Near.call(
+    contractId,
+    "storage_deposit",
+    {},
+    undefined,
+    "50000000000000000000000"
+  );
+};
+
+if (!isRegistered) {
+  return (
+    <LobbyView>
+      <Button onClick={registerAccount}>Register Account</Button>
+    </LobbyView>
+  );
+}
+
+State.init({
+  game_id: null,
+  difficulty: "Easy",
+});
+
+const gameIds = Near.view(contractId, "get_game_ids", {
+  account_id: accountId,
+});
+
 const GameSelector = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -43,13 +73,6 @@ const GameCreator = styled.div`
         margin-bottom: 1.2rem;
     }
 `;
-const Button = styled.button`
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    border-radius: 4px;
-    font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
-`;
 const Disclaimer = styled.div`
     margin-top: 1rem;
     font-style: italic;
@@ -67,12 +90,12 @@ const returnToLobby = () => {
   });
 };
 const resign = () => {
-  Near.call("app.chess-game.near", "resign", {
+  Near.call("app.chess-game.testnet", "resign", {
     game_id: state.game_id,
   });
 };
 const createAiGame = () => {
-  Near.call("app.chess-game.near", "create_ai_game", {
+  Near.call("app.chess-game.testnet", "create_ai_game", {
     difficulty: state.difficulty,
   });
 };
@@ -84,7 +107,7 @@ const selectDifficulty = (event) => {
 
 const renderGameIds = () =>
   gameIds.map((gameId) => {
-    const gameInfo = Near.view("app.chess-game.near", "game_info", {
+    const gameInfo = Near.view("app.chess-game.testnet", "game_info", {
       game_id: gameId,
     });
     return (
@@ -102,7 +125,7 @@ return (
         <Button onClick={returnToLobby}>Return To Lobby</Button>
         <Button onClick={resign}>Resign</Button>
         <Widget
-          src="shrm.near/widget/ChessGame"
+          src="shrm.testnet/widget/ChessGame"
           props={Object.assign({}, { game_id: state.game_id })}
         />
       </>
