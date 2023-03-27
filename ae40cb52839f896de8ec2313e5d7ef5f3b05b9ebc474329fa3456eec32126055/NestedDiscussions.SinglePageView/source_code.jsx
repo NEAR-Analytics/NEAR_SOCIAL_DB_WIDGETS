@@ -1,4 +1,5 @@
 const accountId = props.accountId;
+const identifier = props.identifier;
 const blockHeight = parseInt(props.blockHeight);
 const dbAction = props.dbAction || "discussTEST";
 const previewWidget =
