@@ -147,7 +147,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
+    () => Storage.get("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
       setTimeout(() => {
