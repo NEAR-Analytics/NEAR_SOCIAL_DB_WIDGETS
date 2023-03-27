@@ -5,8 +5,8 @@
 /**
  * External App URL (must)
  */
-// const externalAppUrl = "https://near-test-app.web.app/";
-const externalAppUrl = "https://d43af01531fe.ngrok.app";
+const externalAppUrl = "https://near-test-app.web.app/";
+// const externalAppUrl = "https://d43af01531fe.ngrok.app";
 
 // Storage.privateSet("app:rooms-list", [
 //   "near-social-community",
