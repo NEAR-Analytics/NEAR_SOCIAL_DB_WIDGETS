@@ -5,7 +5,7 @@ const tabs = {
   },
   KUDO: {
     id: 1,
-    text: "kudo",
+    text: "Kudo",
   },
 };
 
