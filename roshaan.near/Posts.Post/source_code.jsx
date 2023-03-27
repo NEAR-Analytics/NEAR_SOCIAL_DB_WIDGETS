@@ -67,23 +67,24 @@ const Comments = styled.div`
   }
 `;
 
-const renderComment = (item, i) => {
-  return (
-    <Comment
-      className="comment"
-      key={item.block_height + "_" + item.account_id}
-    >
+const renderItem = (a) =>
+  a.value.type === "md" && (
+    <div key={JSON.stringify(a)}>
       <Widget
         src="roshaan.near/widget/Comments.Comment"
         props={{
-          accountId: item.account_id,
-          blockHeight: item.block_height,
-          content: JSON.parse(item.content),
+          accountId: a.accountId,
+          blockHeight: a.blockHeight,
+          highlight:
+            a.accountId === props.highlightComment?.accountId &&
+            a.blockHeight === props.highlightComment?.blockHeight,
+          raw,
+          content: JSON.parse(a.content),
         }}
       />
-    </Comment>
+    </div>
   );
-};
+
 const renderedComments = comments.map(renderComment);
 
 return (
@@ -172,7 +173,6 @@ return (
           />
         </div>
       )}
-
       <Comments>{comments.length > 0 && renderedComments}</Comments>
     </Body>
   </Post>
