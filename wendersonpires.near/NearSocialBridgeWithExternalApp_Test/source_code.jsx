@@ -81,9 +81,12 @@ function NearSocialBridgeCore(props) {
   const sendMessage = (message) => {
     if (!state.externalAppIframe) {
         state.externalAppIframe = document.getElementById('myIframe')
+        state.externalAppIframe.contentWindow.postMessage(message, '*')
+        console.log('Core enviou para EA', message)
+    } else {
+        state.externalAppIframe.contentWindow.postMessage(message, '*')
+        console.log('Core enviou para EA', message)
     }
-    state.externalAppIframe.contentWindow.postMessage(message, '*')
-    console.log('Core enviou para EA', message)
   }
 
   const sendMessageToView = (message) => {
