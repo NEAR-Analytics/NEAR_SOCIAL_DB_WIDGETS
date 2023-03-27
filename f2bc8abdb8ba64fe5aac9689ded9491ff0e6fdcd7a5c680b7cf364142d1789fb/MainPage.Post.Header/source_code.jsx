@@ -45,8 +45,8 @@ return (
                     `https://near.social/#/f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
                   )
                 }
-              ></i>{" "}
-              Share kudo!
+              ></i>
+              <span>Copy kudo link</span>
             </li>
             <li className="dropdown-item">
               <a
