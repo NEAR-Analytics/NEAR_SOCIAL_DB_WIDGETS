@@ -10,7 +10,6 @@ const tabs = {
 };
 
 const blockHeight = props.blockHeight;
-console.log("blockHeight: ", blockHeight);
 
 const updateGeneralState = props.updateGeneralState;
 
@@ -86,9 +85,6 @@ const kudoBlockHeightFiltered = finalData.filter(
   (d) => d.blockHeight == blockHeight
 );
 
-console.log("finalData: ", finalData);
-console.log("kudoBlockHeightFiltered: ", kudoBlockHeightFiltered);
-
 const openKudo = kudoBlockHeightFiltered[0] ?? {};
 
 State.init({
@@ -101,6 +97,8 @@ State.init({
   display: blockHeight ? tabs.KUDO.id : tabs.ALL_kUDOS.id,
   kudo: openKudo,
 });
+
+console.log("state.kudo: ", state.kudo);
 
 /* BEGIN Common.componse  */
 const composeData = () => {
