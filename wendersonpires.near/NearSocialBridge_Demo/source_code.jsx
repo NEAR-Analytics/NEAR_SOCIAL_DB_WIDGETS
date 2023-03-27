@@ -147,10 +147,11 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
-    () => Storage.get("app:rooms-list"),
+    () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
       setTimeout(() => {
+        console.log(rooms);
         response(request).send({ roomsList: rooms || [] });
       }, 1000);
     }
