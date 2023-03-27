@@ -21,129 +21,140 @@ if (accountId) {
             </p>
           </div>
         </div>
-      </div>
+        <div class="album py-5 bg-dark">
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
+              <div class="col">
+                <div class="card shadow-sm bg-dark">
+                  <Widget
+                    src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
+                    props={{}}
+                  />
 
-      <div class="album py-5 bg-dark">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
-                  props={{}}
-                />
-
-                <div class="card-body">
-                  <p class="card-text">MonthlyActiveAcounts</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
+                  <div class="card-body">
+                    <p class="card-text">MonthlyActiveAcounts</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                      </div>
+                      <small class="text-muted">time: 00s</small>
                     </div>
-                    <small class="text-muted">time: 00s</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm bg-dark">
+                  <Widget
+                    src="y3k.near/widget/NEAR.ATLAS.NewMonthlyActiveAcounts"
+                    props={{}}
+                  />
+
+                  <div class="card-body">
+                    <p class="card-text">NewMonthlyActiveAcounts</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                      </div>
+                      <small class="text-muted">time: 00s</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card shadow-sm bg-dark">
+                  <Widget
+                    src="y3k.near/widget/NEAR.ATLAS.NEAR_SOCIAL_DATA"
+                    props={{}}
+                  />
+
+                  <div class="card-body">
+                    <p class="card-text">NEAR_SOCIAL_DATA</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                      </div>
+                      <small class="text-muted">time: 00s</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card shadow-sm bg-dark">
+                  <Widget
+                    src="y3k.near/widget/NEAR.ATLAS.DATA.CHAINS_TWITTER"
+                    props={{}}
+                  />
+
+                  <div class="card-body">
+                    <p class="card-text">NEAR.ATLAS.DATA.CHAINS_TWITTER</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary"
+                        >
+                          -
+                        </button>
+                      </div>
+                      <small class="text-muted">time: 00s</small>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR.ATLAS.NewMonthlyActiveAcounts"
-                  props={{}}
-                />
+          </div>
+        </div>
 
-                <div class="card-body">
-                  <p class="card-text">NewMonthlyActiveAcounts</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR.ATLAS.NEAR_SOCIAL_DATA"
-                  props={{}}
-                />
-
-                <div class="card-body">
-                  <p class="card-text">NEAR_SOCIAL_DATA</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR.ATLAS.DATA.CHAINS_TWITTER"
-                  props={{}}
-                />
-
-                <div class="card-body">
-                  <p class="card-text">NEAR.ATLAS.DATA.CHAINS_TWITTER</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="row py-lg-5">
+          <div class="col-lg-8 col-md-8">
+            <h1 class="fw-light">NEAR Dapps Overview</h1>
+            <p>
+              <Widget
+                src="y3k.near/widget/NEAR.ATLAS.DAPPS.OVERVIEW"
+                props={{ accountId: "" }}
+              />
+            </p>
           </div>
         </div>
       </div>
