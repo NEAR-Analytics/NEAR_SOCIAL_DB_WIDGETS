@@ -21,8 +21,6 @@ function getAnswersContainerStyles() {
   let styles = thisWidgetInlineStyles.allCommentAnswerBox.cardsContainer;
 
   styles["zIndex"] = `${999999999 - index}`;
-
-  console.log("styles: ", styles);
   return styles;
 }
 
@@ -109,7 +107,11 @@ return (
   <>
     <div
       style={getKudoBoxContainerStyles()}
-      className={thisWidgetClassNames.renderKudoBox.cardContainer}
+      className={
+        oppenedTab == tabs.ALL_kUDOS.id
+          ? thisWidgetClassNames.renderKudoBox.cardContainer
+          : thisWidgetClassNames.renderKudoBox.cardContainerSingleCard
+      }
     >
       <Widget
         src={`${widgetOwner}/widget/MainPage.Post`}
