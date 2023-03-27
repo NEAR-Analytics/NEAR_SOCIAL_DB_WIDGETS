@@ -42,7 +42,7 @@ return (
                 className="bi bi-clipboard"
                 onClick={() =>
                   clipboard.writeText(
-                    `https://near.social/#/f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
+                    `https://near.social/#/${widgetOwner}/widget/Kudos.Styles?sharedBlockHeight=${blockHeight}`
                   )
                 }
               ></i>
