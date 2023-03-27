@@ -1,6 +1,8 @@
 const profile = Social.getr(`${context.accountId}/profile`);
 const metadata = Social.getr(`webuidl.near/widget/Kudos/metadata`);
 
+const blockHeight = props.blockHeight ?? undefined;
+
 const widgetOwner =
   "f2bc8abdb8ba64fe5aac9689ded9491ff0e6fdcd7a5c680b7cf364142d1789fb";
 
@@ -94,9 +96,17 @@ const allWidgetsInlineStyles = {
   //======================================================================================================================================================================================================
 
   kudos: {
+    generalContainer: {
+      height: "max-content",
+      minHeight: "80vh",
+    },
     selectedTab: {
       margin: "2rem 0 0.5rem 0",
       fontWeight: "700",
+    },
+    closeKudoButton: {
+      margin: "2rem 0 0.5rem 0",
+      cursor: "pointer",
     },
     allCommentAnswerBox: {
       cardsContainer: {
@@ -246,6 +256,7 @@ const allWidgetsClassNames = {
   //======================================================================================================================================================================================================
 
   kudos: {
+    selectedTabContainer: "d-flex justify-content-between",
     generalContainer: "px-4 pt-2",
     urlTextareaContainer: "d-flex flex-column my-3 justify-content-around",
     allCardsContainer: "d-flex flex-wrap justify-content-around",
@@ -256,6 +267,7 @@ const allWidgetsClassNames = {
     renderKudoBox: {
       cardContainer:
         "col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12",
+      cardContainerSingleCard: "col-12",
       showCommentsButtonContainer: "d-flex flex-column align-items-center ",
     },
   },
@@ -320,6 +332,7 @@ return (
     <Widget
       src={`${widgetOwner}/widget/Kudos`}
       props={{
+        blockHeight,
         widgetOwner,
         allWidgetsInlineStyles,
         allWidgetsClassNames,
