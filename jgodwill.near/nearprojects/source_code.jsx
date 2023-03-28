@@ -3,12 +3,12 @@ const user = "jgodwill.near";
 const data = props?.projectData;
 
 const Cards = styled.div`
- display: flex;
+  display: flex;
   flex-wrap: wrap;
-  max-width: 100%;
+  width: 100%;
   background: rgba(214, 214, 214, 0.2);
   border-radius: 10px;
-  justify-content: center;
+  // justify-content: space-evenly;
   padding-top: 3em;
   box-shadow: 0 0.05rem 0.05rem rgb(34 34 34 / 5%), 0 0.2rem 0.8rem rgb(34 34 34 / 8%);
 `;
