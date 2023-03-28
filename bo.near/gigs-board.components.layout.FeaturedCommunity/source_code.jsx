@@ -51,11 +51,13 @@ const Hover = styled.div`
   }
 `;
 
-return <a href={href('Community', {tag: props.tag})}><Hover>
+return <Hover>
     <div class="card hover">
+        <a href={href('Community', {tag: props.tag})}>
       <img src={props.cover} class="card-img-top"></img>
+      </a>
       <div class="h5 pt-3 ps-3">{props.title}</div>
       <div class="ps-3 pb-2 text-secondary">{props.desc}
 </div>
 </div>
-</Hover></a>;
+</Hover>;
