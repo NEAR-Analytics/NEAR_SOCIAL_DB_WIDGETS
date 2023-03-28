@@ -34,6 +34,10 @@ const months = [
 
 // logic start
 
+const sortedData = data.sort((a, b) => {
+  return new Date(a["DAY"]) - new Date(b["DAY"]);
+});
+
 const NEW_MAAS = {};
 const RETURNING_MAAS = {};
 
@@ -83,14 +87,14 @@ const stacked_bar_data = {
   dates,
   datasets: [
     {
-      label: "Returning MAAs",
-      data: RETURNING_MAAS,
-      backgroundColor: "rgb(255, 99, 132)",
-    },
-    {
       label: "New MAAs",
       data: NEW_MAAS,
       backgroundColor: "rgb(75, 192, 192)",
+    },
+    {
+      label: "Returning MAAs",
+      data: RETURNING_MAAS,
+      backgroundColor: "rgb(255, 99, 132)",
     },
   ],
 };
