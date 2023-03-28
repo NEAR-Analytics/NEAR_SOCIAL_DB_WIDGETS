@@ -52,7 +52,7 @@ State.init({
 return (
   <>
     <Widget
-      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Compose"
+      src="dmitriy_sheleg.near/widget/DevSupport.Compose"
       props={{
         placeholder: `Reply${
           props.notifyAccountId ? ` to ${props.notifyAccountId}` : ""
@@ -67,6 +67,7 @@ return (
             style={{
               backgroundColor: "#59E692",
               color: "#09342E",
+              fontWeight: 600,
               borderRadius: "50px",
               border: "none",
               padding: ".5rem 1.75rem",
