@@ -109,6 +109,26 @@ return (
           src="mob.near/widget/MainPage.Post.Content"
           props={{ content: { text: question.content.text } }}
         />
+
+        {question.content.image.ipfs_cid && (
+          <>
+            <div
+              class="text-center mt-1 mb-3 mx-auto"
+              style={{
+                borderBottom: "1px solid #eee",
+                maxHeight: "220px",
+                maxWidth: "78vw",
+                overflow: "scroll",
+                borderTop: "1px solid #eee",
+              }}
+            >
+              <img
+                src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
+                alt="uploaded"
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   </div>
