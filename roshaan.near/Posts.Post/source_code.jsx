@@ -3,13 +3,87 @@ const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
-const postUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
-const comments = props.comments ?? [];
-const content = JSON.parse(props.content);
+const postUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+State.init({
+  renderedComments: props.comments ?? undefined,
+  content: JSON.parse(props.content) ?? undefined,
+});
 
-if (!content) {
-  return "no content provided";
+const renderComment = (a) => {
+  return (
+    <div key={JSON.stringify(a)}>
+      <Widget
+        src="roshaan.near/widget/Comments.Comment"
+        props={{
+          accountId: a.account_id,
+          blockHeight: a.block_height,
+          content: a.content,
+        }}
+      />
+    </div>
+  );
+};
+
+if (!state.content) {
+  const postsQuery = `
+query IndexerQuery {
+  roshaan_near_alphaindexer_posts(
+    order_by: {block_height: desc}
+    where: {_and: {block_height: {_eq: ${blockHeight}}, account_id: {_eq: "${accountId}"}}}
+  ) {
+    account_id
+    block_height
+    block_timestamp
+    content
+    receipt_id
+    comments(order_by: {block_height: asc}) {
+      account_id
+      block_height
+      block_timestamp
+      content
+    }
+    post_likes {
+      account_id
+    }
+  }
 }
+`;
+  function fetchGraphQL(operationsDoc, operationName, variables) {
+    return asyncFetch(
+      "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+      {
+        method: "POST",
+        headers: { "x-hasura-role": "roshaan_near" },
+        body: JSON.stringify({
+          query: operationsDoc,
+          variables: variables,
+          operationName: operationName,
+        }),
+      }
+    );
+  }
+
+  fetchGraphQL(postsQuery, "IndexerQuery", {}).then((result) => {
+    console.log(result);
+    if (result.status === 200) {
+      if (result.body.data) {
+        const posts = result.body.data.roshaan_near_alphaindexer_posts;
+        if (posts.length > 0) {
+          const post = posts[0];
+          let content = JSON.parse(post.content);
+          console.log(content, "content");
+          const renderedComments = post.comments.map(renderComment);
+
+          State.update({
+            content: content,
+            renderedComments: renderedComments,
+          });
+        }
+      }
+    }
+  });
+}
+
 const Post = styled.div`
   position: relative;
 
@@ -85,24 +159,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-const renderComment = (a) =>
-  a.value.type === "md" && (
-    <div key={JSON.stringify(a)}>
-      console.log(a, "item")
-      <Widget
-        src="roshaan.near/widget/Comments.Comment"
-        props={{
-          accountId: a.accountId,
-          blockHeight: a.blockHeight,
-          highlight:
-            a.accountId === props.highlightComment?.accountId &&
-            a.blockHeight === props.highlightComment?.blockHeight,
-        }}
-      />
-    </div>
-  );
-
-// const renderedComments = comments.map(renderComment);
 
 return (
   <Post>
@@ -135,23 +191,25 @@ return (
     </Header>
 
     <Body>
-      <Content>
-        {content.text && (
-          <Widget
-            src="calebjacob.near/widget/SocialMarkdown"
-            props={{ text: content.text }}
-          />
-        )}
+      {state.content && (
+        <Content>
+          {state.content.text && (
+            <Widget
+              src="calebjacob.near/widget/SocialMarkdown"
+              props={{ text: state.content.text }}
+            />
+          )}
 
-        {content.image && (
-          <Widget
-            src="mob.near/widget/Image"
-            props={{
-              image: content.image,
-            }}
-          />
-        )}
-      </Content>
+          {state.content.image && (
+            <Widget
+              src="mob.near/widget/Image"
+              props={{
+                image: state.content.image,
+              }}
+            />
+          )}
+        </Content>
+      )}
 
       {blockHeight !== "now" && (
         <Actions>
@@ -190,9 +248,11 @@ return (
           />
         </div>
       )}
-      <Comments>
-        <Wrapper>{comments}</Wrapper>
-      </Comments>
+      {state.renderedComments && (
+        <Comments>
+          <Wrapper>{state.renderedComments}</Wrapper>
+        </Comments>
+      )}
     </Body>
   </Post>
 );
