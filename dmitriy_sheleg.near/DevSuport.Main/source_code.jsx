@@ -14,11 +14,6 @@ const admins = Near.view(adminContract, "get_admins", {});
 const sortByCategories = ["Newest", "Popular"];
 const filterByTopic = ["one", "two", "three"];
 
-const Divider = styled.div`
-  width: 1px;
-  height: 100%;
-  background-color: #ECEEF0;
-`;
 const SidebarWrapper = styled.div`
   border-right: 1px solid #ECEEF0;;
 `;
