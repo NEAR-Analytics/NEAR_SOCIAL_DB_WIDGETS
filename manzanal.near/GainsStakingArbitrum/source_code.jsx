@@ -26,7 +26,7 @@ State.init({
 const formatBigNumber = (big) => {
   return Big(big)
     .div(Big(10).pow(tokenDecimals))
-    .toFixed(2)
+    .toFixed(4)
     .replace(/\d(?=(\d{3})+\.)/g, "$&,");
 };
 const getStakedBalance = (receiver) => {
@@ -200,7 +200,7 @@ const getTotalRewardDistributed = () => {
       );
       return Big(receiverBalanceHex.toString())
         .div(Big(10).pow(tokenDecimals))
-        .toFixed(2)
+        .toFixed(4)
         .replace(/\d(?=(\d{3})+\.)/g, "$&,");
     });
 };
