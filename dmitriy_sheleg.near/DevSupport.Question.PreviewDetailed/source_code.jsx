@@ -104,6 +104,12 @@ return (
           </div>
           */}
       </div>
+      <div class="row">
+        <Widget
+          src="mob.near/widget/MainPage.Post.Content"
+          props={{ content: { text: question.content.text } }}
+        />
+      </div>
     </div>
   </div>
 );
