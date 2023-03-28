@@ -44,16 +44,54 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-return <div>
-  <div aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href={href("Feed")}>Developer Governance</a></li>
-    <li class="breadcrumb-item"><a href={href("Feed")}>Communities</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{props.title}</li>
-  </ol>
+return (
+  <div>
+    <div aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href={href("Feed")}>Developer Governance</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href={href("Feed")}>Communities</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {props.title}
+        </li>
+      </ol>
+    </div>
+    <div class="d-flex flex-row align-items-center">
+      <img src={props.icon}></img>
+      <div>
+        <div class="h5 pt-3 ps-3">{props.title}</div>
+        <div class="ps-3 pb-2 text-secondary">{props.desc}</div>
+      </div>
+    </div>
+    <div>
+      <ul class="nav nav-underline">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">
+            <i class="bi-house-door"> </i>
+            Overview
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi-chat-square-text"> </i>
+            Discussions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi-kanban"> </i>
+            Sponsorship
+          </a>
+        </li>
+        <li class="nav-item">
+          <i class="bi-calendar"> </i>
+
+          <a class="nav-link">Events</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="d-flex flex-row align-items-center">
-                <img src="https://ipfs.near.social/ipfs/bafkreihbjm67uavkjkvfqomzx5v63t6kossqwfuptdxfb4vbcpbw3gezdm"></img>
-                <div class="nav navbar-brand h1 p-2">Zero Knowledge</div>
-              </div>
-</div>
+);
