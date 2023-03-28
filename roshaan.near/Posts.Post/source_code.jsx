@@ -9,6 +9,11 @@ State.init({
   content: JSON.parse(props.content) ?? undefined,
 });
 
+const item = {
+  type: "social",
+  path: `${accountId}/post/main`,
+  blockHeight,
+};
 const renderComment = (a) => {
   return (
     <div key={JSON.stringify(a)}>
