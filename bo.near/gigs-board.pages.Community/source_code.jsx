@@ -44,8 +44,7 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-return 
-<div>
+return <div>
   <div aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href={href("Feed")}>Developer Governance</a></li>
