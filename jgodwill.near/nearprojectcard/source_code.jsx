@@ -70,7 +70,7 @@ return (
       <IconWrapper>
         <img
           src={
-            props.projectData.Icon ||
+            props.Icon ||
             "https://images.pexels.com/photos/10175905/pexels-photo-10175905.jpeg?auto=compress&cs=tinysrgb&lazy=load"
           }
           className="w-100  h-100 shadow rounded-circle img-fluid"
@@ -78,13 +78,11 @@ return (
         />
       </IconWrapper>
       <Info>
-        <PName>{props.projectData.ProjectName || "Project Name"}</PName>
-        <PCategory>
-          {truncateText(props.projectData.Category, 20) || "Category"}
-        </PCategory>
+        <PName>{props.ProjectName || "Project Name"}</PName>
+        <PCategory>{truncateText(props.Category, 20) || "Category"}</PCategory>
       </Info>
     </Title>
-    <PSubtitle>{truncateText(props.projectData.Subtitle, 60)}</PSubtitle>
+    <PSubtitle>{truncateText(props.Subtitle, 60)}</PSubtitle>
     <div className="d-flex">Icons</div>
   </Card>
 );
