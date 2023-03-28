@@ -87,9 +87,10 @@ return (
           </a>
         </li>
         <li class="nav-item">
-          <i class="bi-calendar"> </i>
-
-          <a class="nav-link">Events</a>
+          <a class="nav-link">
+            <i class="bi-calendar"> </i>
+            Events
+          </a>
         </li>
       </ul>
     </div>
