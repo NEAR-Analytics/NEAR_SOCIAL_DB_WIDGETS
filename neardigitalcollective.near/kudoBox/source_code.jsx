@@ -114,7 +114,7 @@ return (
       }
     >
       <Widget
-        src={`mob.near/widget/MainPage.Post`}
+        src={`${widgetOwner}/widget/MainPage.Post`}
         props={{
           widgetOwner,
           content: d,
