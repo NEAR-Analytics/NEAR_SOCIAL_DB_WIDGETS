@@ -101,7 +101,7 @@ return (
       </a>
     </H4>
 
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-8 pe-5">
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
