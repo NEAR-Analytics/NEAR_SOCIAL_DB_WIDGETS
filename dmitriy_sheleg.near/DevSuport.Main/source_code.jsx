@@ -21,14 +21,14 @@ const SidebarWrapper = styled.div`
 return (
   <div class="container py-3 mb-5">
     <div class="row">
-      <SidebarWrapper className="col-4 pe-5">
+      <SidebarWrapper className="col-2 pe-5">
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Main.Sidebar"
           props={{ categories: sortByCategories, topics: filterByTopic }}
         />
       </SidebarWrapper>
 
-      <div class="col-8 ps-5">
+      <div class="col-10 ps-5">
         {/* Title */}
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Discussion.Title"
