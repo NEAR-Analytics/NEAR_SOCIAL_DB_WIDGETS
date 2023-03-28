@@ -90,6 +90,20 @@ return (
         </div>
         <div>
           <small>
+            Visit
+            <a
+              target="_blank"
+              style={{ color: "inherit" }}
+              variant="caption"
+              rel="nofollow"
+              href="https://www.coingecko.com/en/api_terms"
+            >
+              Coreto.io
+            </a>{" "}
+            to find out more
+          </small>{" "}
+          |
+          <small>
             Pricing information provided by{" "}
             <a
               target="_blank"
@@ -100,7 +114,7 @@ return (
             >
               CoinGecko
             </a>
-          </small>
+          </small>{" "}
         </div>
       </p>
     ) : (
