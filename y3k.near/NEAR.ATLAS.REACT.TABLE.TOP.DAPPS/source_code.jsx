@@ -37,6 +37,11 @@ const COLUMNS = [
     renderCell: (item) => item["Percent New"],
     sort: { sortKey: "PercentNew" },
   },
+  {
+    label: "30-60 Days Ago",
+    renderCell: (item) => item["30-60 Days Ago"],
+    sort: { sortKey: "PercentNew" },
+  },
   { label: "M/M", renderCell: (item) => item["M/M"], sort: { sortKey: "MM" } },
   {
     label: "60-90 Days Ago",
