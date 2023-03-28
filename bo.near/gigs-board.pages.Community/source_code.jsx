@@ -44,8 +44,15 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
+const Grey = styled.div`
+{
+  background-color: #F3F3F3;
+}`
+
+// TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline, 
+// but it's not there in near social, need write such style here
 return (
-  <div>
+  <Grey>
     <div aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -94,5 +101,5 @@ return (
         </li>
       </ul>
     </div>
-  </div>
+  </Grey>
 );
