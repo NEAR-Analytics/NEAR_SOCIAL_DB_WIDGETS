@@ -49,14 +49,12 @@ const Grey = styled.div`
     position: fixed;
     left: calc(-50vw + 50%);
     width: 100vw;
-    height: 190px;
+    height: 200px;
     z-index: 11;
     margin-top: 76px;
 
     overflow: hidden;
     background: #f3f3f3;
-
-    padding: 32px 0;
 
   }
 `;
@@ -64,7 +62,7 @@ const Grey = styled.div`
 const Content = styled.div`
    {
     position: fixed;
-    padding: 32px 0;
+    padding: 10px 0;
     z-index: 13;
     margin-top: 76px;
   }
