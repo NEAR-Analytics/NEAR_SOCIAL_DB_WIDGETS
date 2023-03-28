@@ -4,11 +4,6 @@ const admins = props.admins;
 const adminContract = props.adminContract;
 const question = props.question;
 
-// {
-//   "accountId": "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055",
-//   "blockHeight": "84207156"
-// }
-
 const is_hidden = Near.view(adminContract, "is_hidden", {
   id: { account_id: accountId, block_height: blockHeight },
 });
@@ -59,6 +54,11 @@ const TopicName = styled.span`
 const PostContentWrapper = styled.div`
     color: #687076;
     font-size: 14px;
+`;
+const NftImageWrapper = styled.div`
+    max-height: "220px",
+    max-width: "78vw",
+    overflow: "scroll",
 `;
 
 return (
@@ -116,23 +116,13 @@ return (
           />
 
           {question.content.image.ipfs_cid && (
-            <>
-              <div
-                class="text-center mt-1 mb-3 mx-auto"
-                style={{
-                  borderBottom: "1px solid #eee",
-                  maxHeight: "220px",
-                  maxWidth: "78vw",
-                  overflow: "scroll",
-                  borderTop: "1px solid #eee",
-                }}
-              >
-                <img
-                  src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
-                  alt="uploaded"
-                />
-              </div>
-            </>
+            <NftImageWrapper className="text-center mt-1 mb-3 mx-auto">
+              <img
+                class="img-fluid"
+                src={`https://ipfs.near.social/ipfs/${question.content.image.ipfs_cid}`}
+                alt="uploaded"
+              />
+            </NftImageWrapper>
           )}
         </PostContentWrapper>
       </div>
