@@ -21,7 +21,7 @@ const editProfileButton = (
   </div>
 );
 
-if (!name) {
+if (accountId && !name) {
   return (
     <div className="alert alert-warning rounded-4 mb-3">
       <p>Your profile is missing a name.</p>
