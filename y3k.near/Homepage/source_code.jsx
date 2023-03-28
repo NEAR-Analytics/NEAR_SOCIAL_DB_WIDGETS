@@ -31,6 +31,7 @@ if (accountId && !name) {
 }
 
 if (
+  accountId &&
   !image.ipfs_cid &&
   (!image.nft.contractId || !image.nft.tokenId) &&
   !image.url
