@@ -55,23 +55,17 @@ const Grey = styled.div`
 
     overflow: hidden;
     background: #f3f3f3;
+
+    padding: 32px 0;
+
   }
 `;
 
-const Content = styled.div`
-   {
-    position: fixed;
-    padding: 32px 0;
-    z-index: 13;
-    margin-top: 76px;
-  }
-`;
 
 // TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline,
 // but it's not there in near social, need write such style here
 return (
   <Grey>
-    <Content>
       <div aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -120,6 +114,5 @@ return (
           </li>
         </ul>
       </div>
-    </Content>
   </Grey>
 );
