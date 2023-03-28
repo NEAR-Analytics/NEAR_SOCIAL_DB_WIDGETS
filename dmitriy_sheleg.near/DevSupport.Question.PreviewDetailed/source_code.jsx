@@ -63,14 +63,7 @@ const NftImageWrapper = styled.div`
 
 return (
   <div class="row">
-    <div class="col-1">
-      {/* Upvote Widget */}
-      <Widget
-        src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
-        props={{ accountId, blockHeight }}
-      />
-    </div>
-    <div class="col-11">
+    <div class="col-12">
       <div class="row">
         <H2>
           <a href={link}>{question.title}</a>
