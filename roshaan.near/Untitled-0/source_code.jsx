@@ -22,11 +22,12 @@ const Subheading = styled.h2`
 
 const postsQuery = `
   query IndexerQuery($offset: Int) {
-  posts(order_by: {block_height: desc}, offset: $offset, limit: ${LIMIT}) {
+  roshaan_near_alphaindexer_posts(order_by: {block_height: desc}, offset: $offset, limit: ${LIMIT}) {
     account_id
     block_height
     block_timestamp
     content
+    receipt_id
     comments(order_by: {block_height: asc}, limit: ${LIMIT}, offset: $offset) {
       account_id
       block_height
@@ -37,19 +38,20 @@ const postsQuery = `
       account_id
     }
   }
-    posts_aggregate {
-    aggregate {
-      count
-    }
-  }
+
 }
 `;
-
+//     roshaan_near_alphaindexer_posts_aggregate {
+//     aggregate {
+//       count
+//     }
+//   }
 function fetchGraphQL(operationsDoc, operationName, variables) {
   return asyncFetch(
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
     {
       method: "POST",
+      headers: { "x-hasura-role": "roshaan_near" },
       body: JSON.stringify({
         query: operationsDoc,
         variables: variables,
@@ -62,10 +64,13 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
 fetchGraphQL(postsQuery, "IndexerQuery", {
   offset: state.postsPage * LIMIT,
 }).then((result) => {
+  console.log(result);
   if (result.status === 200) {
     if (result.body.data) {
-      const posts = result.body.data.posts;
-      const postsCount = result.body.data.posts_aggregate.aggregate.count;
+      const posts = result.body.data.roshaan_near_alphaindexer_posts;
+      console.log(posts);
+      const postsCount = 100;
+      // result.body.data.roshaan_near_alphaindexer_posts.aggregate.count;
       if (posts.length > 0) {
         State.update({
           posts,
@@ -84,7 +89,23 @@ const Post = styled.div`
     padding: 12px 0 0;
   }
 `;
+const renderComment = (a) => {
+  return (
+    <div key={JSON.stringify(a)}>
+      <Widget
+        src="roshaan.near/widget/Comments.Comment"
+        props={{
+          accountId: a.account_id,
+          blockHeight: a.block_height,
+          content: a.content,
+        }}
+      />
+    </div>
+  );
+};
+
 const renderItem = (item, i) => {
+  const renderedComments = item.comments.map(renderComment);
   return (
     <Post className="post" key={item.block_height + "_" + item.account_id}>
       <Widget
@@ -92,7 +113,8 @@ const renderItem = (item, i) => {
         props={{
           accountId: item.account_id,
           blockHeight: item.block_height,
-          content: JSON.parse(item.content),
+          content: item.content,
+          comments: renderedComments,
         }}
       />
     </Post>
@@ -113,8 +135,10 @@ const onPostsPageChange = (page) => {
     }).then((result) => {
       if (result.status === 200) {
         if (result.body.data) {
-          const posts = result.body.data.posts;
-          const postsCount = result.body.data.posts_aggregate.aggregate.count;
+          const posts = result.body.data.roshaan_near_alphaindexer_posts;
+          const postsCount = 100;
+          // result.body.data.roshaan_near_alphaindexer_posts_aggregate.aggregate
+          //   .count;
           if (posts.length > 0) {
             State.update({
               posts: posts,
@@ -131,7 +155,6 @@ const onPostsPageChange = (page) => {
 };
 
 const renderedItems = state.posts.map(renderItem);
-
 return (
   <div>
     {state.posts.length > 0 ? (
