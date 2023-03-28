@@ -5,7 +5,7 @@ const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const postUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 const comments = props.comments ?? [];
-const content = props.content;
+const content = JSON.parse(props.content);
 
 if (!content) {
   return "no content provided";
@@ -66,7 +66,25 @@ const Comments = styled.div`
     padding-top: 12px;
   }
 `;
+const Wrapper = styled.div`
+  > div:first-child {
+    > a:first-child {
+      display: inline-flex;
+      margin-bottom: 24px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #687076;
+      outline: none;
+      font-weight: 600;
 
+      &:hover,
+      &:focus {
+        color: #687076;
+        text-decoration: underline;
+      }
+    }
+  }
+`;
 const renderComment = (a) =>
   a.value.type === "md" && (
     <div key={JSON.stringify(a)}>
@@ -172,7 +190,9 @@ return (
           />
         </div>
       )}
-      <Comments>{comments.length > 0 && renderedComments}</Comments>
+      <Comments>
+        <Wrapper>{comments.length > 0 && renderedComments}</Wrapper>
+      </Comments>
     </Body>
   </Post>
 );
