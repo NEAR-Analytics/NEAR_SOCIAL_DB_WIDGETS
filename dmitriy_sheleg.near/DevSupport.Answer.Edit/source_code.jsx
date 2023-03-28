@@ -64,16 +64,23 @@ return (
         },
         composeButton: (onCompose) => (
           <CommitButton
+            style={{
+              backgroundColor: "#59E692",
+              color: "#09342E",
+              borderRadius: "50px",
+              border: "none",
+              padding: ".5rem 1.75rem",
+            }}
             disabled={!state.content}
             force
-            className="btn btn-dark rounded-3"
+            className="btn"
             data={composeData}
             onCommit={() => {
               onCompose();
               props.onComment && props.onComment(state.content);
             }}
           >
-            Answer
+            Reply
           </CommitButton>
         ),
       }}
