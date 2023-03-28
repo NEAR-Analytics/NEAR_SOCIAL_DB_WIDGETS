@@ -102,6 +102,13 @@ return (
     </H4>
 
     <div class="row mt-5">
+      <div class="col-1">
+        {/* Upvote Widget */}
+        <Widget
+          src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
+          props={{ accountId, blockHeight }}
+        />
+      </div>
       <div class="col-8 pe-5">
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
@@ -124,7 +131,7 @@ return (
           />
         )}
       </div>
-      <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
+      <SidebarWrapper className="col-3 ps-5">sidebar content</SidebarWrapper>
     </div>
     {/*
     <div className="py-2 text-break">
