@@ -1,6 +1,6 @@
 // Monthly Active Accounts Example
 let rawData = fetch(
-  "https://api.flipsidecrypto.com/api/v2/queries/85a8dba4-b7d8-49ed-aa26-7f56ec9f2df4/data/latest",
+  "https://api.flipsidecrypto.com/api/v2/queries/2122b458-2138-4d4b-b030-efa784fc04d3/data/latest",
   {
     subscribe: true,
     method: "GET",
@@ -14,7 +14,7 @@ let rawData = fetch(
 
 let Style = styled.div`
 
-        `;
+          `;
 
 let data = rawData.body;
 return (
@@ -29,16 +29,11 @@ return (
                   <tr>
                     <th>Contract Address</th>
                     <th>Past 30 Days</th>
-                    <th>New - Past 30 Days</th>
-                    <th>Percent New - 30D</th>
+                    <th>Percent New</th>
                     <th>30-60 Days Ago</th>
-                    <th>Monthly Trend</th>
+                    <th>M/M</th>
                     <th>60-90 Days Ago</th>
-                    <th>Past 24 Hours</th>
-                    <th>New - Past 24 Hours</th>
-                    <th>Percent New - 24H</th>
-                    <th>24-48 Hours Ago</th>
-                    <th>Daily Trend</th>
+                    <th>M/2M</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,16 +41,11 @@ return (
                     <tr key={index}>
                       <td>{row["Contract Address"]}</td>
                       <td>{row["Past 30 Days"]}</td>
-                      <td>{row["New - Past 30 Days"]}</td>
-                      <td>{row["Percent New - 30D"]}</td>
+                      <td>{row["Percent New"]}</td>
                       <td>{row["30-60 Days Ago"]}</td>
-                      <td>{row["Monthly Trend"]}</td>
+                      <td>{row["M/M"]}</td>
                       <td>{row["60-90 Days Ago"]}</td>
-                      <td>{row["Past 24 Hours"]}</td>
-                      <td>{row["New - Past 24 Hours"]}</td>
-                      <td>{row["Percent New - 24H"]}</td>
-                      <td>{row["24-48 Hours Ago"]}</td>
-                      <td>{row["Daily Trend"]}</td>
+                      <td>{row["M/2M"]}</td>
                     </tr>
                   ))}
                 </tbody>
