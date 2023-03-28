@@ -66,7 +66,6 @@ const onCompose = () => {
 };
 
 const TextArea = styled.textarea`
-  min-height: "30vh";
   background-color: #ffffff;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
@@ -77,7 +76,7 @@ return (
     <div className="py-2">
       <TextArea
         className="form-control"
-        style={{ "min-height": "30vh" }}
+        style={{ "min-height": "15vh" }}
         value={state.text || ""}
         onChange={(e) => onChange(e.target.value)}
         placeholder={props.placeholder ?? "What's happening?"}
