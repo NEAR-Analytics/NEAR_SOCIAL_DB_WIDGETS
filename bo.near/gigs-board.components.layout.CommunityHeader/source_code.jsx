@@ -46,7 +46,15 @@ function href(widgetName, linkProps) {
 
 const Grey = styled.div`
    {
-    background-color: #f3f3f3;
+    position: fixed;
+    left: calc(-50vw + 50%);
+    width: 100vw;
+    height: 100px;
+    z-index: 11;
+    margin-top: -24px;
+
+    overflow: hidden;
+    background: #f3f3f3;
   }
 `;
 
