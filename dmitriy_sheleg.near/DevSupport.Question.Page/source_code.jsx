@@ -105,19 +105,24 @@ return (
       <div class="col-8 pe-5">
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
-          props={{ accountId, blockHeight, admins, adminContract, question }}
-        >
-          {context.accountId && (
-            <Widget
-              src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
-              props={{
-                notifyAccountId: accountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-          )}
-        </Widget>
+          props={{
+            accountId,
+            blockHeight,
+            admins,
+            adminContract,
+            question,
+          }}
+        />
+        {context.accountId && (
+          <Widget
+            src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
+            props={{
+              notifyAccountId: accountId,
+              item,
+              onComment: () => State.update({ showReply: false }),
+            }}
+          />
+        )}
       </div>
       <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
     </div>
