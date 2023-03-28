@@ -17,21 +17,6 @@ const data = raw_data.body || [];
 let Style = styled.div`
                 `;
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
 // logic start
 
 const sortedData = data.sort((a, b) => {
@@ -59,7 +44,7 @@ const stacked_options = {
   plugins: {
     title: {
       display: true,
-      text: "Chart.js Bar Chart - Stacked",
+      text: "Monthly Active Accounts",
     },
   },
   responsive: true,
