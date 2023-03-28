@@ -43,8 +43,8 @@ const componentList = data.slice(0, lastProject).map((projectData, i) => {
 
 return (
   <>
-    <div class="container min-vw-100">
-      <h3>Sample list of near projects </h3>
+    <div class="container-fluid">
+      <h3 class="text-center">Sample list of near projects </h3>
       <hr />
       <Cards onScroll={handleScroll}>
         {componentList || "Components Here"}
