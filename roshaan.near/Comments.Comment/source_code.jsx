@@ -1,7 +1,7 @@
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
-const content = props.content;
+const content = JSON.parse(props.content);
 // JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
 const parentItem = content.item;
 const highlight = !!props.highlight;
