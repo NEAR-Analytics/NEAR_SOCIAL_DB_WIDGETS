@@ -66,30 +66,44 @@ const handleAmount = (e) => {
 const handleApprove = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
-  let transactions = [];
+  const erc20 = new ethers.Contract(
+    selectedTokenId,
+    EIP20InterfaceABI,
+    Ethers.provider().getSigner()
+  );
 
-  const expandedAmount = expandToken(
-    amount,
-    TokensDetail[selectedTokenId].decimals
-  ).toFixed();
+  let amountUse = ethers.utils
+    .parseUnits(amount, TokensDetail[selectedTokenId].decimals)
+    .toHexString();
 
-  State.update({
-    status: expandedAmount,
+  erc20.approve(selectedTokenId, amountUse).then((transactionHash) => {
+    console.log("transactionHash is " + transactionHash);
   });
 
-  const depositTransaction = {
-    contractName: selectedTokenId,
-    methodName: "approve",
-    deposit: new Big("1").toFixed(),
-    args: {
-      spender: sender,
-      amount: expandedAmount,
-    },
-  };
+  //   let transactions = [];
 
-  transactions.push(depositTransaction);
+  //   const expandedAmount = expandToken(
+  //     amount,
+  //     TokensDetail[selectedTokenId].decimals
+  //   ).toFixed();
 
-  Near.call(transactions);
+  //   State.update({
+  //     status: expandedAmount,
+  //   });
+
+  //   const depositTransaction = {
+  //     contractName: selectedTokenId,
+  //     methodName: "approve",
+  //     deposit: new Big("1").toFixed(),
+  //     args: {
+  //       spender: sender,
+  //       amount: expandedAmount,
+  //     },
+  //   };
+
+  //   transactions.push(depositTransaction);
+
+  //   Near.call(transactions);
 
   //   const eip20 = new ethers.Contract(
   //     Comptroller,
