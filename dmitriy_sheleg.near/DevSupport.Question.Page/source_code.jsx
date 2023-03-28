@@ -91,6 +91,10 @@ const H4 = styled.h4`
 const SidebarWrapper = styled.div`
   border-left: 1px solid #ECEEF0;
 `;
+const UserAnswer = styled.div`
+  border: 1px solid #ECEEF0;
+  border-radius: 8px;
+`;
 
 return (
   <div className="container pt-2 pb-5">
@@ -107,6 +111,19 @@ return (
           src="dmitriy_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
           props={{ accountId, blockHeight, admins, adminContract, question }}
         />
+
+        {context.accountId && (
+          <UserAnswer className="p-4">
+            <Widget
+              src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
+              props={{
+                notifyAccountId: accountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+          </UserAnswer>
+        )}
       </div>
       <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
     </div>
@@ -137,30 +154,15 @@ return (
       </>
     )} */}
     {/*{footer}*/}
-    <div class="mt-3 mb-5" />
-    <h4 class="mb-3"> Community Answers </h4>
-    <Widget
-      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
-      props={{ item, admins, adminContract }}
-    />
-    <div class="mb-5" />
-    {context.accountId && (
-      <>
-        <hr class="w-75 mx-auto mb-5" />
-        <div class="p-4" style={{ border: "1px solid rgb(118, 203, 238)" }}>
-          <h4 class="mb-2"> Your Answer </h4>
+    {/*
+      <div class="mt-3 mb-5" />
+      <h4 class="mb-3"> Community Answers </h4>
+      <Widget
+        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
+        props={{ item, admins, adminContract }}
+      />
+      <div class="mb-5" />
 
-          <Widget
-            src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
-            props={{
-              notifyAccountId: accountId,
-              item,
-              onComment: () => State.update({ showReply: false }),
-            }}
-          />
-        </div>
-        <div class="mb-5" />
-      </>
-    )}
+    */}
   </div>
 );
