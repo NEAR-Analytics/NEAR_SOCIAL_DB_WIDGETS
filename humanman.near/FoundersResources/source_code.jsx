@@ -127,7 +127,7 @@ const props = {
     },
     {
       title: "NEAR Docs",
-      link: "https://docs.google.com/document/d/1i1PbFQKlwyWzjGZMoeUIM3gy3ghWKH3Yo4iOi-D8N_U/view",
+      link: "https://docs.near.org",
       description: "Your entry point to using NEAR's tech stack",
       img: "",
       tags: ["technical", "dev-tools"],
