@@ -71,7 +71,7 @@ const TextArea = styled.textarea`
   border-radius: 8px;
   resize: none;
   padding-left: 5.5rem;
-  padding-top: 1.5rem;
+  padding-top: .75rem;
 `;
 const AvatarWrapper = styled.div`
   position: absolute;
@@ -85,7 +85,10 @@ return (
   <div>
     <div className="py-2 position-relative">
       <AvatarWrapper>
-        <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+        <Widget
+          src="mob.near/widget/ProfileImage"
+          props={{ accountId, imageClassName: "rounded-circle w-100 h-100" }}
+        />
       </AvatarWrapper>
       <TextArea
         className="form-control"
