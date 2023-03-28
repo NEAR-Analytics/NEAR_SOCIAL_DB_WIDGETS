@@ -56,6 +56,10 @@ const TopicName = styled.span`
   font-size: 14px;
   white-space: nowrap;
 `;
+const PostContentWrapper = styled.div`
+    color: #687076;
+    font-size: 14px;
+`;
 
 return (
   <div class="row">
