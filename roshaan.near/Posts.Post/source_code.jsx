@@ -102,7 +102,7 @@ const renderComment = (a) =>
     </div>
   );
 
-const renderedComments = comments.map(renderComment);
+// const renderedComments = comments.map(renderComment);
 
 return (
   <Post>
@@ -191,7 +191,7 @@ return (
         </div>
       )}
       <Comments>
-        <Wrapper>{comments.length > 0 && renderedComments}</Wrapper>
+        <Wrapper>{comments}</Wrapper>
       </Comments>
     </Body>
   </Post>
