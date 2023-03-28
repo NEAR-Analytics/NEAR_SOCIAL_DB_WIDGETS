@@ -74,7 +74,7 @@ return (
             "https://images.pexels.com/photos/10175905/pexels-photo-10175905.jpeg?auto=compress&cs=tinysrgb&lazy=load"
           }
           className="w-100  h-100 shadow rounded-circle img-fluid oveflow-hidden"
-          alt="Project Icon"
+          alt="Thumbnail"
         />
       </IconWrapper>
       <Info>
