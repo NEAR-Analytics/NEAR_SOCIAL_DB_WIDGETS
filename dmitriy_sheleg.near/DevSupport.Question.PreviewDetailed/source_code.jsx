@@ -53,7 +53,7 @@ const TopicName = styled.span`
 `;
 const PostContentWrapper = styled.div`
     color: #687076;
-    font-size: 14px;
+    font-size: 16px;
 `;
 const NftImageWrapper = styled.div`
     max-height: "220px",
