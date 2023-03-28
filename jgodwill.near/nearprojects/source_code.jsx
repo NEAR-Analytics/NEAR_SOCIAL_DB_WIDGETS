@@ -5,7 +5,7 @@ const data = props?.projectData;
 const Cards = styled.div`
  display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  max-width: 100%;
   background: rgba(214, 214, 214, 0.2);
   border-radius: 10px;
   justify-content: center;
