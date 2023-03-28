@@ -87,7 +87,7 @@ const handleApprove = () => {
   //     .toHexString();
 
   State.update({
-    status: "4567",
+    status: expandedAmount,
   });
 
   erc20.approve(selectedTokenId, expandedAmount).then((transactionHash) => {
