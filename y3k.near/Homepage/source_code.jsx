@@ -68,16 +68,15 @@ return (
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
             <div class="col">
               <h1 class="fw-light">NEAR TOP Dapps</h1>
-
-              <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
+              <Widget
+                src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
+                props={{}}
+              />
             </div>
 
             <div class="col">
               <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
-                  props={{}}
-                />
+                <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
 
                 <div class="card-body">
                   <p class="card-text">Monthly Active Acounts</p>
