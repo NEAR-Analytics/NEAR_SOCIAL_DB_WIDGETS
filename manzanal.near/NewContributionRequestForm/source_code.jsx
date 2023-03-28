@@ -102,9 +102,9 @@ const renderTagSelection = (
           },
           options: {
             tags: {
-              label: "Public Tags",
+              label: "Tags",
               pattern,
-              placeholder: "binance, cex, nft, ft, fake, scam",
+              placeholder: "defi, staking",
             },
           },
         }}
