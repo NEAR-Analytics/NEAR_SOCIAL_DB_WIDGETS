@@ -26,5 +26,5 @@ return <>
             <a class="btn btn-light rounded-5 border w-100">View Details</a>
         </div>
     </FeaturedCommunity>
-    <div class="h5 pb-3">Activity</div>
+    <div class="h5 pb-3 pt-5">Activity</div>
 </>
