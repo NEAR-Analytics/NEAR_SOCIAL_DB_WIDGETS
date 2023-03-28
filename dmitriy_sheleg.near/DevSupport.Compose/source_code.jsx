@@ -77,8 +77,6 @@ const AvatarWrapper = styled.div`
   position: absolute;
   left: 1.5rem;
   top: 1.5rem;
-  pointer-events" none;
-  z-index: -1;
 `;
 
 return (
@@ -87,7 +85,14 @@ return (
       <AvatarWrapper>
         <Widget
           src="mob.near/widget/ProfileImage"
-          props={{ accountId, imageClassName: "rounded-circle w-100 h-100" }}
+          props={{
+            accountId,
+            imageClassName: "rounded-circle w-100 h-100",
+            imageStyle: {
+              pointerEvents: "none",
+              objectFit: "cover",
+            },
+          }}
         />
       </AvatarWrapper>
       <TextArea
