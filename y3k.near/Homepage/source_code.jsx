@@ -67,9 +67,9 @@ return (
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
             <div class="col">
-              <h1 class="fw-light">NEAR Dapps Overview</h1>
+              <h1 class="fw-light">NEAR TOP Dapps</h1>
 
-              <Widget src="y3k.near/widget/NEAR.ATLAS.DAPPS.OVERVIEW" />
+              <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
             </div>
 
             <div class="col">
