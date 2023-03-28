@@ -55,17 +55,20 @@ const Card = styled.div`
   }
 `;
 
-return <Card>
-        <div class="p-3">
-            <div class="d-flex flex-row align-items-center">
-            <img src="https://ipfs.near.social/ipfs/bafkreihbjm67uavkjkvfqomzx5v63t6kossqwfuptdxfb4vbcpbw3gezdm"></img>
-            <div class="nav navbar-brand h1 p-2">Zero Knowledge</div>
-            </div>
-            <div class="mt-2 text-secondary">
-            Building a zero knowledge ecosystem on NEAR.
-            </div>
-        </div>
-        <div class="border-top p-3">
-            <a class="btn btn-light rounded-5 border w-100">View Details</a>
-        </div>
-    </Card>;
+return <div class="card">
+      <img src="https://ipfs.near.social/ipfs/bafkreifuflol4fgihxcgpxkl56lygpgdisdfbizrjpt4jhir7mvx3ddh4a" class="card-img-top"></img>
+      <div class="nav navbar-brand h1 p-2">Zero Knowledge</div>
+<div class="mt-2 text-secondary">
+Building a zero knowledge ecosystem on NEAR.
+</div>
+</div>;
+// return <Card>
+//         <div class="p-3">
+//             <div class="d-flex flex-row align-items-center">
+//             <img src="https://ipfs.near.social/ipfs/bafkreihbjm67uavkjkvfqomzx5v63t6kossqwfuptdxfb4vbcpbw3gezdm"></img>
+
+//         </div>
+//         <div class="border-top p-3">
+//             <a class="btn btn-light rounded-5 border w-100">View Details</a>
+//         </div>
+//     </Card>;
