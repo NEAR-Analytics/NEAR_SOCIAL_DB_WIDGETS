@@ -76,29 +76,22 @@ const handleAmount = (e) => {
 
 const handleApprove = () => {
   if (!selectedTokenId || !amount || hasError) return;
-  State.update({
-    status: "123",
-  });
 
   const erc20 = new ethers.Contract(
     selectedTokenId,
     EIP20InterfaceABI,
     Ethers.provider().getSigner()
   );
-  State.update({
-    status: "345",
-  });
+
   const expandedAmount = expandToken(
     amount,
     TokensDetail[selectedTokenId].decimals
   ).toFixed();
 
-  State.update({
-    status: expandedAmount,
-  });
+  const toBigNumber = ethers.BigNumber.from(expandedAmount);
 
   erc20
-    .approve(TokensDetail[selectedTokenId].cAddress, expandedAmount)
+    .approve(TokensDetail[selectedTokenId].cAddress, toBigNumber)
     .then((transactionHash) => {
       console.log("transactionHash is " + transactionHash);
     });
@@ -106,9 +99,6 @@ const handleApprove = () => {
 
 const handleDeposit = () => {
   if (!selectedTokenId || !amount || hasError) return;
-  State.update({
-    status: "123",
-  });
 
   let contractABI;
   if (selectedTokenId == "ETH") {
@@ -118,31 +108,20 @@ const handleDeposit = () => {
   }
 
   const connection = new ethers.Contract(
-    selectedTokenId,
+    TokensDetail[selectedTokenId].cAddress,
     contractABI,
     Ethers.provider().getSigner()
   );
-  State.update({
-    status: "345",
-  });
+
   const expandedAmount = expandToken(
     amount,
     TokensDetail[selectedTokenId].decimals
   ).toFixed();
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
-  console.log("test");
-  console.log(toBigNumber);
-
-  State.update({
-    status: expandedAmount,
-  });
 
   connection.mint(toBigNumber).then((transactionHash) => {
     console.log("transactionHash is " + transactionHash);
-    State.update({
-      status: transactionHash,
-    });
   });
 };
 
@@ -171,9 +150,6 @@ return (
           </option>
           <option value="ETH">ETH</option>
         </select>
-        {state.selectedTokenId}
-        {state.amount}
-        {state.status}
       </div>
       <div>
         <div class="mb-2 text-muted">Amount</div>
