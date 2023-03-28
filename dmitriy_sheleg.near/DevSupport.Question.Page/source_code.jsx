@@ -24,7 +24,7 @@ const item = {
   blockHeight,
 };
 
-const link = `#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 const footer = (
   <div className="card-header p-2" style={{ border: "1px solid #ccc" }}>
@@ -71,7 +71,7 @@ const footer = (
 
 return (
   <div className="container pt-2 pb-5">
-    <a href="https://near.social/#/ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSuport.Main">
+    <a href="https://near.social/#/dmitriy_sheleg.near/widget/DevSuport.Main">
       Go Back
     </a>
 
