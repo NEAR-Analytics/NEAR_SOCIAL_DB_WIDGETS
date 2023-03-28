@@ -3,6 +3,7 @@ const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 const question = props.question;
+const children = props.children;
 
 const is_hidden = Near.view(adminContract, "is_hidden", {
   id: { account_id: accountId, block_height: blockHeight },
@@ -63,7 +64,14 @@ const NftImageWrapper = styled.div`
 
 return (
   <div class="row">
-    <div class="col-12">
+    <div class="col-1">
+      {/* Upvote Widget */}
+      <Widget
+        src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
+        props={{ accountId, blockHeight }}
+      />
+    </div>
+    <div class="col-11">
       <div class="row">
         <H2>
           <a href={link}>{question.title}</a>
@@ -119,6 +127,8 @@ return (
           )}
         </PostContentWrapper>
       </div>
+
+      {children}
     </div>
   </div>
 );
