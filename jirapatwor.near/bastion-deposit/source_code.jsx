@@ -65,18 +65,32 @@ const handleAmount = (e) => {
 
 const handleApprove = () => {
   if (!selectedTokenId || !amount || hasError) return;
+  State.update({
+    status: "123",
+  });
 
   const erc20 = new ethers.Contract(
     selectedTokenId,
     EIP20InterfaceABI,
     Ethers.provider().getSigner()
   );
+  State.update({
+    status: "345",
+  });
+  const expandedAmount = expandToken(
+    amount,
+    TokensDetail[selectedTokenId].decimals
+  ).toFixed();
 
-  let amountUse = ethers.utils
-    .parseUnits(amount, TokensDetail[selectedTokenId].decimals)
-    .toHexString();
+  //   let amountUse = ethers.utils
+  //     .parseUnits(amount, TokensDetail[selectedTokenId].decimals)
+  //     .toHexString();
 
-  erc20.approve(selectedTokenId, amountUse).then((transactionHash) => {
+  State.update({
+    status: "4567",
+  });
+
+  erc20.approve(selectedTokenId, expandedAmount).then((transactionHash) => {
     console.log("transactionHash is " + transactionHash);
   });
 
