@@ -68,7 +68,7 @@ return (
       <div class="col-1">
         <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
       </div>
-      <div class="col-1">
+      <div class="col-auto">
         {/* Upvote Widget */}
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
