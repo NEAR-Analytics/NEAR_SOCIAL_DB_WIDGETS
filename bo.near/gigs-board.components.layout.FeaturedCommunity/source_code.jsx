@@ -45,13 +45,13 @@ function href(widgetName, linkProps) {
 /* END_INCLUDE: "common.jsx" */
 
 const Hover = styled.div`
-   &:hover {
+   card:hover {
     box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
       0px 1px 2px rgba(16, 24, 40, 0.06);
   }
 `;
 
-return <a href={href('pages/Community')}><Hover>
+return <a href={href('Community')}><Hover>
     <div class="card">
       <img src={props.cover} class="card-img-top"></img>
       <div class="h5 pt-3 ps-3">{props.title}</div>
