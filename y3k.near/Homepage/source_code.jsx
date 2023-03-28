@@ -13,39 +13,26 @@ if (profile === null) {
 const name = profile.name;
 const image = profile.image;
 
-const editProfileButton = (
-  <div>
-    <a className="btn btn-success" href="#/mob.near/widget/ProfileEditor">
-      Edit Profile
-    </a>
-  </div>
-);
-
-if (accountId && !name) {
-  return (
-    <div className="alert alert-warning rounded-4 mb-3">
-      <p>Your profile is missing a name.</p>
-      {editProfileButton}
-    </div>
-  );
-}
-
-if (
-  accountId &&
-  !image.ipfs_cid &&
-  (!image.nft.contractId || !image.nft.tokenId) &&
-  !image.url
-) {
-  return (
-    <div className="alert alert-warning rounded-4 mb-3">
-      <p>Your profile is missing a picture.</p>
-      {editProfileButton}
-    </div>
-  );
-}
-
 return (
   <div>
+    <div>
+      {accountId && !name && (
+        <div className="alert alert-warning rounded-4 mb-3">
+          <p>Your profile is missing a name.</p>
+          {editProfileButton}
+        </div>
+      )}
+
+      {accountId &&
+        !image.ipfs_cid &&
+        (!image.nft.contractId || !image.nft.tokenId) &&
+        !image.url && (
+          <div className="alert alert-warning rounded-4 mb-3">
+            <p>Your profile is missing a picture.</p>
+            {editProfileButton}
+          </div>
+        )}
+    </div>
     <div class="text-center container">
       <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
