@@ -25,16 +25,16 @@ const metadata = props.metadata ?? Social.getr(`${widgetPath}/metadata`);
 const urlPrefix = "https://";
 const accountId = props.accountId ?? "*";
 
-const data = Social.index("kudos", "answer");
+const data = Social.index("kudo", "answer");
 if (!data) {
   return "Loading answers";
 }
-const upvotes = Social.index("kudos", "upvote");
+const upvotes = Social.index("kudo", "upvote");
 if (!upvotes) {
   return "Loading upvotes";
 }
 
-const commentAnswers = Social.index("kudos", "commentAnswers");
+const commentAnswers = Social.index("kudo", "commentAnswers");
 if (!commentAnswers) {
   return "Loading commentAnswers";
 }
