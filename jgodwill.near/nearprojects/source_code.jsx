@@ -12,14 +12,8 @@ const Cards = styled.div`
   padding-top: 3em;
   box-shadow: 0 0.05rem 0.05rem rgb(34 34 34 / 5%), 0 0.2rem 0.8rem rgb(34 34 34 / 8%);
 `;
-const componentList = data.map((projectData, key) => {
-  return (
-    <Widget
-      src={`${user}/widget/nearprojectcard`}
-      key={index}
-      props={projectData}
-    />
-  );
+const componentList = data.map((projectData) => {
+  return <Widget src={`${user}/widget/nearprojectcard`} props={projectData} />;
 });
 
 return (
