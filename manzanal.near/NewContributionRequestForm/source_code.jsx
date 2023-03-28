@@ -114,11 +114,20 @@ const renderTagSelection = (
     )}
   </div>
 );
+const Heading3 = styled.div`
+    font-family: 'Space Grotesk';
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+`;
 return (
   <div className="row">
-    {renderEntity}
-    {renderTitle}
-    {descriptionDiv}
-    {renderTagSelection}
+    <Heading3>Request details</Heading3>
+    <div>
+      {renderEntity}
+      {renderTitle}
+      {descriptionDiv}
+      {renderTagSelection}
+    </div>
   </div>
 );
