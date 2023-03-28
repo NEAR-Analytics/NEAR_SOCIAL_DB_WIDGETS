@@ -69,6 +69,7 @@ const TextArea = styled.textarea`
   background-color: #ffffff;
   border: 1px solid #ECEEF0;
   border-radius: 8px;
+  resize: none;
 `;
 
 return (
