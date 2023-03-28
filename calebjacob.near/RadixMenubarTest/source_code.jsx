@@ -1,275 +1,433 @@
-const RADIO_ITEMS = ["Andy", "Benoît", "Luis"];
-const CHECK_ITEMS = ["Always Show Bookmarks Bar", "Always Show Full URLs"];
-
-State.init({
-  checkedSelection: [CHECK_ITEMS[1]],
-  radioSelection: RADIO_ITEMS[2],
-});
-
-function setCheckedSelection(value) {
-  State.update({ checkedSelection: value });
-}
-
-function setRadioSelection(value) {
-  State.update({ radioSelection: value });
-}
-
 const Wrapper = styled.div`
-    /* reset */
-button {
+/* reset */
+button,
+p {
   all: unset;
 }
 
-.MenubarRoot {
+.NavigationMenuRoot {
+  position: relative;
   display: flex;
-  background-color: white;
-  padding: 3px;
-  border-radius: 6px;
-  box-shadow: 0 2px 10px var(--blackA7);
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
 }
 
-.MenubarTrigger {
+.NavigationMenuList {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 4px;
+  border-radius: 6px;
+  list-style: none;
+  box-shadow: 0 2px 10px var(--blackA7);
+  margin: 0;
+}
+
+.NavigationMenuTrigger,
+.NavigationMenuLink {
   padding: 8px 12px;
   outline: none;
   user-select: none;
   font-weight: 500;
   line-height: 1;
   border-radius: 4px;
+  font-size: 15px;
   color: var(--violet11);
-  font-size: 13px;
+}
+.NavigationMenuTrigger:focus,
+.NavigationMenuLink:focus {
+  box-shadow: 0 0 0 2px var(--violet7);
+}
+.NavigationMenuTrigger:hover,
+.NavigationMenuLink:hover {
+  background-color: var(--violet3);
+}
+
+.NavigationMenuTrigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2px;
 }
 
-.MenubarTrigger[data-highlighted],
-.MenubarTrigger[data-state='open'] {
-  background-color: var(--violet4);
+.NavigationMenuLink {
+  display: block;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1;
 }
 
-.MenubarContent,
-.MenubarSubContent {
-  min-width: 220px;
+.NavigationMenuContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-duration: 250ms;
+  animation-timing-function: ease;
+}
+.NavigationMenuContent[data-motion='from-start'] {
+  animation-name: enterFromLeft;
+}
+.NavigationMenuContent[data-motion='from-end'] {
+  animation-name: enterFromRight;
+}
+.NavigationMenuContent[data-motion='to-start'] {
+  animation-name: exitToLeft;
+}
+.NavigationMenuContent[data-motion='to-end'] {
+  animation-name: exitToRight;
+}
+@media only screen and (min-width: 600px) {
+  .NavigationMenuContent {
+    width: auto;
+  }
+}
+
+.NavigationMenuIndicator {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 10px;
+  top: 100%;
+  overflow: hidden;
+  z-index: 1;
+  transition: width, transform 250ms ease;
+}
+.NavigationMenuIndicator[data-state='visible'] {
+  animation: fadeIn 200ms ease;
+}
+.NavigationMenuIndicator[data-state='hidden'] {
+  animation: fadeOut 200ms ease;
+}
+
+.NavigationMenuViewport {
+  position: relative;
+  transform-origin: top center;
+  margin-top: 10px;
+  width: 100%;
   background-color: white;
   border-radius: 6px;
-  padding: 5px;
-  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
+  overflow: hidden;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  height: var(--radix-navigation-menu-viewport-height);
+  transition: width, height, 300ms ease;
+}
+.NavigationMenuViewport[data-state='open'] {
+  animation: scaleIn 200ms ease;
+}
+.NavigationMenuViewport[data-state='closed'] {
+  animation: scaleOut 200ms ease;
+}
+@media only screen and (min-width: 600px) {
+  .NavigationMenuViewport {
+    width: var(--radix-navigation-menu-viewport-width);
+  }
 }
 
-.MenubarItem,
-.MenubarSubTrigger,
-.MenubarCheckboxItem,
-.MenubarRadioItem {
-  all: unset;
-  font-size: 13px;
+.List {
+  display: grid;
+  padding: 22px;
+  margin: 0;
+  column-gap: 10px;
+  list-style: none;
+}
+@media only screen and (min-width: 600px) {
+  .List.one {
+    width: 500px;
+    grid-template-columns: 0.75fr 1fr;
+  }
+  .List.two {
+    width: 600px;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+.ListItemLink {
+  display: block;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
   line-height: 1;
-  color: var(--violet11);
-  border-radius: 4px;
+}
+.ListItemLink:focus {
+  box-shadow: 0 0 0 2px var(--violet7);
+}
+.ListItemLink:hover {
+  background-color: var(--mauve3);
+}
+
+.ListItemHeading {
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  color: var(--violet12);
+}
+
+.ListItemText {
+  color: var(--mauve11);
+  line-height: 1.4;
+  font-weight: initial;
+}
+
+.Callout {
   display: flex;
-  align-items: center;
-  height: 25px;
-  padding: 0 10px;
-  position: relative;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--purple9) 0%, var(--indigo9) 100%);
+  border-radius: 6px;
+  padding: 25px;
+  text-decoration: none;
+  outline: none;
   user-select: none;
 }
-
-.MenubarItem.inset,
-.MenubarSubTrigger.inset,
-.MenubarCheckboxItem.inset,
-.MenubarRadioItem.inset {
-  padding-left: 20px;
+.Callout:focus {
+  box-shadow: 0 0 0 2px var(--violet7);
 }
 
-.MenubarItem[data-state='open'],
-.MenubarSubTrigger[data-state='open'] {
-  background-color: var(--violet4);
-  color: var(--violet11);
-}
-
-.MenubarItem[data-highlighted],
-.MenubarSubTrigger[data-highlighted],
-.MenubarCheckboxItem[data-highlighted],
-.MenubarRadioItem[data-highlighted] {
-  background-image: linear-gradient(135deg, var(--violet9) 0%, var(--violet10) 100%);
-  color: var(--violet1);
-}
-
-.MenubarItem[data-disabled],
-.MenubarSubTrigger[data-disabled],
-.MenubarCheckboxItem[data-disabled],
-.MenubarRadioItem[data-disabled] {
-  color: var(--mauve8);
-  pointer-events: none;
-}
-
-.MenubarItemIndicator {
-  position: absolute;
-  left: 0;
-  width: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.MenubarSeparator {
-  height: 1px;
-  background-color: var(--violet6);
-  margin: 5px;
-}
-
-.RightSlot {
-  margin-left: auto;
-  padding-left: 20px;
-  color: var(--mauve9);
-}
-
-[data-highlighted] > .RightSlot {
+.CalloutHeading {
   color: white;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 16px;
+  margin-bottom: 7px;
 }
 
-[data-disabled] > .RightSlot {
-  color: var(--mauve8);
+.CalloutText {
+  color: var(--mauve4);
+  font-size: 14px;
+  line-height: 1.3;
 }
-`;
+
+.ViewportPosition {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  perspective: 2000px;
+}
+
+.CaretDown {
+  position: relative;
+  color: var(--violet10);
+  top: 1px;
+  transition: transform 250ms ease;
+}
+[data-state='open'] > .CaretDown {
+  transform: rotate(-180deg);
+}
+
+.Arrow {
+  position: relative;
+  top: 70%;
+  background-color: white;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  border-top-left-radius: 2px;
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg) scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}`;
 
 return (
   <Wrapper>
-    <Menubar.Root className="MenubarRoot">
-      <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">File</Menubar.Trigger>
-        <Menubar.Content
-          className="MenubarContent"
-          align="start"
-          sideOffset={5}
-          alignOffset={-3}
-        >
-          <Menubar.Item className="MenubarItem">
-            New Tab <div className="RightSlot">⌘ T</div>
-          </Menubar.Item>
-          <Menubar.Item className="MenubarItem">
-            New Window <div className="RightSlot">⌘ N</div>
-          </Menubar.Item>
-          <Menubar.Item className="MenubarItem" disabled>
-            New Incognito Window
-          </Menubar.Item>
-          <Menubar.Separator className="MenubarSeparator" />
-          <Menubar.Sub>
-            <Menubar.SubTrigger className="MenubarSubTrigger">
-              Share
-            </Menubar.SubTrigger>
+    <NavigationMenu.Root className="NavigationMenuRoot">
+      <NavigationMenu.List className="NavigationMenuList">
+        <NavigationMenu.Item>
+          <NavigationMenu.Trigger className="NavigationMenuTrigger">
+            Learn
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content className="NavigationMenuContent">
+            <ul className="List one">
+              <li style={{ gridRow: "span 3" }}>
+                <NavigationMenu.Link asChild>
+                  <a className="Callout" href="/">
+                    <svg
+                      aria-hidden
+                      width="38"
+                      height="38"
+                      viewBox="0 0 25 25"
+                      fill="white"
+                    >
+                      <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
+                      <path d="M12 0H4V8H12V0Z"></path>
+                      <path d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"></path>
+                    </svg>
+                    <div className="CalloutHeading">Radix Primitives</div>
+                    <p className="CalloutText">
+                      Unstyled, accessible components for React.
+                    </p>
+                  </a>
+                </NavigationMenu.Link>
+              </li>
 
-            <Menubar.SubContent className="MenubarSubContent" alignOffset={-5}>
-              <Menubar.Item className="MenubarItem">Email Link</Menubar.Item>
-              <Menubar.Item className="MenubarItem">Messages</Menubar.Item>
-              <Menubar.Item className="MenubarItem">Notes</Menubar.Item>
-            </Menubar.SubContent>
-          </Menubar.Sub>
-          <Menubar.Separator className="MenubarSeparator" />
-          <Menubar.Item className="MenubarItem">
-            Print… <div className="RightSlot">⌘ P</div>
-          </Menubar.Item>
-        </Menubar.Content>
-      </Menubar.Menu>
+              <li>
+                <NavigationMenu.Link
+                  href="https://stitches.dev/"
+                  className="ListItemLink"
+                >
+                  <div className="ListItemHeading">Stitches</div>
+                  <p className="ListItemText">
+                    CSS-in-JS with best-in-class developer experience.
+                  </p>
+                </NavigationMenu.Link>
+              </li>
+              <li>
+                <NavigationMenu.Link
+                  href="https://stitches.dev/"
+                  className="ListItemLink"
+                >
+                  <div className="ListItemHeading">Stitches 123</div>
+                  <p className="ListItemText">
+                    CSS-in-JS with best-in-class developer experience.
+                  </p>
+                </NavigationMenu.Link>
+              </li>
+            </ul>
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
 
-      <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">Edit</Menubar.Trigger>
-        <Menubar.Content
-          className="MenubarContent"
-          align="start"
-          sideOffset={5}
-          alignOffset={-3}
-        >
-          <Menubar.Item className="MenubarItem">
-            Undo <div className="RightSlot">⌘ Z</div>
-          </Menubar.Item>
-          <Menubar.Item className="MenubarItem">
-            Redo <div className="RightSlot">⇧ ⌘ Z</div>
-          </Menubar.Item>
-          <Menubar.Separator className="MenubarSeparator" />
-          <Menubar.Sub>
-            <Menubar.SubTrigger className="MenubarSubTrigger">
-              Find
-            </Menubar.SubTrigger>
+        <NavigationMenu.Item>
+          <NavigationMenu.Trigger className="NavigationMenuTrigger">
+            Overview
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content className="NavigationMenuContent">
+            <ul className="List two">
+              <li>
+                <NavigationMenu.Link
+                  href="https://stitches.dev/"
+                  className="ListItemLink"
+                >
+                  <div className="ListItemHeading">Stitches</div>
+                  <p className="ListItemText">
+                    CSS-in-JS with best-in-class developer experience.
+                  </p>
+                </NavigationMenu.Link>
+              </li>
 
-            <Menubar.SubContent className="MenubarSubContent" alignOffset={-5}>
-              <Menubar.Item className="MenubarItem">
-                Search the web…
-              </Menubar.Item>
-              <Menubar.Separator className="MenubarSeparator" />
-              <Menubar.Item className="MenubarItem">Find…</Menubar.Item>
-              <Menubar.Item className="MenubarItem">Find Next</Menubar.Item>
-              <Menubar.Item className="MenubarItem">Find Previous</Menubar.Item>
-            </Menubar.SubContent>
-          </Menubar.Sub>
-          <Menubar.Separator className="MenubarSeparator" />
-          <Menubar.Item className="MenubarItem">Cut</Menubar.Item>
-          <Menubar.Item className="MenubarItem">Copy</Menubar.Item>
-          <Menubar.Item className="MenubarItem">Paste</Menubar.Item>
-        </Menubar.Content>
-      </Menubar.Menu>
+              <li>
+                <NavigationMenu.Link
+                  href="https://stitches.dev/"
+                  className="ListItemLink"
+                >
+                  <div className="ListItemHeading">Stitches 123</div>
+                  <p className="ListItemText">
+                    CSS-in-JS with best-in-class developer experience.
+                  </p>
+                </NavigationMenu.Link>
+              </li>
+            </ul>
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
 
-      <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">View</Menubar.Trigger>
-        <Menubar.Content
-          className="MenubarContent"
-          align="start"
-          sideOffset={5}
-          alignOffset={-14}
-        >
-          <Menubar.Item className="MenubarItem inset">
-            Reload <div className="RightSlot">⌘ R</div>
-          </Menubar.Item>
-          <Menubar.Item className="MenubarItem inset" disabled>
-            Force Reload <div className="RightSlot">⇧ ⌘ R</div>
-          </Menubar.Item>
-          <Menubar.Separator className="MenubarSeparator" />
-          <Menubar.Item className="MenubarItem inset">
-            Toggle Fullscreen
-          </Menubar.Item>
-          <Menubar.Separator className="MenubarSeparator" />
-          <Menubar.Item className="MenubarItem inset">
-            Hide Sidebar
-          </Menubar.Item>
-        </Menubar.Content>
-      </Menubar.Menu>
-
-      <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">Profiles</Menubar.Trigger>
-        <Menubar.Content
-          className="MenubarContent"
-          align="start"
-          sideOffset={5}
-          alignOffset={-14}
-        >
-          <Menubar.RadioGroup
-            value={state.radioSelection}
-            onValueChange={setRadioSelection}
+        <NavigationMenu.Item>
+          <NavigationMenu.Link
+            className="NavigationMenuLink"
+            href="https://github.com/radix-ui"
           >
-            {RADIO_ITEMS.map((item) => (
-              <Menubar.RadioItem
-                className="MenubarRadioItem inset"
-                key={item}
-                value={item}
-              >
-                <Menubar.ItemIndicator className="MenubarItemIndicator">
-                  X
-                </Menubar.ItemIndicator>
-                {item}
-              </Menubar.RadioItem>
-            ))}
-            <Menubar.Separator className="MenubarSeparator" />
-            <Menubar.Item className="MenubarItem inset">Edit…</Menubar.Item>
-            <Menubar.Separator className="MenubarSeparator" />
-            <Menubar.Item className="MenubarItem inset">
-              Add Profile…
-            </Menubar.Item>
-          </Menubar.RadioGroup>
-        </Menubar.Content>
-      </Menubar.Menu>
-    </Menubar.Root>
+            Github
+          </NavigationMenu.Link>
+        </NavigationMenu.Item>
+
+        <NavigationMenu.Indicator className="NavigationMenuIndicator">
+          <div className="Arrow" />
+        </NavigationMenu.Indicator>
+      </NavigationMenu.List>
+
+      <div className="ViewportPosition">
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
+      </div>
+    </NavigationMenu.Root>
   </Wrapper>
 );
