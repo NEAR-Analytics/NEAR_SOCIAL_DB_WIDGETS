@@ -6,14 +6,22 @@ const data = fetch("https://api.coingecko.com/api/v3/coins/near", {
   },
 });
 
-//console.log(data);
+console.log(data);
 
 if (data !== null && data.ok === false) {
   return (
     <div className="text-bg-light rounded-4 p-3 mb-3">
-      Oops, something went wrong with our system. Please hang on while we look
-      into the issue. We'll get things sorted as soon as possible. Thanks for
-      your patience!
+      <p>
+        It seems like our pricing data provider, CoinGecko
+        (https://www.coingecko.com), is experiencing some issues at the moment.
+        You can keep an eye on their status here:{" "}
+        <a href="https://status.coingecko.com" target="_blank">
+          https://status.coingecko.com
+        </a>
+      </p>
+      <p>
+        Thanks for your patience, and we hope they'll resolve the issue soon.
+      </p>
     </div>
   );
 } else {
