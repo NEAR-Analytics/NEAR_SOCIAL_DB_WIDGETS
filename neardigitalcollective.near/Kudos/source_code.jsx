@@ -195,7 +195,7 @@ return (
       <>
         <p>An accolade, a Thank You, a Job Well Done. Give em a Kudo!👏 </p>
         <Widget
-          src={`mob.near/widget/Common.Compose`}
+          src={`${widgetOwner}/widget/Common.Compose`}
           props={{
             id: "main",
             textAreaOnly: true,
