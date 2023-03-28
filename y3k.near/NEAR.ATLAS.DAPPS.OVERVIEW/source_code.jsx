@@ -16,7 +16,7 @@ let Style = styled.div`
 
           `;
 
-let data = rawData.body;
+let data = rawData.body || [];
 return (
   <Style>
     <div className="text-bg-dark rounded-4 p-3 mb-4">
