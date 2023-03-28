@@ -146,7 +146,6 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
-    // Serve static rooms till fix the issue (in progress)
     () => Storage.privateGet("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
