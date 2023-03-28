@@ -54,7 +54,7 @@ const Hover = styled.div`
 
 return (
     <Hover className="card">
-      <a href={href("Community", { tag: props.tag, title: props.title, desc: props.desc })}>
+      <a href={href("Community", { tag: props.tag, title: props.title, desc: props.desc, icon: props.icon })}>
         <img src={props.cover} class="card-img-top"></img>
       </a>
       <div class="h5 pt-3 ps-3">{props.title}</div>
