@@ -49,12 +49,21 @@ const Grey = styled.div`
     position: fixed;
     left: calc(-50vw + 50%);
     width: 100vw;
-    height: 100px;
+    height: 190px;
     z-index: 11;
-    margin-top: -24px;
+    margin-top: 76px;
 
     overflow: hidden;
     background: #f3f3f3;
+  }
+`;
+
+const Content = styled.div`
+   {
+    position: fixed;
+    padding: 32px 0;
+    z-index: 13;
+    margin-top: 76px;
   }
 `;
 
@@ -62,53 +71,55 @@ const Grey = styled.div`
 // but it's not there in near social, need write such style here
 return (
   <Grey>
-    <div aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href={href("Feed")}>Developer Governance</a>
-        </li>
-        <li class="breadcrumb-item">
-          <a href={href("Feed")}>Communities</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">
-          {props.title}
-        </li>
-      </ol>
-    </div>
-    <div class="d-flex flex-row align-items-center pb-3">
-      <img src={props.icon}></img>
-      <div>
-        <div class="h5 pt-3 ps-3">{props.title}</div>
-        <div class="ps-3 pb-2 text-secondary">{props.desc}</div>
+    <Content>
+      <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href={href("Feed")}>Developer Governance</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href={href("Feed")}>Communities</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {props.title}
+          </li>
+        </ol>
       </div>
-    </div>
-    <div>
-      <ul class="nav nav-underline">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
-            <i class="bi-house-door"> </i>
-            Overview
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi-chat-square-text"> </i>
-            Discussions
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi-kanban"> </i>
-            Sponsorship
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="bi-calendar"> </i>
-            Events
-          </a>
-        </li>
-      </ul>
-    </div>
+      <div class="d-flex flex-row align-items-center pb-3">
+        <img src={props.icon}></img>
+        <div>
+          <div class="h5 pt-3 ps-3">{props.title}</div>
+          <div class="ps-3 pb-2 text-secondary">{props.desc}</div>
+        </div>
+      </div>
+      <div>
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <i class="bi-house-door"> </i>
+              Overview
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="bi-chat-square-text"> </i>
+              Discussions
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="bi-kanban"> </i>
+              Sponsorship
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="bi-calendar"> </i>
+              Events
+            </a>
+          </li>
+        </ul>
+      </div>
+    </Content>
   </Grey>
 );
