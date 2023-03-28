@@ -49,7 +49,7 @@ const PCategory = styled.span`
   font-size: 0.7rem;
 `;
 
-const PSubtitle = sytled.span`
+const PSubtitle = styled.span`
   color: #222;
   font-size: 0.7rem;
   margin: 1em 0;
