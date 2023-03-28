@@ -1,6 +1,6 @@
 const user = "jgodwill.near";
 
-const data = props.projectData;
+const data = props?.projectData;
 
 const Cards = styled.div`
  display: flex;
