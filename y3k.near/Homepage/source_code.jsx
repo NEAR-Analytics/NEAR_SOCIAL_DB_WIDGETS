@@ -46,7 +46,7 @@ if (
 
 return (
   <div>
-    <div class="py-5 text-center container">
+    <div class="text-center container">
       <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">NEAR ATLAS</h1>
@@ -63,25 +63,23 @@ return (
           </p>
         </div>
       </div>
-      <div class="album py-2 bg-dark">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
-            <div class="col">
+
+      <div class="container">
+        <div class="row  ">
+          <h1 class="fw-light">Monthly Active Accounts</h1>
+
+          <div class="row">
+            <Widget
+              src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
+              props={{}}
+            />
+          </div>
+
+          <div class="row">
+            <div class="card shadow-sm bg-dark">
               <h1 class="fw-light">NEAR TOP Dapps</h1>
-              <Widget
-                src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
-                props={{}}
-              />
-            </div>
 
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
-
-                <div class="card-body">
-                  <p class="card-text">Monthly Active Acounts</p>
-                </div>
-              </div>
+              <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
             </div>
           </div>
         </div>
