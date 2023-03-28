@@ -106,17 +106,18 @@ return (
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
           props={{ accountId, blockHeight, admins, adminContract, question }}
-        />
-        {context.accountId && (
-          <Widget
-            src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
-            props={{
-              notifyAccountId: accountId,
-              item,
-              onComment: () => State.update({ showReply: false }),
-            }}
-          />
-        )}
+        >
+          {context.accountId && (
+            <Widget
+              src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
+              props={{
+                notifyAccountId: accountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+          )}
+        </Widget>
       </div>
       <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
     </div>
