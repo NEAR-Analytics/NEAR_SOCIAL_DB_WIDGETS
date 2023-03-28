@@ -38,18 +38,18 @@ const IconWrapper = styled.div`
   min-height: 40px;
 `;
 
-const ProjectName = styled.span`
+const PName = styled.span`
   font-weight: bold;
   font-size: 0.9rem;
 `;
 
-const projectCategory = styled.span`
+const PCategory = styled.span`
   font-weight: lighter;
   color: #888;
   font-size: 0.7rem;
 `;
 
-const projectSubtitle = sytled.span`
+const PSubtitle = sytled.span`
   color: #222;
   font-size: 0.7rem;
   margin: 1em 0;
@@ -78,17 +78,13 @@ return (
         />
       </IconWrapper>
       <Info>
-        <ProjectName>
-          {props.projectData.ProjectName || "Project Name"}
-        </ProjectName>
-        <projectCategory>
+        <PName>{props.projectData.ProjectName || "Project Name"}</PName>
+        <PCategory>
           {truncateText(props.projectData.Category, 20) || "Category"}
-        </projectCategory>
+        </PCategory>
       </Info>
     </Title>
-    <projectSubtitle>
-      {truncateText(props.projectData.Subtitle, 60)}
-    </projectSubtitle>
+    <PSubtitle>{truncateText(props.projectData.Subtitle, 60)}</PSubtitle>
     <div className="d-flex">Icons</div>
   </Card>
 );
