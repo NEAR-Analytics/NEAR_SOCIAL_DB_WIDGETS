@@ -46,7 +46,9 @@ return (
     <div class="container min-vw-100">
       <h3>Sample list of near projects </h3>
       <hr />
-      <Cards onScroll={handleScroll}>{componentList}</Cards>
+      <Cards onScroll={handleScroll}>
+        {componentList || "Components Here"}
+      </Cards>
     </div>
   </>
 );
