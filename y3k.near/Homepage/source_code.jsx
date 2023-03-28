@@ -67,6 +67,12 @@ return (
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 ">
             <div class="col">
+              <h1 class="fw-light">NEAR Dapps Overview</h1>
+
+              <Widget src="y3k.near/widget/NEAR.ATLAS.DAPPS.OVERVIEW" />
+            </div>
+
+            <div class="col">
               <div class="card shadow-sm bg-dark">
                 <Widget
                   src="y3k.near/widget/NEAR-ATLAS-MonthlyActiveAcounts"
@@ -74,126 +80,11 @@ return (
                 />
 
                 <div class="card-body">
-                  <p class="card-text">MonthlyActiveAcounts</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR.ATLAS.NewMonthlyActiveAcounts"
-                  props={{}}
-                />
-
-                <div class="card-body">
-                  <p class="card-text">NewMonthlyActiveAcounts</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR.ATLAS.NEAR_SOCIAL_DATA"
-                  props={{}}
-                />
-
-                <div class="card-body">
-                  <p class="card-text">NEAR_SOCIAL_DATA</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm bg-dark">
-                <Widget
-                  src="y3k.near/widget/NEAR.ATLAS.DATA.CHAINS_TWITTER"
-                  props={{}}
-                />
-
-                <div class="card-body">
-                  <p class="card-text">NEAR.ATLAS.DATA.CHAINS_TWITTER</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        -
-                      </button>
-                    </div>
-                    <small class="text-muted">time: 00s</small>
-                  </div>
+                  <p class="card-text">Monthly Active Acounts</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row py-lg-5">
-        <div class="col-lg-10 col-md-10 mx-auto">
-          <h1 class="fw-light">NEAR Dapps Overview</h1>
-          <p>
-            <Widget src="y3k.near/widget/NEAR.ATLAS.DAPPS.OVERVIEW" />
-          </p>
         </div>
       </div>
     </div>
