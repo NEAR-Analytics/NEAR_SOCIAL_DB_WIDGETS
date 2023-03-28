@@ -65,17 +65,17 @@ const TopicName = styled.span`
 return (
   <div className={`${display} p-3`}>
     <div class="row">
-      <div class="col-2">
+      <div class="col-1">
         <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
       </div>
-      <div class="col-2">
+      <div class="col-1">
         {/* Upvote Widget */}
         <Widget
           src="dmitriy_sheleg.near/widget/DevSupport.Question.Button.Upvote"
           props={{ accountId, blockHeight }}
         />
       </div>
-      <div class="col-8">
+      <div class="col-10">
         <div class="row">
           <H2>
             <a href={link}>{question.title}</a>
