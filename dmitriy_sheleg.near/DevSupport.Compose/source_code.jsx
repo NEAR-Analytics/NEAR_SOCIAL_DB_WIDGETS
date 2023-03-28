@@ -70,11 +70,23 @@ const TextArea = styled.textarea`
   border: 1px solid #ECEEF0;
   border-radius: 8px;
   resize: none;
+  padding-left: 5.5rem;
+  padding-top: 1.5rem;
+`;
+const AvatarWrapper = styled.div`
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  pointer-events" none;
+  z-index: -1;
 `;
 
 return (
   <div>
-    <div className="py-2">
+    <div className="py-2 position-relative">
+      <AvatarWrapper>
+        <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+      </AvatarWrapper>
       <TextArea
         className="form-control"
         style={{ "min-height": "15vh" }}
