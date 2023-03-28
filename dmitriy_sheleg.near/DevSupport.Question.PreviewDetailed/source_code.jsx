@@ -3,6 +3,7 @@ const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 const question = props.question;
+const children = props.children;
 
 const is_hidden = Near.view(adminContract, "is_hidden", {
   id: { account_id: accountId, block_height: blockHeight },
@@ -126,6 +127,8 @@ return (
           )}
         </PostContentWrapper>
       </div>
+
+      {children}
     </div>
   </div>
 );
