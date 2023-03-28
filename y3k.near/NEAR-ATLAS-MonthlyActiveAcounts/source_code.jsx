@@ -12,7 +12,7 @@ let raw_data = fetch(
   }
 );
 
-const data = raw_data.body;
+const data = raw_data.body || [];
 
 let Style = styled.div`
                 `;
