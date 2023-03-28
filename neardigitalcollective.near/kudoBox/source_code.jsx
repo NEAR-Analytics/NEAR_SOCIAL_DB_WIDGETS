@@ -74,7 +74,7 @@ const RenderAllCommentAnswerBox = (d) => {
                       }
                     >
                       <Widget
-                        src={`mob.near/widget/FollowButton`}
+                        src={`${widgetOwner}/widget/FollowButton`}
                         props={{ accountId: c.accountId }}
                       />
                     </div>
