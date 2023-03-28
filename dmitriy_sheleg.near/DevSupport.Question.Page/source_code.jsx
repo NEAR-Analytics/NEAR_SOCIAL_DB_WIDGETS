@@ -69,30 +69,54 @@ const footer = (
   </div>
 );
 
+const H4 = styled.h4`
+  font-size: 14px;
+  font-weight: 500;
+  color: #687076;
+
+  a {
+    color: inherit;
+    transition: color .15s ease;
+    &:hover {
+      color: #30A46C;
+      text-decoration: none;
+    }
+
+    & i {
+      transition: color .1s ease-out;
+      color: inherit;
+    }
+  }
+`;
+const SidebarWrapper = styled.div`
+  border-left: 1px solid #ECEEF0;
+`;
+
 return (
   <div className="container pt-2 pb-5">
-    <a href="https://near.social/#/dmitriy_sheleg.near/widget/DevSuport.Main">
-      Go Back
-    </a>
-
-    <h2 class="mt-3">
-      <a className="text-black" href={link}>
-        {question.title}
+    <H4>
+      <a href="https://near.social/#/dmitriy_sheleg.near/widget/DevSuport.Main">
+        <i class="bi bi-arrow-left me-2" />
+        Back to Discussions
       </a>
-    </h2>
+    </H4>
 
-    <Widget
-      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.LabelsDisplay"
-      props={{ labels: question.labels }}
-    />
-
+    <div class="row">
+      <div class="col-8 pe-5">
+        <Widget
+          src="dmitriy_sheleg.near/widget/DevSupport.Question.PreviewDetailed"
+          props={{ accountId, blockHeight, admins, adminContract, question }}
+        />
+      </div>
+      <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
+    </div>
+    {/*
     <div className="py-2 text-break">
       <Widget
         src="mob.near/widget/MainPage.Post.Content"
         props={{ content: { text: question.content.text } }}
       />
     </div>
-
     {question.content.image.ipfs_cid && (
       <>
         <div
@@ -111,21 +135,15 @@ return (
           />
         </div>
       </>
-    )}
-
-    {footer}
-
+    )} */}
+    {/*{footer}*/}
     <div class="mt-3 mb-5" />
-
     <h4 class="mb-3"> Community Answers </h4>
-
     <Widget
       src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
       props={{ item, admins, adminContract }}
     />
-
     <div class="mb-5" />
-
     {context.accountId && (
       <>
         <hr class="w-75 mx-auto mb-5" />
