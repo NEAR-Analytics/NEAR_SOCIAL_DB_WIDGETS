@@ -91,10 +91,6 @@ const H4 = styled.h4`
 const SidebarWrapper = styled.div`
   border-left: 1px solid #ECEEF0;
 `;
-const UserAnswer = styled.div`
-  border: 1px solid #ECEEF0;
-  border-radius: 8px;
-`;
 
 return (
   <div className="container pt-2 pb-5">
@@ -113,16 +109,14 @@ return (
         />
 
         {context.accountId && (
-          <UserAnswer className="p-4">
-            <Widget
-              src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
-              props={{
-                notifyAccountId: accountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-          </UserAnswer>
+          <Widget
+            src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
+            props={{
+              notifyAccountId: accountId,
+              item,
+              onComment: () => State.update({ showReply: false }),
+            }}
+          />
         )}
       </div>
       <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
