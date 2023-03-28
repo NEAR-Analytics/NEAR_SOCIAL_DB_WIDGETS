@@ -58,16 +58,6 @@ const stacked_options = {
   },
 };
 
-const stacked_bar_labels = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-];
-
 const stacked_bar_data = {
   dates,
   datasets: [
@@ -89,14 +79,7 @@ return (
     <div className="text-bg-dark rounded-4 p-3 mb-4">
       {data !== null ? (
         <p>
-          <div class="">
-            <div class="">
-              <div>
-                <BarEl options={stacked_options} data={stacked_bar_data} />
-              </div>
-            </div>
-          </div>
-
+          <BarEl options={stacked_options} data={stacked_bar_data} />
           <div></div>
         </p>
       ) : (
