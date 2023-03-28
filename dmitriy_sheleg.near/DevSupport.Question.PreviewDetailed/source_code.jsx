@@ -17,24 +17,6 @@ const H2 = styled.h2`
   font-size: 20px;
   font-weight: 600;
   color: #11181C;
-
-  a {
-    color: inherit;
-    transition: color .15s ease;
-    &:hover {
-      color: #30A46C;
-      text-decoration: none;
-
-      & + i {
-        visibility: visible;
-      }
-    }
-
-    & + i {
-      transition: visibility .1s ease-out;
-      visibility: hidden;
-      color: #30A46C;
-    }
   }
 `;
 const H6 = styled.h6`
@@ -73,10 +55,7 @@ return (
     </div>
     <div class="col-11">
       <div class="row">
-        <H2>
-          <a href={link}>{question.title}</a>
-          <i class="bi bi-arrow-right" />
-        </H2>
+        <H2>{question.title}</H2>
         <H6>
           <div class="d-flex">
             <Trancate>{accountId}</Trancate>
