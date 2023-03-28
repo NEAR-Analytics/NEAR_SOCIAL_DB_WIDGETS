@@ -52,7 +52,7 @@ const Hover = styled.div`
 `;
 
 return <Hover>
-    <div class="card hover">
+    <div class="card">
         <a href={href('Community', {tag: props.tag})}>
       <img src={props.cover} class="card-img-top"></img>
       </a>
