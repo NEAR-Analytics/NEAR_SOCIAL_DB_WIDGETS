@@ -116,77 +116,102 @@ if (!accountId) return <div>Sign in first</div>;
 
 return (
   <div class="d-flex flex-column gap-4">
-    <div class="d-flex gap-2 items-center">
-      <h4>Multi-listing tool for NFTs</h4>
+    <div>
+      <h4>Mass-listing tool for NFTs</h4>
+      <p>Use this tool to mass-list tokens to the Mintbase Market.</p>
     </div>
-    <div class="d-flex gap-2">
-      <p class="text-black p-1">
-        <span class="fw-bold">{numTokensSelected}</span> tokens
-      </p>
-      <p class="text-black p-1">
-        <span class="fw-bold">{state.price}</span>N
-      </p>
-    </div>
-    <div class="d-flex gap-1 flex-wrap">
-      {Object.values(state.tokens).map((token) => {
-        return (
-          <Widget
-            src="mob.near/widget/NftImage"
-            props={{
-              nft: {
-                tokenId: token.tokenId,
-                contractId: token.nftContractId,
-              },
-              style: {
-                width: size,
-                height: size,
-                objectFit: "cover",
-                minWidth: size,
-                minHeight: size,
-                maxWidth: size,
-                maxHeight: size,
-                overflowWrap: "break-word",
-              },
-              thumbnail: "thumbnail",
-              className: "",
-              fallbackUrl:
-                "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
-            }}
-          />
-        );
-      })}
-    </div>
-    <div class="w-100">
-      <div class="d-flex gap-2">
-        <input type="text" value={state.price}></input>
-        <button
-          onClick={() => {
-            listMarket();
-          }}
-        >
-          List
-        </button>
-        <button
-          class="text-white p-1 bg-black rounded"
-          onClick={() => {
-            clear();
-          }}
-        >
-          Clear
-        </button>
+
+    <div>
+      <div class="d-flex gap-1 justify-content-center">
+        <p class="text-black">Selected</p>
+        <p class="text-black">
+          <span class="fw-bold">{numTokensSelected}</span> tokens
+        </p>
+        <p class="text-black">for</p>
+        <p class="text-black">
+          <span class="fw-bold">{state.price}</span>N
+        </p>
+      </div>
+
+      <div class="d-flex gap-1 flex-wrap justify-content-center">
+        {Object.values(state.tokens).map((token) => {
+          return (
+            <Widget
+              src="mob.near/widget/NftImage"
+              props={{
+                nft: {
+                  tokenId: token.tokenId,
+                  contractId: token.nftContractId,
+                },
+                style: {
+                  width: size,
+                  height: size,
+                  objectFit: "cover",
+                  minWidth: size,
+                  minHeight: size,
+                  maxWidth: size,
+                  maxHeight: size,
+                  overflowWrap: "break-word",
+                },
+                thumbnail: "thumbnail",
+                className: "",
+                fallbackUrl:
+                  "https://ipfs.near.social/ipfs/bafkreihdiy3ec4epkkx7wc4wevssruen6b7f3oep5ylicnpnyyqzayvcry",
+              }}
+            />
+          );
+        })}
       </div>
     </div>
-    <div>
-      <p>Your collection</p>
-      <Widget
-        src="microchipgnu.near/widget/NFT.Selector"
-        props={{
-          compressImages: true,
-          onChange: ({ contractId, tokenId }) => {
-            addToListCart(tokenId, contractId);
-          },
+    <div class="w-100 d-flex gap-1">
+      <div
+        class="d-flex gap-2 flex-column"
+        style={{
+          width: "50%",
         }}
-      />
+      >
+        <label>Price (in NEAR)</label>
+        <input type="text" value={state.price}></input>
+        <div class="d-flex flex-row-reverse gap-2 ">
+          <button
+            onClick={() => {
+              listMarket();
+            }}
+          >
+            List
+          </button>
+          {numTokensSelected > 0 && (
+            <div
+              class="p-1 bg-white rounded"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                clear();
+              }}
+            >
+              Clear
+            </div>
+          )}
+        </div>
+      </div>
+      <div
+        style={{
+          width: "50%",
+        }}
+      >
+        <Widget
+          src="microchipgnu.near/widget/NFT.Selector"
+          props={{
+            compressImages: true,
+            onChange: ({ contractId, tokenId }) => {
+              addToListCart(tokenId, contractId);
+            },
+          }}
+        />
+      </div>
     </div>
+
+    <Widget src="mintbase.near/widget/BuiltWithMintbase" />
   </div>
 );
