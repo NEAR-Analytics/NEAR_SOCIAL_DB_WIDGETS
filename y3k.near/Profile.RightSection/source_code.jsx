@@ -31,7 +31,7 @@ return (
         <div className="widgetsContainer">
           {Object.keys(widgets)?.map((item, index) => (
             <Widget
-              src="zahidulislam.near/widget/Profile.WidgetItem"
+              src="y3k.near/widget/Profile.WidgetItem"
               props={{
                 name: item,
                 accountId,
