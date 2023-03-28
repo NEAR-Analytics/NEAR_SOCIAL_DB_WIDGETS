@@ -1,5 +1,5 @@
 const data = fetch("https://api.coingecko.com/api/v3/coins/near", {
-  //subscribe: true,
+  subscribe: true,
   method: "GET",
   headers: {
     Accept: "*/*",
