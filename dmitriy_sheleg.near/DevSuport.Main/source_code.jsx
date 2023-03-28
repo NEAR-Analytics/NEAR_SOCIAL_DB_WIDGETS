@@ -15,7 +15,7 @@ const sortByCategories = ["Newest", "Popular"];
 const filterByTopic = ["one", "two", "three"];
 
 const SidebarWrapper = styled.div`
-  border-right: 1px solid #ECEEF0;;
+  border-right: 1px solid #ECEEF0;
 `;
 
 return (
