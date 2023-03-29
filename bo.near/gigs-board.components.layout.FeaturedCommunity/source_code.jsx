@@ -66,6 +66,5 @@ return (
       <div class="h5 pt-3 ps-3">{props.title}</div>
       <div class="ps-3 pb-2 text-secondary">{props.desc}</div>
     </a>
-    
   </Hover>
 );
