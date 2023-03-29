@@ -164,6 +164,24 @@ const handleDeposit = () => {
   });
 };
 
+const getCTokenBalancesAllIndex = () => {
+  const rewardIndex = state.cTokenBalancesAll.findIndex(
+    (element) => element[0] == TokensDetail[selectedTokenId].cAddress
+  );
+  return rewardIndex;
+};
+
+const walletBalance = () => {
+  const rewardIndex = getCTokenBalancesAllIndex();
+  const bigValue = state.cTokenBalancesAll[rewardIndex][4].toString();
+  const cal = (
+    bigValue / Math.pow(10, TokensDetail[selectedTokenId].decimals)
+  ).toFixed(2);
+  return cal;
+};
+
+// const aa = state.cTokenBalancesAll[3][1].mul(state.cTokenBalancesAll[3][3]);
+
 return (
   <div style={{ maxWidth: "400px" }}>
     <div class="card-body d-grid gap-3">
@@ -175,23 +193,19 @@ return (
           style={{ width: "100%" }}
         >
           <option value="">Choose your token</option>
-          <option value="0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d">
-            NEAR
-          </option>
-          <option value="0xB12BFcA5A55806AaF64E99521918A4bf0fC40802">
-            USDC
-          </option>
-          <option value="0x4988a896b1227218e4A686fdE5EabdcAbd91571f">
-            USDT.e
-          </option>
-          <option value="0xf4eb217ba2454613b15dbdea6e5f22276410e89e">
-            WBTC
-          </option>
-          <option value="ETH">ETH</option>
+          {Object.keys(TokensDetail).map((key) => {
+            return (
+              <option key={key} value={key}>
+                {TokensDetail[key].symbol}
+              </option>
+            );
+          })}
         </select>
         {state.selectedTokenId !== undefined && state.selectedTokenId !== "" && (
           <div>
-            <span class="badge bg-light text-dark">Wallet Balance: {}</span>
+            <span class="badge bg-light text-dark">
+              Wallet Balance: {walletBalance()}
+            </span>
             <span class="badge bg-light text-dark">Supply Balance: </span>
           </div>
         )}
