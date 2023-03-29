@@ -1,4 +1,44 @@
 const { selectedTokenId, amount, hasError, status } = state;
+
+// check if account connected
+const sender = Ethers.send("eth_requestAccounts", [])[0];
+if (!sender)
+  return (
+    <div>
+      <h2>Please login first</h2>
+      <br />
+      <Web3Connect connectLabel="Connect with Web3" />
+    </div>
+  );
+
+// fetch data from lens
+const LenABI = fetch(
+  "https://raw.githubusercontent.com/pysrbastion/bastion-abi/main/Lens.json"
+).body;
+
+const lenContract = "0x080B5ce373fE2103A7086b31DabA412E88bD7356";
+
+const len = new ethers.Contract(lenContract, LenABI, Ethers.provider());
+
+const dataArray = [
+  "0xfa786baC375D8806185555149235AcDb182C033b",
+  "0x4E8fE8fd314cFC09BDb0942c5adCC37431abDCD0",
+  "0x8C14ea853321028a7bb5E4FB0d0147F183d3B677",
+  "0xe5308dc623101508952948b141fD9eaBd3337D99",
+  "0x845E15A441CFC1871B7AC610b0E922019BaD9826",
+];
+
+len.callStatic
+  .cTokenBalancesAll(dataArray, sender, 0)
+  .then((cTokenBalancesAll) => {
+    State.update({ cTokenBalancesAll });
+  });
+
+len.callStatic.cTokenMetadataAll(dataArray, 0).then((cTokenMetadataAll) => {
+  State.update({ cTokenMetadataAll });
+});
+
+// provide constants
 const TokensDetail = {
   ["0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d"]: {
     name: "Near",
@@ -41,6 +81,7 @@ const TokensDetail = {
     decimals: 18,
   },
 };
+
 const Comptroller = "0x6De54724e128274520606f038591A00C5E94a1F6";
 const EIP20InterfaceABI = fetch(
   "https://raw.githubusercontent.com/JirapatWov/bos/main/EIP20.json"
@@ -51,8 +92,6 @@ const CEthABI = fetch(
 const CErc20ABI = fetch(
   "https://raw.githubusercontent.com/JirapatWov/bos/main/CErc20.json"
 ).body;
-const sender = Ethers.send("eth_requestAccounts", [])[0];
-if (!sender) return "Please login first";
 
 const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
@@ -126,7 +165,7 @@ const handleDeposit = () => {
 };
 
 return (
-  <div style={{ maxWidth: "300px" }}>
+  <div style={{ maxWidth: "400px" }}>
     <div class="card-body d-grid gap-3">
       <div>
         <div class="mb-2 text-muted">Token</div>
@@ -150,6 +189,12 @@ return (
           </option>
           <option value="ETH">ETH</option>
         </select>
+        {state.selectedTokenId !== undefined && state.selectedTokenId !== "" && (
+          <div>
+            <span class="badge bg-light text-dark">Wallet Balance: {}</span>
+            <span class="badge bg-light text-dark">Supply Balance: </span>
+          </div>
+        )}
       </div>
       <div>
         <div class="mb-2 text-muted">Amount</div>
@@ -173,7 +218,7 @@ return (
         Deposit
       </button>
     </div>
-    <Web3Connect connectLabel="Connect with Web3" />
+
     <p>Account: {sender}</p>
   </div>
 );
