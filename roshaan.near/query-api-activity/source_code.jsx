@@ -64,11 +64,9 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
 fetchGraphQL(postsQuery, "IndexerQuery", {
   offset: state.postsPage * LIMIT,
 }).then((result) => {
-  console.log(result);
   if (result.status === 200) {
     if (result.body.data) {
       const posts = result.body.data.roshaan_near_alphaindexer_posts;
-      console.log(posts);
       const postsCount =
         result.body.data.roshaan_near_alphaindexer_posts_aggregate.aggregate
           .count;
@@ -90,23 +88,8 @@ const Post = styled.div`
     padding: 12px 0 0;
   }
 `;
-const renderComment = (a) => {
-  return (
-    <div key={JSON.stringify(a)}>
-      <Widget
-        src="roshaan.near/widget/Comments.Comment"
-        props={{
-          accountId: a.account_id,
-          blockHeight: a.block_height,
-          content: a.content,
-        }}
-      />
-    </div>
-  );
-};
 
 const renderItem = (item, i) => {
-  const renderedComments = item.comments.map(renderComment);
   return (
     <Post className="post" key={item.block_height + "_" + item.account_id}>
       <Widget
@@ -115,7 +98,7 @@ const renderItem = (item, i) => {
           accountId: item.account_id,
           blockHeight: item.block_height,
           content: item.content,
-          comments: renderedComments,
+          comments: item.comments,
         }}
       />
     </Post>
@@ -123,7 +106,6 @@ const renderItem = (item, i) => {
 };
 
 const onPostsPageChange = (page) => {
-  console.log(page, "page selected");
   page = page - 1;
   if (page === state.postsPage) {
     console.log(`Selected the same page number as before: ${pageNumber}`);
