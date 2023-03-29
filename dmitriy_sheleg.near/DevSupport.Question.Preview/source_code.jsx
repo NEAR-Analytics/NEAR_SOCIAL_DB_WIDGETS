@@ -3,11 +3,6 @@ const blockHeight = parseInt(props.blockHeight);
 const admins = props.admins;
 const adminContract = props.adminContract;
 
-// {
-//   "accountId": "ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055",
-//   "blockHeight": "84207156"
-// }
-
 const is_hidden = Near.view(adminContract, "is_hidden", {
   id: { account_id: accountId, block_height: blockHeight },
 });
