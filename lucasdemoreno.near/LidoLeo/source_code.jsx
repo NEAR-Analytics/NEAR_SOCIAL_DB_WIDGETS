@@ -160,7 +160,10 @@ const getSender = () => {
 return (
   <Theme>
     <div class="LidoContainer">
-      <div class="Header">Stake Ether</div>
+      <div class="Header">
+        <p>Stake Ether with LidoLeo</p>
+        <p>(Not financial advice)</p>
+      </div>
       <div class="SubHeader">Stake ETH and receive stETH while staking.</div>
 
       <div class="LidoForm">
