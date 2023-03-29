@@ -18,39 +18,66 @@ let Style = styled.div`
 
 let nodes = rawData.body || [];
 
+function formatNumber(num) {
+  return (
+    <span className="text-white">
+      {num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+    </span>
+  );
+}
+
+function formatCell(text) {
+  return <span className="text-white">{text}</span>;
+}
+
+function formatText(text) {
+  let number = text;
+  if (number < 0) {
+    return <span className="text-danger">{number}</span>;
+  } else if (number > 10) {
+    return <span className="text-success">{number}</span>;
+  } else {
+    return text;
+  }
+}
+
 const data = {
   nodes: nodes,
 };
 const COLUMNS = [
   {
     label: "Contract Address",
-    renderCell: (item) => item["Contract Address"],
+    renderCell: (item) => formatCell(item["Contract Address"]),
     sort: { sortKey: "ContractAddress" },
   },
   {
     label: "Past 30 Days",
-    renderCell: (item) => item["Past 30 Days"],
+    renderCell: (item) => formatNumber(item["Past 30 Days"]),
     sort: { sortKey: "Past30" },
   },
   {
     label: "Percent New",
-    renderCell: (item) => item["Percent New"],
+    renderCell: (item) => formatText(item["Percent New"]),
     sort: { sortKey: "PercentNew" },
   },
   {
     label: "30-60 Days Ago",
-    renderCell: (item) => item["30-60 Days Ago"],
+    renderCell: (item) => formatNumber(item["30-60 Days Ago"]),
     sort: { sortKey: "PercentNew" },
   },
-  { label: "M/M", renderCell: (item) => item["M/M"], sort: { sortKey: "MM" } },
+  {
+    label: "M/M",
+    renderCell: (item) => formatText(item["M/M"]),
+    sort: { sortKey: "MM" },
+  },
   {
     label: "60-90 Days Ago",
-    renderCell: (item) => item["60-90 Days Ago"],
+    renderCell: (item) => formatNumber(item["60-90 Days Ago"]),
     sort: { sortKey: "Past60" },
   },
   {
     label: "M/2M",
-    renderCell: (item) => item["M/2M"],
+    renderCell: (item) => formatText(item["M/2M"]),
     sort: { sortKey: "M2M" },
   },
 ];
