@@ -23,13 +23,7 @@ const item = {
   path: `${accountId}/question/main`,
   blockHeight,
 };
-const repliesCount = Social.index("answer", {
-  type: "social",
-  path: `${context.accountId}/question/main`,
-  blockHeight,
-});
-
-// console.log("question: ", question);
+const repliesCount = Social.index("answer", item);
 
 const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
@@ -76,6 +70,12 @@ const footer = (
   </div>
 );
 
+const H2 = styled.h2`
+  font-size: 20px;
+  font-weight: 600;
+  color: #11181C;
+  }
+`;
 const H4 = styled.h4`
   font-size: 14px;
   font-weight: 500;
@@ -131,7 +131,7 @@ return (
                   />
                 )}
 
-                <h4 class="mb-3">{repliesCount.length} Replies</h4>
+                <H2 className="mt-5 mb-4">{repliesCount.length} Replies</H2>
                 <Widget
                   src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
                   props={{ item, admins, adminContract }}
