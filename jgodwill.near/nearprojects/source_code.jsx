@@ -2,6 +2,11 @@ const user = "jgodwill.near";
 
 const gist_id = "09f2b3bc64829b975ce847f90bb2af28";
 
+State.init({
+  jsonData: null,
+  error: null,
+});
+
 const DUMMYDATA = [
   {
     ProjectName: "ABCD",
@@ -103,23 +108,19 @@ const DUMMYDATA = [
     Date_Created: "ABCD",
   },
 ];
-State.init({
-  jsonData: props.projectData,
-});
 
-async () => {
-  let response = await fetch(`https://api.github.com/gists/${gist_id}`, {
-    method: "GET",
+fetch(
+  "https://gist.githubusercontent.com/Jikugodwill/09f2b3bc64829b975ce847f90bb2af28/raw/a5230d5e3706ab451a75db4e72d443e15339bdb3/projectData.json"
+)
+  .then((response) => response.json())
+  .then((data) => {
+    alert(data);
+    State.update({ jsonData: data });
+  })
+  .catch((error) => {
+    State.update({ error: error });
+    console.error(error);
   });
-
-  let data = await response.text();
-  State.update({ jsonData: data });
-};
-if (!data) {
-  State.update({
-    jsonData: DUMMYDATA,
-  });
-}
 
 const Cards = styled.div`
   display: flex;
@@ -132,21 +133,45 @@ const Cards = styled.div`
   box-shadow: 0 0.05rem 0.05rem rgb(34 34 34 / 5%), 0 0.2rem 0.8rem rgb(34 34 34 / 8%);
 `;
 
+let content = null;
+
 return (
   <div class="container-fluid">
     <h3 class="text-center">Sample list of near projects </h3>
+    //{" "}
+    <button onClick={loadActualData} class="btn btn-primary">
+      // load Cards //{" "}
+    </button>
     <hr />
-    <Cards>
-      {state.jsonData?.map((projectData, i) => {
-        if (projectData.ProjectName)
-          return (
-            <Widget
-              src={`${user}/widget/nearprojectcard`}
-              key={i}
-              props={projectData}
-            />
-          );
-      }) || "Components Here"}
-    </Cards>
+    {state.jsonData ? (
+      <Cards>
+        {state.jsonData.map((projectData, i) => {
+          if (projectData.ProjectName)
+            return (
+              <Widget
+                src={`${user}/widget/nearprojectcard`}
+                key={i}
+                props={projectData}
+              />
+            );
+        })}
+      </Cards>
+    ) : (
+      <>
+        <div>Could not load json data</div>
+        <Cards>
+          {DUMMYDATA.map((projectData, i) => {
+            if (projectData.ProjectName)
+              return (
+                <Widget
+                  src={`${user}/widget/nearprojectcard`}
+                  key={i}
+                  props={projectData}
+                />
+              );
+          })}
+        </Cards>
+      </>
+    )}
   </div>
 );
