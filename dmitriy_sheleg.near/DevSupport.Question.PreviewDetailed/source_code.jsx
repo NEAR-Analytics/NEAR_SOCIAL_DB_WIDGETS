@@ -71,6 +71,7 @@ return (
           </div>
         </H6>
       </div>
+      {/*
       <div class="row">
         <div class="col">
           <Widget
@@ -78,7 +79,6 @@ return (
             props={{ accountId, blockHeight }}
           />
         </div>
-        {/*
           // Flag question widget
           <div class="col">
             <Widget
@@ -86,8 +86,8 @@ return (
               props={{ accountId, blockHeight }}
             />
           </div>
-          */}
       </div>
+          */}
       <div class="row">
         <PostContentWrapper className="mt-5">
           <Widget
