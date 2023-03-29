@@ -55,7 +55,7 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
   );
 }
 
-if (commentBlockHeight && accountId) {
+if (commentBlockHeight) {
   fetchGraphQL(parentPostByComment, "ParentPostByComment", {}).then(
     (result) => {
       if (result.status === 200) {
@@ -77,11 +77,8 @@ if (commentBlockHeight && accountId) {
       }
     }
   );
-} else {
-  return "Must pass in an accountId and blockHeight when comment was posted.";
 }
-
-if (state.parentPostLoaded) {
+if (state.parentPostLoaded && commentBlockHeight) {
   return (
     <Widget
       src="roshaan.near/widget/Posts.Post"
@@ -94,6 +91,11 @@ if (state.parentPostLoaded) {
       }}
     />
   );
-} else {
-  return "Loading";
 }
+
+return (
+  <Widget
+    src="roshaan.near/widget/Posts.Post"
+    props={{ ...props, commentsLimit: 30, subscribe: true }}
+  />
+);
