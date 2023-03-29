@@ -79,7 +79,7 @@ function switchTab(tab) {
 }
 
 const discussionsRequiredLabels = ["community", props.label];
-const sponsorshipRequiredLabels = ["funding-funded", "zero-knowledge"];
+const sponsorshipRequiredLabels = ["community", "zero-knowledge"];
 
 const postIdsWithLabels = (labels) => {
   const ids = labels
