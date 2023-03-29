@@ -9,7 +9,7 @@ return (
       padding: "20px",
     }}
   >
-    <h1 style={{ marginBottom: "10px" }}>
+    <h1 style={{ marginBottom: "10px", justifyContent: "center" }}>
       <a
         href="https://marmaj.org/gaming/"
         target="_blank"
