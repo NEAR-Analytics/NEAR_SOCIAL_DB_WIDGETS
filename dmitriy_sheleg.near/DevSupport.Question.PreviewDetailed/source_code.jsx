@@ -13,8 +13,8 @@ if (is_hidden) {
   return "";
 }
 
-const H2 = styled.h2`
-  font-size: 20px;
+const H1 = styled.h1`
+  font-size: 32px;
   font-weight: 600;
   color: #11181C;
   }
@@ -55,7 +55,7 @@ return (
     </div>
     <div class="col-11">
       <div class="row">
-        <H2>{question.title}</H2>
+        <H1>{question.title}</H1>
         <H6>
           <div class="d-flex">
             <Trancate>{accountId}</Trancate>
