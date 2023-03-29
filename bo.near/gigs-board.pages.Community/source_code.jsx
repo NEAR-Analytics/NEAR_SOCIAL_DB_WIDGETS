@@ -104,6 +104,7 @@ const postIdsWithLabels = (labels) => {
 
 const discussionRequiredPosts = postIdsWithLabels(discussionsRequiredLabels);
 const sponsorshipRequiredPosts = postIdsWithLabels(sponsorshipRequiredLabels);
+console.log(sponsorshipRequiredPosts)
 
 return (
   <>
