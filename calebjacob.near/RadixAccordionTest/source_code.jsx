@@ -9,19 +9,16 @@ const Header = styled("Accordion.Header")`
     margin: 0 0 16px;
 `;
 
-const Trigger = styled("Accordion.Trigger")`
-    display: block;
-    background: #fff;
-    cursor: pointer;
-    border: none;
-    padding: 0;
-`;
-
 return (
   <Accordion.Root type="single" defaultValue="item-1" collapsible>
     <Accordion.Item value="item-1">
       <Header>
-        <Trigger>Tab 1</Trigger>
+        <Accordion.Trigger asChild>
+          <Widget
+            src="calebjacob.near/widget/TestButton"
+            props={{ label: "Tab 1" }}
+          />
+        </Accordion.Trigger>
       </Header>
 
       <Content>
@@ -31,7 +28,12 @@ return (
 
     <Accordion.Item value="item-2">
       <Header>
-        <Trigger>Tab 2</Trigger>
+        <Accordion.Trigger asChild>
+          <Widget
+            src="calebjacob.near/widget/TestButton"
+            props={{ label: "Tab 2" }}
+          />
+        </Accordion.Trigger>
       </Header>
 
       <Content>
@@ -41,7 +43,12 @@ return (
 
     <Accordion.Item value="item-3">
       <Header>
-        <Trigger>Tab 3</Trigger>
+        <Accordion.Trigger asChild>
+          <Widget
+            src="calebjacob.near/widget/TestButton"
+            props={{ label: "Tab 3" }}
+          />
+        </Accordion.Trigger>
       </Header>
 
       <Content>
