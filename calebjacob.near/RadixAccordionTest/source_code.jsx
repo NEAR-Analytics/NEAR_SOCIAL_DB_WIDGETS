@@ -15,7 +15,7 @@ return (
       <Header>
         <Accordion.Trigger asChild>
           <Widget
-            src="calebjacob.near/widget/TestButton"
+            src="calebjacob.near/widget/TestButtonFunky"
             props={{ label: "Tab 1" }}
           />
         </Accordion.Trigger>
