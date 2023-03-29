@@ -117,14 +117,14 @@ return (
 
     <Body>
       <Content>
-        {content.text && (
+        {answer.text && (
           <Widget
             src="adminalpha.near/widget/SocialMarkdown"
             props={{ text: answer.text }}
           />
         )}
 
-        {content.image && (
+        {answer.image && (
           <Widget
             src="mob.near/widget/Image"
             props={{
