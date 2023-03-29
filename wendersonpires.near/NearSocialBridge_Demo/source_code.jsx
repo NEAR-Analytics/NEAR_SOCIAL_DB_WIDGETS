@@ -65,11 +65,11 @@ const initialPayload = {};
 const APP_INDEX_KEY = "widget-chatv2-dev";
 
 // Get rooms
-const foo = Social.index(APP_INDEX_KEY, "room", {
-  subscribe: true,
-  limit: 100,
-  order: "desc",
-});
+// const foo = Social.index(APP_INDEX_KEY, "room", {
+//   subscribe: true,
+//   limit: 100,
+//   order: "desc",
+// });
 
 // {
 //   "wendersonpires.near": {
@@ -293,7 +293,7 @@ const getRoomsListHandler = (request, response, Utils) => {
 // Helpers
 const fetchRooms = () => {
   const data = Social.index(APP_INDEX_KEY, "room", {
-    subscribe: true,
+    // subscribe: true,
     limit: 100,
     order: "desc",
   });
