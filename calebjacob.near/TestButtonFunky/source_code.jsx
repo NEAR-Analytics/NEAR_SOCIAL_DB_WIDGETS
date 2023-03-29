@@ -4,8 +4,12 @@ const Button = styled.button`
 
 return (
   <div>
-    <Button type="button">{props.label} (1)</Button>
+    <Button type="button" ref="forwardedRef">
+      {props.label} (1)
+    </Button>
     <Button type="button">{props.label} (2)</Button>
-    <p>Some text here</p>
+    <div>
+      <p>Some text here</p>
+    </div>
   </div>
 );
