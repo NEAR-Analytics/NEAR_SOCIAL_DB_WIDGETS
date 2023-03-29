@@ -83,8 +83,7 @@ return (
         <label class="form-label h4" for="outputTextArea">
           Output
           <span className="badge" style={{ color: state.ok ? "green" : "red" }}>
-            {state.status}
-            {state.status ? (state.ok ? "OK" : "ERROR") : ""}
+            {state.status ? (state.ok ? `${state.status} OK` : "ERROR") : ""}
           </span>
         </label>
 
