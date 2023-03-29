@@ -28,7 +28,7 @@ const postsQuery = `
     block_timestamp
     content
     receipt_id
-    comments(order_by: {block_height: asc}, limit: ${LIMIT}, offset: $offset) {
+    comments(order_by: {block_height: asc}) {
       account_id
       block_height
       block_timestamp
@@ -38,14 +38,14 @@ const postsQuery = `
       account_id
     }
   }
-
+  roshaan_near_alphaindexer_posts_aggregate {
+    aggregate {
+      count
+    }
+  }
 }
 `;
-//     roshaan_near_alphaindexer_posts_aggregate {
-//     aggregate {
-//       count
-//     }
-//   }
+
 function fetchGraphQL(operationsDoc, operationName, variables) {
   return asyncFetch(
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
@@ -69,8 +69,9 @@ fetchGraphQL(postsQuery, "IndexerQuery", {
     if (result.body.data) {
       const posts = result.body.data.roshaan_near_alphaindexer_posts;
       console.log(posts);
-      const postsCount = 100;
-      // result.body.data.roshaan_near_alphaindexer_posts.aggregate.count;
+      const postsCount =
+        result.body.data.roshaan_near_alphaindexer_posts_aggregate.aggregate
+          .count;
       if (posts.length > 0) {
         State.update({
           posts,
@@ -134,11 +135,11 @@ const onPostsPageChange = (page) => {
       offset: state.postsPage * LIMIT,
     }).then((result) => {
       if (result.status === 200) {
-        if (result.body.data) {
-          const posts = result.body.data.roshaan_near_alphaindexer_posts;
-          const postsCount = 100;
-          // result.body.data.roshaan_near_alphaindexer_posts_aggregate.aggregate
-          //   .count;
+        let data = result.body.data;
+        if (data) {
+          const posts = data.roshaan_near_alphaindexer_posts;
+          const postsCount =
+            data.roshaan_near_alphaindexer_posts_aggregate.aggregate.count;
           if (posts.length > 0) {
             State.update({
               posts: posts,
