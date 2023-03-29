@@ -18,7 +18,7 @@ return (
     {dependencySources.map((c, i) => (
       <div key={c.src} className="text-white">
         <Widget
-          src="mob.near/widget/ComponentSearch.Item"
+          src="near-analytics.near/widget/ComponentSearch.Item"
           props={{
             link: `#/${c.src}`,
             accountId: c.accountId,
@@ -27,7 +27,7 @@ return (
               <a
                 target="_blank"
                 className="btn btn-outline-secondary"
-                href={`#/mob.near/widget/WidgetSource?src=${widgetPath}`}
+                href={`#/near-analytics.near/widget/WidgetSource?src=${widgetPath}`}
               >
                 Source
               </a>
