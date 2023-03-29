@@ -2,10 +2,12 @@ const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 
-const content = JSON.parse(props.content);
+State.init({
+  content: JSON.parse(props.content) ?? undefined,
+  notifyAccountId: undefined,
+});
 
-const parentItem = content.item;
-console.log(parentItem, "parentItem from comments.comment");
+// const parentItem = content.item;
 const highlight = !!props.highlight;
 
 const extractNotifyAccountId = (parentItem) => {
@@ -15,11 +17,56 @@ const extractNotifyAccountId = (parentItem) => {
   const accountId = parentItem.path.split("/")[0];
   return `${accountId}/post/main` === parentItem.path ? accountId : undefined;
 };
-console.log(
-  "extracting notify accountID from parent",
-  extractNotifyAccountId(parentItem)
-);
+
 const commentUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&commentBlockHeight=${blockHeight}`;
+
+if (!state.content && accountId && blockHeight !== "now") {
+  const commentQuery = `
+query CommentQuery {
+  roshaan_near_alphaindexer_comments(
+    where: {_and: {account_id: {_eq: "${accountId}"}, block_height: {_eq: ${blockHeight}}}}
+  ) {
+    content
+    block_timestamp
+    receipt_id
+    post {
+      account_id
+    }
+  }
+}
+`;
+
+  function fetchGraphQL(operationsDoc, operationName, variables) {
+    return asyncFetch(
+      "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
+      {
+        method: "POST",
+        headers: { "x-hasura-role": "roshaan_near" },
+        body: JSON.stringify({
+          query: operationsDoc,
+          variables: variables,
+          operationName: operationName,
+        }),
+      }
+    );
+  }
+
+  fetchGraphQL(commentQuery, "CommentQuery", {}).then((result) => {
+    if (result.status === 200) {
+      if (result.body.data) {
+        const comments = result.body.data.roshaan_near_alphaindexer_comments;
+        if (comments.length > 0) {
+          const comment = comments[0];
+          let content = JSON.parse(comment.content);
+          State.update({
+            content: content,
+            notifyAccountId: comment.post.accountId,
+          });
+        }
+      }
+    }
+  });
+}
 
 const Comment = styled.div`
   position: relative;
@@ -103,18 +150,18 @@ return (
 
     <Body>
       <Content>
-        {content.text && (
+        {state.content.text && (
           <Widget
             src="calebjacob.near/widget/SocialMarkdown"
-            props={{ text: content.text }}
+            props={{ text: state.content.text }}
           />
         )}
 
-        {content.image && (
+        {state.content.image && (
           <Widget
             src="mob.near/widget/Image"
             props={{
-              image: content.image,
+              image: state.content.image,
             }}
           />
         )}
@@ -130,7 +177,7 @@ return (
                 path: `${accountId}/post/comment`,
                 blockHeight,
               },
-              notifyAccountId,
+              notifyAccountId: state.notifyAccountId,
             }}
           />
           <Widget
@@ -155,7 +202,7 @@ return (
             src="calebjacob.near/widget/Comments.Compose"
             props={{
               initialText: `@${accountId}, `,
-              notifyAccountId: extractNotifyAccountId(parentItem),
+              notifyAccountId: state.notifyAccountId,
               item: parentItem,
               onComment: () => State.update({ showReply: false }),
             }}
