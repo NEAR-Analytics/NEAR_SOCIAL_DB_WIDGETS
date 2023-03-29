@@ -49,6 +49,8 @@ const initialPayload = {};
 //   "naruto",
 //   "sala-teste-1",
 // ]);
+const foo = Storage.get("app:rooms-list");
+console.log("Valor:", foo);
 
 const STORAGE_WIDGET = "wendersonpires.near/widget/NearSocialBridge_Demo";
 
