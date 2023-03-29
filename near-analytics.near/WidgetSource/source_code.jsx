@@ -17,6 +17,9 @@ return (
     />
     <Markdown text={text} />
     <h3>Dependencies</h3>
-    <Widget src="mob.near/widget/WidgetDependencies" props={{ src, code }} />
+    <Widget
+      src="near-analytics.near/widget/WidgetDependencies"
+      props={{ src, code }}
+    />
   </>
 );
