@@ -55,7 +55,6 @@ const Grey = styled.div`
 
     overflow: hidden;
     background: #f3f3f3;
-
   }
 `;
 
@@ -72,8 +71,7 @@ const Content = styled.div`
 // but it's not there in near social, need write such style here
 return (
   <>
-  <Grey>
-  </Grey>
+    <Grey></Grey>
 
     <Content>
       <div aria-label="breadcrumb">
@@ -125,5 +123,5 @@ return (
         </ul>
       </div>
     </Content>
-    </>
+  </>
 );
