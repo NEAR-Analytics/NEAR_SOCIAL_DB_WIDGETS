@@ -5,7 +5,7 @@ const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const postUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 State.init({
-  renderedComments: props.comments ?? undefined,
+  comments: props.comments ?? undefined,
   content: JSON.parse(props.content) ?? undefined,
 });
 
@@ -14,22 +14,8 @@ const item = {
   path: `${accountId}/post/main`,
   blockHeight,
 };
-const renderComment = (a) => {
-  return (
-    <div key={JSON.stringify(a)}>
-      <Widget
-        src="roshaan.near/widget/Comments.Comment"
-        props={{
-          accountId: a.account_id,
-          blockHeight: a.block_height,
-          content: a.content,
-        }}
-      />
-    </div>
-  );
-};
 
-if (!state.content) {
+if (!state.content || !state.comments) {
   const postsQuery = `
 query IndexerQuery {
   roshaan_near_alphaindexer_posts(
@@ -53,6 +39,7 @@ query IndexerQuery {
   }
 }
 `;
+
   function fetchGraphQL(operationsDoc, operationName, variables) {
     return asyncFetch(
       "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
@@ -76,12 +63,11 @@ query IndexerQuery {
         if (posts.length > 0) {
           const post = posts[0];
           let content = JSON.parse(post.content);
-          console.log(content, "content");
-          const renderedComments = post.comments.map(renderComment);
+          const comments = post.comments;
 
           State.update({
             content: content,
-            renderedComments: renderedComments,
+            comments: comments,
           });
         }
       }
@@ -145,7 +131,7 @@ const Comments = styled.div`
     padding-top: 12px;
   }
 `;
-const Wrapper = styled.div`
+const CommentWrapper = styled.div`
   > div:first-child {
     > a:first-child {
       display: inline-flex;
@@ -165,6 +151,22 @@ const Wrapper = styled.div`
   }
 `;
 
+const renderComment = (a) => {
+  return (
+    <div key={JSON.stringify(a)}>
+      <Widget
+        src="roshaan.near/widget/Comments.Comment"
+        props={{
+          accountId: a.account_id,
+          blockHeight: a.block_height,
+          content: a.content,
+        }}
+      />
+    </div>
+  );
+};
+
+const renderedComments = state.comments.map(renderComment);
 return (
   <Post>
     <Header>
@@ -253,9 +255,9 @@ return (
           />
         </div>
       )}
-      {state.renderedComments && (
+      {renderedComments && (
         <Comments>
-          <Wrapper>{state.renderedComments}</Wrapper>
+          <CommentWrapper>{renderedComments}</CommentWrapper>
         </Comments>
       )}
     </Body>
