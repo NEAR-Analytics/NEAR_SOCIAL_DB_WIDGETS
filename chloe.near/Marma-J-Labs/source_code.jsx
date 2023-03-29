@@ -40,7 +40,7 @@ We are currently seeking highly motivated and passionate research interns to joi
 
 ## How to Apply
 
-Please send your resume and a cover letter detailing your interest in the internship and your aspirations as a tech founder to info@marmaj.org. An application form will be available shortly.
+Please complete the application form on the [Marma J Labs](https://marmaj.org/labs/) page of the Marma J Foundation website to apply for this position.
 
 ## Application Deadline
 
@@ -61,27 +61,35 @@ if (!accountId) {
 }
 
 return (
-  <div>
+  <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
     <div className="mb-3">
       <h1>Marma J Labs</h1>
       <h2>Projects:</h2>
 
-      <button
-        onClick={() => window.open("https://marmaj.org/gaming", "_blank")}
+      <a
+        href="https://marmaj.org/gaming"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", color: "inherit" }}
       >
-        Marma J Gaming
-      </button>
-      <button
-        onClick={() =>
-          window.open("https://allie-marketplace.vercel.app/", "_blank")
-        }
+        <button>Marma J Gaming</button>
+      </a>
+      <a
+        href="https://allie-marketplace.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", color: "inherit" }}
       >
-        Allies Marketplace
-      </button>
-
+        <button>Allies Marketplace</button>
+      </a>
       <p>
         Join the Marma J Labs community on Telegram:{" "}
-        <a href="https://t.me/marmajdao/17452" target="_blank" rel="noreferrer">
+        <a
+          href="https://t.me/marmajdao/17452"
+          target="_blank"
+          rel="noreferrer"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           https://t.me/marmajdao/17452
         </a>
       </p>
@@ -91,7 +99,7 @@ return (
       posting below:
     </p>
     <div className="mb-3">
-      <div className="container border border-info pt-3 min-vw-100">
+      <div className="container border border-info pt-3">
         <Markdown text={jobPostingMarkdown} />
       </div>
     </div>
