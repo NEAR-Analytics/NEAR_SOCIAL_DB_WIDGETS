@@ -5,7 +5,7 @@ const nearDevGovGigsContractAccountId =
 const nearDevGovGigsWidgetsAccountId =
   props.nearDevGovGigsWidgetsAccountId ||
   (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
-
+console.log("context", context.widgetSrc);
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
     ...widgetProps,
