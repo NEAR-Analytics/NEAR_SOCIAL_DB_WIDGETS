@@ -70,18 +70,28 @@ function switchTab(tab) {
 
 const requiredLabels = ["community", props.label];
 
-const labelsToIdSet = (labels) => {
-  const ids = labels.map(
-    (label) =>
-      Near.view(nearDevGovGigsContractAccountId, "get_posts_by_label", {
-        label,
-      }) ?? []
-  );
-  const idsFlat = ids.flat(1);
-  return new Set(idsFlat);
+const postIdsWithLabels = (labels) => {
+  const ids = labels
+    .map(
+      (label) =>
+        Near.view(nearDevGovGigsContractAccountId, "get_posts_by_label", {
+          label,
+        }) ?? []
+    )
+    .map((ids) => new Set(ids))
+    .reduce((previous, current) => {
+      let res = new Set();
+      for (let id of current) {
+        if (previous.has(id)) {
+          res.add(id);
+        }
+      }
+      return res;
+    });
+  return new Array(...ids);
 };
 
-const requiredPostsSet = labelsToIdSet(requiredLabels);
+const requiredPosts = postIdsWithLabels(requiredLabels);
 
 return (
   <>
@@ -113,11 +123,11 @@ return (
           </div>
           {widget("components.layout.Controls")}
           <div class="row">
-              <div class="col">
-                {requiredPostsSet.map((postId) =>
-                  widget("components.posts.Post", { id: postId }, postId)
-                )}
-              </div>
+            <div class="col">
+              {requiredPosts.map((postId) =>
+                widget("components.posts.Post", { id: postId }, postId)
+              )}
+            </div>
           </div>
         </div>
       ) : state.tab === "Sponsorship" ? (
