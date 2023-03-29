@@ -50,12 +50,68 @@ const initialPayload = {};
 //   "sala-teste-1",
 // ]);
 
-setInterval(() => {
-  const foo = Storage.get("app:rooms-list");
-  console.log("Valor:", foo);
-}, 2000);
+// const foo = Social.get("wendersonpires.near/widget/NearSocialBridge_Demo");
 
-const STORAGE_WIDGET = "wendersonpires.near/widget/NearSocialBridge_Demo";
+// Set rooms
+// Social.set(
+//   {
+//     index: {
+//       ["wendersonpires.near:widget:chatv2-dev"]: "near-social-community",
+//     },
+//   },
+//   { force: true }
+// );
+
+const APP_INDEX_KEY = "widget-chatv2-dev";
+
+// Get rooms
+const foo = Social.index(APP_INDEX_KEY, "room", {
+  subscribe: true,
+  limit: 100,
+  order: "desc",
+});
+
+// {
+//   "wendersonpires.near": {
+//     "index": {
+//       "widget-chatv2-dev": "near-social-community"
+//     }
+//   }
+// }
+
+console.log("Valor:", foo);
+
+// Social.set(
+//       {
+//         index: {
+//           [payload.roomId]: JSON.stringify(
+//             {
+//               key: "data",
+//               value: payload.message,
+//             },
+//             undefined,
+//             0
+//           ),
+//         },
+//       },
+//       {
+//         force: true,
+//         onCommit: () => {
+//           response(request).send({});
+//         },
+//         onCancel: () => {
+//           response(request).send({ error: "the action was canceled" });
+//         },
+//       }
+//     );
+
+// Social.index(payload.roomId, "data", {
+//         // subscribe: true,
+//         limit: 100,
+//         order: "desc",
+//       }),
+
+// const STORAGE_WIDGET = "wendersonpires.near/widget/NearSocialBridge_Demo";
 
 // Social.set("wendersonpires.near/experimental/chatv2/rooms-list", [
 //   "near-social-community",
@@ -110,7 +166,7 @@ const getRoomDataHandler = (request, response, Utils) => {
   Utils.promisify(
     () =>
       Social.index(payload.roomId, "data", {
-        // subscribe: true,
+        subscribe: true,
         limit: 100,
         order: "desc",
       }),
@@ -173,7 +229,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
   Utils.promisify(
     // () => Storage.privateGet("app:rooms-list"),
-    () => Storage.get("app:rooms-list"),
+    () => fetchRooms(),
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
@@ -182,14 +238,39 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
       // Update the rooms list
       const updatedRoomsList = [...rooms, roomId];
+      // Register it on chain
+      Social.set(
+        {
+          index: {
+            [APP_INDEX_KEY]: JSON.stringify(
+              {
+                key: "room",
+                value: roomId,
+              },
+              undefined,
+              0
+            ),
+          },
+        },
+        {
+          force: true,
+          onCommit: () => {
+            response(request).send({ roomsList: updatedRoomsList });
+          },
+          onCancel: () => {
+            response(request).send({ error: "the action was canceled" });
+          },
+        }
+      );
+
+      // Update the rooms list
+      //   const updatedRoomsList = [...rooms, roomId];
       // Storage.privateSet("app:rooms-list", updatedRoomsList);
-      Storage.set("app:rooms-list", updatedRoomsList),
-        response(request).send({ roomsList: updatedRoomsList });
+      //   Storage.set("app:rooms-list", updatedRoomsList);
+      //   response(request).send({ roomsList: updatedRoomsList });
     },
-    // If error: because there's no room yet
     () => {
-      Storage.set("app:rooms-list", [roomId]);
-      response(request).send({ roomsList: [roomId] });
+      response(request).send({ error: "unknown error" });
     }
   );
 };
@@ -198,7 +279,7 @@ const getRoomsListHandler = (request, response, Utils) => {
   // Error: IDK why but this is working only when rendering the preview. Final app is not working :/
   Utils.promisify(
     // () => Storage.privateGet("app:rooms-list"),
-    () => Storage.get("app:rooms-list"),
+    () => fetchRooms(),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms });
@@ -208,6 +289,19 @@ const getRoomsListHandler = (request, response, Utils) => {
     }
   );
 };
+
+// Helpers
+const fetchRooms = () => {
+  const data = Social.index(APP_INDEX_KEY, "room", {
+    subscribe: true,
+    limit: 100,
+    order: "desc",
+  });
+
+  const sorted = data.sort((m1, m2) => m1.blockHeight - m2.blockHeight);
+  return sorted.map((roomData) => roomData.value); // ["room-name"]
+};
+// Helpers END
 
 return (
   <Widget
