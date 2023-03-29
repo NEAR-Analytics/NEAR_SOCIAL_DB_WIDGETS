@@ -66,7 +66,13 @@ return (
   <div className={`${display} p-3`}>
     <div class="row">
       <div class="col-1">
-        <Widget src="mob.near/widget/ProfileImage" props={{ accountId }} />
+        <Widget
+          src="mob.near/widget/ProfileImage"
+          props={{
+            accountId,
+            imageClassName: "rounded-circle w-100 h-100",
+          }}
+        />
       </div>
       <div class="col-1">
         {/* Upvote Widget */}
