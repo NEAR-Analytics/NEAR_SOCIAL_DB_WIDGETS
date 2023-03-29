@@ -5,8 +5,8 @@
 /**
  * External App URL (must)
  */
-const externalAppUrl = "https://near-test-app.web.app/";
-// const externalAppUrl = "https://d43af01531fe.ngrok.app";
+// const externalAppUrl = "https://near-test-app.web.app/";
+const externalAppUrl = "https://a5177dd263a7.ngrok.app";
 
 // Storage.privateSet("app:rooms-list", [
 //   "near-social-community",
@@ -40,6 +40,17 @@ const initialPayload = {};
 //   "dragon-ball-z",
 //   "sala-teste-1",
 // ]);
+
+// Storage.set("app:rooms-list", [
+//   "near-social-community",
+//   "bos",
+//   "satori",
+//   "dragon-ball-z",
+//   "naruto",
+//   "sala-teste-1",
+// ]);
+
+const STORAGE_WIDGET = "wendersonpires.near/widget/NearSocialBridge_Demo";
 
 // Social.set("wendersonpires.near/experimental/chatv2/rooms-list", [
 //   "near-social-community",
@@ -132,7 +143,7 @@ const sendMessageHandler = (request, response) => {
       {
         force: true,
         onCommit: () => {
-          response(request).send();
+          response(request).send({});
         },
         onCancel: () => {
           response(request).send({ error: "the action was canceled" });
@@ -156,7 +167,8 @@ const registerNewRoomHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
+    // () => Storage.privateGet("app:rooms-list"),
+    () => Storage.get("app:rooms-list", STORAGE_WIDGET),
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
@@ -165,8 +177,9 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
       // Update the rooms list
       const updatedRoomsList = [...rooms, roomId];
-      Storage.privateSet("app:rooms-list", updatedRoomsList);
-      response(request).send({ roomsList: updatedRoomsList });
+      // Storage.privateSet("app:rooms-list", updatedRoomsList);
+      Storage.set("app:rooms-list", updatedRoomsList),
+        response(request).send({ roomsList: updatedRoomsList });
     },
     // If error: because there's no room yet
     () => {
@@ -179,10 +192,14 @@ const registerNewRoomHandler = (request, response, Utils) => {
 const getRoomsListHandler = (request, response, Utils) => {
   // Error: IDK why but this is working only when rendering the preview. Final app is not working :/
   Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
+    // () => Storage.privateGet("app:rooms-list"),
+    () => Storage.get("app:rooms-list", STORAGE_WIDGET),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms });
+    },
+    () => {
+      response(request).send({ error: "rooms list is not set", roomsList: [] });
     }
   );
 };
