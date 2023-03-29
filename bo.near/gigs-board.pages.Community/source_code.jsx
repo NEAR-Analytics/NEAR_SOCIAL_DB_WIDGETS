@@ -49,16 +49,26 @@ const Scroll = styled.div`
     margin-top: calc(-24px + 100px + 25px + 200px);
   }
 `;
-if (!props.id) {
+
+if (!props.overviewId) {
   return;
 }
-const post = Near.view(nearDevGovGigsContractAccountId, "get_post", {
-  post_id: Number(props.id),
+const overviewPost = Near.view(nearDevGovGigsContractAccountId, "get_post", {
+  post_id: Number(props.overviewId),
 });
-if (!post) {
+if (!overviewPost) {
   return <div>Loading ...</div>;
 }
-const snapshot = post.snapshot;
+
+if (!props.eventsId) {
+  return;
+}
+const eventsPost = Near.view(nearDevGovGigsContractAccountId, "get_post", {
+  post_id: Number(props.eventsId),
+});
+if (!eventsPost) {
+  return <div>Loading ...</div>;
+}
 
 initState({
   tab: "Overview",
@@ -105,7 +115,10 @@ return (
     <Scroll>
       {state.tab === "Overview" ? (
         <div>
-          <Markdown class="card-text" text={snapshot.description}></Markdown>
+          <Markdown
+            class="card-text"
+            text={overviewPost.snapshot.description}
+          ></Markdown>
         </div>
       ) : state.tab === "Discussions" ? (
         <div>
@@ -131,9 +144,30 @@ return (
           </div>
         </div>
       ) : state.tab === "Sponsorship" ? (
-        <div>Sponsorship</div>
+        <div>
+          <div class="row mb-2">
+            <div class="col">
+              Post Type: <b>Sponsorship</b>
+            </div>
+            <div class="col">
+              <small class="text-muted">
+                Required labels:
+                {requiredLabels.map((label) => (
+                  <a href={href("Feed", { label })} key={label}>
+                    <span class="badge text-bg-primary me-1">{label}</span>
+                  </a>
+                ))}
+              </small>
+            </div>
+          </div>
+        </div>
       ) : state.tab === "Events" ? (
-        <div>Events</div>
+        <div>
+          <Markdown
+            class="card-text"
+            text={eventsPost.snapshot.description}
+          ></Markdown>
+        </div>
       ) : (
         <div>Loading ...</div>
       )}
