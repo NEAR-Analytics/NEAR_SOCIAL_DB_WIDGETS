@@ -1,8 +1,10 @@
 /* INCLUDE: "common.jsx" */
 const nearDevGovGigsContractAccountId =
-  props.nearDevGovGigsContractAccountId || "devgovgigs.near";
+  props.nearDevGovGigsContractAccountId ||
+  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 const nearDevGovGigsWidgetsAccountId =
-  props.nearDevGovGigsWidgetsAccountId || "devgovgigs.near";
+  props.nearDevGovGigsWidgetsAccountId ||
+  (context.widgetSrc ?? "devgovgigs.near").split("/", 1)[0];
 
 function widget(widgetName, widgetProps, key) {
   widgetProps = {
@@ -176,10 +178,12 @@ const header = (
             {editControl}
             {timestamp}
             <Widget
-              src={`markeljan.near/widget/HistoryWidget`}
+              src={`markeljan.near/widget/GigsHistoryWidget`}
               props={{
                 post: post,
                 timestamp: currentTimestamp,
+                nearDevGovGigsContractAccountId:
+                  nearDevGovGigsContractAccountId,
               }}
             />
             {shareButton}
