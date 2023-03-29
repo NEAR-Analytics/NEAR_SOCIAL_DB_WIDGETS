@@ -102,6 +102,7 @@ const handleSelect = (e) => {
     selectedTokenId: e.target.value,
     amount: "",
     hasError: false,
+    allowance: alw,
   });
 };
 
@@ -188,10 +189,19 @@ const supplyBalance = () => {
   return (
     Number(bigValue.toString()) /
     Math.pow(10, 18 + TokensDetail[selectedTokenId].decimals)
-  ).toFixed(2);
+  ).toFixed(3);
 };
 
-// const aa = state.cTokenBalancesAll[3][1].mul(state.cTokenBalancesAll[3][3]);
+const getAllowance = () => {
+  const rewardIndex = getCTokenBalancesAllIndex();
+  const bigValue = state.cTokenBalancesAll[rewardIndex][5].toString();
+  const cal = (
+    Number(bigValue) / Math.pow(10, TokensDetail[selectedTokenId].decimals)
+  ).toFixed(2);
+  State.update({
+    allowance: Number(cal),
+  });
+};
 
 return (
   <div style={{ maxWidth: "400px" }}>
@@ -220,6 +230,7 @@ return (
             <span class="badge bg-light text-dark">
               Supply Balance: {supplyBalance()}
             </span>
+            {getAllowance()}
           </div>
         )}
       </div>
@@ -232,20 +243,21 @@ return (
           Amount greater than balance
         </p>
       )}
-      <button
-        onClick={handleApprove}
-        style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-      >
-        Approve
-      </button>
-      <button
-        onClick={handleDeposit}
-        style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-      >
-        Deposit
-      </button>
+      {state.amount > state.allowance ? (
+        <button
+          onClick={handleApprove}
+          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+        >
+          Approve
+        </button>
+      ) : (
+        <button
+          onClick={handleDeposit}
+          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+        >
+          Deposit
+        </button>
+      )}
     </div>
-
-    <p>Account: {sender}</p>
   </div>
 );
