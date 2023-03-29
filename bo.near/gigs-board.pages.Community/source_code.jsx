@@ -78,7 +78,8 @@ function switchTab(tab) {
   State.update({ tab });
 }
 
-const requiredLabels = ["community", props.label];
+const discussionsRequiredLabels = ["community", props.label];
+const sponsorshipRequiredLabels = ["funding-funded", props.label];
 
 const postIdsWithLabels = (labels) => {
   const ids = labels
@@ -101,7 +102,8 @@ const postIdsWithLabels = (labels) => {
   return new Array(...ids);
 };
 
-const requiredPosts = postIdsWithLabels(requiredLabels);
+const discussionRequiredPosts = postIdsWithLabels(discussionsRequiredLabels);
+const sponsorshipRequiredPosts = postIdsWithLabels(sponsorshipRequiredLabels);
 
 return (
   <>
@@ -126,7 +128,7 @@ return (
             <div class="col">
               <small class="text-muted">
                 Required labels:
-                {requiredLabels.map((label) => (
+                {discussionsRequiredLabels.map((label) => (
                   <a href={href("Feed", { label })} key={label}>
                     <span class="badge text-bg-primary me-1">{label}</span>
                   </a>
@@ -137,7 +139,7 @@ return (
           {widget("components.layout.Controls")}
           <div class="row">
             <div class="col">
-              {requiredPosts.map((postId) =>
+              {discussionRequiredPosts.map((postId) =>
                 widget("components.posts.Post", { id: postId }, postId)
               )}
             </div>
@@ -147,17 +149,41 @@ return (
         <div>
           <div class="row mb-2">
             <div class="col">
-              Post Type: <b>Sponsorship</b>
+              <small class="text-muted">
+                Post Type: <b>Sponsorship</b>
+              </small>
             </div>
             <div class="col">
               <small class="text-muted">
                 Required labels:
-                {requiredLabels.map((label) => (
+                {discussionsRequiredLabels.map((label) => (
                   <a href={href("Feed", { label })} key={label}>
                     <span class="badge text-bg-primary me-1">{label}</span>
                   </a>
                 ))}
               </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body border-secondary">
+                  <h6 class="card-title">
+                    Funded ({sponsorshipRequiredPosts.length})
+                  </h6>
+                  <div class="row">
+                    {sponsorshipRequiredPosts.map((postId) => (
+                      <div class="col-3">
+                        {widget(
+                          "components.posts.CompactPost",
+                          { id: postId },
+                          postId
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
