@@ -88,7 +88,7 @@ return (
           href="https://t.me/marmajdao/17452"
           target="_blank"
           rel="noreferrer"
-          style={{ textDecoration: "none", color: "inherit" }}
+          //style={{ textDecoration: "none", color: "inherit" }}
         >
           https://t.me/marmajdao/17452
         </a>
