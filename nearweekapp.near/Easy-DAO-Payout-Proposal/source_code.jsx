@@ -75,7 +75,8 @@ const handleProposal = () => {
         },
       },
       gas: state.gas ?? 200000000000000,
-      deposit: state.deposit ?? 100000000000000000000000,
+      deposit:
+        convertAmount(state.deposit.toString(), 24) ?? 100000000000000000000000,
     },
   ]);
 };
@@ -123,11 +124,12 @@ return (
       <input
         type="text"
         placeholder="0.1"
-        onChange={(e) => onChangeDeposit(e.target.value * 1e24)}
+        onChange={(e) => onChangeDeposit(e.target.value)}
       />
       <p>
-        * You will pay a deposit of Ⓝ0.1 to add this proposal!, the deposit will
-        be refunded if proposal rejected or expired.
+        * You will pay a deposit
+        {state.deposit ? "of Ⓝ" + state.deposit.toString() : ""} to add this
+        proposal!, the deposit will be refunded if proposal rejected or expired.
       </p>
     </div>
     <button className="btn btn-primary mt-3" onClick={handleProposal}>
