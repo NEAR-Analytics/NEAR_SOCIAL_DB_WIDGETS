@@ -108,19 +108,20 @@ const DUMMYDATA = [
     Date_Created: "ABCD",
   },
 ];
-
-fetch(
-  "https://gist.githubusercontent.com/Jikugodwill/09f2b3bc64829b975ce847f90bb2af28/raw/a5230d5e3706ab451a75db4e72d443e15339bdb3/projectData.json"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    alert(data);
-    State.update({ jsonData: data });
-  })
-  .catch((error) => {
-    State.update({ error: error });
-    console.error(error);
-  });
+const loadActualData = () => {
+  asyncFetch(
+    "https://gist.githubusercontent.com/Jikugodwill/09f2b3bc64829b975ce847f90bb2af28/raw/a5230d5e3706ab451a75db4e72d443e15339bdb3/projectData.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      alert(data);
+      State.update({ jsonData: data });
+    })
+    .catch((error) => {
+      State.update({ error: error });
+      console.error(error);
+    });
+};
 
 const Cards = styled.div`
   display: flex;
@@ -138,9 +139,8 @@ let content = null;
 return (
   <div class="container-fluid">
     <h3 class="text-center">Sample list of near projects </h3>
-    //{" "}
     <button onClick={loadActualData} class="btn btn-primary">
-      // load Cards //{" "}
+      load Cards
     </button>
     <hr />
     {state.jsonData ? (
