@@ -91,7 +91,7 @@ const postIdsWithLabels = (labels) => {
     )
     .map((ids) => new Set(ids))
     .reduce((previous, current) => {
-      console.log(previous, current)
+      console.log(previous, current);
       let res = new Set();
       for (let id of current) {
         if (previous.has(id)) {
@@ -100,12 +100,12 @@ const postIdsWithLabels = (labels) => {
       }
       return res;
     });
-  return new Array(...ids);
+  return [...ids];
 };
 
 const discussionRequiredPosts = postIdsWithLabels(discussionsRequiredLabels);
 const sponsorshipRequiredPosts = postIdsWithLabels(sponsorshipRequiredLabels);
-console.log(sponsorshipRequiredPosts)
+console.log(sponsorshipRequiredPosts);
 
 return (
   <>
