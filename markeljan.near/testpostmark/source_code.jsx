@@ -195,15 +195,13 @@ const header = (
           <div class="d-flex justify-content-end">
             {editControl}
             {currentTimestampReadable}
-            <div>
-              <Widget
-                src={`markeljan.near/widget/testwidgetmark`}
-                props={{
-                  post: post,
-                  timestamp: currentTimestamp,
-                }}
-              />
-            </div>
+            <Widget
+              src={`markeljan.near/widget/HistoryWidget`}
+              props={{
+                post: post,
+                timestamp: currentTimestamp,
+              }}
+            />
             {shareButton}
           </div>
         </div>
