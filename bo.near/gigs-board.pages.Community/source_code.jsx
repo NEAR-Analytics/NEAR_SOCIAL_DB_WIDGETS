@@ -156,7 +156,7 @@ return (
             <div class="col">
               <small class="text-muted">
                 Required labels:
-                {discussionsRequiredLabels.map((label) => (
+                {sponsorshipRequiredLabels.map((label) => (
                   <a href={href("Feed", { label })} key={label}>
                     <span class="badge text-bg-primary me-1">{label}</span>
                   </a>
