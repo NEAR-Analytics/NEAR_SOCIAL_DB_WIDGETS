@@ -4,7 +4,9 @@ const blockHeight =
 // const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const postUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+
 State.init({
+  postExists: true,
   comments: props.comments ?? undefined,
   content: JSON.parse(props.content) ?? undefined,
 });
@@ -15,6 +17,7 @@ const item = {
   blockHeight,
 };
 
+// Load post if not contents and comments are not passed in
 if (!state.content || !state.comments) {
   const postsQuery = `
 query IndexerQuery {
@@ -56,7 +59,6 @@ query IndexerQuery {
   }
 
   fetchGraphQL(postsQuery, "IndexerQuery", {}).then((result) => {
-    console.log(result);
     if (result.status === 200) {
       if (result.body.data) {
         const posts = result.body.data.roshaan_near_alphaindexer_posts;
@@ -64,15 +66,22 @@ query IndexerQuery {
           const post = posts[0];
           let content = JSON.parse(post.content);
           const comments = post.comments;
-
           State.update({
             content: content,
             comments: comments,
+          });
+        } else {
+          State.update({
+            postExists: false,
           });
         }
       }
     }
   });
+  if (state.postExists == false) {
+    return "Post does not exist.";
+  }
+  return "loading...";
 }
 
 const Post = styled.div`
