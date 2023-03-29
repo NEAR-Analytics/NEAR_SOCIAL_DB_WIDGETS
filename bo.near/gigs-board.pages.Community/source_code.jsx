@@ -60,6 +60,16 @@ if (!post) {
 }
 const snapshot = post.snapshot;
 
+initState({
+  tab: "Overview",
+});
+
+function switchTab(tab) {
+  State.update({ tab });
+}
+
+const requiredLabels = ["community", props.label];
+
 return (
   <>
     {widget("components.layout.Banner")}
@@ -67,11 +77,35 @@ return (
       title: props.title,
       icon: props.icon,
       desc: props.desc,
+      switchTab,
     })}
     <Scroll>
-      <div>
-        <Markdown class="card-text" text={snapshot.description}></Markdown>
-      </div>
+      {state.tab === "Overview" ? (
+        <div>
+          <Markdown class="card-text" text={snapshot.description}></Markdown>
+        </div>
+      ) : state.tab === "Discussions" ? (
+        <div>
+          <div class="row mb-2">
+            <div class="col">
+              <small class="text-muted">
+                Required labels:
+                {requiredLabels.map((label) => (
+                  <a href={href("Feed", { label })} key={label}>
+                    <span class="badge text-bg-primary me-1">{label}</span>
+                  </a>
+                ))}
+              </small>
+            </div>
+          </div>
+        </div>
+      ) : state.tab === "Sponsorship" ? (
+        <div>Sponsorship</div>
+      ) : state.tab === "Events" ? (
+        <div>Events</div>
+      ) : (
+        <div>Loading ...</div>
+      )}
     </Scroll>
   </>
 );
