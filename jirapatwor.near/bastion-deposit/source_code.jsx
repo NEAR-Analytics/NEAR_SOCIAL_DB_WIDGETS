@@ -175,9 +175,20 @@ const walletBalance = () => {
   const rewardIndex = getCTokenBalancesAllIndex();
   const bigValue = state.cTokenBalancesAll[rewardIndex][4].toString();
   const cal = (
-    bigValue / Math.pow(10, TokensDetail[selectedTokenId].decimals)
+    Number(bigValue) / Math.pow(10, TokensDetail[selectedTokenId].decimals)
   ).toFixed(2);
   return cal;
+};
+
+const supplyBalance = () => {
+  const rewardIndex = getCTokenBalancesAllIndex();
+  const bigValue = state.cTokenBalancesAll[rewardIndex][1].mul(
+    state.cTokenBalancesAll[rewardIndex][3]
+  );
+  return (
+    Number(bigValue.toString()) /
+    Math.pow(10, 18 + TokensDetail[selectedTokenId].decimals)
+  ).toFixed(2);
 };
 
 // const aa = state.cTokenBalancesAll[3][1].mul(state.cTokenBalancesAll[3][3]);
@@ -206,7 +217,9 @@ return (
             <span class="badge bg-light text-dark">
               Wallet Balance: {walletBalance()}
             </span>
-            <span class="badge bg-light text-dark">Supply Balance: </span>
+            <span class="badge bg-light text-dark">
+              Supply Balance: {supplyBalance()}
+            </span>
           </div>
         )}
       </div>
