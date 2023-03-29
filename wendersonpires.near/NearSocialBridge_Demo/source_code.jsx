@@ -164,12 +164,7 @@ const getRoomDataHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    () =>
-      Social.index(payload.roomId, "data", {
-        subscribe: true,
-        limit: 100,
-        order: "desc",
-      }),
+    () => fetchRooms(),
     (roomData) => {
       const roomExists = roomData && roomData.length > 0;
       if (!roomExists) {
