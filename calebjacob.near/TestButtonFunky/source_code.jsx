@@ -5,9 +5,9 @@ const Button = styled.button`
 return (
   <div>
     <Button type="button" ref="forwardedRef">
-      {props.label} (1)
+      {props.label} (forwarded)
     </Button>
-    <Button type="button">{props.label} (2)</Button>
+    <Button type="button">{props.label} (not forwarded)</Button>
     <div>
       <p>Some text here</p>
     </div>
