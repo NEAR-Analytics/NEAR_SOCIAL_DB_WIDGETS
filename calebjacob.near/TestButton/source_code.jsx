@@ -4,6 +4,6 @@ const Button = styled.button`
 
 return (
   <Button type="button" ref="forwardedRef">
-    {props.label} (forwarded)
+    {props.label}: Forwarded
   </Button>
 );
