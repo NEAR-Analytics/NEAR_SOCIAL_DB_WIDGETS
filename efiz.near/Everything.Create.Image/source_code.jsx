@@ -24,13 +24,13 @@ if (!type) {
 
 State.init({
   img: null,
-  url: null,
+  url: "",
 });
 
 function composeData() {
   const data = {
     thing: {
-      main: JSON.stringify({ img: state.url }),
+      main: JSON.stringify({ url: state.url }),
     },
     index: {
       tempeverything: JSON.stringify({
@@ -62,15 +62,9 @@ return (
         />
       )}
     </div>
-    <input
-      onChange={(e) =>
-        State.update({
-          url: target.value,
-        })
-      }
-    />
+    <input onChange={({ target }) => State.update({ url: target.value })} />
     <ButtonRow>
-      <CommitButton disabled={!state.url} force data={composeData}>
+      <CommitButton disabled={state.url === ""} force data={composeData}>
         create
       </CommitButton>
     </ButtonRow>
