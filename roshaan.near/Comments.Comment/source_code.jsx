@@ -3,10 +3,10 @@ const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
 
 const content = JSON.parse(props.content);
-// JSON.parse(Social.get(`${accountId}/post/comment`, blockHeight) ?? "null");
+
 const parentItem = content.item;
 const highlight = !!props.highlight;
-console.log("from comment.comment, content", content);
+
 const extractNotifyAccountId = (parentItem) => {
   if (!parentItem || parentItem.type !== "social" || !parentItem.path) {
     return undefined;
@@ -15,7 +15,7 @@ const extractNotifyAccountId = (parentItem) => {
   return `${accountId}/post/main` === parentItem.path ? accountId : undefined;
 };
 
-const commentUrl = `https://alpha.near.org/#/calebjacob.near/widget/PostPage?accountId=${accountId}&commentBlockHeight=${blockHeight}`;
+const commentUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&commentBlockHeight=${blockHeight}`;
 
 const Comment = styled.div`
   position: relative;
