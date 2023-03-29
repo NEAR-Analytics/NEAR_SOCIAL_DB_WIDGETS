@@ -29,7 +29,7 @@ const repliesCount = Social.index("answer", {
   blockHeight,
 });
 
-console.log("repliesCount: ", repliesCount);
+// console.log("question: ", question);
 
 const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
@@ -131,7 +131,7 @@ return (
                   />
                 )}
 
-                <h4 class="mb-3">{repliesCount} Replies</h4>
+                <h4 class="mb-3">{repliesCount.length} Replies</h4>
                 <Widget
                   src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
                   props={{ item, admins, adminContract }}
