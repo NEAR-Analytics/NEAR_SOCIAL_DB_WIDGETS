@@ -107,7 +107,7 @@ const getRoomDataHandler = (request, response, Utils) => {
   Utils.promisify(
     () =>
       Social.index(payload.roomId, "data", {
-        subscribe: true,
+        // subscribe: true,
         limit: 100,
         order: "desc",
       }),
