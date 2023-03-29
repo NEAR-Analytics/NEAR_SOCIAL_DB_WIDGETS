@@ -27,7 +27,7 @@ return (
           />
         )}
       </div>
-      <div className="text-nowrap">
+      <div className="text-nowrap text-white">
         {props.extraButtons &&
           props.extraButtons({
             accountId,
