@@ -1,7 +1,7 @@
 const accountId = props.accountId;
 const blockHeight =
   props.blockHeight === "now" ? "now" : parseInt(props.blockHeight);
-const subscribe = !!props.subscribe;
+// const subscribe = !!props.subscribe;
 const notifyAccountId = accountId;
 const postUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
 State.init({
@@ -160,6 +160,9 @@ const renderComment = (a) => {
           accountId: a.account_id,
           blockHeight: a.block_height,
           content: a.content,
+          highlight:
+            a.account_id === props.highlightComment?.accountId &&
+            a.block_height === props.highlightComment?.blockHeight,
         }}
       />
     </div>
