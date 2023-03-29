@@ -98,6 +98,8 @@ return (
               </small>
             </div>
           </div>
+        {widget("components.layout.Controls")}
+
         </div>
       ) : state.tab === "Sponsorship" ? (
         <div>Sponsorship</div>
