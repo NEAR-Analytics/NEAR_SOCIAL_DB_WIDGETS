@@ -40,7 +40,6 @@ return (
       outfit your hero to explore dungeons and take part in raids, and gather an
       army to position yourself as the master tactician.
     </p>
-    {/* ... The rest of the content ... */}
     <div style={{ marginBottom: "20px", width: "100%" }}>
       <div
         style={{
@@ -51,21 +50,21 @@ return (
       >
         <h3>Pixel Party</h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            onClick={() =>
-              window.open("https://pixelparty.marmaj.org/", "_blank")
-            }
+          <a
+            href="https://pixelparty.marmaj.org/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            PLAY
-          </button>
-          <button
-            onClick={() =>
-              window.open("https://testnet.pixelparty.marmaj.org/", "_blank")
-            }
+            <button>PLAY</button>
+          </a>
+          <a
+            href="https://testnet.pixelparty.marmaj.org/"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ marginLeft: "10px" }}
           >
-            TEST
-          </button>
+            <button>TEST</button>
+          </a>
         </div>
       </div>
     </div>
@@ -79,24 +78,21 @@ return (
       >
         <h3>Pixel Pets</h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            onClick={() =>
-              window.open("https://pd.marmaj.org/pixelpets", "_blank")
-            }
+          <a
+            href="https://pd.marmaj.org/pixelpets"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            PLAY
-          </button>
-          <button
-            onClick={() =>
-              window.open(
-                "https://pd-testnet.marmaj.org/pixelpets/testnet.html",
-                "_blank"
-              )
-            }
+            <button>PLAY</button>
+          </a>
+          <a
+            href="https://pd-testnet.marmaj.org/pixelpets/testnet.html"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ marginLeft: "10px" }}
           >
-            TEST
-          </button>
+            <button>TEST</button>
+          </a>
         </div>
       </div>
     </div>
@@ -110,24 +106,21 @@ return (
       >
         <h3>Crypto Heroes</h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            onClick={() =>
-              window.open("https://pd.marmaj.org/cryptoheroes", "_blank")
-            }
+          <a
+            href="https://pd.marmaj.org/cryptoheroes"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            PLAY
-          </button>
-          <button
-            onClick={() =>
-              window.open(
-                "https://pd-testnet.marmaj.org/cryptoheroes/testnet.html",
-                "_blank"
-              )
-            }
+            <button>PLAY</button>
+          </a>
+          <a
+            href="https://pd-testnet.marmaj.org/cryptoheroes/testnet.html"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ marginLeft: "10px" }}
           >
-            TEST
-          </button>
+            <button>TEST</button>
+          </a>
         </div>
       </div>
     </div>
@@ -141,24 +134,21 @@ return (
       >
         <h3>Chain Team Tactics</h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            onClick={() =>
-              window.open("https://pd.marmaj.org/chainteam", "_blank")
-            }
+          <a
+            href="https://pd.marmaj.org/chainteam"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            PLAY
-          </button>
-          <button
-            onClick={() =>
-              window.open(
-                "https://pd-testnet.marmaj.org/chainteam/testnet.html",
-                "_blank"
-              )
-            }
+            <button>PLAY</button>
+          </a>
+          <a
+            href="https://pd-testnet.marmaj.org/chainteam/testnet.html"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ marginLeft: "10px" }}
           >
-            TEST
-          </button>
+            <button>TEST</button>
+          </a>
         </div>
       </div>
     </div>
