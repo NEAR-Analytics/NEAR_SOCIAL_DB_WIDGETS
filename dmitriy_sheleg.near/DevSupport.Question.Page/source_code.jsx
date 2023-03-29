@@ -23,7 +23,13 @@ const item = {
   path: `${accountId}/question/main`,
   blockHeight,
 };
-const repliesCount = Social.index("answer", item);
+const repliesCount = Social.index("answer", {
+  type: "social",
+  path: `${context.accountId}/question/main`,
+  blockHeight,
+});
+
+console.log("repliesCount: ", repliesCount);
 
 const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
