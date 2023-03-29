@@ -44,6 +44,10 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
+initState({
+  tab: 'Overview'
+});
+
 const Grey = styled.div`
    {
     position: fixed;
@@ -97,13 +101,13 @@ return (
       <div>
         <ul class="nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" onClick={() => State.update({tab: 'Overview'})}>
               <i class="bi-house-door"> </i>
               Overview
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" onClick={() => State.update({tab: 'Discussions'})}>
               <i class="bi-chat-square-text"> </i>
               Discussions
             </a>
