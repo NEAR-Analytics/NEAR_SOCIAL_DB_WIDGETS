@@ -79,8 +79,7 @@ function switchTab(tab) {
 }
 
 const discussionsRequiredLabels = ["community", props.label];
-// TODO: there is no funding-funded + zero-knowledge posts yet. for testing purpose, show all funding-funded posts
-const sponsorshipRequiredLabels = ["funding-funded"];
+const sponsorshipRequiredLabels = ["funding-funded", "zero-knowledge"];
 
 const postIdsWithLabels = (labels) => {
   const ids = labels
