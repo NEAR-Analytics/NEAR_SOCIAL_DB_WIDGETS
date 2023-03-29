@@ -70,7 +70,7 @@ return (
       }
     />
     <ButtonRow>
-      <CommitButton disabled={!state.img} force data={composeData}>
+      <CommitButton disabled={!state.url} force data={composeData}>
         create
       </CommitButton>
     </ButtonRow>
