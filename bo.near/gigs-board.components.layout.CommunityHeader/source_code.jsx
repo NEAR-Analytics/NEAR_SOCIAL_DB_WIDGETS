@@ -44,10 +44,6 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-initState({
-  tab: 'Overview'
-});
-
 const Grey = styled.div`
    {
     position: fixed;
@@ -101,24 +97,28 @@ return (
       <div>
         <ul class="nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" onClick={() => State.update({tab: 'Overview'})}>
+            <a
+              class="nav-link active"
+              aria-current="page"
+              onClick={() => props.switchTab("Overview")}
+            >
               <i class="bi-house-door"> </i>
               Overview
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" onClick={() => State.update({tab: 'Discussions'})}>
+            <a class="nav-link" onClick={() => props.switchTab("Discussions")}>
               <i class="bi-chat-square-text"> </i>
               Discussions
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" onClick={() => props.switchTab("Sponsorship")}>
               <i class="bi-kanban"> </i>
               Sponsorship
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" onClick={() => props.switchTab("Events")}>
             <a class="nav-link">
               <i class="bi-calendar"> </i>
               Events
