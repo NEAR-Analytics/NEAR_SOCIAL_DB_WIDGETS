@@ -54,7 +54,8 @@ return (
   <Hover className="card">
     <a
       href={href("Community", {
-        id: props.id,
+        overviewId: props.overviewId,
+        eventsId: props.eventsId,
         label: props.label,
         title: props.title,
         desc: props.desc,
