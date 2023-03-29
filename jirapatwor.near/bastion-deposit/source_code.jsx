@@ -203,9 +203,51 @@ const getAllowance = () => {
   });
 };
 
+if (!state.actionTabs) {
+  State.update({ actionTabs: "deposit" });
+}
+
 return (
   <div style={{ maxWidth: "400px" }}>
     <div class="card-body d-grid gap-3">
+      <div class="action btn-group" role="group" aria-label="Deposit">
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradioaction"
+          id="deposit"
+          autocomplete="off"
+          checked={state.actionTabs === "deposit"}
+          onClick={() => State.update({ actionTabs: "deposit" })}
+        />
+        <label class="btn btn-outline-primary" for="deposit">
+          Deposit
+        </label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradioaction"
+          id="borrow"
+          autocomplete="off"
+          checked={state.actionTabs === "borrow"}
+          onClick={() => State.update({ actionTabs: "borrow" })}
+        />
+        <label class="btn btn-outline-primary" for="borrow">
+          Borrow
+        </label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradioaction"
+          id="repay"
+          autocomplete="off"
+          checked={state.actionTabs === "repay"}
+          onClick={() => State.update({ actionTabs: "repay" })}
+        />
+        <label class="btn btn-outline-primary" for="repay">
+          Repay
+        </label>
+      </div>
       <div>
         <div class="mb-2 text-muted">Token</div>
         <select
