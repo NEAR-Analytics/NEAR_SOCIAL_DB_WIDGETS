@@ -112,14 +112,15 @@ const loadActualData = () => {
   asyncFetch(
     "https://gist.githubusercontent.com/Jikugodwill/09f2b3bc64829b975ce847f90bb2af28/raw/a5230d5e3706ab451a75db4e72d443e15339bdb3/projectData.json"
   )
-    .then((response) => response.json())
+    .then((response) => response.body)
     .then((data) => {
-      alert(data);
+      data = JSON.parse(data);
+      console.log(typeof data);
       State.update({ jsonData: data });
     })
     .catch((error) => {
       State.update({ error: error });
-      console.error(error);
+      console.log(error);
     });
 };
 
@@ -158,7 +159,7 @@ return (
       </Cards>
     ) : (
       <>
-        <div>Could not load json data</div>
+        {state.error && <div>Could not load json data</div>}
         <Cards>
           {DUMMYDATA.map((projectData, i) => {
             if (projectData.ProjectName)
