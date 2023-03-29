@@ -135,14 +135,16 @@ const Cards = styled.div`
   box-shadow: 0 0.05rem 0.05rem rgb(34 34 34 / 5%), 0 0.2rem 0.8rem rgb(34 34 34 / 8%);
 `;
 
-let content = null;
+let content = !state.jsonData && "Sample";
 
 return (
   <div class="container-fluid">
-    <h3 class="text-center">Sample list of near projects </h3>
-    <button onClick={loadActualData} class="btn btn-primary">
-      load Cards
-    </button>
+    <h3 class="text-center">{content} Near Projects </h3>
+    {!state.jsonData && (
+      <button onClick={loadActualData} class="btn btn-primary">
+        load Cards
+      </button>
+    )}
     <hr />
     {state.jsonData ? (
       <Cards>
