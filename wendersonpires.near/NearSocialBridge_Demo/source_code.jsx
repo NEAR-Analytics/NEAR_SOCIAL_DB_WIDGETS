@@ -168,7 +168,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
   Utils.promisify(
     // () => Storage.privateGet("app:rooms-list"),
-    () => Storage.get("app:rooms-list", STORAGE_WIDGET),
+    () => Storage.get("app:rooms-list"),
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
@@ -183,7 +183,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
     },
     // If error: because there's no room yet
     () => {
-      Storage.privateSet("app:rooms-list", [roomId]);
+      Storage.set("app:rooms-list", [roomId]);
       response(request).send({ roomsList: [roomId] });
     }
   );
@@ -193,7 +193,7 @@ const getRoomsListHandler = (request, response, Utils) => {
   // Error: IDK why but this is working only when rendering the preview. Final app is not working :/
   Utils.promisify(
     // () => Storage.privateGet("app:rooms-list"),
-    () => Storage.get("app:rooms-list", STORAGE_WIDGET),
+    () => Storage.get("app:rooms-list"),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms });
