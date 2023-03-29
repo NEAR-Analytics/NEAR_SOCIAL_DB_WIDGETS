@@ -11,14 +11,12 @@ const types = Social.keys(`${accountId}/type/*`, "final", {
 types = Object.entries(types[accountId].type ?? {});
 
 State.init({
-  selected: `${accountId}/type/Everything`,
-  type: Type.get(`${accountId}/type/Everything`),
+  selected: `${accountId}/type/Image`,
 });
 
 const setSelected = (selection) => {
   State.update({
     selected: selection,
-    type: Type.get(props.type),
   });
 };
 
@@ -34,9 +32,9 @@ return (
       }}
     />
     <Widget
-      src={"evrything.near/widget/Everything.All.Things"}
+      src={"evrything.near/widget/Everything.Things"}
       props={{
-        type: state.type,
+        type: state.selected,
       }}
     />
   </>
