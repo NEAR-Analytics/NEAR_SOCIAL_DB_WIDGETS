@@ -1,6 +1,5 @@
 const accountId = props.accountId;
 const commentBlockHeight = parseInt(props.commentBlockHeight);
-let parentPost = null;
 
 State.init({
   parentPostLoaded: false,
@@ -55,17 +54,6 @@ function fetchGraphQL(operationsDoc, operationName, variables) {
     }
   );
 }
-
-const extractParentPost = (item) => {
-  if (!item || item.type !== "social" || !item.path || !item.blockHeight) {
-    return undefined;
-  }
-
-  const accountId = item.path.split("/")[0];
-  return `${accountId}/post/main` === item.path
-    ? { accountId, blockHeight: item.blockHeight }
-    : undefined;
-};
 
 if (commentBlockHeight && accountId) {
   fetchGraphQL(parentPostByComment, "ParentPostByComment", {}).then(
