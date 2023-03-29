@@ -79,7 +79,7 @@ function switchTab(tab) {
 }
 
 const discussionsRequiredLabels = ["community", props.label];
-const sponsorshipRequiredLabels = ["community", "zero-knowledge"];
+const sponsorshipRequiredLabels = ["funding-funded", props.label];
 
 const postIdsWithLabels = (labels) => {
   const ids = labels
@@ -91,6 +91,7 @@ const postIdsWithLabels = (labels) => {
     )
     .map((ids) => new Set(ids))
     .reduce((previous, current) => {
+      console.log(previous, current)
       let res = new Set();
       for (let id of current) {
         if (previous.has(id)) {
