@@ -5,6 +5,7 @@ const blockHeight =
 const content = JSON.parse(props.content);
 
 const parentItem = content.item;
+console.log(parentItem, "parentItem from comments.comment");
 const highlight = !!props.highlight;
 
 const extractNotifyAccountId = (parentItem) => {
@@ -14,7 +15,10 @@ const extractNotifyAccountId = (parentItem) => {
   const accountId = parentItem.path.split("/")[0];
   return `${accountId}/post/main` === parentItem.path ? accountId : undefined;
 };
-
+console.log(
+  "extracting notify accountID from parent",
+  extractNotifyAccountId(parentItem)
+);
 const commentUrl = `https://alpha.near.org/#/roshaan.near/widget/PostPage?accountId=${accountId}&commentBlockHeight=${blockHeight}`;
 
 const Comment = styled.div`
