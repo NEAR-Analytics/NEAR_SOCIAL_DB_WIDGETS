@@ -41,14 +41,14 @@ const initialPayload = {};
 //   "sala-teste-1",
 // ]);
 
-Storage.set("app:rooms-list", [
-  "near-social-community",
-  "bos",
-  "satori",
-  "dragon-ball-z",
-  "naruto",
-  "sala-teste-1",
-]);
+// Storage.set("app:rooms-list", [
+//   "near-social-community",
+//   "bos",
+//   "satori",
+//   "dragon-ball-z",
+//   "naruto",
+//   "sala-teste-1",
+// ]);
 
 const STORAGE_WIDGET = "wendersonpires.near/widget/NearSocialBridge_Demo";
 
