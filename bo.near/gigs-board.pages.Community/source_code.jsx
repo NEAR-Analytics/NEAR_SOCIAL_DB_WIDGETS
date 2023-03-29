@@ -177,7 +177,7 @@ return (
                     {sponsorshipRequiredPosts.map((postId) => (
                       <div class="col-3">
                         {widget(
-                          "components.posts.Post",
+                          "components.posts.CompactPost",
                           { id: postId },
                           postId
                         )}
