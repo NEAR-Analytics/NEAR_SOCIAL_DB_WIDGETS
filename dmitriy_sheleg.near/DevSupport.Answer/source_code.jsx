@@ -26,6 +26,8 @@ const item = {
   blockHeight,
 };
 
+console.log("answer: ", answer);
+
 const Post = styled.div`
   position: relative;
 
