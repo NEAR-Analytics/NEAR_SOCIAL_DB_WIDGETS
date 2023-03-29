@@ -133,7 +133,7 @@ return (
 
                 <H2 className="mt-5 mb-4">{repliesCount.length} Replies</H2>
                 <Widget
-                  src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
+                  src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
                   props={{ item, admins, adminContract }}
                 />
               </>
