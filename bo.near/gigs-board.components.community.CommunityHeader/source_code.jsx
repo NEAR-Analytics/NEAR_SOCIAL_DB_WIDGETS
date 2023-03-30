@@ -79,6 +79,17 @@ const NavUnderline = styled.ul`
   }
 `;
 
+const BreadcrumbLink = styled.a`{
+  color: #3252a6;
+  text-decoration: none;
+}
+`
+const BreadcrumbBold = styled.b`{
+  color: #3252a6;
+}
+`
+
+const 
 // TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline,
 // but it's not there in near social, need write such style here
 return (
@@ -89,10 +100,10 @@ return (
       <div aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href={href("Feed")}>Developer Governance</a>
+            <BreadcrumbLink href={href("Feed")}>Developer Governance</BreadcrumbLink>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            {props.title}
+            <BreadcrumbBold>{props.title}</BreadcrumbBold>
           </li>
         </ol>
       </div>
