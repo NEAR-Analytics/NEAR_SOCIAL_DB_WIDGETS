@@ -13,6 +13,8 @@ const followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
   values_only: true,
 });
 
+const followersCount = followers ? Object.keys(followers || {}).length : null;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -128,10 +130,15 @@ return (
             />
           </TagsWrapper>
         )}
-
-        <TextLink href={`${profileUrl}&tab=followers`}>{followers}</TextLink>
       </div>
     </CardLeft>
+
+    <TextLink
+      className="my-2 align-self-start"
+      href={`${profileUrl}&tab=followers`}
+    >
+      {followersCount}&nbsp;Followers
+    </TextLink>
 
     {!!context.accountId && context.accountId !== props.accountId && (
       <Widget
