@@ -8,16 +8,6 @@
 // const externalAppUrl = "https://near-test-app.web.app/";
 const externalAppUrl = "https://a5177dd263a7.ngrok.app";
 
-// Storage.privateSet("app:rooms-list", [
-//   "near-social-community",
-//   "bos",
-//   "satori",
-//   "dragon-ball-z",
-//   "sala-teste-1",
-// ]);
-
-// console.log("TROCA:", Storage.privateGet("app:rooms-list"));
-
 /**
  * Initial Path (optional but recommended)
  */
@@ -32,95 +22,8 @@ const initialViewHeight = 740;
  */
 const initialPayload = {};
 
-// Migration
-// Storage.privateSet("app:rooms-list", [
-//   "near-social-community",
-//   "bos",
-//   "satori",
-//   "dragon-ball-z",
-//   "sala-teste-1",
-// ]);
-
-// Storage.set("app:rooms-list", [
-//   "near-social-community",
-//   "bos",
-//   "satori",
-//   "dragon-ball-z",
-//   "naruto",
-//   "sala-teste-1",
-// ]);
-
-// const foo = Social.get("wendersonpires.near/widget/NearSocialBridge_Demo");
-
-// Set rooms
-// Social.set(
-//   {
-//     index: {
-//       ["wendersonpires.near:widget:chatv2-dev"]: "near-social-community",
-//     },
-//   },
-//   { force: true }
-// );
-
+// App index key to store things (only rooms as this app is re fetching messages from ChatV1)
 const APP_INDEX_KEY = "widget-chatv2-dev";
-
-// Get rooms
-// const foo = Social.index(APP_INDEX_KEY, "room", {
-//   subscribe: true,
-//   limit: 100,
-//   order: "desc",
-// });
-
-// {
-//   "wendersonpires.near": {
-//     "index": {
-//       "widget-chatv2-dev": "near-social-community"
-//     }
-//   }
-// }
-
-// console.log("Valor:", foo);
-
-// Social.set(
-//       {
-//         index: {
-//           [payload.roomId]: JSON.stringify(
-//             {
-//               key: "data",
-//               value: payload.message,
-//             },
-//             undefined,
-//             0
-//           ),
-//         },
-//       },
-//       {
-//         force: true,
-//         onCommit: () => {
-//           response(request).send({});
-//         },
-//         onCancel: () => {
-//           response(request).send({ error: "the action was canceled" });
-//         },
-//       }
-//     );
-
-// Social.index(payload.roomId, "data", {
-//         // subscribe: true,
-//         limit: 100,
-//         order: "desc",
-//       }),
-
-// const STORAGE_WIDGET = "wendersonpires.near/widget/NearSocialBridge_Demo";
-
-// Social.set("wendersonpires.near/experimental/chatv2/rooms-list", [
-//   "near-social-community",
-// ]);
-
-// console.log(
-//   "BATATA",
-//   Social.get("wendersonpires.near/experimental/chatv2/rooms-list")
-// );
 
 /**
  * Request Handlers - Backend.
@@ -187,7 +90,7 @@ const getRoomDataHandler = (request, response, Utils) => {
 const sendMessageHandler = (request, response) => {
   const { payload } = request;
   if (payload.roomId && payload.message) {
-    // Store message
+    // Store message.
     Social.set(
       {
         index: {
@@ -228,7 +131,6 @@ const registerNewRoomHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    // () => Storage.privateGet("app:rooms-list"),
     () => fetchRooms(),
     (rooms) => {
       if (rooms.includes(roomId)) {
@@ -262,12 +164,6 @@ const registerNewRoomHandler = (request, response, Utils) => {
           },
         }
       );
-
-      // Update the rooms list
-      //   const updatedRoomsList = [...rooms, roomId];
-      // Storage.privateSet("app:rooms-list", updatedRoomsList);
-      //   Storage.set("app:rooms-list", updatedRoomsList);
-      //   response(request).send({ roomsList: updatedRoomsList });
     },
     () => {
       response(request).send({ error: "unknown error" });
@@ -276,9 +172,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
 };
 
 const getRoomsListHandler = (request, response, Utils) => {
-  // Error: IDK why but this is working only when rendering the preview. Final app is not working :/
   Utils.promisify(
-    // () => Storage.privateGet("app:rooms-list"),
     () => fetchRooms(),
     (rooms) => {
       // Send the rooms list
