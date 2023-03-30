@@ -18,16 +18,8 @@ const question = JSON.parse(
 const testQuestion = JSON.parse(
   Social.get(`${accountId}/question`, blockHeight) ?? "null"
 );
-console.log("testQuestion: ", testQuestion);
 
 const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
-
-const handleOnMouseEnter = () => {
-  State.update({ show: true });
-};
-const handleOnMouseLeave = () => {
-  State.update({ show: false });
-};
 
 const H2 = styled.h2`
   font-size: 20px;
@@ -86,14 +78,6 @@ const Card = styled.div`
   padding: 12px;
 `;
 
-const overlay = (
-  <CardWrapper>
-    <Card onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
-      Hello
-    </Card>
-  </CardWrapper>
-);
-
 return (
   <div className={`${display} p-3`}>
     <div class="row">
@@ -115,28 +99,10 @@ return (
       </div>
       <div class="col-10">
         <div class="row">
-          <div class="d-flex justify-content-between">
-            <H2>
-              <a href={link}>{question.title}</a>
-              <i class="bi bi-arrow-right" />
-            </H2>
-            <OverlayTrigger
-              show={state.show || false}
-              trigger={["hover", "focus"]}
-              delay={{ show: 250, hide: 300 }}
-              placement="auto"
-              overlay={overlay}
-            >
-              <div
-                className="d-inline-flex"
-                style="baseline"
-                onMouseEnter={handleOnMouseEnter}
-                onMouseLeave={handleOnMouseLeave}
-              >
-                Some text
-              </div>
-            </OverlayTrigger>
-          </div>
+          <H2>
+            <a href={link}>{question.title}</a>
+            <i class="bi bi-arrow-right" />
+          </H2>
           <H6>
             <div class="d-flex">
               <Trancate>{accountId}</Trancate>
