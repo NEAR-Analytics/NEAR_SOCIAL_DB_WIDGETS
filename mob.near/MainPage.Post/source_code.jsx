@@ -30,34 +30,32 @@ return (
     </div>
     {blockHeight !== "now" && (
       <div className="mt-1 d-flex justify-content-between">
-        <div>
-          <span className="me-4">
-            <Widget
-              src="mob.near/widget/CommentButton"
-              props={{
-                onClick: () =>
-                  !state.showReply && State.update({ showReply: true }),
-              }}
-            />
-          </span>
-          <span className="me-4">
-            <Widget
-              src="mob.near/widget/RepostButton"
-              props={{
-                notifyAccountId,
-                item,
-              }}
-            />
-          </span>
-          <span className="me-4">
-            <Widget
-              src="mob.near/widget/LikeButton"
-              props={{
-                notifyAccountId,
-                item,
-              }}
-            />
-          </span>
+        <div className="me-4">
+          <Widget
+            src="mob.near/widget/CommentButton"
+            props={{
+              onClick: () =>
+                !state.showReply && State.update({ showReply: true }),
+            }}
+          />
+        </div>
+        <div className="me-4">
+          <Widget
+            src="mob.near/widget/RepostButton"
+            props={{
+              notifyAccountId,
+              item,
+            }}
+          />
+        </div>
+        <div className="me-4">
+          <Widget
+            src="mob.near/widget/LikeButton"
+            props={{
+              notifyAccountId,
+              item,
+            }}
+          />
         </div>
         <div>
           <Widget
