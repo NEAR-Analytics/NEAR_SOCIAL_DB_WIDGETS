@@ -4,7 +4,6 @@ const blockHeight =
 const subscribe = !!props.subscribe;
 const admins = props.admins || [];
 const adminContract = props.adminContract;
-const postUrl = `https://near.social/#/mob.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 if (accountId === undefined || blockHeight === undefined) {
   return;
@@ -150,13 +149,6 @@ const newDesign = (
               props={{
                 item,
                 onClick: () => State.update({ showReply: !state.showReply }),
-              }}
-            />
-
-            <Widget
-              src="adminalpha.near/widget/CopyUrlButton"
-              props={{
-                url: postUrl,
               }}
             />
           </Actions>
