@@ -1,6 +1,6 @@
 const autocompleteEnabled = props.autocompleteEnabled || true;
 const withProfileImage = props.withProfileImage;
-const commitButton = props.commitButton;
+const composeButton = props.composeButton;
 const accountId = props.accountId;
 
 if (state.image === undefined) {
@@ -324,7 +324,7 @@ return (
         image={state.image}
         className="upload-image-button bi bi-image"
       />
-      {commitButton && commitButton(onCompose)}
+      {composeButton && composeButton(onCompose)}
     </Actions>
   </Wrapper>
 );
