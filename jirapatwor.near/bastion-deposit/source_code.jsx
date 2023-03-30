@@ -93,6 +93,12 @@ const CErc20ABI = fetch(
   "https://raw.githubusercontent.com/JirapatWov/bos/main/CErc20.json"
 ).body;
 
+len.callStatic
+  .getAccountLimits(Comptroller, sender)
+  .then((getAccountLimits) => {
+    State.update({ getAccountLimits });
+  });
+
 const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
@@ -145,6 +151,7 @@ const handleApprove = () => {
   erc20
     .approve(TokensDetail[selectedTokenId].cAddress, toBigNumber)
     .then((transactionHash) => {
+      State.update({ success: true });
       console.log("transactionHash is " + transactionHash);
     });
 };
@@ -178,6 +185,7 @@ const handleDeposit = () => {
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
 
   connection.mint(toBigNumber).then((transactionHash) => {
+    State.update({ success: true });
     console.log("transactionHash is " + transactionHash);
   });
 };
@@ -221,6 +229,7 @@ const getAllowance = () => {
   State.update({
     allowance: Number(cal),
   });
+  return cal;
 };
 
 const remainingBalance = () => {
@@ -304,6 +313,62 @@ const getBorrowed = () => {
   return finalValue;
 };
 
+const handleRepay = () => {
+  if (!selectedTokenId || !amount || hasError) return;
+
+  if (amount > state.borrowedAmount) {
+    State.update({ hasError: 3 });
+    return;
+  }
+
+  let contractABI;
+  if (selectedTokenId == "ETH") {
+    contractABI = CEthABI;
+  } else {
+    contractABI = CErc20ABI;
+  }
+
+  const connection = new ethers.Contract(
+    TokensDetail[selectedTokenId].cAddress,
+    contractABI,
+    Ethers.provider().getSigner()
+  );
+
+  const expandedAmount = expandToken(
+    amount,
+    TokensDetail[selectedTokenId].decimals
+  ).toString();
+
+  const toBigNumber = ethers.BigNumber.from(expandedAmount);
+
+  connection.repayBorrow(toBigNumber).then((transactionHash) => {
+    State.update({ success: true });
+    console.log("transactionHash is " + transactionHash);
+  });
+};
+
+const maxWithdraw = () => {
+  const rewardIndex = getCTokenBalancesAllIndex();
+  const supplyBalance = supplyBalance();
+  const tokenPrice =
+    Number(state.cTokenMetadataAll[rewardIndex][1].toString()) /
+    Math.pow(10, 18 + (18 - TokensDetail[selectedTokenId].decimals));
+  const liquidity =
+    Number(state.getAccountLimits[1].toString()) / Math.pow(10, 18);
+  const liquidityInToken = liquidity / tokenPrice;
+  const CFactor =
+    Number(state.cTokenMetadataAll[rewardIndex][11].toString()) /
+    Math.pow(10, 18);
+  const totalLiquidity = (liquidityInToken / CFactor).toFixed(3);
+  if (supplyBalance >= totalLiquidity) {
+    State.update({ maxWithdraw: Number(totalLiquidity) });
+    return totalLiquidity;
+  } else {
+    State.update({ maxWithdraw: Number(supplyBalance) });
+    return supplyBalance;
+  }
+};
+
 if (!state.actionTabs) {
   State.update({ actionTabs: "deposit" });
 }
@@ -348,6 +413,18 @@ return (
         <label class="btn btn-outline-primary" for="repay">
           Repay
         </label>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradioaction"
+          id="withdraw"
+          autocomplete="off"
+          checked={state.actionTabs === "withdraw"}
+          onClick={() => State.update({ actionTabs: "withdraw" })}
+        />
+        <label class="btn btn-outline-primary" for="withdraw">
+          Withdraw
+        </label>
       </div>
       <div>
         <div class="mb-2 text-muted">Token</div>
@@ -381,9 +458,8 @@ return (
               <span class="badge bg-light text-dark">
                 Remaining Borrow Limit: $ {remainingBalance()}
               </span>
-              {getAllowance()}
             </div>
-          ) : (
+          ) : state.actionTabs == "repay" ? (
             <div>
               <span class="badge bg-light text-dark">
                 Wallet Balance: {walletBalance()}
@@ -392,6 +468,12 @@ return (
                 Amount Borrowed: {getBorrowed()}
               </span>
               {getAllowance()}
+            </div>
+          ) : (
+            <div>
+              <span class="badge bg-light text-dark">
+                Max Withdrawal: {maxWithdraw()}
+              </span>
             </div>
           )
         ) : (
