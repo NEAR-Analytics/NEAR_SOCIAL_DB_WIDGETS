@@ -50,6 +50,17 @@ return (
       {blockHeight !== "now" && (
         <div className="mt-1 d-flex justify-content-between">
           <div>
+            {parentItem && (
+              <span key="comment" className="me-4">
+                <Widget
+                  src="mob.near/widget/CommentButton"
+                  props={{
+                    onClick: () =>
+                      !state.showReply && State.update({ showReply: true }),
+                  }}
+                />
+              </span>
+            )}
             <span className="me-4">
               <Widget
                 src="mob.near/widget/LikeButton"
@@ -59,15 +70,6 @@ return (
                 }}
               />
             </span>
-            {parentItem && (
-              <Widget
-                src="mob.near/widget/CommentButton"
-                props={{
-                  onClick: () =>
-                    !state.showReply && State.update({ showReply: true }),
-                }}
-              />
-            )}
           </div>
           <div>
             <Widget
