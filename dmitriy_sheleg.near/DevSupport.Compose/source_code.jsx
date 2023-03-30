@@ -245,7 +245,10 @@ return (
             State.update({ showAccountAutocomplete: false });
           }
         }}
-        style={{ paddingLeft: withProfileImage ? "5.5rem" : "12px" }}
+        style={{
+          paddingLeft: withProfileImage ? "5.5rem" : "12px",
+          paddingTop: withProfileImage ? "1.5rem" : "12px",
+        }}
       />
     </Textarea>
 
