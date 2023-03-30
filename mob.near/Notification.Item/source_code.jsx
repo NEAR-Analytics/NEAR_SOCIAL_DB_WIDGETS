@@ -14,6 +14,8 @@ return (
       <Widget src="mob.near/widget/Notification.Item.DevGov" props={props} />
     ) : value.type === "mention" ? (
       <Widget src="mob.near/widget/Notification.Item.Mention" props={props} />
+    ) : value.type === "repost" ? (
+      <Widget src="mob.near/widget/Notification.Item.Repost" props={props} />
     ) : (
       <div>
         Unknown notification:{" "}
