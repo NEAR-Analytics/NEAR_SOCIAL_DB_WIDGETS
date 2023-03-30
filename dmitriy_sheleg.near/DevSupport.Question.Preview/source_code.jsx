@@ -99,6 +99,7 @@ return (
               </TopicName>
               &nbsp;&#8226;&nbsp;
               <Widget src="mob.near/widget/TimeAgo" props={{ blockHeight }} />
+              &nbsp;ago
             </div>
           </H6>
         </div>
