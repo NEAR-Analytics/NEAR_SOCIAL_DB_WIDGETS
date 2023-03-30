@@ -17,7 +17,6 @@ const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <div id="bridge-root"></div>
-
 <script>
 // Viewer port
 let viewerPort
@@ -29,16 +28,14 @@ let state = {
   iframeHeight: 480,
   userInfo: null,
   initialPayload: {},
-  sessionStorageClone: {},
   connectMessageSent: false,
 }
 
 // Core Component
-function NearSocialBridgeCore(props) {
+function NearSocialBridgeCore() {
   const [externalAppUrl, setExternalAppUrl] = React.useState(state.externalAppUrl)
   const [connectMessageSent, setConnectMessageSent] = React.useState(state.connectMessageSent)
   const [iframeHeight, setIframeHeight] = React.useState(state.iframeHeight)
-  const [, setSessionStorageClone] = React.useState(state.sessionStorageClone)
   const [, setUserInfo] = React.useState(state.userInfo)
 
   React.useEffect(() => {
@@ -65,7 +62,6 @@ function NearSocialBridgeCore(props) {
         }
 
         // Send to external app
-        console.log('Envia para o EA - EVENT', e.data)
         sendMessage(e.data)
       }
     }
@@ -79,9 +75,7 @@ function NearSocialBridgeCore(props) {
 
   const sendMessage = (message) => {
     var iframe = document.getElementById('myIframe')
-    console.log('Core enviar para EA', message)
     iframe.contentWindow.postMessage(message, '*')
-    console.log('======')
   }
 
   const sendMessageToView = (message) => {
@@ -112,54 +106,16 @@ function NearSocialBridgeCore(props) {
   const onMessageHandler = (message) => {
     // Internal Request Handler
     if (message.data.from === 'external-app') {
-      // Is to the Core
-      if (message.data.type.includes('nsb:')) {
-        internalRequestHandler(message.data)
-      } else {
-        // Is to the View
-        // Send it straight to the View
-        console.log('Chegou do EA', message.data)
-        sendMessageToView(message.data)
+      // Send to View
+      sendMessageToView(message.data)
+
+      // core.js - internal handlers
+      switch (message.data.type) {
+        case 'nsb:navigation:sync-content-height':
+          syncContentHeight(message.data.type, message.data.payload)
+          break
       }
     }
-  }
-
-  /**
-   * Core - Internal Request handlers
-   * All core data "nsb" will pass here first
-   * @param {*} message
-   */
-  const internalRequestHandler = (message) => {
-    switch (message.type) {
-      case 'nsb:session-storage:hydrate-viewer':
-        sessionStorageHydrateViewer(message.type, message.payload)
-        break
-      case 'nsb:session-storage:hydrate-app':
-        sessionStorageHydrateApp(message.type, message.payload)
-        break
-      case 'nsb:navigation:sync-content-height':
-        syncContentHeight(message.type, message.payload)
-        sendMessageToView(message) // The view need to handle it
-        break
-      case 'nsb:auth:get-user-info':
-        sendMessageToView(message) // The view need to handle it
-        break
-    }
-  }
-
-  const sessionStorageHydrateViewer = (requestType, payload) => {
-    if (payload) {
-      setSessionStorageClone(payload)
-      state.sessionStorageClone = payload
-    }
-
-    const responseBody = buildAnswer(requestType, payload)
-    sendMessage(responseBody)
-  }
-
-  const sessionStorageHydrateApp = (requestType) => {
-    const responseBody = buildAnswer(requestType, state.sessionStorageClone)
-    sendMessage(responseBody)
   }
 
   const syncContentHeight = (requestType, payload) => {
@@ -172,12 +128,13 @@ function NearSocialBridgeCore(props) {
     sendMessage(responseBody)
   }
 
-  function onLoadHandler(e) {
+  function onLoadHandler() {
     // On load iframe
-    // On get msg from External App
     if (!connectMessageSent) {
       setConnectMessageSent(true)
       state.connectMessageSent = true
+
+      // On get msg from External App
       window.addEventListener('message', onMessageHandler, false)
     }
 
@@ -195,7 +152,7 @@ function NearSocialBridgeCore(props) {
   if (!state.externalAppUrl) return null
 
   return React.createElement('iframe', {
-    sandbox: 'allow-scripts',
+    sandbox: 'allow-scripts allow-popups-to-escape-sandbox allow-popups',
     id: 'myIframe',
     src: externalAppUrl,
     style: { border: 'none', width: '100%', height: iframeHeight + 'px', margin: 0, padding: 0 },
@@ -210,7 +167,7 @@ root.render(React.createElement(NearSocialBridgeCore, {}))
 </script>
 `;
 
-// (i) Discovery API uses cached data structure.
+// (i) Discovery API uses cached data structure
 const Utils = {
   /**
    * Send message
@@ -269,7 +226,6 @@ const initialPayload = props.initialPayload || {};
 // Initial State
 State.init({
   iframeHeight: initialIframeHeight,
-  lastMsgSentAt: new Date(),
   // (i) DON'T send async data, it's going to randonly fail
   // If you need to get new info, use "request" for that
   currentMessage: {
@@ -314,7 +270,6 @@ const responseFactory = {
 };
 
 const onMessageHandler = (message) => {
-  console.log("View Recebe", message);
   // Handles core calls
   if (message.type.includes("nsb:")) {
     handlerCoreRequests(message);
@@ -336,29 +291,54 @@ const onMessageHandler = (message) => {
 };
 
 // REQUEST HANDLERS BELOW
-// Todos os tipos "nsb" passam pelo core.js primeiro
 const handlerCoreRequests = (message) => {
   switch (message.type) {
+    case "nsb:session-storage:hydrate-viewer":
+      sessionStorageHydrateViewer(message.type, message.payload);
+      break;
+    case "nsb:session-storage:hydrate-app":
+      sessionStorageHydrateApp(message.type, message.payload);
+      break;
     case "nsb:navigation:sync-content-height":
       setIframeHeight(message.type, message.payload);
       break;
-    // NEW
     case "nsb:auth:get-user-info":
       getUserInfo(message.type, message.payload);
       break;
-    // NEW
   }
 };
 
-// [DON'T REMOVE]: Set thew new iFrame height based on the new screen/route
-const setIframeHeight = (requestType, payload) => {
-  State.update({ iframeHeight: payload.height + 20 });
+const CORE_STORAGE_KEY = "app:storage";
+// Store data
+const sessionStorageHydrateViewer = (requestType, payload) => {
+  if (payload) {
+    // store data
+    console.log("Hydrate Viewer", payload);
+    Storage.privateSet(CORE_STORAGE_KEY, payload);
+
+    const responseBody = buildAnswer(requestType, payload);
+    Utils.sendMessage(responseBody);
+  }
 };
 
-// NEW
-// [DON'T REMOVE]
+// Retrieve stored data
+const sessionStorageHydrateApp = (requestType) => {
+  // get stored data
+  const storageData = Storage.privateGet(CORE_STORAGE_KEY);
+  console.log("Stored data:", storageData);
+  const responseBody = buildAnswer(requestType, storageData);
+  Utils.sendMessage(responseBody);
+};
+
+// Set thew new iFrame height based on the new screen/route
+const setIframeHeight = (requestType, payload) => {
+  State.update({ iframeHeight: payload.height + 20 });
+  const responseBody = buildAnswer(requestType, {});
+  Utils.sendMessage(responseBody);
+};
+
 // Get user info
-const getUserInfo = (requestType, payload) => {
+const getUserInfo = (requestType) => {
   // check if user is signed in
   if (!accountId) {
     const responseBody = buildAnswer(requestType, {
@@ -382,8 +362,6 @@ const getUserInfo = (requestType, payload) => {
     }
   );
 };
-// NEW
-// REQUEST HANDLERS ABOVE
 
 return (
   <div>
