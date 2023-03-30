@@ -33,6 +33,24 @@ return (
         <div>
           <span className="me-4">
             <Widget
+              src="mob.near/widget/CommentButton"
+              props={{
+                onClick: () =>
+                  !state.showReply && State.update({ showReply: true }),
+              }}
+            />
+          </span>
+          <span className="me-4">
+            <Widget
+              src="mob.near/widget/RepostButton"
+              props={{
+                notifyAccountId,
+                item,
+              }}
+            />
+          </span>
+          <span className="me-4">
+            <Widget
               src="mob.near/widget/LikeButton"
               props={{
                 notifyAccountId,
@@ -40,13 +58,6 @@ return (
               }}
             />
           </span>
-          <Widget
-            src="mob.near/widget/CommentButton"
-            props={{
-              onClick: () =>
-                !state.showReply && State.update({ showReply: true }),
-            }}
-          />
         </div>
         <div>
           <Widget
