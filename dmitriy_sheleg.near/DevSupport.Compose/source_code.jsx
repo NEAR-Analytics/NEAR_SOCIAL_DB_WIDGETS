@@ -84,7 +84,6 @@ const Wrapper = styled.div`
   --padding: 12px;
   position: relative;
   margin-left: -12px;
-  border-radius: 8px;
   overflow: hidden;
   transition: all 200ms;
   border: 1px solid #eceef0;
