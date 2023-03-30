@@ -49,7 +49,7 @@ const Grey = styled.div`
     position: fixed;
     left: calc(-50vw + 50%);
     width: 100vw;
-    height: 200px;
+    height: 205px;
     z-index: 11;
     margin-top: 76px;
 
@@ -66,6 +66,12 @@ const Content = styled.div`
     margin-top: 76px;
   }
 `;
+
+const NavUnderline = styled.ul`
+  a.active {
+    border-bottom: 2px solid #0C7283;
+  }
+`
 
 // TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline,
 // but it's not there in near social, need write such style here
@@ -92,7 +98,7 @@ return (
         </div>
       </div>
       <div>
-        <ul class="nav nav-underline">
+        <NavUnderline className="nav">
           <li class="nav-item">
             <a
               class="nav-link active"
@@ -137,7 +143,7 @@ return (
               Events
             </a>
           </li>
-        </ul>
+        </NavUnderline>
       </div>
     </Content>
   </>
