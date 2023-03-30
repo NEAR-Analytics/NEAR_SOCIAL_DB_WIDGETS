@@ -68,6 +68,11 @@ const Content = styled.div`
 `;
 
 const NavUnderline = styled.ul`
+  a {
+    color: #3252A6;
+    text-decoration: none;
+  }
+
   a.active {
     font-weight: bold;
     border-bottom: 2px solid #0C7283;
@@ -99,7 +104,7 @@ return (
         </div>
       </div>
       <div>
-        <NavUnderline className="nav text-decoration-none">
+        <NavUnderline className="nav">
           <li class="nav-item">
             <a
               class="nav-link active"
