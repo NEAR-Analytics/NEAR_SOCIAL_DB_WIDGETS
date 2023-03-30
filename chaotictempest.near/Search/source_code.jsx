@@ -32,7 +32,7 @@ const Header = styled.div`
 const Search = styled.div``;
 
 const Facets = styled.div`
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const H1 = styled.h1`
