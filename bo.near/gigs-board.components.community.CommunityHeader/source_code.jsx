@@ -107,8 +107,7 @@ return (
         <NavUnderline className="nav">
           <li class="nav-item">
             <a
-              class="nav-link"
-              className={props.tab === "Overview" ?? "active"}
+              className={props.tab === "Overview" ? "nav-link active" : "nav-link"}
               aria-current="page"
               href={href("community.Overview", { label: props.label })}
             >
@@ -119,7 +118,7 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
-              className={props.tab === "Discussions" ?? "active"}
+              className={props.tab === "Discussions" ? "nav-link active" : "nav-link"}
               href={href("community.Discussions", {
                 label: props.label,
               })}
@@ -131,7 +130,7 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
-              className={props.tab === "Sponsorship" ?? "active"}
+              className={props.tab === "Sponsorship" ? "nav-link active" : "nav-link"}
               href={href("community.Sponsorship", {
                 label: props.label,
               })}
@@ -143,7 +142,7 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
-              className={props.tab === "Events" ?? "active"}
+              className={props.tab === "Events" ? "nav-link active" : "nav-link"}
               href={href("community.Events", {
                 label: props.label,
                 tab: "Events",
