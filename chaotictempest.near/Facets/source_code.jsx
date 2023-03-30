@@ -72,7 +72,7 @@ const FacetContainer =
     padding: 5px 2px 5px 2px;
     display: inline-flex;
     list-style-type: none;
-    overflow: scroll;
+    overflow: auto;
   `;
 
 const FacetItem =
