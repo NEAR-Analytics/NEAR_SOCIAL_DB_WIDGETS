@@ -28,14 +28,12 @@ const postsQuery = `
     block_timestamp
     content
     receipt_id
+    accounts_liked
     comments(order_by: {block_height: asc}) {
       account_id
       block_height
       block_timestamp
       content
-    }
-    post_likes {
-      account_id
     }
   }
   roshaan_near_alphaindexer_posts_aggregate {
@@ -99,6 +97,7 @@ const renderItem = (item, i) => {
           blockHeight: item.block_height,
           content: item.content,
           comments: item.comments,
+          likes: item.accounts_liked,
         }}
       />
     </Post>
