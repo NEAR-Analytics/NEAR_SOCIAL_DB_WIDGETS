@@ -89,7 +89,6 @@ const BreadcrumbBold = styled.b`{
 }
 `
 
-const 
 // TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline,
 // but it's not there in near social, need write such style here
 return (
