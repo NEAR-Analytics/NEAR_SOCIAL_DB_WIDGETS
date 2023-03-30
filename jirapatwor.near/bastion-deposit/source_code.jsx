@@ -487,10 +487,12 @@ return (
           state.actionTabs == "deposit" ? (
             <div>
               <span class="badge bg-light text-dark">
-                Wallet Balance: {walletBalance()}
+                Wallet Balance: {walletBalance()}{" "}
+                {TokensDetail[selectedTokenId].symbol}
               </span>
               <span class="badge bg-light text-dark">
-                Supply Balance: {supplyBalance()}
+                Supply Balance: {supplyBalance()}{" "}
+                {TokensDetail[selectedTokenId].symbol}
               </span>
               {getAllowance()}
             </div>
@@ -503,17 +505,20 @@ return (
           ) : state.actionTabs == "repay" ? (
             <div>
               <span class="badge bg-light text-dark">
-                Wallet Balance: {walletBalance()}
+                Wallet Balance: {walletBalance()}{" "}
+                {TokensDetail[selectedTokenId].symbol}
               </span>
               <span class="badge bg-light text-dark">
-                Amount Borrowed: {getBorrowed()}
+                Amount Borrowed: {getBorrowed()}{" "}
+                {TokensDetail[selectedTokenId].symbol}
               </span>
               {getAllowance()}
             </div>
           ) : (
             <div>
               <span class="badge bg-light text-dark">
-                Max Withdrawal: {maxWithdraw()}
+                Max Withdrawal: {maxWithdraw()}{" "}
+                {TokensDetail[selectedTokenId].symbol}
               </span>
             </div>
           )
