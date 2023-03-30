@@ -85,152 +85,265 @@ const Comments = styled.div`
   }
 `;
 
+const newDesign = (
+  <>
+    <Post>
+      <Header>
+        <Widget
+          src="adminalpha.near/widget/AccountProfile"
+          props={{
+            accountId,
+            hideAccountId: true,
+            inlineContent: (
+              <>
+                <Text as="span">･</Text>
+                <Text>
+                  {blockHeight === "now" ? (
+                    "now"
+                  ) : (
+                    <>
+                      <Widget
+                        src="mob.near/widget/TimeAgo"
+                        props={{ blockHeight }}
+                      />{" "}
+                      ago
+                    </>
+                  )}
+                </Text>
+              </>
+            ),
+          }}
+        />
+      </Header>
+
+      <Body>
+        <Content>
+          {answer.text && (
+            <Widget
+              src="adminalpha.near/widget/SocialMarkdown"
+              props={{ text: answer.text }}
+            />
+          )}
+
+          {answer.image && (
+            <Widget
+              src="mob.near/widget/Image"
+              props={{
+                image: answer.image,
+              }}
+            />
+          )}
+        </Content>
+
+        {blockHeight !== "now" && (
+          <Actions>
+            <Widget
+              src="adminalpha.near/widget/LikeButton"
+              props={{
+                item,
+                accountId,
+              }}
+            />
+            <Widget
+              src="adminalpha.near/widget/CommentButton"
+              props={{
+                item,
+                onClick: () => State.update({ showReply: !state.showReply }),
+              }}
+            />
+
+            <Widget
+              src="adminalpha.near/widget/CopyUrlButton"
+              props={{
+                url: postUrl,
+              }}
+            />
+          </Actions>
+        )}
+
+        {state.showReply && (
+          <div className="mb-2">
+            <Widget
+              src="adminalpha.near/widget/Comments.Compose"
+              props={{
+                accountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+          </div>
+        )}
+
+        <Comments>
+          <Widget
+            src="adminalpha.near/widget/Comments.Feed"
+            props={{
+              item,
+              highlightComment: props.highlightComment,
+              limit: props.commentsLimit,
+              subscribe,
+              raw,
+            }}
+          />
+        </Comments>
+      </Body>
+    </Post>
+  </>
+);
+
 return (
-  // <Post>
-  //   <Header>
-  //     <Widget
-  //       src="adminalpha.near/widget/AccountProfile"
-  //       props={{
-  //         accountId,
-  //         hideAccountId: true,
-  //         inlineContent: (
-  //           <>
-  //             <Text as="span">･</Text>
-  //             <Text>
-  //               {blockHeight === "now" ? (
-  //                 "now"
-  //               ) : (
-  //                 <>
-  //                   <Widget
-  //                     src="mob.near/widget/TimeAgo"
-  //                     props={{ blockHeight }}
-  //                   />{" "}
-  //                   ago
-  //                 </>
-  //               )}
-  //             </Text>
-  //           </>
-  //         ),
-  //       }}
-  //     />
-  //   </Header>
+  <>
+    <Post>
+      <Header>
+        <Widget
+          src="adminalpha.near/widget/AccountProfile"
+          props={{
+            accountId,
+            inlineContent: (
+              <>
+                <Text as="span">･</Text>
+                <Text>
+                  {blockHeight === "now" ? (
+                    "now"
+                  ) : (
+                    <>
+                      <Widget
+                        src="mob.near/widget/TimeAgo"
+                        props={{ blockHeight }}
+                      />{" "}
+                      ago
+                    </>
+                  )}
+                </Text>
+              </>
+            ),
+          }}
+        />
+      </Header>
+      <Body>
+        <Content>
+          {answer.text && (
+            <Widget
+              src="adminalpha.near/widget/SocialMarkdown"
+              props={{ text: answer.text }}
+            />
+          )}
 
-  //   <Body>
-  //     <Content>
-  //       {answer.text && (
-  //         <Widget
-  //           src="adminalpha.near/widget/SocialMarkdown"
-  //           props={{ text: answer.text }}
-  //         />
-  //       )}
+          {answer.image && (
+            <Widget
+              src="mob.near/widget/Image"
+              props={{
+                image: answer.image,
+              }}
+            />
+          )}
+        </Content>
 
-  //       {answer.image && (
-  //         <Widget
-  //           src="mob.near/widget/Image"
-  //           props={{
-  //             image: answer.image,
-  //           }}
-  //         />
-  //       )}
-  //     </Content>
+        {blockHeight !== "now" && (
+          <Actions>
+            <Widget
+              src="adminalpha.near/widget/LikeButton"
+              props={{
+                item,
+                accountId,
+              }}
+            />
+            <Widget
+              src="adminalpha.near/widget/CommentButton"
+              props={{
+                item,
+                onClick: () => State.update({ showReply: !state.showReply }),
+              }}
+            />
 
-  //     {blockHeight !== "now" && (
-  //       <Actions>
-  //         <Widget
-  //           src="adminalpha.near/widget/LikeButton"
-  //           props={{
-  //             item,
-  //             accountId,
-  //           }}
-  //         />
-  //         <Widget
-  //           src="adminalpha.near/widget/CommentButton"
-  //           props={{
-  //             item,
-  //             onClick: () => State.update({ showReply: !state.showReply }),
-  //           }}
-  //         />
+            <Widget
+              src="adminalpha.near/widget/CopyUrlButton"
+              props={{
+                url: postUrl,
+              }}
+            />
+          </Actions>
+        )}
 
-  //         <Widget
-  //           src="adminalpha.near/widget/CopyUrlButton"
-  //           props={{
-  //             url: postUrl,
-  //           }}
-  //         />
+        {state.showReply && (
+          <div className="mb-2">
+            <Widget
+              src="adminalpha.near/widget/Comments.Compose"
+              props={{
+                accountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+          </div>
+        )}
 
-  //       </Actions>
-  //     )}
+        <Comments>
+          <Widget
+            src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
+            props={{ item, admins, adminContract, nested: true }}
+          />
+          {/**
+          <Widget
+            src="adminalpha.near/widget/Comments.Feed"
+            props={{
+              item,
+              highlightComment: props.highlightComment,
+              limit: props.commentsLimit,
+              subscribe,
+              raw,
+            }}
+          />
+          */}
+        </Comments>
+      </Body>
+    </Post>
 
-  //     {state.showReply && (
-  //       <div className="mb-2">
-  //         <Widget
-  //           src="adminalpha.near/widget/Comments.Compose"
-  //           props={{
-  //             accountId,
-  //             item,
-  //             onComment: () => State.update({ showReply: false }),
-  //           }}
-  //         />
-  //       </div>
-  //     )}
-
-  //     <Comments>
-  //       <Widget
-  //         src="adminalpha.near/widget/Comments.Feed"
-  //         props={{
-  //           item,
-  //           highlightComment: props.highlightComment,
-  //           limit: props.commentsLimit,
-  //           subscribe,
-  //           raw,
-  //         }}
-  //       />
-  //     </Comments>
-  //   </Body>
-  // </Post>
-
-  <div className={`border ${border} mt-3 p-3`}>
-    <Widget
-      src="mob.near/widget/Profile.ShortInlineBlock"
-      props={{ accountId, tooltip: false }}
-    />
-    <hr />
-
-    <div class="mt-3">
+    {/**
+    <div className={`border ${border} mt-3 p-3`}>
       <Widget
-        src="mob.near/widget/MainPage.Post.Content"
-        props={{ content: { text: answer.text } }}
+        src="mob.near/widget/Profile.ShortInlineBlock"
+        props={{ accountId, tooltip: false }}
+      />
+      <hr />
+
+      <div class="mt-3">
+        <Widget
+          src="mob.near/widget/MainPage.Post.Content"
+          props={{ content: { text: answer.text } }}
+        />
+      </div>
+
+      <button
+        class="btn btn-success"
+        onClick={() => {
+          State.update({ showAnswer: !state.showAnswer });
+        }}
+      >
+        Comment
+      </button>
+
+      <Widget
+        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Button.Valid"
+        props={{ accountId, blockHeight, admins, adminContract }}
+      />
+
+      {state.showAnswer && (
+        <Widget
+          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
+          props={{
+            notifyAccountId: accountId,
+            item,
+            onComment: () => State.update({ showReply: false }),
+          }}
+        />
+      )}
+
+      <Widget
+        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
+        props={{ item, admins, adminContract, nested: true }}
       />
     </div>
-
-    <button
-      class="btn btn-success"
-      onClick={() => {
-        State.update({ showAnswer: !state.showAnswer });
-      }}
-    >
-      Comment
-    </button>
-
-    <Widget
-      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Button.Valid"
-      props={{ accountId, blockHeight, admins, adminContract }}
-    />
-
-    {state.showAnswer && (
-      <Widget
-        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
-        props={{
-          notifyAccountId: accountId,
-          item,
-          onComment: () => State.update({ showReply: false }),
-        }}
-      />
-    )}
-
-    <Widget
-      src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
-      props={{ item, admins, adminContract, nested: true }}
-    />
-  </div>
+     */}
+  </>
 );
