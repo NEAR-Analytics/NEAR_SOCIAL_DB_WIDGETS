@@ -48,9 +48,9 @@ const communities = {
   "zero-knowledge": {
     overviewId: 397,
     eventsId: 401,
-    icon: "https://ipfs.near.social/ipfs/bafkreigthuagbsrl2xbpk5h4bneoteiv4pqa5itokrqrm4wckgasa6d4nm",
+    icon: "https://ipfs.near.social/ipfs/bafkreiajwq6ep3n7veddozji2djv5vviyisabhycbweslvpwhsoyuzcwi4",
     cover:
-      "https://ipfs.near.social/ipfs/bafkreifuflol4fgihxcgpxkl56lygpgdisdfbizrjpt4jhir7mvx3ddh4a",
+      "https://ipfs.near.social/ipfs/bafkreihgxg5kwts2juldaeasveyuddkm6tcabmrat2aaq5u6uyljtyt7lu",
     title: "Zero Knowledge",
     desc: "Building a zero knowledge ecosystem on NEAR.",
   },
@@ -173,8 +173,8 @@ return (
         </div>
       ) : props.tab === "Discussions" ? (
         <div>
-          <div class="row mb-2">
-            <div class="col">
+          <div class="row mb-2 justify-content-center">
+            <div class="col w-auto">
               <small class="text-muted">
                 Required labels:
                 {discussionsRequiredLabels.map((label) => (
@@ -185,7 +185,7 @@ return (
               </small>
             </div>
           </div>
-          {widget("components.layout.Controls")}
+          {widget("components.layout.Controls", {labels: discussionsRequiredLabels})}
           <div class="row">
             <div class="col">
               {discussionRequiredPosts.map((postId) =>
@@ -196,13 +196,13 @@ return (
         </div>
       ) : props.tab === "Sponsorship" ? (
         <div>
-          <div class="row mb-2">
-            <div class="col">
+          <div class="row mb-2 justify-content-center">
+            <div class="col w-auto">
               <small class="text-muted">
                 Post Type: <b>Sponsorship</b>
               </small>
             </div>
-            <div class="col">
+            <div class="col w-atuo">
               <small class="text-muted">
                 Required labels:
                 {sponsorshipRequiredLabels.map((label) => (
