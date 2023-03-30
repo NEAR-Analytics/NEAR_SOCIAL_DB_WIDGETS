@@ -5,8 +5,8 @@
 /**
  * External App URL (must)
  */
-// const externalAppUrl = "https://near-test-app.web.app/";
-const externalAppUrl = "https://a5177dd263a7.ngrok.app";
+const externalAppUrl = "https://near-test-app.web.app/";
+// const externalAppUrl = "https://a5177dd263a7.ngrok.app";
 
 /**
  * Initial Path (optional but recommended)
