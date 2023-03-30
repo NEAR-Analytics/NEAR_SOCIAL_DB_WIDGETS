@@ -129,11 +129,11 @@ return (
               Sponsorship
             </a>
           </li>
-          <li
-            class="nav-item"
-            href={href("Community", { label: props.label, tab: "Events" })}
-          >
-            <a class="nav-link">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href={href("Community", { label: props.label, tab: "Events" })}
+            >
               <i class="bi-calendar"> </i>
               Events
             </a>
