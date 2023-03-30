@@ -69,15 +69,15 @@ const Content = styled.div`
 
 const NavUnderline = styled.ul`
   a {
-    color: #3252A6;
+    color: #3252a6;
     text-decoration: none;
   }
 
   a.active {
     font-weight: bold;
-    border-bottom: 2px solid #0C7283;
+    border-bottom: 2px solid #0c7283;
   }
-`
+`;
 
 // TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline,
 // but it's not there in near social, need write such style here
@@ -107,7 +107,8 @@ return (
         <NavUnderline className="nav">
           <li class="nav-item">
             <a
-              class="nav-link active"
+              class="nav-link"
+              className={props.tab === "Overview" ?? "active"}
               aria-current="page"
               href={href("community.Overview", { label: props.label })}
             >
@@ -118,6 +119,7 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
+              className={props.tab === "Discussions" ?? "active"}
               href={href("community.Discussions", {
                 label: props.label,
               })}
@@ -129,6 +131,7 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
+              className={props.tab === "Sponsorship" ?? "active"}
               href={href("community.Sponsorship", {
                 label: props.label,
               })}
@@ -140,6 +143,7 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
+              className={props.tab === "Events" ?? "active"}
               href={href("community.Events", {
                 label: props.label,
                 tab: "Events",
