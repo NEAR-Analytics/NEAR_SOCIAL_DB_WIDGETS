@@ -9,6 +9,7 @@ State.init({
   postExists: true,
   comments: props.comments ?? undefined,
   content: JSON.parse(props.content) ?? undefined,
+  likes: JSON.parse(props.likes) ?? undefined,
 });
 
 const item = {
@@ -18,7 +19,7 @@ const item = {
 };
 
 // Load post if not contents and comments are not passed in
-if (!state.content || !state.comments) {
+if (!state.content || !state.comments || !state.likes) {
   const postsQuery = `
 query IndexerQuery {
   roshaan_near_alphaindexer_posts(
@@ -30,14 +31,12 @@ query IndexerQuery {
     block_timestamp
     content
     receipt_id
+    accounts_liked
     comments(order_by: {block_height: asc}) {
       account_id
       block_height
       block_timestamp
       content
-    }
-    post_likes {
-      account_id
     }
   }
 }
@@ -69,6 +68,7 @@ query IndexerQuery {
           State.update({
             content: content,
             comments: comments,
+            likes: post.accounts_liked,
           });
         } else {
           State.update({
@@ -233,10 +233,11 @@ return (
       {blockHeight !== "now" && (
         <Actions>
           <Widget
-            src="calebjacob.near/widget/LikeButton"
+            src="roshaan.near/widget/LikeButton"
             props={{
               item,
               notifyAccountId,
+              likes: state.likes,
             }}
           />
           <Widget
