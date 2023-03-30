@@ -63,7 +63,8 @@ return data !== null ? (
       <h4>Meta Meech NFT Marketplace</h4>
       <p>
         This NFT will signify that you were one of the early users of NEAR
-        Social and The BOS.
+        Social and The BOS. When you click the NFT you can see that is of much
+        better quality and has moving parts!
       </p>
     </div>
     <div className="d-flex gap-4 flex-wrap">
