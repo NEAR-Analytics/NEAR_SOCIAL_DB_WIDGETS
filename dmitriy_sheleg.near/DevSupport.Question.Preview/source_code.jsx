@@ -15,6 +15,11 @@ const question = JSON.parse(
   Social.get(`${accountId}/question/main`, blockHeight) ?? "null"
 );
 
+const testQuestion = JSON.parse(
+  Social.get(`${accountId}/question`, blockHeight) ?? "null"
+);
+console.log("testQuestion: ", testQuestion);
+
 const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
 
 const H2 = styled.h2`
