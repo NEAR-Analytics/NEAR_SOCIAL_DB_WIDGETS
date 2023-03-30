@@ -3,6 +3,7 @@ const commentBlockHeight = parseInt(props.commentBlockHeight);
 
 State.init({
   parentPostLoaded: false,
+  originalPostLikes: undefined,
   originalAuthorAccountId: undefined,
   originalAuthorBlockHeight: undefined,
   originalPostContent: undefined,
@@ -71,6 +72,7 @@ if (commentBlockHeight) {
               originalAuthorBlockHeight: post.block_height,
               originalPostContent: content,
               comments: comments,
+              originalPostLikes: post.accounts_liked,
             });
           }
         }
@@ -88,6 +90,7 @@ if (state.parentPostLoaded && commentBlockHeight) {
         content: state.originalPostContent,
         highlightComment: { accountId, blockHeight: commentBlockHeight },
         comments: state.comments,
+        likes: state.likes,
       }}
     />
   );
