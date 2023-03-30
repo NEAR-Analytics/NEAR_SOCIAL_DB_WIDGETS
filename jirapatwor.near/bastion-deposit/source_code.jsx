@@ -369,6 +369,48 @@ const maxWithdraw = () => {
   }
 };
 
+const handleWithdraw = () => {
+  if (!selectedTokenId || !amount || hasError) return;
+
+  if (amount > state.maxWithdraw) {
+    State.update({ hasError: 4 });
+    return;
+  }
+
+  let contractABI;
+  if (selectedTokenId == "ETH") {
+    contractABI = CEthABI;
+  } else {
+    contractABI = CErc20ABI;
+  }
+
+  const connection = new ethers.Contract(
+    TokensDetail[selectedTokenId].cAddress,
+    contractABI,
+    Ethers.provider().getSigner()
+  );
+
+  const expandedAmount = expandToken(
+    amount,
+    TokensDetail[selectedTokenId].decimals
+  ).toString();
+
+  const toBigNumber = ethers.BigNumber.from(expandedAmount);
+  const supplyBalance = supplyBalance();
+
+  if (amount >= supplyBalance) {
+    connection.redeem(toBigNumber).then((transactionHash) => {
+      State.update({ success: true });
+      console.log("transactionHash is " + transactionHash);
+    });
+  } else {
+    connection.redeemUnderlying(toBigNumber).then((transactionHash) => {
+      State.update({ success: true });
+      console.log("transactionHash is " + transactionHash);
+    });
+  }
+};
+
 if (!state.actionTabs) {
   State.update({ actionTabs: "deposit" });
 }
@@ -496,6 +538,10 @@ return (
         <p class="alert alert-danger" role="alert">
           Amount greater than Amount Borrowed
         </p>
+      ) : state.hasError == 4 ? (
+        <p class="alert alert-danger" role="alert">
+          Amount greater than Max Withdrawal
+        </p>
       ) : state.success == true ? (
         <p class="alert alert-success" role="alert">
           Your transaction was sent successfully
@@ -537,13 +583,21 @@ return (
         >
           Approve
         </button>
-      ) : (
+      ) : state.actionTabs == "repay" ? (
         <button
           disabled={state.amount == undefined || state.amount == ""}
           onClick={handleRepay}
           style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
         >
           Repay
+        </button>
+      ) : (
+        <button
+          disabled={state.amount == undefined || state.amount == ""}
+          onClick={handleWithdraw}
+          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+        >
+          Withdraw
         </button>
       )}
     </div>
