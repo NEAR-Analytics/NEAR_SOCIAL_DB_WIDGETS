@@ -4,7 +4,7 @@ const blockHeight =
 const subscribe = !!props.subscribe;
 const admins = props.admins || [];
 const adminContract = props.adminContract;
-const postUrl = `https://near.social/#/mob.near/widget/PostPage?accountId=${accountId}&blockHeight=${blockHeight}`;
+const postUrl = `https://near.social/#/mob.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 if (accountId === undefined || blockHeight === undefined) {
   return;
