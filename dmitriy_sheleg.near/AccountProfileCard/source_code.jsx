@@ -1,7 +1,6 @@
 const accountId = props.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
-// const profileUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
 const profileUrl = `/#/mob.near/widget/ProfilePage?accountId=${accountId}`;
 
 State.init({
