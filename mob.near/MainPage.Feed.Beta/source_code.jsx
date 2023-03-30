@@ -86,7 +86,7 @@ const renderRepost = (a) => {
   if (!post) {
     return false;
   }
-  const item = JSON.stringify(post);
+  const item = JSON.stringify(makePostItem(post));
   if (item in renderedPosts) {
     return false;
   }
