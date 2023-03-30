@@ -1,7 +1,7 @@
 const accountId = props.accountId;
 const blockHeight = parseInt(props.blockHeight);
 const hideComments = props.hideComments ?? true;
-const repostsNum = props.repostsNum ?? 0;
+const repostsNum = Number(props.repostsNum ?? 0);
 const content =
   props.content ??
   JSON.parse(Social.get(`${accountId}/post/main`, blockHeight) ?? "null");
@@ -38,11 +38,11 @@ const renderPostHeader = (
           />
         </a>
       </div>
-      <div className="flex-grow-1 text-truncate">
-        <span className="text-center text-muted">
+      {repostsNum > 0 && (
+        <span className="text-nowrap pe-2">
           {`${repostsNum} repost${repostsNum == 1 ? "" : "s"}`}
         </span>
-      </div>
+      )}
       <span className="text-nowrap text-muted">
         <small>
           {blockHeight === "now" ? (
