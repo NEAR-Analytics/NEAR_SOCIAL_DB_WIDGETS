@@ -1,42 +1,19 @@
 /**
- * External App URL (must)
+ * App index key to store things (only rooms as this app is re fetching messages from ChatV1)
+ * It should use a non "-dev" key for V3. This is being used because rooms were already created
  */
-const externalAppUrl = "https://near-test-app.web.app/";
-/**
- * Initial Path (optional but recommended)
- */
-const path = props.path;
-/**
- * Initial view height (optional but recommended)
- */
-const initialViewHeight = 740;
-/**
- * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
- * If you want to get some data, make a "request"
- *
- * Use "useInitialPayload()" hook inside the external app to get this data
- */
-const initialPayload = {};
-
-// App index key to store things (only rooms as this app is re fetching messages from ChatV1)
-// It should use a non "-dev" key for V3. This is being used because rooms were already created
 const APP_INDEX_KEY = "widget-chatv2-dev";
 
 /**
- * Request Handlers - Backend.
- *
- * - request: payload sent by External App
- *
- * - response: method to send the answer back to the External App
- *
- * - utils: Utils features like
- *      - promisify: (caller, resolve, reject)
- *      There's no Promisse for some features yet, So this is util for when you need to get cached data using DiscoveryAPI, e.g:
- *      utils.promisify(() => Social.getr(`${context.accountId}/profile`), (res) => console.log(res), (err) => console.log(err))
- *
- * @param {{type: string, payload: {}}} request request with payload sent by External App
- * @param {(request) => {send: () => void}} response send the answer back to the External App
- * @param {{promisify:(caller: () => void, resolve: (data) => void, reject: (error) => void)}} utils Utils features like
+ * App setup
+ */
+const externalAppUrl = "https://near-test-app.web.app/";
+const path = props.path;
+const initialViewHeight = 740;
+const initialPayload = {};
+
+/**
+ * Request Handlers.
  */
 const requestHandler = (request, response, Utils) => {
   switch (request.type) {
