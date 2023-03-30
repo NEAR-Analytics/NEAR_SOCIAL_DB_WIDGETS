@@ -8,6 +8,11 @@ State.init({
   show: false,
 });
 
+const followers = Social.keys(`*/graph/follow/${accountId}`, "final", {
+  return_type: "BlockHeight",
+  values_only: true,
+});
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -123,6 +128,8 @@ return (
             />
           </TagsWrapper>
         )}
+
+        <TextLink href={`${profileUrl}&tab=followers`}>{followers}</TextLink>
       </div>
     </CardLeft>
 
