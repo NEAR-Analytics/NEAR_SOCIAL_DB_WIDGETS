@@ -22,6 +22,13 @@ console.log("testQuestion: ", testQuestion);
 
 const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}&adminContract=${adminContract}`;
 
+const handleOnMouseEnter = () => {
+  State.update({ show: true });
+};
+const handleOnMouseLeave = () => {
+  State.update({ show: false });
+};
+
 const H2 = styled.h2`
   font-size: 20px;
   font-weight: 600;
@@ -61,6 +68,31 @@ const TopicName = styled.span`
   font-size: 14px;
   white-space: nowrap;
 `;
+const CardWrapper = styled.div`
+  z-index: 100;
+  padding: 6px;
+`;
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 12px;
+  width: 275px;
+  border-radius: 12px;
+  z-index: 1070;
+  background: #fff;
+  border: 1px solid #eceef0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+`;
+
+const overlay = (
+  <CardWrapper>
+    <Card onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
+      Hello
+    </Card>
+  </CardWrapper>
+);
 
 return (
   <div className={`${display} p-3`}>
@@ -83,10 +115,28 @@ return (
       </div>
       <div class="col-10">
         <div class="row">
-          <H2>
-            <a href={link}>{question.title}</a>
-            <i class="bi bi-arrow-right" />
-          </H2>
+          <div class="d-flex justify-content-between">
+            <H2>
+              <a href={link}>{question.title}</a>
+              <i class="bi bi-arrow-right" />
+            </H2>
+            <OverlayTrigger
+              show={state.show || false}
+              trigger={["hover", "focus"]}
+              delay={{ show: 250, hide: 300 }}
+              placement="auto"
+              overlay={overlay}
+            >
+              <div
+                className="d-inline-flex"
+                style="baseline"
+                onMouseEnter={handleOnMouseEnter}
+                onMouseLeave={handleOnMouseLeave}
+              >
+                Some text
+              </div>
+            </OverlayTrigger>
+          </div>
           <H6>
             <div class="d-flex">
               <Trancate>{accountId}</Trancate>
@@ -110,15 +160,12 @@ return (
               props={{ accountId, blockHeight }}
             />
           </div>
-          {/*
-          // Flag question widget
           <div class="col">
             <Widget
               src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Question.Button.Flag"
               props={{ accountId, blockHeight }}
             />
           </div>
-          */}
         </div>
       </div>
     </div>
