@@ -18,6 +18,10 @@ const initialViewHeight = 740;
  */
 const initialPayload = {};
 
+// App index key to store things (only rooms as this app is re fetching messages from ChatV1)
+// It should use a non "-dev" key for V3. This is being used because rooms were already created
+const APP_INDEX_KEY = "widget-chatv2-dev";
+
 /**
  * Request Handlers - Backend.
  *
@@ -83,7 +87,7 @@ const getRoomDataHandler = (request, response, Utils) => {
 const sendMessageHandler = (request, response) => {
   const { payload } = request;
   if (payload.roomId && payload.message) {
-    // Store message
+    // Store message.
     Social.set(
       {
         index: {
@@ -124,7 +128,7 @@ const registerNewRoomHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    () => Storage.privateGet("app:rooms-list"),
+    () => fetchRooms(),
     (rooms) => {
       if (rooms.includes(roomId)) {
         response(request).send({ roomsList: rooms });
@@ -133,22 +137,64 @@ const registerNewRoomHandler = (request, response, Utils) => {
 
       // Update the rooms list
       const updatedRoomsList = [...rooms, roomId];
-      Storage.privateSet("app:rooms-list", updatedRoomsList);
-      response(request).send({ roomsList: updatedRoomsList });
+      // Register it on chain
+      Social.set(
+        {
+          index: {
+            [APP_INDEX_KEY]: JSON.stringify(
+              {
+                key: "room",
+                value: roomId,
+              },
+              undefined,
+              0
+            ),
+          },
+        },
+        {
+          force: true,
+          onCommit: () => {
+            response(request).send({ roomsList: updatedRoomsList });
+          },
+          onCancel: () => {
+            response(request).send({ error: "the action was canceled" });
+          },
+        }
+      );
+    },
+    () => {
+      response(request).send({ error: "unknown error" });
     }
   );
 };
 
 const getRoomsListHandler = (request, response, Utils) => {
   Utils.promisify(
-    // Serve static rooms till fix the issue (in progress)
-    () => Storage.privateGet("app:rooms-list"),
+    () => fetchRooms(),
     (rooms) => {
       // Send the rooms list
       response(request).send({ roomsList: rooms });
+    },
+    () => {
+      response(request).send({ error: "rooms list is not set", roomsList: [] });
     }
   );
 };
+
+// Helpers
+const fetchRooms = () => {
+  const data = Social.index(APP_INDEX_KEY, "room", {
+    subscribe: true,
+    limit: 100,
+    order: "desc",
+  });
+
+  if (!data) return null;
+
+  const sorted = data.sort((m1, m2) => m1.blockHeight - m2.blockHeight);
+  return sorted.map((roomData) => roomData.value); // ["room-name"]
+};
+// Helpers END
 
 return (
   <Widget
