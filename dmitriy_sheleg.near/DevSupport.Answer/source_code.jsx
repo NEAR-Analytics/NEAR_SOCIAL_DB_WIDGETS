@@ -85,105 +85,6 @@ const Comments = styled.div`
   }
 `;
 
-const newDesign = (
-  <>
-    <Post>
-      <Header>
-        <Widget
-          src="adminalpha.near/widget/AccountProfile"
-          props={{
-            accountId,
-            hideAccountId: true,
-            inlineContent: (
-              <>
-                <Text as="span">･</Text>
-                <Text>
-                  {blockHeight === "now" ? (
-                    "now"
-                  ) : (
-                    <>
-                      <Widget
-                        src="mob.near/widget/TimeAgo"
-                        props={{ blockHeight }}
-                      />{" "}
-                      ago
-                    </>
-                  )}
-                </Text>
-              </>
-            ),
-          }}
-        />
-      </Header>
-
-      <Body>
-        <Content>
-          {answer.text && (
-            <Widget
-              src="adminalpha.near/widget/SocialMarkdown"
-              props={{ text: answer.text }}
-            />
-          )}
-
-          {answer.image && (
-            <Widget
-              src="mob.near/widget/Image"
-              props={{
-                image: answer.image,
-              }}
-            />
-          )}
-        </Content>
-
-        {blockHeight !== "now" && (
-          <Actions>
-            <Widget
-              src="adminalpha.near/widget/LikeButton"
-              props={{
-                item,
-                accountId,
-              }}
-            />
-            <Widget
-              src="adminalpha.near/widget/CommentButton"
-              props={{
-                item,
-                onClick: () => State.update({ showReply: !state.showReply }),
-              }}
-            />
-          </Actions>
-        )}
-
-        {state.showReply && (
-          <div className="mb-2">
-            <Widget
-              src="adminalpha.near/widget/Comments.Compose"
-              props={{
-                accountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-          </div>
-        )}
-
-        <Comments>
-          <Widget
-            src="adminalpha.near/widget/Comments.Feed"
-            props={{
-              item,
-              highlightComment: props.highlightComment,
-              limit: props.commentsLimit,
-              subscribe,
-              raw,
-            }}
-          />
-        </Comments>
-      </Body>
-    </Post>
-  </>
-);
-
 return (
   <>
     <Post>
@@ -246,13 +147,6 @@ return (
               props={{
                 item,
                 onClick: () => State.update({ showReply: !state.showReply }),
-              }}
-            />
-
-            <Widget
-              src="adminalpha.near/widget/CopyUrlButton"
-              props={{
-                url: postUrl,
               }}
             />
           </Actions>
