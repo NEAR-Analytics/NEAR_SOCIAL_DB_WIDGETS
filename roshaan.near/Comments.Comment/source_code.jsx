@@ -170,7 +170,7 @@ return (
       {blockHeight !== "now" && (
         <Actions>
           <Widget
-            src="calebjacob.near/widget/LikeButton"
+            src="roshaan.near/widget/LikeButton"
             props={{
               item: {
                 type: "social",
@@ -178,6 +178,7 @@ return (
                 blockHeight,
               },
               notifyAccountId: state.notifyAccountId,
+              likes: [],
             }}
           />
           <Widget
