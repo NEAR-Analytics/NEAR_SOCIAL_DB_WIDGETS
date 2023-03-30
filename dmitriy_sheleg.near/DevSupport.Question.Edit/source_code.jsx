@@ -38,6 +38,9 @@ const setLabels = (labels) => {
   State.update({ labels, labelStrings });
 };
 
+const Wrapper = styled.div`
+  margin-left: 12px;
+`;
 const Title = styled.span`
   font-size: 20px;
   font-weight: 600;
@@ -67,8 +70,8 @@ const InputWrapper = styled.div`
 `;
 
 return (
-  <div className="row">
-    <div className="col-lg-12  mb-2">
+  <Wrapper className="row">
+    <div className="col-lg-12 mb-2">
       <Title>Title:</Title>
       <InputWrapper>
         <input
@@ -79,7 +82,7 @@ return (
         />
       </InputWrapper>
     </div>
-    <div className="col-lg-12  mb-2">
+    <div className="col-lg-12 mb-2">
       <Title>Choose topic:</Title>
       <InputWrapper>
         <Typeahead
@@ -94,7 +97,7 @@ return (
         />
       </InputWrapper>
     </div>
-    <div className="col-lg-12  mb-2">
+    <div className="col-lg-12 mb-2">
       <Title>Describe your question:</Title>
       <Widget
         src="dmitriy_sheleg.near/widget/DevSupport.Compose"
@@ -129,5 +132,5 @@ return (
         }}
       />
     </div>
-  </div>
+  </Wrapper>
 );
