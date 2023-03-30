@@ -62,19 +62,12 @@ return (
         onHelper: ({ extractTagNotifications }) => {
           State.update({ extractTagNotifications });
         },
+        withProfileImage: context.accountId,
         composeButton: (onCompose) => (
           <CommitButton
-            style={{
-              backgroundColor: "#59E692",
-              color: "#09342E",
-              fontWeight: 600,
-              borderRadius: "50px",
-              border: "none",
-              padding: ".5rem 1.75rem",
-            }}
             disabled={!state.content}
             force
-            className="btn"
+            className="commit-post-button"
             data={composeData}
             onCommit={() => {
               onCompose();
