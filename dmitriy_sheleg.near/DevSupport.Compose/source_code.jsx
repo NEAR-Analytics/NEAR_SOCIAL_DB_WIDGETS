@@ -1,6 +1,5 @@
 const autocompleteEnabled = props.autocompleteEnabled || true;
-const withProfileImage = props.withProfileImage;
-const accountId = props.accountId;
+const withProfileImage = props.withProfileImage || false;
 
 if (state.image === undefined) {
   State.init({
@@ -48,14 +47,9 @@ const content = (state.text || state.image.cid) && {
   image: state.image.cid ? { ipfs_cid: state.image.cid } : undefined,
 };
 
-const onChange = (text) => {
-  State.update({
-    text,
-  });
-};
-
 const jContent = JSON.stringify(content);
 if (props.onChange && jContent !== state.jContent) {
+  console.log("update");
   State.update({
     jContent,
   });
@@ -69,25 +63,17 @@ const onCompose = () => {
   });
 };
 
-function textareaInputHandler(value) {
+const textareaInputHandler = (value) => {
   const showAccountAutocomplete = /@[\w][^\s]*$/.test(value);
   State.update({ text: value, showAccountAutocomplete });
-}
+};
 
-function autoCompleteAccountId(id) {
+const autoCompleteAccountId = (id) => {
   let text = state.text.replace(/[\s]{0,1}@[^\s]*$/, "");
   text = `${text} @${id}`.trim() + " ";
   State.update({ text, showAccountAutocomplete: false });
-}
+};
 
-// const TextArea = styled.textarea`
-//   background-color: #ffffff;
-//   border: 1px solid #ECEEF0;
-//   border-radius: 8px;
-//   resize: none;
-//   padding-left: 5.5rem;
-//   padding-top: .75rem;
-// `;
 const AvatarWrapper = styled.div`
   position: absolute;
   left: 1.5rem;
@@ -96,7 +82,6 @@ const AvatarWrapper = styled.div`
 
 const Wrapper = styled.div`
   --padding: 12px;
-  --paddingLeft: ${withProfileImage ? "5.5rem" : "12px"};
   position: relative;
   margin-left: -12px;
   border-radius: 8px;
@@ -126,7 +111,7 @@ const Textarea = styled.div`
     min-height: 124px;
     font: inherit;
     padding: var(--padding) var(--padding) calc(40px + (var(--padding) * 2))
-      var(--paddingLeft);
+      var(--padding);
     margin: 0;
     resize: none;
     background: none;
@@ -233,48 +218,6 @@ const AutoComplete = styled.div`
   }
 `;
 
-// <div>
-//   <div className="py-2 position-relative">
-//     <AvatarWrapper>
-//       <Widget
-//         src="mob.near/widget/ProfileImage"
-//         props={{
-//           accountId,
-//           imageClassName: "rounded-circle w-100 h-100",
-//           imageStyle: {
-//             pointerEvents: "none",
-//             objectFit: "cover",
-//           },
-//         }}
-//       />
-//     </AvatarWrapper>
-//     <TextArea
-//       className="form-control"
-//       style={{ "min-height": "15vh" }}
-//       value={state.text || ""}
-//       onChange={(e) => onChange(e.target.value)}
-//       placeholder={props.placeholder ?? "What's happening?"}
-//     />
-//   </div>
-//   <div className="d-flex flex-row py-2">
-//     <div className="flex-grow-1">
-//       <IpfsImageUpload
-//         image={state.image}
-//         className="btn btn-outline-secondary"
-//         style={{
-//           backgroundColor: "#FAFAFA",
-//           color: "#006ADC",
-//           fontWeight: 600,
-//           borderRadius: "50px",
-//           border: "1px solid #E6E8EB",
-//           padding: ".5rem 1.75rem",
-//         }}
-//       />
-//     </div>
-//     <div>{props.composeButton && props.composeButton(onCompose)}</div>
-//   </div>
-// </div>
-
 return (
   <Wrapper>
     {withProfileImage && (
@@ -282,7 +225,7 @@ return (
         <Widget
           src="mob.near/widget/ProfileImage"
           props={{
-            accountId,
+            accountId: withProfileImage,
             imageClassName: "rounded-circle w-100 h-100",
             imageStyle: {
               pointerEvents: "none",
@@ -294,14 +237,15 @@ return (
     )}
     <Textarea data-value={state.text}>
       <textarea
-        placeholder="Write your reply..."
+        placeholder={props.placeholder || "Write your reply..."}
+        value={state.text || ""}
         onInput={(event) => textareaInputHandler(event.target.value)}
         onKeyUp={(event) => {
           if (event.key === "Escape") {
             State.update({ showAccountAutocomplete: false });
           }
         }}
-        value={state.text}
+        style={{ paddingLeft: withProfileImage ? "5.5rem" : "12px" }}
       />
     </Textarea>
 
@@ -317,7 +261,6 @@ return (
         />
       </AutoComplete>
     )}
-
     <Actions>
       <IpfsImageUpload
         image={state.image}
