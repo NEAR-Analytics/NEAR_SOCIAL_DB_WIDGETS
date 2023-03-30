@@ -79,7 +79,7 @@ const APP_INDEX_KEY = "widget-chatv2-dev";
 //   }
 // }
 
-console.log("Valor:", foo);
+// console.log("Valor:", foo);
 
 // Social.set(
 //       {
@@ -164,7 +164,12 @@ const getRoomDataHandler = (request, response, Utils) => {
   }
 
   Utils.promisify(
-    () => fetchRooms(),
+    () =>
+      Social.index(payload.roomId, "data", {
+        subscribe: true,
+        limit: 100,
+        order: "desc",
+      }),
     (roomData) => {
       const roomExists = roomData && roomData.length > 0;
       if (!roomExists) {
@@ -288,7 +293,7 @@ const getRoomsListHandler = (request, response, Utils) => {
 // Helpers
 const fetchRooms = () => {
   const data = Social.index(APP_INDEX_KEY, "room", {
-    // subscribe: true,
+    subscribe: true,
     limit: 100,
     order: "desc",
   });
