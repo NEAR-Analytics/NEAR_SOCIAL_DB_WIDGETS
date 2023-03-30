@@ -117,6 +117,11 @@ const handleAmount = (e) => {
 const handleApprove = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
+  if (amount > state.balance) {
+    State.update({ hasError: true });
+    return;
+  }
+
   const erc20 = new ethers.Contract(
     selectedTokenId,
     EIP20InterfaceABI,
@@ -139,6 +144,11 @@ const handleApprove = () => {
 
 const handleDeposit = () => {
   if (!selectedTokenId || !amount || hasError) return;
+
+  if (amount > state.balance) {
+    State.update({ hasError: true });
+    return;
+  }
 
   let contractABI;
   if (selectedTokenId == "ETH") {
@@ -178,6 +188,9 @@ const walletBalance = () => {
   const cal = (
     Number(bigValue) / Math.pow(10, TokensDetail[selectedTokenId].decimals)
   ).toFixed(2);
+  State.update({
+    balance: Number(cal),
+  });
   return cal;
 };
 
@@ -201,6 +214,40 @@ const getAllowance = () => {
   State.update({
     allowance: Number(cal),
   });
+};
+
+const remainingBalance = () => {
+  let totalBorrowLimit = ethers.BigNumber.from(0);
+  let totalBorrowd = ethers.BigNumber.from(0);
+  for (const key of dataArray) {
+    // find total borrow limit
+    const indexBalance = state.cTokenBalancesAll.findIndex(
+      (element) => element[0] == key
+    );
+    const indexMeta = state.cTokenMetadataAll.findIndex(
+      (element) => element[0] == key
+    );
+    const bigValue = state.cTokenBalancesAll[indexBalance][1].mul(
+      state.cTokenBalancesAll[indexBalance][3]
+    );
+    const valueUsd = bigValue.mul(state.cTokenMetadataAll[indexMeta][1]);
+    const valueWithCFactor = valueUsd.mul(
+      state.cTokenMetadataAll[indexMeta][11]
+    );
+    totalBorrowLimit = totalBorrowLimit.add(valueWithCFactor);
+    // find total borrowed
+    const bigValueBorrowedUSD = state.cTokenBalancesAll[indexBalance][2].mul(
+      state.cTokenMetadataAll[indexMeta][1]
+    );
+    totalBorrowd = totalBorrowd.add(bigValueBorrowedUSD);
+  }
+  const totalBorrowdFinal = (
+    Number(totalBorrowd.toString()) / Math.pow(10, 18 * 2)
+  ).toFixed(2);
+  const totalBorrowdLimitFinal = (
+    Number(totalBorrowLimit.toString()) / Math.pow(10, 18 * 4)
+  ).toFixed(2);
+  return totalBorrowdLimitFinal - totalBorrowdFinal;
 };
 
 if (!state.actionTabs) {
@@ -278,10 +325,7 @@ return (
           ) : state.actionTabs == "borrow" ? (
             <div>
               <span class="badge bg-light text-dark">
-                Wallet Balance2: {walletBalance()}
-              </span>
-              <span class="badge bg-light text-dark">
-                Supply Balance2: {supplyBalance()}
+                Remaining Borrow Limit: $ {remainingBalance()}
               </span>
               {getAllowance()}
             </div>
@@ -312,6 +356,7 @@ return (
       {state.actionTabs == "deposit" ? (
         state.amount > state.allowance ? (
           <button
+            disabled={state.amount == undefined || state.amount == ""}
             onClick={handleApprove}
             style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
           >
@@ -319,6 +364,7 @@ return (
           </button>
         ) : (
           <button
+            disabled={state.amount == undefined || state.amount == ""}
             onClick={handleDeposit}
             style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
           >
