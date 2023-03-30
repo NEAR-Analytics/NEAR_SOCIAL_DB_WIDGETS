@@ -1,4 +1,4 @@
-// This is a DEV env Widget
+// This is a DEV env Widget.
 // if (!context.accountId || context.accountId !== "wendersonpires.near")
 //   return null;
 
@@ -6,7 +6,7 @@
  * External App URL (must)
  */
 const externalAppUrl = "https://near-test-app.web.app/";
-// const externalAppUrl = "https://a5177dd263a7.ngrok.app";
+// const externalAppUrl = "https://429a3b62a245.ngrok.app";
 
 /**
  * Initial Path (optional but recommended)
