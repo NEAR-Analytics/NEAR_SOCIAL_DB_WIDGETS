@@ -75,7 +75,7 @@ return data !== null ? (
           return (
             <div className="d-flex flex-column gap-1">
               <a
-                href={`https://mintbase.xyz/meta/${listing.metadata_id}/`}
+                href={`https://mintbase.xyz/meta/${listing.metadata_id}?affiliateAccount=metameech.near/`}
                 target="_blank"
               >
                 <Widget
