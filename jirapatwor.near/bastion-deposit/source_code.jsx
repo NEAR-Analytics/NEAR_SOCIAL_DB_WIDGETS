@@ -229,7 +229,6 @@ const getAllowance = () => {
   State.update({
     allowance: Number(cal),
   });
-  return cal;
 };
 
 const remainingBalance = () => {
