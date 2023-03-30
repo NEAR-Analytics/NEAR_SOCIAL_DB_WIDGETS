@@ -209,7 +209,7 @@ if (!state.actionTabs) {
 
 return (
   <div style={{ maxWidth: "400px" }}>
-    <div class="card-body d-grid gap-3">
+    <div class="card-body d-grid gap-3 mt-5">
       <div class="action btn-group" role="group" aria-label="Deposit">
         <input
           type="radio"
@@ -264,16 +264,40 @@ return (
             );
           })}
         </select>
-        {state.selectedTokenId !== undefined && state.selectedTokenId !== "" && (
-          <div>
-            <span class="badge bg-light text-dark">
-              Wallet Balance: {walletBalance()}
-            </span>
-            <span class="badge bg-light text-dark">
-              Supply Balance: {supplyBalance()}
-            </span>
-            {getAllowance()}
-          </div>
+        {state.selectedTokenId !== undefined && state.selectedTokenId !== "" ? (
+          state.actionTabs == "deposit" ? (
+            <div>
+              <span class="badge bg-light text-dark">
+                Wallet Balance: {walletBalance()}
+              </span>
+              <span class="badge bg-light text-dark">
+                Supply Balance: {supplyBalance()}
+              </span>
+              {getAllowance()}
+            </div>
+          ) : state.actionTabs == "borrow" ? (
+            <div>
+              <span class="badge bg-light text-dark">
+                Wallet Balance2: {walletBalance()}
+              </span>
+              <span class="badge bg-light text-dark">
+                Supply Balance2: {supplyBalance()}
+              </span>
+              {getAllowance()}
+            </div>
+          ) : (
+            <div>
+              <span class="badge bg-light text-dark">
+                Wallet Balance3: {walletBalance()}
+              </span>
+              <span class="badge bg-light text-dark">
+                Supply Balance2: {supplyBalance()}
+              </span>
+              {getAllowance()}
+            </div>
+          )
+        ) : (
+          ""
         )}
       </div>
       <div>
@@ -285,20 +309,24 @@ return (
           Amount greater than balance
         </p>
       )}
-      {state.amount > state.allowance ? (
-        <button
-          onClick={handleApprove}
-          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-        >
-          Approve
-        </button>
+      {state.actionTabs == "deposit" ? (
+        state.amount > state.allowance ? (
+          <button
+            onClick={handleApprove}
+            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+          >
+            Approve
+          </button>
+        ) : (
+          <button
+            onClick={handleDeposit}
+            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+          >
+            Deposit
+          </button>
+        )
       ) : (
-        <button
-          onClick={handleDeposit}
-          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-        >
-          Deposit
-        </button>
+        ""
       )}
     </div>
   </div>
