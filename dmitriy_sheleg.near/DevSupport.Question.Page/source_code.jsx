@@ -141,7 +141,12 @@ return (
           }}
         />
       </div>
-      <SidebarWrapper className="col-4 ps-5">sidebar content</SidebarWrapper>
+      <SidebarWrapper className="col-4 ps-5">
+        <Widget
+          src="dmitriy_sheleg.near/widget/AccountProfileCard"
+          props={{ accountId }}
+        />
+      </SidebarWrapper>
     </div>
     {/*{footer}*/}
   </div>
