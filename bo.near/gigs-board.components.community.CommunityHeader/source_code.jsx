@@ -49,7 +49,7 @@ const Grey = styled.div`
     position: fixed;
     left: calc(-50vw + 50%);
     width: 100vw;
-    height: 205px;
+    height: 204px;
     z-index: 11;
     margin-top: 76px;
 
@@ -69,6 +69,7 @@ const Content = styled.div`
 
 const NavUnderline = styled.ul`
   a.active {
+    font-weight: bold;
     border-bottom: 2px solid #0C7283;
   }
 `
@@ -98,7 +99,7 @@ return (
         </div>
       </div>
       <div>
-        <NavUnderline className="nav">
+        <NavUnderline className="nav text-decoration-none">
           <li class="nav-item">
             <a
               class="nav-link active"
