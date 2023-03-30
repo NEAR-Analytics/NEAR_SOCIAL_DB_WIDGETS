@@ -101,7 +101,7 @@ const handleSelect = (e) => {
   State.update({
     selectedTokenId: e.target.value,
     amount: "",
-    hasError: false,
+    hasError: 0,
     allowance: alw,
   });
 };
@@ -110,7 +110,7 @@ const handleAmount = (e) => {
   State.update({
     amount: Number(e.target.value),
     selectedTokenId,
-    hasError: false,
+    hasError: 0,
   });
 };
 
@@ -118,7 +118,7 @@ const handleApprove = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
   if (amount > state.balance) {
-    State.update({ hasError: true });
+    State.update({ hasError: 1 });
     return;
   }
 
@@ -131,7 +131,7 @@ const handleApprove = () => {
   const expandedAmount = expandToken(
     amount,
     TokensDetail[selectedTokenId].decimals
-  ).toFixed();
+  ).toString();
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
 
@@ -146,7 +146,7 @@ const handleDeposit = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
   if (amount > state.balance) {
-    State.update({ hasError: true });
+    State.update({ hasError: 1 });
     return;
   }
 
@@ -166,7 +166,7 @@ const handleDeposit = () => {
   const expandedAmount = expandToken(
     amount,
     TokensDetail[selectedTokenId].decimals
-  ).toFixed();
+  ).toString();
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
 
@@ -247,7 +247,52 @@ const remainingBalance = () => {
   const totalBorrowdLimitFinal = (
     Number(totalBorrowLimit.toString()) / Math.pow(10, 18 * 4)
   ).toFixed(2);
-  return totalBorrowdLimitFinal - totalBorrowdFinal;
+  State.update({
+    LimitAmount: (totalBorrowdLimitFinal - totalBorrowdFinal).toFixed(2),
+  });
+  return (totalBorrowdLimitFinal - totalBorrowdFinal).toFixed(2);
+};
+
+const handleBorrow = () => {
+  if (!selectedTokenId || !amount || hasError) return;
+  if (state.amount > state.LimitAmount) {
+    State.update({ hasError: 2 });
+    return;
+  }
+
+  let contractABI;
+  if (selectedTokenId == "ETH") {
+    contractABI = CEthABI;
+  } else {
+    contractABI = CErc20ABI;
+  }
+
+  const connection = new ethers.Contract(
+    TokensDetail[selectedTokenId].cAddress,
+    contractABI,
+    Ethers.provider().getSigner()
+  );
+
+  const expandedAmount = expandToken(
+    amount,
+    TokensDetail[selectedTokenId].decimals
+  ).toString();
+
+  const toBigNumber = ethers.BigNumber.from(expandedAmount);
+
+  connection.borrow(toBigNumber).then((transactionHash) => {
+    State.update({ success: true });
+    console.log("transactionHash is " + transactionHash);
+  });
+};
+
+const getBorrowed = () => {
+  const rewardIndex = getCTokenBalancesAllIndex();
+  const bigValueBorrowed = state.cTokenBalancesAll[rewardIndex][2];
+  return (
+    Number(bigValueBorrowed.toString()) /
+    Math.pow(10, TokensDetail[selectedTokenId].decimals)
+  ).toFixed(2);
 };
 
 if (!state.actionTabs) {
@@ -332,10 +377,10 @@ return (
           ) : (
             <div>
               <span class="badge bg-light text-dark">
-                Wallet Balance3: {walletBalance()}
+                Wallet Balance: {walletBalance()}
               </span>
               <span class="badge bg-light text-dark">
-                Supply Balance2: {supplyBalance()}
+                Amount Borrowed: {getBorrowed()}
               </span>
               {getAllowance()}
             </div>
@@ -348,10 +393,20 @@ return (
         <div class="mb-2 text-muted">Amount</div>
         <input type="number" value={amount} onChange={handleAmount} />
       </div>
-      {hasError && (
+      {state.hasError == 1 ? (
         <p class="alert alert-danger" role="alert">
           Amount greater than balance
         </p>
+      ) : state.hasError == 2 ? (
+        <p class="alert alert-danger" role="alert">
+          Amount greater than Remaining Borrow Limit
+        </p>
+      ) : state.success == true ? (
+        <p class="alert alert-success" role="alert">
+          Your transaction was sent successfully
+        </p>
+      ) : (
+        ""
       )}
       {state.actionTabs == "deposit" ? (
         state.amount > state.allowance ? (
@@ -371,6 +426,14 @@ return (
             Deposit
           </button>
         )
+      ) : state.actionTabs == "borrow" ? (
+        <button
+          disabled={state.amount == undefined || state.amount == ""}
+          onClick={handleBorrow}
+          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+        >
+          Borrow
+        </button>
       ) : (
         ""
       )}
