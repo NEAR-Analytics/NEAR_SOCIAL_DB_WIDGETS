@@ -268,6 +268,15 @@ return (
         {state.showReply && (
           <div className="mb-2">
             <Widget
+              src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
+              props={{
+                notifyAccountId: accountId,
+                item,
+                onComment: () => State.update({ showReply: false }),
+              }}
+            />
+            {/**
+            <Widget
               src="adminalpha.near/widget/Comments.Compose"
               props={{
                 accountId,
@@ -275,6 +284,7 @@ return (
                 onComment: () => State.update({ showReply: false }),
               }}
             />
+            */}
           </div>
         )}
 
