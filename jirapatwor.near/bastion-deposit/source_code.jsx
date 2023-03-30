@@ -117,9 +117,16 @@ const handleAmount = (e) => {
 const handleApprove = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
-  if (amount > state.balance) {
-    State.update({ hasError: 1 });
-    return;
+  if (state.actionTabs == "repay") {
+    if (amount > state.borrowedAmount) {
+      State.update({ hasError: 3 });
+      return;
+    }
+  } else if (state.actionTabs == "deposit") {
+    if (amount > state.balance) {
+      State.update({ hasError: 1 });
+      return;
+    }
   }
 
   const erc20 = new ethers.Contract(
@@ -289,10 +296,12 @@ const handleBorrow = () => {
 const getBorrowed = () => {
   const rewardIndex = getCTokenBalancesAllIndex();
   const bigValueBorrowed = state.cTokenBalancesAll[rewardIndex][2];
-  return (
+  const finalValue = (
     Number(bigValueBorrowed.toString()) /
     Math.pow(10, TokensDetail[selectedTokenId].decimals)
   ).toFixed(2);
+  State.update({ borrowedAmount: finalValue });
+  return finalValue;
 };
 
 if (!state.actionTabs) {
@@ -401,6 +410,10 @@ return (
         <p class="alert alert-danger" role="alert">
           Amount greater than Remaining Borrow Limit
         </p>
+      ) : state.hasError == 3 ? (
+        <p class="alert alert-danger" role="alert">
+          Amount greater than Amount Borrowed
+        </p>
       ) : state.success == true ? (
         <p class="alert alert-success" role="alert">
           Your transaction was sent successfully
@@ -434,8 +447,22 @@ return (
         >
           Borrow
         </button>
+      ) : state.amount > state.allowance ? (
+        <button
+          disabled={state.amount == undefined || state.amount == ""}
+          onClick={handleApprove}
+          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+        >
+          Approve
+        </button>
       ) : (
-        ""
+        <button
+          disabled={state.amount == undefined || state.amount == ""}
+          onClick={handleRepay}
+          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+        >
+          Repay
+        </button>
       )}
     </div>
   </div>
