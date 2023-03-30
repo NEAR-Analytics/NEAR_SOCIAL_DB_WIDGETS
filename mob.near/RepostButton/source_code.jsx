@@ -118,8 +118,8 @@ return (
       )}
     </RepostButton>
     <Widget
-      src="mob.near/widget/RepostButton.Faces"
-      props={{ repostsByUsers }}
+      src="mob.near/widget/LikeButton.Faces"
+      props={{ likesByUsers: repostsByUsers }}
     />
   </div>
 );
