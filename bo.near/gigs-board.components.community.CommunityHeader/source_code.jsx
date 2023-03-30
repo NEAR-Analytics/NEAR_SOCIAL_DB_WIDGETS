@@ -87,7 +87,7 @@ return (
         </ol>
       </div>
       <div class="d-flex flex-row align-items-center pb-3">
-        <img src={props.icon}></img>
+        <img src={props.icon} width="95px" height="95px"></img>
         <div>
           <div class="h5 pt-3 ps-3">{props.title}</div>
           <div class="ps-3 pb-2 text-secondary">{props.desc}</div>
