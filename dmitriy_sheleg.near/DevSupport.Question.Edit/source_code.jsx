@@ -39,7 +39,7 @@ const setLabels = (labels) => {
 };
 
 const Wrapper = styled.div`
-  margin-left: 12px;
+  margin-left: 0;
 `;
 const Title = styled.span`
   font-size: 20px;
