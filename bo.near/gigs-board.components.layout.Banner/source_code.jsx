@@ -55,6 +55,8 @@ const Banner = styled.div`
   img {
     height: 36px;
   }
+  
+  margin-bottom: 25px;
 }
 `;
 
