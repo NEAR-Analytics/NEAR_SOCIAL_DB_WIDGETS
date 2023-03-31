@@ -15,6 +15,20 @@ if (!sender)
 const LenABI = fetch(
   "https://raw.githubusercontent.com/pysrbastion/bastion-abi/main/Lens.json"
 ).body;
+const EIP20InterfaceABI = fetch(
+  "https://raw.githubusercontent.com/JirapatWov/bos/main/EIP20.json"
+).body;
+const CEthABI = fetch(
+  "https://raw.githubusercontent.com/JirapatWov/bos/main/CEther.json"
+).body;
+const CErc20ABI = fetch(
+  "https://raw.githubusercontent.com/JirapatWov/bos/main/CErc20.json"
+).body;
+
+const checkABI1 = JSON.parse(LenABI);
+const checkABI2 = JSON.parse(EIP20InterfaceABI);
+const checkABI3 = JSON.parse(CEthABI);
+const checkABI4 = JSON.parse(CErc20ABI);
 
 const lenContract = "0x080B5ce373fE2103A7086b31DabA412E88bD7356";
 
@@ -83,15 +97,14 @@ const TokensDetail = {
 };
 
 const Comptroller = "0x6De54724e128274520606f038591A00C5E94a1F6";
-const EIP20InterfaceABI = fetch(
-  "https://raw.githubusercontent.com/JirapatWov/bos/main/EIP20.json"
-).body;
-const CEthABI = fetch(
-  "https://raw.githubusercontent.com/JirapatWov/bos/main/CEther.json"
-).body;
-const CErc20ABI = fetch(
-  "https://raw.githubusercontent.com/JirapatWov/bos/main/CErc20.json"
-).body;
+
+if (!checkABI1 || !checkABI2 || !checkABI3 || !checkABI4) {
+  return (
+    <div>
+      <h2>Loading Data...</h2>
+    </div>
+  );
+}
 
 len.callStatic
   .getAccountLimits(Comptroller, sender)
@@ -613,7 +626,7 @@ return (
       </div>
     ) : (
       <div>
-        <h2>Loading</h2>
+        <h2>Loading...</h2>
       </div>
     )}
   </div>
