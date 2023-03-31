@@ -133,154 +133,105 @@ const overlay = (
 );
 
 return (
-  <>
-    <Post>
-      <Header>
-        <Widget
-          src="dmitriy_sheleg.near/widget/AccountProfile"
-          props={{
-            accountId,
-            inlineContent: (
-              <div class="d-flex align-items-center flex-fill">
-                <Text as="span">･</Text>
-                <Text>
-                  {blockHeight === "now" ? (
-                    "now"
-                  ) : (
-                    <>
-                      <Widget
-                        src="mob.near/widget/TimeAgo"
-                        props={{ blockHeight }}
-                      />{" "}
-                      ago
-                    </>
-                  )}
-                </Text>
-                <OverlayTrigger
-                  show={state.showOverlay}
-                  trigger={["hover", "focus"]}
-                  delay={{ show: 250, hide: 300 }}
-                  placement="auto"
-                  overlay={overlay}
+  <Post>
+    <Header>
+      <Widget
+        src="dmitriy_sheleg.near/widget/AccountProfile"
+        props={{
+          accountId,
+          inlineContent: (
+            <div class="d-flex align-items-center flex-fill">
+              <Text as="span">･</Text>
+              <Text>
+                {blockHeight === "now" ? (
+                  "now"
+                ) : (
+                  <>
+                    <Widget
+                      src="mob.near/widget/TimeAgo"
+                      props={{ blockHeight }}
+                    />{" "}
+                    ago
+                  </>
+                )}
+              </Text>
+              <OverlayTrigger
+                show={state.showOverlay}
+                trigger={["hover", "focus"]}
+                delay={{ show: 250, hide: 300 }}
+                placement="auto"
+                overlay={overlay}
+              >
+                <span
+                  className="ms-auto"
+                  onMouseEnter={handleOnMouseEnter}
+                  onMouseLeave={handleOnMouseLeave}
                 >
-                  <span
-                    className="ms-auto"
-                    onMouseEnter={handleOnMouseEnter}
-                    onMouseLeave={handleOnMouseLeave}
-                  >
-                    <i class="bi bi-three-dots" />
-                  </span>
-                </OverlayTrigger>
-              </div>
-            ),
-          }}
-        />
-      </Header>
-      <Body>
-        <Content>
-          {answer.text && (
-            <Widget
-              src="adminalpha.near/widget/SocialMarkdown"
-              props={{ text: answer.text }}
-            />
-          )}
-
-          {answer.image && (
-            <Widget
-              src="mob.near/widget/Image"
-              props={{
-                image: answer.image,
-              }}
-            />
-          )}
-        </Content>
-
-        {blockHeight !== "now" && (
-          <Actions>
-            <Widget
-              src="adminalpha.near/widget/LikeButton"
-              props={{
-                item,
-                accountId,
-              }}
-            />
-            <Widget
-              src="adminalpha.near/widget/CommentButton"
-              props={{
-                item,
-                onClick: () => State.update({ showReply: !state.showReply }),
-              }}
-            />
-          </Actions>
-        )}
-
-        {state.showReply && (
-          <div className="mb-2">
-            <Widget
-              src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
-              props={{
-                notifyAccountId: accountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-          </div>
-        )}
-
-        <Comments>
-          <Widget
-            src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
-            props={{ item, admins, adminContract, nested: true }}
-          />
-        </Comments>
-      </Body>
-    </Post>
-
-    {/**
-    <div className={`border ${border} mt-3 p-3`}>
-      <Widget
-        src="mob.near/widget/Profile.ShortInlineBlock"
-        props={{ accountId, tooltip: false }}
-      />
-      <hr />
-
-      <div class="mt-3">
-        <Widget
-          src="mob.near/widget/MainPage.Post.Content"
-          props={{ content: { text: answer.text } }}
-        />
-      </div>
-
-      <button
-        class="btn btn-success"
-        onClick={() => {
-          State.update({ showAnswer: !state.showAnswer });
+                  <i class="bi bi-three-dots" />
+                </span>
+              </OverlayTrigger>
+            </div>
+          ),
         }}
-      >
-        Comment
-      </button>
-
-      <Widget
-        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Button.Valid"
-        props={{ accountId, blockHeight, admins, adminContract }}
       />
+    </Header>
+    <Body>
+      <Content>
+        {answer.text && (
+          <Widget
+            src="adminalpha.near/widget/SocialMarkdown"
+            props={{ text: answer.text }}
+          />
+        )}
 
-      {state.showAnswer && (
-        <Widget
-          src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Edit"
-          props={{
-            notifyAccountId: accountId,
-            item,
-            onComment: () => State.update({ showReply: false }),
-          }}
-        />
+        {answer.image && (
+          <Widget
+            src="mob.near/widget/Image"
+            props={{
+              image: answer.image,
+            }}
+          />
+        )}
+      </Content>
+
+      {blockHeight !== "now" && (
+        <Actions>
+          <Widget
+            src="adminalpha.near/widget/LikeButton"
+            props={{
+              item,
+              accountId,
+            }}
+          />
+          <Widget
+            src="adminalpha.near/widget/CommentButton"
+            props={{
+              item,
+              onClick: () => State.update({ showReply: !state.showReply }),
+            }}
+          />
+        </Actions>
       )}
 
-      <Widget
-        src="ae40cb52839f896de8ec2313e5d7ef5f3b05b9ebc474329fa3456eec32126055/widget/DevSupport.Answer.Feed"
-        props={{ item, admins, adminContract, nested: true }}
-      />
-    </div>
-     */}
-  </>
+      {state.showReply && (
+        <div className="mb-2">
+          <Widget
+            src="dmitriy_sheleg.near/widget/DevSupport.Answer.Edit"
+            props={{
+              notifyAccountId: accountId,
+              item,
+              onComment: () => State.update({ showReply: false }),
+            }}
+          />
+        </div>
+      )}
+
+      <Comments>
+        <Widget
+          src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
+          props={{ item, admins, adminContract, nested: true }}
+        />
+      </Comments>
+    </Body>
+  </Post>
 );
