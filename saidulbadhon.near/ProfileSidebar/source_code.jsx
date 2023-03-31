@@ -36,8 +36,8 @@ return (
     style={{
       display: "flex",
       flexDirection: "column",
-      gap: 20,
-      paddingInline: 20,
+      gap: 16,
+      paddingInline: 16,
     }}
   >
     <div>
@@ -62,7 +62,7 @@ return (
           src={url}
           alt="profile"
         />
-        <div style={{ paddingBlock: 10 }}>
+        <div style={{ paddingBlock: 8 }}>
           <h2 style={{ textAlign: "center", color: props.theme.textColor }}>
             {name}
           </h2>
