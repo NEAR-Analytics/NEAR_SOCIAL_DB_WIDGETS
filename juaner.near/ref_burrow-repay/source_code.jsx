@@ -24,20 +24,21 @@ if (!accountId) {
   return <Widget src="juaner.near/widget/ref_account-signin" />;
 }
 
-const listAssets =
-  assets &&
-  assets
-    ?.filter((a) => a.accountBalance > 0)
-    ?.map((asset) => {
-      const { token_id, metadata } = asset;
-      if (account.borrowed.map((a) => a.token_id).includes(token_id)) {
-        return (
-          <option key={token_id} value={token_id}>
-            {metadata.symbol}
-          </option>
-        );
-      }
-    });
+const listAssets = [];
+const hasBalanceTokens =
+  (assets && assets.filter((a) => a.accountBalance > 0)) || [];
+const borrowedTokens =
+  (account && account.borrowed.map((a) => a.token_id)) || [];
+hasBalanceTokens.forEach((asset) => {
+  const { token_id, metadata } = asset;
+  if (borrowedTokens.includes(token_id)) {
+    listAssets.push(
+      <option key={token_id} value={token_id}>
+        {metadata.symbol}
+      </option>
+    );
+  }
+});
 
 let availableBalance = 0;
 let apy = 0;
