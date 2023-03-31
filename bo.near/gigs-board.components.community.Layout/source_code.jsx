@@ -87,7 +87,7 @@ const communities = {
 
 const Content = styled.div`
 {
-  padding-left: 32px;
+  padding: 0 32px;
 }`
 
 if (!props.label) {
