@@ -83,17 +83,17 @@ const COLUMNS = [
     sort: { sortKey: "PercentNew" },
   },
   {
-    label: "M / M",
+    label: <p className="text-white text-wrap ">M/M</p>,
     renderCell: (item) => formatText(item["M/M"]),
     sort: { sortKey: "MM" },
   },
   {
-    label: <span className="text-white text-wrap ">60-90 Days Ago</span>,
+    label: <p className="text-white text-wrap ">60-90 Days Ago</p>,
     renderCell: (item) => formatNumber(item["60-90 Days Ago"]),
     sort: { sortKey: "Past60" },
   },
   {
-    label: "M / 2M",
+    label: <p className="text-white text-wrap">M/2M</p>,
     renderCell: (item) => formatText(item["M/2M"]),
     sort: { sortKey: "M2M" },
   },
