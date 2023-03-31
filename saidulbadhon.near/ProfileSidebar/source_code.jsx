@@ -37,6 +37,7 @@ return (
       display: "flex",
       flexDirection: "column",
       gap: 16,
+      paddingTop: 16,
       paddingInline: 16,
     }}
   >
