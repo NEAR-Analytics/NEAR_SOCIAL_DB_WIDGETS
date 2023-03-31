@@ -45,12 +45,44 @@ function href(widgetName, linkProps) {
 /* END_INCLUDE: "common.jsx" */
 
 const Banner = styled.div`
+   {
+   {
+    position: fixed;
+    left: calc(-50vw + 50%);
+    width: 100vw;
 {
+    position: fixed;
+    left: calc(-50vw + 50%);
+    width: 100vw;
   height: 100px;
   background: #232323;
+    margin-top: -24px;
+    margin-top: -24px;
+
   margin-top: -24px;
+
+    overflow: hidden;
+    overflow: hidden;
+  }
+`;
+
+const Logo = styled.div`
+   {
+    position: fixed;
   overflow: hidden;
+  }
+`;
+
+const Logo = styled.div`
+   {
+    position: fixed;
+    padding: 32px 0;
+    padding: 32px 0;
+    z-index: 13;
+    margin-top: -24px;
   padding: 32px 0;
+    z-index: 13;
+    margin-top: -24px;
 
   img {
     height: 36px;
@@ -82,6 +114,8 @@ const Gradient = styled.div`
 return (
   <>
     <Banner>
+      <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
+
       <Gradient></Gradient>
     </Banner>
   </>
