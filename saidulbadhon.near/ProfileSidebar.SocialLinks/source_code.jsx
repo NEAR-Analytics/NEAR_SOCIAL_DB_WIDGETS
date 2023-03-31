@@ -19,7 +19,10 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
 
-    backgroundColor: "rgba(0, 0, 0, 0.05)",
+    backgroundColor:
+      theme.name === "dark"
+        ? "rgba(255, 255, 255, 0.05)"
+        : "rgba(0, 0, 0, 0.05)",
 
     transition: "all 0.2s ease-in-out",
   },
