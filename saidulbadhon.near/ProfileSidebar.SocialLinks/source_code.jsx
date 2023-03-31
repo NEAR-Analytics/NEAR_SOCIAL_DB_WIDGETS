@@ -23,6 +23,9 @@ const styles = {
 
     transition: "all 0.2s ease-in-out",
   },
+  invertColor: {
+    filter: "invert(10%)",
+  },
 };
 
 return (
@@ -37,7 +40,7 @@ return (
               target="_blank"
             >
               <img
-                className="invertColor"
+                style={styles.invertColor}
                 style={{ height: 20, opacity: 0.5 }}
                 src="https://cdn-icons-png.flaticon.com/512/733/733635.png"
                 alt="twitter"
@@ -51,7 +54,7 @@ return (
                 target="_blank"
               >
                 <img
-                  className="invertColor"
+                  style={styles.invertColor}
                   style={{ height: 20, opacity: 0.5 }}
                   src="https://cdn-icons-png.flaticon.com/512/2111/2111425.png"
                   alt="github"
@@ -65,7 +68,7 @@ return (
                 target="_blank"
               >
                 <img
-                  className="invertColor"
+                  style={styles.invertColor}
                   style={{ height: 20, opacity: 0.5 }}
                   src="https://cdn-icons-png.flaticon.com/512/2111/2111708.png"
                   alt="telegram"
@@ -75,7 +78,7 @@ return (
             (name === "website" && (
               <a style={styles.socialIcon} href={value} target="_blank">
                 <img
-                  className="invertColor"
+                  style={styles.invertColor}
                   style={{ height: 20, opacity: 0.5 }}
                   src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
                   alt="website"
