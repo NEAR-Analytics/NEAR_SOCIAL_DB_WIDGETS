@@ -35,7 +35,7 @@ button {
 }
 
 .Label {
-  color: white;
+  color: black;
   font-size: 15px;
   line-height: 1;
 }
