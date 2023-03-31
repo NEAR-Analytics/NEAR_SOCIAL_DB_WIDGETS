@@ -49,7 +49,7 @@ const Banner = styled.div`
   height: 100px;
   background: #232323;
   margin-top: -24px;
-  overflow: hidden;
+  overflow: hidden !important;
   padding: 32px;
 
   img {
@@ -62,11 +62,11 @@ const Banner = styled.div`
 
 const Gradient = styled.div`
    {
-    position: absolute;
+    position: relative;
     left: -48vw;
     width: 173vw;
     height: 70vw;
-    top: -40vw;
+    top: -70vw;
     transform: rotate(9.78deg);
     background: linear-gradient(
       -90deg,
@@ -81,9 +81,9 @@ const Gradient = styled.div`
 return (
   <>
     <Banner>
-    <a href={href("Feed")}>
-  <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
-</a>
+      <a href={href("Feed")}>
+        <img src="https://ipfs.near.social/ipfs/bafkreifm5y7r6bqcjtef6wytrp7ysdxocmgmjffjziorqya4p7kbtamntu"></img>
+      </a>
       <Gradient></Gradient>
     </Banner>
   </>
