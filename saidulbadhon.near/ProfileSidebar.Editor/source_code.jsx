@@ -54,7 +54,7 @@ const styles = {
     width: "100%",
     backgroundColor: "transparent",
     minHeight: 30,
-    border: `1px solid ${theme.borderColor3}`,
+    border: `1px solid ${theme.borderColor}`,
     borderRadius: 4,
     resize: "vertical",
     paddingInline: 8,
