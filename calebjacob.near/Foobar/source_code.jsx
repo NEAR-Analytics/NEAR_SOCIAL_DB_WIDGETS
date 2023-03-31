@@ -1,16 +1,11 @@
+const childSrc =
+  context.networkId === "mainnet"
+    ? "calebjacob.near/widget/TestButton"
+    : "preview.testnet/widget/TestButton";
+
 return (
-  <>
-    <Widget
-      src="calebjacob.near/widget/Theme"
-      props={{
-        children: (
-          <>
-            <button style={{ background: "var(--primary-color)" }}>
-              Click Me
-            </button>
-          </>
-        ),
-      }}
-    />
-  </>
+  <div>
+    <p>A child dependency:</p>
+    <Widget src={childSrc} props={{ label: "Click Me" }} />
+  </div>
 );
