@@ -112,7 +112,7 @@ return (
           }}
         >
           <Widget
-            src="zahidulislam.near/widget/Profile.SocialLinks"
+            src="saidulbadhon.near/widget/ProfileSidebar.SocialLinks"
             props={{ profile }}
           />
         </div>
