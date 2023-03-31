@@ -24,7 +24,7 @@ const styles = {
     transition: "all 0.2s ease-in-out",
   },
   invertColor: {
-    filter: "invert(10%)",
+    filter: "invert(50%)",
   },
 };
 
