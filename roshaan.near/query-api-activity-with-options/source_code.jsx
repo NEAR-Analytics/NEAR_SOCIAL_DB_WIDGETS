@@ -20,14 +20,11 @@ const Subheading = styled.h2`
   white-space: nowrap;
   outline: none;
 `;
-
 const postsQuery = `
   query IndexerQuery($offset: Int) {
   roshaan_near_feed_indexer_posts(order_by: {${
-    option === "recentComments"
-      ? `last_comment_timestamp: desc`
-      : `block_height: desc`
-  }}, offset: $offset, limit: ${LIMIT}) {
+    option === "recentComments" && `last_comment_timestamp: desc_nulls_last`
+  }, block_height: desc }, offset: $offset, limit: ${LIMIT}) {
     account_id
     block_height
     block_timestamp
@@ -49,7 +46,7 @@ const postsQuery = `
   }
 }
 `;
-
+console.log(postsQuery);
 function fetchGraphQL(operationsDoc, operationName, variables) {
   return asyncFetch(
     "https://query-api-hasura-vcqilefdcq-uc.a.run.app/v1/graphql",
