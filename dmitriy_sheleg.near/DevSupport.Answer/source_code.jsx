@@ -25,12 +25,6 @@ const item = {
   blockHeight,
 };
 
-const handleOnMouseEnter = () => {
-  State.update({ showOverlay: true });
-};
-const handleOnMouseLeave = () => {
-  State.update({ showOverlay: false });
-};
 const handleValidAnswerClick = () => {
   Near.call(adminContract, "mark_useful", {
     id: { account_id: accountId, block_height: blockHeight },
@@ -92,6 +86,7 @@ const Comments = styled.div`
   }
 `;
 const Item = styled.div`
+  padding: 0;
   .btn {
 
     &:hover,
@@ -122,30 +117,6 @@ const CorrectPost = styled.div`
   color: #30A46C;
 `;
 
-const overlay = (
-  <div
-    className="border m-3 p-3 rounded-4 bg-white shadow"
-    style={{ maxWidth: "24em", zIndex: 1070 }}
-    onMouseEnter={handleOnMouseEnter}
-    onMouseLeave={handleOnMouseLeave}
-  >
-    <Item>
-      <Widget
-        src="dmitriy_sheleg.near/widget/DevSupport.Answer.Button.Valid"
-        props={{
-          accountId,
-          blockHeight,
-          admins,
-          adminContract,
-          onClick: handleValidAnswerClick,
-          text: "Mark as Correct",
-          className: "btn valid-btn",
-        }}
-      />
-    </Item>
-  </div>
-);
-
 return (
   <Post>
     {isUseful && (
@@ -174,21 +145,34 @@ return (
                   </>
                 )}
               </Text>
-              <OverlayTrigger
-                show={state.showOverlay}
-                trigger={["hover", "focus"]}
-                delay={{ show: 250, hide: 300 }}
-                placement="auto"
-                overlay={overlay}
-              >
-                <OverlayBtn
-                  className="ms-auto"
-                  onMouseEnter={handleOnMouseEnter}
-                  onMouseLeave={handleOnMouseLeave}
+              <div class="dropdown">
+                <button
+                  class="btn"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
                 >
                   <i class="bi bi-three-dots" />
-                </OverlayBtn>
-              </OverlayTrigger>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Item className="dropdown-item">
+                      <Widget
+                        src="dmitriy_sheleg.near/widget/DevSupport.Answer.Button.Valid"
+                        props={{
+                          accountId,
+                          blockHeight,
+                          admins,
+                          adminContract,
+                          onClick: handleValidAnswerClick,
+                          text: "Mark as Correct",
+                          className: "btn valid-btn",
+                        }}
+                      />
+                    </Item>
+                  </li>
+                </ul>
+              </div>
             </div>
           ),
         }}
