@@ -119,15 +119,13 @@ const expandToken = (value, decimals) => {
 const handleSelect = (e) => {
   State.update({
     selectedTokenId: e.target.value,
-    amount: "",
     hasError: 0,
-    allowance: alw,
   });
 };
 
 const handleAmount = (e) => {
   State.update({
-    amount: Number(e.target.value),
+    amount: e.target.value,
     selectedTokenId,
     hasError: 0,
   });
@@ -196,11 +194,18 @@ const handleDeposit = () => {
   ).toString();
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
-
-  connection.mint(toBigNumber).then((transactionHash) => {
-    State.update({ success: true });
-    console.log("transactionHash is " + transactionHash);
-  });
+  console.log(toBigNumber.toString());
+  if (selectedTokenId == "ETH") {
+    connection.mint({ value: expandedAmount }).then((transactionHash) => {
+      State.update({ success: true });
+      console.log("transactionHash is " + transactionHash);
+    });
+  } else {
+    connection.mint(expandedAmount).then((transactionHash) => {
+      State.update({ success: true });
+      console.log("transactionHash is " + transactionHash);
+    });
+  }
 };
 
 const getCTokenBalancesAllIndex = () => {
@@ -573,7 +578,7 @@ return (
           ""
         )}
         {state.actionTabs == "deposit" ? (
-          state.amount > state.allowance ? (
+          state.amount > state.allowance && state.selectedTokenId !== "ETH" ? (
             <button
               disabled={state.amount == undefined || state.amount == ""}
               onClick={handleApprove}
@@ -598,7 +603,8 @@ return (
           >
             Borrow
           </button>
-        ) : state.amount > state.allowance ? (
+        ) : state.amount > state.allowance &&
+          state.selectedTokenId !== "ETH" ? (
           <button
             disabled={state.amount == undefined || state.amount == ""}
             onClick={handleApprove}
