@@ -132,10 +132,14 @@ return (
                 )}
 
                 <H2 className="mt-5 mb-4">{repliesCount.length} Replies</H2>
-                <Widget
-                  src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
-                  props={{ item, admins, adminContract }}
-                />
+                <div class="row">
+                  <div class="col-12">
+                    <Widget
+                      src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
+                      props={{ item, admins, adminContract }}
+                    />
+                  </div>
+                </div>
               </>
             ),
           }}
