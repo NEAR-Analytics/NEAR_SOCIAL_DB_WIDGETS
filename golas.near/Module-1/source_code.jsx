@@ -5,5 +5,4 @@ function calc(a, b) {
   return a + b + mmm;
 }
 
-module.exports = calc;
-// return calc;
+return calc;
