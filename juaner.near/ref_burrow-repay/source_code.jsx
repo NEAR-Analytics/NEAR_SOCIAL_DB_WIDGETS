@@ -21,7 +21,7 @@ const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 const toAPY = (v) => Math.round(v * 100) / 100;
 
 if (!accountId) {
-  return <Widget src="ciocan.near/widget/account-signin" />;
+  return <Widget src="juaner.near/widget/ref_account-signin" />;
 }
 
 const listAssets =
@@ -154,7 +154,7 @@ const handleRepay = () => {
 return (
   <div style={{ maxWidth: "300px" }}>
     {!hasData && (
-      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
+      <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <div class="card-body d-grid gap-3">
       <div>
