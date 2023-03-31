@@ -81,7 +81,11 @@ return (
       {data !== null ? (
         <div className="row">
           <div className="col-12">
-            <BarEl options={stacked_options} data={stacked_bar_data} />
+            <BarEl
+              options={stacked_options}
+              data={stacked_bar_data}
+              height={780}
+            />
           </div>
         </div>
       ) : (
