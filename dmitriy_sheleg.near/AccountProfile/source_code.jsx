@@ -64,7 +64,7 @@ const Name = styled.div`
   align-items: center;
 `;
 
-const AccountProfile = (
+return (
   <Wrapper
     // as={props.onClick ? "button" : "a"}
     // href={!props.onClick && profileUrl}
@@ -105,18 +105,4 @@ const AccountProfile = (
       {!props.hideAccountId && <Text ellipsis>@{accountId}</Text>}
     </div>
   </Wrapper>
-);
-
-if (props.noOverlay) return AccountProfile;
-
-return (
-  <Widget
-    src="adminalpha.near/widget/AccountProfileOverlay"
-    props={{
-      accountId: props.accountId,
-      profile,
-      children: AccountProfile,
-      placement: props.overlayPlacement,
-    }}
-  />
 );
