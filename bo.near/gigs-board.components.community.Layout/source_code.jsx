@@ -85,15 +85,14 @@ const communities = {
 };
 /* END_INCLUDE: "communities.jsx" */
 
-const Scroll = styled.div`
-   {
-    z-index: -1;
-    margin-top: calc(-24px + 100px + 25px + 200px);
-  }
-`;
+
 
 if (!props.label) {
-  return <div>Loading ...</div>;
+  return (
+    <div class="alert alert-danger" role="alert">
+      Error: label is required
+    </div>
+  );
 }
 
 const community = communities[props.label];
@@ -106,7 +105,8 @@ return (
       icon: community.icon,
       desc: community.desc,
       label: props.label,
+      tab: props.tab,
     })}
-    <Scroll>{props.children}</Scroll>
+    {props.children}
   </>
 );
