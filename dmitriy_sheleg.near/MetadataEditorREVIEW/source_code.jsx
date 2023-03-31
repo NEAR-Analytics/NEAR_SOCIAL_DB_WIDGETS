@@ -85,10 +85,11 @@ return (
       <div className="mb-2">
         {options.image.label ?? "Image"}
         <Widget
-          src="mob.near/widget/ImageEditorTabs"
+          src="dmitriy_sheleg.near/widget/ImageEditorTabsREVIEW"
           props={{
             image: state.image,
             onChange: (image) => State.update({ image }),
+            debounce,
           }}
         />
       </div>
