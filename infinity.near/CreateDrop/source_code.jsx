@@ -13,6 +13,7 @@ const YoctoToNear = (amount) =>
   new Big(amount).div(new Big(10).pow(24)).toString();
 
 const keyInfo = Near.view("v2.keypom.near", "get_key_information");
+const new_public_key = keyInfo.key;
 
 const handleFunctionCall = () => {
   Near.call([
