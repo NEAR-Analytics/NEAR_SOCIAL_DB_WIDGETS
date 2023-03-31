@@ -50,7 +50,7 @@ const Post = styled.div`
     top: 52px;
     bottom: 12px;
     width: 2px;
-    background: #eceef0;
+    background: ${isUseful ? "#30A46C" : "#eceef0"};
   }
 `;
 const Header = styled.div`
@@ -117,8 +117,8 @@ const OverlayBtn = styled.span`
 `;
 const CorrectPost = styled.div`
   position: absolute;
-  top: .5rem;
-  left: .5rem;
+  top: -0.7rem;
+  left: -0.5rem;
   color: #30A46C;
 `;
 
