@@ -25,13 +25,13 @@ const item = {
 const link = `#/cuongdcdev.near/widget/MainPage.Post.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
 
 let tipNEAR = (accId) => {
-  let oneNEAR = "1000000000000000000000000";
+  let amount = "500000000000000000000000"; //0.5N
   Near.call(
     "passthrough.near",
     "transfer",
     { receiver_id: accId },
     gas,
-    oneNEAR
+    amount
   );
 };
 /**
