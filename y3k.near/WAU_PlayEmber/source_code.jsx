@@ -159,7 +159,7 @@ return (
           <div class="">
             <div class="">
               <div>
-                <h2>Metric: {METRIC_NAME}</h2>
+                <h2 className="text-black">Metric: {METRIC_NAME}</h2>
                 <BarEl options={v_bar_options} data={v_bar_data} />
               </div>
             </div>
