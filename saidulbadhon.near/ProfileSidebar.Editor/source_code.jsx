@@ -54,7 +54,7 @@ const styles = {
     width: "100%",
     backgroundColor: "transparent",
     minHeight: 30,
-    border: "1px solid #d0d7de",
+    border: `1px solid ${theme.borderColor}`,
     borderRadius: 4,
     resize: "vertical",
     paddingInline: 8,
@@ -62,10 +62,10 @@ const styles = {
   },
 
   buttonSuccess: {
-    fontWeight: 600,
+    fontWeight: 500,
     border: "1px solid #d0d7de",
     width: "100%",
-    height: 45,
+    height: 40,
     borderRadius: 4,
     cursor: "pointer",
     transition: "all 0.2s ease-in-out",
@@ -90,7 +90,9 @@ return (
         image={state.img}
         style={{
           ...props.buttonSuccess,
+          height: 40,
           padding: 0,
+          borderRadius: 4,
           // fontSize: ".9rem",
           backgroundColor: props.theme.buttonColor,
           color: props.theme.buttonTextColor,
