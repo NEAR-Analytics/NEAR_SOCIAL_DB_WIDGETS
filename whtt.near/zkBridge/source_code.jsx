@@ -47,14 +47,7 @@ const mintTokens = () => {
   let value = ethers.utils.parseEther("0.001");
   const encodedData = iface.encodeFunctionData(
     "deposit(address,address,uint256,uint256,uint256,address)",
-    [
-      "0xbdDBD3A43F2474147C48CA56dc849edB981145A0",
-      l1Token,
-      amount,
-      l2TxGasLimi,
-      l2TxGasPerPubdataByte,
-      "0xbdDBD3A43F2474147C48CA56dc849edB981145A0",
-    ]
+    [sender, l1Token, amount, l2TxGasLimi, l2TxGasPerPubdataByte, sender]
   );
   Ethers.provider().getSigner().sendTransaction({
     to: "0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063",
