@@ -114,7 +114,7 @@ return (
         >
           <Widget
             src="saidulbadhon.near/widget/ProfileSidebar.SocialLinks"
-            props={{ profile }}
+            props={{ profile, theme: props.theme }}
           />
         </div>
         <button
