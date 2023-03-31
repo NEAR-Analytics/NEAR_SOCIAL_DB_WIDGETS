@@ -44,26 +44,14 @@ function href(widgetName, linkProps) {
 }
 /* END_INCLUDE: "common.jsx" */
 
-const Grey = styled.div`
+const Header = styled.div`
    {
-    position: fixed;
-    left: calc(-50vw + 50%);
-    width: 100vw;
     height: 204px;
-    z-index: 11;
-    margin-top: 76px;
-
     overflow: hidden;
     background: #f3f3f3;
-  }
-`;
-
-const Content = styled.div`
-   {
-    position: fixed;
     padding: 10px 0;
-    z-index: 13;
     margin-top: 76px;
+
   }
 `;
 
@@ -95,9 +83,8 @@ const BreadcrumbBold = styled.b`
 // but it's not there in near social, need write such style here
 return (
   <>
-    <Grey></Grey>
 
-    <Content>
+    <Header>
       <div aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -176,6 +163,6 @@ return (
           </li>
         </NavUnderline>
       </div>
-    </Content>
+    </Header>
   </>
 );
