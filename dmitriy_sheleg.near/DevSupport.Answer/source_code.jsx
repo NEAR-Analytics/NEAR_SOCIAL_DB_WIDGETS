@@ -32,19 +32,12 @@ const handleOnMouseEnter = () => {
 const handleOnMouseLeave = () => {
   State.update({ showOverlay: false });
 };
-
-const overlay = (
-  <div
-    className="border m-3 p-3 rounded-4 bg-white shadow"
-    style={{ maxWidth: "24em", zIndex: 1070 }}
-    onMouseEnter={handleOnMouseEnter}
-    onMouseLeave={handleOnMouseLeave}
-  >
-    This is the overlay Message
-  </div>
-);
-
-console.log("answer: ", answer);
+const handleValidAnswerClick = () => {
+  Near.call(adminContract, "mark_useful", {
+    id: { account_id: accountId, block_height: blockHeight },
+    amount: "1",
+  });
+};
 
 const Post = styled.div`
   position: relative;
@@ -60,17 +53,14 @@ const Post = styled.div`
     background: #eceef0;
   }
 `;
-
 const Header = styled.div`
   margin-bottom: 0;
   display: inline-flex;
 `;
-
 const Body = styled.div`
   padding-left: 52px;
   padding-bottom: 1px;
 `;
-
 const Content = styled.div`
   img {
     display: block;
@@ -79,7 +69,6 @@ const Content = styled.div`
     margin: 0 0 12px;
   }
 `;
-
 const Text = styled.p`
   display: block;
   margin: 0;
@@ -89,7 +78,6 @@ const Text = styled.p`
   color: #687076;
   white-space: nowrap;
 `;
-
 const Actions = styled.div`
   display: flex;
   align-items: center;
@@ -102,6 +90,47 @@ const Comments = styled.div`
     padding-top: 12px;
   }
 `;
+const Item = styled.div`
+  .btn {
+
+    &:hover,
+    &:focus {
+      background-color: #ECEDEE;
+      text-decoration: none;
+      outline: none;
+    }
+    i {
+      color: #30A46C;
+    }
+    span {
+      font-weight: 500;
+    }
+  }
+`;
+
+const overlay = (
+  <div
+    className="border m-3 p-3 rounded-4 bg-white shadow"
+    style={{ maxWidth: "24em", zIndex: 1070 }}
+    onMouseEnter={handleOnMouseEnter}
+    onMouseLeave={handleOnMouseLeave}
+  >
+    <Item>
+      <Widget
+        src="dmitriy_sheleg.near/widget/DevSupport.Answer.Button.Valid"
+        props={{
+          accountId,
+          blockHeight,
+          admins,
+          adminContract,
+          onClick: handleValidAnswerClick,
+          text: "Mark as Correct",
+          className: "btn",
+        }}
+      />
+    </Item>
+  </div>
+);
 
 return (
   <>
@@ -195,16 +224,6 @@ return (
                 onComment: () => State.update({ showReply: false }),
               }}
             />
-            {/**
-            <Widget
-              src="adminalpha.near/widget/Comments.Compose"
-              props={{
-                accountId,
-                item,
-                onComment: () => State.update({ showReply: false }),
-              }}
-            />
-            */}
           </div>
         )}
 
@@ -213,18 +232,6 @@ return (
             src="dmitriy_sheleg.near/widget/DevSupport.Answer.Feed"
             props={{ item, admins, adminContract, nested: true }}
           />
-          {/**
-          <Widget
-            src="adminalpha.near/widget/Comments.Feed"
-            props={{
-              item,
-              highlightComment: props.highlightComment,
-              limit: props.commentsLimit,
-              subscribe,
-              raw,
-            }}
-          />
-          */}
         </Comments>
       </Body>
     </Post>
