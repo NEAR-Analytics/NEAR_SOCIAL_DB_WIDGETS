@@ -109,6 +109,10 @@ const Item = styled.div`
     }
   }
 `;
+const OverlayBtn = styled.span`
+  color: #000000;
+  cursor: pointer;
+`;
 
 const overlay = (
   <div
@@ -164,13 +168,13 @@ return (
                 placement="auto"
                 overlay={overlay}
               >
-                <span
+                <OverlayBtn
                   className="ms-auto"
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
                 >
                   <i class="bi bi-three-dots" />
-                </span>
+                </OverlayBtn>
               </OverlayTrigger>
             </div>
           ),
