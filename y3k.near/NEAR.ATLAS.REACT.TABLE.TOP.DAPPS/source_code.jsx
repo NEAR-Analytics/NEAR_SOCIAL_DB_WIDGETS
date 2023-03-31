@@ -115,7 +115,7 @@ const sortFns = {
 };
 
 return (
-  <div className="text-bg-dark rounded-4 p-3 mb-4">
+  <div Style={{ maxWidth: "100%" }} className="text-bg-dark rounded-4 p-3 mb-4">
     {data !== null ? (
       <div class="bg-dark">
         <BasicTable columns={COLUMNS} data={data} sortFns={sortFns} />
