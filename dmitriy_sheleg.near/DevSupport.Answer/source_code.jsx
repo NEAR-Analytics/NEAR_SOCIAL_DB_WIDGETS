@@ -129,18 +129,13 @@ return (
                 </Text>
                 <OverlayTrigger
                   show={state.showOverlay}
-                  trigger={["click"]}
+                  trigger={["hover", "focus"]}
                   delay={{ show: 250, hide: 300 }}
                   placement="auto"
                   overlay={overlay}
                 >
                   <span
-                    className="d-inline-flex"
-                    style={{
-                      backgroundColor: "gray",
-                      borderRadius: "10px",
-                      padding: "10px",
-                    }}
+                    className="ms-auto"
                     onMouseEnter={handleOnMouseEnter}
                     onMouseLeave={handleOnMouseLeave}
                   >
