@@ -23,7 +23,7 @@ return (
     className={props.className ?? "border-0 bg-white"}
     onClick={onClick}
   >
-    <i class="bi bi-check-circle" />
+    <i class="bi bi-check-circle me-1" />
     <span>{text}</span>
   </button>
 );
