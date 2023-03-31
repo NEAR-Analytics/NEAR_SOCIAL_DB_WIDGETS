@@ -140,7 +140,7 @@ return (
                   </>
                 )}
               </Text>
-              <div class="dropdown">
+              <div class="dropdown ms-auto">
                 <button
                   class="btn border-0"
                   type="button"
