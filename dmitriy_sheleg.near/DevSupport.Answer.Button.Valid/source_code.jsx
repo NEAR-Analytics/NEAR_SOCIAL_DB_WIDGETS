@@ -17,13 +17,18 @@ if (context.loading) {
 //   return "";
 // }
 
+const Button = styled.button`
+    border: none;
+    background-color: transparent;
+`;
+
 return (
-  <button
+  <Button
     disabled={state.loading || dataLoading || !context.accountId}
-    className={props.className ?? "border-0 bg-white"}
+    className={props.className}
     onClick={onClick}
   >
     <i class="bi bi-check-circle me-1" />
     <span>{text}</span>
-  </button>
+  </Button>
 );
