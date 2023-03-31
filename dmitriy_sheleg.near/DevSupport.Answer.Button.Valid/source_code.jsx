@@ -17,17 +17,10 @@ if (context.loading) {
 //   return "";
 // }
 
-// const onClick = () => {
-//   Near.call(adminContract, "mark_useful", {
-//     id: { account_id: accountId, block_height: blockHeight },
-//     amount: "1",
-//   });
-// };
-
 return (
   <button
     disabled={state.loading || dataLoading || !context.accountId}
-    className={props.className ?? "border-0 bg-white mt-3"}
+    className={props.className ?? "border-0 bg-white"}
     onClick={onClick}
   >
     <i class="bi bi-exclamation-circle" />
