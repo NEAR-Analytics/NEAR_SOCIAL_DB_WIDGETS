@@ -149,7 +149,14 @@ return (
       </div>
     </div>
 
-    <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+    <div
+      style={{
+        display: "flex",
+        gap: 20,
+        marginTop: 20,
+        width: "100%",
+      }}
+    >
       <CommitButton style={styls.buttonSuccess} data={{ profile }}>
         Save profile
       </CommitButton>
