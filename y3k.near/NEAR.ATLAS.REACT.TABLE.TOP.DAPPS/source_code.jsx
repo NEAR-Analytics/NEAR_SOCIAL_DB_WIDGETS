@@ -33,12 +33,16 @@ const sub_widget_map = {
 function formatCell(text) {
   if (text in sub_widget_map) {
     return (
-      <a href={sub_widget_map[text]} target="_blank" className="text-warning">
+      <a
+        href={sub_widget_map[text]}
+        target="_blank"
+        className="text-warning text-wrap "
+      >
         {text}
       </a>
     );
   } else {
-    return <span className="text-white">{text}</span>;
+    return <span className="text-white text-wrap ">{text}</span>;
   }
 }
 
