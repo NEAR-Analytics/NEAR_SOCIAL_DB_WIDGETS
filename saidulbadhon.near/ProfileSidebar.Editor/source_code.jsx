@@ -123,7 +123,7 @@ return (
 
     <div
       style={{
-        paddingTop: 32,
+        paddingTop: 40,
         display: "flex",
         gap: 10,
         flexDirection: "column",
