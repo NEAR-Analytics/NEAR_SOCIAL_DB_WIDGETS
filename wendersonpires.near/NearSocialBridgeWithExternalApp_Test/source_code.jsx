@@ -1,9 +1,27 @@
 // Crucial checks
 if (!props.externalAppUrl) {
   return (
-    <p style={{ fontWeight: 600, color: "#AB2E28", fontFamily: "Courier new" }}>
-      Error: "externalAppUrl" prop must be provided
-    </p>
+    <div>
+      <p
+        style={{ fontWeight: 600, color: "#AB2E28", fontFamily: "Courier new" }}
+      >
+        This Widget is part of the{" "}
+        <a href="https://github.com/wpdas/near-social-bridge">
+          "near-social-bridge"
+        </a>{" "}
+        library that makes it possible to develop common ReactJS applications
+        and inject them into the Widget having access to all Discovery API
+        resources.
+      </p>
+      <p
+        style={{ fontWeight: 600, color: "#AB2E28", fontFamily: "Courier new" }}
+      >
+        Learn more here:{" "}
+        <a href="https://github.com/wpdas/near-social-bridge">
+          https://github.com/wpdas/near-social-bridge
+        </a>
+      </p>
+    </div>
   );
 }
 
@@ -17,7 +35,7 @@ const code = `
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <div id="bridge-root"></div>
-<script src="https://unpkg.com/near-social-bridge@1.0.0-rc3/widget/core.min.js" crossorigin></script>
+<script src="https://unpkg.com/near-social-bridge@1.0.0/widget/core.min.js" crossorigin></script>
 `;
 
 // (i) Discovery API uses cached data structure
@@ -140,7 +158,10 @@ const onMessageHandler = (message) => {
   const utils = {
     promisify: Utils.promisify,
   };
-  props.requestHandler(request, responseFactory.build(), utils);
+
+  if (props.requestHandler) {
+    props.requestHandler(request, responseFactory.build(), utils);
+  }
 };
 
 // REQUEST HANDLERS BELOW
