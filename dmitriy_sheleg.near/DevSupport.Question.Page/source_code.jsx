@@ -25,7 +25,8 @@ const item = {
 };
 const repliesCount = Social.index("answer", item);
 
-const link = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+const questionUrl = `#/dmitriy_sheleg.near/widget/DevSupport.Question.Page?accountId=${accountId}&blockHeight=${blockHeight}`;
+const shareUrl = `https://near.social${questionUrl}`;
 
 const footer = (
   <div className="card-header p-2" style={{ border: "1px solid #ccc" }}>
@@ -95,8 +96,46 @@ const H4 = styled.h4`
     }
   }
 `;
+const H6 = styled.h6`
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #687076;
+`;
 const SidebarWrapper = styled.div`
   border-left: 1px solid #ECEEF0;
+`;
+const ShareButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 25px;
+  height: 40px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  background: #FBFCFD;
+  border: 1px solid #D7DBDF;
+  color: #006ADC !important;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background: #ECEDEE;
+    text-decoration: none;
+    outline: none;
+  }
+
+  i {
+    color: #7E868C;
+  }
+
+  .bi-16 {
+    font-size: 16px;
+  }
 `;
 
 return (
@@ -150,6 +189,31 @@ return (
           src="dmitriy_sheleg.near/widget/AccountProfileCard"
           props={{ accountId }}
         />
+        <H6 className="pt-5 pb-3">share</H6>
+
+        <OverlayTrigger
+          placement="top"
+          overlay={<Tooltip>Copy URL to clipboard</Tooltip>}
+        >
+          <ShareButton
+            className="share-url"
+            type="button"
+            onMouseLeave={() => {
+              State.update({ copiedShareUrl: false });
+            }}
+            onClick={() => {
+              clipboard.writeText(shareUrl).then(() => {
+                State.update({ copiedShareUrl: true });
+              });
+            }}
+          >
+            {state.copiedShareUrl ? (
+              <i className="bi-16 bi bi-check"></i>
+            ) : (
+              <i className="bi-16 bi-link-45deg"></i>
+            )}
+          </ShareButton>
+        </OverlayTrigger>
       </SidebarWrapper>
     </div>
     {/*{footer}*/}
