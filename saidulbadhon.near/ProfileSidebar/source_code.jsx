@@ -88,7 +88,7 @@ return (
       <>
         <Widget
           src="saidulbadhon.near/widget/ProfileSidebar.Editor"
-          props={{ showEditProfile }}
+          props={{ showEditProfile, theme: props?.theme }}
         />
 
         <button
