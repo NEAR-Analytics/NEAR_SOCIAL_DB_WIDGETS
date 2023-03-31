@@ -88,7 +88,6 @@ const Comments = styled.div`
 const Item = styled.div`
   padding: 0;
   .btn {
-
     &:hover,
     &:focus {
       background-color: #ECEDEE;
@@ -105,10 +104,6 @@ const Item = styled.div`
       font-weight: 500;
     }
   }
-`;
-const OverlayBtn = styled.span`
-  color: #000000;
-  cursor: pointer;
 `;
 const CorrectPost = styled.div`
   position: absolute;
@@ -147,7 +142,7 @@ return (
               </Text>
               <div class="dropdown">
                 <button
-                  class="btn"
+                  class="btn border-0"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
