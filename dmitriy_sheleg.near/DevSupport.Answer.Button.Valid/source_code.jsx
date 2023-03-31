@@ -24,6 +24,6 @@ return (
     onClick={onClick}
   >
     <i class="bi bi-exclamation-circle" />
-    {text}
+    <span>{text}</span>
   </button>
 );
