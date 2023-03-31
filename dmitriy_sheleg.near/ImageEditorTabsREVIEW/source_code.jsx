@@ -1,6 +1,20 @@
 const image = props.image;
 const onChange = props.onChange;
-const debounce = props.debounce;
+// const debounce = props.debounce;
+const debounce = (func, wait) => {
+  const pause = wait || 350;
+  let timeout;
+
+  return (args) => {
+    const later = () => {
+      clearTimeout(timeout);
+      func(args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, pause);
+  };
+};
 
 const Tab = {
   Upload: "Upload",
