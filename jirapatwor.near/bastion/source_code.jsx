@@ -167,10 +167,51 @@ const handleApprove = () => {
     });
 };
 
+// const handleDeposit = () => {
+//   if (!selectedTokenId || !amount || hasError) return;
+
+//   if (amount > state.balance) {
+//     State.update({ hasError: 1 });
+//     return;
+//   }
+
+//   let contractABI;
+//   if (selectedTokenId == "ETH") {
+//     contractABI = CEthABI;
+//   } else {
+//     contractABI = CErc20ABI;
+//   }
+
+//   const connection = new ethers.Contract(
+//     TokensDetail[selectedTokenId].cAddress,
+//     contractABI,
+//     Ethers.provider().getSigner()
+//   );
+
+//   const expandedAmount = expandToken(
+//     amount,
+//     TokensDetail[selectedTokenId].decimals
+//   ).toString();
+
+//   const toBigNumber = ethers.BigNumber.from(expandedAmount);
+//   console.log(toBigNumber.toString());
+//   if (selectedTokenId == "ETH") {
+//     connection.mint({ value: expandedAmount }).then((transactionHash) => {
+//       State.update({ success: true });
+//       console.log("transactionHash is " + transactionHash);
+//     });
+//   } else {
+//     connection.mint(expandedAmount).then((transactionHash) => {
+//       State.update({ success: true });
+//       console.log("transactionHash is " + transactionHash);
+//     });
+//   }
+// };
+
 const handleDeposit = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
-  if (amount > state.balance) {
+  if (Number(amount) > Number(state.balance)) {
     State.update({ hasError: 1 });
     return;
   }
@@ -195,17 +236,27 @@ const handleDeposit = () => {
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
   console.log(toBigNumber.toString());
-  if (selectedTokenId == "ETH") {
-    connection.mint({ value: expandedAmount }).then((transactionHash) => {
+
+  const mintPromise =
+    selectedTokenId == "ETH"
+      ? connection.mint({ value: expandedAmount })
+      : connection.mint(expandedAmount);
+
+  mintPromise
+    .then((transaction) => {
+      console.log("Transaction sent:", transaction.hash);
+      State.update({ hasError: -1 });
+      return transaction.wait();
+    })
+    .then((receipt) => {
+      State.update({ hasError: 0 });
       State.update({ success: true });
-      console.log("transactionHash is " + transactionHash);
+      console.log("Transaction mined, receipt:", receipt);
+    })
+    .catch((error) => {
+      State.update({ hasError: 5, errorMessage: error });
+      console.log("Error in mint function:", error);
     });
-  } else {
-    connection.mint(expandedAmount).then((transactionHash) => {
-      State.update({ success: true });
-      console.log("transactionHash is " + transactionHash);
-    });
-  }
 };
 
 const getCTokenBalancesAllIndex = () => {
@@ -290,7 +341,7 @@ const remainingBalance = () => {
 
 const handleBorrow = () => {
   if (!selectedTokenId || !amount || hasError) return;
-  if (state.amount > state.LimitAmount) {
+  if (Number(state.amount) > Number(state.LimitAmount)) {
     State.update({ hasError: 2 });
     return;
   }
@@ -315,10 +366,22 @@ const handleBorrow = () => {
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
 
-  connection.borrow(toBigNumber).then((transactionHash) => {
-    State.update({ success: true });
-    console.log("transactionHash is " + transactionHash);
-  });
+  connection
+    .borrow(toBigNumber)
+    .then((transaction) => {
+      console.log("Transaction sent:", transaction.hash);
+      State.update({ hasError: -1 });
+      return transaction.wait();
+    })
+    .then((receipt) => {
+      State.update({ hasError: 0 });
+      State.update({ success: true });
+      console.log("Transaction receipt:", receipt);
+    })
+    .catch((error) => {
+      State.update({ hasError: 5, errorMessage: error });
+      console.log("Error:", error);
+    });
 };
 
 const getBorrowed = () => {
@@ -335,7 +398,7 @@ const getBorrowed = () => {
 const handleRepay = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
-  if (amount > state.borrowedAmount) {
+  if (Number(amount) > Number(state.borrowedAmount)) {
     State.update({ hasError: 3 });
     return;
   }
@@ -360,10 +423,22 @@ const handleRepay = () => {
 
   const toBigNumber = ethers.BigNumber.from(expandedAmount);
 
-  connection.repayBorrow(toBigNumber).then((transactionHash) => {
-    State.update({ success: true });
-    console.log("transactionHash is " + transactionHash);
-  });
+  connection
+    .repayBorrow(toBigNumber)
+    .then((transaction) => {
+      console.log("Transaction sent:", transaction.hash);
+      State.update({ hasError: -1 });
+      return transaction.wait();
+    })
+    .then((receipt) => {
+      State.update({ hasError: 0 });
+      State.update({ success: true });
+      console.log("Transaction receipt:", receipt);
+    })
+    .catch((error) => {
+      State.update({ hasError: 5, errorMessage: error });
+      console.log("Error:", error);
+    });
 };
 
 const maxWithdraw = () => {
@@ -391,7 +466,7 @@ const maxWithdraw = () => {
 const handleWithdraw = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
-  if (amount > state.maxWithdraw) {
+  if (Number(amount) > Number(state.maxWithdraw)) {
     State.update({ hasError: 4 });
     return;
   }
@@ -418,15 +493,39 @@ const handleWithdraw = () => {
   const supplyBalance = supplyBalance();
 
   if (amount >= supplyBalance) {
-    connection.redeem(toBigNumber).then((transactionHash) => {
-      State.update({ success: true });
-      console.log("transactionHash is " + transactionHash);
-    });
+    connection
+      .redeem(toBigNumber)
+      .then((transaction) => {
+        console.log("Transaction sent:", transaction.hash);
+        State.update({ hasError: -1 });
+        return transaction.wait();
+      })
+      .then((receipt) => {
+        State.update({ hasError: 0 });
+        State.update({ success: true });
+        console.log("Transaction receipt:", receipt);
+      })
+      .catch((error) => {
+        State.update({ hasError: 5, errorMessage: error });
+        console.log("Error:", error);
+      });
   } else {
-    connection.redeemUnderlying(toBigNumber).then((transactionHash) => {
-      State.update({ success: true });
-      console.log("transactionHash is " + transactionHash);
-    });
+    connection
+      .redeemUnderlying(toBigNumber)
+      .then((transaction) => {
+        console.log("Transaction sent:", transaction.hash);
+        State.update({ hasError: -1 });
+        return transaction.wait();
+      })
+      .then((receipt) => {
+        State.update({ hasError: 0 });
+        State.update({ success: true });
+        console.log("Transaction receipt:", receipt);
+      })
+      .catch((error) => {
+        State.update({ hasError: 5, errorMessage: error });
+        console.log("Error:", error);
+      });
   }
 };
 
@@ -569,6 +668,14 @@ return (
         ) : state.hasError == 4 ? (
           <p class="alert alert-danger" role="alert">
             Amount greater than Max Withdrawal
+          </p>
+        ) : state.hasError == 4 ? (
+          <p class="alert alert-danger" role="alert">
+            Something went wrong!! error: {errorMessage}
+          </p>
+        ) : state.hasError == -1 ? (
+          <p class="alert alert-warning" role="alert">
+            Waiting for confirmation ...
           </p>
         ) : state.success == true ? (
           <p class="alert alert-success" role="alert">
