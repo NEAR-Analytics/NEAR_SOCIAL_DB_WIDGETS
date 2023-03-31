@@ -418,145 +418,174 @@ if (!state.actionTabs) {
 
 return (
   <div style={{ maxWidth: "400px" }}>
-    <div class="card-body d-grid gap-3 mt-5">
-      <div class="action btn-group" role="group" aria-label="Deposit">
-        <input
-          type="radio"
-          class="btn-check"
-          name="btnradioaction"
-          id="deposit"
-          autocomplete="off"
-          checked={state.actionTabs === "deposit"}
-          onClick={() => State.update({ actionTabs: "deposit" })}
-        />
-        <label class="btn btn-outline-primary" for="deposit">
-          Deposit
-        </label>
-        <input
-          type="radio"
-          class="btn-check"
-          name="btnradioaction"
-          id="borrow"
-          autocomplete="off"
-          checked={state.actionTabs === "borrow"}
-          onClick={() => State.update({ actionTabs: "borrow" })}
-        />
-        <label class="btn btn-outline-primary" for="borrow">
-          Borrow
-        </label>
-        <input
-          type="radio"
-          class="btn-check"
-          name="btnradioaction"
-          id="repay"
-          autocomplete="off"
-          checked={state.actionTabs === "repay"}
-          onClick={() => State.update({ actionTabs: "repay" })}
-        />
-        <label class="btn btn-outline-primary" for="repay">
-          Repay
-        </label>
-        <input
-          type="radio"
-          class="btn-check"
-          name="btnradioaction"
-          id="withdraw"
-          autocomplete="off"
-          checked={state.actionTabs === "withdraw"}
-          onClick={() => State.update({ actionTabs: "withdraw" })}
-        />
-        <label class="btn btn-outline-primary" for="withdraw">
-          Withdraw
-        </label>
-      </div>
-      <div>
-        <div class="mb-2 text-muted">Token</div>
-        <select
-          onChange={handleSelect}
-          class="p-2 mb-1"
-          style={{ width: "100%" }}
-        >
-          <option value="">Choose your token</option>
-          {Object.keys(TokensDetail).map((key) => {
-            return (
-              <option key={key} value={key}>
-                {TokensDetail[key].symbol}
-              </option>
-            );
-          })}
-        </select>
-        {state.selectedTokenId !== undefined && state.selectedTokenId !== "" ? (
-          state.actionTabs == "deposit" ? (
-            <div>
-              <span class="badge bg-light text-dark">
-                Wallet Balance: {walletBalance()}{" "}
-                {TokensDetail[selectedTokenId].symbol}
-              </span>
-              <span class="badge bg-light text-dark">
-                Supply Balance: {supplyBalance()}{" "}
-                {TokensDetail[selectedTokenId].symbol}
-              </span>
-              {getAllowance()}
-            </div>
-          ) : state.actionTabs == "borrow" ? (
-            <div>
-              <span class="badge bg-light text-dark">
-                Remaining Borrow Limit: $ {remainingBalance()}
-              </span>
-            </div>
-          ) : state.actionTabs == "repay" ? (
-            <div>
-              <span class="badge bg-light text-dark">
-                Wallet Balance: {walletBalance()}{" "}
-                {TokensDetail[selectedTokenId].symbol}
-              </span>
-              <span class="badge bg-light text-dark">
-                Amount Borrowed: {getBorrowed()}{" "}
-                {TokensDetail[selectedTokenId].symbol}
-              </span>
-              {getAllowance()}
-            </div>
+    {state.cTokenBalancesAll &&
+    state.cTokenMetadataAll &&
+    state.getAccountLimits ? (
+      <div class="card-body d-grid gap-3 mt-5">
+        <div class="action btn-group" role="group" aria-label="Deposit">
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradioaction"
+            id="deposit"
+            autocomplete="off"
+            checked={state.actionTabs === "deposit"}
+            onClick={() => State.update({ actionTabs: "deposit" })}
+          />
+          <label class="btn btn-outline-primary" for="deposit">
+            Deposit
+          </label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradioaction"
+            id="borrow"
+            autocomplete="off"
+            checked={state.actionTabs === "borrow"}
+            onClick={() => State.update({ actionTabs: "borrow" })}
+          />
+          <label class="btn btn-outline-primary" for="borrow">
+            Borrow
+          </label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradioaction"
+            id="repay"
+            autocomplete="off"
+            checked={state.actionTabs === "repay"}
+            onClick={() => State.update({ actionTabs: "repay" })}
+          />
+          <label class="btn btn-outline-primary" for="repay">
+            Repay
+          </label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradioaction"
+            id="withdraw"
+            autocomplete="off"
+            checked={state.actionTabs === "withdraw"}
+            onClick={() => State.update({ actionTabs: "withdraw" })}
+          />
+          <label class="btn btn-outline-primary" for="withdraw">
+            Withdraw
+          </label>
+        </div>
+        <div>
+          <div class="mb-2 text-muted">Token</div>
+          <select
+            onChange={handleSelect}
+            class="p-2 mb-1"
+            style={{ width: "100%" }}
+          >
+            <option value="">Choose your token</option>
+            {Object.keys(TokensDetail).map((key) => {
+              return (
+                <option key={key} value={key}>
+                  {TokensDetail[key].symbol}
+                </option>
+              );
+            })}
+          </select>
+          {state.selectedTokenId !== undefined &&
+          state.selectedTokenId !== "" ? (
+            state.actionTabs == "deposit" ? (
+              <div>
+                <span class="badge bg-light text-dark">
+                  Wallet Balance: {walletBalance()}{" "}
+                  {TokensDetail[selectedTokenId].symbol}
+                </span>
+                <span class="badge bg-light text-dark">
+                  Supply Balance: {supplyBalance()}{" "}
+                  {TokensDetail[selectedTokenId].symbol}
+                </span>
+                {getAllowance()}
+              </div>
+            ) : state.actionTabs == "borrow" ? (
+              <div>
+                <span class="badge bg-light text-dark">
+                  Remaining Borrow Limit: $ {remainingBalance()}
+                </span>
+              </div>
+            ) : state.actionTabs == "repay" ? (
+              <div>
+                <span class="badge bg-light text-dark">
+                  Wallet Balance: {walletBalance()}{" "}
+                  {TokensDetail[selectedTokenId].symbol}
+                </span>
+                <span class="badge bg-light text-dark">
+                  Amount Borrowed: {getBorrowed()}{" "}
+                  {TokensDetail[selectedTokenId].symbol}
+                </span>
+                {getAllowance()}
+              </div>
+            ) : (
+              <div>
+                <span class="badge bg-light text-dark">
+                  Max Withdrawal: {maxWithdraw()}{" "}
+                  {TokensDetail[selectedTokenId].symbol}
+                </span>
+              </div>
+            )
           ) : (
-            <div>
-              <span class="badge bg-light text-dark">
-                Max Withdrawal: {maxWithdraw()}{" "}
-                {TokensDetail[selectedTokenId].symbol}
-              </span>
-            </div>
-          )
+            ""
+          )}
+        </div>
+        <div>
+          <div class="mb-2 text-muted">Amount</div>
+          <input type="number" value={amount} onChange={handleAmount} />
+        </div>
+        {state.hasError == 1 ? (
+          <p class="alert alert-danger" role="alert">
+            Amount greater than balance
+          </p>
+        ) : state.hasError == 2 ? (
+          <p class="alert alert-danger" role="alert">
+            Amount greater than Remaining Borrow Limit
+          </p>
+        ) : state.hasError == 3 ? (
+          <p class="alert alert-danger" role="alert">
+            Amount greater than Amount Borrowed
+          </p>
+        ) : state.hasError == 4 ? (
+          <p class="alert alert-danger" role="alert">
+            Amount greater than Max Withdrawal
+          </p>
+        ) : state.success == true ? (
+          <p class="alert alert-success" role="alert">
+            Your transaction was sent successfully
+          </p>
         ) : (
           ""
         )}
-      </div>
-      <div>
-        <div class="mb-2 text-muted">Amount</div>
-        <input type="number" value={amount} onChange={handleAmount} />
-      </div>
-      {state.hasError == 1 ? (
-        <p class="alert alert-danger" role="alert">
-          Amount greater than balance
-        </p>
-      ) : state.hasError == 2 ? (
-        <p class="alert alert-danger" role="alert">
-          Amount greater than Remaining Borrow Limit
-        </p>
-      ) : state.hasError == 3 ? (
-        <p class="alert alert-danger" role="alert">
-          Amount greater than Amount Borrowed
-        </p>
-      ) : state.hasError == 4 ? (
-        <p class="alert alert-danger" role="alert">
-          Amount greater than Max Withdrawal
-        </p>
-      ) : state.success == true ? (
-        <p class="alert alert-success" role="alert">
-          Your transaction was sent successfully
-        </p>
-      ) : (
-        ""
-      )}
-      {state.actionTabs == "deposit" ? (
-        state.amount > state.allowance ? (
+        {state.actionTabs == "deposit" ? (
+          state.amount > state.allowance ? (
+            <button
+              disabled={state.amount == undefined || state.amount == ""}
+              onClick={handleApprove}
+              style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+            >
+              Approve
+            </button>
+          ) : (
+            <button
+              disabled={state.amount == undefined || state.amount == ""}
+              onClick={handleDeposit}
+              style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+            >
+              Deposit
+            </button>
+          )
+        ) : state.actionTabs == "borrow" ? (
+          <button
+            disabled={state.amount == undefined || state.amount == ""}
+            onClick={handleBorrow}
+            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+          >
+            Borrow
+          </button>
+        ) : state.amount > state.allowance ? (
           <button
             disabled={state.amount == undefined || state.amount == ""}
             onClick={handleApprove}
@@ -564,48 +593,28 @@ return (
           >
             Approve
           </button>
+        ) : state.actionTabs == "repay" ? (
+          <button
+            disabled={state.amount == undefined || state.amount == ""}
+            onClick={handleRepay}
+            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+          >
+            Repay
+          </button>
         ) : (
           <button
             disabled={state.amount == undefined || state.amount == ""}
-            onClick={handleDeposit}
+            onClick={handleWithdraw}
             style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
           >
-            Deposit
+            Withdraw
           </button>
-        )
-      ) : state.actionTabs == "borrow" ? (
-        <button
-          disabled={state.amount == undefined || state.amount == ""}
-          onClick={handleBorrow}
-          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-        >
-          Borrow
-        </button>
-      ) : state.amount > state.allowance ? (
-        <button
-          disabled={state.amount == undefined || state.amount == ""}
-          onClick={handleApprove}
-          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-        >
-          Approve
-        </button>
-      ) : state.actionTabs == "repay" ? (
-        <button
-          disabled={state.amount == undefined || state.amount == ""}
-          onClick={handleRepay}
-          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-        >
-          Repay
-        </button>
-      ) : (
-        <button
-          disabled={state.amount == undefined || state.amount == ""}
-          onClick={handleWithdraw}
-          style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-        >
-          Withdraw
-        </button>
-      )}
-    </div>
+        )}
+      </div>
+    ) : (
+      <div>
+        <h2>Loading</h2>
+      </div>
+    )}
   </div>
 );
