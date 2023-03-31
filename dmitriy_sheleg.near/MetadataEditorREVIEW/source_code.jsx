@@ -97,7 +97,7 @@ return (
       <div className="mb-2">
         {options.backgroundImage.label ?? "Background image"}
         <Widget
-          src="dmitriy_sheleg.near/widget/ImageEditorTabsTest"
+          src="dmitriy_sheleg.near/widget/ImageEditorTabsREVIEW"
           props={{
             image: state.backgroundImage,
             onChange: (backgroundImage) => State.update({ backgroundImage }),
