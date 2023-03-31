@@ -23,7 +23,7 @@ const Subheading = styled.h2`
 const postsQuery = `
   query IndexerQuery($offset: Int) {
   roshaan_near_feed_indexer_posts(order_by: {${
-    option === "recentComments" && `last_comment_timestamp: desc_nulls_last`
+    option === "recentComments" ? `last_comment_timestamp: desc_nulls_last` : ""
   }, block_height: desc }, offset: $offset, limit: ${LIMIT}) {
     account_id
     block_height
