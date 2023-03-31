@@ -86,7 +86,7 @@ return (
   <>
 
     <Header>
-      <div aria-label="breadcrumb">
+      <div aria-label="breadcrumb" class="pl-3">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <BreadcrumbLink href={href("Feed")}>
@@ -98,7 +98,7 @@ return (
           </li>
         </ol>
       </div>
-      <div class="d-flex flex-row align-items-center pb-3">
+      <div class="d-flex flex-row align-items-center pb-3 pl-3">
         <img src={props.icon} width="95px" height="95px"></img>
         <div>
           <div class="h5 pt-3 ps-3">{props.title}</div>
