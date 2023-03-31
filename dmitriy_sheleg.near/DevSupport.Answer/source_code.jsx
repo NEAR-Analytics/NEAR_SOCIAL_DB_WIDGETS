@@ -9,7 +9,7 @@ if (accountId === undefined || blockHeight === undefined) {
   return;
 }
 
-State.init({ showAnswer: false });
+State.init({ showAnswer: false, showOverlay: false });
 
 const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
@@ -25,6 +25,24 @@ const item = {
   path: `${accountId}/question/main`,
   blockHeight,
 };
+
+const handleOnMouseEnter = () => {
+  State.update({ showOverlay: true });
+};
+const handleOnMouseLeave = () => {
+  State.update({ showOverlay: false });
+};
+
+const overlay = (
+  <div
+    className="border m-3 p-3 rounded-4 bg-white shadow"
+    style={{ maxWidth: "24em", zIndex: 1070 }}
+    onMouseEnter={handleOnMouseEnter}
+    onMouseLeave={handleOnMouseLeave}
+  >
+    This is the overlay Message
+  </div>
+);
 
 console.log("answer: ", answer);
 
@@ -93,8 +111,9 @@ return (
           src="adminalpha.near/widget/AccountProfile"
           props={{
             accountId,
+            noOverlay,
             inlineContent: (
-              <>
+              <div class="d-flex align-items-center flex-fill">
                 <Text as="span">･</Text>
                 <Text>
                   {blockHeight === "now" ? (
@@ -109,7 +128,27 @@ return (
                     </>
                   )}
                 </Text>
-              </>
+                <OverlayTrigger
+                  show={state.showOverlay}
+                  trigger={["click"]}
+                  delay={{ show: 250, hide: 300 }}
+                  placement="auto"
+                  overlay={overlay}
+                >
+                  <span
+                    className="d-inline-flex"
+                    style={{
+                      backgroundColor: "gray",
+                      borderRadius: "10px",
+                      padding: "10px",
+                    }}
+                    onMouseEnter={handleOnMouseEnter}
+                    onMouseLeave={handleOnMouseLeave}
+                  >
+                    <i class="bi bi-three-dots" />
+                  </span>
+                </OverlayTrigger>
+              </div>
             ),
           }}
         />
