@@ -45,6 +45,10 @@ const styles = {
     flexDirection: "column",
     gap: 7.5,
   },
+  inputLabel: {
+    padding: 0,
+    margin: 0,
+  },
   input: {
     width: "100%",
     backgroundColor: "transparent",
@@ -78,7 +82,7 @@ return (
     }}
   >
     <div style={styles.inputContainer}>
-      <p className="inputLabel">Profile Picture:</p>
+      <p style={styles.inputLabel}>Profile Picture:</p>
 
       <IpfsImageUpload
         image={state.img}
@@ -87,24 +91,24 @@ return (
     </div>
 
     <div style={styles.inputContainer}>
-      <p className="inputLabel">Name:</p>
+      <p style={styles.inputLabel}>Name:</p>
 
       <input style={styles.input} type="text" value={state.profile.name} />
     </div>
 
     <div style={styles.inputContainer}>
-      <p className="inputLabel">Description:</p>
+      <p style={styles.inputLabel}>Description:</p>
       <input style={styles.input} type="text" value={state.description} />
     </div>
 
     <div style={styles.inputContainer}>
-      <p className="inputLabel">Location:</p>
+      <p style={styles.inputLabel}>Location:</p>
       <input style={styles.input} type="text" value={state.location} />
     </div>
 
     <div
       style={{
-        padding: "15px 0px 5px 0px",
+        paddingTop: 15,
         display: "flex",
         gap: 10,
         flexDirection: "column",
@@ -112,7 +116,7 @@ return (
     >
       <h3>Social accounts</h3>
       <div style={styles.inputContainer}>
-        <p className="inputLabel">Twitter:</p>
+        <p style={styles.inputLabel}>Twitter:</p>
 
         <input
           style={styles.input}
@@ -122,12 +126,12 @@ return (
       </div>
 
       <div style={styles.inputContainer}>
-        <p className="inputLabel">Github:</p>
+        <p style={styles.inputLabel}>Github:</p>
         <input style={styles.input} type="text" value={state.linktree.github} />
       </div>
 
       <div style={styles.inputContainer}>
-        <p className="inputLabel">Telegram:</p>
+        <p style={styles.inputLabel}>Telegram:</p>
         <input
           style={styles.input}
           type="text"
@@ -136,7 +140,7 @@ return (
       </div>
 
       <div style={styles.inputContainer}>
-        <p className="inputLabel">Website:</p>
+        <p style={styles.inputLabel}>Website:</p>
         <input
           style={styles.input}
           type="text"
