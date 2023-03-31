@@ -18,8 +18,6 @@ const SidebarWrapper = styled.div`
   border-right: 1px solid #ECEEF0;
 `;
 
-console.log("props: ", props);
-
 return (
   <div class="container py-3 mb-5">
     <div class="row">
