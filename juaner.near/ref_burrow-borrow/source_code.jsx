@@ -37,7 +37,7 @@ const power = (x, y) => {
 };
 
 if (!accountId) {
-  return <Widget src="juaner.near/widget/ref_account-signin" />;
+  return <Widget src="ciocan.near/widget/account-signin" />;
 }
 
 const config = Near.view(BURROW_CONTRACT, "get_config");
@@ -52,32 +52,29 @@ if (!account) return <div>loading...</div>;
 // https://github.com/burrowfdn/burrowland for detailed explanation
 function getAdjustedSum(type, account) {
   if (!assets) return B(1);
-  const asset_v = account[type].map((assetInAccount) => {
-    const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
+  return account[type]
+    .map((assetInAccount) => {
+      const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
 
-    const price = asset.price
-      ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
-      : B(0);
+      const price = asset.price
+        ? B(asset.price.multiplier).div(B(10).pow(asset.price.decimals))
+        : B(0);
 
-    const pricedBalance = B(assetInAccount.balance)
-      .div(expandToken(1, asset.config.extra_decimals))
-      .mul(price);
+      const pricedBalance = B(assetInAccount.balance)
+        .div(expandToken(1, asset.config.extra_decimals))
+        .mul(price);
 
-    return type === "borrowed"
-      ? pricedBalance
-          .div(asset.config.volatility_ratio)
-          .mul(MAX_RATIO)
-          .toFixed()
-      : pricedBalance
-          .mul(asset.config.volatility_ratio)
-          .div(MAX_RATIO)
-          .toFixed();
-  });
-  if (asset_v?.length > 0) {
-    return asset_v.reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
-  } else {
-    return B(1);
-  }
+      return type === "borrowed"
+        ? pricedBalance
+            .div(asset.config.volatility_ratio)
+            .mul(MAX_RATIO)
+            .toFixed()
+        : pricedBalance
+            .mul(asset.config.volatility_ratio)
+            .div(MAX_RATIO)
+            .toFixed();
+    })
+    .reduce((sum, cur) => B(sum).plus(B(cur)).toFixed());
 }
 
 const adjustedCollateralSum = getAdjustedSum("collateral", account);
