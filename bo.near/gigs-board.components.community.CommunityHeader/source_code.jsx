@@ -79,15 +79,17 @@ const NavUnderline = styled.ul`
   }
 `;
 
-const BreadcrumbLink = styled.a`{
-  color: #3252a6;
-  text-decoration: none;
-}
-`
-const BreadcrumbBold = styled.b`{
-  color: #3252a6;
-}
-`
+const BreadcrumbLink = styled.a`
+   {
+    color: #3252a6;
+    text-decoration: none;
+  }
+`;
+const BreadcrumbBold = styled.b`
+   {
+    color: #3252a6;
+  }
+`;
 
 // TODO nav-underline is available in bootstrap: https://getbootstrap.com/docs/5.3/components/navs-tabs/#underline,
 // but it's not there in near social, need write such style here
@@ -99,7 +101,9 @@ return (
       <div aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <BreadcrumbLink href={href("Feed")}>Developer Governance</BreadcrumbLink>
+            <BreadcrumbLink href={href("Feed")}>
+              Developer Governance
+            </BreadcrumbLink>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             <BreadcrumbBold>{props.title}</BreadcrumbBold>
@@ -117,7 +121,9 @@ return (
         <NavUnderline className="nav">
           <li class="nav-item">
             <a
-              className={props.tab === "Overview" ? "nav-link active" : "nav-link"}
+              className={
+                props.tab === "Overview" ? "nav-link active" : "nav-link"
+              }
               aria-current="page"
               href={href("community.Overview", { label: props.label })}
             >
@@ -128,7 +134,9 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
-              className={props.tab === "Discussions" ? "nav-link active" : "nav-link"}
+              className={
+                props.tab === "Discussions" ? "nav-link active" : "nav-link"
+              }
               href={href("community.Discussions", {
                 label: props.label,
               })}
@@ -140,7 +148,9 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
-              className={props.tab === "Sponsorship" ? "nav-link active" : "nav-link"}
+              className={
+                props.tab === "Sponsorship" ? "nav-link active" : "nav-link"
+              }
               href={href("community.Sponsorship", {
                 label: props.label,
               })}
@@ -152,7 +162,9 @@ return (
           <li class="nav-item">
             <a
               class="nav-link"
-              className={props.tab === "Events" ? "nav-link active" : "nav-link"}
+              className={
+                props.tab === "Events" ? "nav-link active" : "nav-link"
+              }
               href={href("community.Events", {
                 label: props.label,
                 tab: "Events",
