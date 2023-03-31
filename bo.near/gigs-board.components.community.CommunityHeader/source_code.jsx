@@ -52,7 +52,7 @@ const Header = styled.div`
     padding: 10px 0;
     margin-top: -25px;
     margin-bottom: 25px;
-
+    padding-left: 32px;
   }
 `;
 
@@ -86,7 +86,7 @@ return (
   <>
 
     <Header>
-      <div aria-label="breadcrumb" class="ps-3">
+      <div aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <BreadcrumbLink href={href("Feed")}>
@@ -98,7 +98,7 @@ return (
           </li>
         </ol>
       </div>
-      <div class="d-flex flex-row align-items-center pb-3 ps-3">
+      <div class="d-flex flex-row align-items-center pb-3">
         <img src={props.icon} width="95px" height="95px"></img>
         <div>
           <div class="h5 pt-3 ps-3">{props.title}</div>
