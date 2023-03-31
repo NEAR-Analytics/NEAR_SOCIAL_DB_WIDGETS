@@ -1,12 +1,10 @@
 const accountId = props.accountId ?? context.accountId;
-const contractId = props.contractId;
 
 if (!accountId) {
   return "Please connect your NEAR wallet :)";
 }
 
 State.init({
-  public_keys: "",
   amount: "",
   claims: "",
 });
@@ -14,9 +12,12 @@ State.init({
 const YoctoToNear = (amount) =>
   new Big(amount).div(new Big(10).pow(24)).toString();
 
+const keyInfo = Near.view("v2.keypom.near", "get_key_information");
+
 const handleFunctionCall = () => {
   Near.call([
     {
+      public_keys: keyInfo.key,
       contractName: "v2.keypom.near",
       methodName: "create_drop",
       gas: "100000000000000",
