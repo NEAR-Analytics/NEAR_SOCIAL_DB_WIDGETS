@@ -65,11 +65,11 @@ if (!state.actionList) {
 const tabContents = () => {
   switch (state.actionTabs) {
     case "borrow":
-      return <Widget src="juaner.near/widget/ref_burrow-borrow" />;
+      return <Widget src="ciocan.near/widget/burrow-borrow" />;
     case "deposit":
-      return <Widget src="juaner.near/widget/ref_burrow-deposit" />;
+      return <Widget src="ciocan.near/widget/burrow-deposit" />;
     case "repay":
-      return <Widget src="juaner.near/widget/ref_burrow-repay" />;
+      return <Widget src="ciocan.near/widget/burrow-repay" />;
   }
 };
 
@@ -107,9 +107,9 @@ return (
     <Main>
       <LeftPanel>
         {state.actionList === "assets" ? (
-          <Widget src="juaner.near/widget/ref_burrow-list" />
+          <Widget src="ciocan.near/widget/burrow-list" />
         ) : (
-          <Widget src="juaner.near/widget/ref_burrow-portfolio" />
+          <Widget src="ciocan.near/widget/burrow-portfolio" />
         )}
       </LeftPanel>
       <RightPanel>
@@ -153,7 +153,7 @@ return (
         </div>
         {tabContents()}
         <div class="mt-4">
-          <Widget src="juaner.near/widget/ref_burrow-rewards" />
+          <Widget src="ciocan.near/widget/burrow-rewards" />
         </div>
       </RightPanel>
     </Main>
