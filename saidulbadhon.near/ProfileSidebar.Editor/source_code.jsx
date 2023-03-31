@@ -63,7 +63,7 @@ const styles = {
 
   buttonSuccess: {
     fontWeight: 500,
-    border: "1px solid #d0d7de",
+    // border: "1px solid #d0d7de",
     width: "100%",
     height: 40,
     borderRadius: 4,
@@ -90,7 +90,7 @@ return (
         image={state.img}
         style={{
           fontWeight: 500,
-          border: "1px solid #d0d7de",
+          // border: "1px solid #d0d7de",
           width: "100%",
           cursor: "pointer",
           height: 40,
