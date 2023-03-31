@@ -133,14 +133,32 @@ return (
             props={{ accountId, theme: props?.theme }}
           />
 
-          <Widget
-            src="zahidulislam.near/widget/Profile.IconButton"
-            props={{
-              icon: "https://cdn-icons-png.flaticon.com/512/3179/3179068.png",
-              label: profile?.location ?? "Add Location",
-              theme: props?.theme,
+          <div
+            style={{
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
             }}
-          />
+          >
+            <img
+              style={{ height: 15 }}
+              src="https://cdn-icons-png.flaticon.com/512/149/149060.png"
+              alt="icon"
+            />
+
+            <p
+              style={{
+                color: props.theme.textColor3,
+                fontWeight: 500,
+                fontSize: ".9rem",
+
+                margin: 0,
+                padding: 0,
+              }}
+            >
+              {profile?.location ?? "Add Location"}
+            </p>
+          </div>
         </div>
       </>
     )}
