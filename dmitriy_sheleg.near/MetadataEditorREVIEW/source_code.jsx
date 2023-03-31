@@ -1,7 +1,21 @@
 const initialMetadata = props.initialMetadata ?? {};
 const onChange = props.onChange;
 const options = props.options;
-const debounce = props.debounce;
+// const debounce = props.debounce;
+const debounce = (func, wait) => {
+  const pause = wait || 350;
+  let timeout;
+
+  return (args) => {
+    const later = () => {
+      clearTimeout(timeout);
+      func(args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, pause);
+  };
+};
 
 State.init({
   initialMetadata,
@@ -89,7 +103,7 @@ return (
           props={{
             image: state.image,
             onChange: (image) => State.update({ image }),
-            debounce,
+            // debounce,
           }}
         />
       </div>
@@ -102,7 +116,7 @@ return (
           props={{
             image: state.backgroundImage,
             onChange: (backgroundImage) => State.update({ backgroundImage }),
-            debounce,
+            // debounce,
           }}
         />
       </div>
