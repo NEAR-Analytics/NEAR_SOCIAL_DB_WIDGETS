@@ -15,8 +15,6 @@ let raw_data = fetch(
 const data = raw_data.body || [];
 
 let Style = styled.div`
-  height: 60vh;
-
                 `;
 
 // logic start
@@ -79,12 +77,13 @@ const stacked_bar_data = {
 
 return (
   <Style>
-    <div className="text-bg-dark rounded-4 p-3 mb-4">
+    <div className="text-bg-dark container">
       {data !== null ? (
-        <p className="canvas-container">
-          <BarEl options={stacked_options} data={stacked_bar_data} />
-          <div></div>
-        </p>
+        <div className="row">
+          <div className="col-12">
+            <BarEl options={stacked_options} data={stacked_bar_data} />
+          </div>
+        </div>
       ) : (
         <div>Loading ...</div>
       )}
