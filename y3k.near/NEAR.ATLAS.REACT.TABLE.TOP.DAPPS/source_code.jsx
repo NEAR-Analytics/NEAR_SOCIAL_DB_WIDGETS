@@ -115,9 +115,9 @@ const sortFns = {
 };
 
 return (
-  <div className="text-bg-dark rounded-4 p-3 mb-4">
+  <div className="text-bg-dark rounded-4 mb-12">
     {data !== null ? (
-      <div class="bg-dark">
+      <div Style={{ "min-width": "780px" }} className="bg-dark">
         <BasicTable columns={COLUMNS} data={data} sortFns={sortFns} />
       </div>
     ) : (
