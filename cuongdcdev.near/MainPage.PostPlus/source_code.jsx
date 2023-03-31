@@ -118,6 +118,7 @@ return (
             <i class="bi bi-send fs-4"></i>
           </button>
         </div>
+
         <div>
           <Widget
             src="mob.near/widget/CommentButton"
@@ -127,6 +128,17 @@ return (
             }}
           />
         </div>
+
+        <div>
+          <Widget
+            src="mob.near/widget/RepostButton"
+            props={{
+              notifyAccountId,
+              item,
+            }}
+          />
+        </div>
+
         <div>
           <Widget
             src="mob.near/widget/MainPage.Post.ShareButton"
