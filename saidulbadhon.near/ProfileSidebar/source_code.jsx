@@ -63,15 +63,19 @@ return (
           alt="profile"
         />
         <div style={{ paddingBlock: 10 }}>
-          <h2 style={{ textAlign: "center" }}>{name}</h2>
-          <p style={{ textAlign: "center" }}>@{accountId}</p>
+          <h2 style={{ textAlign: "center", color: props.theme.textColor }}>
+            {name}
+          </h2>
+          <p style={{ textAlign: "center", color: props.theme.textColor3 }}>
+            @{accountId}
+          </p>
         </div>
       </div>
 
       <p
         style={{
           textAlign: "center",
-          color: "#57606a",
+          color: props.theme.textColor,
           fontWeight: 500,
           fontSize: "1rem",
         }}
@@ -88,7 +92,7 @@ return (
         />
 
         <button
-          style={{ marginBottom: 20 }}
+          style={{ marginBottom: 20, backgroundColor: props.theme.buttonColor }}
           onClick={() => {
             State.update({
               showEditProfile: false,
@@ -123,13 +127,17 @@ return (
         </button>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <Widget src="mob.near/widget/FollowStats" props={{ accountId }} />
+          <Widget
+            src="mob.near/widget/FollowStats"
+            props={{ accountId, theme: props?.theme }}
+          />
 
           <Widget
             src="zahidulislam.near/widget/Profile.IconButton"
             props={{
               icon: "https://cdn-icons-png.flaticon.com/512/3179/3179068.png",
               label: profile?.location ?? "Add Location",
+              theme: props?.theme,
             }}
           />
         </div>
