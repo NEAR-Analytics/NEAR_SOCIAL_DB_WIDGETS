@@ -25,8 +25,8 @@ const postsQuery = `
   query IndexerQuery($offset: Int) {
   roshaan_near_feed_indexer_posts(order_by: {${
     option === "recentComments"
-      ? `block_height: desc`
-      : `last_comment_timestamp: desc`
+      ? `last_comment_timestamp: desc`
+      : `block_height: desc`
   }}, offset: $offset, limit: ${LIMIT}) {
     account_id
     block_height
@@ -42,7 +42,7 @@ const postsQuery = `
       content
     }
   }
-  roshaan_near_alphaindexer_posts_aggregate {
+  roshaan_near_feed_indexer_posts_aggregate {
     aggregate {
       count
     }
@@ -70,9 +70,9 @@ fetchGraphQL(postsQuery, "IndexerQuery", {
 }).then((result) => {
   if (result.status === 200) {
     if (result.body.data) {
-      const posts = result.body.data.roshaan_near_alphaindexer_posts;
+      const posts = result.body.data.roshaan_near_feed_indexer_posts;
       const postsCount =
-        result.body.data.roshaan_near_alphaindexer_posts_aggregate.aggregate
+        result.body.data.roshaan_near_feed_indexer_posts_aggregate.aggregate
           .count;
       if (posts.length > 0) {
         State.update({
@@ -124,9 +124,9 @@ const onPostsPageChange = (page) => {
       if (result.status === 200) {
         let data = result.body.data;
         if (data) {
-          const posts = data.roshaan_near_alphaindexer_posts;
+          const posts = data.roshaan_near_feed_indexer_posts;
           const postsCount =
-            data.roshaan_near_alphaindexer_posts_aggregate.aggregate.count;
+            data.roshaan_near_feed_indexer_posts_aggregate.aggregate.count;
           if (posts.length > 0) {
             State.update({
               posts: posts,
