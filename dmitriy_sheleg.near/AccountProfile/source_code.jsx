@@ -1,6 +1,6 @@
 const accountId = props.accountId || context.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
-const profileUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
+const profileUrl = `/#/mob.near/widget/ProfilePage?accountId=${accountId}`;
 
 const Wrapper = styled.div`
   display: inline-grid;
@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 12px;
   grid-template-columns: auto 1fr;
-  cursor: pointer;
   margin: 0;
   color: #687076 !important;
   outline: none;
@@ -20,13 +19,6 @@ const Wrapper = styled.div`
 
   > * {
     min-width: 0;
-  }
-
-  &:hover,
-  &:focus {
-    div:first-child {
-      border-color: #d0d5dd;
-    }
   }
 `;
 
@@ -40,6 +32,11 @@ const Text = styled.p`
   overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
   text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
   white-space: nowrap;
+`;
+const ProfileLink = styled(Text)`
+  &:hover {
+    color: initial;
+  }
 `;
 
 const Avatar = styled.div`
@@ -65,11 +62,7 @@ const Name = styled.div`
 `;
 
 return (
-  <Wrapper
-    // as={props.onClick ? "button" : "a"}
-    // href={!props.onClick && profileUrl}
-    onClick={props.onClick && (() => props.onClick(accountId))}
-  >
+  <Wrapper>
     <Avatar>
       <Widget
         src="mob.near/widget/Image"
@@ -84,9 +77,9 @@ return (
 
     <div>
       <Name>
-        <Text ellipsis bold>
+        <ProfileLink as="a" href={profileUrl} ellipsis bold>
           {profile.name || accountId.split(".near")[0]}
-        </Text>
+        </ProfileLink>
 
         {props.inlineContent}
 
