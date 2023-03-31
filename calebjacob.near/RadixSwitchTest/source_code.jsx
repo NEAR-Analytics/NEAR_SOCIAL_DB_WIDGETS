@@ -1,3 +1,19 @@
+const SwitchThumb = styled("Switch.Thumb")`
+  display: block;
+  width: 21px;
+  height: 21px;
+  background-color: pink;
+  border-radius: 9999px;
+  box-shadow: 0 2px 2px var(--blackA7);
+  transition: transform 100ms;
+  transform: translateX(2px);
+  will-change: transform;
+
+  &[data-state='checked'] {
+    transform: translateX(19px);
+  }
+`;
+
 const Wrapper = styled.div`/* reset */
 button {
   all: unset;
@@ -17,21 +33,6 @@ button {
 }
 .SwitchRoot[data-state='checked'] {
   background-color: black;
-}
-
-.SwitchThumb {
-  display: block;
-  width: 21px;
-  height: 21px;
-  background-color: white;
-  border-radius: 9999px;
-  box-shadow: 0 2px 2px var(--blackA7);
-  transition: transform 100ms;
-  transform: translateX(2px);
-  will-change: transform;
-}
-.SwitchThumb[data-state='checked'] {
-  transform: translateX(19px);
 }
 
 .Label {
@@ -58,7 +59,7 @@ return (
         Airplane mode
       </label>
       <Switch.Root className="SwitchRoot" id="airplane-mode">
-        <Switch.Thumb className="SwitchThumb" />
+        <SwitchThumb />
       </Switch.Root>
     </div>
   </Wrapper>
