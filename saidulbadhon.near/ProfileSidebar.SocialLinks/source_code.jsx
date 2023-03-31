@@ -40,9 +40,9 @@ return (
               target="_blank"
             >
               <img
-                style={styles.invertColor}
+                // style={styles.invertColor}
                 style={{ height: 20, opacity: 0.5 }}
-                src="https://cdn-icons-png.flaticon.com/512/733/733635.png"
+                src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
                 alt="twitter"
               />
             </a>
@@ -56,7 +56,7 @@ return (
                 <img
                   style={styles.invertColor}
                   style={{ height: 20, opacity: 0.5 }}
-                  src="https://cdn-icons-png.flaticon.com/512/2111/2111425.png"
+                  src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
                   alt="github"
                 />
               </a>
@@ -70,7 +70,7 @@ return (
                 <img
                   style={styles.invertColor}
                   style={{ height: 20, opacity: 0.5 }}
-                  src="https://cdn-icons-png.flaticon.com/512/2111/2111708.png"
+                  src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png"
                   alt="telegram"
                 />
               </a>
@@ -80,7 +80,7 @@ return (
                 <img
                   style={styles.invertColor}
                   style={{ height: 20, opacity: 0.5 }}
-                  src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+                  src="https://cdn-icons-png.flaticon.com/512/3059/3059997.png"
                   alt="website"
                 />
               </a>
