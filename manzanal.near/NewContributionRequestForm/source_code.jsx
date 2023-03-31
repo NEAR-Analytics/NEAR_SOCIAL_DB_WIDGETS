@@ -1,4 +1,5 @@
 const ownerId = "contribut3.near";
+const tempAccountId = "manzanal.near";
 
 State.init({
   // The entity to which to request a contribution.
@@ -7,42 +8,54 @@ State.init({
   description: "",
   files: [],
   tags: [],
-  contributionType: props.contributionType
-    ? [{ name: props.contributionType }]
-    : [],
-  paymentSource: "",
+  requestType: props.requestType ? [{ name: props.requestType }] : [],
+  paymentType: props.paymentType ? [{ name: props.paymentType }] : [],
+  paymentSource: props.paymentSource ? [{ name: props.paymentSource }] : [],
   budget: undefined,
-  specifyBudget: false,
-  deadline: undefined,
-  specifyDeadline: false,
+  specifyBudget: true,
+  deadline: "",
+  specifyDeadline: true,
 });
-const getEntities = () => {
-  const result = Near.view(ownerId, "get_entities", {}, "final");
-  console.log("entities", result);
-  return result;
-};
-const existingEntities = Object.values(getEntities() ?? {}).map((name) => ({
-  name,
-}));
-const tagsMetadata = Social.getr(
-  `${accountId}/${appName}/${state.contractId}`,
-  "final"
-);
+const allEntities = (
+  Near.view(ownerId, "get_entities", {}, "final", true) ?? []
+).map((name) => ({ name }));
+
+const allRequestTypes = (
+  Near.view(ownerId, "get_request_types", {}, "final", true) ?? []
+).map((name) => ({ name }));
+
+const allPaymentTypes = (
+  Near.view(ownerId, "get_payment_types", {}, "final", true) ?? []
+).map((name) => ({ name }));
+
+const allPaymentSources = (
+  Near.view(ownerId, "get_payment_sources", {}, "final", true) ?? []
+).map((name) => ({ name }));
+
+const tagsMetadata = Social.getr(`${accountId}/project/tags`, "final");
+
+// styled components
+const Heading3 = styled.div`
+    font-family: 'Space Grotesk';
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+`;
 
 const renderEntity = (
-  <div className="col-lg-12  mb-2">
+  <div className="col-lg-12 mb-3">
     <label htmlFor="enity-id">Request as *</label>
     <Typeahead
       id="entity-id"
       labelKey="name"
       onChange={(entity) => State.update({ entity })}
-      options={existingEntities}
+      options={allEntities}
       placeholder="social.near, contribut3.near"
       selected={state.entity}
       positionFixed
       renderMenuItemChildren={(option, { text }) => (
         <Widget
-          src={`manzanal.near/widget/EntityOneLineProfile`}
+          src={`${tempAccountId}/widget/EntityOneLineProfile`}
           props={{
             accountId: option.name,
           }}
@@ -52,8 +65,8 @@ const renderEntity = (
   </div>
 );
 
-const descriptionDiv = (
-  <div className="col-lg-12 mb-2">
+const renderDescription = (
+  <div className="col-lg-12 mb-3">
     <Widget
       src={`${ownerId}/widget/DescriptionInput`}
       props={{
@@ -65,20 +78,22 @@ const descriptionDiv = (
   </div>
 );
 
-const contributionTypeInput = (
-  <div className="col-lg-12 mb-2">
+const renderRequestTypeInput = (
+  <div className="w-75 mb-3">
     <Widget
       src={`${ownerId}/widget/ContributionTypeInput`}
       props={{
-        contributionType: state.contributionType,
-        update: (contributionType) => State.update({ contributionType }),
-        allContributionTypes,
+        contributionType: state.requestType,
+        update: (requestType) => State.update({ requestType }),
+        allRequestTypes,
+        text: "Request type *",
       }}
     />
   </div>
 );
+
 const renderTitle = (
-  <div>
+  <div className="mb-3">
     <label htmlFor="title">Title *</label>
     <input
       type="text"
@@ -90,11 +105,10 @@ const renderTitle = (
   </div>
 );
 const renderTagSelection = (
-  <div className="mb-2" style={{ minHeight: "62px" }}>
+  <div className="mb-3" style={{ minHeight: "62px" }}>
     {metadata !== null ? (
       <Widget
         src={"mob.near/widget/MetadataEditor"}
-        key={`public-tags-metadata-${state.contractId}`}
         props={{
           initialMetadata: metadata,
           onChange: (metadata) => {
@@ -103,7 +117,6 @@ const renderTagSelection = (
           options: {
             tags: {
               label: "Tags",
-              pattern,
               placeholder: "defi, staking",
             },
           },
@@ -114,20 +127,107 @@ const renderTagSelection = (
     )}
   </div>
 );
-const Heading3 = styled.div`
-    font-family: 'Space Grotesk';
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 24px;
-`;
+
+const renderPaymentTypeInput = (
+  <div className="w-75 mb-3">
+    <Widget
+      src={`${tempAccountId}/widget/PaymentTypeInput`}
+      props={{
+        paymentType: state.paymentType,
+        update: (paymentType) => State.update({ paymentType }),
+        allPaymentTypes,
+      }}
+    />
+  </div>
+);
+
+const renderPaymentSourceInput = (
+  <div className="w-75 mb-3">
+    <Widget
+      src={`${tempAccountId}/widget/PaymentSourceInput`}
+      props={{
+        paymentSource: state.paymentSource,
+        update: (paymentSource) => State.update({ paymentSource }),
+        allPaymentSources,
+      }}
+    />
+  </div>
+);
+
+const renderBudgetInput = (
+  <div className="w-75 mb-3">
+    <label htmlFor="budget">Budget</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
+      </div>
+      <input
+        type="number"
+        min="0"
+        id="budget"
+        disabled={!state.specifyBudget}
+        placeholder="1500"
+        value={state.budget}
+        onChange={({ target }) => State.update({ budget: target.value })}
+      />
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value={!state.specifyBudget}
+        id="specifyBudget"
+        onChange={() => State.update({ specifyBudget: !state.specifyBudget })}
+      />
+      <label class="form-check-label" for="specifyBudget">
+        Don't specify
+      </label>
+    </div>
+  </div>
+);
+
+const renderDeadlineInput = (
+  <div className="w-50 mb-3">
+    <label htmlFor="deadline">Deadline</label>
+    <input
+      type="date"
+      id="deadline"
+      disabled={!state.specifyDeadline}
+      value={state.deadline}
+      onChange={({ target }) => State.update({ deadline: target.value })}
+    />
+
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value={!state.specifyDeadline}
+        id="specifyBudget"
+        onChange={() =>
+          State.update({ specifyDeadline: !state.specifyDeadline })
+        }
+      />
+      <label class="form-check-label" for="specifyDeadline">
+        Don't specify
+      </label>
+    </div>
+  </div>
+);
 return (
-  <div className="row">
-    <Heading3>Request details</Heading3>
+  <div className="row my-4 mx-12">
+    <div style={{ "border-bottom": "1px solid #ECEEF0" }} class="mb-3">
+      <Heading3>Request details</Heading3>
+    </div>
     <div>
       {renderEntity}
       {renderTitle}
-      {descriptionDiv}
+      {renderDescription}
       {renderTagSelection}
+      {renderRequestTypeInput}
+      {renderPaymentTypeInput}
+      {renderPaymentSourceInput}
+      {renderBudgetInput}
+      {renderDeadlineInput}
     </div>
   </div>
 );
