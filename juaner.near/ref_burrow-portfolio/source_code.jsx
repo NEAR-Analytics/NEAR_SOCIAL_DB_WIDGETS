@@ -1,7 +1,7 @@
 let accountId = context.accountId;
 
 if (!accountId) {
-  return <Widget src="ciocan.near/widget/account-signin" />;
+  return <Widget src="juaner.near/widget/ref_account-signin" />;
 }
 
 const toAPY = (v) => Math.round(v * 100) / 100;
@@ -92,7 +92,7 @@ const borrowedAssets = hasData
 return (
   <div>
     {!hasData && (
-      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
+      <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <table class="table">
       <thead>
