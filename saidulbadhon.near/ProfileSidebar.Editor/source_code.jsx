@@ -70,7 +70,7 @@ const styles = {
     cursor: "pointer",
     transition: "all 0.2s ease-in-out",
     backgroundColor: "#2ea043",
-    color: "#ffffff",
+    color: props.theme.buttonTextColor,
   },
 };
 
@@ -89,11 +89,13 @@ return (
       <IpfsImageUpload
         image={state.img}
         style={{
-          ...props.buttonSuccess,
+          fontWeight: 500,
+          border: "1px solid #d0d7de",
+          width: "100%",
+          cursor: "pointer",
           height: 40,
           padding: 0,
           borderRadius: 4,
-          // fontSize: ".9rem",
           backgroundColor: props.theme.buttonColor,
           color: props.theme.buttonTextColor,
           display: "flex",
