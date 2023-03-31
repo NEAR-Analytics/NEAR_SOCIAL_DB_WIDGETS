@@ -85,7 +85,10 @@ const communities = {
 };
 /* END_INCLUDE: "communities.jsx" */
 
-
+const Content = styled.div`
+{
+  padding-left: 32px;
+}`
 
 if (!props.label) {
   return (
@@ -107,6 +110,6 @@ return (
       label: props.label,
       tab: props.tab,
     })}
-    {props.children}
+    <Content>{props.children}</Content>
   </>
 );
