@@ -116,7 +116,7 @@ const OverlayBtn = styled.span`
   cursor: pointer;
 `;
 const CorrectPost = styled.div`
-  position: ablosute;
+  position: absolute;
   top: .5rem;
   left: .5rem;
   color: #30A46C;
