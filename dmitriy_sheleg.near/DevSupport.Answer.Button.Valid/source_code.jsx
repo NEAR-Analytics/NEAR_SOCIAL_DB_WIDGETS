@@ -13,6 +13,7 @@ if (context.loading) {
   return "Loading";
 }
 
+// TODO: don't forget to uncomment this lines after demo
 // if (!admins.includes(context.accountId)) {
 //   return "";
 // }
