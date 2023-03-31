@@ -41,6 +41,7 @@ const handleValidAnswerClick = () => {
 
 const Post = styled.div`
   position: relative;
+  display: grid;
 
   &::before {
     content: "";
@@ -56,6 +57,7 @@ const Post = styled.div`
 const Header = styled.div`
   margin-bottom: 0;
   display: inline-flex;
+  justify-content: stretch;
 `;
 const Body = styled.div`
   padding-left: 52px;
