@@ -38,6 +38,10 @@ button {
   color: black;
   font-size: 15px;
   line-height: 1;
+
+  i {
+    margin-right: 8px;
+  }
 }
 `;
 
@@ -49,6 +53,7 @@ return (
         htmlFor="airplane-mode"
         style={{ paddingRight: 15 }}
       >
+        <i className="ph ph-airplane"></i>
         Airplane mode
       </label>
       <Switch.Root className="SwitchRoot" id="airplane-mode">
