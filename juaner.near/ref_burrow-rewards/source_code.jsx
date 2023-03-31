@@ -52,7 +52,7 @@ const handleClaimAll = () => {
 return (
   <div>
     {!hasData && (
-      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
+      <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <h6>Unclaimed rewards</h6>
     <ul class="list p-0">
