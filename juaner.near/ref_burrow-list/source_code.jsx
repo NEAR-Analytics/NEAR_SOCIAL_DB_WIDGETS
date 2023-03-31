@@ -44,7 +44,7 @@ const allAssets = hasData
 return (
   <div>
     {!hasData && (
-      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
+      <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <table class="table">
       <thead>
