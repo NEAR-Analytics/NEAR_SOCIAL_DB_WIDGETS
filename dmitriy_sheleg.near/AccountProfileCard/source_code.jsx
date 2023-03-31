@@ -2,6 +2,7 @@ const accountId = props.accountId;
 const profile = props.profile || Social.get(`${accountId}/profile/**`, "final");
 const tags = Object.keys(profile.tags || {});
 const profileUrl = `/#/mob.near/widget/ProfilePage?accountId=${accountId}`;
+const followingUrl = `/#/mob.near/widget/FollowPage?accountId=${accountId}`;
 
 State.init({
   show: false,
@@ -134,7 +135,7 @@ return (
 
     <TextLink
       className="my-2 align-self-start"
-      href={`${profileUrl}&tab=followers`}
+      href={`${followingUrl}&tab=followers`}
     >
       {followersCount}&nbsp;Followers
     </TextLink>
