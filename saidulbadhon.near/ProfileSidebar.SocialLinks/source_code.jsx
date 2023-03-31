@@ -20,9 +20,7 @@ const styles = {
     alignItems: "center",
 
     backgroundColor:
-      theme.name === "dark"
-        ? "rgba(255, 255, 255, 0.05)"
-        : "rgba(0, 0, 0, 0.05)",
+      theme.name === "dark" ? "rgba(255, 255, 255, 5)" : "rgba(0, 0, 0, 0.05)",
 
     transition: "all 0.2s ease-in-out",
   },
