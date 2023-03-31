@@ -26,18 +26,30 @@ function formatNumber(num) {
   );
 }
 
+const sub_widget_map = {
+  "Play Ember": "https://nearatlas.com/#/y3k.near/widget/WAU_PlayEmber",
+};
+
 function formatCell(text) {
-  return <span className="text-white">{text}</span>;
+  if (text in sub_widget_map) {
+    return (
+      <a href={sub_widget_map[text]} target="_blank" className="text-warning">
+        {text}
+      </a>
+    );
+  } else {
+    return <span className="text-white">{text}</span>;
+  }
 }
 
 function formatText(text) {
-  let number = text;
+  let number = parseFloat(text);
   if (number < 0) {
     return <span className="text-danger">{number}</span>;
-  } else if (number > 10) {
+  } else if (number > 0) {
     return <span className="text-success">{number}</span>;
   } else {
-    return text;
+    return <span className="text-warning">{number}</span>;
   }
 }
 
