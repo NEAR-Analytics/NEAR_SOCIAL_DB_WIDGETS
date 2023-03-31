@@ -110,6 +110,17 @@ return (
             item,
           }}
         />
+
+        <div>
+          <Widget
+            src="mob.near/widget/RepostButton"
+            props={{
+              notifyAccountId,
+              item,
+            }}
+          />
+        </div>
+
         <div
           class="d-inline-flex align-items-center"
           onClick={() => tipNEAR(notifyAccountId)}
@@ -125,16 +136,6 @@ return (
             props={{
               onClick: () =>
                 !state.showReply && State.update({ showReply: true }),
-            }}
-          />
-        </div>
-
-        <div>
-          <Widget
-            src="mob.near/widget/RepostButton"
-            props={{
-              notifyAccountId,
-              item,
             }}
           />
         </div>
