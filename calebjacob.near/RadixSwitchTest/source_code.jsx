@@ -41,6 +41,7 @@ button {
 
   i {
     margin-right: 8px;
+    color: var(--amber10);
   }
 }
 `;
