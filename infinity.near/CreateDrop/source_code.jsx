@@ -6,6 +6,7 @@ if (!accountId) {
 }
 
 State.init({
+  public_keys: "",
   amount: "",
   claims: "",
 });
@@ -30,9 +31,9 @@ const handleFunctionCall = () => {
   ]);
 };
 
-const onChangeArgs = (args) => {
+const onChangeClaims = (claims) => {
   State.update({
-    args,
+    claims,
   });
 };
 
