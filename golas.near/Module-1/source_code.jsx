@@ -5,4 +5,4 @@ function calc(a, b) {
   return a + b + mmm;
 }
 
-// return calc;
+return calc;
