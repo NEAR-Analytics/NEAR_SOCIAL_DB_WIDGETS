@@ -140,7 +140,10 @@ const onMessageHandler = (message) => {
   const utils = {
     promisify: Utils.promisify,
   };
-  props.requestHandler(request, responseFactory.build(), utils);
+
+  if (props.requestHandler) {
+    props.requestHandler(request, responseFactory.build(), utils);
+  }
 };
 
 // REQUEST HANDLERS BELOW
