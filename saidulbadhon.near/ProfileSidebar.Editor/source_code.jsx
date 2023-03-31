@@ -54,11 +54,11 @@ const styles = {
     width: "100%",
     backgroundColor: "transparent",
     minHeight: 30,
-    border: `1px solid ${theme.borderColor}`,
+    border: `1px solid ${theme.borderColor3}`,
     borderRadius: 4,
     resize: "vertical",
     paddingInline: 8,
-    color: props.theme.textColor,
+    color: props.theme.textColor2,
   },
 
   buttonSuccess: {
