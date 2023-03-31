@@ -2,7 +2,7 @@ let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
 
 if (!accountId) {
-  return <Widget src="ciocan.near/widget/account-signin" />;
+  return <Widget src="juaner.near/widget/ref_account-signin" />;
 }
 
 const { selectedTokenId, amount, hasError, assets, rewards } = state;
@@ -209,7 +209,7 @@ const handleDepositNear = (amount) => {
 return (
   <div style={{ maxWidth: "300px" }}>
     {!hasData && (
-      <Widget src="ciocan.near/widget/burrow-data" props={{ onLoad }} />
+      <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <div class="card-body d-grid gap-3">
       <div>
