@@ -43,28 +43,30 @@ const styles = {
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    gap: 7.5,
+    gap: 4,
   },
   inputLabel: {
     padding: 0,
     margin: 0,
+    color: props.theme.textColor3,
   },
   input: {
     width: "100%",
     backgroundColor: "transparent",
     minHeight: 30,
     border: "1px solid #d0d7de",
-    borderRadius: 5,
+    borderRadius: 4,
     resize: "vertical",
-    paddingInline: 7.5,
+    paddingInline: 8,
+    color: props.theme.textColor,
   },
 
   buttonSuccess: {
     fontWeight: 600,
     border: "1px solid #d0d7de",
     width: "100%",
-    height: 40,
-    borderRadius: 5,
+    height: 45,
+    borderRadius: 4,
     cursor: "pointer",
     transition: "all 0.2s ease-in-out",
     backgroundColor: "#2ea043",
@@ -77,7 +79,7 @@ return (
     style={{
       display: "flex",
       flexDirection: "column",
-      gap: 20,
+      gap: 8,
       width: "100%",
     }}
   >
@@ -86,7 +88,16 @@ return (
 
       <IpfsImageUpload
         image={state.img}
-        style={{ padding: "5px 10px", fontSize: ".8rem", fontWeight: 600 }}
+        style={{
+          ...props.buttonSuccess,
+          padding: 0,
+          // fontSize: ".9rem",
+          backgroundColor: props.theme.buttonColor,
+          color: props.theme.buttonTextColor,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       />
     </div>
 
@@ -114,7 +125,7 @@ return (
         flexDirection: "column",
       }}
     >
-      <h3>Social accounts</h3>
+      <h3 style={{ color: props.theme.textColor }}>Social accounts</h3>
       <div style={styles.inputContainer}>
         <p style={styles.inputLabel}>Twitter:</p>
 
@@ -157,7 +168,7 @@ return (
         width: "100%",
       }}
     >
-      <CommitButton style={styls.buttonSuccess} data={{ profile }}>
+      <CommitButton style={styles.buttonSuccess} data={{ profile }}>
         Save profile
       </CommitButton>
     </div>
