@@ -50,7 +50,7 @@ const Banner = styled.div`
   background: #232323;
   margin-top: -24px;
   overflow: hidden;
-  padding: 32px 0;
+  padding: 32px;
 
   img {
     height: 36px;
@@ -75,7 +75,6 @@ const Gradient = styled.div`
     );
     opacity: 0.22;
     filter: blur(17vw);
-    z-index: 12;
   }
 `;
 
