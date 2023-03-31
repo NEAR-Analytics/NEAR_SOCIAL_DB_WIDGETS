@@ -83,7 +83,7 @@ return (
     {state.showEditProfile ? (
       <>
         <Widget
-          src="zahidulislam.near/widget/Profile.Editor"
+          src="saidulbadhon.near/widget/ProfileSidebar.Editor"
           props={{ showEditProfile }}
         />
 
