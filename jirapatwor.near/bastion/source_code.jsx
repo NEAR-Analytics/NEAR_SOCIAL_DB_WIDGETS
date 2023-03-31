@@ -249,12 +249,14 @@ const remainingBalance = () => {
     const valueWithCFactor = valueUsd.mul(
       state.cTokenMetadataAll[indexMeta][11]
     );
-    totalBorrowLimit = totalBorrowLimit.add(valueWithCFactor);
     // find total borrowed
     const bigValueBorrowedUSD = state.cTokenBalancesAll[indexBalance][2].mul(
       state.cTokenMetadataAll[indexMeta][1]
     );
-    totalBorrowd = totalBorrowd.add(bigValueBorrowedUSD);
+    if (state.getAccountLimits[0].includes(key)) {
+      totalBorrowLimit = totalBorrowLimit.add(valueWithCFactor);
+      totalBorrowd = totalBorrowd.add(bigValueBorrowedUSD);
+    }
   }
   const totalBorrowdFinal = (
     Number(totalBorrowd.toString()) / Math.pow(10, 18 * 2)
