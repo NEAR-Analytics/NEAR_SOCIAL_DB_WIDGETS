@@ -76,7 +76,7 @@ return (
         style={{
           textAlign: "center",
           color: props.theme.textColor,
-          fontWeight: 500,
+          fontWeight: 400,
           fontSize: "1rem",
         }}
       >
