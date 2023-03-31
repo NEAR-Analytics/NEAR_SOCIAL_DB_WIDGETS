@@ -46,12 +46,12 @@ const account = Near.view(BURROW_CONTRACT, "get_account", {
   account_id: accountId,
 });
 
-if (!account) return <div>loading...</div>;
+// if (!account) return <div>loading...</div>;
 
 // sum all assets to get the health factor
 // https://github.com/burrowfdn/burrowland for detailed explanation
 function getAdjustedSum(type, account) {
-  if (!assets) return B(1);
+  if (!assets || !account) return B(1);
   return account[type]
     .map((assetInAccount) => {
       const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
