@@ -23,7 +23,6 @@ return (
     className={props.className ?? "border-0 bg-white"}
     onClick={onClick}
   >
-    // <i class="bi bi-exclamation-circle" />
     <i class="bi bi-check-circle" />
     <span>{text}</span>
   </button>
