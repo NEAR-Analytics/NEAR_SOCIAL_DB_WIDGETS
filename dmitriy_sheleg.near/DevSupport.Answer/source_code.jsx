@@ -108,10 +108,9 @@ return (
     <Post>
       <Header>
         <Widget
-          src="adminalpha.near/widget/AccountProfile"
+          src="dmitriy_sheleg.near/widget/AccountProfile"
           props={{
             accountId,
-            noOverlay,
             inlineContent: (
               <div class="d-flex align-items-center flex-fill">
                 <Text as="span">･</Text>
