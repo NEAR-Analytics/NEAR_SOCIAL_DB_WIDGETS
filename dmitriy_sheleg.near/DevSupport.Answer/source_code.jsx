@@ -142,7 +142,7 @@ return (
               </Text>
               <div class="dropdown ms-auto">
                 <button
-                  class="btn border-0"
+                  class="btn border-0 p-0"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -174,7 +174,7 @@ return (
       />
     </Header>
     <Body>
-      <Content>
+      <Content className="mt-2">
         {answer.text && (
           <Widget
             src="adminalpha.near/widget/SocialMarkdown"
