@@ -50,7 +50,8 @@ const Header = styled.div`
     overflow: hidden;
     background: #f3f3f3;
     padding: 10px 0;
-    margin-top: 76px;
+    margin-top: -25px;
+    margin-bottom: 25px;
 
   }
 `;
