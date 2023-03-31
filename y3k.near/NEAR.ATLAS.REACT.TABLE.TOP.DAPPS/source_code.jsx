@@ -83,17 +83,17 @@ const COLUMNS = [
     sort: { sortKey: "PercentNew" },
   },
   {
-    label: <p className="text-white text-wrap ">M/M</p>,
+    label: "M / M",
     renderCell: (item) => formatText(item["M/M"]),
     sort: { sortKey: "MM" },
   },
   {
-    label: <p className="text-white text-wrap ">60-90 Days Ago</p>,
+    label: <span className="text-white text-wrap ">60-90 Days Ago</span>,
     renderCell: (item) => formatNumber(item["60-90 Days Ago"]),
     sort: { sortKey: "Past60" },
   },
   {
-    label: <p className="text-white text-wrap ">M/2M</p>,
+    label: "M / 2M",
     renderCell: (item) => formatText(item["M/2M"]),
     sort: { sortKey: "M2M" },
   },
@@ -115,7 +115,7 @@ const sortFns = {
 };
 
 return (
-  <div Style={{ maxWidth: "100%" }} className="text-bg-dark rounded-4 p-3 mb-4">
+  <div className="text-bg-dark rounded-4 p-3 mb-4">
     {data !== null ? (
       <div class="bg-dark">
         <BasicTable columns={COLUMNS} data={data} sortFns={sortFns} />
