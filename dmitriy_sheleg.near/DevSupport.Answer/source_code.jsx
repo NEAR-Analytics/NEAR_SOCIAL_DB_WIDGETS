@@ -15,10 +15,9 @@ const answer = JSON.parse(
   Social.get(`${accountId}/question/answer`, blockHeight) ?? "null"
 );
 
-const is_useful = Near.view(adminContract, "is_useful", {
+const isUseful = Near.view(adminContract, "is_useful", {
   id: { account_id: accountId, block_height: blockHeight },
 });
-const border = is_useful ? "border-success" : "border-black";
 
 const item = {
   type: "social",
@@ -101,8 +100,11 @@ const Item = styled.div`
       text-decoration: none;
       outline: none;
     }
-    i {
-      color: #30A46C;
+
+    &.valid-btn {
+      i {
+        color: #30A46C;
+      }
     }
     span {
       font-weight: 500;
@@ -112,6 +114,12 @@ const Item = styled.div`
 const OverlayBtn = styled.span`
   color: #000000;
   cursor: pointer;
+`;
+const CorrectPost = styled.div`
+  position: ablosute;
+  top: .5rem;
+  left: .5rem;
+  color: #30A46C;
 `;
 
 const overlay = (
@@ -131,7 +139,7 @@ const overlay = (
           adminContract,
           onClick: handleValidAnswerClick,
           text: "Mark as Correct",
-          className: "btn",
+          className: "btn valid-btn",
         }}
       />
     </Item>
@@ -140,6 +148,11 @@ const overlay = (
 
 return (
   <Post>
+    {isUseful && (
+      <CorrectPost>
+        <i class="bi bi-check-circle-fill" />
+      </CorrectPost>
+    )}
     <Header>
       <Widget
         src="dmitriy_sheleg.near/widget/AccountProfile"
