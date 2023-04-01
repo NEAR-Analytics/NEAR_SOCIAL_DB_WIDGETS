@@ -21,10 +21,17 @@ return (
     }}
   >
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 4,
+      }}
     >
-      <h1 style={{ color: props.theme.textColor }}>Components for BOS.gg</h1>
-      <p style={{ color: props.theme.textColor2 }}>
+      <h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
+        Components for BOS.gg
+      </h1>
+      <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
         Discover the latest components from the NEAR community.
       </p>
     </div>
