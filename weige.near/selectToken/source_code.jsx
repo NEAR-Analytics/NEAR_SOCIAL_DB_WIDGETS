@@ -111,7 +111,13 @@ if (!globalWhiteList) return <div />;
 const getTokensMeta = async () => {
   if (!globalWhiteList) return {};
   const metaList = globalWhiteList.map((token) => {
-    return getTokenMeta(token);
+    const metadata = getTokenMeta(token);
+
+    return {
+      ...metadata,
+      id: token,
+      icon: iconsDefault[token] || metadata.icon,
+    };
   });
 
   if (metaList)
@@ -121,8 +127,6 @@ const getTokensMeta = async () => {
           ...acc,
           [globalWhiteList[i]]: {
             ...cur,
-            id: globalWhiteList[i],
-            icon: iconsDefault[globalWhiteList[i]] || cur.icon,
           },
         };
       },
