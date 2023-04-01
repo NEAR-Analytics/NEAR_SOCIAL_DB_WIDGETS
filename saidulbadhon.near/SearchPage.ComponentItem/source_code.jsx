@@ -47,22 +47,6 @@ const TopSection = styled.div`
   align-items: center;
 `;
 
-const TimeAgoContainer = styled.div`
-  color: ${props.theme.textColor2};
-  display: flex;
-  gap: 4px;
-  justifycontent: center;
-  padding: 4px 8px;
-  borderradius: 4px;
-
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  backgroundcolor: ${props.theme.ui2};
-
-  zindex: 10;
-`;
-
 const Logo = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -86,13 +70,6 @@ const BottomSection = styled.div`
   width: calc(100% - 32px);
   box-sizing: border-box;
 `;
-
-{
-  /* <TimeAgoContainer>
-  <i className="bi bi-clock"></i>{" "}
-  ago
-</TimeAgoContainer> */
-}
 
 return (
   <MainContainer>
