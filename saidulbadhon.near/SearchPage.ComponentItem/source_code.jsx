@@ -8,16 +8,14 @@ const detailsUrl = `/#/adminalpha.near/widget/ComponentDetailsPage?src=${account
 const appUrl = `/#/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
 
-const Logo = styled.a`
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+const Logo = styled.div`
+  width:100%;
+  height:100%;
+   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
   zIndex: 9;
-      
   img {
-     aspect-ratio: 1 / 1;
     object-fit: cover;
     width: 100%;
     height: 100%;
