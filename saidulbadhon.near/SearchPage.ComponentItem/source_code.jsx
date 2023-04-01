@@ -185,30 +185,32 @@ return (
     </TopSection>
 
     <BottomSection>
-      <Button
-        href={detailsUrl}
-        style={{
-          backgroundColor: props.theme.buttonColor + 33,
-          color: props.theme.buttonColor,
-          border: "none",
-          fontWeight: 600,
-          borderRadius: 4,
-        }}
-      >
-        View Details
-      </Button>
-      <Button
-        href={appUrl}
-        style={{
-          backgroundColor: props.theme.buttonColor,
-          color: props.theme.buttonTextColor,
-          border: "none",
-          fontWeight: 600,
-          borderRadius: 4,
-        }}
-      >
-        Open
-      </Button>
+      <a href={detailsUrl}>
+        <Button
+          style={{
+            backgroundColor: props.theme.buttonColor + 33,
+            color: props.theme.buttonColor,
+            border: "none",
+            fontWeight: 600,
+            borderRadius: 4,
+          }}
+        >
+          View Details
+        </Button>
+      </a>
+      <a href={appUrl}>
+        <Button
+          style={{
+            backgroundColor: props.theme.buttonColor,
+            color: props.theme.buttonTextColor,
+            border: "none",
+            fontWeight: 600,
+            borderRadius: 4,
+          }}
+        >
+          Open
+        </Button>
+      </a>
     </BottomSection>
   </MainContainer>
 );
