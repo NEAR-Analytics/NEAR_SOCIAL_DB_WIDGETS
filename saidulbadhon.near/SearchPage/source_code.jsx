@@ -22,12 +22,16 @@ return (
     />
 
     {items.length > 0 &&
-      items?.map((item) => {
-        return (
-          <div>
-            <h1>{item.name}</h1>
-          </div>
-        );
-      })}
+      items?.map((component, index) => (
+        <div key={index}>
+          <Widget
+            src="saidulbadhon.near/widget/SearchPage.ComponentItem"
+            props={{
+              src: `${component.accountId}/widget/${component.widgetName}`,
+              blockHeight: component.blockHeight,
+            }}
+          />
+        </div>
+      ))}
   </div>
 );
