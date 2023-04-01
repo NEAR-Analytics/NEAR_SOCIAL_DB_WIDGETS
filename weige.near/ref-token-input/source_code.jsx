@@ -102,7 +102,6 @@ const getBalance = (token_id) => {
     });
   }
 
-  console.log(props.token, amount);
   return formatToken(shrinkToken(amount, props.token.decimals));
 };
 
@@ -167,6 +166,7 @@ return (
         disabled={!!disableInput}
         type="number"
         inputMode="decimal"
+        onKeyDown={(e) => symbolsArr.includes(e.key) && e.preventDefault()}
       />
 
       <TokenWrapper
