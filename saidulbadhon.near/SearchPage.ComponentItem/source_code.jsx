@@ -39,21 +39,33 @@ return (
       alignItems: "center",
 
       backgroundColor: props.theme.ui,
+      position: "relative",
     }}
   >
-    {/*
-      <div>
-        <i className="bi bi-clock"></i>{" "}
-        <Widget
-          src="mob.near/widget/TimeAgo"
-          props={{
-            blockHeight: props.blockHeight,
-            keyPath: `${accountId}/widget/${widgetName}`,
-          }}
-        />
-        ago
-      </div>
-    */}
+    <div
+      style={{
+        color: theme.textColor2,
+        display: "flex",
+        gap: 4,
+        justifyContent: "center",
+
+        position: "absolute",
+        top: 8,
+        right: 8,
+        backgroundColor: theme.ui2,
+      }}
+    >
+      <i className="bi bi-clock"></i>{" "}
+      <Widget
+        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
+        props={{
+          blockHeight: props.blockHeight,
+          keyPath: `${accountId}/widget/${widgetName}`,
+          style: { color: theme.textColor2 },
+        }}
+      />
+      ago
+    </div>
 
     <Logo>
       <Widget
