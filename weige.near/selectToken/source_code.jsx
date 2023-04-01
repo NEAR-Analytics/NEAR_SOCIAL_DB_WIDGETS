@@ -70,7 +70,7 @@ const iconsDefault = {
     "https://assets.ref.finance/images/HAPI.png",
 };
 
-const { show, handleClose, handleSelect } = props;
+const { show, handleClose } = props;
 
 const SearchIcon = (
   <svg
@@ -282,7 +282,7 @@ return (
             return (
               <TokenLine
                 onClick={(e) => {
-                  e.preventDefault();
+                  // e.preventDefault();
                   // handleSelect(tokensMeta[token_id]);
                   handleClose();
                 }}
