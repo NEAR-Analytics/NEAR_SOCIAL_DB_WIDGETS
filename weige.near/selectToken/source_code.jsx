@@ -158,6 +158,7 @@ const TokenLine = styled.div`
     display: flex;
     align-items: center;
     padding: 8px 0px 8px 16px;
+    cusort:pointer;
     :hover {
         background: rgb(23,41,46)
     }
