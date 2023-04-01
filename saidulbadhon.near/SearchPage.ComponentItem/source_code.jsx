@@ -38,7 +38,7 @@ const tags = [
 return (
   <div
     style={{
-      // maxWidth: 300,
+      maxWidth: 300,
       width: "100%",
 
       border: `1px ${props.theme.borderColor} solid`,
