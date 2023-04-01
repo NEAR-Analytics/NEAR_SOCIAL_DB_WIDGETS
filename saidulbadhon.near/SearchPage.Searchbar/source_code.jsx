@@ -156,7 +156,7 @@ return (
       type="text"
       value={state.term ?? ""}
       onChange={(e) => computeResults(e.target.value)}
-      placeholder={props.placeholder ?? `Search Widgets`}
+      placeholder={props.placeholder ?? `Search Widgets...`}
     />
 
     {state.term && (
