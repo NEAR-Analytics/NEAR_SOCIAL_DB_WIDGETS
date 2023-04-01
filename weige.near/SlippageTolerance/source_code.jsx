@@ -78,6 +78,7 @@ return (
           type="number"
           inputMode="decimal"
           defaultValue={0.5}
+          value={slippagetolerance}
         />
         <span
           style={{
