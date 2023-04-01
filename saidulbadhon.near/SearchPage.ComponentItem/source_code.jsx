@@ -29,7 +29,7 @@ const MainContainer = styled.div`
   height: 100%;
 
   border: 1px ${props.theme.borderColor} solid;
-  border-radius: 8px;
+  border-radius: 4px;
 
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@ const Logo = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;
 
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   zindex: 9;
 
@@ -131,7 +131,7 @@ return (
           display: "flex",
           gap: 8,
           flexWrap: "wrap",
-          padding: "0 1px",
+          padding: "0 8px",
 
           justifyContent: "center",
         }}
