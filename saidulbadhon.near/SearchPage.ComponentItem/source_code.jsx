@@ -33,6 +33,8 @@ return (
       gap: 8,
       justifyContent: "center",
       alignItems: "center",
+
+      backgroundColor: props.theme.backgroundColor,
     }}
   >
     {/*
