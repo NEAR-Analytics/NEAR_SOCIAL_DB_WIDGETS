@@ -93,20 +93,22 @@ if (props.term && props.term !== state.oldTerm) {
 }
 
 const Container = styled.div`
-  background-color: rgba(255,0,0,.25);
+  background-color: ${theme.ui};
     padding: 0;
     margin: 0;
     display: flex;
     align-items: center;
     width: 100%;
     height: 40px;
+
+    border: 1px ${props.theme.borderColor} solid;
+    borderRadius: 4px;
 `;
 
 const Input = styled.input`
-  background-color: rgba(255,0,0,.25);
   color: ${props.theme.textColor};
   width: calc(100% - 40px);
-  height: 40px;
+//   height: 40px;
   outline:none;
   border:none;
 
@@ -122,10 +124,8 @@ const Button = styled.button`
   color: ${props.theme.buttonTextColor};
   width: 40px;
   height: 40px;
-
   outline:none;
   border:none;
-
   transition: all .2s ease-in-out;
 
   &:hover{
@@ -133,10 +133,9 @@ const Button = styled.button`
     outline:none;
     border:none;
   }
-    &:active{
+  &:active{
     background-color: ${props.theme.buttonColor}99;
   }
-
 `;
 
 return (
