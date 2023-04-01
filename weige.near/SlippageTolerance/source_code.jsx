@@ -2,8 +2,7 @@ const SlippageWrapper = styled.div`
   align-items:center;
   justify-content: space-between;
   padding: 16px 0px 16px 8px;
-  display: ${(props) => (props.show ? "flex" : "none")}
-
+  display: flex
 `;
 
 const SlippageText = styled.span`
@@ -11,7 +10,7 @@ const SlippageText = styled.span`
   color: #7E8A93;
 `;
 
-const SlippageInput = styled.input`
+const Input = styled.input`
     appearance: none;
     outline: none;
     background: none;
@@ -19,11 +18,12 @@ const SlippageInput = styled.input`
     width: 50px;
     font-size: 12px;
     color: #7E8A93;
-    ::-webkit-outer-spin-button,
+    ::-webkit-outer-spin-button, 
     ::-webkit-inner-spin-button {   
     -webkit-appearance: none; 
     }
     -moz-appearance: textfield; 
+
 `;
 
 const SlippageInputWrapper = styled.div`
@@ -42,22 +42,20 @@ const SlippageButton = styled.button`
   font-size: 12px;
   padding: 4px 8px;
   margin-left: 8px
-
-
 `;
 
-const { slippagetolerance, setSlippagetolerance, showSetting } = props;
+const { showSetting, setSlippagetolerance, slippagetolerance } = props;
 
 const handleSlippageChange = (e) => {
   const value = e.target.value;
 
-  console.log(value, "value");
-
   setSlippagetolerance(Number(value));
 };
 
+if (!showSetting) return <div />;
+
 return (
-  <SlippageWrapper show={showSetting}>
+  <SlippageWrapper>
     <SlippageText>Slippage Tolerance</SlippageText>
 
     <div
@@ -67,13 +65,16 @@ return (
       }}
     >
       <SlippageInputWrapper>
-        <SlippageInput
-          class="ref-fi-slippage-input"
-          type="number"
-          max={99.99999}
-          min={0}
-          step="any"
+        <Input
+          class="ref-fi-slippage-setting"
+          placeholder="0.0"
           onChange={handleSlippageChange}
+          value={slippagetolerance}
+          min="0"
+          max="99.99999"
+          step="any"
+          type="number"
+          inputMode="decimal"
         />
         <span
           style={{
