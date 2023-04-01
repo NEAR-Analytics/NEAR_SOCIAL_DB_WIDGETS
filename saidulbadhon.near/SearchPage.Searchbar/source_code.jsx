@@ -139,7 +139,7 @@ const Button = styled.button`
 return (
   <Container
     style={{
-      backgroundColor: props.theme.ui,
+      backgroundColor: props.theme.backgroundColor,
       border: `1px ${theme.borderColor} solid`,
     }}
   >
