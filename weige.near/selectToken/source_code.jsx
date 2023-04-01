@@ -204,111 +204,117 @@ const ModalContainer = styled.div`
     background: rgb(27, 45, 52);
     color: white;
     padding-top:16px;
-    z-index: 99;
-    position:relative;
+    z-index: 100;
+    position:fixed;
+    top: 30vh;
+    left: 50%;
+    tranform: translateX(-50%)
     
 `;
 
 const Wrapper = styled.div`
-    position: absolute;
+    position: fixed;
     height: 100vw;
     width: 100vh;
     left: 0;
     background: rgba(0, 0, 0, 0.5);
     top: 0;
-    z-index:-1;
+    z-index:99;
+    
 `;
 
 if (!show) return <div />;
 
 return (
-  <ModalContainer>
+  <>
     <Wrapper
       onClick={() => {
         handleClose();
       }}
     ></Wrapper>
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-      class="mx-3"
-    >
-      <span>Select Token</span>
-
-      <span
+    <ModalContainer>
+      <div
         style={{
-          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
-        onClick={() => {
-          handleClose();
-        }}
+        class="mx-3"
       >
-        {closeIcon}
-      </span>
-    </div>
+        <span>Select Token</span>
 
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        border: "1px solid #2E4449",
-        borderRadius: "12px",
-        paddingLeft: "8px",
-        marginTop: "8px",
-      }}
-      class="mx-3"
-    >
-      {SearchIcon}
-      <Input
-        class="search-token-input"
-        placeholder="Search token..."
-        onChange={inputOnChange}
-      />
-    </div>
+        <span
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            handleClose();
+          }}
+        >
+          {closeIcon}
+        </span>
+      </div>
 
-    <ListContainer>
-      {["NEAR", ...globalWhiteList]
-        .filter((token_id) => !!filterFunc(tokensMeta[token_id]))
-        .map((token_id) => {
-          return (
-            <TokenLine
-              onClick={(e) => {
-                e.preventDefault();
-                handleSelect(tokensMeta[token_id]);
-              }}
-            >
-              <img
-                style={{
-                  borderRadius: "100%",
-                  height: "36px",
-                  width: "36px",
-                  marginRight: "4px",
-                }}
-                src={tokensMeta[token_id].icon || iconsDefault[token_id]}
-              />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          border: "1px solid #2E4449",
+          borderRadius: "12px",
+          paddingLeft: "8px",
+          marginTop: "8px",
+        }}
+        class="mx-3"
+      >
+        {SearchIcon}
+        <Input
+          class="search-token-input"
+          placeholder="Search token..."
+          onChange={inputOnChange}
+        />
+      </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
+      <ListContainer>
+        {["NEAR", ...globalWhiteList]
+          .filter((token_id) => !!filterFunc(tokensMeta[token_id]))
+          .map((token_id) => {
+            return (
+              <TokenLine
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSelect(tokensMeta[token_id]);
                 }}
               >
-                <span>{tokensMeta[token_id].symbol}</span>
-                <span
+                <img
                   style={{
-                    color: "#7E8A93",
-                    fontSize: "10px",
+                    borderRadius: "100%",
+                    height: "36px",
+                    width: "36px",
+                    marginRight: "4px",
+                  }}
+                  src={tokensMeta[token_id].icon || iconsDefault[token_id]}
+                />
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
-                  {tokensMeta[token_id].name}
-                </span>
-              </div>
-            </TokenLine>
-          );
-        })}
-    </ListContainer>
-  </ModalContainer>
+                  <span>{tokensMeta[token_id].symbol}</span>
+                  <span
+                    style={{
+                      color: "#7E8A93",
+                      fontSize: "10px",
+                    }}
+                  >
+                    {tokensMeta[token_id].name}
+                  </span>
+                </div>
+              </TokenLine>
+            );
+          })}
+      </ListContainer>
+    </ModalContainer>
+  </>
 );
