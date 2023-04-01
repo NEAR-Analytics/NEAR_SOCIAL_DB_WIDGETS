@@ -3,7 +3,7 @@ const metadata = Social.get(
   `${accountId}/widget/${widgetName}/metadata/**`,
   "final"
 );
-// const tags = Object.keys(metadata.tags || {});
+const tags = Object.keys(metadata.tags || {});
 const detailsUrl = `/#/adminalpha.near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
 const appUrl = `/#/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
@@ -21,19 +21,6 @@ const Logo = styled.a`
     height: 100%;
   }
 `;
-
-const tags = [
-  "Reprehenderit",
-  "do",
-  "aliqua",
-  "proident",
-  "amet",
-  "velit",
-  "in",
-  "reprehenderit",
-  "mollit",
-  "minim",
-];
 
 return (
   <div
