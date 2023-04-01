@@ -8,20 +8,6 @@ const detailsUrl = `/#/adminalpha.near/widget/ComponentDetailsPage?src=${account
 const appUrl = `/#/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
 
-const Logo = styled.div`
-  width:100%;
-  height:100%;
-   aspect-ratio: 1 / 1;
-  border-radius: 8px;
-  overflow: hidden;
-  zIndex: 9;
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-`;
-
 function makeUpperCase(sentence) {
   let words = sentence.split(/[\s-]+/); // split on spaces or hyphens
   for (let i = 0; i < words.length; i++) {
@@ -38,63 +24,87 @@ function makeUpperCase(sentence) {
   return words.join(" ");
 }
 
-return (
-  <div
-    style={{
-      // maxWidth: 300,
-      width: "100%",
-      height: "100%",
+const MainContainer = styled.div`
+  width: 100%;
+  height: 100%;
 
-      border: `1px ${props.theme.borderColor} solid`,
-      borderRadius: 8,
+  border: 1px ${props.theme.borderColor} solid;
+  borderradius: 8px;
 
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      justifyContent: "center",
-      alignItems: "center",
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justifycontent: space-between;
+  alignitems: center;
 
-      backgroundColor: props.theme.ui,
-      position: "relative",
+  backgroundcolor: ${props.theme.ui};
+`;
+const TopSection = styled.div`
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TimeAgoContainer = styled.div`
+  color: ${props.theme.textColor2};
+  display: flex;
+  gap: 4px;
+  justifycontent: center;
+  padding: 4px 8px;
+  borderradius: 4px;
+
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  backgroundcolor: ${props.theme.ui2};
+
+  zindex: 10;
+`;
+
+const Logo = styled.div`
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 8px;
+  overflow: hidden;
+  zindex: 9;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const BottomSection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px;
+  width: calc(100% - 32px);
+  box-sizing: border-box;
+`;
+
+{
+  /* <TimeAgoContainer>
+  <i className="bi bi-clock"></i>{" "}
+  <Widget
+    src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
+    props={{
+      blockHeight: props.blockHeight,
+      keyPath: `${accountId}/widget/${widgetName}`,
+      style: { color: props.theme.textColor2, margin: 0 },
     }}
-  >
-    <div
-      style={{
-        color: props.theme.textColor2,
-        display: "flex",
-        gap: 4,
-        justifyContent: "center",
-        padding: " 4px 8px",
-        borderRadius: 4,
+  />
+  ago
+</TimeAgoContainer> */
+}
 
-        position: "absolute",
-        top: 8,
-        right: 8,
-        backgroundColor: props.theme.ui2,
-
-        zIndex: 10,
-      }}
-    >
-      <i className="bi bi-clock"></i>{" "}
-      <Widget
-        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
-        props={{
-          blockHeight: props.blockHeight,
-          keyPath: `${accountId}/widget/${widgetName}`,
-          style: { color: props.theme.textColor2, margin: 0 },
-        }}
-      />
-      ago
-    </div>
-
-    <div
-      style={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+return (
+  <MainContainer>
+    <TopSection>
       <Logo>
         <Widget
           src="mob.near/widget/Image"
@@ -167,22 +177,13 @@ return (
             </p>
           ))}
       </div>
-    </div>
+    </TopSection>
 
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 16,
-        margin: 16,
-        width: "calc(100% - 32px)",
-        boxSizing: "border-box",
-      }}
-    >
+    <BottomSection>
       <button href={detailsUrl}>View Details</button>
       <button href={appUrl} primary>
         Open
       </button>
-    </div>
-  </div>
+    </BottomSection>
+  </MainContainer>
 );
