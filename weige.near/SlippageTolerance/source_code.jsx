@@ -51,6 +51,8 @@ const { slippagetolerance, setSlippagetolerance, showSetting } = props;
 const handleSlippageChange = (e) => {
   const value = e.target.value;
 
+  console.log(value, "value");
+
   setSlippagetolerance(Number(value));
 };
 
