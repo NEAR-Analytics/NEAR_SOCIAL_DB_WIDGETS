@@ -129,7 +129,7 @@ const BalanceWrapper = styled.div`
 
 const Wrapper = styled.div`
    position:relative;
-   margin-top: 6px
+   margin-top: 8px
 `;
 
 const SelectToken = (
