@@ -66,7 +66,7 @@ const BottomSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin: 0 16px 16px 16px;
+  margin: 16px;
   width: calc(100% - 32px);
   box-sizing: border-box;
 `;
@@ -158,8 +158,26 @@ return (
     </TopSection>
 
     <BottomSection>
-      <button href={detailsUrl}>View Details</button>
-      <button href={appUrl} primary>
+      <button
+        href={detailsUrl}
+        style={{
+          backgroundColor: props.theme.buttonColor + 33,
+          color: props.theme.buttonColor,
+          border: "none",
+          fontWeight: 600,
+        }}
+      >
+        View Details
+      </button>
+      <button
+        href={appUrl}
+        style={{
+          backgroundColor: props.theme.buttonColor,
+          color: props.theme.buttonTextColor,
+          border: "none",
+          fontWeight: 600,
+        }}
+      >
         Open
       </button>
     </BottomSection>
