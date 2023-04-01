@@ -89,6 +89,8 @@ return (
           color: props.theme.textColor,
           textDecoration: "none",
           textAlign: "canter",
+
+          paddingInline: 8,
         }}
       >
         {metadata.name || widgetName}
@@ -102,6 +104,7 @@ return (
           color: props.theme.textColor3,
           textDecoration: "none",
           marginBottom: 8,
+          paddingInline: 8,
         }}
       >
         @{accountId}
