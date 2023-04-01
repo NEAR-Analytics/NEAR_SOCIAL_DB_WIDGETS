@@ -93,16 +93,22 @@ if (props.term && props.term !== state.oldTerm) {
 }
 
 const Container = styled.div`
-    background-color: red;
+  background-color: rgba(255,0,0,.25);
     padding: 0;
     margin: 0;
     display: flex;
     align-items: center;
+    width: 100%;
+    height: 40px;
 `;
 
 const Input = styled.input`
+  background-color: rgba(255,0,0,.25);
   color: ${props.theme.textColor};
-  width: 100%;
+  width: calc(100% - 40px);
+  height: 40px;
+  outline:none;
+  border:none;
 
   &:focus{
     color: ${props.theme.textColor};
@@ -111,9 +117,34 @@ const Input = styled.input`
   }
 `;
 
+const Button = styled.button`
+  background-color: ${props.theme.buttonColor};
+  color: ${props.theme.buttonTextColor};
+  width: 40px;
+  height: 40px;
+
+  outline:none;
+  border:none;
+
+  transition: all .2s ease-in-out;
+
+  &:hover{
+    background-color: ${props.theme.buttonColor}CC;
+    outline:none;
+    border:none;
+  }
+    &:active{
+    background-color: ${props.theme.buttonColor}99;
+  }
+
+`;
+
 return (
   <Container>
-    <i className="bi bi-search"></i>
+    <i
+      className="bi bi-search"
+      style={{ width: 50, display: "flex", justifyContent: "center" }}
+    ></i>
     <Input
       type="text"
       value={state.term ?? ""}
@@ -121,15 +152,11 @@ return (
       placeholder={props.placeholder ?? `Search components`}
     />
 
-    {state.term && (
-      <button
-        className="btn btn-outline-secondary border border-start-0"
-        type="button"
-        onClick={() => computeResults("")}
-      >
-        <i className="bi bi-x"></i>
-      </button>
-    )}
+    {/*{state.term && (*/}
+    <Button type="button" onClick={() => computeResults("")}>
+      <i className="bi bi-x"></i>
+    </Button>
+    {/*})}*/}
 
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </Container>
