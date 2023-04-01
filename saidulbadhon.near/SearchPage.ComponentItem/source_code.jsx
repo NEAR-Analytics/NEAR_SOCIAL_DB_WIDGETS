@@ -24,6 +24,12 @@ const Logo = styled.a`
   }
 `;
 
+function capitalizeWordsAndHyphens(str) {
+  return str.replace(/(^|\s|-)\S/g, function (match) {
+    return match.toUpperCase();
+  });
+}
+
 return (
   <div
     style={{
@@ -96,6 +102,7 @@ return (
       <a
         href={detailsUrl}
         style={{
+          marginTop: 16,
           fontSize: 20,
           fontWeight: 600,
           color: props.theme.textColor,
@@ -145,9 +152,10 @@ return (
                 color: props.theme.textColor,
                 padding: "4px 8px",
                 borderRadius: 4,
+                fontSize: 12,
               }}
             >
-              {tag}
+              {capitalizeWordsAndHyphens(tag)}
             </p>
           ))}
       </div>
