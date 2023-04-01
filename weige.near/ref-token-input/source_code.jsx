@@ -97,7 +97,7 @@ const getBalance = (token_id) => {
   return formatToken(shrinkToken(amount, props.token.decimals));
 };
 
-const { amount, setAmount, handleSelect } = props;
+const { amount, setAmount, handleSelect, disableInput } = props;
 
 State.init({
   show: false,
@@ -152,6 +152,8 @@ return (
         onChange={inputOnChange}
         min="0"
         step="any"
+        value={amount}
+        disabled={!!disableInput}
       />
 
       <TokenWrapper
