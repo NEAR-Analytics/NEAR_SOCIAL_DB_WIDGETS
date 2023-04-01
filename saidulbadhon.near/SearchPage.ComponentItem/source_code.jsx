@@ -52,6 +52,9 @@ const Logo = styled.div`
   aspect-ratio: 1 / 1;
 
   border-radius: 4px;
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+  border-bottoom:1px ${props.theme.borderColor} solid;
   overflow: hidden;
   zindex: 9;
 
