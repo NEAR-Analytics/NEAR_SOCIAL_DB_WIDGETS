@@ -290,7 +290,6 @@ return (
                 onClick={(e) => {
                   // e.preventDefault();
 
-                  console.log(tokensMeta[token_id]);
                   handleSelect(tokensMeta[token_id]);
                   handleClose();
                 }}
