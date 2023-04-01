@@ -14,8 +14,10 @@ const Logo = styled.a`
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
-
+  zIndex: 9;
+      
   img {
+     aspect-ratio: 1 / 1;
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -25,7 +27,7 @@ const Logo = styled.a`
 return (
   <div
     style={{
-      maxWidth: 300,
+      // maxWidth: 300,
       width: "100%",
       height: "100%",
 
@@ -44,15 +46,19 @@ return (
   >
     <div
       style={{
-        color: theme.textColor2,
+        color: props.theme.textColor2,
         display: "flex",
         gap: 4,
         justifyContent: "center",
+        padding: " 4px 8px",
+        borderRadius: 4,
 
         position: "absolute",
         top: 8,
         right: 8,
-        backgroundColor: theme.ui2,
+        backgroundColor: props.theme.ui2,
+
+        zIndex: 10,
       }}
     >
       <i className="bi bi-clock"></i>{" "}
@@ -61,27 +67,32 @@ return (
         props={{
           blockHeight: props.blockHeight,
           keyPath: `${accountId}/widget/${widgetName}`,
-          style: { color: theme.textColor2 },
+          style: { color: props.theme.textColor2, margin: 0 },
         }}
       />
       ago
     </div>
 
-    <Logo>
-      <Widget
-        src="mob.near/widget/Image"
-        props={{
-          image: metadata.image,
-          fallbackUrl:
-            "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
-          alt: metadata.name,
-        }}
-      />
-    </Logo>
-
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
     >
+      <Logo>
+        <Widget
+          src="mob.near/widget/Image"
+          props={{
+            image: metadata.image,
+            fallbackUrl:
+              "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
+            alt: metadata.name,
+          }}
+        />
+      </Logo>
+
       <a
         href={detailsUrl}
         style={{
