@@ -90,14 +90,6 @@ const BottomSection = styled.div`
 {
   /* <TimeAgoContainer>
   <i className="bi bi-clock"></i>{" "}
-  <Widget
-    src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
-    props={{
-      blockHeight: props.blockHeight,
-      keyPath: `${accountId}/widget/${widgetName}`,
-      style: { color: props.theme.textColor2, margin: 0 },
-    }}
-  />
   ago
 </TimeAgoContainer> */
 }
@@ -105,6 +97,16 @@ const BottomSection = styled.div`
 return (
   <MainContainer>
     <TopSection>
+      <Widget
+        src="saidulbadhon.near/widget/SearchPage.ComponentItem.TimeAgo"
+        props={{
+          blockHeight: props.blockHeight,
+          keyPath: `${accountId}/widget/${widgetName}`,
+          style: { color: props.theme.textColor2, margin: 0 },
+          theme: props.theme,
+        }}
+      />
+
       <Logo>
         <Widget
           src="mob.near/widget/Image"
