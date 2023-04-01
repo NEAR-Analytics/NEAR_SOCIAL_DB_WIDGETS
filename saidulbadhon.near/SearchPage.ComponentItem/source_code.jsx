@@ -24,10 +24,20 @@ const Logo = styled.a`
   }
 `;
 
-function capitalizeWordsAndHyphens(str) {
-  return str.replace(/(^|\s|-)\S/g, function (match) {
-    return match.toUpperCase();
-  });
+function makeUpperCase(sentence) {
+  let words = sentence.split(/[\s-]+/); // split on spaces or hyphens
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    if (words[i].includes("-")) {
+      // capitalize after hyphen
+      let hyphenIndex = words[i].indexOf("-");
+      words[i] =
+        words[i].substr(0, hyphenIndex + 1) +
+        words[i][hyphenIndex + 1].toUpperCase() +
+        words[i].substr(hyphenIndex + 2);
+    }
+  }
+  return words.join(" ");
 }
 
 return (
@@ -155,7 +165,7 @@ return (
                 fontSize: 12,
               }}
             >
-              {capitalizeWordsAndHyphens(tag)}
+              {makeUpperCase(tag)}
             </p>
           ))}
       </div>
