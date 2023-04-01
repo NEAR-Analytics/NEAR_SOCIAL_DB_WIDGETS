@@ -204,18 +204,19 @@ const ModalContainer = styled.div`
     background: rgb(27, 45, 52);
     color: white;
     padding-top:16px;
-    z-index: 100;
+    z-index: 999;
     position:fixed;
-    top: 30vh;
+        top: 20vh;
     left: 50%;
-    tranform: translateX(-50%)
+    transform: translateX(-50%);
+
     
 `;
 
 const Wrapper = styled.div`
     position: fixed;
-    height: 100vw;
-    width: 100vh;
+    height: 100vh;
+    width: 100vw;
     left: 0;
     background: rgba(0, 0, 0, 0.5);
     top: 0;
