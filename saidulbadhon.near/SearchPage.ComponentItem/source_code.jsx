@@ -36,6 +36,7 @@ const MainContainer = styled.div`
   gap: 8px;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   background-color: ${props.theme.backgroundColor};
 `;
@@ -57,6 +58,8 @@ const Logo = styled.div`
   border-bottom: 1px ${props.theme.borderColor} solid;
   overflow: hidden;
   zindex: 9;
+
+  background-color: red;
 
   img {
     object-fit: cover;
