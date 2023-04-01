@@ -92,82 +92,49 @@ if (props.term && props.term !== state.oldTerm) {
   }
 }
 
-const Wrapper = styled.div`
-  width: 100%;
-  height: 40px;
-  position: relative;
+const Container = styled.div`
+    background-color: red;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
 
-  .bi-search {
-      position: absolute;
-      top: 0;
-      left: 18px;
-      z-index: 100;
-      font-size: 14px;
-      line-height: 40px;
-      color: #687076;
-  }
-
-  .input-group {
-      height: 100%;
-  }
-
-  input {
-    padding: 0 14px 0 42px;
-    border: 1px solid #D0D5DD !important;
-    background: #FFFFFF;
-    border-radius: 100px;
-
-    margin: 8px;
-    width: calc(100% - 16px)";
-    paddingBlock: 0.5;
-    paddingInline: 1;
-    flex: 1;
-    borderRadius: 1;
-    color: theme.textColor;
-    backgroundColor: theme.ui2;
-
-  }
-
-  button {
-      border-color: #D0D5DD !important;
-      border-radius: 0 100px 100px 0 !important;
-      border-left: none !important;
-      background: #fff !important;
-      color: #687076 !important;
-
-      &:hover, &:focus {
-          color: #000 !important;
-      }
-  }
-
-  @media (max-width: 500px) {
-      width: 100%;
-  }
+    input {
+        background-color: rgba(0,250,0,.25);
+        padding-block: 4px;
+        padding-inline: 8px;
+        flex: 1;
+        border-radius: 8px;
+        color: ${props.theme.textColor};
+        outline: none;
+        border: none;
+    }
+       
+    &:hover: {
+        background-color:blue;
+    }
 `;
 
 return (
-  <Wrapper>
+  <Container>
     <i className="bi bi-search"></i>
-    <div className="input-group">
-      <input
-        type="text"
-        className={`form-control ${state.term ? "border-end-0" : ""}`}
-        value={state.term ?? ""}
-        onChange={(e) => computeResults(e.target.value)}
-        placeholder={props.placeholder ?? `Search components`}
-      />
+    <input
+      type="text"
+      value={state.term ?? ""}
+      onChange={(e) => computeResults(e.target.value)}
+      placeholder={props.placeholder ?? `Search components`}
+    />
 
-      {state.term && (
-        <button
-          className="btn btn-outline-secondary border border-start-0"
-          type="button"
-          onClick={() => computeResults("")}
-        >
-          <i className="bi bi-x"></i>
-        </button>
-      )}
-    </div>
+    {state.term && (
+      <button
+        className="btn btn-outline-secondary border border-start-0"
+        type="button"
+        onClick={() => computeResults("")}
+      >
+        <i className="bi bi-x"></i>
+      </button>
+    )}
 
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
-  </Wrapper>
+  </Container>
 );
