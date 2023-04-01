@@ -122,6 +122,8 @@ const Button = styled.button`
   outline:none;
   border:none;
   transition: all .2s ease-in-out;
+  border-top-right-radius:4px;
+  border-bottom-right-radius:4px;
 
   &:hover{
     background-color: ${props.theme.buttonColor}CC;
