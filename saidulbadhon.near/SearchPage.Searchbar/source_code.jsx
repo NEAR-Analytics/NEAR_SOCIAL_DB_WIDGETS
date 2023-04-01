@@ -93,27 +93,25 @@ if (props.term && props.term !== state.oldTerm) {
 }
 
 const Container = styled.div`
-  background-color: ${theme.ui};
     padding: 0;
     margin: 0;
     display: flex;
     align-items: center;
     width: 100%;
     height: 40px;
-
-    border: 1px ${props.theme.borderColor} solid;
     border-radius: 4px;
 `;
 
 const Input = styled.input`
-  color: ${props.theme.textColor};
+  color: #e2e8f0;
   width: calc(100% - 40px);
 //   height: 40px;
   outline:none;
   border:none;
+background-color: transparent;
 
   &:focus{
-    color: ${props.theme.textColor};
+    color: #e2e8f0;
     outline:none;
     border:none;
   }
@@ -139,10 +137,20 @@ const Button = styled.button`
 `;
 
 return (
-  <Container>
+  <Container
+    style={{
+      backgroundColor: props.theme.ui,
+      border: `1px ${theme.borderColor} solid`,
+    }}
+  >
     <i
       className="bi bi-search"
-      style={{ width: 50, display: "flex", justifyContent: "center" }}
+      style={{
+        width: 50,
+        display: "flex",
+        justifyContent: "center",
+        color: props.theme.textColor2,
+      }}
     ></i>
     <Input
       type="text"
