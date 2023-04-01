@@ -139,7 +139,7 @@ return (
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: 16,
-        margin: "0 16px 16px 16px",
+        margin: 16,
         width: "calc(100% - 32px)",
         boxSizing: "border-box",
       }}
