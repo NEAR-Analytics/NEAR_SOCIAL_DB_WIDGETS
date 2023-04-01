@@ -110,6 +110,8 @@ return (
           textDecoration: "none",
           textAlign: "canter",
 
+          wordBreak: "break-all",
+          textAlign: "center",
           paddingInline: 8,
         }}
       >
