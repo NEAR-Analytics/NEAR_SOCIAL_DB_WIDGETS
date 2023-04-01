@@ -22,10 +22,12 @@ return (
   >
     <div style={{ maxWidth: 500, width: "100%" }}>
       <Widget
-        src="adminalpha.near/widget/ComponentSearch"
+        // src="adminalpha.near/widget/ComponentSearch"
+        src="saidulbadhon.near/widget/SearchPage.Searchbar"
         props={{
           limit: 21,
           onChange: onSearchChange,
+          theme: props.theme,
         }}
       />
     </div>
