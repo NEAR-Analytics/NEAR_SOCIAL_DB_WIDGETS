@@ -201,8 +201,8 @@ const fetchRooms = () => {
 
 return (
   <Widget
-    // src={"wendersonpires.near/widget/NearSocialBridgeWithExternalApp_Test"}
-    src={"wendersonpires.near/widget/NearSocialBridgeCore"}
+    src={"wendersonpires.near/widget/NearSocialBridgeWithExternalApp_Test"}
+    // src={"wendersonpires.near/widget/NearSocialBridgeCore"}
     props={{
       externalAppUrl,
       path,
