@@ -140,7 +140,7 @@ return (
   <Container
     style={{
       backgroundColor: props.theme.backgroundColor,
-      border: `1px ${theme.borderColor} solid`,
+      border: `1px ${props.theme.borderColor} solid`,
     }}
   >
     <i
