@@ -1,7 +1,7 @@
 const accountId = context.accountId;
 
 const shrinkToken = (value, decimals) => {
-  return new Big(value || 0).div(new Big(10).pow(decimals));
+  return new Big(value || 0).div(new Big(10).pow(decimals || 24));
 };
 
 const account = fetch("https://rpc.mainnet.near.org", {
@@ -48,7 +48,7 @@ const getBalance = (token_id, tokenMeta) => {
     });
   }
 
-  return !amount ? null : shrinkToken(amount, tokenMeta.decimals).toFixed();
+  return !amount ? "0" : shrinkToken(amount, tokenMeta.decimals).toFixed();
 };
 
 const RefreshIcon = (
@@ -96,7 +96,6 @@ const ExchangeIcon = (
       State.update({
         tokenIn: state.tokenOut,
         tokenOut: state.tokenIn,
-        balanceIn: getBalance(state.tokenOut.id, state.tokenOut),
       });
     }}
   >
@@ -140,7 +139,6 @@ const TokenInInput = (
       handleSelect: (metadata) =>
         State.update({
           tokenIn: metadata,
-          balanceIn: getBalance(metadata.id, metadata),
         }),
     }}
   />
