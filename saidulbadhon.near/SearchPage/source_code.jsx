@@ -20,9 +20,15 @@ return (
       width: "100%",
     }}
   >
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <h1>Components for BOS.gg</h1>
+      <p>Discover the latest components from the NEAR community.</p>
+    </div>
+
     <div style={{ maxWidth: 500, width: "100%" }}>
       <Widget
-        // src="adminalpha.near/widget/ComponentSearch"
         src="saidulbadhon.near/widget/SearchPage.Searchbar"
         props={{
           limit: 21,
