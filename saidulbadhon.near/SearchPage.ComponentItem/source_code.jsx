@@ -37,7 +37,7 @@ const MainContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  background-color: ${props.theme.ui};
+  background-color: ${props.theme.backgroundColor};
 `;
 const TopSection = styled.div`
   position: relative;
