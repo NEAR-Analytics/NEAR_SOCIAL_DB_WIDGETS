@@ -60,8 +60,6 @@ const Logo = styled.div`
   overflow: hidden;
   zindex: 9;
 
-  background-color: red;
-
   img {
     object-fit: cover;
     width: 100%;
