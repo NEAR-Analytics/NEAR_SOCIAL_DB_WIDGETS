@@ -136,7 +136,7 @@ const SelectToken = (
   <Widget
     src={`weige.near/widget/selectToken`}
     props={{
-      show: state.show,
+      show: state.show || false,
       handleClose: state.handleClose,
       handleSelect: (metadata) => {
         handleSelect(metadata);
