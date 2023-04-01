@@ -88,6 +88,7 @@ return (
           fontWeight: 600,
           color: props.theme.textColor,
           textDecoration: "none",
+          textAlign: "canter",
         }}
       >
         {metadata.name || widgetName}
@@ -100,6 +101,7 @@ return (
           fontWeight: 400,
           color: props.theme.textColor3,
           textDecoration: "none",
+          marginBottom: 8,
         }}
       >
         @{accountId}
