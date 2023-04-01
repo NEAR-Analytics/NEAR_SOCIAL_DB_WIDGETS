@@ -103,15 +103,12 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-  color: #e2e8f0;
   width: calc(100% - 40px);
-//   height: 40px;
   outline:none;
   border:none;
-background-color: transparent;
+  background-color: transparent;
 
   &:focus{
-    color: #e2e8f0;
     outline:none;
     border:none;
   }
@@ -153,6 +150,7 @@ return (
       }}
     ></i>
     <Input
+      style={{ color: props.theme.textColor }}
       type="text"
       value={state.term ?? ""}
       onChange={(e) => computeResults(e.target.value)}
