@@ -72,7 +72,7 @@ const BottomSection = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   margin: 8px;
-  width: calc(100% - 32px);
+  width: calc(100% - 16px);
   box-sizing: border-box;
 `;
 
