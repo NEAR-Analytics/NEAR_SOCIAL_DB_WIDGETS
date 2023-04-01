@@ -137,8 +137,8 @@ const SelectToken = (
     props={{
       show: state.show,
       handleClose: state.handleClose,
-      handleSelect: () => {
-        handleSelect();
+      handleSelect: (metadata) => {
+        handleSelect(metadata);
         state.handleClose();
       },
     }}
