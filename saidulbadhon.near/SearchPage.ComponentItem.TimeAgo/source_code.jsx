@@ -55,16 +55,16 @@ const TimeAgoContainer = styled.div`
   color: ${props.theme.textColor2};
   display: flex;
   gap: 4px;
-  justifycontent: center;
+  justify-content: center;
   padding: 4px 8px;
-  borderradius: 4px;
+  border-radius: 4px;
 
   position: absolute;
   top: 8px;
   right: 8px;
-  backgroundcolor: ${props.theme.ui2};
+  background-color: ${props.theme.ui2};
 
-  zindex: 10;
+  z-index: 10;
 `;
 
 return (
