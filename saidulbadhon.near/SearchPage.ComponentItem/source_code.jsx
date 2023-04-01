@@ -40,6 +40,7 @@ return (
     style={{
       maxWidth: 300,
       width: "100%",
+      height: "100%",
 
       border: `1px ${props.theme.borderColor} solid`,
       borderRadius: 8,
