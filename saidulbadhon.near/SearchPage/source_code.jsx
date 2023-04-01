@@ -21,17 +21,25 @@ return (
       }}
     />
 
-    {items.length > 0 &&
-      items?.map((component, index) => (
-        <div key={index}>
-          <Widget
-            src="saidulbadhon.near/widget/SearchPage.ComponentItem"
-            props={{
-              src: `${component.accountId}/widget/${component.widgetName}`,
-              blockHeight: component.blockHeight,
-            }}
-          />
-        </div>
-      ))}
+    <div
+      style={{
+        display: "grid",
+        gap: 16,
+        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+      }}
+    >
+      {items.length > 0 &&
+        items?.map((component, index) => (
+          <div key={index}>
+            <Widget
+              src="saidulbadhon.near/widget/SearchPage.ComponentItem"
+              props={{
+                src: `${component.accountId}/widget/${component.widgetName}`,
+                blockHeight: component.blockHeight,
+              }}
+            />
+          </div>
+        ))}
+    </div>
   </div>
 );
