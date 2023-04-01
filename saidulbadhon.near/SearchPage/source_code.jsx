@@ -29,10 +29,10 @@ return (
       }}
     >
       <h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
-        Components for BOS.gg
+        Widgets for BOS
       </h1>
       <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
-        Discover the latest components from the NEAR community.
+        Discover the latest widgets from the NEAR community.
       </p>
     </div>
 
