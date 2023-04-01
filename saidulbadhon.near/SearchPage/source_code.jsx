@@ -35,7 +35,7 @@ return (
         width: "100%",
         display: "grid",
         gap: 16,
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(1fr, 300px))",
       }}
     >
       {items.length > 0 &&
