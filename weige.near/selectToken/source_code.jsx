@@ -283,7 +283,8 @@ return (
               <TokenLine
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSelect(tokensMeta[token_id]);
+                  // handleSelect(tokensMeta[token_id]);
+                  handleClose();
                 }}
               >
                 <img
