@@ -2,8 +2,6 @@ const accountId = context.accountId;
 
 const REF_FI_CONTRACT = "v2.ref-finance.near";
 
-const symbolsArr = ["e", "E", "+", "-"];
-
 const ArrowDown = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +164,6 @@ return (
         disabled={!!disableInput}
         type="number"
         inputMode="decimal"
-        onKeyDown={(e) => symbolsArr.includes(e.key) && e.preventDefault()}
       />
 
       <TokenWrapper
