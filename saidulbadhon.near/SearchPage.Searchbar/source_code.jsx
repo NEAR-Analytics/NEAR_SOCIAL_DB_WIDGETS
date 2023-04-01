@@ -102,7 +102,7 @@ const Container = styled.div`
     height: 40px;
 
     border: 1px ${props.theme.borderColor} solid;
-    borderRadius: 4px;
+    border-radius: 4px;
 `;
 
 const Input = styled.input`
@@ -151,11 +151,11 @@ return (
       placeholder={props.placeholder ?? `Search components`}
     />
 
-    {/*{state.term && (*/}
-    <Button type="button" onClick={() => computeResults("")}>
-      <i className="bi bi-x"></i>
-    </Button>
-    {/*})}*/}
+    {state.term && (
+      <Button type="button" onClick={() => computeResults("")}>
+        <i className="bi bi-x" style={{ fontSize: 20 }}></i>
+      </Button>
+    )}
 
     {props.debug && <pre>{JSON.stringify(state.result, undefined, 2)}</pre>}
   </Container>
