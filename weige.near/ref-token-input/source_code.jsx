@@ -2,6 +2,8 @@ const accountId = context.accountId;
 
 const REF_FI_CONTRACT = "v2.ref-finance.near";
 
+const symbolsArr = ["e", "E", "+", "-"];
+
 const ArrowDown = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +41,12 @@ const Input = styled.input`
     ::placeholder{
         color:#7e8a93
     }
-    color:white
+    color:white;
+    ::-webkit-outer-spin-button, 
+    ::-webkit-inner-spin-button {   
+    -webkit-appearance: none; 
+    }
+    -moz-appearance: textfield; 
 `;
 
 const TokenWrapper = styled.div`
@@ -117,6 +124,7 @@ State.init({
 
 const inputOnChange = (e) => {
   const value = e.target.value;
+
   setAmount(value);
 };
 
@@ -157,6 +165,8 @@ return (
         step="any"
         value={amount}
         disabled={!!disableInput}
+        type="number"
+        inputMode="decimal"
       />
 
       <TokenWrapper
