@@ -23,6 +23,9 @@ const Input = styled.input`
     -webkit-appearance: none; 
     }
     -moz-appearance: textfield; 
+        ::placeholder{
+        color:#7e8a93
+    }
 
 `;
 
@@ -74,6 +77,7 @@ return (
           step="any"
           type="number"
           inputMode="decimal"
+          defaultValue={0.5}
         />
         <span
           style={{
