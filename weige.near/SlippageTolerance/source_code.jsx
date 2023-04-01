@@ -69,7 +69,6 @@ return (
           class="ref-fi-slippage-setting"
           placeholder="0.0"
           onChange={handleSlippageChange}
-          value={slippagetolerance}
           min="0"
           max="99.99999"
           step="any"
