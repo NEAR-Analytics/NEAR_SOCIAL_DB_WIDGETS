@@ -34,7 +34,7 @@ return (
       justifyContent: "center",
       alignItems: "center",
 
-      backgroundColor: props.theme.backgroundColor,
+      backgroundColor: props.theme.ui,
     }}
   >
     {/*
@@ -68,24 +68,37 @@ return (
     >
       <a
         href={detailsUrl}
-        style={{ fontSize: 20, fontWeight: 600, color: props.theme.textColor }}
+        style={{
+          fontSize: 20,
+          fontWeight: 600,
+          color: props.theme.textColor,
+          textDecoration: "none",
+        }}
       >
         {metadata.name || widgetName}
       </a>
 
       <a
         href={detailsUrl}
-        style={{ fontSize: 14, fontWeight: 400, color: props.theme.textColor3 }}
+        style={{
+          fontSize: 14,
+          fontWeight: 400,
+          color: props.theme.textColor3,
+          textDecoration: "none",
+        }}
       >
         @{accountId}
       </a>
 
-      <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 8 }}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
         {tags.length > 0 &&
           tags.map((tag, index) => (
             <p
               style={{
-                backgroundColor: props.theme.ui,
+                backgroundColor:
+                  props.theme.name === "dark"
+                    ? "rgba(255,255,255,.075)"
+                    : "rgba(0,0,0,.075)",
                 color: props.theme.textColor,
                 padding: "4px 8px",
                 borderRadius: 4,
@@ -97,7 +110,16 @@ return (
       </div>
     </div>
 
-    <div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 16,
+        margin: "0 16px 16px 16px",
+        width: "calc(100% - 32px)",
+        boxSizing: "border-box",
+      }}
+    >
       <button href={detailsUrl}>View Details</button>
       <button href={appUrl} primary>
         Open
