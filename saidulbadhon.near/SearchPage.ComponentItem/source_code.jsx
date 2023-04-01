@@ -39,6 +39,7 @@ return (
   <div
     style={{
       maxWidth: 300,
+      width: "100%",
 
       border: `1px ${props.theme.borderColor} solid`,
       borderRadius: 8,
