@@ -52,7 +52,7 @@ const timeAgo = (diffSec) =>
     : `${(diffSec / 86400000) | 0}d`;
 
 return (
-  <span style={props.style} title={title}>
+  <p style={props.style} title={title}>
     {timeAgo(Date.now() - timeMs)}
-  </span>
+  </p>
 );
