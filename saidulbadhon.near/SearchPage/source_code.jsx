@@ -32,6 +32,7 @@ return (
 
     <div
       style={{
+        width: "100%",
         display: "grid",
         gap: 16,
         gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
