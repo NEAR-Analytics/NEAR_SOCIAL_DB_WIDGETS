@@ -52,7 +52,7 @@ const { showSetting, setSlippagetolerance, slippagetolerance } = props;
 const handleSlippageChange = (e) => {
   const value = e.target.value;
 
-  setSlippagetolerance(Number(value));
+  setSlippagetolerance(value);
 };
 
 if (!showSetting) return <div />;
@@ -71,13 +71,15 @@ return (
         <Input
           class="ref-fi-slippage-setting"
           placeholder="0.0"
-          onChange={handleSlippageChange}
-          min="0"
+          onChange={(e) => {
+            setSlippagetolerance(e.target.value);
+          }}
           max="99.99999"
+          min="0"
           step="any"
           type="number"
           inputMode="decimal"
-          defaultValue={0.5}
+          defaultValue={"0.5"}
           value={slippagetolerance}
         />
         <span
@@ -92,7 +94,7 @@ return (
 
       <SlippageButton
         onClick={() => {
-          setSlippagetolerance(0.5);
+          setSlippagetolerance("0.5");
         }}
       >
         {" "}
