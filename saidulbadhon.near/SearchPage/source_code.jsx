@@ -11,21 +11,30 @@ const items = state.searchResults || components;
 console.log(items);
 return (
   <div
-    style={{ padding: 16, display: "flex", flexDirection: "column", gap: 16 }}
+    style={{
+      padding: 16,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 16,
+      width: "100%",
+    }}
   >
-    <Widget
-      src="adminalpha.near/widget/ComponentSearch"
-      props={{
-        limit: 21,
-        onChange: onSearchChange,
-      }}
-    />
+    <div style={{ maxWidth: 500, width: "100%" }}>
+      <Widget
+        src="adminalpha.near/widget/ComponentSearch"
+        props={{
+          limit: 21,
+          onChange: onSearchChange,
+        }}
+      />
+    </div>
 
     <div
       style={{
         display: "grid",
         gap: 16,
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
       }}
     >
       {items.length > 0 &&
