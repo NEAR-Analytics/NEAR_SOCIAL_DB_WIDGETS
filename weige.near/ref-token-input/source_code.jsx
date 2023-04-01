@@ -80,7 +80,7 @@ const account = fetch("https://rpc.mainnet.near.org", {
 });
 
 const shrinkToken = (value, decimals) => {
-  return new Big(value).div(new Big(10).pow(decimals)).toFixed();
+  return new Big(value || 0).div(new Big(10).pow(decimals)).toFixed();
 };
 
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
