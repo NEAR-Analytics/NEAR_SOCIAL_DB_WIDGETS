@@ -8,109 +8,12 @@ const detailsUrl = `/#/adminalpha.near/widget/ComponentDetailsPage?src=${account
 const appUrl = `/#/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
 
-const Card = styled.div`
-  position: relative;
-  width: 100%;
-  border-radius: 12px;
-  background: #fff;
-  border: 1px solid #eceef0;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
-    0px 1px 2px rgba(16, 24, 40, 0.06);
-  overflow: hidden;
-`;
-
-const CardBody = styled.div`
-  padding: 16px;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-
-  > * {
-    min-width: 0;
-  }
-`;
-
-const CardContent = styled.div`
-  width: 100%;
-`;
-
-const CardFooter = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 16px;
-  border-top: 1px solid #eceef0;
-`;
-
-const CardTag = styled.p`
-  margin: 0;
-  font-size: 9px;
-  line-height: 14px;
-  background: #eceef0;
-  color: #687076;
-  font-weight: 400;
-  white-space: nowrap;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-bottom-left-radius: 3px;
-  padding: 0 4px;
-
-  i {
-    margin-right: 3px;
-  }
-`;
-
-const TextLink = styled.a`
+const Logo = styled.a`
   display: block;
-  margin: 0;
-  font-size: 14px;
-  line-height: 18px;
-  color: ${(p) => (p.bold ? "#11181C !important" : "#687076 !important")};
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "visible")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "unset")};
-  white-space: nowrap;
-  outline: none;
-
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const Text = styled.p`
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: ${(p) => (p.bold ? "#11181C" : "#687076")};
-  font-weight: ${(p) => (p.bold ? "600" : "400")};
-  font-size: ${(p) => (p.small ? "12px" : "14px")};
-  overflow: ${(p) => (p.ellipsis ? "hidden" : "")};
-  text-overflow: ${(p) => (p.ellipsis ? "ellipsis" : "")};
-  white-space: nowrap;
-
-  i {
-    margin-right: 3px;
-  }
-`;
-
-const Thumbnail = styled.a`
-  display: block;
-  width: 60px;
-  height: 60px;
-  flex-shrink: 0;
-  border: 1px solid #eceef0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
-  outline: none;
-  transition: border-color 200ms;
-
-  &:focus,
-  &:hover {
-    border-color: #d0d5dd;
-  }
 
   img {
     object-fit: cover;
@@ -119,37 +22,21 @@ const Thumbnail = styled.a`
   }
 `;
 
-const TagsWrapper = styled.div`
-  position: relative;
-  margin-top: 4px;
-`;
-
-const ButtonLink = styled.a`
-  padding: 8px;
-  height: 32px;
-  border: 1px solid #d7dbdf;
-  border-radius: 100px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
-  cursor: pointer;
-  color: ${(p) => (p.primary ? "#006ADC" : "#11181C")} !important;
-  background: #fbfcfd;
-  white-space: nowrap;
-
-  &:hover,
-  &:focus {
-    background: #ecedee;
-    text-decoration: none;
-    outline: none;
-  }
-`;
-
 return (
-  <Card>
-    {
-      <CardTag>
+  <div
+    style={{
+      border: `1px ${props.theme.borderColor} solid`,
+      borderRadius: 8,
+
+      display: "flex",
+      flexDirection: "column",
+      gap: 8,
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    {/*
+      <div>
         <i className="bi bi-clock"></i>{" "}
         <Widget
           src="mob.near/widget/TimeAgo"
@@ -157,52 +44,62 @@ return (
             blockHeight: props.blockHeight,
             keyPath: `${accountId}/widget/${widgetName}`,
           }}
-        />{" "}
-        ago
-      </CardTag>
-    }
-
-    <CardBody>
-      <Thumbnail href={detailsUrl}>
-        <Widget
-          src="mob.near/widget/Image"
-          props={{
-            image: metadata.image,
-            fallbackUrl:
-              "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
-            alt: metadata.name,
-          }}
         />
-      </Thumbnail>
+        ago
+      </div>
+    */}
 
-      <CardContent>
-        <TextLink as="a" href={detailsUrl} bold ellipsis>
-          {metadata.name || widgetName}
-        </TextLink>
+    <Logo>
+      <Widget
+        src="mob.near/widget/Image"
+        props={{
+          image: metadata.image,
+          fallbackUrl:
+            "https://ipfs.near.social/ipfs/bafkreifc4burlk35hxom3klq4mysmslfirj7slueenbj7ddwg7pc6ixomu",
+          alt: metadata.name,
+        }}
+      />
+    </Logo>
 
-        <TextLink small as="a" href={accountUrl} ellipsis>
-          @{accountId}
-        </TextLink>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <a
+        href={detailsUrl}
+        style={{ fontSize: 20, fontWeight: 600, color: props.theme.textColor }}
+      >
+        {metadata.name || widgetName}
+      </a>
 
-        {tags.length > 0 && (
-          <TagsWrapper>
-            <Widget
-              src="adminalpha.near/widget/Tags"
-              props={{
-                tags,
-                scroll: true,
+      <a
+        href={detailsUrl}
+        style={{ fontSize: 14, fontWeight: 400, color: props.theme.textColor3 }}
+      >
+        @{accountId}
+      </a>
+
+      <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 8 }}>
+        {tags.length > 0 &&
+          tags.map((tag, index) => (
+            <p
+              style={{
+                backgroundColor: props.theme.ui,
+                color: props.theme.textColor,
+                padding: "4px 8px",
+                borderRadius: 4,
               }}
-            />
-          </TagsWrapper>
-        )}
-      </CardContent>
-    </CardBody>
+            >
+              {tag}
+            </p>
+          ))}
+      </div>
+    </div>
 
-    <CardFooter>
-      <ButtonLink href={detailsUrl}>View Details</ButtonLink>
-      <ButtonLink href={appUrl} primary>
+    <div>
+      <button href={detailsUrl}>View Details</button>
+      <button href={appUrl} primary>
         Open
-      </ButtonLink>
-    </CardFooter>
-  </Card>
+      </button>
+    </div>
+  </div>
 );
