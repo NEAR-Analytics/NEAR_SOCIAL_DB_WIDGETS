@@ -94,6 +94,8 @@ const getBalance = (token_id) => {
       account_id: accountId,
     });
   }
+
+  console.log(props.token, amount);
   return formatToken(shrinkToken(amount, props.token.decimals));
 };
 
