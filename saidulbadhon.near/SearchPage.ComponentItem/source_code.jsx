@@ -3,7 +3,7 @@ const metadata = Social.get(
   `${accountId}/widget/${widgetName}/metadata/**`,
   "final"
 );
-const tags = Object.keys(metadata.tags || {});
+// const tags = Object.keys(metadata.tags || {});
 const detailsUrl = `/#/adminalpha.near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
 const appUrl = `/#/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
@@ -21,6 +21,19 @@ const Logo = styled.a`
     height: 100%;
   }
 `;
+
+const tags = [
+  "Reprehenderit",
+  "do",
+  "aliqua",
+  "proident",
+  "amet",
+  "velit",
+  "in",
+  "reprehenderit",
+  "mollit",
+  "minim",
+];
 
 return (
   <div
@@ -90,11 +103,22 @@ return (
         @{accountId}
       </a>
 
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
+      <div
+        style={{
+          display: "flex",
+          gap: 8,
+          flexWrap: "wrap",
+          marginTop: 8,
+          padding: "0 16px",
+
+          justifyContent: "center",
+        }}
+      >
         {tags.length > 0 &&
           tags.map((tag, index) => (
             <p
               style={{
+                marginBottom: 0,
                 backgroundColor:
                   props.theme.name === "dark"
                     ? "rgba(255,255,255,.075)"
