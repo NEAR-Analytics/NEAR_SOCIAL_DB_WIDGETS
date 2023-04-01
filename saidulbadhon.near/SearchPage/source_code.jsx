@@ -23,8 +23,10 @@ return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <h1>Components for BOS.gg</h1>
-      <p>Discover the latest components from the NEAR community.</p>
+      <h1 style={{ color: props.theme.textColor }}>Components for BOS.gg</h1>
+      <p style={{ color: props.theme.textColor2 }}>
+        Discover the latest components from the NEAR community.
+      </p>
     </div>
 
     <div style={{ maxWidth: 500, width: "100%" }}>
