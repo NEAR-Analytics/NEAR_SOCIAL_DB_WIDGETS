@@ -128,7 +128,8 @@ const BalanceWrapper = styled.div`
 `;
 
 const Wrapper = styled.div`
-   position:relative
+   position:relative;
+   margin-top: 6px
 `;
 
 const SelectToken = (
@@ -146,7 +147,7 @@ const SelectToken = (
 );
 
 return (
-  <div>
+  <Wrapper>
     <TokenAmount>
       <Input
         class="ref-token-inut"
@@ -173,5 +174,5 @@ return (
     </BalanceWrapper>
 
     {SelectToken}
-  </div>
+  </Wrapper>
 );
