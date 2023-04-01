@@ -4,7 +4,7 @@ const metadata = Social.get(
   "final"
 );
 const tags = Object.keys(metadata.tags || {});
-const detailsUrl = `/#/adminalpha.near/widget/ComponentDetailsPage?src=${accountId}/widget/${widgetName}`;
+const detailsUrl = `/#/components/${accountId}/widget/${widgetName}/details`;
 const appUrl = `/#/components/${accountId}/widget/${widgetName}`;
 const accountUrl = `/#/adminalpha.near/widget/ProfilePage?accountId=${accountId}`;
 
