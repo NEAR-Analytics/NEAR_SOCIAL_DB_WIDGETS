@@ -171,7 +171,7 @@ const TokenLine = styled.div`
 
 const ListContainer = styled.div`
     
-    max-height: 500px;
+    height: 500px;
     overflow: auto;
     ::-webkit-scrollbar {
     width: 4px;
@@ -215,6 +215,7 @@ const ModalContainer = styled.div`
         top: 20vh;
     left: 50%;
     transform: translateX(-50%);
+    padding-bottom: 8px;
 
     
 `;
