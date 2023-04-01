@@ -70,8 +70,8 @@ const Logo = styled.div`
 const BottomSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 16px;
+  gap: 8px;
+  margin: 8px;
   width: calc(100% - 32px);
   box-sizing: border-box;
 `;
