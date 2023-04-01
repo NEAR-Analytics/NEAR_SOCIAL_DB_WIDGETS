@@ -66,7 +66,7 @@ const BottomSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin: 16px;
+  margin: 0 16px 16px 16px;
   width: calc(100% - 32px);
   box-sizing: border-box;
 `;
@@ -131,8 +131,7 @@ return (
           display: "flex",
           gap: 8,
           flexWrap: "wrap",
-          marginTop: 8,
-          padding: "0 16px",
+          padding: "0 1px",
 
           justifyContent: "center",
         }}
