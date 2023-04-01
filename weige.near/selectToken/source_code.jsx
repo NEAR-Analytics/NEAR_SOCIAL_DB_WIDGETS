@@ -122,6 +122,7 @@ const getTokensMeta = async () => {
           [globalWhiteList[i]]: {
             ...cur,
             id: globalWhiteList[i],
+            icon: cur.icon || iconsDefault[globalWhiteList[i]],
           },
         };
       },
