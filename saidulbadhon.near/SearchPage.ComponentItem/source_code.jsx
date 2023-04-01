@@ -171,6 +171,7 @@ return (
           color: props.theme.buttonColor,
           border: "none",
           fontWeight: 600,
+          borderRadius: 4,
         }}
       >
         View Details
@@ -182,6 +183,7 @@ return (
           color: props.theme.buttonTextColor,
           border: "none",
           fontWeight: 600,
+          borderRadius: 4,
         }}
       >
         Open
