@@ -29,15 +29,15 @@ const MainContainer = styled.div`
   height: 100%;
 
   border: 1px ${props.theme.borderColor} solid;
-  borderradius: 8px;
+  border-radius: 8px;
 
   display: flex;
   flex-direction: column;
   gap: 8px;
-  justifycontent: space-between;
-  alignitems: center;
+  justify-content: space-between;
+  align-items: center;
 
-  backgroundcolor: ${props.theme.ui};
+  background-color: ${props.theme.ui};
 `;
 const TopSection = styled.div`
   position: relative;
