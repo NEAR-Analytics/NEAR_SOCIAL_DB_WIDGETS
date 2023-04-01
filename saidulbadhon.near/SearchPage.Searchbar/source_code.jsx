@@ -98,27 +98,23 @@ const Container = styled.div`
     margin: 0;
     display: flex;
     align-items: center;
+`;
 
-    input {
-        background-color: rgba(0,250,0,.25);
-        padding-block: 4px;
-        padding-inline: 8px;
-        flex: 1;
-        border-radius: 8px;
-        color: ${props.theme.textColor};
-        outline: none;
-        border: none;
-    }
-       
-    &:hover: {
-        background-color:blue;
-    }
+const Input = styled.input`
+  color: ${props.theme.textColor};
+  width: 100%;
+
+  &:focus{
+    color: ${props.theme.textColor};
+    outline:none;
+    border:none;
+  }
 `;
 
 return (
   <Container>
     <i className="bi bi-search"></i>
-    <input
+    <Input
       type="text"
       value={state.term ?? ""}
       onChange={(e) => computeResults(e.target.value)}
