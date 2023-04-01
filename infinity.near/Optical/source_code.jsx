@@ -23,16 +23,6 @@ const getOwner = () => {
         state.owner.substring(state.owner.length - 4, state.owner.length);
 };
 
-const fetchProfile = () => {
-  try {
-    const data = client.query(profileByAddress, {
-      address: owner,
-    });
-  } catch (err) {
-    console.log("error fetching profile... ", err);
-  }
-};
-
 return (
   <div>
     <div class="OpticalHeader">
