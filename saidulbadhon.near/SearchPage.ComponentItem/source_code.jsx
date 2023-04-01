@@ -38,6 +38,8 @@ const tags = [
 return (
   <div
     style={{
+      maxWidth: 300,
+
       border: `1px ${props.theme.borderColor} solid`,
       borderRadius: 8,
 
