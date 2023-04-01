@@ -51,8 +51,27 @@ const timeAgo = (diffSec) =>
     ? `${(diffSec / 3600000) | 0}h`
     : `${(diffSec / 86400000) | 0}d`;
 
+const TimeAgoContainer = styled.div`
+  color: ${props.theme.textColor2};
+  display: flex;
+  gap: 4px;
+  justifycontent: center;
+  padding: 4px 8px;
+  borderradius: 4px;
+
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  backgroundcolor: ${props.theme.ui2};
+
+  zindex: 10;
+`;
+
 return (
-  <p style={props.style} title={title}>
-    {timeAgo(Date.now() - timeMs)}
-  </p>
+  <TimeAgoContainer>
+    <i className="bi bi-clock"></i>{" "}
+    <p style={props.style} title={title}>
+      {timeAgo(Date.now() - timeMs)} ago
+    </p>
+  </TimeAgoContainer>
 );
