@@ -76,6 +76,27 @@ const BottomSection = styled.div`
   box-sizing: border-box;
 `;
 
+const Button = styled.button`
+  background-color: ${props.theme.buttonColor};
+  color: ${props.theme.buttonTextColor};
+  width: 100%;
+  height: 40px;
+  outline:none;
+  border:none;
+  transition: all .2s ease-in-out;
+  border-top-right-radius:4px;
+  border-bottom-right-radius:4px;
+
+  &:hover{
+    background-color: ${props.theme.buttonColor}CC;
+    outline:none;
+    border:none;
+  }
+  &:active{
+    background-color: ${props.theme.buttonColor}99;
+  }
+`;
+
 return (
   <MainContainer>
     <Widget
@@ -164,7 +185,7 @@ return (
     </TopSection>
 
     <BottomSection>
-      <button
+      <Button
         href={detailsUrl}
         style={{
           backgroundColor: props.theme.buttonColor + 33,
@@ -175,8 +196,8 @@ return (
         }}
       >
         View Details
-      </button>
-      <button
+      </Button>
+      <Button
         href={appUrl}
         style={{
           backgroundColor: props.theme.buttonColor,
@@ -187,7 +208,7 @@ return (
         }}
       >
         Open
-      </button>
+      </Button>
     </BottomSection>
   </MainContainer>
 );
