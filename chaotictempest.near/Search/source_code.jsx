@@ -344,6 +344,10 @@ return (
       </Facets>
     )}
 
+    {state.paginate?.hitsTotal == 0 && (
+      <H2>No matches were found for "{state.term}".</H2>
+    )}
+
     {state.search?.profiles.length > 0 && (
       <Group>
         <GroupHeader>
