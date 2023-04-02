@@ -15,7 +15,22 @@ const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
-const { tokenIn, tokenOut, amountIn, loadRes } = props;
+const {
+  tokenIn: tokenInFromProps,
+  tokenOut: tokenOutFromProps,
+  amountIn,
+  loadRes,
+} = props;
+
+const tokenIn =
+  tokenInFromProps.id === "NEAR"
+    ? { ...tokenInFromProps, id: "wrap.near" }
+    : tokenIn;
+
+const tokenOut =
+  tokenOutFromProps.id === "NEAR"
+    ? { ...tokenOutFromProps, id: "wrap.near" }
+    : tokenOut;
 
 const FEE_DIVISOR = 10000;
 
@@ -73,9 +88,7 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
 };
 
 const returnNull = () => {
-  loadRes({
-    es: null,
-  });
+  loadRes(null);
   return <div />;
 };
 
@@ -85,12 +98,10 @@ const wrapOperation =
 
 if (wrapOperation) {
   loadRes({
-    es: {
-      estimate: amountIn,
-      tokenIn,
-      tokenOut,
-      pool: "wrap",
-    },
+    estimate: amountIn,
+    tokenIn,
+    tokenOut,
+    pool: "wrap",
   });
 
   return <div />;
@@ -116,9 +127,7 @@ if (!poolThisPair) {
 
 if (poolThisPair.pool_kind === "SIMPLE_POOL") {
   const res = getSinglePoolEstimate(tokenIn, tokenOut, poolThisPair, amountIn);
-  loadRes({
-    es: res,
-  });
+  loadRes(res);
 } else {
   const stablePoolDetail = getStablePoolDetail(
     poolThisPair.id,
