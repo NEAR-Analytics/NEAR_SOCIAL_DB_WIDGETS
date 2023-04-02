@@ -131,30 +131,34 @@ const getSwappedAmount = (
     trade_fee
   );
 
-  return [
+  const res = [
     amount_swapped / Number(rates[out_token_idx]),
     fee,
     dy / Number(rates[out_token_idx]),
   ];
+
+  const amountOut = res[0] < 0 ? "0" : new Big(res[0]).toFixed(0, 0);
+
+  const dyOut = res[0] < 0 ? "0" : new Big(res[2]).toFixed(0, 0);
+
+  return shrinkToken(amountOut, STABLE_LP_TOKEN_DECIMALS);
 };
 
-const {
-  tokenInId,
-  tokenOutId,
-  amountIn,
-  stablePool,
-  stablePoolDecimal,
-  loadRes,
-} = props;
+const { tokenIn, tokenOut, amountIn, stablePool, stablePoolDecimal, loadRes } =
+  props;
 
 const res = getSwappedAmount(
-  tokenInId,
-  tokenOutId,
+  tokenIn.id,
+  tokenOut.id,
   amountIn,
   stablePool,
   stablePoolDecimal
 );
 
-loadRes(res);
+loadRes({
+  tokenIn,
+  tokenOut,
+  estimate: res,
+});
 
 return <div />;
