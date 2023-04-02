@@ -8,7 +8,7 @@ const Container = styled.div`
       padding:0 15px 0 15px;
       border:none;
       outline:none;
-      margin-bottom:8p;x
+      margin-bottom:8px;
     }
     .content input:focus{
       outline:none;
@@ -128,7 +128,7 @@ const assetsMap = assets
   : {};
 /** logic start */
 function getAdjustedSum(type, account) {
-  if (!assets || !account) return B(1);
+  if (!assets || !account || account[type].length == 0) return B(1);
   return account[type]
     .map((assetInAccount) => {
       const asset = assets.find((a) => a.token_id === assetInAccount.token_id);
