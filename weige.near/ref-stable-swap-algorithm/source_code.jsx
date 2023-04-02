@@ -93,8 +93,12 @@ const getSwappedAmount = (
   const amp = stablePool.amp;
   const trade_fee = stablePool.total_fee;
 
-  const in_token_idx = stablePool.token_account_ids.findIndex(tokenInId);
-  const out_token_idx = stablePool.token_account_ids.findIndex(tokenOutId);
+  const in_token_idx = stablePool.token_account_ids.findIndex(
+    (id) => id === tokenInId
+  );
+  const out_token_idx = stablePool.token_account_ids.findIndex(
+    (id) => id === tokenOutId
+  );
 
   const STABLE_LP_TOKEN_DECIMALS = stablePoolDecimal;
 
