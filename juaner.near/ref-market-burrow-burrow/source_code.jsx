@@ -341,10 +341,6 @@ const reward = rewards && rewards.find((a) => a.token_id === selectedTokenId);
 const newHealthFactor = state.newHealthFactor
   ? state.newHealthFactor?.toFixed()
   : undefined;
-
-const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
-const selectedTokenMeta = selectedToken.metadata || {};
-
 /** logic end */
 return (
   <Container class="content">
