@@ -26,7 +26,7 @@ const calc_d = (amp, c_amounts) => {
       d_prod = (d_prod * d) / (c_amount * token_num);
     }
     d_prev = d;
-    const ann = amp * token_num ** token_num;
+    const ann = amp * Math.pow(token_num, token_num);
     const numerator = d_prev * (d_prod * token_num + ann * sum_amounts);
     const denominator = d_prev * (ann - 1) + d_prod * (token_num + 1);
     d = numerator / denominator;
@@ -37,7 +37,7 @@ const calc_d = (amp, c_amounts) => {
 
 const calc_y = (amp, x_c_amount, current_c_amounts, index_x, index_y) => {
   const token_num = current_c_amounts.length;
-  const ann = amp * token_num ** token_num;
+  const ann = amp * Math.pow(token_num, token_num);
   const d = calc_d(amp, current_c_amounts);
   let s = x_c_amount;
   let c = (d * d) / x_c_amount;
@@ -47,13 +47,13 @@ const calc_y = (amp, x_c_amount, current_c_amounts, index_x, index_y) => {
       c = (c * d) / current_c_amounts[i];
     }
   }
-  c = (c * d) / (ann * token_num ** token_num);
+  c = (c * d) / (ann * Math.pow(token_num, token_num));
   const b = d / ann + s;
   let y_prev = 0;
   let y = d;
   for (let i = 0; i < 256; i++) {
     y_prev = y;
-    const y_numerator = y ** 2 + c;
+    const y_numerator = Math.pow(y, 2) + c;
     const y_denominator = 2 * y + b - d;
     y = y_numerator / y_denominator;
     if (Math.abs(y - y_prev) <= 1) break;
