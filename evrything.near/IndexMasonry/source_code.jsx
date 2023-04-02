@@ -199,7 +199,9 @@ return props.manual ? (
     }
   >
     {props.headerElement}
-    {renderedItems}
+    <Masonry breakpointCols={{ default: NUM_COLUMNS_LG, 800: NUM_COLUMNS_SM }}>
+      {renderedItems}
+    </Masonry>
     {props.footerElement}
   </InfiniteScroll>
 );
