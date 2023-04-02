@@ -88,7 +88,8 @@ const getSwappedAmount = (
   tokenOutId,
   amountIn,
   stablePool,
-  stablePoolDecimal
+  stablePoolDecimal,
+  pool
 ) => {
   const amp = stablePool.amp;
   const trade_fee = stablePool.total_fee;
@@ -107,10 +108,6 @@ const getSwappedAmount = (
     shrinkToken(r, STABLE_LP_TOKEN_DECIMALS)
   );
 
-  console.log(in_token_idx, out_token_idx, "idx", rates);
-
-  console.log(rates, "rates", stablePool.c_amounts, STABLE_LP_TOKEN_DECIMALS);
-
   const base_old_c_amounts = stablePool.c_amounts.map((amount) =>
     shrinkToken(amount, STABLE_LP_TOKEN_DECIMALS)
   );
@@ -125,8 +122,6 @@ const getSwappedAmount = (
       )
     )
     .map((amount) => Number(amount));
-
-  console.log(old_c_amounts, "old_c_amounts");
 
   const in_c_amount = Number(
     expandToken(
@@ -152,30 +147,35 @@ const getSwappedAmount = (
     dy / Number(rates[out_token_idx]),
   ];
 
-  console.log(res, "res amount");
-
   const amountOut = res[0] < 0 ? "0" : new Big(res[0]).toFixed(0, 0);
 
   return shrinkToken(amountOut, STABLE_LP_TOKEN_DECIMALS);
 };
 
-const { tokenIn, tokenOut, amountIn, stablePool, stablePoolDecimal, loadRes } =
-  props;
+const {
+  tokenIn,
+  tokenOut,
+  amountIn,
+  stablePool,
+  stablePoolDecimal,
+  pool,
+  loadRes,
+} = props;
 
 const res = getSwappedAmount(
   tokenIn.id,
   tokenOut.id,
   amountIn,
   stablePool,
-  stablePoolDecimal
+  stablePoolDecimal,
+  pool
 );
-
-console.log(res, "res stable");
 
 loadRes({
   tokenIn,
   tokenOut,
   estimate: res,
+  pool,
 });
 
 return <div />;
