@@ -96,6 +96,7 @@ const getSwappedAmount = (
   const in_token_idx = stablePool.token_account_ids.findIndex(
     (id) => id === tokenInId
   );
+
   const out_token_idx = stablePool.token_account_ids.findIndex(
     (id) => id === tokenOutId
   );
@@ -105,6 +106,8 @@ const getSwappedAmount = (
   const rates = stablePool.rates.map((r) =>
     shrinkToken(r, STABLE_LP_TOKEN_DECIMALS)
   );
+
+  console.log(rates, "rates");
 
   const base_old_c_amounts = stablePool.c_amounts.map((amount) =>
     shrinkToken(amount, STABLE_LP_TOKEN_DECIMALS)
