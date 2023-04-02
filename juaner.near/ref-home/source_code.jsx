@@ -3,6 +3,7 @@ const Container = styled.div`
     min-height:100vh;
     display:flex;
     justify-content:center;
+    paddint-top:24px;
     .flex-grow{
       flex-grow: 1;
     }
@@ -14,7 +15,7 @@ const Container = styled.div`
     }
 `;
 const MenuContainer = styled.div`
-    padding:0 12px;
+    padding:25px 12px 0 12px;
     .item{
         display:flex;
         align-items:center;
