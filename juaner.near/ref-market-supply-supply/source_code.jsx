@@ -8,7 +8,7 @@ const Container = styled.div`
       padding:0 15px 0 15px;
       border:none;
       outline:none;
-      margin-bottom:8p;x
+      margin-bottom:8px;
     }
     .content input:focus{
       outline:none;
