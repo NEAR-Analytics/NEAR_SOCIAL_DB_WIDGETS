@@ -4,7 +4,6 @@ return (
   <>
     <div
       style={{
-        padding: 16,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
