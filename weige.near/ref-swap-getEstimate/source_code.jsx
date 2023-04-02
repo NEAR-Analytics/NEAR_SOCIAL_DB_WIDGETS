@@ -121,6 +121,8 @@ if (!poolThisPair) {
   returnNull();
 }
 
+console.log(poolThisPair, "pool this pair");
+
 if (poolThisPair.pool_kind === "SIMPLE_POOL") {
   const res = getSinglePoolEstimate(tokenIn, tokenOut, poolThisPair, amountIn);
 
