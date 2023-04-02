@@ -1,4 +1,5 @@
 const Container = styled.div`
+   background: #1A2E33;
     .table{
         margin:0;
         border-bottom:2px solid rgba(48, 67, 82, 0.5);
@@ -31,7 +32,7 @@ const Container = styled.div`
       width: 26px;
       height: 26px;
       border-radius:100px;
-      margin-right:4px;
+      margin-right:8px;
     }
     .rewardIcon{
       width: 16px;
@@ -44,11 +45,98 @@ const Container = styled.div`
     .ml_4_ne{
         margin-left:-4px;
     }
+    .flex_center{
+      display:flex;
+      align-items:center;
+    }
+    .modal-content{
+      background-color:#1A2E33;
+      border-radius:12px;
+    }
+    .modal-header{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight: 700;
+      font-size: 18px;
+      border-bottom:2px solid rgba(48, 67, 82, 0.5)
+    } 
+    .modal-header .btn-close{
+      position:absolute;
+      right:28px;
+      margin:0;
+    }
+    .modal-footer{
+      border:none;
+    }
+    .modal-body .tab{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:30px;
+    }
+    .modal-body .tab span{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:50%;
+      height:40px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 18px;
+      cursor:pointer;
+      color:#fff;
+    }
+    .modal-body .tab span.active{
+      background: #304352;
+    }
+    .mt_25{
+      margin-top:25px;
+    }
+    .mt-10{
+      margin-top:10px;
+    }
+    .btn-close-custom{
+      position:absolute;
+      right:28px;
+      width:12px;
+      height:12px;
+      cursor:pointer;
+    }
 `;
+/** base tool start  */
+const wnearbase64 =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAABmJLR0QA/wD/AP+gvaeTAAADvElEQVRYhbWYTUtjVxjH/9fRaFBaK3Q0ahCE3HTR0kWLL0g72nEh6NaAL+BivkIXHUpblWr9Ai78CIKgQqC1xYJNVnWwdiFCF9OS4CRRM2o7TRyw+XWRJk2uebuJ/uFC7jnP89xfzrnPOee5hmwIqJc0LOmxpA8keSW1SnpD0p+SLiT9JumZpF1Je4Zh3Nh5RiUQHcAKEMWeov/5td8FRBPwFZCwCWFVAvgCaKwWxAsc1ghh1RHwrl2QR8DlHYNk9BcwWinIMJC8J5CMEsDH5UDeAa7uGSSjC8DMfb6RA9Ik6WdJ79ma09r0q6R+wzBeS1JdTsdnhUACgYA8Ho8cDofGx8d1fn5u62mrq6tyuVwyTVPBYNDa/b6kT/NaSK8jBdPX4/EgKXsNDQ1xfX1d0Tz4/f48X9M0C5n9DTzMhVkpFjA3WOaam5srCxKPx+ns7LzlW0TLGZB6IGIHRhIrK0X5AZiZmSnoV0RRoF7AaKmguYFmZ2ezv+vq6tja2iros7m5iSSamppYWlqqBAZgRMA3lcJEo1Gmpqay9y0tLRwe5i/SZ2dntLe309bWxt7eHuFwuFKYrwX8UClMLBYjkUjQ19eXbevp6SEa/X//9Pl89Pb2cnx8DGAH5jsBf9iBATg5OaGrqyvbPjg4SDKZJBQKMTo6yunpadbfBsxzkd4rbMEAHBwc0NzcnO3z+XykUqlb/jZgrgTcVAMDsLGxgWEY2f7l5eVaYG6qHpmM5ufns/2GYbC+vl4tzJWA32uBSaVSTE9PZ22cTif7+/vVwDwX8H01MJFIhJGRESKRyK0Mc7vdRCIRuzDf1il9eLalo6MjDQwMqLu7Wx0dHXI6ndre3pbb7ZYkhcNhTUxMKJFI2An7TMBjOyOzu7tLa2srLpeLeDyeZ2vNsMnJSUKhUKUjM2xrb1pYWMDhcCAJv99f0N6aYdY9qoheAA8k2d+1nzx5Uuofsri4WHSDLaKl7GQB7RQ5z1iDud1uLi9Ln9WtGVYG5hXwdt7bA3xZyNI0zbx1ZGdnpyRIRslkkv7+/jwQr9dbyPTprVcZaKRAnRQIBDBNE5fLxdraWkUgGcViMcbGxmhoaMDr9RIMBq0mB4CjYG6RLtzuq16y6iXgKZnspAu4WsvZckoAH5UEyQEaAM7vCeSCcgVcASAT+OWOQQ4oNzUlgBqBz0mXE7XoFfCUYi+rTaiHwDLpldKOXgBLWNeRIjLKm+RBPZD0SNInkj5U+svVW5LelHQl6aXSX672Jf0o6SfDMP6pNP6/QZPF1Du0/sIAAAAASUVORK5CYII=";
+const closeButtonBase64 =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAERSURBVHgBtdjLDYMwEEXRUSqhY+gg0xElUAIlvOAAwkEEPJ93JVaM47OJsCyyBaBbnhFrvZAreyzPvDxT2fv8stte1L2FVPnt014H6g+GhrrA/KJuMOmoG8zeWIZmPBdGNWC+lcEBbblRrZhi2Rdo4wIzyoDR88J0lBvDQIUxmag0TAYqHRNB0TAeFNgYB4qPSUapZBZEqTByolSYGVEqxl5iD6RZe2j/a9dxTp5ODAcVxOSikjA5KANGQTzkmTHVGg4KgQ9lOgoJX+00FBKPEGEUCOcZNwrEw5UZhfUWgoJxoHppHFQJ1oiay+DIxhhQ09N1jEpyN6gJD3dEKqQuUAemGtpR5XpmEHI4bl3GGvMBHUHk6KgoFgEAAAAASUVORK5CYII=";
+let MAX_RATIO = 10_000;
+let BURROW_CONTRACT = "contract.main.burrow.near";
 let accountId = context.accountId;
-if (!accountId) {
-  return <Widget src="juaner.near/widget/ref_account-signin" />;
-}
+let B = Big();
+B.DP = 60; // set precision to 60 decimals
+
+const toAPY = (v) => Math.round(v * 100) / 100;
+const clone = (o) => JSON.parse(JSON.stringify(o));
+const shrinkToken = (value, decimals) => {
+  return B(value).div(B(10).pow(decimals));
+};
+
+const expandToken = (value, decimals) => {
+  return B(value).mul(B(10).pow(decimals));
+};
+
+const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
+
+const power = (x, y) => {
+  if (y === 0) {
+    return 1;
+  } else if (y % 2 === 0) {
+    return power(x, parseInt(y / 2)) * power(x, parseInt(y / 2));
+  } else {
+    return x * power(x, parseInt(y / 2)) * power(x, parseInt(y / 2));
+  }
+};
 const nFormat = (num, digits) => {
   const lookup = [
     { value: 1, symbol: "" },
@@ -64,13 +152,21 @@ const nFormat = (num, digits) => {
     ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol
     : "0";
 };
-const wnearbase64 =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAABmJLR0QA/wD/AP+gvaeTAAADvElEQVRYhbWYTUtjVxjH/9fRaFBaK3Q0ahCE3HTR0kWLL0g72nEh6NaAL+BivkIXHUpblWr9Ai78CIKgQqC1xYJNVnWwdiFCF9OS4CRRM2o7TRyw+XWRJk2uebuJ/uFC7jnP89xfzrnPOee5hmwIqJc0LOmxpA8keSW1SnpD0p+SLiT9JumZpF1Je4Zh3Nh5RiUQHcAKEMWeov/5td8FRBPwFZCwCWFVAvgCaKwWxAsc1ghh1RHwrl2QR8DlHYNk9BcwWinIMJC8J5CMEsDH5UDeAa7uGSSjC8DMfb6RA9Ik6WdJ79ma09r0q6R+wzBeS1JdTsdnhUACgYA8Ho8cDofGx8d1fn5u62mrq6tyuVwyTVPBYNDa/b6kT/NaSK8jBdPX4/EgKXsNDQ1xfX1d0Tz4/f48X9M0C5n9DTzMhVkpFjA3WOaam5srCxKPx+ns7LzlW0TLGZB6IGIHRhIrK0X5AZiZmSnoV0RRoF7AaKmguYFmZ2ezv+vq6tja2iros7m5iSSamppYWlqqBAZgRMA3lcJEo1Gmpqay9y0tLRwe5i/SZ2dntLe309bWxt7eHuFwuFKYrwX8UClMLBYjkUjQ19eXbevp6SEa/X//9Pl89Pb2cnx8DGAH5jsBf9iBATg5OaGrqyvbPjg4SDKZJBQKMTo6yunpadbfBsxzkd4rbMEAHBwc0NzcnO3z+XykUqlb/jZgrgTcVAMDsLGxgWEY2f7l5eVaYG6qHpmM5ufns/2GYbC+vl4tzJWA32uBSaVSTE9PZ22cTif7+/vVwDwX8H01MJFIhJGRESKRyK0Mc7vdRCIRuzDf1il9eLalo6MjDQwMqLu7Wx0dHXI6ndre3pbb7ZYkhcNhTUxMKJFI2An7TMBjOyOzu7tLa2srLpeLeDyeZ2vNsMnJSUKhUKUjM2xrb1pYWMDhcCAJv99f0N6aYdY9qoheAA8k2d+1nzx5Uuofsri4WHSDLaKl7GQB7RQ5z1iDud1uLi9Ln9WtGVYG5hXwdt7bA3xZyNI0zbx1ZGdnpyRIRslkkv7+/jwQr9dbyPTprVcZaKRAnRQIBDBNE5fLxdraWkUgGcViMcbGxmhoaMDr9RIMBq0mB4CjYG6RLtzuq16y6iXgKZnspAu4WsvZckoAH5UEyQEaAM7vCeSCcgVcASAT+OWOQQ4oNzUlgBqBz0mXE7XoFfCUYi+rTaiHwDLpldKOXgBLWNeRIjLKm+RBPZD0SNInkj5U+svVW5LelHQl6aXSX672Jf0o6SfDMP6pNP6/QZPF1Du0/sIAAAAASUVORK5CYII=";
-const toAPY = (v) => Math.round(v * 100) / 100;
-// get all assets data from burrow contracts
-const { assets, rewards, account, balances, yourSuppliedUSD, yourBurrowedUSD } =
-  state;
+const {
+  rewards,
+  account,
+  balances,
+  selectedTokenId,
+  amount,
+  hasError,
+  assets,
+} = state;
 const hasData = assets.length > 0 && rewards.length > 0 && account;
+/** base tool end */
+if (!accountId) {
+  return <Widget src="juaner.near/widget/ref_account-signin" />;
+}
+const config = Near.view(BURROW_CONTRACT, "get_config");
 const onLoad = (data) => {
   State.update(data);
 };
@@ -114,7 +210,13 @@ const market_burrow_assets =
         );
       });
     return (
-      <tr>
+      <tr
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        onClick={() => {
+          handleSelect(token_id);
+        }}
+      >
         <td>
           <img src={metadata.icon || wnearbase64} class="tokenIcon"></img>
           {metadata.symbol}
@@ -126,7 +228,15 @@ const market_burrow_assets =
     );
   });
 console.log("000000000000-market_burrow_assets", can_burrow_assets);
-
+const handleSelect = (token_id) => {
+  State.update({
+    selectedTokenId: token_id,
+    amount: "",
+    hasError: false,
+  });
+};
+const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
+const selectedTokenMeta = selectedToken.metadata || {};
 return (
   <Container>
     {/* load data */}
@@ -156,5 +266,43 @@ return (
       </thead>
       <tbody>{market_burrow_assets}</tbody>
     </table>
+    {/* Modal*/}
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="flex_center">
+              <img
+                class="tokenIcon"
+                src={selectedTokenMeta.icon || wnearbase64}
+              />
+              {selectedTokenMeta.symbol}
+            </div>
+            <img
+              class="btn-close-custom"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              src={closeButtonBase64}
+            />
+          </div>
+          <div class="modal-body">
+            <div class="tab">
+              <span class="active">Borrow</span>
+              <span>Repay</span>
+            </div>
+            <Widget
+              src="juaner.near/widget/ref-market-burrow-burrow"
+              props={{ selectedTokenId }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </Container>
 );
