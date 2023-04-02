@@ -1,4 +1,5 @@
 const Container = styled.div`
+    width:100%;
     padding-top:27px;
     .box_tabel{
       border-radius: 12px;
