@@ -168,6 +168,8 @@ const res = getSwappedAmount(
   stablePoolDecimal
 );
 
+console.log(res, "res stable");
+
 loadRes({
   tokenIn,
   tokenOut,
