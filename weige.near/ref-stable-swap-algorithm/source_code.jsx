@@ -139,8 +139,6 @@ const getSwappedAmount = (
 
   const amountOut = res[0] < 0 ? "0" : new Big(res[0]).toFixed(0, 0);
 
-  const dyOut = res[0] < 0 ? "0" : new Big(res[2]).toFixed(0, 0);
-
   return shrinkToken(amountOut, STABLE_LP_TOKEN_DECIMALS);
 };
 
