@@ -92,7 +92,7 @@ const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 
 const formatTokenBig = (v, decimals) =>
   Math.floor(
-    (v * Math.pow(10, Math.min(decimals, 0))) /
+    (v * Math.pow(10, Math.min(decimals, 8))) /
       Math.pow(10, Math.min(decimals, 8))
   );
 
