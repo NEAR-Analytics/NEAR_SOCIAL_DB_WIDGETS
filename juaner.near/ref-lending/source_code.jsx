@@ -308,15 +308,21 @@ return (
         <label class="t">Unclaimed Rewards</label>
         <div>
           <div class="flex_center">
-            {unclaimedRewards.map((reward) => (
-              <div class="flex_center">
-                <span class="v mr_10">{reward.unclaimed}</span>
-                <img src={reward.icon} class="rewardIcon"></img>
-              </div>
-            ))}
-            <div class="claim_button" onClick={handleClaimAll}>
-              Claim
-            </div>
+            {unclaimedRewards.length > 0 ? (
+              <>
+                {unclaimedRewards.map((reward) => (
+                  <div class="flex_center">
+                    <span class="v mr_10">{reward.unclaimed}</span>
+                    <img src={reward.icon} class="rewardIcon"></img>
+                  </div>
+                ))}
+                <div class="claim_button" onClick={handleClaimAll}>
+                  Claim
+                </div>
+              </>
+            ) : (
+              <span class="v mr_10">-</span>
+            )}
           </div>
         </div>
       </div>
