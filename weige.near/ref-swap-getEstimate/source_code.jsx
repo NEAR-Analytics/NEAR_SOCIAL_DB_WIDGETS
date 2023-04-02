@@ -127,6 +127,9 @@ if (!poolThisPair) {
 
 if (poolThisPair.pool_kind === "SIMPLE_POOL") {
   const res = getSinglePoolEstimate(tokenIn, tokenOut, poolThisPair, amountIn);
+
+  console.log(res, "res");
+
   loadRes(res);
 } else {
   const stablePoolDetail = getStablePoolDetail(
