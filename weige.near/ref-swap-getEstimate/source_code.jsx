@@ -79,7 +79,7 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
 };
 
 const returnNull = () => {
-  loadRes(null);
+  loadRes({});
   return <div />;
 };
 
