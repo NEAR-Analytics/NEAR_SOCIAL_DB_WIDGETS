@@ -39,6 +39,9 @@ const Container = styled.div`
     .mt_25{
       margin-top:25px;
     }
+    .mt-10{
+      margin-top:10px;
+    }
     .greenButton{
       display:flex;
       align-items:center;
