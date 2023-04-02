@@ -90,6 +90,10 @@ const shrinkToken = (value, decimals) => {
 
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 
+const formatTokenBig = (v, decimals) =>
+  Math.floor(v * Math.pow(10, Math.min(decimals, 0))) /
+  Math.pow(10, Math.min(decimals, 8));
+
 const getBalance = (token_id) => {
   let amount;
 
@@ -160,7 +164,9 @@ return (
         onChange={inputOnChange}
         min="0"
         step="any"
-        value={amount}
+        value={
+          !!disableInput ? formatTokenBig(amount, props.token.decimals) : amount
+        }
         disabled={!!disableInput}
         type="number"
         inputMode="decimal"
