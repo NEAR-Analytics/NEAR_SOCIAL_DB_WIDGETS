@@ -91,8 +91,10 @@ const shrinkToken = (value, decimals) => {
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 
 const formatTokenBig = (v, decimals) =>
-  Math.floor(v * Math.pow(10, Math.min(decimals, 0))) /
-  Math.pow(10, Math.min(decimals, 8));
+  Math.floor(
+    (v * Math.pow(10, Math.min(decimals, 0))) /
+      Math.pow(10, Math.min(decimals, 8))
+  );
 
 const getBalance = (token_id) => {
   let amount;
