@@ -107,6 +107,8 @@ const getSwappedAmount = (
     shrinkToken(r, STABLE_LP_TOKEN_DECIMALS)
   );
 
+  console.log(in_token_idx, out_token_idx, "idx", rates);
+
   console.log(rates, "rates", stablePool.c_amounts, STABLE_LP_TOKEN_DECIMALS);
 
   const base_old_c_amounts = stablePool.c_amounts.map((amount) =>
