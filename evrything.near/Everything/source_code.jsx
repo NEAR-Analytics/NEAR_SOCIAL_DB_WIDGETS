@@ -2,13 +2,33 @@ const accountId = props.accountId || "evrything.near";
 
 return (
   <>
-    <Widget src={"evrything.near/widget/H1"} />
-    <Widget
-      src={"evrything.near/widget/Everything.Things"}
-      props={{
-        type: "evrything.near/type/Everything",
+    <div
+      style={{
+        padding: 16,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 16,
+        width: "100%",
       }}
-    />
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 4,
+        }}
+      >
+        <Widget src="evrything.near/widget/H1" />
+      </div>
+      <Widget
+        src={"evrything.near/widget/Everything.Things"}
+        props={{
+          type: "evrything.near/type/Everything",
+        }}
+      />
+    </div>
   </>
 );
 
