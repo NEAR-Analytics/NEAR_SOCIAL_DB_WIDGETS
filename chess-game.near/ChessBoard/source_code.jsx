@@ -2,12 +2,6 @@ const { board } = props;
 if (!board) return "board prop required";
 
 const fieldSize = "3rem";
-const BoardView = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 const Board = styled.div`
   display: flex;
   flex-direction: column;
@@ -159,8 +153,4 @@ const renderBoard = (board) => {
   return boardRes;
 };
 
-return (
-  <BoardView>
-    <Board>{renderBoard(board)}</Board>
-  </BoardView>
-);
+return <Board>{renderBoard(board)}</Board>;
