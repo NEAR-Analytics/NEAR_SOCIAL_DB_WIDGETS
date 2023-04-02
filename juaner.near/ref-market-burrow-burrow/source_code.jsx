@@ -343,7 +343,7 @@ const newHealthFactor = state.newHealthFactor
   : undefined;
 /** logic end */
 return (
-  <Container class="content">
+  <Container>
     {/* load data */}
     {!hasData && (
       <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
