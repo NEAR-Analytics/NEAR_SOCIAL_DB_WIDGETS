@@ -103,7 +103,11 @@ const poolRes = fetch("https://indexer.ref.finance/list-top-pools");
 
 if (!poolRes) returnNull();
 
+console.log(poolRes, "pool res");
+
 const topPools = JSON.parse(poolRes.body);
+
+console.log(topPools, "top pools");
 
 if (!topPools) returnNull();
 
