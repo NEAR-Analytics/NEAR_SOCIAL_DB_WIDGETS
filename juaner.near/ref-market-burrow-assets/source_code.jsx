@@ -160,6 +160,7 @@ const {
   amount,
   hasError,
   assets,
+  tabName,
 } = state;
 const hasData = assets.length > 0 && rewards.length > 0 && account;
 /** base tool end */
@@ -235,6 +236,11 @@ const handleSelect = (token_id) => {
     hasError: false,
   });
 };
+function changeTab(tabName) {
+  State.update({
+    tabName,
+  });
+}
 const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
 const selectedTokenMeta = selectedToken.metadata || {};
 return (
@@ -293,13 +299,34 @@ return (
           </div>
           <div class="modal-body">
             <div class="tab">
-              <span class="active">Borrow</span>
-              <span>Repay</span>
+              <span
+                onClick={() => {
+                  changeTab("borrow");
+                }}
+                class={`${tabName != "repay" ? "active" : ""}`}
+              >
+                Borrow
+              </span>
+              <span
+                onClick={() => {
+                  changeTab("repay");
+                }}
+                class={`${tabName == "repay" ? "active" : ""}`}
+              >
+                Repay
+              </span>
             </div>
-            <Widget
-              src="juaner.near/widget/ref-market-burrow-burrow"
-              props={{ selectedTokenId }}
-            />
+            {tabName == "repay" ? (
+              <Widget
+                src="juaner.near/widget/ref-market-burrow-repay"
+                props={{ selectedTokenId }}
+              />
+            ) : (
+              <Widget
+                src="juaner.near/widget/ref-market-burrow-burrow"
+                props={{ selectedTokenId }}
+              />
+            )}
           </div>
         </div>
       </div>
