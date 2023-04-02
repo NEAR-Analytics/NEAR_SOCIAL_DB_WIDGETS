@@ -213,7 +213,7 @@ const market_burrow_assets =
     return (
       <tr
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#burrowModal"
         onClick={() => {
           handleSelect(token_id);
         }}
@@ -275,9 +275,9 @@ return (
     {/* Modal*/}
     <div
       class="modal fade"
-      id="exampleModal"
+      id="burrowModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="burrowModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
