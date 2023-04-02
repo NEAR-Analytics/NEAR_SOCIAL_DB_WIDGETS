@@ -1,6 +1,5 @@
 const Container = styled.div`
     padding-top:27px;
-    background-color: rgba(16, 16, 17,1); 
     .box_tabel{
       border-radius: 12px;
       background: #1A2E33;
