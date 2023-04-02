@@ -29,7 +29,7 @@ return (
       }}
     >
       <h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
-        Widgets for BOS
+        BOS Widgets
       </h1>
       <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
         Discover the latest widgets from the NEAR community.
