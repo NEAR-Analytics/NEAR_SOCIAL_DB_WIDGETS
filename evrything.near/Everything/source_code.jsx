@@ -21,6 +21,15 @@ return (
         }}
       >
         <Widget src="evrything.near/widget/H1" />
+        <p>
+          The data within the elements below, are a representation of that data
+          Type's default view Widget.
+        </p>
+        <p>
+          Head over to the{" "}
+          <a href="https://temp.everything.dev/#/edit">editor</a> to create your
+          own Type.
+        </p>
       </div>
       <Widget
         src={"evrything.near/widget/Everything.Things"}
