@@ -9,10 +9,11 @@ const Board = styled.div`
 `;
 const BoardRow = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
 `;
 const Legend = styled.div`
-  flex: 1 1 auto;
+  flex: 1 1 0;
   max-width: ${fieldSize};
   aspect-ratio: 1 / 1;
   font-size: 1.6rem;
