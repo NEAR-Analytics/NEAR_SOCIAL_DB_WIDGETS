@@ -27,8 +27,8 @@ return (
         </p>
         <p>
           Head over to the{" "}
-          <a href="https://temp.everything.dev/#/edit">editor</a> to create your
-          own Type.
+          <a href="https://temp.everything.dev/#/editor">editor</a> to create
+          your own Type.
         </p>
       </div>
       <Widget
