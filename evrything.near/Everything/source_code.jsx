@@ -22,8 +22,8 @@ return (
       >
         <Widget src="evrything.near/widget/H1" />
         <p>
-          The data within the elements below, are a representation of that data
-          Type's default view Widget.
+          The elements below are each a representation of that data Type's
+          default view Widget.
         </p>
         <p>
           Head over to the{" "}
