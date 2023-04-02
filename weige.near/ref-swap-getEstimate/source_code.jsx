@@ -101,7 +101,7 @@ if (wrapOperation) {
 
 const poolRes = fetch("https://indexer.ref.finance/list-top-pools");
 
-if (!poolRes) returnNull();
+if (!poolRes) return returnNull();
 
 console.log(poolRes, "pool res");
 
@@ -109,7 +109,7 @@ const topPools = JSON.parse(poolRes.body);
 
 console.log(topPools, "top pools");
 
-if (!topPools) returnNull();
+if (!topPools) return returnNull();
 
 const poolThisPair = topPools.find(
   (p) =>
@@ -118,7 +118,7 @@ const poolThisPair = topPools.find(
 );
 
 if (!poolThisPair) {
-  returnNull();
+  return returnNull();
 }
 
 console.log(poolThisPair, "pool this pair");
