@@ -3,7 +3,6 @@ const Container = styled.div`
     min-height:100vh;
     display:flex;
     justify-content:center;
-    padding-top:25px;
     .flex-grow{
       flex-grow: 1;
     }
@@ -12,6 +11,9 @@ const Container = styled.div`
       height:700px;
       background:linear-gradient(90deg, #002C35 0%, rgba(0, 44, 53, 0) 104.92%);
       margin-right:35px;
+    }
+    .content{
+      padding-top:25px;
     }
 `;
 const MenuContainer = styled.div`
@@ -70,7 +72,7 @@ return (
       <div class="item disable">History</div>
     </MenuContainer>
     <div class="splitLine"></div>
-    <div class="flex-grow">
+    <div class="flex-grow content">
       {activeMenu == "lending" ? (
         <Widget src="juaner.near/widget/ref-lending" />
       ) : null}
