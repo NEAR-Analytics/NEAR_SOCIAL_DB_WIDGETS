@@ -142,6 +142,7 @@ if (poolThisPair.pool_kind === "SIMPLE_POOL") {
         stablePool: stablePoolDetail,
         stablePoolDecimal: STABLE_LP_TOKEN_DECIMALS,
         amountIn: amountIn,
+        pool: poolThisPair,
       }}
     />
   );
