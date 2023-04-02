@@ -152,6 +152,8 @@ const getSwappedAmount = (
     dy / Number(rates[out_token_idx]),
   ];
 
+  console.log(res, "res amount");
+
   const amountOut = res[0] < 0 ? "0" : new Big(res[0]).toFixed(0, 0);
 
   return shrinkToken(amountOut, STABLE_LP_TOKEN_DECIMALS);
