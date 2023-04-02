@@ -321,7 +321,7 @@ return (
                 </div>
               </>
             ) : (
-              <span class="v mr_10">-</span>
+              <span class="v mr_10">0</span>
             )}
           </div>
         </div>
