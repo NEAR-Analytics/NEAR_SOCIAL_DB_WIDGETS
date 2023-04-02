@@ -1,12 +1,3 @@
-// get estimate and transactions by token-in, tokent-out, amount-in
-
-// storage_deposit check before
-
-// near -> wrap // wrap
-// wrap-> near // withdraw
-// near->nep141 // wrap +
-// nep141-> near  // + withdraw
-
 const shrinkToken = (value, decimals) => {
   return new Big(value || 0).div(new Big(10).pow(decimals || 24));
 };
@@ -25,12 +16,12 @@ const {
 const tokenIn =
   tokenInFromProps.id === "NEAR"
     ? { ...tokenInFromProps, id: "wrap.near" }
-    : tokenIn;
+    : tokenInFromProps;
 
 const tokenOut =
   tokenOutFromProps.id === "NEAR"
     ? { ...tokenOutFromProps, id: "wrap.near" }
-    : tokenOut;
+    : tokenOutFromProps;
 
 const FEE_DIVISOR = 10000;
 
@@ -94,8 +85,9 @@ const returnNull = () => {
 
 const wrapOperation =
   [tokenIn, tokenOut].every((meta) => meta.id === "wrap.near") &&
-  [tokenIn, tokenOut].find((meta) => meta.symbol === "NEAR");
+  !![tokenIn, tokenOut].find((meta) => meta.symbol === "NEAR");
 
+console.log(wrapOperation, tokenIn, tokenOut, "wrap operation1");
 if (wrapOperation) {
   loadRes({
     estimate: amountIn,
