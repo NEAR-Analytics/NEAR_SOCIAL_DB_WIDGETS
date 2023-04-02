@@ -3,7 +3,7 @@ const Container = styled.div`
     min-height:100vh;
     display:flex;
     justify-content:center;
-    paddint-top:24px;
+    padding-top:25px;
     .flex-grow{
       flex-grow: 1;
     }
