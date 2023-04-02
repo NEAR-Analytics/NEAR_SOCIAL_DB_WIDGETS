@@ -152,7 +152,7 @@ return (
       }}
     ></i>
     <Input
-      autofocus
+      autoFocus={true}
       style={{ color: props.theme.textColor }}
       type="text"
       value={state.term ?? ""}
