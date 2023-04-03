@@ -112,17 +112,6 @@ len.callStatic
     State.update({ getAccountLimits });
   });
 
-if (
-  !state.cTokenBalancesAll ||
-  !state.cTokenMetadataAll ||
-  !state.getAccountLimits
-) {
-  return (
-    <div>
-      <h2>Loading Data...</h2>
-    </div>
-  );
-}
 const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
@@ -230,6 +219,12 @@ const handleDeposit = () => {
 };
 
 const getCTokenBalancesAllIndex = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   const rewardIndex = state.cTokenBalancesAll.findIndex(
     (element) => element[0] == TokensDetail[selectedTokenId].cAddress
   );
@@ -237,6 +232,12 @@ const getCTokenBalancesAllIndex = () => {
 };
 
 const walletBalance = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   const rewardIndex = getCTokenBalancesAllIndex();
   const bigValue = state.cTokenBalancesAll[rewardIndex][4].toString();
   const cal = (
@@ -249,6 +250,12 @@ const walletBalance = () => {
 };
 
 const supplyBalance = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   const rewardIndex = getCTokenBalancesAllIndex();
   const bigValue = state.cTokenBalancesAll[rewardIndex][1].mul(
     state.cTokenBalancesAll[rewardIndex][3]
@@ -260,6 +267,12 @@ const supplyBalance = () => {
 };
 
 const getAllowance = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   const rewardIndex = getCTokenBalancesAllIndex();
   const bigValue = state.cTokenBalancesAll[rewardIndex][5].toString();
   const cal = (
@@ -271,6 +284,12 @@ const getAllowance = () => {
 };
 
 const remainingBalance = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   let totalBorrowLimit = ethers.BigNumber.from(0);
   let totalBorrowd = ethers.BigNumber.from(0);
   for (const key of dataArray) {
@@ -310,6 +329,12 @@ const remainingBalance = () => {
 };
 
 const handleBorrow = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   if (!selectedTokenId || !amount || hasError) return;
   if (Number(state.amount) > Number(state.LimitAmount)) {
     State.update({ hasError: 2 });
@@ -355,6 +380,12 @@ const handleBorrow = () => {
 };
 
 const getBorrowed = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   const rewardIndex = getCTokenBalancesAllIndex();
   const bigValueBorrowed = state.cTokenBalancesAll[rewardIndex][2];
   const finalValue = (
@@ -412,6 +443,12 @@ const handleRepay = () => {
 };
 
 const maxWithdraw = () => {
+  if (
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
   const rewardIndex = getCTokenBalancesAllIndex();
   const supplyBalance = supplyBalance();
   const tokenPrice =
@@ -505,102 +542,96 @@ function numberWithCommas(x) {
 
 const allAssetData = Object.keys(TokensDetail).map((key) => {
   if (
-    state.cTokenBalancesAll &&
-    state.cTokenMetadataAll &&
-    state.getAccountLimits
-  ) {
-    const indexMeta = state.cTokenMetadataAll.findIndex(
-      (element) => element[0] == TokensDetail[key].cAddress
-    );
-    const totalSupply = state.cTokenMetadataAll[indexMeta][8].mul(
-      state.cTokenMetadataAll[indexMeta][2]
-    );
-    const totalSupplyValue = (
-      Number(totalSupply.toString()) /
-      Math.pow(10, 18 + TokensDetail[key].decimals)
-    ).toFixed(2);
-    const supplyRatePerBlock = state.cTokenMetadataAll[indexMeta][3];
-    const supplyApy = (
-      (Math.pow(
-        (Number(supplyRatePerBlock.toString()) / 1e18) * 86400 + 1,
-        365
-      ) -
-        1) *
-      100
-    ).toFixed(2);
-    const borrowRatePerBlock = state.cTokenMetadataAll[indexMeta][4];
-    const borrowApy = (
-      (Math.pow(
-        (Number(borrowRatePerBlock.toString()) / 1e18) * 86400 + 1,
-        365
-      ) -
-        1) *
-      100
-    ).toFixed(2);
-    return (
-      <tr>
-        <td>{TokensDetail[key].name}</td>
-        <td class="text-end">{supplyApy}%</td>
-        <td class="text-end">{borrowApy}%</td>
-        <td class="text-end">
-          {numberWithCommas(totalSupplyValue)} {TokensDetail[key].symbol}
-        </td>
-      </tr>
-    );
-  }
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
+  const indexMeta = state.cTokenMetadataAll.findIndex(
+    (element) => element[0] == TokensDetail[key].cAddress
+  );
+  const totalSupply = state.cTokenMetadataAll[indexMeta][8].mul(
+    state.cTokenMetadataAll[indexMeta][2]
+  );
+  const totalSupplyValue = (
+    Number(totalSupply.toString()) /
+    Math.pow(10, 18 + TokensDetail[key].decimals)
+  ).toFixed(2);
+  const supplyRatePerBlock = state.cTokenMetadataAll[indexMeta][3];
+  const supplyApy = (
+    (Math.pow((Number(supplyRatePerBlock.toString()) / 1e18) * 86400 + 1, 365) -
+      1) *
+    100
+  ).toFixed(2);
+  const borrowRatePerBlock = state.cTokenMetadataAll[indexMeta][4];
+  const borrowApy = (
+    (Math.pow((Number(borrowRatePerBlock.toString()) / 1e18) * 86400 + 1, 365) -
+      1) *
+    100
+  ).toFixed(2);
+  return (
+    <tr>
+      <td>{TokensDetail[key].name}</td>
+      <td class="text-end">{supplyApy}%</td>
+      <td class="text-end">{borrowApy}%</td>
+      <td class="text-end">
+        {numberWithCommas(totalSupplyValue)} {TokensDetail[key].symbol}
+      </td>
+    </tr>
+  );
 });
 
 const fetchAllData = () => {
   if (
-    state.cTokenBalancesAll &&
-    state.cTokenMetadataAll &&
-    state.getAccountLimits
-  ) {
-    State.update({ allDataTab: allAssetData });
-  }
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
+  State.update({ allDataTab: allAssetData });
 };
 
 const portfolio = Object.keys(TokensDetail).map((key) => {
   if (
-    state.cTokenBalancesAll &&
-    state.cTokenMetadataAll &&
-    state.getAccountLimits
-  ) {
-    const indexBalance = state.cTokenBalancesAll.findIndex(
-      (element) => element[0] == TokensDetail[key].cAddress
-    );
-    const bigValue = state.cTokenBalancesAll[indexBalance][4].toString();
-    const cal = (
-      Number(bigValue) / Math.pow(10, TokensDetail[key].decimals)
-    ).toFixed(2);
+    !state.cTokenBalancesAll ||
+    !state.cTokenMetadataAll ||
+    !state.getAccountLimits
+  )
+    return;
+  const indexBalance = state.cTokenBalancesAll.findIndex(
+    (element) => element[0] == TokensDetail[key].cAddress
+  );
+  const bigValue = state.cTokenBalancesAll[indexBalance][4].toString();
+  const cal = (
+    Number(bigValue) / Math.pow(10, TokensDetail[key].decimals)
+  ).toFixed(2);
 
-    const bigValueSupply = state.cTokenBalancesAll[indexBalance][1].mul(
-      state.cTokenBalancesAll[indexBalance][3]
-    );
-    const supplied = (
-      Number(bigValueSupply.toString()) /
-      Math.pow(10, 18 + TokensDetail[key].decimals)
-    ).toFixed(3);
-    const bigValueBorrowed = state.cTokenBalancesAll[indexBalance][2];
-    const finalValueBorrowed = (
-      Number(bigValueBorrowed.toString()) /
-      Math.pow(10, TokensDetail[key].decimals)
-    ).toFixed(2);
-    return (
-      <tr>
-        <td>{TokensDetail[key].name}</td>
-        <td class="text-end">
-          {cal} {TokensDetail[key].symbol}
-        </td>
-        <td class="text-end">
-          {supplied} {TokensDetail[key].symbol}
-        </td>
-        <td class="text-end">
-          {finalValueBorrowed} {TokensDetail[key].symbol}
-        </td>
-      </tr>
-    );
-  }
+  const bigValueSupply = state.cTokenBalancesAll[indexBalance][1].mul(
+    state.cTokenBalancesAll[indexBalance][3]
+  );
+  const supplied = (
+    Number(bigValueSupply.toString()) /
+    Math.pow(10, 18 + TokensDetail[key].decimals)
+  ).toFixed(3);
+  const bigValueBorrowed = state.cTokenBalancesAll[indexBalance][2];
+  const finalValueBorrowed = (
+    Number(bigValueBorrowed.toString()) /
+    Math.pow(10, TokensDetail[key].decimals)
+  ).toFixed(2);
+  return (
+    <tr>
+      <td>{TokensDetail[key].name}</td>
+      <td class="text-end">
+        {cal} {TokensDetail[key].symbol}
+      </td>
+      <td class="text-end">
+        {supplied} {TokensDetail[key].symbol}
+      </td>
+      <td class="text-end">
+        {finalValueBorrowed} {TokensDetail[key].symbol}
+      </td>
+    </tr>
+  );
 });
 
 if (!state.actionTabs) {
