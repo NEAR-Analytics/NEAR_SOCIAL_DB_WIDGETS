@@ -6,6 +6,8 @@ State.init({
   foundersIsFetched: false,
   requests: null,
   requestsIsFetched: false,
+  description: null,
+  descriptionIsFetched: false,
 });
 
 if (!state.foundersIsFetched) {
@@ -28,6 +30,16 @@ if (!state.requestsIsFetched) {
   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
 }
 
+if (!state.descriptionIsFetched) {
+  Near.asyncView(
+    "social.near",
+    "get",
+    { keys: [`${accountId}/profile/description`] },
+    "final",
+    false
+  ).then((description) => State.update({ description, descriptionIsFetched: true }));
+}
+
 const body = (
   <>
     <Widget
@@ -39,10 +51,10 @@ const body = (
         update: props.update,
       }}
     />
-    <Widget
-      src={`${ownerId}/widget/DescriptionArea`}
+  <Widget
+         src={`${ownerId}/widget/DescriptionArea`}
       props={{
-        // description: state.contributor.resume || state.profile.description,
+        description: state.contributor.resume || state.profile.description,
       }}
     />
   </>
