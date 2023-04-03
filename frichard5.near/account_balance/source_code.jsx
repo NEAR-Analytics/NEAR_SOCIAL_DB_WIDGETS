@@ -9,7 +9,6 @@ const contractsBalance = fetch(apiUrl, {
   },
 });
 
-console.log(contractsBalance);
 const rows = [];
 contractsBalance.body.forEach((cB) => {
   rows.push(
