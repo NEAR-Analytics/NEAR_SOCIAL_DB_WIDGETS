@@ -19,11 +19,13 @@ let rawData = fetch(
   }
 );
 
+const data = rawData.body || [];
+
 const project_name = props.project_name || "Sweat Economy";
 
 const METRIC_NAME = `"${project_name}'s Weekly Active Accounts"`;
 
-const filteredData = filterByProjectName(rawData.body, project_name) || [];
+const filteredData = filterByProjectName(data, project_name) || [];
 
 const filteredSortedData = sortByActivityDate(filteredData) || [];
 
