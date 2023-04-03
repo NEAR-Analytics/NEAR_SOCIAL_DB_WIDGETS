@@ -122,11 +122,15 @@ if (reloadPools) {
 
 if (!topPools) return returnNull();
 
-const poolThisPair = topPools.find(
+const poolsThisPair = topPools.filter(
   (p) =>
     p.token_account_ids.includes(tokenIn.id) &&
     p.token_account_ids.includes(tokenOut.id)
 );
+
+const poolThisPair = poolsThisPair.find((p) => p.token_account_ids.length > 2)
+  ? poolsThisPair.find((p) => p.token_account_ids.length > 2)
+  : poolsThisPair[0];
 
 if (!poolThisPair) {
   return returnNull();
