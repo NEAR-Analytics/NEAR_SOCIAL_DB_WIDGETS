@@ -118,15 +118,15 @@ const body = (
         ),
       }}
     />
-      <div>{deadline}{budget}</div>
+          <div>{deadline}{budget}</div>
       </>
 );
 
       const FooterButton = styled.a` 
-      box-sizing: border-box;
-      display: flex;
-    flex-direction: row;
-    justify-content: center;
+          box-sizing: border-box;
+        display: flex;
+      flex-direction: row;
+      justify-content: center;
     align-items: center;
     padding: 0.5em 1em;
     gap: 0.5em;
@@ -136,27 +136,27 @@ const body = (
     border: 1px solid #eceef0;
     border-radius: 50px;
     flex: none;
-    order: 0;
+        order: 0;
     flex-grow: 0;
     font-style: normal;
     font-weight: 600;
-    font-size: 0.9em;
-    line-height: 1em;
-    text-align: center;
-    color: ${({ blue }) => (blue ? "#006ADC" : "#101828")};
+    font-size: 0.9em;         
+    ght: 1em;
+      gn: center;
+    {({ blue }) => (blue ? "#006ADC" : "#101828")};
     
     
-    const Footer = styled.div`
-  display: flex;
-      flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    oter = styled.div`                
+    lay: flex;
+      irection: row;
+      content: space-between;
+    ems: center;
+    00%;
     
     
     const footer = (
-  <Footer>
-        <FooterButton
+ooter>
+            <FooterButton
         href={`/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`}
         onClick={() =>
           props.update({
