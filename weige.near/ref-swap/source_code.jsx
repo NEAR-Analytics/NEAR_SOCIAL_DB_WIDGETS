@@ -8,8 +8,6 @@ const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
-console.log(props, "ovo");
-
 const account = fetch("https://rpc.mainnet.near.org", {
   method: "POST",
   headers: {
@@ -127,6 +125,7 @@ if (!state.timerIntervalSet) {
       timerIntervalSet: false,
       count: state.count - 1 < 0 ? 20 : state.count - 1,
     });
+
     clearTimeout(timerInterval);
   }, 1000);
 }
@@ -134,7 +133,7 @@ if (!state.timerIntervalSet) {
 const Container = styled.div`
     width: 430px;
     color: white;
-    background: rgb(16,16,17)
+
 `;
 
 const Refresh = styled.span`
