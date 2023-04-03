@@ -11,6 +11,7 @@ const {
   tokenOut: tokenOutFromProps,
   amountIn,
   loadRes,
+  topPools,
 } = props;
 
 const tokenIn =
@@ -95,7 +96,6 @@ const wrapOperation =
   [tokenIn, tokenOut].every((meta) => meta.id === "wrap.near") &&
   !![tokenIn, tokenOut].find((meta) => meta.symbol === "NEAR");
 
-console.log(wrapOperation, tokenIn, tokenOut, "wrap operation1");
 if (wrapOperation) {
   loadRes({
     estimate: amountIn,
@@ -108,12 +108,6 @@ if (wrapOperation) {
 }
 
 if (tokenIn.id === tokenOut.id) return returnNull();
-
-const poolRes = fetch("https://indexer.ref.finance/list-top-pools");
-
-if (!poolRes) return returnNull();
-
-const topPools = JSON.parse(poolRes.body);
 
 console.log(topPools, "top pools");
 
