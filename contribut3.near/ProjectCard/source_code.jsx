@@ -100,4 +100,4 @@ const footer = (
   </Footer>
 );
 
-return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />;
+return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
