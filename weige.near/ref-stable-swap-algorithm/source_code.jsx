@@ -171,13 +171,11 @@ const res = getSwappedAmount(
   pool
 );
 
-if (stablePool && loadRes && pool) {
-  loadRes({
-    tokenIn,
-    tokenOut,
-    estimate: res,
-    pool,
-  });
-}
+loadRes({
+  tokenIn,
+  tokenOut,
+  estimate: res,
+  pool,
+});
 
 return <div />;
