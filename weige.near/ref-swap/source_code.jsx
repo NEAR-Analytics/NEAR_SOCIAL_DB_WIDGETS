@@ -55,21 +55,6 @@ const getBalance = (token_id, tokenMeta) => {
   return !amount ? "0" : shrinkToken(amount, tokenMeta.decimals).toFixed();
 };
 
-const RefreshIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
-    <path
-      d="M0 7C0 7.55228 0.447715 8 1 8C1.55228 8 2 7.55228 2 7H0ZM12 7C12 9.76142 9.76142 12 7 12V14C10.866 14 14 10.866 14 7H12ZM2 7C2 4.23858 4.23858 2 7 2V0C3.13401 0 0 3.13401 0 7H2ZM7 2C9.76142 2 12 4.23858 12 7H14C14 3.13401 10.866 0 7 0V2Z"
-      fill="#00FFD1"
-    />
-  </svg>
-);
-
 const REF_TOKEN_META = {
   decimals: 18,
   icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='16 24 248 248' style='background: %23000'%3E%3Cpath d='M164,164v52h52Zm-45-45,20.4,20.4,20.6-20.6V81H119Zm0,18.39V216h41V137.19l-20.6,20.6ZM166.5,81H164v33.81l26.16-26.17A40.29,40.29,0,0,0,166.5,81ZM72,153.19V216h43V133.4l-11.6-11.61Zm0-18.38,31.4-31.4L115,115V81H72ZM207,121.5h0a40.29,40.29,0,0,0-7.64-23.66L164,133.19V162h2.5A40.5,40.5,0,0,0,207,121.5Z' fill='%23fff'/%3E%3Cpath d='M189 72l27 27V72h-27z' fill='%2300c08b'/%3E%3C/svg%3E%0A",
@@ -131,6 +116,9 @@ State.init({
   showSetting: false,
   slippagetolerance: "0.5",
   estimate: {},
+  timerIntervalSet: false,
+  count: 20,
+  reloadPools: false,
   loadRes: (value) =>
     State.update({
       estimate: value,
@@ -170,21 +158,6 @@ const TokenOutInput = (
   />
 );
 
-const SlippageSelector = (
-  <Widget
-    src={`weige.near/widget/SlippageTolerance`}
-    props={{
-      showSetting: state.showSetting,
-      slippagetolerance: state.slippagetolerance,
-      setSlippagetolerance: (value) => {
-        State.update({
-          slippagetolerance: value,
-        });
-      },
-    }}
-  />
-);
-
 const Container = styled.div`
     width: 430px;
     color: white;
@@ -192,7 +165,8 @@ const Container = styled.div`
 `;
 
 const Refresh = styled.span`
-  margin-left:8px
+  margin-left:8px;
+  font-size:12px
 `;
 
 const RefreshText = styled.span`
@@ -254,7 +228,10 @@ const notEnough = new Big(state.amountIn || 0).gt(
   getBalance(state.tokenIn.id, state.tokenIn)
 );
 
-const canSwap = Number(state.amountIn) > 0 && Number(state.amountOut) > 0;
+const canSwap =
+  Number(state.amountIn || 0) > 0 &&
+  Number(state.amountOut || 0) > 0 &&
+  !state.loading;
 
 const callTx = () => {
   const tx = [];
@@ -297,6 +274,7 @@ const callTx = () => {
 
   tx.push({
     methodName: "ft_transfer_call",
+    contractName: state.tokenIn.id === "NEAR" ? "wrap.near" : state.tokenIn.id,
     gas: expandToken(180, 12),
     deposit: new Big("1").toFixed(),
     args: {
@@ -334,18 +312,6 @@ const callTx = () => {
   Near.call(tx);
 };
 
-const Estimate = (
-  <Widget
-    src="weige.near/widget/ref-swap-getEstimate"
-    props={{
-      loadRes: state.loadRes,
-      tokenIn: state.tokenIn,
-      tokenOut: state.tokenOut,
-      amountIn: state.amountIn,
-    }}
-  />
-);
-
 return (
   <Container>
     <div
@@ -356,23 +322,58 @@ return (
     >
       Swap
     </div>
-    {Estimate}
+    {
+      <Widget
+        src="weige.near/widget/ref-swap-getEstimate"
+        props={{
+          loadRes: state.loadRes,
+          tokenIn: state.tokenIn,
+          tokenOut: state.tokenOut,
+          amountIn: state.amountIn || 0,
+          reloadPools: state.reloadPools,
+          setReloadPools: (value) =>
+            State.update({
+              reloadPools: value,
+            }),
+        }}
+      />
+    }
 
     {TokenInInput}
     {Exchange}
     {TokenOutInput}
 
     <RateLine>
-      <RefreshWrapper>
-        <Refresh>{RefreshIcon}</Refresh>
+      <RefreshWrapper
+        onClick={() => {
+          State.update({
+            reloadPools: true,
+            count: 20,
+          });
+        }}
+      >
+        <Refresh>{state.count}</Refresh>
         <RefreshText>Refresh</RefreshText>
       </RefreshWrapper>
 
-      <RateWrapper>{`1 ${state.tokenIn.symbol} ≈ ${new Big(state.amountOut || 0)
-        .div(state.amountIn)
-        .toFixed(4, 0)} ${state.tokenOut.symbol}`}</RateWrapper>
+      <RateWrapper>{`1 ${state.tokenIn.symbol} ≈ ${
+        Number(state.amountIn) === 0
+          ? "-"
+          : new Big(state.amountOut || 0).div(state.amountIn || 1).toFixed(4, 0)
+      } ${state.tokenOut.symbol}`}</RateWrapper>
     </RateLine>
-    {SlippageSelector}
+    <Widget
+      src={`weige.near/widget/SlippageTolerance`}
+      props={{
+        showSetting: state.showSetting,
+        slippagetolerance: state.slippagetolerance,
+        setSlippagetolerance: (value) => {
+          State.update({
+            slippagetolerance: value,
+          });
+        },
+      }}
+    />
 
     <SettingWrapper>
       <SettingLine />
