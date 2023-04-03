@@ -11,7 +11,6 @@ const {
   tokenOut: tokenOutFromProps,
   amountIn,
   loadRes,
-  topPools,
 } = props;
 
 const tokenIn =
@@ -110,6 +109,9 @@ if (wrapOperation) {
 if (tokenIn.id === tokenOut.id) return returnNull();
 
 console.log(topPools, "top pools");
+let topPools = JSON.parse(
+  fetch("https://indexer.ref.finance/list-top-pools").body
+);
 
 if (!topPools) return returnNull();
 
