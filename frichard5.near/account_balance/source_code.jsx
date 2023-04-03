@@ -26,7 +26,7 @@ return (
         <th>Token</th>
         <th>Amount</th>
       </tr>
-      {rows}
+      {rows.length ? rows : "loading..."}
     </table>
   </>
 );
