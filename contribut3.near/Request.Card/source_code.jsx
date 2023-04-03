@@ -110,6 +110,13 @@ const budget = (
   </Item>
 );
 
+const contributionType = (
+  <Item>
+
+    One-time contribution
+  </Item>
+);
+
 const body = (
   <>
     <Widget
