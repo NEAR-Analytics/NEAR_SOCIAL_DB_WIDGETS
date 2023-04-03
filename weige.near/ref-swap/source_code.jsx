@@ -100,7 +100,6 @@ State.init({
   slippagetolerance: "0.5",
   estimate: {},
   timerIntervalSet: false,
-  count: 20,
   reloadPools: false,
   loadRes: (value) =>
     State.update({
@@ -109,6 +108,10 @@ State.init({
     }),
 });
 
+if (!Storage.get("count")) {
+  Storage.set("count", 21);
+}
+
 let timerInterval;
 
 if (!state.timerIntervalSet) {
@@ -116,14 +119,19 @@ if (!state.timerIntervalSet) {
     timerIntervalSet: true,
   });
   timerInterval = setTimeout(() => {
-    if (state.count === 0) {
+    const count = Storage.get("count");
+
+    console.log(count, "count");
+
+    if (count === 1) {
       State.update({
         reloadPools: true,
       });
     }
+    Storage.set("count", count === 1 ? 21 : count - 1);
+
     State.update({
       timerIntervalSet: false,
-      count: state.count - 1 < 0 ? 20 : state.count - 1,
     });
 
     clearTimeout(timerInterval);
@@ -133,6 +141,7 @@ if (!state.timerIntervalSet) {
 const Container = styled.div`
     width: 430px;
     color: white;
+    background:rgb(16,16,17)
 
 `;
 
@@ -319,11 +328,11 @@ return (
           clearTimeout(timerInterval);
           State.update({
             reloadPools: true,
-            count: 20,
           });
+          Storage.set("count", 21);
         }}
       >
-        <Refresh>{state.count}</Refresh>
+        <Refresh>{Storage.get("count") - 1}</Refresh>
         <RefreshText>Refresh</RefreshText>
       </RefreshWrapper>
 
