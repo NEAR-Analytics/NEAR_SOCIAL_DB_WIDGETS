@@ -68,7 +68,7 @@ const FooterButton = styled.a`
   font-size: 0.9em;
   line-height: 1em;
   text-align: center;
-  color: ${({ blue, disabled }) => disabled ? "#878A8E" : blue ? "#006ADC" : "#101828"};
+  color: ${({ blue, disabled }) => disabled ? "#878a8e" : blue ? "#006adc" : "#101828"};
 `;
 
 const Footer = styled.div`
