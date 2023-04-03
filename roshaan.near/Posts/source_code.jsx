@@ -164,7 +164,7 @@ return (
 
       <FeedWrapper>
         <Widget
-          src="roshaan.near/widget/query-api-activity-with-options"
+          src="roshaan.near/widget/query-api-feed-infinite"
           props={{ accounts, postsOrderOption: state.selectedTab }}
         />
       </FeedWrapper>
