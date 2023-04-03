@@ -28,8 +28,6 @@ function sortByActivityDate(arr) {
 
 const filteredSortedData = sortByActivityDate(filteredData) || [];
 
-console.log(filteredSortedData);
-
 let Style = styled.div`
         
         
