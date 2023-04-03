@@ -10,15 +10,15 @@ let rawData = fetch(
     },
   }
 );
-const project_name = props.project_name || "Sweat Economy";
+const project_name = props.project_name || "REF";
 
-function filterByProjectName(arr) {
-  return arr.filter((obj) => obj.PROJECT_NAME === "Sweat Economy");
+function filterByProjectName(arr, project_name) {
+  return arr.filter((obj) => obj.PROJECT_NAME === project_name);
 }
 
 const METRIC_NAME = `"${project_name}'s Weekly Active Accounts"`;
 
-const filteredData = filterByProjectName(rawData.body, project_name);
+const filteredData = filterByProjectName(rawData.body, project_name) || [];
 
 function sortByActivityDate(arr) {
   return arr.sort(
