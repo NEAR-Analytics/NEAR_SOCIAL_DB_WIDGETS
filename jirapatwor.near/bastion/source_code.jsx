@@ -540,7 +540,13 @@ const allAssetData = Object.keys(TokensDetail).map((key) => {
 });
 
 const fetchAllData = () => {
-  State.update({ allDataTab: allAssetData });
+  if (
+    state.cTokenBalancesAll &&
+    state.cTokenMetadataAll &&
+    state.getAccountLimits
+  ) {
+    State.update({ allDataTab: allAssetData });
+  }
 };
 
 const portfolio = Object.keys(TokensDetail).map((key) => {
