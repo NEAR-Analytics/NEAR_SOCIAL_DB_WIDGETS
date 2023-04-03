@@ -292,7 +292,7 @@ return (
     )}
     {/* Your Lending */}
     <div class="topArea">
-      <div class="title_top">Your Lending</div>
+      <div class="title_top">Yous</div>
       <div class="flexContainer">
         <div class="block">
           <label class="t">Supplied</label>
