@@ -112,6 +112,7 @@ console.log(topPools, "top pools");
 let topPools = JSON.parse(
   fetch("https://indexer.ref.finance/list-top-pools").body
 );
+console.log(topPools, "topPools");
 
 if (!topPools) return returnNull();
 
