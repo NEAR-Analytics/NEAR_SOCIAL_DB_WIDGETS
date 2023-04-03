@@ -212,7 +212,7 @@ const ModalContainer = styled.div`
     padding-top:16px;
     z-index: 999;
     position:fixed;
-        top: 20vh;
+        top: 15vh;
     left: 50%;
     transform: translateX(-50%);
     padding-bottom: 8px;
