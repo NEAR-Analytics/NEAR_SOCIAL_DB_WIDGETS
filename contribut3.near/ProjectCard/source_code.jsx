@@ -60,22 +60,29 @@ const body = (
   </>
 );
 
-const footer = styled.a`
+const Footer = styled.a`
   box-sizing: border-box;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: .5em 1em;
-gap: .5em;
-width: 100%;
-height: 2.5em;
-background: #FAFAFA;
-border: 1px solid #ECEEF0;
-border-radius: 50px;
-flex: none;
-order: 0;
-flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: .5em 1em;
+  gap: .5em;
+  width: 100%;
+  height: 2.5em;
+  background: #FAFAFA;
+  border: 1px solid #ECEEF0;
+  border-radius: 50px;
+  flex: none;
+  order: 0;
+  flex-grow: 1;font-style: normal;
+  font-weight: 600;
+  font-size: .9em;
+  line-height: 1em;
+  text-align: center;
+  color: #101828;
 `;
+
+const footer = <Footer href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`} onClick={() => props.update({ tab: "entity" })}>View details</Footer>;
 
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />;
