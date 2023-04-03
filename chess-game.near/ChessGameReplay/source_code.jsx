@@ -3,7 +3,7 @@ const accountId = game_id[1];
 const gameIdStr = JSON.stringify(game_id);
 const contractId = "app.chess-game.near";
 const chessBoardWidget = "chess-game.near/widget/ChessBoard";
-const waitTime = 150;
+const waitTime = 250;
 // TODO HTTP error seems to break SocialVM rerendering on state update
 const waitTimeOnErr = 500;
 
@@ -19,6 +19,7 @@ const BoardView = styled.div`
 `;
 const LoadingWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 3rem 0;
@@ -30,6 +31,15 @@ const Loading = styled.div`
   border: 7px solid transparent;
   border-top-color: rgba(0, 0, 0, 0.6);
   animation: rotate 800ms linear infinite;
+
+  @keyframes rotate {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
 `;
 
 if (state.error) {
@@ -92,6 +102,7 @@ if (transactions.length > 0) {
     });
     return (
       <LoadingWrapper>
+        <div>Scanning transactions. Remaining: 0</div>
         <Loading />
       </LoadingWrapper>
     );
@@ -121,7 +132,7 @@ if (transactions.length > 0) {
     .catch((err) => {
       if (!tx) return;
       transactions.push(tx);
-      console.error(err);
+      console.log(err);
       State.update({
         error: `Pikespeak API returned error. Please try to refresh this page.`,
       });
@@ -133,6 +144,7 @@ if (transactions.length > 0) {
     });
   return (
     <LoadingWrapper>
+      <div>Scanning transactions. Remaining: {transactions.length}</div>
       <Loading />
     </LoadingWrapper>
   );
