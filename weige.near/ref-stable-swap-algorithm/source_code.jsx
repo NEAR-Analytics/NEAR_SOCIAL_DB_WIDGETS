@@ -188,7 +188,7 @@ const stablePoolDecimal = pool.pool_kind === "STABLE_SWAP" ? 18 : 24;
 
 const stablePool = getStablePoolDetail(pool.id, pool.pool_kind);
 
-if (!stablePool) {
+if (!stablePool || !stablePool?.token_account_ids) {
   loadRes({
     tokenIn,
     tokenOut,
