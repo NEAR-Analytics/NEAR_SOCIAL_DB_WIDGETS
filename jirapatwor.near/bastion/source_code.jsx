@@ -583,9 +583,11 @@ return (
       <div
         style={{
           display: "flex",
+          width: "100%",
+          marginTop: "20px",
         }}
       >
-        <div style={{ paddingRight: "2rem" }}>
+        <div style={{ paddingRight: "2rem", width: "60%" }}>
           <div class="list btn-group" role="group" aria-label="List">
             <input
               type="radio"
@@ -660,7 +662,7 @@ return (
           )}
         </div>
         <div style={{ maxWidth: "400px" }}>
-          <div class="card-body d-grid gap-3 mt-5">
+          <div class="card-body d-grid gap-3">
             <div class="action btn-group" role="group" aria-label="Deposit">
               <input
                 type="radio"
