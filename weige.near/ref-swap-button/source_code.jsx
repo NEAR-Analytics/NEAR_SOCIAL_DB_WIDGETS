@@ -35,7 +35,7 @@ return (
     }}
   >
     {!accountId
-      ? "Connect wallet"
+      ? "Please sign in with NEAR wallet"
       : notEnough
       ? "Insufficient Balance"
       : "Swap"}
