@@ -25,11 +25,7 @@ const sub_widget_map = {
 function formatCell(text) {
   if (text in sub_widget_map) {
     return (
-      <a
-        href={sub_widget_map[text]}
-        target="_blank"
-        className="text-warning text-wrap "
-      >
+      <a href={sub_widget_map[text]} className="text-warning text-wrap ">
         {text}
       </a>
     );
