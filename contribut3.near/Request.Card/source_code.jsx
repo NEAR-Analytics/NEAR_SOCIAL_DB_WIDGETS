@@ -158,6 +158,7 @@ const body = (
     <Details>
       {deadline}
       {budget}
+      {contributionType}
     </Details>
   </>
 );
