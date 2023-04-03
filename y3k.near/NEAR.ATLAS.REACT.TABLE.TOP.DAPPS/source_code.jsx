@@ -18,14 +18,6 @@ let Style = styled.div`
 
 let nodes = rawData.body || [];
 
-function formatNumber(num) {
-  return (
-    <span className="text-white">
-      {num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
-    </span>
-  );
-}
-
 const sub_widget_map = {
   "Play Ember": "https://nearatlas.com/#/y3k.near/widget/WAU_PlayEmber",
 };
@@ -42,18 +34,56 @@ function formatCell(text) {
       </a>
     );
   } else {
-    return <span className="text-white text-wrap ">{text}</span>;
+    return (
+      <a
+        href={
+          "https://nearatlas.com/#/y3k.near/widget/NEART.ATLAS.DETAILED_PROJECT_DASHBOARD?project_name=" +
+          text
+        }
+        target="_blank"
+        className="text-warning text-wrap "
+      >
+        {text}
+      </a>
+    );
   }
+}
+
+function formatPercentNew(text) {
+  let number = parseFloat(text);
+  return <span className="text-white">{number}%</span>;
+}
+
+function formatNumber(num) {
+  return (
+    <span className="text-white">
+      {num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+    </span>
+  );
+}
+function formatCell(text) {
+  return (
+    <a
+      href={
+        "https://nearatlas.com/#/y3k.near/widget/NEART.ATLAS.DETAILED_PROJECT_DASHBOARD?project_name=" +
+        text
+      }
+      target="_blank"
+      className="text-warning text-wrap "
+    >
+      {text}
+    </a>
+  );
 }
 
 function formatText(text) {
   let number = parseFloat(text);
   if (number < 0) {
-    return <span className="text-danger">{number}</span>;
+    return <span className="text-danger">{number}%</span>;
   } else if (number > 0) {
-    return <span className="text-success">{number}</span>;
+    return <span className="text-success">{number}%</span>;
   } else {
-    return <span className="text-warning">{number}</span>;
+    return <span className="text-warning">{number}%</span>;
   }
 }
 
@@ -63,37 +93,37 @@ const data = {
 
 const COLUMNS = [
   {
-    label: <p className="text-white text-wrap ">Contract Address</p>,
+    label: <p className="text-center text-white text-wrap">Contract Address</p>,
     renderCell: (item) => formatCell(item["Contract Address"]),
     sort: { sortKey: "ContractAddress" },
   },
   {
-    label: <p className="text-white text-wrap ">Past 30 Days</p>,
+    label: <p className="text-center text-white text-wrap ">Past 30 Days</p>,
     renderCell: (item) => formatNumber(item["Past 30 Days"]),
     sort: { sortKey: "Past30" },
   },
   {
-    label: <p className="text-white text-wrap ">Percent New</p>,
-    renderCell: (item) => formatText(item["Percent New"]),
+    label: <p className="text-center text-white text-wrap ">Percent New</p>,
+    renderCell: (item) => formatPercentNew(item["Percent New"]),
     sort: { sortKey: "PercentNew" },
   },
   {
-    label: <p className="text-white text-wrap ">30-60 Days Ago</p>,
+    label: <p className="text-center text-white text-wrap ">30-60 Days Ago</p>,
     renderCell: (item) => formatNumber(item["30-60 Days Ago"]),
     sort: { sortKey: "PercentNew" },
   },
   {
-    label: <p className="text-white text-wrap ">M/M</p>,
+    label: <p className="text-center text-white text-wrap ">M/M</p>,
     renderCell: (item) => formatText(item["M/M"]),
     sort: { sortKey: "MM" },
   },
   {
-    label: <p className="text-white text-wrap ">60-90 Days Ago</p>,
+    label: <p className="text-center text-white text-wrap ">60-90 Days Ago</p>,
     renderCell: (item) => formatNumber(item["60-90 Days Ago"]),
     sort: { sortKey: "Past60" },
   },
   {
-    label: <p className="text-white text-wrap">M/2M</p>,
+    label: <p className="text-center text-white text-wrap">M/2M</p>,
     renderCell: (item) => formatText(item["M/2M"]),
     sort: { sortKey: "M2M" },
   },
