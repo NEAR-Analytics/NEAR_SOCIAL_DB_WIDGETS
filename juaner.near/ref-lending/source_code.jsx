@@ -106,11 +106,11 @@ const Container = styled.div`
       align-items:center;
       justify-content:center;
       height:26px;
-      background: #304352;
+      background: #00FFD1;
       border-radius: 6px;
       margin-left:16px;
-      font-size:12px;
-      color:#fff;
+      font-weight: 700;
+      font-size: 12px;
       cursor:pointer;
       padding:0 12px 0 12px;
     }
