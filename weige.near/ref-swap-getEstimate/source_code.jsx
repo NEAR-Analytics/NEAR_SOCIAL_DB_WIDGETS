@@ -11,6 +11,7 @@ const {
   tokenOut: tokenOutFromProps,
   amountIn,
   loadRes,
+  reloadTopPools,
 } = props;
 
 const tokenIn =
@@ -112,6 +113,14 @@ console.log(topPools, "top pools");
 let topPools = JSON.parse(
   fetch("https://indexer.ref.finance/list-top-pools").body
 );
+
+const reloadTopPools = () => {
+  asyncFetch("https://indexer.ref.finance/list-top-pools").then((res) => {
+    const data = res.body;
+    topPools = JSON.parse(data);
+  });
+};
+
 console.log(topPools, "topPools");
 
 if (!topPools) return returnNull();
