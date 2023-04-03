@@ -63,6 +63,10 @@ const body = (
       src={`${ownerId}/widget/DescriptionArea`}
       props={{ description: state.request.description }}
     />
+  <Widget 
+      src={`${ownerId}/widget/Tags`}
+      props={{ tags: state.request.tags.reduce((ob, tag) => ({...ob, [tag]:""}), {}) }}
+  />
   </>
 );
 
@@ -130,5 +134,6 @@ const footer = (
     </FooterButton>
   </Footer>
 );
-
+    
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
+    
