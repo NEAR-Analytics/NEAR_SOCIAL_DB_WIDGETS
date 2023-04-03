@@ -25,23 +25,6 @@ const account = fetch("https://rpc.mainnet.near.org", {
   }),
 });
 
-const ArrowDown = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="8"
-    viewBox="0 0 14 8"
-    fill="none"
-  >
-    <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      d="M0.231804 0.359841C0.585368 -0.0644363 1.21593 -0.12176 1.64021 0.231804L7.00003 4.69832L12.3598 0.231804C12.7841 -0.12176 13.4147 -0.0644363 13.7682 0.359841C14.1218 0.784118 14.0645 1.41468 13.6402 1.76825L7.00003 7.30173L0.359841 1.76825C-0.0644363 1.41468 -0.12176 0.784118 0.231804 0.359841Z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
 const getBalance = (token_id, tokenMeta) => {
   let amount;
 
@@ -126,37 +109,25 @@ State.init({
     }),
 });
 
-const TokenInInput = (
-  <Widget
-    src={`weige.near/widget/ref-token-input`}
-    props={{
-      amount: state.amountIn,
-      disableInput: false,
-      setAmount: (value) => State.update({ amountIn: value }),
-      token: state.tokenIn,
-      handleSelect: (metadata) =>
-        State.update({
-          tokenIn: metadata,
-        }),
-    }}
-  />
-);
+let timerInterval;
 
-const TokenOutInput = (
-  <Widget
-    src={`weige.near/widget/ref-token-input`}
-    props={{
-      amount: state.amountOut,
-      disableInput: true,
-      setAmount: (value) => State.update({ amountOut: value }),
-      token: state.tokenOut,
-      handleSelect: (metadata) =>
-        State.update({
-          tokenOut: metadata,
-        }),
-    }}
-  />
-);
+if (!state.timerIntervalSet) {
+  State.update({
+    timerIntervalSet: true,
+  });
+  timerInterval = setTimeout(() => {
+    if (state.count === 0) {
+      State.update({
+        reloadPools: true,
+      });
+    }
+    State.update({
+      timerIntervalSet: false,
+      count: state.count - 1 < 0 ? 20 : state.count - 1,
+    });
+    clearTimeout(timerInterval);
+  }, 1000);
+}
 
 const Container = styled.div`
     width: 430px;
@@ -192,36 +163,6 @@ const RateWrapper = styled.div`
   align-items:center;
   font-size: 12px;
   color: #7E8A93
-`;
-
-const SettingWrapper = styled.div`
-  display: flex;
-  align-items:center;
-  padding: 0px 8px
-`;
-
-const SettingLine = styled.div`
-  border: 1px solid #1A2E33;
-  width: 100%
-
-`;
-
-const SettingText = styled.span`
-  font-size:12px;
-  padding:0px 8px;
-  display: flex;
-  align-items:center;
-  color: ${(props) => (props.show ? `white` : "#7e8a93")};
-  cursor:pointer
-`;
-
-const ArrowDownWrapper = styled.div`
-  transform: ${(props) =>
-    props.show ? `scale(0.85) rotate(180deg)` : "scale(0.9)"};
-  color: ${(props) => (props.show ? `white` : "#7e8a93")};
-   position: ${(props) => (props.show ? `relative` : "")};
-  top: ${(props) => (props.show ? `2px` : "")};
-  cursor:pointer
 `;
 
 const notEnough = new Big(state.amountIn || 0).gt(
@@ -339,9 +280,37 @@ return (
       />
     }
 
-    {TokenInInput}
+    {
+      <Widget
+        src={`weige.near/widget/ref-token-input`}
+        props={{
+          amount: state.amountIn,
+          disableInput: false,
+          setAmount: (value) => State.update({ amountIn: value }),
+          token: state.tokenIn,
+          handleSelect: (metadata) =>
+            State.update({
+              tokenIn: metadata,
+            }),
+        }}
+      />
+    }
     {Exchange}
-    {TokenOutInput}
+    {
+      <Widget
+        src={`weige.near/widget/ref-token-input`}
+        props={{
+          amount: state.amountOut,
+          disableInput: true,
+          setAmount: (value) => State.update({ amountOut: value }),
+          token: state.tokenOut,
+          handleSelect: (metadata) =>
+            State.update({
+              tokenOut: metadata,
+            }),
+        }}
+      />
+    }
 
     <RateLine>
       <RefreshWrapper
@@ -366,6 +335,10 @@ return (
       src={`weige.near/widget/SlippageTolerance`}
       props={{
         showSetting: state.showSetting,
+        updateSetting: () =>
+          State.update({
+            showSetting: !state.showSetting,
+          }),
         slippagetolerance: state.slippagetolerance,
         setSlippagetolerance: (value) => {
           State.update({
@@ -374,31 +347,6 @@ return (
         },
       }}
     />
-
-    <SettingWrapper>
-      <SettingLine />
-      <SettingText
-        show={state.showSetting}
-        onClick={() => {
-          State.update({
-            showSetting: !state.showSetting,
-          });
-        }}
-      >
-        Setting
-      </SettingText>
-
-      <ArrowDownWrapper
-        onClick={() => {
-          State.update({
-            showSetting: !state.showSetting,
-          });
-        }}
-        show={state.showSetting}
-      >
-        {ArrowDown}
-      </ArrowDownWrapper>
-    </SettingWrapper>
 
     <Widget
       src="weige.near/widget/ref-swap-button"
