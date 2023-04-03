@@ -181,7 +181,7 @@ const { tokenIn, tokenOut, amountIn, pool, loadRes } = props;
 
 const stablePoolDecimal = pool.pool_kind === "STABLE_SWAP" ? 18 : 24;
 
-const stablePoolDetail = getStablePoolDetail(pool.id, pool.pool_kind);
+const stablePool = getStablePoolDetail(pool.id, pool.pool_kind);
 
 const res = getSwappedAmount(
   tokenIn.id,
