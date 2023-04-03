@@ -55,7 +55,8 @@ const body = (
       src={`${ownerId}/widget/DescriptionArea`}
       props={{ description: state.description }}
     />
-  </>); 
+  </>
+); 
 
 return (
   <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />
