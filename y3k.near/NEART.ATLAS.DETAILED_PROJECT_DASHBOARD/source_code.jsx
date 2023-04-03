@@ -24,7 +24,7 @@ console.log(rawData);
 const finalData = rawData.body;
 
 if (!finalData) {
-  return <>Loading</>;
+  return <h1> 🪄 Loading MAGIC 🪄</h1>;
 }
 
 const project_name = props.project_name || "Sweat Economy";
