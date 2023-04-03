@@ -6,8 +6,9 @@ const chessBoardWidget = "chess-game.near/widget/ChessBoard";
 const waitTime = 150;
 // TODO HTTP error seems to break SocialVM rerendering on state update
 const waitTimeOnErr = 500;
+
 if (!accountId) {
-  return "You need to login with your Near wallet first!";
+  return "Malformed game_id prop!";
 }
 
 const BoardView = styled.div`
