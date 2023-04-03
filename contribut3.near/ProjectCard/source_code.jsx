@@ -30,9 +30,8 @@ if (!state.requestsIsFetched) {
 
 const body = <>
   <Widget src={`${ownerId}/widget/ProfileLine`} props={{
-
     accountId,
-    isEntity,
+    isEntity: true,
     imageSize: "3em",
     update: props.update,
   }} />
