@@ -115,7 +115,7 @@ const getSwappedAmount = (
   const old_c_amounts = base_old_c_amounts
     .map((amount, i) =>
       expandToken(
-        new Big(amount || 0).times(new Big(rates[i])).toFixed(),
+        new Big(amount || 0).mul(new Big(rates[i])).toFixed(),
         STABLE_LP_TOKEN_DECIMALS
       )
     )
@@ -123,7 +123,7 @@ const getSwappedAmount = (
 
   const in_c_amount = Number(
     expandToken(
-      new Big(amountIn).times(new Big(rates[in_token_idx])).toFixed(),
+      new Big(amountIn).mul(new Big(rates[in_token_idx])).toFixed(),
       STABLE_LP_TOKEN_DECIMALS
     )
   );
