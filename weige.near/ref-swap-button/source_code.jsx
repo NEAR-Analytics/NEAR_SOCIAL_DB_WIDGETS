@@ -25,9 +25,9 @@ return (
     notEnough={notEnough && accountId}
     disabled={!accountId ? false : !canSwap || (notEnough && accountId)}
     onClick={() => {
-      if (!accountId) {
-        return requestSignIn();
-      }
+      // if (!accountId) {
+      //   return requestSignIn();
+      // }
 
       if (!canSwap || notEnough) return;
 
