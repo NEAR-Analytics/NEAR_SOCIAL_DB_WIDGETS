@@ -102,7 +102,7 @@ const body = (
           stroke-width="1.35"
           stroke-linecap="round"
           stroke-linejoin="round"
-        />{" "}
+        />
       </svg>
     </Deadline>
   </>
