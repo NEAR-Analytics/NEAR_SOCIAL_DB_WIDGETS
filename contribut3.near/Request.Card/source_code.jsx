@@ -184,7 +184,8 @@ const footer = (
     >
       Propose contribution
     </FooterButton>
-  </Foooter>);
+  </Footer>
+);
 
 
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
