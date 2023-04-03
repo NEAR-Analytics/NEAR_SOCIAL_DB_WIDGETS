@@ -60,9 +60,22 @@ const body = (
   </>
 );
 
-const footer = (
-  <>
-  </>
-);
+const footer = styled.a`
+  box-sizing: border-box;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: .5em 1em;
+gap: .5em;
+width: 100%;
+height: 2.5em;
+background: #FAFAFA;
+border: 1px solid #ECEEF0;
+border-radius: 50px;
+flex: none;
+order: 0;
+flex-grow: 1;
+`;
 
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />;
