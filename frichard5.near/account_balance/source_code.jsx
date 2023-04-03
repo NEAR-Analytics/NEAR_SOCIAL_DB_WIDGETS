@@ -21,11 +21,14 @@ contractsBalance.body.forEach((cB) => {
 });
 
 return (
-  <table>
-    <tr>
-      <th>Token</th>
-      <th>Amount</th>
-    </tr>
-    {rows}
-  </table>
+  <>
+    <h2> Balances </h2>
+    <table>
+      <tr>
+        <th>Token</th>
+        <th>Amount</th>
+      </tr>
+      {rows}
+    </table>
+  </>
 );
