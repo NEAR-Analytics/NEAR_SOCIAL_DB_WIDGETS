@@ -209,7 +209,7 @@ const callTx = () => {
       tx.push(nearWithdraw);
     }
 
-    return Near.callTx(tx);
+    return Near.call(tx);
   }
 
   if (state.tokenIn.id === "NEAR") {
@@ -238,7 +238,7 @@ const callTx = () => {
             token_in:
               state.tokenIn.id === "NEAR" ? "wrap.near" : state.tokenIn.id,
             token_out: state.tokenOut.id,
-            amountIn: expandToken(
+            amount_in: expandToken(
               state.amountIn,
               state.tokenIn.decimals
             ).toFixed(0, 0),
