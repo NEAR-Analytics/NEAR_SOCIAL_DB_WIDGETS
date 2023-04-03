@@ -23,7 +23,7 @@ const ButtonWrapper = styled.button`
 return (
   <ButtonWrapper
     notEnough={notEnough && accountId}
-    disabled={!canSwap || (notEnough && accountId)}
+    disabled={!accountId ? false : !canSwap || (notEnough && accountId)}
     onClick={() => {
       if (!accountId) {
         return requestSignIn();
