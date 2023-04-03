@@ -98,6 +98,8 @@ const getSwappedAmount = (
   const amp = stablePool.amp;
   const trade_fee = stablePool.total_fee;
 
+  console.log(stablePool, "stablepool");
+
   const in_token_idx = stablePool.token_account_ids.findIndex(
     (id) => id === tokenInId
   );
