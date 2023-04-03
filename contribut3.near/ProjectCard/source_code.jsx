@@ -51,11 +51,9 @@ const body = (
         update: props.update,
       }}
     />
-    <Widg 
+    <Widget
       src={`${ownerId}/widget/DescriptionArea`}
-      props={{
-        description: state.description,
-      }}
+      props={{ description: state.description }}
     />
   </>
 );
