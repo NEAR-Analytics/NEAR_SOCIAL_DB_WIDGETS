@@ -11,6 +11,18 @@ const CardContainer = styled.div`
   border-radius: 8px;
 `;
 
+const CardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 24px 16px;
+  gap: 14px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+`;
+
 const CardFooter = styled.div`
   display: flex;
   flex-direction: row;
