@@ -37,7 +37,9 @@ if (!state.descriptionIsFetched) {
     { keys: [`${accountId}/profile/description`] },
     "final",
     false
-  ).then((description) => State.update({ description, descriptionIsFetched: true }));
+  ).then((description) =>
+    State.update({ description, descriptionIsFetched: true })
+  );
 }
 
 const body = (
@@ -58,6 +60,4 @@ const body = (
   </>
 );
 
-return (
-  <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />
-);
+return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />;
