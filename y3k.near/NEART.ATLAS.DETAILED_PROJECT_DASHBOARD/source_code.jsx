@@ -10,7 +10,7 @@ let rawData = fetch(
     },
   }
 );
-const project_name = props.project_name || "REF";
+const project_name = props.project_name || "Sweat Economy";
 
 function filterByProjectName(arr, project_name) {
   return arr.filter((obj) => obj.PROJECT_NAME === project_name);
@@ -26,7 +26,7 @@ function sortByActivityDate(arr) {
   );
 }
 
-const filteredSortedData = sortByActivityDate(filteredData);
+const filteredSortedData = sortByActivityDate(filteredData) || [];
 
 console.log(filteredSortedData);
 
