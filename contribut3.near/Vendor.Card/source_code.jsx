@@ -36,7 +36,6 @@ const body = (
       src={`${ownerId}/widget/ProfileLine`}
       props={{
         accountId,
-        isEntity: true,
         imageSize: "3em",
         update: props.update,
       }}
