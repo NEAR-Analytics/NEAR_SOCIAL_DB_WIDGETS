@@ -55,6 +55,10 @@ const Container = styled.div`
       cursor:pointer;
       width:100%;
     }
+    .disabled{
+      opacity:0.3;
+      cursor: not-allowed;
+    }
 `;
 /** base tool start  */
 let BURROW_CONTRACT = "contract.main.burrow.near";
@@ -205,7 +209,10 @@ return (
         <span class="title">Borrow APY</span>
         <span class="value">{apy}%</span>
       </div>
-      <div class="greenButton mt_25" onClick={handleRepay}>
+      <div
+        class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
+        onClick={handleRepay}
+      >
         Repay
       </div>
     </div>
