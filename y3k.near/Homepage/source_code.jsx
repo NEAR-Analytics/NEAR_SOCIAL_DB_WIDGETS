@@ -34,23 +34,6 @@ return (
         )}
     </div>
     <div class="text-center container">
-      <div class="row">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">NEAR ATLAS</h1>
-          <p class="lead text-muted">
-            Your Very Own Atlas To Find Everything About NEAR.
-            <b />
-            Map Your Journey With Us.
-          </p>
-          <p>
-            <Widget
-              src="mob.near/widget/ProfileImage"
-              props={{ accountId: "" }}
-            />
-          </p>
-        </div>
-      </div>
-
       <div class="container">
         <div class="row  ">
           <h1 class="fw-light">Monthly Active Accounts</h1>
