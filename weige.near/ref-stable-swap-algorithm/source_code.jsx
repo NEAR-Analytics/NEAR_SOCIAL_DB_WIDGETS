@@ -16,7 +16,9 @@ const calc_d = (amp, c_amounts) => {
   const token_num = c_amounts.length;
 
   let sum_amounts = 0;
-  c_amounts.forEach((amount) => (sum_amounts += Number(amount)));
+  c_amounts.reduce((acc, cur) => {
+    sum_amounts = sum_amounts + cur;
+  }, 0);
 
   let d_prev = 0;
   let d = sum_amounts;
