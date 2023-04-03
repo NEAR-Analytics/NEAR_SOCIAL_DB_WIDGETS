@@ -75,12 +75,7 @@ const COLUMNS = [
     sort: { sortKey: "Past30" },
   },
   {
-    label: <p className="text-center text-white text-wrap ">Percent New</p>,
-    renderCell: (item) => formatPercentNew(item["Percent New"]),
-    sort: { sortKey: "PercentNew" },
-  },
-  {
-    label: <p className="text-center text-white text-wrap ">30-60 Days Ago</p>,
+    label: <p className="text-center text-white text-wrap ">Last Month</p>,
     renderCell: (item) => formatNumber(item["30-60 Days Ago"]),
     sort: { sortKey: "PercentNew" },
   },
@@ -90,14 +85,26 @@ const COLUMNS = [
     sort: { sortKey: "MM" },
   },
   {
-    label: <p className="text-center text-white text-wrap ">60-90 Days Ago</p>,
-    renderCell: (item) => formatNumber(item["60-90 Days Ago"]),
-    sort: { sortKey: "Past60" },
+    label: <p className="text-center text-white text-wrap ">New MAAs</p>,
+    renderCell: (item) => formatNumber(item["New MAAs"]),
+    sort: { sortKey: "MM" },
   },
   {
-    label: <p className="text-center text-white text-wrap">M/2M</p>,
-    renderCell: (item) => formatText(item["M/2M"]),
-    sort: { sortKey: "M2M" },
+    label: <p className="text-center text-white text-wrap ">M2 Retention</p>,
+    renderCell: (item) => formatText(item["M2 Retention"]),
+    sort: { sortKey: "MM" },
+  },
+
+  {
+    label: <p className="text-center text-white text-wrap ">Average DAU</p>,
+    renderCell: (item) => formatPercentNew(item["Daily Average"]),
+    sort: { sortKey: "PercentNew" },
+  },
+
+  {
+    label: <p className="text-center text-white text-wrap ">Stickiness</p>,
+    renderCell: (item) => formatPercentNew(item["DAU / MAU"]),
+    sort: { sortKey: "PercentNew" },
   },
 ];
 
