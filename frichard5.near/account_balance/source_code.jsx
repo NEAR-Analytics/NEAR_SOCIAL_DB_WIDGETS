@@ -10,14 +10,16 @@ const contractsBalance = fetch(apiUrl, {
 });
 
 const rows = [];
-contractsBalance.body.forEach((cB) => {
-  rows.push(
-    <tr>
-      <td>{cB.contract}</td>
-      <td>{cB.amount}</td>
-    </tr>
-  );
-});
+
+contractsBalance.body &&
+  contractsBalance.body.forEach((cB) => {
+    rows.push(
+      <tr>
+        <td>{cB.contract}</td>
+        <td>{cB.amount}</td>
+      </tr>
+    );
+  });
 
 return (
   <>
