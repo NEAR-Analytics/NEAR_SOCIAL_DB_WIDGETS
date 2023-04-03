@@ -30,9 +30,10 @@ const REF_FI_CONTRACT_ID = "v2.ref-finance.near";
 const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
   const allocation = amountIn;
 
-  console.log(pool, "pool");
   const amount_with_fee =
-    Number(allocation) * (FEE_DIVISOR - pool.fee || pool.total_fee || 0);
+    Number(allocation) * (FEE_DIVISOR - pool.total_fee || pool.fee || 0);
+
+  console.log(pool, amountIn, amount_with_fee, "pool");
 
   const in_balance = shrinkToken(
     pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 0 : 1],
