@@ -157,7 +157,7 @@ const inputOnChange = (e) => {
 
 const filterFunc = (tokenMeta) => {
   return (
-    searchBy === "" ||
+    state.searchBy === "" ||
     tokenMeta.symbol.toLowerCase().includes(state.searchBy.toLowerCase())
   );
 };
