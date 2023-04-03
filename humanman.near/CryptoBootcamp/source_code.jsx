@@ -89,7 +89,7 @@ const lessonPaths = {
 };
 
 const parser = (payload, delimiter, start) =>
-  "#" + payload.split(delimiter).slice(start).join(delimiter);
+  "#" + payload.split(delimiter).slice(start).join(`${delimiter}\n`);
 
 // slice out frontmatter from fetched .md files
 // for Markdown comp: replace docusaurus-specific paths to assets with CDN paths
