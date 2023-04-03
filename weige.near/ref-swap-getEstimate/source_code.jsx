@@ -53,8 +53,6 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     ).toString()
   ).toFixed();
 
-  console.log(estimate, "estima");
-
   return {
     estimate,
     pool,
@@ -121,8 +119,6 @@ const reloadTopPools = () => {
 if (reloadPools) {
   reloadTopPools();
 }
-
-console.log(topPools, "topPools");
 
 if (!topPools) return returnNull();
 
