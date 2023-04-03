@@ -71,8 +71,16 @@ const FooterButton = styled.a`
   color: ${({ blue }) => blue ? "#006ADC" : "#101828"};
 `;
 
+const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const footer = (
-  <>
+  <div>
     <FooterButton
       href={`/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`}
       onClick={() =>
@@ -100,7 +108,7 @@ const footer = (
     >
       Invite vendor
     </FooterButton>
-  </>
+  </div>
 );
 
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
