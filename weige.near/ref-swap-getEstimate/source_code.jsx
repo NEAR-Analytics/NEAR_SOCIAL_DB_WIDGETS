@@ -109,8 +109,6 @@ if (wrapOperation) {
 
 if (tokenIn.id === tokenOut.id) return returnNull();
 
-if (!poolRes) return returnNull();
-
 State.init({
   topPools: JSON.parse(
     fetch("https://indexer.ref.finance/list-top-pools")?.body || `{}`
