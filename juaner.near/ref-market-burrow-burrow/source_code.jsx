@@ -373,7 +373,9 @@ return (
       </div>
       <div class="template mt_25">
         <span class="title">Health Factor</span>
-        <span class="value">{newHealthFactor && newHealthFactor + "%"}</span>
+        <span class="value">
+          {newHealthFactor ? newHealthFactor : healthFactor}%
+        </span>
       </div>
       <div class="greenButton mt_25" onClick={handleBorrow}>
         Borrow
