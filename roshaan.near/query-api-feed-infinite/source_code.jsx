@@ -120,7 +120,7 @@ return (
     <InfiniteScroll
       pageStart={0}
       loadMore={loadMorePosts}
-      hasMore={state.posts.length < state.postsCount}
+      hasMore={state.posts.length < state.postsCount || state.posts.length == 0}
       loader={
         <div className="loader">
           <span
