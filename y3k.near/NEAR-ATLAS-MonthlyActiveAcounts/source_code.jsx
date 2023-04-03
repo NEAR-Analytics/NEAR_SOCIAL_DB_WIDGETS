@@ -44,7 +44,7 @@ const stacked_options = {
   plugins: {
     title: {
       display: true,
-      text: "Monthly Active Accounts",
+      text: "",
     },
   },
   responsive: true,
