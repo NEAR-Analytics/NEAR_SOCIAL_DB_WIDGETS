@@ -69,6 +69,10 @@ const FooterButton = styled.a`
   line-height: 1em;
   text-align: center;
   color: ${({ blue, disabled }) => disabled ? "#878a8e" : blue ? "#006adc" : "#101828"};
+
+  &:hover {
+    ${({ disabled }) => disabled ? "color: #878a8e; text-decoration: none;" : ""}
+  }
 `;
 
 const Footer = styled.div`
