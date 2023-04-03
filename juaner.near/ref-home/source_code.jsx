@@ -142,6 +142,14 @@ const historyIcon = (
   </svg>
 );
 
+const SwapContainer = styled.div`
+      position:fixed;
+        top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+
+`;
+
 // svg icon end
 return (
   <Container>
@@ -183,7 +191,9 @@ return (
         <Widget src="juaner.near/widget/ref-lending" />
       ) : null}
       {activeMenu == "swap" ? (
-        <Widget src="weige.near/widget/ref-swap" />
+        <SwapContainer>
+          <Widget src="weige.near/widget/ref-swap" />
+        </SwapContainer>
       ) : null}
     </div>
   </Container>
