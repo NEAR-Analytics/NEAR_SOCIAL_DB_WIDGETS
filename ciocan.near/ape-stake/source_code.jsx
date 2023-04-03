@@ -1,4 +1,4 @@
-// console.log("state", state);
+console.log("state", state);
 
 const tokenDecimals = 18;
 
@@ -119,6 +119,37 @@ if (state.apeBalance === undefined && state.sender) {
   });
 }
 
+// FETCH ALLOWANCE
+const getTokenAllowance = (receiver) => {
+  const encodedData = ifaceCoin.encodeFunctionData("allowance", [
+    receiver,
+    stakingContractAddress,
+  ]);
+
+  return Ethers.provider()
+    .call({
+      to: coinContractAddress,
+      data: encodedData,
+    })
+    .then((rawBalance) => {
+      const receiverBalanceHex = ifaceCoin.decodeFunctionResult(
+        "allowance",
+        rawBalance
+      )[0];
+
+      return Big(receiverBalanceHex.toString())
+        .div(Big(10).pow(tokenDecimals))
+        .toFixed(2);
+    });
+};
+
+// FETCH ALLOWANCE
+if (state.sender && state.allowance == undefined) {
+  getTokenAllowance(state.sender).then((allowance) => {
+    State.update({ allowance });
+  });
+}
+
 // FETCH TOTAL STAKED
 if (state.stakedTotal === undefined && state.sender) {
   getStakedTotal(state.sender).then((stakedTotal) => {
@@ -126,23 +157,57 @@ if (state.stakedTotal === undefined && state.sender) {
   });
 }
 
+// APPROVE TOKEN
+const approveToken = () => {
+  const erc20 = new ethers.Contract(
+    coinContractAddress,
+    ifaceCoin,
+    Ethers.provider().getSigner()
+  );
+
+  const allowanceBig = ethers.utils.parseUnits(
+    state.allowanceUpdate,
+    tokenDecimals
+  );
+
+  erc20
+    .approve(stakingContractAddress, allowanceBig)
+    .then((transactionHash) => transactionHash.wait())
+    .then((receipt) => {
+      console.log("receipt", receipt);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 const handleStake = () => {
-  console.log("handleStake", state.amount);
+  if (!Number(state.allowance)) {
+    if (!state.allowanceUpdate) return;
+    approveToken();
+    return;
+  }
+
   if (!state.amount) return;
 
   const amountBig = ethers.utils.parseUnits(state.amount, tokenDecimals);
+  const signer = Ethers.provider().getSigner();
 
   const apeStakeContract = new ethers.Contract(
     stakingContractAddress,
     ifaceStaking,
-    Ethers.provider().getSigner()
+    signer
   );
 
-  apeStakeContract.depositSelfApeCoin(amountBig, { gasLimit: 3e4 });
+  apeStakeContract.depositSelfApeCoin(amountBig, { gasLimit: 3e6 });
 };
 
 const handleValueChange = (e) => {
   State.update({ amount: e.target.value });
+};
+
+const handleAllowanceChange = (e) => {
+  State.update({ allowanceUpdate: e.target.value });
 };
 
 return (
@@ -156,6 +221,12 @@ return (
           </div>
           <div className="container border py-4 mb-3 d-grid gap-3">
             <input type="number" onChange={handleValueChange} />
+            {!Number(state.allowance) && (
+              <div class="alert alert-warning" role="alert">
+                <h6>Insufficient allowance</h6>
+                <input onChange={handleAllowanceChange} />
+              </div>
+            )}
             <button onClick={handleStake}>Stake APECOIN</button>
           </div>
         </div>
