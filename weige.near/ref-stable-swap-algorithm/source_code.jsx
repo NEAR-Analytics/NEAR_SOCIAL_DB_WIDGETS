@@ -161,6 +161,9 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
     const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_rated_pool", {
       pool_id: Number(pool_id),
     });
+
+    console.log(pool_info, "pool_info");
+
     return {
       ...pool_info,
       id: pool_id,
@@ -175,7 +178,7 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
     return {
       ...pool_info,
       id: pool_id,
-      rates: pool_info.c_amounts.map((_) => expandToken("1", 18).toFixed()),
+      rates: pool_info.c_amounts.map((i) => expandToken("1", 18).toFixed()),
     };
   }
 };
