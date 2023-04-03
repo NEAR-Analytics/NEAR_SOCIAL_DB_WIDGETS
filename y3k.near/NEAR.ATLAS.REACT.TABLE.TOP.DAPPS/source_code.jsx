@@ -91,13 +91,13 @@ const COLUMNS = [
   },
   {
     label: <p className="text-center text-white text-wrap ">M2 Retention</p>,
-    renderCell: (item) => formatText(item["M2 Retention"]),
+    renderCell: (item) => formatPercentNew(item["M2 Retention"]),
     sort: { sortKey: "MM" },
   },
 
   {
     label: <p className="text-center text-white text-wrap ">Average DAU</p>,
-    renderCell: (item) => formatPercentNew(item["Daily Average"]),
+    renderCell: (item) => formatNumber(item["Daily Average"]),
     sort: { sortKey: "PercentNew" },
   },
 
