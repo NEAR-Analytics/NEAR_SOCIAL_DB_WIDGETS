@@ -1,4 +1,4 @@
-const { accountId, notEnough, canSwap, callTx } = props;
+const { accountId, notEnough, canSwap, callTx, requestSignIn } = props;
 
 const ButtonWrapper = styled.button`
   
@@ -25,6 +25,10 @@ return (
     notEnough={notEnough && accountId}
     disabled={!canSwap || notEnough}
     onClick={() => {
+      if (!accountId) {
+        return requestSignIn();
+      }
+
       if (!canSwap || notEnough) return;
 
       callTx();
