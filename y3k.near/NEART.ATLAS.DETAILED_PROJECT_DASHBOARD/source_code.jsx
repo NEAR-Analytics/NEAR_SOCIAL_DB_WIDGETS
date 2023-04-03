@@ -8,7 +8,7 @@ function sortByActivityDate(arr) {
   );
 }
 
-let rawData = fetch(
+const rawData = fetch(
   "https://api.flipsidecrypto.com/api/v2/queries/536ff291-995e-479c-8a45-8c77781aa329/data/latest",
   {
     subscribe: true,
@@ -19,13 +19,13 @@ let rawData = fetch(
   }
 );
 
-const data = rawData.body || [];
+const data = rawData || [];
 
 const project_name = props.project_name || "Sweat Economy";
 
 const METRIC_NAME = `"${project_name}'s Weekly Active Accounts"`;
 
-const filteredData = filterByProjectName(data, project_name) || [];
+const filteredData = filterByProjectName(data.body, project_name) || [];
 
 const filteredSortedData = sortByActivityDate(filteredData) || [];
 
