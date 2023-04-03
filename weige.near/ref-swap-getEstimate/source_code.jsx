@@ -146,6 +146,8 @@ if (poolThisPair.pool_kind === "SIMPLE_POOL") {
     poolThisPair.pool_kind
   );
 
+  console.log(stablePoolDetail, "stable pool detail");
+
   const STABLE_LP_TOKEN_DECIMALS =
     poolThisPair.pool_kind === "STABLE_SWAP" ? 18 : 24;
 
