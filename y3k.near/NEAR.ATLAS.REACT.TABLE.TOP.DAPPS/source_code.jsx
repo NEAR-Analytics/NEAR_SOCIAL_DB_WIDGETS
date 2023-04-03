@@ -34,6 +34,16 @@ function formatNumber(num) {
     </span>
   );
 }
+
+function formatNumberDecimal(text) {
+  let number = parseInt(text);
+  return (
+    <span className="text-white">
+      {number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+    </span>
+  );
+}
+
 function formatCell(text) {
   return (
     <a
@@ -97,7 +107,7 @@ const COLUMNS = [
 
   {
     label: <p className="text-center text-white text-wrap ">Average DAU</p>,
-    renderCell: (item) => formatNumber(item["Daily Average"]),
+    renderCell: (item) => formatNumberDecimal(item["Daily Average"]),
     sort: { sortKey: "PercentNew" },
   },
 
