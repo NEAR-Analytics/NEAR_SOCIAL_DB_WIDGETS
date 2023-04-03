@@ -88,12 +88,15 @@ const lessonPaths = {
   "6.3 Metaverse on NEAR": "06_metaverse/6.3_metaverse-on-near.md",
 };
 
+const parser = (payload, delimiter, start) =>
+  "#" + payload.split(delimiter).slice(start).join(delimiter);
+
 // slice out frontmatter from fetched .md files
 // for Markdown comp: replace docusaurus-specific paths to assets with CDN paths
 const res = fetch(initialUrl);
-const delimiter = "\n";
-const start = 4;
-const body = res.body.split(delimiter).slice(start).join("\n");
+const dlmit = "\n#";
+const strt = 1;
+const body = parser(res.body, dlmit, strt);
 
 State.init({
   content: body,
@@ -106,15 +109,15 @@ const handleModuleSelect = (val) => {
   if (!val || lessonPaths[val] == undefined) return;
   const newPath = lessonPaths[val];
   const url = `${ghPath}${newPath}`;
-  const fecthed = fetch(url);
-  const m = fecthed.body.split(delimiter).slice(start).join("\n");
+  const fetched = fetch(url);
+  const m = parser(fetched.body, dlmit, strt);
   State.update({ path: lessonPaths[val], content: m });
 };
 
 if (context.loading) {
   return "Loading";
 }
-
+console.log(state.content);
 return (
   <div>
     <h5 style={{ color: "green" }}>(Beta)</h5>
