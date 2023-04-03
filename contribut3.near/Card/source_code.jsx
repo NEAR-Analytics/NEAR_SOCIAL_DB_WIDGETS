@@ -58,6 +58,7 @@ return (
     <CardBody>
       {body}
     </CardBody>
-    <CardFooter>{footer}</CardFooter>
+    <CardFooter>
+      {footer}</CardFooter>
   </CardContainer>
 );
