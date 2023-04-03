@@ -97,6 +97,10 @@ const formatTokenBig = (v, decimals) =>
 const getBalance = (token_id) => {
   let amount;
 
+  if (!accountId) {
+    return "-";
+  }
+
   if (token_id === "NEAR") amount = account.body.result.amount;
   else {
     amount = Near.view(token_id, "ft_balance_of", {
