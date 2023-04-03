@@ -93,7 +93,7 @@ const data = {
 
 const COLUMNS = [
   {
-    label: <p className="text-center text-white text-wrap">Contract Address</p>,
+    label: <p className="text-center text-white text-wrap">Project</p>,
     renderCell: (item) => formatCell(item["Contract Address"]),
     sort: { sortKey: "ContractAddress" },
   },
