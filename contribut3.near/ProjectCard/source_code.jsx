@@ -43,5 +43,5 @@ const body = (
 );
 
 return (
-  <Widget src={`${ownerId}/widget/Card`} props={{ body: "", footer: "" }} />
+  <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />
 );
