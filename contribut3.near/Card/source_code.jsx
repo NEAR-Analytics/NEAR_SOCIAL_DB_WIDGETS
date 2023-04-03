@@ -53,7 +53,8 @@ const CardFooter = styled.div`
 return (
   <CardContainer>
     <CardHeader>
-      {header}</CardHeader>
+      {header}
+    </CardHeader>
     <CardBody>
       {body}
     </CardBody>
