@@ -5,8 +5,8 @@
 /**
  * External App URL (must)
  */
-const externalAppUrl = "https://near-test-app.web.app/";
-// const externalAppUrl = "https://429a3b62a245.ngrok.app";
+// const externalAppUrl = "https://near-test-app.web.app/";
+const externalAppUrl = "https://929d80864926.ngrok.app";
 
 /**
  * Initial Path (optional but recommended)
@@ -20,7 +20,10 @@ const initialViewHeight = 740;
  * Initial Payload (optional) - Do not use async data here, it may fail to be ready before sending this initial payload.
  * If you want to get some data, make a "request"
  */
-const initialPayload = {};
+const initialPayload = {
+  mainDomain: "https://alpha.near.org",
+  room: props.room, // starts with this room
+};
 
 // App index key to store things (only rooms as this app is re fetching messages from ChatV1)
 const APP_INDEX_KEY = "widget-chatv2-dev";
@@ -188,13 +191,13 @@ const getRoomsListHandler = (request, response, Utils) => {
 const fetchRooms = () => {
   const data = Social.index(APP_INDEX_KEY, "room", {
     subscribe: true,
-    limit: 100,
+    limit: 1000,
     order: "desc",
   });
 
   if (!data) return null;
 
-  const sorted = data.sort((m1, m2) => m1.blockHeight - m2.blockHeight);
+  const sorted = data.sort((m1, m2) => m2.blockHeight - m1.blockHeight);
   return sorted.map((roomData) => roomData.value); // ["room-name"]
 };
 // Helpers END
