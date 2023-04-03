@@ -221,7 +221,7 @@ const callTx = () => {
       account_id: accountId,
     }
   );
-  if (!register) {
+  if (register === null) {
     tx.push({
       contractName:
         state.tokenOut.id === "NEAR" ? "wrap.near" : state.tokenOut.id,
