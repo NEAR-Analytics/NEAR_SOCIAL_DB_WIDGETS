@@ -46,8 +46,6 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     tokenOut.decimals
   );
 
-  console.log(in_balance.toFixed(), out_balance.toFixed(), "balance");
-
   const estimate = new Big(
     (
       (amount_with_fee * Number(out_balance)) /
