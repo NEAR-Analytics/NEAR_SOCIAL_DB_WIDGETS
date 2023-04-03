@@ -96,6 +96,7 @@ const footer = (
     </FooterButton>
     <FooterButton
       blue
+      disabled
     // href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
     // onClick={() =>
     //   props.update({
