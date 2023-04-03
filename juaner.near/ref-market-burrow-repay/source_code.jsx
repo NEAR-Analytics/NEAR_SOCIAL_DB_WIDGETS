@@ -160,7 +160,7 @@ const handleRepay = () => {
     gas: expandToken(300, 12),
     args: {
       receiver_id: BURROW_CONTRACT,
-      amount: expandedAmount.toFixed(0),
+      amount: new Big(amount).toFixed(),
       msg: JSON.stringify(repayTemplate),
     },
   };
