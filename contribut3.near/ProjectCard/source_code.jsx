@@ -83,6 +83,11 @@ const Footer = styled.a`
   color: #101828;
 `;
 
-const footer = <Footer href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`} onClick={() => props.update({ tab: "entity" })}>View details</Footer>;
+const footer = <Footer href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`} onClick={() => props.update({
+  tab: "entity",
+  content: "",
+  search: "",
+  accountId,
+})}>View details</Footer>;
 
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer: "" }} />;
