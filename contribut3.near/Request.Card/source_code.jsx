@@ -161,7 +161,7 @@ const FooterButton = styled.a`
   color: ${({ blue }) => (blue ? "#006ADC" : "#101828")};
 `;
 
-const Footer = styled.div`                
+const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
