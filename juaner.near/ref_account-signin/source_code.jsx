@@ -4,8 +4,6 @@ if (accountId) return <div />;
 
 return (
   <div>
-    <a href="#" target="blank">
-      Please sign in with NEAR wallet
-    </a>
+    <a>Please sign in with NEAR wallet</a>
   </div>
 );
