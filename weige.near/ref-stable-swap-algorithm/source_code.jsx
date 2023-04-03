@@ -98,8 +98,6 @@ const getSwappedAmount = (
   const amp = stablePool.amp;
   const trade_fee = stablePool.total_fee;
 
-  console.log(stablePool, "stablepool");
-
   const in_token_idx = stablePool.token_account_ids.findIndex(
     (id) => id === tokenInId
   );
@@ -160,8 +158,6 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
       pool_id: Number(pool_id),
     });
 
-    console.log(pool_info, "pool_info");
-
     return {
       ...pool_info,
       id: pool_id,
@@ -170,8 +166,6 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
     const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_stable_pool", {
       pool_id: Number(pool_id),
     });
-
-    console.log(pool_info, "pool_info");
 
     return {
       ...pool_info,
@@ -185,13 +179,10 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
 };
 
 const { tokenIn, tokenOut, amountIn, pool, loadRes } = props;
-console.log(pool, " pool");
 
 const stablePoolDecimal = pool.pool_kind === "STABLE_SWAP" ? 18 : 24;
 
 const stablePool = getStablePoolDetail(pool.id, pool.pool_kind);
-
-console.log(stablePool, " stablePool");
 
 const res = getSwappedAmount(
   tokenIn.id,
