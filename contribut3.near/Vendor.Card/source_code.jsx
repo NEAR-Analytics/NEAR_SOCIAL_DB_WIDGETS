@@ -55,7 +55,6 @@ const FooterButton = styled.a`
   align-items: center;
   padding: 0.5em 1em;
   gap: 0.5em;
-  width: 100%;
   height: 2.5em;
   background: #fafafa;
   border: 1px solid #eceef0;
