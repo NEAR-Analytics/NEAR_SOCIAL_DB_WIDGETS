@@ -162,12 +162,12 @@ const FooterButton = styled.a`
 `;
 
 const Footer = styled.div`                
-      display: flex;
-        flex - direction: row;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      `;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
 
 const footer = (
   <Footer>
@@ -202,4 +202,4 @@ const footer = (
   </Footer>
 );
 
-return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
+return <Widget src={`${ownerId} /widget/Card`} props={{ body, footer }} />;
