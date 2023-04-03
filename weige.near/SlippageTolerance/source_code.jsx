@@ -156,7 +156,7 @@ return (
       <SettingText
         show={props.showSetting}
         onClick={() => {
-          props.updateSetting;
+          props.updateSetting();
         }}
       >
         Setting
@@ -164,9 +164,7 @@ return (
 
       <ArrowDownWrapper
         onClick={() => {
-          State.update({
-            showSetting: !state.showSetting,
-          });
+          props.updateSetting();
         }}
         show={state.showSetting}
       >
