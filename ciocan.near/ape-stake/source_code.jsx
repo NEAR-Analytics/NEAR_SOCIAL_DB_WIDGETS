@@ -181,8 +181,10 @@ const approveToken = () => {
     });
 };
 
+const insufficientAllowance = Number(state.allowance) < 1;
+
 const handleStake = () => {
-  if (!Number(state.allowance)) {
+  if (insufficientAllowance) {
     if (!state.allowanceUpdate) return;
     approveToken();
     return;
@@ -221,7 +223,7 @@ return (
           </div>
           <div className="container border py-4 mb-3 d-grid gap-3">
             <input type="number" onChange={handleValueChange} />
-            {!Number(state.allowance) && (
+            {insufficientAllowance && (
               <div class="alert alert-warning" role="alert">
                 <h6>Insufficient allowance</h6>
                 <input onChange={handleAllowanceChange} />
