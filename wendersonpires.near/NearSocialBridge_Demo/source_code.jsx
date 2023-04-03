@@ -58,6 +58,9 @@ const requestHandler = (request, response, Utils) => {
     case "get-rooms-list":
       getRoomsListHandler(request, response, Utils);
       break;
+    case "set-clipboard-text":
+      setClipboardTextHandler(request, response);
+      break;
   }
 };
 
@@ -185,6 +188,13 @@ const getRoomsListHandler = (request, response, Utils) => {
       response(request).send({ error: "rooms list is not set", roomsList: [] });
     }
   );
+};
+
+const setClipboardTextHandler = (request, response) => {
+  if (request.payload.text) {
+    clipboard.writeText(request.payload.text);
+  }
+  response(request).send({});
 };
 
 // Helpers
