@@ -79,8 +79,20 @@ const deadline = (
 
 const budget = (
   <Item>
-    <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4.5 6.25V9.25M13.5 4.75V7.75M12.75 1C14.5865 1 15.5799 1.28107 16.0741 1.49908C16.1399 1.52812 16.1728 1.54263 16.2678 1.63328C16.3247 1.68761 16.4287 1.84705 16.4554 1.92107C16.5 2.04455 16.5 2.11205 16.5 2.24706V10.3084C16.5 10.9899 16.5 11.3307 16.3978 11.5059C16.2938 11.6841 16.1936 11.7669 15.999 11.8354C15.8076 11.9027 15.4215 11.8285 14.6491 11.6801C14.1085 11.5762 13.4674 11.5 12.75 11.5C10.5 11.5 8.25 13 5.25 13C3.41347 13 2.42015 12.7189 1.92591 12.5009C1.86009 12.4719 1.82718 12.4574 1.7322 12.3667C1.67526 12.3124 1.57134 12.153 1.5446 12.0789C1.5 11.9554 1.5 11.8879 1.5 11.7529L1.5 3.69164C1.5 3.01006 1.5 2.66928 1.60221 2.49411C1.70618 2.31592 1.80644 2.23309 2.00104 2.16461C2.19235 2.09729 2.57853 2.17149 3.35087 2.31989C3.89146 2.42376 4.53261 2.5 5.25 2.5C7.5 2.5 9.75 1 12.75 1ZM10.875 7C10.875 8.03553 10.0355 8.875 9 8.875C7.96447 8.875 7.125 8.03553 7.125 7C7.125 5.96447 7.96447 5.125 9 5.125C10.0355 5.125 10.875 5.96447 10.875 7Z" stroke="#7E868C" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+    <svg
+      width="18"
+      height="14"
+      viewBox="0 0 18 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.5 6.25V9.25M13.5 4.75V7.75M12.75 1C14.5865 1 15.5799 1.28107 16.0741 1.49908C16.1399 1.52812 16.1728 1.54263 16.2678 1.63328C16.3247 1.68761 16.4287 1.84705 16.4554 1.92107C16.5 2.04455 16.5 2.11205 16.5 2.24706V10.3084C16.5 10.9899 16.5 11.3307 16.3978 11.5059C16.2938 11.6841 16.1936 11.7669 15.999 11.8354C15.8076 11.9027 15.4215 11.8285 14.6491 11.6801C14.1085 11.5762 13.4674 11.5 12.75 11.5C10.5 11.5 8.25 13 5.25 13C3.41347 13 2.42015 12.7189 1.92591 12.5009C1.86009 12.4719 1.82718 12.4574 1.7322 12.3667C1.67526 12.3124 1.57134 12.153 1.5446 12.0789C1.5 11.9554 1.5 11.8879 1.5 11.7529L1.5 3.69164C1.5 3.01006 1.5 2.66928 1.60221 2.49411C1.70618 2.31592 1.80644 2.23309 2.00104 2.16461C2.19235 2.09729 2.57853 2.17149 3.35087 2.31989C3.89146 2.42376 4.53261 2.5 5.25 2.5C7.5 2.5 9.75 1 12.75 1ZM10.875 7C10.875 8.03553 10.0355 8.875 9 8.875C7.96447 8.875 7.125 8.03553 7.125 7C7.125 5.96447 7.96447 5.125 9 5.125C10.0355 5.125 10.875 5.96447 10.875 7Z"
+        stroke="#7E868C"
+        stroke-width="1.35"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
     NH {state.request.budget}
   </Item>
@@ -118,33 +130,36 @@ const body = (
         ),
       }}
     />
-    <div>{deadline}{budget}</div>
+    <div>
+      {deadline}
+      {budget}
+    </div>
   </>
 );
 
-const FooterButton = styled.a` 
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 0.5em 1em;
-      gap: 0.5em;
-      width: 48%;
-      height: 2.5em;
-      background: #fafafa;
-      border: 1px solid #eceef0;
-      border-radius: 50px;
-      flex: none;
-      order: 0;
-      flex-grow: 0;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 0.9em;
-      line-height: 1em;
-      text-align: center;
-      color: ${({ blue }) => (blue ? "#006ADC" : "#101828")};
-      `;
+const FooterButton = styled.a`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+  gap: 0.5em;
+  width: 48%;
+  height: 2.5em;
+  background: #fafafa;
+  border: 1px solid #eceef0;
+  border-radius: 50px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9em;
+  line-height: 1em;
+  text-align: center;
+  color: ${({ blue }) => (blue ? "#006ADC" : "#101828")};
+`;
 
 const Footer = styled.div`                
       display: flex;
@@ -153,7 +168,6 @@ const Footer = styled.div`
       align-items: center;
       width: 100%;
       `;
-
 
 const footer = (
   <Footer>
@@ -165,9 +179,9 @@ const footer = (
           content: "",
           search: "",
           accountId,
-        })}>
-
-
+        })
+      }
+    >
       View details
     </FooterButton>
     <FooterButton
@@ -180,13 +194,12 @@ const footer = (
           search: "",
           accountId,
           cid,
-        })}
+        })
+      }
     >
       Propose contribution
     </FooterButton>
   </Footer>
 );
 
-
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
-
