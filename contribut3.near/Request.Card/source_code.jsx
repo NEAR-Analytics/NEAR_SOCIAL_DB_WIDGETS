@@ -7,8 +7,6 @@ State.init({
   requestIsFetched: false,
   tags: null,
   tagsIsFetched: false,
-  description: null,
-  descriptionIsFetched: false,
 });
 
 if (!state.requestIsFetched) {
@@ -31,32 +29,19 @@ if (!state.foundersIsFetched) {
   ).then((tags) => State.update({ tags, tagsIsFetched: true }));
 }
 
-if (!state.descriptionIsFetched) {
-  Near.asyncView(
-    "social.near",
-    "get",
-    { keys: [`${accountId}/profile/description`] },
-    "final",
-    false
-  ).then((description) =>
-    State.update({ description, descriptionIsFetched: true })
-  );
-}
-
 const Title = styled.h3`
-font-style: normal;
-font-weight: 600;
-font-size: 1em;
-line-height: 1.4em;
-color: #101828;
-flex: none;
-order: 0;
-flex-grow: 1;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1.4em;
+  color: #101828;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
 `;
 
 const body = (
   <>
-    <Title></Title>
     <Widget
       src={`${ownerId}/widget/ProfileLine`}
       props={{
@@ -65,9 +50,11 @@ const body = (
         update: props.update,
       }}
     />
+    <Title>{state.request.title}</Title>
+    <Widget src={`${ownerId}/widget/ActiveIndicator`} props={{ active: state.request.open, activeText: "Open to proposals", inactiveText: "Closed" }} />
     <Widget
       src={`${ownerId}/widget/DescriptionArea`}
-      props={{ description: state.description }}
+      props={{ description: state.request.description }}
     />
   </>
 );
