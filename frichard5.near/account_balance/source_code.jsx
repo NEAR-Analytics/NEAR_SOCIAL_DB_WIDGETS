@@ -1,5 +1,4 @@
-const apiUrl =
-  "https://api.pikespeak.ai/account/balance/marketing.sputnik-dao.near";
+const apiUrl = `https://api.pikespeak.ai/account/balance/${props.account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const contractsBalance = fetch(apiUrl, {
