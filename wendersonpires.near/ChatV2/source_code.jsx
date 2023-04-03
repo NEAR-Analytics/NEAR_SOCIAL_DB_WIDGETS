@@ -15,7 +15,10 @@ const APP_INDEX_KEY = "widget-chatv2-dev";
 const externalAppUrl = "https://near-test-app.web.app/";
 const path = props.path;
 const initialViewHeight = 740;
-const initialPayload = {};
+const initialPayload = {
+  mainDomain: "https://alpha.near.org",
+  room: props.room, // starts with this room
+};
 
 /**
  * Request Handlers.
@@ -33,6 +36,9 @@ const requestHandler = (request, response, Utils) => {
       break;
     case "get-rooms-list":
       getRoomsListHandler(request, response, Utils);
+      break;
+    case "set-clipboard-text":
+      setClipboardTextHandler(request, response);
       break;
   }
 };
@@ -163,11 +169,19 @@ const getRoomsListHandler = (request, response, Utils) => {
   );
 };
 
+const setClipboardTextHandler = (request, response) => {
+  if (request.payload.text) {
+    // limited by VM (not working for now) - wip
+    clipboard.writeText(request.payload.text);
+  }
+  response(request).send({});
+};
+
 // Helpers
 const fetchRooms = () => {
   const data = Social.index(APP_INDEX_KEY, "room", {
     subscribe: true,
-    limit: 100,
+    limit: 1000,
     order: "desc",
   });
 
