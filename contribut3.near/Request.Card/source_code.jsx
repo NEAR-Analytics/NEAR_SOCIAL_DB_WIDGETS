@@ -104,7 +104,7 @@ const body = (
           stroke-linejoin="round"
         />
       </svg>
-  {new Date(Number(state.request.deadline)).toLocaleDateString()}
+      {new Date(Number(state.request.deadline)).toLocaleDateString()}
     </Deadline>
   </>
 );
