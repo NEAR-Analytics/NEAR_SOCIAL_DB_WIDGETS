@@ -1,3 +1,7 @@
+const header = props.header ?? <></>;
+const body = props.body ?? <></>;
+const footer = props.footer ?? <></>;
+
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,4 +11,21 @@ const CardContainer = styled.div`
   border-radius: 8px;
 `;
 
-return <CardContainer />;
+const CardFooter = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 16px;
+  border-top: 1px solid #ECEEF0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+`;
+
+return (<CardContainer>
+  {header}
+  {body}
+  <footer>{footer}</footer>
+</CardContainer>);
