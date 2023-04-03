@@ -28,6 +28,10 @@ const account = fetch("https://rpc.mainnet.near.org", {
 const getBalance = (token_id, tokenMeta) => {
   let amount;
 
+  if (!accountId) {
+    return "0";
+  }
+
   if (token_id === "NEAR") amount = account.body.result.amount;
   else {
     amount = Near.view(token_id, "ft_balance_of", {
@@ -141,9 +145,6 @@ if (!state.timerIntervalSet) {
 const Container = styled.div`
     width: 430px;
     color: white;
-
-    
-
 `;
 
 const Refresh = styled.span`
@@ -184,6 +185,8 @@ const canSwap =
   Number(state.amountIn || 0) > 0 &&
   Number(state.amountOut || 0) > 0 &&
   !state.loading;
+
+console.log(state.estimate);
 
 const callTx = () => {
   const tx = [];
