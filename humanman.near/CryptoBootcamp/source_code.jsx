@@ -117,7 +117,7 @@ const handleModuleSelect = (val) => {
 if (context.loading) {
   return "Loading";
 }
-console.log(state.content);
+
 return (
   <div>
     <h5 style={{ color: "green" }}>(Beta)</h5>
