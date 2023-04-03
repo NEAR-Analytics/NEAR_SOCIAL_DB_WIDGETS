@@ -110,8 +110,8 @@ const getSwappedAmount = (
 
   const STABLE_LP_TOKEN_DECIMALS = stablePoolDecimal;
 
-  const rates = stablePool.rates.map((r) =>
-    shrinkToken(r, STABLE_LP_TOKEN_DECIMALS)
+  const rates = stablePool?.rates?.map((r) =>
+    shrinkToken(r || 0, STABLE_LP_TOKEN_DECIMALS)
   );
 
   const base_old_c_amounts = stablePool.c_amounts.map((amount) =>
@@ -121,7 +121,7 @@ const getSwappedAmount = (
   const old_c_amounts = base_old_c_amounts
     .map((amount, i) =>
       expandToken(
-        new Big(amount || 0).mul(new Big(rates[i])).toFixed(),
+        new Big(amount || 0).mul(new Big(rates?.[i] || 0)).toFixed(),
         STABLE_LP_TOKEN_DECIMALS
       )
     )
@@ -129,12 +129,10 @@ const getSwappedAmount = (
 
   const in_c_amount = Number(
     expandToken(
-      new Big(amountIn).mul(new Big(rates[in_token_idx])).toFixed(),
+      new Big(amountIn).mul(new Big(rates?.[in_token_idx] || 0)).toFixed(),
       STABLE_LP_TOKEN_DECIMALS
     )
   );
-
-  console.log(in_c_amount, old_c_amounts, base_old_c_amounts, rates, rates);
 
   const [amount_swapped, fee, dy] = calc_swap(
     amp,
