@@ -141,9 +141,7 @@ if (!state.timerIntervalSet) {
 const Container = styled.div`
     width: 430px;
     color: white;
-    position:fixed;
-        left: 50%;
-    transform: translateX(-50%);
+
     
 
 `;
