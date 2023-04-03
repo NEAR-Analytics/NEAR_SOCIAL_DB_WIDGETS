@@ -102,7 +102,8 @@ if (!account) {
   return null;
 }
 /** logic start */
-const nearBalance = shrinkToken(account.body.result.amount, 24).toFixed(2);
+const b = account.body.result.amount;
+const nearBalance = shrinkToken(b || "0", 24).toFixed(2);
 let vailableBalance = 0;
 let apy = 0;
 const getBalance = (asset) => {
