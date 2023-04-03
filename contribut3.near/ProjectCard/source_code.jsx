@@ -2,18 +2,18 @@ const ownerId = "contribut3.near";
 const projectId = props.projectId;
 
 State.init({
-  project: null,
-  projectIsFetched: false,
+  founders: null,
+  foundersIsFetched: false,
 });
 
-if (!state.projectIsFetched) {
+if (!state.foundersIsFetched) {
   Near.asyncView(
     ownerId,
-    "get_project",
+    "get_founders", 
     { account_id: projectId },
     "final",
     false
-  ).then((project) => State.update({ project, projectIsFetched: true }));
+  ).then((fo) => State.update({ project, projectIsFetched: true }));
 }
 
 return (
