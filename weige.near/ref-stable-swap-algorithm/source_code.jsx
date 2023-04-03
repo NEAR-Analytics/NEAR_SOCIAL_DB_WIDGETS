@@ -112,8 +112,6 @@ const getSwappedAmount = (
     shrinkToken(amount, STABLE_LP_TOKEN_DECIMALS)
   );
 
-  console.log(base_old_c_amounts, "basec");
-
   const old_c_amounts = base_old_c_amounts
     .map((amount, i) =>
       expandToken(
@@ -129,8 +127,6 @@ const getSwappedAmount = (
       STABLE_LP_TOKEN_DECIMALS
     )
   );
-
-  console.log(in_c_amount, "in_c_amount");
 
   const [amount_swapped, fee, dy] = calc_swap(
     amp,
@@ -171,13 +167,11 @@ const res = getSwappedAmount(
   pool
 );
 
-if (loadRes) {
-  loadRes({
-    tokenIn,
-    tokenOut,
-    estimate: res,
-    pool,
-  });
-}
+loadRes({
+  tokenIn,
+  tokenOut,
+  estimate: res,
+  pool,
+});
 
 return <div />;
