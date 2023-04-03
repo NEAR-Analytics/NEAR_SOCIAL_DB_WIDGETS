@@ -146,7 +146,7 @@ const handleValueChange = (e) => {
 };
 
 return (
-  <div className="container" style={{ maxWidth: "600px" }}>
+  <div className="container mt-4" style={{ maxWidth: "600px" }}>
     <div className="row">
       <div className="col">
         <div>
