@@ -112,8 +112,6 @@ State.init({
     }),
 });
 
-console.log(state.estimate);
-
 if (!Storage.get("count")) {
   Storage.set("count", 21);
 }
@@ -186,6 +184,14 @@ const canSwap =
   Number(state.amountOut || 0) > 0 &&
   !state.loading;
 
+const register = Near.view(
+  state.tokenOut.id === "NEAR" ? "wrap.near" : state.tokenOut.id,
+  "storage_balance_of",
+  {
+    account_id: accountId,
+  }
+);
+
 const callTx = () => {
   const tx = [];
 
@@ -214,13 +220,6 @@ const callTx = () => {
     return Near.call(tx);
   }
 
-  const register = Near.view(
-    state.tokenOut.id === "NEAR" ? "wrap.near" : state.tokenOut.id,
-    "storage_balance_of",
-    {
-      account_id: accountId,
-    }
-  );
   if (register === null) {
     tx.push({
       contractName:
