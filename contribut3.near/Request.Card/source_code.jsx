@@ -3,11 +3,17 @@ const accountId = props.accountId;
 const cid = props.cid;
 
 State.init({
+  request: null,
+  requestIsFetched: false,
   tags: null,
   tagsIsFetched: false,
   description: null,
   descriptionIsFetched: false,
 });
+
+if (!state.requestIsFetched) {
+  Near.asyncView(ownerId, "get_request", { account_id: accountId, cid }, "final", false).then((request) => State.update({ request, requestIsFetched: true }));
+}
 
 if (!state.foundersIsFetched) {
   Near.asyncView(
@@ -97,16 +103,16 @@ const footer = (
     </FooterButton>
     <FooterButton
       blue
-    // href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&cid=${cid}&accountId=${accountId}`}
-    // onClick={() =>
-    //   props.update({
-    //     tab: "create",
-    //     content: "proposal",
-    //     search: "",
-    //     accountId,
-    //     cid,
-    //   })
-    // }
+      href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&cid=${cid}&accountId=${accountId}`}
+      onClick={() =>
+        props.update({
+          tab: "create",
+          content: "proposal",
+          search: "",
+          accountId,
+          cid,
+        })
+      }
     >
       Propose contribution
     </FooterButton>
