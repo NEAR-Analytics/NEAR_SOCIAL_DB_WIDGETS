@@ -243,6 +243,7 @@ function changeTab(tabName) {
 }
 const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
 const selectedTokenMeta = selectedToken.metadata || {};
+console.log("888888888888888-selectedTokenMeta", selectedTokenMeta);
 return (
   <Container>
     {/* load data */}
@@ -319,7 +320,7 @@ return (
             {tabName == "repay" ? (
               <Widget
                 src="juaner.near/widget/ref-market-burrow-repay"
-                props={{ selectedTokenId }}
+                props={{ selectedTokenId, selectedTokenMeta }}
               />
             ) : (
               <Widget
