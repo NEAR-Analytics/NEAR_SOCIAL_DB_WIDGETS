@@ -12,6 +12,7 @@ const {
   amountIn,
   loadRes,
   reloadPools,
+  setReloadPools,
 } = props;
 
 const tokenIn =
@@ -33,8 +34,6 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
 
   const amount_with_fee =
     Number(allocation) * (FEE_DIVISOR - pool.total_fee || pool.fee || 0);
-
-  console.log(pool, amountIn, amount_with_fee, "pool");
 
   const in_balance = shrinkToken(
     pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 0 : 1],
@@ -109,7 +108,6 @@ if (wrapOperation) {
 
 if (tokenIn.id === tokenOut.id) return returnNull();
 
-console.log(topPools, "top pools");
 let topPools = JSON.parse(
   fetch("https://indexer.ref.finance/list-top-pools").body
 );
@@ -118,6 +116,7 @@ const reloadTopPools = () => {
   asyncFetch("https://indexer.ref.finance/list-top-pools").then((res) => {
     const data = res.body;
     topPools = JSON.parse(data);
+    setReloadPools(false);
   });
 };
 
