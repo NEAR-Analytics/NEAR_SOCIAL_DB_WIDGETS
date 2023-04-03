@@ -54,7 +54,7 @@ const body = (
     <Widg 
       src={`${ownerId}/widget/DescriptionArea`}
       props={{
-        description: state.contributor.resume || state.profile.description,
+        description: state.description,
       }}
     />
   </>
