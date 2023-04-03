@@ -183,6 +183,8 @@ const stablePoolDecimal = pool.pool_kind === "STABLE_SWAP" ? 18 : 24;
 
 const stablePool = getStablePoolDetail(pool.id, pool.pool_kind);
 
+console.log(stablePool, " stablePool");
+
 const res = getSwappedAmount(
   tokenIn.id,
   tokenOut.id,
