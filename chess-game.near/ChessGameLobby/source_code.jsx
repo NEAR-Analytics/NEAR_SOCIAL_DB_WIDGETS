@@ -15,7 +15,7 @@ const LobbyView = styled.div`
   margin: 0 auto;
 
   > * {
-      margin: 1.2rem 0;
+    margin: 1.2rem 0;
   }
 `;
 const Content = styled.div`
@@ -78,11 +78,11 @@ State.init({
 const gameIds = Near.view(contractId, "get_game_ids", {
   account_id: accountId,
 });
-
 const finishedGames = Near.view(contractId, "finished_games", {
   account_id: accountId,
 }).sort((a, b) => b[0] - a[0]);
-console.log("finishedGames", finishedGames);
+const recentFinishedGames = Near.view(contractId, "recent_finished_games", {});
+console.log("recentFinishedGames", recentFinishedGames);
 
 const GameSelector = styled.div`
   display: flex;
@@ -138,7 +138,7 @@ const selectDifficulty = (event) => {
   });
 };
 
-const renderGameIds = (gameIds, isFinished) =>
+const renderGameIds = (gameIds, isFinished, displayPlayers) =>
   gameIds.map((gameId) => {
     let gameInfo;
     if (!isFinished) {
@@ -149,6 +149,12 @@ const renderGameIds = (gameIds, isFinished) =>
     return (
       <Button onClick={selectGame(gameId, isFinished)}>
         <div>ID: {gameId[0]}</div>
+        {displayPlayers && (
+          <>
+            <div>White: {gameId[1]}</div>
+            {gameId[2] && <div>Black: {gameId[2]}</div>}
+          </>
+        )}
         {gameInfo && <div>VS: AI ({gameInfo.black.Ai})</div>}
       </Button>
     );
@@ -179,7 +185,7 @@ if (state.game_id) {
       {gameIds.length > 0 && (
         <div>
           <h2>Select Game:</h2>
-          <GameSelector>{renderGameIds(gameIds, false)}</GameSelector>
+          <GameSelector>{renderGameIds(gameIds, false, false)}</GameSelector>
         </div>
       )}
       <GameCreator>
@@ -200,7 +206,17 @@ if (state.game_id) {
       {finishedGames.length > 0 && (
         <div>
           <h2>Replay your finished games:</h2>
-          <GameSelector>{renderGameIds(finishedGames, true)}</GameSelector>
+          <GameSelector>
+            {renderGameIds(finishedGames, true, false)}
+          </GameSelector>
+        </div>
+      )}
+      {recentFinishedGames.length > 0 && (
+        <div>
+          <h2>Replay recently finished games:</h2>
+          <GameSelector>
+            {renderGameIds(recentFinishedGames, true, true)}
+          </GameSelector>
         </div>
       )}
     </>
