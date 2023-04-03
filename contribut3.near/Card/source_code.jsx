@@ -16,7 +16,7 @@ const CardHeader = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: .5em 0px;
+  padding: .5em 0;
   gap: .675em;
   background: #FFF9ED;
   flex: none;
