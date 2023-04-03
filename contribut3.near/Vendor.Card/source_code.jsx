@@ -62,7 +62,7 @@ const FooterButton = styled.a`
   border-radius: 50px;
   flex: none;
   order: 0;
-  flex-grow: 1;
+  flex-grow: 0;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9em;
