@@ -95,7 +95,7 @@ return (
       />
     </div>
     <div className="mb-2">
-      Description
+      Description*
       <textarea
         value={state.description}
         type="text"
@@ -129,7 +129,7 @@ return (
         onChange={(e) => onChangeDeposit(e.target.value)}
       />
       <p>
-        * You will pay a deposit
+        You will pay a deposit
         {state.deposit ? "of Ⓝ" + state.deposit.toString() : ""} to add this
         proposal!, the deposit will be refunded if proposal rejected or expired.
       </p>
