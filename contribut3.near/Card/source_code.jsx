@@ -13,7 +13,7 @@ const CardContainer = styled.div`
 `;
 
 const CardHeader = styled.div`
-  display: flex;
+  display: ${({ show }) => show ? "flex" : "none"};
   flex-direction: row;
   justify-content: center;
   align-items: center;
