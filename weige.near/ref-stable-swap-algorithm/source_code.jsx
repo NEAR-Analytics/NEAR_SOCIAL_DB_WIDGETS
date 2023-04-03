@@ -2,6 +2,8 @@ const shrinkToken = (value, decimals) => {
   return new Big(value || 0).div(new Big(10).pow(decimals || 24)).toFixed();
 };
 
+const REF_FI_CONTRACT_ID = "v2.ref-finance.near";
+
 const FEE_DIVISOR = 10000;
 
 const expandToken = (value, decimals) => {
@@ -152,15 +154,32 @@ const getSwappedAmount = (
   return shrinkToken(amountOut, STABLE_LP_TOKEN_DECIMALS);
 };
 
-const {
-  tokenIn,
-  tokenOut,
-  amountIn,
-  stablePool,
-  stablePoolDecimal,
-  pool,
-  loadRes,
-} = props;
+const getStablePoolDetail = (pool_id, pool_kind) => {
+  if (pool_kind === "RATED_SWAP") {
+    const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_rated_pool", {
+      pool_id: Number(pool_id),
+    });
+    return {
+      ...pool_info,
+      id: pool_id,
+    };
+  } else {
+    const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_stable_pool", {
+      pool_id: Number(pool_id),
+    });
+    return {
+      ...pool_info,
+      id: pool_id,
+      rates: pool_info.c_amounts.map((_) => expandToken("1", 18).toFixed()),
+    };
+  }
+};
+
+const { tokenIn, tokenOut, amountIn, pool, loadRes } = props;
+
+const stablePoolDecimal = pool.pool_kind === "STABLE_SWAP" ? 18 : 24;
+
+const stablePoolDetail = getStablePoolDetail(pool.id, pool.pool_kind);
 
 const res = getSwappedAmount(
   tokenIn.id,
