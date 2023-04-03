@@ -117,7 +117,7 @@ State.init({
   ),
 });
 
-console.log(topPools, "top pools");
+console.log(state.topPools, "top pools");
 
 if (!state.topPools) return returnNull();
 
