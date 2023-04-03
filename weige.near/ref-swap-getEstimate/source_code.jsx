@@ -38,7 +38,7 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     tokenIn.decimals
   );
 
-  console.log(in_balance, "in_balance");
+  console.log(in_balance.toFixed(), "in_balance");
 
   const out_balance = shrinkToken(
     pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 1 : 0],
@@ -46,7 +46,7 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     tokenOut.decimals
   );
 
-  console.log(out_balance, "out_balance");
+  console.log(out_balance.toFixed(), "out_balance");
 
   const estimate = new Big(
     (
