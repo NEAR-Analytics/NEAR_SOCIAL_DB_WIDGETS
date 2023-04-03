@@ -130,6 +130,8 @@ const getSwappedAmount = (
     )
   );
 
+  console.log(in_c_amount, old_c_amounts, base_old_c_amounts, rates, rates);
+
   const [amount_swapped, fee, dy] = calc_swap(
     amp,
     in_token_idx,
