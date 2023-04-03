@@ -51,7 +51,14 @@ const body = (
       }}
     />
     <Title>{state.request.title}</Title>
-    <Widget src={`${ownerId}/widget/ActiveIndicator`} props={{ active: state.request.open, activeText: "Open to proposals", inactiveText: "Closed" }} />
+    <Widget
+      src={`${ownerId}/widget/ActiveIndicator`}
+      props={{
+        active: state.request.open,
+        activeText: "Open to proposals",
+        inactiveText: "Closed",
+      }}
+    />
     <Widget
       src={`${ownerId}/widget/DescriptionArea`}
       props={{ description: state.request.description }}
