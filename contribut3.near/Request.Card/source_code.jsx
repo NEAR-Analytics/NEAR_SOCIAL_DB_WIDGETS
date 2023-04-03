@@ -118,8 +118,8 @@ const body = (
         ),
       }}
     />
-        <div>{deadline}{budget}</div>
-    </>
+    <div>{deadline}{budget}</div>
+  </>
 );
 
 const FooterButton = styled.a` 
@@ -145,48 +145,47 @@ const FooterButton = styled.a`
       text-align: center;
       color: ${({ blue }) => (blue ? "#006ADC" : "#101828")};
       `;
-      
-      const Footer = styled.div`                
+
+const Footer = styled.div`                
       display: flex;
         flex - direction: row;
       justify-content: space-between;
       align-items: center;
       width: 100%;
       `;
-      
-      
-    const footer = (
-      <Footer>
-                <FooterButton
-        href={`/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`}
-        onClick={() =>
-          props.update({
-            tab: "contributor",
-            content: "",
-            search: "",
-            accountId,
-            
-            
-          
-        View details
-      </FooterButton>
-        ooterButton
-        blue
-        href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&cid=${cid}&accountId=${accountId}`}
-        onClick={() =>
-          props.update({
-            tab: "create",
-            content: "proposal",
-            search: "",
-            accountId,
-            cid,
-            
-            
-          
-        Propose contribution
-      </FooterButton>
-        />Foooter>);
-      
-    
-    return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
-    
+
+
+const footer = (
+  <Footer>
+    <FooterButton
+      href={`/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`}
+      onClick={() =>
+        props.update({
+          tab: "contributor",
+          content: "",
+          search: "",
+          accountId,
+        })}>
+
+
+      View details
+    </FooterButton>
+    <FooterButton
+      blue
+      href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&cid=${cid}&accountId=${accountId}`}
+      onClick={() =>
+        props.update({
+          tab: "create",
+          content: "proposal",
+          search: "",
+          accountId,
+          cid,
+        })}
+    >
+      Propose contribution
+    </FooterButton>
+  </Foooter>);
+
+
+return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
+
