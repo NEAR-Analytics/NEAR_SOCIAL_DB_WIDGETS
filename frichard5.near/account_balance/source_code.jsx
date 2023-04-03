@@ -1,5 +1,5 @@
-const account = props.accounts || "foundation.near";
-const apiUrl = `https://api.pikespeak.ai/account/balance/${props.account}`;
+const account = props.account || "foundation.near";
+const apiUrl = `https://api.pikespeak.ai/account/balance/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
 const contractsBalance = fetch(apiUrl, {
@@ -9,6 +9,7 @@ const contractsBalance = fetch(apiUrl, {
   },
 });
 
+console.log(contractsBalance);
 const rows = [];
 contractsBalance.body.forEach((cB) => {
   rows.push(
@@ -27,7 +28,7 @@ return (
         <th>Token</th>
         <th>Amount</th>
       </tr>
-      {rows.length ? rows : "loading..."}
+      {rows}
     </table>
   </>
 );
