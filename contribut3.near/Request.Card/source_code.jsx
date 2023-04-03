@@ -1,5 +1,6 @@
 const ownerId = "contribut3.near";
 const accountId = props.accountId;
+const cid = props.cid;
 
 State.init({
   tags: null,
@@ -96,17 +97,18 @@ const footer = (
     </FooterButton>
     <FooterButton
       blue
-      // href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
-      // onClick={() =>
-      //   props.update({
-      //     tab: "entity",
-      //     content: "",
-      //     search: "",
-      //     accountId,
-      //   })
-      // }
+    // href={`/#/${ownerId}/widget/Index?tab=create&content=proposal&cid=${cid}&accountId=${accountId}`}
+    // onClick={() =>
+    //   props.update({
+    //     tab: "create",
+    //     content: "proposal",
+    //     search: "",
+    //     accountId,
+    //     cid,
+    //   })
+    // }
     >
-      Invite vendor
+      Propose contribution
     </FooterButton>
   </Footer>
 );
