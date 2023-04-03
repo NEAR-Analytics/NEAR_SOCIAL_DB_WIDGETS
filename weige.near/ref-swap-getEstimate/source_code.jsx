@@ -34,12 +34,12 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     Number(allocation) * (FEE_DIVISOR - pool.fee || pool.total_fee || 0);
 
   const in_balance = shrinkToken(
-    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 1 : 0],
+    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 0 : 1],
     tokenIn.decimals
   );
 
   const out_balance = shrinkToken(
-    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 0 : 1],
+    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 1 : 0],
 
     tokenOut.decimals
   );
