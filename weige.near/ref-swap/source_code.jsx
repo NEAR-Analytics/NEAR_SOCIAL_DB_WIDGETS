@@ -214,6 +214,27 @@ const callTx = () => {
     return Near.call(tx);
   }
 
+  const register = Near.view(
+    state.tokenOut.id === "NEAR" ? "wrap.near" : state.tokenOut.id,
+    "storage_balance_of",
+    {
+      account_id: accountId,
+    }
+  );
+  if (!register) {
+    tx.push({
+      contractName:
+        state.tokenOut.id === "NEAR" ? "wrap.near" : state.tokenOut.id,
+      methodName: "storage_deposit",
+      deposit: expandToken(0.1, 24).toFixed(),
+      gas: expandToken(50, 12),
+      args: {
+        registration_only: true,
+        account_id: accountId,
+      },
+    });
+  }
+
   if (state.tokenIn.id === "NEAR") {
     tx.push(nearDeposit);
   }
