@@ -10,21 +10,22 @@ let rawData = fetch(
     },
   }
 );
-const project_name = props.project_name || "Sweat Economy";
 
 function filterByProjectName(arr, project_name) {
   return arr.filter((obj) => obj.PROJECT_NAME === project_name);
 }
-
-const METRIC_NAME = `"${project_name}'s Weekly Active Accounts"`;
-
-const filteredData = filterByProjectName(rawData.body, project_name) || [];
 
 function sortByActivityDate(arr) {
   return arr.sort(
     (a, b) => new Date(a.ACTIVITY_DATE) - new Date(b.ACTIVITY_DATE)
   );
 }
+
+const project_name = props.project_name || "Sweat Economy";
+
+const METRIC_NAME = `"${project_name}'s Weekly Active Accounts"`;
+
+const filteredData = filterByProjectName(rawData.body, project_name) || [];
 
 const filteredSortedData = sortByActivityDate(filteredData) || [];
 
