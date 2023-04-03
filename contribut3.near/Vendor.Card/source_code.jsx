@@ -47,7 +47,7 @@ const body = (
   </>
 );
 
-const Footer = styled.a`
+const FooterButton = styled.a`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -68,23 +68,39 @@ const Footer = styled.a`
   font-size: 0.9em;
   line-height: 1em;
   text-align: center;
-  color: #101828;
+  color: ${({ blue }) => blue ? "#006ADC" : "#101828"};
 `;
 
 const footer = (
-  <Footer
-    href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
-    onClick={() =>
-      props.update({
-        tab: "entity",
-        content: "",
-        search: "",
-        accountId,
-      })
-    }
-  >
-    View details
-  </Footer>
+  <>
+    <FooterButton
+      href={`/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`}
+      onClick={() =>
+        props.update({
+          tab: "contributor",
+          content: "",
+          search: "",
+          accountId,
+        })
+      }
+    >
+      View details
+    </FooterButton>
+    <FooterButton
+      blue
+    // href={`/#/${ownerId}/widget/Index?tab=entity&accountId=${accountId}`}
+    // onClick={() =>
+    //   props.update({
+    //     tab: "entity",
+    //     content: "",
+    //     search: "",
+    //     accountId,
+    //   })
+    // }
+    >
+      Invite vendor
+    </FooterButton>
+  </>
 );
 
 return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
