@@ -156,7 +156,10 @@ const inputOnChange = (e) => {
 };
 
 const filterFunc = (tokenMeta) => {
-  return tokenMeta.symbol.toLowerCase().includes(state.searchBy.toLowerCase());
+  return (
+    searchBy === "" ||
+    tokenMeta.symbol.toLowerCase().includes(state.searchBy.toLowerCase())
+  );
 };
 
 const TokenLine = styled.div`
