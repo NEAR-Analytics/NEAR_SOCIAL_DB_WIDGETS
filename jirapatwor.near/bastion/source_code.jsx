@@ -585,9 +585,10 @@ return (
           display: "flex",
           width: "100%",
           marginTop: "20px",
+          marginLeft: "20px",
         }}
       >
-        <div style={{ paddingRight: "2rem", width: "60%" }}>
+        <div style={{ paddingRight: "3rem", width: "60%" }}>
           <div class="list btn-group" role="group" aria-label="List">
             <input
               type="radio"
