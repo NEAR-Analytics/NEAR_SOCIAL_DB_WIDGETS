@@ -22,29 +22,6 @@ const sub_widget_map = {
   "Play Ember": "https://nearatlas.com/#/y3k.near/widget/WAU_PlayEmber",
 };
 
-function formatCell(text) {
-  if (text in sub_widget_map) {
-    return (
-      <a href={sub_widget_map[text]} className="text-warning text-wrap ">
-        {text}
-      </a>
-    );
-  } else {
-    return (
-      <a
-        href={
-          "https://nearatlas.com/#/y3k.near/widget/NEART.ATLAS.DETAILED_PROJECT_DASHBOARD?project_name=" +
-          text
-        }
-        target="_blank"
-        className="text-warning text-wrap "
-      >
-        {text}
-      </a>
-    );
-  }
-}
-
 function formatPercentNew(text) {
   let number = parseFloat(text);
   return <span className="text-white">{number}%</span>;
@@ -64,7 +41,6 @@ function formatCell(text) {
         "https://nearatlas.com/#/y3k.near/widget/NEART.ATLAS.DETAILED_PROJECT_DASHBOARD?project_name=" +
         text
       }
-      target="_blank"
       className="text-warning text-wrap "
     >
       {text}
