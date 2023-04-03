@@ -11,6 +11,20 @@ const CardContainer = styled.div`
   border-radius: 8px;
 `;
 
+const CardHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 0px;
+  gap: 10px;
+  background: #FFF9ED;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+`;
+
 const CardBody = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,7 +54,8 @@ return (
   <CardContainer>
     {header}
     <CardBody>
-      {body}</CardBody>
+      {body}
+    </CardBody>
     <CardFooter>{footer}</CardFooter>
   </CardContainer>
 );
