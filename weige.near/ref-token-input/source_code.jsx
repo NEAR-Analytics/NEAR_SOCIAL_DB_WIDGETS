@@ -104,7 +104,9 @@ const getBalance = (token_id) => {
     });
   }
 
-  return amount ? formatToken(shrinkToken(amount, props.token.decimals)) : "-";
+  return !!amount
+    ? formatToken(shrinkToken(amount, props.token.decimals))
+    : "-";
 };
 
 const { amount, setAmount, handleSelect, disableInput } = props;
