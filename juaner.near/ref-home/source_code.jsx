@@ -145,7 +145,7 @@ const historyIcon = (
 const SwapContainer = styled.div`
   position: absolute;
   left: calc(50% - 215px);
-  top: 12vh
+  top: 8%
 
 `;
 
