@@ -39,12 +39,12 @@ const body = (
         update: props.update,
       }}
     />
-        <Widget
-          src={`${ownerId}/widget/DescriptionArea`}
-          props={{
-            // description: state.contributor.resume || state.profile.description,
-          }}
-        />
+    <Widget
+      src={`${ownerId}/widget/DescriptionArea`}
+      props={{
+        // description: state.contributor.resume || state.profile.description,
+      }}
+    />
   </>
 );
 
