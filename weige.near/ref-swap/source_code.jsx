@@ -125,8 +125,6 @@ if (!state.timerIntervalSet) {
   timerInterval = setTimeout(() => {
     const count = Storage.get("count");
 
-    console.log(count, "count");
-
     if (count === 1) {
       State.update({
         reloadPools: true,
@@ -185,8 +183,6 @@ const canSwap =
   Number(state.amountIn || 0) > 0 &&
   Number(state.amountOut || 0) > 0 &&
   !state.loading;
-
-console.log(state.estimate);
 
 const callTx = () => {
   const tx = [];
