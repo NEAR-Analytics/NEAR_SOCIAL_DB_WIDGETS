@@ -146,7 +146,7 @@ try {
       processedData.push(monthData);
     }
 
-    monthData.data[activity_date.toISOString().slice(0, 10)] = datum.WAU;
+    monthData.data[activity_date.toISOString().slice(0, 10)] = datum.MAU;
   });
 } catch (err) {
   console.log(err);
