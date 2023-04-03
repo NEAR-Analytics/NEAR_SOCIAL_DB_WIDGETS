@@ -178,7 +178,10 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
     return {
       ...pool_info,
       id: pool_id,
-      rates: pool_info.c_amounts.map((i) => expandToken("1", 18).toFixed()),
+      rates:
+        pool_info.token_account_ids.length > 2
+          ? [expandToken(1, 18), expandToken(1, 18), expandToken(1, 18)]
+          : [expandToken(1, 18), expandToken(1, 18)],
     };
   }
 };
