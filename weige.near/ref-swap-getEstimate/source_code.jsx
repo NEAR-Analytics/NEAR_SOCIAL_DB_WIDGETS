@@ -109,17 +109,17 @@ if (wrapOperation) {
 
 if (tokenIn.id === tokenOut.id) return returnNull();
 
-State.init({
-  topPools: JSON.parse(
-    fetch("https://indexer.ref.finance/list-top-pools")?.body || `{}`
-  ),
-});
+const poolRes = fetch("https://indexer.ref.finance/list-top-pools");
 
-console.log(state.topPools, "top pools");
+if (!poolRes) return returnNull();
 
-if (!state.topPools) return returnNull();
+const topPools = JSON.parse(poolRes.body);
 
-const poolThisPair = state.topPools.find(
+console.log(topPools, "top pools");
+
+if (!topPools) return returnNull();
+
+const poolThisPair = topPools.find(
   (p) =>
     p.token_account_ids.includes(tokenIn.id) &&
     p.token_account_ids.includes(tokenOut.id)
