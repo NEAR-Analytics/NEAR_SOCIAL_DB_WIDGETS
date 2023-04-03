@@ -13,7 +13,7 @@ if (!state.foundersIsFetched) {
     { account_id: projectId },
     "final",
     false
-  ).then((fo) => State.update({ project, projectIsFetched: true }));
+  ).then((founders) => State.update({ founders, foundersIsFetched: true }));
 }
 
 return (
