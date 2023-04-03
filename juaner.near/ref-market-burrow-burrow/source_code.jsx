@@ -246,13 +246,15 @@ const storageToken = selectedTokenId
     })
   : null;
 const handleAmount = (e) => {
+  const amount = Number(e.target.value);
   State.update({
-    amount: Number(e.target.value),
+    amount,
     selectedTokenId,
     hasError: false,
   });
+  handleBlur(amount);
 };
-const handleBlur = (e) => {
+const handleBlur = (amount) => {
   State.update({
     newHealthFactor: recomputeHealthFactor(selectedTokenId, amount),
   });
@@ -352,12 +354,7 @@ return (
       <Widget src="juaner.near/widget/ref_burrow-data" props={{ onLoad }} />
     )}
     <div class="content">
-      <input
-        type="number"
-        value={amount}
-        onChange={handleAmount}
-        onBlur={handleBlur}
-      />
+      <input type="number" value={amount} onChange={handleAmount} />
       {selectedTokenId && (
         <span class="balance">
           Balance: {available} (${availableUSD})
