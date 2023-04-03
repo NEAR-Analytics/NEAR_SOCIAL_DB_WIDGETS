@@ -102,8 +102,6 @@ const handleSlippageChange = (e) => {
   setSlippagetolerance(value);
 };
 
-if (!showSetting) return <div />;
-
 return (
   <>
     {!showSetting ? (
