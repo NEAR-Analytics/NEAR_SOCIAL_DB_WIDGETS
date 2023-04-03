@@ -169,6 +169,9 @@ const getStablePoolDetail = (pool_id, pool_kind) => {
     const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_stable_pool", {
       pool_id: Number(pool_id),
     });
+
+    console.log(pool_info, "pool_info");
+
     return {
       ...pool_info,
       id: pool_id,
