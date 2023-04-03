@@ -4,6 +4,10 @@ const shrinkToken = (value, decimals) => {
   return new Big(value || 0).div(new Big(10).pow(decimals || 24));
 };
 
+const expandToken = (value, decimals) => {
+  return new Big(value).mul(new Big(10).pow(decimals));
+};
+
 const account = fetch("https://rpc.mainnet.near.org", {
   method: "POST",
   headers: {
@@ -126,6 +130,12 @@ State.init({
   amountOut: "",
   showSetting: false,
   slippagetolerance: "0.5",
+  estimate: {},
+  loadRes: (value) =>
+    State.update({
+      estimate: value,
+      amountOut: value === null ? "" : value.estimate,
+    }),
 });
 
 const TokenInInput = (
@@ -205,7 +215,9 @@ const RefreshWrapper = styled.div`
 
 const RateWrapper = styled.div`
   display: flex;
-  align-items:center
+  align-items:center;
+  font-size: 12px;
+  color: #7E8A93
 `;
 
 const SettingWrapper = styled.div`
@@ -238,26 +250,100 @@ const ArrowDownWrapper = styled.div`
   cursor:pointer
 `;
 
-const ButtonWrapper = styled.button`
-  
-  border-radius: 12px;
-  opacity: ${(props) => (props.notEnough ? "0.5" : "1")};
-  background: ${(props) => (props.notEnough ? "#FF88B3" : "#00FFD1")};
-  font-weight: 700;
-  font-size: 18px;
-  color:black;
-  width: 100%;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  outline:none;
-  border:none;
-  padding: 8px 0px;
-  margin-top: 26px
-`;
-
 const notEnough = new Big(state.amountIn || 0).gt(
   getBalance(state.tokenIn.id, state.tokenIn)
+);
+
+const canSwap = Number(state.amountIn) > 0 && Number(state.amountOut) > 0;
+
+const callTx = () => {
+  const tx = [];
+
+  const nearDeposit = {
+    contractName: "wrap.near",
+    methodName: "near_deposit",
+    deposit: expandToken(state.amountIn, 24).toFixed(),
+    gas: expandToken(50, 12),
+  };
+  const nearWithdraw = {
+    contractName: "wrap.near",
+    methodName: "near_withdraw",
+    deposit: new Big("1").toFixed(),
+    args: {
+      amount: expandToken(state.amountIn, 24).toFixed(),
+    },
+  };
+
+  if (estimate.pool === "wrap") {
+    if (state.tokenIn.id === "NEAR") {
+      tx.push(nearDeposit);
+    } else {
+      tx.push(nearWithdraw);
+    }
+
+    return Near.callTx(tx);
+  }
+
+  if (state.tokenIn.id === "NEAR") {
+    tx.push(nearDeposit);
+  }
+
+  const minAmountOut = expandToken(
+    new Big(state.amountOut)
+      .mul(1 - Number(state.slippagetolerance) / 100)
+      .toFixed(state.tokenOut.decimals, 0),
+    state.tokenOut.decimals
+  ).toFixed();
+
+  tx.push({
+    methodName: "ft_transfer_call",
+    gas: expandToken(180, 12),
+    deposit: new Big("1").toFixed(),
+    args: {
+      receiver_id: "v2.ref-finance.near",
+      amount: expandToken(state.amountIn, state.tokenIn.decimals).toFixed(0, 0),
+      msg: JSON.stringify({
+        actions: [
+          {
+            pool_id: state.estimate.pool.id,
+            token_in:
+              state.tokenIn.id === "NEAR" ? "wrap.near" : state.tokenIn.id,
+            token_out: state.tokenOut.id,
+            amountIn: expandToken(
+              state.amountIn,
+              state.tokenIn.decimals
+            ).toFixed(0, 0),
+            min_amount_out: minAmountOut,
+          },
+        ],
+      }),
+    },
+  });
+
+  if (state.tokenOut.id === "NEAR") {
+    tx.push({
+      contractName: "wrap.near",
+      methodName: "near_withdraw",
+      deposit: new Big("1").toFixed(),
+      args: {
+        amount: minAmountOut,
+      },
+    });
+  }
+
+  Near.call(tx);
+};
+
+const Estimate = (
+  <Widget
+    src="weige.near/widget/ref-swap-getEstimate"
+    props={{
+      loadRes: state.loadRes,
+      tokenIn: state.tokenIn,
+      tokenOut: state.tokenOut,
+      amountIn: state.amountIn,
+    }}
+  />
 );
 
 return (
@@ -270,6 +356,7 @@ return (
     >
       Swap
     </div>
+    {Estimate}
 
     {TokenInInput}
     {Exchange}
@@ -281,7 +368,9 @@ return (
         <RefreshText>Refresh</RefreshText>
       </RefreshWrapper>
 
-      <RateWrapper></RateWrapper>
+      <RateWrapper>{`1 ${state.tokenIn.symbol} ≈ ${new Big(state.amountOut || 0)
+        .div(state.amountIn)
+        .toFixed(4, 0)} ${state.tokenOut.symbol}`}</RateWrapper>
     </RateLine>
     {SlippageSelector}
 
@@ -310,12 +399,14 @@ return (
       </ArrowDownWrapper>
     </SettingWrapper>
 
-    <ButtonWrapper notEnough={notEnough}>
-      {!accountId
-        ? "Connect wallet"
-        : notEnough
-        ? "Insufficient Balance"
-        : "Swap"}
-    </ButtonWrapper>
+    <Widget
+      src="weige.near/widget/ref-swap-button"
+      props={{
+        accountId,
+        notEnough,
+        canSwap,
+        callTx,
+      }}
+    />
   </Container>
 );
