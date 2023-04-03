@@ -192,6 +192,7 @@ const getRoomsListHandler = (request, response, Utils) => {
 
 const setClipboardTextHandler = (request, response) => {
   if (request.payload.text) {
+    // limited by VM (not working for now) - wip
     clipboard.writeText(request.payload.text);
   }
   response(request).send({});
