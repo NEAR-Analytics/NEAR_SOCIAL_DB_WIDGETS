@@ -11,7 +11,7 @@ const {
   tokenOut: tokenOutFromProps,
   amountIn,
   loadRes,
-  reloadTopPools,
+  reloadPools,
 } = props;
 
 const tokenIn =
@@ -120,6 +120,10 @@ const reloadTopPools = () => {
     topPools = JSON.parse(data);
   });
 };
+
+if (reloadPools) {
+  reloadTopPools();
+}
 
 console.log(topPools, "topPools");
 
