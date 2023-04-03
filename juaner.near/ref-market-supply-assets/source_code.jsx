@@ -243,6 +243,7 @@ function changeTab(tabName) {
 }
 const selectedToken = (selectedTokenId && assetsMap[selectedTokenId]) || {};
 const selectedTokenMeta = selectedToken.metadata || {};
+console.log("8888888888888-document", document);
 return (
   <Container>
     {/* load data */}
@@ -298,7 +299,7 @@ return (
             />
           </div>
           <div class="modal-body">
-            <div class="tab">
+            {/**<div class="tab">
               <span
                 onClick={() => {
                   changeTab("supply");
@@ -307,7 +308,7 @@ return (
               >
                 Supply
               </span>
-              {/**
+              
               <span
                 onClick={() => {
                   changeTab("withdraw");
@@ -316,11 +317,11 @@ return (
               >
                 Withdraw
               </span>
-              */}
             </div>
+            **/}
             <Widget
               src="juaner.near/widget/ref-market-supply-supply"
-              props={{ selectedTokenId }}
+              props={{ selectedTokenId, amount, hasError }}
             />
           </div>
         </div>
