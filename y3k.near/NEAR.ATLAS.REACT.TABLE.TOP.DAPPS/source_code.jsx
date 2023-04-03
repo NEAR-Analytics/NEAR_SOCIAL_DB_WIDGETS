@@ -82,55 +82,57 @@ const COLUMNS = [
   {
     label: <p className="text-center text-white text-wrap ">Past 30 Days</p>,
     renderCell: (item) => formatNumber(item["Past 30 Days"]),
-    sort: { sortKey: "Past30" },
+    sort: { sortKey: "Past 30 Days" },
   },
   {
     label: <p className="text-center text-white text-wrap ">Last Month</p>,
     renderCell: (item) => formatNumber(item["30-60 Days Ago"]),
-    sort: { sortKey: "PercentNew" },
+    sort: { sortKey: "30-60 Days Ago" },
   },
   {
     label: <p className="text-center text-white text-wrap ">M/M</p>,
     renderCell: (item) => formatText(item["M/M"]),
-    sort: { sortKey: "MM" },
+    sort: { sortKey: "M/M" },
   },
   {
     label: <p className="text-center text-white text-wrap ">New MAAs</p>,
     renderCell: (item) => formatNumber(item["New MAAs"]),
-    sort: { sortKey: "MM" },
+    sort: { sortKey: "New MAAs" },
   },
   {
     label: <p className="text-center text-white text-wrap ">M2 Retention</p>,
     renderCell: (item) => formatPercentNew(item["M2 Retention"]),
-    sort: { sortKey: "MM" },
+    sort: { sortKey: "M2 Retention" },
   },
 
   {
     label: <p className="text-center text-white text-wrap ">Average DAU</p>,
     renderCell: (item) => formatNumberDecimal(item["Daily Average"]),
-    sort: { sortKey: "PercentNew" },
+    sort: { sortKey: "Daily Average" },
   },
 
   {
     label: <p className="text-center text-white text-wrap ">Stickiness</p>,
     renderCell: (item) => formatPercentNew(item["DAU / MAU"]),
-    sort: { sortKey: "PercentNew" },
+    sort: { sortKey: "DAU / MAU" },
   },
 ];
-
 const sortFns = {
   ContractAddress: (array) =>
     array.sort((a, b) =>
       a["Contract Address"].localeCompare(b["Contract Address"])
     ),
-  Past30: (array) =>
-    array.sort((a, b) => a["Contract Address"] - b["Contract Address"]),
-  PercentNew: (array) =>
+  "Past 30 Days": (array) =>
     array.sort((a, b) => a["Past 30 Days"] - b["Past 30 Days"]),
-  MM: (array) => array.sort((a, b) => a["M/M"] - b["M/M"]),
-  Past60: (array) =>
-    array.sort((a, b) => a["60-90 Days Ago"] - b["60-90 Days Ago"]),
-  M2M: (array) => array.sort((a, b) => a["M/2M"] - b["M/2M"]),
+  "30-60 Days Ago": (array) =>
+    array.sort((a, b) => a["30-60 Days Ago"] - b["30-60 Days Ago"]),
+  "M/M": (array) => array.sort((a, b) => a["M/M"] - b["M/M"]),
+  "New MAAs": (array) => array.sort((a, b) => a["New MAAs"] - b["New MAAs"]),
+  "M2 Retention": (array) =>
+    array.sort((a, b) => a["M2 Retention"] - b["M2 Retention"]),
+  "Daily Average": (array) =>
+    array.sort((a, b) => a["Daily Average"] - b["Daily Average"]),
+  "DAU / MAU": (array) => array.sort((a, b) => a["DAU / MAU"] - b["DAU / MAU"]),
 };
 
 return (
