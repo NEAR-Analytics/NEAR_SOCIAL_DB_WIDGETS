@@ -8,7 +8,7 @@ const ButtonWrapper = styled.button`
     props.notEnough ? "rgba(255,136,179, 0.5)" : "rgba(0,255,209,1)"};
   font-weight: 700;
   font-size: 18px;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")}
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color:black;
   width: 100%;
   display: flex;
