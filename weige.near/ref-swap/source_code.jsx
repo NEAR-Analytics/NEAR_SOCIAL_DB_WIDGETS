@@ -8,7 +8,7 @@ const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
-console.log(props);
+console.log(props, "ovo");
 
 const account = fetch("https://rpc.mainnet.near.org", {
   method: "POST",
