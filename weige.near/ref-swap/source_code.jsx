@@ -112,6 +112,8 @@ State.init({
     }),
 });
 
+console.log(state.estimate);
+
 if (!Storage.get("count")) {
   Storage.set("count", 21);
 }
@@ -237,7 +239,8 @@ const callTx = () => {
             pool_id: Number(state.estimate.pool.id),
             token_in:
               state.tokenIn.id === "NEAR" ? "wrap.near" : state.tokenIn.id,
-            token_out: state.tokenOut.id,
+            token_out:
+              state.tokenOut.id === "NEAR" ? "wrap.near" : state.tokenOut.id,
             amount_in: expandToken(
               state.amountIn,
               state.tokenIn.decimals
