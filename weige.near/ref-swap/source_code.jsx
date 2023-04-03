@@ -8,6 +8,8 @@ const expandToken = (value, decimals) => {
   return new Big(value).mul(new Big(10).pow(decimals));
 };
 
+console.log(props);
+
 const account = fetch("https://rpc.mainnet.near.org", {
   method: "POST",
   headers: {
@@ -315,6 +317,7 @@ return (
     <RateLine>
       <RefreshWrapper
         onClick={() => {
+          clearTimeout(timerInterval);
           State.update({
             reloadPools: true,
             count: 20,
@@ -355,6 +358,7 @@ return (
         notEnough,
         canSwap,
         callTx,
+        requestSignIn: props.requestSignIn,
       }}
     />
   </Container>
