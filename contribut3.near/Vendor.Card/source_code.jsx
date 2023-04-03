@@ -55,13 +55,14 @@ const FooterButton = styled.a`
   align-items: center;
   padding: 0.5em 1em;
   gap: 0.5em;
+  width: 45%;
   height: 2.5em;
   background: #fafafa;
   border: 1px solid #eceef0;
   border-radius: 50px;
   flex: none;
   order: 0;
-  flex-grow: 0;
+  flex-grow: 1;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9em;
