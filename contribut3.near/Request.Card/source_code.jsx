@@ -118,45 +118,46 @@ const body = (
         ),
       }}
     />
-          <div>{deadline}{budget}</div>
-      </>
+        <div>{deadline}{budget}</div>
+    </>
 );
 
-      const FooterButton = styled.a` 
-          box-sizing: border-box;
-        display: flex;
+const FooterButton = styled.a` 
+      box-sizing: border-box;
+      display: flex;
       flex-direction: row;
       justify-content: center;
-    align-items: center;
-    padding: 0.5em 1em;
-    gap: 0.5em;
-    width: 48%;
-    height: 2.5em;
-    background: #fafafa;
-    border: 1px solid #eceef0;
-    border-radius: 50px;
-    flex: none;
-        order: 0;
-    flex-grow: 0;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 0.9em;         
-    ght: 1em;
-      gn: center;
-    {({ blue }) => (blue ? "#006ADC" : "#101828")};
-    
-    
-    oter = styled.div`                
-    lay: flex;
-      irection: row;
-      content: space-between;
-    ems: center;
-    00%;
-    
-    
+      align-items: center;
+      padding: 0.5em 1em;
+      gap: 0.5em;
+      width: 48%;
+      height: 2.5em;
+      background: #fafafa;
+      border: 1px solid #eceef0;
+      border-radius: 50px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.9em;
+      line-height: 1em;
+      text-align: center;
+      color: ${({ blue }) => (blue ? "#006ADC" : "#101828")};
+      `;
+      
+      const Footer = styled.div`                
+      display: flex;
+        flex - direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      `;
+      
+      
     const footer = (
-ooter>
-            <FooterButton
+      <Footer>
+                <FooterButton
         href={`/#/${ownerId}/widget/Index?tab=contributor&accountId=${accountId}`}
         onClick={() =>
           props.update({
