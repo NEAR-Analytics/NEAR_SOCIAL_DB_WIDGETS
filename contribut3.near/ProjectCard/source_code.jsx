@@ -28,9 +28,19 @@ if (!state.requestsIsFetched) {
   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
 }
 
+const body = <>
+  <Widget src={`${ownerId}/widget/ProfileLine`} props={{
+
+    accountId,
+    isEntity,
+    imageSize: "3em",
+    update: props.update,
+  }} />
+</>;
+
 return (
   <Widget
     src={`${ownerId}/widget/Card`}
-    props={{ header: "", body: "", footer: "" }}
+    props={{ body: "", footer: "" }}
   />
 );
