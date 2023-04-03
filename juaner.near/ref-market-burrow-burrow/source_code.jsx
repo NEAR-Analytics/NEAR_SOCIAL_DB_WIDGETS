@@ -55,6 +55,10 @@ const Container = styled.div`
       cursor:pointer;
       width:100%;
     }
+    .disabled{
+      opacity:0.3;
+      cursor: not-allowed;
+    }
 `;
 /** base tool start  */
 let MAX_RATIO = 10_000;
@@ -377,7 +381,10 @@ return (
           {newHealthFactor ? newHealthFactor : healthFactor}%
         </span>
       </div>
-      <div class="greenButton mt_25" onClick={handleBorrow}>
+      <div
+        class={`greenButton mt_25 ${Number(amount) ? "" : "disabled"}`}
+        onClick={handleBorrow}
+      >
         Borrow
       </div>
     </div>
