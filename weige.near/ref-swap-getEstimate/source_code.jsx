@@ -99,6 +99,10 @@ if (reloadPools) {
 
 if (!topPools) return returnNull();
 
+if (Number(amountIn) === 0) {
+  return returnNull();
+}
+
 const poolsThisPair = topPools.filter(
   (p) =>
     p.token_account_ids.includes(tokenIn.id) &&
