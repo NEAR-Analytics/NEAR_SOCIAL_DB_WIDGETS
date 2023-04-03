@@ -24,8 +24,10 @@ const CardFooter = styled.div`
   flex-grow: 0;
 `;
 
-return (<CardContainer>
-  {header}
-  {body}
-  <footer>{footer}</footer>
-</CardContainer>);
+return (
+  <CardContainer>
+    {header}
+    {body}
+    <footer>{footer}</footer>
+  </CardContainer>
+);
