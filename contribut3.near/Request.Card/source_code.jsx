@@ -12,7 +12,13 @@ State.init({
 });
 
 if (!state.requestIsFetched) {
-  Near.asyncView(ownerId, "get_request", { account_id: accountId, cid }, "final", false).then((request) => State.update({ request, requestIsFetched: true }));
+  Near.asyncView(
+    ownerId,
+    "get_request",
+    { account_id: accountId, cid },
+    "final",
+    false
+  ).then((request) => State.update({ request, requestIsFetched: true }));
 }
 
 if (!state.foundersIsFetched) {
@@ -37,8 +43,20 @@ if (!state.descriptionIsFetched) {
   );
 }
 
+const Title = styled.h3`
+font-style: normal;
+font-weight: 600;
+font-size: 1em;
+line-height: 1.4em;
+color: #101828;
+flex: none;
+order: 0;
+flex-grow: 1;
+`;
+
 const body = (
   <>
+    <Title></Title>
     <Widget
       src={`${ownerId}/widget/ProfileLine`}
       props={{
