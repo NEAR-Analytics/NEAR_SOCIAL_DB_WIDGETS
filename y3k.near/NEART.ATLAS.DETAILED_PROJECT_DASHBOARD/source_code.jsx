@@ -1,4 +1,12 @@
-// Monthly Active Accounts Example
+function filterByProjectName(arr, project_name) {
+  return arr.filter((obj) => obj.PROJECT_NAME === project_name);
+}
+
+function sortByActivityDate(arr) {
+  return arr.sort(
+    (a, b) => new Date(a.ACTIVITY_DATE) - new Date(b.ACTIVITY_DATE)
+  );
+}
 
 let rawData = fetch(
   "https://api.flipsidecrypto.com/api/v2/queries/536ff291-995e-479c-8a45-8c77781aa329/data/latest",
@@ -10,16 +18,6 @@ let rawData = fetch(
     },
   }
 );
-
-function filterByProjectName(arr, project_name) {
-  return arr.filter((obj) => obj.PROJECT_NAME === project_name);
-}
-
-function sortByActivityDate(arr) {
-  return arr.sort(
-    (a, b) => new Date(a.ACTIVITY_DATE) - new Date(b.ACTIVITY_DATE)
-  );
-}
 
 const project_name = props.project_name || "Sweat Economy";
 
