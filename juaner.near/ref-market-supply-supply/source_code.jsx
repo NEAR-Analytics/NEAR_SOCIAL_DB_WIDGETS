@@ -74,6 +74,10 @@ const expandToken = (value, decimals) => {
 const formatToken = (v) => Math.floor(v * 10_000) / 10_000;
 const selectedTokenId = props.selectedTokenId;
 const { rewards, balances, amount, hasError, assets } = state;
+State.init({
+  amount: props.amount,
+  hasError: props.hasError,
+});
 const hasData = assets.length > 0 && rewards.length > 0;
 /** base tool end */
 if (!accountId) {
