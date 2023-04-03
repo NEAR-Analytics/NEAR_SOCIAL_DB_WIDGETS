@@ -282,6 +282,7 @@ return (
           class="search-token-input"
           placeholder="Search token..."
           onChange={inputOnChange}
+          value={state.searchBy}
         />
       </div>
 
