@@ -3,7 +3,7 @@ const option = props.postsOrderOption ?? "blockHeight";
 
 State.init({
   posts: [],
-  postsCount: 100,
+  postsCount: 0,
   postsPage: 0,
   loaded: 0,
 });
@@ -103,28 +103,20 @@ const loadMorePosts = (page) => {
         const postsCount =
           data.roshaan_near_feed_indexer_posts_aggregate.aggregate.count;
         if (newPosts.length > 0) {
-          console.log("loaded new posts");
-          console.log("old post count", state.posts.length);
-          console.log("new post count", newPosts.length);
-
           State.update({
             posts: [...state.posts, ...newPosts],
+            postsCount: postsCount,
           });
         }
       }
     }
   });
 };
-const hasMore = () => {
-  console.log("do i have more", state.posts.length < state.postsCount);
-  return state.posts.length < state.postsCount;
-};
+
 const renderedItems = state.posts.map(renderItem);
 
 return (
   <div>
-    {state.posts.length}
-    {state.postsCount}
     <InfiniteScroll
       pageStart={0}
       loadMore={loadMorePosts}
