@@ -107,7 +107,7 @@ return (
       Payout Amount
       <input
         type="text"
-        placeholder="0"
+        placeholder="0.5"
         onChange={(e) => onChangeAmount(e.target.value)}
       />
     </div>
