@@ -185,7 +185,7 @@ const FooterButton = styled.a`
           
         Propose contribution
       </FooterButton>
-        oter>
+        />Foooter>);
       
     
     return <Widget src={`${ownerId}/widget/Card`} props={{ body, footer }} />;
