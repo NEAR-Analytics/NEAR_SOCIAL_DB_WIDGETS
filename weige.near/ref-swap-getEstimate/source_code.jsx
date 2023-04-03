@@ -27,8 +27,6 @@ const tokenOut =
 
 const FEE_DIVISOR = 10000;
 
-const REF_FI_CONTRACT_ID = "v2.ref-finance.near";
-
 const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
   const allocation = amountIn;
 
@@ -59,27 +57,6 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     tokenIn,
     tokenOut,
   };
-};
-
-const getStablePoolDetail = (pool_id, pool_kind) => {
-  if (pool_kind === "RATED_SWAP") {
-    const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_rated_pool", {
-      pool_id: Number(pool_id),
-    });
-    return {
-      ...pool_info,
-      id: pool_id,
-    };
-  } else {
-    const pool_info = Near.view(REF_FI_CONTRACT_ID, "get_stable_pool", {
-      pool_id: Number(pool_id),
-    });
-    return {
-      ...pool_info,
-      id: pool_id,
-      rates: pool_info.c_amounts.map((_) => expandToken("1", 18).toFixed()),
-    };
-  }
 };
 
 const returnNull = () => {
@@ -141,14 +118,6 @@ if (poolThisPair.pool_kind === "SIMPLE_POOL") {
 
   loadRes(res);
 } else {
-  const stablePoolDetail = getStablePoolDetail(
-    poolThisPair.id,
-    poolThisPair.pool_kind
-  );
-
-  const STABLE_LP_TOKEN_DECIMALS =
-    poolThisPair.pool_kind === "STABLE_SWAP" ? 18 : 24;
-
   return (
     <Widget
       src="weige.near/widget/ref-stable-swap-algorithm"
@@ -156,8 +125,7 @@ if (poolThisPair.pool_kind === "SIMPLE_POOL") {
         loadRes: loadRes,
         tokenIn,
         tokenOut,
-        stablePool: stablePoolDetail,
-        stablePoolDecimal: STABLE_LP_TOKEN_DECIMALS,
+
         amountIn: amountIn,
         pool: poolThisPair,
       }}
