@@ -6,8 +6,9 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 1px solid #ECEEF0;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  border: 1px solid #eceef0;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
 `;
 
@@ -16,9 +17,9 @@ const CardHeader = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: .5em 0;
-  gap: .675em;
-  background: #FFF9ED;
+  padding: 0.5em 0;
+  gap: 0.675em;
+  background: #fff9ed;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -30,7 +31,7 @@ const CardBody = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 1.5em 1.5em 1em;
-  gap: .9em;
+  gap: 0.9em;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -43,7 +44,7 @@ const CardFooter = styled.div`
   align-items: flex-start;
   padding: 1.5em;
   gap: 1em;
-  border-top: 1px solid #ECEEF0;
+  border-top: 1px solid #eceef0;
   flex: none;
   order: 1;
   align-self: stretch;
@@ -52,14 +53,8 @@ const CardFooter = styled.div`
 
 return (
   <CardContainer>
-    <CardHeader>
-      {header}
-    </CardHeader>
-    <CardBody>
-      {body}
-    </CardBody>
-    <CardFooter>
-      {footer}
-    </CardFooter>
+    <CardHeader>{header}</CardHeader>
+    <CardBody>{body}</CardBody>
+    <CardFooter>{footer}</CardFooter>
   </CardContainer>
 );
