@@ -29,7 +29,7 @@ if (!finalData) {
 
 const project_name = props.project_name || "Sweat Economy";
 
-const METRIC_NAME = `"${project_name}'s Weekly Active Accounts"`;
+const METRIC_NAME = `"${project_name}'s Monthly Active Accounts"`;
 
 const filteredData = filterByProjectName(finalData, project_name) || [];
 
