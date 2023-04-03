@@ -202,7 +202,7 @@ const callTx = () => {
     },
   };
 
-  if (estimate.pool === "wrap") {
+  if (state.estimate.pool === "wrap") {
     if (state.tokenIn.id === "NEAR") {
       tx.push(nearDeposit);
     } else {
