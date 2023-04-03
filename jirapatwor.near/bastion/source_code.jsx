@@ -167,47 +167,6 @@ const handleApprove = () => {
     });
 };
 
-// const handleDeposit = () => {
-//   if (!selectedTokenId || !amount || hasError) return;
-
-//   if (amount > state.balance) {
-//     State.update({ hasError: 1 });
-//     return;
-//   }
-
-//   let contractABI;
-//   if (selectedTokenId == "ETH") {
-//     contractABI = CEthABI;
-//   } else {
-//     contractABI = CErc20ABI;
-//   }
-
-//   const connection = new ethers.Contract(
-//     TokensDetail[selectedTokenId].cAddress,
-//     contractABI,
-//     Ethers.provider().getSigner()
-//   );
-
-//   const expandedAmount = expandToken(
-//     amount,
-//     TokensDetail[selectedTokenId].decimals
-//   ).toString();
-
-//   const toBigNumber = ethers.BigNumber.from(expandedAmount);
-//   console.log(toBigNumber.toString());
-//   if (selectedTokenId == "ETH") {
-//     connection.mint({ value: expandedAmount }).then((transactionHash) => {
-//       State.update({ success: true });
-//       console.log("transactionHash is " + transactionHash);
-//     });
-//   } else {
-//     connection.mint(expandedAmount).then((transactionHash) => {
-//       State.update({ success: true });
-//       console.log("transactionHash is " + transactionHash);
-//     });
-//   }
-// };
-
 const handleDeposit = () => {
   if (!selectedTokenId || !amount || hasError) return;
 
@@ -529,218 +488,384 @@ const handleWithdraw = () => {
   }
 };
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+const allAssetData = Object.keys(TokensDetail).map((key) => {
+  const indexMeta = state.cTokenMetadataAll.findIndex(
+    (element) => element[0] == TokensDetail[key].cAddress
+  );
+  const totalSupply = state.cTokenMetadataAll[indexMeta][8].mul(
+    state.cTokenMetadataAll[indexMeta][2]
+  );
+  const totalSupplyValue = (
+    Number(totalSupply.toString()) /
+    Math.pow(10, 18 + TokensDetail[key].decimals)
+  ).toFixed(2);
+  const supplyRatePerBlock = state.cTokenMetadataAll[indexMeta][3];
+  const supplyApy = (
+    (Math.pow((Number(supplyRatePerBlock.toString()) / 1e18) * 86400 + 1, 365) -
+      1) *
+    100
+  ).toFixed(2);
+  const borrowRatePerBlock = state.cTokenMetadataAll[indexMeta][4];
+  const borrowApy = (
+    (Math.pow((Number(borrowRatePerBlock.toString()) / 1e18) * 86400 + 1, 365) -
+      1) *
+    100
+  ).toFixed(2);
+  return (
+    <tr>
+      <td>{TokensDetail[key].name}</td>
+      <td class="text-end">{supplyApy}%</td>
+      <td class="text-end">{borrowApy}%</td>
+      <td class="text-end">
+        {numberWithCommas(totalSupplyValue)} {TokensDetail[key].symbol}
+      </td>
+    </tr>
+  );
+});
+
+const fetchAllData = () => {
+  State.update({ allDataTab: allAssetData });
+};
+
+const portfolio = Object.keys(TokensDetail).map((key) => {
+  const indexBalance = state.cTokenBalancesAll.findIndex(
+    (element) => element[0] == TokensDetail[key].cAddress
+  );
+  const bigValue = state.cTokenBalancesAll[indexBalance][4].toString();
+  const cal = (
+    Number(bigValue) / Math.pow(10, TokensDetail[key].decimals)
+  ).toFixed(2);
+
+  const bigValueSupply = state.cTokenBalancesAll[indexBalance][1].mul(
+    state.cTokenBalancesAll[indexBalance][3]
+  );
+  const supplied = (
+    Number(bigValueSupply.toString()) /
+    Math.pow(10, 18 + TokensDetail[key].decimals)
+  ).toFixed(3);
+  const bigValueBorrowed = state.cTokenBalancesAll[indexBalance][2];
+  const finalValueBorrowed = (
+    Number(bigValueBorrowed.toString()) /
+    Math.pow(10, TokensDetail[key].decimals)
+  ).toFixed(2);
+  return (
+    <tr>
+      <td>{TokensDetail[key].name}</td>
+      <td class="text-end">
+        {cal} {TokensDetail[key].symbol}
+      </td>
+      <td class="text-end">
+        {supplied} {TokensDetail[key].symbol}
+      </td>
+      <td class="text-end">
+        {finalValueBorrowed} {TokensDetail[key].symbol}
+      </td>
+    </tr>
+  );
+});
+
 if (!state.actionTabs) {
   State.update({ actionTabs: "deposit" });
 }
+if (!state.actionList) {
+  State.update({ actionList: "assets" });
+}
 
 return (
-  <div style={{ maxWidth: "400px" }}>
+  <>
     {state.cTokenBalancesAll &&
     state.cTokenMetadataAll &&
     state.getAccountLimits ? (
-      <div class="card-body d-grid gap-3 mt-5">
-        <div class="action btn-group" role="group" aria-label="Deposit">
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradioaction"
-            id="deposit"
-            autocomplete="off"
-            checked={state.actionTabs === "deposit"}
-            onClick={() => State.update({ actionTabs: "deposit" })}
-          />
-          <label class="btn btn-outline-primary" for="deposit">
-            Deposit
-          </label>
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradioaction"
-            id="borrow"
-            autocomplete="off"
-            checked={state.actionTabs === "borrow"}
-            onClick={() => State.update({ actionTabs: "borrow" })}
-          />
-          <label class="btn btn-outline-primary" for="borrow">
-            Borrow
-          </label>
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradioaction"
-            id="repay"
-            autocomplete="off"
-            checked={state.actionTabs === "repay"}
-            onClick={() => State.update({ actionTabs: "repay" })}
-          />
-          <label class="btn btn-outline-primary" for="repay">
-            Repay
-          </label>
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradioaction"
-            id="withdraw"
-            autocomplete="off"
-            checked={state.actionTabs === "withdraw"}
-            onClick={() => State.update({ actionTabs: "withdraw" })}
-          />
-          <label class="btn btn-outline-primary" for="withdraw">
-            Withdraw
-          </label>
-        </div>
-        <div>
-          <div class="mb-2 text-muted">Token</div>
-          <select
-            onChange={handleSelect}
-            class="p-2 mb-1"
-            style={{ width: "100%" }}
-          >
-            <option value="">Choose your token</option>
-            {Object.keys(TokensDetail).map((key) => {
-              return (
-                <option key={key} value={key}>
-                  {TokensDetail[key].symbol}
-                </option>
-              );
-            })}
-          </select>
-          {state.selectedTokenId !== undefined &&
-          state.selectedTokenId !== "" ? (
-            state.actionTabs == "deposit" ? (
-              <div>
-                <span class="badge bg-light text-dark">
-                  Wallet Balance: {walletBalance()}{" "}
-                  {TokensDetail[selectedTokenId].symbol}
-                </span>
-                <span class="badge bg-light text-dark">
-                  Supply Balance: {supplyBalance()}{" "}
-                  {TokensDetail[selectedTokenId].symbol}
-                </span>
-                {getAllowance()}
-              </div>
-            ) : state.actionTabs == "borrow" ? (
-              <div>
-                <span class="badge bg-light text-dark">
-                  Remaining Borrow Limit: $ {remainingBalance()}
-                </span>
-              </div>
-            ) : state.actionTabs == "repay" ? (
-              <div>
-                <span class="badge bg-light text-dark">
-                  Wallet Balance: {walletBalance()}{" "}
-                  {TokensDetail[selectedTokenId].symbol}
-                </span>
-                <span class="badge bg-light text-dark">
-                  Amount Borrowed: {getBorrowed()}{" "}
-                  {TokensDetail[selectedTokenId].symbol}
-                </span>
-                {getAllowance()}
-              </div>
-            ) : (
-              <div>
-                <span class="badge bg-light text-dark">
-                  Max Withdrawal: {maxWithdraw()}{" "}
-                  {TokensDetail[selectedTokenId].symbol}
-                </span>
-              </div>
-            )
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        <div style={{ paddingRight: "2rem" }}>
+          <div class="list btn-group" role="group" aria-label="List">
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradiolist"
+              id="assets"
+              autocomplete="off"
+              checked={state.actionList === "assets"}
+              onClick={() => State.update({ actionList: "assets" })}
+            />
+            <label class="btn btn-outline-primary" for="assets">
+              Assets
+            </label>
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradiolist"
+              id="portfolio"
+              autocomplete="off"
+              checked={state.actionList === "portfolio"}
+              onClick={() => State.update({ actionList: "portfolio" })}
+            />
+            <label class="btn btn-outline-primary" for="portfolio">
+              Portfolio
+            </label>
+          </div>
+          {state.actionList == "assets" ? (
+            <table class="table">
+              <thead>
+                <tr
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  <th scope="col">Asset</th>
+                  <th scope="col" class="text-end">
+                    APY
+                  </th>
+                  <th scope="col" class="text-end">
+                    APY (borrow)
+                  </th>
+                  <th scope="col" class="text-end">
+                    Total Supply
+                  </th>
+                </tr>
+              </thead>
+              {fetchAllData()}
+              <tbody>{state.allDataTab}</tbody>
+            </table>
           ) : (
-            ""
+            <table class="table">
+              <thead>
+                <tr
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  <th scope="col">Asset</th>
+                  <th scope="col" class="text-end">
+                    Wallet Balance
+                  </th>
+                  <th scope="col" class="text-end">
+                    Supplied
+                  </th>
+                  <th scope="col" class="text-end">
+                    Borrowed
+                  </th>
+                </tr>
+              </thead>
+              <tbody>{portfolio}</tbody>
+            </table>
           )}
         </div>
-        <div>
-          <div class="mb-2 text-muted">Amount</div>
-          <input type="number" value={amount} onChange={handleAmount} />
+        <div style={{ maxWidth: "400px" }}>
+          <div class="card-body d-grid gap-3 mt-5">
+            <div class="action btn-group" role="group" aria-label="Deposit">
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradioaction"
+                id="deposit"
+                autocomplete="off"
+                checked={state.actionTabs === "deposit"}
+                onClick={() => State.update({ actionTabs: "deposit" })}
+              />
+              <label class="btn btn-outline-primary" for="deposit">
+                Deposit
+              </label>
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradioaction"
+                id="borrow"
+                autocomplete="off"
+                checked={state.actionTabs === "borrow"}
+                onClick={() => State.update({ actionTabs: "borrow" })}
+              />
+              <label class="btn btn-outline-primary" for="borrow">
+                Borrow
+              </label>
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradioaction"
+                id="repay"
+                autocomplete="off"
+                checked={state.actionTabs === "repay"}
+                onClick={() => State.update({ actionTabs: "repay" })}
+              />
+              <label class="btn btn-outline-primary" for="repay">
+                Repay
+              </label>
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradioaction"
+                id="withdraw"
+                autocomplete="off"
+                checked={state.actionTabs === "withdraw"}
+                onClick={() => State.update({ actionTabs: "withdraw" })}
+              />
+              <label class="btn btn-outline-primary" for="withdraw">
+                Withdraw
+              </label>
+            </div>
+            <div>
+              <div class="mb-2 text-muted">Token</div>
+              <select
+                onChange={handleSelect}
+                class="p-2 mb-1"
+                style={{ width: "100%" }}
+              >
+                <option value="">Choose your token</option>
+                {Object.keys(TokensDetail).map((key) => {
+                  return (
+                    <option key={key} value={key}>
+                      {TokensDetail[key].symbol}
+                    </option>
+                  );
+                })}
+              </select>
+              {state.selectedTokenId !== undefined &&
+              state.selectedTokenId !== "" ? (
+                state.actionTabs == "deposit" ? (
+                  <div>
+                    <span class="badge bg-light text-dark">
+                      Wallet Balance: {walletBalance()}{" "}
+                      {TokensDetail[selectedTokenId].symbol}
+                    </span>
+                    <span class="badge bg-light text-dark">
+                      Supply Balance: {supplyBalance()}{" "}
+                      {TokensDetail[selectedTokenId].symbol}
+                    </span>
+                    {getAllowance()}
+                  </div>
+                ) : state.actionTabs == "borrow" ? (
+                  <div>
+                    <span class="badge bg-light text-dark">
+                      Remaining Borrow Limit: $ {remainingBalance()}
+                    </span>
+                  </div>
+                ) : state.actionTabs == "repay" ? (
+                  <div>
+                    <span class="badge bg-light text-dark">
+                      Wallet Balance: {walletBalance()}{" "}
+                      {TokensDetail[selectedTokenId].symbol}
+                    </span>
+                    <span class="badge bg-light text-dark">
+                      Amount Borrowed: {getBorrowed()}{" "}
+                      {TokensDetail[selectedTokenId].symbol}
+                    </span>
+                    {getAllowance()}
+                  </div>
+                ) : (
+                  <div>
+                    <span class="badge bg-light text-dark">
+                      Max Withdrawal: {maxWithdraw()}{" "}
+                      {TokensDetail[selectedTokenId].symbol}
+                    </span>
+                  </div>
+                )
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              <div class="mb-2 text-muted">Amount</div>
+              <input type="number" value={amount} onChange={handleAmount} />
+            </div>
+            {state.hasError == 1 ? (
+              <p class="alert alert-danger" role="alert">
+                Amount greater than balance
+              </p>
+            ) : state.hasError == 2 ? (
+              <p class="alert alert-danger" role="alert">
+                Amount greater than Remaining Borrow Limit
+              </p>
+            ) : state.hasError == 3 ? (
+              <p class="alert alert-danger" role="alert">
+                Amount greater than Amount Borrowed
+              </p>
+            ) : state.hasError == 4 ? (
+              <p class="alert alert-danger" role="alert">
+                Amount greater than Max Withdrawal
+              </p>
+            ) : state.hasError == 4 ? (
+              <p class="alert alert-danger" role="alert">
+                Something went wrong!! error: {errorMessage}
+              </p>
+            ) : state.hasError == -1 ? (
+              <p class="alert alert-warning" role="alert">
+                Waiting for confirmation ...
+              </p>
+            ) : state.success == true ? (
+              <p class="alert alert-success" role="alert">
+                Your transaction was sent successfully
+              </p>
+            ) : (
+              ""
+            )}
+            {state.actionTabs == "deposit" ? (
+              state.amount > state.allowance &&
+              state.selectedTokenId !== "ETH" ? (
+                <button
+                  disabled={state.amount == undefined || state.amount == ""}
+                  onClick={handleApprove}
+                  style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+                >
+                  Approve
+                </button>
+              ) : (
+                <button
+                  disabled={state.amount == undefined || state.amount == ""}
+                  onClick={handleDeposit}
+                  style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+                >
+                  Deposit
+                </button>
+              )
+            ) : state.actionTabs == "borrow" ? (
+              <button
+                disabled={state.amount == undefined || state.amount == ""}
+                onClick={handleBorrow}
+                style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+              >
+                Borrow
+              </button>
+            ) : state.amount > state.allowance &&
+              state.selectedTokenId !== "ETH" ? (
+              <button
+                disabled={state.amount == undefined || state.amount == ""}
+                onClick={handleApprove}
+                style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+              >
+                Approve
+              </button>
+            ) : state.actionTabs == "repay" ? (
+              <button
+                disabled={state.amount == undefined || state.amount == ""}
+                onClick={handleRepay}
+                style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+              >
+                Repay
+              </button>
+            ) : (
+              <button
+                disabled={state.amount == undefined || state.amount == ""}
+                onClick={handleWithdraw}
+                style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
+              >
+                Withdraw
+              </button>
+            )}
+          </div>
         </div>
-        {state.hasError == 1 ? (
-          <p class="alert alert-danger" role="alert">
-            Amount greater than balance
-          </p>
-        ) : state.hasError == 2 ? (
-          <p class="alert alert-danger" role="alert">
-            Amount greater than Remaining Borrow Limit
-          </p>
-        ) : state.hasError == 3 ? (
-          <p class="alert alert-danger" role="alert">
-            Amount greater than Amount Borrowed
-          </p>
-        ) : state.hasError == 4 ? (
-          <p class="alert alert-danger" role="alert">
-            Amount greater than Max Withdrawal
-          </p>
-        ) : state.hasError == 4 ? (
-          <p class="alert alert-danger" role="alert">
-            Something went wrong!! error: {errorMessage}
-          </p>
-        ) : state.hasError == -1 ? (
-          <p class="alert alert-warning" role="alert">
-            Waiting for confirmation ...
-          </p>
-        ) : state.success == true ? (
-          <p class="alert alert-success" role="alert">
-            Your transaction was sent successfully
-          </p>
-        ) : (
-          ""
-        )}
-        {state.actionTabs == "deposit" ? (
-          state.amount > state.allowance && state.selectedTokenId !== "ETH" ? (
-            <button
-              disabled={state.amount == undefined || state.amount == ""}
-              onClick={handleApprove}
-              style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-            >
-              Approve
-            </button>
-          ) : (
-            <button
-              disabled={state.amount == undefined || state.amount == ""}
-              onClick={handleDeposit}
-              style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-            >
-              Deposit
-            </button>
-          )
-        ) : state.actionTabs == "borrow" ? (
-          <button
-            disabled={state.amount == undefined || state.amount == ""}
-            onClick={handleBorrow}
-            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-          >
-            Borrow
-          </button>
-        ) : state.amount > state.allowance &&
-          state.selectedTokenId !== "ETH" ? (
-          <button
-            disabled={state.amount == undefined || state.amount == ""}
-            onClick={handleApprove}
-            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-          >
-            Approve
-          </button>
-        ) : state.actionTabs == "repay" ? (
-          <button
-            disabled={state.amount == undefined || state.amount == ""}
-            onClick={handleRepay}
-            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-          >
-            Repay
-          </button>
-        ) : (
-          <button
-            disabled={state.amount == undefined || state.amount == ""}
-            onClick={handleWithdraw}
-            style={{ background: "#4ED58A", borderColor: "#4ED58A" }}
-          >
-            Withdraw
-          </button>
-        )}
       </div>
     ) : (
       <div>
         <h2>Loading...</h2>
       </div>
     )}
-  </div>
+  </>
 );
