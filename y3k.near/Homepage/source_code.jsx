@@ -47,7 +47,7 @@ return (
 
           <div class="row">
             <div class="card shadow-sm bg-dark">
-              <h1 class="fw-light">NEAR TOP Dapps</h1>
+              <h1 class="fw-light">NEAR Projects</h1>
 
               <Widget src="y3k.near/widget/NEAR.ATLAS.REACT.TABLE.TOP.DAPPS" />
             </div>
