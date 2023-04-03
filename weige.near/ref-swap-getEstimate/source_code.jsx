@@ -30,6 +30,7 @@ const REF_FI_CONTRACT_ID = "v2.ref-finance.near";
 const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
   const allocation = amountIn;
 
+  console.log(pool, "pool");
   const amount_with_fee =
     Number(allocation) * (FEE_DIVISOR - pool.fee || pool.total_fee || 0);
 
