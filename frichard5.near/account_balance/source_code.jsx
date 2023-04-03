@@ -23,7 +23,7 @@ contractsBalance.body &&
 
 return (
   <>
-    <h2> Balances </h2>
+    <h2> Balances {props.account}</h2>
     <table>
       <tr>
         <th>Token</th>
