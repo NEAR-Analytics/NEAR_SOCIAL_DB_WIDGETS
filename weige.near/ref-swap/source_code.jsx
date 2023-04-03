@@ -141,7 +141,6 @@ if (!state.timerIntervalSet) {
 const Container = styled.div`
     width: 430px;
     color: white;
-    background:rgb(16,16,17)
 
 `;
 
