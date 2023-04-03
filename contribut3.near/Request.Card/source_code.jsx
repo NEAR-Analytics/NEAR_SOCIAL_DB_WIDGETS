@@ -41,15 +41,15 @@ const Title = styled.h3`
 `;
 
 const Details = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: .5em 0px 0px;
-gap: 1.5em;
-flex: none;
-order: 4;
-align-self: stretch;
-flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .5em 0px 0px;
+  gap: 1.5em;
+  flex: none;
+  order: 4;
+  align-self: stretch;
+  flex-grow: 0;
 `;
 
 const Item = styled.div`
