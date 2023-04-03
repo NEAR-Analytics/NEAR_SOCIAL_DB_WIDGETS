@@ -28,18 +28,20 @@ if (!state.requestsIsFetched) {
   ).then((requests) => State.update({ requests, requestsIsFetched: true }));
 }
 
-const body = <>
-  <Widget src={`${ownerId}/widget/ProfileLine`} props={{
-    accountId,
-    isEntity: true,
-    imageSize: "3em",
-    update: props.update,
-  }} />
-</>;
+const body = (
+  <>
+    <Widget
+      src={`${ownerId}/widget/ProfileLine`}
+      props={{
+        accountId,
+        isEntity: true,
+        imageSize: "3em",
+        update: props.update,
+      }}
+    />
+  </>
+);
 
 return (
-  <Widget
-    src={`${ownerId}/widget/Card`}
-    props={{ body: "", footer: "" }}
-  />
+  <Widget src={`${ownerId}/widget/Card`} props={{ body: "", footer: "" }} />
 );
