@@ -238,7 +238,7 @@ const callTx = () => {
       msg: JSON.stringify({
         actions: [
           {
-            pool_id: state.estimate.pool.id,
+            pool_id: Number(state.estimate.pool.id),
             token_in:
               state.tokenIn.id === "NEAR" ? "wrap.near" : state.tokenIn.id,
             token_out: state.tokenOut.id,
