@@ -229,7 +229,7 @@ const setTabIndex = (index) => () => {
 const prevMove = state.events[state.tabIndex - 1]?.data;
 const nextMove = state.events[state.tabIndex + 1]?.data;
 const boardState = state.events[state.tabIndex].data;
-if (boardState.board) {
+if (!boardState.board) {
   return (
     <BoardView>
       Unable to render board. It looks like this game has been created with an
