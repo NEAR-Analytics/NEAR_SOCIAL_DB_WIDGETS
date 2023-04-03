@@ -107,6 +107,8 @@ if (wrapOperation) {
   return <div />;
 }
 
+if (tokenIn.id === tokenOut.id) return returnNull();
+
 const poolRes = fetch("https://indexer.ref.finance/list-top-pools");
 
 if (!poolRes) return returnNull();
