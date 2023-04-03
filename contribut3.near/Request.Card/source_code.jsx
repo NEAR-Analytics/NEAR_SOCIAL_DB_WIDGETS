@@ -142,10 +142,10 @@ const body = (
         ),
       }}
     />
-    <div>
+    <Details>
       {deadline}
       {budget}
-    </div>
+    </Details>
   </>
 );
 
