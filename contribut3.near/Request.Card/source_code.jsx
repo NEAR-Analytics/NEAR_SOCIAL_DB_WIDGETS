@@ -40,6 +40,17 @@ const Title = styled.h3`
   flex-grow: 1;
 `;
 
+const Deadline = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: .4em;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+`;
+
 const body = (
   <>
     <Widget
@@ -67,6 +78,7 @@ const body = (
       src={`${ownerId}/widget/Tags`}
       props={{ tags: state.request.tags.reduce((ob, tag) => ({ ...ob, [tag]: "" }), {}) }}
     />
+
   </>
 );
 
