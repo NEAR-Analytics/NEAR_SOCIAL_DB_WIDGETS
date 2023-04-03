@@ -19,6 +19,7 @@ const convertAmount = (amount, decimals) => {
 State.init({
   recipient: accountId,
   contract_name: "nearweek-news-contribution.sputnik-dao.near",
+  amount: 0.5,
 });
 
 const onChangeGas = (gas) => {
