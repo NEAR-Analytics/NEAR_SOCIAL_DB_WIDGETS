@@ -28,6 +28,6 @@ return (
   <CardContainer>
     {header}
     {body}
-    <footer>{footer}</footer>
+    <CardFooter>{footer}</CardFooter>
   </CardContainer>
 );
