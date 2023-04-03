@@ -34,19 +34,15 @@ const getSinglePoolEstimate = (tokenIn, tokenOut, pool, amountIn) => {
     Number(allocation) * (FEE_DIVISOR - pool.fee || pool.total_fee || 0);
 
   const in_balance = shrinkToken(
-    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 0 : 1],
+    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 1 : 0],
     tokenIn.decimals
   );
 
-  console.log(in_balance.toFixed(), "in_balance");
-
   const out_balance = shrinkToken(
-    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 1 : 0],
+    pool.amounts[pool.token_account_ids[0] === tokenIn.id ? 0 : 1],
 
     tokenOut.decimals
   );
-
-  console.log(out_balance.toFixed(), "out_balance");
 
   const estimate = new Big(
     (
@@ -127,12 +123,8 @@ if (!poolThisPair) {
   return returnNull();
 }
 
-console.log(poolThisPair, "pool this pair");
-
 if (poolThisPair.pool_kind === "SIMPLE_POOL") {
   const res = getSinglePoolEstimate(tokenIn, tokenOut, poolThisPair, amountIn);
-
-  console.log(res, "res");
 
   loadRes(res);
 } else {
