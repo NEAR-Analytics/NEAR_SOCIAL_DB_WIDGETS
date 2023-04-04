@@ -8,8 +8,7 @@ if (!formName || !icon || !text) {
 
 return (
   <li className="nav-item">
-    <a
-      className="nav-link active"
+    <a className="nav-link active"
       aria-current="page"
       href="#"
       data-bs-toggle="collapse"
