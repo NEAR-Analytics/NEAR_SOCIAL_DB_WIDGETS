@@ -1,36 +1,36 @@
 const { selectedTokenId, amount, hasError, status } = state;
 
 // check if correct chain
-const { chainId } = Ethers.getNetwork();
-const chainIdToSwitch = "0x4E97D6A2";
-const switchChain = () => {
-  const auroraChain = {
-    chainId: "0x4e454152", // The chain ID for Aurora (1313161554 in hexadecimal)
-    chainName: "Aurora", // The name of the Aurora chain
-    nativeCurrency: {
-      name: "Ethereum",
-      symbol: "ETH",
-      decimals: 18,
-    },
-    rpcUrls: ["https://mainnet.aurora.dev"], // The RPC endpoint for the Aurora chain
-    blockExplorerUrls: ["https://aurorascan.dev/"], // The block explorer URL for Aurora
-  };
+// const { chainId } = Ethers.getNetwork();
+// const chainIdToSwitch = "0x4E97D6A2";
+// const switchChain = () => {
+//   const auroraChain = {
+//     chainId: "0x4e454152", // The chain ID for Aurora (1313161554 in hexadecimal)
+//     chainName: "Aurora", // The name of the Aurora chain
+//     nativeCurrency: {
+//       name: "Ethereum",
+//       symbol: "ETH",
+//       decimals: 18,
+//     },
+//     rpcUrls: ["https://mainnet.aurora.dev"], // The RPC endpoint for the Aurora chain
+//     blockExplorerUrls: ["https://aurorascan.dev/"], // The block explorer URL for Aurora
+//   };
 
-  Ethers.send("wallet_addEthereumChain", [auroraChain]);
-};
+//   Ethers.send("wallet_addEthereumChain", [auroraChain]);
+// };
 
-if (chainId !== 1313161554) {
-  return (
-    <div style={{ margin: "auto", textAlign: "center" }}>
-      <h2>Please switch to Aurora</h2>
-      <br />
-      <button onClick={switchChain}>Switch to Aurora</button>
-      <br />
-      <br />
-      <p>**Please refresh once after switch chain**</p>
-    </div>
-  );
-}
+// if (chainId !== 1313161554) {
+//   return (
+//     <div style={{ margin: "auto", textAlign: "center" }}>
+//       <h2>Please switch to Aurora</h2>
+//       <br />
+//       <button onClick={switchChain}>Switch to Aurora</button>
+//       <br />
+//       <br />
+//       <p>**Please refresh once after switch chain**</p>
+//     </div>
+//   );
+// }
 
 // check if account connected
 const sender = Ethers.send("eth_requestAccounts", [])[0];
