@@ -3,16 +3,18 @@ const account = props.account || "foundation.near";
 const apiUrl = `https://api.pikespeak.ai/contract-analysis/metrics/${account}`;
 const publicApiKey = "36f2b87a-7ee6-40d8-80b9-5e68e587a5b5";
 
-const amountsFormatter = (amounts) => {
-  let tds = [];
-  Object.keys(amounts).forEach((k) => {
-    tds.push(
-      <td>
-        {amounts[k]} {k}
-      </td>
-    );
-  });
-  return tds;
+const amountsFormatter = (prop) => {
+  return (data) => {
+    let tds = [];
+    Object.keys(data[prop]).forEach((k) => {
+      tds.push(
+        <td>
+          {data[prop][k]} {k}
+        </td>
+      );
+    });
+    return tds;
+  };
 };
 
 const columns = [
@@ -31,12 +33,12 @@ const columns = [
   {
     id: "amounts_in",
     label: "amount in",
-    formatter: amountsFormatter,
+    formatter: amountsFormatter("amounts_in"),
   },
   {
     id: "amounts_out",
     label: "amount out",
-    formatter: amountsFormatter,
+    formatter: amountsFormatter("amounts_out"),
   },
 ];
 
