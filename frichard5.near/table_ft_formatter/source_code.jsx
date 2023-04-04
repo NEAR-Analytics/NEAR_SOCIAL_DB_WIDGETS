@@ -1,4 +1,5 @@
 const ftList = props.ftList || [];
+const { amount, ft } = props;
 
 const numberWithCommas = (x) => {
   return JSON.stringify(x).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -10,4 +11,12 @@ const findFt = (ftAddress) => {
   return ft ? ft : defaultFt;
 };
 
-return <div>Hello World</div>;
+const currentFt = findFt(ft);
+
+return (
+  <td>
+    {numberWithCommas(parseInt(amount))}
+    {currentFt.icon ? <img src={currentFt.icon} /> : ""}
+    {currentFt.symbol}
+  </td>
+);
