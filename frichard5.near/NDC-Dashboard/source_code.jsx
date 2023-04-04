@@ -11,7 +11,8 @@ const theme = {
 //    background: ${(props) => props.theme.secondaryBlue};
 
 const DashboardContainer = styled.div`
-    padding: 24px;
+    padding: 28px;
+    background: url("https://ipfs.near.social/ipfs/bafkreiasup7s7ujh7tzqg2ya2slnvmqobajehrckjccza35i3m5fcfw25i"),
 `;
 
 // Fetch
