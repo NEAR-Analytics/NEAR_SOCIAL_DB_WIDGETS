@@ -21,3 +21,12 @@ const LogoArea = styled.div`
   padding: 0px;
   gap: .7em;
 `;
+
+const ActionArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 1em;
+`;
