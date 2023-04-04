@@ -4,15 +4,12 @@ const StakingSelector = styled.div`
     background-color: #ffffff;
     border: 1px solid #c0c5c1;
     display: flex;
-    align-items: center;
-    column-gap: 16px;
+    justify-content: space-around;
     padding-left: 8px;
     padding-right: 8px;
     padding-top: 8px;
     padding-bottom: 8px;
     flex-direction: row;
-    justify-content: center;
-
 
   `;
 return (
