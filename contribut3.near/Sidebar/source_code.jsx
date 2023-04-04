@@ -116,7 +116,7 @@ const NavItem = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  alitn-items: center;
+  align-items: center;
 
   &:hover {
     color: #667085;
