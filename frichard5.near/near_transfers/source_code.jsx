@@ -28,6 +28,7 @@ const columns = [
   },
   {
     id: "transaction_id",
+    label: "Tx id",
   },
 ];
 
