@@ -16,7 +16,7 @@ return (
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      gap: 16,
+      gap: 8,
       width: "100%",
     }}
   >
@@ -28,9 +28,9 @@ return (
         gap: 4,
       }}
     >
-      <h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
+      {/*<h1 style={{ color: props.theme.textColor, fontWeight: 700 }}>
         BOS Widgets
-      </h1>
+      </h1>*/}
       <p style={{ color: props.theme.textColor2, fontWeight: 400 }}>
         Discover the latest widgets from the NEAR community.
       </p>
